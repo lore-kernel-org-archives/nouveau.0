@@ -1,50 +1,92 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH 0/3] ARB_viewport_array for nvc0
-Date: Sat, 14 Jun 2014 11:54:27 -0400
-Message-ID: <CAKb7UvjSrrDCTyG26b6yWVandZBhScOze5HVjiYxH_3TBX5fVQ@mail.gmail.com>
-References: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75761] weston-launch no output - black screen
+Date: Sat, 14 Jun 2014 22:24:59 +0000
+Message-ID: <bug-75761-8800-EWL38HVepN@http.bugs.freedesktop.org/>
+References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1402756870-2207-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0838327931=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Review comments sent; you should also add a separate patch that marks
-off ARB_viewport_array in GL3.txt and adds it to relnotes for 10.3.
 
-On Sat, Jun 14, 2014 at 10:41 AM, Tobias Klausmann
-<tobias.johannes.klausmann@mni.thm.de> wrote:
-> This patch-series implements the ARB_viewport_array for nvc0 and does
-> a little house-cleanig afterwords.
->
-> Tobias Klausmann (3):
->   nvc0: implement multiple viewports/scissors, enable ARB_viewport_array
->   nvc0: mark scissor in nvc0_clear_{}
->   nv50/ir: Remove NV50_SEMANTIC_VIEWPORTINDEX and its last consumer
->
->  .../drivers/nouveau/codegen/nv50_ir_driver.h       |   1 -
->  .../nouveau/codegen/nv50_ir_target_nv50.cpp        |   1 -
->  src/gallium/drivers/nouveau/nvc0/nvc0_context.h    |   7 +-
->  src/gallium/drivers/nouveau/nvc0/nvc0_program.c    |   2 +-
->  src/gallium/drivers/nouveau/nvc0/nvc0_screen.c     |  20 ++--
->  src/gallium/drivers/nouveau/nvc0/nvc0_screen.h     |   3 +
->  src/gallium/drivers/nouveau/nvc0/nvc0_state.c      |  27 ++++-
->  .../drivers/nouveau/nvc0/nvc0_state_validate.c     | 121 +++++++++++++--------
->  src/gallium/drivers/nouveau/nvc0/nvc0_surface.c    |   3 +
->  9 files changed, 120 insertions(+), 65 deletions(-)
->
-> --
-> 1.8.4.5
->
+--===============0838327931==
+Content-Type: multipart/alternative; boundary="1402784699.b0FAfd84.2126"; charset="us-ascii"
+
+
+--1402784699.b0FAfd84.2126
+Date: Sat, 14 Jun 2014 22:24:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75761
+
+--- Comment #36 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
+I'm trying to compile the module... it seems that it's gone from the log now???
+
+How do I disable werror too?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1402784699.b0FAfd84.2126
+Date: Sat, 14 Jun 2014 22:24:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c36">Comment # 36</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - weston-launch no output - black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
+              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
+</span></b>
+        <pre>I'm trying to compile the module... it seems that it's gone from the log now???
+
+How do I disable werror too?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1402784699.b0FAfd84.2126--
+
+--===============0838327931==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0838327931==--
