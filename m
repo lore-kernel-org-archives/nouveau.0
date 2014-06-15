@@ -1,11 +1,13 @@
 From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v2 0/3] ARB_viewport_array for nvc0
-Date: Sun, 15 Jun 2014 21:24:03 +0200
-Message-ID: <1402860246-24772-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+Subject: [PATCH v2 3/3] nv50/ir: Remove NV50_SEMANTIC_VIEWPORTINDEX
+Date: Sun, 15 Jun 2014 21:24:06 +0200
+Message-ID: <1402860246-24772-4-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+References: <1402860246-24772-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1402860246-24772-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,30 +20,38 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This patch-series implements the ARB_viewport_array for nvc0 and does
-a little house-cleanig afterwords.
+Use TGSI_SEMANTIC_VIEWPORT_INDEX for the last consumer.
 
-V2: 
-  Add Release-Notes, mark this in GL3 as done for nvc0
-  Don't mark the scissors dirty when we don't need to do that
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h        | 1 -
+ src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-Tobias Klausmann (3):
-  nvc0: implement multiple viewports/scissors, enable ARB_viewport_array
-  docs: update GL3.txt, relnotes: mark GL_ARB_viewport_array as done for
-    nvc0
-  nv50/ir: Remove NV50_SEMANTIC_VIEWPORTINDEX
-
- docs/GL3.txt                                       |   2 +-
- docs/relnotes/10.3.html                            |   1 +
- .../drivers/nouveau/codegen/nv50_ir_driver.h       |   1 -
- .../nouveau/codegen/nv50_ir_target_nv50.cpp        |   2 +-
- src/gallium/drivers/nouveau/nvc0/nvc0_context.h    |   7 +-
- src/gallium/drivers/nouveau/nvc0/nvc0_program.c    |   2 +-
- src/gallium/drivers/nouveau/nvc0/nvc0_screen.c     |  20 ++--
- src/gallium/drivers/nouveau/nvc0/nvc0_screen.h     |   3 +
- src/gallium/drivers/nouveau/nvc0/nvc0_state.c      |  27 +++--
- .../drivers/nouveau/nvc0/nvc0_state_validate.c     | 116 +++++++++++++--------
- 10 files changed, 115 insertions(+), 66 deletions(-)
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+index f829aac..c885c8c 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+@@ -70,7 +70,6 @@ struct nv50_ir_varying
+ #endif
+ 
+ #define NV50_SEMANTIC_CLIPDISTANCE  (TGSI_SEMANTIC_COUNT + 0)
+-#define NV50_SEMANTIC_VIEWPORTINDEX (TGSI_SEMANTIC_COUNT + 4)
+ #define NV50_SEMANTIC_TESSFACTOR    (TGSI_SEMANTIC_COUNT + 7)
+ #define NV50_SEMANTIC_TESSCOORD     (TGSI_SEMANTIC_COUNT + 8)
+ #define NV50_SEMANTIC_COUNT         (TGSI_SEMANTIC_COUNT + 10)
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+index abadc7f..b0d617a 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target_nv50.cpp
+@@ -538,7 +538,7 @@ recordLocation(uint16_t *locs, uint8_t *masks,
+    case TGSI_SEMANTIC_VERTEXID: locs[SV_VERTEX_ID] = addr; break;
+    case TGSI_SEMANTIC_PRIMID: locs[SV_PRIMITIVE_ID] = addr; break;
+    case TGSI_SEMANTIC_LAYER: locs[SV_LAYER] = addr; break;
+-   case NV50_SEMANTIC_VIEWPORTINDEX: locs[SV_VIEWPORT_INDEX] = addr; break;
++   case TGSI_SEMANTIC_VIEWPORT_INDEX: locs[SV_VIEWPORT_INDEX] = addr; break;
+    default:
+       break;
+    }
 -- 
 1.8.4.5
