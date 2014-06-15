@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75761] weston-launch no output - black screen
-Date: Sun, 15 Jun 2014 00:03:11 +0000
-Message-ID: <bug-75761-8800-W5HVXZLds7@http.bugs.freedesktop.org/>
+Date: Sun, 15 Jun 2014 00:16:56 +0000
+Message-ID: <bug-75761-8800-gpeW0EudHg@http.bugs.freedesktop.org/>
 References: <bug-75761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1577915426=="
+Content-Type: multipart/mixed; boundary="===============0763658934=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1577915426==
-Content-Type: multipart/alternative; boundary="1402790591.2CCBfa5.20995"; charset="us-ascii"
+--===============0763658934==
+Content-Type: multipart/alternative; boundary="1402791416.58dd4B4.23171"; charset="us-ascii"
 
 
---1402790591.2CCBfa5.20995
-Date: Sun, 15 Jun 2014 00:03:11 +0000
+--1402791416.58dd4B4.23171
+Date: Sun, 15 Jun 2014 00:16:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75761
 
---- Comment #38 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-All the patches are now in drm-next, just use that.
+--- Comment #39 from nerdopolis1-H+0wwilmMs3R7s880joybQ@public.gmane.org ---
+I would at least like to try to just try to apply them against the 3.13 nouveau
+module, instead of trying to rebuild the whole kernel first? So is that the
+only patch I would need?
+
+I'm still on 3.13 (which is also affected), as I have been doing all of my
+testing on the Weston side of things...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402790591.2CCBfa5.20995
-Date: Sun, 15 Jun 2014 00:03:11 +0000
+--1402791416.58dd4B4.23171
+Date: Sun, 15 Jun 2014 00:16:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +58,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c38">Comment # 38</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75761#c39">Comment # 39</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED --- - weston-launch no output - black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75761">bug 75761</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:nerdopolis1&#64;verizon.net" title="nerdopolis1&#64;verizon.net">nerdopolis1&#64;verizon.net</a>
 </span></b>
-        <pre>All the patches are now in drm-next, just use that.</pre>
+        <pre>I would at least like to try to just try to apply them against the 3.13 nouveau
+module, instead of trying to rebuild the whole kernel first? So is that the
+only patch I would need?
+
+I'm still on 3.13 (which is also affected), as I have been doing all of my
+testing on the Weston side of things...</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1402790591.2CCBfa5.20995--
+--1402791416.58dd4B4.23171--
 
---===============1577915426==
+--===============0763658934==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1577915426==--
+--===============0763658934==--
