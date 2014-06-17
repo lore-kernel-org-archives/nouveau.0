@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Tue, 17 Jun 2014 08:52:50 +0000
-Message-ID: <bug-79823-8800-FW8Q1LucRU@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78439] [NVC1] Display corruption when DP connector
+ is reattached
+Date: Tue, 17 Jun 2014 11:05:01 +0000
+Message-ID: <bug-78439-8800-RAjxR0bEO9@http.bugs.freedesktop.org/>
+References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1186720626=="
+Content-Type: multipart/mixed; boundary="===============0265845878=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,113 +21,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1186720626==
-Content-Type: multipart/alternative; boundary="1402995170.110Ef80.23742"; charset="us-ascii"
+--===============0265845878==
+Content-Type: multipart/alternative; boundary="1403003101.3af37F01.30444"; charset="us-ascii"
 
 
---1402995170.110Ef80.23742
-Date: Tue, 17 Jun 2014 08:52:50 +0000
+--1403003101.3af37F01.30444
+Date: Tue, 17 Jun 2014 11:05:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
 
---- Comment #19 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
-(In reply to comment #18)
-> What happens if you add
-> 
-> screen->base.pushbuf->user_priv = NULL
-> 
-> right before the if (screen->base.fence.current) check in
-> nv30_screen_destroy?
+--- Comment #18 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+Yes it helps. DP screen is no longer black.
 
-No effect.
+The original issue has diminished too. The corrupted portion of the display=
+ is
+three times narrower. But I haven't tested whether this patch helps or one =
+of
+the patches after that "bad revision" 8894f4919bc43f821775db2cfff4b917871b2=
+102.
 
-After llvm,llvm-libs update 3.4.1 -> 3.4.2 also glxgears starting to freeze
-instead of normal exit by ESC:
-
-Running synchronized to the vertical refresh.  The framerate should be
-approximately the same as the monitor refresh rate.
-2469 frames in 5.0 seconds = 493.688 FPS
-2476 frames in 5.0 seconds = 495.177 FPS
-nouveau: kernel rejected pushbuf: Bad file descriptor
-nouveau: ch0: krec 0 pushes 1 bufs 1 relocs 0
-nouveau: ch0: buf 00000000 00000004 00000004 00000004 00000000
-nouveau: ch0: psh 00000000 0000025e84 0000025e98
-nouveau:        0x0008fd6c
-nouveau:        0x00000000
-nouveau:        0x00001437
-nouveau:        0x00020000
-nouveau:        0x00000000
- (freeze)
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1402995170.110Ef80.23742
-Date: Tue, 17 Jun 2014 08:52:50 +0000
+--1403003101.3af37F01.30444
+Date: Tue, 17 Jun 2014 11:05:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
+konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=79823#c18">comment #18</a>)
-<span class="quote">&gt; What happens if you add
-&gt; 
-&gt; screen-&gt;base.pushbuf-&gt;user_priv = NULL
-&gt; 
-&gt; right before the if (screen-&gt;base.fence.current) check in
-&gt; nv30_screen_destroy?</span >
+        <pre>Yes it helps. DP screen is no longer black.
 
-No effect.
-
-After llvm,llvm-libs update 3.4.1 -&gt; 3.4.2 also glxgears starting to freeze
-instead of normal exit by ESC:
-
-Running synchronized to the vertical refresh.  The framerate should be
-approximately the same as the monitor refresh rate.
-2469 frames in 5.0 seconds = 493.688 FPS
-2476 frames in 5.0 seconds = 495.177 FPS
-nouveau: kernel rejected pushbuf: Bad file descriptor
-nouveau: ch0: krec 0 pushes 1 bufs 1 relocs 0
-nouveau: ch0: buf 00000000 00000004 00000004 00000004 00000000
-nouveau: ch0: psh 00000000 0000025e84 0000025e98
-nouveau:        0x0008fd6c
-nouveau:        0x00000000
-nouveau:        0x00001437
-nouveau:        0x00020000
-nouveau:        0x00000000
- (freeze)</pre>
+The original issue has diminished too. The corrupted portion of the display=
+ is
+three times narrower. But I haven't tested whether this patch helps or one =
+of
+the patches after that &quot;bad revision&quot; 8894f4919bc43f821775db2cfff=
+4b917871b2102.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1402995170.110Ef80.23742--
+--1403003101.3af37F01.30444--
 
---===============1186720626==
+--===============0265845878==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +108,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1186720626==--
+--===============0265845878==--
