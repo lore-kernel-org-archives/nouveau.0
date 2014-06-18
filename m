@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Wed, 18 Jun 2014 07:51:22 +0000
-Message-ID: <bug-79823-8800-bR0pLpmXS6@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78439] [NVC1] Display corruption when DP connector
+ is reattached
+Date: Wed, 18 Jun 2014 13:05:28 +0000
+Message-ID: <bug-78439-8800-ghOCbpmbuS@http.bugs.freedesktop.org/>
+References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0983558917=="
+Content-Type: multipart/mixed; boundary="===============1201006613=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,78 +21,114 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0983558917==
-Content-Type: multipart/alternative; boundary="1403077882.a81b8Dbe0.27683"; charset="us-ascii"
+--===============1201006613==
+Content-Type: multipart/alternative; boundary="1403096728.01E81.17571"; charset="us-ascii"
 
 
---1403077882.a81b8Dbe0.27683
-Date: Wed, 18 Jun 2014 07:51:22 +0000
+--1403096728.01E81.17571
+Date: Wed, 18 Jun 2014 13:05:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
 
---- Comment #22 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 101283
-  --> https://bugs.freedesktop.org/attachment.cgi?id=101283&action=edit
-Valgrind glxtest logs
+Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
 
-Valgrind glxtest logs:
-10.2.1 (clear);
-10.2.1-reverted (without bisectred patch);
-10.2.1-bufctx (avoid dangling... patch);
-10.2.1-leaks (plug some memory leaks... patch);
-10.2.1-bufctx_leaks (both patches)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+  Attachment #98687|0                           |1
+        is obsolete|                            |
 
--- 
+--- Comment #21 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+Created attachment 101299
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D101299&action=3Dedit
+dmesg_dont_touch_link
+
+dmesg with "drm/nouveau/disp/dp: don't touch link config after success" pat=
+ch
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403077882.a81b8Dbe0.27683
-Date: Wed, 18 Jun 2014 07:51:22 +0000
+--1403096728.01E81.17571
+Date: Wed, 18 Jun 2014 13:05:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrius&#=
+64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;stikonas.eu&=
+gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+        <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #98687 is obsolete</t=
+d>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c21">Commen=
+t # 21</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
+   title=3D"NEW --- - [NVC1] Display corruption when DP connector is reatta=
+ched"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
+konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=101283" name="attach_101283" title="Valgrind glxtest logs">attachment 101283</a> <a href="attachment.cgi?id=101283&amp;action=edit" title="Valgrind glxtest logs">[details]</a></span>
-Valgrind glxtest logs
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D101299=
+" name=3D"attach_101299" title=3D"dmesg_dont_touch_link">attachment 101299<=
+/a> <a href=3D"attachment.cgi?id=3D101299&amp;action=3Dedit" title=3D"dmesg=
+_dont_touch_link">[details]</a></span>
+dmesg_dont_touch_link
 
-Valgrind glxtest logs:
-10.2.1 (clear);
-10.2.1-reverted (without bisectred patch);
-10.2.1-bufctx (avoid dangling... patch);
-10.2.1-leaks (plug some memory leaks... patch);
-10.2.1-bufctx_leaks (both patches)</pre>
+dmesg with &quot;drm/nouveau/disp/dp: don't touch link config after success=
+&quot; patch</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1403077882.a81b8Dbe0.27683--
+--1403096728.01E81.17571--
 
---===============0983558917==
+--===============1201006613==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -103,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0983558917==--
+--===============1201006613==--
