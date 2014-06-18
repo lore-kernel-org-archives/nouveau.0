@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 2/2] nv30: avoid dangling references to deleted
-	contexts
-Date: Tue, 17 Jun 2014 22:39:32 -0400
-Message-ID: <1403059172-27689-2-git-send-email-imirkin@alum.mit.edu>
-References: <1403059172-27689-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
+ with nouveau-dri-10.2.1 libs on dual-screen
+Date: Wed, 18 Jun 2014 02:45:04 +0000
+Message-ID: <bug-79823-8800-f09Vf8cyAG@http.bugs.freedesktop.org/>
+References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1153788326=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1403059172-27689-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,29 +17,127 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
----
- src/gallium/drivers/nouveau/nv30/nv30_context.c | 3 +++
- 1 file changed, 3 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nv30/nv30_context.c b/src/gallium/drivers/nouveau/nv30/nv30_context.c
-index f325c5c..617b088 100644
---- a/src/gallium/drivers/nouveau/nv30/nv30_context.c
-+++ b/src/gallium/drivers/nouveau/nv30/nv30_context.c
-@@ -165,6 +165,9 @@ nv30_context_destroy(struct pipe_context *pipe)
-    if (nv30->draw)
-       draw_destroy(nv30->draw);
- 
-+   if (nv30->screen->base.pushbuf->user_priv == &nv30->bufctx)
-+      nv30->screen->base.pushbuf->user_priv = NULL;
-+
-    nouveau_bufctx_del(&nv30->bufctx);
- 
-    if (nv30->screen->cur_ctx == nv30)
+--===============1153788326==
+Content-Type: multipart/alternative; boundary="1403059504.88Cf1.2707"; charset="us-ascii"
+
+
+--1403059504.88Cf1.2707
+Date: Wed, 18 Jun 2014 02:45:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=79823
+
+--- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #19)
+> (In reply to comment #18)
+> > What happens if you add
+> > 
+> > screen->base.pushbuf->user_priv = NULL
+> > 
+> > right before the if (screen->base.fence.current) check in
+> > nv30_screen_destroy?
+> 
+> No effect.
+
+Well, I've been unable to reproduce the "kernel rejected pushbuf" + hang
+behaviour, although I've only been testing with a NV43.
+
+However I did observe the issue that I thought I would observe due to that line
+not being there... here's a slightly more correct version than my previous
+suggestion:
+
+http://patchwork.freedesktop.org/patch/28050/
+
+And another patch which I think is unlikely to affect what you're seeing, but
+who knows:
+
+http://patchwork.freedesktop.org/patch/28049/
+
+Assuming these don't help, could you run that glxtest application inside
+valgrind, and let me know if you see any illegal accesses. (Note that the first
+one of those patches will in fact prevent one such illegal access.)
+
 -- 
-1.8.5.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403059504.88Cf1.2707
+Date: Wed, 18 Jun 2014 02:45:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=79823#c19">comment #19</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=79823#c18">comment #18</a>)
+&gt; &gt; What happens if you add
+&gt; &gt; 
+&gt; &gt; screen-&gt;base.pushbuf-&gt;user_priv = NULL
+&gt; &gt; 
+&gt; &gt; right before the if (screen-&gt;base.fence.current) check in
+&gt; &gt; nv30_screen_destroy?
+&gt; 
+&gt; No effect.</span >
+
+Well, I've been unable to reproduce the &quot;kernel rejected pushbuf&quot; + hang
+behaviour, although I've only been testing with a NV43.
+
+However I did observe the issue that I thought I would observe due to that line
+not being there... here's a slightly more correct version than my previous
+suggestion:
+
+<a href="http://patchwork.freedesktop.org/patch/28050/">http://patchwork.freedesktop.org/patch/28050/</a>
+
+And another patch which I think is unlikely to affect what you're seeing, but
+who knows:
+
+<a href="http://patchwork.freedesktop.org/patch/28049/">http://patchwork.freedesktop.org/patch/28049/</a>
+
+Assuming these don't help, could you run that glxtest application inside
+valgrind, and let me know if you see any illegal accesses. (Note that the first
+one of those patches will in fact prevent one such illegal access.)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403059504.88Cf1.2707--
+
+--===============1153788326==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1153788326==--
