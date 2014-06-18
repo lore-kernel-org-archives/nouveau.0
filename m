@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Wed, 18 Jun 2014 02:45:04 +0000
-Message-ID: <bug-79823-8800-f09Vf8cyAG@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] nv30: tidy screen caps, add missing ones
+Date: Tue, 17 Jun 2014 23:55:20 -0400
+Message-ID: <1403063721-28896-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1153788326=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,127 +15,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/nv30/nv30_screen.c | 33 +++++++++++++-------------
+ 1 file changed, 17 insertions(+), 16 deletions(-)
 
---===============1153788326==
-Content-Type: multipart/alternative; boundary="1403059504.88Cf1.2707"; charset="us-ascii"
-
-
---1403059504.88Cf1.2707
-Date: Wed, 18 Jun 2014 02:45:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
-
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #19)
-> (In reply to comment #18)
-> > What happens if you add
-> > 
-> > screen->base.pushbuf->user_priv = NULL
-> > 
-> > right before the if (screen->base.fence.current) check in
-> > nv30_screen_destroy?
-> 
-> No effect.
-
-Well, I've been unable to reproduce the "kernel rejected pushbuf" + hang
-behaviour, although I've only been testing with a NV43.
-
-However I did observe the issue that I thought I would observe due to that line
-not being there... here's a slightly more correct version than my previous
-suggestion:
-
-http://patchwork.freedesktop.org/patch/28050/
-
-And another patch which I think is unlikely to affect what you're seeing, but
-who knows:
-
-http://patchwork.freedesktop.org/patch/28049/
-
-Assuming these don't help, could you run that glxtest application inside
-valgrind, and let me know if you see any illegal accesses. (Note that the first
-one of those patches will in fact prevent one such illegal access.)
-
+diff --git a/src/gallium/drivers/nouveau/nv30/nv30_screen.c b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+index 4baabaf..5c3d783 100644
+--- a/src/gallium/drivers/nouveau/nv30/nv30_screen.c
++++ b/src/gallium/drivers/nouveau/nv30/nv30_screen.c
+@@ -62,6 +62,12 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+       return 13;
+    case PIPE_CAP_GLSL_FEATURE_LEVEL:
+       return 120;
++   case PIPE_CAP_ENDIANNESS:
++      return PIPE_ENDIAN_LITTLE;
++   case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
++      return 16;
++   case PIPE_CAP_MAX_VIEWPORTS:
++      return 1;
+    /* supported capabilities */
+    case PIPE_CAP_TWO_SIDED_STENCIL:
+    case PIPE_CAP_ANISOTROPIC_FILTER:
+@@ -80,12 +86,10 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_USER_CONSTANT_BUFFERS:
+    case PIPE_CAP_USER_INDEX_BUFFERS:
+    case PIPE_CAP_BUFFER_MAP_PERSISTENT_COHERENT:
+-      return 1;
+-   case PIPE_CAP_USER_VERTEX_BUFFERS:
+-      return 0;
+-   case PIPE_CAP_CONSTANT_BUFFER_OFFSET_ALIGNMENT:
+-      return 16;
+-   case PIPE_CAP_MAX_VIEWPORTS:
++   case PIPE_CAP_VERTEX_BUFFER_OFFSET_4BYTE_ALIGNED_ONLY:
++   case PIPE_CAP_VERTEX_BUFFER_STRIDE_4BYTE_ALIGNED_ONLY:
++   case PIPE_CAP_VERTEX_ELEMENT_SRC_OFFSET_4BYTE_ALIGNED_ONLY:
++   case PIPE_CAP_PREFER_BLIT_BASED_TEXTURE_TRANSFER:
+       return 1;
+    /* nv4x capabilities */
+    case PIPE_CAP_BLEND_EQUATION_SEPARATE:
+@@ -119,6 +123,8 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_SEAMLESS_CUBE_MAP_PER_TEXTURE:
+    case PIPE_CAP_CUBE_MAP_ARRAY:
+    case PIPE_CAP_VERTEX_COLOR_UNCLAMPED:
++   case PIPE_CAP_FRAGMENT_COLOR_CLAMPED:
++   case PIPE_CAP_VERTEX_COLOR_CLAMPED:
+    case PIPE_CAP_QUADS_FOLLOW_PROVOKING_VERTEX_CONVENTION:
+    case PIPE_CAP_MIXED_COLORBUFFER_FORMATS:
+    case PIPE_CAP_START_INSTANCE:
+@@ -138,18 +144,13 @@ nv30_screen_get_param(struct pipe_screen *pscreen, enum pipe_cap param)
+    case PIPE_CAP_SAMPLE_SHADING:
+    case PIPE_CAP_TEXTURE_GATHER_OFFSETS:
+    case PIPE_CAP_TGSI_VS_WINDOW_SPACE_POSITION:
+-      return 0;
+-   case PIPE_CAP_VERTEX_BUFFER_OFFSET_4BYTE_ALIGNED_ONLY:
+-   case PIPE_CAP_VERTEX_BUFFER_STRIDE_4BYTE_ALIGNED_ONLY:
+-   case PIPE_CAP_VERTEX_ELEMENT_SRC_OFFSET_4BYTE_ALIGNED_ONLY:
+-   case PIPE_CAP_PREFER_BLIT_BASED_TEXTURE_TRANSFER:
+-      return 1;
+-   case PIPE_CAP_ENDIANNESS:
+-      return PIPE_ENDIAN_LITTLE;
+-   default:
+-      debug_printf("unknown param %d\n", param);
++   case PIPE_CAP_USER_VERTEX_BUFFERS:
++   case PIPE_CAP_COMPUTE:
+       return 0;
+    }
++
++   debug_printf("unknown param %d\n", param);
++   return 0;
+ }
+ 
+ static float
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403059504.88Cf1.2707
-Date: Wed, 18 Jun 2014 02:45:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=79823#c19">comment #19</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=79823#c18">comment #18</a>)
-&gt; &gt; What happens if you add
-&gt; &gt; 
-&gt; &gt; screen-&gt;base.pushbuf-&gt;user_priv = NULL
-&gt; &gt; 
-&gt; &gt; right before the if (screen-&gt;base.fence.current) check in
-&gt; &gt; nv30_screen_destroy?
-&gt; 
-&gt; No effect.</span >
-
-Well, I've been unable to reproduce the &quot;kernel rejected pushbuf&quot; + hang
-behaviour, although I've only been testing with a NV43.
-
-However I did observe the issue that I thought I would observe due to that line
-not being there... here's a slightly more correct version than my previous
-suggestion:
-
-<a href="http://patchwork.freedesktop.org/patch/28050/">http://patchwork.freedesktop.org/patch/28050/</a>
-
-And another patch which I think is unlikely to affect what you're seeing, but
-who knows:
-
-<a href="http://patchwork.freedesktop.org/patch/28049/">http://patchwork.freedesktop.org/patch/28049/</a>
-
-Assuming these don't help, could you run that glxtest application inside
-valgrind, and let me know if you see any illegal accesses. (Note that the first
-one of those patches will in fact prevent one such illegal access.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403059504.88Cf1.2707--
-
---===============1153788326==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1153788326==--
+1.8.5.5
