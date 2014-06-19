@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Wed, 18 Jun 2014 22:23:08 +0000
-Message-ID: <bug-79823-8800-4VUJv1x0cT@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] update man page with new chips, AccelMethod option
+Date: Thu, 19 Jun 2014 02:37:45 -0400
+Message-ID: <1403159865-26896-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2080713124=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,193 +15,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+---
+ man/nouveau.man | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
---===============2080713124==
-Content-Type: multipart/alternative; boundary="1403130188.4871E12A1.13144"; charset="us-ascii"
-
-
---1403130188.4871E12A1.13144
-Date: Wed, 18 Jun 2014 22:23:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
-
---- Comment #23 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, well, I can't repro this, but clearly the device is getting closed
-_somehow_. It appears that you're relatively able at debugging things, let me
-know if I've misunderstood.
-
-Can you load up glxtest in gdb (with my fixes), and do
-
-break main
-r
-break close
-break nv30_screen_destroy
-c
-
-and look at what happens. The first couple of closes will actually be at
-creation time because it opens/closes some config files, continue past those.
-
-This is what I see:
-
-(gdb) c
-Continuing.
-
-Breakpoint 2, nv50_screen_destroy (pscreen=0x633c60) at nv50/nv50_screen.c:295
-295        struct nv50_screen *screen = nv50_screen(pscreen);
-(gdb) n
-297        if (!nouveau_drm_screen_unref(&screen->base))
-(gdb) p screen->base.device->fd
-$1 = 8
-(gdb) c
-Continuing.
-
-Breakpoint 3, 0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-(gdb) bt
-#0  0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-#1  0x00007ffff643797a in dri2DestroyScreen (base=0x618c50) at dri2_glx.c:712
-#2  0x00007ffff63fcdb5 in FreeScreenConfigs (priv=0x615600) at glxext.c:208
-#3  0x00007ffff63fce3f in glx_display_free (priv=0x615600) at glxext.c:231
-#4  0x00007ffff63fd01a in __glXCloseDisplay (dpy=0x6070f0, codes=0x615688)
-    at glxext.c:279
-#5  0x00007ffff78bc0c2 in XCloseDisplay () from /usr/lib64/libX11.so.6
-#6  0x00000000004011be in glxtest () at glxtest.cpp:202
-#7  0x000000000040120a in main (argc=1, argv=0x7fffffffdda8) at glxtest.cpp:211
-(gdb) up
-#1  0x00007ffff643797a in dri2DestroyScreen (base=0x618c50) at dri2_glx.c:712
-712        close(psc->fd);
-(gdb) p psc->fd
-$2 = 8
-(gdb) c
-Continuing.
-
-Breakpoint 3, 0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-(gdb) bt
-#0  0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-#1  0x00007ffff6abddee in xcb_disconnect () from /usr/lib64/libxcb.so.1
-#2  0x00007ffff78bc0f7 in XCloseDisplay () from /usr/lib64/libX11.so.6
-#3  0x00000000004011be in glxtest () at glxtest.cpp:202
-#4  0x000000000040120a in main (argc=1, argv=0x7fffffffdda8) at glxtest.cpp:211
-(gdb) c
-
-[this is actually with nv50, but the nv30 flow should be no different]
-
-You must be getting something else, otherwise how is that fd getting closed
-already.
-
+diff --git a/man/nouveau.man b/man/nouveau.man
+index 7c72907..a8dfacd 100644
+--- a/man/nouveau.man
++++ b/man/nouveau.man
+@@ -13,7 +13,7 @@ nouveau \- NVIDIA video driver
+ .fi
+ .SH DESCRIPTION
+ .B nouveau
+-is an __xservername__ driver for NVIDIA video cards.  The driver supports 2D 
++is an __xservername__ driver for NVIDIA video cards.  The driver supports 2D
+ acceleration and provides support for the following framebuffer depths:
+ (15,) 16  and 24.  TrueColor visuals are supported for these depths.
+ 
+@@ -28,11 +28,11 @@ NV4
+ .B RIVA TNT2
+ NV5
+ .TP 22
+-.B GeForce 256, QUADRO 
++.B GeForce 256, QUADRO
+ NV10
+ .TP 22
+ .B GeForce2, QUADRO2
+-NV11 & NV15  
++NV11 & NV15
+ .TP 22
+ .B GeForce3, QUADRO DCC
+ NV20
+@@ -44,13 +44,26 @@ NV1A, NV1F
+ NV17, NV18, NV25, NV28
+ .TP 22
+ .B GeForce FX, QUADRO FX
+-NV30, NV31, NV34, NV35, NV36, NV37, NV38 
++NV30, NV31, NV34, NV35, NV36, NV37, NV38
+ .TP 22
+ .B GeForce 6XXX
+-NV40, NV41, NV43, NV44, NV45, C51
++NV40, NV41, NV43, NV44, NV45, C51, MCP61
+ .TP 22
+ .B GeForce 7XXX
+-G70, G71, G72, G73
++G70, G71, G72, G73, MCP67, MCP68, MCP73
++.TP 22
++.B GeForce 8XXX, 9XXX, 2XX, 3XX
++G80, G84, G86, G92, G94, G96, G98, G200, GT215, GT216, GT218, MCP77,
++MCP79, MCP89
++.TP 22
++.B GeForce 4XX, 5XX
++GF100, GF104, GF106, GF108, GF110, GF114, GF116, GF117, GF119
++.TP 22
++.B GeForce 6XX, 7XX
++GK104, GK106, GK107, GK110, GK208
++.TP 22
++.B GeForce GTX 750
++GM107
+ 
+ .SH CONFIGURATION DETAILS
+ Please refer to __xconfigfile__(__filemansuffix__) for general configuration
+@@ -67,6 +80,10 @@ are supported:
+ .BI "Option \*qHWCursor\*q \*q" boolean \*q
+ Enable or disable the HW cursor.  Default: on.
+ .TP
++.BI "Option \*qAccelMethod\*q \*q" string \*q
++Specify the acceleration method. One of \*qnone\*q, \*qexa\*q, or
++\*qglamor\*q. Default: exa, except for GMxxx which default to glamor.
++.TP
+ .BI "Option \*qNoAccel\*q \*q" boolean \*q
+ Disable or enable acceleration.  Default: acceleration is enabled.
+ .TP
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403130188.4871E12A1.13144
-Date: Wed, 18 Jun 2014 22:23:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, well, I can't repro this, but clearly the device is getting closed
-_somehow_. It appears that you're relatively able at debugging things, let me
-know if I've misunderstood.
-
-Can you load up glxtest in gdb (with my fixes), and do
-
-break main
-r
-break close
-break nv30_screen_destroy
-c
-
-and look at what happens. The first couple of closes will actually be at
-creation time because it opens/closes some config files, continue past those.
-
-This is what I see:
-
-(gdb) c
-Continuing.
-
-Breakpoint 2, nv50_screen_destroy (pscreen=0x633c60) at nv50/nv50_screen.c:295
-295        struct nv50_screen *screen = nv50_screen(pscreen);
-(gdb) n
-297        if (!nouveau_drm_screen_unref(&amp;screen-&gt;base))
-(gdb) p screen-&gt;base.device-&gt;fd
-$1 = 8
-(gdb) c
-Continuing.
-
-Breakpoint 3, 0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-(gdb) bt
-#0  0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-#1  0x00007ffff643797a in dri2DestroyScreen (base=0x618c50) at dri2_glx.c:712
-#2  0x00007ffff63fcdb5 in FreeScreenConfigs (priv=0x615600) at glxext.c:208
-#3  0x00007ffff63fce3f in glx_display_free (priv=0x615600) at glxext.c:231
-#4  0x00007ffff63fd01a in __glXCloseDisplay (dpy=0x6070f0, codes=0x615688)
-    at glxext.c:279
-#5  0x00007ffff78bc0c2 in XCloseDisplay () from /usr/lib64/libX11.so.6
-#6  0x00000000004011be in glxtest () at glxtest.cpp:202
-#7  0x000000000040120a in main (argc=1, argv=0x7fffffffdda8) at glxtest.cpp:211
-(gdb) up
-#1  0x00007ffff643797a in dri2DestroyScreen (base=0x618c50) at dri2_glx.c:712
-712        close(psc-&gt;fd);
-(gdb) p psc-&gt;fd
-$2 = 8
-(gdb) c
-Continuing.
-
-Breakpoint 3, 0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-(gdb) bt
-#0  0x00007ffff6db23d0 in close () from /lib64/libc.so.6
-#1  0x00007ffff6abddee in xcb_disconnect () from /usr/lib64/libxcb.so.1
-#2  0x00007ffff78bc0f7 in XCloseDisplay () from /usr/lib64/libX11.so.6
-#3  0x00000000004011be in glxtest () at glxtest.cpp:202
-#4  0x000000000040120a in main (argc=1, argv=0x7fffffffdda8) at glxtest.cpp:211
-(gdb) c
-
-[this is actually with nv50, but the nv30 flow should be no different]
-
-You must be getting something else, otherwise how is that fd getting closed
-already.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403130188.4871E12A1.13144--
-
---===============2080713124==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2080713124==--
+1.8.5.5
