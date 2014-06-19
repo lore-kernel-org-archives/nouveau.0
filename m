@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
  with nouveau-dri-10.2.1 libs on dual-screen
-Date: Thu, 19 Jun 2014 08:18:30 +0000
-Message-ID: <bug-79823-8800-TMD0z5dvdX@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jun 2014 08:18:43 +0000
+Message-ID: <bug-79823-8800-t7qUaiDtnV@http.bugs.freedesktop.org/>
 References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139123827=="
+Content-Type: multipart/mixed; boundary="===============1718274628=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,89 +21,81 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139123827==
-Content-Type: multipart/alternative; boundary="1403165910.b7E8eF41.10242"; charset="us-ascii"
+--===============1718274628==
+Content-Type: multipart/alternative; boundary="1403165923.Daa320.10289"; charset="us-ascii"
 
 
---1403165910.b7E8eF41.10242
-Date: Thu, 19 Jun 2014 08:18:30 +0000
+--1403165923.Daa320.10289
+Date: Thu, 19 Jun 2014 08:18:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
+https://bugs.freedesktop.org/show_bug.cgi?id=3D79823
 
---- Comment #27 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #26)
-> Created attachment 101338 [details]
-> GDB log with "avoid dangling..." patch
-> 
-> /dev/dri/card0 on fd #4 closed,
-> /dev/dri/card0 on fd #5 remained open.
+--- Comment #28 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
+Created attachment 101339
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D101339&action=3Dedit
+GDB log with both patches
 
-So... for some *unknown* reason, the thing decides to create two screens. Fine.
-Now we have this thing which reuses screens for the same device... makes sense.
-But after it tries to close one of the screens, it also closes the fd that it
-used to create the screen with. Reasonable enough. However that fd is the one
-that's being used by the device.
+All as previous two passes =E2=80=93 device on fd #5 still opened after fre=
+eze.
 
-Perhaps it should be dup'ing the fd and doing all the ioctl's on that, so that
-this sort of thing doesn't happen. Maarten, thoughts?
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403165910.b7E8eF41.10242
-Date: Thu, 19 Jun 2014 08:18:30 +0000
+--1403165923.Daa320.10289
+Date: Thu, 19 Jun 2014 08:18:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c27">Comment # 27</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NV30/gallium] Mozilla apps freeze on startup with no=
+uveau-dri-10.2.1 libs on dual-screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D79823#c28">Commen=
+t # 28</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - [NV30/gallium] Mozilla apps freeze on startup with no=
+uveau-dri-10.2.1 libs on dual-screen"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D79823">bug 79823<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+natrio&#64;list.ru" title=3D"Natrio &lt;natrio&#64;list.ru&gt;"> <span clas=
+s=3D"fn">Natrio</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=79823#c26">comment #26</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=101338" name="attach_101338" title="GDB log with &quot;avoid dangling...&quot; patch">attachment 101338</a> <a href="attachment.cgi?id=101338&amp;action=edit" title="GDB log with &quot;avoid dangling...&quot; patch">[details]</a></span>
-&gt; GDB log with &quot;avoid dangling...&quot; patch
-&gt; 
-&gt; /dev/dri/card0 on fd #4 closed,
-&gt; /dev/dri/card0 on fd #5 remained open.</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D101339=
+" name=3D"attach_101339" title=3D"GDB log with both patches">attachment 101=
+339</a> <a href=3D"attachment.cgi?id=3D101339&amp;action=3Dedit" title=3D"G=
+DB log with both patches">[details]</a></span>
+GDB log with both patches
 
-So... for some *unknown* reason, the thing decides to create two screens. Fine.
-Now we have this thing which reuses screens for the same device... makes sense.
-But after it tries to close one of the screens, it also closes the fd that it
-used to create the screen with. Reasonable enough. However that fd is the one
-that's being used by the device.
-
-Perhaps it should be dup'ing the fd and doing all the ioctl's on that, so that
-this sort of thing doesn't happen. Maarten, thoughts?</pre>
+All as previous two passes =E2=80=93 device on fd #5 still opened after fre=
+eze.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1403165910.b7E8eF41.10242--
+--1403165923.Daa320.10289--
 
---===============0139123827==
+--===============1718274628==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0139123827==--
+--===============1718274628==--
