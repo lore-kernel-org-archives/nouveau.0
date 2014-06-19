@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79946] [NV30/Gallium] Segmentation violation at
-	nouveau_fence.c
-Date: Thu, 19 Jun 2014 17:35:55 +0000
-Message-ID: <bug-79946-8800-bK4zMrwV1r@http.bugs.freedesktop.org/>
-References: <bug-79946-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80244] New: build failure on Ubuntu 13.10 - OK on
+	14.04
+Date: Thu, 19 Jun 2014 17:43:38 +0000
+Message-ID: <bug-80244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0125830121=="
+Content-Type: multipart/mixed; boundary="===============2132660363=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +19,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0125830121==
-Content-Type: multipart/alternative; boundary="1403199355.D1Bd2bFC0.4090"; charset="us-ascii"
+--===============2132660363==
+Content-Type: multipart/alternative; boundary="1403199818.618Af1.5917"; charset="us-ascii"
 
 
---1403199355.D1Bd2bFC0.4090
-Date: Thu, 19 Jun 2014 17:35:55 +0000
+--1403199818.618Af1.5917
+Date: Thu, 19 Jun 2014 17:43:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79946
+https://bugs.freedesktop.org/show_bug.cgi?id=80244
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 80244
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: build failure on Ubuntu 13.10 - OK on 14.04
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: fabio.ped-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org
+          Hardware: All
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Segmentation violation at   |[NV30/Gallium] Segmentation
-                   |nouveau_fence.c             |violation at
-                   |                            |nouveau_fence.c
+After later changes build fails on Ubuntu 13.10. Full log here:
+https://launchpadlibrarian.net/177998279/buildlog_ubuntu-saucy-i386.xserver-xorg-video-nouveau_1%3A1.0.10%2Bgit1406191934.88ae58~gd~s_FAILEDTOBUILD.txt.gz
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403199355.D1Bd2bFC0.4090
-Date: Thu, 19 Jun 2014 17:35:55 +0000
+--1403199818.618Af1.5917
+Date: Thu, 19 Jun 2014 17:43:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +61,98 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NV30/Gallium] Segmentation violation at nouveau_fence.c"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946">bug 79946</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Segmentation violation at nouveau_fence.c
-           </td>
-           <td>[NV30/Gallium] Segmentation violation at nouveau_fence.c
-           </td>
-         </tr></table>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - build failure on Ubuntu 13.10 - OK on 14.04"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80244">80244</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>build failure on Ubuntu 13.10 - OK on 14.04
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>fabio.ped&#64;libero.it
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
+        <div>
+        <pre>After later changes build fails on Ubuntu 13.10. Full log here:
+<a href="https://launchpadlibrarian.net/177998279/buildlog_ubuntu-saucy-i386.xserver-xorg-video-nouveau_1%3A1.0.10%2Bgit1406191934.88ae58~gd~s_FAILEDTOBUILD.txt.gz">https://launchpadlibrarian.net/177998279/buildlog_ubuntu-saucy-i386.xserver-xorg-video-nouveau_1%3A1.0.10%2Bgit1406191934.88ae58~gd~s_FAILEDTOBUILD.txt.gz</a></pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +163,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1403199355.D1Bd2bFC0.4090--
+--1403199818.618Af1.5917--
 
---===============0125830121==
+--===============2132660363==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +176,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0125830121==--
+--===============2132660363==--
