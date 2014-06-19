@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
  with nouveau-dri-10.2.1 libs on dual-screen
-Date: Thu, 19 Jun 2014 07:55:47 +0000
-Message-ID: <bug-79823-8800-gZL1DE47ug@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jun 2014 08:08:42 +0000
+Message-ID: <bug-79823-8800-T9aMiNNPth@http.bugs.freedesktop.org/>
 References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0995353368=="
+Content-Type: multipart/mixed; boundary="===============1677073189=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0995353368==
-Content-Type: multipart/alternative; boundary="1403164547.a10Bb7dc0.5041"; charset="us-ascii"
+--===============1677073189==
+Content-Type: multipart/alternative; boundary="1403165322.6Cbbdb8A0.8079"; charset="us-ascii"
 
 
---1403164547.a10Bb7dc0.5041
-Date: Thu, 19 Jun 2014 07:55:47 +0000
+--1403165322.6Cbbdb8A0.8079
+Date: Thu, 19 Jun 2014 08:08:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79823
 
---- Comment #25 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
-Created attachment 101336
-  --> https://bugs.freedesktop.org/attachment.cgi?id=101336&action=edit
-GDB log witn clear mesa-10.2.1
+--- Comment #26 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
+Created attachment 101338
+  --> https://bugs.freedesktop.org/attachment.cgi?id=101338&action=edit
+GDB log with "avoid dangling..." patch
 
- Before close:
-$ ls -l /proc/7967/fd/
-total 0
-lrwx------ 1 user users 64 Jun 19 11:41 0 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 1 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 2 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 3 -> socket:[899028]
-lrwx------ 1 user users 64 Jun 19 11:41 4 -> /dev/dri/card0
-lrwx------ 1 user users 64 Jun 19 11:41 5 -> /dev/dri/card0
- after close:
-$ ls -l /proc/7967/fd/
-total 0
-lrwx------ 1 user users 64 Jun 19 11:41 0 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 1 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 2 -> /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 3 -> socket:[899028]
-lrwx------ 1 user users 64 Jun 19 11:41 5 -> /dev/dri/card0
+/dev/dri/card0 on fd #4 closed,
+/dev/dri/card0 on fd #5 remained open.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403164547.a10Bb7dc0.5041
-Date: Thu, 19 Jun 2014 07:55:47 +0000
+--1403165322.6Cbbdb8A0.8079
+Date: Thu, 19 Jun 2014 08:08:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,33 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c25">Comment # 25</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c26">Comment # 26</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
               from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=101336" name="attach_101336" title="GDB log witn clear mesa-10.2.1">attachment 101336</a> <a href="attachment.cgi?id=101336&amp;action=edit" title="GDB log witn clear mesa-10.2.1">[details]</a></span>
-GDB log witn clear mesa-10.2.1
+        <pre>Created <span class=""><a href="attachment.cgi?id=101338" name="attach_101338" title="GDB log with &quot;avoid dangling...&quot; patch">attachment 101338</a> <a href="attachment.cgi?id=101338&amp;action=edit" title="GDB log with &quot;avoid dangling...&quot; patch">[details]</a></span>
+GDB log with &quot;avoid dangling...&quot; patch
 
- Before close:
-$ ls -l /proc/7967/fd/
-total 0
-lrwx------ 1 user users 64 Jun 19 11:41 0 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 1 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 2 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 3 -&gt; socket:[899028]
-lrwx------ 1 user users 64 Jun 19 11:41 4 -&gt; /dev/dri/card0
-lrwx------ 1 user users 64 Jun 19 11:41 5 -&gt; /dev/dri/card0
- after close:
-$ ls -l /proc/7967/fd/
-total 0
-lrwx------ 1 user users 64 Jun 19 11:41 0 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 1 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 2 -&gt; /dev/pts/0
-lrwx------ 1 user users 64 Jun 19 11:41 3 -&gt; socket:[899028]
-lrwx------ 1 user users 64 Jun 19 11:41 5 -&gt; /dev/dri/card0</pre>
+/dev/dri/card0 on fd #4 closed,
+/dev/dri/card0 on fd #5 remained open.</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +82,9 @@ lrwx------ 1 user users 64 Jun 19 11:41 5 -&gt; /dev/dri/card0</pre>
     </body>
 </html>
 
---1403164547.a10Bb7dc0.5041--
+--1403165322.6Cbbdb8A0.8079--
 
---===============0995353368==
+--===============1677073189==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0995353368==--
+--===============1677073189==--
