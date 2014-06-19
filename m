@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80244] build failure on Ubuntu 13.10 - OK on 14.04
-Date: Thu, 19 Jun 2014 18:44:01 +0000
-Message-ID: <bug-80244-8800-BqKRviEGxz@http.bugs.freedesktop.org/>
+Date: Thu, 19 Jun 2014 19:05:48 +0000
+Message-ID: <bug-80244-8800-b8FfO8eSrV@http.bugs.freedesktop.org/>
 References: <bug-80244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1638111750=="
+Content-Type: multipart/mixed; boundary="===============0056666560=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1638111750==
-Content-Type: multipart/alternative; boundary="1403203441.EDC25BF2.18463"; charset="us-ascii"
+--===============0056666560==
+Content-Type: multipart/alternative; boundary="1403204748.7C0461.23111"; charset="us-ascii"
 
 
---1403203441.EDC25BF2.18463
-Date: Thu, 19 Jun 2014 18:44:01 +0000
+--1403204748.7C0461.23111
+Date: Thu, 19 Jun 2014 19:05:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80244
 
---- Comment #1 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 101375
-  --> https://bugs.freedesktop.org/attachment.cgi?id=101375&action=edit
-nouveau: correcly build nouveau_sync on DRI3-less X
-
-Give this patch a try. Seems to fix things in here.
+--- Comment #2 from Fabio Pedretti <fabio.ped-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org> ---
+I cannot patch it now (it's an automated build). Feel free to push if it works
+for you.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403203441.EDC25BF2.18463
-Date: Thu, 19 Jun 2014 18:44:01 +0000
+--1403204748.7C0461.23111
+Date: Thu, 19 Jun 2014 19:05:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - build failure on Ubuntu 13.10 - OK on 14.04"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80244#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80244#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - build failure on Ubuntu 13.10 - OK on 14.04"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80244">bug 80244</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:fabio.ped&#64;libero.it" title="Fabio Pedretti &lt;fabio.ped&#64;libero.it&gt;"> <span class="fn">Fabio Pedretti</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=101375" name="attach_101375" title="nouveau: correcly build nouveau_sync on DRI3-less X">attachment 101375</a> <a href="attachment.cgi?id=101375&amp;action=edit" title="nouveau: correcly build nouveau_sync on DRI3-less X">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=80244&amp;attachment=101375'>[review]</a>
-nouveau: correcly build nouveau_sync on DRI3-less X
-
-Give this patch a try. Seems to fix things in here.</pre>
+        <pre>I cannot patch it now (it's an automated build). Feel free to push if it works
+for you.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +74,9 @@ Give this patch a try. Seems to fix things in here.</pre>
     </body>
 </html>
 
---1403203441.EDC25BF2.18463--
+--1403204748.7C0461.23111--
 
---===============1638111750==
+--===============0056666560==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1638111750==--
+--===============0056666560==--
