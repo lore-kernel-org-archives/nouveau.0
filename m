@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH v2] nouveau: dup fd before passing it to device
-Date: Thu, 19 Jun 2014 16:07:20 -0400
-Message-ID: <1403208440-23285-1-git-send-email-imirkin@alum.mit.edu>
-References: <1403167178-17614-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79946] [NV30/Gallium] Segmentation violation at
+	nouveau_fence.c
+Date: Thu, 19 Jun 2014 21:57:05 +0000
+Message-ID: <bug-79946-8800-e4RVeOD9kZ@http.bugs.freedesktop.org/>
+References: <bug-79946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0528388213=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1403167178-17614-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-79946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,78 +17,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-nouveau screens are reused for the same device node. However in the
-scenario where we create screen 1, screen 2, and then delete screen 1,
-the surrounding code might also close the original device node. To
-protect against this, dup the fd and use the dup'd fd in the
-nouveau_device. Also tell the nouveau_device that it is the owner of the
-fd so that it will be closed on destruction.
 
-Also make sure to free the nouveau_device in case of any failure.
+--===============0528388213==
+Content-Type: multipart/alternative; boundary="1403215025.56EC2200.20170"; charset="us-ascii"
 
-Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=79823
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "10.2" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
----
 
-v1 -> v2:
-  clean up dup fd if device creation fails
+--1403215025.56EC2200.20170
+Date: Thu, 19 Jun 2014 21:57:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+https://bugs.freedesktop.org/show_bug.cgi?id=79946
 
-diff --git a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-index 1dfdaac..0635246 100644
---- a/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-+++ b/src/gallium/winsys/nouveau/drm/nouveau_drm_winsys.c
-@@ -1,4 +1,5 @@
- #include <sys/stat.h>
-+#include <unistd.h>
- #include "pipe/p_context.h"
- #include "pipe/p_state.h"
- #include "util/u_format.h"
-@@ -59,7 +60,7 @@ nouveau_drm_screen_create(int fd)
- 	struct nouveau_device *dev = NULL;
- 	struct pipe_screen *(*init)(struct nouveau_device *);
- 	struct nouveau_screen *screen;
--	int ret;
-+	int ret, dupfd = -1;
- 
- 	pipe_mutex_lock(nouveau_screen_mutex);
- 	if (!fd_tab) {
-@@ -75,7 +76,17 @@ nouveau_drm_screen_create(int fd)
- 		return &screen->base;
- 	}
- 
--	ret = nouveau_device_wrap(fd, 0, &dev);
-+	/* Since the screen re-use is based on the device node and not the fd,
-+	 * create a copy of the fd to be owned by the device. Otherwise a
-+	 * scenario could occur where two screens are created, and the first
-+	 * one is shut down, along with the fd being closed. The second
-+	 * (identical) screen would now have a reference to the closed fd. We
-+	 * avoid this by duplicating the original fd. Note that
-+	 * nouveau_device_wrap does not close the fd in case of a device
-+	 * creation error.
-+	 */
-+	dupfd = dup(fd);
-+	ret = nouveau_device_wrap(dupfd, 1, &dev);
- 	if (ret)
- 		goto err;
- 
-@@ -115,6 +126,10 @@ nouveau_drm_screen_create(int fd)
- 	return &screen->base;
- 
- err:
-+	if (dev)
-+		nouveau_device_del(&dev);
-+	else if (dupfd >= 0)
-+		close(dupfd);
- 	pipe_mutex_unlock(nouveau_screen_mutex);
- 	return NULL;
- }
+--- Comment #4 from Vittorio <zeccav-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+You may be 100% sure now:I tried your patch and it fixes my problem, both the
+original one and with glxinfo.
+Keep up the good work!
+
 -- 
-1.8.5.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403215025.56EC2200.20170
+Date: Thu, 19 Jun 2014 21:57:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV30/Gallium] Segmentation violation at nouveau_fence.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NV30/Gallium] Segmentation violation at nouveau_fence.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946">bug 79946</a>
+              from <span class="vcard"><a class="email" href="mailto:zeccav&#64;gmail.com" title="Vittorio &lt;zeccav&#64;gmail.com&gt;"> <span class="fn">Vittorio</span></a>
+</span></b>
+        <pre>You may be 100% sure now:I tried your patch and it fixes my problem, both the
+original one and with glxinfo.
+Keep up the good work!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403215025.56EC2200.20170--
+
+--===============0528388213==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0528388213==--
