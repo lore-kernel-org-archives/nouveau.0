@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Thu, 19 Jun 2014 11:48:39 +0000
-Message-ID: <bug-79823-8800-MqvslU460b@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79946] Segmentation violation at nouveau_fence.c
+Date: Thu, 19 Jun 2014 17:35:30 +0000
+Message-ID: <bug-79946-8800-AQVQK6ERcl@http.bugs.freedesktop.org/>
+References: <bug-79946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0627862511=="
+Content-Type: multipart/mixed; boundary="===============1351158321=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0627862511==
-Content-Type: multipart/alternative; boundary="1403178519.8BE6ee8B3.24829"; charset="us-ascii"
+--===============1351158321==
+Content-Type: multipart/alternative; boundary="1403199330.fa2bE61A0.4007"; charset="us-ascii"
 
 
---1403178519.8BE6ee8B3.24829
-Date: Thu, 19 Jun 2014 11:48:39 +0000
+--1403199330.fa2bE61A0.4007
+Date: Thu, 19 Jun 2014 17:35:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
+https://bugs.freedesktop.org/show_bug.cgi?id=79946
 
-Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |zeccav-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+             Status|RESOLVED                    |REOPENED
+         Resolution|DUPLICATE                   |---
 
---- Comment #32 from Maarten Lankhorst <bugs-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> ---
-*** Bug 79946 has been marked as a duplicate of this bug. ***
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Actually this unlikely to be a duplicate of that bug. This bug might be
+resolved by
+
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=c092c46b27c6f6a6674e8d67fb3afdb684811819
+
+But I'm not 100% sure... mind trying it out?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403178519.8BE6ee8B3.24829
-Date: Thu, 19 Jun 2014 11:48:39 +0000
+--1403199330.fa2bE61A0.4007
+Date: Thu, 19 Jun 2014 17:35:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,12 +59,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Segmentation violation at nouveau_fence.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946">bug 79946</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,29 +74,38 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
            </td>
-           <td>zeccav&#64;gmail.com
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>DUPLICATE
+           </td>
+           <td>---
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c32">Comment # 32</a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Segmentation violation at nouveau_fence.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:bugs&#64;mblankhorst.nl" title="Maarten Lankhorst &lt;bugs&#64;mblankhorst.nl&gt;"> <span class="fn">Maarten Lankhorst</span></a>
+          bz_status_REOPENED "
+   title="REOPENED --- - Segmentation violation at nouveau_fence.c"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79946">bug 79946</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Segmentation violation at nouveau_fence.c"
-   href="show_bug.cgi?id=79946">Bug 79946</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>Actually this unlikely to be a duplicate of that bug. This bug might be
+resolved by
+
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=c092c46b27c6f6a6674e8d67fb3afdb684811819">http://cgit.freedesktop.org/mesa/mesa/commit/?id=c092c46b27c6f6a6674e8d67fb3afdb684811819</a>
+
+But I'm not 100% sure... mind trying it out?</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +117,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1403178519.8BE6ee8B3.24829--
+--1403199330.fa2bE61A0.4007--
 
---===============0627862511==
+--===============1351158321==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +130,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0627862511==--
+--===============1351158321==--
