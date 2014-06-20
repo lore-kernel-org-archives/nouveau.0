@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80266] Undefined operation in tgsi_ureg.c left shift
- of 1 by 31 places cannot be represented in type 'int'
-Date: Fri, 20 Jun 2014 19:16:29 +0000
-Message-ID: <bug-80266-8800-YdeIDOZPSz@http.bugs.freedesktop.org/>
+Subject: [Bug 80266] Many instances of 1<<31,
+	which is undefined in C99
+Date: Fri, 20 Jun 2014 19:17:45 +0000
+Message-ID: <bug-80266-8800-m4o4mOwfrZ@http.bugs.freedesktop.org/>
 References: <bug-80266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1298922679=="
+Content-Type: multipart/mixed; boundary="===============0349694093=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,47 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1298922679==
-Content-Type: multipart/alternative; boundary="1403291789.6e4B6B70.10928"; charset="us-ascii"
+--===============0349694093==
+Content-Type: multipart/alternative; boundary="1403291865.b131Cfa71.11056"; charset="us-ascii"
 
 
---1403291789.6e4B6B70.10928
-Date: Fri, 20 Jun 2014 19:16:29 +0000
+--1403291865.b131Cfa71.11056
+Date: Fri, 20 Jun 2014 19:17:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80266
 
---- Comment #9 from Vittorio <zeccav-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #6)
-> I'm sure that technically shifting any bits into the sign bit of a signed
-> number produces undefined behavior according to C99, so yes, (1<<31)
-> technically is undefined. As a matter of practicality, on basically any CPU,
-> 1<<31 will produce a valid negative number, but the compiler sees it as
-> trying to assign the constant 2147483648 to a 32-bit signed container, which
-> is outside of the 2^31-1 range that it can accept.
-> 
-> In the C abstract machine, this would be a serious problem. Obviously you
-> can make such an assignment in hardware, but the result (when interpreted as
-> signed) is not a value of 2147483648, but a value of -2147483648, which is
-> why the compiler gives a warning. It's weird to read that (1<<31) is less
-> than 0. If you don't really mean to assign a value of -2147483648 or
-> 2147483648 and just want a bit pattern, using unsigned is almost always the
-> way to go.
-> 
-> I know that Solaris Studio happens to give a warning for the same case, if
-> that means anything.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Thanks for the appreciated explanation.
-Maybe substituting 1<<31 with 1U<<31 clears any undefined behaviour on the many
-architectures where mesa runs.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org
+                   |rg                          |org
+            Summary|Undefined operation in      |Many instances of 1<<31,
+                   |tgsi_ureg.c left shift of 1 |which is undefined in C99
+                   |by 31 places cannot be      |
+                   |represented in type 'int'   |
+          Component|Drivers/DRI/nouveau         |Mesa core
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403291789.6e4B6B70.10928
-Date: Fri, 20 Jun 2014 19:16:29 +0000
+--1403291865.b131Cfa71.11056
+Date: Fri, 20 Jun 2014 19:17:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,42 +57,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Undefined operation in tgsi_ureg.c left shift of 1 by 31 places cannot be represented in type 'int'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80266#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Undefined operation in tgsi_ureg.c left shift of 1 by 31 places cannot be represented in type 'int'"
+   title="NEW --- - Many instances of 1&lt;&lt;31, which is undefined in C99"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80266">bug 80266</a>
-              from <span class="vcard"><a class="email" href="mailto:zeccav&#64;gmail.com" title="Vittorio &lt;zeccav&#64;gmail.com&gt;"> <span class="fn">Vittorio</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=80266#c6">comment #6</a>)
-<span class="quote">&gt; I'm sure that technically shifting any bits into the sign bit of a signed
-&gt; number produces undefined behavior according to C99, so yes, (1&lt;&lt;31)
-&gt; technically is undefined. As a matter of practicality, on basically any CPU,
-&gt; 1&lt;&lt;31 will produce a valid negative number, but the compiler sees it as
-&gt; trying to assign the constant 2147483648 to a 32-bit signed container, which
-&gt; is outside of the 2^31-1 range that it can accept.
-&gt; 
-&gt; In the C abstract machine, this would be a serious problem. Obviously you
-&gt; can make such an assignment in hardware, but the result (when interpreted as
-&gt; signed) is not a value of 2147483648, but a value of -2147483648, which is
-&gt; why the compiler gives a warning. It's weird to read that (1&lt;&lt;31) is less
-&gt; than 0. If you don't really mean to assign a value of -2147483648 or
-&gt; 2147483648 and just want a bit pattern, using unsigned is almost always the
-&gt; way to go.
-&gt; 
-&gt; I know that Solaris Studio happens to give a warning for the same case, if
-&gt; that means anything.</span >
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Thanks for the appreciated explanation.
-Maybe substituting 1&lt;&lt;31 with 1U&lt;&lt;31 clears any undefined behaviour on the many
-architectures where mesa runs.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Undefined operation in tgsi_ureg.c left shift of 1 by 31 places cannot be represented in type 'int'
+           </td>
+           <td>Many instances of 1&lt;&lt;31, which is undefined in C99
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Drivers/DRI/nouveau
+           </td>
+           <td>Mesa core
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -115,9 +105,9 @@ architectures where mesa runs.</pre>
     </body>
 </html>
 
---1403291789.6e4B6B70.10928--
+--1403291865.b131Cfa71.11056--
 
---===============1298922679==
+--===============0349694093==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1298922679==--
+--===============0349694093==--
