@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80266] Undefined operation in tgsi_ureg.c left shift
  of 1 by 31 places cannot be represented in type 'int'
-Date: Fri, 20 Jun 2014 18:12:44 +0000
-Message-ID: <bug-80266-8800-8i8pwo4OOz@http.bugs.freedesktop.org/>
+Date: Fri, 20 Jun 2014 18:18:24 +0000
+Message-ID: <bug-80266-8800-a5AhJRo72V@http.bugs.freedesktop.org/>
 References: <bug-80266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1615184125=="
+Content-Type: multipart/mixed; boundary="===============0787939178=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1615184125==
-Content-Type: multipart/alternative; boundary="1403287964.d5D3DDdb0.1735"; charset="us-ascii"
+--===============0787939178==
+Content-Type: multipart/alternative; boundary="1403288303.4bEB850.2886"; charset="us-ascii"
 
 
---1403287964.d5D3DDdb0.1735
-Date: Fri, 20 Jun 2014 18:12:44 +0000
+--1403288303.4bEB850.2886
+Date: Fri, 20 Jun 2014 18:18:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80266
 
---- Comment #4 from Vittorio <zeccav-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Also in matrix.c:1156 the line
-"#define ONE(x)  (1 <<(x+16))"
-should be
-"#define ONE(x)  (1U<<(x+16))"
-because ONE(15) later, as at line 1226, produces 16 bits left shift of 65536,
-which is bigger than int.
-This is running teapot.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I'm not sure why you're filing these against nouveau... I'm sure there are
+_tons_ of these throughout mesa...
+
+Does gcc warn about this? Are you _sure_ that (signed int)1 << 31 is illegal in
+C99?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403287964.d5D3DDdb0.1735
-Date: Fri, 20 Jun 2014 18:12:44 +0000
+--1403288303.4bEB850.2886
+Date: Fri, 20 Jun 2014 18:18:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Undefined operation in tgsi_ureg.c left shift of 1 by 31 places cannot be represented in type 'int'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80266#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80266#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Undefined operation in tgsi_ureg.c left shift of 1 by 31 places cannot be represented in type 'int'"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80266">bug 80266</a>
-              from <span class="vcard"><a class="email" href="mailto:zeccav&#64;gmail.com" title="Vittorio &lt;zeccav&#64;gmail.com&gt;"> <span class="fn">Vittorio</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Also in matrix.c:1156 the line
-&quot;#define ONE(x)  (1 &lt;&lt;(x+16))&quot;
-should be
-&quot;#define ONE(x)  (1U&lt;&lt;(x+16))&quot;
-because ONE(15) later, as at line 1226, produces 16 bits left shift of 65536,
-which is bigger than int.
-This is running teapot.</pre>
+        <pre>I'm not sure why you're filing these against nouveau... I'm sure there are
+_tons_ of these throughout mesa...
+
+Does gcc warn about this? Are you _sure_ that (signed int)1 &lt;&lt; 31 is illegal in
+C99?</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +81,9 @@ This is running teapot.</pre>
     </body>
 </html>
 
---1403287964.d5D3DDdb0.1735--
+--1403288303.4bEB850.2886--
 
---===============1615184125==
+--===============0787939178==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1615184125==--
+--===============0787939178==--
