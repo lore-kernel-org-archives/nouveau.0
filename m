@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77674] [NVE7] "failed to read DPCD" on wake up with
- external monitor
-Date: Fri, 20 Jun 2014 23:50:21 +0000
-Message-ID: <bug-77674-8800-R321vLpWus@http.bugs.freedesktop.org/>
-References: <bug-77674-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79988] [NVC1] Suspend to ram doesn't work since
+	Linux 3.15
+Date: Sat, 21 Jun 2014 01:07:38 +0000
+Message-ID: <bug-79988-8800-6BMIHCDNWk@http.bugs.freedesktop.org/>
+References: <bug-79988-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0276950128=="
+Content-Type: multipart/mixed; boundary="===============1410034172=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79988-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0276950128==
-Content-Type: multipart/alternative; boundary="1403308220.a6eAff4.4323"; charset="us-ascii"
+--===============1410034172==
+Content-Type: multipart/alternative; boundary="1403312858.E11cbA1.14182"; charset="us-ascii"
 
 
---1403308220.a6eAff4.4323
-Date: Fri, 20 Jun 2014 23:50:20 +0000
+--1403312858.E11cbA1.14182
+Date: Sat, 21 Jun 2014 01:07:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77674
+https://bugs.freedesktop.org/show_bug.cgi?id=79988
 
---- Comment #3 from e.swanson+xorgbugs-5lA2vZBjcqn3oGB3hsPCZA@public.gmane.org ---
-To add my two cents:
+Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I had this same issue on Arch Linux's 3.14.5-1-ARCH, Linus's v3.15, and
-linux-3.15.y from the linux-stable tree. imirkin's advice of trying out
-drm-next (commit bc1dfff04a5d4064ba0db1fab13f84ab4f333d2b) seems to have fixed
-it for me.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-I'm using an active (USB powered) DisplayPort -> Dual Link DVI adapter to drive
-a 27" 2560x1440 monitor from a Lenovo ThinkPad W530. I don't have a dock.
-
-As another data point, drm-fixes from airlied's tree (commit
-884d6147ba19640a40fb45efe64360cdf92cac27) built but did not boot for me - it
-hung before starting anything on my root drive (initrd seems to have loaded
-fine).
+--- Comment #2 from Marc Collin <marccollin7379-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+i updated to 3.15.1 and i suspend to ram work again.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403308220.a6eAff4.4323
-Date: Fri, 20 Jun 2014 23:50:20 +0000
+--1403312858.E11cbA1.14182
+Date: Sat, 21 Jun 2014 01:07:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,33 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC1] Suspend to ram doesn't work since Linux 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">bug 79988</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC1] Suspend to ram doesn't work since Linux 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79988#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674">bug 77674</a>
-              from <span class="vcard"><a class="email" href="mailto:e.swanson+xorgbugs&#64;alloscomp.com" title="e.swanson+xorgbugs&#64;alloscomp.com">e.swanson+xorgbugs&#64;alloscomp.com</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC1] Suspend to ram doesn't work since Linux 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79988">bug 79988</a>
+              from <span class="vcard"><a class="email" href="mailto:marccollin7379&#64;gmail.com" title="Marc Collin &lt;marccollin7379&#64;gmail.com&gt;"> <span class="fn">Marc Collin</span></a>
 </span></b>
-        <pre>To add my two cents:
-
-I had this same issue on Arch Linux's 3.14.5-1-ARCH, Linus's v3.15, and
-linux-3.15.y from the linux-stable tree. imirkin's advice of trying out
-drm-next (commit bc1dfff04a5d4064ba0db1fab13f84ab4f333d2b) seems to have fixed
-it for me.
-
-I'm using an active (USB powered) DisplayPort -&gt; Dual Link DVI adapter to drive
-a 27&quot; 2560x1440 monitor from a Lenovo ThinkPad W530. I don't have a dock.
-
-As another data point, drm-fixes from airlied's tree (commit
-884d6147ba19640a40fb45efe64360cdf92cac27) built but did not boot for me - it
-hung before starting anything on my root drive (initrd seems to have loaded
-fine).</pre>
+        <pre>i updated to 3.15.1 and i suspend to ram work again.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +108,9 @@ fine).</pre>
     </body>
 </html>
 
---1403308220.a6eAff4.4323--
+--1403312858.E11cbA1.14182--
 
---===============0276950128==
+--===============1410034172==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0276950128==--
+--===============1410034172==--
