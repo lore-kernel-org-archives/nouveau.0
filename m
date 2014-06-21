@@ -1,7 +1,7 @@
 From: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/2] glamor: fix build without glamor.h
-Date: Sun, 22 Jun 2014 01:31:46 +0200
-Message-ID: <20140621233146.GA22546@joi.home>
+Subject: [PATCH 2/2] present: build only when glamor is enabled
+Date: Sun, 22 Jun 2014 01:32:42 +0200
+Message-ID: <20140621233242.GB22546@joi.home>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,36 +19,44 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-xorg-server can be built without glamor, which leads to:
-
-  CC       nouveau_xv.lo
-In file included from nouveau_xv.c:41:0:
-nouveau_glamor.h:12:20: fatal error: glamor.h: No such file or directory
-compilation terminated.
+nouveau_present_flip_exec references glamor_fd_from_pixmap,
+which do not exist when glamor is disabled
 
 Signed-off-by: Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 ---
- configure.ac | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ src/nouveau_present.c | 2 +-
+ src/nouveau_present.h | 6 +++++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/configure.ac b/configure.ac
-index c34e575..92e047a 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -128,7 +128,13 @@ XORG_MANPAGE_SECTIONS
- XORG_RELEASE_VERSION
+diff --git a/src/nouveau_present.c b/src/nouveau_present.c
+index b294bbe..38f2cac 100644
+--- a/src/nouveau_present.c
++++ b/src/nouveau_present.c
+@@ -23,7 +23,7 @@
+  */
  
- AC_MSG_CHECKING([whether to include GLAMOR support])
--if pkg-config --exists "xorg-server >= 1.15.99.901"
+ #include "nouveau_present.h"
+-#ifdef DRI3
++#if defined(DRI3) && defined(HAVE_GLAMOR)
+ #include "nv_include.h"
+ #include "nouveau_glamor.h"
+ #include "xf86drmMode.h"
+diff --git a/src/nouveau_present.h b/src/nouveau_present.h
+index dea19ce..958c2f7 100644
+--- a/src/nouveau_present.h
++++ b/src/nouveau_present.h
+@@ -4,7 +4,11 @@
+ #include "xorg-server.h"
+ #include "scrnintstr.h"
+ 
+-#ifdef DRI3
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
 +
-+AC_COMPILE_IFELSE(AC_LANG_PROGRAM(
-+[[
-+  #include <glamor.h>
-+]],[[]]),[found_glamor_header=yes],[found_glamor_header=no])
-+
-+if test "$found_glamor_header" = "yes" && pkg-config --exists "xorg-server >= 1.15.99.901"
- then
- 	AC_DEFINE(HAVE_GLAMOR, 1, [Build support for glamor acceleration])
- 	AC_MSG_RESULT([yes])
++#if defined(DRI3) && defined(HAVE_GLAMOR)
+ #include "present.h"
+ Bool nouveau_present_init(ScreenPtr pScreen);
+ void nouveau_present_fini(ScreenPtr pScreen);
 -- 
 2.0.0
