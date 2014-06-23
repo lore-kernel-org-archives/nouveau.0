@@ -1,14 +1,14 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH v3] nv50/ir: make ARB_viewport_array behave
- like it does with other drivers
-Date: Mon, 23 Jun 2014 17:08:01 -0400
-Message-ID: <CAKb7UvjKtKcA5Ass45HT=Kb8bEoziibkXWeCZA2_2QD4AgN6zg@mail.gmail.com>
-References: <1403557302-20290-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: Carl Worth <cworth@cworth.org>
+Subject: Re: [PATCH v3 1/4] nvc0/ir: clear subop when folding
+	constant expressions
+Date: Mon, 23 Jun 2014 16:25:56 -0700
+Message-ID: <87egyfi4xn.fsf@yoom.home.cworth.org>
+References: <1401834950-20257-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <1401834950-20257-2-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0032437947=="
 Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1403557302-20290-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+In-Reply-To: <1401834950-20257-2-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
@@ -18,138 +18,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: mesa-dev-bounces@lists.freedesktop.org
 Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+To: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>, nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org, imirkin@alum.mit.edu
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 23, 2014 at 5:01 PM, Tobias Klausmann
-<tobias.johannes.klausmann@mni.thm.de> wrote:
-> previously, if we had something like:
->
-> gl_ViewportIndex = idx;
-> for(int i = 0; i < gl_in.length(); i++) {
->    gl_Position = gl_in[i].gl_Position;
->    EmitVertex();
-> }
-> EndPrimitive();
->
-> we failed to set the right ViewportIndex.
-> To resolve this, save the ViewportIndex and store it to the right register on each emit.
->
-> This fixes the remaining piglit tests in ARB_viewport_array for nvc0.
->
-> Note: Not tested on nv50
+--===============0032437947==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha512; protocol="application/pgp-signature"
+
+--=-=-=
+Content-Transfer-Encoding: quoted-printable
+
+Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de> writes:
+> Some operations (e.g. OP_MUL/OP_MAD/OP_EXTBF might have a subop set.
+> After folding, make sure that it is cleared
 >
 > Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
+> Reviewed-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "10.1 10.2" <mesa-stable@lists.freedesktop.org>
 
-Looks great! I'll test this out tonight on my nv50 and push it out if
-it works. I think I'll also CC it to 10.2.
+Hi Tobias and Ilia,
 
-Thanks,
+This patch isn't picking cleanly over to the 10.1 branch.
 
-  -ilia
+Can you give me some guidance here? Either of the following replies
+would be great:
 
-> ---
-> V2:
->    provide description
->    fix naming of vars
-> V3:
->    spare a function call, use the idx we already have
->    second arg to mkSymbol changed to 0, the other one was just wrong (double checked)
->
->  .../drivers/nouveau/codegen/nv50_ir_driver.h       |  1 +
->  .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  | 31 ++++++++++++++++++++--
->  2 files changed, 30 insertions(+), 2 deletions(-)
->
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> index c885c8c..002ac8f 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> @@ -177,6 +177,7 @@ struct nv50_ir_prog_info
->        uint8_t vertexId;          /* system value index of VertexID */
->        uint8_t edgeFlagIn;
->        uint8_t edgeFlagOut;
-> +      int8_t viewportId;         /* output index of ViewportId */
->        uint8_t fragDepth;         /* output index of FragDepth */
->        uint8_t sampleMask;        /* output index of SampleMask */
->        boolean sampleInterp;      /* perform sample interp on all fp inputs */
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> index a0f1fe1..4911995 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> @@ -790,6 +790,8 @@ bool Source::scanSource()
->        info->prop.gp.instanceCount = 1; // default value
->     }
->
-> +   info->io.viewportId = -1;
-> +
->     info->immd.data = (uint32_t *)MALLOC(scan.immediate_count * 16);
->     info->immd.type = (ubyte *)MALLOC(scan.immediate_count * sizeof(ubyte));
->
-> @@ -982,6 +984,9 @@ bool Source::scanDeclaration(const struct tgsi_full_declaration *decl)
->           case TGSI_SEMANTIC_SAMPLEMASK:
->              info->io.sampleMask = i;
->              break;
-> +         case TGSI_SEMANTIC_VIEWPORT_INDEX:
-> +            info->io.viewportId = i;
-> +            break;
->           default:
->              break;
->           }
-> @@ -1258,6 +1263,8 @@ private:
->     Stack joinBBs;  // fork BB, for inserting join ops on ENDIF
->     Stack loopBBs;  // loop headers
->     Stack breakBBs; // end of / after loop
-> +
-> +   Value *viewport;
->  };
->
->  Symbol *
-> @@ -1555,8 +1562,16 @@ Converter::storeDst(const tgsi::Instruction::DstRegister dst, int c,
->        mkOp2(OP_WRSV, TYPE_U32, NULL, dstToSym(dst, c), val);
->     } else
->     if (f == TGSI_FILE_OUTPUT && prog->getType() != Program::TYPE_FRAGMENT) {
-> -      if (ptr || (info->out[idx].mask & (1 << c)))
-> -         mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
-> +
-> +      if (ptr || (info->out[idx].mask & (1 << c))) {
-> +         /* Save the viewport index into a scratch register so that it can be
-> +            exported at EMIT time */
-> +         if (info->out[idx].sn == TGSI_SEMANTIC_VIEWPORT_INDEX
-> +             && viewport != NULL)
-> +            mkOp1(OP_MOV, TYPE_U32, viewport, val);
-> +         else
-> +            mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
-> +      }
->     } else
->     if (f == TGSI_FILE_TEMPORARY ||
->         f == TGSI_FILE_PREDICATE ||
-> @@ -2523,6 +2538,13 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
->           mkCvt(OP_CVT, dstTy, dst0[c], srcTy, fetchSrc(0, c));
->        break;
->     case TGSI_OPCODE_EMIT:
-> +      /* export the saved viewport index */
-> +      if (viewport != NULL) {
-> +         Symbol *vpSym = mkSymbol(FILE_SHADER_OUTPUT, 0, TYPE_U32,
-> +                                  info->out[info->io.viewportId].slot[0] * 4);
-> +         mkStore(OP_EXPORT, TYPE_U32, vpSym, NULL, viewport);
-> +      }
-> +      /* fallthrough */
->     case TGSI_OPCODE_ENDPRIM:
->        // get vertex stream if specified (must be immediate)
->        src0 = tgsi.srcCount() ?
-> @@ -2952,6 +2974,11 @@ Converter::run()
->        mkOp1(OP_RCP, TYPE_F32, fragCoord[3], fragCoord[3]);
->     }
->
-> +   if (info->io.viewportId >= 0)
-> +      viewport = getScratch();
-> +   else
-> +      viewport = NULL;
-> +
->     for (ip = 0; ip < code->scan.num_instructions; ++ip) {
->        if (!handleInstruction(&code->insns[ip]))
->           return false;
-> --
-> 1.8.4.5
->
+	Don't worry about this for 10.1 because...
+
+	Here's a backported patch for 10.1...
+
+Thanks!
+
+=2DCarl
+
+=2D-=20
+carl.d.worth@intel.com
+
+--=-=-=
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAEBCgAGBQJTqLeEAAoJEGACM7qeVNxhg40P/0uEEFMnczV3sAAs6HAAegAF
+RlY02gRlWVVVwB7EhRxLby/VfRjatuC5emrJ7ZTk7cF6cih9r6zGwP7mrE+xnzsr
+6j9hTYzzvZcUZTtvkyNoQ2mBzW/nr9Wsgp2cV+yrV28BZWUCzRxIvlOnbaxOrrPT
+QQ4AlveT2ZGnV5iDt9oal05zZlpp14S3LxtKUYhWsYMnWmpXhYiw3jJahWUR1vc0
+pzhg1p28bAod9mb1WTaqrYYKmBliP9GWEnPEuoVlTXMSj9t/pGWHK0Don5P/1Q3R
+Ga9PHDqVxuz9/vo0sA2XsSFT8L6gXt4HTpe1OHGS1weTkjOfSd+N8/IiUrZ7hbZ+
+tUZpLkiQQVD3WTTgQqiDHBPQGdblDU1VdcQFibgNunrI9f9kqsdFdKh1Y9tH2xj3
+F5Wma6oK7qTp7Ioh4LIN/uu4qEoz+DAr9C1hpCXOhOedaR9D+iMSciWNCkFNVrv9
+uUvoF1KNoZF0cjW3NS36fAFxnGX9fPQ+y4aaUDxIscEQ4nUKgr2R2SGv0KsJafwV
+ltik0krK20AAqFCqkLgnamMK6Ec6SyJOVchV2N2EUATkRAacdJrUSSGWS7PSXdVw
+KPaU/G2TqDq0DpEShYbK+7pJkccK21u9h38skp6dfaJ/HpJD1TerAIIf33L2ggCW
+bVycP54NeO9P7SZ0U5EW
+=vi/v
+-----END PGP SIGNATURE-----
+--=-=-=--
+
+--===============0032437947==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+mesa-dev mailing list
+mesa-dev@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/mesa-dev
+
+--===============0032437947==--
