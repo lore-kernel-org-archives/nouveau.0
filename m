@@ -1,108 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79611] [NVC0] TRAP ch 4 [0x003fa28000 bzflag]
-Date: Mon, 23 Jun 2014 04:31:04 +0000
-Message-ID: <bug-79611-8800-Bnb03SxsJj@http.bugs.freedesktop.org/>
-References: <bug-79611-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [PATCH try 2 2/2] gallium/nouveau: move pushbuf and
+ fences to context
+Date: Mon, 23 Jun 2014 09:17:22 +0200
+Message-ID: <53A7D482.70108@canonical.com>
+References: <539FE12C.90900@canonical.com>	<539FE170.9040306@canonical.com>
+ <CAKb7Uvjq0iKMM2sG0F+Q=BR6dftJUJL8qGnuV_CAVexYhW1DUA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0293440335=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79611-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7Uvjq0iKMM2sG0F+Q=BR6dftJUJL8qGnuV_CAVexYhW1DUA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
+op 21-06-14 14:12, Ilia Mirkin schreef:
+> On Tue, Jun 17, 2014 at 2:34 AM, Maarten Lankhorst
+> <maarten.lankhorst@canonical.com> wrote:
+>> nv30 seems to not support dma objects with offset, so simply extend the query_heap to cover the
+>> entire notifier, and use a offset in nv30_context_kick_notify.
+> It would be great if you could detail the list of transformations that
+> were done in the commit description, as well as what the "new way" is
+> (if any) for the various concepts.
+I moved the pushbuf and fences to each context separately. The PUSH_KICK on context switch ensures
+that the previous context is flushed.
+> This change doesn't have any of the locking -- is that coming in a
+> future change? Otherwise we're still vulnerable to multiple threads
+> trying to render at the same time. (Now with screen sharing, even if
+> they end up with separate screens, we'd still be in trouble.)
+I haven't done any locking changes, because I don't believe locking is the answer here.
+With each context having its own pushbuf we can ensure that things aren't flushed, so
+on flush it should assume all state is dirty. After this is done the PUSH_KICK of the old
+context on context switch can be removed, and suddenly the driver is thread-safe because
+only the pushbuf to kernel command submission could race. ;-)
 
---===============0293440335==
-Content-Type: multipart/alternative; boundary="1403497863.83Fff460.29574"; charset="us-ascii"
+> I'm still a bit concerned with moving the fence stuff to the
+> context... there might be an assumption in gallium that fences are
+> context-independent, in which case you need to make sure to have just
+> a single fence shared by everything...
+I don't think that this is the case, because it's very rare that gallium uses multiple contexts simultaneously.
+(Except vdpau interop, which does flush explicitly.)
+> Have you done a full piglit run on this (with the glx tests, for good
+> measure) on nv30/nv50/nvc0? If so, can you share the results files
+> somewhere?
+No not yet. But I did confirm that glxgears and glxinfo didn't regress on my nv43, nv96 and nvc0. :-)
 
-
---1403497863.83Fff460.29574
-Date: Mon, 23 Jun 2014 04:31:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79611
-
---- Comment #2 from Anonymous Helper <anonymous-IjDkMZObD1hBDgjK7y7TUQ@public.gmane.org> ---
-The bug is reproducible at will within the time given. I have captured an
-APITrace but it was over 30GB. Would you like a trimmed version? The trim seems
-to break the apitrace replay function but does retain various technical
-information. It's only about 70MB for the last 2k frames.
-
-I am not sure how to make a debug build, but if you could point me in the right
-direction I can try. Please note that some site I found was claiming over 2GB
-to compile. My ISP doesn't even allow that data much per month on the current
-plan. 
-
-Thanks.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403497863.83Fff460.29574
-Date: Mon, 23 Jun 2014 04:31:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] TRAP ch 4 [0x003fa28000 bzflag]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79611#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] TRAP ch 4 [0x003fa28000 bzflag]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79611">bug 79611</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymous&#64;dodgeit.com" title="Anonymous Helper &lt;anonymous&#64;dodgeit.com&gt;"> <span class="fn">Anonymous Helper</span></a>
-</span></b>
-        <pre>The bug is reproducible at will within the time given. I have captured an
-APITrace but it was over 30GB. Would you like a trimmed version? The trim seems
-to break the apitrace replay function but does retain various technical
-information. It's only about 70MB for the last 2k frames.
-
-I am not sure how to make a debug build, but if you could point me in the right
-direction I can try. Please note that some site I found was claiming over 2GB
-to compile. My ISP doesn't even allow that data much per month on the current
-plan. 
-
-Thanks.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403497863.83Fff460.29574--
-
---===============0293440335==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0293440335==--
+~Maarten
