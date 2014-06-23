@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] nv50/ir: make ARB_viewport_array behave like
- it does with other drivers
-Date: Mon, 23 Jun 2014 11:36:18 -0400
-Message-ID: <CAKb7UvgZU9k4-353xkAWHqm-WKK-kJqLwgMEYuuF4q_J9ZNyOQ@mail.gmail.com>
-References: <1403537044-7231-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v2] nv50/ir: make ARB_viewport_array behave like
+	it does with other drivers
+Date: Mon, 23 Jun 2014 20:15:20 +0200
+Message-ID: <1403547320-12572-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1403537044-7231-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,133 +16,122 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 23, 2014 at 11:24 AM, Tobias Klausmann
-<tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> wrote:
+previously, if we had something like:
 
-Please add a brief description of what your change does and how it
-achieves this. [Let me know if you're not comfortable writing that,
-and I can compose it for you.]
+gl_ViewportIndex = idx;
+for(int i = 0; i < gl_in.length(); i++) {
+   gl_Position = gl_in[i].gl_Position;
+   EmitVertex();
+}
+EndPrimitive();
 
-Among other things, note that it fixes some piglit tests. And instead
-of saying "make it work like the others", try to provide an
-explanation of how it works and then mention that other drivers appear
-to work that way.
+we failed to set the right ViewportIndex.
+To resolve this, save the ViewportIndex and store it to the right register on each emit.
 
-> Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-> ---
->  .../drivers/nouveau/codegen/nv50_ir_driver.h       |  1 +
->  .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  | 27 ++++++++++++++++++++--
->  2 files changed, 26 insertions(+), 2 deletions(-)
->
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> index c885c8c..a8cc97c 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-> @@ -189,6 +189,7 @@ struct nv50_ir_prog_info
->        uint16_t sampleInfoBase;   /* base address for sample positions */
->        uint8_t msInfoCBSlot;      /* cX[] used for multisample info */
->        uint16_t msInfoBase;       /* base address for multisample info */
-> +      int32_t viewportID;
+This fixes the remaining piglit tests in ARB_viewport_array for nvc0.
 
-viewportId to match the capitalization of the other ones (the reason
-you see e.g. CB is because it's a Const Buffer). Could you also place
-it next to sampleMask/fragDepth? And add a comment like they have.
+Note: Not tested on nv50
 
->     } io;
->
->     /* driver callback to assign input/output locations */
-> diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> index a0f1fe1..78e33f8 100644
-> --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
-> @@ -982,6 +982,9 @@ bool Source::scanDeclaration(const struct tgsi_full_declaration *decl)
->           case TGSI_SEMANTIC_SAMPLEMASK:
->              info->io.sampleMask = i;
->              break;
-> +         case TGSI_SEMANTIC_VIEWPORT_INDEX:
-> +            info->io.viewportID = i;
-> +            break;
->           default:
->              break;
->           }
-> @@ -1258,6 +1261,8 @@ private:
->     Stack joinBBs;  // fork BB, for inserting join ops on ENDIF
->     Stack loopBBs;  // loop headers
->     Stack breakBBs; // end of / after loop
-> +
-> +   Value *viewport;
->  };
->
->  Symbol *
-> @@ -1555,8 +1560,15 @@ Converter::storeDst(const tgsi::Instruction::DstRegister dst, int c,
->        mkOp2(OP_WRSV, TYPE_U32, NULL, dstToSym(dst, c), val);
->     } else
->     if (f == TGSI_FILE_OUTPUT && prog->getType() != Program::TYPE_FRAGMENT) {
-> -      if (ptr || (info->out[idx].mask & (1 << c)))
-> -         mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
-> +
-> +      if (ptr || (info->out[idx].mask & (1 << c))) {
-> +         /* Save the viewport index into a scratch register so that it can be
-> +            exported at EMIT time */
-> +         if (info->out[dst.getIndex(0)].sn == TGSI_SEMANTIC_VIEWPORT_INDEX && viewport != NULL)
-> +            mkOp1(OP_MOV, TYPE_U32, viewport, val);
-> +         else
-> +            mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
-> +      }
->     } else
->     if (f == TGSI_FILE_TEMPORARY ||
->         f == TGSI_FILE_PREDICATE ||
-> @@ -2523,6 +2535,14 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
->           mkCvt(OP_CVT, dstTy, dst0[c], srcTy, fetchSrc(0, c));
->        break;
->     case TGSI_OPCODE_EMIT:
-> +      /* export the saved viewport index */
-> +      if (viewport != NULL) {
-> +         Symbol *VPSym = mkSymbol(FILE_SHADER_OUTPUT, info->io.viewportID,
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+---
+V2:
+  provide description
+  fix naming of vars
 
-Pretty sure you should just pass '0' as the second arg to mkSymbol --
-it takes the file index, which makes sense for e.g. constbufs of which
-there can be many. Also, how about
+ .../drivers/nouveau/codegen/nv50_ir_driver.h       |  1 +
+ .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  | 30 ++++++++++++++++++++--
+ 2 files changed, 29 insertions(+), 2 deletions(-)
 
-Symbol *vp
-
-or
-
-Symbol *vpSym
-
-to conform to the variable naming convention used throughout this file.
-
-> +                                  TYPE_U32,
-> +                                  info->out[info->io.viewportID].slot[0] * 4);
-> +         mkStore(OP_EXPORT, TYPE_U32, VPSym, NULL, viewport);
-> +      }
-> +      /* fallthrough */
->     case TGSI_OPCODE_ENDPRIM:
->        // get vertex stream if specified (must be immediate)
->        src0 = tgsi.srcCount() ?
-> @@ -2952,6 +2972,9 @@ Converter::run()
->        mkOp1(OP_RCP, TYPE_F32, fragCoord[3], fragCoord[3]);
->     }
->
-> +   if (info->io.viewportID > 0)
-
-What if it's the first output? You need to initialize viewportId to
-0xff somewhere... like right before the code that calls
-scanDeclarations() and then here check that it's < 0xff. [There can't
-be 255 outputs IIRC... the max is like 64 or 16 or something.]
-
-> +      viewport = getScratch();
-
-else viewport = NULL;
-
-> +
->     for (ip = 0; ip < code->scan.num_instructions; ++ip) {
->        if (!handleInstruction(&code->insns[ip]))
->           return false;
-> --
-> 1.8.4.5
->
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+index c885c8c..b4086f7 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+@@ -177,6 +177,7 @@ struct nv50_ir_prog_info
+       uint8_t vertexId;          /* system value index of VertexID */
+       uint8_t edgeFlagIn;
+       uint8_t edgeFlagOut;
++      int8_t viewportId;        /* output index of ViewportId */
+       uint8_t fragDepth;         /* output index of FragDepth */
+       uint8_t sampleMask;        /* output index of SampleMask */
+       boolean sampleInterp;      /* perform sample interp on all fp inputs */
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index a0f1fe1..a77b342 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -790,6 +790,8 @@ bool Source::scanSource()
+       info->prop.gp.instanceCount = 1; // default value
+    }
+ 
++   info->io.viewportId = -1;
++
+    info->immd.data = (uint32_t *)MALLOC(scan.immediate_count * 16);
+    info->immd.type = (ubyte *)MALLOC(scan.immediate_count * sizeof(ubyte));
+ 
+@@ -982,6 +984,9 @@ bool Source::scanDeclaration(const struct tgsi_full_declaration *decl)
+          case TGSI_SEMANTIC_SAMPLEMASK:
+             info->io.sampleMask = i;
+             break;
++         case TGSI_SEMANTIC_VIEWPORT_INDEX:
++            info->io.viewportId = i;
++            break;
+          default:
+             break;
+          }
+@@ -1258,6 +1263,8 @@ private:
+    Stack joinBBs;  // fork BB, for inserting join ops on ENDIF
+    Stack loopBBs;  // loop headers
+    Stack breakBBs; // end of / after loop
++
++   Value *viewport;
+ };
+ 
+ Symbol *
+@@ -1555,8 +1562,15 @@ Converter::storeDst(const tgsi::Instruction::DstRegister dst, int c,
+       mkOp2(OP_WRSV, TYPE_U32, NULL, dstToSym(dst, c), val);
+    } else
+    if (f == TGSI_FILE_OUTPUT && prog->getType() != Program::TYPE_FRAGMENT) {
+-      if (ptr || (info->out[idx].mask & (1 << c)))
+-         mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
++
++      if (ptr || (info->out[idx].mask & (1 << c))) {
++         /* Save the viewport index into a scratch register so that it can be
++            exported at EMIT time */
++         if (info->out[dst.getIndex(0)].sn == TGSI_SEMANTIC_VIEWPORT_INDEX && viewport != NULL)
++            mkOp1(OP_MOV, TYPE_U32, viewport, val);
++         else
++            mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
++      }
+    } else
+    if (f == TGSI_FILE_TEMPORARY ||
+        f == TGSI_FILE_PREDICATE ||
+@@ -2523,6 +2537,14 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+          mkCvt(OP_CVT, dstTy, dst0[c], srcTy, fetchSrc(0, c));
+       break;
+    case TGSI_OPCODE_EMIT:
++      /* export the saved viewport index */
++      if (viewport != NULL) {
++         Symbol *vpSym = mkSymbol(FILE_SHADER_OUTPUT, info->io.viewportId,
++                                  TYPE_U32,
++                                  info->out[info->io.viewportId].slot[0] * 4);
++         mkStore(OP_EXPORT, TYPE_U32, vpSym, NULL, viewport);
++      }
++      /* fallthrough */
+    case TGSI_OPCODE_ENDPRIM:
+       // get vertex stream if specified (must be immediate)
+       src0 = tgsi.srcCount() ?
+@@ -2952,6 +2974,10 @@ Converter::run()
+       mkOp1(OP_RCP, TYPE_F32, fragCoord[3], fragCoord[3]);
+    }
+ 
++   if (info->io.viewportId >= 0)
++      viewport = getScratch();
++   else viewport = NULL;
++
+    for (ip = 0; ip < code->scan.num_instructions; ++ip) {
+       if (!handleInstruction(&code->insns[ip]))
+          return false;
+-- 
+1.8.4.5
