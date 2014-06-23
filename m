@@ -1,16 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [Mesa-dev] [PATCH try 2 2/2] gallium/nouveau: move
- pushbuf and fences to context
-Date: Mon, 23 Jun 2014 10:54:22 -0400
-Message-ID: <CAKb7Uviwbbyz3as6TGxcve+knj3HUhY4s40H9J25Dnf+DpQUKA@mail.gmail.com>
-References: <539FE12C.90900@canonical.com> <539FE170.9040306@canonical.com>
- <CAKb7Uvjq0iKMM2sG0F+Q=BR6dftJUJL8qGnuV_CAVexYhW1DUA@mail.gmail.com>
- <53A7D482.70108@canonical.com>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH] nv50/ir: make ARB_viewport_array behave like it
+	does with other drivers
+Date: Mon, 23 Jun 2014 17:24:04 +0200
+Message-ID: <1403537044-7231-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53A7D482.70108-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,59 +16,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jun 23, 2014 at 3:17 AM, Maarten Lankhorst
-<maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
-> op 21-06-14 14:12, Ilia Mirkin schreef:
->> On Tue, Jun 17, 2014 at 2:34 AM, Maarten Lankhorst
->> <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
->>> nv30 seems to not support dma objects with offset, so simply extend the query_heap to cover the
->>> entire notifier, and use a offset in nv30_context_kick_notify.
->> It would be great if you could detail the list of transformations that
->> were done in the commit description, as well as what the "new way" is
->> (if any) for the various concepts.
-> I moved the pushbuf and fences to each context separately. The PUSH_KICK on context switch ensures
-> that the previous context is flushed.
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+---
+ .../drivers/nouveau/codegen/nv50_ir_driver.h       |  1 +
+ .../drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp  | 27 ++++++++++++++++++++--
+ 2 files changed, 26 insertions(+), 2 deletions(-)
 
-I  meant in the commit log :)
-
->> This change doesn't have any of the locking -- is that coming in a
->> future change? Otherwise we're still vulnerable to multiple threads
->> trying to render at the same time. (Now with screen sharing, even if
->> they end up with separate screens, we'd still be in trouble.)
-> I haven't done any locking changes, because I don't believe locking is the answer here.
-> With each context having its own pushbuf we can ensure that things aren't flushed, so
-> on flush it should assume all state is dirty. After this is done the PUSH_KICK of the old
-> context on context switch can be removed, and suddenly the driver is thread-safe because
-> only the pushbuf to kernel command submission could race. ;-)
-
-OK. I'm concerned that PUSH_SPACE could let us down here. We'd have to
-make sure enough space were available for the whole pushbuf, which if
-an inline vertex transfer is involved, could be a tricky proposition.
-
->
->> I'm still a bit concerned with moving the fence stuff to the
->> context... there might be an assumption in gallium that fences are
->> context-independent, in which case you need to make sure to have just
->> a single fence shared by everything...
-> I don't think that this is the case, because it's very rare that gallium uses multiple contexts simultaneously.
-> (Except vdpau interop, which does flush explicitly.)
-
-Agreed that it's rare. vdpau interop is the main case, the minor case
-is 2 screens (which will now share one pipe_screen). This is the issue
-the other user was having (with the fd closing thing).
-
->> Have you done a full piglit run on this (with the glx tests, for good
->> measure) on nv30/nv50/nvc0? If so, can you share the results files
->> somewhere?
-> No not yet. But I did confirm that glxgears and glxinfo didn't regress on my nv43, nv96 and nvc0. :-)
-
-Well, would be good to get those results, and make sure there are no
-unexpected regressions. (*-struct-pad seems to flip between fail and
-pass at random, I think based on which tests were run prior... some
-bit of state we're missing somewhere. One or two others like that.)
-
-  -ilia
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+index c885c8c..a8cc97c 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+@@ -189,6 +189,7 @@ struct nv50_ir_prog_info
+       uint16_t sampleInfoBase;   /* base address for sample positions */
+       uint8_t msInfoCBSlot;      /* cX[] used for multisample info */
+       uint16_t msInfoBase;       /* base address for multisample info */
++      int32_t viewportID;
+    } io;
+ 
+    /* driver callback to assign input/output locations */
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index a0f1fe1..78e33f8 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -982,6 +982,9 @@ bool Source::scanDeclaration(const struct tgsi_full_declaration *decl)
+          case TGSI_SEMANTIC_SAMPLEMASK:
+             info->io.sampleMask = i;
+             break;
++         case TGSI_SEMANTIC_VIEWPORT_INDEX:
++            info->io.viewportID = i;
++            break;
+          default:
+             break;
+          }
+@@ -1258,6 +1261,8 @@ private:
+    Stack joinBBs;  // fork BB, for inserting join ops on ENDIF
+    Stack loopBBs;  // loop headers
+    Stack breakBBs; // end of / after loop
++
++   Value *viewport;
+ };
+ 
+ Symbol *
+@@ -1555,8 +1560,15 @@ Converter::storeDst(const tgsi::Instruction::DstRegister dst, int c,
+       mkOp2(OP_WRSV, TYPE_U32, NULL, dstToSym(dst, c), val);
+    } else
+    if (f == TGSI_FILE_OUTPUT && prog->getType() != Program::TYPE_FRAGMENT) {
+-      if (ptr || (info->out[idx].mask & (1 << c)))
+-         mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
++
++      if (ptr || (info->out[idx].mask & (1 << c))) {
++         /* Save the viewport index into a scratch register so that it can be
++            exported at EMIT time */
++         if (info->out[dst.getIndex(0)].sn == TGSI_SEMANTIC_VIEWPORT_INDEX && viewport != NULL)
++            mkOp1(OP_MOV, TYPE_U32, viewport, val);
++         else
++            mkStore(OP_EXPORT, TYPE_U32, dstToSym(dst, c), ptr, val);
++      }
+    } else
+    if (f == TGSI_FILE_TEMPORARY ||
+        f == TGSI_FILE_PREDICATE ||
+@@ -2523,6 +2535,14 @@ Converter::handleInstruction(const struct tgsi_full_instruction *insn)
+          mkCvt(OP_CVT, dstTy, dst0[c], srcTy, fetchSrc(0, c));
+       break;
+    case TGSI_OPCODE_EMIT:
++      /* export the saved viewport index */
++      if (viewport != NULL) {
++         Symbol *VPSym = mkSymbol(FILE_SHADER_OUTPUT, info->io.viewportID,
++                                  TYPE_U32,
++                                  info->out[info->io.viewportID].slot[0] * 4);
++         mkStore(OP_EXPORT, TYPE_U32, VPSym, NULL, viewport);
++      }
++      /* fallthrough */
+    case TGSI_OPCODE_ENDPRIM:
+       // get vertex stream if specified (must be immediate)
+       src0 = tgsi.srcCount() ?
+@@ -2952,6 +2972,9 @@ Converter::run()
+       mkOp1(OP_RCP, TYPE_F32, fragCoord[3], fragCoord[3]);
+    }
+ 
++   if (info->io.viewportID > 0)
++      viewport = getScratch();
++
+    for (ip = 0; ip < code->scan.num_instructions; ++ip) {
+       if (!handleInstruction(&code->insns[ip]))
+          return false;
+-- 
+1.8.4.5
