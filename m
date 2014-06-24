@@ -1,22 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2 2/3] drm/ttm: introduce dma cache sync
-	helpers
-Date: Tue, 24 Jun 2014 23:03:21 +0900
-Message-ID: <CAAVeFuKMVHFXU02CZUHEfHfWOq6pDavF0SXogzmnwuAk2K3-zw@mail.gmail.com>
-References: <1403603667-11302-1-git-send-email-acourbot@nvidia.com>
- <1403603667-11302-3-git-send-email-acourbot@nvidia.com>
- <20140624100220.GK32514@n2100.arm.linux.org.uk>
- <53A953E6.2030503@nvidia.com> <53A95910.20104@nvidia.com>
- <CAAVeFu+rbCViC87kYCLfxGV18iYq=Pa0ABb+L=iNiYPLn+mR8Q@mail.gmail.com>
- <53A96EC5.3030701@canonical.com>
- <1403616338.4230.8.camel@weser.hi.pengutronix.de>
- <CAAVeFuLcC30BdWierY8Bg0vBmfNCaB=Qs34h790jGB=BRYvGAg@mail.gmail.com>
- <1403618295.4230.13.camel@weser.hi.pengutronix.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 77674] [NVE7] "failed to read DPCD" on wake up with
+ external monitor
+Date: Tue, 24 Jun 2014 14:22:50 +0000
+Message-ID: <bug-77674-8800-DxjngyG8AE@http.bugs.freedesktop.org/>
+References: <bug-77674-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0327051241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1403618295.4230.13.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
+In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,74 +17,145 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: Russell King - ARM Linux <linux-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgMTA6NTggUE0sIEx1Y2FzIFN0YWNoIDxsLnN0YWNoQHBl
-bmd1dHJvbml4LmRlPiB3cm90ZToKPiBBbSBEaWVuc3RhZywgZGVuIDI0LjA2LjIwMTQsIDIyOjUy
-ICswOTAwIHNjaHJpZWIgQWxleGFuZHJlIENvdXJib3Q6Cj4+IE9uIFR1ZSwgSnVuIDI0LCAyMDE0
-IGF0IDEwOjI1IFBNLCBMdWNhcyBTdGFjaCA8bC5zdGFjaEBwZW5ndXRyb25peC5kZT4gd3JvdGU6
-Cj4+ID4gQW0gRGllbnN0YWcsIGRlbiAyNC4wNi4yMDE0LCAxNDoyNyArMDIwMCBzY2hyaWViIE1h
-YXJ0ZW4gTGFua2hvcnN0Ogo+PiA+PiBvcCAyNC0wNi0xNCAxNDoyMywgQWxleGFuZHJlIENvdXJi
-b3Qgc2NocmVlZjoKPj4gPj4gPiBPbiBUdWUsIEp1biAyNCwgMjAxNCBhdCA3OjU1IFBNLCBBbGV4
-YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4gd3JvdGU6Cj4+ID4+ID4+IE9uIDA2
-LzI0LzIwMTQgMDc6MzMgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+PiA+PiA+Pj4gT24g
-MDYvMjQvMjAxNCAwNzowMiBQTSwgUnVzc2VsbCBLaW5nIC0gQVJNIExpbnV4IHdyb3RlOgo+PiA+
-PiA+Pj4+IE9uIFR1ZSwgSnVuIDI0LCAyMDE0IGF0IDA2OjU0OjI2UE0gKzA5MDAsIEFsZXhhbmRy
-ZSBDb3VyYm90IHdyb3RlOgo+PiA+PiA+Pj4+PiBGcm9tOiBMdWNhcyBTdGFjaCA8ZGV2QGx5bnhl
-eWUuZGU+Cj4+ID4+ID4+Pj4+Cj4+ID4+ID4+Pj4+IE9uIGFyY2hpdGVjdHVyZXMgZm9yIHdoaWNo
-IGFjY2VzcyB0byBHUFUgbWVtb3J5IGlzIG5vbi1jb2hlcmVudCwKPj4gPj4gPj4+Pj4gY2FjaGVz
-IG5lZWQgdG8gYmUgZmx1c2hlZCBhbmQgaW52YWxpZGF0ZWQgZXhwbGljaXRseSBhdCB0aGUKPj4g
-Pj4gPj4+Pj4gYXBwcm9wcmlhdGUgcGxhY2VzLiBJbnRyb2R1Y2UgdHdvIHNtYWxsIGhlbHBlcnMg
-dG8gbWFrZSB0aGluZ3MKPj4gPj4gPj4+Pj4gZWFzeSBmb3IgVFRNLWJhc2VkIGRyaXZlcnMuCj4+
-ID4+ID4+Pj4KPj4gPj4gPj4+PiBIYXZlIHlvdSBydW4gdGhpcyB3aXRoIERNQSBBUEkgZGVidWdn
-aW5nIGVuYWJsZWQ/ICBJIHN1c3BlY3QgeW91IGhhdmVuJ3QsCj4+ID4+ID4+Pj4gYW5kIEkgcmVj
-b21tZW5kIHRoYXQgeW91IGRvLgo+PiA+PiA+Pj4KPj4gPj4gPj4+ICMgY2F0IC9zeXMva2VybmVs
-L2RlYnVnL2RtYS1hcGkvZXJyb3JfY291bnQKPj4gPj4gPj4+IDE2MjYyMQo+PiA+PiA+Pj4KPj4g
-Pj4gPj4+ICjila/CsOKWocKw77yJ4pWv77i1IOKUu+KUgeKUuykKPj4gPj4gPj4KPj4gPj4gPj4g
-KnB1dHMgdGFibGUgYmFjayBvbiBpdHMgZmVldCoKPj4gPj4gPj4KPj4gPj4gPj4gU28sIHllYWgg
-LSBUVE0gbWVtb3J5IGlzIG5vdCBhbGxvY2F0ZWQgdXNpbmcgdGhlIERNQSBBUEksIGhlbmNlIHdl
-IGNhbm5vdAo+PiA+PiA+PiB1c2UgdGhlIERNQSBBUEkgdG8gc3luYyBpdC4gVGhhbmtzIFJ1c3Nl
-bGwgZm9yIHBvaW50aW5nIGl0IG91dC4KPj4gPj4gPj4KPj4gPj4gPj4gVGhlIG9ubHkgYWx0ZXJu
-YXRpdmUgSSBzZWUgaGVyZSBpcyB0byBmbHVzaCB0aGUgQ1BVIGNhY2hlcyB3aGVuIHN5bmNpbmcg
-Zm9yCj4+ID4+ID4+IHRoZSBkZXZpY2UsIGFuZCBpbnZhbGlkYXRlIHRoZW0gZm9yIHRoZSBvdGhl
-ciBkaXJlY3Rpb24uIE9mIGNvdXJzZSBpZiB0aGUKPj4gPj4gPj4gZGV2aWNlIGhhcyBjYWNoZXMg
-b24gaXRzIHNpZGUgYXMgd2VsbCB0aGUgb3Bwb3NpdGUgb3BlcmF0aW9uIG11c3QgYWxzbyBiZQo+
-PiA+PiA+PiBkb25lIGZvciBpdC4gR3Vlc3MgdGhlIG9ubHkgd2F5IGlzIHRvIGhhbmRsZSBpdCBh
-bGwgYnkgb3Vyc2VsdmVzIGhlcmUuIDovCj4+ID4+ID4gLi4uIGFuZCBpdCByZWFsbHkgc3Vja3Mu
-IEJhc2ljYWxseSBpZiB3ZSBjYW5ub3QgdXNlIHRoZSBETUEgQVBJIGhlcmUKPj4gPj4gPiB3ZSB3
-aWxsIGxvc2UgdGhlIGNvbnZlbmllbmNlIG9mIGhhdmluZyBhIHBvcnRhYmxlIEFQSSB0aGF0IGRv
-ZXMganVzdAo+PiA+PiA+IHRoZSByaWdodCB0aGluZyBmb3IgdGhlIHVuZGVybHlpbmcgcGxhdGZv
-cm0uIFdpdGhvdXQgaXQgd2Ugd291bGQgaGF2ZQo+PiA+PiA+IHRvIGR1cGxpY2F0ZSBhcm1faW9t
-bXVfc3luY19zaW5nbGVfZm9yX2NwdS9kZXZpY2UoKSBhbmQgd2Ugd291bGQgb25seQo+PiA+PiA+
-IGhhdmUgc3VwcG9ydCBmb3IgQVJNLgo+PiA+PiA+Cj4+ID4+ID4gVGhlIHVzYWdlIG9mIHRoZSBE
-TUEgQVBJIHRoYXQgd2UgYXJlIGRvaW5nIG1pZ2h0IGJlIGlsbGVnYWwsIGJ1dCBpbgo+PiA+PiA+
-IGVzc2VuY2UgaXQgZG9lcyBleGFjdGx5IHdoYXQgd2UgbmVlZCAtIGF0IGxlYXN0IGZvciBBUk0u
-IFdoYXQgYXJlIHRoZQo+PiA+PiA+IGFsdGVybmF0aXZlcz8KPj4gPj4gQ29udmVydCBUVE0gdG8g
-dXNlIHRoZSBkbWEgYXBpPyA6LSkKPj4gPgo+PiA+IEFjdHVhbGx5IFRUTSBhbHJlYWR5IGhhcyBh
-IHBhZ2UgYWxsb2MgYmFja2VuZCB1c2luZyB0aGUgRE1BIEFQSS4gSXQncwo+PiA+IGp1c3Qgbm90
-IHVzZWQgZm9yIHRoZSBzdGFuZGFyZCBjYXNlIHJpZ2h0IG5vdy4KPj4KPj4gSW5kZWVkLCBhbmQg
-Tm91dmVhdSBldmVuIGFscmVhZHkgbWFrZXMgdXNlIG9mIGl0IGlmIENPTkZJR19TV0lPVExCIGlz
-Cj4+IHNldCBhcHBhcmVudGx5Lgo+Pgo+PiA+IEkgd291bGQgYXJndWUgdGhhdCB3ZSBzaG91bGQg
-anVzdCB1c2UgdGhpcyBwYWdlIGFsbG9jYXRvciAod2hpY2ggaGFzIHRoZQo+PiA+IHNpZGUgZWZm
-ZWN0IG9mIGdldHRpbmcgcGFnZXMgZnJvbSBDTUEgaWYgYXZhaWxhYmxlIC0+IHlvdSBhcmUgYWN0
-dWFsbHkKPj4gPiBmcmVlIHRvIGNoYW5nZSB0aGUgY2FjaGluZykgYW5kIGRvIGF3YXkgd2l0aCB0
-aGUgb3RoZXIgYWxsb2NhdG9yIGluIHRoZQo+PiA+IEFSTSBjYXNlLgo+Pgo+PiBNbT8gRG9lcyBp
-dCBtZWFuIHRoYXQgQ01BIG1lbW9yeSBpcyBub3QgbWFwcGVkIGludG8gbG93bWVtPyBUaGF0IHdv
-dWxkCj4+IGNlcnRhaW5seSBoZWxwIGluIHRoZSBwcmVzZW50IGNhc2UsIGJ1dCBJIHdvbmRlciBo
-b3cgdXNlZnVsIGl0IHdpbGwgYmUKPj4gb25jZSB0aGUgaW9tbXUgc3VwcG9ydCBpcyBpbiBwbGFj
-ZS4gV2lsbCBhbHNvIG5lZWQgdG8gY29uc2lkZXIKPj4gcGVyZm9ybWFuY2Ugb2Ygc3VjaCBjb2hl
-cmVudCBtZW1vcnkgZm9yIGUuZy4gdXNlci1zcGFjZSBtYXBwaW5ncy4KPj4KPj4gQW55d2F5LCBJ
-IHdpbGwgZXhwZXJpbWVudCBhIGJpdCB3aXRoIHRoaXMgdG9tb3Jyb3csIHRoYW5rcyEKPgo+IENN
-QSBtZW1vcnkgaXMgcmVzZXJ2ZWQgYmVmb3JlIHRoZSBsb3dtZW0gc2VjdGlvbiBtYXBwaW5nIGlz
-IHNldCB1cC4gSXQKPiBpcyB0aGVuIG1hcHBlZCB3aXRoIGluZGl2aWR1YWwgNGsgcGFnZXMgYmVm
-b3JlIGdpdmluZyBpdCBiYWNrIHRvIHRoZQo+IGJ1ZGR5IGFsbG9jYXRvci4KPiBUaGlzIG1lYW5z
-IENNQSBwYWdlcyBpbiB1c2UgYnkgdGhlIGtlcm5lbCBhcmUgbWFwcGVkIGludG8gbG93bWVtLCBi
-dXQKPiB0aGV5IGFyZSBhY3R1YWxseSB1bm1hcHBlZCBmcm9tIGxvd21lbSBvbmNlIHlvdSBhbGxv
-Y2F0ZSB0aGVtIGFzIERNQQo+IG1lbW9yeS4KClRoYW5rcyBmb3IgdGhlIGV4cGxhbmF0aW9uLiBJ
-IHJlYWxseSBuZWVkIHRvIHNwZW5kIG1vcmUgdGltZSBzdHVkeWluZwp0aGUgRE1BIGFsbG9jYXRv
-ci4gSSB3b25kZXIgaWYgYWxsIHRoaXMgaXMgYWxyZWFkeSBleHBsYWluZWQgc29tZXdoZXJlCmlu
-IERvY3VtZW50YXRpb24vID8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0327051241==
+Content-Type: multipart/alternative; boundary="1403619770.AaAa72.22588"; charset="us-ascii"
+
+
+--1403619770.AaAa72.22588
+Date: Tue, 24 Jun 2014 14:22:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=77674
+
+--- Comment #4 from jason leroy <jsnlry-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am experiencing the same issue on ArchLinux. My Hardware:
+
+ * HP EliteBook 8440p
+ * VGA compatible controller: NVIDIA Corporation GT218M [NVS 3100M]
+
+Installed software:
+
+ * ArchLinux with all available updates
+ * Kernel 3.15.1-1-ARCH
+ * nouveau-dri 10.2.1-2
+ * xf86-video-nouveau 1.0.10-2
+ * lib32-nouveau-dri 10.2.1-3
+
+My Log shows the following for nouveau when I suspend/resume the system:
+
+nouveau  [     DRM] suspending display...
+nouveau  [     DRM] unpinning framebuffer(s)...
+nouveau  [     DRM] evicting buffers...
+nouveau  [     DRM] waiting for kernel channels to go idle...
+nouveau  [     DRM] suspending client object trees...
+nouveau  [     DRM] suspending kernel object tree...
+nouveau  [     DRM] re-enabling device...
+nouveau  [     DRM] resuming kernel object tree...
+nouveau  [   VBIOS][0000:01:00.0] running init tables
+nouveau  [    VOLT][0000:01:00.0] GPU voltage: 850000uv
+nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+nouveau  [     CLK][0000:01:00.0] --: core 405 MHz shader 810 MHz memory 405
+MHz
+nouveau  [     DRM] resuming client object trees...
+nouveau  [     DRM] resuming display...
+nouveau E[   PDISP][0000:01:00.0] DP:0006:0344: failed to read DPCD
+nouveau E[   PDISP][0000:01:00.0] DP:0006:0344: link training failed
+
+In my case there is NO external display and also NO docking station. It's the
+display of the laptop that remains black.
+
+For me, long-pressing the power button is the only way out of this situation.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403619770.AaAa72.22588
+Date: Tue, 24 Jun 2014 14:22:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674">bug 77674</a>
+              from <span class="vcard"><a class="email" href="mailto:jsnlry&#64;gmail.com" title="jason leroy &lt;jsnlry&#64;gmail.com&gt;"> <span class="fn">jason leroy</span></a>
+</span></b>
+        <pre>I am experiencing the same issue on ArchLinux. My Hardware:
+
+ * HP EliteBook 8440p
+ * VGA compatible controller: NVIDIA Corporation GT218M [NVS 3100M]
+
+Installed software:
+
+ * ArchLinux with all available updates
+ * Kernel 3.15.1-1-ARCH
+ * nouveau-dri 10.2.1-2
+ * xf86-video-nouveau 1.0.10-2
+ * lib32-nouveau-dri 10.2.1-3
+
+My Log shows the following for nouveau when I suspend/resume the system:
+
+nouveau  [     DRM] suspending display...
+nouveau  [     DRM] unpinning framebuffer(s)...
+nouveau  [     DRM] evicting buffers...
+nouveau  [     DRM] waiting for kernel channels to go idle...
+nouveau  [     DRM] suspending client object trees...
+nouveau  [     DRM] suspending kernel object tree...
+nouveau  [     DRM] re-enabling device...
+nouveau  [     DRM] resuming kernel object tree...
+nouveau  [   VBIOS][0000:01:00.0] running init tables
+nouveau  [    VOLT][0000:01:00.0] GPU voltage: 850000uv
+nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+nouveau  [     CLK][0000:01:00.0] --: core 405 MHz shader 810 MHz memory 405
+MHz
+nouveau  [     DRM] resuming client object trees...
+nouveau  [     DRM] resuming display...
+nouveau E[   PDISP][0000:01:00.0] DP:0006:0344: failed to read DPCD
+nouveau E[   PDISP][0000:01:00.0] DP:0006:0344: link training failed
+
+In my case there is NO external display and also NO docking station. It's the
+display of the laptop that remains black.
+
+For me, long-pressing the power button is the only way out of this situation.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403619770.AaAa72.22588--
+
+--===============0327051241==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0327051241==--
