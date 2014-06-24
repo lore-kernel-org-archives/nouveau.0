@@ -1,75 +1,126 @@
-From: Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [Nouveau] [PATCH v2 2/3] drm/ttm: introduce dma cache sync helpers
-Date: Tue, 24 Jun 2014 15:25:38 +0200
-Message-ID: <1403616338.4230.8.camel@weser.hi.pengutronix.de>
-References: <1403603667-11302-1-git-send-email-acourbot@nvidia.com>
- <1403603667-11302-3-git-send-email-acourbot@nvidia.com>
- <20140624100220.GK32514@n2100.arm.linux.org.uk>
- <53A953E6.2030503@nvidia.com> <53A95910.20104@nvidia.com>
- <CAAVeFu+rbCViC87kYCLfxGV18iYq=Pa0ABb+L=iNiYPLn+mR8Q@mail.gmail.com>
- <53A96EC5.3030701@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
+ with nouveau-dri-10.2.1 libs on dual-screen
+Date: Tue, 24 Jun 2014 13:33:47 +0000
+Message-ID: <bug-79823-8800-7KydAAtBFm@http.bugs.freedesktop.org/>
+References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org>
-In-Reply-To: <53A96EC5.3030701@canonical.com>
-List-Unsubscribe: <http://lists.infradead.org/mailman/options/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
-List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
-List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
-List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
-List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
- <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-Errors-To: linux-arm-kernel-bounces+linux-arm-kernel=m.gmane.org@lists.infradead.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: Alexandre Courbot <gnurou@gmail.com>, Russell King - ARM Linux <linux@arm.linux.org.uk>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Alexandre Courbot <acourbot@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: multipart/mixed; boundary="===============1108414180=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gRGllbnN0YWcsIGRlbiAyNC4wNi4yMDE0LCAxNDoyNyArMDIwMCBzY2hyaWViIE1hYXJ0ZW4g
-TGFua2hvcnN0Ogo+IG9wIDI0LTA2LTE0IDE0OjIzLCBBbGV4YW5kcmUgQ291cmJvdCBzY2hyZWVm
-Ogo+ID4gT24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgNzo1NSBQTSwgQWxleGFuZHJlIENvdXJib3Qg
-PGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+ID4+IE9uIDA2LzI0LzIwMTQgMDc6MzMgUE0s
-IEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+ID4+PiBPbiAwNi8yNC8yMDE0IDA3OjAyIFBNLCBS
-dXNzZWxsIEtpbmcgLSBBUk0gTGludXggd3JvdGU6Cj4gPj4+PiBPbiBUdWUsIEp1biAyNCwgMjAx
-NCBhdCAwNjo1NDoyNlBNICswOTAwLCBBbGV4YW5kcmUgQ291cmJvdCB3cm90ZToKPiA+Pj4+PiBG
-cm9tOiBMdWNhcyBTdGFjaCA8ZGV2QGx5bnhleWUuZGU+Cj4gPj4+Pj4KPiA+Pj4+PiBPbiBhcmNo
-aXRlY3R1cmVzIGZvciB3aGljaCBhY2Nlc3MgdG8gR1BVIG1lbW9yeSBpcyBub24tY29oZXJlbnQs
-Cj4gPj4+Pj4gY2FjaGVzIG5lZWQgdG8gYmUgZmx1c2hlZCBhbmQgaW52YWxpZGF0ZWQgZXhwbGlj
-aXRseSBhdCB0aGUKPiA+Pj4+PiBhcHByb3ByaWF0ZSBwbGFjZXMuIEludHJvZHVjZSB0d28gc21h
-bGwgaGVscGVycyB0byBtYWtlIHRoaW5ncwo+ID4+Pj4+IGVhc3kgZm9yIFRUTS1iYXNlZCBkcml2
-ZXJzLgo+ID4+Pj4KPiA+Pj4+IEhhdmUgeW91IHJ1biB0aGlzIHdpdGggRE1BIEFQSSBkZWJ1Z2dp
-bmcgZW5hYmxlZD8gIEkgc3VzcGVjdCB5b3UgaGF2ZW4ndCwKPiA+Pj4+IGFuZCBJIHJlY29tbWVu
-ZCB0aGF0IHlvdSBkby4KPiA+Pj4KPiA+Pj4gIyBjYXQgL3N5cy9rZXJuZWwvZGVidWcvZG1hLWFw
-aS9lcnJvcl9jb3VudAo+ID4+PiAxNjI2MjEKPiA+Pj4KPiA+Pj4gKOKVr8Kw4pahwrDvvInila/v
-uLUg4pS74pSB4pS7KQo+ID4+Cj4gPj4gKnB1dHMgdGFibGUgYmFjayBvbiBpdHMgZmVldCoKPiA+
-Pgo+ID4+IFNvLCB5ZWFoIC0gVFRNIG1lbW9yeSBpcyBub3QgYWxsb2NhdGVkIHVzaW5nIHRoZSBE
-TUEgQVBJLCBoZW5jZSB3ZSBjYW5ub3QKPiA+PiB1c2UgdGhlIERNQSBBUEkgdG8gc3luYyBpdC4g
-VGhhbmtzIFJ1c3NlbGwgZm9yIHBvaW50aW5nIGl0IG91dC4KPiA+Pgo+ID4+IFRoZSBvbmx5IGFs
-dGVybmF0aXZlIEkgc2VlIGhlcmUgaXMgdG8gZmx1c2ggdGhlIENQVSBjYWNoZXMgd2hlbiBzeW5j
-aW5nIGZvcgo+ID4+IHRoZSBkZXZpY2UsIGFuZCBpbnZhbGlkYXRlIHRoZW0gZm9yIHRoZSBvdGhl
-ciBkaXJlY3Rpb24uIE9mIGNvdXJzZSBpZiB0aGUKPiA+PiBkZXZpY2UgaGFzIGNhY2hlcyBvbiBp
-dHMgc2lkZSBhcyB3ZWxsIHRoZSBvcHBvc2l0ZSBvcGVyYXRpb24gbXVzdCBhbHNvIGJlCj4gPj4g
-ZG9uZSBmb3IgaXQuIEd1ZXNzIHRoZSBvbmx5IHdheSBpcyB0byBoYW5kbGUgaXQgYWxsIGJ5IG91
-cnNlbHZlcyBoZXJlLiA6Lwo+ID4gLi4uIGFuZCBpdCByZWFsbHkgc3Vja3MuIEJhc2ljYWxseSBp
-ZiB3ZSBjYW5ub3QgdXNlIHRoZSBETUEgQVBJIGhlcmUKPiA+IHdlIHdpbGwgbG9zZSB0aGUgY29u
-dmVuaWVuY2Ugb2YgaGF2aW5nIGEgcG9ydGFibGUgQVBJIHRoYXQgZG9lcyBqdXN0Cj4gPiB0aGUg
-cmlnaHQgdGhpbmcgZm9yIHRoZSB1bmRlcmx5aW5nIHBsYXRmb3JtLiBXaXRob3V0IGl0IHdlIHdv
-dWxkIGhhdmUKPiA+IHRvIGR1cGxpY2F0ZSBhcm1faW9tbXVfc3luY19zaW5nbGVfZm9yX2NwdS9k
-ZXZpY2UoKSBhbmQgd2Ugd291bGQgb25seQo+ID4gaGF2ZSBzdXBwb3J0IGZvciBBUk0uCj4gPgo+
-ID4gVGhlIHVzYWdlIG9mIHRoZSBETUEgQVBJIHRoYXQgd2UgYXJlIGRvaW5nIG1pZ2h0IGJlIGls
-bGVnYWwsIGJ1dCBpbgo+ID4gZXNzZW5jZSBpdCBkb2VzIGV4YWN0bHkgd2hhdCB3ZSBuZWVkIC0g
-YXQgbGVhc3QgZm9yIEFSTS4gV2hhdCBhcmUgdGhlCj4gPiBhbHRlcm5hdGl2ZXM/Cj4gQ29udmVy
-dCBUVE0gdG8gdXNlIHRoZSBkbWEgYXBpPyA6LSkKCkFjdHVhbGx5IFRUTSBhbHJlYWR5IGhhcyBh
-IHBhZ2UgYWxsb2MgYmFja2VuZCB1c2luZyB0aGUgRE1BIEFQSS4gSXQncwpqdXN0IG5vdCB1c2Vk
-IGZvciB0aGUgc3RhbmRhcmQgY2FzZSByaWdodCBub3cuCgpJIHdvdWxkIGFyZ3VlIHRoYXQgd2Ug
-c2hvdWxkIGp1c3QgdXNlIHRoaXMgcGFnZSBhbGxvY2F0b3IgKHdoaWNoIGhhcyB0aGUKc2lkZSBl
-ZmZlY3Qgb2YgZ2V0dGluZyBwYWdlcyBmcm9tIENNQSBpZiBhdmFpbGFibGUgLT4geW91IGFyZSBh
-Y3R1YWxseQpmcmVlIHRvIGNoYW5nZSB0aGUgY2FjaGluZykgYW5kIGRvIGF3YXkgd2l0aCB0aGUg
-b3RoZXIgYWxsb2NhdG9yIGluIHRoZQpBUk0gY2FzZS4KClJlZ2FyZHMsCkx1Y2FzCi0tIApQZW5n
-dXRyb25peCBlLksuICAgICAgICAgICAgIHwgTHVjYXMgU3RhY2ggICAgICAgICAgICAgICAgIHwK
-SW5kdXN0cmlhbCBMaW51eCBTb2x1dGlvbnMgICB8IGh0dHA6Ly93d3cucGVuZ3V0cm9uaXguZGUv
-ICB8CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbGlu
-dXgtYXJtLWtlcm5lbCBtYWlsaW5nIGxpc3QKbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRl
-YWQub3JnCmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgt
-YXJtLWtlcm5lbAo=
+
+--===============1108414180==
+Content-Type: multipart/alternative; boundary="1403616827.FAcD81.13096"; charset="us-ascii"
+
+
+--1403616827.FAcD81.13096
+Date: Tue, 24 Jun 2014 13:33:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=79823
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #34 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+A (very slightly) improved version of the patch is now in mesa master.
+Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403616827.FAcD81.13096
+Date: Tue, 24 Jun 2014 13:33:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>A (very slightly) improved version of the patch is now in mesa master.
+Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403616827.FAcD81.13096--
+
+--===============1108414180==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1108414180==--
