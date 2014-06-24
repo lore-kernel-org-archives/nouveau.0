@@ -1,13 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
- with nouveau-dri-10.2.1 libs on dual-screen
-Date: Tue, 24 Jun 2014 13:33:47 +0000
-Message-ID: <bug-79823-8800-7KydAAtBFm@http.bugs.freedesktop.org/>
-References: <bug-79823-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 2/3] drm/ttm: introduce dma cache sync
+	helpers
+Date: Tue, 24 Jun 2014 22:52:08 +0900
+Message-ID: <CAAVeFuLcC30BdWierY8Bg0vBmfNCaB=Qs34h790jGB=BRYvGAg@mail.gmail.com>
+References: <1403603667-11302-1-git-send-email-acourbot@nvidia.com>
+ <1403603667-11302-3-git-send-email-acourbot@nvidia.com>
+ <20140624100220.GK32514@n2100.arm.linux.org.uk>
+ <53A953E6.2030503@nvidia.com> <53A95910.20104@nvidia.com>
+ <CAAVeFu+rbCViC87kYCLfxGV18iYq=Pa0ABb+L=iNiYPLn+mR8Q@mail.gmail.com>
+ <53A96EC5.3030701@canonical.com>
+ <1403616338.4230.8.camel@weser.hi.pengutronix.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1108414180=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1403616338.4230.8.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,110 +24,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
+Cc: Russell King - ARM Linux <linux-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1108414180==
-Content-Type: multipart/alternative; boundary="1403616827.FAcD81.13096"; charset="us-ascii"
-
-
---1403616827.FAcD81.13096
-Date: Tue, 24 Jun 2014 13:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=79823
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #34 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A (very slightly) improved version of the patch is now in mesa master.
-Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403616827.FAcD81.13096
-Date: Tue, 24 Jun 2014 13:33:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c34">Comment # 34</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A (very slightly) improved version of the patch is now in mesa master.
-Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403616827.FAcD81.13096--
-
---===============1108414180==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1108414180==--
+T24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgMTA6MjUgUE0sIEx1Y2FzIFN0YWNoIDxsLnN0YWNoQHBl
+bmd1dHJvbml4LmRlPiB3cm90ZToKPiBBbSBEaWVuc3RhZywgZGVuIDI0LjA2LjIwMTQsIDE0OjI3
+ICswMjAwIHNjaHJpZWIgTWFhcnRlbiBMYW5raG9yc3Q6Cj4+IG9wIDI0LTA2LTE0IDE0OjIzLCBB
+bGV4YW5kcmUgQ291cmJvdCBzY2hyZWVmOgo+PiA+IE9uIFR1ZSwgSnVuIDI0LCAyMDE0IGF0IDc6
+NTUgUE0sIEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4g
+Pj4gT24gMDYvMjQvMjAxNCAwNzozMyBQTSwgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4+ID4+
+PiBPbiAwNi8yNC8yMDE0IDA3OjAyIFBNLCBSdXNzZWxsIEtpbmcgLSBBUk0gTGludXggd3JvdGU6
+Cj4+ID4+Pj4gT24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgMDY6NTQ6MjZQTSArMDkwMCwgQWxleGFu
+ZHJlIENvdXJib3Qgd3JvdGU6Cj4+ID4+Pj4+IEZyb206IEx1Y2FzIFN0YWNoIDxkZXZAbHlueGV5
+ZS5kZT4KPj4gPj4+Pj4KPj4gPj4+Pj4gT24gYXJjaGl0ZWN0dXJlcyBmb3Igd2hpY2ggYWNjZXNz
+IHRvIEdQVSBtZW1vcnkgaXMgbm9uLWNvaGVyZW50LAo+PiA+Pj4+PiBjYWNoZXMgbmVlZCB0byBi
+ZSBmbHVzaGVkIGFuZCBpbnZhbGlkYXRlZCBleHBsaWNpdGx5IGF0IHRoZQo+PiA+Pj4+PiBhcHBy
+b3ByaWF0ZSBwbGFjZXMuIEludHJvZHVjZSB0d28gc21hbGwgaGVscGVycyB0byBtYWtlIHRoaW5n
+cwo+PiA+Pj4+PiBlYXN5IGZvciBUVE0tYmFzZWQgZHJpdmVycy4KPj4gPj4+Pgo+PiA+Pj4+IEhh
+dmUgeW91IHJ1biB0aGlzIHdpdGggRE1BIEFQSSBkZWJ1Z2dpbmcgZW5hYmxlZD8gIEkgc3VzcGVj
+dCB5b3UgaGF2ZW4ndCwKPj4gPj4+PiBhbmQgSSByZWNvbW1lbmQgdGhhdCB5b3UgZG8uCj4+ID4+
+Pgo+PiA+Pj4gIyBjYXQgL3N5cy9rZXJuZWwvZGVidWcvZG1hLWFwaS9lcnJvcl9jb3VudAo+PiA+
+Pj4gMTYyNjIxCj4+ID4+Pgo+PiA+Pj4gKOKVr8Kw4pahwrDvvInila/vuLUg4pS74pSB4pS7KQo+
+PiA+Pgo+PiA+PiAqcHV0cyB0YWJsZSBiYWNrIG9uIGl0cyBmZWV0Kgo+PiA+Pgo+PiA+PiBTbywg
+eWVhaCAtIFRUTSBtZW1vcnkgaXMgbm90IGFsbG9jYXRlZCB1c2luZyB0aGUgRE1BIEFQSSwgaGVu
+Y2Ugd2UgY2Fubm90Cj4+ID4+IHVzZSB0aGUgRE1BIEFQSSB0byBzeW5jIGl0LiBUaGFua3MgUnVz
+c2VsbCBmb3IgcG9pbnRpbmcgaXQgb3V0Lgo+PiA+Pgo+PiA+PiBUaGUgb25seSBhbHRlcm5hdGl2
+ZSBJIHNlZSBoZXJlIGlzIHRvIGZsdXNoIHRoZSBDUFUgY2FjaGVzIHdoZW4gc3luY2luZyBmb3IK
+Pj4gPj4gdGhlIGRldmljZSwgYW5kIGludmFsaWRhdGUgdGhlbSBmb3IgdGhlIG90aGVyIGRpcmVj
+dGlvbi4gT2YgY291cnNlIGlmIHRoZQo+PiA+PiBkZXZpY2UgaGFzIGNhY2hlcyBvbiBpdHMgc2lk
+ZSBhcyB3ZWxsIHRoZSBvcHBvc2l0ZSBvcGVyYXRpb24gbXVzdCBhbHNvIGJlCj4+ID4+IGRvbmUg
+Zm9yIGl0LiBHdWVzcyB0aGUgb25seSB3YXkgaXMgdG8gaGFuZGxlIGl0IGFsbCBieSBvdXJzZWx2
+ZXMgaGVyZS4gOi8KPj4gPiAuLi4gYW5kIGl0IHJlYWxseSBzdWNrcy4gQmFzaWNhbGx5IGlmIHdl
+IGNhbm5vdCB1c2UgdGhlIERNQSBBUEkgaGVyZQo+PiA+IHdlIHdpbGwgbG9zZSB0aGUgY29udmVu
+aWVuY2Ugb2YgaGF2aW5nIGEgcG9ydGFibGUgQVBJIHRoYXQgZG9lcyBqdXN0Cj4+ID4gdGhlIHJp
+Z2h0IHRoaW5nIGZvciB0aGUgdW5kZXJseWluZyBwbGF0Zm9ybS4gV2l0aG91dCBpdCB3ZSB3b3Vs
+ZCBoYXZlCj4+ID4gdG8gZHVwbGljYXRlIGFybV9pb21tdV9zeW5jX3NpbmdsZV9mb3JfY3B1L2Rl
+dmljZSgpIGFuZCB3ZSB3b3VsZCBvbmx5Cj4+ID4gaGF2ZSBzdXBwb3J0IGZvciBBUk0uCj4+ID4K
+Pj4gPiBUaGUgdXNhZ2Ugb2YgdGhlIERNQSBBUEkgdGhhdCB3ZSBhcmUgZG9pbmcgbWlnaHQgYmUg
+aWxsZWdhbCwgYnV0IGluCj4+ID4gZXNzZW5jZSBpdCBkb2VzIGV4YWN0bHkgd2hhdCB3ZSBuZWVk
+IC0gYXQgbGVhc3QgZm9yIEFSTS4gV2hhdCBhcmUgdGhlCj4+ID4gYWx0ZXJuYXRpdmVzPwo+PiBD
+b252ZXJ0IFRUTSB0byB1c2UgdGhlIGRtYSBhcGk/IDotKQo+Cj4gQWN0dWFsbHkgVFRNIGFscmVh
+ZHkgaGFzIGEgcGFnZSBhbGxvYyBiYWNrZW5kIHVzaW5nIHRoZSBETUEgQVBJLiBJdCdzCj4ganVz
+dCBub3QgdXNlZCBmb3IgdGhlIHN0YW5kYXJkIGNhc2UgcmlnaHQgbm93LgoKSW5kZWVkLCBhbmQg
+Tm91dmVhdSBldmVuIGFscmVhZHkgbWFrZXMgdXNlIG9mIGl0IGlmIENPTkZJR19TV0lPVExCIGlz
+CnNldCBhcHBhcmVudGx5LgoKPiBJIHdvdWxkIGFyZ3VlIHRoYXQgd2Ugc2hvdWxkIGp1c3QgdXNl
+IHRoaXMgcGFnZSBhbGxvY2F0b3IgKHdoaWNoIGhhcyB0aGUKPiBzaWRlIGVmZmVjdCBvZiBnZXR0
+aW5nIHBhZ2VzIGZyb20gQ01BIGlmIGF2YWlsYWJsZSAtPiB5b3UgYXJlIGFjdHVhbGx5Cj4gZnJl
+ZSB0byBjaGFuZ2UgdGhlIGNhY2hpbmcpIGFuZCBkbyBhd2F5IHdpdGggdGhlIG90aGVyIGFsbG9j
+YXRvciBpbiB0aGUKPiBBUk0gY2FzZS4KCk1tPyBEb2VzIGl0IG1lYW4gdGhhdCBDTUEgbWVtb3J5
+IGlzIG5vdCBtYXBwZWQgaW50byBsb3dtZW0/IFRoYXQgd291bGQKY2VydGFpbmx5IGhlbHAgaW4g
+dGhlIHByZXNlbnQgY2FzZSwgYnV0IEkgd29uZGVyIGhvdyB1c2VmdWwgaXQgd2lsbCBiZQpvbmNl
+IHRoZSBpb21tdSBzdXBwb3J0IGlzIGluIHBsYWNlLiBXaWxsIGFsc28gbmVlZCB0byBjb25zaWRl
+cgpwZXJmb3JtYW5jZSBvZiBzdWNoIGNvaGVyZW50IG1lbW9yeSBmb3IgZS5nLiB1c2VyLXNwYWNl
+IG1hcHBpbmdzLgoKQW55d2F5LCBJIHdpbGwgZXhwZXJpbWVudCBhIGJpdCB3aXRoIHRoaXMgdG9t
+b3Jyb3csIHRoYW5rcyEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
