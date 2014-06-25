@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80507] New: Cannot set pwm1 above 80 on GeForce 9600
- GT, 10de:0622
-Date: Wed, 25 Jun 2014 01:13:08 +0000
-Message-ID: <bug-80507-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80507] Cannot set pwm1 above 80 on GeForce 9600 GT,
+	10de:0622
+Date: Wed, 25 Jun 2014 01:13:59 +0000
+Message-ID: <bug-80507-8800-Bp2Ngk0riE@http.bugs.freedesktop.org/>
+References: <bug-80507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1717059392=="
+Content-Type: multipart/mixed; boundary="===============0410465043=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-80507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,65 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1717059392==
-Content-Type: multipart/alternative; boundary="1403658788.fd73A1.1597"; charset="us-ascii"
+--===============0410465043==
+Content-Type: multipart/alternative; boundary="1403658839.304F1.1707"; charset="us-ascii"
 
 
---1403658788.fd73A1.1597
-Date: Wed, 25 Jun 2014 01:13:08 +0000
+--1403658839.304F1.1707
+Date: Wed, 25 Jun 2014 01:13:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80507
 
-          Priority: medium
-            Bug ID: 80507
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Sorry, this is with:
 
-It seems like the /sys/class/drm/card0/device/hwmon/hwmon0/pwm1 value for my
-GeForce 9600 GT (10de:0622) will never go above 80.
+[root@adam hwmon0]# uname -r
+3.16.0-0.rc2.git0.1.fc21.x86_64
 
-If I do echo 1 > pwm1_enable (to set it to manual control), then try echoing
-values to pwm1, it basically acts as if any value above 80 is identical to 80.
-
-[root@adam hwmon0]# pwd
-/sys/class/drm/card0/device/hwmon/hwmon0
-[root@adam hwmon0]# echo 79 > pwm1
-[root@adam hwmon0]# cat pwm1
-79
-[root@adam hwmon0]# echo 81 > pwm1
-[root@adam hwmon0]# cat pwm1
-80
-[root@adam hwmon0]# echo 100 > pwm1
-[root@adam hwmon0]# cat pwm1
-80
-[root@adam hwmon0]# echo 100000 > pwm1
-[root@adam hwmon0]# cat pwm1
-80
-[root@adam hwmon0]# echo 30 > pwm1
-[root@adam hwmon0]# cat pwm1
-30
-[root@adam hwmon0]# echo 100000 > pwm1
-[root@adam hwmon0]# cat pwm1
-80
+Fedora Rawhide.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403658788.fd73A1.1597
-Date: Wed, 25 Jun 2014 01:13:08 +0000
+--1403658839.304F1.1707
+Date: Wed, 25 Jun 2014 01:13:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -85,121 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507">80507</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>awilliam&#64;redhat.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>It seems like the /sys/class/drm/card0/device/hwmon/hwmon0/pwm1 value for my
-GeForce 9600 GT (10de:0622) will never go above 80.
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507">bug 80507</a>
+              from <span class="vcard"><a class="email" href="mailto:awilliam&#64;redhat.com" title="Adam Williamson &lt;awilliam&#64;redhat.com&gt;"> <span class="fn">Adam Williamson</span></a>
+</span></b>
+        <pre>Sorry, this is with:
 
-If I do echo 1 &gt; pwm1_enable (to set it to manual control), then try echoing
-values to pwm1, it basically acts as if any value above 80 is identical to 80.
+[root&#64;adam hwmon0]# uname -r
+3.16.0-0.rc2.git0.1.fc21.x86_64
 
-[root&#64;adam hwmon0]# pwd
-/sys/class/drm/card0/device/hwmon/hwmon0
-[root&#64;adam hwmon0]# echo 79 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-79
-[root&#64;adam hwmon0]# echo 81 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-80
-[root&#64;adam hwmon0]# echo 100 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-80
-[root&#64;adam hwmon0]# echo 100000 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-80
-[root&#64;adam hwmon0]# echo 30 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-30
-[root&#64;adam hwmon0]# echo 100000 &gt; pwm1
-[root&#64;adam hwmon0]# cat pwm1
-80</pre>
+Fedora Rawhide.</pre>
         </div>
       </p>
       <hr>
@@ -211,9 +83,9 @@ values to pwm1, it basically acts as if any value above 80 is identical to 80.
     </body>
 </html>
 
---1403658788.fd73A1.1597--
+--1403658839.304F1.1707--
 
---===============1717059392==
+--===============0410465043==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -224,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1717059392==--
+--===============0410465043==--
