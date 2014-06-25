@@ -1,20 +1,13 @@
-From: =?UTF-8?Q?St=C3=A9phane_Marchesin?= <stephane.marchesin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2 2/3] drm/ttm: introduce dma cache sync
-	helpers
-Date: Tue, 24 Jun 2014 21:00:41 -0700
-Message-ID: <CACP_E+KECMyusuZd6hpzthL-RpfUOJpWh0EABf1DGAeaXc00aA@mail.gmail.com>
-References: <1403603667-11302-1-git-send-email-acourbot@nvidia.com>
- <1403603667-11302-3-git-send-email-acourbot@nvidia.com>
- <20140624100220.GK32514@n2100.arm.linux.org.uk>
- <53A953E6.2030503@nvidia.com> <53A95910.20104@nvidia.com>
- <CAAVeFu+rbCViC87kYCLfxGV18iYq=Pa0ABb+L=iNiYPLn+mR8Q@mail.gmail.com>
- <53A96EC5.3030701@canonical.com>
- <1403616338.4230.8.camel@weser.hi.pengutronix.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79823] [NV30/gallium] Mozilla apps freeze on startup
+ with nouveau-dri-10.2.1 libs on dual-screen
+Date: Wed, 25 Jun 2014 05:34:31 +0000
+Message-ID: <bug-79823-8800-mKiipE4Sjk@http.bugs.freedesktop.org/>
+References: <bug-79823-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0164450673=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1403616338.4230.8.camel-WzVe3FnzCwFR6QfukMTsflXZhhPuCNm+@public.gmane.org>
+In-Reply-To: <bug-79823-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,58 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
-Cc: Russell King - ARM Linux <linux-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgNjoyNSBBTSwgTHVjYXMgU3RhY2ggPGwuc3RhY2hAcGVu
-Z3V0cm9uaXguZGU+IHdyb3RlOgo+IEFtIERpZW5zdGFnLCBkZW4gMjQuMDYuMjAxNCwgMTQ6Mjcg
-KzAyMDAgc2NocmllYiBNYWFydGVuIExhbmtob3JzdDoKPj4gb3AgMjQtMDYtMTQgMTQ6MjMsIEFs
-ZXhhbmRyZSBDb3VyYm90IHNjaHJlZWY6Cj4+ID4gT24gVHVlLCBKdW4gMjQsIDIwMTQgYXQgNzo1
-NSBQTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+PiA+
-PiBPbiAwNi8yNC8yMDE0IDA3OjMzIFBNLCBBbGV4YW5kcmUgQ291cmJvdCB3cm90ZToKPj4gPj4+
-IE9uIDA2LzI0LzIwMTQgMDc6MDIgUE0sIFJ1c3NlbGwgS2luZyAtIEFSTSBMaW51eCB3cm90ZToK
-Pj4gPj4+PiBPbiBUdWUsIEp1biAyNCwgMjAxNCBhdCAwNjo1NDoyNlBNICswOTAwLCBBbGV4YW5k
-cmUgQ291cmJvdCB3cm90ZToKPj4gPj4+Pj4gRnJvbTogTHVjYXMgU3RhY2ggPGRldkBseW54ZXll
-LmRlPgo+PiA+Pj4+Pgo+PiA+Pj4+PiBPbiBhcmNoaXRlY3R1cmVzIGZvciB3aGljaCBhY2Nlc3Mg
-dG8gR1BVIG1lbW9yeSBpcyBub24tY29oZXJlbnQsCj4+ID4+Pj4+IGNhY2hlcyBuZWVkIHRvIGJl
-IGZsdXNoZWQgYW5kIGludmFsaWRhdGVkIGV4cGxpY2l0bHkgYXQgdGhlCj4+ID4+Pj4+IGFwcHJv
-cHJpYXRlIHBsYWNlcy4gSW50cm9kdWNlIHR3byBzbWFsbCBoZWxwZXJzIHRvIG1ha2UgdGhpbmdz
-Cj4+ID4+Pj4+IGVhc3kgZm9yIFRUTS1iYXNlZCBkcml2ZXJzLgo+PiA+Pj4+Cj4+ID4+Pj4gSGF2
-ZSB5b3UgcnVuIHRoaXMgd2l0aCBETUEgQVBJIGRlYnVnZ2luZyBlbmFibGVkPyAgSSBzdXNwZWN0
-IHlvdSBoYXZlbid0LAo+PiA+Pj4+IGFuZCBJIHJlY29tbWVuZCB0aGF0IHlvdSBkby4KPj4gPj4+
-Cj4+ID4+PiAjIGNhdCAvc3lzL2tlcm5lbC9kZWJ1Zy9kbWEtYXBpL2Vycm9yX2NvdW50Cj4+ID4+
-PiAxNjI2MjEKPj4gPj4+Cj4+ID4+PiAo4pWvwrDilqHCsO+8ieKVr++4tSDilLvilIHilLspCj4+
-ID4+Cj4+ID4+ICpwdXRzIHRhYmxlIGJhY2sgb24gaXRzIGZlZXQqCj4+ID4+Cj4+ID4+IFNvLCB5
-ZWFoIC0gVFRNIG1lbW9yeSBpcyBub3QgYWxsb2NhdGVkIHVzaW5nIHRoZSBETUEgQVBJLCBoZW5j
-ZSB3ZSBjYW5ub3QKPj4gPj4gdXNlIHRoZSBETUEgQVBJIHRvIHN5bmMgaXQuIFRoYW5rcyBSdXNz
-ZWxsIGZvciBwb2ludGluZyBpdCBvdXQuCj4+ID4+Cj4+ID4+IFRoZSBvbmx5IGFsdGVybmF0aXZl
-IEkgc2VlIGhlcmUgaXMgdG8gZmx1c2ggdGhlIENQVSBjYWNoZXMgd2hlbiBzeW5jaW5nIGZvcgo+
-PiA+PiB0aGUgZGV2aWNlLCBhbmQgaW52YWxpZGF0ZSB0aGVtIGZvciB0aGUgb3RoZXIgZGlyZWN0
-aW9uLiBPZiBjb3Vyc2UgaWYgdGhlCj4+ID4+IGRldmljZSBoYXMgY2FjaGVzIG9uIGl0cyBzaWRl
-IGFzIHdlbGwgdGhlIG9wcG9zaXRlIG9wZXJhdGlvbiBtdXN0IGFsc28gYmUKPj4gPj4gZG9uZSBm
-b3IgaXQuIEd1ZXNzIHRoZSBvbmx5IHdheSBpcyB0byBoYW5kbGUgaXQgYWxsIGJ5IG91cnNlbHZl
-cyBoZXJlLiA6Lwo+PiA+IC4uLiBhbmQgaXQgcmVhbGx5IHN1Y2tzLiBCYXNpY2FsbHkgaWYgd2Ug
-Y2Fubm90IHVzZSB0aGUgRE1BIEFQSSBoZXJlCj4+ID4gd2Ugd2lsbCBsb3NlIHRoZSBjb252ZW5p
-ZW5jZSBvZiBoYXZpbmcgYSBwb3J0YWJsZSBBUEkgdGhhdCBkb2VzIGp1c3QKPj4gPiB0aGUgcmln
-aHQgdGhpbmcgZm9yIHRoZSB1bmRlcmx5aW5nIHBsYXRmb3JtLiBXaXRob3V0IGl0IHdlIHdvdWxk
-IGhhdmUKPj4gPiB0byBkdXBsaWNhdGUgYXJtX2lvbW11X3N5bmNfc2luZ2xlX2Zvcl9jcHUvZGV2
-aWNlKCkgYW5kIHdlIHdvdWxkIG9ubHkKPj4gPiBoYXZlIHN1cHBvcnQgZm9yIEFSTS4KPj4gPgo+
-PiA+IFRoZSB1c2FnZSBvZiB0aGUgRE1BIEFQSSB0aGF0IHdlIGFyZSBkb2luZyBtaWdodCBiZSBp
-bGxlZ2FsLCBidXQgaW4KPj4gPiBlc3NlbmNlIGl0IGRvZXMgZXhhY3RseSB3aGF0IHdlIG5lZWQg
-LSBhdCBsZWFzdCBmb3IgQVJNLiBXaGF0IGFyZSB0aGUKPj4gPiBhbHRlcm5hdGl2ZXM/Cj4+IENv
-bnZlcnQgVFRNIHRvIHVzZSB0aGUgZG1hIGFwaT8gOi0pCj4KPiBBY3R1YWxseSBUVE0gYWxyZWFk
-eSBoYXMgYSBwYWdlIGFsbG9jIGJhY2tlbmQgdXNpbmcgdGhlIERNQSBBUEkuIEl0J3MKPiBqdXN0
-IG5vdCB1c2VkIGZvciB0aGUgc3RhbmRhcmQgY2FzZSByaWdodCBub3cuCj4KPiBJIHdvdWxkIGFy
-Z3VlIHRoYXQgd2Ugc2hvdWxkIGp1c3QgdXNlIHRoaXMgcGFnZSBhbGxvY2F0b3IgKHdoaWNoIGhh
-cyB0aGUKPiBzaWRlIGVmZmVjdCBvZiBnZXR0aW5nIHBhZ2VzIGZyb20gQ01BIGlmIGF2YWlsYWJs
-ZSAtPiB5b3UgYXJlIGFjdHVhbGx5Cj4gZnJlZSB0byBjaGFuZ2UgdGhlIGNhY2hpbmcpIGFuZCBk
-byBhd2F5IHdpdGggdGhlIG90aGVyIGFsbG9jYXRvciBpbiB0aGUKPiBBUk0gY2FzZS4KCkNNQSBj
-b21lcyB3aXRoIGl0cyBvd24gc2V0IG9mIChzZXZlcmUpIGxpbWl0YXRpb25zIHRob3VnaCwgaW4K
-cGFydGljdWxhciBpdCdzIG5vdCBwb3NzaWJsZSB0byBtYXAgYXJiaXRyYXJ5IENQVSBwYWdlcyBp
-bnRvIHRoZSBHUFUKd2l0aG91dCBpbmN1cnJpbmcgYSBjb3B5LCB5b3UgYWRkIGFyYml0cmFyeSBt
-ZW1vcnkgbGltaXRzIGV0Yy4gT3ZlcmFsbAp0aGF0J3Mgbm90IHJlYWxseSBhIGdvb2QgcGljayBm
-b3IgdGhlIGxvbmcgdGVybS4uLgoKU3TDqXBoYW5lCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9ub3V2ZWF1Cg==
+
+--===============0164450673==
+Content-Type: multipart/alternative; boundary="1403674471.13860.16380"; charset="us-ascii"
+
+
+--1403674471.13860.16380
+Date: Wed, 25 Jun 2014 05:34:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=79823
+
+--- Comment #35 from Natrio <natrio-cmBhpYW9OiY@public.gmane.org> ---
+(In reply to comment #34)
+> A (very slightly) improved version of the patch is now in mesa master.
+> Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.
+
+An improved patch
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=a59f2bb17bcc78e09653391748549e7973990798
+was tested and also works for me.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403674471.13860.16380
+Date: Wed, 25 Jun 2014 05:34:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823#c35">Comment # 35</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV30/gallium] Mozilla apps freeze on startup with nouveau-dri-10.2.1 libs on dual-screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79823">bug 79823</a>
+              from <span class="vcard"><a class="email" href="mailto:natrio&#64;list.ru" title="Natrio &lt;natrio&#64;list.ru&gt;"> <span class="fn">Natrio</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=79823#c34">comment #34</a>)
+<span class="quote">&gt; A (very slightly) improved version of the patch is now in mesa master.
+&gt; Hopefully it'll get backported to 10.2.2, but if not, it'll be in 10.2.3.</span >
+
+An improved patch
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=a59f2bb17bcc78e09653391748549e7973990798">http://cgit.freedesktop.org/mesa/mesa/commit/?id=a59f2bb17bcc78e09653391748549e7973990798</a>
+was tested and also works for me.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403674471.13860.16380--
+
+--===============0164450673==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0164450673==--
