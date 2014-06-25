@@ -1,137 +1,226 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@linux-vserver.org>
-Subject: Re: [PATCH 1/2] x86, ia64: Move EFI_FB vga_default_device()
- initialization to pci_vga_fixup()
-Date: Tue, 24 Jun 2014 22:41:14 +0200
-Message-ID: <20140624224114.442d26f6@neptune.home>
-References: <20140514224339.7f8be3a9@neptune.home>
- <20140527234255.GJ11907@google.com>
- <20140602201650.35f0e936@neptune.home>
- <20140602201926.4d476818@neptune.home>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80506] New: Video failed on resume from suspend -
+ G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2
+Date: Wed, 25 Jun 2014 00:38:49 +0000
+Message-ID: <bug-80506-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20140602201926.4d476818@neptune.home>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Bjorn Helgaas <bhelgaas@google.com>, Dave Airlie <airlied@linux.ie>
-Cc: Linux PCI <linux-pci@vger.kernel.org>, Anibal Francisco Martinez Cortina <linuxkid.zeuz@gmail.com>, DRI mailing list <dri-devel@lists.freedesktop.org>, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1775883957=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCAwMiBKdW5lIDIwMTQgQnJ1bm8gUHLDqW1vbnQgPGJvbmJvbnNAbGludXgtdnNlcnZl
-ci5vcmc+IHdyb3RlOgo+IFdpdGggY29tbWl0IGI0YWEwMTYzMDU2YiAoImVmaWZiOiBJbXBsZW1l
-bnQgdmdhX2RlZmF1bHRfZGV2aWNlKCkgKHYyKSIpCj4gTWF0dGhldyBHYXJyZXR0IGludHJvZHVj
-ZWQgYSBlZmlmYiB2Z2FfZGVmYXVsdF9kZXZpY2UoKSBzbyB0aGF0IEVGSQo+IHN5c3RlbXMgdGhh
-dCBkbyBub3QgbG9hZCBzaGFkb3cgVkJJT1Mgb3Igc2V0dXAgVkdBIGdldCBwcm9wZXIgdmFsdWUg
-Zm9yCj4gYm9vdF92Z2EgUENJIHN5c2ZzIGF0dHJpYnV0ZSBvbiB0aGUgY29ycmVzcG9uZGluZyBQ
-Q0kgZGV2aWNlLgo+IAo+IFhvcmcgaXMgcmVmdXNpbmcgdG8gZGV0ZWN0IGRldmljZXMgd2hlbiBi
-b290X3ZnYT0wIHdoaWNoIGlzIHRoZSBjYXNlIG9uCj4gc29tZSBFRkkgc3lzdGVtIChlLmcuIE1h
-Y0Jvb2tBaXIyLDEpLiBYb3JnIGRldGVjdHMgdGhlIEdQVSBhbmQgZmluZHMKPiB0aGUgZHJpIGRl
-dmljZSBidXQgdGhlbiBiYWlscyBvdXQgd2l0aCAibm8gZGV2aWNlcyBkZXRlY3RlZCIuCj4gCj4g
-Tm90ZTogV2hlbiB2Z2FfZGVmYXVsdF9kZXZpY2UoKSBpcyBzZXQgYm9vdF92Z2EgUENJIHN5c2Zz
-IGF0dHJpYnV0ZQo+IHJlZmxlY3RzIGl0cyBzdGF0ZS4gV2hlbiB1bnNldCB0aGlzIGF0dHJpYnV0
-ZSBpcyAxIHdoZW5ldmVyCj4gSU9SRVNPVVJDRV9ST01fU0hBRE9XIGZsYWcgaXMgc2V0Lgo+IAo+
-IFdpdGggaW50cm9kdWN0aW9uIG9mIHN5c2ZiL3NpbXBsZWZiL3NpbXBsZWRybSBlZmlmYiBpcyBn
-ZXR0aW5nIG9ic29sZXRlCj4gd2hpbGUgaGF2aW5nIG5hdGl2ZSBkcml2ZXJzIGZvciB0aGUgR1BV
-IGFsc28gbWFrZXMgc2VsZWN0aW5nCj4gc3lzZmIvZWZpZmIgb3B0aW9uYWwuCj4gCj4gUmVtb3Zl
-IHRoZSBlZmlmYiBpbXBsZW1lbnRhdGlvbiBvZiB2Z2FfZGVmYXVsdF9kZXZpY2UoKSBhbmQgaW5p
-dGlhbGl6ZQo+IHZnYWFyYidzIHZnYV9kZWZhdWx0X2RldmljZSgpIHdpdGggdGhlIFBDSSBHUFUg
-dGhhdCBtYXRjaGVzIGJvb3QKPiBzY3JlZW5faW5mbyBpbiBwY2lfZml4dXBfdmlkZW8oKS4KClF1
-aXRlIGEgZmV3IHBlb3BsZSB0cmlwIG92ZXIgdGhpcyBpc3N1ZSwgYXBwYXJlbnRseSBjb25jZW50
-cmF0ZWQgb24KQXBwbGUgTWFjcyAoRUZJKSB3aXRoIE52aWRpYSBncmFwaGljcy4KCkl0IGhhcyBz
-aG93biB1cCBpbiBhdCBsZWFzdCB0d28gYnVnemlsbGEgcmVwb3J0cyAoYXMgc2lkZS1pc3N1ZSk6
-CiAgaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTg1NTYjYzE2
-CiAgaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzY3MzIjYzM0
-CgpNeSBpbml0aWFsIHJlcG9ydCBhbmQgZGlzY3Vzc2lvbiBvbiBmcmVlbm9kZSwgI25vdXZlYXU6
-CiAgaHR0cDovL3Blb3BsZS5mcmVlZGVza3RvcC5vcmcvfmNicmlsbC9kcmktbG9nLz9jaGFubmVs
-PW5vdXZlYXUmZGF0ZT0yMDEzLTExLTIzCmZvbGxvd2VkIGJ5IGluaXRpYWwgcGF0Y2ggcHJvcG9z
-YWw6CiAgaHR0cDovL3Blcm1hbGluay5nbWFuZS5vcmcvZ21hbmUuY29tcC52aWRlby5kcmkuZGV2
-ZWwvOTU5NDMKCkZyb20gdG9kYXkgb24gI25vdXZlYXU6CiAgVGVzdGVkLWJ5OiBBbmliYWwgRnJh
-bmNpc2NvIE1hcnRpbmV6IENvcnRpbmEgPGxpbnV4a2lkLnpldXpAZ21haWwuY29tPgoKQXMgcmVw
-b3J0ZWQgb24gI25vdXZlYXUsIGV2ZXJ5IG5vdyBhbmQgdGhlbiBzb21lb25lIHRyaXBzIG92ZXIg
-dGhpcyBpc3N1ZQphbmQgZmFsbHMgYmFjayB0byBlbmFibGluZyBlZmlmYiBzbyBYIHNlcnZlciBh
-Y2NlcHRzIHRvIHN0YXJ0IHdpdGhvdXQKZXhwbGljaXQgY29uZmlndXJhdGlvbi4KCkl0IHdvdWxk
-IGFsc28gYmUgd29ydGggdG8gYWRkIGZvciBmaXJzdCBwYXRjaDoKICBDYzogc3RhYmxlQHZnZXIu
-a2VybmVsLm9yZwoKQnJ1bm8KCgo+IFNpZ25lZC1vZmYtYnk6IEJydW5vIFByw6ltb250IDxib25i
-b25zQGxpbnV4LXZzZXJ2ZXIub3JnPgo+IC0tLQo+ICBhcmNoL2lhNjQvcGNpL2ZpeHVwLmMgICAg
-ICAgfCAyMSArKysrKysrKysrKysrKysrKysrKysKPiAgYXJjaC94ODYvaW5jbHVkZS9hc20vdmdh
-LmggIHwgIDYgLS0tLS0tCj4gIGFyY2gveDg2L3BjaS9maXh1cC5jICAgICAgICB8IDIxICsrKysr
-KysrKysrKysrKysrKysrKwo+ICBkcml2ZXJzL3ZpZGVvL2ZiZGV2L2VmaWZiLmMgfCAzOCAtLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICA0IGZpbGVzIGNoYW5nZWQsIDQy
-IGluc2VydGlvbnMoKyksIDQ0IGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9hcmNoL2lh
-NjQvcGNpL2ZpeHVwLmMgYi9hcmNoL2lhNjQvcGNpL2ZpeHVwLmMKPiBpbmRleCBlZWUwNjlhLi45
-ZWQ1YmVmIDEwMDY0NAo+IC0tLSBhL2FyY2gvaWE2NC9wY2kvZml4dXAuYwo+ICsrKyBiL2FyY2gv
-aWE2NC9wY2kvZml4dXAuYwo+IEBAIC0zNyw2ICszNywyNyBAQCBzdGF0aWMgdm9pZCBwY2lfZml4
-dXBfdmlkZW8oc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4gIAkJcmV0dXJuOwo+ICAJLyogTWF5YmUs
-IHRoaXMgbWFjaGluZSBzdXBwb3J0cyBsZWdhY3kgbWVtb3J5IG1hcC4gKi8KPiAgCj4gKwlpZiAo
-IXZnYV9kZWZhdWx0X2RldmljZSgpKSB7Cj4gKwkJcmVzb3VyY2Vfc2l6ZV90IHN0YXJ0LCBlbmQ7
-Cj4gKwkJaW50IGk7Cj4gKwo+ICsJCS8qIERvZXMgZmlybXdhcmUgZnJhbWVidWZmZXIgYmVsb25n
-IHRvIHVzPyAqLwo+ICsJCWZvciAoaT0wOyBpIDwgREVWSUNFX0NPVU5UX1JFU09VUkNFOyBpKysp
-IHsKPiArCQkJaWYgKCEocGNpX3Jlc291cmNlX2ZsYWdzKHBkZXYsIGkpICYgSU9SRVNPVVJDRV9N
-RU0pKQo+ICsJCQkJY29udGludWU7Cj4gKwo+ICsJCQlzdGFydCA9IHBjaV9yZXNvdXJjZV9zdGFy
-dChwZGV2LCBpKTsKPiArCQkJZW5kICA9IHBjaV9yZXNvdXJjZV9lbmQocGRldiwgaSk7Cj4gKwo+
-ICsJCQlpZiAoIXN0YXJ0IHx8ICFlbmQpCj4gKwkJCQljb250aW51ZTsKPiArCj4gKwkJCWlmIChz
-Y3JlZW5faW5mby5sZmJfYmFzZSA+PSBzdGFydCAmJgo+ICsJCQkJKHNjcmVlbl9pbmZvLmxmYl9i
-YXNlICsgc2NyZWVuX2luZm8ubGZiX3NpemUpIDwgZW5kKQo+ICsJCQkJdmdhX3NldF9kZWZhdWx0
-X2RldmljZShwZGV2KTsKPiArCQl9Cj4gKwl9Cj4gKwo+ICAJLyogSXMgVkdBIHJvdXRlZCB0byB1
-cz8gKi8KPiAgCWJ1cyA9IHBkZXYtPmJ1czsKPiAgCXdoaWxlIChidXMpIHsKPiBkaWZmIC0tZ2l0
-IGEvYXJjaC94ODYvaW5jbHVkZS9hc20vdmdhLmggYi9hcmNoL3g4Ni9pbmNsdWRlL2FzbS92Z2Eu
-aAo+IGluZGV4IDQ0MjgyZmIuLmM0YjlkYzIgMTAwNjQ0Cj4gLS0tIGEvYXJjaC94ODYvaW5jbHVk
-ZS9hc20vdmdhLmgKPiArKysgYi9hcmNoL3g4Ni9pbmNsdWRlL2FzbS92Z2EuaAo+IEBAIC0xNywx
-MCArMTcsNCBAQAo+ICAjZGVmaW5lIHZnYV9yZWFkYih4KSAoKih4KSkKPiAgI2RlZmluZSB2Z2Ff
-d3JpdGViKHgsIHkpICgqKHkpID0gKHgpKQo+ICAKPiAtI2lmZGVmIENPTkZJR19GQl9FRkkKPiAt
-I2RlZmluZSBfX0FSQ0hfSEFTX1ZHQV9ERUZBVUxUX0RFVklDRQo+IC1leHRlcm4gc3RydWN0IHBj
-aV9kZXYgKnZnYV9kZWZhdWx0X2RldmljZSh2b2lkKTsKPiAtZXh0ZXJuIHZvaWQgdmdhX3NldF9k
-ZWZhdWx0X2RldmljZShzdHJ1Y3QgcGNpX2RldiAqcGRldik7Cj4gLSNlbmRpZgo+IC0KPiAgI2Vu
-ZGlmIC8qIF9BU01fWDg2X1ZHQV9IICovCj4gZGlmZiAtLWdpdCBhL2FyY2gveDg2L3BjaS9maXh1
-cC5jIGIvYXJjaC94ODYvcGNpL2ZpeHVwLmMKPiBpbmRleCA5NGFlOWFlLi43MjQ2Y2YyIDEwMDY0
-NAo+IC0tLSBhL2FyY2gveDg2L3BjaS9maXh1cC5jCj4gKysrIGIvYXJjaC94ODYvcGNpL2ZpeHVw
-LmMKPiBAQCAtMzI1LDYgKzMyNSwyNyBAQCBzdGF0aWMgdm9pZCBwY2lfZml4dXBfdmlkZW8oc3Ry
-dWN0IHBjaV9kZXYgKnBkZXYpCj4gIAlzdHJ1Y3QgcGNpX2J1cyAqYnVzOwo+ICAJdTE2IGNvbmZp
-ZzsKPiAgCj4gKwlpZiAoIXZnYV9kZWZhdWx0X2RldmljZSgpKSB7Cj4gKwkJcmVzb3VyY2Vfc2l6
-ZV90IHN0YXJ0LCBlbmQ7Cj4gKwkJaW50IGk7Cj4gKwo+ICsJCS8qIERvZXMgZmlybXdhcmUgZnJh
-bWVidWZmZXIgYmVsb25nIHRvIHVzPyAqLwo+ICsJCWZvciAoaT0wOyBpIDwgREVWSUNFX0NPVU5U
-X1JFU09VUkNFOyBpKyspIHsKPiArCQkJaWYgKCEocGNpX3Jlc291cmNlX2ZsYWdzKHBkZXYsIGkp
-ICYgSU9SRVNPVVJDRV9NRU0pKQo+ICsJCQkJY29udGludWU7Cj4gKwo+ICsJCQlzdGFydCA9IHBj
-aV9yZXNvdXJjZV9zdGFydChwZGV2LCBpKTsKPiArCQkJZW5kICA9IHBjaV9yZXNvdXJjZV9lbmQo
-cGRldiwgaSk7Cj4gKwo+ICsJCQlpZiAoIXN0YXJ0IHx8ICFlbmQpCj4gKwkJCQljb250aW51ZTsK
-PiArCj4gKwkJCWlmIChzY3JlZW5faW5mby5sZmJfYmFzZSA+PSBzdGFydCAmJgo+ICsJCQkJKHNj
-cmVlbl9pbmZvLmxmYl9iYXNlICsgc2NyZWVuX2luZm8ubGZiX3NpemUpIDwgZW5kKQo+ICsJCQkJ
-dmdhX3NldF9kZWZhdWx0X2RldmljZShwZGV2KTsKPiArCQl9Cj4gKwl9Cj4gKwo+ICAJLyogSXMg
-VkdBIHJvdXRlZCB0byB1cz8gKi8KPiAgCWJ1cyA9IHBkZXYtPmJ1czsKPiAgCXdoaWxlIChidXMp
-IHsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy92aWRlby9mYmRldi9lZmlmYi5jIGIvZHJpdmVycy92
-aWRlby9mYmRldi9lZmlmYi5jCj4gaW5kZXggYWU5NjE4Zi4uYTAzMzE4MCAxMDA2NDQKPiAtLS0g
-YS9kcml2ZXJzL3ZpZGVvL2ZiZGV2L2VmaWZiLmMKPiArKysgYi9kcml2ZXJzL3ZpZGVvL2ZiZGV2
-L2VmaWZiLmMKPiBAQCAtMTksOCArMTksNiBAQAo+ICAKPiAgc3RhdGljIGJvb2wgcmVxdWVzdF9t
-ZW1fc3VjY2VlZGVkID0gZmFsc2U7Cj4gIAo+IC1zdGF0aWMgc3RydWN0IHBjaV9kZXYgKmRlZmF1
-bHRfdmdhOwo+IC0KPiAgc3RhdGljIHN0cnVjdCBmYl92YXJfc2NyZWVuaW5mbyBlZmlmYl9kZWZp
-bmVkID0gewo+ICAJLmFjdGl2YXRlCQk9IEZCX0FDVElWQVRFX05PVywKPiAgCS5oZWlnaHQJCQk9
-IC0xLAo+IEBAIC04NCwxOCArODIsNiBAQCBzdGF0aWMgc3RydWN0IGZiX29wcyBlZmlmYl9vcHMg
-PSB7Cj4gIAkuZmJfaW1hZ2VibGl0CT0gY2ZiX2ltYWdlYmxpdCwKPiAgfTsKPiAgCj4gLXN0cnVj
-dCBwY2lfZGV2ICp2Z2FfZGVmYXVsdF9kZXZpY2Uodm9pZCkKPiAtewo+IC0JcmV0dXJuIGRlZmF1
-bHRfdmdhOwo+IC19Cj4gLQo+IC1FWFBPUlRfU1lNQk9MX0dQTCh2Z2FfZGVmYXVsdF9kZXZpY2Up
-Owo+IC0KPiAtdm9pZCB2Z2Ffc2V0X2RlZmF1bHRfZGV2aWNlKHN0cnVjdCBwY2lfZGV2ICpwZGV2
-KQo+IC17Cj4gLQlkZWZhdWx0X3ZnYSA9IHBkZXY7Cj4gLX0KPiAtCj4gIHN0YXRpYyBpbnQgZWZp
-ZmJfc2V0dXAoY2hhciAqb3B0aW9ucykKPiAgewo+ICAJY2hhciAqdGhpc19vcHQ7Cj4gQEAgLTEy
-NiwzMCArMTEyLDYgQEAgc3RhdGljIGludCBlZmlmYl9zZXR1cChjaGFyICpvcHRpb25zKQo+ICAJ
-CX0KPiAgCX0KPiAgCj4gLQlmb3JfZWFjaF9wY2lfZGV2KGRldikgewo+IC0JCWludCBpOwo+IC0K
-PiAtCQlpZiAoKGRldi0+Y2xhc3MgPj4gOCkgIT0gUENJX0NMQVNTX0RJU1BMQVlfVkdBKQo+IC0J
-CQljb250aW51ZTsKPiAtCj4gLQkJZm9yIChpPTA7IGkgPCBERVZJQ0VfQ09VTlRfUkVTT1VSQ0U7
-IGkrKykgewo+IC0JCQlyZXNvdXJjZV9zaXplX3Qgc3RhcnQsIGVuZDsKPiAtCj4gLQkJCWlmICgh
-KHBjaV9yZXNvdXJjZV9mbGFncyhkZXYsIGkpICYgSU9SRVNPVVJDRV9NRU0pKQo+IC0JCQkJY29u
-dGludWU7Cj4gLQo+IC0JCQlzdGFydCA9IHBjaV9yZXNvdXJjZV9zdGFydChkZXYsIGkpOwo+IC0J
-CQllbmQgID0gcGNpX3Jlc291cmNlX2VuZChkZXYsIGkpOwo+IC0KPiAtCQkJaWYgKCFzdGFydCB8
-fCAhZW5kKQo+IC0JCQkJY29udGludWU7Cj4gLQo+IC0JCQlpZiAoc2NyZWVuX2luZm8ubGZiX2Jh
-c2UgPj0gc3RhcnQgJiYKPiAtCQkJICAgIChzY3JlZW5faW5mby5sZmJfYmFzZSArIHNjcmVlbl9p
-bmZvLmxmYl9zaXplKSA8IGVuZCkKPiAtCQkJCWRlZmF1bHRfdmdhID0gZGV2Owo+IC0JCX0KPiAt
-CX0KPiAtCj4gIAlyZXR1cm4gMDsKPiAgfQo+ICAKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1775883957==
+Content-Type: multipart/alternative; boundary="1403656730.78013bCd1.30312"; charset="us-ascii"
+
+
+--1403656730.78013bCd1.30312
+Date: Wed, 25 Jun 2014 00:38:50 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=80506
+
+          Priority: medium
+            Bug ID: 80506
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Video failed on resume from suspend - G94 / GeForce
+                    9600 GT, 10de:0622 , kernel 3.16 rc2
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: All
+          Reporter: awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+Created attachment 101708
+  --> https://bugs.freedesktop.org/attachment.cgi?id=101708&action=edit
+journalctl from a 3.16 rc2 boot that reproduces the issue
+
+This is kind of a follow-up to
+https://bugs.freedesktop.org/show_bug.cgi?id=77599 , but the behaviour seems
+different now and we're on kernel 3.16, so I figured we'd best start from
+scratch.
+
+With kernel 3.16 rc2, resuming from suspend on my GeForce 9600 GT (10de:0622)
+*always* seems to fail. Screens never come out of power-saving mode, can't ssh
+in. This differs from 3.15, where it sometimes succeeded and sometimes failed,
+and never seemed to fail if I just booted, quickly suspended, and quickly
+resumed - with 3.16 rc2, doing that causes it to fail every time.
+
+I'll attach journalctl with drm.debug=15 from a boot where I booted to gdm,
+suspended, resumed, left the system sitting for a while, then forcibly
+rebooted.
+
+This is on Fedora Rawhide, with:
+
+kernel-3.16.0-0.rc2.git0.1.fc21.x86_64
+xorg-x11-drv-nouveau-1.0.10-5.fc21.x86_64
+xorg-x11-server-common-1.15.99.903-2.fc21.x86_64
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1403656730.78013bCd1.30312
+Date: Wed, 25 Jun 2014 00:38:50 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506">80506</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>awilliam&#64;redhat.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=101708" name="attach_101708" title="journalctl from a 3.16 rc2 boot that reproduces the issue">attachment 101708</a> <a href="attachment.cgi?id=101708&amp;action=edit" title="journalctl from a 3.16 rc2 boot that reproduces the issue">[details]</a></span>
+journalctl from a 3.16 rc2 boot that reproduces the issue
+
+This is kind of a follow-up to
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
+   href="show_bug.cgi?id=77599">https://bugs.freedesktop.org/show_bug.cgi?id=77599</a> , but the behaviour seems
+different now and we're on kernel 3.16, so I figured we'd best start from
+scratch.
+
+With kernel 3.16 rc2, resuming from suspend on my GeForce 9600 GT (10de:0622)
+*always* seems to fail. Screens never come out of power-saving mode, can't ssh
+in. This differs from 3.15, where it sometimes succeeded and sometimes failed,
+and never seemed to fail if I just booted, quickly suspended, and quickly
+resumed - with 3.16 rc2, doing that causes it to fail every time.
+
+I'll attach journalctl with drm.debug=15 from a boot where I booted to gdm,
+suspended, resumed, left the system sitting for a while, then forcibly
+rebooted.
+
+This is on Fedora Rawhide, with:
+
+kernel-3.16.0-0.rc2.git0.1.fc21.x86_64
+xorg-x11-drv-nouveau-1.0.10-5.fc21.x86_64
+xorg-x11-server-common-1.15.99.903-2.fc21.x86_64</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1403656730.78013bCd1.30312--
+
+--===============1775883957==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1775883957==--
