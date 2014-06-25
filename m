@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Wed, 25 Jun 2014 05:44:08 +0000
-Message-ID: <bug-76483-8800-rY01c2FNFU@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80507] Cannot set pwm1 above 80 on GeForce 9600 GT,
+	10de:0622
+Date: Wed, 25 Jun 2014 07:24:12 +0000
+Message-ID: <bug-80507-8800-D4sQgshIxl@http.bugs.freedesktop.org/>
+References: <bug-80507-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1218131496=="
+Content-Type: multipart/mixed; boundary="===============1753764496=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,52 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1218131496==
-Content-Type: multipart/alternative; boundary="1403675048.ac2cB4.17631"; charset="us-ascii"
+--===============1753764496==
+Content-Type: multipart/alternative; boundary="1403681052.a1B82B2.6891"; charset="us-ascii"
 
 
---1403675048.ac2cB4.17631
-Date: Wed, 25 Jun 2014 05:44:08 +0000
+--1403681052.a1B82B2.6891
+Date: Wed, 25 Jun 2014 07:24:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
+https://bugs.freedesktop.org/show_bug.cgi?id=80507
 
---- Comment #15 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #12)
-> Ok.  Not sure what the latest drm-next is, I found a recent looking
-> drm-nouveau-next and it did the same thing.
-> 
-> Monitor is blanked (backlight off) via:
-> [  225.790860] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
-> [  225.790894] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000002
-> [  225.790897] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  225.790899] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  225.790901] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  225.791037] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
-> 0x10000000
-> 
-> and the unsuccessful attempt to restore backlight is:
-> 
-> [  251.285375] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
-> [  251.285388] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000001
-> [  251.285391] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  251.285393] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  251.285395] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-> [  251.285529] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
-> 0x10000000
-> 
-> Full log attached as it's rather lengthy.  ***NOTE*** lines show when things
-> happened.
+--- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+(In reply to comment #2)
+> nouveau.debug="PHERM=debug" logs the values as they change, but doesn't give
+> any other useful information, it doesn't provide any handy smoking gun hints
+> as to what's going on.
 
-Can you grab a new log with that patch I just attached applied?
+cat pwm1_max
+
+I guess your vbios states the maximum fan speed is 80%, hence why Nouveau isn't
+allowing you to set anything higher.
+
+Please tell us if pwm1_max is set to 80 so as we close this as not a bug :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403675048.ac2cB4.17631
-Date: Wed, 25 Jun 2014 05:44:08 +0000
+--1403681052.a1B82B2.6891
+Date: Wed, 25 Jun 2014 07:24:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -79,41 +63,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c15">Comment # 15</a>
+   title="NEW --- - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+   title="NEW --- - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507">bug 80507</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=76483#c12">comment #12</a>)
-<span class="quote">&gt; Ok.  Not sure what the latest drm-next is, I found a recent looking
-&gt; drm-nouveau-next and it did the same thing.
-&gt; 
-&gt; Monitor is blanked (backlight off) via:
-&gt; [  225.790860] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
-&gt; [  225.790894] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000002
-&gt; [  225.790897] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  225.790899] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  225.790901] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  225.791037] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
-&gt; 0x10000000
-&gt; 
-&gt; and the unsuccessful attempt to restore backlight is:
-&gt; 
-&gt; [  251.285375] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
-&gt; [  251.285388] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000001
-&gt; [  251.285391] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  251.285393] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  251.285395] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
-&gt; [  251.285529] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
-&gt; 0x10000000
-&gt; 
-&gt; Full log attached as it's rather lengthy.  ***NOTE*** lines show when things
-&gt; happened.</span >
+        <pre>(In reply to <a href="show_bug.cgi?id=80507#c2">comment #2</a>)
+<span class="quote">&gt; nouveau.debug=&quot;PHERM=debug&quot; logs the values as they change, but doesn't give
+&gt; any other useful information, it doesn't provide any handy smoking gun hints
+&gt; as to what's going on.</span >
 
-Can you grab a new log with that patch I just attached applied?</pre>
+cat pwm1_max
+
+I guess your vbios states the maximum fan speed is 80%, hence why Nouveau isn't
+allowing you to set anything higher.
+
+Please tell us if pwm1_max is set to 80 so as we close this as not a bug :)</pre>
         </div>
       </p>
       <hr>
@@ -125,9 +93,9 @@ Can you grab a new log with that patch I just attached applied?</pre>
     </body>
 </html>
 
---1403675048.ac2cB4.17631--
+--1403681052.a1B82B2.6891--
 
---===============1218131496==
+--===============1753764496==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1218131496==--
+--===============1753764496==--
