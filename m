@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80506] Video failed on resume from suspend - G94 /
- GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2
-Date: Wed, 25 Jun 2014 00:40:44 +0000
-Message-ID: <bug-80506-8800-vaByNIaftc@http.bugs.freedesktop.org/>
-References: <bug-80506-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77599] Video failed on resume from suspend - G94 /
+ GeForce 9600 GT, 10de:0622
+Date: Wed, 25 Jun 2014 00:41:27 +0000
+Message-ID: <bug-77599-8800-RotMxULKYW@http.bugs.freedesktop.org/>
+References: <bug-77599-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0568474271=="
+Content-Type: multipart/mixed; boundary="===============1194136848=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80506-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77599-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0568474271==
-Content-Type: multipart/alternative; boundary="1403656844.2Ec4e1581.30627"; charset="us-ascii"
+--===============1194136848==
+Content-Type: multipart/alternative; boundary="1403656887.3712E7d51.30728"; charset="us-ascii"
 
 
---1403656844.2Ec4e1581.30627
-Date: Wed, 25 Jun 2014 00:40:44 +0000
+--1403656887.3712E7d51.30728
+Date: Wed, 25 Jun 2014 00:41:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80506
+https://bugs.freedesktop.org/show_bug.cgi?id=77599
 
---- Comment #1 from Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
-note - suspend was almost 100% reliable with 3.14 (and back through pretty much
-the whole 3.x series), then partly worked in 3.15, so this is a two-release
-regression: 3.15 worse than 3.14, 3.16 worse than 3.15 :/
+Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |MOVED
+
+--- Comment #9 from Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> ---
+Well, 3.16 is broken worse, but I figured it was probably best to file a new
+bug for clarity. So: https://bugs.freedesktop.org/show_bug.cgi?id=80506
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1403656844.2Ec4e1581.30627
-Date: Wed, 25 Jun 2014 00:40:44 +0000
+--1403656887.3712E7d51.30728
+Date: Wed, 25 Jun 2014 00:41:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +56,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:awilliam&#64;redhat.com" title="Adam Williamson &lt;awilliam&#64;redhat.com&gt;"> <span class="fn">Adam Williamson</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED MOVED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599">bug 77599</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>MOVED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED MOVED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506">bug 80506</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED MOVED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77599">bug 77599</a>
               from <span class="vcard"><a class="email" href="mailto:awilliam&#64;redhat.com" title="Adam Williamson &lt;awilliam&#64;redhat.com&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre>note - suspend was almost 100% reliable with 3.14 (and back through pretty much
-the whole 3.x series), then partly worked in 3.15, so this is a two-release
-regression: 3.15 worse than 3.14, 3.16 worse than 3.15 :/</pre>
+        <pre>Well, 3.16 is broken worse, but I figured it was probably best to file a new
+bug for clarity. So: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
+   href="show_bug.cgi?id=80506">https://bugs.freedesktop.org/show_bug.cgi?id=80506</a></pre>
         </div>
       </p>
       <hr>
@@ -77,9 +113,9 @@ regression: 3.15 worse than 3.14, 3.16 worse than 3.15 :/</pre>
     </body>
 </html>
 
---1403656844.2Ec4e1581.30627--
+--1403656887.3712E7d51.30728--
 
---===============0568474271==
+--===============1194136848==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0568474271==--
+--===============1194136848==--
