@@ -1,17 +1,18 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH v3 1/3] drm/nouveau: support for probing
  platform devices
-Date: Thu, 26 Jun 2014 17:10:53 +0200
-Message-ID: <53AC37FD.4070007@free.fr>
+Date: Fri, 27 Jun 2014 00:18:36 +0900
+Message-ID: <CAAVeFuL-gh52UCXPiPsd+8xNEe2KXoH5H8KSz18wR7DAthfNcw@mail.gmail.com>
 References: <1403760814-26148-1-git-send-email-acourbot@nvidia.com>
  <1403760814-26148-2-git-send-email-acourbot@nvidia.com>
  <53ABE819.7000506@nimrod-online.com>
  <CAAVeFuJesHEpNyqtMq+4HmRWNaW72bfrR_ODXD3=DtMKxx_PKw@mail.gmail.com>
+ <53AC37FD.4070007@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuJesHEpNyqtMq+4HmRWNaW72bfrR_ODXD3=DtMKxx_PKw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <53AC37FD.4070007-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,64 +22,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Le 26/06/2014 16:58, Alexandre Courbot a =E9crit :
-> On Thu, Jun 26, 2014 at 6:30 PM, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org> wro=
-te:
->> op 26-06-14 07:33, Alexandre Courbot schreef:
->>
->>> Add a platform driver for Nouveau devices declared using the device tree
->>> or platform data. This driver currently supports GK20A on Tegra
->>> platforms and is only compiled for these platforms if Nouveau is
->>> enabled.
->>>
->>> Nouveau will probe the chip type itself using the BOOT0 register, so all
->>> this driver really needs to do is to make sure the module is powered and
->>> its clocks active before calling nouveau_drm_platform_probe().
->>>
->>> Heavily based on work done by Thierry Reding.
->>>
->>> Signed-off-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>> ---
->>>    drivers/gpu/drm/nouveau/Kconfig            |   8 ++
->>>    drivers/gpu/drm/nouveau/Makefile           |   3 +
->>>    drivers/gpu/drm/nouveau/nouveau_drm.c      |  53 ++++++---
->>>    drivers/gpu/drm/nouveau/nouveau_drm.h      |   8 ++
->>>    drivers/gpu/drm/nouveau/nouveau_platform.c | 182
->>> +++++++++++++++++++++++++++++
->>>    drivers/gpu/drm/nouveau/nouveau_platform.h |  49 ++++++++
->>>    6 files changed, 289 insertions(+), 14 deletions(-)
->>>    create mode 100644 drivers/gpu/drm/nouveau/nouveau_platform.c
->>>    create mode 100644 drivers/gpu/drm/nouveau/nouveau_platform.h
->>>
->>> diff --git a/drivers/gpu/drm/nouveau/Kconfig
->>> b/drivers/gpu/drm/nouveau/Kconfig
->>> index 637c29a33127..d4abaebfc35b 100644
->>> --- a/drivers/gpu/drm/nouveau/Kconfig
->>> +++ b/drivers/gpu/drm/nouveau/Kconfig
->>> @@ -25,6 +25,14 @@ config DRM_NOUVEAU
->>>          help
->>>            Choose this option for open-source nVidia support.
->>>    +config NOUVEAU_PLATFORM_DRIVER
->>> +       tristate "Nouveau (nVidia) integrated GPUs"
->>
->> Maybe a little nit, but isn't the recommended capitalisation nowadays NV=
-IDIA
->> instead of nVidia?
->
-> That's correct, I just copied that text from another Kconfig entry.
-> This capitalization is also used elsewhere in Nouveau, so please allow
-> me to fix this one in a separate patch. ;)
->
->> Also, integrated GPUs sounds like this is required for
->> the ION IGPs as well, although I reckon the dependencies on the next line
->> will hide it from the reader on x86.
->
-> I don't know what word could better describe GK20A - we need to make
-> the distinction because you can also use discrete GPUs on Tegra. Any
-> better suggestion?
-
-SoCs?
+T24gRnJpLCBKdW4gMjcsIDIwMTQgYXQgMTI6MTAgQU0sIE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
+cmVzQGZyZWUuZnI+IHdyb3RlOgo+IExlIDI2LzA2LzIwMTQgMTY6NTgsIEFsZXhhbmRyZSBDb3Vy
+Ym90IGEgw6ljcml0IDoKPgo+PiBPbiBUaHUsIEp1biAyNiwgMjAxNCBhdCA2OjMwIFBNLCBSb3kg
+U3BsaWV0IDxzZXZlbkBuaW1yb2Qtb25saW5lLmNvbT4KPj4gd3JvdGU6Cj4+Pgo+Pj4gb3AgMjYt
+MDYtMTQgMDc6MzMsIEFsZXhhbmRyZSBDb3VyYm90IHNjaHJlZWY6Cj4+Pgo+Pj4+IEFkZCBhIHBs
+YXRmb3JtIGRyaXZlciBmb3IgTm91dmVhdSBkZXZpY2VzIGRlY2xhcmVkIHVzaW5nIHRoZSBkZXZp
+Y2UgdHJlZQo+Pj4+IG9yIHBsYXRmb3JtIGRhdGEuIFRoaXMgZHJpdmVyIGN1cnJlbnRseSBzdXBw
+b3J0cyBHSzIwQSBvbiBUZWdyYQo+Pj4+IHBsYXRmb3JtcyBhbmQgaXMgb25seSBjb21waWxlZCBm
+b3IgdGhlc2UgcGxhdGZvcm1zIGlmIE5vdXZlYXUgaXMKPj4+PiBlbmFibGVkLgo+Pj4+Cj4+Pj4g
+Tm91dmVhdSB3aWxsIHByb2JlIHRoZSBjaGlwIHR5cGUgaXRzZWxmIHVzaW5nIHRoZSBCT09UMCBy
+ZWdpc3Rlciwgc28gYWxsCj4+Pj4gdGhpcyBkcml2ZXIgcmVhbGx5IG5lZWRzIHRvIGRvIGlzIHRv
+IG1ha2Ugc3VyZSB0aGUgbW9kdWxlIGlzIHBvd2VyZWQgYW5kCj4+Pj4gaXRzIGNsb2NrcyBhY3Rp
+dmUgYmVmb3JlIGNhbGxpbmcgbm91dmVhdV9kcm1fcGxhdGZvcm1fcHJvYmUoKS4KPj4+Pgo+Pj4+
+IEhlYXZpbHkgYmFzZWQgb24gd29yayBkb25lIGJ5IFRoaWVycnkgUmVkaW5nLgo+Pj4+Cj4+Pj4g
+U2lnbmVkLW9mZi1ieTogVGhpZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPj4+PiBT
+aWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4+
+PiAtLS0KPj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnICAgICAgICAgICAg
+fCAgIDggKysKPj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9NYWtlZmlsZSAgICAgICAg
+ICAgfCAgIDMgKwo+Pj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMg
+ICAgICB8ICA1MyArKysrKystLS0KPj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2
+ZWF1X2RybS5oICAgICAgfCAgIDggKysKPj4+PiAgICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X3BsYXRmb3JtLmMgfCAxODIKPj4+PiArKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Kwo+Pj4+ICAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uaCB8ICA0
+OSArKysrKysrKwo+Pj4+ICAgIDYgZmlsZXMgY2hhbmdlZCwgMjg5IGluc2VydGlvbnMoKyksIDE0
+IGRlbGV0aW9ucygtKQo+Pj4+ICAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMKPj4+PiAgICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5oCj4+Pj4KPj4+PiBkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvS2NvbmZpZwo+Pj4+IGIvZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvS2NvbmZpZwo+Pj4+IGluZGV4IDYzN2MyOWEzMzEyNy4uZDRhYmFlYmZjMzVi
+IDEwMDY0NAo+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L0tjb25maWcKPj4+PiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCj4+Pj4gQEAgLTI1LDYgKzI1LDE0
+IEBAIGNvbmZpZyBEUk1fTk9VVkVBVQo+Pj4+ICAgICAgICAgIGhlbHAKPj4+PiAgICAgICAgICAg
+IENob29zZSB0aGlzIG9wdGlvbiBmb3Igb3Blbi1zb3VyY2UgblZpZGlhIHN1cHBvcnQuCj4+Pj4g
+ICAgK2NvbmZpZyBOT1VWRUFVX1BMQVRGT1JNX0RSSVZFUgo+Pj4+ICsgICAgICAgdHJpc3RhdGUg
+Ik5vdXZlYXUgKG5WaWRpYSkgaW50ZWdyYXRlZCBHUFVzIgo+Pj4KPj4+Cj4+PiBNYXliZSBhIGxp
+dHRsZSBuaXQsIGJ1dCBpc24ndCB0aGUgcmVjb21tZW5kZWQgY2FwaXRhbGlzYXRpb24gbm93YWRh
+eXMKPj4+IE5WSURJQQo+Pj4gaW5zdGVhZCBvZiBuVmlkaWE/Cj4+Cj4+Cj4+IFRoYXQncyBjb3Jy
+ZWN0LCBJIGp1c3QgY29waWVkIHRoYXQgdGV4dCBmcm9tIGFub3RoZXIgS2NvbmZpZyBlbnRyeS4K
+Pj4gVGhpcyBjYXBpdGFsaXphdGlvbiBpcyBhbHNvIHVzZWQgZWxzZXdoZXJlIGluIE5vdXZlYXUs
+IHNvIHBsZWFzZSBhbGxvdwo+PiBtZSB0byBmaXggdGhpcyBvbmUgaW4gYSBzZXBhcmF0ZSBwYXRj
+aC4gOykKPj4KPj4+IEFsc28sIGludGVncmF0ZWQgR1BVcyBzb3VuZHMgbGlrZSB0aGlzIGlzIHJl
+cXVpcmVkIGZvcgo+Pj4gdGhlIElPTiBJR1BzIGFzIHdlbGwsIGFsdGhvdWdoIEkgcmVja29uIHRo
+ZSBkZXBlbmRlbmNpZXMgb24gdGhlIG5leHQgbGluZQo+Pj4gd2lsbCBoaWRlIGl0IGZyb20gdGhl
+IHJlYWRlciBvbiB4ODYuCj4+Cj4+Cj4+IEkgZG9uJ3Qga25vdyB3aGF0IHdvcmQgY291bGQgYmV0
+dGVyIGRlc2NyaWJlIEdLMjBBIC0gd2UgbmVlZCB0byBtYWtlCj4+IHRoZSBkaXN0aW5jdGlvbiBi
+ZWNhdXNlIHlvdSBjYW4gYWxzbyB1c2UgZGlzY3JldGUgR1BVcyBvbiBUZWdyYS4gQW55Cj4+IGJl
+dHRlciBzdWdnZXN0aW9uPwo+Cj4KPiBTb0NzPwoKU29DIGlzIHRoZSB3aG9sZSBjaGlwIHBhY2th
+Z2UsIGludG8gd2hpY2ggdGhlIEdQVSBpcywgaW5kZWVkLCAiaW50ZWdyYXRlZCIuCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
