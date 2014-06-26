@@ -1,117 +1,74 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80507] Cannot set pwm1 above 80 on GeForce 9600 GT,
-	10de:0622
-Date: Wed, 25 Jun 2014 16:35:39 +0000
-Message-ID: <bug-80507-8800-aqwDVm8qhV@http.bugs.freedesktop.org/>
-References: <bug-80507-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot@nvidia.com>
+Subject: [PATCH v3 0/3] drm/nouveau: support for probing platform devices
+Date: Thu, 26 Jun 2014 14:33:31 +0900
+Message-ID: <1403760814-26148-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0983437341=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80507-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, Stephen Warren <swarren@wwwdotorg.org>, Thierry Reding <thierry.reding@gmail.com>
+Cc: gnurou@gmail.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+This series adds support for probing platform devices on Nouveau, as well as
+the DT bindings for GK20A. It doesn't enable the GPU yet on Tegra boards since
+a few extra things need to be supported before that.
 
---===============0983437341==
-Content-Type: multipart/alternative; boundary="1403714139.12062.29542"; charset="us-ascii"
+This version is mostly identical to v2 but fixes an important issue: the drvdata
+must be set to the drm_device for sysfs to work, so the platform device
+structure now includes the nouveau_device flattened into it to let us compute
+the address of one from the other. Since the platform device resources (clocks,
+regulators, ...) need to live longer than the nouveau_device, they are stored
+into their own structure which is allocated separately.
 
+Changes since v2:
+* Allocate the nouveau_device flattened into the nouveau_platform_device to
+  be able to compute one from another easily, without having to ressort on the
+  drvdata which is required to store the drm_device.
+* Only propose the platform driver if a supported arch (Tegra for now) is
+  enabled.
+* Move structure definitions into their own header file as some subdevs (e.g.
+  clocks) will need to use them.
 
---1403714139.12062.29542
-Date: Wed, 25 Jun 2014 16:35:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Changes since v1:
+* Moved the platform device driver to its own module. This allows it to be more
+  self-contained and saves us the need to export too many functions from
+  nouveau_drm and nouveau_platform.
+* Register the DRM device without using the platform helpers, which is made
+  possible by drm_dev_set_unique(). This allows us to catch and register the
+  DRM device during platform probe.
+* Fixed the clock names in the DT bindings.
+* Removed the patches enabling GK20A on Venice2 and Jetson TK1 as support
+  is not complete yet.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80507
+Alexandre Courbot (2):
+  drm/nouveau: support for probing platform devices
+  ARM: tegra: of: add GK20A device tree binding
 
---- Comment #5 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #4)
-> Ben initially thought it was a bug as he thought he had a vbios from the
-> same card indicating it should go higher, but apparently he may have been
-> looking at the wrong one. pwm1_max is 80, yeah. apparently ideally I should
-> send the vbios to verify, but Fedora's kernel config doesn't seem to provide
-> the necessary bits...I only filed this as Ben thought it was a bug, so let's
-> just close it for now.
+Thierry Reding (1):
+  ARM: tegra: add GK20A GPU to Tegra124 DT
 
-This is not the first vbios I see with pwm_max set to 80, hence why I thought
-straight away about this. 
-
-You can force the pwm1_max to 100 if you really want to make it go to 100%, but
-I wouldn't do that.
-
-Anyway, thanks for the quick response!
+ .../devicetree/bindings/gpu/nvidia,gk20a.txt       |  43 +++++
+ arch/arm/boot/dts/tegra124.dtsi                    |  15 ++
+ drivers/gpu/drm/nouveau/Kconfig                    |   8 +
+ drivers/gpu/drm/nouveau/Makefile                   |   3 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  53 ++++--
+ drivers/gpu/drm/nouveau/nouveau_drm.h              |   8 +
+ drivers/gpu/drm/nouveau/nouveau_platform.c         | 182 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_platform.h         |  49 ++++++
+ 8 files changed, 347 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/nvidia,gk20a.txt
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_platform.c
+ create mode 100644 drivers/gpu/drm/nouveau/nouveau_platform.h
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403714139.12062.29542
-Date: Wed, 25 Jun 2014 16:35:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - Cannot set pwm1 above 80 on GeForce 9600 GT, 10de:0622"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80507">bug 80507</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=80507#c4">comment #4</a>)
-<span class="quote">&gt; Ben initially thought it was a bug as he thought he had a vbios from the
-&gt; same card indicating it should go higher, but apparently he may have been
-&gt; looking at the wrong one. pwm1_max is 80, yeah. apparently ideally I should
-&gt; send the vbios to verify, but Fedora's kernel config doesn't seem to provide
-&gt; the necessary bits...I only filed this as Ben thought it was a bug, so let's
-&gt; just close it for now.</span >
-
-This is not the first vbios I see with pwm_max set to 80, hence why I thought
-straight away about this. 
-
-You can force the pwm1_max to 100 if you really want to make it go to 100%, but
-I wouldn't do that.
-
-Anyway, thanks for the quick response!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403714139.12062.29542--
-
---===============0983437341==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0983437341==--
+2.0.0
