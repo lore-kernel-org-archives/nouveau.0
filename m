@@ -1,19 +1,23 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v3 1/3] drm/nouveau: support for probing
- platform devices
-Date: Thu, 26 Jun 2014 18:31:50 +0200
-Message-ID: <53AC4AF6.70902@free.fr>
-References: <1403760814-26148-1-git-send-email-acourbot@nvidia.com>
- <1403760814-26148-2-git-send-email-acourbot@nvidia.com>
- <53ABE819.7000506@nimrod-online.com>
- <CAAVeFuJesHEpNyqtMq+4HmRWNaW72bfrR_ODXD3=DtMKxx_PKw@mail.gmail.com>
- <53AC37FD.4070007@free.fr>
- <CAAVeFuL-gh52UCXPiPsd+8xNEe2KXoH5H8KSz18wR7DAthfNcw@mail.gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 2/3] drm/ttm: introduce dma cache sync
+	helpers
+Date: Fri, 27 Jun 2014 08:17:59 +0900
+Message-ID: <CAAVeFuK5L9+nCP=KZTBSG9OifJrFKcfQdCYuBEQbZ2+s9FmFdQ@mail.gmail.com>
+References: <1403603667-11302-1-git-send-email-acourbot@nvidia.com>
+ <1403603667-11302-3-git-send-email-acourbot@nvidia.com>
+ <20140624100220.GK32514@n2100.arm.linux.org.uk>
+ <53A953E6.2030503@nvidia.com> <53A95910.20104@nvidia.com>
+ <CAAVeFu+rbCViC87kYCLfxGV18iYq=Pa0ABb+L=iNiYPLn+mR8Q@mail.gmail.com>
+ <53A96EC5.3030701@canonical.com>
+ <1403616338.4230.8.camel@weser.hi.pengutronix.de>
+ <CACP_E+KECMyusuZd6hpzthL-RpfUOJpWh0EABf1DGAeaXc00aA@mail.gmail.com>
+ <CAAVeFuLU04rk1DWMhVJV=ktVCpq4js38p1ipCr1jh1x72b=GZw@mail.gmail.com>
+ <20140626161055.GX32514@n2100.arm.linux.org.uk>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuL-gh52UCXPiPsd+8xNEe2KXoH5H8KSz18wR7DAthfNcw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <20140626161055.GX32514-l+eeeJia6m9vn6HldHNs0ANdhmdF6hFW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,66 +27,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Russell King - ARM Linux <linux-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org>
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>, Lucas Stach <l.stach-bIcnvbaLZ9MEGnE8C9+IrQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-TGUgMjYvMDYvMjAxNCAxNzoxOCwgQWxleGFuZHJlIENvdXJib3QgYSDDqWNyaXQgOgo+IE9uIEZy
-aSwgSnVuIDI3LCAyMDE0IGF0IDEyOjEwIEFNLCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0Bm
-cmVlLmZyPiB3cm90ZToKPj4gTGUgMjYvMDYvMjAxNCAxNjo1OCwgQWxleGFuZHJlIENvdXJib3Qg
-YSDDqWNyaXQgOgo+Pgo+Pj4gT24gVGh1LCBKdW4gMjYsIDIwMTQgYXQgNjozMCBQTSwgUm95IFNw
-bGlldCA8c2V2ZW5Abmltcm9kLW9ubGluZS5jb20+Cj4+PiB3cm90ZToKPj4+Pgo+Pj4+IG9wIDI2
-LTA2LTE0IDA3OjMzLCBBbGV4YW5kcmUgQ291cmJvdCBzY2hyZWVmOgo+Pj4+Cj4+Pj4+IEFkZCBh
-IHBsYXRmb3JtIGRyaXZlciBmb3IgTm91dmVhdSBkZXZpY2VzIGRlY2xhcmVkIHVzaW5nIHRoZSBk
-ZXZpY2UgdHJlZQo+Pj4+PiBvciBwbGF0Zm9ybSBkYXRhLiBUaGlzIGRyaXZlciBjdXJyZW50bHkg
-c3VwcG9ydHMgR0syMEEgb24gVGVncmEKPj4+Pj4gcGxhdGZvcm1zIGFuZCBpcyBvbmx5IGNvbXBp
-bGVkIGZvciB0aGVzZSBwbGF0Zm9ybXMgaWYgTm91dmVhdSBpcwo+Pj4+PiBlbmFibGVkLgo+Pj4+
-Pgo+Pj4+PiBOb3V2ZWF1IHdpbGwgcHJvYmUgdGhlIGNoaXAgdHlwZSBpdHNlbGYgdXNpbmcgdGhl
-IEJPT1QwIHJlZ2lzdGVyLCBzbyBhbGwKPj4+Pj4gdGhpcyBkcml2ZXIgcmVhbGx5IG5lZWRzIHRv
-IGRvIGlzIHRvIG1ha2Ugc3VyZSB0aGUgbW9kdWxlIGlzIHBvd2VyZWQgYW5kCj4+Pj4+IGl0cyBj
-bG9ja3MgYWN0aXZlIGJlZm9yZSBjYWxsaW5nIG5vdXZlYXVfZHJtX3BsYXRmb3JtX3Byb2JlKCku
-Cj4+Pj4+Cj4+Pj4+IEhlYXZpbHkgYmFzZWQgb24gd29yayBkb25lIGJ5IFRoaWVycnkgUmVkaW5n
-Lgo+Pj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0Budmlk
-aWEuY29tPgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RA
-bnZpZGlhLmNvbT4KPj4+Pj4gLS0tCj4+Pj4+ICAgICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9L
-Y29uZmlnICAgICAgICAgICAgfCAgIDggKysKPj4+Pj4gICAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L01ha2VmaWxlICAgICAgICAgICB8ICAgMyArCj4+Pj4+ICAgICBkcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2RybS5jICAgICAgfCAgNTMgKysrKysrLS0tCj4+Pj4+ICAgICBkcml2
-ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5oICAgICAgfCAgIDggKysKPj4+Pj4gICAg
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYyB8IDE4Mgo+Pj4+PiAr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+Pj4+PiAgICAgZHJpdmVycy9ncHUvZHJtL25v
-dXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5oIHwgIDQ5ICsrKysrKysrCj4+Pj4+ICAgICA2IGZpbGVz
-IGNoYW5nZWQsIDI4OSBpbnNlcnRpb25zKCspLCAxNCBkZWxldGlvbnMoLSkKPj4+Pj4gICAgIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3Jt
-LmMKPj4+Pj4gICAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-b3V2ZWF1X3BsYXRmb3JtLmgKPj4+Pj4KPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L0tjb25maWcKPj4+Pj4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmln
-Cj4+Pj4+IGluZGV4IDYzN2MyOWEzMzEyNy4uZDRhYmFlYmZjMzViIDEwMDY0NAo+Pj4+PiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9LY29uZmlnCj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L0tjb25maWcKPj4+Pj4gQEAgLTI1LDYgKzI1LDE0IEBAIGNvbmZpZyBEUk1f
-Tk9VVkVBVQo+Pj4+PiAgICAgICAgICAgaGVscAo+Pj4+PiAgICAgICAgICAgICBDaG9vc2UgdGhp
-cyBvcHRpb24gZm9yIG9wZW4tc291cmNlIG5WaWRpYSBzdXBwb3J0Lgo+Pj4+PiAgICAgK2NvbmZp
-ZyBOT1VWRUFVX1BMQVRGT1JNX0RSSVZFUgo+Pj4+PiArICAgICAgIHRyaXN0YXRlICJOb3V2ZWF1
-IChuVmlkaWEpIGludGVncmF0ZWQgR1BVcyIKPj4+Pgo+Pj4+Cj4+Pj4gTWF5YmUgYSBsaXR0bGUg
-bml0LCBidXQgaXNuJ3QgdGhlIHJlY29tbWVuZGVkIGNhcGl0YWxpc2F0aW9uIG5vd2FkYXlzCj4+
-Pj4gTlZJRElBCj4+Pj4gaW5zdGVhZCBvZiBuVmlkaWE/Cj4+Pgo+Pj4KPj4+IFRoYXQncyBjb3Jy
-ZWN0LCBJIGp1c3QgY29waWVkIHRoYXQgdGV4dCBmcm9tIGFub3RoZXIgS2NvbmZpZyBlbnRyeS4K
-Pj4+IFRoaXMgY2FwaXRhbGl6YXRpb24gaXMgYWxzbyB1c2VkIGVsc2V3aGVyZSBpbiBOb3V2ZWF1
-LCBzbyBwbGVhc2UgYWxsb3cKPj4+IG1lIHRvIGZpeCB0aGlzIG9uZSBpbiBhIHNlcGFyYXRlIHBh
-dGNoLiA7KQo+Pj4KPj4+PiBBbHNvLCBpbnRlZ3JhdGVkIEdQVXMgc291bmRzIGxpa2UgdGhpcyBp
-cyByZXF1aXJlZCBmb3IKPj4+PiB0aGUgSU9OIElHUHMgYXMgd2VsbCwgYWx0aG91Z2ggSSByZWNr
-b24gdGhlIGRlcGVuZGVuY2llcyBvbiB0aGUgbmV4dCBsaW5lCj4+Pj4gd2lsbCBoaWRlIGl0IGZy
-b20gdGhlIHJlYWRlciBvbiB4ODYuCj4+Pgo+Pj4KPj4+IEkgZG9uJ3Qga25vdyB3aGF0IHdvcmQg
-Y291bGQgYmV0dGVyIGRlc2NyaWJlIEdLMjBBIC0gd2UgbmVlZCB0byBtYWtlCj4+PiB0aGUgZGlz
-dGluY3Rpb24gYmVjYXVzZSB5b3UgY2FuIGFsc28gdXNlIGRpc2NyZXRlIEdQVXMgb24gVGVncmEu
-IEFueQo+Pj4gYmV0dGVyIHN1Z2dlc3Rpb24/Cj4+Cj4+Cj4+IFNvQ3M/Cj4KPiBTb0MgaXMgdGhl
-IHdob2xlIGNoaXAgcGFja2FnZSwgaW50byB3aGljaCB0aGUgR1BVIGlzLCBpbmRlZWQsICJpbnRl
-Z3JhdGVkIi4KPgoKSSBtZWFudCByZXBsYWNpbmcgImludGVncmF0ZWQiIHdpdGggU29DLCB0aGF0
-IHdvdWxkIHJlc3VsdCBpbiAiTlZJRElBIApTb0NzJyBHUFUiIHdoaWNoIGNvdWxkIGJlIGFwcHJv
-cHJpYXRlLgoKT3RoZXJ3aXNlLCB3aGF0J3Mgd3Jvbmcgd2l0aCB1c2luZyB0aGUgbmFtZSBUZWdy
-YT8gTlZJRElBIFRlZ3JhIEdQVXMgCnNlZW1zIHBlcmZlY3RseSBmaW5lLCBpc24ndCBpdD8KCkRv
-bid0IG1lYW4gdG8gYmlrZXNoZWQgb24gdGhpcywgdGFrZSB0aGVzZSBhcyBzdWdnZXN0aW9ucy4g
-SSdsbCBiZSBoYXBweSAKd2l0aCB3aGF0ZXZlciB5b3UgZGVjaWRlLgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Fri, Jun 27, 2014 at 1:10 AM, Russell King - ARM Linux
+<linux-lFZ/pmaqli7XmaaqVzeoHQ@public.gmane.org> wrote:
+> On Thu, Jun 26, 2014 at 11:53:20PM +0900, Alexandre Courbot wrote:
+>> We don't plan to rely on CMA for too long. IOMMU support is on the way
+>> and should make our life easier, although no matter the source of
+>> memory, we will still have the issue of the lowmem mappings.
+>
+> When it comes to DMA memory, talking about lowmem vs highmem is utterly
+> meaningless.
+>
+> The lowmem/highmem split is entirely a software concept and is completely
+> adjustable.  An extreme example is that you can boot any platform with
+> more than 32MB of memory with 32MB of lowmem and the remainder as
+> highmem.
+
+True, but isn't it also the case that all lowmem is already mapped in
+the kernel address space, and that re-mapping this memory with
+different cache settings (e.g. by creating a WC mapping for user-space
+to write into) is undefined on ARM and must be avoided? That is the
+issue I was referring to.
