@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80627] [NVE6] 'HUB_INIT timed out' 'Watchdog
- detected hard LOCKUP on cpu 7'
-Date: Sat, 28 Jun 2014 12:52:23 +0000
-Message-ID: <bug-80627-8800-7sn00e7Dx5@http.bugs.freedesktop.org/>
-References: <bug-80627-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/fb: Prevent inlining of ramfuc_reg
+Date: Sat, 28 Jun 2014 23:04:24 +1000
+Message-ID: <CACAvsv6eCt4Bj+6ro8dFQW4+zCYiv=eo7jWQruuXQKvrn+MiNw@mail.gmail.com>
+References: <1403900245-1541-1-git-send-email-marcheu@chromium.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1950203289=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1403900245-1541-1-git-send-email-marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,78 +17,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu-F7+t8E8rja9g9hUCZPvPmw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1950203289==
-Content-Type: multipart/alternative; boundary="1403959943.4a45eB1.27607"; charset="us-ascii"
-
-
---1403959943.4a45eB1.27607
-Date: Sat, 28 Jun 2014 12:52:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80627
-
---- Comment #2 from buhman <zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org> ---
-I submitted an mmiotrace from nvidia-340.17 to mmio.dumps (module
-load, X startup, glxgears, X shutdown) with subject "bug 80627".
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403959943.4a45eB1.27607
-Date: Sat, 28 Jun 2014 12:52:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627">bug 80627</a>
-              from <span class="vcard"><a class="email" href="mailto:zack&#64;buhman.org" title="buhman &lt;zack&#64;buhman.org&gt;"> <span class="fn">buhman</span></a>
-</span></b>
-        <pre>I submitted an mmiotrace from nvidia-340.17 to mmio.dumps (module
-load, X startup, glxgears, X shutdown) with subject &quot;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="show_bug.cgi?id=80627">bug 80627</a>&quot;.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403959943.4a45eB1.27607--
-
---===============1950203289==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1950203289==--
+T24gU2F0LCBKdW4gMjgsIDIwMTQgYXQgNjoxNyBBTSwgU3TDqXBoYW5lIE1hcmNoZXNpbgo8bWFy
+Y2hldUBjaHJvbWl1bS5vcmc+IHdyb3RlOgo+IFdoZW4gZ2NjIDQuOCBpbmxpbmVzIHRoaXMgZnVu
+Y3Rpb24sIGl0IGVhdHMgdXAgMTYgYnl0ZXMgb24gdGhlIHN0YWNrCj4gZXZlcnkgdGltZS4gRXZl
+bnR1YWxseSB3ZSBoaXQgd2FybmluZ3MgYmVjYXVzZSBvdXIgc3RhY2sgZ3JldyB0b28KPiBtdWNo
+Ogo+Cj4gcmFtbnZlMC5jOjEzODM6MTogZXJyb3I6IHRoZSBmcmFtZSBzaXplIG9mIDE0OTYgYnl0
+ZXMgaXMgbGFyZ2VyIHRoYW4KPiAxMDI0IGJ5dGVzCj4KPiBXZSBmaXggdGhpcyBieSBwcmV2ZW50
+aW5nIGlubGluaW5nIGZvciB0aGlzIGZ1bmN0aW9uLgpHb3QgaXQuICBUaGFua3MhCgo+Cj4gU2ln
+bmVkLW9mZi1ieTogU3TDqXBoYW5lIE1hcmNoZXNpbiA8bWFyY2hldUBjaHJvbWl1bS5vcmc+Cj4g
+LS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L2ZiL3JhbWZ1Yy5oIHwg
+MiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9mYi9yYW1m
+dWMuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L2ZiL3JhbWZ1Yy5oCj4g
+aW5kZXggMGY1N2ZjZi4uMDRlMzg0OSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9jb3JlL3N1YmRldi9mYi9yYW1mdWMuaAo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2NvcmUvc3ViZGV2L2ZiL3JhbWZ1Yy5oCj4gQEAgLTI2LDcgKzI2LDcgQEAgcmFtZnVjX3Jl
+ZzIodTMyIGFkZHIxLCB1MzIgYWRkcjIpCj4gICAgICAgICB9Owo+ICB9Cj4KPiAtc3RhdGljIGlu
+bGluZSBzdHJ1Y3QgcmFtZnVjX3JlZwo+ICtzdGF0aWMgbm9pbmxpbmUgc3RydWN0IHJhbWZ1Y19y
+ZWcKPiAgcmFtZnVjX3JlZyh1MzIgYWRkcikKPiAgewo+ICAgICAgICAgcmV0dXJuIHJhbWZ1Y19y
+ZWcyKGFkZHIsIGFkZHIpOwo+IC0tCj4gMi4wLjAuNTI2Lmc1MzE4MzM2Cj4KPiBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBs
+aXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
