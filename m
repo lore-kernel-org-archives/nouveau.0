@@ -1,313 +1,235 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71620] nouveau_fence_wait_uevent NULL pointer
-	dereference
-Date: Sat, 28 Jun 2014 00:19:45 +0000
-Message-ID: <bug-71620-8800-WZagLC8QRJ@http.bugs.freedesktop.org/>
-References: <bug-71620-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2] drm/gk20a: add BAR instance
+Date: Sat, 28 Jun 2014 10:56:59 +1000
+Message-ID: <CACAvsv61HW-7ySzTcFCtZNZ7g-NvmxjKNMWAs=bvfjaL6BL0AQ@mail.gmail.com>
+References: <1403869014-16209-1-git-send-email-acourbot@nvidia.com>
+	<CFD332E4.8F1A4%kadams@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0418461108=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CFD332E4.8F1A4%kadams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Alex Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Sat, Jun 28, 2014 at 4:51 AM, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> quick note re: tegra and gpu bars...
+>
+> to this point we've explicitly avoided providing user-mode mappings due to
+> power management issues, etc.
+> looks to me like this would allow such mappings.  is that the case?  are
+> there any paths which would require such mappings to function properly?
+What power management issues are you worried about in particular?  We
+have these concerns on discrete cards too, when doing things like
+changing vram frequencies.  TTM is able to kick out all userspace
+mappings, and clients will then block in the fault handler until it's
+safe - if they touch the mappings.
 
---===============0418461108==
-Content-Type: multipart/alternative; boundary="1403914785.31dB16DF2.16117"; charset="us-ascii"
+Ben.
 
-
---1403914785.31dB16DF2.16117
-Date: Sat, 28 Jun 2014 00:19:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=71620
-
---- Comment #5 from James TD Smith <ahktenzero+freedesktop-foGQJe5GvY4KlTDg6p0iyA@public.gmane.org> ---
-Looks like I've run into the same problem. X crashed while I was using Firefox
-and I found the traceback below in my logs. There were no errors in the Xorg
-logs so I've omitted those. I'm running Debian 7.5 amd64, kernel 3.13.5, Xorg
-7.7, Nouveau 1.0.10-1+b1. Graphics card is a GF114 [GeForce GTX 560 Ti] (rev
-a1).
-
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711394] BUG: unable to handle
-kernel NULL pointer dereference at 0000000000000008
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711427] IP: [<ffffffffa0306f0e>]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711471] PGD 0 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711477] Oops: 0000 [#1] PREEMPT
-SMP 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711490] Modules linked in: cpuid
-sha256_generic cbc tcp_diag inet_diag xt_addrtype xt_conntrack ipt_MASQUERADE
-iptable_nat nf_conntrack_ipv4 nf_defrag_ipv4 nf_nat_ipv4 nf_nat nf_conntrack
-bridge stp llc aufs(C) iptable_filter ip_tables x_tables bnep rfcomm bluetooth
-rpcsec_gss_krb5 nfsv4 dns_resolver cpufreq_conservative cpufreq_userspace
-cpufreq_powersave cpufreq_stats battery snd_hrtimer vboxpci(O) vboxnetadp(O)
-vboxnetflt(O) vboxdrv(O) binfmt_misc uinput fuse nfsd auth_rpcgss oid_registry
-nfs_acl nfs lockd fscache sunrpc synaptics_usb ext3 jbd dm_crypt md_mod
-firewire_sbp2 loop parport_pc ppdev parport snd_hda_codec_hdmi powermate
-snd_hda_codec_analog arc4 hid_generic snd_emu10k1_synth snd_emux_synth
-snd_seq_midi_emul joydev snd_seq_virmidi usbhid hid snd_usb_audio
-snd_usbmidi_lib xpad ff_memless rtl8187 nfc mac80211 cfg80211 eeprom_93cx6
-rfkill snd_emu10k1 snd_seq_midi snd_seq_midi_event snd_hda_intel snd_util_mem
-snd_ac97_codec snd_hda_codec snd_hwdep snd_pcm_oss snd_m
-Jun 27 23:48:46 nyarlathotep kernel: ixer_oss snd_rawmidi evdev snd_pcm
-ac97_bus coretemp snd_page_alloc kvm_intel kvm emu10k1_gp gameport snd_seq
-nouveau snd_seq_device video snd_timer serio_raw lpc_ich mxm_wmi mfd_core wmi
-pcspkr i2c_algo_bit i2c_i801 ttm drm_kms_helper drm snd asus_atk0110 i2c_core
-soundcore acpi_cpufreq processor thermal_sys button ext4 crc16 jbd2 mbcache
-dm_mirror dm_region_hash dm_log dm_mod sr_mod cdrom sg sd_mod usb_storage r8169
-mii firewire_ohci firewire_core crc_itu_t pata_jmicron ahci libahci sky2 libata
-scsi_mod xhci_hcd ehci_pci uhci_hcd ehci_hcd usbcore usb_common
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711942] CPU: 3 PID: 5115 Comm:
-Xorg Tainted: G         C O 3.13.5 #1
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711951] Hardware name: System
-manufacturer P5K3 Deluxe/P5K3 Deluxe, BIOS 1206    04/16/2009
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711969] task: ffff880222f4ef90 ti:
-ffff880225014000 task.ti: ffff880225014000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711979] RIP:
-0010:[<ffffffffa0306f0e>]  [<ffffffffa0306f0e>]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RSP: 0018:ffff880225015c90
- EFLAGS: 00010286
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RAX: 0000000000000000 RBX:
-0000000000000000 RCX: 0000000000000000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RDX: ffff88012e55ec80 RSI:
-0000000000000001 RDI: ffff88012e55ef00
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RBP: ffff88012e55ef00 R08:
-ffff880225015c90 R09: 000000000000e200
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] R10: 0000000000000000 R11:
-0000000000000246 R12: ffff880036478101
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] R13: ffff88003657b601 R14:
-ffff88003649bd01 R15: 0000000000000001
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] FS: 
-00007f7cc13fa980(0000) GS:ffff88022fd80000(0000) knlGS:0000000000000000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] CS:  0010 DS: 0000 ES:
-0000 CR0: 000000008005003b
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] CR2: 0000000000000008 CR3:
-00000000ca894000 CR4: 00000000000407e0
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Stack:
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  00000000000013fb
-0000000080000000 0000000000000000 ffff88012e55ec80
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  0000000000000001
-ffff88012e55ef00 0000000000000000 ffff88012e55ef00
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  ffff880036478101
-ffff88003657b601 ffff88003649bd80 0000000000000001
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Call Trace:
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa030721d>] ?
-nouveau_fence_wait+0x43/0x128 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8138dc4b>] ?
-_raw_spin_unlock+0xd/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa0306ec2>] ?
-nouveau_fence_done+0x48/0x79 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa022906d>] ?
-ttm_bo_wait+0xa2/0x158 [ttm]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa030ba5c>] ?
-nouveau_gem_ioctl_cpu_prep+0x49/0x75 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa030ba13>] ?
-nouveau_gem_ioctl_pushbuf+0xbde/0xbde [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa0243fa2>] ?
-drm_ioctl+0x27b/0x3ba [drm]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa030ba13>] ?
-nouveau_gem_ioctl_pushbuf+0xbde/0xbde [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff81286cef>] ?
-rpm_resume+0x49c/0x4ad
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8138de57>] ?
-_raw_spin_lock+0xe/0x17
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8138dc4b>] ?
-_raw_spin_unlock+0xd/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffffa0305b45>] ?
-nouveau_drm_ioctl+0x48/0x7c [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8111c928>] ?
-do_vfs_ioctl+0x3f8/0x441
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff811105c5>] ?
-__fput+0x176/0x197
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff81125aa1>] ?
-mntput_no_expire+0x1a/0x118
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8104c398>] ?
-task_work_run+0x7b/0x8a
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff8111c9bf>] ?
-SyS_ioctl+0x4e/0x79
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [<ffffffff813924e6>] ?
-system_call_fastpath+0x1a/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Code: 7d 28 00 5a 0f 94 c0
-5b 5d 41 5c 41 5d 41 5e c3 41 57 41 56 41 88 f6 41 55 41 54 55 48 89 fd 53 48
-83 ec 30 48 8b 47 28 49 89 e0 <48> 8b 48 08 48 8b 91 f0 00 00 00 4c 8b a9 68 07
-00 00 48 8b 42 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RIP  [<ffffffffa0306f0e>]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  RSP <ffff880225015c90>
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1403914785.31dB16DF2.16117
-Date: Sat, 28 Jun 2014 00:19:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71620#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71620">bug 71620</a>
-              from <span class="vcard"><a class="email" href="mailto:ahktenzero+freedesktop&#64;mohorovi.cc" title="James TD Smith &lt;ahktenzero+freedesktop&#64;mohorovi.cc&gt;"> <span class="fn">James TD Smith</span></a>
-</span></b>
-        <pre>Looks like I've run into the same problem. X crashed while I was using Firefox
-and I found the traceback below in my logs. There were no errors in the Xorg
-logs so I've omitted those. I'm running Debian 7.5 amd64, kernel 3.13.5, Xorg
-7.7, Nouveau 1.0.10-1+b1. Graphics card is a GF114 [GeForce GTX 560 Ti] (rev
-a1).
-
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711394] BUG: unable to handle
-kernel NULL pointer dereference at 0000000000000008
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711427] IP: [&lt;ffffffffa0306f0e&gt;]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711471] PGD 0 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711477] Oops: 0000 [#1] PREEMPT
-SMP 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711490] Modules linked in: cpuid
-sha256_generic cbc tcp_diag inet_diag xt_addrtype xt_conntrack ipt_MASQUERADE
-iptable_nat nf_conntrack_ipv4 nf_defrag_ipv4 nf_nat_ipv4 nf_nat nf_conntrack
-bridge stp llc aufs(C) iptable_filter ip_tables x_tables bnep rfcomm bluetooth
-rpcsec_gss_krb5 nfsv4 dns_resolver cpufreq_conservative cpufreq_userspace
-cpufreq_powersave cpufreq_stats battery snd_hrtimer vboxpci(O) vboxnetadp(O)
-vboxnetflt(O) vboxdrv(O) binfmt_misc uinput fuse nfsd auth_rpcgss oid_registry
-nfs_acl nfs lockd fscache sunrpc synaptics_usb ext3 jbd dm_crypt md_mod
-firewire_sbp2 loop parport_pc ppdev parport snd_hda_codec_hdmi powermate
-snd_hda_codec_analog arc4 hid_generic snd_emu10k1_synth snd_emux_synth
-snd_seq_midi_emul joydev snd_seq_virmidi usbhid hid snd_usb_audio
-snd_usbmidi_lib xpad ff_memless rtl8187 nfc mac80211 cfg80211 eeprom_93cx6
-rfkill snd_emu10k1 snd_seq_midi snd_seq_midi_event snd_hda_intel snd_util_mem
-snd_ac97_codec snd_hda_codec snd_hwdep snd_pcm_oss snd_m
-Jun 27 23:48:46 nyarlathotep kernel: ixer_oss snd_rawmidi evdev snd_pcm
-ac97_bus coretemp snd_page_alloc kvm_intel kvm emu10k1_gp gameport snd_seq
-nouveau snd_seq_device video snd_timer serio_raw lpc_ich mxm_wmi mfd_core wmi
-pcspkr i2c_algo_bit i2c_i801 ttm drm_kms_helper drm snd asus_atk0110 i2c_core
-soundcore acpi_cpufreq processor thermal_sys button ext4 crc16 jbd2 mbcache
-dm_mirror dm_region_hash dm_log dm_mod sr_mod cdrom sg sd_mod usb_storage r8169
-mii firewire_ohci firewire_core crc_itu_t pata_jmicron ahci libahci sky2 libata
-scsi_mod xhci_hcd ehci_pci uhci_hcd ehci_hcd usbcore usb_common
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711942] CPU: 3 PID: 5115 Comm:
-Xorg Tainted: G         C O 3.13.5 #1
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711951] Hardware name: System
-manufacturer P5K3 Deluxe/P5K3 Deluxe, BIOS 1206    04/16/2009
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711969] task: ffff880222f4ef90 ti:
-ffff880225014000 task.ti: ffff880225014000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.711979] RIP:
-0010:[&lt;ffffffffa0306f0e&gt;]  [&lt;ffffffffa0306f0e&gt;]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RSP: 0018:ffff880225015c90
- EFLAGS: 00010286
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RAX: 0000000000000000 RBX:
-0000000000000000 RCX: 0000000000000000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RDX: ffff88012e55ec80 RSI:
-0000000000000001 RDI: ffff88012e55ef00
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RBP: ffff88012e55ef00 R08:
-ffff880225015c90 R09: 000000000000e200
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] R10: 0000000000000000 R11:
-0000000000000246 R12: ffff880036478101
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] R13: ffff88003657b601 R14:
-ffff88003649bd01 R15: 0000000000000001
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] FS: 
-00007f7cc13fa980(0000) GS:ffff88022fd80000(0000) knlGS:0000000000000000
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] CS:  0010 DS: 0000 ES:
-0000 CR0: 000000008005003b
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] CR2: 0000000000000008 CR3:
-00000000ca894000 CR4: 00000000000407e0
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Stack:
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  00000000000013fb
-0000000080000000 0000000000000000 ffff88012e55ec80
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  0000000000000001
-ffff88012e55ef00 0000000000000000 ffff88012e55ef00
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  ffff880036478101
-ffff88003657b601 ffff88003649bd80 0000000000000001
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Call Trace:
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa030721d&gt;] ?
-nouveau_fence_wait+0x43/0x128 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8138dc4b&gt;] ?
-_raw_spin_unlock+0xd/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa0306ec2&gt;] ?
-nouveau_fence_done+0x48/0x79 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa022906d&gt;] ?
-ttm_bo_wait+0xa2/0x158 [ttm]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa030ba5c&gt;] ?
-nouveau_gem_ioctl_cpu_prep+0x49/0x75 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa030ba13&gt;] ?
-nouveau_gem_ioctl_pushbuf+0xbde/0xbde [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa0243fa2&gt;] ?
-drm_ioctl+0x27b/0x3ba [drm]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa030ba13&gt;] ?
-nouveau_gem_ioctl_pushbuf+0xbde/0xbde [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff81286cef&gt;] ?
-rpm_resume+0x49c/0x4ad
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8138de57&gt;] ?
-_raw_spin_lock+0xe/0x17
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8138dc4b&gt;] ?
-_raw_spin_unlock+0xd/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffffa0305b45&gt;] ?
-nouveau_drm_ioctl+0x48/0x7c [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8111c928&gt;] ?
-do_vfs_ioctl+0x3f8/0x441
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff811105c5&gt;] ?
-__fput+0x176/0x197
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff81125aa1&gt;] ?
-mntput_no_expire+0x1a/0x118
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8104c398&gt;] ?
-task_work_run+0x7b/0x8a
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff8111c9bf&gt;] ?
-SyS_ioctl+0x4e/0x79
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  [&lt;ffffffff813924e6&gt;] ?
-system_call_fastpath+0x1a/0x1f
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] Code: 7d 28 00 5a 0f 94 c0
-5b 5d 41 5c 41 5d 41 5e c3 41 57 41 56 41 88 f6 41 55 41 54 55 48 89 fd 53 48
-83 ec 30 48 8b 47 28 49 89 e0 &lt;48&gt; 8b 48 08 48 8b 91 f0 00 00 00 4c 8b a9 68 07
-00 00 48 8b 42 
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004] RIP  [&lt;ffffffffa0306f0e&gt;]
-nouveau_fence_wait_uevent+0x1b/0x2e7 [nouveau]
-Jun 27 23:48:46 nyarlathotep kernel: [421145.712004]  RSP &lt;ffff880225015c90&gt;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1403914785.31dB16DF2.16117--
-
---===============0418461108==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0418461108==--
+>
+> thanks
+> ---
+> ken
+>
+> p.s.: hello :)
+>
+> On 6/27/14 7:36 AM, "Alex Courbot" <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>
+>>GK20A's BAR is functionally identical to NVC0's, but do not support
+>>being ioremapped write-combined. Create a BAR instance for GK20A that
+>>reflect that state.
+>>
+>>Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>---
+>>Changes since v1:
+>>- Fix compilation warning due to missing cast
+>>
+>>Patch 1 of the series was ok and thus has not been resent.
+>>
+>> drivers/gpu/drm/nouveau/Makefile                  |  1 +
+>> drivers/gpu/drm/nouveau/core/engine/device/nve0.c |  2 +-
+>> drivers/gpu/drm/nouveau/core/include/subdev/bar.h |  1 +
+>> drivers/gpu/drm/nouveau/core/subdev/bar/gk20a.c   | 54
+>>+++++++++++++++++++++++
+>> drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c    |  6 +--
+>> drivers/gpu/drm/nouveau/core/subdev/bar/priv.h    |  6 +++
+>> 6 files changed, 66 insertions(+), 4 deletions(-)
+>> create mode 100644 drivers/gpu/drm/nouveau/core/subdev/bar/gk20a.c
+>>
+>>diff --git a/drivers/gpu/drm/nouveau/Makefile
+>>b/drivers/gpu/drm/nouveau/Makefile
+>>index 8b307e143632..11d9561d67c1 100644
+>>--- a/drivers/gpu/drm/nouveau/Makefile
+>>+++ b/drivers/gpu/drm/nouveau/Makefile
+>>@@ -26,6 +26,7 @@ nouveau-y += core/core/subdev.o
+>> nouveau-y += core/subdev/bar/base.o
+>> nouveau-y += core/subdev/bar/nv50.o
+>> nouveau-y += core/subdev/bar/nvc0.o
+>>+nouveau-y += core/subdev/bar/gk20a.o
+>> nouveau-y += core/subdev/bios/base.o
+>> nouveau-y += core/subdev/bios/bit.o
+>> nouveau-y += core/subdev/bios/boost.o
+>>diff --git a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
+>>b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
+>>index 2d1e97d4264f..a2b9ccc48f66 100644
+>>--- a/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
+>>+++ b/drivers/gpu/drm/nouveau/core/engine/device/nve0.c
+>>@@ -165,7 +165,7 @@ nve0_identify(struct nouveau_device *device)
+>>               device->oclass[NVDEV_SUBDEV_IBUS   ] = &gk20a_ibus_oclass;
+>>               device->oclass[NVDEV_SUBDEV_INSTMEM] = nv50_instmem_oclass;
+>>               device->oclass[NVDEV_SUBDEV_VM     ] = &nvc0_vmmgr_oclass;
+>>-              device->oclass[NVDEV_SUBDEV_BAR    ] = &nvc0_bar_oclass;
+>>+              device->oclass[NVDEV_SUBDEV_BAR    ] = &gk20a_bar_oclass;
+>>               device->oclass[NVDEV_ENGINE_DMAOBJ ] = &nvd0_dmaeng_oclass;
+>>               device->oclass[NVDEV_ENGINE_FIFO   ] =  gk20a_fifo_oclass;
+>>               device->oclass[NVDEV_ENGINE_SW     ] =  nvc0_software_oclass;
+>>diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/bar.h
+>>b/drivers/gpu/drm/nouveau/core/include/subdev/bar.h
+>>index 9002cbb6432b..be037fac534c 100644
+>>--- a/drivers/gpu/drm/nouveau/core/include/subdev/bar.h
+>>+++ b/drivers/gpu/drm/nouveau/core/include/subdev/bar.h
+>>@@ -33,5 +33,6 @@ nouveau_bar(void *obj)
+>>
+>> extern struct nouveau_oclass nv50_bar_oclass;
+>> extern struct nouveau_oclass nvc0_bar_oclass;
+>>+extern struct nouveau_oclass gk20a_bar_oclass;
+>>
+>> #endif
+>>diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/gk20a.c
+>>b/drivers/gpu/drm/nouveau/core/subdev/bar/gk20a.c
+>>new file mode 100644
+>>index 000000000000..bf877af9d3bd
+>>--- /dev/null
+>>+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/gk20a.c
+>>@@ -0,0 +1,54 @@
+>>+/*
+>>+ * Copyright (c) 2014, NVIDIA CORPORATION. All rights reserved.
+>>+ *
+>>+ * Permission is hereby granted, free of charge, to any person obtaining
+>>a
+>>+ * copy of this software and associated documentation files (the
+>>"Software"),
+>>+ * to deal in the Software without restriction, including without
+>>limitation
+>>+ * the rights to use, copy, modify, merge, publish, distribute,
+>>sublicense,
+>>+ * and/or sell copies of the Software, and to permit persons to whom the
+>>+ * Software is furnished to do so, subject to the following conditions:
+>>+ *
+>>+ * The above copyright notice and this permission notice shall be
+>>included in
+>>+ * all copies or substantial portions of the Software.
+>>+ *
+>>+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+>>EXPRESS OR
+>>+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+>>MERCHANTABILITY,
+>>+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT
+>>SHALL
+>>+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+>>OTHER
+>>+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+>>ARISING
+>>+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+>>+ * DEALINGS IN THE SOFTWARE.
+>>+ */
+>>+
+>>+#include <subdev/bar.h>
+>>+
+>>+#include "priv.h"
+>>+
+>>+int
+>>+gk20a_bar_ctor(struct nouveau_object *parent, struct nouveau_object
+>>*engine,
+>>+             struct nouveau_oclass *oclass, void *data, u32 size,
+>>+             struct nouveau_object **pobject)
+>>+{
+>>+      struct nouveau_bar *bar;
+>>+      int ret;
+>>+
+>>+      ret = nvc0_bar_ctor(parent, engine, oclass, data, size, pobject);
+>>+      if (ret)
+>>+              return ret;
+>>+
+>>+      bar = (struct nouveau_bar *)*pobject;
+>>+      bar->iomap_uncached = true;
+>>+
+>>+      return 0;
+>>+}
+>>+
+>>+struct nouveau_oclass
+>>+gk20a_bar_oclass = {
+>>+      .handle = NV_SUBDEV(BAR, 0xea),
+>>+      .ofuncs = &(struct nouveau_ofuncs) {
+>>+              .ctor = gk20a_bar_ctor,
+>>+              .dtor = nvc0_bar_dtor,
+>>+              .init = nvc0_bar_init,
+>>+              .fini = _nouveau_bar_fini,
+>>+      },
+>>+};
+>>diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
+>>b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
+>>index ca8139b9ab27..0a44459844e3 100644
+>>--- a/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
+>>+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/nvc0.c
+>>@@ -133,7 +133,7 @@ nvc0_bar_init_vm(struct nvc0_bar_priv *priv, struct
+>>nvc0_bar_priv_vm *bar_vm,
+>>       return 0;
+>> }
+>>
+>>-static int
+>>+int
+>> nvc0_bar_ctor(struct nouveau_object *parent, struct nouveau_object
+>>*engine,
+>>             struct nouveau_oclass *oclass, void *data, u32 size,
+>>             struct nouveau_object **pobject)
+>>@@ -169,7 +169,7 @@ nvc0_bar_ctor(struct nouveau_object *parent, struct
+>>nouveau_object *engine,
+>>       return 0;
+>> }
+>>
+>>-static void
+>>+void
+>> nvc0_bar_dtor(struct nouveau_object *object)
+>> {
+>>       struct nvc0_bar_priv *priv = (void *)object;
+>>@@ -188,7 +188,7 @@ nvc0_bar_dtor(struct nouveau_object *object)
+>>       nouveau_bar_destroy(&priv->base);
+>> }
+>>
+>>-static int
+>>+int
+>> nvc0_bar_init(struct nouveau_object *object)
+>> {
+>>       struct nvc0_bar_priv *priv = (void *)object;
+>>diff --git a/drivers/gpu/drm/nouveau/core/subdev/bar/priv.h
+>>b/drivers/gpu/drm/nouveau/core/subdev/bar/priv.h
+>>index ffad8f337ead..3ee8b1476d00 100644
+>>--- a/drivers/gpu/drm/nouveau/core/subdev/bar/priv.h
+>>+++ b/drivers/gpu/drm/nouveau/core/subdev/bar/priv.h
+>>@@ -23,4 +23,10 @@ int  nouveau_bar_alloc(struct nouveau_bar *, struct
+>>nouveau_object *,
+>>
+>> void nv84_bar_flush(struct nouveau_bar *);
+>>
+>>+int nvc0_bar_ctor(struct nouveau_object *, struct nouveau_object *,
+>>+                struct nouveau_oclass *, void *, u32,
+>>+                struct nouveau_object **);
+>>+void nvc0_bar_dtor(struct nouveau_object *);
+>>+int nvc0_bar_init(struct nouveau_object *);
+>>+
+>> #endif
+>>--
+>>2.0.0
+>>
+>>--
+>>To unsubscribe from this list: send the line "unsubscribe linux-tegra" in
+>>the body of a message to majordomo-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+>>More majordomo info at  http://vger.kernel.org/majordomo-info.html
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
