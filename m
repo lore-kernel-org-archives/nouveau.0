@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Sun, 29 Jun 2014 16:08:58 +0000
-Message-ID: <bug-76483-8800-MWWOvkBesz@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Jetson TK1 support -- OpenGL?
+Date: Sun, 29 Jun 2014 12:46:46 -0700
+Message-ID: <CAN0CFw2iFxqxh2ASfarczTiaEFr2gcM8zfMOnOdc62N02nO53A@mail.gmail.com>
+References: <CAN0CFw0pwq=_A_ZT60KpMSniJm=aq0yOvy8qOKROU217+62fPQ@mail.gmail.com>
+ <CAAVeFuLrOPPWAqyhShzrbM9r5RLXqANnEWfdF+cJF3vNcrYRSg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0982073491=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuLrOPPWAqyhShzrbM9r5RLXqANnEWfdF+cJF3vNcrYRSg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +18,37 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+>> I read that nouveau supports the Jetson TK1 board:
+>>
+>> http://www.newegg.com/Product/Product.aspx?Item=N82E16813190005
+>>
+>> Does it provide OpenGL support?
+>
+> It does:
+>
+> https://www.youtube.com/watch?v=7ZSGSVGsSwc
+>
+> This is still a work-in-progress, but glmark2 and Weston are already
+> running. Note that as the support is rather new currently requires
+> recompiling a few things by yourself, including a custom kernel. But
+> the support should land into upstream quite soon.
 
---===============0982073491==
-Content-Type: multipart/alternative; boundary="1404058138.Cf3a3.16372"; charset="us-ascii"
+
+Is there a mainline kernel version targeted for support?
 
 
---1404058138.Cf3a3.16372
-Date: Sun, 29 Jun 2014 16:08:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> NVIDIA's proprietary drivers also support OpenGL under X if you don't
+> mind not running a free software graphics stack.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
 
---- Comment #18 from Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> ---
-Created attachment 101980
-  --> https://bugs.freedesktop.org/attachment.cgi?id=101980&action=edit
-kernel log with additional debug output
+These drivers?
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+http://www.nvidia.com/object/linux-arm-display-archive.html
 
---1404058138.Cf3a3.16372
-Date: Sun, 29 Jun 2014 16:08:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+Is accelerated decoding supported?
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:schendel&#64;kbcomputer.com" title="Karl Schendel &lt;schendel&#64;kbcomputer.com&gt;"> <span class="fn">Karl Schendel</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=101980" name="attach_101980" title="kernel log with additional debug output">attachment 101980</a> <a href="attachment.cgi?id=101980&amp;action=edit" title="kernel log with additional debug output">[details]</a></span>
-kernel log with additional debug output</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404058138.Cf3a3.16372--
-
---===============0982073491==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0982073491==--
+- Grant
