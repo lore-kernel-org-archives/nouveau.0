@@ -1,14 +1,13 @@
-From: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Jetson TK1 support -- OpenGL?
-Date: Sun, 29 Jun 2014 12:46:46 -0700
-Message-ID: <CAN0CFw2iFxqxh2ASfarczTiaEFr2gcM8zfMOnOdc62N02nO53A@mail.gmail.com>
-References: <CAN0CFw0pwq=_A_ZT60KpMSniJm=aq0yOvy8qOKROU217+62fPQ@mail.gmail.com>
- <CAAVeFuLrOPPWAqyhShzrbM9r5RLXqANnEWfdF+cJF3vNcrYRSg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80675] [NVAA] Nouveau KMS framebuffer hand-over:
+ no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok
+Date: Sun, 29 Jun 2014 20:11:56 +0000
+Message-ID: <bug-80675-8800-9qe37YoxkO@http.bugs.freedesktop.org/>
+References: <bug-80675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1568676393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuLrOPPWAqyhShzrbM9r5RLXqANnEWfdF+cJF3vNcrYRSg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-80675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,37 +17,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
->> I read that nouveau supports the Jetson TK1 board:
->>
->> http://www.newegg.com/Product/Product.aspx?Item=N82E16813190005
->>
->> Does it provide OpenGL support?
->
-> It does:
->
-> https://www.youtube.com/watch?v=7ZSGSVGsSwc
->
-> This is still a work-in-progress, but glmark2 and Weston are already
-> running. Note that as the support is rather new currently requires
-> recompiling a few things by yourself, including a custom kernel. But
-> the support should land into upstream quite soon.
+
+--===============1568676393==
+Content-Type: multipart/alternative; boundary="1404072716.fe134E1.12742"; charset="us-ascii"
 
 
-Is there a mainline kernel version targeted for support?
+--1404072716.fe134E1.12742
+Date: Sun, 29 Jun 2014 20:11:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
+https://bugs.freedesktop.org/show_bug.cgi?id=80675
 
-> NVIDIA's proprietary drivers also support OpenGL under X if you don't
-> mind not running a free software graphics stack.
+--- Comment #3 from Walter Haidinger <walter.haidinger-RbZlAiThDcE@public.gmane.org> ---
+No changes if I omit the console=fb0 and/or video= option.
+Using a different resolution for video= sets the X11 screen accordingly,
+though.
 
+I also recall that I've added those two in an effort to get a working console.
+But that obviously did not help.
 
-These drivers?
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-http://www.nvidia.com/object/linux-arm-display-archive.html
+--1404072716.fe134E1.12742
+Date: Sun, 29 Jun 2014 20:11:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-Is accelerated decoding supported?
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
+              from <span class="vcard"><a class="email" href="mailto:walter.haidinger&#64;gmx.at" title="Walter Haidinger &lt;walter.haidinger&#64;gmx.at&gt;"> <span class="fn">Walter Haidinger</span></a>
+</span></b>
+        <pre>No changes if I omit the console=fb0 and/or video= option.
+Using a different resolution for video= sets the X11 screen accordingly,
+though.
 
-- Grant
+I also recall that I've added those two in an effort to get a working console.
+But that obviously did not help.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1404072716.fe134E1.12742--
+
+--===============1568676393==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1568676393==--
