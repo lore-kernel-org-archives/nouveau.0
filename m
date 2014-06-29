@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80675] [NVAA] Nouveau KMS framebuffer hand-over:
- no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok
-Date: Sun, 29 Jun 2014 15:42:21 +0000
-Message-ID: <bug-80675-8800-EB3sOHKrPC@http.bugs.freedesktop.org/>
-References: <bug-80675-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 76483] [NV50, bisected,
+ RFC patch] xset dpms force {on, off} does not work over DP
+Date: Sun, 29 Jun 2014 15:56:15 +0000
+Message-ID: <bug-76483-8800-XtVX8699t7@http.bugs.freedesktop.org/>
+References: <bug-76483-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0014677709=="
+Content-Type: multipart/mixed; boundary="===============1718050778=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +21,67 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0014677709==
-Content-Type: multipart/alternative; boundary="1404056540.4a0Bf4A02.9735"; charset="us-ascii"
+--===============1718050778==
+Content-Type: multipart/alternative; boundary="1404057375.80bfE3E3.13217"; charset="us-ascii"
 
 
---1404056540.4a0Bf4A02.9735
-Date: Sun, 29 Jun 2014 15:42:20 +0000
+--1404057375.80bfE3E3.13217
+Date: Sun, 29 Jun 2014 15:56:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80675
+https://bugs.freedesktop.org/show_bug.cgi?id=76483
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #17 from Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> ---
+With the extra output the display on -> standby (off) transition now looks
+like:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau KMS framebuffer     |[NVAA] Nouveau KMS
-                   |hand-over: no/black console |framebuffer hand-over:
-                   |on Nvidia                   |no/black console on Nvidia
-                   |MCP78S/C77/GeForce 8300     |MCP78S/C77/GeForce 8300
-                   |(10de:0848), X11 ok         |(10de:0848), X11 ok
+[  227.434722] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
+[  227.434736] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000002
+[  227.434738] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434741] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434743] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434877] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
+0x10000000
+[  227.434884] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0000 0184
+[  227.434886] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  227.434888] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  227.434891] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  227.434893] nouveau  [   PDISP][0000:05:00.0]        0002 0284
+[  227.434913] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0006 0184
+[  227.434915] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  227.434917] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  227.434919] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  227.434921] nouveau  [   PDISP][0000:05:00.0]        0002 0284
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You have a number of options being passed to the kernel:
+and the (unsuccessful) off -> on transition looks like:
 
-console=tty0 console=fb0 console=ttyS0,38400n8 video=card0-VGA-1:1024x768@60
+[  277.955374] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
+[  277.955387] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000001
+[  277.955389] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955392] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955394] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955528] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
+0x10000000
+[  277.957570] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0000 0184
+[  277.957574] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  277.957576] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  277.957578] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  277.957580] nouveau  [   PDISP][0000:05:00.0]        0002 0284
+[  277.957600] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0006 0184
+[  277.957602] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  277.957604] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  277.957607] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  277.957609] nouveau  [   PDISP][0000:05:00.0]        0002 0284
 
-Would you mind trying it without those? esp the video= option.
+I'll attach the full log soon (pressed for time ATM).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404056540.4a0Bf4A02.9735
-Date: Sun, 29 Jun 2014 15:42:20 +0000
+--1404057375.80bfE3E3.13217
+Date: Sun, 29 Jun 2014 15:56:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,44 +89,61 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok
-           </td>
-           <td>[NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675#c2">Comment # 2</a>
+   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
+              from <span class="vcard"><a class="email" href="mailto:schendel&#64;kbcomputer.com" title="Karl Schendel &lt;schendel&#64;kbcomputer.com&gt;"> <span class="fn">Karl Schendel</span></a>
 </span></b>
-        <pre>You have a number of options being passed to the kernel:
+        <pre>With the extra output the display on -&gt; standby (off) transition now looks
+like:
 
-console=tty0 console=fb0 console=ttyS0,38400n8 video=card0-VGA-1:1024x768&#64;60
+[  227.434722] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
+[  227.434736] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000002
+[  227.434738] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434741] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434743] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  227.434877] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
+0x10000000
+[  227.434884] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0000 0184
+[  227.434886] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  227.434888] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  227.434891] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  227.434893] nouveau  [   PDISP][0000:05:00.0]        0002 0284
+[  227.434913] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0006 0184
+[  227.434915] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  227.434917] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  227.434919] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  227.434921] nouveau  [   PDISP][0000:05:00.0]        0002 0284
 
-Would you mind trying it without those? esp the video= option.</pre>
+and the (unsuccessful) off -&gt; on transition looks like:
+
+[  277.955374] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 8: 0x00000600 1
+[  277.955387] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000001
+[  277.955389] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955392] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955394] nouveau D[     I2C][0000:05:00.0] AUXCH(3): wr 0x00000000
+[  277.955528] nouveau D[     I2C][0000:05:00.0] AUXCH(3): 00 0x01108000
+0x10000000
+[  277.957570] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0000 0184
+[  277.957574] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  277.957576] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  277.957578] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  277.957580] nouveau  [   PDISP][0000:05:00.0]        0002 0284
+[  277.957600] nouveau  [   PDISP][0000:05:00.0] nv50_sor_mthd: 0006 0184
+[  277.957602] nouveau  [   PDISP][0000:05:00.0]        0200 0102
+[  277.957604] nouveau  [   PDISP][0000:05:00.0]        0002 01c1
+[  277.957607] nouveau  [   PDISP][0000:05:00.0]        0006 0284
+[  277.957609] nouveau  [   PDISP][0000:05:00.0]        0002 0284
+
+I'll attach the full log soon (pressed for time ATM).</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +155,9 @@ Would you mind trying it without those? esp the video= option.</pre>
     </body>
 </html>
 
---1404056540.4a0Bf4A02.9735--
+--1404057375.80bfE3E3.13217--
 
---===============0014677709==
+--===============1718050778==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +168,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0014677709==--
+--===============1718050778==--
