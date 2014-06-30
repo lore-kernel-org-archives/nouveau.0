@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Mon, 30 Jun 2014 03:34:36 +0000
-Message-ID: <bug-76483-8800-793ufLlv3z@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Jetson TK1 support -- OpenGL?
+Date: Mon, 30 Jun 2014 14:18:42 +0900
+Message-ID: <CAAVeFuKNUupXxYsPAGHj4Ygbgc=ErHkfAGq9rexHbRD84iSKuw@mail.gmail.com>
+References: <CAN0CFw0pwq=_A_ZT60KpMSniJm=aq0yOvy8qOKROU217+62fPQ@mail.gmail.com>
+ <CAAVeFuLrOPPWAqyhShzrbM9r5RLXqANnEWfdF+cJF3vNcrYRSg@mail.gmail.com>
+ <CAN0CFw2iFxqxh2ASfarczTiaEFr2gcM8zfMOnOdc62N02nO53A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0597813488=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAN0CFw2iFxqxh2ASfarczTiaEFr2gcM8zfMOnOdc62N02nO53A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Mon, Jun 30, 2014 at 4:46 AM, Grant <emailgrant-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>> I read that nouveau supports the Jetson TK1 board:
+>>>
+>>> http://www.newegg.com/Product/Product.aspx?Item=N82E16813190005
+>>>
+>>> Does it provide OpenGL support?
+>>
+>> It does:
+>>
+>> https://www.youtube.com/watch?v=7ZSGSVGsSwc
+>>
+>> This is still a work-in-progress, but glmark2 and Weston are already
+>> running. Note that as the support is rather new currently requires
+>> recompiling a few things by yourself, including a custom kernel. But
+>> the support should land into upstream quite soon.
+>
+>
+> Is there a mainline kernel version targeted for support?
+>
+>
+>> NVIDIA's proprietary drivers also support OpenGL under X if you don't
+>> mind not running a free software graphics stack.
+>
+>
+> These drivers?
+>
+> http://www.nvidia.com/object/linux-arm-display-archive.html
+>
+> Is accelerated decoding supported?
 
---===============0597813488==
-Content-Type: multipart/alternative; boundary="1404099276.ECfcfbe4.4167"; charset="us-ascii"
+Look here for all NVIDIA-provided Jetson support:
 
+https://developer.nvidia.com/linux-tegra-rel-19
 
---1404099276.ECfcfbe4.4167
-Date: Mon, 30 Jun 2014 03:34:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+I *think* HW-accelerated decoding is supported to some point
+(gstreamer), but not everything unfortunately:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
-
---- Comment #20 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This commit[1] should hopefully make things work for you.
-
-Let me know how you go,
-Ben.
-
-[1]
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=55f5a9c64a638b1e14f39b43459d8eb581a479c3
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1404099276.ECfcfbe4.4167
-Date: Mon, 30 Jun 2014 03:34:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>This commit[1] should hopefully make things work for you.
-
-Let me know how you go,
-Ben.
-
-[1]
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=55f5a9c64a638b1e14f39b43459d8eb581a479c3">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=55f5a9c64a638b1e14f39b43459d8eb581a479c3</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404099276.ECfcfbe4.4167--
-
---===============0597813488==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0597813488==--
+https://devtalk.nvidia.com/default/topic/725064/jetson-tk1-linux-vdpau/
