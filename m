@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80738] Possible wrong variable used in
-	nouveau_allocate_surface
-Date: Tue, 01 Jul 2014 02:58:06 +0000
-Message-ID: <bug-80738-8800-OLVl1F3MoB@http.bugs.freedesktop.org/>
-References: <bug-80738-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50: disable dedicated ubo upload method
+Date: Mon, 30 Jun 2014 23:29:50 -0400
+Message-ID: <1404185390-24628-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2025554309=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,114 +15,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.2 10.1" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+The hardware allows multiple simultaneous renders with the same
+memory-backed constbufs but with each invocation having different
+values. However in order for that to work, the data has to be streamed
+in via the right constbuf slot. We weren't doing that for UBOs.
 
---===============2025554309==
-Content-Type: multipart/alternative; boundary="1404183487.B47f2.20116"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "10.2 10.1" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/nv50/nv50_context.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-
---1404183487.B47f2.20116
-Date: Tue, 1 Jul 2014 02:58:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80738
-
-Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It's a typo.  Fortunately, it shouldn't cause any issue as the fields should be
-at the same offsets due to the union.
-
-I've pushed a fix for the typo. Thanks for pointing it out!
-
+diff --git a/src/gallium/drivers/nouveau/nv50/nv50_context.c b/src/gallium/drivers/nouveau/nv50/nv50_context.c
+index f844592..3f3a888 100644
+--- a/src/gallium/drivers/nouveau/nv50/nv50_context.c
++++ b/src/gallium/drivers/nouveau/nv50/nv50_context.c
+@@ -253,7 +253,14 @@ nv50_create(struct pipe_screen *pscreen, void *priv)
+    nv50->base.screen    = &screen->base;
+    nv50->base.copy_data = nv50_m2mf_copy_linear;
+    nv50->base.push_data = nv50_sifc_linear_u8;
++   /* FIXME: Make it possible to use this again. The problem is that there is
++    * some clever logic in the card that allows for multiple renders to happen
++    * when there are only constbuf changes. However that relies on the
++    * constbuf updates happening to the right constbuf slots. Currently
++    * implementation just makes it go through a separate slot which doesn't
++    * properly update the right constbuf data.
+    nv50->base.push_cb   = nv50_cb_push;
++    */
+ 
+    nv50->screen = screen;
+    pipe->screen = pscreen;
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1404183487.B47f2.20116
-Date: Tue, 1 Jul 2014 02:58:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Possible wrong variable used in nouveau_allocate_surface"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80738">bug 80738</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Possible wrong variable used in nouveau_allocate_surface"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80738#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Possible wrong variable used in nouveau_allocate_surface"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80738">bug 80738</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>It's a typo.  Fortunately, it shouldn't cause any issue as the fields should be
-at the same offsets due to the union.
-
-I've pushed a fix for the typo. Thanks for pointing it out!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404183487.B47f2.20116--
-
---===============2025554309==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2025554309==--
+1.8.5.5
