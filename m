@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80769] [NVD9] GF119M boot hang with 3.15.2
-Date: Tue, 01 Jul 2014 20:31:54 +0000
-Message-ID: <bug-80769-8800-vioRM92IMg@http.bugs.freedesktop.org/>
+Date: Tue, 01 Jul 2014 20:48:08 +0000
+Message-ID: <bug-80769-8800-DOtvKd0xPa@http.bugs.freedesktop.org/>
 References: <bug-80769-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1695751467=="
+Content-Type: multipart/mixed; boundary="===============0259193670=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80769-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1695751467==
-Content-Type: multipart/alternative; boundary="1404246714.2bc63.17157"; charset="us-ascii"
+--===============0259193670==
+Content-Type: multipart/alternative; boundary="1404247687.aB5Fa2.21598"; charset="us-ascii"
 
 
---1404246714.2bc63.17157
-Date: Tue, 1 Jul 2014 20:31:54 +0000
+--1404247687.aB5Fa2.21598
+Date: Tue, 1 Jul 2014 20:48:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80769
 
---- Comment #1 from sven <sven.pilz+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 102096
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102096&action=edit
-xorg log
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The xorg backtrace has intel_drv.so in it. What makes you say this is a nouveau
+bug?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404246714.2bc63.17157
-Date: Tue, 1 Jul 2014 20:31:54 +0000
+--1404247687.aB5Fa2.21598
+Date: Tue, 1 Jul 2014 20:48:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80769">bug 80769</a>
-              from <span class="vcard"><a class="email" href="mailto:sven.pilz+freedesktop&#64;gmail.com" title="sven &lt;sven.pilz+freedesktop&#64;gmail.com&gt;"> <span class="fn">sven</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102096" name="attach_102096" title="xorg log">attachment 102096</a> <a href="attachment.cgi?id=102096&amp;action=edit" title="xorg log">[details]</a></span>
-xorg log</pre>
+        <pre>The xorg backtrace has intel_drv.so in it. What makes you say this is a nouveau
+bug?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +74,9 @@ xorg log</pre>
     </body>
 </html>
 
---1404246714.2bc63.17157--
+--1404247687.aB5Fa2.21598--
 
---===============1695751467==
+--===============0259193670==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1695751467==--
+--===============0259193670==--
