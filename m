@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76483] [NV50, bisected,
- RFC patch] xset dpms force {on, off} does not work over DP
-Date: Tue, 01 Jul 2014 11:29:50 +0000
-Message-ID: <bug-76483-8800-KGKd2buhnX@http.bugs.freedesktop.org/>
-References: <bug-76483-8800@http.bugs.freedesktop.org/>
+From: Pali =?utf-8?q?Roh=C3=A1r?= <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nouveau xorg driver - compile error
+Date: Tue, 1 Jul 2014 21:47:46 +0200
+Message-ID: <201407012147.46585@pali>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1169879345=="
+Content-Type: multipart/mixed; boundary="===============0045598125=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,90 +17,49 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0045598125==
+Content-Type: multipart/signed;
+  boundary="nextPart6064645.cpxXmfAeA7";
+  protocol="application/pgp-signature";
+  micalg=pgp-sha1
+Content-Transfer-Encoding: 7bit
 
---===============1169879345==
-Content-Type: multipart/alternative; boundary="1404214190.fe77C3.24089"; charset="us-ascii"
+--nextPart6064645.cpxXmfAeA7
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
 
---1404214190.fe77C3.24089
-Date: Tue, 1 Jul 2014 11:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+nouveau xorg driver from master git repository cannot be compiled
+on ubuntu precise. Here is build log:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76483
+https://launchpadlibrarian.net/179062836/buildlog_ubuntu-precise-amd64.xser=
+ver-xorg-video-nouveau_1:1.0.10-git201407010817~ubuntu12.04.1_FAILEDTOBUILD=
+=2Etxt.gz
 
---- Comment #25 from Karl Schendel <schendel-zf86OBlHRo2+XT7JhA+gdA@public.gmane.org> ---
-That fixed the garbled display.
+Problem is somewhere in drmmode_display.c. Can somebody look at
+it and fix compile error problems?
 
-The monitor off/on thing is weird.  When I was trying to get 3.14 to work
-(before discovering this bug report), I tried the nvidia binary driver and got
-the same flash off/on thing.  However, dpms-off was working in 3.6.3, which I
-unfortunately don't have lying around any more.  It seems strange that the
-monitor would break in this manner, so I guess the 3.6.x driver was doing
-something to work around the monitor's response.  (Also, the monitor-off
-screensaver works when I am in OS/X.)
+=2D-=20
+Pali Roh=C3=A1r
+pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-I can get a log to verify if you like, later today.  If there's anything I can
-get from 3.6 to see if it's doing something different, let me know;  I'm sure I
-can find and build a 3.6 sometime in the next day or two if necessary.
+--nextPart6064645.cpxXmfAeA7
+Content-Type: application/pgp-signature; name=signature.asc 
+Content-Description: This is a digitally signed message part.
 
-At least it's going in the right direction - thanks!
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+iEYEABECAAYFAlOzEGIACgkQi/DJPQPkQ1LUwACaAsJy4WZf1OkcFWc0wcep3Zcw
+aRIAn0zD1t52FJbQyZQtcnfBfks+ELNc
+=CM0w
+-----END PGP SIGNATURE-----
 
---1404214190.fe77C3.24089
-Date: Tue, 1 Jul 2014 11:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--nextPart6064645.cpxXmfAeA7--
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50, bisected, RFC patch] xset dpms force {on,off} does not work over DP"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76483">bug 76483</a>
-              from <span class="vcard"><a class="email" href="mailto:schendel&#64;kbcomputer.com" title="Karl Schendel &lt;schendel&#64;kbcomputer.com&gt;"> <span class="fn">Karl Schendel</span></a>
-</span></b>
-        <pre>That fixed the garbled display.
-
-The monitor off/on thing is weird.  When I was trying to get 3.14 to work
-(before discovering this bug report), I tried the nvidia binary driver and got
-the same flash off/on thing.  However, dpms-off was working in 3.6.3, which I
-unfortunately don't have lying around any more.  It seems strange that the
-monitor would break in this manner, so I guess the 3.6.x driver was doing
-something to work around the monitor's response.  (Also, the monitor-off
-screensaver works when I am in OS/X.)
-
-I can get a log to verify if you like, later today.  If there's anything I can
-get from 3.6 to see if it's doing something different, let me know;  I'm sure I
-can find and build a 3.6 sometime in the next day or two if necessary.
-
-At least it's going in the right direction - thanks!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404214190.fe77C3.24089--
-
---===============1169879345==
+--===============0045598125==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -114,4 +70,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1169879345==--
+--===============0045598125==--
