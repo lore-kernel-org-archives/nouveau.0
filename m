@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80769] [NVD9] GF119M boot hang with 3.15.2
-Date: Tue, 01 Jul 2014 21:44:40 +0000
-Message-ID: <bug-80769-8800-KD5ollEeVX@http.bugs.freedesktop.org/>
-References: <bug-80769-8800@http.bugs.freedesktop.org/>
+From: Pali =?utf-8?q?Roh=C3=A1r?= <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: nouveau xorg driver - compile error
+Date: Wed, 2 Jul 2014 01:28:16 +0200
+Message-ID: <201407020128.16732@pali>
+References: <201407012147.46585@pali> <53B32AA1.5010705@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2139293018=="
+Content-Type: multipart/mixed; boundary="===============1850312487=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80769-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <53B32AA1.5010705-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,123 +16,89 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1850312487==
+Content-Type: multipart/signed;
+  boundary="nextPart117033310.WcSabq8H19";
+  protocol="application/pgp-signature";
+  micalg=pgp-sha1
+Content-Transfer-Encoding: 7bit
 
---===============2139293018==
-Content-Type: multipart/alternative; boundary="1404251080.11d51A81.737"; charset="us-ascii"
+--nextPart117033310.WcSabq8H19
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
 
---1404251080.11d51A81.737
-Date: Tue, 1 Jul 2014 21:44:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+On Tuesday 01 July 2014 23:39:45 Emil Velikov wrote:
+> Hi Pali,
+>=20
+> If the future can you include the error message (plus a couple
+> of lines of context) in the email ? Thanks.
+>=20
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80769
+Ok.
 
---- Comment #5 from sven <sven.pilz+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #4)
-> (In reply to comment #3)
-> > (In reply to comment #2)
-> > > The xorg backtrace has intel_drv.so in it. What makes you say this is a
-> > > nouveau bug?
-> > 
-> > I don't know if nouveau crashes the xserver. Should have stated that more
-> > clearly, sorry. This may be more a symptom that started to appear with the
-> > boot hangs and the error messages from the kernel driver.
-> 
-> Ah. So the dmesg is from a perfectly-fine boot, yes? (Other than the error
-> messages, which are probably not a big deal.)
+> Seems like the list* symbols got prefixed with xorg_ during
+> the 1.12 development cycle (commit ca64912c02b), and your
+> build uses 1.11.x.
+>=20
 
-Yes.
+Compilation failed with version 1.11.4.
 
+> I'm using xorg-server 1.15 so cannot really test this but the
+> attached patch should help. Can you give it a try ?
+>=20
 
-> Can you bisect the boot hang? (Or at least get a dmesg from it, e.g. with
-> netconsole)
+I tried your patch and now nouveau driver with it compiled=20
+successfully. So thanks!
 
-I now tried a couple of boots in a row and one of them actually succeeded (with
-glxgears and own OpenGL applications). But the other times it got stuck during
-boot, though not always before the switch to native resolution. One hanged with
-some systemd error (rfkill stuff). I will try to get more information. But it
-looks like there may be a couple of problems or everything is just a symptom of
-some deeper one. Which still is strange is that the symptoms disappear when I
-switch to the Intel card or Optimus in the BIOS. Maybe some ACPI problems and
-nothing directly related to nouveau.
+> Cheers,
+> Emil
+>=20
+> On 01/07/14 20:47, Pali Roh=C3=A1r wrote:
+> > Hello,
+> >=20
+> > nouveau xorg driver from master git repository cannot be
+> > compiled on ubuntu precise. Here is build log:
+> >=20
+> > https://launchpadlibrarian.net/179062836/buildlog_ubuntu-pre
+> > cise-amd64.xserver-xorg-video-nouveau_1:1.0.10-git2014070108
+> > 17~ubuntu12.04.1_FAILEDTOBUILD.txt.gz
+> >=20
+> > Problem is somewhere in drmmode_display.c. Can somebody look
+> > at it and fix compile error problems?
+> >=20
+> >=20
+> >=20
+> > _______________________________________________
+> > Nouveau mailing list
+> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> > http://lists.freedesktop.org/mailman/listinfo/nouveau
 
-Sorry for bothering you with that :-). I guess you should close the bug and if
-I find something related to nouveau I'll open a new one.
+=2D-=20
+Pali Roh=C3=A1r
+pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+--nextPart117033310.WcSabq8H19
+Content-Type: application/pgp-signature; name=signature.asc 
+Content-Description: This is a digitally signed message part.
 
---1404251080.11d51A81.737
-Date: Tue, 1 Jul 2014 21:44:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769">bug 80769</a>
-              from <span class="vcard"><a class="email" href="mailto:sven.pilz+freedesktop&#64;gmail.com" title="sven &lt;sven.pilz+freedesktop&#64;gmail.com&gt;"> <span class="fn">sven</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=80769#c4">comment #4</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=80769#c3">comment #3</a>)
-&gt; &gt; (In reply to <a href="show_bug.cgi?id=80769#c2">comment #2</a>)
-&gt; &gt; &gt; The xorg backtrace has intel_drv.so in it. What makes you say this is a
-&gt; &gt; &gt; nouveau bug?
-&gt; &gt; 
-&gt; &gt; I don't know if nouveau crashes the xserver. Should have stated that more
-&gt; &gt; clearly, sorry. This may be more a symptom that started to appear with the
-&gt; &gt; boot hangs and the error messages from the kernel driver.
-&gt; 
-&gt; Ah. So the dmesg is from a perfectly-fine boot, yes? (Other than the error
-&gt; messages, which are probably not a big deal.)</span >
+iEYEABECAAYFAlOzRBAACgkQi/DJPQPkQ1L2VwCgtvr4C62oWJ6yWdaLwBFSuDlu
+PFoAniPIh0sqQKvUFVe5NuYsIo+IWpE7
+=M6K4
+-----END PGP SIGNATURE-----
 
-Yes.
+--nextPart117033310.WcSabq8H19--
 
-
-<span class="quote">&gt; Can you bisect the boot hang? (Or at least get a dmesg from it, e.g. with
-&gt; netconsole)</span >
-
-I now tried a couple of boots in a row and one of them actually succeeded (with
-glxgears and own OpenGL applications). But the other times it got stuck during
-boot, though not always before the switch to native resolution. One hanged with
-some systemd error (rfkill stuff). I will try to get more information. But it
-looks like there may be a couple of problems or everything is just a symptom of
-some deeper one. Which still is strange is that the symptoms disappear when I
-switch to the Intel card or Optimus in the BIOS. Maybe some ACPI problems and
-nothing directly related to nouveau.
-
-Sorry for bothering you with that :-). I guess you should close the bug and if
-I find something related to nouveau I'll open a new one.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404251080.11d51A81.737--
-
---===============2139293018==
+--===============1850312487==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -143,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2139293018==--
+--===============1850312487==--
