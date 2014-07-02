@@ -1,12 +1,14 @@
-From: Pali =?utf-8?q?Roh=C3=A1r?= <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nouveau xorg driver - compile error
-Date: Wed, 2 Jul 2014 01:28:16 +0200
-Message-ID: <201407020128.16732@pali>
-References: <201407012147.46585@pali> <53B32AA1.5010705@gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v3 0/3] drm/nouveau: support for probing
+	platform devices
+Date: Wed, 2 Jul 2014 18:09:03 +0900
+Message-ID: <CAAVeFu+O+Z7kQ3Sre=WKkcYoxXYUx4zCzZK8cVMj1WAtwA5eMg@mail.gmail.com>
+References: <1403760814-26148-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1850312487=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53B32AA1.5010705-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1403760814-26148-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,97 +18,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1850312487==
-Content-Type: multipart/signed;
-  boundary="nextPart117033310.WcSabq8H19";
-  protocol="application/pgp-signature";
-  micalg=pgp-sha1
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 26, 2014 at 2:33 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> This series adds support for probing platform devices on Nouveau, as well as
+> the DT bindings for GK20A. It doesn't enable the GPU yet on Tegra boards since
+> a few extra things need to be supported before that.
+>
+> This version is mostly identical to v2 but fixes an important issue: the drvdata
+> must be set to the drm_device for sysfs to work, so the platform device
+> structure now includes the nouveau_device flattened into it to let us compute
+> the address of one from the other. Since the platform device resources (clocks,
+> regulators, ...) need to live longer than the nouveau_device, they are stored
+> into their own structure which is allocated separately.
+>
+> Changes since v2:
+> * Allocate the nouveau_device flattened into the nouveau_platform_device to
+>   be able to compute one from another easily, without having to ressort on the
+>   drvdata which is required to store the drm_device.
+> * Only propose the platform driver if a supported arch (Tegra for now) is
+>   enabled.
+> * Move structure definitions into their own header file as some subdevs (e.g.
+>   clocks) will need to use them.
+>
+> Changes since v1:
+> * Moved the platform device driver to its own module. This allows it to be more
+>   self-contained and saves us the need to export too many functions from
+>   nouveau_drm and nouveau_platform.
+> * Register the DRM device without using the platform helpers, which is made
+>   possible by drm_dev_set_unique(). This allows us to catch and register the
+>   DRM device during platform probe.
+> * Fixed the clock names in the DT bindings.
+> * Removed the patches enabling GK20A on Venice2 and Jetson TK1 as support
+>   is not complete yet.
 
---nextPart117033310.WcSabq8H19
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Stephen, Thierry,
 
-Hello,
-
-On Tuesday 01 July 2014 23:39:45 Emil Velikov wrote:
-> Hi Pali,
->=20
-> If the future can you include the error message (plus a couple
-> of lines of context) in the email ? Thanks.
->=20
-
-Ok.
-
-> Seems like the list* symbols got prefixed with xorg_ during
-> the 1.12 development cycle (commit ca64912c02b), and your
-> build uses 1.11.x.
->=20
-
-Compilation failed with version 1.11.4.
-
-> I'm using xorg-server 1.15 so cannot really test this but the
-> attached patch should help. Can you give it a try ?
->=20
-
-I tried your patch and now nouveau driver with it compiled=20
-successfully. So thanks!
-
-> Cheers,
-> Emil
->=20
-> On 01/07/14 20:47, Pali Roh=C3=A1r wrote:
-> > Hello,
-> >=20
-> > nouveau xorg driver from master git repository cannot be
-> > compiled on ubuntu precise. Here is build log:
-> >=20
-> > https://launchpadlibrarian.net/179062836/buildlog_ubuntu-pre
-> > cise-amd64.xserver-xorg-video-nouveau_1:1.0.10-git2014070108
-> > 17~ubuntu12.04.1_FAILEDTOBUILD.txt.gz
-> >=20
-> > Problem is somewhere in drmmode_display.c. Can somebody look
-> > at it and fix compile error problems?
-> >=20
-> >=20
-> >=20
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > http://lists.freedesktop.org/mailman/listinfo/nouveau
-
-=2D-=20
-Pali Roh=C3=A1r
-pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---nextPart117033310.WcSabq8H19
-Content-Type: application/pgp-signature; name=signature.asc 
-Content-Description: This is a digitally signed message part.
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-
-iEYEABECAAYFAlOzRBAACgkQi/DJPQPkQ1L2VwCgtvr4C62oWJ6yWdaLwBFSuDlu
-PFoAniPIh0sqQKvUFVe5NuYsIo+IWpE7
-=M6K4
------END PGP SIGNATURE-----
-
---nextPart117033310.WcSabq8H19--
-
---===============1850312487==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1850312487==--
+Ben has merged the first patch of this series into the Nouveau tree.
+Could you get patches 2 and 3 through the Tegra tree? Thanks!
