@@ -1,8 +1,8 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] drm: default scaling to NONE for external
-	connectors
-Date: Thu,  3 Jul 2014 15:27:03 -0400
-Message-ID: <1404415623-7198-1-git-send-email-imirkin@alum.mit.edu>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v3 1/2] nv50/ir: Add support for the double Type
+	to BuildUtil
+Date: Thu,  3 Jul 2014 21:27:32 +0200
+Message-ID: <1404415653-6089-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -16,52 +16,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 ---
+ .../drivers/nouveau/codegen/nv50_ir_build_util.cpp      | 17 +++++++++++++++++
+ .../drivers/nouveau/codegen/nv50_ir_build_util.h        |  2 ++
+ 2 files changed, 19 insertions(+)
 
-Based on a recent discussion in #radeon, and also my own observation that the
-'full' scaling causes no end of confusion among users.
-
-See https://bugs.freedesktop.org/show_bug.cgi?id=80868 for some more details,
-although it is more radeon-specific.
-
-Side-note: the scaling mode update handler disallows setting the mode to none
-for LVDS... should it be the same for eDP as well? Or perhaps relax the
-restriction and let people do whatever they want?
-
- drm/nouveau_connector.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/drm/nouveau_connector.c b/drm/nouveau_connector.c
-index 1fa222e..295e222 100644
---- a/drm/nouveau_connector.c
-+++ b/drm/nouveau_connector.c
-@@ -1192,6 +1192,8 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 					      disp->color_vibrance_property,
- 					      150);
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp
+index 6d9c830..44daece 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.cpp
+@@ -391,6 +391,17 @@ BuildUtil::mkImm(float f)
+    return mkImm(u.u32);
+ }
  
-+	nv_connector->scaling_mode = DRM_MODE_SCALE_NONE;
++ImmediateValue *
++BuildUtil::mkImm(double f)
++{
++   union {
++      double f64;
++      uint64_t u64;
++   } u;
++   u.f64 = f;
++   return mkImm(u.u64);
++}
 +
- 	switch (nv_connector->type) {
- 	case DCB_CONNECTOR_VGA:
- 		if (nv_device(drm->device)->card_type >= NV_50) {
-@@ -1203,10 +1205,11 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 	case DCB_CONNECTOR_TV_0:
- 	case DCB_CONNECTOR_TV_1:
- 	case DCB_CONNECTOR_TV_3:
--		nv_connector->scaling_mode = DRM_MODE_SCALE_NONE;
- 		break;
- 	default:
--		nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
-+		if (type == DRM_MODE_CONNECTOR_LVDS ||
-+		    type == DRM_MODE_CONNECTOR_eDP)
-+			nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
+ Value *
+ BuildUtil::loadImm(Value *dst, float f)
+ {
+@@ -398,6 +409,12 @@ BuildUtil::loadImm(Value *dst, float f)
+ }
  
- 		drm_object_attach_property(&connector->base,
- 				dev->mode_config.scaling_mode_property,
+ Value *
++BuildUtil::loadImm(Value *dst, double u)
++{
++   return mkOp1v(OP_MOV, TYPE_F64, dst ? dst : getScratch(8), mkImm(u));
++}
++
++Value *
+ BuildUtil::loadImm(Value *dst, uint32_t u)
+ {
+    return mkOp1v(OP_MOV, TYPE_U32, dst ? dst : getScratch(), mkImm(u));
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.h
+index a610c77..2abf736 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_build_util.h
+@@ -90,12 +90,14 @@ public:
+    void mkClobber(DataFile file, uint32_t regMask, int regUnitLog2);
+ 
+    ImmediateValue *mkImm(float);
++   ImmediateValue *mkImm(double);
+    ImmediateValue *mkImm(uint32_t);
+    ImmediateValue *mkImm(uint64_t);
+ 
+    ImmediateValue *mkImm(int i) { return mkImm((uint32_t)i); }
+ 
+    Value *loadImm(Value *dst, float);
++   Value *loadImm(Value *dst, double);
+    Value *loadImm(Value *dst, uint32_t);
+    Value *loadImm(Value *dst, uint64_t);
+ 
 -- 
-1.8.5.5
+1.8.4.5
