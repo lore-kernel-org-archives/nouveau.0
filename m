@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
-	3.15
-Date: Fri, 04 Jul 2014 08:01:23 +0000
-Message-ID: <bug-80901-8800-0t16DBip0q@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Fri, 04 Jul 2014 08:03:07 +0000
+Message-ID: <bug-33165-8800-w16lcY2HRC@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0969406594=="
+Content-Type: multipart/mixed; boundary="===============1087139063=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,71 +20,91 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0969406594==
-Content-Type: multipart/alternative; boundary="1404460883.C5bFf21.7309"; charset="us-ascii"
+--===============1087139063==
+Content-Type: multipart/alternative; boundary="1404460987.8caaA5.7750"; charset="us-ascii"
 
 
---1404460883.C5bFf21.7309
-Date: Fri, 4 Jul 2014 08:01:23 +0000
+--1404460987.8caaA5.7750
+Date: Fri, 4 Jul 2014 08:03:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D80901
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #8 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
-Sorry, i forgot to mention: temperature is around 40-50=C2=B0C in both case=
-s.=20
-This is not an heavy-duty machine, so usually it is dead silent.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
---=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jw.hendy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #33 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 77371 has been marked as a duplicate of this bug. ***
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404460883.C5bFf21.7309
-Date: Fri, 4 Jul 2014 08:01:23 +0000
+--1404460987.8caaA5.7750
+Date: Fri, 4 Jul 2014 08:03:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>jw.hendy&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901#c8">Comment=
- # 8</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c33">Comment # 33</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901">bug 80901<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gianni&#64;rootcube.net" title=3D"gianni&#64;rootcube.net">gianni&#64;rootc=
-ube.net</a>
+   title="NEW --- - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Sorry, i forgot to mention: temperature is around 40-50=C2=B0C=
- in both cases.=20
-This is not an heavy-duty machine, so usually it is dead silent.</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVA3] gpu lockup on boot unless noaccel=1"
+   href="show_bug.cgi?id=77371">Bug 77371</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1404460883.C5bFf21.7309--
+--1404460987.8caaA5.7750--
 
---===============0969406594==
+--===============1087139063==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0969406594==--
+--===============1087139063==--
