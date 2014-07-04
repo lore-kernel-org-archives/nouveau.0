@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
 	3.15
-Date: Fri, 04 Jul 2014 08:20:15 +0000
-Message-ID: <bug-80901-8800-i6slW7FRBc@http.bugs.freedesktop.org/>
+Date: Fri, 04 Jul 2014 08:48:09 +0000
+Message-ID: <bug-80901-8800-4P0kKL0PuT@http.bugs.freedesktop.org/>
 References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0868792401=="
+Content-Type: multipart/mixed; boundary="===============0836962808=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,64 +21,119 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0868792401==
-Content-Type: multipart/alternative; boundary="1404462015.8de828df1.13952"; charset="us-ascii"
+--===============0836962808==
+Content-Type: multipart/alternative; boundary="1404463688.1CBa1.21815"; charset="us-ascii"
 
 
---1404462015.8de828df1.13952
-Date: Fri, 4 Jul 2014 08:20:15 +0000
+--1404463688.1CBa1.21815
+Date: Fri, 4 Jul 2014 08:48:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
+https://bugs.freedesktop.org/show_bug.cgi?id=3D80901
 
---- Comment #10 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
-Created attachment 102256
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102256&action=edit
-lspci -vv output
+--- Comment #11 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Thanks for all this information. It seems like NVIDIA changed the default
+minimum temperature before increasing the fan speed
+(http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/subdev/ther=
+m/fan.c.html#195).
 
--- 
+Based on your information, I would guess it is set to 60=C2=B0C instead of =
+the 40=C2=B0C
+I saw on some card. It is very possible that they set a different value per
+chipset.
+
+I'll check again with a recent version of the blob what is the default
+temperature at which the fan speed starts being increased but I don't think=
+ the
+fix should be to bump the value (that I will set to the minimum value I fou=
+nd
+across the boards). The proper fix would be to let users change this value =
+in
+sysfs.
+
+I'll keep the bug open as a reminder but my time is very limited this summe=
+r.
+If you feel like writing the patch (in nouveau_hwmon.c), I would gladly rev=
+iew
+it!
+
+Thanks for reporting :)
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404462015.8de828df1.13952
-Date: Fri, 4 Jul 2014 08:20:15 +0000
+--1404463688.1CBa1.21815
+Date: Fri, 4 Jul 2014 08:48:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
+   title=3D"NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901">bug 80901<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin.peres&#64;ensi-bourges.fr" title=3D"Martin Peres &lt;martin.peres&#6=
+4;ensi-bourges.fr&gt;"> <span class=3D"fn">Martin Peres</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102256" name="attach_102256" title="lspci -vv output">attachment 102256</a> <a href="attachment.cgi?id=102256&amp;action=edit" title="lspci -vv output">[details]</a></span>
-lspci -vv output</pre>
+        <pre>Thanks for all this information. It seems like NVIDIA changed =
+the default
+minimum temperature before increasing the fan speed
+(<a href=3D"http://code.woboq.org/linux/linux/drivers/gpu/drm/nouveau/core/=
+subdev/therm/fan.c.html#195">http://code.woboq.org/linux/linux/drivers/gpu/=
+drm/nouveau/core/subdev/therm/fan.c.html#195</a>).
+
+Based on your information, I would guess it is set to 60=C2=B0C instead of =
+the 40=C2=B0C
+I saw on some card. It is very possible that they set a different value per
+chipset.
+
+I'll check again with a recent version of the blob what is the default
+temperature at which the fan speed starts being increased but I don't think=
+ the
+fix should be to bump the value (that I will set to the minimum value I fou=
+nd
+across the boards). The proper fix would be to let users change this value =
+in
+sysfs.
+
+I'll keep the bug open as a reminder but my time is very limited this summe=
+r.
+If you feel like writing the patch (in nouveau_hwmon.c), I would gladly rev=
+iew
+it!
+
+Thanks for reporting :)</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1404462015.8de828df1.13952--
+--1404463688.1CBa1.21815--
 
---===============0868792401==
+--===============0836962808==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +144,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0868792401==--
+--===============0836962808==--
