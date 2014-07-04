@@ -1,14 +1,14 @@
 From: Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
 Subject: Re: How to check for proper MSI support?
-Date: Fri, 4 Jul 2014 11:09:55 +0800
-Message-ID: <53B61B03.3070308@huawei.com>
+Date: Fri, 4 Jul 2014 11:13:47 +0800
+Message-ID: <53B61BEB.4040801@huawei.com>
 References: <CAKb7UviGCtebGwyHbXRLZhDOiDAez+eKkxPe9jz5kc-3R1kUvQ@mail.gmail.com>	<53B4F0F7.9020403@huawei.com>	<CALhae2jRz8hL0bwySAbP7r+vJGOG5aif4GA_Yjp0inGAwz5JEA@mail.gmail.com>	<53B612FE.4080105@huawei.com>
- <CAKb7UviVFQYwYdp_dgxK7jJ5Ny9yG1y8LATydxtVtkzRh+aOKw@mail.gmail.com>
+ <CALhae2hqj_rNHfhTx_rk7rd9UqnJf1dhCWLGmRCFrzZCTWk3RA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviVFQYwYdp_dgxK7jJ5Ny9yG1y8LATydxtVtkzRh+aOKw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CALhae2hqj_rNHfhTx_rk7rd9UqnJf1dhCWLGmRCFrzZCTWk3RA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,11 +18,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Brian Becker <brian.johnathan.b-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Brian Becker <brian.johnathan.b-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 2014/7/4 10:43, Ilia Mirkin wrote:
+On 2014/7/4 10:45, Brian Becker wrote:
+> Yijing,
+> 
+> cat /sys/bus/pci/devices/0000\:00\:0e.0/msi_bus returns 1, suggesting
+> that it supports MSI. However, this "00:0e.0 PCI bridge: PLX
+> Technology, Inc. PEX8112 x1 Lane PCI Express-to-PCI Bridge (rev aa)"
+> is a component of the addin card. Wouldn't the lack of support for MSI
+> by the chipset "00:00.0 Host bridge: Intel Corporation 430FX - 82437FX
+> TSC [Triton I] (rev 01)" preclude the use of MSI with buses attached
+> via a bridge?
+
+We have no ways to check host bridge whether support MSI routing to CPU, BIOS
+is responsible for setting and config this in their private registers located in IOH.
+This is transparent to OS I think.
+
+> 
+> Thanks,
+> Brian
+> 
 > On Thu, Jul 3, 2014 at 10:35 PM, Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org> wrote:
 >> Hi Brian,
 >>    From your 01:00.0 VGA compatible controller PCI config register, it supports 1 MSI vector, so I think this
@@ -33,58 +51,6 @@ On 2014/7/4 10:43, Ilia Mirkin wrote:
 >> cat /sys/bus/pci/devices/00:0e.0/msi_bus
 >>
 >> Other, do you call pci_enable_device() before pci_enable_msi() ?
-> 
-> Yes, the device is enabled. nouveau does generally work for most
-> people :) And it works fine here if MSI is forced off.
->
-> The problem here is that pci_enable_msi() succeeds, but it probably
-
-It's some strange, pci_enable_msi() succeeds, but there is nothing in MSI address and data register
-
-        Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-                Address: 0000000000000000  Data: 0000
-Because the address and data is invalid, so MSI can not work.
-
-Because you said pci_enable_msi() return 0 which indicates success, so I guess the device
-current power state is not D0, because checking code in __write_msi_msi.
-
-void __write_msi_msg(struct msi_desc *entry, struct msi_msg *msg)
-{
-    if (entry->dev->current_state != PCI_D0) {
-        /* Don't touch the hardware now */
-    } else if (entry->msi_attrib.is_msix) {
-        void __iomem *base;
-        base = entry->mask_base +
-            entry->msi_attrib.entry_nr * PCI_MSIX_ENTRY_SIZE;
-
-        writel(msg->address_lo, base + PCI_MSIX_ENTRY_LOWER_ADDR);
-        writel(msg->address_hi, base + PCI_MSIX_ENTRY_UPPER_ADDR);
-        writel(msg->data, base + PCI_MSIX_ENTRY_DATA);
-    ......
-
-> shouldn't. I don't know all the details about MSI, but doesn't the CPU
-> or (L)APIC have to support it? In this case, it's a P200MMX on a 430FX
-> chipset board. Both quite ancient...
-
-MSI in x86 always send to specific interrupt address(0xfeexxxx), most x86 CPU
-should support MSI, but I am not sure, I don't know hardware much.
-
-> 
-> So given that the PCI device itself supports MSI, how do we tell that
-> it shouldn't actually get turned on?
-
-Generally, some message in dmesg like:
-[   17.322311] ahci 0000:00:1f.2: irq 119 for MSI/MSI-X
-[   17.322319] ahci 0000:00:1f.2: irq 120 for MSI/MSI-X
-[   17.322326] ahci 0000:00:1f.2: irq 121 for MSI/MSI-X
-[   17.322333] ahci 0000:00:1f.2: irq 122 for MSI/MSI-X
-[   17.322339] ahci 0000:00:1f.2: irq 123 for MSI/MSI-X
-
-Also you can check /proc/interrupts I think.
-
-> 
->   -ilia
-> 
 >>
 >> On 2014/7/4 8:35, Brian Becker wrote:
 >>> I mistakenly only replied to Yijing Wang the first time. Here are the further details.
