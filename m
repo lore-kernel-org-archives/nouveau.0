@@ -1,30 +1,34 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Brian Becker <brian.johnathan.b@gmail.com>
 Subject: Re: How to check for proper MSI support?
-Date: Thu, 3 Jul 2014 22:43:12 -0400
-Message-ID: <CAKb7UviVFQYwYdp_dgxK7jJ5Ny9yG1y8LATydxtVtkzRh+aOKw@mail.gmail.com>
+Date: Thu, 3 Jul 2014 22:45:27 -0400
+Message-ID: <CALhae2hqj_rNHfhTx_rk7rd9UqnJf1dhCWLGmRCFrzZCTWk3RA@mail.gmail.com>
 References: <CAKb7UviGCtebGwyHbXRLZhDOiDAez+eKkxPe9jz5kc-3R1kUvQ@mail.gmail.com>
- <53B4F0F7.9020403@huawei.com>
- <CALhae2jRz8hL0bwySAbP7r+vJGOG5aif4GA_Yjp0inGAwz5JEA@mail.gmail.com>
- <53B612FE.4080105@huawei.com>
+	<53B4F0F7.9020403@huawei.com>
+	<CALhae2jRz8hL0bwySAbP7r+vJGOG5aif4GA_Yjp0inGAwz5JEA@mail.gmail.com>
+	<53B612FE.4080105@huawei.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53B612FE.4080105-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>
-Cc: linux-pci-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Brian Becker <brian.johnathan.b-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-pci-owner@vger.kernel.org>
+In-Reply-To: <53B612FE.4080105@huawei.com>
+Sender: linux-pci-owner@vger.kernel.org
+To: Yijing Wang <wangyijing@huawei.com>
+Cc: Ilia Mirkin <imirkin@alum.mit.edu>, linux-pci@vger.kernel.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On Thu, Jul 3, 2014 at 10:35 PM, Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org> wrote:
+Yijing,
+
+cat /sys/bus/pci/devices/0000\:00\:0e.0/msi_bus returns 1, suggesting
+that it supports MSI. However, this "00:0e.0 PCI bridge: PLX
+Technology, Inc. PEX8112 x1 Lane PCI Express-to-PCI Bridge (rev aa)"
+is a component of the addin card. Wouldn't the lack of support for MSI
+by the chipset "00:00.0 Host bridge: Intel Corporation 430FX - 82437FX
+TSC [Triton I] (rev 01)" preclude the use of MSI with buses attached
+via a bridge?
+
+Thanks,
+Brian
+
+On Thu, Jul 3, 2014 at 10:35 PM, Yijing Wang <wangyijing@huawei.com> wrote:
 > Hi Brian,
 >    From your 01:00.0 VGA compatible controller PCI config register, it supports 1 MSI vector, so I think this
 > card has no problem. But you didn't answer what's the pci_enable_msi() return during it enable MSI fail.
@@ -34,20 +38,6 @@ On Thu, Jul 3, 2014 at 10:35 PM, Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@
 > cat /sys/bus/pci/devices/00:0e.0/msi_bus
 >
 > Other, do you call pci_enable_device() before pci_enable_msi() ?
-
-Yes, the device is enabled. nouveau does generally work for most
-people :) And it works fine here if MSI is forced off.
-
-The problem here is that pci_enable_msi() succeeds, but it probably
-shouldn't. I don't know all the details about MSI, but doesn't the CPU
-or (L)APIC have to support it? In this case, it's a P200MMX on a 430FX
-chipset board. Both quite ancient...
-
-So given that the PCI device itself supports MSI, how do we tell that
-it shouldn't actually get turned on?
-
-  -ilia
-
 >
 > On 2014/7/4 8:35, Brian Becker wrote:
 >> I mistakenly only replied to Yijing Wang the first time. Here are the further details.
@@ -374,7 +364,7 @@ it shouldn't actually get turned on?
 >>
 >>
 >>
->> On Thu, Jul 3, 2014 at 1:58 AM, Yijing Wang <wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org <mailto:wangyijing-hv44wF8Li93QT0dZR+AlfA@public.gmane.org>> wrote:
+>> On Thu, Jul 3, 2014 at 1:58 AM, Yijing Wang <wangyijing@huawei.com <mailto:wangyijing@huawei.com>> wrote:
 >>
 >>     On 2014/7/3 11:20, Ilia Mirkin wrote:
 >>     > Hello,
@@ -439,7 +429,7 @@ it shouldn't actually get turned on?
 >>     >         Kernel driver in use: nouveau
 >>     > --
 >>     > To unsubscribe from this list: send the line "unsubscribe linux-pci" in
->>     > the body of a message to majordomo-u79uwXL29TY76Z2rM5mHXA@public.gmane.org <mailto:majordomo-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+>>     > the body of a message to majordomo@vger.kernel.org <mailto:majordomo@vger.kernel.org>
 >>     > More majordomo info at  http://vger.kernel.org/majordomo-info.html
 >>     >
 >>     >
