@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] New: [NVCF] PWM fan speed too high under
-	kernel 3.15
-Date: Fri, 04 Jul 2014 07:33:44 +0000
-Message-ID: <bug-80901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
+	3.15
+Date: Fri, 04 Jul 2014 07:34:17 +0000
+Message-ID: <bug-80901-8800-cCVMF9k6DD@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0265480829=="
+Content-Type: multipart/mixed; boundary="===============1671287214=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0265480829==
-Content-Type: multipart/alternative; boundary="1404459224.eeEC70c0.32441"; charset="us-ascii"
+--===============1671287214==
+Content-Type: multipart/alternative; boundary="1404459257.ca3da1.32441"; charset="us-ascii"
 
 
---1404459224.eeEC70c0.32441
-Date: Fri, 4 Jul 2014 07:33:44 +0000
+--1404459257.ca3da1.32441
+Date: Fri, 4 Jul 2014 07:34:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
-          Priority: medium
-            Bug ID: 80901
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NVCF] PWM fan speed too high under kernel 3.15
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 10.2
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
-
-Since updating to kernel 3.15, the pwm fan speed of my 550 Ti card is too high
-(above 35% in all situations) when compared with the proprietary NVIDIA driver
-(that hovers around 30%).
-The only way to reduce it to silence once again is to manually change the
-pwm1_max value under sysfs to 30 (by default it's 100).
+--- Comment #1 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
+Created attachment 102244
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102244&action=edit
+Dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404459224.eeEC70c0.32441
-Date: Fri, 4 Jul 2014 07:33:44 +0000
+--1404459257.ca3da1.32441
+Date: Fri, 4 Jul 2014 07:34:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,94 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">80901</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVCF] PWM fan speed too high under kernel 3.15
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>gianni&#64;rootcube.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Since updating to kernel 3.15, the pwm fan speed of my 550 Ti card is too high
-(above 35% in all situations) when compared with the proprietary NVIDIA driver
-(that hovers around 30%).
-The only way to reduce it to silence once again is to manually change the
-pwm1_max value under sysfs to 30 (by default it's 100).</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102244" name="attach_102244" title="Dmesg">attachment 102244</a> <a href="attachment.cgi?id=102244&amp;action=edit" title="Dmesg">[details]</a></span>
+Dmesg</pre>
         </div>
       </p>
       <hr>
@@ -162,9 +76,9 @@ pwm1_max value under sysfs to 30 (by default it's 100).</pre>
     </body>
 </html>
 
---1404459224.eeEC70c0.32441--
+--1404459257.ca3da1.32441--
 
---===============0265480829==
+--===============1671287214==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0265480829==--
+--===============1671287214==--
