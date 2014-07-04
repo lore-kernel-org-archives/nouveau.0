@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
 	3.15
-Date: Fri, 04 Jul 2014 07:57:02 +0000
-Message-ID: <bug-80901-8800-zryV6pPoRP@http.bugs.freedesktop.org/>
+Date: Fri, 04 Jul 2014 07:59:54 +0000
+Message-ID: <bug-80901-8800-WFavwvQkK6@http.bugs.freedesktop.org/>
 References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1429992841=="
+Content-Type: multipart/mixed; boundary="===============1678263941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1429992841==
-Content-Type: multipart/alternative; boundary="1404460622.eb50b1.6075"; charset="us-ascii"
+--===============1678263941==
+Content-Type: multipart/alternative; boundary="1404460794.3dbbbF1.6894"; charset="us-ascii"
 
 
---1404460622.eb50b1.6075
-Date: Fri, 4 Jul 2014 07:57:02 +0000
+--1404460794.3dbbbF1.6894
+Date: Fri, 4 Jul 2014 07:59:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
---- Comment #6 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
-Created attachment 102251
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102251&action=edit
-sensors.nouveau
+--- Comment #7 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
+Created attachment 102252
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102252&action=edit
+sensors.nvidia
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404460622.eb50b1.6075
-Date: Fri, 4 Jul 2014 07:57:02 +0000
+--1404460794.3dbbbF1.6894
+Date: Fri, 4 Jul 2014 07:59:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
               from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102251" name="attach_102251" title="sensors.nouveau">attachment 102251</a> <a href="attachment.cgi?id=102251&amp;action=edit" title="sensors.nouveau">[details]</a></span>
-sensors.nouveau</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102252" name="attach_102252" title="sensors.nvidia">attachment 102252</a> <a href="attachment.cgi?id=102252&amp;action=edit" title="sensors.nvidia">[details]</a></span>
+sensors.nvidia</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ sensors.nouveau</pre>
     </body>
 </html>
 
---1404460622.eb50b1.6075--
+--1404460794.3dbbbF1.6894--
 
---===============1429992841==
+--===============1678263941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1429992841==--
+--===============1678263941==--
