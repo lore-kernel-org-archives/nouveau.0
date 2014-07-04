@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
 	3.15
-Date: Fri, 04 Jul 2014 07:53:39 +0000
-Message-ID: <bug-80901-8800-zytNFyJV2D@http.bugs.freedesktop.org/>
+Date: Fri, 04 Jul 2014 07:57:02 +0000
+Message-ID: <bug-80901-8800-zryV6pPoRP@http.bugs.freedesktop.org/>
 References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1127666591=="
+Content-Type: multipart/mixed; boundary="===============1429992841=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1127666591==
-Content-Type: multipart/alternative; boundary="1404460418.78C71.4943"; charset="us-ascii"
+--===============1429992841==
+Content-Type: multipart/alternative; boundary="1404460622.eb50b1.6075"; charset="us-ascii"
 
 
---1404460418.78C71.4943
-Date: Fri, 4 Jul 2014 07:53:38 +0000
+--1404460622.eb50b1.6075
+Date: Fri, 4 Jul 2014 07:57:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-            Product|Mesa                        |xorg
-            Version|10.2                        |unspecified
-          Component|Drivers/DRI/nouveau         |Driver/nouveau
+--- Comment #6 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
+Created attachment 102251
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102251&action=edit
+sensors.nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404460418.78C71.4943
-Date: Fri, 4 Jul 2014 07:53:38 +0000
+--1404460622.eb50b1.6075
+Date: Fri, 4 Jul 2014 07:57:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,53 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>Mesa
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>10.2
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Drivers/DRI/nouveau
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102251" name="attach_102251" title="sensors.nouveau">attachment 102251</a> <a href="attachment.cgi?id=102251&amp;action=edit" title="sensors.nouveau">[details]</a></span>
+sensors.nouveau</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -111,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1404460418.78C71.4943--
+--1404460622.eb50b1.6075--
 
---===============1127666591==
+--===============1429992841==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -124,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1127666591==--
+--===============1429992841==--
