@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 80901] [NVCF] PWM fan speed too high under kernel
 	3.15
-Date: Fri, 04 Jul 2014 07:34:49 +0000
-Message-ID: <bug-80901-8800-3dblEevmxj@http.bugs.freedesktop.org/>
+Date: Fri, 04 Jul 2014 07:35:25 +0000
+Message-ID: <bug-80901-8800-L2plNS2fSz@http.bugs.freedesktop.org/>
 References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1364872068=="
+Content-Type: multipart/mixed; boundary="===============1367470348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1364872068==
-Content-Type: multipart/alternative; boundary="1404459289.Fe6DA6B0.32673"; charset="us-ascii"
+--===============1367470348==
+Content-Type: multipart/alternative; boundary="1404459325.e3A20.32746"; charset="us-ascii"
 
 
---1404459289.Fe6DA6B0.32673
-Date: Fri, 4 Jul 2014 07:34:49 +0000
+--1404459325.e3A20.32746
+Date: Fri, 4 Jul 2014 07:35:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
---- Comment #2 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
-Created attachment 102245
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102245&action=edit
+gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #102245|0                           |1
+        is obsolete|                            |
+
+--- Comment #3 from gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org ---
+Created attachment 102246
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102246&action=edit
 vbios.rom
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404459289.Fe6DA6B0.32673
-Date: Fri, 4 Jul 2014 07:34:49 +0000
+--1404459325.e3A20.32746
+Date: Fri, 4 Jul 2014 07:35:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,20 +57,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #102245 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
               from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="gianni&#64;rootcube.net">gianni&#64;rootcube.net</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102245" name="attach_102245" title="vbios.rom">attachment 102245</a> <a href="attachment.cgi?id=102245&amp;action=edit" title="vbios.rom">[details]</a></span>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102246" name="attach_102246" title="vbios.rom">attachment 102246</a> <a href="attachment.cgi?id=102246&amp;action=edit" title="vbios.rom">[details]</a></span>
 vbios.rom</pre>
         </div>
       </p>
@@ -76,9 +104,9 @@ vbios.rom</pre>
     </body>
 </html>
 
---1404459289.Fe6DA6B0.32673--
+--1404459325.e3A20.32746--
 
---===============1364872068==
+--===============1367470348==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1364872068==--
+--===============1367470348==--
