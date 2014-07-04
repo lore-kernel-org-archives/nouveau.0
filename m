@@ -1,88 +1,185 @@
-From: Yijing Wang <wangyijing@huawei.com>
-Subject: Re: How to check for proper MSI support?
-Date: Fri, 4 Jul 2014 15:01:21 +0800
-Message-ID: <53B65141.5080002@huawei.com>
-References: <CAKb7UviGCtebGwyHbXRLZhDOiDAez+eKkxPe9jz5kc-3R1kUvQ@mail.gmail.com>	<53B4F0F7.9020403@huawei.com>	<CALhae2jRz8hL0bwySAbP7r+vJGOG5aif4GA_Yjp0inGAwz5JEA@mail.gmail.com>	<53B612FE.4080105@huawei.com>	<CAKb7UviVFQYwYdp_dgxK7jJ5Ny9yG1y8LATydxtVtkzRh+aOKw@mail.gmail.com>	<53B61B03.3070308@huawei.com>	<CAKb7UvjFuu4Hm1pfmY-NMFORfv-+fx4oYeJicRoE8UTL_4Wp4A@mail.gmail.com>	<53B625D9.9080500@huawei.com>	<CAKb7UviYak+Jt6+RGFZc=OtNh2DVJaCvxnBpRRkw7zVn8u+9Vw@mail.gmail.com>	<53B642BA.3090007@huawei.com> <CALhae2iz0aC0qOJfg2utiwokO42b-Qn+qSUp2pWykZe0jpXp5Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80900] New: [NVCF] PWM fan speed too high under
+	kernel 3.15
+Date: Fri, 04 Jul 2014 07:32:16 +0000
+Message-ID: <bug-80900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <CALhae2iz0aC0qOJfg2utiwokO42b-Qn+qSUp2pWykZe0jpXp5Q@mail.gmail.com>
-Sender: linux-pci-owner@vger.kernel.org
-To: Brian Becker <brian.johnathan.b@gmail.com>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>, Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1175204307=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 2014/7/4 14:26, Brian Becker wrote:
-> I am booting a kernel with CONFIG_ACPI=n on a platform which does not
-> support ACPI.
 
-Hmmm, so my suggestion is
-1. Add quirk to detect 430FX chipset, if detected, disable MSI in this platform.
-or
-
-2. Append boot argument pci=nomsi in OS command line when the OS running on your old platform.
-
-Maybe other guys has some advices. :)
+--===============1175204307==
+Content-Type: multipart/alternative; boundary="1404459136.DbEE40.32162"; charset="us-ascii"
 
 
+--1404459136.DbEE40.32162
+Date: Fri, 4 Jul 2014 07:32:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
+https://bugs.freedesktop.org/show_bug.cgi?id=80900
 
-> 
-> On Fri, Jul 4, 2014 at 1:59 AM, Yijing Wang <wangyijing@huawei.com> wrote:
->>>>> There is a NVIDIA G96 GPU (which is PCIe only) hanging off of a PCIe
->>>>> <-> PCI bridge (all on one card), which is plugged into a motherboard
->>>>> with the 430FX chipset (PCI 2.0 supported).
->>>>>
->>>>> The GPU PCI device, of course, has full support for MSI. However my
->>>>> understanding is that MSI won't actually work here. This is confirmed
->>>>> by the fact that if we let nouveau enable MSI, the device doesn't work
->>>>> (presumably due to lack of interrupt delivery, although I admit to not
->>>>> having debugged it that far). How do I, as a nouveau driver developer,
->>>>> know not to call pci_enable_msi? Or alternatively how can
->>>>> pci_enable_msi be taught not to succeed in this case?
->>>>
->>>> You can set bus_flags or global pci_msi_enable flag by add quirk function.
->>>> You can refer to examples in drivers/pci/quirk.c
->>>>
->>>> Linux support some broken chipsets or devices to disable msi during device initialization by add quirk.
->>>
->>> So let me get this straight -- you're suggesting I add a quirk for
->>> every PCI chipset that doesn't support MSI? There are probably
->>> hundreds of these... anything made before 1999 or so, and probably a
->>> bunch since then too. There _has_ to be a way to do this generically.
->>> Is the PCI spec version anywhere in the root hub?
->>
->> There is no register to identify PCI spec version in PCI config space registers.
->> If your platform boot up with ACPI, you can setting ACPI FADT boot flag to disable MSI,
->> you can refer to this in ACPI 5.2.9.3 chapter "Fixed ACPI Description Table Boot Architecture Flags"
->>
->>
->>>
->>> Perhaps we can check if every bridge on the way to the CPU has the MSI
->>> capability (including the root hub)? (And naturally _that_ won't
->>> work... on my sandybridge laptop, the host bridge doesn't have the MSI
->>> cap but the system most definitely supports MSI.)
->>>
->>> Adding Bjorn... perhaps you know? Some of the info has been stripped
->>> out by now, you can see the full lspci -vvvxxx at
->>> http://marc.info/?l=linux-pci&m=140443441730503&w=2
->>>
->>>   -ilia
->>>
->>> .
->>>
->>
->>
->> --
->> Thanks!
->> Yijing
->>
-> 
-> .
-> 
+          Priority: medium
+            Bug ID: 80900
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVCF] PWM fan speed too high under kernel 3.15
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 10.2
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
 
+Created attachment 102242
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102242&action=edit
+Dmesg
+
+Since updating to kernel 3.15, the pwm fan speed of my 550 Ti card is too high
+(above 35% in all situations) when compared with the proprietary NVIDIA driver
+(that hovers around 30%).
+The only way to reduce it to silence once again is to manually change the
+pwm1_max value under sysfs to 30 (by default it's 100).
 
 -- 
-Thanks!
-Yijing
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1404459136.DbEE40.32162
+Date: Fri, 4 Jul 2014 07:32:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVCF] PWM fan speed too high under kernel 3.15"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80900">80900</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVCF] PWM fan speed too high under kernel 3.15
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>gianni&#64;rootcube.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102242" name="attach_102242" title="Dmesg">attachment 102242</a> <a href="attachment.cgi?id=102242&amp;action=edit" title="Dmesg">[details]</a></span>
+Dmesg
+
+Since updating to kernel 3.15, the pwm fan speed of my 550 Ti card is too high
+(above 35% in all situations) when compared with the proprietary NVIDIA driver
+(that hovers around 30%).
+The only way to reduce it to silence once again is to manually change the
+pwm1_max value under sysfs to 30 (by default it's 100).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1404459136.DbEE40.32162--
+
+--===============1175204307==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1175204307==--
