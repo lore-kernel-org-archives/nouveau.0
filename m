@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80865] [NVE7] Hard hang (GPC0/TPC0/MP trap:
- MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)
-Date: Thu, 03 Jul 2014 23:06:22 +0000
-Message-ID: <bug-80865-8800-HL8C8HaZMN@http.bugs.freedesktop.org/>
-References: <bug-80865-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm: default scaling to NONE for external
+	connectors
+Date: Fri, 4 Jul 2014 10:27:20 +1000
+Message-ID: <CACAvsv7iLKLENQbq0UAb39AjV-fg7o4TXLHbO2Bs_JjKoj9gYw@mail.gmail.com>
+References: <1404415623-7198-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0788951868=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80865-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1404415623-7198-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,138 +18,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Jul 4, 2014 at 5:27 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+> ---
+>
+> Based on a recent discussion in #radeon, and also my own observation that the
+> 'full' scaling causes no end of confusion among users.
+>
+> See https://bugs.freedesktop.org/show_bug.cgi?id=80868 for some more details,
+> although it is more radeon-specific.
+>
+> Side-note: the scaling mode update handler disallows setting the mode to none
+> for LVDS... should it be the same for eDP as well? Or perhaps relax the
+> restriction and let people do whatever they want?
+We do need some improvement here, for sure.  What we do currently is
+confusing for a lot of cases, like where people select a
+(non-preferred) 24Hz mode or something and still get 60 because we
+always use the preferred mode on the backend (except for the 'None'
+scaling mode).
 
---===============0788951868==
-Content-Type: multipart/alternative; boundary="1404428781.cEab2.6896"; charset="us-ascii"
+I somewhat think we should probably default to something like "if mode
+came from edid (or the user?), no scaling" and "if it's from the
+random list of modes we add to fixed panels to keep old games happy,
+scale to closest edid mode / preferred mode / something".. I'm not
+entirely sure what the best choices are to be honest.
 
+Ben.
 
---1404428781.cEab2.6896
-Date: Thu, 3 Jul 2014 23:06:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80865
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Hard hang (GPC0/TPC0/MP     |[NVE7] Hard hang
-                   |trap: MULTIPLE_WARP_ERRORS  |(GPC0/TPC0/MP trap:
-                   |MEM_OUT_OF_BOUNDS)          |MULTIPLE_WARP_ERRORS
-                   |                            |MEM_OUT_OF_BOUNDS)
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Those errors are most likely to happen when e.g. you're accessing a UBO out of
-its bounds. Or if the driver messed up binding said UBO... or some code
-generation error. However it should be ~harmless, except for the fact that the
-render in question will be messed up.
-
-BTW, what mesa version are you using?
-
-The DISP errors at the end are the reason (or at least a demonstration) that
-the GPU hung. I suspect the rest of the system was totally fine.
-
-This also looks worrying:
-
-[160330.118473] nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00004d6000
-[PTE] from GR/GPC0/PROP_0 on channel 0x007f971000 [Xorg[981]]
-[160330.118474] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 2, recovering...
-
-I'm guessing the errors stressed the ctxsw logic and it couldn't handle some
-condition.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1404428781.cEab2.6896
-Date: Thu, 3 Jul 2014 23:06:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865">bug 80865</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)
-           </td>
-           <td>[NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865">bug 80865</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Those errors are most likely to happen when e.g. you're accessing a UBO out of
-its bounds. Or if the driver messed up binding said UBO... or some code
-generation error. However it should be ~harmless, except for the fact that the
-render in question will be messed up.
-
-BTW, what mesa version are you using?
-
-The DISP errors at the end are the reason (or at least a demonstration) that
-the GPU hung. I suspect the rest of the system was totally fine.
-
-This also looks worrying:
-
-[160330.118473] nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00004d6000
-[PTE] from GR/GPC0/PROP_0 on channel 0x007f971000 [Xorg[981]]
-[160330.118474] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 2, recovering...
-
-I'm guessing the errors stressed the ctxsw logic and it couldn't handle some
-condition.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404428781.cEab2.6896--
-
---===============0788951868==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0788951868==--
+>
+>  drm/nouveau_connector.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/drm/nouveau_connector.c b/drm/nouveau_connector.c
+> index 1fa222e..295e222 100644
+> --- a/drm/nouveau_connector.c
+> +++ b/drm/nouveau_connector.c
+> @@ -1192,6 +1192,8 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>                                               disp->color_vibrance_property,
+>                                               150);
+>
+> +       nv_connector->scaling_mode = DRM_MODE_SCALE_NONE;
+> +
+>         switch (nv_connector->type) {
+>         case DCB_CONNECTOR_VGA:
+>                 if (nv_device(drm->device)->card_type >= NV_50) {
+> @@ -1203,10 +1205,11 @@ nouveau_connector_create(struct drm_device *dev, int index)
+>         case DCB_CONNECTOR_TV_0:
+>         case DCB_CONNECTOR_TV_1:
+>         case DCB_CONNECTOR_TV_3:
+> -               nv_connector->scaling_mode = DRM_MODE_SCALE_NONE;
+>                 break;
+>         default:
+> -               nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
+> +               if (type == DRM_MODE_CONNECTOR_LVDS ||
+> +                   type == DRM_MODE_CONNECTOR_eDP)
+> +                       nv_connector->scaling_mode = DRM_MODE_SCALE_FULLSCREEN;
+>
+>                 drm_object_attach_property(&connector->base,
+>                                 dev->mode_config.scaling_mode_property,
+> --
+> 1.8.5.5
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
