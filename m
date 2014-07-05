@@ -1,82 +1,169 @@
-From: Brian Becker <brian.johnathan.b@gmail.com>
-Subject: Re: How to check for proper MSI support?
-Date: Sat, 5 Jul 2014 19:04:18 -0400
-Message-ID: <CALhae2iZSdsX5dywMTgJQY=N=H1eFneJceDtiOrQJjus1Df62w@mail.gmail.com>
-References: <CAKb7UviGCtebGwyHbXRLZhDOiDAez+eKkxPe9jz5kc-3R1kUvQ@mail.gmail.com>
-	<53B4F0F7.9020403@huawei.com>
-	<CALhae2jRz8hL0bwySAbP7r+vJGOG5aif4GA_Yjp0inGAwz5JEA@mail.gmail.com>
-	<53B612FE.4080105@huawei.com>
-	<CAKb7UviVFQYwYdp_dgxK7jJ5Ny9yG1y8LATydxtVtkzRh+aOKw@mail.gmail.com>
-	<53B61B03.3070308@huawei.com>
-	<CAKb7UvjFuu4Hm1pfmY-NMFORfv-+fx4oYeJicRoE8UTL_4Wp4A@mail.gmail.com>
-	<53B625D9.9080500@huawei.com>
-	<CAKb7UviYak+Jt6+RGFZc=OtNh2DVJaCvxnBpRRkw7zVn8u+9Vw@mail.gmail.com>
-	<CAErSpo7Dk+7THPn2SUO1p-P0bbfP7nSyOoiukXLgMsuGoJrMOA@mail.gmail.com>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v4] nv50/ir: Handle OP_CVT when folding constant
+	expressions
+Date: Sun,  6 Jul 2014 01:30:19 +0200
+Message-ID: <1404603019-30266-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-pci-owner@vger.kernel.org>
-In-Reply-To: <CAErSpo7Dk+7THPn2SUO1p-P0bbfP7nSyOoiukXLgMsuGoJrMOA@mail.gmail.com>
-Sender: linux-pci-owner@vger.kernel.org
-To: Bjorn Helgaas <bhelgaas@google.com>
-Cc: Ilia Mirkin <imirkin@alum.mit.edu>, Yijing Wang <wangyijing@huawei.com>, "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Bjorn,
+Folding for conversions: F32/64->(U16/32, S16/32) and (U16/32, S16/32)->F32
+No piglit regressions observed on nv50 and nvc0!
 
-I went ahead and sent a report to
-https://bugzilla.kernel.org/show_bug.cgi?id=79531. It does not appear
-that my system supports APIC/LAPIC, from the dmesg logs which claim
-that APIC is hardware disabled or not available. Perhaps the BIOS is
-allowed to disable it, or is required to enable it, and the BIOS does
-indeed predate the installed CPU.
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+---
+V2: fix usage of wrong variable
+V3: enable F64 support
+V4: 
+ - disable F64 support again
+ - handle saturate flag: clamp to min/max if needed
 
-Thanks,
-Brian Becker
+ .../drivers/nouveau/codegen/nv50_ir_peephole.cpp   | 121 +++++++++++++++++++++
+ 1 file changed, 121 insertions(+)
 
-On Sat, Jul 5, 2014 at 6:21 PM, Bjorn Helgaas <bhelgaas@google.com> wrote:
-> On Thu, Jul 3, 2014 at 10:32 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
->> So let me get this straight -- you're suggesting I add a quirk for
->> every PCI chipset that doesn't support MSI? There are probably
->> hundreds of these... anything made before 1999 or so, and probably a
->> bunch since then too. There _has_ to be a way to do this generically.
->> Is the PCI spec version anywhere in the root hub?
->>
->> Perhaps we can check if every bridge on the way to the CPU has the MSI
->> capability (including the root hub)? (And naturally _that_ won't
->> work... on my sandybridge laptop, the host bridge doesn't have the MSI
->> cap but the system most definitely supports MSI.)
->>
->> Adding Bjorn... perhaps you know? Some of the info has been stripped
->> out by now, you can see the full lspci -vvvxxx at
->> http://marc.info/?l=linux-pci&m=140443441730503&w=2
->
-> Huh, this stinks.  We don't really have a good way of figuring out
-> whether the system chipset supports MSI.  The ACPI FADT "MSI Not
-> Supported" bit (ACPI_FADT_NO_MSI) was added to the ACPI v3.0b spec in
-> October 2006, so that won't help the systems that predate that or
-> don't have ACPI.
->
-> We have quirks for some Serverworks, ATI, and VIA chipsets that
-> basically do the same as booting with "pci=nomsi".  But as you say,
-> it's unreasonable to add quirks for all old systems.
->
-> Brian, can you open a report at http://bugzilla.kernel.org and attach
-> a complete dmesg log, /proc/cpuinfo contents, and "lspci -vvv" output?
->
-> If I understand correctly, you have a P200MMX with a 430FX chipset.
-> I'm not a hardware guy, but sounds like that might be a 200MHz Pentium
-> with MMX (P54CS), which does have an integrated LAPIC, according to
-> wikipedia.
->
-> From the PCI host bridge's perspective, an incoming MSI just looks
-> like a normal DMA write.  As long as that write reaches the CPU LAPIC,
-> it should work fine.  There's not really any specific MSI support
-> required, except to route the incoming write to the CPU LAPIC.  So
-> it's possible that a bridge designed before MSI was added to the PCI
-> spec might be able to support MSI.
->
-> But I don't know how much value there is in MSI on such old systems.
-> Maybe we could default to disabling MSI on BIOS dates before 1998 or
-> something.
->
-> Bjorn
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+index b89da43..c97f8f4 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+@@ -970,6 +970,127 @@ ConstantFolding::opnd(Instruction *i, ImmediateValue &imm0, int s)
+       i->op = OP_MOV;
+       break;
+    }
++   case OP_CVT: {
++      Storage res;
++      bld.setPosition(i, true); /* make sure bld is init'ed */
++      switch(i->dType) {
++      case TYPE_U16:
++         switch (i->sType) {
++         case TYPE_F32:
++            if (i->saturate) {
++               int32_t conv = util_iround(imm0.reg.data.f32);
++               res.data.u16 = (conv < 0) ? 0 : CLAMP((uint32_t)conv, 0,
++                                                     UINT16_MAX);
++            }
++            else res.data.u16 = util_iround(imm0.reg.data.f32);
++            break;
++         case TYPE_F64:
++            if (i->saturate) {
++               int32_t conv = util_iround(imm0.reg.data.f64);
++               res.data.u16 = (conv < 0) ? 0 : CLAMP((uint32_t)conv, 0,
++                                                     UINT16_MAX);
++            }
++            else res.data.u16 = util_iround(imm0.reg.data.f64);
++            break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.u16));
++         break;
++      case TYPE_U32:
++         switch (i->sType) {
++         case TYPE_F32:
++            if (i->saturate) {
++               int32_t conv = util_iround(imm0.reg.data.f32);
++               res.data.u32 = (conv < 0) ? 0 : CLAMP((uint32_t)conv, 0,
++                                                     UINT32_MAX);
++            }
++            else res.data.u32 = util_iround(imm0.reg.data.f32);
++            break;
++         case TYPE_F64:
++            if (i->saturate) {
++               int32_t conv = util_iround(imm0.reg.data.f64);
++               res.data.u32 = (conv < 0) ? 0 : CLAMP((uint32_t)conv, 0,
++                                                     UINT32_MAX);
++            }
++         else res.data.u32 = util_iround(imm0.reg.data.f64);
++         break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.u32));
++         break;
++      case TYPE_S16:
++         switch (i->sType) {
++         case TYPE_F32:
++            if (i->saturate)
++               res.data.s16 = CLAMP(util_iround(imm0.reg.data.f32), INT16_MIN,
++                                    INT16_MAX);
++            else res.data.s16 = util_iround(imm0.reg.data.f32);
++            break;
++         case TYPE_F64:
++            if (i->saturate)
++               res.data.s16 = CLAMP(util_iround(imm0.reg.data.f64), INT16_MIN,
++                                    INT16_MAX);
++            else res.data.s16 = util_iround(imm0.reg.data.f64);
++         break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.s16));
++         break;
++      case TYPE_S32:
++         switch (i->sType) {
++         case TYPE_F32:
++            if (i->saturate)
++               res.data.s32 = CLAMP(util_iround(imm0.reg.data.f32), INT32_MIN,
++                                    INT32_MAX);
++            else res.data.s32 = util_iround(imm0.reg.data.f32);
++            break;
++         case TYPE_F64:
++            if (i->saturate)
++               res.data.s32 = CLAMP(util_iround(imm0.reg.data.f64), INT32_MIN,
++                                    INT32_MAX);
++            else res.data.s32 = util_iround(imm0.reg.data.f64);
++            break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.s32));
++         break;
++      case TYPE_F32:
++         switch (i->sType) {
++         case TYPE_U16: res.data.f32 = (float) imm0.reg.data.u16; break;
++         case TYPE_U32: res.data.f32 = (float) imm0.reg.data.u32; break;
++         case TYPE_S16: res.data.f32 = (float) imm0.reg.data.s16; break;
++         case TYPE_S32: res.data.f32 = (float) imm0.reg.data.s32; break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.f32));
++         break;
++      /* TODO: Check if this works, after F64 support is available */
++      /*case TYPE_F64:
++         switch (i->sType) {
++         case TYPE_U16: res.data.f64 = (double) imm0.reg.data.u16; break;
++         case TYPE_U32: res.data.f64 = (double) imm0.reg.data.u32; break;
++         case TYPE_S16: res.data.f64 = (double) imm0.reg.data.s16; break;
++         case TYPE_S32: res.data.f64 = (double) imm0.reg.data.s32; break;
++         default:
++            return;
++         }
++         i->setSrc(0, bld.mkImm(res.data.f64));
++         break;*/
++      default:
++         return;
++      }
++      i->setType(i->dType); /* Remove i->sType, which we don't need anymore */
++      i->setSrc(1, NULL);
++      i->op = OP_MOV;
++
++      i->src(0).mod = Modifier(0); /* Clear the already applied modifier */
++      break;
++   }
+    default:
+       return;
+    }
+-- 
+1.8.4.5
