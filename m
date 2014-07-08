@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80865] [NVE7] Hard hang (GPC0/TPC0/MP trap:
- MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)
-Date: Mon, 07 Jul 2014 12:05:34 +0000
-Message-ID: <bug-80865-8800-Rt8RxSJhxc@http.bugs.freedesktop.org/>
-References: <bug-80865-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH] nv50/ir: use unordered_set instead of list to
+	keep our instructions in uses
+Date: Tue,  8 Jul 2014 04:19:13 +0200
+Message-ID: <1404785953-27151-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1919095799=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80865-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,95 +16,106 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This shortens runtime of piglit test fp-long-alu to ~22s
 
---===============1919095799==
-Content-Type: multipart/alternative; boundary="1404734734.2D64D1.9485"; charset="us-ascii"
+No piglit regressions observed on nvc0!
 
+Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+---
+ src/gallium/drivers/nouveau/codegen/nv50_ir.cpp          | 6 +++---
+ src/gallium/drivers/nouveau/codegen/nv50_ir.h            | 7 ++++---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp | 2 +-
+ src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp       | 4 ++--
+ 4 files changed, 10 insertions(+), 9 deletions(-)
 
---1404734734.2D64D1.9485
-Date: Mon, 7 Jul 2014 12:05:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80865
-
---- Comment #6 from tethys-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-localhost:~# rpm -qa | fgrep mesa
-mesa-libGL-10.1.5-1.20140607.fc20.i686
-mesa-libglapi-10.1.5-1.20140607.fc20.x86_64
-mesa-filesystem-10.1.5-1.20140607.fc20.x86_64
-mesa-libglapi-10.1.5-1.20140607.fc20.i686
-mesa-libGLU-9.0.0-5.fc20.x86_64
-mesa-libgbm-10.1.5-1.20140607.fc20.x86_64
-mesa-libwayland-egl-10.1.5-1.20140607.fc20.x86_64
-mesa-dri-drivers-10.1.5-1.20140607.fc20.x86_64
-mesa-libEGL-10.1.5-1.20140607.fc20.x86_64
-mesa-libxatracker-10.1.5-1.20140607.fc20.x86_64
-mesa-libGL-10.1.5-1.20140607.fc20.x86_64
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
+index 13f8cf2..ca3c806 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
+@@ -141,9 +141,9 @@ ValueRef::set(Value *refVal)
+    if (value == refVal)
+       return;
+    if (value)
+-      value->uses.remove(this);
++      value->uses.erase(this);
+    if (refVal)
+-      refVal->uses.push_back(this);
++      refVal->uses.insert(this);
+ 
+    value = refVal;
+ }
+@@ -206,7 +206,7 @@ ValueDef::replace(const ValueRef &repVal, bool doSet)
+       return;
+ 
+    while (!value->uses.empty()) {
+-      ValueRef *ref = value->uses.front();
++      ValueRef *ref = *value->uses.begin();
+       ref->set(repVal.get());
+       ref->mod *= repVal.mod;
+    }
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.h b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+index 8844030..0ff5e5d 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
+@@ -29,6 +29,7 @@
+ #include <deque>
+ #include <list>
+ #include <vector>
++#include <tr1/unordered_set>
+ 
+ #include "codegen/nv50_ir_util.h"
+ #include "codegen/nv50_ir_graph.h"
+@@ -581,10 +582,10 @@ public:
+ 
+    static inline Value *get(Iterator&);
+ 
+-   std::list<ValueRef *> uses;
++   std::tr1::unordered_set<ValueRef *> uses;
+    std::list<ValueDef *> defs;
+-   typedef std::list<ValueRef *>::iterator UseIterator;
+-   typedef std::list<ValueRef *>::const_iterator UseCIterator;
++   typedef std::tr1::unordered_set<ValueRef *>::iterator UseIterator;
++   typedef std::tr1::unordered_set<ValueRef *>::const_iterator UseCIterator;
+    typedef std::list<ValueDef *>::iterator DefIterator;
+    typedef std::list<ValueDef *>::const_iterator DefCIterator;
+ 
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+index c162ac4..8d052c5 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_peephole.cpp
+@@ -686,7 +686,7 @@ ConstantFolding::tryCollapseChainedMULs(Instruction *mul2,
+       // b = mul a, imm
+       // d = mul b, c   -> d = mul_x_imm a, c
+       int s2, t2;
+-      insn = mul2->getDef(0)->uses.front()->getInsn();
++      insn = (*mul2->getDef(0)->uses.begin())->getInsn();
+       if (!insn)
+          return;
+       mul1 = mul2;
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+index e4f56b1..6c83a60 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+@@ -983,7 +983,7 @@ GCRA::doCoalesce(ArrayList& insns, unsigned int mask)
+             break;
+          i = NULL;
+          if (!insn->getDef(0)->uses.empty())
+-            i = insn->getDef(0)->uses.front()->getInsn();
++            i = (*insn->getDef(0)->uses.begin())->getInsn();
+          // if this is a contraint-move there will only be a single use
+          if (i && i->op == OP_MERGE) // do we really still need this ?
+             break;
+@@ -1559,7 +1559,7 @@ SpillCodeInserter::run(const std::list<ValuePair>& lst)
+          // Unspill at each use *before* inserting spill instructions,
+          // we don't want to have the spill instructions in the use list here.
+          while (!dval->uses.empty()) {
+-            ValueRef *u = dval->uses.front();
++            ValueRef *u = *dval->uses.begin();
+             Instruction *usei = u->getInsn();
+             assert(usei);
+             if (usei->isPseudo()) {
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1404734734.2D64D1.9485
-Date: Mon, 7 Jul 2014 12:05:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865">bug 80865</a>
-              from <span class="vcard"><a class="email" href="mailto:tethys&#64;gmail.com" title="tethys&#64;gmail.com">tethys&#64;gmail.com</a>
-</span></b>
-        <pre>localhost:~# rpm -qa | fgrep mesa
-mesa-libGL-10.1.5-1.20140607.fc20.i686
-mesa-libglapi-10.1.5-1.20140607.fc20.x86_64
-mesa-filesystem-10.1.5-1.20140607.fc20.x86_64
-mesa-libglapi-10.1.5-1.20140607.fc20.i686
-mesa-libGLU-9.0.0-5.fc20.x86_64
-mesa-libgbm-10.1.5-1.20140607.fc20.x86_64
-mesa-libwayland-egl-10.1.5-1.20140607.fc20.x86_64
-mesa-dri-drivers-10.1.5-1.20140607.fc20.x86_64
-mesa-libEGL-10.1.5-1.20140607.fc20.x86_64
-mesa-libxatracker-10.1.5-1.20140607.fc20.x86_64
-mesa-libGL-10.1.5-1.20140607.fc20.x86_64</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1404734734.2D64D1.9485--
-
---===============1919095799==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1919095799==--
+1.8.4.5
