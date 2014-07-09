@@ -1,303 +1,295 @@
-From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Subject: RE: [PATCH 09/17] drm/radeon: use common fence implementation for
- fences
-Date: Wed, 9 Jul 2014 12:57:04 +0000
-Message-ID: <A3397C8B8B789E45844E7EC5DEAD89D04D5D246C@satlexdag05.amd.com>
+From: Mike Lothian <mike@fireburn.co.uk>
+Subject: Re: [PATCH 00/17] Convert TTM to the new fence interface.
+Date: Wed, 9 Jul 2014 14:09:07 +0100
+Message-ID: <CAHbf0-HaFi0px7QGfBErKenH7wDU08B5mxo_QhFJdDPC4WBDrQ@mail.gmail.com>
 References: <20140709093124.11354.3774.stgit@patser>
- <20140709122953.11354.46381.stgit@patser>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <20140709122953.11354.46381.stgit@patser>
-Content-Language: en-US
-Sender: linux-kernel-owner@vger.kernel.org
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, "airlied@linux.ie" <airlied@linux.ie>
-Cc: "thellstrom@vmware.com" <thellstrom@vmware.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "bskeggs@redhat.com" <bskeggs@redhat.com>, "Koenig, Christian" <Christian.Koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============1062897209=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20140709093124.11354.3774.stgit@patser>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWFhcnRlbiBMYW5raG9y
-c3QgW21haWx0bzptYWFydGVuLmxhbmtob3JzdEBjYW5vbmljYWwuY29tXQ0KPiBTZW50OiBXZWRu
-ZXNkYXksIEp1bHkgMDksIDIwMTQgODozMCBBTQ0KPiBUbzogYWlybGllZEBsaW51eC5pZQ0KPiBD
-YzogdGhlbGxzdHJvbUB2bXdhcmUuY29tOyBub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsg
-bGludXgtDQo+IGtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmc7DQo+IGJza2VnZ3NAcmVkaGF0LmNvbTsgRGV1Y2hlciwgQWxleGFuZGVyOyBLb2Vu
-aWcsIENocmlzdGlhbg0KPiBTdWJqZWN0OiBbUEFUQ0ggMDkvMTddIGRybS9yYWRlb246IHVzZSBj
-b21tb24gZmVuY2UgaW1wbGVtZW50YXRpb24gZm9yDQo+IGZlbmNlcw0KPiANCj4gU2lnbmVkLW9m
-Zi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGNhbm9uaWNhbC5jb20+
-DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaCAgICAgICAgfCAgIDE1
-ICstDQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZpY2UuYyB8ICAgNjAgKysr
-KysrKystDQo+ICBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jICB8ICAyMjMN
-Cj4gKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0NCj4gIDMgZmlsZXMgY2hhbmdlZCwg
-MjQ4IGluc2VydGlvbnMoKyksIDUwIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uLmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L3JhZGVvbi5oDQo+IGluZGV4IDI5ZDljYzA0YzA0ZS4uMDNhNTU2N2YyYzJmIDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9yYWRlb24vcmFkZW9uLmgNCj4gQEAgLTY0LDYgKzY0LDcgQEANCj4gICNpbmNsdWRlIDxs
-aW51eC93YWl0Lmg+DQo+ICAjaW5jbHVkZSA8bGludXgvbGlzdC5oPg0KPiAgI2luY2x1ZGUgPGxp
-bnV4L2tyZWYuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9mZW5jZS5oPg0KPiANCj4gICNpbmNsdWRl
-IDx0dG0vdHRtX2JvX2FwaS5oPg0KPiAgI2luY2x1ZGUgPHR0bS90dG1fYm9fZHJpdmVyLmg+DQo+
-IEBAIC0xMTYsOSArMTE3LDYgQEAgZXh0ZXJuIGludCByYWRlb25fZGVlcF9jb2xvcjsNCj4gICNk
-ZWZpbmUgUkFERU9ORkJfQ09OTl9MSU1JVAkJCTQNCj4gICNkZWZpbmUgUkFERU9OX0JJT1NfTlVN
-X1NDUkFUQ0gJCQk4DQo+IA0KPiAtLyogZmVuY2Ugc2VxIGFyZSBzZXQgdG8gdGhpcyBudW1iZXIg
-d2hlbiBzaWduYWxlZCAqLw0KPiAtI2RlZmluZSBSQURFT05fRkVOQ0VfU0lHTkFMRURfU0VRCQkw
-TEwNCj4gLQ0KPiAgLyogaW50ZXJuYWwgcmluZyBpbmRpY2VzICovDQo+ICAvKiByMXh4KyBoYXMg
-Z2Z4IENQIHJpbmcgKi8NCj4gICNkZWZpbmUgUkFERU9OX1JJTkdfVFlQRV9HRlhfSU5ERVgJCTAN
-Cj4gQEAgLTM1MCwxMiArMzQ4LDE1IEBAIHN0cnVjdCByYWRlb25fZmVuY2VfZHJpdmVyIHsNCj4g
-IH07DQo+IA0KPiAgc3RydWN0IHJhZGVvbl9mZW5jZSB7DQo+ICsJc3RydWN0IGZlbmNlIGJhc2U7
-DQo+ICsNCj4gIAlzdHJ1Y3QgcmFkZW9uX2RldmljZQkJKnJkZXY7DQo+IC0Jc3RydWN0IGtyZWYJ
-CQlrcmVmOw0KPiAgCS8qIHByb3RlY3RlZCBieSByYWRlb25fZmVuY2UubG9jayAqLw0KPiAgCXVp
-bnQ2NF90CQkJc2VxOw0KPiAgCS8qIFJCLCBETUEsIGV0Yy4gKi8NCj4gIAl1bnNpZ25lZAkJCXJp
-bmc7DQo+ICsNCj4gKwl3YWl0X3F1ZXVlX3QgZmVuY2Vfd2FrZTsNCj4gIH07DQo+IA0KPiAgaW50
-IHJhZGVvbl9mZW5jZV9kcml2ZXJfc3RhcnRfcmluZyhzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRl
-diwgaW50IHJpbmcpOw0KPiBAQCAtMjI2OCw2ICsyMjY5LDcgQEAgc3RydWN0IHJhZGVvbl9kZXZp
-Y2Ugew0KPiAgCXN0cnVjdCByYWRlb25fbW1hbgkJbW1hbjsNCj4gIAlzdHJ1Y3QgcmFkZW9uX2Zl
-bmNlX2RyaXZlcglmZW5jZV9kcnZbUkFERU9OX05VTV9SSU5HU107DQo+ICAJd2FpdF9xdWV1ZV9o
-ZWFkX3QJCWZlbmNlX3F1ZXVlOw0KPiArCXVuc2lnbmVkCQkJZmVuY2VfY29udGV4dDsNCj4gIAlz
-dHJ1Y3QgbXV0ZXgJCQlyaW5nX2xvY2s7DQo+ICAJc3RydWN0IHJhZGVvbl9yaW5nCQlyaW5nW1JB
-REVPTl9OVU1fUklOR1NdOw0KPiAgCWJvb2wJCQkJaWJfcG9vbF9yZWFkeTsNCj4gQEAgLTIzNTgs
-MTEgKzIzNjAsNiBAQCB1MzIgY2lrX21tX3Jkb29yYmVsbChzdHJ1Y3QgcmFkZW9uX2RldmljZQ0K
-PiAqcmRldiwgdTMyIGluZGV4KTsNCj4gIHZvaWQgY2lrX21tX3dkb29yYmVsbChzdHJ1Y3QgcmFk
-ZW9uX2RldmljZSAqcmRldiwgdTMyIGluZGV4LCB1MzIgdik7DQo+IA0KPiAgLyoNCj4gLSAqIENh
-c3QgaGVscGVyDQo+IC0gKi8NCj4gLSNkZWZpbmUgdG9fcmFkZW9uX2ZlbmNlKHApICgoc3RydWN0
-IHJhZGVvbl9mZW5jZSAqKShwKSkNCj4gLQ0KPiAtLyoNCj4gICAqIFJlZ2lzdGVycyByZWFkICYg
-d3JpdGUgZnVuY3Rpb25zLg0KPiAgICovDQo+ICAjZGVmaW5lIFJSRUc4KHJlZykgcmVhZGIoKHJk
-ZXYtPnJtbWlvKSArIChyZWcpKQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVv
-bi9yYWRlb25fZGV2aWNlLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9kZXZp
-Y2UuYw0KPiBpbmRleCAwMzY4NmZhYjg0MmQuLjg2Njk5ZGY3YzhmMyAxMDA2NDQNCj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZGV2aWNlLmMNCj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL3JhZGVvbi9yYWRlb25fZGV2aWNlLmMNCj4gQEAgLTEyMTMsNiArMTIxMyw3IEBAIGlu
-dCByYWRlb25fZGV2aWNlX2luaXQoc3RydWN0IHJhZGVvbl9kZXZpY2UNCj4gKnJkZXYsDQo+ICAJ
-Zm9yIChpID0gMDsgaSA8IFJBREVPTl9OVU1fUklOR1M7IGkrKykgew0KPiAgCQlyZGV2LT5yaW5n
-W2ldLmlkeCA9IGk7DQo+ICAJfQ0KPiArCXJkZXYtPmZlbmNlX2NvbnRleHQgPQ0KPiBmZW5jZV9j
-b250ZXh0X2FsbG9jKFJBREVPTl9OVU1fUklOR1MpOw0KPiANCj4gIAlEUk1fSU5GTygiaW5pdGlh
-bGl6aW5nIGtlcm5lbCBtb2Rlc2V0dGluZyAoJXMgMHglMDRYOjB4JTA0WA0KPiAweCUwNFg6MHgl
-MDRYKS5cbiIsDQo+ICAJCXJhZGVvbl9mYW1pbHlfbmFtZVtyZGV2LT5mYW1pbHldLCBwZGV2LT52
-ZW5kb3IsIHBkZXYtDQo+ID5kZXZpY2UsDQo+IEBAIC0xNjA3LDYgKzE2MDgsNTQgQEAgaW50IHJh
-ZGVvbl9yZXN1bWVfa21zKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsDQo+IGJvb2wgcmVzdW1lLCBi
-b29sIGZiY29uKQ0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiANCj4gK3N0YXRpYyB1aW50MzJfdCBy
-YWRlb25fZ3B1X21hc2tfc3dfaXJxKHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQ0KPiArew0K
-PiArCXVpbnQzMl90IG1hc2sgPSAwOw0KPiArCWludCBpOw0KPiArDQo+ICsJaWYgKCFyZGV2LT5k
-ZGV2LT5pcnFfZW5hYmxlZCkNCj4gKwkJcmV0dXJuIG1hc2s7DQo+ICsNCj4gKwkvKg0KPiArCSAq
-IGluY3JlYXNlIHJlZmNvdW50IG9uIHN3IGludGVycnVwdHMgZm9yIGFsbCByaW5ncyB0byBzdG9w
-DQo+ICsJICogZW5hYmxpbmcgaW50ZXJydXB0cyBpbiByYWRlb25fZmVuY2VfZW5hYmxlX3NpZ25h
-bGluZyBkdXJpbmcNCj4gKwkgKiBncHUgcmVzZXQuDQo+ICsJICovDQo+ICsNCj4gKwlmb3IgKGkg
-PSAwOyBpIDwgUkFERU9OX05VTV9SSU5HUzsgKytpKSB7DQo+ICsJCWlmICghcmRldi0+cmluZ1tp
-XS5yZWFkeSkNCj4gKwkJCWNvbnRpbnVlOw0KPiArDQo+ICsJCWF0b21pY19pbmMoJnJkZXYtPmly
-cS5yaW5nX2ludFtpXSk7DQo+ICsJCW1hc2sgfD0gMSA8PCBpOw0KPiArCX0NCj4gKwlyZXR1cm4g
-bWFzazsNCj4gK30NCj4gKw0KPiArc3RhdGljIHZvaWQgcmFkZW9uX2dwdV91bm1hc2tfc3dfaXJx
-KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2LA0KPiB1aW50MzJfdCBtYXNrKQ0KPiArew0KPiAr
-CXVuc2lnbmVkIGxvbmcgaXJxZmxhZ3M7DQo+ICsJaW50IGk7DQo+ICsNCj4gKwlpZiAoIW1hc2sp
-DQo+ICsJCXJldHVybjsNCj4gKw0KPiArCS8qDQo+ICsJICogdW5kbyByZWZjb3VudCBpbmNyZWFz
-ZSwgYW5kIHJlc2V0IGlycXMgdG8gY29ycmVjdCB2YWx1ZS4NCj4gKwkgKi8NCj4gKw0KPiArCWZv
-ciAoaSA9IDA7IGkgPCBSQURFT05fTlVNX1JJTkdTOyArK2kpIHsNCj4gKwkJaWYgKCEobWFzayAm
-ICgxIDw8IGkpKSkNCj4gKwkJCWNvbnRpbnVlOw0KPiArDQo+ICsJCWF0b21pY19kZWMoJnJkZXYt
-PmlycS5yaW5nX2ludFtpXSk7DQo+ICsJfQ0KPiArDQo+ICsJc3Bpbl9sb2NrX2lycXNhdmUoJnJk
-ZXYtPmlycS5sb2NrLCBpcnFmbGFncyk7DQo+ICsJcmFkZW9uX2lycV9zZXQocmRldik7DQo+ICsJ
-c3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmcmRldi0+aXJxLmxvY2ssIGlycWZsYWdzKTsNCj4gK30N
-Cj4gKw0KPiAgLyoqDQo+ICAgKiByYWRlb25fZ3B1X3Jlc2V0IC0gcmVzZXQgdGhlIGFzaWMNCj4g
-ICAqDQo+IEBAIC0xNjI0LDYgKzE2NzMsNyBAQCBpbnQgcmFkZW9uX2dwdV9yZXNldChzdHJ1Y3Qg
-cmFkZW9uX2RldmljZSAqcmRldikNCj4gDQo+ICAJaW50IGksIHI7DQo+ICAJaW50IHJlc2NoZWQ7
-DQo+ICsJdWludDMyX3Qgc3dfbWFzazsNCj4gDQo+ICAJZG93bl93cml0ZSgmcmRldi0+ZXhjbHVz
-aXZlX2xvY2spOw0KPiANCj4gQEAgLTE2MzcsNiArMTY4Nyw3IEBAIGludCByYWRlb25fZ3B1X3Jl
-c2V0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2KQ0KPiAgCXJhZGVvbl9zYXZlX2Jpb3Nfc2Ny
-YXRjaF9yZWdzKHJkZXYpOw0KPiAgCS8qIGJsb2NrIFRUTSAqLw0KPiAgCXJlc2NoZWQgPSB0dG1f
-Ym9fbG9ja19kZWxheWVkX3dvcmtxdWV1ZSgmcmRldi0+bW1hbi5iZGV2KTsNCj4gKwlzd19tYXNr
-ID0gcmFkZW9uX2dwdV9tYXNrX3N3X2lycShyZGV2KTsNCj4gIAlyYWRlb25fcG1fc3VzcGVuZChy
-ZGV2KTsNCj4gIAlyYWRlb25fc3VzcGVuZChyZGV2KTsNCj4gDQo+IEBAIC0xNjg2LDEzICsxNzM3
-LDIwIEBAIHJldHJ5Og0KPiAgCXJhZGVvbl9wbV9yZXN1bWUocmRldik7DQo+ICAJZHJtX2hlbHBl
-cl9yZXN1bWVfZm9yY2VfbW9kZShyZGV2LT5kZGV2KTsNCj4gDQo+ICsJcmFkZW9uX2dwdV91bm1h
-c2tfc3dfaXJxKHJkZXYsIHN3X21hc2spOw0KPiAgCXR0bV9ib191bmxvY2tfZGVsYXllZF93b3Jr
-cXVldWUoJnJkZXYtPm1tYW4uYmRldiwNCj4gcmVzY2hlZCk7DQo+ICAJaWYgKHIpIHsNCj4gIAkJ
-LyogYmFkIG5ld3MsIGhvdyB0byB0ZWxsIGl0IHRvIHVzZXJzcGFjZSA/ICovDQo+ICAJCWRldl9p
-bmZvKHJkZXYtPmRldiwgIkdQVSByZXNldCBmYWlsZWRcbiIpOw0KPiAgCX0NCj4gDQo+IC0JdXBf
-d3JpdGUoJnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gKwkvKg0KPiArCSAqIGZvcmNlIGFsbCB3
-YWl0ZXJzIHRvIHJlY2hlY2ssIHNvbWUgbWF5IGhhdmUgYmVlbg0KPiArCSAqIGFkZGVkIHdoaWxl
-IHRoZSBleGNsdXNpdmVfbG9jayB3YXMgdW5hdmFpbGFibGUNCj4gKwkgKi8NCj4gKwlkb3duZ3Jh
-ZGVfd3JpdGUoJnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gKwl3YWtlX3VwX2FsbCgmcmRldi0+
-ZmVuY2VfcXVldWUpOw0KPiArCXVwX3JlYWQoJnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gIAly
-ZXR1cm4gcjsNCj4gIH0NCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9u
-L3JhZGVvbl9mZW5jZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZmVuY2Uu
-Yw0KPiBpbmRleCA2NDM1NzE5ZmQ0NWIuLjgxYzk4ZjZmZjBjYSAxMDA2NDQNCj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZmVuY2UuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jDQo+IEBAIC0zOSw2ICszOSwxNSBAQA0KPiAgI2luY2x1
-ZGUgInJhZGVvbi5oIg0KPiAgI2luY2x1ZGUgInJhZGVvbl90cmFjZS5oIg0KPiANCj4gK3N0YXRp
-YyBjb25zdCBzdHJ1Y3QgZmVuY2Vfb3BzIHJhZGVvbl9mZW5jZV9vcHM7DQo+ICsNCj4gKyNkZWZp
-bmUgdG9fcmFkZW9uX2ZlbmNlKHApIFwNCj4gKwkoewkJCQkJCQkJXA0KPiArCQlzdHJ1Y3QgcmFk
-ZW9uX2ZlbmNlICpfX2Y7CQkJCVwNCj4gKwkJX19mID0gY29udGFpbmVyX29mKChwKSwgc3RydWN0
-IHJhZGVvbl9mZW5jZSwgYmFzZSk7CVwNCj4gKwkJX19mLT5iYXNlLm9wcyA9PSAmcmFkZW9uX2Zl
-bmNlX29wcyA/IF9fZiA6IE5VTEw7CVwNCj4gKwl9KQ0KPiArDQo+ICAvKg0KPiAgICogRmVuY2Vz
-DQo+ICAgKiBGZW5jZXMgbWFyayBhbiBldmVudCBpbiB0aGUgR1BVcyBwaXBlbGluZSBhbmQgYXJl
-IHVzZWQNCj4gQEAgLTExMSwzMCArMTIwLDU1IEBAIGludCByYWRlb25fZmVuY2VfZW1pdChzdHJ1
-Y3QgcmFkZW9uX2RldmljZQ0KPiAqcmRldiwNCj4gIAkJICAgICAgc3RydWN0IHJhZGVvbl9mZW5j
-ZSAqKmZlbmNlLA0KPiAgCQkgICAgICBpbnQgcmluZykNCj4gIHsNCj4gKwl1NjQgc2VxID0gKyty
-ZGV2LT5mZW5jZV9kcnZbcmluZ10uc3luY19zZXFbcmluZ107DQo+ICsNCj4gIAkvKiB3ZSBhcmUg
-cHJvdGVjdGVkIGJ5IHRoZSByaW5nIGVtaXNzaW9uIG11dGV4ICovDQo+ICAJKmZlbmNlID0ga21h
-bGxvYyhzaXplb2Yoc3RydWN0IHJhZGVvbl9mZW5jZSksIEdGUF9LRVJORUwpOw0KPiAgCWlmICgo
-KmZlbmNlKSA9PSBOVUxMKSB7DQo+ICAJCXJldHVybiAtRU5PTUVNOw0KPiAgCX0NCj4gLQlrcmVm
-X2luaXQoJigoKmZlbmNlKS0+a3JlZikpOw0KPiAtCSgqZmVuY2UpLT5yZGV2ID0gcmRldjsNCj4g
-LQkoKmZlbmNlKS0+c2VxID0gKytyZGV2LT5mZW5jZV9kcnZbcmluZ10uc3luY19zZXFbcmluZ107
-DQo+ICAJKCpmZW5jZSktPnJpbmcgPSByaW5nOw0KPiArCWZlbmNlX2luaXQoJigqZmVuY2UpLT5i
-YXNlLCAmcmFkZW9uX2ZlbmNlX29wcywNCj4gKwkJICAgJnJkZXYtPmZlbmNlX3F1ZXVlLmxvY2ss
-IHJkZXYtPmZlbmNlX2NvbnRleHQgKyByaW5nLA0KPiBzZXEpOw0KPiArCSgqZmVuY2UpLT5yZGV2
-ID0gcmRldjsNCj4gKwkoKmZlbmNlKS0+c2VxID0gc2VxOw0KPiAgCXJhZGVvbl9mZW5jZV9yaW5n
-X2VtaXQocmRldiwgcmluZywgKmZlbmNlKTsNCj4gIAl0cmFjZV9yYWRlb25fZmVuY2VfZW1pdChy
-ZGV2LT5kZGV2LCByaW5nLCAoKmZlbmNlKS0+c2VxKTsNCj4gIAlyZXR1cm4gMDsNCj4gIH0NCj4g
-DQo+ICAvKioNCj4gLSAqIHJhZGVvbl9mZW5jZV9wcm9jZXNzIC0gcHJvY2VzcyBhIGZlbmNlDQo+
-ICsgKiByYWRlb25fZmVuY2VfY2hlY2tfc2lnbmFsZWQgLSBjYWxsYmFjayBmcm9tIGZlbmNlX3F1
-ZXVlDQo+ICAgKg0KPiAtICogQHJkZXY6IHJhZGVvbl9kZXZpY2UgcG9pbnRlcg0KPiAtICogQHJp
-bmc6IHJpbmcgaW5kZXggdGhlIGZlbmNlIGlzIGFzc29jaWF0ZWQgd2l0aA0KPiAtICoNCj4gLSAq
-IENoZWNrcyB0aGUgY3VycmVudCBmZW5jZSB2YWx1ZSBhbmQgd2FrZXMgdGhlIGZlbmNlIHF1ZXVl
-DQo+IC0gKiBpZiB0aGUgc2VxdWVuY2UgbnVtYmVyIGhhcyBpbmNyZWFzZWQgKGFsbCBhc2ljcyku
-DQo+ICsgKiB0aGlzIGZ1bmN0aW9uIGlzIGNhbGxlZCB3aXRoIGZlbmNlX3F1ZXVlIGxvY2sgaGVs
-ZCwgd2hpY2ggaXMgYWxzbyB1c2VkDQo+ICsgKiBmb3IgdGhlIGZlbmNlIGxvY2tpbmcgaXRzZWxm
-LCBzbyB1bmxvY2tlZCB2YXJpYW50cyBhcmUgdXNlZCBmb3INCj4gKyAqIGZlbmNlX3NpZ25hbCwg
-YW5kIHJlbW92ZV93YWl0X3F1ZXVlLg0KPiAgICovDQo+IC12b2lkIHJhZGVvbl9mZW5jZV9wcm9j
-ZXNzKHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2LCBpbnQgcmluZykNCj4gK3N0YXRpYyBpbnQg
-cmFkZW9uX2ZlbmNlX2NoZWNrX3NpZ25hbGVkKHdhaXRfcXVldWVfdCAqd2FpdCwgdW5zaWduZWQN
-Cj4gbW9kZSwgaW50IGZsYWdzLCB2b2lkICprZXkpDQo+ICt7DQo+ICsJc3RydWN0IHJhZGVvbl9m
-ZW5jZSAqZmVuY2U7DQo+ICsJdTY0IHNlcTsNCj4gKw0KPiArCWZlbmNlID0gY29udGFpbmVyX29m
-KHdhaXQsIHN0cnVjdCByYWRlb25fZmVuY2UsIGZlbmNlX3dha2UpOw0KPiArDQo+ICsJc2VxID0g
-YXRvbWljNjRfcmVhZCgmZmVuY2UtPnJkZXYtPmZlbmNlX2RydltmZW5jZS0NCj4gPnJpbmddLmxh
-c3Rfc2VxKTsNCj4gKwlpZiAoc2VxID49IGZlbmNlLT5zZXEpIHsNCj4gKwkJaW50IHJldCA9IGZl
-bmNlX3NpZ25hbF9sb2NrZWQoJmZlbmNlLT5iYXNlKTsNCj4gKw0KPiArCQlpZiAoIXJldCkNCj4g
-KwkJCUZFTkNFX1RSQUNFKCZmZW5jZS0+YmFzZSwgInNpZ25hbGVkIGZyb20gaXJxDQo+IGNvbnRl
-eHRcbiIpOw0KPiArCQllbHNlDQo+ICsJCQlGRU5DRV9UUkFDRSgmZmVuY2UtPmJhc2UsICJ3YXMg
-YWxyZWFkeQ0KPiBzaWduYWxlZFxuIik7DQo+ICsNCj4gKwkJcmFkZW9uX2lycV9rbXNfc3dfaXJx
-X3B1dChmZW5jZS0+cmRldiwgZmVuY2UtPnJpbmcpOw0KPiArCQlfX3JlbW92ZV93YWl0X3F1ZXVl
-KCZmZW5jZS0+cmRldi0+ZmVuY2VfcXVldWUsDQo+ICZmZW5jZS0+ZmVuY2Vfd2FrZSk7DQo+ICsJ
-CWZlbmNlX3B1dCgmZmVuY2UtPmJhc2UpOw0KPiArCX0gZWxzZQ0KPiArCQlGRU5DRV9UUkFDRSgm
-ZmVuY2UtPmJhc2UsICJwZW5kaW5nXG4iKTsNCj4gKwlyZXR1cm4gMDsNCj4gK30NCj4gKw0KPiAr
-c3RhdGljIGJvb2wgX19yYWRlb25fZmVuY2VfcHJvY2VzcyhzdHJ1Y3QgcmFkZW9uX2RldmljZSAq
-cmRldiwgaW50IHJpbmcpDQo+ICB7DQo+ICAJdWludDY0X3Qgc2VxLCBsYXN0X3NlcSwgbGFzdF9l
-bWl0dGVkOw0KPiAgCXVuc2lnbmVkIGNvdW50X2xvb3AgPSAwOw0KPiBAQCAtMTkwLDIzICsyMjQs
-MjIgQEAgdm9pZCByYWRlb25fZmVuY2VfcHJvY2VzcyhzdHJ1Y3QgcmFkZW9uX2RldmljZQ0KPiAq
-cmRldiwgaW50IHJpbmcpDQo+ICAJCX0NCj4gIAl9IHdoaWxlIChhdG9taWM2NF94Y2hnKCZyZGV2
-LT5mZW5jZV9kcnZbcmluZ10ubGFzdF9zZXEsIHNlcSkgPg0KPiBzZXEpOw0KPiANCj4gLQlpZiAo
-d2FrZSkNCj4gLQkJd2FrZV91cF9hbGwoJnJkZXYtPmZlbmNlX3F1ZXVlKTsNCj4gKwlyZXR1cm4g
-d2FrZTsNCj4gIH0NCj4gDQo+ICAvKioNCj4gLSAqIHJhZGVvbl9mZW5jZV9kZXN0cm95IC0gZGVz
-dHJveSBhIGZlbmNlDQo+ICsgKiByYWRlb25fZmVuY2VfcHJvY2VzcyAtIHByb2Nlc3MgYSBmZW5j
-ZQ0KPiAgICoNCj4gLSAqIEBrcmVmOiBmZW5jZSBrcmVmDQo+ICsgKiBAcmRldjogcmFkZW9uX2Rl
-dmljZSBwb2ludGVyDQo+ICsgKiBAcmluZzogcmluZyBpbmRleCB0aGUgZmVuY2UgaXMgYXNzb2Np
-YXRlZCB3aXRoDQo+ICAgKg0KPiAtICogRnJlZXMgdGhlIGZlbmNlIG9iamVjdCAoYWxsIGFzaWNz
-KS4NCj4gKyAqIENoZWNrcyB0aGUgY3VycmVudCBmZW5jZSB2YWx1ZSBhbmQgd2FrZXMgdGhlIGZl
-bmNlIHF1ZXVlDQo+ICsgKiBpZiB0aGUgc2VxdWVuY2UgbnVtYmVyIGhhcyBpbmNyZWFzZWQgKGFs
-bCBhc2ljcykuDQo+ICAgKi8NCj4gLXN0YXRpYyB2b2lkIHJhZGVvbl9mZW5jZV9kZXN0cm95KHN0
-cnVjdCBrcmVmICprcmVmKQ0KPiArdm9pZCByYWRlb25fZmVuY2VfcHJvY2VzcyhzdHJ1Y3QgcmFk
-ZW9uX2RldmljZSAqcmRldiwgaW50IHJpbmcpDQo+ICB7DQo+IC0Jc3RydWN0IHJhZGVvbl9mZW5j
-ZSAqZmVuY2U7DQo+IC0NCj4gLQlmZW5jZSA9IGNvbnRhaW5lcl9vZihrcmVmLCBzdHJ1Y3QgcmFk
-ZW9uX2ZlbmNlLCBrcmVmKTsNCj4gLQlrZnJlZShmZW5jZSk7DQo+ICsJaWYgKF9fcmFkZW9uX2Zl
-bmNlX3Byb2Nlc3MocmRldiwgcmluZykpDQo+ICsJCXdha2VfdXBfYWxsKCZyZGV2LT5mZW5jZV9x
-dWV1ZSk7DQo+ICB9DQo+IA0KPiAgLyoqDQo+IEBAIC0yMzcsNiArMjcwLDY5IEBAIHN0YXRpYyBi
-b29sIHJhZGVvbl9mZW5jZV9zZXFfc2lnbmFsZWQoc3RydWN0DQo+IHJhZGVvbl9kZXZpY2UgKnJk
-ZXYsDQo+ICAJcmV0dXJuIGZhbHNlOw0KPiAgfQ0KPiANCj4gK3N0YXRpYyBib29sIF9fcmFkZW9u
-X2ZlbmNlX3NpZ25hbGVkKHN0cnVjdCBmZW5jZSAqZikNCj4gK3sNCj4gKwlzdHJ1Y3QgcmFkZW9u
-X2ZlbmNlICpmZW5jZSA9IHRvX3JhZGVvbl9mZW5jZShmKTsNCj4gKwlzdHJ1Y3QgcmFkZW9uX2Rl
-dmljZSAqcmRldiA9IGZlbmNlLT5yZGV2Ow0KPiArCXVuc2lnbmVkIHJpbmcgPSBmZW5jZS0+cmlu
-ZzsNCj4gKwl1NjQgc2VxID0gZmVuY2UtPnNlcTsNCj4gKw0KPiArCWlmIChhdG9taWM2NF9yZWFk
-KCZyZGV2LT5mZW5jZV9kcnZbcmluZ10ubGFzdF9zZXEpID49IHNlcSkgew0KPiArCQlyZXR1cm4g
-dHJ1ZTsNCj4gKwl9DQo+ICsNCj4gKwlpZiAoZG93bl9yZWFkX3RyeWxvY2soJnJkZXYtPmV4Y2x1
-c2l2ZV9sb2NrKSkgew0KPiArCQlyYWRlb25fZmVuY2VfcHJvY2VzcyhyZGV2LCByaW5nKTsNCj4g
-KwkJdXBfcmVhZCgmcmRldi0+ZXhjbHVzaXZlX2xvY2spOw0KPiArDQo+ICsJCWlmIChhdG9taWM2
-NF9yZWFkKCZyZGV2LT5mZW5jZV9kcnZbcmluZ10ubGFzdF9zZXEpID49IHNlcSkNCj4gew0KPiAr
-CQkJcmV0dXJuIHRydWU7DQo+ICsJCX0NCj4gKwl9DQo+ICsJcmV0dXJuIGZhbHNlOw0KPiArfQ0K
-PiArDQo+ICsvKioNCj4gKyAqIHJhZGVvbl9mZW5jZV9lbmFibGVfc2lnbmFsaW5nIC0gZW5hYmxl
-IHNpZ25hbGxpbmcgb24gZmVuY2UNCj4gKyAqIEBmZW5jZTogZmVuY2UNCj4gKyAqDQo+ICsgKiBU
-aGlzIGZ1bmN0aW9uIGlzIGNhbGxlZCB3aXRoIGZlbmNlX3F1ZXVlIGxvY2sgaGVsZCwgYW5kIGFk
-ZHMgYSBjYWxsYmFjaw0KPiArICogdG8gZmVuY2VfcXVldWUgdGhhdCBjaGVja3MgaWYgdGhpcyBm
-ZW5jZSBpcyBzaWduYWxlZCwgYW5kIGlmIHNvIGl0DQo+ICsgKiBzaWduYWxzIHRoZSBmZW5jZSBh
-bmQgcmVtb3ZlcyBpdHNlbGYuDQo+ICsgKi8NCj4gK3N0YXRpYyBib29sIHJhZGVvbl9mZW5jZV9l
-bmFibGVfc2lnbmFsaW5nKHN0cnVjdCBmZW5jZSAqZikNCj4gK3sNCj4gKwlzdHJ1Y3QgcmFkZW9u
-X2ZlbmNlICpmZW5jZSA9IHRvX3JhZGVvbl9mZW5jZShmKTsNCj4gKwlzdHJ1Y3QgcmFkZW9uX2Rl
-dmljZSAqcmRldiA9IGZlbmNlLT5yZGV2Ow0KPiArDQo+ICsJaWYgKGF0b21pYzY0X3JlYWQoJnJk
-ZXYtPmZlbmNlX2RydltmZW5jZS0+cmluZ10ubGFzdF9zZXEpID49DQo+IGZlbmNlLT5zZXEgfHwN
-Cj4gKwkgICAgIXJkZXYtPmRkZXYtPmlycV9lbmFibGVkKQ0KPiArCQlyZXR1cm4gZmFsc2U7DQo+
-ICsNCj4gKwlyYWRlb25faXJxX2ttc19zd19pcnFfZ2V0KHJkZXYsIGZlbmNlLT5yaW5nKTsNCj4g
-Kw0KPiArCWlmIChkb3duX3JlYWRfdHJ5bG9jaygmcmRldi0+ZXhjbHVzaXZlX2xvY2spKSB7DQo+
-ICsJCWlmIChfX3JhZGVvbl9mZW5jZV9wcm9jZXNzKHJkZXYsIGZlbmNlLT5yaW5nKSkNCj4gKwkJ
-CXdha2VfdXBfYWxsX2xvY2tlZCgmcmRldi0+ZmVuY2VfcXVldWUpOw0KPiArDQo+ICsJCXVwX3Jl
-YWQoJnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gKwl9DQo+ICsNCj4gKwkvKiBkaWQgZmVuY2Ug
-Z2V0IHNpZ25hbGVkIGFmdGVyIHdlIGVuYWJsZWQgdGhlIHN3IGlycT8gKi8NCj4gKwlpZiAoYXRv
-bWljNjRfcmVhZCgmcmRldi0+ZmVuY2VfZHJ2W2ZlbmNlLT5yaW5nXS5sYXN0X3NlcSkgPj0NCj4g
-ZmVuY2UtPnNlcSkgew0KPiArCQlyYWRlb25faXJxX2ttc19zd19pcnFfcHV0KHJkZXYsIGZlbmNl
-LT5yaW5nKTsNCj4gKwkJcmV0dXJuIGZhbHNlOw0KPiArCX0NCj4gKw0KPiArCWZlbmNlLT5mZW5j
-ZV93YWtlLmZsYWdzID0gMDsNCj4gKwlmZW5jZS0+ZmVuY2Vfd2FrZS5wcml2YXRlID0gTlVMTDsN
-Cj4gKwlmZW5jZS0+ZmVuY2Vfd2FrZS5mdW5jID0gcmFkZW9uX2ZlbmNlX2NoZWNrX3NpZ25hbGVk
-Ow0KPiArCV9fYWRkX3dhaXRfcXVldWUoJnJkZXYtPmZlbmNlX3F1ZXVlLCAmZmVuY2UtPmZlbmNl
-X3dha2UpOw0KPiArCWZlbmNlX2dldChmKTsNCj4gKw0KPiArCXJldHVybiB0cnVlOw0KPiArfQ0K
-PiArDQo+ICAvKioNCj4gICAqIHJhZGVvbl9mZW5jZV9zaWduYWxlZCAtIGNoZWNrIGlmIGEgZmVu
-Y2UgaGFzIHNpZ25hbGVkDQo+ICAgKg0KPiBAQCAtMjUwLDExICszNDYsMTMgQEAgYm9vbCByYWRl
-b25fZmVuY2Vfc2lnbmFsZWQoc3RydWN0IHJhZGVvbl9mZW5jZQ0KPiAqZmVuY2UpDQo+ICAJaWYg
-KCFmZW5jZSkgew0KPiAgCQlyZXR1cm4gdHJ1ZTsNCj4gIAl9DQo+IC0JaWYgKGZlbmNlLT5zZXEg
-PT0gUkFERU9OX0ZFTkNFX1NJR05BTEVEX1NFUSkgew0KPiAtCQlyZXR1cm4gdHJ1ZTsNCj4gLQl9
-DQo+ICsNCj4gIAlpZiAocmFkZW9uX2ZlbmNlX3NlcV9zaWduYWxlZChmZW5jZS0+cmRldiwgZmVu
-Y2UtPnNlcSwgZmVuY2UtDQo+ID5yaW5nKSkgew0KPiAtCQlmZW5jZS0+c2VxID0gUkFERU9OX0ZF
-TkNFX1NJR05BTEVEX1NFUTsNCj4gKwkJaW50IHJldDsNCj4gKw0KPiArCQlyZXQgPSBmZW5jZV9z
-aWduYWwoJmZlbmNlLT5iYXNlKTsNCj4gKwkJaWYgKCFyZXQpDQo+ICsJCQlGRU5DRV9UUkFDRSgm
-ZmVuY2UtPmJhc2UsICJzaWduYWxlZCBmcm9tDQo+IHJhZGVvbl9mZW5jZV9zaWduYWxlZFxuIik7
-DQo+ICAJCXJldHVybiB0cnVlOw0KPiAgCX0NCj4gIAlyZXR1cm4gZmFsc2U7DQo+IEBAIC00MTMs
-MjEgKzUxMSwxOCBAQCBpbnQgcmFkZW9uX2ZlbmNlX3dhaXQoc3RydWN0IHJhZGVvbl9mZW5jZQ0K
-PiAqZmVuY2UsIGJvb2wgaW50cikNCj4gIAl1aW50NjRfdCBzZXFbUkFERU9OX05VTV9SSU5HU10g
-PSB7fTsNCj4gIAlsb25nIHI7DQo+IA0KPiAtCWlmIChmZW5jZSA9PSBOVUxMKSB7DQo+IC0JCVdB
-Uk4oMSwgIlF1ZXJ5aW5nIGFuIGludmFsaWQgZmVuY2UgOiAlcCAhXG4iLCBmZW5jZSk7DQo+IC0J
-CXJldHVybiAtRUlOVkFMOw0KPiAtCX0NCj4gLQ0KPiAtCXNlcVtmZW5jZS0+cmluZ10gPSBmZW5j
-ZS0+c2VxOw0KPiAtCWlmIChzZXFbZmVuY2UtPnJpbmddID09IFJBREVPTl9GRU5DRV9TSUdOQUxF
-RF9TRVEpDQo+ICsJaWYgKHRlc3RfYml0KEZFTkNFX0ZMQUdfU0lHTkFMRURfQklULCAmZmVuY2Ut
-PmJhc2UuZmxhZ3MpKQ0KPiAgCQlyZXR1cm4gMDsNCj4gDQo+ICsJc2VxW2ZlbmNlLT5yaW5nXSA9
-IGZlbmNlLT5zZXE7DQo+ICAJciA9IHJhZGVvbl9mZW5jZV93YWl0X3NlcV90aW1lb3V0KGZlbmNl
-LT5yZGV2LCBzZXEsIGludHIsDQo+IE1BWF9TQ0hFRFVMRV9USU1FT1VUKTsNCj4gIAlpZiAociA8
-IDApIHsNCj4gIAkJcmV0dXJuIHI7DQo+ICAJfQ0KPiANCj4gLQlmZW5jZS0+c2VxID0gUkFERU9O
-X0ZFTkNFX1NJR05BTEVEX1NFUTsNCj4gKwlyID0gZmVuY2Vfc2lnbmFsKCZmZW5jZS0+YmFzZSk7
-DQo+ICsJaWYgKCFyKQ0KPiArCQlGRU5DRV9UUkFDRSgmZmVuY2UtPmJhc2UsICJzaWduYWxlZCBm
-cm9tDQo+IGZlbmNlX3dhaXRcbiIpOw0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiANCj4gQEAgLTQ1
-OSwxMiArNTU0LDEzIEBAIGludCByYWRlb25fZmVuY2Vfd2FpdF9hbnkoc3RydWN0IHJhZGVvbl9k
-ZXZpY2UNCj4gKnJkZXYsDQo+ICAJCQljb250aW51ZTsNCj4gIAkJfQ0KPiANCj4gKwkJaWYgKHRl
-c3RfYml0KEZFTkNFX0ZMQUdfU0lHTkFMRURfQklULCAmZmVuY2VzW2ldLQ0KPiA+YmFzZS5mbGFn
-cykpIHsNCj4gKwkJCS8qIGFscmVhZHkgc2lnbmFsZWQgKi8NCj4gKwkJCXJldHVybiAwOw0KPiAr
-CQl9DQo+ICsNCj4gIAkJc2VxW2ldID0gZmVuY2VzW2ldLT5zZXE7DQo+ICAJCSsrbnVtX3Jpbmdz
-Ow0KPiAtDQo+IC0JCS8qIHRlc3QgaWYgc29tZXRoaW5nIHdhcyBhbGxyZWFkeSBzaWduYWxlZCAq
-Lw0KPiAtCQlpZiAoc2VxW2ldID09IFJBREVPTl9GRU5DRV9TSUdOQUxFRF9TRVEpDQo+IC0JCQly
-ZXR1cm4gMDsNCj4gIAl9DQo+IA0KPiAgCS8qIG5vdGhpbmcgdG8gd2FpdCBmb3IgPyAqLw0KPiBA
-QCAtNTQ1LDcgKzY0MSw3IEBAIGludCByYWRlb25fZmVuY2Vfd2FpdF9lbXB0eShzdHJ1Y3QgcmFk
-ZW9uX2RldmljZQ0KPiAqcmRldiwgaW50IHJpbmcpDQo+ICAgKi8NCj4gIHN0cnVjdCByYWRlb25f
-ZmVuY2UgKnJhZGVvbl9mZW5jZV9yZWYoc3RydWN0IHJhZGVvbl9mZW5jZSAqZmVuY2UpDQo+ICB7
-DQo+IC0Ja3JlZl9nZXQoJmZlbmNlLT5rcmVmKTsNCj4gKwlmZW5jZV9nZXQoJmZlbmNlLT5iYXNl
-KTsNCj4gIAlyZXR1cm4gZmVuY2U7DQo+ICB9DQo+IA0KPiBAQCAtNTYxLDkgKzY1Nyw4IEBAIHZv
-aWQgcmFkZW9uX2ZlbmNlX3VucmVmKHN0cnVjdCByYWRlb25fZmVuY2UNCj4gKipmZW5jZSkNCj4g
-IAlzdHJ1Y3QgcmFkZW9uX2ZlbmNlICp0bXAgPSAqZmVuY2U7DQo+IA0KPiAgCSpmZW5jZSA9IE5V
-TEw7DQo+IC0JaWYgKHRtcCkgew0KPiAtCQlrcmVmX3B1dCgmdG1wLT5rcmVmLCByYWRlb25fZmVu
-Y2VfZGVzdHJveSk7DQo+IC0JfQ0KPiArCWlmICh0bXApDQo+ICsJCWZlbmNlX3B1dCgmdG1wLT5i
-YXNlKTsNCj4gIH0NCj4gDQo+ICAvKioNCj4gQEAgLTg3MiwzICs5NjcsNTEgQEAgaW50IHJhZGVv
-bl9kZWJ1Z2ZzX2ZlbmNlX2luaXQoc3RydWN0DQo+IHJhZGVvbl9kZXZpY2UgKnJkZXYpDQo+ICAJ
-cmV0dXJuIDA7DQo+ICAjZW5kaWYNCj4gIH0NCj4gKw0KPiArc3RhdGljIGxvbmcgX19yYWRlb25f
-ZmVuY2Vfd2FpdChzdHJ1Y3QgZmVuY2UgKmYsIGJvb2wgaW50ciwgbG9uZyB0aW1lb3V0KQ0KPiAr
-ew0KPiArCXN0cnVjdCByYWRlb25fZmVuY2UgKmZlbmNlID0gdG9fcmFkZW9uX2ZlbmNlKGYpOw0K
-PiArCXU2NCB0YXJnZXRfc2VxW1JBREVPTl9OVU1fUklOR1NdID0ge307DQo+ICsJc3RydWN0IHJh
-ZGVvbl9kZXZpY2UgKnJkZXYgPSBmZW5jZS0+cmRldjsNCj4gKwlsb25nIHI7DQo+ICsNCj4gKwl0
-YXJnZXRfc2VxW2ZlbmNlLT5yaW5nXSA9IGZlbmNlLT5zZXE7DQo+ICsNCj4gKwlkb3duX3JlYWQo
-JnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gKwlyID0gcmFkZW9uX2ZlbmNlX3dhaXRfc2VxX3Rp
-bWVvdXQoZmVuY2UtPnJkZXYsIHRhcmdldF9zZXEsIGludHIsDQo+IHRpbWVvdXQpOw0KPiArDQo+
-ICsJaWYgKHIgPiAwICYmICFmZW5jZV9zaWduYWwoJmZlbmNlLT5iYXNlKSkNCj4gKwkJRkVOQ0Vf
-VFJBQ0UoJmZlbmNlLT5iYXNlLCAic2lnbmFsZWQgZnJvbQ0KPiBfX3JhZGVvbl9mZW5jZV93YWl0
-XG4iKTsNCj4gKw0KPiArCXVwX3JlYWQoJnJkZXYtPmV4Y2x1c2l2ZV9sb2NrKTsNCj4gKwlyZXR1
-cm4gcjsNCj4gKw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgY29uc3QgY2hhciAqcmFkZW9uX2ZlbmNl
-X2dldF9kcml2ZXJfbmFtZShzdHJ1Y3QgZmVuY2UgKmZlbmNlKQ0KPiArew0KPiArCXJldHVybiAi
-cmFkZW9uIjsNCj4gK30NCj4gKw0KPiArc3RhdGljIGNvbnN0IGNoYXIgKnJhZGVvbl9mZW5jZV9n
-ZXRfdGltZWxpbmVfbmFtZShzdHJ1Y3QgZmVuY2UgKmYpDQo+ICt7DQo+ICsJc3RydWN0IHJhZGVv
-bl9mZW5jZSAqZmVuY2UgPSB0b19yYWRlb25fZmVuY2UoZik7DQo+ICsJc3dpdGNoIChmZW5jZS0+
-cmluZykgew0KPiArCWNhc2UgUkFERU9OX1JJTkdfVFlQRV9HRlhfSU5ERVg6IHJldHVybiAicmFk
-ZW9uLmdmeCI7DQo+ICsJY2FzZSBDQVlNQU5fUklOR19UWVBFX0NQMV9JTkRFWDogcmV0dXJuICJy
-YWRlb24uY3AxIjsNCj4gKwljYXNlIENBWU1BTl9SSU5HX1RZUEVfQ1AyX0lOREVYOiByZXR1cm4g
-InJhZGVvbi5jcDIiOw0KPiArCWNhc2UgUjYwMF9SSU5HX1RZUEVfRE1BX0lOREVYOiByZXR1cm4g
-InJhZGVvbi5kbWEiOw0KPiArCWNhc2UgQ0FZTUFOX1JJTkdfVFlQRV9ETUExX0lOREVYOiByZXR1
-cm4gInJhZGVvbi5kbWExIjsNCj4gKwljYXNlIFI2MDBfUklOR19UWVBFX1VWRF9JTkRFWDogcmV0
-dXJuICJyYWRlb24udXZkIjsNCg0KUmFkZW9uIHN1cHBvcnRzIHZjZSByaW5ncyBvbiBuZXdlciBh
-c2Npcy4gIFByb2JhYmx5IHdhbnQgdG8gYWRkIHRoZSBjYXNlIGZvciB0aG9zZSBoZXJlIHRvby4N
-Cg0KQWxleA0KDQo+ICsJZGVmYXVsdDogV0FSTl9PTl9PTkNFKDEpOyByZXR1cm4gInJhZGVvbi51
-bmsiOw0KPiArCX0NCj4gK30NCj4gKw0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBmZW5jZV9vcHMg
-cmFkZW9uX2ZlbmNlX29wcyA9IHsNCj4gKwkuZ2V0X2RyaXZlcl9uYW1lID0gcmFkZW9uX2ZlbmNl
-X2dldF9kcml2ZXJfbmFtZSwNCj4gKwkuZ2V0X3RpbWVsaW5lX25hbWUgPSByYWRlb25fZmVuY2Vf
-Z2V0X3RpbWVsaW5lX25hbWUsDQo+ICsJLmVuYWJsZV9zaWduYWxpbmcgPSByYWRlb25fZmVuY2Vf
-ZW5hYmxlX3NpZ25hbGluZywNCj4gKwkuc2lnbmFsZWQgPSBfX3JhZGVvbl9mZW5jZV9zaWduYWxl
-ZCwNCj4gKwkud2FpdCA9IF9fcmFkZW9uX2ZlbmNlX3dhaXQsDQo+ICsJLnJlbGVhc2UgPSBOVUxM
-LA0KPiArfTsNCg0K
+--===============1062897209==
+Content-Type: multipart/alternative; boundary=089e0149d350d382ee04fdc269d5
+
+--089e0149d350d382ee04fdc269d5
+Content-Type: text/plain; charset=UTF-8
+
+Hi Maarten
+
+Will this stop the stuttering I've been seeing with DRI3 and PRIME? Or will
+other patches / plumbing be required
+
+Cheers
+
+Mike
+On 9 Jul 2014 13:29, "Maarten Lankhorst" <maarten.lankhorst@canonical.com>
+wrote:
+
+> This series applies on top of the driver-core-next branch of
+> git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git
+>
+> Before converting ttm to the new fence interface I had to fix some
+> drivers to require a reservation before poking with fence_obj.
+> After flipping the switch RCU becomes available instead, and
+> the extra reservations can be dropped again. :-)
+>
+> I've done at least basic testing on all the drivers I've converted
+> at some point, but more testing is definitely welcomed!
+>
+> ---
+>
+> Maarten Lankhorst (17):
+>       drm/ttm: add interruptible parameter to ttm_eu_reserve_buffers
+>       drm/ttm: kill off some members to ttm_validate_buffer
+>       drm/nouveau: add reservation to nouveau_gem_ioctl_cpu_prep
+>       drm/nouveau: require reservations for nouveau_fence_sync and
+> nouveau_bo_fence
+>       drm/ttm: call ttm_bo_wait while inside a reservation
+>       drm/ttm: kill fence_lock
+>       drm/nouveau: rework to new fence interface
+>       drm/radeon: add timeout argument to radeon_fence_wait_seq
+>       drm/radeon: use common fence implementation for fences
+>       drm/qxl: rework to new fence interface
+>       drm/vmwgfx: get rid of different types of fence_flags entirely
+>       drm/vmwgfx: rework to new fence interface
+>       drm/ttm: flip the switch, and convert to dma_fence
+>       drm/nouveau: use rcu in nouveau_gem_ioctl_cpu_prep
+>       drm/radeon: use rcu waits in some ioctls
+>       drm/vmwgfx: use rcu in vmw_user_dmabuf_synccpu_grab
+>       drm/ttm: use rcu in core ttm
+>
+>  drivers/gpu/drm/nouveau/core/core/event.c |    4
+>  drivers/gpu/drm/nouveau/nouveau_bo.c      |   59 +---
+>  drivers/gpu/drm/nouveau/nouveau_display.c |   25 +-
+>  drivers/gpu/drm/nouveau/nouveau_fence.c   |  431
+> +++++++++++++++++++----------
+>  drivers/gpu/drm/nouveau/nouveau_fence.h   |   22 +
+>  drivers/gpu/drm/nouveau/nouveau_gem.c     |   55 +---
+>  drivers/gpu/drm/nouveau/nv04_fence.c      |    4
+>  drivers/gpu/drm/nouveau/nv10_fence.c      |    4
+>  drivers/gpu/drm/nouveau/nv17_fence.c      |    2
+>  drivers/gpu/drm/nouveau/nv50_fence.c      |    2
+>  drivers/gpu/drm/nouveau/nv84_fence.c      |   11 -
+>  drivers/gpu/drm/qxl/Makefile              |    2
+>  drivers/gpu/drm/qxl/qxl_cmd.c             |    7
+>  drivers/gpu/drm/qxl/qxl_debugfs.c         |   16 +
+>  drivers/gpu/drm/qxl/qxl_drv.h             |   20 -
+>  drivers/gpu/drm/qxl/qxl_fence.c           |   91 ------
+>  drivers/gpu/drm/qxl/qxl_kms.c             |    1
+>  drivers/gpu/drm/qxl/qxl_object.c          |    2
+>  drivers/gpu/drm/qxl/qxl_object.h          |    6
+>  drivers/gpu/drm/qxl/qxl_release.c         |  172 ++++++++++--
+>  drivers/gpu/drm/qxl/qxl_ttm.c             |   93 ------
+>  drivers/gpu/drm/radeon/radeon.h           |   15 -
+>  drivers/gpu/drm/radeon/radeon_cs.c        |   10 +
+>  drivers/gpu/drm/radeon/radeon_device.c    |   60 ++++
+>  drivers/gpu/drm/radeon/radeon_display.c   |   21 +
+>  drivers/gpu/drm/radeon/radeon_fence.c     |  283 +++++++++++++++----
+>  drivers/gpu/drm/radeon/radeon_gem.c       |   19 +
+>  drivers/gpu/drm/radeon/radeon_object.c    |    8 -
+>  drivers/gpu/drm/radeon/radeon_ttm.c       |   34 --
+>  drivers/gpu/drm/radeon/radeon_uvd.c       |   10 -
+>  drivers/gpu/drm/radeon/radeon_vm.c        |   16 +
+>  drivers/gpu/drm/ttm/ttm_bo.c              |  187 ++++++-------
+>  drivers/gpu/drm/ttm/ttm_bo_util.c         |   28 --
+>  drivers/gpu/drm/ttm/ttm_bo_vm.c           |    3
+>  drivers/gpu/drm/ttm/ttm_execbuf_util.c    |  146 +++-------
+>  drivers/gpu/drm/vmwgfx/vmwgfx_buffer.c    |   47 ---
+>  drivers/gpu/drm/vmwgfx/vmwgfx_drv.h       |    1
+>  drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c   |   24 --
+>  drivers/gpu/drm/vmwgfx/vmwgfx_fence.c     |  329 ++++++++++++----------
+>  drivers/gpu/drm/vmwgfx/vmwgfx_fence.h     |   35 +-
+>  drivers/gpu/drm/vmwgfx/vmwgfx_resource.c  |   43 +--
+>  include/drm/ttm/ttm_bo_api.h              |    7
+>  include/drm/ttm/ttm_bo_driver.h           |   29 --
+>  include/drm/ttm/ttm_execbuf_util.h        |   22 +
+>  44 files changed, 1256 insertions(+), 1150 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/qxl/qxl_fence.c
+>
+> --
+> Signature
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+>
+
+--089e0149d350d382ee04fdc269d5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Hi Maarten</p>
+<p dir=3D"ltr">Will this stop the stuttering I&#39;ve been seeing with DRI3=
+ and PRIME? Or will other patches / plumbing be required</p>
+<p dir=3D"ltr">Cheers</p>
+<p dir=3D"ltr">Mike</p>
+<div class=3D"gmail_quote">On 9 Jul 2014 13:29, &quot;Maarten Lankhorst&quo=
+t; &lt;<a href=3D"mailto:maarten.lankhorst@canonical.com">maarten.lankhorst=
+@canonical.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex">
+This series applies on top of the driver-core-next branch of<br>
+git://<a href=3D"http://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driv=
+er-core.git" target=3D"_blank">git.kernel.org/pub/scm/linux/kernel/git/greg=
+kh/driver-core.git</a><br>
+<br>
+Before converting ttm to the new fence interface I had to fix some<br>
+drivers to require a reservation before poking with fence_obj.<br>
+After flipping the switch RCU becomes available instead, and<br>
+the extra reservations can be dropped again. :-)<br>
+<br>
+I&#39;ve done at least basic testing on all the drivers I&#39;ve converted<=
+br>
+at some point, but more testing is definitely welcomed!<br>
+<br>
+---<br>
+<br>
+Maarten Lankhorst (17):<br>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: add interruptible parameter to ttm_eu_reserve=
+_buffers<br>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: kill off some members to ttm_validate_buffer<=
+br>
+=C2=A0 =C2=A0 =C2=A0 drm/nouveau: add reservation to nouveau_gem_ioctl_cpu_=
+prep<br>
+=C2=A0 =C2=A0 =C2=A0 drm/nouveau: require reservations for nouveau_fence_sy=
+nc and nouveau_bo_fence<br>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: call ttm_bo_wait while inside a reservation<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: kill fence_lock<br>
+=C2=A0 =C2=A0 =C2=A0 drm/nouveau: rework to new fence interface<br>
+=C2=A0 =C2=A0 =C2=A0 drm/radeon: add timeout argument to radeon_fence_wait_=
+seq<br>
+=C2=A0 =C2=A0 =C2=A0 drm/radeon: use common fence implementation for fences=
+<br>
+=C2=A0 =C2=A0 =C2=A0 drm/qxl: rework to new fence interface<br>
+=C2=A0 =C2=A0 =C2=A0 drm/vmwgfx: get rid of different types of fence_flags =
+entirely<br>
+=C2=A0 =C2=A0 =C2=A0 drm/vmwgfx: rework to new fence interface<br>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: flip the switch, and convert to dma_fence<br>
+=C2=A0 =C2=A0 =C2=A0 drm/nouveau: use rcu in nouveau_gem_ioctl_cpu_prep<br>
+=C2=A0 =C2=A0 =C2=A0 drm/radeon: use rcu waits in some ioctls<br>
+=C2=A0 =C2=A0 =C2=A0 drm/vmwgfx: use rcu in vmw_user_dmabuf_synccpu_grab<br=
+>
+=C2=A0 =C2=A0 =C2=A0 drm/ttm: use rcu in core ttm<br>
+<br>
+=C2=A0drivers/gpu/drm/nouveau/core/core/event.c | =C2=A0 =C2=A04<br>
+=C2=A0drivers/gpu/drm/nouveau/nouveau_bo.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 59 =
++---<br>
+=C2=A0drivers/gpu/drm/nouveau/nouveau_display.c | =C2=A0 25 +-<br>
+=C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c =C2=A0 | =C2=A0431 ++++++++++=
++++++++++----------<br>
+=C2=A0drivers/gpu/drm/nouveau/nouveau_fence.h =C2=A0 | =C2=A0 22 +<br>
+=C2=A0drivers/gpu/drm/nouveau/nouveau_gem.c =C2=A0 =C2=A0 | =C2=A0 55 +---<=
+br>
+=C2=A0drivers/gpu/drm/nouveau/nv04_fence.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 =C2=
+=A04<br>
+=C2=A0drivers/gpu/drm/nouveau/nv10_fence.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 =C2=
+=A04<br>
+=C2=A0drivers/gpu/drm/nouveau/nv17_fence.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 =C2=
+=A02<br>
+=C2=A0drivers/gpu/drm/nouveau/nv50_fence.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 =C2=
+=A02<br>
+=C2=A0drivers/gpu/drm/nouveau/nv84_fence.c =C2=A0 =C2=A0 =C2=A0| =C2=A0 11 =
+-<br>
+=C2=A0drivers/gpu/drm/qxl/Makefile =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0| =C2=A0 =C2=A02<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_cmd.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 | =C2=A0 =C2=A07<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_debugfs.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=
+=A0 16 +<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_drv.h =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 | =C2=A0 20 -<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_fence.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =
+=C2=A0 91 ------<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_kms.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 | =C2=A0 =C2=A01<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_object.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+=C2=A0 =C2=A02<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_object.h =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+=C2=A0 =C2=A06<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_release.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=
+=A0172 ++++++++++--<br>
+=C2=A0drivers/gpu/drm/qxl/qxl_ttm.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 | =C2=A0 93 ------<br>
+=C2=A0drivers/gpu/drm/radeon/radeon.h =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =
+=C2=A0 15 -<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_cs.c =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=
+=A0 10 +<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_device.c =C2=A0 =C2=A0| =C2=A0 60 ++++<=
+br>
+=C2=A0drivers/gpu/drm/radeon/radeon_display.c =C2=A0 | =C2=A0 21 +<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_fence.c =C2=A0 =C2=A0 | =C2=A0283 +++++=
+++++++++++----<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_gem.c =C2=A0 =C2=A0 =C2=A0 | =C2=A0 19 =
++<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_object.c =C2=A0 =C2=A0| =C2=A0 =C2=A08 =
+-<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_ttm.c =C2=A0 =C2=A0 =C2=A0 | =C2=A0 34 =
+--<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_uvd.c =C2=A0 =C2=A0 =C2=A0 | =C2=A0 10 =
+-<br>
+=C2=A0drivers/gpu/drm/radeon/radeon_vm.c =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=
+=A0 16 +<br>
+=C2=A0drivers/gpu/drm/ttm/ttm_bo.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0| =C2=A0187 ++++++-------<br>
+=C2=A0drivers/gpu/drm/ttm/ttm_bo_util.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=
+=A0 28 --<br>
+=C2=A0drivers/gpu/drm/ttm/ttm_bo_vm.c =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =
+=C2=A0 =C2=A03<br>
+=C2=A0drivers/gpu/drm/ttm/ttm_execbuf_util.c =C2=A0 =C2=A0| =C2=A0146 +++--=
+-----<br>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_buffer.c =C2=A0 =C2=A0| =C2=A0 47 ---<b=
+r>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_drv.h =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=
+=A01<br>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c =C2=A0 | =C2=A0 24 --<br>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_fence.c =C2=A0 =C2=A0 | =C2=A0329 +++++=
++++++++----------<br>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_fence.h =C2=A0 =C2=A0 | =C2=A0 35 +-<br=
+>
+=C2=A0drivers/gpu/drm/vmwgfx/vmwgfx_resource.c =C2=A0| =C2=A0 43 +--<br>
+=C2=A0include/drm/ttm/ttm_bo_api.h =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0| =C2=A0 =C2=A07<br>
+=C2=A0include/drm/ttm/ttm_bo_driver.h =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =
+=C2=A0 29 --<br>
+=C2=A0include/drm/ttm/ttm_execbuf_util.h =C2=A0 =C2=A0 =C2=A0 =C2=A0| =C2=
+=A0 22 +<br>
+=C2=A044 files changed, 1256 insertions(+), 1150 deletions(-)<br>
+=C2=A0delete mode 100644 drivers/gpu/drm/qxl/qxl_fence.c<br>
+<br>
+--<br>
+Signature<br>
+_______________________________________________<br>
+dri-devel mailing list<br>
+<a href=3D"mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesk=
+top.org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/dri-devel" target=
+=3D"_blank">http://lists.freedesktop.org/mailman/listinfo/dri-devel</a><br>
+</blockquote></div>
+
+--089e0149d350d382ee04fdc269d5--
+
+--===============1062897209==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+dri-devel mailing list
+dri-devel@lists.freedesktop.org
+http://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+--===============1062897209==--
