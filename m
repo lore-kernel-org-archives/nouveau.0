@@ -1,7 +1,7 @@
 From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH 10/17] drm/qxl: rework to new fence interface
-Date: Wed, 09 Jul 2014 14:29:59 +0200
-Message-ID: <20140709122959.11354.46420.stgit@patser>
+Subject: [PATCH 12/17] drm/vmwgfx: rework to new fence interface
+Date: Wed, 09 Jul 2014 14:30:11 +0200
+Message-ID: <20140709123011.11354.40317.stgit@patser>
 References: <20140709093124.11354.3774.stgit@patser>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,699 +21,651 @@ To: airlied@linux.ie
 Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-Final driver! \o/
-
-This is not a proper dma_fence because the hardware may never signal
-anything, so don't use dma-buf with qxl, ever.
-
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
 ---
- drivers/gpu/drm/qxl/Makefile      |    2 
- drivers/gpu/drm/qxl/qxl_cmd.c     |    5 -
- drivers/gpu/drm/qxl/qxl_debugfs.c |   12 ++-
- drivers/gpu/drm/qxl/qxl_drv.h     |   22 ++---
- drivers/gpu/drm/qxl/qxl_fence.c   |   87 -------------------
- drivers/gpu/drm/qxl/qxl_kms.c     |    2 
- drivers/gpu/drm/qxl/qxl_object.c  |    2 
- drivers/gpu/drm/qxl/qxl_release.c |  166 ++++++++++++++++++++++++++++++++-----
- drivers/gpu/drm/qxl/qxl_ttm.c     |   97 ++++++++++++----------
- 9 files changed, 220 insertions(+), 175 deletions(-)
- delete mode 100644 drivers/gpu/drm/qxl/qxl_fence.c
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c  |    2 
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c    |  299 ++++++++++++++++++------------
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.h    |   29 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_resource.c |    9 -
+ 4 files changed, 200 insertions(+), 139 deletions(-)
 
-diff --git a/drivers/gpu/drm/qxl/Makefile b/drivers/gpu/drm/qxl/Makefile
-index ea046ba691d2..ac0d74852e11 100644
---- a/drivers/gpu/drm/qxl/Makefile
-+++ b/drivers/gpu/drm/qxl/Makefile
-@@ -4,6 +4,6 @@
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c b/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
+index db30b790ad24..f3f8caa09cc8 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c
+@@ -2360,7 +2360,7 @@ vmw_execbuf_copy_fence_user(struct vmw_private *dev_priv,
+ 		BUG_ON(fence == NULL);
  
- ccflags-y := -Iinclude/drm
- 
--qxl-y := qxl_drv.o qxl_kms.o qxl_display.o qxl_ttm.o qxl_fb.o qxl_object.o qxl_gem.o qxl_cmd.o qxl_image.o qxl_draw.o qxl_debugfs.o qxl_irq.o qxl_dumb.o qxl_ioctl.o qxl_fence.o qxl_release.o
-+qxl-y := qxl_drv.o qxl_kms.o qxl_display.o qxl_ttm.o qxl_fb.o qxl_object.o qxl_gem.o qxl_cmd.o qxl_image.o qxl_draw.o qxl_debugfs.o qxl_irq.o qxl_dumb.o qxl_ioctl.o qxl_release.o
- 
- obj-$(CONFIG_DRM_QXL)+= qxl.o
-diff --git a/drivers/gpu/drm/qxl/qxl_cmd.c b/drivers/gpu/drm/qxl/qxl_cmd.c
-index 45fad7b45486..97823644d347 100644
---- a/drivers/gpu/drm/qxl/qxl_cmd.c
-+++ b/drivers/gpu/drm/qxl/qxl_cmd.c
-@@ -620,11 +620,6 @@ static int qxl_reap_surf(struct qxl_device *qdev, struct qxl_bo *surf, bool stal
- 	if (ret == -EBUSY)
- 		return -EBUSY;
- 
--	if (surf->fence.num_active_releases > 0 && stall == false) {
--		qxl_bo_unreserve(surf);
--		return -EBUSY;
--	}
--
- 	if (stall)
- 		mutex_unlock(&qdev->surf_evict_mutex);
- 
-diff --git a/drivers/gpu/drm/qxl/qxl_debugfs.c b/drivers/gpu/drm/qxl/qxl_debugfs.c
-index c3c2bbdc6674..0d144e0646d6 100644
---- a/drivers/gpu/drm/qxl/qxl_debugfs.c
-+++ b/drivers/gpu/drm/qxl/qxl_debugfs.c
-@@ -57,11 +57,21 @@ qxl_debugfs_buffers_info(struct seq_file *m, void *data)
- 	struct qxl_device *qdev = node->minor->dev->dev_private;
- 	struct qxl_bo *bo;
- 
-+	spin_lock(&qdev->release_lock);
- 	list_for_each_entry(bo, &qdev->gem.objects, list) {
-+		struct reservation_object_list *fobj;
-+		int rel;
-+
-+		rcu_read_lock();
-+		fobj = rcu_dereference(bo->tbo.resv->fence);
-+		rel = fobj ? fobj->shared_count : 0;
-+		rcu_read_unlock();
-+
- 		seq_printf(m, "size %ld, pc %d, sync obj %p, num releases %d\n",
- 			   (unsigned long)bo->gem_base.size, bo->pin_count,
--			   bo->tbo.sync_obj, bo->fence.num_active_releases);
-+			   bo->tbo.sync_obj, rel);
+ 		fence_rep.handle = fence_handle;
+-		fence_rep.seqno = fence->seqno;
++		fence_rep.seqno = fence->base.seqno;
+ 		vmw_update_seqno(dev_priv, &dev_priv->fifo);
+ 		fence_rep.passed_seqno = dev_priv->last_read_seqno;
  	}
-+	spin_unlock(&qdev->release_lock);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.h b/drivers/gpu/drm/qxl/qxl_drv.h
-index 36ed40ba773f..d547cbdebeb4 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.h
-+++ b/drivers/gpu/drm/qxl/qxl_drv.h
-@@ -31,6 +31,7 @@
-  * Definitions taken from spice-protocol, plus kernel driver specific bits.
-  */
- 
-+#include <linux/fence.h>
- #include <linux/workqueue.h>
- #include <linux/firmware.h>
- #include <linux/platform_device.h>
-@@ -95,13 +96,6 @@ enum {
- 	QXL_INTERRUPT_IO_CMD |\
- 	QXL_INTERRUPT_CLIENT_MONITORS_CONFIG)
- 
--struct qxl_fence {
--	struct qxl_device *qdev;
--	uint32_t num_active_releases;
--	uint32_t *release_ids;
--	struct radix_tree_root tree;
--};
--
- struct qxl_bo {
- 	/* Protected by gem.mutex */
- 	struct list_head		list;
-@@ -113,13 +107,13 @@ struct qxl_bo {
- 	unsigned			pin_count;
- 	void				*kptr;
- 	int                             type;
-+
- 	/* Constant after initialization */
- 	struct drm_gem_object		gem_base;
- 	bool is_primary; /* is this now a primary surface */
- 	bool hw_surf_alloc;
- 	struct qxl_surface surf;
- 	uint32_t surface_id;
--	struct qxl_fence fence; /* per bo fence  - list of releases */
- 	struct qxl_release *surf_create;
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_fence.c b/drivers/gpu/drm/vmwgfx/vmwgfx_fence.c
+index 05b9eea8e875..77f416b7552c 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_fence.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_fence.c
+@@ -46,6 +46,7 @@ struct vmw_fence_manager {
+ 	bool goal_irq_on; /* Protected by @goal_irq_mutex */
+ 	bool seqno_valid; /* Protected by @lock, and may not be set to true
+ 			     without the @goal_irq_mutex held. */
++	unsigned ctx;
  };
- #define gem_to_qxl_bo(gobj) container_of((gobj), struct qxl_bo, gem_base)
-@@ -191,6 +185,8 @@ enum {
-  * spice-protocol/qxl_dev.h */
- #define QXL_MAX_RES 96
- struct qxl_release {
-+	struct fence base;
+ 
+ struct vmw_user_fence {
+@@ -80,6 +81,12 @@ struct vmw_event_fence_action {
+ 	uint32_t *tv_usec;
+ };
+ 
++static struct vmw_fence_manager *
++fman_from_fence(struct vmw_fence_obj *fence)
++{
++	return container_of(fence->base.lock, struct vmw_fence_manager, lock);
++}
 +
- 	int id;
- 	int type;
- 	uint32_t release_offset;
-@@ -284,7 +280,11 @@ struct qxl_device {
- 	uint8_t		slot_gen_bits;
- 	uint64_t	va_slot_mask;
- 
-+	/* XXX: when rcu becomes available, release_lock can be killed */
-+	spinlock_t	release_lock;
-+	spinlock_t	fence_lock;
- 	struct idr	release_idr;
-+	uint32_t	release_seqno;
- 	spinlock_t release_idr_lock;
- 	struct mutex	async_io_mutex;
- 	unsigned int last_sent_io_cmd;
-@@ -561,10 +561,4 @@ qxl_surface_lookup(struct drm_device *dev, int surface_id);
- void qxl_surface_evict(struct qxl_device *qdev, struct qxl_bo *surf, bool freeing);
- int qxl_update_surface(struct qxl_device *qdev, struct qxl_bo *surf);
- 
--/* qxl_fence.c */
--void qxl_fence_add_release_locked(struct qxl_fence *qfence, uint32_t rel_id);
--int qxl_fence_remove_release(struct qxl_fence *qfence, uint32_t rel_id);
--int qxl_fence_init(struct qxl_device *qdev, struct qxl_fence *qfence);
--void qxl_fence_fini(struct qxl_fence *qfence);
--
- #endif
-diff --git a/drivers/gpu/drm/qxl/qxl_fence.c b/drivers/gpu/drm/qxl/qxl_fence.c
-deleted file mode 100644
-index c7248418117d..000000000000
---- a/drivers/gpu/drm/qxl/qxl_fence.c
-+++ /dev/null
-@@ -1,87 +0,0 @@
--/*
-- * Copyright 2013 Red Hat Inc.
-- *
-- * Permission is hereby granted, free of charge, to any person obtaining a
-- * copy of this software and associated documentation files (the "Software"),
-- * to deal in the Software without restriction, including without limitation
-- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-- * and/or sell copies of the Software, and to permit persons to whom the
-- * Software is furnished to do so, subject to the following conditions:
-- *
-- * The above copyright notice and this permission notice shall be included in
-- * all copies or substantial portions of the Software.
-- *
-- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-- * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-- * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-- * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- * OTHER DEALINGS IN THE SOFTWARE.
-- *
-- * Authors: Dave Airlie
-- *          Alon Levy
-- */
--
--
--#include "qxl_drv.h"
--
--/* QXL fencing-
--
--   When we submit operations to the GPU we pass a release reference to the GPU
--   with them, the release reference is then added to the release ring when
--   the GPU is finished with that particular operation and has removed it from
--   its tree.
--
--   So we have can have multiple outstanding non linear fences per object.
--
--   From a TTM POV we only care if the object has any outstanding releases on
--   it.
--
--   we wait until all outstanding releases are processeed.
--
--   sync object is just a list of release ids that represent that fence on
--   that buffer.
--
--   we just add new releases onto the sync object attached to the object.
--
--   This currently uses a radix tree to store the list of release ids.
--
--   For some reason every so often qxl hw fails to release, things go wrong.
--*/
--/* must be called with the fence lock held */
--void qxl_fence_add_release_locked(struct qxl_fence *qfence, uint32_t rel_id)
--{
--	radix_tree_insert(&qfence->tree, rel_id, qfence);
--	qfence->num_active_releases++;
--}
--
--int qxl_fence_remove_release(struct qxl_fence *qfence, uint32_t rel_id)
--{
--	void *ret;
--	int retval = 0;
--
--	ret = radix_tree_delete(&qfence->tree, rel_id);
--	if (ret == qfence)
--		qfence->num_active_releases--;
--	else {
--		DRM_DEBUG("didn't find fence in radix tree for %d\n", rel_id);
--		retval = -ENOENT;
--	}
--	return retval;
--}
--
--
--int qxl_fence_init(struct qxl_device *qdev, struct qxl_fence *qfence)
--{
--	qfence->qdev = qdev;
--	qfence->num_active_releases = 0;
--	INIT_RADIX_TREE(&qfence->tree, GFP_ATOMIC);
--	return 0;
--}
--
--void qxl_fence_fini(struct qxl_fence *qfence)
--{
--	kfree(qfence->release_ids);
--	qfence->num_active_releases = 0;
--}
-diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
-index fd88eb4a3f79..a9e7c30e92c5 100644
---- a/drivers/gpu/drm/qxl/qxl_kms.c
-+++ b/drivers/gpu/drm/qxl/qxl_kms.c
-@@ -223,6 +223,8 @@ static int qxl_device_init(struct qxl_device *qdev,
- 
- 	idr_init(&qdev->release_idr);
- 	spin_lock_init(&qdev->release_idr_lock);
-+	spin_lock_init(&qdev->release_lock);
-+	spin_lock_init(&qdev->fence_lock);
- 
- 	idr_init(&qdev->surf_id_idr);
- 	spin_lock_init(&qdev->surf_id_idr_lock);
-diff --git a/drivers/gpu/drm/qxl/qxl_object.c b/drivers/gpu/drm/qxl/qxl_object.c
-index b95f144f0b49..9981962451d7 100644
---- a/drivers/gpu/drm/qxl/qxl_object.c
-+++ b/drivers/gpu/drm/qxl/qxl_object.c
-@@ -36,7 +36,6 @@ static void qxl_ttm_bo_destroy(struct ttm_buffer_object *tbo)
- 	qdev = (struct qxl_device *)bo->gem_base.dev->dev_private;
- 
- 	qxl_surface_evict(qdev, bo, false);
--	qxl_fence_fini(&bo->fence);
- 	mutex_lock(&qdev->gem.mutex);
- 	list_del_init(&bo->list);
- 	mutex_unlock(&qdev->gem.mutex);
-@@ -99,7 +98,6 @@ int qxl_bo_create(struct qxl_device *qdev,
- 	bo->type = domain;
- 	bo->pin_count = pinned ? 1 : 0;
- 	bo->surface_id = 0;
--	qxl_fence_init(qdev, &bo->fence);
- 	INIT_LIST_HEAD(&bo->list);
- 
- 	if (surf)
-diff --git a/drivers/gpu/drm/qxl/qxl_release.c b/drivers/gpu/drm/qxl/qxl_release.c
-index 4045ba873ab8..9731d2540a40 100644
---- a/drivers/gpu/drm/qxl/qxl_release.c
-+++ b/drivers/gpu/drm/qxl/qxl_release.c
-@@ -21,6 +21,7 @@
+ /**
+  * Note on fencing subsystem usage of irqs:
+  * Typically the vmw_fences_update function is called
+@@ -102,25 +109,130 @@ struct vmw_event_fence_action {
+  * objects with actions attached to them.
   */
- #include "qxl_drv.h"
- #include "qxl_object.h"
-+#include <trace/events/fence.h>
  
- /*
-  * drawable cmd cache - allocate a bunch of VRAM pages, suballocate
-@@ -39,6 +40,88 @@
- static const int release_size_per_bo[] = { RELEASE_SIZE, SURFACE_RELEASE_SIZE, RELEASE_SIZE };
- static const int releases_per_bo[] = { RELEASES_PER_BO, SURFACE_RELEASES_PER_BO, RELEASES_PER_BO };
+-static void vmw_fence_obj_destroy_locked(struct kref *kref)
++static void vmw_fence_obj_destroy(struct fence *f)
+ {
+ 	struct vmw_fence_obj *fence =
+-		container_of(kref, struct vmw_fence_obj, kref);
++		container_of(f, struct vmw_fence_obj, base);
  
-+static const char *qxl_get_driver_name(struct fence *fence)
+-	struct vmw_fence_manager *fman = fence->fman;
+-	unsigned int num_fences;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
++	unsigned long irq_flags;
+ 
++	spin_lock_irqsave(&fman->lock, irq_flags);
+ 	list_del_init(&fence->head);
+-	num_fences = --fman->num_fence_objects;
+-	spin_unlock_irq(&fman->lock);
+-	if (fence->destroy)
+-		fence->destroy(fence);
+-	else
+-		kfree(fence);
++	--fman->num_fence_objects;
++	spin_unlock_irqrestore(&fman->lock, irq_flags);
++	fence->destroy(fence);
++}
+ 
+-	spin_lock_irq(&fman->lock);
++static const char *vmw_fence_get_driver_name(struct fence *f)
 +{
-+	return "qxl";
++	return "vmwgfx";
 +}
 +
-+static const char *qxl_get_timeline_name(struct fence *fence)
++static const char *vmw_fence_get_timeline_name(struct fence *f)
 +{
-+	return "release";
++	return "svga";
 +}
 +
-+static bool qxl_nop_signaling(struct fence *fence)
++static bool vmw_fence_enable_signaling(struct fence *f)
 +{
-+	/* fences are always automatically signaled, so just pretend we did this.. */
++	struct vmw_fence_obj *fence =
++		container_of(f, struct vmw_fence_obj, base);
++
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
++
++	__le32 __iomem *fifo_mem = fman->dev_priv->mmio_virt;
++	u32 seqno = ioread32(fifo_mem + SVGA_FIFO_FENCE);
++	if (seqno - fence->base.seqno < VMW_FENCE_WRAP)
++		return false;
++
++	vmw_fifo_ping_host(fman->dev_priv, SVGA_SYNC_GENERIC);
++
 +	return true;
 +}
 +
-+static long qxl_fence_wait(struct fence *fence, bool intr, signed long timeout)
-+{
-+	struct qxl_device *qdev;
-+	struct qxl_release *release;
-+	int count = 0, sc = 0;
-+	bool have_drawable_releases;
-+	unsigned long cur, end = jiffies + timeout;
-+
-+	qdev = container_of(fence->lock, struct qxl_device, release_lock);
-+	release = container_of(fence, struct qxl_release, base);
-+	have_drawable_releases = release->type == QXL_RELEASE_DRAWABLE;
-+
-+retry:
-+	sc++;
-+
-+	if (fence_is_signaled_locked(fence))
-+		goto signaled;
-+
-+	qxl_io_notify_oom(qdev);
-+
-+	for (count = 0; count < 11; count++) {
-+		if (!qxl_queue_garbage_collect(qdev, true))
-+			break;
-+
-+		if (fence_is_signaled_locked(fence))
-+			goto signaled;
-+	}
-+
-+	if (fence_is_signaled_locked(fence))
-+		goto signaled;
-+
-+	if (have_drawable_releases || sc < 4) {
-+		if (sc > 2)
-+			/* back off */
-+			usleep_range(500, 1000);
-+
-+		if (time_after(jiffies, end))
-+			return 0;
-+
-+		if (have_drawable_releases && sc > 300) {
-+			FENCE_WARN(fence, "failed to wait on release %d "
-+					  "after spincount %d\n",
-+					  fence->context & ~0xf0000000, sc);
-+			goto signaled;
-+		}
-+		goto retry;
-+	}
-+	/*
-+	 * yeah, original sync_obj_wait gave up after 3 spins when
-+	 * have_drawable_releases is not set.
-+	 */
-+
-+signaled:
-+	cur = jiffies;
-+	if (time_after(cur, end))
-+		return 0;
-+	return end - cur;
-+}
-+
-+static const struct fence_ops qxl_fence_ops = {
-+	.get_driver_name = qxl_get_driver_name,
-+	.get_timeline_name = qxl_get_timeline_name,
-+	.enable_signaling = qxl_nop_signaling,
-+	.wait = qxl_fence_wait,
++struct vmwgfx_wait_cb {
++	struct fence_cb base;
++	struct task_struct *task;
 +};
 +
- static uint64_t
- qxl_release_alloc(struct qxl_device *qdev, int type,
- 		  struct qxl_release **ret)
-@@ -46,13 +129,13 @@ qxl_release_alloc(struct qxl_device *qdev, int type,
- 	struct qxl_release *release;
- 	int handle;
- 	size_t size = sizeof(*release);
--	int idr_ret;
- 
- 	release = kmalloc(size, GFP_KERNEL);
- 	if (!release) {
- 		DRM_ERROR("Out of memory\n");
- 		return 0;
- 	}
-+	release->base.ops = NULL;
- 	release->type = type;
- 	release->release_offset = 0;
- 	release->surface_release_id = 0;
-@@ -60,44 +143,59 @@ qxl_release_alloc(struct qxl_device *qdev, int type,
- 
- 	idr_preload(GFP_KERNEL);
- 	spin_lock(&qdev->release_idr_lock);
--	idr_ret = idr_alloc(&qdev->release_idr, release, 1, 0, GFP_NOWAIT);
-+	handle = idr_alloc(&qdev->release_idr, release, 1, 0, GFP_NOWAIT);
-+	release->base.seqno = ++qdev->release_seqno;
- 	spin_unlock(&qdev->release_idr_lock);
- 	idr_preload_end();
--	handle = idr_ret;
--	if (idr_ret < 0)
--		goto release_fail;
-+	if (handle < 0) {
-+		kfree(release);
-+		*ret = NULL;
-+		return handle;
-+	}
- 	*ret = release;
- 	QXL_INFO(qdev, "allocated release %lld\n", handle);
- 	release->id = handle;
--release_fail:
--
- 	return handle;
++static void
++vmwgfx_wait_cb(struct fence *fence, struct fence_cb *cb)
++{
++	struct vmwgfx_wait_cb *wait =
++		container_of(cb, struct vmwgfx_wait_cb, base);
++
++	wake_up_process(wait->task);
  }
  
-+static void
-+qxl_release_free_list(struct qxl_release *release)
++static void __vmw_fences_update(struct vmw_fence_manager *fman);
++
++static long vmw_fence_wait(struct fence *f, bool intr, signed long timeout)
 +{
-+	while (!list_empty(&release->bos)) {
-+		struct ttm_validate_buffer *entry;
++	struct vmw_fence_obj *fence =
++		container_of(f, struct vmw_fence_obj, base);
 +
-+		entry = container_of(release->bos.next,
-+				     struct ttm_validate_buffer, head);
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
++	struct vmw_private *dev_priv = fman->dev_priv;
++	struct vmwgfx_wait_cb cb;
++	long ret = timeout;
++	unsigned long irq_flags;
 +
-+		list_del(&entry->head);
-+		kfree(entry);
++	if (likely(vmw_fence_obj_signaled(fence)))
++		return timeout;
++
++	vmw_fifo_ping_host(dev_priv, SVGA_SYNC_GENERIC);
++	vmw_seqno_waiter_add(dev_priv);
++
++	spin_lock_irqsave(f->lock, irq_flags);
++
++	if (intr && signal_pending(current)) {
++		ret = -ERESTARTSYS;
++		goto out;
 +	}
++
++	cb.base.func = vmwgfx_wait_cb;
++	cb.task = current;
++	list_add(&cb.base.node, &f->cb_list);
++
++	while (ret > 0) {
++		__vmw_fences_update(fman);
++		if (test_bit(FENCE_FLAG_SIGNALED_BIT, &f->flags))
++			break;
++
++		if (intr)
++			__set_current_state(TASK_INTERRUPTIBLE);
++		else
++			__set_current_state(TASK_UNINTERRUPTIBLE);
++		spin_unlock_irqrestore(f->lock, irq_flags);
++
++		ret = schedule_timeout(ret);
++
++		spin_lock_irqsave(f->lock, irq_flags);
++		if (ret > 0 && intr && signal_pending(current))
++			ret = -ERESTARTSYS;
++	}
++
++	if (!list_empty(&cb.base.node))
++		list_del(&cb.base.node);
++	__set_current_state(TASK_RUNNING);
++
++out:
++	spin_unlock_irqrestore(f->lock, irq_flags);
++
++	vmw_seqno_waiter_remove(dev_priv);
++
++	return ret;
 +}
 +
- void
- qxl_release_free(struct qxl_device *qdev,
- 		 struct qxl_release *release)
++static struct fence_ops vmw_fence_ops = {
++	.get_driver_name = vmw_fence_get_driver_name,
++	.get_timeline_name = vmw_fence_get_timeline_name,
++	.enable_signaling = vmw_fence_enable_signaling,
++	.wait = vmw_fence_wait,
++	.release = vmw_fence_obj_destroy,
++};
++
+ 
+ /**
+  * Execute signal actions on fences recently signaled.
+@@ -186,6 +298,7 @@ struct vmw_fence_manager *vmw_fence_manager_init(struct vmw_private *dev_priv)
+ 	fman->event_fence_action_size =
+ 		ttm_round_pot(sizeof(struct vmw_event_fence_action));
+ 	mutex_init(&fman->goal_irq_mutex);
++	fman->ctx = fence_context_alloc(1);
+ 
+ 	return fman;
+ }
+@@ -211,16 +324,12 @@ static int vmw_fence_obj_init(struct vmw_fence_manager *fman,
+ 			      void (*destroy) (struct vmw_fence_obj *fence))
  {
--	struct qxl_bo_list *entry, *tmp;
- 	QXL_INFO(qdev, "release %d, type %d\n", release->id,
- 		 release->type);
+ 	unsigned long irq_flags;
+-	unsigned int num_fences;
+ 	int ret = 0;
  
- 	if (release->surface_release_id)
- 		qxl_surface_id_dealloc(qdev, release->surface_release_id);
+-	fence->seqno = seqno;
++	fence_init(&fence->base, &vmw_fence_ops, &fman->lock,
++		   fman->ctx, seqno);
+ 	INIT_LIST_HEAD(&fence->seq_passed_actions);
+-	fence->fman = fman;
+-	fence->signaled = 0;
+-	kref_init(&fence->kref);
+ 	fence->destroy = destroy;
+-	init_waitqueue_head(&fence->queue);
  
--	list_for_each_entry_safe(entry, tmp, &release->bos, tv.head) {
--		struct qxl_bo *bo = to_qxl_bo(entry->tv.bo);
--		QXL_INFO(qdev, "release %llx\n",
--			drm_vma_node_offset_addr(&entry->tv.bo->vma_node)
--						- DRM_FILE_OFFSET);
--		qxl_fence_remove_release(&bo->fence, release->id);
--		qxl_bo_unref(&bo);
--		kfree(entry);
--	}
- 	spin_lock(&qdev->release_idr_lock);
- 	idr_remove(&qdev->release_idr, release->id);
- 	spin_unlock(&qdev->release_idr_lock);
--	kfree(release);
-+
-+	if (release->base.ops) {
-+		WARN_ON(list_empty(&release->bos));
-+		qxl_release_free_list(release);
-+
-+		fence_signal(&release->base);
-+		fence_put(&release->base);
-+	} else {
-+		qxl_release_free_list(release);
-+		kfree(release);
-+	}
+ 	spin_lock_irqsave(&fman->lock, irq_flags);
+ 	if (unlikely(fman->fifo_down)) {
+@@ -228,7 +337,7 @@ static int vmw_fence_obj_init(struct vmw_fence_manager *fman,
+ 		goto out_unlock;
+ 	}
+ 	list_add_tail(&fence->head, &fman->fence_list);
+-	num_fences = ++fman->num_fence_objects;
++	++fman->num_fence_objects;
+ 
+ out_unlock:
+ 	spin_unlock_irqrestore(&fman->lock, irq_flags);
+@@ -236,38 +345,6 @@ out_unlock:
+ 
  }
  
- static int qxl_release_bo_alloc(struct qxl_device *qdev,
-@@ -142,6 +240,10 @@ static int qxl_release_validate_bo(struct qxl_bo *bo)
- 			return ret;
- 	}
- 
-+	ret = reservation_object_reserve_shared(bo->tbo.resv);
-+	if (ret)
-+		return ret;
-+
- 	/* allocate a surface for reserved + validated buffers */
- 	ret = qxl_bo_check_id(bo->gem_base.dev->dev_private, bo);
- 	if (ret)
-@@ -199,6 +301,8 @@ int qxl_alloc_surface_release_reserved(struct qxl_device *qdev,
- 
- 		/* stash the release after the create command */
- 		idr_ret = qxl_release_alloc(qdev, QXL_RELEASE_SURFACE_CMD, release);
-+		if (idr_ret < 0)
-+			return idr_ret;
- 		bo = qxl_bo_ref(to_qxl_bo(entry->tv.bo));
- 
- 		(*release)->release_offset = create_rel->release_offset + 64;
-@@ -239,6 +343,11 @@ int qxl_alloc_release_reserved(struct qxl_device *qdev, unsigned long size,
- 	}
- 
- 	idr_ret = qxl_release_alloc(qdev, type, release);
-+	if (idr_ret < 0) {
-+		if (rbo)
-+			*rbo = NULL;
-+		return idr_ret;
-+	}
- 
- 	mutex_lock(&qdev->release_mutex);
- 	if (qdev->current_release_bo_offset[cur_idx] + 1 >= releases_per_bo[cur_idx]) {
-@@ -319,12 +428,13 @@ void qxl_release_unmap(struct qxl_device *qdev,
- 
- void qxl_release_fence_buffer_objects(struct qxl_release *release)
+-struct vmw_fence_obj *vmw_fence_obj_reference(struct vmw_fence_obj *fence)
+-{
+-	if (unlikely(fence == NULL))
+-		return NULL;
+-
+-	kref_get(&fence->kref);
+-	return fence;
+-}
+-
+-/**
+- * vmw_fence_obj_unreference
+- *
+- * Note that this function may not be entered with disabled irqs since
+- * it may re-enable them in the destroy function.
+- *
+- */
+-void vmw_fence_obj_unreference(struct vmw_fence_obj **fence_p)
+-{
+-	struct vmw_fence_obj *fence = *fence_p;
+-	struct vmw_fence_manager *fman;
+-
+-	if (unlikely(fence == NULL))
+-		return;
+-
+-	fman = fence->fman;
+-	*fence_p = NULL;
+-	spin_lock_irq(&fman->lock);
+-	BUG_ON(atomic_read(&fence->kref.refcount) == 0);
+-	kref_put(&fence->kref, vmw_fence_obj_destroy_locked);
+-	spin_unlock_irq(&fman->lock);
+-}
+-
+ static void vmw_fences_perform_actions(struct vmw_fence_manager *fman,
+ 				struct list_head *list)
  {
--	struct ttm_validate_buffer *entry;
- 	struct ttm_buffer_object *bo;
- 	struct ttm_bo_global *glob;
- 	struct ttm_bo_device *bdev;
- 	struct ttm_bo_driver *driver;
- 	struct qxl_bo *qbo;
-+	struct ttm_validate_buffer *entry;
-+	struct qxl_device *qdev;
- 
- 	/* if only one object on the release its the release itself
- 	   since these objects are pinned no need to reserve */
-@@ -333,23 +443,35 @@ void qxl_release_fence_buffer_objects(struct qxl_release *release)
- 
- 	bo = list_first_entry(&release->bos, struct ttm_validate_buffer, head)->bo;
- 	bdev = bo->bdev;
-+	qdev = container_of(bdev, struct qxl_device, mman.bdev);
-+
-+	/*
-+	 * Since we never really allocated a context and we don't want to conflict,
-+	 * set the highest bits. This will break if we really allow exporting of dma-bufs.
-+	 */
-+	fence_init(&release->base, &qxl_fence_ops, &qdev->release_lock,
-+		   release->id | 0xf0000000, release->base.seqno);
-+	trace_fence_emit(&release->base);
-+
- 	driver = bdev->driver;
- 	glob = bo->glob;
- 
- 	spin_lock(&glob->lru_lock);
-+	/* acquire release_lock to protect bo->resv->fence and its contents */
-+	spin_lock(&qdev->release_lock);
- 
- 	list_for_each_entry(entry, &release->bos, head) {
- 		bo = entry->bo;
- 		qbo = to_qxl_bo(bo);
- 
- 		if (!entry->bo->sync_obj)
--			entry->bo->sync_obj = &qbo->fence;
--
--		qxl_fence_add_release_locked(&qbo->fence, release->id);
-+			entry->bo->sync_obj = qbo;
- 
-+		reservation_object_add_shared_fence(bo->resv, &release->base);
- 		ttm_bo_add_to_lru(bo);
- 		__ttm_bo_unreserve(bo);
- 	}
-+	spin_unlock(&qdev->release_lock);
- 	spin_unlock(&glob->lru_lock);
- 	ww_acquire_fini(&release->ticket);
- }
-diff --git a/drivers/gpu/drm/qxl/qxl_ttm.c b/drivers/gpu/drm/qxl/qxl_ttm.c
-index 71a1baeac14e..6230251fa5b0 100644
---- a/drivers/gpu/drm/qxl/qxl_ttm.c
-+++ b/drivers/gpu/drm/qxl/qxl_ttm.c
-@@ -355,67 +355,67 @@ static int qxl_bo_move(struct ttm_buffer_object *bo,
- 	return ttm_bo_move_memcpy(bo, evict, no_wait_gpu, new_mem);
- }
- 
-+static bool qxl_sync_obj_signaled(void *sync_obj);
- 
- static int qxl_sync_obj_wait(void *sync_obj,
- 			     bool lazy, bool interruptible)
- {
--	struct qxl_fence *qfence = (struct qxl_fence *)sync_obj;
--	int count = 0, sc = 0;
--	struct qxl_bo *bo = container_of(qfence, struct qxl_bo, fence);
--
--	if (qfence->num_active_releases == 0)
--		return 0;
-+	struct qxl_bo *bo = (struct qxl_bo *)sync_obj;
-+	struct qxl_device *qdev = bo->gem_base.dev->dev_private;
-+	struct reservation_object_list *fobj;
-+	int count = 0, sc = 0, num_release = 0;
-+	bool have_drawable_releases;
- 
- retry:
- 	if (sc == 0) {
- 		if (bo->type == QXL_GEM_DOMAIN_SURFACE)
--			qxl_update_surface(qfence->qdev, bo);
-+			qxl_update_surface(qdev, bo);
- 	} else if (sc >= 1) {
--		qxl_io_notify_oom(qfence->qdev);
-+		qxl_io_notify_oom(qdev);
- 	}
- 
- 	sc++;
- 
- 	for (count = 0; count < 10; count++) {
--		bool ret;
--		ret = qxl_queue_garbage_collect(qfence->qdev, true);
--		if (ret == false)
--			break;
--
--		if (qfence->num_active_releases == 0)
-+		if (qxl_sync_obj_signaled(sync_obj))
- 			return 0;
-+
-+		if (!qxl_queue_garbage_collect(qdev, true))
-+			break;
- 	}
- 
--	if (qfence->num_active_releases) {
--		bool have_drawable_releases = false;
--		void **slot;
--		struct radix_tree_iter iter;
--		int release_id;
-+	have_drawable_releases = false;
-+	num_release = 0;
- 
--		radix_tree_for_each_slot(slot, &qfence->tree, &iter, 0) {
--			struct qxl_release *release;
-+	spin_lock(&qdev->release_lock);
-+	fobj = bo->tbo.resv->fence;
-+	for (count = 0; fobj && count < fobj->shared_count; count++) {
-+		struct qxl_release *release;
- 
--			release_id = iter.index;
--			release = qxl_release_from_id_locked(qfence->qdev, release_id);
--			if (release == NULL)
--				continue;
-+		release = container_of(fobj->shared[count],
-+				       struct qxl_release, base);
- 
--			if (release->type == QXL_RELEASE_DRAWABLE)
--				have_drawable_releases = true;
--		}
-+		if (fence_is_signaled(&release->base))
-+			continue;
-+
-+		num_release++;
-+
-+		if (release->type == QXL_RELEASE_DRAWABLE)
-+			have_drawable_releases = true;
-+	}
-+	spin_unlock(&qdev->release_lock);
-+
-+	qxl_queue_garbage_collect(qdev, true);
- 
--		qxl_queue_garbage_collect(qfence->qdev, true);
--
--		if (have_drawable_releases || sc < 4) {
--			if (sc > 2)
--				/* back off */
--				usleep_range(500, 1000);
--			if (have_drawable_releases && sc > 300) {
--				WARN(1, "sync obj %d still has outstanding releases %d %d %d %ld %d\n", sc, bo->surface_id, bo->is_primary, bo->pin_count, (unsigned long)bo->gem_base.size, qfence->num_active_releases);
--				return -EBUSY;
--			}
--			goto retry;
-+	if (have_drawable_releases || sc < 4) {
-+		if (sc > 2)
-+			/* back off */
-+			usleep_range(500, 1000);
-+		if (have_drawable_releases && sc > 300) {
-+			WARN(1, "sync obj %d still has outstanding releases %d %d %d %ld %d\n", sc, bo->surface_id, bo->is_primary, bo->pin_count, (unsigned long)bo->gem_base.size, num_release);
-+			return -EBUSY;
+@@ -323,7 +400,7 @@ static bool vmw_fence_goal_new_locked(struct vmw_fence_manager *fman,
+ 	list_for_each_entry(fence, &fman->fence_list, head) {
+ 		if (!list_empty(&fence->seq_passed_actions)) {
+ 			fman->seqno_valid = true;
+-			iowrite32(fence->seqno,
++			iowrite32(fence->base.seqno,
+ 				  fifo_mem + SVGA_FIFO_FENCE_GOAL);
+ 			break;
  		}
-+		goto retry;
- 	}
- 	return 0;
- }
-@@ -437,8 +437,21 @@ static void *qxl_sync_obj_ref(void *sync_obj)
- 
- static bool qxl_sync_obj_signaled(void *sync_obj)
+@@ -350,27 +427,27 @@ static bool vmw_fence_goal_new_locked(struct vmw_fence_manager *fman,
+  */
+ static bool vmw_fence_goal_check_locked(struct vmw_fence_obj *fence)
  {
--	struct qxl_fence *qfence = (struct qxl_fence *)sync_obj;
--	return (qfence->num_active_releases == 0);
-+	struct qxl_bo *qbo = (struct qxl_bo *)sync_obj;
-+	struct qxl_device *qdev = qbo->gem_base.dev->dev_private;
-+	struct reservation_object_list *fobj;
-+	bool ret = true;
-+	unsigned i;
-+
-+	spin_lock(&qdev->release_lock);
-+	fobj = qbo->tbo.resv->fence;
-+	for (i = 0; fobj && i < fobj->shared_count; ++i) {
-+		ret = fence_is_signaled(fobj->shared[i]);
-+		if (!ret)
-+			break;
-+	}
-+	spin_unlock(&qdev->release_lock);
-+	return ret;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
+ 	u32 goal_seqno;
+ 	__le32 __iomem *fifo_mem;
+ 
+-	if (fence->signaled)
++	if (fence_is_signaled_locked(&fence->base))
+ 		return false;
+ 
+-	fifo_mem = fence->fman->dev_priv->mmio_virt;
++	fifo_mem = fman->dev_priv->mmio_virt;
+ 	goal_seqno = ioread32(fifo_mem + SVGA_FIFO_FENCE_GOAL);
+-	if (likely(fence->fman->seqno_valid &&
+-		   goal_seqno - fence->seqno < VMW_FENCE_WRAP))
++	if (likely(fman->seqno_valid &&
++		   goal_seqno - fence->base.seqno < VMW_FENCE_WRAP))
+ 		return false;
+ 
+-	iowrite32(fence->seqno, fifo_mem + SVGA_FIFO_FENCE_GOAL);
+-	fence->fman->seqno_valid = true;
++	iowrite32(fence->base.seqno, fifo_mem + SVGA_FIFO_FENCE_GOAL);
++	fman->seqno_valid = true;
+ 
+ 	return true;
  }
  
- static void qxl_bo_move_notify(struct ttm_buffer_object *bo,
-@@ -475,8 +488,6 @@ static struct ttm_bo_driver qxl_bo_driver = {
- 	.move_notify = &qxl_bo_move_notify,
+-void vmw_fences_update(struct vmw_fence_manager *fman)
++static void __vmw_fences_update(struct vmw_fence_manager *fman)
+ {
+-	unsigned long flags;
+ 	struct vmw_fence_obj *fence, *next_fence;
+ 	struct list_head action_list;
+ 	bool needs_rerun;
+@@ -379,32 +456,25 @@ void vmw_fences_update(struct vmw_fence_manager *fman)
+ 
+ 	seqno = ioread32(fifo_mem + SVGA_FIFO_FENCE);
+ rerun:
+-	spin_lock_irqsave(&fman->lock, flags);
+ 	list_for_each_entry_safe(fence, next_fence, &fman->fence_list, head) {
+-		if (seqno - fence->seqno < VMW_FENCE_WRAP) {
++		if (seqno - fence->base.seqno < VMW_FENCE_WRAP) {
+ 			list_del_init(&fence->head);
+-			fence->signaled = 1;
++			fence_signal_locked(&fence->base);
+ 			INIT_LIST_HEAD(&action_list);
+ 			list_splice_init(&fence->seq_passed_actions,
+ 					 &action_list);
+ 			vmw_fences_perform_actions(fman, &action_list);
+-			wake_up_all(&fence->queue);
+ 		} else
+ 			break;
+ 	}
+ 
+-	needs_rerun = vmw_fence_goal_new_locked(fman, seqno);
+-
+-	if (!list_empty(&fman->cleanup_list))
+-		(void) schedule_work(&fman->work);
+-	spin_unlock_irqrestore(&fman->lock, flags);
+-
+ 	/*
+ 	 * Rerun if the fence goal seqno was updated, and the
+ 	 * hardware might have raced with that update, so that
+ 	 * we missed a fence_goal irq.
+ 	 */
+ 
++	needs_rerun = vmw_fence_goal_new_locked(fman, seqno);
+ 	if (unlikely(needs_rerun)) {
+ 		new_seqno = ioread32(fifo_mem + SVGA_FIFO_FENCE);
+ 		if (new_seqno != seqno) {
+@@ -412,75 +482,58 @@ rerun:
+ 			goto rerun;
+ 		}
+ 	}
++
++	if (!list_empty(&fman->cleanup_list))
++		(void) schedule_work(&fman->work);
+ }
+ 
+-bool vmw_fence_obj_signaled(struct vmw_fence_obj *fence)
++void vmw_fences_update(struct vmw_fence_manager *fman)
+ {
+-	struct vmw_fence_manager *fman = fence->fman;
+ 	unsigned long irq_flags;
+-	uint32_t signaled;
+ 
+ 	spin_lock_irqsave(&fman->lock, irq_flags);
+-	signaled = fence->signaled;
++	__vmw_fences_update(fman);
+ 	spin_unlock_irqrestore(&fman->lock, irq_flags);
++}
++
++bool vmw_fence_obj_signaled(struct vmw_fence_obj *fence)
++{
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
+ 
+-	if (signaled)
++	if (test_bit(FENCE_FLAG_SIGNALED_BIT, &fence->base.flags))
+ 		return 1;
+ 
+ 	vmw_fences_update(fman);
+ 
+-	spin_lock_irqsave(&fman->lock, irq_flags);
+-	signaled = fence->signaled;
+-	spin_unlock_irqrestore(&fman->lock, irq_flags);
+-
+-	return signaled;
++	return fence_is_signaled(&fence->base);
+ }
+ 
+ int vmw_fence_obj_wait(struct vmw_fence_obj *fence, bool lazy,
+ 		       bool interruptible, unsigned long timeout)
+ {
+-	struct vmw_private *dev_priv = fence->fman->dev_priv;
+-	long ret;
++	long ret = fence_wait_timeout(&fence->base, interruptible, timeout);
+ 
+-	if (likely(vmw_fence_obj_signaled(fence)))
++	if (likely(ret > 0))
+ 		return 0;
+-
+-	vmw_fifo_ping_host(dev_priv, SVGA_SYNC_GENERIC);
+-	vmw_seqno_waiter_add(dev_priv);
+-
+-	if (interruptible)
+-		ret = wait_event_interruptible_timeout
+-			(fence->queue,
+-			 vmw_fence_obj_signaled(fence),
+-			 timeout);
++	else if (ret == 0)
++		return -EBUSY;
+ 	else
+-		ret = wait_event_timeout
+-			(fence->queue,
+-			 vmw_fence_obj_signaled(fence),
+-			 timeout);
+-
+-	vmw_seqno_waiter_remove(dev_priv);
+-
+-	if (unlikely(ret == 0))
+-		ret = -EBUSY;
+-	else if (likely(ret > 0))
+-		ret = 0;
+-
+-	return ret;
++		return ret;
+ }
+ 
+ void vmw_fence_obj_flush(struct vmw_fence_obj *fence)
+ {
+-	struct vmw_private *dev_priv = fence->fman->dev_priv;
++	struct vmw_private *dev_priv = fman_from_fence(fence)->dev_priv;
+ 
+ 	vmw_fifo_ping_host(dev_priv, SVGA_SYNC_GENERIC);
+ }
+ 
+ static void vmw_fence_destroy(struct vmw_fence_obj *fence)
+ {
+-	struct vmw_fence_manager *fman = fence->fman;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
++
++	fence_free(&fence->base);
+ 
+-	kfree(fence);
+ 	/*
+ 	 * Free kernel space accounting.
+ 	 */
+@@ -527,7 +580,7 @@ static void vmw_user_fence_destroy(struct vmw_fence_obj *fence)
+ {
+ 	struct vmw_user_fence *ufence =
+ 		container_of(fence, struct vmw_user_fence, fence);
+-	struct vmw_fence_manager *fman = fence->fman;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
+ 
+ 	ttm_base_object_kfree(ufence, base);
+ 	/*
+@@ -620,7 +673,6 @@ out_no_object:
+ 
+ void vmw_fence_fifo_down(struct vmw_fence_manager *fman)
+ {
+-	unsigned long irq_flags;
+ 	struct list_head action_list;
+ 	int ret;
+ 
+@@ -629,13 +681,13 @@ void vmw_fence_fifo_down(struct vmw_fence_manager *fman)
+ 	 * restart when we've released the fman->lock.
+ 	 */
+ 
+-	spin_lock_irqsave(&fman->lock, irq_flags);
++	spin_lock_irq(&fman->lock);
+ 	fman->fifo_down = true;
+ 	while (!list_empty(&fman->fence_list)) {
+ 		struct vmw_fence_obj *fence =
+ 			list_entry(fman->fence_list.prev, struct vmw_fence_obj,
+ 				   head);
+-		kref_get(&fence->kref);
++		fence_get(&fence->base);
+ 		spin_unlock_irq(&fman->lock);
+ 
+ 		ret = vmw_fence_obj_wait(fence, false, false,
+@@ -643,20 +695,18 @@ void vmw_fence_fifo_down(struct vmw_fence_manager *fman)
+ 
+ 		if (unlikely(ret != 0)) {
+ 			list_del_init(&fence->head);
+-			fence->signaled = 1;
++			fence_signal(&fence->base);
+ 			INIT_LIST_HEAD(&action_list);
+ 			list_splice_init(&fence->seq_passed_actions,
+ 					 &action_list);
+ 			vmw_fences_perform_actions(fman, &action_list);
+-			wake_up_all(&fence->queue);
+ 		}
+ 
+-		spin_lock_irq(&fman->lock);
+-
+ 		BUG_ON(!list_empty(&fence->head));
+-		kref_put(&fence->kref, vmw_fence_obj_destroy_locked);
++		fence_put(&fence->base);
++		spin_lock_irq(&fman->lock);
+ 	}
+-	spin_unlock_irqrestore(&fman->lock, irq_flags);
++	spin_unlock_irq(&fman->lock);
+ }
+ 
+ void vmw_fence_fifo_up(struct vmw_fence_manager *fman)
+@@ -748,12 +798,12 @@ int vmw_fence_obj_signaled_ioctl(struct drm_device *dev, void *data,
+ 	}
+ 
+ 	fence = &(container_of(base, struct vmw_user_fence, base)->fence);
+-	fman = fence->fman;
++	fman = fman_from_fence(fence);
+ 
+ 	arg->signaled = vmw_fence_obj_signaled(fence);
+-	spin_lock_irq(&fman->lock);
+ 
+ 	arg->signaled_flags = arg->flags;
++	spin_lock_irq(&fman->lock);
+ 	arg->passed_seqno = dev_priv->last_read_seqno;
+ 	spin_unlock_irq(&fman->lock);
+ 
+@@ -866,7 +916,7 @@ static void vmw_event_fence_action_cleanup(struct vmw_fence_action *action)
+ {
+ 	struct vmw_event_fence_action *eaction =
+ 		container_of(action, struct vmw_event_fence_action, action);
+-	struct vmw_fence_manager *fman = eaction->fence->fman;
++	struct vmw_fence_manager *fman = fman_from_fence(eaction->fence);
+ 	unsigned long irq_flags;
+ 
+ 	spin_lock_irqsave(&fman->lock, irq_flags);
+@@ -890,7 +940,7 @@ static void vmw_event_fence_action_cleanup(struct vmw_fence_action *action)
+ static void vmw_fence_obj_add_action(struct vmw_fence_obj *fence,
+ 			      struct vmw_fence_action *action)
+ {
+-	struct vmw_fence_manager *fman = fence->fman;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
+ 	unsigned long irq_flags;
+ 	bool run_update = false;
+ 
+@@ -898,7 +948,7 @@ static void vmw_fence_obj_add_action(struct vmw_fence_obj *fence,
+ 	spin_lock_irqsave(&fman->lock, irq_flags);
+ 
+ 	fman->pending_actions[action->type]++;
+-	if (fence->signaled) {
++	if (fence_is_signaled_locked(&fence->base)) {
+ 		struct list_head action_list;
+ 
+ 		INIT_LIST_HEAD(&action_list);
+@@ -950,7 +1000,7 @@ int vmw_event_fence_action_queue(struct drm_file *file_priv,
+ 				 bool interruptible)
+ {
+ 	struct vmw_event_fence_action *eaction;
+-	struct vmw_fence_manager *fman = fence->fman;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
+ 	struct vmw_fpriv *vmw_fp = vmw_fpriv(file_priv);
+ 	unsigned long irq_flags;
+ 
+@@ -990,7 +1040,8 @@ static int vmw_event_fence_action_create(struct drm_file *file_priv,
+ 				  bool interruptible)
+ {
+ 	struct vmw_event_fence_pending *event;
+-	struct drm_device *dev = fence->fman->dev_priv->dev;
++	struct vmw_fence_manager *fman = fman_from_fence(fence);
++	struct drm_device *dev = fman->dev_priv->dev;
+ 	unsigned long irq_flags;
+ 	int ret;
+ 
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_fence.h b/drivers/gpu/drm/vmwgfx/vmwgfx_fence.h
+index 8c18d32bd1c3..26a4add39208 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_fence.h
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_fence.h
+@@ -27,6 +27,8 @@
+ 
+ #ifndef _VMWGFX_FENCE_H_
+ 
++#include <linux/fence.h>
++
+ #define VMW_FENCE_WAIT_TIMEOUT (5*HZ)
+ 
+ struct vmw_private;
+@@ -50,15 +52,11 @@ struct vmw_fence_action {
  };
  
+ struct vmw_fence_obj {
+-	struct kref kref;
+-	u32 seqno;
++	struct fence base;
+ 
+-	struct vmw_fence_manager *fman;
+ 	struct list_head head;
+-	uint32_t signaled;
+ 	struct list_head seq_passed_actions;
+ 	void (*destroy)(struct vmw_fence_obj *fence);
+-	wait_queue_head_t queue;
+ };
+ 
+ extern struct vmw_fence_manager *
+@@ -66,10 +64,23 @@ vmw_fence_manager_init(struct vmw_private *dev_priv);
+ 
+ extern void vmw_fence_manager_takedown(struct vmw_fence_manager *fman);
+ 
+-extern void vmw_fence_obj_unreference(struct vmw_fence_obj **fence_p);
 -
--
- int qxl_ttm_init(struct qxl_device *qdev)
+-extern struct vmw_fence_obj *
+-vmw_fence_obj_reference(struct vmw_fence_obj *fence);
++static inline void
++vmw_fence_obj_unreference(struct vmw_fence_obj **fence_p)
++{
++	struct vmw_fence_obj *fence = *fence_p;
++
++	*fence_p = NULL;
++	if (fence)
++		fence_put(&fence->base);
++}
++
++static inline struct vmw_fence_obj *
++vmw_fence_obj_reference(struct vmw_fence_obj *fence)
++{
++	if (fence)
++		fence_get(&fence->base);
++	return fence;
++}
+ 
+ extern void vmw_fences_update(struct vmw_fence_manager *fman);
+ 
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c b/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
+index 48e47a100dea..6688a6341486 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_resource.c
+@@ -1419,21 +1419,20 @@ void vmw_fence_single_bo(struct ttm_buffer_object *bo,
+ 			 struct vmw_fence_obj *fence)
  {
- 	int r;
+ 	struct ttm_bo_device *bdev = bo->bdev;
+-	struct ttm_bo_driver *driver = bdev->driver;
+ 	struct vmw_fence_obj *old_fence_obj;
+ 	struct vmw_private *dev_priv =
+ 		container_of(bdev, struct vmw_private, bdev);
+ 
+-	if (fence == NULL)
++	if (fence == NULL) {
+ 		vmw_execbuf_fence_commands(NULL, dev_priv, &fence, NULL);
+-	else
+-		driver->sync_obj_ref(fence);
++	} else
++		vmw_fence_obj_reference(fence);
+ 
++	reservation_object_add_excl_fence(bo->resv, &fence->base);
+ 
+ 	old_fence_obj = bo->sync_obj;
+ 	bo->sync_obj = fence;
+ 
+-
+ 	if (old_fence_obj)
+ 		vmw_fence_obj_unreference(&old_fence_obj);
+ }
