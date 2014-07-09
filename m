@@ -1,8 +1,7 @@
 From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH 03/17] drm/nouveau: add reservation to
- nouveau_gem_ioctl_cpu_prep
-Date: Wed, 09 Jul 2014 14:29:18 +0200
-Message-ID: <20140709122918.11354.32309.stgit@patser>
+Subject: [PATCH 05/17] drm/ttm: call ttm_bo_wait while inside a reservation
+Date: Wed, 09 Jul 2014 14:29:30 +0200
+Message-ID: <20140709122930.11354.25660.stgit@patser>
 References: <20140709093124.11354.3774.stgit@patser>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,54 +21,58 @@ To: airlied@linux.ie
 Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-Apart from some code inside ttm itself and nouveau_bo_vma_del,
-this is the only place where ttm_bo_wait is used without a reservation.
-Fix this so we can remove the fence_lock later on.
-
-After the switch to rcu the reservation lock will be
-removed again.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+This is the last remaining function that doesn't use the reservation
+lock completely to fence off access to a buffer.
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c |   22 ++++++++++++++++++----
- 1 file changed, 18 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c |   25 ++++++++++++-------------
+ 1 file changed, 12 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index c90c0dc0afe8..6e1c58a880fe 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -886,17 +886,31 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
- 	struct drm_gem_object *gem;
- 	struct nouveau_bo *nvbo;
- 	bool no_wait = !!(req->flags & NOUVEAU_GEM_CPU_PREP_NOWAIT);
--	int ret = -EINVAL;
-+	int ret;
-+	struct nouveau_fence *fence = NULL;
+diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
+index 4ab9f7171c4f..d7d34336f108 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo.c
++++ b/drivers/gpu/drm/ttm/ttm_bo.c
+@@ -502,17 +502,6 @@ static int ttm_bo_cleanup_refs_and_unlock(struct ttm_buffer_object *bo,
+ 		if (ret)
+ 			return ret;
  
- 	gem = drm_gem_object_lookup(dev, file_priv, req->handle);
- 	if (!gem)
- 		return -ENOENT;
- 	nvbo = nouveau_gem_object(gem);
+-		/*
+-		 * remove sync_obj with ttm_bo_wait, the wait should be
+-		 * finished, and no new wait object should have been added.
+-		 */
+-		spin_lock(&bdev->fence_lock);
+-		ret = ttm_bo_wait(bo, false, false, true);
+-		WARN_ON(ret);
+-		spin_unlock(&bdev->fence_lock);
+-		if (ret)
+-			return ret;
+-
+ 		spin_lock(&glob->lru_lock);
+ 		ret = __ttm_bo_reserve(bo, false, true, false, 0);
  
--	spin_lock(&nvbo->bo.bdev->fence_lock);
--	ret = ttm_bo_wait(&nvbo->bo, true, true, no_wait);
--	spin_unlock(&nvbo->bo.bdev->fence_lock);
-+	ret = ttm_bo_reserve(&nvbo->bo, true, false, false, 0);
-+	if (!ret) {
-+		spin_lock(&nvbo->bo.bdev->fence_lock);
-+		ret = ttm_bo_wait(&nvbo->bo, true, true, true);
-+		if (!no_wait && ret)
-+			fence = nouveau_fence_ref(nvbo->bo.sync_obj);
-+		spin_unlock(&nvbo->bo.bdev->fence_lock);
+@@ -528,8 +517,16 @@ static int ttm_bo_cleanup_refs_and_unlock(struct ttm_buffer_object *bo,
+ 			spin_unlock(&glob->lru_lock);
+ 			return 0;
+ 		}
+-	} else
+-		spin_unlock(&bdev->fence_lock);
 +
-+		ttm_bo_unreserve(&nvbo->bo);
++		/*
++		 * remove sync_obj with ttm_bo_wait, the wait should be
++		 * finished, and no new wait object should have been added.
++		 */
++		spin_lock(&bdev->fence_lock);
++		ret = ttm_bo_wait(bo, false, false, true);
++		WARN_ON(ret);
 +	}
- 	drm_gem_object_unreference_unlocked(gem);
++	spin_unlock(&bdev->fence_lock);
+ 
+ 	if (ret || unlikely(list_empty(&bo->ddestroy))) {
+ 		__ttm_bo_unreserve(bo);
+@@ -1539,6 +1536,8 @@ int ttm_bo_wait(struct ttm_buffer_object *bo,
+ 	void *sync_obj;
+ 	int ret = 0;
+ 
++	lockdep_assert_held(&bo->resv->lock.base);
 +
-+	if (fence) {
-+		ret = nouveau_fence_wait(fence, true, no_wait);
-+		nouveau_fence_unref(&fence);
-+	}
-+
- 	return ret;
- }
+ 	if (likely(bo->sync_obj == NULL))
+ 		return 0;
