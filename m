@@ -1,71 +1,87 @@
-From: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 0/3] drm/gk20a: support for reclocking
-Date: Thu, 10 Jul 2014 12:50:17 +0300
-Message-ID: <53BE61D9.4020202@nvidia.com>
-References: <1404977677-22248-1-git-send-email-acourbot@nvidia.com>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v4 2/6] drm/nouveau: map pages using DMA API
+ on platform devices
+Date: Thu, 10 Jul 2014 14:58:49 +0200
+Message-ID: <20140710125849.GF17271@phenom.ffwll.local>
+References: <1404807961-30530-1-git-send-email-acourbot@nvidia.com>
+ <1404807961-30530-3-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1404977677-22248-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1404807961-30530-3-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, David Herrmann <dh.herrmann-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Does GK20A itself have any kind of thermal protection capabilities? 
-Upstream SOCTHERM support is not yet available (though I have a driver 
-in my tree), so we are thinking of disabling CPU DVFS on boards that 
-don't have always-on active cooling for now. Same might be necessary for 
-GPU as well.
+On Tue, Jul 08, 2014 at 05:25:57PM +0900, Alexandre Courbot wrote:
+> page_to_phys() is not the correct way to obtain the DMA address of a
+> buffer on a non-PCI system. Use the DMA API functions for this, which
+> are portable and will allow us to use other DMA API functions for
+> buffer synchronization.
+> 
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drivers/gpu/drm/nouveau/core/engine/device/base.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/core/engine/device/base.c b/drivers/gpu/drm/nouveau/core/engine/device/base.c
+> index 18c8c7245b73..e4e9e64988fe 100644
+> --- a/drivers/gpu/drm/nouveau/core/engine/device/base.c
+> +++ b/drivers/gpu/drm/nouveau/core/engine/device/base.c
+> @@ -489,7 +489,10 @@ nv_device_map_page(struct nouveau_device *device, struct page *page)
+>  		if (pci_dma_mapping_error(device->pdev, ret))
+>  			ret = 0;
+>  	} else {
+> -		ret = page_to_phys(page);
+> +		ret = dma_map_page(&device->platformdev->dev, page, 0,
+> +				   PAGE_SIZE, DMA_BIDIRECTIONAL);
+> +		if (dma_mapping_error(&device->platformdev->dev, ret))
+> +			ret = 0;
+>  	}
+>  
+>  	return ret;
+> @@ -501,6 +504,9 @@ nv_device_unmap_page(struct nouveau_device *device, dma_addr_t addr)
+>  	if (nv_device_is_pci(device))
+>  		pci_unmap_page(device->pdev, addr, PAGE_SIZE,
+>  			       PCI_DMA_BIDIRECTIONAL);
 
-On 10/07/14 10:34, Alexandre Courbot wrote:
-> This series adds support for reclocking on GK20A. The first two patches touch
-> the clock subsystem to allow GK20A to operate, by making the presence of the
-> thermal and voltage devices optional, and allowing pstates to be provided
-> directly instead of being probed using the BIOS (which Tegra does not have).
->
-> The last patch adds the GK20A clock device. Arguably the clock can be seen as a
-> stripped-down version of what is seen on NVE0, however instead of using NVE0
-> support has been written from scratch using the ChromeOS kernel as a basis.
-> There are several reasons for this:
->
-> - The ChromeOS driver uses a lookup table for the P coefficient which I could
->    not find in the NVE0 driver,
-> - Some registers that NVE0 expects to find are not present on GK20A (e.g.
->    0x137120 and 0x137140),
-> - Calculation of MNP is done differently from what is performed in
->    nva3_pll_calc(), and it might be interesting to compare the two methods,
-> - All the same, the programming sequence is done differently in the ChromeOS
->    driver and NVE0 could possibly benefit from it (?)
->
-> It would be interesting to try and merge both, but for now I prefer to have the
-> two coexisting to ensure proper operation on GK20A and besure I don't break
-> dGPU support. :)
->
-> Regarding the first patch, one might argue that I could as well add thermal
-> and voltage devices to GK20A. The reason this is not done is because these
-> currently depend heavily on the presence of a BIOS, and will require a rework
-> similar to that done in patch 2 for clocks. I would like to make sure this
-> approach is approved because applying it to other subdevs.
->
-> Alexandre Courbot (3):
->    drm/nouveau/clk: make therm and volt devices optional
->    drm/nouveau/clk: support for non-BIOS pstates
->    drm/gk20a: reclocking support
->
->   drivers/gpu/drm/nouveau/Makefile                   |   1 +
->   drivers/gpu/drm/nouveau/core/engine/device/nve0.c  |   1 +
->   .../gpu/drm/nouveau/core/include/subdev/clock.h    |   9 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/base.c   |  52 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/gk20a.c  | 670 +++++++++++++++++++++
->   drivers/gpu/drm/nouveau/core/subdev/clock/nv04.c   |   4 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nv40.c   |   4 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nv50.c   |   2 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c   |   4 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nvaa.c   |   4 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nvc0.c   |   4 +-
->   drivers/gpu/drm/nouveau/core/subdev/clock/nve0.c   |   4 +-
->   12 files changed, 725 insertions(+), 34 deletions(-)
->   create mode 100644 drivers/gpu/drm/nouveau/core/subdev/clock/gk20a.c
->
+pci_map/unmap alias to dma_unmap/map when called on the underlying struct
+device embedded in pci_device (like for platform drivers). Dunno whether
+it's worth to track a pointer to the struct device directly and always
+call dma_unmap/map.
+
+Just drive-by comment since I'm interested in how you solve this - i915
+has similar fun with buffer sharing and coherent and non-coherent
+platforms. Although we don't have fun with pci and non-pci based
+platforms.
+-Daniel
+
+> +	else
+> +		dma_unmap_page(&device->platformdev->dev, addr,
+> +			       PAGE_SIZE, DMA_BIDIRECTIONAL);
+>  }
+>  
+>  int
+> -- 
+> 2.0.0
+> 
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
