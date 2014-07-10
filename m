@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81136] New: [NV92] Regression in Linux 3.15: GPU
- lockup after suspend
-Date: Thu, 10 Jul 2014 00:35:07 +0000
-Message-ID: <bug-81136-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
+ after suspend
+Date: Thu, 10 Jul 2014 00:35:42 +0000
+Message-ID: <bug-81136-8800-5CV9KbLhev@http.bugs.freedesktop.org/>
+References: <bug-81136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0667313106=="
+Content-Type: multipart/mixed; boundary="===============1160945895=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,207 +21,76 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0667313106==
-Content-Type: multipart/alternative; boundary="1404952507.46CCB1.19657"; charset="us-ascii"
+--===============1160945895==
+Content-Type: multipart/alternative; boundary="1404952542.3B1BafBF1.19866"; charset="us-ascii"
 
 
---1404952507.46CCB1.19657
-Date: Thu, 10 Jul 2014 00:35:07 +0000
+--1404952542.3B1BafBF1.19866
+Date: Thu, 10 Jul 2014 00:35:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81136
+https://bugs.freedesktop.org/show_bug.cgi?id=3D81136
 
-          Priority: medium
-            Bug ID: 81136
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: [NV92] Regression in Linux 3.15: GPU lockup after
-                    suspend
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: agustin-G80yVrlpk+aH0oMTQjrRWA@public.gmane.org
-          Hardware: All
-            Status: NEW
-           Version: git
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #1 from Agust=C3=ADn Dall'Alba <agustin-G80yVrlpk+aH0oMTQjrRWA@public.gmane.org> ---
+Created attachment 102509
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D102509&action=3Dedit
+Logs for git kernel with noaccel=3D1 nofbaccel=3D1
 
-Created attachment 102508
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102508&action=edit
-Logs for git kernel
-
-After a suspend I get messages such as these: 
-
-<3>[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH TLB flush idle
-timeout fail
-<3>[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_STATUS  : 0x01000001
-BUSY ROP
-<3>[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS0: 0x00000000
-<3>[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS1: 0x00000000
-<3>[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS2: 0x00200000
-ROP
-<3>[   41.685486] nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-And if I was running X it crashes and the screen ends up looking like this:
-http://imgur.com/a/D3VKw
-
-This is always reproducible but only since Linux 3.15, so I ran a git bisect.
-The first bad commit is [ecf24de071f4f6cea79ecef5d990794df5875ee1] drm/nouveau:
-fix fbcon not being accelerated after suspend. After reverting the commmit the
-machine resumes properly.
-
-The issue persists in drm-nouveau-next (last commit 0b4e8e7... from Jul 8),
-even if I boot with noaccel=1 nofbaccel=1.
-
-Relevant IRC logs:
-http://people.freedesktop.org/~cbrill/dri-log/index.php?channel=nouveau&highlight_names=Nitsuga&date=2014-07-09
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1404952507.46CCB1.19657
-Date: Thu, 10 Jul 2014 00:35:07 +0000
+--1404952542.3B1BafBF1.19866
+Date: Thu, 10 Jul 2014 00:35:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136">81136</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV92] Regression in Linux 3.15: GPU lockup after suspend
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>agustin&#64;dallalba.com.ar
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102508" name="attach_102508" title="Logs for git kernel">attachment 102508</a> <a href="attachment.cgi?id=102508&amp;action=edit" title="Logs for git kernel">[details]</a></span>
-Logs for git kernel
-
-After a suspend I get messages such as these: 
-
-&lt;3&gt;[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH TLB flush idle
-timeout fail
-&lt;3&gt;[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_STATUS  : 0x01000001
-BUSY ROP
-&lt;3&gt;[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS0: 0x00000000
-&lt;3&gt;[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS1: 0x00000000
-&lt;3&gt;[   39.550435] nouveau E[  PGRAPH][0000:01:00.0] PGRAPH_VSTATUS2: 0x00200000
-ROP
-&lt;3&gt;[   41.685486] nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-And if I was running X it crashes and the screen ends up looking like this:
-<a href="http://imgur.com/a/D3VKw">http://imgur.com/a/D3VKw</a>
-
-This is always reproducible but only since Linux 3.15, so I ran a git bisect.
-The first bad commit is [ecf24de071f4f6cea79ecef5d990794df5875ee1] drm/nouveau:
-fix fbcon not being accelerated after suspend. After reverting the commmit the
-machine resumes properly.
-
-The issue persists in drm-nouveau-next (last commit 0b4e8e7... from Jul 8),
-even if I boot with noaccel=1 nofbaccel=1.
-
-Relevant IRC logs:
-<a href="http://people.freedesktop.org/~cbrill/dri-log/index.php?channel=nouveau&amp;highlight_names=Nitsuga&amp;date=2014-07-09">http://people.freedesktop.org/~cbrill/dri-log/index.php?channel=nouveau&amp;highlight_names=Nitsuga&amp;date=2014-07-09</a></pre>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after sus=
+pend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after sus=
+pend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136">bug 81136<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+agustin&#64;dallalba.com.ar" title=3D"Agust=C3=ADn Dall'Alba &lt;agustin&#6=
+4;dallalba.com.ar&gt;"> <span class=3D"fn">Agust=C3=ADn Dall'Alba</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D102509=
+" name=3D"attach_102509" title=3D"Logs for git kernel with noaccel=3D1 nofb=
+accel=3D1">attachment 102509</a> <a href=3D"attachment.cgi?id=3D102509&amp;=
+action=3Dedit" title=3D"Logs for git kernel with noaccel=3D1 nofbaccel=3D1"=
+>[details]</a></span>
+Logs for git kernel with noaccel=3D1 nofbaccel=3D1</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1404952507.46CCB1.19657--
+--1404952542.3B1BafBF1.19866--
 
---===============0667313106==
+--===============1160945895==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -230,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0667313106==--
+--===============1160945895==--
