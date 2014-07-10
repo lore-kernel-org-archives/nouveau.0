@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78530] Memory corruption on Lenovo t440p with runpm
-Date: Thu, 10 Jul 2014 14:00:20 +0000
-Message-ID: <bug-78530-8800-utDvfrnkux@http.bugs.freedesktop.org/>
-References: <bug-78530-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Thu, 10 Jul 2014 16:48:55 +0000
+Message-ID: <bug-80901-8800-cU9D786Nu1@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2001068107=="
+Content-Type: multipart/mixed; boundary="===============1474820785=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,86 +20,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2001068107==
-Content-Type: multipart/alternative; boundary="1405000820.Afe263.23772"; charset="us-ascii"
+--===============1474820785==
+Content-Type: multipart/alternative; boundary="1405010934.41a7c571.13175"; charset="us-ascii"
 
 
---1405000820.Afe263.23772
-Date: Thu, 10 Jul 2014 14:00:20 +0000
+--1405010934.41a7c571.13175
+Date: Thu, 10 Jul 2014 16:48:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78530
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
---- Comment #9 from Alexander Monakov <amonakov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This problem appears to be fixed in recent kernels after adding "Windows 20=
-13"
-to kernel built-in ACPI OSI list.  Bisection to resolving kernel commit sho=
-ws:
+--- Comment #16 from Gianni Vialetto <gianni-1aVadY534Hbk1uMJSBkQmQ@public.gmane.org> ---
+Created attachment 102562
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102562&action=edit
+PATCH v2 [1/2]: add LINEAR_MIN and LINEAR_MAX to sysfs
 
-https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecomment-486004=
-84
-
-Nikolay =E2=80=94 would you mind closing the bug after verifying it's resol=
-ved for you?
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405000820.Afe263.23772
-Date: Thu, 10 Jul 2014 14:00:20 +0000
+--1405010934.41a7c571.13175
+Date: Thu, 10 Jul 2014 16:48:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Memory corruption on Lenovo t440p with runpm"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78530#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - Memory corruption on Lenovo t440p with runpm"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78530">bug 78530<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-amonakov&#64;gmail.com" title=3D"Alexander Monakov &lt;amonakov&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Alexander Monakov</span></a>
+   title="NEW --- - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:gianni&#64;rootcube.net" title="Gianni Vialetto &lt;gianni&#64;rootcube.net&gt;"> <span class="fn">Gianni Vialetto</span></a>
 </span></b>
-        <pre>This problem appears to be fixed in recent kernels after addin=
-g &quot;Windows 2013&quot;
-to kernel built-in ACPI OSI list.  Bisection to resolving kernel commit sho=
-ws:
-
-<a href=3D"https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecom=
-ment-48600484">https://github.com/Bumblebee-Project/bbswitch/issues/78#issu=
-ecomment-48600484</a>
-
-Nikolay =E2=80=94 would you mind closing the bug after verifying it's resol=
-ved for you?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102562" name="attach_102562" title="PATCH v2 [1/2]: add LINEAR_MIN and LINEAR_MAX to sysfs">attachment 102562</a> <a href="attachment.cgi?id=102562&amp;action=edit" title="PATCH v2 [1/2]: add LINEAR_MIN and LINEAR_MAX to sysfs">[details]</a></span>
+PATCH v2 [1/2]: add LINEAR_MIN and LINEAR_MAX to sysfs</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1405000820.Afe263.23772--
+--1405010934.41a7c571.13175--
 
---===============2001068107==
+--===============1474820785==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2001068107==--
+--===============1474820785==--
