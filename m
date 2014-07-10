@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78530] Memory corruption on Lenovo t440p with runpm
-Date: Thu, 10 Jul 2014 18:09:15 +0000
-Message-ID: <bug-78530-8800-bwdBbbjumM@http.bugs.freedesktop.org/>
-References: <bug-78530-8800@http.bugs.freedesktop.org/>
+From: Lampshade <lampshade-IjDXvh/HVVUAvxtiuMwx3w@public.gmane.org>
+Subject: Re: Warnings in dmesg and results of mmiotrace 10de:1140
+ Geforce620m Optimus Laptop Acer E1-531G
+Date: Thu, 10 Jul 2014 20:31:15 +0200
+Message-ID: <ychepmgoizfjtyriitfd@oyxh>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1214141421=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,105 +19,64 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1214141421==
-Content-Type: multipart/alternative; boundary="1405015755.0BEdd4dB3.6030"; charset="us-ascii"
-
-
---1405015755.0BEdd4dB3.6030
-Date: Thu, 10 Jul 2014 18:09:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78530
-
-Nikolay Amiantov <nikoamia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #10 from Nikolay Amiantov <nikoamia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The OSI fix indeed solves the issue. Closing the bug.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1405015755.0BEdd4dB3.6030
-Date: Thu, 10 Jul 2014 18:09:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:nikoamia&#64;gmail.com" title="Nikolay Amiantov &lt;nikoamia&#64;gmail.com&gt;"> <span class="fn">Nikolay Amiantov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530">bug 78530</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530">bug 78530</a>
-              from <span class="vcard"><a class="email" href="mailto:nikoamia&#64;gmail.com" title="Nikolay Amiantov &lt;nikoamia&#64;gmail.com&gt;"> <span class="fn">Nikolay Amiantov</span></a>
-</span></b>
-        <pre>The OSI fix indeed solves the issue. Closing the bug.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405015755.0BEdd4dB3.6030--
-
---===============1214141421==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1214141421==--
+CgpPZDogIklsaWEgTWlya2luIiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkRvOiAiTGFtcHNoYWRl
+IiA8bGFtcHNoYWRlQHBvY3p0YS5mbT47IApXeXPFgmFuZTogMTk6MDcgQ3p3YXJ0ZWsgMjAxNC0w
+Ny0xMApUZW1hdDogUmU6IFtOb3V2ZWF1XSBXYXJuaW5ncyBpbiBkbWVzZyBhbmQgcmVzdWx0cyBv
+ZiBtbWlvdHJhY2UgMTBkZToxMTQwIEdlZm9yY2U2MjBtIE9wdGltdXMgTGFwdG9wIEFjZXIgRTEt
+NTMxRwoKPiBPbiBUaHUsIEp1bCAxMCwgMjAxNCBhdCAxMTowMSBBTSwgTGFtcHNoYWRlICB3cm90
+ZToKPiA+IEhlbGxvCj4gPiBpbiBkbWVzZyBJIGFsd2F5cyBoYXZlIHRoZXNlIGluZm9ybWF0aW9u
+cyAoSSB0ZXN0ZWQgc2V2ZXJhbCBrZXJuZWxzIGJldHdlZW4gMy43IGFuZCAzLjE2LXJjMyk6Cj4g
+Pgo+ID4gWyAgIDEzLjc0MjAwNl0gbm91dmVhdSBFWyAgICAgRFJNXSBQb2ludGVyIHRvIFRNRFMg
+dGFibGUgaW52YWxpZAo+ID4gWyAgIDEzLjc0MjAzNl0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Ig
+dmVyc2lvbiA0LjAKPiA+IFsgICAxMy43NDIwMzhdIG5vdXZlYXUgRVsgICAgIERSTV0gUG9pbnRl
+ciB0byBmbGF0IHBhbmVsIHRhYmxlIGludmFsaWQKPiA+IFsgICAxMy43NDIwNzldIG5vdXZlYXUg
+IFsgICAgIERSTV0gQUNQSSBiYWNrbGlnaHQgaW50ZXJmYWNlIGF2YWlsYWJsZSwgbm90IHJlZ2lz
+dGVyaW5nIG91ciBvd24KPiA+IFsgICAxMy43NDIwODJdIG5vdXZlYXUgV1sgICAgIERSTV0gdm9s
+dGFnZSB0YWJsZSAweDUwIHVua25vd24KPiA+Cj4gPiBJIGhhdmUgdGhpcyBsYXB0b3Agc2luY2Ug
+ZWFybHkgMjAxMy4gU2luY2UgSSBoYXZlIHRoaXMgbGFwdG9wLCBJIGhhdmUgYWxzbyB0aGVzZSBl
+cnJvciBtZXNzYWdlcy4gT24gTGludXggSSB3YXMgdXNpbmcgZm9yIGEgbG9uZyB0aW1lIG9ubHkg
+SW50ZWwgR1BVLgo+ID4KPiA+IEkgZ2VuZXJhdGVkIG1taW8gdHJhY2luZyB3aXRoIHRoaXMga2Vy
+bmVsIChmcm9tIGtlcm5lbC5vcmcsIEkgZGlzYWJsZWQgU3ltbWV0cmljIG11bHRpcHJvY2Vzc2lu
+ZykgY29tcGlsZWQgb24gbXkgb3duLiBJIGhhdmUgdXNlZCBOVklESUEtTGludXgteDg2XzY0LTM0
+MC4yNCBkcml2ZXIgb24gNjQgYml0IHN5c3RlbSB3aXRoIFVFRkkgZW5hYmxlZC4KPiA+IEkgZm9s
+bG93ZWQgdGhpcyBtYW51YWw6IGh0dHBzOi8vd2lraS51YnVudHUuY29tL1gvTU1JT1RyYWNpbmcu
+IE90aGVycyB1c2VkIGNvbW1hbmRzIGFyZSBjb250YWluZWQgaW4gYXJjaGl2ZSAoSSBoYXZlIHJ1
+biBmb3IgZmlyc3QgbW1pb3RyYWNlOiB4c2VydmVyICsgb3BlbmJveCBmb3Igc2Vjb25kOiB4c2Vy
+dmVyICsgb3BlbmJveCArIGdseGdlYXJzKS4KPiA+IHVidW50dUByYW5kb206fiQgdW5hbWUgLWEK
+PiA+IExpbnV4IHJhbmRvbSAzLjEyLjI0ICMxIFdlZCBKdWwgOSAxMzo0Mjo1MCBDRVNUIDIwMTQg
+eDg2XzY0IHg4Nl82NCB4ODZfNjQgR05VL0xpbnV4Cj4gPiBLZXJuZWwgaXMgYSBjbGVhbiwgcmVj
+ZW50IGNvZGUgZnJvbSBrZXJuZWwub3JnLiBPdGhlciBzeXN0ZW0gY29tcG9uZW50cyBhcmUgZnJv
+bSBVYnVudHUgcmVwb3NpdG9yeS4KPiA+Cj4gPiBJcyB0aGVyZSB0byBiZSB3b3JyaWVkIG9mPyBN
+YXliZSB0aGVyZSBzb21ldGhpbmcgY2FuIGJlIGRvbmUgZm9yIGJldHRlciBzdXBwb3J0IGZvciB0
+aGF0IGhhcmR3YXJlCj4gCj4gVGhlIGVycm9ycyBhcmUganVzdCBzb21lIHVuZXhwZWN0ZWQgdGhp
+bmdzIGluIHRoZSB2Ymlvcy4gSSB0aGluawo+IDMuMTYtcmMxKyBzaG91bGQga25vdyBhYm91dCB0
+aGF0IHZvbHRhZ2UgdGFibGU/IE1heWJlIG5vdC4gRWl0aGVyIHdheSwKPiBpdCdzIGltcG9ydGFu
+dCBmb3IgcmVjbG9ja2luZywgYW5kIHdlIGRvbid0IGhhdmUgc3VwcG9ydCBmb3IgdGhhdCBmb3IK
+PiBudmQ3IChnZjExNykuCj4gCj4gQXJlIHlvdSBoYXZpbmcgYW55IGlzc3Vlcywgb3IganVzdCBy
+ZXBvcnRpbmcgZnVubnkgdGhpbmdzIGluIHlvdXIgZG1lc2c/Cj4gCj4gICAtaWxpYQo+IAoKSSBo
+YXZlIHNvbWUgYXJ0aWZhY3RzICBkdXJpbmcgbG9naW4sIHNlZToKaHR0cDovL3MyNy5wb3N0aW1n
+Lm9yZy9pcXZ3eXR1aXIvMjAxNF8wN18xMF8yMDA3MzFfMTM2Nng3Njhfc2Nyb3QucG5nCmh0dHA6
+Ly9zMjcucG9zdGltZy5vcmcvZDJ1N2xvZmszLzIwMTRfMDdfMTBfMjAwNzM3XzEzNjZ4NzY4X3Nj
+cm90LnBuZwphZnRlciAzIHNlY29uZHMgaXQgY29ycmVjdHMgaXRzZWxmOiAKaHR0cDovL3MyNy5w
+b3N0aW1nLm9yZy92YXIxbWtpcHYvMjAxNF8wN18xMF8yMDA3MzhfMTM2Nng3Njhfc2Nyb3QucG5n
+CmFuZCBhcm91bmQgbXkgbW91c2UgcG9pbnRlciBidXQgSSBjYW4ndCBkb2N1bWVudCB0aGF0IGFy
+dGlmYWN0cyB2aWEgc2Nyb3Qgb3IgZ2ltcC4KIEkgZG9uJ3QgaGF2ZSB0aGVzZSBhcnRpZmFjdHMg
+dXNpbmcgSW50ZWwgR1BVLiBJIGRvbid0IGtub3cgaWYgdGhleSBhcmUgcmVsYXRlZCB0byBrZXJu
+ZWwgZHJpdmVyIG9yIHVzZXIgc3BhY2UuCgpJbmRlZWQsIGluIDMuMTYtcmMzIEkgIGRvbid0IGhh
+dmUgdGhhdCBsaW5lOiAgbm91dmVhdSBXWyAgICAgRFJNXSB2b2x0YWdlIHRhYmxlIDB4NTAgdW5r
+bm93bi4gSSBkaWRuJ3Qgbm90aWNlZCBpdC4gSSBoYXZlIG9ubHk6ClsgICAxMi45NjkwNTVdIG5v
+dXZlYXUgIFsgICAgIERSTV0gVlJBTTogMTAyNCBNaUIKWyAgIDEyLjk2OTA1N10gbm91dmVhdSAg
+WyAgICAgRFJNXSBHQVJUOiAxMDQ4NTc2IE1pQgpbICAgMTIuOTY5MDYxXSBub3V2ZWF1IEVbICAg
+ICBEUk1dIFBvaW50ZXIgdG8gVE1EUyB0YWJsZSBpbnZhbGlkClsgICAxMi45NjkwOTRdIG5vdXZl
+YXUgIFsgICAgIERSTV0gRENCIHZlcnNpb24gNC4wClsgICAxMi45NjkwOTZdIG5vdXZlYXUgRVsg
+ICAgIERSTV0gUG9pbnRlciB0byBmbGF0IHBhbmVsIHRhYmxlIGludmFsaWQKRnVsbCBkbWVzZyBm
+cm9tIDMuMTYgIGlzIGluIGFyY2hpdmUgKGFsb25nIHdpdGggZG1lc2cgZnJvbSAzLjEyIHdpdGgg
+YW5kIHdpdGhvdXQgcHJvcGVyaWV0YXJ5IE52aWRpYSBkcml2ZXJzKS4KCkFzaWRlIGZyb20gdGhh
+dCBJIGRvbid0IGhhdmUgcHJvYmxlbXMgd2l0aCBub3V2ZWF1IGRyaXZlcnMuIEkgZXZlbiBwbGF5
+ZWQgQ1MgU291cmNlIGZvciBhYm91dCAxNSBtaW51dGVzIHdpdGhvdXQgY3Jhc2guIApQZXJmb3Jt
+YW5jZSBpc24ndCBnb29kLCBidXQgaXQgZGlkbid0IGNyYXNoZWQuIFNvIGFzc3VtZSwgdGhhdCBJ
+IHdhbnQgcmVwb3J0IHRoaW5ncyBpbiBkbWVzZyBhbmQgc2VuZCBtbWlvdHJhY2UuIE1heWJlIGl0
+IHdpbGwgYmUgaGVscGZ1bCBmb3IgeW91LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
