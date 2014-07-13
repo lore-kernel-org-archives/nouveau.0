@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81283] Icons are misrendered when rgb font hinting
- is activated [NV18]
-Date: Sun, 13 Jul 2014 13:17:38 +0000
-Message-ID: <bug-81283-8800-CDOV2aVvvi@http.bugs.freedesktop.org/>
-References: <bug-81283-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81266] after suspend monitor is darker on nvidia
+	gt510m
+Date: Sun, 13 Jul 2014 15:15:57 +0000
+Message-ID: <bug-81266-8800-rtpxbz1J1I@http.bugs.freedesktop.org/>
+References: <bug-81266-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1403506785=="
+Content-Type: multipart/mixed; boundary="===============1637787691=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81283-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81266-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1403506785==
-Content-Type: multipart/alternative; boundary="1405257458.daAA1.4683"; charset="us-ascii"
+--===============1637787691==
+Content-Type: multipart/alternative; boundary="1405264557.bDfd2.28337"; charset="us-ascii"
 
 
---1405257458.daAA1.4683
-Date: Sun, 13 Jul 2014 13:17:38 +0000
+--1405264557.bDfd2.28337
+Date: Sun, 13 Jul 2014 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81283
+https://bugs.freedesktop.org/show_bug.cgi?id=81266
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There have been a few reports of things not being drawn on NV1x, but no one
-ever narrowed it down to anything, and I could never reproduce.
-
-I wonder if some sort of alpha setting isn't actually supported and so things
-are being drawn with alpha=0 or something. If you're a developer, can you debug
-this a bit? Take a look at src/nv10_exa.c (in the ddx)... the function that
-determines if something will be accelerated is NV10EXACheckComposite. Start by
-just returning FALSE unconditionally there and make sure the problem is
-'fixed'. (If it isn't, the issue is something else.)
-
-Assuming it's fine, try printing the requests that are making it through and
-try to identify the ones that aren't being handled properly (by selectively
-returning false for some of them).
+--- Comment #3 from Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(From Fedora forum I have found out you use Fedora.)
+Please fill a bugreport in RedHat bugilla against kernel component, at
+attention of Hans de Goede.
+It is very similar to https://bugzilla.redhat.com/show_bug.cgi?id=861573
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405257458.daAA1.4683
-Date: Sun, 13 Jul 2014 13:17:38 +0000
+--1405264557.bDfd2.28337
+Date: Sun, 13 Jul 2014 15:15:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,27 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons are misrendered when rgb font hinting is activated [NV18]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81283#c2">Comment # 2</a>
+   title="NEW --- - after suspend monitor is darker on nvidia gt510m"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81266#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons are misrendered when rgb font hinting is activated [NV18]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81283">bug 81283</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - after suspend monitor is darker on nvidia gt510m"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81266">bug 81266</a>
+              from <span class="vcard"><a class="email" href="mailto:germano.massullo&#64;gmail.com" title="Germano Massullo &lt;germano.massullo&#64;gmail.com&gt;"> <span class="fn">Germano Massullo</span></a>
 </span></b>
-        <pre>There have been a few reports of things not being drawn on NV1x, but no one
-ever narrowed it down to anything, and I could never reproduce.
-
-I wonder if some sort of alpha setting isn't actually supported and so things
-are being drawn with alpha=0 or something. If you're a developer, can you debug
-this a bit? Take a look at src/nv10_exa.c (in the ddx)... the function that
-determines if something will be accelerated is NV10EXACheckComposite. Start by
-just returning FALSE unconditionally there and make sure the problem is
-'fixed'. (If it isn't, the issue is something else.)
-
-Assuming it's fine, try printing the requests that are making it through and
-try to identify the ones that aren't being handled properly (by selectively
-returning false for some of them).</pre>
+        <pre>(From Fedora forum I have found out you use Fedora.)
+Please fill a bugreport in RedHat bugilla against kernel component, at
+attention of Hans de Goede.
+It is very similar to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=861573">https://bugzilla.redhat.com/show_bug.cgi?id=861573</a></pre>
         </div>
       </p>
       <hr>
@@ -97,9 +79,9 @@ returning false for some of them).</pre>
     </body>
 </html>
 
---1405257458.daAA1.4683--
+--1405264557.bDfd2.28337--
 
---===============1403506785==
+--===============1637787691==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1403506785==--
+--===============1637787691==--
