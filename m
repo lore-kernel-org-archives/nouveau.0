@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 39980] [NV86] freezing nouveau
-Date: Mon, 14 Jul 2014 01:38:37 +0000
-Message-ID: <bug-39980-8800-kZpoVmLkh2@http.bugs.freedesktop.org/>
-References: <bug-39980-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 0/3] drm/gk20a: support for reclocking
+Date: Mon, 14 Jul 2014 11:08:37 +0900
+Message-ID: <CAAVeFuJsaH=z7YKPet1eiMhA-QKX2WYgYUrhNDFgU8stL=f9jQ@mail.gmail.com>
+References: <1404977677-22248-1-git-send-email-acourbot@nvidia.com>
+ <CACAvsv7cxHbXaF-0wi=cijACUBdrH_rqamM+=okrb0+cJxYAsw@mail.gmail.com>
+ <53BF4029.5060301@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1967132051=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-39980-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <53BF4029.5060301-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,75 +19,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, Jul 11, 2014 at 10:38 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> Hi Ben,
+>
+>
+> On 07/11/2014 10:07 AM, Ben Skeggs wrote:
+>>
+>> On Thu, Jul 10, 2014 at 5:34 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> wrote:
+>>>
+>>> This series adds support for reclocking on GK20A. The first two patches
+>>> touch
+>>> the clock subsystem to allow GK20A to operate, by making the presence of
+>>> the
+>>> thermal and voltage devices optional, and allowing pstates to be provided
+>>> directly instead of being probed using the BIOS (which Tegra does not
+>>> have).
+>>
+>> Hey Alex,
+>>
+>> I mentioned a while back I had some stuff in-progress to make
+>> implementing this a bit cleaner for you, but as you can probably tell,
+>> I didn't get to it yet.  It's likely I won't manage to before the next
+>> merge window either.  So, I'll likely take these patches as-is
+>> (assuming no objections on reviews here) and rebase my stuff on top.
+>
+>
+> Thanks. You will probably notice that these patches won't apply to your tree
+> and require some tweaking. I will probably end up sending a v2 anyway, so
+> maybe you should wait for it. If you want to try this version anyway, I have
+> fixed-up patches against your tree.
+>
+> Note that your tree currently won't build against -next because it uses
+> drm_sysfs_connector_add/remove which are not available anymore (replaced by
+> drm_connector_register/unregister I believe).
+>
+> Oh and while I'm at it, there seems to be a typo in line 131 of clock.h,
+> which should read _nouveau_clock_fini and not _nouveau_clock_init.
+>
+>
+>>>
+>>> The last patch adds the GK20A clock device. Arguably the clock can be
+>>> seen as a
+>>> stripped-down version of what is seen on NVE0, however instead of using
+>>> NVE0
+>>> support has been written from scratch using the ChromeOS kernel as a
+>>> basis.
+>>> There are several reasons for this:
+>>>
+>>> - The ChromeOS driver uses a lookup table for the P coefficient which I
+>>> could
+>>>    not find in the NVE0 driver,
+>>
+>> Interesting.  Can you give more details on how "PL" works exactly,
+>> we'd been operating on the assumption (mainly inherited from code that
+>> appeared in xf86-video-nv) that it was always a straight division.
+>
+>
+> The pl_to_div table in clock/gk20a.c should give the right coefficients, but
+> I have seen contradictory information in our docs. Let me ask the right
+> people so we can get to the bottom of this.
 
---===============1967132051==
-Content-Type: multipart/alternative; boundary="1405301917.5d1681.19903"; charset="us-ascii"
-
-
---1405301917.5d1681.19903
-Date: Mon, 14 Jul 2014 01:38:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=39980
-
---- Comment #10 from Christoph Anton Mitterer <calestyo-Jy7UQHNrZ9Pk1uMJSBkQmQ@public.gmane.org> ---
-Sorry for not having responded,... forgot this somehow. Anyway, I no longer
-have nvidia cards, so I couldn't have tested it anymore :(
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1405301917.5d1681.19903
-Date: Mon, 14 Jul 2014 01:38:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV86] freezing nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39980#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NV86] freezing nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=39980">bug 39980</a>
-              from <span class="vcard"><a class="email" href="mailto:calestyo&#64;scientia.net" title="Christoph Anton Mitterer &lt;calestyo&#64;scientia.net&gt;"> <span class="fn">Christoph Anton Mitterer</span></a>
-</span></b>
-        <pre>Sorry for not having responded,... forgot this somehow. Anyway, I no longer
-have nvidia cards, so I couldn't have tested it anymore :(</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405301917.5d1681.19903--
-
---===============1967132051==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1967132051==--
+So as it turns out this seems to be gk20a-specific. Other Kepler GPUs
+use it as a straight division, but gk20a uses a narrower range and
+thus requires this table.
