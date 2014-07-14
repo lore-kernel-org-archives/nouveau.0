@@ -1,48 +1,55 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH] drm/nouveau/therm: fix a potential deadlock in
-	the therm monitoring code
-Date: Mon, 14 Jul 2014 11:12:56 +0200
-Message-ID: <1405329176-19964-1-git-send-email-martin.peres@free.fr>
+From: Gianni Vialetto <gianni@rootcube.net>
+Subject: hwmon: question about the sysfs interface
+Date: Mon, 14 Jul 2014 18:47:28 +0200
+Message-ID: <20140714164728.GA1041@elysium.lan>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <lm-sensors-bounces@lm-sensors.org>
+Content-Disposition: inline
+List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
+List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
+List-Post: <mailto:lm-sensors@lm-sensors.org>
+List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
+List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
+	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
+Sender: lm-sensors-bounces@lm-sensors.org
+Errors-To: lm-sensors-bounces@lm-sensors.org
+To: lm-sensors@lm-sensors.org
+Cc: gianni@rootcube.net, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Tested-by: Stefan Ringel <mail-Omqj8X2OoDOCVLKmEEjRFg@public.gmane.org>
----
- drivers/gpu/drm/nouveau/core/subdev/therm/temp.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Hello guys,
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
-index cfde9eb..6212537 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/therm/temp.c
-@@ -192,11 +192,11 @@ alarm_timer_callback(struct nouveau_alarm *alarm)
- 	nouveau_therm_threshold_hyst_polling(therm, &sensor->thrs_shutdown,
- 					     NOUVEAU_THERM_THRS_SHUTDOWN);
- 
-+	spin_unlock_irqrestore(&priv->sensor.alarm_program_lock, flags);
-+
- 	/* schedule the next poll in one second */
- 	if (therm->temp_get(therm) >= 0 && list_empty(&alarm->head))
--		ptimer->alarm(ptimer, 1000 * 1000 * 1000, alarm);
--
--	spin_unlock_irqrestore(&priv->sensor.alarm_program_lock, flags);
-+		ptimer->alarm(ptimer, 1000000000ULL, alarm);
- }
- 
- void
--- 
-2.0.1
+For a patch to this nouveau bug [1] I'm trying to implement the sysfs
+interface for two properties (linear_min and linear_max) nouveau uses
+internally to decide when to raise the fan speed. The initial idea was
+to have them as custom sysfs attributes, but I was advised to try to
+fit them into the hwmon sysfs interface.
+
+And this is when I hit a little roadblock. If my understanding is
+correct (and I'm not ashamed to admit it probably isn't) trip points
+are used to tie together a specific fan speed to a specific
+temperature. Unfortunately nouveau does not quite work that way: those
+two properties above mark the temperature the driver uses to decide
+when to start and stop the *scaling* of the fan speed (from a specific
+minimum value all the way to 100%).
+
+Now, could I strech the trip point definition above to mean that a
+trip point specify a *minimum* value for the fan speed at a specific
+temperature, and that the driver can decide to use an higher speed as
+needed when the temperature goes above the one specified in the trip
+point without fear of breaking some convention/userspace tool that
+expect a constant fan speed? Is this an acceptable/correct usage for
+the interface?
+
+Thanks,
+Gianni
+
+[1] https://bugs.freedesktop.org/show_bug.cgi?id=80901
+
+_______________________________________________
+lm-sensors mailing list
+lm-sensors@lm-sensors.org
+http://lists.lm-sensors.org/mailman/listinfo/lm-sensors
