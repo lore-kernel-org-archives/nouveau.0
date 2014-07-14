@@ -1,86 +1,185 @@
-From: Guenter Roeck <linux@roeck-us.net>
-Subject: Re: hwmon: question about the sysfs interface
-Date: Mon, 14 Jul 2014 10:25:56 -0700
-Message-ID: <20140714172556.GA3753@roeck-us.net>
-References: <20140714164728.GA1041@elysium.lan>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81363] New: Black screen after UDEV is intialized
+Date: Mon, 14 Jul 2014 22:42:38 +0000
+Message-ID: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <lm-sensors-bounces@lm-sensors.org>
-Content-Disposition: inline
-In-Reply-To: <20140714164728.GA1041@elysium.lan>
-List-Unsubscribe: <http://lists.lm-sensors.org/mailman/options/lm-sensors>,
-	<mailto:lm-sensors-request@lm-sensors.org?subject=unsubscribe>
-List-Archive: <http://lists.lm-sensors.org/pipermail/lm-sensors/>
-List-Post: <mailto:lm-sensors@lm-sensors.org>
-List-Help: <mailto:lm-sensors-request@lm-sensors.org?subject=help>
-List-Subscribe: <http://lists.lm-sensors.org/mailman/listinfo/lm-sensors>,
-	<mailto:lm-sensors-request@lm-sensors.org?subject=subscribe>
-Sender: lm-sensors-bounces@lm-sensors.org
-Errors-To: lm-sensors-bounces@lm-sensors.org
-To: Gianni Vialetto <gianni@rootcube.net>
-Cc: nouveau@lists.freedesktop.org, lm-sensors@lm-sensors.org
+Content-Type: multipart/mixed; boundary="===============2075152176=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Jul 14, 2014 at 06:47:28PM +0200, Gianni Vialetto wrote:
-> Hello guys,
-> 
-> For a patch to this nouveau bug [1] I'm trying to implement the sysfs
-> interface for two properties (linear_min and linear_max) nouveau uses
-> internally to decide when to raise the fan speed. The initial idea was
-> to have them as custom sysfs attributes, but I was advised to try to
-> fit them into the hwmon sysfs interface.
-> 
-> And this is when I hit a little roadblock. If my understanding is
-> correct (and I'm not ashamed to admit it probably isn't) trip points
-> are used to tie together a specific fan speed to a specific
-> temperature. Unfortunately nouveau does not quite work that way: those
-> two properties above mark the temperature the driver uses to decide
-> when to start and stop the *scaling* of the fan speed (from a specific
-> minimum value all the way to 100%).
-> 
-> Now, could I strech the trip point definition above to mean that a
-> trip point specify a *minimum* value for the fan speed at a specific
-> temperature, and that the driver can decide to use an higher speed as
-> needed when the temperature goes above the one specified in the trip
-> point without fear of breaking some convention/userspace tool that
-> expect a constant fan speed? Is this an acceptable/correct usage for
-> the interface?
-> 
-For automatic fan control we don't really have a well defined ABI.
-Part of the problem is that the mechanisms used by various chips are
-quite different.
 
-Please have a look into Documentation/hwmon/nct6775. It is by far
-the driver with the most comprehensive fan control mechanisms and
-attributes. Would any of the attributes or atribute groups in this
-driver meet your needs ? I could imagine that pwm1_target_temp
-for the upper temperature limit and pwm1_temp_tolerance for the difference
-between upper and lower limit might do. Then there are other attributes
-such as pxm1_start, pwm1_floor, pwm1_step, and pwm1_max which you
-could use to control pwm values further is that is possible with the
-driver.
+--===============2075152176==
+Content-Type: multipart/alternative; boundary="1405377758.b7d6e0A1.30639"; charset="us-ascii"
 
-An alternative would be to use two sets of pwm_auto_point attributes,
-where the first set specifies the start pwm limit and the second
-specifies the upper temperature and limit. So you would have something
-like
 
-	pwm1_auto_point1_pwm	pwm at low temperature
-	pwm1_auto_point1_temp	low temperature
+--1405377758.b7d6e0A1.30639
+Date: Mon, 14 Jul 2014 22:42:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-	pwm1_auto_point2_pwm	pwm at high temperature
-	pwm1_auto_point2_temp	high temperature
+https://bugs.freedesktop.org/show_bug.cgi?id=81363
 
-After all, there is no requirement that pwm must exactly match the configured
-value; the above only means that the chip uses those values to calculate
-the necessary fan speed. In addition to that, you could still have some
-of the other attributes as needed, such as pwm1_min, pwm1_max, and so on.
+          Priority: medium
+            Bug ID: 81363
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Black screen after UDEV is intialized
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 7.7 (2011)
+         Component: Driver/nouveau
+           Product: xorg
 
-Hope this helps,
-Guenter
+Created attachment 102804
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102804&action=edit
+Dmesg output
+
+When I boot my computer with nouveau and KMS, I get a black screen after UDEV
+starts on Debian Testing. I've attached some logs.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1405377758.b7d6e0A1.30639
+Date: Mon, 14 Jul 2014 22:42:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">81363</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Black screen after UDEV is intialized
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jrsx13&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2011)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102804" name="attach_102804" title="Dmesg output">attachment 102804</a> <a href="attachment.cgi?id=102804&amp;action=edit" title="Dmesg output">[details]</a></span>
+Dmesg output
+
+When I boot my computer with nouveau and KMS, I get a black screen after UDEV
+starts on Debian Testing. I've attached some logs.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1405377758.b7d6e0A1.30639--
+
+--===============2075152176==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
-lm-sensors mailing list
-lm-sensors@lm-sensors.org
-http://lists.lm-sensors.org/mailman/listinfo/lm-sensors
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2075152176==--
