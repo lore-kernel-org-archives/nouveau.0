@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
-Date: Tue, 15 Jul 2014 23:59:44 +0000
-Message-ID: <bug-81363-8800-DkiyvHa8FF@http.bugs.freedesktop.org/>
+Date: Wed, 16 Jul 2014 00:00:04 +0000
+Message-ID: <bug-81363-8800-7HeuTIa7U7@http.bugs.freedesktop.org/>
 References: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2099294463=="
+Content-Type: multipart/mixed; boundary="===============1000775674=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2099294463==
-Content-Type: multipart/alternative; boundary="1405468784.ceCA1.6453"; charset="us-ascii"
+--===============1000775674==
+Content-Type: multipart/alternative; boundary="1405468804.04745AF3.6453"; charset="us-ascii"
 
 
---1405468784.ceCA1.6453
-Date: Tue, 15 Jul 2014 23:59:44 +0000
+--1405468804.04745AF3.6453
+Date: Wed, 16 Jul 2014 00:00:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81363
 
---- Comment #8 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 102877
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102877&action=edit
-lspci -v on kernel 3.16-rc5
+--- Comment #9 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 102878
+  --> https://bugs.freedesktop.org/attachment.cgi?id=102878&action=edit
+Xorg log on 3.16-rc5
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405468784.ceCA1.6453
-Date: Tue, 15 Jul 2014 23:59:44 +0000
+--1405468804.04745AF3.6453
+Date: Wed, 16 Jul 2014 00:00:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV84] Black screen after UDEV is intialized"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
               from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102877" name="attach_102877" title="lspci -v on kernel 3.16-rc5">attachment 102877</a> <a href="attachment.cgi?id=102877&amp;action=edit" title="lspci -v on kernel 3.16-rc5">[details]</a></span>
-lspci -v on kernel 3.16-rc5</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=102878" name="attach_102878" title="Xorg log on 3.16-rc5">attachment 102878</a> <a href="attachment.cgi?id=102878&amp;action=edit" title="Xorg log on 3.16-rc5">[details]</a></span>
+Xorg log on 3.16-rc5</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ lspci -v on kernel 3.16-rc5</pre>
     </body>
 </html>
 
---1405468784.ceCA1.6453--
+--1405468804.04745AF3.6453--
 
---===============2099294463==
+--===============1000775674==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2099294463==--
+--===============1000775674==--
