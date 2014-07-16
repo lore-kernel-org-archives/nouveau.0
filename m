@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
-Date: Wed, 16 Jul 2014 00:00:04 +0000
-Message-ID: <bug-81363-8800-7HeuTIa7U7@http.bugs.freedesktop.org/>
-References: <bug-81363-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Questions about the Nouveau VM subsystem
+Date: Wed, 16 Jul 2014 17:20:40 +0900
+Message-ID: <53C635D8.8020604@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1000775674=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,76 +15,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Hi everyone,
 
---===============1000775674==
-Content-Type: multipart/alternative; boundary="1405468804.04745AF3.6453"; charset="us-ascii"
+I have been studing the VM code in order to come with a better 
+implementation of my fix for large pages usage on GK20A 
+(https://lkml.org/lkml/2014/6/3/375 ). Following some older threads 
+about this code (http://marc.info/?l=dri-devel&m=137618326022935 ) also 
+left me kind of puzzled, and I wonder if we could not simplify and 
+improve things there.
 
+It seems like arbitrary constant values for page_shifts (usually 12) are 
+used where the vmm->spg_shift value should be used instead, and some 
+other members are used out of place. Here are a few questions to start:
 
---1405468804.04745AF3.6453
-Date: Wed, 16 Jul 2014 00:00:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+- What is nouveau_mem::page_shift exactly used for? It is set here and 
+there but never really used, and usually the value it is set to does not 
+seem to bother how the memory is allocated. For instance 
+nouveau_vram_manager_new() will set it to whatever page_shift the BO 
+has. I *thought* it should indicate the size and alignment of the pages 
+described in the nouveau_mem object. Is this definition correct? In that 
+case, shouldn't the memory allocator be the one that sets that field, 
+instead of the callers?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81363
+- In nouveau_vm_map*(), why are we using vma->node->type to decide 
+whether to use the small or big pages table? It seems like this should 
+rather be decided by mem->page_shift, and more generally by how 
+contiguous the physical memory is, in order to maximize large pages use 
+whenever possible. Right now the issue that we have is that if the 
+memory allocator returns 4k pages, and the VMA used to map this memory 
+uses 128k pages, we are mapping 4k pages at 128k interval, which cannot 
+end well.
 
---- Comment #9 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 102878
-  --> https://bugs.freedesktop.org/attachment.cgi?id=102878&action=edit
-Xorg log on 3.16-rc5
+Generally speaking it seems like the VM subsystem allows plenty of 
+specific cases to fail silently, and since I need to fix a few to allow 
+GK20A to operate I could as well try to fix them all. Answers to the 
+questions above and general opinions about the state of this code would 
+help me understand what needs to be done. :)
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1405468804.04745AF3.6453
-Date: Wed, 16 Jul 2014 00:00:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
-              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=102878" name="attach_102878" title="Xorg log on 3.16-rc5">attachment 102878</a> <a href="attachment.cgi?id=102878&amp;action=edit" title="Xorg log on 3.16-rc5">[details]</a></span>
-Xorg log on 3.16-rc5</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405468804.04745AF3.6453--
-
---===============1000775674==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1000775674==--
+Thanks,
+Alex.
