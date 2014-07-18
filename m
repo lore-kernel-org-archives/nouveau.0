@@ -1,8 +1,8 @@
 From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 4/5] nv50/ir: fix hard-coded TYPE_U32 sized
-	register
-Date: Fri, 18 Jul 2014 09:57:28 -0400
-Message-ID: <1405691849-18853-5-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 5/5] nv50/ir: fix phi/union sources when their
+	def has been merged
+Date: Fri, 18 Jul 2014 09:57:29 -0400
+Message-ID: <1405691849-18853-6-git-send-email-imirkin@alum.mit.edu>
 References: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,36 +21,44 @@ Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
 To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+In a situation where double-register values are used, the phi nodes can
+still end up being u32 values. They all get merged into one RA node
+though. When fixing up the merge (which comes after the phi node), the
+phi node's def would get fixed, but not its sources which would remain
+at the low register value.
+
+This maintains the invariant that a phi node's defs and sources are
+allocated the same register.
+
 Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
 
-I noticed this in a review of the code trying to figure out why the next
-problem was happening. This doesn't actually fix anything, but there's no
-reason why phi nodes must be restricted to 32-bit registers. (Although they
-are, for now.)
+I _think_ that the split case might also need this, in case there's a split
+that feeds into phi nodes, and those phi nodes are never merged. But this
+fixes a real issue, and this stuff is pretty finicky... rather not poke the
+bear too hard.
 
- src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-index e4f56b1..117da94 100644
+index 117da94..21d7fd0 100644
 --- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
 +++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-@@ -389,11 +389,12 @@ RegAlloc::PhiMovesPass::visit(BasicBlock *bb)
-          pb->insertTail(new_FlowInstruction(func, OP_BRA, bb));
- 
-       for (phi = bb->getPhi(); phi && phi->op == OP_PHI; phi = phi->next) {
--         mov = new_Instruction(func, OP_MOV, TYPE_U32);
-+         LValue *tmp = new_LValue(func, phi->getDef(0)->asLValue());
-+         mov = new_Instruction(func, OP_MOV, typeOfSize(tmp->reg.size));
- 
-          mov->setSrc(0, phi->getSrc(j));
--         mov->setDef(0, new_LValue(func, phi->getDef(0)->asLValue()));
--         phi->setSrc(j, mov->getDef(0));
-+         mov->setDef(0, tmp);
-+         phi->setSrc(j, tmp);
- 
-          pb->insertBefore(pb->getExit(), mov);
+@@ -1702,6 +1702,14 @@ GCRA::resolveSplitsAndMerges()
+          Value *v = merge->getSrc(s);
+          v->reg.data.id = regs.bytesToId(v, reg);
+          v->join = v;
++         // If the value is defined by a phi/union node, we also need to
++         // perform the same fixup on that node's sources, since after RA
++         // their registers should be identical.
++         if (v->getInsn()->op == OP_PHI || v->getInsn()->op == OP_UNION) {
++            Instruction *phi = v->getInsn();
++            for (int phis = 0; phi->srcExists(phis); ++phis)
++               phi->getSrc(phis)->join = v;
++         }
+          reg += v->reg.size;
        }
+    }
 -- 
 1.8.5.5
