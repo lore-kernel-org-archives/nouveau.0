@@ -1,11 +1,14 @@
 From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 0/5] nvc0: fp64 preparation
-Date: Fri, 18 Jul 2014 09:57:24 -0400
-Message-ID: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 2/5] nv50/ir: keep track of whether the program
+	uses fp64
+Date: Fri, 18 Jul 2014 09:57:26 -0400
+Message-ID: <1405691849-18853-3-git-send-email-imirkin@alum.mit.edu>
+References: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
  <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
@@ -18,26 +21,42 @@ Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
 To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Most of codegen is already FP64-ready. There are a few edge-cases that I ran
-into, many of which can apply even to non-fp64-enabled programs (although the
-double-wide registers are not very common without fp64).
+---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h   | 1 +
+ src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp | 8 ++++++--
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-I've yet to give this a full piglit run, but wanted to send these out in case
-someone wanted to comment. They do not depend on the preliminary core fp64
-work.
-
-Ilia Mirkin (5):
-  nvc0: make sure that the local memory allocation is aligned to 0x10
-  nv50/ir: keep track of whether the program uses fp64
-  nvc0: mark shader header if fp64 is used
-  nv50/ir: fix hard-coded TYPE_U32 sized register
-  nv50/ir: fix phi/union sources when their def has been merged
-
- src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h   |  1 +
- src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp     | 15 ++++++++++++---
- src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp |  8 ++++++--
- src/gallium/drivers/nouveau/nvc0/nvc0_program.c        |  4 +++-
- 4 files changed, 22 insertions(+), 6 deletions(-)
-
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+index f829aac..3a89a29 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
+@@ -183,6 +183,7 @@ struct nv50_ir_prog_info
+       boolean sampleInterp;      /* perform sample interp on all fp inputs */
+       uint8_t backFaceColor[2];  /* input/output indices of back face colour */
+       uint8_t globalAccess;      /* 1 for read, 2 for wr, 3 for rw */
++      boolean fp64;              /* program uses fp64 math */
+       boolean nv50styleSurfaces; /* generate gX[] access for raw buffers */
+       uint8_t resInfoCBSlot;     /* cX[] used for tex handles, surface info */
+       uint16_t texBindBase;      /* base address for tex handles (nve4) */
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
+index 0397bdc..7992f53 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
+@@ -379,9 +379,13 @@ Program::emitBinary(struct nv50_ir_prog_info *info)
+ 
+       assert(emit->getCodeSize() == fn->binPos);
+ 
+-      for (int b = 0; b < fn->bbCount; ++b)
+-         for (Instruction *i = fn->bbArray[b]->getEntry(); i; i = i->next)
++      for (int b = 0; b < fn->bbCount; ++b) {
++         for (Instruction *i = fn->bbArray[b]->getEntry(); i; i = i->next) {
+             emit->emitInstruction(i);
++            if (i->sType == TYPE_F64 || i->dType == TYPE_F64)
++               info->io.fp64 = true;
++         }
++      }
+    }
+    info->bin.relocData = emit->getRelocInfo();
+ 
 -- 
 1.8.5.5
