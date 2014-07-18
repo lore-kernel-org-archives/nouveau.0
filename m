@@ -1,64 +1,121 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 5/5] nv50/ir: fix phi/union sources when their
-	def has been merged
-Date: Fri, 18 Jul 2014 09:57:29 -0400
-Message-ID: <1405691849-18853-6-git-send-email-imirkin@alum.mit.edu>
-References: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81485] [NVE4] dmesg spam on startup
+Date: Fri, 18 Jul 2014 16:03:54 +0000
+Message-ID: <bug-81485-8800-IitwqJfhdJ@http.bugs.freedesktop.org/>
+References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1362478092=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-In a situation where double-register values are used, the phi nodes can
-still end up being u32 values. They all get merged into one RA node
-though. When fixing up the merge (which comes after the phi node), the
-phi node's def would get fixed, but not its sources which would remain
-at the low register value.
 
-This maintains the invariant that a phi node's defs and sources are
-allocated the same register.
+--===============1362478092==
+Content-Type: multipart/alternative; boundary="1405699433.DcF82.32756"; charset="us-ascii"
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
 
-I _think_ that the split case might also need this, in case there's a split
-that feeds into phi nodes, and those phi nodes are never merged. But this
-fixes a real issue, and this stuff is pretty finicky... rather not poke the
-bear too hard.
+--1405699433.DcF82.32756
+Date: Fri, 18 Jul 2014 16:03:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp | 8 ++++++++
- 1 file changed, 8 insertions(+)
+https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-index 117da94..21d7fd0 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-@@ -1702,6 +1702,14 @@ GCRA::resolveSplitsAndMerges()
-          Value *v = merge->getSrc(s);
-          v->reg.data.id = regs.bytesToId(v, reg);
-          v->join = v;
-+         // If the value is defined by a phi/union node, we also need to
-+         // perform the same fixup on that node's sources, since after RA
-+         // their registers should be identical.
-+         if (v->getInsn()->op == OP_PHI || v->getInsn()->op == OP_UNION) {
-+            Instruction *phi = v->getInsn();
-+            for (int phis = 0; phi->srcExists(phis); ++phis)
-+               phi->getSrc(phis)->join = v;
-+         }
-          reg += v->reg.size;
-       }
-    }
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|dmesg spam on startup       |[NVE4] dmesg spam on
+                   |                            |startup
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Is this something new, or has it always been the case (as far as you know)? Can
+you try 3.16-rc5 and see if this still happens there? Assuming it does, can you
+provide a full dmesg log from 3.16? [Sounds like the dmesg spam is infinite, so
+just grab a little of it...]
+
 -- 
-1.8.5.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1405699433.DcF82.32756
+Date: Fri, 18 Jul 2014 16:03:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>dmesg spam on startup
+           </td>
+           <td>[NVE4] dmesg spam on startup
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Is this something new, or has it always been the case (as far as you know)? Can
+you try 3.16-rc5 and see if this still happens there? Assuming it does, can you
+provide a full dmesg log from 3.16? [Sounds like the dmesg spam is infinite, so
+just grab a little of it...]</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1405699433.DcF82.32756--
+
+--===============1362478092==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1362478092==--
