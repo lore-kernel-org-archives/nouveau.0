@@ -1,216 +1,43 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81485] New: dmesg spam on startup
-Date: Fri, 18 Jul 2014 08:11:32 +0000
-Message-ID: <bug-81485-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 0/5] nvc0: fp64 preparation
+Date: Fri, 18 Jul 2014 09:57:24 -0400
+Message-ID: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0612214028=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Most of codegen is already FP64-ready. There are a few edge-cases that I ran
+into, many of which can apply even to non-fp64-enabled programs (although the
+double-wide registers are not very common without fp64).
 
---===============0612214028==
-Content-Type: multipart/alternative; boundary="1405671092.f3Ca2.32611"; charset="us-ascii"
+I've yet to give this a full piglit run, but wanted to send these out in case
+someone wanted to comment. They do not depend on the preliminary core fp64
+work.
 
+Ilia Mirkin (5):
+  nvc0: make sure that the local memory allocation is aligned to 0x10
+  nv50/ir: keep track of whether the program uses fp64
+  nvc0: mark shader header if fp64 is used
+  nv50/ir: fix hard-coded TYPE_U32 sized register
+  nv50/ir: fix phi/union sources when their def has been merged
 
---1405671092.f3Ca2.32611
-Date: Fri, 18 Jul 2014 08:11:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81485
-
-          Priority: medium
-            Bug ID: 81485
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: dmesg spam on startup
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: All
-          Reporter: fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: Other
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-Sager NP8268-S (Clevo P150SM-A) with dual graphics
-lspci -nn
-00:02.0 VGA compatible controller [0300]: Intel Corporation 4th Gen Core
-Processor Integrated Graphics Controller [8086:0416] (rev 06)
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK104M [GeForce
-GTX 870M] [10de:1199] (rev a1)
-
-Had to blacklist nouveau module since it was spamming dmesg from startup:
-
-
-Jul 17 05:52:48 mireille kernel: [   18.417467] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: ch 0 [DRM] subc 0 mthd 0x0000 data 0x00000000
-Jul 17 05:52:48 mireille kernel: [   18.417477] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: GPPTR
-Jul 17 05:52:48 mireille kernel: [   18.417479] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: ch 0 [DRM] subc 0 mthd 0x0000 data 0x00000000
-Jul 17 05:52:48 mireille kernel: [   18.417489] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: GPPTR
-
-
-Using Fedora 20 with default Xorg and Intel driver 2.99.911 (from git)
+ src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h   |  1 +
+ src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp     | 15 ++++++++++++---
+ src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp |  8 ++++++--
+ src/gallium/drivers/nouveau/nvc0/nvc0_program.c        |  4 +++-
+ 4 files changed, 22 insertions(+), 6 deletions(-)
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1405671092.f3Ca2.32611
-Date: Fri, 18 Jul 2014 08:11:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">81485</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>dmesg spam on startup
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>fry.kun&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Sager NP8268-S (Clevo P150SM-A) with dual graphics
-lspci -nn
-00:02.0 VGA compatible controller [0300]: Intel Corporation 4th Gen Core
-Processor Integrated Graphics Controller [8086:0416] (rev 06)
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK104M [GeForce
-GTX 870M] [10de:1199] (rev a1)
-
-Had to blacklist nouveau module since it was spamming dmesg from startup:
-
-
-Jul 17 05:52:48 mireille kernel: [   18.417467] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: ch 0 [DRM] subc 0 mthd 0x0000 data 0x00000000
-Jul 17 05:52:48 mireille kernel: [   18.417477] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: GPPTR
-Jul 17 05:52:48 mireille kernel: [   18.417479] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: ch 0 [DRM] subc 0 mthd 0x0000 data 0x00000000
-Jul 17 05:52:48 mireille kernel: [   18.417489] nouveau E[  
-PFIFO][0000:01:00.0] PBDMA1: GPPTR
-
-
-Using Fedora 20 with default Xorg and Intel driver 2.99.911 (from git)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405671092.f3Ca2.32611--
-
---===============0612214028==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0612214028==--
+1.8.5.5
