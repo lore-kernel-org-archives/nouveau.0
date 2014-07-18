@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Fri, 18 Jul 2014 17:36:11 +0000
-Message-ID: <bug-81485-8800-Yjn9aJlbYG@http.bugs.freedesktop.org/>
+Date: Fri, 18 Jul 2014 18:04:04 +0000
+Message-ID: <bug-81485-8800-VehJj18U2b@http.bugs.freedesktop.org/>
 References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396189327=="
+Content-Type: multipart/mixed; boundary="===============0710109579=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0396189327==
-Content-Type: multipart/alternative; boundary="1405704971.b2AC2.28147"; charset="us-ascii"
+--===============0710109579==
+Content-Type: multipart/alternative; boundary="1405706644.2c6b62.3247"; charset="us-ascii"
 
 
---1405704971.b2AC2.28147
-Date: Fri, 18 Jul 2014 17:36:11 +0000
+--1405706644.2c6b62.3247
+Date: Fri, 18 Jul 2014 18:04:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 103055
-  --> https://bugs.freedesktop.org/attachment.cgi?id=103055&action=edit
-extracted messages
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this card seriously have 6GB of dedicated GDDR5 VRAM? Or is it
+misdetected? (Hm, looks like indeed one of the options on the marketing
+page...)
 
-OK, I've gone ahead and extracted some of the interesting stuff into the above.
+I would not be surprised if we had some bugs for cards with > 4GB.
+Unfortunately we don't have a vram_limit parameter.
+
+Could you edit drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c -- take a look
+at nvc0_ram_create_, and after the for loop that does ram->size += xyz, just do
+
+ram->size /= 2;
+
+which will bring it down to 3GB... No clue if it'll help, but worth a shot.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405704971.b2AC2.28147
-Date: Fri, 18 Jul 2014 17:36:11 +0000
+--1405706644.2c6b62.3247
+Date: Fri, 18 Jul 2014 18:04:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +65,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=103055" name="attach_103055" title="extracted messages">attachment 103055</a> <a href="attachment.cgi?id=103055&amp;action=edit" title="extracted messages">[details]</a></span>
-extracted messages
+        <pre>Does this card seriously have 6GB of dedicated GDDR5 VRAM? Or is it
+misdetected? (Hm, looks like indeed one of the options on the marketing
+page...)
 
-OK, I've gone ahead and extracted some of the interesting stuff into the above.</pre>
+I would not be surprised if we had some bugs for cards with &gt; 4GB.
+Unfortunately we don't have a vram_limit parameter.
+
+Could you edit drivers/gpu/drm/nouveau/core/subdev/fb/ramnvc0.c -- take a look
+at nvc0_ram_create_, and after the for loop that does ram-&gt;size += xyz, just do
+
+ram-&gt;size /= 2;
+
+which will bring it down to 3GB... No clue if it'll help, but worth a shot.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +96,9 @@ OK, I've gone ahead and extracted some of the interesting stuff into the above.<
     </body>
 </html>
 
---1405704971.b2AC2.28147--
+--1405706644.2c6b62.3247--
 
---===============0396189327==
+--===============0710109579==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +109,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0396189327==--
+--===============0710109579==--
