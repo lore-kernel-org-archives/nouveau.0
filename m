@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Fri, 18 Jul 2014 16:03:54 +0000
-Message-ID: <bug-81485-8800-IitwqJfhdJ@http.bugs.freedesktop.org/>
+Date: Fri, 18 Jul 2014 17:08:57 +0000
+Message-ID: <bug-81485-8800-LXeOG4INiw@http.bugs.freedesktop.org/>
 References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1362478092=="
+Content-Type: multipart/mixed; boundary="===============2034833808=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,36 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1362478092==
-Content-Type: multipart/alternative; boundary="1405699433.DcF82.32756"; charset="us-ascii"
+--===============2034833808==
+Content-Type: multipart/alternative; boundary="1405703336.82fC7d422.19874"; charset="us-ascii"
 
 
---1405699433.DcF82.32756
-Date: Fri, 18 Jul 2014 16:03:53 +0000
+--1405703336.82fC7d422.19874
+Date: Fri, 18 Jul 2014 17:08:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|dmesg spam on startup       |[NVE4] dmesg spam on
-                   |                            |startup
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this something new, or has it always been the case (as far as you know)? Can
-you try 3.16-rc5 and see if this still happens there? Assuming it does, can you
-provide a full dmesg log from 3.16? [Sounds like the dmesg spam is infinite, so
-just grab a little of it...]
+--- Comment #2 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I just bought this laptop; started using it yesterday, so no idea about older
+builds.
+I got /var/log/messages from 3.15.5-200.fc20.x86_64 -- would they be useful?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405699433.DcF82.32756
-Date: Fri, 18 Jul 2014 16:03:53 +0000
+--1405703336.82fC7d422.19874
+Date: Fri, 18 Jul 2014 17:08:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,43 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>dmesg spam on startup
-           </td>
-           <td>[NVE4] dmesg spam on startup
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
 </span></b>
-        <pre>Is this something new, or has it always been the case (as far as you know)? Can
-you try 3.16-rc5 and see if this still happens there? Assuming it does, can you
-provide a full dmesg log from 3.16? [Sounds like the dmesg spam is infinite, so
-just grab a little of it...]</pre>
+        <pre>I just bought this laptop; started using it yesterday, so no idea about older
+builds.
+I got /var/log/messages from 3.15.5-200.fc20.x86_64 -- would they be useful?</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +76,9 @@ just grab a little of it...]</pre>
     </body>
 </html>
 
---1405699433.DcF82.32756--
+--1405703336.82fC7d422.19874--
 
---===============1362478092==
+--===============2034833808==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -118,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1362478092==--
+--===============2034833808==--
