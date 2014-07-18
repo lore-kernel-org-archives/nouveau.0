@@ -1,8 +1,8 @@
 From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 2/5] nv50/ir: keep track of whether the program
-	uses fp64
-Date: Fri, 18 Jul 2014 09:57:26 -0400
-Message-ID: <1405691849-18853-3-git-send-email-imirkin@alum.mit.edu>
+Subject: [PATCH 1/5] nvc0: make sure that the local memory
+	allocation is aligned to 0x10
+Date: Fri, 18 Jul 2014 09:57:25 -0400
+Message-ID: <1405691849-18853-2-git-send-email-imirkin@alum.mit.edu>
 References: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -19,44 +19,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
 Errors-To: mesa-dev-bounces@lists.freedesktop.org
 Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
 To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: mesa-stable@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: <mesa-stable@lists.freedesktop.org>
 ---
- src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h   | 1 +
- src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp | 8 ++++++--
- 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-index f829aac..3a89a29 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_driver.h
-@@ -183,6 +183,7 @@ struct nv50_ir_prog_info
-       boolean sampleInterp;      /* perform sample interp on all fp inputs */
-       uint8_t backFaceColor[2];  /* input/output indices of back face colour */
-       uint8_t globalAccess;      /* 1 for read, 2 for wr, 3 for rw */
-+      boolean fp64;              /* program uses fp64 math */
-       boolean nv50styleSurfaces; /* generate gX[] access for raw buffers */
-       uint8_t resInfoCBSlot;     /* cX[] used for tex handles, surface info */
-       uint16_t texBindBase;      /* base address for tex handles (nve4) */
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-index 0397bdc..7992f53 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_target.cpp
-@@ -379,9 +379,13 @@ Program::emitBinary(struct nv50_ir_prog_info *info)
- 
-       assert(emit->getCodeSize() == fn->binPos);
- 
--      for (int b = 0; b < fn->bbCount; ++b)
--         for (Instruction *i = fn->bbArray[b]->getEntry(); i; i = i->next)
-+      for (int b = 0; b < fn->bbCount; ++b) {
-+         for (Instruction *i = fn->bbArray[b]->getEntry(); i; i = i->next) {
-             emit->emitInstruction(i);
-+            if (i->sType == TYPE_F64 || i->dType == TYPE_F64)
-+               info->io.fp64 = true;
-+         }
-+      }
+Was getting weird shader errors in dmat4*dmat4 which spilled one double-wide
+register (i.e. size 8). envytools docs apparently list this as having to be
+aligned to 0x10, and this indeed fixes it.
+
+ src/gallium/drivers/nouveau/nvc0/nvc0_program.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
+index 1c82a9a..c624e21 100644
+--- a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
++++ b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
+@@ -626,7 +626,7 @@ nvc0_program_translate(struct nvc0_program *prog, uint16_t chipset)
+    if (info->bin.tlsSpace) {
+       assert(info->bin.tlsSpace < (1 << 24));
+       prog->hdr[0] |= 1 << 26;
+-      prog->hdr[1] |= info->bin.tlsSpace; /* l[] size */
++      prog->hdr[1] |= align(info->bin.tlsSpace, 0x10); /* l[] size */
+       prog->need_tls = TRUE;
     }
-    info->bin.relocData = emit->getRelocInfo();
- 
+    /* TODO: factor 2 only needed where joinat/precont is used,
 -- 
 1.8.5.5
