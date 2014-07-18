@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Fri, 18 Jul 2014 17:29:12 +0000
-Message-ID: <bug-81485-8800-HH7fV8N0iZ@http.bugs.freedesktop.org/>
+Date: Fri, 18 Jul 2014 17:36:11 +0000
+Message-ID: <bug-81485-8800-Yjn9aJlbYG@http.bugs.freedesktop.org/>
 References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1396047600=="
+Content-Type: multipart/mixed; boundary="===============0396189327=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1396047600==
-Content-Type: multipart/alternative; boundary="1405704552.51ABc2.26239"; charset="us-ascii"
+--===============0396189327==
+Content-Type: multipart/alternative; boundary="1405704971.b2AC2.28147"; charset="us-ascii"
 
 
---1405704552.51ABc2.26239
-Date: Fri, 18 Jul 2014 17:29:12 +0000
+--1405704971.b2AC2.28147
+Date: Fri, 18 Jul 2014 17:36:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
---- Comment #4 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 103053
-  --> https://bugs.freedesktop.org/attachment.cgi?id=103053&action=edit
-/var/log/messages from 3.15.5-200.fc20.x86_64
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 103055
+  --> https://bugs.freedesktop.org/attachment.cgi?id=103055&action=edit
+extracted messages
 
-attaching a trimmed version from 3.15.5-200.fc20.x86_64
-I've grepped out the majority of the same message, though the file is still
-2.7M uncompressed
-
-Just running "dmesg" gives me a few seconds of the spam; everything else is
-gone already.
-
-Will try a build from
-http://koji.fedoraproject.org/koji/buildinfo?buildID=545032 later today.
+OK, I've gone ahead and extracted some of the interesting stuff into the above.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405704552.51ABc2.26239
-Date: Fri, 18 Jul 2014 17:29:12 +0000
+--1405704971.b2AC2.28147
+Date: Fri, 18 Jul 2014 17:36:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE4] dmesg spam on startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
-              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=103053" name="attach_103053" title="/var/log/messages from 3.15.5-200.fc20.x86_64">attachment 103053</a> <a href="attachment.cgi?id=103053&amp;action=edit" title="/var/log/messages from 3.15.5-200.fc20.x86_64">[details]</a></span>
-/var/log/messages from 3.15.5-200.fc20.x86_64
+        <pre>Created <span class=""><a href="attachment.cgi?id=103055" name="attach_103055" title="extracted messages">attachment 103055</a> <a href="attachment.cgi?id=103055&amp;action=edit" title="extracted messages">[details]</a></span>
+extracted messages
 
-attaching a trimmed version from 3.15.5-200.fc20.x86_64
-I've grepped out the majority of the same message, though the file is still
-2.7M uncompressed
-
-Just running &quot;dmesg&quot; gives me a few seconds of the spam; everything else is
-gone already.
-
-Will try a build from
-<a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=545032">http://koji.fedoraproject.org/koji/buildinfo?buildID=545032</a> later today.</pre>
+OK, I've gone ahead and extracted some of the interesting stuff into the above.</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +79,9 @@ Will try a build from
     </body>
 </html>
 
---1405704552.51ABc2.26239--
+--1405704971.b2AC2.28147--
 
---===============1396047600==
+--===============0396189327==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -108,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1396047600==--
+--===============0396189327==--
