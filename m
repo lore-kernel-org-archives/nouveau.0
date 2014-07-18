@@ -1,42 +1,56 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH 3/5] nvc0: mark shader header if fp64 is used
-Date: Fri, 18 Jul 2014 09:57:27 -0400
-Message-ID: <1405691849-18853-4-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 4/5] nv50/ir: fix hard-coded TYPE_U32 sized
+	register
+Date: Fri, 18 Jul 2014 09:57:28 -0400
+Message-ID: <1405691849-18853-5-git-send-email-imirkin@alum.mit.edu>
 References: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1405691849-18853-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1405691849-18853-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
 ---
- src/gallium/drivers/nouveau/nvc0/nvc0_program.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-index c624e21..ce0207a 100644
---- a/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-+++ b/src/gallium/drivers/nouveau/nvc0/nvc0_program.c
-@@ -640,6 +640,8 @@ nvc0_program_translate(struct nvc0_program *prog, uint16_t chipset)
-    */
-    if (info->io.globalAccess)
-       prog->hdr[0] |= 1 << 16;
-+   if (info->io.fp64)
-+      prog->hdr[0] |= 1 << 27;
+I noticed this in a review of the code trying to figure out why the next
+problem was happening. This doesn't actually fix anything, but there's no
+reason why phi nodes must be restricted to 32-bit registers. (Although they
+are, for now.)
+
+ src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+index e4f56b1..117da94 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+@@ -389,11 +389,12 @@ RegAlloc::PhiMovesPass::visit(BasicBlock *bb)
+          pb->insertTail(new_FlowInstruction(func, OP_BRA, bb));
  
-    if (prog->pipe.stream_output.num_outputs)
-       prog->tfb = nvc0_program_create_tfb_state(info,
+       for (phi = bb->getPhi(); phi && phi->op == OP_PHI; phi = phi->next) {
+-         mov = new_Instruction(func, OP_MOV, TYPE_U32);
++         LValue *tmp = new_LValue(func, phi->getDef(0)->asLValue());
++         mov = new_Instruction(func, OP_MOV, typeOfSize(tmp->reg.size));
+ 
+          mov->setSrc(0, phi->getSrc(j));
+-         mov->setDef(0, new_LValue(func, phi->getDef(0)->asLValue()));
+-         phi->setSrc(j, mov->getDef(0));
++         mov->setDef(0, tmp);
++         phi->setSrc(j, tmp);
+ 
+          pb->insertBefore(pb->getExit(), mov);
+       }
 -- 
 1.8.5.5
