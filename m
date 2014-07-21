@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81527] [NVAA] nouveau crashes on video playback
-Date: Sat, 19 Jul 2014 13:05:39 +0000
-Message-ID: <bug-81527-8800-Nmz9c8Ubx9@http.bugs.freedesktop.org/>
-References: <bug-81527-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] perfmon: do not forget to destroy the engine
+	context
+Date: Mon, 21 Jul 2014 11:59:44 +0200
+Message-ID: <1405936784-1696-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0868480740=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,81 +19,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This fixes a crash when we reload Nouveau DRM.
 
---===============0868480740==
-Content-Type: multipart/alternative; boundary="1405775139.4c1631.19875"; charset="us-ascii"
+Signed-off-by: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ nvkm/engine/perfmon/base.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-
---1405775139.4c1631.19875
-Date: Sat, 19 Jul 2014 13:05:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81527
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau crashes on video    |[NVAA] nouveau crashes on
-                   |playback                    |video playback
-
+diff --git a/nvkm/engine/perfmon/base.c b/nvkm/engine/perfmon/base.c
+index e9c5e51..7481003 100644
+--- a/nvkm/engine/perfmon/base.c
++++ b/nvkm/engine/perfmon/base.c
+@@ -303,6 +303,7 @@ nouveau_perfctx_dtor(struct nouveau_object *object)
+ {
+ 	struct nouveau_perfmon *ppm = (void *)object->engine;
+ 	mutex_lock(&nv_subdev(ppm)->mutex);
++	nouveau_engctx_destroy(&ppm->context->base);
+ 	ppm->context = NULL;
+ 	mutex_unlock(&nv_subdev(ppm)->mutex);
+ }
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1405775139.4c1631.19875
-Date: Sat, 19 Jul 2014 13:05:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] nouveau crashes on video playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81527">bug 81527</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau crashes on video playback
-           </td>
-           <td>[NVAA] nouveau crashes on video playback
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405775139.4c1631.19875--
-
---===============0868480740==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0868480740==--
+2.0.0
