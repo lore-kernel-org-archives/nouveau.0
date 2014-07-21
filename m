@@ -1,8 +1,7 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] perfmon: do not forget to destroy the engine
-	context
-Date: Mon, 21 Jul 2014 11:59:44 +0200
-Message-ID: <1405936784-1696-1-git-send-email-samuel.pitoiset@gmail.com>
+From: Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Text sometimes missing on NV18 based laptop
+Date: Mon, 21 Jul 2014 13:37:10 +0200
+Message-ID: <CAFvQSYQr3Bk=eFPW5V3NUMptDhU9Q36tvu8_1zXh0oQtibQ83A@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -19,24 +18,19 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This fixes a crash when we reload Nouveau DRM.
+Hi,
 
-Signed-off-by: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- nvkm/engine/perfmon/base.c | 1 +
- 1 file changed, 1 insertion(+)
+On my NV18 based laptop I experience artifacts related to text
+(however, 2D performance is really great these days):
+- With grayscale AA text is sometimes missing, often visible on the XFCE desktop
+- With subpixel (rgb) AA, even non-text related occur (icons are
+misrendered, ...)
 
-diff --git a/nvkm/engine/perfmon/base.c b/nvkm/engine/perfmon/base.c
-index e9c5e51..7481003 100644
---- a/nvkm/engine/perfmon/base.c
-+++ b/nvkm/engine/perfmon/base.c
-@@ -303,6 +303,7 @@ nouveau_perfctx_dtor(struct nouveau_object *object)
- {
- 	struct nouveau_perfmon *ppm = (void *)object->engine;
- 	mutex_lock(&nv_subdev(ppm)->mutex);
-+	nouveau_engctx_destroy(&ppm->context->base);
- 	ppm->context = NULL;
- 	mutex_unlock(&nv_subdev(ppm)->mutex);
- }
--- 
-2.0.0
+I've reported the issues here:
+https://bugs.freedesktop.org/show_bug.cgi?id=81283
+
+With noaccel it works fine, however it is annoyingly slow.
+
+Is there anything I could try to track these issues down?
+
+Best regards, Clemens
