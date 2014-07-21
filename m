@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81614] [NVC8] Nouveau freezes on GeForce 580 GTX at
  a random time
-Date: Mon, 21 Jul 2014 16:19:36 +0000
-Message-ID: <bug-81614-8800-m2sK2AwkKH@http.bugs.freedesktop.org/>
+Date: Mon, 21 Jul 2014 16:28:08 +0000
+Message-ID: <bug-81614-8800-qhBJvavyjI@http.bugs.freedesktop.org/>
 References: <bug-81614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0732242602=="
+Content-Type: multipart/mixed; boundary="===============0948154547=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,39 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0732242602==
-Content-Type: multipart/alternative; boundary="1405959576.671eEdfb0.19786"; charset="us-ascii"
+--===============0948154547==
+Content-Type: multipart/alternative; boundary="1405960087.55850.21871"; charset="us-ascii"
 
 
---1405959576.671eEdfb0.19786
-Date: Mon, 21 Jul 2014 16:19:36 +0000
+--1405960087.55850.21871
+Date: Mon, 21 Jul 2014 16:28:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81614
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Dmitriy <doityourselfteam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Nouveau freezes on GeForce  |[NVC8] Nouveau freezes on
-                   |580 GTX at a random time    |GeForce 580 GTX at a random
-                   |                            |time
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There's a known issue with NVC8's whereby there's some unknown deficiency in
-the nouveau ctxsw firmware causes most of those cards to hang. If the issue
-goes away when you use blob firmware (see
-http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware for an easy way
-to get that set up -- you'll also need to add nouveau.config=NvGrUseFW=1 to the
-kernel cmdline) then you have the same issue as bug 54437.
+--- Comment #2 from Dmitriy <doityourselfteam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thank You for an answer, I will try to mark this as a duplicate.
+
+*** This bug has been marked as a duplicate of bug 54437 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405959576.671eEdfb0.19786
-Date: Mon, 21 Jul 2014 16:19:36 +0000
+--1405960087.55850.21871
+Date: Mon, 21 Jul 2014 16:28:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,11 +57,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:doityourselfteam&#64;gmail.com" title="Dmitriy &lt;doityourselfteam&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81614">bug 81614</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -76,33 +72,38 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau freezes on GeForce 580 GTX at a random time
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVC8] Nouveau freezes on GeForce 580 GTX at a random time
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81614#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81614#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81614">bug 81614</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:doityourselfteam&#64;gmail.com" title="Dmitriy &lt;doityourselfteam&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span></b>
-        <pre>There's a known issue with NVC8's whereby there's some unknown deficiency in
-the nouveau ctxsw firmware causes most of those cards to hang. If the issue
-goes away when you use blob firmware (see
-<a href="http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware">http://nouveau.freedesktop.org/wiki/VideoAcceleration/#firmware</a> for an easy way
-to get that set up -- you'll also need to add nouveau.config=NvGrUseFW=1 to the
-kernel cmdline) then you have the same issue as <a class="bz_bug_link 
+        <pre>Thank You for an answer, I will try to mark this as a duplicate.
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
-   href="show_bug.cgi?id=54437">bug 54437</a>.</pre>
+   href="show_bug.cgi?id=54437">bug 54437</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +115,9 @@ kernel cmdline) then you have the same issue as <a class="bz_bug_link
     </body>
 </html>
 
---1405959576.671eEdfb0.19786--
+--1405960087.55850.21871--
 
---===============0732242602==
+--===============0948154547==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -127,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0732242602==--
+--===============0948154547==--
