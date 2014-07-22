@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80506] Video failed on resume from suspend - G94 /
- GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2
-Date: Mon, 21 Jul 2014 23:11:02 +0000
-Message-ID: <bug-80506-8800-rtLnyewv5K@http.bugs.freedesktop.org/>
-References: <bug-80506-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81485] [NVE4] dmesg spam on startup
+Date: Tue, 22 Jul 2014 03:10:35 +0000
+Message-ID: <bug-81485-8800-GygAh2bNEx@http.bugs.freedesktop.org/>
+References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0781534399=="
+Content-Type: multipart/mixed; boundary="===============0919894515=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80506-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0781534399==
-Content-Type: multipart/alternative; boundary="1405984262.efDaA7d1.1123"; charset="us-ascii"
+--===============0919894515==
+Content-Type: multipart/alternative; boundary="1405998634.472c2.4377"; charset="us-ascii"
 
 
---1405984262.efDaA7d1.1123
-Date: Mon, 21 Jul 2014 23:11:02 +0000
+--1405998634.472c2.4377
+Date: Tue, 22 Jul 2014 03:10:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80506
+https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
---- Comment #3 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-any news on this? my desktop is currently contributing heavily to climate
-change ;)
+--- Comment #10 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+please let me know what other info you need or what else I should try
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1405984262.efDaA7d1.1123
-Date: Mon, 21 Jul 2014 23:11:02 +0000
+--1405998634.472c2.4377
+Date: Tue, 22 Jul 2014 03:10:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506#c3">Comment # 3</a>
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506">bug 80506</a>
-              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
 </span></b>
-        <pre>any news on this? my desktop is currently contributing heavily to climate
-change ;)</pre>
+        <pre>please let me know what other info you need or what else I should try</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +72,9 @@ change ;)</pre>
     </body>
 </html>
 
---1405984262.efDaA7d1.1123--
+--1405998634.472c2.4377--
 
---===============0781534399==
+--===============0919894515==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +85,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0781534399==--
+--===============0919894515==--
