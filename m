@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81614] [NVC8] Nouveau freezes on GeForce 580 GTX at
  a random time
-Date: Tue, 22 Jul 2014 07:08:00 +0000
-Message-ID: <bug-81614-8800-RXA4z2ODCx@http.bugs.freedesktop.org/>
+Date: Tue, 22 Jul 2014 07:08:22 +0000
+Message-ID: <bug-81614-8800-vXzd1wdzXv@http.bugs.freedesktop.org/>
 References: <bug-81614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1439406518=="
+Content-Type: multipart/mixed; boundary="===============0506171662=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1439406518==
-Content-Type: multipart/alternative; boundary="1406012880.31Be0.4696"; charset="us-ascii"
+--===============0506171662==
+Content-Type: multipart/alternative; boundary="1406012902.ad0cA50.4835"; charset="us-ascii"
 
 
---1406012880.31Be0.4696
-Date: Tue, 22 Jul 2014 07:08:00 +0000
+--1406012902.ad0cA50.4835
+Date: Tue, 22 Jul 2014 07:08:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,14 @@ Dmitriy <doityourselfteam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|DUPLICATE                   |---
+             Status|REOPENED                    |NEW
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1406012880.31Be0.4696
-Date: Tue, 22 Jul 2014 07:08:00 +0000
+--1406012902.ad0cA50.4835
+Date: Tue, 22 Jul 2014 07:08:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +54,8 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:doityourselfteam&#64;gmail.com" title="Dmitriy &lt;doityourselfteam&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+          bz_status_NEW "
+   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81614">bug 81614</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -68,17 +67,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
            <td>REOPENED
            </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>DUPLICATE
-           </td>
-           <td>---
+           <td>NEW
            </td>
          </tr></table>
       <p>
@@ -92,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1406012880.31Be0.4696--
+--1406012902.ad0cA50.4835--
 
---===============1439406518==
+--===============0506171662==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1439406518==--
+--===============0506171662==--
