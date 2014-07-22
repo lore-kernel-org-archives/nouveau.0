@@ -1,59 +1,108 @@
-From: Dave Airlie <airlied@gmail.com>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
- fences
-Date: Tue, 22 Jul 2014 14:05:35 +1000
-Message-ID: <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
-References: <20140709093124.11354.3774.stgit@patser>
- <20140709122953.11354.46381.stgit@patser>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81614] [NVC8] Nouveau freezes on GeForce 580 GTX at
+ a random time
+Date: Tue, 22 Jul 2014 07:08:00 +0000
+Message-ID: <bug-81614-8800-RXA4z2ODCx@http.bugs.freedesktop.org/>
+References: <bug-81614-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20140709122953.11354.46381.stgit@patser>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, "Koenig,
- Christian" <christian.koenig@amd.com>
+Content-Type: multipart/mixed; boundary="===============1439406518=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-81614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 9 July 2014 22:29, Maarten Lankhorst <maarten.lankhorst@canonical.com> wrote:
-> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-> ---
->  drivers/gpu/drm/radeon/radeon.h        |   15 +-
->  drivers/gpu/drm/radeon/radeon_device.c |   60 ++++++++-
->  drivers/gpu/drm/radeon/radeon_fence.c  |  223 ++++++++++++++++++++++++++------
->  3 files changed, 248 insertions(+), 50 deletions(-)
->
 
-From what I can see this is still suffering from the problem that we
-need to find a proper solution to,
+--===============1439406518==
+Content-Type: multipart/alternative; boundary="1406012880.31Be0.4696"; charset="us-ascii"
 
-My summary of the issues after talking to Jerome and Ben and
-re-reading things is:
 
-We really need to work out a better interface into the drivers to be
-able to avoid random atomic entrypoints,
+--1406012880.31Be0.4696
+Date: Tue, 22 Jul 2014 07:08:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-I'm sure you have some ideas and I think you really need to
-investigate them to move this thing forward,
-even it if means some issues with android sync pts.
+https://bugs.freedesktop.org/show_bug.cgi?id=81614
 
-but none of the two major drivers seem to want the interface as-is so
-something needs to give
+Dmitriy <doityourselfteam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-My major question is why we need an atomic callback here at all, what
-scenario does it cover?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|DUPLICATE                   |---
 
-Surely we can use a workqueue based callback to ask a driver to check
-its signalling, is it really
-that urgent?
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-Dave.
+--1406012880.31Be0.4696
+Date: Tue, 22 Jul 2014 07:08:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:doityourselfteam&#64;gmail.com" title="Dmitriy &lt;doityourselfteam&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81614">bug 81614</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>DUPLICATE
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1406012880.31Be0.4696--
+
+--===============1439406518==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1439406518==--
