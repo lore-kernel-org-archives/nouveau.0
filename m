@@ -1,20 +1,22 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
- implementation for fences
-Date: Tue, 22 Jul 2014 17:18:39 +0200
-Message-ID: <53CE80CF.2060709@canonical.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
+ fences
+Date: Tue, 22 Jul 2014 17:19:56 +0200
+Message-ID: <CAKMK7uESXrDtCov8whOTsffg6eZdibF4qaTFaCubM=mnhN=gNQ@mail.gmail.com>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
- <53CE2421.5040906@amd.com> <20140722114607.GL15237@phenom.ffwll.local>
- <20140722115737.GN15237@phenom.ffwll.local> <53CE56ED.4040109@vodafone.de>
- <20140722132652.GO15237@phenom.ffwll.local> <53CE6AFA.1060807@vodafone.de>
- <53CE78C0.9030408@canonical.com> <53CE7D06.2010109@amd.com>
+ <53CE2421.5040906@amd.com>
+ <20140722114607.GL15237@phenom.ffwll.local>
+ <20140722115737.GN15237@phenom.ffwll.local>
+ <53CE56ED.4040109@vodafone.de> <53CE6FB0.90500@canonical.com>
+ <53CE7410.3090603@amd.com> <53CE74B5.3000201@canonical.com>
+ <53CE77B4.6020801@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53CE7D06.2010109@amd.com>
+In-Reply-To: <53CE77B4.6020801@amd.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -24,135 +26,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, =?ISO-8859-1?Q?Christian_K=F6nig?= <deathsimple@vodafone.de>, Dave Airlie <airlied@gmail.com>, Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-Hey,
-
-op 22-07-14 17:02, Christian K=F6nig schreef:
-> Am 22.07.2014 16:44, schrieb Maarten Lankhorst:
->> op 22-07-14 15:45, Christian K=F6nig schreef:
->>> Am 22.07.2014 15:26, schrieb Daniel Vetter:
->>>> On Tue, Jul 22, 2014 at 02:19:57PM +0200, Christian K=F6nig wrote:
->>>>> Am 22.07.2014 13:57, schrieb Daniel Vetter:
->>>>>> On Tue, Jul 22, 2014 at 01:46:07PM +0200, Daniel Vetter wrote:
->>>>>>> On Tue, Jul 22, 2014 at 10:43:13AM +0200, Christian K=F6nig wrote:
->>>>>>>> Am 22.07.2014 06:05, schrieb Dave Airlie:
->>>>>>>>> On 9 July 2014 22:29, Maarten Lankhorst <maarten.lankhorst@canoni=
-cal.com> wrote:
->>>>>>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.co=
-m>
->>>>>>>>>> ---
->>>>>>>>>>    drivers/gpu/drm/radeon/radeon.h        |   15 +-
->>>>>>>>>>    drivers/gpu/drm/radeon/radeon_device.c |   60 ++++++++-
->>>>>>>>>>    drivers/gpu/drm/radeon/radeon_fence.c  |  223 +++++++++++++++=
-+++++++++++------
->>>>>>>>>>    3 files changed, 248 insertions(+), 50 deletions(-)
->>>>>>>>>>
->>>>>>>>>   From what I can see this is still suffering from the problem th=
-at we
->>>>>>>>> need to find a proper solution to,
->>>>>>>>>
->>>>>>>>> My summary of the issues after talking to Jerome and Ben and
->>>>>>>>> re-reading things is:
->>>>>>>>>
->>>>>>>>> We really need to work out a better interface into the drivers to=
- be
->>>>>>>>> able to avoid random atomic entrypoints,
->>>>>>>> Which is exactly what I criticized from the very first beginning. =
-Good to
->>>>>>>> know that I'm not the only one thinking that this isn't such a goo=
-d idea.
->>>>>>> I guess I've lost context a bit, but which atomic entry point are we
->>>>>>> talking about? Afaics the only one that's mandatory is the is
->>>>>>> fence->signaled callback to check whether a fence really has been
->>>>>>> signalled. It's used internally by the fence code to avoid spurious
->>>>>>> wakeups. Afaik that should be doable already on any hardware. If th=
-at's
->>>>>>> not the case then we can always track the signalled state in softwa=
-re and
->>>>>>> double-check in a worker thread before updating the sw state. And w=
-rap
->>>>>>> this all up into a special fence class if there's more than one dri=
-ver
->>>>>>> needing this.
->>>>>> One thing I've forgotten: The i915 scheduler that's floating around =
-runs
->>>>>> its bottom half from irq context. So I really want to be able to che=
-ck
->>>>>> fence state from irq context and I also want to make it possible
->>>>>> (possible! not mandatory) to register callbacks which are run from a=
-ny
->>>>>> context asap after the fence is signalled.
->>>>> NAK, that's just the bad design I've talked about. Checking fence sta=
-te
->>>>> inside the same driver from interrupt context is OK, because it's the
->>>>> drivers interrupt that we are talking about here.
->>>>>
->>>>> Checking fence status from another drivers interrupt context is what =
-really
->>>>> concerns me here, cause your driver doesn't have the slightest idea i=
-f the
->>>>> called driver is really capable of checking the fence right now.
->>>> I guess my mail hasn't been clear then. If you don't like it we could =
-add
->>>> a bit of glue to insulate the madness and bad design i915 might do from
->>>> radeon. That imo doesn't invalidate the overall fence interfaces.
->>>>
->>>> So what about the following:
->>>> - fence->enabling_signaling is restricted to be called from process
->>>>     context. We don't use any different yet, so would boild down to ad=
-ding a
->>>>     WARN_ON(in_interrupt) or so to fence_enable_sw_signalling.
->>>>
->>>> - Make fence->signaled optional (already the case) and don't implement=
- it
->>>>     in readon (i.e. reduce this patch here). Only downside is that rad=
-eon
->>>>     needs to correctly (i.e. without races or so) call fence_signal. A=
-nd the
->>>>     cross-driver synchronization might be a bit less efficient. Note t=
-hat
->>>>     you can call fence_signal from wherever you want to, so hopefully =
-that
->>>>     doesn't restrict your implementation.
->>>>
->>>> End result: No one calls into radeon from interrupt context, and this =
-is
->>>> guaranteed.
->>>>
->>>> Would that be something you can agree to?
->>> No, the whole enable_signaling stuff should go away. No callback from t=
-he driver into the fence code, only the other way around.
->>>
->>> fence->signaled as well as fence->wait should become mandatory and only=
- called from process context without holding any locks, neither atomic nor =
-any mutex/semaphore (rcu might be ok).
->> fence->wait is mandatory, and already requires sleeping.
->>
->> If .signaled is not implemented there is no guarantee the fence will be
->> signaled sometime soon, this is also why enable_signaling exists, to
->> allow the driver to flush. I get it that it doesn't apply to radeon and =
-nouveau,
->> but for other drivers that could be necessary, like vmwgfx.
->>
->> Ironically that is also a part of the ttm fence, except it was called fl=
-ush there.
->
-> Then call it flush again and make it optional like in TTM.
-You've posted a lot of concerns, but I haven't seen you come up with any sc=
-enario that could create a lockup and lockdep wouldn't warn about.
-
->> I would also like to note that ttm_bo_wait currently is also a function =
-that currently uses is_signaled from atomic_context...
->
-> I know, but TTM is only called from inside a single driver, no inter driv=
-er needs here. We currently even call the internal fence implementation fro=
-m interrupt context as well and at more than one occasion assume that TTM o=
-nly uses radeon fences.
-This is no longer true when you start synchronizing with other drivers. The=
- TTM core will see the intel fences and treat them no differently. That's t=
-he entire reason for this conversion. It's also needed to remove the need t=
-o pin dma-buf when exporting.
-
-~Maarten.
+T24gVHVlLCBKdWwgMjIsIDIwMTQgYXQgNDozOSBQTSwgQ2hyaXN0aWFuIEvDtm5pZwo8Y2hyaXN0
+aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPiBBbSAyMi4wNy4yMDE0IDE2OjI3LCBzY2hyaWVi
+IE1hYXJ0ZW4gTGFua2hvcnN0Ogo+Cj4+IG9wIDIyLTA3LTE0IDE2OjI0LCBDaHJpc3RpYW4gS8O2
+bmlnIHNjaHJlZWY6Cj4+Pj4KPj4+PiBObywgeW91IHJlYWxseSBzaG91bGRuJ3QgYmUgZG9pbmcg
+bXVjaCBpbiB0aGUgY2hlY2sgYW55d2F5LCBpdCdzIG1lYW50Cj4+Pj4gdG8gYmUgYSBsaWdodHdl
+aWdodCBjaGVjay4gSWYgeW91J3JlIG5vdCByZWFkeSB5ZXQgYmVjYXVzZSBvZiBhIGxvY2t1cAo+
+Pj4+IHNpbXBseSByZXR1cm4gbm90IHNpZ25hbGVkIHlldC4KPj4+Cj4+PiBJdCdzIG5vdCBvbmx5
+IHRoZSBsb2NrdXAgY2FzZSBmcm9tIHJhZGVvbiBJIGhhdmUgaW4gbWluZCBoZXJlLiBGb3IKPj4+
+IHVzZXJzcGFjZSBxdWV1ZXMgaXQgbWlnaHQgYmUgbmVjZXNzYXJ5IHRvIGNhbGwgY29weV9mcm9t
+X3VzZXIgdG8gZmlndXJlIG91dAo+Pj4gaWYgYSBmZW5jZSBpcyBzaWduYWxlZCBvciBub3QuCj4+
+Pgo+Pj4gUmV0dXJuaW5nIGZhbHNlIGFsbCB0aGUgdGltZSBpcyBwcm9iYWJseSBub3QgYSBnb29k
+IGlkZWEgZWl0aGVyLgo+Pgo+PiBIYXZpbmcgdXNlcnNwYWNlIGltcGxlbWVudCBhIGZlbmNlIHNv
+dW5kcyBsaWtlIGFuIGF3ZnVsIGlkZWEsIHdoeSB3b3VsZAo+PiB5b3Ugd2FudCB0byBkbyB0aGF0
+Pwo+Cj4KPiBNYXJrZXRpbmcgbW92ZXMgaW4gbXlzdGVyaW91cyB3YXlzLiBEb24ndCBhc2sgbWUs
+IGJ1dCB0aGF0IHRoZSBkaXJlY3Rpb24gaXQKPiBjdXJyZW50bHkgbW92ZXMgd2l0aCB1c2Vyc3Bh
+Y2UgcXVldWVzIGFuZCBJT01NVSBldGMuLi4KCkZlbmNlLWJhc2VkIHN5bmNpbmcgYmV0d2VlbiB1
+c2Vyc3BhY2UgcXVldWVzIHN1Ym1pdHRlZCBzdHVmZiB0aHJvdWdoCmRvb3JiZWxscyBhbmQgYW55
+dGhpbmcgc3VibWl0dGVkIGJ5IHRoZSBnZW5lcmFsIHNpbXBseSB3b250IHdvcmsuCldoaWNoIGlz
+IHdoeSBJIHRoaW5rIHRoZSBkb29yYmVsbCBpcyBhIHN0dXBpZCBpbnRlcmZhY2Ugc2luY2UgSSBq
+dXN0CmRvbid0IHNlZSBjYW1lcmFzIGFuZCB2NGwgZGV2aWNlcyBpbXBsZW1lbnRpbmcgYWxsIHRo
+YXQgY29tcGxleGl0eSB0bwpnZXQgYSBwdXJlIHVzZXJzcGFjZSBzaWRlIHN5bmMgc29sdXRpb24u
+CgpCdXQgdGhhdCdzIGEgZGlmZmVyZW50IHByb2JsZW0gcmVhbGx5LCBhbmQgSSBndWVzcyBtYXJr
+ZXRpbmcgd2lsbApldmVudHVhbGx5IGZpZ3VyZSB0aGlzIG9uZSBvdXQsIHRvby4KLURhbmllbAoK
+LS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENvcnBvcmF0aW9uCis0
+MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApk
+cmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
