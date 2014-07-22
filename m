@@ -1,143 +1,71 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence
- implementation for fences
-Date: Tue, 22 Jul 2014 16:44:16 +0200
-Message-ID: <53CE78C0.9030408@canonical.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
+ fences
+Date: Tue, 22 Jul 2014 16:47:16 +0200
+Message-ID: <53CE7974.2010209@canonical.com>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
  <53CE2421.5040906@amd.com> <20140722114607.GL15237@phenom.ffwll.local>
  <20140722115737.GN15237@phenom.ffwll.local> <53CE56ED.4040109@vodafone.de>
- <20140722132652.GO15237@phenom.ffwll.local> <53CE6AFA.1060807@vodafone.de>
+ <53CE6FB0.90500@canonical.com> <53CE7410.3090603@amd.com>
+ <53CE74B5.3000201@canonical.com> <53CE77B4.6020801@amd.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53CE6AFA.1060807-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?ISO-8859-1?Q?Christian_K=F6nig?= <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>, =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Deucher, Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <53CE77B4.6020801@amd.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, =?ISO-8859-1?Q?Christian_K=F6nig?= <deathsimple@vodafone.de>, Dave Airlie <airlied@gmail.com>, Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-op 22-07-14 15:45, Christian K=F6nig schreef:
-> Am 22.07.2014 15:26, schrieb Daniel Vetter:
->> On Tue, Jul 22, 2014 at 02:19:57PM +0200, Christian K=F6nig wrote:
->>> Am 22.07.2014 13:57, schrieb Daniel Vetter:
->>>> On Tue, Jul 22, 2014 at 01:46:07PM +0200, Daniel Vetter wrote:
->>>>> On Tue, Jul 22, 2014 at 10:43:13AM +0200, Christian K=F6nig wrote:
->>>>>> Am 22.07.2014 06:05, schrieb Dave Airlie:
->>>>>>> On 9 July 2014 22:29, Maarten Lankhorst <maarten.lankhorst@canonica=
-l.com> wrote:
->>>>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
->>>>>>>> ---
->>>>>>>>   drivers/gpu/drm/radeon/radeon.h        |   15 +-
->>>>>>>>   drivers/gpu/drm/radeon/radeon_device.c |   60 ++++++++-
->>>>>>>>   drivers/gpu/drm/radeon/radeon_fence.c  |  223 ++++++++++++++++++=
-++++++++------
->>>>>>>>   3 files changed, 248 insertions(+), 50 deletions(-)
->>>>>>>>
->>>>>>>  From what I can see this is still suffering from the problem that =
-we
->>>>>>> need to find a proper solution to,
->>>>>>>
->>>>>>> My summary of the issues after talking to Jerome and Ben and
->>>>>>> re-reading things is:
->>>>>>>
->>>>>>> We really need to work out a better interface into the drivers to be
->>>>>>> able to avoid random atomic entrypoints,
->>>>>> Which is exactly what I criticized from the very first beginning. Go=
-od to
->>>>>> know that I'm not the only one thinking that this isn't such a good =
-idea.
->>>>> I guess I've lost context a bit, but which atomic entry point are we
->>>>> talking about? Afaics the only one that's mandatory is the is
->>>>> fence->signaled callback to check whether a fence really has been
->>>>> signalled. It's used internally by the fence code to avoid spurious
->>>>> wakeups. Afaik that should be doable already on any hardware. If that=
-'s
->>>>> not the case then we can always track the signalled state in software=
- and
->>>>> double-check in a worker thread before updating the sw state. And wrap
->>>>> this all up into a special fence class if there's more than one driver
->>>>> needing this.
->>>> One thing I've forgotten: The i915 scheduler that's floating around ru=
-ns
->>>> its bottom half from irq context. So I really want to be able to check
->>>> fence state from irq context and I also want to make it possible
->>>> (possible! not mandatory) to register callbacks which are run from any
->>>> context asap after the fence is signalled.
->>> NAK, that's just the bad design I've talked about. Checking fence state
->>> inside the same driver from interrupt context is OK, because it's the
->>> drivers interrupt that we are talking about here.
+op 22-07-14 16:39, Christian K=F6nig schreef:
+> Am 22.07.2014 16:27, schrieb Maarten Lankhorst:
+>> op 22-07-14 16:24, Christian K=F6nig schreef:
+>>>> No, you really shouldn't be doing much in the check anyway, it's meant=
+ to be a lightweight check. If you're not ready yet because of a lockup sim=
+ply return not signaled yet.
+>>> It's not only the lockup case from radeon I have in mind here. For user=
+space queues it might be necessary to call copy_from_user to figure out if =
+a fence is signaled or not.
 >>>
->>> Checking fence status from another drivers interrupt context is what re=
-ally
->>> concerns me here, cause your driver doesn't have the slightest idea if =
-the
->>> called driver is really capable of checking the fence right now.
->> I guess my mail hasn't been clear then. If you don't like it we could add
->> a bit of glue to insulate the madness and bad design i915 might do from
->> radeon. That imo doesn't invalidate the overall fence interfaces.
->>
->> So what about the following:
->> - fence->enabling_signaling is restricted to be called from process
->>    context. We don't use any different yet, so would boild down to addin=
-g a
->>    WARN_ON(in_interrupt) or so to fence_enable_sw_signalling.
->>
->> - Make fence->signaled optional (already the case) and don't implement it
->>    in readon (i.e. reduce this patch here). Only downside is that radeon
->>    needs to correctly (i.e. without races or so) call fence_signal. And =
-the
->>    cross-driver synchronization might be a bit less efficient. Note that
->>    you can call fence_signal from wherever you want to, so hopefully that
->>    doesn't restrict your implementation.
->>
->> End result: No one calls into radeon from interrupt context, and this is
->> guaranteed.
->>
->> Would that be something you can agree to?
+>>> Returning false all the time is probably not a good idea either.
+>> Having userspace implement a fence sounds like an awful idea, why would =
+you want to do that?
 >
-> No, the whole enable_signaling stuff should go away. No callback from the=
- driver into the fence code, only the other way around.
+> Marketing moves in mysterious ways. Don't ask me, but that the direction =
+it currently moves with userspace queues and IOMMU etc...
 >
-> fence->signaled as well as fence->wait should become mandatory and only c=
-alled from process context without holding any locks, neither atomic nor an=
-y mutex/semaphore (rcu might be ok).
-fence->wait is mandatory, and already requires sleeping.
+>> A fence could be exported to userspace, but that would only mean it can =
+wait for it to be signaled with an interface like poll..
+>
+> Yeah agree totally, but the point for the fence interface is that I can't=
+ predict what's necessary to check if a fence is signaled or not on future =
+hardware.
+>
+> For the currently available radeon hardware I can say that reading a valu=
+e from a kernel page is pretty much all you need. But for older hardware th=
+at was reading from a register which might become very tricky if the hardwa=
+re is power off or currently inside a reset cycle.
+>
+> Because off this I would avoid any such interface if it's not absolutely =
+required by some use case, and currently I don't see this requirement becau=
+se the functionality you want to archive could be implemented without this.
+Oh? I've already done that in radeon_fence, there is no way enable_signalin=
+g will fiddle with hardware registers during a reset cycle.
+I've also made sure that __radeon_fence_is_signaled grabs exclusive_lock in=
+ read mode before touching any hw state.
 
-If .signaled is not implemented there is no guarantee the fence will be
-signaled sometime soon, this is also why enable_signaling exists, to
-allow the driver to flush. I get it that it doesn't apply to radeon and nou=
-veau,
-but for other drivers that could be necessary, like vmwgfx.
+Older hardware also doesn't implement optimus, so I think power off is not =
+much of a worry for them, if you could point me at the checking done for th=
+at I could make sure that this is the case.
 
-Ironically that is also a part of the ttm fence, except it was called flush=
- there.
-
-I would also like to note that ttm_bo_wait currently is also a function tha=
-t currently uses is_signaled from atomic_context...
-
-For the more complicated locking worries: Lockdep is your friend, use PROVE=
-_LOCKING and find bugs before they trigger. ;-)
-
->> Like I've said I think restricting the insanity other people are willing
->> to live with just because you don't like it isn't right. But it is
->> certainly right for you to insist on not being forced into any such
->> design. I think the above would achieve this.
->
-> I don't think so. If it's just me I would say that I'm just to cautious a=
-nd the idea is still save to apply to the whole kernel.
->
-> But since Dave, Jerome and Ben seems to have similar concerns I think we =
-need to agree to a minimum and save interface for all drivers.
->
-> Christian.
->
+~Maarten
