@@ -1,74 +1,96 @@
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
+From: Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence
  implementation for fences
-Date: Tue, 22 Jul 2014 18:52:44 +0200
-Message-ID: <CAKMK7uH7WfFP6cDhwBPaS+YeL17fxycFQjpNdRfJVgSjhac-kQ@mail.gmail.com>
+Date: Tue, 22 Jul 2014 12:14:35 -0700
+Message-ID: <20140722121435.6bd093d0@jbarnes-desktop>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
  <53CE2421.5040906@amd.com>
  <20140722114607.GL15237@phenom.ffwll.local>
  <20140722115737.GN15237@phenom.ffwll.local>
- <53CE56ED.4040109@vodafone.de>
- <20140722132652.GO15237@phenom.ffwll.local>
- <53CE6AFA.1060807@vodafone.de>
- <CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>
- <53CE84AA.9030703@amd.com>
- <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
- <53CE8A57.2000803@vodafone.de>
- <CAKMK7uFugmw_pP1nyA1ws5tMB6iCe1CqBHeWHoYzQ0wXE301EA@mail.gmail.com>
- <53CE93D4.3010204@amd.com>
+ <53CE56ED.4040109@vodafone.de> <53CE6FB0.90500@canonical.com>
+ <53CE7410.3090603@amd.com> <53CE74B5.3000201@canonical.com>
+ <53CE77B4.6020801@amd.com>
+ <CAKMK7uESXrDtCov8whOTsffg6eZdibF4qaTFaCubM=mnhN=gNQ@mail.gmail.com>
+ <CADnq5_Moy78A5JfDM0LME6_-48PW72DJpYYvEthQ5b=_amU8KQ@mail.gmail.com>
+ <CAKMK7uGtfUTU=VwSnF07jncJsH1Ckie2m1FCjct60Yz88uE3cg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53CE93D4.3010204@amd.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKMK7uGtfUTU=VwSnF07jncJsH1Ckie2m1FCjct60Yz88uE3cg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Deucher,
+ Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Christian =?UTF-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMjIsIDIwMTQgYXQgNjozOSBQTSwgQ2hyaXN0aWFuIEvDtm5pZwo8Y2hyaXN0
-aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPj4gTWF5YmUgSSd2ZSBtaXhlZCB0aGluZ3MgdXAg
-YSBiaXQgaW4gbXkgZGVzY3JpcHRpb24uIFRoZXJlIGlzCj4+IGZlbmNlX3NpZ25hbCB3aGljaCB0
-aGUgaW1wbGVtZW50b3IvZXhwb3J0ZXIgb2YgYSBmZW5jZSBtdXN0IGNhbGwgd2hlbgo+PiB0aGUg
-ZmVuY2UgaXMgY29tcGxldGVkLiBJZiB0aGUgZXhwb3J0ZXIgaGFzIGFuIC0+ZW5hYmxlX3NpZ25h
-bGluZwo+PiBjYWxsYmFjayBpdCBjYW4gZGVsYXkgdGhhdCBjYWxsIHRvIGZlbmNlX3NpZ25hbCBm
-b3IgYXMgbG9uZyBhcyBpdAo+PiB3aXNoZXMgYXMgbG9uZyBhcyBlbmFibGVfc2lnbmFsaW5nIGlz
-bid0IGNhbGxlZCB5ZXQuIEJ1dCB0aGF0J3MganVzdAo+PiB0aGUgb3B0aW1pemF0aW9uIHRvIG5v
-dCByZXF1aXJlZCBpcnFzIHRvIGJlIHR1cm5lZCBvbiBhbGwgdGhlIHRpbWUuCj4+Cj4+IFRoZSBv
-dGhlciBmdW5jdGlvbiBpcyBmZW5jZV9pc19zaWduYWxlZCwgd2hpY2ggaXMgdXNlZCBieSBjb2Rl
-IHRoYXQgaXMKPj4gaW50ZXJlc3RlZCBpbiB0aGUgZmVuY2Ugc3RhdGUsIHRvZ2V0aGVyIHdpdGgg
-ZmVuY2Vfd2FpdCBpZiBpdCB3YW50cyB0bwo+PiBibG9jayBhbmQgbm90IGp1c3Qgd2FudHMgdG8g
-a25vdyB0aGUgbW9tZW50YXJ5IGZlbmNlIHN0YXRlLiBBbGwgdGhlCj4+IG90aGVyIGZ1bmN0aW9u
-cyAodGhlIHN0dWZmIHRoYXQgYWRkcyBjYWxsYmFja3MgYW5kIHRoZSB2YXJpb3VzIF9sb2NrZWQK
-Pj4gYW5kIG90aGVyIHZlcnNpb25zKSBhcmUganVzdCBmb3IgZmFuY3kgc3BlY2lhbCBjYXNlcy4K
-Pgo+IFdlbGwgdGhhdCdzIHJhdGhlciBiYWQsIGNhdXNlIElSUXMgYXJlbid0IHJlbGlhYmxlIGVu
-b3VnaCBvbiBSYWRlb24gSFcgZm9yCj4gc3VjaCBhIHRoaW5nLiBFc3BlY2lhbGx5IG9uIFByaW1l
-IHN5c3RlbXMgYW5kIE1hY3MuCj4KPiBUaGF0J3Mgd2h5IHdlIGhhdmUgdGhpcyBmYW5jeSBIWi8y
-IHRpbWVvdXQgb24gYWxsIGZlbmNlIHdhaXQgb3BlcmF0aW9ucyB0bwo+IG1hbnVhbGx5IGNoZWNr
-IGlmIHRoZSBmZW5jZSBpcyBzaWduYWxlZCBvciBub3QuCj4KPiBUbyBndWFyYW50ZWUgdGhhdCBh
-IGZlbmNlIGlzIHNpZ25hbGVkIGFmdGVyIGVuYWJsZV9zaWduYWxpbmcgaXMgY2FsbGVkIHdlCj4g
-d291bGQgbmVlZCB0byBmaXJlIHVwIGEga2VybmVsIHRocmVhZCB3aGljaCBwZXJpb2RpY2FsbHkg
-Y2FsbHMKPiBmZW5jZS0+c2lnbmFsZWQuCgpXZSBhY3R1YWxseSBoYXZlIHNlZW4gc2ltaWxhciBm
-dW4gb24gc29tZSBpOTE1IHBsYXRmb3Jtcy4gSSB3b25kZXIKd2hldGhlciB3ZSBzaG91bGRuJ3Qg
-aGF2ZSBzb21ldGhpbmcgaW4gdGhlIGZlbmNlIGNvcmUgZm9yIHRoaXMgZ2l2ZW4KaG93IGNvbW1v
-biBpdCBpcy4gQ3VycmVudGx5IHdlIGhhdmUgdGhlIHNhbWUgdHJpY2sgd2l0aCByZWd1bGFyIHdh
-a3VwcwpvbiBwbGF0Zm9ybXMgd2l0aCB1bnJlbGlhYmxlIGludGVycnVwdHMsIGJ1dCBJIGhhdmVu
-J3QgeWV0IGxvb2tlZCBhdApob3cgd2UnbGwgZG8gdGhpcyB3aXRoIGNhbGxiYWNrcyBvbmNlIHdl
-IGFkZCB0aGUgc2NoZWR1bGVyIGFuZCBmZW5jZXMuCkl0IG1pZ2h0IGJlIHRob3VnaCB0aGF0IHdl
-J3ZlIGZpbmFsbHkgZml4ZWQgdGhlc2UgY29oZXJlbmN5IGlzc3VlcwpiZXR3ZWVuIHRoZSBpbnRl
-cnJ1cHQgYW5kIHRoZSBmZW5jZSB3cml0ZSBmb3IgcmVhbC4KLURhbmllbAotLSAKRGFuaWVsIFZl
-dHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUg
-NTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2RyaS1kZXZlbAo=
+On Tue, 22 Jul 2014 17:48:18 +0200
+Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org> wrote:
+
+> On Tue, Jul 22, 2014 at 5:42 PM, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> >> Fence-based syncing between userspace queues submitted stuff through
+> >> doorbells and anything submitted by the general simply wont work.
+> >> Which is why I think the doorbell is a stupid interface since I just
+> >> don't see cameras and v4l devices implementing all that complexity to
+> >> get a pure userspace side sync solution.
+> >>
+> >
+> > Like it or not this is what a lot of application writers want (look at
+> > mantle and metal and similar new APIs or android synpts).  Having
+> > queues and fences in userspace allows the application to structure
+> > things to best fit their own task graphs.  The app can decide how to
+> > deal with dependencies and synchronization explicitly instead of
+> > blocking the queues in the kernel for everyone.  Anyway, this is
+> > getting off topic.
+> 
+> Well there's explicit fences as used in opencl and android syncpts. My
+> plan is actually to support that in i915 using Maarten's struct fence
+> stuff (and there's just a very trivial patch for the android stuff in
+> merging needed to get there). What doesn't work is fences created
+> behind the kernel's back purely in userspace by giving shared memory
+> locations special meaning. Those get the kernel completely out of the
+> picture (as opposed to android syncpts, which just make sync
+> explicit).
+> 
+> I guess long-term we might need something like gpu futexes to make
+> that pure userspace syncing integrate a bit better, but imo that's (at
+> least for now) out of scope. For fences here I have the goal of one
+
+Yeah, with a little kernel help you could have a mostly kernel
+independent sync mechanism using just shared mem in userspace.  The
+kernel would just need to signal any interested clients when something
+happened (even if it didn't know what) and let userspace sort out the
+rest.  I think that would be a nice thing to provide at some point, as
+it could allow for some fine grained CPU/GPU algorithms that use
+lightweight synchronization with and without busy looping on the CPU
+side.
+
+But all of that is definitely a lower priority than getting explicit
+fencing exported to userspace to work right, both for intra-driver
+sync and inter-driver sync.
+
+> internally representation used by both implicit syncing (dma-buf on
+> classic linux, e.g. prime) and explicit fencing on android or opencl
+> or something like that.
+> 
+> We don't have the code yet ready, but that's the direction i915 will
+> move towards for the near future. Jesse is working on some patches
+> already.
+
+Yeah I'd like to get some feedback from Maarten on my bits so I can get
+them ready for upstream.  I still need to add documentation and tests,
+but I'd like to make sure the interfaces and internals get acked first.
+
+Thanks,
+-- 
+Jesse Barnes, Intel Open Source Technology Center
