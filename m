@@ -1,76 +1,87 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence
-	implementation for fences
-Date: Tue, 22 Jul 2014 17:48:18 +0200
-Message-ID: <CAKMK7uGtfUTU=VwSnF07jncJsH1Ckie2m1FCjct60Yz88uE3cg@mail.gmail.com>
-References: <20140709093124.11354.3774.stgit@patser>
- <20140709122953.11354.46381.stgit@patser>
- <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
- <53CE2421.5040906@amd.com>
- <20140722114607.GL15237@phenom.ffwll.local>
- <20140722115737.GN15237@phenom.ffwll.local>
- <53CE56ED.4040109@vodafone.de> <53CE6FB0.90500@canonical.com>
- <53CE7410.3090603@amd.com> <53CE74B5.3000201@canonical.com>
- <53CE77B4.6020801@amd.com>
- <CAKMK7uESXrDtCov8whOTsffg6eZdibF4qaTFaCubM=mnhN=gNQ@mail.gmail.com>
- <CADnq5_Moy78A5JfDM0LME6_-48PW72DJpYYvEthQ5b=_amU8KQ@mail.gmail.com>
+From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <deathsimple@vodafone.de>
+Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
+ implementation for fences
+Date: Tue, 22 Jul 2014 17:59:19 +0200
+Message-ID: <53CE8A57.2000803@vodafone.de>
+References: <20140709093124.11354.3774.stgit@patser>	<20140709122953.11354.46381.stgit@patser>	<CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>	<53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>	<20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>	<20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>	<CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>	<53CE84AA.9030703@amd.com>
+ <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CADnq5_Moy78A5JfDM0LME6_-48PW72DJpYYvEthQ5b=_amU8KQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Barnes,
- Jesse" <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Deucher,
- Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5p?= =?UTF-8?B?Zw==?= <christian.koenig@amd.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, "Deucher,
+ Alexander" <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 22, 2014 at 5:42 PM, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> Fence-based syncing between userspace queues submitted stuff through
->> doorbells and anything submitted by the general simply wont work.
->> Which is why I think the doorbell is a stupid interface since I just
->> don't see cameras and v4l devices implementing all that complexity to
->> get a pure userspace side sync solution.
->>
->
-> Like it or not this is what a lot of application writers want (look at
-> mantle and metal and similar new APIs or android synpts).  Having
-> queues and fences in userspace allows the application to structure
-> things to best fit their own task graphs.  The app can decide how to
-> deal with dependencies and synchronization explicitly instead of
-> blocking the queues in the kernel for everyone.  Anyway, this is
-> getting off topic.
-
-Well there's explicit fences as used in opencl and android syncpts. My
-plan is actually to support that in i915 using Maarten's struct fence
-stuff (and there's just a very trivial patch for the android stuff in
-merging needed to get there). What doesn't work is fences created
-behind the kernel's back purely in userspace by giving shared memory
-locations special meaning. Those get the kernel completely out of the
-picture (as opposed to android syncpts, which just make sync
-explicit).
-
-I guess long-term we might need something like gpu futexes to make
-that pure userspace syncing integrate a bit better, but imo that's (at
-least for now) out of scope. For fences here I have the goal of one
-internally representation used by both implicit syncing (dma-buf on
-classic linux, e.g. prime) and explicit fencing on android or opencl
-or something like that.
-
-We don't have the code yet ready, but that's the direction i915 will
-move towards for the near future. Jesse is working on some patches
-already.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+QW0gMjIuMDcuMjAxNCAxNzo0Miwgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIFR1ZSwgSnVs
+IDIyLCAyMDE0IGF0IDU6MzUgUE0sIENocmlzdGlhbiBLw7ZuaWcKPiA8Y2hyaXN0aWFuLmtvZW5p
+Z0BhbWQuY29tPiB3cm90ZToKPj4gRHJpdmVycyBleHBvcnRpbmcgZmVuY2VzIG5lZWQgdG8gcHJv
+dmlkZSBhIGZlbmNlLT5zaWduYWxlZCBhbmQgYSBmZW5jZS0+d2FpdAo+PiBmdW5jdGlvbiwgZXZl
+cnl0aGluZyBlbHNlIGxpa2UgZmVuY2UtPmVuYWJsZV9zaWduYWxpbmcgb3IgY2FsbGluZwo+PiBm
+ZW5jZV9zaWduYWxlZCgpIGZyb20gdGhlIGRyaXZlciBpcyBvcHRpb25hbC4KPj4KPj4gRHJpdmVy
+cyB3YW50aW5nIHRvIHVzZSBleHBvcnRlZCBmZW5jZXMgZG9uJ3QgY2FsbCBmZW5jZS0+c2lnbmFs
+ZWQgb3IKPj4gZmVuY2UtPndhaXQgaW4gYXRvbWljIG9yIGludGVycnVwdCBjb250ZXh0LCBhbmQg
+bm90IHdpdGggaG9sZGluZyBhbnkgZ2xvYmFsCj4+IGxvY2tpbmcgcHJpbWl0aXZlcyAobGlrZSBt
+bWFwX3NlbSBldGMuLi4pLiBIb2xkaW5nIGxvY2tpbmcgcHJpbWl0aXZlcyBsb2NhbAo+PiB0byB0
+aGUgZHJpdmVyIGlzIG9rLCBhcyBsb25nIGFzIHRoZXkgZG9uJ3QgY29uZmxpY3Qgd2l0aCBhbnl0
+aGluZyBwb3NzaWJsZQo+PiB1c2VkIGJ5IHRoZWlyIG93biBmZW5jZSBpbXBsZW1lbnRhdGlvbi4K
+PiBXZWxsIHRoYXQncyBhbG1vc3Qgd2hhdCB3ZSBoYXZlIHJpZ2h0IG5vdyB3aXRoIHRoZSBleGNl
+cHRpb24gdGhhdAo+IGRyaXZlcnMgYXJlIGFsbG93ZWQgKGFjdHVhbGx5IG11c3QgZm9yIGNvcnJl
+Y3RuZXNzIHdoZW4gdXBkYXRpbmcKPiBmZW5jZXMpIHRoZSB3d19tdXRleGVzIGZvciBkbWEtYnVm
+cyAob3Igb3RoZXIgYnVmZmVyIG9iamVjdHMpLgoKSW4gdGhpcyBjYXNlIHNvcnJ5IGZvciBzbyBt
+dWNoIG5vaXNlLiBJIHJlYWxseSBoYXZlbid0IGxvb2tlZCBpbiBzbyBtdWNoIApkZXRhaWwgaW50
+byBhbnl0aGluZyBidXQgTWFhcnRlbidzIFJhZGVvbiBwYXRjaGVzLgoKQnV0IGhvdyBkb2VzIHRo
+YXQgdGhlbiB3b3JrIHJpZ2h0IG5vdz8gTXkgaW1wcmVzc2lvbiB3YXMgdGhhdCBpdCdzIAptYW5k
+YXRvcnkgZm9yIGRyaXZlcnMgdG8gY2FsbCBmZW5jZV9zaWduYWxlZCgpPwoKPiBMb2NraW5nCj4g
+Y29ycmVjdG5lc3MgaXMgZW5mb3JjZWQgd2l0aCBzb21lIGV4dHJlbWVseSBuYXN0eSBsb2NrZGVw
+IGFubm90YXRpb25zCj4gKyBhZGRpdGlvbmFsIGRlYnVnZ2luZyBpbmZyYXN0cnVjdHVyZSBlbmFi
+bGVkIHdpdGgKPiBDT05GSUdfREVCVUdfV1dfTVVURVhfU0xPV1BBVEguIFdlIHJlYWxseSBuZWVk
+IHRvIGJlIGFibGUgdG8gaG9sZAo+IGRtYS1idWYgd3dfbXV0ZXhlcyB3aGlsZSB1cGRhdGluZyBm
+ZW5jZXMgb3Igd2FpdGluZyBmb3IgdGhlbS4gQW5kCj4gb2J2aW91c2x5IGZvciAtPndhaXQgd2Ug
+bmVlZCBub24tYXRvbWljIGNvbnRleHQsIG5vdCBqdXN0Cj4gbm9uLWludGVycnVwdC4KClNvdW5k
+cyBtb3N0bHkgcmVhc29uYWJsZSwgYnV0IGZvciBob2xkaW5nIHRoZSBkbWEtYnVmIHd3X211dGV4
+LCB3b3VsZG4ndCAKYmUgYW4gUkNVIGJlIG1vcmUgYXBwcm9wcmlhdGUgaGVyZT8gRS5nLiBhcmVu
+J3Qgd2UganVzdCBpbnRlcmVzdGVkIHRoYXQgCnRoZSBjdXJyZW50IGFzc2lnbmVkIGZlbmNlIGF0
+IHNvbWUgcG9pbnQgaXMgc2lnbmFsZWQ/CgpTb21ldGhpbmcgbGlrZSBncmFiIHd3X211dGV4ZXMs
+IGdyYWIgYSByZWZlcmVuY2UgdG8gdGhlIGN1cnJlbnQgZmVuY2UgCm9iamVjdCwgcmVsZWFzZSB3
+d19tdXRleCwgd2FpdCBmb3IgZmVuY2UsIHJlbGVhc2UgcmVmZXJlbmNlIHRvIHRoZSBmZW5jZSAK
+b2JqZWN0LgoKCj4gQWdyZWVkIHRoYXQgYW55IHNoYXJlZCBsb2NrcyBhcmUgb3V0IG9mIHRoZSB3
+YXkgKGVzcGVjaWFsbHkgc3R1ZmYgbGlrZQo+IGRldi0+c3RydWN0X211dGV4IG9yIG90aGVyIG5v
+bi1zdHJpY3RseSBkcml2ZXItcHJpdmF0ZSBzdHVmZiwgaTkxNSBpcwo+IHJlYWxseSBiYWQgaGVy
+ZSBzdGlsbCkuCgpZZWFoIHRoYXQncyBhbHNvIGFuIHBvaW50IEkndmUgd2FudGVkIHRvIG5vdGUg
+b24gTWFhcnRlbnMgcGF0Y2guIFJhZGVvbiAKZ3JhYnMgdGhlIHJlYWQgc2lkZSBvZiBpdCdzIGV4
+Y2x1c2l2ZSBzZW1hcGhvcmUgd2hpbGUgd2FpdGluZyBmb3IgZmVuY2VzIAooYmVjYXVzZSBpdCBh
+c3N1bWVzIHRoYXQgdGhlIGZlbmNlIGl0IHdhaXRzIGZvciBpcyBhIFJhZGVvbiBmZW5jZSkuCgpB
+c3N1bWluZyB0aGF0IHdlIG5lZWQgdG8gd2FpdCBpbiBib3RoIGRpcmVjdGlvbnMgd2l0aCBQcmlt
+ZSAoZS5nLiBJbnRlbCAKZHJpdmVyIG5lZWRzIHRvIHdhaXQgZm9yIFJhZGVvbiB0byBmaW5pc2gg
+cmVuZGVyaW5nIGFuZCBSYWRlb24gbmVlZHMgdG8gCndhaXQgZm9yIEludGVsIHRvIGZpbmlzaCBk
+aXNwbGF5aW5nKSwgdGhpcyBtaWdodCBiZWNvbWUgYSBwZXJmZWN0IApleGFtcGxlIG9mIGxvY2tp
+bmcgaW52ZXJzaW9uLgoKPiBTbyBmcm9tIHRoZSBjb3JlIGZlbmNlIGZyYW1ld29yayBJIHRoaW5r
+IHdlIGFscmVhZHkgaGF2ZSBleGFjdGx5IHRoaXMsCj4gYW5kIHdlIG9ubHkgbmVlZCB0byBhZGp1
+c3QgdGhlIHJhZGVvbiBpbXBsZW1lbnRhdGlvbiBhIGJpdCB0byBtYWtlIGl0Cj4gbGVzcyByaXNr
+eSBhbmQgaW52YXNpdmUgdG8gdGhlIHJhZGVvbiBkcml2ZXIgbG9naWMuCgpBZ3JlZS4gV2VsbCB0
+aGUgYmlnZ2VzdCBwcm9ibGVtIEkgc2VlIGlzIHRoYXQgZXhjbHVzaXZlIHNlbWFwaG9yZSBJIG5l
+ZWQgCnRvIHRha2Ugd2hlbiBhbnl0aGluZyBjYWxscyBpbnRvIHRoZSBkcml2ZXIuIEZvciB0aGUg
+ZmVuY2UgY29kZSBJIG5lZWQgCnRvIG1vdmUgdGhhdCBkb3duIGludG8gdGhlIGZlbmNlLT5zaWdu
+YWxlZCBoYW5kbGVyLCBjYXVzZSB0aGF0IG5vdyBjYW4gCmJlIGNhbGxlZCBmcm9tIG91dHNpZGUg
+dGhlIGRyaXZlci4KCk1hYXJ0ZW4gc29sdmVkIHRoaXMgYnkgdGVsbGluZyB0aGUgZHJpdmVyIGlu
+IHRoZSBsb2NrdXAgaGFuZGxlciAod2hlcmUgCndlIGdyYWIgdGhlIHdyaXRlIHNpZGUgb2YgdGhl
+IGV4Y2x1c2l2ZSBsb2NrKSB0aGF0IGFsbCBpbnRlcnJ1cHRzIGFyZSAKYWxyZWFkeSBlbmFibGVk
+LCBzbyB0aGF0IGZlbmNlLT5zaWduYWxlZCBob3BlZnVsbHkgd291bGRuJ3QgbWVzcyB3aXRoIAp0
+aGUgaGFyZHdhcmUgYXQgYWxsLiBXaGlsZSB0aGlzIHByb2JhYmx5IHdvcmtzLCBpdCBqdXN0IGxl
+YXZlcyBtZSB3aXRoIGEgCmZlZWxpbmcgdGhhdCB3ZSBhcmUgZG9pbmcgc29tZXRoaW5nIHdyb25n
+IGhlcmUuCgpDaHJpc3RpYW4uCgo+IC1EYW5pZWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vZHJpLWRldmVsCg==
