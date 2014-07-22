@@ -1,88 +1,59 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Tue, 22 Jul 2014 03:10:35 +0000
-Message-ID: <bug-81485-8800-GygAh2bNEx@http.bugs.freedesktop.org/>
-References: <bug-81485-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied@gmail.com>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
+ fences
+Date: Tue, 22 Jul 2014 14:05:35 +1000
+Message-ID: <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
+References: <20140709093124.11354.3774.stgit@patser>
+ <20140709122953.11354.46381.stgit@patser>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0919894515=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20140709122953.11354.46381.stgit@patser>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, "Koenig,
+ Christian" <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
+On 9 July 2014 22:29, Maarten Lankhorst <maarten.lankhorst@canonical.com> wrote:
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+> ---
+>  drivers/gpu/drm/radeon/radeon.h        |   15 +-
+>  drivers/gpu/drm/radeon/radeon_device.c |   60 ++++++++-
+>  drivers/gpu/drm/radeon/radeon_fence.c  |  223 ++++++++++++++++++++++++++------
+>  3 files changed, 248 insertions(+), 50 deletions(-)
+>
 
---===============0919894515==
-Content-Type: multipart/alternative; boundary="1405998634.472c2.4377"; charset="us-ascii"
+From what I can see this is still suffering from the problem that we
+need to find a proper solution to,
 
+My summary of the issues after talking to Jerome and Ben and
+re-reading things is:
 
---1405998634.472c2.4377
-Date: Tue, 22 Jul 2014 03:10:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+We really need to work out a better interface into the drivers to be
+able to avoid random atomic entrypoints,
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81485
+I'm sure you have some ideas and I think you really need to
+investigate them to move this thing forward,
+even it if means some issues with android sync pts.
 
---- Comment #10 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-please let me know what other info you need or what else I should try
+but none of the two major drivers seem to want the interface as-is so
+something needs to give
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+My major question is why we need an atomic callback here at all, what
+scenario does it cover?
 
---1405998634.472c2.4377
-Date: Tue, 22 Jul 2014 03:10:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+Surely we can use a workqueue based callback to ask a driver to check
+its signalling, is it really
+that urgent?
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
-              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
-</span></b>
-        <pre>please let me know what other info you need or what else I should try</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1405998634.472c2.4377--
-
---===============0919894515==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0919894515==--
+Dave.
