@@ -1,8 +1,8 @@
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
  implementation for fences
-Date: Tue, 22 Jul 2014 18:43:07 +0200
-Message-ID: <CAKMK7uHda2bsSG4Rsjb+=McYo50J0sS4vGqJ0R==ajc9HbqV7Q@mail.gmail.com>
+Date: Tue, 22 Jul 2014 18:52:44 +0200
+Message-ID: <CAKMK7uH7WfFP6cDhwBPaS+YeL17fxycFQjpNdRfJVgSjhac-kQ@mail.gmail.com>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
@@ -17,11 +17,12 @@ References: <20140709093124.11354.3774.stgit@patser>
  <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
  <53CE8A57.2000803@vodafone.de>
  <CAKMK7uFugmw_pP1nyA1ws5tMB6iCe1CqBHeWHoYzQ0wXE301EA@mail.gmail.com>
+ <53CE93D4.3010204@amd.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKMK7uFugmw_pP1nyA1ws5tMB6iCe1CqBHeWHoYzQ0wXE301EA@mail.gmail.com>
+In-Reply-To: <53CE93D4.3010204@amd.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -31,28 +32,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <deathsimple@vodafone.de>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Jul 22, 2014 at 6:21 PM, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> But like I've said fence->signaled is optional so you don't need this
-> necessarily, as long as radeon eventually calls fence_signaled once
-> the fence has completed.
-
-Actually I've chatted a bit with Maarten about the different ways we
-could restrict both the calling context and the implementations for
-fence callbacks to avoid surprises. One is certainyl that we need
-WARN_ON(in_interrupt) around the wait, enable_singaling and add
-callback stuff.
-
-But we also talked about ensure that the ->signaled callback never
-sleeps by wrapping it in a preempt_enable/disable section. Currently
-sleeping is allowed in ->signaled, which the radeon implementation
-here does. I think it would be reasonable to forbid this and drop
-__radeon_fence_signaled.
--Daniel
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+T24gVHVlLCBKdWwgMjIsIDIwMTQgYXQgNjozOSBQTSwgQ2hyaXN0aWFuIEvDtm5pZwo8Y2hyaXN0
+aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPj4gTWF5YmUgSSd2ZSBtaXhlZCB0aGluZ3MgdXAg
+YSBiaXQgaW4gbXkgZGVzY3JpcHRpb24uIFRoZXJlIGlzCj4+IGZlbmNlX3NpZ25hbCB3aGljaCB0
+aGUgaW1wbGVtZW50b3IvZXhwb3J0ZXIgb2YgYSBmZW5jZSBtdXN0IGNhbGwgd2hlbgo+PiB0aGUg
+ZmVuY2UgaXMgY29tcGxldGVkLiBJZiB0aGUgZXhwb3J0ZXIgaGFzIGFuIC0+ZW5hYmxlX3NpZ25h
+bGluZwo+PiBjYWxsYmFjayBpdCBjYW4gZGVsYXkgdGhhdCBjYWxsIHRvIGZlbmNlX3NpZ25hbCBm
+b3IgYXMgbG9uZyBhcyBpdAo+PiB3aXNoZXMgYXMgbG9uZyBhcyBlbmFibGVfc2lnbmFsaW5nIGlz
+bid0IGNhbGxlZCB5ZXQuIEJ1dCB0aGF0J3MganVzdAo+PiB0aGUgb3B0aW1pemF0aW9uIHRvIG5v
+dCByZXF1aXJlZCBpcnFzIHRvIGJlIHR1cm5lZCBvbiBhbGwgdGhlIHRpbWUuCj4+Cj4+IFRoZSBv
+dGhlciBmdW5jdGlvbiBpcyBmZW5jZV9pc19zaWduYWxlZCwgd2hpY2ggaXMgdXNlZCBieSBjb2Rl
+IHRoYXQgaXMKPj4gaW50ZXJlc3RlZCBpbiB0aGUgZmVuY2Ugc3RhdGUsIHRvZ2V0aGVyIHdpdGgg
+ZmVuY2Vfd2FpdCBpZiBpdCB3YW50cyB0bwo+PiBibG9jayBhbmQgbm90IGp1c3Qgd2FudHMgdG8g
+a25vdyB0aGUgbW9tZW50YXJ5IGZlbmNlIHN0YXRlLiBBbGwgdGhlCj4+IG90aGVyIGZ1bmN0aW9u
+cyAodGhlIHN0dWZmIHRoYXQgYWRkcyBjYWxsYmFja3MgYW5kIHRoZSB2YXJpb3VzIF9sb2NrZWQK
+Pj4gYW5kIG90aGVyIHZlcnNpb25zKSBhcmUganVzdCBmb3IgZmFuY3kgc3BlY2lhbCBjYXNlcy4K
+Pgo+IFdlbGwgdGhhdCdzIHJhdGhlciBiYWQsIGNhdXNlIElSUXMgYXJlbid0IHJlbGlhYmxlIGVu
+b3VnaCBvbiBSYWRlb24gSFcgZm9yCj4gc3VjaCBhIHRoaW5nLiBFc3BlY2lhbGx5IG9uIFByaW1l
+IHN5c3RlbXMgYW5kIE1hY3MuCj4KPiBUaGF0J3Mgd2h5IHdlIGhhdmUgdGhpcyBmYW5jeSBIWi8y
+IHRpbWVvdXQgb24gYWxsIGZlbmNlIHdhaXQgb3BlcmF0aW9ucyB0bwo+IG1hbnVhbGx5IGNoZWNr
+IGlmIHRoZSBmZW5jZSBpcyBzaWduYWxlZCBvciBub3QuCj4KPiBUbyBndWFyYW50ZWUgdGhhdCBh
+IGZlbmNlIGlzIHNpZ25hbGVkIGFmdGVyIGVuYWJsZV9zaWduYWxpbmcgaXMgY2FsbGVkIHdlCj4g
+d291bGQgbmVlZCB0byBmaXJlIHVwIGEga2VybmVsIHRocmVhZCB3aGljaCBwZXJpb2RpY2FsbHkg
+Y2FsbHMKPiBmZW5jZS0+c2lnbmFsZWQuCgpXZSBhY3R1YWxseSBoYXZlIHNlZW4gc2ltaWxhciBm
+dW4gb24gc29tZSBpOTE1IHBsYXRmb3Jtcy4gSSB3b25kZXIKd2hldGhlciB3ZSBzaG91bGRuJ3Qg
+aGF2ZSBzb21ldGhpbmcgaW4gdGhlIGZlbmNlIGNvcmUgZm9yIHRoaXMgZ2l2ZW4KaG93IGNvbW1v
+biBpdCBpcy4gQ3VycmVudGx5IHdlIGhhdmUgdGhlIHNhbWUgdHJpY2sgd2l0aCByZWd1bGFyIHdh
+a3VwcwpvbiBwbGF0Zm9ybXMgd2l0aCB1bnJlbGlhYmxlIGludGVycnVwdHMsIGJ1dCBJIGhhdmVu
+J3QgeWV0IGxvb2tlZCBhdApob3cgd2UnbGwgZG8gdGhpcyB3aXRoIGNhbGxiYWNrcyBvbmNlIHdl
+IGFkZCB0aGUgc2NoZWR1bGVyIGFuZCBmZW5jZXMuCkl0IG1pZ2h0IGJlIHRob3VnaCB0aGF0IHdl
+J3ZlIGZpbmFsbHkgZml4ZWQgdGhlc2UgY29oZXJlbmN5IGlzc3VlcwpiZXR3ZWVuIHRoZSBpbnRl
+cnJ1cHQgYW5kIHRoZSBmZW5jZSB3cml0ZSBmb3IgcmVhbC4KLURhbmllbAotLSAKRGFuaWVsIFZl
+dHRlcgpTb2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUg
+NTcgNDggLSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2RyaS1kZXZlbAo=
