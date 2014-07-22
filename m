@@ -1,93 +1,75 @@
-From: =?ISO-8859-1?Q?Christian_K=F6nig?= <deathsimple@vodafone.de>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
- fences
-Date: Tue, 22 Jul 2014 17:16:48 +0200
-Message-ID: <53CE8060.8030500@vodafone.de>
+From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence
+ implementation for fences
+Date: Tue, 22 Jul 2014 17:17:56 +0200
+Message-ID: <CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
- <53CE2421.5040906@amd.com> <20140722114607.GL15237@phenom.ffwll.local>
- <20140722115737.GN15237@phenom.ffwll.local> <53CE56ED.4040109@vodafone.de>
- <53CE6FB0.90500@canonical.com> <53CE7410.3090603@amd.com>
- <53CE74B5.3000201@canonical.com> <53CE77B4.6020801@amd.com>
- <53CE7974.2010209@canonical.com>
+ <53CE2421.5040906@amd.com>
+ <20140722114607.GL15237@phenom.ffwll.local>
+ <20140722115737.GN15237@phenom.ffwll.local>
+ <53CE56ED.4040109@vodafone.de>
+ <20140722132652.GO15237@phenom.ffwll.local>
+ <53CE6AFA.1060807@vodafone.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53CE7974.2010209@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, =?ISO-8859-1?Q?Christian_K=F6nig?= <christian.koenig@amd.com>, Dave Airlie <airlied@gmail.com>, Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <53CE6AFA.1060807-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>
+Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "Deucher,
+ Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Am 22.07.2014 16:47, schrieb Maarten Lankhorst:
-> op 22-07-14 16:39, Christian K=F6nig schreef:
->> Am 22.07.2014 16:27, schrieb Maarten Lankhorst:
->>> op 22-07-14 16:24, Christian K=F6nig schreef:
->>>>> No, you really shouldn't be doing much in the check anyway, it's mean=
-t to be a lightweight check. If you're not ready yet because of a lockup si=
-mply return not signaled yet.
->>>> It's not only the lockup case from radeon I have in mind here. For use=
-rspace queues it might be necessary to call copy_from_user to figure out if=
- a fence is signaled or not.
->>>>
->>>> Returning false all the time is probably not a good idea either.
->>> Having userspace implement a fence sounds like an awful idea, why would=
- you want to do that?
->> Marketing moves in mysterious ways. Don't ask me, but that the direction=
- it currently moves with userspace queues and IOMMU etc...
->>
->>> A fence could be exported to userspace, but that would only mean it can=
- wait for it to be signaled with an interface like poll..
->> Yeah agree totally, but the point for the fence interface is that I can'=
-t predict what's necessary to check if a fence is signaled or not on future=
- hardware.
->>
->> For the currently available radeon hardware I can say that reading a val=
-ue from a kernel page is pretty much all you need. But for older hardware t=
-hat was reading from a register which might become very tricky if the hardw=
-are is power off or currently inside a reset cycle.
->>
->> Because off this I would avoid any such interface if it's not absolutely=
- required by some use case, and currently I don't see this requirement beca=
-use the functionality you want to archive could be implemented without this.
-> Oh? I've already done that in radeon_fence, there is no way enable_signal=
-ing will fiddle with hardware registers during a reset cycle.
-> I've also made sure that __radeon_fence_is_signaled grabs exclusive_lock =
-in read mode before touching any hw state.
->
-> Older hardware also doesn't implement optimus, so I think power off is no=
-t much of a worry for them, if you could point me at the checking done for =
-that I could make sure that this is the case.
-
-I'm not talking about any specific radeon hardware or use case here. As =
-
-far as I can see you indeed solved all driver problems with the current =
-
-interface design.
-
-The question I'm raising is if the current interface design needs as =
-
-complex as it is. And my answer to this is a clear *no*, so why do you =
-
-want to stick with this design? I still haven't understood that.
-
-If it's just to support a further feature of direct synchronization in =
-
-interrupt context between different drivers then I must clearly say that =
-
-this is a NAK, cause you add complexity to the kernel that isn't necessary.
-
-Christian.
-
->
-> ~Maarten
->
+T24gVHVlLCBKdWwgMjIsIDIwMTQgYXQgMzo0NSBQTSwgQ2hyaXN0aWFuIEvDtm5pZwo8ZGVhdGhz
+aW1wbGVAdm9kYWZvbmUuZGU+IHdyb3RlOgo+PiBXb3VsZCB0aGF0IGJlIHNvbWV0aGluZyB5b3Ug
+Y2FuIGFncmVlIHRvPwo+Cj4KPiBObywgdGhlIHdob2xlIGVuYWJsZV9zaWduYWxpbmcgc3R1ZmYg
+c2hvdWxkIGdvIGF3YXkuIE5vIGNhbGxiYWNrIGZyb20gdGhlCj4gZHJpdmVyIGludG8gdGhlIGZl
+bmNlIGNvZGUsIG9ubHkgdGhlIG90aGVyIHdheSBhcm91bmQuCj4KPiBmZW5jZS0+c2lnbmFsZWQg
+YXMgd2VsbCBhcyBmZW5jZS0+d2FpdCBzaG91bGQgYmVjb21lIG1hbmRhdG9yeSBhbmQgb25seQo+
+IGNhbGxlZCBmcm9tIHByb2Nlc3MgY29udGV4dCB3aXRob3V0IGhvbGRpbmcgYW55IGxvY2tzLCBu
+ZWl0aGVyIGF0b21pYyBub3IKPiBhbnkgbXV0ZXgvc2VtYXBob3JlIChyY3UgbWlnaHQgYmUgb2sp
+LgoKU28gZm9yIHRoZSBlbmFibGVfc2lnbmFsaW5nLCB0aGF0J3Mgb3B0aW9uYWwgYWxyZWFkeS4g
+SXQncyBvbmx5IGZvcgpkcml2ZXJzIHRoYXQgZG9uJ3Qgd2FudCB0byBrZWVwIGludGVycnVwdHMg
+ZW5hYmxlZCBhbGwgdGhlIHRpbWUuIFlvdQpjYW4gb3B0IG91dCBvZiB0aGF0IGVhc2lseS4KCldy
+dCBob2xkaW5nIG5vIGxvY2tzIGF0IGFsbCB3aGlsZSBjYWxsaW5nIGludG8gYW55IGZlbmNlIGZ1
+bmN0aW9ucywKdGhhdCdzIGp1c3Qgbm90IGdvaW5nIHRvIHdvcmsgb3V0LiBUaGUgcG9pbnQgaGVy
+ZSBpcyB0byBtYWtlIGRpZmZlcmVudApkcml2ZXJzIHdvcmsgdG9nZXRoZXIgYW5kIHdlIGNhbiBy
+ZXdvcmsgYWxsIHRoZSB0dG0gYW5kIGk5MTUgY29kZSB0bwp3b3JrIGxvY2tsZXNzbHkgaW4gYWxs
+IGNhc2VzIHdoZXJlIHRoZXkgbmVlZCB0byB3YWl0IGZvciBzb21lb25lIHRvCmNvbXBsZXRlIHJl
+bmRlcmluZy4gT3IgYXQgbGVhc3QgSSBkb24ndCB0aGluayB0aGF0J3MgZmVhc2libGUuIFNvIGlm
+CnlvdSBpbnNpc3QgdGhhdCBubyBvbmUgbWlnaHQgY2FsbCBpbnRvIHJhZGVvbiBjb2RlIHRoZW4g
+d2Ugc2ltcGx5IG5lZWQKdG8gZXhjbHVkZSByYWRlb24gZnJvbSBwYXJ0aWNpcGF0aW5nIGluIGFu
+eSBzaGFyZWQgZmVuY2luZy4gQnV0IHRoYXQncwphIGJpdCBwb2ludGxlc3MuCgo+PiBMaWtlIEkn
+dmUgc2FpZCBJIHRoaW5rIHJlc3RyaWN0aW5nIHRoZSBpbnNhbml0eSBvdGhlciBwZW9wbGUgYXJl
+IHdpbGxpbmcKPj4gdG8gbGl2ZSB3aXRoIGp1c3QgYmVjYXVzZSB5b3UgZG9uJ3QgbGlrZSBpdCBp
+c24ndCByaWdodC4gQnV0IGl0IGlzCj4+IGNlcnRhaW5seSByaWdodCBmb3IgeW91IHRvIGluc2lz
+dCBvbiBub3QgYmVpbmcgZm9yY2VkIGludG8gYW55IHN1Y2gKPj4gZGVzaWduLiBJIHRoaW5rIHRo
+ZSBhYm92ZSB3b3VsZCBhY2hpZXZlIHRoaXMuCj4KPgo+IEkgZG9uJ3QgdGhpbmsgc28uIElmIGl0
+J3MganVzdCBtZSBJIHdvdWxkIHNheSB0aGF0IEknbSBqdXN0IHRvIGNhdXRpb3VzIGFuZAo+IHRo
+ZSBpZGVhIGlzIHN0aWxsIHNhdmUgdG8gYXBwbHkgdG8gdGhlIHdob2xlIGtlcm5lbC4KPgo+IEJ1
+dCBzaW5jZSBEYXZlLCBKZXJvbWUgYW5kIEJlbiBzZWVtcyB0byBoYXZlIHNpbWlsYXIgY29uY2Vy
+bnMgSSB0aGluayB3ZQo+IG5lZWQgdG8gYWdyZWUgdG8gYSBtaW5pbXVtIGFuZCBzYXZlIGludGVy
+ZmFjZSBmb3IgYWxsIGRyaXZlcnMuCgpXZWxsIEkgaGF2ZW4ndCB5ZXQgc2VlbiBhIHByb3Bvc2Fs
+IHRoYXQgYWN0dWFsbHkgd29ya3MuIEZyb20gYW4gaW50ZWwKcG92IEkgZG9uJ3QgY2FyZSB0aGF0
+IG11Y2ggc2luY2Ugd2UgZG9uJ3QgY2FyZSBhYm91dCBkZXNrdG9wIHByaW1lLCBzbwppZiByYWRl
+b24vbm91dmVhdSBkb24ndCB3YW50IHRvIGRvIHRoYXQsIG1laC4gSW1vIHRoZSBkZXNpZ24gYXMt
+aXMgaXMKZmFpcmx5IHNvdW5kLCBhbmQgYXMgc2ltcGxlIGFzIGl0IGNhbiBnZXQgZ2l2ZW4gdGhl
+IHJlcXVpcmVtZW50cy4gSQpoYXZlbid0IGhlYXJkIGFuICBhcmd1bWVudCBjb252aW5jaW5nIG1l
+IG90aGVyd2lzZSwgc28gSSBndWVzcyB3ZQp3b24ndCBoYXZlIHByaW1lIHN1cHBvcnQgb24gbGlu
+dXggdGhhdCBhY3R1YWxseSB3b3JrcywgZXZlci4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpT
+b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KKzQxICgwKSA3OSAzNjUgNTcgNDgg
+LSBodHRwOi8vYmxvZy5mZndsbC5jaApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
