@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81614] [NVC8] Nouveau freezes on GeForce 580 GTX at
- a random time
-Date: Tue, 22 Jul 2014 11:08:24 +0000
-Message-ID: <bug-81614-8800-8Ixo4fuHUv@http.bugs.freedesktop.org/>
-References: <bug-81614-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 54437] [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580
+ : Xorg freezes when using accel
+Date: Tue, 22 Jul 2014 11:12:16 +0000
+Message-ID: <bug-54437-8800-vr16y58bRk@http.bugs.freedesktop.org/>
+References: <bug-54437-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1078996773=="
+Content-Type: multipart/mixed; boundary="===============1022466286=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81614-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-54437-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1078996773==
-Content-Type: multipart/alternative; boundary="1406027303.2EE6A20.5940"; charset="us-ascii"
+--===============1022466286==
+Content-Type: multipart/alternative; boundary="1406027537.C82d636.6830"; charset="us-ascii"
 
 
---1406027303.2EE6A20.5940
-Date: Tue, 22 Jul 2014 11:08:23 +0000
+--1406027537.C82d636.6830
+Date: Tue, 22 Jul 2014 11:12:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81614
+https://bugs.freedesktop.org/show_bug.cgi?id=54437
 
---- Comment #5 from Dmitriy <doityourselfteam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, blob firmware is working fine
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 81614 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1406027303.2EE6A20.5940
-Date: Tue, 22 Jul 2014 11:08:23 +0000
+--1406027537.C82d636.6830
+Date: Tue, 22 Jul 2014 11:12:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +53,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81614#c5">Comment # 5</a>
+   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81614">bug 81614</a>
-              from <span class="vcard"><a class="email" href="mailto:doityourselfteam&#64;gmail.com" title="Dmitriy &lt;doityourselfteam&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
+   title="NEW --- - [NVC8] linux-nouveau2.6 (3.6.0-rc4) : GTX580 : Xorg freezes when using accel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=54437">bug 54437</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Yes, blob firmware is working fine</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVC8] Nouveau freezes on GeForce 580 GTX at a random time"
+   href="show_bug.cgi?id=81614">Bug 81614</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1406027303.2EE6A20.5940--
+--1406027537.C82d636.6830--
 
---===============1078996773==
+--===============1022466286==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1078996773==--
+--===============1022466286==--
