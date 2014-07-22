@@ -1,8 +1,8 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence implementation for
- fences
-Date: Tue, 22 Jul 2014 13:52:39 +0200
-Message-ID: <20140722115239.GM15237@phenom.ffwll.local>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence
+ implementation for fences
+Date: Tue, 22 Jul 2014 13:57:37 +0200
+Message-ID: <20140722115737.GN15237@phenom.ffwll.local>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
@@ -11,21 +11,19 @@ References: <20140709093124.11354.3774.stgit@patser>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20140722114607.GL15237@phenom.ffwll.local>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+In-Reply-To: <20140722114607.GL15237-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>, Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Deucher, Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 On Tue, Jul 22, 2014 at 01:46:07PM +0200, Daniel Vetter wrote:
@@ -33,7 +31,7 @@ On Tue, Jul 22, 2014 at 01:46:07PM +0200, Daniel Vetter wrote:
 > > Am 22.07.2014 06:05, schrieb Dave Airlie:
 > > >On 9 July 2014 22:29, Maarten Lankhorst <maarten.lankhorst@canonical.c=
 om> wrote:
-> > >>Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+> > >>Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 > > >>---
 > > >>  drivers/gpu/drm/radeon/radeon.h        |   15 +-
 > > >>  drivers/gpu/drm/radeon/radeon_device.c |   60 ++++++++-
@@ -66,17 +64,18 @@ a.
 > double-check in a worker thread before updating the sw state. And wrap
 > this all up into a special fence class if there's more than one driver
 > needing this.
-> =
 
-> There is nothing else that forces callbacks from atomic contexts upon you.
-> You can use them if you see it fit, but really if it doesn't suit your
-> driver you can just ignore that part and do process based waits
-> everywhere.
+One thing I've forgotten: The i915 scheduler that's floating around runs
+its bottom half from irq context. So I really want to be able to check
+fence state from irq context and I also want to make it possible
+(possible! not mandatory) to register callbacks which are run from any
+context asap after the fence is signalled.
 
-Aside: The fence-process-callback has already been implemented by nouveau
-with the struct fence_work in nouveau_fence.c. Would make loads of sense
-to move that code into the driver core and adapat it to Maarten's struct
-fence once this has all landed.
+If the radeon hw/driver doesn't want to cope with that complexity we can
+fully insolate it with the sw tracked fence state if you don't like
+Maarten's radeon implementation. But forcing everyone to forgoe this just
+because you don't like it and don't want to use it in radeon doesn't sound
+right.
 -Daniel
 -- =
 
