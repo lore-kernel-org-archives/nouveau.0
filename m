@@ -1,17 +1,27 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
 Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
  implementation for fences
-Date: Wed, 23 Jul 2014 09:06:38 +0200
-Message-ID: <53CF5EFE.6070307@canonical.com>
-References: <20140709093124.11354.3774.stgit@patser>	<20140709122953.11354.46381.stgit@patser>	<CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>	<53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>	<20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>	<20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>	<CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>	<53CE84AA.9030703@amd.com>
+Date: Wed, 23 Jul 2014 09:09:21 +0200
+Message-ID: <CAKMK7uHijSve_CsDE+pUk8+tjCAZjL7-nZCKeUkKuuufCPS4tQ@mail.gmail.com>
+References: <20140709093124.11354.3774.stgit@patser>
+ <20140709122953.11354.46381.stgit@patser>
+ <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
+ <53CE2421.5040906@amd.com>
+ <20140722114607.GL15237@phenom.ffwll.local>
+ <20140722115737.GN15237@phenom.ffwll.local>
+ <53CE56ED.4040109@vodafone.de>
+ <20140722132652.GO15237@phenom.ffwll.local>
+ <53CE6AFA.1060807@vodafone.de>
+ <CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>
+ <53CE84AA.9030703@amd.com>
  <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
  <53CE8A57.2000803@vodafone.de> <53CF58FB.8070609@canonical.com>
- <53CF5B9F.1050800@amd.com>
+ <53CF5B9F.1050800@amd.com> <53CF5EFE.6070307@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53CF5B9F.1050800@amd.com>
+In-Reply-To: <53CF5EFE.6070307@canonical.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -21,70 +31,24 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <deathsimple@vodafone.de>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-b3AgMjMtMDctMTQgMDg6NTIsIENocmlzdGlhbiBLw7ZuaWcgc2NocmVlZjoKPiBBbSAyMy4wNy4y
-MDE0IDA4OjQwLCBzY2hyaWViIE1hYXJ0ZW4gTGFua2hvcnN0Ogo+PiBvcCAyMi0wNy0xNCAxNzo1
-OSwgQ2hyaXN0aWFuIEvDtm5pZyBzY2hyZWVmOgo+Pj4gQW0gMjIuMDcuMjAxNCAxNzo0Miwgc2No
-cmllYiBEYW5pZWwgVmV0dGVyOgo+Pj4+IE9uIFR1ZSwgSnVsIDIyLCAyMDE0IGF0IDU6MzUgUE0s
-IENocmlzdGlhbiBLw7ZuaWcKPj4+PiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToK
-Pj4+Pj4gRHJpdmVycyBleHBvcnRpbmcgZmVuY2VzIG5lZWQgdG8gcHJvdmlkZSBhIGZlbmNlLT5z
-aWduYWxlZCBhbmQgYSBmZW5jZS0+d2FpdAo+Pj4+PiBmdW5jdGlvbiwgZXZlcnl0aGluZyBlbHNl
-IGxpa2UgZmVuY2UtPmVuYWJsZV9zaWduYWxpbmcgb3IgY2FsbGluZwo+Pj4+PiBmZW5jZV9zaWdu
-YWxlZCgpIGZyb20gdGhlIGRyaXZlciBpcyBvcHRpb25hbC4KPj4+Pj4KPj4+Pj4gRHJpdmVycyB3
-YW50aW5nIHRvIHVzZSBleHBvcnRlZCBmZW5jZXMgZG9uJ3QgY2FsbCBmZW5jZS0+c2lnbmFsZWQg
-b3IKPj4+Pj4gZmVuY2UtPndhaXQgaW4gYXRvbWljIG9yIGludGVycnVwdCBjb250ZXh0LCBhbmQg
-bm90IHdpdGggaG9sZGluZyBhbnkgZ2xvYmFsCj4+Pj4+IGxvY2tpbmcgcHJpbWl0aXZlcyAobGlr
-ZSBtbWFwX3NlbSBldGMuLi4pLiBIb2xkaW5nIGxvY2tpbmcgcHJpbWl0aXZlcyBsb2NhbAo+Pj4+
-PiB0byB0aGUgZHJpdmVyIGlzIG9rLCBhcyBsb25nIGFzIHRoZXkgZG9uJ3QgY29uZmxpY3Qgd2l0
-aCBhbnl0aGluZyBwb3NzaWJsZQo+Pj4+PiB1c2VkIGJ5IHRoZWlyIG93biBmZW5jZSBpbXBsZW1l
-bnRhdGlvbi4KPj4+PiBXZWxsIHRoYXQncyBhbG1vc3Qgd2hhdCB3ZSBoYXZlIHJpZ2h0IG5vdyB3
-aXRoIHRoZSBleGNlcHRpb24gdGhhdAo+Pj4+IGRyaXZlcnMgYXJlIGFsbG93ZWQgKGFjdHVhbGx5
-IG11c3QgZm9yIGNvcnJlY3RuZXNzIHdoZW4gdXBkYXRpbmcKPj4+PiBmZW5jZXMpIHRoZSB3d19t
-dXRleGVzIGZvciBkbWEtYnVmcyAob3Igb3RoZXIgYnVmZmVyIG9iamVjdHMpLgo+Pj4gSW4gdGhp
-cyBjYXNlIHNvcnJ5IGZvciBzbyBtdWNoIG5vaXNlLiBJIHJlYWxseSBoYXZlbid0IGxvb2tlZCBp
-biBzbyBtdWNoIGRldGFpbCBpbnRvIGFueXRoaW5nIGJ1dCBNYWFydGVuJ3MgUmFkZW9uIHBhdGNo
-ZXMuCj4+Pgo+Pj4gQnV0IGhvdyBkb2VzIHRoYXQgdGhlbiB3b3JrIHJpZ2h0IG5vdz8gTXkgaW1w
-cmVzc2lvbiB3YXMgdGhhdCBpdCdzIG1hbmRhdG9yeSBmb3IgZHJpdmVycyB0byBjYWxsIGZlbmNl
-X3NpZ25hbGVkKCk/Cj4+IEl0J3Mgb25seSBtYW5kYXRvcnkgdG8gY2FsbCBmZW5jZV9zaWduYWwo
-KSBpZiB0aGUgLmVuYWJsZV9zaWduYWxpbmcgY2FsbGJhY2sgaGFzIGJlZW4gY2FsbGVkLCBlbHNl
-IHlvdSBjYW4gZ2V0IGF3YXkgd2l0aCBuZXZlciBjYWxsaW5nIHNpZ25hbGluZyBhIGZlbmNlIGF0
-IGFsbCBiZWZvcmUgZHJvcHBpbmcgdGhlIGxhc3QgcmVmY291bnQgdG8gaXQuCj4+IFRoaXMgYWxs
-b3dzIHlvdSB0byBrZWVwIGludGVycnVwdHMgZGlzYWJsZWQgd2hlbiB5b3UgZG9uJ3QgbmVlZCB0
-aGVtLgo+Cj4gQ2FuIHdlIHNvbWVob3cgYXZvaWQgdGhlIG5lZWQgdG8gY2FsbCBmZW5jZV9zaWdu
-YWwoKSBhdCBhbGw/IFRoZSBpbnRlcnJ1cHRzIGF0IGxlYXN0IG9uIHJhZGVvbiBhcmUgd2F5IHRv
-IHVucmVsaWFibGUgZm9yIHN1Y2ggYSB0aGluZy4gQ2FuIGVuYWJsZV9zaWduYWxsaW5nIGZhaWw/
-IFdoYXQncyB0aGUgcmVhc29uIGZvciBmZW5jZV9zaWduYWxlZCgpIGluIHRoZSBmaXJzdCBwbGFj
-ZT8KSXQgZG9lc24ndCBuZWVkIHRvIGJlIGNvbXBsZXRlbHkgcmVsaWFibGUsIG9yIGZpbmlzaCBp
-bW1lZGlhdGVseS4KCkFuZCBhbnkgdGltZSB3YWtlX3VwX2FsbCgmcmRldi0+ZmVuY2VfcXVldWUp
-IGlzIGNhbGxlZCBhbGwgdGhlIGZlbmNlcyB0aGF0IHdlcmUgZW5hYmxlZCB3aWxsIGJlIHJlY2hl
-Y2tlZC4KCj4+Pj4gQWdyZWVkIHRoYXQgYW55IHNoYXJlZCBsb2NrcyBhcmUgb3V0IG9mIHRoZSB3
-YXkgKGVzcGVjaWFsbHkgc3R1ZmYgbGlrZQo+Pj4+IGRldi0+c3RydWN0X211dGV4IG9yIG90aGVy
-IG5vbi1zdHJpY3RseSBkcml2ZXItcHJpdmF0ZSBzdHVmZiwgaTkxNSBpcwo+Pj4+IHJlYWxseSBi
-YWQgaGVyZSBzdGlsbCkuCj4+PiBZZWFoIHRoYXQncyBhbHNvIGFuIHBvaW50IEkndmUgd2FudGVk
-IHRvIG5vdGUgb24gTWFhcnRlbnMgcGF0Y2guIFJhZGVvbiBncmFicyB0aGUgcmVhZCBzaWRlIG9m
-IGl0J3MgZXhjbHVzaXZlIHNlbWFwaG9yZSB3aGlsZSB3YWl0aW5nIGZvciBmZW5jZXMgKGJlY2F1
-c2UgaXQgYXNzdW1lcyB0aGF0IHRoZSBmZW5jZSBpdCB3YWl0cyBmb3IgaXMgYSBSYWRlb24gZmVu
-Y2UpLgo+Pj4KPj4+IEFzc3VtaW5nIHRoYXQgd2UgbmVlZCB0byB3YWl0IGluIGJvdGggZGlyZWN0
-aW9ucyB3aXRoIFByaW1lIChlLmcuIEludGVsIGRyaXZlciBuZWVkcyB0byB3YWl0IGZvciBSYWRl
-b24gdG8gZmluaXNoIHJlbmRlcmluZyBhbmQgUmFkZW9uIG5lZWRzIHRvIHdhaXQgZm9yIEludGVs
-IHRvIGZpbmlzaCBkaXNwbGF5aW5nKSwgdGhpcyBtaWdodCBiZWNvbWUgYSBwZXJmZWN0IGV4YW1w
-bGUgb2YgbG9ja2luZyBpbnZlcnNpb24uCj4+IEluIHRoZSBwcmVsaW1pbmFyeSBwYXRjaGVzIHdo
-ZXJlIEkgY2FuIHN5bmMgcmFkZW9uIHdpdGggb3RoZXIgR1BVJ3MgSSd2ZSBiZWVuIHZlcnkgY2Fy
-ZWZ1bCBpbiBhbGwgdGhlIHBsYWNlcyB0aGF0IGNhbGwgaW50byBmZW5jZXMsIHRvIG1ha2Ugc3Vy
-ZSB0aGF0IHJhZGVvbiB3b3VsZG4ndCB0cnkgdG8gaGFuZGxlIGxvY2t1cHMgZm9yIGEgZGlmZmVy
-ZW50IChwb3NzaWJseSBhbHNvIHJhZGVvbikgY2FyZC4KPgo+IFRoYXQncyBhY3R1YWxseSBub3Qg
-c3VjaCBhIGdvb2QgaWRlYS4KPgo+IEluIGNhc2Ugb2YgYSBsb2NrdXAgd2UgbmVlZCB0byBoYW5k
-bGUgdGhlIGxvY2t1cCBjYXVzZSBvdGhlcndpc2UgaXQgY291bGQgaGFwcGVuIHRoYXQgcmFkZW9u
-IHdhaXRzIGZvciB0aGUgbG9ja3VwIHRvIGJlIHJlc29sdmVkIGFuZCB0aGUgbG9ja3VwIGhhbmRs
-aW5nIG5lZWRzIHRvIHdhaXQgZm9yIGEgZmVuY2UgdGhhdCdzIG5ldmVyIHNpZ25hbGVkIGJlY2F1
-c2Ugb2YgdGhlIGxvY2t1cC4KVGhlIGxvY2t1cCBoYW5kbGluZyBjYWxscyByYWRlb25fZmVuY2Vf
-d2FpdCwgbm90IHRoZSBnZW5lcmljIGZlbmNlX3dhaXQuIEl0IGRvZXNuJ3QgY2FsbCB0aGUgZXhw
-b3J0ZWQgd2FpdCBmdW5jdGlvbiB0aGF0IHRha2VzIHRoZSBleGNsdXNpdmVfbG9jayBpbiByZWFk
-IG1vZGUuCkFuZCBsb2NrZGVwIHNob3VsZCBoYXZlIGNvbXBsYWluZWQgaWYgSSBzY3Jld2VkIHRo
-YXQgdXAuIDotKQoKfk1hYXJ0ZW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-ZHJpLWRldmVsCg==
+On Wed, Jul 23, 2014 at 9:06 AM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+>> Can we somehow avoid the need to call fence_signal() at all? The interrupts at least on radeon are way to unreliable for such a thing. Can enable_signalling fail? What's the reason for fence_signaled() in the first place?
+> It doesn't need to be completely reliable, or finish immediately.
+>
+> And any time wake_up_all(&rdev->fence_queue) is called all the fences that were enabled will be rechecked.
+
+I raised this already somewhere else, but should we have some common
+infrastructure in the core fence code to recheck fences periodically?
+radeon doesn't seem to be the only hw where this isn't reliable
+enough. Of course timer-based rechecking would only work if the driver
+provides the fence->signalled callback to recheck actual fence state.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
