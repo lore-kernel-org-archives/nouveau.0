@@ -1,128 +1,125 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71659] [NVD9] Hangs under load with ![
- PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Tue, 22 Jul 2014 23:12:19 +0000
-Message-ID: <bug-71659-8800-Qx437mxuzX@http.bugs.freedesktop.org/>
-References: <bug-71659-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
+ implementation for fences
+Date: Wed, 23 Jul 2014 08:40:59 +0200
+Message-ID: <53CF58FB.8070609@canonical.com>
+References: <20140709093124.11354.3774.stgit@patser>	<20140709122953.11354.46381.stgit@patser>	<CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>	<53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>	<20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>	<20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>	<CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>	<53CE84AA.9030703@amd.com>
+ <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
+ <53CE8A57.2000803@vodafone.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1318605888=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <53CE8A57.2000803@vodafone.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <deathsimple@vodafone.de>, Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1318605888==
-Content-Type: multipart/alternative; boundary="1406070738.7Ed21.27884"; charset="us-ascii"
-
-
---1406070738.7Ed21.27884
-Date: Tue, 22 Jul 2014 23:12:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D71659
-
---- Comment #26 from Adrian B=C4=83c=C3=AErcea <adrian.bacircea-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> =
----
-Created attachment 103307
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D103307&action=3Dedit
-system log nouveau kernel linux-3.16 branch
-
-I've compiled the kernel on the linux-3.16 branch from
-http://cgit.freedesktop.org/nouveau/linux-2.6/ and X still freezes but now =
-it
-recovers temporarily.=20
-After it I can close the program that caused the freeze and then I can't use
-the nouveau card anymore (glxgears would cause another temporary freeze
-followed by a black window).=20
-After a while, though, everything started to become unresponsive and I had =
-to
-cold reboot to do anything.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1406070738.7Ed21.27884
-Date: Tue, 22 Jul 2014 23:12:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] =
-unhandled status 0x00800000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71659#c26">Commen=
-t # 26</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] =
-unhandled status 0x00800000"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D71659">bug 71659<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-adrian.bacircea&#64;gmail.com" title=3D"Adrian B=C4=83c=C3=AErcea &lt;adria=
-n.bacircea&#64;gmail.com&gt;"> <span class=3D"fn">Adrian B=C4=83c=C3=AErcea=
-</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D103307=
-" name=3D"attach_103307" title=3D"system log nouveau kernel linux-3.16 bran=
-ch">attachment 103307</a> <a href=3D"attachment.cgi?id=3D103307&amp;action=
-=3Dedit" title=3D"system log nouveau kernel linux-3.16 branch">[details]</a=
-></span>
-system log nouveau kernel linux-3.16 branch
-
-I've compiled the kernel on the linux-3.16 branch from
-<a href=3D"http://cgit.freedesktop.org/nouveau/linux-2.6/">http://cgit.free=
-desktop.org/nouveau/linux-2.6/</a> and X still freezes but now it
-recovers temporarily.=20
-After it I can close the program that caused the freeze and then I can't use
-the nouveau card anymore (glxgears would cause another temporary freeze
-followed by a black window).=20
-After a while, though, everything started to become unresponsive and I had =
-to
-cold reboot to do anything.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1406070738.7Ed21.27884--
-
---===============1318605888==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1318605888==--
+b3AgMjItMDctMTQgMTc6NTksIENocmlzdGlhbiBLw7ZuaWcgc2NocmVlZjoKPiBBbSAyMi4wNy4y
+MDE0IDE3OjQyLCBzY2hyaWViIERhbmllbCBWZXR0ZXI6Cj4+IE9uIFR1ZSwgSnVsIDIyLCAyMDE0
+IGF0IDU6MzUgUE0sIENocmlzdGlhbiBLw7ZuaWcKPj4gPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNv
+bT4gd3JvdGU6Cj4+PiBEcml2ZXJzIGV4cG9ydGluZyBmZW5jZXMgbmVlZCB0byBwcm92aWRlIGEg
+ZmVuY2UtPnNpZ25hbGVkIGFuZCBhIGZlbmNlLT53YWl0Cj4+PiBmdW5jdGlvbiwgZXZlcnl0aGlu
+ZyBlbHNlIGxpa2UgZmVuY2UtPmVuYWJsZV9zaWduYWxpbmcgb3IgY2FsbGluZwo+Pj4gZmVuY2Vf
+c2lnbmFsZWQoKSBmcm9tIHRoZSBkcml2ZXIgaXMgb3B0aW9uYWwuCj4+Pgo+Pj4gRHJpdmVycyB3
+YW50aW5nIHRvIHVzZSBleHBvcnRlZCBmZW5jZXMgZG9uJ3QgY2FsbCBmZW5jZS0+c2lnbmFsZWQg
+b3IKPj4+IGZlbmNlLT53YWl0IGluIGF0b21pYyBvciBpbnRlcnJ1cHQgY29udGV4dCwgYW5kIG5v
+dCB3aXRoIGhvbGRpbmcgYW55IGdsb2JhbAo+Pj4gbG9ja2luZyBwcmltaXRpdmVzIChsaWtlIG1t
+YXBfc2VtIGV0Yy4uLikuIEhvbGRpbmcgbG9ja2luZyBwcmltaXRpdmVzIGxvY2FsCj4+PiB0byB0
+aGUgZHJpdmVyIGlzIG9rLCBhcyBsb25nIGFzIHRoZXkgZG9uJ3QgY29uZmxpY3Qgd2l0aCBhbnl0
+aGluZyBwb3NzaWJsZQo+Pj4gdXNlZCBieSB0aGVpciBvd24gZmVuY2UgaW1wbGVtZW50YXRpb24u
+Cj4+IFdlbGwgdGhhdCdzIGFsbW9zdCB3aGF0IHdlIGhhdmUgcmlnaHQgbm93IHdpdGggdGhlIGV4
+Y2VwdGlvbiB0aGF0Cj4+IGRyaXZlcnMgYXJlIGFsbG93ZWQgKGFjdHVhbGx5IG11c3QgZm9yIGNv
+cnJlY3RuZXNzIHdoZW4gdXBkYXRpbmcKPj4gZmVuY2VzKSB0aGUgd3dfbXV0ZXhlcyBmb3IgZG1h
+LWJ1ZnMgKG9yIG90aGVyIGJ1ZmZlciBvYmplY3RzKS4KPgo+IEluIHRoaXMgY2FzZSBzb3JyeSBm
+b3Igc28gbXVjaCBub2lzZS4gSSByZWFsbHkgaGF2ZW4ndCBsb29rZWQgaW4gc28gbXVjaCBkZXRh
+aWwgaW50byBhbnl0aGluZyBidXQgTWFhcnRlbidzIFJhZGVvbiBwYXRjaGVzLgo+Cj4gQnV0IGhv
+dyBkb2VzIHRoYXQgdGhlbiB3b3JrIHJpZ2h0IG5vdz8gTXkgaW1wcmVzc2lvbiB3YXMgdGhhdCBp
+dCdzIG1hbmRhdG9yeSBmb3IgZHJpdmVycyB0byBjYWxsIGZlbmNlX3NpZ25hbGVkKCk/Ckl0J3Mg
+b25seSBtYW5kYXRvcnkgdG8gY2FsbCBmZW5jZV9zaWduYWwoKSBpZiB0aGUgLmVuYWJsZV9zaWdu
+YWxpbmcgY2FsbGJhY2sgaGFzIGJlZW4gY2FsbGVkLCBlbHNlIHlvdSBjYW4gZ2V0IGF3YXkgd2l0
+aCBuZXZlciBjYWxsaW5nIHNpZ25hbGluZyBhIGZlbmNlIGF0IGFsbCBiZWZvcmUgZHJvcHBpbmcg
+dGhlIGxhc3QgcmVmY291bnQgdG8gaXQuClRoaXMgYWxsb3dzIHlvdSB0byBrZWVwIGludGVycnVw
+dHMgZGlzYWJsZWQgd2hlbiB5b3UgZG9uJ3QgbmVlZCB0aGVtLgo+PiBMb2NraW5nCj4+IGNvcnJl
+Y3RuZXNzIGlzIGVuZm9yY2VkIHdpdGggc29tZSBleHRyZW1lbHkgbmFzdHkgbG9ja2RlcCBhbm5v
+dGF0aW9ucwo+PiArIGFkZGl0aW9uYWwgZGVidWdnaW5nIGluZnJhc3RydWN0dXJlIGVuYWJsZWQg
+d2l0aAo+PiBDT05GSUdfREVCVUdfV1dfTVVURVhfU0xPV1BBVEguIFdlIHJlYWxseSBuZWVkIHRv
+IGJlIGFibGUgdG8gaG9sZAo+PiBkbWEtYnVmIHd3X211dGV4ZXMgd2hpbGUgdXBkYXRpbmcgZmVu
+Y2VzIG9yIHdhaXRpbmcgZm9yIHRoZW0uIEFuZAo+PiBvYnZpb3VzbHkgZm9yIC0+d2FpdCB3ZSBu
+ZWVkIG5vbi1hdG9taWMgY29udGV4dCwgbm90IGp1c3QKPj4gbm9uLWludGVycnVwdC4KPgo+IFNv
+dW5kcyBtb3N0bHkgcmVhc29uYWJsZSwgYnV0IGZvciBob2xkaW5nIHRoZSBkbWEtYnVmIHd3X211
+dGV4LCB3b3VsZG4ndCBiZSBhbiBSQ1UgYmUgbW9yZSBhcHByb3ByaWF0ZSBoZXJlPyBFLmcuIGFy
+ZW4ndCB3ZSBqdXN0IGludGVyZXN0ZWQgdGhhdCB0aGUgY3VycmVudCBhc3NpZ25lZCBmZW5jZSBh
+dCBzb21lIHBvaW50IGlzIHNpZ25hbGVkPwpZb3UgY2FuIHdhaXQgd2l0aCBSQ1UsIHdpdGhvdXQg
+aG9sZGluZyB0aGUgd3dfbXV0ZXgsIGJ5IGNhbGxpbmcgcmVzZXJ2YXRpb25fb2JqZWN0X3dhaXRf
+dGltZW91dF9yY3Ugb24gdHRtX2JvLT5yZXN2LgpJZiB5b3UgZG9uJ3Qgd2FudCB0byBibG9jayB5
+b3UgY291bGQgdGVzdCB3aXRoIHJlc2VydmF0aW9uX29iamVjdF90ZXN0X3NpZ25hbGVkX3JjdS4K
+T3IgaWYgeW91IHdhbnQgYSBjb3B5IG9mIGFsbCBmZW5jZXMgd2l0aG91dCB0YWtpbmcgbG9ja3Ms
+IHRyeSByZXNlcnZhdGlvbl9vYmplY3RfZ2V0X2ZlbmNlc19yY3UuIChNaWdodCBiZSBvdXQgb2Yg
+ZGF0ZSBieSB0aGUgdGltZSB0aGUgZnVuY3Rpb24gcmV0dXJucyBpZiB5b3UgZG9uJ3QgaG9sZCB3
+d19tdXRleCwgaWYgeW91IGhvbGQgd3dfbXV0ZXggeW91IHByb2JhYmx5IGRvbid0IG5lZWQgdG8g
+Y2FsbCB0aGlzIGZ1bmN0aW9uLikKCkkgZGlkbid0IGFkZCBub24tcmN1IHZlcnNpb25zLCBidXQg
+dXNpbmcgdGhlIFJDVSBmdW5jdGlvbnMgd291bGQgd29yayB3aXRoIHd3X211dGV4IGhlbGQgdG9v
+LCBwcm9iYWJseSB3aXRoIHNvbWUgc21hbGwgb3ZlcmhlYWQuCj4gU29tZXRoaW5nIGxpa2UgZ3Jh
+YiB3d19tdXRleGVzLCBncmFiIGEgcmVmZXJlbmNlIHRvIHRoZSBjdXJyZW50IGZlbmNlIG9iamVj
+dCwgcmVsZWFzZSB3d19tdXRleCwgd2FpdCBmb3IgZmVuY2UsIHJlbGVhc2UgcmVmZXJlbmNlIHRv
+IHRoZSBmZW5jZSBvYmplY3QuClRoaXMgaXMgd2hhdCBJIGRvIGN1cnJlbnRseS4gOi0pIFRoZSBy
+ZXNlcnZhdGlvbl9vYmplY3QgdGhhdCdzIGVtYmVkZGVkIGluIFRUTSBnZXRzIHNoYXJlZCB3aXRo
+IHRoZSBkbWEtYnVmLCBzbyB0aGVyZSB3aWxsIGJlIG5vIHNwZWNpYWwgY2FzZSBuZWVkZWQgZm9y
+IGRtYS1idWYgYXQgYWxsLCBhbGwgb2JqZWN0cyBjYW4gc2ltcGx5IGJlIHNoYXJlZCBhbmQgdGhl
+IHN5bmNocm9uaXphdGlvbiBpcyBoYW5kbGVkIGluIHRoZSBzYW1lIHdheS4KCnR0bV9ib19yZXNl
+cnZlIGFuZCBmcmllbmRzIGF1dG9tYXRpY2FsbHkgZW5kIHVwIGxvY2tpbmcgdGhlIGRtYS1idWYg
+dG9vLCBhbmQgbG9ja2RlcCB3b3JrcyBvbiBpdC4KCj4KPj4gQWdyZWVkIHRoYXQgYW55IHNoYXJl
+ZCBsb2NrcyBhcmUgb3V0IG9mIHRoZSB3YXkgKGVzcGVjaWFsbHkgc3R1ZmYgbGlrZQo+PiBkZXYt
+PnN0cnVjdF9tdXRleCBvciBvdGhlciBub24tc3RyaWN0bHkgZHJpdmVyLXByaXZhdGUgc3R1ZmYs
+IGk5MTUgaXMKPj4gcmVhbGx5IGJhZCBoZXJlIHN0aWxsKS4KPgo+IFllYWggdGhhdCdzIGFsc28g
+YW4gcG9pbnQgSSd2ZSB3YW50ZWQgdG8gbm90ZSBvbiBNYWFydGVucyBwYXRjaC4gUmFkZW9uIGdy
+YWJzIHRoZSByZWFkIHNpZGUgb2YgaXQncyBleGNsdXNpdmUgc2VtYXBob3JlIHdoaWxlIHdhaXRp
+bmcgZm9yIGZlbmNlcyAoYmVjYXVzZSBpdCBhc3N1bWVzIHRoYXQgdGhlIGZlbmNlIGl0IHdhaXRz
+IGZvciBpcyBhIFJhZGVvbiBmZW5jZSkuCj4KPiBBc3N1bWluZyB0aGF0IHdlIG5lZWQgdG8gd2Fp
+dCBpbiBib3RoIGRpcmVjdGlvbnMgd2l0aCBQcmltZSAoZS5nLiBJbnRlbCBkcml2ZXIgbmVlZHMg
+dG8gd2FpdCBmb3IgUmFkZW9uIHRvIGZpbmlzaCByZW5kZXJpbmcgYW5kIFJhZGVvbiBuZWVkcyB0
+byB3YWl0IGZvciBJbnRlbCB0byBmaW5pc2ggZGlzcGxheWluZyksIHRoaXMgbWlnaHQgYmVjb21l
+IGEgcGVyZmVjdCBleGFtcGxlIG9mIGxvY2tpbmcgaW52ZXJzaW9uLgpJbiB0aGUgcHJlbGltaW5h
+cnkgcGF0Y2hlcyB3aGVyZSBJIGNhbiBzeW5jIHJhZGVvbiB3aXRoIG90aGVyIEdQVSdzIEkndmUg
+YmVlbiB2ZXJ5IGNhcmVmdWwgaW4gYWxsIHRoZSBwbGFjZXMgdGhhdCBjYWxsIGludG8gZmVuY2Vz
+LCB0byBtYWtlIHN1cmUgdGhhdCByYWRlb24gd291bGRuJ3QgdHJ5IHRvIGhhbmRsZSBsb2NrdXBz
+IGZvciBhIGRpZmZlcmVudCAocG9zc2libHkgYWxzbyByYWRlb24pIGNhcmQuCgpUaGlzIGlzIGFs
+c28gd2h5IGZlbmNlX2lzX3NpZ25hbGVkIHNob3VsZCBuZXZlciBibG9jaywgYW5kIHdoeSBpdCB0
+cnlsb2NrcyB0aGUgZXhjbHVzaXZlX2xvY2suIDotKSBJIHRoaW5rIGxvY2tkZXAgd291bGQgY29t
+cGxhaW4gaWYgSSBncmFiYmVkIGV4Y2x1c2l2ZV9sb2NrIHdoaWxlIGJsb2NraW5nIGluIGlzX3Np
+Z25hbGVkLgoKPj4gU28gZnJvbSB0aGUgY29yZSBmZW5jZSBmcmFtZXdvcmsgSSB0aGluayB3ZSBh
+bHJlYWR5IGhhdmUgZXhhY3RseSB0aGlzLAo+PiBhbmQgd2Ugb25seSBuZWVkIHRvIGFkanVzdCB0
+aGUgcmFkZW9uIGltcGxlbWVudGF0aW9uIGEgYml0IHRvIG1ha2UgaXQKPj4gbGVzcyByaXNreSBh
+bmQgaW52YXNpdmUgdG8gdGhlIHJhZGVvbiBkcml2ZXIgbG9naWMuCj4KPiBBZ3JlZS4gV2VsbCB0
+aGUgYmlnZ2VzdCBwcm9ibGVtIEkgc2VlIGlzIHRoYXQgZXhjbHVzaXZlIHNlbWFwaG9yZSBJIG5l
+ZWQgdG8gdGFrZSB3aGVuIGFueXRoaW5nIGNhbGxzIGludG8gdGhlIGRyaXZlci4gRm9yIHRoZSBm
+ZW5jZSBjb2RlIEkgbmVlZCB0byBtb3ZlIHRoYXQgZG93biBpbnRvIHRoZSBmZW5jZS0+c2lnbmFs
+ZWQgaGFuZGxlciwgY2F1c2UgdGhhdCBub3cgY2FuIGJlIGNhbGxlZCBmcm9tIG91dHNpZGUgdGhl
+IGRyaXZlci4KPgo+IE1hYXJ0ZW4gc29sdmVkIHRoaXMgYnkgdGVsbGluZyB0aGUgZHJpdmVyIGlu
+IHRoZSBsb2NrdXAgaGFuZGxlciAod2hlcmUgd2UgZ3JhYiB0aGUgd3JpdGUgc2lkZSBvZiB0aGUg
+ZXhjbHVzaXZlIGxvY2spIHRoYXQgYWxsIGludGVycnVwdHMgYXJlIGFscmVhZHkgZW5hYmxlZCwg
+c28gdGhhdCBmZW5jZS0+c2lnbmFsZWQgaG9wZWZ1bGx5IHdvdWxkbid0IG1lc3Mgd2l0aCB0aGUg
+aGFyZHdhcmUgYXQgYWxsLiBXaGlsZSB0aGlzIHByb2JhYmx5IHdvcmtzLCBpdCBqdXN0IGxlYXZl
+cyBtZSB3aXRoIGEgZmVlbGluZyB0aGF0IHdlIGFyZSBkb2luZyBzb21ldGhpbmcgd3JvbmcgaGVy
+ZS4KVGhlcmUgaXMgdW5mb3J0dW5hdGVseSBubyBnbG9iYWwgbWVjaGFuaXNtIHRvIHNheSAndGhp
+cyBjYXJkIGlzIGxvY2tlZCB1cCwgcGxlYXNlIGRvbid0IGNhbGwgaW50byBhbnkgb2YgbXkgZmVu
+Y2VzJywgYW5kIEkgZG9uJ3QgYXNzb2NpYXRlIGZlbmNlcyB3aXRoIGRldmljZXMsIGFuZCByYWRl
+b24gZG9lc24ndCBrZWVwIGEgZ2xvYmFsIGxpc3Qgb2YgZmVuY2VzLgpJZiBhbGwgb2YgdGhhdCBl
+eGlzdGVkLCBpdCB3b3VsZCBjb21wbGljYXRlIHRoZSBpbnRlcmZhY2UgYW5kIGl0cyBjYWxsZXJz
+IGEgbG90LCB3aGlsZSBJIGxpa2UgdG8ga2VlcCB0aGluZ3Mgc2ltcGxlLgpTbyBJIGRpZCB0aGUg
+YmVzdCBJIGNvdWxkLCBhbmQgc2ltcGx5IHByZXZlbnRlZCB0aGUgZmVuY2UgY2FsbHMgZnJvbSBm
+aWRkbGluZyB3aXRoIHRoZSBoYXJkd2FyZS4gRm9ydHVuYXRlbHkgZ3B1IGxvY2t1cCBpcyBub3Qg
+YSBjb21tb24gb3BlcmF0aW9uLiA6LSkKCn5NYWFydGVuCgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
