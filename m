@@ -1,28 +1,33 @@
-From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
 Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
  implementation for fences
-Date: Wed, 23 Jul 2014 10:31:54 +0200
-Message-ID: <53CF72FA.9070806@amd.com>
+Date: Wed, 23 Jul 2014 10:42:14 +0200
+Message-ID: <CAKMK7uGLqzePAREsWhX0D1oN4FdqKwPgAL6x8sULpJSqYH5LwA@mail.gmail.com>
 References: <20140709093124.11354.3774.stgit@patser>
  <20140709122953.11354.46381.stgit@patser>
  <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
- <53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>
- <20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>
- <20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>
+ <53CE2421.5040906@amd.com>
+ <20140722114607.GL15237@phenom.ffwll.local>
+ <20140722115737.GN15237@phenom.ffwll.local>
+ <53CE56ED.4040109@vodafone.de>
+ <20140722132652.GO15237@phenom.ffwll.local>
+ <53CE6AFA.1060807@vodafone.de>
  <CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>
  <53CE84AA.9030703@amd.com>
  <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
- <53CE8A57.2000803@vodafone.de>	<53CF58FB.8070609@canonical.com>
- <53CF5B9F.1050800@amd.com>	<53CF5EFE.6070307@canonical.com>
+ <53CE8A57.2000803@vodafone.de> <53CF58FB.8070609@canonical.com>
+ <53CF5B9F.1050800@amd.com> <53CF5EFE.6070307@canonical.com>
  <53CF63C2.7070407@vodafone.de>
  <CAKMK7uGJj+UwcnnzA+fj_=uWPN3i0sneWkoD+wfPJ_8Q6Y-DQg@mail.gmail.com>
- <53CF6622.6060803@amd.com>
- <CAKMK7uHVh+gUXzQ+eYeV5rzHDxbkZ_9E3C7_m6=VOUzXRpALXQ@mail.gmail.com>
+ <53CF6622.6060803@amd.com> <53CF699D.9070902@canonical.com>
+ <53CF6B18.5070107@vodafone.de>
+ <CAKMK7uGd65HR11thcv8KjDw-RnTa7W-QGOzFGFd+oO_hp8wyHA@mail.gmail.com>
+ <53CF7035.2060808@amd.com> <53CF7191.2090008@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKMK7uHVh+gUXzQ+eYeV5rzHDxbkZ_9E3C7_m6=VOUzXRpALXQ@mail.gmail.com>
+In-Reply-To: <53CF7191.2090008@canonical.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -32,46 +37,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, "Deucher,
- Alexander" <alexander.deucher@amd.com>, Ben Skeggs <bskeggs@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>, =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-QW0gMjMuMDcuMjAxNCAxMDowMSwgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIFdlZCwgSnVs
-IDIzLCAyMDE0IGF0IDk6MzcgQU0sIENocmlzdGlhbiBLw7ZuaWcKPiA8Y2hyaXN0aWFuLmtvZW5p
-Z0BhbWQuY29tPiB3cm90ZToKPj4gQW0gMjMuMDcuMjAxNCAwOTozMSwgc2NocmllYiBEYW5pZWwg
-VmV0dGVyOgo+Pj4gT24gV2VkLCBKdWwgMjMsIDIwMTQgYXQgOToyNiBBTSwgQ2hyaXN0aWFuIEvD
-tm5pZwo+Pj4gPGRlYXRoc2ltcGxlQHZvZGFmb25lLmRlPiB3cm90ZToKPj4+PiBJdCdzIG5vdCBh
-IGxvY2tpbmcgcHJvYmxlbSBJJ20gdGFsa2luZyBhYm91dCBoZXJlLiBSYWRlb25zIGxvY2t1cAo+
-Pj4+IGhhbmRsaW5nCj4+Pj4ga2lja3MgaW4gd2hlbiBhbnl0aGluZyBjYWxscyBpbnRvIHRoZSBk
-cml2ZXIgZnJvbSB0aGUgb3V0c2lkZSwgaWYgeW91Cj4+Pj4gaGF2ZSBhCj4+Pj4gZmVuY2Ugd2Fp
-dCBmdW5jdGlvbiB0aGF0J3MgY2FsbGVkIGZyb20gdGhlIG91dHNpZGUgYnV0IGRvZXNuJ3QgaGFu
-ZGxlCj4+Pj4gbG9ja3VwcyB5b3UgZXNzZW50aWFsbHkgcmVseSBvbiBzb21lYm9keSBlbHNlIGNh
-bGxpbmcgYW5vdGhlciByYWRlb24KPj4+PiBmdW5jdGlvbiBmb3IgdGhlIGxvY2t1cCB0byBiZSBy
-ZXNvbHZlZC4KPj4+IFNvIHlvdSBkb24ndCBoYXZlIGEgdGltZXIgaW4gcmFkZW9uIHRoYXQgcGVy
-aW9kaWNhbGx5IGNoZWNrcyB3aGV0aGVyCj4+PiBwcm9ncmVzcyBpcyBzdGlsbCBiZWluZyBtYWRl
-PyBUaGF0J3MgdGhlIGFwcHJvYWNoIHdlJ3JlIHVzaW5nIGluIGk5MTUsCj4+PiB0b2dldGhlciB3
-aXRoIHNvbWUgdHJpY2tzIHRvIGtpY2sgYW55IHN0dWNrIHdhaXRlcnMgc28gdGhhdCB3ZSBjYW4K
-Pj4+IHJlbGlhYmx5IHN0ZXAgaW4gYW5kIGdyYWIgbG9ja3MgZm9yIHRoZSByZXNldC4KPj4KPj4g
-V2UgdHJpZWQgdGhpcyBhcHByb2FjaCwgYnV0IGl0IGRpZG4ndCB3b3JrZWQgYXQgYWxsLgo+Pgo+
-PiBJIGFscmVhZHkgY29uc2lkZXJlZCB0cnlpbmcgaXQgYWdhaW4gYmVjYXVzZSBvZiB0aGUgdXBj
-b21pbmcgZmVuY2UKPj4gaW1wbGVtZW50YXRpb24sIGJ1dCByZWNvbnNpZGVyaW5nIHRoYXQgd2hl
-biBhIGRyaXZlciBpcyBmb3JjZWQgdG8gY2hhbmdlCj4+IGl0J3MgaGFuZGxpbmcgYmVjYXVzZSBv
-ZiB0aGUgZmVuY2UgaW1wbGVtZW50YXRpb24gdGhhdCdzIGp1c3QgYW5vdGhlciBoaW50Cj4+IHRo
-YXQgdGhlcmUgaXMgc29tZXRoaW5nIHdyb25nIGhlcmUuCj4gT3V0IG9mIGN1cmlvc2l0eTogV2hh
-dCdzIHRoZSBibG9ja2VyIGZvciB1c2luZyBhIHRpbWVyL3NjaGVkdWxlZCB3b3JrCj4gdG8gcmVz
-ZXQgcmFkZW9uPyBHZXR0aW5nIHRoaXMgcmlnaHQgb24gaTkxNSBoYXMgYmVlbiBmYWlybHkgdHJp
-Y2t5IGFuZAo+IHdlIG5vdyBoYXZlIGFuIGVsYWJvcmF0ZSBtdWx0aS1zdGFnZSBzdGF0ZSBtYWNo
-aW5lIHRvIGdldCB0aGUgZHJpdmVyCj4gdGhyb3VnaCBhIHJlc2V0LiBTbyBhbHdheXMgaW50ZXJl
-c3RlZCBpbiBkaWZmZXJlbnQgc29sdXRpb25zLgoKSUlSQyB3ZSB3b3VsZCBoYXZlIG5lZWRlZCBh
-IHF1aXRlIGFkdmFuY2VkIG11bHRpLXN0YWdlIHN0YXRlIG1hY2hpbmUgYXMgCndlbGwgYW5kIHRo
-YXQgd2FzIGp1c3QgdG8gbXVjaCBvdmVyaGVhZCBhdCB0aGlzIHBvaW50LgoKT25lIG1ham9yIHBy
-b2JsZW0gd2FzIHRoZSBwb3dlciBtYW5hZ2VtZW50IGluIHVzZSBiYWNrIHRoZW4sIGJ1dCB0aGF0
-IApnb3QgcmVwbGFjZWQgYnkgRFBNIGluIHRoZSBtZWFudGltZS4gU28gaXQgbWlnaHQgYmUgYSBn
-b29kIGlkZWEgdG8gdHJ5IAphZ2Fpbi4KCldoYXQgd2UgY3VycmVudGx5IGRvIGlzIG1hcmtpbmcg
-dGhlIGRyaXZlciBhcyAibmVlZHMgcmVzZXQiIGFuZCAKcmV0dXJuaW5nIC1FQUdBSU4gYW5kIHRo
-ZW4gdGhlIG5leHQgSU9DVEwgc3RhcnRzIHRoZSByZXNldCBwcm9jZWR1cmUgCmJlZm9yZSBkb2lu
-ZyBhbnl0aGluZyBlbHNlLgoKQ2hyaXN0aWFuLgoKPiAtRGFuaWVsCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRy
-aS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+On Wed, Jul 23, 2014 at 10:25 AM, Maarten Lankhorst
+<maarten.lankhorst@canonical.com> wrote:
+> In this case if the sync was to i915 the i915 lockup procedure would take care of itself. It wouldn't fix radeon, but it would at least unblock your intel card again. I haven't specifically added a special case to attempt to unblock external fences, but I've considered it. :-)
+
+Actually the i915 reset stuff relies crucially on being able to kick
+all waiters holding driver locks. Since the current fence code only
+exposes an opaque wait function without exposing the underlying wait
+queue we won't be able to sleep on both the fence queue and the reset
+queue. So would pose a problem if we add fence_wait calls to our
+driver.
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
