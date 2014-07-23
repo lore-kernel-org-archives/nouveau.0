@@ -1,16 +1,27 @@
-From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Text sometimes missing on NV18 based laptop
-Date: Wed, 23 Jul 2014 09:58:57 -0500
-Message-ID: <CAEk2St=hh-iuwhJ5TmY=ckMeHKvbrJLvQvmBxyRHXQjq9zTzHg@mail.gmail.com>
-References: <CAFvQSYQr3Bk=eFPW5V3NUMptDhU9Q36tvu8_1zXh0oQtibQ83A@mail.gmail.com>
- <CAFvQSYQ4QXW=0NqXj=fWAzTTQtmLoJpA1GmrK3QuKforVRprjQ@mail.gmail.com>
- <CAKb7UvikcZeVUiq13HkzVk9HxtammVd+_EaS=5gSagBt3w-bDg@mail.gmail.com>
- <CAEk2Stm0zFir4iyJB1WV8DK7=oHwWGzO7ksmu8VD2eVq8DcyhQ@mail.gmail.com>
- <CAKb7UvhA84nH+7hJp=fMH=dDRO2bamRAuBjfu8v5tnJ0fOeuow@mail.gmail.com>
+From: Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org>
+Subject: Re: [PATCH 09/17] drm/radeon: use common fence
+ implementation for fences
+Date: Wed, 23 Jul 2014 08:37:59 -0700
+Message-ID: <20140723083759.6b730d67@jbarnes-desktop>
+References: <20140709093124.11354.3774.stgit@patser>
+ <20140709122953.11354.46381.stgit@patser>
+ <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
+ <53CE2421.5040906@amd.com>
+ <20140722114607.GL15237@phenom.ffwll.local>
+ <20140722115737.GN15237@phenom.ffwll.local>
+ <53CE56ED.4040109@vodafone.de> <53CE6FB0.90500@canonical.com>
+ <53CE7410.3090603@amd.com> <53CE74B5.3000201@canonical.com>
+ <53CE77B4.6020801@amd.com>
+ <CAKMK7uESXrDtCov8whOTsffg6eZdibF4qaTFaCubM=mnhN=gNQ@mail.gmail.com>
+ <CADnq5_Moy78A5JfDM0LME6_-48PW72DJpYYvEthQ5b=_amU8KQ@mail.gmail.com>
+ <CAKMK7uGtfUTU=VwSnF07jncJsH1Ckie2m1FCjct60Yz88uE3cg@mail.gmail.com>
+ <20140722121435.6bd093d0@jbarnes-desktop>
+ <CAKMK7uG-zX2ZDSoQ+XmXOvUeAZzvbdsv02+fX47uJUt=21cRaQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1027622777=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhA84nH+7hJp=fMH=dDRO2bamRAuBjfu8v5tnJ0fOeuow-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKMK7uG-zX2ZDSoQ+XmXOvUeAZzvbdsv02+fX47uJUt=21cRaQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,57 +31,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Deucher, Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>, Christian =?UTF-8?B?S8O2bmln?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1027622777==
-Content-Type: multipart/alternative; boundary=089e011608485edd6704fedd94d6
+On Wed, 23 Jul 2014 11:47:15 +0200
+Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org> wrote:
 
---089e011608485edd6704fedd94d6
-Content-Type: text/plain; charset=UTF-8
+> On Tue, Jul 22, 2014 at 9:14 PM, Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org> wrote:
+> >> We don't have the code yet ready, but that's the direction i915 will
+> >> move towards for the near future. Jesse is working on some patches
+> >> already.
+> >
+> > Yeah I'd like to get some feedback from Maarten on my bits so I can get
+> > them ready for upstream.  I still need to add documentation and tests,
+> > but I'd like to make sure the interfaces and internals get acked first.
+> 
+> Review works better if you supply a pointer to the patches ;-) I asked
+> Maarten whether he looked at it and he said he didn't know where ...
 
->
->
->
-> Unfortunately I can't make that guarantee. Especially since I've
-> already tried and was unable to reproduce. I do have a bid on a NV17
-> or NV18 card on ebay, so just don't outbid me for it :)
->
+Oh I provided it in IRC earlier, figured Maarten was just busy. :)
 
+Tree is android-dma-buf-i915-fences in my fdo linux repo.
 
-Hah, fair enough. Maybe I should install one and join the fun...
-
-Patrick
-
---089e011608485edd6704fedd94d6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-</div></div>Unfortunately I can&#39;t make that guarantee. Especially since=
- I&#39;ve<br>
-already tried and was unable to reproduce. I do have a bid on a NV17<br>
-or NV18 card on ebay, so just don&#39;t outbid me for it :)<br></blockquote=
-><div><br></div><div><br></div><div>Hah, fair enough. Maybe I should instal=
-l one and join the fun...=C2=A0</div><div><br></div><div>Patrick</div></div=
->
-</div></div>
-
---089e011608485edd6704fedd94d6--
-
---===============1027622777==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1027622777==--
+-- 
+Jesse Barnes, Intel Open Source Technology Center
