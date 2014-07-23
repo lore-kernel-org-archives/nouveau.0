@@ -1,67 +1,98 @@
-From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
-Subject: Re: [PATCH 09/17] drm/radeon: use common fence
+From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <deathsimple@vodafone.de>
+Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
  implementation for fences
-Date: Wed, 23 Jul 2014 09:15:52 +0200
-Message-ID: <53CF6128.6010703@amd.com>
-References: <20140709093124.11354.3774.stgit@patser>
- <20140709122953.11354.46381.stgit@patser>
- <CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>
- <53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>
- <20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>
- <20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>
- <CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>
- <53CE84AA.9030703@amd.com>
+Date: Wed, 23 Jul 2014 09:26:58 +0200
+Message-ID: <53CF63C2.7070407@vodafone.de>
+References: <20140709093124.11354.3774.stgit@patser>	<20140709122953.11354.46381.stgit@patser>	<CAPM=9tyD2ZbrcGDC3hfNb7qNdzsfnyD-ZwM7G-nOgxeu5YKuSg@mail.gmail.com>	<53CE2421.5040906@amd.com>	<20140722114607.GL15237@phenom.ffwll.local>	<20140722115737.GN15237@phenom.ffwll.local>	<53CE56ED.4040109@vodafone.de>	<20140722132652.GO15237@phenom.ffwll.local>	<53CE6AFA.1060807@vodafone.de>	<CAKMK7uG1d31zU_i__wc+Yq46A0x0tPeKnMBs+NHSmHS82uMsXQ@mail.gmail.com>	<53CE84AA.9030703@amd.com>
  <CAKMK7uFa8vMBV9_JenbFGnFXtV_r9dk=WjbMkkCDWcauhrDdJg@mail.gmail.com>
- <53CE8A57.2000803@vodafone.de>	<53CF58FB.8070609@canonical.com>
- <53CF5B9F.1050800@amd.com>	<53CF5EFE.6070307@canonical.com>
- <CAKMK7uHijSve_CsDE+pUk8+tjCAZjL7-nZCKeUkKuuufCPS4tQ@mail.gmail.com>
+ <53CE8A57.2000803@vodafone.de> <53CF58FB.8070609@canonical.com>
+ <53CF5B9F.1050800@amd.com> <53CF5EFE.6070307@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKMK7uHijSve_CsDE+pUk8+tjCAZjL7-nZCKeUkKuuufCPS4tQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: Thomas Hellstrom <thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "Deucher,
- Alexander" <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <53CF5EFE.6070307@canonical.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, =?UTF-8?B?Q2hyaXM=?= =?UTF-8?B?dGlhbiBLw7ZuaWc=?= <christian.koenig@amd.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
 List-Id: nouveau.vger.kernel.org
 
-Am 23.07.2014 09:09, schrieb Daniel Vetter:
-> On Wed, Jul 23, 2014 at 9:06 AM, Maarten Lankhorst
-> <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org> wrote:
->>> Can we somehow avoid the need to call fence_signal() at all? The interrupts at least on radeon are way to unreliable for such a thing. Can enable_signalling fail? What's the reason for fence_signaled() in the first place?
->> It doesn't need to be completely reliable, or finish immediately.
->>
->> And any time wake_up_all(&rdev->fence_queue) is called all the fences that were enabled will be rechecked.
-> I raised this already somewhere else, but should we have some common
-> infrastructure in the core fence code to recheck fences periodically?
-> radeon doesn't seem to be the only hw where this isn't reliable
-> enough. Of course timer-based rechecking would only work if the driver
-> provides the fence->signalled callback to recheck actual fence state.
-
-Yeah, agree. The proposal won't work reliable at all with radeon.
-
-Interrupts are accumulated before sending them to the CPU, e.g. you can 
-get one interrupt for multiple fences finished. If it's just the 
-interrupt for the last fence submitted that gets lost you are completely 
-screwed up because you won't get another interrupt.
-
-I had that problem multiple times while working on UVD support, 
-resulting in the driver thinking that it can't submit more jobs because 
-non of the interrupts for the already submitted fence cam through.
-
-Apart from that interrupts on Macs usually don't work at all, so we 
-really need a solution where calling fence_signaled() is completely 
-optional.
-
-Christian.
-
-> -Daniel
+QW0gMjMuMDcuMjAxNCAwOTowNiwgc2NocmllYiBNYWFydGVuIExhbmtob3JzdDoKPiBvcCAyMy0w
+Ny0xNCAwODo1MiwgQ2hyaXN0aWFuIEvDtm5pZyBzY2hyZWVmOgo+PiBBbSAyMy4wNy4yMDE0IDA4
+OjQwLCBzY2hyaWViIE1hYXJ0ZW4gTGFua2hvcnN0Ogo+Pj4gb3AgMjItMDctMTQgMTc6NTksIENo
+cmlzdGlhbiBLw7ZuaWcgc2NocmVlZjoKPj4+PiBBbSAyMi4wNy4yMDE0IDE3OjQyLCBzY2hyaWVi
+IERhbmllbCBWZXR0ZXI6Cj4+Pj4+IE9uIFR1ZSwgSnVsIDIyLCAyMDE0IGF0IDU6MzUgUE0sIENo
+cmlzdGlhbiBLw7ZuaWcKPj4+Pj4gPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4gd3JvdGU6Cj4+
+Pj4+PiBEcml2ZXJzIGV4cG9ydGluZyBmZW5jZXMgbmVlZCB0byBwcm92aWRlIGEgZmVuY2UtPnNp
+Z25hbGVkIGFuZCBhIGZlbmNlLT53YWl0Cj4+Pj4+PiBmdW5jdGlvbiwgZXZlcnl0aGluZyBlbHNl
+IGxpa2UgZmVuY2UtPmVuYWJsZV9zaWduYWxpbmcgb3IgY2FsbGluZwo+Pj4+Pj4gZmVuY2Vfc2ln
+bmFsZWQoKSBmcm9tIHRoZSBkcml2ZXIgaXMgb3B0aW9uYWwuCj4+Pj4+Pgo+Pj4+Pj4gRHJpdmVy
+cyB3YW50aW5nIHRvIHVzZSBleHBvcnRlZCBmZW5jZXMgZG9uJ3QgY2FsbCBmZW5jZS0+c2lnbmFs
+ZWQgb3IKPj4+Pj4+IGZlbmNlLT53YWl0IGluIGF0b21pYyBvciBpbnRlcnJ1cHQgY29udGV4dCwg
+YW5kIG5vdCB3aXRoIGhvbGRpbmcgYW55IGdsb2JhbAo+Pj4+Pj4gbG9ja2luZyBwcmltaXRpdmVz
+IChsaWtlIG1tYXBfc2VtIGV0Yy4uLikuIEhvbGRpbmcgbG9ja2luZyBwcmltaXRpdmVzIGxvY2Fs
+Cj4+Pj4+PiB0byB0aGUgZHJpdmVyIGlzIG9rLCBhcyBsb25nIGFzIHRoZXkgZG9uJ3QgY29uZmxp
+Y3Qgd2l0aCBhbnl0aGluZyBwb3NzaWJsZQo+Pj4+Pj4gdXNlZCBieSB0aGVpciBvd24gZmVuY2Ug
+aW1wbGVtZW50YXRpb24uCj4+Pj4+IFdlbGwgdGhhdCdzIGFsbW9zdCB3aGF0IHdlIGhhdmUgcmln
+aHQgbm93IHdpdGggdGhlIGV4Y2VwdGlvbiB0aGF0Cj4+Pj4+IGRyaXZlcnMgYXJlIGFsbG93ZWQg
+KGFjdHVhbGx5IG11c3QgZm9yIGNvcnJlY3RuZXNzIHdoZW4gdXBkYXRpbmcKPj4+Pj4gZmVuY2Vz
+KSB0aGUgd3dfbXV0ZXhlcyBmb3IgZG1hLWJ1ZnMgKG9yIG90aGVyIGJ1ZmZlciBvYmplY3RzKS4K
+Pj4+PiBJbiB0aGlzIGNhc2Ugc29ycnkgZm9yIHNvIG11Y2ggbm9pc2UuIEkgcmVhbGx5IGhhdmVu
+J3QgbG9va2VkIGluIHNvIG11Y2ggZGV0YWlsIGludG8gYW55dGhpbmcgYnV0IE1hYXJ0ZW4ncyBS
+YWRlb24gcGF0Y2hlcy4KPj4+Pgo+Pj4+IEJ1dCBob3cgZG9lcyB0aGF0IHRoZW4gd29yayByaWdo
+dCBub3c/IE15IGltcHJlc3Npb24gd2FzIHRoYXQgaXQncyBtYW5kYXRvcnkgZm9yIGRyaXZlcnMg
+dG8gY2FsbCBmZW5jZV9zaWduYWxlZCgpPwo+Pj4gSXQncyBvbmx5IG1hbmRhdG9yeSB0byBjYWxs
+IGZlbmNlX3NpZ25hbCgpIGlmIHRoZSAuZW5hYmxlX3NpZ25hbGluZyBjYWxsYmFjayBoYXMgYmVl
+biBjYWxsZWQsIGVsc2UgeW91IGNhbiBnZXQgYXdheSB3aXRoIG5ldmVyIGNhbGxpbmcgc2lnbmFs
+aW5nIGEgZmVuY2UgYXQgYWxsIGJlZm9yZSBkcm9wcGluZyB0aGUgbGFzdCByZWZjb3VudCB0byBp
+dC4KPj4+IFRoaXMgYWxsb3dzIHlvdSB0byBrZWVwIGludGVycnVwdHMgZGlzYWJsZWQgd2hlbiB5
+b3UgZG9uJ3QgbmVlZCB0aGVtLgo+PiBDYW4gd2Ugc29tZWhvdyBhdm9pZCB0aGUgbmVlZCB0byBj
+YWxsIGZlbmNlX3NpZ25hbCgpIGF0IGFsbD8gVGhlIGludGVycnVwdHMgYXQgbGVhc3Qgb24gcmFk
+ZW9uIGFyZSB3YXkgdG8gdW5yZWxpYWJsZSBmb3Igc3VjaCBhIHRoaW5nLiBDYW4gZW5hYmxlX3Np
+Z25hbGxpbmcgZmFpbD8gV2hhdCdzIHRoZSByZWFzb24gZm9yIGZlbmNlX3NpZ25hbGVkKCkgaW4g
+dGhlIGZpcnN0IHBsYWNlPwo+IEl0IGRvZXNuJ3QgbmVlZCB0byBiZSBjb21wbGV0ZWx5IHJlbGlh
+YmxlLCBvciBmaW5pc2ggaW1tZWRpYXRlbHkuCj4KPiBBbmQgYW55IHRpbWUgd2FrZV91cF9hbGwo
+JnJkZXYtPmZlbmNlX3F1ZXVlKSBpcyBjYWxsZWQgYWxsIHRoZSBmZW5jZXMgdGhhdCB3ZXJlIGVu
+YWJsZWQgd2lsbCBiZSByZWNoZWNrZWQuCj4KPj4+Pj4gQWdyZWVkIHRoYXQgYW55IHNoYXJlZCBs
+b2NrcyBhcmUgb3V0IG9mIHRoZSB3YXkgKGVzcGVjaWFsbHkgc3R1ZmYgbGlrZQo+Pj4+PiBkZXYt
+PnN0cnVjdF9tdXRleCBvciBvdGhlciBub24tc3RyaWN0bHkgZHJpdmVyLXByaXZhdGUgc3R1ZmYs
+IGk5MTUgaXMKPj4+Pj4gcmVhbGx5IGJhZCBoZXJlIHN0aWxsKS4KPj4+PiBZZWFoIHRoYXQncyBh
+bHNvIGFuIHBvaW50IEkndmUgd2FudGVkIHRvIG5vdGUgb24gTWFhcnRlbnMgcGF0Y2guIFJhZGVv
+biBncmFicyB0aGUgcmVhZCBzaWRlIG9mIGl0J3MgZXhjbHVzaXZlIHNlbWFwaG9yZSB3aGlsZSB3
+YWl0aW5nIGZvciBmZW5jZXMgKGJlY2F1c2UgaXQgYXNzdW1lcyB0aGF0IHRoZSBmZW5jZSBpdCB3
+YWl0cyBmb3IgaXMgYSBSYWRlb24gZmVuY2UpLgo+Pj4+Cj4+Pj4gQXNzdW1pbmcgdGhhdCB3ZSBu
+ZWVkIHRvIHdhaXQgaW4gYm90aCBkaXJlY3Rpb25zIHdpdGggUHJpbWUgKGUuZy4gSW50ZWwgZHJp
+dmVyIG5lZWRzIHRvIHdhaXQgZm9yIFJhZGVvbiB0byBmaW5pc2ggcmVuZGVyaW5nIGFuZCBSYWRl
+b24gbmVlZHMgdG8gd2FpdCBmb3IgSW50ZWwgdG8gZmluaXNoIGRpc3BsYXlpbmcpLCB0aGlzIG1p
+Z2h0IGJlY29tZSBhIHBlcmZlY3QgZXhhbXBsZSBvZiBsb2NraW5nIGludmVyc2lvbi4KPj4+IElu
+IHRoZSBwcmVsaW1pbmFyeSBwYXRjaGVzIHdoZXJlIEkgY2FuIHN5bmMgcmFkZW9uIHdpdGggb3Ro
+ZXIgR1BVJ3MgSSd2ZSBiZWVuIHZlcnkgY2FyZWZ1bCBpbiBhbGwgdGhlIHBsYWNlcyB0aGF0IGNh
+bGwgaW50byBmZW5jZXMsIHRvIG1ha2Ugc3VyZSB0aGF0IHJhZGVvbiB3b3VsZG4ndCB0cnkgdG8g
+aGFuZGxlIGxvY2t1cHMgZm9yIGEgZGlmZmVyZW50IChwb3NzaWJseSBhbHNvIHJhZGVvbikgY2Fy
+ZC4KPj4gVGhhdCdzIGFjdHVhbGx5IG5vdCBzdWNoIGEgZ29vZCBpZGVhLgo+Pgo+PiBJbiBjYXNl
+IG9mIGEgbG9ja3VwIHdlIG5lZWQgdG8gaGFuZGxlIHRoZSBsb2NrdXAgY2F1c2Ugb3RoZXJ3aXNl
+IGl0IGNvdWxkIGhhcHBlbiB0aGF0IHJhZGVvbiB3YWl0cyBmb3IgdGhlIGxvY2t1cCB0byBiZSBy
+ZXNvbHZlZCBhbmQgdGhlIGxvY2t1cCBoYW5kbGluZyBuZWVkcyB0byB3YWl0IGZvciBhIGZlbmNl
+IHRoYXQncyBuZXZlciBzaWduYWxlZCBiZWNhdXNlIG9mIHRoZSBsb2NrdXAuCj4gVGhlIGxvY2t1
+cCBoYW5kbGluZyBjYWxscyByYWRlb25fZmVuY2Vfd2FpdCwgbm90IHRoZSBnZW5lcmljIGZlbmNl
+X3dhaXQuIEl0IGRvZXNuJ3QgY2FsbCB0aGUgZXhwb3J0ZWQgd2FpdCBmdW5jdGlvbiB0aGF0IHRh
+a2VzIHRoZSBleGNsdXNpdmVfbG9jayBpbiByZWFkIG1vZGUuCj4gQW5kIGxvY2tkZXAgc2hvdWxk
+IGhhdmUgY29tcGxhaW5lZCBpZiBJIHNjcmV3ZWQgdGhhdCB1cC4gOi0pCgpZb3Ugc2NyZXdlZCBp
+dCB1cCBhbmQgbG9ja2RlcCBkaWRuJ3Qgd2FybiB5b3UgYWJvdXQgaXQgOi1QCgpJdCdzIG5vdCBh
+IGxvY2tpbmcgcHJvYmxlbSBJJ20gdGFsa2luZyBhYm91dCBoZXJlLiBSYWRlb25zIGxvY2t1cCAK
+aGFuZGxpbmcga2lja3MgaW4gd2hlbiBhbnl0aGluZyBjYWxscyBpbnRvIHRoZSBkcml2ZXIgZnJv
+bSB0aGUgb3V0c2lkZSwgCmlmIHlvdSBoYXZlIGEgZmVuY2Ugd2FpdCBmdW5jdGlvbiB0aGF0J3Mg
+Y2FsbGVkIGZyb20gdGhlIG91dHNpZGUgYnV0IApkb2Vzbid0IGhhbmRsZSBsb2NrdXBzIHlvdSBl
+c3NlbnRpYWxseSByZWx5IG9uIHNvbWVib2R5IGVsc2UgY2FsbGluZyAKYW5vdGhlciByYWRlb24g
+ZnVuY3Rpb24gZm9yIHRoZSBsb2NrdXAgdG8gYmUgcmVzb2x2ZWQuCgpDaHJpc3RpYW4uCgo+Cj4g
+fk1hYXJ0ZW4KPgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
