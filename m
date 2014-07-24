@@ -1,107 +1,125 @@
-From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>
-Subject: Re: [Nouveau] [PATCH 09/17] drm/radeon: use common fence
- implementation for fences
-Date: Thu, 24 Jul 2014 15:47:42 +0200
-Message-ID: <53D10E7E.20501@amd.com>
-References: <20140709093124.11354.3774.stgit@patser>
- <53CF63C2.7070407@vodafone.de>
- <CAKMK7uGJj+UwcnnzA+fj_=uWPN3i0sneWkoD+wfPJ_8Q6Y-DQg@mail.gmail.com>
- <53CF6622.6060803@amd.com>	<53CF699D.9070902@canonical.com>
- <53CF6B18.5070107@vodafone.de>
- <CAKMK7uGd65HR11thcv8KjDw-RnTa7W-QGOzFGFd+oO_hp8wyHA@mail.gmail.com>
- <53CF7035.2060808@amd.com>	<53CF7191.2090008@canonical.com>
- <CAKMK7uGLqzePAREsWhX0D1oN4FdqKwPgAL6x8sULpJSqYH5LwA@mail.gmail.com>
- <53CF765E.7020802@vodafone.de>
- <CAKMK7uE1G-EjbJ2RAXC3ZfkaCo=Gber5PJuRG623Yoz9D=FmGw@mail.gmail.com>
- <53CF8010.9060809@amd.com>
- <CAKMK7uEowhvc+4Jc6t2NAeE1joFaohJ6cP7sU-Akut6b3ta=1g@mail.gmail.com>
- <53CF822E.7050601@amd.com>
- <CAKMK7uG85KV94PTqkzvY8RPxg6ApRKHVZrD20e48GHZM=s06=w@mail.gmail.com>
- <53CF84C7.2020507@vodafone.de>	<53CF8693.1040006@canonical.com>
- <53CF8AB1.2000009@amd.com>
- <CAKMK7uEgGzKb3Vsnz0FCgFCcSM39QntEisg0JMg=HOvnwLCZgw@mail.gmail.com>
- <53CFAC38.9050501@amd.com> <53CFB5C2.7060207@canonical.com>
- <53CFC121.6040109@canonical.com>
+From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Text sometimes missing on NV18 based laptop
+Date: Thu, 24 Jul 2014 09:00:42 -0500
+Message-ID: <CAEk2StnAg55AhTMQ3TxQRpWUes_fndKDGMG2Q1N5qA-O+j7KCg@mail.gmail.com>
+References: <CAFvQSYQr3Bk=eFPW5V3NUMptDhU9Q36tvu8_1zXh0oQtibQ83A@mail.gmail.com>
+ <CAFvQSYQ4QXW=0NqXj=fWAzTTQtmLoJpA1GmrK3QuKforVRprjQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53CFC121.6040109@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Thomas Hellstrom <thellstrom@vmware.com>, nouveau <nouveau@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, dri-devel <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "Deucher, Alexander" <alexander.deucher@amd.com>
+Content-Type: multipart/mixed; boundary="===============1596173252=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAFvQSYQ4QXW=0NqXj=fWAzTTQtmLoJpA1GmrK3QuKforVRprjQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGkgTWFhcnRlbiwKCnRyeSB0byBpbXBsZW1lbnQgdGhpcyBhcyBhIHJlcGxhY2VtZW50IGZvciBz
-cGVjaWZ5aW5nIHRoZSAKUkFERU9OX0ZFTkNFX0pJRkZJRVNfVElNRU9VVCBvbiB3YWl0X2V2ZW50
-XyouIEFuZCByZXNldCB0aGUgdGltZW91dCAKZXZlcnkgdGltZSByYWRlb25fZmVuY2VfcHJvY2Vz
-cyBpcyBjYWxsZWQgYW5kIG5vdCBvbmx5IHdoZW4gYW55IG9mIHRoZSAKc2VxdWVuY2VzIGluY3Jl
-bWVudC4KCkkgZG9uJ3QgaGF2ZSB0aGUgdGltZSByaWdodCBub3cgdG8gbG9vayBkZWVwZXIgaW50
-byBpdCBvciBoZWxwIHdpdGggdGhlIApwYXRjaCwgYnV0IHRoZSBnZW5lcmFsIGFwcHJvYWNoIHNv
-dW5kcyB2YWxpZCB0byBtZS4KClJlZ2FyZHMsCkNocmlzdGlhbi4KCkFtIDIzLjA3LjIwMTQgMTY6
-MDUsIHNjaHJpZWIgTWFhcnRlbiBMYW5raG9yc3Q6Cj4gb3AgMjMtMDctMTQgMTU6MTYsIE1hYXJ0
-ZW4gTGFua2hvcnN0IHNjaHJlZWY6Cj4+IG9wIDIzLTA3LTE0IDE0OjM2LCBDaHJpc3RpYW4gS8O2
-bmlnIHNjaHJlZWY6Cj4+PiBBbSAyMy4wNy4yMDE0IDEyOjUyLCBzY2hyaWViIERhbmllbCBWZXR0
-ZXI6Cj4+Pj4gT24gV2VkLCBKdWwgMjMsIDIwMTQgYXQgMTI6MTMgUE0sIENocmlzdGlhbiBLw7Zu
-aWcKPj4+PiA8Y2hyaXN0aWFuLmtvZW5pZ0BhbWQuY29tPiB3cm90ZToKPj4+Pj4+IEFuZCB0aGUg
-ZG1hLWJ1ZiB3b3VsZCBzdGlsbCBoYXZlIGZlbmNlcyBiZWxvbmdpbmcgdG8gYm90aCBkcml2ZXJz
-LCBhbmQgaXQKPj4+Pj4+IHdvdWxkIHN0aWxsIGNhbGwgZnJvbSBvdXRzaWRlIHRoZSBkcml2ZXIu
-Cj4+Pj4+IENhbGxpbmcgZnJvbSBvdXRzaWRlIHRoZSBkcml2ZXIgaXMgZmluZSBhcyBsb25nIGFz
-IHRoZSBkcml2ZXIgY2FuIGRvCj4+Pj4+IGV2ZXJ5dGhpbmcgbmVjZXNzYXJ5IHRvIGNvbXBsZXRl
-IGl0J3Mgd29yayBhbmQgaXNuJ3QgZm9yY2VkIGludG8gYW55IHVnbHkKPj4+Pj4gaGFja3MgYW5k
-IHRoaW5ncyB0aGF0IGFyZSBub3QgMTAwJSByZWxpYWJsZS4KPj4+Pj4KPj4+Pj4gU28gSSBkb24n
-dCBzZWUgbXVjaCBvdGhlciBhcHByb2FjaCBhcyBpbnRlZ3JhdGluZyByZWNvdmVyeSBjb2RlIGZv
-ciBub3QKPj4+Pj4gZmlyaW5nIGludGVycnVwdHMgYW5kIHNvbWUga2luZCBvZiBsb2NrdXAgaGFu
-ZGxpbmcgaW50byB0aGUgZmVuY2UgY29kZSBhcwo+Pj4+PiB3ZWxsLgo+Pj4+IFRoYXQgYXBwcm9h
-Y2ggZG9lc24ndCByZWFsbHkgd29yayBhdCB0aGF0IHdlbGwgc2luY2UgZXZlcnkgZHJpdmVyIGhh
-cwo+Pj4+IGl0J3Mgb3duIHJlc2V0IHNlbWFudGljcy4gQW5kIHdlJ3JlIHRyeWluZyB0byBtb3Zl
-IGF3YXkgZnJvbSBnbG9iYWwKPj4+PiByZXNldCB0byBmaW5lLWdyYWluZWQgcmVzZXQuIFNvIHN0
-b3AtdGhlLXdvcmxkIHJlc2V0IGlzIG91dCBvZgo+Pj4+IGZhc2hpb24sIGF0IGxlYXN0IGZvciBp
-OTE1LiBBcyB5b3Ugc2FpZCwgcmVzZXQgaXMgbm9ybWFsIGluIGdwdXMgYW5kCj4+Pj4gd2UncmUg
-dHJ5aW5nIHRvIG1ha2UgcmVzZXQgbGVzcyBpbnZhc2l2ZS4gSSByZWFsbHkgZG9uJ3Qgc2VlIGEg
-cG9pbnQKPj4+PiBpbiBpbXBvc2luZyBhIHJlc2V0IHNjaGVtZSB1cG9uIGFsbCBkcml2ZXJzIGFu
-ZCBJIHRoaW5rIHlvdSBoYXZlIGFib3V0Cj4+Pj4gYXMgbXVjaCBtb3RpdmF0aW9uIHRvIGNvbnZl
-cnQgcmFkZW9uIHRvIHRoZSBzY2hlbWUgdXNlZCBieSBpOTE1IGFzCj4+Pj4gSSdsbCBoYXZlIGZv
-ciBjb252ZXJ0aW5nIHRvIHRoZSBvbmUgdXNlZCBieSByYWRlb24uIElmIGl0IHdvdWxkIGZpdCBh
-dAo+Pj4+IGFsbC4KPj4+IE9oIG15ISBObywgSSBkaWRuJ3Qgd2FudGVkIHRvIHN1Z2dlc3QgYW55
-IGdsb2JhbCByZXNldCBpbmZyYXN0cnVjdHVyZS4KPj4+Cj4+PiBNeSBpZGVhIHdhcyBtb3JlIHRo
-YXQgdGhlIGZlbmNlIGZyYW1ld29yayBwcm92aWRlcyBhIGZlbmNlLT5wcm9jZXNzX3NpZ25hbGlu
-ZyBjYWxsYmFjayB0aGF0IGlzIHBlcmlvZGljYWxseSBjYWxsZWQgYWZ0ZXIgZW5hYmxlX3NpZ25h
-bGluZyBpcyBjYWxsZWQgdG8gdHJpZ2dlciBtYW51YWwgc2lnbmFsIHByb2Nlc3NpbmcgaW4gdGhl
-IGRyaXZlci4KPj4+Cj4+PiBUaGlzIHdvdWxkIGJvdGggYmUgc3VpdGFibGUgYXMgYSBmYWxsYmFj
-ayBpbiBjYXNlIG9mIG5vdCB3b3JraW5nIGludGVycnVwdHMgYXMgd2VsbCBhcyBhIGNoYW5jZSBm
-b3IgYW55IGRyaXZlciB0byBkbyBuZWNlc3NhcnkgbG9ja3VwIGhhbmRsaW5nLgo+PiBJIG1hbmFn
-ZWQgdG8gZG8gaXQgd2l0aG91dCBuZWVkaW5nIGl0IHRvIGJlIHBhcnQgb2YgdGhlIGludGVyZmFj
-ZT8gSSdtIG5vdCBzdXJlIHdoZXRoZXIgcmFkZW9uX2ZlbmNlX2RyaXZlcl9yZWNoZWNrIG5lZWRz
-IGV4Y2x1c2l2ZV9sb2NrLCBidXQgaWYgc28gaXQncyBhIHNtYWxsIGNoYW5nZS4uCj4+Cj4+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oIGIvZHJpdmVycy9ncHUv
-ZHJtL3JhZGVvbi9yYWRlb24uaAo+PiBpbmRleCA3ZmJmZDQxNDc5ZjEuLjUxYjY0NmI5YzhiYiAx
-MDA2NDQKPj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb24uaAo+PiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbi5oCj4+IEBAIC0zNDUsNiArMzQ1LDkgQEAgc3Ry
-dWN0IHJhZGVvbl9mZW5jZV9kcml2ZXIgewo+PiAgIAl1aW50NjRfdAkJCXN5bmNfc2VxW1JBREVP
-Tl9OVU1fUklOR1NdOwo+PiAgIAlhdG9taWM2NF90CQkJbGFzdF9zZXE7Cj4+ICAgCWJvb2wJCQkJ
-aW5pdGlhbGl6ZWQ7Cj4+ICsJc3RydWN0IGRlbGF5ZWRfd29yawkJd29yazsKPj4gKwlzdHJ1Y3Qg
-cmFkZW9uX2RldmljZSAqcmRldjsKPj4gKwl1bnNpZ25lZCByaW5nOwo+PiAgIH07Cj4+ICAgCj4+
-ICAgc3RydWN0IHJhZGVvbl9mZW5jZV9jYiB7Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25f
-ZmVuY2UuYwo+PiBpbmRleCBkYTgzZjM2ZGQ3MDguLjk1NWM4MjU5NDZhZCAxMDA2NDQKPj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZmVuY2UuYwo+PiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jCj4+IEBAIC0yMzEsNiArMjMxLDkgQEAgc3Rh
-dGljIGJvb2wgX19yYWRlb25fZmVuY2VfcHJvY2VzcyhzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRl
-diwgaW50IHJpbmcpCj4+ICAgCQl9Cj4+ICAgCX0gd2hpbGUgKGF0b21pYzY0X3hjaGcoJnJkZXYt
-PmZlbmNlX2RydltyaW5nXS5sYXN0X3NlcSwgc2VxKSA+IHNlcSk7Cj4+ICAgCj4+ICsJaWYgKCF3
-YWtlICYmIGxhc3Rfc2VxIDwgbGFzdF9lbWl0dGVkKQo+PiArCQlzY2hlZHVsZV9kZWxheWVkX3dv
-cmsoJnJkZXYtPmZlbmNlX2RydltyaW5nXS53b3JrLCBqaWZmaWVzX3RvX21zZWNzKDEwKSk7Cj4+
-ICsKPj4KPiBXaGVuIHRyeWluZyB0aGlzOiBpZiAoc2VxIDwgbGFzdF9lbWl0dGVkKSBpcyBwcm9i
-YWJseSBhIGJldHRlciBjaGVjay4KPgo+IH5NYWFydGVuCj4KCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+--===============1596173252==
+Content-Type: multipart/alternative; boundary=089e01160848e85c4104fef0e13a
+
+--089e01160848e85c4104fef0e13a
+Content-Type: text/plain; charset=UTF-8
+
+On Wed, Jul 23, 2014 at 9:32 AM, Clemens Eisserer <linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+wrote:
+
+> Hi again,
+>
+> > On my NV18 based laptop I experience artifacts related to text
+> > (however, 2D performance is really great these days):
+> > - With grayscale AA text is sometimes missing, often visible on the XFCE
+> desktop
+> > - With subpixel (rgb) AA, even non-text related occur (icons are
+> > misrendered, ...)
+> >
+> > I've reported the issues here:
+> > https://bugs.freedesktop.org/show_bug.cgi?id=81283
+>
+> I know NV1x isn't anything spectacular or exciting to work on, however
+> on that notebook I don't have any choice.
+> Therefore I would be really grateful for advice how to narrow the
+> issues reported down.
+>
+> Even finding a way to selectively turn off the accel-paths which cause
+> the issue would be a big win, as with noaccel the system is barely
+> useable.
+>
+>
+I'm going to set up an old P4 system with a GeForce4 -- I'll see if there
+is of those suggestion that Illia made that I can try out...
+
+
+> Thank you in advance, Clemens
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+
+--089e01160848e85c4104fef0e13a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, Jul 23, 2014 at 9:32 AM, Clemens Eisserer <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:linuxhippy-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">linuxhippy@g=
+mail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi again,<br>
+<br>
+&gt; On my NV18 based laptop I experience artifacts related to text<br>
+&gt; (however, 2D performance is really great these days):<br>
+&gt; - With grayscale AA text is sometimes missing, often visible on the XF=
+CE desktop<br>
+&gt; - With subpixel (rgb) AA, even non-text related occur (icons are<br>
+&gt; misrendered, ...)<br>
+&gt;<br>
+&gt; I&#39;ve reported the issues here:<br>
+&gt; <a href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81283" targe=
+t=3D"_blank">https://bugs.freedesktop.org/show_bug.cgi?id=3D81283</a><br>
+<br>
+I know NV1x isn&#39;t anything spectacular or exciting to work on, however<=
+br>
+on that notebook I don&#39;t have any choice.<br>
+Therefore I would be really grateful for advice how to narrow the<br>
+issues reported down.<br>
+<br>
+Even finding a way to selectively turn off the accel-paths which cause<br>
+the issue would be a big win, as with noaccel the system is barely<br>
+useable.<br>
+<br></blockquote><div><br></div><div>I&#39;m going to set up an old P4 syst=
+em with a GeForce4 -- I&#39;ll see if there is of those suggestion that Ill=
+ia made that I can try out...</div><div>=C2=A0</div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
+ft:1ex">
+
+Thank you in advance, Clemens<br>
+_______________________________________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
+org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
+"_blank">http://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
+</blockquote></div><br></div></div>
+
+--089e01160848e85c4104fef0e13a--
+
+--===============1596173252==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1596173252==--
