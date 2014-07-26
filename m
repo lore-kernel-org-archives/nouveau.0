@@ -1,11 +1,13 @@
 From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2 0/3] drm/gk20a: support for reclocking
-Date: Sat, 26 Jul 2014 18:41:38 +0900
-Message-ID: <1406367701-9155-1-git-send-email-gnurou@gmail.com>
+Subject: [PATCH v2 1/3] clk: make therm and volt devices optional
+Date: Sat, 26 Jul 2014 18:41:39 +0900
+Message-ID: <1406367701-9155-2-git-send-email-gnurou@gmail.com>
+References: <1406367701-9155-1-git-send-email-gnurou@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1406367701-9155-1-git-send-email-gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +21,72 @@ To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Second version of the gk20a clock patches. I have tried to keep the therm and
-volt devices mandatory in the clock driver, but unfortunately they are too tied
-to bios to allow this, at least for the moment. Consequently this version is
-mostly a port of the first version to Ben's tree.
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 
-Ben, please let me know what I have done wrong in terms of integration to your
-tree, as the main purpose of writing patches against it instead of the kernel
-is to make your life easier. :)
+Allow the clock subsystem to operate even if voltage and thermal devices
+are not set for the device (for people with watercooling! ;))
 
-Alexandre Courbot (3):
-  clk: make therm and volt devices optional
-  clk: support for non-BIOS pstates
-  gk20a: reclocking support
+Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ nvkm/subdev/clock/base.c | 36 ++++++++++++++++++++++--------------
+ 1 file changed, 22 insertions(+), 14 deletions(-)
 
- drm/Kbuild                      |   1 +
- drm/core/os.h                   |   1 +
- drm/core/subdev/clock/gk20a.c   |   1 +
- drm/core/subdev/fb/ramgk20a.h   |   1 +
- drm/core/subdev/instmem/gk20a.c |   1 +
- lib/core/os.h                   |  10 +
- nvkm/engine/device/nve0.c       |   1 +
- nvkm/include/subdev/clock.h     |   9 +-
- nvkm/subdev/clock/Makefile.am   |   1 +
- nvkm/subdev/clock/base.c        |  52 ++--
- nvkm/subdev/clock/gk20a.c       | 665 ++++++++++++++++++++++++++++++++++++++++
- nvkm/subdev/clock/nv04.c        |   4 +-
- nvkm/subdev/clock/nv40.c        |   4 +-
- nvkm/subdev/clock/nv50.c        |   2 +-
- nvkm/subdev/clock/nva3.c        |   4 +-
- nvkm/subdev/clock/nvaa.c        |   4 +-
- nvkm/subdev/clock/nvc0.c        |   4 +-
- nvkm/subdev/clock/nve0.c        |   4 +-
- 18 files changed, 735 insertions(+), 34 deletions(-)
- create mode 120000 drm/core/subdev/clock/gk20a.c
- create mode 120000 drm/core/subdev/fb/ramgk20a.h
- create mode 120000 drm/core/subdev/instmem/gk20a.c
- create mode 100644 nvkm/subdev/clock/gk20a.c
-
+diff --git a/nvkm/subdev/clock/base.c b/nvkm/subdev/clock/base.c
+index 3ad848b..508639d 100644
+--- a/nvkm/subdev/clock/base.c
++++ b/nvkm/subdev/clock/base.c
+@@ -90,16 +90,20 @@ nouveau_cstate_prog(struct nouveau_clock *clk,
+ 		cstate = &pstate->base;
+ 	}
+ 
+-	ret = nouveau_therm_cstate(ptherm, pstate->fanspeed, +1);
+-	if (ret && ret != -ENODEV) {
+-		nv_error(clk, "failed to raise fan speed: %d\n", ret);
+-		return ret;
++	if (ptherm) {
++		ret = nouveau_therm_cstate(ptherm, pstate->fanspeed, +1);
++		if (ret && ret != -ENODEV) {
++			nv_error(clk, "failed to raise fan speed: %d\n", ret);
++			return ret;
++		}
+ 	}
+ 
+-	ret = volt->set_id(volt, cstate->voltage, +1);
+-	if (ret && ret != -ENODEV) {
+-		nv_error(clk, "failed to raise voltage: %d\n", ret);
+-		return ret;
++	if (volt) {
++		ret = volt->set_id(volt, cstate->voltage, +1);
++		if (ret && ret != -ENODEV) {
++			nv_error(clk, "failed to raise voltage: %d\n", ret);
++			return ret;
++		}
+ 	}
+ 
+ 	ret = clk->calc(clk, cstate);
+@@ -108,13 +112,17 @@ nouveau_cstate_prog(struct nouveau_clock *clk,
+ 		clk->tidy(clk);
+ 	}
+ 
+-	ret = volt->set_id(volt, cstate->voltage, -1);
+-	if (ret && ret != -ENODEV)
+-		nv_error(clk, "failed to lower voltage: %d\n", ret);
++	if (volt) {
++		ret = volt->set_id(volt, cstate->voltage, -1);
++		if (ret && ret != -ENODEV)
++			nv_error(clk, "failed to lower voltage: %d\n", ret);
++	}
+ 
+-	ret = nouveau_therm_cstate(ptherm, pstate->fanspeed, -1);
+-	if (ret && ret != -ENODEV)
+-		nv_error(clk, "failed to lower fan speed: %d\n", ret);
++	if (ptherm) {
++		ret = nouveau_therm_cstate(ptherm, pstate->fanspeed, -1);
++		if (ret && ret != -ENODEV)
++			nv_error(clk, "failed to lower fan speed: %d\n", ret);
++	}
+ 
+ 	return 0;
+ }
 -- 
 2.0.2
