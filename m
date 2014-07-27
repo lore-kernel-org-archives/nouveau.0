@@ -1,7 +1,7 @@
 From: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: apple gmux
-Date: Sat, 26 Jul 2014 23:58:44 -0500
-Message-ID: <CAM2RGhRX9ViLMXN2X_cXwWrNYSO-pbQz2Ox-DbF5etdpjE-67A@mail.gmail.com>
+Subject: [Bug] Apple Gmux
+Date: Sun, 27 Jul 2014 01:51:09 -0400
+Message-ID: <CAM2RGhR0vXws5oNKjM-coDAjHT1qnfNMAE3CFyUx94Z=UcvE2A@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -33,8 +33,3 @@ I use nouveau right now but I need to switch off the nvidia chip
 because of the heat/power it runs when I am not really needing it.
 
 PS: Good work on the driver.
-
--Evan Foss
-
--- 
-http://forge.abcd.harvard.edu/gf/project/epl_engineering/wiki/
