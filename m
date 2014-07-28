@@ -1,14 +1,13 @@
-From: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: apple gmux
-Date: Sun, 27 Jul 2014 11:37:36 -0400
-Message-ID: <CAM2RGhTfRTPLg5bRpVDDKjpAC4O=rS83hffzYJ1SC89ON2BWww@mail.gmail.com>
-References: <CAM2RGhRX9ViLMXN2X_cXwWrNYSO-pbQz2Ox-DbF5etdpjE-67A@mail.gmail.com>
- <20140727142540.GA480@otter.cg.tuwien.ac.at>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Mon, 28 Jul 2014 08:31:39 +0000
+Message-ID: <bug-73373-8800-gsOMENSeDl@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1385959637=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140727142540.GA480-sv7ihGC/Pdd0EPSG2LsdX9tNOq5v9fdn@public.gmane.org>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,54 +17,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Thank you. I had assumed there was a mailing list like this one but I
-guess it does not exist.
 
-On Sun, Jul 27, 2014 at 10:25 AM, Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> wrote:
-> Hello,
->
-> By having a look at 'drivers/platform/x86/apple-gmux.c', it seems its author is
-> Seth Forshee <seth.forshee-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>. Other main contributors are
-> Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>, and Matthew Garrett <mjg-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, among
-> others.
->
->
-> Pierre Moreau
->
->
-> On 11:58 PM - Jul 26 2014, Evan Foss wrote:
->> Hello,
->>
->> Sorry I know this might be the wrong group to ask this in but I have
->> been having a lot of trouble switching off the nvidia chip in my
->> Macbook Pro 9,1. I have tried numerous things but there is a lot of
->> flawed documentation out there on this. I have a pile of info (dmesg,
->> kernel configs and etc) that I would like to submit as a bug reports
->> but no clear place to send it.
->>
->> Who maintains the gmux kernel module? I can't find the proper mailing list.
->>
->> I use nouveau right now but I need to switch off the nvidia chip
->> because of the heat/power it runs when I am not really needing it.
->>
->> PS: Good work on the driver.
->>
->> -Evan Foss
->>
->> --
->> http://forge.abcd.harvard.edu/gf/project/epl_engineering/wiki/
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============1385959637==
+Content-Type: multipart/alternative; boundary="1406536299.bea231.30962"; charset="us-ascii"
 
 
+--1406536299.bea231.30962
+Date: Mon, 28 Jul 2014 08:31:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=73373
+
+--- Comment #16 from andros-CR0lu+Y5hFDR7s880joybQ@public.gmane.org ---
+I witnessed the same with
+Linux 3.15.6-gentoo #1 SMP Mon Jul 21 07:42:30 CEST 2014 x86_64 AMD A8-3500M
+APU with Radeon(tm) HD Graphics AuthenticAMD GNU/Linux
+
+After a while hard drives are inaccessible, the system stay use able for a
+while but then freezes. Sometime Magic SysRq will work.
 
 -- 
-Home
-http://evanfoss.googlepages.com/
-Work
-http://forge.abcd.harvard.edu/gf/project/epl_engineering/wiki/
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1406536299.bea231.30962
+Date: Mon, 28 Jul 2014 08:31:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
+              from <span class="vcard"><a class="email" href="mailto:andros&#64;all-ein.net" title="andros&#64;all-ein.net">andros&#64;all-ein.net</a>
+</span></b>
+        <pre>I witnessed the same with
+Linux 3.15.6-gentoo #1 SMP Mon Jul 21 07:42:30 CEST 2014 x86_64 AMD A8-3500M
+APU with Radeon(tm) HD Graphics AuthenticAMD GNU/Linux
+
+After a while hard drives are inaccessible, the system stay use able for a
+while but then freezes. Sometime Magic SysRq will work.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1406536299.bea231.30962--
+
+--===============1385959637==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1385959637==--
