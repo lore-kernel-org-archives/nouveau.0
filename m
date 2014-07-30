@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80769] [NVD9] GF119M boot hang with 3.15.2
-Date: Tue, 29 Jul 2014 10:37:01 +0000
-Message-ID: <bug-80769-8800-Gr4DVGda0h@http.bugs.freedesktop.org/>
-References: <bug-80769-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH] libdrm: hide all private symbols
+Date: Wed, 30 Jul 2014 11:38:00 +0200
+Message-ID: <53D8BCF8.9020908@canonical.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1675396710=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80769-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,86 +15,117 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Julien Cristau <jcristau-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Using -export-symbols-regex all private symbols are hidden, resulting in the following changes:
 
---===============1675396710==
-Content-Type: multipart/alternative; boundary="1406630221.4eefBD41.10467"; charset="us-ascii"
+libkms: removes all driver specific exports
+radeon: removes the bof_* exports
+nouveau: removes the abi16_* exports
+freedreno: remove the *kgsl_* and msm_* exports
+intel: removes the drm_mm* exports
+omap/exynos: unchanged as far as I can tell
+ 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+---
 
-
---1406630221.4eefBD41.10467
-Date: Tue, 29 Jul 2014 10:37:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80769
-
---- Comment #6 from sven <sven.pilz+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #2)
-> The xorg backtrace has intel_drv.so in it. What makes you say this is a
-> nouveau bug?
-
-The bug (DRI_PRIME=1 ...) was indeed to the Intel driver (see Bug #80001) and
-is fixed in version 2.99.914.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1406630221.4eefBD41.10467
-Date: Tue, 29 Jul 2014 10:37:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVD9] GF119M boot hang with 3.15.2"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80769">bug 80769</a>
-              from <span class="vcard"><a class="email" href="mailto:sven.pilz+freedesktop&#64;gmail.com" title="sven &lt;sven.pilz+freedesktop&#64;gmail.com&gt;"> <span class="fn">sven</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=80769#c2">comment #2</a>)
-<span class="quote">&gt; The xorg backtrace has intel_drv.so in it. What makes you say this is a
-&gt; nouveau bug?</span >
-
-The bug (DRI_PRIME=1 ...) was indeed to the Intel driver (see <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - regression: X segfaults with xf86-video-intel-2.99.912 and DRI_PRIME (with radeon)"
-   href="show_bug.cgi?id=80001">Bug #80001</a>) and
-is fixed in version 2.99.914.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1406630221.4eefBD41.10467--
-
---===============1675396710==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1675396710==--
+diff --git a/exynos/Makefile.am b/exynos/Makefile.am
+index 0a2663a..0cd753d 100644
+--- a/exynos/Makefile.am
++++ b/exynos/Makefile.am
+@@ -7,7 +7,8 @@ AM_CFLAGS = \
+ 
+ libdrm_exynos_la_LTLIBRARIES = libdrm_exynos.la
+ libdrm_exynos_ladir = $(libdir)
+-libdrm_exynos_la_LDFLAGS = -version-number 1:0:0 -no-undefined
++libdrm_exynos_la_LDFLAGS = -version-number 1:0:0 -no-undefined \
++	-export-symbols-regex '^(exynos|g2d)_'
+ libdrm_exynos_la_LIBADD = ../libdrm.la @PTHREADSTUBS_LIBS@
+ 
+ libdrm_exynos_la_SOURCES = \
+diff --git a/freedreno/Makefile.am b/freedreno/Makefile.am
+index 7903e5b..5fdee22 100644
+--- a/freedreno/Makefile.am
++++ b/freedreno/Makefile.am
+@@ -9,7 +9,8 @@ AM_CFLAGS = \
+ 
+ libdrm_freedreno_la_LTLIBRARIES = libdrm_freedreno.la
+ libdrm_freedreno_ladir = $(libdir)
+-libdrm_freedreno_la_LDFLAGS = -version-number 1:0:0 -no-undefined
++libdrm_freedreno_la_LDFLAGS = -version-number 1:0:0 -no-undefined \
++	-export-symbols-regex '^fd_'
+ libdrm_freedreno_la_LIBADD = ../libdrm.la @PTHREADSTUBS_LIBS@
+ 
+ libdrm_freedreno_la_SOURCES = \
+diff --git a/intel/Makefile.am b/intel/Makefile.am
+index f49b099..2b9ee48 100644
+--- a/intel/Makefile.am
++++ b/intel/Makefile.am
+@@ -33,7 +33,8 @@ AM_CFLAGS = \
+ 
+ libdrm_intel_la_LTLIBRARIES = libdrm_intel.la
+ libdrm_intel_ladir = $(libdir)
+-libdrm_intel_la_LDFLAGS = -version-number 1:0:0 -no-undefined
++libdrm_intel_la_LDFLAGS = -version-number 1:0:0 -no-undefined \
++	-export-symbols-regex '^drm_intel_'
+ libdrm_intel_la_LIBADD = ../libdrm.la \
+ 	@PTHREADSTUBS_LIBS@ \
+ 	@PCIACCESS_LIBS@ \
+diff --git a/libkms/Makefile.am b/libkms/Makefile.am
+index 449a73b..e3c727a 100644
+--- a/libkms/Makefile.am
++++ b/libkms/Makefile.am
+@@ -5,7 +5,8 @@ AM_CFLAGS = \
+ 
+ libkms_la_LTLIBRARIES = libkms.la
+ libkms_ladir = $(libdir)
+-libkms_la_LDFLAGS = -version-number 1:0:0 -no-undefined
++libkms_la_LDFLAGS = -version-number 1:0:0 -no-undefined \
++	-export-symbols-regex '^kms_'
+ libkms_la_LIBADD = ../libdrm.la
+ 
+ #if HAVE_LIBUDEV
+diff --git a/nouveau/Makefile.am b/nouveau/Makefile.am
+index 206e892..257cab9 100644
+--- a/nouveau/Makefile.am
++++ b/nouveau/Makefile.am
+@@ -8,7 +8,8 @@ AM_CFLAGS = \
+ 
+ libdrm_nouveau_la_LTLIBRARIES = libdrm_nouveau.la
+ libdrm_nouveau_ladir = $(libdir)
+-libdrm_nouveau_la_LDFLAGS = -version-number 2:0:0 -no-undefined
++libdrm_nouveau_la_LDFLAGS = -version-number 2:0:0 -no-undefined \
++	-export-symbols-regex '^nouveau_'
+ libdrm_nouveau_la_LIBADD = ../libdrm.la @PTHREADSTUBS_LIBS@
+ 
+ libdrm_nouveau_la_SOURCES = nouveau.c \
+diff --git a/omap/Makefile.am b/omap/Makefile.am
+index c77520b..bcbe98e 100644
+--- a/omap/Makefile.am
++++ b/omap/Makefile.am
+@@ -7,7 +7,8 @@ AM_CFLAGS = \
+ 
+ libdrm_omap_la_LTLIBRARIES = libdrm_omap.la
+ libdrm_omap_ladir = $(libdir)
+-libdrm_omap_la_LDFLAGS = -version-number 1:0:0 -no-undefined
++libdrm_omap_la_LDFLAGS = -version-number 1:0:0 -no-undefined \
++	-export-symbols-regex '^omap_'
+ libdrm_omap_la_LIBADD = ../libdrm.la @PTHREADSTUBS_LIBS@
+ 
+ libdrm_omap_la_SOURCES = omap_drm.c
+diff --git a/radeon/Makefile.am b/radeon/Makefile.am
+index a8cd100..9fa19a8 100644
+--- a/radeon/Makefile.am
++++ b/radeon/Makefile.am
+@@ -31,7 +31,8 @@ AM_CFLAGS = \
+ 
+ libdrm_radeon_la_LTLIBRARIES = libdrm_radeon.la
+ libdrm_radeon_ladir = $(libdir)
+-libdrm_radeon_la_LDFLAGS = -version-number 1:0:1 -no-undefined
++libdrm_radeon_la_LDFLAGS = -version-number 1:0:1 -no-undefined \
++	-export-symbols-regex '^radeon_'
+ libdrm_radeon_la_LIBADD = ../libdrm.la @PTHREADSTUBS_LIBS@
+ 
+ libdrm_radeon_la_SOURCES = \
