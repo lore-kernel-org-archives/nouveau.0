@@ -1,17 +1,10 @@
-From: Rob Clark <robdclark-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH libdrm] configure: Support symbol visibility
-	when available
-Date: Wed, 30 Jul 2014 10:39:19 -0400
-Message-ID: <CAF6AEGsC4wB5YVAfHdq+Na_eZ4_Fxt95r-_eQk6jt+PD7rkqyQ@mail.gmail.com>
-References: <53D8E68D.3090503@gmail.com>
- <1406728085-981-1-git-send-email-thierry.reding@gmail.com>
- <CAF6AEGsKy0jMeTki8R4CJb5+fbKgX3qJW8uV4Wbr8Vm2Ojr-vQ@mail.gmail.com>
- <53D9031C.3060508@gmail.com>
+From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Are the instructions on freedesktop.org still OK?
+Date: Wed, 30 Jul 2014 20:57:21 -0500
+Message-ID: <CAEk2St=FD4ms_n-WYDQV+75Fv08Az3ooGDgM6-FMhWpUqyOKqg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0670789338=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53D9031C.3060508-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,100 +14,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Julien Cristau <jcristau-8fiUuRrzOP0dnm+yROfE0A@public.gmane.org>
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdWwgMzAsIDIwMTQgYXQgMTA6MzcgQU0sIEVtaWwgVmVsaWtvdiA8ZW1pbC5sLnZl
-bGlrb3ZAZ21haWwuY29tPiB3cm90ZToKPiBPbiAzMC8wNy8xNCAxNTozMSwgUm9iIENsYXJrIHdy
-b3RlOgo+PiBPbiBXZWQsIEp1bCAzMCwgMjAxNCBhdCA5OjQ4IEFNLCBUaGllcnJ5IFJlZGluZwo+
-PiA8dGhpZXJyeS5yZWRpbmdAZ21haWwuY29tPiB3cm90ZToKPj4+IEZyb206IFRoaWVycnkgUmVk
-aW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4+Pgo+Pj4gQ2hlY2tzIHdoZXRoZXIgb3Igbm90IHRo
-ZSBjb21waWxlciBzdXBwb3J0cyB0aGUgLWZ2aXNpYmlsaXR5IG9wdGlvbi4gSWYKPj4+IHNvIGl0
-IHNldHMgdGhlIFZJU0lCSUxJVFlfQ0ZMQUdTIHZhcmlhYmxlIHdoaWNoIGNhbiBiZSBhZGRlZCB0
-byB0aGUgcGVyCj4+PiBkaXJlY3RvcnkgQU1fQ0ZMQUdTIHdoZXJlIGFwcHJvcHJpYXRlLgo+Pj4K
-Pj4+IEJ5IGRlZmF1bHQgYWxsIHN5bWJvbHMgd2lsbCBiZSBoaWRkZW4gdmlhIHRoZSBWSVNJQklM
-SVRZX0NGTEFHUy4gVGhlCj4+PiBkcm1fcHVibGljIG1hY3JvIGNhbiBiZSB1c2VkIHRvIG1hcmsg
-c3ltYm9scyB0aGF0IHNob3VsZCBiZSBleHBvcnRlZC4KPj4KPj4gaG1tLCBtYXliZSBkdW1iIHF1
-ZXN0aW9uLCBJIG1pZ2h0IHBvc3NpYmx5IGhhdmUgbWlzc2VkIHNvbWUgZGlzY3Vzc2lvbgo+PiBv
-biB0aGlzLCBidXQgaWYgd2UgbWVyZ2VkIHRoaXMgd2l0aG91dCBhIGhlYXAgb2YgcGF0Y2hlcyB0
-byBleHBvcnQKPj4gbGliZHJtIGFuZCBsaWJkcm1fZm9vIHN5bXMsIHdvdWxkbid0IGV2ZXJ5dGhp
-bmcgYmUgaGlkZGVuPwo+Pgo+PiBNYXliZSB3ZSBzaG91bGQgaW50cm9kdWNlIGRybV9wdWJsaWMg
-Zmlyc3QuLiB0aGVuIG9uY2Ugc3R1ZmYgaXMKPj4gY29udmVydGVkIHRvIHVzZSBpdCBhY3R1YWxs
-eSBzdGFydCBoaWRpbmcgdGhpbmdzPwo+Pgo+IFRoaXMgYWRkcyB0aGUgdG9vbCwgYnV0IGl0J3Mg
-dXAtdG8gdGhlIGluZGl2aWR1YWwgbGlicmFyaWVzL21ha2VmaWxlcyB0byBtYWtlCj4gdXNlIG9m
-IGl0Lgo+Cj4gQWxsIHlvdSBuZWVkIGlzOgo+ICAtIGFwcGVuZCAkKFZJU0lCSUxJVFlfQ0ZMQUdT
-KSB0byBsaWJkcm1fZnJlZWRyZW5vX0NGTEFHUwo+ICAtIHByZWZpeCBlYWNoIGV4cG9ydGVkIGZ1
-bmN0aW9uIGRlZmluaXRpb24gd2l0aCBEUk1fUFVCTElDCj4gIC0gKioqCj4gIC0gcHJvZml0IDpQ
-CgphaGgsIG9rLCB0aGF0IG1ha2VzIG11Y2ggbW9yZSBzZW5zZS4uIHRoeCA6LSkKCkJSLAotUgoK
-Cj4gLUVtaWwKPgo+Pgo+PiBCUiwKPj4gLVIKPj4KPj4+IFNpZ25lZC1vZmYtYnk6IFRoaWVycnkg
-UmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4+PiAtLS0KPj4+IENoYW5nZXMgaW4gdjM6Cj4+
-PiAtIGRpc3RyaWJ1dGUgbGliZHJtLmgKPj4+Cj4+PiAgTWFrZWZpbGUuYW0gIHwgIDEgKwo+Pj4g
-IGNvbmZpZ3VyZS5hYyB8IDIwICsrKysrKysrKysrKysrKysrKysrCj4+PiAgbGliZHJtLmggICAg
-IHwgMzQgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+Pj4gIDMgZmlsZXMgY2hh
-bmdlZCwgNTUgaW5zZXJ0aW9ucygrKQo+Pj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBsaWJkcm0uaAo+
-Pj4KPj4+IGRpZmYgLS1naXQgYS9NYWtlZmlsZS5hbSBiL01ha2VmaWxlLmFtCj4+PiBpbmRleCA4
-MjZjMzBkMGMwZDkuLjY1NjgwZGE5NjNlYiAxMDA2NDQKPj4+IC0tLSBhL01ha2VmaWxlLmFtCj4+
-PiArKysgYi9NYWtlZmlsZS5hbQo+Pj4gQEAgLTY5LDYgKzY5LDcgQEAgbGliZHJtX2xhX1NPVVJD
-RVMgPSAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICAgICAgICAgeGY4NmRybVNMLmMg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICAgICAgICAgeGY4NmRybU1vZGUuYyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICAgICAgICAgeGY4NmF0b21pYy5oICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIFwKPj4+ICsgICAgICAgbGliZHJtLmggICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIFwKPj4+ICAgICAgICAgbGliZHJtX2xpc3RzLmgKPj4+Cj4+PiAg
-bGliZHJtaW5jbHVkZWRpciA9ICR7aW5jbHVkZWRpcn0KPj4+IGRpZmYgLS1naXQgYS9jb25maWd1
-cmUuYWMgYi9jb25maWd1cmUuYWMKPj4+IGluZGV4IDFjNzhjNDUyMGM0OS4uZjdjNzE3N2JmYjJh
-IDEwMDY0NAo+Pj4gLS0tIGEvY29uZmlndXJlLmFjCj4+PiArKysgYi9jb25maWd1cmUuYWMKPj4+
-IEBAIC0zNjYsNiArMzY2LDI2IEBAIEFDX0FSR19XSVRIKFtrZXJuZWwtc291cmNlXSwKPj4+ICAg
-ICAgICAgICAgIFtrZXJuZWxfc291cmNlPSIkd2l0aF9rZXJuZWxfc291cmNlIl0pCj4+PiAgQUNf
-U1VCU1Qoa2VybmVsX3NvdXJjZSkKPj4+Cj4+PiArZG5sIEFkZCBmbGFncyBmb3IgZ2NjIGFuZCBn
-KysKPj4+ICtpZiB0ZXN0ICJ4JEdDQyIgPSB4eWVzOyB0aGVuCj4+PiArICAgICMgRW5hYmxlIC1m
-dmlzaWJpbGl0eT1oaWRkZW4gaWYgdXNpbmcgYSBnY2MgdGhhdCBzdXBwb3J0cyBpdAo+Pj4gKyAg
-ICBzYXZlX0NGTEFHUz0iJENGTEFHUyIKPj4+ICsgICAgQUNfTVNHX0NIRUNLSU5HKFt3aGV0aGVy
-ICRDQyBzdXBwb3J0cyAtZnZpc2liaWxpdHk9aGlkZGVuXSkKPj4+ICsgICAgVklTSUJJTElUWV9D
-RkxBR1M9Ii1mdmlzaWJpbGl0eT1oaWRkZW4iCj4+PiArICAgIENGTEFHUz0iJENGTEFHUyAkVklT
-SUJJTElUWV9DRkxBR1MiCj4+PiArICAgIEFDX0xJTktfSUZFTFNFKFtBQ19MQU5HX1BST0dSQU0o
-KV0sIEFDX01TR19SRVNVTFQoW3llc10pLAo+Pj4gKyAgICAgICAgICAgICAgICAgICBbVklTSUJJ
-TElUWV9DRkxBR1M9IiI7IEFDX01TR19SRVNVTFQoW25vXSldKTsKPj4+ICsKPj4+ICsgICAgIyBS
-ZXN0b3JlIENGTEFHUzsgVklTSUJJTElUWV9DRkxBR1MgYXJlIGFkZGVkIHRvIGl0IHdoZXJlIG5l
-ZWRlZC4KPj4+ICsgICAgQ0ZMQUdTPSRzYXZlX0NGTEFHUwo+Pj4gKwo+Pj4gKyAgICBpZiB0ZXN0
-ICJ4JFZJU0lCSUxJVFlfQ0ZMQUdTIiAhPSB4OyB0aGVuCj4+PiArICAgICAgICBBQ19ERUZJTkUo
-SEFWRV9WSVNJQklMSVRZLCAxLCBbQ29tcGlsZXIgaGFzIC1mdmlzaWJpbGl0eSBzdXBwb3J0XSkK
-Pj4+ICsgICAgZmkKPj4+ICsKPj4+ICsgICAgQUNfU1VCU1QoW1ZJU0lCSUxJVFlfQ0ZMQUdTXSkK
-Pj4+ICtmaQo+Pj4gKwo+Pj4gIEFDX1NVQlNUKFdBUk5fQ0ZMQUdTKQo+Pj4gIEFDX0NPTkZJR19G
-SUxFUyhbCj4+PiAgICAgICAgIE1ha2VmaWxlCj4+PiBkaWZmIC0tZ2l0IGEvbGliZHJtLmggYi9s
-aWJkcm0uaAo+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQKPj4+IGluZGV4IDAwMDAwMDAwMDAwMC4u
-MjM5MjZlNmY2NzQxCj4+PiAtLS0gL2Rldi9udWxsCj4+PiArKysgYi9saWJkcm0uaAo+Pj4gQEAg
-LTAsMCArMSwzNCBAQAo+Pj4gKy8qCj4+PiArICogQ29weXJpZ2h0IMKpIDIwMTQgTlZJRElBIENv
-cnBvcmF0aW9uCj4+PiArICoKPj4+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBm
-cmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+Pj4gKyAqIGNvcHkgb2Yg
-dGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNv
-ZnR3YXJlIiksCj4+PiArICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmlj
-dGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbgo+Pj4gKyAqIHRoZSByaWdodHMgdG8g
-dXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNl
-LAo+Pj4gKyAqIGFuZC9vciBzZWxsIGNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJt
-aXQgcGVyc29ucyB0byB3aG9tIHRoZQo+Pj4gKyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBk
-byBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Cj4+PiArICoKPj4+ICsg
-KiBUaGUgYWJvdmUgY29weXJpZ2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBz
-aGFsbCBiZSBpbmNsdWRlZCBpbgo+Pj4gKyAqIGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9y
-dGlvbnMgb2YgdGhlIFNvZnR3YXJlLgo+Pj4gKyAqCj4+PiArICogVEhFIFNPRlRXQVJFIElTIFBS
-T1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IK
-Pj4+ICsgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5U
-SUVTIE9GIE1FUkNIQU5UQUJJTElUWSwKPj4+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIg
-UFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPj4+ICsgKiBU
-SEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElBQkxFIEZPUiBBTlkgQ0xB
-SU0sIERBTUFHRVMgT1IKPj4+ICsgKiBPVEhFUiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNU
-SU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwKPj4+ICsgKiBBUklTSU5HIEZST00s
-IE9VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IK
-Pj4+ICsgKiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCj4+PiArICovCj4+PiArCj4+
-PiArI2lmbmRlZiBMSUJEUk1fTElCRFJNX0gKPj4+ICsjZGVmaW5lIExJQkRSTV9MSUJEUk1fSAo+
-Pj4gKwo+Pj4gKyNpZiBkZWZpbmVkKEhBVkVfVklTSUJJTElUWSkKPj4+ICsjICBkZWZpbmUgZHJt
-X3ByaXZhdGUgX19hdHRyaWJ1dGVfXygodmlzaWJpbGl0eSgiaGlkZGVuIikpKQo+Pj4gKyMgIGRl
-ZmluZSBkcm1fcHVibGljIF9fYXR0cmlidXRlX18oKHZpc2liaWxpdHkoImRlZmF1bHQiKSkpCj4+
-PiArI2Vsc2UKPj4+ICsjICBkZWZpbmUgZHJtX3ByaXZhdGUKPj4+ICsjICBkZWZpbmUgZHJtX3B1
-YmxpYwo+Pj4gKyNlbmRpZgo+Pj4gKwo+Pj4gKyNlbmRpZgo+Pj4gLS0KPj4+IDIuMC4zCj4+Pgo+
-Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IGRy
-aS1kZXZlbCBtYWlsaW5nIGxpc3QKPj4+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-Pj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
-ZWwKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+--===============0670789338==
+Content-Type: multipart/alternative; boundary=001a113422aaeac05e04ff73971a
+
+--001a113422aaeac05e04ff73971a
+Content-Type: text/plain; charset=UTF-8
+
+I've been following the nouveau git, but it seems now that when I follow
+the instructions on it [1], I end up with a kernel v3.12 rather than
+3.16rc7 (though that is a branch in my repo). I guess I don't yet grok how
+git works with remote masters. I want to update to the latest Linus git
+kernel + latest nouveau. Is it really just `git remote update` followed by
+`git reset --hard nouveau/master` as the page shows?
+
+[1] http://nouveau.freedesktop.org/wiki/InstallDRM/
+
+--001a113422aaeac05e04ff73971a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;ve been following the nouveau git, but it seems now =
+that when I follow the instructions on it [1], I end up with a kernel v3.12=
+ rather than 3.16rc7 (though that is a branch in my repo). I guess I don&#3=
+9;t yet grok how git works with remote masters. I want to update to the lat=
+est Linus git kernel + latest nouveau. Is it really just `git remote update=
+` followed by `git reset --hard nouveau/master` as the page shows?<div>
+<br></div><div>[1]=C2=A0<a href=3D"http://nouveau.freedesktop.org/wiki/Inst=
+allDRM/">http://nouveau.freedesktop.org/wiki/InstallDRM/</a></div></div>
+
+--001a113422aaeac05e04ff73971a--
+
+--===============0670789338==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0670789338==--
