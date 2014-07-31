@@ -1,7 +1,7 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v5] drm/nouveau: map pages using DMA API
-Date: Thu, 31 Jul 2014 18:09:42 +0900
-Message-ID: <1406797782-32220-1-git-send-email-acourbot@nvidia.com>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [libdrm PATCH 1/3] nouveau: Only export public functions.
+Date: Thu, 31 Jul 2014 15:44:22 +0200
+Message-ID: <53DA4836.2000108@canonical.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -15,254 +15,366 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-The DMA API is the recommended way to map pages no matter what the
-underlying bus is. Use the DMA functions for page mapping and remove
-currently existing wrappers.
+This hides all the abi16_* functions and the nouveau_debug variable,
+they should have been private to begin with.
 
-Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 ---
-Changes since v4:
-- Patch against the Nouveau tree instead of the kernel
-- Separated this patch from the rest of the series since it can be
-  merged alone
-- Replaced all pci_map invokations with dma_map. As Daniel pointed
-  out, using the PCI API is deprecated:
-Documentation/DMA-API-HOWTO.txt:
+ nouveau/Makefile.am |  1 +
+ nouveau/bufctx.c    | 10 +++++-----
+ nouveau/nouveau.c   | 40 ++++++++++++++++++++--------------------
+ nouveau/private.h   |  1 +
+ nouveau/pushbuf.c   | 20 ++++++++++----------
+ 5 files changed, 37 insertions(+), 35 deletions(-)
 
-"Note that the DMA API works with any bus independent of the underlying
-microprocessor architecture. You should use the DMA API rather than the
-bus-specific DMA API, i.e., use the dma_map_*() interfaces rather than the
-pci_map_*() interfaces."
-- As a result, removed the page mapping wrappers which have become
-  unneeded.
-
- drm/nouveau_bo.c           | 22 ++++++++++++++++------
- lib/core/os.h              |  8 ++++----
- nvkm/engine/device/base.c  | 25 -------------------------
- nvkm/include/core/device.h |  6 ------
- nvkm/subdev/fb/nv50.c      |  7 +++++--
- nvkm/subdev/fb/nvc0.c      |  7 +++++--
- 6 files changed, 30 insertions(+), 45 deletions(-)
-
-diff --git a/drm/nouveau_bo.c b/drm/nouveau_bo.c
-index 4db886f9f793..e4f2071c46c3 100644
---- a/drm/nouveau_bo.c
-+++ b/drm/nouveau_bo.c
-@@ -1340,6 +1340,7 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
- 	struct nouveau_drm *drm;
- 	struct nouveau_device *device;
- 	struct drm_device *dev;
-+	struct device *pdev;
- 	unsigned i;
- 	int r;
- 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
-@@ -1358,6 +1359,7 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
- 	drm = nouveau_bdev(ttm->bdev);
- 	device = nv_device(drm->device);
- 	dev = drm->dev;
-+	pdev = nv_device_base(device);
+diff --git a/nouveau/Makefile.am b/nouveau/Makefile.am
+index 206e892..73cff9f 100644
+--- a/nouveau/Makefile.am
++++ b/nouveau/Makefile.am
+@@ -1,5 +1,6 @@
+ AM_CFLAGS = \
+ 	$(WARN_CFLAGS) \
++	$(VISIBILITY_CFLAGS) \
+ 	-I$(top_srcdir) \
+ 	-I$(top_srcdir)/nouveau \
+ 	$(PTHREADSTUBS_CFLAGS) \
+diff --git a/nouveau/bufctx.c b/nouveau/bufctx.c
+index 23d6f09..fdd3164 100644
+--- a/nouveau/bufctx.c
++++ b/nouveau/bufctx.c
+@@ -68,7 +68,7 @@ nouveau_bufctx(struct nouveau_bufctx *bctx)
+ 	return (struct nouveau_bufctx_priv *)bctx;
+ }
  
- #if __OS_HAS_AGP
- 	if (drm->agp.stat == ENABLED) {
-@@ -1377,17 +1379,22 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
- 	}
+-int
++drm_public int
+ nouveau_bufctx_new(struct nouveau_client *client, int bins,
+ 		   struct nouveau_bufctx **pbctx)
+ {
+@@ -88,7 +88,7 @@ nouveau_bufctx_new(struct nouveau_client *client, int bins,
+ 	return -ENOMEM;
+ }
  
- 	for (i = 0; i < ttm->num_pages; i++) {
--		ttm_dma->dma_address[i] = nv_device_map_page(device,
--							     ttm->pages[i]);
--		if (!ttm_dma->dma_address[i]) {
-+		dma_addr_t addr;
-+
-+		addr = dma_map_page(pdev, ttm->pages[i], 0, PAGE_SIZE,
-+				    DMA_BIDIRECTIONAL);
-+
-+		if (dma_mapping_error(pdev, addr)) {
- 			while (--i) {
--				nv_device_unmap_page(device,
--						     ttm_dma->dma_address[i]);
-+				dma_unmap_page(pdev, ttm_dma->dma_address[i],
-+					       PAGE_SIZE, DMA_BIDIRECTIONAL);
- 				ttm_dma->dma_address[i] = 0;
- 			}
- 			ttm_pool_unpopulate(ttm);
- 			return -EFAULT;
- 		}
-+
-+		ttm_dma->dma_address[i] = addr;
+-void
++drm_public void
+ nouveau_bufctx_del(struct nouveau_bufctx **pbctx)
+ {
+ 	struct nouveau_bufctx_priv *pctx = nouveau_bufctx(*pbctx);
+@@ -105,7 +105,7 @@ nouveau_bufctx_del(struct nouveau_bufctx **pbctx)
  	}
+ }
+ 
+-void
++drm_public void
+ nouveau_bufctx_reset(struct nouveau_bufctx *bctx, int bin)
+ {
+ 	struct nouveau_bufctx_priv *pctx = nouveau_bufctx(bctx);
+@@ -123,7 +123,7 @@ nouveau_bufctx_reset(struct nouveau_bufctx *bctx, int bin)
+ 	pbin->relocs  = 0;
+ }
+ 
+-struct nouveau_bufref *
++drm_public struct nouveau_bufref *
+ nouveau_bufctx_refn(struct nouveau_bufctx *bctx, int bin,
+ 		    struct nouveau_bo *bo, uint32_t flags)
+ {
+@@ -150,7 +150,7 @@ nouveau_bufctx_refn(struct nouveau_bufctx *bctx, int bin,
+ 	return &pref->base;
+ }
+ 
+-struct nouveau_bufref *
++drm_public struct nouveau_bufref *
+ nouveau_bufctx_mthd(struct nouveau_bufctx *bctx, int bin, uint32_t packet,
+ 		    struct nouveau_bo *bo, uint64_t data, uint32_t flags,
+ 		    uint32_t vor, uint32_t tor)
+diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
+index 1bede84..43f0d3c 100644
+--- a/nouveau/nouveau.c
++++ b/nouveau/nouveau.c
+@@ -62,14 +62,14 @@ debug_init(char *args)
+  * is kept here to prevent AIGLX from crashing if the DDX is linked against
+  * the new libdrm, but the DRI driver against the old
+  */
+-int
++drm_public int
+ nouveau_device_open_existing(struct nouveau_device **pdev, int close, int fd,
+ 			     drm_context_t ctx)
+ {
+ 	return -EACCES;
+ }
+ 
+-int
++drm_public int
+ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
+ {
+ 	struct nouveau_device_priv *nvdev = calloc(1, sizeof(*nvdev));
+@@ -147,7 +147,7 @@ nouveau_device_wrap(int fd, int close, struct nouveau_device **pdev)
  	return 0;
  }
-@@ -1399,6 +1406,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
- 	struct nouveau_drm *drm;
- 	struct nouveau_device *device;
- 	struct drm_device *dev;
-+	struct device *pdev;
- 	unsigned i;
- 	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
  
-@@ -1408,6 +1416,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
- 	drm = nouveau_bdev(ttm->bdev);
- 	device = nv_device(drm->device);
- 	dev = drm->dev;
-+	pdev = nv_device_base(device);
- 
- #if __OS_HAS_AGP
- 	if (drm->agp.stat == ENABLED) {
-@@ -1425,7 +1434,8 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
- 
- 	for (i = 0; i < ttm->num_pages; i++) {
- 		if (ttm_dma->dma_address[i]) {
--			nv_device_unmap_page(device, ttm_dma->dma_address[i]);
-+			dma_unmap_page(pdev, ttm_dma->dma_address[i], PAGE_SIZE,
-+				       DMA_BIDIRECTIONAL);
- 		}
- 	}
- 
-diff --git a/lib/core/os.h b/lib/core/os.h
-index 5f4f04fbff3d..596e083ffb36 100644
---- a/lib/core/os.h
-+++ b/lib/core/os.h
-@@ -644,7 +644,7 @@ dma_free_coherent(struct device *dev, size_t sz, void *vaddr, dma_addr_t bus)
-  *****************************************************************************/
- #include <pciaccess.h>
- 
--#define PCI_DMA_BIDIRECTIONAL 1
-+#define DMA_BIDIRECTIONAL 1
- 
- #define PCI_CAP_ID_AGP 0x02
- 
-@@ -688,7 +688,7 @@ pci_resource_len(struct pci_dev *pdev, int bar)
+-int
++drm_public int
+ nouveau_device_open(const char *busid, struct nouveau_device **pdev)
+ {
+ 	int ret = -ENODEV, fd = drmOpen("nouveau", busid);
+@@ -159,7 +159,7 @@ nouveau_device_open(const char *busid, struct nouveau_device **pdev)
+ 	return ret;
  }
  
- static inline dma_addr_t
--pci_map_page(struct pci_dev *pdev, struct page *page, int offset,
-+dma_map_page(struct device *pdev, struct page *page, int offset,
- 	     int length, unsigned flags)
+-void
++drm_public void
+ nouveau_device_del(struct nouveau_device **pdev)
  {
+ 	struct nouveau_device_priv *nvdev = nouveau_device(*pdev);
+@@ -173,7 +173,7 @@ nouveau_device_del(struct nouveau_device **pdev)
+ 	}
+ }
+ 
+-int
++drm_public int
+ nouveau_getparam(struct nouveau_device *dev, uint64_t param, uint64_t *value)
+ {
+ 	struct drm_nouveau_getparam r = { param, 0 };
+@@ -183,14 +183,14 @@ nouveau_getparam(struct nouveau_device *dev, uint64_t param, uint64_t *value)
+ 	return ret;
+ }
+ 
+-int
++drm_public int
+ nouveau_setparam(struct nouveau_device *dev, uint64_t param, uint64_t value)
+ {
+ 	struct drm_nouveau_setparam r = { param, value };
+ 	return drmCommandWrite(dev->fd, DRM_NOUVEAU_SETPARAM, &r, sizeof(r));
+ }
+ 
+-int
++drm_public int
+ nouveau_client_new(struct nouveau_device *dev, struct nouveau_client **pclient)
+ {
+ 	struct nouveau_device_priv *nvdev = nouveau_device(dev);
+@@ -229,7 +229,7 @@ unlock:
+ 	return ret;
+ }
+ 
+-void
++drm_public void
+ nouveau_client_del(struct nouveau_client **pclient)
+ {
+ 	struct nouveau_client_priv *pcli = nouveau_client(*pclient);
+@@ -245,7 +245,7 @@ nouveau_client_del(struct nouveau_client **pclient)
+ 	}
+ }
+ 
+-int
++drm_public int
+ nouveau_object_new(struct nouveau_object *parent, uint64_t handle,
+ 		   uint32_t oclass, void *data, uint32_t length,
+ 		   struct nouveau_object **pobj)
+@@ -307,7 +307,7 @@ nouveau_object_new(struct nouveau_object *parent, uint64_t handle,
  	return 0;
-@@ -696,13 +696,13 @@ pci_map_page(struct pci_dev *pdev, struct page *page, int offset,
- 
- 
- static inline bool
--pci_dma_mapping_error(struct pci_dev *pdev, dma_addr_t addr)
-+dma_mapping_error(struct device *pdev, dma_addr_t addr)
- {
- 	return true;
  }
  
- static inline void
--pci_unmap_page(struct pci_dev *pdev, dma_addr_t addr, int size, unsigned flags)
-+dma_unmap_page(struct device *pdev, dma_addr_t addr, int size, unsigned flags)
- {
- }
- 
-diff --git a/nvkm/engine/device/base.c b/nvkm/engine/device/base.c
-index 466dda2f7a3a..6c16dabe13b3 100644
---- a/nvkm/engine/device/base.c
-+++ b/nvkm/engine/device/base.c
-@@ -487,31 +487,6 @@ nv_device_resource_len(struct nouveau_device *device, unsigned int bar)
- 	}
- }
- 
--dma_addr_t
--nv_device_map_page(struct nouveau_device *device, struct page *page)
--{
--	dma_addr_t ret;
--
--	if (nv_device_is_pci(device)) {
--		ret = pci_map_page(device->pdev, page, 0, PAGE_SIZE,
--				   PCI_DMA_BIDIRECTIONAL);
--		if (pci_dma_mapping_error(device->pdev, ret))
--			ret = 0;
--	} else {
--		ret = page_to_phys(page);
--	}
--
--	return ret;
--}
--
 -void
--nv_device_unmap_page(struct nouveau_device *device, dma_addr_t addr)
--{
--	if (nv_device_is_pci(device))
--		pci_unmap_page(device->pdev, addr, PAGE_SIZE,
--			       PCI_DMA_BIDIRECTIONAL);
--}
--
- int
- nv_device_get_irq(struct nouveau_device *device, bool stall)
++drm_public void
+ nouveau_object_del(struct nouveau_object **pobj)
  {
-diff --git a/nvkm/include/core/device.h b/nvkm/include/core/device.h
-index 9ce2ee9aa32e..03c039dcc61f 100644
---- a/nvkm/include/core/device.h
-+++ b/nvkm/include/core/device.h
-@@ -174,12 +174,6 @@ nv_device_resource_start(struct nouveau_device *device, unsigned int bar);
- resource_size_t
- nv_device_resource_len(struct nouveau_device *device, unsigned int bar);
+ 	struct nouveau_object *obj = *pobj;
+@@ -331,7 +331,7 @@ nouveau_object_del(struct nouveau_object **pobj)
+ 	*pobj = NULL;
+ }
  
--dma_addr_t
--nv_device_map_page(struct nouveau_device *device, struct page *page);
--
+-void *
++drm_public void *
+ nouveau_object_find(struct nouveau_object *obj, uint32_t pclass)
+ {
+ 	while (obj && obj->oclass != pclass) {
+@@ -385,7 +385,7 @@ nouveau_bo_del(struct nouveau_bo *bo)
+ 	free(nvbo);
+ }
+ 
+-int
++drm_public int
+ nouveau_bo_new(struct nouveau_device *dev, uint32_t flags, uint32_t align,
+ 	       uint64_t size, union nouveau_bo_config *config,
+ 	       struct nouveau_bo **pbo)
+@@ -451,7 +451,7 @@ nouveau_bo_wrap_locked(struct nouveau_device *dev, uint32_t handle,
+ 	return -ENOMEM;
+ }
+ 
+-int
++drm_public int
+ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
+ 		struct nouveau_bo **pbo)
+ {
+@@ -463,7 +463,7 @@ nouveau_bo_wrap(struct nouveau_device *dev, uint32_t handle,
+ 	return ret;
+ }
+ 
+-int
++drm_public int
+ nouveau_bo_name_ref(struct nouveau_device *dev, uint32_t name,
+ 		    struct nouveau_bo **pbo)
+ {
+@@ -492,7 +492,7 @@ nouveau_bo_name_ref(struct nouveau_device *dev, uint32_t name,
+ 	return ret;
+ }
+ 
+-int
++drm_public int
+ nouveau_bo_name_get(struct nouveau_bo *bo, uint32_t *name)
+ {
+ 	struct drm_gem_flink req = { .handle = bo->handle };
+@@ -510,7 +510,7 @@ nouveau_bo_name_get(struct nouveau_bo *bo, uint32_t *name)
+ 	return 0;
+ }
+ 
 -void
--nv_device_unmap_page(struct nouveau_device *device, dma_addr_t addr);
--
- int
- nv_device_get_irq(struct nouveau_device *device, bool stall);
++drm_public void
+ nouveau_bo_ref(struct nouveau_bo *bo, struct nouveau_bo **pref)
+ {
+ 	struct nouveau_bo *ref = *pref;
+@@ -524,7 +524,7 @@ nouveau_bo_ref(struct nouveau_bo *bo, struct nouveau_bo **pref)
+ 	*pref = bo;
+ }
  
-diff --git a/nvkm/subdev/fb/nv50.c b/nvkm/subdev/fb/nv50.c
-index 1fc55c1e91a1..7d88e17fa927 100644
---- a/nvkm/subdev/fb/nv50.c
-+++ b/nvkm/subdev/fb/nv50.c
-@@ -250,7 +250,9 @@ nv50_fb_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+-int
++drm_public int
+ nouveau_bo_prime_handle_ref(struct nouveau_device *dev, int prime_fd,
+ 			    struct nouveau_bo **bo)
+ {
+@@ -553,7 +553,7 @@ nouveau_bo_prime_handle_ref(struct nouveau_device *dev, int prime_fd,
+ 	return ret;
+ }
  
- 	priv->r100c08_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
- 	if (priv->r100c08_page) {
--		priv->r100c08 = nv_device_map_page(device, priv->r100c08_page);
-+		priv->r100c08 = dma_map_page(nv_device_base(device),
-+					     priv->r100c08_page, 0, PAGE_SIZE,
-+					     DMA_BIDIRECTIONAL);
- 		if (!priv->r100c08)
- 			nv_warn(priv, "failed 0x100c08 page map\n");
- 	} else {
-@@ -268,7 +270,8 @@ nv50_fb_dtor(struct nouveau_object *object)
- 	struct nv50_fb_priv *priv = (void *)object;
+-int
++drm_public int
+ nouveau_bo_set_prime(struct nouveau_bo *bo, int *prime_fd)
+ {
+ 	struct nouveau_bo_priv *nvbo = nouveau_bo(bo);
+@@ -567,7 +567,7 @@ nouveau_bo_set_prime(struct nouveau_bo *bo, int *prime_fd)
+ 	return 0;
+ }
  
- 	if (priv->r100c08_page) {
--		nv_device_unmap_page(device, priv->r100c08);
-+		dma_unmap_page(nv_device_base(device), priv->r100c08, PAGE_SIZE,
-+			       DMA_BIDIRECTIONAL);
- 		__free_page(priv->r100c08_page);
+-int
++drm_public int
+ nouveau_bo_wait(struct nouveau_bo *bo, uint32_t access,
+ 		struct nouveau_client *client)
+ {
+@@ -601,7 +601,7 @@ nouveau_bo_wait(struct nouveau_bo *bo, uint32_t access,
+ 	return ret;
+ }
+ 
+-int
++drm_public int
+ nouveau_bo_map(struct nouveau_bo *bo, uint32_t access,
+ 	       struct nouveau_client *client)
+ {
+diff --git a/nouveau/private.h b/nouveau/private.h
+index 4f337ad..bf9db04 100644
+--- a/nouveau/private.h
++++ b/nouveau/private.h
+@@ -1,6 +1,7 @@
+ #ifndef __NOUVEAU_LIBDRM_PRIVATE_H__
+ #define __NOUVEAU_LIBDRM_PRIVATE_H__
+ 
++#include <libdrm.h>
+ #include <xf86drm.h>
+ #include <xf86atomic.h>
+ #include <pthread.h>
+diff --git a/nouveau/pushbuf.c b/nouveau/pushbuf.c
+index 4f77881..6e703a4 100644
+--- a/nouveau/pushbuf.c
++++ b/nouveau/pushbuf.c
+@@ -529,7 +529,7 @@ pushbuf_validate(struct nouveau_pushbuf *push, bool retry)
+ 	return ret;
+ }
+ 
+-int
++drm_public int
+ nouveau_pushbuf_new(struct nouveau_client *client, struct nouveau_object *chan,
+ 		    int nr, uint32_t size, bool immediate,
+ 		    struct nouveau_pushbuf **ppush)
+@@ -600,7 +600,7 @@ nouveau_pushbuf_new(struct nouveau_client *client, struct nouveau_object *chan,
+ 	return 0;
+ }
+ 
+-void
++drm_public void
+ nouveau_pushbuf_del(struct nouveau_pushbuf **ppush)
+ {
+ 	struct nouveau_pushbuf_priv *nvpb = nouveau_pushbuf(*ppush);
+@@ -626,7 +626,7 @@ nouveau_pushbuf_del(struct nouveau_pushbuf **ppush)
+ 	*ppush = NULL;
+ }
+ 
+-struct nouveau_bufctx *
++drm_public struct nouveau_bufctx *
+ nouveau_pushbuf_bufctx(struct nouveau_pushbuf *push, struct nouveau_bufctx *ctx)
+ {
+ 	struct nouveau_bufctx *prev = push->bufctx;
+@@ -634,7 +634,7 @@ nouveau_pushbuf_bufctx(struct nouveau_pushbuf *push, struct nouveau_bufctx *ctx)
+ 	return prev;
+ }
+ 
+-int
++drm_public int
+ nouveau_pushbuf_space(struct nouveau_pushbuf *push,
+ 		      uint32_t dwords, uint32_t relocs, uint32_t pushes)
+ {
+@@ -698,7 +698,7 @@ nouveau_pushbuf_space(struct nouveau_pushbuf *push,
+ 	return flushed ? pushbuf_validate(push, false) : 0;
+ }
+ 
+-void
++drm_public void
+ nouveau_pushbuf_data(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
+ 		     uint64_t offset, uint64_t length)
+ {
+@@ -728,14 +728,14 @@ nouveau_pushbuf_data(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
  	}
+ }
  
-diff --git a/nvkm/subdev/fb/nvc0.c b/nvkm/subdev/fb/nvc0.c
-index 0670ae33ee45..9f5f3ac8d4c6 100644
---- a/nvkm/subdev/fb/nvc0.c
-+++ b/nvkm/subdev/fb/nvc0.c
-@@ -70,7 +70,8 @@ nvc0_fb_dtor(struct nouveau_object *object)
- 	struct nvc0_fb_priv *priv = (void *)object;
+-int
++drm_public int
+ nouveau_pushbuf_refn(struct nouveau_pushbuf *push,
+ 		     struct nouveau_pushbuf_refn *refs, int nr)
+ {
+ 	return pushbuf_refn(push, true, refs, nr);
+ }
  
- 	if (priv->r100c10_page) {
--		nv_device_unmap_page(device, priv->r100c10);
-+		dma_unmap_page(nv_device_base(device), priv->r100c10, PAGE_SIZE,
-+			       DMA_BIDIRECTIONAL);
- 		__free_page(priv->r100c10_page);
- 	}
+-void
++drm_public void
+ nouveau_pushbuf_reloc(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
+ 		      uint32_t data, uint32_t flags, uint32_t vor, uint32_t tor)
+ {
+@@ -743,13 +743,13 @@ nouveau_pushbuf_reloc(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
+ 	push->cur++;
+ }
  
-@@ -93,7 +94,9 @@ nvc0_fb_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+-int
++drm_public int
+ nouveau_pushbuf_validate(struct nouveau_pushbuf *push)
+ {
+ 	return pushbuf_validate(push, true);
+ }
  
- 	priv->r100c10_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
- 	if (priv->r100c10_page) {
--		priv->r100c10 = nv_device_map_page(device, priv->r100c10_page);
-+		priv->r100c10 = dma_map_page(nv_device_base(device),
-+					     priv->r100c10_page, 0, PAGE_SIZE,
-+					     DMA_BIDIRECTIONAL);
- 		if (!priv->r100c10)
- 			return -EFAULT;
- 	}
+-uint32_t
++drm_public uint32_t
+ nouveau_pushbuf_refd(struct nouveau_pushbuf *push, struct nouveau_bo *bo)
+ {
+ 	struct drm_nouveau_gem_pushbuf_bo *kref;
+@@ -766,7 +766,7 @@ nouveau_pushbuf_refd(struct nouveau_pushbuf *push, struct nouveau_bo *bo)
+ 	return flags;
+ }
+ 
+-int
++drm_public int
+ nouveau_pushbuf_kick(struct nouveau_pushbuf *push, struct nouveau_object *chan)
+ {
+ 	if (!push->channel)
 -- 
-2.0.3
+2.0.0
