@@ -1,275 +1,126 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: [PATCH 09/19] drm/radeon: handle lockup in delayed work,
-	v2
-Date: Thu, 31 Jul 2014 17:33:42 +0200
-Message-ID: <20140731153342.15061.54264.stgit@patser>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: [PATCH 10/19] drm/radeon: add timeout argument to
+ radeon_fence_wait_seq
+Date: Thu, 31 Jul 2014 17:33:49 +0200
+Message-ID: <20140731153349.15061.6227.stgit@patser>
 References: <20140731153245.15061.63023.stgit@patser>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
 In-Reply-To: <20140731153245.15061.63023.stgit@patser>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: airlied-cv59FeDIM0c@public.gmane.org
-Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: airlied@linux.ie
+Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
----
-V1 had a nasty bug breaking gpu lockup recovery. The fix is not
-allowing radeon_fence_driver_check_lockup to take exclusive_lock,
-and kill it during lockup recovery instead.
----
- drivers/gpu/drm/radeon/radeon.h        |    3 +
- drivers/gpu/drm/radeon/radeon_device.c |    5 +
- drivers/gpu/drm/radeon/radeon_fence.c  |  124 ++++++++++++++++++--------------
- drivers/gpu/drm/radeon/radeon_ring.c   |    1 
- 4 files changed, 77 insertions(+), 56 deletions(-)
-
-diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
-index 60c47f829122..b01d88fc10cb 100644
---- a/drivers/gpu/drm/radeon/radeon.h
-+++ b/drivers/gpu/drm/radeon/radeon.h
-@@ -347,6 +347,8 @@ struct radeon_fence_driver {
- 	uint64_t			sync_seq[RADEON_NUM_RINGS];
- 	atomic64_t			last_seq;
- 	bool				initialized;
-+	struct delayed_work	fence_check_work;
-+	struct radeon_device	*rdev;
- };
- 
- struct radeon_fence {
-@@ -360,6 +362,7 @@ struct radeon_fence {
- 
- int radeon_fence_driver_start_ring(struct radeon_device *rdev, int ring);
- int radeon_fence_driver_init(struct radeon_device *rdev);
-+void radeon_fence_cancel_delayed_check(struct radeon_device *rdev, int ring);
- void radeon_fence_driver_fini(struct radeon_device *rdev);
- void radeon_fence_driver_force_completion(struct radeon_device *rdev);
- int radeon_fence_emit(struct radeon_device *rdev, struct radeon_fence **fence, int ring);
-diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-index 697add2cd4e3..21efd32d07ee 100644
---- a/drivers/gpu/drm/radeon/radeon_device.c
-+++ b/drivers/gpu/drm/radeon/radeon_device.c
-@@ -1637,6 +1637,11 @@ int radeon_gpu_reset(struct radeon_device *rdev)
- 	radeon_save_bios_scratch_regs(rdev);
- 	/* block TTM */
- 	resched = ttm_bo_lock_delayed_workqueue(&rdev->mman.bdev);
-+
-+	/* kill all the hangcheck tests too */
-+	for (i = 0; i < RADEON_NUM_RINGS; ++i)
-+		radeon_fence_cancel_delayed_check(rdev, i);
-+
- 	radeon_pm_suspend(rdev);
- 	radeon_suspend(rdev);
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
-index 913787085dfa..c055acc3a271 100644
---- a/drivers/gpu/drm/radeon/radeon_fence.c
-+++ b/drivers/gpu/drm/radeon/radeon_fence.c
-@@ -125,16 +125,7 @@ int radeon_fence_emit(struct radeon_device *rdev,
- 	return 0;
- }
- 
--/**
-- * radeon_fence_process - process a fence
-- *
-- * @rdev: radeon_device pointer
-- * @ring: ring index the fence is associated with
-- *
-- * Checks the current fence value and wakes the fence queue
-- * if the sequence number has increased (all asics).
-- */
--void radeon_fence_process(struct radeon_device *rdev, int ring)
-+static bool __radeon_fence_process(struct radeon_device *rdev, int ring)
- {
- 	uint64_t seq, last_seq, last_emitted;
- 	unsigned count_loop = 0;
-@@ -190,7 +181,51 @@ void radeon_fence_process(struct radeon_device *rdev, int ring)
- 		}
- 	} while (atomic64_xchg(&rdev->fence_drv[ring].last_seq, seq) > seq);
- 
--	if (wake)
-+	if (seq < last_emitted)
-+		mod_delayed_work(system_power_efficient_wq,
-+				 &rdev->fence_drv[ring].fence_check_work,
-+				 RADEON_FENCE_JIFFIES_TIMEOUT);
-+
-+	return wake;
-+}
-+
-+static void radeon_fence_driver_check_lockup(struct work_struct *work)
-+{
-+	struct radeon_fence_driver *fence_drv;
-+	struct radeon_device *rdev;
-+	unsigned long iring;
-+
-+	fence_drv = container_of(work, struct radeon_fence_driver, fence_check_work.work);
-+	rdev = fence_drv->rdev;
-+	iring = fence_drv - &rdev->fence_drv[0];
-+
-+	if (__radeon_fence_process(rdev, iring))
-+		wake_up_all(&rdev->fence_queue);
-+	else if (radeon_ring_is_lockup(rdev, iring, &rdev->ring[iring])) {
-+		/* good news we believe it's a lockup */
-+		dev_warn(rdev->dev, "GPU lockup (current fence id "
-+			 "0x%016llx last fence id 0x%016llx on ring %ld)\n",
-+			 (uint64_t)atomic64_read(&fence_drv->last_seq),
-+			 fence_drv->sync_seq[iring], iring);
-+
-+		/* remember that we need an reset */
-+		rdev->needs_reset = true;
-+		wake_up_all(&rdev->fence_queue);
-+	}
-+}
-+
-+/**
-+ * radeon_fence_process - process a fence
-+ *
-+ * @rdev: radeon_device pointer
-+ * @ring: ring index the fence is associated with
-+ *
-+ * Checks the current fence value and wakes the fence queue
-+ * if the sequence number has increased (all asics).
-+ */
-+void radeon_fence_process(struct radeon_device *rdev, int ring)
-+{
-+	if (__radeon_fence_process(rdev, ring))
- 		wake_up_all(&rdev->fence_queue);
- }
- 
-@@ -302,9 +337,10 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
- {
- 	uint64_t last_seq[RADEON_NUM_RINGS];
- 	bool signaled;
--	int i, r;
-+	int i;
- 
- 	while (!radeon_fence_any_seq_signaled(rdev, target_seq)) {
-+		long r;
- 
- 		/* Save current sequence values, used to check for GPU lockups */
- 		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
-@@ -319,11 +355,11 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
- 		if (intr) {
- 			r = wait_event_interruptible_timeout(rdev->fence_queue, (
- 				(signaled = radeon_fence_any_seq_signaled(rdev, target_seq))
--				 || rdev->needs_reset), RADEON_FENCE_JIFFIES_TIMEOUT);
-+				 || rdev->needs_reset), MAX_SCHEDULE_TIMEOUT);
- 		} else {
- 			r = wait_event_timeout(rdev->fence_queue, (
- 				(signaled = radeon_fence_any_seq_signaled(rdev, target_seq))
--				 || rdev->needs_reset), RADEON_FENCE_JIFFIES_TIMEOUT);
-+				 || rdev->needs_reset), MAX_SCHEDULE_TIMEOUT);
- 		}
- 
- 		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
-@@ -334,50 +370,11 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
- 			trace_radeon_fence_wait_end(rdev->ddev, i, target_seq[i]);
- 		}
- 
--		if (unlikely(r < 0))
-+		if (r < 0)
- 			return r;
- 
--		if (unlikely(!signaled)) {
--			if (rdev->needs_reset)
--				return -EDEADLK;
--
--			/* we were interrupted for some reason and fence
--			 * isn't signaled yet, resume waiting */
--			if (r)
--				continue;
--
--			for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--				if (!target_seq[i])
--					continue;
--
--				if (last_seq[i] != atomic64_read(&rdev->fence_drv[i].last_seq))
--					break;
--			}
--
--			if (i != RADEON_NUM_RINGS)
--				continue;
--
--			for (i = 0; i < RADEON_NUM_RINGS; ++i) {
--				if (!target_seq[i])
--					continue;
--
--				if (radeon_ring_is_lockup(rdev, i, &rdev->ring[i]))
--					break;
--			}
--
--			if (i < RADEON_NUM_RINGS) {
--				/* good news we believe it's a lockup */
--				dev_warn(rdev->dev, "GPU lockup (waiting for "
--					 "0x%016llx last fence id 0x%016llx on"
--					 " ring %d)\n",
--					 target_seq[i], last_seq[i], i);
--
--				/* remember that we need an reset */
--				rdev->needs_reset = true;
--				wake_up_all(&rdev->fence_queue);
--				return -EDEADLK;
--			}
--		}
-+		if (rdev->needs_reset)
-+			return -EDEADLK;
- 	}
- 	return 0;
- }
-@@ -711,6 +708,8 @@ static void radeon_fence_driver_init_ring(struct radeon_device *rdev, int ring)
- 		rdev->fence_drv[ring].sync_seq[i] = 0;
- 	atomic64_set(&rdev->fence_drv[ring].last_seq, 0);
- 	rdev->fence_drv[ring].initialized = false;
-+	INIT_DELAYED_WORK(&rdev->fence_drv[ring].fence_check_work, radeon_fence_driver_check_lockup);
-+	rdev->fence_drv[ring].rdev = rdev;
- }
- 
- /**
-@@ -740,6 +739,17 @@ int radeon_fence_driver_init(struct radeon_device *rdev)
- }
- 
- /**
-+ * radeon_fence_cancel_delayed_check - cancel all delayed checks on a ring during lockup
-+ *
-+ * This prevents the lockup check from being done while suspend is running
-+ * during a recovery from a lockup.
-+ */
-+void radeon_fence_cancel_delayed_check(struct radeon_device *rdev, int ring)
-+{
-+	cancel_delayed_work_sync(&rdev->fence_drv[ring].fence_check_work);
-+}
-+
-+/**
-  * radeon_fence_driver_fini - tear down the fence driver
-  * for all possible rings.
-  *
-@@ -755,6 +765,8 @@ void radeon_fence_driver_fini(struct radeon_device *rdev)
- 	for (ring = 0; ring < RADEON_NUM_RINGS; ring++) {
- 		if (!rdev->fence_drv[ring].initialized)
- 			continue;
-+
-+		cancel_delayed_work_sync(&rdev->fence_drv[ring].fence_check_work);
- 		r = radeon_fence_wait_empty(rdev, ring);
- 		if (r) {
- 			/* no need to trigger GPU reset as we are unloading */
-diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
-index f8050f5429e2..594d871a6fce 100644
---- a/drivers/gpu/drm/radeon/radeon_ring.c
-+++ b/drivers/gpu/drm/radeon/radeon_ring.c
-@@ -261,6 +261,7 @@ int radeon_ib_ring_tests(struct radeon_device *rdev)
- 
- 		r = radeon_ib_test(rdev, i, ring);
- 		if (r) {
-+			radeon_fence_cancel_delayed_check(rdev, i);
- 			ring->ready = false;
- 			rdev->needs_reset = false;
+VGhpcyBtYWtlcyBpdCBwb3NzaWJsZSB0byB3YWl0IGZvciBhIHNwZWNpZmljIGFtb3VudCBvZiB0
+aW1lLApyYXRoZXIgdGhhbiB3YWl0IHVudGlsIGluZmluaXR5LgoKU2lnbmVkLW9mZi1ieTogTWFh
+cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGNhbm9uaWNhbC5jb20+ClJldmlld2Vk
+LWJ5OiBDaHJpc3RpYW4gS8O2bmlnIDxkZWF0aHNpbXBsZUB2b2RhZm9uZS5kZT4KLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jIHwgICA1MCArKysrKysrKysrKysrKysr
+KysrKy0tLS0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspLCAyMCBk
+ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9m
+ZW5jZS5jIGIvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZmVuY2UuYwppbmRleCBjMDU1
+YWNjM2EyNzEuLmY3OWUwYjM0NTgyYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVv
+bi9yYWRlb25fZmVuY2UuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mZW5j
+ZS5jCkBAIC0zMTgsMjIgKzMxOCwyNSBAQCBzdGF0aWMgYm9vbCByYWRlb25fZmVuY2VfYW55X3Nl
+cV9zaWduYWxlZChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwgdTY0ICpzZXEpCiB9CiAKIC8q
+KgotICogcmFkZW9uX2ZlbmNlX3dhaXRfc2VxIC0gd2FpdCBmb3IgYSBzcGVjaWZpYyBzZXF1ZW5j
+ZSBudW1iZXJzCisgKiByYWRlb25fZmVuY2Vfd2FpdF9zZXFfdGltZW91dCAtIHdhaXQgZm9yIGEg
+c3BlY2lmaWMgc2VxdWVuY2UgbnVtYmVycwogICoKICAqIEByZGV2OiByYWRlb24gZGV2aWNlIHBv
+aW50ZXIKICAqIEB0YXJnZXRfc2VxOiBzZXF1ZW5jZSBudW1iZXIocykgd2Ugd2FudCB0byB3YWl0
+IGZvcgogICogQGludHI6IHVzZSBpbnRlcnJ1cHRhYmxlIHNsZWVwCisgKiBAdGltZW91dDogbWF4
+aW11bSB0aW1lIHRvIHdhaXQsIG9yIE1BWF9TQ0hFRFVMRV9USU1FT1VUIGZvciBpbmZpbml0ZSB3
+YWl0CiAgKgogICogV2FpdCBmb3IgdGhlIHJlcXVlc3RlZCBzZXF1ZW5jZSBudW1iZXIocykgdG8g
+YmUgd3JpdHRlbiBieSBhbnkgcmluZwogICogKGFsbCBhc2ljcykuICBTZXF1bmNlIG51bWJlciBh
+cnJheSBpcyBpbmRleGVkIGJ5IHJpbmcgaWQuCiAgKiBAaW50ciBzZWxlY3RzIHdoZXRoZXIgdG8g
+dXNlIGludGVycnVwdGFibGUgKHRydWUpIG9yIG5vbi1pbnRlcnJ1cHRhYmxlCiAgKiAoZmFsc2Up
+IHNsZWVwIHdoZW4gd2FpdGluZyBmb3IgdGhlIHNlcXVlbmNlIG51bWJlci4gIEhlbHBlciBmdW5j
+dGlvbgogICogZm9yIHJhZGVvbl9mZW5jZV93YWl0XyooKS4KLSAqIFJldHVybnMgMCBpZiB0aGUg
+c2VxdWVuY2UgbnVtYmVyIGhhcyBwYXNzZWQsIGVycm9yIGZvciBhbGwgb3RoZXIgY2FzZXMuCisg
+KiBSZXR1cm5zIHJlbWFpbmluZyB0aW1lIGlmIHRoZSBzZXF1ZW5jZSBudW1iZXIgaGFzIHBhc3Nl
+ZCwgMCB3aGVuCisgKiB0aGUgd2FpdCB0aW1lb3V0LCBvciBhbiBlcnJvciBmb3IgYWxsIG90aGVy
+IGNhc2VzLgogICogLUVERUFETEsgaXMgcmV0dXJuZWQgd2hlbiBhIEdQVSBsb2NrdXAgaGFzIGJl
+ZW4gZGV0ZWN0ZWQuCiAgKi8KLXN0YXRpYyBpbnQgcmFkZW9uX2ZlbmNlX3dhaXRfc2VxKHN0cnVj
+dCByYWRlb25fZGV2aWNlICpyZGV2LCB1NjQgKnRhcmdldF9zZXEsCi0JCQkJIGJvb2wgaW50cikK
+K3N0YXRpYyBsb25nIHJhZGVvbl9mZW5jZV93YWl0X3NlcV90aW1lb3V0KHN0cnVjdCByYWRlb25f
+ZGV2aWNlICpyZGV2LAorCQkJCQkgIHU2NCAqdGFyZ2V0X3NlcSwgYm9vbCBpbnRyLAorCQkJCQkg
+IGxvbmcgdGltZW91dCkKIHsKIAl1aW50NjRfdCBsYXN0X3NlcVtSQURFT05fTlVNX1JJTkdTXTsK
+IAlib29sIHNpZ25hbGVkOwpAQCAtMzU1LDExICszNTgsMTEgQEAgc3RhdGljIGludCByYWRlb25f
+ZmVuY2Vfd2FpdF9zZXEoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYsIHU2NCAqdGFyZ2V0X3Nl
+cSwKIAkJaWYgKGludHIpIHsKIAkJCXIgPSB3YWl0X2V2ZW50X2ludGVycnVwdGlibGVfdGltZW91
+dChyZGV2LT5mZW5jZV9xdWV1ZSwgKAogCQkJCShzaWduYWxlZCA9IHJhZGVvbl9mZW5jZV9hbnlf
+c2VxX3NpZ25hbGVkKHJkZXYsIHRhcmdldF9zZXEpKQotCQkJCSB8fCByZGV2LT5uZWVkc19yZXNl
+dCksIE1BWF9TQ0hFRFVMRV9USU1FT1VUKTsKKwkJCQkgfHwgcmRldi0+bmVlZHNfcmVzZXQpLCB0
+aW1lb3V0KTsKIAkJfSBlbHNlIHsKIAkJCXIgPSB3YWl0X2V2ZW50X3RpbWVvdXQocmRldi0+ZmVu
+Y2VfcXVldWUsICgKIAkJCQkoc2lnbmFsZWQgPSByYWRlb25fZmVuY2VfYW55X3NlcV9zaWduYWxl
+ZChyZGV2LCB0YXJnZXRfc2VxKSkKLQkJCQkgfHwgcmRldi0+bmVlZHNfcmVzZXQpLCBNQVhfU0NI
+RURVTEVfVElNRU9VVCk7CisJCQkJIHx8IHJkZXYtPm5lZWRzX3Jlc2V0KSwgdGltZW91dCk7CiAJ
+CX0KIAogCQlmb3IgKGkgPSAwOyBpIDwgUkFERU9OX05VTV9SSU5HUzsgKytpKSB7CkBAIC0zNzAs
+MjAgKzM3MywyMiBAQCBzdGF0aWMgaW50IHJhZGVvbl9mZW5jZV93YWl0X3NlcShzdHJ1Y3QgcmFk
+ZW9uX2RldmljZSAqcmRldiwgdTY0ICp0YXJnZXRfc2VxLAogCQkJdHJhY2VfcmFkZW9uX2ZlbmNl
+X3dhaXRfZW5kKHJkZXYtPmRkZXYsIGksIHRhcmdldF9zZXFbaV0pOwogCQl9CiAKLQkJaWYgKHIg
+PCAwKQorCQlpZiAociA8PSAwKQogCQkJcmV0dXJuIHI7CiAKIAkJaWYgKHJkZXYtPm5lZWRzX3Jl
+c2V0KQogCQkJcmV0dXJuIC1FREVBRExLOworCisJCXRpbWVvdXQgPSByOwogCX0KLQlyZXR1cm4g
+MDsKKwlyZXR1cm4gdGltZW91dDsKIH0KIAogLyoqCiAgKiByYWRlb25fZmVuY2Vfd2FpdCAtIHdh
+aXQgZm9yIGEgZmVuY2UgdG8gc2lnbmFsCiAgKgogICogQGZlbmNlOiByYWRlb24gZmVuY2Ugb2Jq
+ZWN0Ci0gKiBAaW50cjogdXNlIGludGVycnVwdGFibGUgc2xlZXAKKyAqIEBpbnRyOiB1c2UgaW50
+ZXJydXB0aWJsZSBzbGVlcAogICoKICAqIFdhaXQgZm9yIHRoZSByZXF1ZXN0ZWQgZmVuY2UgdG8g
+c2lnbmFsIChhbGwgYXNpY3MpLgogICogQGludHIgc2VsZWN0cyB3aGV0aGVyIHRvIHVzZSBpbnRl
+cnJ1cHRhYmxlICh0cnVlKSBvciBub24taW50ZXJydXB0YWJsZQpAQCAtMzkzLDcgKzM5OCw3IEBA
+IHN0YXRpYyBpbnQgcmFkZW9uX2ZlbmNlX3dhaXRfc2VxKHN0cnVjdCByYWRlb25fZGV2aWNlICpy
+ZGV2LCB1NjQgKnRhcmdldF9zZXEsCiBpbnQgcmFkZW9uX2ZlbmNlX3dhaXQoc3RydWN0IHJhZGVv
+bl9mZW5jZSAqZmVuY2UsIGJvb2wgaW50cikKIHsKIAl1aW50NjRfdCBzZXFbUkFERU9OX05VTV9S
+SU5HU10gPSB7fTsKLQlpbnQgcjsKKwlsb25nIHI7CiAKIAlpZiAoZmVuY2UgPT0gTlVMTCkgewog
+CQlXQVJOKDEsICJRdWVyeWluZyBhbiBpbnZhbGlkIGZlbmNlIDogJXAgIVxuIiwgZmVuY2UpOwpA
+QCAtNDA0LDkgKzQwOSwxMCBAQCBpbnQgcmFkZW9uX2ZlbmNlX3dhaXQoc3RydWN0IHJhZGVvbl9m
+ZW5jZSAqZmVuY2UsIGJvb2wgaW50cikKIAlpZiAoc2VxW2ZlbmNlLT5yaW5nXSA9PSBSQURFT05f
+RkVOQ0VfU0lHTkFMRURfU0VRKQogCQlyZXR1cm4gMDsKIAotCXIgPSByYWRlb25fZmVuY2Vfd2Fp
+dF9zZXEoZmVuY2UtPnJkZXYsIHNlcSwgaW50cik7Ci0JaWYgKHIpCisJciA9IHJhZGVvbl9mZW5j
+ZV93YWl0X3NlcV90aW1lb3V0KGZlbmNlLT5yZGV2LCBzZXEsIGludHIsIE1BWF9TQ0hFRFVMRV9U
+SU1FT1VUKTsKKwlpZiAociA8IDApIHsKIAkJcmV0dXJuIHI7CisJfQogCiAJZmVuY2UtPnNlcSA9
+IFJBREVPTl9GRU5DRV9TSUdOQUxFRF9TRVE7CiAJcmV0dXJuIDA7CkBAIC00MzEsNyArNDM3LDcg
+QEAgaW50IHJhZGVvbl9mZW5jZV93YWl0X2FueShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwK
+IHsKIAl1aW50NjRfdCBzZXFbUkFERU9OX05VTV9SSU5HU107CiAJdW5zaWduZWQgaSwgbnVtX3Jp
+bmdzID0gMDsKLQlpbnQgcjsKKwlsb25nIHI7CiAKIAlmb3IgKGkgPSAwOyBpIDwgUkFERU9OX05V
+TV9SSU5HUzsgKytpKSB7CiAJCXNlcVtpXSA9IDA7CkBAIC00NTIsOCArNDU4LDggQEAgaW50IHJh
+ZGVvbl9mZW5jZV93YWl0X2FueShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwKIAlpZiAobnVt
+X3JpbmdzID09IDApCiAJCXJldHVybiAtRU5PRU5UOwogCi0JciA9IHJhZGVvbl9mZW5jZV93YWl0
+X3NlcShyZGV2LCBzZXEsIGludHIpOwotCWlmIChyKSB7CisJciA9IHJhZGVvbl9mZW5jZV93YWl0
+X3NlcV90aW1lb3V0KHJkZXYsIHNlcSwgaW50ciwgTUFYX1NDSEVEVUxFX1RJTUVPVVQpOworCWlm
+IChyIDwgMCkgewogCQlyZXR1cm4gcjsKIAl9CiAJcmV0dXJuIDA7CkBAIC00NzIsNiArNDc4LDcg
+QEAgaW50IHJhZGVvbl9mZW5jZV93YWl0X2FueShzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwK
+IGludCByYWRlb25fZmVuY2Vfd2FpdF9uZXh0KHN0cnVjdCByYWRlb25fZGV2aWNlICpyZGV2LCBp
+bnQgcmluZykKIHsKIAl1aW50NjRfdCBzZXFbUkFERU9OX05VTV9SSU5HU10gPSB7fTsKKwlsb25n
+IHI7CiAKIAlzZXFbcmluZ10gPSBhdG9taWM2NF9yZWFkKCZyZGV2LT5mZW5jZV9kcnZbcmluZ10u
+bGFzdF9zZXEpICsgMVVMTDsKIAlpZiAoc2VxW3JpbmddID49IHJkZXYtPmZlbmNlX2RydltyaW5n
+XS5zeW5jX3NlcVtyaW5nXSkgewpAQCAtNDc5LDcgKzQ4NiwxMCBAQCBpbnQgcmFkZW9uX2ZlbmNl
+X3dhaXRfbmV4dChzdHJ1Y3QgcmFkZW9uX2RldmljZSAqcmRldiwgaW50IHJpbmcpCiAJCSAgIGFs
+cmVhZHkgdGhlIGxhc3QgZW1pdGVkIGZlbmNlICovCiAJCXJldHVybiAtRU5PRU5UOwogCX0KLQly
+ZXR1cm4gcmFkZW9uX2ZlbmNlX3dhaXRfc2VxKHJkZXYsIHNlcSwgZmFsc2UpOworCXIgPSByYWRl
+b25fZmVuY2Vfd2FpdF9zZXFfdGltZW91dChyZGV2LCBzZXEsIGZhbHNlLCBNQVhfU0NIRURVTEVf
+VElNRU9VVCk7CisJaWYgKHIgPCAwKQorCQlyZXR1cm4gcjsKKwlyZXR1cm4gMDsKIH0KIAogLyoq
+CkBAIC00OTUsMTggKzUwNSwxOCBAQCBpbnQgcmFkZW9uX2ZlbmNlX3dhaXRfbmV4dChzdHJ1Y3Qg
+cmFkZW9uX2RldmljZSAqcmRldiwgaW50IHJpbmcpCiBpbnQgcmFkZW9uX2ZlbmNlX3dhaXRfZW1w
+dHkoc3RydWN0IHJhZGVvbl9kZXZpY2UgKnJkZXYsIGludCByaW5nKQogewogCXVpbnQ2NF90IHNl
+cVtSQURFT05fTlVNX1JJTkdTXSA9IHt9OwotCWludCByOworCWxvbmcgcjsKIAogCXNlcVtyaW5n
+XSA9IHJkZXYtPmZlbmNlX2RydltyaW5nXS5zeW5jX3NlcVtyaW5nXTsKIAlpZiAoIXNlcVtyaW5n
+XSkKIAkJcmV0dXJuIDA7CiAKLQlyID0gcmFkZW9uX2ZlbmNlX3dhaXRfc2VxKHJkZXYsIHNlcSwg
+ZmFsc2UpOwotCWlmIChyKSB7CisJciA9IHJhZGVvbl9mZW5jZV93YWl0X3NlcV90aW1lb3V0KHJk
+ZXYsIHNlcSwgZmFsc2UsIE1BWF9TQ0hFRFVMRV9USU1FT1VUKTsKKwlpZiAociA8IDApIHsKIAkJ
+aWYgKHIgPT0gLUVERUFETEspCiAJCQlyZXR1cm4gLUVERUFETEs7CiAKLQkJZGV2X2VycihyZGV2
+LT5kZXYsICJlcnJvciB3YWl0aW5nIGZvciByaW5nWyVkXSB0byBiZWNvbWUgaWRsZSAoJWQpXG4i
+LAorCQlkZXZfZXJyKHJkZXYtPmRldiwgImVycm9yIHdhaXRpbmcgZm9yIHJpbmdbJWRdIHRvIGJl
+Y29tZSBpZGxlICglbGQpXG4iLAogCQkJcmluZywgcik7CiAJfQogCXJldHVybiAwOwoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxp
+bmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
