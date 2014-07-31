@@ -1,79 +1,71 @@
-From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
-Subject: [PATCH 16/19] drm/nouveau: use rcu in nouveau_gem_ioctl_cpu_prep
-Date: Thu, 31 Jul 2014 17:34:26 +0200
-Message-ID: <20140731153426.15061.43806.stgit@patser>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: [PATCH 17/19] drm/radeon: use rcu waits in some ioctls
+Date: Thu, 31 Jul 2014 17:34:32 +0200
+Message-ID: <20140731153432.15061.49403.stgit@patser>
 References: <20140731153245.15061.63023.stgit@patser>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <20140731153245.15061.63023.stgit@patser>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: airlied@linux.ie
-Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com, christian.koenig@amd.com
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: airlied-cv59FeDIM0c@public.gmane.org
+Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org, christian.koenig-5C7GfCeVMHo@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-With the conversion to the reservation api this should be safe.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_gem.c |   28 ++++++++++++----------------
- 1 file changed, 12 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/radeon/radeon_gem.c |   19 ++++++++++++++-----
+ 1 file changed, 14 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 0a1fee7eb211..b24a6fe6c601 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -863,33 +863,29 @@ nouveau_gem_ioctl_cpu_prep(struct drm_device *dev, void *data,
- 	struct drm_gem_object *gem;
- 	struct nouveau_bo *nvbo;
- 	bool no_wait = !!(req->flags & NOUVEAU_GEM_CPU_PREP_NOWAIT);
-+	bool write = !!(req->flags & NOUVEAU_GEM_CPU_PREP_WRITE);
- 	int ret;
--	struct nouveau_fence *fence = NULL;
- 
- 	gem = drm_gem_object_lookup(dev, file_priv, req->handle);
- 	if (!gem)
- 		return -ENOENT;
- 	nvbo = nouveau_gem_object(gem);
- 
--	ret = ttm_bo_reserve(&nvbo->bo, true, false, false, 0);
--	if (!ret) {
--		ret = ttm_bo_wait(&nvbo->bo, true, true, true);
--		if (!no_wait && ret) {
--			struct fence *excl;
--
--			excl = reservation_object_get_excl(nvbo->bo.resv);
--			fence = nouveau_fence_ref((struct nouveau_fence *)excl);
--		}
-+	if (no_wait)
-+		ret = reservation_object_test_signaled_rcu(nvbo->bo.resv, write) ? 0 : -EBUSY;
-+	else {
-+		long lret;
- 
--		ttm_bo_unreserve(&nvbo->bo);
-+		lret = reservation_object_wait_timeout_rcu(nvbo->bo.resv, write, true, 30 * HZ);
-+		if (!lret)
-+			ret = -EBUSY;
-+		else if (lret > 0)
-+			ret = 0;
-+		else
-+			ret = lret;
+diff --git a/drivers/gpu/drm/radeon/radeon_gem.c b/drivers/gpu/drm/radeon/radeon_gem.c
+index d09650c1d720..7ba883843668 100644
+--- a/drivers/gpu/drm/radeon/radeon_gem.c
++++ b/drivers/gpu/drm/radeon/radeon_gem.c
+@@ -107,9 +107,12 @@ static int radeon_gem_set_domain(struct drm_gem_object *gobj,
  	}
- 	drm_gem_object_unreference_unlocked(gem);
+ 	if (domain == RADEON_GEM_DOMAIN_CPU) {
+ 		/* Asking for cpu access wait for object idle */
+-		r = radeon_bo_wait(robj, NULL, false);
+-		if (r) {
+-			printk(KERN_ERR "Failed to wait for object !\n");
++		r = reservation_object_wait_timeout_rcu(robj->tbo.resv, true, true, 30 * HZ);
++		if (!r)
++			r = -EBUSY;
++
++		if (r < 0 && r != -EINTR) {
++			printk(KERN_ERR "Failed to wait for object: %i\n", r);
+ 			return r;
+ 		}
+ 	}
+@@ -357,14 +360,20 @@ int radeon_gem_wait_idle_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_radeon_gem_wait_idle *args = data;
+ 	struct drm_gem_object *gobj;
+ 	struct radeon_bo *robj;
+-	int r;
++	int r = 0;
++	long ret;
  
--	if (fence) {
--		ret = nouveau_fence_wait(fence, true, no_wait);
--		nouveau_fence_unref(&fence);
--	}
--
- 	return ret;
- }
+ 	gobj = drm_gem_object_lookup(dev, filp, args->handle);
+ 	if (gobj == NULL) {
+ 		return -ENOENT;
+ 	}
+ 	robj = gem_to_radeon_bo(gobj);
+-	r = radeon_bo_wait(robj, NULL, false);
++	ret = reservation_object_wait_timeout_rcu(robj->tbo.resv, true, true, 30 * HZ);
++	if (ret == 0)
++		r = -EBUSY;
++	else if (ret < 0)
++		r = ret;
++
+ 	/* callback hw specific functions if any */
+ 	if (rdev->asic->ioctl_wait_idle)
+ 		robj->rdev->asic->ioctl_wait_idle(rdev, robj);
