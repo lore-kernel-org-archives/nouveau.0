@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79462] [NVC0/Codegen] Shader compilation falis in
-	spill logic
-Date: Thu, 31 Jul 2014 18:35:19 +0000
-Message-ID: <bug-79462-8800-OviE8P6bUc@http.bugs.freedesktop.org/>
-References: <bug-79462-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig-5C7GfCeVMHo@public.gmane.org>
+Subject: Re: [PATCH 09/19] drm/radeon: handle lockup in delayed
+	work, v2
+Date: Fri, 1 Aug 2014 18:35:56 +0200
+Message-ID: <53DBC1EC.1010001@amd.com>
+References: <20140731153245.15061.63023.stgit@patser>
+ <20140731153342.15061.54264.stgit@patser>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1482493527=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-79462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20140731153342.15061.54264.stgit@patser>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +19,270 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, airlied-cv59FeDIM0c@public.gmane.org
+Cc: thellstrom-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, alexander.deucher-5C7GfCeVMHo@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Am 31.07.2014 um 17:33 schrieb Maarten Lankhorst:
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+> ---
+> V1 had a nasty bug breaking gpu lockup recovery. The fix is not
+> allowing radeon_fence_driver_check_lockup to take exclusive_lock,
+> and kill it during lockup recovery instead.
 
---===============1482493527==
-Content-Type: multipart/alternative; boundary="1406831719.BB26e1.7767"; charset="us-ascii"
+That looks like the delayed work starts running as soon as we submit a 
+fence, and not when it's needed for waiting.
 
+Since it's a backup for failing IRQs I would rather put it into 
+radeon_irq_kms.c and start/stop it when the IRQs are started/stoped.
 
---1406831719.BB26e1.7767
-Date: Thu, 31 Jul 2014 18:35:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Christian.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=79462
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The below patch helps avoid the crash, but it still still generate incorrect
-code. I think there are a few issues here, and I'll have to think a little
-harder about how to properly resolve them.
-
-
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-index 5ab6570..89c83cb 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-@@ -1576,7 +1576,8 @@ SpillCodeInserter::run(const std::list<ValuePair>& lst)
-
-          assert(defi);
-          if (defi->isPseudo()) {
--            d = lval->defs.erase(d);
-+            while (d != lval->defs.end() && (*d)->getInsn() == defi)
-+               d = lval->defs.erase(d);
-             --d;
-             if (slot->reg.file == FILE_MEMORY_LOCAL)
-                delete_Instruction(func->getProgram(), defi);
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1406831719.BB26e1.7767
-Date: Thu, 31 Jul 2014 18:35:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0/Codegen] Shader compilation falis in spill logic"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0/Codegen] Shader compilation falis in spill logic"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462">bug 79462</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The below patch helps avoid the crash, but it still still generate incorrect
-code. I think there are a few issues here, and I'll have to think a little
-harder about how to properly resolve them.
-
-
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-index 5ab6570..89c83cb 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-&#64;&#64; -1576,7 +1576,8 &#64;&#64; SpillCodeInserter::run(const std::list&lt;ValuePair&gt;&amp; lst)
-
-          assert(defi);
-          if (defi-&gt;isPseudo()) {
--            d = lval-&gt;defs.erase(d);
-+            while (d != lval-&gt;defs.end() &amp;&amp; (*d)-&gt;getInsn() == defi)
-+               d = lval-&gt;defs.erase(d);
-             --d;
-             if (slot-&gt;reg.file == FILE_MEMORY_LOCAL)
-                delete_Instruction(func-&gt;getProgram(), defi);</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1406831719.BB26e1.7767--
-
---===============1482493527==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1482493527==--
+> ---
+>   drivers/gpu/drm/radeon/radeon.h        |    3 +
+>   drivers/gpu/drm/radeon/radeon_device.c |    5 +
+>   drivers/gpu/drm/radeon/radeon_fence.c  |  124 ++++++++++++++++++--------------
+>   drivers/gpu/drm/radeon/radeon_ring.c   |    1
+>   4 files changed, 77 insertions(+), 56 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon.h b/drivers/gpu/drm/radeon/radeon.h
+> index 60c47f829122..b01d88fc10cb 100644
+> --- a/drivers/gpu/drm/radeon/radeon.h
+> +++ b/drivers/gpu/drm/radeon/radeon.h
+> @@ -347,6 +347,8 @@ struct radeon_fence_driver {
+>   	uint64_t			sync_seq[RADEON_NUM_RINGS];
+>   	atomic64_t			last_seq;
+>   	bool				initialized;
+> +	struct delayed_work	fence_check_work;
+> +	struct radeon_device	*rdev;
+>   };
+>   
+>   struct radeon_fence {
+> @@ -360,6 +362,7 @@ struct radeon_fence {
+>   
+>   int radeon_fence_driver_start_ring(struct radeon_device *rdev, int ring);
+>   int radeon_fence_driver_init(struct radeon_device *rdev);
+> +void radeon_fence_cancel_delayed_check(struct radeon_device *rdev, int ring);
+>   void radeon_fence_driver_fini(struct radeon_device *rdev);
+>   void radeon_fence_driver_force_completion(struct radeon_device *rdev);
+>   int radeon_fence_emit(struct radeon_device *rdev, struct radeon_fence **fence, int ring);
+> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+> index 697add2cd4e3..21efd32d07ee 100644
+> --- a/drivers/gpu/drm/radeon/radeon_device.c
+> +++ b/drivers/gpu/drm/radeon/radeon_device.c
+> @@ -1637,6 +1637,11 @@ int radeon_gpu_reset(struct radeon_device *rdev)
+>   	radeon_save_bios_scratch_regs(rdev);
+>   	/* block TTM */
+>   	resched = ttm_bo_lock_delayed_workqueue(&rdev->mman.bdev);
+> +
+> +	/* kill all the hangcheck tests too */
+> +	for (i = 0; i < RADEON_NUM_RINGS; ++i)
+> +		radeon_fence_cancel_delayed_check(rdev, i);
+> +
+>   	radeon_pm_suspend(rdev);
+>   	radeon_suspend(rdev);
+>   
+> diff --git a/drivers/gpu/drm/radeon/radeon_fence.c b/drivers/gpu/drm/radeon/radeon_fence.c
+> index 913787085dfa..c055acc3a271 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fence.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fence.c
+> @@ -125,16 +125,7 @@ int radeon_fence_emit(struct radeon_device *rdev,
+>   	return 0;
+>   }
+>   
+> -/**
+> - * radeon_fence_process - process a fence
+> - *
+> - * @rdev: radeon_device pointer
+> - * @ring: ring index the fence is associated with
+> - *
+> - * Checks the current fence value and wakes the fence queue
+> - * if the sequence number has increased (all asics).
+> - */
+> -void radeon_fence_process(struct radeon_device *rdev, int ring)
+> +static bool __radeon_fence_process(struct radeon_device *rdev, int ring)
+>   {
+>   	uint64_t seq, last_seq, last_emitted;
+>   	unsigned count_loop = 0;
+> @@ -190,7 +181,51 @@ void radeon_fence_process(struct radeon_device *rdev, int ring)
+>   		}
+>   	} while (atomic64_xchg(&rdev->fence_drv[ring].last_seq, seq) > seq);
+>   
+> -	if (wake)
+> +	if (seq < last_emitted)
+> +		mod_delayed_work(system_power_efficient_wq,
+> +				 &rdev->fence_drv[ring].fence_check_work,
+> +				 RADEON_FENCE_JIFFIES_TIMEOUT);
+> +
+> +	return wake;
+> +}
+> +
+> +static void radeon_fence_driver_check_lockup(struct work_struct *work)
+> +{
+> +	struct radeon_fence_driver *fence_drv;
+> +	struct radeon_device *rdev;
+> +	unsigned long iring;
+> +
+> +	fence_drv = container_of(work, struct radeon_fence_driver, fence_check_work.work);
+> +	rdev = fence_drv->rdev;
+> +	iring = fence_drv - &rdev->fence_drv[0];
+> +
+> +	if (__radeon_fence_process(rdev, iring))
+> +		wake_up_all(&rdev->fence_queue);
+> +	else if (radeon_ring_is_lockup(rdev, iring, &rdev->ring[iring])) {
+> +		/* good news we believe it's a lockup */
+> +		dev_warn(rdev->dev, "GPU lockup (current fence id "
+> +			 "0x%016llx last fence id 0x%016llx on ring %ld)\n",
+> +			 (uint64_t)atomic64_read(&fence_drv->last_seq),
+> +			 fence_drv->sync_seq[iring], iring);
+> +
+> +		/* remember that we need an reset */
+> +		rdev->needs_reset = true;
+> +		wake_up_all(&rdev->fence_queue);
+> +	}
+> +}
+> +
+> +/**
+> + * radeon_fence_process - process a fence
+> + *
+> + * @rdev: radeon_device pointer
+> + * @ring: ring index the fence is associated with
+> + *
+> + * Checks the current fence value and wakes the fence queue
+> + * if the sequence number has increased (all asics).
+> + */
+> +void radeon_fence_process(struct radeon_device *rdev, int ring)
+> +{
+> +	if (__radeon_fence_process(rdev, ring))
+>   		wake_up_all(&rdev->fence_queue);
+>   }
+>   
+> @@ -302,9 +337,10 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
+>   {
+>   	uint64_t last_seq[RADEON_NUM_RINGS];
+>   	bool signaled;
+> -	int i, r;
+> +	int i;
+>   
+>   	while (!radeon_fence_any_seq_signaled(rdev, target_seq)) {
+> +		long r;
+>   
+>   		/* Save current sequence values, used to check for GPU lockups */
+>   		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
+> @@ -319,11 +355,11 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
+>   		if (intr) {
+>   			r = wait_event_interruptible_timeout(rdev->fence_queue, (
+>   				(signaled = radeon_fence_any_seq_signaled(rdev, target_seq))
+> -				 || rdev->needs_reset), RADEON_FENCE_JIFFIES_TIMEOUT);
+> +				 || rdev->needs_reset), MAX_SCHEDULE_TIMEOUT);
+>   		} else {
+>   			r = wait_event_timeout(rdev->fence_queue, (
+>   				(signaled = radeon_fence_any_seq_signaled(rdev, target_seq))
+> -				 || rdev->needs_reset), RADEON_FENCE_JIFFIES_TIMEOUT);
+> +				 || rdev->needs_reset), MAX_SCHEDULE_TIMEOUT);
+>   		}
+>   
+>   		for (i = 0; i < RADEON_NUM_RINGS; ++i) {
+> @@ -334,50 +370,11 @@ static int radeon_fence_wait_seq(struct radeon_device *rdev, u64 *target_seq,
+>   			trace_radeon_fence_wait_end(rdev->ddev, i, target_seq[i]);
+>   		}
+>   
+> -		if (unlikely(r < 0))
+> +		if (r < 0)
+>   			return r;
+>   
+> -		if (unlikely(!signaled)) {
+> -			if (rdev->needs_reset)
+> -				return -EDEADLK;
+> -
+> -			/* we were interrupted for some reason and fence
+> -			 * isn't signaled yet, resume waiting */
+> -			if (r)
+> -				continue;
+> -
+> -			for (i = 0; i < RADEON_NUM_RINGS; ++i) {
+> -				if (!target_seq[i])
+> -					continue;
+> -
+> -				if (last_seq[i] != atomic64_read(&rdev->fence_drv[i].last_seq))
+> -					break;
+> -			}
+> -
+> -			if (i != RADEON_NUM_RINGS)
+> -				continue;
+> -
+> -			for (i = 0; i < RADEON_NUM_RINGS; ++i) {
+> -				if (!target_seq[i])
+> -					continue;
+> -
+> -				if (radeon_ring_is_lockup(rdev, i, &rdev->ring[i]))
+> -					break;
+> -			}
+> -
+> -			if (i < RADEON_NUM_RINGS) {
+> -				/* good news we believe it's a lockup */
+> -				dev_warn(rdev->dev, "GPU lockup (waiting for "
+> -					 "0x%016llx last fence id 0x%016llx on"
+> -					 " ring %d)\n",
+> -					 target_seq[i], last_seq[i], i);
+> -
+> -				/* remember that we need an reset */
+> -				rdev->needs_reset = true;
+> -				wake_up_all(&rdev->fence_queue);
+> -				return -EDEADLK;
+> -			}
+> -		}
+> +		if (rdev->needs_reset)
+> +			return -EDEADLK;
+>   	}
+>   	return 0;
+>   }
+> @@ -711,6 +708,8 @@ static void radeon_fence_driver_init_ring(struct radeon_device *rdev, int ring)
+>   		rdev->fence_drv[ring].sync_seq[i] = 0;
+>   	atomic64_set(&rdev->fence_drv[ring].last_seq, 0);
+>   	rdev->fence_drv[ring].initialized = false;
+> +	INIT_DELAYED_WORK(&rdev->fence_drv[ring].fence_check_work, radeon_fence_driver_check_lockup);
+> +	rdev->fence_drv[ring].rdev = rdev;
+>   }
+>   
+>   /**
+> @@ -740,6 +739,17 @@ int radeon_fence_driver_init(struct radeon_device *rdev)
+>   }
+>   
+>   /**
+> + * radeon_fence_cancel_delayed_check - cancel all delayed checks on a ring during lockup
+> + *
+> + * This prevents the lockup check from being done while suspend is running
+> + * during a recovery from a lockup.
+> + */
+> +void radeon_fence_cancel_delayed_check(struct radeon_device *rdev, int ring)
+> +{
+> +	cancel_delayed_work_sync(&rdev->fence_drv[ring].fence_check_work);
+> +}
+> +
+> +/**
+>    * radeon_fence_driver_fini - tear down the fence driver
+>    * for all possible rings.
+>    *
+> @@ -755,6 +765,8 @@ void radeon_fence_driver_fini(struct radeon_device *rdev)
+>   	for (ring = 0; ring < RADEON_NUM_RINGS; ring++) {
+>   		if (!rdev->fence_drv[ring].initialized)
+>   			continue;
+> +
+> +		cancel_delayed_work_sync(&rdev->fence_drv[ring].fence_check_work);
+>   		r = radeon_fence_wait_empty(rdev, ring);
+>   		if (r) {
+>   			/* no need to trigger GPU reset as we are unloading */
+> diff --git a/drivers/gpu/drm/radeon/radeon_ring.c b/drivers/gpu/drm/radeon/radeon_ring.c
+> index f8050f5429e2..594d871a6fce 100644
+> --- a/drivers/gpu/drm/radeon/radeon_ring.c
+> +++ b/drivers/gpu/drm/radeon/radeon_ring.c
+> @@ -261,6 +261,7 @@ int radeon_ib_ring_tests(struct radeon_device *rdev)
+>   
+>   		r = radeon_ib_test(rdev, i, ring);
+>   		if (r) {
+> +			radeon_fence_cancel_delayed_check(rdev, i);
+>   			ring->ready = false;
+>   			rdev->needs_reset = false;
+>   
+>
