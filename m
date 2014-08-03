@@ -1,13 +1,12 @@
-From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+From: "Arnaud Ruch" <ruch+nouveau-BhhNIak71JS+51mZqJFLXQ@public.gmane.org>
 Subject: Re: Old video cards donation
-Date: Sun, 03 Aug 2014 14:13:09 +0200
-Message-ID: <53DE2755.2020109@0x04.net>
-References: <FB5BF970B2054BC789D2292AAC2CD10C@xpvm>
+Date: Sun, 3 Aug 2014 21:35:47 +0200
+Message-ID: <62867B9327014C0291D2257A465CF366@xpvm>
+References: <FB5BF970B2054BC789D2292AAC2CD10C@xpvm> <53DE2755.2020109@0x04.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <FB5BF970B2054BC789D2292AAC2CD10C@xpvm>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,44 +16,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arnaud Ruch <ruch+nouveau-BhhNIak71JS+51mZqJFLXQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 03/08/14 12:23, Arnaud Ruch wrote:
-> Dear all,
->
-> I  have a few old video cards that I want to get rid of. I've been
-> suggested to check whether any nouveau developer would be interested in
-> getting one of them for development / testing purposes.
->
-> Here's the list :
->
-> * AGP 4x video card Creative Labs 3D Blaster NVIDIA GeForce 2 GTS (NV15)
-> DDR 32 MB VGA output
-
-Say, could I see a hi-res photo of that card? I'd be interested if it 
-has an MPEG decoder chip (such cards are hard to find and I'm not 
-entirely sure if they even exist or if they're some unreleased feature).
-
-> * AGP 2x video card NVIDIA Riva TNT2 (NV5) SDR 32 MB VGA/TV output
-
-Same thing here.
-
-> * AGP ?? video card Siluro VGA/TV output (not sure this one still works)
-
-I have no idea what that is :(
-
->
-> Please contact me directly, should you be interested in any of those.
->
-> Kind regards,
->
-> Arnaud
-> PS: I'm resubmitting this message that I originally submitted from a
-> wrong E-mail address. My apologies to the moderators.
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+RnJvbTogIk1hcmNpbiBLb8WbY2llbG5pY2tpIiA8a29yaWFraW5AMHgwNC5uZXQ+Cj4+ICogQUdQ
+IDR4IHZpZGVvIGNhcmQgQ3JlYXRpdmUgTGFicyAzRCBCbGFzdGVyIE5WSURJQSBHZUZvcmNlIDIg
+R1RTIChOVjE1KQo+PiBERFIgMzIgTUIgVkdBIG91dHB1dAo+Cj4gU2F5LCBjb3VsZCBJIHNlZSBh
+IGhpLXJlcyBwaG90byBvZiB0aGF0IGNhcmQ/IEknZCBiZSBpbnRlcmVzdGVkIGlmIGl0IGhhcyAK
+PiBhbiBNUEVHIGRlY29kZXIgY2hpcCAoc3VjaCBjYXJkcyBhcmUgaGFyZCB0byBmaW5kIGFuZCBJ
+J20gbm90IGVudGlyZWx5IAo+IHN1cmUgaWYgdGhleSBldmVuIGV4aXN0IG9yIGlmIHRoZXkncmUg
+c29tZSB1bnJlbGVhc2VkIGZlYXR1cmUpLgo+Cj4+ICogQUdQIDJ4IHZpZGVvIGNhcmQgTlZJRElB
+IFJpdmEgVE5UMiAoTlY1KSBTRFIgMzIgTUIgVkdBL1RWIG91dHB1dAo+Cj4gU2FtZSB0aGluZyBo
+ZXJlLgo+Cj4+ICogQUdQID8/IHZpZGVvIGNhcmQgU2lsdXJvIFZHQS9UViBvdXRwdXQgKG5vdCBz
+dXJlIHRoaXMgb25lIHN0aWxsIHdvcmtzKQo+Cj4gSSBoYXZlIG5vIGlkZWEgd2hhdCB0aGF0IGlz
+IDooCj4KCgpIaSBNYXJ0aW4sCgpJJ3ZlIHRha2VuIGEgY291cGxlIG9mIHBpY3R1cmVzIG9mIHRo
+ZSBjYXJkcyBhbmQgc2hhcmVkIHRoZW0gb24gOiAKaHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2gv
+YjhxMXJjb241c3JzM2w3L0FBQ0wxb2UyLWFwZVJHdmtrRzlsSXdjd2EuIEJ0dywgCnRoZSBTaWx1
+cm8gc2VlbXMgdG8gYmUgYSBHZUZvcmNlIDIgY2FyZCA6LSkKCkxldCBtZSBrbm93IGlmIHRoaXMg
+Z2l2ZXMgeW91IG1vcmUgaW5mb3JtYXRpb24uCgpLaW5kIHJlZ2FyZHMKCkFybmF1ZCAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
