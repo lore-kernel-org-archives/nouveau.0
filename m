@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82152] New: any OpenGL application crashes X,
+Subject: [Bug 82152] any OpenGL application crashes X,
  locks up machine with nouveau and PRIME
-Date: Mon, 04 Aug 2014 21:28:04 +0000
-Message-ID: <bug-82152-8800@http.bugs.freedesktop.org/>
+Date: Mon, 04 Aug 2014 21:29:12 +0000
+Message-ID: <bug-82152-8800-aVV9W21ZpT@http.bugs.freedesktop.org/>
+References: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1874390896=="
+Content-Type: multipart/mixed; boundary="===============1548423886=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,48 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1874390896==
-Content-Type: multipart/alternative; boundary="1407187684.AA8cb0.30021"; charset="us-ascii"
+--===============1548423886==
+Content-Type: multipart/alternative; boundary="1407187752.7C6EC0.30396"; charset="us-ascii"
 
 
---1407187684.AA8cb0.30021
-Date: Mon, 4 Aug 2014 21:28:04 +0000
+--1407187752.7C6EC0.30396
+Date: Mon, 4 Aug 2014 21:29:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82152
 
-          Priority: medium
-            Bug ID: 82152
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: any OpenGL application crashes X, locks up machine
-                    with nouveau and PRIME
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: 10.2
-         Component: Drivers/DRI/nouveau
-           Product: Mesa
-
-Created attachment 104017
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104017&action=edit
-Full output of journalctl, including kernel logs, between system boot and
-poweroff after crash.
-
-Any OpenGL application, even as minor as glxinfo, either crashes Xorg or locks
-up the machine entirely (no network, magic sysrq fails) when started with
-DRI_PRIME=1. Has happened across multiple Mesa and kernel versions, most
-recently with Mesa 10.2.4 and Linux 3.15.8 on Arch Linux.
+--- Comment #1 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 104018
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104018&action=edit
+Output from crashing glxinfo.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407187684.AA8cb0.30021
-Date: Mon, 4 Aug 2014 21:28:04 +0000
+--1407187752.7C6EC0.30396
+Date: Mon, 4 Aug 2014 21:29:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,97 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">82152</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>any OpenGL application crashes X, locks up machine with nouveau and PRIME
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>celticmadman&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.2
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104017" name="attach_104017" title="Full output of journalctl, including kernel logs, between system boot and poweroff after crash.">attachment 104017</a> <a href="attachment.cgi?id=104017&amp;action=edit" title="Full output of journalctl, including kernel logs, between system boot and poweroff after crash.">[details]</a></span>
-Full output of journalctl, including kernel logs, between system boot and
-poweroff after crash.
-
-Any OpenGL application, even as minor as glxinfo, either crashes Xorg or locks
-up the machine entirely (no network, magic sysrq fails) when started with
-DRI_PRIME=1. Has happened across multiple Mesa and kernel versions, most
-recently with Mesa 10.2.4 and Linux 3.15.8 on Arch Linux.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
+              from <span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104018" name="attach_104018" title="Output from crashing glxinfo.">attachment 104018</a> <a href="attachment.cgi?id=104018&amp;action=edit" title="Output from crashing glxinfo.">[details]</a></span>
+Output from crashing glxinfo.</pre>
         </div>
       </p>
       <hr>
@@ -170,9 +76,9 @@ recently with Mesa 10.2.4 and Linux 3.15.8 on Arch Linux.</pre>
     </body>
 </html>
 
---1407187684.AA8cb0.30021--
+--1407187752.7C6EC0.30396--
 
---===============1874390896==
+--===============1548423886==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -183,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1874390896==--
+--===============1548423886==--
