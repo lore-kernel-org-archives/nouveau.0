@@ -1,10 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82118] New: nouveau tearing with xvideo
-Date: Mon, 04 Aug 2014 06:49:51 +0000
-Message-ID: <bug-82118-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH v5] drm/nouveau: map pages using DMA API
+Date: Mon, 4 Aug 2014 09:32:03 +0200
+Message-ID: <20140804073203.GF8727@phenom.ffwll.local>
+References: <1406797782-32220-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1047361770=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1406797782-32220-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,269 +18,264 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Jul 31, 2014 at 06:09:42PM +0900, Alexandre Courbot wrote:
+> The DMA API is the recommended way to map pages no matter what the
+> underlying bus is. Use the DMA functions for page mapping and remove
+> currently existing wrappers.
+> 
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> Cc: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+> ---
+> Changes since v4:
+> - Patch against the Nouveau tree instead of the kernel
+> - Separated this patch from the rest of the series since it can be
+>   merged alone
+> - Replaced all pci_map invokations with dma_map. As Daniel pointed
+>   out, using the PCI API is deprecated:
+> Documentation/DMA-API-HOWTO.txt:
+> 
+> "Note that the DMA API works with any bus independent of the underlying
+> microprocessor architecture. You should use the DMA API rather than the
+> bus-specific DMA API, i.e., use the dma_map_*() interfaces rather than the
+> pci_map_*() interfaces."
+> - As a result, removed the page mapping wrappers which have become
+>   unneeded.
 
---===============1047361770==
-Content-Type: multipart/alternative; boundary="1407134991.cA178e1.24978"; charset="us-ascii"
+Acked-by: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
 
-
---1407134991.cA178e1.24978
-Date: Mon, 4 Aug 2014 06:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=82118
-
-          Priority: medium
-            Bug ID: 82118
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: nouveau tearing with xvideo
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
-
-I have terrible tearing when using mplayer -vo xv in my htpc system.
-
-A description of my system:
-- Nvidia GeForce 9400 (rev b1) pci-id: 10de:086a
-- HDMI port connected to a TV
-- linux 3.15.0
-- xorg-xf86-video-nouveau 1.0.10
-- xorg-server 1.14.15
-- mplayer 2014-02-06
-
-There is no window manager.
-
-Things I have tried without success:
-1. In xorg.conf, section "Device": option "GLXVBlank" "true"
-2. In xorg.conf, section "Extensions": option "Composite" "disable"
-3. In xorg.conf, section "Extensions": option "RENDER" "disable"
-
-xvinfo:
-X-Video Extension version 2.2
-screen #0
-  Adaptor #0: "Intel(R) Textured Video"
-    number of ports: 16
-    port base: 89
-    operations supported: PutImage 
-    supported visuals:
-      depth 24, visualID 0x21
-    no port attributes defined
-    maximum XvImage size: 2048 x 2048
-    Number of image formats: 5
-      id: 0x32595559 (YUY2)
-        guid: 59555932-0000-0010-8000-00aa00389b71
-        bits per pixel: 16
-        number of planes: 1
-        type: YUV (packed)
-      id: 0x32315659 (YV12)
-        guid: 59563132-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)
-      id: 0x30323449 (I420)
-        guid: 49343230-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)
-      id: 0x59565955 (UYVY)
-        guid: 55595659-0000-0010-8000-00aa00389b71
-        bits per pixel: 16
-        number of planes: 1
-        type: YUV (packed)
-      id: 0x434d5658 (XVMC)
-        guid: 58564d43-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)
+> 
+>  drm/nouveau_bo.c           | 22 ++++++++++++++++------
+>  lib/core/os.h              |  8 ++++----
+>  nvkm/engine/device/base.c  | 25 -------------------------
+>  nvkm/include/core/device.h |  6 ------
+>  nvkm/subdev/fb/nv50.c      |  7 +++++--
+>  nvkm/subdev/fb/nvc0.c      |  7 +++++--
+>  6 files changed, 30 insertions(+), 45 deletions(-)
+> 
+> diff --git a/drm/nouveau_bo.c b/drm/nouveau_bo.c
+> index 4db886f9f793..e4f2071c46c3 100644
+> --- a/drm/nouveau_bo.c
+> +++ b/drm/nouveau_bo.c
+> @@ -1340,6 +1340,7 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
+>  	struct nouveau_drm *drm;
+>  	struct nouveau_device *device;
+>  	struct drm_device *dev;
+> +	struct device *pdev;
+>  	unsigned i;
+>  	int r;
+>  	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+> @@ -1358,6 +1359,7 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
+>  	drm = nouveau_bdev(ttm->bdev);
+>  	device = nv_device(drm->device);
+>  	dev = drm->dev;
+> +	pdev = nv_device_base(device);
+>  
+>  #if __OS_HAS_AGP
+>  	if (drm->agp.stat == ENABLED) {
+> @@ -1377,17 +1379,22 @@ nouveau_ttm_tt_populate(struct ttm_tt *ttm)
+>  	}
+>  
+>  	for (i = 0; i < ttm->num_pages; i++) {
+> -		ttm_dma->dma_address[i] = nv_device_map_page(device,
+> -							     ttm->pages[i]);
+> -		if (!ttm_dma->dma_address[i]) {
+> +		dma_addr_t addr;
+> +
+> +		addr = dma_map_page(pdev, ttm->pages[i], 0, PAGE_SIZE,
+> +				    DMA_BIDIRECTIONAL);
+> +
+> +		if (dma_mapping_error(pdev, addr)) {
+>  			while (--i) {
+> -				nv_device_unmap_page(device,
+> -						     ttm_dma->dma_address[i]);
+> +				dma_unmap_page(pdev, ttm_dma->dma_address[i],
+> +					       PAGE_SIZE, DMA_BIDIRECTIONAL);
+>  				ttm_dma->dma_address[i] = 0;
+>  			}
+>  			ttm_pool_unpopulate(ttm);
+>  			return -EFAULT;
+>  		}
+> +
+> +		ttm_dma->dma_address[i] = addr;
+>  	}
+>  	return 0;
+>  }
+> @@ -1399,6 +1406,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
+>  	struct nouveau_drm *drm;
+>  	struct nouveau_device *device;
+>  	struct drm_device *dev;
+> +	struct device *pdev;
+>  	unsigned i;
+>  	bool slave = !!(ttm->page_flags & TTM_PAGE_FLAG_SG);
+>  
+> @@ -1408,6 +1416,7 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
+>  	drm = nouveau_bdev(ttm->bdev);
+>  	device = nv_device(drm->device);
+>  	dev = drm->dev;
+> +	pdev = nv_device_base(device);
+>  
+>  #if __OS_HAS_AGP
+>  	if (drm->agp.stat == ENABLED) {
+> @@ -1425,7 +1434,8 @@ nouveau_ttm_tt_unpopulate(struct ttm_tt *ttm)
+>  
+>  	for (i = 0; i < ttm->num_pages; i++) {
+>  		if (ttm_dma->dma_address[i]) {
+> -			nv_device_unmap_page(device, ttm_dma->dma_address[i]);
+> +			dma_unmap_page(pdev, ttm_dma->dma_address[i], PAGE_SIZE,
+> +				       DMA_BIDIRECTIONAL);
+>  		}
+>  	}
+>  
+> diff --git a/lib/core/os.h b/lib/core/os.h
+> index 5f4f04fbff3d..596e083ffb36 100644
+> --- a/lib/core/os.h
+> +++ b/lib/core/os.h
+> @@ -644,7 +644,7 @@ dma_free_coherent(struct device *dev, size_t sz, void *vaddr, dma_addr_t bus)
+>   *****************************************************************************/
+>  #include <pciaccess.h>
+>  
+> -#define PCI_DMA_BIDIRECTIONAL 1
+> +#define DMA_BIDIRECTIONAL 1
+>  
+>  #define PCI_CAP_ID_AGP 0x02
+>  
+> @@ -688,7 +688,7 @@ pci_resource_len(struct pci_dev *pdev, int bar)
+>  }
+>  
+>  static inline dma_addr_t
+> -pci_map_page(struct pci_dev *pdev, struct page *page, int offset,
+> +dma_map_page(struct device *pdev, struct page *page, int offset,
+>  	     int length, unsigned flags)
+>  {
+>  	return 0;
+> @@ -696,13 +696,13 @@ pci_map_page(struct pci_dev *pdev, struct page *page, int offset,
+>  
+>  
+>  static inline bool
+> -pci_dma_mapping_error(struct pci_dev *pdev, dma_addr_t addr)
+> +dma_mapping_error(struct device *pdev, dma_addr_t addr)
+>  {
+>  	return true;
+>  }
+>  
+>  static inline void
+> -pci_unmap_page(struct pci_dev *pdev, dma_addr_t addr, int size, unsigned flags)
+> +dma_unmap_page(struct device *pdev, dma_addr_t addr, int size, unsigned flags)
+>  {
+>  }
+>  
+> diff --git a/nvkm/engine/device/base.c b/nvkm/engine/device/base.c
+> index 466dda2f7a3a..6c16dabe13b3 100644
+> --- a/nvkm/engine/device/base.c
+> +++ b/nvkm/engine/device/base.c
+> @@ -487,31 +487,6 @@ nv_device_resource_len(struct nouveau_device *device, unsigned int bar)
+>  	}
+>  }
+>  
+> -dma_addr_t
+> -nv_device_map_page(struct nouveau_device *device, struct page *page)
+> -{
+> -	dma_addr_t ret;
+> -
+> -	if (nv_device_is_pci(device)) {
+> -		ret = pci_map_page(device->pdev, page, 0, PAGE_SIZE,
+> -				   PCI_DMA_BIDIRECTIONAL);
+> -		if (pci_dma_mapping_error(device->pdev, ret))
+> -			ret = 0;
+> -	} else {
+> -		ret = page_to_phys(page);
+> -	}
+> -
+> -	return ret;
+> -}
+> -
+> -void
+> -nv_device_unmap_page(struct nouveau_device *device, dma_addr_t addr)
+> -{
+> -	if (nv_device_is_pci(device))
+> -		pci_unmap_page(device->pdev, addr, PAGE_SIZE,
+> -			       PCI_DMA_BIDIRECTIONAL);
+> -}
+> -
+>  int
+>  nv_device_get_irq(struct nouveau_device *device, bool stall)
+>  {
+> diff --git a/nvkm/include/core/device.h b/nvkm/include/core/device.h
+> index 9ce2ee9aa32e..03c039dcc61f 100644
+> --- a/nvkm/include/core/device.h
+> +++ b/nvkm/include/core/device.h
+> @@ -174,12 +174,6 @@ nv_device_resource_start(struct nouveau_device *device, unsigned int bar);
+>  resource_size_t
+>  nv_device_resource_len(struct nouveau_device *device, unsigned int bar);
+>  
+> -dma_addr_t
+> -nv_device_map_page(struct nouveau_device *device, struct page *page);
+> -
+> -void
+> -nv_device_unmap_page(struct nouveau_device *device, dma_addr_t addr);
+> -
+>  int
+>  nv_device_get_irq(struct nouveau_device *device, bool stall);
+>  
+> diff --git a/nvkm/subdev/fb/nv50.c b/nvkm/subdev/fb/nv50.c
+> index 1fc55c1e91a1..7d88e17fa927 100644
+> --- a/nvkm/subdev/fb/nv50.c
+> +++ b/nvkm/subdev/fb/nv50.c
+> @@ -250,7 +250,9 @@ nv50_fb_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+>  
+>  	priv->r100c08_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
+>  	if (priv->r100c08_page) {
+> -		priv->r100c08 = nv_device_map_page(device, priv->r100c08_page);
+> +		priv->r100c08 = dma_map_page(nv_device_base(device),
+> +					     priv->r100c08_page, 0, PAGE_SIZE,
+> +					     DMA_BIDIRECTIONAL);
+>  		if (!priv->r100c08)
+>  			nv_warn(priv, "failed 0x100c08 page map\n");
+>  	} else {
+> @@ -268,7 +270,8 @@ nv50_fb_dtor(struct nouveau_object *object)
+>  	struct nv50_fb_priv *priv = (void *)object;
+>  
+>  	if (priv->r100c08_page) {
+> -		nv_device_unmap_page(device, priv->r100c08);
+> +		dma_unmap_page(nv_device_base(device), priv->r100c08, PAGE_SIZE,
+> +			       DMA_BIDIRECTIONAL);
+>  		__free_page(priv->r100c08_page);
+>  	}
+>  
+> diff --git a/nvkm/subdev/fb/nvc0.c b/nvkm/subdev/fb/nvc0.c
+> index 0670ae33ee45..9f5f3ac8d4c6 100644
+> --- a/nvkm/subdev/fb/nvc0.c
+> +++ b/nvkm/subdev/fb/nvc0.c
+> @@ -70,7 +70,8 @@ nvc0_fb_dtor(struct nouveau_object *object)
+>  	struct nvc0_fb_priv *priv = (void *)object;
+>  
+>  	if (priv->r100c10_page) {
+> -		nv_device_unmap_page(device, priv->r100c10);
+> +		dma_unmap_page(nv_device_base(device), priv->r100c10, PAGE_SIZE,
+> +			       DMA_BIDIRECTIONAL);
+>  		__free_page(priv->r100c10_page);
+>  	}
+>  
+> @@ -93,7 +94,9 @@ nvc0_fb_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+>  
+>  	priv->r100c10_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
+>  	if (priv->r100c10_page) {
+> -		priv->r100c10 = nv_device_map_page(device, priv->r100c10_page);
+> +		priv->r100c10 = dma_map_page(nv_device_base(device),
+> +					     priv->r100c10_page, 0, PAGE_SIZE,
+> +					     DMA_BIDIRECTIONAL);
+>  		if (!priv->r100c10)
+>  			return -EFAULT;
+>  	}
+> -- 
+> 2.0.3
+> 
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1407134991.cA178e1.24978
-Date: Mon, 4 Aug 2014 06:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau tearing with xvideo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82118">82118</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau tearing with xvideo
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>lameventanas&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>I have terrible tearing when using mplayer -vo xv in my htpc system.
-
-A description of my system:
-- Nvidia GeForce 9400 (rev b1) pci-id: 10de:086a
-- HDMI port connected to a TV
-- linux 3.15.0
-- xorg-xf86-video-nouveau 1.0.10
-- xorg-server 1.14.15
-- mplayer 2014-02-06
-
-There is no window manager.
-
-Things I have tried without success:
-1. In xorg.conf, section &quot;Device&quot;: option &quot;GLXVBlank&quot; &quot;true&quot;
-2. In xorg.conf, section &quot;Extensions&quot;: option &quot;Composite&quot; &quot;disable&quot;
-3. In xorg.conf, section &quot;Extensions&quot;: option &quot;RENDER&quot; &quot;disable&quot;
-
-xvinfo:
-X-Video Extension version 2.2
-screen #0
-  Adaptor #0: &quot;Intel(R) Textured Video&quot;
-    number of ports: 16
-    port base: 89
-    operations supported: PutImage 
-    supported visuals:
-      depth 24, visualID 0x21
-    no port attributes defined
-    maximum XvImage size: 2048 x 2048
-    Number of image formats: 5
-      id: 0x32595559 (YUY2)
-        guid: 59555932-0000-0010-8000-00aa00389b71
-        bits per pixel: 16
-        number of planes: 1
-        type: YUV (packed)
-      id: 0x32315659 (YV12)
-        guid: 59563132-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)
-      id: 0x30323449 (I420)
-        guid: 49343230-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)
-      id: 0x59565955 (UYVY)
-        guid: 55595659-0000-0010-8000-00aa00389b71
-        bits per pixel: 16
-        number of planes: 1
-        type: YUV (packed)
-      id: 0x434d5658 (XVMC)
-        guid: 58564d43-0000-0010-8000-00aa00389b71
-        bits per pixel: 12
-        number of planes: 3
-        type: YUV (planar)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1407134991.cA178e1.24978--
-
---===============1047361770==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1047361770==--
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
