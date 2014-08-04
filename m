@@ -1,69 +1,186 @@
-From: =?UTF-8?B?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>
-Subject: Re: [PATCH 09/19] drm/radeon: handle lockup in delayed work, v2
-Date: Mon, 4 Aug 2014 19:04:46 +0200
-Message-ID: <53DFBD2E.5070001@amd.com>
-References: <20140731153245.15061.63023.stgit@patser>
- <20140731153342.15061.54264.stgit@patser> <53DBC1EC.1010001@amd.com>
- <53DBD269.80807@canonical.com> <53DF462B.2060102@amd.com>
- <53DF4A7D.3040505@canonical.com> <53DF7516.2010408@amd.com>
- <53DF8BF2.4000309@canonical.com> <53DF9AC4.3010700@amd.com>
- <53DF9B58.8000403@canonical.com> <53DF9C88.6060107@amd.com>
- <53DF9F89.60202@canonical.com> <53DFA0EB.5040302@amd.com>
- <53DFA210.2020603@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82152] New: any OpenGL application crashes X,
+ locks up machine with nouveau and PRIME
+Date: Mon, 04 Aug 2014 21:28:04 +0000
+Message-ID: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <53DFA210.2020603@canonical.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@canonical.com>, airlied@linux.ie
-Cc: thellstrom@vmware.com, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, bskeggs@redhat.com, alexander.deucher@amd.com
+Content-Type: multipart/mixed; boundary="===============1874390896=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW0gMDQuMDguMjAxNCB1bSAxNzowOSBzY2hyaWViIE1hYXJ0ZW4gTGFua2hvcnN0Ogo+IG9wIDA0
-LTA4LTE0IDE3OjA0LCBDaHJpc3RpYW4gS8O2bmlnIHNjaHJlZWY6Cj4+IEFtIDA0LjA4LjIwMTQg
-dW0gMTY6NTggc2NocmllYiBNYWFydGVuIExhbmtob3JzdDoKPj4+IG9wIDA0LTA4LTE0IDE2OjQ1
-LCBDaHJpc3RpYW4gS8O2bmlnIHNjaHJlZWY6Cj4+Pj4gQW0gMDQuMDguMjAxNCB1bSAxNjo0MCBz
-Y2hyaWViIE1hYXJ0ZW4gTGFua2hvcnN0Ogo+Pj4+PiBvcCAwNC0wOC0xNCAxNjozNywgQ2hyaXN0
-aWFuIEvDtm5pZyBzY2hyZWVmOgo+Pj4+Pj4+IEl0J2EgcGFpbiB0byBkZWFsIHdpdGggZ3B1IHJl
-c2V0Lgo+Pj4+Pj4gWWVhaCwgd2VsbCB0aGF0J3Mgbm90aGluZyBuZXcuCj4+Pj4+Pgo+Pj4+Pj4+
-IEkndmUgbm93IHRyaWVkIG90aGVyIHNvbHV0aW9ucyBidXQgdGhhdCB3b3VsZCBtZWFuIHJldmVy
-dGluZyB0byB0aGUgb2xkIHN0eWxlIGR1cmluZyBncHUgbG9ja3VwIHJlY292ZXJ5LCBhbmQgb25s
-eSBydW5uaW5nIHRoZSBkZWxheWVkIHdvcmsgd2hlbiAhbG9ja3VwLgo+Pj4+Pj4+IEJ1dCB0aGlz
-IG1lYW50IHRoYXQgdGhlIHRpbWVvdXQgd2FzIHVzZWxlc3MgdG8gYWRkLiBJIHRoaW5rIHRoZSBj
-bGVhbmVzdCBpcyBrZWVwaW5nIHRoZSB2MiBwYXRjaCwgYmVjYXVzZSBwb3RlbnRpYWxseSBhbnkg
-d2FpdGluZyBjb2RlIGNhbiBiZSBjYWxsZWQgZHVyaW5nIGxvY2t1cCByZWNvdmVyeS4KPj4+Pj4+
-IFRoZSBsb2NrdXAgY29kZSBpdHNlbGYgc2hvdWxkIG5ldmVyIGNhbGwgYW55IHdhaXRpbmcgY29k
-ZSBhbmQgVjIgZG9lc24ndCBzZWVtIHRvIGhhbmRsZSBhIGNvdXBsZSBvZiBjYXNlcyBjb3JyZWN0
-bHkgZWl0aGVyLgo+Pj4+Pj4KPj4+Pj4+IEhvdyBhYm91dCBtb3ZpbmcgdGhlIGZlbmNlIHdhaXRp
-bmcgb3V0IG9mIHRoZSByZXNldCBjb2RlPwo+Pj4+PiBXaGF0IGNhc2VzIGRpZCBJIG1pc3MgdGhl
-bj8KPj4+Pj4KPj4+Pj4gSSdtIGN1cmlvdXMgaG93IHlvdSB3YW50IHRvIG1vdmUgdGhlIGZlbmNl
-IHdhaXRpbmcgb3V0IG9mIHJlc2V0LCB3aGVuIHRoZXJlIGFyZSBzbyBtYW55IHBsYWNlcyB0aGF0
-IGNvdWxkIHBvdGVudGlhbGx5IHdhaXQsIGxpa2UgcmFkZW9uX2liX2dldCBjYW4gY2FsbCByYWRl
-b25fc2FfYm9fbmV3IHdoaWNoIGNhbiBkbyBhIHdhaXQsIG9yIHJhZGVvbl9yaW5nX2FsbG9jIHRo
-YXQgY2FuIHdhaXQgb24gcmFkZW9uX2ZlbmNlX3dhaXRfbmV4dCwgZXRjLgo+Pj4+IFRoZSBJQiB0
-ZXN0IGl0c2VsZiBkb2Vzbid0IG5lZWRzIHRvIGJlIHByb3RlY3RlZCBieSB0aGUgZXhjbHVzaXZl
-IGxvY2suIE9ubHkgZXZlcnl0aGluZyBiZXR3ZWVuIHJhZGVvbl9zYXZlX2Jpb3Nfc2NyYXRjaF9y
-ZWdzIGFuZCByYWRlb25fcmluZ19yZXN0b3JlLgo+Pj4gSSdtIG5vdCBzdXJlIGFib3V0IHRoYXQs
-IHdoYXQgZG8geW91IHdhbnQgdG8gZG8gaWYgdGhlIHJpbmcgdGVzdHMgZmFpbD8gRG8geW91IGhh
-dmUgdG8gcmV0YWtlIHRoZSBleGNsdXNpdmUgbG9jaz8KPj4gSnVzdCBzZXQgbmVlZF9yZXNldCBh
-Z2FpbiBhbmQgcmV0dXJuIC1FQUdBSU4sIHRoYXQgc2hvdWxkIGhhdmUgbW9zdGx5IHRoZSBzYW1l
-IGVmZmVjdCBhcyB3aGF0IHdlIGFyZSBkb2luZyByaWdodCBub3cuCj4gWWVhaCwgZXhjZXB0IGZv
-ciB0aGUgbG9ja2luZyB0aGUgdHRtIGRlbGF5ZWQgd29ya3F1ZXVlLCBidXQgdGhhdCBib29sIHNo
-b3VsZCBiZSBlYXN5IHRvIHNhdmUvcmVzdG9yZS4KPiBJIHRoaW5rIHRoaXMgY291bGQgd29yay4K
-CkFjdHVhbGx5IHlvdSBjb3VsZCBhY3RpdmF0ZSB0aGUgZGVsYXllZCB3b3JrcXVldWUgbXVjaCBl
-YXJsaWVyIGFzIHdlbGwuCgpUaGlua2luZyBtb3JlIGFib3V0IGl0IHRoYXQgc291bmRzIGxpa2Ug
-YSBidWcgaW4gdGhlIGN1cnJlbnQgY29kZSwgCmJlY2F1c2Ugd2UgcHJvYmFibHkgd2FudCB0aGUg
-d29ya3F1ZXVlIGFjdGl2YXRlZCBiZWZvcmUgd2FpdGluZyBmb3IgdGhlIApmZW5jZS4KCkNocmlz
-dGlhbi4KCj4KPiB+TWFhcnRlbgo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2RyaS1kZXZlbAo=
+
+--===============1874390896==
+Content-Type: multipart/alternative; boundary="1407187684.AA8cb0.30021"; charset="us-ascii"
+
+
+--1407187684.AA8cb0.30021
+Date: Mon, 4 Aug 2014 21:28:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82152
+
+          Priority: medium
+            Bug ID: 82152
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: any OpenGL application crashes X, locks up machine
+                    with nouveau and PRIME
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: 10.2
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Created attachment 104017
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104017&action=edit
+Full output of journalctl, including kernel logs, between system boot and
+poweroff after crash.
+
+Any OpenGL application, even as minor as glxinfo, either crashes Xorg or locks
+up the machine entirely (no network, magic sysrq fails) when started with
+DRI_PRIME=1. Has happened across multiple Mesa and kernel versions, most
+recently with Mesa 10.2.4 and Linux 3.15.8 on Arch Linux.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1407187684.AA8cb0.30021
+Date: Mon, 4 Aug 2014 21:28:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">82152</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>any OpenGL application crashes X, locks up machine with nouveau and PRIME
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>celticmadman&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104017" name="attach_104017" title="Full output of journalctl, including kernel logs, between system boot and poweroff after crash.">attachment 104017</a> <a href="attachment.cgi?id=104017&amp;action=edit" title="Full output of journalctl, including kernel logs, between system boot and poweroff after crash.">[details]</a></span>
+Full output of journalctl, including kernel logs, between system boot and
+poweroff after crash.
+
+Any OpenGL application, even as minor as glxinfo, either crashes Xorg or locks
+up the machine entirely (no network, magic sysrq fails) when started with
+DRI_PRIME=1. Has happened across multiple Mesa and kernel versions, most
+recently with Mesa 10.2.4 and Linux 3.15.8 on Arch Linux.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1407187684.AA8cb0.30021--
+
+--===============1874390896==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1874390896==--
