@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82152] any OpenGL application crashes X,
  locks up machine with nouveau and PRIME
-Date: Mon, 04 Aug 2014 21:29:12 +0000
-Message-ID: <bug-82152-8800-aVV9W21ZpT@http.bugs.freedesktop.org/>
+Date: Mon, 04 Aug 2014 21:29:56 +0000
+Message-ID: <bug-82152-8800-mtLokMTWcW@http.bugs.freedesktop.org/>
 References: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1548423886=="
+Content-Type: multipart/mixed; boundary="===============0315712019=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1548423886==
-Content-Type: multipart/alternative; boundary="1407187752.7C6EC0.30396"; charset="us-ascii"
+--===============0315712019==
+Content-Type: multipart/alternative; boundary="1407187796.3F3cd0.30635"; charset="us-ascii"
 
 
---1407187752.7C6EC0.30396
-Date: Mon, 4 Aug 2014 21:29:12 +0000
+--1407187796.3F3cd0.30635
+Date: Mon, 4 Aug 2014 21:29:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82152
 
---- Comment #1 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 104018
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104018&action=edit
-Output from crashing glxinfo.
+Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #104017|0                           |1
+        is obsolete|                            |
+
+--- Comment #2 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 104019
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104019&action=edit
+Kernel logs filtered from journal output.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407187752.7C6EC0.30396
-Date: Mon, 4 Aug 2014 21:29:12 +0000
+--1407187796.3F3cd0.30635
+Date: Mon, 4 Aug 2014 21:29:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +57,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #104017 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - any OpenGL application crashes X, locks up machine with nouveau and PRIME"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
               from <span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104018" name="attach_104018" title="Output from crashing glxinfo.">attachment 104018</a> <a href="attachment.cgi?id=104018&amp;action=edit" title="Output from crashing glxinfo.">[details]</a></span>
-Output from crashing glxinfo.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104019" name="attach_104019" title="Kernel logs filtered from journal output.">attachment 104019</a> <a href="attachment.cgi?id=104019&amp;action=edit" title="Kernel logs filtered from journal output.">[details]</a></span>
+Kernel logs filtered from journal output.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +104,9 @@ Output from crashing glxinfo.</pre>
     </body>
 </html>
 
---1407187752.7C6EC0.30396--
+--1407187796.3F3cd0.30635--
 
---===============1548423886==
+--===============0315712019==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +117,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1548423886==--
+--===============0315712019==--
