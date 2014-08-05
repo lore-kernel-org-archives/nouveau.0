@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82152] [NVE7] NULL deref when putting card back to
  sleep after unsuccessful init (HUB_INIT timeout)
-Date: Tue, 05 Aug 2014 00:31:19 +0000
-Message-ID: <bug-82152-8800-m2RFUoM2d1@http.bugs.freedesktop.org/>
+Date: Tue, 05 Aug 2014 01:28:20 +0000
+Message-ID: <bug-82152-8800-otky1wEIqz@http.bugs.freedesktop.org/>
 References: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1854699118=="
+Content-Type: multipart/mixed; boundary="===============0216609100=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1854699118==
-Content-Type: multipart/alternative; boundary="1407198679.f1f1eCd00.1686"; charset="us-ascii"
+--===============0216609100==
+Content-Type: multipart/alternative; boundary="1407202100.DF4e4FCb0.22904"; charset="us-ascii"
 
 
---1407198679.f1f1eCd00.1686
-Date: Tue, 5 Aug 2014 00:31:19 +0000
+--1407202100.DF4e4FCb0.22904
+Date: Tue, 5 Aug 2014 01:28:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82152
 
---- Comment #8 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 104031
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104031&action=edit
-dmesg output using DRI3
+--- Comment #9 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 104033
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104033&action=edit
+dmesg output using firmware ripped from the blob
 
-Using DRI3 defers all errors until after attempting to run an OpenGL
-application with DRI_PRIME=1, and prevents the crash from bringing down X or
-the kernel.
+Using DRI3 and the firmware from the blob I still get crashes, but finally have
+a different error message in dmesg.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407198679.f1f1eCd00.1686
-Date: Tue, 5 Aug 2014 00:31:19 +0000
+--1407202100.DF4e4FCb0.22904
+Date: Tue, 5 Aug 2014 01:28:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
               from <span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104031" name="attach_104031" title="dmesg output using DRI3">attachment 104031</a> <a href="attachment.cgi?id=104031&amp;action=edit" title="dmesg output using DRI3">[details]</a></span>
-dmesg output using DRI3
+        <pre>Created <span class=""><a href="attachment.cgi?id=104033" name="attach_104033" title="dmesg output using firmware ripped from the blob">attachment 104033</a> <a href="attachment.cgi?id=104033&amp;action=edit" title="dmesg output using firmware ripped from the blob">[details]</a></span>
+dmesg output using firmware ripped from the blob
 
-Using DRI3 defers all errors until after attempting to run an OpenGL
-application with DRI_PRIME=1, and prevents the crash from bringing down X or
-the kernel.</pre>
+Using DRI3 and the firmware from the blob I still get crashes, but finally have
+a different error message in dmesg.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +82,9 @@ the kernel.</pre>
     </body>
 </html>
 
---1407198679.f1f1eCd00.1686--
+--1407202100.DF4e4FCb0.22904--
 
---===============1854699118==
+--===============0216609100==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +95,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1854699118==--
+--===============0216609100==--
