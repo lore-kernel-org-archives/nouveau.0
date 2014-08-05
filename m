@@ -1,13 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2 0/3] drm/gk20a: support for reclocking
-Date: Tue, 5 Aug 2014 09:55:10 +1000
-Message-ID: <CACAvsv7mLcaWmZsaQz95GBktxcCf22Nkh9y+UyeHTcY78TPY2w@mail.gmail.com>
-References: <1406367701-9155-1-git-send-email-gnurou@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82152] [NVE7] NULL deref when putting card back to
+ sleep after unsuccessful init (HUB_INIT timeout)
+Date: Tue, 05 Aug 2014 00:31:19 +0000
+Message-ID: <bug-82152-8800-m2RFUoM2d1@http.bugs.freedesktop.org/>
+References: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1854699118=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1406367701-9155-1-git-send-email-gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,67 +17,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Jul 26, 2014 at 7:41 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Second version of the gk20a clock patches. I have tried to keep the therm and
-> volt devices mandatory in the clock driver, but unfortunately they are too tied
-> to bios to allow this, at least for the moment. Consequently this version is
-> mostly a port of the first version to Ben's tree.
-I've merged the series, thanks Alex.
 
->
-> Ben, please let me know what I have done wrong in terms of integration to your
-> tree, as the main purpose of writing patches against it instead of the kernel
-> is to make your life easier. :)
-I honestly don't mind at all if you completely ignore the non-DRM
-build and leave it to me to fix up.  I personally use the userspace
-build quite a lot for dev/testing, but don't at all expect others to,
-or to maintain it.  But thank you for bothering :)
+--===============1854699118==
+Content-Type: multipart/alternative; boundary="1407198679.f1f1eCd00.1686"; charset="us-ascii"
 
-In any case, it was *almost* (clk_get_rate() was missing) fine.  I
-left a patch in the tree of what I changed, and I'll squash it before
-it goes to -staging.
 
-Thanks again,
-Ben.
+--1407198679.f1f1eCd00.1686
+Date: Tue, 5 Aug 2014 00:31:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
->
-> Alexandre Courbot (3):
->   clk: make therm and volt devices optional
->   clk: support for non-BIOS pstates
->   gk20a: reclocking support
->
->  drm/Kbuild                      |   1 +
->  drm/core/os.h                   |   1 +
->  drm/core/subdev/clock/gk20a.c   |   1 +
->  drm/core/subdev/fb/ramgk20a.h   |   1 +
->  drm/core/subdev/instmem/gk20a.c |   1 +
->  lib/core/os.h                   |  10 +
->  nvkm/engine/device/nve0.c       |   1 +
->  nvkm/include/subdev/clock.h     |   9 +-
->  nvkm/subdev/clock/Makefile.am   |   1 +
->  nvkm/subdev/clock/base.c        |  52 ++--
->  nvkm/subdev/clock/gk20a.c       | 665 ++++++++++++++++++++++++++++++++++++++++
->  nvkm/subdev/clock/nv04.c        |   4 +-
->  nvkm/subdev/clock/nv40.c        |   4 +-
->  nvkm/subdev/clock/nv50.c        |   2 +-
->  nvkm/subdev/clock/nva3.c        |   4 +-
->  nvkm/subdev/clock/nvaa.c        |   4 +-
->  nvkm/subdev/clock/nvc0.c        |   4 +-
->  nvkm/subdev/clock/nve0.c        |   4 +-
->  18 files changed, 735 insertions(+), 34 deletions(-)
->  create mode 120000 drm/core/subdev/clock/gk20a.c
->  create mode 120000 drm/core/subdev/fb/ramgk20a.h
->  create mode 120000 drm/core/subdev/instmem/gk20a.c
->  create mode 100644 nvkm/subdev/clock/gk20a.c
->
-> --
-> 2.0.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+https://bugs.freedesktop.org/show_bug.cgi?id=82152
+
+--- Comment #8 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 104031
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104031&action=edit
+dmesg output using DRI3
+
+Using DRI3 defers all errors until after attempting to run an OpenGL
+application with DRI_PRIME=1, and prevents the crash from bringing down X or
+the kernel.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1407198679.f1f1eCd00.1686
+Date: Tue, 5 Aug 2014 00:31:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
+              from <span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104031" name="attach_104031" title="dmesg output using DRI3">attachment 104031</a> <a href="attachment.cgi?id=104031&amp;action=edit" title="dmesg output using DRI3">[details]</a></span>
+dmesg output using DRI3
+
+Using DRI3 defers all errors until after attempting to run an OpenGL
+application with DRI_PRIME=1, and prevents the crash from bringing down X or
+the kernel.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1407198679.f1f1eCd00.1686--
+
+--===============1854699118==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1854699118==--
