@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82255] [VP2] Chroma planes are vertically stretched
  during VDPAU playback
-Date: Wed, 06 Aug 2014 16:28:43 +0000
-Message-ID: <bug-82255-8800-NHmj9SSbfL@http.bugs.freedesktop.org/>
+Date: Wed, 06 Aug 2014 16:35:27 +0000
+Message-ID: <bug-82255-8800-skKWNxAVZ8@http.bugs.freedesktop.org/>
 References: <bug-82255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1696104083=="
+Content-Type: multipart/mixed; boundary="===============1978578794=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1696104083==
-Content-Type: multipart/alternative; boundary="1407342523.fbA11.25036"; charset="us-ascii"
+--===============1978578794==
+Content-Type: multipart/alternative; boundary="1407342926.80EA1E0.26832"; charset="us-ascii"
 
 
---1407342523.fbA11.25036
-Date: Wed, 6 Aug 2014 16:28:43 +0000
+--1407342926.80EA1E0.26832
+Date: Wed, 6 Aug 2014 16:35:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82255
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Without any actual investigation, this smells like a NV12 vs YV12 screwup.
+--- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A quick look at the log:
+
+ - VLC always creates/opens multiple vpdau devices (offending flashplayer does
+the same).
+ - VLC does not seem to render/present via VDPAU.
+
+vdp_decoder_create
+vdp_video_surface_create
+
+vdp_decoder_render
+vdp_video_surface_get_bits_y_cb_cr
+vdp_decoder_render
+....
+
+vdp_video_surface_destroy
+vdp_decoder_destroy
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407342523.fbA11.25036
-Date: Wed, 6 Aug 2014 16:28:43 +0000
+--1407342926.80EA1E0.26832
+Date: Wed, 6 Aug 2014 16:35:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +69,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Without any actual investigation, this smells like a NV12 vs YV12 screwup.</pre>
+        <pre>A quick look at the log:
+
+ - VLC always creates/opens multiple vpdau devices (offending flashplayer does
+the same).
+ - VLC does not seem to render/present via VDPAU.
+
+vdp_decoder_create
+vdp_video_surface_create
+
+vdp_decoder_render
+vdp_video_surface_get_bits_y_cb_cr
+vdp_decoder_render
+....
+
+vdp_video_surface_destroy
+vdp_decoder_destroy</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1407342523.fbA11.25036--
+--1407342926.80EA1E0.26832--
 
---===============1696104083==
+--===============1978578794==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -86,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1696104083==--
+--===============1978578794==--
