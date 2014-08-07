@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82255] [VP2] Chroma planes are vertically stretched
- during VDPAU playback
-Date: Thu, 07 Aug 2014 10:40:17 +0000
-Message-ID: <bug-82255-8800-T3dKyZbyjG@http.bugs.freedesktop.org/>
-References: <bug-82255-8800@http.bugs.freedesktop.org/>
+From: Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org>
+Subject: NV25 doesn't draw most icons
+Date: Thu, 07 Aug 2014 08:30:32 -0400
+Message-ID: <20140807083032.oo6ofuepycoosgk8-cebfxv@webmail.spamcop.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1397278854=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="Yes"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,90 +19,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hello!
 
---===============1397278854==
-Content-Type: multipart/alternative; boundary="1407408016.DdFC0.30062"; charset="us-ascii"
+I've installed Fedora 20 Mate i386 on an old system with GeForce4 Ti  
+4200 AGP (NV25) and I see significant visual defects. Many icons are  
+not shown. They can reappear if they are selected of the mouse goes  
+over them. Screenshot:
+http://red-bean.com/proski/nv25/screenshot.png
 
+All entries on the left should have icons, but only two have them.
 
---1407408016.DdFC0.30062
-Date: Thu, 7 Aug 2014 10:40:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+The problem goes away I create a file /etc/modprobe.d/nouveau.conf containing
+"options nouveau noaccel=1", rebuild initrd and reboot.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82255
+I compiled Linux kernel 3.16 and I see exactly the same problem. .config:
+http://red-bean.com/proski/nv25/kernel.config
 
---- Comment #4 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-A couple of interesting bits:
+I tried opening many tabs with flash based videos in Firefox and got a  
+hang. At first, the mouse worked, I was able to switch to the console  
+with Ctrl-Alt-F2, but when I switched back to X, the system was  
+totally unresponsive and I had to power cycle it. The kernel log for  
+3.16:
+http://red-bean.com/proski/nv25/dmesg
 
-The surface produced by the vdpau state-tracker is exactly the same one
-displayed on the screen - there seems to be no nv12 <> yv12 screw-up in VLC.
-On the other hand the vlVdpCopyNV12ToYV12 function, converts the original data,
-based on the assumption that both fields are interleaved while it seems that
-they are both continuous one after the other. The other two conversion
-functions follow the same field 0 and 1 (top+bottom ?) are interleaved.
+The output of "lspci -nnvvvxxx":
+http://red-bean.com/proski/nv25/lspci-nnvvvxxx
 
-All of them are added with commit e6c2afa9ceacc188690deba9da7b46bf1a0a9027
-(st/vdpau: add format conversions for GetBitsYCbCr) with VLC in mind :)
+Fedora 20 is fully up-to-date. MATE appears to be most affected, but  
+I've also seen incorrectly drawn checkboxes in LDXE on that system.
+
+I'm ready to donate that video card to the project if anyone is interested.
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1407408016.DdFC0.30062
-Date: Thu, 7 Aug 2014 10:40:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>A couple of interesting bits:
-
-The surface produced by the vdpau state-tracker is exactly the same one
-displayed on the screen - there seems to be no nv12 &lt;&gt; yv12 screw-up in VLC.
-On the other hand the vlVdpCopyNV12ToYV12 function, converts the original data,
-based on the assumption that both fields are interleaved while it seems that
-they are both continuous one after the other. The other two conversion
-functions follow the same field 0 and 1 (top+bottom ?) are interleaved.
-
-All of them are added with commit e6c2afa9ceacc188690deba9da7b46bf1a0a9027
-(st/vdpau: add format conversions for GetBitsYCbCr) with VLC in mind :)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1407408016.DdFC0.30062--
-
---===============1397278854==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1397278854==--
+Regards,
+Pavel Roskin
