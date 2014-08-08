@@ -1,66 +1,91 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 3/3] nvc0/ir: describe the tex arguments for
-	fermi/kepler
-Date: Thu,  7 Aug 2014 21:27:10 -0400
-Message-ID: <1407461230-22369-3-git-send-email-imirkin@alum.mit.edu>
-References: <1407461230-22369-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82247] [NVA8] The DisplayPort screen does not light
+ up at first try on Linux 3.16
+Date: Fri, 08 Aug 2014 11:06:03 +0000
+Message-ID: <bug-82247-8800-dMH2fWLeUE@http.bugs.freedesktop.org/>
+References: <bug-82247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1407461230-22369-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1662635378=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
----
- .../nouveau/codegen/nv50_ir_lowering_nvc0.cpp      | 25 ++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-index ade315d..7da9b0b 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
-@@ -567,6 +567,31 @@ NVC0LoweringPass::handleTEX(TexInstruction *i)
-    const int lyr = arg - (i->tex.target.isMS() ? 2 : 1);
-    const int chipset = prog->getTarget()->getChipset();
- 
-+   // Arguments to the TEX instruction are a little insane. Even though the
-+   // encoding is identical between SM20 and SM30, the arguments mean
-+   // different things between Fermi and Kepler+. A lot of arguments are
-+   // optional based on flags passed to the instruction. This summarizes the
-+   // order of things.
-+   //
-+   // Fermi:
-+   //  array/indirect
-+   //  coords
-+   //  sample
-+   //  lod bias
-+   //  depth compare
-+   //  offsets:
-+   //    - tg4: 8 bits each, either 2 (1 offset reg) or 8 (2 offset reg)
-+   //    - other: 4 bits each, single reg
-+   //
-+   // Kepler+:
-+   //  indirect handle
-+   //  array (+ offsets for txd in upper 16 bits)
-+   //  coords
-+   //  sample
-+   //  lod bias
-+   //  depth compare
-+   //  offsets (same as fermi, except txd which takes it with array)
-+
-    if (chipset >= NVISA_GK104_CHIPSET) {
-       if (i->tex.rIndirectSrc >= 0 || i->tex.sIndirectSrc >= 0) {
-          // XXX this ignores tsc, and assumes a 1:1 mapping
+--===============1662635378==
+Content-Type: multipart/alternative; boundary="1407495963.FF8Dd5e51.12511"; charset="us-ascii"
+
+
+--1407495963.FF8Dd5e51.12511
+Date: Fri, 8 Aug 2014 11:06:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82247
+
+--- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+My work around: turn off and on again the screen before nouveau loads. That
+does the trick to force the screen out of the sleep mode before the modeset.
+
 -- 
-1.8.5.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1407495963.FF8Dd5e51.12511
+Date: Fri, 8 Aug 2014 11:06:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] The DisplayPort screen does not light up at first try on Linux 3.16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82247#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVA8] The DisplayPort screen does not light up at first try on Linux 3.16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82247">bug 82247</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span></b>
+        <pre>My work around: turn off and on again the screen before nouveau loads. That
+does the trick to force the screen out of the sleep mode before the modeset.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1407495963.FF8Dd5e51.12511--
+
+--===============1662635378==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1662635378==--
