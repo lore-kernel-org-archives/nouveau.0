@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82255] [VP2] Chroma planes are vertically stretched
- during VDPAU playback
-Date: Sun, 10 Aug 2014 18:47:48 +0000
-Message-ID: <bug-82255-8800-vuEZCOF17x@http.bugs.freedesktop.org/>
-References: <bug-82255-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80627] [NVE6] 'HUB_INIT timed out' 'Watchdog
+ detected hard LOCKUP on cpu 7'
+Date: Sun, 10 Aug 2014 19:45:00 +0000
+Message-ID: <bug-80627-8800-kLdNyaS9bN@http.bugs.freedesktop.org/>
+References: <bug-80627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0726857146=="
+Content-Type: multipart/mixed; boundary="===============1224268827=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0726857146==
-Content-Type: multipart/alternative; boundary="1407696468.35BA0.27947"; charset="us-ascii"
+--===============1224268827==
+Content-Type: multipart/alternative; boundary="1407699899.64A22.16800"; charset="us-ascii"
 
 
---1407696468.35BA0.27947
-Date: Sun, 10 Aug 2014 18:47:48 +0000
+--1407699899.64A22.16800
+Date: Sun, 10 Aug 2014 19:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82255
+https://bugs.freedesktop.org/show_bug.cgi?id=80627
 
---- Comment #11 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 104390
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104390&action=edit
-First frame, post colorspace conversion, without interleaving
-
-vlVdpCopyNV12ToYV12 interleaves the top and bottom field of the chroma plane
-during conversion. If one hacks around it, the attached (almost good) frame is
-produced.
+--- Comment #3 from buhman <zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org> ---
+The ioread32 craziness vanished on or before darktama/nouveau @ 19ae6962 and
+kernel 3.17-mw.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407696468.35BA0.27947
-Date: Sun, 10 Aug 2014 18:47:48 +0000
+--1407699899.64A22.16800
+Date: Sun, 10 Aug 2014 19:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c11">Comment # 11</a>
+   title="NEW --- - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title="NEW --- - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627">bug 80627</a>
+              from <span class="vcard"><a class="email" href="mailto:zack&#64;buhman.org" title="buhman &lt;zack&#64;buhman.org&gt;"> <span class="fn">buhman</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104390" name="attach_104390" title="First frame, post colorspace conversion, without interleaving">attachment 104390</a> <a href="attachment.cgi?id=104390&amp;action=edit" title="First frame, post colorspace conversion, without interleaving">[details]</a></span>
-First frame, post colorspace conversion, without interleaving
-
-vlVdpCopyNV12ToYV12 interleaves the top and bottom field of the chroma plane
-during conversion. If one hacks around it, the attached (almost good) frame is
-produced.</pre>
+        <pre>The ioread32 craziness vanished on or before darktama/nouveau &#64; 19ae6962 and
+kernel 3.17-mw.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +75,9 @@ produced.</pre>
     </body>
 </html>
 
---1407696468.35BA0.27947--
+--1407699899.64A22.16800--
 
---===============0726857146==
+--===============1224268827==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0726857146==--
+--===============1224268827==--
