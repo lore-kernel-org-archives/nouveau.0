@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
- after suspend
-Date: Sun, 10 Aug 2014 09:19:26 +0000
-Message-ID: <bug-81136-8800-w8eMNp5H95@http.bugs.freedesktop.org/>
-References: <bug-81136-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] [NV10, NV20] bad/missing graphics,
+	usually alpha-related
+Date: Sun, 10 Aug 2014 15:08:53 +0000
+Message-ID: <bug-51477-8800-psfmZWp7iU@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1700925180=="
+Content-Type: multipart/mixed; boundary="===============1663191391=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1700925180==
-Content-Type: multipart/alternative; boundary="1407662365.472E41.2376"; charset="us-ascii"
+--===============1663191391==
+Content-Type: multipart/alternative; boundary="1407683333.4B0B3.15332"; charset="us-ascii"
 
 
---1407662365.472E41.2376
-Date: Sun, 10 Aug 2014 09:19:25 +0000
+--1407683333.4B0B3.15332
+Date: Sun, 10 Aug 2014 15:08:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81136
+https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #5 from Vasileios P. Lourdas <bugzilla-xds7w3SMsC/a5EbDDlwbIw@public.gmane.org> ---
-Forgot to mention my card model:
-
-# lspci -v|fgrep -i vga
-01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
-(rev a1) (prog-if 00 [VGA controller])
+--- Comment #26 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #24)
+> I noticed a weird thing in the bisected commit... does this patch help?
+> 
+This patch alone does not help (see comment 10 and 11). Although I would
+suspect it's because of the incorrect mask (fixed by the patch linked in
+comment 25). Or in other words - there is more than one bugger, thanks for
+tracking them down :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407662365.472E41.2376
-Date: Sun, 10 Aug 2014 09:19:25 +0000
+--1407683333.4B0B3.15332
+Date: Sun, 10 Aug 2014 15:08:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,19 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136#c5">Comment # 5</a>
+   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c26">Comment # 26</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136">bug 81136</a>
-              from <span class="vcard"><a class="email" href="mailto:bugzilla&#64;lourdas.name" title="Vasileios P. Lourdas &lt;bugzilla&#64;lourdas.name&gt;"> <span class="fn">Vasileios P. Lourdas</span></a>
+   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Forgot to mention my card model:
-
-# lspci -v|fgrep -i vga
-01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
-(rev a1) (prog-if 00 [VGA controller])</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=51477#c24">comment #24</a>)
+<span class="quote">&gt; I noticed a weird thing in the bisected commit... does this patch help?
+&gt; </span >
+This patch alone does not help (see <a href="show_bug.cgi?id=51477#c10">comment 10</a> and 11). Although I would
+suspect it's because of the incorrect mask (fixed by the patch linked in
+<a href="show_bug.cgi?id=51477#c25">comment 25</a>). Or in other words - there is more than one bugger, thanks for
+tracking them down :)</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1407662365.472E41.2376--
+--1407683333.4B0B3.15332--
 
---===============1700925180==
+--===============1663191391==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1700925180==--
+--===============1663191391==--
