@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
  after suspend
-Date: Sun, 10 Aug 2014 07:27:58 +0000
-Message-ID: <bug-81136-8800-TuGCOV3dYl@http.bugs.freedesktop.org/>
+Date: Sun, 10 Aug 2014 09:19:26 +0000
+Message-ID: <bug-81136-8800-w8eMNp5H95@http.bugs.freedesktop.org/>
 References: <bug-81136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1819112944=="
+Content-Type: multipart/mixed; boundary="===============1700925180=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1819112944==
-Content-Type: multipart/alternative; boundary="1407655678.C3f80e11.4489"; charset="us-ascii"
+--===============1700925180==
+Content-Type: multipart/alternative; boundary="1407662365.472E41.2376"; charset="us-ascii"
 
 
---1407655678.C3f80e11.4489
-Date: Sun, 10 Aug 2014 07:27:58 +0000
+--1407662365.472E41.2376
+Date: Sun, 10 Aug 2014 09:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=81136
 
---- Comment #4 from Vasileios P. Lourdas <bugzilla-xds7w3SMsC/a5EbDDlwbIw@public.gmane.org> ---
-Created attachment 104373
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104373&action=edit
-kernel messages during wake-up from resume
+--- Comment #5 from Vasileios P. Lourdas <bugzilla-xds7w3SMsC/a5EbDDlwbIw@public.gmane.org> ---
+Forgot to mention my card model:
+
+# lspci -v|fgrep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
+(rev a1) (prog-if 00 [VGA controller])
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407655678.C3f80e11.4489
-Date: Sun, 10 Aug 2014 07:27:58 +0000
+--1407662365.472E41.2376
+Date: Sun, 10 Aug 2014 09:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=81136">bug 81136</a>
               from <span class="vcard"><a class="email" href="mailto:bugzilla&#64;lourdas.name" title="Vasileios P. Lourdas &lt;bugzilla&#64;lourdas.name&gt;"> <span class="fn">Vasileios P. Lourdas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104373" name="attach_104373" title="kernel messages during wake-up from resume">attachment 104373</a> <a href="attachment.cgi?id=104373&amp;action=edit" title="kernel messages during wake-up from resume">[details]</a></span>
-kernel messages during wake-up from resume</pre>
+        <pre>Forgot to mention my card model:
+
+# lspci -v|fgrep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G84 [GeForce 8600 GT]
+(rev a1) (prog-if 00 [VGA controller])</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +81,9 @@ kernel messages during wake-up from resume</pre>
     </body>
 </html>
 
---1407655678.C3f80e11.4489--
+--1407662365.472E41.2376--
 
---===============1819112944==
+--===============1700925180==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1819112944==--
+--===============1700925180==--
