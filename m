@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] bad/missing graphics with NV11 / GeForce
-	2MX/MX400
-Date: Sun, 10 Aug 2014 05:12:40 +0000
-Message-ID: <bug-51477-8800-gZ5QdJgjo0@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/4] exa/nv10: use same clip settings as mesa
+	driver
+Date: Sun, 10 Aug 2014 02:25:12 -0400
+Message-ID: <1407651915-7500-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0985237100=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,98 +19,31 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+The higher 0x800 was getting overwritten by the 0x7ff anyways, so it
+wasn't doing any good. The mesa driver just uses 0x800 for the low
+portion and doesn't set the 8 bit in the higher portion, so do the same
+thing here.
 
---===============0985237100==
-Content-Type: multipart/alternative; boundary="1407647560.ECdB83.3633"; charset="us-ascii"
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ src/nv10_exa.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
---1407647560.ECdB83.3633
-Date: Sun, 10 Aug 2014 05:12:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
-
---- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I noticed a weird thing in the bisected commit... does this patch help?
-
-index df2f561..47cf0ef 100644
+diff --git a/src/nv10_exa.c b/src/nv10_exa.c
+index cb9eb7c..df2f561 100644
 --- a/src/nv10_exa.c
 +++ b/src/nv10_exa.c
-@@ -520,7 +520,7 @@ setup_picture(NVPtr pNv, PicturePtr pict, PixmapPtr pixmap,
-int unit,
-        if (pict && PICT_FORMAT_RGB(pict->format))
-                *color = RCSEL_COLOR | source;
-        else
--               *color = RCSEL_ALPHA | RCINP_ZERO;
-+               *color = RCSEL_COLOR | RCINP_ZERO;
-
-        if (pict && PICT_FORMAT_A(pict->format))
-                *alpha = RCSEL_ALPHA | source;
-
+@@ -686,9 +686,9 @@ NVAccelInitNV10TCL(ScrnInfoPtr pScrn)
+ 	PUSH_DATA (push, 0);
+ 
+ 	BEGIN_NV04(push, NV10_3D(VIEWPORT_CLIP_HORIZ(0)), 1);
+-	PUSH_DATA (push, 0x7ff << 16 | 0x800800);
++	PUSH_DATA (push, 0x7ff << 16 | 0x800);
+ 	BEGIN_NV04(push, NV10_3D(VIEWPORT_CLIP_VERT(0)), 1);
+-	PUSH_DATA (push, 0x7ff << 16 | 0x800800);
++	PUSH_DATA (push, 0x7ff << 16 | 0x800);
+ 
+ 	for (i = 1; i < 8; i++) {
+ 		BEGIN_NV04(push, NV10_3D(VIEWPORT_CLIP_HORIZ(i)), 1);
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1407647560.ECdB83.3633
-Date: Sun, 10 Aug 2014 05:12:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c24">Comment # 24</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - bad/missing graphics with NV11 / GeForce 2MX/MX400"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I noticed a weird thing in the bisected commit... does this patch help?
-
-index df2f561..47cf0ef 100644
---- a/src/nv10_exa.c
-+++ b/src/nv10_exa.c
-&#64;&#64; -520,7 +520,7 &#64;&#64; setup_picture(NVPtr pNv, PicturePtr pict, PixmapPtr pixmap,
-int unit,
-        if (pict &amp;&amp; PICT_FORMAT_RGB(pict-&gt;format))
-                *color = RCSEL_COLOR | source;
-        else
--               *color = RCSEL_ALPHA | RCINP_ZERO;
-+               *color = RCSEL_COLOR | RCINP_ZERO;
-
-        if (pict &amp;&amp; PICT_FORMAT_A(pict-&gt;format))
-                *alpha = RCSEL_ALPHA | source;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1407647560.ECdB83.3633--
-
---===============0985237100==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0985237100==--
+1.8.5.5
