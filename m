@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] [NV10, NV20] bad/missing graphics,
-	usually alpha-related
-Date: Sun, 10 Aug 2014 06:29:14 +0000
-Message-ID: <bug-51477-8800-qF3w6Pva2V@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: NV25 doesn't draw most icons
+Date: Sun, 10 Aug 2014 02:30:44 -0400
+Message-ID: <CAKb7UvgsZ2nojG3_RMH-L_VguPy3G1j3h7VckxZPwH9XWCPMKg@mail.gmail.com>
+References: <20140807083032.oo6ofuepycoosgk8-cebfxv@webmail.spamcop.net>
+ <CAKb7UvgNsXcWh=cS=m-PxOYJvCyaVycXGHyETTsYU3vXdM8rWA@mail.gmail.com>
+ <20140807154009.pqa40ggggcgsk040-cebfxv@webmail.spamcop.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0181657736=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20140807154009.pqa40ggggcgsk040-cebfxv-2RFepEojUI3Rd1RZctBqVdHuzzzSOjJt@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +19,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, Aug 7, 2014 at 3:40 PM, Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org> wrote:
+> Quoting Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>:
+>
+>> On Thu, Aug 7, 2014 at 8:30 AM, Pavel Roskin <proski-mXXj517/zsQ@public.gmane.org> wrote:
+>>>
+>>> Hello!
+>>>
+>>> I've installed Fedora 20 Mate i386 on an old system with GeForce4 Ti 4200
+>>> AGP (NV25) and I see significant visual defects. Many icons are not
+>>> shown.
+>>> They can reappear if they are selected of the mouse goes over them.
+>>> Screenshot:
+>>> http://red-bean.com/proski/nv25/screenshot.png
+>>>
+>>> All entries on the left should have icons, but only two have them.
+>>
+>>
+>> It is most likely that this is the same issue as a bunch of people
+>> have reported on NV18. As of yet, it has not been tracked down. I
+>> recently grabbed a NV18 card, but haven't had time to try to reproduce
+>> the issue. This has something to do with transparency use, I think.
+>
+>
+> I agree, transparency may be an issue. Or perhaps the use of transparency to
+> implement mouse-over events and non-rectangular shape.
 
---===============0181657736==
-Content-Type: multipart/alternative; boundary="1407652154.E2a803.20925"; charset="us-ascii"
+I just sent some patches to the list:
 
-
---1407652154.E2a803.20925
-Date: Sun, 10 Aug 2014 06:29:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|bad/missing graphics with   |[NV10, NV20] bad/missing
-                   |NV11 / GeForce 2MX/MX400    |graphics, usually
-                   |                            |alpha-related
-
---- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Aha, and another issue which should be fixed by:
-
+http://lists.freedesktop.org/archives/nouveau/2014-August/018270.html
 http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html
 
-Please try applying both of these and see if that fixes things.
+Please see if these help your issue.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1407652154.E2a803.20925
-Date: Sun, 10 Aug 2014 06:29:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>bad/missing graphics with NV11 / GeForce 2MX/MX400
-           </td>
-           <td>[NV10, NV20] bad/missing graphics, usually alpha-related
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Aha, and another issue which should be fixed by:
-
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html">http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html</a>
-
-Please try applying both of these and see if that fixes things.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1407652154.E2a803.20925--
-
---===============0181657736==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0181657736==--
+  -ilia
