@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82255] [VP2] Chroma planes are vertically stretched
  during VDPAU playback
-Date: Sun, 10 Aug 2014 17:55:41 +0000
-Message-ID: <bug-82255-8800-VlOL7dMT00@http.bugs.freedesktop.org/>
+Date: Sun, 10 Aug 2014 17:56:02 +0000
+Message-ID: <bug-82255-8800-581aQFtCw8@http.bugs.freedesktop.org/>
 References: <bug-82255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0931856073=="
+Content-Type: multipart/mixed; boundary="===============0758209784=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0931856073==
-Content-Type: multipart/alternative; boundary="1407693341.65A70.3974"; charset="us-ascii"
+--===============0758209784==
+Content-Type: multipart/alternative; boundary="1407693362.bDbAF11.3974"; charset="us-ascii"
 
 
---1407693341.65A70.3974
-Date: Sun, 10 Aug 2014 17:55:41 +0000
+--1407693362.bDbAF11.3974
+Date: Sun, 10 Aug 2014 17:56:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82255
 
---- Comment #6 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 104385
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104385&action=edit
-luma plane, bottom field
+--- Comment #7 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 104386
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104386&action=edit
+chroma plane, top field
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407693341.65A70.3974
-Date: Sun, 10 Aug 2014 17:55:41 +0000
+--1407693362.bDbAF11.3974
+Date: Sun, 10 Aug 2014 17:56:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [VP2] Chroma planes are vertically stretched during VDPAU playback"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
               from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104385" name="attach_104385" title="luma plane, bottom field">attachment 104385</a> <a href="attachment.cgi?id=104385&amp;action=edit" title="luma plane, bottom field">[details]</a></span>
-luma plane, bottom field</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104386" name="attach_104386" title="chroma plane, top field">attachment 104386</a> <a href="attachment.cgi?id=104386&amp;action=edit" title="chroma plane, top field">[details]</a></span>
+chroma plane, top field</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ luma plane, bottom field</pre>
     </body>
 </html>
 
---1407693341.65A70.3974--
+--1407693362.bDbAF11.3974--
 
---===============0931856073==
+--===============0758209784==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0931856073==--
+--===============0758209784==--
