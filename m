@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81283] Icons are misrendered when rgb font hinting
- is activated [NV18]
-Date: Sun, 10 Aug 2014 06:27:49 +0000
-Message-ID: <bug-81283-8800-77js0oHxSk@http.bugs.freedesktop.org/>
-References: <bug-81283-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 51477] [NV10, NV20] bad/missing graphics,
+	usually alpha-related
+Date: Sun, 10 Aug 2014 06:29:14 +0000
+Message-ID: <bug-51477-8800-qF3w6Pva2V@http.bugs.freedesktop.org/>
+References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1344489303=="
+Content-Type: multipart/mixed; boundary="===============0181657736=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81283-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1344489303==
-Content-Type: multipart/alternative; boundary="1407652068.3BCd082B1.20549"; charset="us-ascii"
+--===============0181657736==
+Content-Type: multipart/alternative; boundary="1407652154.E2a803.20925"; charset="us-ascii"
 
 
---1407652068.3BCd082B1.20549
-Date: Sun, 10 Aug 2014 06:27:48 +0000
+--1407652154.E2a803.20925
+Date: Sun, 10 Aug 2014 06:29:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81283
+https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I just sent a bunch of patches to the list... two of the patches are no-ops,
-but these two actually change functionality:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-http://lists.freedesktop.org/archives/nouveau/2014-August/018270.html
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|bad/missing graphics with   |[NV10, NV20] bad/missing
+                   |NV11 / GeForce 2MX/MX400    |graphics, usually
+                   |                            |alpha-related
+
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Aha, and another issue which should be fixed by:
+
 http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html
 
-please see if applying these fixes the issue for you.
+Please try applying both of these and see if that fixes things.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407652068.3BCd082B1.20549
-Date: Sun, 10 Aug 2014 06:27:48 +0000
+--1407652154.E2a803.20925
+Date: Sun, 10 Aug 2014 06:29:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,26 +60,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>bad/missing graphics with NV11 / GeForce 2MX/MX400
+           </td>
+           <td>[NV10, NV20] bad/missing graphics, usually alpha-related
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons are misrendered when rgb font hinting is activated [NV18]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81283#c4">Comment # 4</a>
+   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Icons are misrendered when rgb font hinting is activated [NV18]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81283">bug 81283</a>
+   title="NEW --- - [NV10, NV20] bad/missing graphics, usually alpha-related"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I just sent a bunch of patches to the list... two of the patches are no-ops,
-but these two actually change functionality:
+        <pre>Aha, and another issue which should be fixed by:
 
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-August/018270.html">http://lists.freedesktop.org/archives/nouveau/2014-August/018270.html</a>
 <a href="http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html">http://lists.freedesktop.org/archives/nouveau/2014-August/018271.html</a>
 
-please see if applying these fixes the issue for you.</pre>
+Please try applying both of these and see if that fixes things.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +109,9 @@ please see if applying these fixes the issue for you.</pre>
     </body>
 </html>
 
---1407652068.3BCd082B1.20549--
+--1407652154.E2a803.20925--
 
---===============1344489303==
+--===============0181657736==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +122,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1344489303==--
+--===============0181657736==--
