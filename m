@@ -1,8 +1,8 @@
 From: Joel Holdsworth <joel.holdsworth-EQPyqoE4rJiYoAmmQSGB5AC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 2/4] drm/nouveau: Replaced magic numbers with
-	defines from nouveau_reg
-Date: Tue, 12 Aug 2014 10:05:07 +0100
-Message-ID: <1407834309-16817-3-git-send-email-joel@airwebreathe.org.uk>
+Subject: [PATCH 4/4] drm/nouveau: Refactored encoder create
+	functions into common nv50_encoder_create helper
+Date: Tue, 12 Aug 2014 10:05:09 +0100
+Message-ID: <1407834309-16817-5-git-send-email-joel@airwebreathe.org.uk>
 References: <1407834309-16817-1-git-send-email-joel@airwebreathe.org.uk>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,77 +22,246 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 ---
- drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c | 27 +++++++++++++---------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/nouveau/nv50_display.c | 178 +++++++++++++--------------------
+ 1 file changed, 71 insertions(+), 107 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-index b36addf..61e29d6 100644
---- a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-@@ -31,11 +31,12 @@
- #include <subdev/timer.h>
- 
- #include "nv50.h"
-+#include "nouveau_reg.h"
- 
- int
- nv50_dac_power(NV50_DISP_MTHD_V1)
- {
--	const u32 doff = outp->or * 0x800;
-+	const u32 dpms_ctrl = NV50_PDISPLAY_DAC_DPMS_CTRL(outp->or);
- 	union {
- 		struct nv50_disp_dac_pwr_v0 v0;
- 	} *args = data;
-@@ -55,19 +56,21 @@ nv50_dac_power(NV50_DISP_MTHD_V1)
- 	} else
- 		return ret;
- 
--	nv_wait(priv, 0x61a004 + doff, 0x80000000, 0x00000000);
--	nv_mask(priv, 0x61a004 + doff, 0xc000007f, 0x80000000 | stat);
--	nv_wait(priv, 0x61a004 + doff, 0x80000000, 0x00000000);
-+	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x4000007f,
-+		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | stat);
-+	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
- 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
+index 03949ea..048e03e 100644
+--- a/drivers/gpu/drm/nouveau/nv50_display.c
++++ b/drivers/gpu/drm/nouveau/nv50_display.c
+@@ -1442,6 +1442,37 @@ out:
  }
  
- int
- nv50_dac_sense(NV50_DISP_MTHD_V1)
+ /******************************************************************************
++ * Encoder Helpers
++ *****************************************************************************/
++
++static int
++nv50_encoder_create(struct drm_connector *connector, struct dcb_output *dcbe,
++	int type, int init_dpms, struct nouveau_i2c_port *i2c_port,
++	const struct drm_encoder_funcs *func,
++	const struct drm_encoder_helper_funcs *hfunc)
++{
++	struct nouveau_encoder *nv_encoder;
++	struct drm_encoder *encoder;
++
++	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
++	if (!nv_encoder)
++		return -ENOMEM;
++	nv_encoder->dcb = dcbe;
++	nv_encoder->or = ffs(dcbe->or) - 1;
++	nv_encoder->i2c = i2c_port;
++	nv_encoder->last_dpms = init_dpms;
++
++	encoder = to_drm_encoder(nv_encoder);
++	encoder->possible_crtcs = dcbe->heads;
++	encoder->possible_clones = 0;
++	drm_encoder_init(connector->dev, encoder, func, type);
++	drm_encoder_helper_add(encoder, hfunc);
++
++	drm_mode_connector_attach_encoder(connector, encoder);
++	return 0;
++}
++
++/******************************************************************************
+  * DAC
+  *****************************************************************************/
+ static void
+@@ -1618,32 +1649,6 @@ static const struct drm_encoder_funcs nv50_dac_func = {
+ 	.destroy = nv50_dac_destroy,
+ };
+ 
+-static int
+-nv50_dac_create(struct drm_connector *connector, struct dcb_output *dcbe)
+-{
+-	struct nouveau_drm *drm = nouveau_drm(connector->dev);
+-	struct nouveau_i2c *i2c = nvkm_i2c(&drm->device);
+-	struct nouveau_encoder *nv_encoder;
+-	struct drm_encoder *encoder;
+-	int type = DRM_MODE_ENCODER_DAC;
+-
+-	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
+-	if (!nv_encoder)
+-		return -ENOMEM;
+-	nv_encoder->dcb = dcbe;
+-	nv_encoder->or = ffs(dcbe->or) - 1;
+-	nv_encoder->i2c = i2c->find(i2c, dcbe->i2c_index);
+-
+-	encoder = to_drm_encoder(nv_encoder);
+-	encoder->possible_crtcs = dcbe->heads;
+-	encoder->possible_clones = 0;
+-	drm_encoder_init(connector->dev, encoder, &nv50_dac_func, type);
+-	drm_encoder_helper_add(encoder, &nv50_dac_hfunc);
+-
+-	drm_mode_connector_attach_encoder(connector, encoder);
+-	return 0;
+-}
+-
+ /******************************************************************************
+  * Audio
+  *****************************************************************************/
+@@ -2017,42 +2022,6 @@ static const struct drm_encoder_funcs nv50_sor_func = {
+ 	.destroy = nv50_sor_destroy,
+ };
+ 
+-static int
+-nv50_sor_create(struct drm_connector *connector, struct dcb_output *dcbe)
+-{
+-	struct nouveau_drm *drm = nouveau_drm(connector->dev);
+-	struct nouveau_i2c *i2c = nvkm_i2c(&drm->device);
+-	struct nouveau_encoder *nv_encoder;
+-	struct drm_encoder *encoder;
+-	int type;
+-
+-	switch (dcbe->type) {
+-	case DCB_OUTPUT_LVDS: type = DRM_MODE_ENCODER_LVDS; break;
+-	case DCB_OUTPUT_TMDS:
+-	case DCB_OUTPUT_DP:
+-	default:
+-		type = DRM_MODE_ENCODER_TMDS;
+-		break;
+-	}
+-
+-	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
+-	if (!nv_encoder)
+-		return -ENOMEM;
+-	nv_encoder->dcb = dcbe;
+-	nv_encoder->or = ffs(dcbe->or) - 1;
+-	nv_encoder->i2c = i2c->find(i2c, dcbe->i2c_index);
+-	nv_encoder->last_dpms = DRM_MODE_DPMS_OFF;
+-
+-	encoder = to_drm_encoder(nv_encoder);
+-	encoder->possible_crtcs = dcbe->heads;
+-	encoder->possible_clones = 0;
+-	drm_encoder_init(connector->dev, encoder, &nv50_sor_func, type);
+-	drm_encoder_helper_add(encoder, &nv50_sor_hfunc);
+-
+-	drm_mode_connector_attach_encoder(connector, encoder);
+-	return 0;
+-}
+-
+ /******************************************************************************
+  * PIOR
+  *****************************************************************************/
+@@ -2198,46 +2167,6 @@ static const struct drm_encoder_funcs nv50_pior_func = {
+ 	.destroy = nv50_pior_destroy,
+ };
+ 
+-static int
+-nv50_pior_create(struct drm_connector *connector, struct dcb_output *dcbe)
+-{
+-	struct nouveau_drm *drm = nouveau_drm(connector->dev);
+-	struct nouveau_i2c *i2c = nvkm_i2c(&drm->device);
+-	struct nouveau_i2c_port *ddc = NULL;
+-	struct nouveau_encoder *nv_encoder;
+-	struct drm_encoder *encoder;
+-	int type;
+-
+-	switch (dcbe->type) {
+-	case DCB_OUTPUT_TMDS:
+-		ddc  = i2c->find_type(i2c, NV_I2C_TYPE_EXTDDC(dcbe->extdev));
+-		type = DRM_MODE_ENCODER_TMDS;
+-		break;
+-	case DCB_OUTPUT_DP:
+-		ddc  = i2c->find_type(i2c, NV_I2C_TYPE_EXTAUX(dcbe->extdev));
+-		type = DRM_MODE_ENCODER_TMDS;
+-		break;
+-	default:
+-		return -ENODEV;
+-	}
+-
+-	nv_encoder = kzalloc(sizeof(*nv_encoder), GFP_KERNEL);
+-	if (!nv_encoder)
+-		return -ENOMEM;
+-	nv_encoder->dcb = dcbe;
+-	nv_encoder->or = ffs(dcbe->or) - 1;
+-	nv_encoder->i2c = ddc;
+-
+-	encoder = to_drm_encoder(nv_encoder);
+-	encoder->possible_crtcs = dcbe->heads;
+-	encoder->possible_clones = 0;
+-	drm_encoder_init(connector->dev, encoder, &nv50_pior_func, type);
+-	drm_encoder_helper_add(encoder, &nv50_pior_hfunc);
+-
+-	drm_mode_connector_attach_encoder(connector, encoder);
+-	return 0;
+-}
+-
+ /******************************************************************************
+  * Framebuffer
+  *****************************************************************************/
+@@ -2437,10 +2366,12 @@ nv50_display_create(struct drm_device *dev)
  {
-+	const u32 dpms_ctrl = NV50_PDISPLAY_DAC_DPMS_CTRL(outp->or);
-+	const u32 load_ctrl = NV50_PDISPLAY_DAC_LOAD_CTRL(outp->or);
- 	union {
- 		struct nv50_disp_dac_load_v0 v0;
- 	} *args = data;
--	const u32 doff = outp->or * 0x800;
- 	u32 loadval;
- 	int ret;
+ 	struct nvif_device *device = &nouveau_drm(dev)->device;
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct nouveau_i2c *i2c = nvkm_i2c(&drm->device);
+ 	struct dcb_table *dcb = &drm->vbios.dcb;
+ 	struct drm_connector *connector, *tmp;
+ 	struct nv50_disp *disp;
+ 	struct dcb_output *dcbe;
++	struct nouveau_i2c_port *i2c_port;
+ 	int crtcs, ret, i;
  
-@@ -81,16 +84,18 @@ nv50_dac_sense(NV50_DISP_MTHD_V1)
- 	} else
- 		return ret;
+ 	disp = kzalloc(sizeof(*disp), GFP_KERNEL);
+@@ -2498,21 +2429,54 @@ nv50_display_create(struct drm_device *dev)
+ 			continue;
  
--	nv_mask(priv, 0x61a004 + doff, 0x807f0000, 0x80150000);
--	nv_wait(priv, 0x61a004 + doff, 0x80000000, 0x00000000);
-+	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x007f0000,
-+		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x00150000);
-+	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
+ 		if (dcbe->location == DCB_LOC_ON_CHIP) {
++			i2c_port = i2c->find(i2c, dcbe->i2c_index);
++
+ 			switch (dcbe->type) {
++			case DCB_OUTPUT_ANALOG:
++				ret = nv50_encoder_create(connector, dcbe,
++					DRM_MODE_ENCODER_DAC, DRM_MODE_DPMS_ON,
++					i2c_port, &nv50_dac_func,
++					&nv50_dac_hfunc);
++				break;
+ 			case DCB_OUTPUT_TMDS:
+-			case DCB_OUTPUT_LVDS:
+ 			case DCB_OUTPUT_DP:
+-				ret = nv50_sor_create(connector, dcbe);
++				ret = nv50_encoder_create(connector, dcbe,
++					DRM_MODE_ENCODER_TMDS,
++					DRM_MODE_DPMS_OFF,
++					i2c_port, &nv50_sor_func,
++					&nv50_sor_hfunc);
+ 				break;
+-			case DCB_OUTPUT_ANALOG:
+-				ret = nv50_dac_create(connector, dcbe);
++			case DCB_OUTPUT_LVDS:
++				ret = nv50_encoder_create(connector, dcbe,
++					DRM_MODE_ENCODER_LVDS, DRM_MODE_DPMS_ON,
++					i2c_port, &nv50_sor_func,
++					&nv50_sor_hfunc);
+ 				break;
+ 			default:
+ 				ret = -ENODEV;
+ 				break;
+ 			}
+ 		} else {
+-			ret = nv50_pior_create(connector, dcbe);
++			switch (dcbe->type) {
++			case DCB_OUTPUT_TMDS:
++				i2c_port = i2c->find_type(i2c,
++					NV_I2C_TYPE_EXTDDC(dcbe->extdev));
++				ret = nv50_encoder_create(connector, dcbe,
++					DRM_MODE_ENCODER_TMDS, DRM_MODE_DPMS_ON,
++					i2c_port, &nv50_pior_func,
++					&nv50_pior_hfunc);
++				break;
++			case DCB_OUTPUT_DP:
++				i2c_port = i2c->find_type(i2c,
++					NV_I2C_TYPE_EXTAUX(dcbe->extdev));
++				ret = nv50_encoder_create(connector, dcbe,
++					DRM_MODE_ENCODER_TMDS, DRM_MODE_DPMS_ON,
++					i2c_port, &nv50_pior_func,
++					&nv50_pior_hfunc);
++				break;
++			default:
++				ret = -ENODEV;
++			}
+ 		}
  
--	nv_wr32(priv, 0x61a00c + doff, 0x00100000 | loadval);
-+	nv_wr32(priv, load_ctrl, 0x00100000 | loadval);
- 	mdelay(9);
- 	udelay(500);
--	loadval = nv_mask(priv, 0x61a00c + doff, 0xffffffff, 0x00000000);
-+	loadval = nv_mask(priv, load_ctrl, 0xffffffff, 0x00000000);
- 
--	nv_mask(priv, 0x61a004 + doff, 0x807f0000, 0x80550000);
--	nv_wait(priv, 0x61a004 + doff, 0x80000000, 0x00000000);
-+	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x007f0000,
-+		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x00550000);
-+	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
- 
- 	nv_debug(priv, "DAC%d sense: 0x%08x\n", outp->or, loadval);
- 	if (!(loadval & 0x80000000))
+ 		if (ret) {
 -- 
 1.9.1
