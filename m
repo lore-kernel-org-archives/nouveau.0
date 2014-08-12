@@ -1,14 +1,14 @@
-From: Joel Holdsworth <joel.holdsworth-EQPyqoE4rJiYoAmmQSGB5AC/G2K4zDHf@public.gmane.org>
-Subject: [PATCH 3/4] drm/nouveau: Replaced copy-pasted nv_wait
-	with nv50_wait_dpms_ctrl helper
-Date: Tue, 12 Aug 2014 10:05:08 +0100
-Message-ID: <1407834309-16817-4-git-send-email-joel@airwebreathe.org.uk>
-References: <1407834309-16817-1-git-send-email-joel@airwebreathe.org.uk>
+From: Joel Holdsworth <joel-IJEoVVyKhCJXvIrf17iDB/XRex20P6io@public.gmane.org>
+Subject: Re: Some initial tidy-ups and refactoring
+Date: Tue, 12 Aug 2014 10:07:22 +0100
+Message-ID: <53E9D94A.90805@airwebreathe.org.uk>
+References: <53E94BAA.9000305@airwebreathe.org.uk>
+ <CAKb7UviRVn2NzBap2em29XfL4tHDg1R=U7gq+vTy5Wh21XeN=A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1407834309-16817-1-git-send-email-joel-IJEoVVyKhCJXvIrf17iDB/XRex20P6io@public.gmane.org>
+In-Reply-To: <CAKb7UviRVn2NzBap2em29XfL4tHDg1R=U7gq+vTy5Wh21XeN=A@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,60 +18,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
----
- drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+On 12/08/14 00:55, Ilia Mirkin wrote:
+> Please send these one email per patch, inlined. git send-email will
+> generally do the right thing, but you can do it manually too (just be
+> careful about preserving tabs, not wrapping, etc... most mail clients
+> mess it up one way or another)
+>
+> On Mon, Aug 11, 2014 at 7:03 PM, Joel Holdsworth
+> <joel-IJEoVVyKhCJXvIrf17iDB/XRex20P6io@public.gmane.org> wrote:
+>> The patches contain some tidy-up work, and refactoring that has arisen as a
+>> by-product of my initial work on adding TV support to nv50.
+>>
+>> Best Regards
+>> Joel Holdsworth
+>>
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>
+>
+>
 
-diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-index 61e29d6..98bded6 100644
---- a/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-+++ b/drivers/gpu/drm/nouveau/core/engine/disp/dacnv50.c
-@@ -33,6 +33,12 @@
- #include "nv50.h"
- #include "nouveau_reg.h"
- 
-+static void
-+nv50_wait_dpms_ctrl(struct nv50_disp_priv *priv, const u32 dpms_ctrl)
-+{
-+	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+}
-+
- int
- nv50_dac_power(NV50_DISP_MTHD_V1)
- {
-@@ -56,10 +62,10 @@ nv50_dac_power(NV50_DISP_MTHD_V1)
- 	} else
- 		return ret;
- 
--	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+	nv50_wait_dpms_ctrl(priv, dpms_ctrl);
- 	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x4000007f,
- 		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | stat);
--	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+	nv50_wait_dpms_ctrl(priv, dpms_ctrl);
- 	return 0;
- }
- 
-@@ -86,7 +92,7 @@ nv50_dac_sense(NV50_DISP_MTHD_V1)
- 
- 	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x007f0000,
- 		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x00150000);
--	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+	nv50_wait_dpms_ctrl(priv, dpms_ctrl);
- 
- 	nv_wr32(priv, load_ctrl, 0x00100000 | loadval);
- 	mdelay(9);
-@@ -95,7 +101,7 @@ nv50_dac_sense(NV50_DISP_MTHD_V1)
- 
- 	nv_mask(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x007f0000,
- 		NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING | 0x00550000);
--	nv_wait(priv, dpms_ctrl, NV50_PDISPLAY_DAC_DPMS_CTRL_PENDING, 0);
-+	nv50_wait_dpms_ctrl(priv, dpms_ctrl);
- 
- 	nv_debug(priv, "DAC%d sense: 0x%08x\n", outp->or, loadval);
- 	if (!(loadval & 0x80000000))
--- 
-1.9.1
+Ok just resubmitted. The reason for doing it this way is that my SMTP 
+server seems not to be compatible with get send-mail SSL or TLS. I 
+resubmitted via my work SMTP, so hopefully it works for you now.
+
+Joel
