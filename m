@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82527] xset dpms force {off, standby,
  suspend} returns after ~20 seconds (GeForce 8400 GS)
-Date: Wed, 13 Aug 2014 07:53:44 +0000
-Message-ID: <bug-82527-8800-oGzE1qCO6m@http.bugs.freedesktop.org/>
+Date: Wed, 13 Aug 2014 17:36:51 +0000
+Message-ID: <bug-82527-8800-lyRzdbZn35@http.bugs.freedesktop.org/>
 References: <bug-82527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1303945251=="
+Content-Type: multipart/mixed; boundary="===============1401882092=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,87 +21,99 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1303945251==
-Content-Type: multipart/alternative; boundary="1407916424.Ab43DDD1.7159"; charset="us-ascii"
+--===============1401882092==
+Content-Type: multipart/alternative; boundary="1407951410.76dB1.28042"; charset="us-ascii"
 
 
---1407916424.Ab43DDD1.7159
-Date: Wed, 13 Aug 2014 07:53:44 +0000
+--1407951410.76dB1.28042
+Date: Wed, 13 Aug 2014 17:36:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D82527
+https://bugs.freedesktop.org/show_bug.cgi?id=82527
 
---- Comment #2 from Martin V=C3=A4th <martin-hvkNLsi7f8w@public.gmane.org> ---
-Created attachment 104544
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D104544&action=3Dedit
-boot.log
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Two comments/questions:
 
-With kernel 3-17 (boot log attached) there is indeed a change:
+(1)
 
-Now the monitor does not react at all on "xset dpms force off".
+1:10 slim[256]: (EE) module ABI major version (13) doesn't match the server's
+version (15)
 
-The monitor is connected over DVI
+That seems a little unhappy... I hope that's not referring to the ddx's module.
+I guess you have an old module? As long as nouveau's not involved in this, it
+shouldn't matter.
 
---=20
+(2)
+
+Did you try to do a "xset dpms force off" in that log, or was that not
+included. In case it wasn't included, could you?
+
+Lastly, I forgot that the drm core may also provide some useful information.
+Would you mind adding "drm.debug=0xe" to the kernel command line in addition to
+the nouveau.debug setting I mentioned earlier, and provide a log which also
+includes you trying to "xset dpms force off"?
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407916424.Ab43DDD1.7159
-Date: Wed, 13 Aug 2014 07:53:44 +0000
+--1407951410.76dB1.28042
+Date: Wed, 13 Aug 2014 17:36:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - xset dpms force {off,standby,suspend} returns after ~=
-20 seconds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527#c2">Comment=
- # 2</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - xset dpms force {off,standby,suspend} returns after ~=
-20 seconds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527">bug 82527<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-martin&#64;mvath.de" title=3D"Martin V=C3=A4th &lt;martin&#64;mvath.de&gt;"=
-> <span class=3D"fn">Martin V=C3=A4th</span></a>
+   title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527">bug 82527</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D104544=
-" name=3D"attach_104544" title=3D"boot.log">attachment 104544</a> <a href=
-=3D"attachment.cgi?id=3D104544&amp;action=3Dedit" title=3D"boot.log">[detai=
-ls]</a></span>
-boot.log
+        <pre>Two comments/questions:
 
-With kernel 3-17 (boot log attached) there is indeed a change:
+(1)
 
-Now the monitor does not react at all on &quot;xset dpms force off&quot;.
+1:10 slim[256]: (EE) module ABI major version (13) doesn't match the server's
+version (15)
 
-The monitor is connected over DVI</pre>
+That seems a little unhappy... I hope that's not referring to the ddx's module.
+I guess you have an old module? As long as nouveau's not involved in this, it
+shouldn't matter.
+
+(2)
+
+Did you try to do a &quot;xset dpms force off&quot; in that log, or was that not
+included. In case it wasn't included, could you?
+
+Lastly, I forgot that the drm core may also provide some useful information.
+Would you mind adding &quot;drm.debug=0xe&quot; to the kernel command line in addition to
+the nouveau.debug setting I mentioned earlier, and provide a log which also
+includes you trying to &quot;xset dpms force off&quot;?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1407916424.Ab43DDD1.7159--
+--1407951410.76dB1.28042--
 
---===============1303945251==
+--===============1401882092==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -112,4 +124,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1303945251==--
+--===============1401882092==--
