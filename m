@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82527] xset dpms force {off, standby,
  suspend} returns after ~20 seconds (GeForce 8400 GS)
-Date: Thu, 14 Aug 2014 00:15:41 +0000
-Message-ID: <bug-82527-8800-qPWK1BkHKW@http.bugs.freedesktop.org/>
+Date: Thu, 14 Aug 2014 00:18:38 +0000
+Message-ID: <bug-82527-8800-lP3GWZ6uiG@http.bugs.freedesktop.org/>
 References: <bug-82527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2052858531=="
+Content-Type: multipart/mixed; boundary="===============0890713695=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,81 +21,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2052858531==
-Content-Type: multipart/alternative; boundary="1407975341.15bE1.6920"; charset="us-ascii"
+--===============0890713695==
+Content-Type: multipart/alternative; boundary="1407975518.c75D11.7688"; charset="us-ascii"
 
 
---1407975341.15bE1.6920
-Date: Thu, 14 Aug 2014 00:15:41 +0000
+--1407975518.c75D11.7688
+Date: Thu, 14 Aug 2014 00:18:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D82527
+https://bugs.freedesktop.org/show_bug.cgi?id=82527
 
---- Comment #5 from Martin V=C3=A4th <martin-hvkNLsi7f8w@public.gmane.org> ---
-Created attachment 104594
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D104594&action=3Dedit
-boot.log
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You misunderstood my suggestion... you have:
 
-As in the previous log, some obviously unrelevant information (like disk or
-network initialization messages) have been removed manually by me.
+nouveau.debug=VBIOS=trace,DISP=debug,I2C=debug,DRM=debug,drm.debug=0xe
 
---=20
+You should have:
+
+nouveau.debug=VBIOS=trace,DISP=debug,I2C=debug,DRM=debug drm.debug=0xe
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1407975341.15bE1.6920
-Date: Thu, 14 Aug 2014 00:15:41 +0000
+--1407975518.c75D11.7688
+Date: Thu, 14 Aug 2014 00:18:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - xset dpms force {off,standby,suspend} returns after ~=
-20 seconds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW --- - xset dpms force {off,standby,suspend} returns after ~=
-20 seconds (GeForce 8400 GS)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527">bug 82527<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-martin&#64;mvath.de" title=3D"Martin V=C3=A4th &lt;martin&#64;mvath.de&gt;"=
-> <span class=3D"fn">Martin V=C3=A4th</span></a>
+   title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527">bug 82527</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D104594=
-" name=3D"attach_104594" title=3D"boot.log">attachment 104594</a> <a href=
-=3D"attachment.cgi?id=3D104594&amp;action=3Dedit" title=3D"boot.log">[detai=
-ls]</a></span>
-boot.log
+        <pre>You misunderstood my suggestion... you have:
 
-As in the previous log, some obviously unrelevant information (like disk or
-network initialization messages) have been removed manually by me.</pre>
+nouveau.debug=VBIOS=trace,DISP=debug,I2C=debug,DRM=debug,drm.debug=0xe
+
+You should have:
+
+nouveau.debug=VBIOS=trace,DISP=debug,I2C=debug,DRM=debug drm.debug=0xe</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1407975341.15bE1.6920--
+--1407975518.c75D11.7688--
 
---===============2052858531==
+--===============0890713695==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2052858531==--
+--===============0890713695==--
