@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Coordinate systems on on nv10-era cards
-Date: Fri, 15 Aug 2014 03:00:19 -0400
-Message-ID: <CAKb7UvgML8jJXMqMtS8gX-JwvEguapoDe757+UrEqwM6LLOAqQ@mail.gmail.com>
-References: <CAKb7UviRF5BJhrVuznLuv-iaK45PRs_LzJjrM8xqbgNwteHkuA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
+ after suspend
+Date: Sat, 16 Aug 2014 05:02:00 +0000
+Message-ID: <bug-81136-8800-nKljfp4g9Y@http.bugs.freedesktop.org/>
+References: <bug-81136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1051896053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviRF5BJhrVuznLuv-iaK45PRs_LzJjrM8xqbgNwteHkuA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,90 +17,93 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-So I did a lot more debugging on this. I wrote a program that draws a
-triangle to an fbo, and then blits that to fb 0. If I draw the
-triangle with
 
-  glBegin(GL_TRIANGLES);
-    glColor3f(1, 0, 0); glVertex3f(-0.6*128 + 128, -0.75*128 + 128, 0.5);
-    glColor3f(0, 1, 0); glVertex3f(0.6*128 + 128, -0.75*128 + 128, 0);
-    glColor3f(0, 0, 1); glVertex3f(128, 0.75*128 + 128, 0);
-  glEnd();
-
-Then all is well. However if I do:
-
-  float verts[3][6] = {
-    { -0.6*128 + 128, -0.75*128 + 128, 0.5, 1, 0, 0 },
-    { 0.6*128 + 128, -0.75*128 + 128, 0, 0, 1, 0 },
-    { 128, 0.75*128 + 128, 0, 0, 0, 1 },
-  };
-
-  glVertexPointer(3, GL_FLOAT, 24, verts);
-  glColorPointer(3, GL_FLOAT, 24, &verts[0][3]);
-  glEnableClientState(GL_VERTEX_ARRAY);
-  glEnableClientState(GL_COLOR_ARRAY);
-
-  glDrawArrays(GL_TRIANGLES, 0, 3);
-
-  glDisableClientState(GL_VERTEX_ARRAY);
-  glDisableClientState(GL_COLOR_ARRAY);
-
-Then I see the failure. Looking at the pushbuf for where the blit
-happens (after the draw), for the working case, I'm seeing
-
-PB: 0x00002c22   NV17_3D.VTXBUF_FMT[0] = { TYPE = V32_FLOAT | FIELDS =
-2 | STRIDE = 44 }
-PB: 0x00002c22   NV17_3D.VTXBUF_FMT[0x3] = { TYPE = V32_FLOAT | FIELDS
-= 2 | STRIDE = 44 }
-
-(0 = position, 3 = texcoord0)
-
-and for the bad case:
-
-PB: 0x00000c32   NV17_3D.VTXBUF_FMT[0] = { TYPE = V32_FLOAT | FIELDS =
-3 | STRIDE = 12 }
-PB: 0x00000c32   NV17_3D.VTXBUF_FMT[0x1] = { TYPE = V32_FLOAT | FIELDS
-= 3 | STRIDE = 12 }
-
-(1 = color) which is the exact same setup as the one used to perform
-the draw. I'm guessing whatever meta_BlitFramebuffer is doing isn't
-sufficiently overriding the original vbo setup. (Although the actual
-addresses of the buffers are now different, so it's not completely
-ignoring the vertices used for the blit...)
-
-I'll keep looking at this, but if anyone has any ideas, let me know.
+--===============1051896053==
+Content-Type: multipart/alternative; boundary="1408165320.E32daf12.2296"; charset="us-ascii"
 
 
-On Sun, Aug 10, 2014 at 7:32 PM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> Hello,
->
-> I'm trying to debug why fbo-copyteximage-simple is failing, and I'm...
-> failing. It's an extremely simple test. I'm pretty sure that the
-> copyteximage part of it has nothing to do with the failure, at least
-> it behaves identically when I just return tex instead of copiex_tex.
->
-> Without any modifications, the test just renders one big red square. I
-> think there's something wrong with the coordinate systems since if I
-> change
->
-> glColor4fv(red);
-> piglit_draw_rect(0, 0, TEX_WIDTH / 2, TEX_HEIGHT / 2);
->
-> to instead be
->
-> piglit_draw_rect(1, 1, TEX_WIDTH / 2, TEX_HEIGHT / 2);
->
-> Then the result is all black. So I think that the coordinates are
-> being scaled up somewhere they're not supposed to be (or, conversely,
-> not being scaled down when they are supposed to be). The projection
-> matrix sent to the card is {x - 128, y - 128, z * 32767.5, 1 }. Should
-> it be scaling the coordinates down to the -1, 1 range instead? i.e. is
-> get_viewport_scale() just totally wrong? Or something in
-> nv10_emit_projection?
->
-> Ideas welcome :)
->
->   -ilia
+--1408165320.E32daf12.2296
+Date: Sat, 16 Aug 2014 05:02:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D81136
+
+--- Comment #7 from Agust=C3=ADn Dall'Alba <agustin-G80yVrlpk+aH0oMTQjrRWA@public.gmane.org> ---
+Update: I got tired of reverting the ecf24de commit on every linux update, =
+so I
+tried booting with nouveau.nofbaccel=3D1 (instead of nofbaccel=3D1). It wor=
+ks fine.
+The system still does not resume properly without it on Linux v3.16.1, but =
+that
+boot option is a better workaround than reverting.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1408165320.E32daf12.2296
+Date: Sat, 16 Aug 2014 05:02:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after sus=
+pend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV92] Regression in Linux 3.15: GPU lockup after sus=
+pend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136">bug 81136<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+agustin&#64;dallalba.com.ar" title=3D"Agust=C3=ADn Dall'Alba &lt;agustin&#6=
+4;dallalba.com.ar&gt;"> <span class=3D"fn">Agust=C3=ADn Dall'Alba</span></a>
+</span></b>
+        <pre>Update: I got tired of reverting the ecf24de commit on every l=
+inux update, so I
+tried booting with nouveau.nofbaccel=3D1 (instead of nofbaccel=3D1). It wor=
+ks fine.
+The system still does not resume properly without it on Linux v3.16.1, but =
+that
+boot option is a better workaround than reverting.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1408165320.E32daf12.2296--
+
+--===============1051896053==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1051896053==--
