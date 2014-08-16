@@ -1,13 +1,13 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 3/3] gm107/therm: add PWM fan support
-Date: Sat, 16 Aug 2014 19:24:26 +0200
-Message-ID: <1408209866-13586-3-git-send-email-martin.peres@free.fr>
-References: <1408209866-13586-1-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 3/3] gm107/therm: add PWM fan support v2
+Date: Sat, 16 Aug 2014 20:03:54 +0200
+Message-ID: <1408212234-14150-1-git-send-email-martin.peres@free.fr>
+References: <1408209866-13586-3-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1408209866-13586-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <1408209866-13586-3-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,10 +18,10 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+v2: change the copyright ownership from "Nouveau Community" to myself, as per
+Illia's recommendation.
 
 Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 ---
@@ -126,12 +126,12 @@ index 016990a..402c9be 100644
  }
 diff --git a/nvkm/subdev/therm/gm107.c b/nvkm/subdev/therm/gm107.c
 new file mode 100644
-index 0000000..e5015fa
+index 0000000..2c58733
 --- /dev/null
 +++ b/nvkm/subdev/therm/gm107.c
 @@ -0,0 +1,93 @@
 +/*
-+ * Copyright 2014 Nouveau Community
++ * Copyright 2014 Martin Peres
 + *
 + * Permission is hereby granted, free of charge, to any person obtaining a
 + * copy of this software and associated documentation files (the "Software"),
