@@ -1,7 +1,8 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 03/10] gm107/therm: add PWM fan support v2
-Date: Sun, 17 Aug 2014 17:33:08 +0200
-Message-ID: <1408289594-28587-3-git-send-email-martin.peres@free.fr>
+Subject: [PATCH 05/10] pwr: fix the timers implementation with
+	concurent processes
+Date: Sun, 17 Aug 2014 17:33:10 +0200
+Message-ID: <1408289594-28587-5-git-send-email-martin.peres@free.fr>
 References: <1408289594-28587-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -18,236 +19,3699 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-v2: change the copyright ownership from "Nouveau Community" to myself, as per
-Illia's recommendation.
+From: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>
+
+The problem with the current implementation is that adding a timer improperly
+checked which process would time up first by not taking into account how much
+time elapsed since their timer got scheduled. Rework the re-scheduling
+decision t fix this.
+
+The catch with this fix is that we are limited to scheduling timers of up to
+2^31 ticks to avoid any potential overflow. Since we are unlikely to need to
+wait for more than a second, this won't be a problem :)
+
+Another possible fix would be to decrement the timeouts of all processes but
+it would duplicate a lot of code and dealing with edge cases wasn't pretty
+last time I checked.
 
 Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 ---
- drm/Kbuild                    |  1 +
- drm/core/subdev/therm/gm107.c |  1 +
- nvkm/engine/device/gm100.c    |  4 +-
- nvkm/include/subdev/therm.h   |  1 +
- nvkm/subdev/therm/Makefile.am |  3 +-
- nvkm/subdev/therm/fan.c       |  9 ++++-
- nvkm/subdev/therm/gm107.c     | 93 +++++++++++++++++++++++++++++++++++++++++++
- nvkm/subdev/therm/nvd0.c      |  2 +-
- nvkm/subdev/therm/priv.h      |  2 +
- 9 files changed, 109 insertions(+), 7 deletions(-)
- create mode 120000 drm/core/subdev/therm/gm107.c
- create mode 100644 nvkm/subdev/therm/gm107.c
+ nvkm/subdev/pwr/fuc/kernel.fuc  |   35 +-
+ nvkm/subdev/pwr/fuc/nv108.fuc.h |  308 ++++++------
+ nvkm/subdev/pwr/fuc/nva3.fuc.h  |  364 ++++++++------
+ nvkm/subdev/pwr/fuc/nvc0.fuc.h  |  364 ++++++++------
+ nvkm/subdev/pwr/fuc/nvd0.fuc.h  | 1052 +++++++++++++++++++--------------------
+ 5 files changed, 1133 insertions(+), 990 deletions(-)
 
-diff --git a/drm/Kbuild b/drm/Kbuild
-index 75aa5e3..c663181 100644
---- a/drm/Kbuild
-+++ b/drm/Kbuild
-@@ -191,6 +191,7 @@ nouveau-y += core/subdev/therm/nv50.o
- nouveau-y += core/subdev/therm/nv84.o
- nouveau-y += core/subdev/therm/nva3.o
- nouveau-y += core/subdev/therm/nvd0.o
-+nouveau-y += core/subdev/therm/gm107.o
- nouveau-y += core/subdev/timer/base.o
- nouveau-y += core/subdev/timer/nv04.o
- nouveau-y += core/subdev/timer/gk20a.o
-diff --git a/drm/core/subdev/therm/gm107.c b/drm/core/subdev/therm/gm107.c
-new file mode 120000
-index 0000000..aafc986
---- /dev/null
-+++ b/drm/core/subdev/therm/gm107.c
-@@ -0,0 +1 @@
-+../../../../nvkm/subdev/therm/gm107.c
-\ No newline at end of file
-diff --git a/nvkm/engine/device/gm100.c b/nvkm/engine/device/gm100.c
-index 377ec0b..136dd98 100644
---- a/nvkm/engine/device/gm100.c
-+++ b/nvkm/engine/device/gm100.c
-@@ -63,9 +63,7 @@ gm100_identify(struct nouveau_device *device)
- 		device->oclass[NVDEV_SUBDEV_GPIO   ] =  nve0_gpio_oclass;
- 		device->oclass[NVDEV_SUBDEV_I2C    ] =  nvd0_i2c_oclass;
- 		device->oclass[NVDEV_SUBDEV_CLOCK  ] = &nve0_clock_oclass;
--#if 0
--		device->oclass[NVDEV_SUBDEV_THERM  ] = &nvd0_therm_oclass;
--#endif
-+		device->oclass[NVDEV_SUBDEV_THERM  ] = &gm107_therm_oclass;
- 		device->oclass[NVDEV_SUBDEV_MXM    ] = &nv50_mxm_oclass;
- 		device->oclass[NVDEV_SUBDEV_DEVINIT] =  gm107_devinit_oclass;
- 		device->oclass[NVDEV_SUBDEV_MC     ] =  gk20a_mc_oclass;
-diff --git a/nvkm/include/subdev/therm.h b/nvkm/include/subdev/therm.h
-index d4a6817..a437597 100644
---- a/nvkm/include/subdev/therm.h
-+++ b/nvkm/include/subdev/therm.h
-@@ -78,5 +78,6 @@ extern struct nouveau_oclass nv50_therm_oclass;
- extern struct nouveau_oclass nv84_therm_oclass;
- extern struct nouveau_oclass nva3_therm_oclass;
- extern struct nouveau_oclass nvd0_therm_oclass;
-+extern struct nouveau_oclass gm107_therm_oclass;
+diff --git a/nvkm/subdev/pwr/fuc/kernel.fuc b/nvkm/subdev/pwr/fuc/kernel.fuc
+index 8f29bad..dd86439 100644
+--- a/nvkm/subdev/pwr/fuc/kernel.fuc
++++ b/nvkm/subdev/pwr/fuc/kernel.fuc
+@@ -245,9 +245,12 @@ intr:
+ // request the current process be sent a message after a timeout expires
+ //
+ // $r15 - current
+-// $r14 - ticks
++// $r14 - ticks (make sure it is < 2^31 to avoid any possible overflow)
+ // $r0  - zero
+ timer:
++	push $r9
++	push $r8
++
+ 	// interrupts off to prevent racing with timer isr
+ 	bclr $flags ie0
  
- #endif
-diff --git a/nvkm/subdev/therm/Makefile.am b/nvkm/subdev/therm/Makefile.am
-index 460e4a0..b4f6da6 100644
---- a/nvkm/subdev/therm/Makefile.am
-+++ b/nvkm/subdev/therm/Makefile.am
-@@ -11,6 +11,7 @@ libtherm_la_SOURCES = base.c \
- 		      nv50.c \
- 		      nv84.c \
- 		      nva3.c \
--		      nvd0.c
-+		      nvd0.c \
-+		      gm107.c
+@@ -255,13 +258,22 @@ timer:
+ 	ld b32 $r8 D[$r15 + #proc_time]
+ 	cmp b32 $r8 0
+ 	bra g #timer_done
+-	st b32 D[$r15 + #proc_time] $r14
  
- include $(srcdir)/../Makefile.subdev
-diff --git a/nvkm/subdev/therm/fan.c b/nvkm/subdev/therm/fan.c
-index 016990a..402c9be 100644
---- a/nvkm/subdev/therm/fan.c
-+++ b/nvkm/subdev/therm/fan.c
-@@ -31,6 +31,8 @@
- #include <subdev/gpio.h>
- #include <subdev/timer.h>
+-	// halt watchdog timer temporarily and check for a pending
+-	// interrupt.  if there's one already pending, we can just
+-	// bail since the timer isr will queue the next soonest
+-	// right after it's done
++	// halt watchdog timer temporarily
++	clear b32 $r8
+ 	nv_iowr(NV_PPWR_WATCHDOG_ENABLE, $r8)
++
++	// find out how much time elapsed since the last update
++	// of the watchdog and add this time to the wanted ticks
++	nv_iord($r8, NV_PPWR_WATCHDOG_TIME)
++	ld b32 $r9 D[$r0 + #time_prev]
++	sub b32 $r9 $r8
++	add b32 $r14 $r9
++	st b32 D[$r15 + #proc_time] $r14
++
++	// check for a pending interrupt.  if there's one already
++	// pending, we can just bail since the timer isr will
++	// queue the next soonest right after it's done
+ 	nv_iord($r8, NV_PPWR_INTR)
+ 	and $r8 NV_PPWR_INTR_WATCHDOG
+ 	bra nz #timer_enable
+@@ -272,10 +284,10 @@ timer:
+ 	cmp b32 $r14 $r0
+ 	bra e #timer_reset
+ 	cmp b32 $r14 $r8
+-	bra l #timer_done
+-	timer_reset:
+-	nv_iowr(NV_PPWR_WATCHDOG_TIME, $r14)
+-	st b32 D[$r0 + #time_prev] $r14
++	bra g #timer_enable
++		timer_reset:
++		nv_iowr(NV_PPWR_WATCHDOG_TIME, $r14)
++		st b32 D[$r0 + #time_prev] $r14
  
-+#include <subdev/bios/fan.h>
+ 	// re-enable the watchdog timer
+ 	timer_enable:
+@@ -285,6 +297,9 @@ timer:
+ 	// interrupts back on
+ 	timer_done:
+ 	bset $flags ie0
 +
- static int
- nouveau_fan_update(struct nouveau_fan *fan, bool immediate, int target)
- {
-@@ -275,8 +277,11 @@ nouveau_therm_fan_ctor(struct nouveau_therm *therm)
- 	/* other random init... */
- 	nouveau_therm_fan_set_defaults(therm);
- 	nvbios_perf_fan_parse(bios, &priv->fan->perf);
--	if (nvbios_therm_fan_parse(bios, &priv->fan->bios))
--		nv_error(therm, "parsing the thermal table failed\n");
-+	if (nvbios_fan_parse(bios, &priv->fan->bios)) {
-+		nv_debug(therm, "parsing the fan table failed\n");
-+		if (nvbios_therm_fan_parse(bios, &priv->fan->bios))
-+			nv_error(therm, "parsing both fan tables failed\n");
-+	}
- 	nouveau_therm_fan_safety_checks(therm);
- 	return 0;
- }
-diff --git a/nvkm/subdev/therm/gm107.c b/nvkm/subdev/therm/gm107.c
-new file mode 100644
-index 0000000..2c58733
---- /dev/null
-+++ b/nvkm/subdev/therm/gm107.c
-@@ -0,0 +1,93 @@
-+/*
-+ * Copyright 2014 Martin Peres
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: Martin Peres, Ben Skeggs
-+ */
-+
-+#include "priv.h"
-+
-+struct gm107_therm_priv {
-+	struct nouveau_therm_priv base;
-+};
-+
-+static int
-+gm107_fan_pwm_ctrl(struct nouveau_therm *therm, int line, bool enable)
-+{
-+	/* nothing to do, it seems hardwired */
-+	return 0;
-+}
-+
-+static int
-+gm107_fan_pwm_get(struct nouveau_therm *therm, int line, u32 *divs, u32 *duty)
-+{
-+	*divs = nv_rd32(therm, 0x10eb20) & 0x1fff;
-+	*duty = nv_rd32(therm, 0x10eb24) & 0x1fff;
-+	return 0;
-+}
-+
-+static int
-+gm107_fan_pwm_set(struct nouveau_therm *therm, int line, u32 divs, u32 duty)
-+{
-+	nv_mask(therm, 0x10eb10, 0x1fff, divs); /* keep the high bits */
-+	nv_wr32(therm, 0x10eb14, duty | 0x80000000);
-+	return 0;
-+}
-+
-+static int
-+gm107_fan_pwm_clock(struct nouveau_therm *therm, int line)
-+{
-+	return nv_device(therm)->crystal * 1000;
-+}
-+
-+static int
-+gm107_therm_ctor(struct nouveau_object *parent,
-+		struct nouveau_object *engine,
-+		struct nouveau_oclass *oclass, void *data, u32 size,
-+		struct nouveau_object **pobject)
-+{
-+	struct gm107_therm_priv *priv;
-+	int ret;
-+
-+	ret = nouveau_therm_create(parent, engine, oclass, &priv);
-+	*pobject = nv_object(priv);
-+	if (ret)
-+		return ret;
-+
-+	priv->base.base.pwm_ctrl = gm107_fan_pwm_ctrl;
-+	priv->base.base.pwm_get = gm107_fan_pwm_get;
-+	priv->base.base.pwm_set = gm107_fan_pwm_set;
-+	priv->base.base.pwm_clock = gm107_fan_pwm_clock;
-+	priv->base.base.temp_get = nv84_temp_get;
-+	priv->base.base.fan_sense = nva3_therm_fan_sense;
-+	priv->base.sensor.program_alarms = nouveau_therm_program_alarms_polling;
-+	return nouveau_therm_preinit(&priv->base.base);
-+}
-+
-+struct nouveau_oclass
-+gm107_therm_oclass = {
-+	.handle = NV_SUBDEV(THERM, 0x117),
-+	.ofuncs = &(struct nouveau_ofuncs) {
-+		.ctor = gm107_therm_ctor,
-+		.dtor = _nouveau_therm_dtor,
-+		.init = nvd0_therm_init,
-+		.fini = nv84_therm_fini,
-+	},
-+};
-diff --git a/nvkm/subdev/therm/nvd0.c b/nvkm/subdev/therm/nvd0.c
-index bbf117b..04bb84f 100644
---- a/nvkm/subdev/therm/nvd0.c
-+++ b/nvkm/subdev/therm/nvd0.c
-@@ -114,7 +114,7 @@ nvd0_fan_pwm_clock(struct nouveau_therm *therm, int line)
- 		return nv_device(therm)->crystal * 1000 / 10;
- }
++	pop $r8
++	pop $r9
+ 	ret
  
--static int
-+int
- nvd0_therm_init(struct nouveau_object *object)
- {
- 	struct nvd0_therm_priv *priv = (void *)object;
-diff --git a/nvkm/subdev/therm/priv.h b/nvkm/subdev/therm/priv.h
-index 916fca5..4262d1d 100644
---- a/nvkm/subdev/therm/priv.h
-+++ b/nvkm/subdev/therm/priv.h
-@@ -149,6 +149,8 @@ int nv84_therm_fini(struct nouveau_object *object, bool suspend);
+ // send message to another process
+diff --git a/nvkm/subdev/pwr/fuc/nv108.fuc.h b/nvkm/subdev/pwr/fuc/nv108.fuc.h
+index 986495d..38b8ed4 100644
+--- a/nvkm/subdev/pwr/fuc/nv108.fuc.h
++++ b/nvkm/subdev/pwr/fuc/nv108.fuc.h
+@@ -24,8 +24,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ /* 0x0058: proc_list_head */
+ 	0x54534f48,
+-	0x00000379,
+-	0x0000032a,
++	0x00000391,
++	0x00000342,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -46,8 +46,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x584d454d,
+-	0x00000464,
+-	0x00000456,
++	0x0000047c,
++	0x0000046e,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -68,8 +68,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x46524550,
+-	0x00000468,
+-	0x00000466,
++	0x00000480,
++	0x0000047e,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -90,8 +90,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x5f433249,
+-	0x0000086c,
+-	0x00000713,
++	0x00000884,
++	0x0000072b,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -112,8 +112,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x54534554,
+-	0x0000088d,
+-	0x0000086e,
++	0x000008a5,
++	0x00000886,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -134,8 +134,8 @@ uint32_t nv108_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x454c4449,
+-	0x00000898,
+-	0x00000896,
++	0x000008b0,
++	0x000008ae,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -229,20 +229,20 @@ uint32_t nv108_pwr_data[] = {
+ /* 0x0370: memx_func_head */
+ 	0x00010000,
+ 	0x00000000,
+-	0x000003a9,
++	0x000003c1,
+ /* 0x037c: memx_func_next */
+ 	0x00000001,
+ 	0x00000000,
+-	0x000003c7,
++	0x000003df,
+ 	0x00000002,
+ 	0x00000002,
+-	0x000003df,
++	0x000003f7,
+ 	0x00040003,
+ 	0x00000000,
+-	0x000003fc,
++	0x00000414,
+ 	0x00010004,
+ 	0x00000000,
+-	0x00000416,
++	0x0000042e,
+ /* 0x03ac: memx_func_tail */
+ /* 0x03ac: memx_data_head */
+ 	0x00000000,
+@@ -784,7 +784,7 @@ uint32_t nv108_pwr_data[] = {
+ };
  
- int nva3_therm_fan_sense(struct nouveau_therm *);
+ uint32_t nv108_pwr_code[] = {
+-	0x02910ef5,
++	0x02a90ef5,
+ /* 0x0004: rd32 */
+ 	0xf607a040,
+ 	0x04bd000e,
+@@ -836,7 +836,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x0a98280b,
+ 	0x029abb9a,
+ 	0x0d0e1cf4,
+-	0x01de7e01,
++	0x01f67e01,
+ 	0xf494bd00,
+ /* 0x00b2: intr_watchdog_next_time */
+ 	0x0a98140e,
+@@ -881,7 +881,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0xc0f900cc,
+ 	0xf14f484e,
+ 	0x0d5453e3,
+-	0x023f7e00,
++	0x02577e00,
+ 	0x40c0fc00,
+ 	0x0cf604c0,
+ /* 0x0157: intr_subintr_skip_fifo */
+@@ -905,28 +905,34 @@ uint32_t nv108_pwr_code[] = {
+ 	0xfc80fc90,
+ 	0x0032f400,
+ /* 0x0196: timer */
+-	0x32f401f8,
++	0x90f901f8,
++	0x32f480f9,
+ 	0x03f89810,
+ 	0xf40086b0,
+-	0xfeb53a1c,
+-	0xf6380003,
+-	0x04bd0008,
++	0x84bd4a1c,
++	0x08f63800,
++	0x0804bd00,
++	0x0088cf34,
++	0xbb9a0998,
++	0xe9bb0298,
++	0x03feb500,
+ 	0x88cf0808,
+ 	0x0284f000,
+ 	0x081c1bf4,
+ 	0x0088cf34,
+ 	0x0bf4e0a6,
+ 	0xf4e8a608,
+-/* 0x01c6: timer_reset */
+-	0x3400161e,
++/* 0x01da: timer_reset */
++	0x34000d1c,
+ 	0xbd000ef6,
+ 	0x9a0eb504,
+-/* 0x01d0: timer_enable */
++/* 0x01e4: timer_enable */
+ 	0x38000108,
+ 	0xbd0008f6,
+-/* 0x01d9: timer_done */
++/* 0x01ed: timer_done */
+ 	0x1031f404,
+-/* 0x01de: send_proc */
++	0x90fc80fc,
++/* 0x01f6: send_proc */
+ 	0x80f900f8,
+ 	0xe89890f9,
+ 	0x04e99805,
+@@ -941,25 +947,25 @@ uint32_t nv108_pwr_code[] = {
+ 	0xb6038bb5,
+ 	0x94f00190,
+ 	0x04e9b507,
+-/* 0x0217: send_done */
++/* 0x022f: send_done */
+ 	0xfc0231f4,
+ 	0xf880fc90,
+-/* 0x021d: find */
++/* 0x0235: find */
+ 	0x0880f900,
+ 	0x0131f458,
+-/* 0x0224: find_loop */
++/* 0x023c: find_loop */
+ 	0xa6008a98,
+ 	0x100bf4ae,
+ 	0xb15880b6,
+ 	0xf4026886,
+ 	0x32f4f11b,
+-/* 0x0239: find_done */
++/* 0x0251: find_done */
+ 	0xfc8eb201,
+-/* 0x023f: send */
++/* 0x0257: send */
+ 	0x7e00f880,
+-	0xf400021d,
++	0xf4000235,
+ 	0x00f89b01,
+-/* 0x0248: recv */
++/* 0x0260: recv */
+ 	0x9805e898,
+ 	0x32f404e9,
+ 	0xf489a601,
+@@ -977,9 +983,9 @@ uint32_t nv108_pwr_code[] = {
+ 	0xf900ee98,
+ 	0xfef0fca5,
+ 	0x31f400f8,
+-/* 0x028f: recv_done */
++/* 0x02a7: recv_done */
+ 	0xf8f0fc01,
+-/* 0x0291: init */
++/* 0x02a9: init */
+ 	0x01084100,
+ 	0xe70011cf,
+ 	0xb6010911,
+@@ -998,13 +1004,13 @@ uint32_t nv108_pwr_code[] = {
+ 	0x1031f400,
+ 	0x38000101,
+ 	0xbd0001f6,
+-/* 0x02db: init_proc */
++/* 0x02f3: init_proc */
+ 	0x98580f04,
+ 	0x16b001f1,
+ 	0xfa0bf400,
+ 	0xf0b615f9,
+ 	0xf20ef458,
+-/* 0x02ec: host_send */
++/* 0x0304: host_send */
+ 	0xcf04b041,
+ 	0xa0420011,
+ 	0x0022cf04,
+@@ -1015,17 +1021,17 @@ uint32_t nv108_pwr_code[] = {
+ 	0xec9803eb,
+ 	0x01ed9802,
+ 	0x7e00ee98,
+-	0xb600023f,
++	0xb6000257,
+ 	0x1ec40110,
+ 	0x04b0400f,
+ 	0xbd000ef6,
+ 	0xc70ef404,
+-/* 0x0328: host_send_done */
+-/* 0x032a: host_recv */
++/* 0x0340: host_send_done */
++/* 0x0342: host_recv */
+ 	0x494100f8,
+ 	0x5413f14e,
+ 	0xf4e1a652,
+-/* 0x0336: host_recv_wait */
++/* 0x034e: host_recv_wait */
+ 	0xcc41b90b,
+ 	0x0011cf04,
+ 	0xcf04c842,
+@@ -1043,7 +1049,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x400204bd,
+ 	0x02f60000,
+ 	0xf804bd00,
+-/* 0x0379: host_init */
++/* 0x0391: host_init */
+ 	0x00804100,
+ 	0xf11014b6,
+ 	0x40027015,
+@@ -1056,24 +1062,24 @@ uint32_t nv108_pwr_code[] = {
+ 	0x40010104,
+ 	0x01f604c4,
+ 	0xf804bd00,
+-/* 0x03a9: memx_func_enter */
++/* 0x03c1: memx_func_enter */
+ 	0x40040600,
+ 	0x06f607e0,
+-/* 0x03b3: memx_func_enter_wait */
++/* 0x03cb: memx_func_enter_wait */
+ 	0x4604bd00,
+ 	0x66cf07c0,
+ 	0x0464f000,
+ 	0x98f70bf4,
+ 	0x10b60016,
+-/* 0x03c7: memx_func_leave */
++/* 0x03df: memx_func_leave */
+ 	0x0600f804,
+ 	0x07e44004,
+ 	0xbd0006f6,
+-/* 0x03d1: memx_func_leave_wait */
++/* 0x03e9: memx_func_leave_wait */
+ 	0x07c04604,
+ 	0xf00066cf,
+ 	0x1bf40464,
+-/* 0x03df: memx_func_wr32 */
++/* 0x03f7: memx_func_wr32 */
+ 	0x9800f8f7,
+ 	0x15980016,
+ 	0x0810b601,
+@@ -1082,21 +1088,21 @@ uint32_t nv108_pwr_code[] = {
+ 	0x00002e7e,
+ 	0xf40242b6,
+ 	0x00f8e81b,
+-/* 0x03fc: memx_func_wait */
++/* 0x0414: memx_func_wait */
+ 	0x88cf2c08,
+ 	0x001e9800,
+ 	0x98011d98,
+ 	0x1b98021c,
+ 	0x1010b603,
+ 	0x0000717e,
+-/* 0x0416: memx_func_delay */
++/* 0x042e: memx_func_delay */
+ 	0x1e9800f8,
+ 	0x0410b600,
+ 	0x00005d7e,
+-/* 0x0422: memx_exec */
++/* 0x043a: memx_exec */
+ 	0xe0f900f8,
+ 	0xc1b2d0f9,
+-/* 0x042a: memx_exec_next */
++/* 0x0442: memx_exec_next */
+ 	0x1398b2b2,
+ 	0x0410b600,
+ 	0xf0103495,
+@@ -1104,104 +1110,104 @@ uint32_t nv108_pwr_code[] = {
+ 	0xa655f9de,
+ 	0xed1ef412,
+ 	0xe0fcd0fc,
+-	0x00023f7e,
+-/* 0x044a: memx_info */
++	0x0002577e,
++/* 0x0462: memx_info */
+ 	0xac4c00f8,
+ 	0x08004b03,
+-	0x00023f7e,
+-/* 0x0456: memx_recv */
++	0x0002577e,
++/* 0x046e: memx_recv */
+ 	0xd6b000f8,
+ 	0xc90bf401,
+ 	0xf400d6b0,
+ 	0x00f8eb0b,
+-/* 0x0464: memx_init */
+-/* 0x0466: perf_recv */
++/* 0x047c: memx_init */
++/* 0x047e: perf_recv */
+ 	0x00f800f8,
+-/* 0x0468: perf_init */
+-/* 0x046a: i2c_drive_scl */
++/* 0x0480: perf_init */
++/* 0x0482: i2c_drive_scl */
+ 	0x36b000f8,
+ 	0x0d0bf400,
+ 	0xf607e040,
+ 	0x04bd0001,
+-/* 0x047a: i2c_drive_scl_lo */
++/* 0x0492: i2c_drive_scl_lo */
+ 	0xe44000f8,
+ 	0x0001f607,
+ 	0x00f804bd,
+-/* 0x0484: i2c_drive_sda */
++/* 0x049c: i2c_drive_sda */
+ 	0xf40036b0,
+ 	0xe0400d0b,
+ 	0x0002f607,
+ 	0x00f804bd,
+-/* 0x0494: i2c_drive_sda_lo */
++/* 0x04ac: i2c_drive_sda_lo */
+ 	0xf607e440,
+ 	0x04bd0002,
+-/* 0x049e: i2c_sense_scl */
++/* 0x04b6: i2c_sense_scl */
+ 	0x32f400f8,
+ 	0x07c44301,
+ 	0xfd0033cf,
+ 	0x0bf40431,
+ 	0x0131f406,
+-/* 0x04b0: i2c_sense_scl_done */
+-/* 0x04b2: i2c_sense_sda */
++/* 0x04c8: i2c_sense_scl_done */
++/* 0x04ca: i2c_sense_sda */
+ 	0x32f400f8,
+ 	0x07c44301,
+ 	0xfd0033cf,
+ 	0x0bf40432,
+ 	0x0131f406,
+-/* 0x04c4: i2c_sense_sda_done */
+-/* 0x04c6: i2c_raise_scl */
++/* 0x04dc: i2c_sense_sda_done */
++/* 0x04de: i2c_raise_scl */
+ 	0x40f900f8,
+ 	0x03089844,
+-	0x046a7e01,
+-/* 0x04d1: i2c_raise_scl_wait */
++	0x04827e01,
++/* 0x04e9: i2c_raise_scl_wait */
+ 	0x03e84e00,
+ 	0x00005d7e,
+-	0x00049e7e,
++	0x0004b67e,
+ 	0xb60901f4,
+ 	0x1bf40142,
+-/* 0x04e5: i2c_raise_scl_done */
++/* 0x04fd: i2c_raise_scl_done */
+ 	0xf840fcef,
+-/* 0x04e9: i2c_start */
+-	0x049e7e00,
++/* 0x0501: i2c_start */
++	0x04b67e00,
+ 	0x0d11f400,
+-	0x0004b27e,
++	0x0004ca7e,
+ 	0xf40611f4,
+-/* 0x04fa: i2c_start_rep */
++/* 0x0512: i2c_start_rep */
+ 	0x00032e0e,
+-	0x00046a7e,
+-	0x847e0103,
++	0x0004827e,
++	0x9c7e0103,
+ 	0x76bb0004,
+ 	0x0465b600,
+ 	0x659450f9,
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0x7e50fc04,
+-	0xb60004c6,
++	0xb60004de,
+ 	0x11f40464,
+-/* 0x0525: i2c_start_send */
++/* 0x053d: i2c_start_send */
+ 	0x7e00031d,
+-	0x4e000484,
++	0x4e00049c,
+ 	0x5d7e1388,
+ 	0x00030000,
+-	0x00046a7e,
++	0x0004827e,
+ 	0x7e13884e,
+-/* 0x053f: i2c_start_out */
++/* 0x0557: i2c_start_out */
+ 	0xf800005d,
+-/* 0x0541: i2c_stop */
++/* 0x0559: i2c_stop */
+ 	0x7e000300,
+-	0x0300046a,
+-	0x04847e00,
++	0x03000482,
++	0x049c7e00,
+ 	0x03e84e00,
+ 	0x00005d7e,
+-	0x6a7e0103,
++	0x827e0103,
+ 	0x884e0004,
+ 	0x005d7e13,
+ 	0x7e010300,
+-	0x4e000484,
++	0x4e00049c,
+ 	0x5d7e1388,
+ 	0x00f80000,
+-/* 0x0570: i2c_bitw */
+-	0x0004847e,
++/* 0x0588: i2c_bitw */
++	0x00049c7e,
+ 	0x7e03e84e,
+ 	0xbb00005d,
+ 	0x65b60076,
+@@ -1209,17 +1215,17 @@ uint32_t nv108_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x0004c67e,
++	0x0004de7e,
+ 	0xf40464b6,
+ 	0x884e1711,
+ 	0x005d7e13,
+ 	0x7e000300,
+-	0x4e00046a,
++	0x4e000482,
+ 	0x5d7e1388,
+-/* 0x05ae: i2c_bitw_out */
++/* 0x05c6: i2c_bitw_out */
+ 	0x00f80000,
+-/* 0x05b0: i2c_bitr */
+-	0x847e0103,
++/* 0x05c8: i2c_bitr */
++	0x9c7e0103,
+ 	0xe84e0004,
+ 	0x005d7e03,
+ 	0x0076bb00,
+@@ -1227,26 +1233,26 @@ uint32_t nv108_pwr_code[] = {
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+-	0xc67e50fc,
++	0xde7e50fc,
+ 	0x64b60004,
+ 	0x1a11f404,
+-	0x0004b27e,
+-	0x6a7e0003,
++	0x0004ca7e,
++	0x827e0003,
+ 	0x884e0004,
+ 	0x005d7e13,
+ 	0x013cf000,
+-/* 0x05f3: i2c_bitr_done */
++/* 0x060b: i2c_bitr_done */
+ 	0xf80131f4,
+-/* 0x05f5: i2c_get_byte */
++/* 0x060d: i2c_get_byte */
+ 	0x04000500,
+-/* 0x05f9: i2c_get_byte_next */
++/* 0x0611: i2c_get_byte_next */
+ 	0x0154b608,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x05b07e50,
++	0x05c87e50,
+ 	0x0464b600,
+ 	0xfd2a11f4,
+ 	0x42b60553,
+@@ -1257,11 +1263,11 @@ uint32_t nv108_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0x7e50fc04,
+-	0xb6000570,
+-/* 0x0642: i2c_get_byte_done */
++	0xb6000588,
++/* 0x065a: i2c_get_byte_done */
+ 	0x00f80464,
+-/* 0x0644: i2c_put_byte */
+-/* 0x0646: i2c_put_byte_next */
++/* 0x065c: i2c_put_byte */
++/* 0x065e: i2c_put_byte_next */
+ 	0x42b60804,
+ 	0x3854ff01,
+ 	0xb60076bb,
+@@ -1269,7 +1275,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x05707e50,
++	0x05887e50,
+ 	0x0464b600,
+ 	0xb03411f4,
+ 	0x1bf40046,
+@@ -1278,21 +1284,21 @@ uint32_t nv108_pwr_code[] = {
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+-	0xb07e50fc,
++	0xc87e50fc,
+ 	0x64b60005,
+ 	0x0f11f404,
+ 	0xb00076bb,
+ 	0x1bf40136,
+ 	0x0132f406,
+-/* 0x069c: i2c_put_byte_done */
+-/* 0x069e: i2c_addr */
++/* 0x06b4: i2c_put_byte_done */
++/* 0x06b6: i2c_addr */
+ 	0x76bb00f8,
+ 	0x0465b600,
+ 	0x659450f9,
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0x7e50fc04,
+-	0xb60004e9,
++	0xb6000501,
+ 	0x11f40464,
+ 	0x2ec3e729,
+ 	0x0134b601,
+@@ -1302,24 +1308,24 @@ uint32_t nv108_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x0006447e,
+-/* 0x06e3: i2c_addr_done */
++	0x00065c7e,
++/* 0x06fb: i2c_addr_done */
+ 	0xf80464b6,
+-/* 0x06e5: i2c_acquire_addr */
++/* 0x06fd: i2c_acquire_addr */
+ 	0xf8cec700,
+ 	0xb705e4b6,
+ 	0xf8d014e0,
+-/* 0x06f1: i2c_acquire */
+-	0x06e57e00,
++/* 0x0709: i2c_acquire */
++	0x06fd7e00,
+ 	0x00047e00,
+ 	0x03d9f000,
+ 	0x00002e7e,
+-/* 0x0702: i2c_release */
+-	0xe57e00f8,
++/* 0x071a: i2c_release */
++	0xfd7e00f8,
+ 	0x047e0006,
+ 	0xdaf00000,
+ 	0x002e7e03,
+-/* 0x0713: i2c_recv */
++/* 0x072b: i2c_recv */
+ 	0xf400f800,
+ 	0xc1c70132,
+ 	0x0214b6f8,
+@@ -1339,7 +1345,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x0006f17e,
++	0x0007097e,
+ 	0xfc0464b6,
+ 	0x00d6b0d0,
+ 	0x00b01bf5,
+@@ -1349,7 +1355,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0x7e50fc04,
+-	0xb600069e,
++	0xb60006b6,
+ 	0x11f50464,
+ 	0xc5c700cc,
+ 	0x0076bbe0,
+@@ -1357,7 +1363,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+-	0x447e50fc,
++	0x5c7e50fc,
+ 	0x64b60006,
+ 	0xa911f504,
+ 	0xbb010500,
+@@ -1366,7 +1372,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x00069e7e,
++	0x0006b67e,
+ 	0xf50464b6,
+ 	0xbb008711,
+ 	0x65b60076,
+@@ -1374,7 +1380,7 @@ uint32_t nv108_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x0005f57e,
++	0x00060d7e,
+ 	0xf40464b6,
+ 	0x5bcb6711,
+ 	0x0076bbe0,
+@@ -1382,37 +1388,37 @@ uint32_t nv108_pwr_code[] = {
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+-	0x417e50fc,
++	0x597e50fc,
+ 	0x64b60005,
+ 	0xbd5bb204,
+ 	0x410ef474,
+-/* 0x0818: i2c_recv_not_rd08 */
++/* 0x0830: i2c_recv_not_rd08 */
+ 	0xf401d6b0,
+ 	0x00053b1b,
+-	0x00069e7e,
++	0x0006b67e,
+ 	0xc73211f4,
+-	0x447ee0c5,
++	0x5c7ee0c5,
+ 	0x11f40006,
+ 	0x7e000528,
+-	0xf400069e,
++	0xf40006b6,
+ 	0xb5c71f11,
+-	0x06447ee0,
++	0x065c7ee0,
+ 	0x1511f400,
+-	0x0005417e,
++	0x0005597e,
+ 	0xc5c774bd,
+ 	0x091bf408,
+ 	0xf40232f4,
+-/* 0x0856: i2c_recv_not_wr08 */
+-/* 0x0856: i2c_recv_done */
++/* 0x086e: i2c_recv_not_wr08 */
++/* 0x086e: i2c_recv_done */
+ 	0xcec7030e,
+-	0x07027ef8,
++	0x071a7ef8,
+ 	0xfce0fc00,
+ 	0x0912f4d0,
+-	0x3f7e7cb2,
+-/* 0x086a: i2c_recv_exit */
++	0x577e7cb2,
++/* 0x0882: i2c_recv_exit */
+ 	0x00f80002,
+-/* 0x086c: i2c_init */
+-/* 0x086e: test_recv */
++/* 0x0884: i2c_init */
++/* 0x0886: test_recv */
+ 	0x584100f8,
+ 	0x0011cf04,
+ 	0x400110b6,
+@@ -1421,27 +1427,27 @@ uint32_t nv108_pwr_code[] = {
+ 	0xf1d900e7,
+ 	0x7e134fe3,
+ 	0xf8000196,
+-/* 0x088d: test_init */
++/* 0x08a5: test_init */
+ 	0x08004e00,
+ 	0x0001967e,
+-/* 0x0896: idle_recv */
++/* 0x08ae: idle_recv */
+ 	0x00f800f8,
+-/* 0x0898: idle */
++/* 0x08b0: idle */
+ 	0x410031f4,
+ 	0x11cf0454,
+ 	0x0110b600,
+ 	0xf6045440,
+ 	0x04bd0001,
+-/* 0x08ac: idle_loop */
++/* 0x08c4: idle_loop */
+ 	0x32f45801,
+-/* 0x08b1: idle_proc */
+-/* 0x08b1: idle_proc_exec */
++/* 0x08c9: idle_proc */
++/* 0x08c9: idle_proc_exec */
+ 	0xb210f902,
+-	0x02487e1e,
++	0x02607e1e,
+ 	0xf410fc00,
+ 	0x31f40911,
+ 	0xf00ef402,
+-/* 0x08c4: idle_proc_next */
++/* 0x08dc: idle_proc_next */
+ 	0xa65810b6,
+ 	0xe81bf41f,
+ 	0xf4e002f4,
+@@ -1451,10 +1457,4 @@ uint32_t nv108_pwr_code[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+ };
+diff --git a/nvkm/subdev/pwr/fuc/nva3.fuc.h b/nvkm/subdev/pwr/fuc/nva3.fuc.h
+index e087ce3..2f152b5 100644
+--- a/nvkm/subdev/pwr/fuc/nva3.fuc.h
++++ b/nvkm/subdev/pwr/fuc/nva3.fuc.h
+@@ -24,8 +24,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ /* 0x0058: proc_list_head */
+ 	0x54534f48,
+-	0x00000430,
+-	0x000003cd,
++	0x0000044c,
++	0x000003e9,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -46,8 +46,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x584d454d,
+-	0x00000542,
+-	0x00000534,
++	0x0000055e,
++	0x00000550,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -68,8 +68,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x46524550,
+-	0x00000546,
+-	0x00000544,
++	0x00000562,
++	0x00000560,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -90,8 +90,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x5f433249,
+-	0x00000976,
+-	0x00000819,
++	0x00000992,
++	0x00000835,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -112,8 +112,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x54534554,
+-	0x0000099f,
+-	0x00000978,
++	0x000009bb,
++	0x00000994,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -134,8 +134,8 @@ uint32_t nva3_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x454c4449,
+-	0x000009ab,
+-	0x000009a9,
++	0x000009c7,
++	0x000009c5,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -229,20 +229,20 @@ uint32_t nva3_pwr_data[] = {
+ /* 0x0370: memx_func_head */
+ 	0x00010000,
+ 	0x00000000,
+-	0x0000046f,
++	0x0000048b,
+ /* 0x037c: memx_func_next */
+ 	0x00000001,
+ 	0x00000000,
+-	0x00000496,
++	0x000004b2,
+ 	0x00000002,
+ 	0x00000002,
+-	0x000004b7,
++	0x000004d3,
+ 	0x00040003,
+ 	0x00000000,
+-	0x000004d3,
++	0x000004ef,
+ 	0x00010004,
+ 	0x00000000,
+-	0x000004f0,
++	0x0000050c,
+ /* 0x03ac: memx_func_tail */
+ /* 0x03ac: memx_data_head */
+ 	0x00000000,
+@@ -849,7 +849,7 @@ uint32_t nva3_pwr_data[] = {
+ };
  
-+int nvd0_therm_init(struct nouveau_object *object);
-+
- int nouveau_fanpwm_create(struct nouveau_therm *, struct dcb_gpio_func *);
- int nouveau_fantog_create(struct nouveau_therm *, struct dcb_gpio_func *);
- int nouveau_fannil_create(struct nouveau_therm *);
+ uint32_t nva3_pwr_code[] = {
+-	0x030d0ef5,
++	0x03290ef5,
+ /* 0x0004: rd32 */
+ 	0x07a007f1,
+ 	0xd00604b6,
+@@ -915,7 +915,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbb9a0a98,
+ 	0x1cf4029a,
+ 	0x01d7f00f,
+-	0x025421f5,
++	0x027021f5,
+ 	0x0ef494bd,
+ /* 0x00e9: intr_watchdog_next_time */
+ 	0x9b0a9815,
+@@ -967,7 +967,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x48e7f1c0,
+ 	0x53e3f14f,
+ 	0x00d7f054,
+-	0x02b921f5,
++	0x02d521f5,
+ 	0x07f1c0fc,
+ 	0x04b604c0,
+ 	0x000cd006,
+@@ -994,13 +994,19 @@ uint32_t nva3_pwr_code[] = {
+ 	0x00fc80fc,
+ 	0xf80032f4,
+ /* 0x01f5: timer */
+-	0x1032f401,
++	0xf990f901,
++	0x1032f480,
+ 	0xb003f898,
+ 	0x1cf40086,
+-	0x03fe8051,
+-	0xb63807f0,
+-	0x08d00604,
+-	0xf004bd00,
++	0xf084bd65,
++	0x04b63807,
++	0x0008d006,
++	0x87f004bd,
++	0x0684b634,
++	0x980088cf,
++	0x98bb9a09,
++	0x00e9bb02,
++	0xf003fe80,
+ 	0x84b60887,
+ 	0x0088cf06,
+ 	0xf40284f0,
+@@ -1009,19 +1015,20 @@ uint32_t nva3_pwr_code[] = {
+ 	0xb80088cf,
+ 	0x0bf406e0,
+ 	0x06e8b809,
+-/* 0x0233: timer_reset */
+-	0xf01f1ef4,
++/* 0x024b: timer_reset */
++	0xf0111cf4,
+ 	0x04b63407,
+ 	0x000ed006,
+ 	0x0e8004bd,
+-/* 0x0241: timer_enable */
++/* 0x0259: timer_enable */
+ 	0x0187f09a,
+ 	0xb63807f0,
+ 	0x08d00604,
+-/* 0x024f: timer_done */
++/* 0x0267: timer_done */
+ 	0xf404bd00,
+-	0x00f81031,
+-/* 0x0254: send_proc */
++	0x80fc1031,
++	0x00f890fc,
++/* 0x0270: send_proc */
+ 	0x90f980f9,
+ 	0x9805e898,
+ 	0x86f004e9,
+@@ -1036,25 +1043,25 @@ uint32_t nva3_pwr_code[] = {
+ 	0x90b6038b,
+ 	0x0794f001,
+ 	0xf404e980,
+-/* 0x028e: send_done */
++/* 0x02aa: send_done */
+ 	0x90fc0231,
+ 	0x00f880fc,
+-/* 0x0294: find */
++/* 0x02b0: find */
+ 	0x87f080f9,
+ 	0x0131f458,
+-/* 0x029c: find_loop */
++/* 0x02b8: find_loop */
+ 	0xb8008a98,
+ 	0x0bf406ae,
+ 	0x5880b610,
+ 	0x026886b1,
+ 	0xf4f01bf4,
+-/* 0x02b2: find_done */
++/* 0x02ce: find_done */
+ 	0x8eb90132,
+ 	0xf880fc02,
+-/* 0x02b9: send */
+-	0x9421f500,
++/* 0x02d5: send */
++	0xb021f500,
+ 	0x9701f402,
+-/* 0x02c2: recv */
++/* 0x02de: recv */
+ 	0xe89800f8,
+ 	0x04e99805,
+ 	0xb80132f4,
+@@ -1073,9 +1080,9 @@ uint32_t nva3_pwr_code[] = {
+ 	0xf900ee98,
+ 	0xfef0fca5,
+ 	0x31f400f8,
+-/* 0x030b: recv_done */
++/* 0x0327: recv_done */
+ 	0xf8f0fc01,
+-/* 0x030d: init */
++/* 0x0329: init */
+ 	0x0817f100,
+ 	0x0614b601,
+ 	0xe70011cf,
+@@ -1101,12 +1108,12 @@ uint32_t nva3_pwr_code[] = {
+ 	0x04b63807,
+ 	0x0001d006,
+ 	0xf7f004bd,
+-/* 0x0371: init_proc */
++/* 0x038d: init_proc */
+ 	0x01f19858,
+ 	0xf40016b0,
+ 	0x15f9fa0b,
+ 	0xf458f0b6,
+-/* 0x0382: host_send */
++/* 0x039e: host_send */
+ 	0x17f1f20e,
+ 	0x14b604b0,
+ 	0x0011cf06,
+@@ -1120,18 +1127,18 @@ uint32_t nva3_pwr_code[] = {
+ 	0x02ec9803,
+ 	0x9801ed98,
+ 	0x21f500ee,
+-	0x10b602b9,
++	0x10b602d5,
+ 	0x0f1ec401,
+ 	0x04b007f1,
+ 	0xd00604b6,
+ 	0x04bd000e,
+-/* 0x03cb: host_send_done */
++/* 0x03e7: host_send_done */
+ 	0xf8ba0ef4,
+-/* 0x03cd: host_recv */
++/* 0x03e9: host_recv */
+ 	0x4917f100,
+ 	0x5413f14e,
+ 	0x06e1b852,
+-/* 0x03db: host_recv_wait */
++/* 0x03f7: host_recv_wait */
+ 	0xf1aa0bf4,
+ 	0xb604cc17,
+ 	0x11cf0614,
+@@ -1154,7 +1161,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x04b60007,
+ 	0x0002d006,
+ 	0x00f804bd,
+-/* 0x0430: host_init */
++/* 0x044c: host_init */
+ 	0x008017f1,
+ 	0xf11014b6,
+ 	0xf1027015,
+@@ -1170,29 +1177,29 @@ uint32_t nva3_pwr_code[] = {
+ 	0xc407f101,
+ 	0x0604b604,
+ 	0xbd0001d0,
+-/* 0x046f: memx_func_enter */
++/* 0x048b: memx_func_enter */
+ 	0xf000f804,
+ 	0x07f10467,
+ 	0x04b607e0,
+ 	0x0006d006,
+-/* 0x047e: memx_func_enter_wait */
++/* 0x049a: memx_func_enter_wait */
+ 	0x67f104bd,
+ 	0x64b607c0,
+ 	0x0066cf06,
+ 	0xf40464f0,
+ 	0x1698f30b,
+ 	0x0410b600,
+-/* 0x0496: memx_func_leave */
++/* 0x04b2: memx_func_leave */
+ 	0x67f000f8,
+ 	0xe407f104,
+ 	0x0604b607,
+ 	0xbd0006d0,
+-/* 0x04a5: memx_func_leave_wait */
++/* 0x04c1: memx_func_leave_wait */
+ 	0xc067f104,
+ 	0x0664b607,
+ 	0xf00066cf,
+ 	0x1bf40464,
+-/* 0x04b7: memx_func_wr32 */
++/* 0x04d3: memx_func_wr32 */
+ 	0x9800f8f3,
+ 	0x15980016,
+ 	0x0810b601,
+@@ -1200,7 +1207,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0xe0fcd0fc,
+ 	0xb63f21f4,
+ 	0x1bf40242,
+-/* 0x04d3: memx_func_wait */
++/* 0x04ef: memx_func_wait */
+ 	0xf000f8e9,
+ 	0x84b62c87,
+ 	0x0088cf06,
+@@ -1209,14 +1216,14 @@ uint32_t nva3_pwr_code[] = {
+ 	0x031b9802,
+ 	0xf41010b6,
+ 	0x00f89c21,
+-/* 0x04f0: memx_func_delay */
++/* 0x050c: memx_func_delay */
+ 	0xb6001e98,
+ 	0x21f40410,
+-/* 0x04fb: memx_exec */
++/* 0x0517: memx_exec */
+ 	0xf900f87f,
+ 	0xb9d0f9e0,
+ 	0xb2b902c1,
+-/* 0x0505: memx_exec_next */
++/* 0x0521: memx_exec_next */
+ 	0x00139802,
+ 	0x950410b6,
+ 	0x30f01034,
+@@ -1224,113 +1231,113 @@ uint32_t nva3_pwr_code[] = {
+ 	0x12b855f9,
+ 	0xec1ef406,
+ 	0xe0fcd0fc,
+-	0x02b921f5,
+-/* 0x0526: memx_info */
++	0x02d521f5,
++/* 0x0542: memx_info */
+ 	0xc7f100f8,
+ 	0xb7f103ac,
+ 	0x21f50800,
+-	0x00f802b9,
+-/* 0x0534: memx_recv */
++	0x00f802d5,
++/* 0x0550: memx_recv */
+ 	0xf401d6b0,
+ 	0xd6b0c40b,
+ 	0xe90bf400,
+-/* 0x0542: memx_init */
++/* 0x055e: memx_init */
+ 	0x00f800f8,
+-/* 0x0544: perf_recv */
+-/* 0x0546: perf_init */
++/* 0x0560: perf_recv */
++/* 0x0562: perf_init */
+ 	0x00f800f8,
+-/* 0x0548: i2c_drive_scl */
++/* 0x0564: i2c_drive_scl */
+ 	0xf40036b0,
+ 	0x07f1110b,
+ 	0x04b607e0,
+ 	0x0001d006,
+ 	0x00f804bd,
+-/* 0x055c: i2c_drive_scl_lo */
++/* 0x0578: i2c_drive_scl_lo */
+ 	0x07e407f1,
+ 	0xd00604b6,
+ 	0x04bd0001,
+-/* 0x056a: i2c_drive_sda */
++/* 0x0586: i2c_drive_sda */
+ 	0x36b000f8,
+ 	0x110bf400,
+ 	0x07e007f1,
+ 	0xd00604b6,
+ 	0x04bd0002,
+-/* 0x057e: i2c_drive_sda_lo */
++/* 0x059a: i2c_drive_sda_lo */
+ 	0x07f100f8,
+ 	0x04b607e4,
+ 	0x0002d006,
+ 	0x00f804bd,
+-/* 0x058c: i2c_sense_scl */
++/* 0x05a8: i2c_sense_scl */
+ 	0xf10132f4,
+ 	0xb607c437,
+ 	0x33cf0634,
+ 	0x0431fd00,
+ 	0xf4060bf4,
+-/* 0x05a2: i2c_sense_scl_done */
++/* 0x05be: i2c_sense_scl_done */
+ 	0x00f80131,
+-/* 0x05a4: i2c_sense_sda */
++/* 0x05c0: i2c_sense_sda */
+ 	0xf10132f4,
+ 	0xb607c437,
+ 	0x33cf0634,
+ 	0x0432fd00,
+ 	0xf4060bf4,
+-/* 0x05ba: i2c_sense_sda_done */
++/* 0x05d6: i2c_sense_sda_done */
+ 	0x00f80131,
+-/* 0x05bc: i2c_raise_scl */
++/* 0x05d8: i2c_raise_scl */
+ 	0x47f140f9,
+ 	0x37f00898,
+-	0x4821f501,
+-/* 0x05c9: i2c_raise_scl_wait */
++	0x6421f501,
++/* 0x05e5: i2c_raise_scl_wait */
+ 	0xe8e7f105,
+ 	0x7f21f403,
+-	0x058c21f5,
++	0x05a821f5,
+ 	0xb60901f4,
+ 	0x1bf40142,
+-/* 0x05dd: i2c_raise_scl_done */
++/* 0x05f9: i2c_raise_scl_done */
+ 	0xf840fcef,
+-/* 0x05e1: i2c_start */
+-	0x8c21f500,
++/* 0x05fd: i2c_start */
++	0xa821f500,
+ 	0x0d11f405,
+-	0x05a421f5,
++	0x05c021f5,
+ 	0xf40611f4,
+-/* 0x05f2: i2c_start_rep */
++/* 0x060e: i2c_start_rep */
+ 	0x37f0300e,
+-	0x4821f500,
++	0x6421f500,
+ 	0x0137f005,
+-	0x056a21f5,
++	0x058621f5,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0xbc21f550,
++	0xd821f550,
+ 	0x0464b605,
+-/* 0x061f: i2c_start_send */
++/* 0x063b: i2c_start_send */
+ 	0xf01f11f4,
+ 	0x21f50037,
+-	0xe7f1056a,
++	0xe7f10586,
+ 	0x21f41388,
+ 	0x0037f07f,
+-	0x054821f5,
++	0x056421f5,
+ 	0x1388e7f1,
+-/* 0x063b: i2c_start_out */
++/* 0x0657: i2c_start_out */
+ 	0xf87f21f4,
+-/* 0x063d: i2c_stop */
++/* 0x0659: i2c_stop */
+ 	0x0037f000,
+-	0x054821f5,
++	0x056421f5,
+ 	0xf50037f0,
+-	0xf1056a21,
++	0xf1058621,
+ 	0xf403e8e7,
+ 	0x37f07f21,
+-	0x4821f501,
++	0x6421f501,
+ 	0x88e7f105,
+ 	0x7f21f413,
+ 	0xf50137f0,
+-	0xf1056a21,
++	0xf1058621,
+ 	0xf41388e7,
+ 	0x00f87f21,
+-/* 0x0670: i2c_bitw */
+-	0x056a21f5,
++/* 0x068c: i2c_bitw */
++	0x058621f5,
+ 	0x03e8e7f1,
+ 	0xbb7f21f4,
+ 	0x65b60076,
+@@ -1338,18 +1345,18 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x05bc21f5,
++	0x05d821f5,
+ 	0xf40464b6,
+ 	0xe7f11811,
+ 	0x21f41388,
+ 	0x0037f07f,
+-	0x054821f5,
++	0x056421f5,
+ 	0x1388e7f1,
+-/* 0x06af: i2c_bitw_out */
++/* 0x06cb: i2c_bitw_out */
+ 	0xf87f21f4,
+-/* 0x06b1: i2c_bitr */
++/* 0x06cd: i2c_bitr */
+ 	0x0137f000,
+-	0x056a21f5,
++	0x058621f5,
+ 	0x03e8e7f1,
+ 	0xbb7f21f4,
+ 	0x65b60076,
+@@ -1357,19 +1364,19 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x05bc21f5,
++	0x05d821f5,
+ 	0xf40464b6,
+ 	0x21f51b11,
+-	0x37f005a4,
+-	0x4821f500,
++	0x37f005c0,
++	0x6421f500,
+ 	0x88e7f105,
+ 	0x7f21f413,
+ 	0xf4013cf0,
+-/* 0x06f6: i2c_bitr_done */
++/* 0x0712: i2c_bitr_done */
+ 	0x00f80131,
+-/* 0x06f8: i2c_get_byte */
++/* 0x0714: i2c_get_byte */
+ 	0xf00057f0,
+-/* 0x06fe: i2c_get_byte_next */
++/* 0x071a: i2c_get_byte_next */
+ 	0x54b60847,
+ 	0x0076bb01,
+ 	0xf90465b6,
+@@ -1377,7 +1384,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b606b1,
++	0x64b606cd,
+ 	0x2b11f404,
+ 	0xb60553fd,
+ 	0x1bf40142,
+@@ -1387,12 +1394,12 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x7021f550,
++	0x8c21f550,
+ 	0x0464b606,
+-/* 0x0748: i2c_get_byte_done */
+-/* 0x074a: i2c_put_byte */
++/* 0x0764: i2c_get_byte_done */
++/* 0x0766: i2c_put_byte */
+ 	0x47f000f8,
+-/* 0x074d: i2c_put_byte_next */
++/* 0x0769: i2c_put_byte_next */
+ 	0x0142b608,
+ 	0xbb3854ff,
+ 	0x65b60076,
+@@ -1400,7 +1407,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x067021f5,
++	0x068c21f5,
+ 	0xf40464b6,
+ 	0x46b03411,
+ 	0xd81bf400,
+@@ -1409,21 +1416,21 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0xb121f550,
++	0xcd21f550,
+ 	0x0464b606,
+ 	0xbb0f11f4,
+ 	0x36b00076,
+ 	0x061bf401,
+-/* 0x07a3: i2c_put_byte_done */
++/* 0x07bf: i2c_put_byte_done */
+ 	0xf80132f4,
+-/* 0x07a5: i2c_addr */
++/* 0x07c1: i2c_addr */
+ 	0x0076bb00,
+ 	0xf90465b6,
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b605e1,
++	0x64b605fd,
+ 	0x2911f404,
+ 	0x012ec3e7,
+ 	0xfd0134b6,
+@@ -1433,24 +1440,24 @@ uint32_t nva3_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0xf550fc04,
+-	0xb6074a21,
+-/* 0x07ea: i2c_addr_done */
++	0xb6076621,
++/* 0x0806: i2c_addr_done */
+ 	0x00f80464,
+-/* 0x07ec: i2c_acquire_addr */
++/* 0x0808: i2c_acquire_addr */
+ 	0xb6f8cec7,
+ 	0xe0b702e4,
+ 	0xee980bfc,
+-/* 0x07fb: i2c_acquire */
++/* 0x0817: i2c_acquire */
+ 	0xf500f800,
+-	0xf407ec21,
++	0xf4080821,
+ 	0xd9f00421,
+ 	0x3f21f403,
+-/* 0x080a: i2c_release */
++/* 0x0826: i2c_release */
+ 	0x21f500f8,
+-	0x21f407ec,
++	0x21f40808,
+ 	0x03daf004,
+ 	0xf83f21f4,
+-/* 0x0819: i2c_recv */
++/* 0x0835: i2c_recv */
+ 	0x0132f400,
+ 	0xb6f8c1c7,
+ 	0x16b00214,
+@@ -1469,7 +1476,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x07fb21f5,
++	0x081721f5,
+ 	0xfc0464b6,
+ 	0x00d6b0d0,
+ 	0x00b31bf5,
+@@ -1479,7 +1486,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xf50464b6,
+ 	0xc700d011,
+ 	0x76bbe0c5,
+@@ -1488,7 +1495,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0xf550fc04,
+-	0xb6074a21,
++	0xb6076621,
+ 	0x11f50464,
+ 	0x57f000ad,
+ 	0x0076bb01,
+@@ -1497,7 +1504,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b607a5,
++	0x64b607c1,
+ 	0x8a11f504,
+ 	0x0076bb00,
+ 	0xf90465b6,
+@@ -1505,7 +1512,7 @@ uint32_t nva3_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b606f8,
++	0x64b60714,
+ 	0x6a11f404,
+ 	0xbbe05bcb,
+ 	0x65b60076,
+@@ -1513,38 +1520,38 @@ uint32_t nva3_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x063d21f5,
++	0x065921f5,
+ 	0xb90464b6,
+ 	0x74bd025b,
+-/* 0x091f: i2c_recv_not_rd08 */
++/* 0x093b: i2c_recv_not_rd08 */
+ 	0xb0430ef4,
+ 	0x1bf401d6,
+ 	0x0057f03d,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xc73311f4,
+ 	0x21f5e0c5,
+-	0x11f4074a,
++	0x11f40766,
+ 	0x0057f029,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xc71f11f4,
+ 	0x21f5e0b5,
+-	0x11f4074a,
+-	0x3d21f515,
++	0x11f40766,
++	0x5921f515,
+ 	0xc774bd06,
+ 	0x1bf408c5,
+ 	0x0232f409,
+-/* 0x095f: i2c_recv_not_wr08 */
+-/* 0x095f: i2c_recv_done */
++/* 0x097b: i2c_recv_not_wr08 */
++/* 0x097b: i2c_recv_done */
+ 	0xc7030ef4,
+ 	0x21f5f8ce,
+-	0xe0fc080a,
++	0xe0fc0826,
+ 	0x12f4d0fc,
+ 	0x027cb90a,
+-	0x02b921f5,
+-/* 0x0974: i2c_recv_exit */
+-/* 0x0976: i2c_init */
++	0x02d521f5,
++/* 0x0990: i2c_recv_exit */
++/* 0x0992: i2c_init */
+ 	0x00f800f8,
+-/* 0x0978: test_recv */
++/* 0x0994: test_recv */
+ 	0x05d817f1,
+ 	0xcf0614b6,
+ 	0x10b60011,
+@@ -1554,12 +1561,12 @@ uint32_t nva3_pwr_code[] = {
+ 	0x00e7f104,
+ 	0x4fe3f1d9,
+ 	0xf521f513,
+-/* 0x099f: test_init */
++/* 0x09bb: test_init */
+ 	0xf100f801,
+ 	0xf50800e7,
+ 	0xf801f521,
+-/* 0x09a9: idle_recv */
+-/* 0x09ab: idle */
++/* 0x09c5: idle_recv */
++/* 0x09c7: idle */
+ 	0xf400f800,
+ 	0x17f10031,
+ 	0x14b605d4,
+@@ -1567,17 +1574,17 @@ uint32_t nva3_pwr_code[] = {
+ 	0xf10110b6,
+ 	0xb605d407,
+ 	0x01d00604,
+-/* 0x09c7: idle_loop */
++/* 0x09e3: idle_loop */
+ 	0xf004bd00,
+ 	0x32f45817,
+-/* 0x09cd: idle_proc */
+-/* 0x09cd: idle_proc_exec */
++/* 0x09e9: idle_proc */
++/* 0x09e9: idle_proc_exec */
+ 	0xb910f902,
+ 	0x21f5021e,
+-	0x10fc02c2,
++	0x10fc02de,
+ 	0xf40911f4,
+ 	0x0ef40231,
+-/* 0x09e1: idle_proc_next */
++/* 0x09fd: idle_proc_next */
+ 	0x5810b6ef,
+ 	0xf4061fb8,
+ 	0x02f4e61b,
+@@ -1586,4 +1593,61 @@ uint32_t nva3_pwr_code[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
+ };
+diff --git a/nvkm/subdev/pwr/fuc/nvc0.fuc.h b/nvkm/subdev/pwr/fuc/nvc0.fuc.h
+index 0773ff0..ca96a04 100644
+--- a/nvkm/subdev/pwr/fuc/nvc0.fuc.h
++++ b/nvkm/subdev/pwr/fuc/nvc0.fuc.h
+@@ -24,8 +24,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ /* 0x0058: proc_list_head */
+ 	0x54534f48,
+-	0x00000430,
+-	0x000003cd,
++	0x0000044c,
++	0x000003e9,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -46,8 +46,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x584d454d,
+-	0x00000542,
+-	0x00000534,
++	0x0000055e,
++	0x00000550,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -68,8 +68,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x46524550,
+-	0x00000546,
+-	0x00000544,
++	0x00000562,
++	0x00000560,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -90,8 +90,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x5f433249,
+-	0x00000976,
+-	0x00000819,
++	0x00000992,
++	0x00000835,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -112,8 +112,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x54534554,
+-	0x0000099f,
+-	0x00000978,
++	0x000009bb,
++	0x00000994,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -134,8 +134,8 @@ uint32_t nvc0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x454c4449,
+-	0x000009ab,
+-	0x000009a9,
++	0x000009c7,
++	0x000009c5,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -229,20 +229,20 @@ uint32_t nvc0_pwr_data[] = {
+ /* 0x0370: memx_func_head */
+ 	0x00010000,
+ 	0x00000000,
+-	0x0000046f,
++	0x0000048b,
+ /* 0x037c: memx_func_next */
+ 	0x00000001,
+ 	0x00000000,
+-	0x00000496,
++	0x000004b2,
+ 	0x00000002,
+ 	0x00000002,
+-	0x000004b7,
++	0x000004d3,
+ 	0x00040003,
+ 	0x00000000,
+-	0x000004d3,
++	0x000004ef,
+ 	0x00010004,
+ 	0x00000000,
+-	0x000004f0,
++	0x0000050c,
+ /* 0x03ac: memx_func_tail */
+ /* 0x03ac: memx_data_head */
+ 	0x00000000,
+@@ -849,7 +849,7 @@ uint32_t nvc0_pwr_data[] = {
+ };
+ 
+ uint32_t nvc0_pwr_code[] = {
+-	0x030d0ef5,
++	0x03290ef5,
+ /* 0x0004: rd32 */
+ 	0x07a007f1,
+ 	0xd00604b6,
+@@ -915,7 +915,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbb9a0a98,
+ 	0x1cf4029a,
+ 	0x01d7f00f,
+-	0x025421f5,
++	0x027021f5,
+ 	0x0ef494bd,
+ /* 0x00e9: intr_watchdog_next_time */
+ 	0x9b0a9815,
+@@ -967,7 +967,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x48e7f1c0,
+ 	0x53e3f14f,
+ 	0x00d7f054,
+-	0x02b921f5,
++	0x02d521f5,
+ 	0x07f1c0fc,
+ 	0x04b604c0,
+ 	0x000cd006,
+@@ -994,13 +994,19 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x00fc80fc,
+ 	0xf80032f4,
+ /* 0x01f5: timer */
+-	0x1032f401,
++	0xf990f901,
++	0x1032f480,
+ 	0xb003f898,
+ 	0x1cf40086,
+-	0x03fe8051,
+-	0xb63807f0,
+-	0x08d00604,
+-	0xf004bd00,
++	0xf084bd65,
++	0x04b63807,
++	0x0008d006,
++	0x87f004bd,
++	0x0684b634,
++	0x980088cf,
++	0x98bb9a09,
++	0x00e9bb02,
++	0xf003fe80,
+ 	0x84b60887,
+ 	0x0088cf06,
+ 	0xf40284f0,
+@@ -1009,19 +1015,20 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xb80088cf,
+ 	0x0bf406e0,
+ 	0x06e8b809,
+-/* 0x0233: timer_reset */
+-	0xf01f1ef4,
++/* 0x024b: timer_reset */
++	0xf0111cf4,
+ 	0x04b63407,
+ 	0x000ed006,
+ 	0x0e8004bd,
+-/* 0x0241: timer_enable */
++/* 0x0259: timer_enable */
+ 	0x0187f09a,
+ 	0xb63807f0,
+ 	0x08d00604,
+-/* 0x024f: timer_done */
++/* 0x0267: timer_done */
+ 	0xf404bd00,
+-	0x00f81031,
+-/* 0x0254: send_proc */
++	0x80fc1031,
++	0x00f890fc,
++/* 0x0270: send_proc */
+ 	0x90f980f9,
+ 	0x9805e898,
+ 	0x86f004e9,
+@@ -1036,25 +1043,25 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x90b6038b,
+ 	0x0794f001,
+ 	0xf404e980,
+-/* 0x028e: send_done */
++/* 0x02aa: send_done */
+ 	0x90fc0231,
+ 	0x00f880fc,
+-/* 0x0294: find */
++/* 0x02b0: find */
+ 	0x87f080f9,
+ 	0x0131f458,
+-/* 0x029c: find_loop */
++/* 0x02b8: find_loop */
+ 	0xb8008a98,
+ 	0x0bf406ae,
+ 	0x5880b610,
+ 	0x026886b1,
+ 	0xf4f01bf4,
+-/* 0x02b2: find_done */
++/* 0x02ce: find_done */
+ 	0x8eb90132,
+ 	0xf880fc02,
+-/* 0x02b9: send */
+-	0x9421f500,
++/* 0x02d5: send */
++	0xb021f500,
+ 	0x9701f402,
+-/* 0x02c2: recv */
++/* 0x02de: recv */
+ 	0xe89800f8,
+ 	0x04e99805,
+ 	0xb80132f4,
+@@ -1073,9 +1080,9 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xf900ee98,
+ 	0xfef0fca5,
+ 	0x31f400f8,
+-/* 0x030b: recv_done */
++/* 0x0327: recv_done */
+ 	0xf8f0fc01,
+-/* 0x030d: init */
++/* 0x0329: init */
+ 	0x0817f100,
+ 	0x0614b601,
+ 	0xe70011cf,
+@@ -1101,12 +1108,12 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x04b63807,
+ 	0x0001d006,
+ 	0xf7f004bd,
+-/* 0x0371: init_proc */
++/* 0x038d: init_proc */
+ 	0x01f19858,
+ 	0xf40016b0,
+ 	0x15f9fa0b,
+ 	0xf458f0b6,
+-/* 0x0382: host_send */
++/* 0x039e: host_send */
+ 	0x17f1f20e,
+ 	0x14b604b0,
+ 	0x0011cf06,
+@@ -1120,18 +1127,18 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x02ec9803,
+ 	0x9801ed98,
+ 	0x21f500ee,
+-	0x10b602b9,
++	0x10b602d5,
+ 	0x0f1ec401,
+ 	0x04b007f1,
+ 	0xd00604b6,
+ 	0x04bd000e,
+-/* 0x03cb: host_send_done */
++/* 0x03e7: host_send_done */
+ 	0xf8ba0ef4,
+-/* 0x03cd: host_recv */
++/* 0x03e9: host_recv */
+ 	0x4917f100,
+ 	0x5413f14e,
+ 	0x06e1b852,
+-/* 0x03db: host_recv_wait */
++/* 0x03f7: host_recv_wait */
+ 	0xf1aa0bf4,
+ 	0xb604cc17,
+ 	0x11cf0614,
+@@ -1154,7 +1161,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x04b60007,
+ 	0x0002d006,
+ 	0x00f804bd,
+-/* 0x0430: host_init */
++/* 0x044c: host_init */
+ 	0x008017f1,
+ 	0xf11014b6,
+ 	0xf1027015,
+@@ -1170,29 +1177,29 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xc407f101,
+ 	0x0604b604,
+ 	0xbd0001d0,
+-/* 0x046f: memx_func_enter */
++/* 0x048b: memx_func_enter */
+ 	0xf000f804,
+ 	0x07f10467,
+ 	0x04b607e0,
+ 	0x0006d006,
+-/* 0x047e: memx_func_enter_wait */
++/* 0x049a: memx_func_enter_wait */
+ 	0x67f104bd,
+ 	0x64b607c0,
+ 	0x0066cf06,
+ 	0xf40464f0,
+ 	0x1698f30b,
+ 	0x0410b600,
+-/* 0x0496: memx_func_leave */
++/* 0x04b2: memx_func_leave */
+ 	0x67f000f8,
+ 	0xe407f104,
+ 	0x0604b607,
+ 	0xbd0006d0,
+-/* 0x04a5: memx_func_leave_wait */
++/* 0x04c1: memx_func_leave_wait */
+ 	0xc067f104,
+ 	0x0664b607,
+ 	0xf00066cf,
+ 	0x1bf40464,
+-/* 0x04b7: memx_func_wr32 */
++/* 0x04d3: memx_func_wr32 */
+ 	0x9800f8f3,
+ 	0x15980016,
+ 	0x0810b601,
+@@ -1200,7 +1207,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xe0fcd0fc,
+ 	0xb63f21f4,
+ 	0x1bf40242,
+-/* 0x04d3: memx_func_wait */
++/* 0x04ef: memx_func_wait */
+ 	0xf000f8e9,
+ 	0x84b62c87,
+ 	0x0088cf06,
+@@ -1209,14 +1216,14 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x031b9802,
+ 	0xf41010b6,
+ 	0x00f89c21,
+-/* 0x04f0: memx_func_delay */
++/* 0x050c: memx_func_delay */
+ 	0xb6001e98,
+ 	0x21f40410,
+-/* 0x04fb: memx_exec */
++/* 0x0517: memx_exec */
+ 	0xf900f87f,
+ 	0xb9d0f9e0,
+ 	0xb2b902c1,
+-/* 0x0505: memx_exec_next */
++/* 0x0521: memx_exec_next */
+ 	0x00139802,
+ 	0x950410b6,
+ 	0x30f01034,
+@@ -1224,113 +1231,113 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x12b855f9,
+ 	0xec1ef406,
+ 	0xe0fcd0fc,
+-	0x02b921f5,
+-/* 0x0526: memx_info */
++	0x02d521f5,
++/* 0x0542: memx_info */
+ 	0xc7f100f8,
+ 	0xb7f103ac,
+ 	0x21f50800,
+-	0x00f802b9,
+-/* 0x0534: memx_recv */
++	0x00f802d5,
++/* 0x0550: memx_recv */
+ 	0xf401d6b0,
+ 	0xd6b0c40b,
+ 	0xe90bf400,
+-/* 0x0542: memx_init */
++/* 0x055e: memx_init */
+ 	0x00f800f8,
+-/* 0x0544: perf_recv */
+-/* 0x0546: perf_init */
++/* 0x0560: perf_recv */
++/* 0x0562: perf_init */
+ 	0x00f800f8,
+-/* 0x0548: i2c_drive_scl */
++/* 0x0564: i2c_drive_scl */
+ 	0xf40036b0,
+ 	0x07f1110b,
+ 	0x04b607e0,
+ 	0x0001d006,
+ 	0x00f804bd,
+-/* 0x055c: i2c_drive_scl_lo */
++/* 0x0578: i2c_drive_scl_lo */
+ 	0x07e407f1,
+ 	0xd00604b6,
+ 	0x04bd0001,
+-/* 0x056a: i2c_drive_sda */
++/* 0x0586: i2c_drive_sda */
+ 	0x36b000f8,
+ 	0x110bf400,
+ 	0x07e007f1,
+ 	0xd00604b6,
+ 	0x04bd0002,
+-/* 0x057e: i2c_drive_sda_lo */
++/* 0x059a: i2c_drive_sda_lo */
+ 	0x07f100f8,
+ 	0x04b607e4,
+ 	0x0002d006,
+ 	0x00f804bd,
+-/* 0x058c: i2c_sense_scl */
++/* 0x05a8: i2c_sense_scl */
+ 	0xf10132f4,
+ 	0xb607c437,
+ 	0x33cf0634,
+ 	0x0431fd00,
+ 	0xf4060bf4,
+-/* 0x05a2: i2c_sense_scl_done */
++/* 0x05be: i2c_sense_scl_done */
+ 	0x00f80131,
+-/* 0x05a4: i2c_sense_sda */
++/* 0x05c0: i2c_sense_sda */
+ 	0xf10132f4,
+ 	0xb607c437,
+ 	0x33cf0634,
+ 	0x0432fd00,
+ 	0xf4060bf4,
+-/* 0x05ba: i2c_sense_sda_done */
++/* 0x05d6: i2c_sense_sda_done */
+ 	0x00f80131,
+-/* 0x05bc: i2c_raise_scl */
++/* 0x05d8: i2c_raise_scl */
+ 	0x47f140f9,
+ 	0x37f00898,
+-	0x4821f501,
+-/* 0x05c9: i2c_raise_scl_wait */
++	0x6421f501,
++/* 0x05e5: i2c_raise_scl_wait */
+ 	0xe8e7f105,
+ 	0x7f21f403,
+-	0x058c21f5,
++	0x05a821f5,
+ 	0xb60901f4,
+ 	0x1bf40142,
+-/* 0x05dd: i2c_raise_scl_done */
++/* 0x05f9: i2c_raise_scl_done */
+ 	0xf840fcef,
+-/* 0x05e1: i2c_start */
+-	0x8c21f500,
++/* 0x05fd: i2c_start */
++	0xa821f500,
+ 	0x0d11f405,
+-	0x05a421f5,
++	0x05c021f5,
+ 	0xf40611f4,
+-/* 0x05f2: i2c_start_rep */
++/* 0x060e: i2c_start_rep */
+ 	0x37f0300e,
+-	0x4821f500,
++	0x6421f500,
+ 	0x0137f005,
+-	0x056a21f5,
++	0x058621f5,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0xbc21f550,
++	0xd821f550,
+ 	0x0464b605,
+-/* 0x061f: i2c_start_send */
++/* 0x063b: i2c_start_send */
+ 	0xf01f11f4,
+ 	0x21f50037,
+-	0xe7f1056a,
++	0xe7f10586,
+ 	0x21f41388,
+ 	0x0037f07f,
+-	0x054821f5,
++	0x056421f5,
+ 	0x1388e7f1,
+-/* 0x063b: i2c_start_out */
++/* 0x0657: i2c_start_out */
+ 	0xf87f21f4,
+-/* 0x063d: i2c_stop */
++/* 0x0659: i2c_stop */
+ 	0x0037f000,
+-	0x054821f5,
++	0x056421f5,
+ 	0xf50037f0,
+-	0xf1056a21,
++	0xf1058621,
+ 	0xf403e8e7,
+ 	0x37f07f21,
+-	0x4821f501,
++	0x6421f501,
+ 	0x88e7f105,
+ 	0x7f21f413,
+ 	0xf50137f0,
+-	0xf1056a21,
++	0xf1058621,
+ 	0xf41388e7,
+ 	0x00f87f21,
+-/* 0x0670: i2c_bitw */
+-	0x056a21f5,
++/* 0x068c: i2c_bitw */
++	0x058621f5,
+ 	0x03e8e7f1,
+ 	0xbb7f21f4,
+ 	0x65b60076,
+@@ -1338,18 +1345,18 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x05bc21f5,
++	0x05d821f5,
+ 	0xf40464b6,
+ 	0xe7f11811,
+ 	0x21f41388,
+ 	0x0037f07f,
+-	0x054821f5,
++	0x056421f5,
+ 	0x1388e7f1,
+-/* 0x06af: i2c_bitw_out */
++/* 0x06cb: i2c_bitw_out */
+ 	0xf87f21f4,
+-/* 0x06b1: i2c_bitr */
++/* 0x06cd: i2c_bitr */
+ 	0x0137f000,
+-	0x056a21f5,
++	0x058621f5,
+ 	0x03e8e7f1,
+ 	0xbb7f21f4,
+ 	0x65b60076,
+@@ -1357,19 +1364,19 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x05bc21f5,
++	0x05d821f5,
+ 	0xf40464b6,
+ 	0x21f51b11,
+-	0x37f005a4,
+-	0x4821f500,
++	0x37f005c0,
++	0x6421f500,
+ 	0x88e7f105,
+ 	0x7f21f413,
+ 	0xf4013cf0,
+-/* 0x06f6: i2c_bitr_done */
++/* 0x0712: i2c_bitr_done */
+ 	0x00f80131,
+-/* 0x06f8: i2c_get_byte */
++/* 0x0714: i2c_get_byte */
+ 	0xf00057f0,
+-/* 0x06fe: i2c_get_byte_next */
++/* 0x071a: i2c_get_byte_next */
+ 	0x54b60847,
+ 	0x0076bb01,
+ 	0xf90465b6,
+@@ -1377,7 +1384,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b606b1,
++	0x64b606cd,
+ 	0x2b11f404,
+ 	0xb60553fd,
+ 	0x1bf40142,
+@@ -1387,12 +1394,12 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x7021f550,
++	0x8c21f550,
+ 	0x0464b606,
+-/* 0x0748: i2c_get_byte_done */
+-/* 0x074a: i2c_put_byte */
++/* 0x0764: i2c_get_byte_done */
++/* 0x0766: i2c_put_byte */
+ 	0x47f000f8,
+-/* 0x074d: i2c_put_byte_next */
++/* 0x0769: i2c_put_byte_next */
+ 	0x0142b608,
+ 	0xbb3854ff,
+ 	0x65b60076,
+@@ -1400,7 +1407,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x067021f5,
++	0x068c21f5,
+ 	0xf40464b6,
+ 	0x46b03411,
+ 	0xd81bf400,
+@@ -1409,21 +1416,21 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0xb121f550,
++	0xcd21f550,
+ 	0x0464b606,
+ 	0xbb0f11f4,
+ 	0x36b00076,
+ 	0x061bf401,
+-/* 0x07a3: i2c_put_byte_done */
++/* 0x07bf: i2c_put_byte_done */
+ 	0xf80132f4,
+-/* 0x07a5: i2c_addr */
++/* 0x07c1: i2c_addr */
+ 	0x0076bb00,
+ 	0xf90465b6,
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b605e1,
++	0x64b605fd,
+ 	0x2911f404,
+ 	0x012ec3e7,
+ 	0xfd0134b6,
+@@ -1433,24 +1440,24 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0xf550fc04,
+-	0xb6074a21,
+-/* 0x07ea: i2c_addr_done */
++	0xb6076621,
++/* 0x0806: i2c_addr_done */
+ 	0x00f80464,
+-/* 0x07ec: i2c_acquire_addr */
++/* 0x0808: i2c_acquire_addr */
+ 	0xb6f8cec7,
+ 	0xe0b702e4,
+ 	0xee980bfc,
+-/* 0x07fb: i2c_acquire */
++/* 0x0817: i2c_acquire */
+ 	0xf500f800,
+-	0xf407ec21,
++	0xf4080821,
+ 	0xd9f00421,
+ 	0x3f21f403,
+-/* 0x080a: i2c_release */
++/* 0x0826: i2c_release */
+ 	0x21f500f8,
+-	0x21f407ec,
++	0x21f40808,
+ 	0x03daf004,
+ 	0xf83f21f4,
+-/* 0x0819: i2c_recv */
++/* 0x0835: i2c_recv */
+ 	0x0132f400,
+ 	0xb6f8c1c7,
+ 	0x16b00214,
+@@ -1469,7 +1476,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x07fb21f5,
++	0x081721f5,
+ 	0xfc0464b6,
+ 	0x00d6b0d0,
+ 	0x00b31bf5,
+@@ -1479,7 +1486,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xf50464b6,
+ 	0xc700d011,
+ 	0x76bbe0c5,
+@@ -1488,7 +1495,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0xf550fc04,
+-	0xb6074a21,
++	0xb6076621,
+ 	0x11f50464,
+ 	0x57f000ad,
+ 	0x0076bb01,
+@@ -1497,7 +1504,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b607a5,
++	0x64b607c1,
+ 	0x8a11f504,
+ 	0x0076bb00,
+ 	0xf90465b6,
+@@ -1505,7 +1512,7 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b606f8,
++	0x64b60714,
+ 	0x6a11f404,
+ 	0xbbe05bcb,
+ 	0x65b60076,
+@@ -1513,38 +1520,38 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x063d21f5,
++	0x065921f5,
+ 	0xb90464b6,
+ 	0x74bd025b,
+-/* 0x091f: i2c_recv_not_rd08 */
++/* 0x093b: i2c_recv_not_rd08 */
+ 	0xb0430ef4,
+ 	0x1bf401d6,
+ 	0x0057f03d,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xc73311f4,
+ 	0x21f5e0c5,
+-	0x11f4074a,
++	0x11f40766,
+ 	0x0057f029,
+-	0x07a521f5,
++	0x07c121f5,
+ 	0xc71f11f4,
+ 	0x21f5e0b5,
+-	0x11f4074a,
+-	0x3d21f515,
++	0x11f40766,
++	0x5921f515,
+ 	0xc774bd06,
+ 	0x1bf408c5,
+ 	0x0232f409,
+-/* 0x095f: i2c_recv_not_wr08 */
+-/* 0x095f: i2c_recv_done */
++/* 0x097b: i2c_recv_not_wr08 */
++/* 0x097b: i2c_recv_done */
+ 	0xc7030ef4,
+ 	0x21f5f8ce,
+-	0xe0fc080a,
++	0xe0fc0826,
+ 	0x12f4d0fc,
+ 	0x027cb90a,
+-	0x02b921f5,
+-/* 0x0974: i2c_recv_exit */
+-/* 0x0976: i2c_init */
++	0x02d521f5,
++/* 0x0990: i2c_recv_exit */
++/* 0x0992: i2c_init */
+ 	0x00f800f8,
+-/* 0x0978: test_recv */
++/* 0x0994: test_recv */
+ 	0x05d817f1,
+ 	0xcf0614b6,
+ 	0x10b60011,
+@@ -1554,12 +1561,12 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x00e7f104,
+ 	0x4fe3f1d9,
+ 	0xf521f513,
+-/* 0x099f: test_init */
++/* 0x09bb: test_init */
+ 	0xf100f801,
+ 	0xf50800e7,
+ 	0xf801f521,
+-/* 0x09a9: idle_recv */
+-/* 0x09ab: idle */
++/* 0x09c5: idle_recv */
++/* 0x09c7: idle */
+ 	0xf400f800,
+ 	0x17f10031,
+ 	0x14b605d4,
+@@ -1567,17 +1574,17 @@ uint32_t nvc0_pwr_code[] = {
+ 	0xf10110b6,
+ 	0xb605d407,
+ 	0x01d00604,
+-/* 0x09c7: idle_loop */
++/* 0x09e3: idle_loop */
+ 	0xf004bd00,
+ 	0x32f45817,
+-/* 0x09cd: idle_proc */
+-/* 0x09cd: idle_proc_exec */
++/* 0x09e9: idle_proc */
++/* 0x09e9: idle_proc_exec */
+ 	0xb910f902,
+ 	0x21f5021e,
+-	0x10fc02c2,
++	0x10fc02de,
+ 	0xf40911f4,
+ 	0x0ef40231,
+-/* 0x09e1: idle_proc_next */
++/* 0x09fd: idle_proc_next */
+ 	0x5810b6ef,
+ 	0xf4061fb8,
+ 	0x02f4e61b,
+@@ -1586,4 +1593,61 @@ uint32_t nvc0_pwr_code[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
++	0x00000000,
+ };
+diff --git a/nvkm/subdev/pwr/fuc/nvd0.fuc.h b/nvkm/subdev/pwr/fuc/nvd0.fuc.h
+index 8d369b3..5d81cbd 100644
+--- a/nvkm/subdev/pwr/fuc/nvd0.fuc.h
++++ b/nvkm/subdev/pwr/fuc/nvd0.fuc.h
+@@ -24,8 +24,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ /* 0x0058: proc_list_head */
+ 	0x54534f48,
+-	0x000003be,
+-	0x00000367,
++	0x000003d7,
++	0x00000380,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -46,8 +46,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x584d454d,
+-	0x000004b8,
+-	0x000004aa,
++	0x000004d1,
++	0x000004c3,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -68,8 +68,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x46524550,
+-	0x000004bc,
+-	0x000004ba,
++	0x000004d5,
++	0x000004d3,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -90,8 +90,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x5f433249,
+-	0x000008d7,
+-	0x0000077a,
++	0x000008f0,
++	0x00000793,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -112,8 +112,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x54534554,
+-	0x000008fa,
+-	0x000008d9,
++	0x00000913,
++	0x000008f2,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -134,8 +134,8 @@ uint32_t nvd0_pwr_data[] = {
+ 	0x00000000,
+ 	0x00000000,
+ 	0x454c4449,
+-	0x00000906,
+-	0x00000904,
++	0x0000091f,
++	0x0000091d,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
+@@ -229,20 +229,20 @@ uint32_t nvd0_pwr_data[] = {
+ /* 0x0370: memx_func_head */
+ 	0x00010000,
+ 	0x00000000,
+-	0x000003f4,
++	0x0000040d,
+ /* 0x037c: memx_func_next */
+ 	0x00000001,
+ 	0x00000000,
+-	0x00000415,
++	0x0000042e,
+ 	0x00000002,
+ 	0x00000002,
+-	0x00000430,
++	0x00000449,
+ 	0x00040003,
+ 	0x00000000,
+-	0x0000044c,
++	0x00000465,
+ 	0x00010004,
+ 	0x00000000,
+-	0x00000466,
++	0x0000047f,
+ /* 0x03ac: memx_func_tail */
+ /* 0x03ac: memx_data_head */
+ 	0x00000000,
+@@ -784,7 +784,7 @@ uint32_t nvd0_pwr_data[] = {
+ };
+ 
+ uint32_t nvd0_pwr_code[] = {
+-	0x02bf0ef5,
++	0x02d80ef5,
+ /* 0x0004: rd32 */
+ 	0x07a007f1,
+ 	0xbd000ed0,
+@@ -841,7 +841,7 @@ uint32_t nvd0_pwr_code[] = {
+ 	0xbb9a0a98,
+ 	0x1cf4029a,
+ 	0x01d7f00f,
+-	0x020621f5,
++	0x021f21f5,
+ 	0x0ef494bd,
+ /* 0x00c5: intr_watchdog_next_time */
+ 	0x9b0a9815,
+@@ -889,7 +889,7 @@ uint32_t nvd0_pwr_code[] = {
+ 	0xf14f48e7,
+ 	0xf05453e3,
+ 	0x21f500d7,
+-	0xc0fc026b,
++	0xc0fc0284,
+ 	0x04c007f1,
+ 	0xbd000cd0,
+ /* 0x0175: intr_subintr_skip_fifo */
+@@ -913,575 +913,575 @@ uint32_t nvd0_pwr_code[] = {
+ 	0xfc80fc90,
+ 	0x0032f400,
+ /* 0x01b6: timer */
+-	0x32f401f8,
++	0x90f901f8,
++	0x32f480f9,
+ 	0x03f89810,
+ 	0xf40086b0,
+-	0xfe80421c,
+-	0x3807f003,
+-	0xbd0008d0,
+-	0x0887f004,
+-	0xf00088cf,
+-	0x1bf40284,
+-	0x3487f020,
+-	0xb80088cf,
+-	0x0bf406e0,
+-	0x06e8b809,
+-/* 0x01eb: timer_reset */
+-	0xf0191ef4,
+-	0x0ed03407,
+-	0x8004bd00,
+-/* 0x01f6: timer_enable */
+-	0x87f09a0e,
+-	0x3807f001,
+-	0xbd0008d0,
+-/* 0x0201: timer_done */
+-	0x1031f404,
+-/* 0x0206: send_proc */
+-	0x80f900f8,
+-	0xe89890f9,
+-	0x04e99805,
+-	0xb80486f0,
+-	0x0bf40689,
+-	0x0398c42a,
+-	0xb6048894,
+-	0x8ebb1880,
+-	0x00fa9800,
+-	0x80008a80,
+-	0x8c80018d,
+-	0x038b8002,
+-	0xf00190b6,
+-	0xe9800794,
+-	0x0231f404,
+-/* 0x0240: send_done */
+-	0x80fc90fc,
+-/* 0x0246: find */
+-	0x80f900f8,
+-	0xf45887f0,
+-/* 0x024e: find_loop */
+-	0x8a980131,
+-	0x06aeb800,
+-	0xb6100bf4,
+-	0x86b15880,
+-	0x1bf40268,
+-	0x0132f4f0,
+-/* 0x0264: find_done */
+-	0xfc028eb9,
+-/* 0x026b: send */
+-	0xf500f880,
+-	0xf4024621,
+-	0x00f89701,
+-/* 0x0274: recv */
+-	0x9805e898,
+-	0x32f404e9,
+-	0x0689b801,
+-	0xc43d0bf4,
+-	0x80b60389,
+-	0x0784f001,
+-	0x9805e880,
+-	0xf0f902ea,
+-	0xf9018ffe,
+-	0x02efb9f0,
+-	0xbb049994,
+-	0xe0b600e9,
+-	0x03eb9818,
+-	0x9802ec98,
+-	0xee9801ed,
+-	0xfca5f900,
+-	0x00f8fef0,
+-	0xfc0131f4,
+-/* 0x02bd: recv_done */
+-/* 0x02bf: init */
+-	0xf100f8f0,
+-	0xcf010817,
+-	0x11e70011,
+-	0x14b60109,
+-	0x0014fe08,
+-	0x00e017f1,
+-	0xf00013f0,
+-	0x01d01c07,
+-	0xf004bd00,
+-	0x07f0ff17,
+-	0x0001d014,
+-	0x17f004bd,
+-	0x0015f102,
+-	0x1007f008,
+-	0xbd0001d0,
+-	0xe617f104,
++	0x84bd531c,
++	0xd03807f0,
++	0x04bd0008,
++	0xcf3487f0,
++	0x09980088,
++	0x0298bb9a,
++	0x8000e9bb,
++	0x87f003fe,
++	0x0088cf08,
++	0xf40284f0,
++	0x87f0201b,
++	0x0088cf34,
++	0xf406e0b8,
++	0xe8b8090b,
++	0x0e1cf406,
++/* 0x0200: timer_reset */
++	0xd03407f0,
++	0x04bd000e,
++/* 0x020b: timer_enable */
++	0xf09a0e80,
++	0x07f00187,
++	0x0008d038,
++/* 0x0216: timer_done */
++	0x31f404bd,
++	0xfc80fc10,
++/* 0x021f: send_proc */
++	0xf900f890,
++	0x9890f980,
++	0xe99805e8,
++	0x0486f004,
++	0xf40689b8,
++	0x98c42a0b,
++	0x04889403,
++	0xbb1880b6,
++	0xfa98008e,
++	0x008a8000,
++	0x80018d80,
++	0x8b80028c,
++	0x0190b603,
++	0x800794f0,
++	0x31f404e9,
++/* 0x0259: send_done */
++	0xfc90fc02,
++/* 0x025f: find */
++	0xf900f880,
++	0x5887f080,
++/* 0x0267: find_loop */
++	0x980131f4,
++	0xaeb8008a,
++	0x100bf406,
++	0xb15880b6,
++	0xf4026886,
++	0x32f4f01b,
++/* 0x027d: find_done */
++	0x028eb901,
++	0x00f880fc,
++/* 0x0284: send */
++	0x025f21f5,
++	0xf89701f4,
++/* 0x028d: recv */
++	0x05e89800,
++	0xf404e998,
++	0x89b80132,
++	0x3d0bf406,
++	0xb60389c4,
++	0x84f00180,
++	0x05e88007,
++	0xf902ea98,
++	0x018ffef0,
++	0xefb9f0f9,
++	0x04999402,
++	0xb600e9bb,
++	0xeb9818e0,
++	0x02ec9803,
++	0x9801ed98,
++	0xa5f900ee,
++	0xf8fef0fc,
++	0x0131f400,
++/* 0x02d6: recv_done */
++	0x00f8f0fc,
++/* 0x02d8: init */
++	0x010817f1,
++	0xe70011cf,
++	0xb6010911,
++	0x14fe0814,
++	0xe017f100,
+ 	0x0013f000,
+-	0xf40010fe,
+-	0x17f01031,
+-	0x3807f001,
+-	0xbd0001d0,
+-	0x58f7f004,
+-/* 0x0314: init_proc */
+-	0xb001f198,
+-	0x0bf40016,
+-	0xb615f9fa,
+-	0x0ef458f0,
+-/* 0x0325: host_send */
+-	0xb017f1f2,
+-	0x0011cf04,
+-	0x04a027f1,
+-	0xb80022cf,
++	0xd01c07f0,
++	0x04bd0001,
++	0xf0ff17f0,
++	0x01d01407,
++	0xf004bd00,
++	0x15f10217,
++	0x07f00800,
++	0x0001d010,
++	0x17f104bd,
++	0x13f000e6,
++	0x0010fe00,
++	0xf01031f4,
++	0x07f00117,
++	0x0001d038,
++	0xf7f004bd,
++/* 0x032d: init_proc */
++	0x01f19858,
++	0xf40016b0,
++	0x15f9fa0b,
++	0xf458f0b6,
++/* 0x033e: host_send */
++	0x17f1f20e,
++	0x11cf04b0,
++	0xa027f100,
++	0x0022cf04,
++	0xf40612b8,
++	0x1ec42f0b,
++	0x04ee9407,
++	0x0270e0b7,
++	0x9803eb98,
++	0xed9802ec,
++	0x00ee9801,
++	0x028421f5,
++	0xc40110b6,
++	0x07f10f1e,
++	0x0ed004b0,
++	0xf404bd00,
++/* 0x037e: host_send_done */
++	0x00f8c30e,
++/* 0x0380: host_recv */
++	0x4e4917f1,
++	0x525413f1,
++	0xf406e1b8,
++/* 0x038e: host_recv_wait */
++	0x17f1b30b,
++	0x11cf04cc,
++	0xc827f100,
++	0x0022cf04,
++	0xb80816f0,
+ 	0x0bf40612,
+-	0x071ec42f,
+-	0xb704ee94,
+-	0x980270e0,
+-	0xec9803eb,
+-	0x01ed9802,
+-	0xf500ee98,
+-	0xb6026b21,
+-	0x1ec40110,
+-	0xb007f10f,
+-	0x000ed004,
+-	0x0ef404bd,
+-/* 0x0365: host_send_done */
+-/* 0x0367: host_recv */
+-	0xf100f8c3,
+-	0xf14e4917,
+-	0xb8525413,
+-	0x0bf406e1,
+-/* 0x0375: host_recv_wait */
+-	0xcc17f1b3,
+-	0x0011cf04,
+-	0x04c827f1,
+-	0xf00022cf,
+-	0x12b80816,
+-	0xec0bf406,
+-	0xb60723c4,
+-	0x30b70434,
+-	0x3b8002f0,
+-	0x023c8003,
+-	0x80013d80,
+-	0x20b6003e,
+-	0x0f24f001,
+-	0x04c807f1,
++	0x0723c4ec,
++	0xb70434b6,
++	0x8002f030,
++	0x3c80033b,
++	0x013d8002,
++	0xb6003e80,
++	0x24f00120,
++	0xc807f10f,
++	0x0002d004,
++	0x27f004bd,
++	0x0007f040,
+ 	0xbd0002d0,
+-	0x4027f004,
+-	0xd00007f0,
+-	0x04bd0002,
+-/* 0x03be: host_init */
+-	0x17f100f8,
+-	0x14b60080,
+-	0x7015f110,
+-	0xd007f102,
+-	0x0001d004,
+-	0x17f104bd,
+-	0x14b60080,
+-	0xf015f110,
+-	0xdc07f102,
+-	0x0001d004,
+-	0x17f004bd,
+-	0xc407f101,
+-	0x0001d004,
+-	0x00f804bd,
+-/* 0x03f4: memx_func_enter */
+-	0xf10467f0,
+-	0xd007e007,
+-	0x04bd0006,
+-/* 0x0400: memx_func_enter_wait */
+-	0x07c067f1,
+-	0xf00066cf,
+-	0x0bf40464,
+-	0x001698f6,
+-	0xf80410b6,
+-/* 0x0415: memx_func_leave */
++/* 0x03d7: host_init */
++	0xf100f804,
++	0xb6008017,
++	0x15f11014,
++	0x07f10270,
++	0x01d004d0,
++	0xf104bd00,
++	0xb6008017,
++	0x15f11014,
++	0x07f102f0,
++	0x01d004dc,
++	0xf004bd00,
++	0x07f10117,
++	0x01d004c4,
++	0xf804bd00,
++/* 0x040d: memx_func_enter */
+ 	0x0467f000,
+-	0x07e407f1,
++	0x07e007f1,
+ 	0xbd0006d0,
+-/* 0x0421: memx_func_leave_wait */
++/* 0x0419: memx_func_enter_wait */
+ 	0xc067f104,
+ 	0x0066cf07,
+ 	0xf40464f0,
+-	0x00f8f61b,
+-/* 0x0430: memx_func_wr32 */
+-	0x98001698,
+-	0x10b60115,
+-	0xf960f908,
+-	0xfcd0fc50,
+-	0x3321f4e0,
+-	0xf40242b6,
+-	0x00f8e91b,
+-/* 0x044c: memx_func_wait */
+-	0xcf2c87f0,
+-	0x1e980088,
+-	0x011d9800,
+-	0x98021c98,
+-	0x10b6031b,
+-	0x7e21f410,
+-/* 0x0466: memx_func_delay */
+-	0x1e9800f8,
++	0x1698f60b,
+ 	0x0410b600,
+-	0xf86721f4,
+-/* 0x0471: memx_exec */
+-	0xf9e0f900,
+-	0x02c1b9d0,
+-/* 0x047b: memx_exec_next */
+-	0x9802b2b9,
+-	0x10b60013,
+-	0x10349504,
+-	0x980c30f0,
+-	0x55f9de35,
+-	0xf40612b8,
+-	0xd0fcec1e,
+-	0x21f5e0fc,
+-	0x00f8026b,
+-/* 0x049c: memx_info */
+-	0x03acc7f1,
+-	0x0800b7f1,
+-	0x026b21f5,
+-/* 0x04aa: memx_recv */
+-	0xd6b000f8,
+-	0xc40bf401,
+-	0xf400d6b0,
+-	0x00f8e90b,
+-/* 0x04b8: memx_init */
+-/* 0x04ba: perf_recv */
+-	0x00f800f8,
+-/* 0x04bc: perf_init */
+-/* 0x04be: i2c_drive_scl */
+-	0x36b000f8,
+-	0x0e0bf400,
+-	0x07e007f1,
++/* 0x042e: memx_func_leave */
++	0x67f000f8,
++	0xe407f104,
++	0x0006d007,
++/* 0x043a: memx_func_leave_wait */
++	0x67f104bd,
++	0x66cf07c0,
++	0x0464f000,
++	0xf8f61bf4,
++/* 0x0449: memx_func_wr32 */
++	0x00169800,
++	0xb6011598,
++	0x60f90810,
++	0xd0fc50f9,
++	0x21f4e0fc,
++	0x0242b633,
++	0xf8e91bf4,
++/* 0x0465: memx_func_wait */
++	0x2c87f000,
++	0x980088cf,
++	0x1d98001e,
++	0x021c9801,
++	0xb6031b98,
++	0x21f41010,
++/* 0x047f: memx_func_delay */
++	0x9800f87e,
++	0x10b6001e,
++	0x6721f404,
++/* 0x048a: memx_exec */
++	0xe0f900f8,
++	0xc1b9d0f9,
++	0x02b2b902,
++/* 0x0494: memx_exec_next */
++	0xb6001398,
++	0x34950410,
++	0x0c30f010,
++	0xf9de3598,
++	0x0612b855,
++	0xfcec1ef4,
++	0xf5e0fcd0,
++	0xf8028421,
++/* 0x04b5: memx_info */
++	0xacc7f100,
++	0x00b7f103,
++	0x8421f508,
++/* 0x04c3: memx_recv */
++	0xb000f802,
++	0x0bf401d6,
++	0x00d6b0c4,
++	0xf8e90bf4,
++/* 0x04d1: memx_init */
++/* 0x04d3: perf_recv */
++	0xf800f800,
++/* 0x04d5: perf_init */
++/* 0x04d7: i2c_drive_scl */
++	0xb000f800,
++	0x0bf40036,
++	0xe007f10e,
++	0x0001d007,
++	0x00f804bd,
++/* 0x04e8: i2c_drive_scl_lo */
++	0x07e407f1,
+ 	0xbd0001d0,
+-/* 0x04cf: i2c_drive_scl_lo */
+-	0xf100f804,
+-	0xd007e407,
+-	0x04bd0001,
+-/* 0x04da: i2c_drive_sda */
+-	0x36b000f8,
+-	0x0e0bf400,
+-	0x07e007f1,
++/* 0x04f3: i2c_drive_sda */
++	0xb000f804,
++	0x0bf40036,
++	0xe007f10e,
++	0x0002d007,
++	0x00f804bd,
++/* 0x0504: i2c_drive_sda_lo */
++	0x07e407f1,
+ 	0xbd0002d0,
+-/* 0x04eb: i2c_drive_sda_lo */
+-	0xf100f804,
+-	0xd007e407,
+-	0x04bd0002,
+-/* 0x04f6: i2c_sense_scl */
+-	0x32f400f8,
+-	0xc437f101,
+-	0x0033cf07,
+-	0xf40431fd,
+-	0x31f4060b,
+-/* 0x0509: i2c_sense_scl_done */
+-/* 0x050b: i2c_sense_sda */
+-	0xf400f801,
++/* 0x050f: i2c_sense_scl */
++	0xf400f804,
+ 	0x37f10132,
+ 	0x33cf07c4,
+-	0x0432fd00,
++	0x0431fd00,
+ 	0xf4060bf4,
+-/* 0x051e: i2c_sense_sda_done */
++/* 0x0522: i2c_sense_scl_done */
+ 	0x00f80131,
+-/* 0x0520: i2c_raise_scl */
+-	0x47f140f9,
+-	0x37f00898,
+-	0xbe21f501,
+-/* 0x052d: i2c_raise_scl_wait */
++/* 0x0524: i2c_sense_sda */
++	0xf10132f4,
++	0xcf07c437,
++	0x32fd0033,
++	0x060bf404,
++/* 0x0537: i2c_sense_sda_done */
++	0xf80131f4,
++/* 0x0539: i2c_raise_scl */
++	0xf140f900,
++	0xf0089847,
++	0x21f50137,
++/* 0x0546: i2c_raise_scl_wait */
++	0xe7f104d7,
++	0x21f403e8,
++	0x0f21f567,
++	0x0901f405,
++	0xf40142b6,
++/* 0x055a: i2c_raise_scl_done */
++	0x40fcef1b,
++/* 0x055e: i2c_start */
++	0x21f500f8,
++	0x11f4050f,
++	0x2421f50d,
++	0x0611f405,
++/* 0x056f: i2c_start_rep */
++	0xf0300ef4,
++	0x21f50037,
++	0x37f004d7,
++	0xf321f501,
++	0x0076bb04,
++	0xf90465b6,
++	0x04659450,
++	0xbd0256bb,
++	0x0475fd50,
++	0x21f550fc,
++	0x64b60539,
++	0x1f11f404,
++/* 0x059c: i2c_start_send */
++	0xf50037f0,
++	0xf104f321,
++	0xf41388e7,
++	0x37f06721,
++	0xd721f500,
++	0x88e7f104,
++	0x6721f413,
++/* 0x05b8: i2c_start_out */
++/* 0x05ba: i2c_stop */
++	0x37f000f8,
++	0xd721f500,
++	0x0037f004,
++	0x04f321f5,
++	0x03e8e7f1,
++	0xf06721f4,
++	0x21f50137,
++	0xe7f104d7,
++	0x21f41388,
++	0x0137f067,
++	0x04f321f5,
++	0x1388e7f1,
++	0xf86721f4,
++/* 0x05ed: i2c_bitw */
++	0xf321f500,
+ 	0xe8e7f104,
+ 	0x6721f403,
+-	0x04f621f5,
+-	0xb60901f4,
+-	0x1bf40142,
+-/* 0x0541: i2c_raise_scl_done */
+-	0xf840fcef,
+-/* 0x0545: i2c_start */
+-	0xf621f500,
+-	0x0d11f404,
+-	0x050b21f5,
+-	0xf40611f4,
+-/* 0x0556: i2c_start_rep */
+-	0x37f0300e,
+-	0xbe21f500,
+-	0x0137f004,
+-	0x04da21f5,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x2021f550,
++	0x3921f550,
+ 	0x0464b605,
+-/* 0x0583: i2c_start_send */
+-	0xf01f11f4,
+-	0x21f50037,
+-	0xe7f104da,
+-	0x21f41388,
+-	0x0037f067,
+-	0x04be21f5,
+-	0x1388e7f1,
+-/* 0x059f: i2c_start_out */
+-	0xf86721f4,
+-/* 0x05a1: i2c_stop */
+-	0x0037f000,
+-	0x04be21f5,
+-	0xf50037f0,
+-	0xf104da21,
+-	0xf403e8e7,
++	0xf11811f4,
++	0xf41388e7,
+ 	0x37f06721,
+-	0xbe21f501,
++	0xd721f500,
+ 	0x88e7f104,
+ 	0x6721f413,
+-	0xf50137f0,
+-	0xf104da21,
+-	0xf41388e7,
+-	0x00f86721,
+-/* 0x05d4: i2c_bitw */
+-	0x04da21f5,
+-	0x03e8e7f1,
+-	0xbb6721f4,
+-	0x65b60076,
+-	0x9450f904,
+-	0x56bb0465,
+-	0xfd50bd02,
+-	0x50fc0475,
+-	0x052021f5,
+-	0xf40464b6,
+-	0xe7f11811,
++/* 0x062c: i2c_bitw_out */
++/* 0x062e: i2c_bitr */
++	0x37f000f8,
++	0xf321f501,
++	0xe8e7f104,
++	0x6721f403,
++	0xb60076bb,
++	0x50f90465,
++	0xbb046594,
++	0x50bd0256,
++	0xfc0475fd,
++	0x3921f550,
++	0x0464b605,
++	0xf51b11f4,
++	0xf0052421,
++	0x21f50037,
++	0xe7f104d7,
+ 	0x21f41388,
+-	0x0037f067,
+-	0x04be21f5,
+-	0x1388e7f1,
+-/* 0x0613: i2c_bitw_out */
+-	0xf86721f4,
+-/* 0x0615: i2c_bitr */
+-	0x0137f000,
+-	0x04da21f5,
+-	0x03e8e7f1,
+-	0xbb6721f4,
+-	0x65b60076,
+-	0x9450f904,
+-	0x56bb0465,
+-	0xfd50bd02,
+-	0x50fc0475,
+-	0x052021f5,
+-	0xf40464b6,
+-	0x21f51b11,
+-	0x37f0050b,
+-	0xbe21f500,
+-	0x88e7f104,
+-	0x6721f413,
+-	0xf4013cf0,
+-/* 0x065a: i2c_bitr_done */
+-	0x00f80131,
+-/* 0x065c: i2c_get_byte */
+-	0xf00057f0,
+-/* 0x0662: i2c_get_byte_next */
+-	0x54b60847,
++	0x013cf067,
++/* 0x0673: i2c_bitr_done */
++	0xf80131f4,
++/* 0x0675: i2c_get_byte */
++	0x0057f000,
++/* 0x067b: i2c_get_byte_next */
++	0xb60847f0,
++	0x76bb0154,
++	0x0465b600,
++	0x659450f9,
++	0x0256bb04,
++	0x75fd50bd,
++	0xf550fc04,
++	0xb6062e21,
++	0x11f40464,
++	0x0553fd2b,
++	0xf40142b6,
++	0x37f0d81b,
+ 	0x0076bb01,
+ 	0xf90465b6,
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b60615,
+-	0x2b11f404,
+-	0xb60553fd,
+-	0x1bf40142,
+-	0x0137f0d8,
++	0x64b605ed,
++/* 0x06c5: i2c_get_byte_done */
++/* 0x06c7: i2c_put_byte */
++	0xf000f804,
++/* 0x06ca: i2c_put_byte_next */
++	0x42b60847,
++	0x3854ff01,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0xd421f550,
++	0xed21f550,
+ 	0x0464b605,
+-/* 0x06ac: i2c_get_byte_done */
+-/* 0x06ae: i2c_put_byte */
+-	0x47f000f8,
+-/* 0x06b1: i2c_put_byte_next */
+-	0x0142b608,
+-	0xbb3854ff,
+-	0x65b60076,
+-	0x9450f904,
+-	0x56bb0465,
+-	0xfd50bd02,
+-	0x50fc0475,
+-	0x05d421f5,
+-	0xf40464b6,
+-	0x46b03411,
+-	0xd81bf400,
+-	0xb60076bb,
+-	0x50f90465,
+-	0xbb046594,
+-	0x50bd0256,
+-	0xfc0475fd,
+-	0x1521f550,
+-	0x0464b606,
+-	0xbb0f11f4,
+-	0x36b00076,
+-	0x061bf401,
+-/* 0x0707: i2c_put_byte_done */
+-	0xf80132f4,
+-/* 0x0709: i2c_addr */
+-	0x0076bb00,
++	0xb03411f4,
++	0x1bf40046,
++	0x0076bbd8,
+ 	0xf90465b6,
+ 	0x04659450,
+ 	0xbd0256bb,
+ 	0x0475fd50,
+ 	0x21f550fc,
+-	0x64b60545,
+-	0x2911f404,
+-	0x012ec3e7,
+-	0xfd0134b6,
+-	0x76bb0553,
++	0x64b6062e,
++	0x0f11f404,
++	0xb00076bb,
++	0x1bf40136,
++	0x0132f406,
++/* 0x0720: i2c_put_byte_done */
++/* 0x0722: i2c_addr */
++	0x76bb00f8,
+ 	0x0465b600,
+ 	0x659450f9,
+ 	0x0256bb04,
+ 	0x75fd50bd,
+ 	0xf550fc04,
+-	0xb606ae21,
+-/* 0x074e: i2c_addr_done */
+-	0x00f80464,
+-/* 0x0750: i2c_acquire_addr */
+-	0xb6f8cec7,
+-	0xe0b705e4,
+-	0x00f8d014,
+-/* 0x075c: i2c_acquire */
+-	0x075021f5,
++	0xb6055e21,
++	0x11f40464,
++	0x2ec3e729,
++	0x0134b601,
++	0xbb0553fd,
++	0x65b60076,
++	0x9450f904,
++	0x56bb0465,
++	0xfd50bd02,
++	0x50fc0475,
++	0x06c721f5,
++/* 0x0767: i2c_addr_done */
++	0xf80464b6,
++/* 0x0769: i2c_acquire_addr */
++	0xf8cec700,
++	0xb705e4b6,
++	0xf8d014e0,
++/* 0x0775: i2c_acquire */
++	0x6921f500,
++	0x0421f407,
++	0xf403d9f0,
++	0x00f83321,
++/* 0x0784: i2c_release */
++	0x076921f5,
+ 	0xf00421f4,
+-	0x21f403d9,
+-/* 0x076b: i2c_release */
+-	0xf500f833,
+-	0xf4075021,
+-	0xdaf00421,
+-	0x3321f403,
+-/* 0x077a: i2c_recv */
+-	0x32f400f8,
+-	0xf8c1c701,
+-	0xb00214b6,
+-	0x1ff52816,
+-	0x13a0013a,
+-	0x32980bd4,
+-	0xac13a000,
+-	0x0031980b,
+-	0xf90231f4,
+-	0xf9e0f9d0,
+-	0x0067f1d0,
+-	0x0063f100,
+-	0x01679210,
+-	0xb60076bb,
+-	0x50f90465,
+-	0xbb046594,
+-	0x50bd0256,
+-	0xfc0475fd,
+-	0x5c21f550,
+-	0x0464b607,
+-	0xd6b0d0fc,
+-	0xb31bf500,
+-	0x0057f000,
++	0x21f403da,
++/* 0x0793: i2c_recv */
++	0xf400f833,
++	0xc1c70132,
++	0x0214b6f8,
++	0xf52816b0,
++	0xa0013a1f,
++	0x980bd413,
++	0x13a00032,
++	0x31980bac,
++	0x0231f400,
++	0xe0f9d0f9,
++	0x67f1d0f9,
++	0x63f10000,
++	0x67921000,
++	0x0076bb01,
++	0xf90465b6,
++	0x04659450,
++	0xbd0256bb,
++	0x0475fd50,
++	0x21f550fc,
++	0x64b60775,
++	0xb0d0fc04,
++	0x1bf500d6,
++	0x57f000b3,
++	0x0076bb00,
++	0xf90465b6,
++	0x04659450,
++	0xbd0256bb,
++	0x0475fd50,
++	0x21f550fc,
++	0x64b60722,
++	0xd011f504,
++	0xe0c5c700,
+ 	0xb60076bb,
+ 	0x50f90465,
+ 	0xbb046594,
+ 	0x50bd0256,
+ 	0xfc0475fd,
+-	0x0921f550,
+-	0x0464b607,
+-	0x00d011f5,
+-	0xbbe0c5c7,
++	0xc721f550,
++	0x0464b606,
++	0x00ad11f5,
++	0xbb0157f0,
+ 	0x65b60076,
+ 	0x9450f904,
+ 	0x56bb0465,
+ 	0xfd50bd02,
+ 	0x50fc0475,
+-	0x06ae21f5,
++	0x072221f5,
+ 	0xf50464b6,
+-	0xf000ad11,
+-	0x76bb0157,
+-	0x0465b600,
+-	0x659450f9,
+-	0x0256bb04,
+-	0x75fd50bd,
+-	0xf550fc04,
+-	0xb6070921,
+-	0x11f50464,
+-	0x76bb008a,
+-	0x0465b600,
+-	0x659450f9,
+-	0x0256bb04,
+-	0x75fd50bd,
+-	0xf550fc04,
+-	0xb6065c21,
+-	0x11f40464,
+-	0xe05bcb6a,
+-	0xb60076bb,
+-	0x50f90465,
+-	0xbb046594,
+-	0x50bd0256,
+-	0xfc0475fd,
+-	0xa121f550,
+-	0x0464b605,
+-	0xbd025bb9,
+-	0x430ef474,
+-/* 0x0880: i2c_recv_not_rd08 */
+-	0xf401d6b0,
+-	0x57f03d1b,
+-	0x0921f500,
+-	0x3311f407,
+-	0xf5e0c5c7,
+-	0xf406ae21,
+-	0x57f02911,
+-	0x0921f500,
+-	0x1f11f407,
+-	0xf5e0b5c7,
+-	0xf406ae21,
+-	0x21f51511,
+-	0x74bd05a1,
+-	0xf408c5c7,
+-	0x32f4091b,
+-	0x030ef402,
+-/* 0x08c0: i2c_recv_not_wr08 */
+-/* 0x08c0: i2c_recv_done */
+-	0xf5f8cec7,
+-	0xfc076b21,
+-	0xf4d0fce0,
+-	0x7cb90a12,
+-	0x6b21f502,
+-/* 0x08d5: i2c_recv_exit */
+-/* 0x08d7: i2c_init */
+-	0xf800f802,
+-/* 0x08d9: test_recv */
+-	0xd817f100,
+-	0x0011cf05,
+-	0xf10110b6,
+-	0xd005d807,
+-	0x04bd0001,
+-	0xd900e7f1,
+-	0x134fe3f1,
+-	0x01b621f5,
+-/* 0x08fa: test_init */
+-	0xe7f100f8,
+-	0x21f50800,
+-	0x00f801b6,
+-/* 0x0904: idle_recv */
+-/* 0x0906: idle */
+-	0x31f400f8,
+-	0xd417f100,
+-	0x0011cf05,
+-	0xf10110b6,
+-	0xd005d407,
+-	0x04bd0001,
+-/* 0x091c: idle_loop */
+-	0xf45817f0,
+-/* 0x0922: idle_proc */
+-/* 0x0922: idle_proc_exec */
+-	0x10f90232,
+-	0xf5021eb9,
+-	0xfc027421,
+-	0x0911f410,
+-	0xf40231f4,
+-/* 0x0936: idle_proc_next */
+-	0x10b6ef0e,
+-	0x061fb858,
+-	0xf4e61bf4,
+-	0x28f4dd02,
+-	0xc10ef400,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
+-	0x00000000,
++	0xbb008a11,
++	0x65b60076,
++	0x9450f904,
++	0x56bb0465,
++	0xfd50bd02,
++	0x50fc0475,
++	0x067521f5,
++	0xf40464b6,
++	0x5bcb6a11,
++	0x0076bbe0,
++	0xf90465b6,
++	0x04659450,
++	0xbd0256bb,
++	0x0475fd50,
++	0x21f550fc,
++	0x64b605ba,
++	0x025bb904,
++	0x0ef474bd,
++/* 0x0899: i2c_recv_not_rd08 */
++	0x01d6b043,
++	0xf03d1bf4,
++	0x21f50057,
++	0x11f40722,
++	0xe0c5c733,
++	0x06c721f5,
++	0xf02911f4,
++	0x21f50057,
++	0x11f40722,
++	0xe0b5c71f,
++	0x06c721f5,
++	0xf51511f4,
++	0xbd05ba21,
++	0x08c5c774,
++	0xf4091bf4,
++	0x0ef40232,
++/* 0x08d9: i2c_recv_not_wr08 */
++/* 0x08d9: i2c_recv_done */
++	0xf8cec703,
++	0x078421f5,
++	0xd0fce0fc,
++	0xb90a12f4,
++	0x21f5027c,
++/* 0x08ee: i2c_recv_exit */
++	0x00f80284,
++/* 0x08f0: i2c_init */
++/* 0x08f2: test_recv */
++	0x17f100f8,
++	0x11cf05d8,
++	0x0110b600,
++	0x05d807f1,
++	0xbd0001d0,
++	0x00e7f104,
++	0x4fe3f1d9,
++	0xb621f513,
++/* 0x0913: test_init */
++	0xf100f801,
++	0xf50800e7,
++	0xf801b621,
++/* 0x091d: idle_recv */
++/* 0x091f: idle */
++	0xf400f800,
++	0x17f10031,
++	0x11cf05d4,
++	0x0110b600,
++	0x05d407f1,
++	0xbd0001d0,
++/* 0x0935: idle_loop */
++	0x5817f004,
++/* 0x093b: idle_proc */
++/* 0x093b: idle_proc_exec */
++	0xf90232f4,
++	0x021eb910,
++	0x028d21f5,
++	0x11f410fc,
++	0x0231f409,
++/* 0x094f: idle_proc_next */
++	0xb6ef0ef4,
++	0x1fb85810,
++	0xe61bf406,
++	0xf4dd02f4,
++	0x0ef40028,
++	0x000000c1,
+ 	0x00000000,
+ 	0x00000000,
+ 	0x00000000,
 -- 
 2.0.0
