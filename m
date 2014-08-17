@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82726] [NV96][NVAC] [Regression] [Bisected] Probe
  failed with error -12
-Date: Sun, 17 Aug 2014 11:20:43 +0000
-Message-ID: <bug-82726-8800-rCa5MkBQbu@http.bugs.freedesktop.org/>
+Date: Sun, 17 Aug 2014 11:21:25 +0000
+Message-ID: <bug-82726-8800-pEKiuSu2xd@http.bugs.freedesktop.org/>
 References: <bug-82726-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0578956234=="
+Content-Type: multipart/mixed; boundary="===============0568321322=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82726-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0578956234==
-Content-Type: multipart/alternative; boundary="1408274443.B8801B1.25015"; charset="us-ascii"
+--===============0568321322==
+Content-Type: multipart/alternative; boundary="1408274485.BE77f1.25325"; charset="us-ascii"
 
 
---1408274443.B8801B1.25015
-Date: Sun, 17 Aug 2014 11:20:43 +0000
+--1408274485.BE77f1.25325
+Date: Sun, 17 Aug 2014 11:21:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82726
 
---- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 104757
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104757&action=edit
-Dmesg with probe fail on NVAC and prints of start, offset, and size values
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Created attachment 104758
+  --> https://bugs.freedesktop.org/attachment.cgi?id=104758&action=edit
+Output of lspci -vv as root
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408274443.B8801B1.25015
-Date: Sun, 17 Aug 2014 11:20:43 +0000
+--1408274485.BE77f1.25325
+Date: Sun, 17 Aug 2014 11:21:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82726">bug 82726</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104757" name="attach_104757" title="Dmesg with probe fail on NVAC and prints of start, offset, and size values">attachment 104757</a> <a href="attachment.cgi?id=104757&amp;action=edit" title="Dmesg with probe fail on NVAC and prints of start, offset, and size values">[details]</a></span>
-Dmesg with probe fail on NVAC and prints of start, offset, and size values</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=104758" name="attach_104758" title="Output of lspci -vv as root">attachment 104758</a> <a href="attachment.cgi?id=104758&amp;action=edit" title="Output of lspci -vv as root">[details]</a></span>
+Output of lspci -vv as root</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Dmesg with probe fail on NVAC and prints of start, offset, and size values</pre>
     </body>
 </html>
 
---1408274443.B8801B1.25015--
+--1408274485.BE77f1.25325--
 
---===============0578956234==
+--===============0568321322==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0578956234==--
+--===============0568321322==--
