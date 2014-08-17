@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82704] [NV92] null deref in nouveau_fence_wait_uevent
-Date: Sun, 17 Aug 2014 00:25:59 +0000
-Message-ID: <bug-82704-8800-oC342drypH@http.bugs.freedesktop.org/>
-References: <bug-82704-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Sun, 17 Aug 2014 10:02:53 +0000
+Message-ID: <bug-27501-8800-nb68d5NG9E@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1230131696=="
+Content-Type: multipart/mixed; boundary="===============0045588397=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82704-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1230131696==
-Content-Type: multipart/alternative; boundary="1408235159.3Fae6c1.18601"; charset="us-ascii"
+--===============0045588397==
+Content-Type: multipart/alternative; boundary="1408269773.a7D16.767"; charset="us-ascii"
 
 
---1408235159.3Fae6c1.18601
-Date: Sun, 17 Aug 2014 00:25:59 +0000
+--1408269773.a7D16.767
+Date: Sun, 17 Aug 2014 10:02:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82704
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #28 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I've made some progress on this bug, enabling Nouveau to be loaded with
+acceleration enabled. However, X is **absolutely not** usable: complete garbage
+screen, lots of Nouveau errors, only action available is power down the
+computer (or reboot). But for using Nouveau with acceleration in console mode,
+it works fine.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-            Summary|kernel bug                  |[NV92] null deref in
-                   |                            |nouveau_fence_wait_uevent
+There are (at least) two main problems:
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 71620 ***
+*   9400M acceleration is broken (resulting in Nouveau locking up on boot);
+*   it seems there is a lockup when starting a working X with both cards
+enabled.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408235159.3Fae6c1.18601
-Date: Sun, 17 Aug 2014 00:25:59 +0000
+--1408269773.a7D16.767
+Date: Sun, 17 Aug 2014 10:02:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,61 +57,30 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV92] null deref in nouveau_fence_wait_uevent"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82704">bug 82704</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>kernel bug
-           </td>
-           <td>[NV92] null deref in nouveau_fence_wait_uevent
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV92] null deref in nouveau_fence_wait_uevent"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82704#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV92] null deref in nouveau_fence_wait_uevent"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82704">bug 82704</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="show_bug.cgi?id=71620">bug 71620</a> ***</pre>
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>I've made some progress on this bug, enabling Nouveau to be loaded with
+acceleration enabled. However, X is **absolutely not** usable: complete garbage
+screen, lots of Nouveau errors, only action available is power down the
+computer (or reboot). But for using Nouveau with acceleration in console mode,
+it works fine.
+
+There are (at least) two main problems:
+
+*   9400M acceleration is broken (resulting in Nouveau locking up on boot);
+*   it seems there is a lockup when starting a working X with both cards
+enabled.</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408235159.3Fae6c1.18601--
+--1408269773.a7D16.767--
 
---===============1230131696==
+--===============0045588397==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -137,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1230131696==--
+--===============0045588397==--
