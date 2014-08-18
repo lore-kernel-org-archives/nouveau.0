@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Sun, 17 Aug 2014 18:37:31 +0000
-Message-ID: <bug-59168-8800-kwzq4llKIm@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] drm: Fix duplicate definition of NV04_PFB_BOOT_0_*
+Date: Mon, 18 Aug 2014 22:32:53 +0200
+Message-ID: <1408393973-6772-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0452549949=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +15,110 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+---
+ drm/core/include/subdev/fb/regsnv04.h |  1 +
+ nvkm/include/subdev/fb/regsnv04.h     | 21 +++++++++++++++++++++
+ nvkm/subdev/devinit/fbmem.h           | 18 ++----------------
+ nvkm/subdev/fb/ramnv04.c              | 17 +----------------
+ 4 files changed, 25 insertions(+), 32 deletions(-)
+ create mode 120000 drm/core/include/subdev/fb/regsnv04.h
+ create mode 100644 nvkm/include/subdev/fb/regsnv04.h
 
---===============0452549949==
-Content-Type: multipart/alternative; boundary="1408300651.3afd482.26425"; charset="us-ascii"
-
-
---1408300651.3afd482.26425
-Date: Sun, 17 Aug 2014 18:37:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
-
---- Comment #51 from Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Well, while updating initramfs, the command complained about bad syntax of
-"nouveau.config=PCE1=0" in conf files. I just realized that it was for kernel
-options so I used "options nouveau config=PCE1=0" in my conf file instead.
-
-Indeed the nouveau messages flood and the white screen disappear. The login
-screen is showed and I can move the mouse cursor but I cannot interact at all
-and CTL-ATL-F1 does not work. The mouse cursor disappear after a while. I
-cannot do anything apart from rebooting.
-
-I also tried kernel 3.16.1 with same result.
-
+diff --git a/drm/core/include/subdev/fb/regsnv04.h b/drm/core/include/subdev/fb/regsnv04.h
+new file mode 120000
+index 0000000..cc2ea25
+--- /dev/null
++++ b/drm/core/include/subdev/fb/regsnv04.h
+@@ -0,0 +1 @@
++../../../../../nvkm/include/subdev/fb/regsnv04.h
+\ No newline at end of file
+diff --git a/nvkm/include/subdev/fb/regsnv04.h b/nvkm/include/subdev/fb/regsnv04.h
+new file mode 100644
+index 0000000..0f7fc0c
+--- /dev/null
++++ b/nvkm/include/subdev/fb/regsnv04.h
+@@ -0,0 +1,21 @@
++#ifndef __NOUVEAU_FB_REGS_04_H__
++#define __NOUVEAU_FB_REGS_04_H__
++
++#define NV04_PFB_BOOT_0						0x00100000
++#	define NV04_PFB_BOOT_0_RAM_AMOUNT			0x00000003
++#	define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB			0x00000000
++#	define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB			0x00000001
++#	define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB			0x00000002
++#	define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB			0x00000003
++#	define NV04_PFB_BOOT_0_RAM_WIDTH_128			0x00000004
++#	define NV04_PFB_BOOT_0_RAM_TYPE				0x00000028
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT		0x00000000
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT		0x00000008
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK	0x00000010
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT		0x00000018
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT		0x00000020
++#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16		0x00000028
++#	define NV04_PFB_BOOT_0_UMA_ENABLE			0x00000100
++#	define NV04_PFB_BOOT_0_UMA_SIZE				0x0000f000
++
++#endif
+diff --git a/nvkm/subdev/devinit/fbmem.h b/nvkm/subdev/devinit/fbmem.h
+index 4fe49cf..6103484 100644
+--- a/nvkm/subdev/devinit/fbmem.h
++++ b/nvkm/subdev/devinit/fbmem.h
+@@ -26,22 +26,8 @@
+ 
+ #include <core/device.h>
+ 
+-#define NV04_PFB_BOOT_0						0x00100000
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT			0x00000003
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB			0x00000000
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB			0x00000001
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB			0x00000002
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB			0x00000003
+-#	define NV04_PFB_BOOT_0_RAM_WIDTH_128			0x00000004
+-#	define NV04_PFB_BOOT_0_RAM_TYPE				0x00000028
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT		0x00000000
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT		0x00000008
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK	0x00000010
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT		0x00000018
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT		0x00000020
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16		0x00000028
+-#	define NV04_PFB_BOOT_0_UMA_ENABLE			0x00000100
+-#	define NV04_PFB_BOOT_0_UMA_SIZE				0x0000f000
++#include <subdev/fb/regsnv04.h>
++
+ #define NV04_PFB_DEBUG_0					0x00100080
+ #	define NV04_PFB_DEBUG_0_PAGE_MODE			0x00000001
+ #	define NV04_PFB_DEBUG_0_REFRESH_OFF			0x00000010
+diff --git a/nvkm/subdev/fb/ramnv04.c b/nvkm/subdev/fb/ramnv04.c
+index e781080..1972268 100644
+--- a/nvkm/subdev/fb/ramnv04.c
++++ b/nvkm/subdev/fb/ramnv04.c
+@@ -22,22 +22,7 @@
+  * Authors: Ben Skeggs
+  */
+ 
+-#define NV04_PFB_BOOT_0						0x00100000
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT			0x00000003
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB			0x00000000
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB			0x00000001
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB			0x00000002
+-#	define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB			0x00000003
+-#	define NV04_PFB_BOOT_0_RAM_WIDTH_128			0x00000004
+-#	define NV04_PFB_BOOT_0_RAM_TYPE				0x00000028
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT		0x00000000
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT		0x00000008
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK	0x00000010
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT		0x00000018
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT		0x00000020
+-#	define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16		0x00000028
+-#	define NV04_PFB_BOOT_0_UMA_ENABLE			0x00000100
+-#	define NV04_PFB_BOOT_0_UMA_SIZE				0x0000f000
++#include <subdev/fb/regsnv04.h>
+ 
+ #include "priv.h"
+ 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1408300651.3afd482.26425
-Date: Sun, 17 Aug 2014 18:37:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c51">Comment # 51</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED --- - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:titan.costa&#64;gmail.com" title="Christian Costa &lt;titan.costa&#64;gmail.com&gt;"> <span class="fn">Christian Costa</span></a>
-</span></b>
-        <pre>Well, while updating initramfs, the command complained about bad syntax of
-&quot;nouveau.config=PCE1=0&quot; in conf files. I just realized that it was for kernel
-options so I used &quot;options nouveau config=PCE1=0&quot; in my conf file instead.
-
-Indeed the nouveau messages flood and the white screen disappear. The login
-screen is showed and I can move the mouse cursor but I cannot interact at all
-and CTL-ATL-F1 does not work. The mouse cursor disappear after a while. I
-cannot do anything apart from rebooting.
-
-I also tried kernel 3.16.1 with same result.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1408300651.3afd482.26425--
-
---===============0452549949==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0452549949==--
+2.0.4
