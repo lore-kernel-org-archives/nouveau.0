@@ -1,14 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm: Fix duplicate definition of
-	NV04_PFB_BOOT_0_*
-Date: Tue, 19 Aug 2014 12:57:02 +1000
-Message-ID: <CACAvsv7Rb9sBV+tS4UecPVyPivPwPc3VfDgR3g-+dGHKpnVebQ@mail.gmail.com>
-References: <1408393973-6772-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 56615] [NVD9] Unable to start X on ThinkPad T420s
+	laptop
+Date: Tue, 19 Aug 2014 09:12:12 +0000
+Message-ID: <bug-56615-8800-xwuSXZWBj2@http.bugs.freedesktop.org/>
+References: <bug-56615-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1763032574=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1408393973-6772-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-56615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,119 +17,113 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Aug 19, 2014 at 6:32 AM, Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> wrote:
-> Signed-off-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Thanks Pierre,  I've pulled both patches.
 
-> ---
->  drm/core/include/subdev/fb/regsnv04.h |  1 +
->  nvkm/include/subdev/fb/regsnv04.h     | 21 +++++++++++++++++++++
->  nvkm/subdev/devinit/fbmem.h           | 18 ++----------------
->  nvkm/subdev/fb/ramnv04.c              | 17 +----------------
->  4 files changed, 25 insertions(+), 32 deletions(-)
->  create mode 120000 drm/core/include/subdev/fb/regsnv04.h
->  create mode 100644 nvkm/include/subdev/fb/regsnv04.h
->
-> diff --git a/drm/core/include/subdev/fb/regsnv04.h b/drm/core/include/subdev/fb/regsnv04.h
-> new file mode 120000
-> index 0000000..cc2ea25
-> --- /dev/null
-> +++ b/drm/core/include/subdev/fb/regsnv04.h
-> @@ -0,0 +1 @@
-> +../../../../../nvkm/include/subdev/fb/regsnv04.h
-> \ No newline at end of file
-> diff --git a/nvkm/include/subdev/fb/regsnv04.h b/nvkm/include/subdev/fb/regsnv04.h
-> new file mode 100644
-> index 0000000..0f7fc0c
-> --- /dev/null
-> +++ b/nvkm/include/subdev/fb/regsnv04.h
-> @@ -0,0 +1,21 @@
-> +#ifndef __NOUVEAU_FB_REGS_04_H__
-> +#define __NOUVEAU_FB_REGS_04_H__
-> +
-> +#define NV04_PFB_BOOT_0                                                0x00100000
-> +#      define NV04_PFB_BOOT_0_RAM_AMOUNT                       0x00000003
-> +#      define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB                  0x00000000
-> +#      define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB                   0x00000001
-> +#      define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB                   0x00000002
-> +#      define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB                  0x00000003
-> +#      define NV04_PFB_BOOT_0_RAM_WIDTH_128                    0x00000004
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE                         0x00000028
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT             0x00000000
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT            0x00000008
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK      0x00000010
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT            0x00000018
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT            0x00000020
-> +#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16         0x00000028
-> +#      define NV04_PFB_BOOT_0_UMA_ENABLE                       0x00000100
-> +#      define NV04_PFB_BOOT_0_UMA_SIZE                         0x0000f000
-> +
-> +#endif
-> diff --git a/nvkm/subdev/devinit/fbmem.h b/nvkm/subdev/devinit/fbmem.h
-> index 4fe49cf..6103484 100644
-> --- a/nvkm/subdev/devinit/fbmem.h
-> +++ b/nvkm/subdev/devinit/fbmem.h
-> @@ -26,22 +26,8 @@
->
->  #include <core/device.h>
->
-> -#define NV04_PFB_BOOT_0                                                0x00100000
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT                       0x00000003
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB                  0x00000000
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB                   0x00000001
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB                   0x00000002
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB                  0x00000003
-> -#      define NV04_PFB_BOOT_0_RAM_WIDTH_128                    0x00000004
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE                         0x00000028
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT             0x00000000
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT            0x00000008
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK      0x00000010
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT            0x00000018
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT            0x00000020
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16         0x00000028
-> -#      define NV04_PFB_BOOT_0_UMA_ENABLE                       0x00000100
-> -#      define NV04_PFB_BOOT_0_UMA_SIZE                         0x0000f000
-> +#include <subdev/fb/regsnv04.h>
-> +
->  #define NV04_PFB_DEBUG_0                                       0x00100080
->  #      define NV04_PFB_DEBUG_0_PAGE_MODE                       0x00000001
->  #      define NV04_PFB_DEBUG_0_REFRESH_OFF                     0x00000010
-> diff --git a/nvkm/subdev/fb/ramnv04.c b/nvkm/subdev/fb/ramnv04.c
-> index e781080..1972268 100644
-> --- a/nvkm/subdev/fb/ramnv04.c
-> +++ b/nvkm/subdev/fb/ramnv04.c
-> @@ -22,22 +22,7 @@
->   * Authors: Ben Skeggs
->   */
->
-> -#define NV04_PFB_BOOT_0                                                0x00100000
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT                       0x00000003
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_32MB                  0x00000000
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_4MB                   0x00000001
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_8MB                   0x00000002
-> -#      define NV04_PFB_BOOT_0_RAM_AMOUNT_16MB                  0x00000003
-> -#      define NV04_PFB_BOOT_0_RAM_WIDTH_128                    0x00000004
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE                         0x00000028
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_8MBIT             0x00000000
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT            0x00000008
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SGRAM_16MBIT_4BANK      0x00000010
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_16MBIT            0x00000018
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBIT            0x00000020
-> -#      define NV04_PFB_BOOT_0_RAM_TYPE_SDRAM_64MBITX16         0x00000028
-> -#      define NV04_PFB_BOOT_0_UMA_ENABLE                       0x00000100
-> -#      define NV04_PFB_BOOT_0_UMA_SIZE                         0x0000f000
-> +#include <subdev/fb/regsnv04.h>
->
->  #include "priv.h"
->
-> --
-> 2.0.4
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+--===============1763032574==
+Content-Type: multipart/alternative; boundary="1408439532.C1EfdD1.9489"; charset="us-ascii"
+
+
+--1408439532.C1EfdD1.9489
+Date: Tue, 19 Aug 2014 09:12:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=56615
+
+--- Comment #25 from Mark Cave-Ayland <mark.cave-ayland-r2/yp8inhXLQXOPxS62xeg@public.gmane.org> ---
+Hi all,
+
+Sorry to prod an old bug once again, however as I'd seem some possibly relevant
+fixes go through the mailing list I thought I'd try the latest drm-nouveau-next
+checkout and see if my problem was fixed. Unfortunately it still doesn't work
+for me :(
+
+On the plus side, I noticed that if I use a DisplayPort to HDMI cable to
+connect to a borrowed HD monitor (1920x1080) then nouveau now works as expected
+which is a great milestone! However if I try and use my standard Dell HD
+monitor (2560x1440) with a direct DisplayPort cable then nouveau still doesn't
+work for me with the same symptoms as described earlier in this bug report.
+
+I noticed that there is quite a lot of verbose debugging in dmesg in the latest
+checkout, so I'll attach that below in the hope someone can work out why I
+can't use my Dell monitor with direct DisplayPort connection.
+
+
+Many thanks,
+
+Mark.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1408439532.C1EfdD1.9489
+Date: Tue, 19 Aug 2014 09:12:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=56615">bug 56615</a>
+              from <span class="vcard"><a class="email" href="mailto:mark.cave-ayland&#64;ilande.co.uk" title="Mark Cave-Ayland &lt;mark.cave-ayland&#64;ilande.co.uk&gt;"> <span class="fn">Mark Cave-Ayland</span></a>
+</span></b>
+        <pre>Hi all,
+
+Sorry to prod an old bug once again, however as I'd seem some possibly relevant
+fixes go through the mailing list I thought I'd try the latest drm-nouveau-next
+checkout and see if my problem was fixed. Unfortunately it still doesn't work
+for me :(
+
+On the plus side, I noticed that if I use a DisplayPort to HDMI cable to
+connect to a borrowed HD monitor (1920x1080) then nouveau now works as expected
+which is a great milestone! However if I try and use my standard Dell HD
+monitor (2560x1440) with a direct DisplayPort cable then nouveau still doesn't
+work for me with the same symptoms as described earlier in this bug report.
+
+I noticed that there is quite a lot of verbose debugging in dmesg in the latest
+checkout, so I'll attach that below in the hope someone can work out why I
+can't use my Dell monitor with direct DisplayPort connection.
+
+
+Many thanks,
+
+Mark.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1408439532.C1EfdD1.9489--
+
+--===============1763032574==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1763032574==--
