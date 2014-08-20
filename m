@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82834] GeForce 8800 GS shows incorrect temperature
- with nouveau
-Date: Wed, 20 Aug 2014 03:17:29 +0000
-Message-ID: <bug-82834-8800-60M6dX6rkB@http.bugs.freedesktop.org/>
+Subject: [Bug 82834] [NV92] GeForce 8800 GS shows incorrect
+ temperature with nouveau
+Date: Wed, 20 Aug 2014 03:24:19 +0000
+Message-ID: <bug-82834-8800-7kjr2JUdIF@http.bugs.freedesktop.org/>
 References: <bug-82834-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0426800645=="
+Content-Type: multipart/mixed; boundary="===============1862800048=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82834-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0426800645==
-Content-Type: multipart/alternative; boundary="1408504649.Cf8B1.20181"; charset="us-ascii"
+--===============1862800048==
+Content-Type: multipart/alternative; boundary="1408505059.aaEed1E2.22293"; charset="us-ascii"
 
 
---1408504649.Cf8B1.20181
-Date: Wed, 20 Aug 2014 03:17:29 +0000
+--1408505059.aaEed1E2.22293
+Date: Wed, 20 Aug 2014 03:24:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82834
 
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 104932
-  --> https://bugs.freedesktop.org/attachment.cgi?id=104932&action=edit
-VBIOS
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|GeForce 8800 GS shows       |[NV92] GeForce 8800 GS
+                   |incorrect temperature  with |shows incorrect temperature
+                   |nouveau                     | with nouveau
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+<AndrewR> nvapeek 20400 only gives  me "..." ! 
+<AndrewR> 00020008: c008360d
+<AndrewR> 00020008: c0083615
+<AndrewR> 00020008: c008361b 
+<AndrewR> 00020008: c0083622 ... after  fullscreen ...
+<AndrewR> 00020008: c0083643 (after GALLIUM_MSAA=8 was added, fps  dropped down
+...)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408504649.Cf8B1.20181
-Date: Wed, 20 Aug 2014 03:17:29 +0000
+--1408505059.aaEed1E2.22293
+Date: Wed, 20 Aug 2014 03:24:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +62,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV92] GeForce 8800 GS shows incorrect temperature with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82834">bug 82834</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>GeForce 8800 GS shows incorrect temperature  with nouveau
+           </td>
+           <td>[NV92] GeForce 8800 GS shows incorrect temperature  with nouveau
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GeForce 8800 GS shows incorrect temperature with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82834#c1">Comment # 1</a>
+   title="NEW --- - [NV92] GeForce 8800 GS shows incorrect temperature with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82834#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - GeForce 8800 GS shows incorrect temperature with nouveau"
+   title="NEW --- - [NV92] GeForce 8800 GS shows incorrect temperature with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82834">bug 82834</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=104932" name="attach_104932" title="VBIOS">attachment 104932</a> <a href="attachment.cgi?id=104932&amp;action=edit" title="VBIOS">[details]</a></span>
-VBIOS</pre>
+        <pre>&lt;AndrewR&gt; nvapeek 20400 only gives  me &quot;...&quot; ! 
+&lt;AndrewR&gt; 00020008: c008360d
+&lt;AndrewR&gt; 00020008: c0083615
+&lt;AndrewR&gt; 00020008: c008361b 
+&lt;AndrewR&gt; 00020008: c0083622 ... after  fullscreen ...
+&lt;AndrewR&gt; 00020008: c0083643 (after GALLIUM_MSAA=8 was added, fps  dropped down
+...)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +113,9 @@ VBIOS</pre>
     </body>
 </html>
 
---1408504649.Cf8B1.20181--
+--1408505059.aaEed1E2.22293--
 
---===============0426800645==
+--===============1862800048==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +126,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0426800645==--
+--===============1862800048==--
