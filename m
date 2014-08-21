@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77724] error: GLSL ES 3.00 is not supported.
- Supported versions are: 1.00 ES
-Date: Thu, 21 Aug 2014 17:12:31 +0000
-Message-ID: <bug-77724-8800-zeW0kD4E6g@http.bugs.freedesktop.org/>
-References: <bug-77724-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63165] [NVE6] GTX660 GPU lockups on 3D applications
+Date: Thu, 21 Aug 2014 17:43:56 +0000
+Message-ID: <bug-63165-8800-UgR5NTH8ct@http.bugs.freedesktop.org/>
+References: <bug-63165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1082713792=="
+Content-Type: multipart/mixed; boundary="===============0802849941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77724-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1082713792==
-Content-Type: multipart/alternative; boundary="1408641151.F7d44D1.10055"; charset="us-ascii"
+--===============0802849941==
+Content-Type: multipart/alternative; boundary="1408643036.d2CE3F1.23848"; charset="us-ascii"
 
 
---1408641151.F7d44D1.10055
-Date: Thu, 21 Aug 2014 17:12:31 +0000
+--1408643036.d2CE3F1.23848
+Date: Thu, 21 Aug 2014 17:43:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77724
+https://bugs.freedesktop.org/show_bug.cgi?id=63165
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|---                         |DUPLICATE
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-ES3 was not supported until recently by nouveau (or any gallium driver). It
-should be now for nv50+. You can try it out on Mesa 10.3-rc1. Make sure to
-build with --enable-gles2.
+--- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
 
-If you're still having issues, feel free to reopen, but make sure to provide
-lots of additional info, like glxinfo output, pointer to the code you're
-running, etc.
+
+*** This bug has been marked as a duplicate of bug 72180 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408641151.F7d44D1.10055
-Date: Thu, 21 Aug 2014 17:12:31 +0000
+--1408643036.d2CE3F1.23848
+Date: Thu, 21 Aug 2014 17:43:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - error: GLSL ES 3.00 is not supported. Supported versions are: 1.00 ES"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77724">bug 77724</a>
+   title="RESOLVED DUPLICATE - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,28 +82,27 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - error: GLSL ES 3.00 is not supported. Supported versions are: 1.00 ES"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77724#c4">Comment # 4</a>
+   title="RESOLVED DUPLICATE - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165#c20">Comment # 20</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - error: GLSL ES 3.00 is not supported. Supported versions are: 1.00 ES"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77724">bug 77724</a>
+   title="RESOLVED DUPLICATE - [NVE6] GTX660 GPU lockups on 3D applications"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63165">bug 63165</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>ES3 was not supported until recently by nouveau (or any gallium driver). It
-should be now for nv50+. You can try it out on Mesa 10.3-rc1. Make sure to
-build with --enable-gles2.
+        <pre>
 
-If you're still having issues, feel free to reopen, but make sure to provide
-lots of additional info, like glxinfo output, pointer to the code you're
-running, etc.</pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="show_bug.cgi?id=72180">bug 72180</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +114,9 @@ running, etc.</pre>
     </body>
 </html>
 
---1408641151.F7d44D1.10055--
+--1408643036.d2CE3F1.23848--
 
---===============1082713792==
+--===============0802849941==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1082713792==--
+--===============0802849941==--
