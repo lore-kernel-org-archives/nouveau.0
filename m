@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80627] [NVE6] 'HUB_INIT timed out' 'Watchdog
- detected hard LOCKUP on cpu 7'
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
 Date: Thu, 21 Aug 2014 22:20:12 +0000
-Message-ID: <bug-80627-8800-WKpnAGzBhl@http.bugs.freedesktop.org/>
-References: <bug-80627-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-70354-8800-chqK4rBL7V@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1501106930=="
+Content-Type: multipart/mixed; boundary="===============1279508641=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1501106930==
-Content-Type: multipart/alternative; boundary="1408659612.Fae252.28170"; charset="us-ascii"
+--===============1279508641==
+Content-Type: multipart/alternative; boundary="1408659613.1dde7.28170"; charset="us-ascii"
 
 
---1408659612.Fae252.28170
-Date: Thu, 21 Aug 2014 22:20:12 +0000
+--1408659613.1dde7.28170
+Date: Thu, 21 Aug 2014 22:20:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80627
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
 buhman <zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org
 
---- Comment #4 from buhman <zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org> ---
-The remaining issue is already discussed in bug 70354.
-
-*** This bug has been marked as a duplicate of bug 70354 ***
+--- Comment #29 from buhman <zack-hQ3HDwcYbXcdnm+yROfE0A@public.gmane.org> ---
+*** Bug 80627 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408659612.Fae252.28170
-Date: Thu, 21 Aug 2014 22:20:12 +0000
+--1408659613.1dde7.28170
+Date: Thu, 21 Aug 2014 22:20:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,9 +57,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:zack&#64;buhman.org" title="buhman &lt;zack&#64;buhman.org&gt;"> <span class="fn">buhman</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627">bug 80627</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,41 +69,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>zack&#64;buhman.org
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627#c4">Comment # 4</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c29">Comment # 29</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80627">bug 80627</a>
+          bz_status_NEW "
+   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
               from <span class="vcard"><a class="email" href="mailto:zack&#64;buhman.org" title="buhman &lt;zack&#64;buhman.org&gt;"> <span class="fn">buhman</span></a>
 </span></b>
-        <pre>The remaining issue is already discussed in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="show_bug.cgi?id=70354">bug 70354</a>.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="show_bug.cgi?id=70354">bug 70354</a> ***</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - [NVE6] 'HUB_INIT timed out' 'Watchdog detected hard LOCKUP on cpu 7'"
+   href="show_bug.cgi?id=80627">Bug 80627</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408659612.Fae252.28170--
+--1408659613.1dde7.28170--
 
---===============1501106930==
+--===============1279508641==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -131,4 +116,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1501106930==--
+--===============1279508641==--
