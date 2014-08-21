@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70464] [NVC3] runpm not working
-Date: Thu, 21 Aug 2014 19:43:02 +0000
-Message-ID: <bug-70464-8800-wzZeUOokMu@http.bugs.freedesktop.org/>
-References: <bug-70464-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 78748] [NV11] Nouveau fails initializing KMS on
+ Geforce2 Go (NV11M)
+Date: Thu, 21 Aug 2014 19:43:33 +0000
+Message-ID: <bug-78748-8800-6BOu36ggWv@http.bugs.freedesktop.org/>
+References: <bug-78748-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2112670942=="
+Content-Type: multipart/mixed; boundary="===============0032146392=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70464-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-78748-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2112670942==
-Content-Type: multipart/alternative; boundary="1408650182.8673dC2.3727"; charset="us-ascii"
+--===============0032146392==
+Content-Type: multipart/alternative; boundary="1408650213.2087BCc1.3956"; charset="us-ascii"
 
 
---1408650182.8673dC2.3727
-Date: Thu, 21 Aug 2014 19:43:02 +0000
+--1408650213.2087BCc1.3956
+Date: Thu, 21 Aug 2014 19:43:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70464
+https://bugs.freedesktop.org/show_bug.cgi?id=78748
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There were some issues with runpm that should be resolved with 3.13.x IIRC. Is
-this still an issue?
+--- Comment #9 from Ismael <isma.casti-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #8)
+> Can you confirm that things work fine with the hack I suggested (i.e. your
+> patch #1)?
+
+No, it didn't work. Nouveau does not crash anymore, but the screen just flashes
+and shows black and white garbage.
+
+Sadly I do not have access to the hardware anymore, it was a customer's
+hardware and he took it away. I suppose you can close this bug.
+Sorry for not closing this down before, and thanks a lot for your help and
+time.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408650182.8673dC2.3727
-Date: Thu, 21 Aug 2014 19:43:02 +0000
+--1408650213.2087BCc1.3956
+Date: Thu, 21 Aug 2014 19:43:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,17 +62,26 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVC3] runpm not working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70464#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO --- - [NVC3] runpm not working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70464">bug 70464</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV11] Nouveau fails initializing KMS on Geforce2 Go (NV11M)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78748">bug 78748</a>
+              from <span class="vcard"><a class="email" href="mailto:isma.casti&#64;gmail.com" title="Ismael &lt;isma.casti&#64;gmail.com&gt;"> <span class="fn">Ismael</span></a>
 </span></b>
-        <pre>There were some issues with runpm that should be resolved with 3.13.x IIRC. Is
-this still an issue?</pre>
+        <pre>(In reply to <a href="show_bug.cgi?id=78748#c8">comment #8</a>)
+<span class="quote">&gt; Can you confirm that things work fine with the hack I suggested (i.e. your
+&gt; patch #1)?</span >
+
+No, it didn't work. Nouveau does not crash anymore, but the screen just flashes
+and shows black and white garbage.
+
+Sadly I do not have access to the hardware anymore, it was a customer's
+hardware and he took it away. I suppose you can close this bug.
+Sorry for not closing this down before, and thanks a lot for your help and
+time.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +93,9 @@ this still an issue?</pre>
     </body>
 </html>
 
---1408650182.8673dC2.3727--
+--1408650213.2087BCc1.3956--
 
---===============2112670942==
+--===============0032146392==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2112670942==--
+--===============0032146392==--
