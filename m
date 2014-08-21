@@ -1,7 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 2/7] clock/nva3: Set PLL refclk
-Date: Thu, 21 Aug 2014 13:45:13 +0200
-Message-ID: <1408621518-32350-3-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 3/7] clock/nva3: HOST clock
+Date: Thu, 21 Aug 2014 13:45:14 +0200
+Message-ID: <1408621518-32350-4-git-send-email-rspliet@eclipso.eu>
 References: <1408621518-32350-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,161 +23,180 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c | 73 +++++++++++++++---------
- drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h |  2 +-
- drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c |  2 +-
- 3 files changed, 48 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c | 82 +++++++++++++++++++++---
+ drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h |  4 ++
+ 2 files changed, 78 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
-index a08011c..b9ab90a 100644
+index b9ab90a..eeab2d5 100644
 --- a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
 +++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.c
-@@ -163,17 +163,12 @@ nva3_clock_read(struct nouveau_clock *clk, enum nv_clk_src src)
+@@ -136,12 +136,11 @@ static int
+ nva3_clock_read(struct nouveau_clock *clk, enum nv_clk_src src)
+ {
+ 	struct nva3_clock_priv *priv = (void *)clk;
++	u32 hsrc;
+ 
+ 	switch (src) {
+ 	case nv_clk_src_crystal:
+ 		return nv_device(priv)->crystal;
+-	case nv_clk_src_href:
+-		return 100000;
+ 	case nv_clk_src_core:
+ 		return read_pll(priv, 0x00, 0x4200);
+ 	case nv_clk_src_shader:
+@@ -154,6 +153,18 @@ nva3_clock_read(struct nouveau_clock *clk, enum nv_clk_src src)
+ 		return read_clk(priv, 0x21, false);
+ 	case nv_clk_src_daemon:
+ 		return read_clk(priv, 0x25, false);
++	case nv_clk_src_host:
++		hsrc = (nv_rd32(priv, 0xc040) & 0x30000000) >> 28;
++		switch (hsrc) {
++		case 0:
++			return read_clk(priv, 0x1d, false);
++		case 2:
++		case 3:
++			return 277000;
++		default:
++			nv_error(clk, "unknown HOST clock source %d\n", hsrc);
++			return -EINVAL;
++		}
+ 	default:
+ 		nv_error(clk, "invalid clock source %d\n", src);
+ 		return -EINVAL;
+@@ -258,6 +269,34 @@ calc_clk(struct nva3_clock_priv *priv, struct nouveau_cstate *cstate,
+ 	return ret;
  }
  
- int
--nva3_clock_info(struct nouveau_clock *clock, int clk, u32 pll, u32 khz,
-+nva3_clk_info(struct nouveau_clock *clock, int clk, u32 khz,
- 		struct nva3_clock_info *info)
- {
--	struct nouveau_bios *bios = nouveau_bios(clock);
- 	struct nva3_clock_priv *priv = (void *)clock;
--	struct nvbios_pll limits;
--	u32 oclk, sclk, sdiv;
--	int P, N, M, diff;
--	int ret;
-+	u32 oclk, sclk, sdiv, diff;
- 
--	info->pll = 0;
- 	info->clk = 0;
- 
- 	switch (khz) {
-@@ -188,40 +183,64 @@ nva3_clock_info(struct nouveau_clock *clock, int clk, u32 pll, u32 khz,
- 		return khz;
- 	default:
- 		sclk = read_vco(priv, clk);
--		sdiv = min((sclk * 2) / (khz - 2999), (u32)65);
--		/* if the clock has a PLL attached, and we can get a within
--		 * [-2, 3) MHz of a divider, we'll disable the PLL and use
--		 * the divider instead.
--		 *
--		 * divider can go as low as 2, limited here because NVIDIA
-+		sdiv = min((sclk * 2) / khz, (u32)65);
-+		oclk = (sclk * 2) / sdiv;
-+		diff = ((khz + 3000) - oclk);
-+
-+		/* When imprecise, play it safe and aim for a clock lower than
-+		 * desired rather than higher */
-+		if (diff < 0) {
-+			sdiv++;
-+			oclk = (sclk * 2) / sdiv;
-+		}
-+
-+		/* divider can go as low as 2, limited here because NVIDIA
- 		 * and the VBIOS on my NVA8 seem to prefer using the PLL
- 		 * for 810MHz - is there a good reason?
--		 */
-+		 * XXX: PLLs with refclk 810MHz?  */
- 		if (sdiv > 4) {
--			oclk = (sclk * 2) / sdiv;
--			diff = khz - oclk;
--			if (!pll || (diff >= -2000 && diff < 3000)) {
--				info->clk = (((sdiv - 2) << 16) | 0x00003100);
--				return oclk;
--			}
-+			info->clk = (((sdiv - 2) << 16) | 0x00003100);
-+			return oclk;
- 		}
- 
--		if (!pll)
--			return -ERANGE;
- 		break;
- 	}
- 
-+	return -ERANGE;
-+}
-+
-+int
-+nva3_pll_info(struct nouveau_clock *clock, int clk, u32 pll, u32 khz,
-+		struct nva3_clock_info *info)
++static int
++calc_host(struct nva3_clock_priv *priv, struct nouveau_cstate *cstate)
 +{
-+	struct nouveau_bios *bios = nouveau_bios(clock);
-+	struct nva3_clock_priv *priv = (void *)clock;
-+	int clk_khz;
-+	struct nvbios_pll limits;
-+	int P, N, M, diff;
-+	int ret;
++	int ret = 0;
++	u32 kHz = cstate->domain[nv_clk_src_host];
++	struct nva3_clock_info *info = &priv->eng[nv_clk_src_host];
 +
-+	info->pll = 0;
-+
-+	/* If we can get a within [-2, 3) MHz of a divider, we'll disable the
-+	 * PLL and use the divider instead. */
-+	clk_khz = nva3_clk_info(clock, clk, khz, info);
-+	diff = khz - clk_khz;
-+	if (!pll || (diff >= -2000 && diff < 3000)) {
-+		return clk_khz;
++	if (kHz == 277000) {
++		info->clk = 0;
++		info->host_out = NVA3_HOST_277;
++		return 0;
 +	}
 +
-+	/* Try with PLL */
- 	ret = nvbios_pll_parse(bios, pll, &limits);
- 	if (ret)
++	info->host_out = NVA3_HOST_CLK;
++
++	ret = nva3_clk_info(&priv->base, 0x1d, kHz, info);
++	if (ret >= 0)
++		return 0;
++	return ret;
++}
++
++static void
++disable_clk_src(struct nva3_clock_priv *priv, u32 src)
++{
++	nv_mask(priv, src, 0x00000100, 0x00000000);
++	nv_mask(priv, src, 0x00000001, 0x00000000);
++}
++
+ static void
+ prog_pll(struct nva3_clock_priv *priv, int clk, u32 pll, int idx)
+ {
+@@ -275,15 +314,13 @@ prog_pll(struct nva3_clock_priv *priv, int clk, u32 pll, int idx)
+ 		nv_wait(priv, ctrl, 0x00020000, 0x00020000);
+ 		nv_mask(priv, ctrl, 0x00000010, 0x00000010);
+ 		nv_mask(priv, ctrl, 0x00000008, 0x00000000);
+-		nv_mask(priv, src1, 0x00000100, 0x00000000);
+-		nv_mask(priv, src1, 0x00000001, 0x00000000);
++		disable_clk_src(priv, src1);
+ 	} else {
+ 		nv_mask(priv, src1, 0x003f3141, 0x00000101 | info->clk);
+ 		nv_mask(priv, ctrl, 0x00000018, 0x00000018);
+ 		udelay(20);
+ 		nv_mask(priv, ctrl, 0x00000001, 0x00000000);
+-		nv_mask(priv, src0, 0x00000100, 0x00000000);
+-		nv_mask(priv, src0, 0x00000001, 0x00000000);
++		disable_clk_src(priv, src0);
+ 	}
+ }
+ 
+@@ -294,6 +331,33 @@ prog_clk(struct nva3_clock_priv *priv, int clk, int idx)
+ 	nv_mask(priv, 0x004120 + (clk * 4), 0x003f3141, 0x00000101 | info->clk);
+ }
+ 
++static void
++prog_host(struct nva3_clock_priv *priv)
++{
++	struct nva3_clock_info *info = &priv->eng[nv_clk_src_host];
++	u32 hsrc = (nv_rd32(priv, 0xc040));
++
++	switch (info->host_out) {
++	case NVA3_HOST_277:
++		if ((hsrc & 0x30000000) == 0) {
++			nv_wr32(priv, 0xc040, hsrc | 0x20000000);
++			disable_clk_src(priv, 0x4194);
++		}
++		break;
++	case NVA3_HOST_CLK:
++		prog_clk(priv, 0x1d, nv_clk_src_host);
++		if ((hsrc & 0x30000000) >= 0x20000000) {
++			nv_wr32(priv, 0xc040, hsrc & ~0x30000000);
++		}
++		break;
++	default:
++		break;
++	}
++
++	/* This seems to be a clock gating factor on idle, always set to 64 */
++	nv_wr32(priv, 0xc044, 0x3e);
++}
++
+ static int
+ nva3_clock_calc(struct nouveau_clock *clk, struct nouveau_cstate *cstate)
+ {
+@@ -303,7 +367,8 @@ nva3_clock_calc(struct nouveau_clock *clk, struct nouveau_cstate *cstate)
+ 	if ((ret = calc_clk(priv, cstate, 0x10, 0x4200, nv_clk_src_core)) ||
+ 	    (ret = calc_clk(priv, cstate, 0x11, 0x4220, nv_clk_src_shader)) ||
+ 	    (ret = calc_clk(priv, cstate, 0x20, 0x0000, nv_clk_src_disp)) ||
+-	    (ret = calc_clk(priv, cstate, 0x21, 0x0000, nv_clk_src_vdec)))
++	    (ret = calc_clk(priv, cstate, 0x21, 0x0000, nv_clk_src_vdec)) ||
++	    (ret = calc_host(priv, cstate)))
  		return ret;
  
--	limits.refclk = read_clk(priv, clk - 0x10, true);
--	if (!limits.refclk)
-+	clk_khz = nva3_clk_info(clock, clk - 0x10, limits.refclk, info);
-+	if (clk_khz != limits.refclk)
- 		return -EINVAL;
+ 	return 0;
+@@ -317,6 +382,7 @@ nva3_clock_prog(struct nouveau_clock *clk)
+ 	prog_pll(priv, 0x01, 0x004220, nv_clk_src_shader);
+ 	prog_clk(priv, 0x20, nv_clk_src_disp);
+ 	prog_clk(priv, 0x21, nv_clk_src_vdec);
++	prog_host(priv);
+ 	return 0;
+ }
  
- 	ret = nva3_pll_calc(nv_subdev(priv), &limits, khz, &N, NULL, &M, &P);
- 	if (ret >= 0) {
--		info->clk = nv_rd32(priv, 0x4120 + (clk * 4));
- 		info->pll = (P << 16) | (N << 8) | M;
- 	}
- 
-@@ -232,7 +251,7 @@ static int
- calc_clk(struct nva3_clock_priv *priv, struct nouveau_cstate *cstate,
- 	 int clk, u32 pll, int idx)
- {
--	int ret = nva3_clock_info(&priv->base, clk, pll, cstate->domain[idx],
-+	int ret = nva3_pll_info(&priv->base, clk, pll, cstate->domain[idx],
- 				  &priv->eng[idx]);
- 	if (ret >= 0)
- 		return 0;
-@@ -249,7 +268,7 @@ prog_pll(struct nva3_clock_priv *priv, int clk, u32 pll, int idx)
- 	const u32 coef = pll + 4;
- 
- 	if (info->pll) {
--		nv_mask(priv, src0, 0x00000101, 0x00000101);
-+		nv_mask(priv, src0, 0x003f3141, 0x00000101 | info->clk);
- 		nv_wr32(priv, coef, info->pll);
- 		nv_mask(priv, ctrl, 0x00000015, 0x00000015);
- 		nv_mask(priv, ctrl, 0x00000010, 0x00000000);
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
-index 6229a50..2b4b3ea 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
-+++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
-@@ -8,7 +8,7 @@ struct nva3_clock_info {
- 	u32 pll;
+@@ -328,12 +394,12 @@ nva3_clock_tidy(struct nouveau_clock *clk)
+ static struct nouveau_clocks
+ nva3_domain[] = {
+ 	{ nv_clk_src_crystal, 0xff },
+-	{ nv_clk_src_href   , 0xff },
+ 	{ nv_clk_src_core   , 0x00, 0, "core", 1000 },
+ 	{ nv_clk_src_shader , 0x01, 0, "shader", 1000 },
+ 	{ nv_clk_src_mem    , 0x02, 0, "memory", 1000 },
+ 	{ nv_clk_src_vdec   , 0x03 },
+ 	{ nv_clk_src_disp   , 0x04 },
++	{ nv_clk_src_host   , 0x05 },
+ 	{ nv_clk_src_max }
  };
  
--int nva3_clock_info(struct nouveau_clock *, int, u32, u32,
-+int nva3_pll_info(struct nouveau_clock *, int, u32, u32,
- 		    struct nva3_clock_info *);
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
+index 2b4b3ea..54f9949 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/clock/nva3.h
+@@ -6,6 +6,10 @@
+ struct nva3_clock_info {
+ 	u32 clk;
+ 	u32 pll;
++	enum {
++		NVA3_HOST_277,
++		NVA3_HOST_CLK,
++	} host_out;
+ };
  
- #endif
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-index 8076fb1..686e0d6 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-@@ -123,7 +123,7 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		timing.data = 0;
- 	}
- 
--	ret = nva3_clock_info(nouveau_clock(pfb), 0x12, 0x4000, freq, &mclk);
-+	ret = nva3_pll_info(nouveau_clock(pfb), 0x12, 0x4000, freq, &mclk);
- 	if (ret < 0) {
- 		nv_error(pfb, "failed mclk calculation\n");
- 		return ret;
+ int nva3_pll_info(struct nouveau_clock *, int, u32, u32,
 -- 
 1.9.3
