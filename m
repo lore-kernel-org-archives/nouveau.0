@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 79971] 3.15.0-11819-gc1fdb2d: oops
-Date: Thu, 21 Aug 2014 21:36:58 +0000
-Message-ID: <bug-79971-8800-8QqRwnxC0n@http.bugs.freedesktop.org/>
+Subject: [Bug 79971] [NVE7] 3.15.0-11819-gc1fdb2d: oops in
+	_nouveau_disp_dtor
+Date: Thu, 21 Aug 2014 21:37:35 +0000
+Message-ID: <bug-79971-8800-VbYhgl2NvO@http.bugs.freedesktop.org/>
 References: <bug-79971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1433449172=="
+Content-Type: multipart/mixed; boundary="===============1783877305=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-79971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1433449172==
-Content-Type: multipart/alternative; boundary="1408657018.5EA4bd72.13486"; charset="us-ascii"
+--===============1783877305==
+Content-Type: multipart/alternative; boundary="1408657055.0F4c2.13621"; charset="us-ascii"
 
 
---1408657018.5EA4bd72.13486
-Date: Thu, 21 Aug 2014 21:36:58 +0000
+--1408657055.0F4c2.13621
+Date: Thu, 21 Aug 2014 21:37:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=79971
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue in 3.16?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|3.15.0-11819-gc1fdb2d: oops |[NVE7]
+                   |                            |3.15.0-11819-gc1fdb2d: oops
+                   |                            |in _nouveau_disp_dtor
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408657018.5EA4bd72.13486
-Date: Thu, 21 Aug 2014 21:36:58 +0000
+--1408657055.0F4c2.13621
+Date: Thu, 21 Aug 2014 21:37:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,21 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - 3.15.0-11819-gc1fdb2d: oops"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=79971#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3.15.0-11819-gc1fdb2d: oops"
+   title="NEW --- - [NVE7] 3.15.0-11819-gc1fdb2d: oops in _nouveau_disp_dtor"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=79971">bug 79971</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Is this still an issue in 3.16?</pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>3.15.0-11819-gc1fdb2d: oops
+           </td>
+           <td>[NVE7] 3.15.0-11819-gc1fdb2d: oops in _nouveau_disp_dtor
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -72,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408657018.5EA4bd72.13486--
+--1408657055.0F4c2.13621--
 
---===============1433449172==
+--===============1783877305==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1433449172==--
+--===============1783877305==--
