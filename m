@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27064] [NVA8] can't find VBIOS on Asus UL50VT laptop
-Date: Thu, 21 Aug 2014 21:17:54 +0000
-Message-ID: <bug-27064-8800-pHsAf9Ox26@http.bugs.freedesktop.org/>
-References: <bug-27064-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66809] Compiz segfault with latest mesa-git
+Date: Thu, 21 Aug 2014 21:21:41 +0000
+Message-ID: <bug-66809-8800-q4etYdimdh@http.bugs.freedesktop.org/>
+References: <bug-66809-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0005540344=="
+Content-Type: multipart/mixed; boundary="===============2036535918=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27064-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-66809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0005540344==
-Content-Type: multipart/alternative; boundary="1408655874.72Fbe2.6242"; charset="us-ascii"
+--===============2036535918==
+Content-Type: multipart/alternative; boundary="1408656101.87a5F0C1.7668"; charset="us-ascii"
 
 
---1408655874.72Fbe2.6242
-Date: Thu, 21 Aug 2014 21:17:54 +0000
+--1408656101.87a5F0C1.7668
+Date: Thu, 21 Aug 2014 21:21:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27064
+https://bugs.freedesktop.org/show_bug.cgi?id=66809
 
-Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|INVALID                     |FIXED
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
 
---- Comment #10 from Roy <r.spliet-oe7qfRrRQfeEZXFvZSAUrfP6llvjuJOh@public.gmane.org> ---
-Owning the same laptop, I can confirm that at least with kernel 3.16 reading
-the VBIOS works correctly,
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to re-test request in over 10 months. Closing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408655874.72Fbe2.6242
-Date: Thu, 21 Aug 2014 21:17:54 +0000
+--1408656101.87a5F0C1.7668
+Date: Thu, 21 Aug 2014 21:21:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,12 +54,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] can't find VBIOS on Asus UL50VT laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064">bug 27064</a>
+   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809">bug 66809</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,26 +69,33 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>FIXED
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] can't find VBIOS on Asus UL50VT laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064#c10">Comment # 10</a>
+   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVA8] can't find VBIOS on Asus UL50VT laptop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27064">bug 27064</a>
-              from <span class="vcard"><a class="email" href="mailto:r.spliet&#64;student.tudelft.nl" title="Roy &lt;r.spliet&#64;student.tudelft.nl&gt;"> <span class="fn">Roy</span></a>
+   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809">bug 66809</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Owning the same laptop, I can confirm that at least with kernel 3.16 reading
-the VBIOS works correctly,</pre>
+        <pre>No response to re-test request in over 10 months. Closing.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +107,9 @@ the VBIOS works correctly,</pre>
     </body>
 </html>
 
---1408655874.72Fbe2.6242--
+--1408656101.87a5F0C1.7668--
 
---===============0005540344==
+--===============2036535918==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0005540344==--
+--===============2036535918==--
