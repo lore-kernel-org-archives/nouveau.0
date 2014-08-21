@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66809] Compiz segfault with latest mesa-git
-Date: Thu, 21 Aug 2014 21:21:41 +0000
-Message-ID: <bug-66809-8800-q4etYdimdh@http.bugs.freedesktop.org/>
-References: <bug-66809-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69819] [NVE7] can't able start X dsiplay
+Date: Thu, 21 Aug 2014 21:23:48 +0000
+Message-ID: <bug-69819-8800-4k8GaDbjCR@http.bugs.freedesktop.org/>
+References: <bug-69819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2036535918=="
+Content-Type: multipart/mixed; boundary="===============2122768301=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66809-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2036535918==
-Content-Type: multipart/alternative; boundary="1408656101.87a5F0C1.7668"; charset="us-ascii"
+--===============2122768301==
+Content-Type: multipart/alternative; boundary="1408656227.2EAf11.8542"; charset="us-ascii"
 
 
---1408656101.87a5F0C1.7668
-Date: Thu, 21 Aug 2014 21:21:41 +0000
+--1408656227.2EAf11.8542
+Date: Thu, 21 Aug 2014 21:23:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66809
+https://bugs.freedesktop.org/show_bug.cgi?id=69819
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -38,15 +38,15 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
              Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response to re-test request in over 10 months. Closing.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to additional information request for over 10 months.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408656101.87a5F0C1.7668
-Date: Thu, 21 Aug 2014 21:21:41 +0000
+--1408656227.2EAf11.8542
+Date: Thu, 21 Aug 2014 21:23:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809">bug 66809</a>
+   title="RESOLVED INVALID - [NVE7] can't able start X dsiplay"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69819">bug 69819</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,15 +87,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809#c8">Comment # 8</a>
+   title="RESOLVED INVALID - [NVE7] can't able start X dsiplay"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69819#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Compiz segfault with latest mesa-git"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66809">bug 66809</a>
+   title="RESOLVED INVALID - [NVE7] can't able start X dsiplay"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69819">bug 69819</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response to re-test request in over 10 months. Closing.</pre>
+        <pre>No response to additional information request for over 10 months.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408656101.87a5F0C1.7668--
+--1408656227.2EAf11.8542--
 
---===============2036535918==
+--===============2122768301==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -120,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2036535918==--
+--===============2122768301==--
