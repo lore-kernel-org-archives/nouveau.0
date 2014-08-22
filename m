@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Fri, 22 Aug 2014 02:28:06 +0000
-Message-ID: <bug-81485-8800-fG9NQ9ukGb@http.bugs.freedesktop.org/>
-References: <bug-81485-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71351] [NVE7] xset dpms force off only works after
+	suspend
+Date: Fri, 22 Aug 2014 04:41:51 +0000
+Message-ID: <bug-71351-8800-5GCSZTWgId@http.bugs.freedesktop.org/>
+References: <bug-71351-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1699099519=="
+Content-Type: multipart/mixed; boundary="===============1053874476=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1699099519==
-Content-Type: multipart/alternative; boundary="1408674486.3dee27482.7197"; charset="us-ascii"
+--===============1053874476==
+Content-Type: multipart/alternative; boundary="1408682511.ce7BaFB2.15330"; charset="us-ascii"
 
 
---1408674486.3dee27482.7197
-Date: Fri, 22 Aug 2014 02:28:06 +0000
+--1408682511.ce7BaFB2.15330
+Date: Fri, 22 Aug 2014 04:41:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81485
+https://bugs.freedesktop.org/show_bug.cgi?id=71351
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-First do
-
-modprobe drm
-
-Then you can do
-
-insmod .../nouveau.ko
-
-If it still fails, look in dmesg for what symbol is missing.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It appears that your panel is connected via eDP. DP got a substantial rework in
+3.16, among things fixed should have been the power management. Please see if
+the problem still exists.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408674486.3dee27482.7197
-Date: Fri, 22 Aug 2014 02:28:06 +0000
+--1408682511.ce7BaFB2.15330
+Date: Fri, 22 Aug 2014 04:41:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,23 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c16">Comment # 16</a>
+   title="NEW --- - [NVE7] xset dpms force off only works after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71351#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+   title="NEW --- - [NVE7] xset dpms force off only works after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71351">bug 71351</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>First do
-
-modprobe drm
-
-Then you can do
-
-insmod .../nouveau.ko
-
-If it still fails, look in dmesg for what symbol is missing.</pre>
+        <pre>It appears that your panel is connected via eDP. DP got a substantial rework in
+3.16, among things fixed should have been the power management. Please see if
+the problem still exists.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +77,9 @@ If it still fails, look in dmesg for what symbol is missing.</pre>
     </body>
 </html>
 
---1408674486.3dee27482.7197--
+--1408682511.ce7BaFB2.15330--
 
---===============1699099519==
+--===============1053874476==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1699099519==--
+--===============1053874476==--
