@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71351] [NVE7] xset dpms force off only works after
-	suspend
-Date: Fri, 22 Aug 2014 04:41:51 +0000
-Message-ID: <bug-71351-8800-5GCSZTWgId@http.bugs.freedesktop.org/>
-References: <bug-71351-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
+ and X restartted
+Date: Fri, 22 Aug 2014 04:50:21 +0000
+Message-ID: <bug-58305-8800-PMKmlOtfFV@http.bugs.freedesktop.org/>
+References: <bug-58305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1053874476=="
+Content-Type: multipart/mixed; boundary="===============1985392094=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71351-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1053874476==
-Content-Type: multipart/alternative; boundary="1408682511.ce7BaFB2.15330"; charset="us-ascii"
+--===============1985392094==
+Content-Type: multipart/alternative; boundary="1408683020.7d47821.18535"; charset="us-ascii"
 
 
---1408682511.ce7BaFB2.15330
-Date: Fri, 22 Aug 2014 04:41:51 +0000
+--1408683020.7d47821.18535
+Date: Fri, 22 Aug 2014 04:50:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71351
+https://bugs.freedesktop.org/show_bug.cgi?id=58305
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-It appears that your panel is connected via eDP. DP got a substantial rework in
-3.16, among things fixed should have been the power management. Please see if
-the problem still exists.
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Is this still an issue in 3.13.x or later? The runpm stuff should be there and
+working, with the card automatically powering off when not in use.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408682511.ce7BaFB2.15330
-Date: Fri, 22 Aug 2014 04:41:51 +0000
+--1408683020.7d47821.18535
+Date: Fri, 22 Aug 2014 04:50:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] xset dpms force off only works after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71351#c4">Comment # 4</a>
+   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE7] xset dpms force off only works after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71351">bug 71351</a>
+   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>It appears that your panel is connected via eDP. DP got a substantial rework in
-3.16, among things fixed should have been the power management. Please see if
-the problem still exists.</pre>
+        <pre>Is this still an issue in 3.13.x or later? The runpm stuff should be there and
+working, with the card automatically powering off when not in use.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ the problem still exists.</pre>
     </body>
 </html>
 
---1408682511.ce7BaFB2.15330--
+--1408683020.7d47821.18535--
 
---===============1053874476==
+--===============1985392094==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1053874476==--
+--===============1985392094==--
