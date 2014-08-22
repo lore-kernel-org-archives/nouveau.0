@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68453] Bad rendering (refreshes) when booting recent
- debug kernels
-Date: Fri, 22 Aug 2014 04:52:59 +0000
-Message-ID: <bug-68453-8800-Y3EFtbAyEG@http.bugs.freedesktop.org/>
-References: <bug-68453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 43939] [NV96] monitor connected via HDMI->DVI
+ adapter is blank / standby (9500GS)
+Date: Fri, 22 Aug 2014 05:01:49 +0000
+Message-ID: <bug-43939-8800-ytYhpefb20@http.bugs.freedesktop.org/>
+References: <bug-43939-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0531104165=="
+Content-Type: multipart/mixed; boundary="===============1496303842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-43939-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0531104165==
-Content-Type: multipart/alternative; boundary="1408683179.c54f2.19283"; charset="us-ascii"
+--===============1496303842==
+Content-Type: multipart/alternative; boundary="1408683709.BC0b3.22047"; charset="us-ascii"
 
 
---1408683179.c54f2.19283
-Date: Fri, 22 Aug 2014 04:52:59 +0000
+--1408683709.BC0b3.22047
+Date: Fri, 22 Aug 2014 05:01:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68453
+https://bugs.freedesktop.org/show_bug.cgi?id=43939
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+         Resolution|---                         |FIXED
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No update in a year... most likely due to the ww mutex debug option. If that's
-not it and it still repros on recent kernels, feel free to reopen.
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response in over 6 months, but this reads a lot like the issue I fixed that
+manifested itself as NV96 HDMI not working (and only that chipset for some
+reason, even though the issue was affecting the whole nv50 family). Should work
+fine with recent kernels (3.14+). Feel free to reopen if that's not the case.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408683179.c54f2.19283
-Date: Fri, 22 Aug 2014 04:52:59 +0000
+--1408683709.BC0b3.22047
+Date: Fri, 22 Aug 2014 05:01:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,8 +62,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453">bug 68453</a>
+   title="RESOLVED FIXED - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -82,23 +84,25 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>INVALID
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453#c3">Comment # 3</a>
+   title="RESOLVED FIXED - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453">bug 68453</a>
+   title="RESOLVED FIXED - [NV96] monitor connected via HDMI-&gt;DVI adapter is blank / standby (9500GS)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=43939">bug 43939</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No update in a year... most likely due to the ww mutex debug option. If that's
-not it and it still repros on recent kernels, feel free to reopen.</pre>
+        <pre>No response in over 6 months, but this reads a lot like the issue I fixed that
+manifested itself as NV96 HDMI not working (and only that chipset for some
+reason, even though the issue was affecting the whole nv50 family). Should work
+fine with recent kernels (3.14+). Feel free to reopen if that's not the case.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +114,9 @@ not it and it still repros on recent kernels, feel free to reopen.</pre>
     </body>
 </html>
 
---1408683179.c54f2.19283--
+--1408683709.BC0b3.22047--
 
---===============0531104165==
+--===============1496303842==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +127,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0531104165==--
+--===============1496303842==--
