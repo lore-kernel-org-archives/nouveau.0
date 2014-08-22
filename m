@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
  and X restartted
-Date: Fri, 22 Aug 2014 07:35:49 +0000
-Message-ID: <bug-58305-8800-INlOaLLgGN@http.bugs.freedesktop.org/>
+Date: Fri, 22 Aug 2014 07:37:42 +0000
+Message-ID: <bug-58305-8800-pgTMyCRq0C@http.bugs.freedesktop.org/>
 References: <bug-58305-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0480211723=="
+Content-Type: multipart/mixed; boundary="===============1314260976=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0480211723==
-Content-Type: multipart/alternative; boundary="1408692949.f5D242f1.8298"; charset="us-ascii"
+--===============1314260976==
+Content-Type: multipart/alternative; boundary="1408693062.11Fa4351.8847"; charset="us-ascii"
 
 
---1408692949.f5D242f1.8298
-Date: Fri, 22 Aug 2014 07:35:49 +0000
+--1408693062.11Fa4351.8847
+Date: Fri, 22 Aug 2014 07:37:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=58305
 
---- Comment #12 from Dimitar Kosev <buboleck-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hello,
-
-I can't confirm, I don't use this laptop anymore
+--- Comment #13 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
+Didn't had the crash anymore the last months.
+So seems to be fine now indeed.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408692949.f5D242f1.8298
-Date: Fri, 22 Aug 2014 07:35:49 +0000
+--1408693062.11Fa4351.8847
+Date: Fri, 22 Aug 2014 07:37:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
-              from <span class="vcard"><a class="email" href="mailto:buboleck&#64;gmail.com" title="Dimitar Kosev &lt;buboleck&#64;gmail.com&gt;"> <span class="fn">Dimitar Kosev</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
 </span></b>
-        <pre>Hello,
-
-I can't confirm, I don't use this laptop anymore</pre>
+        <pre>Didn't had the crash anymore the last months.
+So seems to be fine now indeed.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ I can't confirm, I don't use this laptop anymore</pre>
     </body>
 </html>
 
---1408692949.f5D242f1.8298--
+--1408693062.11Fa4351.8847--
 
---===============0480211723==
+--===============1314260976==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0480211723==--
+--===============1314260976==--
