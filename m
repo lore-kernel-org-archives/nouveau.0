@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
- and X restartted
-Date: Fri, 22 Aug 2014 13:04:58 +0000
-Message-ID: <bug-58305-8800-tMXpn4HdOJ@http.bugs.freedesktop.org/>
-References: <bug-58305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69876] [NVC3] Reverse prime sometimes freezes the
+	machine
+Date: Fri, 22 Aug 2014 13:05:35 +0000
+Message-ID: <bug-69876-8800-wbtSyMbvfk@http.bugs.freedesktop.org/>
+References: <bug-69876-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0165936823=="
+Content-Type: multipart/mixed; boundary="===============1842659725=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69876-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0165936823==
-Content-Type: multipart/alternative; boundary="1408712697.02A4E1.32367"; charset="us-ascii"
+--===============1842659725==
+Content-Type: multipart/alternative; boundary="1408712735.beabe7E42.32561"; charset="us-ascii"
 
 
---1408712697.02A4E1.32367
-Date: Fri, 22 Aug 2014 13:04:57 +0000
+--1408712735.beabe7E42.32561
+Date: Fri, 22 Aug 2014 13:05:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58305
+https://bugs.freedesktop.org/show_bug.cgi?id=69876
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -43,8 +43,8 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408712697.02A4E1.32367
-Date: Fri, 22 Aug 2014 13:04:57 +0000
+--1408712735.beabe7E42.32561
+Date: Fri, 22 Aug 2014 13:05:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
+   title="RESOLVED FIXED - [NVC3] Reverse prime sometimes freezes the machine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69876">bug 69876</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -92,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408712697.02A4E1.32367--
+--1408712735.beabe7E42.32561--
 
---===============0165936823==
+--===============1842659725==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -105,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0165936823==--
+--===============1842659725==--
