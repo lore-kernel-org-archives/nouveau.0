@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
- and X restartted
-Date: Fri, 22 Aug 2014 07:37:42 +0000
-Message-ID: <bug-58305-8800-pgTMyCRq0C@http.bugs.freedesktop.org/>
-References: <bug-58305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81485] [NVE4] dmesg spam on startup
+Date: Fri, 22 Aug 2014 08:39:26 +0000
+Message-ID: <bug-81485-8800-uOobVZVDij@http.bugs.freedesktop.org/>
+References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1314260976=="
+Content-Type: multipart/mixed; boundary="===============0766019345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1314260976==
-Content-Type: multipart/alternative; boundary="1408693062.11Fa4351.8847"; charset="us-ascii"
+--===============0766019345==
+Content-Type: multipart/alternative; boundary="1408696766.dD5dceE2.29295"; charset="us-ascii"
 
 
---1408693062.11Fa4351.8847
-Date: Fri, 22 Aug 2014 07:37:42 +0000
+--1408696766.dD5dceE2.29295
+Date: Fri, 22 Aug 2014 08:39:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58305
+https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
---- Comment #13 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
-Didn't had the crash anymore the last months.
-So seems to be fine now indeed.
+--- Comment #19 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+finally insmod'ed, thanks for your help!
+unfortunately the end result is same message spam :(
+
+I'm just glad this laptop has dual graphics and I can keep working with intel
+graphics for the moment
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408693062.11Fa4351.8847
-Date: Fri, 22 Aug 2014 07:37:42 +0000
+--1408696766.dD5dceE2.29295
+Date: Fri, 22 Aug 2014 08:39:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,16 +56,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c13">Comment # 13</a>
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
-              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
+   title="NEW --- - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
 </span></b>
-        <pre>Didn't had the crash anymore the last months.
-So seems to be fine now indeed.</pre>
+        <pre>finally insmod'ed, thanks for your help!
+unfortunately the end result is same message spam :(
+
+I'm just glad this laptop has dual graphics and I can keep working with intel
+graphics for the moment</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +80,9 @@ So seems to be fine now indeed.</pre>
     </body>
 </html>
 
---1408693062.11Fa4351.8847--
+--1408696766.dD5dceE2.29295--
 
---===============1314260976==
+--===============0766019345==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1314260976==--
+--===============0766019345==--
