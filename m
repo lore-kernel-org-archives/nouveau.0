@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58305] Kernel crashes if nVidia card is powered off
- and X restartted
-Date: Fri, 22 Aug 2014 04:50:21 +0000
-Message-ID: <bug-58305-8800-PMKmlOtfFV@http.bugs.freedesktop.org/>
-References: <bug-58305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68453] Bad rendering (refreshes) when booting recent
+ debug kernels
+Date: Fri, 22 Aug 2014 04:52:59 +0000
+Message-ID: <bug-68453-8800-Y3EFtbAyEG@http.bugs.freedesktop.org/>
+References: <bug-68453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1985392094=="
+Content-Type: multipart/mixed; boundary="===============0531104165=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1985392094==
-Content-Type: multipart/alternative; boundary="1408683020.7d47821.18535"; charset="us-ascii"
+--===============0531104165==
+Content-Type: multipart/alternative; boundary="1408683179.c54f2.19283"; charset="us-ascii"
 
 
---1408683020.7d47821.18535
-Date: Fri, 22 Aug 2014 04:50:20 +0000
+--1408683179.c54f2.19283
+Date: Fri, 22 Aug 2014 04:52:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58305
+https://bugs.freedesktop.org/show_bug.cgi?id=68453
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue in 3.13.x or later? The runpm stuff should be there and
-working, with the card automatically powering off when not in use.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No update in a year... most likely due to the ww mutex debug option. If that's
+not it and it still repros on recent kernels, feel free to reopen.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408683020.7d47821.18535
-Date: Fri, 22 Aug 2014 04:50:20 +0000
+--1408683179.c54f2.19283
+Date: Fri, 22 Aug 2014 04:52:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +56,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453">bug 68453</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305#c11">Comment # 11</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Kernel crashes if nVidia card is powered off and X restartted"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58305">bug 58305</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Bad rendering (refreshes) when booting recent debug kernels"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68453">bug 68453</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still an issue in 3.13.x or later? The runpm stuff should be there and
-working, with the card automatically powering off when not in use.</pre>
+        <pre>No update in a year... most likely due to the ww mutex debug option. If that's
+not it and it still repros on recent kernels, feel free to reopen.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +110,9 @@ working, with the card automatically powering off when not in use.</pre>
     </body>
 </html>
 
---1408683020.7d47821.18535--
+--1408683179.c54f2.19283--
 
---===============1985392094==
+--===============0531104165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1985392094==--
+--===============0531104165==--
