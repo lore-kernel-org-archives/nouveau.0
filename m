@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71620] nouveau_fence_wait_uevent NULL pointer
-	dereference
-Date: Fri, 22 Aug 2014 22:06:34 +0000
-Message-ID: <bug-71620-8800-BWjcWBG6g2@http.bugs.freedesktop.org/>
-References: <bug-71620-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
+ - Strange pink line on left screen side
+Date: Fri, 22 Aug 2014 22:49:16 +0000
+Message-ID: <bug-75203-8800-qhWEH5Jeqi@http.bugs.freedesktop.org/>
+References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1722839327=="
+Content-Type: multipart/mixed; boundary="===============2091082738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1722839327==
-Content-Type: multipart/alternative; boundary="1408745194.5EaF4A7.26641"; charset="us-ascii"
+--===============2091082738==
+Content-Type: multipart/alternative; boundary="1408747756.cDfF3.6858"; charset="us-ascii"
 
 
---1408745194.5EaF4A7.26641
-Date: Fri, 22 Aug 2014 22:06:34 +0000
+--1408747756.cDfF3.6858
+Date: Fri, 22 Aug 2014 22:49:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71620
+https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #12 from Fuxy <ciufy22-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can confirm i have this happening with my GeForce GTX 780 Ti (GK110B)
+connected over HDMI to my Asus PB278Q monitor running Arch linux
+(3.16.1-1-ARCH).
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |scott-SWQjiYvW4NkM/+EeWXf76Q@public.gmane.org
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 82975 has been marked as a duplicate of this bug. ***
+xf86-video-nouveau 1.0.10-3
+nouveau-dri 10.2.6-1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408745194.5EaF4A7.26641
-Date: Fri, 22 Aug 2014 22:06:34 +0000
+--1408747756.cDfF3.6858
+Date: Fri, 22 Aug 2014 22:49:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,44 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71620">bug 71620</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>scott&#64;chaos-dragon.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71620#c7">Comment # 7</a>
+   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - nouveau_fence_wait_uevent NULL pointer dereference"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71620">bug 71620</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
+              from <span class="vcard"><a class="email" href="mailto:ciufy22&#64;gmail.com" title="Fuxy &lt;ciufy22&#64;gmail.com&gt;"> <span class="fn">Fuxy</span></a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Regression: NULL pointer dereference in nouveau_fence_wait after upgrading to 10.2.6"
-   href="show_bug.cgi?id=82975">Bug 82975</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>I can confirm i have this happening with my GeForce GTX 780 Ti (GK110B)
+connected over HDMI to my Asus PB278Q monitor running Arch linux
+(3.16.1-1-ARCH).
+
+xf86-video-nouveau 1.0.10-3
+nouveau-dri 10.2.6-1</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408745194.5EaF4A7.26641--
+--1408747756.cDfF3.6858--
 
---===============1722839327==
+--===============2091082738==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1722839327==--
+--===============2091082738==--
