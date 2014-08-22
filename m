@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Fri, 22 Aug 2014 01:53:38 +0000
-Message-ID: <bug-81485-8800-j2ki39YfaI@http.bugs.freedesktop.org/>
-References: <bug-81485-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70389] [prime] unsynchronised rendering on secondary
+	displays
+Date: Fri, 22 Aug 2014 02:04:42 +0000
+Message-ID: <bug-70389-8800-1xnbqgNl1i@http.bugs.freedesktop.org/>
+References: <bug-70389-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1369816957=="
+Content-Type: multipart/mixed; boundary="===============1953095170=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1369816957==
-Content-Type: multipart/alternative; boundary="1408672419.fFd4C762.28693"; charset="us-ascii"
+--===============1953095170==
+Content-Type: multipart/alternative; boundary="1408673082.b1C1aCF82.31966"; charset="us-ascii"
 
 
---1408672419.fFd4C762.28693
-Date: Fri, 22 Aug 2014 01:53:39 +0000
+--1408673082.b1C1aCF82.31966
+Date: Fri, 22 Aug 2014 02:04:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81485
+https://bugs.freedesktop.org/show_bug.cgi?id=70389
 
---- Comment #14 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ah, i see.. I was building against my currently-running, which is 3.15.x
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Try updating your intel ddx -- nouveau is not responsible for the contents of
+the images it renders when in reverse-prime mode -- the primary gpu is (in your
+case, intel).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408672419.fFd4C762.28693
-Date: Fri, 22 Aug 2014 01:53:39 +0000
+--1408673082.b1C1aCF82.31966
+Date: Fri, 22 Aug 2014 02:04:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c14">Comment # 14</a>
+   title="NEW --- - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
-              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
+   title="NEW --- - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Ah, i see.. I was building against my currently-running, which is 3.15.x</pre>
+        <pre>Try updating your intel ddx -- nouveau is not responsible for the contents of
+the images it renders when in reverse-prime mode -- the primary gpu is (in your
+case, intel).</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +77,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408672419.fFd4C762.28693--
+--1408673082.b1C1aCF82.31966--
 
---===============1369816957==
+--===============1953095170==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1369816957==--
+--===============1953095170==--
