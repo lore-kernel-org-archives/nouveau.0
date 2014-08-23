@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 56340] [Ubuntu 10.04.4 LTS 32-bit] Severe
- instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2
- M64 graphics
-Date: Sat, 23 Aug 2014 15:02:24 +0000
-Message-ID: <bug-56340-8800-gYn6uj4oRd@http.bugs.freedesktop.org/>
-References: <bug-56340-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68254] [NVC3] [Regression] no green channel since
+ linux 3.10.x upgrade from 3.8
+Date: Sat, 23 Aug 2014 15:04:40 +0000
+Message-ID: <bug-68254-8800-p8xjt4UZrT@http.bugs.freedesktop.org/>
+References: <bug-68254-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1177787325=="
+Content-Type: multipart/mixed; boundary="===============0066718441=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-56340-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68254-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,36 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1177787325==
-Content-Type: multipart/alternative; boundary="1408806143.e2ebBb32.31375"; charset="us-ascii"
+--===============0066718441==
+Content-Type: multipart/alternative; boundary="1408806280.Abf2C1422.31894"; charset="us-ascii"
 
 
---1408806143.e2ebBb32.31375
-Date: Sat, 23 Aug 2014 15:02:23 +0000
+--1408806280.Abf2C1422.31894
+Date: Sat, 23 Aug 2014 15:04:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=56340
+https://bugs.freedesktop.org/show_bug.cgi?id=68254
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
+             Status|NEW                         |RESOLVED
          Resolution|---                         |INVALID
 
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No response in a year. If this still happens with the latest software and
-disabling AGP doesn't help, feel free to re-open.
-
-For the record, I have a TNT2 M64 (PCI) and it works just fine.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response in a year. If this is still an issue with the latest software, feel
+free to reopen.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408806143.e2ebBb32.31375
-Date: Sat, 23 Aug 2014 15:02:23 +0000
+--1408806280.Abf2C1422.31894
+Date: Sat, 23 Aug 2014 15:04:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
+   title="RESOLVED INVALID - [NVC3] [Regression] no green channel since linux 3.10.x upgrade from 3.8"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68254">bug 68254</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -75,7 +72,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
+           <td>NEW
            </td>
            <td>RESOLVED
            </td>
@@ -92,18 +89,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340#c20">Comment # 20</a>
+   title="RESOLVED INVALID - [NVC3] [Regression] no green channel since linux 3.10.x upgrade from 3.8"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68254#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [Ubuntu 10.04.4 LTS 32-bit] Severe instability of VIA Technologies Apollo MVP3 chipset and NVIDIA RIVA TNT2 M64 graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=56340">bug 56340</a>
+   title="RESOLVED INVALID - [NVC3] [Regression] no green channel since linux 3.10.x upgrade from 3.8"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68254">bug 68254</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No response in a year. If this still happens with the latest software and
-disabling AGP doesn't help, feel free to re-open.
-
-For the record, I have a TNT2 M64 (PCI) and it works just fine.</pre>
+        <pre>No response in a year. If this is still an issue with the latest software, feel
+free to reopen.</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +110,9 @@ For the record, I have a TNT2 M64 (PCI) and it works just fine.</pre>
     </body>
 </html>
 
---1408806143.e2ebBb32.31375--
+--1408806280.Abf2C1422.31894--
 
---===============1177787325==
+--===============0066718441==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1177787325==--
+--===============0066718441==--
