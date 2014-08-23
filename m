@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
- - Strange pink line on left screen side
-Date: Fri, 22 Aug 2014 22:49:16 +0000
-Message-ID: <bug-75203-8800-qhWEH5Jeqi@http.bugs.freedesktop.org/>
-References: <bug-75203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77333] [NV108] Unable to use nouveau GK208 as
+ offloadsink provider
+Date: Sat, 23 Aug 2014 03:37:23 +0000
+Message-ID: <bug-77333-8800-i695BQHhhI@http.bugs.freedesktop.org/>
+References: <bug-77333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2091082738=="
+Content-Type: multipart/mixed; boundary="===============0000792929=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2091082738==
-Content-Type: multipart/alternative; boundary="1408747756.cDfF3.6858"; charset="us-ascii"
+--===============0000792929==
+Content-Type: multipart/alternative; boundary="1408765042.51e30DC1.23368"; charset="us-ascii"
 
 
---1408747756.cDfF3.6858
-Date: Fri, 22 Aug 2014 22:49:16 +0000
+--1408765042.51e30DC1.23368
+Date: Sat, 23 Aug 2014 03:37:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75203
+https://bugs.freedesktop.org/show_bug.cgi?id=77333
 
---- Comment #12 from Fuxy <ciufy22-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I can confirm i have this happening with my GeForce GTX 780 Ti (GK110B)
-connected over HDMI to my Asus PB278Q monitor running Arch linux
-(3.16.1-1-ARCH).
+--- Comment #10 from Nirbheek Chauhan <nirbheek.chauhan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #9)
+> Can you confirm that you were also using mesa 10.2.x? (10.2.2 and later
+> should work largely fine on GK208.)
 
-xf86-video-nouveau 1.0.10-3
-nouveau-dri 10.2.6-1
+I can't remember if I was, but I can try again and report back. Will try this
+out today.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408747756.cDfF3.6858
-Date: Fri, 22 Aug 2014 22:49:16 +0000
+--1408765042.51e30DC1.23368
+Date: Sat, 23 Aug 2014 03:37:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c12">Comment # 12</a>
+   title="NEW --- - [NV108] Unable to use nouveau GK208 as offloadsink provider"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:ciufy22&#64;gmail.com" title="Fuxy &lt;ciufy22&#64;gmail.com&gt;"> <span class="fn">Fuxy</span></a>
+   title="NEW --- - [NV108] Unable to use nouveau GK208 as offloadsink provider"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77333">bug 77333</a>
+              from <span class="vcard"><a class="email" href="mailto:nirbheek.chauhan&#64;gmail.com" title="Nirbheek Chauhan &lt;nirbheek.chauhan&#64;gmail.com&gt;"> <span class="fn">Nirbheek Chauhan</span></a>
 </span></b>
-        <pre>I can confirm i have this happening with my GeForce GTX 780 Ti (GK110B)
-connected over HDMI to my Asus PB278Q monitor running Arch linux
-(3.16.1-1-ARCH).
+        <pre>(In reply to <a href="show_bug.cgi?id=77333#c9">comment #9</a>)
+<span class="quote">&gt; Can you confirm that you were also using mesa 10.2.x? (10.2.2 and later
+&gt; should work largely fine on GK208.)</span >
 
-xf86-video-nouveau 1.0.10-3
-nouveau-dri 10.2.6-1</pre>
+I can't remember if I was, but I can try again and report back. Will try this
+out today.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +83,9 @@ nouveau-dri 10.2.6-1</pre>
     </body>
 </html>
 
---1408747756.cDfF3.6858--
+--1408765042.51e30DC1.23368--
 
---===============2091082738==
+--===============0000792929==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2091082738==--
+--===============0000792929==--
