@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
-	hang
-Date: Sun, 24 Aug 2014 15:22:10 +0000
-Message-ID: <bug-82835-8800-AnPAEucTcV@http.bugs.freedesktop.org/>
-References: <bug-82835-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82726] [NV96][NVAC] [Regression] [Bisected] Probe
+ failed with error -12
+Date: Sun, 24 Aug 2014 16:12:43 +0000
+Message-ID: <bug-82726-8800-HpeKdHdj0s@http.bugs.freedesktop.org/>
+References: <bug-82726-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0329631911=="
+Content-Type: multipart/mixed; boundary="===============0509424464=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82726-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0329631911==
-Content-Type: multipart/alternative; boundary="1408893730.1BFCfc2.26089"; charset="us-ascii"
+--===============0509424464==
+Content-Type: multipart/alternative; boundary="1408896762.aeDE4e1.7614"; charset="us-ascii"
 
 
---1408893730.1BFCfc2.26089
-Date: Sun, 24 Aug 2014 15:22:10 +0000
+--1408896762.aeDE4e1.7614
+Date: Sun, 24 Aug 2014 16:12:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82835
+https://bugs.freedesktop.org/show_bug.cgi?id=82726
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GeForce 8800 GS VDPAU  h264 |[NV92] GeForce 8800 GS
-                   |decoding hang               |VDPAU  h264 decoding hang
+--- Comment #3 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Yep, same problem here on many nv50 cards (if not all).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408893730.1BFCfc2.26089
-Date: Sun, 24 Aug 2014 15:22:10 +0000
+--1408896762.aeDE4e1.7614
+Date: Sun, 24 Aug 2014 16:12:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +48,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835">bug 82835</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GeForce 8800 GS VDPAU  h264 decoding hang
-           </td>
-           <td>[NV92] GeForce 8800 GS VDPAU  h264 decoding hang
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726">bug 82726</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span></b>
+        <pre>Yep, same problem here on many nv50 cards (if not all).</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1408893730.1BFCfc2.26089--
+--1408896762.aeDE4e1.7614--
 
---===============0329631911==
+--===============0509424464==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +86,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0329631911==--
+--===============0509424464==--
