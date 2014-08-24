@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 61537] Screen flicker when using display with
 	incorrect EDID
-Date: Sun, 24 Aug 2014 17:07:23 +0000
-Message-ID: <bug-61537-8800-EkVyS8YM7h@http.bugs.freedesktop.org/>
+Date: Sun, 24 Aug 2014 17:50:07 +0000
+Message-ID: <bug-61537-8800-q7EkVCHuVN@http.bugs.freedesktop.org/>
 References: <bug-61537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1929485196=="
+Content-Type: multipart/mixed; boundary="===============0801992074=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-61537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1929485196==
-Content-Type: multipart/alternative; boundary="1408900043.e875A33.23043"; charset="us-ascii"
+--===============0801992074==
+Content-Type: multipart/alternative; boundary="1408902607.1aBB3.4449"; charset="us-ascii"
 
 
---1408900043.e875A33.23043
-Date: Sun, 24 Aug 2014 17:07:22 +0000
+--1408902607.1aBB3.4449
+Date: Sun, 24 Aug 2014 17:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=61537
 
---- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-I investigated this issue a little. The flickering happens when someone runs
-xrandr. This is a hardware issue as the problem happens even with when using
-the proprietary driver. This issue got fixed starting with the geforce 8.
+--- Comment #3 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+A bit of a (hopefully useful) information
 
-The desktop environment shouldn't poll on xrandr like that, so there is a bug
-on their side. On our side, the workaround suggested by Jan will be our
-"solution" until someone really wants to dig into this issue and see if there
-is a way to build a cache or something to avoid load detection.
+ - Whenever drm_kms_helper.poll is disabled, your vga monitor won't get
+automatically detected when it's not plugged in at boot.
 
-In any case, I'm tempted to close this bug as "WONTFIX" but I'll wait for other
-devs to agree before doing so.
+ - Iirc there are two modes when querying for info via the xrandr protocol -
+use cached one or re-probe. 
+
+ - Original nv50 (and earlier?) hardware the blob does a plain sleep/udelay
+between setup and probe, while for nv92 and latter it uses a more elaborate
+approach (see bug 67382, comment 34). Currently nouveau uses the former method
+which contributes (not sure to what extend) to the flicker.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1408900043.e875A33.23043
-Date: Sun, 24 Aug 2014 17:07:22 +0000
+--1408902607.1aBB3.4449
+Date: Sun, 24 Aug 2014 17:50:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,24 +65,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Screen flicker when using display with incorrect EDID"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61537#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61537#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - Screen flicker when using display with incorrect EDID"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=61537">bug 61537</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
 </span></b>
-        <pre>I investigated this issue a little. The flickering happens when someone runs
-xrandr. This is a hardware issue as the problem happens even with when using
-the proprietary driver. This issue got fixed starting with the geforce 8.
+        <pre>A bit of a (hopefully useful) information
 
-The desktop environment shouldn't poll on xrandr like that, so there is a bug
-on their side. On our side, the workaround suggested by Jan will be our
-&quot;solution&quot; until someone really wants to dig into this issue and see if there
-is a way to build a cache or something to avoid load detection.
+ - Whenever drm_kms_helper.poll is disabled, your vga monitor won't get
+automatically detected when it's not plugged in at boot.
 
-In any case, I'm tempted to close this bug as &quot;WONTFIX&quot; but I'll wait for other
-devs to agree before doing so.</pre>
+ - Iirc there are two modes when querying for info via the xrandr protocol -
+use cached one or re-probe. 
+
+ - Original nv50 (and earlier?) hardware the blob does a plain sleep/udelay
+between setup and probe, while for nv92 and latter it uses a more elaborate
+approach (see <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nouveau, nv50] linux 3.9.7-3.10.3: Xorg won't be available"
+   href="show_bug.cgi?id=67382#c34">bug 67382, comment 34</a>). Currently nouveau uses the former method
+which contributes (not sure to what extend) to the flicker.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +98,9 @@ devs to agree before doing so.</pre>
     </body>
 </html>
 
---1408900043.e875A33.23043--
+--1408902607.1aBB3.4449--
 
---===============1929485196==
+--===============0801992074==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +111,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1929485196==--
+--===============0801992074==--
