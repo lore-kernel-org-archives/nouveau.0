@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83021] Separate X screens --> Xvideo is vsynced to
- primary screen only
-Date: Sun, 24 Aug 2014 20:57:04 +0000
-Message-ID: <bug-83021-8800-6bEzG9JwFo@http.bugs.freedesktop.org/>
-References: <bug-83021-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH 2/3] therm: make sure the temperature settings are
+	sane on nv84+
+Date: Sun, 24 Aug 2014 23:15:10 +0200
+Message-ID: <1408914911-5022-2-git-send-email-martin.peres@free.fr>
+References: <1408914911-5022-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1647253596=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83021-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1408914911-5022-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +21,69 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1647253596==
-Content-Type: multipart/alternative; boundary="1408913824.AeE52.29826"; charset="us-ascii"
-
-
---1408913824.AeE52.29826
-Date: Sun, 24 Aug 2014 20:57:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=83021
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There have been a bunch of fixes to this logic in git -- does this issue still
-happen with http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/ ?
-Specifically I'm thinking of
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6ad053788e804f3a8bd36ee3653ec95e7df62623
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1408913824.AeE52.29826
-Date: Sun, 24 Aug 2014 20:57:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021">bug 83021</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>There have been a bunch of fixes to this logic in git -- does this issue still
-happen with <a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/</a> ?
-Specifically I'm thinking of
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6ad053788e804f3a8bd36ee3653ec95e7df62623">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6ad053788e804f3a8bd36ee3653ec95e7df62623</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1408913824.AeE52.29826--
-
---===============1647253596==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1647253596==--
+T25lIG9mIG15IG52OTIgaGFzIGEgY2FsaWJyYXRlZCBpbnRlcm5hbCBzZW5zb3IgYnV0IGl0IGRp
+c3BsYXlzIDDCsEMKYXMgdGhlIGRlZmF1bHQgdmFsdWVzIHVzZSBzdyBjYWxpYnJhdGlvbiB2YWx1
+ZXMgdG8gZm9yY2UgdGhlIHRlbXBlcmF0dXJlCnRvIDAuCgpTaW5jZSB3ZSBjYW5ub3QgcmVhZCB0
+aGUgdGVtcGVyYXR1cmUgZnJvbSB0aGUgYWR0NzQ3MyBwcmVzZW50IG9uIHRoaXMgYm9hcmQsCmxl
+dCdzIHJlLWVuYWJsZSB0aGUgaW50ZXJuYWwgcmVhZGluZyEKClNpZ25lZC1vZmYtYnk6IE1hcnRp
+biBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Ci0tLQogbnZrbS9zdWJkZXYvdGhlcm0vbnY4
+NC5jIHwgMzEgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLQogbnZrbS9zdWJkZXYvdGhl
+cm0vbnZhMy5jIHwgIDIgKysKIG52a20vc3ViZGV2L3RoZXJtL252ZDAuYyB8ICAyICsrCiBudmtt
+L3N1YmRldi90aGVybS9wcml2LmggfCAgMSArCiA0IGZpbGVzIGNoYW5nZWQsIDM1IGluc2VydGlv
+bnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9udmttL3N1YmRldi90aGVybS9udjg0
+LmMgYi9udmttL3N1YmRldi90aGVybS9udjg0LmMKaW5kZXggMWQxNWM1Mi4uMzhiMTZkOSAxMDA2
+NDQKLS0tIGEvbnZrbS9zdWJkZXYvdGhlcm0vbnY4NC5jCisrKyBiL252a20vc3ViZGV2L3RoZXJt
+L252ODQuYwpAQCAtMjQsNiArMjQsNyBAQAogICovCiAKICNpbmNsdWRlICJwcml2LmgiCisjaW5j
+bHVkZSA8c3ViZGV2L2Z1c2UuaD4KIAogc3RydWN0IG52ODRfdGhlcm1fcHJpdiB7CiAJc3RydWN0
+IG5vdXZlYXVfdGhlcm1fcHJpdiBiYXNlOwpAQCAtMzUsNiArMzYsMTkgQEAgbnY4NF90ZW1wX2dl
+dChzdHJ1Y3Qgbm91dmVhdV90aGVybSAqdGhlcm0pCiAJcmV0dXJuIG52X3JkMzIodGhlcm0sIDB4
+MjA0MDApOwogfQogCit2b2lkCitudjg0X3NlbnNvcl9zZXR1cChzdHJ1Y3Qgbm91dmVhdV90aGVy
+bSAqdGhlcm0pCit7CisJc3RydWN0IG5vdXZlYXVfZnVzZSAqZnVzZSA9IG5vdXZlYXVfZnVzZSh0
+aGVybSk7CisKKwkvKiBlbmFibGUgdGVtcGVyYXR1cmUgcmVhZGluZyBmb3IgY2FyZHMgd2l0aCBp
+bnNhbmUgZGVmYXVsdHMgKi8KKwlpZiAobnZfcm8zMihmdXNlLCAweDFhOCkgPT0gMSkgeworCQlu
+dl9tYXNrKHRoZXJtLCAweDIwMDA4LCAweDgwMDA4MDAwLCAweDgwMDAwMDAwKTsKKwkJbnZfbWFz
+ayh0aGVybSwgMHgyMDAwYywgMHg4MDAwMDAwMywgMHgwMDAwMDAwMCk7CisJCW1kZWxheSgyMCk7
+IC8qIHdhaXQgZm9yIHRoZSB0ZW1wZXJhdHVyZSB0byBzdGFiaWxpemUgKi8KKwl9Cit9CisKIHN0
+YXRpYyB2b2lkCiBudjg0X3RoZXJtX3Byb2dyYW1fYWxhcm1zKHN0cnVjdCBub3V2ZWF1X3RoZXJt
+ICp0aGVybSkKIHsKQEAgLTE3MSw2ICsxODUsMjEgQEAgbnY4NF90aGVybV9pbnRyKHN0cnVjdCBu
+b3V2ZWF1X3N1YmRldiAqc3ViZGV2KQogfQogCiBzdGF0aWMgaW50Citudjg0X3RoZXJtX2luaXQo
+c3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmplY3QpCit7CisJc3RydWN0IG52ODRfdGhlcm1fcHJp
+diAqcHJpdiA9ICh2b2lkICopb2JqZWN0OworCWludCByZXQ7CisKKwlyZXQgPSBub3V2ZWF1X3Ro
+ZXJtX2luaXQoJnByaXYtPmJhc2UuYmFzZSk7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKwor
+CW52ODRfc2Vuc29yX3NldHVwKCZwcml2LT5iYXNlLmJhc2UpOworCisJcmV0dXJuIDA7Cit9CisK
+K3N0YXRpYyBpbnQKIG52ODRfdGhlcm1fY3RvcihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVu
+dCwKIAkJc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmdpbmUsCiAJCXN0cnVjdCBub3V2ZWF1X29j
+bGFzcyAqb2NsYXNzLCB2b2lkICpkYXRhLCB1MzIgc2l6ZSwKQEAgLTIyOCw3ICsyNTcsNyBAQCBu
+djg0X3RoZXJtX29jbGFzcyA9IHsKIAkub2Z1bmNzID0gJihzdHJ1Y3Qgbm91dmVhdV9vZnVuY3Mp
+IHsKIAkJLmN0b3IgPSBudjg0X3RoZXJtX2N0b3IsCiAJCS5kdG9yID0gX25vdXZlYXVfdGhlcm1f
+ZHRvciwKLQkJLmluaXQgPSBfbm91dmVhdV90aGVybV9pbml0LAorCQkuaW5pdCA9IG52ODRfdGhl
+cm1faW5pdCwKIAkJLmZpbmkgPSBudjg0X3RoZXJtX2ZpbmksCiAJfSwKIH07CmRpZmYgLS1naXQg
+YS9udmttL3N1YmRldi90aGVybS9udmEzLmMgYi9udmttL3N1YmRldi90aGVybS9udmEzLmMKaW5k
+ZXggMDQ3OGIyZS4uNzg5MzM1NyAxMDA2NDQKLS0tIGEvbnZrbS9zdWJkZXYvdGhlcm0vbnZhMy5j
+CisrKyBiL252a20vc3ViZGV2L3RoZXJtL252YTMuYwpAQCAtNTEsNiArNTEsOCBAQCBudmEzX3Ro
+ZXJtX2luaXQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmplY3QpCiAJaWYgKHJldCkKIAkJcmV0
+dXJuIHJldDsKIAorCW52ODRfc2Vuc29yX3NldHVwKCZwcml2LT5iYXNlLmJhc2UpOworCiAJLyog
+ZW5hYmxlIGZhbiB0YWNoLCBjb3VudCByZXZvbHV0aW9ucyBwZXItc2Vjb25kICovCiAJbnZfbWFz
+ayhwcml2LCAweDAwZTcyMCwgMHgwMDAwMDAwMywgMHgwMDAwMDAwMik7CiAJaWYgKHRhY2gtPmZ1
+bmMgIT0gRENCX0dQSU9fVU5VU0VEKSB7CmRpZmYgLS1naXQgYS9udmttL3N1YmRldi90aGVybS9u
+dmQwLmMgYi9udmttL3N1YmRldi90aGVybS9udmQwLmMKaW5kZXggMDRiYjg0Zi4uYjcwZjdjYyAx
+MDA2NDQKLS0tIGEvbnZrbS9zdWJkZXYvdGhlcm0vbnZkMC5jCisrKyBiL252a20vc3ViZGV2L3Ro
+ZXJtL252ZDAuYwpAQCAtMTUwLDYgKzE1MCw4IEBAIG52ZDBfdGhlcm1fY3RvcihzdHJ1Y3Qgbm91
+dmVhdV9vYmplY3QgKnBhcmVudCwKIAlpZiAocmV0KQogCQlyZXR1cm4gcmV0OwogCisJbnY4NF9z
+ZW5zb3Jfc2V0dXAoJnByaXYtPmJhc2UuYmFzZSk7CisKIAlwcml2LT5iYXNlLmJhc2UucHdtX2N0
+cmwgPSBudmQwX2Zhbl9wd21fY3RybDsKIAlwcml2LT5iYXNlLmJhc2UucHdtX2dldCA9IG52ZDBf
+ZmFuX3B3bV9nZXQ7CiAJcHJpdi0+YmFzZS5iYXNlLnB3bV9zZXQgPSBudmQwX2Zhbl9wd21fc2V0
+OwpkaWZmIC0tZ2l0IGEvbnZrbS9zdWJkZXYvdGhlcm0vcHJpdi5oIGIvbnZrbS9zdWJkZXYvdGhl
+cm0vcHJpdi5oCmluZGV4IDQyNjJkMWQuLjdkYmE4YzIgMTAwNjQ0Ci0tLSBhL252a20vc3ViZGV2
+L3RoZXJtL3ByaXYuaAorKysgYi9udmttL3N1YmRldi90aGVybS9wcml2LmgKQEAgLTE0NSw2ICsx
+NDUsNyBAQCBpbnQgbnY1MF9mYW5fcHdtX2dldChzdHJ1Y3Qgbm91dmVhdV90aGVybSAqLCBpbnQs
+IHUzMiAqLCB1MzIgKik7CiBpbnQgbnY1MF9mYW5fcHdtX3NldChzdHJ1Y3Qgbm91dmVhdV90aGVy
+bSAqLCBpbnQsIHUzMiwgdTMyKTsKIGludCBudjUwX2Zhbl9wd21fY2xvY2soc3RydWN0IG5vdXZl
+YXVfdGhlcm0gKiwgaW50KTsKIGludCBudjg0X3RlbXBfZ2V0KHN0cnVjdCBub3V2ZWF1X3RoZXJt
+ICp0aGVybSk7Cit2b2lkIG52ODRfc2Vuc29yX3NldHVwKHN0cnVjdCBub3V2ZWF1X3RoZXJtICp0
+aGVybSk7CiBpbnQgbnY4NF90aGVybV9maW5pKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqb2JqZWN0
+LCBib29sIHN1c3BlbmQpOwogCiBpbnQgbnZhM190aGVybV9mYW5fc2Vuc2Uoc3RydWN0IG5vdXZl
+YXVfdGhlcm0gKik7Ci0tIAoyLjAuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
