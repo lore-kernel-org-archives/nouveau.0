@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83021] Separate X screens --> Xvideo is vsynced to
- primary screen only
-Date: Sun, 24 Aug 2014 23:33:45 +0000
-Message-ID: <bug-83021-8800-8gL0ARz9Do@http.bugs.freedesktop.org/>
-References: <bug-83021-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/3] subdev: add a pfuse subdev
+Date: Mon, 25 Aug 2014 00:35:03 +0100
+Message-ID: <53FA76A7.4090803@gmail.com>
+References: <1408914911-5022-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1928268826=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83021-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1408914911-5022-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,110 +17,160 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+On 24/08/14 22:15, Martin Peres wrote:
+> We will use this subdev to disable temperature reading on cards that did not
+> get a sensor calibration in the factory.
+> 
+> Signed-off-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+> ---
+>  configure.ac                   |  1 +
+>  drm/Kbuild                     |  4 ++
+>  drm/core/include/subdev/fuse.h |  1 +
+>  drm/core/subdev/fuse/base.c    |  1 +
+>  drm/core/subdev/fuse/g80.c     |  1 +
+>  drm/core/subdev/fuse/gf100.c   |  1 +
+>  drm/core/subdev/fuse/gm107.c   |  1 +
+>  drm/core/subdev/fuse/priv.h    |  1 +
+>  nvkm/engine/device/gm100.c     |  2 +
+>  nvkm/engine/device/nv50.c      | 15 ++++++++
+>  nvkm/engine/device/nvc0.c      | 10 +++++
+>  nvkm/engine/device/nve0.c      |  8 ++++
+>  nvkm/include/core/device.h     |  1 +
+>  nvkm/include/subdev/fuse.h     | 30 +++++++++++++++
+>  nvkm/subdev/Makefile.am        |  3 +-
+>  nvkm/subdev/fuse/Makefile.am   |  8 ++++
+>  nvkm/subdev/fuse/base.c        | 62 +++++++++++++++++++++++++++++++
+>  nvkm/subdev/fuse/g80.c         | 81 +++++++++++++++++++++++++++++++++++++++++
+>  nvkm/subdev/fuse/gf100.c       | 83 ++++++++++++++++++++++++++++++++++++++++++
+>  nvkm/subdev/fuse/gm107.c       | 66 +++++++++++++++++++++++++++++++++
+>  nvkm/subdev/fuse/priv.h        |  9 +++++
+>  21 files changed, 388 insertions(+), 1 deletion(-)
+>  create mode 120000 drm/core/include/subdev/fuse.h
+>  create mode 120000 drm/core/subdev/fuse/base.c
+>  create mode 120000 drm/core/subdev/fuse/g80.c
+>  create mode 120000 drm/core/subdev/fuse/gf100.c
+>  create mode 120000 drm/core/subdev/fuse/gm107.c
+>  create mode 120000 drm/core/subdev/fuse/priv.h
+>  create mode 100644 nvkm/include/subdev/fuse.h
+>  create mode 100644 nvkm/subdev/fuse/Makefile.am
+>  create mode 100644 nvkm/subdev/fuse/base.c
+>  create mode 100644 nvkm/subdev/fuse/g80.c
+>  create mode 100644 nvkm/subdev/fuse/gf100.c
+>  create mode 100644 nvkm/subdev/fuse/gm107.c
+>  create mode 100644 nvkm/subdev/fuse/priv.h
+> 
+[snip]
+> diff --git a/nvkm/subdev/fuse/base.c b/nvkm/subdev/fuse/base.c
+> new file mode 100644
+> index 0000000..d249f2b
+> --- /dev/null
+> +++ b/nvkm/subdev/fuse/base.c
+> @@ -0,0 +1,62 @@
+> +/*
+> + * Copyright 2014 Martin Peres
+> + *
+> + * Permission is hereby granted, free of charge, to any person obtaining a
+> + * copy of this software and associated documentation files (the "Software"),
+> + * to deal in the Software without restriction, including without limitation
+> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+> + * and/or sell copies of the Software, and to permit persons to whom the
+> + * Software is furnished to do so, subject to the following conditions:
+> + *
+> + * The above copyright notice and this permission notice shall be included in
+> + * all copies or substantial portions of the Software.
+> + *
+> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+> + * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
+> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+> + * OTHER DEALINGS IN THE SOFTWARE.
+> + *
+> + * Authors: Martin Peres
+> + */
+> +
+> +#include <subdev/fuse.h>
+> +
+> +int
+> +_nouveau_fuse_init(struct nouveau_object *object)
+> +{
+> +	struct nouveau_fuse *fuse = (void *)object;
+> +	int ret;
+> +
+> +	ret = nouveau_subdev_init(&fuse->base);
+> +	if (ret)
+> +		return ret;
+> +
+If you want you can drop the check the extra variable.
 
---===============1928268826==
-Content-Type: multipart/alternative; boundary="1408923224.06EE21DE1.4381"; charset="us-ascii"
+> +	return 0;
+> +}
+> +
+> +void
+> +_nouveau_fuse_dtor(struct nouveau_object *object)
+> +{
+> +	struct nouveau_fuse *fuse = (void *)object;
+> +	nouveau_subdev_destroy(&fuse->base);
+> +}
+> +
+> +int
+> +nouveau_fuse_create_(struct nouveau_object *parent,
+> +		     struct nouveau_object *engine,
+> +		     struct nouveau_oclass *oclass, int length, void **pobject)
+> +{
+> +	struct nouveau_fuse *fuse;
+> +	int ret;
+> +
+> +	ret = nouveau_subdev_create_(parent, engine, oclass, 0, "FUSE",
+> +				     "fuse", length, pobject);
+                                                     ^^^^^^^
+I think you want to use &fuse                        here ?
 
+> +	fuse = *pobject;
+Swap the assignment order and move it past the conditional ?
 
---1408923224.06EE21DE1.4381
-Date: Sun, 24 Aug 2014 23:33:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> +	if (ret)
+> +		return ret;
+> +
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83021
++ *pobject = fuse;
 
-Jan Janecek <janjanjanx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+And perhaps return 0, to make it obvious and consistent with the second case
+below.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+> +	return ret;
+> +}
+[snip]
+> diff --git a/nvkm/subdev/fuse/gm107.c b/nvkm/subdev/fuse/gm107.c
+> new file mode 100644
+> index 0000000..4ade700
+> --- /dev/null
+> +++ b/nvkm/subdev/fuse/gm107.c
+> @@ -0,0 +1,66 @@
+[snip]
+> +static int
+> +gm107_fuse_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
+> +	       struct nouveau_oclass *oclass, void *data, u32 size,
+> +	       struct nouveau_object **pobject)
+> +{
+> +	struct gm107_fuse_priv *priv;
+> +	int ret;
+> +
+> +	ret = nouveau_fuse_create(parent, engine, oclass, &priv);
+> +	*pobject = nv_object(priv);
+Believe the above assignment should go after the check ?
 
---- Comment #2 from Jan Janecek <janjanjanx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It is indeed fixed in newest GIT, I should have tried that before filing the
-bug.
+Nice job :)
+-Emil
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1408923224.06EE21DE1.4381
-Date: Sun, 24 Aug 2014 23:33:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:janjanjanx&#64;gmail.com" title="Jan Janecek &lt;janjanjanx&#64;gmail.com&gt;"> <span class="fn">Jan Janecek</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021">bug 83021</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021">bug 83021</a>
-              from <span class="vcard"><a class="email" href="mailto:janjanjanx&#64;gmail.com" title="Jan Janecek &lt;janjanjanx&#64;gmail.com&gt;"> <span class="fn">Jan Janecek</span></a>
-</span></b>
-        <pre>It is indeed fixed in newest GIT, I should have tried that before filing the
-bug.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1408923224.06EE21DE1.4381--
-
---===============1928268826==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1928268826==--
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
