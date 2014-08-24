@@ -1,14 +1,11 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
-Subject: Re: Kernel crash in 3.17-rc1 when loading nouveau on
- (non-POSTed) NV1A
-Date: Sun, 24 Aug 2014 22:11:01 +0200
-Message-ID: <20140824221101.7b20629f@neptune.home>
-References: <20140824215255.4a9e5ec8@neptune.home>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83021] New: Separate X screens --> Xvideo is vsynced
+ to primary screen only
+Date: Sun, 24 Aug 2014 20:54:59 +0000
+Message-ID: <bug-83021-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1764606415=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20140824215255.4a9e5ec8-hY15tx4IgV39zxVx7UNMDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,87 +15,184 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCAyNCBBdWd1c3QgMjAxNCBCcnVubyBQcsOpbW9udCA8Ym9uYm9uc0BsaW51eC12c2Vy
-dmVyLm9yZz4gd3JvdGU6Cj4gU3lzdGVtIHdhcyBib290ZWQgd2l0aCBQQ0kgZ3JhcGhpY3MgY2Fy
-ZCBmaXJzdCBpbiBWR0EgdGV4dCBtb2RlLgo+IAo+IExvYWRpbmcgbm91dmVhdSBmcm9tIHRoZXJl
-IG9uIGNhdXNlcyB0aGUgZm9sbG93aW5nIEJVRywgYWZ0ZXIgd2hhdAo+IGtlcm5lbCBwcm9kdWNl
-cyB0cmFjZSBvdmVyIHRyYWNlIHVudGlsIG92ZXJmbG93aW5nIGl0cyBzdGFjay4KPiAodHJhY2Ug
-Y2FwdHVyZWQgdmlhIG5ldGNvbnNvbGUpCj4gCj4gWyAgMTU0LjMyMzcxN10gd21pOiBNYXBwZXIg
-bG9hZGVkCj4gWyAgMTU0LjczNTc5M10gbm91dmVhdSAwMDAwOjAyOjAwLjA6IGVuYWJsaW5nIGRl
-dmljZSAoMDAwNCAtPiAwMDA2KQo+IFsgIDE1NC43NDMxODldIEFDUEk6IFBDSSBJbnRlcnJ1cHQg
-TGluayBbTE5LNV0gZW5hYmxlZCBhdCBJUlEgMTYKPiBbICAxNTQuNzU0ODQ0XSBub3V2ZWF1ICBb
-ICBERVZJQ0VdWzAwMDA6MDI6MDAuMF0gQk9PVDAgIDogMHgwMWEwMDBiMQo+IFsgIDE1NC43NjEx
-MTFdIG5vdXZlYXUgIFsgIERFVklDRV1bMDAwMDowMjowMC4wXSBDaGlwc2V0OiBuRm9yY2UgKE5W
-MUEpCj4gWyAgMTU0Ljc2NzUzNF0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAyOjAwLjBdIEZh
-bWlseSA6IE5WMTAKPiBbICAxNTQuNzczOTE4XSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDI6
-MDAuMF0gY2hlY2tpbmcgUFJBTUlOIGZvciBpbWFnZS4uLgo+IFsgIDE1NC44MzIwOTNdIG5vdXZl
-YXUgIFsgICBWQklPU11bMDAwMDowMjowMC4wXSAuLi4gYXBwZWFycyB0byBiZSB2YWxpZAo+IFsg
-IDE1NC44Mzg2MjRdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMjowMC4wXSB1c2luZyBpbWFn
-ZSBmcm9tIFBSQU1JTgo+IFsgIDE1NC44NDUxNDZdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDow
-MjowMC4wXSBCTVAgdmVyc2lvbiA1LjE0Cj4gWyAgMTU0Ljg1MTMwMF0gbm91dmVhdSAgWyAgIFZC
-SU9TXVswMDAwOjAyOjAwLjBdIHZlcnNpb24gMDMuMWEuMDEuMDMuMDAKPiBbICAxNTQuODU3Nzg1
-XSBub3V2ZWF1IFdbICAgVkJJT1NdWzAwMDA6MDI6MDAuMF0gRENCIGNvbnRhaW5zIG5vIHVzZWZ1
-bCBkYXRhCj4gWyAgMTU0Ljg2NjIxNF0gbm91dmVhdSBXWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBd
-IERDQiBjb250YWlucyBubyB1c2VmdWwgZGF0YQo+IFsgIDE1NC44NzQ0NTZdIG5vdXZlYXUgV1sg
-ICBWQklPU11bMDAwMDowMjowMC4wXSBEQ0IgY29udGFpbnMgbm8gdXNlZnVsIGRhdGEKPiBbICAx
-NTQuODgxMzg2XSBub3V2ZWF1IFdbICAgVkJJT1NdWzAwMDA6MDI6MDAuMF0gRENCIGNvbnRhaW5z
-IG5vIHVzZWZ1bCBkYXRhCj4gWyAgMTU0Ljg4ODI3NF0gbm91dmVhdSAgWyBERVZJTklUXVswMDAw
-OjAyOjAwLjBdIGFkYXB0b3Igbm90IGluaXRpYWxpc2VkCj4gWyAgMTU0Ljg5NDc4OV0gbm91dmVh
-dSAgWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBdIHJ1bm5pbmcgaW5pdCB0YWJsZXMKPiBbICAxNTUu
-MDYwMTcxXSBub3V2ZWF1IFdbICBQVElNRVJdWzAwMDA6MDI6MDAuMF0gdW5rbm93biBpbnB1dCBj
-bG9jayBmcmVxCj4gWyAgMTU1LjA2NjgzMV0gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAyOjAw
-LjBdIFJBTSB0eXBlOiBzdG9sZW4gc3lzdGVtIG1lbW9yeQo+IFsgIDE1NS4wNzM5NjBdIG5vdXZl
-YXUgIFsgICAgIFBGQl1bMDAwMDowMjowMC4wXSBSQU0gc2l6ZTogMzIgTWlCCj4gWyAgMTU1LjA3
-OTg1N10gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAyOjAwLjBdICAgIFpDT01QOiAwIHRhZ3MK
-PiBbICAxNTUuMDkwOTAyXSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDI6MDAuMF0gLS06ICAg
-Cj4gWyAgMTU1LjA5NjAwMl0gLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tCj4g
-WyAgMTU1LjEwMDAwNF0ga2VybmVsIEJVRyBhdCAvdXNyL3NyYy9saW51eC1naXQvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL2V2ZW50LmM6NDIhCj4gCj4gVGhpcyBpcyBhIEJVR19P
-Tighc3Bpbl9pc19sb2NrZWQoJmV2ZW50LT5yZWZzX2xvY2spKQo+IAo+IElzIHRoYXQgYSB2YWxp
-ZCBjaGVjayBmb3IgQ09ORklHX1NNUD1uPwo+IEFzIGZhciBhcyBJIGtub3cgc3Bpbl9sb2NrcyBh
-cmUgTk9PUCBvbiBVUCBjb25maWdzLi4uIGFuZCBpbiB0aGUgcmVjZW50Cj4gcGFzdCB0aGF0IGtp
-bmQgb2YgdGVzdCBoYXMgYmVlbiBjb21wbGFpbmVkIGFib3V0IG9uIGxrbWwuCgpJdCB3YXMgbWF5
-YmUgZXZlbiBvbiBkcmktZGV2ZWwgSSBzYXcgaXQ6CiAgaHR0cHM6Ly9sa21sLm9yZy9sa21sLzIw
-MTQvOC8xMS80Cgo+IFsgIDE1NS4xMDAwMDRdIGludmFsaWQgb3Bjb2RlOiAwMDAwIFsjMV0gCj4g
-WyAgMTU1LjEwMDAwNF0gTW9kdWxlcyBsaW5rZWQgaW46IG5vdXZlYXUoKykgd21pIHR0bSBkcm1f
-a21zX2hlbHBlciBuZnN2MyBuZnNfYWNsIG5mcyBsb2NrZCBzdW5ycGMKPiBbICAxNTUuMTAwMDA0
-XSBDUFU6IDAgUElEOiAxNSBDb21tOiBrd29ya2VyLzA6MSBOb3QgdGFpbnRlZCAzLjE3LjAtcmMx
-LWp1cGl0ZXItMDAwMDItZ2VjMzBkZjQgIzYKPiBbICAxNTUuMTAwMDA0XSBIYXJkd2FyZSBuYW1l
-OiBOVklESUEgQ29ycG9yYXRpb24uIG5GT1JDRS1NQ1AvTVMtNjM3MywgQklPUyA2LjAwIFBHIDA0
-LzEyLzIwMDIKPiBbICAxNTUuMTAwMDA0XSBXb3JrcXVldWU6IGV2ZW50cyBub3V2ZWF1X3BzdGF0
-ZV93b3JrIFtub3V2ZWF1XQo+IFsgIDE1NS4xMDAwMDRdIHRhc2s6IGRkNDUxYzcwIHRpOiBkZDVj
-ODAwMCB0YXNrLnRpOiBkZDVjODAwMAo+IFsgIDE1NS4xMDAwMDRdIEVJUDogMDA2MDpbPGRlYTE5
-ZTEzPl0gRUZMQUdTOiAwMDAxMDA0NiBDUFU6IDAKPiBbICAxNTUuMTAwMDA0XSBFSVAgaXMgYXQg
-bnZrbV9ldmVudF9nZXQrMHgzLzB4MTAgW25vdXZlYXVdCj4gWyAgMTU1LjEwMDAwNF0gRUFYOiBk
-Y2Q0YzQ4NCBFQlg6IDAwMDAwMjg2IEVDWDogMDAwMDAwMDAgRURYOiAwMDAwMDAwMQo+IFsgIDE1
-NS4xMDAwMDRdIEVTSTogMDAwMDAwMDAgRURJOiBmZmZmZmZmZiBFQlA6IGRkNWM5ZWE4IEVTUDog
-ZGQ1YzllYTgKPiBbICAxNTUuMTAwMDA0XSAgRFM6IDAwN2IgRVM6IDAwN2IgRlM6IDAwMDAgR1M6
-IDAwZTAgU1M6IDAwNjgKPiBbICAxNTUuMTAwMDA0XSBDUjA6IDgwMDUwMDNiIENSMjogYjc3ZDkw
-MDAgQ1IzOiAxY2U4MzAwMCBDUjQ6IDAwMDAwN2QwCj4gWyAgMTU1LjEwMDAwNF0gU3RhY2s6Cj4g
-WyAgMTU1LjEwMDAwNF0gIGRkNWM5ZWI0IGRlYTFjYzkyIGRkNjk0ZDM0IGRkNWM5ZjA0IGRlYTJl
-M2I2IDAwMDAwMDAwIDAwMDAwMDA1IGRlYWUzZTY5Cj4gWyAgMTU1LjEwMDAwNF0gIGZmZmZmZmZm
-IDAwMDAwMDAxIGZmZmZmZmZmIGZmZmZmZmZmIGZmZmZmZmZmIDAwMDAwMDAwIDAwMDAwMDAwIGRk
-NDUxYzcwCj4gWyAgMTU1LjEwMDAwNF0gIGMwNWJjODIwIGZmZmZmZmZmIDAwMDAwMDAwIGRkNjk0
-YzYwIGRkNjk0ZDM0IDAwMDAwMDAwIGRkNWI4MDcwIGRkNWM5ZjQ0Cj4gWyAgMTU1LjEwMDAwNF0g
-Q2FsbCBUcmFjZToKPiBbICAxNTUuMTAwMDA0XSAgWzxkZWExY2M5Mj5dIG52a21fbm90aWZ5X2dl
-dCsweDMyLzB4NDAgW25vdXZlYXVdCj4gWyAgMTU1LjEwMDAwNF0gIFs8ZGVhMmUzYjY+XSBub3V2
-ZWF1X3BzdGF0ZV93b3JrKzB4Mzk2LzB4M2EwIFtub3V2ZWF1XQo+IFsgIDE1NS4xMDAwMDRdICBb
-PGMxMDQ3ZmE3Pl0gcHJvY2Vzc19vbmVfd29yaysweDFkNy8weDM0MAo+IFsgIDE1NS4xMDAwMDRd
-ICBbPGMxMDQ4NWJmPl0gd29ya2VyX3RocmVhZCsweDJhZi8weDM4MAo+IFsgIDE1NS4xMDAwMDRd
-ICBbPGMxMDQ4MzEwPl0gPyByZXNjdWVyX3RocmVhZCsweDFkMC8weDFkMAo+IFsgIDE1NS4xMDAw
-MDRdICBbPGMxMDQ4MzEwPl0gPyByZXNjdWVyX3RocmVhZCsweDFkMC8weDFkMAo+IFsgIDE1NS4x
-MDAwMDRdICBbPGMxMDRiZmE0Pl0ga3RocmVhZCsweGE0LzB4YjAKPiBbICAxNTUuMTAwMDA0XSAg
-WzxjMTRiNmMwMD5dIHJldF9mcm9tX2tlcm5lbF90aHJlYWQrMHgyMC8weDMwCj4gWyAgMTU1LjEw
-MDAwNF0gIFs8YzEwNGJmMDA+XSA/IGZsdXNoX2t0aHJlYWRfd29ya2VyKzB4NzAvMHg3MAo+IFsg
-IDE1NS4xMDAwMDRdIENvZGU6IDcxIGE5IGUyIDkwIDhkIDc0IDI2IDAwIDgzIGM0IDBjIDViIDVl
-IDVmIDVkIGMzIDY2IDkwIDY2IDkwIDY2IDkwIDY2IDkwIDU1IDg5IGU1IDBmIDBiIDhkIDc0IDI2
-IDAwIDhkIGJjIDI3IDAwIDAwIDAwIDAwIDU1IDg5IGU1IDwwZj4gMGIgOGQgNzQgCj4gWyAgMTU1
-LjEwMDAwNF0gRUlQOiBbPGRlYTE5ZTEzPl0gbnZrbV9ldmVudF9nZXQrMHgzLzB4MTAgW25vdXZl
-YXVdIFNTOkVTUCAwMDY4OmRkNWM5ZWE4Cj4gWyAgMTU1LjEwMDAwNF0gLS0tWyBlbmQgdHJhY2Ug
-NjE0MjE0N2IxZDNmZWQ0ZCBdLS0tCj4gCj4gdGhpbmdzIGdvIGRvd25oaWxsIGZyb20gaGVyZSBv
-bi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1764606415==
+Content-Type: multipart/alternative; boundary="1408913699.Eccc1.29259"; charset="us-ascii"
+
+
+--1408913699.Eccc1.29259
+Date: Sun, 24 Aug 2014 20:54:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=83021
+
+          Priority: medium
+            Bug ID: 83021
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Separate X screens --> Xvideo is vsynced to primary
+                    screen only
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: janjanjanx-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
+
+I use two separate X screens and Xvideo is vsynced only to the primary display.
+The DRM however supports syncing to secondary display as well (using
+_DRM_VBLANK_SECONDARY).
+I looked at the xf86-video-nouveau source, and it looks like it tries to
+determine on wich display the window is by using the window position (in the
+nv_window_belongs_to_crtc function). I think this method only works when there
+is one X screen assembled of two displays, but it does not work with two
+separate X screens.
+
+Linux 3.15.10, Xorg 1.16, xf86-video-nouveu 1.0.10
+GPU GTX 560Ti
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1408913699.Eccc1.29259
+Date: Sun, 24 Aug 2014 20:54:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Separate X screens --&gt; Xvideo is vsynced to primary screen only"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83021">83021</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Separate X screens --&gt; Xvideo is vsynced to primary screen only
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>janjanjanx&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I use two separate X screens and Xvideo is vsynced only to the primary display.
+The DRM however supports syncing to secondary display as well (using
+_DRM_VBLANK_SECONDARY).
+I looked at the xf86-video-nouveau source, and it looks like it tries to
+determine on wich display the window is by using the window position (in the
+nv_window_belongs_to_crtc function). I think this method only works when there
+is one X screen assembled of two displays, but it does not work with two
+separate X screens.
+
+Linux 3.15.10, Xorg 1.16, xf86-video-nouveu 1.0.10
+GPU GTX 560Ti</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1408913699.Eccc1.29259--
+
+--===============1764606415==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1764606415==--
