@@ -1,8 +1,8 @@
 From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH envytools] nvbios: Check if HWEA entry length ==
-	-1.
-Date: Mon, 25 Aug 2014 20:58:15 +0200
-Message-ID: <1408993096-18883-6-git-send-email-titan.costa@gmail.com>
+Subject: [PATCH envytools] Don't try to use bios->pars if NULL
+	(parse_pcir function has probably failed).
+Date: Mon, 25 Aug 2014 20:58:16 +0200
+Message-ID: <1408993096-18883-7-git-send-email-titan.costa@gmail.com>
 References: <1408993096-18883-1-git-send-email-titan.costa@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,28 +22,23 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 ---
- nvbios/bios.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ nvbios/info.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/nvbios/bios.c b/nvbios/bios.c
-index fac3840..ca8c54e 100644
---- a/nvbios/bios.c
-+++ b/nvbios/bios.c
-@@ -276,9 +276,14 @@ int envy_bios_parse (struct envy_bios *bios) {
- 					pos += 4;
- 					if (entry.type > 1)
- 						ENVY_BIOS_WARN("Unknown HWEA entry type %d\n", entry.type);
-+					if (entry.len == (uint32_t)-1) {
-+						/* Maybe this should be treated as for length == 0 */
-+						ENVY_BIOS_ERR("Invalid HWEA entry length %d\n", entry.len);
-+						break;
-+					}
- 				} else {
- 					entry.base = word & 0x1fffffc;
--					entry.type = word&3;
-+					entry.type = word & 3;
- 					switch (entry.type) {
- 						case 0:
- 						case 1:
+diff --git a/nvbios/info.c b/nvbios/info.c
+index 87a33d8..6b8d209 100644
+--- a/nvbios/info.c
++++ b/nvbios/info.c
+@@ -119,6 +119,10 @@ int envy_bios_parse_bit_i (struct envy_bios *bios, struct envy_bios_bit_entry *b
+ 			bios->chipset_name = "G72";
+ 			break;
+ 		case 0x0573:
++			if (!bios->parts) {
++				ENVY_BIOS_ERR("Failed to detect board (bios->pars is NULL, parse_pcir function has probably failed)\n");
++				break;
++			}
+ 			/* yeah, ain't this one hilarious... */
+ 			if ((bios->parts[0].pcir_device & 0xfff0) == 0x7e0) {
+ 				bios->chipset = 0x63;
 -- 
 1.9.1
