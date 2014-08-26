@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83079] [NVC0] Dota 2 under Wine freezes with Nouveau
 	Drivers
-Date: Tue, 26 Aug 2014 18:20:43 +0000
-Message-ID: <bug-83079-8800-Op9lA9TxE8@http.bugs.freedesktop.org/>
+Date: Tue, 26 Aug 2014 20:02:22 +0000
+Message-ID: <bug-83079-8800-mz4kr2p5JE@http.bugs.freedesktop.org/>
 References: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139423009=="
+Content-Type: multipart/mixed; boundary="===============0793168452=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,40 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139423009==
-Content-Type: multipart/alternative; boundary="1409077243.015f4ccE1.24213"; charset="us-ascii"
+--===============0793168452==
+Content-Type: multipart/alternative; boundary="1409083342.F1a173D20.32196"; charset="us-ascii"
 
 
---1409077243.015f4ccE1.24213
-Date: Tue, 26 Aug 2014 18:20:43 +0000
+--1409083342.F1a173D20.32196
+Date: Tue, 26 Aug 2014 20:02:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83079
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #4 from Luke <lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+@Ilia Mirkin
+I had a fresh, unused Kubuntu install on another partition, so I installed wine
+from ppa:ubuntu-wine/ppa and used the default Mesa version of Mesa 10.1.3. Dota
+2 froze at the same point, after I selected a hero. Steam also gives a 
+err:seh:setup_exception_record stack overflow 2128 bytes in thread 00ce eip
+7bc5e05a esp 46c40ae0 stack 0x46c40000-0x46c41000-0x46d40000 
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Dota 2 under Wine freezes   |[NVC0] Dota 2 under Wine
-                   |with Nouveau Drivers        |freezes with Nouveau
-                   |                            |Drivers
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #2)
-> Hardware: Primary Nvidia GTX 650, Secondary AMD HD 5750
-> 
-> Wine is from ppa:ubuntu-wine/ppa, so I'm not using gallium-nine.
-
-Could you use a build of mesa that doesn't have the gallium-nine patches
-applied? And/or see if older versions of mesa work OK?
+Another way to trigger this bug is by previewing an item from your armory or
+the store. Again this is with vanilla mesa with vanilla wine(no gallium-nine).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409077243.015f4ccE1.24213
-Date: Tue, 26 Aug 2014 18:20:43 +0000
+--1409083342.F1a173D20.32196
+Date: Tue, 26 Aug 2014 20:02:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,46 +56,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 under Wine freezes with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Dota 2 under Wine freezes with Nouveau Drivers
-           </td>
-           <td>[NVC0] Dota 2 under Wine freezes with Nouveau Drivers
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 under Wine freezes with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 under Wine freezes with Nouveau Drivers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:lukebenes&#64;hotmail.com" title="Luke &lt;lukebenes&#64;hotmail.com&gt;"> <span class="fn">Luke</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=83079#c2">comment #2</a>)
-<span class="quote">&gt; Hardware: Primary Nvidia GTX 650, Secondary AMD HD 5750
-&gt; 
-&gt; Wine is from ppa:ubuntu-wine/ppa, so I'm not using gallium-nine.</span >
+        <pre>&#64;Ilia Mirkin
+I had a fresh, unused Kubuntu install on another partition, so I installed wine
+from ppa:ubuntu-wine/ppa and used the default Mesa version of Mesa 10.1.3. Dota
+2 froze at the same point, after I selected a hero. Steam also gives a 
+err:seh:setup_exception_record stack overflow 2128 bytes in thread 00ce eip
+7bc5e05a esp 46c40ae0 stack 0x46c40000-0x46c41000-0x46d40000 
 
-Could you use a build of mesa that doesn't have the gallium-nine patches
-applied? And/or see if older versions of mesa work OK?</pre>
+Another way to trigger this bug is by previewing an item from your armory or
+the store. Again this is with vanilla mesa with vanilla wine(no gallium-nine).</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +89,9 @@ applied? And/or see if older versions of mesa work OK?</pre>
     </body>
 </html>
 
---1409077243.015f4ccE1.24213--
+--1409083342.F1a173D20.32196--
 
---===============0139423009==
+--===============0793168452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0139423009==--
+--===============0793168452==--
