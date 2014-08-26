@@ -1,15 +1,15 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH envytools] nva: Clean up nva tools doc
-Date: Mon, 25 Aug 2014 18:55:30 -0400
-Message-ID: <CAKb7Uvj4=vM0kSQB3npNyeMT3=AjMy6mTE5-iFu-ZqHpOCCq+g@mail.gmail.com>
+From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH envytools] demmio: Add decoding of some
+ MEM_TIMINGS registers for NVC0.
+Date: Tue, 26 Aug 2014 04:06:18 +0200
+Message-ID: <53FBEB9A.9000702@gmail.com>
 References: <1408993096-18883-1-git-send-email-titan.costa@gmail.com>
- <1408993096-18883-3-git-send-email-titan.costa@gmail.com>
- <53FBBA3F.50405@free.fr>
+ <53FBB903.7060900@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <53FBBA3F.50405-GANU6spQydw@public.gmane.org>
+In-Reply-To: <53FBB903.7060900-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,154 +19,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 25, 2014 at 6:35 PM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
+Le 26/08/2014 00:30, Martin Peres a =E9crit :
 > On 25/08/2014 20:58, Christian Costa wrote:
->>
->> - Sort commands by name for easier update
->> - Make more readable
->> - Remove no more existing commands
 >> ---
->>   nva/README | 83
->> +++++++++++++++++++++++++++++++++-----------------------------
->>   1 file changed, 44 insertions(+), 39 deletions(-)
+>>   rnndb/memory/nvc0_pbfb.xml | 37 ++++++++++++++++++++++++++++++++++---
+>>   1 file changed, 34 insertions(+), 3 deletions(-)
 >>
->> diff --git a/nva/README b/nva/README
->> index 625ea7c..d4347c5 100644
->> --- a/nva/README
->> +++ b/nva/README
->> @@ -3,7 +3,7 @@ registers.
->>     WARNING: these tools *can* and *will* hang your machine if you don't
->> know
->>   what you're doing. Hardware destruction is likely also possible,
->> although
->> -no incidents are known to have happened yet. In most cases it's also not
->> +no incident are known to have happened yet. In most cases it's also not
->
-> IIRC, "0" is considered plural in English. I'm sure Ilia or Ben could give
-> us
-> a more definitive answer on this :)
+>> diff --git a/rnndb/memory/nvc0_pbfb.xml b/rnndb/memory/nvc0_pbfb.xml
+>> index 500cea9..e006dbe 100644
+>> --- a/rnndb/memory/nvc0_pbfb.xml
+>> +++ b/rnndb/memory/nvc0_pbfb.xml
+>> @@ -49,23 +49,54 @@
+>>               Most bitfields are unknown.
+>>               </doc>
+>>           <bitfield high=3D"7" low=3D"0" name=3D"RP">
+>> -            <doc> RAS# precharge. </doc>
+>> +            <doc> RAS# Precharge. </doc>
+>>           </bitfield>
+>>           <bitfield high=3D"15" low=3D"8" name=3D"RAS">
+>> -            <doc>Activate to precharge delay. </doc>
+>> +            <doc> Activate to precharge delay. </doc>
+>>           </bitfield>
+>>           <bitfield high=3D"23" low=3D"16" name=3D"RFC">
+>>               <doc> Refresh to activate delay. </doc>
+>>           </bitfield>
+>>           <bitfield high=3D"31" low=3D"24" name=3D"RC">
+>> -            <doc> Row cycle time. </doc>
+>> +            <doc> Row Cycle time. </doc>
+>> +        </bitfield>
+>> +    </reg32>
+>> +
+>> +    <reg32 offset=3D"0x290" name=3D"MEM_TIMINGS_0" variants=3D"NVC0-">
+>> +        <doc> This, and the next 6 regs, are all related to memtimings.
+>> +            A good place to read might be =
 
-Without being definitive, I believe the old way was fine. The new way,
-however, is not. You could, alternatively say, "although no incident
-is known to have happened yet" -- pretty sure that'd be correct too.
+>> http://www.tweakers.fr/timings.html .
+>> +            Most bitfields are unknown.
+>> +            </doc>
+>> +        <bitfield high=3D"7" low=3D"0" name=3D"tRC">
+>> +            <doc> Row Cycle time. </doc>
+>> +        </bitfield>
+>> +        <bitfield high=3D"15" low=3D"8" name=3D"tRFC">
+>> +            <doc> Refresh to activate delay. </doc>
+>> +        </bitfield>
+>> +        <bitfield high=3D"23" low=3D"17" name=3D"tRAS">
+>> +            <doc> Activate to precharge delay. </doc>
+>> +        </bitfield>
+>> +        <bitfield high=3D"31" low=3D"24" name=3D"tRCD">
+>> +            <doc> RAS# to CAS# Delay. </doc>
+>>           </bitfield>
+>>       </reg32>
+>>         <reg32 offset=3D"0x294" name=3D"MEM_TIMINGS_1" variants=3D"NVC0-=
+">
+>> +        <bitfield high=3D"3" low=3D"0" name=3D"tCL">
+>> +            <doc> Row Cycle time. </doc>
+>> +        </bitfield>
+>> +        <bitfield high=3D"13" low=3D"7" name=3D"tCWL">
+>> +            <doc> CAS# Write Latency. </doc>
+>> +        </bitfield>
+>>       </reg32>
+>>         <reg32 offset=3D"0x298" name=3D"MEM_TIMINGS_2" variants=3D"NVC0-=
+">
+>> +        <bitfield high=3D"15" low=3D"8" name=3D"tWTR">
+>> +            <doc> Write To Read delay. </doc>
+>> +        </bitfield>
+>> +        <bitfield high=3D"23" low=3D"15" name=3D"tWR">
+>> +            <doc> Write Recovery time. </doc>
+>> +        </bitfield>
+>>       </reg32>
+>>         <reg32 offset=3D"0x29c" name=3D"MEM_TIMINGS_3" variants=3D"NVC0-=
+">
+>
+> Thanks for the patch but where did you get this knowledge? By =
 
->
->>   recommended to use these tools while a driver is active for a given
->> card.
->>     All programs except nvalist take an optional -c <card number>
->> parameter.
->> @@ -13,43 +13,48 @@ by the nvalist program.
->>     The programs are:
->>   -nvalist: prints a list of cards
->> -
->> -nvapeek <address> [<byte count>]: reads 32-bit MMIO register at
->> <address>.
->> -If byte count is also given, reads all registers in range [address,
->> address
->> -+ byte count).
->> -
->> -nvapeek8 <address> [<byte count>]: like nvapeek, but does 8-bit MMIO
->> accesses
->> -
->> -nvapoke <address> <value>: writes a 32-bit <value> to the MMIO register
->> at
->> -<address>.
->> -
->> -nvapoke8 <address> <value>: like nvapoke, but does 8-bit MMIO access
->> -
->> -nvawatch [-t] <address>: reads MMIO register at <address> in a loop,
->> prints
->> -the value every time it changes. If -t is specified, prints a timestamp
->> -and diff from the previous timestamp before the value. Never quits, needs
->> -to be manually aborted.
->> -
->> -nvahammer <address> <value>: like nvapoke, but repeats the write in
->> -an infinite loop. Needs to be manually aborted.
->> -
->> -nvagetbios [-s <extraction method>]: extracts the card's VBIOS using the
->> -method given as parameter and writes it to stdout. Method can be PROM or
->> -PRAMIN. If method is not given, defaults to something sensible.
->> -
->> -nvafuzz <address> [<byte count>]: writes random values to a register or
->> -a register range in an infinite loop. Needs to be manually aborted.
->> -
->> -nvascan [-as] <address> [<byte count>]: for each register in a range:
->> -read it, write 0xffffffff, read it, write 0, read it, write back the
->> -original value. Helpful to see the valid values for registers. If -s
->> option
->> -is passed, does a slow scan - waits and reads PMC.ID register between
->> scans
->> -to recover from errors caused by invalid register accesses. If -a option
->> -is passed, does a cross-test on all registers in the range to detect
->> aliased
->> -addresses [not particularly reliable].
->> -
->> -nvatiming: attempts to measure what frequency various units of the card
->> are
->> -running at by using misc tricks.
->> +nvafuzz <address> [<byte count>]
->> +    Writes random values to a register or
->> +    a register range in an infinite loop. Needs to be manually aborted.
->> +
->> +nvagetbios [-s <extraction method>]
->> +    Extracts the card's VBIOS using the
->> +    method given as parameter and writes it to stdout. Method can be PROM
->> or
->> +    PRAMIN. If method is not given, defaults to something sensible.
->> +
->> +nvahammer <address> <value>
->> +    Like nvapoke, but repeats the write in
->> +    an infinite loop. Needs to be manually aborted.
->> +
->> +nvalist
->> +    Prints a list of cards
->> +
->> +nvapeek <address> [<byte count>]
->> +    Reads 32-bit MMIO register at <address>.
->> +    If byte count is also given, reads all registers in range [address,
->> address
->> +    + byte count).
->> +
->> +nvapoke <address> <value>
->> +    Writes a 32-bit <value> to the MMIO register at
->> +    <address>.
->> +
->> +nvascan [-as] <address> [<byte count>]
->> +    For each register in a range:
->> +    read it, write 0xffffffff, read it, write 0, read it, write back the
->> +    original value. Helpful to see the valid values for registers. If -s
->> option
->> +    is passed, does a slow scan - waits and reads PMC.ID register between
->> scans
->> +    to recover from errors caused by invalid register accesses. If -a
->> option
->> +    is passed, does a cross-test on all registers in the range to detect
->> aliased
->> +    addresses [not particularly reliable].
->> +
->> +nvatiming
->> +    Attempts to measure what frequency various units of the card are
->> +    running at by using misc tricks.
->> +
->> +nvawatch [-t] <address>
->> +    Reads MMIO register at <address> in a loop, prints
->> +    the value every time it changes. If -t is specified, prints a
->> timestamp
->> +    and diff from the previous timestamp before the value. Never quits,
->> needs
->> +    to be manually aborted.
->>     [XXX: document the remaining tools]
->
-> Did you fix some spelling mistakes in while changing the order? I already
-> suck at
-> comparing lines that are one on top of the other, so I don't even want to
-> try checking!
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> comparing with nv50 and the vbios table?
+
+It's based on the code in nvbios.c:
+
+                         reg_100220 =3D (tRCD << 24 | (tRAS&0x7f) << 17 | =
+
+tRFC << 8 | tRC);
+                         reg_100224 =3D 0x4c << 24 | (tUNK_11&0x0f) << 20 =
+
+| (tCWL << 7) | (tCL & 0x0f);
+                         reg_100228 =3D 0x44000011 | tWR << 16 | tWTR << 8;
+                         reg_10022c =3D tUNK_20 << 9 | tUNK_13;
+                         reg_100230 =3D 0x42e00069 | tUNK_12 << 15;
+
+                         printf("Registers: 290: 0x%08x 0x%08x 0x%08x =
+
+0x%08x\n",
+                         reg_100220, reg_100224,
+                         reg_100228, reg_10022c);
+                         printf("           2a0: 0x%08x 0x%08x 0x%08x =
+
+0x%08x\n",
+                         reg_100230, reg_100234,
+                         reg_100238, reg_10023c);
