@@ -1,15 +1,11 @@
-From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH envytools] Don't try to use bios->pars if NULL
- (parse_pcir function has probably failed).
-Date: Tue, 26 Aug 2014 04:32:24 +0200
-Message-ID: <53FBF1B8.4010209@gmail.com>
-References: <1408993096-18883-1-git-send-email-titan.costa@gmail.com>	<1408993096-18883-7-git-send-email-titan.costa@gmail.com>
- <CAKb7UvhnRp55JtHgW7WOxmwUXWeUO_Ow4ub0LoGHWMhTx005rg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83079] New: Dota 2 under Wine freezes with Nouveau
+	Drivers
+Date: Tue, 26 Aug 2014 04:49:58 +0000
+Message-ID: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0665569930=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhnRp55JtHgW7WOxmwUXWeUO_Ow4ub0LoGHWMhTx005rg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,32 +15,192 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-TGUgMjUvMDgvMjAxNCAyMTowOSwgSWxpYSBNaXJraW4gYSDDqWNyaXQgOgo+IE9uIE1vbiwgQXVn
-IDI1LCAyMDE0IGF0IDI6NTggUE0sIENocmlzdGlhbiBDb3N0YSA8dGl0YW4uY29zdGFAZ21haWwu
-Y29tPiB3cm90ZToKPj4gLS0tCj4+ICAgbnZiaW9zL2luZm8uYyB8IDQgKysrKwo+PiAgIDEgZmls
-ZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykKPj4KPj4gZGlmZiAtLWdpdCBhL252Ymlvcy9pbmZv
-LmMgYi9udmJpb3MvaW5mby5jCj4+IGluZGV4IDg3YTMzZDguLjZiOGQyMDkgMTAwNjQ0Cj4+IC0t
-LSBhL252Ymlvcy9pbmZvLmMKPj4gKysrIGIvbnZiaW9zL2luZm8uYwo+PiBAQCAtMTE5LDYgKzEx
-OSwxMCBAQCBpbnQgZW52eV9iaW9zX3BhcnNlX2JpdF9pIChzdHJ1Y3QgZW52eV9iaW9zICpiaW9z
-LCBzdHJ1Y3QgZW52eV9iaW9zX2JpdF9lbnRyeSAqYgo+PiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgYmlvcy0+Y2hpcHNldF9uYW1lID0gIkc3MiI7Cj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICBicmVhazsKPj4gICAgICAgICAgICAgICAgICBjYXNlIDB4MDU3MzoKPj4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgaWYgKCFiaW9zLT5wYXJ0cykgewo+PiArICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgIEVOVllfQklPU19FUlIoIkZhaWxlZCB0byBkZXRlY3QgYm9hcmQgKGJpb3MtPnBh
-cnMgaXMgTlVMTCwgcGFyc2VfcGNpciBmdW5jdGlvbiBoYXMgcHJvYmFibHkgZmFpbGVkKVxuIik7
-Cj4gcGFydHMKT2suIEknbGwgYSByZXNlbmQgYSBwYXRjaC4gVGhhbmtzIQo+Cj4+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAg
-IH0KPj4gICAgICAgICAgICAgICAgICAgICAgICAgIC8qIHllYWgsIGFpbid0IHRoaXMgb25lIGhp
-bGFyaW91cy4uLiAqLwo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKChiaW9zLT5wYXJ0
-c1swXS5wY2lyX2RldmljZSAmIDB4ZmZmMCkgPT0gMHg3ZTApIHsKPj4gICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgYmlvcy0+Y2hpcHNldCA9IDB4NjM7Cj4+IC0tCj4+IDEuOS4xCj4+
-Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5v
-dXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0665569930==
+Content-Type: multipart/alternative; boundary="1409028598.e8DdEB0.1262"; charset="us-ascii"
+
+
+--1409028598.e8DdEB0.1262
+Date: Tue, 26 Aug 2014 04:49:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=83079
+
+          Priority: medium
+            Bug ID: 83079
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Dota 2 under Wine freezes with Nouveau Drivers
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: git
+         Component: Drivers/DRI/nouveau
+           Product: Mesa
+
+Steps to reproduce:
+1. Install Steam under Wine
+2. Launch Dota 2
+3. Start Bot match. Lock in a hero.
+Expected Results:
+Game starts
+
+Actual Results:
+Dota 2 will freeze with the following error in the Wine terminal:
+err:seh:setup_exception_record stack overflow 2160 bytes in thread 008b eip
+7bc5e05a esp 47cb0ac0 stack 0x47cb0000-0x47cb1000-0x47db0000
+
+tested with:
+wine-1.7.24
+OpenGL version string: 3.0 Mesa 10.4.0-devel (git-83503f9 2014-08-25
+trusty-oibaf-ppa+gallium-nine)
+
+Note if I reboot with the Nvidia proprietary drivers, Dota 2 runs flawlessly
+under Wine. Dota 2 also works under Wine with AMD catalyst drivers.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1409028598.e8DdEB0.1262
+Date: Tue, 26 Aug 2014 04:49:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Dota 2 under Wine freezes with Nouveau Drivers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">83079</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Dota 2 under Wine freezes with Nouveau Drivers
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>lukebenes&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Steps to reproduce:
+1. Install Steam under Wine
+2. Launch Dota 2
+3. Start Bot match. Lock in a hero.
+Expected Results:
+Game starts
+
+Actual Results:
+Dota 2 will freeze with the following error in the Wine terminal:
+err:seh:setup_exception_record stack overflow 2160 bytes in thread 008b eip
+7bc5e05a esp 47cb0ac0 stack 0x47cb0000-0x47cb1000-0x47db0000
+
+tested with:
+wine-1.7.24
+OpenGL version string: 3.0 Mesa 10.4.0-devel (git-83503f9 2014-08-25
+trusty-oibaf-ppa+gallium-nine)
+
+Note if I reboot with the Nvidia proprietary drivers, Dota 2 runs flawlessly
+under Wine. Dota 2 also works under Wine with AMD catalyst drivers.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1409028598.e8DdEB0.1262--
+
+--===============0665569930==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0665569930==--
