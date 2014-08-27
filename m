@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83079] [NVC0] Dota 2 under Wine freezes with Nouveau
 	Drivers
-Date: Wed, 27 Aug 2014 06:50:35 +0000
-Message-ID: <bug-83079-8800-TlULHVVi3o@http.bugs.freedesktop.org/>
+Date: Wed, 27 Aug 2014 15:32:29 +0000
+Message-ID: <bug-83079-8800-jUzMrYxKug@http.bugs.freedesktop.org/>
 References: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2118594339=="
+Content-Type: multipart/mixed; boundary="===============2075139041=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2118594339==
-Content-Type: multipart/alternative; boundary="1409122235.4Fe4Ca4C0.20769"; charset="us-ascii"
+--===============2075139041==
+Content-Type: multipart/alternative; boundary="1409153549.2efBCfC31.7253"; charset="us-ascii"
 
 
---1409122235.4Fe4Ca4C0.20769
-Date: Wed, 27 Aug 2014 06:50:35 +0000
+--1409153549.2efBCfC31.7253
+Date: Wed, 27 Aug 2014 15:32:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83079
 
---- Comment #6 from Luke <lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Ilia,
-Here is an apitrace:
-https://drive.google.com/file/d/0B0IXTmvH5HZZZW0zRFRIQzV4a0U/edit?usp=sharing
-
-Is there anything else I can do to help?
+--- Comment #7 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Aa a hint: Why dont you use the native Steam client? Dota2 is available there.
+If you can reproduce it there, we have at least spared one layer :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409122235.4Fe4Ca4C0.20769
-Date: Wed, 27 Aug 2014 06:50:35 +0000
+--1409153549.2efBCfC31.7253
+Date: Wed, 27 Aug 2014 15:32:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 under Wine freezes with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 under Wine freezes with Nouveau Drivers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:lukebenes&#64;hotmail.com" title="Luke &lt;lukebenes&#64;hotmail.com&gt;"> <span class="fn">Luke</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Ilia,
-Here is an apitrace:
-<a href="https://drive.google.com/file/d/0B0IXTmvH5HZZZW0zRFRIQzV4a0U/edit?usp=sharing">https://drive.google.com/file/d/0B0IXTmvH5HZZZW0zRFRIQzV4a0U/edit?usp=sharing</a>
-
-Is there anything else I can do to help?</pre>
+        <pre>Aa a hint: Why dont you use the native Steam client? Dota2 is available there.
+If you can reproduce it there, we have at least spared one layer :)</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +75,9 @@ Is there anything else I can do to help?</pre>
     </body>
 </html>
 
---1409122235.4Fe4Ca4C0.20769--
+--1409153549.2efBCfC31.7253--
 
---===============2118594339==
+--===============2075139041==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -94,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2118594339==--
+--===============2075139041==--
