@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83168] No display after suspend to RAM
-Date: Thu, 28 Aug 2014 00:27:38 +0000
-Message-ID: <bug-83168-8800-yOIsasrySf@http.bugs.freedesktop.org/>
+Subject: [Bug 83168] [NV46] No display after suspend to RAM
+Date: Thu, 28 Aug 2014 00:31:57 +0000
+Message-ID: <bug-83168-8800-XRlBtEfkIF@http.bugs.freedesktop.org/>
 References: <bug-83168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1399988637=="
+Content-Type: multipart/mixed; boundary="===============0981233542=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1399988637==
-Content-Type: multipart/alternative; boundary="1409185658.Ef2B1.27497"; charset="us-ascii"
+--===============0981233542==
+Content-Type: multipart/alternative; boundary="1409185917.84802.28593"; charset="us-ascii"
 
 
---1409185658.Ef2B1.27497
-Date: Thu, 28 Aug 2014 00:27:38 +0000
+--1409185917.84802.28593
+Date: Thu, 28 Aug 2014 00:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83168
 
---- Comment #1 from Neven Sajko <nsajko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-lspci output:
-VGA compatible controller: NVIDIA Corporation G72M [Quadro NVS 110M/GeForce Go
-7300] (rev a1) (prog-if 00 [VGA controller])
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-dmesg | grep -i chipset
-[    0.965969] nouveau  [  DEVICE][0000:01:00.0] Chipset: G72 (NV46)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|No display after suspend to |[NV46] No display after
+                   |RAM                         |suspend to RAM
 
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Has any kernel version worked for you? i.e. is this a recent regression, or was
+it always like this (or even worse)?
 
-Do I have to take a MMIO dump?
+0x6813c8 = PRMDIO.PAL_INDEX
+
+The 680* ones are in PRAMDAC but not documented in envytools...
+
+Weird that the core frequency gets detected as 200 after resume instead of 222
+as it was on start...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409185658.Ef2B1.27497
-Date: Thu, 28 Aug 2014 00:27:38 +0000
+--1409185917.84802.28593
+Date: Thu, 28 Aug 2014 00:31:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,28 +62,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV46] No display after suspend to RAM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>No display after suspend to RAM
+           </td>
+           <td>[NV46] No display after suspend to RAM
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168#c1">Comment # 1</a>
+   title="NEW --- - [NV46] No display after suspend to RAM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - No display after suspend to RAM"
+   title="NEW --- - [NV46] No display after suspend to RAM"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
-              from <span class="vcard"><a class="email" href="mailto:nsajko&#64;gmail.com" title="Neven Sajko &lt;nsajko&#64;gmail.com&gt;"> <span class="fn">Neven Sajko</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>lspci output:
-VGA compatible controller: NVIDIA Corporation G72M [Quadro NVS 110M/GeForce Go
-7300] (rev a1) (prog-if 00 [VGA controller])
+        <pre>Has any kernel version worked for you? i.e. is this a recent regression, or was
+it always like this (or even worse)?
 
-dmesg | grep -i chipset
-[    0.965969] nouveau  [  DEVICE][0000:01:00.0] Chipset: G72 (NV46)
+0x6813c8 = PRMDIO.PAL_INDEX
 
+The 680* ones are in PRAMDAC but not documented in envytools...
 
-Do I have to take a MMIO dump?</pre>
+Weird that the core frequency gets detected as 200 after resume instead of 222
+as it was on start...</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +115,9 @@ Do I have to take a MMIO dump?</pre>
     </body>
 </html>
 
---1409185658.Ef2B1.27497--
+--1409185917.84802.28593--
 
---===============1399988637==
+--===============0981233542==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +128,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1399988637==--
+--===============0981233542==--
