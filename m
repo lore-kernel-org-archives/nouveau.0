@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
- with Nouveau Drivers
-Date: Thu, 28 Aug 2014 17:59:05 +0000
-Message-ID: <bug-83079-8800-MNKR53jovv@http.bugs.freedesktop.org/>
-References: <bug-83079-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83168] [NV46] No display after suspend to RAM
+Date: Thu, 28 Aug 2014 18:52:15 +0000
+Message-ID: <bug-83168-8800-sUgOuNqdYn@http.bugs.freedesktop.org/>
+References: <bug-83168-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1210764555=="
+Content-Type: multipart/mixed; boundary="===============0606178622=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1210764555==
-Content-Type: multipart/alternative; boundary="1409248744.bE34E08a1.8447"; charset="us-ascii"
+--===============0606178622==
+Content-Type: multipart/alternative; boundary="1409251934.AdDDdD072.24372"; charset="us-ascii"
 
 
---1409248744.bE34E08a1.8447
-Date: Thu, 28 Aug 2014 17:59:04 +0000
+--1409251934.AdDDdD072.24372
+Date: Thu, 28 Aug 2014 18:52:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83079
+https://bugs.freedesktop.org/show_bug.cgi?id=83168
 
---- Comment #11 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-Debug result:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #7)
+> (In reply to comment #6)
+> > So... it worked in debian. What linux kernel was that with?
+> 
+> Sorry, I don't remember.
 
-Program received signal SIGSEGV, Segmentation fault.                            
-[Switching to Thread 0xde9afb40 (LWP 2840)]                                     
-0xf4b639d6 in nv50_ir::Graph::Node::reachableBy(nv50_ir::Graph::Node const*,
-nv50_ir::Graph::Node const*) const () from /usr/lib/dri/nouveau_dri.so
+OK. Well, the most likely way for you to get this resolved is to identify the
+kernel commit that caused the issue. In order to do that you need to find a
+kernel version that worked fine. Good candidates to try out are
 
+3.2
+3.6
+3.9
 
-
-Lets see if i can get the crashing shader out next...
+(IIRC 3.2 is what one of the debian versions likes to use, 3.6 is before 3.7
+which had a ton of changes, and 3.10 had a bunch as well iirc.) If any of those
+works, you need to do a bisect between that version and whatever the earliest
+kernel you're aware of that *doesn't* work. Hopefully it won't be some
+mega-change-everything commit.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409248744.bE34E08a1.8447
-Date: Thu, 28 Aug 2014 17:59:04 +0000
+--1409251934.AdDDdD072.24372
+Date: Thu, 28 Aug 2014 18:52:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,24 +70,33 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c11">Comment # 11</a>
+   title="NEW --- - [NV46] No display after suspend to RAM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+   title="NEW --- - [NV46] No display after suspend to RAM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Debug result:
+        <pre>(In reply to <a href="show_bug.cgi?id=83168#c7">comment #7</a>)
+<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=83168#c6">comment #6</a>)
+&gt; &gt; So... it worked in debian. What linux kernel was that with?
+&gt; 
+&gt; Sorry, I don't remember.</span >
 
-Program received signal SIGSEGV, Segmentation fault.                            
-[Switching to Thread 0xde9afb40 (LWP 2840)]                                     
-0xf4b639d6 in nv50_ir::Graph::Node::reachableBy(nv50_ir::Graph::Node const*,
-nv50_ir::Graph::Node const*) const () from /usr/lib/dri/nouveau_dri.so
+OK. Well, the most likely way for you to get this resolved is to identify the
+kernel commit that caused the issue. In order to do that you need to find a
+kernel version that worked fine. Good candidates to try out are
 
+3.2
+3.6
+3.9
 
-
-Lets see if i can get the crashing shader out next...</pre>
+(IIRC 3.2 is what one of the debian versions likes to use, 3.6 is before 3.7
+which had a ton of changes, and 3.10 had a bunch as well iirc.) If any of those
+works, you need to do a bisect between that version and whatever the earliest
+kernel you're aware of that *doesn't* work. Hopefully it won't be some
+mega-change-everything commit.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +108,9 @@ Lets see if i can get the crashing shader out next...</pre>
     </body>
 </html>
 
---1409248744.bE34E08a1.8447--
+--1409251934.AdDDdD072.24372--
 
---===============1210764555==
+--===============0606178622==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -104,4 +121,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1210764555==--
+--===============0606178622==--
