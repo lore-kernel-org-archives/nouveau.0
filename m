@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83168] [NV46] No display after suspend to RAM
-Date: Thu, 28 Aug 2014 00:31:57 +0000
-Message-ID: <bug-83168-8800-XRlBtEfkIF@http.bugs.freedesktop.org/>
-References: <bug-83168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
+ with Nouveau Drivers
+Date: Thu, 28 Aug 2014 01:19:02 +0000
+Message-ID: <bug-83079-8800-FyP9PSJTtI@http.bugs.freedesktop.org/>
+References: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0981233542=="
+Content-Type: multipart/mixed; boundary="===============0559185685=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0981233542==
-Content-Type: multipart/alternative; boundary="1409185917.84802.28593"; charset="us-ascii"
+--===============0559185685==
+Content-Type: multipart/alternative; boundary="1409188742.65bc25f71.12493"; charset="us-ascii"
 
 
---1409185917.84802.28593
-Date: Thu, 28 Aug 2014 00:31:57 +0000
+--1409188742.65bc25f71.12493
+Date: Thu, 28 Aug 2014 01:19:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83168
+https://bugs.freedesktop.org/show_bug.cgi?id=83079
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #10 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Mh, for me it does not hang, but crashes "back to desktop". (Native Linux
+Client)
+Nothing in dmesg, just a Memory Access Violation error.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|No display after suspend to |[NV46] No display after
-                   |RAM                         |suspend to RAM
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Has any kernel version worked for you? i.e. is this a recent regression, or was
-it always like this (or even worse)?
-
-0x6813c8 = PRMDIO.PAL_INDEX
-
-The 680* ones are in PRAMDAC but not documented in envytools...
-
-Weird that the core frequency gets detected as 200 after resume instead of 222
-as it was on start...
+Intel works fine...so something odd in nouveau/gallium.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409185917.84802.28593
-Date: Thu, 28 Aug 2014 00:31:57 +0000
+--1409188742.65bc25f71.12493
+Date: Thu, 28 Aug 2014 01:19:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,48 +52,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV46] No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>No display after suspend to RAM
-           </td>
-           <td>[NV46] No display after suspend to RAM
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168#c2">Comment # 2</a>
+   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Has any kernel version worked for you? i.e. is this a recent regression, or was
-it always like this (or even worse)?
+        <pre>Mh, for me it does not hang, but crashes &quot;back to desktop&quot;. (Native Linux
+Client)
+Nothing in dmesg, just a Memory Access Violation error.
 
-0x6813c8 = PRMDIO.PAL_INDEX
-
-The 680* ones are in PRAMDAC but not documented in envytools...
-
-Weird that the core frequency gets detected as 200 after resume instead of 222
-as it was on start...</pre>
+Intel works fine...so something odd in nouveau/gallium.</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +81,9 @@ as it was on start...</pre>
     </body>
 </html>
 
---1409185917.84802.28593--
+--1409188742.65bc25f71.12493--
 
---===============0981233542==
+--===============0559185685==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +94,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0981233542==--
+--===============0559185685==--
