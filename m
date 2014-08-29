@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
- with Nouveau Drivers
-Date: Fri, 29 Aug 2014 02:21:55 +0000
-Message-ID: <bug-83079-8800-OSpsUSBWuU@http.bugs.freedesktop.org/>
-References: <bug-83079-8800@http.bugs.freedesktop.org/>
+From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH envytools] Fix range end to the last value of
+ timing table.
+Date: Fri, 29 Aug 2014 04:25:04 +0200
+Message-ID: <53FFE480.4030003@gmail.com>
+References: <1408993207-19530-1-git-send-email-titan.costa@gmail.com>
+ <53FEE808.3020807@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1389428273=="
+Content-Type: text/plain; charset="windows-1252"; Format="flowed"
+Content-Transfer-Encoding: quoted-printable
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <53FEE808.3020807-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,76 +22,67 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Le 28/08/2014 10:27, Martin Peres a =E9crit :
+> On 25/08/2014 21:00, Christian Costa wrote:
+>> ---
+>>   nva/set_timings.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/nva/set_timings.c b/nva/set_timings.c
+>> index 7376486..985a707 100644
+>> --- a/nva/set_timings.c
+>> +++ b/nva/set_timings.c
+>> @@ -506,7 +506,7 @@ shallow_dump(struct nvamemtiming_conf *conf)
+>>       if (conf->range.start =3D=3D (unsigned char) -1)
+>>           conf->range.start =3D 0;
+>>       if (conf->range.end =3D=3D (unsigned char) -1)
+>> -        conf->range.end =3D conf->vbios.timing_entry_length;
+>> +        conf->range.end =3D conf->vbios.timing_entry_length-1;
+>>         fprintf(stderr, "Shallow mode: Will iterate between %i and =
 
---===============1389428273==
-Content-Type: multipart/alternative; boundary="1409278914.af1BfA61.3513"; charset="us-ascii"
+>> %i\n", conf->range.start, conf->range.end);
+> Hey
+>
+> I don't like this patch because it would create an output difference =
 
+> between the deep and the shallow test.
+> Please check and propose another patch.
+Hi Martin,
 
---1409278914.af1BfA61.3513
-Date: Fri, 29 Aug 2014 02:21:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Yes. You're right. I didn't pay attention to deep_dump.
+>
+>
+> What are you trying to fix by the way? You don't like that range.end =
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83079
+> is not included?
+>
+I got confused with the message and tought there was an out of the bound =
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like it goes into an infinite recursion in findFirstUses, which is used
-for doing the texture barrier thing (which is done for kepler+). Ugh.
-Unfortunately I'm not 100% sure what the desired logic of this thing is... this
-might take a little while to untangle.
+access.
+Looking more closely at the code says indeed that range.end is actually =
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+not included.
+It doesn't seem straitforward. At least to me. I would change the code =
 
---1409278914.af1BfA61.3513
-Date: Fri, 29 Aug 2014 02:21:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+to make range.end included to avoid confusion. What do you think?
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Looks like it goes into an infinite recursion in findFirstUses, which is used
-for doing the texture barrier thing (which is done for kepler+). Ugh.
-Unfortunately I'm not 100% sure what the desired logic of this thing is... this
-might take a little while to untangle.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+By the way, in deep_mode, crange.start and crange.end are calculated but =
 
---1409278914.af1BfA61.3513--
+not used at all. The loop iterates the whole entry:
+for (i =3D 0; i < conf->vbios.timing_entry_length; i++)
+Is it normal ?
 
---===============1389428273==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+While I am at it, I tried to understand what deep_mode does. Contrary to =
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+shallow_mode which tests the table value + 1, deep_mode tests
+all values between values of 2 entries. The code is as follows:
+     for (v =3D initial+1; v <=3D target; v++) {
+         conf->vbios.data[conf->vbios.timing_entry_offset + index] =3D v;
+         launch(conf, outf, index + 1 , COLOR);
+     }
+It works fine when initial value is lower than the target but does =
 
---===============1389428273==--
+nothing in the other case. Looks like a bug, no?
+
+Thanks
+Christian
