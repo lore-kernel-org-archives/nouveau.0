@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83244] [nvc3/Quadro2000M] external monitor not
  activated after resume (EDID checksum is invalid)
-Date: Fri, 29 Aug 2014 12:14:31 +0000
-Message-ID: <bug-83244-8800-ze7kTNdp1Q@http.bugs.freedesktop.org/>
+Date: Fri, 29 Aug 2014 12:16:15 +0000
+Message-ID: <bug-83244-8800-X64SBtQN5l@http.bugs.freedesktop.org/>
 References: <bug-83244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0408257275=="
+Content-Type: multipart/mixed; boundary="===============2071667186=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0408257275==
-Content-Type: multipart/alternative; boundary="1409314472.b1a51.29313"; charset="us-ascii"
+--===============2071667186==
+Content-Type: multipart/alternative; boundary="1409314575.AF46Ab1.29934"; charset="us-ascii"
 
 
---1409314472.b1a51.29313
-Date: Fri, 29 Aug 2014 12:14:32 +0000
+--1409314575.AF46Ab1.29934
+Date: Fri, 29 Aug 2014 12:16:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83244
 
---- Comment #2 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 105429
-  --> https://bugs.freedesktop.org/attachment.cgi?id=105429&action=edit
-'xrandr --verbose' output from nouveau 3.12
+--- Comment #3 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I forgot to note, that IIRC the last stable version is my nouveau 3.12 git
+kernel which I keep around to keep my work system going.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409314472.b1a51.29313
-Date: Fri, 29 Aug 2014 12:14:32 +0000
+--1409314575.AF46Ab1.29934
+Date: Fri, 29 Aug 2014 12:16:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvc3/Quadro2000M] external monitor not activated after resume (EDID checksum is invalid)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83244#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83244#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [nvc3/Quadro2000M] external monitor not activated after resume (EDID checksum is invalid)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83244">bug 83244</a>
               from <span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=105429" name="attach_105429" title="'xrandr --verbose' output from nouveau 3.12">attachment 105429</a> <a href="attachment.cgi?id=105429&amp;action=edit" title="'xrandr --verbose' output from nouveau 3.12">[details]</a></span>
-'xrandr --verbose' output from nouveau 3.12</pre>
+        <pre>I forgot to note, that IIRC the last stable version is my nouveau 3.12 git
+kernel which I keep around to keep my work system going.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1409314472.b1a51.29313--
+--1409314575.AF46Ab1.29934--
 
---===============0408257275==
+--===============2071667186==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +88,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0408257275==--
+--===============2071667186==--
