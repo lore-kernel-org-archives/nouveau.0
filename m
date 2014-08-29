@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
  with Nouveau Drivers
-Date: Fri, 29 Aug 2014 03:10:14 +0000
-Message-ID: <bug-83079-8800-pRvGqIcwo8@http.bugs.freedesktop.org/>
+Date: Fri, 29 Aug 2014 03:32:53 +0000
+Message-ID: <bug-83079-8800-juHjXZfkOH@http.bugs.freedesktop.org/>
 References: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1472586527=="
+Content-Type: multipart/mixed; boundary="===============0566651847=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1472586527==
-Content-Type: multipart/alternative; boundary="1409281814.1FD220Cd1.21704"; charset="us-ascii"
+--===============0566651847==
+Content-Type: multipart/alternative; boundary="1409283172.fBC35dB61.29841"; charset="us-ascii"
 
 
---1409281814.1FD220Cd1.21704
-Date: Fri, 29 Aug 2014 03:10:14 +0000
+--1409283172.fBC35dB61.29841
+Date: Fri, 29 Aug 2014 03:32:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83079
 
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 105404
-  --> https://bugs.freedesktop.org/attachment.cgi?id=105404&action=edit
-avoid infinite recursion in findFirstUses
-
-Does the attached patch help? Should apply to approximately any version of
-mesa. It looks like it somehow ends up getting into a loop. Probably due to all
-the merging that ends up getting done during RA and manually modifying the
-->defs (and uses?) lists. Not entirely sure though.
+--- Comment #16 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Mesa + avoid infinite recursion when finding first uses of tex patch
+successfully compiles now using nouveau_compiler, going to test it tomorrow i
+guess
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409281814.1FD220Cd1.21704
-Date: Fri, 29 Aug 2014 03:10:14 +0000
+--1409283172.fBC35dB61.29841
+Date: Fri, 29 Aug 2014 03:32:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,20 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=105404" name="attach_105404" title="avoid infinite recursion in findFirstUses">attachment 105404</a> <a href="attachment.cgi?id=105404&amp;action=edit" title="avoid infinite recursion in findFirstUses">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=83079&amp;attachment=105404'>[review]</a>
-avoid infinite recursion in findFirstUses
-
-Does the attached patch help? Should apply to approximately any version of
-mesa. It looks like it somehow ends up getting into a loop. Probably due to all
-the merging that ends up getting done during RA and manually modifying the
--&gt;defs (and uses?) lists. Not entirely sure though.</pre>
+        <pre>Mesa + avoid infinite recursion when finding first uses of tex patch
+successfully compiles now using nouveau_compiler, going to test it tomorrow i
+guess</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +77,9 @@ the merging that ends up getting done during RA and manually modifying the
     </body>
 </html>
 
---1409281814.1FD220Cd1.21704--
+--1409283172.fBC35dB61.29841--
 
---===============1472586527==
+--===============0566651847==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1472586527==--
+--===============0566651847==--
