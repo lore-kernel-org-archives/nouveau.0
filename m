@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
- with Nouveau Drivers
-Date: Fri, 29 Aug 2014 03:32:53 +0000
-Message-ID: <bug-83079-8800-juHjXZfkOH@http.bugs.freedesktop.org/>
-References: <bug-83079-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Fri, 29 Aug 2014 09:20:28 +0000
+Message-ID: <bug-70354-8800-vTjGcLZPuW@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0566651847=="
+Content-Type: multipart/mixed; boundary="===============1768723208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0566651847==
-Content-Type: multipart/alternative; boundary="1409283172.fBC35dB61.29841"; charset="us-ascii"
+--===============1768723208==
+Content-Type: multipart/alternative; boundary="1409304030.6f5dAA5.26832"; charset="us-ascii"
 
 
---1409283172.fBC35dB61.29841
-Date: Fri, 29 Aug 2014 03:32:52 +0000
+--1409304030.6f5dAA5.26832
+Date: Fri, 29 Aug 2014 09:20:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83079
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #16 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-Mesa + avoid infinite recursion when finding first uses of tex patch
-successfully compiles now using nouveau_compiler, going to test it tomorrow i
-guess
+--- Comment #30 from Karol Herbst <karolherbst-BUHhN+a2lJ4@public.gmane.org> ---
+I have the strange problem, that it sometimes seems to not happen. Uploading a
+kernel log file for that case. But every other 9 in 10 times I got this
+HUB_INIT timeout instead.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409283172.fBC35dB61.29841
-Date: Fri, 29 Aug 2014 03:32:52 +0000
+--1409304030.6f5dAA5.26832
+Date: Fri, 29 Aug 2014 09:20:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c16">Comment # 16</a>
+   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:karolherbst&#64;me.com" title="Karol Herbst &lt;karolherbst&#64;me.com&gt;"> <span class="fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Mesa + avoid infinite recursion when finding first uses of tex patch
-successfully compiles now using nouveau_compiler, going to test it tomorrow i
-guess</pre>
+        <pre>I have the strange problem, that it sometimes seems to not happen. Uploading a
+kernel log file for that case. But every other 9 in 10 times I got this
+HUB_INIT timeout instead.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ guess</pre>
     </body>
 </html>
 
---1409283172.fBC35dB61.29841--
+--1409304030.6f5dAA5.26832--
 
---===============0566651847==
+--===============1768723208==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0566651847==--
+--===============1768723208==--
