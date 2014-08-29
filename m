@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83168] [NV46] No display after suspend to RAM
-Date: Thu, 28 Aug 2014 18:52:15 +0000
-Message-ID: <bug-83168-8800-sUgOuNqdYn@http.bugs.freedesktop.org/>
-References: <bug-83168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83079] [NVC0] Dota 2 (Linux native and Wine) crash
+ with Nouveau Drivers
+Date: Fri, 29 Aug 2014 00:09:27 +0000
+Message-ID: <bug-83079-8800-A4e6PTfeC8@http.bugs.freedesktop.org/>
+References: <bug-83079-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0606178622=="
+Content-Type: multipart/mixed; boundary="===============0450079725=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83079-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,44 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0606178622==
-Content-Type: multipart/alternative; boundary="1409251934.AdDDdD072.24372"; charset="us-ascii"
+--===============0450079725==
+Content-Type: multipart/alternative; boundary="1409270967.4ac62bE1.25955"; charset="us-ascii"
 
 
---1409251934.AdDDdD072.24372
-Date: Thu, 28 Aug 2014 18:52:14 +0000
+--1409270967.4ac62bE1.25955
+Date: Fri, 29 Aug 2014 00:09:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83168
+https://bugs.freedesktop.org/show_bug.cgi?id=83079
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #7)
-> (In reply to comment #6)
-> > So... it worked in debian. What linux kernel was that with?
-> 
-> Sorry, I don't remember.
+--- Comment #12 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Created attachment 105398
+  --> https://bugs.freedesktop.org/attachment.cgi?id=105398&action=edit
+The Crashing shader
 
-OK. Well, the most likely way for you to get this resolved is to identify the
-kernel commit that caused the issue. In order to do that you need to find a
-kernel version that worked fine. Good candidates to try out are
+Ok, got the shader!
 
-3.2
-3.6
-3.9
+nouveau_compiler does not talk much sadly:
 
-(IIRC 3.2 is what one of the debian versions likes to use, 3.6 is before 3.7
-which had a ton of changes, and 3.10 had a bunch as well iirc.) If any of those
-works, you need to do a bisect between that version and whatever the earliest
-kernel you're aware of that *doesn't* work. Hopefully it won't be some
-mega-change-everything commit.
+~/> ...
+Compiling for NVC0
+~/>
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409251934.AdDDdD072.24372
-Date: Thu, 28 Aug 2014 18:52:14 +0000
+--1409270967.4ac62bE1.25955
+Date: Fri, 29 Aug 2014 00:09:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,33 +63,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168#c8">Comment # 8</a>
+   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV46] No display after suspend to RAM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83168">bug 83168</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NVC0] Dota 2 (Linux native and Wine) crash with Nouveau Drivers"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83079">bug 83079</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=83168#c7">comment #7</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=83168#c6">comment #6</a>)
-&gt; &gt; So... it worked in debian. What linux kernel was that with?
-&gt; 
-&gt; Sorry, I don't remember.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=105398" name="attach_105398" title="The Crashing shader">attachment 105398</a> <a href="attachment.cgi?id=105398&amp;action=edit" title="The Crashing shader">[details]</a></span>
+The Crashing shader
 
-OK. Well, the most likely way for you to get this resolved is to identify the
-kernel commit that caused the issue. In order to do that you need to find a
-kernel version that worked fine. Good candidates to try out are
+Ok, got the shader!
 
-3.2
-3.6
-3.9
+nouveau_compiler does not talk much sadly:
 
-(IIRC 3.2 is what one of the debian versions likes to use, 3.6 is before 3.7
-which had a ton of changes, and 3.10 had a bunch as well iirc.) If any of those
-works, you need to do a bisect between that version and whatever the earliest
-kernel you're aware of that *doesn't* work. Hopefully it won't be some
-mega-change-everything commit.</pre>
+~/&gt; ...
+Compiling for NVC0
+~/&gt;</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +92,9 @@ mega-change-everything commit.</pre>
     </body>
 </html>
 
---1409251934.AdDDdD072.24372--
+--1409270967.4ac62bE1.25955--
 
---===============0606178622==
+--===============0450079725==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0606178622==--
+--===============0450079725==--
