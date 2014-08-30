@@ -1,14 +1,12 @@
 From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH envytools] nvbios: Truncate nb of entries to avoid
-	displaying garbage
-Date: Sat, 30 Aug 2014 19:05:17 +0200
-Message-ID: <1409418318-31648-2-git-send-email-titan.costa@gmail.com>
-References: <1409418318-31648-1-git-send-email-titan.costa@gmail.com>
+Subject: [PATCH envytools] nvbios: Fix reading of
+	ram_restrict_group_count.
+Date: Sat, 30 Aug 2014 19:05:16 +0200
+Message-ID: <1409418318-31648-1-git-send-email-titan.costa@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1409418318-31648-1-git-send-email-titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,22 +19,29 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-We return an error but this does not prevent the display so just make sure only valid data are printed.
+The entry offset was use instead of the data it points to. Probably a regression.
+The files showing script parsing errors has been reduced from 410 to 6 with the database of 505 vbios.
 ---
- nvbios/mem.c | 1 +
- 1 file changed, 1 insertion(+)
+ nvbios/mem.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/nvbios/mem.c b/nvbios/mem.c
-index e4797e3..00f5cd5 100644
+index 81f2d1b..e4797e3 100644
 --- a/nvbios/mem.c
 +++ b/nvbios/mem.c
-@@ -112,6 +112,7 @@ envy_bios_parse_mem_train (struct envy_bios *bios) {
- 		entry->offset = mt->offset + mt->hlen + ((mt->rlen + mt->subentries * mt->subentrylen) * i);
- 		err |= bios_u8(bios, entry->offset, &entry->u00);
- 		if (mt->subentries > sizeof(entry->subentry)) {
-+			mt->subentries = sizeof(entry->subentry);
- 			ENVY_BIOS_ERR("Error when parsing mem train: subentries = %d > %lu\n", mt->subentries, sizeof(entry->subentry));
- 			return -EFAULT;
+@@ -232,11 +232,11 @@ envy_bios_parse_bit_M (struct envy_bios *bios, struct envy_bios_bit_entry *bit)
+ 
+ 	if (bit->version == 1) {
+ 		if (bit->t_len >= 5) {
+-			bios_u8(bios, bit->offset+2, &ram_restrict_group_count);
++			bios_u8(bios, bit->t_offset+2, &ram_restrict_group_count);
  		}
+ 	} else if (bit->version == 2) {
+ 		if (bit->t_len >= 3) {
+-			bios_u8(bios, bit->offset, &ram_restrict_group_count);
++			bios_u8(bios, bit->t_offset, &ram_restrict_group_count);
+ 		}
+ 	}
+ 
 -- 
 1.9.1
