@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83271] [NVE7] Windowed mode causes framebuffer not
  to refresh with PRIME on optimus/kepler discrete GPU
-Date: Sat, 30 Aug 2014 18:23:39 +0000
-Message-ID: <bug-83271-8800-4BDWdeGzEq@http.bugs.freedesktop.org/>
+Date: Sat, 30 Aug 2014 18:35:43 +0000
+Message-ID: <bug-83271-8800-3hO7C2U4o2@http.bugs.freedesktop.org/>
 References: <bug-83271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0452181659=="
+Content-Type: multipart/mixed; boundary="===============0133541312=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,100 +21,73 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0452181659==
-Content-Type: multipart/alternative; boundary="1409423018.41071422.23348"; charset="us-ascii"
+--===============0133541312==
+Content-Type: multipart/alternative; boundary="1409423743.5cCFdc311.27570"; charset="us-ascii"
 
 
---1409423018.41071422.23348
-Date: Sat, 30 Aug 2014 18:23:38 +0000
+--1409423743.5cCFdc311.27570
+Date: Sat, 30 Aug 2014 18:35:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83271
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83271
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Dimitri Sabadie <dimitri.sabadie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes, I=E2=80=99m running cinnamon, and I installed xcompmgr (and it=E2=80=
+=99s running when I=E2=80=99m
+trying the glxspheres64 executable).
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Windowed mode causes        |[NVE7] Windowed mode causes
-                   |framebuffer not to refresh  |framebuffer not to refresh
-                   |with PRIME on               |with PRIME on
-                   |optimus/kepler discrete GPU |optimus/kepler discrete GPU
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Are you using a compositor? Are you using kwin?
-
-In order for prime to work, you must use a compositor. There are also reports
-of kwin occasionally ending up with black windows, which you can fix by
-minimizing and restoring the window. (Although that's not the issue in the
-screenshot.)
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409423018.41071422.23348
-Date: Sat, 30 Aug 2014 18:23:38 +0000
+--1409423743.5cCFdc311.27570
+Date: Sat, 30 Aug 2014 18:35:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE7] Windowed mode causes framebuffer not to refresh with PRIME on optimus/kepler discrete GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83271">bug 83271</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Windowed mode causes framebuffer not to refresh with PRIME on optimus/kepler discrete GPU
-           </td>
-           <td>[NVE7] Windowed mode causes framebuffer not to refresh with PRIME on optimus/kepler discrete GPU
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE7] Windowed mode causes framebuffer not to refresh with PRIME on optimus/kepler discrete GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83271#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVE7] Windowed mode causes framebuffer not to refres=
+h with PRIME on optimus/kepler discrete GPU"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83271#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE7] Windowed mode causes framebuffer not to refresh with PRIME on optimus/kepler discrete GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83271">bug 83271</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - [NVE7] Windowed mode causes framebuffer not to refres=
+h with PRIME on optimus/kepler discrete GPU"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83271">bug 83271<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+dimitri.sabadie&#64;gmail.com" title=3D"Dimitri Sabadie &lt;dimitri.sabadie=
+&#64;gmail.com&gt;"> <span class=3D"fn">Dimitri Sabadie</span></a>
 </span></b>
-        <pre>Are you using a compositor? Are you using kwin?
-
-In order for prime to work, you must use a compositor. There are also reports
-of kwin occasionally ending up with black windows, which you can fix by
-minimizing and restoring the window. (Although that's not the issue in the
-screenshot.)</pre>
+        <pre>Yes, I=E2=80=99m running cinnamon, and I installed xcompmgr (a=
+nd it=E2=80=99s running when I=E2=80=99m
+trying the glxspheres64 executable).</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1409423018.41071422.23348--
+--1409423743.5cCFdc311.27570--
 
---===============0452181659==
+--===============0133541312==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,4 +98,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0452181659==--
+--===============0133541312==--
