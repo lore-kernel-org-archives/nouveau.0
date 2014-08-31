@@ -1,7 +1,8 @@
 From: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH envytools] nvamemtiming: Update usage.
-Date: Sun, 31 Aug 2014 15:00:41 +0200
-Message-ID: <1409490042-8725-3-git-send-email-titan.costa@gmail.com>
+Subject: [PATCH envytools] nvamemtiming: Handle target < initial
+	case when iterating values
+Date: Sun, 31 Aug 2014 15:00:42 +0200
+Message-ID: <1409490042-8725-4-git-send-email-titan.costa@gmail.com>
 References: <1409490042-8725-1-git-send-email-titan.costa@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -20,22 +21,33 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Otherwise some values are not tested at all.
 ---
- nva/nvamemtiming.c | 2 ++
- 1 file changed, 2 insertions(+)
+ nva/set_timings.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/nva/nvamemtiming.c b/nva/nvamemtiming.c
-index 4468f81..75c6e49 100644
---- a/nva/nvamemtiming.c
-+++ b/nva/nvamemtiming.c
-@@ -51,6 +51,8 @@ void usage(int argc, char **argv)
- 	fprintf(stderr, "\t-e: Only modify the specified index (to be used with -v)\n");
- 	fprintf(stderr, "\t-v: Set the specified value to the specified entry\n");
- 	fprintf(stderr, "\t-b index: Consider the specified index as a bitfield and RE it\n");
-+	fprintf(stderr, "\t-s index: Specify range start in timing entry (Deep & Shallow modes)\n");
-+	fprintf(stderr, "\t-f index: Specify range end in timing entry (Deep & Shallow modes)\n");
- 	fprintf(stderr, "\t-d timing_entry_high: For each indexes, iterate between the timing_entry and the timing_entry_high value (Deep mode)\n");
- 	exit(-1);
- }
+diff --git a/nva/set_timings.c b/nva/set_timings.c
+index 6cd831c..7a8f845 100644
+--- a/nva/set_timings.c
++++ b/nva/set_timings.c
+@@ -408,7 +408,7 @@ static void
+ iterate_values(struct nvamemtiming_conf *conf, FILE *outf, uint8_t index, enum color color)
+ {
+ 	uint8_t initial, target;
+-	int v;
++	int v, incr;
+ 
+ 	if (conf->mode != MODE_DEEP)
+ 		return;
+@@ -416,7 +416,8 @@ iterate_values(struct nvamemtiming_conf *conf, FILE *outf, uint8_t index, enum c
+ 	initial = conf->vbios.data[conf->vbios.timing_entry_offset + index];
+ 	target = conf->vbios.data[conf->deep.timing_entry_offset + index];
+ 
+-	for (v = initial+1; v <= target; v++) {
++	incr = target > initial ? 1 : -1;
++	for (v = initial+incr; v != target+incr; v+=incr) {
+ 		conf->vbios.data[conf->vbios.timing_entry_offset + index] = v;
+ 		launch(conf, outf, index + 1 , COLOR);
+ 	}
 -- 
 1.9.1
