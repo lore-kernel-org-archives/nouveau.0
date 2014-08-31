@@ -1,77 +1,66 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH envytools] nvamemtiming: Handle target <
- initial case when iterating values
-Date: Sun, 31 Aug 2014 17:38:29 +0200
-Message-ID: <54034175.7060800@free.fr>
-References: <1409490042-8725-1-git-send-email-titan.costa@gmail.com>
- <1409490042-8725-4-git-send-email-titan.costa@gmail.com>
- <54031F56.4070906@free.fr> <54032AB3.3000508@gmail.com>
- <54032D11.1000601@free.fr> <54032F00.6000500@gmail.com>
- <54032FE2.7020602@free.fr> <54033CAC.7020001@gmail.com>
- <54033D47.40902@gmail.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [Mesa-stable] [PATCH 2/2] nv50: zero out unbound
+	samplers
+Date: Sun, 31 Aug 2014 19:11:48 +0100
+Message-ID: <54036564.2000903@gmail.com>
+References: <1409436150-5979-1-git-send-email-imirkin@alum.mit.edu>	<1409436150-5979-2-git-send-email-imirkin@alum.mit.edu>	<54025E9F.507@gmail.com>	<CAKb7Uvj33_6ztqaHiW6ip5J9B93kCUGRw8-gdDzgSdvmc5JYcA@mail.gmail.com>	<540267BB.8000309@gmail.com>
+ <CAKb7UvicAYYzQpz2M=Yy7LPAG8ojPTjLzDs-ChhLY50NtbRvtw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="windows-1252"; Format="flowed"
-Content-Transfer-Encoding: quoted-printable
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54033D47.40902-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvicAYYzQpz2M=Yy7LPAG8ojPTjLzDs-ChhLY50NtbRvtw@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, emil.l.velikov@gmail.com, "10.2 10.3" <mesa-stable@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-On 31/08/2014 17:20, Christian Costa wrote:
-> Le 31/08/2014 17:18, Christian Costa a =E9crit :
->> Le 31/08/2014 16:23, Martin Peres a =E9crit :
->>> On 31/08/2014 16:19, Christian Costa wrote:
->>>> Le 31/08/2014 16:11, Martin Peres a =E9crit :
->>>>> On 31/08/2014 16:01, Christian Costa wrote:
->>>>>> Le 31/08/2014 15:12, Martin Peres a =E9crit :
->>>>>>> On 31/08/2014 15:00, Christian Costa wrote:
->>>>>>>> Otherwise some values are not tested at all.
->>>>>>> I would rather have a warning than the program doing stuff =
-
->>>>>>> behind my back. This is a dev tool, dumb =3D=3D good ;)
->>>>>>>
->>>>>> But why didn't you call it Dumb mode rather that Deep mode. That =
-
->>>>>> way, I wouldn't have tried to use it and figure out what it does. ;p
+On 31/08/14 01:13, Ilia Mirkin wrote:
+> On Sat, Aug 30, 2014 at 8:09 PM, Emil Velikov <emil.l.velikov@gmail.com> wrote:
+>> On 31/08/14 00:34, Ilia Mirkin wrote:
+>>> On Sat, Aug 30, 2014 at 7:30 PM, Emil Velikov <emil.l.velikov@gmail.com> wrote:
+>>>> On 30/08/14 23:02, Ilia Mirkin wrote:
+>>>>> Samplers are only defined up to num_samplers, so set all samplers above
+>>>>> nr to NULL so that we don't try to read them again later.
 >>>>>
->>>>> Target is supposed to be higher than initial! Initial =3D=3D minimum =
-
->>>>> safe timing.
->>>>>
->>>>> You just reversed the order, try:
->>>>> sudo nvamemtiming pramin 0x6a22 5 0 -d 3
->>>>>
->>>> Ok. It's intended then. Thanks!
+>>>> Would it be worth doing a similar thing with the unlocked samplers below the
+>>>> nr mark ? It seems to me that we might be leaking nv50->samplers[s][i], or
+>>>> perhaps I'm missing something ?
 >>>
->>> I totally agree that this tool is a little confusing. If you have =
-
->>> suggestions on how to improve the usage doc, feel free to propose me =
-
->>> something better :)
+>>> Can you elaborate? sampler_state_create/delete deal with allocation
+>>> and deallocation. samplers starts out as NULL. I'm just making sure
+>>> that a subsequent call with a larger number of samplers doesn't try to
+>>> unlock potentially-deleted samplers.
 >>>
->>> fprintf(stderr, "\t-d timing_entry_high: For each indexes, iterate =
+>>
+>>    for (i = 0; i < nr; ++i) {
+>>       struct nv50_tsc_entry *old = nv50->samplers[s][i];
+>>
+>>       nv50->samplers[s][i] = nv50_tsc_entry(hwcso[i]);
+>>       if (old)
+>>          nv50_screen_tsc_unlock(nv50->screen, old);
+>>    }
+>>
+>> In the above hunk we get the old/current tsc, drop in on the floor and assign
+>> the new one in it's place. Does where does the ST keep track of the old one in
+>> order to nuke it via sampler_state_delete, or is it already deleted by the
+>> time we get here ?
+> 
+> It's the st's job to do this. It creates the samplers, and it deletes
+> them. Binding is merely setting which samplers map to which slots.
+> 
+It seemed to me that the driver was doing some of the "heavy lifting", so I
+was a bit confused. Thanks for the clarification.
 
->>> between the timing_entry and the timing_entry_high value (Deep =
+-Emil
 
->>> mode)\n");
->>>
->>> Speaking about this, this should be corrected to "For each index", =
-
->>> no plural after each. I'll fix it right now.
->>>
->> Ok. I will think about it.
->> Some comments in the source code can help also to know what it does =
-
->> and what it is used for. Same for README.
-> Btw, the plural of index is indices.
-
-Yeah, it was doubly wrong ;)
+>   -ilia
+> 
