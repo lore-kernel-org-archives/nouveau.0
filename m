@@ -1,212 +1,124 @@
-From: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
-Subject: [PATCH] nv50/ir: use unordered_set instead of list to
-	keep track of var defs
-Date: Mon,  1 Sep 2014 20:30:28 +0200
-Message-ID: <1409596228-21159-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82255] [VP2] Chroma planes are vertically stretched
+ during VDPAU playback
+Date: Mon, 01 Sep 2014 22:53:04 +0000
+Message-ID: <bug-82255-8800-NJ4SOqo90t@http.bugs.freedesktop.org/>
+References: <bug-82255-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1977152400=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-The set of variable defs does not need to be ordered in any way, and
-removing/adding elements is a fairly common operation in various
-optimization passes.
 
-This shortens runtime of piglit test fp-long-alu to ~11s from ~22s
+--===============1977152400==
+Content-Type: multipart/alternative; boundary="1409611984.C78EC1.1473"; charset="us-ascii"
 
-No piglit regressions observed on nvc0!
 
-Signed-off-by: Tobias Klausmann <tobias.johannes.klausmann@mni.thm.de>
----
- src/gallium/drivers/nouveau/codegen/nv50_ir.cpp    |  4 ++--
- src/gallium/drivers/nouveau/codegen/nv50_ir.h      |  7 +++---
- .../drivers/nouveau/codegen/nv50_ir_inlines.h      | 25 ++++++++++++++++------
- .../nouveau/codegen/nv50_ir_lowering_nv50.cpp      |  4 ++--
- src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp | 11 +++++-----
- 5 files changed, 31 insertions(+), 20 deletions(-)
+--1409611984.C78EC1.1473
+Date: Mon, 1 Sep 2014 22:53:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
-index ca3c806..3138118 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.cpp
-@@ -154,9 +154,9 @@ ValueDef::set(Value *defVal)
-    if (value == defVal)
-       return;
-    if (value)
--      value->defs.remove(this);
-+      value->defs.erase(this);
-    if (defVal)
--      defVal->defs.push_back(this);
-+      defVal->defs.insert(this);
- 
-    value = defVal;
- }
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir.h b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
-index 0ff5e5d..ec80796 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir.h
-@@ -567,6 +567,7 @@ public:
- 
-    inline Value *rep() const { return join; }
- 
-+   inline Instruction *findOwnDefInsn() const;
-    inline Instruction *getUniqueInsn() const;
-    inline Instruction *getInsn() const; // use when uniqueness is certain
- 
-@@ -583,11 +584,11 @@ public:
-    static inline Value *get(Iterator&);
- 
-    std::tr1::unordered_set<ValueRef *> uses;
--   std::list<ValueDef *> defs;
-+   std::tr1::unordered_set<ValueDef *> defs;
-    typedef std::tr1::unordered_set<ValueRef *>::iterator UseIterator;
-    typedef std::tr1::unordered_set<ValueRef *>::const_iterator UseCIterator;
--   typedef std::list<ValueDef *>::iterator DefIterator;
--   typedef std::list<ValueDef *>::const_iterator DefCIterator;
-+   typedef std::tr1::unordered_set<ValueDef *>::iterator DefIterator;
-+   typedef std::tr1::unordered_set<ValueDef *>::const_iterator DefCIterator;
- 
-    int id;
-    Storage reg;
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_inlines.h b/src/gallium/drivers/nouveau/codegen/nv50_ir_inlines.h
-index 255324f..e9c6c21 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_inlines.h
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_inlines.h
-@@ -205,19 +205,25 @@ const LValue *ValueDef::preSSA() const
- 
- Instruction *Value::getInsn() const
- {
--   return defs.empty() ? NULL : defs.front()->getInsn();
-+   return defs.empty() ? NULL : (*defs.begin())->getInsn();
-+}
-+
-+Instruction *Value::findOwnDefInsn() const
-+{
-+   for (DefCIterator it = defs.begin(); it != defs.end(); ++it)
-+      if ((*it)->get() == this)
-+         return (*it)->getInsn();
-+   /* should be unreachable */
-+   return NULL;
- }
- 
- Instruction *Value::getUniqueInsn() const
- {
-    if (defs.empty())
-       return NULL;
--
-    // after regalloc, the definitions of coalesced values are linked
-    if (join != this) {
--      for (DefCIterator it = defs.begin(); it != defs.end(); ++it)
--         if ((*it)->get() == this)
--            return (*it)->getInsn();
-+      return findOwnDefInsn();
-       // should be unreachable and trigger assertion at the end
-    }
- #ifdef DEBUG
-@@ -230,8 +236,13 @@ Instruction *Value::getUniqueInsn() const
-          WARN("value %%%i not uniquely defined\n", id); // return NULL ?
-    }
- #endif
--   assert(defs.front()->get() == this);
--   return defs.front()->getInsn();
-+
-+   /* It is not guaranteed that this is the first in the set, lets find it */
-+   if ((*defs.begin())->get() != this) {
-+      return findOwnDefInsn();
-+   }
-+   assert((*defs.begin())->get() == this);
-+   return (*defs.begin())->getInsn();
- }
- 
- inline bool Instruction::constrainedDefs() const
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-index e283424..f13e0d4 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nv50.cpp
-@@ -211,7 +211,7 @@ NV50LegalizePostRA::visit(Function *fn)
-    if (outWrites) {
-       for (std::list<Instruction *>::iterator it = outWrites->begin();
-            it != outWrites->end(); ++it)
--         (*it)->getSrc(1)->defs.front()->getInsn()->setDef(0, (*it)->getSrc(0));
-+         (*(*it)->getSrc(1)->defs.begin())->getInsn()->setDef(0, (*it)->getSrc(0));
-       // instructions will be deleted on exit
-       outWrites->clear();
-    }
-@@ -343,7 +343,7 @@ NV50LegalizeSSA::propagateWriteToOutput(Instruction *st)
-       return;
- 
-    // check def instruction can store
--   Instruction *di = st->getSrc(1)->defs.front()->getInsn();
-+   Instruction *di =(*st->getSrc(1)->defs.begin())->getInsn();
- 
-    // TODO: move exports (if beneficial) in common opt pass
-    if (di->isPseudo() || isTextureOp(di->op) || di->defCount(0xff, true) > 1)
-diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-index 5ab6570..7bb28c6 100644
---- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-+++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
-@@ -834,7 +834,7 @@ GCRA::coalesceValues(Value *dst, Value *src, bool force)
-    assert(rep->join == rep && val->join == rep);
- 
-    // add val's definitions to rep and extend the live interval of its RIG node
--   rep->defs.insert(rep->defs.end(), val->defs.begin(), val->defs.end());
-+   rep->defs.insert(val->defs.begin(), val->defs.end());
-    nRep->livei.unify(nVal->livei);
-    return true;
- }
-@@ -1409,7 +1409,7 @@ GCRA::cleanup(const bool success)
-       } else {
-          for (Value::DefIterator d = lval->defs.begin(); d != lval->defs.end();
-               ++d)
--            lval->join->defs.remove(*d);
-+            lval->join->defs.erase(*d);
-          lval->join = lval;
-       }
-    }
-@@ -1547,8 +1547,7 @@ SpillCodeInserter::run(const std::list<ValuePair>& lst)
-       LValue *lval = it->first->asLValue();
-       Symbol *mem = it->second ? it->second->asSym() : NULL;
- 
--      for (Value::DefIterator d = lval->defs.begin(); d != lval->defs.end();
--           ++d) {
-+      for (Value::DefIterator d = lval->defs.begin(); d != lval->defs.end();) {
-          Value *slot = mem ?
-             static_cast<Value *>(mem) : new_LValue(func, FILE_GPR);
-          Value *tmp = NULL;
-@@ -1577,13 +1576,13 @@ SpillCodeInserter::run(const std::list<ValuePair>& lst)
-          assert(defi);
-          if (defi->isPseudo()) {
-             d = lval->defs.erase(d);
--            --d;
-             if (slot->reg.file == FILE_MEMORY_LOCAL)
-                delete_Instruction(func->getProgram(), defi);
-             else
-                defi->setDef(0, slot);
-          } else {
-             spill(defi, slot, dval);
-+            d++;
-          }
-       }
- 
-@@ -2098,7 +2097,7 @@ RegAlloc::InsertConstraintsPass::insertConstraintMoves()
-             }
-             assert(cst->getSrc(s)->defs.size() == 1); // still SSA
- 
--            Instruction *defi = cst->getSrc(s)->defs.front()->getInsn();
-+            Instruction *defi =(*cst->getSrc(s)->defs.begin())->getInsn();
-             // catch some cases where don't really need MOVs
-             if (cst->getSrc(s)->refCount() == 1 && !defi->constrainedDefs())
-                continue;
+https://bugs.freedesktop.org/show_bug.cgi?id=82255
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Should be resolved in git. Thanks for reporting + testing!
+
 -- 
-1.8.4.5
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1409611984.C78EC1.1473
+Date: Mon, 1 Sep 2014 22:53:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [VP2] Chroma planes are vertically stretched during VDPAU playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [VP2] Chroma planes are vertically stretched during VDPAU playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [VP2] Chroma planes are vertically stretched during VDPAU playback"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82255">bug 82255</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Should be resolved in git. Thanks for reporting + testing!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1409611984.C78EC1.1473--
+
+--===============1977152400==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1977152400==--
