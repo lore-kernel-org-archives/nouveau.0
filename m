@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83398] [NV4B] Screen freeze watching flash site
-Date: Tue, 02 Sep 2014 13:01:58 +0000
-Message-ID: <bug-83398-8800-nXnFgpJKIu@http.bugs.freedesktop.org/>
-References: <bug-83398-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82835] [NV92] GeForce 8800 GS VDPAU h264 decoding
+	hang
+Date: Tue, 02 Sep 2014 16:24:27 +0000
+Message-ID: <bug-82835-8800-J864qnHuL0@http.bugs.freedesktop.org/>
+References: <bug-82835-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0536455511=="
+Content-Type: multipart/mixed; boundary="===============1123812475=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82835-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0536455511==
-Content-Type: multipart/alternative; boundary="1409662918.5DF558c1.6356"; charset="us-ascii"
+--===============1123812475==
+Content-Type: multipart/alternative; boundary="1409675067.bfcEbD31.22788"; charset="us-ascii"
 
 
---1409662918.5DF558c1.6356
-Date: Tue, 2 Sep 2014 13:01:58 +0000
+--1409675067.bfcEbD31.22788
+Date: Tue, 2 Sep 2014 16:24:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83398
+https://bugs.freedesktop.org/show_bug.cgi?id=82835
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Disable vdpau. (Just remove it entirely.) It's known to hang nv4x cards, and
-provides no benefit.
+--- Comment #4 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+No, sadly hang still here  with mesa git-021e84f and nouveau kernel up to
+b0ae082dcb4304eb2443b3319b89fb5cb9202a5a ("therm/nv84+: do not expose
+non-calibrated internal temp sensor")
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409662918.5DF558c1.6356
-Date: Tue, 2 Sep 2014 13:01:58 +0000
+--1409675067.bfcEbD31.22788
+Date: Tue, 2 Sep 2014 16:24:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +55,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze watching flash site"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398#c2">Comment # 2</a>
+   title="NEW --- - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze watching flash site"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398">bug 83398</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW --- - [NV92] GeForce 8800 GS VDPAU h264 decoding hang"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82835">bug 82835</a>
+              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
 </span></b>
-        <pre>Disable vdpau. (Just remove it entirely.) It's known to hang nv4x cards, and
-provides no benefit.</pre>
+        <pre>No, sadly hang still here  with mesa git-021e84f and nouveau kernel up to
+b0ae082dcb4304eb2443b3319b89fb5cb9202a5a (&quot;therm/nv84+: do not expose
+non-calibrated internal temp sensor&quot;)</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +77,9 @@ provides no benefit.</pre>
     </body>
 </html>
 
---1409662918.5DF558c1.6356--
+--1409675067.bfcEbD31.22788--
 
---===============0536455511==
+--===============1123812475==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0536455511==--
+--===============1123812475==--
