@@ -1,9 +1,9 @@
-From: Soham Chakraborty <sohamwonderpiku4u-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Traceback related to nouveau, possibly
-Date: Wed, 3 Sep 2014 16:46:15 +0530
-Message-ID: <CAHbM+PPvMPJSq2MCLdQLvbokKiZpK6v+DFH6mL_nGURkbYG1Gw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83443] New: Nouveau cras
+Date: Wed, 03 Sep 2014 15:15:00 +0000
+Message-ID: <bug-83443-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary=20cf30050cd443b5bb0502275d87
+Content-Type: multipart/mixed; boundary="===============1463118173=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -17,196 +17,473 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---20cf30050cd443b5bb0502275d87
-Content-Type: multipart/alternative; boundary=20cf30050cd443b5b50502275d85
 
---20cf30050cd443b5b50502275d85
-Content-Type: text/plain; charset=UTF-8
+--===============1463118173==
+Content-Type: multipart/alternative; boundary="1409757300.Ce55aF1.13819"; charset="us-ascii"
 
-Hi fellas,
 
-I come to you to clarify/corroborate one suspicion of mine, involving
-nouveau. Few days since, my laptop started to create lots of kerneloops and
-the traceback always involves nouveau. I didn't intend to create a bug
-report without confirming that whether or not it really is a nouveau
-problem.
+--1409757300.Ce55aF1.13819
+Date: Wed, 3 Sep 2014 15:15:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Here is the backtrace in all its glory, attached.
+https://bugs.freedesktop.org/show_bug.cgi?id=83443
 
-Kernel - 3.14.6-200.fc20.x86_64
-Three modules are tainted and therefore it refuses to be reported to
-bugzilla. They are vboxnetadp,vboxnetflt,vboxdrv.
+          Priority: medium
+            Bug ID: 83443
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: Nouveau cras
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: major
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: openoliv-rN3gS7ZnVUsdnm+yROfE0A@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-This is the relevant part that makes me wonder about whether this involves
-the driver or rather, hardware. If it is hardware, then which part should I
-focus?
+Created attachment 105694
+  --> https://bugs.freedesktop.org/attachment.cgi?id=105694&action=edit
+nouveau crash
 
-Call Trace:
- [<ffffffffa02d6e7b>] ? nv04_timer_read+0x3b/0x70 [nouveau]
- [<ffffffffa02d6c34>] nouveau_timer_wait_eq+0x74/0xd0 [nouveau]
- [<ffffffffa02edd57>] nvc0_fifo_context_detach+0xa7/0x180 [nouveau]
- [<ffffffffa029473d>] nouveau_engctx_fini+0x6d/0xf0 [nouveau]
- [<ffffffffa0294862>] _nouveau_engctx_fini+0x12/0x20 [nouveau]
- [<ffffffffa0296e26>] nouveau_object_dec+0x106/0x290 [nouveau]
- [<ffffffffa0296e84>] nouveau_object_dec+0x164/0x290 [nouveau]
- [<ffffffffa029582a>] nouveau_handle_fini+0x1fa/0x2a0 [nouveau]
- [<ffffffffa02956ec>] nouveau_handle_fini+0xbc/0x2a0 [nouveau]
- [<ffffffffa02956ec>] nouveau_handle_fini+0xbc/0x2a0 [nouveau]
- [<ffffffffa02956ec>] nouveau_handle_fini+0xbc/0x2a0 [nouveau]
- [<ffffffffa02941e2>] nouveau_client_fini+0x62/0xb0 [nouveau]
- [<ffffffffa0314548>] nouveau_do_suspend+0x238/0x2b0 [nouveau]
- [<ffffffffa0314b5c>] nouveau_pmops_runtime_suspend+0x5c/0xe0 [nouveau]
- [<ffffffff81395451>] pci_pm_runtime_suspend+0x61/0x140
- [<ffffffff81470f11>] __rpm_callback+0x31/0x80
- [<ffffffff81470f84>] rpm_callback+0x24/0x80
- [<ffffffff81471116>] rpm_suspend+0x136/0x6d0
- [<ffffffff8147279a>] pm_runtime_work+0x7a/0xb0
- [<ffffffff810a68b6>] process_one_work+0x176/0x430
- [<ffffffff810a754b>] worker_thread+0x11b/0x3a0
- [<ffffffff810a7430>] ? rescuer_thread+0x3b0/0x3b0
- [<ffffffff810ae2a1>] kthread+0xe1/0x100
- [<ffffffff810ae1c0>] ? insert_kthread_work+0x40/0x40
- [<ffffffff8170057c>] ret_from_fork+0x7c/0xb0
- [<ffffffff810ae1c0>] ? insert_kthread_work+0x40/0x40
+Hi, 
 
-Any questions? Feel free to ask.
+sometimes at boot time I've got a crash (let's say one crash every ten
+boots...) :
 
-Thanks,
-Soham
+Sep 03 16:35:34 azerty kernel: divide error: 0000 [#1] PREEMPT SMP 
+Sep 03 16:35:34 azerty kernel: Modules linked in: ctr ccm xt_tcpudp
+ip6t_rpfilter ip6t_REJECT ipt_REJECT xt_conntrack ebtable_broute bridge stp llc
+ebtable_nat ebtable_filter ebtables ip6table_raw ip6table_nat nf_conntrack_ipv6
+nf_defrag_ipv6 nf_nat_ipv6 ip6table_filter joydev ip6table_security mousedev
+ip6table_mangle ip6_tables iptable_raw iptable_nat nf_conntrack_ipv4
+nf_defrag_ipv4 nf_nat_ipv4 nf_nat nf_conntrack iptable_filter iptable_security
+iptable_mangle ip_tables x_tables rtsx_usb_sdmmc mmc_core rtsx_usb_ms memstick
+rtsx_usb ecb nls_iso8859_1 asus_nb_wmi nls_cp437 asus_wmi sparse_keymap arc4
+vfat fat iwldvm led_class mac80211 coretemp intel_rapl x86_pkg_temp_thermal
+uvcvideo intel_powerclamp videobuf2_vmalloc btusb videobuf2_memops iTCO_wdt
+iTCO_vendor_support kvm_intel iwlwifi kvm videobuf2_core v4l2_common
+Sep 03 16:35:34 azerty kernel:  i915(+) videodev media bluetooth evdev
+microcode pcspkr nouveau(+) mac_hid psmouse snd_hda_codec_hdmi serio_raw
+mxm_wmi cfg80211 6lowpan_iphc snd_hda_codec_realtek snd_hda_codec_generic
+rfkill i2c_i801 snd_hda_intel ttm snd_hda_controller int3403_thermal
+drm_kms_helper snd_hda_codec drm snd_hwdep snd_pcm battery snd_timer intel_gtt
+hwmon ac wmi tpm_tis i2c_algo_bit video snd tpm i2c_core button mei_me thermal
+soundcore mei shpchp lpc_ich processor bbswitch(O) ext4 crc16 mbcache jbd2
+algif_skcipher af_alg dm_crypt dm_mod sd_mod crc_t10dif atkbd libps2
+crct10dif_pclmul crct10dif_common crc32_pclmul crc32c_intel ghash_clmulni_intel
+aesni_intel aes_x86_64 lrw gf128mul glue_helper ablk_helper cryptd xhci_hcd
+ahci libahci libata ehci_pci scsi_mod ehci_hcd usbcore usb_common i8042 serio
+Sep 03 16:35:34 azerty kernel: CPU: 0 PID: 229 Comm: systemd-udevd Tainted: G  
+        O  3.16.1-1-ARCH #1
+Sep 03 16:35:34 azerty kernel: Hardware name: ASUSTeK COMPUTER INC.
+UX32VD/UX32VD, BIOS UX32VD.214 01/29/2013
+Sep 03 16:35:34 azerty kernel: task: ffff88029fea28c0 ti: ffff88029f384000
+task.ti: ffff88029f384000
+Sep 03 16:35:34 azerty kernel: RIP: 0010:[<ffffffffa055f9a3>] 
+[<ffffffffa055f9a3>] gf100_ltcg_init_tag_ram+0xa3/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel: RSP: 0018:ffff88029f3877e8  EFLAGS: 00010206
+Sep 03 16:35:34 azerty kernel: RAX: 00000001ffefffff RBX: ffff88029ebfc300 RCX:
+ffff88029ebfc3b8
+Sep 03 16:35:34 azerty kernel: RDX: 0000000000000000 RSI: 00000000000000d0 RDI:
+ffffffffa0525228
+Sep 03 16:35:34 azerty kernel: RBP: ffff88029f387800 R08: 00000000000173a0 R09:
+0000000000000040
+Sep 03 16:35:34 azerty kernel: R10: 00000000fffffefa R11: ffff88029bcd7878 R12:
+0000000000000000
+Sep 03 16:35:34 azerty kernel: R13: 00000000fff00000 R14: ffffffffa0610ec0 R15:
+ffff88029e5cb400
+Sep 03 16:35:34 azerty kernel: FS:  00007fbddaca37c0(0000)
+GS:ffff8802aee00000(0000) knlGS:0000000000000000
+Sep 03 16:35:34 azerty kernel: CS:  0010 DS: 0000 ES: 0000 CR0:
+0000000080050033
+Sep 03 16:35:34 azerty kernel: CR2: 00007f813c8fa000 CR3: 000000029e53c000 CR4:
+00000000001407f0
+Sep 03 16:35:34 azerty kernel: Stack:
+Sep 03 16:35:34 azerty kernel:  ffff88029bcd7800 ffff88029ebfc300
+00000000ffffffff ffff88029f387848
+Sep 03 16:35:34 azerty kernel:  ffffffffa055fb11 ffff8802000000c0
+ffff88029f387820 ffff88029ebfc300
+Sep 03 16:35:34 azerty kernel:  000000007450b321 0000000000000000
+ffffffffa0610e90 ffff88029ee18ca0
+Sep 03 16:35:34 azerty kernel: Call Trace:
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa055fb11>]
+gf100_ltcg_ctor+0x121/0x160 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa0525d91>]
+nouveau_object_ctor+0x41/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa056d326>]
+nouveau_devobj_ctor+0x1a6/0x7b0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa0525d91>]
+nouveau_object_ctor+0x41/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa052669b>]
+nouveau_object_new+0x18b/0x240 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa05aaee8>]
+nouveau_drm_load+0x248/0x930 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa033a836>] ?
+drm_sysfs_device_add+0xd6/0x120 [drm]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa0336d6d>]
+drm_dev_register+0xad/0x100 [drm]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa03398f8>] drm_get_pci_dev+0xd8/0x200
+[drm]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa05aac5a>]
+nouveau_drm_probe+0x26a/0x2b0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffff812df6e5>] local_pci_probe+0x45/0xa0
+Sep 03 16:35:34 azerty kernel:  [<ffffffff812df635>] ?
+pci_match_device+0xe5/0x110
+Sep 03 16:35:34 azerty kernel:  [<ffffffff812df841>]
+pci_device_probe+0x101/0x150
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a4f93>]
+driver_probe_device+0xa3/0x410
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a53cb>] __driver_attach+0x8b/0x90
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a5340>] ?
+__device_attach+0x40/0x40
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a2db3>] bus_for_each_dev+0x73/0xc0
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a4a1e>] driver_attach+0x1e/0x20
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a4600>] bus_add_driver+0x180/0x250
+Sep 03 16:35:34 azerty kernel:  [<ffffffff813a5c64>] driver_register+0x64/0xf0
+Sep 03 16:35:34 azerty kernel:  [<ffffffff812dee3b>]
+__pci_register_driver+0x4b/0x50
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa0339b2a>] drm_pci_init+0x10a/0x140
+[drm]
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa06a9000>] ? 0xffffffffa06a8fff
+Sep 03 16:35:34 azerty kernel:  [<ffffffffa06a9042>]
+nouveau_drm_init+0x42/0x1000 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [<ffffffff81002148>] do_one_initcall+0xd8/0x210
+Sep 03 16:35:34 azerty kernel:  [<ffffffff8118af82>] ? __vunmap+0xa2/0x100
+Sep 03 16:35:34 azerty kernel:  [<ffffffff810efcb1>] load_module+0x1dd1/0x2680
+Sep 03 16:35:34 azerty kernel:  [<ffffffff810ec1c0>] ? store_uevent+0x70/0x70
+Sep 03 16:35:34 azerty kernel:  [<ffffffff810f062d>] SyS_init_module+0xcd/0x120
+Sep 03 16:35:34 azerty kernel:  [<ffffffff81530be9>]
+system_call_fastpath+0x16/0x1b
+Sep 03 16:35:34 azerty kernel: Code: 00 01 c2 c1 ea 0c 89 d1 e8 6b 5c fc ff 85
+c0 75 57 48 8b 83 b8 00 00 00 31 d2 8b 40 34 c1 e0 0c 41 01 c5 41 8d 44 24 ff
+4c 01 e8 <49> f7 f4 8b 93 88 00 00 00 89 83 8c 00 00 00 48 8d bb 90 00 00 
+Sep 03 16:35:34 azerty kernel: RIP  [<ffffffffa055f9a3>]
+gf100_ltcg_init_tag_ram+0xa3/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  RSP <ffff88029f3877e8>
+Sep 03 16:35:34 azerty kernel: ---[ end trace 694c769667de463a ]---
+Sep 03 16:35:34 azerty systemd-udevd[224]: worker [229] terminated by signal 11
+(Segmentation fault)
+Sep 03 16:35:34 azerty systemd-udevd[224]: worker [229] failed while handling
+'/devices/pci0000:00/0000:00:01.0/0000:01:00.0'
 
---20cf30050cd443b5b50502275d85
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+# lscpci -v 
+01:00.0 3D controller: NVIDIA Corporation GF117M [GeForce 610M/710M/820M / GT
+620M/625M/630M/720M] (rev a1)
+    Subsystem: ASUSTeK Computer Inc. GeForce GT 620M
+    Flags: bus master, fast devsel, latency 0, IRQ 49
+    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f0000000 (64-bit, prefetchable) [size=32M]
+    I/O ports at e000 [size=128]
+    Expansion ROM at f7000000 [disabled] [size=512K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [b4] Vendor Specific Information: Len=14 <?>
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting <?>
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
+    Kernel driver in use: nouveau
+    Kernel modules: nouveau
 
-<div dir=3D"ltr">Hi fellas,<div><br></div><div>I come to you to clarify/cor=
-roborate one suspicion of mine, involving nouveau. Few days since, my lapto=
-p started to create lots of kerneloops and the traceback always involves no=
-uveau. I didn&#39;t intend to create a bug report without confirming that w=
-hether or not it really is a nouveau problem.=C2=A0</div>
-<div><br></div><div>Here is the backtrace in all its glory, attached.=C2=A0=
-</div><div><br></div><div>Kernel -=C2=A03.14.6-200.fc20.x86_64</div><div>Th=
-ree modules are tainted and therefore it refuses to be reported to bugzilla=
-. They are=C2=A0vboxnetadp,vboxnetflt,vboxdrv.</div>
-<div><br></div><div>This is the relevant part that makes me wonder about wh=
-ether this involves the driver or rather, hardware. If it is hardware, then=
- which part should I focus?</div><div><br></div><div><div>Call Trace:</div>
-<div>=C2=A0[&lt;ffffffffa02d6e7b&gt;] ? nv04_timer_read+0x3b/0x70 [nouveau]=
-</div><div>=C2=A0[&lt;ffffffffa02d6c34&gt;] nouveau_timer_wait_eq+0x74/0xd0=
- [nouveau]</div><div>=C2=A0[&lt;ffffffffa02edd57&gt;] nvc0_fifo_context_det=
-ach+0xa7/0x180 [nouveau]</div>
-<div>=C2=A0[&lt;ffffffffa029473d&gt;] nouveau_engctx_fini+0x6d/0xf0 [nouvea=
-u]</div><div>=C2=A0[&lt;ffffffffa0294862&gt;] _nouveau_engctx_fini+0x12/0x2=
-0 [nouveau]</div><div>=C2=A0[&lt;ffffffffa0296e26&gt;] nouveau_object_dec+0=
-x106/0x290 [nouveau]</div>
-<div>=C2=A0[&lt;ffffffffa0296e84&gt;] nouveau_object_dec+0x164/0x290 [nouve=
-au]</div><div>=C2=A0[&lt;ffffffffa029582a&gt;] nouveau_handle_fini+0x1fa/0x=
-2a0 [nouveau]</div><div>=C2=A0[&lt;ffffffffa02956ec&gt;] nouveau_handle_fin=
-i+0xbc/0x2a0 [nouveau]</div>
-<div>=C2=A0[&lt;ffffffffa02956ec&gt;] nouveau_handle_fini+0xbc/0x2a0 [nouve=
-au]</div><div>=C2=A0[&lt;ffffffffa02956ec&gt;] nouveau_handle_fini+0xbc/0x2=
-a0 [nouveau]</div><div>=C2=A0[&lt;ffffffffa02941e2&gt;] nouveau_client_fini=
-+0x62/0xb0 [nouveau]</div>
-<div>=C2=A0[&lt;ffffffffa0314548&gt;] nouveau_do_suspend+0x238/0x2b0 [nouve=
-au]</div><div>=C2=A0[&lt;ffffffffa0314b5c&gt;] nouveau_pmops_runtime_suspen=
-d+0x5c/0xe0 [nouveau]</div><div>=C2=A0[&lt;ffffffff81395451&gt;] pci_pm_run=
-time_suspend+0x61/0x140</div>
-<div>=C2=A0[&lt;ffffffff81470f11&gt;] __rpm_callback+0x31/0x80</div><div>=
-=C2=A0[&lt;ffffffff81470f84&gt;] rpm_callback+0x24/0x80</div><div>=C2=A0[&l=
-t;ffffffff81471116&gt;] rpm_suspend+0x136/0x6d0</div><div>=C2=A0[&lt;ffffff=
-ff8147279a&gt;] pm_runtime_work+0x7a/0xb0</div>
-<div>=C2=A0[&lt;ffffffff810a68b6&gt;] process_one_work+0x176/0x430</div><di=
-v>=C2=A0[&lt;ffffffff810a754b&gt;] worker_thread+0x11b/0x3a0</div><div>=C2=
-=A0[&lt;ffffffff810a7430&gt;] ? rescuer_thread+0x3b0/0x3b0</div><div>=C2=A0=
-[&lt;ffffffff810ae2a1&gt;] kthread+0xe1/0x100</div>
-<div>=C2=A0[&lt;ffffffff810ae1c0&gt;] ? insert_kthread_work+0x40/0x40</div>=
-<div>=C2=A0[&lt;ffffffff8170057c&gt;] ret_from_fork+0x7c/0xb0</div><div>=C2=
-=A0[&lt;ffffffff810ae1c0&gt;] ? insert_kthread_work+0x40/0x40</div></div><d=
-iv><br></div>
-<div>Any questions? Feel free to ask.</div><div><br></div><div>Thanks,</div=
-><div>Soham</div></div>
+#uname -a 
+Linux azerty 3.16.1-1-ARCH #1 SMP PREEMPT Thu Aug 14 07:40:19 CEST 2014 x86_64
+GNU/Linux
 
---20cf30050cd443b5b50502275d85--
 
---20cf30050cd443b5bb0502275d87
-Content-Type: application/octet-stream; name=backtrace
-Content-Disposition: attachment; filename=backtrace
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hzmkdwcv0
+Journalctl attached.
 
-QlVHOiBzb2Z0IGxvY2t1cCAtIENQVSMxIHN0dWNrIGZvciAyMnMhIFtrd29ya2VyLzE6MTo2MV0K
-TW9kdWxlcyBsaW5rZWQgaW46IHBwcF9hc3luYyBjcmNfY2NpdHQgcHBwX2dlbmVyaWMgc2xoYyBu
-bHNfdXRmOCBpc29mcyBmdXNlIGlwdF9NQVNRVUVSQURFIHh0X0NIRUNLU1VNIHR1biBpcDZ0X3Jw
-ZmlsdGVyIGlwNnRfUkVKRUNUIHh0X2Nvbm50cmFjayBlYnRhYmxlX25hdCBlYnRhYmxlX2Jyb3V0
-ZSBicmlkZ2Ugc3RwIGxsYyBlYnRhYmxlX2ZpbHRlciBlYnRhYmxlcyBpcDZ0YWJsZV9uYXQgbmZf
-Y29ubnRyYWNrX2lwdjYgbmZfZGVmcmFnX2lwdjYgbmZfbmF0X2lwdjYgaXA2dGFibGVfbWFuZ2xl
-IGlwNnRhYmxlX3NlY3VyaXR5IGlwNnRhYmxlX3JhdyBpcDZ0YWJsZV9maWx0ZXIgaXA2X3RhYmxl
-cyBpcHRhYmxlX25hdCBuZl9jb25udHJhY2tfaXB2NCBuZl9kZWZyYWdfaXB2NCBuZl9uYXRfaXB2
-NCBuZl9uYXQgbmZfY29ubnRyYWNrIGlwdGFibGVfbWFuZ2xlIGlwdGFibGVfc2VjdXJpdHkgaXB0
-YWJsZV9yYXcgYm5lcCBvcHRpb24gdXNiX3d3YW4gc25kX2hkYV9jb2RlY19pZHQgc25kX2hkYV9j
-b2RlY19nZW5lcmljIHNuZF9oZGFfaW50ZWwgc25kX2hkYV9jb2RlYyBzbmRfaHdkZXAgc25kX3Nl
-cSBzbmRfc2VxX2RldmljZSBzbmRfcGNtIGFyYzQgYnJjbXNtYWMgYnR1c2IgY29yZGljIGJyY211
-dGlsIGJsdWV0b290aCBiNDMgbWFjODAyMTEgY2ZnODAyMTEgaVRDT193ZHQgaVRDT192ZW5kb3Jf
-c3VwcG9ydCBtZWlfbWUgbWVpIGxwY19pY2ggc3NiIDZsb3dwYW5faXBoYyBkZWxsX3dtaSBwcGRl
-diBzcGFyc2Vfa2V5bWFwIHV2Y3ZpZGVvIHZpZGVvYnVmMl92bWFsbG9jIHZpZGVvYnVmMl9tZW1v
-cHMgeDg2X3BrZ190ZW1wX3RoZXJtYWwgdmlkZW9idWYyX2NvcmUgY29yZXRlbXAga3ZtX2ludGVs
-IGt2bSBkZWxsX2xhcHRvcCBkY2RiYXMgc2RoY2lfcGNpIHNkaGNpIG1tY19jb3JlIGJjbWEgc2hw
-Y2hwIHJma2lsbCBzbmRfdGltZXIgc25kIGkyY19pODAxIHZpZGVvZGV2IG1lZGlhIGNyY3QxMGRp
-Zl9wY2xtdWwgY3JjMzJfcGNsbXVsIGNyYzMyY19pbnRlbCBnaGFzaF9jbG11bG5pX2ludGVsIG1m
-ZF9jb3JlIHNlcmlvX3JhdyBzb3VuZGNvcmUgbWljcm9jb2RlIHBhcnBvcnRfcGMgcGFycG9ydCBi
-aW5mbXRfbWlzYyBub3V2ZWF1IHVzYl9zdG9yYWdlIGk5MTUgbXhtX3dtaSB0dG0gaTJjX2FsZ29f
-Yml0IGUxMDAwZSBkcm1fa21zX2hlbHBlciBkcm0gcHRwIHBwc19jb3JlIGkyY19jb3JlIHdtaSB2
-aWRlbyBlY3J5cHRmcyBlbmNyeXB0ZWRfa2V5cyB0cnVzdGVkIHRwbSB2Ym94bmV0YWRwKE9GKSB2
-Ym94bmV0Zmx0KE9GKSB2Ym94ZHJ2KE9GKQpDUFU6IDEgUElEOiA2MSBDb21tOiBrd29ya2VyLzE6
-MSBUYWludGVkOiBHRiAgICAgICBXICBPIDMuMTQuNi0yMDAuZmMyMC54ODZfNjQgIzEKSGFyZHdh
-cmUgbmFtZTogRGVsbCBJbmMuIExhdGl0dWRlIEU2NTMwLzA3WTg1TSwgQklPUyBBMDkgMTIvMTMv
-MjAxMgpXb3JrcXVldWU6IHBtIHBtX3J1bnRpbWVfd29yawp0YXNrOiBmZmZmODgwMjIyNzgxMzAw
-IHRpOiBmZmZmODgwMjIyN2RlMDAwIHRhc2sudGk6IGZmZmY4ODAyMjI3ZGUwMDAKUklQOiAwMDEw
-Ols8ZmZmZmZmZmY4MTM2OWNkMj5dICBbPGZmZmZmZmZmODEzNjljZDI+XSBpb3JlYWQzMisweDQy
-LzB4NTAKUlNQOiAwMDE4OmZmZmY4ODAyMjI3ZGY5ZDggIEVGTEFHUzogMDAwMDAyOTYKUkFYOiAw
-MDAwMDAwMGZmZmZmZmZmIFJCWDogZmYwMDVkMzAzMDMwNjUzNyBSQ1g6IDAwMDAwMDAwZmZmZmZm
-ZmYKUkRYOiBmZmZmODgwMjIwNjhlNDAwIFJTSTogMDAwMDAwMDA3NzM1OTQwMCBSREk6IGZmZmZj
-OTAwMDUxMDk0MTAKUkJQOiBmZmZmODgwMjIyN2RmOWY4IFIwODogMDAwMDAwMDAwMDAwMDAwMSBS
-MDk6IDAwMDAwMDAwMDAwMDAwMDAKUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTogMDAwMDAwMDAw
-MDAwMDAwZiBSMTI6IDY2NjY2NjViNWQzNjMxMzEKUjEzOiA2MzMwMzAzMzMwNzgzMDViIFIxNDog
-ZmZmZjg4MDIyMjdkZjk2MCBSMTU6IGZmZmZmZmZmYTAyOTdiNjYKRlM6ICAwMDAwMDAwMDAwMDAw
-MDAwKDAwMDApIEdTOmZmZmY4ODAyMmUyNDAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAw
-MApDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCkNSMjog
-MDAwMDdmNGM0MmE2MTAwMCBDUjM6IDAwMDAwMDAwMDFjMGMwMDAgQ1I0OiAwMDAwMDAwMDAwMTQw
-N2UwClN0YWNrOgogZmZmZmZmZmZhMDJkNmU2OCBmZmZmODgwMjIwMDY5YTAwIGZmZmY4ODAwMzY4
-ZjljMDAgMDAwMDAwMDAwMDAwMjYzNAogZmZmZjg4MDIyMjdkZmE0MCBmZmZmZmZmZmEwMmQ2YzM0
-IDAwMDAwMDAwNzczNTk0MDAgZmZmZmZmZmZmZmZmZmZmZgogZmZmZjg4MDIyMDBjZDZjMCBmZmZm
-ODgwMjIwMDY5YTAwIGZmZmY4ODAwMzZiMjhjMDAgZmZmZjg4MDAzNjQwZmI4MApDYWxsIFRyYWNl
-OgogWzxmZmZmZmZmZmEwMmQ2ZTY4Pl0gPyBudjA0X3RpbWVyX3JlYWQrMHgyOC8weDcwIFtub3V2
-ZWF1XQogWzxmZmZmZmZmZmEwMmQ2YzM0Pl0gbm91dmVhdV90aW1lcl93YWl0X2VxKzB4NzQvMHhk
-MCBbbm91dmVhdV0KIFs8ZmZmZmZmZmZhMDJlZGQ1Nz5dIG52YzBfZmlmb19jb250ZXh0X2RldGFj
-aCsweGE3LzB4MTgwIFtub3V2ZWF1XQogWzxmZmZmZmZmZmEwMjk0NzNkPl0gbm91dmVhdV9lbmdj
-dHhfZmluaSsweDZkLzB4ZjAgW25vdXZlYXVdCiBbPGZmZmZmZmZmYTAyOTQ4NjI+XSBfbm91dmVh
-dV9lbmdjdHhfZmluaSsweDEyLzB4MjAgW25vdXZlYXVdCiBbPGZmZmZmZmZmYTAyOTZlMjY+XSBu
-b3V2ZWF1X29iamVjdF9kZWMrMHgxMDYvMHgyOTAgW25vdXZlYXVdCiBbPGZmZmZmZmZmYTAyOTZl
-ODQ+XSBub3V2ZWF1X29iamVjdF9kZWMrMHgxNjQvMHgyOTAgW25vdXZlYXVdCiBbPGZmZmZmZmZm
-YTAyOTU4MmE+XSBub3V2ZWF1X2hhbmRsZV9maW5pKzB4MWZhLzB4MmEwIFtub3V2ZWF1XQogWzxm
-ZmZmZmZmZmEwMjk1NmVjPl0gbm91dmVhdV9oYW5kbGVfZmluaSsweGJjLzB4MmEwIFtub3V2ZWF1
-XQogWzxmZmZmZmZmZmEwMjk1NmVjPl0gbm91dmVhdV9oYW5kbGVfZmluaSsweGJjLzB4MmEwIFtu
-b3V2ZWF1XQogWzxmZmZmZmZmZmEwMjk1NmVjPl0gbm91dmVhdV9oYW5kbGVfZmluaSsweGJjLzB4
-MmEwIFtub3V2ZWF1XQogWzxmZmZmZmZmZmEwMjk0MWUyPl0gbm91dmVhdV9jbGllbnRfZmluaSsw
-eDYyLzB4YjAgW25vdXZlYXVdCiBbPGZmZmZmZmZmYTAzMTQ1NDg+XSBub3V2ZWF1X2RvX3N1c3Bl
-bmQrMHgyMzgvMHgyYjAgW25vdXZlYXVdCiBbPGZmZmZmZmZmYTAzMTRiNWM+XSBub3V2ZWF1X3Bt
-b3BzX3J1bnRpbWVfc3VzcGVuZCsweDVjLzB4ZTAgW25vdXZlYXVdCiBbPGZmZmZmZmZmODEzOTU0
-NTE+XSBwY2lfcG1fcnVudGltZV9zdXNwZW5kKzB4NjEvMHgxNDAKIFs8ZmZmZmZmZmY4MTQ3MGYx
-MT5dIF9fcnBtX2NhbGxiYWNrKzB4MzEvMHg4MAogWzxmZmZmZmZmZjgxNDcwZjg0Pl0gcnBtX2Nh
-bGxiYWNrKzB4MjQvMHg4MAogWzxmZmZmZmZmZjgxNDcxMTE2Pl0gcnBtX3N1c3BlbmQrMHgxMzYv
-MHg2ZDAKIFs8ZmZmZmZmZmY4MTQ3Mjc5YT5dIHBtX3J1bnRpbWVfd29yaysweDdhLzB4YjAKIFs8
-ZmZmZmZmZmY4MTBhNjhiNj5dIHByb2Nlc3Nfb25lX3dvcmsrMHgxNzYvMHg0MzAKIFs8ZmZmZmZm
-ZmY4MTBhNzU0Yj5dIHdvcmtlcl90aHJlYWQrMHgxMWIvMHgzYTAKIFs8ZmZmZmZmZmY4MTBhNzQz
-MD5dID8gcmVzY3Vlcl90aHJlYWQrMHgzYjAvMHgzYjAKIFs8ZmZmZmZmZmY4MTBhZTJhMT5dIGt0
-aHJlYWQrMHhlMS8weDEwMAogWzxmZmZmZmZmZjgxMGFlMWMwPl0gPyBpbnNlcnRfa3RocmVhZF93
-b3JrKzB4NDAvMHg0MAogWzxmZmZmZmZmZjgxNzAwNTdjPl0gcmV0X2Zyb21fZm9yaysweDdjLzB4
-YjAKIFs8ZmZmZmZmZmY4MTBhZTFjMD5dID8gaW5zZXJ0X2t0aHJlYWRfd29yaysweDQwLzB4NDAK
-Q29kZTogNjYgMGYgMWYgODQgMDAgMDAgMDAgMDAgMDAgNTUgNDggYzcgYzYgMjUgZDYgYTQgODEg
-NDggODkgZTUgZTggZjAgZmUgZmYgZmYgYjggZmYgZmYgZmYgZmYgNWQgYzMgNjYgMGYgMWYgODQg
-MDAgMDAgMDAgMDAgMDAgOGIgMDcgPGMzPiA2NiA2NiA2NiA2NiAyZSAwZiAxZiA4NCAwMCAwMCAw
-MCAwMCAwMCA0OCA4MSBmZSBmZiBmZiAwMyAwMCAK
---20cf30050cd443b5bb0502275d87
+On a side note and FYI, it's a recent bug, until at least Linux 3.15.2-2  (and
+since 2 years of use of this laptop) I had this kind of message:
+Aug 15 10:49:52 azerty kernel: nouveau E[  DEVICE][0000:01:00.0] unknown
+chipset, 0xffffffff
+Aug 15 10:49:52 azerty kernel: nouveau E[     DRM] failed to create 0x80000080,
+-22
+Aug 15 10:49:52 azerty kernel: nouveau: probe of 0000:01:00.0 failed with error
+-22
+
+Regards
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1409757300.Ce55aF1.13819
+Date: Wed, 3 Sep 2014 15:15:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau cras"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443">83443</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau cras
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>openoliv&#64;mailoo.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=105694" name="attach_105694" title="nouveau crash">attachment 105694</a> <a href="attachment.cgi?id=105694&amp;action=edit" title="nouveau crash">[details]</a></span>
+nouveau crash
+
+Hi, 
+
+sometimes at boot time I've got a crash (let's say one crash every ten
+boots...) :
+
+Sep 03 16:35:34 azerty kernel: divide error: 0000 [#1] PREEMPT SMP 
+Sep 03 16:35:34 azerty kernel: Modules linked in: ctr ccm xt_tcpudp
+ip6t_rpfilter ip6t_REJECT ipt_REJECT xt_conntrack ebtable_broute bridge stp llc
+ebtable_nat ebtable_filter ebtables ip6table_raw ip6table_nat nf_conntrack_ipv6
+nf_defrag_ipv6 nf_nat_ipv6 ip6table_filter joydev ip6table_security mousedev
+ip6table_mangle ip6_tables iptable_raw iptable_nat nf_conntrack_ipv4
+nf_defrag_ipv4 nf_nat_ipv4 nf_nat nf_conntrack iptable_filter iptable_security
+iptable_mangle ip_tables x_tables rtsx_usb_sdmmc mmc_core rtsx_usb_ms memstick
+rtsx_usb ecb nls_iso8859_1 asus_nb_wmi nls_cp437 asus_wmi sparse_keymap arc4
+vfat fat iwldvm led_class mac80211 coretemp intel_rapl x86_pkg_temp_thermal
+uvcvideo intel_powerclamp videobuf2_vmalloc btusb videobuf2_memops iTCO_wdt
+iTCO_vendor_support kvm_intel iwlwifi kvm videobuf2_core v4l2_common
+Sep 03 16:35:34 azerty kernel:  i915(+) videodev media bluetooth evdev
+microcode pcspkr nouveau(+) mac_hid psmouse snd_hda_codec_hdmi serio_raw
+mxm_wmi cfg80211 6lowpan_iphc snd_hda_codec_realtek snd_hda_codec_generic
+rfkill i2c_i801 snd_hda_intel ttm snd_hda_controller int3403_thermal
+drm_kms_helper snd_hda_codec drm snd_hwdep snd_pcm battery snd_timer intel_gtt
+hwmon ac wmi tpm_tis i2c_algo_bit video snd tpm i2c_core button mei_me thermal
+soundcore mei shpchp lpc_ich processor bbswitch(O) ext4 crc16 mbcache jbd2
+algif_skcipher af_alg dm_crypt dm_mod sd_mod crc_t10dif atkbd libps2
+crct10dif_pclmul crct10dif_common crc32_pclmul crc32c_intel ghash_clmulni_intel
+aesni_intel aes_x86_64 lrw gf128mul glue_helper ablk_helper cryptd xhci_hcd
+ahci libahci libata ehci_pci scsi_mod ehci_hcd usbcore usb_common i8042 serio
+Sep 03 16:35:34 azerty kernel: CPU: 0 PID: 229 Comm: systemd-udevd Tainted: G  
+        O  3.16.1-1-ARCH #1
+Sep 03 16:35:34 azerty kernel: Hardware name: ASUSTeK COMPUTER INC.
+UX32VD/UX32VD, BIOS UX32VD.214 01/29/2013
+Sep 03 16:35:34 azerty kernel: task: ffff88029fea28c0 ti: ffff88029f384000
+task.ti: ffff88029f384000
+Sep 03 16:35:34 azerty kernel: RIP: 0010:[&lt;ffffffffa055f9a3&gt;] 
+[&lt;ffffffffa055f9a3&gt;] gf100_ltcg_init_tag_ram+0xa3/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel: RSP: 0018:ffff88029f3877e8  EFLAGS: 00010206
+Sep 03 16:35:34 azerty kernel: RAX: 00000001ffefffff RBX: ffff88029ebfc300 RCX:
+ffff88029ebfc3b8
+Sep 03 16:35:34 azerty kernel: RDX: 0000000000000000 RSI: 00000000000000d0 RDI:
+ffffffffa0525228
+Sep 03 16:35:34 azerty kernel: RBP: ffff88029f387800 R08: 00000000000173a0 R09:
+0000000000000040
+Sep 03 16:35:34 azerty kernel: R10: 00000000fffffefa R11: ffff88029bcd7878 R12:
+0000000000000000
+Sep 03 16:35:34 azerty kernel: R13: 00000000fff00000 R14: ffffffffa0610ec0 R15:
+ffff88029e5cb400
+Sep 03 16:35:34 azerty kernel: FS:  00007fbddaca37c0(0000)
+GS:ffff8802aee00000(0000) knlGS:0000000000000000
+Sep 03 16:35:34 azerty kernel: CS:  0010 DS: 0000 ES: 0000 CR0:
+0000000080050033
+Sep 03 16:35:34 azerty kernel: CR2: 00007f813c8fa000 CR3: 000000029e53c000 CR4:
+00000000001407f0
+Sep 03 16:35:34 azerty kernel: Stack:
+Sep 03 16:35:34 azerty kernel:  ffff88029bcd7800 ffff88029ebfc300
+00000000ffffffff ffff88029f387848
+Sep 03 16:35:34 azerty kernel:  ffffffffa055fb11 ffff8802000000c0
+ffff88029f387820 ffff88029ebfc300
+Sep 03 16:35:34 azerty kernel:  000000007450b321 0000000000000000
+ffffffffa0610e90 ffff88029ee18ca0
+Sep 03 16:35:34 azerty kernel: Call Trace:
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa055fb11&gt;]
+gf100_ltcg_ctor+0x121/0x160 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa0525d91&gt;]
+nouveau_object_ctor+0x41/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa056d326&gt;]
+nouveau_devobj_ctor+0x1a6/0x7b0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa0525d91&gt;]
+nouveau_object_ctor+0x41/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa052669b&gt;]
+nouveau_object_new+0x18b/0x240 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa05aaee8&gt;]
+nouveau_drm_load+0x248/0x930 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa033a836&gt;] ?
+drm_sysfs_device_add+0xd6/0x120 [drm]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa0336d6d&gt;]
+drm_dev_register+0xad/0x100 [drm]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa03398f8&gt;] drm_get_pci_dev+0xd8/0x200
+[drm]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa05aac5a&gt;]
+nouveau_drm_probe+0x26a/0x2b0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff812df6e5&gt;] local_pci_probe+0x45/0xa0
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff812df635&gt;] ?
+pci_match_device+0xe5/0x110
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff812df841&gt;]
+pci_device_probe+0x101/0x150
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a4f93&gt;]
+driver_probe_device+0xa3/0x410
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a53cb&gt;] __driver_attach+0x8b/0x90
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a5340&gt;] ?
+__device_attach+0x40/0x40
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a2db3&gt;] bus_for_each_dev+0x73/0xc0
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a4a1e&gt;] driver_attach+0x1e/0x20
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a4600&gt;] bus_add_driver+0x180/0x250
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff813a5c64&gt;] driver_register+0x64/0xf0
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff812dee3b&gt;]
+__pci_register_driver+0x4b/0x50
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa0339b2a&gt;] drm_pci_init+0x10a/0x140
+[drm]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa06a9000&gt;] ? 0xffffffffa06a8fff
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffffa06a9042&gt;]
+nouveau_drm_init+0x42/0x1000 [nouveau]
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff81002148&gt;] do_one_initcall+0xd8/0x210
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff8118af82&gt;] ? __vunmap+0xa2/0x100
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff810efcb1&gt;] load_module+0x1dd1/0x2680
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff810ec1c0&gt;] ? store_uevent+0x70/0x70
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff810f062d&gt;] SyS_init_module+0xcd/0x120
+Sep 03 16:35:34 azerty kernel:  [&lt;ffffffff81530be9&gt;]
+system_call_fastpath+0x16/0x1b
+Sep 03 16:35:34 azerty kernel: Code: 00 01 c2 c1 ea 0c 89 d1 e8 6b 5c fc ff 85
+c0 75 57 48 8b 83 b8 00 00 00 31 d2 8b 40 34 c1 e0 0c 41 01 c5 41 8d 44 24 ff
+4c 01 e8 &lt;49&gt; f7 f4 8b 93 88 00 00 00 89 83 8c 00 00 00 48 8d bb 90 00 00 
+Sep 03 16:35:34 azerty kernel: RIP  [&lt;ffffffffa055f9a3&gt;]
+gf100_ltcg_init_tag_ram+0xa3/0xf0 [nouveau]
+Sep 03 16:35:34 azerty kernel:  RSP &lt;ffff88029f3877e8&gt;
+Sep 03 16:35:34 azerty kernel: ---[ end trace 694c769667de463a ]---
+Sep 03 16:35:34 azerty systemd-udevd[224]: worker [229] terminated by signal 11
+(Segmentation fault)
+Sep 03 16:35:34 azerty systemd-udevd[224]: worker [229] failed while handling
+'/devices/pci0000:00/0000:00:01.0/0000:01:00.0'
+
+# lscpci -v 
+01:00.0 3D controller: NVIDIA Corporation GF117M [GeForce 610M/710M/820M / GT
+620M/625M/630M/720M] (rev a1)
+    Subsystem: ASUSTeK Computer Inc. GeForce GT 620M
+    Flags: bus master, fast devsel, latency 0, IRQ 49
+    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at e0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f0000000 (64-bit, prefetchable) [size=32M]
+    I/O ports at e000 [size=128]
+    Expansion ROM at f7000000 [disabled] [size=512K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting &lt;?&gt;
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
+    Kernel driver in use: nouveau
+    Kernel modules: nouveau
+
+#uname -a 
+Linux azerty 3.16.1-1-ARCH #1 SMP PREEMPT Thu Aug 14 07:40:19 CEST 2014 x86_64
+GNU/Linux
+
+
+Journalctl attached.
+
+On a side note and FYI, it's a recent bug, until at least Linux 3.15.2-2  (and
+since 2 years of use of this laptop) I had this kind of message:
+Aug 15 10:49:52 azerty kernel: nouveau E[  DEVICE][0000:01:00.0] unknown
+chipset, 0xffffffff
+Aug 15 10:49:52 azerty kernel: nouveau E[     DRM] failed to create 0x80000080,
+-22
+Aug 15 10:49:52 azerty kernel: nouveau: probe of 0000:01:00.0 failed with error
+-22
+
+Regards</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1409757300.Ce55aF1.13819--
+
+--===============1463118173==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -217,4 +494,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---20cf30050cd443b5bb0502275d87--
+--===============1463118173==--
