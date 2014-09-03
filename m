@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83443] [NVD7] division by 0 in
 	gf100_ltcg_init_tag_ram
-Date: Wed, 03 Sep 2014 19:58:42 +0000
-Message-ID: <bug-83443-8800-1hq5c41iRv@http.bugs.freedesktop.org/>
+Date: Wed, 03 Sep 2014 20:04:10 +0000
+Message-ID: <bug-83443-8800-XvNJDSfud7@http.bugs.freedesktop.org/>
 References: <bug-83443-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1927133406=="
+Content-Type: multipart/mixed; boundary="===============0742168336=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83443-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1927133406==
-Content-Type: multipart/alternative; boundary="1409774322.bfa68Edd1.21229"; charset="us-ascii"
+--===============0742168336==
+Content-Type: multipart/alternative; boundary="1409774650.FCA24111.23445"; charset="us-ascii"
 
 
---1409774322.bfa68Edd1.21229
-Date: Wed, 3 Sep 2014 19:58:42 +0000
+--1409774650.FCA24111.23445
+Date: Wed, 3 Sep 2014 20:04:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83443
 
---- Comment #2 from Oliv <openoliv-rN3gS7ZnVUsdnm+yROfE0A@public.gmane.org> ---
-Created attachment 105703
-  --> https://bugs.freedesktop.org/attachment.cgi?id=105703&action=edit
-successful dmesg
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You appear to be using bumblebee. Can you reproduce your issues without it?
+(Bumblebee is unnecessary starting with kernel 3.12 or so -- nouveau will
+auto-suspend the card when it's not in use.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409774322.bfa68Edd1.21229
-Date: Wed, 3 Sep 2014 19:58:42 +0000
+--1409774650.FCA24111.23445
+Date: Wed, 3 Sep 2014 20:04:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD7] division by 0 in gf100_ltcg_init_tag_ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVD7] division by 0 in gf100_ltcg_init_tag_ram"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83443">bug 83443</a>
-              from <span class="vcard"><a class="email" href="mailto:openoliv&#64;mailoo.org" title="Oliv &lt;openoliv&#64;mailoo.org&gt;"> <span class="fn">Oliv</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=105703" name="attach_105703" title="successful dmesg">attachment 105703</a> <a href="attachment.cgi?id=105703&amp;action=edit" title="successful dmesg">[details]</a></span>
-successful dmesg</pre>
+        <pre>You appear to be using bumblebee. Can you reproduce your issues without it?
+(Bumblebee is unnecessary starting with kernel 3.12 or so -- nouveau will
+auto-suspend the card when it's not in use.)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +77,9 @@ successful dmesg</pre>
     </body>
 </html>
 
---1409774322.bfa68Edd1.21229--
+--1409774650.FCA24111.23445--
 
---===============1927133406==
+--===============0742168336==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1927133406==--
+--===============0742168336==--
