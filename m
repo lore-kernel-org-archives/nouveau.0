@@ -1,7 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 8/8] fb/sddr2: Generate MR values
-Date: Thu,  4 Sep 2014 16:58:55 +0200
-Message-ID: <1409842735-7361-9-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 2/8] pwr/memx/nva3: Implement "wait for VBLANK"
+Date: Thu,  4 Sep 2014 16:58:49 +0200
+Message-ID: <1409842735-7361-3-git-send-email-rspliet@eclipso.eu>
 References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -23,137 +23,218 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/Makefile               |  1 +
- drivers/gpu/drm/nouveau/core/subdev/fb/priv.h  |  1 +
- drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c | 96 ++++++++++++++++++++++++++
- 3 files changed, 98 insertions(+)
- create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+ drivers/gpu/drm/nouveau/core/include/subdev/pwr.h  |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h    | 25 +++++----
+ .../gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc   | 60 ++++++++++++++++++++--
+ drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/os.h   |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c     | 35 ++++++++++++-
+ 5 files changed, 107 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
-index 8b307e1..8228e05 100644
---- a/drivers/gpu/drm/nouveau/Makefile
-+++ b/drivers/gpu/drm/nouveau/Makefile
-@@ -120,6 +120,7 @@ nouveau-y += core/subdev/fb/ramnvc0.o
- nouveau-y += core/subdev/fb/ramnve0.o
- nouveau-y += core/subdev/fb/ramgk20a.o
- nouveau-y += core/subdev/fb/ramgm107.o
-+nouveau-y += core/subdev/fb/sddr2.o
- nouveau-y += core/subdev/fb/sddr3.o
- nouveau-y += core/subdev/fb/gddr5.o
- nouveau-y += core/subdev/gpio/base.o
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
-index 82273f8..60322e9 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
-@@ -35,6 +35,7 @@ extern struct nouveau_oclass nve0_ram_oclass;
- extern struct nouveau_oclass gk20a_ram_oclass;
- extern struct nouveau_oclass gm107_ram_oclass;
+diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/pwr.h b/drivers/gpu/drm/nouveau/core/include/subdev/pwr.h
+index c5c92cb..b5286b3 100644
+--- a/drivers/gpu/drm/nouveau/core/include/subdev/pwr.h
++++ b/drivers/gpu/drm/nouveau/core/include/subdev/pwr.h
+@@ -76,5 +76,6 @@ void nouveau_memx_wr32(struct nouveau_memx *, u32 addr, u32 data);
+ void nouveau_memx_wait(struct nouveau_memx *,
+ 		       u32 addr, u32 mask, u32 data, u32 nsec);
+ void nouveau_memx_nsec(struct nouveau_memx *, u32 nsec);
++void nouveau_memx_wait_vblank(struct nouveau_memx *);
  
-+int nouveau_sddr2_calc(struct nouveau_ram *ram);
- int nouveau_sddr3_calc(struct nouveau_ram *ram);
- int nouveau_gddr5_calc(struct nouveau_ram *ram, bool nuts);
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h b/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
+index 2af9cfd..76290bb 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
+@@ -105,14 +105,21 @@ ramfuc_nsec(struct ramfuc *ram, u32 nsec)
+ 	nouveau_memx_nsec(ram->memx, nsec);
+ }
  
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
-new file mode 100644
-index 0000000..f2f5f12
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
-@@ -0,0 +1,96 @@
-+/*
-+ * Copyright 2014 Roy Spliet
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ *
-+ * Authors: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-+ *          Ben Skeggs
-+ */
-+
-+#include <subdev/bios.h>
-+#include "priv.h"
-+
-+struct ramxlat {
-+	int id;
-+	u8 enc;
-+};
-+
-+static inline int
-+ramxlat(const struct ramxlat *xlat, int id)
+-#define ram_init(s,p)       ramfuc_init(&(s)->base, (p))
+-#define ram_exec(s,e)       ramfuc_exec(&(s)->base, (e))
+-#define ram_have(s,r)       ((s)->r_##r.addr[0] != 0x000000)
+-#define ram_rd32(s,r)       ramfuc_rd32(&(s)->base, &(s)->r_##r)
+-#define ram_wr32(s,r,d)     ramfuc_wr32(&(s)->base, &(s)->r_##r, (d))
+-#define ram_nuke(s,r)       ramfuc_nuke(&(s)->base, &(s)->r_##r)
+-#define ram_mask(s,r,m,d)   ramfuc_mask(&(s)->base, &(s)->r_##r, (m), (d))
+-#define ram_wait(s,r,m,d,n) ramfuc_wait(&(s)->base, (r), (m), (d), (n))
+-#define ram_nsec(s,n)       ramfuc_nsec(&(s)->base, (n))
++static inline void
++ramfuc_wait_vblank(struct ramfuc *ram)
 +{
-+	while (xlat->id >= 0) {
-+		if (xlat->id == id)
-+			return xlat->enc;
-+		xlat++;
-+	}
-+	return -EINVAL;
++	nouveau_memx_wait_vblank(ram->memx);
 +}
 +
-+static const struct ramxlat
-+ramddr2_cl[] = {
-+	{ 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 }, { 6, 6 },
-+	/* The following are available in some, but not all DDR2 docs */
-+	{ 7, 7 },
-+	{ -1 }
-+};
++#define ram_init(s,p)        ramfuc_init(&(s)->base, (p))
++#define ram_exec(s,e)        ramfuc_exec(&(s)->base, (e))
++#define ram_have(s,r)        ((s)->r_##r.addr[0] != 0x000000)
++#define ram_rd32(s,r)        ramfuc_rd32(&(s)->base, &(s)->r_##r)
++#define ram_wr32(s,r,d)      ramfuc_wr32(&(s)->base, &(s)->r_##r, (d))
++#define ram_nuke(s,r)        ramfuc_nuke(&(s)->base, &(s)->r_##r)
++#define ram_mask(s,r,m,d)    ramfuc_mask(&(s)->base, &(s)->r_##r, (m), (d))
++#define ram_wait(s,r,m,d,n)  ramfuc_wait(&(s)->base, (r), (m), (d), (n))
++#define ram_nsec(s,n)        ramfuc_nsec(&(s)->base, (n))
++#define ram_wait_vblank(s)   ramfuc_wait_vblank(&(s)->base)
+ 
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
+index d43741e..228ee0d 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
++++ b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
+@@ -43,12 +43,13 @@ process(PROC_MEMX, #memx_init, #memx_recv)
+ */	.b32 func
+ 
+ memx_func_head:
+-handler(ENTER , 0x0001, 0x0000, #memx_func_enter)
++handler(ENTER , 0x0000, 0x0000, #memx_func_enter)
+ memx_func_next:
+ handler(LEAVE , 0x0000, 0x0000, #memx_func_leave)
+ handler(WR32  , 0x0000, 0x0002, #memx_func_wr32)
+ handler(WAIT  , 0x0004, 0x0000, #memx_func_wait)
+ handler(DELAY , 0x0001, 0x0000, #memx_func_delay)
++handler(VBLANK, 0x0001, 0x0000, #memx_func_wait_vblank)
+ memx_func_tail:
+ 
+ .equ #memx_func_size #memx_func_next - #memx_func_head
+@@ -67,7 +68,6 @@ memx_data_tail:
+ //
+ // $r15 - current (memx)
+ // $r4  - packet length
+-//	+00: bitmask of heads to wait for vblank on
+ // $r3  - opcode desciption
+ // $r0  - zero
+ memx_func_enter:
+@@ -77,9 +77,7 @@ memx_func_enter:
+ 		nv_iord($r6, NV_PPWR_OUTPUT)
+ 		and $r6 NV_PPWR_OUTPUT_FB_PAUSE
+ 		bra z #memx_func_enter_wait
+-	//XXX: TODO
+-	ld b32 $r6 D[$r1 + 0x00]
+-	add b32 $r1 0x04
 +
-+static const struct ramxlat
-+ramddr2_wr[] = {
-+	{ 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 4 }, { 6, 5 },
-+	/* The following are available in some, but not all DDR2 docs */
-+	{ 7, 6 },
-+	{ -1 }
-+};
+ 	ret
+ 
+ // description
+@@ -97,6 +95,58 @@ memx_func_leave:
+ 		bra nz #memx_func_leave_wait
+ 	ret
+ 
++#if NVKM_PPWR_CHIPSET < GF119
++// description
++//
++// $r15 - current (memx)
++// $r4  - packet length
++//	+00: head to wait for vblank on
++// $r3  - opcode desciption
++// $r0  - zero
++memx_func_wait_vblank:
++	ld b32 $r6 D[$r1 + 0x00]
++	cmp b32 $r6 0x0
++	bra z #memx_func_wait_vblank_head0
++	cmp b32 $r6 0x1
++	bra z #memx_func_wait_vblank_head1
++	bra #memx_func_wait_vblank_fini
 +
-+int
-+nouveau_sddr2_calc(struct nouveau_ram *ram)
++	memx_func_wait_vblank_head1:
++	movw $r7 0x20
++	bra #memx_func_wait_vblank_0
++
++	memx_func_wait_vblank_head0:
++	movw $r7 0x8
++
++	memx_func_wait_vblank_0:
++		nv_iord($r6, NV_PPWR_INPUT)
++		and $r6 $r7
++		bra nz #memx_func_wait_vblank_0
++
++	memx_func_wait_vblank_1:
++		nv_iord($r6, NV_PPWR_INPUT)
++		and $r6 $r7
++		bra z #memx_func_wait_vblank_1
++
++	memx_func_wait_vblank_fini:
++	add b32 $r1 0x4
++	ret
++
++#else
++
++// XXX: currently no-op
++//
++// $r15 - current (memx)
++// $r4  - packet length
++//	+00: head to wait for vblank on
++// $r3  - opcode desciption
++// $r0  - zero
++memx_func_wait_vblank:
++	add b32 $r1 0x4
++	ret
++
++#endif
++
+ // description
+ //
+ // $r15 - current (memx)
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/os.h b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/os.h
+index 574acfa..80f8328 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/os.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/os.h
+@@ -24,6 +24,7 @@
+ #define MEMX_WR32   2
+ #define MEMX_WAIT   3
+ #define MEMX_DELAY  4
++#define MEMX_VBLANK 5
+ 
+ /* I2C_: message identifiers */
+ #define I2C__MSG_RD08 0
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c b/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
+index 03de310..bcdc00f 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
+@@ -64,7 +64,7 @@ nouveau_memx_init(struct nouveau_pwr *ppwr, struct nouveau_memx **pmemx)
+ 	} while (nv_rd32(ppwr, 0x10a580) != 0x00000003);
+ 	nv_wr32(ppwr, 0x10a1c0, 0x01000000 | memx->base);
+ 	nv_wr32(ppwr, 0x10a1c4, 0x00010000 | MEMX_ENTER);
+-	nv_wr32(ppwr, 0x10a1c4, 0x00000000);
++
+ 	return 0;
+ }
+ 
+@@ -118,4 +118,37 @@ nouveau_memx_nsec(struct nouveau_memx *memx, u32 nsec)
+ 	memx_out(memx); /* fuc can't handle multiple */
+ }
+ 
++void
++nouveau_memx_wait_vblank(struct nouveau_memx *memx)
 +{
-+	struct nouveau_bios *bios = nouveau_bios(ram);
-+	int CL, WR, DLL = 0, ODT = 0;
++	struct nouveau_pwr *ppwr = memx->ppwr;
++	u32 heads, x, y, px = 0;
++	int i, head_sync;
 +
-+	switch (!!ram->timing.data * ram->timing.version) {
-+	case 0x10:
-+		CL  =   nv_ro08(bios, ram->timing.data + 0x02);
-+		WR  =   nv_ro08(bios, ram->timing.data + 0x00);
-+		DLL = !(nv_ro08(bios, ram->ramcfg.data + 0x02) & 0x40);
-+		ODT =   nv_ro08(bios, ram->timing.data + 0x0e) & 0x03;
-+		break;
-+	case 0x20:
-+		CL  =  nv_ro08(bios, ram->timing.data + 0x04) & 0x1f;
-+		WR  =  nv_ro08(bios, ram->timing.data + 0x0a) & 0x7f;
-+		break;
-+	default:
-+		return -ENOSYS;
++	if (nv_device(ppwr)->chipset < 0xd0) {
++		heads = nv_rd32(ppwr, 0x610050);
++		for (i = 0; i < 2; i++) {
++			/* Heuristic: sync to head with biggest resolution */
++			if (heads & (2 << (i << 3))) {
++				x = nv_rd32(ppwr, 0x610b40 + (0x540 * i));
++				y = (x & 0xffff0000) >> 16;
++				x &= 0x0000ffff;
++				if ((x * y) > px) {
++					px = (x * y);
++					head_sync = i;
++				}
++			}
++		}
 +	}
 +
-+	CL  = ramxlat(ramddr2_cl, CL);
-+	WR  = ramxlat(ramddr2_wr, WR);
-+	if (CL < 0 || WR < 0)
-+		return -EINVAL;
++	if (px == 0) {
++		nv_debug(memx->ppwr, "WAIT VBLANK !NO ACTIVE HEAD\n");
++		return;
++	}
 +
-+	ram->mr[0] &= ~0xe70;
-+	ram->mr[0] |= (WR & 0x07) << 9;
-+	ram->mr[0] |= (CL & 0x07) << 4;
-+
-+	ram->mr[1] &= ~0x045;
-+	ram->mr[1] |= (ODT & 0x1) << 2;
-+	ram->mr[1] |= (ODT & 0x2) << 5;
-+	ram->mr[1] |= !DLL;
-+	return 0;
++	nv_debug(memx->ppwr, "WAIT VBLANK HEAD%d\n", head_sync);
++	memx_cmd(memx, MEMX_VBLANK, 1, (u32[]){ head_sync });
++	memx_out(memx); /* fuc can't handle multiple */
 +}
++
+ #endif
 -- 
 1.9.3
