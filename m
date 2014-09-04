@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83398] [NV4B] Screen freeze watching flash site
-Date: Thu, 04 Sep 2014 20:39:13 +0000
-Message-ID: <bug-83398-8800-VIoSQiPqML@http.bugs.freedesktop.org/>
-References: <bug-83398-8800@http.bugs.freedesktop.org/>
+From: "Roy Spliet" <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: Re: [PATCH 4/8] fb/ramnve0: Disable FB before reclocking
+Date: Thu, 04 Sep 2014 22:49:38 +0200
+Message-ID: <429771427953afe517736a392dff9a2c@mail.eclipso.de>
+References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
+ <1409842735-7361-5-git-send-email-rspliet@eclipso.eu>
+ <CAKb7UvjvFo=nxQ3=yYy_egO3+gjW9jEMQjm34rkDkF14PV0XDg@mail.gmail.com>
+Reply-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1365295408=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjvFo=nxQ3=yYy_egO3+gjW9jEMQjm34rkDkF14PV0XDg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,90 +24,39 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1365295408==
-Content-Type: multipart/alternative; boundary="1409863152.dcb61.17034"; charset="us-ascii"
-
-
---1409863152.dcb61.17034
-Date: Thu, 4 Sep 2014 20:39:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=83398
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #7)
-> So, for this bug, should I just change :
-> 
-> Product -> Mesa
-> Component -> which one? I can't find an entry related with gallium and
-> nouveau. Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
-> 
-> And thanks for your help.
-
-Sure. Or you can leave it alone. It's not like it's a different group of
-people... I always look at the two groups together anyways.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1409863152.dcb61.17034
-Date: Thu, 4 Sep 2014 20:39:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze watching flash site"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV4B] Screen freeze watching flash site"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398">bug 83398</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=83398#c7">comment #7</a>)
-<span class="quote">&gt; So, for this bug, should I just change :
-&gt; 
-&gt; Product -&gt; Mesa
-&gt; Component -&gt; which one? I can't find an entry related with gallium and
-&gt; nouveau. Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
-&gt; 
-&gt; And thanks for your help.</span >
-
-Sure. Or you can leave it alone. It's not like it's a different group of
-people... I always look at the two groups together anyways.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1409863152.dcb61.17034--
-
---===============1365295408==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1365295408==--
+QWNrbm93bGVkZ2VkLCBidXQga25vd2luZyBCZW4gbWlnaHQgaGF2ZSBzb21lIHdvcmsgb24gS2Vw
+bGVyIHJlY2xvY2tpbmcgdXAgaGlzIHNsZWV2ZSBJIHdhbnRlZCB0byBlYXNlIHRoZSBnaXQgbWVy
+Z2luZyBwcm9jZXNzIGEgbGl0dGxlLiBGZWVsIGZyZWUgdG8gZm9sZCB0b2dldGhlciAob3IgdGVs
+bCBtZSBJIHNob3VsZCByZWFsbHkgcmVhbGx5IGRvIHRoYXQpLgoKUm95CgotLS0gVXJzcHLDvG5n
+bGljaGUgTmFjaHJpY2h0IC0tLQpWb246IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
+dT4KRGF0dW06IDE3OjA4OjI4IDA0LTA5LTIwMTQKQW46IFJveSBTcGxpZXQgPHJzcGxpZXRAZWNs
+aXBzby5ldT4KQmV0cmVmZjogUmU6IFtOb3V2ZWF1XSBbUEFUQ0ggNC84XSBmYi9yYW1udmUwOiBE
+aXNhYmxlIEZCIGJlZm9yZSByZWNsb2NraW5nCgo+IFRoaXMgc2hvdWxkIHByb2JhYmx5IGJlIGZv
+bGRlZCBpbnRvIHRoZSBwcmV2aW91cyBwYXRjaCB0byBhdm9pZAo+IGJyZWFraW5nIGJpc2VjdGFi
+aWxpdHkgb24gbnZlMAo+Cj4gT24gVGh1LCBTZXAgNCwgMjAxNCBhdCAxMDo1OCBBTSwgUm95IFNw
+bGlldCA8cnNwbGlldEBlY2xpcHNvLmV1PiB3cm90ZToKPgo+ID4gVGhpcyB1c2VkIHRvIGJlIGRv
+bmUgaW1wbGljaXRseQo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IFJveSBTcGxpZXQgPHJzcGxpZXRA
+ZWNsaXBzby5ldT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3Vi
+ZGV2L2ZiL3JhbW52ZTAuYyB8IDUgKysrKysKPiA+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRp
+b25zKCspCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUv
+c3ViZGV2L2ZiL3JhbW52ZTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2
+L2ZiL3JhbW52ZTAuYwo+Cj4gPiBpbmRleCBjNWI0NmUzLi45NzY0NzkyIDEwMDY0NAo+ID4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvZmIvcmFtbnZlMC5jCj4gPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9mYi9yYW1udmUwLmMKPiA+
+IEBAIC05OTgsNiArOTk4LDggQEAgbnZlMF9yYW1fY2FsY194aXRzKHN0cnVjdCBub3V2ZWF1X2Zi
+ICpwZmIsIHN0cnVjdAo+IG5vdXZlYXVfcmFtX2RhdGEgKm5leHQpCj4gPiAgICAgICAgIGlmIChy
+ZXQpCj4gPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiA+Cj4gPiArICAgICAgIHJhbV9m
+Yl9kaXNhYmxlKGZ1Yyk7Cj4gPiArCj4gPiAgICAgICAgIHJhbS0+bW9kZSA9IChuZXh0LT5mcmVx
+ID4gZnVjLT5yZWZwbGwudmNvMS5tYXhfZnJlcSkKPiA/IDIgOiAxOwo+ID4gICAgICAgICByYW0t
+PmZyb20gPSByYW1fcmQzMihmdWMsIDB4MTM3M2Y0KSAmIDB4MDAwMDAwMGY7Cj4gPgo+ID4gQEAg
+LTEwNjEsNiArMTA2Myw5IEBAIG52ZTBfcmFtX2NhbGNfeGl0cyhzdHJ1Y3Qgbm91dmVhdV9mYiAq
+cGZiLCBzdHJ1Y3QKPiBub3V2ZWF1X3JhbV9kYXRhICpuZXh0KQo+ID4gICAgICAgICAgICAgICAg
+IGJyZWFrOwo+ID4gICAgICAgICB9Cj4gPgo+ID4gKyAgICAgICBpZiAoIXJldCkKPiA+ICsgICAg
+ICAgICAgICAgICByYW1fZmJfZW5hYmxlKGZ1Yyk7Cj4gPiArCj4gPiAgICAgICAgIHJldHVybiBy
+ZXQ7Cj4gPiAgfQo+ID4KPiA+IC0tCj4gPiAxLjkuMwo+ID4KPiA+Cj4gPgo+ID4gX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Cj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgoKCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
