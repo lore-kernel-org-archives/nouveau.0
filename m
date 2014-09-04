@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83398] [NV4B] Screen freeze watching flash site
-Date: Thu, 04 Sep 2014 20:37:06 +0000
-Message-ID: <bug-83398-8800-ak8SIkDG1i@http.bugs.freedesktop.org/>
+Date: Thu, 04 Sep 2014 20:39:13 +0000
+Message-ID: <bug-83398-8800-VIoSQiPqML@http.bugs.freedesktop.org/>
 References: <bug-83398-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0295255308=="
+Content-Type: multipart/mixed; boundary="===============1365295408=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83398-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0295255308==
-Content-Type: multipart/alternative; boundary="1409863026.0538f211.16357"; charset="us-ascii"
+--===============1365295408==
+Content-Type: multipart/alternative; boundary="1409863152.dcb61.17034"; charset="us-ascii"
 
 
---1409863026.0538f211.16357
-Date: Thu, 4 Sep 2014 20:37:06 +0000
+--1409863152.dcb61.17034
+Date: Thu, 4 Sep 2014 20:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83398
 
---- Comment #7 from rv <shuihuzhuan-GANU6spQydw@public.gmane.org> ---
-So, for this bug, should I just change :
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #7)
+> So, for this bug, should I just change :
+> 
+> Product -> Mesa
+> Component -> which one? I can't find an entry related with gallium and
+> nouveau. Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
+> 
+> And thanks for your help.
 
-Product -> Mesa
-Component -> which one? I can't find an entry related with gallium and nouveau.
-Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
-
-And thanks for your help.
+Sure. Or you can leave it alone. It's not like it's a different group of
+people... I always look at the two groups together anyways.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1409863026.0538f211.16357
-Date: Thu, 4 Sep 2014 20:37:06 +0000
+--1409863152.dcb61.17034
+Date: Thu, 4 Sep 2014 20:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +63,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] Screen freeze watching flash site"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83398#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV4B] Screen freeze watching flash site"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83398">bug 83398</a>
-              from <span class="vcard"><a class="email" href="mailto:shuihuzhuan&#64;free.fr" title="rv &lt;shuihuzhuan&#64;free.fr&gt;"> <span class="fn">rv</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So, for this bug, should I just change :
+        <pre>(In reply to <a href="show_bug.cgi?id=83398#c7">comment #7</a>)
+<span class="quote">&gt; So, for this bug, should I just change :
+&gt; 
+&gt; Product -&gt; Mesa
+&gt; Component -&gt; which one? I can't find an entry related with gallium and
+&gt; nouveau. Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
+&gt; 
+&gt; And thanks for your help.</span >
 
-Product -&gt; Mesa
-Component -&gt; which one? I can't find an entry related with gallium and nouveau.
-Maybe 'Drivers\DRI\nouveau'? Or 'Other'?
-
-And thanks for your help.</pre>
+Sure. Or you can leave it alone. It's not like it's a different group of
+people... I always look at the two groups together anyways.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +92,9 @@ And thanks for your help.</pre>
     </body>
 </html>
 
---1409863026.0538f211.16357--
+--1409863152.dcb61.17034--
 
---===============0295255308==
+--===============1365295408==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0295255308==--
+--===============1365295408==--
