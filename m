@@ -1,7 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 5/8] pwr/memx: Return debugging information
-Date: Thu,  4 Sep 2014 16:58:52 +0200
-Message-ID: <1409842735-7361-6-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 4/8] fb/ramnve0: Disable FB before reclocking
+Date: Thu,  4 Sep 2014 16:58:51 +0200
+Message-ID: <1409842735-7361-5-git-send-email-rspliet@eclipso.eu>
 References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,81 +21,35 @@ To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Time measured from disabling FB to re-enabling, PPWR_IN reveals status of heads at the end of script. Helps debug various issues (like flicker).
+This used to be done implicitly
 
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc | 16 ++++++++++++++++
- drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c       |  2 ++
- 2 files changed, 18 insertions(+)
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
-index 9f2f57c..989fdc1 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
-+++ b/drivers/gpu/drm/nouveau/core/subdev/pwr/fuc/memx.fuc
-@@ -55,6 +55,11 @@ memx_func_tail:
- .equ #memx_func_size #memx_func_next - #memx_func_head
- .equ #memx_func_num (#memx_func_tail - #memx_func_head) / #memx_func_size
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
+index c5b46e3..9764792 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
+@@ -998,6 +998,8 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
+ 	if (ret)
+ 		return ret;
  
-+memx_ts_start:
-+.b32 0
-+memx_ts_end:
-+.b32 0
++	ram_fb_disable(fuc);
 +
- memx_data_head:
- .skip 0x0800
- memx_data_tail:
-@@ -78,6 +83,9 @@ memx_func_enter:
- 		and $r6 NV_PPWR_OUTPUT_FB_PAUSE
- 		bra z #memx_func_enter_wait
+ 	ram->mode = (next->freq > fuc->refpll.vco1.max_freq) ? 2 : 1;
+ 	ram->from = ram_rd32(fuc, 0x1373f4) & 0x0000000f;
  
-+	nv_iord($r6, NV_PPWR_TIMER_LOW)
-+	st b32 D[$r0 + #memx_ts_start] $r6
-+
- 	ret
- 
- // description
-@@ -87,6 +95,9 @@ memx_func_enter:
- // $r3  - opcode desciption
- // $r0  - zero
- memx_func_leave:
-+	nv_iord($r6, NV_PPWR_TIMER_LOW)
-+	st b32 D[$r0 + #memx_ts_end] $r6
-+
- 	mov $r6 NV_PPWR_OUTPUT_CLR_FB_PAUSE
- 	nv_iowr(NV_PPWR_OUTPUT_CLR, $r6)
- 	memx_func_leave_wait:
-@@ -210,6 +221,7 @@ memx_exec:
- 	push $r13
- 	mov b32 $r1 $r12
- 	mov b32 $r2 $r11
-+
- 	memx_exec_next:
- 		// fetch the packet header, and locate opcode info
- 		ld b32 $r3 D[$r1]
-@@ -226,6 +238,10 @@ memx_exec:
- 		bra l #memx_exec_next
- 
- 	// send completion reply
-+	ld b32 $r11 D[$r0 + #memx_ts_start]
-+	ld b32 $r12 D[$r0 + #memx_ts_end]
-+	sub b32 $r12 $r11
-+	nv_iord($r11, NV_PPWR_INPUT)
- 	pop $r13
- 	pop $r14
- 	call(send)
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c b/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
-index 060bbd2..c20669b9e 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/pwr/memx.c
-@@ -87,6 +87,8 @@ nouveau_memx_fini(struct nouveau_memx **pmemx, bool exec)
- 				 memx->base, finish);
+@@ -1061,6 +1063,9 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
+ 		break;
  	}
  
-+	nv_debug(memx->ppwr, "Exec took %uns, PPWR_IN %08x", reply[0], reply[1]);
++	if (!ret)
++		ram_fb_enable(fuc);
 +
- 	kfree(memx);
- 	return 0;
+ 	return ret;
  }
+ 
 -- 
 1.9.3
