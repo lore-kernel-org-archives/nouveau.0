@@ -1,7 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 4/8] fb/ramnve0: Disable FB before reclocking
-Date: Thu,  4 Sep 2014 16:58:51 +0200
-Message-ID: <1409842735-7361-5-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 8/8] fb/sddr2: Generate MR values
+Date: Thu,  4 Sep 2014 16:58:55 +0200
+Message-ID: <1409842735-7361-9-git-send-email-rspliet@eclipso.eu>
 References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,35 +21,139 @@ To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This used to be done implicitly
-
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/nouveau/Makefile               |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/priv.h  |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c | 96 ++++++++++++++++++++++++++
+ 3 files changed, 98 insertions(+)
+ create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-index c5b46e3..9764792 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-@@ -998,6 +998,8 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
+index 8b307e1..8228e05 100644
+--- a/drivers/gpu/drm/nouveau/Makefile
++++ b/drivers/gpu/drm/nouveau/Makefile
+@@ -120,6 +120,7 @@ nouveau-y += core/subdev/fb/ramnvc0.o
+ nouveau-y += core/subdev/fb/ramnve0.o
+ nouveau-y += core/subdev/fb/ramgk20a.o
+ nouveau-y += core/subdev/fb/ramgm107.o
++nouveau-y += core/subdev/fb/sddr2.o
+ nouveau-y += core/subdev/fb/sddr3.o
+ nouveau-y += core/subdev/fb/gddr5.o
+ nouveau-y += core/subdev/gpio/base.o
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
+index 82273f8..60322e9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
+@@ -35,6 +35,7 @@ extern struct nouveau_oclass nve0_ram_oclass;
+ extern struct nouveau_oclass gk20a_ram_oclass;
+ extern struct nouveau_oclass gm107_ram_oclass;
  
-+	ram_fb_disable(fuc);
++int nouveau_sddr2_calc(struct nouveau_ram *ram);
+ int nouveau_sddr3_calc(struct nouveau_ram *ram);
+ int nouveau_gddr5_calc(struct nouveau_ram *ram, bool nuts);
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+new file mode 100644
+index 0000000..f2f5f12
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+@@ -0,0 +1,96 @@
++/*
++ * Copyright 2014 Roy Spliet
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
++ *          Ben Skeggs
++ */
 +
- 	ram->mode = (next->freq > fuc->refpll.vco1.max_freq) ? 2 : 1;
- 	ram->from = ram_rd32(fuc, 0x1373f4) & 0x0000000f;
- 
-@@ -1061,6 +1063,9 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
- 		break;
- 	}
- 
-+	if (!ret)
-+		ram_fb_enable(fuc);
++#include <subdev/bios.h>
++#include "priv.h"
 +
- 	return ret;
- }
- 
++struct ramxlat {
++	int id;
++	u8 enc;
++};
++
++static inline int
++ramxlat(const struct ramxlat *xlat, int id)
++{
++	while (xlat->id >= 0) {
++		if (xlat->id == id)
++			return xlat->enc;
++		xlat++;
++	}
++	return -EINVAL;
++}
++
++static const struct ramxlat
++ramddr2_cl[] = {
++	{ 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 }, { 6, 6 },
++	/* The following are available in some, but not all DDR2 docs */
++	{ 7, 7 },
++	{ -1 }
++};
++
++static const struct ramxlat
++ramddr2_wr[] = {
++	{ 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 4 }, { 6, 5 },
++	/* The following are available in some, but not all DDR2 docs */
++	{ 7, 6 },
++	{ -1 }
++};
++
++int
++nouveau_sddr2_calc(struct nouveau_ram *ram)
++{
++	struct nouveau_bios *bios = nouveau_bios(ram);
++	int CL, WR, DLL = 0, ODT = 0;
++
++	switch (!!ram->timing.data * ram->timing.version) {
++	case 0x10:
++		CL  =   nv_ro08(bios, ram->timing.data + 0x02);
++		WR  =   nv_ro08(bios, ram->timing.data + 0x00);
++		DLL = !(nv_ro08(bios, ram->ramcfg.data + 0x02) & 0x40);
++		ODT =   nv_ro08(bios, ram->timing.data + 0x0e) & 0x03;
++		break;
++	case 0x20:
++		CL  =  nv_ro08(bios, ram->timing.data + 0x04) & 0x1f;
++		WR  =  nv_ro08(bios, ram->timing.data + 0x0a) & 0x7f;
++		break;
++	default:
++		return -ENOSYS;
++	}
++
++	CL  = ramxlat(ramddr2_cl, CL);
++	WR  = ramxlat(ramddr2_wr, WR);
++	if (CL < 0 || WR < 0)
++		return -EINVAL;
++
++	ram->mr[0] &= ~0xe70;
++	ram->mr[0] |= (WR & 0x07) << 9;
++	ram->mr[0] |= (CL & 0x07) << 4;
++
++	ram->mr[1] &= ~0x045;
++	ram->mr[1] |= (ODT & 0x1) << 2;
++	ram->mr[1] |= (ODT & 0x2) << 5;
++	ram->mr[1] |= !DLL;
++	return 0;
++}
 -- 
 1.9.3
