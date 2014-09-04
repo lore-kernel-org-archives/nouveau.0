@@ -1,13 +1,10 @@
-From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Subject: Re: Errors during vdpau mpeg2 decoding
-Date: Thu, 04 Sep 2014 07:04:22 +0200
-Message-ID: <5407F2D6.9060509@canonical.com>
-References: <CAKb7UvjMYmt1y+m_uek6vVjA3cHuPTRKKAEicvK3UgghCLOT0A@mail.gmail.com>
+From: asd <asd-jrA/B3VWHiL2D7C+UIOg5A@public.gmane.org>
+Subject: nouveau memory leaks
+Date: Thu, 4 Sep 2014 15:37:49 +0300
+Message-ID: <20140904153749.19fd78ca@marian1000.go.ro>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="MP_/UfTSngdxofaxrQEdzT8=4=t"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjMYmt1y+m_uek6vVjA3cHuPTRKKAEicvK3UgghCLOT0A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,29 +14,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hey,
+--MP_/UfTSngdxofaxrQEdzT8=4=t
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-On 04-09-14 05:53, Ilia Mirkin wrote:
-> Hi Maarten,
-> 
-> I'm seeing these prints, which feel like they're accompanied by bad frames:
-> 
-> 0x7f7fcb29ab70 is not a real ref: -0.011 72712/72709  0% 35%  1.0% 0 0
-> 
-> This comes from
-> 
->       if (dec->refs[idx].vidbuf != refs[i]) {
->          debug_printf("%p is not a real ref\n", refs[i]);
->          // FIXME: Maybe do m2mf copy here if a application really
-> depends on it?
->          continue;
->       }
-> 
-> Can you explain what this means, and what the fixme is referring to?
-I keep internal track of the reference frames that were decoded last. If vidbuf in the internal state is not equal to the ref here it means something else got decoded in that slot and we no longer have the intermediary frame used for decoding.
+Hi
+For NV40 attach one patch which leave unused  second channel used on
+NV50 and more.
+--MP_/UfTSngdxofaxrQEdzT8=4=t
+Content-Type: text/x-patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename=nouveau_chan_fix.patch
 
-~Maarten
+Index: master_local/drivers/gpu/drm/nouveau/nouveau_chan.c
+===================================================================
+--- master_local.orig/drivers/gpu/drm/nouveau/nouveau_chan.c	2014-08-29 17:03:06.000000000 +0300
++++ master_local/drivers/gpu/drm/nouveau/nouveau_chan.c	2014-09-04 11:44:53.862385947 +0300
+@@ -131,8 +131,13 @@
+ 	 * pushbuf lives in, this is because the GEM code requires that
+ 	 * we be able to call out to other (indirect) push buffers
+ 	 */
+-	chan->push.vma.offset = chan->push.buffer->bo.offset;
+-	chan->push.handle = NVDRM_PUSH | (handle & 0xffff);
++	if (device->card_type == NV_40) {
++			chan->push.vma.offset = chan->push.buffer->bo.offset;
++			chan->push.handle = NVDRM_PUSH; 
++	} else {
++		chan->push.vma.offset = chan->push.buffer->bo.offset;
++                chan->push.handle = NVDRM_PUSH | (handle & 0xffff);
++	}
+ 
+ 	if (device->card_type >= NV_50) {
+ 		ret = nouveau_bo_vma_add(chan->push.buffer, client->vm,
+@@ -190,6 +195,7 @@
+ 		    u32 parent, u32 handle, u32 engine,
+ 		    struct nouveau_channel **pchan)
+ {
++	struct nouveau_device *device = nv_device(drm->device);
+ 	static const u16 oclasses[] = { NVE0_CHANNEL_IND_CLASS,
+ 					NVC0_CHANNEL_IND_CLASS,
+ 					NV84_CHANNEL_IND_CLASS,
+@@ -199,6 +205,9 @@
+ 	struct nve0_channel_ind_class args;
+ 	struct nouveau_channel *chan;
+ 	int ret;
++	/* NV_40 working with ind channel? */
++	if (device->card_type == NV_40)
++			return -EPERM;
+ 
+ 	/* allocate dma push buffer */
+ 	ret = nouveau_channel_prep(drm, cli, parent, handle, 0x12000, &chan);
+Index: master_local/drivers/gpu/drm/nouveau/nouveau_drm.c
+===================================================================
+--- master_local.orig/drivers/gpu/drm/nouveau/nouveau_drm.c	2014-09-03 15:22:11.738698637 +0300
++++ master_local/drivers/gpu/drm/nouveau/nouveau_drm.c	2014-09-04 10:57:08.685701955 +0300
+@@ -171,6 +171,7 @@
+ 	if (device->chipset >= 0xa3 &&
+ 	    device->chipset != 0xaa &&
+ 	    device->chipset != 0xac) {
++		printk(KERN_INFO "create unneeded channel");
+ 		ret = nouveau_channel_new(drm, &drm->client, NVDRM_DEVICE,
+ 					  NVDRM_CHAN + 1, NvDmaFB, NvDmaTT,
+ 					  &drm->cechan);
+
+--MP_/UfTSngdxofaxrQEdzT8=4=t
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--MP_/UfTSngdxofaxrQEdzT8=4=t--
