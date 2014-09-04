@@ -1,14 +1,12 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 4/8] fb/ramnve0: Disable FB before reclocking
-Date: Thu, 4 Sep 2014 11:08:28 -0400
-Message-ID: <CAKb7UvjvFo=nxQ3=yYy_egO3+gjW9jEMQjm34rkDkF14PV0XDg@mail.gmail.com>
-References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
- <1409842735-7361-5-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH] copy: don't bother trying to create copy on
+	pre-nva3
+Date: Thu,  4 Sep 2014 15:27:53 -0400
+Message-ID: <1409858873-21829-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1409842735-7361-5-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +16,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Cc: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This should probably be folded into the previous patch to avoid
-breaking bisectability on nve0
+Only the NVA3/5/8/F tesla chips have a copy engine. Don't bother trying
+to create one on earlier tesla chips (and thus printing an error on
+failure).
 
-On Thu, Sep 4, 2014 at 10:58 AM, Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> wrote:
-> This used to be done implicitly
->
-> Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-> ---
->  drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-> index c5b46e3..9764792 100644
-> --- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-> +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
-> @@ -998,6 +998,8 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
->         if (ret)
->                 return ret;
->
-> +       ram_fb_disable(fuc);
-> +
->         ram->mode = (next->freq > fuc->refpll.vco1.max_freq) ? 2 : 1;
->         ram->from = ram_rd32(fuc, 0x1373f4) & 0x0000000f;
->
-> @@ -1061,6 +1063,9 @@ nve0_ram_calc_xits(struct nouveau_fb *pfb, struct nouveau_ram_data *next)
->                 break;
->         }
->
-> +       if (!ret)
-> +               ram_fb_enable(fuc);
-> +
->         return ret;
->  }
->
-> --
-> 1.9.3
->
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
+ src/nouveau_copy.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/nouveau_copy.c b/src/nouveau_copy.c
+index f46f0c3..3202121 100644
+--- a/src/nouveau_copy.c
++++ b/src/nouveau_copy.c
+@@ -61,6 +61,10 @@ nouveau_copy_init(ScreenPtr pScreen)
+ 
+ 	switch (pNv->Architecture) {
+ 	case NV_TESLA:
++		if (pNv->dev->chipset < 0xa3 ||
++		    pNv->dev->chipset == 0xaa ||
++		    pNv->dev->chipset == 0xac)
++			return FALSE;
+ 		data = &(struct nv04_fifo) {
+ 			.vram = NvDmaFB,
+ 			.gart = NvDmaTT,
+-- 
+1.8.5.5
