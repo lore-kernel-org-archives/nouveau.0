@@ -1,17 +1,13 @@
-From: "Roy Spliet" <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: Re: [PATCH 4/8] fb/ramnve0: Disable FB before reclocking
-Date: Thu, 04 Sep 2014 22:49:38 +0200
-Message-ID: <429771427953afe517736a392dff9a2c@mail.eclipso.de>
-References: <1409842735-7361-1-git-send-email-rspliet@eclipso.eu>
- <1409842735-7361-5-git-send-email-rspliet@eclipso.eu>
- <CAKb7UvjvFo=nxQ3=yYy_egO3+gjW9jEMQjm34rkDkF14PV0XDg@mail.gmail.com>
-Reply-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH] fb/sddr2: Generate MR values
+Date: Fri,  5 Sep 2014 02:41:46 +0200
+Message-ID: <1409877706-5298-2-git-send-email-rspliet@eclipso.eu>
+References: <1409877706-5298-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvjvFo=nxQ3=yYy_egO3+gjW9jEMQjm34rkDkF14PV0XDg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <1409877706-5298-1-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +17,145 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QWNrbm93bGVkZ2VkLCBidXQga25vd2luZyBCZW4gbWlnaHQgaGF2ZSBzb21lIHdvcmsgb24gS2Vw
-bGVyIHJlY2xvY2tpbmcgdXAgaGlzIHNsZWV2ZSBJIHdhbnRlZCB0byBlYXNlIHRoZSBnaXQgbWVy
-Z2luZyBwcm9jZXNzIGEgbGl0dGxlLiBGZWVsIGZyZWUgdG8gZm9sZCB0b2dldGhlciAob3IgdGVs
-bCBtZSBJIHNob3VsZCByZWFsbHkgcmVhbGx5IGRvIHRoYXQpLgoKUm95CgotLS0gVXJzcHLDvG5n
-bGljaGUgTmFjaHJpY2h0IC0tLQpWb246IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
-dT4KRGF0dW06IDE3OjA4OjI4IDA0LTA5LTIwMTQKQW46IFJveSBTcGxpZXQgPHJzcGxpZXRAZWNs
-aXBzby5ldT4KQmV0cmVmZjogUmU6IFtOb3V2ZWF1XSBbUEFUQ0ggNC84XSBmYi9yYW1udmUwOiBE
-aXNhYmxlIEZCIGJlZm9yZSByZWNsb2NraW5nCgo+IFRoaXMgc2hvdWxkIHByb2JhYmx5IGJlIGZv
-bGRlZCBpbnRvIHRoZSBwcmV2aW91cyBwYXRjaCB0byBhdm9pZAo+IGJyZWFraW5nIGJpc2VjdGFi
-aWxpdHkgb24gbnZlMAo+Cj4gT24gVGh1LCBTZXAgNCwgMjAxNCBhdCAxMDo1OCBBTSwgUm95IFNw
-bGlldCA8cnNwbGlldEBlY2xpcHNvLmV1PiB3cm90ZToKPgo+ID4gVGhpcyB1c2VkIHRvIGJlIGRv
-bmUgaW1wbGljaXRseQo+ID4KPiA+IFNpZ25lZC1vZmYtYnk6IFJveSBTcGxpZXQgPHJzcGxpZXRA
-ZWNsaXBzby5ldT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3Vi
-ZGV2L2ZiL3JhbW52ZTAuYyB8IDUgKysrKysKPiA+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRp
-b25zKCspCj4gPgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUv
-c3ViZGV2L2ZiL3JhbW52ZTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2
-L2ZiL3JhbW52ZTAuYwo+Cj4gPiBpbmRleCBjNWI0NmUzLi45NzY0NzkyIDEwMDY0NAo+ID4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9zdWJkZXYvZmIvcmFtbnZlMC5jCj4gPiAr
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi9mYi9yYW1udmUwLmMKPiA+
-IEBAIC05OTgsNiArOTk4LDggQEAgbnZlMF9yYW1fY2FsY194aXRzKHN0cnVjdCBub3V2ZWF1X2Zi
-ICpwZmIsIHN0cnVjdAo+IG5vdXZlYXVfcmFtX2RhdGEgKm5leHQpCj4gPiAgICAgICAgIGlmIChy
-ZXQpCj4gPiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPiA+Cj4gPiArICAgICAgIHJhbV9m
-Yl9kaXNhYmxlKGZ1Yyk7Cj4gPiArCj4gPiAgICAgICAgIHJhbS0+bW9kZSA9IChuZXh0LT5mcmVx
-ID4gZnVjLT5yZWZwbGwudmNvMS5tYXhfZnJlcSkKPiA/IDIgOiAxOwo+ID4gICAgICAgICByYW0t
-PmZyb20gPSByYW1fcmQzMihmdWMsIDB4MTM3M2Y0KSAmIDB4MDAwMDAwMGY7Cj4gPgo+ID4gQEAg
-LTEwNjEsNiArMTA2Myw5IEBAIG52ZTBfcmFtX2NhbGNfeGl0cyhzdHJ1Y3Qgbm91dmVhdV9mYiAq
-cGZiLCBzdHJ1Y3QKPiBub3V2ZWF1X3JhbV9kYXRhICpuZXh0KQo+ID4gICAgICAgICAgICAgICAg
-IGJyZWFrOwo+ID4gICAgICAgICB9Cj4gPgo+ID4gKyAgICAgICBpZiAoIXJldCkKPiA+ICsgICAg
-ICAgICAgICAgICByYW1fZmJfZW5hYmxlKGZ1Yyk7Cj4gPiArCj4gPiAgICAgICAgIHJldHVybiBy
-ZXQ7Cj4gPiAgfQo+ID4KPiA+IC0tCj4gPiAxLjkuMwo+ID4KPiA+Cj4gPgo+ID4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Cj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgoKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+V2: Always disable DLL reset
+
+Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/Makefile               |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/priv.h  |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c | 96 ++++++++++++++++++++++++++
+ 3 files changed, 98 insertions(+)
+ create mode 100644 drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+
+diff --git a/drivers/gpu/drm/nouveau/Makefile b/drivers/gpu/drm/nouveau/Makefile
+index 8b307e1..8228e05 100644
+--- a/drivers/gpu/drm/nouveau/Makefile
++++ b/drivers/gpu/drm/nouveau/Makefile
+@@ -120,6 +120,7 @@ nouveau-y += core/subdev/fb/ramnvc0.o
+ nouveau-y += core/subdev/fb/ramnve0.o
+ nouveau-y += core/subdev/fb/ramgk20a.o
+ nouveau-y += core/subdev/fb/ramgm107.o
++nouveau-y += core/subdev/fb/sddr2.o
+ nouveau-y += core/subdev/fb/sddr3.o
+ nouveau-y += core/subdev/fb/gddr5.o
+ nouveau-y += core/subdev/gpio/base.o
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
+index 82273f8..60322e9 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/priv.h
+@@ -35,6 +35,7 @@ extern struct nouveau_oclass nve0_ram_oclass;
+ extern struct nouveau_oclass gk20a_ram_oclass;
+ extern struct nouveau_oclass gm107_ram_oclass;
+ 
++int nouveau_sddr2_calc(struct nouveau_ram *ram);
+ int nouveau_sddr3_calc(struct nouveau_ram *ram);
+ int nouveau_gddr5_calc(struct nouveau_ram *ram, bool nuts);
+ 
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+new file mode 100644
+index 0000000..b5b0432
+--- /dev/null
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/sddr2.c
+@@ -0,0 +1,96 @@
++/*
++ * Copyright 2014 Roy Spliet
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a
++ * copy of this software and associated documentation files (the "Software"),
++ * to deal in the Software without restriction, including without limitation
++ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
++ * and/or sell copies of the Software, and to permit persons to whom the
++ * Software is furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in
++ * all copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
++ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
++ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ * OTHER DEALINGS IN THE SOFTWARE.
++ *
++ * Authors: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
++ *          Ben Skeggs
++ */
++
++#include <subdev/bios.h>
++#include "priv.h"
++
++struct ramxlat {
++	int id;
++	u8 enc;
++};
++
++static inline int
++ramxlat(const struct ramxlat *xlat, int id)
++{
++	while (xlat->id >= 0) {
++		if (xlat->id == id)
++			return xlat->enc;
++		xlat++;
++	}
++	return -EINVAL;
++}
++
++static const struct ramxlat
++ramddr2_cl[] = {
++	{ 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 }, { 6, 6 },
++	/* The following are available in some, but not all DDR2 docs */
++	{ 7, 7 },
++	{ -1 }
++};
++
++static const struct ramxlat
++ramddr2_wr[] = {
++	{ 2, 1 }, { 3, 2 }, { 4, 3 }, { 5, 4 }, { 6, 5 },
++	/* The following are available in some, but not all DDR2 docs */
++	{ 7, 6 },
++	{ -1 }
++};
++
++int
++nouveau_sddr2_calc(struct nouveau_ram *ram)
++{
++	struct nouveau_bios *bios = nouveau_bios(ram);
++	int CL, WR, DLL = 0, ODT = 0;
++
++	switch (!!ram->timing.data * ram->timing.version) {
++	case 0x10:
++		CL  =   nv_ro08(bios, ram->timing.data + 0x02);
++		WR  =   nv_ro08(bios, ram->timing.data + 0x00);
++		DLL = !(nv_ro08(bios, ram->ramcfg.data + 0x02) & 0x40);
++		ODT =   nv_ro08(bios, ram->timing.data + 0x0e) & 0x03;
++		break;
++	case 0x20:
++		CL  =  nv_ro08(bios, ram->timing.data + 0x04) & 0x1f;
++		WR  =  nv_ro08(bios, ram->timing.data + 0x0a) & 0x7f;
++		break;
++	default:
++		return -ENOSYS;
++	}
++
++	CL  = ramxlat(ramddr2_cl, CL);
++	WR  = ramxlat(ramddr2_wr, WR);
++	if (CL < 0 || WR < 0)
++		return -EINVAL;
++
++	ram->mr[0] &= ~0xf70;
++	ram->mr[0] |= (WR & 0x07) << 9;
++	ram->mr[0] |= (CL & 0x07) << 4;
++
++	ram->mr[1] &= ~0x045;
++	ram->mr[1] |= (ODT & 0x1) << 2;
++	ram->mr[1] |= (ODT & 0x2) << 5;
++	ram->mr[1] |= !DLL;
++	return 0;
++}
+-- 
+1.9.3
