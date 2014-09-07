@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
- - Strange pink line on left screen side
-Date: Sun, 07 Sep 2014 08:12:51 +0000
-Message-ID: <bug-75203-8800-dxXqx5AFiZ@http.bugs.freedesktop.org/>
-References: <bug-75203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83587] New: 3.14.18: FAN control: none / external --
+ 3.16.2: FAN control: PWM
+Date: Sun, 07 Sep 2014 15:33:39 +0000
+Message-ID: <bug-83587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1561689198=="
+Content-Type: multipart/mixed; boundary="===============0185888277=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,73 +19,208 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1561689198==
-Content-Type: multipart/alternative; boundary="1410077571.baFdBAe3.25746"; charset="us-ascii"
+--===============0185888277==
+Content-Type: multipart/alternative; boundary="1410104019.B56361.3858"; charset="us-ascii"
 
 
---1410077571.baFdBAe3.25746
-Date: Sun, 7 Sep 2014 08:12:51 +0000
+--1410104019.B56361.3858
+Date: Sun, 7 Sep 2014 15:33:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75203
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83587
 
---- Comment #13 from Vincent Pelletier <plr.vincent-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I just posted a tentative fix on nouveau mailing list:
-http://lists.freedesktop.org/archives/nouveau/2014-September/018654.html
+          Priority: medium
+            Bug ID: 83587
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: 3.14.18: FAN control: none / external -- 3.16.2: FAN
+                    control: PWM
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: riesebie-xZYEWGoilGM@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Beware, it hasn't been reviewed yet, values may be specific to my card/setup.
+Created attachment 105861
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D105861&action=3Dedit
+dmesg and vbios tared
 
-Also, I only enabled my change on nve0 cards, so GTX 780 is likely to see no
-change.
+My gpu:  NVIDIA Corporation GK104 [GeForce GTX 760]
 
--- 
+Running kernel 3.14.18 I can't control fanspeed. There are no pwm1 files in
+/sys as mentioned in
+https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/D=
+ocumentation/thermal/nouveau_thermal.
+fan1 is always at maximum, while the temp1 is around 37=C2=B0C.
+
+Running kernel 3.16.2 with the same .config everything runs smooth (fan1 720
+RPM, temp1 +39=C2=B0C).
+
+The most important difference in dmesg is:
+3.14.18:=20
+nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+
+3.16.2:=20
+nouveau  [  PTHERM][0000:01:00.0] FAN control: PWM
+
+dmesg | grep nouveau attached
+
+Thanks in advance
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410077571.baFdBAe3.25746
-Date: Sun, 7 Sep 2014 08:12:51 +0000
+--1410104019.B56361.3858
+Date: Sun, 7 Sep 2014 15:33:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - 3.14.18: FAN control: none / external -- 3.16.2: FAN =
+control: PWM"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83587">83587</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>3.14.18: FAN control: none / external -- 3.16.2: FAN control:=
+ PWM
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>riesebie&#64;lxtec.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:plr.vincent&#64;gmail.com" title="Vincent Pelletier &lt;plr.vincent&#64;gmail.com&gt;"> <span class="fn">Vincent Pelletier</span></a>
-</span></b>
-        <pre>I just posted a tentative fix on nouveau mailing list:
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-September/018654.html">http://lists.freedesktop.org/archives/nouveau/2014-September/018654.html</a>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D105861=
+" name=3D"attach_105861" title=3D"dmesg and vbios tared">attachment 105861<=
+/a> <a href=3D"attachment.cgi?id=3D105861&amp;action=3Dedit" title=3D"dmesg=
+ and vbios tared">[details]</a></span>
+dmesg and vbios tared
 
-Beware, it hasn't been reviewed yet, values may be specific to my card/setup.
+My gpu:  NVIDIA Corporation GK104 [GeForce GTX 760]
 
-Also, I only enabled my change on nve0 cards, so GTX 780 is likely to see no
-change.</pre>
+Running kernel 3.14.18 I can't control fanspeed. There are no pwm1 files in
+/sys as mentioned in
+<a href=3D"https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable=
+.git/tree/Documentation/thermal/nouveau_thermal">https://git.kernel.org/cgi=
+t/linux/kernel/git/stable/linux-stable.git/tree/Documentation/thermal/nouve=
+au_thermal</a>.
+fan1 is always at maximum, while the temp1 is around 37=C2=B0C.
+
+Running kernel 3.16.2 with the same .config everything runs smooth (fan1 720
+RPM, temp1 +39=C2=B0C).
+
+The most important difference in dmesg is:
+3.14.18:=20
+nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+
+3.16.2:=20
+nouveau  [  PTHERM][0000:01:00.0] FAN control: PWM
+
+dmesg | grep nouveau attached
+
+Thanks in advance</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1410077571.baFdBAe3.25746--
+--1410104019.B56361.3858--
 
---===============1561689198==
+--===============0185888277==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +231,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1561689198==--
+--===============0185888277==--
