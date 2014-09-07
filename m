@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83587] 3.14.18: FAN control: none / external --
- 3.16.2: FAN control: PWM
-Date: Sun, 07 Sep 2014 21:25:00 +0000
-Message-ID: <bug-83587-8800-yDY5fnTkcA@http.bugs.freedesktop.org/>
-References: <bug-83587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83597] New: [NVE6] blank VGA screen after suspend
+Date: Sun, 07 Sep 2014 22:21:14 +0000
+Message-ID: <bug-83597-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0195810766=="
+Content-Type: multipart/mixed; boundary="===============2079212911=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +18,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0195810766==
-Content-Type: multipart/alternative; boundary="1410125100.cF6241.2574"; charset="us-ascii"
+--===============2079212911==
+Content-Type: multipart/alternative; boundary="1410128474.a41b13c1.14737"; charset="us-ascii"
 
 
---1410125100.cF6241.2574
-Date: Sun, 7 Sep 2014 21:25:00 +0000
+--1410128474.a41b13c1.14737
+Date: Sun, 7 Sep 2014 22:21:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83587
+https://bugs.freedesktop.org/show_bug.cgi?id=83597
 
---- Comment #4 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to comment #3)
-> (In reply to comment #2)
-> > Sometimes features of newer kernels are backported for longterm ones. 
-> 
-> Nope, never. Bugs are fixed, new features are never backported to stable
-> kernels.
+          Priority: medium
+            Bug ID: 83597
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVE6] blank VGA screen after suspend
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: normal
+    Classification: Unclassified
+                OS: All
+          Reporter: prg-uDMUqRiVvSc@public.gmane.org
+          Hardware: Other
+            Status: NEW
+           Version: unspecified
+         Component: Driver/nouveau
+           Product: xorg
 
-Distros pretending to be stable do that so they get "up-to-date" features with
-the same version number. Yeah for frankenkernels!
+Created attachment 105875
+  --> https://bugs.freedesktop.org/attachment.cgi?id=105875&action=edit
+dmesg
 
-And people wonder why I don't like such distros :p
+Since "bf0eb89 drm/nv50-/disp: audit and version DAC_PWR method" my VGA monitor
+connected via DVI-I stays black after suspend/resume. The backlight is still on
+and can be toggled with xrandr --off/--auto, but I don't get any image.
+rmmod+modprobe nouveau does not help either, I need to reboot to get an image
+back.
+Another monitor connected via DVI-D is still fine.
+I can't see anything obvious in dmesg.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410125100.cF6241.2574
-Date: Sun, 7 Sep 2014 21:25:00 +0000
+--1410128474.a41b13c1.14737
+Date: Sun, 7 Sep 2014 22:21:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,30 +69,105 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] blank VGA screen after suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83597">83597</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE6] blank VGA screen after suspend
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>prg&#64;cooco.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - 3.14.18: FAN control: none / external -- 3.16.2: FAN control: PWM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83587#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - 3.14.18: FAN control: none / external -- 3.16.2: FAN control: PWM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83587">bug 83587</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=83587#c3">comment #3</a>)
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=83587#c2">comment #2</a>)
-&gt; &gt; Sometimes features of newer kernels are backported for longterm ones. 
-&gt; 
-&gt; Nope, never. Bugs are fixed, new features are never backported to stable
-&gt; kernels.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=105875" name="attach_105875" title="dmesg">attachment 105875</a> <a href="attachment.cgi?id=105875&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-Distros pretending to be stable do that so they get &quot;up-to-date&quot; features with
-the same version number. Yeah for frankenkernels!
-
-And people wonder why I don't like such distros :p</pre>
+Since &quot;bf0eb89 drm/nv50-/disp: audit and version DAC_PWR method&quot; my VGA monitor
+connected via DVI-I stays black after suspend/resume. The backlight is still on
+and can be toggled with xrandr --off/--auto, but I don't get any image.
+rmmod+modprobe nouveau does not help either, I need to reboot to get an image
+back.
+Another monitor connected via DVI-D is still fine.
+I can't see anything obvious in dmesg.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +179,9 @@ And people wonder why I don't like such distros :p</pre>
     </body>
 </html>
 
---1410125100.cF6241.2574--
+--1410128474.a41b13c1.14737--
 
---===============0195810766==
+--===============2079212911==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +192,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0195810766==--
+--===============2079212911==--
