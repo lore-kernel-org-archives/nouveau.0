@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83587] 3.14.18: FAN control: none / external --
  3.16.2: FAN control: PWM
-Date: Sun, 07 Sep 2014 20:57:33 +0000
-Message-ID: <bug-83587-8800-vTj3sBqOYG@http.bugs.freedesktop.org/>
+Date: Sun, 07 Sep 2014 21:02:52 +0000
+Message-ID: <bug-83587-8800-GHnuuJbPj3@http.bugs.freedesktop.org/>
 References: <bug-83587-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1564798655=="
+Content-Type: multipart/mixed; boundary="===============1965424050=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1564798655==
-Content-Type: multipart/alternative; boundary="1410123453.bA2a4aB1.28278"; charset="us-ascii"
+--===============1965424050==
+Content-Type: multipart/alternative; boundary="1410123772.0c3E1.29632"; charset="us-ascii"
 
 
---1410123453.bA2a4aB1.28278
-Date: Sun, 7 Sep 2014 20:57:33 +0000
+--1410123772.0c3E1.29632
+Date: Sun, 7 Sep 2014 21:02:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83587
 
---- Comment #2 from Elimar Riesebieter <riesebie-xZYEWGoilGM@public.gmane.org> ---
-Sometimes features of newer kernels are backported for longterm ones. 
+Elimar Riesebieter <riesebie-xZYEWGoilGM@public.gmane.org> changed:
 
-It is correct I have had to ask directly for an implementation of fan control
-for the GeForce GTX 760.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |enhancement
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410123453.bA2a4aB1.28278
-Date: Sun, 7 Sep 2014 20:57:33 +0000
+--1410123772.0c3E1.29632
+Date: Sun, 7 Sep 2014 21:02:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,24 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - 3.14.18: FAN control: none / external -- 3.16.2: FAN control: PWM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83587#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:riesebie&#64;lxtec.de" title="Elimar Riesebieter &lt;riesebie&#64;lxtec.de&gt;"> <span class="fn">Elimar Riesebieter</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - 3.14.18: FAN control: none / external -- 3.16.2: FAN control: PWM"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83587">bug 83587</a>
-              from <span class="vcard"><a class="email" href="mailto:riesebie&#64;lxtec.de" title="Elimar Riesebieter &lt;riesebie&#64;lxtec.de&gt;"> <span class="fn">Elimar Riesebieter</span></a>
-</span></b>
-        <pre>Sometimes features of newer kernels are backported for longterm ones. 
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-It is correct I have had to ask directly for an implementation of fan control
-for the GeForce GTX 760.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>enhancement
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -79,9 +83,9 @@ for the GeForce GTX 760.</pre>
     </body>
 </html>
 
---1410123453.bA2a4aB1.28278--
+--1410123772.0c3E1.29632--
 
---===============1564798655==
+--===============1965424050==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1564798655==--
+--===============1965424050==--
