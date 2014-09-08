@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 51477] [NV10, NV20] bad/missing graphics,
 	usually alpha-related
-Date: Mon, 08 Sep 2014 18:11:10 +0000
-Message-ID: <bug-51477-8800-Rz6FMlbAVf@http.bugs.freedesktop.org/>
+Date: Mon, 08 Sep 2014 18:12:50 +0000
+Message-ID: <bug-51477-8800-VLrqlUJedL@http.bugs.freedesktop.org/>
 References: <bug-51477-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0219369158=="
+Content-Type: multipart/mixed; boundary="===============0399192114=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0219369158==
-Content-Type: multipart/alternative; boundary="1410199870.c1e5c83.7854"; charset="us-ascii"
+--===============0399192114==
+Content-Type: multipart/alternative; boundary="1410199970.7e773.8347"; charset="us-ascii"
 
 
---1410199870.c1e5c83.7854
-Date: Mon, 8 Sep 2014 18:11:10 +0000
+--1410199970.7e773.8347
+Date: Mon, 8 Sep 2014 18:12:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #28 from BobbyJ <junkbubba2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hello, I came across this bug after installing Lubuntu 14.04.1 and experiencing
-the disappearing icons in the default file browser and other places. I turned
-off anti-aliasing under Settings>Appearance>Fonts and the icons no longer
-disappear. This however makes the text harder to read. 
+--- Comment #29 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #28)
+> The title of the bug includes NV10 and NV20. I am just a regular user (not a
+> developer) but the fix below appears to only reference NV10. I have an
+> Nvidia GeForece 3 Ti200 graphics card which is considered NV20. Does the fix
+> also correct the issue for NV20 graphics cards?
 
-The title of the bug includes NV10 and NV20. I am just a regular user (not a
-developer) but the fix below appears to only reference NV10. I have an Nvidia
-GeForece 3 Ti200 graphics card which is considered NV20. Does the fix also
-correct the issue for NV20 graphics cards?
+NV20 uses the same accel logic as NV10 for exa. Reports are that it does indeed
+fix the issue for NV20 iirc. xf86-video-nouveau 1.0.11 is now released and
+should contain this fix.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410199870.c1e5c83.7854
-Date: Mon, 8 Sep 2014 18:11:10 +0000
+--1410199970.7e773.8347
+Date: Mon, 8 Sep 2014 18:12:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +62,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c28">Comment # 28</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NV10, NV20] bad/missing graphics, usually alpha-related"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:junkbubba2&#64;gmail.com" title="BobbyJ &lt;junkbubba2&#64;gmail.com&gt;"> <span class="fn">BobbyJ</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hello, I came across this bug after installing Lubuntu 14.04.1 and experiencing
-the disappearing icons in the default file browser and other places. I turned
-off anti-aliasing under Settings&gt;Appearance&gt;Fonts and the icons no longer
-disappear. This however makes the text harder to read. 
+        <pre>(In reply to <a href="show_bug.cgi?id=51477#c28">comment #28</a>)
+<span class="quote">&gt; The title of the bug includes NV10 and NV20. I am just a regular user (not a
+&gt; developer) but the fix below appears to only reference NV10. I have an
+&gt; Nvidia GeForece 3 Ti200 graphics card which is considered NV20. Does the fix
+&gt; also correct the issue for NV20 graphics cards?</span >
 
-The title of the bug includes NV10 and NV20. I am just a regular user (not a
-developer) but the fix below appears to only reference NV10. I have an Nvidia
-GeForece 3 Ti200 graphics card which is considered NV20. Does the fix also
-correct the issue for NV20 graphics cards?</pre>
+NV20 uses the same accel logic as NV10 for exa. Reports are that it does indeed
+fix the issue for NV20 iirc. xf86-video-nouveau 1.0.11 is now released and
+should contain this fix.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +89,9 @@ correct the issue for NV20 graphics cards?</pre>
     </body>
 </html>
 
---1410199870.c1e5c83.7854--
+--1410199970.7e773.8347--
 
---===============0219369158==
+--===============0399192114==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0219369158==--
+--===============0399192114==--
