@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 51477] [NV10, NV20] bad/missing graphics,
-	usually alpha-related
-Date: Tue, 09 Sep 2014 17:40:56 +0000
-Message-ID: <bug-51477-8800-XCy9dOGs8e@http.bugs.freedesktop.org/>
-References: <bug-51477-8800@http.bugs.freedesktop.org/>
+From: pete nikolic <pg.nikolic1-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Direct Firmware load error
+Date: Tue, 9 Sep 2014 20:08:27 +0100
+Message-ID: <20140909200827.67784613@7-of-9>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1350812705=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-51477-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,89 +19,67 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1350812705==
-Content-Type: multipart/alternative; boundary="1410284456.0e13dDF3.24410"; charset="us-ascii"
+Hi Folks 
+
+Getting a considerable number of these showing up  at the moment 
 
 
---1410284456.0e13dDF3.24410
-Date: Tue, 9 Sep 2014 17:40:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+[  619.350185] nouveau 0000:01:00.0: Direct firmware load failed with error -2
+[  619.350193] nouveau 0000:01:00.0: Falling back to user helper
+[  619.352536] nouveau 0000:01:00.0: Direct firmware load failed with error -2
+[  619.352543] nouveau 0000:01:00.0: Falling back to user helper
+[  619.354243] nouveau E[    PBSP][0000:01:00.0] unable to load firmware data
+[  619.354253] nouveau E[    PBSP][0000:01:00.0] init failed, -12
 
-https://bugs.freedesktop.org/show_bug.cgi?id=51477
 
---- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to comment #30)
-> Thanks for the quick response. So it sounds like this fix should correct the
-> issue for NV20 cards. The current nouveau package for Ubuntu 14.04 LTS is
-> 1:1.0.10-1ubuntu2. I assume this is the same package used for Lubuntu. 
-> 
-> Do you know how I would go about requesting that this change be backported
-> to 1.0.10? Would I have to create a bug report on Launchpad or is it
-> sufficient to reference this bug report and fix?
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216 [GeForce GT 220] (rev a2)
+ 8.550547] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0a5000a2
+[    8.550552] nouveau  [  DEVICE][0000:01:00.0] Chipset: GT216 (NVA5)
+[    8.550554] nouveau  [  DEVICE][0000:01:00.0] Family : NV50
+[    8.550589] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
+[    8.575610] microcode: CPU1: patch_level=0x010000c9
+[    8.575626] microcode: CPU2: patch_level=0x010000c9
+[    8.575640] microcode: CPU3: patch_level=0x010000c9
+[    8.575743] microcode: Microcode Update Driver: v2.00
+<tigran-ppwZ4lME3+KI6QP4U9MhSdBc4/FLrbF6@public.gmane.org>, Peter Oruba [    8.653229] nouveau
+[   VBIOS][0000:01:00.0] ... appears to be valid [    8.653232] nouveau
+[   VBIOS][0000:01:00.0] using image from PRAMIN [    8.653354] nouveau
+[   VBIOS][0000:01:00.0] BIT signature found [    8.653357] nouveau
+[   VBIOS][0000:01:00.0] version 70.16.39.00.0f [    8.653801] nouveau 0000:01:00.0:
+irq 42 for MSI/MSI-X [    8.653810] nouveau  [     PMC][0000:01:00.0] MSI interrupts
+enabled [    8.653852] nouveau
+W[     PFB][0000:01:00.0][0x00000000][ffff880131719000] reclocking of this ram type
+unsupported [    8.653855] nouveau  [     PFB][0000:01:00.0] RAM type: DDR2
+[    8.653857] nouveau  [     PFB][0000:01:00.0] RAM size: 1024 MiB [    8.653859]
+nouveau  [     PFB][0000:01:00.0]    ZCOMP: 1920 tags [    8.654822] nouveau
+[    VOLT][0000:01:00.0] GPU voltage: 900000uv
 
-There is no stable branch for xf86-video-nouveau (so no backporting). Upgrade
-to 1.0.11, or ask your distro to add those in as extra patches.
+ 9.221278] [TTM] Initializing DMA pool allocator
+[    9.221302] nouveau  [     DRM] VRAM: 1024 MiB
+[    9.221304] nouveau  [     DRM] GART: 1048576 MiB
+[    9.221311] nouveau  [     DRM] TMDS table version 2.0
+[    9.221314] nouveau  [     DRM] DCB version 4.0
+[    9.221316] nouveau  [     DRM] DCB outp 00: 01000302 00020030
+[    9.221319] nouveau  [     DRM] DCB outp 01: 02000300 00000000
+[    9.221321] nouveau  [     DRM] DCB outp 02: 01032310 00000000
+[    9.221322] nouveau  [     DRM] DCB outp 03: 02021362 00020010
+[    9.221324] nouveau  [     DRM] DCB conn 00: 00001030
+[    9.221326] nouveau  [     DRM] DCB conn 01: 00002161
+[    9.221327] nouveau  [     DRM] DCB conn 02: 00000200
+[    9.229117] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    9.229119] [drm] Driver supports precise vblank timestamp query.
+[    9.237570] nouveau  [     DRM] MM: using COPY for buffer copies
+
+Linux 7-of-9 3.16.2-1-ARCH #1 SMP PREEMPT Sat Sep 6 13:12:51 CEST 2014 x86_64
+GNU/Linux
+
+CPU    AMD  Phenome  quad core    4Gb Ram  
+
+Need more info tell me what and how 
+
+
+Cheers Pete 
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1410284456.0e13dDF3.24410
-Date: Tue, 9 Sep 2014 17:40:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477#c31">Comment # 31</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV10, NV20] bad/missing graphics, usually alpha-related"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=51477">bug 51477</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="show_bug.cgi?id=51477#c30">comment #30</a>)
-<span class="quote">&gt; Thanks for the quick response. So it sounds like this fix should correct the
-&gt; issue for NV20 cards. The current nouveau package for Ubuntu 14.04 LTS is
-&gt; 1:1.0.10-1ubuntu2. I assume this is the same package used for Lubuntu. 
-&gt; 
-&gt; Do you know how I would go about requesting that this change be backported
-&gt; to 1.0.10? Would I have to create a bug report on Launchpad or is it
-&gt; sufficient to reference this bug report and fix?</span >
-
-There is no stable branch for xf86-video-nouveau (so no backporting). Upgrade
-to 1.0.11, or ask your distro to add those in as extra patches.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1410284456.0e13dDF3.24410--
-
---===============1350812705==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1350812705==--
+Please note: No trees were killed in the sending of this message. 
+However a large number of electrons were terribly inconvenienced.
