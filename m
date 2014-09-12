@@ -1,8 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 2/6] nv50/display: Set VBLANK time in modeset
-	script
-Date: Fri, 12 Sep 2014 18:00:13 +0200
-Message-ID: <1410537617-8269-3-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 4/6] fb/ramfuc: Support strided regs
+Date: Fri, 12 Sep 2014 18:00:15 +0200
+Message-ID: <1410537617-8269-5-git-send-email-rspliet@eclipso.eu>
 References: <1410537617-8269-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,55 +21,117 @@ To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Solves blinking on reclocking memory. The value set is an underestimate, but
-with non-reduced vblanking this should give us plenty of time
-
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/nv50_display.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h  | 45 +++++++++++++++++++-----
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c |  2 +-
+ 2 files changed, 38 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv50_display.c b/drivers/gpu/drm/nouveau/nv50_display.c
-index 03949ea..c15060e 100644
---- a/drivers/gpu/drm/nouveau/nv50_display.c
-+++ b/drivers/gpu/drm/nouveau/nv50_display.c
-@@ -1066,7 +1066,7 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *umode,
- 	u32 vscan = (mode->flags & DRM_MODE_FLAG_DBLSCAN) ? 2 : 1;
- 	u32 hactive, hsynce, hbackp, hfrontp, hblanke, hblanks;
- 	u32 vactive, vsynce, vbackp, vfrontp, vblanke, vblanks;
--	u32 vblan2e = 0, vblan2s = 1;
-+	u32 vblan2e = 0, vblan2s = 1, vblankus = 0;
- 	u32 *push;
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h b/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
+index 6ae560a..d1fbbe4 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramfuc.h
+@@ -12,16 +12,32 @@ struct ramfuc {
+ struct ramfuc_reg {
+ 	int sequence;
+ 	bool force;
+-	u32 addr[2];
++	u32 addr;
++	u32 stride; /* in bytes */
++	u32 mask;
+ 	u32 data;
+ };
  
-@@ -1083,6 +1083,11 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *umode,
- 	vblanke = vsynce + vbackp;
- 	vfrontp = (mode->vsync_start - mode->vdisplay) * vscan / ilace;
- 	vblanks = vactive - vfrontp - 1;
-+	/* XXX: Safe underestimate, even "0" works */
-+	vblankus = (vactive - mode->vdisplay - 2) * hactive;
-+	vblankus *= 1000;
-+	vblankus /= mode->clock;
+ static inline struct ramfuc_reg
++ramfuc_stride(u32 addr, u32 stride, u32 mask)
++{
++	return (struct ramfuc_reg) {
++		.sequence = 0,
++		.addr = addr,
++		.stride = stride,
++		.mask = mask,
++		.data = 0xdeadbeef,
++	};
++}
 +
- 	if (mode->flags & DRM_MODE_FLAG_INTERLACE) {
- 		vblan2e = vactive + vsynce + vbackp;
- 		vblan2s = vblan2e + (mode->vdisplay * vscan / ilace);
-@@ -1099,14 +1104,14 @@ nv50_crtc_mode_set(struct drm_crtc *crtc, struct drm_display_mode *umode,
- 			evo_mthd(push, 0x0804 + (nv_crtc->index * 0x400), 2);
- 			evo_data(push, 0x00800000 | mode->clock);
- 			evo_data(push, (ilace == 2) ? 2 : 0);
--			evo_mthd(push, 0x0810 + (nv_crtc->index * 0x400), 6);
-+			evo_mthd(push, 0x0810 + (nv_crtc->index * 0x400), 8);
- 			evo_data(push, 0x00000000);
- 			evo_data(push, (vactive << 16) | hactive);
- 			evo_data(push, ( vsynce << 16) | hsynce);
- 			evo_data(push, (vblanke << 16) | hblanke);
- 			evo_data(push, (vblanks << 16) | hblanks);
- 			evo_data(push, (vblan2e << 16) | vblan2s);
--			evo_mthd(push, 0x082c + (nv_crtc->index * 0x400), 1);
-+			evo_data(push, vblankus);
- 			evo_data(push, 0x00000000);
- 			evo_mthd(push, 0x0900 + (nv_crtc->index * 0x400), 2);
- 			evo_data(push, 0x00000311);
++static inline struct ramfuc_reg
+ ramfuc_reg2(u32 addr1, u32 addr2)
+ {
+ 	return (struct ramfuc_reg) {
+ 		.sequence = 0,
+-		.addr = { addr1, addr2 },
++		.addr = addr1,
++		.stride = addr2 - addr1,
++		.mask = 0x3,
+ 		.data = 0xdeadbeef,
+ 	};
+ }
+@@ -29,7 +45,13 @@ ramfuc_reg2(u32 addr1, u32 addr2)
+ static noinline struct ramfuc_reg
+ ramfuc_reg(u32 addr)
+ {
+-	return ramfuc_reg2(addr, addr);
++	return (struct ramfuc_reg) {
++		.sequence = 0,
++		.addr = addr,
++		.stride = 0,
++		.mask = 0x1,
++		.data = 0xdeadbeef,
++	};
+ }
+ 
+ static inline int
+@@ -62,18 +84,25 @@ static inline u32
+ ramfuc_rd32(struct ramfuc *ram, struct ramfuc_reg *reg)
+ {
+ 	if (reg->sequence != ram->sequence)
+-		reg->data = nv_rd32(ram->pfb, reg->addr[0]);
++		reg->data = nv_rd32(ram->pfb, reg->addr);
+ 	return reg->data;
+ }
+ 
+ static inline void
+ ramfuc_wr32(struct ramfuc *ram, struct ramfuc_reg *reg, u32 data)
+ {
++	unsigned int mask, off = 0;
++
+ 	reg->sequence = ram->sequence;
+ 	reg->data = data;
+-	if (reg->addr[0] != reg->addr[1])
+-		nouveau_memx_wr32(ram->memx, reg->addr[1], reg->data);
+-	nouveau_memx_wr32(ram->memx, reg->addr[0], reg->data);
++
++	for (mask = reg->mask; mask > 0; mask = (mask & ~1) >> 1) {
++		if (mask & 1) {
++			nouveau_memx_wr32(ram->memx, reg->addr+off, reg->data);
++		}
++
++		off += reg->stride;
++	}
+ }
+ 
+ static inline void
+@@ -125,7 +154,7 @@ ramfuc_unblock(struct ramfuc *ram)
+ 
+ #define ram_init(s,p)        ramfuc_init(&(s)->base, (p))
+ #define ram_exec(s,e)        ramfuc_exec(&(s)->base, (e))
+-#define ram_have(s,r)        ((s)->r_##r.addr[0] != 0x000000)
++#define ram_have(s,r)        ((s)->r_##r.addr != 0x000000)
+ #define ram_rd32(s,r)        ramfuc_rd32(&(s)->base, &(s)->r_##r)
+ #define ram_wr32(s,r,d)      ramfuc_wr32(&(s)->base, &(s)->r_##r, (d))
+ #define ram_nuke(s,r)        ramfuc_nuke(&(s)->base, &(s)->r_##r)
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
+index 76de882..d4842f3 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnve0.c
+@@ -241,7 +241,7 @@ nve0_ram_nuts(struct nve0_ram *ram, struct ramfuc_reg *reg,
+ {
+ 	struct nve0_fb_priv *priv = (void *)nouveau_fb(ram);
+ 	struct ramfuc *fuc = &ram->fuc.base;
+-	u32 addr = 0x110000 + (reg->addr[0] & 0xfff);
++	u32 addr = 0x110000 + (reg->addr & 0xfff);
+ 	u32 mask = _mask | _copy;
+ 	u32 data = (_data & _mask) | (reg->data & _copy);
+ 	u32 i;
 -- 
 1.9.3
