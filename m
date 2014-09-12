@@ -1,8 +1,8 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 6/6] fb/ramnva3: Use ram->base structs instead of
-	local structs
-Date: Fri, 12 Sep 2014 18:00:17 +0200
-Message-ID: <1410537617-8269-7-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 3/6] fb/ramnv50: Store the number of partitions in
+	the designated fields
+Date: Fri, 12 Sep 2014 18:00:14 +0200
+Message-ID: <1410537617-8269-4-git-send-email-rspliet@eclipso.eu>
 References: <1410537617-8269-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -22,174 +22,70 @@ To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.o
 Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This will ease the use of generic timing and MR generation bits later
-
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c | 77 +++++++++++++-----------
- 1 file changed, 43 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/nouveau/core/include/subdev/fb.h |  1 +
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramnv50.c | 18 ++++++++----------
+ 2 files changed, 9 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-index c2037b9..cdd3648 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-@@ -80,20 +80,19 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 	struct nva3_ramfuc *fuc = &ram->fuc;
- 	struct nva3_clock_info mclk;
- 	struct nvbios_ramcfg cfg;
--	u8  ver, cnt, len, strap;
-+	u8  cnt, len, strap, idx;
- 	u32 data;
--	struct {
--		u32 data;
--		u8  size;
--	} rammap, ramcfg, timing;
- 	u32 r004018, r100760, ctrl;
- 	u32 unk714, unk718, unk71c;
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/fb.h b/drivers/gpu/drm/nouveau/core/include/subdev/fb.h
+index 871e739..613b2b7 100644
+--- a/drivers/gpu/drm/nouveau/core/include/subdev/fb.h
++++ b/drivers/gpu/drm/nouveau/core/include/subdev/fb.h
+@@ -136,6 +136,7 @@ struct nouveau_ram {
  
- 	/* lookup memory config data relevant to the target frequency */
--	rammap.data = nvbios_rammapEm(bios, freq / 1000, &ver, &rammap.size,
--				     &cnt, &ramcfg.size, &cfg);
--	if (!rammap.data || ver != 0x10 || rammap.size < 0x0e) {
-+	ram->base.rammap.data = nvbios_rammapEm(bios, freq / 1000,
-+				&ram->base.rammap.version,
-+				&ram->base.rammap.size, &cnt,
-+				&len, &cfg);
-+	if (!ram->base.rammap.data || ram->base.rammap.version != 0x10 ||
-+	     ram->base.rammap.size < 0x05) {
- 		nv_error(pfb, "invalid/missing rammap entry\n");
- 		return -EINVAL;
- 	}
-@@ -105,23 +104,33 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		return -EINVAL;
- 	}
+ 	int ranks;
+ 	int parts;
++	int part_mask;
  
--	ramcfg.data = rammap.data + rammap.size + (strap * ramcfg.size);
--	if (!ramcfg.data || ver != 0x10 || ramcfg.size < 0x0e) {
-+	ram->base.ramcfg.data = nvbios_rammapSe(bios, ram->base.rammap.data,
-+					ram->base.rammap.version,
-+					ram->base.rammap.size,
-+					cnt, len, strap,
-+					&ram->base.ramcfg.version,
-+					&ram->base.ramcfg.size);
-+	if (!ram->base.ramcfg.data || ram->base.ramcfg.version != 0x10 ||
-+	     ram->base.ramcfg.size < 0x09) {
- 		nv_error(pfb, "invalid/missing ramcfg entry\n");
- 		return -EINVAL;
- 	}
+ 	int  (*get)(struct nouveau_fb *, u64 size, u32 align,
+ 		    u32 size_nc, u32 type, struct nouveau_mem **);
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnv50.c
+index e5d12c2..16a3cb5 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnv50.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnv50.c
+@@ -319,27 +319,22 @@ nv50_ram_get(struct nouveau_fb *pfb, u64 size, u32 align, u32 ncmin,
+ static u32
+ nv50_fb_vram_rblock(struct nouveau_fb *pfb, struct nouveau_ram *ram)
+ {
+-	int i, parts, colbits, rowbitsa, rowbitsb, banks;
++	int colbits, rowbitsa, rowbitsb, banks;
+ 	u64 rowsize, predicted;
+-	u32 r0, r4, rt, ru, rblock_size;
++	u32 r0, r4, rt, rblock_size;
  
- 	/* lookup memory timings, if bios says they're present */
--	strap = nv_ro08(bios, ramcfg.data + 0x01);
--	if (strap != 0xff) {
--		timing.data = nvbios_timingEe(bios, strap, &ver, &timing.size,
--					     &cnt, &len);
--		if (!timing.data || ver != 0x10 || timing.size < 0x19) {
-+	idx = nv_ro08(bios, ram->base.ramcfg.data + 0x01) & 0xff;
-+	if (idx != 0xff) {
-+		ram->base.timing.data = nvbios_timingEe(bios, idx,
-+					&ram->base.timing.version,
-+					&ram->base.timing.size,
-+					&cnt, &len);
-+		if (!ram->base.timing.data ||
-+		     ram->base.timing.version != 0x10 ||
-+		     ram->base.timing.size < 0x18) {
- 			nv_error(pfb, "invalid/missing timing entry\n");
- 			return -EINVAL;
- 		}
- 	} else {
--		timing.data = 0;
-+		ram->base.timing.data = 0;
- 	}
+ 	r0 = nv_rd32(pfb, 0x100200);
+ 	r4 = nv_rd32(pfb, 0x100204);
+ 	rt = nv_rd32(pfb, 0x100250);
+-	ru = nv_rd32(pfb, 0x001540);
+-	nv_debug(pfb, "memcfg 0x%08x 0x%08x 0x%08x 0x%08x\n", r0, r4, rt, ru);
+-
+-	for (i = 0, parts = 0; i < 8; i++) {
+-		if (ru & (0x00010000 << i))
+-			parts++;
+-	}
++	nv_debug(pfb, "memcfg 0x%08x 0x%08x 0x%08x 0x%08x\n", r0, r4, rt,
++			nv_rd32(pfb, 0x001540));
  
- 	ret = nva3_pll_info(nouveau_clock(pfb), 0x12, 0x4000, freq, &mclk);
-@@ -164,17 +173,17 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		ram_mask(fuc, 0x004168, 0x003f3141, ctrl);
- 	}
+ 	colbits  =  (r4 & 0x0000f000) >> 12;
+ 	rowbitsa = ((r4 & 0x000f0000) >> 16) + 8;
+ 	rowbitsb = ((r4 & 0x00f00000) >> 20) + 8;
+ 	banks    = 1 << (((r4 & 0x03000000) >> 24) + 2);
  
--	if ( (nv_ro08(bios, ramcfg.data + 0x02) & 0x10)) {
-+	if ( (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x10)) {
- 		ram_mask(fuc, 0x111104, 0x00000600, 0x00000000);
- 	} else {
- 		ram_mask(fuc, 0x111100, 0x40000000, 0x40000000);
- 		ram_mask(fuc, 0x111104, 0x00000180, 0x00000000);
- 	}
+-	rowsize = parts * banks * (1 << colbits) * 8;
++	rowsize = ram->parts * banks * (1 << colbits) * 8;
+ 	predicted = rowsize << rowbitsa;
+ 	if (r0 & 0x00000004)
+ 		predicted += rowsize << rowbitsb;
+@@ -376,6 +371,9 @@ nv50_ram_create_(struct nouveau_object *parent, struct nouveau_object *engine,
+ 	ram->size = nv_rd32(pfb, 0x10020c);
+ 	ram->size = (ram->size & 0xffffff00) | ((ram->size & 0x000000ff) << 32);
  
--	if (!(nv_ro08(bios, rammap.data + 0x04) & 0x02))
-+	if (!(nv_ro08(bios, ram->base.rammap.data + 0x04) & 0x02))
- 		ram_mask(fuc, 0x100200, 0x00000800, 0x00000000);
- 	ram_wr32(fuc, 0x611200, 0x00003300);
--	if (!(nv_ro08(bios, ramcfg.data + 0x02) & 0x10))
-+	if (!(nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x10))
- 		ram_wr32(fuc, 0x111100, 0x4c020000); /*XXX*/
- 
- 	ram_wr32(fuc, 0x1002d4, 0x00000001);
-@@ -203,13 +212,13 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		ram_wr32(fuc, 0x004018, 0x0000d000 | r004018);
- 	}
- 
--	if ( (nv_ro08(bios, rammap.data + 0x04) & 0x08)) {
--		u32 unk5a0 = (nv_ro16(bios, ramcfg.data + 0x05) << 8) |
--			      nv_ro08(bios, ramcfg.data + 0x05);
--		u32 unk5a4 = (nv_ro16(bios, ramcfg.data + 0x07));
--		u32 unk804 = (nv_ro08(bios, ramcfg.data + 0x09) & 0xf0) << 16 |
--			     (nv_ro08(bios, ramcfg.data + 0x03) & 0x0f) << 16 |
--			     (nv_ro08(bios, ramcfg.data + 0x09) & 0x0f) |
-+	if ( (nv_ro08(bios, ram->base.rammap.data + 0x04) & 0x08)) {
-+		u32 unk5a0 = (nv_ro16(bios, ram->base.ramcfg.data + 0x05) << 8) |
-+			      nv_ro08(bios, ram->base.ramcfg.data + 0x05);
-+		u32 unk5a4 = (nv_ro16(bios, ram->base.ramcfg.data + 0x07));
-+		u32 unk804 = (nv_ro08(bios, ram->base.ramcfg.data + 0x09) & 0xf0) << 16 |
-+			     (nv_ro08(bios, ram->base.ramcfg.data + 0x03) & 0x0f) << 16 |
-+			     (nv_ro08(bios, ram->base.ramcfg.data + 0x09) & 0x0f) |
- 			     0x80000000;
- 		ram_wr32(fuc, 0x1005a0, unk5a0);
- 		ram_wr32(fuc, 0x1005a4, unk5a4);
-@@ -251,27 +260,27 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 	ram_mask(fuc, 0x100220[0], 0x00000000, 0x00000000);
- 	ram_mask(fuc, 0x100220[8], 0x00000000, 0x00000000);
- 
--	data = (nv_ro08(bios, ramcfg.data + 0x02) & 0x08) ? 0x00000000 : 0x00001000;
-+	data = (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x08) ? 0x00000000 : 0x00001000;
- 	ram_mask(fuc, 0x100200, 0x00001000, data);
- 
- 	unk714 = ram_rd32(fuc, 0x100714) & ~0xf0000010;
- 	unk718 = ram_rd32(fuc, 0x100718) & ~0x00000100;
- 	unk71c = ram_rd32(fuc, 0x10071c) & ~0x00000100;
--	if ( (nv_ro08(bios, ramcfg.data + 0x02) & 0x20))
-+	if ( (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x20))
- 		unk714 |= 0xf0000000;
--	if (!(nv_ro08(bios, ramcfg.data + 0x02) & 0x04))
-+	if (!(nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x04))
- 		unk714 |= 0x00000010;
- 	ram_wr32(fuc, 0x100714, unk714);
- 
--	if (nv_ro08(bios, ramcfg.data + 0x02) & 0x01)
-+	if (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x01)
- 		unk71c |= 0x00000100;
- 	ram_wr32(fuc, 0x10071c, unk71c);
- 
--	if (nv_ro08(bios, ramcfg.data + 0x02) & 0x02)
-+	if (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x02)
- 		unk718 |= 0x00000100;
- 	ram_wr32(fuc, 0x100718, unk718);
- 
--	if (nv_ro08(bios, ramcfg.data + 0x02) & 0x10)
-+	if (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x10)
- 		ram_wr32(fuc, 0x111100, 0x48000000); /*XXX*/
- 
- 	ram_mask(fuc, mr[0], 0x100, 0x100);
-@@ -283,9 +292,9 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 	ram_nsec(fuc, 12000);
- 
- 	ram_wr32(fuc, 0x611200, 0x00003330);
--	if ( (nv_ro08(bios, rammap.data + 0x04) & 0x02))
-+	if ( (nv_ro08(bios, ram->base.rammap.data + 0x04) & 0x02))
- 		ram_mask(fuc, 0x100200, 0x00000800, 0x00000800);
--	if ( (nv_ro08(bios, ramcfg.data + 0x02) & 0x10)) {
-+	if ( (nv_ro08(bios, ram->base.ramcfg.data + 0x02) & 0x10)) {
- 		ram_mask(fuc, 0x111104, 0x00000180, 0x00000180);
- 		ram_mask(fuc, 0x111100, 0x40000000, 0x00000000);
- 	} else {
++	ram->part_mask = (nv_rd32(pfb, 0x001540) & 0x00ff0000) >> 16;
++	ram->parts = hweight8(ram->part_mask);
++
+ 	switch (nv_rd32(pfb, 0x100714) & 0x00000007) {
+ 	case 0: ram->type = NV_MEM_TYPE_DDR1; break;
+ 	case 1:
 -- 
 1.9.3
