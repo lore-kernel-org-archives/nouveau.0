@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 64772] [NVC1] nouveau GF108 kernel errors and
- graphics corruption when enabling second output
-Date: Thu, 11 Sep 2014 12:54:40 +0000
-Message-ID: <bug-64772-8800-o9NIBRpe4i@http.bugs.freedesktop.org/>
-References: <bug-64772-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
+	(also NV44A)
+Date: Fri, 12 Sep 2014 13:37:14 +0000
+Message-ID: <bug-70388-8800-Ds54bTpbIm@http.bugs.freedesktop.org/>
+References: <bug-70388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1610298717=="
+Content-Type: multipart/mixed; boundary="===============1936981273=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-64772-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1610298717==
-Content-Type: multipart/alternative; boundary="1410440080.fEfC1.30311"; charset="us-ascii"
+--===============1936981273==
+Content-Type: multipart/alternative; boundary="1410529034.6Ea5b2.1319"; charset="us-ascii"
 
 
---1410440080.fEfC1.30311
-Date: Thu, 11 Sep 2014 12:54:40 +0000
+--1410529034.6Ea5b2.1319
+Date: Fri, 12 Sep 2014 13:37:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=64772
+https://bugs.freedesktop.org/show_bug.cgi?id=70388
 
-Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #30 from Sergii Stepanenko <sergstepanenko-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hello all!
+I have same problem on my system with 3 old PCIe NV4B cards. Tested with kernel
+3.16.2 and Mesa 10.2.7, with kernel 3.14.11 and Mesa 10.2.2.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+After boot I have many errors in dmesg
+nouveau E[   PFIFO][0000:03:00.0] CACHE_ERROR - ch 1 [X[1450]] subc 5 mthd
+0x019c data 0x80000010
+where "ch" and "subc" are different, but always with 2nd or 3rd card.
+Everything works well. Then I run any application that uses the GL (for example
+glxgears). After an interruption of the application system freezes. Then I see
+few
+nouveau E[glxgears[1467]] failed to idle channel 0xcccc0000 [glxgears[1467]] in
+dmesg.
+I have tried with nouveau.vram_pushbuf=1, but have same errors.
 
---- Comment #5 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, still seeing this one:
-
-[15226.801343] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.801349] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802648] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802653] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802708] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802711] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802810] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802813] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-
-Seems to have no obvious impact but got those messages with kernel:
-
-3.13.0-35-generic #62-Ubuntu
-
-Should i open another ticket about those messages?
+Full dmesg log: https://drive.google.com/file/d/0B6qNYzhc-QU-eHo5aDNhOWlxc00
+Full Xorg.log:  https://drive.google.com/file/d/0B6qNYzhc-QU-ZWdqdFRCNjlkeWs
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410440080.fEfC1.30311
-Date: Thu, 11 Sep 2014 12:54:40 +0000
+--1410529034.6Ea5b2.1319
+Date: Fri, 12 Sep 2014 13:37:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,64 +64,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] nouveau GF108 kernel errors and graphics corruption when enabling second output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64772">bug 64772</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>krah.tm&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] nouveau GF108 kernel errors and graphics corruption when enabling second output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64772#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c30">Comment # 30</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] nouveau GF108 kernel errors and graphics corruption when enabling second output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=64772">bug 64772</a>
-              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
+          bz_status_NEW "
+   title="NEW --- - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
+              from <span class="vcard"><a class="email" href="mailto:sergstepanenko&#64;gmail.com" title="Sergii Stepanenko &lt;sergstepanenko&#64;gmail.com&gt;"> <span class="fn">Sergii Stepanenko</span></a>
 </span></b>
-        <pre>Hi, still seeing this one:
+        <pre>Hello all!
+I have same problem on my system with 3 old PCIe NV4B cards. Tested with kernel
+3.16.2 and Mesa 10.2.7, with kernel 3.14.11 and Mesa 10.2.2.
 
-[15226.801343] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.801349] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802648] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802653] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802708] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802711] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
-[15226.802810] nouveau E[      VM][0000:01:00.0] failed to create 0x04000000,
--28
-[15226.802813] nouveau E[      VM][0000:01:00.0] failed to create 0x02000000,
--28
+After boot I have many errors in dmesg
+nouveau E[   PFIFO][0000:03:00.0] CACHE_ERROR - ch 1 [X[1450]] subc 5 mthd
+0x019c data 0x80000010
+where &quot;ch&quot; and &quot;subc&quot; are different, but always with 2nd or 3rd card.
+Everything works well. Then I run any application that uses the GL (for example
+glxgears). After an interruption of the application system freezes. Then I see
+few
+nouveau E[glxgears[1467]] failed to idle channel 0xcccc0000 [glxgears[1467]] in
+dmesg.
+I have tried with nouveau.vram_pushbuf=1, but have same errors.
 
-Seems to have no obvious impact but got those messages with kernel:
-
-3.13.0-35-generic #62-Ubuntu
-
-Should i open another ticket about those messages?</pre>
+Full dmesg log: <a href="https://drive.google.com/file/d/0B6qNYzhc-QU-eHo5aDNhOWlxc00">https://drive.google.com/file/d/0B6qNYzhc-QU-eHo5aDNhOWlxc00</a>
+Full Xorg.log:  <a href="https://drive.google.com/file/d/0B6qNYzhc-QU-ZWdqdFRCNjlkeWs">https://drive.google.com/file/d/0B6qNYzhc-QU-ZWdqdFRCNjlkeWs</a></pre>
         </div>
       </p>
       <hr>
@@ -146,9 +105,9 @@ Should i open another ticket about those messages?</pre>
     </body>
 </html>
 
---1410440080.fEfC1.30311--
+--1410529034.6Ea5b2.1319--
 
---===============1610298717==
+--===============1936981273==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,4 +118,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1610298717==--
+--===============1936981273==--
