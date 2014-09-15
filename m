@@ -1,14 +1,13 @@
-From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Bug 72717] [NVE6] No sound via display port (hdmi
-	works)
-Date: Mon, 15 Sep 2014 14:22:53 -0500
-Message-ID: <CAEk2Stk-8sp2nVEqAHK7_nnPYhnMAziq9=0NRtpLRETbMi5UMw@mail.gmail.com>
-References: <bug-72717-8800@http.bugs.freedesktop.org/>
- <bug-72717-8800-hsLZid7LI4@http.bugs.freedesktop.org/>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82726] [NV96][NVAC] [Regression] [Bisected] Probe
+ failed with error -12
+Date: Mon, 15 Sep 2014 23:01:22 +0000
+Message-ID: <bug-82726-8800-sJMb2eATJm@http.bugs.freedesktop.org/>
+References: <bug-82726-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333943491=="
+Content-Type: multipart/mixed; boundary="===============1623407073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72717-8800-hsLZid7LI4-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82726-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +17,102 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0333943491==
-Content-Type: multipart/alternative; boundary=001a11c30272b4917305031f8f90
 
---001a11c30272b4917305031f8f90
-Content-Type: text/plain; charset=UTF-8
+--===============1623407073==
+Content-Type: multipart/alternative; boundary="1410822082.dcbd1.25755"; charset="us-ascii"
 
-On Mon, Sep 15, 2014 at 2:17 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
 
->   *Comment # 5 <https://bugs.freedesktop.org/show_bug.cgi?id=72717#c5> on
-> bug 72717 <https://bugs.freedesktop.org/show_bug.cgi?id=72717> from Ilia
-> Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> *
->
-> (In reply to comment #4 <https://bugs.freedesktop.org/show_bug.cgi?id=72717#c4>)> Are there docs that explain what these mean or
->
-> Of course (I hope!). But they're internal to NVIDIA and they have no real
-> interest in sharing.
->
-> Hah. In other words, no. :|
+--1410822082.dcbd1.25755
+Date: Mon, 15 Sep 2014 23:01:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Oh well, keep up the awesome work guys!
+https://bugs.freedesktop.org/show_bug.cgi?id=82726
 
---001a11c30272b4917305031f8f90
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Mon, Sep 15, 2014 at 2:17 PM,  <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" target=3D"_blank">bugzilla-daemon@freed=
-esktop.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-   =20
-     =20
-   =20
-    <div>
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Seems to be fixed with the new version / some new commits (tested using the
+linux-3.18 branch from Nouveau's repo).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1410822082.dcbd1.25755
+Date: Mon, 15 Sep 2014 23:01:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726">bug 82726</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
-        </p><div><span class=3D"">
-            <b><a title=3D"NEW --- - [NVE6] No sound via display port (hdmi=
- works)" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72717#c5" t=
-arget=3D"_blank">Comment # 5</a>
-              on <a title=3D"NEW --- - [NVE6] No sound via display port (hd=
-mi works)" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72717" ta=
-rget=3D"_blank">bug 72717</a>
-              from <span><a href=3D"mailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" title=3D"I=
-lia Mirkin &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;" target=3D"_blank"> <span>Ilia Mirk=
-in</span></a>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV96][NVAC] [Regression] [Bisected] Probe failed with error -12"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82726">bug 82726</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        </span><pre>(In reply to <a href=3D"https://bugs.freedesktop.org/sh=
-ow_bug.cgi?id=3D72717#c4" target=3D"_blank">comment #4</a>)
-<span class=3D""><span>&gt; Are there docs that explain what these mean or<=
-/span></span>
+        <pre>Seems to be fixed with the new version / some new commits (tested using the
+linux-3.18 branch from Nouveau's repo).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-Of course (I hope!). But they&#39;re internal to NVIDIA and they have no re=
-al
-interest in sharing.</pre></div></div></blockquote><div>Hah. In other words=
-, no. :|</div><div><br></div><div>Oh well, keep up the awesome work guys!</=
-div><div><br></div></div></div></div>
+--1410822082.dcbd1.25755--
 
---001a11c30272b4917305031f8f90--
-
---===============0333943491==
+--===============1623407073==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +123,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0333943491==--
+--===============1623407073==--
