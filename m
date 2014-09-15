@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83550] [NVA5] Monitor not restored after resume
- [regression] [bisected]
-Date: Mon, 15 Sep 2014 16:49:01 +0000
-Message-ID: <bug-83550-8800-9IzeHVFN7U@http.bugs.freedesktop.org/>
-References: <bug-83550-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
+Date: Mon, 15 Sep 2014 17:23:57 +0000
+Message-ID: <bug-72717-8800-QBLiWRxTMn@http.bugs.freedesktop.org/>
+References: <bug-72717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1219182709=="
+Content-Type: multipart/mixed; boundary="===============0087748855=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1219182709==
-Content-Type: multipart/alternative; boundary="1410799741.EfA42.884"; charset="us-ascii"
+--===============0087748855==
+Content-Type: multipart/alternative; boundary="1410801837.eAeCdDc2.14436"; charset="us-ascii"
 
 
---1410799741.EfA42.884
-Date: Mon, 15 Sep 2014 16:49:01 +0000
+--1410801837.eAeCdDc2.14436
+Date: Mon, 15 Sep 2014 17:23:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83550
+https://bugs.freedesktop.org/show_bug.cgi?id=72717
 
---- Comment #4 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 106333
-  --> https://bugs.freedesktop.org/attachment.cgi?id=106333&action=edit
-vbios.rom
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There appear to be some patches for it headed for linux-3.18. You can give
 
+http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18
 
-cat /sys/kernel/debug/dri/0/vbios.rom > vbios.rom
-http://nouveau.freedesktop.org/wiki/DumpingVideoBios
+a whirl and see if that makes it work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410799741.EfA42.884
-Date: Mon, 15 Sep 2014 16:49:01 +0000
+--1410801837.eAeCdDc2.14436
+Date: Mon, 15 Sep 2014 17:23:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +56,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Monitor not restored after resume [regression] [bisected]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550#c4">Comment # 4</a>
+   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVA5] Monitor not restored after resume [regression] [bisected]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550">bug 83550</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=106333" name="attach_106333" title="vbios.rom">attachment 106333</a> <a href="attachment.cgi?id=106333&amp;action=edit" title="vbios.rom">[details]</a></span>
-vbios.rom
+        <pre>There appear to be some patches for it headed for linux-3.18. You can give
 
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18">http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18</a>
 
-cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom
-<a href="http://nouveau.freedesktop.org/wiki/DumpingVideoBios">http://nouveau.freedesktop.org/wiki/DumpingVideoBios</a></pre>
+a whirl and see if that makes it work.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +80,9 @@ cat /sys/kernel/debug/dri/0/vbios.rom &gt; vbios.rom
     </body>
 </html>
 
---1410799741.EfA42.884--
+--1410801837.eAeCdDc2.14436--
 
---===============1219182709==
+--===============0087748855==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +93,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1219182709==--
+--===============0087748855==--
