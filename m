@@ -1,21 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: VGA resume & thaw (wake up from S3 & S4) broken -
- kernel(nouveau) exclusively
-Date: Mon, 15 Sep 2014 19:21:26 -0400
-Message-ID: <CAKb7UvhSrUiWMs=tmRunk0frfPnUSfKexUML7SvJ1LmZVWNLSA@mail.gmail.com>
-References: <5413CEA5.3060403@gmail.com> <5413CFD1.4020300@gmail.com>
- <5414AEA4.4020707@gmail.com>
- <CAKb7UviW9YTxHiJN6wjE122QF4r2Z2zx1Q8D+Uvk2GYtXsxtrQ@mail.gmail.com>
- <5414B64D.4080801@gmail.com> <5414BAFF.1030104@nimrod-online.com>
- <5415527A.7090502@gmail.com> <5415658C.2080501@nimrod-online.com>
- <5416A21B.6090002@gmail.com>
- <CAKb7UvhNHM3Dga3Ekn5k9cY9ikT3JA5U-8t6_6ip943vUB40eQ@mail.gmail.com>
- <541721C4.6020607@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
+ - Strange pink line on left screen side
+Date: Mon, 15 Sep 2014 23:29:23 +0000
+Message-ID: <bug-75203-8800-aCcqH2j3PT@http.bugs.freedesktop.org/>
+References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0463242205=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <541721C4.6020607-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,60 +17,89 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mailing-List fedora-kernel <kernel-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Sep 15, 2014 at 1:28 PM, poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 15.09.2014 15:36, Ilia Mirkin wrote:
->> On Mon, Sep 15, 2014 at 4:23 AM, poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->>> Chipset: G98 (NV98)
->>> Family : NV50
->>>
->>>
->>> WORKING VIDEO RESUME(S3)
->>>
->>> 3.15.0-rc8.1.git.7a014a8
->>> 3.15.0-rc8.2.git.456b057
->>> 3.15.0-rc8.3.git.b8407c9
->>> 3.15.0-rc8.4.git.bb7ef1e
->>>
->>> ========================
->>>
->>> BROKEN VIDEO RESUME(S3)
->>>
->>> STARTING WITH:
->>> 3.15.0-rc8.5.git.415f12e
->>>
->>> commit 415f12efc1b2308411b2cbc3e82666b3db8a7758
->>> Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->>> Date:   Wed May 21 11:24:43 2014 +1000
->>>
->>>     drm/nv50/disp: start removing direct vbios parsing from supervisor
->>>
->>>     Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->>>
->>> https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c?id=415f12e
->>> https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c?id=415f12e
->>
->> Looks like the same issue as reported in
->>
->> https://bugs.freedesktop.org/show_bug.cgi?id=83550
->>
->> Ben, any ideas? Poma, can you attach your vbios to the bug above?
->>
->>   -ilia
->>
->
-> A Video BIOS dumped.
 
-Thanks! If possible, please provide kernel logs (which include the
-initial boot and the resume) for both 415f12efc1 and 415f12efc1^ (i.e.
-parent commit). Please boot those kernels with
-'nouveau.debug=trace,PDISP=spam' so that we get the maximal debug
-info. In order for that to work, you'll need to change
-CONFIG_NOUVEAU_DEBUG to 7 (spam). [Don't use such kernels for anything
-other than debugging, setting the debug level so high adds a ton of
-code and will slow things down significantly.]
+--===============0463242205==
+Content-Type: multipart/alternative; boundary="1410823763.a1887c3.581"; charset="us-ascii"
 
-  -ilia
+
+--1410823763.a1887c3.581
+Date: Mon, 15 Sep 2014 23:29:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=75203
+
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like Ben made a more complete fix, now available as part of
+
+http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18
+
+More specifically
+
+http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.18&id=a522946174b5ae389af0856c422d865a63c70316
+
+Please test & confirm.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1410823763.a1887c3.581
+Date: Mon, 15 Sep 2014 23:29:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Looks like Ben made a more complete fix, now available as part of
+
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18">http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18</a>
+
+More specifically
+
+<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.18&amp;id=a522946174b5ae389af0856c422d865a63c70316">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.18&amp;id=a522946174b5ae389af0856c422d865a63c70316</a>
+
+Please test &amp; confirm.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1410823763.a1887c3.581--
+
+--===============0463242205==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0463242205==--
