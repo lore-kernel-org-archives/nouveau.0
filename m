@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
-Date: Mon, 15 Sep 2014 19:22:59 +0000
-Message-ID: <bug-72717-8800-ZE0OrgUfJZ@http.bugs.freedesktop.org/>
+From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Bug 72717] [NVE6] No sound via display port (hdmi
+	works)
+Date: Mon, 15 Sep 2014 14:22:53 -0500
+Message-ID: <CAEk2Stk-8sp2nVEqAHK7_nnPYhnMAziq9=0NRtpLRETbMi5UMw@mail.gmail.com>
 References: <bug-72717-8800@http.bugs.freedesktop.org/>
+ <bug-72717-8800-hsLZid7LI4@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0134452588=="
+Content-Type: multipart/mixed; boundary="===============0333943491=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72717-8800-hsLZid7LI4-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,22 +18,16 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0333943491==
+Content-Type: multipart/alternative; boundary=001a11c30272b4917305031f8f90
 
---===============0134452588==
-Content-Type: multipart/alternative; boundary="1410808979.81fb4382.21579"; charset="us-ascii"
+--001a11c30272b4917305031f8f90
+Content-Type: text/plain; charset=UTF-8
 
-
---1410808979.81fb4382.21579
-Date: Mon, 15 Sep 2014 19:22:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=72717
-
---- Comment #6 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 On Mon, Sep 15, 2014 at 2:17 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
 
 >   *Comment # 5 <https://bugs.freedesktop.org/show_bug.cgi?id=72717#c5> on
@@ -47,72 +43,45 @@ On Mon, Sep 15, 2014 at 2:17 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.
 
 Oh well, keep up the awesome work guys!
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+--001a11c30272b4917305031f8f90
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---1410808979.81fb4382.21579
-Date: Mon, 15 Sep 2014 19:22:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Mon, Sep 15, 2014 at 2:17 PM,  <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org" target=3D"_blank">bugzilla-daemon@freed=
+esktop.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+   =20
+     =20
+   =20
+    <div>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+        </p><div><span class=3D"">
+            <b><a title=3D"NEW --- - [NVE6] No sound via display port (hdmi=
+ works)" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72717#c5" t=
+arget=3D"_blank">Comment # 5</a>
+              on <a title=3D"NEW --- - [NVE6] No sound via display port (hd=
+mi works)" href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72717" ta=
+rget=3D"_blank">bug 72717</a>
+              from <span><a href=3D"mailto:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" title=3D"I=
+lia Mirkin &lt;imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org&gt;" target=3D"_blank"> <span>Ilia Mirk=
+in</span></a>
 </span></b>
-        <pre>On Mon, Sep 15, 2014 at 2:17 PM, &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+        </span><pre>(In reply to <a href=3D"https://bugs.freedesktop.org/sh=
+ow_bug.cgi?id=3D72717#c4" target=3D"_blank">comment #4</a>)
+<span class=3D""><span>&gt; Are there docs that explain what these mean or<=
+/span></span>
 
-<span class="quote">&gt;   *<a href="show_bug.cgi?id=72717#c5">Comment # 5</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717#c5">https://bugs.freedesktop.org/show_bug.cgi?id=72717#c5</a>&gt; on
-&gt; <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717">bug 72717</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717">https://bugs.freedesktop.org/show_bug.cgi?id=72717</a>&gt; from Ilia
-&gt; Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt; *</span >
-&gt;
-<span class="quote">&gt; (In reply to <a href="show_bug.cgi?id=72717#c4">comment #4</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717#c4">https://bugs.freedesktop.org/show_bug.cgi?id=72717#c4</a>&gt;)&gt; Are there docs that explain what these mean or</span >
-&gt;
-<span class="quote">&gt; Of course (I hope!). But they're internal to NVIDIA and they have no real
-&gt; interest in sharing.</span >
-&gt;
-<span class="quote">&gt; Hah. In other words, no. :|</span >
+Of course (I hope!). But they&#39;re internal to NVIDIA and they have no re=
+al
+interest in sharing.</pre></div></div></blockquote><div>Hah. In other words=
+, no. :|</div><div><br></div><div>Oh well, keep up the awesome work guys!</=
+div><div><br></div></div></div></div>
 
-Oh well, keep up the awesome work guys!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+--001a11c30272b4917305031f8f90--
 
---1410808979.81fb4382.21579--
-
---===============0134452588==
+--===============0333943491==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0134452588==--
+--===============0333943491==--
