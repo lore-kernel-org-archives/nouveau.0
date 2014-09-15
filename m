@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
-Date: Mon, 15 Sep 2014 19:14:27 +0000
-Message-ID: <bug-72717-8800-FT9FAOpniB@http.bugs.freedesktop.org/>
+Date: Mon, 15 Sep 2014 19:17:51 +0000
+Message-ID: <bug-72717-8800-hsLZid7LI4@http.bugs.freedesktop.org/>
 References: <bug-72717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0414425812=="
+Content-Type: multipart/mixed; boundary="===============1977114039=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,54 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0414425812==
-Content-Type: multipart/alternative; boundary="1410808467.EAed2c2.18956"; charset="us-ascii"
+--===============1977114039==
+Content-Type: multipart/alternative; boundary="1410808670.Aa2DaA602.20061"; charset="us-ascii"
 
 
---1410808467.EAed2c2.18956
-Date: Mon, 15 Sep 2014 19:14:27 +0000
+--1410808670.Aa2DaA602.20061
+Date: Mon, 15 Sep 2014 19:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=72717
 
---- Comment #4 from Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-How does patch reviewing work for things like this? It seems kind of like
-eldritch incantations.... Are there docs that explain what these mean or
-does this come from replaying register writes from the blob?
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to comment #4)
+> Are there docs that explain what these mean or
 
-~ Patrick
+Of course (I hope!). But they're internal to NVIDIA and they have no real
+interest in sharing. Sometimes things can be found out from occasoinal code
+drops, e.g. the more recent gk20a android driver. (Of course that HW has no
+display component, so no use for something like this.)
 
-On Mon, Sep 15, 2014 at 12:23 PM, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+> does this come from replaying register writes from the blob?
 
->   *Comment # 3 <https://bugs.freedesktop.org/show_bug.cgi?id=72717#c3> on
-> bug 72717 <https://bugs.freedesktop.org/show_bug.cgi?id=72717> from Ilia
-> Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> *
->
-> There appear to be some patches for it headed for linux-3.18. You can give
-> http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18
->
-> a whirl and see if that makes it work.
->
->  ------------------------------
-> You are receiving this mail because:
->
->    - You are the assignee for the bug.
->
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
->
+Seeing what the blob does + manual poking based on observed patterns.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410808467.EAed2c2.18956
-Date: Mon, 15 Sep 2014 19:14:27 +0000
+--1410808670.Aa2DaA602.20061
+Date: Mon, 15 Sep 2014 19:17:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,51 +63,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVE6] No sound via display port (hdmi works)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
-              from <span class="vcard"><a class="email" href="mailto:baggett.patrick&#64;gmail.com" title="Patrick Baggett &lt;baggett.patrick&#64;gmail.com&gt;"> <span class="fn">Patrick Baggett</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>How does patch reviewing work for things like this? It seems kind of like
-eldritch incantations.... Are there docs that explain what these mean or
-does this come from replaying register writes from the blob?
+        <pre>(In reply to <a href="show_bug.cgi?id=72717#c4">comment #4</a>)
+<span class="quote">&gt; Are there docs that explain what these mean or</span >
 
-~ Patrick
+Of course (I hope!). But they're internal to NVIDIA and they have no real
+interest in sharing. Sometimes things can be found out from occasoinal code
+drops, e.g. the more recent gk20a android driver. (Of course that HW has no
+display component, so no use for something like this.)
 
-On Mon, Sep 15, 2014 at 12:23 PM, &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+<span class="quote">&gt; does this come from replaying register writes from the blob?</span >
 
-<span class="quote">&gt;   *<a href="show_bug.cgi?id=72717#c3">Comment # 3</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717#c3">https://bugs.freedesktop.org/show_bug.cgi?id=72717#c3</a>&gt; on
-&gt; <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717">bug 72717</a> &lt;<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] No sound via display port (hdmi works)"
-   href="show_bug.cgi?id=72717">https://bugs.freedesktop.org/show_bug.cgi?id=72717</a>&gt; from Ilia
-&gt; Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt; *</span >
-&gt;
-<span class="quote">&gt; There appear to be some patches for it headed for linux-3.18. You can give
-&gt; <a href="http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18">http://cgit.freedesktop.org/nouveau/linux-2.6/log/?h=linux-3.18</a></span >
-&gt;
-<span class="quote">&gt; a whirl and see if that makes it work.</span >
-&gt;
-<span class="quote">&gt;  ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class="quote">&gt;    - You are the assignee for the bug.</span >
-&gt;
-&gt;
-<span class="quote">&gt; _______________________________________________
-&gt; Nouveau mailing list
-&gt; <a href="mailto:Nouveau&#64;lists.freedesktop.org">Nouveau&#64;lists.freedesktop.org</a>
-&gt; <a href="http://lists.freedesktop.org/mailman/listinfo/nouveau">http://lists.freedesktop.org/mailman/listinfo/nouveau</a></span >
-&gt;
-&gt;</pre>
+Seeing what the blob does + manual poking based on observed patterns.</pre>
         </div>
       </p>
       <hr>
@@ -137,9 +92,9 @@ On Mon, Sep 15, 2014 at 12:23 PM, &lt;<a href="mailto:bugzilla-daemon&#64;freede
     </body>
 </html>
 
---1410808467.EAed2c2.18956--
+--1410808670.Aa2DaA602.20061--
 
---===============0414425812==
+--===============1977114039==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0414425812==--
+--===============1977114039==--
