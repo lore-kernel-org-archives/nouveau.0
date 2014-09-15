@@ -1,13 +1,12 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/3] lib: fix devices selection using -a
-Date: Mon, 15 Sep 2014 13:25:40 +0200
-Message-ID: <1410780342-2808-2-git-send-email-samuel.pitoiset@gmail.com>
-References: <1410780342-2808-1-git-send-email-samuel.pitoiset@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Mon, 15 Sep 2014 11:01:29 +0000
+Message-ID: <bug-27501-8800-g925aXEVpZ@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0100004422=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1410780342-2808-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +19,90 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Signed-off-by: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- lib/kern.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/lib/kern.c b/lib/kern.c
-index 930cd35..7e8f3e9 100644
---- a/lib/kern.c
-+++ b/lib/kern.c
-@@ -173,7 +173,7 @@ drm_client_init(const char *name, u64 device, const char *cfg,
- 	if (ret = -ENOMEM, !(drm = *ppriv = malloc(sizeof(*drm))))
- 		goto fail;
- 
--	for (minor = DRM_RENDER_MIN; minor <= DRM_RENDER_MAX; minor++) {
-+	for (minor = DRM_RENDER_MIN + device; minor <= DRM_RENDER_MAX; minor++) {
- 		snprintf(path, sizeof(path), "/dev/dri/renderD%d", minor);
- 		if ((drm->fd = open(path, O_RDWR, 0)) < 0)
- 			continue;
+--===============0100004422==
+Content-Type: multipart/alternative; boundary="1410778889.bDDe6.29100"; charset="us-ascii"
+
+
+--1410778889.bDDe6.29100
+Date: Mon, 15 Sep 2014 11:01:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
+
+--- Comment #30 from Rolf Offermanns <rolf.offermanns-hi6Y0CQ0nG0@public.gmane.org> ---
+Pierre, the patch works for me (MacBookPro5,2). I had to modify Ilia's patch to
+have "MacBookPro5" in the DMI_MATCH instead of "MacBook5" and now I can boot
+into a KDE5 session with the nouveau driver. I checked the xorg log file and
+verified that it is indeed using hardware accelaration.
+
+I used a fresh git clone of Linus tree for the test.
+
+Let me know if you need further information.
+
+Thanks,
+Rolf
+
 -- 
-2.0.0
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1410778889.bDDe6.29100
+Date: Mon, 15 Sep 2014 11:01:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c30">Comment # 30</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:rolf.offermanns&#64;gmx.net" title="Rolf Offermanns &lt;rolf.offermanns&#64;gmx.net&gt;"> <span class="fn">Rolf Offermanns</span></a>
+</span></b>
+        <pre>Pierre, the patch works for me (MacBookPro5,2). I had to modify Ilia's patch to
+have &quot;MacBookPro5&quot; in the DMI_MATCH instead of &quot;MacBook5&quot; and now I can boot
+into a KDE5 session with the nouveau driver. I checked the xorg log file and
+verified that it is indeed using hardware accelaration.
+
+I used a fresh git clone of Linus tree for the test.
+
+Let me know if you need further information.
+
+Thanks,
+Rolf</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1410778889.bDDe6.29100--
+
+--===============0100004422==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0100004422==--
