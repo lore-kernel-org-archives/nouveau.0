@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83897] [NVE6] GK106 (GeForce GTX 660): Frequent GPU
 	lockups
-Date: Mon, 15 Sep 2014 16:35:55 +0000
-Message-ID: <bug-83897-8800-FdST7g7BMi@http.bugs.freedesktop.org/>
+Date: Mon, 15 Sep 2014 16:41:34 +0000
+Message-ID: <bug-83897-8800-2t4K1SEvIW@http.bugs.freedesktop.org/>
 References: <bug-83897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0807530659=="
+Content-Type: multipart/mixed; boundary="===============0773621017=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0807530659==
-Content-Type: multipart/alternative; boundary="1410798954.87aA01.29218"; charset="us-ascii"
+--===============0773621017==
+Content-Type: multipart/alternative; boundary="1410799294.1b1daA41.30995"; charset="us-ascii"
 
 
---1410798954.87aA01.29218
-Date: Mon, 15 Sep 2014 16:35:54 +0000
+--1410799294.1b1daA41.30995
+Date: Mon, 15 Sep 2014 16:41:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D83897
 
---- Comment #4 from freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org ---
-Created attachment 106332
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106332&action=3Dedit
-grep nouveau *.log|grep -C 15 "fault"
+--- Comment #5 from freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org ---
+=C2=ABgrep "Linux version" *.log=C2=BB. Some of the logs are missing the ve=
+rsion message,
+though, since hard crashes screw up the journal=E2=80=99s reboot stamp, it =
+seems, and I
+had to resort to using =C2=ABjournalctl --since $TIME=C2=BB.
 
-Output for =C2=ABgrep nouveau *.log|grep -C 15 "fault"=C2=BB on a few colle=
-cted logs of
-the freezes described above.
-
-This is for various kernel versions, I=E2=80=99ll follow up a table with th=
-e relevant
-uname output for each logfile.
-
-If there=E2=80=99s anything interesting in there that needs more than 15 li=
-nes of
-context, let me know.
+nouveau.10.log:Aug 23 12:38:03 wirrsal kernel: Linux version 3.16.1-1-ck
+(squishy@ease) (gcc version 4.9.1 (GCC) ) #1 SMP PREEMPT Sat Aug 16 06:54:34
+EDT 2014
+nouveau.6.log:Jul 12 14:22:42 wirrsal kernel: Linux version 3.15.5-2-ck
+(squishy@ease) (gcc version 4.9.0 20140604 (prerelease) (GCC) ) #1 SMP PREE=
+MPT
+Fri Jul 11 18:05:02 EDT 2014
+nouveau.7.log:Jul 25 20:06:16 wirrsal kernel: Linux version 3.15.6-1-ck
+(squishy@ease) (gcc version 4.9.0 20140604 (prerelease) (GCC) ) #1 SMP PREE=
+MPT
+Fri Jul 18 15:54:54 EDT 2014
+nouveau.9.log:Aug 18 21:41:41 wirrsal kernel: Linux version 3.16.1-1-ck
+(squishy@ease) (gcc version 4.9.1 (GCC) ) #1 SMP PREEMPT Sat Aug 16 06:54:34
+EDT 2014
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410798954.87aA01.29218
-Date: Mon, 15 Sep 2014 16:35:54 +0000
+--1410799294.1b1daA41.30995
+Date: Mon, 15 Sep 2014 16:41:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -70,8 +75,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897#c4">Comment=
- # 4</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897#c5">Comment=
+ # 5</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
@@ -81,24 +86,28 @@ Content-Transfer-Encoding: quoted-printable
 freedesk.apriori&#64;spamgourmet.com" title=3D"freedesk.apriori&#64;spamgou=
 rmet.com">freedesk.apriori&#64;spamgourmet.com</a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106332=
-" name=3D"attach_106332" title=3D"grep nouveau *.log|grep -C 15 &quot;fault=
-&quot;">attachment 106332</a> <a href=3D"attachment.cgi?id=3D106332&amp;act=
-ion=3Dedit" title=3D"grep nouveau *.log|grep -C 15 &quot;fault&quot;">[deta=
-ils]</a></span>
-grep nouveau *.log|grep -C 15 &quot;fault&quot;
+        <pre>=C2=ABgrep &quot;Linux version&quot; *.log=C2=BB. Some of the =
+logs are missing the version message,
+though, since hard crashes screw up the journal=E2=80=99s reboot stamp, it =
+seems, and I
+had to resort to using =C2=ABjournalctl --since $TIME=C2=BB.
 
-Output for =C2=ABgrep nouveau *.log|grep -C 15 &quot;fault&quot;=C2=BB on a=
- few collected logs of
-the freezes described above.
-
-This is for various kernel versions, I=E2=80=99ll follow up a table with th=
-e relevant
-uname output for each logfile.
-
-If there=E2=80=99s anything interesting in there that needs more than 15 li=
-nes of
-context, let me know.</pre>
+nouveau.10.log:Aug 23 12:38:03 wirrsal kernel: Linux version 3.16.1-1-ck
+(squishy&#64;ease) (gcc version 4.9.1 (GCC) ) #1 SMP PREEMPT Sat Aug 16 06:=
+54:34
+EDT 2014
+nouveau.6.log:Jul 12 14:22:42 wirrsal kernel: Linux version 3.15.5-2-ck
+(squishy&#64;ease) (gcc version 4.9.0 20140604 (prerelease) (GCC) ) #1 SMP =
+PREEMPT
+Fri Jul 11 18:05:02 EDT 2014
+nouveau.7.log:Jul 25 20:06:16 wirrsal kernel: Linux version 3.15.6-1-ck
+(squishy&#64;ease) (gcc version 4.9.0 20140604 (prerelease) (GCC) ) #1 SMP =
+PREEMPT
+Fri Jul 18 15:54:54 EDT 2014
+nouveau.9.log:Aug 18 21:41:41 wirrsal kernel: Linux version 3.16.1-1-ck
+(squishy&#64;ease) (gcc version 4.9.1 (GCC) ) #1 SMP PREEMPT Sat Aug 16 06:=
+54:34
+EDT 2014</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +119,9 @@ context, let me know.</pre>
     </body>
 </html>
 
---1410798954.87aA01.29218--
+--1410799294.1b1daA41.30995--
 
---===============0807530659==
+--===============0773621017==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0807530659==--
+--===============0773621017==--
