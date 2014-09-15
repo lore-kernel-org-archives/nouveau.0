@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83897] [NVE6] GK106 (GeForce GTX 660): Frequent GPU
 	lockups
-Date: Mon, 15 Sep 2014 16:25:33 +0000
-Message-ID: <bug-83897-8800-RbEdgUGfMO@http.bugs.freedesktop.org/>
+Date: Mon, 15 Sep 2014 16:26:17 +0000
+Message-ID: <bug-83897-8800-d1GsZNjTE6@http.bugs.freedesktop.org/>
 References: <bug-83897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0838396465=="
+Content-Type: multipart/mixed; boundary="===============0738152785=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,92 +21,81 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0838396465==
-Content-Type: multipart/alternative; boundary="1410798332.71cbfe0f1.25178"; charset="us-ascii"
+--===============0738152785==
+Content-Type: multipart/alternative; boundary="1410798377.4C71faC1.25413"; charset="us-ascii"
 
 
---1410798332.71cbfe0f1.25178
-Date: Mon, 15 Sep 2014 16:25:32 +0000
+--1410798377.4C71faC1.25413
+Date: Mon, 15 Sep 2014 16:26:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=83897
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83897
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org ---
+Created attachment 106330
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106330&action=3Dedit
+jountalctl -b|grep nouveau
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|GK106 (GeForce GTX 660):    |[NVE6] GK106 (GeForce GTX
-                   |Frequent GPU lockups        |660): Frequent GPU lockups
+=C2=ABjournalctl -b -1|grep nouveau=C2=BB for the most recent manifestation=
+ on Linux (ck)
+3.16.2.
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There should be some fixes in 3.17-rc1 and later which affect GK106, especially
-if you're not using blob firmware. [After these changes it appears that the
-blob firmware is no longer necessary, BTW, in case you're using it.]
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410798332.71cbfe0f1.25178
-Date: Mon, 15 Sep 2014 16:25:32 +0000
+--1410798377.4C71faC1.25413
+Date: Mon, 15 Sep 2014 16:26:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83897">bug 83897</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>GK106 (GeForce GTX 660): Frequent GPU lockups
-           </td>
-           <td>[NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83897#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83897">bug 83897</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW --- - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897">bug 83897<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesk.apriori&#64;spamgourmet.com" title=3D"freedesk.apriori&#64;spamgou=
+rmet.com">freedesk.apriori&#64;spamgourmet.com</a>
 </span></b>
-        <pre>There should be some fixes in 3.17-rc1 and later which affect GK106, especially
-if you're not using blob firmware. [After these changes it appears that the
-blob firmware is no longer necessary, BTW, in case you're using it.]</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106330=
+" name=3D"attach_106330" title=3D"jountalctl -b|grep nouveau">attachment 10=
+6330</a> <a href=3D"attachment.cgi?id=3D106330&amp;action=3Dedit" title=3D"=
+jountalctl -b|grep nouveau">[details]</a></span>
+jountalctl -b|grep nouveau
+
+=C2=ABjournalctl -b -1|grep nouveau=C2=BB for the most recent manifestation=
+ on Linux (ck)
+3.16.2.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1410798332.71cbfe0f1.25178--
+--1410798377.4C71faC1.25413--
 
---===============0838396465==
+--===============0738152785==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +106,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0838396465==--
+--===============0738152785==--
