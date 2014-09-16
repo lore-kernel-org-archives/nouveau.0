@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 26546] linux 2.6.33-rc7+git hangs on booting
-	MacBookPro5, 3 ...
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
 Date: Tue, 16 Sep 2014 11:10:20 +0000
-Message-ID: <bug-26546-8800-mfU2i91hog@http.bugs.freedesktop.org/>
-References: <bug-26546-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-27501-8800-yGaBKEkZCk@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1056653477=="
+Content-Type: multipart/mixed; boundary="===============0120328243=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-26546-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1056653477==
-Content-Type: multipart/alternative; boundary="1410865820.A61B5c82.13177"; charset="us-ascii"
+--===============0120328243==
+Content-Type: multipart/alternative; boundary="1410865820.0cD8A10.13177"; charset="us-ascii"
 
 
---1410865820.A61B5c82.13177
+--1410865820.0cD8A10.13177
 Date: Tue, 16 Sep 2014 11:10:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=26546
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-         Resolution|INVALID                     |DUPLICATE
+                 CC|                            |bugreports-YxZl4NRrHdw@public.gmane.org
 
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-As suggested by Christopher, you should check out bug 27501: I published a
-patch to get the 9400M  acceleration to work, but it will disable the 9600M GT
-as there are still some problems with having both cards enabled.
-
-*** This bug has been marked as a duplicate of bug 27501 ***
+--- Comment #32 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+*** Bug 26546 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410865820.A61B5c82.13177
+--1410865820.0cD8A10.13177
 Date: Tue, 16 Sep 2014 11:10:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -61,9 +56,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux 2.6.33-rc7+git hangs on booting MacBookPro5,3 ..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26546">bug 26546</a>
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
         <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,35 +68,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>DUPLICATE
+           <td>bugreports&#64;nn7.de
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux 2.6.33-rc7+git hangs on booting MacBookPro5,3 ..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26546#c3">Comment # 3</a>
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c32">Comment # 32</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux 2.6.33-rc7+git hangs on booting MacBookPro5,3 ..."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=26546">bug 26546</a>
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>As suggested by Christopher, you should check out <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="show_bug.cgi?id=27501">bug 27501</a>: I published a
-patch to get the 9400M  acceleration to work, but it will disable the 9600M GT
-as there are still some problems with having both cards enabled.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="show_bug.cgi?id=27501">bug 27501</a> ***</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - linux 2.6.33-rc7+git hangs on booting MacBookPro5,3 ..."
+   href="show_bug.cgi?id=26546">Bug 26546</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +102,9 @@ as there are still some problems with having both cards enabled.
     </body>
 </html>
 
---1410865820.A61B5c82.13177--
+--1410865820.0cD8A10.13177--
 
---===============1056653477==
+--===============0120328243==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -126,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1056653477==--
+--===============0120328243==--
