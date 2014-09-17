@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
  and X crash soon after log in
-Date: Wed, 17 Sep 2014 02:50:08 +0000
-Message-ID: <bug-83957-8800-NZRw8hrLyz@http.bugs.freedesktop.org/>
+Date: Wed, 17 Sep 2014 02:56:23 +0000
+Message-ID: <bug-83957-8800-4gza2qjXaf@http.bugs.freedesktop.org/>
 References: <bug-83957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1726159127=="
+Content-Type: multipart/mixed; boundary="===============1753797561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1726159127==
-Content-Type: multipart/alternative; boundary="1410922208.F3771.3596"; charset="us-ascii"
+--===============1753797561==
+Content-Type: multipart/alternative; boundary="1410922582.A31741.5677"; charset="us-ascii"
 
 
---1410922208.F3771.3596
-Date: Wed, 17 Sep 2014 02:50:08 +0000
+--1410922582.A31741.5677
+Date: Wed, 17 Sep 2014 02:56:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83957
 
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This seems like an extremely unlikely thing to help, but could you try booting
+with
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #106398|text/plain                  |image/png
-          mime type|                            |
+nouveau.config=PCE0=1
+
+This should force-enable the copy engine (which is being disabled because we
+see bits that we think mean it should be disabled). I suspect things will be
+even worse with that, but... worth a shot, I suppose?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410922208.F3771.3596
-Date: Wed, 17 Sep 2014 02:50:08 +0000
+--1410922582.A31741.5677
+Date: Wed, 17 Sep 2014 02:56:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This seems like an extremely unlikely thing to help, but could you try booting
+with
 
-         <tr>
-           <td style="text-align:right;">Attachment #106398 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/png
-           </td>
-         </tr></table>
-      <p>
+nouveau.config=PCE0=1
+
+This should force-enable the copy engine (which is being disabled because we
+see bits that we think mean it should be disabled). I suspect things will be
+even worse with that, but... worth a shot, I suppose?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1410922208.F3771.3596--
+--1410922582.A31741.5677--
 
---===============1726159127==
+--===============1753797561==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1726159127==--
+--===============1753797561==--
