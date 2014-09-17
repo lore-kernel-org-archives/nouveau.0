@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Tue, 16 Sep 2014 11:10:20 +0000
-Message-ID: <bug-27501-8800-yGaBKEkZCk@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83957] New: [NV50 - NVAF][MCP89] Major screen
+ corruption and X crash soon after log in
+Date: Wed, 17 Sep 2014 00:59:39 +0000
+Message-ID: <bug-83957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0120328243=="
+Content-Type: multipart/mixed; boundary="===============1999345758=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +19,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0120328243==
-Content-Type: multipart/alternative; boundary="1410865820.0cD8A10.13177"; charset="us-ascii"
+--===============1999345758==
+Content-Type: multipart/alternative; boundary="1410915579.EE2B1.4620"; charset="us-ascii"
 
 
---1410865820.0cD8A10.13177
-Date: Tue, 16 Sep 2014 11:10:20 +0000
+--1410915579.EE2B1.4620
+Date: Wed, 17 Sep 2014 00:59:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=83957
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+          Priority: medium
+            Bug ID: 83957
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NV50 - NVAF][MCP89] Major screen corruption and X
+                    crash soon after log in
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: qc.loic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |bugreports-YxZl4NRrHdw@public.gmane.org
+Created attachment 106398
+  --> https://bugs.freedesktop.org/attachment.cgi?id=106398&action=edit
+Screen corruption
 
---- Comment #32 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-*** Bug 26546 has been marked as a duplicate of this bug. ***
+Boots and login fine, then as I open a terminal, there will be some screen
+corruption. As I open more windows (firefox) and loads pages the screen gets
+worse and worse up till X crashes (can still move the mouse).
+
+I've built the newest linux kernel with the nouveau git (kernel 3.17 rc2+),
+also had the problem with stock ubuntu14.04 and with a 3.16 kernel.
+
+The card is an Apple Nvidia Geforce 320M. It doesn't have dedicated memory, it
+uses 256MB from the system ram.
+
+
+I include the logs, in the syslog, you will see many boots most of them in 3.16
+but one in 3.17 at the end. Let me know if I can give you anymore
+info/logs/trace.
+
+Thanks
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410865820.0cD8A10.13177
-Date: Tue, 16 Sep 2014 11:10:20 +0000
+--1410915579.EE2B1.4620
+Date: Wed, 17 Sep 2014 00:59:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,44 +80,114 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>bugreports&#64;nn7.de
-           </td>
-         </tr></table>
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">83957</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>qc.loic&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux 2.6.33-rc7+git hangs on booting MacBookPro5,3 ..."
-   href="show_bug.cgi?id=26546">Bug 26546</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=106398" name="attach_106398" title="Screen corruption">attachment 106398</a> <a href="attachment.cgi?id=106398&amp;action=edit" title="Screen corruption">[details]</a></span>
+Screen corruption
+
+Boots and login fine, then as I open a terminal, there will be some screen
+corruption. As I open more windows (firefox) and loads pages the screen gets
+worse and worse up till X crashes (can still move the mouse).
+
+I've built the newest linux kernel with the nouveau git (kernel 3.17 rc2+),
+also had the problem with stock ubuntu14.04 and with a 3.16 kernel.
+
+The card is an Apple Nvidia Geforce 320M. It doesn't have dedicated memory, it
+uses 256MB from the system ram.
+
+
+I include the logs, in the syslog, you will see many boots most of them in 3.16
+but one in 3.17 at the end. Let me know if I can give you anymore
+info/logs/trace.
+
+Thanks</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +199,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1410865820.0cD8A10.13177--
+--1410915579.EE2B1.4620--
 
---===============0120328243==
+--===============1999345758==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +212,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0120328243==--
+--===============1999345758==--
