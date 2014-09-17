@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
- and X crash soon after log in
-Date: Wed, 17 Sep 2014 12:24:42 +0000
-Message-ID: <bug-83957-8800-Z1VQpmf30r@http.bugs.freedesktop.org/>
-References: <bug-83957-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83992] New: [NVE0][NVF1] regression,
+ linux 3.17 causes gpu lockups
+Date: Wed, 17 Sep 2014 13:06:33 +0000
+Message-ID: <bug-83992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2077322477=="
+Content-Type: multipart/mixed; boundary="===============0439142858=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,103 +19,174 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2077322477==
-Content-Type: multipart/alternative; boundary="1410956682.fDFbB61.24358"; charset="us-ascii"
+--===============0439142858==
+Content-Type: multipart/alternative; boundary="1410959193.2fCBeDAA1.4300"; charset="us-ascii"
 
 
---1410956682.fDFbB61.24358
-Date: Wed, 17 Sep 2014 12:24:42 +0000
+--1410959193.2fCBeDAA1.4300
+Date: Wed, 17 Sep 2014 13:06:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D83957
+https://bugs.freedesktop.org/show_bug.cgi?id=83992
 
---- Comment #5 from Lo=C3=AFc Herry <qc.loic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to comment #4)
-> This seems like an extremely unlikely thing to help, but could you try
-> booting with
->=20
-> nouveau.config=3DPCE0=3D1
->=20
-> This should force-enable the copy engine (which is being disabled because=
- we
-> see bits that we think mean it should be disabled). I suspect things will=
- be
-> even worse with that, but... worth a shot, I suppose?
+          Priority: medium
+            Bug ID: 83992
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+           Summary: [NVE0][NVF1] regression, linux 3.17 causes gpu lockups
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+          Severity: critical
+    Classification: Unclassified
+                OS: Linux (All)
+          Reporter: tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+          Hardware: x86-64 (AMD64)
+            Status: NEW
+           Version: git
+         Component: Driver/nouveau
+           Product: xorg
 
-It made things worse. With nouveau.config=3DPCE0=3D1 the boot and login scr=
-een are
-unreadable.
+Created attachment 106428
+  --> https://bugs.freedesktop.org/attachment.cgi?id=106428&action=edit
+dmesg of cs:go lockup
 
-I'm booting in EFI with grub.
+im getting a regression with 3.17 gpu lockups instantly i launch wine/cs:go and
+at random times with just normal X usage. i bisected the kernel twice and ended
+up on same commit
+http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=f331a15f84a94dce6f12cf0b7012174b4a6bf804 
 
---=20
+this is on a 780ti.
+
+attaching dmesg of wine/csgo lockup on 3.17-rc5 and X lockup with the bisected
+kernel at that commit.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1410956682.fDFbB61.24358
-Date: Wed, 17 Sep 2014 12:24:42 +0000
+--1410959193.2fCBeDAA1.4300
+Date: Wed, 17 Sep 2014 13:06:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992">83992</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE0][NVF1] regression, linux 3.17 causes gpu lockups
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Classification</th>
+          <td>Unclassified
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tomenglund26&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X cr=
-ash soon after log in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83957#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X cr=
-ash soon after log in"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83957">bug 83957<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-qc.loic&#64;gmail.com" title=3D"Lo=C3=AFc Herry &lt;qc.loic&#64;gmail.com&g=
-t;"> <span class=3D"fn">Lo=C3=AFc Herry</span></a>
-</span></b>
-        <pre>(In reply to <a href=3D"show_bug.cgi?id=3D83957#c4">comment #4=
-</a>)
-<span class=3D"quote">&gt; This seems like an extremely unlikely thing to h=
-elp, but could you try
-&gt; booting with
-&gt;=20
-&gt; nouveau.config=3DPCE0=3D1
-&gt;=20
-&gt; This should force-enable the copy engine (which is being disabled beca=
-use we
-&gt; see bits that we think mean it should be disabled). I suspect things w=
-ill be
-&gt; even worse with that, but... worth a shot, I suppose?</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=106428" name="attach_106428" title="dmesg of cs:go lockup">attachment 106428</a> <a href="attachment.cgi?id=106428&amp;action=edit" title="dmesg of cs:go lockup">[details]</a></span>
+dmesg of cs:go lockup
 
-It made things worse. With nouveau.config=3DPCE0=3D1 the boot and login scr=
-een are
-unreadable.
+im getting a regression with 3.17 gpu lockups instantly i launch wine/cs:go and
+at random times with just normal X usage. i bisected the kernel twice and ended
+up on same commit
+<a href="http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=f331a15f84a94dce6f12cf0b7012174b4a6bf804">http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=f331a15f84a94dce6f12cf0b7012174b4a6bf804</a> 
 
-I'm booting in EFI with grub.</pre>
+this is on a 780ti.
+
+attaching dmesg of wine/csgo lockup on 3.17-rc5 and X lockup with the bisected
+kernel at that commit.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1410956682.fDFbB61.24358--
+--1410959193.2fCBeDAA1.4300--
 
---===============2077322477==
+--===============0439142858==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,4 +197,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2077322477==--
+--===============0439142858==--
