@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
- and X crash soon after log in
-Date: Thu, 18 Sep 2014 14:49:51 +0000
-Message-ID: <bug-83957-8800-eOlsIYxEha@http.bugs.freedesktop.org/>
-References: <bug-83957-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [BUG] nouveau regression: ext monitor dead after
+	resume
+Date: Thu, 18 Sep 2014 10:58:30 -0400
+Message-ID: <CAKb7UvjcYsFm7TWzKXdWHVDVRDO1rFtcCTZoChYssDKqLMDGWw@mail.gmail.com>
+References: <541AE737.8070009@odi.ch>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1480500639=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <541AE737.8070009-L693kI9kcNY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +18,53 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Ortwin_Gl=C3=BCck?= <odi-L693kI9kcNY@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1480500639==
-Content-Type: multipart/alternative; boundary="1411051791.aD3851.5026"; charset="us-ascii"
-
-
---1411051791.aD3851.5026
-Date: Thu, 18 Sep 2014 14:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=83957
-
---- Comment #6 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 106504
-  --> https://bugs.freedesktop.org/attachment.cgi?id=106504&action=edit
-PFB patch
-
-I wonder if this patch could yield some improvements, as your chipset is not
-too far away from mine (MCP79: NVAC) and I had kind of similar problems at some
-point.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1411051791.aD3851.5026
-Date: Thu, 18 Sep 2014 14:49:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X crash soon after log in"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83957">bug 83957</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=106504" name="attach_106504" title="PFB patch">attachment 106504</a> <a href="attachment.cgi?id=106504&amp;action=edit" title="PFB patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=83957&amp;attachment=106504'>[review]</a>
-PFB patch
-
-I wonder if this patch could yield some improvements, as your chipset is not
-too far away from mine (MCP79: NVAC) and I had kind of similar problems at some
-point.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1411051791.aD3851.5026--
-
---===============1480500639==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1480500639==--
+T24gVGh1LCBTZXAgMTgsIDIwMTQgYXQgMTA6MDcgQU0sIE9ydHdpbiBHbMO8Y2sgPG9kaUBvZGku
+Y2g+IHdyb3RlOgo+IEhpLAo+Cj4gU2luY2UgMy4xNiBhbiBleHRlcm5hbCBtb25pdG9yIHN0YXlz
+IGRhcmsgYWZ0ZXIgcmVzdW1lIGZyb20gc2xlZXAuIEkgZGlkbid0IG1hbmFnZSB0byBhY3RpdmF0
+ZSBpdAo+IGFnYWluIHdpdGggeHJhbmQuIEFjY29yZGluZyB0byB4cmFuZHIgaXQgaXMgImNvbm5l
+Y3RlZCIgYW5kIGNvbmZpZ3VyZWQgd2l0aCBhIG1vZGUsIGJ1dCBJIGdldCBubyBzaWduYWwuCj4K
+PiBIYXBwZW5zIHNpbmNlIDMuMTYgYW5kIGlzIHN0aWxsIGJyb2tlbiB3aXRoIDMuMTctcmM1Lgo+
+Cj4gSGFyZHdhcmU6Cj4gSFAgRWxpdGVCb29rIDg1NDB3Cj4gMDE6MDAuMCBWR0EgY29tcGF0aWJs
+ZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR1QyMTVHTE0gW1F1YWRybyBGWCAxODAw
+TV0gKHJldiBhMikKPiAwCj4KPiBFeHRlcm5hbCBNb25pdG9yIGNvbm5lY3RlZCB2aWEgRFZJIG9u
+IHRoZSBkb2NraW5nIHN0YXRpb24uCgpUaGlzIGhhcyBiZWVuIHJlcG9ydGVkIGEgZmV3IHRpbWVz
+IGFscmVhZHkgLS0gcHJvYmFibHkgdGhlIHNhbWUgdGhpbmcKYXMgYnVnIGh0dHBzOi8vYnVncy5m
+cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTgzNTUwCgpTb3JyeSwgbm8gcmVzb2x1dGlv
+biBhcyBvZiB5ZXQuIElmIHlvdSBjb3VsZCB2ZXJpZnkgdGhhdCB0aGUgY29tbWl0CnRoYXQgZ290
+IGJpc2VjdGVkIHRvIGluIHRoYXQgYnVnIGluZGVlZCBjYXVzZXMgeW91ciBwcm9ibGVtLCBpdCB3
+b3VsZApiZSBuaWNlIHRvIGhhdmUgYmVmb3JlIGFuZCBhZnRlciBsb2dzIGZyb20gYSBrZXJuZWwg
+Y29tcGlsZWQgd2l0aApOT1VWRUFVX0RFQlVHIHNldCB0byA3IChzcGFtKSBib290ZWQgd2l0aApu
+b3V2ZWF1LmRlYnVnPXRyYWNlLFBESVNQPXNwYW0gLiBUaGF0IHNob3VsZCBob3BlZnVsbHkgaGVs
+cCBpc29sYXRlCnRoZSBpc3N1ZS4gKERvbid0IHVzZSBhIGtlcm5lbCB3aXRoIE5PVVZFQVVfREVC
+VUcgc2V0IHRoYXQgaGlnaCBmb3IKZGFpbHkgdXNlIC0tIGl0IGludHJvZHVjZXMgYSB0b24gb2Yg
+ZGVidWcgY29kZSBldmVyeXdoZXJlLikgSWYgdGhlCmNvbW1pdCB0aGF0IGdvdCBiaXNlY3RlZCB0
+byBpbiB0aGUgYnVnIGlzIG5vdCB0aGUgY2F1c2Ugb2YgeW91cgppc3N1ZXMsIHlvdSdsbCBuZWVk
+IHRvIGRvIHlvdXIgb3duIGJpc2VjdC4KCkNoZWVycywKCiAgLWlsaWEKCj4KPiBYUmFuZFIgYmVm
+b3JlIGFtZCBhZnRlciBzdXNwZW5kIGxvb2tzIHRoZSBzYW1lOgo+Cj4gJCB4cmFuZHIKPiBTY3Jl
+ZW4gMDogbWluaW11bSAzMjAgeCAyMDAsIGN1cnJlbnQgMTkyMCB4IDEwODAsIG1heGltdW0gODE5
+MiB4IDgxOTIKPiBMVkRTLTEgY29ubmVjdGVkIDE5MjB4MTA4MCswKzAgKG5vcm1hbCBsZWZ0IGlu
+dmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpIDM0NW1tIHggMTk0bW0KPiAgICAxOTIweDEwODAg
+ICAgICA1OS45KisgICA2MC4wCj4gICAgMTY4MHgxMDUwICAgICAgNjAuMAo+ICAgIDE0MDB4MTA1
+MCAgICAgIDYwLjAKPiAgICAxMjgweDEwMjQgICAgICA1OS45Cj4gICAgMTI4MHg5NjAgICAgICAg
+NTkuOQo+ICAgIDExNTJ4ODY0ICAgICAgIDYwLjAKPiAgICAxMDI0eDc2OCAgICAgICA1OS45Cj4g
+ICAgODAweDYwMCAgICAgICAgNTkuOQo+ICAgIDY0MHg0ODAgICAgICAgIDU5LjQKPiAgICA3MjB4
+NDAwICAgICAgICA1OS42Cj4gICAgNjQweDQwMCAgICAgICAgNjAuMAo+ICAgIDY0MHgzNTAgICAg
+ICAgIDU5LjgKPiBEUC0xIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQgcmlnaHQg
+eCBheGlzIHkgYXhpcykKPiBEUC0yIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQg
+cmlnaHQgeCBheGlzIHkgYXhpcykKPiBlRFAtMSBkaXNjb25uZWN0ZWQgKG5vcm1hbCBsZWZ0IGlu
+dmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4gRFAtMyBjb25uZWN0ZWQgMTkyMHgxMDgwKzAr
+MCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykgNTk4bW0geCAzMzZt
+bQo+ICAgIDE5MjB4MTA4MCAgICAgIDYwLjAqKwo+ICAgIDE2ODB4MTA1MCAgICAgIDU5LjkKPiAg
+ICAxMjgweDEwMjQgICAgICA3NS4wICAgICA2MC4wCj4gICAgMTQ0MHg5MDAgICAgICAgNzUuMCAg
+ICAgNTkuOQo+ICAgIDEwMjR4NzY4ICAgICAgIDc1LjEgICAgIDYwLjAKPiAgICA4MDB4NjAwICAg
+ICAgICA3NS4wICAgICA2MC4zCj4gICAgNjQweDQ4MCAgICAgICAgNzUuMCAgICAgNzIuOCAgICAg
+NjYuNyAgICAgNjAuMAo+ICAgIDcyMHg0MDAgICAgICAgIDcwLjEKPiBWR0EtMSBkaXNjb25uZWN0
+ZWQgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4KPiBkbWVzZyBv
+dXRwdXQgb2YgYSBzdXNwZW5kL3Jlc3VtZSBjeWNsZSBhdHRhY2hlZC4KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
