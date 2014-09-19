@@ -1,14 +1,12 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [BUG] nouveau regression: ext monitor dead after
-	resume
-Date: Thu, 18 Sep 2014 10:58:30 -0400
-Message-ID: <CAKb7UvjcYsFm7TWzKXdWHVDVRDO1rFtcCTZoChYssDKqLMDGWw@mail.gmail.com>
-References: <541AE737.8070009@odi.ch>
+Subject: [PATCH 0/2] nv50,
+	nvc0: fix weirdo zs formats and their blits
+Date: Fri, 19 Sep 2014 00:19:42 -0400
+Message-ID: <1411100384-22547-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <541AE737.8070009-L693kI9kcNY@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,53 +16,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Ortwin_Gl=C3=BCck?= <odi-L693kI9kcNY@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: David Heidelberger <david.heidelberger-W22tF5X+A20@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBTZXAgMTgsIDIwMTQgYXQgMTA6MDcgQU0sIE9ydHdpbiBHbMO8Y2sgPG9kaUBvZGku
-Y2g+IHdyb3RlOgo+IEhpLAo+Cj4gU2luY2UgMy4xNiBhbiBleHRlcm5hbCBtb25pdG9yIHN0YXlz
-IGRhcmsgYWZ0ZXIgcmVzdW1lIGZyb20gc2xlZXAuIEkgZGlkbid0IG1hbmFnZSB0byBhY3RpdmF0
-ZSBpdAo+IGFnYWluIHdpdGggeHJhbmQuIEFjY29yZGluZyB0byB4cmFuZHIgaXQgaXMgImNvbm5l
-Y3RlZCIgYW5kIGNvbmZpZ3VyZWQgd2l0aCBhIG1vZGUsIGJ1dCBJIGdldCBubyBzaWduYWwuCj4K
-PiBIYXBwZW5zIHNpbmNlIDMuMTYgYW5kIGlzIHN0aWxsIGJyb2tlbiB3aXRoIDMuMTctcmM1Lgo+
-Cj4gSGFyZHdhcmU6Cj4gSFAgRWxpdGVCb29rIDg1NDB3Cj4gMDE6MDAuMCBWR0EgY29tcGF0aWJs
-ZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR1QyMTVHTE0gW1F1YWRybyBGWCAxODAw
-TV0gKHJldiBhMikKPiAwCj4KPiBFeHRlcm5hbCBNb25pdG9yIGNvbm5lY3RlZCB2aWEgRFZJIG9u
-IHRoZSBkb2NraW5nIHN0YXRpb24uCgpUaGlzIGhhcyBiZWVuIHJlcG9ydGVkIGEgZmV3IHRpbWVz
-IGFscmVhZHkgLS0gcHJvYmFibHkgdGhlIHNhbWUgdGhpbmcKYXMgYnVnIGh0dHBzOi8vYnVncy5m
-cmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTgzNTUwCgpTb3JyeSwgbm8gcmVzb2x1dGlv
-biBhcyBvZiB5ZXQuIElmIHlvdSBjb3VsZCB2ZXJpZnkgdGhhdCB0aGUgY29tbWl0CnRoYXQgZ290
-IGJpc2VjdGVkIHRvIGluIHRoYXQgYnVnIGluZGVlZCBjYXVzZXMgeW91ciBwcm9ibGVtLCBpdCB3
-b3VsZApiZSBuaWNlIHRvIGhhdmUgYmVmb3JlIGFuZCBhZnRlciBsb2dzIGZyb20gYSBrZXJuZWwg
-Y29tcGlsZWQgd2l0aApOT1VWRUFVX0RFQlVHIHNldCB0byA3IChzcGFtKSBib290ZWQgd2l0aApu
-b3V2ZWF1LmRlYnVnPXRyYWNlLFBESVNQPXNwYW0gLiBUaGF0IHNob3VsZCBob3BlZnVsbHkgaGVs
-cCBpc29sYXRlCnRoZSBpc3N1ZS4gKERvbid0IHVzZSBhIGtlcm5lbCB3aXRoIE5PVVZFQVVfREVC
-VUcgc2V0IHRoYXQgaGlnaCBmb3IKZGFpbHkgdXNlIC0tIGl0IGludHJvZHVjZXMgYSB0b24gb2Yg
-ZGVidWcgY29kZSBldmVyeXdoZXJlLikgSWYgdGhlCmNvbW1pdCB0aGF0IGdvdCBiaXNlY3RlZCB0
-byBpbiB0aGUgYnVnIGlzIG5vdCB0aGUgY2F1c2Ugb2YgeW91cgppc3N1ZXMsIHlvdSdsbCBuZWVk
-IHRvIGRvIHlvdXIgb3duIGJpc2VjdC4KCkNoZWVycywKCiAgLWlsaWEKCj4KPiBYUmFuZFIgYmVm
-b3JlIGFtZCBhZnRlciBzdXNwZW5kIGxvb2tzIHRoZSBzYW1lOgo+Cj4gJCB4cmFuZHIKPiBTY3Jl
-ZW4gMDogbWluaW11bSAzMjAgeCAyMDAsIGN1cnJlbnQgMTkyMCB4IDEwODAsIG1heGltdW0gODE5
-MiB4IDgxOTIKPiBMVkRTLTEgY29ubmVjdGVkIDE5MjB4MTA4MCswKzAgKG5vcm1hbCBsZWZ0IGlu
-dmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpIDM0NW1tIHggMTk0bW0KPiAgICAxOTIweDEwODAg
-ICAgICA1OS45KisgICA2MC4wCj4gICAgMTY4MHgxMDUwICAgICAgNjAuMAo+ICAgIDE0MDB4MTA1
-MCAgICAgIDYwLjAKPiAgICAxMjgweDEwMjQgICAgICA1OS45Cj4gICAgMTI4MHg5NjAgICAgICAg
-NTkuOQo+ICAgIDExNTJ4ODY0ICAgICAgIDYwLjAKPiAgICAxMDI0eDc2OCAgICAgICA1OS45Cj4g
-ICAgODAweDYwMCAgICAgICAgNTkuOQo+ICAgIDY0MHg0ODAgICAgICAgIDU5LjQKPiAgICA3MjB4
-NDAwICAgICAgICA1OS42Cj4gICAgNjQweDQwMCAgICAgICAgNjAuMAo+ICAgIDY0MHgzNTAgICAg
-ICAgIDU5LjgKPiBEUC0xIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQgcmlnaHQg
-eCBheGlzIHkgYXhpcykKPiBEUC0yIGRpc2Nvbm5lY3RlZCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQg
-cmlnaHQgeCBheGlzIHkgYXhpcykKPiBlRFAtMSBkaXNjb25uZWN0ZWQgKG5vcm1hbCBsZWZ0IGlu
-dmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4gRFAtMyBjb25uZWN0ZWQgMTkyMHgxMDgwKzAr
-MCAobm9ybWFsIGxlZnQgaW52ZXJ0ZWQgcmlnaHQgeCBheGlzIHkgYXhpcykgNTk4bW0geCAzMzZt
-bQo+ICAgIDE5MjB4MTA4MCAgICAgIDYwLjAqKwo+ICAgIDE2ODB4MTA1MCAgICAgIDU5LjkKPiAg
-ICAxMjgweDEwMjQgICAgICA3NS4wICAgICA2MC4wCj4gICAgMTQ0MHg5MDAgICAgICAgNzUuMCAg
-ICAgNTkuOQo+ICAgIDEwMjR4NzY4ICAgICAgIDc1LjEgICAgIDYwLjAKPiAgICA4MDB4NjAwICAg
-ICAgICA3NS4wICAgICA2MC4zCj4gICAgNjQweDQ4MCAgICAgICAgNzUuMCAgICAgNzIuOCAgICAg
-NjYuNyAgICAgNjAuMAo+ICAgIDcyMHg0MDAgICAgICAgIDcwLjEKPiBWR0EtMSBkaXNjb25uZWN0
-ZWQgKG5vcm1hbCBsZWZ0IGludmVydGVkIHJpZ2h0IHggYXhpcyB5IGF4aXMpCj4KPiBkbWVzZyBv
-dXRwdXQgb2YgYSBzdXNwZW5kL3Jlc3VtZSBjeWNsZSBhdHRhY2hlZC4KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+There were reports of issues with gallium-nine. It's unclear whether mesa/st
+uses these, the patches did not produce any piglit changes. However they seem
+right...
+
+Ilia Mirkin (2):
+  nv50,nvc0: add missing depth/stencil formats to tile flag selection
+  nv50,nvc0: fix 3d blit logic for odd depth/stencil formats
+
+ src/gallium/drivers/nouveau/nv50/nv50_blit.h    | 21 ++++++++++++++-------
+ src/gallium/drivers/nouveau/nv50/nv50_miptree.c |  4 ++++
+ src/gallium/drivers/nouveau/nv50/nv50_surface.c |  4 ++++
+ src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c |  4 ++++
+ 4 files changed, 26 insertions(+), 7 deletions(-)
+
+-- 
+1.8.5.5
