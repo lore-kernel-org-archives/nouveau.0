@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84101] [NV96] null deref in nouveau_i2c_acquire_pad,
- triggered by xcmddc
-Date: Fri, 19 Sep 2014 16:44:23 +0000
-Message-ID: <bug-84101-8800-yAwIUq0TQP@http.bugs.freedesktop.org/>
-References: <bug-84101-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83550] [NVA5] Monitor not restored after resume
+ [regression] [bisected]
+Date: Fri, 19 Sep 2014 16:50:09 +0000
+Message-ID: <bug-83550-8800-SfJGk41Ga4@http.bugs.freedesktop.org/>
+References: <bug-83550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1022061868=="
+Content-Type: multipart/mixed; boundary="===============0333833216=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,73 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1022061868==
-Content-Type: multipart/alternative; boundary="1411145063.4bAe2.23064"; charset="us-ascii"
+--===============0333833216==
+Content-Type: multipart/alternative; boundary="1411145410.7a64a2.24766"; charset="us-ascii"
 
 
---1411145063.4bAe2.23064
-Date: Fri, 19 Sep 2014 16:44:23 +0000
+--1411145410.7a64a2.24766
+Date: Fri, 19 Sep 2014 16:50:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84101
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83550
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
+Created attachment 106559
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106559&action=3Dedit
+log from last good commit
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|A crash upon boot           |[NV96] null deref in
-                   |                            |nouveau_i2c_acquire_pad,
-                   |                            |triggered by xcmddc
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411145063.4bAe2.23064
-Date: Fri, 19 Sep 2014 16:44:23 +0000
+--1411145410.7a64a2.24766
+Date: Fri, 19 Sep 2014 16:50:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101">bug 84101</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>A crash upon boot
-           </td>
-           <td>[NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
+ [bisected]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
+ [bisected]"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550">bug 83550<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
+lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
+</span></b>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106559=
+" name=3D"attach_106559" title=3D"log from last good commit">attachment 106=
+559</a> <a href=3D"attachment.cgi?id=3D106559&amp;action=3Dedit" title=3D"l=
+og from last good commit">[details]</a></span>
+log from last good commit</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1411145063.4bAe2.23064--
+--1411145410.7a64a2.24766--
 
---===============1022061868==
+--===============0333833216==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1022061868==--
+--===============0333833216==--
