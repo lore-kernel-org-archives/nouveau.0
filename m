@@ -1,40 +1,107 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [BUG] nouveau regression: ext monitor dead after resume
-Date: Fri, 19 Sep 2014 13:01:02 -0400
-Message-ID: <CAKb7Uvi_BN5WZPUA55Ma_2i5nQceryrnjJW54tCXU1hm0KVC4w@mail.gmail.com>
-References: <541AE737.8070009@odi.ch>
- <CAKb7UvjcYsFm7TWzKXdWHVDVRDO1rFtcCTZoChYssDKqLMDGWw@mail.gmail.com>
- <541C40AA.4060206@odi.ch>
- <CAKb7Uvjm7vFxd-aTtuh4=XE-4JONRJgAt8n93vDHZnARsg+yiw@mail.gmail.com>
- <541C5F6A.1040006@odi.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83992] [NVE0][NVF1] regression,
+	linux 3.17 causes gpu lockups
+Date: Fri, 19 Sep 2014 17:43:32 +0000
+Message-ID: <bug-83992-8800-Og09L8sE6p@http.bugs.freedesktop.org/>
+References: <bug-83992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <541C5F6A.1040006@odi.ch>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: =?UTF-8?Q?Ortwin_Gl=C3=BCck?= <odi@odi.ch>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0648777777=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-83992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBTZXAgMTksIDIwMTQgYXQgMTI6NTIgUE0sIE9ydHdpbiBHbMO8Y2sgPG9kaUBvZGku
-Y2g+IHdyb3RlOgo+IE9uIDE5LjA5LjIwMTQgMTc6NTgsIElsaWEgTWlya2luIHdyb3RlOgo+PiBn
-aXQgY2hlY2tvdXQgNDE1ZjEyZWZjMWIyMzA4NDExYjJjYmMzZTgyNjY2YjNkYjhhNzc1OF4KPgo+
-IFRoYW5rcyBhZ2Fpbi4gSSBjb25maXJtIHRoYXQgQnVnemlsbGEgODM1NTAgaXMgdGhlIHNhbWUg
-aXNzdWUuIEkgaGF2ZSBhdHRhY2hlZCB0aGUgY2FwdHVyZWQgbG9ncwo+IHRoZXJlIGZvciByZWZl
-cmVuY2UuCgpUaGFua3MhIEhvcGVmdWxseSB5b3Ugc3RpbGwgaGF2ZSB0aG9zZSBrZXJuZWxzIGhh
-bmR5LCBhcyB5b3VyIGxvZ3MgZ290CmN1dCBvZmYuIFRyeSBib290aW5nIHdpdGggbG9nX2J1Zl9s
-ZW49MTAwTSB0byBpbmNyZWFzZSB0aGUKInNjcm9sbGJhY2siIGJ1ZmZlciAoSSBhc3N1bWUgeW91
-IGhhdmUgb29kbGVzIG9mIFJBTSkuIE9yIGdyYWIgdGhlCmtlcm5lbCBsb2dzIGZyb20geW91ciBz
-eXN0ZW0uCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+
+--===============0648777777==
+Content-Type: multipart/alternative; boundary="1411148611.42ed71.11810"; charset="us-ascii"
+
+
+--1411148611.42ed71.11810
+Date: Fri, 19 Sep 2014 17:43:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=83992
+
+--- Comment #5 from Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to comment #4)
+> What's the last commit where everything works properly?  We should start
+> from there.
+> 
+> You mention you still get X lockups even after reverting f331a?
+
+yea that is the weird thing reverting those 3 commits it still lockups but
+going cleanly to its parent it only artifacts, after some bisecting the first
+bad commit with artifacts is 694c6caf92615828dbfd3fc30e937c8f54d2ac93 , so the
+first commit where everything works is ac9738bb3e5374495908ad236285f69cfd405f8e
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1411148611.42ed71.11810
+Date: Fri, 19 Sep 2014 17:43:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992">bug 83992</a>
+              from <span class="vcard"><a class="email" href="mailto:tomenglund26&#64;gmail.com" title="Tom Englund &lt;tomenglund26&#64;gmail.com&gt;"> <span class="fn">Tom Englund</span></a>
+</span></b>
+        <pre>(In reply to <a href="show_bug.cgi?id=83992#c4">comment #4</a>)
+<span class="quote">&gt; What's the last commit where everything works properly?  We should start
+&gt; from there.
+&gt; 
+&gt; You mention you still get X lockups even after reverting f331a?</span >
+
+yea that is the weird thing reverting those 3 commits it still lockups but
+going cleanly to its parent it only artifacts, after some bisecting the first
+bad commit with artifacts is 694c6caf92615828dbfd3fc30e937c8f54d2ac93 , so the
+first commit where everything works is ac9738bb3e5374495908ad236285f69cfd405f8e</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1411148611.42ed71.11810--
+
+--===============0648777777==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0648777777==--
