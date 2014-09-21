@@ -1,15 +1,13 @@
-From: =?UTF-8?B?T3J0d2luIEdsw7xjaw==?= <odi-L693kI9kcNY@public.gmane.org>
-Subject: Re: [BUG] nouveau regression: ext monitor dead after
-	resume
-Date: Fri, 19 Sep 2014 20:43:36 +0200
-Message-ID: <541C7958.7050603@odi.ch>
-References: <541AE737.8070009@odi.ch>	<CAKb7UvjcYsFm7TWzKXdWHVDVRDO1rFtcCTZoChYssDKqLMDGWw@mail.gmail.com>	<541C40AA.4060206@odi.ch>	<CAKb7Uvjm7vFxd-aTtuh4=XE-4JONRJgAt8n93vDHZnARsg+yiw@mail.gmail.com>	<541C5F6A.1040006@odi.ch>
- <CAKb7Uvi_BN5WZPUA55Ma_2i5nQceryrnjJW54tCXU1hm0KVC4w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 84101] [NV96] null deref in nouveau_i2c_acquire_pad,
+ triggered by xcmddc
+Date: Sun, 21 Sep 2014 09:04:58 +0000
+Message-ID: <bug-84101-8800-pWUuHF8BtC@http.bugs.freedesktop.org/>
+References: <bug-84101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0022785250=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi_BN5WZPUA55Ma_2i5nQceryrnjJW54tCXU1hm0KVC4w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-84101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,17 +17,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 09/19/2014 07:01 PM, Ilia Mirkin wrote:
-> Thanks! Hopefully you still have those kernels handy, as your logs got
-> cut off.
 
-Yeah, I noticed and hoped it wouldn't matter as it is mostly the boot log that's 
-been cut off until syslog came up (it's from /var/log/messages). So 
-suspend/resume cycle should be complete. But I can give it another try on Monday 
-when I'm back in the office.
+--===============0022785250==
+Content-Type: multipart/alternative; boundary="1411290298.afedBd7D1.25855"; charset="us-ascii"
 
-Ortwin
+
+--1411290298.afedBd7D1.25855
+Date: Sun, 21 Sep 2014 09:04:58 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=84101
+
+--- Comment #2 from danny_archer-97jfqw80gc6171pxa8y+qA@public.gmane.org ---
+Created attachment 106600
+  --> https://bugs.freedesktop.org/attachment.cgi?id=106600&action=edit
+kern.log
+
+It happened again. I was able to log in over ssh and poweroff the machine. The
+consequent boot went without any issues.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1411290298.afedBd7D1.25855
+Date: Sun, 21 Sep 2014 09:04:58 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101">bug 84101</a>
+              from <span class="vcard"><a class="email" href="mailto:danny_archer&#64;fastmail.fm" title="danny_archer&#64;fastmail.fm">danny_archer&#64;fastmail.fm</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=106600" name="attach_106600" title="kern.log">attachment 106600</a> <a href="attachment.cgi?id=106600&amp;action=edit" title="kern.log">[details]</a></span>
+kern.log
+
+It happened again. I was able to log in over ssh and poweroff the machine. The
+consequent boot went without any issues.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1411290298.afedBd7D1.25855--
+
+--===============0022785250==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0022785250==--
