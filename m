@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84203] [NVC1] HDMI gives no more signal since 3.15
 	(optimus)
-Date: Mon, 22 Sep 2014 22:44:06 +0000
-Message-ID: <bug-84203-8800-ZwyHUN6raR@http.bugs.freedesktop.org/>
+Date: Mon, 22 Sep 2014 22:46:52 +0000
+Message-ID: <bug-84203-8800-LN85XDQWSy@http.bugs.freedesktop.org/>
 References: <bug-84203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0425429319=="
+Content-Type: multipart/mixed; boundary="===============0325438053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0425429319==
-Content-Type: multipart/alternative; boundary="1411425846.ded2C41.4909"; charset="us-ascii"
+--===============0325438053==
+Content-Type: multipart/alternative; boundary="1411426011.eFEA8BdD1.5935"; charset="us-ascii"
 
 
---1411425846.ded2C41.4909
-Date: Mon, 22 Sep 2014 22:44:06 +0000
+--1411426011.eFEA8BdD1.5935
+Date: Mon, 22 Sep 2014 22:46:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84203
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #1 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 106697
+  --> https://bugs.freedesktop.org/attachment.cgi?id=106697&action=edit
+full dmesg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|HDMI gives no more signal   |[NVC1] HDMI gives no more
-                   |                            |signal since 3.15 (optimus)
+Attached a full dmesg.
+
+The last lines are when I stop lightdm, and runpm stops the nvidia card.
+This also causes shutdown to hang.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411425846.ded2C41.4909
-Date: Mon, 22 Sep 2014 22:44:06 +0000
+--1411426011.eFEA8BdD1.5935
+Date: Mon, 22 Sep 2014 22:46:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +55,27 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84203#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84203">bug 84203</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=106697" name="attach_106697" title="full dmesg">attachment 106697</a> <a href="attachment.cgi?id=106697&amp;action=edit" title="full dmesg">[details]</a></span>
+full dmesg
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>HDMI gives no more signal
-           </td>
-           <td>[NVC1] HDMI gives no more signal since 3.15 (optimus)
-           </td>
-         </tr></table>
-      <p>
+Attached a full dmesg.
+
+The last lines are when I stop lightdm, and runpm stops the nvidia card.
+This also causes shutdown to hang.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1411425846.ded2C41.4909--
+--1411426011.eFEA8BdD1.5935--
 
---===============0425429319==
+--===============0325438053==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -97,4 +99,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0425429319==--
+--===============0325438053==--
