@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 83550] [NVA5] Monitor not restored after resume
- [regression] [bisected]
-Date: Mon, 22 Sep 2014 09:20:06 +0000
-Message-ID: <bug-83550-8800-Ia2m1s0p0h@http.bugs.freedesktop.org/>
-References: <bug-83550-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?T3J0d2luIEdsw7xjaw==?= <odi-L693kI9kcNY@public.gmane.org>
+Subject: Re: [BUG] nouveau regression: ext monitor dead after
+	resume
+Date: Mon, 22 Sep 2014 11:21:42 +0200
+Message-ID: <541FEA26.4080203@odi.ch>
+References: <541AE737.8070009@odi.ch>	<CAKb7UvjcYsFm7TWzKXdWHVDVRDO1rFtcCTZoChYssDKqLMDGWw@mail.gmail.com>	<541C40AA.4060206@odi.ch>	<CAKb7Uvjm7vFxd-aTtuh4=XE-4JONRJgAt8n93vDHZnARsg+yiw@mail.gmail.com>	<541C5F6A.1040006@odi.ch>
+ <CAKb7Uvi_BN5WZPUA55Ma_2i5nQceryrnjJW54tCXU1hm0KVC4w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0061165957=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvi_BN5WZPUA55Ma_2i5nQceryrnjJW54tCXU1hm0KVC4w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,120 +19,13 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 19.09.2014 19:01, Ilia Mirkin wrote:
+> Try booting with log_buf_len=100M 
 
---===============0061165957==
-Content-Type: multipart/alternative; boundary="1411377606.2Ba4C82.12838"; charset="us-ascii"
+Done and the slightly lengthy files attached to the Bugzilla entry.
 
-
---1411377606.2Ba4C82.12838
-Date: Mon, 22 Sep 2014 09:20:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D83550
-
-Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #106663|0                           |1
-        is obsolete|                            |
-
---- Comment #9 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
-Created attachment 106664
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106664&action=3Dedit
-log of first bad commit
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1411377606.2Ba4C82.12838
-Date: Mon, 22 Sep 2014 09:20:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:odi&#64;o=
-di.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span class=3D"f=
-n">Ortwin Gl=C3=BCck</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
- [bisected]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550">bug 83550<=
-/a>
-        <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #106663 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
- [bisected]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
- [bisected]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550">bug 83550<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
-lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
-</span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106664=
-" name=3D"attach_106664" title=3D"log of first bad commit">attachment 10666=
-4</a> <a href=3D"attachment.cgi?id=3D106664&amp;action=3Dedit" title=3D"log=
- of first bad commit">[details]</a></span>
-log of first bad commit</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1411377606.2Ba4C82.12838--
-
---===============0061165957==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0061165957==--
+Ortwin
