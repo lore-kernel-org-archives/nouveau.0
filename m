@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83550] [NVA5] Monitor not restored after resume
  [regression] [bisected]
-Date: Mon, 22 Sep 2014 09:19:36 +0000
-Message-ID: <bug-83550-8800-H0xYhSbbgl@http.bugs.freedesktop.org/>
+Date: Mon, 22 Sep 2014 09:20:06 +0000
+Message-ID: <bug-83550-8800-Ia2m1s0p0h@http.bugs.freedesktop.org/>
 References: <bug-83550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2108296463=="
+Content-Type: multipart/mixed; boundary="===============0061165957=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2108296463==
-Content-Type: multipart/alternative; boundary="1411377576.CBA02.12704"; charset="us-ascii"
+--===============0061165957==
+Content-Type: multipart/alternative; boundary="1411377606.2Ba4C82.12838"; charset="us-ascii"
 
 
---1411377576.CBA02.12704
-Date: Mon, 22 Sep 2014 09:19:36 +0000
+--1411377606.2Ba4C82.12838
+Date: Mon, 22 Sep 2014 09:20:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,23 +37,20 @@ Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #106560|0                           |1
+ Attachment #106663|0                           |1
         is obsolete|                            |
 
---- Comment #8 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
-Created attachment 106663
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106663&action=3Dedit
+--- Comment #9 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
+Created attachment 106664
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D106664&action=3Dedit
 log of first bad commit
-
-Here the complete versions of the log files. gzip'ed due to size Bugzilla's
-restrictions.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411377576.CBA02.12704
-Date: Mon, 22 Sep 2014 09:19:36 +0000
+--1411377606.2Ba4C82.12838
+Date: Mon, 22 Sep 2014 09:20:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -81,7 +78,7 @@ n">Ortwin Gl=C3=BCck</span></a>
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Attachment #106560 is obsolete</=
+           <td style=3D"text-align:right;">Attachment #106663 is obsolete</=
 td>
            <td>
                &nbsp;
@@ -95,8 +92,8 @@ td>
           bz_status_NEW "
    title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
  [bisected]"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550#c8">Comment=
- # 8</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83550#c9">Comment=
+ # 9</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW --- - [NVA5] Monitor not restored after resume [regression]=
@@ -107,14 +104,11 @@ td>
 odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
 lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106663=
-" name=3D"attach_106663" title=3D"log of first bad commit">attachment 10666=
-3</a> <a href=3D"attachment.cgi?id=3D106663&amp;action=3Dedit" title=3D"log=
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D106664=
+" name=3D"attach_106664" title=3D"log of first bad commit">attachment 10666=
+4</a> <a href=3D"attachment.cgi?id=3D106664&amp;action=3Dedit" title=3D"log=
  of first bad commit">[details]</a></span>
-log of first bad commit
-
-Here the complete versions of the log files. gzip'ed due to size Bugzilla's
-restrictions.</pre>
+log of first bad commit</pre>
         </div>
       </p>
       <hr>
@@ -126,9 +120,9 @@ restrictions.</pre>
     </body>
 </html>
 
---1411377576.CBA02.12704--
+--1411377606.2Ba4C82.12838--
 
---===============2108296463==
+--===============0061165957==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,4 +133,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2108296463==--
+--===============0061165957==--
