@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Tue, 23 Sep 2014 17:18:51 +0000
-Message-ID: <bug-27501-8800-GfeYq1TxIi@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73267] Nouveau: corrupted laptop screen's EDID info
+Date: Tue, 23 Sep 2014 17:29:43 +0000
+Message-ID: <bug-73267-8800-6prQAXC9Vy@http.bugs.freedesktop.org/>
+References: <bug-73267-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0278817623=="
+Content-Type: multipart/mixed; boundary="===============1866826397=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,51 +20,71 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0278817623==
-Content-Type: multipart/alternative; boundary="1411492731.5BFEA56.25205"; charset="us-ascii"
+--===============1866826397==
+Content-Type: multipart/alternative; boundary="1411493383.3C3a6AA2.29287"; charset="us-ascii"
 
 
---1411492731.5BFEA56.25205
-Date: Tue, 23 Sep 2014 17:18:51 +0000
+--1411493383.3C3a6AA2.29287
+Date: Tue, 23 Sep 2014 17:29:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=73267
 
---- Comment #33 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> ---
-I confirm that the patch works, screen is NOT scrambled.
-Unsing my ancient gpupwr-programm to deactivate 9600M, I am able to start
-xorg-x11 + fluxbox with accleration.
+chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> changed:
 
-Pierre, thank you very much.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org
 
-I have seen that vga-switcheroo does not get started, probably due to the 9600M
-fallen off the bus.
+--- Comment #5 from chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> ---
+Hello pjv!
 
-I cannot await your fix for 9600M with acceleration.
+I'm back. Dat Bug #34554 happened again after 2 years. Same machine, running
+kernel 3.15.10 meanwhile.
 
-BR.
+I plugged in an external Monitor just as I did that dozend times before since
+then. It went on, and the Laptop-Display just went off and disappeared. Xrandr
+says it's disconnected and kernel says:
 
-(In reply to comment #29)
-> Created attachment 106246 [details] [review]
-> Temporary patch for 9400M GT acceleration
-> 
-> Could you please test this patch along with Ilia's one? It should fix
-> acceleration on the 9400M GT, allowing you to boot without nouveau.noaccel=1
-> and to launch X.
-> 
-> I'll need to refine the patch a bit as it introduces some errors on the
-> 9600M.
-> Another patch may be mandatory to get both cards to get along: for now, the
-> laptop seems to be hitting an infinite loop when launching X with both cards
-> enabled.
+kernel: [66875.422770] nouveau E[     DRM] DDC responded, but no EDID for
+LVDS-1
+
+Well, I also got the problem with the edid-tool:
+
+edid-tool /dev/i2c-0 write < edid-fixed
+ERROR at 91: i2c_smbus_write_byte_data() failed: No such device or address
+
+and I somehow fixed it by dropping "usleep(10000);" into the write loop.
+
+I feel like putting my finger in that wound ....
+
+If it's a timing issue, how likely is it to turn a i2c-read operation into a
+write?
+I mean, by hot-plugging in an external display I also hot-plug an i2c-bus.
+I know, I can confuse my adourinous i2c-attached gadget this way.
+
+For the record, here are the flipped bits:
+
+--- edid.broken.hex
++++ edid.ok.hex
+@@ -1,9 +1,9 @@
+-00000000  00 03 00 00 00 07 4f 00  06 10 bb 9c 00 00 00 00
++00000000  00 ff ff ff ff ff ff 00  06 10 bb 9c 00 00 00 00
+ 00000010  00 13 01 03 80 21 15 78  0a 50 c5 98 58 52 8e 27
+ 00000020  25 50 54 00 00 00 01 01  01 01 01 01 01 01 01 01
+ 00000030  01 01 01 01 01 01 7c 2e  90 a0 60 1a 1e 40 30 20
+ 00000040  36 00 4b cf 10 00 00 18  00 00 00 01 00 06 10 30
+ 00000050  00 00 00 00 00 00 00 00  0a 20 00 00 00 fe 00 4c
+ 00000060  50 31 35 34 57 45 33 2d  54 4c 42 31 00 00 00 fe
+ 00000070  00 43 6f 6c 6f 72 20 4c  43 44 0a 20 20 20 00 dd
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411492731.5BFEA56.25205
-Date: Tue, 23 Sep 2014 17:18:51 +0000
+--1411493383.3C3a6AA2.29287
+Date: Tue, 23 Sep 2014 17:29:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -72,45 +92,83 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267">bug 73267</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>chris&#64;rudorff.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c33">Comment # 33</a>
+   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:MacGyver031&#64;web.de" title="Joanand &lt;MacGyver031&#64;web.de&gt;"> <span class="fn">Joanand</span></a>
+   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267">bug 73267</a>
+              from <span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
 </span></b>
-        <pre>I confirm that the patch works, screen is NOT scrambled.
-Unsing my ancient gpupwr-programm to deactivate 9600M, I am able to start
-xorg-x11 + fluxbox with accleration.
+        <pre>Hello pjv!
 
-Pierre, thank you very much.
+I'm back. Dat <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - Nouveau seems to have corrupted my laptop screen's EDID info"
+   href="show_bug.cgi?id=34554">Bug #34554</a> happened again after 2 years. Same machine, running
+kernel 3.15.10 meanwhile.
 
-I have seen that vga-switcheroo does not get started, probably due to the 9600M
-fallen off the bus.
+I plugged in an external Monitor just as I did that dozend times before since
+then. It went on, and the Laptop-Display just went off and disappeared. Xrandr
+says it's disconnected and kernel says:
 
-I cannot await your fix for 9600M with acceleration.
+kernel: [66875.422770] nouveau E[     DRM] DDC responded, but no EDID for
+LVDS-1
 
-BR.
+Well, I also got the problem with the edid-tool:
 
-(In reply to <a href="show_bug.cgi?id=27501#c29">comment #29</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=106246" name="attach_106246" title="Temporary patch for 9400M GT acceleration">attachment 106246</a> <a href="attachment.cgi?id=106246&amp;action=edit" title="Temporary patch for 9400M GT acceleration">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=27501&amp;attachment=106246'>[review]</a> [review]
-&gt; Temporary patch for 9400M GT acceleration
-&gt; 
-&gt; Could you please test this patch along with Ilia's one? It should fix
-&gt; acceleration on the 9400M GT, allowing you to boot without nouveau.noaccel=1
-&gt; and to launch X.
-&gt; 
-&gt; I'll need to refine the patch a bit as it introduces some errors on the
-&gt; 9600M.
-&gt; Another patch may be mandatory to get both cards to get along: for now, the
-&gt; laptop seems to be hitting an infinite loop when launching X with both cards
-&gt; enabled.</span ></pre>
+edid-tool /dev/i2c-0 write &lt; edid-fixed
+ERROR at 91: i2c_smbus_write_byte_data() failed: No such device or address
+
+and I somehow fixed it by dropping &quot;usleep(10000);&quot; into the write loop.
+
+I feel like putting my finger in that wound ....
+
+If it's a timing issue, how likely is it to turn a i2c-read operation into a
+write?
+I mean, by hot-plugging in an external display I also hot-plug an i2c-bus.
+I know, I can confuse my adourinous i2c-attached gadget this way.
+
+For the record, here are the flipped bits:
+
+--- edid.broken.hex
++++ edid.ok.hex
+&#64;&#64; -1,9 +1,9 &#64;&#64;
+-00000000  00 03 00 00 00 07 4f 00  06 10 bb 9c 00 00 00 00
++00000000  00 ff ff ff ff ff ff 00  06 10 bb 9c 00 00 00 00
+ 00000010  00 13 01 03 80 21 15 78  0a 50 c5 98 58 52 8e 27
+ 00000020  25 50 54 00 00 00 01 01  01 01 01 01 01 01 01 01
+ 00000030  01 01 01 01 01 01 7c 2e  90 a0 60 1a 1e 40 30 20
+ 00000040  36 00 4b cf 10 00 00 18  00 00 00 01 00 06 10 30
+ 00000050  00 00 00 00 00 00 00 00  0a 20 00 00 00 fe 00 4c
+ 00000060  50 31 35 34 57 45 33 2d  54 4c 42 31 00 00 00 fe
+ 00000070  00 43 6f 6c 6f 72 20 4c  43 44 0a 20 20 20 00 dd</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +180,9 @@ BR.
     </body>
 </html>
 
---1411492731.5BFEA56.25205--
+--1411493383.3C3a6AA2.29287--
 
---===============0278817623==
+--===============1866826397==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -135,4 +193,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0278817623==--
+--===============1866826397==--
