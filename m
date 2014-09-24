@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84285] New: Framebuffer display around grabbing
-	cursor
-Date: Wed, 24 Sep 2014 15:12:21 +0000
-Message-ID: <bug-84285-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83957] [NV50 - NVAF][MCP89] Major screen corruption
+ and X crash soon after log in
+Date: Wed, 24 Sep 2014 16:50:26 +0000
+Message-ID: <bug-83957-8800-L5eJ0U1949@http.bugs.freedesktop.org/>
+References: <bug-83957-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1657181309=="
+Content-Type: multipart/mixed; boundary="===============1276931654=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-83957-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,197 +21,90 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1657181309==
-Content-Type: multipart/alternative; boundary="1411571541.fd1134C71.28465"; charset="us-ascii"
+--===============1276931654==
+Content-Type: multipart/alternative; boundary="1411577425.B0Dc1.31169"; charset="us-ascii"
 
 
---1411571541.fd1134C71.28465
-Date: Wed, 24 Sep 2014 15:12:21 +0000
+--1411577425.B0Dc1.31169
+Date: Wed, 24 Sep 2014 16:50:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84285
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83957
 
-          Priority: medium
-            Bug ID: 84285
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-           Summary: Framebuffer display around grabbing cursor
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-          Severity: normal
-    Classification: Unclassified
-                OS: Linux (All)
-          Reporter: cs-jJRT0G49DP/QT0dZR+AlfA@public.gmane.org
-          Hardware: x86-64 (AMD64)
-            Status: NEW
-           Version: unspecified
-         Component: Driver/nouveau
-           Product: xorg
+--- Comment #7 from Lo=C3=AFc Herry <qc.loic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi, unfortunately no.
+There was no improvements with the patch.
 
-Xorg version 1.14.4 with nouveau version 1.0.9
+I compiled with the 3.17 kernel from freedesktop git & the drm-next branch,
+Added the patch.
 
-This has been happening for over a year with all versions of Xorf and nouveau
-that I've used. When the mouse cursor becomes a grabbing hand, the framebuffer
-box that is displayed around the hand is the wrong framebuffer. It displays the
-xscreensaver's framebuffer.
+With 3.17 the loading screen is affected so I can't even login.
 
-In case I am using incorrect terminology, assume this scenario:
- 1) My xscreensaver is set to show a picture of a cat hanging from a branch.
- 2) I logged in from the screensaver and I go to Google Maps.
- 3) I move my mouse over the map and the cursor changes from an arrow to a
-grabbing hand.
+Ideas or pointers welcome.
 
-What I see is a box around the grabbing hand that shows the cat instead of the
-map. As I move the mouse around, the box moves with it (always around the
-cursor and always showing the picture of the cat).
+Thanks
 
-This does not happen if I use the nvidia driver. This has been a bug in Fedora
-17, 18, 19, and now 20 - indicating how many versions of Xorg and nouveau have
-had this problem.
-
-Please let me know if this is a duplicate. I have searched for years, but I am
-certain that I simply cannot stumble upon the correct terminology required to
-find a mention of this bug.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411571541.fd1134C71.28465
-Date: Wed, 24 Sep 2014 15:12:21 +0000
+--1411577425.B0Dc1.31169
+Date: Wed, 24 Sep 2014 16:50:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Framebuffer display around grabbing cursor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84285">84285</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Framebuffer display around grabbing cursor
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Classification</th>
-          <td>Unclassified
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>cs&#64;kainaw.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Xorg version 1.14.4 with nouveau version 1.0.9
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X cr=
+ash soon after log in"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83957#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW --- - [NV50 - NVAF][MCP89] Major screen corruption and X cr=
+ash soon after log in"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83957">bug 83957<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+qc.loic&#64;gmail.com" title=3D"Lo=C3=AFc Herry &lt;qc.loic&#64;gmail.com&g=
+t;"> <span class=3D"fn">Lo=C3=AFc Herry</span></a>
+</span></b>
+        <pre>Hi, unfortunately no.
+There was no improvements with the patch.
 
-This has been happening for over a year with all versions of Xorf and nouveau
-that I've used. When the mouse cursor becomes a grabbing hand, the framebuffer
-box that is displayed around the hand is the wrong framebuffer. It displays the
-xscreensaver's framebuffer.
+I compiled with the 3.17 kernel from freedesktop git &amp; the drm-next bra=
+nch,
+Added the patch.
 
-In case I am using incorrect terminology, assume this scenario:
- 1) My xscreensaver is set to show a picture of a cat hanging from a branch.
- 2) I logged in from the screensaver and I go to Google Maps.
- 3) I move my mouse over the map and the cursor changes from an arrow to a
-grabbing hand.
+With 3.17 the loading screen is affected so I can't even login.
 
-What I see is a box around the grabbing hand that shows the cat instead of the
-map. As I move the mouse around, the box moves with it (always around the
-cursor and always showing the picture of the cat).
+Ideas or pointers welcome.
 
-This does not happen if I use the nvidia driver. This has been a bug in Fedora
-17, 18, 19, and now 20 - indicating how many versions of Xorg and nouveau have
-had this problem.
-
-Please let me know if this is a duplicate. I have searched for years, but I am
-certain that I simply cannot stumble upon the correct terminology required to
-find a mention of this bug.</pre>
+Thanks</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1411571541.fd1134C71.28465--
+--1411577425.B0Dc1.31169--
 
---===============1657181309==
+--===============1276931654==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -220,4 +115,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1657181309==--
+--===============1276931654==--
