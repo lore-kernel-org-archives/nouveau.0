@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73267] Nouveau: corrupted laptop screen's EDID info
-Date: Tue, 23 Sep 2014 17:29:43 +0000
-Message-ID: <bug-73267-8800-6prQAXC9Vy@http.bugs.freedesktop.org/>
-References: <bug-73267-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 2/2] kepler: remove unnecessary texbars,
+	add live-only tex for nvf0
+Date: Tue, 23 Sep 2014 23:56:11 -0400
+Message-ID: <1411530971-3381-2-git-send-email-imirkin@alum.mit.edu>
+References: <1411530971-3381-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1866826397=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73267-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1411530971-3381-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,180 +19,354 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+---
 
---===============1866826397==
-Content-Type: multipart/alternative; boundary="1411493383.3C3a6AA2.29287"; charset="us-ascii"
+Noticed the texbars when looking at maxwell stuff, and nvf0 wouldn't
+even compile without the new flags, which I made to match the nve0
+versions.
 
+Untested.
 
---1411493383.3C3a6AA2.29287
-Date: Tue, 23 Sep 2014 17:29:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+ src/shader/exac8nvf0.fp  | 4 ++--
+ src/shader/exac8nvf0.fpc | 4 ++--
+ src/shader/exacanve0.fp  | 1 -
+ src/shader/exacanve0.fpc | 2 --
+ src/shader/exacanvf0.fp  | 5 ++---
+ src/shader/exacanvf0.fpc | 6 ++----
+ src/shader/exacmnve0.fp  | 1 -
+ src/shader/exacmnve0.fpc | 2 --
+ src/shader/exacmnvf0.fp  | 5 ++---
+ src/shader/exacmnvf0.fpc | 6 ++----
+ src/shader/exas8nvf0.fp  | 2 +-
+ src/shader/exas8nvf0.fpc | 2 +-
+ src/shader/exasanve0.fp  | 1 -
+ src/shader/exasanve0.fpc | 2 --
+ src/shader/exasanvf0.fp  | 5 ++---
+ src/shader/exasanvf0.fpc | 6 ++----
+ src/shader/exascnvf0.fp  | 2 +-
+ src/shader/exascnvf0.fpc | 2 +-
+ src/shader/videonvf0.fp  | 4 ++--
+ src/shader/videonvf0.fpc | 4 ++--
+ 20 files changed, 24 insertions(+), 42 deletions(-)
 
-https://bugs.freedesktop.org/show_bug.cgi?id=73267
-
-chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org
-
---- Comment #5 from chr[] <chris-4cZEHNAa5IdBDgjK7y7TUQ@public.gmane.org> ---
-Hello pjv!
-
-I'm back. Dat Bug #34554 happened again after 2 years. Same machine, running
-kernel 3.15.10 meanwhile.
-
-I plugged in an external Monitor just as I did that dozend times before since
-then. It went on, and the Laptop-Display just went off and disappeared. Xrandr
-says it's disconnected and kernel says:
-
-kernel: [66875.422770] nouveau E[     DRM] DDC responded, but no EDID for
-LVDS-1
-
-Well, I also got the problem with the edid-tool:
-
-edid-tool /dev/i2c-0 write < edid-fixed
-ERROR at 91: i2c_smbus_write_byte_data() failed: No such device or address
-
-and I somehow fixed it by dropping "usleep(10000);" into the write loop.
-
-I feel like putting my finger in that wound ....
-
-If it's a timing issue, how likely is it to turn a i2c-read operation into a
-write?
-I mean, by hot-plugging in an external display I also hot-plug an i2c-bus.
-I know, I can confuse my adourinous i2c-attached gadget this way.
-
-For the record, here are the flipped bits:
-
---- edid.broken.hex
-+++ edid.ok.hex
-@@ -1,9 +1,9 @@
--00000000  00 03 00 00 00 07 4f 00  06 10 bb 9c 00 00 00 00
-+00000000  00 ff ff ff ff ff ff 00  06 10 bb 9c 00 00 00 00
- 00000010  00 13 01 03 80 21 15 78  0a 50 c5 98 58 52 8e 27
- 00000020  25 50 54 00 00 00 01 01  01 01 01 01 01 01 01 01
- 00000030  01 01 01 01 01 01 7c 2e  90 a0 60 1a 1e 40 30 20
- 00000040  36 00 4b cf 10 00 00 18  00 00 00 01 00 06 10 30
- 00000050  00 00 00 00 00 00 00 00  0a 20 00 00 00 fe 00 4c
- 00000060  50 31 35 34 57 45 33 2d  54 4c 42 31 00 00 00 fe
- 00000070  00 43 6f 6c 6f 72 20 4c  43 44 0a 20 20 20 00 dd
-
+diff --git a/src/shader/exac8nvf0.fp b/src/shader/exac8nvf0.fp
+index e4a7b04..f1c7fed 100644
+--- a/src/shader/exac8nvf0.fp
++++ b/src/shader/exac8nvf0.fp
+@@ -29,10 +29,10 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x94] $r0 0x0 0x0
+ interp mul f32 $r2 a[0x90] $r0 0x0 0x0
+-tex t lauto #:#:#:$r1 t2d c[0x4] xy__ $r2:$r3 0x0
++tex t lauto live dfp #:#:#:$r1 t2d c[0x4] xy__ $r2:$r3 0x0
+ interp mul f32 $r3 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r2 a[0x80] $r0 0x0 0x0
+-tex t lauto #:#:#:$r0 t2d c[0x0] xy__ $r2:$r3 0x0
++tex t lauto live dfp #:#:#:$r0 t2d c[0x0] xy__ $r2:$r3 0x0
+ texbar 0x0
+ mul ftz rn f32 $r3 $r0 $r1
+ mov b32 $r2 $r3
+diff --git a/src/shader/exac8nvf0.fpc b/src/shader/exac8nvf0.fpc
+index 465cabf..7cfecb5 100644
+--- a/src/shader/exac8nvf0.fpc
++++ b/src/shader/exac8nvf0.fpc
+@@ -6,13 +6,13 @@
+ 0x74a3fc4a,
+ 0x001ffc0a,
+ 0x74a3fc48,
+-0x7f9c0805,
++0xff9c0805,
+ 0x600080a1,
+ 0x001ffc0e,
+ 0x74a3fc42,
+ 0x001ffc0a,
+ 0x74a3fc40,
+-0x7f9c0801,
++0xff9c0801,
+ 0x600000a1,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/exacanve0.fp b/src/shader/exacanve0.fp
+index edeb717..3928b6d 100644
+--- a/src/shader/exacanve0.fp
++++ b/src/shader/exacanve0.fp
+@@ -30,7 +30,6 @@ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x94] $r0 0x0
+ interp mul f32 $r2 a[0x90] $r0 0x0
+ tex t lauto live dfp $r4:$r5:$r6:$r7 t2d $t1 $s0 $r2:$r3 ()
+-texbar 0x0
+ interp mul f32 $r1 a[0x84] $r0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0
+ tex t lauto live dfp $r0:$r1:$r2:$r3 t2d $t0 $s0 $r0:$r1 ()
+diff --git a/src/shader/exacanve0.fpc b/src/shader/exacanve0.fpc
+index a8320f0..fa96dae 100644
+--- a/src/shader/exacanve0.fpc
++++ b/src/shader/exacanve0.fpc
+@@ -8,8 +8,6 @@
+ 0xc07e0090,
+ 0x00211e86,
+ 0x8013c001,
+-0x00001de6,
+-0xf0000000,
+ 0x03f05c40,
+ 0xc07e0084,
+ 0x03f01c40,
+diff --git a/src/shader/exacanvf0.fp b/src/shader/exacanvf0.fp
+index 338a1e1..dddc22e 100644
+--- a/src/shader/exacanvf0.fp
++++ b/src/shader/exacanvf0.fp
+@@ -29,11 +29,10 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x94] $r0 0x0 0x0
+ interp mul f32 $r2 a[0x90] $r0 0x0 0x0
+-tex t lauto $r4:$r5:$r6:$r7 t2d c[0x4] xy__ $r2:$r3 0x0
+-texbar 0x0
++tex t lauto live dfp $r4:$r5:$r6:$r7 t2d c[0x4] xy__ $r2:$r3 0x0
+ interp mul f32 $r1 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0 0x0
+-tex t lauto $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
++tex t lauto live dfp $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
+ texbar 0x0
+ mul ftz rn f32 $r3 $r3 $r7
+ mul ftz rn f32 $r2 $r2 $r6
+diff --git a/src/shader/exacanvf0.fpc b/src/shader/exacanvf0.fpc
+index 70dd4b1..793f15c 100644
+--- a/src/shader/exacanvf0.fpc
++++ b/src/shader/exacanvf0.fpc
+@@ -6,15 +6,13 @@
+ 0x74a3fc4a,
+ 0x001ffc0a,
+ 0x74a3fc48,
+-0x7f9c0811,
++0xff9c0811,
+ 0x600080bd,
+-0x001c0002,
+-0x77000000,
+ 0x001ffc06,
+ 0x74a3fc42,
+ 0x001ffc02,
+ 0x74a3fc40,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600000bd,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/exacmnve0.fp b/src/shader/exacmnve0.fp
+index 09d22c1..71895f4 100644
+--- a/src/shader/exacmnve0.fp
++++ b/src/shader/exacmnve0.fp
+@@ -30,7 +30,6 @@ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x94] $r0 0x0
+ interp mul f32 $r2 a[0x90] $r0 0x0
+ tex t lauto live dfp #:#:#:$r4 t2d $t1 $s0 $r2:$r3 ()
+-texbar 0x0
+ interp mul f32 $r1 a[0x84] $r0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0
+ tex t lauto live dfp $r0:$r1:$r2:$r3 t2d $t0 $s0 $r0:$r1 ()
+diff --git a/src/shader/exacmnve0.fpc b/src/shader/exacmnve0.fpc
+index 5c2d4bf..2c256b1 100644
+--- a/src/shader/exacmnve0.fpc
++++ b/src/shader/exacmnve0.fpc
+@@ -8,8 +8,6 @@
+ 0xc07e0090,
+ 0x00211e86,
+ 0x80120001,
+-0x00001de6,
+-0xf0000000,
+ 0x03f05c40,
+ 0xc07e0084,
+ 0x03f01c40,
+diff --git a/src/shader/exacmnvf0.fp b/src/shader/exacmnvf0.fp
+index 787b4f5..e52b7bd 100644
+--- a/src/shader/exacmnvf0.fp
++++ b/src/shader/exacmnvf0.fp
+@@ -29,11 +29,10 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x94] $r0 0x0 0x0
+ interp mul f32 $r2 a[0x90] $r0 0x0 0x0
+-tex t lauto #:#:#:$r4 t2d c[0x4] xy__ $r2:$r3 0x0
+-texbar 0x0
++tex t lauto live dfp #:#:#:$r4 t2d c[0x4] xy__ $r2:$r3 0x0
+ interp mul f32 $r1 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0 0x0
+-tex t lauto $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
++tex t lauto live dfp $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
+ texbar 0x0
+ mul ftz rn f32 $r3 $r3 $r4
+ mul ftz rn f32 $r2 $r2 $r4
+diff --git a/src/shader/exacmnvf0.fpc b/src/shader/exacmnvf0.fpc
+index b2acf6f..4ec8a33 100644
+--- a/src/shader/exacmnvf0.fpc
++++ b/src/shader/exacmnvf0.fpc
+@@ -6,15 +6,13 @@
+ 0x74a3fc4a,
+ 0x001ffc0a,
+ 0x74a3fc48,
+-0x7f9c0811,
++0xff9c0811,
+ 0x600080a1,
+-0x001c0002,
+-0x77000000,
+ 0x001ffc06,
+ 0x74a3fc42,
+ 0x001ffc02,
+ 0x74a3fc40,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600000bd,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/exas8nvf0.fp b/src/shader/exas8nvf0.fp
+index 3804b27..245262c 100644
+--- a/src/shader/exas8nvf0.fp
++++ b/src/shader/exas8nvf0.fp
+@@ -29,7 +29,7 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r1 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0 0x0
+-tex t lauto #:#:#:$r0 t2d c[0x0] xy__ $r0:$r1 0x0
++tex t lauto live dfp #:#:#:$r0 t2d c[0x0] xy__ $r0:$r1 0x0
+ texbar 0x0
+ mov b32 $r3 $r0
+ mov b32 $r2 $r0
+diff --git a/src/shader/exas8nvf0.fpc b/src/shader/exas8nvf0.fpc
+index 4ec3bb7..a59ffe6 100644
+--- a/src/shader/exas8nvf0.fpc
++++ b/src/shader/exas8nvf0.fpc
+@@ -6,7 +6,7 @@
+ 0x74a3fc42,
+ 0x001ffc02,
+ 0x74a3fc40,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600000a1,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/exasanve0.fp b/src/shader/exasanve0.fp
+index dea8eab..8ddcc4a 100644
+--- a/src/shader/exasanve0.fp
++++ b/src/shader/exasanve0.fp
+@@ -30,7 +30,6 @@ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x84] $r0 0x0
+ interp mul f32 $r2 a[0x80] $r0 0x0
+ tex t lauto live dfp #:#:#:$r4 t2d $t0 $s0 $r2:$r3 ()
+-texbar 0x0
+ interp mul f32 $r1 a[0x94] $r0 0x0
+ interp mul f32 $r0 a[0x90] $r0 0x0
+ tex t lauto live dfp $r0:$r1:$r2:$r3 t2d $t1 $s0 $r0:$r1 ()
+diff --git a/src/shader/exasanve0.fpc b/src/shader/exasanve0.fpc
+index efc701e..170c5df 100644
+--- a/src/shader/exasanve0.fpc
++++ b/src/shader/exasanve0.fpc
+@@ -8,8 +8,6 @@
+ 0xc07e0080,
+ 0x00211e86,
+ 0x80120000,
+-0x00001de6,
+-0xf0000000,
+ 0x03f05c40,
+ 0xc07e0094,
+ 0x03f01c40,
+diff --git a/src/shader/exasanvf0.fp b/src/shader/exasanvf0.fp
+index 8175f9b..c5c60a3 100644
+--- a/src/shader/exasanvf0.fp
++++ b/src/shader/exasanvf0.fp
+@@ -29,11 +29,10 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r3 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r2 a[0x80] $r0 0x0 0x0
+-tex t lauto #:#:#:$r4 t2d c[0x0] xy__ $r2:$r3 0x0
+-texbar 0x0
++tex t lauto live dfp #:#:#:$r4 t2d c[0x0] xy__ $r2:$r3 0x0
+ interp mul f32 $r1 a[0x94] $r0 0x0 0x0
+ interp mul f32 $r0 a[0x90] $r0 0x0 0x0
+-tex t lauto $r0:$r1:$r2:$r3 t2d c[0x4] xy__ $r0:$r1 0x0
++tex t lauto live dfp $r0:$r1:$r2:$r3 t2d c[0x4] xy__ $r0:$r1 0x0
+ texbar 0x0
+ mul ftz rn f32 $r3 $r3 $r4
+ mul ftz rn f32 $r2 $r2 $r4
+diff --git a/src/shader/exasanvf0.fpc b/src/shader/exasanvf0.fpc
+index 6e68d98..afddc84 100644
+--- a/src/shader/exasanvf0.fpc
++++ b/src/shader/exasanvf0.fpc
+@@ -6,15 +6,13 @@
+ 0x74a3fc42,
+ 0x001ffc0a,
+ 0x74a3fc40,
+-0x7f9c0811,
++0xff9c0811,
+ 0x600000a1,
+-0x001c0002,
+-0x77000000,
+ 0x001ffc06,
+ 0x74a3fc4a,
+ 0x001ffc02,
+ 0x74a3fc48,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600080bd,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/exascnvf0.fp b/src/shader/exascnvf0.fp
+index e56c27f..447c67d 100644
+--- a/src/shader/exascnvf0.fp
++++ b/src/shader/exascnvf0.fp
+@@ -29,7 +29,7 @@ interp pass f32 $r0 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r0 $r0
+ interp mul f32 $r1 a[0x84] $r0 0x0 0x0
+ interp mul f32 $r0 a[0x80] $r0 0x0 0x0
+-tex t lauto $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
++tex t lauto live dfp $r0:$r1:$r2:$r3 t2d c[0x0] xy__ $r0:$r1 0x0
+ texbar 0x0
+ exit
+ #endif
+diff --git a/src/shader/exascnvf0.fpc b/src/shader/exascnvf0.fpc
+index 53af859..5d2dce6 100644
+--- a/src/shader/exascnvf0.fpc
++++ b/src/shader/exascnvf0.fpc
+@@ -6,7 +6,7 @@
+ 0x74a3fc42,
+ 0x001ffc02,
+ 0x74a3fc40,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600000bd,
+ 0x001c0002,
+ 0x77000000,
+diff --git a/src/shader/videonvf0.fp b/src/shader/videonvf0.fp
+index a684203..3612dcd 100644
+--- a/src/shader/videonvf0.fp
++++ b/src/shader/videonvf0.fp
+@@ -29,8 +29,8 @@ interp pass f32 $r2 a[0x7c] 0x0 0x0 0x0
+ rcp f32 $r2 $r2
+ interp mul f32 $r0 a[0x80] $r2 0x0 0x0
+ interp mul f32 $r1 a[0x84] $r2 0x0 0x0
+-tex t lauto #:#:#:$r4 t2d c[0x0] xy__ $r0:$r1 0x0
+-tex p lauto #:#:$r0:$r1 t2d c[0x4] xy__ $r0:$r1 0x0
++tex t lauto live dfp #:#:#:$r4 t2d c[0x0] xy__ $r0:$r1 0x0
++tex p lauto live dfp #:#:$r0:$r1 t2d c[0x4] xy__ $r0:$r1 0x0
+ texbar 0x1
+ mul ftz rn f32 $r5 $r4 c0[0x0]
+ add ftz rn f32 $r3 $r5 c0[0x4]
+diff --git a/src/shader/videonvf0.fpc b/src/shader/videonvf0.fpc
+index c545967..a7e5e98 100644
+--- a/src/shader/videonvf0.fpc
++++ b/src/shader/videonvf0.fpc
+@@ -6,9 +6,9 @@
+ 0x74a3fc40,
+ 0x011ffc06,
+ 0x74a3fc42,
+-0x7f9c0011,
++0xff9c0011,
+ 0x600000a1,
+-0x7f9c0001,
++0xff9c0001,
+ 0x600080b2,
+ 0x009c0002,
+ 0x77000000,
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1411493383.3C3a6AA2.29287
-Date: Tue, 23 Sep 2014 17:29:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267">bug 73267</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>chris&#64;rudorff.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - Nouveau: corrupted laptop screen's EDID info"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73267">bug 73267</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;rudorff.com" title="chr[] &lt;chris&#64;rudorff.com&gt;"> <span class="fn">chr[]</span></a>
-</span></b>
-        <pre>Hello pjv!
-
-I'm back. Dat <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Nouveau seems to have corrupted my laptop screen's EDID info"
-   href="show_bug.cgi?id=34554">Bug #34554</a> happened again after 2 years. Same machine, running
-kernel 3.15.10 meanwhile.
-
-I plugged in an external Monitor just as I did that dozend times before since
-then. It went on, and the Laptop-Display just went off and disappeared. Xrandr
-says it's disconnected and kernel says:
-
-kernel: [66875.422770] nouveau E[     DRM] DDC responded, but no EDID for
-LVDS-1
-
-Well, I also got the problem with the edid-tool:
-
-edid-tool /dev/i2c-0 write &lt; edid-fixed
-ERROR at 91: i2c_smbus_write_byte_data() failed: No such device or address
-
-and I somehow fixed it by dropping &quot;usleep(10000);&quot; into the write loop.
-
-I feel like putting my finger in that wound ....
-
-If it's a timing issue, how likely is it to turn a i2c-read operation into a
-write?
-I mean, by hot-plugging in an external display I also hot-plug an i2c-bus.
-I know, I can confuse my adourinous i2c-attached gadget this way.
-
-For the record, here are the flipped bits:
-
---- edid.broken.hex
-+++ edid.ok.hex
-&#64;&#64; -1,9 +1,9 &#64;&#64;
--00000000  00 03 00 00 00 07 4f 00  06 10 bb 9c 00 00 00 00
-+00000000  00 ff ff ff ff ff ff 00  06 10 bb 9c 00 00 00 00
- 00000010  00 13 01 03 80 21 15 78  0a 50 c5 98 58 52 8e 27
- 00000020  25 50 54 00 00 00 01 01  01 01 01 01 01 01 01 01
- 00000030  01 01 01 01 01 01 7c 2e  90 a0 60 1a 1e 40 30 20
- 00000040  36 00 4b cf 10 00 00 18  00 00 00 01 00 06 10 30
- 00000050  00 00 00 00 00 00 00 00  0a 20 00 00 00 fe 00 4c
- 00000060  50 31 35 34 57 45 33 2d  54 4c 42 31 00 00 00 fe
- 00000070  00 43 6f 6c 6f 72 20 4c  43 44 0a 20 20 20 00 dd</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1411493383.3C3a6AA2.29287--
-
---===============1866826397==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1866826397==--
+1.8.5.5
