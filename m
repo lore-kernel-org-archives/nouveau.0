@@ -1,13 +1,12 @@
-From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
-Subject: Re: [PATCH 1/2] drm/nouveau/disp/nv50: Add PFB writes
-Date: Thu, 25 Sep 2014 12:08:17 +0200
-Message-ID: <5423E991.2040204@nimrod-online.com>
-References: <1411637791-4274-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Thu, 25 Sep 2014 11:26:56 +0000
+Message-ID: <bug-27501-8800-e0GENgotqd@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1073411821=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1411637791-4274-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +19,122 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-NACK as far as I'm concerned, PFB initialisation belongs in 
-core/subdev/fb. Also, is this required for NVAA as well?
 
-Op 25-09-14 om 11:36 schreef Pierre Moreau:
-> This fix a GPU lockup on 9400M (NVAC) when using acceleration, see #27501.
->
-> Signed-off-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-> ---
->   drivers/gpu/drm/nouveau/core/engine/disp/nv50.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
->
-> diff --git a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-> index a7efbff..e425604 100644
-> --- a/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-> +++ b/drivers/gpu/drm/nouveau/core/engine/disp/nv50.c
-> @@ -1137,6 +1137,15 @@ nv50_disp_base_init(struct nouveau_object *object)
->   	if (ret)
->   		return ret;
->   
-> +	if (nv_device(priv)->chipset == 0xac) {
-> +		nv_mask(priv, 0x100c18, 0x00000000, 0x000027ff);
-> +		nv_mask(priv, 0x100c14, 0x00000000, 0x00000001);
-> +		nv_mask(priv, 0x100c1c, 0x00000000, 0x000027fc);
-> +		nv_mask(priv, 0x100c14, 0x00000000, 0x00000002);
-> +		nv_mask(priv, 0x100c24, 0x00000002, 0x000027fd);
-> +		nv_mask(priv, 0x100c14, 0x00000000, 0x00010000);
-> +	}
-> +
->   	/* The below segments of code copying values from one register to
->   	 * another appear to inform EVO of the display capabilities or
->   	 * something similar.  NFI what the 0x614004 caps are for..
+--===============1073411821==
+Content-Type: multipart/alternative; boundary="1411644416.C71Eb86.931"; charset="us-ascii"
+
+
+--1411644416.C71Eb86.931
+Date: Thu, 25 Sep 2014 11:26:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
+
+--- Comment #37 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> ---
+Hi Pierre,
+Both patches seems to work (tested 1x on 3.17.rc6). 
+
+Xorg-x11 starts with fluxbox, messages show that 9600 is unacclerated and 9400
+is acclerated. There is are two errors in your patch "option for disabling
+accleration for given chipset":
+* The entries DRM_DEBUG_DRIVER are not available on 3.17.rc6, but it works
+either way.
+* In the kernel < 3.17 it should be "if (nouveau_noaccel ||
+!nouveau_fifo(device) /*XXX*/)" not only "if (nouveau_noaccel)"
+
+Terminating xorg-x11 crashed, probably because I switched off discrete
+graphichs adapter after starting xorg. Someone else should check.
+
+Further testing is in queue.
+
+The previous patch you have sent: It solved a problem I had in the past: System
+kernel panics if the lid is closed during startup!
+
+Thanks.
+
+Do you think that acceleration for 9600M will be possible sometime?
+
+BR.
+
+(In reply to comment #36)
+> This is the minimalistic version of the previous patch.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1411644416.C71Eb86.931
+Date: Thu, 25 Sep 2014 11:26:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c37">Comment # 37</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:MacGyver031&#64;web.de" title="Joanand &lt;MacGyver031&#64;web.de&gt;"> <span class="fn">Joanand</span></a>
+</span></b>
+        <pre>Hi Pierre,
+Both patches seems to work (tested 1x on 3.17.rc6). 
+
+Xorg-x11 starts with fluxbox, messages show that 9600 is unacclerated and 9400
+is acclerated. There is are two errors in your patch &quot;option for disabling
+accleration for given chipset&quot;:
+* The entries DRM_DEBUG_DRIVER are not available on 3.17.rc6, but it works
+either way.
+* In the kernel &lt; 3.17 it should be &quot;if (nouveau_noaccel ||
+!nouveau_fifo(device) /*XXX*/)&quot; not only &quot;if (nouveau_noaccel)&quot;
+
+Terminating xorg-x11 crashed, probably because I switched off discrete
+graphichs adapter after starting xorg. Someone else should check.
+
+Further testing is in queue.
+
+The previous patch you have sent: It solved a problem I had in the past: System
+kernel panics if the lid is closed during startup!
+
+Thanks.
+
+Do you think that acceleration for 9600M will be possible sometime?
+
+BR.
+
+(In reply to <a href="show_bug.cgi?id=27501#c36">comment #36</a>)
+<span class="quote">&gt; This is the minimalistic version of the previous patch.</span ></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1411644416.C71Eb86.931--
+
+--===============1073411821==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1073411821==--
