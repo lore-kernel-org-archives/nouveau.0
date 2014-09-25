@@ -1,97 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
-Date: Thu, 25 Sep 2014 12:03:32 +0000
-Message-ID: <bug-69928-8800-UxxFxgMAgg@http.bugs.freedesktop.org/>
-References: <bug-69928-8800@http.bugs.freedesktop.org/>
+From: Sjoerd Simons <sjoerd-FGvqe4uplSY@public.gmane.org>
+Subject: Re: [5/5] ARM: tegra: jetson-tk1: enable GK20A GPU
+Date: Thu, 25 Sep 2014 15:27:17 +0200
+Message-ID: <20140925132717.GA13579@dusk.luon.net>
+References: <1400491450-19223-6-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1612800992=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <1400491450-19223-6-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Playing a bit with todays linux-next on my jetson, it seems this patch is
+still required for enabling the GPU. Is there anything blocking it (firmware
+not available yet in liux-firmware?)
 
---===============1612800992==
-Content-Type: multipart/alternative; boundary="1411646612.50b72.15239"; charset="us-ascii"
-
-
---1411646612.50b72.15239
-Date: Thu, 25 Sep 2014 12:03:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69928
-
---- Comment #17 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 106850
-  --> https://bugs.freedesktop.org/attachment.cgi?id=106850&action=edit
-Add some writes to 0x100c14
-
-Does this patch help (applying it to a recent kernel code would be better)? I'm
-not sure it will, but well, maybe worth the try.
+On Mon, May 19, 2014 at 06:24:10PM +0900, Alexandre Courbot wrote:
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  arch/arm/boot/dts/tegra124-jetson-tk1.dts | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/tegra124-jetson-tk1.dts b/arch/arm/boot/dts/tegra124-jetson-tk1.dts
+> index e31fb61a81d3..15a194d1277f 100644
+> --- a/arch/arm/boot/dts/tegra124-jetson-tk1.dts
+> +++ b/arch/arm/boot/dts/tegra124-jetson-tk1.dts
+> @@ -30,6 +30,12 @@
+>  		};
+>  	};
+>  
+> +	gpu@0,57000000 {
+> +		status = "okay";
+> +
+> +		vdd-supply = <&vdd_gpu>;
+> +	};
+> +
+>  	pinmux: pinmux@0,70000868 {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&state_default>;
+> @@ -1505,7 +1511,7 @@
+>  					regulator-always-on;
+>  				};
+>  
+> -				sd6 {
+> +				vdd_gpu: sd6 {
+>  					regulator-name = "+VDD_GPU_AP";
+>  					regulator-min-microvolt = <650000>;
+>  					regulator-max-microvolt = <1200000>;
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1411646612.50b72.15239
-Date: Thu, 25 Sep 2014 12:03:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=106850" name="attach_106850" title="Add some writes to 0x100c14">attachment 106850</a> <a href="attachment.cgi?id=106850&amp;action=edit" title="Add some writes to 0x100c14">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=69928&amp;attachment=106850'>[review]</a>
-Add some writes to 0x100c14
-
-Does this patch help (applying it to a recent kernel code would be better)? I'm
-not sure it will, but well, maybe worth the try.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1411646612.50b72.15239--
-
---===============1612800992==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============1612800992==--
+If you put it off long enough, it might go away.
