@@ -1,15 +1,11 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] nouveau: fix glCompressedTexImage
-Date: Wed, 24 Sep 2014 22:26:12 -0400
-Message-ID: <CAKb7UvgGA0fd3e2aEb7Lz9aprkyr2g+uWEG3=zNYYbaJLaVQaA@mail.gmail.com>
-References: <1410646604-29966-1-git-send-email-imirkin@alum.mit.edu>
- <87oauitzxq.fsf@riseup.net>
- <CAKb7UvgMFpUvgivRACp5_87MBcNaiT4f8JPJTiAEPhDGMtJYPw@mail.gmail.com>
+Subject: [PATCH] gm107/ir: fix texture argument order
+Date: Thu, 25 Sep 2014 04:07:34 -0400
+Message-ID: <1411632454-1559-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgMFpUvgivRACp5_87MBcNaiT4f8JPJTiAEPhDGMtJYPw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,135 +15,101 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.3" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Sun, Sep 14, 2014 at 8:41 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> On Sun, Sep 14, 2014 at 3:37 AM, Francisco Jerez <currojerez-sGOZH3hwPm2sTnJN9+BGXg@public.gmane.org> wrote:
->> Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> writes:
->>
->>> mesa_texstore expects pixel data, not compressed data. For compressed
->>> textures, we want to just copy the bits in without any conversion.
->>>
->>
->> Any reason we cannot use _mesa_store_compressed_*image for this instead
->> of rolling our own?
->
-> Hmmm... no reason that I can think of off-hand -- nor do I see one for
-> not using the default _mesa_store_*image... Perhaps there was before
-> the AllocTextureImageBuffer thing existed?
+Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "10.3" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+---
 
-Hrmph, well, *actually* testing it, it doesn't work, neither for
-Tex*Image nor for CompressedTex*Image. No idea why, and quite frankly
-don't feel like investigating. I'm going to check this in as-is. I
-suspect the reason points to a more general fail within the driver,
-since it _ought_ to work. Perhaps it has to do with the context
-dirtying/validate_teximage calls?
+With this, all the tex-miplevel-selection tests pass on maxwell. There is a
+minor bit of this change which affects textureGrad on kepler that I have yet
+to test, but I'm moderately sure it's correct and was only working by luck
+before. (Changing the insbf to use getSrc(s) as its dest instead of
+getSrc(0).)
 
->
->>
->>> Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
->>> ---
->>>  src/mesa/drivers/dri/nouveau/nouveau_texture.c | 65 ++++++++++++++++++++------
->>>  1 file changed, 52 insertions(+), 13 deletions(-)
->>>
->>> diff --git a/src/mesa/drivers/dri/nouveau/nouveau_texture.c b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
->>> index 4626cc3..dc5699c 100644
->>> --- a/src/mesa/drivers/dri/nouveau/nouveau_texture.c
->>> +++ b/src/mesa/drivers/dri/nouveau/nouveau_texture.c
->>> @@ -413,6 +413,31 @@ get_teximage_placement(struct gl_texture_image *ti)
->>>  }
->>>
->>>  static void
->>> +nouveau_compressed_copy(struct gl_context *ctx, GLint dims,
->>> +                     struct gl_texture_image *ti,
->>> +                     GLsizei width, GLsizei height, GLsizei depth,
->>> +                     const GLvoid *src, GLvoid *dst, int row_stride)
->>> +{
->>> +     struct compressed_pixelstore store;
->>> +     int i;
->>> +
->>> +     _mesa_compute_compressed_pixelstore(dims, ti->TexFormat,
->>> +                                         width, height, depth,
->>> +                                         &ctx->Unpack, &store);
->>> +
->>> +     src += store.SkipBytes;
->>> +
->>> +     assert(store.CopySlices == 1);
->>> +
->>> +     /* copy rows of blocks */
->>> +     for (i = 0; i < store.CopyRowsPerSlice; i++) {
->>> +             memcpy(dst, src, store.CopyBytesPerRow);
->>> +             dst += row_stride;
->>> +             src += store.TotalBytesPerRow;
->>> +     }
->>> +}
->>> +
->>> +static void
->>>  nouveau_teximage(struct gl_context *ctx, GLint dims,
->>>                struct gl_texture_image *ti,
->>>                GLsizei imageSize,
->>> @@ -451,13 +476,19 @@ nouveau_teximage(struct gl_context *ctx, GLint dims,
->>>                                         GL_MAP_WRITE_BIT,
->>>                                         &map, &row_stride);
->>>
->>> -             ret = _mesa_texstore(ctx, dims, ti->_BaseFormat,
->>> -                                  ti->TexFormat,
->>> -                                  row_stride,
->>> -                                  &map,
->>> -                                  ti->Width, ti->Height, depth,
->>> -                                  format, type, pixels, packing);
->>> -             assert(ret);
->>> +             if (compressed) {
->>> +                     nouveau_compressed_copy(ctx, dims, ti,
->>> +                                             ti->Width, ti->Height, depth,
->>> +                                             pixels, map, row_stride);
->>> +             } else {
->>> +                     ret = _mesa_texstore(ctx, dims, ti->_BaseFormat,
->>> +                                          ti->TexFormat,
->>> +                                          row_stride,
->>> +                                          &map,
->>> +                                          ti->Width, ti->Height, depth,
->>> +                                          format, type, pixels, packing);
->>> +                     assert(ret);
->>> +             }
->>>
->>>               nouveau_unmap_texture_image(ctx, ti, 0);
->>>               _mesa_unmap_teximage_pbo(ctx, packing);
->>> @@ -502,7 +533,8 @@ static GLboolean
->>>  nouveau_teximage_alloc(struct gl_context *ctx, struct gl_texture_image *ti)
->>>  {
->>>       nouveau_teximage(ctx, 3, ti, 0, 0, 0, NULL,
->>> -                      &ctx->DefaultPacking, GL_FALSE);
->>> +                      &ctx->DefaultPacking,
->>> +                      _mesa_is_format_compressed(ti->TexFormat));
->>>       return GL_TRUE;
->>>  }
->>>
->>> @@ -535,11 +567,18 @@ nouveau_texsubimage(struct gl_context *ctx, GLint dims,
->>>                                         xoffset, yoffset, width, height,
->>>                                         GL_MAP_WRITE_BIT, &map, &row_stride);
->>>
->>> -             ret = _mesa_texstore(ctx, dims, ti->_BaseFormat, ti->TexFormat,
->>> -                                  row_stride, &map,
->>> -                                     width, height, depth,
->>> -                                  format, type, pixels, packing);
->>> -             assert(ret);
->>> +             if (compressed) {
->>> +                     nouveau_compressed_copy(ctx, dims, ti,
->>> +                                             width, height, depth,
->>> +                                             pixels, map, row_stride);
->>> +             } else {
->>> +                     ret = _mesa_texstore(ctx, dims, ti->_BaseFormat,
->>> +                                          ti->TexFormat,
->>> +                                          row_stride, &map,
->>> +                                          width, height, depth,
->>> +                                          format, type, pixels, packing);
->>> +                     assert(ret);
->>> +             }
->>>
->>>               nouveau_unmap_texture_image(ctx, ti, 0);
->>>               _mesa_unmap_teximage_pbo(ctx, packing);
->>> --
->>> 1.8.5.5
+ .../nouveau/codegen/nv50_ir_lowering_nvc0.cpp      | 32 ++++++++++++++++++----
+ src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp |  7 +++++
+ 2 files changed, 34 insertions(+), 5 deletions(-)
+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
+index 3afbf43..9ec2366 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_lowering_nvc0.cpp
+@@ -601,6 +601,21 @@ NVC0LoweringPass::handleTEX(TexInstruction *i)
+    //  lod bias
+    //  depth compare
+    //  offsets (same as fermi, except txd which takes it with array)
++   //
++   // Maxwell (tex):
++   //  array
++   //  coords
++   //  indirect handle
++   //  sample
++   //  lod bias
++   //  depth compare
++   //  offsets
++   //
++   // Maxwell (txd):
++   //  indirect handle
++   //  coords
++   //  array + offsets
++   //  derivatives
+ 
+    if (chipset >= NVISA_GK104_CHIPSET) {
+       if (i->tex.rIndirectSrc >= 0 || i->tex.sIndirectSrc >= 0) {
+@@ -634,12 +649,17 @@ NVC0LoweringPass::handleTEX(TexInstruction *i)
+          const int sat = (i->op == OP_TXF) ? 1 : 0;
+          DataType sTy = (i->op == OP_TXF) ? TYPE_U32 : TYPE_F32;
+          bld.mkCvt(OP_CVT, TYPE_U16, layer, sTy, src)->saturate = sat;
+-         for (int s = dim; s >= 1; --s)
+-            i->setSrc(s, i->getSrc(s - 1));
+-         i->setSrc(0, layer);
++         if (i->op != OP_TXD || chipset < NVISA_GM107_CHIPSET) {
++            for (int s = dim; s >= 1; --s)
++               i->setSrc(s, i->getSrc(s - 1));
++            i->setSrc(0, layer);
++         } else {
++            i->setSrc(dim, layer);
++         }
+       }
+       // Move the indirect reference to the first place
+-      if (i->tex.rIndirectSrc >= 0) {
++      if (i->tex.rIndirectSrc >= 0 && (
++                i->op == OP_TXD || chipset < NVISA_GM107_CHIPSET)) {
+          Value *hnd = i->getIndirectR();
+ 
+          i->setIndirectR(NULL);
+@@ -742,8 +762,10 @@ NVC0LoweringPass::handleTEX(TexInstruction *i)
+             // create it if it's not already there, and INSBF it if it already
+             // is.
+             s = (i->tex.rIndirectSrc >= 0) ? 1 : 0;
++            if (chipset >= NVISA_GM107_CHIPSET)
++               s += dim;
+             if (i->tex.target.isArray()) {
+-               bld.mkOp3(OP_INSBF, TYPE_U32, i->getSrc(0),
++               bld.mkOp3(OP_INSBF, TYPE_U32, i->getSrc(s),
+                          bld.loadImm(NULL, imm), bld.mkImm(0xc10),
+                          i->getSrc(s));
+             } else {
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+index d47fed2..898653c 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_ra.cpp
+@@ -1921,6 +1921,13 @@ RegAlloc::InsertConstraintsPass::texConstraintGM107(TexInstruction *tex)
+    if (isTextureOp(tex->op)) {
+       if (tex->op != OP_TXQ) {
+          s = tex->tex.target.getArgCount() - tex->tex.target.isMS();
++         if (tex->op == OP_TXD) {
++            // Indirect handle belongs in the first arg
++            if (tex->tex.rIndirectSrc >= 0)
++               s++;
++            if (!tex->tex.target.isArray() && tex->tex.useOffsets)
++               s++;
++         }
+          n = tex->srcCount(0xff) - s;
+       } else {
+          s = tex->srcCount(0xff);
+-- 
+1.8.5.5
