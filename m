@@ -1,56 +1,140 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [5/5] ARM: tegra: jetson-tk1: enable GK20A GPU
-Date: Fri, 26 Sep 2014 13:44:51 +0900
-Message-ID: <5424EF43.300@nvidia.com>
-References: <1400491450-19223-6-git-send-email-acourbot@nvidia.com> <20140925132717.GA13579@dusk.luon.net> <54243931.6050804@wwwdotorg.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 79462] [NVC0/Codegen] Shader compilation falis in
+	spill logic
+Date: Fri, 26 Sep 2014 06:04:56 +0000
+Message-ID: <bug-79462-8800-dzf4GGAMZS@http.bugs.freedesktop.org/>
+References: <bug-79462-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <54243931.6050804-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Sjoerd Simons <sjoerd-FGvqe4uplSY@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0202101284=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-79462-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 09/26/2014 12:48 AM, Stephen Warren wrote:
-> On 09/25/2014 07:27 AM, Sjoerd Simons wrote:
->> Playing a bit with todays linux-next on my jetson, it seems this patch is
->> still required for enabling the GPU. Is there anything blocking it
->> (firmware
->> not available yet in liux-firmware?)
->
-> I think initially I was waiting for the DRM patch "drm/nouvea: support
-> for probing platform devices" to be applied, but it looks like that's
-> been applied already, so only patches 4 and 5 in this series are still
-> outstanding.
 
-Actually I am waiting for the firmware and firmware loading support 
-patch to land in linux-firmware and Nouveau respectively. I have yet to 
-send these patches publicly due to some ongoing discussion about the 
-firmware's license.
+--===============0202101284==
+Content-Type: multipart/alternative; boundary="1411711496.C1abD1.419"; charset="us-ascii"
 
-For now if you want to run Nouveau on TK1, the easiest solution is to 
-use my kernel and Nouveau branches. The branches that should be used are 
-visible in the manifest of 
-https://github.com/Gnurou/tegra-nouveau-rootfs - which BTW also provides 
-an easy way to enable the FOSS graphics stack on a L4T image (minus the 
-firmware at the moment).
 
-More generally speaking, I still have a lot of patches to upstream - I 
-apologize for not having been able to catch up with them. Things have 
-been busy on other fronts, but since these other fronts are soon not 
-going to be a concern anymore I will be able to focus on Nouveau again 
-after mid-next week. :)
+--1411711496.C1abD1.419
+Date: Fri, 26 Sep 2014 06:04:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
->
-> Alex, wasn't there also some issue where the VPR register had to be
-> programmed, and if it wasn't there'd be a hang when the GPU registers
-> were touched? If we've added code to Nouveau/tegradrm to detect that and
-> avoid the problem, then I guess we can commit these last two patches for
-> 3.19. A resend after the 3.18 merge window might help.
+https://bugs.freedesktop.org/show_bug.cgi?id=79462
 
-The VPR patch has landed in U-boot mainline, so this should be less of a 
-problem now. AFAIK there is no safe way to check whether VPR has been 
-disabled, but the solution might be in your suggestion to make the 
-bootloader enable the GPU DT node if it finds it safe to do so.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I've pushed out the fix, makes at least the attached shader compile. It also
+fixed UE4 demos which appear to render fine. Should get backported to 10.3 and
+probably 10.2 as well.
+
+commit 0147c10c5f00b43696ba660aab604d674a75e83c
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Wed Sep 24 21:45:07 2014 -0400
+
+    nv50/ir: avoid deleting pseudo instructions too early
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1411711496.C1abD1.419
+Date: Fri, 26 Sep 2014 06:04:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC0/Codegen] Shader compilation falis in spill logic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462">bug 79462</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC0/Codegen] Shader compilation falis in spill logic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC0/Codegen] Shader compilation falis in spill logic"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79462">bug 79462</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I've pushed out the fix, makes at least the attached shader compile. It also
+fixed UE4 demos which appear to render fine. Should get backported to 10.3 and
+probably 10.2 as well.
+
+commit 0147c10c5f00b43696ba660aab604d674a75e83c
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Wed Sep 24 21:45:07 2014 -0400
+
+    nv50/ir: avoid deleting pseudo instructions too early</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1411711496.C1abD1.419--
+
+--===============0202101284==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0202101284==--
