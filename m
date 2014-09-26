@@ -1,327 +1,168 @@
-From: Lauri Peltonen <lpeltonen@nvidia.com>
-Subject: [RFC PATCH 6/7] drm/nouveau: Support marking buffers for explicit sync
-Date: Fri, 26 Sep 2014 13:00:11 +0300
-Message-ID: <1411725612-10455-7-git-send-email-lpeltonen@nvidia.com>
+From: Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC PATCH 7/7] drm/prime: Support explicit fence on
+	export
+Date: Fri, 26 Sep 2014 13:00:12 +0300
+Message-ID: <1411725612-10455-8-git-send-email-lpeltonen@nvidia.com>
 References: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Colin Cross <ccross@android.com>, Maarten Lankhorst <maarten.lankhorst@canonical.com>, Dave Airlie <airlied@redhat.com>
-Cc: Stephen Warren <swarren@nvidia.com>, nouveau@lists.freedesktop.org, James Jones <jajones@nvidia.com>, dri-devel@lists.freedesktop.org, Thierry Reding <treding@nvidia.com>, Ken Adams <kadams@nvidia.com>
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1411725612-10455-1-git-send-email-lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Colin Cross <ccross-z5hGa2qSFaRBDgjK7y7TUQ@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <kadams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Do not attach fences automatically to buffers that are marked for
-explicit synchronization.
+Allow user space to provide an explicit sync fence fd when exporting
+a dma-buf from gem handle.  The fence will be stored as the explicit
+fence to the reservation object.
 
-Signed-off-by: Lauri Peltonen <lpeltonen@nvidia.com>
+Signed-off-by: Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 ---
- drm/nouveau_bo.c           |  8 ++++----
- drm/nouveau_bo.h           |  4 ++--
- drm/nouveau_drm.c          |  1 +
- drm/nouveau_gem.c          | 47 +++++++++++++++++++++++++++++++++++++++-------
- drm/nouveau_gem.h          |  6 ++++--
- drm/nouveau_ttm.c          |  8 ++++----
- drm/nv50_display.c         |  2 +-
- drm/uapi/drm/nouveau_drm.h |  5 ++++-
- 8 files changed, 60 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/drm_prime.c | 41 +++++++++++++++++++++++++++++++++--------
+ include/uapi/drm/drm.h      |  9 ++++++++-
+ 2 files changed, 41 insertions(+), 9 deletions(-)
 
-diff --git a/drm/nouveau_bo.c b/drm/nouveau_bo.c
-index 534734a..68b7bdd 100644
---- a/drm/nouveau_bo.c
-+++ b/drm/nouveau_bo.c
-@@ -180,7 +180,7 @@ nouveau_bo_fixup_align(struct nouveau_bo *nvbo, u32 flags,
+diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+index 2807a77..c69df2e 100644
+--- a/drivers/gpu/drm/drm_prime.c
++++ b/drivers/gpu/drm/drm_prime.c
+@@ -28,8 +28,10 @@
  
- int
- nouveau_bo_new(struct drm_device *dev, int size, int align,
--	       uint32_t flags, uint32_t tile_mode, uint32_t tile_flags,
-+	       uint32_t flags, uint32_t tile_mode, uint32_t bo_flags,
- 	       struct sg_table *sg,
- 	       struct nouveau_bo **pnvbo)
- {
-@@ -211,7 +211,7 @@ nouveau_bo_new(struct drm_device *dev, int size, int align,
- 	INIT_LIST_HEAD(&nvbo->entry);
- 	INIT_LIST_HEAD(&nvbo->vma_list);
- 	nvbo->tile_mode = tile_mode;
--	nvbo->tile_flags = tile_flags;
-+	nvbo->bo_flags = bo_flags;
- 	nvbo->bo.bdev = &drm->ttm.bdev;
+ #include <linux/export.h>
+ #include <linux/dma-buf.h>
++#include <linux/reservation.h>
+ #include <drm/drmP.h>
+ #include "drm_internal.h"
++#include "../../staging/android/sync.h"
  
- 	if (!nv_device_is_cpu_coherent(nvkm_device(&drm->device)))
-@@ -272,7 +272,7 @@ set_placement_range(struct nouveau_bo *nvbo, uint32_t type)
- 		 * speed up when alpha-blending and depth-test are enabled
- 		 * at the same time.
- 		 */
--		if (nvbo->tile_flags & NOUVEAU_GEM_TILE_ZETA) {
-+		if (nvbo->bo_flags & NOUVEAU_GEM_TILE_ZETA) {
- 			fpfn = vram_pages / 2;
- 			lpfn = ~0;
- 		} else {
-@@ -1291,7 +1291,7 @@ nouveau_bo_vm_bind(struct ttm_buffer_object *bo, struct ttm_mem_reg *new_mem,
- 	if (drm->device.info.family >= NV_DEVICE_INFO_V0_CELSIUS) {
- 		*new_tile = nv10_bo_set_tiling(dev, offset, new_mem->size,
- 						nvbo->tile_mode,
--						nvbo->tile_flags);
-+						nvbo->bo_flags);
- 	}
- 
- 	return 0;
-diff --git a/drm/nouveau_bo.h b/drm/nouveau_bo.h
-index f97bc26..ff1edba 100644
---- a/drm/nouveau_bo.h
-+++ b/drm/nouveau_bo.h
-@@ -25,7 +25,7 @@ struct nouveau_bo {
- 	unsigned page_shift;
- 
- 	u32 tile_mode;
--	u32 tile_flags;
-+	u32 bo_flags;
- 	struct nouveau_drm_tile *tile;
- 
- 	/* Only valid if allocated via nouveau_gem_new() and iff you hold a
-@@ -68,7 +68,7 @@ extern struct ttm_bo_driver nouveau_bo_driver;
- 
- void nouveau_bo_move_init(struct nouveau_drm *);
- int  nouveau_bo_new(struct drm_device *, int size, int align, u32 flags,
--		    u32 tile_mode, u32 tile_flags, struct sg_table *sg,
-+		    u32 tile_mode, u32 bo_flags, struct sg_table *sg,
- 		    struct nouveau_bo **);
- int  nouveau_bo_pin(struct nouveau_bo *, u32 flags);
- int  nouveau_bo_unpin(struct nouveau_bo *);
-diff --git a/drm/nouveau_drm.c b/drm/nouveau_drm.c
-index 74d5ac6..3d84f3a 100644
---- a/drm/nouveau_drm.c
-+++ b/drm/nouveau_drm.c
-@@ -816,6 +816,7 @@ nouveau_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_PREP, nouveau_gem_ioctl_cpu_prep, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_FINI, nouveau_gem_ioctl_cpu_fini, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_INFO, nouveau_gem_ioctl_info, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_SET_INFO, nouveau_gem_ioctl_set_info, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- };
- 
- long
-diff --git a/drm/nouveau_gem.c b/drm/nouveau_gem.c
-index ee5782c..bb19507 100644
---- a/drm/nouveau_gem.c
-+++ b/drm/nouveau_gem.c
-@@ -149,7 +149,7 @@ nouveau_gem_object_close(struct drm_gem_object *gem, struct drm_file *file_priv)
- 
- int
- nouveau_gem_new(struct drm_device *dev, int size, int align, uint32_t domain,
--		uint32_t tile_mode, uint32_t tile_flags,
-+		uint32_t tile_mode, uint32_t bo_flags,
- 		struct nouveau_bo **pnvbo)
- {
- 	struct nouveau_drm *drm = nouveau_drm(dev);
-@@ -165,7 +165,7 @@ nouveau_gem_new(struct drm_device *dev, int size, int align, uint32_t domain,
- 		flags |= TTM_PL_FLAG_SYSTEM;
- 
- 	ret = nouveau_bo_new(dev, size, align, flags, tile_mode,
--			     tile_flags, NULL, pnvbo);
-+			     bo_flags, NULL, pnvbo);
- 	if (ret)
- 		return ret;
- 	nvbo = *pnvbo;
-@@ -216,7 +216,21 @@ nouveau_gem_info(struct drm_file *file_priv, struct drm_gem_object *gem,
- 	rep->size = nvbo->bo.mem.num_pages << PAGE_SHIFT;
- 	rep->map_handle = drm_vma_node_offset_addr(&nvbo->bo.vma_node);
- 	rep->tile_mode = nvbo->tile_mode;
--	rep->tile_flags = nvbo->tile_flags;
-+	rep->bo_flags = nvbo->bo_flags;
-+	return 0;
-+}
-+
-+static int
-+nouveau_gem_set_info(struct drm_file *file_priv, struct drm_gem_object *gem,
-+		     struct drm_nouveau_gem_info *req)
-+{
-+	struct nouveau_bo *nvbo = nouveau_gem_object(gem);
-+
-+	if (req->bo_flags & NOUVEAU_GEM_EXPLICIT_SYNC)
-+		nvbo->bo_flags |= NOUVEAU_GEM_EXPLICIT_SYNC;
-+	else
-+		nvbo->bo_flags &= ~NOUVEAU_GEM_EXPLICIT_SYNC;
-+
- 	return 0;
- }
- 
-@@ -231,14 +245,15 @@ nouveau_gem_ioctl_new(struct drm_device *dev, void *data,
- 	struct nouveau_bo *nvbo = NULL;
+ /*
+  * DMA-BUF/GEM Object references and lifetime overview:
+@@ -329,7 +331,7 @@ static const struct dma_buf_ops drm_gem_prime_dmabuf_ops =  {
+  * drm_gem_prime_export - helper library implemention of the export callback
+  * @dev: drm_device to export from
+  * @obj: GEM object to export
+- * @flags: flags like DRM_CLOEXEC
++ * @flags: flags like DRM_CLOEXEC or DRM_SYNC_FD
+  *
+  * This is the implementation of the gem_prime_export functions for GEM drivers
+  * using the PRIME helpers.
+@@ -385,7 +387,7 @@ static struct dma_buf *export_and_register_object(struct drm_device *dev,
+  * @dev: dev to export the buffer from
+  * @file_priv: drm file-private structure
+  * @handle: buffer handle to export
+- * @flags: flags like DRM_CLOEXEC
++ * @flags: flags like DRM_CLOEXEC or DRM_SYNC_FD
+  * @prime_fd: pointer to storage for the fd id of the create dma-buf
+  *
+  * This is the PRIME export function which must be used mandatorily by GEM
+@@ -401,6 +403,24 @@ int drm_gem_prime_handle_to_fd(struct drm_device *dev,
+ 	struct drm_gem_object *obj;
  	int ret = 0;
+ 	struct dma_buf *dmabuf;
++	struct fence *fence = NULL;
++
++	if (flags & DRM_SYNC_FD) {
++#ifdef CONFIG_SYNC
++		struct sync_fence *sf = sync_fence_fdget(*prime_fd);
++		if (!sf)
++			return -ENOENT;
++		if (sf->num_fences != 1) {
++			sync_fence_put(sf);
++			return -EINVAL;
++		}
++		fence = fence_get(sf->cbs[0].sync_pt);
++		sync_fence_put(sf);
++		flags &= ~DRM_SYNC_FD;
++#else
++		return -ENODEV;
++#endif
++	}
  
--	if (!pfb->memtype_valid(pfb, req->info.tile_flags)) {
--		NV_PRINTK(error, cli, "bad page flags: 0x%08x\n", req->info.tile_flags);
-+	if (!pfb->memtype_valid(pfb, req->info.bo_flags)) {
-+		NV_PRINTK(error, cli, "bad page flags: 0x%08x\n",
-+			  req->info.bo_flags);
- 		return -EINVAL;
- 	}
+ 	mutex_lock(&file_priv->prime.lock);
+ 	obj = drm_gem_object_lookup(dev, file_priv, handle);
+@@ -453,6 +473,14 @@ out_have_obj:
+ 		goto fail_put_dmabuf;
  
- 	ret = nouveau_gem_new(dev, req->info.size, req->align,
- 			      req->info.domain, req->info.tile_mode,
--			      req->info.tile_flags, &nvbo);
-+			      req->info.bo_flags, &nvbo);
- 	if (ret)
- 		return ret;
+ out_have_handle:
++	if (fence) {
++		if (!dmabuf->resv) {
++			ret = -ENODEV;
++			goto fail_put_dmabuf;
++		}
++		reservation_object_add_excl_fence(dmabuf->resv, fence);
++	}
++
+ 	ret = dma_buf_fd(dmabuf, flags);
+ 	/*
+ 	 * We must _not_ remove the buffer from the handle cache since the newly
+@@ -475,6 +503,7 @@ out:
+ 	drm_gem_object_unreference_unlocked(obj);
+ out_unlock:
+ 	mutex_unlock(&file_priv->prime.lock);
++	fence_put(fence);
  
-@@ -303,12 +318,14 @@ validate_fini_no_ticket(struct validate_op *op, struct nouveau_fence *fence,
- {
- 	struct nouveau_bo *nvbo;
- 	struct drm_nouveau_gem_pushbuf_bo *b;
-+	bool explicit_sync;
- 
- 	while (!list_empty(&op->list)) {
- 		nvbo = list_entry(op->list.next, struct nouveau_bo, entry);
- 		b = &pbbo[nvbo->pbbo_index];
-+		explicit_sync = !!(nvbo->bo_flags & NOUVEAU_GEM_EXPLICIT_SYNC);
- 
--		if (likely(fence))
-+		if (likely(fence) && !explicit_sync)
- 			nouveau_bo_fence(nvbo, fence, !!b->write_domains);
- 
- 		if (unlikely(nvbo->validate_mapped)) {
-@@ -947,3 +964,19 @@ nouveau_gem_ioctl_info(struct drm_device *dev, void *data,
  	return ret;
  }
+@@ -624,7 +653,6 @@ int drm_prime_handle_to_fd_ioctl(struct drm_device *dev, void *data,
+ 				 struct drm_file *file_priv)
+ {
+ 	struct drm_prime_handle *args = data;
+-	uint32_t flags;
  
-+int
-+nouveau_gem_ioctl_set_info(struct drm_device *dev, void *data,
-+			   struct drm_file *file_priv)
-+{
-+	struct drm_nouveau_gem_info *req = data;
-+	struct drm_gem_object *gem;
-+	int ret;
-+
-+	gem = drm_gem_object_lookup(dev, file_priv, req->handle);
-+	if (!gem)
-+		return -ENOENT;
-+
-+	ret = nouveau_gem_set_info(file_priv, gem, req);
-+	drm_gem_object_unreference_unlocked(gem);
-+	return ret;
-+}
-diff --git a/drm/nouveau_gem.h b/drm/nouveau_gem.h
-index 7454dea..abac606 100644
---- a/drm/nouveau_gem.h
-+++ b/drm/nouveau_gem.h
-@@ -7,7 +7,7 @@
- #include "nouveau_bo.h"
- 
- #define nouveau_bo_tile_layout(nvbo)				\
--	((nvbo)->tile_flags & NOUVEAU_GEM_TILE_LAYOUT_MASK)
-+	((nvbo)->bo_flags & NOUVEAU_GEM_TILE_LAYOUT_MASK)
- 
- static inline struct nouveau_bo *
- nouveau_gem_object(struct drm_gem_object *gem)
-@@ -18,7 +18,7 @@ nouveau_gem_object(struct drm_gem_object *gem)
- /* nouveau_gem.c */
- extern int nouveau_gem_new(struct drm_device *, int size, int align,
- 			   uint32_t domain, uint32_t tile_mode,
--			   uint32_t tile_flags, struct nouveau_bo **);
-+			   uint32_t bo_flags, struct nouveau_bo **);
- extern void nouveau_gem_object_del(struct drm_gem_object *);
- extern int nouveau_gem_object_open(struct drm_gem_object *, struct drm_file *);
- extern void nouveau_gem_object_close(struct drm_gem_object *,
-@@ -35,6 +35,8 @@ extern int nouveau_gem_ioctl_cpu_fini(struct drm_device *, void *,
- 				      struct drm_file *);
- extern int nouveau_gem_ioctl_info(struct drm_device *, void *,
- 				  struct drm_file *);
-+extern int nouveau_gem_ioctl_set_info(struct drm_device *, void *,
-+				      struct drm_file *);
- 
- extern int nouveau_gem_prime_pin(struct drm_gem_object *);
- struct reservation_object *nouveau_gem_prime_res_obj(struct drm_gem_object *);
-diff --git a/drm/nouveau_ttm.c b/drm/nouveau_ttm.c
-index 8058013..a224820 100644
---- a/drm/nouveau_ttm.c
-+++ b/drm/nouveau_ttm.c
-@@ -81,12 +81,12 @@ nouveau_vram_manager_new(struct ttm_mem_type_manager *man,
- 	u32 size_nc = 0;
- 	int ret;
- 
--	if (nvbo->tile_flags & NOUVEAU_GEM_TILE_NONCONTIG)
-+	if (nvbo->bo_flags & NOUVEAU_GEM_TILE_NONCONTIG)
- 		size_nc = 1 << nvbo->page_shift;
- 
- 	ret = pfb->ram->get(pfb, mem->num_pages << PAGE_SHIFT,
- 			   mem->page_alignment << PAGE_SHIFT, size_nc,
--			   (nvbo->tile_flags >> 8) & 0x3ff, &node);
-+			   (nvbo->bo_flags >> 8) & 0x3ff, &node);
- 	if (ret) {
- 		mem->mm_node = NULL;
- 		return (ret == -ENOSPC) ? 0 : ret;
-@@ -174,11 +174,11 @@ nouveau_gart_manager_new(struct ttm_mem_type_manager *man,
- 	switch (drm->device.info.family) {
- 	case NV_DEVICE_INFO_V0_TESLA:
- 		if (drm->device.info.chipset != 0x50)
--			node->memtype = (nvbo->tile_flags & 0x7f00) >> 8;
-+			node->memtype = (nvbo->bo_flags & 0x7f00) >> 8;
- 		break;
- 	case NV_DEVICE_INFO_V0_FERMI:
- 	case NV_DEVICE_INFO_V0_KEPLER:
--		node->memtype = (nvbo->tile_flags & 0xff00) >> 8;
-+		node->memtype = (nvbo->bo_flags & 0xff00) >> 8;
- 		break;
- 	default:
- 		break;
-diff --git a/drm/nv50_display.c b/drm/nv50_display.c
-index fdb3e1a..ce0df41 100644
---- a/drm/nv50_display.c
-+++ b/drm/nv50_display.c
-@@ -2352,7 +2352,7 @@ nv50_fb_ctor(struct drm_framebuffer *fb)
- 	u8 kind = nouveau_bo_tile_layout(nvbo) >> 8;
- 	u8 tile = nvbo->tile_mode;
- 
--	if (nvbo->tile_flags & NOUVEAU_GEM_TILE_NONCONTIG) {
-+	if (nvbo->bo_flags & NOUVEAU_GEM_TILE_NONCONTIG) {
- 		NV_ERROR(drm, "framebuffer requires contiguous bo\n");
+ 	if (!drm_core_check_feature(dev, DRIVER_PRIME))
  		return -EINVAL;
- 	}
-diff --git a/drm/uapi/drm/nouveau_drm.h b/drm/uapi/drm/nouveau_drm.h
-index 394cd94..49fc749 100644
---- a/drm/uapi/drm/nouveau_drm.h
-+++ b/drm/uapi/drm/nouveau_drm.h
-@@ -46,6 +46,7 @@
- #define NOUVEAU_GEM_TILE_32BPP       0x00000002
- #define NOUVEAU_GEM_TILE_ZETA        0x00000004
- #define NOUVEAU_GEM_TILE_NONCONTIG   0x00000008
-+#define NOUVEAU_GEM_EXPLICIT_SYNC    0x00040000
+@@ -633,14 +661,11 @@ int drm_prime_handle_to_fd_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOSYS;
  
- struct drm_nouveau_gem_info {
- 	uint32_t handle;
-@@ -54,7 +55,7 @@ struct drm_nouveau_gem_info {
- 	uint64_t offset;
- 	uint64_t map_handle;
- 	uint32_t tile_mode;
--	uint32_t tile_flags;
-+	uint32_t bo_flags;
+ 	/* check flags are valid */
+-	if (args->flags & ~DRM_CLOEXEC)
++	if (args->flags & ~(DRM_CLOEXEC | DRM_SYNC_FD))
+ 		return -EINVAL;
+ 
+-	/* we only want to pass DRM_CLOEXEC which is == O_CLOEXEC */
+-	flags = args->flags & DRM_CLOEXEC;
+-
+ 	return dev->driver->prime_handle_to_fd(dev, file_priv,
+-			args->handle, flags, &args->fd);
++			args->handle, args->flags, &args->fd);
+ }
+ 
+ int drm_prime_fd_to_handle_ioctl(struct drm_device *dev, void *data,
+diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
+index b0b8556..a11b893 100644
+--- a/include/uapi/drm/drm.h
++++ b/include/uapi/drm/drm.h
+@@ -661,13 +661,20 @@ struct drm_set_client_cap {
  };
  
- struct drm_nouveau_gem_new {
-@@ -149,6 +150,7 @@ struct drm_nouveau_gem_cpu_fini {
- #define DRM_NOUVEAU_GEM_CPU_FINI       0x43
- #define DRM_NOUVEAU_GEM_INFO           0x44
- #define DRM_NOUVEAU_GEM_PUSHBUF_2      0x45
-+#define DRM_NOUVEAU_GEM_SET_INFO       0x46
+ #define DRM_CLOEXEC O_CLOEXEC
++#define DRM_SYNC_FD O_DSYNC
+ struct drm_prime_handle {
+ 	__u32 handle;
  
- #define DRM_IOCTL_NOUVEAU_GEM_NEW            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_NEW, struct drm_nouveau_gem_new)
- #define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF        DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF, struct drm_nouveau_gem_pushbuf)
-@@ -156,5 +158,6 @@ struct drm_nouveau_gem_cpu_fini {
- #define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, struct drm_nouveau_gem_cpu_prep)
- #define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
- #define DRM_IOCTL_NOUVEAU_GEM_INFO           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_gem_info)
-+#define DRM_IOCTL_NOUVEAU_GEM_SET_INFO       DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_SET_INFO, struct drm_nouveau_gem_info)
+ 	/** Flags.. only applicable for handle->fd */
+ 	__u32 flags;
  
- #endif /* __NOUVEAU_DRM_H__ */
+-	/** Returned dmabuf file descriptor */
++	/**
++	 * DRM_IOCTL_PRIME_FD_TO_HANDLE:
++	 *   in: dma-buf fd
++	 * DRM_IOCTL_PRIME_HANDLE_TO_FD:
++	 *   in: sync fence fd if DRM_SYNC_FD flag is passed
++	 *   out: dma-buf fd
++	 */
+ 	__s32 fd;
+ };
+ 
 -- 
 1.8.1.5
