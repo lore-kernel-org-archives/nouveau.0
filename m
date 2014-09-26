@@ -1,7 +1,7 @@
 From: Lauri Peltonen <lpeltonen@nvidia.com>
-Subject: [RFC PATCH 4/7] drm/nouveau: Support fence fd's at kickoff
-Date: Fri, 26 Sep 2014 13:00:09 +0300
-Message-ID: <1411725612-10455-5-git-send-email-lpeltonen@nvidia.com>
+Subject: [RFC PATCH 5/7] libdrm: nouveau: Support fence fds
+Date: Fri, 26 Sep 2014 13:00:10 +0300
+Message-ID: <1411725612-10455-6-git-send-email-lpeltonen@nvidia.com>
 References: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
@@ -21,131 +21,23 @@ To: Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Col
 Cc: Stephen Warren <swarren@nvidia.com>, nouveau@lists.freedesktop.org, James Jones <jajones@nvidia.com>, dri-devel@lists.freedesktop.org, Thierry Reding <treding@nvidia.com>, Ken Adams <kadams@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-Add a new NOUVEAU_GEM_PUSHBUF_2 ioctl that accepts and emits a sync
-fence fd from/to user space if the user space requests it by passing
-corresponding flags.
+Add a new nouveau_pushbuf_kick_fence function that takes and emits
+a sync fence fd.  The fence fd can be waited on, or merged with
+other fence fd's, or passed back to kernel as a prerquisite for a
+subsequent hw operation.
 
 Signed-off-by: Lauri Peltonen <lpeltonen@nvidia.com>
 ---
- drm/nouveau_drm.c          |  1 +
- drm/nouveau_gem.c          | 46 ++++++++++++++++++++++++++++++++++++++++++----
- drm/nouveau_gem.h          |  2 ++
- drm/uapi/drm/nouveau_drm.h | 11 +++++++++++
- 4 files changed, 56 insertions(+), 4 deletions(-)
+ include/drm/nouveau_drm.h | 10 +++++
+ nouveau/nouveau.h         |  2 +
+ nouveau/pushbuf.c         | 93 ++++++++++++++++++++++++++++++++---------------
+ 3 files changed, 76 insertions(+), 29 deletions(-)
 
-diff --git a/drm/nouveau_drm.c b/drm/nouveau_drm.c
-index 244d78f..74d5ac6 100644
---- a/drm/nouveau_drm.c
-+++ b/drm/nouveau_drm.c
-@@ -812,6 +812,7 @@ nouveau_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GPUOBJ_FREE, nouveau_abi16_ioctl_gpuobj_free, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_NEW, nouveau_gem_ioctl_new, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_PUSHBUF, nouveau_gem_ioctl_pushbuf, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_PUSHBUF_2, nouveau_gem_ioctl_pushbuf_2, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_PREP, nouveau_gem_ioctl_cpu_prep, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_FINI, nouveau_gem_ioctl_cpu_fini, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_INFO, nouveau_gem_ioctl_info, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
-diff --git a/drm/nouveau_gem.c b/drm/nouveau_gem.c
-index 78398d4..ee5782c 100644
---- a/drm/nouveau_gem.c
-+++ b/drm/nouveau_gem.c
-@@ -636,15 +636,16 @@ nouveau_gem_pushbuf_reloc_apply(struct nouveau_cli *cli,
- 	return ret;
- }
- 
--int
--nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
--			  struct drm_file *file_priv)
-+static int
-+__nouveau_gem_ioctl_pushbuf(struct drm_device *dev,
-+			    struct drm_nouveau_gem_pushbuf *req,
-+			    struct drm_nouveau_gem_pushbuf_2 *req_2,
-+			    struct drm_file *file_priv)
- {
- 	struct nouveau_abi16 *abi16 = nouveau_abi16_get(file_priv, dev);
- 	struct nouveau_cli *cli = nouveau_cli(file_priv);
- 	struct nouveau_abi16_chan *temp;
- 	struct nouveau_drm *drm = nouveau_drm(dev);
--	struct drm_nouveau_gem_pushbuf *req = data;
- 	struct drm_nouveau_gem_pushbuf_push *push;
- 	struct drm_nouveau_gem_pushbuf_bo *bo;
- 	struct nouveau_channel *chan = NULL;
-@@ -725,6 +726,14 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
- 		}
- 	}
- 
-+	if (req_2 && (req_2->flags & NOUVEAU_GEM_PUSHBUF_2_FENCE_WAIT)) {
-+		ret = nouveau_fence_sync_fd(req_2->fence, chan);
-+		if (ret) {
-+			NV_PRINTK(error, cli, "fence wait: %d\n", ret);
-+			goto out;
-+		}
-+	}
-+
- 	if (chan->dma.ib_max) {
- 		ret = nouveau_dma_wait(chan, req->nr_push + 1, 16);
- 		if (ret) {
-@@ -800,6 +809,16 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
- 		goto out;
- 	}
- 
-+	if (req_2 && (req_2->flags & NOUVEAU_GEM_PUSHBUF_2_FENCE_EMIT)) {
-+		ret = nouveau_fence_install(&fence->base, "nv-pushbuf",
-+					    &req_2->fence);
-+		if (ret) {
-+			NV_PRINTK(error, cli, "fence install: %d\n", ret);
-+			WIND_RING(chan);
-+			goto out;
-+		}
-+	}
-+
- out:
- 	validate_fini(&op, fence, bo);
- 	nouveau_fence_unref(&fence);
-@@ -825,6 +844,25 @@ out_next:
- 	return nouveau_abi16_put(abi16, ret);
- }
- 
-+int
-+nouveau_gem_ioctl_pushbuf_2(struct drm_device *dev, void *data,
-+			    struct drm_file *file_priv)
-+{
-+	struct drm_nouveau_gem_pushbuf_2 *req_2 = data;
-+	struct drm_nouveau_gem_pushbuf *req = &req_2->base;
-+
-+	return __nouveau_gem_ioctl_pushbuf(dev, req, req_2, file_priv);
-+}
-+
-+int
-+nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
-+			  struct drm_file *file_priv)
-+{
-+	struct drm_nouveau_gem_pushbuf *req = data;
-+
-+	return __nouveau_gem_ioctl_pushbuf(dev, req, NULL, file_priv);
-+}
-+
- static inline uint32_t
- domain_to_ttm(struct nouveau_bo *nvbo, uint32_t domain)
- {
-diff --git a/drm/nouveau_gem.h b/drm/nouveau_gem.h
-index ddab762..7454dea 100644
---- a/drm/nouveau_gem.h
-+++ b/drm/nouveau_gem.h
-@@ -27,6 +27,8 @@ extern int nouveau_gem_ioctl_new(struct drm_device *, void *,
- 				 struct drm_file *);
- extern int nouveau_gem_ioctl_pushbuf(struct drm_device *, void *,
- 				     struct drm_file *);
-+extern int nouveau_gem_ioctl_pushbuf_2(struct drm_device *, void *,
-+				       struct drm_file *);
- extern int nouveau_gem_ioctl_cpu_prep(struct drm_device *, void *,
- 				      struct drm_file *);
- extern int nouveau_gem_ioctl_cpu_fini(struct drm_device *, void *,
-diff --git a/drm/uapi/drm/nouveau_drm.h b/drm/uapi/drm/nouveau_drm.h
-index 0d7608d..394cd94 100644
---- a/drm/uapi/drm/nouveau_drm.h
-+++ b/drm/uapi/drm/nouveau_drm.h
-@@ -115,6 +115,15 @@ struct drm_nouveau_gem_pushbuf {
+diff --git a/include/drm/nouveau_drm.h b/include/drm/nouveau_drm.h
+index b18cad0..3e40210 100644
+--- a/include/drm/nouveau_drm.h
++++ b/include/drm/nouveau_drm.h
+@@ -171,6 +171,15 @@ struct drm_nouveau_gem_pushbuf {
  	uint64_t gart_available;
  };
  
@@ -159,19 +51,230 @@ index 0d7608d..394cd94 100644
 +};
 +
  #define NOUVEAU_GEM_CPU_PREP_NOWAIT                                  0x00000001
+ #define NOUVEAU_GEM_CPU_PREP_NOBLOCK                                 0x00000002
  #define NOUVEAU_GEM_CPU_PREP_WRITE                                   0x00000004
- struct drm_nouveau_gem_cpu_prep {
-@@ -139,9 +148,11 @@ struct drm_nouveau_gem_cpu_fini {
+@@ -204,5 +213,6 @@ struct drm_nouveau_sarea {
  #define DRM_NOUVEAU_GEM_CPU_PREP       0x42
  #define DRM_NOUVEAU_GEM_CPU_FINI       0x43
  #define DRM_NOUVEAU_GEM_INFO           0x44
 +#define DRM_NOUVEAU_GEM_PUSHBUF_2      0x45
  
- #define DRM_IOCTL_NOUVEAU_GEM_NEW            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_NEW, struct drm_nouveau_gem_new)
- #define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF        DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF, struct drm_nouveau_gem_pushbuf)
-+#define DRM_IOCTL_NOUVEAU_GEM_PUSHBUF_2      DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_PUSHBUF_2, struct drm_nouveau_gem_pushbuf_2)
- #define DRM_IOCTL_NOUVEAU_GEM_CPU_PREP       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_PREP, struct drm_nouveau_gem_cpu_prep)
- #define DRM_IOCTL_NOUVEAU_GEM_CPU_FINI       DRM_IOW (DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_CPU_FINI, struct drm_nouveau_gem_cpu_fini)
- #define DRM_IOCTL_NOUVEAU_GEM_INFO           DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_GEM_INFO, struct drm_nouveau_gem_info)
+ #endif /* __NOUVEAU_DRM_H__ */
+diff --git a/nouveau/nouveau.h b/nouveau/nouveau.h
+index a55e2b0..281420f 100644
+--- a/nouveau/nouveau.h
++++ b/nouveau/nouveau.h
+@@ -225,6 +225,8 @@ void nouveau_pushbuf_reloc(struct nouveau_pushbuf *, struct nouveau_bo *,
+ int  nouveau_pushbuf_validate(struct nouveau_pushbuf *);
+ uint32_t nouveau_pushbuf_refd(struct nouveau_pushbuf *, struct nouveau_bo *);
+ int  nouveau_pushbuf_kick(struct nouveau_pushbuf *, struct nouveau_object *channel);
++int  nouveau_pushbuf_kick_fence(struct nouveau_pushbuf *,
++				struct nouveau_object *channel, int *fence);
+ struct nouveau_bufctx *
+ nouveau_pushbuf_bufctx(struct nouveau_pushbuf *, struct nouveau_bufctx *);
+ 
+diff --git a/nouveau/pushbuf.c b/nouveau/pushbuf.c
+index 6e703a4..8667d05 100644
+--- a/nouveau/pushbuf.c
++++ b/nouveau/pushbuf.c
+@@ -33,6 +33,7 @@
+ #include <string.h>
+ #include <assert.h>
+ #include <errno.h>
++#include <unistd.h>
+ 
+ #include <xf86drm.h>
+ #include <xf86atomic.h>
+@@ -77,7 +78,7 @@ nouveau_pushbuf(struct nouveau_pushbuf *push)
+ }
+ 
+ static int pushbuf_validate(struct nouveau_pushbuf *, bool);
+-static int pushbuf_flush(struct nouveau_pushbuf *);
++static int pushbuf_flush(struct nouveau_pushbuf *, int *);
+ 
+ static bool
+ pushbuf_kref_fits(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
+@@ -172,7 +173,7 @@ pushbuf_kref(struct nouveau_pushbuf *push, struct nouveau_bo *bo,
+ 	 */
+ 	fpush = cli_push_get(push->client, bo);
+ 	if (fpush && fpush != push)
+-		pushbuf_flush(fpush);
++		pushbuf_flush(fpush, NULL);
+ 
+ 	kref = cli_kref_get(push->client, bo);
+ 	if (kref) {
+@@ -305,18 +306,21 @@ pushbuf_dump(struct nouveau_pushbuf_krec *krec, int krec_id, int chid)
+ }
+ 
+ static int
+-pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
++pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan,
++	       int *fence)
+ {
+ 	struct nouveau_pushbuf_priv *nvpb = nouveau_pushbuf(push);
+ 	struct nouveau_pushbuf_krec *krec = nvpb->list;
+ 	struct nouveau_device *dev = push->client->device;
+ 	struct drm_nouveau_gem_pushbuf_bo_presumed *info;
+ 	struct drm_nouveau_gem_pushbuf_bo *kref;
+-	struct drm_nouveau_gem_pushbuf req;
++	struct drm_nouveau_gem_pushbuf_2 req_2;
++	struct drm_nouveau_gem_pushbuf *req = &req_2.base;
+ 	struct nouveau_fifo *fifo = chan->data;
+ 	struct nouveau_bo *bo;
+ 	int krec_id = 0;
+ 	int ret = 0, i;
++	int fence_out = -1;
+ 
+ 	if (chan->oclass != NOUVEAU_FIFO_CHANNEL_CLASS)
+ 		return -EINVAL;
+@@ -326,30 +330,42 @@ pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
+ 
+ 	nouveau_pushbuf_data(push, NULL, 0, 0);
+ 
++	/* TODO: If fence is requested, force kickoff. */
+ 	while (krec && krec->nr_push) {
+-		req.channel = fifo->channel;
+-		req.nr_buffers = krec->nr_buffer;
+-		req.buffers = (uint64_t)(unsigned long)krec->buffer;
+-		req.nr_relocs = krec->nr_reloc;
+-		req.nr_push = krec->nr_push;
+-		req.relocs = (uint64_t)(unsigned long)krec->reloc;
+-		req.push = (uint64_t)(unsigned long)krec->push;
+-		req.suffix0 = nvpb->suffix0;
+-		req.suffix1 = nvpb->suffix1;
+-		req.vram_available = 0; /* for valgrind */
+-		req.gart_available = 0;
++		req->channel = fifo->channel;
++		req->nr_buffers = krec->nr_buffer;
++		req->buffers = (uint64_t)(unsigned long)krec->buffer;
++		req->nr_relocs = krec->nr_reloc;
++		req->nr_push = krec->nr_push;
++		req->relocs = (uint64_t)(unsigned long)krec->reloc;
++		req->push = (uint64_t)(unsigned long)krec->push;
++		req->suffix0 = nvpb->suffix0;
++		req->suffix1 = nvpb->suffix1;
++		req->vram_available = 0; /* for valgrind */
++		req->gart_available = 0;
++		if (fence) {
++			req_2.flags = NOUVEAU_GEM_PUSHBUF_2_FENCE_EMIT;
++			if (*fence >= 0)
++				req_2.flags |= NOUVEAU_GEM_PUSHBUF_2_FENCE_WAIT;
++			req_2.fence = *fence;
++			req_2.reserved = 0;
++		}
+ 
+ 		if (dbg_on(0))
+ 			pushbuf_dump(krec, krec_id++, fifo->channel);
+ 
+ #ifndef SIMULATE
+-		ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_PUSHBUF,
+-					  &req, sizeof(req));
+-		nvpb->suffix0 = req.suffix0;
+-		nvpb->suffix1 = req.suffix1;
+-		dev->vram_limit = (req.vram_available *
++		if (fence)
++			ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_PUSHBUF_2,
++						  &req_2, sizeof(req_2));
++		else
++			ret = drmCommandWriteRead(dev->fd, DRM_NOUVEAU_GEM_PUSHBUF,
++						  req, sizeof(*req));
++		nvpb->suffix0 = req->suffix0;
++		nvpb->suffix1 = req->suffix1;
++		dev->vram_limit = (req->vram_available *
+ 				nouveau_device(dev)->vram_limit_percent) / 100;
+-		dev->gart_limit = (req.gart_available *
++		dev->gart_limit = (req->gart_available *
+ 				nouveau_device(dev)->gart_limit_percent) / 100;
+ #else
+ 		if (dbg_on(31))
+@@ -362,6 +378,12 @@ pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
+ 			break;
+ 		}
+ 
++		if (fence) {
++			if (fence_out >= 0)
++				close(fence_out);
++			fence_out = req_2.fence;
++		}
++
+ 		kref = krec->buffer;
+ 		for (i = 0; i < krec->nr_buffer; i++, kref++) {
+ 			bo = (void *)(unsigned long)kref->user_priv;
+@@ -385,11 +407,17 @@ pushbuf_submit(struct nouveau_pushbuf *push, struct nouveau_object *chan)
+ 		krec = krec->next;
+ 	}
+ 
++	if (!ret && fence) {
++		if (*fence >= 0)
++			close(*fence);
++		*fence = fence_out;
++	}
++
+ 	return ret;
+ }
+ 
+ static int
+-pushbuf_flush(struct nouveau_pushbuf *push)
++pushbuf_flush(struct nouveau_pushbuf *push, int *fence)
+ {
+ 	struct nouveau_pushbuf_priv *nvpb = nouveau_pushbuf(push);
+ 	struct nouveau_pushbuf_krec *krec = nvpb->krec;
+@@ -399,7 +427,7 @@ pushbuf_flush(struct nouveau_pushbuf *push)
+ 	int ret = 0, i;
+ 
+ 	if (push->channel) {
+-		ret = pushbuf_submit(push, push->channel);
++		ret = pushbuf_submit(push, push->channel, fence);
+ 	} else {
+ 		nouveau_pushbuf_data(push, NULL, 0, 0);
+ 		krec->next = malloc(sizeof(*krec));
+@@ -469,7 +497,7 @@ pushbuf_refn(struct nouveau_pushbuf *push, bool retry,
+ 	if (ret) {
+ 		pushbuf_refn_fail(push, sref, krec->nr_reloc);
+ 		if (retry) {
+-			pushbuf_flush(push);
++			pushbuf_flush(push, NULL);
+ 			nouveau_pushbuf_space(push, 0, 0, 0);
+ 			return pushbuf_refn(push, false, refs, nr);
+ 		}
+@@ -521,7 +549,7 @@ pushbuf_validate(struct nouveau_pushbuf *push, bool retry)
+ 	if (ret) {
+ 		pushbuf_refn_fail(push, sref, srel);
+ 		if (retry) {
+-			pushbuf_flush(push);
++			pushbuf_flush(push, NULL);
+ 			return pushbuf_validate(push, false);
+ 		}
+ 	}
+@@ -673,7 +701,7 @@ nouveau_pushbuf_space(struct nouveau_pushbuf *push,
+ 	    krec->nr_reloc + relocs >= NOUVEAU_GEM_MAX_RELOCS ||
+ 	    krec->nr_push + pushes >= NOUVEAU_GEM_MAX_PUSH) {
+ 		if (nvpb->bo && krec->nr_buffer)
+-			pushbuf_flush(push);
++			pushbuf_flush(push, NULL);
+ 		flushed = true;
+ 	}
+ 
+@@ -767,10 +795,17 @@ nouveau_pushbuf_refd(struct nouveau_pushbuf *push, struct nouveau_bo *bo)
+ }
+ 
+ drm_public int
+-nouveau_pushbuf_kick(struct nouveau_pushbuf *push, struct nouveau_object *chan)
++nouveau_pushbuf_kick_fence(struct nouveau_pushbuf *push,
++			   struct nouveau_object *chan, int *fence)
+ {
+ 	if (!push->channel)
+-		return pushbuf_submit(push, chan);
+-	pushbuf_flush(push);
++		return pushbuf_submit(push, chan, fence);
++	pushbuf_flush(push, fence);
+ 	return pushbuf_validate(push, false);
+ }
++
++drm_public int
++nouveau_pushbuf_kick(struct nouveau_pushbuf *push, struct nouveau_object *chan)
++{
++	return nouveau_pushbuf_kick_fence(push, chan, NULL);
++}
 -- 
 1.8.1.5
