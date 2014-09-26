@@ -1,122 +1,217 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [5/5] ARM: tegra: jetson-tk1: enable GK20A GPU
-Date: Fri, 26 Sep 2014 12:01:03 +0200
-Message-ID: <20140926100052.GK31106@ulmo>
-References: <1400491450-19223-6-git-send-email-acourbot@nvidia.com>
- <20140925132717.GA13579@dusk.luon.net>
- <54243931.6050804@wwwdotorg.org> <20140925164109.GA30382@ulmo>
- <1411668631.24948.9.camel@luon.net>
+From: Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC PATCH 1/7] android: Support creating sync fence from
+	drm fences
+Date: Fri, 26 Sep 2014 13:00:06 +0300
+Message-ID: <1411725612-10455-2-git-send-email-lpeltonen@nvidia.com>
+References: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2081317446=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1411668631.24948.9.camel@luon.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Sjoerd Simons <sjoerd@luon.net>
-Cc: gnurou@gmail.com, Stephen Warren <swarren@wwwdotorg.org>, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1411725612-10455-1-git-send-email-lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Colin Cross <ccross-z5hGa2qSFaRBDgjK7y7TUQ@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <kadams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Modify sync_fence_create to accept an array of 'struct fence' objects.
+This will allow drm drivers to create sync_fence objects and pass sync
+fd's between user space with minimal modifications, without ever creating
+sync_timeline or sync_pt objects, and without implementing the
+sync_timeline_ops interface.
 
---===============2081317446==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="8SdtHY/0P4yzaavF"
-Content-Disposition: inline
+Modify the sync driver debug code to not assume that every 'struct fence'
+(that is associated with a 'struct sync_fence') is embedded within a
+'struct sync_pt'.
 
+Signed-off-by: Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drivers/staging/android/sw_sync.c    |  3 ++-
+ drivers/staging/android/sync.c       | 34 ++++++++++++++++++---------------
+ drivers/staging/android/sync.h       | 11 ++++++-----
+ drivers/staging/android/sync_debug.c | 37 +++++++++++++++++-------------------
+ 4 files changed, 44 insertions(+), 41 deletions(-)
 
---8SdtHY/0P4yzaavF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Sep 25, 2014 at 08:10:31PM +0200, Sjoerd Simons wrote:
-> On Thu, 2014-09-25 at 18:41 +0200, Thierry Reding wrote:
-> > On Thu, Sep 25, 2014 at 09:48:01AM -0600, Stephen Warren wrote:
-> > > On 09/25/2014 07:27 AM, Sjoerd Simons wrote:
-> > > >Playing a bit with todays linux-next on my jetson, it seems this pat=
-ch is
-> > > >still required for enabling the GPU. Is there anything blocking it (=
-firmware
-> > > >not available yet in liux-firmware?)
-> > >=20
-> > > I think initially I was waiting for the DRM patch "drm/nouvea: suppor=
-t for
-> > > probing platform devices" to be applied, but it looks like that's been
-> > > applied already, so only patches 4 and 5 in this series are still
-> > > outstanding.
-> > >=20
-> > > Alex, wasn't there also some issue where the VPR register had to be
-> > > programmed, and if it wasn't there'd be a hang when the GPU registers=
- were
-> > > touched? If we've added code to Nouveau/tegradrm to detect that and a=
-void
-> > > the problem, then I guess we can commit these last two patches for 3.=
-19. A
-> > > resend after the 3.18 merge window might help.
-> >=20
-> > A patch that programs VPR was merged into U-Boot (though I don't think
-> > it's made it into master yet).
->=20
-> Assuming you're talking about "ARM: tegra: Disable VPR",that has landed
-> in u-boot master and released as part of v2014.10-rc2 [0]
-
-Oh, good.
-
-> >  I'm not sure we can reasonably check for
-> > that in Nouveau, given that the register is somewhere completely
-> > unrelated. In fact I think the U-Boot patch was triggered by some
-> > discussion about how to solve this and it was decided that it shouldn't
-> > be done in the kernel, but U-Boot should set it up.
-> >=20
-> > That said, perhaps one solution would be to make U-Boot enable the gk20a
-> > device if it's set up the VPR and disable it otherwise?
->=20
-> I guess in that case the vdd-supply should still be added to the dts
-> with u-boot toggling the status field of the node?
-
-Yes, if that's what we decide on then this patch should be modified to
-remove the status =3D "okay" line.
-
-Thierry
-
---8SdtHY/0P4yzaavF
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJUJTlUAAoJEN0jrNd/PrOhW8UP/1Fw3jyTPEPzb8Ek92frb80+
-NS38EG3/8XJSCBtTB+6eVwrgpezPQbEGE/X7Uw+SAnQzqsOv4/R6qz9riJDwRXx5
-bjbCq77qPUlKJVe0b1mctDvZzuWHtVrexF/ohkt6BVz4DNvtV+MktyTTAuKR33x6
-e7r/xNDgDXHt++bym6r5s2G6Wm0gGQfyCsn8EP/rOGENE+mEhA61tLdTlzzXxpPq
-vOkNDDIGNflzYmy5j8i5OsDhJCC91zf0032pFZcyCxZKk2J/0ZRnfEDrLtvrJ1Gr
-60pnjjeqARknW+3UjkBZP65oRDrA0IHWosmAKuaK41glq4B2LvzOdTOqI4eoD6xE
-M6xUwWqgAJ1gZH6h6Xa8vREsAHCWn+BETSk26GtHefL+4ARoZ5ReQc6hLLV3m8AU
-MTDgxYe6yoW/U1D9Fvb8TZkbnHP87Vnf+PEOY4HiDwSTRoZMVogcMqw9CzMAIFUs
-yw6xddlVnFc1Bz6T+KNzCVOeDLnuszE2wj91EXqfMzjCpKzIjeag+xLcYO5kRmtB
-P+Xr6Eq6vTbRX5bvTXEluOHlmPhshDvkHEybaIPQjoZON/N+wcoj6yEbMnNX0cLH
-cfHOUkLgC0UMybB5afgm/n99pPU8vpkiTA3Cyw9aSWNaZ4BYmV6peB0NccGWURY/
-MLLwOaGtnHs6bd4FwUCM
-=rgSB
------END PGP SIGNATURE-----
-
---8SdtHY/0P4yzaavF--
-
---===============2081317446==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-dri-devel mailing list
-dri-devel@lists.freedesktop.org
-http://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---===============2081317446==--
+diff --git a/drivers/staging/android/sw_sync.c b/drivers/staging/android/sw_sync.c
+index a76db3f..6949812 100644
+--- a/drivers/staging/android/sw_sync.c
++++ b/drivers/staging/android/sw_sync.c
+@@ -184,7 +184,8 @@ static long sw_sync_ioctl_create_fence(struct sw_sync_timeline *obj,
+ 	}
+ 
+ 	data.name[sizeof(data.name) - 1] = '\0';
+-	fence = sync_fence_create(data.name, pt);
++	fence = sync_fence_create(data.name,
++				  (struct fence *[]){ &pt->base }, 1);
+ 	if (fence == NULL) {
+ 		sync_pt_free(pt);
+ 		err = -ENOMEM;
+diff --git a/drivers/staging/android/sync.c b/drivers/staging/android/sync.c
+index e7b2e02..1d0d968 100644
+--- a/drivers/staging/android/sync.c
++++ b/drivers/staging/android/sync.c
+@@ -187,28 +187,32 @@ static void fence_check_cb_func(struct fence *f, struct fence_cb *cb)
+ 		wake_up_all(&fence->wq);
+ }
+ 
+-/* TODO: implement a create which takes more that one sync_pt */
+-struct sync_fence *sync_fence_create(const char *name, struct sync_pt *pt)
++struct sync_fence *sync_fence_create(const char *name,
++				     struct fence **fences, int num_fences)
+ {
+-	struct sync_fence *fence;
++	struct sync_fence *sync_fence;
++	int size = offsetof(struct sync_fence, cbs[num_fences]);
++	int i;
+ 
+-	fence = sync_fence_alloc(offsetof(struct sync_fence, cbs[1]), name);
+-	if (fence == NULL)
++	sync_fence = sync_fence_alloc(size, name);
++	if (sync_fence == NULL)
+ 		return NULL;
+ 
+-	fence->num_fences = 1;
+-	atomic_set(&fence->status, 1);
++	sync_fence->num_fences = num_fences;
++	atomic_set(&sync_fence->status, 0);
+ 
+-	fence_get(&pt->base);
+-	fence->cbs[0].sync_pt = &pt->base;
+-	fence->cbs[0].fence = fence;
+-	if (fence_add_callback(&pt->base, &fence->cbs[0].cb,
+-			       fence_check_cb_func))
+-		atomic_dec(&fence->status);
++	for (i = 0; i < num_fences; i++) {
++		struct fence *f = fences[i];
++		struct sync_fence_cb *cb = &sync_fence->cbs[i];
+ 
+-	sync_fence_debug_add(fence);
++		cb->sync_pt = fence_get(f);
++		cb->fence = sync_fence;
++		if (!fence_add_callback(f, &cb->cb, fence_check_cb_func))
++			atomic_inc(&sync_fence->status);
++	}
++	sync_fence_debug_add(sync_fence);
+ 
+-	return fence;
++	return sync_fence;
+ }
+ EXPORT_SYMBOL(sync_fence_create);
+ 
+diff --git a/drivers/staging/android/sync.h b/drivers/staging/android/sync.h
+index 66b0f43..b8ad72c 100644
+--- a/drivers/staging/android/sync.h
++++ b/drivers/staging/android/sync.h
+@@ -246,13 +246,14 @@ void sync_pt_free(struct sync_pt *pt);
+ 
+ /**
+  * sync_fence_create() - creates a sync fence
+- * @name:	name of fence to create
+- * @pt:		sync_pt to add to the fence
++ * @name:	name of the sync fence to create
++ * @fences:	fences to add to the sync fence
++ * @num_fences:	the number of fences in the @fences array
+  *
+- * Creates a fence containg @pt.  Once this is called, the fence takes
+- * ownership of @pt.
++ * Creates a sync fence from an array of drm fences. Takes refs to @fences.
+  */
+-struct sync_fence *sync_fence_create(const char *name, struct sync_pt *pt);
++struct sync_fence *sync_fence_create(const char *name,
++				     struct fence **fences, int num_fences);
+ 
+ /*
+  * API for sync_fence consumers
+diff --git a/drivers/staging/android/sync_debug.c b/drivers/staging/android/sync_debug.c
+index 257fc91..2d8873e 100644
+--- a/drivers/staging/android/sync_debug.c
++++ b/drivers/staging/android/sync_debug.c
+@@ -81,33 +81,33 @@ static const char *sync_status_str(int status)
+ 	return "error";
+ }
+ 
+-static void sync_print_pt(struct seq_file *s, struct sync_pt *pt, bool fence)
++static void sync_print_pt(struct seq_file *s, struct fence *pt, bool fence)
+ {
+ 	int status = 1;
+-	struct sync_timeline *parent = sync_pt_parent(pt);
+ 
+-	if (fence_is_signaled_locked(&pt->base))
+-		status = pt->base.status;
++	if (fence_is_signaled_locked(pt))
++		status = pt->status;
+ 
+-	seq_printf(s, "  %s%spt %s",
+-		   fence ? parent->name : "",
+-		   fence ? "_" : "",
+-		   sync_status_str(status));
++	if (fence)
++		seq_printf(s, "  %d_pt %s", pt->context,
++			   sync_status_str(status));
++	else
++		seq_printf(s, "  pt %s", sync_status_str(status));
+ 
+ 	if (status <= 0) {
+-		struct timeval tv = ktime_to_timeval(pt->base.timestamp);
++		struct timeval tv = ktime_to_timeval(pt->timestamp);
+ 
+ 		seq_printf(s, "@%ld.%06ld", tv.tv_sec, tv.tv_usec);
+ 	}
+ 
+-	if (parent->ops->timeline_value_str &&
+-	    parent->ops->pt_value_str) {
++	if (pt->ops->timeline_value_str &&
++	    pt->ops->fence_value_str) {
+ 		char value[64];
+ 
+-		parent->ops->pt_value_str(pt, value, sizeof(value));
++		pt->ops->fence_value_str(pt, value, sizeof(value));
+ 		seq_printf(s, ": %s", value);
+ 		if (fence) {
+-			parent->ops->timeline_value_str(parent, value,
++			pt->ops->timeline_value_str(pt, value,
+ 						    sizeof(value));
+ 			seq_printf(s, " / %s", value);
+ 		}
+@@ -121,7 +121,8 @@ static void sync_print_obj(struct seq_file *s, struct sync_timeline *obj)
+ 	struct list_head *pos;
+ 	unsigned long flags;
+ 
+-	seq_printf(s, "%s %s", obj->name, obj->ops->driver_name);
++	seq_printf(s, "%d %s %s", obj->context, obj->name,
++		   obj->ops->driver_name);
+ 
+ 	if (obj->ops->timeline_value_str) {
+ 		char value[64];
+@@ -136,7 +137,7 @@ static void sync_print_obj(struct seq_file *s, struct sync_timeline *obj)
+ 	list_for_each(pos, &obj->child_list_head) {
+ 		struct sync_pt *pt =
+ 			container_of(pos, struct sync_pt, child_list);
+-		sync_print_pt(s, pt, false);
++		sync_print_pt(s, &pt->base, false);
+ 	}
+ 	spin_unlock_irqrestore(&obj->child_list_lock, flags);
+ }
+@@ -151,11 +152,7 @@ static void sync_print_fence(struct seq_file *s, struct sync_fence *fence)
+ 		   sync_status_str(atomic_read(&fence->status)));
+ 
+ 	for (i = 0; i < fence->num_fences; ++i) {
+-		struct sync_pt *pt =
+-			container_of(fence->cbs[i].sync_pt,
+-				     struct sync_pt, base);
+-
+-		sync_print_pt(s, pt, true);
++		sync_print_pt(s, fence->cbs[i].sync_pt, true);
+ 	}
+ 
+ 	spin_lock_irqsave(&fence->wq.lock, flags);
+-- 
+1.8.1.5
