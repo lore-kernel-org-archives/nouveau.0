@@ -1,15 +1,11 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [5/5] ARM: tegra: jetson-tk1: enable GK20A GPU
-Date: Fri, 26 Sep 2014 11:59:29 +0200
-Message-ID: <20140926095928.GJ31106@ulmo>
-References: <1400491450-19223-6-git-send-email-acourbot@nvidia.com>
- <20140925132717.GA13579@dusk.luon.net>
- <54243931.6050804@wwwdotorg.org> <20140925164109.GA30382@ulmo>
- <542459C5.9060505@wwwdotorg.org>
+From: Lauri Peltonen <lpeltonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC] Explicit synchronization for Nouveau
+Date: Fri, 26 Sep 2014 13:00:05 +0300
+Message-ID: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0241855966=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <542459C5.9060505-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,107 +15,144 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
-Cc: Sjoerd Simons <sjoerd-FGvqe4uplSY@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, Colin Cross <ccross-z5hGa2qSFaRBDgjK7y7TUQ@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: Stephen Warren <swarren-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, James Jones <jajones-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <kadams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============0241855966==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="wRokNccIwvMzawGl"
-Content-Disposition: inline
+Hi guys,
 
 
---wRokNccIwvMzawGl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'd like to start a new thread about explicit fence synchronization.  This time
+with a Nouveau twist. :-)
 
-On Thu, Sep 25, 2014 at 12:07:01PM -0600, Stephen Warren wrote:
-> On 09/25/2014 10:41 AM, Thierry Reding wrote:
-> >On Thu, Sep 25, 2014 at 09:48:01AM -0600, Stephen Warren wrote:
-> >>On 09/25/2014 07:27 AM, Sjoerd Simons wrote:
-> >>>Playing a bit with todays linux-next on my jetson, it seems this patch=
- is
-> >>>still required for enabling the GPU. Is there anything blocking it (fi=
-rmware
-> >>>not available yet in liux-firmware?)
-> >>
-> >>I think initially I was waiting for the DRM patch "drm/nouvea: support =
-for
-> >>probing platform devices" to be applied, but it looks like that's been
-> >>applied already, so only patches 4 and 5 in this series are still
-> >>outstanding.
-> >>
-> >>Alex, wasn't there also some issue where the VPR register had to be
-> >>programmed, and if it wasn't there'd be a hang when the GPU registers w=
-ere
-> >>touched? If we've added code to Nouveau/tegradrm to detect that and avo=
-id
-> >>the problem, then I guess we can commit these last two patches for 3.19=
-=2E A
-> >>resend after the 3.18 merge window might help.
-> >
-> >A patch that programs VPR was merged into U-Boot (though I don't think
-> >it's made it into master yet). I'm not sure we can reasonably check for
-> >that in Nouveau, given that the register is somewhere completely
-> >unrelated. In fact I think the U-Boot patch was triggered by some
-> >discussion about how to solve this and it was decided that it shouldn't
-> >be done in the kernel, but U-Boot should set it up.
-> >
-> >That said, perhaps one solution would be to make U-Boot enable the gk20a
-> >device if it's set up the VPR and disable it otherwise?
->=20
-> For that to work, we'd need the DT to say status=3D"disabled" by default =
-for
-> the GPU, and for the fixed U-Boot (and indeed every other bootloader...) =
-to
-> enable the GPU node. This would allow people with old versions of U-Boot =
-(or
-> other bootloaders) to continue to boot. This means bootloaders would only
-> have to set status=3D"okay", but never have to set status=3D"disabled", w=
-hich at
-> least simplifies them a tiny bit.
+First, let me define what I understand by implicit/explicit sync:
 
-Sounds like a reasonable requirement on bootloaders to me. If it's clear
-that the device will not work without an initialized VPR region, part of
-the "boot protocol" should be for the bootloader to tell the kernel when
-it's safe to enable the GPU.
+Implicit synchronization
+* Fences are attached to buffers
+* Kernel manages fences automatically based on buffer read/write access
 
-Thierry
+Explicit synchronization
+* Fences are passed around independently
+* Kernel takes and emits fences to/from user space when submitting work
 
---wRokNccIwvMzawGl
-Content-Type: application/pgp-signature
+Implicit synchronization is already implemented in open source drivers, and
+works well for most use cases.  I don't seek to change any of that.  My
+proposal aims at allowing some drm drivers to operate in explicit sync mode to
+get maximal performance, while still remaining fully compatible with the
+implicit paradigm.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+I will try to explain why I think we should support the explicit model as well.
 
-iQIcBAEBAgAGBQJUJTkAAAoJEN0jrNd/PrOhLDMP/j2bvIxUrl4tn8PZWxxaypQ4
-cnMqIBWk1qulgTjtAvPcpb2PAODIK0cr1ZiyVWNBkICZ5nGLM8dlY5SsvKVCamaH
-2Khq5e/O8YqV+48e+mpoKB9erNr7V/p7U+6zN9/k9xk9cCLCQOwvC85dsViQfGB3
-e0VJj9wkwnaep6kfZBnY6NLQAVuSgepNaQdCswigY0eH8tFq16ugqYmvhpe89FYX
-JWYMMjMhsMclQ7Hic0tnyjH5qMgB/T/aT0b/6l5jw7Hx7KoeZ5InumYbrMSTIJPn
-bHNiQZcqTfv1A9nz0nEls/VXoiTKOJPPbw7jyqZf7NMP/6rmkPXJsxnBCuTTaWuy
-OiZs1vY2TUee7zopktkbanaQaYxOvkol83a1IVhjFZ0n2BOWEwGMr8mA30cYwfRl
-tCkz7AiI92dqCj5lRTzEJU0OH/hYi7dSfbhMR20kDSxyLjgfjkZYTm6qboXR6nHN
-hgx/hbmVG3vc/wMOxTeJKfNsAtO7AoKvjMPnX2IGotCnvIHAl+XFMcFemp7lcTZ8
-aQZQxfDFTmTdp8oIV8buKcSKa6RIFOcipd4d1nSXdiSgnPTMChF7z0s3JGylzcZr
-m/Pg/k1NgKuqERNbSri6TjQPGL7F+2pXw8v33VqSTZ2A8e7ZVeqIIjlFGSs3GOd1
-x4dfRN73arFv0jKCsTmd
-=VG5A
------END PGP SIGNATURE-----
 
---wRokNccIwvMzawGl--
+1. Bindless graphics
 
---===============0241855966==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Bindless graphics is a central concept when trying to reduce the OpenGL driver
+overhead.  The idea is that the application can bind a large set of buffers to
+the working set up front using extensions such as GL_ARB_bindless_texture, and
+they remain resident until the application releases them (note that compute
+APIs have typically similar semantics).  These working sets can be huge,
+hundreds or even thousands of buffers, so we would like to opt out from the
+per-submit overhead of acquiring locks, waiting for fences, and storing fences.
+Automatically synchronizing these working sets in kernel will also prevent
+parallelism between channels that are sharing the working set (in fact sharing
+just one buffer from the working set will cause the jobs of the two channels to
+be serialized).
 
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
+2. Evolution of graphics APIs
 
---===============0241855966==--
+The graphics API evolution seems to be going to a direction where game engine
+and middleware vendors demand more control over work submission and
+synchronization.  We expect that this trend will continue, and more and more
+synchronization decisions will be pushed to the API level.  OpenGL and EGL
+already provide good explicit command stream level synchronization primitives:
+glFenceSync and EGL_KHR_wait_sync.  Their use is also encouraged - for example
+EGL_KHR_image_base spec clearly states that the application is responsible for
+synchronizing accesses to EGLImages.  If the API that is exposed to developers
+gives the control over synchronization to the developer, then implicit waits
+that are inserted by the kernel are unnecessary and unexpected, and can
+severely hurt performance.  It also makes it easy for the developer to write
+code that happens to work on Linux because of implicit sync, but will fail on
+other platforms.
+
+3. Suballocation
+
+Using user space suballocation can help reduce the overhead when a large number
+of small textures are used.  Synchronizing suballocated surfaces implicitly in
+kernel doesn't make sense - many channels should be able to access the same
+kernel-level buffer object simultaneously.
+
+4. Buffer sharing complications
+
+This is not really an argument for explicit sync as such, but I'd like to point
+out that sharing buffers across SoC engines is often much more complex than
+just exporting and importing a dma-buf and waiting for the dma-buf fences.
+Sometimes we need to do color format or tiling layout conversion.  Sometimes,
+at least on Tegra, we need to decompress buffers when we pass them from the GPU
+to an engine that doesn't support framebuffer compression.  These things are
+not uncommon, particularly when we have SoC's that combine licensed IP blocks
+from different vendors.  My point is that user space is already heavily
+involved when sharing buffers between drivers, and giving it some more control
+over synchronization is not adding that much complexity.
+
+
+Because of the above arguments, I think it makes sense to let some user space
+drm drivers opt out from implicit synchronization, while allowing them to still
+remain fully compatible with the rest of the drm world that uses implicit
+synchronization.  In practice, this would require three things:
+
+(1) Support passing fences (that are not tied to buffer objects) between kernel
+    and user space.
+
+(2) Stop automatically storing fences to the buffers that user space wants to
+    synchronize explicitly.
+
+(3) Allow user space to attach an explicit fence to dma-buf when exporting to
+    another driver that uses implicit sync.
+
+There are still some open issues beyond these.  For example, can we skip
+acquiring the ww mutex for explicitly synchronized buffers?  I think we could
+eventually, at least on unified memory systems where we don't need to migrate
+between heaps (our downstream Tegra GPU driver does not lock any buffers at
+submit, it just grabs refcounts for hw).  Another quirk is that now Nouveau
+waits on the buffer fences when closing the gem object to ensure that it
+doesn't unmap too early.  We need to rework that for explicit sync, but that
+shouldn't be difficult.
+
+I have written a prototype that demonstrates (1) by adding explicit sync fd
+support to Nouveau.  It's not a lot of code, because I only use a relatively
+small subset of the android sync driver functionality.  Thanks to Maarten's
+rewrite, all I need to do is to allow creating a sync_fence from a drm fence in
+order to pass it to user space.  I don't need to use sync_pt or sync_timeline,
+or fill in sync_timeline_ops.
+
+I can see why the upstream has been reluctant to de-stage the android sync
+driver in its current form, since (even though it now builds on struct fence)
+it still duplicates some of the drm fence concepts.  I'd like to think that my
+patches only use the parts of the android sync driver that genuinely are
+missing from the drm fence model: allowing user space to operate on fence
+objects that are independent of buffer objects.
+
+The last two patches are mocks that show how (2) and (3) might work out.  I
+haven't done any testing with them yet.  Before going any further, I'd like to
+get your feedback.  Can you see the benefits of explicit sync as an alternative
+synchronization model?  Do you think we could use the android sync_fence for
+passing fences between user space?  Or did you have something else in mind for
+explicit sync in the drm world?
+
+
+Thanks,
+Lauri
+
+
+Lauri Peltonen (7):
+  android: Support creating sync fence from drm fences
+  drm/nouveau: Split nouveau_fence_sync
+  drm/nouveau: Add fence fd helpers
+  drm/nouveau: Support fence fd's at kickoff
+  libdrm: nouveau: Support fence fds
+  drm/nouveau: Support marking buffers for explicit sync
+  drm/prime: Support explicit fence on export
+
+-- 
+1.8.1.5
