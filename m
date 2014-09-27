@@ -1,124 +1,109 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: NVIDIA Falcon Microprocessor Security
-Date: Fri, 26 Sep 2014 18:02:50 -0700
-Message-ID: <20140927010250.GD7602@parker.nvidia.com>
-References: <20140926171939.GE6384@parker.nvidia.com>
- <CACAvsv7WgxpE5qK=9tnebhj-JEt+epOfHzqoK+wx+_yGXV-jFw@mail.gmail.com>
+From: Maarten Lankhorst <maarten.lankhorst@canonical.com>
+Subject: Re: [RFC PATCH 7/7] drm/prime: Support explicit fence on export
+Date: Sat, 27 Sep 2014 08:49:39 +0200
+Message-ID: <54265E03.80705@canonical.com>
+References: <1411725612-10455-1-git-send-email-lpeltonen@nvidia.com>
+ <1411725612-10455-8-git-send-email-lpeltonen@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CACAvsv7WgxpE5qK=9tnebhj-JEt+epOfHzqoK+wx+_yGXV-jFw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1411725612-10455-8-git-send-email-lpeltonen@nvidia.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lauri Peltonen <lpeltonen@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Colin Cross <ccross@android.com>, Dave Airlie <airlied@redhat.com>
+Cc: Stephen Warren <swarren@nvidia.com>, nouveau@lists.freedesktop.org, James Jones <jajones@nvidia.com>, dri-devel@lists.freedesktop.org, Thierry Reding <treding@nvidia.com>, Ken Adams <kadams@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-On Sat, Sep 27, 2014 at 10:13:43AM +1000, Ben Skeggs wrote:
-> On Sat, Sep 27, 2014 at 3:19 AM, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> >
-> > Hi, all.
-> Hey Andy,
+
+
+On 26-09-14 12:00, Lauri Peltonen wrote:
+> Allow user space to provide an explicit sync fence fd when exporting
+> a dma-buf from gem handle.  The fence will be stored as the explicit
+> fence to the reservation object.
 > 
-> >
-> > Below is a link to a brief document describing some changes in NVIDIA
-> > Falcon processors ("fuc", in Nouveau-speak, IIUC)
-> We started trying to use your names where we know them a while back.
-> I personally think of "fuc" as short-hand for "falcon ucode" now.
-
-Cool.  You guys are better at naming things than we are, but I'm happy
-to have a common language.
-
-> > that happened in
-> > Maxwell: certain aspects of the chip will only be available to Falcon
-> > firmware images signed by NVIDIA.  So far, the set of restricted things
-> > is pretty small, but I expect this list will slowly grow over future
-> > hardware generations.
-> >
-> >     ftp://download.nvidia.com/open-gpu-doc/Falcon-Security/1/Falcon-Security.html
-> >
-> > I suspect this will not be the most popular decision, but it is the
-> > direction the hardware is taking.
-> Indeed, it's a rather inconvenient and frustrating change.  But it's
-> what we have to deal with now, so moving along :)
-
-Thanks for being understanding.  I also expect if there are any holes
-in the signed microcode validation scheme, you all will find them.
-
-> > On a slightly different note, we'd like to work out the best way to
-> > make NVIDIA firmware images separately (from the rest of the driver)
-> > available and officially redistributable for use by Nouveau.  At this
-> > point, it is mostly just a release engineering question, but I don't think
-> > we'll have a lot of influence over the content: the engineers working on
-> > Falcon microcode assume it changes in lock-step with NVIDIA's nvidia.ko,
-> > so there are no backwards compatibility guarantees.  How painful has
-> > the lack of backwards compatibility been for Nouveau thus far?
-> So far the use of your FECS/GPCCS ucode has been treated as a "last
-> resort" deal, with a strong preference of using our own when we
-> finally manage to get it working.  We haven't really changed the
-> process much over time, and it's probably luck that it's kept
-> "working" to an extent.  The simplest thing that could be done to ease
-> this and not enforce some kind of API, is to version the firmware
-> images in some way, and we can support multiple paths if/when we need
-> to.
-
-Yes, I'm sure we can work out some sort of version number.  If nothing
-else, the firmware binaries have a perforce changelist number associated
-with them, but I'll have to check if that is currently stamped in the
-binary, or if that is in a data structure we store along side the binary.
-
-> One immediate question I have is that given that FECS/GPCCS pretty
-> much have zero permissions already outside of the NV_PGRAPH range,
-> what restrictions are in place there that would prevent us from
-> continuing to use our own ucode on these falcons?
-
-I'm not aware of any restrictions, off hand, but I'll see what I can find out.
-
-To me, it seems reasonable for Nouveau to continue to use reimplemented
-Falcon firmware until something specific comes up that prevents doing so.
-
-> > If NVIDIA just released firmware binaries along side each NVIDIA GPU driver
-> > release, would it be reasonable for Nouveau to pick and choose which
-> > firmware you'd like promoted to, e.g.,
-> >
-> >     http://git.kernel.org/cgit/linux/kernel/git/firmware/linux-firmware.git/tree/
-> >
-> > ?
-> That would be fine.  I'm somewhat concerned about the possibility we
-> may get "crippled" ucode compared to what you guys are using, has
-> there been any discussion on this?
-
-I don't foresee that.  It seems most desirable for NVIDIA to publish
-the exact same firmware binaries we are using within the proprietary
-driver, so that the published binaries benefit from the testing we do
-on the proprietary driver.  I wouldn't see a benefit to "crippling".
-
-Thanks,
-- Andy
-
-
-> > Anyway, this might be a good topic to discuss at XDC.  It looks I'll
-> > see a lot of you then; I'm looking forward to it!
-> Indeed it will!  Look forward to seeing you there :)
->
-> Thanks,
-> Ben.
+> Signed-off-by: Lauri Peltonen <lpeltonen@nvidia.com>
+> ---
+>  drivers/gpu/drm/drm_prime.c | 41 +++++++++++++++++++++++++++++++++--------
+>  include/uapi/drm/drm.h      |  9 ++++++++-
+>  2 files changed, 41 insertions(+), 9 deletions(-)
 > 
-> >
-> > Thanks,
-> > - Andy
-> >
-> >
-> > _______________________________________________
-> > Nouveau mailing list
-> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> > http://lists.freedesktop.org/mailman/listinfo/nouveau
+> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+> index 2807a77..c69df2e 100644
+> --- a/drivers/gpu/drm/drm_prime.c
+> +++ b/drivers/gpu/drm/drm_prime.c
+> @@ -28,8 +28,10 @@
+>  
+>  #include <linux/export.h>
+>  #include <linux/dma-buf.h>
+> +#include <linux/reservation.h>
+>  #include <drm/drmP.h>
+>  #include "drm_internal.h"
+> +#include "../../staging/android/sync.h"
+>  
+>  /*
+>   * DMA-BUF/GEM Object references and lifetime overview:
+> @@ -329,7 +331,7 @@ static const struct dma_buf_ops drm_gem_prime_dmabuf_ops =  {
+>   * drm_gem_prime_export - helper library implemention of the export callback
+>   * @dev: drm_device to export from
+>   * @obj: GEM object to export
+> - * @flags: flags like DRM_CLOEXEC
+> + * @flags: flags like DRM_CLOEXEC or DRM_SYNC_FD
+>   *
+>   * This is the implementation of the gem_prime_export functions for GEM drivers
+>   * using the PRIME helpers.
+> @@ -385,7 +387,7 @@ static struct dma_buf *export_and_register_object(struct drm_device *dev,
+>   * @dev: dev to export the buffer from
+>   * @file_priv: drm file-private structure
+>   * @handle: buffer handle to export
+> - * @flags: flags like DRM_CLOEXEC
+> + * @flags: flags like DRM_CLOEXEC or DRM_SYNC_FD
+>   * @prime_fd: pointer to storage for the fd id of the create dma-buf
+>   *
+>   * This is the PRIME export function which must be used mandatorily by GEM
+> @@ -401,6 +403,24 @@ int drm_gem_prime_handle_to_fd(struct drm_device *dev,
+>  	struct drm_gem_object *obj;
+>  	int ret = 0;
+>  	struct dma_buf *dmabuf;
+> +	struct fence *fence = NULL;
+> +
+> +	if (flags & DRM_SYNC_FD) {
+> +#ifdef CONFIG_SYNC
+> +		struct sync_fence *sf = sync_fence_fdget(*prime_fd);
+> +		if (!sf)
+> +			return -ENOENT;
+> +		if (sf->num_fences != 1) {
+> +			sync_fence_put(sf);
+> +			return -EINVAL;
+> +		}
+> +		fence = fence_get(sf->cbs[0].sync_pt);
+> +		sync_fence_put(sf);
+> +		flags &= ~DRM_SYNC_FD;
+> +#else
+> +		return -ENODEV;
+> +#endif
+> +	}
+>  
+>  	mutex_lock(&file_priv->prime.lock);
+>  	obj = drm_gem_object_lookup(dev, file_priv, handle);
+> @@ -453,6 +473,14 @@ out_have_obj:
+>  		goto fail_put_dmabuf;
+>  
+>  out_have_handle:
+> +	if (fence) {
+> +		if (!dmabuf->resv) {
+> +			ret = -ENODEV;
+> +			goto fail_put_dmabuf;
+> +		}
+This is never true. A default resv gets allocated, see dma_buf's create function.
+
+~Maarten
+
+~Maarten
