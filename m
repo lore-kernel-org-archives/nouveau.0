@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Sat, 27 Sep 2014 17:11:10 +0000
-Message-ID: <bug-70354-8800-nu5rYF9JUp@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Sun, 28 Sep 2014 01:36:59 +0000
+Message-ID: <bug-27501-8800-KJa4t43iGD@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0582869656=="
+Content-Type: multipart/mixed; boundary="===============1437791555=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0582869656==
-Content-Type: multipart/alternative; boundary="1411837870.4C54c75.3404"; charset="us-ascii"
+--===============1437791555==
+Content-Type: multipart/alternative; boundary="1411868219.f86FF6.27437"; charset="us-ascii"
 
 
---1411837870.4C54c75.3404
-Date: Sat, 27 Sep 2014 17:11:10 +0000
+--1411868219.f86FF6.27437
+Date: Sun, 28 Sep 2014 01:36:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #33 from Karol Herbst <karolherbst-BUHhN+a2lJ4@public.gmane.org> ---
-Created attachment 106965
-  --> https://bugs.freedesktop.org/attachment.cgi?id=106965&action=edit
-mmiotrace when failing
+--- Comment #39 from thomas <gurutonic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Pierre,
 
-the diff between both traces is quite interessting. Both happend on the same
-machine, the same kernel and the same nouveau.ko file on the same gpu.
+I have tested your patch with the 9400M in my macbookpro 5,2. The card boots
+correctly with acceleration enabled, and loads GDM. GDM looks completely
+correct, but hangs on login with a cursor on a grey screen. It's possible that
+LXDE, KDE, or some other DE might work, but gnome-shell never loads. I will try
+slim/lxde when I get a chance.
 
-Especially the part in the failing trace starting with this:
+At this point I can switch back to VT where I notice some nouveau errors in
+dmesg. Killing GDM (and x11 with it) produces a kernel panic.
 
-"[0] 0.000000, FB32 28c <= 1
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-[0] 0.000000, FB32 219010 => 0
-... until timeout
-"
+Next I booted with the 9600GT with acceleration disabled. The display looks
+correct with efifb, but loading nouveau scrambles the VT.
 
-because this part never happen in the "working" trace
+Thank you for your efforts!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1411837870.4C54c75.3404
-Date: Sat, 27 Sep 2014 17:11:10 +0000
+--1411868219.f86FF6.27437
+Date: Sun, 28 Sep 2014 01:36:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,38 +66,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c33">Comment # 33</a>
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c39">Comment # 39</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW --- - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:karolherbst&#64;me.com" title="Karol Herbst &lt;karolherbst&#64;me.com&gt;"> <span class="fn">Karol Herbst</span></a>
+   title="NEW --- - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:gurutonic&#64;gmail.com" title="thomas &lt;gurutonic&#64;gmail.com&gt;"> <span class="fn">thomas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=106965" name="attach_106965" title="mmiotrace when failing">attachment 106965</a> <a href="attachment.cgi?id=106965&amp;action=edit" title="mmiotrace when failing">[details]</a></span>
-mmiotrace when failing
+        <pre>Pierre,
 
-the diff between both traces is quite interessting. Both happend on the same
-machine, the same kernel and the same nouveau.ko file on the same gpu.
+I have tested your patch with the 9400M in my macbookpro 5,2. The card boots
+correctly with acceleration enabled, and loads GDM. GDM looks completely
+correct, but hangs on login with a cursor on a grey screen. It's possible that
+LXDE, KDE, or some other DE might work, but gnome-shell never loads. I will try
+slim/lxde when I get a chance.
 
-Especially the part in the failing trace starting with this:
+At this point I can switch back to VT where I notice some nouveau errors in
+dmesg. Killing GDM (and x11 with it) produces a kernel panic.
 
-&quot;[0] 0.000000, FB32 28c &lt;= 1
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-[0] 0.000000, FB32 219010 =&gt; 0
-... until timeout
-&quot;
+Next I booted with the 9600GT with acceleration disabled. The display looks
+correct with efifb, but loading nouveau scrambles the VT.
 
-because this part never happen in the &quot;working&quot; trace</pre>
+Thank you for your efforts!</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +100,9 @@ because this part never happen in the &quot;working&quot; trace</pre>
     </body>
 </html>
 
---1411837870.4C54c75.3404--
+--1411868219.f86FF6.27437--
 
---===============0582869656==
+--===============1437791555==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +113,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0582869656==--
+--===============1437791555==--
