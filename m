@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 83550] [NVA5] Monitor not restored after resume
  [regression] [bisected]
-Date: Tue, 30 Sep 2014 22:17:36 +0000
-Message-ID: <bug-83550-8800-PNJ50v1HY0@http.bugs.freedesktop.org/>
+Date: Tue, 30 Sep 2014 22:18:42 +0000
+Message-ID: <bug-83550-8800-B7zxwsi4Gg@http.bugs.freedesktop.org/>
 References: <bug-83550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0823508895=="
+Content-Type: multipart/mixed; boundary="===============0284622208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0823508895==
-Content-Type: multipart/alternative; boundary="1412115456.E82BEdc3.29569"; charset="us-ascii"
+--===============0284622208==
+Content-Type: multipart/alternative; boundary="1412115521.67CE3.29918"; charset="us-ascii"
 
 
---1412115456.E82BEdc3.29569
-Date: Tue, 30 Sep 2014 22:17:36 +0000
+--1412115521.67CE3.29918
+Date: Tue, 30 Sep 2014 22:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=83550
 
---- Comment #11 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-3.17.0-0.rc7.git0.2.fc21.x86_64  PASSED
-  i.e.
-3.17.0-0.rc7.git0.1.fc22.x86_64
-  patched with 
-  "disp/nv50: fix dpms regression on certain boards"
-  http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e953
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412115456.E82BEdc3.29569
-Date: Tue, 30 Sep 2014 22:17:36 +0000
+--1412115521.67CE3.29918
+Date: Tue, 30 Sep 2014 22:18:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +52,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5] Monitor not restored after resume [regression] [bisected]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NVA5] Monitor not restored after resume [regression] [bisected]"
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVA5] Monitor not restored after resume [regression] [bisected]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=83550">bug 83550</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-3.17.0-0.rc7.git0.2.fc21.x86_64  PASSED
-  i.e.
-3.17.0-0.rc7.git0.1.fc22.x86_64
-  patched with 
-  &quot;disp/nv50: fix dpms regression on certain boards&quot;
-  <a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e953">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e953</a></pre>
-        </div>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1412115456.E82BEdc3.29569--
+--1412115521.67CE3.29918--
 
---===============0823508895==
+--===============0284622208==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +105,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0823508895==--
+--===============0284622208==--
