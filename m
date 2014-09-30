@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82527] xset dpms force {off, standby,
  suspend} returns after ~20 seconds (GeForce 8400 GS)
-Date: Tue, 30 Sep 2014 11:36:38 +0000
-Message-ID: <bug-82527-8800-uMUrT3OWWm@http.bugs.freedesktop.org/>
+Date: Tue, 30 Sep 2014 11:38:34 +0000
+Message-ID: <bug-82527-8800-uc0WB05uFl@http.bugs.freedesktop.org/>
 References: <bug-82527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1281770486=="
+Content-Type: multipart/mixed; boundary="===============0771230918=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1281770486==
-Content-Type: multipart/alternative; boundary="1412076998.6Ffcb863.3655"; charset="us-ascii"
+--===============0771230918==
+Content-Type: multipart/alternative; boundary="1412077114.17Fa1.4429"; charset="us-ascii"
 
 
---1412076998.6Ffcb863.3655
-Date: Tue, 30 Sep 2014 11:36:38 +0000
+--1412077114.17Fa1.4429
+Date: Tue, 30 Sep 2014 11:38:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82527
 
-michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #9 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-*** Bug 83244 has been marked as a duplicate of this bug. ***
+--- Comment #10 from michael.weirauch-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+My display re-enabe resume issue (#83244) resolved for me with
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e95365a4248d3f58c8663e4513c79273ac704
+which references this ticket. Thus the duplicate marker. Feel free to rectify
+this, if not correctly done.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412076998.6Ffcb863.3655
-Date: Tue, 30 Sep 2014 11:36:38 +0000
+--1412077114.17Fa1.4429
+Date: Tue, 30 Sep 2014 11:38:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,44 +51,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527">bug 82527</a>
-        <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>michael.weirauch&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW --- - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82527">bug 82527</a>
               from <span class="vcard"><a class="email" href="mailto:michael.weirauch&#64;gmail.com" title="michael.weirauch&#64;gmail.com">michael.weirauch&#64;gmail.com</a>
 </span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [nvc3/Quadro2000M] external monitor not activated after resume (EDID checksum is invalid)"
-   href="show_bug.cgi?id=83244">Bug 83244</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>My display re-enabe resume issue (#83244) resolved for me with
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e95365a4248d3f58c8663e4513c79273ac704">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a68e95365a4248d3f58c8663e4513c79273ac704</a>
+which references this ticket. Thus the duplicate marker. Feel free to rectify
+this, if not correctly done.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +79,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1412076998.6Ffcb863.3655--
+--1412077114.17Fa1.4429--
 
---===============1281770486==
+--===============0771230918==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -116,4 +92,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1281770486==--
+--===============0771230918==--
