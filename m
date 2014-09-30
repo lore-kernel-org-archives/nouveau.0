@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84515] [NV96] HDMI audio works,
 	but has audio gaps or pauses
-Date: Tue, 30 Sep 2014 16:16:39 +0000
-Message-ID: <bug-84515-8800-OITWyF6uSk@http.bugs.freedesktop.org/>
+Date: Tue, 30 Sep 2014 18:18:32 +0000
+Message-ID: <bug-84515-8800-pu6zs5Lsq9@http.bugs.freedesktop.org/>
 References: <bug-84515-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0579090148=="
+Content-Type: multipart/mixed; boundary="===============2089700256=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0579090148==
-Content-Type: multipart/alternative; boundary="1412093799.01d61.6448"; charset="us-ascii"
+--===============2089700256==
+Content-Type: multipart/alternative; boundary="1412101111.4Ef871.14973"; charset="us-ascii"
 
 
---1412093799.01d61.6448
-Date: Tue, 30 Sep 2014 16:16:39 +0000
+--1412101111.4Ef871.14973
+Date: Tue, 30 Sep 2014 18:18:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84515
 
---- Comment #4 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I tried to verify if playing a video actually does prevent the gaps, but now I
-find it very hard to reproduce the gaps with the same procedure as they earlier
-came regularly at a half minute intervals.
+Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #5 from Pekka Paalanen <ppaalanen-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I need to get an mmiotrace from the blob doing audio.
+
+< imirkin_> start it up unplugged, then echo a mark, and then plug it in
+< imirkin_> that _should_ be enough
+< imirkin_> oh, and make sure stuff displays on there obviously
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412093799.01d61.6448
-Date: Tue, 30 Sep 2014 16:16:39 +0000
+--1412101111.4Ef871.14973
+Date: Tue, 30 Sep 2014 18:18:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +58,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV96] HDMI audio works, but has audio gaps or pauses"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84515">bug 84515</a>
+        <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] HDMI audio works, but has audio gaps or pauses"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84515#c4">Comment # 4</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV96] HDMI audio works, but has audio gaps or pauses"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84515#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW --- - [NV96] HDMI audio works, but has audio gaps or pauses"
+          bz_status_NEEDINFO "
+   title="NEEDINFO --- - [NV96] HDMI audio works, but has audio gaps or pauses"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84515">bug 84515</a>
               from <span class="vcard"><a class="email" href="mailto:ppaalanen&#64;gmail.com" title="Pekka Paalanen &lt;ppaalanen&#64;gmail.com&gt;"> <span class="fn">Pekka Paalanen</span></a>
 </span></b>
-        <pre>I tried to verify if playing a video actually does prevent the gaps, but now I
-find it very hard to reproduce the gaps with the same procedure as they earlier
-came regularly at a half minute intervals.</pre>
+        <pre>I need to get an mmiotrace from the blob doing audio.
+
+&lt; imirkin_&gt; start it up unplugged, then echo a mark, and then plug it in
+&lt; imirkin_&gt; that _should_ be enough
+&lt; imirkin_&gt; oh, and make sure stuff displays on there obviously</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +107,9 @@ came regularly at a half minute intervals.</pre>
     </body>
 </html>
 
---1412093799.01d61.6448--
+--1412101111.4Ef871.14973--
 
---===============0579090148==
+--===============2089700256==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +120,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0579090148==--
+--===============2089700256==--
