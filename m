@@ -1,7 +1,7 @@
 From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 5/9] fb/ramnva3: Reclocking script for DDR3
-Date: Thu,  2 Oct 2014 18:01:54 +0200
-Message-ID: <1412265718-1215-6-git-send-email-rspliet@eclipso.eu>
+Subject: [PATCH 4/9] fb/ramnva3: Ressurect timing calculation code
+Date: Thu,  2 Oct 2014 18:01:53 +0200
+Message-ID: <1412265718-1215-5-git-send-email-rspliet@eclipso.eu>
 References: <1412011639-3210-1-git-send-email-rspliet@eclipso.eu>
  <1412265718-1215-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
@@ -24,510 +24,213 @@ List-Id: nouveau.vger.kernel.org
 
 Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 ---
- .../drm/nouveau/core/include/subdev/bios/ramcfg.h  |   1 +
- drivers/gpu/drm/nouveau/core/subdev/bios/rammap.c  |   1 +
- drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c   | 292 +++++++++++++++------
- 3 files changed, 219 insertions(+), 75 deletions(-)
+ .../drm/nouveau/core/include/subdev/bios/ramcfg.h  | 20 ++++++
+ drivers/gpu/drm/nouveau/core/subdev/bios/timing.c  | 42 +++++++++--
+ drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c   | 84 +++++++++++++++++++---
+ 3 files changed, 132 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/core/include/subdev/bios/ramcfg.h b/drivers/gpu/drm/nouveau/core/include/subdev/bios/ramcfg.h
-index 8ead274..4a0e0ce 100644
+index ae3f17d..8ead274 100644
 --- a/drivers/gpu/drm/nouveau/core/include/subdev/bios/ramcfg.h
 +++ b/drivers/gpu/drm/nouveau/core/include/subdev/bios/ramcfg.h
-@@ -45,6 +45,7 @@ struct nvbios_ramcfg {
- 			unsigned ramcfg_10_02_20:1;
- 			unsigned ramcfg_10_DLLoff:1;
- 			unsigned ramcfg_10_03_0f:4;
-+			unsigned ramcfg_10_04_01:1;
- 			unsigned ramcfg_10_05:8;
- 			unsigned ramcfg_10_06:8;
- 			unsigned ramcfg_10_07:8;
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/rammap.c b/drivers/gpu/drm/nouveau/core/subdev/bios/rammap.c
-index 24dc9b3..c568522 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/bios/rammap.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/bios/rammap.c
-@@ -164,6 +164,7 @@ nvbios_rammapSp(struct nouveau_bios *bios, u32 data,
- 		p->ramcfg_10_02_20 = (nv_ro08(bios, data + 0x02) & 0x20) >> 5;
- 		p->ramcfg_10_DLLoff = (nv_ro08(bios, data + 0x02) & 0x40) >> 6;
- 		p->ramcfg_10_03_0f = (nv_ro08(bios, data + 0x03) & 0x0f) >> 0;
-+		p->ramcfg_10_04_01 = (nv_ro08(bios, data + 0x04) & 0x01) >> 0;
- 		p->ramcfg_10_05    = (nv_ro08(bios, data + 0x05) & 0xff) >> 0;
- 		p->ramcfg_10_06    = (nv_ro08(bios, data + 0x06) & 0xff) >> 0;
- 		p->ramcfg_10_07    = (nv_ro08(bios, data + 0x07) & 0xff) >> 0;
+@@ -95,9 +95,29 @@ struct nvbios_ramcfg {
+ 	union {
+ 		struct {
+ 			unsigned timing_10_WR:8;
++			unsigned timing_10_WTR:8;
+ 			unsigned timing_10_CL:8;
++			unsigned timing_10_RC:8;
++			/*empty: 4 */
++			unsigned timing_10_RFC:8;        /* Byte 5 */
++			/*empty: 6 */
++			unsigned timing_10_RAS:8;        /* Byte 7 */
++			/*empty: 8 */
++			unsigned timing_10_RP:8;         /* Byte 9 */
++			unsigned timing_10_RCDRD:8;
++			unsigned timing_10_RCDWR:8;
++			unsigned timing_10_RRD:8;
++			unsigned timing_10_13:8;
+ 			unsigned timing_10_ODT:3;
++			/* empty: 15 */
++			unsigned timing_10_16:8;
++			/* empty: 17 */
++			unsigned timing_10_18:8;
+ 			unsigned timing_10_CWL:8;
++			unsigned timing_10_20:8;
++			unsigned timing_10_21:8;
++			/* empty: 22, 23 */
++			unsigned timing_10_24:8;
+ 		};
+ 		struct {
+ 			unsigned timing_20_2e_03:2;
+diff --git a/drivers/gpu/drm/nouveau/core/subdev/bios/timing.c b/drivers/gpu/drm/nouveau/core/subdev/bios/timing.c
+index 46d955e..8521eca 100644
+--- a/drivers/gpu/drm/nouveau/core/subdev/bios/timing.c
++++ b/drivers/gpu/drm/nouveau/core/subdev/bios/timing.c
+@@ -93,10 +93,44 @@ nvbios_timingEp(struct nouveau_bios *bios, int idx,
+ 	p->timing_hdr = *hdr;
+ 	switch (!!data * *ver) {
+ 	case 0x10:
+-		p->timing_10_WR = nv_ro08(bios, data + 0x00);
+-		p->timing_10_CL = nv_ro08(bios, data + 0x02);
+-		p->timing_10_ODT = nv_ro08(bios, data + 0x0e) & 0x07;
+-		p->timing_10_CWL = nv_ro08(bios, data + 0x13);
++		p->timing_10_WR    = nv_ro08(bios, data + 0x00);
++		p->timing_10_WTR   = nv_ro08(bios, data + 0x01);
++		p->timing_10_CL    = nv_ro08(bios, data + 0x02);
++		p->timing_10_RC    = nv_ro08(bios, data + 0x03);
++		p->timing_10_RFC   = nv_ro08(bios, data + 0x05);
++		p->timing_10_RAS   = nv_ro08(bios, data + 0x07);
++		p->timing_10_RP    = nv_ro08(bios, data + 0x09);
++		p->timing_10_RCDRD = nv_ro08(bios, data + 0x0a);
++		p->timing_10_RCDWR = nv_ro08(bios, data + 0x0b);
++		p->timing_10_RRD   = nv_ro08(bios, data + 0x0c);
++		p->timing_10_13    = nv_ro08(bios, data + 0x0d);
++		p->timing_10_ODT   = nv_ro08(bios, data + 0x0e) & 0x07;
++
++		p->timing_10_24  = 0xff;
++		p->timing_10_21  = 0;
++		p->timing_10_20  = 0;
++		p->timing_10_CWL = 0;
++		p->timing_10_18  = 0;
++		p->timing_10_16  = 0;
++
++		switch (min_t(u8, *hdr, 25)) {
++		case 25:
++			p->timing_10_24  = nv_ro08(bios, data + 0x18);
++		case 24:
++		case 23:
++		case 22:
++			p->timing_10_21  = nv_ro08(bios, data + 0x15);
++		case 21:
++			p->timing_10_20  = nv_ro08(bios, data + 0x14);
++		case 20:
++			p->timing_10_CWL = nv_ro08(bios, data + 0x13);
++		case 19:
++			p->timing_10_18  = nv_ro08(bios, data + 0x12);
++		case 18:
++		case 17:
++			p->timing_10_16  = nv_ro08(bios, data + 0x10);
++		}
++
+ 		break;
+ 	case 0x20:
+ 		p->timing[0] = nv_ro32(bios, data + 0x00);
 diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-index 07dfbba..7cff2d4 100644
+index 45e8a91..07dfbba 100644
 --- a/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
 +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/ramnva3.c
-@@ -47,6 +47,7 @@ struct nva3_ramfuc {
- 	struct ramfuc base;
- 	struct ramfuc_reg r_0x001610;
- 	struct ramfuc_reg r_0x001700;
-+	struct ramfuc_reg r_0x002504;
- 	struct ramfuc_reg r_0x004000;
- 	struct ramfuc_reg r_0x004004;
- 	struct ramfuc_reg r_0x004018;
-@@ -56,12 +57,14 @@ struct nva3_ramfuc {
- 	struct ramfuc_reg r_0x100200;
- 	struct ramfuc_reg r_0x100210;
- 	struct ramfuc_reg r_0x100220[9];
-+	struct ramfuc_reg r_0x100264;
- 	struct ramfuc_reg r_0x1002d0;
- 	struct ramfuc_reg r_0x1002d4;
- 	struct ramfuc_reg r_0x1002dc;
- 	struct ramfuc_reg r_0x10053c;
- 	struct ramfuc_reg r_0x1005a0;
- 	struct ramfuc_reg r_0x1005a4;
-+	struct ramfuc_reg r_0x100700;
- 	struct ramfuc_reg r_0x100714;
- 	struct ramfuc_reg r_0x100718;
- 	struct ramfuc_reg r_0x10071c;
-@@ -69,6 +72,7 @@ struct nva3_ramfuc {
- 	struct ramfuc_reg r_0x100760;
- 	struct ramfuc_reg r_0x1007a0;
- 	struct ramfuc_reg r_0x1007e0;
-+	struct ramfuc_reg r_0x100da0;
- 	struct ramfuc_reg r_0x10f804;
- 	struct ramfuc_reg r_0x1110e0;
- 	struct ramfuc_reg r_0x111100;
-@@ -403,20 +407,53 @@ nva3_ram_timing_calc(struct nouveau_fb *pfb, u32 *timing)
+@@ -343,6 +343,66 @@ nva3_link_train_fini(struct nouveau_fb *pfb)
+ 		pfb->ram->put(pfb, &ram->ltrain.mem);
  }
- #undef T
  
-+static void
-+nouveau_sddr3_dll_reset(struct nva3_ramfuc *fuc)
++/*
++ * RAM reclocking
++ */
++#define T(t) cfg->timing_10_##t
++static int
++nva3_ram_timing_calc(struct nouveau_fb *pfb, u32 *timing)
 +{
-+	ram_mask(fuc, mr[0], 0x100, 0x100);
-+	ram_nsec(fuc, 1000);
-+	ram_mask(fuc, mr[0], 0x100, 0x000);
-+	ram_nsec(fuc, 1000);
-+}
++	struct nva3_ram *ram = (void *)pfb->ram;
++	struct nvbios_ramcfg *cfg = &ram->base.target.bios;
++	int tUNK_base;
++	u32 cur3, cur7, cur8;
 +
-+static void
-+nouveau_sddr3_dll_disable(struct nva3_ramfuc *fuc, u32 *mr)
-+{
-+	u32 mr1_old = ram_rd32(fuc, mr[1]);
++	cur3 = nv_rd32(pfb, 0x10022c);
++	cur7 = nv_rd32(pfb, 0x10023c);
++	cur8 = nv_rd32(pfb, 0x100240);
 +
-+	if (!(mr1_old & 0x1)) {
-+		ram_wr32(fuc, 0x1002d4, 0x00000001);
-+		ram_wr32(fuc, mr[1], mr[1]);
-+		ram_nsec(fuc, 1000);
-+	}
-+}
++	if (T(CWL) == 0)
++		T(CWL) = ((nv_rd32(pfb, 0x100228) & 0x0f000000) >> 24) + 1;
 +
-+static void
-+nva3_ram_lock_pll(struct nva3_ramfuc *fuc, struct nva3_clock_info *mclk)
-+{
-+	ram_wr32(fuc, 0x004004, mclk->pll);
-+	ram_mask(fuc, 0x004000, 0x00000001, 0x00000001);
-+	ram_mask(fuc, 0x004000, 0x00000010, 0x00000000);
-+	ram_wait(fuc, 0x004000, 0x00020000, 0x00020000, 64000);
-+	ram_mask(fuc, 0x004000, 0x00000010, 0x00000010);
++	tUNK_base =  ((cur7 & 0x00ff0000) >> 16) -
++		     (cur3 & 0x000000ff) - 1;
++
++	timing[0] = (T(RP) << 24 | T(RAS) << 16 | T(RFC) << 8 | T(RC));
++	timing[1] = (T(WR) + 1 + T(CWL)) << 24 |
++		    max_t(u8,T(18), 1) << 16 |
++		    (T(WTR) + 1 + T(CWL)) << 8 |
++		    (5 + T(CL) - T(CWL));
++	timing[2] = (T(CWL) - 1) << 24 |
++		    (T(RRD) << 16) |
++		    (T(RCDWR) << 8) |
++		    T(RCDRD);
++	timing[3] = (cur3 & 0x00ff0000) |
++		    (0x30 + T(CL)) << 24 |
++		    (0xb + T(CL)) << 8 |
++		    (T(CL) - 1);
++	timing[4] = T(20) << 24 |
++		    T(21) << 16 |
++		    T(13) << 8 |
++		    T(13);
++	timing[5] = T(RFC) << 24 |
++		    max_t(u8,T(RCDRD), T(RCDWR)) << 16 |
++		    (T(CWL) + 6) << 8 |
++		    T(RP);
++	timing[6] = (0x5a + T(CL)) << 16 |
++		    (6 - T(CL) + T(CWL)) << 8 |
++		    (0x50 + T(CL) - T(CWL));
++	timing[7] = (cur7 & 0xff000000) |
++		    ((tUNK_base + T(CL)) << 16) |
++		    0x202;
++	timing[8] = cur8 & 0xffffff00;
++
++	nv_debug(pfb, "Entry: 220: %08x %08x %08x %08x\n",
++			timing[0], timing[1], timing[2], timing[3]);
++	nv_debug(pfb, "  230: %08x %08x %08x %08x\n",
++			timing[4], timing[5], timing[6], timing[7]);
++	nv_debug(pfb, "  240: %08x\n", timing[8]);
++	return 0;
 +}
++#undef T
 +
  static int
  nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
  {
- 	struct nouveau_bios *bios = nouveau_bios(pfb);
- 	struct nva3_ram *ram = (void *)pfb->ram;
- 	struct nva3_ramfuc *fuc = &ram->fuc;
-+	struct nva3_ltrain *train = &ram->ltrain;
- 	struct nva3_clock_info mclk;
- 	struct nouveau_ram_data *next;
- 	u8  ver, hdr, cnt, len, strap;
- 	u32 data;
--	u32 r004018, r100760, ctrl;
-+	u32 r004018, r100760, r100da0, r111100, ctrl;
+@@ -356,6 +416,7 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
+ 	u32 r004018, r100760, ctrl;
  	u32 unk714, unk718, unk71c;
  	int ret, i;
- 	u32 timing[9];
-+	bool pll2pll;
++	u32 timing[9];
  
  	next = &ram->base.target;
  	next->freq = freq;
-@@ -427,14 +464,9 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 
- 	/* lookup memory config data relevant to the target frequency */
- 	i = 0;
--	while ((data = nvbios_rammapEp(bios, i++, &ver, &hdr, &cnt, &len,
--				      &next->bios))) {
--		if (freq / 1000 >= next->bios.rammap_min &&
--		    freq / 1000 <= next->bios.rammap_max)
--			break;
--	}
--
--	if (!data || ver != 0x10 || hdr < 0x0e) {
-+	data = nvbios_rammapEm(bios, freq / 1000, &ver, &hdr, &cnt, &len,
-+				      &next->bios);
-+	if (!data || ver != 0x10 || hdr < 0x05) {
- 		nv_error(pfb, "invalid/missing rammap entry\n");
- 		return -EINVAL;
+@@ -409,6 +470,8 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
+ 		return ret;
  	}
-@@ -448,7 +480,7 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
  
- 	data = nvbios_rammapSp(bios, data, ver, hdr, cnt, len, strap,
- 			       &ver, &hdr, &next->bios);
--	if (!data || ver != 0x10 || hdr < 0x0e) {
-+	if (!data || ver != 0x10 || hdr < 0x09) {
- 		nv_error(pfb, "invalid/missing ramcfg entry\n");
- 		return -EINVAL;
- 	}
-@@ -458,7 +490,7 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		data = nvbios_timingEp(bios, next->bios.ramcfg_timing,
- 				       &ver, &hdr, &cnt, &len,
- 				       &next->bios);
--		if (!data || ver != 0x10 || hdr < 0x19) {
-+		if (!data || ver != 0x10 || hdr < 0x17) {
- 			nv_error(pfb, "invalid/missing timing entry\n");
- 			return -EINVAL;
- 		}
-@@ -476,49 +508,75 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
++	nva3_ram_timing_calc(pfb, timing);
++
+ 	ret = ram_init(fuc, pfb);
  	if (ret)
  		return ret;
- 
-+	/* Determine ram-specific MR values */
-+	ram->base.mr[0] = ram_rd32(fuc, mr[0]);
-+	ram->base.mr[1] = ram_rd32(fuc, mr[1]);
-+	ram->base.mr[2] = ram_rd32(fuc, mr[2]);
-+
-+	switch (ram->base.type) {
-+	case NV_MEM_TYPE_DDR3:
-+		ret = nouveau_sddr3_calc(&ram->base);
-+		break;
-+	default:
-+		ret = -ENOSYS;
-+		break;
-+	}
-+
-+	if (ret)
-+		return ret;
-+
- 	/* XXX: where the fuck does 750MHz come from? */
- 	if (freq <= 750000) {
- 		r004018 = 0x10000000;
- 		r100760 = 0x22222222;
-+		r100da0 = 0x00000010;
- 	} else {
- 		r004018 = 0x00000000;
- 		r100760 = 0x00000000;
-+		r100da0 = 0x00000000;
- 	}
- 
-+	if (!next->bios.ramcfg_10_DLLoff)
-+		r004018 |= 0x00004000;
-+
-+	/* pll2pll requires to switch to a safe clock first */
- 	ctrl = ram_rd32(fuc, 0x004000);
--	if (ctrl & 0x00000008) {
--		if (mclk.pll) {
--			ram_mask(fuc, 0x004128, 0x00000101, 0x00000101);
--			ram_wr32(fuc, 0x004004, mclk.pll);
--			ram_wr32(fuc, 0x004000, (ctrl |= 0x00000001));
--			ram_wr32(fuc, 0x004000, (ctrl &= 0xffffffef));
--			ram_wait(fuc, 0x004000, 0x00020000, 0x00020000, 64000);
--			ram_wr32(fuc, 0x004000, (ctrl |= 0x00000010));
--			ram_wr32(fuc, 0x004018, 0x00005000 | r004018);
--			ram_wr32(fuc, 0x004000, (ctrl |= 0x00000004));
--		}
--	} else {
--		u32 ssel = 0x00000101;
--		if (mclk.clk)
--			ssel |= mclk.clk;
--		else
--			ssel |= 0x00080000; /* 324MHz, shouldn't matter... */
--		ram_mask(fuc, 0x004168, 0x003f3141, ctrl);
--	}
-+	pll2pll = (!(ctrl & 0x00000008)) && mclk.pll;
- 
-+	/* Pre, NVIDIA does this outside the script */
- 	if (next->bios.ramcfg_10_02_10) {
- 		ram_mask(fuc, 0x111104, 0x00000600, 0x00000000);
- 	} else {
- 		ram_mask(fuc, 0x111100, 0x40000000, 0x40000000);
- 		ram_mask(fuc, 0x111104, 0x00000180, 0x00000000);
- 	}
-+	/* Always disable this bit during reclock */
-+	ram_mask(fuc, 0x100200, 0x00000800, 0x00000000);
-+
-+	/* If switching from non-pll to pll, lock before disabling FB */
-+	if (mclk.pll && !pll2pll) {
-+		ram_mask(fuc, 0x004128, 0x003f3141, mclk.clk | 0x00000101);
-+		nva3_ram_lock_pll(fuc, &mclk);
-+	}
-+
-+	/* Start with disabling some CRTCs and PFIFO? */
-+	ram_wait_vblank(fuc);
-+	ram_wr32(fuc, 0x611200, 0x3300);
-+	ram_mask(fuc, 0x002504, 0x1, 0x1);
-+	ram_nsec(fuc, 10000);
-+	ram_wait(fuc, 0x002504, 0x10, 0x10, 20000); /* XXX: or longer? */
-+	ram_block(fuc);
-+	ram_nsec(fuc, 2000);
-+
- 
--	if (!next->bios.rammap_10_04_02)
--		ram_mask(fuc, 0x100200, 0x00000800, 0x00000000);
--	ram_wr32(fuc, 0x611200, 0x00003300);
- 	if (!next->bios.ramcfg_10_02_10)
--		ram_wr32(fuc, 0x111100, 0x4c020000); /*XXX*/
-+		ram_mask(fuc, 0x111100, 0x04020000, 0x04020000); /*XXX*/
- 
-+	/* If we're disabling the DLL, do it now */
-+	if (next->bios.ramcfg_10_DLLoff)
-+		nouveau_sddr3_dll_disable(fuc, ram->base.mr);
-+
-+	/* Brace RAM for impact */
- 	ram_wr32(fuc, 0x1002d4, 0x00000001);
- 	ram_wr32(fuc, 0x1002d0, 0x00000001);
- 	ram_wr32(fuc, 0x1002d0, 0x00000001);
-@@ -526,24 +584,38 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 	ram_wr32(fuc, 0x1002dc, 0x00000001);
- 	ram_nsec(fuc, 2000);
- 
--	ctrl = ram_rd32(fuc, 0x004000);
--	if (!(ctrl & 0x00000008) && mclk.pll) {
--		ram_wr32(fuc, 0x004000, (ctrl |=  0x00000008));
-+	if (nv_device(pfb)->chipset == 0xa3 && freq <= 500000)
-+		ram_mask(fuc, 0x100700, 0x00000006, 0x00000006);
-+
-+	/* Fiddle with clocks */
-+	/* There's 4 scenario's
-+	 * pll->pll: first switch to a 324MHz clock, set up new PLL, switch
-+	 * clk->pll: Set up new PLL, switch
-+	 * pll->clk: Set up clock, switch
-+	 * clk->clk: Overwrite ctrl and other bits, switch */
-+
-+	/* Switch to regular clock - 324MHz */
-+	if (pll2pll) {
-+		ram_mask(fuc, 0x004000, 0x00000004, 0x00000004);
-+		ram_mask(fuc, 0x004168, 0x003f3141, 0x00083101);
-+		ram_mask(fuc, 0x004000, 0x00000008, 0x00000008);
- 		ram_mask(fuc, 0x1110e0, 0x00088000, 0x00088000);
- 		ram_wr32(fuc, 0x004018, 0x00001000);
--		ram_wr32(fuc, 0x004000, (ctrl &= ~0x00000001));
--		ram_wr32(fuc, 0x004004, mclk.pll);
--		ram_wr32(fuc, 0x004000, (ctrl |=  0x00000001));
--		udelay(64);
--		ram_wr32(fuc, 0x004018, 0x00005000 | r004018);
--		udelay(20);
--	} else
--	if (!mclk.pll) {
--		ram_mask(fuc, 0x004168, 0x003f3040, mclk.clk);
--		ram_wr32(fuc, 0x004000, (ctrl |= 0x00000008));
-+		nva3_ram_lock_pll(fuc, &mclk);
-+	}
-+
-+	if (mclk.pll) {
-+		ram_mask(fuc, 0x004000, 0x00000105, 0x00000105);
-+		ram_wr32(fuc, 0x004018, 0x00001000 | r004018);
-+		ram_wr32(fuc, 0x100da0, r100da0);
-+	} else {
-+		ram_mask(fuc, 0x004168, 0x003f3141, mclk.clk | 0x00000101);
-+		ram_mask(fuc, 0x004000, 0x00000108, 0x00000008);
- 		ram_mask(fuc, 0x1110e0, 0x00088000, 0x00088000);
--		ram_wr32(fuc, 0x004018, 0x0000d000 | r004018);
-+		ram_wr32(fuc, 0x004018, 0x00009000 | r004018);
-+		ram_wr32(fuc, 0x100da0, r100da0);
- 	}
-+	ram_nsec(fuc, 20000);
- 
- 	if (next->bios.rammap_10_04_08) {
- 		ram_wr32(fuc, 0x1005a0, next->bios.ramcfg_10_06 << 16 |
-@@ -557,6 +629,12 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 					0x80000000);
- 		ram_mask(fuc, 0x10053c, 0x00001000, 0x00000000);
- 	} else {
-+		if (train->state == NVA3_TRAIN_DONE) {
-+			ram_wr32(fuc, 0x100080, 0x1020);
-+			ram_mask(fuc, 0x111400, 0xffffffff, train->r_111400);
-+			ram_mask(fuc, 0x1111e0, 0xffffffff, train->r_1111e0);
-+			ram_mask(fuc, 0x100720, 0xffffffff, train->r_100720);
-+		}
- 		ram_mask(fuc, 0x10053c, 0x00001000, 0x00001000);
- 		ram_mask(fuc, 0x10f804, 0x80000000, 0x00000000);
- 		ram_mask(fuc, 0x100760, 0x22222222, r100760);
-@@ -564,22 +642,27 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 		ram_mask(fuc, 0x1007e0, 0x22222222, r100760);
- 	}
- 
-+	if (nv_device(pfb)->chipset == 0xa3 && freq > 500000) {
-+		ram_mask(fuc, 0x100700, 0x00000006, 0x00000000);
-+	}
-+
-+	/* Final switch */
- 	if (mclk.pll) {
- 		ram_mask(fuc, 0x1110e0, 0x00088000, 0x00011000);
--		ram_wr32(fuc, 0x004000, (ctrl &= ~0x00000008));
-+		ram_mask(fuc, 0x004000, 0x00000008, 0x00000000);
- 	}
- 
--	/*XXX: LEAVE */
- 	ram_wr32(fuc, 0x1002dc, 0x00000000);
- 	ram_wr32(fuc, 0x1002d4, 0x00000001);
- 	ram_wr32(fuc, 0x100210, 0x80000000);
--	ram_nsec(fuc, 1000);
--	ram_nsec(fuc, 1000);
-+	ram_nsec(fuc, 2000);
- 
--	ram_mask(fuc, mr[2], 0x00000000, 0x00000000);
-+	/* Set RAM MR parameters and timings */
-+	ram_wr32(fuc, mr[2], ram->base.mr[2]);
-+	ram_nsec(fuc, 1000);
-+	ram_wr32(fuc, mr[1], ram->base.mr[1]);
- 	ram_nsec(fuc, 1000);
--	ram_nuke(fuc, mr[0]);
--	ram_mask(fuc, mr[0], 0x00000000, 0x00000000);
-+	ram_wr32(fuc, mr[0], ram->base.mr[0]);
+@@ -519,16 +582,17 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
+ 	ram_mask(fuc, mr[0], 0x00000000, 0x00000000);
  	ram_nsec(fuc, 1000);
  
- 	ram_wr32(fuc, 0x100220[3], timing[3]);
-@@ -595,35 +678,75 @@ nva3_ram_calc(struct nouveau_fb *pfb, u32 freq)
- 	/* Misc */
+-	ram_mask(fuc, 0x100220[3], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[1], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[6], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[7], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[2], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[4], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[5], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[0], 0x00000000, 0x00000000);
+-	ram_mask(fuc, 0x100220[8], 0x00000000, 0x00000000);
+-
++	ram_wr32(fuc, 0x100220[3], timing[3]);
++	ram_wr32(fuc, 0x100220[1], timing[1]);
++	ram_wr32(fuc, 0x100220[6], timing[6]);
++	ram_wr32(fuc, 0x100220[7], timing[7]);
++	ram_wr32(fuc, 0x100220[2], timing[2]);
++	ram_wr32(fuc, 0x100220[4], timing[4]);
++	ram_wr32(fuc, 0x100220[5], timing[5]);
++	ram_wr32(fuc, 0x100220[0], timing[0]);
++	ram_wr32(fuc, 0x100220[8], timing[8]);
++
++	/* Misc */
  	ram_mask(fuc, 0x100200, 0x00001000, !next->bios.ramcfg_10_02_08 << 12);
  
--	unk714 = ram_rd32(fuc, 0x100714) & ~0xf0000010;
--	unk718 = ram_rd32(fuc, 0x100718) & ~0x00000100;
--	unk71c = ram_rd32(fuc, 0x10071c) & ~0x00000100;
-+	/* XXX: A lot of "chipset"/"ram type" specific stuff...? */
-+	unk714  = ram_rd32(fuc, 0x100714) & ~0xf0000130;
-+	unk718  = ram_rd32(fuc, 0x100718) & ~0x00000100;
-+	unk71c  = ram_rd32(fuc, 0x10071c) & ~0x00000100;
-+	r111100 = ram_rd32(fuc, 0x111100) & ~0x3a800000;
-+
-+	if (next->bios.ramcfg_10_02_04) {
-+		switch (ram->base.type) {
-+		case NV_MEM_TYPE_DDR3:
-+			if (nv_device(pfb)->chipset != 0xa8)
-+				r111100 |= 0x00000004;
-+			/* no break */
-+		default:
-+			break;
-+		}
-+	} else {
-+		switch (ram->base.type) {
-+		case NV_MEM_TYPE_DDR3:
-+			if (nv_device(pfb)->chipset == 0xa8) {
-+				r111100 |=  0x08000000;
-+			} else {
-+				r111100 &= ~0x00000004;
-+				r111100 |=  0x12800000;
-+			}
-+			unk714  |= 0x00000010;
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+
-+	unk714 |= (next->bios.ramcfg_10_04_01) << 8;
-+
- 	if (next->bios.ramcfg_10_02_20)
- 		unk714 |= 0xf0000000;
--	if (!next->bios.ramcfg_10_02_04)
--		unk714 |= 0x00000010;
--	ram_wr32(fuc, 0x100714, unk714);
--
-+	if (next->bios.ramcfg_10_02_02)
-+		unk718 |= 0x00000100;
- 	if (next->bios.ramcfg_10_02_01)
- 		unk71c |= 0x00000100;
--	ram_wr32(fuc, 0x10071c, unk71c);
-+	if (next->bios.timing_10_24 != 0xff) {
-+		unk718 &= ~0xf0000000;
-+		unk718 |= next->bios.timing_10_24 << 28;
-+	}
-+	if (next->bios.ramcfg_10_02_10)
-+		r111100 &= ~0x04020000;
- 
--	if (next->bios.ramcfg_10_02_02)
--		unk718 |= 0x00000100;
--	ram_wr32(fuc, 0x100718, unk718);
-+	ram_mask(fuc, 0x100714, 0xffffffff, unk714);
-+	ram_mask(fuc, 0x10071c, 0xffffffff, unk71c);
-+	ram_mask(fuc, 0x100718, 0xffffffff, unk718);
-+	ram_mask(fuc, 0x111100, 0xffffffff, r111100);
- 
--	if (next->bios.ramcfg_10_02_10)
--		ram_wr32(fuc, 0x111100, 0x48000000); /*XXX*/
-+	/* Reset DLL */
-+	if (!next->bios.ramcfg_10_DLLoff)
-+		nouveau_sddr3_dll_reset(fuc);
- 
--	ram_mask(fuc, mr[0], 0x100, 0x100);
--	ram_nsec(fuc, 1000);
--	ram_mask(fuc, mr[0], 0x100, 0x000);
--	ram_nsec(fuc, 1000);
-+	ram_nsec(fuc, 14000);
- 
-+	ram_wr32(fuc, 0x100264, 0x1);
- 	ram_nsec(fuc, 2000);
--	ram_nsec(fuc, 12000);
- 
--	ram_wr32(fuc, 0x611200, 0x00003330);
-+	ram_nuke(fuc, 0x100700);
-+	ram_mask(fuc, 0x100700, 0x01000000, 0x01000000);
-+	ram_mask(fuc, 0x100700, 0x01000000, 0x00000000);
-+
-+	/* Re-enable FB */
-+	ram_unblock(fuc);
-+	ram_wr32(fuc, 0x611200, 0x3330);
-+
-+	/* Post fiddlings */
- 	if (next->bios.rammap_10_04_02)
- 		ram_mask(fuc, 0x100200, 0x00000800, 0x00000800);
- 	if (next->bios.ramcfg_10_02_10) {
-@@ -651,7 +774,22 @@ nva3_ram_prog(struct nouveau_fb *pfb)
- 	struct nouveau_device *device = nv_device(pfb);
- 	struct nva3_ram *ram = (void *)pfb->ram;
- 	struct nva3_ramfuc *fuc = &ram->fuc;
--	ram_exec(fuc, nouveau_boolopt(device->cfgopt, "NvMemExec", true));
-+	bool exec = nouveau_boolopt(device->cfgopt, "NvMemExec", true);
-+
-+	if (exec) {
-+		nv_mask(pfb, 0x001534, 0x2, 0x2);
-+
-+		ram_exec(fuc, true);
-+
-+		/* Post-processing, avoids flicker */
-+		nv_mask(pfb, 0x002504, 0x1, 0x0);
-+		nv_mask(pfb, 0x001534, 0x2, 0x0);
-+
-+		nv_mask(pfb, 0x616308, 0x10, 0x10);
-+		nv_mask(pfb, 0x616b08, 0x10, 0x10);
-+	} else {
-+		ram_exec(fuc, false);
-+	}
- 	return 0;
- }
- 
-@@ -716,6 +854,7 @@ nva3_ram_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 
- 	ram->fuc.r_0x001610 = ramfuc_reg(0x001610);
- 	ram->fuc.r_0x001700 = ramfuc_reg(0x001700);
-+	ram->fuc.r_0x002504 = ramfuc_reg(0x002504);
- 	ram->fuc.r_0x004000 = ramfuc_reg(0x004000);
- 	ram->fuc.r_0x004004 = ramfuc_reg(0x004004);
- 	ram->fuc.r_0x004018 = ramfuc_reg(0x004018);
-@@ -726,12 +865,14 @@ nva3_ram_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	ram->fuc.r_0x100210 = ramfuc_reg(0x100210);
- 	for (i = 0; i < 9; i++)
- 		ram->fuc.r_0x100220[i] = ramfuc_reg(0x100220 + (i * 4));
-+	ram->fuc.r_0x100264 = ramfuc_reg(0x100264);
- 	ram->fuc.r_0x1002d0 = ramfuc_reg(0x1002d0);
- 	ram->fuc.r_0x1002d4 = ramfuc_reg(0x1002d4);
- 	ram->fuc.r_0x1002dc = ramfuc_reg(0x1002dc);
- 	ram->fuc.r_0x10053c = ramfuc_reg(0x10053c);
- 	ram->fuc.r_0x1005a0 = ramfuc_reg(0x1005a0);
- 	ram->fuc.r_0x1005a4 = ramfuc_reg(0x1005a4);
-+	ram->fuc.r_0x100700 = ramfuc_reg(0x100700);
- 	ram->fuc.r_0x100714 = ramfuc_reg(0x100714);
- 	ram->fuc.r_0x100718 = ramfuc_reg(0x100718);
- 	ram->fuc.r_0x10071c = ramfuc_reg(0x10071c);
-@@ -739,6 +880,7 @@ nva3_ram_ctor(struct nouveau_object *parent, struct nouveau_object *engine,
- 	ram->fuc.r_0x100760 = ramfuc_stride(0x100760, 4, ram->base.part_mask);
- 	ram->fuc.r_0x1007a0 = ramfuc_stride(0x1007a0, 4, ram->base.part_mask);
- 	ram->fuc.r_0x1007e0 = ramfuc_stride(0x1007e0, 4, ram->base.part_mask);
-+	ram->fuc.r_0x100da0 = ramfuc_stride(0x100da0, 4, ram->base.part_mask);
- 	ram->fuc.r_0x10f804 = ramfuc_reg(0x10f804);
- 	ram->fuc.r_0x1110e0 = ramfuc_stride(0x1110e0, 4, ram->base.part_mask);
- 	ram->fuc.r_0x111100 = ramfuc_reg(0x111100);
+ 	unk714 = ram_rd32(fuc, 0x100714) & ~0xf0000010;
 -- 
 1.9.3
