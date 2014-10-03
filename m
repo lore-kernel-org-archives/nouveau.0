@@ -1,61 +1,124 @@
-From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: [PATCH v2 1/2] drm/nouveau/fb/nv50: Add PFB writes
-Date: Fri,  3 Oct 2014 16:36:00 +0200
-Message-ID: <1412346960-26876-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 83550] [NVA5] Monitor not restored after resume
+ [regression] [bisected]
+Date: Fri, 03 Oct 2014 18:10:03 +0000
+Message-ID: <bug-83550-8800-SlrPUT1b7G@http.bugs.freedesktop.org/>
+References: <bug-83550-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1893528973=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-83550-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-(This is a v2 of patch "drm/nouveau/disp/nv50: Add PFB writes")
 
-This fix a GPU lockup on 9400M (NVAC) when using acceleration, see
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+--===============1893528973==
+Content-Type: multipart/alternative; boundary="1412359803.3ae43.7530"; charset="UTF-8"
 
-v2:
-- Move code to subdev/fb/nv50.c as suggested by Roy Spliet;
-- Remove arbitrary writes to 100c18/100c24 as suggested by Roy Spliet;
-- Replace write to 100c1c of arbitrary value by the address of a scratch page
-  as proposed by Ilia Mirkin;
-- Remove enabling of bits 16 and 0 as they don't yield in any changes.
 
-Signed-off-by: Pierre Moreau <pierre.morrow@free.fr>
----
- drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+--1412359803.3ae43.7530
+Date: Fri, 3 Oct 2014 18:10:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-index 4150b0d..5c84d13 100644
---- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-+++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
-@@ -289,6 +289,17 @@ nv50_fb_init(struct nouveau_object *object)
- 	if (ret)
- 		return ret;
- 
-+	/* Not a clue what this is exactly. Without enabling bit 1 of
-+	 * 100c14, system will lockup while initialising the card
-+	 * (#27501)
-+	 */
-+	if (nv_device(priv)->chipset == 0xac) {
-+		if ((nv_rd32(priv, 0x100c14) & 0x00000002) == 0x00000000) {
-+			nv_wr32(priv, 0x100c1c, priv->r100c08 >> 8);
-+			nv_mask(priv, 0x100c14, 0x00000000, 0x00000002);
-+		}
-+	}
-+
- 	/* Not a clue what this is exactly.  Without pointing it at a
- 	 * scratch page, VRAM->GART blits with M2MF (as in DDX DFS)
- 	 * cause IOMMU "read from address 0" errors (rh#561267)
+https://bugs.freedesktop.org/show_bug.cgi?id=83550
+
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #14 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hjulle, this is your report so you close it when you're done with testing.
+
 -- 
-2.1.2
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1412359803.3ae43.7530
+Date: Fri, 3 Oct 2014 18:10:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA5] Monitor not restored after resume [regression] [bisected]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550">bug 83550</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA5] Monitor not restored after resume [regression] [bisected]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA5] Monitor not restored after resume [regression] [bisected]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83550">bug 83550</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>Hjulle, this is your report so you close it when you're done with testing.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1412359803.3ae43.7530--
+
+--===============1893528973==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1893528973==--
