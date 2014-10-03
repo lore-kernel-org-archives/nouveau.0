@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Fri, 03 Oct 2014 20:46:45 +0000
-Message-ID: <bug-27501-8800-VaLYdq2BJ3@http.bugs.freedesktop.org/>
+Date: Fri, 03 Oct 2014 21:01:17 +0000
+Message-ID: <bug-27501-8800-b7iWjwMj2K@http.bugs.freedesktop.org/>
 References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1280728142=="
+Content-Type: multipart/mixed; boundary="===============1183101105=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,63 +20,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1280728142==
-Content-Type: multipart/alternative; boundary="1412369205.C4d1C6.8350"; charset="UTF-8"
+--===============1183101105==
+Content-Type: multipart/alternative; boundary="1412370078.46aF66.14235"; charset="UTF-8"
 
 
---1412369205.C4d1C6.8350
-Date: Fri, 3 Oct 2014 20:46:45 +0000
+--1412370078.46aF66.14235
+Date: Fri, 3 Oct 2014 21:01:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #44 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to thomas from comment #43)
-> (In reply to Pierre Moreau from comment #42)
-> > Created attachment 107262 [details] [review] [review]
-> > Fix acceleration on 9400M v2
-> > 
-> > Here is an updated version of the patch.
-> > 
-> > Thomas,
-> > Do you still get screen corruption with it? (I can't reliably reproduce the
-> > screen corruption unfortunately.)
-> > GDM seems to work fine on my laptop with only 9400M having acceleration
-> > enabled. I'll try with 9600M GT acceleration enabled too. :/
+--- Comment #45 from thomas <gurutonic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Pierre Moreau from comment #44)
 > 
-> Hi Pierre,
+> Hi Thomas,
 > 
-> I've applied your v2 patch and the results are similar. The 9400M works
-> correctly. GDM loads fine, but it won't start a gnome-shell session.
-> However, SLIM works correctly and is able to load both gnome-shell and
-> Awesome. I'm writing this from gnome-shell now, and performance is good. I
-> haven't had any screen corruption with the 9400M. I'll use this
-> configuration for now and report any issues I encounter.
+> Good to hear you can use gnome-shell! :)
 > 
-> The 9600M GT (acceleration disabled) still has corruption in VT as before,
-> but this time the screen blanks when X is loaded.
+> By
+> > I haven't had any screen corruption with the 9400M.
+> do you mean with the 9600M GT completely disabled?
+> 
 
-Hi Thomas,
+I use the efi stub loader with refind bootloader. Refind doesn't have an option
+to use outb as in grub. I have set OSX preferences to "battery saving", so that
+the firmware sets up the 9400 initially, but the 9600 is still technically
+enabled. It shows up in lspci, etc. Whenever I test the 9600, I change the
+setting in OSX back to "performance". So yes, with both cards enabled, the 9400
+works without corruption.
 
-Good to hear you can use gnome-shell! :)
+> When using the 9600M GT without acceleration, do you have screen corruption
+> in VT each time? If so, could you try to modify the patch a bit, like:
+> - removing the write to 0x100c1c;
+> - if removing the write doesn't work, changing the offset applied to
+> priv->r100c08 maybe testing all 4-multiples should do it, from 0 to 28.
 
-By
-> I haven't had any screen corruption with the 9400M.
-do you mean with the 9600M GT completely disabled?
-
-When using the 9600M GT without acceleration, do you have screen corruption in
-VT each time? If so, could you try to modify the patch a bit, like:
-- removing the write to 0x100c1c;
-- if removing the write doesn't work, changing the offset applied to
-priv->r100c08 maybe testing all 4-multiples should do it, from 0 to 28.
+I've only tested the 9600 about 10 times, but I've always had corruption. I
+will try your changes and see if it makes a difference.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412369205.C4d1C6.8350
-Date: Fri, 3 Oct 2014 20:46:45 +0000
+--1412370078.46aF66.14235
+Date: Fri, 3 Oct 2014 21:01:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -90,51 +78,39 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c44">Comment # 44</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c45">Comment # 45</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+              from <span class="vcard"><a class="email" href="mailto:gurutonic&#64;gmail.com" title="thomas &lt;gurutonic&#64;gmail.com&gt;"> <span class="fn">thomas</span></a>
 </span></b>
-        <pre>(In reply to thomas from <a href="show_bug.cgi?id=27501#c43">comment #43</a>)
-<span class="quote">&gt; (In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c42">comment #42</a>)
-&gt; &gt; Created <span class=""><a href="attachment.cgi?id=107262" name="attach_107262" title="Fix acceleration on 9400M v2">attachment 107262</a> <a href="attachment.cgi?id=107262&amp;action=edit" title="Fix acceleration on 9400M v2">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=27501&amp;attachment=107262'>[review]</a> [review] [review]
-&gt; &gt; Fix acceleration on 9400M v2
-&gt; &gt; 
-&gt; &gt; Here is an updated version of the patch.
-&gt; &gt; 
-&gt; &gt; Thomas,
-&gt; &gt; Do you still get screen corruption with it? (I can't reliably reproduce the
-&gt; &gt; screen corruption unfortunately.)
-&gt; &gt; GDM seems to work fine on my laptop with only 9400M having acceleration
-&gt; &gt; enabled. I'll try with 9600M GT acceleration enabled too. :/
+        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c44">comment #44</a>)
+<span class="quote">&gt; 
+&gt; Hi Thomas,
 &gt; 
-&gt; Hi Pierre,
+&gt; Good to hear you can use gnome-shell! :)
 &gt; 
-&gt; I've applied your v2 patch and the results are similar. The 9400M works
-&gt; correctly. GDM loads fine, but it won't start a gnome-shell session.
-&gt; However, SLIM works correctly and is able to load both gnome-shell and
-&gt; Awesome. I'm writing this from gnome-shell now, and performance is good. I
-&gt; haven't had any screen corruption with the 9400M. I'll use this
-&gt; configuration for now and report any issues I encounter.
-&gt; 
-&gt; The 9600M GT (acceleration disabled) still has corruption in VT as before,
-&gt; but this time the screen blanks when X is loaded.</span >
+&gt; By
+&gt; &gt; I haven't had any screen corruption with the 9400M.
+&gt; do you mean with the 9600M GT completely disabled?
+&gt; </span >
 
-Hi Thomas,
+I use the efi stub loader with refind bootloader. Refind doesn't have an option
+to use outb as in grub. I have set OSX preferences to &quot;battery saving&quot;, so that
+the firmware sets up the 9400 initially, but the 9600 is still technically
+enabled. It shows up in lspci, etc. Whenever I test the 9600, I change the
+setting in OSX back to &quot;performance&quot;. So yes, with both cards enabled, the 9400
+works without corruption.
 
-Good to hear you can use gnome-shell! :)
+<span class="quote">&gt; When using the 9600M GT without acceleration, do you have screen corruption
+&gt; in VT each time? If so, could you try to modify the patch a bit, like:
+&gt; - removing the write to 0x100c1c;
+&gt; - if removing the write doesn't work, changing the offset applied to
+&gt; priv-&gt;r100c08 maybe testing all 4-multiples should do it, from 0 to 28.</span >
 
-By
-<span class="quote">&gt; I haven't had any screen corruption with the 9400M.</span >
-do you mean with the 9600M GT completely disabled?
-
-When using the 9600M GT without acceleration, do you have screen corruption in
-VT each time? If so, could you try to modify the patch a bit, like:
-- removing the write to 0x100c1c;
-- if removing the write doesn't work, changing the offset applied to
-priv-&gt;r100c08 maybe testing all 4-multiples should do it, from 0 to 28.</pre>
+I've only tested the 9600 about 10 times, but I've always had corruption. I
+will try your changes and see if it makes a difference.</pre>
         </div>
       </p>
       <hr>
@@ -146,9 +122,9 @@ priv-&gt;r100c08 maybe testing all 4-multiples should do it, from 0 to 28.</pre>
     </body>
 </html>
 
---1412369205.C4d1C6.8350--
+--1412370078.46aF66.14235--
 
---===============1280728142==
+--===============1183101105==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,4 +135,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1280728142==--
+--===============1183101105==--
