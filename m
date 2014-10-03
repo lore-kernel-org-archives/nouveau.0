@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84203] [NVC1] HDMI gives no more signal since 3.15
-	(optimus)
-Date: Fri, 03 Oct 2014 18:33:02 +0000
-Message-ID: <bug-84203-8800-YA3wTk4aPA@http.bugs.freedesktop.org/>
-References: <bug-84203-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Fri, 03 Oct 2014 20:31:09 +0000
+Message-ID: <bug-27501-8800-FCShi8j8o1@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0356928447=="
+Content-Type: multipart/mixed; boundary="===============0732139089=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +20,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0356928447==
-Content-Type: multipart/alternative; boundary="1412361182.45fd71.16870"; charset="UTF-8"
+--===============0732139089==
+Content-Type: multipart/alternative; boundary="1412368269.3e106.1453"; charset="UTF-8"
 
 
---1412361182.45fd71.16870
-Date: Fri, 3 Oct 2014 18:33:02 +0000
+--1412368269.3e106.1453
+Date: Fri, 3 Oct 2014 20:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84203
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> changed:
+--- Comment #43 from thomas <gurutonic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Pierre Moreau from comment #42)
+> Created attachment 107262 [details] [review]
+> Fix acceleration on 9400M v2
+> 
+> Here is an updated version of the patch.
+> 
+> Thomas,
+> Do you still get screen corruption with it? (I can't reliably reproduce the
+> screen corruption unfortunately.)
+> GDM seems to work fine on my laptop with only 9400M having acceleration
+> enabled. I'll try with 9600M GT acceleration enabled too. :/
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+Hi Pierre,
 
---- Comment #2 from Jean-Louis Dupond <jean-louis-h84OYfGOAs2zQB+pC5nmwQ@public.gmane.org> ---
-Seems like Ben fixed this issue:
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.17&id=6fbb702e27d78ad2458df048b58cca3454bc0965
+I've applied your v2 patch and the results are similar. The 9400M works
+correctly. GDM loads fine, but it won't start a gnome-shell session. However,
+SLIM works correctly and is able to load both gnome-shell and Awesome. I'm
+writing this from gnome-shell now, and performance is good. I haven't had any
+screen corruption with the 9400M. I'll use this configuration for now and
+report any issues I encounter.
 
-Used that commit on my kernel, and it fixes the issue!
-Great! Thx!
+The 9600M GT (acceleration disabled) still has corruption in VT as before, but
+this time the screen blanks when X is loaded.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412361182.45fd71.16870
-Date: Fri, 3 Oct 2014 18:33:02 +0000
+--1412368269.3e106.1453
+Date: Fri, 3 Oct 2014 20:31:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,52 +69,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84203">bug 84203</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84203#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c43">Comment # 43</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84203">bug 84203</a>
-              from <span class="vcard"><a class="email" href="mailto:jean-louis&#64;dupond.be" title="Jean-Louis Dupond &lt;jean-louis&#64;dupond.be&gt;"> <span class="fn">Jean-Louis Dupond</span></a>
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:gurutonic&#64;gmail.com" title="thomas &lt;gurutonic&#64;gmail.com&gt;"> <span class="fn">thomas</span></a>
 </span></b>
-        <pre>Seems like Ben fixed this issue:
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.17&amp;id=6fbb702e27d78ad2458df048b58cca3454bc0965">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-3.17&amp;id=6fbb702e27d78ad2458df048b58cca3454bc0965</a>
+        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c42">comment #42</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=107262" name="attach_107262" title="Fix acceleration on 9400M v2">attachment 107262</a> <a href="attachment.cgi?id=107262&amp;action=edit" title="Fix acceleration on 9400M v2">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=27501&amp;attachment=107262'>[review]</a> [review]
+&gt; Fix acceleration on 9400M v2
+&gt; 
+&gt; Here is an updated version of the patch.
+&gt; 
+&gt; Thomas,
+&gt; Do you still get screen corruption with it? (I can't reliably reproduce the
+&gt; screen corruption unfortunately.)
+&gt; GDM seems to work fine on my laptop with only 9400M having acceleration
+&gt; enabled. I'll try with 9600M GT acceleration enabled too. :/</span >
 
-Used that commit on my kernel, and it fixes the issue!
-Great! Thx!</pre>
+Hi Pierre,
+
+I've applied your v2 patch and the results are similar. The 9400M works
+correctly. GDM loads fine, but it won't start a gnome-shell session. However,
+SLIM works correctly and is able to load both gnome-shell and Awesome. I'm
+writing this from gnome-shell now, and performance is good. I haven't had any
+screen corruption with the 9400M. I'll use this configuration for now and
+report any issues I encounter.
+
+The 9600M GT (acceleration disabled) still has corruption in VT as before, but
+this time the screen blanks when X is loaded.</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +116,9 @@ Great! Thx!</pre>
     </body>
 </html>
 
---1412361182.45fd71.16870--
+--1412368269.3e106.1453--
 
---===============0356928447==
+--===============0732139089==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,4 +129,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0356928447==--
+--===============0732139089==--
