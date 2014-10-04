@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Fri, 03 Oct 2014 23:26:56 +0000
-Message-ID: <bug-27501-8800-YsizwyKyzs@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
+Subject: Re: [PATCH v2 1/2] drm/nouveau/fb/nv50: Add PFB writes
+Date: Sat, 04 Oct 2014 02:28:37 +0200
+Message-ID: <542F3F35.70406@nimrod-online.com>
+References: <1412346960-26876-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2087233745=="
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1412346960-26876-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,94 +20,48 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+I don't think I ever suggested removing the 100c18/100c24 writes, rather 
+I tried to encourage you to figure out the meaning behind the values there.
 
---===============2087233745==
-Content-Type: multipart/alternative; boundary="1412378816.24bFB326.10077"; charset="UTF-8"
+Roy
 
-
---1412378816.24bFB326.10077
-Date: Fri, 3 Oct 2014 23:26:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
-
---- Comment #46 from thomas <gurutonic-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to thomas from comment #45)
-> (In reply to Pierre Moreau from comment #44)
-> > When using the 9600M GT without acceleration, do you have screen corruption
-> > in VT each time? If so, could you try to modify the patch a bit, like:
-> > - removing the write to 0x100c1c;
-> > - if removing the write doesn't work, changing the offset applied to
-> > priv->r100c08 maybe testing all 4-multiples should do it, from 0 to 28.
-> 
-> I've only tested the 9600 about 10 times, but I've always had corruption. I
-> will try your changes and see if it makes a difference.
-
-No change, unfortunately. I first removed the write, then tried each of the
-offsets.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1412378816.24bFB326.10077
-Date: Fri, 3 Oct 2014 23:26:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c46">Comment # 46</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:gurutonic&#64;gmail.com" title="thomas &lt;gurutonic&#64;gmail.com&gt;"> <span class="fn">thomas</span></a>
-</span></b>
-        <pre>(In reply to thomas from <a href="show_bug.cgi?id=27501#c45">comment #45</a>)
-<span class="quote">&gt; (In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c44">comment #44</a>)
-&gt; &gt; When using the 9600M GT without acceleration, do you have screen corruption
-&gt; &gt; in VT each time? If so, could you try to modify the patch a bit, like:
-&gt; &gt; - removing the write to 0x100c1c;
-&gt; &gt; - if removing the write doesn't work, changing the offset applied to
-&gt; &gt; priv-&gt;r100c08 maybe testing all 4-multiples should do it, from 0 to 28.
-&gt; 
-&gt; I've only tested the 9600 about 10 times, but I've always had corruption. I
-&gt; will try your changes and see if it makes a difference.</span >
-
-No change, unfortunately. I first removed the write, then tried each of the
-offsets.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1412378816.24bFB326.10077--
-
---===============2087233745==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============2087233745==--
+Op 03-10-14 om 16:36 schreef Pierre Moreau:
+> (This is a v2 of patch "drm/nouveau/disp/nv50: Add PFB writes")
+>
+> This fix a GPU lockup on 9400M (NVAC) when using acceleration, see
+> https://bugs.freedesktop.org/show_bug.cgi?id=27501
+>
+> v2:
+> - Move code to subdev/fb/nv50.c as suggested by Roy Spliet;
+> - Remove arbitrary writes to 100c18/100c24 as suggested by Roy Spliet;
+> - Replace write to 100c1c of arbitrary value by the address of a scratch page
+>    as proposed by Ilia Mirkin;
+> - Remove enabling of bits 16 and 0 as they don't yield in any changes.
+>
+> Signed-off-by: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+> ---
+>   drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
+> index 4150b0d..5c84d13 100644
+> --- a/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
+> +++ b/drivers/gpu/drm/nouveau/core/subdev/fb/nv50.c
+> @@ -289,6 +289,17 @@ nv50_fb_init(struct nouveau_object *object)
+>   	if (ret)
+>   		return ret;
+>   
+> +	/* Not a clue what this is exactly. Without enabling bit 1 of
+> +	 * 100c14, system will lockup while initialising the card
+> +	 * (#27501)
+> +	 */
+> +	if (nv_device(priv)->chipset == 0xac) {
+> +		if ((nv_rd32(priv, 0x100c14) & 0x00000002) == 0x00000000) {
+> +			nv_wr32(priv, 0x100c1c, priv->r100c08 >> 8);
+> +			nv_mask(priv, 0x100c14, 0x00000000, 0x00000002);
+> +		}
+> +	}
+> +
+>   	/* Not a clue what this is exactly.  Without pointing it at a
+>   	 * scratch page, VRAM->GART blits with M2MF (as in DDX DFS)
+>   	 * cause IOMMU "read from address 0" errors (rh#561267)
