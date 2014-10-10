@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84706] [NV94] HDMI Connected,
-	but TV reports "no signal"
-Date: Wed, 08 Oct 2014 11:30:57 +0000
-Message-ID: <bug-84706-8800-7nAMDXgy6m@http.bugs.freedesktop.org/>
-References: <bug-84706-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84870] New: [NV50] [PBUS] write fault on boot
+Date: Fri, 10 Oct 2014 10:51:58 +0000
+Message-ID: <bug-84870-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1075216537=="
+Content-Type: multipart/mixed; boundary="===============0012158270=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +18,48 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1075216537==
-Content-Type: multipart/alternative; boundary="1412767856.3cce51.751"; charset="UTF-8"
+--===============0012158270==
+Content-Type: multipart/alternative; boundary="1412938318.2feeB7c1.6821"; charset="UTF-8"
 
 
---1412767856.3cce51.751
-Date: Wed, 8 Oct 2014 11:30:56 +0000
+--1412938318.2feeB7c1.6821
+Date: Fri, 10 Oct 2014 10:51:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84706
+https://bugs.freedesktop.org/show_bug.cgi?id=84870
 
---- Comment #8 from Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just went through both the logs of the LiveCD and normal system and I found the
-following: 
+            Bug ID: 84870
+           Summary: [NV50] [PBUS] write fault on boot
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Normal system kernel log with nouveau.debug=trace and drm.debug=0xe 
-[    0.000000] Console: colour dummy device 80x25
-[    0.000000] console [tty0] enabled
-[    0.268401] vesafb: mode is 640x480x32, linelength=2560, pages=0
-[    0.268402] vesafb: scrolling: redraw
-[    0.268404] vesafb: Truecolor: size=8:8:8:8, shift=24:16:8:0
-[    0.268418] vesafb: framebuffer at 0xfb000000, mapped to 0xffffc90010e80000,
-using 1216k, total 1216k
-[    0.275997] Console: switching to colour frame buffer device 80x30
-[    0.283477] fb0: VESA VGA frame buffer device
-[    0.308418] fb: switching to nouveaufb from VESA VGA
-[    0.308438] Console: switching to colour dummy device 80x25
-[    0.818241] fbcon: nouveaufb (fb0) is primary device
-[    0.903002] Console: switching to colour frame buffer device 240x67
-[    0.904713] nouveau 0000:05:00.0: fb0: nouveaufb frame buffer device
+Created attachment 107656
+  --> https://bugs.freedesktop.org/attachment.cgi?id=107656&action=edit
+dmesg log
 
-LiveCD kernel log with nouveau.debug=trace and drm.debug=0xe 
-[    0.000000] Console: colour VGA+ 80x25
-[    0.000000] console [tty0] enabled
-[    2.977742] fbcon: nouveaufb (fb0) is primary device
-[    3.048489] Console: switching to colour frame buffer device 240x67
-[    3.050679] nouveau 0000:05:00.0: fb0: nouveaufb frame buffer device
+When my system boots I get these two errors/warnings on my screen:
 
-Could it be that the kernel framebuffer driver hand-over is not working
-properly. The handover completes without errors according to the logs, but it
-seems that only the VGA display output continues to work after handover and the
-HDMI display output becomes faulty over the hand-over.
+[   13.887930] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000007 FAULT
+at 0x00e180
+[   14.105183] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x00e070
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412767856.3cce51.751
-Date: Wed, 8 Oct 2014 11:30:56 +0000
+--1412938318.2feeB7c1.6821
+Date: Fri, 10 Oct 2014 10:51:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,49 +67,98 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50] [PBUS] write fault on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84870">84870</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV50] [PBUS] write fault on boot
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mattia.b89&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706">bug 84706</a>
-              from <span class="vcard"><a class="email" href="mailto:jayvandam&#64;gmail.com" title="Jay van Dam &lt;jayvandam&#64;gmail.com&gt;"> <span class="fn">Jay van Dam</span></a>
-</span></b>
-        <pre>Just went through both the logs of the LiveCD and normal system and I found the
-following: 
+        <pre>Created <span class=""><a href="attachment.cgi?id=107656" name="attach_107656" title="dmesg log">attachment 107656</a> <a href="attachment.cgi?id=107656&amp;action=edit" title="dmesg log">[details]</a></span>
+dmesg log
 
-Normal system kernel log with nouveau.debug=trace and drm.debug=0xe 
-[    0.000000] Console: colour dummy device 80x25
-[    0.000000] console [tty0] enabled
-[    0.268401] vesafb: mode is 640x480x32, linelength=2560, pages=0
-[    0.268402] vesafb: scrolling: redraw
-[    0.268404] vesafb: Truecolor: size=8:8:8:8, shift=24:16:8:0
-[    0.268418] vesafb: framebuffer at 0xfb000000, mapped to 0xffffc90010e80000,
-using 1216k, total 1216k
-[    0.275997] Console: switching to colour frame buffer device 80x30
-[    0.283477] fb0: VESA VGA frame buffer device
-[    0.308418] fb: switching to nouveaufb from VESA VGA
-[    0.308438] Console: switching to colour dummy device 80x25
-[    0.818241] fbcon: nouveaufb (fb0) is primary device
-[    0.903002] Console: switching to colour frame buffer device 240x67
-[    0.904713] nouveau 0000:05:00.0: fb0: nouveaufb frame buffer device
+When my system boots I get these two errors/warnings on my screen:
 
-LiveCD kernel log with nouveau.debug=trace and drm.debug=0xe 
-[    0.000000] Console: colour VGA+ 80x25
-[    0.000000] console [tty0] enabled
-[    2.977742] fbcon: nouveaufb (fb0) is primary device
-[    3.048489] Console: switching to colour frame buffer device 240x67
-[    3.050679] nouveau 0000:05:00.0: fb0: nouveaufb frame buffer device
-
-Could it be that the kernel framebuffer driver hand-over is not working
-properly. The handover completes without errors according to the logs, but it
-seems that only the VGA display output continues to work after handover and the
-HDMI display output becomes faulty over the hand-over.</pre>
+[   13.887930] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000007 FAULT
+at 0x00e180
+[   14.105183] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x00e070</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +170,9 @@ HDMI display output becomes faulty over the hand-over.</pre>
     </body>
 </html>
 
---1412767856.3cce51.751--
+--1412938318.2feeB7c1.6821--
 
---===============1075216537==
+--===============0012158270==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +183,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1075216537==--
+--===============0012158270==--
