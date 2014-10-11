@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Fri, 10 Oct 2014 17:39:32 +0000
-Message-ID: <bug-27501-8800-1oIXssRWXX@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83992] [NVE0][NVF1] regression,
+	linux 3.17 causes gpu lockups
+Date: Sat, 11 Oct 2014 22:05:47 +0000
+Message-ID: <bug-83992-8800-4FAiiEFBJ7@http.bugs.freedesktop.org/>
+References: <bug-83992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1637691986=="
+Content-Type: multipart/mixed; boundary="===============1988694346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1637691986==
-Content-Type: multipart/alternative; boundary="1412962772.DC34dC6.9448"; charset="UTF-8"
+--===============1988694346==
+Content-Type: multipart/alternative; boundary="1413065147.0Dd06b2.24996"; charset="UTF-8"
 
 
---1412962772.DC34dC6.9448
-Date: Fri, 10 Oct 2014 17:39:32 +0000
+--1413065147.0Dd06b2.24996
+Date: Sat, 11 Oct 2014 22:05:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=83992
 
---- Comment #48 from Ratchanan Srirattanamet <peathot-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Will Pierre Moreau's patch be merged? This patch fix acceleration on system
-with only 9400M too. Symptom is X can start but gets locked up when I run
-glxgears for a while. System is Ubuntu 14.10 with Linux 3.17 compiled from git.
-After apply this patch, the symptom disappear.
+David Heidelberger (okias) <david.heidelberger-W22tF5X+A20@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Keywords|                            |bisected
+                 CC|                            |david.heidelberger-W22tF5X+A20@public.gmane.org
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1412962772.DC34dC6.9448
-Date: Fri, 10 Oct 2014 17:39:32 +0000
+--1413065147.0Dd06b2.24996
+Date: Sat, 11 Oct 2014 22:05:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,24 +52,38 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:david.heidelberger&#64;ixit.cz" title="David Heidelberger (okias) &lt;david.heidelberger&#64;ixit.cz&gt;"> <span class="fn">David Heidelberger (okias)</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992">bug 83992</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Keywords</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>bisected
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>david.heidelberger&#64;ixit.cz
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c48">Comment # 48</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:peathot&#64;hotmail.com" title="Ratchanan Srirattanamet &lt;peathot&#64;hotmail.com&gt;"> <span class="fn">Ratchanan Srirattanamet</span></a>
-</span></b>
-        <pre>Will Pierre Moreau's patch be merged? This patch fix acceleration on system
-with only 9400M too. Symptom is X can start but gets locked up when I run
-glxgears for a while. System is Ubuntu 14.10 with Linux 3.17 compiled from git.
-After apply this patch, the symptom disappear.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -78,9 +94,9 @@ After apply this patch, the symptom disappear.</pre>
     </body>
 </html>
 
---1412962772.DC34dC6.9448--
+--1413065147.0Dd06b2.24996--
 
---===============1637691986==
+--===============1988694346==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -91,4 +107,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1637691986==--
+--===============1988694346==--
