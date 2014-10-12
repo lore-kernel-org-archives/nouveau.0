@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Sun, 12 Oct 2014 13:05:45 +0000
-Message-ID: <bug-27501-8800-dzZ4syiXUX@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84932] Optimus with nouveau no longer works with
+ xorg-server 1.16.1
+Date: Sun, 12 Oct 2014 14:55:26 +0000
+Message-ID: <bug-84932-8800-cjSd4EsBTb@http.bugs.freedesktop.org/>
+References: <bug-84932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1593565957=="
+Content-Type: multipart/mixed; boundary="===============1477596631=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1593565957==
-Content-Type: multipart/alternative; boundary="1413119145.dB1F26.28879"; charset="UTF-8"
+--===============1477596631==
+Content-Type: multipart/alternative; boundary="1413125725.424C0.1693"; charset="UTF-8"
 
 
---1413119145.dB1F26.28879
-Date: Sun, 12 Oct 2014 13:05:45 +0000
+--1413125725.424C0.1693
+Date: Sun, 12 Oct 2014 14:55:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=84932
 
---- Comment #49 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Ratchanan Srirattanamet from comment #48)
-> Will Pierre Moreau's patch be merged? This patch fix acceleration on system
-> with only 9400M too. Symptom is X can start but gets locked up when I run
-> glxgears for a while. System is Ubuntu 14.10 with Linux 3.17 compiled from
-> git. After apply this patch, the symptom disappear.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You appear to have bbswtich referenced in your dmesg. Bumblebee is more likely
+to just mess things up, and adds nothing over the runtime pm functionality
+present in nouveau since 3.12 or so. [There are situations where that's not
+working for one reason or another, but this is the minority of situations.]
 
-Hi Ratchanan,
+Do you have customized xorg.conf settings? If so, try moving them out of the
+way. (I notice that you're probably explicitly loading glamoregl -- no reason
+to do that, can only cause trouble...)
 
-My patch wasn't merged into 3.17 as it was a bit too short before the release,
-plus it didn't had time to be properly tested on other machines to check if it
-didn't introduce some regressions; I'll use the extra time to reverse-engineer
-the registers I modify. However it should be able to go into 3.18 if
-reverse-engineering goes well.
+Probably the big difference between 1.15 and 1.16 is DRI3, perhaps something is
+going wrong there... you could either try a git xf86-video-intel ddx or disable
+DRI3 (either at build time or with Option "DRI" "2" in the driver section).
+However I'm moderately sure this has worked fine for others.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413119145.dB1F26.28879
-Date: Sun, 12 Oct 2014 13:05:45 +0000
+--1413125725.424C0.1693
+Date: Sun, 12 Oct 2014 14:55:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,27 +65,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c49">Comment # 49</a>
+   title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932">bug 84932</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ratchanan Srirattanamet from <a href="show_bug.cgi?id=27501#c48">comment #48</a>)
-<span class="quote">&gt; Will Pierre Moreau's patch be merged? This patch fix acceleration on system
-&gt; with only 9400M too. Symptom is X can start but gets locked up when I run
-&gt; glxgears for a while. System is Ubuntu 14.10 with Linux 3.17 compiled from
-&gt; git. After apply this patch, the symptom disappear.</span >
+        <pre>You appear to have bbswtich referenced in your dmesg. Bumblebee is more likely
+to just mess things up, and adds nothing over the runtime pm functionality
+present in nouveau since 3.12 or so. [There are situations where that's not
+working for one reason or another, but this is the minority of situations.]
 
-Hi Ratchanan,
+Do you have customized xorg.conf settings? If so, try moving them out of the
+way. (I notice that you're probably explicitly loading glamoregl -- no reason
+to do that, can only cause trouble...)
 
-My patch wasn't merged into 3.17 as it was a bit too short before the release,
-plus it didn't had time to be properly tested on other machines to check if it
-didn't introduce some regressions; I'll use the extra time to reverse-engineer
-the registers I modify. However it should be able to go into 3.18 if
-reverse-engineering goes well.</pre>
+Probably the big difference between 1.15 and 1.16 is DRI3, perhaps something is
+going wrong there... you could either try a git xf86-video-intel ddx or disable
+DRI3 (either at build time or with Option &quot;DRI&quot; &quot;2&quot; in the driver section).
+However I'm moderately sure this has worked fine for others.</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +97,9 @@ reverse-engineering goes well.</pre>
     </body>
 </html>
 
---1413119145.dB1F26.28879--
+--1413125725.424C0.1693--
 
---===============1593565957==
+--===============1477596631==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -109,4 +110,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1593565957==--
+--===============1477596631==--
