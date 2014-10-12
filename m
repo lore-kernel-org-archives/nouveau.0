@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84932] Optimus with nouveau no longer works with
  xorg-server 1.16.1
-Date: Sun, 12 Oct 2014 17:49:33 +0000
-Message-ID: <bug-84932-8800-gPo8k0FQis@http.bugs.freedesktop.org/>
+Date: Sun, 12 Oct 2014 18:21:42 +0000
+Message-ID: <bug-84932-8800-IWOGTUO8Yw@http.bugs.freedesktop.org/>
 References: <bug-84932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0814968825=="
+Content-Type: multipart/mixed; boundary="===============1456510712=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0814968825==
-Content-Type: multipart/alternative; boundary="1413136172.b71B40.24752"; charset="UTF-8"
+--===============1456510712==
+Content-Type: multipart/alternative; boundary="1413138102.d360B6e0.1912"; charset="UTF-8"
 
 
---1413136172.b71B40.24752
-Date: Sun, 12 Oct 2014 17:49:32 +0000
+--1413138102.d360B6e0.1912
+Date: Sun, 12 Oct 2014 18:21:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84932
 
---- Comment #6 from dura <dura-PlyTytoxC32F389P3+uynUB+6BGkLq7r@public.gmane.org> ---
-Upgrading to kernel 3.17, or booting 3.16 with drm.rnodes=1 do not make it
-work.
-Recompiling xorg-server 1.16 without dri3 make it work.
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #7 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+A last note:
+for DRI3 you dont have to do the
+
+xrandr --listproviders 
+xrandr --setprovideroffloadsink nouveau Intel
+
+dance anymore, it works without! You can disable the compositor as well with
+DRI3.
+
+Closing as fixed, feel free to reopen if something is still unclear.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413136172.b71B40.24752
-Date: Sun, 12 Oct 2014 17:49:32 +0000
+--1413138102.d360B6e0.1912
+Date: Sun, 12 Oct 2014 18:21:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +64,57 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Optimus with nouveau no longer works with xorg-server 1.16.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932">bug 84932</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932#c6">Comment # 6</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Optimus with nouveau no longer works with xorg-server 1.16.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Optimus with nouveau no longer works with xorg-server 1.16.1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84932">bug 84932</a>
-              from <span class="vcard"><a class="email" href="mailto:dura&#64;duradsl.duckdns.org" title="dura &lt;dura&#64;duradsl.duckdns.org&gt;"> <span class="fn">dura</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Upgrading to kernel 3.17, or booting 3.16 with drm.rnodes=1 do not make it
-work.
-Recompiling xorg-server 1.16 without dri3 make it work.</pre>
+        <pre>A last note:
+for DRI3 you dont have to do the
+
+xrandr --listproviders 
+xrandr --setprovideroffloadsink nouveau Intel
+
+dance anymore, it works without! You can disable the compositor as well with
+DRI3.
+
+Closing as fixed, feel free to reopen if something is still unclear.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +126,9 @@ Recompiling xorg-server 1.16 without dri3 make it work.</pre>
     </body>
 </html>
 
---1413136172.b71B40.24752--
+--1413138102.d360B6e0.1912--
 
---===============0814968825==
+--===============1456510712==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +139,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0814968825==--
+--===============1456510712==--
