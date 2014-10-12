@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84932] Optimus with nouveau no longer works with
  xorg-server 1.16.1
-Date: Sun, 12 Oct 2014 17:01:38 +0000
-Message-ID: <bug-84932-8800-2Y70OsYhYX@http.bugs.freedesktop.org/>
+Date: Sun, 12 Oct 2014 17:49:33 +0000
+Message-ID: <bug-84932-8800-gPo8k0FQis@http.bugs.freedesktop.org/>
 References: <bug-84932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1684670321=="
+Content-Type: multipart/mixed; boundary="===============0814968825=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1684670321==
-Content-Type: multipart/alternative; boundary="1413133297.8B4e0.7997"; charset="UTF-8"
+--===============0814968825==
+Content-Type: multipart/alternative; boundary="1413136172.b71B40.24752"; charset="UTF-8"
 
 
---1413133297.8B4e0.7997
-Date: Sun, 12 Oct 2014 17:01:37 +0000
+--1413136172.b71B40.24752
+Date: Sun, 12 Oct 2014 17:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84932
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like for prime + dri3 to work, you need render nodes. I thought they were
-enabled by default in 3.16, but that is not the case. You can enable them by
-adding "drm.rnodes=1" to the kernel cmdline. Or you can upgrade to 3.17.
+--- Comment #6 from dura <dura-PlyTytoxC32F389P3+uynUB+6BGkLq7r@public.gmane.org> ---
+Upgrading to kernel 3.17, or booting 3.16 with drm.rnodes=1 do not make it
+work.
+Recompiling xorg-server 1.16 without dri3 make it work.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413133297.8B4e0.7997
-Date: Sun, 12 Oct 2014 17:01:37 +0000
+--1413136172.b71B40.24752
+Date: Sun, 12 Oct 2014 17:49:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84932#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Optimus with nouveau no longer works with xorg-server 1.16.1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84932">bug 84932</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:dura&#64;duradsl.duckdns.org" title="dura &lt;dura&#64;duradsl.duckdns.org&gt;"> <span class="fn">dura</span></a>
 </span></b>
-        <pre>Looks like for prime + dri3 to work, you need render nodes. I thought they were
-enabled by default in 3.16, but that is not the case. You can enable them by
-adding &quot;drm.rnodes=1&quot; to the kernel cmdline. Or you can upgrade to 3.17.</pre>
+        <pre>Upgrading to kernel 3.17, or booting 3.16 with drm.rnodes=1 do not make it
+work.
+Recompiling xorg-server 1.16 without dri3 make it work.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ adding &quot;drm.rnodes=1&quot; to the kernel cmdline. Or you can upgrade to 3.1
     </body>
 </html>
 
---1413133297.8B4e0.7997--
+--1413136172.b71B40.24752--
 
---===============1684670321==
+--===============0814968825==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,4 +90,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1684670321==--
+--===============0814968825==--
