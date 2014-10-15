@@ -1,83 +1,98 @@
-From: Marcin =?utf-8?Q?=C5=9Alusarz?= <marcin.slusarz@gmail.com>
-Subject: v3.17,
-	i915 vs nouveau: possible recursive locking detected
-Date: Mon, 13 Oct 2014 20:40:33 +0200
-Message-ID: <20141013184033.GA5526@marcin-Inspiron-7720>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Wed, 15 Oct 2014 03:50:28 +0000
+Message-ID: <bug-33165-8800-0C023CpJF7@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <intel-gfx-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
-List-Post: <mailto:intel-gfx@lists.freedesktop.org>
-List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
- <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: intel-gfx-bounces@lists.freedesktop.org
-Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-To: intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0081610457=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-=============================================
-[ INFO: possible recursive locking detected ]
-3.17.0 #50 Not tainted
----------------------------------------------
-Xorg/1170 is trying to acquire lock:
- (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa010ae93>] i915_gem_unmap_dma_buf+0x33/0xc0 [i915]
 
-but task is already holding lock:
- (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa001cd1a>] drm_gem_object_handle_unreference_unlocked+0xca/0x120 [drm]
+--===============0081610457==
+Content-Type: multipart/alternative; boundary="1413345028.112f2.1497"; charset="UTF-8"
 
-other info that might help us debug this:
- Possible unsafe locking scenario:
 
-       CPU0
-       ----
-  lock(&dev->struct_mutex);
-  lock(&dev->struct_mutex);
+--1413345028.112f2.1497
+Date: Wed, 15 Oct 2014 03:50:28 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
- *** DEADLOCK ***
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
- May be due to missing lock nesting notation
+--- Comment #34 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Could you guys give this patch a try?
 
-1 lock held by Xorg/1170:
- #0:  (&dev->struct_mutex){+.+.+.}, at: [<ffffffffa001cd1a>] drm_gem_object_handle_unreference_unlocked+0xca/0x120 [drm]
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1205e927a835cf9d707bd558c067f4c00ed31ec5
 
-stack backtrace:
-CPU: 1 PID: 1170 Comm: Xorg Not tainted 3.17.0 #50
-Hardware name: Dell Inc.          Inspiron 7720/04M3YM, BIOS A07 08/16/2012
- ffffffff82606b80 ffff880136e27b00 ffffffff81707891 ffffffff82606b80
- ffff880136e27bb8 ffffffff810e0e4f ffffffff00000000 000202000000c795
- 0000000000000001 0000000000000000 00000000004ec276 0000000000000300
-Call Trace:
- [<ffffffff81707891>] dump_stack+0x4e/0x7a
- [<ffffffff810e0e4f>] __lock_acquire+0x194f/0x19e0
- [<ffffffff810e1631>] lock_acquire+0x91/0x120
- [<ffffffffa010ae93>] ? i915_gem_unmap_dma_buf+0x33/0xc0 [i915]
- [<ffffffffa010ae93>] ? i915_gem_unmap_dma_buf+0x33/0xc0 [i915]
- [<ffffffff8170c014>] mutex_lock_nested+0x54/0x3d0
- [<ffffffffa010ae93>] ? i915_gem_unmap_dma_buf+0x33/0xc0 [i915]
- [<ffffffff810df03a>] ? mark_held_locks+0x6a/0x90
- [<ffffffffa010ae93>] i915_gem_unmap_dma_buf+0x33/0xc0 [i915]
- [<ffffffff814c3032>] dma_buf_unmap_attachment+0x22/0x40
- [<ffffffffa0034e42>] drm_prime_gem_destroy+0x22/0x40 [drm]
- [<ffffffffa0299b5b>] nouveau_gem_object_del+0x3b/0x60 [nouveau]
- [<ffffffffa001c7b7>] drm_gem_object_free+0x27/0x30 [drm]
- [<ffffffffa001cd34>] drm_gem_object_handle_unreference_unlocked+0xe4/0x120 [drm]
- [<ffffffffa001ce2a>] drm_gem_handle_delete+0xba/0x110 [drm]
- [<ffffffffa001d495>] drm_gem_close_ioctl+0x25/0x30 [drm]
- [<ffffffffa001df0c>] drm_ioctl+0x1ec/0x660 [drm]
- [<ffffffff8148e4b2>] ? __pm_runtime_resume+0x32/0x60
- [<ffffffff817102fd>] ? _raw_spin_unlock_irqrestore+0x5d/0x70
- [<ffffffff810df15d>] ? trace_hardirqs_on_caller+0xfd/0x1c0
- [<ffffffff810df22d>] ? trace_hardirqs_on+0xd/0x10
- [<ffffffff817102e2>] ? _raw_spin_unlock_irqrestore+0x42/0x70
- [<ffffffffa0290bd4>] nouveau_drm_ioctl+0x54/0xc0 [nouveau]
- [<ffffffff812072a0>] do_vfs_ioctl+0x300/0x520
- [<ffffffff81211fad>] ? __fget+0xad/0xe0
- [<ffffffff81211f05>] ? __fget+0x5/0xe0
- [<ffffffff81207541>] SyS_ioctl+0x81/0xa0
- [<ffffffff81710ed6>] system_call_fastpath+0x1a/0x1f
+Thanks,
+Ben.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1413345028.112f2.1497
+Date: Wed, 15 Oct 2014 03:50:28 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Could you guys give this patch a try?
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1205e927a835cf9d707bd558c067f4c00ed31ec5">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1205e927a835cf9d707bd558c067f4c00ed31ec5</a>
+
+Thanks,
+Ben.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1413345028.112f2.1497--
+
+--===============0081610457==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============0081610457==--
