@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 85086] read/write faults leave machine unsuable
-Date: Thu, 16 Oct 2014 11:52:13 +0000
-Message-ID: <bug-85086-8800-VeCzqu3M4E@http.bugs.freedesktop.org/>
+Date: Thu, 16 Oct 2014 15:56:56 +0000
+Message-ID: <bug-85086-8800-Pdnbi6ieXB@http.bugs.freedesktop.org/>
 References: <bug-85086-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1945332723=="
+Content-Type: multipart/mixed; boundary="===============1871597104=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-85086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1945332723==
-Content-Type: multipart/alternative; boundary="1413460332.fd44683.14251"; charset="UTF-8"
+--===============1871597104==
+Content-Type: multipart/alternative; boundary="1413475016.cF1f2.9380"; charset="UTF-8"
 
 
---1413460332.fd44683.14251
-Date: Thu, 16 Oct 2014 11:52:12 +0000
+--1413475016.cF1f2.9380
+Date: Thu, 16 Oct 2014 15:56:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=85086
 
-tethys-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #107925|text/plain                  |image/jpeg
-          mime type|                            |
+--- Comment #3 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+The first step to solve this would be a way to reproduce the problem. With this
+you could bisect or test patches and make sure it does not happen again.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413460332.fd44683.14251
-Date: Thu, 16 Oct 2014 11:52:12 +0000
+--1413475016.cF1f2.9380
+Date: Thu, 16 Oct 2014 15:56:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +48,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tethys&#64;gmail.com" title="tethys&#64;gmail.com">tethys&#64;gmail.com</a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - read/write faults leave machine unsuable"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85086#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - read/write faults leave machine unsuable"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=85086">bug 85086</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #107925 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span></b>
+        <pre>The first step to solve this would be a way to reproduce the problem. With this
+you could bisect or test patches and make sure it does not happen again.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +74,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1413460332.fd44683.14251--
+--1413475016.cF1f2.9380--
 
---===============1945332723==
+--===============1871597104==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +87,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1945332723==--
+--===============1871597104==--
