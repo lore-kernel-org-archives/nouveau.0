@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85086] [NVE7] read/write faults leave machine
-	unsuable
-Date: Thu, 16 Oct 2014 18:55:04 +0000
-Message-ID: <bug-85086-8800-SaEd1qR1Te@http.bugs.freedesktop.org/>
-References: <bug-85086-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Thu, 16 Oct 2014 20:03:02 +0000
+Message-ID: <bug-33165-8800-G1E2KLoyqO@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0969425420=="
+Content-Type: multipart/mixed; boundary="===============1264923264=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0969425420==
-Content-Type: multipart/alternative; boundary="1413485703.81D562.13614"; charset="UTF-8"
+--===============1264923264==
+Content-Type: multipart/alternative; boundary="1413489782.6c4D1.11100"; charset="UTF-8"
 
 
---1413485703.81D562.13614
-Date: Thu, 16 Oct 2014 18:55:03 +0000
+--1413489782.6c4D1.11100
+Date: Thu, 16 Oct 2014 20:03:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85086
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to tethys from comment #5)
-> By upgrading the ddx, I'm assuming you mean the xorg-x11-drv-nouveau
-> package? I'm already at the latest distribution supplied version (as
-> I am for mesa), but I guess I could look at compiling it from source
-> if you think it might help.
+--- Comment #35 from Oleg Bulatov <oleg-BA2faJl1U0oSAix4rjypdw@public.gmane.org> ---
+Awesome, it works for me.
 
-Right... but it'd be silly to chase bugs already resolved upstream. Distros
-tend to be cautious with new versions, which makes sense if your starting
-position is that things work. When things don't work, get the latest :)
+Linux 3.14.14-gentoo
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NVA3
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.2.7
+OpenGL core profile shading language version string: 3.30
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413485703.81D562.13614
-Date: Thu, 16 Oct 2014 18:55:03 +0000
+--1413489782.6c4D1.11100
+Date: Thu, 16 Oct 2014 20:03:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +58,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] read/write faults leave machine unsuable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85086#c6">Comment # 6</a>
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c35">Comment # 35</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] read/write faults leave machine unsuable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85086">bug 85086</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:oleg&#64;bulatov.mobi" title="Oleg Bulatov &lt;oleg&#64;bulatov.mobi&gt;"> <span class="fn">Oleg Bulatov</span></a>
 </span></b>
-        <pre>(In reply to tethys from <a href="show_bug.cgi?id=85086#c5">comment #5</a>)
-<span class="quote">&gt; By upgrading the ddx, I'm assuming you mean the xorg-x11-drv-nouveau
-&gt; package? I'm already at the latest distribution supplied version (as
-&gt; I am for mesa), but I guess I could look at compiling it from source
-&gt; if you think it might help.</span >
+        <pre>Awesome, it works for me.
 
-Right... but it'd be silly to chase bugs already resolved upstream. Distros
-tend to be cautious with new versions, which makes sense if your starting
-position is that things work. When things don't work, get the latest :)</pre>
+Linux 3.14.14-gentoo
+OpenGL vendor string: nouveau
+OpenGL renderer string: Gallium 0.4 on NVA3
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.2.7
+OpenGL core profile shading language version string: 3.30</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +84,9 @@ position is that things work. When things don't work, get the latest :)</pre>
     </body>
 </html>
 
---1413485703.81D562.13614--
+--1413489782.6c4D1.11100--
 
---===============0969425420==
+--===============1264923264==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0969425420==--
+--===============1264923264==--
