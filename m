@@ -1,95 +1,87 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85086] read/write faults leave machine unsuable
-Date: Thu, 16 Oct 2014 11:46:14 +0000
-Message-ID: <bug-85086-8800-c6S9CJj6XN@http.bugs.freedesktop.org/>
-References: <bug-85086-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel@ffwll.ch>
+Subject: Re: [Intel-gfx] v3.17, i915 vs nouveau: possible recursive locking
+ detected
+Date: Thu, 16 Oct 2014 13:47:38 +0200
+Message-ID: <20141016114738.GB1704@bremse.fdxtended.com>
+References: <20141013184033.GA5526@marcin-Inspiron-7720>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0888633122=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85086-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <20141013184033.GA5526@marcin-Inspiron-7720>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Marcin =?utf-8?Q?=C5=9Alusarz?= <marcin.slusarz@gmail.com>
+Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0888633122==
-Content-Type: multipart/alternative; boundary="1413459974.b81CAC1.12244"; charset="UTF-8"
-
-
---1413459974.b81CAC1.12244
-Date: Thu, 16 Oct 2014 11:46:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85086
-
---- Comment #1 from tethys-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 107922
-  --> https://bugs.freedesktop.org/attachment.cgi?id=107922&action=edit
-xrandr output
-
-The only option I had after the error was to reboot.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1413459974.b81CAC1.12244
-Date: Thu, 16 Oct 2014 11:46:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - read/write faults leave machine unsuable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85086#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - read/write faults leave machine unsuable"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85086">bug 85086</a>
-              from <span class="vcard"><a class="email" href="mailto:tethys&#64;gmail.com" title="tethys&#64;gmail.com">tethys&#64;gmail.com</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=107922" name="attach_107922" title="xrandr output">attachment 107922</a> <a href="attachment.cgi?id=107922&amp;action=edit" title="xrandr output">[details]</a></span>
-xrandr output
-
-The only option I had after the error was to reboot.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1413459974.b81CAC1.12244--
-
---===============0888633122==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0888633122==--
+V2UgbmVlZCB3dyBtdXRleGVzIGFuZCBuZWVkIHRvIHJld3JpdGUgaTkxNSBhIGJpdCBmbyBmaXgg
+dGhpcyBhbGwuIEkuZS4Ka25vd24gaXNzdWUuIEFzIGxvbmcgYXMgeW91ciB1c2Vyc3BhY2UgaXNu
+J3QgbmFzdHkgbm90aGluZyBiYWQgd2lsbCBldmVyCmhhcHBlbiB0aG91Z2guCi1EYW5pZWwKCk9u
+IE1vbiwgT2N0IDEzLCAyMDE0IGF0IDA4OjQwOjMzUE0gKzAyMDAsIE1hcmNpbiDFmmx1c2FyeiB3
+cm90ZToKPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiBb
+IElORk86IHBvc3NpYmxlIHJlY3Vyc2l2ZSBsb2NraW5nIGRldGVjdGVkIF0KPiAzLjE3LjAgIzUw
+IE5vdCB0YWludGVkCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tCj4gWG9yZy8xMTcwIGlzIHRyeWluZyB0byBhY3F1aXJlIGxvY2s6Cj4gICgmZGV2LT5zdHJ1
+Y3RfbXV0ZXgpeysuKy4rLn0sIGF0OiBbPGZmZmZmZmZmYTAxMGFlOTM+XSBpOTE1X2dlbV91bm1h
+cF9kbWFfYnVmKzB4MzMvMHhjMCBbaTkxNV0KPiAKPiBidXQgdGFzayBpcyBhbHJlYWR5IGhvbGRp
+bmcgbG9jazoKPiAgKCZkZXYtPnN0cnVjdF9tdXRleCl7Ky4rLisufSwgYXQ6IFs8ZmZmZmZmZmZh
+MDAxY2QxYT5dIGRybV9nZW1fb2JqZWN0X2hhbmRsZV91bnJlZmVyZW5jZV91bmxvY2tlZCsweGNh
+LzB4MTIwIFtkcm1dCj4gCj4gb3RoZXIgaW5mbyB0aGF0IG1pZ2h0IGhlbHAgdXMgZGVidWcgdGhp
+czoKPiAgUG9zc2libGUgdW5zYWZlIGxvY2tpbmcgc2NlbmFyaW86Cj4gCj4gICAgICAgIENQVTAK
+PiAgICAgICAgLS0tLQo+ICAgbG9jaygmZGV2LT5zdHJ1Y3RfbXV0ZXgpOwo+ICAgbG9jaygmZGV2
+LT5zdHJ1Y3RfbXV0ZXgpOwo+IAo+ICAqKiogREVBRExPQ0sgKioqCj4gCj4gIE1heSBiZSBkdWUg
+dG8gbWlzc2luZyBsb2NrIG5lc3Rpbmcgbm90YXRpb24KPiAKPiAxIGxvY2sgaGVsZCBieSBYb3Jn
+LzExNzA6Cj4gICMwOiAgKCZkZXYtPnN0cnVjdF9tdXRleCl7Ky4rLisufSwgYXQ6IFs8ZmZmZmZm
+ZmZhMDAxY2QxYT5dIGRybV9nZW1fb2JqZWN0X2hhbmRsZV91bnJlZmVyZW5jZV91bmxvY2tlZCsw
+eGNhLzB4MTIwIFtkcm1dCj4gCj4gc3RhY2sgYmFja3RyYWNlOgo+IENQVTogMSBQSUQ6IDExNzAg
+Q29tbTogWG9yZyBOb3QgdGFpbnRlZCAzLjE3LjAgIzUwCj4gSGFyZHdhcmUgbmFtZTogRGVsbCBJ
+bmMuICAgICAgICAgIEluc3Bpcm9uIDc3MjAvMDRNM1lNLCBCSU9TIEEwNyAwOC8xNi8yMDEyCj4g
+IGZmZmZmZmZmODI2MDZiODAgZmZmZjg4MDEzNmUyN2IwMCBmZmZmZmZmZjgxNzA3ODkxIGZmZmZm
+ZmZmODI2MDZiODAKPiAgZmZmZjg4MDEzNmUyN2JiOCBmZmZmZmZmZjgxMGUwZTRmIGZmZmZmZmZm
+MDAwMDAwMDAgMDAwMjAyMDAwMDAwYzc5NQo+ICAwMDAwMDAwMDAwMDAwMDAxIDAwMDAwMDAwMDAw
+MDAwMDAgMDAwMDAwMDAwMDRlYzI3NiAwMDAwMDAwMDAwMDAwMzAwCj4gQ2FsbCBUcmFjZToKPiAg
+WzxmZmZmZmZmZjgxNzA3ODkxPl0gZHVtcF9zdGFjaysweDRlLzB4N2EKPiAgWzxmZmZmZmZmZjgx
+MGUwZTRmPl0gX19sb2NrX2FjcXVpcmUrMHgxOTRmLzB4MTllMAo+ICBbPGZmZmZmZmZmODEwZTE2
+MzE+XSBsb2NrX2FjcXVpcmUrMHg5MS8weDEyMAo+ICBbPGZmZmZmZmZmYTAxMGFlOTM+XSA/IGk5
+MTVfZ2VtX3VubWFwX2RtYV9idWYrMHgzMy8weGMwIFtpOTE1XQo+ICBbPGZmZmZmZmZmYTAxMGFl
+OTM+XSA/IGk5MTVfZ2VtX3VubWFwX2RtYV9idWYrMHgzMy8weGMwIFtpOTE1XQo+ICBbPGZmZmZm
+ZmZmODE3MGMwMTQ+XSBtdXRleF9sb2NrX25lc3RlZCsweDU0LzB4M2QwCj4gIFs8ZmZmZmZmZmZh
+MDEwYWU5Mz5dID8gaTkxNV9nZW1fdW5tYXBfZG1hX2J1ZisweDMzLzB4YzAgW2k5MTVdCj4gIFs8
+ZmZmZmZmZmY4MTBkZjAzYT5dID8gbWFya19oZWxkX2xvY2tzKzB4NmEvMHg5MAo+ICBbPGZmZmZm
+ZmZmYTAxMGFlOTM+XSBpOTE1X2dlbV91bm1hcF9kbWFfYnVmKzB4MzMvMHhjMCBbaTkxNV0KPiAg
+WzxmZmZmZmZmZjgxNGMzMDMyPl0gZG1hX2J1Zl91bm1hcF9hdHRhY2htZW50KzB4MjIvMHg0MAo+
+ICBbPGZmZmZmZmZmYTAwMzRlNDI+XSBkcm1fcHJpbWVfZ2VtX2Rlc3Ryb3krMHgyMi8weDQwIFtk
+cm1dCj4gIFs8ZmZmZmZmZmZhMDI5OWI1Yj5dIG5vdXZlYXVfZ2VtX29iamVjdF9kZWwrMHgzYi8w
+eDYwIFtub3V2ZWF1XQo+ICBbPGZmZmZmZmZmYTAwMWM3Yjc+XSBkcm1fZ2VtX29iamVjdF9mcmVl
+KzB4MjcvMHgzMCBbZHJtXQo+ICBbPGZmZmZmZmZmYTAwMWNkMzQ+XSBkcm1fZ2VtX29iamVjdF9o
+YW5kbGVfdW5yZWZlcmVuY2VfdW5sb2NrZWQrMHhlNC8weDEyMCBbZHJtXQo+ICBbPGZmZmZmZmZm
+YTAwMWNlMmE+XSBkcm1fZ2VtX2hhbmRsZV9kZWxldGUrMHhiYS8weDExMCBbZHJtXQo+ICBbPGZm
+ZmZmZmZmYTAwMWQ0OTU+XSBkcm1fZ2VtX2Nsb3NlX2lvY3RsKzB4MjUvMHgzMCBbZHJtXQo+ICBb
+PGZmZmZmZmZmYTAwMWRmMGM+XSBkcm1faW9jdGwrMHgxZWMvMHg2NjAgW2RybV0KPiAgWzxmZmZm
+ZmZmZjgxNDhlNGIyPl0gPyBfX3BtX3J1bnRpbWVfcmVzdW1lKzB4MzIvMHg2MAo+ICBbPGZmZmZm
+ZmZmODE3MTAyZmQ+XSA/IF9yYXdfc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSsweDVkLzB4NzAKPiAg
+WzxmZmZmZmZmZjgxMGRmMTVkPl0gPyB0cmFjZV9oYXJkaXJxc19vbl9jYWxsZXIrMHhmZC8weDFj
+MAo+ICBbPGZmZmZmZmZmODEwZGYyMmQ+XSA/IHRyYWNlX2hhcmRpcnFzX29uKzB4ZC8weDEwCj4g
+IFs8ZmZmZmZmZmY4MTcxMDJlMj5dID8gX3Jhd19zcGluX3VubG9ja19pcnFyZXN0b3JlKzB4NDIv
+MHg3MAo+ICBbPGZmZmZmZmZmYTAyOTBiZDQ+XSBub3V2ZWF1X2RybV9pb2N0bCsweDU0LzB4YzAg
+W25vdXZlYXVdCj4gIFs8ZmZmZmZmZmY4MTIwNzJhMD5dIGRvX3Zmc19pb2N0bCsweDMwMC8weDUy
+MAo+ICBbPGZmZmZmZmZmODEyMTFmYWQ+XSA/IF9fZmdldCsweGFkLzB4ZTAKPiAgWzxmZmZmZmZm
+ZjgxMjExZjA1Pl0gPyBfX2ZnZXQrMHg1LzB4ZTAKPiAgWzxmZmZmZmZmZjgxMjA3NTQxPl0gU3lT
+X2lvY3RsKzB4ODEvMHhhMAo+ICBbPGZmZmZmZmZmODE3MTBlZDY+XSBzeXN0ZW1fY2FsbF9mYXN0
+cGF0aCsweDFhLzB4MWYKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
+cnBvcmF0aW9uCis0MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1h
+aWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
