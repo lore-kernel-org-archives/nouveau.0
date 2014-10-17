@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 67878] [NV98] [BISECTED] Hardware freeze after
  resume from suspend
-Date: Fri, 17 Oct 2014 14:12:21 +0000
-Message-ID: <bug-67878-8800-FEICiZgbaN@http.bugs.freedesktop.org/>
+Date: Fri, 17 Oct 2014 14:38:26 +0000
+Message-ID: <bug-67878-8800-aSchjDRzoD@http.bugs.freedesktop.org/>
 References: <bug-67878-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1720480543=="
+Content-Type: multipart/mixed; boundary="===============1059320990=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-67878-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1720480543==
-Content-Type: multipart/alternative; boundary="1413555141.CBeAD5.5271"; charset="UTF-8"
+--===============1059320990==
+Content-Type: multipart/alternative; boundary="1413556706.0CaB1D5.16410"; charset="UTF-8"
 
 
---1413555141.CBeAD5.5271
-Date: Fri, 17 Oct 2014 14:12:21 +0000
+--1413556706.0CaB1D5.16410
+Date: Fri, 17 Oct 2014 14:38:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=67878
 
---- Comment #51 from BobbyJ <junkbubba2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have this problem also using the nouveau driver in Ubuntu 14.04.1 LTS 64-bit.
-I have a Dell D630C with an nvidia 135M graphics card. After power management
-puts the laptop to sleep, the laptop becomes unusable after resuming. The login
-screen appears and the mouse moves for a short time, then freezes. Nothing else
-works,but to completely power down and restart the computer. I would love to
-see a fix for this issue. Has there been any further progress?
+--- Comment #52 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+To anyone looking to pile on with a "me too" comment: Only do so *AFTER*
+verifying that commit 4f6029da is the first bad commit for you.
+
+[Also, check that it's still happening with the latest kernel... 3.17 at the
+time of writing.]
+
+BobbyJ: I'm guessing you didn't do that. File your own bug with all the
+relevant info, and we can take it from there.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413555141.CBeAD5.5271
-Date: Fri, 17 Oct 2014 14:12:21 +0000
+--1413556706.0CaB1D5.16410
+Date: Fri, 17 Oct 2014 14:38:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] [BISECTED] Hardware freeze after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c51">Comment # 51</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67878#c52">Comment # 52</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] [BISECTED] Hardware freeze after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=67878">bug 67878</a>
-              from <span class="vcard"><a class="email" href="mailto:junkbubba2&#64;gmail.com" title="BobbyJ &lt;junkbubba2&#64;gmail.com&gt;"> <span class="fn">BobbyJ</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I have this problem also using the nouveau driver in Ubuntu 14.04.1 LTS 64-bit.
-I have a Dell D630C with an nvidia 135M graphics card. After power management
-puts the laptop to sleep, the laptop becomes unusable after resuming. The login
-screen appears and the mouse moves for a short time, then freezes. Nothing else
-works,but to completely power down and restart the computer. I would love to
-see a fix for this issue. Has there been any further progress?</pre>
+        <pre>To anyone looking to pile on with a &quot;me too&quot; comment: Only do so *AFTER*
+verifying that commit 4f6029da is the first bad commit for you.
+
+[Also, check that it's still happening with the latest kernel... 3.17 at the
+time of writing.]
+
+BobbyJ: I'm guessing you didn't do that. File your own bug with all the
+relevant info, and we can take it from there.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +87,9 @@ see a fix for this issue. Has there been any further progress?</pre>
     </body>
 </html>
 
---1413555141.CBeAD5.5271--
+--1413556706.0CaB1D5.16410--
 
---===============1720480543==
+--===============1059320990==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +100,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1720480543==--
+--===============1059320990==--
