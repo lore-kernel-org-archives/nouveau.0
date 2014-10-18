@@ -1,39 +1,102 @@
-From: Jesse Barnes <jbarnes@virtuousgeek.org>
-Subject: Re: [Intel-gfx] v3.17, i915 vs nouveau: possible recursive locking
- detected
-Date: Sat, 18 Oct 2014 12:04:32 +0200
-Message-ID: <20141018120432.1c061ea7@jbarnes-t420>
-References: <20141013184033.GA5526@marcin-Inspiron-7720>
- <20141016114738.GB1704@bremse.fdxtended.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
+Date: Sat, 18 Oct 2014 16:55:18 +0000
+Message-ID: <bug-33165-8800-RACN2IhJs0@http.bugs.freedesktop.org/>
+References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20141016114738.GB1704@bremse.fdxtended.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Marcin =?UTF-8?B?xZpsdXNhcno=?= <marcin.slusarz@gmail.com>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2058926086=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Thu, 16 Oct 2014 13:47:38 +0200
-Daniel Vetter <daniel@ffwll.ch> wrote:
 
-> We need ww mutexes and need to rewrite i915 a bit fo fix this all.
-> I.e. known issue. As long as your userspace isn't nasty nothing bad
-> will ever happen though.
+--===============2058926086==
+Content-Type: multipart/alternative; boundary="1413651318.4fb2aAE32.12472"; charset="UTF-8"
 
-So do we already have a bug open with a good description of the issue?
-Eventually the streets will run with blood and we'll enter the 6th
-republic of i915, so it would be good to have it on the hit list for
-when the time comes...
 
-Thanks,
-Jesse
+--1413651318.4fb2aAE32.12472
+Date: Sat, 18 Oct 2014 16:55:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=33165
+
+--- Comment #38 from cybjit-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I applied that patch to Ubuntu Trusty 3.13.0-38.65, and it gives a huge
+improvement. X no longer crashes on startup, and 3D acceleration works.
+
+However I also get the glitchy noise a few times a second, except when showing
+a static image. It is all over the screen, and sometimes appears as triangles.
+
+Running glxgears and Firefox at the same time also starts giving errors in the
+kernel log pretty quickly.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1413651318.4fb2aAE32.12472
+Date: Sat, 18 Oct 2014 16:55:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c38">Comment # 38</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
+              from <span class="vcard"><a class="email" href="mailto:cybjit&#64;gmail.com" title="cybjit&#64;gmail.com">cybjit&#64;gmail.com</a>
+</span></b>
+        <pre>I applied that patch to Ubuntu Trusty 3.13.0-38.65, and it gives a huge
+improvement. X no longer crashes on startup, and 3D acceleration works.
+
+However I also get the glitchy noise a few times a second, except when showing
+a static image. It is all over the screen, and sometimes appears as triangles.
+
+Running glxgears and Firefox at the same time also starts giving errors in the
+kernel log pretty quickly.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1413651318.4fb2aAE32.12472--
+
+--===============2058926086==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============2058926086==--
