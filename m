@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
-Date: Sun, 19 Oct 2014 01:29:34 +0000
-Message-ID: <bug-74062-8800-0Gma9PRYXK@http.bugs.freedesktop.org/>
-References: <bug-74062-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [Intel-gfx] v3.17,
+ i915 vs nouveau: possible recursive locking detected
+Date: Sun, 19 Oct 2014 13:31:24 +0200
+Message-ID: <20141019113124.GN26941@phenom.ffwll.local>
+References: <20141013184033.GA5526@marcin-Inspiron-7720>
+ <20141016114738.GB1704@bremse.fdxtended.com>
+ <20141018120432.1c061ea7@jbarnes-t420>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0862652970=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20141018120432.1c061ea7@jbarnes-t420>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,124 +21,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Jesse Barnes <jbarnes-Y1mF5jBUw70BENJcbMCuUQ@public.gmane.org>
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Marcin =?utf-8?Q?=C5=9Alusarz?= <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0862652970==
-Content-Type: multipart/alternative; boundary="1413682174.aEF36730.22840"; charset="UTF-8"
-
-
---1413682174.aEF36730.22840
-Date: Sun, 19 Oct 2014 01:29:34 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=74062
-
-Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #15 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #14)
-> It's worth retrying this with Linux 3.17.  I fixed a bug with the same
-> symptoms on a macbook I had access to, but did not expect the same fix to be
-> relevant for the other boards where the issue was reported.
+On Sat, Oct 18, 2014 at 12:04:32PM +0200, Jesse Barnes wrote:
+> On Thu, 16 Oct 2014 13:47:38 +0200
+> Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org> wrote:
 > 
-> However, I've just had an email saying it's fixed for another guy, so, it's
-> worth a try.
+> > We need ww mutexes and need to rewrite i915 a bit fo fix this all.
+> > I.e. known issue. As long as your userspace isn't nasty nothing bad
+> > will ever happen though.
+> 
+> So do we already have a bug open with a good description of the issue?
+> Eventually the streets will run with blood and we'll enter the 6th
+> republic of i915, so it would be good to have it on the hit list for
+> when the time comes...
 
-I just compiled Linux 3.17 and found that the bug won't happen with it.
+https://bugzilla.kernel.org/show_bug.cgi?id=60534
 
+I've updated the bug with latest status.
+-Daniel
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1413682174.aEF36730.22840
-Date: Sun, 19 Oct 2014 01:29:34 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=74062#c14">comment #14</a>)
-<span class="quote">&gt; It's worth retrying this with Linux 3.17.  I fixed a bug with the same
-&gt; symptoms on a macbook I had access to, but did not expect the same fix to be
-&gt; relevant for the other boards where the issue was reported.
-&gt; 
-&gt; However, I've just had an email saying it's fixed for another guy, so, it's
-&gt; worth a try.</span >
-
-I just compiled Linux 3.17 and found that the bug won't happen with it.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1413682174.aEF36730.22840--
-
---===============0862652970==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0862652970==--
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
