@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
-Date: Sat, 18 Oct 2014 16:58:04 +0000
-Message-ID: <bug-33165-8800-EttHycWGM7@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 74062] [NVE4] Artifacts in 3D games.
+Date: Sun, 19 Oct 2014 01:29:34 +0000
+Message-ID: <bug-74062-8800-0Gma9PRYXK@http.bugs.freedesktop.org/>
+References: <bug-74062-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1278506960=="
+Content-Type: multipart/mixed; boundary="===============0862652970=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-74062-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1278506960==
-Content-Type: multipart/alternative; boundary="1413651484.dC4B3BD2.13392"; charset="UTF-8"
+--===============0862652970==
+Content-Type: multipart/alternative; boundary="1413682174.aEF36730.22840"; charset="UTF-8"
 
 
---1413651484.dC4B3BD2.13392
-Date: Sat, 18 Oct 2014 16:58:04 +0000
+--1413682174.aEF36730.22840
+Date: Sun, 19 Oct 2014 01:29:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
+https://bugs.freedesktop.org/show_bug.cgi?id=74062
 
---- Comment #39 from cybjit-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 108030
-  --> https://bugs.freedesktop.org/attachment.cgi?id=108030&action=edit
-Firefox and glxgears at the same time
+Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #15 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+(In reply to Ben Skeggs from comment #14)
+> It's worth retrying this with Linux 3.17.  I fixed a bug with the same
+> symptoms on a macbook I had access to, but did not expect the same fix to be
+> relevant for the other boards where the issue was reported.
+> 
+> However, I've just had an email saying it's fixed for another guy, so, it's
+> worth a try.
+
+I just compiled Linux 3.17 and found that the bug won't happen with it.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1413651484.dC4B3BD2.13392
-Date: Sat, 18 Oct 2014 16:58:04 +0000
+--1413682174.aEF36730.22840
+Date: Sun, 19 Oct 2014 01:29:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +62,56 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c39">Comment # 39</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:cybjit&#64;gmail.com" title="cybjit&#64;gmail.com">cybjit&#64;gmail.com</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE4] Artifacts in 3D games."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=74062">bug 74062</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=108030" name="attach_108030" title="Firefox and glxgears at the same time">attachment 108030</a> <a href="attachment.cgi?id=108030&amp;action=edit" title="Firefox and glxgears at the same time">[details]</a></span>
-Firefox and glxgears at the same time</pre>
+        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=74062#c14">comment #14</a>)
+<span class="quote">&gt; It's worth retrying this with Linux 3.17.  I fixed a bug with the same
+&gt; symptoms on a macbook I had access to, but did not expect the same fix to be
+&gt; relevant for the other boards where the issue was reported.
+&gt; 
+&gt; However, I've just had an email saying it's fixed for another guy, so, it's
+&gt; worth a try.</span >
+
+I just compiled Linux 3.17 and found that the bug won't happen with it.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +123,9 @@ Firefox and glxgears at the same time</pre>
     </body>
 </html>
 
---1413651484.dC4B3BD2.13392--
+--1413682174.aEF36730.22840--
 
---===============1278506960==
+--===============0862652970==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -88,4 +136,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1278506960==--
+--===============0862652970==--
