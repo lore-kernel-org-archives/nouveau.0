@@ -1,83 +1,56 @@
 From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: VGA resume & thaw (wake up from S3 & S4) broken -
- reloaded & Fedora kernels 3.18 boot from soft-off(S5) broken
-Date: Tue, 21 Oct 2014 02:35:35 +0200
-Message-ID: <5445AA57.3020801@gmail.com>
+Subject: Re: [Nouveau] VGA resume & thaw & boot (wake up from S3 & S4 & boot
+	from S5) broken 3.18
+Date: Tue, 21 Oct 2014 12:12:19 +0200
+Message-ID: <54463183.3010808@gmail.com>
 References: <5444A802.9030504@gmail.com> <544562E9.1030000@gmail.com>
- <5445A78B.8050501@gmail.com>
+	<5445A78B.8050501@gmail.com> <5445AA57.3020801@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5445A78B.8050501-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <kernel-bounces-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>
+In-Reply-To: <5445AA57.3020801-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+List-Unsubscribe: <https://admin.fedoraproject.org/mailman/options/kernel>,
+	<mailto:kernel-request-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.fedoraproject.org/pipermail/kernel/>
+List-Post: <mailto:kernel-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>
+List-Help: <mailto:kernel-request-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org?subject=help>
+List-Subscribe: <https://admin.fedoraproject.org/mailman/listinfo/kernel>,
+	<mailto:kernel-request-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org?subject=subscribe>
+Sender: kernel-bounces-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org
+Errors-To: kernel-bounces-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org
 To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Mailing-List fedora-kernel <kernel-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On 21.10.2014 02:23, poma wrote:
-> On 20.10.2014 21:30, poma wrote:
->> On 20.10.2014 08:13, poma wrote:
->>>
->>> 02:00.0 VGA compatible controller: 
->>> NVIDIA Corporation G98 [GeForce 8400 GS Rev. 2] (rev a1)
->>> Chipset: G98 (NV98)
->>> Family : NV50
->>>
->>> The same for all four kernel:
->>> - 3.18.0-0.rc0.git8.1.fc22.x86_64
->>> - 3.18.0-0.rc0.git9.1.fc22.x86_64
->>> - 3.18.0-0.rc0.git9.3.fc22.x86_64
->>> - 3.18.0-0.rc0.git9.4.fc22.x86_64
->>> after
->>> "fb: switching to nouveaufb from VESA VGA"
->>> display is powered off.
->>> The magic SysRq key sequence is necessary to reboot.
->>>
->> ...
->>
->> This is what I've tested so far:
->> http://cgit.freedesktop.org/~airlied/linux/log/?h=drm-next
->> git clone -b drm-next git://people.freedesktop.org/~airlied/linux
->>
->> 1. git-e94654e-1st-test-nouveau
->>
->> 2. git-996f5a0-2nd-test-nouveau
->>    drm/nouveau/core: pass related object into notify constructor
->>    http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&id=996f5a0
->>
->> 3. git-b38a232-3rd-test-nouveau
->>    drm/nv50-/disp: add support for completion events
->>    http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-next&id=b38a232
->>
->> 4. git-dfda0df-4th-test-nouveau
->>    The Last of the Mohicans
->>
->> Unlike the above mentioned Fedora kernels, all four drm-next kernels have no problemos with booting from soft-off(S5).
->> However "The Last of the Mohicans" has broken resume from suspend(S3)/hibernate(S4).
->> This has been seen recently.
->>
-> 
-> Summa summarum
-> 
-> With the above mentioned drm-next kernels at least works boot from soft-off(S5).
-> However broken are resume from suspend(S3) & hibernate(S4).
-> 
-> The above mentioned Fedora kernels including 3.18.0-0.rc1.git0.1.fc22.x86_64, based on linux-next & derivatives, all broke boot from soft-off(S5) - after "fb: switching to nouveaufb from VESA VGA" you can only get WhoTF turned out the lights!
-> What the circus.
-> 
-> What is the best, I've compared the last working kernel and first broken, guess what, no diff within gpu/drm/nouveau/ branch.
-> 
-
-Oh yeah!
-With 3.18.0-0.rc1.git0.1.fc22.x86_64 even the magic SysRq key sequence is broken. :)
-
-Vorsprung durch technik
+Cmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+YWlybGllZC9saW51eC9sb2cvP2g9ZHJtLWZp
+eGVzCgotIDMuMTguMC1yYzEuZ2l0LWU4MDBjYWItZHJtLWZpeGVzCgpbICAgMjA0Ljk1MF0gKElJ
+KSBtb2Rlc2V0KDApOiB1c2luZyBkcnYgL2Rldi9kcmkvY2FyZDAKWyAgIDIwNC45NTFdIChFRSkg
+ClsgICAyMDQuOTUxXSAoRUUpIEJhY2t0cmFjZToKWyAgIDIwNC45NTFdIChFRSkgMDogL3Vzci9s
+aWJleGVjL1hvcmcuYmluIChPc1NpZ0hhbmRsZXIrMHgyOSkgWzB4NTk4ZTI5XQpbICAgMjA0Ljk1
+MV0gKEVFKSAxOiAvbGliNjQvbGlicHRocmVhZC5zby4wIChfX3Jlc3RvcmVfcnQrMHgwKSBbMHg3
+ZmJlZDZmZDMwY2ZdClsgICAyMDQuOTUyXSAoRUUpIDI6IC9saWI2NC9saWJwY2lhY2Nlc3Muc28u
+MCAocGNpX2RldmljZV9uZXh0KzB4MTEwKSBbMHg3ZmJlZDkxMzhjYTBdClsgICAyMDQuOTUyXSAo
+RUUpIDM6IC9saWI2NC9saWJwY2lhY2Nlc3Muc28uMCAocGNpX2RldmljZV9maW5kX2J5X3Nsb3Qr
+MHgzYikgWzB4N2ZiZWQ5MTM4ZDNiXQpbICAgMjA0Ljk1Ml0gKEVFKSA0OiAvbGliNjQvbGlicGNp
+YWNjZXNzLnNvLjAgKHBjaV9kZXZpY2VfdmdhYXJiX2luaXQrMHhhZikgWzB4N2ZiZWQ5MTNhOWVm
+XQpbICAgMjA0Ljk1Ml0gKEVFKSA1OiAvdXNyL2xpYmV4ZWMvWG9yZy5iaW4gKHhmODZWR0FhcmJp
+dGVySW5pdCsweDkpIFsweDQ5OTAzOV0KWyAgIDIwNC45NTNdIChFRSkgNjogL3Vzci9saWJleGVj
+L1hvcmcuYmluICh4Zjg2QnVzQ29uZmlnKzB4NjIpIFsweDQ2ZDFjMl0KWyAgIDIwNC45NTNdIChF
+RSkgNzogL3Vzci9saWJleGVjL1hvcmcuYmluIChJbml0T3V0cHV0KzB4OWMzKSBbMHg0N2I0NjNd
+ClsgICAyMDQuOTUzXSAoRUUpIDg6IC91c3IvbGliZXhlYy9Yb3JnLmJpbiAoZGl4X21haW4rMHgx
+ZWEpIFsweDQzY2FlYV0KWyAgIDIwNC45NTNdIChFRSkgOTogL2xpYjY0L2xpYmMuc28uNiAoX19s
+aWJjX3N0YXJ0X21haW4rMHhmMCkgWzB4N2ZiZWQ2YzI1ZmUwXQpbICAgMjA0Ljk1NF0gKEVFKSAx
+MDogL3Vzci9saWJleGVjL1hvcmcuYmluIChfc3RhcnQrMHgyOSkgWzB4NDI3MTZlXQpbICAgMjA0
+Ljk1NF0gKEVFKSAxMTogPyAoPysweDI5KSBbMHgyOV0KWyAgIDIwNC45NTRdIChFRSkgClsgICAy
+MDQuOTU0XSAoRUUpIFNlZ21lbnRhdGlvbiBmYXVsdCBhdCBhZGRyZXNzIDB4MApbICAgMjA0Ljk1
+NF0gKEVFKSAKRmF0YWwgc2VydmVyIGVycm9yOgpbICAgMjA0Ljk1NF0gKEVFKSBDYXVnaHQgc2ln
+bmFsIDExIChTZWdtZW50YXRpb24gZmF1bHQpLiBTZXJ2ZXIgYWJvcnRpbmcKWyAgIDIwNC45NTRd
+IChFRSkgClsgICAyMDQuOTU0XSAoRUUpIApQbGVhc2UgY29uc3VsdCB0aGUgRmVkb3JhIFByb2pl
+Y3Qgc3VwcG9ydCAKCSBhdCBodHRwOi8vd2lraS54Lm9yZwogZm9yIGhlbHAuIApbICAgMjA0Ljk1
+NF0gKEVFKSBQbGVhc2UgYWxzbyBjaGVjayB0aGUgbG9nIGZpbGUgYXQgIi92YXIvbG9nL1hvcmcu
+MC5sb2ciIGZvciBhZGRpdGlvbmFsIGluZm9ybWF0aW9uLgpbICAgMjA0Ljk1NF0gKEVFKSAKWyAg
+IDIwNC45NTZdIChFRSkgU2VydmVyIHRlcm1pbmF0ZWQgd2l0aCBlcnJvciAoMSkuIENsb3Npbmcg
+bG9nIGZpbGUuCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18Ka2VybmVsIG1haWxpbmcgbGlzdAprZXJuZWxAbGlzdHMuZmVkb3JhcHJvamVjdC5vcmcKaHR0
+cHM6Ly9hZG1pbi5mZWRvcmFwcm9qZWN0Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2tlcm5lbA==
