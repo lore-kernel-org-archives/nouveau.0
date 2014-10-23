@@ -1,10 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85352] New: [NVC0/Gallium] Scaling/centering issue
- in shadertoy shader
-Date: Thu, 23 Oct 2014 04:56:48 +0000
-Message-ID: <bug-85352-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85381] New: Blank screen with GeForce 9600 GT
+Date: Thu, 23 Oct 2014 19:06:42 +0000
+Message-ID: <bug-85381-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1931210413=="
+Content-Type: multipart/mixed; boundary="===============1814792938=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,43 +18,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1931210413==
-Content-Type: multipart/alternative; boundary="1414040208.5CD4dC70.13209"; charset="UTF-8"
+--===============1814792938==
+Content-Type: multipart/alternative; boundary="1414091202.AB1DeF4D1.20171"; charset="UTF-8"
 
 
---1414040208.5CD4dC70.13209
-Date: Thu, 23 Oct 2014 04:56:47 +0000
+--1414091202.AB1DeF4D1.20171
+Date: Thu, 23 Oct 2014 19:06:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85352
+https://bugs.freedesktop.org/show_bug.cgi?id=85381
 
-            Bug ID: 85352
-           Summary: [NVC0/Gallium] Scaling/centering issue in shadertoy
-                    shader
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
+            Bug ID: 85381
+           Summary: Blank screen with GeForce 9600 GT
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
             Status: NEW
-          Severity: normal
+          Severity: major
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+          Reporter: michael-U4+xqT1Vg0VeoWH0uzbU5w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-https://www.shadertoy.com/view/4sf3Dj
+Created attachment 108317
+  --> https://bugs.freedesktop.org/attachment.cgi?id=108317&action=edit
+dmesg
 
-The GameCube logo should be centered. Instead of a NVC1 + 10.3 (and also -git)
-it appears to be centered around the upper left corner and scaled/stretched.
-Confirmed to work OK on i965 and radeonsi, so most likely a nouveau issue.
+Regression detected in kernel version v3.18-rc1.
+
+Behaviour: Blank screen appears during boot. Normally KMS starts at this
+moment, but since commit 1dce6264045cd23e9c07574ed0bb31c7dce9354f
+("drm/nv50/kms: Set VBLANK time in modeset script") said behaviour occurs.
+
+dmesg log is attached, although it is overrun with messages like
+[   23.119549] nouveau E[   PDISP][0000:01:00.0]     0x0840: 0x00000000 ->
+0xc0000000
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414040208.5CD4dC70.13209
-Date: Thu, 23 Oct 2014 04:56:48 +0000
+--1414091202.AB1DeF4D1.20171
+Date: Thu, 23 Oct 2014 19:06:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,38 +75,38 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC0/Gallium] Scaling/centering issue in shadertoy shader"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85352">85352</a>
+   title="NEW - Blank screen with GeForce 9600 GT"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381">85381</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>[NVC0/Gallium] Scaling/centering issue in shadertoy shader
+          <td>Blank screen with GeForce 9600 GT
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>git
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -111,7 +118,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>major
           </td>
         </tr>
 
@@ -123,7 +130,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
@@ -135,16 +142,29 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>imirkin&#64;alum.mit.edu
+          <td>michael&#64;riesch.at
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre><a href="https://www.shadertoy.com/view/4sf3Dj">https://www.shadertoy.com/view/4sf3Dj</a>
+        <pre>Created <span class=""><a href="attachment.cgi?id=108317" name="attach_108317" title="dmesg">attachment 108317</a> <a href="attachment.cgi?id=108317&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-The GameCube logo should be centered. Instead of a NVC1 + 10.3 (and also -git)
-it appears to be centered around the upper left corner and scaled/stretched.
-Confirmed to work OK on i965 and radeonsi, so most likely a nouveau issue.</pre>
+Regression detected in kernel version v3.18-rc1.
+
+Behaviour: Blank screen appears during boot. Normally KMS starts at this
+moment, but since commit 1dce6264045cd23e9c07574ed0bb31c7dce9354f
+(&quot;drm/nv50/kms: Set VBLANK time in modeset script&quot;) said behaviour occurs.
+
+dmesg log is attached, although it is overrun with messages like
+[   23.119549] nouveau E[   PDISP][0000:01:00.0]     0x0840: 0x00000000 -&gt;
+0xc0000000</pre>
         </div>
       </p>
       <hr>
@@ -156,9 +176,9 @@ Confirmed to work OK on i965 and radeonsi, so most likely a nouveau issue.</pre>
     </body>
 </html>
 
---1414040208.5CD4dC70.13209--
+--1414091202.AB1DeF4D1.20171--
 
---===============1931210413==
+--===============1814792938==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -169,4 +189,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1931210413==--
+--===============1814792938==--
