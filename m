@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85352] [NVC0/Gallium] Scaling/centering issue in
- shadertoy shader
-Date: Thu, 23 Oct 2014 13:27:32 +0000
-Message-ID: <bug-85352-8800-XoGDXyCvi2@http.bugs.freedesktop.org/>
-References: <bug-85352-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?q?Ch=C3=AD-Thanh=20Christopher=20Nguy=E1=BB=85n?=
+ <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
+Subject: [PATCH] Make building of glamor optional
+Date: Thu, 23 Oct 2014 16:54:01 +0200
+Message-ID: <1414076041-23619-1-git-send-email-chithanh@gentoo.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0437505662=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,72 +19,52 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+---
+ configure.ac | 30 +++++++++++++++++++++---------
+ 1 file changed, 21 insertions(+), 9 deletions(-)
 
---===============0437505662==
-Content-Type: multipart/alternative; boundary="1414070853.ecd185b1.8329"; charset="UTF-8"
-
-
---1414070853.ecd185b1.8329
-Date: Thu, 23 Oct 2014 13:27:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85352
-
---- Comment #1 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-I can reproduce that here. Lets see what causes this... Oh its actually you,
-nevertheless posting this comment now :)
-
+diff --git a/configure.ac b/configure.ac
+index ccf320a..56b08ee 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -140,17 +140,29 @@ if test "x$have_list_h" = xyes; then
+                    #include "list.h"])
+ fi
+ 
+-AC_CHECK_HEADERS([glamor.h],[found_glamor_header=yes],[found_glamor_header=no],
+-		 [#include "xorg-server.h"])
+-AC_MSG_CHECKING([whether to include GLAMOR support])
+-if test "x$found_glamor_header" = xyes && pkg-config --exists "xorg-server >= 1.15.99.901"
+-then
+-	AC_DEFINE(HAVE_GLAMOR, 1, [Build support for glamor acceleration])
+-	AC_MSG_RESULT([yes])
+-else
+-	AC_MSG_RESULT([no])
++AC_ARG_ENABLE(glamor,
++		AS_HELP_STRING([--enable-glamor],
++				[Enable glamor, a new GL-based acceleration [default=auto]]),
++		[GLAMOR="$enableval"],
++		[GLAMOR=auto])
++
++if test "x$GLAMOR" != "xno"; then
++	AC_CHECK_HEADERS([glamor.h],[found_glamor_header=yes],[found_glamor_header=no],
++			 [#include "xorg-server.h"])
++	AC_MSG_CHECKING([whether to include GLAMOR support])
++	if test "x$found_glamor_header" = xyes && pkg-config --exists "xorg-server >= 1.15.99.901"
++	then
++		AC_DEFINE(HAVE_GLAMOR, 1, [Build support for glamor acceleration])
++		AC_MSG_RESULT([yes])
++	else
++		AC_MSG_RESULT([no])
++		if test "x$GLAMOR" != "xauto"; then
++			AC_MSG_ERROR([failed to find required Xorg headers for glamor])
++		fi
++	fi
+ fi
+ 
++
+ AC_CONFIG_FILES([
+ 	Makefile
+ 	src/Makefile
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414070853.ecd185b1.8329
-Date: Thu, 23 Oct 2014 13:27:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0/Gallium] Scaling/centering issue in shadertoy shader"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85352#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0/Gallium] Scaling/centering issue in shadertoy shader"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85352">bug 85352</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>I can reproduce that here. Lets see what causes this... Oh its actually you,
-nevertheless posting this comment now :)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414070853.ecd185b1.8329--
-
---===============0437505662==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0437505662==--
+2.0.4
