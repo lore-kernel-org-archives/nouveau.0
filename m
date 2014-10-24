@@ -1,12 +1,13 @@
-From: =?UTF-8?q?Ch=C3=AD-Thanh=20Christopher=20Nguy=E1=BB=85n?=
- <chithanh-aBrp7R+bbdUdnm+yROfE0A@public.gmane.org>
-Subject: [PATCH] Make building of glamor optional
-Date: Thu, 23 Oct 2014 16:54:01 +0200
-Message-ID: <1414076041-23619-1-git-send-email-chithanh@gentoo.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 78439] [NVC1] Display corruption when DP connector
+ is reattached
+Date: Fri, 24 Oct 2014 23:20:32 +0000
+Message-ID: <bug-78439-8800-6EdBJVr2U3@http.bugs.freedesktop.org/>
+References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1755603089=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,52 +20,79 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
----
- configure.ac | 30 +++++++++++++++++++++---------
- 1 file changed, 21 insertions(+), 9 deletions(-)
 
-diff --git a/configure.ac b/configure.ac
-index ccf320a..56b08ee 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -140,17 +140,29 @@ if test "x$have_list_h" = xyes; then
-                    #include "list.h"])
- fi
- 
--AC_CHECK_HEADERS([glamor.h],[found_glamor_header=yes],[found_glamor_header=no],
--		 [#include "xorg-server.h"])
--AC_MSG_CHECKING([whether to include GLAMOR support])
--if test "x$found_glamor_header" = xyes && pkg-config --exists "xorg-server >= 1.15.99.901"
--then
--	AC_DEFINE(HAVE_GLAMOR, 1, [Build support for glamor acceleration])
--	AC_MSG_RESULT([yes])
--else
--	AC_MSG_RESULT([no])
-+AC_ARG_ENABLE(glamor,
-+		AS_HELP_STRING([--enable-glamor],
-+				[Enable glamor, a new GL-based acceleration [default=auto]]),
-+		[GLAMOR="$enableval"],
-+		[GLAMOR=auto])
-+
-+if test "x$GLAMOR" != "xno"; then
-+	AC_CHECK_HEADERS([glamor.h],[found_glamor_header=yes],[found_glamor_header=no],
-+			 [#include "xorg-server.h"])
-+	AC_MSG_CHECKING([whether to include GLAMOR support])
-+	if test "x$found_glamor_header" = xyes && pkg-config --exists "xorg-server >= 1.15.99.901"
-+	then
-+		AC_DEFINE(HAVE_GLAMOR, 1, [Build support for glamor acceleration])
-+		AC_MSG_RESULT([yes])
-+	else
-+		AC_MSG_RESULT([no])
-+		if test "x$GLAMOR" != "xauto"; then
-+			AC_MSG_ERROR([failed to find required Xorg headers for glamor])
-+		fi
-+	fi
- fi
- 
-+
- AC_CONFIG_FILES([
- 	Makefile
- 	src/Makefile
--- 
-2.0.4
+--===============1755603089==
+Content-Type: multipart/alternative; boundary="1414192832.361aD1.8581"; charset="UTF-8"
+
+
+--1414192832.361aD1.8581
+Date: Fri, 24 Oct 2014 23:20:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
+
+--- Comment #23 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+I retested this with the newest kernel (drm-fixes branch) but the screen is
+still black.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1414192832.361aD1.8581
+Date: Fri, 24 Oct 2014 23:20:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c23">Commen=
+t # 23</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
+konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
+</span></b>
+        <pre>I retested this with the newest kernel (drm-fixes branch) but =
+the screen is
+still black.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1414192832.361aD1.8581--
+
+--===============1755603089==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Nouveau mailing list
+Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+http://lists.freedesktop.org/mailman/listinfo/nouveau
+
+--===============1755603089==--
