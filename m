@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84706] [NV94] HDMI Connected,
-	but TV reports "no signal"
-Date: Fri, 24 Oct 2014 16:00:20 +0000
-Message-ID: <bug-84706-8800-043iW0PZk5@http.bugs.freedesktop.org/>
-References: <bug-84706-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: display force off - kernel 3.18
+Date: Fri, 24 Oct 2014 22:55:21 +0200
+Message-ID: <544ABCB9.10207@gmail.com>
+References: <5444A802.9030504@gmail.com> <544562E9.1030000@gmail.com>
+ <5445A78B.8050501@gmail.com> <5445AA57.3020801@gmail.com>
+ <54463183.3010808@gmail.com> <54469691.10105@gmail.com>
+ <5447C9F4.4030303@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0850738818=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5447C9F4.4030303-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +20,118 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Adam Williamson <awilliam-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Mailing-List fedora-kernel <kernel-TuqUDEhatI4ANWPb/1PvSmm0pvjS0E/A@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 
---===============0850738818==
-Content-Type: multipart/alternative; boundary="1414166420.E1cFDD2.2147"; charset="UTF-8"
+linux-next, commit 2d65a9f broke nouveau(display is powered off): 
+- boot from soft-off(S5)
+- thaw from hibernate(S4)
+- resume from suspend(S3)
+
+Chipset: G98 (NV98)
+Family : NV50
+
+https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/?id=2d65a9f
+
+commit 2d65a9f48fcdf7866aab6457bc707ca233e0c791
+Merge: da92da3 dfda0df
+Author: Linus Torvalds <torvalds-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>
+Date:   Tue Oct 14 09:39:08 2014 +0200
+
+    Merge branch 'drm-next' of git://people.freedesktop.org/~airlied/linux
+    
+    Pull drm updates from Dave Airlie:
+     "This is the main git pull for the drm,
+    
+      I pretty much froze major pulls at -rc5/6 time, and haven't had much
+      fallout, so will probably continue doing that.
+    
+      Lots of changes all over, big internal header cleanup to make it clear
+      drm features are legacy things and what are things that modern KMS
+      drivers should be using.  Also big move to use the new generic fences
+      in all the TTM drivers.
+    
+      core:
+            atomic prep work,
+            vblank rework changes, allows immediate vblank disables
+            major header reworking and cleanups to better delinate legacy
+            interfaces from what KMS drivers should be using.
+            cursor planes locking fixes
+    
+      ttm:
+            move to generic fences (affects all TTM drivers)
+            ppc64 caching fixes
+    
+      radeon:
+            userptr support,
+            uvd for old asics,
+            reset rework for fence changes
+            better buffer placement changes,
+            dpm feature enablement
+            hdmi audio support fixes
+    
+      intel:
+            Cherryview work,
+            180 degree rotation,
+            skylake prep work,
+            execlist command submission
+            full ppgtt prep work
+            cursor improvements
+            edid caching,
+            vdd handling improvements
+    
+      nouveau:
+            fence reworking
+            kepler memory clock work
+            gt21x clock work
+            fan control improvements
+            hdmi infoframe fixes
+            DP audio
+    
+      ast:
+            ppc64 fixes
+            caching fix
+    
+      rcar:
+            rcar-du DT support
+    
+      ipuv3:
+            prep work for capture support
+    
+      msm:
+            LVDS support for mdp4, new panel, gpu refactoring
+    
+      exynos:
+            exynos3250 SoC support, drop bad mmap interface,
+            mipi dsi changes, and component match support"
+    
+    * 'drm-next' of git://people.freedesktop.org/~airlied/linux: (640 commits)
+      drm/mst: rework payload table allocation to conform better.
+      drm/ast: Fix HW cursor image
+      drm/radeon/kv: add uvd/vce info to dpm debugfs output
+      drm/radeon/ci: add uvd/vce info to dpm debugfs output
+      drm/radeon: export reservation_object from dmabuf to ttm
+      drm/radeon: cope with foreign fences inside the reservation object
+      drm/radeon: cope with foreign fences inside display
+      drm/core: use helper to check driver features
+      drm/radeon/cik: write gfx ucode version to ucode addr reg
+      drm/radeon/si: print full CS when we hit a packet 0
+      drm/radeon: remove unecessary includes
+      drm/radeon/combios: declare legacy_connector_convert as static
+      drm/radeon/atombios: declare connector convert tables as static
+      drm/radeon: drop btc_get_max_clock_from_voltage_dependency_table
+      drm/radeon/dpm: drop clk/voltage dependency filters for BTC
+      drm/radeon/dpm: drop clk/voltage dependency filters for CI
+      drm/radeon/dpm: drop clk/voltage dependency filters for SI
+      drm/radeon/dpm: drop clk/voltage dependency filters for NI
+      drm/radeon: disable audio when we disable hdmi (v2)
+      drm/radeon: split audio enable between eg and r600 (v2)
+      ...
 
 
---1414166420.E1cFDD2.2147
-Date: Fri, 24 Oct 2014 16:00:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Up to and with prior commit da92da3 nouveau(S3/4/5) works OK.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84706
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Just noticed this:
-
-[    0.269025] vesafb: mode is 640x480x32, linelength=2560, pages=0
-[    0.284092] fb0: VESA VGA frame buffer device
-
-Please get rid of all that stuff from your kernel... it can't possibly be
-helping. (And is, in all likelihood, hurting.)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414166420.E1cFDD2.2147
-Date: Fri, 24 Oct 2014 16:00:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706">bug 84706</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Just noticed this:
-
-[    0.269025] vesafb: mode is 640x480x32, linelength=2560, pages=0
-[    0.284092] fb0: VESA VGA frame buffer device
-
-Please get rid of all that stuff from your kernel... it can't possibly be
-helping. (And is, in all likelihood, hurting.)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414166420.E1cFDD2.2147--
-
---===============0850738818==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0850738818==--
+poma
