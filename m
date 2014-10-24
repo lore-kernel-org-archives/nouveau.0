@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78439] [NVC1] Display corruption when DP connector
- is reattached
-Date: Fri, 24 Oct 2014 23:20:32 +0000
-Message-ID: <bug-78439-8800-6EdBJVr2U3@http.bugs.freedesktop.org/>
-References: <bug-78439-8800@http.bugs.freedesktop.org/>
+From: Farhan Masood <sheikhfarhanm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: nvidia quadro cards ddr ram access
+Date: Fri, 24 Oct 2014 15:21:48 +0500
+Message-ID: <CAET7Tc9TvU+SDwhfFDpxRbYfu3-aiGxq=NfQqWq_CZcL_2Vqsg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1755603089=="
+Content-Type: multipart/mixed; boundary="===============1054601983=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,71 +17,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1054601983==
+Content-Type: multipart/alternative; boundary=001a1139761cad90430506288d1f
 
---===============1755603089==
-Content-Type: multipart/alternative; boundary="1414192832.361aD1.8581"; charset="UTF-8"
+--001a1139761cad90430506288d1f
+Content-Type: text/plain; charset=UTF-8
+
+Hey all,
+
+       I want to access the ddr ram onboard nvidia quadro cards. Basically
+I wanna test the throughput of a PCIe RC driver. How is it mapped? Can I
+address it using any BARs? Any help would be appreciated.
 
 
---1414192832.361aD1.8581
-Date: Fri, 24 Oct 2014 23:20:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Regards,
+Farhan Masood
+(A fellow hacker)
+
+--001a1139761cad90430506288d1f
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
+<div dir=3D"ltr"><div><div><div><div>Hey all,<br><br></div>=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 I want to access the ddr ram onboard nvidia quadro ca=
+rds. Basically I wanna test the throughput of a PCIe RC driver. How is it m=
+apped? Can I address it using any BARs? Any help would be appreciated.<br><=
+br><br></div>Regards,<br></div>Farhan Masood<br></div>(A fellow hacker)<br>=
+</div>
 
---- Comment #23 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-I retested this with the newest kernel (drm-fixes branch) but the screen is
-still black.
+--001a1139761cad90430506288d1f--
 
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414192832.361aD1.8581
-Date: Fri, 24 Oct 2014 23:20:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c23">Commen=
-t # 23</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
-konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span></b>
-        <pre>I retested this with the newest kernel (drm-fixes branch) but =
-the screen is
-still black.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414192832.361aD1.8581--
-
---===============1755603089==
+--===============1054601983==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -95,4 +58,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1755603089==--
+--===============1054601983==--
