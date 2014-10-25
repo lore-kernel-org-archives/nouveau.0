@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 85444] [NV46] Heavy corruption, no hardfreeze,
  back to console and libexa.so segfault
-Date: Sat, 25 Oct 2014 14:51:21 +0000
-Message-ID: <bug-85444-8800-dLT42hYmzS@http.bugs.freedesktop.org/>
+Date: Sat, 25 Oct 2014 14:51:58 +0000
+Message-ID: <bug-85444-8800-G163E0XV7p@http.bugs.freedesktop.org/>
 References: <bug-85444-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1917769141=="
+Content-Type: multipart/mixed; boundary="===============0966763280=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-85444-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1917769141==
-Content-Type: multipart/alternative; boundary="1414248681.FE103C71.7435"; charset="UTF-8"
+--===============0966763280==
+Content-Type: multipart/alternative; boundary="1414248718.bb4251.7626"; charset="UTF-8"
 
 
---1414248681.FE103C71.7435
-Date: Sat, 25 Oct 2014 14:51:21 +0000
+--1414248718.bb4251.7626
+Date: Sat, 25 Oct 2014 14:51:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D85444
 
---- Comment #1 from Jes=C3=BAs Guerrero Botella <jesus.guerrero.botella@gma=
+--- Comment #2 from Jes=C3=BAs Guerrero Botella <jesus.guerrero.botella@gma=
 il.com> ---
-Created attachment 108397
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D108397&action=3Dedit
-dmesg output
+Created attachment 108398
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D108398&action=3Dedit
+X log
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414248681.FE103C71.7435
-Date: Sat, 25 Oct 2014 14:51:21 +0000
+--1414248718.bb4251.7626
+Date: Sat, 25 Oct 2014 14:51:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -60,8 +60,8 @@ Content-Transfer-Encoding: quoted-printable
           bz_status_NEW "
    title=3D"NEW - [NV46] Heavy corruption, no hardfreeze, back to console a=
 nd libexa.so segfault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85444#c1">Comment=
- # 1</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85444#c2">Comment=
+ # 2</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV46] Heavy corruption, no hardfreeze, back to console a=
@@ -73,11 +73,11 @@ jesus.guerrero.botella&#64;gmail.com" title=3D"Jes=C3=BAs Guerrero Botella =
 &lt;jesus.guerrero.botella&#64;gmail.com&gt;"> <span class=3D"fn">Jes=C3=BA=
 s Guerrero Botella</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D108397=
-" name=3D"attach_108397" title=3D"dmesg output">attachment 108397</a> <a hr=
-ef=3D"attachment.cgi?id=3D108397&amp;action=3Dedit" title=3D"dmesg output">=
-[details]</a></span>
-dmesg output</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D108398=
+" name=3D"attach_108398" title=3D"X log">attachment 108398</a> <a href=3D"a=
+ttachment.cgi?id=3D108398&amp;action=3Dedit" title=3D"X log">[details]</a><=
+/span>
+X log</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +89,9 @@ dmesg output</pre>
     </body>
 </html>
 
---1414248681.FE103C71.7435--
+--1414248718.bb4251.7626--
 
---===============1917769141==
+--===============0966763280==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -102,4 +102,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1917769141==--
+--===============0966763280==--
