@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85471] [NV86] nouveau/kernel 3.18.0-rc1: nouveau
- deadlocks on 2nd Xorg start or reboot
-Date: Sun, 26 Oct 2014 11:01:48 +0000
-Message-ID: <bug-85471-8800-E3ABffmuTs@http.bugs.freedesktop.org/>
-References: <bug-85471-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Sun, 26 Oct 2014 13:29:32 +0000
+Message-ID: <bug-85160-8800-Xhm6Dq41NM@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0700213199=="
+Content-Type: multipart/mixed; boundary="===============1922203455=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +22,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0700213199==
-Content-Type: multipart/alternative; boundary="1414321307.3A1e1EDe1.29198"; charset="UTF-8"
+--===============1922203455==
+Content-Type: multipart/alternative; boundary="1414330172.64ebc32.14009"; charset="UTF-8"
 
 
---1414321307.3A1e1EDe1.29198
-Date: Sun, 26 Oct 2014 11:01:47 +0000
+--1414330172.64ebc32.14009
+Date: Sun, 26 Oct 2014 13:29:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85471
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Seems like you're being hit by runtime pm somehow... Can you confirm by booting
-with
+--- Comment #6 from Zlatko Calusic <zcalusic-7aYyyD3GOf7R7s880joybQ@public.gmane.org> ---
+I have the same problem in 3.18-rc1, and can confirm that the issue is fixed if
+I revert 1dce62640. Also GF 9600 GT and also dual monitor setup.
 
-nouveau.runpm=0
+In my case, my primary display (DVI) would go blank right after switching to FB
+and monitor would go to powersave. Reverting the mentioned commit fixes the
+issue completely.
 
-to see if that resolves your issues? runpm was new in kernel 3.12 iirc (for
-nouveau).
+If there's an updated patch, I'm willing to test it before it goes mainstream.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414321307.3A1e1EDe1.29198
-Date: Sun, 26 Oct 2014 11:01:47 +0000
+--1414330172.64ebc32.14009
+Date: Sun, 26 Oct 2014 13:29:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,21 +61,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471#c5">Comment # 5</a>
+   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471">bug 85471</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+              from <span class="vcard"><a class="email" href="mailto:zcalusic&#64;bitsync.net" title="Zlatko Calusic &lt;zcalusic&#64;bitsync.net&gt;"> <span class="fn">Zlatko Calusic</span></a>
 </span></b>
-        <pre>Seems like you're being hit by runtime pm somehow... Can you confirm by booting
-with
+        <pre>I have the same problem in 3.18-rc1, and can confirm that the issue is fixed if
+I revert 1dce62640. Also GF 9600 GT and also dual monitor setup.
 
-nouveau.runpm=0
+In my case, my primary display (DVI) would go blank right after switching to FB
+and monitor would go to powersave. Reverting the mentioned commit fixes the
+issue completely.
 
-to see if that resolves your issues? runpm was new in kernel 3.12 iirc (for
-nouveau).</pre>
+If there's an updated patch, I'm willing to test it before it goes mainstream.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +88,9 @@ nouveau).</pre>
     </body>
 </html>
 
---1414321307.3A1e1EDe1.29198--
+--1414330172.64ebc32.14009--
 
---===============0700213199==
+--===============1922203455==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -98,4 +101,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0700213199==--
+--===============1922203455==--
