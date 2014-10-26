@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85160] [NV94] INVALID_STATE error,
- X fails to start on GeForce 9600 GT with dual monitors,
- kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
-Date: Sun, 26 Oct 2014 15:42:17 +0000
-Message-ID: <bug-85160-8800-JNZ8eLA7LO@http.bugs.freedesktop.org/>
-References: <bug-85160-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85381] Blank screen with GeForce 9600 GT
+Date: Sun, 26 Oct 2014 15:45:33 +0000
+Message-ID: <bug-85381-8800-M9q9UIA27O@http.bugs.freedesktop.org/>
+References: <bug-85381-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1927547511=="
+Content-Type: multipart/mixed; boundary="===============0675785281=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85381-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,40 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1927547511==
-Content-Type: multipart/alternative; boundary="1414338137.20c884a2.27460"; charset="UTF-8"
+--===============0675785281==
+Content-Type: multipart/alternative; boundary="1414338333.EB107a2.28550"; charset="UTF-8"
 
 
---1414338137.20c884a2.27460
-Date: Sun, 26 Oct 2014 15:42:17 +0000
+--1414338333.EB107a2.28550
+Date: Sun, 26 Oct 2014 15:45:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85160
+https://bugs.freedesktop.org/show_bug.cgi?id=85381
 
 Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #108425|0                           |1
-        is obsolete|                            |
-             Status|NEW                         |ASSIGNED
-           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org
-                   |rg                          |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #7 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-Created attachment 108457
-  --> https://bugs.freedesktop.org/attachment.cgi?id=108457&action=edit
-Fix vblank period setting on G94
+--- Comment #2 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+Bug #85160 has a patch attached that fixed the issue for at least one user.
+Please test and report there if modesetting remains broken.
 
-Instead of reverting said patch, please test the attached fix.
+*** This bug has been marked as a duplicate of bug 85160 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414338137.20c884a2.27460
-Date: Sun, 26 Oct 2014 15:42:17 +0000
+--1414338333.EB107a2.28550
+Date: Sun, 26 Oct 2014 15:45:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,9 +60,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381">bug 85381</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -78,45 +72,42 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #108425 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
-
-         <tr>
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>ASSIGNED
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td style="text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>rspliet&#64;eclipso.eu
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c7">Comment # 7</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381">bug 85381</a>
               from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=108457" name="attach_108457" title="Fix vblank period setting on G94">attachment 108457</a> <a href="attachment.cgi?id=108457&amp;action=edit" title="Fix vblank period setting on G94">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=85160&amp;attachment=108457'>[review]</a>
-Fix vblank period setting on G94
+        <pre><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="show_bug.cgi?id=85160">Bug #85160</a> has a patch attached that fixed the issue for at least one user.
+Please test and report there if modesetting remains broken.
 
-Instead of reverting said patch, please test the attached fix.</pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="show_bug.cgi?id=85160">bug 85160</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -128,9 +119,9 @@ Instead of reverting said patch, please test the attached fix.</pre>
     </body>
 </html>
 
---1414338137.20c884a2.27460--
+--1414338333.EB107a2.28550--
 
---===============1927547511==
+--===============0675785281==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +132,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1927547511==--
+--===============0675785281==--
