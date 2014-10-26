@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85381] Blank screen with GeForce 9600 GT
-Date: Sun, 26 Oct 2014 15:45:33 +0000
-Message-ID: <bug-85381-8800-M9q9UIA27O@http.bugs.freedesktop.org/>
-References: <bug-85381-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85465] [NVCF] X loses resources after suspend/resume
+Date: Sun, 26 Oct 2014 17:41:48 +0000
+Message-ID: <bug-85465-8800-5hl3kpzZQn@http.bugs.freedesktop.org/>
+References: <bug-85465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0675785281=="
+Content-Type: multipart/mixed; boundary="===============1882978381=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85381-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0675785281==
-Content-Type: multipart/alternative; boundary="1414338333.EB107a2.28550"; charset="UTF-8"
+--===============1882978381==
+Content-Type: multipart/alternative; boundary="1414345308.fAb71.7294"; charset="UTF-8"
 
 
---1414338333.EB107a2.28550
-Date: Sun, 26 Oct 2014 15:45:33 +0000
+--1414345308.fAb71.7294
+Date: Sun, 26 Oct 2014 17:41:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85381
+https://bugs.freedesktop.org/show_bug.cgi?id=85465
 
-Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> changed:
+--- Comment #4 from Daniel Barkalow <barkalow-o/mKjEDNO/Bg9hUCZPvPmw@public.gmane.org> ---
+I get:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-
---- Comment #2 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-Bug #85160 has a patch attached that fixed the issue for at least one user.
-Please test and report there if modesetting remains broken.
-
-*** This bug has been marked as a duplicate of bug 85160 ***
+00022400: 00000000 00000000 00000000 00000002
+00022410: 00000000 00000000 30000000 00000000
+00022420: 00000000 00000000 00000800 00000000
+00022430: 00000001 00000004 00000003 00000000
+...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414338333.EB107a2.28550
-Date: Sun, 26 Oct 2014 15:45:33 +0000
+--1414345308.fAb71.7294
+Date: Sun, 26 Oct 2014 17:41:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,57 +53,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381">bug 85381</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381#c2">Comment # 2</a>
+          bz_status_NEW "
+   title="NEW - [NVCF] X loses resources after suspend/resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Blank screen with GeForce 9600 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85381">bug 85381</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+          bz_status_NEW "
+   title="NEW - [NVCF] X loses resources after suspend/resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465">bug 85465</a>
+              from <span class="vcard"><a class="email" href="mailto:barkalow&#64;iabervon.org" title="Daniel Barkalow &lt;barkalow&#64;iabervon.org&gt;"> <span class="fn">Daniel Barkalow</span></a>
 </span></b>
-        <pre><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="show_bug.cgi?id=85160">Bug #85160</a> has a patch attached that fixed the issue for at least one user.
-Please test and report there if modesetting remains broken.
+        <pre>I get:
 
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="show_bug.cgi?id=85160">bug 85160</a> ***</pre>
+00022400: 00000000 00000000 00000000 00000002
+00022410: 00000000 00000000 30000000 00000000
+00022420: 00000000 00000000 00000800 00000000
+00022430: 00000001 00000004 00000003 00000000
+...</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +84,9 @@ Please test and report there if modesetting remains broken.
     </body>
 </html>
 
---1414338333.EB107a2.28550--
+--1414345308.fAb71.7294--
 
---===============0675785281==
+--===============1882978381==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +97,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0675785281==--
+--===============1882978381==--
