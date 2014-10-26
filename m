@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 85471] [NV86] nouveau/kernel 3.18.0-rc1: nouveau
  deadlocks on 2nd Xorg start or reboot
-Date: Sun, 26 Oct 2014 09:53:27 +0000
-Message-ID: <bug-85471-8800-rFyzWZYSfd@http.bugs.freedesktop.org/>
+Date: Sun, 26 Oct 2014 09:53:52 +0000
+Message-ID: <bug-85471-8800-FNb8O0I5iP@http.bugs.freedesktop.org/>
 References: <bug-85471-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1409883565=="
+Content-Type: multipart/mixed; boundary="===============0952586126=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-85471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1409883565==
-Content-Type: multipart/alternative; boundary="1414317207.40dF01.6166"; charset="UTF-8"
+--===============0952586126==
+Content-Type: multipart/alternative; boundary="1414317232.F2ea7Fe1.6372"; charset="UTF-8"
 
 
---1414317207.40dF01.6166
-Date: Sun, 26 Oct 2014 09:53:27 +0000
+--1414317232.F2ea7Fe1.6372
+Date: Sun, 26 Oct 2014 09:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=85471
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #3 from Christian Vogel <vogelchr-InfKab39H3A@public.gmane.org> ---
+Created attachment 108440
+  --> https://bugs.freedesktop.org/attachment.cgi?id=108440&action=edit
+Disassembly of nouveau_pmops_runtime_suspend
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau/kernel 3.18.0-rc1:  |[NV86] nouveau/kernel
-                   |nouveau deadlocks on 2nd    |3.18.0-rc1: nouveau
-                   |Xorg start or reboot        |deadlocks on 2nd Xorg start
-                   |                            |or reboot
+As the only nouveau-specific thing in the kernel-stack-trace seems to be
+nouveau_pmops_runtime_suspend, I'm adding a disassembly.
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you bisect? I assume this wasn't an issue in 3.17?
+Unfortunately the two calls to pm_runtime_forbid() can't even be distinguished,
+as there's only one call, and the 2nd one is optimized by gcc to a branch
+upwards, I've marked the actual location from the stacktrace with #####.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414317207.40dF01.6166
-Date: Sun, 26 Oct 2014 09:53:27 +0000
+--1414317232.F2ea7Fe1.6372
+Date: Sun, 26 Oct 2014 09:53:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,40 +57,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471">bug 85471</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot
-           </td>
-           <td>[NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=85471">bug 85471</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:vogelchr&#64;vogel.cx" title="Christian Vogel &lt;vogelchr&#64;vogel.cx&gt;"> <span class="fn">Christian Vogel</span></a>
 </span></b>
-        <pre>Can you bisect? I assume this wasn't an issue in 3.17?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=108440" name="attach_108440" title="Disassembly of nouveau_pmops_runtime_suspend">attachment 108440</a> <a href="attachment.cgi?id=108440&amp;action=edit" title="Disassembly of nouveau_pmops_runtime_suspend">[details]</a></span>
+Disassembly of nouveau_pmops_runtime_suspend
+
+As the only nouveau-specific thing in the kernel-stack-trace seems to be
+nouveau_pmops_runtime_suspend, I'm adding a disassembly.
+
+Unfortunately the two calls to pm_runtime_forbid() can't even be distinguished,
+as there's only one call, and the 2nd one is optimized by gcc to a branch
+upwards, I've marked the actual location from the stacktrace with #####.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +90,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1414317207.40dF01.6166--
+--1414317232.F2ea7Fe1.6372--
 
---===============1409883565==
+--===============0952586126==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +103,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============1409883565==--
+--===============0952586126==--
