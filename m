@@ -1,14 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85160] [NV94] INVALID_STATE error,
- X fails to start on GeForce 9600 GT with dual monitors,
- kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
-Date: Sun, 26 Oct 2014 00:50:38 +0000
-Message-ID: <bug-85160-8800-X7QNyGZbPd@http.bugs.freedesktop.org/>
-References: <bug-85160-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: linux kernel 3.17, freeze on resume
+Date: Sat, 25 Oct 2014 21:24:03 -0400
+Message-ID: <CAKb7UvhprANm0zP5X1o6nZL=rt1m2iubx0HRq_9_dhc-91sh9A@mail.gmail.com>
+References: <1414247146.47116.YahooMailNeo@web162805.mail.bf1.yahoo.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0314328704=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1414247146.47116.YahooMailNeo-g4EYUPmW088Me+d1jY/0H5EhsgyP+Z75VpNB7YpNyf8@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,105 +17,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: John Mountcastle <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+Can you grab a copy of dmesg after resume? Can you try waiting ~2
+minutes to see if gdm will restart on its own (due to X dying)? In
+general, nouveau is less-than-great at resuming while 3d applications
+are running. This used to be rare, but now people have things like
+gnome-shell/etc which complicate matters.
 
---===============0314328704==
-Content-Type: multipart/alternative; boundary="1414284637.7aD762.26980"; charset="UTF-8"
-
-
---1414284637.7aD762.26980
-Date: Sun, 26 Oct 2014 00:50:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85160
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A user on IRC bisected a failure that resulted in PDISP getting very unhappy
-to:
-
-commit 1dce6264045cd23e9c07574ed0bb31c7dce9354f
-Author: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Date:   Fri Sep 12 18:00:13 2014 +0200
-
-    drm/nv50/kms: Set VBLANK time in modeset script
-
-    Solves blinking on reclocking memory. The value set is an underestimate,
-but
-    with non-reduced vblanking this should give us plenty of time
-
-    Signed-off-by: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-You should safely be able to revert this commit, see if that helps.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414284637.7aD762.26980
-Date: Sun, 26 Oct 2014 00:50:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A user on IRC bisected a failure that resulted in PDISP getting very unhappy
-to:
-
-commit 1dce6264045cd23e9c07574ed0bb31c7dce9354f
-Author: Roy Spliet &lt;<a href="mailto:rspliet&#64;eclipso.eu">rspliet&#64;eclipso.eu</a>&gt;
-Date:   Fri Sep 12 18:00:13 2014 +0200
-
-    drm/nv50/kms: Set VBLANK time in modeset script
-
-    Solves blinking on reclocking memory. The value set is an underestimate,
-but
-    with non-reduced vblanking this should give us plenty of time
-
-    Signed-off-by: Roy Spliet &lt;<a href="mailto:rspliet&#64;eclipso.eu">rspliet&#64;eclipso.eu</a>&gt;
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-
-You should safely be able to revert this commit, see if that helps.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414284637.7aD762.26980--
-
---===============0314328704==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Nouveau mailing list
-Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-http://lists.freedesktop.org/mailman/listinfo/nouveau
-
---===============0314328704==--
+On Sat, Oct 25, 2014 at 10:25 AM, John Mountcastle <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
+> This may not be the proper place to raise this question but I've had little
+> luck elsewhere.
+> After trying again, unsuccessfully this time, to install the proprietary
+> NVIDIA driver, I've decided to focus my efforts on the open source Nouveau
+> driver. I've seen video drivers blamed for varying degrees of "freeze on
+> resume" but I'm not certain that's what I'm up against. When I resume after
+> hibernate, Plymouth fails then I get a completely inert machine. Lights are
+> on but keyboard nor mouse will elicit any response. If I go to another
+> machine and ssh to a shell and do, #systemctl restart gdm, a clean Xdisplay
+> pops up showing the log in screen. Now all is well. I'm running Gnome 3 on
+> kernel 3.17.1-302.fc21.x86_64 on an HP Elitebook 8440p with NVIDIA GT218N
+> [NVS 3100M] GPU, 8 GIG RAM and SSD. Can you help me help you to help me?
+> Do you suppose this is an as yet unreported driver bug or something else. It
+> may be interesting to note that about one time in five to seven, the machine
+> hangs on a reboot before getting anything at all onto the screen.
+> __________________
+> Never believe the set of that which you understand rivals the universe of
+> that which may go wrong -- mtcstle
+>
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
