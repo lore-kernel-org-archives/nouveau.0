@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85465] [NVCF] X loses resources after suspend/resume
-Date: Sun, 26 Oct 2014 01:37:41 +0000
-Message-ID: <bug-85465-8800-nt5Xt53Uxh@http.bugs.freedesktop.org/>
-References: <bug-85465-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Sun, 26 Oct 2014 01:37:46 +0000
+Message-ID: <bug-85160-8800-G3DeXohjnC@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0459084920=="
+Content-Type: multipart/mixed; boundary="===============0535704145=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0459084920==
-Content-Type: multipart/alternative; boundary="1414287460.B3b350d42.9645"; charset="UTF-8"
+--===============0535704145==
+Content-Type: multipart/alternative; boundary="1414287465.dFfd3b1.9687"; charset="UTF-8"
 
 
---1414287460.B3b350d42.9645
-Date: Sun, 26 Oct 2014 01:37:40 +0000
+--1414287465.dFfd3b1.9687
+Date: Sun, 26 Oct 2014 01:37:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85465
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|X loses resources after     |[NVCF] X loses resources
-                   |suspend/resume              |after suspend/resume
+--- Comment #4 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+Thanks for the pointer, I'll try and do a Fedora kernel build with the patch
+reverted sometime soon.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414287460.B3b350d42.9645
-Date: Sun, 26 Oct 2014 01:37:40 +0000
+--1414287465.dFfd3b1.9687
+Date: Sun, 26 Oct 2014 01:37:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] X loses resources after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465">bug 85465</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>X loses resources after suspend/resume
-           </td>
-           <td>[NVCF] X loses resources after suspend/resume
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+</span></b>
+        <pre>Thanks for the pointer, I'll try and do a Fedora kernel build with the patch
+reverted sometime soon.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1414287460.B3b350d42.9645--
+--1414287465.dFfd3b1.9687--
 
---===============0459084920==
+--===============0535704145==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -96,4 +89,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0459084920==--
+--===============0535704145==--
