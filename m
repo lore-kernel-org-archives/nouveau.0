@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85465] X loses resources after suspend/resume
-Date: Sun, 26 Oct 2014 01:37:06 +0000
-Message-ID: <bug-85465-8800-Uo78sFxTSl@http.bugs.freedesktop.org/>
+Subject: [Bug 85465] [NVCF] X loses resources after suspend/resume
+Date: Sun, 26 Oct 2014 01:37:41 +0000
+Message-ID: <bug-85465-8800-nt5Xt53Uxh@http.bugs.freedesktop.org/>
 References: <bug-85465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2061128275=="
+Content-Type: multipart/mixed; boundary="===============0459084920=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-85465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,34 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2061128275==
-Content-Type: multipart/alternative; boundary="1414287426.c7F6Fe442.9519"; charset="UTF-8"
+--===============0459084920==
+Content-Type: multipart/alternative; boundary="1414287460.B3b350d42.9645"; charset="UTF-8"
 
 
---1414287426.c7F6Fe442.9519
-Date: Sun, 26 Oct 2014 01:37:06 +0000
+--1414287460.B3b350d42.9645
+Date: Sun, 26 Oct 2014 01:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=85465
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you try booting with
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-nouveau.config=PCE1=0
-
-And seeing if that helps? This sounds like some resource copies aren't working
-properly (either on suspend or on resume) and some GF116's have been known to
-be silently missing their second copy engine (or we're not doing something to
-properly enable or we're not looking in the right place for the disable or ...
-who knows).
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|X loses resources after     |[NVCF] X loses resources
+                   |suspend/resume              |after suspend/resume
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414287426.c7F6Fe442.9519
-Date: Sun, 26 Oct 2014 01:37:06 +0000
+--1414287460.B3b350d42.9645
+Date: Sun, 26 Oct 2014 01:37:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,29 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X loses resources after suspend/resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X loses resources after suspend/resume"
+   title="NEW - [NVCF] X loses resources after suspend/resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=85465">bug 85465</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Could you try booting with
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-nouveau.config=PCE1=0
-
-And seeing if that helps? This sounds like some resource copies aren't working
-properly (either on suspend or on resume) and some GF116's have been known to
-be silently missing their second copy engine (or we're not doing something to
-properly enable or we're not looking in the right place for the disable or ...
-who knows).</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>X loses resources after suspend/resume
+           </td>
+           <td>[NVCF] X loses resources after suspend/resume
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -88,9 +83,9 @@ who knows).</pre>
     </body>
 </html>
 
---1414287426.c7F6Fe442.9519--
+--1414287460.B3b350d42.9645--
 
---===============2061128275==
+--===============0459084920==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -101,4 +96,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============2061128275==--
+--===============0459084920==--
