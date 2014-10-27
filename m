@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85471] [NV86] nouveau/kernel 3.18.0-rc1: nouveau
- deadlocks on 2nd Xorg start or reboot
-Date: Sun, 26 Oct 2014 18:43:30 +0000
-Message-ID: <bug-85471-8800-LsYbwlDCKv@http.bugs.freedesktop.org/>
-References: <bug-85471-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85495] New: nouveau: xft fonts not rendered on Dell
+ M4800 (QHD+)
+Date: Mon, 27 Oct 2014 00:23:28 +0000
+Message-ID: <bug-85495-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0862078940=="
+Content-Type: multipart/mixed; boundary="===============1694404601=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85471-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +19,76 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0862078940==
-Content-Type: multipart/alternative; boundary="1414349010.0ddb811.29682"; charset="UTF-8"
+--===============1694404601==
+Content-Type: multipart/alternative; boundary="1414369408.Ba484ca1.25953"; charset="UTF-8"
 
 
---1414349010.0ddb811.29682
-Date: Sun, 26 Oct 2014 18:43:30 +0000
+--1414369408.Ba484ca1.25953
+Date: Mon, 27 Oct 2014 00:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85471
+https://bugs.freedesktop.org/show_bug.cgi?id=85495
 
---- Comment #7 from Christian Vogel <vogelchr-InfKab39H3A@public.gmane.org> ---
-(I want to add: For a user that doesn't have a second machine to ssh remotely,
-or to have a serial terminal, the end result is probably the same than with
-nouveau being hung in powermanagement -> No other way to get the machine
-working than to reset/restart.)
+            Bug ID: 85495
+           Summary: nouveau: xft fonts not rendered on Dell M4800 (QHD+)
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-aVMt7ygKTj2t/hvpvFFPbQ@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 108483
+  --> https://bugs.freedesktop.org/attachment.cgi?id=108483&action=edit
+Xorg.0.log
+
+This is not a useful report (yet). I'm sorry: I don't know the right terms to
+use and this is a hard-to-describe situation.
+
+Nouveau X server comes up but text sometimes doesn't: on my xdm login the
+"Welcome to ..." appears, and the Login text, but entering my username the
+cursor just moves right and a few (2-3) pixel-sized dots appear where letters
+should.
+
+Emacs, with this in .Xdefaults:
+
+    Emacs.font: DejaVu Sans Mono-14
+
+...comes up but blank: no menus, no mode bar, no "This buffer is for" in my
+*scratch* buffer. Grabbing the windowmanager titlebar and dragging the window
+just a pixel or two makes all text appear, until I change virtual desktops and
+come back again. Then all text is gone just like the start.
+
+xterms, using:
+
+    *font: -misc-fixed-medium-r-normal-*-20-*-*-*-*-*-iso10646-1
+
+...are all fine. No problems ever.
+
+Dell M4800 
+    # d ~ # lspci |grep VGA
+    01:00.0 VGA compatible controller: NVIDIA Corporation GK106GLM [Quadro
+K2100M] (rev a1)
+
+    # uname -r
+    3.16.6-gentoo
+
+Xorg.0.log attached but I doubt it shows anything useful. I have no idea what
+*would* be useful but I'd love to offer what I may. I am highly motivated to
+use this over the proprietary nvidia driver.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414349010.0ddb811.29682
-Date: Sun, 26 Oct 2014 18:43:30 +0000
+--1414369408.Ba484ca1.25953
+Date: Mon, 27 Oct 2014 00:23:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,23 +96,126 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau: xft fonts not rendered on Dell M4800 (QHD+)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85495">85495</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau: xft fonts not rendered on Dell M4800 (QHD+)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;edsantiago.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] nouveau/kernel 3.18.0-rc1: nouveau deadlocks on 2nd Xorg start or reboot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85471">bug 85471</a>
-              from <span class="vcard"><a class="email" href="mailto:vogelchr&#64;vogel.cx" title="Christian Vogel &lt;vogelchr&#64;vogel.cx&gt;"> <span class="fn">Christian Vogel</span></a>
-</span></b>
-        <pre>(I want to add: For a user that doesn't have a second machine to ssh remotely,
-or to have a serial terminal, the end result is probably the same than with
-nouveau being hung in powermanagement -&gt; No other way to get the machine
-working than to reset/restart.)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=108483" name="attach_108483" title="Xorg.0.log">attachment 108483</a> <a href="attachment.cgi?id=108483&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log
+
+This is not a useful report (yet). I'm sorry: I don't know the right terms to
+use and this is a hard-to-describe situation.
+
+Nouveau X server comes up but text sometimes doesn't: on my xdm login the
+&quot;Welcome to ...&quot; appears, and the Login text, but entering my username the
+cursor just moves right and a few (2-3) pixel-sized dots appear where letters
+should.
+
+Emacs, with this in .Xdefaults:
+
+    Emacs.font: DejaVu Sans Mono-14
+
+...comes up but blank: no menus, no mode bar, no &quot;This buffer is for&quot; in my
+*scratch* buffer. Grabbing the windowmanager titlebar and dragging the window
+just a pixel or two makes all text appear, until I change virtual desktops and
+come back again. Then all text is gone just like the start.
+
+xterms, using:
+
+    *font: -misc-fixed-medium-r-normal-*-20-*-*-*-*-*-iso10646-1
+
+...are all fine. No problems ever.
+
+Dell M4800 
+    # d ~ # lspci |grep VGA
+    01:00.0 VGA compatible controller: NVIDIA Corporation GK106GLM [Quadro
+K2100M] (rev a1)
+
+    # uname -r
+    3.16.6-gentoo
+
+Xorg.0.log attached but I doubt it shows anything useful. I have no idea what
+*would* be useful but I'd love to offer what I may. I am highly motivated to
+use this over the proprietary nvidia driver.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +227,9 @@ working than to reset/restart.)</pre>
     </body>
 </html>
 
---1414349010.0ddb811.29682--
+--1414369408.Ba484ca1.25953--
 
---===============0862078940==
+--===============1694404601==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +240,4 @@ Nouveau mailing list
 Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 http://lists.freedesktop.org/mailman/listinfo/nouveau
 
---===============0862078940==--
+--===============1694404601==--
