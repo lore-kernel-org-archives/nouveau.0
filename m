@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
  after suspend
-Date: Tue, 28 Oct 2014 03:07:07 +0000
-Message-ID: <bug-81136-8800-1G6vyfqs2C@http.bugs.freedesktop.org/>
+Date: Tue, 28 Oct 2014 03:22:10 +0000
+Message-ID: <bug-81136-8800-mgvF2M5ux2@http.bugs.freedesktop.org/>
 References: <bug-81136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1549415277=="
+Content-Type: multipart/mixed; boundary="===============0785998800=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,69 +21,77 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1549415277==
-Content-Type: multipart/alternative; boundary="1414465627.85Fab2.32659"; charset="UTF-8"
+--===============0785998800==
+Content-Type: multipart/alternative; boundary="1414466530.aAf53A2.5450"; charset="UTF-8"
 
 
---1414465627.85Fab2.32659
-Date: Tue, 28 Oct 2014 03:07:07 +0000
+--1414466530.aAf53A2.5450
+Date: Tue, 28 Oct 2014 03:22:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81136
+https://bugs.freedesktop.org/show_bug.cgi?id=3D81136
 
---- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The upstream commit addressing the e07{0,4} messages (ignore the typo in the
-commit message) is 
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/gpu/drm/nouveau?id=b485a7005faba38286bc02ab1d80e2cbf61c1002
+--- Comment #13 from Agust=C3=ADn Dall'Alba <agustin-G80yVrlpk+aH0oMTQjrRWA@public.gmane.org> ---
+Brilliant, Linux 3.18-rc2 resumes both monitors with nouveau.nofbaccel=3D1.=
+ :D
 
-^^ is just in case 3.18 causes some other unwanted behaviour.
+So it indeed was a different issue. The original GPU lockup bug is still th=
+ere,
+though.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414465627.85Fab2.32659
-Date: Tue, 28 Oct 2014 03:07:07 +0000
+--1414466530.aAf53A2.5450
+Date: Tue, 28 Oct 2014 03:22:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136#c12">Comment # 12</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81136">bug 81136</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+   title=3D"NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136">bug 81136<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+agustin&#64;dallalba.com.ar" title=3D"Agust=C3=ADn Dall'Alba &lt;agustin&#6=
+4;dallalba.com.ar&gt;"> <span class=3D"fn">Agust=C3=ADn Dall'Alba</span></a>
 </span></b>
-        <pre>The upstream commit addressing the e07{0,4} messages (ignore the typo in the
-commit message) is 
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/gpu/drm/nouveau?id=b485a7005faba38286bc02ab1d80e2cbf61c1002">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/drivers/gpu/drm/nouveau?id=b485a7005faba38286bc02ab1d80e2cbf61c1002</a>
+        <pre>Brilliant, Linux 3.18-rc2 resumes both monitors with nouveau.n=
+ofbaccel=3D1. :D
 
-^^ is just in case 3.18 causes some other unwanted behaviour.</pre>
+So it indeed was a different issue. The original GPU lockup bug is still th=
+ere,
+though.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1414465627.85Fab2.32659--
+--1414466530.aAf53A2.5450--
 
---===============1549415277==
+--===============0785998800==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1549415277==--
+--===============0785998800==--
