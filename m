@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85444] [NV46] Heavy corruption, no hardfreeze,
- back to console and libexa.so segfault
-Date: Tue, 28 Oct 2014 12:19:26 +0000
-Message-ID: <bug-85444-8800-ATZ0OTbFsG@http.bugs.freedesktop.org/>
-References: <bug-85444-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85570] DPMS does not turn off LCD backlight on G73
+ (NV4B) [GeForce 7600 GS]
+Date: Tue, 28 Oct 2014 20:01:54 +0000
+Message-ID: <bug-85570-8800-30Nb13ueNG@http.bugs.freedesktop.org/>
+References: <bug-85570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1465277888=="
+Content-Type: multipart/mixed; boundary="===============1190478901=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85444-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,74 +21,71 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1465277888==
-Content-Type: multipart/alternative; boundary="1414498765.FEEd82fd1.30436"; charset="UTF-8"
+--===============1190478901==
+Content-Type: multipart/alternative; boundary="1414526514.5A3b1.4642"; charset="UTF-8"
 
 
---1414498765.FEEd82fd1.30436
-Date: Tue, 28 Oct 2014 12:19:25 +0000
+--1414526514.5A3b1.4642
+Date: Tue, 28 Oct 2014 20:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D85444
+https://bugs.freedesktop.org/show_bug.cgi?id=85570
 
---- Comment #4 from Jes=C3=BAs Guerrero Botella <jesus.guerrero.botella@gma=
-il.com> ---
-I found that if I compile this statically into my kernel it seems to work.
-Haven't done any extensive testing though.
+alexander korolev <kilork-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> changed:
 
---=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Hardware|Other                       |x86-64 (AMD64)
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414498765.FEEd82fd1.30436
-Date: Tue, 28 Oct 2014 12:19:25 +0000
+--1414526514.5A3b1.4642
+Date: Tue, 28 Oct 2014 20:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:kilork&#64;yandex.ru" title="alexander korolev &lt;kilork&#64;yandex.ru&gt;"> <span class="fn">alexander korolev</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DPMS does not turn off LCD backlight on G73 (NV4B) [GeForce 7600 GS]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85570">bug 85570</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
+           </td>
+         </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV46] Heavy corruption, no hardfreeze, back to console a=
-nd libexa.so segfault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85444#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV46] Heavy corruption, no hardfreeze, back to console a=
-nd libexa.so segfault"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D85444">bug 85444<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jesus.guerrero.botella&#64;gmail.com" title=3D"Jes=C3=BAs Guerrero Botella =
-&lt;jesus.guerrero.botella&#64;gmail.com&gt;"> <span class=3D"fn">Jes=C3=BA=
-s Guerrero Botella</span></a>
-</span></b>
-        <pre>I found that if I compile this statically into my kernel it se=
-ems to work.
-Haven't done any extensive testing though.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1414498765.FEEd82fd1.30436--
+--1414526514.5A3b1.4642--
 
---===============1465277888==
+--===============1190478901==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1465277888==--
+--===============1190478901==--
