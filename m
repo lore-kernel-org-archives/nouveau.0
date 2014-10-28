@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85570] DPMS does not turn off LCD backlight on G73
- (NV4B) [GeForce 7600 GS]
-Date: Tue, 28 Oct 2014 20:01:54 +0000
-Message-ID: <bug-85570-8800-30Nb13ueNG@http.bugs.freedesktop.org/>
-References: <bug-85570-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?VmljdG9yIExlZsOodnJl?= <victorlefevre-GANU6spQydw@public.gmane.org>
+Subject: Re: Nouveau doesn't use the maximal resolution of my
+ screen and GPU
+Date: Tue, 28 Oct 2014 21:40:58 +0100
+Message-ID: <544FFF5A.3070408@free.fr>
+References: <544D0A58.30409@free.fr>
+ <CAKb7Uvi4vF6aHwJMC7zSey3V9M1PAKBp-3YLkMhrRZjLwpO7Dg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1190478901=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvi4vF6aHwJMC7zSey3V9M1PAKBp-3YLkMhrRZjLwpO7Dg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +19,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1190478901==
-Content-Type: multipart/alternative; boundary="1414526514.5A3b1.4642"; charset="UTF-8"
-
-
---1414526514.5A3b1.4642
-Date: Tue, 28 Oct 2014 20:01:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85570
-
-alexander korolev <kilork-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Hardware|Other                       |x86-64 (AMD64)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414526514.5A3b1.4642
-Date: Tue, 28 Oct 2014 20:01:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:kilork&#64;yandex.ru" title="alexander korolev &lt;kilork&#64;yandex.ru&gt;"> <span class="fn">alexander korolev</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DPMS does not turn off LCD backlight on G73 (NV4B) [GeForce 7600 GS]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85570">bug 85570</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414526514.5A3b1.4642--
-
---===============1190478901==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1190478901==--
+SGkgSWxsaWEsCgoKV2l0aCBOb3V2ZWF1IDoKeHJhbmRyOiBGYWlsZWQgdG8gZ2V0IHNpemUgb2Yg
+Z2FtbWEgZm9yIG91dHB1dCBkZWZhdWx0ClNjcmVlbiAwOiBtaW5pbXVtIDEwMjQgeCA3NjgsIGN1
+cnJlbnQgMTAyNCB4IDc2OCwgbWF4aW11bSAxMDI0IHggNzY4CmRlZmF1bHQgY29ubmVjdGVkIDEw
+MjR4NzY4KzArMCAwbW0geCAwbW0KICAgIDEwMjR4NzY4ICAgICAgIDc2LjAqCgoKV2l0aCB0aGUg
+TnZpZGlhIERyaXZlciA6Cgp4cmFuZHI6IEZhaWxlZCB0byBnZXQgc2l6ZSBvZiBnYW1tYSBmb3Ig
+b3V0cHV0IGRlZmF1bHQKU2NyZWVuIDA6IG1pbmltdW0gNjQwIHggNDgwLCBjdXJyZW50IDEyODAg
+eCAxMDI0LCBtYXhpbXVtIDEyODAgeCAxMDI0CmRlZmF1bHQgY29ubmVjdGVkIDEyODB4MTAyNCsw
+KzAgMG1tIHggMG1tCiAgICAxMjgweDEwMjQgICAgICAgMC4wKgogICAgMTAyNHg3NjggICAgICAg
+IDAuMAogICAgODAweDYwMCAgICAgICAgIDAuMAogICAgNjQweDQ4MCAgICAgICAgIDAuMAoKCkxl
+IDI3LzEwLzIwMTQgMDU6MTksIElsaWEgTWlya2luIGEgw6ljcml0IDoKPiBXaGF0IGRvZXMgJ3hy
+YW5kcicgb3V0cHV0Pwo+Cj4gT24gU3VuLCBPY3QgMjYsIDIwMTQgYXQgMTA6NTEgQU0sIFZpY3Rv
+ciBMZWbDqHZyZTx2aWN0b3JsZWZldnJlQGZyZWUuZnI+ICB3cm90ZToKPj4gSGkgZXZlcnlib2R5
+LAo+Pgo+PiBJJ20gdXNpbmcgTHVidW50dSAxNC4wNCBvbiBhbiBvbGQgZGVza3RvcCBQQyB3aXRo
+IGEgTlZJRElBIEdlRm9yY2UgNzYwMCBHUwo+PiBhbmQgYSBzY3JlZW4gb2YgMTkgaW5jaGVzLgo+
+Pgo+PiBUaGUgbWF4aW1hbCByZXNvbHV0aW9uIG9mIG15IHNjcmVlbiB3aXRoIE52aWRpYSBkcml2
+ZXJzIGlzIDEyODB4MTAyNC4gKEluCj4+IHBhcnRpY3VsYXIsIEkgdXNlIHRoZSBOdmlkaWEgMzMx
+Ljg5IGRyaXZlcikKPj4KPj4gV2l0aCBOb3V2ZWF1IGRyaXZlciwgdGhlIG1heGltYWwgcmVzb2x1
+dGlvbiBmYWxscyB0byAxMDI0eDc2OC4KPj4KPj4gSXMgdGhlcmUgYSBzb2x1dGlvbiBmb3IgaW5j
+cmVhc2luZyB0aGUgbWF4aW11bSByZXNvbHV0aW9uIHdpdGggTm91dmVhdSA/Cj4+Cj4+IEJlc3Qg
+cmVnYXJkcywKPj4KPj4gVmljdG9yIExlZsOodnJlCj4+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
