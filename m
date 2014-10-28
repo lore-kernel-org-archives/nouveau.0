@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81136] [NV92] Regression in Linux 3.15: GPU lockup
- after suspend
-Date: Tue, 28 Oct 2014 03:22:10 +0000
-Message-ID: <bug-81136-8800-mgvF2M5ux2@http.bugs.freedesktop.org/>
-References: <bug-81136-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH] nv50/disp: Fix modeset on G94
+Date: Tue, 28 Oct 2014 11:48:22 +0100
+Message-ID: <1414493302-3577-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0785998800=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81136-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,88 +15,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0785998800==
-Content-Type: multipart/alternative; boundary="1414466530.aAf53A2.5450"; charset="UTF-8"
-
-
---1414466530.aAf53A2.5450
-Date: Tue, 28 Oct 2014 03:22:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D81136
-
---- Comment #13 from Agust=C3=ADn Dall'Alba <agustin-G80yVrlpk+aH0oMTQjrRWA@public.gmane.org> ---
-Brilliant, Linux 3.18-rc2 resumes both monitors with nouveau.nofbaccel=3D1.=
- :D
-
-So it indeed was a different issue. The original GPU lockup bug is still th=
-ere,
-though.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414466530.aAf53A2.5450
-Date: Tue, 28 Oct 2014 03:22:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV92] Regression in Linux 3.15: GPU lockup after suspend"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D81136">bug 81136<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-agustin&#64;dallalba.com.ar" title=3D"Agust=C3=ADn Dall'Alba &lt;agustin&#6=
-4;dallalba.com.ar&gt;"> <span class=3D"fn">Agust=C3=ADn Dall'Alba</span></a>
-</span></b>
-        <pre>Brilliant, Linux 3.18-rc2 resumes both monitors with nouveau.n=
-ofbaccel=3D1. :D
-
-So it indeed was a different issue. The original GPU lockup bug is still th=
-ere,
-though.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414466530.aAf53A2.5450--
-
---===============0785998800==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0785998800==--
+Q29tbWl0IDFkY2U2MjY0MDQ1Y2QyM2U5YzA3NTc0ZWQwYmIzMWM3ZGNlOTM1NGYgaW50cm9kdWNl
+ZCBhIHJlZ3Jlc3Npb24gc3BvdHRlZApvbiBzZXZlcmFsIEc5NCAoRkRPYnogIzg1MTYwKS4gVGhp
+cyBkZXZpY2Ugc2VlbXMgdG8gZXhwZWN0IHRoZSB2YmxhbmsgcGVyaW9kIHRvCmJlIHNldCBhZnRl
+ciBzZXR0aW5nIHNjYWxlIGluc3RlYWQgb2YgYmVmb3JlLgoKVGhpcyBpcyBhIGNhbmRpZGF0ZSBi
+dWctZml4IGZvciAzLjE4CgpTaWduZWQtb2ZmLWJ5OiBSb3kgU3BsaWV0IDxyc3BsaWV0QGVjbGlw
+c28uZXU+ClRlc3RlZC1ieTogWmxhdGtvIENhbHVzaWMgPHpjYWx1c2ljQGJpdHN5bmMubmV0PgpU
+ZXN0ZWQtYnk6IE1pY2hhZWwgUmllc2NoIDxtaWNoYWVsQHJpZXNjaC5hdD4KVGVzdGVkLWJ5OiAi
+cG9tYSIgPHBvbWlkb3JhYmVsaXNpbWFAZ21haWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252NTBfZGlzcGxheS5jIHwgMTUgKysrKysrKysrKysrKy0tCiAxIGZpbGUgY2hhbmdl
+ZCwgMTMgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252NTBfZGlzcGxheS5jCmluZGV4IGFlODczZDEuLjViZWIzNTIgMTAwNjQ0Ci0tLSBhL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252NTBfZGlzcGxheS5jCkBAIC0xMTA0LDE0ICsxMTA0LDE0IEBAIG52NTBfY3J0Y19t
+b2RlX3NldChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsIHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICp1
+bW9kZSwKIAkJCWV2b19tdGhkKHB1c2gsIDB4MDgwNCArIChudl9jcnRjLT5pbmRleCAqIDB4NDAw
+KSwgMik7CiAJCQlldm9fZGF0YShwdXNoLCAweDAwODAwMDAwIHwgbW9kZS0+Y2xvY2spOwogCQkJ
+ZXZvX2RhdGEocHVzaCwgKGlsYWNlID09IDIpID8gMiA6IDApOwotCQkJZXZvX210aGQocHVzaCwg
+MHgwODEwICsgKG52X2NydGMtPmluZGV4ICogMHg0MDApLCA4KTsKKwkJCWV2b19tdGhkKHB1c2gs
+IDB4MDgxMCArIChudl9jcnRjLT5pbmRleCAqIDB4NDAwKSwgNik7CiAJCQlldm9fZGF0YShwdXNo
+LCAweDAwMDAwMDAwKTsKIAkJCWV2b19kYXRhKHB1c2gsICh2YWN0aXZlIDw8IDE2KSB8IGhhY3Rp
+dmUpOwogCQkJZXZvX2RhdGEocHVzaCwgKCB2c3luY2UgPDwgMTYpIHwgaHN5bmNlKTsKIAkJCWV2
+b19kYXRhKHB1c2gsICh2YmxhbmtlIDw8IDE2KSB8IGhibGFua2UpOwogCQkJZXZvX2RhdGEocHVz
+aCwgKHZibGFua3MgPDwgMTYpIHwgaGJsYW5rcyk7CiAJCQlldm9fZGF0YShwdXNoLCAodmJsYW4y
+ZSA8PCAxNikgfCB2YmxhbjJzKTsKLQkJCWV2b19kYXRhKHB1c2gsIHZibGFua3VzKTsKKwkJCWV2
+b19tdGhkKHB1c2gsIDB4MDgyYyArIChudl9jcnRjLT5pbmRleCAqIDB4NDAwKSwgMSk7CiAJCQll
+dm9fZGF0YShwdXNoLCAweDAwMDAwMDAwKTsKIAkJCWV2b19tdGhkKHB1c2gsIDB4MDkwMCArIChu
+dl9jcnRjLT5pbmRleCAqIDB4NDAwKSwgMik7CiAJCQlldm9fZGF0YShwdXNoLCAweDAwMDAwMzEx
+KTsKQEAgLTExNDEsNiArMTE0MSwxNyBAQCBudjUwX2NydGNfbW9kZV9zZXQoc3RydWN0IGRybV9j
+cnRjICpjcnRjLCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqdW1vZGUsCiAJbnZfY29ubmVjdG9y
+ID0gbm91dmVhdV9jcnRjX2Nvbm5lY3Rvcl9nZXQobnZfY3J0Yyk7CiAJbnY1MF9jcnRjX3NldF9k
+aXRoZXIobnZfY3J0YywgZmFsc2UpOwogCW52NTBfY3J0Y19zZXRfc2NhbGUobnZfY3J0YywgZmFs
+c2UpOworCisJLyogRzk0IG9ubHkgYWNjZXB0cyB0aGlzIGFmdGVyIHNldHRpbmcgc2NhbGUgKi8K
+KwlpZiAobnY1MF92ZXJzKG1hc3QpIDwgR0YxMTBfRElTUF9DT1JFX0NIQU5ORUxfRE1BKSB7CisJ
+CXB1c2ggPSBldm9fd2FpdChtYXN0LCA4KTsKKwkJaWYgKHB1c2gpIHsKKwkJCWV2b19tdGhkKHB1
+c2gsIDB4MDgyOCArIChudl9jcnRjLT5pbmRleCAqIDB4NDAwKSwgMSk7CisJCQlldm9fZGF0YShw
+dXNoLCB2Ymxhbmt1cyk7CisJCQlldm9fa2ljayhwdXNoLCBtYXN0KTsKKwkJfQorCX0KKwogCW52
+NTBfY3J0Y19zZXRfY29sb3JfdmlicmFuY2UobnZfY3J0YywgZmFsc2UpOwogCW52NTBfY3J0Y19z
+ZXRfaW1hZ2UobnZfY3J0YywgY3J0Yy0+cHJpbWFyeS0+ZmIsIHgsIHksIGZhbHNlKTsKIAlyZXR1
+cm4gMDsKLS0gCjIuMS4wCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
