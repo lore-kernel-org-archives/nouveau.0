@@ -1,17 +1,14 @@
-From: "Roy Spliet" <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: Re: [PATCH] nv50/disp: Fix modeset on G94
-Date: Fri, 31 Oct 2014 11:28:58 +0100
-Message-ID: <723e85bac4ee58d0c1820fa445ed8965@mail.eclipso.de>
-References: <1414706265-13208-1-git-send-email-rspliet@eclipso.eu>
- <CAKb7UvhnxLciY+v1B+m0zc1tT090_wVfXatwOK2ygXd1M_jVRQ@mail.gmail.com>
- <CACAvsv5y3LMVnEyDGB-aLgyWnkJQDujP8WhZUfq9J=8g_RxrCA@mail.gmail.com>
-Reply-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80675] [NVAA] Nouveau KMS framebuffer hand-over:
+ no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB
+ graphics RAM, X11 ok
+Date: Fri, 31 Oct 2014 20:39:43 +0000
+Message-ID: <bug-80675-8800-56nGGbfK73@http.bugs.freedesktop.org/>
+References: <bug-80675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1423350143=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv5y3LMVnEyDGB-aLgyWnkJQDujP8WhZUfq9J=8g_RxrCA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-80675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,96 +18,129 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ci0tLSBVcnNwcsO8bmdsaWNoZSBOYWNocmljaHQgLS0tClZvbjogQmVuIFNrZWdncyA8c2tlZ2dz
-YkBnbWFpbC5jb20+CkRhdHVtOiAwMDo1MjowNSAzMS0xMC0yMDE0CkFuOiBJbGlhIE1pcmtpbiA8
-aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkJldHJlZmY6IFJlOiBbTm91dmVhdV0gW1BBVENIXSBudjUw
-L2Rpc3A6IEZpeCBtb2Rlc2V0IG9uIEc5NAoKPiBPbiBGcmksIE9jdCAzMSwgMjAxNCBhdCA4OjAw
-IEFNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gd3JvdGU6Cj4gPiBPbiBU
-aHUsIE9jdCAzMCwgMjAxNCBhdCA1OjU3IFBNLCBSb3kgU3BsaWV0IDxyc3BsaWV0QGVjbGlwc28u
-ZXU+Cj4gd3JvdGU6Cj4gPj4gQ29tbWl0IDFkY2U2MjY0MDQ1Y2QyM2U5YzA3NTc0ZWQwYmIzMWM3
-ZGNlOTM1NGYgaW50cm9kdWNlZCBhIHJlZ3Jlc3Npb24KPiBzcG90dGVkCj4gPj4gb24gc2V2ZXJh
-bCBHOTQgKEZET2J6ICM4NTE2MCkuIFRoaXMgZGV2aWNlIHNlZW1zIHRvIGV4cGVjdCB0aGUgdmJs
-YW5rCj4gcGVyaW9kIHRvCj4gPgo+ID4gSSBiZWxpZXZlIHRoYXQncyBvZnRlbiBkb25lIGFzIGEK
-PiA+Cj4gPiBCdWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9ibGEKPiA+Cj4g
-PiBhbm5vdGF0aW9uCj4gPgo+ID4+IGJlIHNldCBhZnRlciBzZXR0aW5nIHNjYWxlIGluc3RlYWQg
-b2YgYmVmb3JlLgo+ID4+Cj4gPj4gVjI6IHNob3ZlIHRoaXMgaW4gYSBzZXBhcmF0ZSBmdW5jdGlv
-bgo+ID4+Cj4gPj4gVGhpcyBpcyBhIGNhbmRpZGF0ZSBidWctZml4IGZvciAzLjE4Cj4gPj4KPiA+
-PiBTaWduZWQtb2ZmLWJ5OiBSb3kgU3BsaWV0IDxyc3BsaWV0QGVjbGlwc28uZXU+Cj4gPj4gVGVz
-dGVkLWJ5OiBabGF0a28gQ2FsdXNpYyA8emNhbHVzaWNAYml0c3luYy5uZXQ+Cj4gPj4gVGVzdGVk
-LWJ5OiBNaWNoYWVsIFJpZXNjaCA8bWljaGFlbEByaWVzY2guYXQ+Cj4gPj4gVGVzdGVkLWJ5OiAi
-cG9tYSIgPHBvbWlkb3JhYmVsaXNpbWFAZ21haWwuY29tPgo+ID4+IFRlc3RlZC1ieTogQWRhbSBX
-aWxsaWFtc29uIDxhZGFtd0BoYXBweWFzc2Fzc2luLm5ldD4KPiA+PiAtLS0KPiA+PiAgZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgfCAyNiArKysrKysrKysrKysrKysrKysr
-KysrKystLQo+IAo+ID4+ICAxIGZpbGUgY2hhbmdlZCwgMjQgaW5zZXJ0aW9ucygrKSwgMiBkZWxl
-dGlvbnMoLSkKPiA+Pgo+ID4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-djUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4g
-Cj4gPj4gaW5kZXggYWU4NzNkMS4uMmYyNGEwOCAxMDA2NDQKPiA+PiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9u
-b3V2ZWF1L252NTBfZGlzcGxheS5jCj4gPj4gQEAgLTc5MSw2ICs3OTEsMjMgQEAgbnY1MF9jcnRj
-X3NldF9zY2FsZShzdHJ1Y3Qgbm91dmVhdV9jcnRjICpudl9jcnRjLAo+IGJvb2wgdXBkYXRlKQo+
-ID4+ICB9Cj4gPj4KPiA+PiAgc3RhdGljIGludAo+ID4+ICtudjUwX2NydGNfc2V0X3Jhc3Rlcl92
-YmxhbmtfZG1pKHN0cnVjdCBub3V2ZWF1X2NydGMgKm52X2NydGMsIHUzMgo+IHVzZWMpCj4gPgo+
-ID4gV2hhdCdzICJkbWkiPwo+IFNldFJhc3RlclZlcnRCbGFua0RtaSBpcyB0aGUgbmFtZSBvZiBt
-ZXRob2QgMHg4MjguICBJIHByZXN1bWUgaXQncwo+IERpc3BsYXkgTWVtb3J5IEludGVyZmFjZSBv
-ciBzb21ldGhpbmcgdG8gdGhhdCBlZmZlY3QuCj4gCj4gPgo+ID4+ICt7Cj4gPj4gKyAgICAgICBz
-dHJ1Y3QgbnY1MF9tYXN0ICptYXN0ID0gbnY1MF9tYXN0KG52X2NydGMtPmJhc2UuZGV2KTsKPiAK
-PiA+PiArICAgICAgIHUzMiAqcHVzaDsKPiA+PiArCj4gPj4gKyAgICAgICBwdXNoID0gZXZvX3dh
-aXQobWFzdCwgOCk7Cj4gPgo+ID4gSnVzdCBuZWVkcyB0byBiZSAyLCBubz8KPiBZZXMsIGRvZXNu
-J3QgbWF0dGVyIHRvbyBtdWNoIHRob3VnaC4KSWYgaXQgaXMsIHdlIG1pZ2h0IG5lZWQgdG8gZml4
-IG52NTBfY3J0Y19tb2RlX3NldCgpIHRvbzsgaXQgc2VlbXMgdG8gYXNzdW1lIHRoZSBzZWNvbmQg
-cGFyYW1ldGVyIGluIGV2b193YWl0KCkgaXMgYnl0ZXMsIG5vdCB3b3Jkcy4KCj4gCj4gPgo+ID4+
-ICsgICAgICAgaWYgKCFwdXNoKQo+ID4+ICsgICAgICAgICAgICAgICByZXR1cm4gLUVOT01FTTsK
-PiA+PiArCj4gPj4gKyAgICAgICBldm9fbXRoZChwdXNoLCAweDA4MjggKyAobnZfY3J0Yy0+aW5k
-ZXggKiAweDQwMCksIDEpOwo+IAo+ID4+ICsgICAgICAgZXZvX2RhdGEocHVzaCwgdXNlYyk7Cj4g
-Pj4gKyAgICAgICBldm9fa2ljayhwdXNoLCBtYXN0KTsKPiA+PiArCj4gPj4gKyAgICAgICByZXR1
-cm4gMDsKPiA+PiArfQo+ID4+ICsKPiA+PiArc3RhdGljIGludAo+ID4+ICBudjUwX2NydGNfc2V0
-X2NvbG9yX3ZpYnJhbmNlKHN0cnVjdCBub3V2ZWF1X2NydGMgKm52X2NydGMsIGJvb2wKPiB1cGRh
-dGUpCj4gPj4gIHsKPiA+PiAgICAgICAgIHN0cnVjdCBudjUwX21hc3QgKm1hc3QgPSBudjUwX21h
-c3QobnZfY3J0Yy0+YmFzZS5kZXYpOwo+IAo+ID4+IEBAIC0xMTA0LDE0ICsxMTIxLDE0IEBAIG52
-NTBfY3J0Y19tb2RlX3NldChzdHJ1Y3QgZHJtX2NydGMgKmNydGMsCj4gc3RydWN0IGRybV9kaXNw
-bGF5X21vZGUgKnVtb2RlLAo+ID4+ICAgICAgICAgICAgICAgICAgICAgICAgIGV2b19tdGhkKHB1
-c2gsIDB4MDgwNCArIChudl9jcnRjLT5pbmRleAo+ICogMHg0MDApLCAyKTsKPiA+PiAgICAgICAg
-ICAgICAgICAgICAgICAgICBldm9fZGF0YShwdXNoLCAweDAwODAwMDAwIHwgbW9kZS0+Y2xvY2sp
-Owo+IAo+ID4+ICAgICAgICAgICAgICAgICAgICAgICAgIGV2b19kYXRhKHB1c2gsIChpbGFjZSA9
-PSAyKSA/IDIgOiAwKTsKPiA+PiAtICAgICAgICAgICAgICAgICAgICAgICBldm9fbXRoZChwdXNo
-LCAweDA4MTAgKyAobnZfY3J0Yy0+aW5kZXgKPiAqIDB4NDAwKSwgOCk7Cj4gPj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgZXZvX210aGQocHVzaCwgMHgwODEwICsgKG52X2NydGMtPmluZGV4Cj4g
-KiAweDQwMCksIDYpOwo+ID4+ICAgICAgICAgICAgICAgICAgICAgICAgIGV2b19kYXRhKHB1c2gs
-IDB4MDAwMDAwMDApOwo+ID4+ICAgICAgICAgICAgICAgICAgICAgICAgIGV2b19kYXRhKHB1c2gs
-ICh2YWN0aXZlIDw8IDE2KSB8IGhhY3RpdmUpOwo+IAo+ID4+ICAgICAgICAgICAgICAgICAgICAg
-ICAgIGV2b19kYXRhKHB1c2gsICggdnN5bmNlIDw8IDE2KSB8IGhzeW5jZSk7Cj4gCj4gPj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgKHZibGFua2UgPDwgMTYpIHwgaGJs
-YW5rZSk7Cj4gCj4gPj4gICAgICAgICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgKHZi
-bGFua3MgPDwgMTYpIHwgaGJsYW5rcyk7Cj4gCj4gPj4gICAgICAgICAgICAgICAgICAgICAgICAg
-ZXZvX2RhdGEocHVzaCwgKHZibGFuMmUgPDwgMTYpIHwgdmJsYW4ycyk7Cj4gCj4gPj4gLSAgICAg
-ICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgdmJsYW5rdXMpOwo+ID4+ICsgICAgICAg
-ICAgICAgICAgICAgICAgIGV2b19tdGhkKHB1c2gsIDB4MDgyYyArIChudl9jcnRjLT5pbmRleAo+
-ICogMHg0MDApLCAxKTsKPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICBldm9fZGF0YShwdXNo
-LCAweDAwMDAwMDAwKTsKPiA+PiAgICAgICAgICAgICAgICAgICAgICAgICBldm9fbXRoZChwdXNo
-LCAweDA5MDAgKyAobnZfY3J0Yy0+aW5kZXgKPiAqIDB4NDAwKSwgMik7Cj4gPj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgMHgwMDAwMDMxMSk7Cj4gPj4gQEAgLTExNDEs
-NiArMTE1OCwxMSBAQCBudjUwX2NydGNfbW9kZV9zZXQoc3RydWN0IGRybV9jcnRjICpjcnRjLAo+
-IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICp1bW9kZSwKPiA+PiAgICAgICAgIG52X2Nvbm5lY3Rv
-ciA9IG5vdXZlYXVfY3J0Y19jb25uZWN0b3JfZ2V0KG52X2NydGMpOwo+ID4+ICAgICAgICAgbnY1
-MF9jcnRjX3NldF9kaXRoZXIobnZfY3J0YywgZmFsc2UpOwo+ID4+ICAgICAgICAgbnY1MF9jcnRj
-X3NldF9zY2FsZShudl9jcnRjLCBmYWxzZSk7Cj4gPj4gKwo+ID4+ICsgICAgICAgLyogRzk0IG9u
-bHkgYWNjZXB0cyB0aGlzIGFmdGVyIHNldHRpbmcgc2NhbGUgKi8KPiA+PiArICAgICAgIGlmIChu
-djUwX3ZlcnMobWFzdCkgPCBHRjExMF9ESVNQX0NPUkVfQ0hBTk5FTF9ETUEpCj4gPj4gKyAgICAg
-ICAgICAgICAgIG52NTBfY3J0Y19zZXRfcmFzdGVyX3ZibGFua19kbWkobnZfY3J0YywgdmJsYW5r
-dXMpOwo+IAo+ID4+ICsKPiA+PiAgICAgICAgIG52NTBfY3J0Y19zZXRfY29sb3JfdmlicmFuY2Uo
-bnZfY3J0YywgZmFsc2UpOwo+ID4+ICAgICAgICAgbnY1MF9jcnRjX3NldF9pbWFnZShudl9jcnRj
-LCBjcnRjLT5wcmltYXJ5LT5mYiwgeCwKPiB5LCBmYWxzZSk7Cj4gPj4gICAgICAgICByZXR1cm4g
-MDsKPiA+PiAtLQo+ID4+IDIuMS4wCj4gPj4KPiA+Pgo+ID4+Cj4gPj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiA+PiBOb3V2ZWF1IG1haWxpbmcgbGlz
-dAo+ID4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPj4gaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPiA+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlz
-dAo+ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gCgoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1423350143==
+Content-Type: multipart/alternative; boundary="1414787983.bDC3CBd1.5558"; charset="UTF-8"
+
+
+--1414787983.bDC3CBd1.5558
+Date: Fri, 31 Oct 2014 20:39:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=80675
+
+Walter Haidinger <walter.haidinger-RbZlAiThDcE@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVAA] Nouveau KMS          |[NVAA] Nouveau KMS
+                   |framebuffer hand-over:      |framebuffer hand-over:
+                   |no/black console on Nvidia  |no/black console on Nvidia
+                   |MCP78S/C77/GeForce 8300     |MCP78S/C77/GeForce 8300
+                   |(10de:0848), X11 ok         |(10de:0848) with 32MB
+                   |                            |graphics RAM, X11 ok
+
+--- Comment #6 from Walter Haidinger <walter.haidinger-RbZlAiThDcE@public.gmane.org> ---
+Update: I got my consoles back! :-)
+
+Fix: Increased the ivdeo RAM set in the BIOS for the video card from 32MB to
+64MB.
+I've also modified the title accordingly.
+
+Before:
+ nouveau  [     DRM] VRAM: 32 MiB
+
+Now:
+ nouveau  [     DRM] VRAM: 64 MiB
+
+Before closing this bug, could you at least add a warning if someone sets the
+video memory below 64MB?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1414787983.bDC3CBd1.5558
+Date: Fri, 31 Oct 2014 20:39:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:walter.haidinger&#64;gmx.at" title="Walter Haidinger &lt;walter.haidinger&#64;gmx.at&gt;"> <span class="fn">Walter Haidinger</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848), X11 ok
+           </td>
+           <td>[NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
+              from <span class="vcard"><a class="email" href="mailto:walter.haidinger&#64;gmx.at" title="Walter Haidinger &lt;walter.haidinger&#64;gmx.at&gt;"> <span class="fn">Walter Haidinger</span></a>
+</span></b>
+        <pre>Update: I got my consoles back! :-)
+
+Fix: Increased the ivdeo RAM set in the BIOS for the video card from 32MB to
+64MB.
+I've also modified the title accordingly.
+
+Before:
+ nouveau  [     DRM] VRAM: 32 MiB
+
+Now:
+ nouveau  [     DRM] VRAM: 64 MiB
+
+Before closing this bug, could you at least add a warning if someone sets the
+video memory below 64MB?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1414787983.bDC3CBd1.5558--
+
+--===============1423350143==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1423350143==--
