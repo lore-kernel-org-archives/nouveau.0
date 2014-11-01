@@ -1,15 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: linux kernel 3.17, freeze on resume
-Date: Sat, 1 Nov 2014 14:56:39 -0400
-Message-ID: <CAKb7UvhBZ2hm7CxmTqx5-LFO7fPEb40R_DFS7NmY9iPy1M6s0w@mail.gmail.com>
-References: <1414247146.47116.YahooMailNeo@web162805.mail.bf1.yahoo.com>
- <CAKb7UvhprANm0zP5X1o6nZL=rt1m2iubx0HRq_9_dhc-91sh9A@mail.gmail.com>
- <5455235F.4090109@yahoo.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85742] New: GF117M Can *not* use nouveau at all
+Date: Sat, 01 Nov 2014 19:32:46 +0000
+Message-ID: <bug-85742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1050404990=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5455235F.4090109-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,55 +14,236 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "John H. Mountcastle" <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGxpc3QgaXMgYXJjaGl2ZWQgYXQgaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNo
-aXZlcy9ub3V2ZWF1LwoKTG9va2luZyBvdmVyIHlvdXIgZG1lc2csIGl0IGxvb2tzIGxpa2UgdGhl
-cmUncyBhIGxpbmstdHJhaW5pbmcKZmFpbHVyZSwgYnV0IG90aGVyd2lzZSBldmVyeXRoaW5nIGlz
-IGZpbmUuIEkgcHJlc3VtZSB0aGUgaW50ZXJuYWwKZGlzcGxheSBpcyBlRFAsIGFuZCBzbyB0aGF0
-IHJvdWdobHkgdHJhbnNsYXRlcyB0byBzY3JlZW4gcmVtYWlucyBvZmYuCgpDb3VsZCB5b3UgdHJ5
-IDMuMTgtcmMyIHRvIG1ha2Ugc3VyZSB0aGF0IHRoZSBpc3N1ZSBpc24ndCBhbHJlYWR5CmZpeGVk
-LCBhbmQgaWYgbm90LCB0cnkgYmlzZWN0aW5nPwoKICAtaWxpYQoKT24gU2F0LCBOb3YgMSwgMjAx
-NCBhdCAyOjE1IFBNLCBKb2huIEguIE1vdW50Y2FzdGxlIDxtdGNzdGxlQHlhaG9vLmNvbT4gd3Jv
-dGU6Cj4gSSBoYXZlbid0IHJlY2VpdmVkIGEgZGlnZXN0IGZyb20gdGhlIGdyb3VwIGluIG92ZXIg
-c2l4IGRheXMuIEhhdmUgSSBmYWxsZW4KPiBvZmYgdGhlIGxpc3Qgc29tZWhvdz8gSXMgdGhlcmUg
-YW4gb25saW5lIHNwb3Qgd2hlcmUgSSBtYXkgZ28gdG8gc2VlIGlmIHRoZXJlCj4gd2FzIGFueSBy
-ZXNwb25zZSB0byBteSBsYXN0IG1lc3NhZ2U/Cj4gNzMgfCBLQjNLRVkgfCBKb2huIHwgTXQuQWly
-eSxNRAo+IE9uIDEwLzI1LzIwMTQgMDk6MjQgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Cj4gQ2Fu
-IHlvdSBncmFiIGEgY29weSBvZiBkbWVzZyBhZnRlciByZXN1bWU/IENhbiB5b3UgdHJ5IHdhaXRp
-bmcgfjIKPiBtaW51dGVzIHRvIHNlZSBpZiBnZG0gd2lsbCByZXN0YXJ0IG9uIGl0cyBvd24gKGR1
-ZSB0byBYIGR5aW5nKT8gSW4KPiBnZW5lcmFsLCBub3V2ZWF1IGlzIGxlc3MtdGhhbi1ncmVhdCBh
-dCByZXN1bWluZyB3aGlsZSAzZCBhcHBsaWNhdGlvbnMKPiBhcmUgcnVubmluZy4gVGhpcyB1c2Vk
-IHRvIGJlIHJhcmUsIGJ1dCBub3cgcGVvcGxlIGhhdmUgdGhpbmdzIGxpa2UKPiBnbm9tZS1zaGVs
-bC9ldGMgd2hpY2ggY29tcGxpY2F0ZSBtYXR0ZXJzLgo+Cj4gT24gU2F0LCBPY3QgMjUsIDIwMTQg
-YXQgMTA6MjUgQU0sIEpvaG4gTW91bnRjYXN0bGUgPG10Y3N0bGVAeWFob28uY29tPgo+IHdyb3Rl
-Ogo+Cj4gVGhpcyBtYXkgbm90IGJlIHRoZSBwcm9wZXIgcGxhY2UgdG8gcmFpc2UgdGhpcyBxdWVz
-dGlvbiBidXQgSSd2ZSBoYWQgbGl0dGxlCj4gbHVjayBlbHNld2hlcmUuCj4gQWZ0ZXIgdHJ5aW5n
-IGFnYWluLCB1bnN1Y2Nlc3NmdWxseSB0aGlzIHRpbWUsIHRvIGluc3RhbGwgdGhlIHByb3ByaWV0
-YXJ5Cj4gTlZJRElBIGRyaXZlciwgSSd2ZSBkZWNpZGVkIHRvIGZvY3VzIG15IGVmZm9ydHMgb24g
-dGhlIG9wZW4gc291cmNlIE5vdXZlYXUKPiBkcml2ZXIuIEkndmUgc2VlbiB2aWRlbyBkcml2ZXJz
-IGJsYW1lZCBmb3IgdmFyeWluZyBkZWdyZWVzIG9mICJmcmVlemUgb24KPiByZXN1bWUiIGJ1dCBJ
-J20gbm90IGNlcnRhaW4gdGhhdCdzIHdoYXQgSSdtIHVwIGFnYWluc3QuIFdoZW4gSSByZXN1bWUg
-YWZ0ZXIKPiBoaWJlcm5hdGUsIFBseW1vdXRoIGZhaWxzIHRoZW4gSSBnZXQgYSBjb21wbGV0ZWx5
-IGluZXJ0IG1hY2hpbmUuIExpZ2h0cyBhcmUKPiBvbiBidXQga2V5Ym9hcmQgbm9yIG1vdXNlIHdp
-bGwgZWxpY2l0IGFueSByZXNwb25zZS4gSWYgSSBnbyB0byBhbm90aGVyCj4gbWFjaGluZSBhbmQg
-c3NoIHRvIGEgc2hlbGwgYW5kIGRvLCAjc3lzdGVtY3RsIHJlc3RhcnQgZ2RtLCBhIGNsZWFuIFhk
-aXNwbGF5Cj4gcG9wcyB1cCBzaG93aW5nIHRoZSBsb2cgaW4gc2NyZWVuLiBOb3cgYWxsIGlzIHdl
-bGwuIEknbSBydW5uaW5nIEdub21lIDMgb24KPiBrZXJuZWwgMy4xNy4xLTMwMi5mYzIxLng4Nl82
-NCBvbiBhbiBIUCBFbGl0ZWJvb2sgODQ0MHAgd2l0aCBOVklESUEgR1QyMThOCj4gW05WUyAzMTAw
-TV0gR1BVLCA4IEdJRyBSQU0gYW5kIFNTRC4gQ2FuIHlvdSBoZWxwIG1lIGhlbHAgeW91IHRvIGhl
-bHAgbWU/Cj4gRG8geW91IHN1cHBvc2UgdGhpcyBpcyBhbiBhcyB5ZXQgdW5yZXBvcnRlZCBkcml2
-ZXIgYnVnIG9yIHNvbWV0aGluZyBlbHNlLiBJdAo+IG1heSBiZSBpbnRlcmVzdGluZyB0byBub3Rl
-IHRoYXQgYWJvdXQgb25lIHRpbWUgaW4gZml2ZSB0byBzZXZlbiwgdGhlIG1hY2hpbmUKPiBoYW5n
-cyBvbiBhIHJlYm9vdCBiZWZvcmUgZ2V0dGluZyBhbnl0aGluZyBhdCBhbGwgb250byB0aGUgc2Ny
-ZWVuLgo+IF9fX19fX19fX19fX19fX19fXwo+IE5ldmVyIGJlbGlldmUgdGhlIHNldCBvZiB0aGF0
-IHdoaWNoIHlvdSB1bmRlcnN0YW5kIHJpdmFscyB0aGUgdW5pdmVyc2Ugb2YKPiB0aGF0IHdoaWNo
-IG1heSBnbyB3cm9uZyAtLSBtdGNzdGxlCj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============1050404990==
+Content-Type: multipart/alternative; boundary="1414870366.aED7F54e1.2586"; charset="UTF-8"
+
+
+--1414870366.aED7F54e1.2586
+Date: Sat, 1 Nov 2014 19:32:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85742
+
+            Bug ID: 85742
+           Summary: GF117M Can *not* use nouveau at all
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: lampshade-IjDXvh/HVVUAvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 108769
+  --> https://bugs.freedesktop.org/attachment.cgi?id=108769&action=edit
+dmesg
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF117M [GeForce
+610M/710M/820M / GT 620M/625M/630M/720M] [10de:1140] (rev a1)
+    Subsystem: Acer Incorporated [ALI] GeForce GT 620M [1025:064a]
+    Kernel driver in use: nouveau
+    Kernel modules: nouveau
+
+lsb_release -ircd
+Distributor ID:    Fedora
+Description:    Fedora release 21 (Twenty One)
+Release:    21
+Codename:    TwentyOne
+
+uname -a
+Linux Fedora21 3.17.1-304.fc21.x86_64 #1 SMP Sat Oct 25 00:56:36 UTC 2014
+x86_64 x86_64 x86_64 GNU/Linux
+
+
+cat /home/fedora/dmesg | grep -e "nouveau E" -e "nouveau W"
+[    3.655926] nouveau W[     PFB][0000:01:00.0][0x00000000][ffff88009832f800]
+reclocking of this ram type unsupported
+[    3.709612] nouveau E[     DRM] Pointer to TMDS table invalid
+[    3.711778] nouveau E[     DRM] Pointer to flat panel table invalid
+[   30.776804] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+[   51.790691] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+[  109.843251] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+
+Fortunately I have also Intel GPU (Optimus) so I can use my laptop.
+
+xrandr --listproviders 
+Providers: number : 1
+Provider 0: id: 0x47 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 0 name:Intel
+
+On Ubuntu 14.04 with kernel based on 3.13 everything was OK. I also had
+Slackware with custom build kernel 3.16 and nouveau doesn't worked.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1414870366.aED7F54e1.2586
+Date: Sat, 1 Nov 2014 19:32:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GF117M Can *not* use nouveau at all"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742">85742</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GF117M Can *not* use nouveau at all
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>lampshade&#64;poczta.fm
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=108769" name="attach_108769" title="dmesg">attachment 108769</a> <a href="attachment.cgi?id=108769&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF117M [GeForce
+610M/710M/820M / GT 620M/625M/630M/720M] [10de:1140] (rev a1)
+    Subsystem: Acer Incorporated [ALI] GeForce GT 620M [1025:064a]
+    Kernel driver in use: nouveau
+    Kernel modules: nouveau
+
+lsb_release -ircd
+Distributor ID:    Fedora
+Description:    Fedora release 21 (Twenty One)
+Release:    21
+Codename:    TwentyOne
+
+uname -a
+Linux Fedora21 3.17.1-304.fc21.x86_64 #1 SMP Sat Oct 25 00:56:36 UTC 2014
+x86_64 x86_64 x86_64 GNU/Linux
+
+
+cat /home/fedora/dmesg | grep -e &quot;nouveau E&quot; -e &quot;nouveau W&quot;
+[    3.655926] nouveau W[     PFB][0000:01:00.0][0x00000000][ffff88009832f800]
+reclocking of this ram type unsupported
+[    3.709612] nouveau E[     DRM] Pointer to TMDS table invalid
+[    3.711778] nouveau E[     DRM] Pointer to flat panel table invalid
+[   30.776804] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+[   51.790691] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+[  109.843251] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x0000001f FAULT
+at 0x6013d4 [ !ENGINE ]
+
+Fortunately I have also Intel GPU (Optimus) so I can use my laptop.
+
+xrandr --listproviders 
+Providers: number : 1
+Provider 0: id: 0x47 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 0 name:Intel
+
+On Ubuntu 14.04 with kernel based on 3.13 everything was OK. I also had
+Slackware with custom build kernel 3.16 and nouveau doesn't worked.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1414870366.aED7F54e1.2586--
+
+--===============1050404990==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1050404990==--
