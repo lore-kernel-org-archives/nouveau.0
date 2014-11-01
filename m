@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70388] [NV34] failed to idle channel 0xcccc0000
-	(also NV44A)
-Date: Fri, 31 Oct 2014 22:17:34 +0000
-Message-ID: <bug-70388-8800-aYG7yfXe4F@http.bugs.freedesktop.org/>
-References: <bug-70388-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80675] [NVAA] Nouveau KMS framebuffer hand-over:
+ no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB
+ graphics RAM, X11 ok
+Date: Sat, 01 Nov 2014 10:16:26 +0000
+Message-ID: <bug-80675-8800-15Q36cBxar@http.bugs.freedesktop.org/>
+References: <bug-80675-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1043279522=="
+Content-Type: multipart/mixed; boundary="===============2044580721=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80675-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,36 +22,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1043279522==
-Content-Type: multipart/alternative; boundary="1414793854.a7742f2.13665"; charset="UTF-8"
+--===============2044580721==
+Content-Type: multipart/alternative; boundary="1414836986.cE3eb2e2.26758"; charset="UTF-8"
 
 
---1414793854.a7742f2.13665
-Date: Fri, 31 Oct 2014 22:17:34 +0000
+--1414836986.cE3eb2e2.26758
+Date: Sat, 1 Nov 2014 10:16:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70388
+https://bugs.freedesktop.org/show_bug.cgi?id=80675
 
---- Comment #34 from Linas Vepstas <linasvepstas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Please note: above trouble with today's rc kernel 3.18-rc2 is a *regression*
-from  the stock kernel that comes w/ linux mint-qiana-17:  Linux version
-3.13.0-39-generic (buildd@toyol) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) )
-#66-Ubuntu SMP Tue Oct 28 13:30:27 UTC 2014
+--- Comment #8 from Alexey <alexey.kv-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Same issue: when KMS is just switched I can see two kerenel logos in the top
+(the are not properly draw though) and after that - black console. I have same
+amount of VRAM allocated in BIOS setup (32M).
 
-The stock kernel seems to mostly work fine-ish, for both 3D (i.e. blender) and
-youtube.  Halting and restarting X does ggenerate the 'failed to idle' messages
-.. but since I never restart X, I can live w/it.
-
-BTW: noveau 2d rendering rocks, much faster than the nvidia drivers, which are
-noticeably laggy and slow for exactly the same hw & os setup.
+02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8200] (rev
+a2)
+Linux hades 3.14.22-hardened-r1-grsec #2 SMP Fri Oct 31 10:48:31 EET 2014
+x86_64 AMD Athlon(tm) II X2 270u Processor AuthenticAMD GNU/Linux
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1414793854.a7742f2.13665
-Date: Fri, 31 Oct 2014 22:17:34 +0000
+--1414836986.cE3eb2e2.26758
+Date: Sat, 1 Nov 2014 10:16:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,25 +61,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388#c34">Comment # 34</a>
+   title="NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV34] failed to idle channel 0xcccc0000 (also NV44A)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70388">bug 70388</a>
-              from <span class="vcard"><a class="email" href="mailto:linasvepstas&#64;gmail.com" title="Linas Vepstas &lt;linasvepstas&#64;gmail.com&gt;"> <span class="fn">Linas Vepstas</span></a>
+   title="NEW - [NVAA] Nouveau KMS framebuffer hand-over: no/black console on Nvidia MCP78S/C77/GeForce 8300 (10de:0848) with 32MB graphics RAM, X11 ok"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80675">bug 80675</a>
+              from <span class="vcard"><a class="email" href="mailto:alexey.kv&#64;gmail.com" title="Alexey &lt;alexey.kv&#64;gmail.com&gt;"> <span class="fn">Alexey</span></a>
 </span></b>
-        <pre>Please note: above trouble with today's rc kernel 3.18-rc2 is a *regression*
-from  the stock kernel that comes w/ linux mint-qiana-17:  Linux version
-3.13.0-39-generic (buildd&#64;toyol) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) )
-#66-Ubuntu SMP Tue Oct 28 13:30:27 UTC 2014
+        <pre>Same issue: when KMS is just switched I can see two kerenel logos in the top
+(the are not properly draw though) and after that - black console. I have same
+amount of VRAM allocated in BIOS setup (32M).
 
-The stock kernel seems to mostly work fine-ish, for both 3D (i.e. blender) and
-youtube.  Halting and restarting X does ggenerate the 'failed to idle' messages
-.. but since I never restart X, I can live w/it.
-
-BTW: noveau 2d rendering rocks, much faster than the nvidia drivers, which are
-noticeably laggy and slow for exactly the same hw &amp; os setup.</pre>
+02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8200] (rev
+a2)
+Linux hades 3.14.22-hardened-r1-grsec #2 SMP Fri Oct 31 10:48:31 EET 2014
+x86_64 AMD Athlon(tm) II X2 270u Processor AuthenticAMD GNU/Linux</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +88,9 @@ noticeably laggy and slow for exactly the same hw &amp; os setup.</pre>
     </body>
 </html>
 
---1414793854.a7742f2.13665--
+--1414836986.cE3eb2e2.26758--
 
---===============1043279522==
+--===============2044580721==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1043279522==--
+--===============2044580721==--
