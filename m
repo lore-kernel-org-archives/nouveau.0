@@ -1,13 +1,15 @@
-From: "John H. Mountcastle" <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Subject: Re: linux kernel 3.17, freeze on resume
-Date: Sat, 01 Nov 2014 14:15:59 -0400
-Message-ID: <5455235F.4090109@yahoo.com>
+Date: Sat, 1 Nov 2014 14:56:39 -0400
+Message-ID: <CAKb7UvhBZ2hm7CxmTqx5-LFO7fPEb40R_DFS7NmY9iPy1M6s0w@mail.gmail.com>
 References: <1414247146.47116.YahooMailNeo@web162805.mail.bf1.yahoo.com>
  <CAKb7UvhprANm0zP5X1o6nZL=rt1m2iubx0HRq_9_dhc-91sh9A@mail.gmail.com>
+ <5455235F.4090109@yahoo.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1870345315=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhprANm0zP5X1o6nZL=rt1m2iubx0HRq_9_dhc-91sh9A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <5455235F.4090109-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,131 +19,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+To: "John H. Mountcastle" <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1870345315==
-Content-Type: multipart/alternative;
- boundary="------------080001070404090300090101"
-
-This is a multi-part message in MIME format.
---------------080001070404090300090101
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-I haven't received a digest from the group in over six days. Have I
-fallen off the list somehow? Is there an online spot where I may go to
-see if there was any response to my last message?
-73 | *KB3KEY* | John | Mt.Airy,MD
-On 10/25/2014 09:24 PM, Ilia Mirkin wrote:
-> Can you grab a copy of dmesg after resume? Can you try waiting ~2
-> minutes to see if gdm will restart on its own (due to X dying)? In
-> general, nouveau is less-than-great at resuming while 3d applications
-> are running. This used to be rare, but now people have things like
-> gnome-shell/etc which complicate matters.
->
-> On Sat, Oct 25, 2014 at 10:25 AM, John Mountcastle <mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> wrote:
->> This may not be the proper place to raise this question but I've had little
->> luck elsewhere.
->> After trying again, unsuccessfully this time, to install the proprietary
->> NVIDIA driver, I've decided to focus my efforts on the open source Nouveau
->> driver. I've seen video drivers blamed for varying degrees of "freeze on
->> resume" but I'm not certain that's what I'm up against. When I resume after
->> hibernate, Plymouth fails then I get a completely inert machine. Lights are
->> on but keyboard nor mouse will elicit any response. If I go to another
->> machine and ssh to a shell and do, #systemctl restart gdm, a clean Xdisplay
->> pops up showing the log in screen. Now all is well. I'm running Gnome 3 on
->> kernel 3.17.1-302.fc21.x86_64 on an HP Elitebook 8440p with NVIDIA GT218N
->> [NVS 3100M] GPU, 8 GIG RAM and SSD. Can you help me help you to help me?
->> Do you suppose this is an as yet unreported driver bug or something else. It
->> may be interesting to note that about one time in five to seven, the machine
->> hangs on a reboot before getting anything at all onto the screen.
->> __________________
->> Never believe the set of that which you understand rivals the universe of
->> that which may go wrong -- mtcstle
->>
->>
->> _______________________________________________
->> Nouveau mailing list
->> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
->> http://lists.freedesktop.org/mailman/listinfo/nouveau
->>
-
-
---------------080001070404090300090101
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">I haven't received a digest from the
-      group in over six days. Have I fallen off the list somehow? Is
-      there an online spot where I may go to see if there was any
-      response to my last message?<br>
-      <div class="moz-signature">73 | <b>KB3KEY</b> | John | Mt.Airy,MD</div>
-      On 10/25/2014 09:24 PM, Ilia Mirkin wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAKb7UvhprANm0zP5X1o6nZL=rt1m2iubx0HRq_9_dhc-91sh9A-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org"
-      type="cite">
-      <pre wrap="">Can you grab a copy of dmesg after resume? Can you try waiting ~2
-minutes to see if gdm will restart on its own (due to X dying)? In
-general, nouveau is less-than-great at resuming while 3d applications
-are running. This used to be rare, but now people have things like
-gnome-shell/etc which complicate matters.
-
-On Sat, Oct 25, 2014 at 10:25 AM, John Mountcastle <a class="moz-txt-link-rfc2396E" href="mailto:mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org">&lt;mtcstle-/E1597aS9LQAvxtiuMwx3w@public.gmane.org&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">This may not be the proper place to raise this question but I've had little
-luck elsewhere.
-After trying again, unsuccessfully this time, to install the proprietary
-NVIDIA driver, I've decided to focus my efforts on the open source Nouveau
-driver. I've seen video drivers blamed for varying degrees of "freeze on
-resume" but I'm not certain that's what I'm up against. When I resume after
-hibernate, Plymouth fails then I get a completely inert machine. Lights are
-on but keyboard nor mouse will elicit any response. If I go to another
-machine and ssh to a shell and do, #systemctl restart gdm, a clean Xdisplay
-pops up showing the log in screen. Now all is well. I'm running Gnome 3 on
-kernel 3.17.1-302.fc21.x86_64 on an HP Elitebook 8440p with NVIDIA GT218N
-[NVS 3100M] GPU, 8 GIG RAM and SSD. Can you help me help you to help me?
-Do you suppose this is an as yet unreported driver bug or something else. It
-may be interesting to note that about one time in five to seven, the machine
-hangs on a reboot before getting anything at all onto the screen.
-__________________
-Never believe the set of that which you understand rivals the universe of
-that which may go wrong -- mtcstle
-
-
-_______________________________________________
-Nouveau mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org</a>
-<a class="moz-txt-link-freetext" href="http://lists.freedesktop.org/mailman/listinfo/nouveau">http://lists.freedesktop.org/mailman/listinfo/nouveau</a>
-
-</pre>
-      </blockquote>
-      <pre wrap="">
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------080001070404090300090101--
-
---===============1870345315==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1870345315==--
+VGhlIGxpc3QgaXMgYXJjaGl2ZWQgYXQgaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNo
+aXZlcy9ub3V2ZWF1LwoKTG9va2luZyBvdmVyIHlvdXIgZG1lc2csIGl0IGxvb2tzIGxpa2UgdGhl
+cmUncyBhIGxpbmstdHJhaW5pbmcKZmFpbHVyZSwgYnV0IG90aGVyd2lzZSBldmVyeXRoaW5nIGlz
+IGZpbmUuIEkgcHJlc3VtZSB0aGUgaW50ZXJuYWwKZGlzcGxheSBpcyBlRFAsIGFuZCBzbyB0aGF0
+IHJvdWdobHkgdHJhbnNsYXRlcyB0byBzY3JlZW4gcmVtYWlucyBvZmYuCgpDb3VsZCB5b3UgdHJ5
+IDMuMTgtcmMyIHRvIG1ha2Ugc3VyZSB0aGF0IHRoZSBpc3N1ZSBpc24ndCBhbHJlYWR5CmZpeGVk
+LCBhbmQgaWYgbm90LCB0cnkgYmlzZWN0aW5nPwoKICAtaWxpYQoKT24gU2F0LCBOb3YgMSwgMjAx
+NCBhdCAyOjE1IFBNLCBKb2huIEguIE1vdW50Y2FzdGxlIDxtdGNzdGxlQHlhaG9vLmNvbT4gd3Jv
+dGU6Cj4gSSBoYXZlbid0IHJlY2VpdmVkIGEgZGlnZXN0IGZyb20gdGhlIGdyb3VwIGluIG92ZXIg
+c2l4IGRheXMuIEhhdmUgSSBmYWxsZW4KPiBvZmYgdGhlIGxpc3Qgc29tZWhvdz8gSXMgdGhlcmUg
+YW4gb25saW5lIHNwb3Qgd2hlcmUgSSBtYXkgZ28gdG8gc2VlIGlmIHRoZXJlCj4gd2FzIGFueSBy
+ZXNwb25zZSB0byBteSBsYXN0IG1lc3NhZ2U/Cj4gNzMgfCBLQjNLRVkgfCBKb2huIHwgTXQuQWly
+eSxNRAo+IE9uIDEwLzI1LzIwMTQgMDk6MjQgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Cj4gQ2Fu
+IHlvdSBncmFiIGEgY29weSBvZiBkbWVzZyBhZnRlciByZXN1bWU/IENhbiB5b3UgdHJ5IHdhaXRp
+bmcgfjIKPiBtaW51dGVzIHRvIHNlZSBpZiBnZG0gd2lsbCByZXN0YXJ0IG9uIGl0cyBvd24gKGR1
+ZSB0byBYIGR5aW5nKT8gSW4KPiBnZW5lcmFsLCBub3V2ZWF1IGlzIGxlc3MtdGhhbi1ncmVhdCBh
+dCByZXN1bWluZyB3aGlsZSAzZCBhcHBsaWNhdGlvbnMKPiBhcmUgcnVubmluZy4gVGhpcyB1c2Vk
+IHRvIGJlIHJhcmUsIGJ1dCBub3cgcGVvcGxlIGhhdmUgdGhpbmdzIGxpa2UKPiBnbm9tZS1zaGVs
+bC9ldGMgd2hpY2ggY29tcGxpY2F0ZSBtYXR0ZXJzLgo+Cj4gT24gU2F0LCBPY3QgMjUsIDIwMTQg
+YXQgMTA6MjUgQU0sIEpvaG4gTW91bnRjYXN0bGUgPG10Y3N0bGVAeWFob28uY29tPgo+IHdyb3Rl
+Ogo+Cj4gVGhpcyBtYXkgbm90IGJlIHRoZSBwcm9wZXIgcGxhY2UgdG8gcmFpc2UgdGhpcyBxdWVz
+dGlvbiBidXQgSSd2ZSBoYWQgbGl0dGxlCj4gbHVjayBlbHNld2hlcmUuCj4gQWZ0ZXIgdHJ5aW5n
+IGFnYWluLCB1bnN1Y2Nlc3NmdWxseSB0aGlzIHRpbWUsIHRvIGluc3RhbGwgdGhlIHByb3ByaWV0
+YXJ5Cj4gTlZJRElBIGRyaXZlciwgSSd2ZSBkZWNpZGVkIHRvIGZvY3VzIG15IGVmZm9ydHMgb24g
+dGhlIG9wZW4gc291cmNlIE5vdXZlYXUKPiBkcml2ZXIuIEkndmUgc2VlbiB2aWRlbyBkcml2ZXJz
+IGJsYW1lZCBmb3IgdmFyeWluZyBkZWdyZWVzIG9mICJmcmVlemUgb24KPiByZXN1bWUiIGJ1dCBJ
+J20gbm90IGNlcnRhaW4gdGhhdCdzIHdoYXQgSSdtIHVwIGFnYWluc3QuIFdoZW4gSSByZXN1bWUg
+YWZ0ZXIKPiBoaWJlcm5hdGUsIFBseW1vdXRoIGZhaWxzIHRoZW4gSSBnZXQgYSBjb21wbGV0ZWx5
+IGluZXJ0IG1hY2hpbmUuIExpZ2h0cyBhcmUKPiBvbiBidXQga2V5Ym9hcmQgbm9yIG1vdXNlIHdp
+bGwgZWxpY2l0IGFueSByZXNwb25zZS4gSWYgSSBnbyB0byBhbm90aGVyCj4gbWFjaGluZSBhbmQg
+c3NoIHRvIGEgc2hlbGwgYW5kIGRvLCAjc3lzdGVtY3RsIHJlc3RhcnQgZ2RtLCBhIGNsZWFuIFhk
+aXNwbGF5Cj4gcG9wcyB1cCBzaG93aW5nIHRoZSBsb2cgaW4gc2NyZWVuLiBOb3cgYWxsIGlzIHdl
+bGwuIEknbSBydW5uaW5nIEdub21lIDMgb24KPiBrZXJuZWwgMy4xNy4xLTMwMi5mYzIxLng4Nl82
+NCBvbiBhbiBIUCBFbGl0ZWJvb2sgODQ0MHAgd2l0aCBOVklESUEgR1QyMThOCj4gW05WUyAzMTAw
+TV0gR1BVLCA4IEdJRyBSQU0gYW5kIFNTRC4gQ2FuIHlvdSBoZWxwIG1lIGhlbHAgeW91IHRvIGhl
+bHAgbWU/Cj4gRG8geW91IHN1cHBvc2UgdGhpcyBpcyBhbiBhcyB5ZXQgdW5yZXBvcnRlZCBkcml2
+ZXIgYnVnIG9yIHNvbWV0aGluZyBlbHNlLiBJdAo+IG1heSBiZSBpbnRlcmVzdGluZyB0byBub3Rl
+IHRoYXQgYWJvdXQgb25lIHRpbWUgaW4gZml2ZSB0byBzZXZlbiwgdGhlIG1hY2hpbmUKPiBoYW5n
+cyBvbiBhIHJlYm9vdCBiZWZvcmUgZ2V0dGluZyBhbnl0aGluZyBhdCBhbGwgb250byB0aGUgc2Ny
+ZWVuLgo+IF9fX19fX19fX19fX19fX19fXwo+IE5ldmVyIGJlbGlldmUgdGhlIHNldCBvZiB0aGF0
+IHdoaWNoIHlvdSB1bmRlcnN0YW5kIHJpdmFscyB0aGUgdW5pdmVyc2Ugb2YKPiB0aGF0IHdoaWNo
+IG1heSBnbyB3cm9uZyAtLSBtdGNzdGxlCj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
