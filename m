@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85742] GF117M Can *not* use nouveau at all
-Date: Sat, 01 Nov 2014 19:41:14 +0000
-Message-ID: <bug-85742-8800-xZ9PnLHMDA@http.bugs.freedesktop.org/>
-References: <bug-85742-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Tesla branch limits?
+Date: Sat, 1 Nov 2014 16:47:59 -0400
+Message-ID: <CAKb7UvhVuuLfkgFmO_TUGv=jq0SK=hT85vuED9XkP1i94xEVNw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1171467660=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +15,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1171467660==
-Content-Type: multipart/alternative; boundary="1414870874.Ba032A1c1.5427"; charset="UTF-8"
-
-
---1414870874.Ba032A1c1.5427
-Date: Sat, 1 Nov 2014 19:41:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85742
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hrm, I guess the 0x3d4 vga writes aren't such a big hit on this card since it
-doesn't have a PDISP at all either.
-
-Would it be possible for you to bisect nouveau to see what change broke nouveau
-for you?
-
-git bisect start v3.16 v3.13 -- drivers/gpu/drm/nouveau
-
-should only bisect the nouveau commits and not the whole kernel.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1414870874.Ba032A1c1.5427
-Date: Sat, 1 Nov 2014 19:41:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GF117M Can *not* use nouveau at all"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GF117M Can *not* use nouveau at all"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742">bug 85742</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Hrm, I guess the 0x3d4 vga writes aren't such a big hit on this card since it
-doesn't have a PDISP at all either.
-
-Would it be possible for you to bisect nouveau to see what change broke nouveau
-for you?
-
-git bisect start v3.16 v3.13 -- drivers/gpu/drm/nouveau
-
-should only bisect the nouveau commits and not the whole kernel.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1414870874.Ba032A1c1.5427--
-
---===============1171467660==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1171467660==--
+SGVsbG8sCgpXZSdyZSBzZWVpbmcgYSB2ZXJ5IG9kZCBpc3N1ZSBvbiBtYW55IChhbGw/KSB0ZXNs
+YSBjaGlwcyAoRzh4LCBHOXgsCkcyMDAsIEdUMjF4KSByZWxhdGVkIHRvIGxvb3BpbmcuIFBlb3Bs
+ZSB3aWxsIGhhdmUgbG9vcHMgaW4gZ2xzbCBsaWtlCgpmb3IgKGkgPSAwOyBpIDwgMjAwOyBpKysp
+IHsKICAuLi4KICBpZiAoY29uZCkgYnJlYWs7Cn0KCkFuZCBpdCBzZWVtcyBsaWtlIGlmIGl0IGJy
+ZWFrcyBvdXQgb2YgdGhlIGxvb3AgZWFybHksIGFsbCdzIHdlbGwsIGJ1dApldmVudHVhbGx5IGl0
+IHBlZXRlcnMgb3V0IChJIGhhdmVuJ3QgZmlndXJlZCBvdXQgZXhhY3RseSB3aGVuIHRob3VnaCku
+CgpTZWUgYnVnIGF0IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lk
+PTc4MTYxIC0tIEkndmUKdHJhY2VkIGJvdGggdGhlIG5vdXZlYXUtZ2VuZXJhdGVkIHNoYWRlciBj
+b2RlIGFuZCB0aGUgbnZpZGlhLWdlbmVyYXRlZApzaGFkZXIgY29kZS4gT3V0c2lkZSBvZiB0aGUg
+bnZpZGlhLWdlbmVyYXRlZCBjb2RlIGJlaW5nIGEgbG90IG1vcmUKZWZmaWNpZW50ICh5b3UgZ3V5
+cyBjbGVhcmx5IGhhdmUgYmV0dGVyIGZsb3cgYW5hbHlzaXMpLCBJIGNhbid0IHNlZQphbnkgc2ln
+bmlmaWNhbnQgZGlmZmVyZW5jZXMuIEkndmUgdHJpZWQgcGxheWluZyB3aXRoIG5vdCB1c2luZwpi
+cmVha2FkZHIvYnJlYWsgaW5zdHJ1Y3Rpb25zLCBub3QgdXNpbmcgY29uZGl0aW9uYWwgYnJlYWtz
+LCBldGMuIEkKYmVsaWV2ZSBvbmUgb2YgdGhvc2UgYXR0ZW1wdHMgZW5kZWQgdXAgcHJvZHVjaW5n
+IHNsaWdodGx5IGRpZmZlcmVudApyZXN1bHRzICh2aXN1YWxseSksIGJ1dCBJIHN1c3BlY3QgaXQg
+d2FzIGp1c3QgZHVlIHRvIGEgY2hhbmdlIGluIHRoZQpudW1iZXIgb2YgYnJhbmNoZXMuCgpXZSBh
+cmUgYXdhcmUgdGhhdCB0aGVyZSBpcyBhIGNhbGwgbGltaXQgKG1ldGhvZCAweDEyOTApLCB3aGlj
+aCB3ZQpkb24ndCBlbmQgdXAgc2V0dGluZywgYnV0IGhhdmVuJ3Qgc2VlbiBhbnl0aGluZyB0aGF0
+IGNvbnRyb2xzIGJyYW5jaApjb3VudHMuIFNldHRpbmcgMHgxMjkwIGRvZXMgbm90IGFwcGVhciB0
+byBmaXggdGhpbmdzIGVpdGhlci4KCkFueSBpZGVhcyB5b3UgbWlnaHQgaGF2ZSBvbiB3aGF0J3Mg
+Z29pbmcgd3Jvbmcgd291bGQgYmUgdmVyeSB1c2VmdWwuCgpUaGFua3MsCgogIC1pbGlhCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
