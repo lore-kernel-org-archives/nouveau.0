@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84706] [NV94] HDMI Connected,
 	but TV reports "no signal"
-Date: Mon, 03 Nov 2014 20:46:09 +0000
-Message-ID: <bug-84706-8800-Tbu0MQvX29@http.bugs.freedesktop.org/>
+Date: Mon, 03 Nov 2014 20:46:28 +0000
+Message-ID: <bug-84706-8800-8BFM9Rtkg7@http.bugs.freedesktop.org/>
 References: <bug-84706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0658184508=="
+Content-Type: multipart/mixed; boundary="===============1678976169=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0658184508==
-Content-Type: multipart/alternative; boundary="1415047569.22eC1.20589"; charset="UTF-8"
+--===============1678976169==
+Content-Type: multipart/alternative; boundary="1415047588.d6F1E3.20589"; charset="UTF-8"
 
 
---1415047569.22eC1.20589
-Date: Mon, 3 Nov 2014 20:46:09 +0000
+--1415047588.d6F1E3.20589
+Date: Mon, 3 Nov 2014 20:46:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,15 @@ Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #107499|0                           |1
+ Attachment #107500|0                           |1
         is obsolete|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415047569.22eC1.20589
-Date: Mon, 3 Nov 2014 20:46:09 +0000
+--1415047588.d6F1E3.20589
+Date: Mon, 3 Nov 2014 20:46:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,7 +67,7 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #107499 is obsolete</td>
+           <td style="text-align:right;">Attachment #107500 is obsolete</td>
            <td>
                &nbsp;
            </td>
@@ -85,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1415047569.22eC1.20589--
+--1415047588.d6F1E3.20589--
 
---===============0658184508==
+--===============1678976169==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0658184508==--
+--===============1678976169==--
