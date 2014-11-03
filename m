@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84706] [NV94] HDMI Connected,
 	but TV reports "no signal"
-Date: Mon, 03 Nov 2014 20:46:28 +0000
-Message-ID: <bug-84706-8800-8BFM9Rtkg7@http.bugs.freedesktop.org/>
+Date: Mon, 03 Nov 2014 20:47:13 +0000
+Message-ID: <bug-84706-8800-qEsCsiD0sR@http.bugs.freedesktop.org/>
 References: <bug-84706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1678976169=="
+Content-Type: multipart/mixed; boundary="===============1466630570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1678976169==
-Content-Type: multipart/alternative; boundary="1415047588.d6F1E3.20589"; charset="UTF-8"
+--===============1466630570==
+Content-Type: multipart/alternative; boundary="1415047633.38FE151f1.21114"; charset="UTF-8"
 
 
---1415047588.d6F1E3.20589
-Date: Mon, 3 Nov 2014 20:46:28 +0000
+--1415047633.38FE151f1.21114
+Date: Mon, 3 Nov 2014 20:47:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84706
 
-Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #107500|0                           |1
-        is obsolete|                            |
+--- Comment #12 from Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 108860
+  --> https://bugs.freedesktop.org/attachment.cgi?id=108860&action=edit
+Xorg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415047588.d6F1E3.20589
-Date: Mon, 3 Nov 2014 20:46:28 +0000
+--1415047633.38FE151f1.21114
+Date: Mon, 3 Nov 2014 20:47:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,29 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jayvandam&#64;gmail.com" title="Jay van Dam &lt;jayvandam&#64;gmail.com&gt;"> <span class="fn">Jay van Dam</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84706">bug 84706</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #107500 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:jayvandam&#64;gmail.com" title="Jay van Dam &lt;jayvandam&#64;gmail.com&gt;"> <span class="fn">Jay van Dam</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=108860" name="attach_108860" title="Xorg log">attachment 108860</a> <a href="attachment.cgi?id=108860&amp;action=edit" title="Xorg log">[details]</a></span>
+Xorg log</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1415047588.d6F1E3.20589--
+--1415047633.38FE151f1.21114--
 
---===============1678976169==
+--===============1466630570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1678976169==--
+--===============1466630570==--
