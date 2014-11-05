@@ -1,54 +1,100 @@
-From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: Re: [PATCH 3/3] gk20a: use NOUVEAU_BO_GART as VRAM domain
-Date: Wed, 5 Nov 2014 19:23:54 +0900
-Message-ID: <5459FABA.2020009@nvidia.com>
-References: <1414406099-21129-1-git-send-email-acourbot@nvidia.com>	<1414406099-21129-4-git-send-email-acourbot@nvidia.com>
- <CAKb7UvhMw9pfDsvoGae2A+n9qJNBV5Vnxm4bn5tbK09GDcP_Dw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 84706] [NV94] HDMI Connected,
+	but TV reports "no signal"
+Date: Wed, 05 Nov 2014 21:54:17 +0000
+Message-ID: <bug-84706-8800-5uMkNS7go3@http.bugs.freedesktop.org/>
+References: <bug-84706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvhMw9pfDsvoGae2A+n9qJNBV5Vnxm4bn5tbK09GDcP_Dw@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Alexandre Courbot <gnurou@gmail.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============2099976568=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTAvMzAvMjAxNCAxMjoyOSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBPY3Qg
-MjcsIDIwMTQgYXQgNjozNCBBTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5j
-b20+IHdyb3RlOgo+PiBHSzIwQSBkb2VzIG5vdCBoYXZlIGRlZGljYXRlZCBWUkFNLCB0aGVyZWZv
-cmUgYWxsb2NhdGluZyBpbiBWUkFNIGNhbiBiZQo+PiBzdWItb3B0aW1hbCBhbmQgc29tZXRpbWVz
-IGV2ZW4gaGFybWZ1bC4gU2V0IGl0cyBWUkFNIGRvbWFpbiB0bwo+PiBOT1VWRUFVX0JPX0dBUlQg
-c28gYWxsIG9iamVjdHMgYXJlIGFsbG9jYXRlZCBpbiBzeXN0ZW0gbWVtb3J5Lgo+Pgo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4gLS0t
-Cj4+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYyB8IDEw
-ICsrKysrKysrKysKPj4gICAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKQo+Pgo+PiBk
-aWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4u
-YyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPj4gaW5k
-ZXggYWM1ODIzZTRhOGQ1Li5hZDE0M2NkOWExNDAgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPj4gKysrIGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+PiBAQCAtNjIwLDYgKzYyMCwxNiBA
-QCBudmMwX3NjcmVlbl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4+ICAgICAg
-ICAgcmV0dXJuIE5VTEw7Cj4+ICAgICAgcHNjcmVlbiA9ICZzY3JlZW4tPmJhc2UuYmFzZTsKPj4K
-Pj4gKyAgIC8qIFJlY29nbml6ZSBjaGlwc2V0cyB3aXRoIG5vIFZSQU0gKi8KPj4gKyAgIHN3aXRj
-aCAoZGV2LT5jaGlwc2V0KSB7Cj4+ICsgICAvKiBHSzIwQSAqLwo+PiArICAgY2FzZSAweGVhOgo+
-PiArICAgICAgc2NyZWVuLT5iYXNlLnZyYW1fZG9tYWluID0gTk9VVkVBVV9CT19HQVJUOwo+Cj4g
-SSB0aGluayB5b3UgYWxzbyB3YW50IHRvIHNldCB2aWRtZW1fYmluZGluZ3MgPSAwLi4uIGFsdGhv
-dWdoCj4gcG90ZW50aWFsbHkgYWZ0ZXIgdGhlIHw9IHRoYXQncyBkb25lIGJlbG93LiBBbHRob3Vn
-aCBJIGd1ZXNzIHRoYXQKPiBjb25zdGJ1ZiArIGNvbW1hbmQgYXJncyBidWYgbmVlZCB0byBiZSB8
-PSdkIGludG8gdGhlIHN5c21lbV9iaW5kaW5ncwo+IGZvciB0aGlzIHRvIHdvcmsgb3V0IHdlbGwu
-CgpUaGFua3MgZm9yIHBvaW50aW5nIHRoaXMgb3V0IDsgSSBkaWRuJ3Qga25vdyBhYm91dCB2aWRt
-ZW1fYmluZGluZ3MgdG8gYmUgCmhvbmVzdC4gV2lsbCB1cGRhdGUgYW5kIHJlc2VuZC4KCkFwYXJ0
-IGZyb20gdGhpcyBkZXRhaWwsIGFyZSB5b3Ugb2sgd2l0aCB0aGUgY2hhbmdlcyBicm91Z2h0IGJ5
-IHRoZXNlIApwYXRjaGVzPwoKQ2hlZXJzLApBbGV4LgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbWVzYS1kZXYK
+
+--===============2099976568==
+Content-Type: multipart/alternative; boundary="1415224457.8a7bfF1.30006"; charset="UTF-8"
+
+
+--1415224457.8a7bfF1.30006
+Date: Wed, 5 Nov 2014 21:54:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=84706
+
+--- Comment #16 from Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just made the trace and about to collect the current vbios from
+/sys/kernel/debug/dri/0/vbios.rom but there's no such file in the
+/sys/kernel/debug/dri/0/ directory. Do you want me to include the vbios from
+when running the nouveau driver as attached to this bug report?
+
+The card I have does indeed have 768MB of VRAM see:
+http://www.vgamuseum.info/index.php/component/content/article/1249-nvidia-geforce-9600-gs
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1415224457.8a7bfF1.30006
+Date: Wed, 5 Nov 2014 21:54:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706">bug 84706</a>
+              from <span class="vcard"><a class="email" href="mailto:jayvandam&#64;gmail.com" title="Jay van Dam &lt;jayvandam&#64;gmail.com&gt;"> <span class="fn">Jay van Dam</span></a>
+</span></b>
+        <pre>Just made the trace and about to collect the current vbios from
+/sys/kernel/debug/dri/0/vbios.rom but there's no such file in the
+/sys/kernel/debug/dri/0/ directory. Do you want me to include the vbios from
+when running the nouveau driver as attached to this bug report?
+
+The card I have does indeed have 768MB of VRAM see:
+<a href="http://www.vgamuseum.info/index.php/component/content/article/1249-nvidia-geforce-9600-gs">http://www.vgamuseum.info/index.php/component/content/article/1249-nvidia-geforce-9600-gs</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415224457.8a7bfF1.30006--
+
+--===============2099976568==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2099976568==--
