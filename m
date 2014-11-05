@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84706] [NV94] HDMI Connected,
 	but TV reports "no signal"
-Date: Wed, 05 Nov 2014 21:55:28 +0000
-Message-ID: <bug-84706-8800-yAf0VshPJ5@http.bugs.freedesktop.org/>
+Date: Wed, 05 Nov 2014 22:09:42 +0000
+Message-ID: <bug-84706-8800-7Ebc4JbLNE@http.bugs.freedesktop.org/>
 References: <bug-84706-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0115529747=="
+Content-Type: multipart/mixed; boundary="===============1987630582=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84706-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0115529747==
-Content-Type: multipart/alternative; boundary="1415224527.Fd4e2.30817"; charset="UTF-8"
+--===============1987630582==
+Content-Type: multipart/alternative; boundary="1415225382.8EbA6A611.4860"; charset="UTF-8"
 
 
---1415224527.Fd4e2.30817
-Date: Wed, 5 Nov 2014 21:55:27 +0000
+--1415225382.8EbA6A611.4860
+Date: Wed, 5 Nov 2014 22:09:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84706
 
---- Comment #17 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jay van Dam from comment #16)
-> Just made the trace and about to collect the current vbios from
-> /sys/kernel/debug/dri/0/vbios.rom but there's no such file in the
-> /sys/kernel/debug/dri/0/ directory. Do you want me to include the vbios from
-> when running the nouveau driver as attached to this bug report?
-
-Yes, the same file that's already attached. It's small, and having it be along
-with the trace makes it more likely that it will get noticed.
+--- Comment #18 from Jay van Dam <jayvandam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Mail is send to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org with the MMIO dump. Please let me know if
+it is correct or when you need more dumps.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415224527.Fd4e2.30817
-Date: Wed, 5 Nov 2014 21:55:27 +0000
+--1415225382.8EbA6A611.4860
+Date: Wed, 5 Nov 2014 22:09:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,21 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84706#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] HDMI Connected, but TV reports &quot;no signal&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84706">bug 84706</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jayvandam&#64;gmail.com" title="Jay van Dam &lt;jayvandam&#64;gmail.com&gt;"> <span class="fn">Jay van Dam</span></a>
 </span></b>
-        <pre>(In reply to Jay van Dam from <a href="show_bug.cgi?id=84706#c16">comment #16</a>)
-<span class="quote">&gt; Just made the trace and about to collect the current vbios from
-&gt; /sys/kernel/debug/dri/0/vbios.rom but there's no such file in the
-&gt; /sys/kernel/debug/dri/0/ directory. Do you want me to include the vbios from
-&gt; when running the nouveau driver as attached to this bug report?</span >
-
-Yes, the same file that's already attached. It's small, and having it be along
-with the trace makes it more likely that it will get noticed.</pre>
+        <pre>Mail is send to <a href="mailto:mmio.dumps&#64;gmail.com">mmio.dumps&#64;gmail.com</a> with the MMIO dump. Please let me know if
+it is correct or when you need more dumps.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +75,9 @@ with the trace makes it more likely that it will get noticed.</pre>
     </body>
 </html>
 
---1415224527.Fd4e2.30817--
+--1415225382.8EbA6A611.4860--
 
---===============0115529747==
+--===============1987630582==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0115529747==--
+--===============1987630582==--
