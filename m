@@ -1,11 +1,13 @@
-From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
-Subject: (Free)BSD support?
-Date: Thu, 06 Nov 2014 11:05:20 -0800
-Message-ID: <397bff86faf5fab73830fe01bdefbe40@ultimatedns.net>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: (Free)BSD support?
+Date: Thu, 06 Nov 2014 19:58:12 +0000
+Message-ID: <545BD2D4.2000300@gmail.com>
+References: <397bff86faf5fab73830fe01bdefbe40@ultimatedns.net>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="fixed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <397bff86faf5fab73830fe01bdefbe40-kXB7xIAHHG1poJpnivc+mw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,15 +17,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Chris <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>, Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: =?UTF-8?B?SmVhbi1Tw6liYXN0aWVuIFDDqWRyb24=?= <jean-sebastien.pedron-DvcofrTywwxWj0EZb7rXcA@public.gmane.org>, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R3JlZXRpbmdzLAogSSByZW1lbWJlciBOb3V2ZWF1IGJlaW5nIGluIHRoZSBwb3J0cyB0cmVlIG9u
-IEZyZWVCU0Qgc29tZQp0aW1lIGFnby4gQXMgSSBzZWUgaXQgaXNuJ3QgdGhlcmUgbm93LiBJIHdh
-cyB3b25kZXJpbmcgaWYgYW55b25lCmVsc2UgbWlnaHQgaGF2ZSwgb3IgYmUgd29ya2luZyBvbiBh
-IEJTRCBicmFuY2guIE9yIG1pZ2h0IGJlIGFibGUKdG8gcHJvdmlkZSBzb21lIGluc2lnaHQgb24g
-Z2V0dGluZyBhIGJyYW5jaCBvZiBOb3V2ZWF1IHJ1bm5pbmcKb24gRnJlZUJTRC4KClRoYW5rIHlv
-dSBmb3IgYWxsIHlvdXIgdGltZSwgYW5kIGNvbnNpZGVyYXRpb24uCgotLUNocmlzCgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+SGkgQ2hyaXMsCgpPbiAwNi8xMS8xNCAxOTowNSwgQ2hyaXMgd3JvdGU6Cj4gR3JlZXRpbmdzLAo+
+ICBJIHJlbWVtYmVyIE5vdXZlYXUgYmVpbmcgaW4gdGhlIHBvcnRzIHRyZWUgb24gRnJlZUJTRCBz
+b21lCj4gdGltZSBhZ28uIEFzIEkgc2VlIGl0IGlzbid0IHRoZXJlIG5vdy4gSSB3YXMgd29uZGVy
+aW5nIGlmIGFueW9uZQo+IGVsc2UgbWlnaHQgaGF2ZSwgb3IgYmUgd29ya2luZyBvbiBhIEJTRCBi
+cmFuY2guIE9yIG1pZ2h0IGJlIGFibGUKPiB0byBwcm92aWRlIHNvbWUgaW5zaWdodCBvbiBnZXR0
+aW5nIGEgYnJhbmNoIG9mIE5vdXZlYXUgcnVubmluZwo+IG9uIEZyZWVCU0QuCj4gCj4gVGhhbmsg
+eW91IGZvciBhbGwgeW91ciB0aW1lLCBhbmQgY29uc2lkZXJhdGlvbi4KPgpBZmFpayBjdXJyZW50
+bHkgdGhlcmUgaXMgbm8gcG9ydCBmb3IgKEZyZWUpQlNELgoKT24gdGhlIHBvc2l0aXZlIHNpZGUg
+bm91dmVhdSdzIGN1cnJlbnQgaW5mcmFzdHJ1Y3R1cmUgKCJjb3JlIiwgaW50ZXJmYWNlCiJudmlm
+IiBhbmQgImRybSBnbHVlIikgd2lsbCBtYWtlIHRoaW5ncyBxdWl0ZSBlYXN5IGZvciBhbnlvbmUg
+ZmFtaWxpYXIKd2l0aCBCU0QncyBlcXVpdmFsZW50IG9mIGNvcmUgZHJtLHR0bSxldGMuIE9uZSBv
+bmx5IG5lZWRzIHRvIHBvcnQgdGhlCiJkcm0gZ2x1ZSIuCgpJaXJjIEplYW4tU8OpYmFzdGllbiAo
+Q2MnZCkgZGlkIG1lbnRpb24gbm91dmVhdSArIEZyZWVCU0QgYXQgWERDLAphbHRob3VnaCBJJ20g
+bm90IHN1cmUgd2hhdCBoaXMgY3VycmVudCBwbGFucyBhcmUuIFBlcmhhcHMgaGUgbWlnaHQgYmUK
+YWJsZSB0byBnaXZlIHlvdSBzb21lIGlkZWFzLCBpZiB5b3UncmUgd2lsbGluZyB0byBnaXZlIGl0
+IGEgZ28gPwoKCkNoZWVycywKRW1pbAoKPiAtLUNocmlzCj4gCj4gCj4gX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPiAKCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
