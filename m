@@ -1,16 +1,13 @@
-From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
-Subject: Re: (Free)BSD support?
-Date: Thu, 06 Nov 2014 18:22:15 -0800
-Message-ID: <c83ef171f859f35611d7c9229d5e874a@ultimatedns.net>
-References: <397bff86faf5fab73830fe01bdefbe40@ultimatedns.net>
- <545BD2D4.2000300@gmail.com>
- <25816c50da8ffab03f170a71055ba3ff@ultimatedns.net>,
- <CAPM=9tyCU3-yF+oQ7xPLA-0tfAbyjojG-eZXZo_1e7UTy7eiMg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82527] xset dpms force {off, standby,
+ suspend} returns after ~20 seconds (GeForce 8400 GS)
+Date: Fri, 07 Nov 2014 07:21:35 +0000
+Message-ID: <bug-82527-8800-nJI7C5okPV@http.bugs.freedesktop.org/>
+References: <bug-82527-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="fixed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1935776993=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPM=9tyCU3-yF+oQ7xPLA-0tfAbyjojG-eZXZo_1e7UTy7eiMg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,50 +17,95 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SmVhbi1Tw6liYXN0aWVuUMOpZHJvbg==?= <jean-sebastien.pedron-DvcofrTywwxWj0EZb7rXcA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCA3IE5vdiAyMDE0IDEyOjExOjA4ICsxMDAwIERhdmUgQWlybGllIDxhaXJsaWVkQGdt
-YWlsLmNvbT4gd3JvdGUKCj4gPj4KPiA+PiBPbiAwNi8xMS8xNCAxOTowNSwgQ2hyaXMgd3JvdGU6
-Cj4gPj4gPiBHcmVldGluZ3MsCj4gPj4gPiAgSSByZW1lbWJlciBOb3V2ZWF1IGJlaW5nIGluIHRo
-ZSBwb3J0cyB0cmVlIG9uIEZyZWVCU0Qgc29tZQo+ID4+ID4gdGltZSBhZ28uIEFzIEkgc2VlIGl0
-IGlzbid0IHRoZXJlIG5vdy4gSSB3YXMgd29uZGVyaW5nIGlmIGFueW9uZQo+ID4+ID4gZWxzZSBt
-aWdodCBoYXZlLCBvciBiZSB3b3JraW5nIG9uIGEgQlNEIGJyYW5jaC4gT3IgbWlnaHQgYmUgYWJs
-ZQo+ID4+ID4gdG8gcHJvdmlkZSBzb21lIGluc2lnaHQgb24gZ2V0dGluZyBhIGJyYW5jaCBvZiBO
-b3V2ZWF1IHJ1bm5pbmcKPiA+PiA+IG9uIEZyZWVCU0QuCj4gPj4gPgo+ID4+ID4gVGhhbmsgeW91
-IGZvciBhbGwgeW91ciB0aW1lLCBhbmQgY29uc2lkZXJhdGlvbi4KPiA+PiA+Cj4gPj4gQWZhaWsg
-Y3VycmVudGx5IHRoZXJlIGlzIG5vIHBvcnQgZm9yIChGcmVlKUJTRC4KPiA+Pgo+ID4+IE9uIHRo
-ZSBwb3NpdGl2ZSBzaWRlIG5vdXZlYXUncyBjdXJyZW50IGluZnJhc3RydWN0dXJlICgiY29yZSIs
-IGludGVyZmFjZQo+ID4+ICJudmlmIiBhbmQgImRybSBnbHVlIikgd2lsbCBtYWtlIHRoaW5ncyBx
-dWl0ZSBlYXN5IGZvciBhbnlvbmUgZmFtaWxpYXIKPiA+PiB3aXRoIEJTRCdzIGVxdWl2YWxlbnQg
-b2YgY29yZSBkcm0sdHRtLGV0Yy4gT25lIG9ubHkgbmVlZHMgdG8gcG9ydCB0aGUKPiA+PiAiZHJt
-IGdsdWUiLgo+ID4+Cj4gPj4gSWlyYyBKZWFuLVPDqWJhc3RpZW4gKENjJ2QpIGRpZCBtZW50aW9u
-IG5vdXZlYXUgKyBGcmVlQlNEIGF0IFhEQywKPiA+PiBhbHRob3VnaCBJJ20gbm90IHN1cmUgd2hh
-dCBoaXMgY3VycmVudCBwbGFucyBhcmUuIFBlcmhhcHMgaGUgbWlnaHQgYmUKPiA+PiBhYmxlIHRv
-IGdpdmUgeW91IHNvbWUgaWRlYXMsIGlmIHlvdSdyZSB3aWxsaW5nIHRvIGdpdmUgaXQgYSBnbyA/
-Cj4gPiBUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB0aGUgaW5mb3JtYXRpdmUgcmVwbHksIEVtaWwu
-Cj4gPiBJJ20gaGFwcHkgdG8gbWFrZSB0aGUgaW52ZXN0bWVudCAoY3JlYXRpbmcgdGhlIEZyZWVC
-U0QgcG9ydCkuCj4gPiBJIGN1cnJlbnRseSBhbHJlYWR5IG1haW50YWluIHNldmVyYWwgRnJlZUJT
-RCBwb3J0cy4gU28gaXQncyBub3QKPiA+IGFsbCB0aGF0IHVuZmFtaWxpYXIuIDopCj4gPiBJIGp1
-c3QgZGlkbid0IHdhbnQgdG8gInN0YXJ0IGZyb20gc2NyYXRjaCIgaWYgSSBkaWRuJ3QgbmVlZCB0
-by4gOikKPiA+IEkgZ2l2ZSBhIGNsb3NlciBsb29rLCBhbmQgc2VlIHdoYXQgSSBjYW4gZmluZC4g
-TWF5YmUgSmVhbi1Tw6liYXN0aWVuCj4gPiB3aWxsIGFsc28gaGF2ZSBzb21ldGhpbmcgdG8gc2F5
-Lgo+ID4KPiA+IFRoYW5rIHlvdSBhZ2FpbiwgRW1pbCwgZm9yIHRoZSByZXBseS4KPiA+Cj4gCj4g
-SSB0aGluayB5b3UgbWlzc2VkIHRoZSBwb2ludCwKPiAKPiB0aGlzIGlzIGEga2VybmVsIGRyaXZl
-ciB0aGF0IG5lZWRzIHBvcnRpbmcsIG5vdCBqdXN0IGEgdXNlcnNwYWNlIGRyaXZlciwKPiB0aGVy
-ZSBhcmUgbm8gdXNlcnNwYWNlIGRyaXZlcnMgYW55bW9yZS4gcG9ydGluZyB0aGUgWC5vcmcgdXNl
-cnNwYWNlCj4gZHJpdmVyIGlzIHJlcXVpcmVkIGJ1dCBub3Qgc3VmZmljaWVudC4KSW5kZWVkLiBJ
-IF90aGlua18gSSB1bmRlcnN0b29kIGNvcnJlY3RseS4gSSBjYW4ndCBlbnZpc2lvbiBhbnkgX3Jl
-YWxfCnByb2JsZW1zLiBJZiBJIHVuZGVyc3RhbmQgY29ycmVjdGx5LCBpdCdsbCBiZSBhIG1hdHRl
-ciBvZiBjcmVhdGluZyBhCmtlcm5lbCBtb2R1bGUgZm9yIHRoZSBCU0QgcGxhdGZvcm0sIGFuZCBt
-YWtpbmcgaXQgbG9hZGFibGUgKGtsZGxvYWQsCmluIEJTRCBzcGVhaykuIFdoaWNoIHdpbGwgYWxs
-b3cgaXQgdG8gd29yayB3aXRoIHRoZSByZXNvdXJjZXMgbWFkZQphdmFpbGFibGUgdG8gdGhlIGtl
-cm5lbCAoaGFyZHdhcmUpLiBJbiBmYWN0IGl0IHNob3VsZCBiZSBldmVuIGVhc2llciwKZ2l2ZW4g
-dGhhdCB0aGVyZSBpcyBhIExpbnV4IEFCSSBhdmFpbGFibGUgb24gQlNEIHdoaWNoIGV2ZW4gblZp
-ZGlhCm1ha2VzIHVzZSBvZiwgd2l0aCB0aGUgYmxvYnMgdGhleSBwcm92aWRlLgpEbyBJIHNlZW0g
-b24gdHJhY2s/CgpUaGFuayB5b3UsIERhdmUuIEZvciB0YWtpbmcgdGhlIHRpbWUgdG8gcmVwbHku
-CgotLUNocmlzCgo+IAo+IERhdmUuCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============1935776993==
+Content-Type: multipart/alternative; boundary="1415344895.1E0aa1.29489"; charset="UTF-8"
+
+
+--1415344895.1E0aa1.29489
+Date: Fri, 7 Nov 2014 07:21:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D82527
+
+--- Comment #13 from Martin V=C3=A4th <martin-hvkNLsi7f8w@public.gmane.org> ---
+By accident, I am now traveling and have access on the machine for 1 or 2 d=
+ays.
+
+I installed linux-3.17.2, and have still exactly the same faulty behaviour =
+as
+described in the original posting:
+
+xset dpms force off holds for about 20 seconds and then switches on again.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1415344895.1E0aa1.29489
+Date: Fri, 7 Nov 2014 07:21:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
+econds (GeForce 8400 GS)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - xset dpms force {off,standby,suspend} returns after ~20 s=
+econds (GeForce 8400 GS)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D82527">bug 82527<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin&#64;mvath.de" title=3D"Martin V=C3=A4th &lt;martin&#64;mvath.de&gt;"=
+> <span class=3D"fn">Martin V=C3=A4th</span></a>
+</span></b>
+        <pre>By accident, I am now traveling and have access on the machine=
+ for 1 or 2 days.
+
+I installed linux-3.17.2, and have still exactly the same faulty behaviour =
+as
+described in the original posting:
+
+xset dpms force off holds for about 20 seconds and then switches on again.<=
+/pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415344895.1E0aa1.29489--
+
+--===============1935776993==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1935776993==--
