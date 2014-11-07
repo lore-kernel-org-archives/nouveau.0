@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86006] [NV84] Nvidia GeForce 8600 GT VDPAU h264
- hardware acceleration
-Date: Fri, 07 Nov 2014 16:20:50 +0000
-Message-ID: <bug-86006-8800-3Sm5oip1pi@http.bugs.freedesktop.org/>
-References: <bug-86006-8800@http.bugs.freedesktop.org/>
+From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
+Subject: Re: (Free)BSD support?
+Date: Fri, 07 Nov 2014 09:27:40 -0800
+Message-ID: <b1930314f8e87042d1554085f5ff22a7@ultimatedns.net>
+References: <397bff86faf5fab73830fe01bdefbe40@ultimatedns.net>
+ <545BD2D4.2000300@gmail.com>
+ <25816c50da8ffab03f170a71055ba3ff@ultimatedns.net>,
+ <CAPM=9tyCU3-yF+oQ7xPLA-0tfAbyjojG-eZXZo_1e7UTy7eiMg@mail.gmail.com>
+ <c83ef171f859f35611d7c9229d5e874a@ultimatedns.net>,
+ <545C8B7E.3090508@FreeBSD.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1466624263=="
+Content-Type: text/plain; charset="utf-8"; Format="fixed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86006-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <545C8B7E.3090508-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,83 +22,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?SmVhbi1Tw6liYXN0aWVu?=
+ =?UTF-8?B?UMOpZHJvbg==?= <dumbbell-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>
+Cc: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1466624263==
-Content-Type: multipart/alternative; boundary="1415377250.caf5321.4161"; charset="UTF-8"
-
-
---1415377250.caf5321.4161
-Date: Fri, 7 Nov 2014 16:20:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86006
-
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #109089|text/plain                  |image/png
-          mime type|                            |
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1415377250.caf5321.4161
-Date: Fri, 7 Nov 2014 16:20:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] Nvidia GeForce 8600 GT VDPAU h264 hardware acceleration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86006">bug 86006</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #109089 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/png
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1415377250.caf5321.4161--
-
---===============1466624263==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+T24gRnJpLCAwNyBOb3YgMjAxNCAxMDowNjowNiArMDEwMCBKZWFuLVPDqWJhc3RpZW4gUMOpZHJv
+bgo8ZHVtYmJlbGxARnJlZUJTRC5vcmc+IHdyb3RlCgo+IE9uIDA3LjExLjIwMTQgMDM6MjIsIENo
+cmlzIHdyb3RlOgo+ID4gT24gRnJpLCA3IE5vdiAyMDE0IDEyOjExOjA4ICsxMDAwIERhdmUgQWly
+bGllIDxhaXJsaWVkQGdtYWlsLmNvbT4gd3JvdGUKPiA+PiB0aGlzIGlzIGEga2VybmVsIGRyaXZl
+ciB0aGF0IG5lZWRzIHBvcnRpbmcsIG5vdCBqdXN0IGEgdXNlcnNwYWNlIGRyaXZlciwKPiA+PiB0
+aGVyZSBhcmUgbm8gdXNlcnNwYWNlIGRyaXZlcnMgYW55bW9yZS4gcG9ydGluZyB0aGUgWC5vcmcg
+dXNlcnNwYWNlCj4gPj4gZHJpdmVyIGlzIHJlcXVpcmVkIGJ1dCBub3Qgc3VmZmljaWVudC4KPiA+
+Cj4gPiBJbmRlZWQuIEkgX3RoaW5rXyBJIHVuZGVyc3Rvb2QgY29ycmVjdGx5LiBJIGNhbid0IGVu
+dmlzaW9uIGFueSBfcmVhbF8KPiA+IHByb2JsZW1zLiBJZiBJIHVuZGVyc3RhbmQgY29ycmVjdGx5
+LCBpdCdsbCBiZSBhIG1hdHRlciBvZiBjcmVhdGluZyBhCj4gPiBrZXJuZWwgbW9kdWxlIGZvciB0
+aGUgQlNEIHBsYXRmb3JtLCBhbmQgbWFraW5nIGl0IGxvYWRhYmxlIChrbGRsb2FkLAo+ID4gaW4g
+QlNEIHNwZWFrKS4gV2hpY2ggd2lsbCBhbGxvdyBpdCB0byB3b3JrIHdpdGggdGhlIHJlc291cmNl
+cyBtYWRlCj4gPiBhdmFpbGFibGUgdG8gdGhlIGtlcm5lbCAoaGFyZHdhcmUpLiBJbiBmYWN0IGl0
+IHNob3VsZCBiZSBldmVuIGVhc2llciwKPiA+IGdpdmVuIHRoYXQgdGhlcmUgaXMgYSBMaW51eCBB
+QkkgYXZhaWxhYmxlIG9uIEJTRCB3aGljaCBldmVuIG5WaWRpYQo+ID4gbWFrZXMgdXNlIG9mLCB3
+aXRoIHRoZSBibG9icyB0aGV5IHByb3ZpZGUuCj4gPiBEbyBJIHNlZW0gb24gdHJhY2s/Cj4gCj4g
+SGkhCj4gCj4gVGhlIE5vdXZlYXUga2VybmVsIGRyaXZlciBpcyBjbG9zZSB0byB0aGUgUmFkZW9u
+IGtlcm5lbCBpbiB0ZXJtcyBvZgo+IERSTS9UVE0gaW5mcmFzdHJ1Y3R1cmUgcmVxdWlyZW1lbnRz
+LiBXZSBoYXZlIHRoYXQgd29ya2luZyBpbiBGcmVlQlNELgpHb29kIG5ld3MhCj4gCj4gU28gdGhl
+IHRhc2sgY29uc2lzdHMgb2Y6Cj4gICAgIDEuIFRha2luZyBOb3V2ZWF1IGZyb20gTGludXgsIHBy
+ZWZlcnJhYmx5IDMuOCB0byBrZWVwIG91ciBEUk0gY29kZQo+ICAgICAgICBvbiB0aGUgc2FtZSBi
+YXNlIChzbyB3ZSBjYW4gdXBkYXRlIHRoZSB3aG9sZSBjb25zaXN0ZW50bHkpLgo+ICAgICAyLiBB
+ZGRpbmcgdGhlIHNvdXJjZSBmaWxlcyB0byB0aGUgRnJlZUJTRCBrZXJuZWwKPiAgICAgMy4gU3Rh
+cnQgdGhlIHBvcnRpbmcgZWZmb3J0OiB0aGUgbG9ja2luZyBwcmltaXRpdmVzLCB0aGUgUENJIEFQ
+SSwKPiAgICAgICAgaG93IG1lbW9yeSBpcyBhbGxvY2F0ZWQsIGV0Yy4gYXJlIGRpZmZlcmVudCBj
+b21wYXJlZCB0byBMaW51eC4KPiAKT0sKPiBJdCdzIHByb2JhYmx5IG5vdCB0aGF0IGRpZmZpY3Vs
+dCB0byBkbywgaG93ZXZlciwgaXQgbmVlZHMgdGltZS4gSSB3b3VsZAo+IHJlY29tbWVuZCB0byBu
+b3Qgc3RhcnQgdGhpcyBlZmZvcnQgcmlnaHQgbm93OiB3ZSBhcmUgaW4gdGhlIHByb2Nlc3Mgb2YK
+PiB1cGRhdGluZyB0aGUgRFJNIGRldmljZS1pbmRlcGVuZGVudCBjb2RlIHRvIG1hdGNoIExpbnV4
+IDMuOC4KQWhoLiBUaGFua3MgZm9yIHRoZSBwb3RlbnRpYWwgdGltZSBzYXZpbmdzLiA6KQo+IEZ1
+cnRoZXJtb3JlLCBJJ20gcHJlcGFyaW5nIGEgcHJvcG9zYWwgdG8gaGF2ZSBzb21lIHNvcnQgb2Yg
+TGludXgga2VybmVsCj4gQVBJIHdyYXBwZXIgYWJvdmUgRnJlZUJTRCBmYWNpbGl0aWVzIHRvIHJl
+ZHVjZSB0aGUgZGlmZiB3aXRoIExpbnV4IGFuZAo+IGhlbHAgd2l0aCBwb3J0aW5nIG5ldyBkcml2
+ZXJzLgpFeGNlbGxlbnQuIFBsZWFzZSBrZWVwIG1lIGluIHRoZSBsb29wLiBJIGhhdmUgdGhlIHRp
+bWUsIGFuZCByZXNvdXJjZXMgdG8KZGV2b3RlIHRvIGhlbHBpbmcsIG9yIHRha2luZyBpdCBhbGwg
+b24gYXMgYSB3aG9sZSwgaWYgbmVjZXNzYXJ5LgoKVGhhbmtzIGZvciB0YWtpbmcgdGhlIHRpbWUg
+dG8gcmVwbHkuCgotLUNocmlzCgo+IAo+IC0tIAo+IEplYW4tU8OpYmFzdGllbiBQw6lkcm9uCgoK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1466624263==--
