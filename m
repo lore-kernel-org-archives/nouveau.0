@@ -1,14 +1,12 @@
-From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
-Subject: Re: (Free)BSD support?
-Date: Thu, 06 Nov 2014 13:11:47 -0800
-Message-ID: <25816c50da8ffab03f170a71055ba3ff@ultimatedns.net>
-References: <397bff86faf5fab73830fe01bdefbe40@ultimatedns.net>,
- <545BD2D4.2000300@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81485] [NVE4] dmesg spam on startup
+Date: Fri, 07 Nov 2014 01:55:35 +0000
+Message-ID: <bug-81485-8800-f10CxoA1L2@http.bugs.freedesktop.org/>
+References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="fixed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1065658302=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <545BD2D4.2000300-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +16,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: =?UTF-8?B?SmVhbi1Tw6liYXN0aWVu?= =?UTF-8?B?UMOpZHJvbg==?= <jean-sebastien.pedron-DvcofrTywwxWj0EZb7rXcA@public.gmane.org>, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCAwNiBOb3YgMjAxNCAxOTo1ODoxMiArMDAwMCBFbWlsIFZlbGlrb3YgPGVtaWwubC52
-ZWxpa292QGdtYWlsLmNvbT4Kd3JvdGUKCj4gSGkgQ2hyaXMsCj4gCj4gT24gMDYvMTEvMTQgMTk6
-MDUsIENocmlzIHdyb3RlOgo+ID4gR3JlZXRpbmdzLAo+ID4gIEkgcmVtZW1iZXIgTm91dmVhdSBi
-ZWluZyBpbiB0aGUgcG9ydHMgdHJlZSBvbiBGcmVlQlNEIHNvbWUKPiA+IHRpbWUgYWdvLiBBcyBJ
-IHNlZSBpdCBpc24ndCB0aGVyZSBub3cuIEkgd2FzIHdvbmRlcmluZyBpZiBhbnlvbmUKPiA+IGVs
-c2UgbWlnaHQgaGF2ZSwgb3IgYmUgd29ya2luZyBvbiBhIEJTRCBicmFuY2guIE9yIG1pZ2h0IGJl
-IGFibGUKPiA+IHRvIHByb3ZpZGUgc29tZSBpbnNpZ2h0IG9uIGdldHRpbmcgYSBicmFuY2ggb2Yg
-Tm91dmVhdSBydW5uaW5nCj4gPiBvbiBGcmVlQlNELgo+ID4gCj4gPiBUaGFuayB5b3UgZm9yIGFs
-bCB5b3VyIHRpbWUsIGFuZCBjb25zaWRlcmF0aW9uLgo+ID4KPiBBZmFpayBjdXJyZW50bHkgdGhl
-cmUgaXMgbm8gcG9ydCBmb3IgKEZyZWUpQlNELgo+IAo+IE9uIHRoZSBwb3NpdGl2ZSBzaWRlIG5v
-dXZlYXUncyBjdXJyZW50IGluZnJhc3RydWN0dXJlICgiY29yZSIsIGludGVyZmFjZQo+ICJudmlm
-IiBhbmQgImRybSBnbHVlIikgd2lsbCBtYWtlIHRoaW5ncyBxdWl0ZSBlYXN5IGZvciBhbnlvbmUg
-ZmFtaWxpYXIKPiB3aXRoIEJTRCdzIGVxdWl2YWxlbnQgb2YgY29yZSBkcm0sdHRtLGV0Yy4gT25l
-IG9ubHkgbmVlZHMgdG8gcG9ydCB0aGUKPiAiZHJtIGdsdWUiLgo+IAo+IElpcmMgSmVhbi1Tw6li
-YXN0aWVuIChDYydkKSBkaWQgbWVudGlvbiBub3V2ZWF1ICsgRnJlZUJTRCBhdCBYREMsCj4gYWx0
-aG91Z2ggSSdtIG5vdCBzdXJlIHdoYXQgaGlzIGN1cnJlbnQgcGxhbnMgYXJlLiBQZXJoYXBzIGhl
-IG1pZ2h0IGJlCj4gYWJsZSB0byBnaXZlIHlvdSBzb21lIGlkZWFzLCBpZiB5b3UncmUgd2lsbGlu
-ZyB0byBnaXZlIGl0IGEgZ28gPwpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB0aGUgaW5mb3JtYXRp
-dmUgcmVwbHksIEVtaWwuCkknbSBoYXBweSB0byBtYWtlIHRoZSBpbnZlc3RtZW50IChjcmVhdGlu
-ZyB0aGUgRnJlZUJTRCBwb3J0KS4KSSBjdXJyZW50bHkgYWxyZWFkeSBtYWludGFpbiBzZXZlcmFs
-IEZyZWVCU0QgcG9ydHMuIFNvIGl0J3Mgbm90CmFsbCB0aGF0IHVuZmFtaWxpYXIuIDopCkkganVz
-dCBkaWRuJ3Qgd2FudCB0byAic3RhcnQgZnJvbSBzY3JhdGNoIiBpZiBJIGRpZG4ndCBuZWVkIHRv
-LiA6KQpJIGdpdmUgYSBjbG9zZXIgbG9vaywgYW5kIHNlZSB3aGF0IEkgY2FuIGZpbmQuIE1heWJl
-IEplYW4tU8OpYmFzdGllbgp3aWxsIGFsc28gaGF2ZSBzb21ldGhpbmcgdG8gc2F5LgoKVGhhbmsg
-eW91IGFnYWluLCBFbWlsLCBmb3IgdGhlIHJlcGx5LgoKLS1DaHJpcwoKPiAKPiAKPiBDaGVlcnMs
-Cj4gRW1pbAo+IAo+ID4gLS1DaHJpcwo+ID4gCj4gPiAKPiA+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+ID4g
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4gPgoKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1065658302==
+Content-Type: multipart/alternative; boundary="1415325335.3eD03D2.31374"; charset="UTF-8"
+
+
+--1415325335.3eD03D2.31374
+Date: Fri, 7 Nov 2014 01:55:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=81485
+
+--- Comment #20 from Konstantin Svist <fry.kun-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+any update for this?
+driver still unusable for me!
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1415325335.3eD03D2.31374
+Date: Fri, 7 Nov 2014 01:55:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+              from <span class="vcard"><a class="email" href="mailto:fry.kun&#64;gmail.com" title="Konstantin Svist &lt;fry.kun&#64;gmail.com&gt;"> <span class="fn">Konstantin Svist</span></a>
+</span></b>
+        <pre>any update for this?
+driver still unusable for me!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415325335.3eD03D2.31374--
+
+--===============1065658302==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1065658302==--
