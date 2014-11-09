@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Sat, 08 Nov 2014 20:04:47 +0000
-Message-ID: <bug-27501-8800-wDoGwHzxiW@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: =?utf-8?B?5p2O6YeR5Y2O?= <goodqt-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org>
+Subject: =?utf-8?q?What_does_the_code_mean=3F?=
+Date: Sun, 9 Nov 2014 08:46:10 +0000
+Message-ID: <BAY407-EAS144864FE595BE5AB3EC4629DA830@phx.gbl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1196400444=="
+Content-Type: multipart/mixed; boundary="===============2060607588=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,83 +14,66 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "=?utf-8?Q?nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?=" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============2060607588==
+Content-Type: multipart/alternative;
+	boundary="_314E2EC1-98FE-4994-A17D-F04A9D54FCEB_"
 
---===============1196400444==
-Content-Type: multipart/alternative; boundary="1415477088.FB5DfdDB6.8124"; charset="UTF-8"
+--_314E2EC1-98FE-4994-A17D-F04A9D54FCEB_
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
+SGVsbG8sDQoNCg0KDQoNCg0KVGhlc2UgZGF5cyBJIGFtIHJlYWRpbmcgbm91dmVhdSBzb3VyY2Ug
+Y29kZSxidXQgSSBjYW5ub3QgdW5kZXJzdGFuZCB0aGlzIGNvZGUhDQoNClBsZWFzZSBsb29rIGF0
+IGh0dHA6Ly9jb2RlcGFkLm9yZy82MXYzbVhtcSAuDQoNCg0KDQoNClRoZSBmdW5jdGlvbiDigJhu
+b3V2ZWF1X2RzbV9wb3dlcl9zdGF0ZeKAmSBzYWlkIG9wdGltdXMgaXMgZGlzYWJsZWQgaW4gYW5v
+dGhlciBmdW5jdGlvbiDigJhub3V2ZWF1X3N3aXRjaGVyb29fc2V0X3N0YXRl4oCZLg0KDQpCdXQg
+aW4gZmFjdCx0aGUgZnVuY3Rpb24g4oCYbm91dmVhdV9zd2l0Y2hlcm9vX3NldF9zdGF0ZeKAmSB3
+aWxsIHJldHVybiBkaXJlY3RseSB3aGVuIG9wdGltdXMgaXMgZGV0ZWN0ZWQhDQoNCkJvdGggb2Yg
+dGhlc2UgZnVuY3Rpb25zIHdvbuKAmXQgZGlzYWJsZSB0aGUgbnYgY2FyZCBpZiBvcHRpbXVzIGlz
+IGRldGVjdGVkPw0KDQoNCkkgZ290IGl0IHdyb25nIG9yIGl04oCZcyBhIGJ1Zz8gVGhhbmtzIGZv
+ciB5b3VyIGhlbHAh
 
---1415477088.FB5DfdDB6.8124
-Date: Sat, 8 Nov 2014 20:04:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--_314E2EC1-98FE-4994-A17D-F04A9D54FCEB_
+Content-Transfer-Encoding: base64
+Content-Type: text/html; charset="utf-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+CjxodG1sPgo8aGVhZD4KPG1ldGEgbmFtZT0iZ2VuZXJhdG9yIiBjb250ZW50PSJXaW5kb3dzIE1h
+aWwgMTcuNS45NjAwLjIwNjA1Ij4KPHN0eWxlIGRhdGEtZXh0ZXJuYWxzdHlsZT0idHJ1ZSI+PCEt
+LQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFy
+YWdyYXBoIHsKbWFyZ2luLXRvcDowaW47Cm1hcmdpbi1yaWdodDowaW47Cm1hcmdpbi1ib3R0b206
+MGluOwptYXJnaW4tbGVmdDouNWluOwptYXJnaW4tYm90dG9tOi4wMDAxcHQ7Cn0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbCB7Cm1hcmdpbjowaW47Cm1hcmdpbi1ib3R0
+b206LjAwMDFwdDsKfQpwLk1zb0xpc3RQYXJhZ3JhcGhDeFNwRmlyc3QsIGxpLk1zb0xpc3RQYXJh
+Z3JhcGhDeFNwRmlyc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcEZpcnN0LCAKcC5Nc29MaXN0
+UGFyYWdyYXBoQ3hTcE1pZGRsZSwgbGkuTXNvTGlzdFBhcmFncmFwaEN4U3BNaWRkbGUsIGRpdi5N
+c29MaXN0UGFyYWdyYXBoQ3hTcE1pZGRsZSwgCnAuTXNvTGlzdFBhcmFncmFwaEN4U3BMYXN0LCBs
+aS5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3Qg
+ewptYXJnaW4tdG9wOjBpbjsKbWFyZ2luLXJpZ2h0OjBpbjsKbWFyZ2luLWJvdHRvbTowaW47Cm1h
+cmdpbi1sZWZ0Oi41aW47Cm1hcmdpbi1ib3R0b206LjAwMDFwdDsKbGluZS1oZWlnaHQ6MTE1JTsK
+fQotLT48L3N0eWxlPjwvaGVhZD4KPGJvZHkgZGlyPSJsdHIiPgo8ZGl2IGRhdGEtZXh0ZXJuYWxz
+dHlsZT0iZmFsc2UiIGRpcj0ibHRyIiBzdHlsZT0iZm9udC1mYW1pbHk6ICdNaWNyb3NvZnQgWWFI
+ZWkgVUknLCAnQ2FsaWJyaScsICdTZWdvZSBVSScsICdNZWlyeW8nLCAnTWljcm9zb2Z0IEpoZW5n
+SGVpIFVJJywgJ01hbGd1biBHb3RoaWMnLCAnc2Fucy1zZXJpZic7Zm9udC1zaXplOjEycHQ7Ij4K
+Cgo8ZGl2PkhlbGxvLDwvZGl2PjxkaXYgZGF0YS1zaWduYXR1cmVibG9jaz0idHJ1ZSI+PGRpdj48
+YnI+PC9kaXY+PGRpdj5UaGVzZSBkYXlzIEkgYW0gcmVhZGluZyBub3V2ZWF1IHNvdXJjZSBjb2Rl
+LGJ1dCBJIGNhbm5vdCB1bmRlcnN0YW5kIHRoaXMgY29kZSE8L2Rpdj48ZGl2PlBsZWFzZSBsb29r
+IGF0IDxhIGhyZWY9Imh0dHA6Ly9jb2RlcGFkLm9yZy82MXYzbVhtcSI+aHR0cDovL2NvZGVwYWQu
+b3JnLzYxdjNtWG1xPC9hPiAuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGUgZnVuY3Rpb24m
+bmJzcDvigJhub3V2ZWF1X2RzbV9wb3dlcl9zdGF0ZeKAmSBzYWlkIG9wdGltdXMgaXMgZGlzYWJs
+ZWQgaW4gYW5vdGhlciBmdW5jdGlvbiZuYnNwO+KAmG5vdXZlYXVfc3dpdGNoZXJvb19zZXRfc3Rh
+dGXigJkuPC9kaXY+PGRpdj5CdXQgaW4gZmFjdCx0aGUgZnVuY3Rpb24mbmJzcDvigJhub3V2ZWF1
+X3N3aXRjaGVyb29fc2V0X3N0YXRl4oCZIHdpbGwgcmV0dXJuIGRpcmVjdGx5IHdoZW4gb3B0aW11
+cyBpcyBkZXRlY3RlZCE8L2Rpdj48ZGl2PkJvdGggb2YgdGhlc2UgZnVuY3Rpb25zIHdvbuKAmXQg
+ZGlzYWJsZSB0aGUgbnYgY2FyZCBpZiBvcHRpbXVzIGlzIGRldGVjdGVkPzwvZGl2PjxkaXY+PGJy
+PjwvZGl2PjxkaXY+SSBnb3QgaXQgd3Jvbmcgb3IgaXTigJlzIGEgYnVnPyBUaGFua3MgZm9yIHlv
+dXIgaGVscCE8YnI+PC9kaXY+PC9kaXY+CgoKCgoKCgoKPC9kaXY+CjwvYm9keT4KPC9odG1sPgo=
 
---- Comment #50 from Joanand <MacGyver031-S0/GAf8tV78@public.gmane.org> ---
-Hi Pierre,
-My Macbook Pro 5,1 died two weeks ago. The screen backlight flickered and after
-reboot there was no screen at all.
-An attempt to find the dead chip was unsuccessful (fuse is ok) so I think after
-6 years of MacBook is to move on.
-It has been a fun and frustrating time with *unsupported* hardware.
+--_314E2EC1-98FE-4994-A17D-F04A9D54FCEB_--
 
-I cannot be able to contribute to this project (as a tester).
-
-Thank you so much for the support and good luck.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1415477088.FB5DfdDB6.8124
-Date: Sat, 8 Nov 2014 20:04:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c50">Comment # 50</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:MacGyver031&#64;web.de" title="Joanand &lt;MacGyver031&#64;web.de&gt;"> <span class="fn">Joanand</span></a>
-</span></b>
-        <pre>Hi Pierre,
-My Macbook Pro 5,1 died two weeks ago. The screen backlight flickered and after
-reboot there was no screen at all.
-An attempt to find the dead chip was unsuccessful (fuse is ok) so I think after
-6 years of MacBook is to move on.
-It has been a fun and frustrating time with *unsupported* hardware.
-
-I cannot be able to contribute to this project (as a tester).
-
-Thank you so much for the support and good luck.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1415477088.FB5DfdDB6.8124--
-
---===============1196400444==
+--===============2060607588==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +83,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1196400444==--
+--===============2060607588==--
