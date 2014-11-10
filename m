@@ -1,135 +1,199 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH 2/2] drm/edid: fix Baseline_ELD_Len field in
- drm_edid_to_eld()
-Date: Mon, 10 Nov 2014 14:39:30 +0100
-Message-ID: <CAKMK7uF0EFz5DDTJJS9KJ405vgH=FQS5d3FT3spTYp9XxCr-UQ@mail.gmail.com>
-References: <cover.1414419818.git.jani.nikula@intel.com>
- <1414506048-31738-1-git-send-email-jani.nikula@intel.com>
- <1414506048-31738-2-git-send-email-jani.nikula@intel.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86109] New: kernel oops after lightdm startup
+Date: Mon, 10 Nov 2014 13:41:30 +0000
+Message-ID: <bug-86109-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1414506048-31738-2-git-send-email-jani.nikula@intel.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Jani Nikula <jani.nikula@intel.com>, Ben Skeggs <bskeggs@redhat.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, Dave Airlie <airlied@linux.ie>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1296241459=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgQmVuLAoKVGhlIGJlbG93IHBhdGNoIGZyb20gSmFuaSBhbHNvIHRvdWNoZXMgbm91dmVhdSwg
-Y2FuIHlvdSBwbGVhc2UgdGFrZSBhCmxvb2sgYXQgaXQgYW4gYWNrPyBUaGUgY29yZSBwYXJ0ICsg
-bm91dmVhdSBhcHBseSBvbiB0b3Agb2YgZHJtLW5leHQsCnRoZSBpOTE1IHBhcnQgbmVlZHMgc3R1
-ZmYgZnJvbSBteSBuZXh0IHF1ZXVlLiBTbyBJJ2QgcHJlZmVyIGlmIHdlIGNhbgpnZXQgdGhpcyBp
-biB0aHJvdWdoIGRybS1pbnRlbC1uZXh0LgoKSGkgRGF2ZSwKCkFjayBvbiB0aGF0IGZyb20geW91
-ciBzaWRlPwoKQ2hlZXJzLCBEYW5pZWwKCk9uIFR1ZSwgT2N0IDI4LCAyMDE0IGF0IDM6MjAgUE0s
-IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+IHdyb3RlOgo+IFRoZSBCYXNlbGlu
-ZV9FTERfTGVuIGZpZWxkIGRvZXMgbm90IGluY2x1ZGUgRUxEIEhlYWRlciBCbG9jayBzaXplLgo+
-Cj4gRnJvbSBIaWdoIERlZmluaXRpb24gQXVkaW8gU3BlY2lmaWNhdGlvbiwgUmV2aXNpb24gMS4w
-YToKPgo+ICAgICAgICAgVGhlIGhlYWRlciBibG9jayBpcyBhIGZpeGVkIHNpemUgb2YgNCBieXRl
-cy4gVGhlIGJhc2VsaW5lIGJsb2NrCj4gICAgICAgICBpcyB2YXJpYWJsZSBzaXplIGluIG11bHRp
-cGxlIG9mIDQgYnl0ZXMsIGFuZCBpdHMgc2l6ZSBpcyBkZWZpbmVkCj4gICAgICAgICBpbiB0aGUg
-aGVhZGVyIGJsb2NrIEJhc2VsaW5lX0VMRF9MZW4gZmllbGQgKGluIG51bWJlciBvZgo+ICAgICAg
-ICAgRFdvcmRzKS4KPgo+IERvIG5vdCBpbmNsdWRlIHRoZSBoZWFkZXIgc2l6ZSBpbiBCYXNlbGlu
-ZV9FTERfTGVuIGZpZWxkLiBGaXggYWxsIGtub3duCj4gdXNlcnMgb2YgZWxkWzJdLgo+Cj4gV2hp
-bGUgYXQgaXQsIHN3aXRjaCB0byBESVZfUk9VTkRfVVAgaW5zdGVhZCBvZiBvcGVuIGNvZGluZyBp
-dC4KPgo+IFNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+
-Cj4KPiAtLS0KPgo+IFRoaXMgaXMgYmFzZWQgb24gYW4gYXVkaW8gcmV3b3JrIHNlcmllcyB3aGlj
-aCBpcyBtaWQtd2F5IGJlaW5nIG1lcmdlZCB0bwo+IGk5MTUuIEkgZG9uJ3QgdGhpbmsgdGhpcyBz
-aG91bGQgYmUgY2M6IHN0YWJsZSB3b3J0aHksIGFzLCBBRkFJQ1QsIHdlCj4gZG9uJ3QgdXNlIHRo
-ZSB2ZW5kb3IgYmxvY2ssIGFuZCBhbnlvbmUgcmVhZGluZyBTQURzIHJlc3BlY3RpbmcgU0FEX0Nv
-dW50Cj4gc2hvdWxkIHN0b3AgYXQgdGhlIHNhbWUgb2Zmc2V0IHJlZ2FyZGxlc3Mgb2YgdGhpcyBw
-YXRjaC4gU28gSSBwcm9wb3NlCj4gdGhpcyBnZXRzIGV2ZW50dWFsbHkgbWVyZ2VkIHZpYSBpOTE1
-IHdpdGhvdXQgYSBydXNoLgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYyAgICAg
-ICAgICAgICB8ICA3ICsrKysrLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfYXVkaW8u
-YyAgICAgfCAxNiArKysrKysrKy0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-NTBfZGlzcGxheS5jIHwgIDMgKystCj4gIDMgZmlsZXMgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygr
-KSwgMTEgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9l
-ZGlkLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYwo+IGluZGV4IDNiZjk5OTEzNGJjYy4u
-NDVhYWE2ZjVlZjM2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMKPiBAQCAtMzEyOCw5ICszMTI4LDEyIEBA
-IHZvaWQgZHJtX2VkaWRfdG9fZWxkKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsIHN0
-cnVjdCBlZGlkICplZGlkKQo+ICAgICAgICAgICAgICAgICB9Cj4gICAgICAgICB9Cj4gICAgICAg
-ICBlbGRbNV0gfD0gc2FkX2NvdW50IDw8IDQ7Cj4gLSAgICAgICBlbGRbMl0gPSAoMjAgKyBtbmwg
-KyBzYWRfY291bnQgKiAzICsgMykgLyA0Owo+Cj4gLSAgICAgICBEUk1fREVCVUdfS01TKCJFTEQg
-c2l6ZSAlZCwgU0FEIGNvdW50ICVkXG4iLCAoaW50KWVsZFsyXSwgc2FkX2NvdW50KTsKPiArICAg
-ICAgIGVsZFtEUk1fRUxEX0JBU0VMSU5FX0VMRF9MRU5dID0KPiArICAgICAgICAgICAgICAgRElW
-X1JPVU5EX1VQKGRybV9lbGRfY2FsY19iYXNlbGluZV9ibG9ja19zaXplKGVsZCksIDQpOwo+ICsK
-PiArICAgICAgIERSTV9ERUJVR19LTVMoIkVMRCBzaXplICVkLCBTQUQgY291bnQgJWRcbiIsCj4g
-KyAgICAgICAgICAgICAgICAgICAgIGRybV9lbGRfc2l6ZShlbGQpLCBzYWRfY291bnQpOwo+ICB9
-Cj4gIEVYUE9SVF9TWU1CT0woZHJtX2VkaWRfdG9fZWxkKTsKPgo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9hdWRpby5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50
-ZWxfYXVkaW8uYwo+IGluZGV4IDIwYWY5NzNkN2NiYS4uNDM5ZmE0YWZhMThiIDEwMDY0NAo+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2F1ZGlvLmMKPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9hdWRpby5jCj4gQEAgLTEwNyw3ICsxMDcsNyBAQCBzdGF0aWMgYm9v
-bCBpbnRlbF9lbGRfdXB0b2RhdGUoc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciwKPiAg
-ICAgICAgIHRtcCAmPSB+Yml0c19lbGRhOwo+ICAgICAgICAgSTkxNV9XUklURShyZWdfZWxkYSwg
-dG1wKTsKPgo+IC0gICAgICAgZm9yIChpID0gMDsgaSA8IGVsZFsyXTsgaSsrKQo+ICsgICAgICAg
-Zm9yIChpID0gMDsgaSA8IGRybV9lbGRfc2l6ZShlbGQpIC8gNDsgaSsrKQo+ICAgICAgICAgICAg
-ICAgICBpZiAoSTkxNV9SRUFEKHJlZ19lZGlkKSAhPSAqKCh1aW50MzJfdCAqKWVsZCArIGkpKQo+
-ICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKPgo+IEBAIC0xNjIsNyArMTYy
-LDcgQEAgc3RhdGljIHZvaWQgZzR4X2F1ZGlvX2NvZGVjX2VuYWJsZShzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqY29ubmVjdG9yLAo+ICAgICAgICAgbGVuID0gKHRtcCA+PiA5KSAmIDB4MWY7ICAgICAg
-ICAgICAgICAgIC8qIEVMRCBidWZmZXIgc2l6ZSAqLwo+ICAgICAgICAgSTkxNV9XUklURShHNFhf
-QVVEX0NOVExfU1QsIHRtcCk7Cj4KPiAtICAgICAgIGxlbiA9IG1pbl90KGludCwgZWxkWzJdLCBs
-ZW4pOwo+ICsgICAgICAgbGVuID0gbWluKGRybV9lbGRfc2l6ZShlbGQpIC8gNCwgbGVuKTsKPiAg
-ICAgICAgIERSTV9ERUJVR19EUklWRVIoIkVMRCBzaXplICVkXG4iLCBsZW4pOwo+ICAgICAgICAg
-Zm9yIChpID0gMDsgaSA8IGxlbjsgaSsrKQo+ICAgICAgICAgICAgICAgICBJOTE1X1dSSVRFKEc0
-WF9IRE1JV19IRE1JRURJRCwgKigodWludDMyX3QgKillbGQgKyBpKSk7Cj4gQEAgLTIwOSw3ICsy
-MDksNyBAQCBzdGF0aWMgdm9pZCBoc3dfYXVkaW9fY29kZWNfZW5hYmxlKHN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3IsCj4gICAgICAgICBpbnQgbGVuLCBpOwo+Cj4gICAgICAgICBEUk1f
-REVCVUdfS01TKCJFbmFibGUgYXVkaW8gY29kZWMgb24gcGlwZSAlYywgJXUgYnl0ZXMgRUxEXG4i
-LAo+IC0gICAgICAgICAgICAgICAgICAgICBwaXBlX25hbWUocGlwZSksIGVsZFsyXSk7Cj4gKyAg
-ICAgICAgICAgICAgICAgICAgIHBpcGVfbmFtZShwaXBlKSwgZHJtX2VsZF9zaXplKGVsZCkpOwo+
-Cj4gICAgICAgICAvKiBFbmFibGUgYXVkaW8gcHJlc2VuY2UgZGV0ZWN0LCBpbnZhbGlkYXRlIEVM
-RCAqLwo+ICAgICAgICAgdG1wID0gSTkxNV9SRUFEKEhTV19BVURfUElOX0VMRF9DUF9WTEQpOwo+
-IEBAIC0yMjUsOCArMjI1LDggQEAgc3RhdGljIHZvaWQgaHN3X2F1ZGlvX2NvZGVjX2VuYWJsZShz
-dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICAgICAgICAgSTkxNV9XUklURShIU1df
-QVVEX0RJUF9FTERfQ1RSTChwaXBlKSwgdG1wKTsKPgo+ICAgICAgICAgLyogVXAgdG8gODQgYnl0
-ZXMgb2YgaHcgRUxEIGJ1ZmZlciAqLwo+IC0gICAgICAgbGVuID0gbWluX3QoaW50LCBlbGRbMl0s
-IDIxKTsKPiAtICAgICAgIGZvciAoaSA9IDA7IGkgPCBsZW47IGkrKykKPiArICAgICAgIGxlbiA9
-IG1pbihkcm1fZWxkX3NpemUoZWxkKSwgODQpOwo+ICsgICAgICAgZm9yIChpID0gMDsgaSA8IGxl
-biAvIDQ7IGkrKykKPiAgICAgICAgICAgICAgICAgSTkxNV9XUklURShIU1dfQVVEX0VESURfREFU
-QShwaXBlKSwgKigodWludDMyX3QgKillbGQgKyBpKSk7Cj4KPiAgICAgICAgIC8qIEVMRCB2YWxp
-ZCAqLwo+IEBAIC0zMTUsNyArMzE1LDcgQEAgc3RhdGljIHZvaWQgaWxrX2F1ZGlvX2NvZGVjX2Vu
-YWJsZShzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICAgICAgICAgaW50IGF1ZF9j
-bnRybF9zdDI7Cj4KPiAgICAgICAgIERSTV9ERUJVR19LTVMoIkVuYWJsZSBhdWRpbyBjb2RlYyBv
-biBwb3J0ICVjLCBwaXBlICVjLCAldSBieXRlcyBFTERcbiIsCj4gLSAgICAgICAgICAgICAgICAg
-ICAgIHBvcnRfbmFtZShwb3J0KSwgcGlwZV9uYW1lKHBpcGUpLCBlbGRbMl0pOwo+ICsgICAgICAg
-ICAgICAgICAgICAgICBwb3J0X25hbWUocG9ydCksIHBpcGVfbmFtZShwaXBlKSwgZHJtX2VsZF9z
-aXplKGVsZCkpOwo+Cj4gICAgICAgICAvKiBYWFg6IHZibGFuayB3YWl0IGhlcmUgKi8KPgo+IEBA
-IC0zNTQsOCArMzU0LDggQEAgc3RhdGljIHZvaWQgaWxrX2F1ZGlvX2NvZGVjX2VuYWJsZShzdHJ1
-Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAo+ICAgICAgICAgSTkxNV9XUklURShhdWRfY250
-bF9zdCwgdG1wKTsKPgo+ICAgICAgICAgLyogVXAgdG8gODQgYnl0ZXMgb2YgaHcgRUxEIGJ1ZmZl
-ciAqLwo+IC0gICAgICAgbGVuID0gbWluX3QoaW50LCBlbGRbMl0sIDIxKTsKPiAtICAgICAgIGZv
-ciAoaSA9IDA7IGkgPCBsZW47IGkrKykKPiArICAgICAgIGxlbiA9IG1pbihkcm1fZWxkX3NpemUo
-ZWxkKSwgODQpOwo+ICsgICAgICAgZm9yIChpID0gMDsgaSA8IGxlbiAvIDQ7IGkrKykKPiAgICAg
-ICAgICAgICAgICAgSTkxNV9XUklURShoZG1pd19oZG1pZWRpZCwgKigodWludDMyX3QgKillbGQg
-KyBpKSk7Cj4KPiAgICAgICAgIC8qIEVMRCB2YWxpZCAqLwo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
-L252NTBfZGlzcGxheS5jCj4gaW5kZXggYWU4NzNkMWE4ZDQ2Li5kOTJjMTE0ODRiZDkgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKPiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+IEBAIC0xNjgwLDcgKzE2ODAs
-OCBAQCBudjUwX2F1ZGlvX21vZGVfc2V0KHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2Rlciwgc3Ry
-dWN0IGRybV9kaXNwbGF5X21vZGUgKm1vZGUpCj4gICAgICAgICBkcm1fZWRpZF90b19lbGQoJm52
-X2Nvbm5lY3Rvci0+YmFzZSwgbnZfY29ubmVjdG9yLT5lZGlkKTsKPiAgICAgICAgIG1lbWNweShh
-cmdzLmRhdGEsIG52X2Nvbm5lY3Rvci0+YmFzZS5lbGQsIHNpemVvZihhcmdzLmRhdGEpKTsKPgo+
-IC0gICAgICAgbnZpZl9tdGhkKGRpc3AtPmRpc3AsIDAsICZhcmdzLCBzaXplb2YoYXJncy5iYXNl
-KSArIGFyZ3MuZGF0YVsyXSAqIDQpOwo+ICsgICAgICAgbnZpZl9tdGhkKGRpc3AtPmRpc3AsIDAs
-ICZhcmdzLAo+ICsgICAgICAgICAgICAgICAgIHNpemVvZihhcmdzLmJhc2UpICsgZHJtX2VsZF9z
-aXplKGFyZ3MuZGF0YSk7Cj4gIH0KPgo+ICBzdGF0aWMgdm9pZAo+IC0tCj4gMi4xLjEKPgo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gZHJpLWRldmVs
-IG1haWxpbmcgbGlzdAo+IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCgoKCi0tIApE
-YW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgorNDEgKDAp
-IDc5IDM2NSA1NyA0OCAtIGh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1296241459==
+Content-Type: multipart/alternative; boundary="1415626890.bDC31.13928"; charset="UTF-8"
+
+
+--1415626890.bDC31.13928
+Date: Mon, 10 Nov 2014 13:41:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86109
+
+            Bug ID: 86109
+           Summary: kernel oops after lightdm startup
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: etienne-cucUXmzBMd0@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 109220
+  --> https://bugs.freedesktop.org/attachment.cgi?id=109220&action=edit
+kernel oops photo
+
+Since debian testing kernel update from 3.16.2 to 3.16.5 (also reproduced with
+3.16.7), I sometimes (~3/4) get a crash few seconds after lightdm launch.
+
+It seems to be a reproduction of that (bisected) fedora bug:
+https://bugzilla.redhat.com/show_bug.cgi?id=1158061
+
+Hardware name: Sony Corporation VPCZ12L9E/VAIO, BIOS R3031C3 10/04/2011
+00:02.0 VGA compatible controller: Intel Corporation Core Processor Integrated
+Graphics Controller (rev 02)
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [GeForce GT 330M]
+(rev a2)
+
+thanks.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1415626890.bDC31.13928
+Date: Mon, 10 Nov 2014 13:41:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - kernel oops after lightdm startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">86109</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>kernel oops after lightdm startup
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>etienne&#64;zol.fr
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=109220" name="attach_109220" title="kernel oops photo">attachment 109220</a> <a href="attachment.cgi?id=109220&amp;action=edit" title="kernel oops photo">[details]</a></span>
+kernel oops photo
+
+Since debian testing kernel update from 3.16.2 to 3.16.5 (also reproduced with
+3.16.7), I sometimes (~3/4) get a crash few seconds after lightdm launch.
+
+It seems to be a reproduction of that (bisected) fedora bug:
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1158061">https://bugzilla.redhat.com/show_bug.cgi?id=1158061</a>
+
+Hardware name: Sony Corporation VPCZ12L9E/VAIO, BIOS R3031C3 10/04/2011
+00:02.0 VGA compatible controller: Intel Corporation Core Processor Integrated
+Graphics Controller (rev 02)
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216M [GeForce GT 330M]
+(rev a2)
+
+thanks.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415626890.bDC31.13928--
+
+--===============1296241459==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1296241459==--
