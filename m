@@ -1,16 +1,14 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv50/disp: Fix modeset on G94
-Date: Mon, 10 Nov 2014 22:32:48 +0100
-Message-ID: <54612F00.2060300@gmail.com>
-References: <1414706265-13208-1-git-send-email-rspliet@eclipso.eu>
- <CAKb7UvhnxLciY+v1B+m0zc1tT090_wVfXatwOK2ygXd1M_jVRQ@mail.gmail.com>
- <CACAvsv5y3LMVnEyDGB-aLgyWnkJQDujP8WhZUfq9J=8g_RxrCA@mail.gmail.com>
- <723e85bac4ee58d0c1820fa445ed8965@mail.eclipso.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Mon, 10 Nov 2014 21:36:54 +0000
+Message-ID: <bug-85160-8800-jiwFaW6qPZ@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0161430333=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <723e85bac4ee58d0c1820fa445ed8965-oCZ8gVdGmpNhe3Fb0padOQ@public.gmane.org>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,92 +18,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMzEuMTAuMjAxNCAxMToyOCwgUm95IFNwbGlldCB3cm90ZToKPiAKPiAtLS0gVXJzcHLDvG5n
-bGljaGUgTmFjaHJpY2h0IC0tLQo+IFZvbjogQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+
-Cj4gRGF0dW06IDAwOjUyOjA1IDMxLTEwLTIwMTQKPiBBbjogSWxpYSBNaXJraW4gPGltaXJraW5A
-YWx1bS5taXQuZWR1Pgo+IEJldHJlZmY6IFJlOiBbTm91dmVhdV0gW1BBVENIXSBudjUwL2Rpc3A6
-IEZpeCBtb2Rlc2V0IG9uIEc5NAo+IAo+PiBPbiBGcmksIE9jdCAzMSwgMjAxNCBhdCA4OjAwIEFN
-LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+IHdyb3RlOgo+Pj4gT24gVGh1
-LCBPY3QgMzAsIDIwMTQgYXQgNTo1NyBQTSwgUm95IFNwbGlldCA8cnNwbGlldEBlY2xpcHNvLmV1
-Pgo+PiB3cm90ZToKPj4+PiBDb21taXQgMWRjZTYyNjQwNDVjZDIzZTljMDc1NzRlZDBiYjMxYzdk
-Y2U5MzU0ZiBpbnRyb2R1Y2VkIGEgcmVncmVzc2lvbgo+PiBzcG90dGVkCj4+Pj4gb24gc2V2ZXJh
-bCBHOTQgKEZET2J6ICM4NTE2MCkuIFRoaXMgZGV2aWNlIHNlZW1zIHRvIGV4cGVjdCB0aGUgdmJs
-YW5rCj4+IHBlcmlvZCB0bwo+Pj4KPj4+IEkgYmVsaWV2ZSB0aGF0J3Mgb2Z0ZW4gZG9uZSBhcyBh
-Cj4+Pgo+Pj4gQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvYmxhCj4+Pgo+
-Pj4gYW5ub3RhdGlvbgo+Pj4KPj4+PiBiZSBzZXQgYWZ0ZXIgc2V0dGluZyBzY2FsZSBpbnN0ZWFk
-IG9mIGJlZm9yZS4KPj4+Pgo+Pj4+IFYyOiBzaG92ZSB0aGlzIGluIGEgc2VwYXJhdGUgZnVuY3Rp
-b24KPj4+Pgo+Pj4+IFRoaXMgaXMgYSBjYW5kaWRhdGUgYnVnLWZpeCBmb3IgMy4xOAo+Pj4+Cj4+
-Pj4gU2lnbmVkLW9mZi1ieTogUm95IFNwbGlldCA8cnNwbGlldEBlY2xpcHNvLmV1Pgo+Pj4+IFRl
-c3RlZC1ieTogWmxhdGtvIENhbHVzaWMgPHpjYWx1c2ljQGJpdHN5bmMubmV0Pgo+Pj4+IFRlc3Rl
-ZC1ieTogTWljaGFlbCBSaWVzY2ggPG1pY2hhZWxAcmllc2NoLmF0Pgo+Pj4+IFRlc3RlZC1ieTog
-InBvbWEiIDxwb21pZG9yYWJlbGlzaW1hQGdtYWlsLmNvbT4KPj4+PiBUZXN0ZWQtYnk6IEFkYW0g
-V2lsbGlhbXNvbiA8YWRhbXdAaGFwcHlhc3Nhc3Npbi5uZXQ+Cj4+Pj4gLS0tCj4+Pj4gIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIHwgMjYgKysrKysrKysrKysrKysrKysr
-KysrKysrLS0KPj4KPj4+PiAgMSBmaWxlIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCj4+Pj4KPj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
-bnY1MF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+
-Pgo+Pj4+IGluZGV4IGFlODczZDEuLjJmMjRhMDggMTAwNjQ0Cj4+Pj4gLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKPj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9udjUwX2Rpc3BsYXkuYwo+Pj4+IEBAIC03OTEsNiArNzkxLDIzIEBAIG52NTBfY3J0
-Y19zZXRfc2NhbGUoc3RydWN0IG5vdXZlYXVfY3J0YyAqbnZfY3J0YywKPj4gYm9vbCB1cGRhdGUp
-Cj4+Pj4gIH0KPj4+Pgo+Pj4+ICBzdGF0aWMgaW50Cj4+Pj4gK252NTBfY3J0Y19zZXRfcmFzdGVy
-X3ZibGFua19kbWkoc3RydWN0IG5vdXZlYXVfY3J0YyAqbnZfY3J0YywgdTMyCj4+IHVzZWMpCj4+
-Pgo+Pj4gV2hhdCdzICJkbWkiPwo+PiBTZXRSYXN0ZXJWZXJ0QmxhbmtEbWkgaXMgdGhlIG5hbWUg
-b2YgbWV0aG9kIDB4ODI4LiAgSSBwcmVzdW1lIGl0J3MKPj4gRGlzcGxheSBNZW1vcnkgSW50ZXJm
-YWNlIG9yIHNvbWV0aGluZyB0byB0aGF0IGVmZmVjdC4KPj4KPj4+Cj4+Pj4gK3sKPj4+PiArICAg
-ICAgIHN0cnVjdCBudjUwX21hc3QgKm1hc3QgPSBudjUwX21hc3QobnZfY3J0Yy0+YmFzZS5kZXYp
-Owo+Pgo+Pj4+ICsgICAgICAgdTMyICpwdXNoOwo+Pj4+ICsKPj4+PiArICAgICAgIHB1c2ggPSBl
-dm9fd2FpdChtYXN0LCA4KTsKPj4+Cj4+PiBKdXN0IG5lZWRzIHRvIGJlIDIsIG5vPwo+PiBZZXMs
-IGRvZXNuJ3QgbWF0dGVyIHRvbyBtdWNoIHRob3VnaC4KPiBJZiBpdCBpcywgd2UgbWlnaHQgbmVl
-ZCB0byBmaXggbnY1MF9jcnRjX21vZGVfc2V0KCkgdG9vOyBpdCBzZWVtcyB0byBhc3N1bWUgdGhl
-IHNlY29uZCBwYXJhbWV0ZXIgaW4gZXZvX3dhaXQoKSBpcyBieXRlcywgbm90IHdvcmRzLgo+IAo+
-Pgo+Pj4KPj4+PiArICAgICAgIGlmICghcHVzaCkKPj4+PiArICAgICAgICAgICAgICAgcmV0dXJu
-IC1FTk9NRU07Cj4+Pj4gKwo+Pj4+ICsgICAgICAgZXZvX210aGQocHVzaCwgMHgwODI4ICsgKG52
-X2NydGMtPmluZGV4ICogMHg0MDApLCAxKTsKPj4KPj4+PiArICAgICAgIGV2b19kYXRhKHB1c2gs
-IHVzZWMpOwo+Pj4+ICsgICAgICAgZXZvX2tpY2socHVzaCwgbWFzdCk7Cj4+Pj4gKwo+Pj4+ICsg
-ICAgICAgcmV0dXJuIDA7Cj4+Pj4gK30KPj4+PiArCj4+Pj4gK3N0YXRpYyBpbnQKPj4+PiAgbnY1
-MF9jcnRjX3NldF9jb2xvcl92aWJyYW5jZShzdHJ1Y3Qgbm91dmVhdV9jcnRjICpudl9jcnRjLCBi
-b29sCj4+IHVwZGF0ZSkKPj4+PiAgewo+Pj4+ICAgICAgICAgc3RydWN0IG52NTBfbWFzdCAqbWFz
-dCA9IG52NTBfbWFzdChudl9jcnRjLT5iYXNlLmRldik7Cj4+Cj4+Pj4gQEAgLTExMDQsMTQgKzEx
-MjEsMTQgQEAgbnY1MF9jcnRjX21vZGVfc2V0KHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKPj4gc3Ry
-dWN0IGRybV9kaXNwbGF5X21vZGUgKnVtb2RlLAo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-IGV2b19tdGhkKHB1c2gsIDB4MDgwNCArIChudl9jcnRjLT5pbmRleAo+PiAqIDB4NDAwKSwgMik7
-Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgMHgwMDgwMDAwMCB8
-IG1vZGUtPmNsb2NrKTsKPj4KPj4+PiAgICAgICAgICAgICAgICAgICAgICAgICBldm9fZGF0YShw
-dXNoLCAoaWxhY2UgPT0gMikgPyAyIDogMCk7Cj4+Pj4gLSAgICAgICAgICAgICAgICAgICAgICAg
-ZXZvX210aGQocHVzaCwgMHgwODEwICsgKG52X2NydGMtPmluZGV4Cj4+ICogMHg0MDApLCA4KTsK
-Pj4+PiArICAgICAgICAgICAgICAgICAgICAgICBldm9fbXRoZChwdXNoLCAweDA4MTAgKyAobnZf
-Y3J0Yy0+aW5kZXgKPj4gKiAweDQwMCksIDYpOwo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-IGV2b19kYXRhKHB1c2gsIDB4MDAwMDAwMDApOwo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAg
-IGV2b19kYXRhKHB1c2gsICh2YWN0aXZlIDw8IDE2KSB8IGhhY3RpdmUpOwo+Pgo+Pj4+ICAgICAg
-ICAgICAgICAgICAgICAgICAgIGV2b19kYXRhKHB1c2gsICggdnN5bmNlIDw8IDE2KSB8IGhzeW5j
-ZSk7Cj4+Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgKHZibGFu
-a2UgPDwgMTYpIHwgaGJsYW5rZSk7Cj4+Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgZXZv
-X2RhdGEocHVzaCwgKHZibGFua3MgPDwgMTYpIHwgaGJsYW5rcyk7Cj4+Cj4+Pj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgKHZibGFuMmUgPDwgMTYpIHwgdmJsYW4ycyk7
-Cj4+Cj4+Pj4gLSAgICAgICAgICAgICAgICAgICAgICAgZXZvX2RhdGEocHVzaCwgdmJsYW5rdXMp
-Owo+Pj4+ICsgICAgICAgICAgICAgICAgICAgICAgIGV2b19tdGhkKHB1c2gsIDB4MDgyYyArIChu
-dl9jcnRjLT5pbmRleAo+PiAqIDB4NDAwKSwgMSk7Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAg
-ICAgZXZvX2RhdGEocHVzaCwgMHgwMDAwMDAwMCk7Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAg
-ICAgZXZvX210aGQocHVzaCwgMHgwOTAwICsgKG52X2NydGMtPmluZGV4Cj4+ICogMHg0MDApLCAy
-KTsKPj4+PiAgICAgICAgICAgICAgICAgICAgICAgICBldm9fZGF0YShwdXNoLCAweDAwMDAwMzEx
-KTsKPj4+PiBAQCAtMTE0MSw2ICsxMTU4LDExIEBAIG52NTBfY3J0Y19tb2RlX3NldChzdHJ1Y3Qg
-ZHJtX2NydGMgKmNydGMsCj4+IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICp1bW9kZSwKPj4+PiAg
-ICAgICAgIG52X2Nvbm5lY3RvciA9IG5vdXZlYXVfY3J0Y19jb25uZWN0b3JfZ2V0KG52X2NydGMp
-Owo+Pj4+ICAgICAgICAgbnY1MF9jcnRjX3NldF9kaXRoZXIobnZfY3J0YywgZmFsc2UpOwo+Pj4+
-ICAgICAgICAgbnY1MF9jcnRjX3NldF9zY2FsZShudl9jcnRjLCBmYWxzZSk7Cj4+Pj4gKwo+Pj4+
-ICsgICAgICAgLyogRzk0IG9ubHkgYWNjZXB0cyB0aGlzIGFmdGVyIHNldHRpbmcgc2NhbGUgKi8K
-Pj4+PiArICAgICAgIGlmIChudjUwX3ZlcnMobWFzdCkgPCBHRjExMF9ESVNQX0NPUkVfQ0hBTk5F
-TF9ETUEpCj4+Pj4gKyAgICAgICAgICAgICAgIG52NTBfY3J0Y19zZXRfcmFzdGVyX3ZibGFua19k
-bWkobnZfY3J0YywgdmJsYW5rdXMpOwo+Pgo+Pj4+ICsKPj4+PiAgICAgICAgIG52NTBfY3J0Y19z
-ZXRfY29sb3JfdmlicmFuY2UobnZfY3J0YywgZmFsc2UpOwo+Pj4+ICAgICAgICAgbnY1MF9jcnRj
-X3NldF9pbWFnZShudl9jcnRjLCBjcnRjLT5wcmltYXJ5LT5mYiwgeCwKPj4geSwgZmFsc2UpOwo+
-Pj4+ICAgICAgICAgcmV0dXJuIDA7Cj4+Pj4gLS0KPj4+PiAyLjEuMAo+Pj4+CgoKTm9uZSBvZiBh
-bGwgdGhpcyZ0aGF0IHBhdGNoZXMgZG9lcyBub3Qgd29yayBhbnltb3JlLgoKCnBvbWEKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0161430333==
+Content-Type: multipart/alternative; boundary="1415655414.FBA4CAD3.31212"; charset="UTF-8"
+
+
+--1415655414.FBA4CAD3.31212
+Date: Mon, 10 Nov 2014 21:36:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
+
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+
+--1415655414.FBA4CAD3.31212
+Date: Mon, 10 Nov 2014 21:36:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415655414.FBA4CAD3.31212--
+
+--===============0161430333==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0161430333==--
