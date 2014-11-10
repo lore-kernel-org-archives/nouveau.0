@@ -1,111 +1,61 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
-Date: Mon, 10 Nov 2014 16:20:02 +0000
-Message-ID: <bug-86115-8800-4Pq2DlAWh5@http.bugs.freedesktop.org/>
-References: <bug-86115-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 3/3] gk20a: use NOUVEAU_BO_GART as VRAM domain
+Date: Mon, 10 Nov 2014 13:53:23 -0500
+Message-ID: <CAKb7Uvh=kfibXHFORHs2CrmsAsvqL=QK9eKYUWVJqsFccBM7uw@mail.gmail.com>
+References: <1414406099-21129-1-git-send-email-acourbot@nvidia.com>
+ <1414406099-21129-4-git-send-email-acourbot@nvidia.com>
+ <CAKb7UvhMw9pfDsvoGae2A+n9qJNBV5Vnxm4bn5tbK09GDcP_Dw@mail.gmail.com>
+ <5459FABA.2020009@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0201855770=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <5459FABA.2020009@nvidia.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Alexandre Courbot <gnurou@gmail.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0201855770==
-Content-Type: multipart/alternative; boundary="1415636402.2734Fa112.10551"; charset="UTF-8"
-
-
---1415636402.2734Fa112.10551
-Date: Mon, 10 Nov 2014 16:20:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86115
-
---- Comment #8 from Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org> ---
-(In reply to Takashi Iwai from comment #4)
-> In order to make things a bit more straight, could you retest S3 after doing:
->   echo 1 > /sys/power/pm_async
-> ?
-
-Doh, sorry, I wanted to see the result with *disabled* async  PM.
-
-Lars, please retest with
-
-   echo 0 > /sys/power/pm_async
-
-Certainly there is a GPU hang at PM, but I'd like to know whether it's the real
-culprit of the whole hang.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1415636402.2734Fa112.10551
-Date: Mon, 10 Nov 2014 16:20:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] gpu hang on resume from suspend to ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] gpu hang on resume from suspend to ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115">bug 86115</a>
-              from <span class="vcard"><a class="email" href="mailto:tiwai&#64;suse.de" title="Takashi Iwai &lt;tiwai&#64;suse.de&gt;"> <span class="fn">Takashi Iwai</span></a>
-</span></b>
-        <pre>(In reply to Takashi Iwai from <a href="show_bug.cgi?id=86115#c4">comment #4</a>)
-<span class="quote">&gt; In order to make things a bit more straight, could you retest S3 after doing:
-&gt;   echo 1 &gt; /sys/power/pm_async
-&gt; ?</span >
-
-Doh, sorry, I wanted to see the result with *disabled* async  PM.
-
-Lars, please retest with
-
-   echo 0 &gt; /sys/power/pm_async
-
-Certainly there is a GPU hang at PM, but I'd like to know whether it's the real
-culprit of the whole hang.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1415636402.2734Fa112.10551--
-
---===============0201855770==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0201855770==--
+T24gV2VkLCBOb3YgNSwgMjAxNCBhdCA1OjIzIEFNLCBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJi
+b3RAbnZpZGlhLmNvbT4gd3JvdGU6Cj4gT24gMTAvMzAvMjAxNCAxMjoyOSBBTSwgSWxpYSBNaXJr
+aW4gd3JvdGU6Cj4+Cj4+IE9uIE1vbiwgT2N0IDI3LCAyMDE0IGF0IDY6MzQgQU0sIEFsZXhhbmRy
+ZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+PiB3cm90ZToKPj4+Cj4+PiBHSzIwQSBk
+b2VzIG5vdCBoYXZlIGRlZGljYXRlZCBWUkFNLCB0aGVyZWZvcmUgYWxsb2NhdGluZyBpbiBWUkFN
+IGNhbiBiZQo+Pj4gc3ViLW9wdGltYWwgYW5kIHNvbWV0aW1lcyBldmVuIGhhcm1mdWwuIFNldCBp
+dHMgVlJBTSBkb21haW4gdG8KPj4+IE5PVVZFQVVfQk9fR0FSVCBzbyBhbGwgb2JqZWN0cyBhcmUg
+YWxsb2NhdGVkIGluIHN5c3RlbSBtZW1vcnkuCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogQWxleGFu
+ZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+PiAtLS0KPj4+ICAgc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYyB8IDEwICsrKysrKysrKysKPj4+
+ICAgMSBmaWxlIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKykKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+Pj4gYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCj4+PiBpbmRleCBhYzU4
+MjNlNGE4ZDUuLmFkMTQzY2Q5YTE0MCAxMDA2NDQKPj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPj4+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPj4+IEBAIC02MjAsNiArNjIwLDE2IEBAIG52
+YzBfc2NyZWVuX2NyZWF0ZShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPj4+ICAgICAgICAg
+cmV0dXJuIE5VTEw7Cj4+PiAgICAgIHBzY3JlZW4gPSAmc2NyZWVuLT5iYXNlLmJhc2U7Cj4+Pgo+
+Pj4gKyAgIC8qIFJlY29nbml6ZSBjaGlwc2V0cyB3aXRoIG5vIFZSQU0gKi8KPj4+ICsgICBzd2l0
+Y2ggKGRldi0+Y2hpcHNldCkgewo+Pj4gKyAgIC8qIEdLMjBBICovCj4+PiArICAgY2FzZSAweGVh
+Ogo+Pj4gKyAgICAgIHNjcmVlbi0+YmFzZS52cmFtX2RvbWFpbiA9IE5PVVZFQVVfQk9fR0FSVDsK
+Pj4KPj4KPj4gSSB0aGluayB5b3UgYWxzbyB3YW50IHRvIHNldCB2aWRtZW1fYmluZGluZ3MgPSAw
+Li4uIGFsdGhvdWdoCj4+IHBvdGVudGlhbGx5IGFmdGVyIHRoZSB8PSB0aGF0J3MgZG9uZSBiZWxv
+dy4gQWx0aG91Z2ggSSBndWVzcyB0aGF0Cj4+IGNvbnN0YnVmICsgY29tbWFuZCBhcmdzIGJ1ZiBu
+ZWVkIHRvIGJlIHw9J2QgaW50byB0aGUgc3lzbWVtX2JpbmRpbmdzCj4+IGZvciB0aGlzIHRvIHdv
+cmsgb3V0IHdlbGwuCj4KPgo+IFRoYW5rcyBmb3IgcG9pbnRpbmcgdGhpcyBvdXQgOyBJIGRpZG4n
+dCBrbm93IGFib3V0IHZpZG1lbV9iaW5kaW5ncyB0byBiZQo+IGhvbmVzdC4gV2lsbCB1cGRhdGUg
+YW5kIHJlc2VuZC4KPgo+IEFwYXJ0IGZyb20gdGhpcyBkZXRhaWwsIGFyZSB5b3Ugb2sgd2l0aCB0
+aGUgY2hhbmdlcyBicm91Z2h0IGJ5IHRoZXNlCj4gcGF0Y2hlcz8KCkknbSBub3QgYWdhaW5zdCB0
+aGVtLi4uIEkgZG8gd29uZGVyIGEgYml0IGlmIHRoZXJlIGlzbid0IHNvbWUgYmV0dGVyCndheSBv
+ZiBkb2luZyB0aGlzLCBidXQgaW4gdGhlIGFic2VuY2Ugb2Ygc3VjaCBhIHdheSwgdGhpcyBzZWVt
+cyBmaW5lLgoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
+dgo=
