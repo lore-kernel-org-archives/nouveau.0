@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
-Date: Mon, 10 Nov 2014 16:15:10 +0000
-Message-ID: <bug-86115-8800-NTy5eOUqRe@http.bugs.freedesktop.org/>
-References: <bug-86115-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86109] kernel oops after lightdm startup
+Date: Mon, 10 Nov 2014 16:16:42 +0000
+Message-ID: <bug-86109-8800-6V67aOaE0n@http.bugs.freedesktop.org/>
+References: <bug-86109-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1654618778=="
+Content-Type: multipart/mixed; boundary="===============0163186333=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-86109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1654618778==
-Content-Type: multipart/alternative; boundary="1415636110.bACc2fEa2.8772"; charset="UTF-8"
+--===============0163186333==
+Content-Type: multipart/alternative; boundary="1415636202.f605f22.9263"; charset="UTF-8"
 
 
---1415636110.bACc2fEa2.8772
-Date: Mon, 10 Nov 2014 16:15:10 +0000
+--1415636202.f605f22.9263
+Date: Mon, 10 Nov 2014 16:16:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86115
+https://bugs.freedesktop.org/show_bug.cgi?id=86109
 
---- Comment #7 from Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org> ---
-FYI, there are a few kernel packages available in OBS home:tiwai:kernel:3.13,
-home:tiwai:kernel:3.14, and home:tiwai:kernel:3.15 repos.
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
-For 3.12, you can use OBS Kernel:SLE12.  Kernel:stable is for 3.17, and
-Kernel:HEAD is for 3.18-rc.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #109220|text/plain                  |image/jpeg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415636110.bACc2fEa2.8772
-Date: Mon, 10 Nov 2014 16:15:10 +0000
+--1415636202.f605f22.9263
+Date: Mon, 10 Nov 2014 16:16:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,25 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV84] gpu hang on resume from suspend to ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] gpu hang on resume from suspend to ram"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115">bug 86115</a>
-              from <span class="vcard"><a class="email" href="mailto:tiwai&#64;suse.de" title="Takashi Iwai &lt;tiwai&#64;suse.de&gt;"> <span class="fn">Takashi Iwai</span></a>
-</span></b>
-        <pre>FYI, there are a few kernel packages available in OBS home:tiwai:kernel:3.13,
-home:tiwai:kernel:3.14, and home:tiwai:kernel:3.15 repos.
+   title="NEW - kernel oops after lightdm startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-For 3.12, you can use OBS Kernel:SLE12.  Kernel:stable is for 3.17, and
-Kernel:HEAD is for 3.18-rc.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #109220 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/jpeg
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -80,9 +83,9 @@ Kernel:HEAD is for 3.18-rc.</pre>
     </body>
 </html>
 
---1415636110.bACc2fEa2.8772--
+--1415636202.f605f22.9263--
 
---===============1654618778==
+--===============0163186333==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1654618778==--
+--===============0163186333==--
