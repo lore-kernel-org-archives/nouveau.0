@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86109] kernel oops after lightdm startup
-Date: Mon, 10 Nov 2014 16:16:42 +0000
-Message-ID: <bug-86109-8800-6V67aOaE0n@http.bugs.freedesktop.org/>
-References: <bug-86109-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
+Date: Mon, 10 Nov 2014 16:20:02 +0000
+Message-ID: <bug-86115-8800-4Pq2DlAWh5@http.bugs.freedesktop.org/>
+References: <bug-86115-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0163186333=="
+Content-Type: multipart/mixed; boundary="===============0201855770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0163186333==
-Content-Type: multipart/alternative; boundary="1415636202.f605f22.9263"; charset="UTF-8"
+--===============0201855770==
+Content-Type: multipart/alternative; boundary="1415636402.2734Fa112.10551"; charset="UTF-8"
 
 
---1415636202.f605f22.9263
-Date: Mon, 10 Nov 2014 16:16:42 +0000
+--1415636402.2734Fa112.10551
+Date: Mon, 10 Nov 2014 16:20:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86109
+https://bugs.freedesktop.org/show_bug.cgi?id=86115
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+--- Comment #8 from Takashi Iwai <tiwai-l3A5Bk7waGM@public.gmane.org> ---
+(In reply to Takashi Iwai from comment #4)
+> In order to make things a bit more straight, could you retest S3 after doing:
+>   echo 1 > /sys/power/pm_async
+> ?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #109220|text/plain                  |image/jpeg
-          mime type|                            |
+Doh, sorry, I wanted to see the result with *disabled* async  PM.
+
+Lars, please retest with
+
+   echo 0 > /sys/power/pm_async
+
+Certainly there is a GPU hang at PM, but I'd like to know whether it's the real
+culprit of the whole hang.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415636202.f605f22.9263
-Date: Mon, 10 Nov 2014 16:16:42 +0000
+--1415636402.2734Fa112.10551
+Date: Mon, 10 Nov 2014 16:20:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +59,33 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #109220 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV84] gpu hang on resume from suspend to ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV84] gpu hang on resume from suspend to ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115">bug 86115</a>
+              from <span class="vcard"><a class="email" href="mailto:tiwai&#64;suse.de" title="Takashi Iwai &lt;tiwai&#64;suse.de&gt;"> <span class="fn">Takashi Iwai</span></a>
+</span></b>
+        <pre>(In reply to Takashi Iwai from <a href="show_bug.cgi?id=86115#c4">comment #4</a>)
+<span class="quote">&gt; In order to make things a bit more straight, could you retest S3 after doing:
+&gt;   echo 1 &gt; /sys/power/pm_async
+&gt; ?</span >
+
+Doh, sorry, I wanted to see the result with *disabled* async  PM.
+
+Lars, please retest with
+
+   echo 0 &gt; /sys/power/pm_async
+
+Certainly there is a GPU hang at PM, but I'd like to know whether it's the real
+culprit of the whole hang.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +96,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1415636202.f605f22.9263--
+--1415636402.2734Fa112.10551--
 
---===============0163186333==
+--===============0201855770==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0163186333==--
+--===============0201855770==--
