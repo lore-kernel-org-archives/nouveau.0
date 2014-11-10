@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86115] Suspend to RAM fails when using Nouveau
-Date: Mon, 10 Nov 2014 15:57:10 +0000
-Message-ID: <bug-86115-8800-MTSfFGzDsV@http.bugs.freedesktop.org/>
+Date: Mon, 10 Nov 2014 15:58:10 +0000
+Message-ID: <bug-86115-8800-wbzNbjbCU9@http.bugs.freedesktop.org/>
 References: <bug-86115-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1821991685=="
+Content-Type: multipart/mixed; boundary="===============2137216648=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,74 +20,95 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1821991685==
-Content-Type: multipart/alternative; boundary="1415635030.e6DC42.1589"; charset="UTF-8"
+--===============2137216648==
+Content-Type: multipart/alternative; boundary="1415635090.5c1D3.2001"; charset="UTF-8"
 
 
---1415635030.e6DC42.1589
-Date: Mon, 10 Nov 2014 15:57:10 +0000
+--1415635090.5c1D3.2001
+Date: Mon, 10 Nov 2014 15:58:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
+https://bugs.freedesktop.org/show_bug.cgi?id=86115
 
---- Comment #5 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
-Created attachment 109227
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D109227&action=3Dedit
-Retest S3 after calling: echo 1 > /sys/power/pm_async
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+There was a change which fixed fbcon acceleration after resume -- before it
+effectively switched into software mode on resume, but that got fixed.
+Unfortunately if the GPU is unhappy on resume, that means that the console also
+hangs.
 
---=20
+Specifically it was commit ecf24de071f4f6cea79ecef5d990794df5875ee1. Could you
+test a few kernels to see whether it's the same issue you're seeing?
+
+e.g. does 3.14 work while 3.15 fails? If so, can you do a bisect to confirm
+(and if not, also do a bisect to figure out what broke it).
+
+git bisect start v3.16 v3.13 -- drivers/gpu/drm/nouveau
+
+should cover the whole range you mentioned (3.13 = good, 3.16 = bad).
+
+Separately, could you attach a full dmesg after boot? That should answer a
+number of basic questions about some of your setup's specifics. Additionally,
+how is your monitor(s) connected?
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415635030.e6DC42.1589
-Date: Mon, 10 Nov 2014 15:57:10 +0000
+--1415635090.5c1D3.2001
+Date: Mon, 10 Nov 2014 15:58:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - Suspend to RAM fails when using Nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - Suspend to RAM fails when using Nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - Suspend to RAM fails when using Nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115">bug 86115<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
-<span class=3D"fn">Lars M=C3=BCller</span></a>
+   title="NEW - Suspend to RAM fails when using Nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86115">bug 86115</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D109227=
-" name=3D"attach_109227" title=3D"Retest S3 after calling: echo 1 &gt; /sys=
-/power/pm_async">attachment 109227</a> <a href=3D"attachment.cgi?id=3D10922=
-7&amp;action=3Dedit" title=3D"Retest S3 after calling: echo 1 &gt; /sys/pow=
-er/pm_async">[details]</a></span>
-Retest S3 after calling: echo 1 &gt; /sys/power/pm_async</pre>
+        <pre>There was a change which fixed fbcon acceleration after resume -- before it
+effectively switched into software mode on resume, but that got fixed.
+Unfortunately if the GPU is unhappy on resume, that means that the console also
+hangs.
+
+Specifically it was commit ecf24de071f4f6cea79ecef5d990794df5875ee1. Could you
+test a few kernels to see whether it's the same issue you're seeing?
+
+e.g. does 3.14 work while 3.15 fails? If so, can you do a bisect to confirm
+(and if not, also do a bisect to figure out what broke it).
+
+git bisect start v3.16 v3.13 -- drivers/gpu/drm/nouveau
+
+should cover the whole range you mentioned (3.13 = good, 3.16 = bad).
+
+Separately, could you attach a full dmesg after boot? That should answer a
+number of basic questions about some of your setup's specifics. Additionally,
+how is your monitor(s) connected?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1415635030.e6DC42.1589--
+--1415635090.5c1D3.2001--
 
---===============1821991685==
+--===============2137216648==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1821991685==--
+--===============2137216648==--
