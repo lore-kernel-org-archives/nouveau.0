@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86115] Suspend to RAM fails when using Nouveau
-Date: Mon, 10 Nov 2014 15:30:39 +0000
-Message-ID: <bug-86115-8800-bdlONlONCe@http.bugs.freedesktop.org/>
+Date: Mon, 10 Nov 2014 15:37:53 +0000
+Message-ID: <bug-86115-8800-0CFcow9e5e@http.bugs.freedesktop.org/>
 References: <bug-86115-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1528059815=="
+Content-Type: multipart/mixed; boundary="===============0248363432=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1528059815==
-Content-Type: multipart/alternative; boundary="1415633439.7EfCf152.24271"; charset="UTF-8"
+--===============0248363432==
+Content-Type: multipart/alternative; boundary="1415633873.524CFa502.26748"; charset="UTF-8"
 
 
---1415633439.7EfCf152.24271
-Date: Mon, 10 Nov 2014 15:30:39 +0000
+--1415633873.524CFa502.26748
+Date: Mon, 10 Nov 2014 15:37:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
 
---- Comment #2 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> (In reply to Lars M=C3=BCller from comment #0)
-> > With the same hardware suspend to memory worked with openSUSE 13.1.
->=20
-> What kernel is that?
+--- Comment #3 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
+Created attachment 109224
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D109224&action=3Dedit
+kernel ooops trace (3.16.6)
 
-3.11.10
+Add lost kernel ooops trace and more detailes kernel RPM details.
+
+kernel-default-3.16.6-2.1.x86_64
+
+Source Timestamp: 2014-10-20 15:47:22 +0200
+GIT Revision: feb42eacae8d76252ab69a58d05a0be2cebd8a08
+GIT Branch: openSUSE-13.2
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1415633439.7EfCf152.24271
-Date: Mon, 10 Nov 2014 15:30:39 +0000
+--1415633873.524CFa502.26748
+Date: Mon, 10 Nov 2014 15:37:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -61,8 +65,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Suspend to RAM fails when using Nouveau"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - Suspend to RAM fails when using Nouveau"
@@ -72,16 +76,19 @@ Content-Transfer-Encoding: quoted-printable
 lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
 <span class=3D"fn">Lars M=C3=BCller</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D861=
-15#c1">comment #1</a>)
-<span class=3D"quote">&gt; (In reply to Lars M=C3=BCller from <a href=3D"sh=
-ow_bug.cgi?id=3D86115#c0">comment #0</a>)
-&gt; &gt; With the same hardware suspend to memory worked with openSUSE 13.=
-1.
-&gt;=20
-&gt; What kernel is that?</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D109224=
+" name=3D"attach_109224" title=3D"kernel ooops trace (3.16.6)">attachment 1=
+09224</a> <a href=3D"attachment.cgi?id=3D109224&amp;action=3Dedit" title=3D=
+"kernel ooops trace (3.16.6)">[details]</a></span>
+kernel ooops trace (3.16.6)
 
-3.11.10</pre>
+Add lost kernel ooops trace and more detailes kernel RPM details.
+
+kernel-default-3.16.6-2.1.x86_64
+
+Source Timestamp: 2014-10-20 15:47:22 +0200
+GIT Revision: feb42eacae8d76252ab69a58d05a0be2cebd8a08
+GIT Branch: openSUSE-13.2</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +100,9 @@ ow_bug.cgi?id=3D86115#c0">comment #0</a>)
     </body>
 </html>
 
---1415633439.7EfCf152.24271--
+--1415633873.524CFa502.26748--
 
---===============1528059815==
+--===============0248363432==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1528059815==--
+--===============0248363432==--
