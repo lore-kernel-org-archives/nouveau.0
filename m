@@ -1,14 +1,14 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] nvc0: remove unused nvc0_screen::mm_VRAM_fe0
-Date: Wed, 12 Nov 2014 15:16:52 +0900
-Message-ID: <5462FB54.7060704@nvidia.com>
-References: <1414405588-17705-1-git-send-email-acourbot@nvidia.com>	<1414406209-25574-1-git-send-email-acourbot@nvidia.com>	<CAAVeFuJHdUVGUScxrYsgTXNbR7hYjxvgzqi8Bk6TVF7uaOu7cw@mail.gmail.com>
- <CAKb7UvipWpaYXEE22Tyt8ostiohL=xfHgcfAnv3Sgz5gE62J-g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Wed, 12 Nov 2014 06:37:24 +0000
+Message-ID: <bug-85160-8800-ipPmz091DH@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0152350396=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvipWpaYXEE22Tyt8ostiohL=xfHgcfAnv3Sgz5gE62J-g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,15 +18,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTEvMTIvMjAxNCAwMzowNyBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gTEcuIEkgaGFkIHRo
-aXMgc2FtZSBwYXRjaCBsb2NhbGx5IEkgdGhpbmsuLi4gSSBjYW1lIHVwIHdpdGggaXQgYWZ0ZXIg
-SQo+IHdlbnQgbG9va2luZyBhdCB0aGUgdmFyaW91cyBWUkFNIHVzYWdlIGFmdGVyIHlvdSB3ZXJl
-IGFza2luZyBxdWVzdGlvbnMKPiBhYm91dCBpdC4KCkdvb2QsIEknbSBkcm9wcGluZyB0aGlzIHZl
-cnNpb24gdGhlbiwgYW5kIGFzc3VtZSB5b3VycyB3aWxsIGdldCBtZXJnZWQgc29vbi4KClRoYW5r
-cyEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0152350396==
+Content-Type: multipart/alternative; boundary="1415774244.dbbfb2.21402"; charset="UTF-8"
+
+
+--1415774244.dbbfb2.21402
+Date: Wed, 12 Nov 2014 06:37:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
+
+--- Comment #26 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+Combination also tested, works OK:
+http://koji.fedoraproject.org/koji/buildinfo?buildID=592269
+&
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ae69cfb
+
+$ modinfo nouveau -n
+/lib/modules/3.18.0-0.rc4.git0.2.fc22.x86_64/updates/nouveau.ko
+
+Thanks guys.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+
+--1415774244.dbbfb2.21402
+Date: Wed, 12 Nov 2014 06:37:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c26">Comment # 26</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+Combination also tested, works OK:
+<a href="http://koji.fedoraproject.org/koji/buildinfo?buildID=592269">http://koji.fedoraproject.org/koji/buildinfo?buildID=592269</a>
+&amp;
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ae69cfb">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ae69cfb</a>
+
+$ modinfo nouveau -n
+/lib/modules/3.18.0-0.rc4.git0.2.fc22.x86_64/updates/nouveau.ko
+
+Thanks guys.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1415774244.dbbfb2.21402--
+
+--===============0152350396==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0152350396==--
