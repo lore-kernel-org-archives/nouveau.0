@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86164] Dual screen causes KDE crash on NV50 (NV98)
- in nouveau (bisected)
-Date: Tue, 11 Nov 2014 19:04:57 +0000
-Message-ID: <bug-86164-8800-cYfsXIdYbu@http.bugs.freedesktop.org/>
-References: <bug-86164-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nvc0: remove unused nvc0_screen::mm_VRAM_fe0
+Date: Wed, 12 Nov 2014 13:59:56 +0900
+Message-ID: <CAAVeFuJHdUVGUScxrYsgTXNbR7hYjxvgzqi8Bk6TVF7uaOu7cw@mail.gmail.com>
+References: <1414405588-17705-1-git-send-email-acourbot@nvidia.com>
+ <1414406209-25574-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1088433634=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1414406209-25574-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,80 +18,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1088433634==
-Content-Type: multipart/alternative; boundary="1415732697.aaCB2.19198"; charset="UTF-8"
-
-
---1415732697.aaCB2.19198
-Date: Tue, 11 Nov 2014 19:04:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86164
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-While it shouldn't cause crashes, I suspect that removing
-
-nouveau.noaccel=1
-
-should resolve this issue. Why are you booting with that?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1415732697.aaCB2.19198
-Date: Tue, 11 Nov 2014 19:04:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Dual screen causes KDE crash on NV50 (NV98) in nouveau (bisected)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86164#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Dual screen causes KDE crash on NV50 (NV98) in nouveau (bisected)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86164">bug 86164</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>While it shouldn't cause crashes, I suspect that removing
-
-nouveau.noaccel=1
-
-should resolve this issue. Why are you booting with that?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1415732697.aaCB2.19198--
-
---===============1088433634==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1088433634==--
+UGluZywgaG93IGFib3V0IHRoaXMgZ3V5PwoKT24gTW9uLCBPY3QgMjcsIDIwMTQgYXQgNzozNiBQ
+TSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+IFRoaXMg
+bWVtYmVyIGlzIGRlY2xhcmVkLCBhbGxvY2F0ZWQgYW5kIGRlc3Ryb3llZCwgYnV0IGRvZXNuJ3Qg
+c2VlbSB0byBiZQo+IHVzZWQgb3IgcmVmZXJlbmNlZCBhbnl3aGVyZSBpbiB0aGUgY29kZS4KPgo+
+IFNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+
+IC0tLQo+IFJlc2VuZGluZyBhZnRlciBmaXhpbmcgdHlwbyBpbiBlbWFpbCBhZGRyZXNzIC0gYXBv
+bG9naWVzIGZvciB0aGUgaW5jb252ZW5pZW5jZS4KPgo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jIHwgMyAtLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uaCB8IDIgLS0KPiAgMiBmaWxlcyBjaGFuZ2VkLCA1IGRl
+bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
+dmMwL252YzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMw
+X3NjcmVlbi5jCj4gaW5kZXggYTc1ODFmMjg2Y2ZjLi42MWIzODE2OTMyMjQgMTAwNjQ0Cj4gLS0t
+IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwo+ICsrKyBi
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPiBAQCAtNDA3
+LDggKzQwNyw2IEBAIG52YzBfc2NyZWVuX2Rlc3Ryb3koc3RydWN0IHBpcGVfc2NyZWVuICpwc2Ny
+ZWVuKQo+Cj4gICAgIEZSRUUoc2NyZWVuLT50aWMuZW50cmllcyk7Cj4KPiAtICAgbm91dmVhdV9t
+bV9kZXN0cm95KHNjcmVlbi0+bW1fVlJBTV9mZTApOwo+IC0KPiAgICAgbm91dmVhdV9vYmplY3Rf
+ZGVsKCZzY3JlZW4tPmVuZzNkKTsKPiAgICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPmVu
+ZzJkKTsKPiAgICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPm0ybWYpOwo+IEBAIC0xMDI3
+LDcgKzEwMjUsNiBAQCBudmMwX3NjcmVlbl9jcmVhdGUoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpk
+ZXYpCj4KPiAgICAgbW1fY29uZmlnLm52YzAudGlsZV9tb2RlID0gMDsKPiAgICAgbW1fY29uZmln
+Lm52YzAubWVtdHlwZSA9IDB4ZmUwOwo+IC0gICBzY3JlZW4tPm1tX1ZSQU1fZmUwID0gbm91dmVh
+dV9tbV9jcmVhdGUoZGV2LCBOT1VWRUFVX0JPX1ZSQU0sICZtbV9jb25maWcpOwo+Cj4gICAgIGlm
+ICghbnZjMF9ibGl0dGVyX2NyZWF0ZShzY3JlZW4pKQo+ICAgICAgICBnb3RvIGZhaWw7Cj4gZGlm
+ZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmgg
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oCj4gaW5kZXgg
+NDgwMjA1N2Y3MGVlLi44YTE5OTFmNTJlYjQgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uaAo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmgKPiBAQCAtNzMsOCArNzMsNiBAQCBzdHJ1Y3Qg
+bnZjMF9zY3JlZW4gewo+ICAgICAgICBib29sZWFuIG1wX2NvdW50ZXJzX2VuYWJsZWQ7Cj4gICAg
+IH0gcG07Cj4KPiAtICAgc3RydWN0IG5vdXZlYXVfbW1hbiAqbW1fVlJBTV9mZTA7Cj4gLQo+ICAg
+ICBzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKmVuZzNkOyAvKiBzcXJ0KDEvMil8a2VwbGVyPiArIHNx
+cnQoMS8yKXxmZXJtaT4gKi8KPiAgICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmcyZDsKPiAg
+ICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICptMm1mOwo+IC0tCj4gMi4xLjIKPgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
