@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28)
-Date: Mon, 17 Nov 2014 18:40:49 +0000
-Message-ID: <bug-54700-8800-KblrCUBtTn@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Logo Nouveau
+Date: Mon, 17 Nov 2014 19:27:58 +0000
+Message-ID: <546A4C3E.6030302@gmail.com>
+References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1025198339=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +17,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: valeria aguilera <aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>, "Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1025198339==
-Content-Type: multipart/alternative; boundary="1416249649.0ceD3.18158"; charset="UTF-8"
-
-
---1416249649.0ceD3.18158
-Date: Mon, 17 Nov 2014 18:40:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
-
---- Comment #70 from FVerrac <f0rhum-GANU6spQydw@public.gmane.org> ---
-Guys, if I can help in any maneer I'd be glad. I want you to know my video
-adapter is flashed with a bios update I found long time ago on dell's site (in
-my memory, this was a bios update for Windows).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416249649.0ceD3.18158
-Date: Mon, 17 Nov 2014 18:40:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c70">Comment # 70</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:f0rhum&#64;free.fr" title="FVerrac &lt;f0rhum&#64;free.fr&gt;"> <span class="fn">FVerrac</span></a>
-</span></b>
-        <pre>Guys, if I can help in any maneer I'd be glad. I want you to know my video
-adapter is flashed with a bios update I found long time ago on dell's site (in
-my memory, this was a bios update for Windows).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416249649.0ceD3.18158--
-
---===============1025198339==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1025198339==--
+SGkgVmFsZXJpYSwKCk9uIDE2LzExLzE0IDIwOjAzLCB2YWxlcmlhIGFndWlsZXJhIHdyb3RlOgo+
+IAo+IERlYXIgY29tbXVuaXR5IG1lbWJlcnMsCj4gCj4gCj4gSW0gYSBncmFwaGljIGRlc2lnbmVy
+IGFuZCBmb3IgdGhlIGxhc3QgY291cGxlIG9mIG1vbnRocyBJIGhhdmUgYmVlbiB3b3JraW5nIG9u
+IGEgbmV3IGxvZ28gZm9yIHRoZSBOb3V2ZWF1IHByb2plY3QuIEFmdGVyIHNlbmRpbmcgcHJlbGlt
+aW5hcnkgZGVzaWducyB0byBib3RoIE1hcnRpbiBQZXJlcyBhbmQgSWxpYSBNaXJraW4sIHdlIGhh
+dmUgZGVjaWRlZCB0byBzaGFyZSB0aGUgbG9nbyBpbiBvcmRlciB0byBnYXRoZXIgeW91ciBmZWVk
+YmFjay4gCj4gCj4gCj4gSSB3b3VsZCBsaWtlIHRvIGhpZ2hsaWdodCB0aGF0IHRoZSBsb2dvIGlu
+Y29ycG9yYXRlcyBhIHBlbmd1aW4gY29ycmVzcG9uZGluZyB0byB0aGUgbGludXgga2VybmVsIGNv
+bXBvbmVudHMgdXNlZCB0byBjcmVhdGUgdGhpcyBvcGVuIHNvdXJjZSBkcml2ZXIuIFRoZSAzRCBj
+dWJlL3NoYXBlIHJlcHJlc2VudHMgdGhlIDJEIGFuZCAzRCBhY2NlbGVyYXRpb24gY2FwYWJpbGl0
+eS4gVGhlIOKAnG7igJ0gc2ltcGx5IHN0YW5kcyBmb3IgdGhlIGZpcnN0IGxldHRlciBpbiBOb3V2
+ZWF1IGFuZCB0aGUgZ3JlZW4gY29sb3VyIHdhcyBjaG9zZW4gYmVjYXVzZSB0aGUgZHJpdmVyIGlz
+IGZvciBOVklESUEgdmlkZW8gY2FyZHMuCj4gCj4gCj4gUGxlYXNlIHByb3ZpZGUgTWFydGluIGFu
+ZCBJbGlhIHdpdGggeW91ciBjb21tZW50cyBhbmQgcHJlZmVyZW5jZXMsIHNpbmNlIHRoZXkgYm90
+aCBoYXZlIGJlZW4gdGhlIG9uZXMgZ2l2aW5nIG1lIHRoZSBkZXNpZ24gcmVxdWlyZW1lbnRzLiAK
+PiBWYWxlcmlhIEFndWlsZXJhLiAJCSAJICAgCQkgIAo+IApJJ20gbm90IHN1cmUgaWYgeW91IGFy
+ZSBhIG5vdXZlYXUgdXNlciBvciBub3QsIGRpZCB5b3UgaGVhciBhYm91dApub3V2ZWF1IGFuZCBk
+ZWNpZGVkIHRvIGRvIHRoaXMgbG9nbyBvciBvdGhlcndpc2UgYnV0IEkgYWJzb2x1dGVseSBsb3Zl
+CnRoZSBsb2dvLiBJIHNlZSBubyBwcm9ibGVtcyB3aXRoIGJlaW5nIHNsaWdodGx5IG9mZiBjZW50
+cmUsIHRoZSBjb2xvdXIKdG9uZXMgbG9vayBncmVhdCBhbmQgSSByZWFsbHkgbGlrZSB0aGUgcGVu
+Z3VpbidzIHBvc3R1cmUuCgpUaGFuayB5b3UKRW1pbAoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
