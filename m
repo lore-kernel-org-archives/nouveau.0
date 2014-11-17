@@ -1,12 +1,14 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
 Subject: Re: Logo Nouveau
-Date: Mon, 17 Nov 2014 21:55:59 +0100
-Message-ID: <546A60DF.7020404@free.fr>
-References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>
+Date: Mon, 17 Nov 2014 13:24:59 -0800
+Message-ID: <0eb04d89e4b6bdf7b3b3fcb5648d68a4@ultimatedns.net>
+References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>,
+ <546A60DF.7020404@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1647746470=="
+Content-Type: text/plain; charset="utf-8"; Format="fixed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0-MsuGFMq8XAE@public.gmane.org>
+In-Reply-To: <546A60DF.7020404-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,153 +18,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: valeria aguilera <aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>, "Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: valeria aguilera <aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>, "Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1647746470==
-Content-Type: multipart/alternative;
- boundary="------------020202030305010300040203"
-
-This is a multi-part message in MIME format.
---------------020202030305010300040203
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-On 16/11/14 21:03, valeria aguilera wrote:
-> Dear community members,
->
-> Im a graphic designer and for the last couple of months I have been=20
-> working on a new logo for the Nouveau project. After sending=20
-> preliminary designs to both Martin Peres and Ilia Mirkin, we have=20
-> decided to share the logo in order to gather your feedback.
->
-> I would like to highlight that the logo incorporates a penguin=20
-> corresponding to the linux kernel components used to create this open=20
-> source driver. The 3D cube/shape represents the 2D and 3D acceleration=20
-> capability. The =93n=94 simply stands for the first letter in Nouveau a=
-nd=20
-> the green colour was chosen because the driver is for NVIDIA video card=
-s.
->
-> Please provide Martin and Ilia with your comments and preferences,=20
-> since they both have been the ones giving me the design requirements.
->
-> Valeria Aguilera.
->
-
-Hi Valeria,
-
-Thanks for making this public!
-
-I would like to address here the "BSD not wanted" argument that seems to=20
-be implied by having a Penguin in the logo:
-- Nouveau does not currently run on any other kernel but Linux. I know=20
-that the BSDs are interested in porting Nouveau to their OS and I'm=20
-happy they are doing so, but I do not think any real development will=20
-happen on BSD unless both communities change heavily;
-- The architecture of Nouveau DRM has been thought to use as little=20
-dependencies to Linux as possible to ease porting (especially to work in=20
-the userspace).
-- Nouveau is under the MIT/X11 licence which is BSD-compatible!
-- Finally, historically, Nouveau has only been developed on Linux by=20
-Linux users.
-
-I personnally find the penguin extremely cute and I would rather want to=20
-keep it. I hope I have convinced you (and especially the BSD-hobbyists)=20
-that it does not mean we are hostile to BSD in any case!
-
-Cheers and thanks again for your contribution!
-
-Martin
-
---------------020202030305010300040203
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta content=3D"text/html; charset=3Dwindows-1252"
-      http-equiv=3D"Content-Type">
-  </head>
-  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 16/11/14 21:03, valeria aguilera
-      wrote:<br>
-    </div>
-    <blockquote cite=3D"mid:DUB120-W18B8C7DAD8D8E1C7DFF839858A0-MsuGFMq8XAE@public.gmane.org"
-      type=3D"cite">
-      <style><!--
-.hmmessage P
-{
-margin:0px;
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt;
-font-family:Calibri
-}
---></style>
-      <div dir=3D"ltr">Dear community members,
-        <p class=3D"p2">Im a graphic designer and for the last couple of
-          months I have been working on a new logo for the Nouveau
-          project. After sending preliminary designs to both Martin
-          Peres and Ilia Mirkin<span class=3D"s1">, </span>we have
-          decided to share the logo in order to gather your feedback.=A0<=
-/p>
-        <p class=3D"p2">I would like to highlight that the logo
-          incorporates a penguin corresponding to the linux kernel
-          components used to create this open source driver. The 3D
-          cube/shape represents the 2D and 3D acceleration capability.
-          The =93n=94 simply stands for the first letter in Nouveau and t=
-he
-          green colour was chosen because the driver is for NVIDIA video
-          cards.</p>
-        <p class=3D"p2">Please provide Martin and Ilia with your comments
-          and preferences, since they both have been the ones giving me
-          the design requirements.=A0</p>
-        <p class=3D"p2">Valeria Aguilera.</p>
-      </div>
-    </blockquote>
-    <br>
-    Hi Valeria,<br>
-    <br>
-    Thanks for making this public!<br>
-    <br>
-    I would like to address here the "BSD not wanted" argument that
-    seems to be implied by having a Penguin in the logo:<br>
-    - Nouveau does not currently run on any other kernel but Linux. I
-    know that the BSDs are interested in porting Nouveau to their OS and
-    I'm happy they are doing so, but I do not think any real development
-    will happen on BSD unless both communities change heavily;<br>
-    - The architecture of Nouveau DRM has been thought to use as little
-    dependencies to Linux as possible to ease porting (especially to
-    work in the userspace).<br>
-    - Nouveau is under the MIT/X11 licence which is BSD-compatible! <br>
-    - Finally, historically, Nouveau has only been developed on Linux by
-    Linux users.<br>
-    <br>
-    I personnally find the penguin extremely cute and I would rather
-    want to keep it. I hope I have convinced you (and especially the
-    BSD-hobbyists) that it does not mean we are hostile to BSD in any
-    case!<br>
-    <br>
-    Cheers and thanks again for your contribution!<br>
-    <br>
-    Martin<br>
-  </body>
-</html>
-
---------------020202030305010300040203--
-
---===============1647746470==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1647746470==--
+T24gTW9uLCAxNyBOb3YgMjAxNCAyMTo1NTo1OSArMDEwMCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5w
+ZXJlc0BmcmVlLmZyPiB3cm90ZQoKPiBPbiAxNi8xMS8xNCAyMTowMywgdmFsZXJpYSBhZ3VpbGVy
+YSB3cm90ZToKPiA+IERlYXIgY29tbXVuaXR5IG1lbWJlcnMsCj4gPgo+ID4gSW0gYSBncmFwaGlj
+IGRlc2lnbmVyIGFuZCBmb3IgdGhlIGxhc3QgY291cGxlIG9mIG1vbnRocyBJIGhhdmUgYmVlbiAK
+PiA+IHdvcmtpbmcgb24gYSBuZXcgbG9nbyBmb3IgdGhlIE5vdXZlYXUgcHJvamVjdC4gQWZ0ZXIg
+c2VuZGluZyAKPiA+IHByZWxpbWluYXJ5IGRlc2lnbnMgdG8gYm90aCBNYXJ0aW4gUGVyZXMgYW5k
+IElsaWEgTWlya2luLCB3ZSBoYXZlIAo+ID4gZGVjaWRlZCB0byBzaGFyZSB0aGUgbG9nbyBpbiBv
+cmRlciB0byBnYXRoZXIgeW91ciBmZWVkYmFjay4KPiA+Cj4gPiBJIHdvdWxkIGxpa2UgdG8gaGln
+aGxpZ2h0IHRoYXQgdGhlIGxvZ28gaW5jb3Jwb3JhdGVzIGEgcGVuZ3VpbiAKPiA+IGNvcnJlc3Bv
+bmRpbmcgdG8gdGhlIGxpbnV4IGtlcm5lbCBjb21wb25lbnRzIHVzZWQgdG8gY3JlYXRlIHRoaXMg
+b3BlbiAKPiA+IHNvdXJjZSBkcml2ZXIuIFRoZSAzRCBjdWJlL3NoYXBlIHJlcHJlc2VudHMgdGhl
+IDJEIGFuZCAzRCBhY2NlbGVyYXRpb24gCj4gPiBjYXBhYmlsaXR5LiBUaGUg4oCcbuKAnSBzaW1w
+bHkgc3RhbmRzIGZvciB0aGUgZmlyc3QgbGV0dGVyIGluIE5vdXZlYXUgYW5kIAo+ID4gdGhlIGdy
+ZWVuIGNvbG91ciB3YXMgY2hvc2VuIGJlY2F1c2UgdGhlIGRyaXZlciBpcyBmb3IgTlZJRElBIHZp
+ZGVvIGNhcmRzLgo+ID4KPiA+IFBsZWFzZSBwcm92aWRlIE1hcnRpbiBhbmQgSWxpYSB3aXRoIHlv
+dXIgY29tbWVudHMgYW5kIHByZWZlcmVuY2VzLCAKPiA+IHNpbmNlIHRoZXkgYm90aCBoYXZlIGJl
+ZW4gdGhlIG9uZXMgZ2l2aW5nIG1lIHRoZSBkZXNpZ24gcmVxdWlyZW1lbnRzLgo+ID4KPiA+IFZh
+bGVyaWEgQWd1aWxlcmEuCj4gPgo+IAo+IEhpIFZhbGVyaWEsCj4gCj4gVGhhbmtzIGZvciBtYWtp
+bmcgdGhpcyBwdWJsaWMhCj4gCj4gSSB3b3VsZCBsaWtlIHRvIGFkZHJlc3MgaGVyZSB0aGUgIkJT
+RCBub3Qgd2FudGVkIiBhcmd1bWVudCB0aGF0IHNlZW1zIHRvIAo+IGJlIGltcGxpZWQgYnkgaGF2
+aW5nIGEgUGVuZ3VpbiBpbiB0aGUgbG9nbzoKPiAtIE5vdXZlYXUgZG9lcyBub3QgY3VycmVudGx5
+IHJ1biBvbiBhbnkgb3RoZXIga2VybmVsIGJ1dCBMaW51eC4gSSBrbm93IAo+IHRoYXQgdGhlIEJT
+RHMgYXJlIGludGVyZXN0ZWQgaW4gcG9ydGluZyBOb3V2ZWF1IHRvIHRoZWlyIE9TIGFuZCBJJ20g
+Cj4gaGFwcHkgdGhleSBhcmUgZG9pbmcgc28sIGJ1dCBJIGRvIG5vdCB0aGluayBhbnkgcmVhbCBk
+ZXZlbG9wbWVudCB3aWxsIAo+IGhhcHBlbiBvbiBCU0QgdW5sZXNzIGJvdGggY29tbXVuaXRpZXMg
+Y2hhbmdlIGhlYXZpbHk7Cj4gLSBUaGUgYXJjaGl0ZWN0dXJlIG9mIE5vdXZlYXUgRFJNIGhhcyBi
+ZWVuIHRob3VnaHQgdG8gdXNlIGFzIGxpdHRsZSAKPiBkZXBlbmRlbmNpZXMgdG8gTGludXggYXMg
+cG9zc2libGUgdG8gZWFzZSBwb3J0aW5nIChlc3BlY2lhbGx5IHRvIHdvcmsgaW4gCj4gdGhlIHVz
+ZXJzcGFjZSkuCj4gLSBOb3V2ZWF1IGlzIHVuZGVyIHRoZSBNSVQvWDExIGxpY2VuY2Ugd2hpY2gg
+aXMgQlNELWNvbXBhdGlibGUhCj4gLSBGaW5hbGx5LCBoaXN0b3JpY2FsbHksIE5vdXZlYXUgaGFz
+IG9ubHkgYmVlbiBkZXZlbG9wZWQgb24gTGludXggYnkgCj4gTGludXggdXNlcnMuCj4gCj4gSSBw
+ZXJzb25uYWxseSBmaW5kIHRoZSBwZW5ndWluIGV4dHJlbWVseSBjdXRlIGFuZCBJIHdvdWxkIHJh
+dGhlciB3YW50IHRvIAo+IGtlZXAgaXQuIEkgaG9wZSBJIGhhdmUgY29udmluY2VkIHlvdSAoYW5k
+IGVzcGVjaWFsbHkgdGhlIEJTRC1ob2JieWlzdHMpIAo+IHRoYXQgaXQgZG9lcyBub3QgbWVhbiB3
+ZSBhcmUgaG9zdGlsZSB0byBCU0QgaW4gYW55IGNhc2UhCj4gCj4gQ2hlZXJzIGFuZCB0aGFua3Mg
+YWdhaW4gZm9yIHlvdXIgY29udHJpYnV0aW9uIQpOb3QgYXR0ZW1wdGluZyB0byB0YWtlIGFueSAq
+c2lkZSogb24gdGhlIG1hdHRlci4gQnV0IHJhdGhlciBmcm9tCmEgdmlldyB0byBjaXJjdW12ZW50
+IGFueSBzdWNoIHJlbGF0ZWQgImRpc2N1c3Npb24iLCBhbmQgKmZ1cnRoZXIqCm5vdCBhdHRlbXB0
+aW5nIHRvIHRha2UgYW55dGhpbmcgYXdheSBmcm9tIHRoZSBhcnRpc3RzIGhhcmQgd29yazsKYnV0
+IHdvdWxkbid0IGFuIE9TIGFnbm9zdGljIGFwcHJvYWNoIGJlIHRoZSAiaWRlYWwiIGNhbmRpZGF0
+ZT8KCkp1c3Qgc2F5aW5nLiA6KQoKLS1DaHJpcwo+IAo+IE1hcnRpbgoKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
