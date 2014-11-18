@@ -1,13 +1,14 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: Logo Nouveau
-Date: Tue, 18 Nov 2014 12:48:37 +0100
-Message-ID: <546B3215.7070607@free.fr>
-References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>
- <546A824F.5050307@gmail.com>
+From: Roland Scheidegger <sroland-pghWNbHTmq7QT0dZR+AlfA@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH] nv50/ir: saturate FRC result to
+ avoid completely bogus values
+Date: Tue, 18 Nov 2014 14:54:00 +0100
+Message-ID: <546B4F78.1060109@vmware.com>
+References: <1416283386-28170-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1441149402=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <546A824F.5050307-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <1416283386-28170-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,108 +18,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============1441149402==
-Content-Type: multipart/alternative;
- boundary="------------080907020904090000080906"
-
-This is a multi-part message in MIME format.
---------------080907020904090000080906
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 18/11/14 00:18, Christian Costa wrote:
-> Hi Valeria,
->
-> Very nice logo! Nice job! I like the ideas and the font. :)
-> Just few remarks about the visual appearance:
-> - A horizontally centered penguin would be better as the left part of 
-> the "n" appears thiner than the right one
-> - The bottom line of the "e" appears a little short to me
->
-> Thanks
-> Christian
-
-Hi Valeria,
-
-Christian's comments are indeed true. Could you address those concerns 
-for the next update?
-
-I know that the penguin is asymmetric so it is hard to horizontally 
-centre it but instead of centring it at its base, could you try to move 
-it so as the general mass is better centred?
-
-With this done, I guess delivering the logo as an svg file along with 
-its licence (have you had time to look at the creative commons?) would 
-be a great step.
-It would also be nice to have one logo without nouveau written (for 
-presentations) and one logo for the wiki (to replace the freedesktop 
-logo: http://nouveau.freedesktop.org/wiki/).
-
-Thanks again Valeria for your work! It is greatly appreciated :)
-Martin
-
---------------080907020904090000080906
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 18/11/14 00:18, Christian Costa
-      wrote:<br>
-    </div>
-    <blockquote cite="mid:546A824F.5050307-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" type="cite">
-      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-      <div class="moz-cite-prefix">Hi Valeria,<br>
-        <br>
-        Very nice logo! Nice job! I like the ideas and the font. :)<br>
-        Just few remarks about the visual appearance:<br>
-        - A horizontally centered penguin would be better as the left
-        part of the "n" appears thiner than the right one<br>
-        - The bottom line of the "e" appears a little short to me <br>
-        <br>
-        Thanks<br>
-        Christian<br>
-      </div>
-    </blockquote>
-    <br>
-    Hi Valeria,<br>
-    <br>
-    Christian's comments are indeed true. Could you address those
-    concerns for the next update? <br>
-    <br>
-    I know that the penguin is asymmetric so it is hard to horizontally
-    centre it but instead of centring it at its base, could you try to
-    move it so as the general mass is better centred?<br>
-    <br>
-    With this done, I guess delivering the logo as an svg file along
-    with its licence (have you had time to look at the creative
-    commons?) would be a great step.<br>
-    It would also be nice to have one logo without nouveau written (for
-    presentations) and one logo for the wiki (to replace the freedesktop
-    logo: <a class="moz-txt-link-freetext" href="http://nouveau.freedesktop.org/wiki/">http://nouveau.freedesktop.org/wiki/</a>).<br>
-    <br>
-    Thanks again Valeria for your work! It is greatly appreciated :)<br>
-    Martin<br>
-  </body>
-</html>
-
---------------080907020904090000080906--
-
---===============1441149402==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1441149402==--
+QW0gMTguMTEuMjAxNCB1bSAwNTowMyBzY2hyaWViIElsaWEgTWlya2luOgo+IEZvciB2YWx1ZXMg
+YWJvdmUgaW50ZWdlciBhY2N1cmFjeSBpbiBmbG9hdHMsIHZhbCAtIGZsb29yKHZhbCkgbWlnaHQK
+PiBhY3R1YWxseSBwcm9kdWNlIGEgdmFsdWUgZ3JlYXRlciB0aGFuIDEuIEZvciBzdWNoIGxhcmdl
+IGZsb2F0cywgaXQncwo+IHJlYXNvbmFibGUgdG8gYmUgaW1wcmVjaXNlLCBidXQgaXQncyB1bnJl
+YXNvbmFibGUgZm9yIEZSQyB0byByZXR1cm4gYQo+IHZhbHVlIHRoYXQgaXMgbm90IGJldHdlZW4g
+MCBhbmQgMS4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
+dC5lZHU+Cj4gLS0tCj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfZnJvbV90Z3NpLmNwcCB8IDMgKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
+KyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4gaW5kZXggNDFiOTFlOC4u
+ZTViNzY3ZiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPiBAQCAtMjUxMiw3ICsyNTEyLDggQEAg
+Q29udmVydGVyOjpoYW5kbGVJbnN0cnVjdGlvbihjb25zdCBzdHJ1Y3QgdGdzaV9mdWxsX2luc3Ry
+dWN0aW9uICppbnNuKQo+ICAgICAgICAgICBzcmMwID0gZmV0Y2hTcmMoMCwgYyk7Cj4gICAgICAg
+ICAgIHZhbDAgPSBnZXRTY3JhdGNoKCk7Cj4gICAgICAgICAgIG1rT3AxKE9QX0ZMT09SLCBUWVBF
+X0YzMiwgdmFsMCwgc3JjMCk7Cj4gLSAgICAgICAgIG1rT3AyKE9QX1NVQiwgVFlQRV9GMzIsIGRz
+dDBbY10sIHNyYzAsIHZhbDApOwo+ICsgICAgICAgICBta09wMihPUF9TVUIsIFRZUEVfRjMyLCB2
+YWwwLCBzcmMwLCB2YWwwKTsKPiArICAgICAgICAgbWtPcDEoT1BfU0FULCBUWVBFX0YzMiwgZHN0
+MFtjXSwgdmFsMCk7Cj4gICAgICAgIH0KPiAgICAgICAgYnJlYWs7Cj4gICAgIGNhc2UgVEdTSV9P
+UENPREVfUk9VTkQ6Cj4gCgpJIGRvbid0IHVuZGVyc3RhbmQgdGhlIG1hdGggYmVoaW5kIHRoaXMu
+IEZvciBhbnkgc3VjaCBsYXJnZSBudW1iZXIsIGFzCmZhciBhcyBJIGNhbiB0ZWxsIGZsb29yKHZh
+bCkgPT0gdmFsIGFuZCBoZW5jZSB0aGUgZW5kIHJlc3VsdCBvdWdodCB0byBiZQp6ZXJvLiBPciBk
+b2Vzbid0IHlvdXIgZmxvb3Igd29yayBsaWtlIHRoYXQ/CgpSb2xhbmQKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
