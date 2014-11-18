@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77674] [NVE7] "failed to read DPCD" on wake up with
- external monitor
-Date: Tue, 18 Nov 2014 07:36:03 +0000
-Message-ID: <bug-77674-8800-T0YRmUCDcn@http.bugs.freedesktop.org/>
-References: <bug-77674-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Logo Nouveau
+Date: Tue, 18 Nov 2014 12:26:52 +0100
+Message-ID: <546B2CFC.9010802@free.fr>
+References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>
+ <546A60DF.7020404@free.fr> <546A90B0.4010204@FreeBSD.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1710522557=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77674-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <546A90B0.4010204-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,102 +18,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?B?SmVhbi1Tw6liYXN0aWVuIFDDqWRyb24=?= <dumbbell-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, valeria aguilera <aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1710522557==
-Content-Type: multipart/alternative; boundary="1416296163.24e0deAA2.22560"; charset="UTF-8"
-
-
---1416296163.24e0deAA2.22560
-Date: Tue, 18 Nov 2014 07:36:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77674
-
---- Comment #8 from Dominique Dumont <domi.dumont-GANU6spQydw@public.gmane.org> ---
-Hello
-
-I have a similar problem with my laptop:
-01:00.0 VGA compatible controller: NVIDIA Corporation GF106GLM [Quadro 2000M]
-(rev a1)
-kernel: SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
-
-The options nouveau.debug=VBIOS=trace,PDISP=trace,I2C=trace drm.debug=0xe does
-make the setup more robust, but I has a crash this morning while expanding the
-screen display to an external monitor connected to a dock station.
-
-For what it's worth, I've attached a kern.log generated with the above trace
-from the wake up of the machine up to the crash.
-
-
-Hope this helps
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416296163.24e0deAA2.22560
-Date: Tue, 18 Nov 2014 07:36:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] &quot;failed to read DPCD&quot; on wake up with external monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77674">bug 77674</a>
-              from <span class="vcard"><a class="email" href="mailto:domi.dumont&#64;free.fr" title="Dominique Dumont &lt;domi.dumont&#64;free.fr&gt;"> <span class="fn">Dominique Dumont</span></a>
-</span></b>
-        <pre>Hello
-
-I have a similar problem with my laptop:
-01:00.0 VGA compatible controller: NVIDIA Corporation GF106GLM [Quadro 2000M]
-(rev a1)
-kernel: SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
-
-The options nouveau.debug=VBIOS=trace,PDISP=trace,I2C=trace drm.debug=0xe does
-make the setup more robust, but I has a crash this morning while expanding the
-screen display to an external monitor connected to a dock station.
-
-For what it's worth, I've attached a kern.log generated with the above trace
-from the wake up of the machine up to the crash.
-
-
-Hope this helps</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416296163.24e0deAA2.22560--
-
---===============1710522557==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1710522557==--
+T24gMTgvMTEvMTQgMDE6MjAsIEplYW4tU8OpYmFzdGllbiBQw6lkcm9uIHdyb3RlOgo+IE9uIDE3
+LjExLjIwMTQgMjE6NTUsIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4gSSB3b3VsZCBsaWtlIHRvIGFk
+ZHJlc3MgaGVyZSB0aGUgIkJTRCBub3Qgd2FudGVkIiBhcmd1bWVudCB0aGF0IHNlZW1zIHRvCj4+
+IGJlIGltcGxpZWQgYnkgaGF2aW5nIGEgUGVuZ3VpbiBpbiB0aGUgbG9nbzoKPj4gLSBOb3V2ZWF1
+IGRvZXMgbm90IGN1cnJlbnRseSBydW4gb24gYW55IG90aGVyIGtlcm5lbCBidXQgTGludXguIEkg
+a25vdwo+PiB0aGF0IHRoZSBCU0RzIGFyZSBpbnRlcmVzdGVkIGluIHBvcnRpbmcgTm91dmVhdSB0
+byB0aGVpciBPUyBhbmQgSSdtCj4+IGhhcHB5IHRoZXkgYXJlIGRvaW5nIHNvLCBidXQgSSBkbyBu
+b3QgdGhpbmsgYW55IHJlYWwgZGV2ZWxvcG1lbnQgd2lsbAo+PiBoYXBwZW4gb24gQlNEIHVubGVz
+cyBib3RoIGNvbW11bml0aWVzIGNoYW5nZSBoZWF2aWx5Owo+IEFzIGEgRnJlZUJTRCBkZXZlbG9w
+ZXIsIEkgdGFrZSBubyBvZmZlbnNlIGluIHRoaXMgbG9nbyBhbmQgZmluZCBpdCB2ZXJ5Cj4gYmVh
+dXRpZnVsIGluIGZhY3QgOi0pIEJlc2lkZSBiZWluZyB0aGUgTGludXggbWFzY290LCBJIHRoaW5r
+IFR1eCBvZnRlbgo+IHJlcHJlc2VudHMgRnJlZSBTb2Z0d2FyZSBpbiBwZW9wbGUgbWluZHMuIE9m
+IGNvdXJzZSBzb21lIHVzZXJzIHdpbGwKPiB0aGluayB0aGF0IE5vdXZlYXUgaXMgc3BlY2lmaWMg
+dG8gTGludXggd2hlbiB0aGV5IHNlZSB0aGlzIGxvZ28sIGJ1dCB0aGUKPiBkYXkgd2Ugd29yayBv
+biBwb3J0aW5nIHRoZSBkcml2ZXIsIGl0J3Mgb3VyIGpvYiB0byBjb21tdW5pY2F0ZSB0aGUgZmFj
+dAo+IHRoYXQgaXQgd29ya3Mgb24gRnJlZUJTRCB0b28uCgpJIHdhcyBzdXJlIHlvdSB3b3VsZCBu
+b3QgbWluZCwgYnV0IGl0J3MgZ29vZCB0byBzZWUgaXQgaW4gcHVibGljIQoKPgo+IEFsbCBpbiBh
+bGwsIHRoZSBsb2dvIHdvbid0IHN0b3AgdXMgZnJvbSBzdGVhbGluZyBOb3V2ZWF1IDotKQoKSSBo
+b3BlIG5vdCEgSW5kZWVkIQoKPiBDb25ncmF0dWxhdGlvbnMgVmFsZXJpYSBmb3IgeW91ciB3b3Jr
+IQpBZ3JlZWQhCgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
