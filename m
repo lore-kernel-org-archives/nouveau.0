@@ -1,14 +1,13 @@
 From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
 Subject: Re: Logo Nouveau
-Date: Tue, 18 Nov 2014 12:26:52 +0100
-Message-ID: <546B2CFC.9010802@free.fr>
+Date: Tue, 18 Nov 2014 12:48:37 +0100
+Message-ID: <546B3215.7070607@free.fr>
 References: <DUB120-W18B8C7DAD8D8E1C7DFF839858A0@phx.gbl>
- <546A60DF.7020404@free.fr> <546A90B0.4010204@FreeBSD.org>
+ <546A824F.5050307@gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1441149402=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <546A90B0.4010204-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>
+In-Reply-To: <546A824F.5050307-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,28 +17,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?SmVhbi1Tw6liYXN0aWVuIFDDqWRyb24=?= <dumbbell-HZy0K5TPuP5AfugRpC6u6w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, valeria aguilera <aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+To: Christian Costa <titan.costa-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, aire.lav-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMTEvMTQgMDE6MjAsIEplYW4tU8OpYmFzdGllbiBQw6lkcm9uIHdyb3RlOgo+IE9uIDE3
-LjExLjIwMTQgMjE6NTUsIE1hcnRpbiBQZXJlcyB3cm90ZToKPj4gSSB3b3VsZCBsaWtlIHRvIGFk
-ZHJlc3MgaGVyZSB0aGUgIkJTRCBub3Qgd2FudGVkIiBhcmd1bWVudCB0aGF0IHNlZW1zIHRvCj4+
-IGJlIGltcGxpZWQgYnkgaGF2aW5nIGEgUGVuZ3VpbiBpbiB0aGUgbG9nbzoKPj4gLSBOb3V2ZWF1
-IGRvZXMgbm90IGN1cnJlbnRseSBydW4gb24gYW55IG90aGVyIGtlcm5lbCBidXQgTGludXguIEkg
-a25vdwo+PiB0aGF0IHRoZSBCU0RzIGFyZSBpbnRlcmVzdGVkIGluIHBvcnRpbmcgTm91dmVhdSB0
-byB0aGVpciBPUyBhbmQgSSdtCj4+IGhhcHB5IHRoZXkgYXJlIGRvaW5nIHNvLCBidXQgSSBkbyBu
-b3QgdGhpbmsgYW55IHJlYWwgZGV2ZWxvcG1lbnQgd2lsbAo+PiBoYXBwZW4gb24gQlNEIHVubGVz
-cyBib3RoIGNvbW11bml0aWVzIGNoYW5nZSBoZWF2aWx5Owo+IEFzIGEgRnJlZUJTRCBkZXZlbG9w
-ZXIsIEkgdGFrZSBubyBvZmZlbnNlIGluIHRoaXMgbG9nbyBhbmQgZmluZCBpdCB2ZXJ5Cj4gYmVh
-dXRpZnVsIGluIGZhY3QgOi0pIEJlc2lkZSBiZWluZyB0aGUgTGludXggbWFzY290LCBJIHRoaW5r
-IFR1eCBvZnRlbgo+IHJlcHJlc2VudHMgRnJlZSBTb2Z0d2FyZSBpbiBwZW9wbGUgbWluZHMuIE9m
-IGNvdXJzZSBzb21lIHVzZXJzIHdpbGwKPiB0aGluayB0aGF0IE5vdXZlYXUgaXMgc3BlY2lmaWMg
-dG8gTGludXggd2hlbiB0aGV5IHNlZSB0aGlzIGxvZ28sIGJ1dCB0aGUKPiBkYXkgd2Ugd29yayBv
-biBwb3J0aW5nIHRoZSBkcml2ZXIsIGl0J3Mgb3VyIGpvYiB0byBjb21tdW5pY2F0ZSB0aGUgZmFj
-dAo+IHRoYXQgaXQgd29ya3Mgb24gRnJlZUJTRCB0b28uCgpJIHdhcyBzdXJlIHlvdSB3b3VsZCBu
-b3QgbWluZCwgYnV0IGl0J3MgZ29vZCB0byBzZWUgaXQgaW4gcHVibGljIQoKPgo+IEFsbCBpbiBh
-bGwsIHRoZSBsb2dvIHdvbid0IHN0b3AgdXMgZnJvbSBzdGVhbGluZyBOb3V2ZWF1IDotKQoKSSBo
-b3BlIG5vdCEgSW5kZWVkIQoKPiBDb25ncmF0dWxhdGlvbnMgVmFsZXJpYSBmb3IgeW91ciB3b3Jr
-IQpBZ3JlZWQhCgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+This is a multi-part message in MIME format.
+--===============1441149402==
+Content-Type: multipart/alternative;
+ boundary="------------080907020904090000080906"
+
+This is a multi-part message in MIME format.
+--------------080907020904090000080906
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 18/11/14 00:18, Christian Costa wrote:
+> Hi Valeria,
+>
+> Very nice logo! Nice job! I like the ideas and the font. :)
+> Just few remarks about the visual appearance:
+> - A horizontally centered penguin would be better as the left part of 
+> the "n" appears thiner than the right one
+> - The bottom line of the "e" appears a little short to me
+>
+> Thanks
+> Christian
+
+Hi Valeria,
+
+Christian's comments are indeed true. Could you address those concerns 
+for the next update?
+
+I know that the penguin is asymmetric so it is hard to horizontally 
+centre it but instead of centring it at its base, could you try to move 
+it so as the general mass is better centred?
+
+With this done, I guess delivering the logo as an svg file along with 
+its licence (have you had time to look at the creative commons?) would 
+be a great step.
+It would also be nice to have one logo without nouveau written (for 
+presentations) and one logo for the wiki (to replace the freedesktop 
+logo: http://nouveau.freedesktop.org/wiki/).
+
+Thanks again Valeria for your work! It is greatly appreciated :)
+Martin
+
+--------------080907020904090000080906
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 18/11/14 00:18, Christian Costa
+      wrote:<br>
+    </div>
+    <blockquote cite="mid:546A824F.5050307-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" type="cite">
+      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+      <div class="moz-cite-prefix">Hi Valeria,<br>
+        <br>
+        Very nice logo! Nice job! I like the ideas and the font. :)<br>
+        Just few remarks about the visual appearance:<br>
+        - A horizontally centered penguin would be better as the left
+        part of the "n" appears thiner than the right one<br>
+        - The bottom line of the "e" appears a little short to me <br>
+        <br>
+        Thanks<br>
+        Christian<br>
+      </div>
+    </blockquote>
+    <br>
+    Hi Valeria,<br>
+    <br>
+    Christian's comments are indeed true. Could you address those
+    concerns for the next update? <br>
+    <br>
+    I know that the penguin is asymmetric so it is hard to horizontally
+    centre it but instead of centring it at its base, could you try to
+    move it so as the general mass is better centred?<br>
+    <br>
+    With this done, I guess delivering the logo as an svg file along
+    with its licence (have you had time to look at the creative
+    commons?) would be a great step.<br>
+    It would also be nice to have one logo without nouveau written (for
+    presentations) and one logo for the wiki (to replace the freedesktop
+    logo: <a class="moz-txt-link-freetext" href="http://nouveau.freedesktop.org/wiki/">http://nouveau.freedesktop.org/wiki/</a>).<br>
+    <br>
+    Thanks again Valeria for your work! It is greatly appreciated :)<br>
+    Martin<br>
+  </body>
+</html>
+
+--------------080907020904090000080906--
+
+--===============1441149402==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1441149402==--
