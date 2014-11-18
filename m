@@ -1,84 +1,128 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH] nv50/ir: saturate FRC result to avoid
- completely bogus values
-Date: Tue, 18 Nov 2014 10:03:46 -0500
-Message-ID: <CAKb7Uvi4sQPShoLPHC0d8m9b97Y53nP5zZ_PQt+3LE80BuhEMw@mail.gmail.com>
-References: <1416283386-28170-1-git-send-email-imirkin@alum.mit.edu>
- <546B4F78.1060109@vmware.com>
- <CAKb7UvhuTvXzC8VTMcyTVd=fyVA3MwuiL7AXVYyfJ8j01kKtwg@mail.gmail.com>
- <546B58DD.3060202@vmware.com> <546B5D67.5060503@vmware.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Tue, 18 Nov 2014 15:42:56 +0000
+Message-ID: <bug-85160-8800-ITWqwNSe8W@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <546B5D67.5060503@vmware.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Jose Fonseca <jfonseca@vmware.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1112396385=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMTgsIDIwMTQgYXQgOTo1MyBBTSwgSm9zZSBGb25zZWNhIDxqZm9uc2VjYUB2
-bXdhcmUuY29tPiB3cm90ZToKPiBPbiAxOC8xMS8xNCAxNDozNCwgUm9sYW5kIFNjaGVpZGVnZ2Vy
-IHdyb3RlOgo+Pgo+PiBBbSAxOC4xMS4yMDE0IHVtIDE1OjA1IHNjaHJpZWIgSWxpYSBNaXJraW46
-Cj4+Pgo+Pj4gT24gVHVlLCBOb3YgMTgsIDIwMTQgYXQgODo1NCBBTSwgUm9sYW5kIFNjaGVpZGVn
-Z2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+Cj4+PiB3cm90ZToKPj4+Pgo+Pj4+IEFtIDE4LjExLjIw
-MTQgdW0gMDU6MDMgc2NocmllYiBJbGlhIE1pcmtpbjoKPj4+Pj4KPj4+Pj4gRm9yIHZhbHVlcyBh
-Ym92ZSBpbnRlZ2VyIGFjY3VyYWN5IGluIGZsb2F0cywgdmFsIC0gZmxvb3IodmFsKSBtaWdodAo+
-Pj4+PiBhY3R1YWxseSBwcm9kdWNlIGEgdmFsdWUgZ3JlYXRlciB0aGFuIDEuIEZvciBzdWNoIGxh
-cmdlIGZsb2F0cywgaXQncwo+Pj4+PiByZWFzb25hYmxlIHRvIGJlIGltcHJlY2lzZSwgYnV0IGl0
-J3MgdW5yZWFzb25hYmxlIGZvciBGUkMgdG8gcmV0dXJuIGEKPj4+Pj4gdmFsdWUgdGhhdCBpcyBu
-b3QgYmV0d2VlbiAwIGFuZCAxLgo+Pj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtp
-biA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+Pj4+IC0tLQo+Pj4+PiAgIHNyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCB8IDMgKystCj4+Pj4+
-ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+Pj4+Pgo+
-Pj4+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
-MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
-ZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCj4+Pj4+IGluZGV4IDQxYjkxZTguLmU1Yjc2N2Yg
-MTAwNjQ0Cj4+Pj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXJfZnJvbV90Z3NpLmNwcAo+Pj4+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAKPj4+Pj4gQEAgLTI1MTIsNyArMjUxMiw4
-IEBAIENvbnZlcnRlcjo6aGFuZGxlSW5zdHJ1Y3Rpb24oY29uc3Qgc3RydWN0Cj4+Pj4+IHRnc2lf
-ZnVsbF9pbnN0cnVjdGlvbiAqaW5zbikKPj4+Pj4gICAgICAgICAgICBzcmMwID0gZmV0Y2hTcmMo
-MCwgYyk7Cj4+Pj4+ICAgICAgICAgICAgdmFsMCA9IGdldFNjcmF0Y2goKTsKPj4+Pj4gICAgICAg
-ICAgICBta09wMShPUF9GTE9PUiwgVFlQRV9GMzIsIHZhbDAsIHNyYzApOwo+Pj4+PiAtICAgICAg
-ICAgbWtPcDIoT1BfU1VCLCBUWVBFX0YzMiwgZHN0MFtjXSwgc3JjMCwgdmFsMCk7Cj4+Pj4+ICsg
-ICAgICAgICBta09wMihPUF9TVUIsIFRZUEVfRjMyLCB2YWwwLCBzcmMwLCB2YWwwKTsKPj4+Pj4g
-KyAgICAgICAgIG1rT3AxKE9QX1NBVCwgVFlQRV9GMzIsIGRzdDBbY10sIHZhbDApOwo+Pj4+PiAg
-ICAgICAgIH0KPj4+Pj4gICAgICAgICBicmVhazsKPj4+Pj4gICAgICBjYXNlIFRHU0lfT1BDT0RF
-X1JPVU5EOgo+Pj4+Pgo+Pj4+Cj4+Pj4gSSBkb24ndCB1bmRlcnN0YW5kIHRoZSBtYXRoIGJlaGlu
-ZCB0aGlzLiBGb3IgYW55IHN1Y2ggbGFyZ2UgbnVtYmVyLCBhcwo+Pj4+IGZhciBhcyBJIGNhbiB0
-ZWxsIGZsb29yKHZhbCkgPT0gdmFsIGFuZCBoZW5jZSB0aGUgZW5kIHJlc3VsdCBvdWdodCB0byBi
-ZQo+Pj4+IHplcm8uIE9yIGRvZXNuJ3QgeW91ciBmbG9vciB3b3JrIGxpa2UgdGhhdD8KPj4+Cj4+
-Pgo+Pj4gSSBjb3VsZCBiZSB0aGlua2luZyBhYm91dCB0aGlzIGJhY2t3YXJkcywgYnV0IGxldCdz
-IHNheSB0aGF0IGZsb2F0cwo+Pj4gbG9zZSBpbnRlZ2VyIHByZWNpc2lvbiBhdCAxMC4wLiBBbmQg
-SSBkbyBmbG9vcigxMi41KS4uLiBub3JtYWxseSB0aGlzCj4+PiB3b3VsZCBiZSAxMi4wLCBidXQg
-c2luY2UgdGhhdCdzIG5vdCBleGFjdGx5IHJlcHJlc2VudGFibGUsIGl0IG1pZ2h0Cj4+PiBhY3R1
-YWxseSBiZSAxMS4wLiAoT3Igd291bGQgaXQgYmUgMTEuOTk4Nz8gSSBkaWRuJ3QgY29uc2lkZXIg
-dGhhdAo+Pj4gcG9zc2liaWxpdHkuLi4pIEFuZCB0aGVuIDEyLjUgLSAxMSA9IDEuNS4gT3IgYW0g
-SSB0aGlua2luZyBhYm91dCB0aGlzCj4+PiBiYWNrd2FyZHM/IEkgZ3Vlc3MgaWRlYWxseSBJJ2Qg
-ZG8gc29tZXRoaW5nIGFsb25nIHRoZSBsaW5lcyBvZiB5ID0geCAtCj4+PiBmbG9vcih4KTsgcmV0
-dXJuIHkgLSBmbG9vcih5KS4gVGhhdCBzZWVtcyBsaWtlIGl0IG1pZ2h0IGJlIG1vcmUKPj4+IGFj
-Y3VyYXRlLi4uIG5vdCBzdXJlLgo+Pj4KPj4gSWYgeW91ciBmbG9hdCBpcyBsYXJnZSBlbm91Z2gg
-dGhhdCB0aGUgbmV4dCBjbG9zZXN0IGZsb2F0IGlzIG1vcmUgdGhhbgo+PiAxLjAgYXdheSwgdGhl
-biB0aGF0IGZsb2F0IHdvdWxkIGhhdmUgYmVlbiBhbiBleGFjdCBpbnRlZ2VyLCB0aHVzIGZsb29y
-KCkKPj4gZG9pbmcgbm90aGluZy4KPj4KPj4gUm9sYW5kCj4KPgo+IFJvbGFuZCdzIHJpZ2h0IC0t
-IGl0IHRha2VzIGxlc3MgbWFudGlzc2EgYml0cyB0byByZXByZXNlbnQgYW4gaW50ZWdlciB4LAo+
-IHRoYW4gYSBmcmFjdGlvbmFsIG51bWJlciBiZXR3ZWVuIHggYW5kIHggKyAxCj4KPiBUaGUgb25s
-eSBjYXNlIHdoZXJlIGBmcmFjKHgpID0geCAtIGZsb29yKHgpYCBmYWlscyBpcyB3aGVuIHggaXMg
-YSBuZWdhdGl2ZQo+IGRlbm9ybWFsLiBJdCBtaWdodCBnaXZlIDEuMGYgaW5zdGVhZCBvZiAwLjBm
-LCBpZiB0aGUgaGFyZHdhcmUgaXMgbm90IHNldHVwCj4gdG8gZmx1c2ggZGVub3JtYWxzIHRvIHpl
-cm8gcHJvcGVybHkuCgpWZXJ5IGNvb2wuIFRoaXMgcGF0Y2ggd2Fzbid0IGluIHJlc3BvbnNlIHRv
-IGFuIGFjdHVhbCBpc3N1ZSBidXQgcmF0aGVyCmEgdGhlb3JldGljYWwgb25lLiBTb3VuZHMgbGlr
-ZSBJIGdvdCB0aGUgdGhlb3J5IGEgbGl0dGxlIHdyb25nLi4uIHRpbWUKdG8gdGhpbmsgbW9yZSBh
-Ym91dCBmbG9hdHMgOikKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bWVzYS1kZXYK
+
+--===============1112396385==
+Content-Type: multipart/alternative; boundary="1416325376.7bdfb2.7183"; charset="UTF-8"
+
+
+--1416325376.7bdfb2.7183
+Date: Tue, 18 Nov 2014 15:42:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
+
+Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #27 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+The fix for this bug was merged in kernel 3.18 RC5. Thank you all for your
+feedback. If your problem persists with kernel 3.18 RC5 or newer, please
+re-open this bug.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+
+--1416325376.7bdfb2.7183
+Date: Tue, 18 Nov 2014 15:42:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>ASSIGNED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c27">Comment # 27</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+</span></b>
+        <pre>The fix for this bug was merged in kernel 3.18 RC5. Thank you all for your
+feedback. If your problem persists with kernel 3.18 RC5 or newer, please
+re-open this bug.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416325376.7bdfb2.7183--
+
+--===============1112396385==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1112396385==--
