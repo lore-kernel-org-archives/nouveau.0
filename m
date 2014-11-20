@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67277] Lockdep splat on kernel 3.10.0
-Date: Thu, 20 Nov 2014 20:11:49 +0000
-Message-ID: <bug-67277-8800-91FoIc49GO@http.bugs.freedesktop.org/>
-References: <bug-67277-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 79912] Nouveau unuseable with 3 monitors and a
+	geforce GTX 670
+Date: Thu, 20 Nov 2014 20:32:28 +0000
+Message-ID: <bug-79912-8800-ENNPJcj3K0@http.bugs.freedesktop.org/>
+References: <bug-79912-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0042369612=="
+Content-Type: multipart/mixed; boundary="===============0946114282=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67277-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-79912-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0042369612==
-Content-Type: multipart/alternative; boundary="1416514309.4c6de2.17499"; charset="UTF-8"
+--===============0946114282==
+Content-Type: multipart/alternative; boundary="1416515548.DcCB7b4c1.24043"; charset="UTF-8"
 
 
---1416514309.4c6de2.17499
-Date: Thu, 20 Nov 2014 20:11:49 +0000
+--1416515548.DcCB7b4c1.24043
+Date: Thu, 20 Nov 2014 20:32:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67277
+https://bugs.freedesktop.org/show_bug.cgi?id=79912
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+It seems like there are a bunch of different and unrelated issues here. HDMI +
+purple line has been fixed (in 3.18-rcX by commit
+a522946174b5ae389af0856c422d865a63c70316). That warning is weird... feels like
+perhaps you're running on a kernel with CMA enabled? If so, disable it.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This code has been changed significantly by now, hopefully these issues are
-also long gone. Feel free to reopen if it's the same issue; if you're seeing
-different lockdep splats, please open a new issue not to have polluted history.
+Please test this out on 3.18-rc5 or later.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416514309.4c6de2.17499
-Date: Thu, 20 Nov 2014 20:11:49 +0000
+--1416515548.DcCB7b4c1.24043
+Date: Thu, 20 Nov 2014 20:32:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,50 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277#c6">Comment # 6</a>
+          bz_status_NEW "
+   title="NEW - Nouveau unuseable with 3 monitors and a geforce GTX 670"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79912#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
+          bz_status_NEW "
+   title="NEW - Nouveau unuseable with 3 monitors and a geforce GTX 670"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=79912">bug 79912</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This code has been changed significantly by now, hopefully these issues are
-also long gone. Feel free to reopen if it's the same issue; if you're seeing
-different lockdep splats, please open a new issue not to have polluted history.</pre>
+        <pre>It seems like there are a bunch of different and unrelated issues here. HDMI +
+purple line has been fixed (in 3.18-rcX by commit
+a522946174b5ae389af0856c422d865a63c70316). That warning is weird... feels like
+perhaps you're running on a kernel with CMA enabled? If so, disable it.
+
+Please test this out on 3.18-rc5 or later.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +83,9 @@ different lockdep splats, please open a new issue not to have polluted history.<
     </body>
 </html>
 
---1416514309.4c6de2.17499--
+--1416515548.DcCB7b4c1.24043--
 
---===============0042369612==
+--===============0946114282==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0042369612==--
+--===============0946114282==--
