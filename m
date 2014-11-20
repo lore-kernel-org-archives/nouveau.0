@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Second copy engine on GF116
-Date: Thu, 20 Nov 2014 14:18:02 -0500
-Message-ID: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 67277] Lockdep splat on kernel 3.10.0
+Date: Thu, 20 Nov 2014 20:11:49 +0000
+Message-ID: <bug-67277-8800-91FoIc49GO@http.bugs.freedesktop.org/>
+References: <bug-67277-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0042369612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-67277-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,32 +16,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpUaGVyZSdzIGEgbG9uZy1zdGFuZGluZyBidWcgb24gbm91dmVhdSAodGhpcyBpcyBh
-IHNhbXBsZSBidWcsIGJ1dCB0aGUKaXNzdWUgaGFzIGJlZW4gYXJvdW5kIGZvciBhIHdoaWxlOgpo
-dHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD04NTQ2NSkgd2hlcmVi
-eSB3ZSBhdHRlbXB0CnRvIHVzZSB0aGUgc2Vjb25kIFBDT1BZIGVuZ2luZSBvbiBHRjExNiwgYW5k
-IGl0IGlzIHNvbWV0aW1lcyBkb2VzCm5vdGhpbmcsIGRlc3BpdGUgbW1pbyByZWdpc3RlciAyMjUw
-MCBzYXlpbmcgdGhhdCBpdCdzIG5vdCBkaXNhYmxlZAooMHgyMjUwMCA9PSAwIGZvciB0aGlzIHVz
-ZXIpLiBJbiB0aGUgYnVnIHlvdSBjYW4gc2VlIGEgZHVtcCBmcm9tCjIyNDAwLi4yMjYwMCwgYW5k
-IGFsbCB2YWx1ZXMgYWZ0ZXIgMjI0NDAgYXJlIHJlYWQgYXMgMC4gVGhlIGlzc3VlCmFwcGVhcnMg
-dG8gYmUgbW9yZSBjb21tb24gb24gbW9iaWxlIEdGMTE2J3MsIGJ1dCBJIGRvbid0IGtub3cgdGhh
-dCB0aGUKY29ycmVsYXRpb24gaXMgMTAwJS4gTm8gZXJyb3JzIGFyZSByZXBvcnRlZCBieSB0aGUg
-RklGTyBvciBpbnZhbGlkCm1taW8gcmVhZHMsIGJ1dCB0aGUgZGF0YSB0cmFuc2ZlciBqdXN0IGRv
-ZXMgbm90IGhhcHBlbi4gU3dpdGNoaW5nIHRvCnVzaW5nIHRoZSBmaXJzdCBjb3B5IGVuZ2luZSBy
-ZXNvbHZlcyB0aGluZ3MsIHNvIGl0J3MgdW5saWtlbHkgdG8gYmUgYQptb3JlIHN5c3RlbWljIGlz
-c3VlIGluIG5vdXZlYXUncyB1c2FnZSBvZiB0aGUgY29weSBlbmdpbmUuCgpUbyBiZSBjbGVhciwg
-d2hlbiBJJ20gdGFsa2luZyBhYm91dCB0aGUgc2Vjb25kIFBDT1BZIGVuZ2luZSwgSSdtCnRhbGtp
-bmcgYWJvdXQgdGhlIGVuZ2luZSBhdCBtbWlvIDB4MTA1MDAwLCBhbmQgd2hvc2UgZmlmbyBjbGFz
-cyBpZCBpcwoweDkwYjguCgpBbnkgaW5mb3JtYXRpb24gb24gcHJvcGVybHkgZGV0ZWN0aW5nIHRo
-YXQgdGhlIGVuZ2luZSBpcywgaW4gZmFjdCwKbWlzc2luZywgd291bGQgYmUgZ3JlYXRseSBhcHBy
-ZWNpYXRlZC4gT3IsIGNvbnZlcnNlbHksIGFuIGFzc3VyYW5jZQp0aGF0IHRoZSBlbmdpbmUgX2lz
-XyB0aGVyZSBvbiBhbGwgR0YxMTYncyBhbmQgd2UncmUganVzdCBub3QKaW5pdGlhbGl6aW5nIHNv
-bWV0aGluZyBwcm9wZXJseSwgYWxvbmcgd2l0aCBwZXJoYXBzIHNvbWUgc3VnZ2VzdGlvbnMKYXMg
-dG8gd2hhdCB3ZSBtaWdodCBiZSBtaXNzaW5nLgoKVGhhbmtzLAoKSWxpYSBNaXJraW4KaW1pcmtp
-bkBhbHVtLm1pdC5lZHUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0042369612==
+Content-Type: multipart/alternative; boundary="1416514309.4c6de2.17499"; charset="UTF-8"
+
+
+--1416514309.4c6de2.17499
+Date: Thu, 20 Nov 2014 20:11:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=67277
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This code has been changed significantly by now, hopefully these issues are
+also long gone. Feel free to reopen if it's the same issue; if you're seeing
+different lockdep splats, please open a new issue not to have polluted history.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1416514309.4c6de2.17499
+Date: Thu, 20 Nov 2014 20:11:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Lockdep splat on kernel 3.10.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=67277">bug 67277</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This code has been changed significantly by now, hopefully these issues are
+also long gone. Feel free to reopen if it's the same issue; if you're seeing
+different lockdep splats, please open a new issue not to have polluted history.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416514309.4c6de2.17499--
+
+--===============0042369612==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0042369612==--
