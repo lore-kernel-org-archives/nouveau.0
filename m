@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86491] [NVE6] Nouveau crash when shutting down
-Date: Thu, 20 Nov 2014 15:37:47 +0000
-Message-ID: <bug-86491-8800-N3Vmnottz6@http.bugs.freedesktop.org/>
-References: <bug-86491-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Thu, 20 Nov 2014 17:48:02 +0000
+Message-ID: <bug-27501-8800-Yod6uZGaB8@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0293137012=="
+Content-Type: multipart/mixed; boundary="===============0446299804=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0293137012==
-Content-Type: multipart/alternative; boundary="1416497867.0fC5e73.6954"; charset="UTF-8"
+--===============0446299804==
+Content-Type: multipart/alternative; boundary="1416505682.dA7e6F33.29924"; charset="UTF-8"
 
 
---1416497867.0fC5e73.6954
-Date: Thu, 20 Nov 2014 15:37:47 +0000
+--1416505682.dA7e6F33.29924
+Date: Thu, 20 Nov 2014 17:48:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86491
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[   10.538216] nouveau E[  PGRAPH][0000:01:00.0] grctx template channel unload
-timeout
-[   10.538271] nouveau E[  PGRAPH][0000:01:00.0] failed to construct context
-[   10.538273] nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
+l3iggs <j@greyltc.com> changed:
 
-This doesn't fill me with confidence...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |j@greyltc.com
 
-[   33.767942] nouveau E[     DRM] failed to idle channel 0xcccc0000 [DRM]
-[   36.435207] pci_pm_runtime_suspend(): nouveau_pmops_runtime_suspend+0x0/0xe0
-[nouveau] returns -16
+--- Comment #51 from l3iggs <j@greyltc.com> ---
+(In reply to Pierre Moreau from comment #49)
 
-and that's not much better. What happens if you boot with
+> My patch wasn't merged into 3.17 as it was a bit too short before the
+> release, plus it didn't had time to be properly tested on other machines to
+> check if it didn't introduce some regressions; I'll use the extra time to
+> reverse-engineer the registers I modify. However it should be able to go
+> into 3.18 if reverse-engineering goes well.
 
-nouveau.runpm=0
-
-Note that this will cause the secondary (nvidia) gpu to no longer auto-suspend
-when not in use. Oh, btw, are you using something like bumblebee? (You
-shouldn't be.)
+I would LOVE to see a fix for this merged into 3.18. Please let me know if I
+can help at all. I have a MacBook Pro 5,1 that exhibits this bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416497867.0fC5e73.6954
-Date: Thu, 20 Nov 2014 15:37:47 +0000
+--1416505682.dA7e6F33.29924
+Date: Thu, 20 Nov 2014 17:48:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,37 +62,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:j&#64;greyltc.com" title="l3iggs &lt;j&#64;greyltc.com&gt;"> <span class="fn">l3iggs</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>j&#64;greyltc.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] Nouveau crash when shutting down"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491#c6">Comment # 6</a>
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c51">Comment # 51</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] Nouveau crash when shutting down"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491">bug 86491</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:j&#64;greyltc.com" title="l3iggs &lt;j&#64;greyltc.com&gt;"> <span class="fn">l3iggs</span></a>
 </span></b>
-        <pre>[   10.538216] nouveau E[  PGRAPH][0000:01:00.0] grctx template channel unload
-timeout
-[   10.538271] nouveau E[  PGRAPH][0000:01:00.0] failed to construct context
-[   10.538273] nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
+        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c49">comment #49</a>)
 
-This doesn't fill me with confidence...
+<span class="quote">&gt; My patch wasn't merged into 3.17 as it was a bit too short before the
+&gt; release, plus it didn't had time to be properly tested on other machines to
+&gt; check if it didn't introduce some regressions; I'll use the extra time to
+&gt; reverse-engineer the registers I modify. However it should be able to go
+&gt; into 3.18 if reverse-engineering goes well.</span >
 
-[   33.767942] nouveau E[     DRM] failed to idle channel 0xcccc0000 [DRM]
-[   36.435207] pci_pm_runtime_suspend(): nouveau_pmops_runtime_suspend+0x0/0xe0
-[nouveau] returns -16
-
-and that's not much better. What happens if you boot with
-
-nouveau.runpm=0
-
-Note that this will cause the secondary (nvidia) gpu to no longer auto-suspend
-when not in use. Oh, btw, are you using something like bumblebee? (You
-shouldn't be.)</pre>
+I would LOVE to see a fix for this merged into 3.18. Please let me know if I
+can help at all. I have a MacBook Pro 5,1 that exhibits this bug.</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +117,9 @@ shouldn't be.)</pre>
     </body>
 </html>
 
---1416497867.0fC5e73.6954--
+--1416505682.dA7e6F33.29924--
 
---===============0293137012==
+--===============0446299804==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0293137012==--
+--===============0446299804==--
