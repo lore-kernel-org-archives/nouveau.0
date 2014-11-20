@@ -1,15 +1,15 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Is it necessary to parse the VBIOS init table when
- executable is false?
-Date: Wed, 19 Nov 2014 14:52:55 -0500
-Message-ID: <CAKb7UvgUNnbfHDd2wySHmsSC671qcYm-WSGtzyH_MTJ+nzWrBw@mail.gmail.com>
-References: <BAY407-EAS1855F8C9730A7C4C05C1BAADA890@phx.gbl>
- <CACAvsv7PM9V2oMKTJfbinFqGpmcEiZf59-RqQd07_eaUqPrQkQ@mail.gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2 2/3] nvc0: use NV_VRAM_DOMAIN() macro
+Date: Thu, 20 Nov 2014 17:54:26 +0900
+Message-ID: <CAAVeFu+Y3aeD+Ueowea48gG=w_XTD=hqOoHJMQZ+Hmbx=59Yaw@mail.gmail.com>
+References: <1416375705-14068-1-git-send-email-acourbot@nvidia.com>
+ <1416375705-14068-3-git-send-email-acourbot@nvidia.com>
+ <546C68F8.90502@nimrod-online.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv7PM9V2oMKTJfbinFqGpmcEiZf59-RqQd07_eaUqPrQkQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <546C68F8.90502-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,27 +19,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMTksIDIwMTQgYXQgMjo0MiBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFp
-bC5jb20+IHdyb3RlOgo+IE9uIDIwIE5vdiAyMDE0IDAxOjMxLCAi5p2O6YeR5Y2OIiA8Z29vZHF0
-QG91dGxvb2suY29tPiB3cm90ZToKPj4KPj4gSGVsbG8gZXZlcnlvbmUsCj4+Cj4+IFRoZSBjb2Rl
-IGlzIGF0IC9jb3JlL3N1YmRldi9iaW9zL2luaXQuYy4KPj4gV2hlbiB0aGUgZXhlY3V0YWJsZSBp
-cyAwLHRoZXNlIGZ1bmN0aW9ucyB0aGF0IHBhcnNlIHRoZSBWQklPUyBpbml0IHRhYmxlCj4+IHNl
-ZW1zIHRvIGRvIG5vdGhpbmcgZXhjZXB0IHRoZSBwYXJzaW5nLgo+IENvcnJlY3QuICBXZSBkbyBu
-b3QgaGFuZGxlIGV2ZXJ5IG9wY29kZSwgb25seSB0aGUgb25lcyB0aGF0IGhhdmUgYmVlbgo+IG9i
-c2VydmVkIHNvIGZhci4gIFRoZSBwdXJwb3NlIGlzIHRvIGJlIGFibGUgdG8gdGVzdCB3aGV0aGVy
-IHdlIHdpbGwgYmUgYWJsZQo+IHRvIGZ1bGx5IGV4ZWN1dGUgdGhlIHRhYmxlLCB0byBhdm9pZCBm
-YWlsaW5nIGluIGEgY3JpdGljYWwgcGF0aCAoc3VjaCBhcwo+IHJlc3VtZSBmcm9tIHN1c3BlbmQp
-IHdoZXJlIHdlIGNhbid0IHJlY292ZXIuCgpJdCBhbHNvIHNlcnZlcyBhcyBhIG5pY2UgbGl0bXVz
-IHRlc3QgYXMgdG8gd2hldGhlciB3ZSBoYXZlIHRoZSByaWdodApWQklPUywgc2luY2Ugd2UgYWxz
-byBleGVjdXRlIHZhcmlvdXMgYml0cyBkdXJpbmcgb3V0cHV0IGNvbmZpZ3VyYXRpb24sCnJlY2xv
-Y2tpbmcsIGFuZCBwcm9iYWJseSBvdGhlciB0aGluZ3MgSSdtIG5vdCB0aGlua2luZyBvZi4KCk1v
-c3Qgb2YgdGhlIHRpbWUsIGVzcGVjaWFsbHkgd2l0aCBvbGRlciBjYXJkcywgdGhlIHJlYXNvbiB0
-aGlzIHdvdWxkCmJlIGZhaWxpbmcgaXMgYmVjYXVzZSBpdCdzIHJlYWRpbmcgdGhlIFZCSU9TIGZy
-b20gdGhlIHdyb25nIHBsYWNlCihsaWtlIFBDSVJPTSkgYW5kIGl0IGNvbnRhaW5zIHRoZSB3cm9u
-ZyBkYXRhLgoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+SGkgUm95LAoKT24gV2VkLCBOb3YgMTksIDIwMTQgYXQgNjo1NSBQTSwgUm95IFNwbGlldCA8c2V2
+ZW5Abmltcm9kLW9ubGluZS5jb20+IHdyb3RlOgo+IEhlbGxvIEFsZXgsCj4KPiBPcCAxOS0xMS0x
+NCBvbSAwNjo0MSBzY2hyZWVmIEFsZXhhbmRyZSBDb3VyYm90Ogo+Pgo+PiBVc2UgdGhlIG5ld2x5
+LWludHJvZHVjZWQgTlZfVlJBTV9ET01BSU4oKSBtYWNybyB0byBzdXBwb3J0IGFsdGVybmF0aXZl
+Cj4+IFZSQU0gZG9tYWlucyBmb3IgY2hpcHMgdGhhdCBkbyBub3QgdXNlIGRlZGljYXRlZCB2aWRl
+byBtZW1vcnkuCj4KPgo+IFNob3VsZCB3ZSBjb25zdHJ1Y3QgYSBzaW1pbGFyIHBhdGNoIGZvciBO
+VkFBL05WQUMgKE1DUDd4KSBhcyB3ZWxsPwoKTm90IHN1cmUgLSBhcmVuJ3QgdGhlc2UgY2FyZHMg
+Y2FydmluZyBvdXQgYSBjb250aWd1b3VzIGFyZWEgb2YKcGh5c2ljYWwgbWVtb3J5IHRvIHVzZSBh
+cyBWUkFNIGluc3RlYWQgb2YgYWN0dWFsbHkgc2hhcmluZyB0aGUgd2hvbGUKc3lzdGVtIG1lbW9y
+eT8KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
