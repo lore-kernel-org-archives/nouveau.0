@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86491] Nouveau crash when shutting down
-Date: Thu, 20 Nov 2014 14:54:32 +0000
-Message-ID: <bug-86491-8800-LDAfSgPuHd@http.bugs.freedesktop.org/>
+Date: Thu, 20 Nov 2014 14:58:21 +0000
+Message-ID: <bug-86491-8800-InzdzyPejT@http.bugs.freedesktop.org/>
 References: <bug-86491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1171814552=="
+Content-Type: multipart/mixed; boundary="===============1896564224=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1171814552==
-Content-Type: multipart/alternative; boundary="1416495272.15Feb2.19956"; charset="UTF-8"
+--===============1896564224==
+Content-Type: multipart/alternative; boundary="1416495500.BD821b3.21469"; charset="UTF-8"
 
 
---1416495272.15Feb2.19956
-Date: Thu, 20 Nov 2014 14:54:32 +0000
+--1416495500.BD821b3.21469
+Date: Thu, 20 Nov 2014 14:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,15 +35,19 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #109755|text/plain                  |image/jpeg
-          mime type|                            |
+           Priority|high                        |medium
+           Severity|critical                    |normal
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Attach a kernel log (dmesg) after boot, that should contain a lot of important
+info about your hardware. Also what does 'lspci -nn -d 10de:' produce?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416495272.15Feb2.19956
-Date: Thu, 20 Nov 2014 14:54:32 +0000
+--1416495500.BD821b3.21469
+Date: Thu, 20 Nov 2014 14:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,13 +70,35 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #109755 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Priority</td>
+           <td>high
            </td>
-           <td>image/jpeg
+           <td>medium
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Severity</td>
+           <td>critical
+           </td>
+           <td>normal
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau crash when shutting down"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau crash when shutting down"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491">bug 86491</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Attach a kernel log (dmesg) after boot, that should contain a lot of important
+info about your hardware. Also what does 'lspci -nn -d 10de:' produce?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +109,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1416495272.15Feb2.19956--
+--1416495500.BD821b3.21469--
 
---===============1171814552==
+--===============1896564224==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1171814552==--
+--===============1896564224==--
