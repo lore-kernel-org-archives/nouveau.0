@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86491] Nouveau crash when shutting down
-Date: Thu, 20 Nov 2014 14:51:10 +0000
-Message-ID: <bug-86491-8800-I4rbe1eMSp@http.bugs.freedesktop.org/>
+Date: Thu, 20 Nov 2014 14:54:32 +0000
+Message-ID: <bug-86491-8800-LDAfSgPuHd@http.bugs.freedesktop.org/>
 References: <bug-86491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2005813981=="
+Content-Type: multipart/mixed; boundary="===============1171814552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2005813981==
-Content-Type: multipart/alternative; boundary="1416495070.aB531.18770"; charset="UTF-8"
+--===============1171814552==
+Content-Type: multipart/alternative; boundary="1416495272.15Feb2.19956"; charset="UTF-8"
 
 
---1416495070.aB531.18770
-Date: Thu, 20 Nov 2014 14:51:10 +0000
+--1416495272.15Feb2.19956
+Date: Thu, 20 Nov 2014 14:54:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86491
 
-Jarl E. Gjessing <jarlgjessing-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           Priority|medium                      |high
-           Hardware|Other                       |x86-64 (AMD64)
-                 OS|All                         |Linux (All)
-           Severity|normal                      |critical
+ Attachment #109755|text/plain                  |image/jpeg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416495070.aB531.18770
-Date: Thu, 20 Nov 2014 14:51:10 +0000
+--1416495272.15Feb2.19956
+Date: Thu, 20 Nov 2014 14:54:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,7 +51,7 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jarlgjessing&#64;gmail.com" title="Jarl E. Gjessing &lt;jarlgjessing&#64;gmail.com&gt;"> <span class="fn">Jarl E. Gjessing</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
@@ -68,34 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
+           <td style="text-align:right;">Attachment #109755 mime type</td>
+           <td>text/plain
            </td>
-           <td>high
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">OS</td>
-           <td>All
-           </td>
-           <td>Linux (All)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Severity</td>
-           <td>normal
-           </td>
-           <td>critical
+           <td>image/jpeg
            </td>
          </tr></table>
       <p>
@@ -109,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1416495070.aB531.18770--
+--1416495272.15Feb2.19956--
 
---===============2005813981==
+--===============1171814552==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2005813981==--
+--===============1171814552==--
