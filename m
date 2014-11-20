@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86491] [NVE6] Nouveau crash when shutting down
-Date: Thu, 20 Nov 2014 15:08:18 +0000
-Message-ID: <bug-86491-8800-P1XDA06Oh9@http.bugs.freedesktop.org/>
+Date: Thu, 20 Nov 2014 15:09:07 +0000
+Message-ID: <bug-86491-8800-sSlyquZRLy@http.bugs.freedesktop.org/>
 References: <bug-86491-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0772389618=="
+Content-Type: multipart/mixed; boundary="===============0010793012=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86491-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,49 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0772389618==
-Content-Type: multipart/alternative; boundary="1416496098.43fBECF43.25897"; charset="UTF-8"
+--===============0010793012==
+Content-Type: multipart/alternative; boundary="1416496147.8562e8862.26315"; charset="UTF-8"
 
 
---1416496098.43fBECF43.25897
-Date: Thu, 20 Nov 2014 15:08:18 +0000
+--1416496147.8562e8862.26315
+Date: Thu, 20 Nov 2014 15:09:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86491
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nouveau crash when shutting |[NVE6] Nouveau crash when
-                   |down                        |shutting down
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jarl E. Gjessing from comment #2)
-> I fully respect that not all issues are critical etc. (we all think it is in
-> our own eyes)
-> But when the machines renders dead on shutdown, I think it is a critical
-> issue?
-> Or at least thats just what I feel.
-
-Yeah, so if you have a real support organization backing a bugtracker, these
-things have meaning. When you have 1 or 2 people looking at bugs, markers like
-"critical" are more annoying than useful, amusingly enough making it _harder_
-to see things since they become irregular on the giant mega-bug-list.
-
-Having separate importance and severity markers is also incredibly confusing.
-In any case, at this point, this is an issue that affects just you, as far as
-we know, so unless your thing is literally going up in smoke, there's nothing
-that can be going on that makes it critical -- I think of critical as like
-"affects 75%+ of nouveau user base".
+--- Comment #4 from Jarl E. Gjessing <jarlgjessing-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 109758
+  --> https://bugs.freedesktop.org/attachment.cgi?id=109758&action=edit
+dmesg output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416496098.43fBECF43.25897
-Date: Thu, 20 Nov 2014 15:08:18 +0000
+--1416496147.8562e8862.26315
+Date: Thu, 20 Nov 2014 15:09:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,56 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Nouveau crash when shutting down"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491">bug 86491</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nouveau crash when shutting down
-           </td>
-           <td>[NVE6] Nouveau crash when shutting down
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] Nouveau crash when shutting down"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86491#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] Nouveau crash when shutting down"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86491">bug 86491</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jarlgjessing&#64;gmail.com" title="Jarl E. Gjessing &lt;jarlgjessing&#64;gmail.com&gt;"> <span class="fn">Jarl E. Gjessing</span></a>
 </span></b>
-        <pre>(In reply to Jarl E. Gjessing from <a href="show_bug.cgi?id=86491#c2">comment #2</a>)
-<span class="quote">&gt; I fully respect that not all issues are critical etc. (we all think it is in
-&gt; our own eyes)
-&gt; But when the machines renders dead on shutdown, I think it is a critical
-&gt; issue?
-&gt; Or at least thats just what I feel.</span >
-
-Yeah, so if you have a real support organization backing a bugtracker, these
-things have meaning. When you have 1 or 2 people looking at bugs, markers like
-&quot;critical&quot; are more annoying than useful, amusingly enough making it _harder_
-to see things since they become irregular on the giant mega-bug-list.
-
-Having separate importance and severity markers is also incredibly confusing.
-In any case, at this point, this is an issue that affects just you, as far as
-we know, so unless your thing is literally going up in smoke, there's nothing
-that can be going on that makes it critical -- I think of critical as like
-&quot;affects 75%+ of nouveau user base&quot;.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=109758" name="attach_109758" title="dmesg output">attachment 109758</a> <a href="attachment.cgi?id=109758&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +75,9 @@ that can be going on that makes it critical -- I think of critical as like
     </body>
 </html>
 
---1416496098.43fBECF43.25897--
+--1416496147.8562e8862.26315--
 
---===============0772389618==
+--===============0010793012==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0772389618==--
+--===============0010793012==--
