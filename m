@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37768] [NVA8] UT2003: Splash-screen is transparent
- with gnome-shell enabled
-Date: Thu, 20 Nov 2014 22:58:03 +0000
-Message-ID: <bug-37768-8800-BLCaPkFDcS@http.bugs.freedesktop.org/>
-References: <bug-37768-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70895] BUG: soft lockup - CPU#0 stuck for 22s!
+ [Xorg:1292] after disable descrete card with switcheroo
+Date: Thu, 20 Nov 2014 23:31:52 +0000
+Message-ID: <bug-70895-8800-78HFvSmkfi@http.bugs.freedesktop.org/>
+References: <bug-70895-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0367203861=="
+Content-Type: multipart/mixed; boundary="===============0390983405=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37768-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0367203861==
-Content-Type: multipart/alternative; boundary="1416524283.0cec0.8700"; charset="UTF-8"
+--===============0390983405==
+Content-Type: multipart/alternative; boundary="1416526312.8f1e851.19767"; charset="UTF-8"
 
 
---1416524283.0cec0.8700
-Date: Thu, 20 Nov 2014 22:58:03 +0000
+--1416526312.8f1e851.19767
+Date: Thu, 20 Nov 2014 23:31:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37768
+https://bugs.freedesktop.org/show_bug.cgi?id=70895
 
---- Comment #4 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-Created attachment 109783
-  --> https://bugs.freedesktop.org/attachment.cgi?id=109783&action=edit
-xtrace from ut2003 splash screen - nouveau
+--- Comment #2 from Marcin Zajaczkowski <mszpak-5tc4TXWwyLM@public.gmane.org> ---
+Hello again. I upgraded my system to Fedora 21 and with 3.17.3-300.fc21.x86_64
+I cannot reproduce mentioned issue (with "CPU#0 stuck for 22s").
 
-following imirkins suggestions I got an xtrace of this problem, as attached.
-Also: this problem exists not only with nouveau, but also shows on i965 (4th
-gen). I assume this means the bug is more general than nouveau and should move
-up the hierarchy.
+Unfortunately I have problem with switching a discrete card. By default:
+# echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
+does nothing - a discrete card is still in DynPwr state:
+
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
+
+Booting with nouveau.runpm=0 I have both cards on:
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Pwr:0000:01:00.0
+
+and after
+# echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
+
+I have:
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Off:0000:01:00.0
+
+Looks ok, but I still see 3 providers:
+$ xrandr --listproviders
+Providers: number : 3
+Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 2 name:Intel
+Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+
+and system temperature could suggest that the card is still on. I see no
+messages from VGA switcheroo in the system log (as there were in 3.11.6).
+
+When I use (on the second kernel) bbswitch with bumblebee I see only one
+provider and the temperature is a few (~6) degrees lower.
+
+Should I close that issue and report another issue?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416524283.0cec0.8700
-Date: Thu, 20 Nov 2014 22:58:03 +0000
+--1416526312.8f1e851.19767
+Date: Thu, 20 Nov 2014 23:31:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,21 +92,54 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA8] UT2003: Splash-screen is transparent with gnome-shell enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37768#c4">Comment # 4</a>
+   title="NEW - BUG: soft lockup - CPU#0 stuck for 22s! [Xorg:1292] after disable descrete card with switcheroo"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70895#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA8] UT2003: Splash-screen is transparent with gnome-shell enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37768">bug 37768</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+   title="NEW - BUG: soft lockup - CPU#0 stuck for 22s! [Xorg:1292] after disable descrete card with switcheroo"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70895">bug 70895</a>
+              from <span class="vcard"><a class="email" href="mailto:mszpak&#64;wp.pl" title="Marcin Zajaczkowski &lt;mszpak&#64;wp.pl&gt;"> <span class="fn">Marcin Zajaczkowski</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=109783" name="attach_109783" title="xtrace from ut2003 splash screen - nouveau">attachment 109783</a> <a href="attachment.cgi?id=109783&amp;action=edit" title="xtrace from ut2003 splash screen - nouveau">[details]</a></span>
-xtrace from ut2003 splash screen - nouveau
+        <pre>Hello again. I upgraded my system to Fedora 21 and with 3.17.3-300.fc21.x86_64
+I cannot reproduce mentioned issue (with &quot;CPU#0 stuck for 22s&quot;).
 
-following imirkins suggestions I got an xtrace of this problem, as attached.
-Also: this problem exists not only with nouveau, but also shows on i965 (4th
-gen). I assume this means the bug is more general than nouveau and should move
-up the hierarchy.</pre>
+Unfortunately I have problem with switching a discrete card. By default:
+# echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
+does nothing - a discrete card is still in DynPwr state:
+
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
+
+Booting with nouveau.runpm=0 I have both cards on:
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Pwr:0000:01:00.0
+
+and after
+# echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
+
+I have:
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Off:0000:01:00.0
+
+Looks ok, but I still see 3 providers:
+$ xrandr --listproviders
+Providers: number : 3
+Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 2 name:Intel
+Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+
+and system temperature could suggest that the card is still on. I see no
+messages from VGA switcheroo in the system log (as there were in 3.11.6).
+
+When I use (on the second kernel) bbswitch with bumblebee I see only one
+provider and the temperature is a few (~6) degrees lower.
+
+Should I close that issue and report another issue?</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +151,9 @@ up the hierarchy.</pre>
     </body>
 </html>
 
---1416524283.0cec0.8700--
+--1416526312.8f1e851.19767--
 
---===============0367203861==
+--===============0390983405==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0367203861==--
+--===============0390983405==--
