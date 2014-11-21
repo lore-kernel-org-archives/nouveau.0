@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70895] BUG: soft lockup - CPU#0 stuck for 22s!
- [Xorg:1292] after disable descrete card with switcheroo
-Date: Thu, 20 Nov 2014 23:41:03 +0000
-Message-ID: <bug-70895-8800-Gf1dC9vxoe@http.bugs.freedesktop.org/>
-References: <bug-70895-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86503] New: Discrete card seems to be powered on
+ even if reported as Off
+Date: Fri, 21 Nov 2014 00:01:09 +0000
+Message-ID: <bug-86503-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1582407677=="
+Content-Type: multipart/mixed; boundary="===============1966596313=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,67 +19,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1582407677==
-Content-Type: multipart/alternative; boundary="1416526862.fe1bb2.24013"; charset="UTF-8"
+--===============1966596313==
+Content-Type: multipart/alternative; boundary="1416528069.d3Ad17c71.620"; charset="UTF-8"
 
 
---1416526862.fe1bb2.24013
-Date: Thu, 20 Nov 2014 23:41:02 +0000
+--1416528069.d3Ad17c71.620
+Date: Fri, 21 Nov 2014 00:01:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70895
+https://bugs.freedesktop.org/show_bug.cgi?id=86503
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcin Zajaczkowski from comment #2)
-> Hello again. I upgraded my system to Fedora 21 and with
-> 3.17.3-300.fc21.x86_64 I cannot reproduce mentioned issue (with "CPU#0 stuck
-> for 22s").
-> 
-> Unfortunately I have problem with switching a discrete card. By default:
-> # echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
-> does nothing - a discrete card is still in DynPwr state:
+            Bug ID: 86503
+           Summary: Discrete card seems to be powered on even if reported
+                    as Off
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mszpak-5tc4TXWwyLM@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-That's expected. What's unexpected is that something is keeping a reference to
-your GPU which isn't letting it power off. Similar to bug #70875.
+Following up Bug 70895.
 
-> Booting with nouveau.runpm=0 I have both cards on:
-> $ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
-> 0:IGD:+:Pwr:0000:00:02.0
-> 1:DIS: :Pwr:0000:01:00.0
-> 
-> and after
-> # echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
-> 
-> I have:
-> 0:IGD:+:Pwr:0000:00:02.0
-> 1:DIS: :Off:0000:01:00.0
-> 
-> Looks ok, but I still see 3 providers:
-> $ xrandr --listproviders
-> Providers: number : 3
-> Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload
-> crtcs: 3 outputs: 5 associated providers: 2 name:Intel
-> Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
-> crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
-> Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
-> crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
-> 
-> and system temperature could suggest that the card is still on. I see no
-> messages from VGA switcheroo in the system log (as there were in 3.11.6).
+On Fedora 21 with 3.17.3-300.fc21.x86_64 when booting with nouveau.runpm=0 I
+have both cards on:
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Pwr:0000:01:00.0
 
-That is odd... not sure what that situation is.
+and after:
+# echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
 
-> Should I close that issue and report another issue?
+I have:
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Off:0000:01:00.0
 
-Yes, don't confuse multiple issues into one, it gets unwieldy.
+Looks ok, but I still see 3 providers:
+$ xrandr --listproviders
+Providers: number : 3
+Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 2 name:Intel
+Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+
+and system temperature could suggest that the card is still on.
+
+When I use (on the second kernel) bbswitch with bumblebee I see only one
+provider and the temperature is a few (~6) degrees lower.
+
+I see no messages from VGA switcheroo in the system log (as there were in
+3.11.6). Can I make output more verbose or do something else to provide more
+details about the situation?
+
+
+System specification:
+Asus N43SN
+GeForce GT 550M + integrated Intel card using i915 driver (NVidia Optimus)
+kernel-3.17.3-300.fc21.x86_64
+xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
+xorg-x11-server-Xorg-1.16.1-1.fc21.x86_64
+
+Btw, on that system there is also problem with auto-suspending (with not
+disabled nouveau.runpm) - a card is always in DynPwr - Bug 70875.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416526862.fe1bb2.24013
-Date: Thu, 20 Nov 2014 23:41:02 +0000
+--1416528069.d3Ad17c71.620
+Date: Fri, 21 Nov 2014 00:01:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -89,64 +103,139 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Discrete card seems to be powered on even if reported as Off"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86503">86503</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Discrete card seems to be powered on even if reported as Off
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mszpak&#64;wp.pl
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+        <pre>Following up <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - BUG: soft lockup - CPU#0 stuck for 22s! [Xorg:1292] after disable descrete card with switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70895#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - BUG: soft lockup - CPU#0 stuck for 22s! [Xorg:1292] after disable descrete card with switcheroo"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70895">bug 70895</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Marcin Zajaczkowski from <a href="show_bug.cgi?id=70895#c2">comment #2</a>)
-<span class="quote">&gt; Hello again. I upgraded my system to Fedora 21 and with
-&gt; 3.17.3-300.fc21.x86_64 I cannot reproduce mentioned issue (with &quot;CPU#0 stuck
-&gt; for 22s&quot;).
-&gt; 
-&gt; Unfortunately I have problem with switching a discrete card. By default:
-&gt; # echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
-&gt; does nothing - a discrete card is still in DynPwr state:</span >
+   href="show_bug.cgi?id=70895">Bug 70895</a>.
 
-That's expected. What's unexpected is that something is keeping a reference to
-your GPU which isn't letting it power off. Similar to <a class="bz_bug_link 
+On Fedora 21 with 3.17.3-300.fc21.x86_64 when booting with nouveau.runpm=0 I
+have both cards on:
+$ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Pwr:0000:01:00.0
+
+and after:
+# echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
+
+I have:
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :Off:0000:01:00.0
+
+Looks ok, but I still see 3 providers:
+$ xrandr --listproviders
+Providers: number : 3
+Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+3 outputs: 5 associated providers: 2 name:Intel
+Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
+
+and system temperature could suggest that the card is still on.
+
+When I use (on the second kernel) bbswitch with bumblebee I see only one
+provider and the temperature is a few (~6) degrees lower.
+
+I see no messages from VGA switcheroo in the system log (as there were in
+3.11.6). Can I make output more verbose or do something else to provide more
+details about the situation?
+
+
+System specification:
+Asus N43SN
+GeForce GT 550M + integrated Intel card using i915 driver (NVidia Optimus)
+kernel-3.17.3-300.fc21.x86_64
+xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
+xorg-x11-server-Xorg-1.16.1-1.fc21.x86_64
+
+Btw, on that system there is also problem with auto-suspending (with not
+disabled nouveau.runpm) - a card is always in DynPwr - <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] runtime pm not auto-suspending card"
-   href="show_bug.cgi?id=70875">bug #70875</a>.
-
-<span class="quote">&gt; Booting with nouveau.runpm=0 I have both cards on:
-&gt; $ $ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
-&gt; 0:IGD:+:Pwr:0000:00:02.0
-&gt; 1:DIS: :Pwr:0000:01:00.0
-&gt; 
-&gt; and after
-&gt; # echo OFF &gt; /sys/kernel/debug/vgaswitcheroo/switch
-&gt; 
-&gt; I have:
-&gt; 0:IGD:+:Pwr:0000:00:02.0
-&gt; 1:DIS: :Off:0000:01:00.0
-&gt; 
-&gt; Looks ok, but I still see 3 providers:
-&gt; $ xrandr --listproviders
-&gt; Providers: number : 3
-&gt; Provider 0: id: 0x90 cap: 0xb, Source Output, Sink Output, Sink Offload
-&gt; crtcs: 3 outputs: 5 associated providers: 2 name:Intel
-&gt; Provider 1: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
-&gt; crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
-&gt; Provider 2: id: 0x63 cap: 0x7, Source Output, Sink Output, Source Offload
-&gt; crtcs: 2 outputs: 2 associated providers: 2 name:nouveau
-&gt; 
-&gt; and system temperature could suggest that the card is still on. I see no
-&gt; messages from VGA switcheroo in the system log (as there were in 3.11.6).</span >
-
-That is odd... not sure what that situation is.
-
-<span class="quote">&gt; Should I close that issue and report another issue?</span >
-
-Yes, don't confuse multiple issues into one, it gets unwieldy.</pre>
+   href="show_bug.cgi?id=70875">Bug 70875</a>.</pre>
         </div>
       </p>
       <hr>
@@ -158,9 +247,9 @@ Yes, don't confuse multiple issues into one, it gets unwieldy.</pre>
     </body>
 </html>
 
---1416526862.fe1bb2.24013--
+--1416528069.d3Ad17c71.620--
 
---===============1582407677==
+--===============1966596313==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -170,4 +259,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1582407677==--
+--===============1966596313==--
