@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86537] New: [NV96] Unable to handle page request
- from nv50_crtc_prepare
-Date: Fri, 21 Nov 2014 21:39:46 +0000
-Message-ID: <bug-86537-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Fri, 21 Nov 2014 21:41:20 +0000
+Message-ID: <bug-27501-8800-e4JBrnAoR5@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2039531239=="
+Content-Type: multipart/mixed; boundary="===============1543299762=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +20,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2039531239==
-Content-Type: multipart/alternative; boundary="1416605986.1e10b361.27970"; charset="UTF-8"
+--===============1543299762==
+Content-Type: multipart/alternative; boundary="1416606080.2fd13.28568"; charset="UTF-8"
 
 
---1416605986.1e10b361.27970
-Date: Fri, 21 Nov 2014 21:39:46 +0000
+--1416606080.2fd13.28568
+Date: Fri, 21 Nov 2014 21:41:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86537
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
 
-            Bug ID: 86537
-           Summary: [NV96] Unable to handle page request from
-                    nv50_crtc_prepare
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: pierre.morrow-GANU6spQydw@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #54 from l3iggs <j@greyltc.com> ---
+(In reply to Pierre Moreau from comment #53)
+> @l3iggs
+> The RE revealed nothing interesting. I'll try again when I can manage to
+> spare some time. I asked the Nvidia guys about it, it should help getting a
+> better patch.
+Great, thank you for your effort here! I'm more than happy to test anything you
+come up with and provide any feed back I can.
+> I guess you set 'Better Performances' in Mac OS before getting that dmesg.
+> In that case the 9600M GT is driving the screen, and with acceleration
+> enabled causes this issue (you can try without acceleration, but you'll get
+> another issue ;) ). You should fill a bug report for that issue.
+I actually haven't installed OSX on this machine in years. I assume it's in
+high performance mode. I've actually been trying to switch over to the low
+power GPU in my testing here with no success. So I'm not having too much
+success with many of the workarounds & patches posted in this thread. Am I
+correct in understanding that you think I should start another bug report with
+this trace? Does that mean this bug report is only concerned with issues when
+running from the 9400M then?
 
-Created attachment 109818
-  --> https://bugs.freedesktop.org/attachment.cgi?id=109818&action=edit
-dmesg
+I'll keep trying to produce some more info relevant to this bug by working on
+getting switched over to my 9400M.
 
-Hardware:
-* 9600M GT (NV96)
-* 9400M (NVAC)
-
-Tested on something newer than 3.17-rc5.
-Though it is not visible in the dmesg, I set "config=NvForcePost=1" which had
-no effect on the issue.
-
-When using the NV96 to drive the display - this is set before booting -, a BUG:
-unable to handle kernel page request is thrown by nv50_crtc_prepare after the
-fb was allocated for the NV96 - the NVAC wasn't initialised yet.
+Does anyone know if it's possible to switch from "9600M GT mode" to "9400M
+mode" without using OSX? I've tried several of the mysterious outb grub
+directives. "outb 0x750 0" turns my screen off (I assume that's shutting off
+the 9600M GT) but I can't seem to enable/switch to the 9400M to get the screen
+back on.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416605986.1e10b361.27970
-Date: Fri, 21 Nov 2014 21:39:46 +0000
+--1416606080.2fd13.28568
+Date: Fri, 21 Nov 2014 21:41:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,103 +73,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Unable to handle page request from nv50_crtc_prepare"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">86537</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV96] Unable to handle page request from nv50_crtc_prepare
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>pierre.morrow&#64;free.fr
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=109818" name="attach_109818" title="dmesg">attachment 109818</a> <a href="attachment.cgi?id=109818&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c54">Comment # 54</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:j&#64;greyltc.com" title="l3iggs &lt;j&#64;greyltc.com&gt;"> <span class="fn">l3iggs</span></a>
+</span></b>
+        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=27501#c53">comment #53</a>)
+<span class="quote">&gt; &#64;l3iggs
+&gt; The RE revealed nothing interesting. I'll try again when I can manage to
+&gt; spare some time. I asked the Nvidia guys about it, it should help getting a
+&gt; better patch.</span >
+Great, thank you for your effort here! I'm more than happy to test anything you
+come up with and provide any feed back I can.
+<span class="quote">&gt; I guess you set 'Better Performances' in Mac OS before getting that dmesg.
+&gt; In that case the 9600M GT is driving the screen, and with acceleration
+&gt; enabled causes this issue (you can try without acceleration, but you'll get
+&gt; another issue ;) ). You should fill a bug report for that issue.</span >
+I actually haven't installed OSX on this machine in years. I assume it's in
+high performance mode. I've actually been trying to switch over to the low
+power GPU in my testing here with no success. So I'm not having too much
+success with many of the workarounds &amp; patches posted in this thread. Am I
+correct in understanding that you think I should start another bug report with
+this trace? Does that mean this bug report is only concerned with issues when
+running from the 9400M then?
 
-Hardware:
-* 9600M GT (NV96)
-* 9400M (NVAC)
+I'll keep trying to produce some more info relevant to this bug by working on
+getting switched over to my 9400M.
 
-Tested on something newer than 3.17-rc5.
-Though it is not visible in the dmesg, I set &quot;config=NvForcePost=1&quot; which had
-no effect on the issue.
-
-When using the NV96 to drive the display - this is set before booting -, a BUG:
-unable to handle kernel page request is thrown by nv50_crtc_prepare after the
-fb was allocated for the NV96 - the NVAC wasn't initialised yet.</pre>
+Does anyone know if it's possible to switch from &quot;9600M GT mode&quot; to &quot;9400M
+mode&quot; without using OSX? I've tried several of the mysterious outb grub
+directives. &quot;outb 0x750 0&quot; turns my screen off (I assume that's shutting off
+the 9600M GT) but I can't seem to enable/switch to the 9400M to get the screen
+back on.</pre>
         </div>
       </p>
       <hr>
@@ -182,9 +124,9 @@ fb was allocated for the NV96 - the NVAC wasn't initialised yet.</pre>
     </body>
 </html>
 
---1416605986.1e10b361.27970--
+--1416606080.2fd13.28568--
 
---===============2039531239==
+--===============1543299762==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2039531239==--
+--===============1543299762==--
