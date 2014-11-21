@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Second copy engine on GF116
-Date: Fri, 21 Nov 2014 01:39:55 -0500
-Message-ID: <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
-References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
- <20141121061656.GA897@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 51579] [NVA8] Xv shows black image on ION chipset
+Date: Fri, 21 Nov 2014 11:51:08 +0000
+Message-ID: <bug-51579-8800-uGJy0LMaNu@http.bugs.freedesktop.org/>
+References: <bug-51579-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0913687852=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20141121061656.GA897-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-51579-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,67 +16,153 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMjEsIDIwMTQgYXQgMToxNiBBTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJAbnZp
-ZGlhLmNvbT4gd3JvdGU6Cj4gSGkgSWxpYSwKPgo+IEFjdHVhbGx5IDB4OTBiOCBpcyBkaWZmZXJl
-bnQgdGhhbiBjb3B5IGVuZ2luZS4gIEknbSBub3QgdmVyeSBmYW1pbGlhcgo+IHdpdGggaXQsIGJ1
-dCAweDkwYjggaXMgYW4gZW5naW5lIGZvciBwZXJmb3JtaW5nIExaTyBkZWNvbXByZXNzaW9uIGFz
-Cj4gcGFydCBvZiBwZXJmb3JtaW5nIHRoZSBjb3B5LiAgSXQgaGFzIGEgdmFyaWV0eSBvZiBsaW1p
-dGF0aW9ucyAoZS5nLiwKPiBjYW5ub3QgaGFuZGxlIGJsb2NrbGluZWFyIGZvcm1hdCksIGFuZCB3
-YXMgb25seSBpbiBhIGZldyBGZXJtaSBjaGlwcywKPiBhcyBJIHVuZGVyc3RhbmQgaXQuCgpBY2Nv
-cmRpbmcgdG8gb3VyIGRyaXZlciBzb3VyY2UsIEdGMTAwLCBHRjEwNCwgR0YxMTAsIEdGMTE0LCBh
-bmQgR0YxMTYKYWxsIGhhdmUgaXQuIFtTbyBHRjEwNiwgR0YxMDgsIEdGMTE3LCBHRjExOSBkb24n
-dCBoYXZlIGl0Ll0gV2UndmUgb25seQpoYWQgcHJvYmxlbXMgcmVwb3J0ZWQgYWdhaW5zdCBHRjEx
-Ni4uLiBhbmQgb25seSBmb3Igc29tZSBwZW9wbGUuCgo+Cj4gSXQgaXMgcHJvYmFibHkgZWFzaWVz
-dCB0byBqdXN0IGlnbm9yZSBpdC4gIFlvdSBjYW4gZGlzdGluZ3Vpc2ggdGhpcwo+IGRlY29tcHJl
-c3MgZW5naW5lIGZyb20gbm9ybWFsIGNvcHkgZW5naW5lIGJ5IGxvb2tpbmcgYXQgdGhlIENFIGNh
-cGFiaWxpdHkKPiByZWdpc3RlciBvbiBmYWxjb24gKDB4MDAwMDA2NTApLiAgSWYgYml0IDIgaXMg
-JzEnLCB0aGVuIHRoZSBmYWxjb24gaXMKPiBhIGRlY29tcHJlc3MgZW5naW5lLgoKSSBwcmVzdW1l
-IHlvdSBtZWFuIGEgKzB4NjUwIHJlZ2lzdGVyIG9uIHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAw
-MAphbmQgMHgxMDUwMDApLiBJIG9ubHkgaGF2ZSBhY2Nlc3MgdG8gdGhlIEdGMTA4IHJpZ2h0IG5v
-dywgd2hpY2gKcmV0dXJucyAzIGZvciAweDEwNDY1MCBhbmQgNCBmb3IgMHgxMDU2NTAuIFdlJ3Jl
-IHVzaW5nIHRoZSBlbmdpbmUgYXQKMHgxMDQwMDAgZm9yIGNvcHkgb24gdGhlIEdGMTA4Li4uCgpG
-cm9tIG15IGFkbWl0dGVkbHkgbGltaXRlZCB1bmRlcnN0YW5kaW5nLCBib3RoIDB4MTA0MDAwIGFu
-ZCAweDEwNTAwMAphcHBlYXIgdG8gYmUgZmFsY29uIGVuZ2luZXMsIHdoZXJlIHRoZSBmdWMgaXMg
-cHJlc3VtYWJseSBhYmxlIHRvIGRyaXZlCnNvbWUgdW5kZXJseWluZyBoYXJkd2FyZS4gVGhlIGFj
-dHVhbCBmaWZvIG1ldGhvZHMgYXJlIGltcGxlbWVudGVkIGluCnRoZSBmdWMsIHdoaWNoIGluIHR1
-cm4gZG9lcyBpb3dyL2V0YyBjb21tYW5kcy4KCkFyZSB5b3Ugc2F5aW5nIHRoYXQgdGhlICJkZWNv
-bXByZXNzIiBlbmdpbmUgKGF0IDB4MTA1MDAwIHJpZ2h0PykgaGFzIGEKZGlmZmVyZW50IHBpZWNl
-IG9mIGhhcmR3YXJlIGJlaGluZCBpdCB0aGFuIHRoZSBjb3B5IGVuZ2luZSBhdAoweDEwNDAwMCwg
-b3IgZG9lcyBOVklESUEgc2ltcGx5IHByb3ZpZGUgZGlmZmVyZW50IGZ1YyBmb3IgaXQgdGhhdApl
-eHBvc2VzIHNvbWV3aGF0IGRpZmZlcmVudCBmdW5jdGlvbmFsaXR5IHZpYSBGSUZPIG1ldGhvZHM/
-Cgo+Cj4gSSBob3BlIHRoYXQgaGVscHMsCj4gLSBBbmR5Cj4KPgo+IE9uIFRodSwgTm92IDIwLCAy
-MDE0IGF0IDAyOjE4OjAyUE0gLTA1MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBIZWxsbywKPj4K
-Pj4gVGhlcmUncyBhIGxvbmctc3RhbmRpbmcgYnVnIG9uIG5vdXZlYXUgKHRoaXMgaXMgYSBzYW1w
-bGUgYnVnLCBidXQgdGhlCj4+IGlzc3VlIGhhcyBiZWVuIGFyb3VuZCBmb3IgYSB3aGlsZToKPj4g
-aHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9ODU0NjUpIHdoZXJl
-Ynkgd2UgYXR0ZW1wdAo+PiB0byB1c2UgdGhlIHNlY29uZCBQQ09QWSBlbmdpbmUgb24gR0YxMTYs
-IGFuZCBpdCBpcyBzb21ldGltZXMgZG9lcwo+PiBub3RoaW5nLCBkZXNwaXRlIG1taW8gcmVnaXN0
-ZXIgMjI1MDAgc2F5aW5nIHRoYXQgaXQncyBub3QgZGlzYWJsZWQKPj4gKDB4MjI1MDAgPT0gMCBm
-b3IgdGhpcyB1c2VyKS4gSW4gdGhlIGJ1ZyB5b3UgY2FuIHNlZSBhIGR1bXAgZnJvbQo+PiAyMjQw
-MC4uMjI2MDAsIGFuZCBhbGwgdmFsdWVzIGFmdGVyIDIyNDQwIGFyZSByZWFkIGFzIDAuIFRoZSBp
-c3N1ZQo+PiBhcHBlYXJzIHRvIGJlIG1vcmUgY29tbW9uIG9uIG1vYmlsZSBHRjExNidzLCBidXQg
-SSBkb24ndCBrbm93IHRoYXQgdGhlCj4+IGNvcnJlbGF0aW9uIGlzIDEwMCUuIE5vIGVycm9ycyBh
-cmUgcmVwb3J0ZWQgYnkgdGhlIEZJRk8gb3IgaW52YWxpZAo+PiBtbWlvIHJlYWRzLCBidXQgdGhl
-IGRhdGEgdHJhbnNmZXIganVzdCBkb2VzIG5vdCBoYXBwZW4uIFN3aXRjaGluZyB0bwo+PiB1c2lu
-ZyB0aGUgZmlyc3QgY29weSBlbmdpbmUgcmVzb2x2ZXMgdGhpbmdzLCBzbyBpdCdzIHVubGlrZWx5
-IHRvIGJlIGEKPj4gbW9yZSBzeXN0ZW1pYyBpc3N1ZSBpbiBub3V2ZWF1J3MgdXNhZ2Ugb2YgdGhl
-IGNvcHkgZW5naW5lLgo+Pgo+PiBUbyBiZSBjbGVhciwgd2hlbiBJJ20gdGFsa2luZyBhYm91dCB0
-aGUgc2Vjb25kIFBDT1BZIGVuZ2luZSwgSSdtCj4+IHRhbGtpbmcgYWJvdXQgdGhlIGVuZ2luZSBh
-dCBtbWlvIDB4MTA1MDAwLCBhbmQgd2hvc2UgZmlmbyBjbGFzcyBpZCBpcwo+PiAweDkwYjguCj4+
-Cj4+IEFueSBpbmZvcm1hdGlvbiBvbiBwcm9wZXJseSBkZXRlY3RpbmcgdGhhdCB0aGUgZW5naW5l
-IGlzLCBpbiBmYWN0LAo+PiBtaXNzaW5nLCB3b3VsZCBiZSBncmVhdGx5IGFwcHJlY2lhdGVkLiBP
-ciwgY29udmVyc2VseSwgYW4gYXNzdXJhbmNlCj4+IHRoYXQgdGhlIGVuZ2luZSBfaXNfIHRoZXJl
-IG9uIGFsbCBHRjExNidzIGFuZCB3ZSdyZSBqdXN0IG5vdAo+PiBpbml0aWFsaXppbmcgc29tZXRo
-aW5nIHByb3Blcmx5LCBhbG9uZyB3aXRoIHBlcmhhcHMgc29tZSBzdWdnZXN0aW9ucwo+PiBhcyB0
-byB3aGF0IHdlIG1pZ2h0IGJlIG1pc3NpbmcuCj4+Cj4+IFRoYW5rcywKPj4KPj4gSWxpYSBNaXJr
-aW4KPj4gaW1pcmtpbkBhbHVtLm1pdC5lZHUKPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0913687852==
+Content-Type: multipart/alternative; boundary="1416570668.0B2c73.16686"; charset="UTF-8"
+
+
+--1416570668.0B2c73.16686
+Date: Fri, 21 Nov 2014 11:51:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=51579
+
+lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #31 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I'm sorry to say this, but the bug is still there, it comes at goes at random
+between reboots.
+
+Now I am running:
+kernel 3.15.0
+xorg-xf86-video-nouveau 1.0.11
+
+And mplayer -vo xv was working fine a minute ago.  Then I rebooted the computer
+and now the video plays (can hear audio), but a black screen again.
+
+I tested again several times after restarting X, and still get a black window.
+Unfortunately I can't test rmmod nouveau, because I built it in the kernel.
+
+I see this in my Xorg log:
+
+bash$ egrep 'WW|EE' /var/log/Xorg.0.log.old 
+[  1057.575] Current Operating System: Linux hostname 3.15.0 #8 SMP PREEMPT Thu
+Nov 20 10:00:10 JST 2014 x86_64
+        (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[  1057.576] (WW) The directory "/usr/share/fonts/X11/OTF/" does not exist.
+[  1057.577] (EE) systemd-logind: failed to get session: The name
+org.freedesktop.login1 was not provided by any .service files
+[  1057.746] (EE) NOUVEAU(0): [COPY] failed to allocate class.
+[  1117.476] (EE) Server terminated successfully (0). Closing log file.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1416570668.0B2c73.16686
+Date: Fri, 21 Nov 2014 11:51:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:lameventanas&#64;gmail.com" title="lameventanas&#64;gmail.com">lameventanas&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579#c31">Comment # 31</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVA8] Xv shows black image on ION chipset"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=51579">bug 51579</a>
+              from <span class="vcard"><a class="email" href="mailto:lameventanas&#64;gmail.com" title="lameventanas&#64;gmail.com">lameventanas&#64;gmail.com</a>
+</span></b>
+        <pre>I'm sorry to say this, but the bug is still there, it comes at goes at random
+between reboots.
+
+Now I am running:
+kernel 3.15.0
+xorg-xf86-video-nouveau 1.0.11
+
+And mplayer -vo xv was working fine a minute ago.  Then I rebooted the computer
+and now the video plays (can hear audio), but a black screen again.
+
+I tested again several times after restarting X, and still get a black window.
+Unfortunately I can't test rmmod nouveau, because I built it in the kernel.
+
+I see this in my Xorg log:
+
+bash$ egrep 'WW|EE' /var/log/Xorg.0.log.old 
+[  1057.575] Current Operating System: Linux hostname 3.15.0 #8 SMP PREEMPT Thu
+Nov 20 10:00:10 JST 2014 x86_64
+        (WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[  1057.576] (WW) The directory &quot;/usr/share/fonts/X11/OTF/&quot; does not exist.
+[  1057.577] (EE) systemd-logind: failed to get session: The name
+org.freedesktop.login1 was not provided by any .service files
+[  1057.746] (EE) NOUVEAU(0): [COPY] failed to allocate class.
+[  1117.476] (EE) Server terminated successfully (0). Closing log file.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416570668.0B2c73.16686--
+
+--===============0913687852==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0913687852==--
