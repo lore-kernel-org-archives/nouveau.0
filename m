@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 73847] Shutdown fails almost every time since,
- upgrade to kernel 3.12
-Date: Fri, 21 Nov 2014 00:24:53 +0000
-Message-ID: <bug-73847-8800-N6MQHZg9KJ@http.bugs.freedesktop.org/>
-References: <bug-73847-8800@http.bugs.freedesktop.org/>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Second copy engine on GF116
+Date: Thu, 20 Nov 2014 22:16:56 -0800
+Message-ID: <20141121061656.GA897@parker.nvidia.com>
+References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1313817520=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-73847-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +18,47 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1313817520==
-Content-Type: multipart/alternative; boundary="1416529493.DcCe2.10733"; charset="UTF-8"
-
-
---1416529493.DcCe2.10733
-Date: Fri, 21 Nov 2014 00:24:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=73847
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is probably fixed since a long time. Feel free to reopen with more
-complete information if it's still an issue in recent kernels.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416529493.DcCe2.10733
-Date: Fri, 21 Nov 2014 00:24:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Shutdown fails almost every time since, upgrade to kernel 3.12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73847">bug 73847</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Shutdown fails almost every time since, upgrade to kernel 3.12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73847#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Shutdown fails almost every time since, upgrade to kernel 3.12"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=73847">bug 73847</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This is probably fixed since a long time. Feel free to reopen with more
-complete information if it's still an issue in recent kernels.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416529493.DcCe2.10733--
-
---===============1313817520==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1313817520==--
+SGkgSWxpYSwKCkFjdHVhbGx5IDB4OTBiOCBpcyBkaWZmZXJlbnQgdGhhbiBjb3B5IGVuZ2luZS4g
+IEknbSBub3QgdmVyeSBmYW1pbGlhcgp3aXRoIGl0LCBidXQgMHg5MGI4IGlzIGFuIGVuZ2luZSBm
+b3IgcGVyZm9ybWluZyBMWk8gZGVjb21wcmVzc2lvbiBhcwpwYXJ0IG9mIHBlcmZvcm1pbmcgdGhl
+IGNvcHkuICBJdCBoYXMgYSB2YXJpZXR5IG9mIGxpbWl0YXRpb25zIChlLmcuLApjYW5ub3QgaGFu
+ZGxlIGJsb2NrbGluZWFyIGZvcm1hdCksIGFuZCB3YXMgb25seSBpbiBhIGZldyBGZXJtaSBjaGlw
+cywKYXMgSSB1bmRlcnN0YW5kIGl0LgoKSXQgaXMgcHJvYmFibHkgZWFzaWVzdCB0byBqdXN0IGln
+bm9yZSBpdC4gIFlvdSBjYW4gZGlzdGluZ3Vpc2ggdGhpcwpkZWNvbXByZXNzIGVuZ2luZSBmcm9t
+IG5vcm1hbCBjb3B5IGVuZ2luZSBieSBsb29raW5nIGF0IHRoZSBDRSBjYXBhYmlsaXR5CnJlZ2lz
+dGVyIG9uIGZhbGNvbiAoMHgwMDAwMDY1MCkuICBJZiBiaXQgMiBpcyAnMScsIHRoZW4gdGhlIGZh
+bGNvbiBpcwphIGRlY29tcHJlc3MgZW5naW5lLgoKSSBob3BlIHRoYXQgaGVscHMsCi0gQW5keQoK
+Ck9uIFRodSwgTm92IDIwLCAyMDE0IGF0IDAyOjE4OjAyUE0gLTA1MDAsIElsaWEgTWlya2luIHdy
+b3RlOgo+IEhlbGxvLAo+IAo+IFRoZXJlJ3MgYSBsb25nLXN0YW5kaW5nIGJ1ZyBvbiBub3V2ZWF1
+ICh0aGlzIGlzIGEgc2FtcGxlIGJ1ZywgYnV0IHRoZQo+IGlzc3VlIGhhcyBiZWVuIGFyb3VuZCBm
+b3IgYSB3aGlsZToKPiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
+ZD04NTQ2NSkgd2hlcmVieSB3ZSBhdHRlbXB0Cj4gdG8gdXNlIHRoZSBzZWNvbmQgUENPUFkgZW5n
+aW5lIG9uIEdGMTE2LCBhbmQgaXQgaXMgc29tZXRpbWVzIGRvZXMKPiBub3RoaW5nLCBkZXNwaXRl
+IG1taW8gcmVnaXN0ZXIgMjI1MDAgc2F5aW5nIHRoYXQgaXQncyBub3QgZGlzYWJsZWQKPiAoMHgy
+MjUwMCA9PSAwIGZvciB0aGlzIHVzZXIpLiBJbiB0aGUgYnVnIHlvdSBjYW4gc2VlIGEgZHVtcCBm
+cm9tCj4gMjI0MDAuLjIyNjAwLCBhbmQgYWxsIHZhbHVlcyBhZnRlciAyMjQ0MCBhcmUgcmVhZCBh
+cyAwLiBUaGUgaXNzdWUKPiBhcHBlYXJzIHRvIGJlIG1vcmUgY29tbW9uIG9uIG1vYmlsZSBHRjEx
+NidzLCBidXQgSSBkb24ndCBrbm93IHRoYXQgdGhlCj4gY29ycmVsYXRpb24gaXMgMTAwJS4gTm8g
+ZXJyb3JzIGFyZSByZXBvcnRlZCBieSB0aGUgRklGTyBvciBpbnZhbGlkCj4gbW1pbyByZWFkcywg
+YnV0IHRoZSBkYXRhIHRyYW5zZmVyIGp1c3QgZG9lcyBub3QgaGFwcGVuLiBTd2l0Y2hpbmcgdG8K
+PiB1c2luZyB0aGUgZmlyc3QgY29weSBlbmdpbmUgcmVzb2x2ZXMgdGhpbmdzLCBzbyBpdCdzIHVu
+bGlrZWx5IHRvIGJlIGEKPiBtb3JlIHN5c3RlbWljIGlzc3VlIGluIG5vdXZlYXUncyB1c2FnZSBv
+ZiB0aGUgY29weSBlbmdpbmUuCj4gCj4gVG8gYmUgY2xlYXIsIHdoZW4gSSdtIHRhbGtpbmcgYWJv
+dXQgdGhlIHNlY29uZCBQQ09QWSBlbmdpbmUsIEknbQo+IHRhbGtpbmcgYWJvdXQgdGhlIGVuZ2lu
+ZSBhdCBtbWlvIDB4MTA1MDAwLCBhbmQgd2hvc2UgZmlmbyBjbGFzcyBpZCBpcwo+IDB4OTBiOC4K
+PiAKPiBBbnkgaW5mb3JtYXRpb24gb24gcHJvcGVybHkgZGV0ZWN0aW5nIHRoYXQgdGhlIGVuZ2lu
+ZSBpcywgaW4gZmFjdCwKPiBtaXNzaW5nLCB3b3VsZCBiZSBncmVhdGx5IGFwcHJlY2lhdGVkLiBP
+ciwgY29udmVyc2VseSwgYW4gYXNzdXJhbmNlCj4gdGhhdCB0aGUgZW5naW5lIF9pc18gdGhlcmUg
+b24gYWxsIEdGMTE2J3MgYW5kIHdlJ3JlIGp1c3Qgbm90Cj4gaW5pdGlhbGl6aW5nIHNvbWV0aGlu
+ZyBwcm9wZXJseSwgYWxvbmcgd2l0aCBwZXJoYXBzIHNvbWUgc3VnZ2VzdGlvbnMKPiBhcyB0byB3
+aGF0IHdlIG1pZ2h0IGJlIG1pc3NpbmcuCj4gCj4gVGhhbmtzLAo+IAo+IElsaWEgTWlya2luCj4g
+aW1pcmtpbkBhbHVtLm1pdC5lZHUKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
