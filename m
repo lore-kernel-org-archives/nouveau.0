@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86618] [NV96] neg modifiers not working in MIN and
  MAX operations
-Date: Sun, 23 Nov 2014 17:20:41 +0000
-Message-ID: <bug-86618-8800-JrgLpjFynd@http.bugs.freedesktop.org/>
+Date: Sun, 23 Nov 2014 18:23:53 +0000
+Message-ID: <bug-86618-8800-CotMP5PKjS@http.bugs.freedesktop.org/>
 References: <bug-86618-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2143408890=="
+Content-Type: multipart/mixed; boundary="===============1179752698=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86618-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,67 +21,72 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2143408890==
-Content-Type: multipart/alternative; boundary="1416763240.0ceABb1.2319"; charset="UTF-8"
+--===============1179752698==
+Content-Type: multipart/alternative; boundary="1416767033.2ACfF0.29727"; charset="UTF-8"
 
 
---1416763240.0ceABb1.2319
-Date: Sun, 23 Nov 2014 17:20:40 +0000
+--1416767033.2ACfF0.29727
+Date: Sun, 23 Nov 2014 18:23:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86618
+https://bugs.freedesktop.org/show_bug.cgi?id=3D86618
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Great find! However the min/max ops can actually take the neg modifiers (on
-either arg), but the emit logic didn't have that hooked up somehow.
+--- Comment #2 from Grzegorz W=C3=B3jcik <gzregozrw-5tc4TXWwyLM@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
+Yes, this patch solved my issue.
 
-Does http://patchwork.freedesktop.org/patch/37356/ resolve your issue?
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416763240.0ceABb1.2319
-Date: Sun, 23 Nov 2014 17:20:40 +0000
+--1416767033.2ACfF0.29727
+Date: Sun, 23 Nov 2014 18:23:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV96] neg modifiers not working in MIN and MAX operations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86618#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV96] neg modifiers not working in MIN and MAX operation=
+s"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86618#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV96] neg modifiers not working in MIN and MAX operations"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86618">bug 86618</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [NV96] neg modifiers not working in MIN and MAX operation=
+s"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86618">bug 86618<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gzregozrw&#64;wp.pl" title=3D"Grzegorz W=C3=B3jcik &lt;gzregozrw&#64;wp.pl&=
+gt;"> <span class=3D"fn">Grzegorz W=C3=B3jcik</span></a>
 </span></b>
-        <pre>Great find! However the min/max ops can actually take the neg modifiers (on
-either arg), but the emit logic didn't have that hooked up somehow.
-
-Does <a href="http://patchwork.freedesktop.org/patch/37356/">http://patchwork.freedesktop.org/patch/37356/</a> resolve your issue?</pre>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D866=
+18#c1">comment #1</a>)
+Yes, this patch solved my issue.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1416763240.0ceABb1.2319--
+--1416767033.2ACfF0.29727--
 
---===============2143408890==
+--===============1179752698==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2143408890==--
+--===============1179752698==--
