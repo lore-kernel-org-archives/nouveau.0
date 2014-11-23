@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86641] [NVAC] nouveau crashes kernel with nvidia
 	9400 igp
-Date: Sun, 23 Nov 2014 23:51:42 +0000
-Message-ID: <bug-86641-8800-lKTcKbv8U1@http.bugs.freedesktop.org/>
+Date: Sun, 23 Nov 2014 23:53:07 +0000
+Message-ID: <bug-86641-8800-tzevWAeezJ@http.bugs.freedesktop.org/>
 References: <bug-86641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0168106481=="
+Content-Type: multipart/mixed; boundary="===============1191739038=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0168106481==
-Content-Type: multipart/alternative; boundary="1416786702.Ae3B1.4624"; charset="UTF-8"
+--===============1191739038==
+Content-Type: multipart/alternative; boundary="1416786787.D232AeB1.5239"; charset="UTF-8"
 
 
---1416786702.Ae3B1.4624
-Date: Sun, 23 Nov 2014 23:51:42 +0000
+--1416786787.D232AeB1.5239
+Date: Sun, 23 Nov 2014 23:53:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86641
 
---- Comment #2 from mirak <mirak63-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The mother board with the igp is "Gigabyte ga-e7aum-ds2h"
+--- Comment #3 from mirak <mirak63-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This happen on two gigabyte ga-e7aum-ds2h that I have, so is not a hardware
+issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416786702.Ae3B1.4624
-Date: Sun, 23 Nov 2014 23:51:42 +0000
+--1416786787.D232AeB1.5239
+Date: Sun, 23 Nov 2014 23:53:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86641">bug 86641</a>
               from <span class="vcard"><a class="email" href="mailto:mirak63&#64;gmail.com" title="mirak &lt;mirak63&#64;gmail.com&gt;"> <span class="fn">mirak</span></a>
 </span></b>
-        <pre>The mother board with the igp is &quot;Gigabyte ga-e7aum-ds2h&quot;</pre>
+        <pre>This happen on two gigabyte ga-e7aum-ds2h that I have, so is not a hardware
+issue.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1416786702.Ae3B1.4624--
+--1416786787.D232AeB1.5239--
 
---===============0168106481==
+--===============1191739038==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0168106481==--
+--===============1191739038==--
