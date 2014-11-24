@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86650] (NV44): initrd gpu lockup from 3.12 or 3.13
-	onwards
-Date: Mon, 24 Nov 2014 05:20:27 +0000
-Message-ID: <bug-86650-8800-rMMg32m9bw@http.bugs.freedesktop.org/>
-References: <bug-86650-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86641] [NVAC] nouveau crashes kernel with nvidia
+	9400 igp
+Date: Mon, 24 Nov 2014 07:47:14 +0000
+Message-ID: <bug-86641-8800-sHox18ig9y@http.bugs.freedesktop.org/>
+References: <bug-86641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1060666138=="
+Content-Type: multipart/mixed; boundary="===============0825318633=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86650-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-86641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1060666138==
-Content-Type: multipart/alternative; boundary="1416806427.bDf70B70.24387"; charset="UTF-8"
+--===============0825318633==
+Content-Type: multipart/alternative; boundary="1416815234.6A2Dd2.18728"; charset="UTF-8"
 
 
---1416806427.bDf70B70.24387
-Date: Mon, 24 Nov 2014 05:20:27 +0000
+--1416815234.6A2Dd2.18728
+Date: Mon, 24 Nov 2014 07:47:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86650
+https://bugs.freedesktop.org/show_bug.cgi?id=86641
 
---- Comment #2 from sebastian-+7HhuH9B2PG2Zizt6A3wSA@public.gmane.org ---
-Created attachment 109920
-  --> https://bugs.freedesktop.org/attachment.cgi?id=109920&action=edit
-complete dmesg from 3.11 (noveau works)
+--- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #1)
+> From IRC:
+> 
+> <mirak> ./nvapeek 0x100c14
+> <mirak> 00100c14: 00010003
+> 
+> So it's a very different issue than the sort of thing that the macbooks were
+> experiencing.
+
+It seems so. Init'ing the NVAC on the MBPs failed with interrupt 0x00400000
+iirc, whereas this one passes the initialisation without troubles, but fails
+when loading X.
+
+@mirak
+I would be interested by a mmio trace from the Nvidia driver (see
+https://wiki.ubuntu.com/X/MMIOTracing), to compare it with mine and see what's
+going differently.
+You mentioned issues with the Nvidia driver, what kind of issues are you
+experiencing? (If it fails the same way, there won't be much we can do...
+Probably just poking the Nvidia guys about it.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416806427.bDf70B70.24387
-Date: Mon, 24 Nov 2014 05:20:27 +0000
+--1416815234.6A2Dd2.18728
+Date: Mon, 24 Nov 2014 07:47:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +72,34 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - (NV44): initrd gpu lockup from 3.12 or 3.13 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86650#c2">Comment # 2</a>
+   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - (NV44): initrd gpu lockup from 3.12 or 3.13 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86650">bug 86650</a>
-              from <span class="vcard"><a class="email" href="mailto:sebastian&#64;prohtmeyhet.de" title="sebastian&#64;prohtmeyhet.de">sebastian&#64;prohtmeyhet.de</a>
+   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641">bug 86641</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=109920" name="attach_109920" title="complete dmesg from 3.11 (noveau works)">attachment 109920</a> <a href="attachment.cgi?id=109920&amp;action=edit" title="complete dmesg from 3.11 (noveau works)">[details]</a></span>
-complete dmesg from 3.11 (noveau works)</pre>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=86641#c1">comment #1</a>)
+<span class="quote">&gt; From IRC:
+&gt; 
+&gt; &lt;mirak&gt; ./nvapeek 0x100c14
+&gt; &lt;mirak&gt; 00100c14: 00010003
+&gt; 
+&gt; So it's a very different issue than the sort of thing that the macbooks were
+&gt; experiencing.</span >
+
+It seems so. Init'ing the NVAC on the MBPs failed with interrupt 0x00400000
+iirc, whereas this one passes the initialisation without troubles, but fails
+when loading X.
+
+&#64;mirak
+I would be interested by a mmio trace from the Nvidia driver (see
+<a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a>), to compare it with mine and see what's
+going differently.
+You mentioned issues with the Nvidia driver, what kind of issues are you
+experiencing? (If it fails the same way, there won't be much we can do...
+Probably just poking the Nvidia guys about it.)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +111,9 @@ complete dmesg from 3.11 (noveau works)</pre>
     </body>
 </html>
 
---1416806427.bDf70B70.24387--
+--1416815234.6A2Dd2.18728--
 
---===============1060666138==
+--===============0825318633==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1060666138==--
+--===============0825318633==--
