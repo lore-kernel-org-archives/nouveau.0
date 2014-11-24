@@ -1,13 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: idea of extracting microcode
-Date: Mon, 24 Nov 2014 14:50:36 +0100
-Message-ID: <547337AC.70706@free.fr>
-References: <CAPM=9txGnz5eSdoVzbN2tb7GJUs2-wR+c_-10z6qZ_EfAJ3xMQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86641] [NVAC] nouveau crashes kernel with nvidia
+	9400 igp
+Date: Mon, 24 Nov 2014 18:59:20 +0000
+Message-ID: <bug-86641-8800-tYL42c2AMx@http.bugs.freedesktop.org/>
+References: <bug-86641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1560328123=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAPM=9txGnz5eSdoVzbN2tb7GJUs2-wR+c_-10z6qZ_EfAJ3xMQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-86641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +20,69 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjQvMTEvMTQgMTE6MTksIERhdmUgQWlybGllIHdyb3RlOgo+IEhleSwKPgo+IFByb2JhYmx5
-IG1vc3RseSBmb3IgQmVuLCBidXQgSSBoYWQgdGhpcyBpZGVhIHRoYXQgaXQgbWlnaHQgYmUgcG9z
-c2libGUKPiB0byB3cml0ZSBhIHVzZXJzcGFjZSB3cmFwcGVyIGZvciB0aGUgYmluYXJ5IGRyaXZl
-ciB0aGF0IHJ1biBhcyByb290Cj4gY291bGQgYmUgdXNlZCB0byBkbyB0aGUgY2FyZCBpbml0IGZv
-ciB0aGUgY3VycmVudCBvciBldmVuIGEgZmFrZSBHUFUKPiB0aGVuIHByb2R1Y2UgdHJhY2VzIHRv
-IHB1bGwgdGhlIGZpcm13YXJlcyBvdXQuCj4KPiBOb3Qgc3VyZSBob3cgaW5zYW5lIGl0IGlzLCB2
-cyBoYXZpbmcgdG8gbW1pb3RyYWNlLCBidXQgSSBqdXN0IHRob3VnaHQKPiBJJ2Qgc2VlIGlmIGFu
-eW9uZSBoYWQgY29uc2lkZXJlZCBpdC4KPgo+Cj4gRGF2ZS4KCkhlbGxvIERhdmUsCgpGb3IgdGhl
-IG1vbWVudCwgd2UgaGF2ZSBhbiBldmVuLWJldHRlciBzb2x1dGlvbiBkZXZlbG9wZWQgYnkgSWxp
-YS4gVGhpcyAKc2NyaXB0IGV4dHJhY3RzIGZpcm13YXJlcyBmcm9tIHRoZSBibG9iJ3MgaW5zdGFs
-bGVyIHdpdGhvdXQgaGF2aW5nIHRvIApydW4gaXQgZnVydGhlciB0aGFuIGRlY29tcHJlc3Npbmcg
-aXQuCgpIZXJlIGl0IGlzOiAKaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ltaXJr
-aW4vcmUtdnAyL21hc3Rlci9leHRyYWN0X2Zpcm13YXJlLnB5CkFuZCB0aGVyZSBpcyBhIHBhY2th
-Z2UgZm9yIGFyY2hsaW51eCBoZXJlOiAKaHR0cHM6Ly9hdXIuYXJjaGxpbnV4Lm9yZy9wYWNrYWdl
-cy9ub3V2ZWF1LWZ3LwoKVGhpcyBzb2x1dGlvbiBpcyBub3QgcGVyZmVjdCBidXQsIGF0IFhEQzIw
-MTQsIHdlIGRpc2N1c3NlZCBpdCB3aXRoIEFuZHkgClJpdGdlciBmcm9tIE5WSURJQSBhbmQgd2Ug
-YXJlIGxvb2tpbmcgaW50byBhIHdheSBmb3IgdGhlbSB0byByZWxlYXNlIAp0aGVpciBmaXJtd2Fy
-ZXMgc2VwYXJhdGVseSBmcm9tIHRoZSBibG9iIGZvciBvdXIgdXNhZ2UgKGFsb25nIHdpdGggdGhl
-IApyaWdodHMgdG8gcmVkaXN0cmlidXRlIHRoZW0pLgoKQXMgZm9yIHlvdXIgcHJvcG9zYWwgb2Yg
-ZmFraW5nIHRoZSBHUFUsIHdlIHdvdWxkIG5lZWQgdG8gY2hhbmdlIHRoZSAKbW1pb3RyYWNpbmcg
-dG9vbCB0byBmYWtlIGFueSBNTUlPIHJlcXVlc3QgYW5kIGNvdXBsZSB0aGF0IHdpdGggYSBtaW5p
-bWFsIApodyBtb2RlbCBvZiBOVklESUEgR1BVcy4gVGhhdCBiZWluZyBkb25lLCB3ZSB3b3VsZCBz
-dGlsbCBuZWVkIGEgCm1taW90cmFjZSB3aXRoIHRoZSByZWFsIGNhcmQgdG8gcHJvZHVjZSB0aGUg
-Z29sZGVuIGNvbnRleHQgKHRoZSBpbml0aWFsIAp2YWx1ZXMgZm9yIHRoZSBjb250ZXh0LXN3aXRj
-aGVkIHJlZ2lzdGVycykuCgpJbiB0aGUgZW5kLCBpIGFtIG5vdCBzdXJlIGl0IGlzIHdvcnRoIHRo
-ZSBlZmZvcnQgYXMgd2Ugd2lsbCBuZWVkIHRvIGhhdmUgCm1vc3QgY2hpcHNldHMgYW55d2F5IGZv
-ciB0ZXN0aW5nIHB1cnBvc2VzLi4uCgpNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============1560328123==
+Content-Type: multipart/alternative; boundary="1416855560.DCdd0Bd1.19383"; charset="UTF-8"
+
+
+--1416855560.DCdd0Bd1.19383
+Date: Mon, 24 Nov 2014 18:59:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86641
+
+--- Comment #5 from mirak <mirak63-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+What version of the nvidia driver should i use ?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1416855560.DCdd0Bd1.19383
+Date: Mon, 24 Nov 2014 18:59:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641">bug 86641</a>
+              from <span class="vcard"><a class="email" href="mailto:mirak63&#64;gmail.com" title="mirak &lt;mirak63&#64;gmail.com&gt;"> <span class="fn">mirak</span></a>
+</span></b>
+        <pre>What version of the nvidia driver should i use ?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416855560.DCdd0Bd1.19383--
+
+--===============1560328123==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1560328123==--
