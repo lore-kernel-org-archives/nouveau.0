@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86641] [NVAC] nouveau crashes kernel with nvidia
 	9400 igp
-Date: Mon, 24 Nov 2014 18:59:20 +0000
-Message-ID: <bug-86641-8800-tYL42c2AMx@http.bugs.freedesktop.org/>
+Date: Mon, 24 Nov 2014 20:03:50 +0000
+Message-ID: <bug-86641-8800-FABxCmRUP0@http.bugs.freedesktop.org/>
 References: <bug-86641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1560328123=="
+Content-Type: multipart/mixed; boundary="===============0057554485=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1560328123==
-Content-Type: multipart/alternative; boundary="1416855560.DCdd0Bd1.19383"; charset="UTF-8"
+--===============0057554485==
+Content-Type: multipart/alternative; boundary="1416859430.B4Adea2.16015"; charset="UTF-8"
 
 
---1416855560.DCdd0Bd1.19383
-Date: Mon, 24 Nov 2014 18:59:20 +0000
+--1416859430.B4Adea2.16015
+Date: Mon, 24 Nov 2014 20:03:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86641
 
---- Comment #5 from mirak <mirak63-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-What version of the nvidia driver should i use ?
+--- Comment #6 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to mirak from comment #5)
+> What version of the nvidia driver should i use ?
+
+The latest version supporting the card would be better (which should be
+340.58), but previous versions sould be fine too.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416855560.DCdd0Bd1.19383
-Date: Mon, 24 Nov 2014 18:59:20 +0000
+--1416859430.B4Adea2.16015
+Date: Mon, 24 Nov 2014 20:03:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86641">bug 86641</a>
-              from <span class="vcard"><a class="email" href="mailto:mirak63&#64;gmail.com" title="mirak &lt;mirak63&#64;gmail.com&gt;"> <span class="fn">mirak</span></a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>What version of the nvidia driver should i use ?</pre>
+        <pre>(In reply to mirak from <a href="show_bug.cgi?id=86641#c5">comment #5</a>)
+<span class="quote">&gt; What version of the nvidia driver should i use ?</span >
+
+The latest version supporting the card would be better (which should be
+340.58), but previous versions sould be fine too.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1416855560.DCdd0Bd1.19383--
+--1416859430.B4Adea2.16015--
 
---===============1560328123==
+--===============0057554485==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1560328123==--
+--===============0057554485==--
