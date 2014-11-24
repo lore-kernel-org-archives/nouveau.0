@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86641] [NVAC] nouveau crashes kernel with nvidia
-	9400 igp
-Date: Sun, 23 Nov 2014 23:53:07 +0000
-Message-ID: <bug-86641-8800-tzevWAeezJ@http.bugs.freedesktop.org/>
-References: <bug-86641-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86650] New: (NV44): initrd gpu lockup from 3.12 or
+	3.13 onwards
+Date: Mon, 24 Nov 2014 05:11:36 +0000
+Message-ID: <bug-86650-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1191739038=="
+Content-Type: multipart/mixed; boundary="===============1631813550=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +19,55 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1191739038==
-Content-Type: multipart/alternative; boundary="1416786787.D232AeB1.5239"; charset="UTF-8"
+--===============1631813550==
+Content-Type: multipart/alternative; boundary="1416805896.6E077D0.20976"; charset="UTF-8"
 
 
---1416786787.D232AeB1.5239
-Date: Sun, 23 Nov 2014 23:53:07 +0000
+--1416805896.6E077D0.20976
+Date: Mon, 24 Nov 2014 05:11:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86641
+https://bugs.freedesktop.org/show_bug.cgi?id=86650
 
---- Comment #3 from mirak <mirak63-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This happen on two gigabyte ga-e7aum-ds2h that I have, so is not a hardware
-issue.
+            Bug ID: 86650
+           Summary: (NV44): initrd gpu lockup from 3.12 or 3.13 onwards
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: sebastian-+7HhuH9B2PG2Zizt6A3wSA@public.gmane.org
+
+Created attachment 109919
+  --> https://bugs.freedesktop.org/attachment.cgi?id=109919&action=edit
+complete dmesg from 3.18-rc4
+
+all kernels since 3.13 immidiatly print this while loading the initrd: (copied
+by hand)
+
+-----------------------------------------------------
+BUG: recent printk recursion!
+E[ DRM] GPU lockup - switching to software fbcon
+-----------------------------------------------------
+
+this of course means X wont come up. the last working kernel seems to be 3.11.
+i've tested 3.13, 3.15, 3.16, 3.17 and 3.18-rc4 which all show this behaviour.
+i couldn't find a 3.12 kernel rpm so i did not test 3.12.
+
+i am using opensuse 13.2 + factory. according to suse they do not patch noveau
+and it's the same with the vanilla (unchanged) kernels provided by opensuse.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1416786787.D232AeB1.5239
-Date: Sun, 23 Nov 2014 23:53:07 +0000
+--1416805896.6E077D0.20976
+Date: Mon, 24 Nov 2014 05:11:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +75,100 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - (NV44): initrd gpu lockup from 3.12 or 3.13 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86650">86650</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>(NV44): initrd gpu lockup from 3.12 or 3.13 onwards
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>sebastian&#64;prohtmeyhet.de
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVAC] nouveau crashes kernel with nvidia 9400 igp"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86641">bug 86641</a>
-              from <span class="vcard"><a class="email" href="mailto:mirak63&#64;gmail.com" title="mirak &lt;mirak63&#64;gmail.com&gt;"> <span class="fn">mirak</span></a>
-</span></b>
-        <pre>This happen on two gigabyte ga-e7aum-ds2h that I have, so is not a hardware
-issue.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=109919" name="attach_109919" title="complete dmesg from 3.18-rc4">attachment 109919</a> <a href="attachment.cgi?id=109919&amp;action=edit" title="complete dmesg from 3.18-rc4">[details]</a></span>
+complete dmesg from 3.18-rc4
+
+all kernels since 3.13 immidiatly print this while loading the initrd: (copied
+by hand)
+
+-----------------------------------------------------
+BUG: recent printk recursion!
+E[ DRM] GPU lockup - switching to software fbcon
+-----------------------------------------------------
+
+this of course means X wont come up. the last working kernel seems to be 3.11.
+i've tested 3.13, 3.15, 3.16, 3.17 and 3.18-rc4 which all show this behaviour.
+i couldn't find a 3.12 kernel rpm so i did not test 3.12.
+
+i am using opensuse 13.2 + factory. according to suse they do not patch noveau
+and it's the same with the vanilla (unchanged) kernels provided by opensuse.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +180,9 @@ issue.</pre>
     </body>
 </html>
 
---1416786787.D232AeB1.5239--
+--1416805896.6E077D0.20976--
 
---===============1191739038==
+--===============1631813550==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +192,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1191739038==--
+--===============1631813550==--
