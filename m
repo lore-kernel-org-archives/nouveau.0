@@ -1,16 +1,12 @@
-From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: Second copy engine on GF116
-Date: Tue, 25 Nov 2014 19:28:59 +0100
-Message-ID: <5474CA6B.6010706@0x04.net>
-References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
- <20141121061656.GA897@parker.nvidia.com>
- <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
- <20141125013301.GL22016@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
+Date: Tue, 25 Nov 2014 19:13:36 +0000
+Message-ID: <bug-86115-8800-JHqqesimCz@http.bugs.freedesktop.org/>
+References: <bug-86115-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0095472269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20141125013301.GL22016-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,103 +16,135 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rm9yIHdoYXQgaXQncyB3b3J0aCwgSSBtYW5hZ2VkIHRvIGdldCB0aGUgZW5naW5lIHRvIHdvcmsg
-aW4gdGhlIHNpbXBsZXN0IAptb2RlIChpZS4gZGVjb21wcmVzc2luZyBMWk8xWCBieXRlc3RyZWFt
-KS4gVHJpZ2dlcmluZyB0aGUgb3BlcmF0aW9uIGlzIApkZWFkIHNpbXBsZSwgYW5kIHRoZSB3aG9s
-ZSB0aGluZyBpcyBkb25lIGluIGh3OgoKMS4gRGVzdGluYXRpb24gYW5kIHNvdXJjZSBoYXZlIHRv
-IGJlIDB4MTAwLWJ5dGUgYWxpZ25lZAoyLiBEZXN0aW5hdGlvbiBidWZmZmVyIGxlbmd0aCBpcyBp
-biBieXRlcywgYnV0IGl0J3Mgcm91bmRlZCB1cCB0byBhIAptdWx0aXBsZSBvZiAweDEwMAozLiBQ
-b2tlIHNvdXJjZSBhZGRyZXNzID4+IDggdG8gYmFzZSsweGEwMAo0LiBQb2tlIHNvdXJjZSBsZW5n
-dGgsIGluIGJ5dGVzLCB0byBiYXNlKzB4YTA0CjUuIFBva2UgZGVzdGluYXRpb24gYWRkcmVzcyA+
-PiA4IHRvIGJhc2UrMHhhMjAKNi4gUG9rZSBkZXN0aW5hdGlvbiBidWZmZXIgbGVuZ3RoLCBpbiBi
-eXRlcywgdG8gYmFzZSsweGEyNAo3LiBQb2tlIDEgdG8gYmFzZSsweGExYwoKSG93ZXZlciwgSSBo
-YXZlbid0IGZpZ3VyZWQgb3V0IGVycm9yIGhhbmRsaW5nLCBvciBvdGhlciBvcGVyYXRpb24gbW9k
-ZXMgCih0aGVyZSBpcyBhdCBsZWFzdCBvbmUsIGp1ZGdpbmcgYnkgbnYgaGFyZHdhcmUgLSByYXcg
-Y29weSB3aXRob3V0IApkZWNvbXByZXNzaW9uLCBwZXJoYXBzPykuCgpUaGUgd2hvbGUgdGhpbmcg
-aGFzIGEgZ3JhbmQgdG90YWwgb2YgMTcgTU1JTyByZWdpc3RlcnMsIDkgb2YgdGhlbSAKd3JpdGFi
-bGUuIFNob3VsZG4ndCBiZSB0aGF0IGhhcmQgdG8gZmlndXJlIGl0IG91dC4uLgoKTWFyY2luIEtv
-xZtjaWVsbmlja2kKCk9uIDI1LzExLzE0IDAyOjMzLCBBbmR5IFJpdGdlciB3cm90ZToKPiBPbiBG
-cmksIE5vdiAyMSwgMjAxNCBhdCAwMTozOTo1NUFNIC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90ZToK
-Pj4gT24gRnJpLCBOb3YgMjEsIDIwMTQgYXQgMToxNiBBTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJA
-bnZpZGlhLmNvbT4gd3JvdGU6Cj4+PiBIaSBJbGlhLAo+Pj4KPj4+IEFjdHVhbGx5IDB4OTBiOCBp
-cyBkaWZmZXJlbnQgdGhhbiBjb3B5IGVuZ2luZS4gIEknbSBub3QgdmVyeSBmYW1pbGlhcgo+Pj4g
-d2l0aCBpdCwgYnV0IDB4OTBiOCBpcyBhbiBlbmdpbmUgZm9yIHBlcmZvcm1pbmcgTFpPIGRlY29t
-cHJlc3Npb24gYXMKPj4+IHBhcnQgb2YgcGVyZm9ybWluZyB0aGUgY29weS4gIEl0IGhhcyBhIHZh
-cmlldHkgb2YgbGltaXRhdGlvbnMgKGUuZy4sCj4+PiBjYW5ub3QgaGFuZGxlIGJsb2NrbGluZWFy
-IGZvcm1hdCksIGFuZCB3YXMgb25seSBpbiBhIGZldyBGZXJtaSBjaGlwcywKPj4+IGFzIEkgdW5k
-ZXJzdGFuZCBpdC4KPj4KPj4gQWNjb3JkaW5nIHRvIG91ciBkcml2ZXIgc291cmNlLCBHRjEwMCwg
-R0YxMDQsIEdGMTEwLCBHRjExNCwgYW5kIEdGMTE2Cj4+IGFsbCBoYXZlIGl0LiBbU28gR0YxMDYs
-IEdGMTA4LCBHRjExNywgR0YxMTkgZG9uJ3QgaGF2ZSBpdC5dIFdlJ3ZlIG9ubHkKPj4gaGFkIHBy
-b2JsZW1zIHJlcG9ydGVkIGFnYWluc3QgR0YxMTYuLi4gYW5kIG9ubHkgZm9yIHNvbWUgcGVvcGxl
-Lgo+Cj4gSG1tLCBzb21lIG9mIG91ciBpbnRlcm5hbCBkb2N1bWVudGF0aW9uIGlzIGluY29uc2lz
-dGVudCBhYm91dCB3aGV0aGVyIGl0Cj4gYXBwbGllcyB0byBHRjEwMCwgYnV0IG90aGVyd2lzZSB3
-aGF0IEkgc2VlIG1hdGNoZXMgeW91ciBsaXN0LiAgSSBndWVzcwo+ICJmZXciIHdhcyBub3QgZW50
-aXJlbHkgYWNjdXJhdGUuCj4KPj4+IEl0IGlzIHByb2JhYmx5IGVhc2llc3QgdG8ganVzdCBpZ25v
-cmUgaXQuICBZb3UgY2FuIGRpc3Rpbmd1aXNoIHRoaXMKPj4+IGRlY29tcHJlc3MgZW5naW5lIGZy
-b20gbm9ybWFsIGNvcHkgZW5naW5lIGJ5IGxvb2tpbmcgYXQgdGhlIENFIGNhcGFiaWxpdHkKPj4+
-IHJlZ2lzdGVyIG9uIGZhbGNvbiAoMHgwMDAwMDY1MCkuICBJZiBiaXQgMiBpcyAnMScsIHRoZW4g
-dGhlIGZhbGNvbiBpcwo+Pj4gYSBkZWNvbXByZXNzIGVuZ2luZS4KPj4KPj4gSSBwcmVzdW1lIHlv
-dSBtZWFuIGEgKzB4NjUwIHJlZ2lzdGVyIG9uIHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAwMAo+
-PiBhbmQgMHgxMDUwMDApLiBJIG9ubHkgaGF2ZSBhY2Nlc3MgdG8gdGhlIEdGMTA4IHJpZ2h0IG5v
-dywgd2hpY2gKPj4gcmV0dXJucyAzIGZvciAweDEwNDY1MCBhbmQgNCBmb3IgMHgxMDU2NTAuIFdl
-J3JlIHVzaW5nIHRoZSBlbmdpbmUgYXQKPj4gMHgxMDQwMDAgZm9yIGNvcHkgb24gdGhlIEdGMTA4
-Li4uCj4KPiBZZXMsIDB4MTA0NjUwIGFuZCAweDEwNTY1MCBhcmUgdGhlIHJpZ2h0IGFkZHJlc3Nl
-cywgZnJvbSB3aGF0IEkgY2FuIHRlbGwuCj4KPiBGV0lXLCB0aGUgb3RoZXIgY2FwYWJpbGl0eSBi
-aXRzIGFyZToKPiBiaXQgMDogIkRNQUNPUFlfU1VQUE9SVEVEIgo+IGJpdCAxOiAiUElYUkVNQVBf
-U1VQUE9SVEVEIgo+Cj4gKEkgdGhpbmsgUElYUkVNQVBfU1VQUE9SVEVEIGlzIGluIHJlZmVyZW5j
-ZSB0byB0aGUgY29tcG9uZW50IHJlbWFwcGluZwo+IGNvbnRyb2xsZWQgYnkgbWV0aG9kcyAweDAw
-MDAwNzAwLCAweDAwMDAwNzA0LCBhbmQgMHgwMDAwMDcwOCBpbiB0aGUKPiBjb3B5IGVuZ2luZSBj
-bGFzcykuCj4KPj4gIEZyb20gbXkgYWRtaXR0ZWRseSBsaW1pdGVkIHVuZGVyc3RhbmRpbmcsIGJv
-dGggMHgxMDQwMDAgYW5kIDB4MTA1MDAwCj4+IGFwcGVhciB0byBiZSBmYWxjb24gZW5naW5lcywg
-d2hlcmUgdGhlIGZ1YyBpcyBwcmVzdW1hYmx5IGFibGUgdG8gZHJpdmUKPj4gc29tZSB1bmRlcmx5
-aW5nIGhhcmR3YXJlLiBUaGUgYWN0dWFsIGZpZm8gbWV0aG9kcyBhcmUgaW1wbGVtZW50ZWQgaW4K
-Pj4gdGhlIGZ1Yywgd2hpY2ggaW4gdHVybiBkb2VzIGlvd3IvZXRjIGNvbW1hbmRzLgo+Pgo+PiBB
-cmUgeW91IHNheWluZyB0aGF0IHRoZSAiZGVjb21wcmVzcyIgZW5naW5lIChhdCAweDEwNTAwMCBy
-aWdodD8pIGhhcyBhCj4+IGRpZmZlcmVudCBwaWVjZSBvZiBoYXJkd2FyZSBiZWhpbmQgaXQgdGhh
-biB0aGUgY29weSBlbmdpbmUgYXQKPj4gMHgxMDQwMDAsIG9yIGRvZXMgTlZJRElBIHNpbXBseSBw
-cm92aWRlIGRpZmZlcmVudCBmdWMgZm9yIGl0IHRoYXQKPj4gZXhwb3NlcyBzb21ld2hhdCBkaWZm
-ZXJlbnQgZnVuY3Rpb25hbGl0eSB2aWEgRklGTyBtZXRob2RzPwo+Cj4gVGhlcmUgaXMgZGVmaW5p
-dGVseSBhIGZhbGNvbiBhdCB0aGUgZnJvbnRlbmQsIGFuZCB0aGVyZSBpcyBkaWZmZXJlbnQKPiBm
-YWxjb24gdWNvZGUgZm9yICJub3JtYWwiIGNvcHkgZW5naW5lIHZlcnN1cyB0aGUgImRlY29tcHJl
-c3MiIGVuZ2luZS4KPiBCdXQsIEkgZG9uJ3Qga25vdyBvZmYgaGFuZCB3aGF0IGRlZGljYXRlZCBo
-YXJkd2FyZSwgaWYgYW55LCBpcyBiZWhpbmQgaXQuCj4KPiAtIEFuZHkKPgo+Cj4+Pgo+Pj4gSSBo
-b3BlIHRoYXQgaGVscHMsCj4+PiAtIEFuZHkKPj4+Cj4+Pgo+Pj4gT24gVGh1LCBOb3YgMjAsIDIw
-MTQgYXQgMDI6MTg6MDJQTSAtMDUwMCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4gSGVsbG8sCj4+
-Pj4KPj4+PiBUaGVyZSdzIGEgbG9uZy1zdGFuZGluZyBidWcgb24gbm91dmVhdSAodGhpcyBpcyBh
-IHNhbXBsZSBidWcsIGJ1dCB0aGUKPj4+PiBpc3N1ZSBoYXMgYmVlbiBhcm91bmQgZm9yIGEgd2hp
-bGU6Cj4+Pj4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9ODU0
-NjUpIHdoZXJlYnkgd2UgYXR0ZW1wdAo+Pj4+IHRvIHVzZSB0aGUgc2Vjb25kIFBDT1BZIGVuZ2lu
-ZSBvbiBHRjExNiwgYW5kIGl0IGlzIHNvbWV0aW1lcyBkb2VzCj4+Pj4gbm90aGluZywgZGVzcGl0
-ZSBtbWlvIHJlZ2lzdGVyIDIyNTAwIHNheWluZyB0aGF0IGl0J3Mgbm90IGRpc2FibGVkCj4+Pj4g
-KDB4MjI1MDAgPT0gMCBmb3IgdGhpcyB1c2VyKS4gSW4gdGhlIGJ1ZyB5b3UgY2FuIHNlZSBhIGR1
-bXAgZnJvbQo+Pj4+IDIyNDAwLi4yMjYwMCwgYW5kIGFsbCB2YWx1ZXMgYWZ0ZXIgMjI0NDAgYXJl
-IHJlYWQgYXMgMC4gVGhlIGlzc3VlCj4+Pj4gYXBwZWFycyB0byBiZSBtb3JlIGNvbW1vbiBvbiBt
-b2JpbGUgR0YxMTYncywgYnV0IEkgZG9uJ3Qga25vdyB0aGF0IHRoZQo+Pj4+IGNvcnJlbGF0aW9u
-IGlzIDEwMCUuIE5vIGVycm9ycyBhcmUgcmVwb3J0ZWQgYnkgdGhlIEZJRk8gb3IgaW52YWxpZAo+
-Pj4+IG1taW8gcmVhZHMsIGJ1dCB0aGUgZGF0YSB0cmFuc2ZlciBqdXN0IGRvZXMgbm90IGhhcHBl
-bi4gU3dpdGNoaW5nIHRvCj4+Pj4gdXNpbmcgdGhlIGZpcnN0IGNvcHkgZW5naW5lIHJlc29sdmVz
-IHRoaW5ncywgc28gaXQncyB1bmxpa2VseSB0byBiZSBhCj4+Pj4gbW9yZSBzeXN0ZW1pYyBpc3N1
-ZSBpbiBub3V2ZWF1J3MgdXNhZ2Ugb2YgdGhlIGNvcHkgZW5naW5lLgo+Pj4+Cj4+Pj4gVG8gYmUg
-Y2xlYXIsIHdoZW4gSSdtIHRhbGtpbmcgYWJvdXQgdGhlIHNlY29uZCBQQ09QWSBlbmdpbmUsIEkn
-bQo+Pj4+IHRhbGtpbmcgYWJvdXQgdGhlIGVuZ2luZSBhdCBtbWlvIDB4MTA1MDAwLCBhbmQgd2hv
-c2UgZmlmbyBjbGFzcyBpZCBpcwo+Pj4+IDB4OTBiOC4KPj4+Pgo+Pj4+IEFueSBpbmZvcm1hdGlv
-biBvbiBwcm9wZXJseSBkZXRlY3RpbmcgdGhhdCB0aGUgZW5naW5lIGlzLCBpbiBmYWN0LAo+Pj4+
-IG1pc3NpbmcsIHdvdWxkIGJlIGdyZWF0bHkgYXBwcmVjaWF0ZWQuIE9yLCBjb252ZXJzZWx5LCBh
-biBhc3N1cmFuY2UKPj4+PiB0aGF0IHRoZSBlbmdpbmUgX2lzXyB0aGVyZSBvbiBhbGwgR0YxMTYn
-cyBhbmQgd2UncmUganVzdCBub3QKPj4+PiBpbml0aWFsaXppbmcgc29tZXRoaW5nIHByb3Blcmx5
-LCBhbG9uZyB3aXRoIHBlcmhhcHMgc29tZSBzdWdnZXN0aW9ucwo+Pj4+IGFzIHRvIHdoYXQgd2Ug
-bWlnaHQgYmUgbWlzc2luZy4KPj4+Pgo+Pj4+IFRoYW5rcywKPj4+Pgo+Pj4+IElsaWEgTWlya2lu
-Cj4+Pj4gaW1pcmtpbkBhbHVtLm1pdC5lZHUKPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+Pj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+Pj4gTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============0095472269==
+Content-Type: multipart/alternative; boundary="1416942816.e4EDb2.13122"; charset="UTF-8"
+
+
+--1416942816.e4EDb2.13122
+Date: Tue, 25 Nov 2014 19:13:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
+
+--- Comment #12 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
+(In reply to Takashi Iwai from comment #7)
+> FYI, there are a few kernel packages available in OBS
+> home:tiwai:kernel:3.13, home:tiwai:kernel:3.14, and home:tiwai:kernel:3.15
+> repos.
+
+                                        s2disk                 s2ram
+
+kernel-default-3.12.33-2.1.g26c7845     suspend yes            resume works
+                                        resume =3D> fresh boot   display is=
+ dead
+
+kernel-default-3.13.7-4.1.ga68bc7c      suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.14.6-1.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.15.8-1.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.16.6-2.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.17.4-1.1.gd50009e      ok                     ooops
+
+kernel-default-3.18.rc4-3.1.g0521fb3    suspend yes            ooops
+                                        resume fails
+                                        not net; no X
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1416942816.e4EDb2.13122
+Date: Tue, 25 Nov 2014 19:13:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115">bug 86115<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
+<span class=3D"fn">Lars M=C3=BCller</span></a>
+</span></b>
+        <pre>(In reply to Takashi Iwai from <a href=3D"show_bug.cgi?id=3D86=
+115#c7">comment #7</a>)
+<span class=3D"quote">&gt; FYI, there are a few kernel packages available i=
+n OBS
+&gt; home:tiwai:kernel:3.13, home:tiwai:kernel:3.14, and home:tiwai:kernel:=
+3.15
+&gt; repos.</span >
+
+                                        s2disk                 s2ram
+
+kernel-default-3.12.33-2.1.g26c7845     suspend yes            resume works
+                                        resume =3D&gt; fresh boot   display=
+ is dead
+
+kernel-default-3.13.7-4.1.ga68bc7c      suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.14.6-1.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.15.8-1.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.16.6-2.1               suspend yes            ooops
+                                        resume fresh boot
+
+kernel-default-3.17.4-1.1.gd50009e      ok                     ooops
+
+kernel-default-3.18.rc4-3.1.g0521fb3    suspend yes            ooops
+                                        resume fails
+                                        not net; no X</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416942816.e4EDb2.13122--
+
+--===============0095472269==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0095472269==--
