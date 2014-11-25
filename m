@@ -1,12 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
-Date: Tue, 25 Nov 2014 19:13:36 +0000
-Message-ID: <bug-86115-8800-JHqqesimCz@http.bugs.freedesktop.org/>
-References: <bug-86115-8800@http.bugs.freedesktop.org/>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Second copy engine on GF116
+Date: Tue, 25 Nov 2014 13:05:20 -0800
+Message-ID: <20141125210520.GF32262@parker.nvidia.com>
+References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
+ <20141121061656.GA897@parker.nvidia.com>
+ <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
+ <20141125013301.GL22016@parker.nvidia.com>
+ <CAKb7Uvh1dw4OfPsB9gzjq-En7eFaek+efo2N2dGSRj+xPJAw+w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0095472269=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7Uvh1dw4OfPsB9gzjq-En7eFaek+efo2N2dGSRj+xPJAw+w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,135 +22,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0095472269==
-Content-Type: multipart/alternative; boundary="1416942816.e4EDb2.13122"; charset="UTF-8"
-
-
---1416942816.e4EDb2.13122
-Date: Tue, 25 Nov 2014 19:13:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
-
---- Comment #12 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
-(In reply to Takashi Iwai from comment #7)
-> FYI, there are a few kernel packages available in OBS
-> home:tiwai:kernel:3.13, home:tiwai:kernel:3.14, and home:tiwai:kernel:3.15
-> repos.
-
-                                        s2disk                 s2ram
-
-kernel-default-3.12.33-2.1.g26c7845     suspend yes            resume works
-                                        resume =3D> fresh boot   display is=
- dead
-
-kernel-default-3.13.7-4.1.ga68bc7c      suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.14.6-1.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.15.8-1.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.16.6-2.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.17.4-1.1.gd50009e      ok                     ooops
-
-kernel-default-3.18.rc4-3.1.g0521fb3    suspend yes            ooops
-                                        resume fails
-                                        not net; no X
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416942816.e4EDb2.13122
-Date: Tue, 25 Nov 2014 19:13:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115">bug 86115<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
-<span class=3D"fn">Lars M=C3=BCller</span></a>
-</span></b>
-        <pre>(In reply to Takashi Iwai from <a href=3D"show_bug.cgi?id=3D86=
-115#c7">comment #7</a>)
-<span class=3D"quote">&gt; FYI, there are a few kernel packages available i=
-n OBS
-&gt; home:tiwai:kernel:3.13, home:tiwai:kernel:3.14, and home:tiwai:kernel:=
-3.15
-&gt; repos.</span >
-
-                                        s2disk                 s2ram
-
-kernel-default-3.12.33-2.1.g26c7845     suspend yes            resume works
-                                        resume =3D&gt; fresh boot   display=
- is dead
-
-kernel-default-3.13.7-4.1.ga68bc7c      suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.14.6-1.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.15.8-1.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.16.6-2.1               suspend yes            ooops
-                                        resume fresh boot
-
-kernel-default-3.17.4-1.1.gd50009e      ok                     ooops
-
-kernel-default-3.18.rc4-3.1.g0521fb3    suspend yes            ooops
-                                        resume fails
-                                        not net; no X</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416942816.e4EDb2.13122--
-
---===============0095472269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0095472269==--
+T24gVHVlLCBOb3YgMjUsIDIwMTQgYXQgMTA6NTc6NDRBTSAtMDUwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gT24gTW9uLCBOb3YgMjQsIDIwMTQgYXQgODozMyBQTSwgQW5keSBSaXRnZXIgPGFyaXRn
+ZXJAbnZpZGlhLmNvbT4gd3JvdGU6Cj4gPiBPbiBGcmksIE5vdiAyMSwgMjAxNCBhdCAwMTozOTo1
+NUFNIC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiA+PiBPbiBGcmksIE5vdiAyMSwgMjAxNCBh
+dCAxOjE2IEFNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90ZToKPiA+PiA+
+IEhpIElsaWEsCj4gPj4gPgo+ID4+ID4gQWN0dWFsbHkgMHg5MGI4IGlzIGRpZmZlcmVudCB0aGFu
+IGNvcHkgZW5naW5lLiAgSSdtIG5vdCB2ZXJ5IGZhbWlsaWFyCj4gPj4gPiB3aXRoIGl0LCBidXQg
+MHg5MGI4IGlzIGFuIGVuZ2luZSBmb3IgcGVyZm9ybWluZyBMWk8gZGVjb21wcmVzc2lvbiBhcwo+
+ID4+ID4gcGFydCBvZiBwZXJmb3JtaW5nIHRoZSBjb3B5LiAgSXQgaGFzIGEgdmFyaWV0eSBvZiBs
+aW1pdGF0aW9ucyAoZS5nLiwKPiA+PiA+IGNhbm5vdCBoYW5kbGUgYmxvY2tsaW5lYXIgZm9ybWF0
+KSwgYW5kIHdhcyBvbmx5IGluIGEgZmV3IEZlcm1pIGNoaXBzLAo+ID4+ID4gYXMgSSB1bmRlcnN0
+YW5kIGl0Lgo+ID4+Cj4gPj4gQWNjb3JkaW5nIHRvIG91ciBkcml2ZXIgc291cmNlLCBHRjEwMCwg
+R0YxMDQsIEdGMTEwLCBHRjExNCwgYW5kIEdGMTE2Cj4gPj4gYWxsIGhhdmUgaXQuIFtTbyBHRjEw
+NiwgR0YxMDgsIEdGMTE3LCBHRjExOSBkb24ndCBoYXZlIGl0Ll0gV2UndmUgb25seQo+ID4+IGhh
+ZCBwcm9ibGVtcyByZXBvcnRlZCBhZ2FpbnN0IEdGMTE2Li4uIGFuZCBvbmx5IGZvciBzb21lIHBl
+b3BsZS4KPiA+Cj4gPiBIbW0sIHNvbWUgb2Ygb3VyIGludGVybmFsIGRvY3VtZW50YXRpb24gaXMg
+aW5jb25zaXN0ZW50IGFib3V0IHdoZXRoZXIgaXQKPiA+IGFwcGxpZXMgdG8gR0YxMDAsIGJ1dCBv
+dGhlcndpc2Ugd2hhdCBJIHNlZSBtYXRjaGVzIHlvdXIgbGlzdC4gIEkgZ3Vlc3MKPiA+ICJmZXci
+IHdhcyBub3QgZW50aXJlbHkgYWNjdXJhdGUuCj4gPgo+ID4+ID4gSXQgaXMgcHJvYmFibHkgZWFz
+aWVzdCB0byBqdXN0IGlnbm9yZSBpdC4gIFlvdSBjYW4gZGlzdGluZ3Vpc2ggdGhpcwo+ID4+ID4g
+ZGVjb21wcmVzcyBlbmdpbmUgZnJvbSBub3JtYWwgY29weSBlbmdpbmUgYnkgbG9va2luZyBhdCB0
+aGUgQ0UgY2FwYWJpbGl0eQo+ID4+ID4gcmVnaXN0ZXIgb24gZmFsY29uICgweDAwMDAwNjUwKS4g
+IElmIGJpdCAyIGlzICcxJywgdGhlbiB0aGUgZmFsY29uIGlzCj4gPj4gPiBhIGRlY29tcHJlc3Mg
+ZW5naW5lLgo+ID4+Cj4gPj4gSSBwcmVzdW1lIHlvdSBtZWFuIGEgKzB4NjUwIHJlZ2lzdGVyIG9u
+IHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAwMAo+ID4+IGFuZCAweDEwNTAwMCkuIEkgb25seSBo
+YXZlIGFjY2VzcyB0byB0aGUgR0YxMDggcmlnaHQgbm93LCB3aGljaAo+ID4+IHJldHVybnMgMyBm
+b3IgMHgxMDQ2NTAgYW5kIDQgZm9yIDB4MTA1NjUwLiBXZSdyZSB1c2luZyB0aGUgZW5naW5lIGF0
+Cj4gPj4gMHgxMDQwMDAgZm9yIGNvcHkgb24gdGhlIEdGMTA4Li4uCj4gPgo+ID4gWWVzLCAweDEw
+NDY1MCBhbmQgMHgxMDU2NTAgYXJlIHRoZSByaWdodCBhZGRyZXNzZXMsIGZyb20gd2hhdCBJIGNh
+biB0ZWxsLgo+ID4KPiA+IEZXSVcsIHRoZSBvdGhlciBjYXBhYmlsaXR5IGJpdHMgYXJlOgo+ID4g
+Yml0IDA6ICJETUFDT1BZX1NVUFBPUlRFRCIKPiA+IGJpdCAxOiAiUElYUkVNQVBfU1VQUE9SVEVE
+Igo+ID4KPiA+IChJIHRoaW5rIFBJWFJFTUFQX1NVUFBPUlRFRCBpcyBpbiByZWZlcmVuY2UgdG8g
+dGhlIGNvbXBvbmVudCByZW1hcHBpbmcKPiA+IGNvbnRyb2xsZWQgYnkgbWV0aG9kcyAweDAwMDAw
+NzAwLCAweDAwMDAwNzA0LCBhbmQgMHgwMDAwMDcwOCBpbiB0aGUKPiA+IGNvcHkgZW5naW5lIGNs
+YXNzKS4KPiAKPiBOZWF0LiBXZSB3ZW50IGFyb3VuZCBhbmQgZ3JhYmJlZCB0aGF0IDB4NjUwIHJl
+Z2lzdGVyIG9uIGEgYnVuY2ggb2YKPiBHUFVzLCBzZWUgdGhlIENFKiBjb2x1bW5zIGF0Ogo+IAo+
+IGh0dHA6Ly9lbnZ5dG9vbHMucmVhZHRoZWRvY3Mub3JnL2VuL2xhdGVzdC9ody9ncHUuaHRtbCNm
+ZXJtaS1rZXBsZXItbWF4d2VsbC1mYW1pbHkKCkkgZG9uJ3Qgc2VlIHRoZSAweDY1MCByZWdpc3Rl
+ciB2YWx1ZXMgb24gdGhhdCBwYWdlLiAgTWF5YmUgSSdtIG5vdApsb29raW5nIGF0IHRoZSByaWdo
+dCBwbGFjZT8KCj4gSXQgbG9va3MgbGlrZSBpdCdzIGFjdHVhbGx5IHJldHVybmluZyAwIG9uIGJv
+dGggImNvcHkiIGVuZ2luZXMgZm9yIGEKPiBidW5jaCBvZiB0aG9zZSBjYXJkcyAtLSBHRjEwMCwg
+R0YxMDQsIEdGMTE0LCBwcm9iYWJseSBHRjExMC4gQnV0IG90aGVyCj4gY2FyZHMgaGF2ZSB0aGVt
+IGFzIGVpdGhlciAzIG9yIDQuIEknbSBndWVzc2luZyB0aGF0ICcwJyBzaG91bGQgYmUKPiB0cmVh
+dGVkIGFzIGlmIGl0IHdlcmUgYSAnMycgKG9yIGEgJzcnKT8KClRoYXQncyBjdXJpb3VzLiAgSWYg
+SSBjYW4gZ2V0IHRoZSB0YWJsZSBvZiB3aGVyZSB0aGF0IHJlYWRzIHplcm8sIEkgY2FuCnRyeSB0
+byBpbnZlc3RpZ2F0ZSBob3cgdG8gaW50ZXJwcmV0IHRoYXQuCgo+IEN1cmlvdXNseSwgYSBHRjEx
+NiBjYXJkIHRoYXQgSSB0aG91Z2h0IHdhcyB3b3JraW5nIGZpbmUgb24gbm91dmVhdQo+IGFjdHVh
+bGx5IGhhcyAzIGZvciB0aGUgZmlyc3QgZW5naW5lIGFuZCA0IGZvciB0aGUgc2Vjb25kLiBQZXJo
+YXBzIGl0Cj4ganVzdCBoYWQgZW5vdWdoIFZSQU0gdGhhdCBJIG5ldmVyIHRyaWdnZXJlZCB0aGUg
+Y29uZGl0aW9ucyByZXF1aXJlZAo+IGZvciBub3V2ZWF1IHRvIHVzZSB0aGF0IHNlY29uZCBjb3B5
+IGVuZ2luZSAod2UgdXNlIGl0LCB3aGVuIGF2YWlsYWJsZSwKPiBmb3IgZHJtLWluaXRpYXRlZCBi
+dWZmZXIgbW92ZXMpLgoKSW50ZXJlc3RpbmcuICBXb3VsZCB0aGF0IGV4cGxhaW4gd2h5IHRoaXMg
+aGFzbid0IG1hbmlmZXN0ZWQgb24gY29uZmlncwpvdGhlciB0aGFuIHRoZSBHRjExNiB1c2VyIHJl
+cG9ydHM/CgpUaGFua3MsCi0gQW5keQoKPiA+PiBGcm9tIG15IGFkbWl0dGVkbHkgbGltaXRlZCB1
+bmRlcnN0YW5kaW5nLCBib3RoIDB4MTA0MDAwIGFuZCAweDEwNTAwMAo+ID4+IGFwcGVhciB0byBi
+ZSBmYWxjb24gZW5naW5lcywgd2hlcmUgdGhlIGZ1YyBpcyBwcmVzdW1hYmx5IGFibGUgdG8gZHJp
+dmUKPiA+PiBzb21lIHVuZGVybHlpbmcgaGFyZHdhcmUuIFRoZSBhY3R1YWwgZmlmbyBtZXRob2Rz
+IGFyZSBpbXBsZW1lbnRlZCBpbgo+ID4+IHRoZSBmdWMsIHdoaWNoIGluIHR1cm4gZG9lcyBpb3dy
+L2V0YyBjb21tYW5kcy4KPiA+Pgo+ID4+IEFyZSB5b3Ugc2F5aW5nIHRoYXQgdGhlICJkZWNvbXBy
+ZXNzIiBlbmdpbmUgKGF0IDB4MTA1MDAwIHJpZ2h0PykgaGFzIGEKPiA+PiBkaWZmZXJlbnQgcGll
+Y2Ugb2YgaGFyZHdhcmUgYmVoaW5kIGl0IHRoYW4gdGhlIGNvcHkgZW5naW5lIGF0Cj4gPj4gMHgx
+MDQwMDAsIG9yIGRvZXMgTlZJRElBIHNpbXBseSBwcm92aWRlIGRpZmZlcmVudCBmdWMgZm9yIGl0
+IHRoYXQKPiA+PiBleHBvc2VzIHNvbWV3aGF0IGRpZmZlcmVudCBmdW5jdGlvbmFsaXR5IHZpYSBG
+SUZPIG1ldGhvZHM/Cj4gPgo+ID4gVGhlcmUgaXMgZGVmaW5pdGVseSBhIGZhbGNvbiBhdCB0aGUg
+ZnJvbnRlbmQsIGFuZCB0aGVyZSBpcyBkaWZmZXJlbnQKPiA+IGZhbGNvbiB1Y29kZSBmb3IgIm5v
+cm1hbCIgY29weSBlbmdpbmUgdmVyc3VzIHRoZSAiZGVjb21wcmVzcyIgZW5naW5lLgo+ID4gQnV0
+LCBJIGRvbid0IGtub3cgb2ZmIGhhbmQgd2hhdCBkZWRpY2F0ZWQgaGFyZHdhcmUsIGlmIGFueSwg
+aXMgYmVoaW5kIGl0Lgo+IAo+IFNlZW1zIGxpa2VseSB0aGF0IHRoZSBIVyBpcyBkaWZmZXJlbnQs
+IHNpbmNlIGl0J2QgYmUgbWFkbmVzcyB0byB0cnkgdG8KPiBkbyBkZWNvbXByZXNzaW9uIGluIHRo
+ZSBmYWxjb24gY29kZSBpdHNlbGYuIChOb3QgdG8gc2F5IHRoYXQgdGhlIElTQQo+IGlzbid0IHN1
+aXRlZCB0byBpdCwganVzdCB0aGV5IGhhdmUgcmVsYXRpdmVseSBzbG93IGNsb2Nrcy4pIG13ayBp
+cyBpbgo+IHRoZSBwcm9jZXNzIG9mIHdvcmtpbmcgaXQgYWxsIG91dC4KPiAKPiAgIC1pbGlhCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
