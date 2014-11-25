@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Mon, 24 Nov 2014 21:09:52 +0000
-Message-ID: <bug-27501-8800-QXqMBymAeY@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Second copy engine on GF116
+Date: Mon, 24 Nov 2014 17:33:01 -0800
+Message-ID: <20141125013301.GL22016@parker.nvidia.com>
+References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
+ <20141121061656.GA897@parker.nvidia.com>
+ <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0735973177=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,79 +20,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0735973177==
-Content-Type: multipart/alternative; boundary="1416863392.fb45Aca15.13904"; charset="UTF-8"
-
-
---1416863392.fb45Aca15.13904
-Date: Mon, 24 Nov 2014 21:09:52 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
-
---- Comment #57 from l3iggs <j@greyltc.com> ---
-Created attachment 109964
-  --> https://bugs.freedesktop.org/attachment.cgi?id=109964&action=edit
-9600M GT dmesg
-
-Attaching dmesg for 'modprobe nouveau' for 9600M GT
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416863392.fb45Aca15.13904
-Date: Mon, 24 Nov 2014 21:09:52 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c57">Comment # 57</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:j&#64;greyltc.com" title="l3iggs &lt;j&#64;greyltc.com&gt;"> <span class="fn">l3iggs</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=109964" name="attach_109964" title="9600M GT dmesg">attachment 109964</a> <a href="attachment.cgi?id=109964&amp;action=edit" title="9600M GT dmesg">[details]</a></span>
-9600M GT dmesg
-
-Attaching dmesg for 'modprobe nouveau' for 9600M GT</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416863392.fb45Aca15.13904--
-
---===============0735973177==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0735973177==--
+T24gRnJpLCBOb3YgMjEsIDIwMTQgYXQgMDE6Mzk6NTVBTSAtMDUwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gT24gRnJpLCBOb3YgMjEsIDIwMTQgYXQgMToxNiBBTSwgQW5keSBSaXRnZXIgPGFyaXRn
+ZXJAbnZpZGlhLmNvbT4gd3JvdGU6Cj4gPiBIaSBJbGlhLAo+ID4KPiA+IEFjdHVhbGx5IDB4OTBi
+OCBpcyBkaWZmZXJlbnQgdGhhbiBjb3B5IGVuZ2luZS4gIEknbSBub3QgdmVyeSBmYW1pbGlhcgo+
+ID4gd2l0aCBpdCwgYnV0IDB4OTBiOCBpcyBhbiBlbmdpbmUgZm9yIHBlcmZvcm1pbmcgTFpPIGRl
+Y29tcHJlc3Npb24gYXMKPiA+IHBhcnQgb2YgcGVyZm9ybWluZyB0aGUgY29weS4gIEl0IGhhcyBh
+IHZhcmlldHkgb2YgbGltaXRhdGlvbnMgKGUuZy4sCj4gPiBjYW5ub3QgaGFuZGxlIGJsb2NrbGlu
+ZWFyIGZvcm1hdCksIGFuZCB3YXMgb25seSBpbiBhIGZldyBGZXJtaSBjaGlwcywKPiA+IGFzIEkg
+dW5kZXJzdGFuZCBpdC4KPiAKPiBBY2NvcmRpbmcgdG8gb3VyIGRyaXZlciBzb3VyY2UsIEdGMTAw
+LCBHRjEwNCwgR0YxMTAsIEdGMTE0LCBhbmQgR0YxMTYKPiBhbGwgaGF2ZSBpdC4gW1NvIEdGMTA2
+LCBHRjEwOCwgR0YxMTcsIEdGMTE5IGRvbid0IGhhdmUgaXQuXSBXZSd2ZSBvbmx5Cj4gaGFkIHBy
+b2JsZW1zIHJlcG9ydGVkIGFnYWluc3QgR0YxMTYuLi4gYW5kIG9ubHkgZm9yIHNvbWUgcGVvcGxl
+LgoKSG1tLCBzb21lIG9mIG91ciBpbnRlcm5hbCBkb2N1bWVudGF0aW9uIGlzIGluY29uc2lzdGVu
+dCBhYm91dCB3aGV0aGVyIGl0CmFwcGxpZXMgdG8gR0YxMDAsIGJ1dCBvdGhlcndpc2Ugd2hhdCBJ
+IHNlZSBtYXRjaGVzIHlvdXIgbGlzdC4gIEkgZ3Vlc3MKImZldyIgd2FzIG5vdCBlbnRpcmVseSBh
+Y2N1cmF0ZS4KCj4gPiBJdCBpcyBwcm9iYWJseSBlYXNpZXN0IHRvIGp1c3QgaWdub3JlIGl0LiAg
+WW91IGNhbiBkaXN0aW5ndWlzaCB0aGlzCj4gPiBkZWNvbXByZXNzIGVuZ2luZSBmcm9tIG5vcm1h
+bCBjb3B5IGVuZ2luZSBieSBsb29raW5nIGF0IHRoZSBDRSBjYXBhYmlsaXR5Cj4gPiByZWdpc3Rl
+ciBvbiBmYWxjb24gKDB4MDAwMDA2NTApLiAgSWYgYml0IDIgaXMgJzEnLCB0aGVuIHRoZSBmYWxj
+b24gaXMKPiA+IGEgZGVjb21wcmVzcyBlbmdpbmUuCj4gCj4gSSBwcmVzdW1lIHlvdSBtZWFuIGEg
+KzB4NjUwIHJlZ2lzdGVyIG9uIHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAwMAo+IGFuZCAweDEw
+NTAwMCkuIEkgb25seSBoYXZlIGFjY2VzcyB0byB0aGUgR0YxMDggcmlnaHQgbm93LCB3aGljaAo+
+IHJldHVybnMgMyBmb3IgMHgxMDQ2NTAgYW5kIDQgZm9yIDB4MTA1NjUwLiBXZSdyZSB1c2luZyB0
+aGUgZW5naW5lIGF0Cj4gMHgxMDQwMDAgZm9yIGNvcHkgb24gdGhlIEdGMTA4Li4uCgpZZXMsIDB4
+MTA0NjUwIGFuZCAweDEwNTY1MCBhcmUgdGhlIHJpZ2h0IGFkZHJlc3NlcywgZnJvbSB3aGF0IEkg
+Y2FuIHRlbGwuCgpGV0lXLCB0aGUgb3RoZXIgY2FwYWJpbGl0eSBiaXRzIGFyZToKYml0IDA6ICJE
+TUFDT1BZX1NVUFBPUlRFRCIKYml0IDE6ICJQSVhSRU1BUF9TVVBQT1JURUQiCgooSSB0aGluayBQ
+SVhSRU1BUF9TVVBQT1JURUQgaXMgaW4gcmVmZXJlbmNlIHRvIHRoZSBjb21wb25lbnQgcmVtYXBw
+aW5nCmNvbnRyb2xsZWQgYnkgbWV0aG9kcyAweDAwMDAwNzAwLCAweDAwMDAwNzA0LCBhbmQgMHgw
+MDAwMDcwOCBpbiB0aGUKY29weSBlbmdpbmUgY2xhc3MpLgoKPiBGcm9tIG15IGFkbWl0dGVkbHkg
+bGltaXRlZCB1bmRlcnN0YW5kaW5nLCBib3RoIDB4MTA0MDAwIGFuZCAweDEwNTAwMAo+IGFwcGVh
+ciB0byBiZSBmYWxjb24gZW5naW5lcywgd2hlcmUgdGhlIGZ1YyBpcyBwcmVzdW1hYmx5IGFibGUg
+dG8gZHJpdmUKPiBzb21lIHVuZGVybHlpbmcgaGFyZHdhcmUuIFRoZSBhY3R1YWwgZmlmbyBtZXRo
+b2RzIGFyZSBpbXBsZW1lbnRlZCBpbgo+IHRoZSBmdWMsIHdoaWNoIGluIHR1cm4gZG9lcyBpb3dy
+L2V0YyBjb21tYW5kcy4KPgo+IEFyZSB5b3Ugc2F5aW5nIHRoYXQgdGhlICJkZWNvbXByZXNzIiBl
+bmdpbmUgKGF0IDB4MTA1MDAwIHJpZ2h0PykgaGFzIGEKPiBkaWZmZXJlbnQgcGllY2Ugb2YgaGFy
+ZHdhcmUgYmVoaW5kIGl0IHRoYW4gdGhlIGNvcHkgZW5naW5lIGF0Cj4gMHgxMDQwMDAsIG9yIGRv
+ZXMgTlZJRElBIHNpbXBseSBwcm92aWRlIGRpZmZlcmVudCBmdWMgZm9yIGl0IHRoYXQKPiBleHBv
+c2VzIHNvbWV3aGF0IGRpZmZlcmVudCBmdW5jdGlvbmFsaXR5IHZpYSBGSUZPIG1ldGhvZHM/CgpU
+aGVyZSBpcyBkZWZpbml0ZWx5IGEgZmFsY29uIGF0IHRoZSBmcm9udGVuZCwgYW5kIHRoZXJlIGlz
+IGRpZmZlcmVudApmYWxjb24gdWNvZGUgZm9yICJub3JtYWwiIGNvcHkgZW5naW5lIHZlcnN1cyB0
+aGUgImRlY29tcHJlc3MiIGVuZ2luZS4KQnV0LCBJIGRvbid0IGtub3cgb2ZmIGhhbmQgd2hhdCBk
+ZWRpY2F0ZWQgaGFyZHdhcmUsIGlmIGFueSwgaXMgYmVoaW5kIGl0LgoKLSBBbmR5CgoKPiA+Cj4g
+PiBJIGhvcGUgdGhhdCBoZWxwcywKPiA+IC0gQW5keQo+ID4KPiA+Cj4gPiBPbiBUaHUsIE5vdiAy
+MCwgMjAxNCBhdCAwMjoxODowMlBNIC0wNTAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiA+PiBIZWxs
+bywKPiA+Pgo+ID4+IFRoZXJlJ3MgYSBsb25nLXN0YW5kaW5nIGJ1ZyBvbiBub3V2ZWF1ICh0aGlz
+IGlzIGEgc2FtcGxlIGJ1ZywgYnV0IHRoZQo+ID4+IGlzc3VlIGhhcyBiZWVuIGFyb3VuZCBmb3Ig
+YSB3aGlsZToKPiA+PiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
+ZD04NTQ2NSkgd2hlcmVieSB3ZSBhdHRlbXB0Cj4gPj4gdG8gdXNlIHRoZSBzZWNvbmQgUENPUFkg
+ZW5naW5lIG9uIEdGMTE2LCBhbmQgaXQgaXMgc29tZXRpbWVzIGRvZXMKPiA+PiBub3RoaW5nLCBk
+ZXNwaXRlIG1taW8gcmVnaXN0ZXIgMjI1MDAgc2F5aW5nIHRoYXQgaXQncyBub3QgZGlzYWJsZWQK
+PiA+PiAoMHgyMjUwMCA9PSAwIGZvciB0aGlzIHVzZXIpLiBJbiB0aGUgYnVnIHlvdSBjYW4gc2Vl
+IGEgZHVtcCBmcm9tCj4gPj4gMjI0MDAuLjIyNjAwLCBhbmQgYWxsIHZhbHVlcyBhZnRlciAyMjQ0
+MCBhcmUgcmVhZCBhcyAwLiBUaGUgaXNzdWUKPiA+PiBhcHBlYXJzIHRvIGJlIG1vcmUgY29tbW9u
+IG9uIG1vYmlsZSBHRjExNidzLCBidXQgSSBkb24ndCBrbm93IHRoYXQgdGhlCj4gPj4gY29ycmVs
+YXRpb24gaXMgMTAwJS4gTm8gZXJyb3JzIGFyZSByZXBvcnRlZCBieSB0aGUgRklGTyBvciBpbnZh
+bGlkCj4gPj4gbW1pbyByZWFkcywgYnV0IHRoZSBkYXRhIHRyYW5zZmVyIGp1c3QgZG9lcyBub3Qg
+aGFwcGVuLiBTd2l0Y2hpbmcgdG8KPiA+PiB1c2luZyB0aGUgZmlyc3QgY29weSBlbmdpbmUgcmVz
+b2x2ZXMgdGhpbmdzLCBzbyBpdCdzIHVubGlrZWx5IHRvIGJlIGEKPiA+PiBtb3JlIHN5c3RlbWlj
+IGlzc3VlIGluIG5vdXZlYXUncyB1c2FnZSBvZiB0aGUgY29weSBlbmdpbmUuCj4gPj4KPiA+PiBU
+byBiZSBjbGVhciwgd2hlbiBJJ20gdGFsa2luZyBhYm91dCB0aGUgc2Vjb25kIFBDT1BZIGVuZ2lu
+ZSwgSSdtCj4gPj4gdGFsa2luZyBhYm91dCB0aGUgZW5naW5lIGF0IG1taW8gMHgxMDUwMDAsIGFu
+ZCB3aG9zZSBmaWZvIGNsYXNzIGlkIGlzCj4gPj4gMHg5MGI4Lgo+ID4+Cj4gPj4gQW55IGluZm9y
+bWF0aW9uIG9uIHByb3Blcmx5IGRldGVjdGluZyB0aGF0IHRoZSBlbmdpbmUgaXMsIGluIGZhY3Qs
+Cj4gPj4gbWlzc2luZywgd291bGQgYmUgZ3JlYXRseSBhcHByZWNpYXRlZC4gT3IsIGNvbnZlcnNl
+bHksIGFuIGFzc3VyYW5jZQo+ID4+IHRoYXQgdGhlIGVuZ2luZSBfaXNfIHRoZXJlIG9uIGFsbCBH
+RjExNidzIGFuZCB3ZSdyZSBqdXN0IG5vdAo+ID4+IGluaXRpYWxpemluZyBzb21ldGhpbmcgcHJv
+cGVybHksIGFsb25nIHdpdGggcGVyaGFwcyBzb21lIHN1Z2dlc3Rpb25zCj4gPj4gYXMgdG8gd2hh
+dCB3ZSBtaWdodCBiZSBtaXNzaW5nLgo+ID4+Cj4gPj4gVGhhbmtzLAo+ID4+Cj4gPj4gSWxpYSBN
+aXJraW4KPiA+PiBpbWlya2luQGFsdW0ubWl0LmVkdQo+ID4+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+
+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4+IGh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
