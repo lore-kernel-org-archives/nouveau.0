@@ -1,18 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Second copy engine on GF116
-Date: Tue, 25 Nov 2014 16:12:06 -0500
-Message-ID: <CAKb7Uvj+6oS2Ni80nCD2Vpey2t=e+Lsybm1mr9faDJE3WjfjMg@mail.gmail.com>
-References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
- <20141121061656.GA897@parker.nvidia.com>
- <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
- <20141125013301.GL22016@parker.nvidia.com>
- <CAKb7Uvh1dw4OfPsB9gzjq-En7eFaek+efo2N2dGSRj+xPJAw+w@mail.gmail.com>
- <20141125210520.GF32262@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
+Date: Tue, 25 Nov 2014 21:35:59 +0000
+Message-ID: <bug-86115-8800-16FImz7tmm@http.bugs.freedesktop.org/>
+References: <bug-86115-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1340292540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20141125210520.GF32262-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,73 +16,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMjUsIDIwMTQgYXQgNDowNSBQTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJAbnZp
-ZGlhLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCBOb3YgMjUsIDIwMTQgYXQgMTA6NTc6NDRBTSAtMDUw
-MCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+IE9uIE1vbiwgTm92IDI0LCAyMDE0IGF0IDg6MzMgUE0s
-IEFuZHkgUml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3RlOgo+PiA+IE9uIEZyaSwgTm92
-IDIxLCAyMDE0IGF0IDAxOjM5OjU1QU0gLTA1MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiA+PiBP
-biBGcmksIE5vdiAyMSwgMjAxNCBhdCAxOjE2IEFNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlk
-aWEuY29tPiB3cm90ZToKPj4gPj4gPiBIaSBJbGlhLAo+PiA+PiA+Cj4+ID4+ID4gQWN0dWFsbHkg
-MHg5MGI4IGlzIGRpZmZlcmVudCB0aGFuIGNvcHkgZW5naW5lLiAgSSdtIG5vdCB2ZXJ5IGZhbWls
-aWFyCj4+ID4+ID4gd2l0aCBpdCwgYnV0IDB4OTBiOCBpcyBhbiBlbmdpbmUgZm9yIHBlcmZvcm1p
-bmcgTFpPIGRlY29tcHJlc3Npb24gYXMKPj4gPj4gPiBwYXJ0IG9mIHBlcmZvcm1pbmcgdGhlIGNv
-cHkuICBJdCBoYXMgYSB2YXJpZXR5IG9mIGxpbWl0YXRpb25zIChlLmcuLAo+PiA+PiA+IGNhbm5v
-dCBoYW5kbGUgYmxvY2tsaW5lYXIgZm9ybWF0KSwgYW5kIHdhcyBvbmx5IGluIGEgZmV3IEZlcm1p
-IGNoaXBzLAo+PiA+PiA+IGFzIEkgdW5kZXJzdGFuZCBpdC4KPj4gPj4KPj4gPj4gQWNjb3JkaW5n
-IHRvIG91ciBkcml2ZXIgc291cmNlLCBHRjEwMCwgR0YxMDQsIEdGMTEwLCBHRjExNCwgYW5kIEdG
-MTE2Cj4+ID4+IGFsbCBoYXZlIGl0LiBbU28gR0YxMDYsIEdGMTA4LCBHRjExNywgR0YxMTkgZG9u
-J3QgaGF2ZSBpdC5dIFdlJ3ZlIG9ubHkKPj4gPj4gaGFkIHByb2JsZW1zIHJlcG9ydGVkIGFnYWlu
-c3QgR0YxMTYuLi4gYW5kIG9ubHkgZm9yIHNvbWUgcGVvcGxlLgo+PiA+Cj4+ID4gSG1tLCBzb21l
-IG9mIG91ciBpbnRlcm5hbCBkb2N1bWVudGF0aW9uIGlzIGluY29uc2lzdGVudCBhYm91dCB3aGV0
-aGVyIGl0Cj4+ID4gYXBwbGllcyB0byBHRjEwMCwgYnV0IG90aGVyd2lzZSB3aGF0IEkgc2VlIG1h
-dGNoZXMgeW91ciBsaXN0LiAgSSBndWVzcwo+PiA+ICJmZXciIHdhcyBub3QgZW50aXJlbHkgYWNj
-dXJhdGUuCj4+ID4KPj4gPj4gPiBJdCBpcyBwcm9iYWJseSBlYXNpZXN0IHRvIGp1c3QgaWdub3Jl
-IGl0LiAgWW91IGNhbiBkaXN0aW5ndWlzaCB0aGlzCj4+ID4+ID4gZGVjb21wcmVzcyBlbmdpbmUg
-ZnJvbSBub3JtYWwgY29weSBlbmdpbmUgYnkgbG9va2luZyBhdCB0aGUgQ0UgY2FwYWJpbGl0eQo+
-PiA+PiA+IHJlZ2lzdGVyIG9uIGZhbGNvbiAoMHgwMDAwMDY1MCkuICBJZiBiaXQgMiBpcyAnMScs
-IHRoZW4gdGhlIGZhbGNvbiBpcwo+PiA+PiA+IGEgZGVjb21wcmVzcyBlbmdpbmUuCj4+ID4+Cj4+
-ID4+IEkgcHJlc3VtZSB5b3UgbWVhbiBhICsweDY1MCByZWdpc3RlciBvbiB0aGUgcGNvcHkgZW5n
-aW5lcyAoMHgxMDQwMDAKPj4gPj4gYW5kIDB4MTA1MDAwKS4gSSBvbmx5IGhhdmUgYWNjZXNzIHRv
-IHRoZSBHRjEwOCByaWdodCBub3csIHdoaWNoCj4+ID4+IHJldHVybnMgMyBmb3IgMHgxMDQ2NTAg
-YW5kIDQgZm9yIDB4MTA1NjUwLiBXZSdyZSB1c2luZyB0aGUgZW5naW5lIGF0Cj4+ID4+IDB4MTA0
-MDAwIGZvciBjb3B5IG9uIHRoZSBHRjEwOC4uLgo+PiA+Cj4+ID4gWWVzLCAweDEwNDY1MCBhbmQg
-MHgxMDU2NTAgYXJlIHRoZSByaWdodCBhZGRyZXNzZXMsIGZyb20gd2hhdCBJIGNhbiB0ZWxsLgo+
-PiA+Cj4+ID4gRldJVywgdGhlIG90aGVyIGNhcGFiaWxpdHkgYml0cyBhcmU6Cj4+ID4gYml0IDA6
-ICJETUFDT1BZX1NVUFBPUlRFRCIKPj4gPiBiaXQgMTogIlBJWFJFTUFQX1NVUFBPUlRFRCIKPj4g
-Pgo+PiA+IChJIHRoaW5rIFBJWFJFTUFQX1NVUFBPUlRFRCBpcyBpbiByZWZlcmVuY2UgdG8gdGhl
-IGNvbXBvbmVudCByZW1hcHBpbmcKPj4gPiBjb250cm9sbGVkIGJ5IG1ldGhvZHMgMHgwMDAwMDcw
-MCwgMHgwMDAwMDcwNCwgYW5kIDB4MDAwMDA3MDggaW4gdGhlCj4+ID4gY29weSBlbmdpbmUgY2xh
-c3MpLgo+Pgo+PiBOZWF0LiBXZSB3ZW50IGFyb3VuZCBhbmQgZ3JhYmJlZCB0aGF0IDB4NjUwIHJl
-Z2lzdGVyIG9uIGEgYnVuY2ggb2YKPj4gR1BVcywgc2VlIHRoZSBDRSogY29sdW1ucyBhdDoKPj4K
-Pj4gaHR0cDovL2Vudnl0b29scy5yZWFkdGhlZG9jcy5vcmcvZW4vbGF0ZXN0L2h3L2dwdS5odG1s
-I2Zlcm1pLWtlcGxlci1tYXh3ZWxsLWZhbWlseQo+Cj4gSSBkb24ndCBzZWUgdGhlIDB4NjUwIHJl
-Z2lzdGVyIHZhbHVlcyBvbiB0aGF0IHBhZ2UuICBNYXliZSBJJ20gbm90Cj4gbG9va2luZyBhdCB0
-aGUgcmlnaHQgcGxhY2U/CgpObywgeW91J3JlIGxvb2tpbmcgaW4gdGhlIHJpZ2h0IHBsYWNlLiBT
-b21lb25lIHdobyBzaGFsbCByZW1haW4KbmFtZWxlc3Mga2lsbGVkIHNvbWV0aGluZyBpbiB0aGUg
-Zm9ybWF0dGluZy4uLiBob3BlZnVsbHkgaXQnbGwgZ2V0CmZpeGVkIHNob3J0bHksIGJ1dCBpbiB0
-aGUgbWVhbndoaWxlOgoKaHR0cHM6Ly9naXRodWIuY29tL2Vudnl0b29scy9lbnZ5dG9vbHMvY29t
-bWl0LzUzNDRjOTIxMDgyMjdhYjcxMzhkNTEzMGFmYzAyMDNmYTc5YjRmM2MKCkxvb2sgYXQgdGhl
-IENFMC9DRTEgY29sdW1ucy4KCj4KPj4gSXQgbG9va3MgbGlrZSBpdCdzIGFjdHVhbGx5IHJldHVy
-bmluZyAwIG9uIGJvdGggImNvcHkiIGVuZ2luZXMgZm9yIGEKPj4gYnVuY2ggb2YgdGhvc2UgY2Fy
-ZHMgLS0gR0YxMDAsIEdGMTA0LCBHRjExNCwgcHJvYmFibHkgR0YxMTAuIEJ1dCBvdGhlcgo+PiBj
-YXJkcyBoYXZlIHRoZW0gYXMgZWl0aGVyIDMgb3IgNC4gSSdtIGd1ZXNzaW5nIHRoYXQgJzAnIHNo
-b3VsZCBiZQo+PiB0cmVhdGVkIGFzIGlmIGl0IHdlcmUgYSAnMycgKG9yIGEgJzcnKT8KPgo+IFRo
-YXQncyBjdXJpb3VzLiAgSWYgSSBjYW4gZ2V0IHRoZSB0YWJsZSBvZiB3aGVyZSB0aGF0IHJlYWRz
-IHplcm8sIEkgY2FuCj4gdHJ5IHRvIGludmVzdGlnYXRlIGhvdyB0byBpbnRlcnByZXQgdGhhdC4K
-Pgo+PiBDdXJpb3VzbHksIGEgR0YxMTYgY2FyZCB0aGF0IEkgdGhvdWdodCB3YXMgd29ya2luZyBm
-aW5lIG9uIG5vdXZlYXUKPj4gYWN0dWFsbHkgaGFzIDMgZm9yIHRoZSBmaXJzdCBlbmdpbmUgYW5k
-IDQgZm9yIHRoZSBzZWNvbmQuIFBlcmhhcHMgaXQKPj4ganVzdCBoYWQgZW5vdWdoIFZSQU0gdGhh
-dCBJIG5ldmVyIHRyaWdnZXJlZCB0aGUgY29uZGl0aW9ucyByZXF1aXJlZAo+PiBmb3Igbm91dmVh
-dSB0byB1c2UgdGhhdCBzZWNvbmQgY29weSBlbmdpbmUgKHdlIHVzZSBpdCwgd2hlbiBhdmFpbGFi
-bGUsCj4+IGZvciBkcm0taW5pdGlhdGVkIGJ1ZmZlciBtb3ZlcykuCj4KPiBJbnRlcmVzdGluZy4g
-IFdvdWxkIHRoYXQgZXhwbGFpbiB3aHkgdGhpcyBoYXNuJ3QgbWFuaWZlc3RlZCBvbiBjb25maWdz
-Cj4gb3RoZXIgdGhhbiB0aGUgR0YxMTYgdXNlciByZXBvcnRzPwoKV2VsbCwgYWxsIHRoZSBvdGhl
-ciBHUFUncyB3aGVyZSB3ZSB0cnkgdG8gdXNlIHRoZSBzZWNvbmRhcnkgY29weQplbmdpbmUgcmVw
-b3J0IDAgZm9yIGJvdGggKzB4NjUwIHJlZ2lzdGVycy4KCiAgLWlsaWEKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1340292540==
+Content-Type: multipart/alternative; boundary="1416951359.257B72.16927"; charset="UTF-8"
+
+
+--1416951359.257B72.16927
+Date: Tue, 25 Nov 2014 21:35:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
+
+--- Comment #13 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
+(In reply to Takashi Iwai from comment #11)
+>=20
+> Could you try to boot with nomodeset boot option in runlevel 3, and try S=
+3,
+> but without pm_async adjustment?  The graphics can be broken in this case
+> after S3, but if the system alives, you should be able to remote-login.
+>=20
+> If S3 crashes even without nouveau, we can check the two issues above
+> completely separately.  If S3 crash happens only with nouveau, it implies
+> that the disk problem is somehow related with nouveau problem.
+
+It crashes even without nouveau when booted with nomodeset set.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1416951359.257B72.16927
+Date: Tue, 25 Nov 2014 21:35:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c13">Commen=
+t # 13</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115">bug 86115<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
+<span class=3D"fn">Lars M=C3=BCller</span></a>
+</span></b>
+        <pre>(In reply to Takashi Iwai from <a href=3D"show_bug.cgi?id=3D86=
+115#c11">comment #11</a>)
+<span class=3D"quote">&gt;=20
+&gt; Could you try to boot with nomodeset boot option in runlevel 3, and tr=
+y S3,
+&gt; but without pm_async adjustment?  The graphics can be broken in this c=
+ase
+&gt; after S3, but if the system alives, you should be able to remote-login.
+&gt;=20
+&gt; If S3 crashes even without nouveau, we can check the two issues above
+&gt; completely separately.  If S3 crash happens only with nouveau, it impl=
+ies
+&gt; that the disk problem is somehow related with nouveau problem.</span >
+
+It crashes even without nouveau when booted with nomodeset set.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1416951359.257B72.16927--
+
+--===============1340292540==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1340292540==--
