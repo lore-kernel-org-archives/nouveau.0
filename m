@@ -1,18 +1,13 @@
-From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: Second copy engine on GF116
-Date: Wed, 26 Nov 2014 02:18:25 +0100
-Message-ID: <54752A61.4070303@0x04.net>
-References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
- <20141121061656.GA897@parker.nvidia.com>
- <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
- <20141125013301.GL22016@parker.nvidia.com>
- <CAKb7Uvh1dw4OfPsB9gzjq-En7eFaek+efo2N2dGSRj+xPJAw+w@mail.gmail.com>
- <20141125210520.GF32262@parker.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86537] [NV96] Unable to handle page request from
+ nv50_crtc_prepare
+Date: Wed, 26 Nov 2014 17:34:26 +0000
+Message-ID: <bug-86537-8800-vfa99OhElG@http.bugs.freedesktop.org/>
+References: <bug-86537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1233091217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20141125210520.GF32262-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-86537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,111 +17,138 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjUvMTEvMTQgMjI6MDUsIEFuZHkgUml0Z2VyIHdyb3RlOgo+IE9uIFR1ZSwgTm92IDI1LCAy
-MDE0IGF0IDEwOjU3OjQ0QU0gLTA1MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBPbiBNb24sIE5v
-diAyNCwgMjAxNCBhdCA4OjMzIFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3
-cm90ZToKPj4+IE9uIEZyaSwgTm92IDIxLCAyMDE0IGF0IDAxOjM5OjU1QU0gLTA1MDAsIElsaWEg
-TWlya2luIHdyb3RlOgo+Pj4+IE9uIEZyaSwgTm92IDIxLCAyMDE0IGF0IDE6MTYgQU0sIEFuZHkg
-Uml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3RlOgo+Pj4+PiBIaSBJbGlhLAo+Pj4+Pgo+
-Pj4+PiBBY3R1YWxseSAweDkwYjggaXMgZGlmZmVyZW50IHRoYW4gY29weSBlbmdpbmUuICBJJ20g
-bm90IHZlcnkgZmFtaWxpYXIKPj4+Pj4gd2l0aCBpdCwgYnV0IDB4OTBiOCBpcyBhbiBlbmdpbmUg
-Zm9yIHBlcmZvcm1pbmcgTFpPIGRlY29tcHJlc3Npb24gYXMKPj4+Pj4gcGFydCBvZiBwZXJmb3Jt
-aW5nIHRoZSBjb3B5LiAgSXQgaGFzIGEgdmFyaWV0eSBvZiBsaW1pdGF0aW9ucyAoZS5nLiwKPj4+
-Pj4gY2Fubm90IGhhbmRsZSBibG9ja2xpbmVhciBmb3JtYXQpLCBhbmQgd2FzIG9ubHkgaW4gYSBm
-ZXcgRmVybWkgY2hpcHMsCj4+Pj4+IGFzIEkgdW5kZXJzdGFuZCBpdC4KPj4+Pgo+Pj4+IEFjY29y
-ZGluZyB0byBvdXIgZHJpdmVyIHNvdXJjZSwgR0YxMDAsIEdGMTA0LCBHRjExMCwgR0YxMTQsIGFu
-ZCBHRjExNgo+Pj4+IGFsbCBoYXZlIGl0LiBbU28gR0YxMDYsIEdGMTA4LCBHRjExNywgR0YxMTkg
-ZG9uJ3QgaGF2ZSBpdC5dIFdlJ3ZlIG9ubHkKPj4+PiBoYWQgcHJvYmxlbXMgcmVwb3J0ZWQgYWdh
-aW5zdCBHRjExNi4uLiBhbmQgb25seSBmb3Igc29tZSBwZW9wbGUuCj4+Pgo+Pj4gSG1tLCBzb21l
-IG9mIG91ciBpbnRlcm5hbCBkb2N1bWVudGF0aW9uIGlzIGluY29uc2lzdGVudCBhYm91dCB3aGV0
-aGVyIGl0Cj4+PiBhcHBsaWVzIHRvIEdGMTAwLCBidXQgb3RoZXJ3aXNlIHdoYXQgSSBzZWUgbWF0
-Y2hlcyB5b3VyIGxpc3QuICBJIGd1ZXNzCj4+PiAiZmV3IiB3YXMgbm90IGVudGlyZWx5IGFjY3Vy
-YXRlLgo+Pj4KPj4+Pj4gSXQgaXMgcHJvYmFibHkgZWFzaWVzdCB0byBqdXN0IGlnbm9yZSBpdC4g
-IFlvdSBjYW4gZGlzdGluZ3Vpc2ggdGhpcwo+Pj4+PiBkZWNvbXByZXNzIGVuZ2luZSBmcm9tIG5v
-cm1hbCBjb3B5IGVuZ2luZSBieSBsb29raW5nIGF0IHRoZSBDRSBjYXBhYmlsaXR5Cj4+Pj4+IHJl
-Z2lzdGVyIG9uIGZhbGNvbiAoMHgwMDAwMDY1MCkuICBJZiBiaXQgMiBpcyAnMScsIHRoZW4gdGhl
-IGZhbGNvbiBpcwo+Pj4+PiBhIGRlY29tcHJlc3MgZW5naW5lLgo+Pj4+Cj4+Pj4gSSBwcmVzdW1l
-IHlvdSBtZWFuIGEgKzB4NjUwIHJlZ2lzdGVyIG9uIHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAw
-MAo+Pj4+IGFuZCAweDEwNTAwMCkuIEkgb25seSBoYXZlIGFjY2VzcyB0byB0aGUgR0YxMDggcmln
-aHQgbm93LCB3aGljaAo+Pj4+IHJldHVybnMgMyBmb3IgMHgxMDQ2NTAgYW5kIDQgZm9yIDB4MTA1
-NjUwLiBXZSdyZSB1c2luZyB0aGUgZW5naW5lIGF0Cj4+Pj4gMHgxMDQwMDAgZm9yIGNvcHkgb24g
-dGhlIEdGMTA4Li4uCj4+Pgo+Pj4gWWVzLCAweDEwNDY1MCBhbmQgMHgxMDU2NTAgYXJlIHRoZSBy
-aWdodCBhZGRyZXNzZXMsIGZyb20gd2hhdCBJIGNhbiB0ZWxsLgo+Pj4KPj4+IEZXSVcsIHRoZSBv
-dGhlciBjYXBhYmlsaXR5IGJpdHMgYXJlOgo+Pj4gYml0IDA6ICJETUFDT1BZX1NVUFBPUlRFRCIK
-Pj4+IGJpdCAxOiAiUElYUkVNQVBfU1VQUE9SVEVEIgo+Pj4KPj4+IChJIHRoaW5rIFBJWFJFTUFQ
-X1NVUFBPUlRFRCBpcyBpbiByZWZlcmVuY2UgdG8gdGhlIGNvbXBvbmVudCByZW1hcHBpbmcKPj4+
-IGNvbnRyb2xsZWQgYnkgbWV0aG9kcyAweDAwMDAwNzAwLCAweDAwMDAwNzA0LCBhbmQgMHgwMDAw
-MDcwOCBpbiB0aGUKPj4+IGNvcHkgZW5naW5lIGNsYXNzKS4KPj4KPj4gTmVhdC4gV2Ugd2VudCBh
-cm91bmQgYW5kIGdyYWJiZWQgdGhhdCAweDY1MCByZWdpc3RlciBvbiBhIGJ1bmNoIG9mCj4+IEdQ
-VXMsIHNlZSB0aGUgQ0UqIGNvbHVtbnMgYXQ6Cj4+Cj4+IGh0dHA6Ly9lbnZ5dG9vbHMucmVhZHRo
-ZWRvY3Mub3JnL2VuL2xhdGVzdC9ody9ncHUuaHRtbCNmZXJtaS1rZXBsZXItbWF4d2VsbC1mYW1p
-bHkKPgo+IEkgZG9uJ3Qgc2VlIHRoZSAweDY1MCByZWdpc3RlciB2YWx1ZXMgb24gdGhhdCBwYWdl
-LiAgTWF5YmUgSSdtIG5vdAo+IGxvb2tpbmcgYXQgdGhlIHJpZ2h0IHBsYWNlPwoKVGhlIHRhYmxl
-IGF0IHRoZSBib3R0b20sIENFMC1DRTIgY29sdW1ucy4KCj4KPj4gSXQgbG9va3MgbGlrZSBpdCdz
-IGFjdHVhbGx5IHJldHVybmluZyAwIG9uIGJvdGggImNvcHkiIGVuZ2luZXMgZm9yIGEKPj4gYnVu
-Y2ggb2YgdGhvc2UgY2FyZHMgLS0gR0YxMDAsIEdGMTA0LCBHRjExNCwgcHJvYmFibHkgR0YxMTAu
-IEJ1dCBvdGhlcgo+PiBjYXJkcyBoYXZlIHRoZW0gYXMgZWl0aGVyIDMgb3IgNC4gSSdtIGd1ZXNz
-aW5nIHRoYXQgJzAnIHNob3VsZCBiZQo+PiB0cmVhdGVkIGFzIGlmIGl0IHdlcmUgYSAnMycgKG9y
-IGEgJzcnKT8KPgo+IFRoYXQncyBjdXJpb3VzLiAgSWYgSSBjYW4gZ2V0IHRoZSB0YWJsZSBvZiB3
-aGVyZSB0aGF0IHJlYWRzIHplcm8sIEkgY2FuCj4gdHJ5IHRvIGludmVzdGlnYXRlIGhvdyB0byBp
-bnRlcnByZXQgdGhhdC4KCkdGMTAwLCBHRjExMCwgR0YxMDQsIEdGMTE0LgoKU291bmRzIG9idmlv
-dXMgdG8gbWUgLSB0aGUgY2FwcyByZWdpc3RlciB3YXNuJ3QgbmVlZGVkIGJlZm9yZSBHRjEwNiBh
-bmQgCnRodXMgZGlkbid0IGV4aXN0LgoKSSBkb24ndCB0aGluayB0aGVyZSdzIGFueSBtb3JlIG5l
-ZWQgZm9yIGluZm9ybWF0aW9uIGhlcmUgLSB3ZSBrbm93IGhvdyAKdG8gdGVsbCBhcGFydCBhIGRl
-Y29tcHJlc3Npb24gZW5naW5lIGJ5IHRoZSBjYXBzIHJlZ2lzdGVyLCAqYW5kKiB3ZSBrbm93IAp3
-aGljaCBjYXJkcyBoYXZlIGl0IChHRjEwNiwgR0YxMTYsIEdGMTA4IC0gdW5sZXNzIHNvbWVvbmUg
-cmVzdXJyZWN0ZWQgaXQgCm9uIEdLc29tZXRoaW5nIG9yIEdNc29tZXRoaW5nKS4gV2UgYWxzbyBr
-bm93IHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gYSAKbm9ybWFsIGNvcHkgZW5naW5lIGFuZCBhIGRl
-Y29tcHJlc3Npb24gZW5naW5lIChiYXNpY2FsbHk6IGFsbCBkZWRpY2F0ZWQgCmNvcHkgaHcgaXMg
-bWlzc2luZyBhbmQgcmVwbGFjZWQgYnkgZGVkaWNhdGVkIGRlY29tcHJlc3Npb24gaHcgLSAKZWZm
-ZWN0aXZlbHkgYSBjb21wbGV0ZWx5IGRpZmZlcmVudCBlbmdpbmUpLiBJbiBmYWN0LCBnaXZlbiB0
-aGUgZGVjb21wIAplbmdpbmUncyBzaW1wbGljaXR5LCBpdCBzaG91bGRuJ3QgYmUgaGFyZCBhdCBh
-bGwgdG8gd3JpdGUgZmlybXdhcmUgZm9yIGl0LgoKV2UgYXJlLCBob3dldmVyLCBxdWl0ZSBjdXJp
-b3VzIGFib3V0IHRoZSBwdXJwb3NlIG9mIGFuIExaTzFYIApkZWNvbXByZXNzaW9uIGVuZ2luZSBv
-biBhIEdQVS4uLgoKRnVuIGZhY3QsIEkga25ldyBvZiB0aGUgZXhpc3RlbmNlIG9mIGRlY29tcHJl
-c3Npb24gZW5naW5lcyBmb3Igc29tZSAKdGltZSwgYnV0IG5ldmVyIG1hbmFnZWQgdG8gbG9jYXRl
-IHRoZW0gLSBJIGd1ZXNzIEkgZGlkbid0IGNvbnNpZGVyIGNvcHkgCmVuZ2luZXMgdG8gd2FycmFu
-dCBhIHNlY29uZCBsb29rIG9uIGFsbCBwb3NzaWJsZSBHUFVzLi4uCgpXaGljaCBicmluZ3MgbWUg
-dG8gYXNrOiBhcmUgdGhlcmUgYW55IG1vcmUgRklGTyBlbmdpbmVzIHdlIHNvbWVob3cgCm1pc3Nl
-ZCBvbiBGZXJtaSs/IFRoZXJlJ3MgYXBwYXJlbnRseSBhIG5ldyBWSUMgY2xhc3MgKDB4YTBiNiks
-IGJ1dCBJJ3ZlIApuZXZlciBzZWVuIGEgVklDIG90aGVyIHRoYW4gdGhlIE1DUDg5IG9uZSAoMHg4
-NmI2KS4KCkFGQUlDUyB0aGVyZSdzIGFsc28gb25lIHVua25vd24gZW51bSB2YWx1ZSBpbiBOVlJN
-J3MgRklGTyBlbmdpbmUgZW51bS4uLiAKKEkga25vdyBvZiBHUkFQSCwgQ0UwLCBDRTEsIENFMiwg
-VlAxL1ZQMi9NU1BERUMsIE1TUkNIL01FLCBNU1BQUCwgCkJTUC9NU1ZMRC9NU0RFQywgTVBFRywg
-U09GVFdBUkUsIENJUEhFUi9TRUMsIFZJQywgTVNFTkMpLgoKPgo+PiBDdXJpb3VzbHksIGEgR0Yx
-MTYgY2FyZCB0aGF0IEkgdGhvdWdodCB3YXMgd29ya2luZyBmaW5lIG9uIG5vdXZlYXUKPj4gYWN0
-dWFsbHkgaGFzIDMgZm9yIHRoZSBmaXJzdCBlbmdpbmUgYW5kIDQgZm9yIHRoZSBzZWNvbmQuIFBl
-cmhhcHMgaXQKPj4ganVzdCBoYWQgZW5vdWdoIFZSQU0gdGhhdCBJIG5ldmVyIHRyaWdnZXJlZCB0
-aGUgY29uZGl0aW9ucyByZXF1aXJlZAo+PiBmb3Igbm91dmVhdSB0byB1c2UgdGhhdCBzZWNvbmQg
-Y29weSBlbmdpbmUgKHdlIHVzZSBpdCwgd2hlbiBhdmFpbGFibGUsCj4+IGZvciBkcm0taW5pdGlh
-dGVkIGJ1ZmZlciBtb3ZlcykuCj4KPiBJbnRlcmVzdGluZy4gIFdvdWxkIHRoYXQgZXhwbGFpbiB3
-aHkgdGhpcyBoYXNuJ3QgbWFuaWZlc3RlZCBvbiBjb25maWdzCj4gb3RoZXIgdGhhbiB0aGUgR0Yx
-MTYgdXNlciByZXBvcnRzPwo+Cj4gVGhhbmtzLAo+IC0gQW5keQo+Cj4+Pj4gIEZyb20gbXkgYWRt
-aXR0ZWRseSBsaW1pdGVkIHVuZGVyc3RhbmRpbmcsIGJvdGggMHgxMDQwMDAgYW5kIDB4MTA1MDAw
-Cj4+Pj4gYXBwZWFyIHRvIGJlIGZhbGNvbiBlbmdpbmVzLCB3aGVyZSB0aGUgZnVjIGlzIHByZXN1
-bWFibHkgYWJsZSB0byBkcml2ZQo+Pj4+IHNvbWUgdW5kZXJseWluZyBoYXJkd2FyZS4gVGhlIGFj
-dHVhbCBmaWZvIG1ldGhvZHMgYXJlIGltcGxlbWVudGVkIGluCj4+Pj4gdGhlIGZ1Yywgd2hpY2gg
-aW4gdHVybiBkb2VzIGlvd3IvZXRjIGNvbW1hbmRzLgo+Pj4+Cj4+Pj4gQXJlIHlvdSBzYXlpbmcg
-dGhhdCB0aGUgImRlY29tcHJlc3MiIGVuZ2luZSAoYXQgMHgxMDUwMDAgcmlnaHQ/KSBoYXMgYQo+
-Pj4+IGRpZmZlcmVudCBwaWVjZSBvZiBoYXJkd2FyZSBiZWhpbmQgaXQgdGhhbiB0aGUgY29weSBl
-bmdpbmUgYXQKPj4+PiAweDEwNDAwMCwgb3IgZG9lcyBOVklESUEgc2ltcGx5IHByb3ZpZGUgZGlm
-ZmVyZW50IGZ1YyBmb3IgaXQgdGhhdAo+Pj4+IGV4cG9zZXMgc29tZXdoYXQgZGlmZmVyZW50IGZ1
-bmN0aW9uYWxpdHkgdmlhIEZJRk8gbWV0aG9kcz8KPj4+Cj4+PiBUaGVyZSBpcyBkZWZpbml0ZWx5
-IGEgZmFsY29uIGF0IHRoZSBmcm9udGVuZCwgYW5kIHRoZXJlIGlzIGRpZmZlcmVudAo+Pj4gZmFs
-Y29uIHVjb2RlIGZvciAibm9ybWFsIiBjb3B5IGVuZ2luZSB2ZXJzdXMgdGhlICJkZWNvbXByZXNz
-IiBlbmdpbmUuCj4+PiBCdXQsIEkgZG9uJ3Qga25vdyBvZmYgaGFuZCB3aGF0IGRlZGljYXRlZCBo
-YXJkd2FyZSwgaWYgYW55LCBpcyBiZWhpbmQgaXQuCj4+Cj4+IFNlZW1zIGxpa2VseSB0aGF0IHRo
-ZSBIVyBpcyBkaWZmZXJlbnQsIHNpbmNlIGl0J2QgYmUgbWFkbmVzcyB0byB0cnkgdG8KPj4gZG8g
-ZGVjb21wcmVzc2lvbiBpbiB0aGUgZmFsY29uIGNvZGUgaXRzZWxmLiAoTm90IHRvIHNheSB0aGF0
-IHRoZSBJU0EKPj4gaXNuJ3Qgc3VpdGVkIHRvIGl0LCBqdXN0IHRoZXkgaGF2ZSByZWxhdGl2ZWx5
-IHNsb3cgY2xvY2tzLikgbXdrIGlzIGluCj4+IHRoZSBwcm9jZXNzIG9mIHdvcmtpbmcgaXQgYWxs
-IG91dC4KPj4KPj4gICAgLWlsaWEKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1233091217==
+Content-Type: multipart/alternative; boundary="1417023266.BfD41C2e1.31538"; charset="UTF-8"
+
+
+--1417023266.BfD41C2e1.31538
+Date: Wed, 26 Nov 2014 17:34:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86537
+
+--- Comment #5 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+(In reply to l3iggs from comment #4)
+> I've found a workaround for this bug (tested with 3.18-rc5):
+> 
+> (1) Append 'modprobe.blacklist=nouveau' to the kernel boot parameters
+> This allows the system to boot.
+> (2) Once booted, as root, reset the 9600M GPU: 'echo 1 >
+> /sys/bus/pci/devices/0000:02:00.0/reset'
+> (3) 'echo 1 > /sys/bus/pci/devices/0000:02:00.0/rescan'
+> (4) 'modprobe nouveau'
+
+It does work indeed, and seems to solve some other issues related to that card
+(powering it down using vgaswitcheroo, suspending the laptop - resuming doesn't
+work though).
+
+> 
+> Note that 0000:02:00.0 is the PCI bus address of my 9600M GT GPU, which I
+> learned by inspecting the output of lspci.
+> 
+> The trick here is getting the GPU into the proper state before the nouveau
+> module is loaded. I've found that the internal state of the GPU can
+> frequently be inconsistent across reboots making troubleshooting difficult.
+> Resetting and then rescanning it before loading nouveau seems to solve
+> things for every scenario I've tested.
+> 
+> With the above workaround I can start a display manager (GDM for gnome
+> 3.14.2) and everything seems to work as expected, ex. glxgears.
+> 
+> The 9400M GPU can optionally be disabled between steps (3) and (4): 'echo 1
+> > /sys/bus/pci/devices/0000:03:00.0/remove'
+> 
+> where 0000:03:00.0 is the PCI address of my 9400M.
+
+vgaswitcheroo should be able to connect the integrated to the display (look at
+http://nouveau.freedesktop.org/wiki/Optimus/) using apple-gmux driver.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1417023266.BfD41C2e1.31538
+Date: Wed, 26 Nov 2014 17:34:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Unable to handle page request from nv50_crtc_prepare"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Unable to handle page request from nv50_crtc_prepare"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>(In reply to l3iggs from <a href="show_bug.cgi?id=86537#c4">comment #4</a>)
+<span class="quote">&gt; I've found a workaround for this bug (tested with 3.18-rc5):
+&gt; 
+&gt; (1) Append 'modprobe.blacklist=nouveau' to the kernel boot parameters
+&gt; This allows the system to boot.
+&gt; (2) Once booted, as root, reset the 9600M GPU: 'echo 1 &gt;
+&gt; /sys/bus/pci/devices/0000:02:00.0/reset'
+&gt; (3) 'echo 1 &gt; /sys/bus/pci/devices/0000:02:00.0/rescan'
+&gt; (4) 'modprobe nouveau'</span >
+
+It does work indeed, and seems to solve some other issues related to that card
+(powering it down using vgaswitcheroo, suspending the laptop - resuming doesn't
+work though).
+
+<span class="quote">&gt; 
+&gt; Note that 0000:02:00.0 is the PCI bus address of my 9600M GT GPU, which I
+&gt; learned by inspecting the output of lspci.
+&gt; 
+&gt; The trick here is getting the GPU into the proper state before the nouveau
+&gt; module is loaded. I've found that the internal state of the GPU can
+&gt; frequently be inconsistent across reboots making troubleshooting difficult.
+&gt; Resetting and then rescanning it before loading nouveau seems to solve
+&gt; things for every scenario I've tested.
+&gt; 
+&gt; With the above workaround I can start a display manager (GDM for gnome
+&gt; 3.14.2) and everything seems to work as expected, ex. glxgears.
+&gt; 
+&gt; The 9400M GPU can optionally be disabled between steps (3) and (4): 'echo 1
+&gt; &gt; /sys/bus/pci/devices/0000:03:00.0/remove'
+&gt; 
+&gt; where 0000:03:00.0 is the PCI address of my 9400M.</span >
+
+vgaswitcheroo should be able to connect the integrated to the display (look at
+<a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a>) using apple-gmux driver.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1417023266.BfD41C2e1.31538--
+
+--===============1233091217==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1233091217==--
