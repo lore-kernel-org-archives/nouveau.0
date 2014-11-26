@@ -1,12 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86115] [NV84] gpu hang on resume from suspend to ram
-Date: Tue, 25 Nov 2014 21:35:59 +0000
-Message-ID: <bug-86115-8800-16FImz7tmm@http.bugs.freedesktop.org/>
-References: <bug-86115-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyY2luIEtvxZtjaWVsbmlja2k=?= <koriakin-mP9o5jsk0RY@public.gmane.org>
+Subject: Re: Second copy engine on GF116
+Date: Wed, 26 Nov 2014 02:18:25 +0100
+Message-ID: <54752A61.4070303@0x04.net>
+References: <CAKb7UvjB4fY+7eERavM=dZ5HYX+=CwHKyFkm3Px=j-7Ap38ZCQ@mail.gmail.com>
+ <20141121061656.GA897@parker.nvidia.com>
+ <CAKb7UviMqzsBbbJBmTFH+Bu2+uTv=oOK2w3CWeCovBfsBys8wA@mail.gmail.com>
+ <20141125013301.GL22016@parker.nvidia.com>
+ <CAKb7Uvh1dw4OfPsB9gzjq-En7eFaek+efo2N2dGSRj+xPJAw+w@mail.gmail.com>
+ <20141125210520.GF32262@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1340292540=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86115-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20141125210520.GF32262-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,103 +22,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1340292540==
-Content-Type: multipart/alternative; boundary="1416951359.257B72.16927"; charset="UTF-8"
-
-
---1416951359.257B72.16927
-Date: Tue, 25 Nov 2014 21:35:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D86115
-
---- Comment #13 from Lars M=C3=BCller <lars-eUNUBHrolfbYtjvyW6yDsg@public.gmane.org> ---
-(In reply to Takashi Iwai from comment #11)
->=20
-> Could you try to boot with nomodeset boot option in runlevel 3, and try S=
-3,
-> but without pm_async adjustment?  The graphics can be broken in this case
-> after S3, but if the system alives, you should be able to remote-login.
->=20
-> If S3 crashes even without nouveau, we can check the two issues above
-> completely separately.  If S3 crash happens only with nouveau, it implies
-> that the disk problem is somehow related with nouveau problem.
-
-It crashes even without nouveau when booted with nomodeset set.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1416951359.257B72.16927
-Date: Tue, 25 Nov 2014 21:35:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115#c13">Commen=
-t # 13</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NV84] gpu hang on resume from suspend to ram"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86115">bug 86115<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-lars&#64;samba.org" title=3D"Lars M=C3=BCller &lt;lars&#64;samba.org&gt;"> =
-<span class=3D"fn">Lars M=C3=BCller</span></a>
-</span></b>
-        <pre>(In reply to Takashi Iwai from <a href=3D"show_bug.cgi?id=3D86=
-115#c11">comment #11</a>)
-<span class=3D"quote">&gt;=20
-&gt; Could you try to boot with nomodeset boot option in runlevel 3, and tr=
-y S3,
-&gt; but without pm_async adjustment?  The graphics can be broken in this c=
-ase
-&gt; after S3, but if the system alives, you should be able to remote-login.
-&gt;=20
-&gt; If S3 crashes even without nouveau, we can check the two issues above
-&gt; completely separately.  If S3 crash happens only with nouveau, it impl=
-ies
-&gt; that the disk problem is somehow related with nouveau problem.</span >
-
-It crashes even without nouveau when booted with nomodeset set.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1416951359.257B72.16927--
-
---===============1340292540==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1340292540==--
+T24gMjUvMTEvMTQgMjI6MDUsIEFuZHkgUml0Z2VyIHdyb3RlOgo+IE9uIFR1ZSwgTm92IDI1LCAy
+MDE0IGF0IDEwOjU3OjQ0QU0gLTA1MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBPbiBNb24sIE5v
+diAyNCwgMjAxNCBhdCA4OjMzIFBNLCBBbmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3
+cm90ZToKPj4+IE9uIEZyaSwgTm92IDIxLCAyMDE0IGF0IDAxOjM5OjU1QU0gLTA1MDAsIElsaWEg
+TWlya2luIHdyb3RlOgo+Pj4+IE9uIEZyaSwgTm92IDIxLCAyMDE0IGF0IDE6MTYgQU0sIEFuZHkg
+Uml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3RlOgo+Pj4+PiBIaSBJbGlhLAo+Pj4+Pgo+
+Pj4+PiBBY3R1YWxseSAweDkwYjggaXMgZGlmZmVyZW50IHRoYW4gY29weSBlbmdpbmUuICBJJ20g
+bm90IHZlcnkgZmFtaWxpYXIKPj4+Pj4gd2l0aCBpdCwgYnV0IDB4OTBiOCBpcyBhbiBlbmdpbmUg
+Zm9yIHBlcmZvcm1pbmcgTFpPIGRlY29tcHJlc3Npb24gYXMKPj4+Pj4gcGFydCBvZiBwZXJmb3Jt
+aW5nIHRoZSBjb3B5LiAgSXQgaGFzIGEgdmFyaWV0eSBvZiBsaW1pdGF0aW9ucyAoZS5nLiwKPj4+
+Pj4gY2Fubm90IGhhbmRsZSBibG9ja2xpbmVhciBmb3JtYXQpLCBhbmQgd2FzIG9ubHkgaW4gYSBm
+ZXcgRmVybWkgY2hpcHMsCj4+Pj4+IGFzIEkgdW5kZXJzdGFuZCBpdC4KPj4+Pgo+Pj4+IEFjY29y
+ZGluZyB0byBvdXIgZHJpdmVyIHNvdXJjZSwgR0YxMDAsIEdGMTA0LCBHRjExMCwgR0YxMTQsIGFu
+ZCBHRjExNgo+Pj4+IGFsbCBoYXZlIGl0LiBbU28gR0YxMDYsIEdGMTA4LCBHRjExNywgR0YxMTkg
+ZG9uJ3QgaGF2ZSBpdC5dIFdlJ3ZlIG9ubHkKPj4+PiBoYWQgcHJvYmxlbXMgcmVwb3J0ZWQgYWdh
+aW5zdCBHRjExNi4uLiBhbmQgb25seSBmb3Igc29tZSBwZW9wbGUuCj4+Pgo+Pj4gSG1tLCBzb21l
+IG9mIG91ciBpbnRlcm5hbCBkb2N1bWVudGF0aW9uIGlzIGluY29uc2lzdGVudCBhYm91dCB3aGV0
+aGVyIGl0Cj4+PiBhcHBsaWVzIHRvIEdGMTAwLCBidXQgb3RoZXJ3aXNlIHdoYXQgSSBzZWUgbWF0
+Y2hlcyB5b3VyIGxpc3QuICBJIGd1ZXNzCj4+PiAiZmV3IiB3YXMgbm90IGVudGlyZWx5IGFjY3Vy
+YXRlLgo+Pj4KPj4+Pj4gSXQgaXMgcHJvYmFibHkgZWFzaWVzdCB0byBqdXN0IGlnbm9yZSBpdC4g
+IFlvdSBjYW4gZGlzdGluZ3Vpc2ggdGhpcwo+Pj4+PiBkZWNvbXByZXNzIGVuZ2luZSBmcm9tIG5v
+cm1hbCBjb3B5IGVuZ2luZSBieSBsb29raW5nIGF0IHRoZSBDRSBjYXBhYmlsaXR5Cj4+Pj4+IHJl
+Z2lzdGVyIG9uIGZhbGNvbiAoMHgwMDAwMDY1MCkuICBJZiBiaXQgMiBpcyAnMScsIHRoZW4gdGhl
+IGZhbGNvbiBpcwo+Pj4+PiBhIGRlY29tcHJlc3MgZW5naW5lLgo+Pj4+Cj4+Pj4gSSBwcmVzdW1l
+IHlvdSBtZWFuIGEgKzB4NjUwIHJlZ2lzdGVyIG9uIHRoZSBwY29weSBlbmdpbmVzICgweDEwNDAw
+MAo+Pj4+IGFuZCAweDEwNTAwMCkuIEkgb25seSBoYXZlIGFjY2VzcyB0byB0aGUgR0YxMDggcmln
+aHQgbm93LCB3aGljaAo+Pj4+IHJldHVybnMgMyBmb3IgMHgxMDQ2NTAgYW5kIDQgZm9yIDB4MTA1
+NjUwLiBXZSdyZSB1c2luZyB0aGUgZW5naW5lIGF0Cj4+Pj4gMHgxMDQwMDAgZm9yIGNvcHkgb24g
+dGhlIEdGMTA4Li4uCj4+Pgo+Pj4gWWVzLCAweDEwNDY1MCBhbmQgMHgxMDU2NTAgYXJlIHRoZSBy
+aWdodCBhZGRyZXNzZXMsIGZyb20gd2hhdCBJIGNhbiB0ZWxsLgo+Pj4KPj4+IEZXSVcsIHRoZSBv
+dGhlciBjYXBhYmlsaXR5IGJpdHMgYXJlOgo+Pj4gYml0IDA6ICJETUFDT1BZX1NVUFBPUlRFRCIK
+Pj4+IGJpdCAxOiAiUElYUkVNQVBfU1VQUE9SVEVEIgo+Pj4KPj4+IChJIHRoaW5rIFBJWFJFTUFQ
+X1NVUFBPUlRFRCBpcyBpbiByZWZlcmVuY2UgdG8gdGhlIGNvbXBvbmVudCByZW1hcHBpbmcKPj4+
+IGNvbnRyb2xsZWQgYnkgbWV0aG9kcyAweDAwMDAwNzAwLCAweDAwMDAwNzA0LCBhbmQgMHgwMDAw
+MDcwOCBpbiB0aGUKPj4+IGNvcHkgZW5naW5lIGNsYXNzKS4KPj4KPj4gTmVhdC4gV2Ugd2VudCBh
+cm91bmQgYW5kIGdyYWJiZWQgdGhhdCAweDY1MCByZWdpc3RlciBvbiBhIGJ1bmNoIG9mCj4+IEdQ
+VXMsIHNlZSB0aGUgQ0UqIGNvbHVtbnMgYXQ6Cj4+Cj4+IGh0dHA6Ly9lbnZ5dG9vbHMucmVhZHRo
+ZWRvY3Mub3JnL2VuL2xhdGVzdC9ody9ncHUuaHRtbCNmZXJtaS1rZXBsZXItbWF4d2VsbC1mYW1p
+bHkKPgo+IEkgZG9uJ3Qgc2VlIHRoZSAweDY1MCByZWdpc3RlciB2YWx1ZXMgb24gdGhhdCBwYWdl
+LiAgTWF5YmUgSSdtIG5vdAo+IGxvb2tpbmcgYXQgdGhlIHJpZ2h0IHBsYWNlPwoKVGhlIHRhYmxl
+IGF0IHRoZSBib3R0b20sIENFMC1DRTIgY29sdW1ucy4KCj4KPj4gSXQgbG9va3MgbGlrZSBpdCdz
+IGFjdHVhbGx5IHJldHVybmluZyAwIG9uIGJvdGggImNvcHkiIGVuZ2luZXMgZm9yIGEKPj4gYnVu
+Y2ggb2YgdGhvc2UgY2FyZHMgLS0gR0YxMDAsIEdGMTA0LCBHRjExNCwgcHJvYmFibHkgR0YxMTAu
+IEJ1dCBvdGhlcgo+PiBjYXJkcyBoYXZlIHRoZW0gYXMgZWl0aGVyIDMgb3IgNC4gSSdtIGd1ZXNz
+aW5nIHRoYXQgJzAnIHNob3VsZCBiZQo+PiB0cmVhdGVkIGFzIGlmIGl0IHdlcmUgYSAnMycgKG9y
+IGEgJzcnKT8KPgo+IFRoYXQncyBjdXJpb3VzLiAgSWYgSSBjYW4gZ2V0IHRoZSB0YWJsZSBvZiB3
+aGVyZSB0aGF0IHJlYWRzIHplcm8sIEkgY2FuCj4gdHJ5IHRvIGludmVzdGlnYXRlIGhvdyB0byBp
+bnRlcnByZXQgdGhhdC4KCkdGMTAwLCBHRjExMCwgR0YxMDQsIEdGMTE0LgoKU291bmRzIG9idmlv
+dXMgdG8gbWUgLSB0aGUgY2FwcyByZWdpc3RlciB3YXNuJ3QgbmVlZGVkIGJlZm9yZSBHRjEwNiBh
+bmQgCnRodXMgZGlkbid0IGV4aXN0LgoKSSBkb24ndCB0aGluayB0aGVyZSdzIGFueSBtb3JlIG5l
+ZWQgZm9yIGluZm9ybWF0aW9uIGhlcmUgLSB3ZSBrbm93IGhvdyAKdG8gdGVsbCBhcGFydCBhIGRl
+Y29tcHJlc3Npb24gZW5naW5lIGJ5IHRoZSBjYXBzIHJlZ2lzdGVyLCAqYW5kKiB3ZSBrbm93IAp3
+aGljaCBjYXJkcyBoYXZlIGl0IChHRjEwNiwgR0YxMTYsIEdGMTA4IC0gdW5sZXNzIHNvbWVvbmUg
+cmVzdXJyZWN0ZWQgaXQgCm9uIEdLc29tZXRoaW5nIG9yIEdNc29tZXRoaW5nKS4gV2UgYWxzbyBr
+bm93IHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gYSAKbm9ybWFsIGNvcHkgZW5naW5lIGFuZCBhIGRl
+Y29tcHJlc3Npb24gZW5naW5lIChiYXNpY2FsbHk6IGFsbCBkZWRpY2F0ZWQgCmNvcHkgaHcgaXMg
+bWlzc2luZyBhbmQgcmVwbGFjZWQgYnkgZGVkaWNhdGVkIGRlY29tcHJlc3Npb24gaHcgLSAKZWZm
+ZWN0aXZlbHkgYSBjb21wbGV0ZWx5IGRpZmZlcmVudCBlbmdpbmUpLiBJbiBmYWN0LCBnaXZlbiB0
+aGUgZGVjb21wIAplbmdpbmUncyBzaW1wbGljaXR5LCBpdCBzaG91bGRuJ3QgYmUgaGFyZCBhdCBh
+bGwgdG8gd3JpdGUgZmlybXdhcmUgZm9yIGl0LgoKV2UgYXJlLCBob3dldmVyLCBxdWl0ZSBjdXJp
+b3VzIGFib3V0IHRoZSBwdXJwb3NlIG9mIGFuIExaTzFYIApkZWNvbXByZXNzaW9uIGVuZ2luZSBv
+biBhIEdQVS4uLgoKRnVuIGZhY3QsIEkga25ldyBvZiB0aGUgZXhpc3RlbmNlIG9mIGRlY29tcHJl
+c3Npb24gZW5naW5lcyBmb3Igc29tZSAKdGltZSwgYnV0IG5ldmVyIG1hbmFnZWQgdG8gbG9jYXRl
+IHRoZW0gLSBJIGd1ZXNzIEkgZGlkbid0IGNvbnNpZGVyIGNvcHkgCmVuZ2luZXMgdG8gd2FycmFu
+dCBhIHNlY29uZCBsb29rIG9uIGFsbCBwb3NzaWJsZSBHUFVzLi4uCgpXaGljaCBicmluZ3MgbWUg
+dG8gYXNrOiBhcmUgdGhlcmUgYW55IG1vcmUgRklGTyBlbmdpbmVzIHdlIHNvbWVob3cgCm1pc3Nl
+ZCBvbiBGZXJtaSs/IFRoZXJlJ3MgYXBwYXJlbnRseSBhIG5ldyBWSUMgY2xhc3MgKDB4YTBiNiks
+IGJ1dCBJJ3ZlIApuZXZlciBzZWVuIGEgVklDIG90aGVyIHRoYW4gdGhlIE1DUDg5IG9uZSAoMHg4
+NmI2KS4KCkFGQUlDUyB0aGVyZSdzIGFsc28gb25lIHVua25vd24gZW51bSB2YWx1ZSBpbiBOVlJN
+J3MgRklGTyBlbmdpbmUgZW51bS4uLiAKKEkga25vdyBvZiBHUkFQSCwgQ0UwLCBDRTEsIENFMiwg
+VlAxL1ZQMi9NU1BERUMsIE1TUkNIL01FLCBNU1BQUCwgCkJTUC9NU1ZMRC9NU0RFQywgTVBFRywg
+U09GVFdBUkUsIENJUEhFUi9TRUMsIFZJQywgTVNFTkMpLgoKPgo+PiBDdXJpb3VzbHksIGEgR0Yx
+MTYgY2FyZCB0aGF0IEkgdGhvdWdodCB3YXMgd29ya2luZyBmaW5lIG9uIG5vdXZlYXUKPj4gYWN0
+dWFsbHkgaGFzIDMgZm9yIHRoZSBmaXJzdCBlbmdpbmUgYW5kIDQgZm9yIHRoZSBzZWNvbmQuIFBl
+cmhhcHMgaXQKPj4ganVzdCBoYWQgZW5vdWdoIFZSQU0gdGhhdCBJIG5ldmVyIHRyaWdnZXJlZCB0
+aGUgY29uZGl0aW9ucyByZXF1aXJlZAo+PiBmb3Igbm91dmVhdSB0byB1c2UgdGhhdCBzZWNvbmQg
+Y29weSBlbmdpbmUgKHdlIHVzZSBpdCwgd2hlbiBhdmFpbGFibGUsCj4+IGZvciBkcm0taW5pdGlh
+dGVkIGJ1ZmZlciBtb3ZlcykuCj4KPiBJbnRlcmVzdGluZy4gIFdvdWxkIHRoYXQgZXhwbGFpbiB3
+aHkgdGhpcyBoYXNuJ3QgbWFuaWZlc3RlZCBvbiBjb25maWdzCj4gb3RoZXIgdGhhbiB0aGUgR0Yx
+MTYgdXNlciByZXBvcnRzPwo+Cj4gVGhhbmtzLAo+IC0gQW5keQo+Cj4+Pj4gIEZyb20gbXkgYWRt
+aXR0ZWRseSBsaW1pdGVkIHVuZGVyc3RhbmRpbmcsIGJvdGggMHgxMDQwMDAgYW5kIDB4MTA1MDAw
+Cj4+Pj4gYXBwZWFyIHRvIGJlIGZhbGNvbiBlbmdpbmVzLCB3aGVyZSB0aGUgZnVjIGlzIHByZXN1
+bWFibHkgYWJsZSB0byBkcml2ZQo+Pj4+IHNvbWUgdW5kZXJseWluZyBoYXJkd2FyZS4gVGhlIGFj
+dHVhbCBmaWZvIG1ldGhvZHMgYXJlIGltcGxlbWVudGVkIGluCj4+Pj4gdGhlIGZ1Yywgd2hpY2gg
+aW4gdHVybiBkb2VzIGlvd3IvZXRjIGNvbW1hbmRzLgo+Pj4+Cj4+Pj4gQXJlIHlvdSBzYXlpbmcg
+dGhhdCB0aGUgImRlY29tcHJlc3MiIGVuZ2luZSAoYXQgMHgxMDUwMDAgcmlnaHQ/KSBoYXMgYQo+
+Pj4+IGRpZmZlcmVudCBwaWVjZSBvZiBoYXJkd2FyZSBiZWhpbmQgaXQgdGhhbiB0aGUgY29weSBl
+bmdpbmUgYXQKPj4+PiAweDEwNDAwMCwgb3IgZG9lcyBOVklESUEgc2ltcGx5IHByb3ZpZGUgZGlm
+ZmVyZW50IGZ1YyBmb3IgaXQgdGhhdAo+Pj4+IGV4cG9zZXMgc29tZXdoYXQgZGlmZmVyZW50IGZ1
+bmN0aW9uYWxpdHkgdmlhIEZJRk8gbWV0aG9kcz8KPj4+Cj4+PiBUaGVyZSBpcyBkZWZpbml0ZWx5
+IGEgZmFsY29uIGF0IHRoZSBmcm9udGVuZCwgYW5kIHRoZXJlIGlzIGRpZmZlcmVudAo+Pj4gZmFs
+Y29uIHVjb2RlIGZvciAibm9ybWFsIiBjb3B5IGVuZ2luZSB2ZXJzdXMgdGhlICJkZWNvbXByZXNz
+IiBlbmdpbmUuCj4+PiBCdXQsIEkgZG9uJ3Qga25vdyBvZmYgaGFuZCB3aGF0IGRlZGljYXRlZCBo
+YXJkd2FyZSwgaWYgYW55LCBpcyBiZWhpbmQgaXQuCj4+Cj4+IFNlZW1zIGxpa2VseSB0aGF0IHRo
+ZSBIVyBpcyBkaWZmZXJlbnQsIHNpbmNlIGl0J2QgYmUgbWFkbmVzcyB0byB0cnkgdG8KPj4gZG8g
+ZGVjb21wcmVzc2lvbiBpbiB0aGUgZmFsY29uIGNvZGUgaXRzZWxmLiAoTm90IHRvIHNheSB0aGF0
+IHRoZSBJU0EKPj4gaXNuJ3Qgc3VpdGVkIHRvIGl0LCBqdXN0IHRoZXkgaGF2ZSByZWxhdGl2ZWx5
+IHNsb3cgY2xvY2tzLikgbXdrIGlzIGluCj4+IHRoZSBwcm9jZXNzIG9mIHdvcmtpbmcgaXQgYWxs
+IG91dC4KPj4KPj4gICAgLWlsaWEKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
