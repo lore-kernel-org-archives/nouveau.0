@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70389] [prime] unsynchronised rendering on secondary
-	displays
-Date: Fri, 28 Nov 2014 14:16:54 +0000
-Message-ID: <bug-70389-8800-BXJjA9fJZG@http.bugs.freedesktop.org/>
-References: <bug-70389-8800@http.bugs.freedesktop.org/>
+From: Daniel Stone <daniel-rLtY4a/8tF1rovVCs/uTlw@public.gmane.org>
+Subject: Re: [Mesa-dev] [RFC] tegra: Initial support
+Date: Fri, 28 Nov 2014 15:54:01 +0000
+Message-ID: <CAPj87rPn=-P5Cap7CBbUxOG8c=_VFEMLpmUR3QQGaahcJ+Ktcw@mail.gmail.com>
+References: <1417106361-705-1-git-send-email-thierry.reding@gmail.com>
+ <CAKb7UvjCYMvtwFJAzRdd_JJE956fW_F6upEK5vUeWUQHV_y07w@mail.gmail.com>
+ <20141128091707.GC5978@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0044626057=="
+Content-Type: multipart/mixed; boundary="===============0613287115=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20141128091707.GC5978@ulmo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,264 +18,117 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============0613287115==
+Content-Type: multipart/alternative; boundary=089e013d202aff759e0508ed44c0
 
---===============0044626057==
-Content-Type: multipart/alternative; boundary="1417184214.1E24Aadf2.19100"; charset="UTF-8"
+--089e013d202aff759e0508ed44c0
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
 
---1417184214.1E24Aadf2.19100
-Date: Fri, 28 Nov 2014 14:16:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+On 28 November 2014 at 09:17, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+wrote:
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70389
+> On Fri, Nov 28, 2014 at 12:32:43AM -0500, Ilia Mirkin wrote:> Also, can
+> you explain why it's advantageous for the setup to appear as
+> > though it is a single device? i.e. what's wrong with just using
+> > nouveau as a render node or whatever? [The answer may be simple, but
+> > I'm very unfamiliar with a lot of that stuff, and perhaps others are
+> > in a similar predicament.]
+>
+> There are two reasons. For one, pretty much every software out there
+> that runs on the "bare metal" (i.e. GBM) uses the same initialization
+> sequence and it doesn't involve opening two DRM devices. So in order to
+> support Tegra and other SoCs with a similar architecture, each of these
+> applications would need to be patched. Now typically a lot of the
+> applications would run under X or Wayland, so the number of applications
+> that need patching is somewhat reduced. However, it would still mean
+> that every Wayland compositor would need to be patched in order to
+> support this, and each of them would use a mostly identical copy of that
+> code.
+>
 
-Dennis Favro <dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+More specifically, the gbm/EGL API works thusly:
+  drm_fd = drmOpen("display_controller");
+  gbm_dev = gbm_create_device(drm_fd);
+  egl_dpy = eglGetPlatformDisplayEXT(EGL_PLATFORM_GBM_EXT, gbm_dev, NULL);
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+So in the last stage, you have to magically infer a relationship between
+your display controller's device and your GPU's. On most mobile devices you
+can just work this out (there's only one GPU), but it also breaks in the
+multi-GPU case.
 
---- Comment #3 from Dennis Favro <dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Getting what appears to be a less-serious version of this bug on Debian Testing
-with the Intel driver from Experimental (2:2.99.916+git20141119-1~exp1).
+The best idea I've come up with to fix this in the long term, is to use
+EGL_EXT_device_base to enumerate the GPUs and then feed the device ID you
+get from that as a new attrib to eglGetPlatformDisplayEXT. It's either
+that, or a new gbm_device_create_multi(display_controller_fd, gpu_fd)
+entrypoint.
 
-I'm also using a W530, in Optimus mode in BIOS.  
+Of course, the first complication in all of this is that Weston doesn't
+support platform_base at all anyway ...
 
-Dragging windows around the DVI/DFP display leaves artifacts and tears.  The
-internal display (LVDS1) looks fine.  Scrolling and typing is similarly slow;
-gnome-terminal is particularly ugly
+Cheers,
+Daniel
 
-$ uname -a
-Linux dtp 3.16.0-4-amd64 #1 SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
+--089e013d202aff759e0508ed44c0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-$ lspci | grep -i VGA
-00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
-Graphics Controller (rev 09)
-01:00.0 VGA compatible controller: NVIDIA Corporation GK107GLM [Quadro K1000M]
-(rev a1)
+<div dir=3D"ltr">Hi,<div class=3D"gmail_extra"><br><div class=3D"gmail_quot=
+e">On 28 November 2014 at 09:17, Thierry Reding <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org" target=3D"_blank">thierry.reding@gma=
+il.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=
+=3D"HOEnZb"><div class=3D"h5">On Fri, Nov 28, 2014 at 12:32:43AM -0500, Ili=
+a Mirkin wrote:<span style=3D"color:rgb(34,34,34)">&gt; Also, can you expla=
+in why it&#39;s advantageous for the setup to appear as</span><br></div></d=
+iv><span class=3D"">
+&gt; though it is a single device? i.e. what&#39;s wrong with just using<br=
+>
+&gt; nouveau as a render node or whatever? [The answer may be simple, but<b=
+r>
+&gt; I&#39;m very unfamiliar with a lot of that stuff, and perhaps others a=
+re<br>
+&gt; in a similar predicament.]<br>
+<br>
+</span>There are two reasons. For one, pretty much every software out there=
+<br>
+that runs on the &quot;bare metal&quot; (i.e. GBM) uses the same initializa=
+tion<br>
+sequence and it doesn&#39;t involve opening two DRM devices. So in order to=
+<br>
+support Tegra and other SoCs with a similar architecture, each of these<br>
+applications would need to be patched. Now typically a lot of the<br>
+applications would run under X or Wayland, so the number of applications<br=
+>
+that need patching is somewhat reduced. However, it would still mean<br>
+that every Wayland compositor would need to be patched in order to<br>
+support this, and each of them would use a mostly identical copy of that<br=
+>
+code.<br></blockquote><div><br></div><div>More specifically, the gbm/EGL AP=
+I works thusly:</div><div>=C2=A0 drm_fd =3D drmOpen(&quot;display_controlle=
+r&quot;);</div><div>=C2=A0 gbm_dev =3D gbm_create_device(drm_fd);</div><div=
+>=C2=A0 egl_dpy =3D eglGetPlatformDisplayEXT(EGL_PLATFORM_GBM_EXT, gbm_dev,=
+ NULL);</div><div><br></div><div>So in the last stage, you have to magicall=
+y infer a relationship between your display controller&#39;s device and you=
+r GPU&#39;s. On most mobile devices you can just work this out (there&#39;s=
+ only one GPU), but it also breaks in the multi-GPU case.</div><div><br></d=
+iv><div>The best idea I&#39;ve come up with to fix this in the long term, i=
+s to use EGL_EXT_device_base to enumerate the GPUs and then feed the device=
+ ID you get from that as a new attrib to eglGetPlatformDisplayEXT. It&#39;s=
+ either that, or a new gbm_device_create_multi(display_controller_fd, gpu_f=
+d) entrypoint.</div><div><br></div><div>Of course, the first complication i=
+n all of this is that Weston doesn&#39;t support platform_base at all anywa=
+y ...</div><div><br></div><div>Cheers,</div><div>Daniel</div></div></div></=
+div>
 
-$ xrandr --listproviders
-Providers: number : 2
-Provider 0: id: 0xae cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
-4 outputs: 3 associated providers: 1 name:Intel
-Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 4 outputs: 5 associated providers: 1 name:nouveau
+--089e013d202aff759e0508ed44c0--
 
-$ xrandr -q
-Screen 0: minimum 8 x 8, current 1920 x 2280, maximum 32767 x 32767
-LVDS1 connected primary 1920x1080+0+1200 (normal left inverted right x axis y
-axis) 344mm x 193mm
-   1920x1080     60.00*+  59.93    50.00  
-   1680x1050     59.95    59.88  
-   1600x1024     60.17  
-   1400x1050     59.98  
-   1280x1024     60.02  
-   1440x900      59.89  
-   1280x960      60.00  
-   1360x768      59.80    59.96  
-   1152x864      60.00  
-   1024x768      60.00  
-   800x600       60.32    56.25  
-   640x480       59.94  
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)
-LVDS-1-2 disconnected (normal left inverted right x axis y axis)
-VGA-1-2 disconnected (normal left inverted right x axis y axis)
-DP-1-1 disconnected (normal left inverted right x axis y axis)
-DP-1-2 disconnected (normal left inverted right x axis y axis)
-DP-1-3 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 518mm
-x 324mm
-   1920x1200     59.95*+
-   1920x1080     50.00  
-   1600x1200     60.00  
-   1680x1050     59.88  
-   1280x1024     75.02    60.02  
-   1440x900      74.98    59.90  
-   1280x960      60.00  
-   1280x800      59.91  
-   1152x864      75.00  
-   1280x720      60.00    50.00    59.94  
-   1024x768      75.08    70.07    60.00  
-   832x624       74.55  
-   800x600       72.19    75.00    60.32    56.25  
-   720x576       50.00  
-   720x480       60.00    59.94  
-   640x480       75.00    72.81    66.67    60.00    59.94  
-   720x400       70.08  
-  1680x1050 (0x6c) 119.000MHz
-        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock  64.67KHz
-        v: height 1050 start 1053 end 1059 total 1080           clock  59.88Hz
-  1280x1024 (0x6e) 108.000MHz
-        h: width  1280 start 1328 end 1440 total 1688 skew    0 clock  63.98KHz
-        v: height 1024 start 1025 end 1028 total 1066           clock  60.02Hz
-  1280x960 (0x71) 108.000MHz
-        h: width  1280 start 1376 end 1488 total 1800 skew    0 clock  60.00KHz
-        v: height  960 start  961 end  964 total 1000           clock  60.00Hz
-  1024x768 (0x79) 65.000MHz
-        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
-        v: height  768 start  771 end  777 total  806           clock  60.00Hz
-  800x600 (0x7d) 40.000MHz
-        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz
-        v: height  600 start  601 end  605 total  628           clock  60.32Hz
-  800x600 (0x7e) 36.000MHz
-        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz
-        v: height  600 start  601 end  603 total  625           clock  56.25Hz
-  640x480 (0x86) 25.175MHz
-        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz
-        v: height  480 start  490 end  492 total  525           clock  59.94Hz
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1417184214.1E24Aadf2.19100
-Date: Fri, 28 Nov 2014 14:16:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:dfavro&#64;gmail.com" title="Dennis Favro &lt;dfavro&#64;gmail.com&gt;"> <span class="fn">Dennis Favro</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [prime] unsynchronised rendering on secondary displays"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>dfavro&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [prime] unsynchronised rendering on secondary displays"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [prime] unsynchronised rendering on secondary displays"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
-              from <span class="vcard"><a class="email" href="mailto:dfavro&#64;gmail.com" title="Dennis Favro &lt;dfavro&#64;gmail.com&gt;"> <span class="fn">Dennis Favro</span></a>
-</span></b>
-        <pre>Getting what appears to be a less-serious version of this bug on Debian Testing
-with the Intel driver from Experimental (2:2.99.916+git20141119-1~exp1).
-
-I'm also using a W530, in Optimus mode in BIOS.  
-
-Dragging windows around the DVI/DFP display leaves artifacts and tears.  The
-internal display (LVDS1) looks fine.  Scrolling and typing is similarly slow;
-gnome-terminal is particularly ugly
-
-$ uname -a
-Linux dtp 3.16.0-4-amd64 #1 SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
-
-$ lspci | grep -i VGA
-00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
-Graphics Controller (rev 09)
-01:00.0 VGA compatible controller: NVIDIA Corporation GK107GLM [Quadro K1000M]
-(rev a1)
-
-$ xrandr --listproviders
-Providers: number : 2
-Provider 0: id: 0xae cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
-4 outputs: 3 associated providers: 1 name:Intel
-Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 4 outputs: 5 associated providers: 1 name:nouveau
-
-$ xrandr -q
-Screen 0: minimum 8 x 8, current 1920 x 2280, maximum 32767 x 32767
-LVDS1 connected primary 1920x1080+0+1200 (normal left inverted right x axis y
-axis) 344mm x 193mm
-   1920x1080     60.00*+  59.93    50.00  
-   1680x1050     59.95    59.88  
-   1600x1024     60.17  
-   1400x1050     59.98  
-   1280x1024     60.02  
-   1440x900      59.89  
-   1280x960      60.00  
-   1360x768      59.80    59.96  
-   1152x864      60.00  
-   1024x768      60.00  
-   800x600       60.32    56.25  
-   640x480       59.94  
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)
-LVDS-1-2 disconnected (normal left inverted right x axis y axis)
-VGA-1-2 disconnected (normal left inverted right x axis y axis)
-DP-1-1 disconnected (normal left inverted right x axis y axis)
-DP-1-2 disconnected (normal left inverted right x axis y axis)
-DP-1-3 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 518mm
-x 324mm
-   1920x1200     59.95*+
-   1920x1080     50.00  
-   1600x1200     60.00  
-   1680x1050     59.88  
-   1280x1024     75.02    60.02  
-   1440x900      74.98    59.90  
-   1280x960      60.00  
-   1280x800      59.91  
-   1152x864      75.00  
-   1280x720      60.00    50.00    59.94  
-   1024x768      75.08    70.07    60.00  
-   832x624       74.55  
-   800x600       72.19    75.00    60.32    56.25  
-   720x576       50.00  
-   720x480       60.00    59.94  
-   640x480       75.00    72.81    66.67    60.00    59.94  
-   720x400       70.08  
-  1680x1050 (0x6c) 119.000MHz
-        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock  64.67KHz
-        v: height 1050 start 1053 end 1059 total 1080           clock  59.88Hz
-  1280x1024 (0x6e) 108.000MHz
-        h: width  1280 start 1328 end 1440 total 1688 skew    0 clock  63.98KHz
-        v: height 1024 start 1025 end 1028 total 1066           clock  60.02Hz
-  1280x960 (0x71) 108.000MHz
-        h: width  1280 start 1376 end 1488 total 1800 skew    0 clock  60.00KHz
-        v: height  960 start  961 end  964 total 1000           clock  60.00Hz
-  1024x768 (0x79) 65.000MHz
-        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
-        v: height  768 start  771 end  777 total  806           clock  60.00Hz
-  800x600 (0x7d) 40.000MHz
-        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz
-        v: height  600 start  601 end  605 total  628           clock  60.32Hz
-  800x600 (0x7e) 36.000MHz
-        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz
-        v: height  600 start  601 end  603 total  625           clock  56.25Hz
-  640x480 (0x86) 25.175MHz
-        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz
-        v: height  480 start  490 end  492 total  525           clock  59.94Hz</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1417184214.1E24Aadf2.19100--
-
---===============0044626057==
+--===============0613287115==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -284,4 +138,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0044626057==--
+--===============0613287115==--
