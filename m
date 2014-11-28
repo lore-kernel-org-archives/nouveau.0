@@ -1,15 +1,13 @@
-From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
-Subject: Re: [RESEND PATCH nouveau 3/3] volt: add support for GK20A
-Date: Fri, 28 Nov 2014 13:09:14 +0100
-Message-ID: <547865EA.10702@nimrod-online.com>
-References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
- <1417173180-21726-3-git-send-email-vinceh@nvidia.com>
- <54785BBA.50800@nimrod-online.com> <54786343.4000806@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70389] [prime] unsynchronised rendering on secondary
+	displays
+Date: Fri, 28 Nov 2014 14:16:54 +0000
+Message-ID: <bug-70389-8800-BXJjA9fJZG@http.bugs.freedesktop.org/>
+References: <bug-70389-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0044626057=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54786343.4000806-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-70389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,148 +17,271 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gVmluY2UsCgpPcCAyOC0xMS0xNCBvbSAxMjo1NyBzY2hyZWVmIFZpbmNlIEhzdToKPiBI
-aSBSb3ksCj4KPiBPbiAxMS8yOC8yMDE0IDA3OjI1IFBNLCBSb3kgU3BsaWV0IHdyb3RlOgo+PiBI
-ZWxsbyBWaW5jZSwKPj4KPj4gT25lIG1pbm9yIHF1ZXN0aW9uIGlubGluZS4KPj4KPj4gT3AgMjgt
-MTEtMTQgb20gMTI6MTMgc2NocmVlZiBWaW5jZSBIc3U6Cj4+PiBUaGUgdm9sdGFnZSB2YWx1ZSBh
-cmUgY2FsY3VsYXRlZCBieSB0aGUgaGFyZHdhcmUgY2hhcmFjdGVyaXplZAo+Pj4gcmVzdWx0Lgo+
-Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+Cj4+PiAt
-LS0KPj4+Cj4+PiBSZXNlbmQgdGhpcyBwYXRjaCB3aXRoIHRoZSBmdXNlIGNoYW5nZSBhbmQgcHJv
-cGVyIHBhdGNoIHByZWZpeAo+Pj4gcGVyIFRoaWVycnkncyByZXF1ZXN0Lgo+Pj4KPj4+ICAgZHJt
-L0tidWlsZCAgICAgICAgICAgICAgICAgICB8ICAgMSArCj4+PiAgIGRybS9jb3JlL3N1YmRldi92
-b2x0L2drMjBhLmMgfCAgIDEgKwo+Pj4gICBudmttL2VuZ2luZS9kZXZpY2UvbnZlMC5jICAgIHwg
-ICAxICsKPj4+ICAgbnZrbS9pbmNsdWRlL3N1YmRldi92b2x0LmggICB8ICAgMSArCj4+PiAgIG52
-a20vc3ViZGV2L2Nsb2NrL2drMjBhLmMgICAgfCAgMTUgKysrKwo+Pj4gICBudmttL3N1YmRldi92
-b2x0L2drMjBhLmMgICAgIHwgMjAyIAo+Pj4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKwo+Pj4gICA2IGZpbGVzIGNoYW5nZWQsIDIyMSBpbnNlcnRpb25zKCspCj4+
-PiAgIGNyZWF0ZSBtb2RlIDEyMDAwMCBkcm0vY29yZS9zdWJkZXYvdm9sdC9nazIwYS5jCj4+PiAg
-IGNyZWF0ZSBtb2RlIDEwMDY0NCBudmttL3N1YmRldi92b2x0L2drMjBhLmMKPj4+Cj4+PiBkaWZm
-IC0tZ2l0IGEvZHJtL0tidWlsZCBiL2RybS9LYnVpbGQKPj4+IGluZGV4IDcyOGJjNWI2NmIyOS4u
-N2M0OWU2NjU1MDY2IDEwMDY0NAo+Pj4gLS0tIGEvZHJtL0tidWlsZAo+Pj4gKysrIGIvZHJtL0ti
-dWlsZAo+Pj4gQEAgLTIyNSw2ICsyMjUsNyBAQCBub3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvdm0v
-bnZjMC5vCj4+PiAgIG5vdXZlYXUteSArPSBjb3JlL3N1YmRldi92b2x0L2Jhc2Uubwo+Pj4gICBu
-b3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvdm9sdC9ncGlvLm8KPj4+ICAgbm91dmVhdS15ICs9IGNv
-cmUvc3ViZGV2L3ZvbHQvbnY0MC5vCj4+PiArbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L3ZvbHQv
-Z2syMGEubwo+Pj4gICAgIG5vdXZlYXUteSArPSBjb3JlL2VuZ2luZS9mYWxjb24ubwo+Pj4gICBu
-b3V2ZWF1LXkgKz0gY29yZS9lbmdpbmUveHRlbnNhLm8KPj4+IGRpZmYgLS1naXQgYS9kcm0vY29y
-ZS9zdWJkZXYvdm9sdC9nazIwYS5jIAo+Pj4gYi9kcm0vY29yZS9zdWJkZXYvdm9sdC9nazIwYS5j
-Cj4+PiBuZXcgZmlsZSBtb2RlIDEyMDAwMAo+Pj4gaW5kZXggMDAwMDAwMDAwMDAwLi4yODk0ZWIx
-ZWRlMTMKPj4+IC0tLSAvZGV2L251bGwKPj4+ICsrKyBiL2RybS9jb3JlL3N1YmRldi92b2x0L2dr
-MjBhLmMKPj4+IEBAIC0wLDAgKzEgQEAKPj4+ICsuLi8uLi8uLi8uLi9udmttL3N1YmRldi92b2x0
-L2drMjBhLmMKPj4+IFwgTm8gbmV3bGluZSBhdCBlbmQgb2YgZmlsZQo+Pj4gZGlmZiAtLWdpdCBh
-L252a20vZW5naW5lL2RldmljZS9udmUwLmMgYi9udmttL2VuZ2luZS9kZXZpY2UvbnZlMC5jCj4+
-PiBpbmRleCBiMWIyZTQ4NGVjZmEuLjY3NGRhMWYwOTViMiAxMDA2NDQKPj4+IC0tLSBhL252a20v
-ZW5naW5lL2RldmljZS9udmUwLmMKPj4+ICsrKyBiL252a20vZW5naW5lL2RldmljZS9udmUwLmMK
-Pj4+IEBAIC0xNzksNiArMTc5LDcgQEAgbnZlMF9pZGVudGlmeShzdHJ1Y3Qgbm91dmVhdV9kZXZp
-Y2UgKmRldmljZSkKPj4+ICAgICAgICAgICBkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfR1Ig
-ICAgIF0gPSBnazIwYV9ncmFwaF9vY2xhc3M7Cj4+PiAgICAgICAgICAgZGV2aWNlLT5vY2xhc3Nb
-TlZERVZfRU5HSU5FX0NPUFkyICBdID0gJm52ZTBfY29weTJfb2NsYXNzOwo+Pj4gICAgICAgICAg
-IGRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9QRVJGTU9OXSA9ICZudmUwX3BlcmZtb25fb2Ns
-YXNzOwo+Pj4gKyAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1ZPTFQgICBdID0g
-JmdrMjBhX3ZvbHRfb2NsYXNzOwo+Pj4gICAgICAgICAgIGJyZWFrOwo+Pj4gICAgICAgY2FzZSAw
-eGYwOgo+Pj4gICAgICAgICAgIGRldmljZS0+Y25hbWUgPSAiR0sxMTAiOwo+Pj4gZGlmZiAtLWdp
-dCBhL252a20vaW5jbHVkZS9zdWJkZXYvdm9sdC5oIGIvbnZrbS9pbmNsdWRlL3N1YmRldi92b2x0
-LmgKPj4+IGluZGV4IDgyMGI2MmZmZDc1Yi4uNjdkYjVlNTg4ODBkIDEwMDY0NAo+Pj4gLS0tIGEv
-bnZrbS9pbmNsdWRlL3N1YmRldi92b2x0LmgKPj4+ICsrKyBiL252a20vaW5jbHVkZS9zdWJkZXYv
-dm9sdC5oCj4+PiBAQCAtNTIsNiArNTIsNyBAQCBpbnQgIF9ub3V2ZWF1X3ZvbHRfaW5pdChzdHJ1
-Y3Qgbm91dmVhdV9vYmplY3QgKik7Cj4+PiAgICNkZWZpbmUgX25vdXZlYXVfdm9sdF9maW5pIF9u
-b3V2ZWF1X3N1YmRldl9maW5pCj4+PiAgICAgZXh0ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyBu
-djQwX3ZvbHRfb2NsYXNzOwo+Pj4gK2V4dGVybiBzdHJ1Y3Qgbm91dmVhdV9vY2xhc3MgZ2syMGFf
-dm9sdF9vY2xhc3M7Cj4+PiAgICAgaW50IG5vdXZlYXVfdm9sdGdwaW9faW5pdChzdHJ1Y3Qgbm91
-dmVhdV92b2x0ICopOwo+Pj4gICBpbnQgbm91dmVhdV92b2x0Z3Bpb19nZXQoc3RydWN0IG5vdXZl
-YXVfdm9sdCAqKTsKPj4+IGRpZmYgLS1naXQgYS9udmttL3N1YmRldi9jbG9jay9nazIwYS5jIGIv
-bnZrbS9zdWJkZXYvY2xvY2svZ2syMGEuYwo+Pj4gaW5kZXggODJhYmJlYTJiZTEyLi5mYjRmYWQz
-NzRiZGQgMTAwNjQ0Cj4+PiAtLS0gYS9udmttL3N1YmRldi9jbG9jay9nazIwYS5jCj4+PiArKysg
-Yi9udmttL3N1YmRldi9jbG9jay9nazIwYS5jCj4+PiBAQCAtNDcwLDc2ICs0NzAsOTEgQEAgZ2sy
-MGFfcHN0YXRlc1tdID0gewo+Pj4gICAgICAgewo+Pj4gICAgICAgICAgIC5iYXNlID0gewo+Pj4g
-ICAgICAgICAgICAgICAuZG9tYWluW252X2Nsa19zcmNfZ3BjXSA9IDcyMDAwLAo+Pj4gKyAgICAg
-ICAgICAgIC52b2x0YWdlID0gMCwKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAg
-ICAgIHsKPj4+ICAgICAgICAgICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFpbltu
-dl9jbGtfc3JjX2dwY10gPSAxMDgwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSAxLAo+
-Pj4gICAgICAgICAgIH0sCj4+PiAgICAgICB9LAo+Pj4gICAgICAgewo+Pj4gICAgICAgICAgIC5i
-YXNlID0gewo+Pj4gICAgICAgICAgICAgICAuZG9tYWluW252X2Nsa19zcmNfZ3BjXSA9IDE4MDAw
-MCwKPj4+ICsgICAgICAgICAgICAudm9sdGFnZSA9IDIsCj4+PiAgICAgICAgICAgfSwKPj4+ICAg
-ICAgIH0sCj4+PiAgICAgICB7Cj4+PiAgICAgICAgICAgLmJhc2UgPSB7Cj4+PiAgICAgICAgICAg
-ICAgIC5kb21haW5bbnZfY2xrX3NyY19ncGNdID0gMjUyMDAwLAo+Pj4gKyAgICAgICAgICAgIC52
-b2x0YWdlID0gMywKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgICAgIHsKPj4+
-ICAgICAgICAgICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFpbltudl9jbGtfc3Jj
-X2dwY10gPSAzMjQwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSA0LAo+Pj4gICAgICAg
-ICAgIH0sCj4+PiAgICAgICB9LAo+Pj4gICAgICAgewo+Pj4gICAgICAgICAgIC5iYXNlID0gewo+
-Pj4gICAgICAgICAgICAgICAuZG9tYWluW252X2Nsa19zcmNfZ3BjXSA9IDM5NjAwMCwKPj4+ICsg
-ICAgICAgICAgICAudm9sdGFnZSA9IDUsCj4+PiAgICAgICAgICAgfSwKPj4+ICAgICAgIH0sCj4+
-PiAgICAgICB7Cj4+PiAgICAgICAgICAgLmJhc2UgPSB7Cj4+PiAgICAgICAgICAgICAgIC5kb21h
-aW5bbnZfY2xrX3NyY19ncGNdID0gNDY4MDAwLAo+Pj4gKyAgICAgICAgICAgIC52b2x0YWdlID0g
-NiwKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgICAgIHsKPj4+ICAgICAgICAg
-ICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFpbltudl9jbGtfc3JjX2dwY10gPSA1
-NDAwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSA3LAo+Pj4gICAgICAgICAgIH0sCj4+
-PiAgICAgICB9LAo+Pj4gICAgICAgewo+Pj4gICAgICAgICAgIC5iYXNlID0gewo+Pj4gICAgICAg
-ICAgICAgICAuZG9tYWluW252X2Nsa19zcmNfZ3BjXSA9IDYxMjAwMCwKPj4+ICsgICAgICAgICAg
-ICAudm9sdGFnZSA9IDgsCj4+PiAgICAgICAgICAgfSwKPj4+ICAgICAgIH0sCj4+PiAgICAgICB7
-Cj4+PiAgICAgICAgICAgLmJhc2UgPSB7Cj4+PiAgICAgICAgICAgICAgIC5kb21haW5bbnZfY2xr
-X3NyY19ncGNdID0gNjQ4MDAwLAo+Pj4gKyAgICAgICAgICAgIC52b2x0YWdlID0gOSwKPj4+ICAg
-ICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgICAgIHsKPj4+ICAgICAgICAgICAuYmFzZSA9
-IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFpbltudl9jbGtfc3JjX2dwY10gPSA2ODQwMDAsCj4+
-PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSAxMCwKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAg
-fSwKPj4+ICAgICAgIHsKPj4+ICAgICAgICAgICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAg
-LmRvbWFpbltudl9jbGtfc3JjX2dwY10gPSA3MDgwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRh
-Z2UgPSAxMSwKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgICAgIHsKPj4+ICAg
-ICAgICAgICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFpbltudl9jbGtfc3JjX2dw
-Y10gPSA3NTYwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSAxMiwKPj4+ICAgICAgICAg
-ICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgICAgIHsKPj4+ICAgICAgICAgICAuYmFzZSA9IHsKPj4+
-ICAgICAgICAgICAgICAgLmRvbWFpbltudl9jbGtfc3JjX2dwY10gPSA4MDQwMDAsCj4+PiArICAg
-ICAgICAgICAgLnZvbHRhZ2UgPSAxMywKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+
-ICAgICAgIHsKPj4+ICAgICAgICAgICAuYmFzZSA9IHsKPj4+ICAgICAgICAgICAgICAgLmRvbWFp
-bltudl9jbGtfc3JjX2dwY10gPSA4NTIwMDAsCj4+PiArICAgICAgICAgICAgLnZvbHRhZ2UgPSAx
-NCwKPj4+ICAgICAgICAgICB9LAo+Pj4gICAgICAgfSwKPj4+ICAgfTsKPj4KPj4gSXMgdGhlcmUg
-YSBwYXJ0aWN1bGFyIHJlYXNvbiB3aHkgdGhpcyB0YWJsZSBpcyBoYXJkLWNvZGVkIHJhdGhlciB0
-aGFuIAo+PiBzdG9yZWQgaW4gdGhlIGRldmljZSB0cmVlPyBJdCBkb2Vzbid0IHNlZW0gdG8gZGlm
-ZmVyIG11Y2ggYmV0d2VlbiAKPj4gZGlmZmVyZW50IGdrMjBhJ3MgKGJ1dCB0aGlzIG1pZ2h0IGNo
-YW5nZSB3aXRoIHRoZSBkZW52ZXItY29yZSAKPj4gdmVyc2lvbj8pLCBidXQgSSBkbyBhbnRpY2lw
-YXRlIGEgbG90IG9mICJjb2RlIiBkdXBsaWNhdGlvbiB3aGVuIAo+PiBwb3N0LUsxIGNvcmVzIGFy
-ZSByZWxlYXNlZCBhbmQgc3VwcG9ydGVkLgo+IEhtbW0uLiBUaGF0J3MgcHJvYmFibHkgYmVjYXVz
-ZSBJIGp1c3QgcmVhbGl6ZWQgd2UgaGF2ZSBzb21lIG90aGVyIAo+IGV4YW1wbGUgbGlrZSB0aGUg
-YmlvcyBzdWJkZXYgaXMgdXNpbmcgdGhlIGRldmljZSB0cmVzcyBzdHVmZi4gVGhlIAo+IHRhYmxl
-IGlzIGNoaXAgc3BlY2lmaWMsIG5vdCBib2FyZCBzcGVjaWZpYy4gU2hvdWxkIHdlIHB1dCBpdCBp
-biBkZXZpY2UgCj4gdHJlZT8KPiBBbmQgdGhlIHRhYmxlIHNob3VsZCBiZSB0aGUgc2FtZSBiZXR3
-ZWVuIGFsbCB0aGUgZ2syMGEncyBhbHRob3VnaCAKPiB0aGVyZSBpcyBubyBndWFyYW50ZWUuIElm
-IHRoZSBwb3N0LUsxIGNvcmVzIGFsc28gaW50ZWdyYXRlIHRoZSBnazIwYSwgCj4gdGhleSBzaG91
-bGQgdXNlIHRoZSBzYW1lIGRyaXZlciBpbmNsdWRpbmcgdGhpcyBmaWxlLiBJZiBub3QsIEkgYmVs
-aWV2ZSAKPiB3ZSB3aWxsIGhhdmUgc29tZSBjbGV2ZXIgd2F5IHRvIGhhbmRsZSB0aGF0LiBUaGF0
-J3MgdW5saWtlbHkgdG8gaGFwcGVuIAo+IHRob3VnaC4gOikKPgo+IFRoYW5rcywKPiBWaW5jZQoK
-SSdtIG5vdCBzdXJlIGlmIEkgY29tcGxldGVseSB1bmRlcnN0YW5kIHlvdXIgcmVwbHksIHNvIGZv
-cmdpdmUgbWUgaWYgSSAKYW0gc3RhdGluZyBzb21lIG9idmlvdXMgdGhpbmdzOgpUaGUgcmVhc29u
-IHdoeSBJIGJyb3VnaHQgdGhpcyB1cCBpcyBiZWNhdXNlLCB0aGUgd2F5IEkgc2VlIGl0LCBEVFMg
-aXMgCnRoZSByZXBsYWNlbWVudCBmb3IgKFYpQklPUyBvbiBBUk0gcGxhdGZvcm1zLCBnaXZpbmcg
-YSBzZXQgb2YgcGFyYW1ldGVycyAKdGhhdCBkcml2ZXJzIChub3V2ZWF1KSBjYW4gdXNlIGZvciB0
-aGF0IHBhcnRpY3VsYXIgaW5zdGFuY2UgKHRoZSBUZWdyYSAKSzEgU29DKSBvZiBzb21lIG1vcmUg
-Z2VuZXJpYyBJUCAoZ2syMGEpLiBBbGwgdGhlIG90aGVyIGRldmljZXMgbm91dmVhdSAKc3VwcG9y
-dHMgaGF2ZSBhIFZCSU9TIHRvIGRlc2NyaWJlIHRoaXMga2luZCBvZiBpbmZvcm1hdGlvbiB0byB1
-cywgaGVuY2UgCndlIGhhdmVuJ3Qgc2VlbiB0aGlzIGJlZm9yZS4gRm9yIENQVXMgdGhlcmUgYXJl
-IHBsZW50eSBvZiBleGFtcGxlcyAKdGhvdWdoIG9mIHN1Y2ggcGFyYW1zIGRlZmluZWQgaW4gRFQ6
-IGluIGFyY2gvYXJtL2Jvb3QvZHRzLyA6IAppbXg2cWRsLmR0c2kgZG9jdW1lbnRzIHRoZSBtaW4g
-YW5kIG1heCB2b2x0IGZvciByZWd1bGF0b3JzLCB3aGlsZSB0aGUgCkNQVXMgaGF2ZSBhIGxpdHRs
-ZSBmcmVxPC0+dm9sdCBtYXBwaW5nIGluIGlteDZxLmR0c2kuIEdQVXMgYXJlIG5ldyBpbiBhIApz
-ZW5zZSB0aGF0IE5WSURJQSBpcyB0aGUgZmlyc3QgdG8gYWN0aXZlbHkgc3VwcG9ydCB1cHN0cmVh
-bSBkZXZlbG9wbWVudCAKKHRoYW5rcyEpClNlY29uZGx5LCB3ZSBzaG91bGQga2VlcCBpbiBtaW5k
-IHRoYXQgRFQgaXMgbm90IHRpZWQgdG8gTGludXg7IEkgYmVsaWV2ZSAKTGluYXJvJ3MgbG9uZyB0
-ZXJtIGdvYWwgaXMgdG8gdGFrZSB0aGUgRFQgZnJvbSB0aGUgTGludXggdHJlZSBhbmQgCm1haW50
-YWluIGl0IGFzIGEgc2VwYXJhdGUgdHJlZSwgdG8gYmUgdXNlZCB3aXRoIFUtYm9vdCwgKkJTRCwg
-bWF5YmUgZXZlbiAKV2luZG93cy4gVGhlc2Uga2luZCBvZiBwYXJhbWV0ZXJzIGFyZSBub3QgdmVy
-eSBwbGF0Zm9ybS1kZXBlbmRlbnQgYW5kIAphbHRob3VnaCB0aGV5IHNlZW0gbGlrZSBhIGxpdHRs
-ZSBkZXRhaWwgdGhhdCdzIGVhc3kgdG8gcmVwcm9kdWNlIG9uIApldmVyeSBwbGF0Zm9ybSwgbG9v
-a2luZyBhdCB0aGUgc2hlZXIgc2l6ZSBvZiB0aGUgVkJJT1MgZGF0YSB0aGF0IGNvdWxkIAptZWFu
-IGEgKmxvdCogb2YgZHVwbGljYXRpb24uCkkgYnJpbmcgdGhpcyB1cCBub3QgYmVjYXVzZSBJIHRo
-aW5rIEkga25vdyBiZXR0ZXIsIGJ1dCByYXRoZXIgYmVjYXVzZSBJIApiZWxpZXZlIGl0J3MgYSBn
-b29kIGRpc2N1c3Npb24gdG8gaGF2ZSBub3cgdGhhdCB0aGVyZSBzdGlsbCBpcyBsaXR0bGUgCmxl
-Z2FjeSBvbiBBUk0gU29DcyBpbiBub3V2ZWF1LiBEVFMgaXMgc3RpbGwgYSB3b3JrLWluLXByb2dy
-ZXNzLCBhbmQgYXQgCnRoaXMgbW9tZW50IHdlIGhhdmUgdGhlIG9wcG9ydHVuaXR5IHRvIGNvbnNp
-ZGVyIHdoYXQgbmVlZHMgdG8gYmUgCmRvY3VtZW50ZWQgaW4gdGhlcmUgYW5kIHdoYXQgZG9lc24n
-dC4gSSB3b3VsZCBhY3R1YWxseSBsb3ZlIHRvIGhlYXIgCm90aGVyLCBtb3JlIGV4cGVyaWVuY2Vk
-IGRldmVsb3BlcnMgY2hpbWUgaW4gYXMgd2VsbCAoUm9iIENsYXJrPyBCZW4gClNrZWdncz8gTGlu
-YXJvIGZvbGtzPykgYW5kIHNlZSBob3cgdGhleSBmZWVsLgpDaGVlcnMsCgpSb3kKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0044626057==
+Content-Type: multipart/alternative; boundary="1417184214.1E24Aadf2.19100"; charset="UTF-8"
+
+
+--1417184214.1E24Aadf2.19100
+Date: Fri, 28 Nov 2014 14:16:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70389
+
+Dennis Favro <dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #3 from Dennis Favro <dfavro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Getting what appears to be a less-serious version of this bug on Debian Testing
+with the Intel driver from Experimental (2:2.99.916+git20141119-1~exp1).
+
+I'm also using a W530, in Optimus mode in BIOS.  
+
+Dragging windows around the DVI/DFP display leaves artifacts and tears.  The
+internal display (LVDS1) looks fine.  Scrolling and typing is similarly slow;
+gnome-terminal is particularly ugly
+
+$ uname -a
+Linux dtp 3.16.0-4-amd64 #1 SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
+
+$ lspci | grep -i VGA
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
+Graphics Controller (rev 09)
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107GLM [Quadro K1000M]
+(rev a1)
+
+$ xrandr --listproviders
+Providers: number : 2
+Provider 0: id: 0xae cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+4 outputs: 3 associated providers: 1 name:Intel
+Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 4 outputs: 5 associated providers: 1 name:nouveau
+
+$ xrandr -q
+Screen 0: minimum 8 x 8, current 1920 x 2280, maximum 32767 x 32767
+LVDS1 connected primary 1920x1080+0+1200 (normal left inverted right x axis y
+axis) 344mm x 193mm
+   1920x1080     60.00*+  59.93    50.00  
+   1680x1050     59.95    59.88  
+   1600x1024     60.17  
+   1400x1050     59.98  
+   1280x1024     60.02  
+   1440x900      59.89  
+   1280x960      60.00  
+   1360x768      59.80    59.96  
+   1152x864      60.00  
+   1024x768      60.00  
+   800x600       60.32    56.25  
+   640x480       59.94  
+VGA1 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+LVDS-1-2 disconnected (normal left inverted right x axis y axis)
+VGA-1-2 disconnected (normal left inverted right x axis y axis)
+DP-1-1 disconnected (normal left inverted right x axis y axis)
+DP-1-2 disconnected (normal left inverted right x axis y axis)
+DP-1-3 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 518mm
+x 324mm
+   1920x1200     59.95*+
+   1920x1080     50.00  
+   1600x1200     60.00  
+   1680x1050     59.88  
+   1280x1024     75.02    60.02  
+   1440x900      74.98    59.90  
+   1280x960      60.00  
+   1280x800      59.91  
+   1152x864      75.00  
+   1280x720      60.00    50.00    59.94  
+   1024x768      75.08    70.07    60.00  
+   832x624       74.55  
+   800x600       72.19    75.00    60.32    56.25  
+   720x576       50.00  
+   720x480       60.00    59.94  
+   640x480       75.00    72.81    66.67    60.00    59.94  
+   720x400       70.08  
+  1680x1050 (0x6c) 119.000MHz
+        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock  64.67KHz
+        v: height 1050 start 1053 end 1059 total 1080           clock  59.88Hz
+  1280x1024 (0x6e) 108.000MHz
+        h: width  1280 start 1328 end 1440 total 1688 skew    0 clock  63.98KHz
+        v: height 1024 start 1025 end 1028 total 1066           clock  60.02Hz
+  1280x960 (0x71) 108.000MHz
+        h: width  1280 start 1376 end 1488 total 1800 skew    0 clock  60.00KHz
+        v: height  960 start  961 end  964 total 1000           clock  60.00Hz
+  1024x768 (0x79) 65.000MHz
+        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
+        v: height  768 start  771 end  777 total  806           clock  60.00Hz
+  800x600 (0x7d) 40.000MHz
+        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz
+        v: height  600 start  601 end  605 total  628           clock  60.32Hz
+  800x600 (0x7e) 36.000MHz
+        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz
+        v: height  600 start  601 end  603 total  625           clock  56.25Hz
+  640x480 (0x86) 25.175MHz
+        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz
+        v: height  480 start  490 end  492 total  525           clock  59.94Hz
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1417184214.1E24Aadf2.19100
+Date: Fri, 28 Nov 2014 14:16:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:dfavro&#64;gmail.com" title="Dennis Favro &lt;dfavro&#64;gmail.com&gt;"> <span class="fn">Dennis Favro</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>dfavro&#64;gmail.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [prime] unsynchronised rendering on secondary displays"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70389">bug 70389</a>
+              from <span class="vcard"><a class="email" href="mailto:dfavro&#64;gmail.com" title="Dennis Favro &lt;dfavro&#64;gmail.com&gt;"> <span class="fn">Dennis Favro</span></a>
+</span></b>
+        <pre>Getting what appears to be a less-serious version of this bug on Debian Testing
+with the Intel driver from Experimental (2:2.99.916+git20141119-1~exp1).
+
+I'm also using a W530, in Optimus mode in BIOS.  
+
+Dragging windows around the DVI/DFP display leaves artifacts and tears.  The
+internal display (LVDS1) looks fine.  Scrolling and typing is similarly slow;
+gnome-terminal is particularly ugly
+
+$ uname -a
+Linux dtp 3.16.0-4-amd64 #1 SMP Debian 3.16.7-2 (2014-11-06) x86_64 GNU/Linux
+
+$ lspci | grep -i VGA
+00:02.0 VGA compatible controller: Intel Corporation 3rd Gen Core processor
+Graphics Controller (rev 09)
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107GLM [Quadro K1000M]
+(rev a1)
+
+$ xrandr --listproviders
+Providers: number : 2
+Provider 0: id: 0xae cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
+4 outputs: 3 associated providers: 1 name:Intel
+Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 4 outputs: 5 associated providers: 1 name:nouveau
+
+$ xrandr -q
+Screen 0: minimum 8 x 8, current 1920 x 2280, maximum 32767 x 32767
+LVDS1 connected primary 1920x1080+0+1200 (normal left inverted right x axis y
+axis) 344mm x 193mm
+   1920x1080     60.00*+  59.93    50.00  
+   1680x1050     59.95    59.88  
+   1600x1024     60.17  
+   1400x1050     59.98  
+   1280x1024     60.02  
+   1440x900      59.89  
+   1280x960      60.00  
+   1360x768      59.80    59.96  
+   1152x864      60.00  
+   1024x768      60.00  
+   800x600       60.32    56.25  
+   640x480       59.94  
+VGA1 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+LVDS-1-2 disconnected (normal left inverted right x axis y axis)
+VGA-1-2 disconnected (normal left inverted right x axis y axis)
+DP-1-1 disconnected (normal left inverted right x axis y axis)
+DP-1-2 disconnected (normal left inverted right x axis y axis)
+DP-1-3 connected 1920x1200+0+0 (normal left inverted right x axis y axis) 518mm
+x 324mm
+   1920x1200     59.95*+
+   1920x1080     50.00  
+   1600x1200     60.00  
+   1680x1050     59.88  
+   1280x1024     75.02    60.02  
+   1440x900      74.98    59.90  
+   1280x960      60.00  
+   1280x800      59.91  
+   1152x864      75.00  
+   1280x720      60.00    50.00    59.94  
+   1024x768      75.08    70.07    60.00  
+   832x624       74.55  
+   800x600       72.19    75.00    60.32    56.25  
+   720x576       50.00  
+   720x480       60.00    59.94  
+   640x480       75.00    72.81    66.67    60.00    59.94  
+   720x400       70.08  
+  1680x1050 (0x6c) 119.000MHz
+        h: width  1680 start 1728 end 1760 total 1840 skew    0 clock  64.67KHz
+        v: height 1050 start 1053 end 1059 total 1080           clock  59.88Hz
+  1280x1024 (0x6e) 108.000MHz
+        h: width  1280 start 1328 end 1440 total 1688 skew    0 clock  63.98KHz
+        v: height 1024 start 1025 end 1028 total 1066           clock  60.02Hz
+  1280x960 (0x71) 108.000MHz
+        h: width  1280 start 1376 end 1488 total 1800 skew    0 clock  60.00KHz
+        v: height  960 start  961 end  964 total 1000           clock  60.00Hz
+  1024x768 (0x79) 65.000MHz
+        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
+        v: height  768 start  771 end  777 total  806           clock  60.00Hz
+  800x600 (0x7d) 40.000MHz
+        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz
+        v: height  600 start  601 end  605 total  628           clock  60.32Hz
+  800x600 (0x7e) 36.000MHz
+        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz
+        v: height  600 start  601 end  603 total  625           clock  56.25Hz
+  640x480 (0x86) 25.175MHz
+        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz
+        v: height  480 start  490 end  492 total  525           clock  59.94Hz</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1417184214.1E24Aadf2.19100--
+
+--===============0044626057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0044626057==--
