@@ -1,13 +1,14 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [RFC] tegra: Initial support
-Date: Fri, 28 Nov 2014 09:48:21 +0100
-Message-ID: <20141128084819.GB5978@ulmo>
+Date: Fri, 28 Nov 2014 17:52:26 +0900
+Message-ID: <CAAVeFu+j9q4sG6gT+16-=vD1E2hBJw6zy5n2GGhP3kshn2Y2Hw@mail.gmail.com>
 References: <1417106361-705-1-git-send-email-thierry.reding@gmail.com>
- <547804B0.4020603@nvidia.com>
+ <547804B0.4020603@nvidia.com> <20141128084819.GB5978@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1566390195=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <547804B0.4020603-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <20141128084819.GB5978@ulmo>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,83 +18,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1566390195==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jq0ap7NbKX2Kqbes"
-Content-Disposition: inline
-
-
---jq0ap7NbKX2Kqbes
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Nov 28, 2014 at 02:14:24PM +0900, Alexandre Courbot wrote:
-> On 11/28/2014 01:39 AM, Thierry Reding wrote:
-> >Tegra K1 and later use a GPU that can be driven by the Nouveau driver.
-> >But the GPU is a pure render node and has no display engine, hence the
-> >scanout needs to happen on the Tegra display hardware. The GPU and the
-> >display engine each have a separate DRM device node exposed by the
-> >kernel.
-> >
-> >To make the setup appear as a single device, this driver instantiates
-> >a Nouveau screen with each instance of a Tegra screen and forwards GPU
-> >requests to the Nouveau screen. For purposes of scanout it will import
-> >buffers created on the GPU into the display driver. Handles that
-> >userspace requests are those of the display driver so that they can be
-> >used to create framebuffers.
-> >
-> >This has been tested with some GBM test programs, as well as kmscube and
-> >weston. All of those run without modifications, but I'm sure there is a
-> >lot that can be improved.
->=20
-> Tested with kmscube and Weston and I can confirm this works. However, EGL
-> clients inside Weston have their window filled with garbage (they seem to
-> run fine otherwise). Do you also experience this?
-
-To be honest, that wasn't part of my set of test cases. I had assumed
-that since Weston could composite buffers into a final scan out buffer
-everything else would just work as well. Do you have any particular
-demos that aren't working?
-
-Thierry
-
---jq0ap7NbKX2Kqbes
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJUeDbTAAoJEN0jrNd/PrOhbWsP/ipCOAnu02bn9Gp1ihLKDDh1
-ZtJJmUVa2oLtl/3zR+H8zX8XWOCiVfbKM0CJD8WdjoDFP/cs/5MdgAm5WB7PZc3B
-vPjSEoK6+bi0CenIp1IivCFWPKW4G5N65JB3WKvYdg9n1dMu9PvqAHKGvq/+Tfqy
-eCtt9zVU81H81vMmhJ2hU86hCFaguZLpmMdNuThJmoIPo3UwfnKioqFcNsEWBlaL
-pZpABJXBdxvkKAbY82Aogiiv4EiqySM7E0w/z8HA6kO4YB8URsIgPHMSoEv634mT
-ZxfbLWo0qdLIT7hxGWUoElHirKV2MKcYuetyv8+EU5h75AOA0KavqeQq/UwKESv0
-fPHGLaREhNdy0iLheF0jG07JWLkfE2CDQwkBP+Muwj7hYkIo9J3+KcXcAzwvdEl9
-JsZpIjsuTcbDlpERFGeoH4So3G8diU+bDQeQ8UdGG9IKfqS+3XQ3TNWJtDEUsmVo
-Qpygy4unlgjskkfOYbTJZli76Lb2qASiz5Eq8ibElBDm4V8LUKC+hNWcCELGanLV
-76XjKA/1/GrDz6qhe1ZsDr1EZKH+MlBix1+WnQKphmkTGlizGDRyBvkUMeOBw/85
-Av/Am4wKXV7SH1Y9BNcov7pjvrTGA9MhszlaujaqjdKkp5S1PAYnAtxbkAqoDqWV
-i+Jro3RevnU8Ld/ACbsG
-=2Xem
------END PGP SIGNATURE-----
-
---jq0ap7NbKX2Kqbes--
-
---===============1566390195==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1566390195==--
+T24gRnJpLCBOb3YgMjgsIDIwMTQgYXQgNTo0OCBQTSwgVGhpZXJyeSBSZWRpbmcKPHRoaWVycnku
+cmVkaW5nQGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBOb3YgMjgsIDIwMTQgYXQgMDI6MTQ6
+MjRQTSArMDkwMCwgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4+IE9uIDExLzI4LzIwMTQgMDE6
+MzkgQU0sIFRoaWVycnkgUmVkaW5nIHdyb3RlOgo+PiA+VGVncmEgSzEgYW5kIGxhdGVyIHVzZSBh
+IEdQVSB0aGF0IGNhbiBiZSBkcml2ZW4gYnkgdGhlIE5vdXZlYXUgZHJpdmVyLgo+PiA+QnV0IHRo
+ZSBHUFUgaXMgYSBwdXJlIHJlbmRlciBub2RlIGFuZCBoYXMgbm8gZGlzcGxheSBlbmdpbmUsIGhl
+bmNlIHRoZQo+PiA+c2Nhbm91dCBuZWVkcyB0byBoYXBwZW4gb24gdGhlIFRlZ3JhIGRpc3BsYXkg
+aGFyZHdhcmUuIFRoZSBHUFUgYW5kIHRoZQo+PiA+ZGlzcGxheSBlbmdpbmUgZWFjaCBoYXZlIGEg
+c2VwYXJhdGUgRFJNIGRldmljZSBub2RlIGV4cG9zZWQgYnkgdGhlCj4+ID5rZXJuZWwuCj4+ID4K
+Pj4gPlRvIG1ha2UgdGhlIHNldHVwIGFwcGVhciBhcyBhIHNpbmdsZSBkZXZpY2UsIHRoaXMgZHJp
+dmVyIGluc3RhbnRpYXRlcwo+PiA+YSBOb3V2ZWF1IHNjcmVlbiB3aXRoIGVhY2ggaW5zdGFuY2Ug
+b2YgYSBUZWdyYSBzY3JlZW4gYW5kIGZvcndhcmRzIEdQVQo+PiA+cmVxdWVzdHMgdG8gdGhlIE5v
+dXZlYXUgc2NyZWVuLiBGb3IgcHVycG9zZXMgb2Ygc2Nhbm91dCBpdCB3aWxsIGltcG9ydAo+PiA+
+YnVmZmVycyBjcmVhdGVkIG9uIHRoZSBHUFUgaW50byB0aGUgZGlzcGxheSBkcml2ZXIuIEhhbmRs
+ZXMgdGhhdAo+PiA+dXNlcnNwYWNlIHJlcXVlc3RzIGFyZSB0aG9zZSBvZiB0aGUgZGlzcGxheSBk
+cml2ZXIgc28gdGhhdCB0aGV5IGNhbiBiZQo+PiA+dXNlZCB0byBjcmVhdGUgZnJhbWVidWZmZXJz
+Lgo+PiA+Cj4+ID5UaGlzIGhhcyBiZWVuIHRlc3RlZCB3aXRoIHNvbWUgR0JNIHRlc3QgcHJvZ3Jh
+bXMsIGFzIHdlbGwgYXMga21zY3ViZSBhbmQKPj4gPndlc3Rvbi4gQWxsIG9mIHRob3NlIHJ1biB3
+aXRob3V0IG1vZGlmaWNhdGlvbnMsIGJ1dCBJJ20gc3VyZSB0aGVyZSBpcyBhCj4+ID5sb3QgdGhh
+dCBjYW4gYmUgaW1wcm92ZWQuCj4+Cj4+IFRlc3RlZCB3aXRoIGttc2N1YmUgYW5kIFdlc3RvbiBh
+bmQgSSBjYW4gY29uZmlybSB0aGlzIHdvcmtzLiBIb3dldmVyLCBFR0wKPj4gY2xpZW50cyBpbnNp
+ZGUgV2VzdG9uIGhhdmUgdGhlaXIgd2luZG93IGZpbGxlZCB3aXRoIGdhcmJhZ2UgKHRoZXkgc2Vl
+bSB0bwo+PiBydW4gZmluZSBvdGhlcndpc2UpLiBEbyB5b3UgYWxzbyBleHBlcmllbmNlIHRoaXM/
+Cj4KPiBUbyBiZSBob25lc3QsIHRoYXQgd2Fzbid0IHBhcnQgb2YgbXkgc2V0IG9mIHRlc3QgY2Fz
+ZXMuIEkgaGFkIGFzc3VtZWQKPiB0aGF0IHNpbmNlIFdlc3RvbiBjb3VsZCBjb21wb3NpdGUgYnVm
+ZmVycyBpbnRvIGEgZmluYWwgc2NhbiBvdXQgYnVmZmVyCj4gZXZlcnl0aGluZyBlbHNlIHdvdWxk
+IGp1c3Qgd29yayBhcyB3ZWxsLiBEbyB5b3UgaGF2ZSBhbnkgcGFydGljdWxhcgo+IGRlbW9zIHRo
+YXQgYXJlbid0IHdvcmtpbmc/CgpBbnl0aGluZyB1c2luZyBFR0wgdW5kZXIgV2F5bGFuZCAtIHRo
+ZSBzaW1wbGVzdCBjYXNlIHdvdWxkIGJlCndlc3Rvbi1zaW1wbGUtZWdsLiBnbG1hcmsyIGFsc28g
+ZGlzcGxheXMgYSBicm9rZW4gd2luZG93LCBidXQgdGhlbgpjcmFzaGVzIHNob3J0bHkgYWZ0ZXIu
+IFdpdGggd2VzdG9uLXNpbXBlLWVnbCBJIGdldCB0aGUgZnJhbWVyYXRlCmZlZWRiYWNrIGFuZCBj
+YW4gc2VlIHRoZSBHUFUgcGVyZm9ybWFuY2UgY291bnRlcnMgbW92aW5nIGFzIGV4cGVjdGVkLApp
+bmRpY2F0aW5nIHRoYXQgdGhlIGFwcCBpcyByZW5kZXJpbmcgY29ycmVjdGx5IGJ1dCB0aGF0IFdl
+c3RvbiBnZXRzCnRoZSB3cm9uZyBidWZmZXIgdG8gZGlzcGxheS4KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
