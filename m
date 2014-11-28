@@ -1,68 +1,111 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [RFC] tegra: Initial support
-Date: Fri, 28 Nov 2014 00:32:43 -0500
-Message-ID: <CAKb7UvjCYMvtwFJAzRdd_JJE956fW_F6upEK5vUeWUQHV_y07w@mail.gmail.com>
-References: <1417106361-705-1-git-send-email-thierry.reding@gmail.com>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/2] volt: allow non-bios voltage scaling
+Date: Fri, 28 Nov 2014 16:28:48 +0800
+Message-ID: <1417163329-19427-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1417106361-705-1-git-send-email-thierry.reding@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBOb3YgMjcsIDIwMTQgYXQgMTE6MzkgQU0sIFRoaWVycnkgUmVkaW5nCjx0aGllcnJ5
-LnJlZGluZ0BnbWFpbC5jb20+IHdyb3RlOgo+IFRlZ3JhIEsxIGFuZCBsYXRlciB1c2UgYSBHUFUg
-dGhhdCBjYW4gYmUgZHJpdmVuIGJ5IHRoZSBOb3V2ZWF1IGRyaXZlci4KPiBCdXQgdGhlIEdQVSBp
-cyBhIHB1cmUgcmVuZGVyIG5vZGUgYW5kIGhhcyBubyBkaXNwbGF5IGVuZ2luZSwgaGVuY2UgdGhl
-Cj4gc2Nhbm91dCBuZWVkcyB0byBoYXBwZW4gb24gdGhlIFRlZ3JhIGRpc3BsYXkgaGFyZHdhcmUu
-IFRoZSBHUFUgYW5kIHRoZQo+IGRpc3BsYXkgZW5naW5lIGVhY2ggaGF2ZSBhIHNlcGFyYXRlIERS
-TSBkZXZpY2Ugbm9kZSBleHBvc2VkIGJ5IHRoZQo+IGtlcm5lbC4KPgo+IFRvIG1ha2UgdGhlIHNl
-dHVwIGFwcGVhciBhcyBhIHNpbmdsZSBkZXZpY2UsIHRoaXMgZHJpdmVyIGluc3RhbnRpYXRlcwo+
-IGEgTm91dmVhdSBzY3JlZW4gd2l0aCBlYWNoIGluc3RhbmNlIG9mIGEgVGVncmEgc2NyZWVuIGFu
-ZCBmb3J3YXJkcyBHUFUKPiByZXF1ZXN0cyB0byB0aGUgTm91dmVhdSBzY3JlZW4uIEZvciBwdXJw
-b3NlcyBvZiBzY2Fub3V0IGl0IHdpbGwgaW1wb3J0Cj4gYnVmZmVycyBjcmVhdGVkIG9uIHRoZSBH
-UFUgaW50byB0aGUgZGlzcGxheSBkcml2ZXIuIEhhbmRsZXMgdGhhdAo+IHVzZXJzcGFjZSByZXF1
-ZXN0cyBhcmUgdGhvc2Ugb2YgdGhlIGRpc3BsYXkgZHJpdmVyIHNvIHRoYXQgdGhleSBjYW4gYmUK
-PiB1c2VkIHRvIGNyZWF0ZSBmcmFtZWJ1ZmZlcnMuCj4KPiBUaGlzIGhhcyBiZWVuIHRlc3RlZCB3
-aXRoIHNvbWUgR0JNIHRlc3QgcHJvZ3JhbXMsIGFzIHdlbGwgYXMga21zY3ViZSBhbmQKPiB3ZXN0
-b24uIEFsbCBvZiB0aG9zZSBydW4gd2l0aG91dCBtb2RpZmljYXRpb25zLCBidXQgSSdtIHN1cmUg
-dGhlcmUgaXMgYQo+IGxvdCB0aGF0IGNhbiBiZSBpbXByb3ZlZC4KPgo+IFRPRE86Cj4gLSB1c2Ug
-Tm91dmVhdSBoZWFkZXJzIHRvIGdldCBhdCB0aGUgcHJvdG90eXBlIGZvciBjcmVhdGluZyBhIHNj
-cmVlbgo+IC0gaW1wbGVtZW50IGVub3VnaCBzdXBwb3J0IHRvIHNlYW1sZXNzbHkgaW50ZWdyYXRl
-IHdpdGggWAo+IC0gcmVmYWN0b3Igc29tZSBvZiB0aGUgY29kZSB0byBiZSByZXVzYWJsZSBieSBv
-dGhlciBkcml2ZXJzCj4KPiBTaWduZWQtb2ZmLWJ5OiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0Bu
-dmlkaWEuY29tPgoKV2l0aCB0aGUgZXhjZXB0aW9uIG9mIHJlc291cmNlIGNyZWF0aW9uLCBJIGRv
-bid0IHNlZSBhbnl0aGluZwp0ZWdyYS1zcGVjaWZpYyBpbiBoZXJlLiBJcyB0aGVyZSBwZXJoYXBz
-IHNvbWV0aGluZyB0aGF0IGNvdWxkIGJlIGRvbmUKdG8gYWJzdHJhY3QgdGhhdCBhIGxpdHRsZSBt
-b3JlLCBlLmcuIGEgd3JhcHBlciBkcml2ZXIsIG9yLi4uCnNvbWV0aGluZz8gVGhpcyBpcyBhIHNp
-dHVhdGlvbiB0aGF0IHNldmVyYWwgbW9iaWxlIEdQVSdzIGFyZSBpbiwKQUZBSUssIGFuZCBpdCBt
-YXkgYmUgbmljZSB0byBtYWtlIGl0IHdvcmsgZm9yIHRoZW0gYXMgd2VsbC4KCkFsc28sIGNhbiB5
-b3UgZXhwbGFpbiB3aHkgaXQncyBhZHZhbnRhZ2VvdXMgZm9yIHRoZSBzZXR1cCB0byBhcHBlYXIg
-YXMKdGhvdWdoIGl0IGlzIGEgc2luZ2xlIGRldmljZT8gaS5lLiB3aGF0J3Mgd3Jvbmcgd2l0aCBq
-dXN0IHVzaW5nCm5vdXZlYXUgYXMgYSByZW5kZXIgbm9kZSBvciB3aGF0ZXZlcj8gW1RoZSBhbnN3
-ZXIgbWF5IGJlIHNpbXBsZSwgYnV0CkknbSB2ZXJ5IHVuZmFtaWxpYXIgd2l0aCBhIGxvdCBvZiB0
-aGF0IHN0dWZmLCBhbmQgcGVyaGFwcyBvdGhlcnMgYXJlCmluIGEgc2ltaWxhciBwcmVkaWNhbWVu
-dC5dCgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS93aW5zeXMvdGVncmEvZHJtL01ha2VmaWxl
-LmFtIGIvc3JjL2dhbGxpdW0vd2luc3lzL3RlZ3JhL2RybS9NYWtlZmlsZS5hbQo+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0Cj4gaW5kZXggMDAwMDAwMDAwMDAwLi44ZTM2ODVlZTIwZTgKPiAtLS0gL2Rl
-di9udWxsCj4gKysrIGIvc3JjL2dhbGxpdW0vd2luc3lzL3RlZ3JhL2RybS9NYWtlZmlsZS5hbQo+
-IEBAIC0wLDAgKzEsMTEgQEAKPiAraW5jbHVkZSBNYWtlZmlsZS5zb3VyY2VzCj4gK2luY2x1ZGUg
-JCh0b3Bfc3JjZGlyKS9zcmMvZ2FsbGl1bS9BdXRvbWFrZS5pbmMKPiArCj4gK0FNX0NGTEFHUyA9
-IFwKPiArICAgICAgIC1JJCh0b3Bfc3JjZGlyKS9zcmMvZ2FsbGl1bS9kcml2ZXJzIFwKPiArICAg
-ICAgICQoR0FMTElVTV9XSU5TWVNfQ0ZMQUdTKSBcCj4gKyAgICAgICAkKEZSRUVEUkVOT19DRkxB
-R1MpCgpvb3BzPwoKPiArCj4gK25vaW5zdF9MVExJQlJBUklFUyA9IGxpYnRlZ3JhZHJtLmxhCj4g
-Kwo+ICtsaWJ0ZWdyYWRybV9sYV9TT1VSQ0VTID0gJChDX1NPVVJDRVMpCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdApt
-ZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ nvkm/subdev/volt/base.c | 67 ++++++++++++++++++++++++++++---------------------
+ 1 file changed, 38 insertions(+), 29 deletions(-)
+
+diff --git a/nvkm/subdev/volt/base.c b/nvkm/subdev/volt/base.c
+index 32794a999106..26ccd8df193f 100644
+--- a/nvkm/subdev/volt/base.c
++++ b/nvkm/subdev/volt/base.c
+@@ -101,6 +101,41 @@ nouveau_volt_set_id(struct nouveau_volt *volt, u8 id, int condition)
+ 	return ret;
+ }
+ 
++static void nouveau_volt_parse_bios(struct nouveau_bios *bios,
++		struct nouveau_volt *volt)
++{
++	struct nvbios_volt_entry ivid;
++	struct nvbios_volt info;
++	u8  ver, hdr, cnt, len;
++	u16 data;
++	int i;
++
++	data = nvbios_volt_parse(bios, &ver, &hdr, &cnt, &len, &info);
++	if (data && info.vidmask && info.base && info.step) {
++		for (i = 0; i < info.vidmask + 1; i++) {
++			if (info.base >= info.min &&
++				info.base <= info.max) {
++				volt->vid[volt->vid_nr].uv = info.base;
++				volt->vid[volt->vid_nr].vid = i;
++				volt->vid_nr++;
++			}
++			info.base += info.step;
++		}
++		volt->vid_mask = info.vidmask;
++	} else if (data && info.vidmask) {
++		for (i = 0; i < cnt; i++) {
++			data = nvbios_volt_entry_parse(bios, i, &ver, &hdr,
++							  &ivid);
++			if (data) {
++				volt->vid[volt->vid_nr].uv = ivid.voltage;
++				volt->vid[volt->vid_nr].vid = ivid.vid;
++				volt->vid_nr++;
++			}
++		}
++		volt->vid_mask = info.vidmask;
++	}
++}
++
+ int
+ _nouveau_volt_init(struct nouveau_object *object)
+ {
+@@ -136,10 +171,6 @@ nouveau_volt_create_(struct nouveau_object *parent,
+ {
+ 	struct nouveau_bios *bios = nouveau_bios(parent);
+ 	struct nouveau_volt *volt;
+-	struct nvbios_volt_entry ivid;
+-	struct nvbios_volt info;
+-	u8  ver, hdr, cnt, len;
+-	u16 data;
+ 	int ret, i;
+ 
+ 	ret = nouveau_subdev_create_(parent, engine, oclass, 0, "VOLT",
+@@ -152,31 +183,9 @@ nouveau_volt_create_(struct nouveau_object *parent,
+ 	volt->set = nouveau_volt_set;
+ 	volt->set_id = nouveau_volt_set_id;
+ 
+-	data = nvbios_volt_parse(bios, &ver, &hdr, &cnt, &len, &info);
+-	if (data && info.vidmask && info.base && info.step) {
+-		for (i = 0; i < info.vidmask + 1; i++) {
+-			if (info.base >= info.min &&
+-			    info.base <= info.max) {
+-				volt->vid[volt->vid_nr].uv = info.base;
+-				volt->vid[volt->vid_nr].vid = i;
+-				volt->vid_nr++;
+-			}
+-			info.base += info.step;
+-		}
+-		volt->vid_mask = info.vidmask;
+-	} else
+-	if (data && info.vidmask) {
+-		for (i = 0; i < cnt; i++) {
+-			data = nvbios_volt_entry_parse(bios, i, &ver, &hdr,
+-						      &ivid);
+-			if (data) {
+-				volt->vid[volt->vid_nr].uv = ivid.voltage;
+-				volt->vid[volt->vid_nr].vid = ivid.vid;
+-				volt->vid_nr++;
+-			}
+-		}
+-		volt->vid_mask = info.vidmask;
+-	}
++	/* Assuming the non-bios device should build the voltage table later */
++	if (bios)
++		nouveau_volt_parse_bios(bios, volt);
+ 
+ 	if (volt->vid_nr) {
+ 		for (i = 0; i < volt->vid_nr; i++) {
+-- 
+1.9.1
