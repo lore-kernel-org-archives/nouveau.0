@@ -1,10 +1,14 @@
-From: "support.intranet" <support.intranet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org>
-Subject: Re: =?iso-8859-1?q?contact_8?=
-Date: Fri, 29 Nov 2014 02:34:52 +0000
-Message-ID: <84034CC0CD81657748532C5F32738655@breslinproducts.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RESEND V2 PATCH 1/3] soc/tegra: fuse: export
+ tegra_sku_info for module use
+Date: Sat, 29 Nov 2014 16:30:28 +0900
+Message-ID: <CAAVeFuLfqhN87fOxc9sd09rzd4jSLkLs21ZGS1aV8NTo_uwpkQ@mail.gmail.com>
+References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0539550796=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1417173180-21726-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,62 +18,18 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
-
---===============0539550796==
-Content-Type: multipart/alternative;
- boundary="----=_NextPart_000_643F_0B0D0D30.62679A50"
-
-This is a multi-part message in MIME format.
-
-------=_NextPart_000_643F_0B0D0D30.62679A50
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-http://szeben.ro/mupoirv/shjjkdftbaxprjf.vdnyfogvqahmjkupbpmihz 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- support.intranet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org 
-
- 
-------=_NextPart_000_643F_0B0D0D30.62679A50
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-=EF=BB=BF<HTML><HEAD><META http-equiv=3D"content-type" content: text/html;=
- charset=3DUTF-8></HEAD><BODY><a href=
-=3D"http://szeben.ro/mupoirv/shjjkdftbaxprjf.vdnyfogvqahmjkupbpmihz">http://sz=
-eben.ro/mupoirv/shjjkdftbaxprjf.vdnyfogvqahmjkupbpmihz</a>=
- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>=
- support.intranet-VGgt2q2+T+FeoWH0uzbU5w@public.gmane.org <br><br> </BODY></HTML>
-
-------=_NextPart_000_643F_0B0D0D30.62679A50--
-
---===============0539550796==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0539550796==--
+T24gRnJpLCBOb3YgMjgsIDIwMTQgYXQgODoxMiBQTSwgVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlh
+LmNvbT4gd3JvdGU6Cj4gU29tZSBUZWdyYSBkcml2ZXJzIG1pZ2h0IGJlIGNvbXBsaWVkIGFzIGtl
+cm5lbCBtb2R1bGVzLCBhbmQKPiB0aGV5IG5lZWQgdGhlIGZ1c2UgaW5mb3JtYXRpb24gZm9yIGlu
+aXRpYWxpemF0aW9uLiBPbmUKPiBleGFtcGxlIGlzIHRoZSBHSzIwQSBOb3V2ZWF1IGRyaXZlci4g
+SXQgbmVlZHMgdGhlIEdQVSBzcGVlZG8KPiB2YWx1ZSB0byBjYWxjdWxhdGUgZnJlcXVlbmN5LXZv
+bHRhZ2UgdGFibGUuIFNvIGV4cG9ydAo+IHRoZSB0ZWdyYV9za3VfaW5mby4KCkFja2VkLWJ5OiBB
+bGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KClRoaXMgaXMgcmVxdWlyZWQg
+Zm9yIHNldHRpbmcgdGhlIG9wdGltYWwgR1BVIHZvbHRhZ2UgaW4gTm91dmVhdS4KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
