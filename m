@@ -1,10 +1,13 @@
-From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: creating an account on wiki-requests-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Date: Mon, 1 Dec 2014 17:27:51 -0300
-Message-ID: <CANbfre7OemxaY3m7f4DAeqybWvX23OuvfSbybC0r-LFZxSSzeA@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: creating an account on wiki-requests-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Date: Mon, 1 Dec 2014 15:31:48 -0500
+Message-ID: <CAKb7UvhkNUAqtFNDn62sDjg_giRAR_eAQ+sEK2vwYLyQ-LVXXA@mail.gmail.com>
+References: <CANbfre7OemxaY3m7f4DAeqybWvX23OuvfSbybC0r-LFZxSSzeA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0596477003=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CANbfre7OemxaY3m7f4DAeqybWvX23OuvfSbybC0r-LFZxSSzeA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,43 +17,25 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0596477003==
-Content-Type: multipart/alternative; boundary=001a11c383f8cdbd3805092d71e9
-
---001a11c383f8cdbd3805092d71e9
-Content-Type: text/plain; charset=UTF-8
-
-Hi, I'm trying to create an account to have access to more texts, the ones
-with "?".
-But I get the error "Failed to verify clearsigned PGP body" on the return
-email.
-I use gpg (GnuPG) 1.4.18.
-Could someone help me?
-Thanks in advance.
-
---001a11c383f8cdbd3805092d71e9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>Hi, I&#39;m trying to create an accoun=
-t to have access to more texts, the ones with &quot;?&quot;.<br></div>But I=
- get the error  &quot;Failed to verify clearsigned PGP body&quot; on the re=
-turn email.<br></div>I use gpg (GnuPG) 1.4.18.<br></div>Could someone help =
-me?<br></div>Thanks in advance.<br></div>
-
---001a11c383f8cdbd3805092d71e9--
-
---===============0596477003==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0596477003==--
+SSBiZWxpZXZlIHlvdSdyZSBhdHRlbXB0aW5nIHRvIGZvbGxvdyBpbnN0cnVjdGlvbnMgZm9yIGNy
+ZWF0aW5nIGFuCmFjY291bnQgdG8gZWRpdCBmcmVlZGVza3RvcCB3aWtpIHBhZ2VzLiBXaGVuIHlv
+dSBzZWUgYSA/IG5leHQgdG8gYQpsaW5rLCB0aGF0IG1lYW5zIHRoYXQgdGhlIHBhZ2UgaXNuJ3Qg
+dGhlcmUsIGFuZCBpdCB0YWtlcyB5b3UgdG8gYSBmb3JtCnRvIGNyZWF0ZSB0aGF0IHBhZ2UgKGZv
+ciB3aGljaCB5b3UgbmVlZCB0byBoYXZlIGEgd2lraSBhY2NvdW50KS4KCkkgdGhvdWdodCB3ZSBm
+aXhlZCBtb3N0IG9mIHRob3NlIGJyb2tlbiBsaW5rcy4uLiB3aGVyZSBkbyB5b3Ugc2VlIHRoZW0/
+CgpPbiBNb24sIERlYyAxLCAyMDE0IGF0IDM6MjcgUE0sIERhbmllbCBNZWxvIEpvcmdlIGRhIEN1
+bmhhCjxkbWpjdW5oYUBnbWFpbC5jb20+IHdyb3RlOgo+IEhpLCBJJ20gdHJ5aW5nIHRvIGNyZWF0
+ZSBhbiBhY2NvdW50IHRvIGhhdmUgYWNjZXNzIHRvIG1vcmUgdGV4dHMsIHRoZSBvbmVzCj4gd2l0
+aCAiPyIuCj4gQnV0IEkgZ2V0IHRoZSBlcnJvciAiRmFpbGVkIHRvIHZlcmlmeSBjbGVhcnNpZ25l
+ZCBQR1AgYm9keSIgb24gdGhlIHJldHVybgo+IGVtYWlsLgo+IEkgdXNlIGdwZyAoR251UEcpIDEu
+NC4xOC4KPiBDb3VsZCBzb21lb25lIGhlbHAgbWU/Cj4gVGhhbmtzIGluIGFkdmFuY2UuCj4KPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUg
+bWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
