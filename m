@@ -1,82 +1,73 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [RESEND V2 PATCH 1/3] soc/tegra: fuse: export tegra_sku_info for
- module use
-Date: Mon, 1 Dec 2014 11:01:01 +0100
-Message-ID: <20141201100100.GB20174@ulmo>
+From: Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
+Subject: Re: [RESEND PATCH nouveau 3/3] volt: add support for GK20A
+Date: Mon, 01 Dec 2014 11:20:43 +0100
+Message-ID: <547C40FB.7060101@nimrod-online.com>
 References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
+ <1417173180-21726-3-git-send-email-vinceh@nvidia.com>
+ <54785BBA.50800@nimrod-online.com> <54786343.4000806@nvidia.com>
+ <547865EA.10702@nimrod-online.com>
+ <CAAVeFuKY7=WfhAWPiPMkWU8JMg0a7dACqu=BNE+S5SVtdF870w@mail.gmail.com>
+ <547C0CDD.5090506@nvidia.com>
+ <CAAVeFuLBAyBv4u+op-9A7ZqW0wRwYyxHdd9QG_cu6a=x_hv+Sg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="l76fUT7nc3MelDdI"
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1417173180-21726-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAAVeFuLBAyBv4u+op-9A7ZqW0wRwYyxHdd9QG_cu6a=x_hv+Sg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, =?UTF-8?B?VGVyamUgQmVyZ3N0csO2bQ==?= <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---l76fUT7nc3MelDdI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-I think the subject doesn't need "for module use" because that's
-implicit in exporting a symbol.
-
-On Fri, Nov 28, 2014 at 07:12:58PM +0800, Vince Hsu wrote:
-> Some Tegra drivers might be complied as kernel modules, and
-
-"compiled"
-
-> they need the fuse information for initialization. One
-> example is the GK20A Nouveau driver. It needs the GPU speedo
-> value to calculate frequency-voltage table. So export
-> the tegra_sku_info.
-
-Also please wrap the commit message at around 72 characters. If you make
-the lines too short it becomes almost as difficult to readable as if
-they're too long.
-
-Other than these small nitpicks this looks like a reasonable change to
-me.
-
->=20
-> Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->=20
-> v2: add more description why we need this patch
->=20
->  drivers/soc/tegra/fuse/fuse-tegra.c | 1 +
->  1 file changed, 1 insertion(+)
-
-Ben, patch 3/3 has a dependency on this one. Would you prefer to merge
-this as part of the Nouveau tree or do you want me to provide a stable
-branch that you can pull in to resolve the dependency?
-
-In case of the former:
-
-Acked-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-
---l76fUT7nc3MelDdI
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJUfDxcAAoJEN0jrNd/PrOh68MP/0Ju1GABQnZL6rdowR+rqnX/
-lgaibyR9GtynKJkK2fwwaIj0W5m1wjdhcYLfy1GlC3P7DBll+EYdIlRSU6l6eowK
-oheIh4quxcMBmleYjgNNV6af9gJu9eCo9v52gYB55vuwVtcknliewVmgII64LK14
-p+x14cIrxYgtZqqllAWHoYWJf0AdpUDaM5cxbjqk/j+r+9fkSFKz+sooAxKU70Y6
-+ySxK3+bi5MRTxpwVJ9RHRCNckgH1sTU0UaENn5x2Ze/LE0OkuqM1/k4ZP5dVKDj
-ZWAd4KQ+O37C+1wWD5OCw9Q5LknyG7na5o+eFAgvuVmRW36YbEiiLhN4NSVMYvH/
-9atUogCjJ44k4zM3K1fEJGZ8bVOS0J90K6/oc5oz51HxC5imt370TryRjrQKds/u
-NGvU9p0fNiznSxg55gSfBCaOU88JwUpNxPdbd4Qz6RMrizms7fnBb2pqCrIcj084
-4oTox3dyWeLkFEIAmgDCBA+LmeSAZ95XbdnzqkQbKIKMD/Bm2Z3f8mzXg5l+zNQ7
-wxIaiP+YDi1SGxPU9MdsVQzD7folegHz2gFhi0ym7xC+K0D6TlMamyIHuUFyxT/w
-9Hj147/qxTJURmmqH9e9L+lKE+B4P4twSzbkcidVsJLrXA5BzM2JIleicVXUZiOY
-A0nEceRvSjL/LN1wnHKw
-=z4iy
------END PGP SIGNATURE-----
-
---l76fUT7nc3MelDdI--
+T3AgMDEtMTItMTQgb20gMDc6NDggc2NocmVlZiBBbGV4YW5kcmUgQ291cmJvdDoKPiBPbiBNb24s
+IERlYyAxLCAyMDE0IGF0IDM6MzggUE0sIFRlcmplIEJlcmdzdHLDtm0gPHRiZXJnc3Ryb21AbnZp
+ZGlhLmNvbT4gd3JvdGU6Cj4+IE9uIDI5LjExLjIwMTQgMTA6NDQsIEFsZXhhbmRyZSBDb3VyYm90
+IHdyb3RlOgo+Pj4gT24gRnJpLCBOb3YgMjgsIDIwMTQgYXQgOTowOSBQTSwgUm95IFNwbGlldCA8
+c2V2ZW5Abmltcm9kLW9ubGluZS5jb20+IHdyb3RlOgo+Pj4+IEknbSBub3Qgc3VyZSBpZiBJIGNv
+bXBsZXRlbHkgdW5kZXJzdGFuZCB5b3VyIHJlcGx5LCBzbyBmb3JnaXZlIG1lIGlmIEkgYW0KPj4+
+PiBzdGF0aW5nIHNvbWUgb2J2aW91cyB0aGluZ3M6Cj4+Pj4gVGhlIHJlYXNvbiB3aHkgSSBicm91
+Z2h0IHRoaXMgdXAgaXMgYmVjYXVzZSwgdGhlIHdheSBJIHNlZSBpdCwgRFRTIGlzIHRoZQo+Pj4+
+IHJlcGxhY2VtZW50IGZvciAoVilCSU9TIG9uIEFSTSBwbGF0Zm9ybXMsIGdpdmluZyBhIHNldCBv
+ZiBwYXJhbWV0ZXJzIHRoYXQKPj4+PiBkcml2ZXJzIChub3V2ZWF1KSBjYW4gdXNlIGZvciB0aGF0
+IHBhcnRpY3VsYXIgaW5zdGFuY2UgKHRoZSBUZWdyYSBLMSBTb0MpIG9mCj4+Pj4gc29tZSBtb3Jl
+IGdlbmVyaWMgSVAgKGdrMjBhKS4gQWxsIHRoZSBvdGhlciBkZXZpY2VzIG5vdXZlYXUgc3VwcG9y
+dHMgaGF2ZSBhCj4+Pj4gVkJJT1MgdG8gZGVzY3JpYmUgdGhpcyBraW5kIG9mIGluZm9ybWF0aW9u
+IHRvIHVzLCBoZW5jZSB3ZSBoYXZlbid0IHNlZW4gdGhpcwo+Pj4+IGJlZm9yZS4gRm9yIENQVXMg
+dGhlcmUgYXJlIHBsZW50eSBvZiBleGFtcGxlcyB0aG91Z2ggb2Ygc3VjaCBwYXJhbXMgZGVmaW5l
+ZAo+Pj4+IGluIERUOiBpbiBhcmNoL2FybS9ib290L2R0cy8gOiBpbXg2cWRsLmR0c2kgZG9jdW1l
+bnRzIHRoZSBtaW4gYW5kIG1heCB2b2x0Cj4+Pj4gZm9yIHJlZ3VsYXRvcnMsIHdoaWxlIHRoZSBD
+UFVzIGhhdmUgYSBsaXR0bGUgZnJlcTwtPnZvbHQgbWFwcGluZyBpbgo+Pj4+IGlteDZxLmR0c2ku
+IEdQVXMgYXJlIG5ldyBpbiBhIHNlbnNlIHRoYXQgTlZJRElBIGlzIHRoZSBmaXJzdCB0byBhY3Rp
+dmVseQo+Pj4+IHN1cHBvcnQgdXBzdHJlYW0gZGV2ZWxvcG1lbnQgKHRoYW5rcyEpCj4+PiBUaGFu
+a3MgZm9yIHJhaXNpbmcgdGhpcyBwb2ludC4gSSBhZ3JlZSB3aXRoIHlvdXIgaW50ZXJwcmV0YXRp
+b24gdGhhdAo+Pj4gRFQgaXMgY29tcGFyYWJsZSB0byB0aGUgVkJJT1MgaW4gZGVza3RvcCBHUFVz
+LiBUaGUgcXVlc3Rpb24gdGhlbgo+Pj4gYmVjb21lcyB3aGV0aGVyIHRoaXMgZGF0YSBjYW4gdmFy
+eSBiZXR3ZWVuIGRpZmZlcmVudCBHSzIwQS11c2luZwo+Pj4gYm9hcmRzIChhbmQgaW4gdGhpcyBj
+YXNlIHRoaXMgc2hvdWxkIHByb2JhYmx5IGJlIHBhcnQgb2YgRFQpIG9yIG5vdAo+Pj4gKGluIHdo
+aWNoIGNhc2UgSSB3b3VsZCBhZHZvY2F0ZSBoYXZpbmcgdGhpcyBzdGF0aWMgaW5mb3JtYXRpb24g
+aW4gdGhlCj4+PiBkcml2ZXIgaXRzZWxmKS4gU2luY2UgSSBkb24ndCBleHBlY3QgZGlmZmVyZW50
+IEdLMjBBLXVzaW5nIGNoaXBzIHRvCj4+PiByZXF1aXJlIGRpZmZlcmVudCB2b2x0YWdlIGZvciBn
+aXZlbiBmcmVxdWVuY2llcywgbXkgZ3V0IGZlZWxpbmcgZm9yCj4+PiB0aGUgbW9tZW50IGlzIHRo
+YXQgaGF2aW5nIHRoaXMgaW5mb3JtYXRpb24gaW4gdGhlIGRyaXZlciBpcyBmaW5lLiBJCj4+PiBo
+YXZlIGFkZGVkIGEgZmV3IG90aGVyIE5WSURJQSBwZW9wbGUgdG8gZ2F0aGVyIHRob3VnaHRzLgo+
+PiBUaGUgdm9sdGFnZTwtPmZyZXF1ZW5jeSByZWxhdGlvbnNoaXAgaXMgcGVyIGNoaXAsIG5vdCBw
+ZXIgYm9hcmQuIFdlIHJlYWQKPj4gdGhlIGNoaXAgaWQgYXQgcnVudGltZSwgYW5kIHByb2dyYW1t
+YXRpY2FsbHkgZGV0ZXJtaW5lIHRoZSBEVkZTIHN0ZXBzCj4+IGJhc2VkIG9uIHRoYXQuIENWQiB0
+YWJsZSBjb250YWlucyB0aGUgcGFyYW1ldGVycyBmb3IgdGhlIGFsZ29yaXRobS4KPj4KPj4gSSB0
+aGluayB0aGUgdGFibGUgYmVsb25ncyBpbiB0aGUgZHJpdmVyLiBUaGUgdGFibGUgaXMgbm90IHBl
+ciBib2FyZCwgYW5kCj4+IHRoZSB2YWx1ZXMgaW4gQ1ZCIHRhYmxlIGRvIG5vdCBkZXNjcmliZSBo
+YXJkd2FyZSwgYnV0IHBhcmFtZXRlcnMgdG8gYW4KPj4gYWxnb3JpdGhtLgo+IEluIHRoYXQgY2Fz
+ZSBJIGFsc28gdGhpbmsgaXQgd291bGQgbWFrZSBtb3JlIHNlbnNlIChhbmQgbWFrZSB0aGluZ3MK
+PiBlYXNpZXIpIHRvIGhhdmUgdGhlc2UgdGFibGVzIGluIHRoZSBkcml2ZXIuIFJveSwgZG8geW91
+IGhhdmUgYW55Cj4gb2JqZWN0aW9uPwo+CklmIHRoZSB0YWJsZSBpcyBwZXItY2hpcCwgdGhlbiBJ
+IGNlcnRhaW5seSBhZ3JlZSEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
