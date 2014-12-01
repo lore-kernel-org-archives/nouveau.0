@@ -1,133 +1,64 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Questions about some PFB registers on NVAC cards
-Date: Mon, 1 Dec 2014 14:00:59 -0800
-Message-ID: <20141201220059.GA26993@morell.nvidia.com>
-References: <20141126185233.GB19138@morell.nvidia.com>
- <397349972.36350345.1417460902276.JavaMail.root@spooler8-g27.priv.proxad.net>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [RESEND V2 PATCH 1/3] soc/tegra: fuse: export
+ tegra_sku_info for module use
+Date: Tue, 2 Dec 2014 08:23:12 +1000
+Message-ID: <CACAvsv72dwfT_7SBrXR1xOFFvW2_kM-CiwAfWQUhVNrwPPX-vA@mail.gmail.com>
+References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
+	<20141201100100.GB20174@ulmo>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <397349972.36350345.1417460902276.JavaMail.root-x5ewXQG5twBsFmKuirFwRhh1pbbyJDp15NbjCUgZEJk@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <20141201100100.GB20174@ulmo>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBEZWMgMDEsIDIwMTQgYXQgMDg6MDg6MjJQTSArMDEwMCwgUGllcnJlIE1vcmVhdSB3
-cm90ZToKPiBIaSBSb2JlcnQsCj4gCj4gQWZ0ZXIgdHJ5aW5nIHRvIHdyaXRlIGEgcHJvcGVyIHBh
-dGNoIGZvciBOb3V2ZWF1LCB3ZSByZWFsaXNlZCB3ZSB3ZXJlIG1pc3NpbmcgYSBmZXcgcGllY2Vz
-IG9mIGluZm9ybWF0aW9uLgo+IAo+IC0tLS0tIE1haWwgb3JpZ2luYWwgLS0tLS0KPiA+IEhpIFJv
-YmVydCwKPiA+Cj4gPiBUaGFua3MgYSBsb3QgZm9yIHlvdXIgcmVzcG9uc2UhCj4gPgo+ID4gLS0t
-LS0gTWFpbCBvcmlnaW5hbCAtLS0tLQo+ID4gPiBPbiBXZWQsIE9jdCAyMiwgMjAxNCBhdCAxMjo1
-NToyM0FNICswMjAwLCBwaWVycmUubW9ycm93QGZyZWUuZnIKPiA+ID4gd3JvdGU6Cj4gPiA+IFsu
-Li5dCj4gPiA+ID4gQWZ0ZXIgc29tZSBpbnZlc3RpZ2F0aW9uLCBJIGZvdW5kIHRoYXQgZW5hYmxp
-bmcgYml0IDEgb2YgcmVnaXN0ZXIgMTAwYzE0IGZpeGVzCj4gPiA+ID4gdGhlIGlzc3VlIG9uIHRo
-YXQgY2FyZC4gT3RoZXIgTlZBQyBjYXJkcyBhcmUgd29ya2luZyBncmVhdCB3aXRob3V0IHRoYXQg
-dHJpY2ssCj4gPiA+ID4gYW5kIGl0IHNlZW1zIHRoZXkgaGF2ZSB0aGF0IGJpdCBlbmFibGVkIGJ5
-IGRlZmF1bHQuIFdoYXQgaXMgdGhlIHJvbGUgb2YgdGhhdAo+ID4gPiA+IGJpdCwgYW5kIHdoZW4g
-c2hvdWxkIGl0IGJlIHR1cm5lZCBvbj8KPiA+ID4KPiA+ID4gUmVnaXN0ZXIgMTAwYzE0IGNvbnRy
-b2xzIGEgZmVhdHVyZSBvZiB0aGUgaW50ZWdyYXRlZCBHUFUncyBtZW1vcnkgaW50ZXJmYWNlCj4g
-PiA+IGNhbGxlZCB0aGUgInBvbGxlciIuICBUaGUgcG9sbGVycyBleGlzdCBvbiBNQ1A3Ny83OCBh
-bmQgTUNQNzkvN0EgdG8gZW5zdXJlCj4gPiA+IHRoYXQgY2VydGFpbiB0eXBlcyBvZiB3cml0ZXMg
-aGF2ZSBmbHVzaGVkIGFsbCB0aGUgd2F5IHRvIHN5c3RlbSBtZW1vcnkuICAoSQo+ID4gPiB0aGlu
-ayB0aGlzIGlzIG5lZWRlZCB0byBlbnN1cmUgcHJvcGVyIG9yZGVyaW5nIG9mIG1lbW9yeSB0cmFu
-c2FjdGlvbnMuKQo+ID4gPgo+ID4gPiBUaGVyZSBhcmUgYWN0dWFsbHkgdGhyZWUgaW1wb3J0YW50
-IGJpdHMgaW4gdGhhdCByZWdpc3Rlciwgd2hpY2gKPiA+ID4gY29udHJvbCB0aHJlZSBwb2xsZXJz
-Ogo+ID4gPgo+ID4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDEwMGMxNAo+ID4gPiBOVl9QRkJfTklTT19Q
-T0xMRVJfQ0ZHX0ROSVNPX0VOQUJMRSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDA6MAo+ID4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0ROSVNPX0VOQUJMRV9ESVNB
-QkxFRCAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMAo+ID4gPiBOVl9QRkJfTklT
-T19QT0xMRVJfQ0ZHX0ROSVNPX0VOQUJMRV9FTkFCTEVEICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgMHgwMDAwMDAwMQo+ID4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0hPU1ROQl9FTkFCTEUg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDE6MQo+ID4gPiBOVl9QRkJf
-TklTT19QT0xMRVJfQ0ZHX0hPU1ROQl9FTkFCTEVfRElTQUJMRUQgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwMDAwMDAwMAo+ID4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0hPU1ROQl9FTkFC
-TEVfRU5BQkxFRCAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMQo+ID4gPiBOVl9Q
-RkJfTklTT19QT0xMRVJfQ0ZHX0ZMVVNIX0VOQUJMRSAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAxNjoxNgo+ID4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0ZMVVNIX0VO
-QUJMRV9ESVNBQkxFRCAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMAo+ID4gPiBO
-Vl9QRkJfTklTT19QT0xMRVJfQ0ZHX0ZMVVNIX0VOQUJMRV9FTkFCTEVEICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgMHgwMDAwMDAwMQo+IAo+IE91dCBvZiBjdXJpb3NpdHksIHdoYXQgZG8gRE5J
-U08gYW5kIEhPU1ROQiBtZWFuPwoKRE5JU08gaXMgImRpc3BsYXkgbm9uLWlzbyIgKGkuZS4sIGRp
-c3BsYXkgcmVhZHMgb3Igd3JpdGVzIHRoYXQgZG9uJ3QKbmVlZCBoYXJkIHJlYWx0aW1lIGd1YXJh
-bnRlZXMgZm9yIHNjYW5vdXQsIGxpa2Ugc2VtYXBob3JlIGFjY2Vzc2VzKS4KCkkgZG9uJ3Qga25v
-dyB3aGF0IEhPU1ROQiBzdGFuZHMgZm9yLCBzb3JyeS4KCj4gPiA+ID4gQmVmb3JlIGVuYWJsaW5n
-IDEwMGMxNCdzIGJpdCAxLCB0aGUgTnZpZGlhIGRyaXZlciB3cml0ZXMgc29tZSB2YWx1ZSBpbnRv
-IDEwMGMxYy4KPiA+ID4gPiBMZWF2aW5nIHRoZSBkZWZhdWx0IHZhbHVlLCBvciB3cml0aW5nIHNv
-bWUgcmFuZG9tIHZhbHVlIHNlZW1lZCB0byBoYXZlIG5vCj4gPiA+ID4gZWZmZWN0LiBXaGF0IGlz
-IHRoaXMgcmVnaXN0ZXIgdXNlZCBmb3I/Cj4gPiA+Cj4gPiA+IDEwMGMxYyBpcyBvbmUgb2YgdGhy
-ZWUgcmVnaXN0ZXJzIHdoaWNoIGNvbnRyb2wgdGhlICh1cHBlciBiaXRzIG9mIHRoZSAzMi1ieXRl
-Cj4gPiA+IGFsaWduZWQpIG1lbW9yeSBsb2NhdGlvbnMgdGhhdCB0aGUgcG9sbGVycyB1c2U6Cj4g
-Cj4gU28sIGFzIHRoZSBtZW1vcnkgbG9jYXRpb24gaXMgMzItYnl0ZSBhbGlnbmVkIHRoZSBsYXN0
-IDggYml0cyBvZiB0aGUKPiBhZGRyZXNzIGFyZSB1bmNlc3NhcnkuIDEwMGMxYyBhbmQgdGhlIG90
-aGVycyBob2xkIDMyIGJpdHMuIFNvIGFyZSB0aGUKPiBtaXNzaW5nIDI0IGJpdHMgb2YgdGhlIGFk
-ZHJlc3MgZm9yY2VkIHRvIHplcm8gb3IgZG8gd2UgbmVlZCB0byBzcGVjaWZ5Cj4gdGhlbSBzb21l
-d2hlcmU/CgpJIHNob3VsZCBoYXZlIGJlZW4gbW9yZSBzcGVjaWZpYyBhYm91dCBob3cgdGhlc2Ug
-cmVnaXN0ZXJzIGFyZQppbnRlcnByZXRlZC4gIFRoZSBoYXJkd2FyZSB3aWxsIGNhbGN1bGF0ZSB0
-aGUgcGh5c2ljYWwgYWRkcmVzcyBieQpzdWJ0cmFjdGluZyBmcm9tIHRoZSB0b3Agb2YgY2FydmVv
-dXQuICBJZiBJJ20gcmVhZGluZyB0aGlzIGNvcnJlY3RseSwKdGhlIGVxdWF0aW9uIGludm9sdmlu
-ZyAxMDBjMTgsIGZvciBleGFtcGxlLCBpczoKCnBoeXNpY2FsIGFkZHJlc3MgPSBjYXJ2ZW91dF9i
-YXNlICsgY2FydmVvdXRfc2l6ZSAtICgocjEwMGMxOCArIDEpICogMzIpCgp3aGVyZToKY2FydmVv
-dXRfYmFzZSBpcyAocjEwMGUxMCA8PCAxMikKY2FydmVvdXRfc2l6ZSBpcyAocjEwMGUxNCA8PCAx
-MikKKGFuZCAicjEwMGUxMCIgbWVhbnMgInRoZSB2YWx1ZSBpbiByZWdpc3RlciAxMDBlMTAiKQoK
-PiBIZXJlIGlzIHRoZSBwYXRjaCBzbyBmYXIsIHdoZXJlIHByaXYtPnIxMDBjMDggaXMgYW4gYWRk
-cmVzcyB0byBhbiBlbXB0eSBkbWEgcGFnZToKPiAKPiAgICAgZGlmZiAtLWdpdCBhL252a20vc3Vi
-ZGV2L2ZiL252NTAuYyBiL252a20vc3ViZGV2L2ZiL252NTAuYwo+ICAgICBpbmRleCA0MTUwYjBk
-Li4xYTBhOTRlIDEwMDY0NAo+ICAgICAtLS0gYS9udmttL3N1YmRldi9mYi9udjUwLmMKPiAgICAg
-KysrIGIvbnZrbS9zdWJkZXYvZmIvbnY1MC5jCj4gICAgIEBAIC0yOTUsNiArMjk2LDE5IEBAIG52
-NTBfZmJfaW5pdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iamVjdCkKPiAgICAgICAgICAgICAg
-Ki8KPiAgICAgICAgICAgICBudl93cjMyKHByaXYsIDB4MTAwYzA4LCBwcml2LT5yMTAwYzA4ID4+
-IDgpOwo+ICAgICAKPiAgICAgKyAgICAgICAvKiBFbmFibGUgTklTTyBwb2xsZXIgZm9yIHZhcmlv
-dXMgY2xpZW50cyBhbmQgc2V0IHRoZWlyIGFzc29jaWF0ZWQKPiAgICAgKyAgICAgICAgKiByZWFk
-IGFkZHJlc3MsIG9ubHkgZm9yIE1DUDc3Lzc4IGFuZCBNQ1A3OS83QS4gKGZkIzI1NzAxKQo+ICAg
-ICArICAgICAgICAqLwo+ICAgICArICAgICAgIGlmICgobnZfZGV2aWNlKHByaXYpLT5jaGlwc2V0
-ID09IDB4YWEgfHwgbnZfZGV2aWNlKHByaXYpLT5jaGlwc2V0ID09IDB4YWMpCj4gICAgICsgICAg
-ICAgICAgICAgICAgICAgICAgICYmICFudl9yZDMyKHByaXYsIDB4MTAwYzE0KSkgewo+ICAgICAr
-ICAgICAgICAgICAgICAgbnZfd3IzMihwcml2LCAweDEwMGMxOCwgcHJpdi0+cjEwMGMwOCA+PiA4
-KTsKPiAgICAgKyAgICAgICAgICAgICAgIG52X21hc2socHJpdiwgMHgxMDBjMTQsIDB4MDAwMDAw
-MDAsIDB4MDAwMDAwMDEpOwo+ICAgICArICAgICAgICAgICAgICAgbnZfd3IzMihwcml2LCAweDEw
-MGMxYywgcHJpdi0+cjEwMGMwOCA+PiA4KTsKCkkgdGhpbmsgeW91J2xsIHdhbnQgdG8gdXNlIGRp
-ZmZlcmVudCB1bmlxdWUgb2Zmc2V0cyBmb3IgMTAwYzFjIGFuZAoxMDBjMTQsIHJhdGhlciB0aGFu
-IHJldXNpbmcgdGhlIHNhbWUgb25lLgoKLSBSb2JlcnQKCj4gICAgICsgICAgICAgICAgICAgICBu
-dl9tYXNrKHByaXYsIDB4MTAwYzE0LCAweDAwMDAwMDAwLCAweDAwMDAwMDAyKTsKPiAgICAgKyAg
-ICAgICAgICAgICAgIG52X3dyMzIocHJpdiwgMHgxMDBjMjQsIHByaXYtPnIxMDBjMDggPj4gOCk7
-Cj4gICAgICsgICAgICAgICAgICAgICBudl9tYXNrKHByaXYsIDB4MTAwYzE0LCAweDAwMDAwMDAw
-LCAweDAwMDEwMDAwKTsKPiAgICAgKyAgICAgICB9Cj4gICAgICsKPiAgICAgICAgICAgICAvKiBU
-aGlzIGlzIG5lZWRlZCB0byBnZXQgbWVhbmluZ2Z1bCBpbmZvcm1hdGlvbiBmcm9tIDEwMGM5MAo+
-ICAgICAgICAgICAgICAqIG9uIHRyYXBzLiBObyBpZGVhIHdoYXQgdGhlc2UgdmFsdWVzIG1lYW4g
-ZXhhY3RseS4gKi8KPiAgICAgICAgICAgICBudl93cjMyKHByaXYsIDB4MTAwYzkwLCBpbXBsLT50
-cmFwKTsKPiAKPiBUaGFua3MsCj4gCj4gUGllcnJlCj4gCj4gCj4gPiA+Cj4gPiA+ICNkZWZpbmUg
-TlZfUEZCX05JU09fUE9MTEVSX0ROSVNPX0JBU0VfQURSCj4gPiA+ICAgICAgICAgICAgICAgICAg
-ICAgMHgwMDEwMEMxOAo+ID4gPiAjZGVmaW5lIE5WX1BGQl9OSVNPX1BPTExFUl9IT1NUTkJfQkFT
-RV9BRFIKPiA+ID4gICAgICAgICAgICAgICAgICAgIDB4MDAxMDBDMUMKPiA+ID4gI2RlZmluZSBO
-Vl9QRkJfTklTT19GTFVTSF9DQVJWRU9VVF9BRFIKPiA+ID4gICAgICAgICAgICAgICAgICAgICAg
-ICAweDAwMTAwQzI0Cj4gPiA+Cj4gPiA+IEVhY2ggb2YgdGhlc2Ugc2hvdWxkIHBvaW50IHRvIGF0
-IGxlYXN0IDMyIGJ5dGVzIG9mIG90aGVyd2lzZS11bnVzZWQKPiA+ID4gRkIKPiA+ID4gbWVtb3J5
-LCBpZiB0aGUgcG9sbGVyIGlzIGVuYWJsZWQuCj4gPiA+Cj4gPiA+IFRoZSBwcm9wcmlldGFyeSBk
-cml2ZXIgZW5hYmxlcyBhbGwgdGhyZWUgcG9sbGVycyBmb3IgR1BVcyB0aGF0IGhhdmUKPiA+ID4g
-dGhlbSwgd2hlbgo+ID4gPiBtZW1vcnkgaXMgbm90IGxvY2FsIChpLmUuLCB3aGVuIHVzaW5nIGEg
-c3lzbWVtIGNhcnZlb3V0IHJhdGhlciB0aGFuCj4gPiA+IGRlZGljYXRlZAo+ID4gPiB2aWRlbyBt
-ZW1vcnkpLgo+ID4gPgo+ID4gPiBJJ20gbm90IHN1cmUgd2h5IHRoaXMgc2VlbXMgdG8gb25seSBi
-ZSBuZWNlc3Nhcnkgb24gc29tZSBzeXN0ZW1zCj4gPiA+IGFuZAo+ID4gPiBub3QKPiA+ID4gb3Ro
-ZXJzLgo+ID4KPiA+IEkgZGlkbid0IG1lYW50IHRoYXQgaXQgd2Fzbid0IG5lY2Vzc2FyeSBvbiBv
-dGhlciBzeXN0ZW1zLCBqdXN0IHRoYXQKPiA+IGl0IHdhcyBlbmFibGVkIGJ5IGRlZmF1bHQgb24g
-dGhvc2Ugc3lzdGVtcyBzbyB0aGV5IHdvdWxkIHdvcmsgZXZlbgo+ID4gaWYgTm91dmVhdSBkaWRu
-J3Qgc2V0IHRoZSBwb2xsZXJzLgo+ID4KPiA+ID4KPiA+ID4gLSBSb2JlcnQKPiA+ID4KPiA+Cj4g
-PiBSZWdhcmRzLAo+ID4KPiA+IFBpZXJyZQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiA+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gPiBOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPiA+IAo+IApfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+On Mon, Dec 1, 2014 at 8:01 PM, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> I think the subject doesn't need "for module use" because that's
+> implicit in exporting a symbol.
+>
+> On Fri, Nov 28, 2014 at 07:12:58PM +0800, Vince Hsu wrote:
+>> Some Tegra drivers might be complied as kernel modules, and
+>
+> "compiled"
+>
+>> they need the fuse information for initialization. One
+>> example is the GK20A Nouveau driver. It needs the GPU speedo
+>> value to calculate frequency-voltage table. So export
+>> the tegra_sku_info.
+>
+> Also please wrap the commit message at around 72 characters. If you make
+> the lines too short it becomes almost as difficult to readable as if
+> they're too long.
+>
+> Other than these small nitpicks this looks like a reasonable change to
+> me.
+>
+>>
+>> Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>
+>> v2: add more description why we need this patch
+>>
+>>  drivers/soc/tegra/fuse/fuse-tegra.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>
+> Ben, patch 3/3 has a dependency on this one. Would you prefer to merge
+> this as part of the Nouveau tree or do you want me to provide a stable
+> branch that you can pull in to resolve the dependency?
+I'll take the patch, seems the simplest option :)
+
+Thanks,
+Ben.
+
+>
+> In case of the former:
+>
+> Acked-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
