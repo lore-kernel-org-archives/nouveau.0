@@ -1,13 +1,13 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: Questions about some PFB registers on NVAC cards
-Date: Mon, 1 Dec 2014 20:08:22 +0100 (CET)
-Message-ID: <397349972.36350345.1417460902276.JavaMail.root@spooler8-g27.priv.proxad.net>
-References: <20141126185233.GB19138@morell.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 72180] [NVE6] Random GPU Lockups,
+	works with blob PGRAPH fw
+Date: Mon, 01 Dec 2014 20:21:26 +0000
+Message-ID: <bug-72180-8800-567eg0yus7@http.bugs.freedesktop.org/>
+References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1373322706=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20141126185233.GB19138-f3YH7lVHJt/FT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,98 +17,130 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgUm9iZXJ0LAoKQWZ0ZXIgdHJ5aW5nIHRvIHdyaXRlIGEgcHJvcGVyIHBhdGNoIGZvciBOb3V2
-ZWF1LCB3ZSByZWFsaXNlZCB3ZSB3ZXJlIG1pc3NpbmcgYSBmZXcgcGllY2VzIG9mIGluZm9ybWF0
-aW9uLgoKLS0tLS0gTWFpbCBvcmlnaW5hbCAtLS0tLQo+IEhpIFJvYmVydCwKPgo+IFRoYW5rcyBh
-IGxvdCBmb3IgeW91ciByZXNwb25zZSEKPgo+IC0tLS0tIE1haWwgb3JpZ2luYWwgLS0tLS0KPiA+
-IE9uIFdlZCwgT2N0IDIyLCAyMDE0IGF0IDEyOjU1OjIzQU0gKzAyMDAsIHBpZXJyZS5tb3Jyb3dA
-ZnJlZS5mcgo+ID4gd3JvdGU6Cj4gPiBbLi4uXQo+ID4gPiBBZnRlciBzb21lIGludmVzdGlnYXRp
-b24sIEkgZm91bmQgdGhhdCBlbmFibGluZyBiaXQgMSBvZiByZWdpc3Rlcgo+ID4gPiAxMDBjMTQg
-Zml4ZXMKPiA+ID4gdGhlIGlzc3VlIG9uIHRoYXQgY2FyZC4gT3RoZXIgTlZBQyBjYXJkcyBhcmUg
-d29ya2luZyBncmVhdAo+ID4gPiB3aXRob3V0Cj4gPiA+IHRoYXQgdHJpY2ssCj4gPiA+IGFuZCBp
-dCBzZWVtcyB0aGV5IGhhdmUgdGhhdCBiaXQgZW5hYmxlZCBieSBkZWZhdWx0LiBXaGF0IGlzIHRo
-ZQo+ID4gPiByb2xlIG9mIHRoYXQKPiA+ID4gYml0LCBhbmQgd2hlbiBzaG91bGQgaXQgYmUgdHVy
-bmVkIG9uPwo+ID4KPiA+IFJlZ2lzdGVyIDEwMGMxNCBjb250cm9scyBhIGZlYXR1cmUgb2YgdGhl
-IGludGVncmF0ZWQgR1BVJ3MgbWVtb3J5Cj4gPiBpbnRlcmZhY2UKPiA+IGNhbGxlZCB0aGUgInBv
-bGxlciIuICBUaGUgcG9sbGVycyBleGlzdCBvbiBNQ1A3Ny83OCBhbmQgTUNQNzkvN0EgdG8KPiA+
-IGVuc3VyZQo+ID4gdGhhdCBjZXJ0YWluIHR5cGVzIG9mIHdyaXRlcyBoYXZlIGZsdXNoZWQgYWxs
-IHRoZSB3YXkgdG8gc3lzdGVtCj4gPiBtZW1vcnkuICAoSQo+ID4gdGhpbmsgdGhpcyBpcyBuZWVk
-ZWQgdG8gZW5zdXJlIHByb3BlciBvcmRlcmluZyBvZiBtZW1vcnkKPiA+IHRyYW5zYWN0aW9ucy4p
-Cj4gPgo+ID4gVGhlcmUgYXJlIGFjdHVhbGx5IHRocmVlIGltcG9ydGFudCBiaXRzIGluIHRoYXQg
-cmVnaXN0ZXIsIHdoaWNoCj4gPiBjb250cm9sIHRocmVlCj4gPiBwb2xsZXJzOgo+ID4KPiA+IE5W
-X1BGQl9OSVNPX1BPTExFUl9DRkcKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgMHgwMDEwMGMxNAo+ID4gTlZfUEZCX05JU09fUE9MTEVSX0NGR19ETklT
-T19FTkFCTEUKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMDow
-Cj4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0ROSVNPX0VOQUJMRV9ESVNBQkxFRAo+ID4gICAg
-ICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDAKPiA+IE5WX1BGQl9OSVNPX1BPTExFUl9D
-RkdfRE5JU09fRU5BQkxFX0VOQUJMRUQKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgw
-MDAwMDAwMQo+ID4gTlZfUEZCX05JU09fUE9MTEVSX0NGR19IT1NUTkJfRU5BQkxFCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMToxCj4gPiBOVl9QRkJfTklTT19Q
-T0xMRVJfQ0ZHX0hPU1ROQl9FTkFCTEVfRElTQUJMRUQKPiA+ICAgICAgICAgICAgICAgICAgICAg
-ICAgIDB4MDAwMDAwMDAKPiA+IE5WX1BGQl9OSVNPX1BPTExFUl9DRkdfSE9TVE5CX0VOQUJMRV9F
-TkFCTEVECj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMQo+ID4gTlZfUEZC
-X05JU09fUE9MTEVSX0NGR19GTFVTSF9FTkFCTEUKPiA+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIDE2OjE2Cj4gPiBOVl9QRkJfTklTT19QT0xMRVJfQ0ZHX0ZMVVNIX0VO
-QUJMRV9ESVNBQkxFRAo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDAKPiA+
-IE5WX1BGQl9OSVNPX1BPTExFUl9DRkdfRkxVU0hfRU5BQkxFX0VOQUJMRUQKPiA+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMQoKT3V0IG9mIGN1cmlvc2l0eSwgd2hhdCBkbyBE
-TklTTyBhbmQgSE9TVE5CIG1lYW4/Cgo+ID4KPiA+ID4gQmVmb3JlIGVuYWJsaW5nIDEwMGMxNCdz
-IGJpdCAxLCB0aGUgTnZpZGlhIGRyaXZlciB3cml0ZXMgc29tZQo+ID4gPiB2YWx1ZQo+ID4gPiBp
-bnRvIDEwMGMxYy4KPiA+ID4gTGVhdmluZyB0aGUgZGVmYXVsdCB2YWx1ZSwgb3Igd3JpdGluZyBz
-b21lIHJhbmRvbSB2YWx1ZSBzZWVtZWQgdG8KPiA+ID4gaGF2ZSBubwo+ID4gPiBlZmZlY3QuIFdo
-YXQgaXMgdGhpcyByZWdpc3RlciB1c2VkIGZvcj8KPiA+Cj4gPiAxMDBjMWMgaXMgb25lIG9mIHRo
-cmVlIHJlZ2lzdGVycyB3aGljaCBjb250cm9sIHRoZSAodXBwZXIgYml0cyBvZgo+ID4gdGhlCj4g
-PiAzMi1ieXRlCj4gPiBhbGlnbmVkKSBtZW1vcnkgbG9jYXRpb25zIHRoYXQgdGhlIHBvbGxlcnMg
-dXNlOgoKU28sIGFzIHRoZSBtZW1vcnkgbG9jYXRpb24gaXMgMzItYnl0ZSBhbGlnbmVkIHRoZSBs
-YXN0IDggYml0cyBvZiB0aGUgYWRkcmVzcyBhcmUgdW5jZXNzYXJ5LiAxMDBjMWMgYW5kIHRoZSBv
-dGhlcnMgaG9sZCAzMiBiaXRzLiBTbyBhcmUgdGhlIG1pc3NpbmcgMjQgYml0cyBvZiB0aGUgYWRk
-cmVzcyBmb3JjZWQgdG8gemVybyBvciBkbyB3ZSBuZWVkIHRvIHNwZWNpZnkgdGhlbSBzb21ld2hl
-cmU/CgpIZXJlIGlzIHRoZSBwYXRjaCBzbyBmYXIsIHdoZXJlIHByaXYtPnIxMDBjMDggaXMgYW4g
-YWRkcmVzcyB0byBhbiBlbXB0eSBkbWEgcGFnZToKCiAgICBkaWZmIC0tZ2l0IGEvbnZrbS9zdWJk
-ZXYvZmIvbnY1MC5jIGIvbnZrbS9zdWJkZXYvZmIvbnY1MC5jCiAgICBpbmRleCA0MTUwYjBkLi4x
-YTBhOTRlIDEwMDY0NAogICAgLS0tIGEvbnZrbS9zdWJkZXYvZmIvbnY1MC5jCiAgICArKysgYi9u
-dmttL3N1YmRldi9mYi9udjUwLmMKICAgIEBAIC0yOTUsNiArMjk2LDE5IEBAIG52NTBfZmJfaW5p
-dChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iamVjdCkKICAgICAgICAgICAgICovCiAgICAgICAg
-ICAgIG52X3dyMzIocHJpdiwgMHgxMDBjMDgsIHByaXYtPnIxMDBjMDggPj4gOCk7CiAgICAKICAg
-ICsgICAgICAgLyogRW5hYmxlIE5JU08gcG9sbGVyIGZvciB2YXJpb3VzIGNsaWVudHMgYW5kIHNl
-dCB0aGVpciBhc3NvY2lhdGVkCiAgICArICAgICAgICAqIHJlYWQgYWRkcmVzcywgb25seSBmb3Ig
-TUNQNzcvNzggYW5kIE1DUDc5LzdBLiAoZmQjMjU3MDEpCiAgICArICAgICAgICAqLwogICAgKyAg
-ICAgICBpZiAoKG52X2RldmljZShwcml2KS0+Y2hpcHNldCA9PSAweGFhIHx8IG52X2RldmljZShw
-cml2KS0+Y2hpcHNldCA9PSAweGFjKQogICAgKyAgICAgICAgICAgICAgICAgICAgICAgJiYgIW52
-X3JkMzIocHJpdiwgMHgxMDBjMTQpKSB7CiAgICArICAgICAgICAgICAgICAgbnZfd3IzMihwcml2
-LCAweDEwMGMxOCwgcHJpdi0+cjEwMGMwOCA+PiA4KTsKICAgICsgICAgICAgICAgICAgICBudl9t
-YXNrKHByaXYsIDB4MTAwYzE0LCAweDAwMDAwMDAwLCAweDAwMDAwMDAxKTsKICAgICsgICAgICAg
-ICAgICAgICBudl93cjMyKHByaXYsIDB4MTAwYzFjLCBwcml2LT5yMTAwYzA4ID4+IDgpOwogICAg
-KyAgICAgICAgICAgICAgIG52X21hc2socHJpdiwgMHgxMDBjMTQsIDB4MDAwMDAwMDAsIDB4MDAw
-MDAwMDIpOwogICAgKyAgICAgICAgICAgICAgIG52X3dyMzIocHJpdiwgMHgxMDBjMjQsIHByaXYt
-PnIxMDBjMDggPj4gOCk7CiAgICArICAgICAgICAgICAgICAgbnZfbWFzayhwcml2LCAweDEwMGMx
-NCwgMHgwMDAwMDAwMCwgMHgwMDAxMDAwMCk7CiAgICArICAgICAgIH0KICAgICsKICAgICAgICAg
-ICAgLyogVGhpcyBpcyBuZWVkZWQgdG8gZ2V0IG1lYW5pbmdmdWwgaW5mb3JtYXRpb24gZnJvbSAx
-MDBjOTAKICAgICAgICAgICAgICogb24gdHJhcHMuIE5vIGlkZWEgd2hhdCB0aGVzZSB2YWx1ZXMg
-bWVhbiBleGFjdGx5LiAqLwogICAgICAgICAgICBudl93cjMyKHByaXYsIDB4MTAwYzkwLCBpbXBs
-LT50cmFwKTsKClRoYW5rcywKClBpZXJyZQoKCj4gPgo+ID4gI2RlZmluZSBOVl9QRkJfTklTT19Q
-T0xMRVJfRE5JU09fQkFTRV9BRFIKPiA+ICAgICAgICAgICAgICAgICAgICAgMHgwMDEwMEMxOAo+
-ID4gI2RlZmluZSBOVl9QRkJfTklTT19QT0xMRVJfSE9TVE5CX0JBU0VfQURSCj4gPiAgICAgICAg
-ICAgICAgICAgICAgMHgwMDEwMEMxQwo+ID4gI2RlZmluZSBOVl9QRkJfTklTT19GTFVTSF9DQVJW
-RU9VVF9BRFIKPiA+ICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDEwMEMyNAo+ID4KPiA+IEVh
-Y2ggb2YgdGhlc2Ugc2hvdWxkIHBvaW50IHRvIGF0IGxlYXN0IDMyIGJ5dGVzIG9mIG90aGVyd2lz
-ZS11bnVzZWQKPiA+IEZCCj4gPiBtZW1vcnksIGlmIHRoZSBwb2xsZXIgaXMgZW5hYmxlZC4KPiA+
-Cj4gPiBUaGUgcHJvcHJpZXRhcnkgZHJpdmVyIGVuYWJsZXMgYWxsIHRocmVlIHBvbGxlcnMgZm9y
-IEdQVXMgdGhhdCBoYXZlCj4gPiB0aGVtLCB3aGVuCj4gPiBtZW1vcnkgaXMgbm90IGxvY2FsIChp
-LmUuLCB3aGVuIHVzaW5nIGEgc3lzbWVtIGNhcnZlb3V0IHJhdGhlciB0aGFuCj4gPiBkZWRpY2F0
-ZWQKPiA+IHZpZGVvIG1lbW9yeSkuCj4gPgo+ID4gSSdtIG5vdCBzdXJlIHdoeSB0aGlzIHNlZW1z
-IHRvIG9ubHkgYmUgbmVjZXNzYXJ5IG9uIHNvbWUgc3lzdGVtcwo+ID4gYW5kCj4gPiBub3QKPiA+
-IG90aGVycy4KPgo+IEkgZGlkbid0IG1lYW50IHRoYXQgaXQgd2Fzbid0IG5lY2Vzc2FyeSBvbiBv
-dGhlciBzeXN0ZW1zLCBqdXN0IHRoYXQKPiBpdCB3YXMgZW5hYmxlZCBieSBkZWZhdWx0IG9uIHRo
-b3NlIHN5c3RlbXMgc28gdGhleSB3b3VsZCB3b3JrIGV2ZW4KPiBpZiBOb3V2ZWF1IGRpZG4ndCBz
-ZXQgdGhlIHBvbGxlcnMuCj4KPiA+Cj4gPiAtIFJvYmVydAo+ID4KPgo+IFJlZ2FyZHMsCj4KPiBQ
-aWVycmUKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBo
-dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IApf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1373322706==
+Content-Type: multipart/alternative; boundary="1417465285.2cd83AA34.1054"; charset="UTF-8"
+
+
+--1417465285.2cd83AA34.1054
+Date: Mon, 1 Dec 2014 20:21:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
+
+--- Comment #38 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+And I am back. I had three GPU lockups during the last 30min. The first occured
+while browsing the internet with Firefox, the second one happened during video
+playback with KPlayer and the last one happened, when I tried to re-compiled my
+kernel (3.17.4) with nvidia fw included. There was only a X terminal running
+that showed the build output when nouveau crashed. So yes, the bug still exists
+in 3.17.4. This is my dmesg output in reverse order:
+
+Dec 01 21:10:22 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] read
+fault at 0x0000013000 [PTE] from PBDMA0/HOST_CPU on channel 0x023f7b0000
+[unknown]
+Dec 01 21:10:22 matthias-pc kernel: nouveau E[kwin[571]] failed to idle channel
+0xcccc0000 [kwin[571]]
+Dec 01 21:10:07 matthias-pc kernel: nouveau E[kwin[571]] failed to idle channel
+0xcccc0000 [kwin[571]]
+Dec 01 21:09:52 matthias-pc org.kde.kuiserver[477]: kuiserver: Fatal IO error:
+client killed
+Dec 01 21:09:52 matthias-pc kdm[351]: X server for display :0 terminated
+unexpectedly
+Dec 01 21:09:52 matthias-pc kernel: nouveau E[  X[354]] failed to idle channel
+0xcccc0000 [X[354]]
+Dec 01 21:09:37 matthias-pc kernel: nouveau E[  X[354]] failed to idle channel
+0xcccc0000 [X[354]]
+Dec 01 21:09:22 matthias-pc kernel: nouveau E[     DRM] GPU lockup - switching
+to software fbcon
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PIBUS][0000:01:00.0] GPC0:
+0x504610 0x00000402 (0x0502020b)
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] PGRAPH
+engine fault on channel 2, recovering...
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] write
+fault at 0x00002d2000 [PTE] from GR/GPC2/GPCCS on channel 0x023f94f000 [X[354]]
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1417465285.2cd83AA34.1054
+Date: Mon, 1 Dec 2014 20:21:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c38">Comment # 38</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
+</span></b>
+        <pre>And I am back. I had three GPU lockups during the last 30min. The first occured
+while browsing the internet with Firefox, the second one happened during video
+playback with KPlayer and the last one happened, when I tried to re-compiled my
+kernel (3.17.4) with nvidia fw included. There was only a X terminal running
+that showed the build output when nouveau crashed. So yes, the bug still exists
+in 3.17.4. This is my dmesg output in reverse order:
+
+Dec 01 21:10:22 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] read
+fault at 0x0000013000 [PTE] from PBDMA0/HOST_CPU on channel 0x023f7b0000
+[unknown]
+Dec 01 21:10:22 matthias-pc kernel: nouveau E[kwin[571]] failed to idle channel
+0xcccc0000 [kwin[571]]
+Dec 01 21:10:07 matthias-pc kernel: nouveau E[kwin[571]] failed to idle channel
+0xcccc0000 [kwin[571]]
+Dec 01 21:09:52 matthias-pc org.kde.kuiserver[477]: kuiserver: Fatal IO error:
+client killed
+Dec 01 21:09:52 matthias-pc kdm[351]: X server for display :0 terminated
+unexpectedly
+Dec 01 21:09:52 matthias-pc kernel: nouveau E[  X[354]] failed to idle channel
+0xcccc0000 [X[354]]
+Dec 01 21:09:37 matthias-pc kernel: nouveau E[  X[354]] failed to idle channel
+0xcccc0000 [X[354]]
+Dec 01 21:09:22 matthias-pc kernel: nouveau E[     DRM] GPU lockup - switching
+to software fbcon
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PIBUS][0000:01:00.0] GPC0:
+0x504610 0x00000402 (0x0502020b)
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] PGRAPH
+engine fault on channel 2, recovering...
+Dec 01 21:07:40 matthias-pc kernel: nouveau E[   PFIFO][0000:01:00.0] write
+fault at 0x00002d2000 [PTE] from GR/GPC2/GPCCS on channel 0x023f94f000 [X[354]]</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1417465285.2cd83AA34.1054--
+
+--===============1373322706==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1373322706==--
