@@ -1,40 +1,54 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [RESEND PATCH nouveau 3/3] volt: add support for GK20A
-Date: Tue, 2 Dec 2014 09:18:24 +1000
-Message-ID: <CACAvsv6dOhO46snBH_g+f2K1XvzPvqouF1ZBGF5GBbmoDaYnjQ@mail.gmail.com>
-References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
-	<1417173180-21726-3-git-send-email-vinceh@nvidia.com>
-	<547CF2F9.6040905@free.fr>
+From: Anssi Hannula <anssi-253J+yWuVH8@public.gmane.org>
+Subject: Re: [PATCH] gf116: remove copy1 engine
+Date: Tue, 02 Dec 2014 00:18:36 +0200
+Message-ID: <547CE93C.1070200@onse.fi>
+References: <1417370178-2048-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <547CF2F9.6040905-GANU6spQydw@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1417370178-2048-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Tue, Dec 2, 2014 at 9:00 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
-> On 28/11/2014 12:13, Vince Hsu wrote:
->>
->> The voltage value are calculated by the hardware characterized
->> result.
->>
->> Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->> ---
->>
->> Resend this patch with the fuse change and proper patch prefix
->> per Thierry's request.
->
-> Since the voltage table really is per-chipset, it would be insane
-> to add that to the DT. If it was not the case, it is still easier to
-> move to the DT instead of doing the opposite.
->
-One thing that needs fixing is that this breaks the build on non-tegra arches.
-
-> Acked-by: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+MzAuMTEuMjAxNCwgMTk6NTYsIElsaWEgTWlya2luIGtpcmpvaXR0aToKPiBJbmRpY2F0aW9ucyBh
+cmUgdGhhdCBubyBHRjExNidzIGFjdHVhbGx5IGhhdmUgYSBjb3B5IGVuZ2luZSB0aGVyZSwgYnV0
+Cj4gYWN0dWFsbHkgaGF2ZSB0aGUgZGVjb21wcmVzc2lvbiBlbmdpbmUuIFRoaXMgZW5naW5lIGNh
+biBiZSBtYWRlIHRvIGRvCj4gY29waWVzLCBidXQgdGhhdCBzaG91bGQgYmUgZG9uZSBzZXBhcmF0
+ZWx5Lgo+IAo+IFVuY2xlYXIgd2h5IHRoaXMgZGlkbid0IHR1cm4gdXAgb24gYWxsIEdGMTE2J3Ms
+IGJ1dCBwZXJoYXBzIHRoZQo+IG5vbi1tb2JpbGUgb25lcyBjYW1lIHdpdGggZW5vdWdoIFZSQU0g
+dG8gbm90IHRyaWdnZXIgdHRtIG1pZ3JhdGlvbnMgaW4KPiB0ZXN0IHNjZW5hcmlvcy4KCkZXSVcs
+IEkgZXhwZXJpZW5jZWQgdGhpcyBvbiBteSBub24tbW9iaWxlIEdGMTE2IHdoZW4ga2VlcGluZyB0
+aGUgc3lzdGVtCnJ1bm5pbmcgZm9yIHNldmVyYWwgZGF5cyBhbmQgcnVubmluZyBncmFwaGljcy1p
+bnRlbnNpdmUgZ2FtZXMuIEkgZG9uJ3QKaGF2ZSB0aGUgY2FyZCBhdCBoYW5kIHJpZ2h0IG5vdyBz
+byBkb24ndCBrbm93IGhvdyBtdWNoIFZSQU0gaXQgaGFkLCB0aG91Z2guCgpUaGFua3MgZm9yIGdl
+dHRpbmcgdGhpcyBmaWd1cmVkIG91dCA6KQoKPiBGaXhlczogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
+dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9ODU0NjUKPiBGaXhlczogaHR0cHM6Ly9idWdzLmZyZWVk
+ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTkxNjgKPiBDYzogc3RhYmxlQHZnZXIua2VybmVs
+Lm9yZwo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
+PiAtLS0KPiAgbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYyB8IDEgLQo+ICAxIGZpbGUgY2hhbmdl
+ZCwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9udmttL2VuZ2luZS9kZXZpY2UvbnZj
+MC5jIGIvbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYwo+IGluZGV4IGNkMDU2NzcuLjcyYTQwZjkg
+MTAwNjQ0Cj4gLS0tIGEvbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYwo+ICsrKyBiL252a20vZW5n
+aW5lL2RldmljZS9udmMwLmMKPiBAQCAtMjE4LDcgKzIxOCw2IEBAIG52YzBfaWRlbnRpZnkoc3Ry
+dWN0IG5vdXZlYXVfZGV2aWNlICpkZXZpY2UpCj4gIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5H
+SU5FX0JTUCAgICBdID0gJm52YzBfYnNwX29jbGFzczsKPiAgCQlkZXZpY2UtPm9jbGFzc1tOVkRF
+Vl9FTkdJTkVfUFBQICAgIF0gPSAmbnZjMF9wcHBfb2NsYXNzOwo+ICAJCWRldmljZS0+b2NsYXNz
+W05WREVWX0VOR0lORV9DT1BZMCAgXSA9ICZudmMwX2NvcHkwX29jbGFzczsKPiAtCQlkZXZpY2Ut
+Pm9jbGFzc1tOVkRFVl9FTkdJTkVfQ09QWTEgIF0gPSAmbnZjMF9jb3B5MV9vY2xhc3M7Cj4gIAkJ
+ZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0RJU1AgICBdID0gIG52YTNfZGlzcF9vY2xhc3M7
+Cj4gIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX1BFUkZNT05dID0gJm52YzBfcGVyZm1v
+bl9vY2xhc3M7Cj4gIAkJYnJlYWs7Cj4gCgoKLS0gCkFuc3NpIEhhbm51bGEKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
