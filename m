@@ -1,20 +1,14 @@
-From: =?UTF-8?B?VGVyamUgQmVyZ3N0csO2bQ==?= <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [RESEND PATCH nouveau 3/3] volt: add support for GK20A
-Date: Mon, 1 Dec 2014 08:57:38 +0200
-Message-ID: <547C1162.6010001@nvidia.com>
-References: <1417173180-21726-1-git-send-email-vinceh@nvidia.com>
- <1417173180-21726-3-git-send-email-vinceh@nvidia.com>
- <54785BBA.50800@nimrod-online.com> <54786343.4000806@nvidia.com>
- <547865EA.10702@nimrod-online.com>
- <CAAVeFuKY7=WfhAWPiPMkWU8JMg0a7dACqu=BNE+S5SVtdF870w@mail.gmail.com>
- <547C0CDD.5090506@nvidia.com>
- <CAAVeFuLBAyBv4u+op-9A7ZqW0wRwYyxHdd9QG_cu6a=x_hv+Sg@mail.gmail.com>
- <CAAVeFuKH4LxqgwwtQHL4mZSBKPDnoxtdonK2GBO5pg1hCoHMtg@mail.gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/2] volt: add support for GK20A
+Date: Mon, 1 Dec 2014 18:09:06 +0900
+Message-ID: <CAAVeFuK=DMBQo67v47axZoziyPiVzMv=NY5gqO+y3+xQgdpNEQ@mail.gmail.com>
+References: <1417163329-19427-1-git-send-email-vinceh@nvidia.com>
+ <1417163329-19427-2-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuKH4LxqgwwtQHL4mZSBKPDnoxtdonK2GBO5pg1hCoHMtg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <1417163329-19427-2-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,38 +18,17 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>, Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMDEuMTIuMjAxNCAwODo1MiwgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4gT24gTW9uLCBE
-ZWMgMSwgMjAxNCBhdCAzOjQ4IFBNLCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91QGdtYWlsLmNv
-bT4gd3JvdGU6Cj4+IE9uIE1vbiwgRGVjIDEsIDIwMTQgYXQgMzozOCBQTSwgVGVyamUgQmVyZ3N0
-csO2bSA8dGJlcmdzdHJvbUBudmlkaWEuY29tPiB3cm90ZToKPj4+IE9uIDI5LjExLjIwMTQgMTA6
-NDQsIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+Pj4gVGhlIHZvbHRhZ2U8LT5mcmVxdWVuY3kg
-cmVsYXRpb25zaGlwIGlzIHBlciBjaGlwLCBub3QgcGVyIGJvYXJkLiBXZSByZWFkCj4+PiB0aGUg
-Y2hpcCBpZCBhdCBydW50aW1lLCBhbmQgcHJvZ3JhbW1hdGljYWxseSBkZXRlcm1pbmUgdGhlIERW
-RlMgc3RlcHMKPj4+IGJhc2VkIG9uIHRoYXQuIENWQiB0YWJsZSBjb250YWlucyB0aGUgcGFyYW1l
-dGVycyBmb3IgdGhlIGFsZ29yaXRobS4KPj4+Cj4+PiBJIHRoaW5rIHRoZSB0YWJsZSBiZWxvbmdz
-IGluIHRoZSBkcml2ZXIuIFRoZSB0YWJsZSBpcyBub3QgcGVyIGJvYXJkLCBhbmQKPj4+IHRoZSB2
-YWx1ZXMgaW4gQ1ZCIHRhYmxlIGRvIG5vdCBkZXNjcmliZSBoYXJkd2FyZSwgYnV0IHBhcmFtZXRl
-cnMgdG8gYW4KPj4+IGFsZ29yaXRobS4KPj4KPj4gSW4gdGhhdCBjYXNlIEkgYWxzbyB0aGluayBp
-dCB3b3VsZCBtYWtlIG1vcmUgc2Vuc2UgKGFuZCBtYWtlIHRoaW5ncwo+PiBlYXNpZXIpIHRvIGhh
-dmUgdGhlc2UgdGFibGVzIGluIHRoZSBkcml2ZXIuIFJveSwgZG8geW91IGhhdmUgYW55Cj4+IG9i
-amVjdGlvbj8KPiAKPiBNbW0sIHJlLXJlYWRpbmcgeW91ciByZXBseSBJIHJlYWxpemUgeW91IG9u
-bHkgbWVudGlvbiB0aGUgQ1ZCIHRhYmxlLgo+IEJ1dCBzaW5jZSB0aGUgQ1ZCIGFuZCBmcmVxdWVu
-Y2llcyBtdXN0IG1hdGNoIGFueXdheSwgSSBzdXBwb3NlIGl0Cj4gYXBwbGllcyB0byB0aGUgZnJl
-cXVlbmNpZXMgdGFibGUgYXMgd2VsbCwgYW0gSSBjb3JyZWN0PwoKWWVzLCBmcmVxPC0+dm9sdGFn
-ZSByZWxhdGlvbnNoaXBzIGFyZSBwZXIgY2hpcCwgc28gSSBtZWFudCBhbGwKcGFyYW1ldGVycyB1
-c2VkIGZvciBmaWd1cmluZyBvdXQgRFZGUyBzdGVwcy4KClRlcmplCgotLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQpUaGlzIGVtYWlsIG1lc3NhZ2UgaXMgZm9yIHRoZSBzb2xlIHVzZSBvZiB0aGUg
-aW50ZW5kZWQgcmVjaXBpZW50KHMpIGFuZCBtYXkgY29udGFpbgpjb25maWRlbnRpYWwgaW5mb3Jt
-YXRpb24uICBBbnkgdW5hdXRob3JpemVkIHJldmlldywgdXNlLCBkaXNjbG9zdXJlIG9yIGRpc3Ry
-aWJ1dGlvbgppcyBwcm9oaWJpdGVkLiAgSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lw
-aWVudCwgcGxlYXNlIGNvbnRhY3QgdGhlIHNlbmRlciBieQpyZXBseSBlbWFpbCBhbmQgZGVzdHJv
-eSBhbGwgY29waWVzIG9mIHRoZSBvcmlnaW5hbCBtZXNzYWdlLgotLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+T24gRnJpLCBOb3YgMjgsIDIwMTQgYXQgNToyOCBQTSwgVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlh
+LmNvbT4gd3JvdGU6Cj4gVGhlIHZvbHRhZ2UgdmFsdWUgYXJlIGNhbGN1bGF0ZWQgYnkgdGhlIGhh
+cmR3YXJlIGNoYXJhY3Rlcml6ZWQKPiByZXN1bHQuCgpUaGlzIGxvb2tzIGdvb2QgdG8gbWUsIHNv
+IGlmIHdlIGFncmVlIGFib3V0IHRoZSBsb2NhdGlvbiBvZiB0aGUgdGFibGVzCnBsZWFzZSBjb25z
+aWRlciB0aGlzIHBhdGNoCgpSZXZpZXdlZC1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90
+QG52aWRpYS5jb20+CgpCZXdhcmUgdGhhdCBpdCBkZXBlbmRzIG9uIGEgVGVncmEgcGF0Y2ggdGhh
+dCBzaG91bGQgYmUgbWVyZ2VkIGJlZm9yZSB0aGlzIG9uZS4KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
