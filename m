@@ -1,54 +1,43 @@
-From: Anssi Hannula <anssi-253J+yWuVH8@public.gmane.org>
-Subject: Re: [PATCH] gf116: remove copy1 engine
-Date: Tue, 02 Dec 2014 00:18:36 +0200
-Message-ID: <547CE93C.1070200@onse.fi>
-References: <1417370178-2048-1-git-send-email-imirkin@alum.mit.edu>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [V3 PATCH 1/4] soc/tegra: fuse: export tegra_sku_info
+Date: Tue, 2 Dec 2014 12:50:32 +0800
+Message-ID: <1417495835-5556-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1417370178-2048-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-MzAuMTEuMjAxNCwgMTk6NTYsIElsaWEgTWlya2luIGtpcmpvaXR0aToKPiBJbmRpY2F0aW9ucyBh
-cmUgdGhhdCBubyBHRjExNidzIGFjdHVhbGx5IGhhdmUgYSBjb3B5IGVuZ2luZSB0aGVyZSwgYnV0
-Cj4gYWN0dWFsbHkgaGF2ZSB0aGUgZGVjb21wcmVzc2lvbiBlbmdpbmUuIFRoaXMgZW5naW5lIGNh
-biBiZSBtYWRlIHRvIGRvCj4gY29waWVzLCBidXQgdGhhdCBzaG91bGQgYmUgZG9uZSBzZXBhcmF0
-ZWx5Lgo+IAo+IFVuY2xlYXIgd2h5IHRoaXMgZGlkbid0IHR1cm4gdXAgb24gYWxsIEdGMTE2J3Ms
-IGJ1dCBwZXJoYXBzIHRoZQo+IG5vbi1tb2JpbGUgb25lcyBjYW1lIHdpdGggZW5vdWdoIFZSQU0g
-dG8gbm90IHRyaWdnZXIgdHRtIG1pZ3JhdGlvbnMgaW4KPiB0ZXN0IHNjZW5hcmlvcy4KCkZXSVcs
-IEkgZXhwZXJpZW5jZWQgdGhpcyBvbiBteSBub24tbW9iaWxlIEdGMTE2IHdoZW4ga2VlcGluZyB0
-aGUgc3lzdGVtCnJ1bm5pbmcgZm9yIHNldmVyYWwgZGF5cyBhbmQgcnVubmluZyBncmFwaGljcy1p
-bnRlbnNpdmUgZ2FtZXMuIEkgZG9uJ3QKaGF2ZSB0aGUgY2FyZCBhdCBoYW5kIHJpZ2h0IG5vdyBz
-byBkb24ndCBrbm93IGhvdyBtdWNoIFZSQU0gaXQgaGFkLCB0aG91Z2guCgpUaGFua3MgZm9yIGdl
-dHRpbmcgdGhpcyBmaWd1cmVkIG91dCA6KQoKPiBGaXhlczogaHR0cHM6Ly9idWdzLmZyZWVkZXNr
-dG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9ODU0NjUKPiBGaXhlczogaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NTkxNjgKPiBDYzogc3RhYmxlQHZnZXIua2VybmVs
-Lm9yZwo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
-PiAtLS0KPiAgbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYyB8IDEgLQo+ICAxIGZpbGUgY2hhbmdl
-ZCwgMSBkZWxldGlvbigtKQo+IAo+IGRpZmYgLS1naXQgYS9udmttL2VuZ2luZS9kZXZpY2UvbnZj
-MC5jIGIvbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYwo+IGluZGV4IGNkMDU2NzcuLjcyYTQwZjkg
-MTAwNjQ0Cj4gLS0tIGEvbnZrbS9lbmdpbmUvZGV2aWNlL252YzAuYwo+ICsrKyBiL252a20vZW5n
-aW5lL2RldmljZS9udmMwLmMKPiBAQCAtMjE4LDcgKzIxOCw2IEBAIG52YzBfaWRlbnRpZnkoc3Ry
-dWN0IG5vdXZlYXVfZGV2aWNlICpkZXZpY2UpCj4gIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5H
-SU5FX0JTUCAgICBdID0gJm52YzBfYnNwX29jbGFzczsKPiAgCQlkZXZpY2UtPm9jbGFzc1tOVkRF
-Vl9FTkdJTkVfUFBQICAgIF0gPSAmbnZjMF9wcHBfb2NsYXNzOwo+ICAJCWRldmljZS0+b2NsYXNz
-W05WREVWX0VOR0lORV9DT1BZMCAgXSA9ICZudmMwX2NvcHkwX29jbGFzczsKPiAtCQlkZXZpY2Ut
-Pm9jbGFzc1tOVkRFVl9FTkdJTkVfQ09QWTEgIF0gPSAmbnZjMF9jb3B5MV9vY2xhc3M7Cj4gIAkJ
-ZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0RJU1AgICBdID0gIG52YTNfZGlzcF9vY2xhc3M7
-Cj4gIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX1BFUkZNT05dID0gJm52YzBfcGVyZm1v
-bl9vY2xhc3M7Cj4gIAkJYnJlYWs7Cj4gCgoKLS0gCkFuc3NpIEhhbm51bGEKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+Some Tegra drivers might be compiled as kernel modules, and they need the
+fuse information for initialization. One example is the GK20A Nouveau
+driver. It needs the GPU speedo value to calculate frequency-voltage
+table. So export the tegra_sku_info.
+
+Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Acked-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Acked-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+
+v3: fix subject and typo, add reviewers' Acked-by
+
+v2: add more description why we need this patch
+
+ drivers/soc/tegra/fuse/fuse-tegra.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/soc/tegra/fuse/fuse-tegra.c b/drivers/soc/tegra/fuse/fuse-tegra.c
+index 11a5043959dc..011a3363c265 100644
+--- a/drivers/soc/tegra/fuse/fuse-tegra.c
++++ b/drivers/soc/tegra/fuse/fuse-tegra.c
+@@ -31,6 +31,7 @@
+ static u32 (*fuse_readl)(const unsigned int offset);
+ static int fuse_size;
+ struct tegra_sku_info tegra_sku_info;
++EXPORT_SYMBOL(tegra_sku_info);
+ 
+ static const char *tegra_revision_name[TEGRA_REVISION_MAX] = {
+ 	[TEGRA_REVISION_UNKNOWN] = "unknown",
+-- 
+1.9.1
