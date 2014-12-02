@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups,
-	works with blob PGRAPH fw
-Date: Tue, 02 Dec 2014 10:09:27 +0000
-Message-ID: <bug-72180-8800-hFWOXXyOc0@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: demmio
+Date: Tue, 02 Dec 2014 14:38:16 +0100
+Message-ID: <547DC0C8.4090201@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1032990839=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,106 +15,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1032990839==
-Content-Type: multipart/alternative; boundary="1417514967.b2A76B4.31908"; charset="UTF-8"
-
-
---1417514967.b2A76B4.31908
-Date: Tue, 2 Dec 2014 10:09:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
-
---- Comment #40 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@Cedric: Well this means, that the kernel could not find the firmware. There
-are several ways how to do it and it depends on wether you have a initramfs or
-not, if the kernel has access to /lib/fimware when it tries to load the fw, if
-the the fw is directly included in the kernel or not, if you use an additional
-boot manager, etc. With UEFI: Does your UEFI directly load the Linux kernel or
-is there a boot manager in between. For example, I use "rEFInd" as boot
-manager, but I guess Debian uses grub2 by default.
-
-My setup is the following:
-(a) Boot manager "rEFInd"
-(b) No initramfs
-(c) FW directly included in kernel. This requires "CONFIG_FIRMWARE_IN_KERNEL=y"
-and "CONFIG_EXTRA_FIRMWARE=\"nouveau/...\"" to be set.
-
-In my experience, putting the fw directly into the kernel is the easiest way,
-because one does not need to bother with correct pathes and mount points during
-boot. Unfortunately, I cannot give you more detailed advices, because I turned
-my back to Debian long time ago.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1417514967.b2A76B4.31908
-Date: Tue, 2 Dec 2014 10:09:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c40">Comment # 40</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
-</span></b>
-        <pre>&#64;Cedric: Well this means, that the kernel could not find the firmware. There
-are several ways how to do it and it depends on wether you have a initramfs or
-not, if the kernel has access to /lib/fimware when it tries to load the fw, if
-the the fw is directly included in the kernel or not, if you use an additional
-boot manager, etc. With UEFI: Does your UEFI directly load the Linux kernel or
-is there a boot manager in between. For example, I use &quot;rEFInd&quot; as boot
-manager, but I guess Debian uses grub2 by default.
-
-My setup is the following:
-(a) Boot manager &quot;rEFInd&quot;
-(b) No initramfs
-(c) FW directly included in kernel. This requires &quot;CONFIG_FIRMWARE_IN_KERNEL=y&quot;
-and &quot;CONFIG_EXTRA_FIRMWARE=\&quot;nouveau/...\&quot;&quot; to be set.
-
-In my experience, putting the fw directly into the kernel is the easiest way,
-because one does not need to bother with correct pathes and mount points during
-boot. Unfortunately, I cannot give you more detailed advices, because I turned
-my back to Debian long time ago.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1417514967.b2A76B4.31908--
-
---===============1032990839==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1032990839==--
+CklzIHRoaXMgZXhwZWN0ZWQgcmVzdWx0IGZvciBDaGlwc2V0OiBHOTggKE5WOTgpPwoKJCBtb2Rp
+bmZvIG52aWRpYSAtRiB2ZXJzaW9uCjMwNC4xMjMKCiQgc3RhdCAtYyAlcyBtbWlvdHJhY2UubG9n
+CjEzNDY1OTE5NwoKJCBmaWxlIG1taW90cmFjZS5sb2cKbW1pb3RyYWNlLmxvZzogQVNDSUkgdGV4
+dAoKJCBncmVwIC1pIGxvc3QgbW1pb3RyYWNlLmxvZyA7IGVjaG8gJD8KMQoKJCAuL2Vudnl0b29s
+cy9ybm4vZGVtbWlvIC1mIG1taW90cmFjZS5sb2cgfCBwZXJsIC1lICdvcGVuKCRmaDQwOWMsICI+
+ZnVjNDA5YyIpOyBvcGVuKCRmaDQwOWQsICI+ZnVjNDA5ZCIpOyBvcGVuKCRmaDQxYWMsICI+ZnVj
+NDFhYyIpOyBvcGVuKCRmaDQxYWQsICI+ZnVjNDFhZCIpOyVtID0gKCIweDQwOTE4NCIgPT4gJGZo
+NDA5YywgIjB4NDA5MWM0IiA9PiAkZmg0MDlkLCAiMHg0MWExODQiID0+ICRmaDQxYWMsICIweDQx
+YTFjNCIgPT4gJGZoNDFhZCk7d2hpbGUgKDw+KSB7IGV4aXQgaWYgKC8weDQwOTg0MC8pOyBuZXh0
+IGlmICghL1cgKDB4NCg/OjA5fDFhKTFbYzhdNCkgLiogPD0gKD86LioweCk/KC4qKS8pOyBwcmlu
+dCB7ICRteyQxfSB9IHBhY2sgIkkiLCBoZXgoJDIpO30nCkkgZG9uJ3Qga25vdyB3aGljaCBjaGlw
+c2V0IHZhcmlhbnQgdG8gdXNlIQpJIGRvbid0IGtub3cgd2hpY2ggY2hpcHNldCB2YXJpYW50IHRv
+IHVzZSEKSSBkb24ndCBrbm93IHdoaWNoIGNoaXBzZXQgdmFyaWFudCB0byB1c2UhCkkgZG9uJ3Qg
+a25vdyB3aGljaCBjaGlwc2V0IHZhcmlhbnQgdG8gdXNlIQpJIGRvbid0IGtub3cgd2hpY2ggY2hp
+cHNldCB2YXJpYW50IHRvIHVzZSEKSSBkb24ndCBrbm93IHdoaWNoIGNoaXBzZXQgdmFyaWFudCB0
+byB1c2UhCkkgZG9uJ3Qga25vdyB3aGljaCBjaGlwc2V0IHZhcmlhbnQgdG8gdXNlIQpJIGRvbid0
+IGtub3cgd2hpY2ggY2hpcHNldCB2YXJpYW50IHRvIHVzZSEKSSBkb24ndCBrbm93IHdoaWNoIGNo
+aXBzZXQgdmFyaWFudCB0byB1c2UhCkkgZG9uJ3Qga25vdyB3aGljaCBjaGlwc2V0IHZhcmlhbnQg
+dG8gdXNlIQpJIGRvbid0IGtub3cgd2hpY2ggY2hpcHNldCB2YXJpYW50IHRvIHVzZSEKSSBkb24n
+dCBrbm93IHdoaWNoIGNoaXBzZXQgdmFyaWFudCB0byB1c2UhCkkgZG9uJ3Qga25vdyB3aGljaCBj
+aGlwc2V0IHZhcmlhbnQgdG8gdXNlIQpJIGRvbid0IGtub3cgd2hpY2ggY2hpcHNldCB2YXJpYW50
+IHRvIHVzZSEKSSBkb24ndCBrbm93IHdoaWNoIGNoaXBzZXQgdmFyaWFudCB0byB1c2UhCgokIGZp
+bGUgZnVjNCoKZnVjNDA5YzogZW1wdHkKZnVjNDA5ZDogZW1wdHkKZnVjNDFhYzogZW1wdHkKZnVj
+NDFhZDogZW1wdHkKCgpSZWYuCmh0dHA6Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL05W
+QzBfRmlybXdhcmUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
