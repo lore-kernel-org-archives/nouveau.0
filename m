@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Tue, 02 Dec 2014 08:55:48 +0000
-Message-ID: <bug-27501-8800-l6z2yWl2Nd@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72180] [NVE6] Random GPU Lockups,
+	works with blob PGRAPH fw
+Date: Tue, 02 Dec 2014 09:27:13 +0000
+Message-ID: <bug-72180-8800-gxSbKasAxT@http.bugs.freedesktop.org/>
+References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0251351963=="
+Content-Type: multipart/mixed; boundary="===============1443064361=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0251351963==
-Content-Type: multipart/alternative; boundary="1417510548.Daafe1a5.7200"; charset="UTF-8"
+--===============1443064361==
+Content-Type: multipart/alternative; boundary="1417512433.1ddDaa14.17241"; charset="UTF-8"
 
 
---1417510548.Daafe1a5.7200
-Date: Tue, 2 Dec 2014 08:55:48 +0000
+--1417512433.1ddDaa14.17241
+Date: Tue, 2 Dec 2014 09:27:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+--- Comment #39 from Cedric Brandenbourger <cedric-qhlb1eHUncGdZSis0rhKc4dd74u8MsAO@public.gmane.org> ---
+I also have this random GPU lookups on my GT660.
+I tried to get the proprietary PGRAPH working, but without success.
+Im'getting an error at boot:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #107262|0                           |1
-        is obsolete|                            |
+Failed to loader firmware with error -2
+Fallback to user helper
 
---- Comment #58 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 110350
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110350&action=edit
-[Patch] Fix acceleration on 9400M v4
-
-This should be the final verson of this patch, thanks to answers given by the
-Nvidia guys.
-
-Please check that you can use the NVAC with acceleration. If you want to start
-X or power off the NV96 (if you have one), you will either need to deactivate
-acceleration for it (noaccel=0000:02:00.0) or use the trick describe by l3iggs
-**before** loading Nouveau.
+Im'using UEFI on debian jessie.
+I've tried to howto in this forum
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1417510548.Daafe1a5.7200
-Date: Tue, 2 Dec 2014 08:55:48 +0000
+--1417512433.1ddDaa14.17241
+Date: Tue, 2 Dec 2014 09:27:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,50 +56,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #107262 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c58">Comment # 58</a>
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c39">Comment # 39</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:cedric&#64;brandenbourger.lu" title="Cedric Brandenbourger &lt;cedric&#64;brandenbourger.lu&gt;"> <span class="fn">Cedric Brandenbourger</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110350" name="attach_110350" title="[Patch] Fix acceleration on 9400M v4">attachment 110350</a> <a href="attachment.cgi?id=110350&amp;action=edit" title="[Patch] Fix acceleration on 9400M v4">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=27501&amp;attachment=110350'>[review]</a>
-[Patch] Fix acceleration on 9400M v4
+        <pre>I also have this random GPU lookups on my GT660.
+I tried to get the proprietary PGRAPH working, but without success.
+Im'getting an error at boot:
 
-This should be the final verson of this patch, thanks to answers given by the
-Nvidia guys.
+Failed to loader firmware with error -2
+Fallback to user helper
 
-Please check that you can use the NVAC with acceleration. If you want to start
-X or power off the NV96 (if you have one), you will either need to deactivate
-acceleration for it (noaccel=0000:02:00.0) or use the trick describe by l3iggs
-**before** loading Nouveau.</pre>
+Im'using UEFI on debian jessie.
+I've tried to howto in this forum</pre>
         </div>
       </p>
       <hr>
@@ -119,9 +89,9 @@ acceleration for it (noaccel=0000:02:00.0) or use the trick describe by l3iggs
     </body>
 </html>
 
---1417510548.Daafe1a5.7200--
+--1417512433.1ddDaa14.17241--
 
---===============0251351963==
+--===============1443064361==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0251351963==--
+--===============1443064361==--
