@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
-Date: Tue, 02 Dec 2014 15:43:41 +0000
-Message-ID: <bug-86935-8800-tzQ1ke9X38@http.bugs.freedesktop.org/>
+Date: Tue, 02 Dec 2014 15:58:55 +0000
+Message-ID: <bug-86935-8800-fFsfheZj68@http.bugs.freedesktop.org/>
 References: <bug-86935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2118484769=="
+Content-Type: multipart/mixed; boundary="===============0002325175=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2118484769==
-Content-Type: multipart/alternative; boundary="1417535021.4745a81.16320"; charset="UTF-8"
+--===============0002325175==
+Content-Type: multipart/alternative; boundary="1417535935.4CDFbA1.21254"; charset="UTF-8"
 
 
---1417535021.4745a81.16320
-Date: Tue, 2 Dec 2014 15:43:41 +0000
+--1417535935.4CDFbA1.21254
+Date: Tue, 2 Dec 2014 15:58:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86935
 
---- Comment #2 from Sven <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 110361
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110361&action=edit
-the patch proposed in the previous comment
-
-Adding 0x106 seems to have worked. I can now boot with nouveau framebuffer and
-nouveau Xorg driver also works.
+--- Comment #3 from Sven <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Will this patch be included in 3.18 (a bit late I guess) or maybe 3.19?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1417535021.4745a81.16320
-Date: Tue, 2 Dec 2014 15:43:41 +0000
+--1417535935.4CDFbA1.21254
+Date: Tue, 2 Dec 2014 15:58:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV106] unknown kepler chipset 0x106"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV106] unknown kepler chipset 0x106"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
               from <span class="vcard"><a class="email" href="mailto:sven.koehler&#64;gmail.com" title="Sven &lt;sven.koehler&#64;gmail.com&gt;"> <span class="fn">Sven</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110361" name="attach_110361" title="the patch proposed in the previous comment">attachment 110361</a> <a href="attachment.cgi?id=110361&amp;action=edit" title="the patch proposed in the previous comment">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=86935&amp;attachment=110361'>[review]</a>
-the patch proposed in the previous comment
-
-Adding 0x106 seems to have worked. I can now boot with nouveau framebuffer and
-nouveau Xorg driver also works.</pre>
+        <pre>Will this patch be included in 3.18 (a bit late I guess) or maybe 3.19?</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +72,9 @@ nouveau Xorg driver also works.</pre>
     </body>
 </html>
 
---1417535021.4745a81.16320--
+--1417535935.4CDFbA1.21254--
 
---===============2118484769==
+--===============0002325175==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2118484769==--
+--===============0002325175==--
