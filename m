@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86935] New: unknown kepler chipset
-Date: Tue, 02 Dec 2014 15:19:58 +0000
-Message-ID: <bug-86935-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
+Date: Tue, 02 Dec 2014 15:27:59 +0000
+Message-ID: <bug-86935-8800-DTUW41k7bV@http.bugs.freedesktop.org/>
+References: <bug-86935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0889668166=="
+Content-Type: multipart/mixed; boundary="===============1010579757=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,68 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0889668166==
-Content-Type: multipart/alternative; boundary="1417533598.87D04CfD1.7348"; charset="UTF-8"
+--===============1010579757==
+Content-Type: multipart/alternative; boundary="1417534079.18eF3f31.9852"; charset="UTF-8"
 
 
---1417533598.87D04CfD1.7348
-Date: Tue, 2 Dec 2014 15:19:58 +0000
+--1417534079.18eF3f31.9852
+Date: Tue, 2 Dec 2014 15:27:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86935
 
-            Bug ID: 86935
-           Summary: unknown kepler chipset
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-With Linux 3.17.4, I get the following errors in dmesg:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|unknown kepler chipset      |[NV106] unknown kepler
+                   |                            |chipset 0x106
 
-nouveau ![  DEVICE][0000:01:00.0] unknown Kepler chipset
-nouveau E[  DEVICE][0000:01:00.0] unknown chipset, 0xb06070b1
-nouveau E[     DRM] failed to create 0x00000080, -22
-nouveau: probe of 0000:01:00.0 failed with error -22
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Yeah, these are the funky GK208B's (often marketed as GT 720?). You can try
+adding 0x106 right above case 0x108 in
+drivers/gpu/drm/nouveau/core/engine/device/nve0.c -- they should be identical
+or at least similar.
 
-Obviously, I don't have a framebuffer console during boot and of course
-nouveau-based X also doesn't work. I'm currently using uvesafb as a workaround.
-
-lspci -v output:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 730]
-(rev a1) (prog-if 00 [VGA controller])
-    Subsystem: CardExpert Technology Device 1287
-    Flags: bus master, fast devsel, latency 0, IRQ 11
-    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at e8000000 (64-bit, prefetchable) [size=128M]
-    Memory at f0000000 (64-bit, prefetchable) [size=32M]
-    I/O ports at e000 [size=128]
-    Expansion ROM at f7000000 [disabled] [size=512K]
-    Capabilities: [60] Power Management version 3
-    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-    Capabilities: [78] Express Legacy Endpoint, MSI 00
-    Capabilities: [100] Virtual Channel
-    Capabilities: [128] Power Budgeting <?>
-    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 <?>
-    Kernel modules: nouveau
-
-I have no additional details on the card. It came with an HP office PC.
+If that doesn't work, please append a dmesg here (after the patch) and send a
+mmiotrace of the blob + vbios to mmio.dumps-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org -- good guide available
+at https://wiki.ubuntu.com/X/MMIOTracing
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1417533598.87D04CfD1.7348
-Date: Tue, 2 Dec 2014 15:19:58 +0000
+--1417534079.18eF3f31.9852
+Date: Tue, 2 Dec 2014 15:27:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -87,119 +61,47 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - unknown kepler chipset"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">86935</a>
-          </td>
-        </tr>
+   title="NEW - [NV106] unknown kepler chipset 0x106"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>unknown kepler chipset
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>sven.koehler&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>unknown kepler chipset
+           </td>
+           <td>[NV106] unknown kepler chipset 0x106
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>With Linux 3.17.4, I get the following errors in dmesg:
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV106] unknown kepler chipset 0x106"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV106] unknown kepler chipset 0x106"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Yeah, these are the funky GK208B's (often marketed as GT 720?). You can try
+adding 0x106 right above case 0x108 in
+drivers/gpu/drm/nouveau/core/engine/device/nve0.c -- they should be identical
+or at least similar.
 
-nouveau ![  DEVICE][0000:01:00.0] unknown Kepler chipset
-nouveau E[  DEVICE][0000:01:00.0] unknown chipset, 0xb06070b1
-nouveau E[     DRM] failed to create 0x00000080, -22
-nouveau: probe of 0000:01:00.0 failed with error -22
-
-Obviously, I don't have a framebuffer console during boot and of course
-nouveau-based X also doesn't work. I'm currently using uvesafb as a workaround.
-
-lspci -v output:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 730]
-(rev a1) (prog-if 00 [VGA controller])
-    Subsystem: CardExpert Technology Device 1287
-    Flags: bus master, fast devsel, latency 0, IRQ 11
-    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at e8000000 (64-bit, prefetchable) [size=128M]
-    Memory at f0000000 (64-bit, prefetchable) [size=32M]
-    I/O ports at e000 [size=128]
-    Expansion ROM at f7000000 [disabled] [size=512K]
-    Capabilities: [60] Power Management version 3
-    Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-    Capabilities: [78] Express Legacy Endpoint, MSI 00
-    Capabilities: [100] Virtual Channel
-    Capabilities: [128] Power Budgeting &lt;?&gt;
-    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
-    Kernel modules: nouveau
-
-I have no additional details on the card. It came with an HP office PC.</pre>
+If that doesn't work, please append a dmesg here (after the patch) and send a
+mmiotrace of the blob + vbios to <a href="mailto:mmio.dumps&#64;gmail.com">mmio.dumps&#64;gmail.com</a> -- good guide available
+at <a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a></pre>
         </div>
       </p>
       <hr>
@@ -211,9 +113,9 @@ I have no additional details on the card. It came with an HP office PC.</pre>
     </body>
 </html>
 
---1417533598.87D04CfD1.7348--
+--1417534079.18eF3f31.9852--
 
---===============0889668166==
+--===============1010579757==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -223,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0889668166==--
+--===============1010579757==--
