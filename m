@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
-Date: Wed, 03 Dec 2014 11:27:11 +0000
-Message-ID: <bug-86935-8800-tJz8E7FNoB@http.bugs.freedesktop.org/>
-References: <bug-86935-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?q?Sven=20K=C3=B6hler?= <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] Add support for GK208B, resolves bug 86935
+Date: Wed,  3 Dec 2014 14:15:54 +0000
+Message-ID: <1417616154-22103-1-git-send-email-sven.koehler@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1853311669=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,103 +16,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: =?UTF-8?q?Sven=20K=C3=B6hler?= <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1853311669==
-Content-Type: multipart/alternative; boundary="1417606031.cDcAc41.21206"; charset="UTF-8"
-
-
---1417606031.cDcAc41.21206
-Date: Wed, 3 Dec 2014 11:27:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86935
-
---- Comment #8 from Sven <sven.koehler-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #4)
-> (In reply to Sven from comment #2)
-> > Adding 0x106 seems to have worked. I can now boot with nouveau framebuffer
-> > and nouveau Xorg driver also works.
-> 
-> Awesome. Please confirm that you're using the nouveau 3d driver (you'll need
-> at least mesa 10.2). Try running some semi-stressing 3d thing too? Not sure
-> if you use gnome-shell or something. [glxgears isn't really enough, although
-> it's a start.]
-
-I'm using mesa 10.3.4 and glxinfo confirms that I'm using "Gallium 0.4 on
-NV106" and not software rendering or nvidia binary driver. I can confirm that
-glxgears, quake3-demo, and 0ad alpha 17 run fine. Everything looks like it
-should.
-
-Sorry, no gnome-shell here. I'm using the MATE Desktop Environment (good old
-fast 2D stuff).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1417606031.cDcAc41.21206
-Date: Wed, 3 Dec 2014 11:27:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV106] unknown kepler chipset 0x106"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV106] unknown kepler chipset 0x106"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
-              from <span class="vcard"><a class="email" href="mailto:sven.koehler&#64;gmail.com" title="Sven &lt;sven.koehler&#64;gmail.com&gt;"> <span class="fn">Sven</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=86935#c4">comment #4</a>)
-<span class="quote">&gt; (In reply to Sven from <a href="show_bug.cgi?id=86935#c2">comment #2</a>)
-&gt; &gt; Adding 0x106 seems to have worked. I can now boot with nouveau framebuffer
-&gt; &gt; and nouveau Xorg driver also works.
-&gt; 
-&gt; Awesome. Please confirm that you're using the nouveau 3d driver (you'll need
-&gt; at least mesa 10.2). Try running some semi-stressing 3d thing too? Not sure
-&gt; if you use gnome-shell or something. [glxgears isn't really enough, although
-&gt; it's a start.]</span >
-
-I'm using mesa 10.3.4 and glxinfo confirms that I'm using &quot;Gallium 0.4 on
-NV106&quot; and not software rendering or nvidia binary driver. I can confirm that
-glxgears, quake3-demo, and 0ad alpha 17 run fine. Everything looks like it
-should.
-
-Sorry, no gnome-shell here. I'm using the MATE Desktop Environment (good old
-fast 2D stuff).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1417606031.cDcAc41.21206--
-
---===============1853311669==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1853311669==--
+LS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2VuZ2luZS9kZXZpY2UvbnZlMC5jIHwg
+MzMgKysrKysrKysrKysrKysrKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAzMyBpbnNlcnRpb25z
+KCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9lbmdpbmUvZGV2
+aWNlL252ZTAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RldmljZS9u
+dmUwLmMKaW5kZXggYjFiMmU0OC4uOTc1Y2ZhYiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L25vdXZlYXUvY29yZS9lbmdpbmUvZGV2aWNlL252ZTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9jb3JlL2VuZ2luZS9kZXZpY2UvbnZlMC5jCkBAIC0yNDgsNiArMjQ4LDM5IEBAIG52
+ZTBfaWRlbnRpZnkoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXZpY2UpCiAJCWRldmljZS0+b2Ns
+YXNzW05WREVWX0VOR0lORV9QUFAgICAgXSA9ICZudmMwX3BwcF9vY2xhc3M7CiAJCWRldmljZS0+
+b2NsYXNzW05WREVWX0VOR0lORV9QRVJGTU9OXSA9ICZudmYwX3BlcmZtb25fb2NsYXNzOwogCQli
+cmVhazsKKwljYXNlIDB4MTA2OgorCQlkZXZpY2UtPmNuYW1lID0gIkdLMjA4QiI7CisJCWRldmlj
+ZS0+b2NsYXNzW05WREVWX1NVQkRFVl9WQklPUyAgXSA9ICZub3V2ZWF1X2Jpb3Nfb2NsYXNzOwor
+CQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfR1BJTyAgIF0gPSAgbnZlMF9ncGlvX29jbGFz
+czsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0kyQyAgICBdID0gIG52ZTBfaTJjX29j
+bGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0ZVU0UgICBdID0gJmdmMTAwX2Z1
+c2Vfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfQ0xPQ0sgIF0gPSAmbnZl
+MF9jbG9ja19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9USEVSTSAgXSA9
+ICZudmQwX3RoZXJtX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX01YTSAg
+ICBdID0gJm52NTBfbXhtX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0RF
+VklOSVRdID0gIG52YzBfZGV2aW5pdF9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NV
+QkRFVl9NQyAgICAgXSA9ICBnazIwYV9tY19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVW
+X1NVQkRFVl9CVVMgICAgXSA9ICBudmMwX2J1c19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05W
+REVWX1NVQkRFVl9USU1FUiAgXSA9ICZudjA0X3RpbWVyX29jbGFzczsKKwkJZGV2aWNlLT5vY2xh
+c3NbTlZERVZfU1VCREVWX0ZCICAgICBdID0gIG52ZTBfZmJfb2NsYXNzOworCQlkZXZpY2UtPm9j
+bGFzc1tOVkRFVl9TVUJERVZfTFRDICAgIF0gPSAgZ2sxMDRfbHRjX29jbGFzczsKKwkJZGV2aWNl
+LT5vY2xhc3NbTlZERVZfU1VCREVWX0lCVVMgICBdID0gJm52ZTBfaWJ1c19vY2xhc3M7CisJCWRl
+dmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9JTlNUTUVNXSA9ICBudjUwX2luc3RtZW1fb2NsYXNz
+OworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVk0gICAgIF0gPSAmbnZjMF92bW1ncl9v
+Y2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9CQVIgICAgXSA9ICZudmMwX2Jh
+cl9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9QV1IgICAgXSA9ICBudjEw
+OF9wd3Jfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVk9MVCAgIF0gPSAm
+bnY0MF92b2x0X29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0RNQU9CSiBd
+ID0gIG52ZDBfZG1hZW5nX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0ZJ
+Rk8gICBdID0gIG52MTA4X2ZpZm9fb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJ
+TkVfU1cgICAgIF0gPSAgbnZjMF9zb2Z0d2FyZV9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05W
+REVWX0VOR0lORV9HUiAgICAgXSA9ICBudjEwOF9ncmFwaF9vY2xhc3M7CisJCWRldmljZS0+b2Ns
+YXNzW05WREVWX0VOR0lORV9ESVNQICAgXSA9ICBudmYwX2Rpc3Bfb2NsYXNzOworCQlkZXZpY2Ut
+Pm9jbGFzc1tOVkRFVl9FTkdJTkVfQ09QWTAgIF0gPSAmbnZlMF9jb3B5MF9vY2xhc3M7CisJCWRl
+dmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9DT1BZMSAgXSA9ICZudmUwX2NvcHkxX29jbGFzczsK
+KwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0NPUFkyICBdID0gJm52ZTBfY29weTJfb2Ns
+YXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfQlNQICAgIF0gPSAmbnZlMF9ic3Bf
+b2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfVlAgICAgIF0gPSAmbnZlMF92
+cF9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9QUFAgICAgXSA9ICZudmMw
+X3BwcF9vY2xhc3M7CisJCWJyZWFrOwogCWNhc2UgMHgxMDg6CiAJCWRldmljZS0+Y25hbWUgPSAi
+R0syMDgiOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVkJJT1MgIF0gPSAmbm91dmVh
+dV9iaW9zX29jbGFzczsKLS0gCjIuMC40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
