@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86987] Requesting a New Account
-Date: Wed, 03 Dec 2014 22:08:26 +0000
-Message-ID: <bug-86987-8800-GtL8Vgglti@http.bugs.freedesktop.org/>
-References: <bug-86987-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1764636593=="
+From: Rob Jansen <rob.g.jansen-qqJZlXDiQIP5oiiGuJUvLw@public.gmane.org>
+Subject: errors with GeForce GTX 650 Ti and 3 monitors
+Date: Fri, 5 Dec 2014 08:07:48 -0500
+Message-ID: <C7B61B43-0C64-471F-9E1E-F656D060BCD7@nrl.navy.mil>
+Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86987-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,72 +18,47 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1764636593==
-Content-Type: multipart/alternative; boundary="1417644506.aB7FA3.27837"; charset="UTF-8"
-
-
---1417644506.aB7FA3.27837
-Date: Wed, 3 Dec 2014 22:08:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86987
-
---- Comment #1 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 110428
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110428&action=edit
-GPG key
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1417644506.aB7FA3.27837
-Date: Wed, 3 Dec 2014 22:08:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Requesting a New Account"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86987#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Requesting a New Account"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86987">bug 86987</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110428" name="attach_110428" title="GPG key">attachment 110428</a> <a href="attachment.cgi?id=110428&amp;action=edit" title="GPG key">[details]</a></span>
-GPG key</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1417644506.aB7FA3.27837--
-
---===============1764636593==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1764636593==--
+SGksCgpVc2luZyAzIG1vbml0b3JzIG9uIHRoZSBHZUZvcmNlIEdUWCA2NTAgVGkgY2FyZCAoMiBE
+VkkgYW5kIDEgVkdBKSB3b3JrcyBncmVhdCBvdXQgb2YgdGhlIGJveCBvbiBGZWRvcmEgMjAuIEhv
+d2V2ZXIsIGV2ZXJ5IGNvdXBsZSBvZiBkYXlzIHRoZSBncmFwaGljcyBkcml2ZXIgc2VlbXMgdG8g
+Y3Jhc2guIFRoZSBzYW1lIHRoaW5nIHVzZWQgdG8gaGFwcGVuIHdoZW4gMiBtb25pdG9ycyB3ZXJl
+IGluIHVzZSwgYnV0IHRoYXQgaGFzIHByZXR0eSBtdWNoIHN0YWJpbGl6ZWQgYXMgb2YgbGF0ZS4g
+RG9lcyBhbnlvbmUgaGF2ZSBhIHN0YWJsZSBzZXR1cCB3aXRoIHRoaXMgY2FyZCB1c2luZyAzIG1v
+bml0b3JzPyBXaWxsIDMgbW9uaXRvcnMgYmUgc3VwcG9ydGVkPwoKVGhhbmtzLApSb2IKCiQgdW5h
+bWUgLXIKMy4xNy40LTIwMC5mYzIwLng4Nl82NAoKJCBsc3BjaSB8IGdyZXAgVGkKMDE6MDAuMCBW
+R0EgY29tcGF0aWJsZSBjb250cm9sbGVyOiBOVklESUEgQ29ycG9yYXRpb24gR0sxMDYgW0dlRm9y
+Y2UgR1RYIDY1MCBUaV0gKHJldiBhMSkKCiQgZG1lc2cKWzE0MTQ0Ny4xNzA5NzNdIHRyYXBzOiBw
+b2xraXRkWzk3MDddIGdlbmVyYWwgcHJvdGVjdGlvbiBpcDo3ZjM4MzUwOGMwMjIgc3A6N2ZmZmRk
+MWFjMTEwIGVycm9yOjAgaW4gbGlibW96anMtMTcuMC5zb1s3ZjM4MzRmNGQwMDArM2IzMDAwXQpb
+MTQxODY5LjUyMTI0Nl0gbm91dmVhdSBFWyAgIFBGSUZPXVswMDAwOjAxOjAwLjBdIFNDSEVEX0VS
+Uk9SIFsgQ1RYU1dfVElNRU9VVCBdClsxNDE4NjkuNTIxMjU4XSBub3V2ZWF1IEVbICAgUEZJRk9d
+WzAwMDA6MDE6MDAuMF0gUEdSQVBIIGVuZ2luZSBmYXVsdCBvbiBjaGFubmVsIDQsIHJlY292ZXJp
+bmcuLi4KWzE0MjA0NC4zODQxMTBdIG5vdXZlYXUgRVtYb3JnWzEwNThdXSBmYWlsZWQgdG8gaWRs
+ZSBjaGFubmVsIDB4Y2NjYzAwMDAgW1hvcmdbMTA1OF1dClsxNDIwNTkuMzgxODM2XSBub3V2ZWF1
+IEVbWG9yZ1sxMDU4XV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAwIFtYb3JnWzEw
+NThdXQpbMTQyMDU5LjM4MTkzM10gbm91dmVhdSBFWyAgIFBGSUZPXVswMDAwOjAxOjAwLjBdIHJl
+YWQgZmF1bHQgYXQgMHgwMDAwMDIzMDAwIFtQVEVdIGZyb20gUEJETUEwL0hPU1RfQ1BVIG9uIGNo
+YW5uZWwgMHgwMDdmOTY2MDAwIFt1bmtub3duXQpbMTQyMDc0LjQzNzU1M10gbm91dmVhdSBFW2No
+cm9tZVsyNDUxXV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAwIFtjaHJvbWVbMjQ1
+MV1dClsxNDIwODkuNDM1Mjc4XSBub3V2ZWF1IEVbY2hyb21lWzI0NTFdXSBmYWlsZWQgdG8gaWRs
+ZSBjaGFubmVsIDB4Y2NjYzAwMDAgW2Nocm9tZVsyNDUxXV0KWzE0MjExNC4wOTI1NDFdIG5vdXZl
+YXUgRVtnbm9tZS1zaGVsbFsxOTE2XV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAw
+IFtnbm9tZS1zaGVsbFsxOTE2XV0KWzE0MjEyOS4wOTAyNjZdIG5vdXZlYXUgRVtnbm9tZS1zaGVs
+bFsxOTE2XV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAwIFtnbm9tZS1zaGVsbFsx
+OTE2XV0KWzE0MjE0NS4yMjk4MTldIG5vdXZlYXUgRVtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXSBm
+YWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAwMDAgW2dub21lLXNlc3Npb24tY1sxNjAxMF1d
+ClsxNDIxNjAuMjI3NTQ2XSBub3V2ZWF1IEVbZ25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0gZmFpbGVk
+IHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAwIFtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXQpbMTQy
+MTc1LjIyNTI3Ml0gbm91dmVhdSBFW2dub21lLXNlc3Npb24tY1sxNjAxMF1dIGZhaWxlZCB0byBp
+ZGxlIGNoYW5uZWwgMHhjY2NjMDAwMCBbZ25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0KWzE0MjE5MC4y
+MjI5OTldIG5vdXZlYXUgRVtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXSBmYWlsZWQgdG8gaWRsZSBj
+aGFubmVsIDB4Y2NjYzAwMDAgW2dub21lLXNlc3Npb24tY1sxNjAxMF1dClsxNDIyMDUuMjIwNzI0
+XSBub3V2ZWF1IEVbZ25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5l
+bCAweGNjY2MwMDAwIFtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXQpbMTQyMjIwLjIxODQ1MF0gbm91
+dmVhdSBFW2dub21lLXNlc3Npb24tY1sxNjAxMF1dIGZhaWxlZCB0byBpZGxlIGNoYW5uZWwgMHhj
+Y2NjMDAwMCBbZ25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0KWzE0MjIzNS4yMTYxNzZdIG5vdXZlYXUg
+RVtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXSBmYWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAw
+MDAgW2dub21lLXNlc3Npb24tY1sxNjAxMF1dCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
