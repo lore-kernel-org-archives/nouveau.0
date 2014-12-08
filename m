@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: errors with GeForce GTX 650 Ti and 3 monitors
-Date: Fri, 5 Dec 2014 18:32:28 -0500
-Message-ID: <CAKb7UvhQ-iSK9gSDPAhDPac-2WD5HTXFBL5OUxYvcTp54bD_cA@mail.gmail.com>
-References: <C7B61B43-0C64-471F-9E1E-F656D060BCD7@nrl.navy.mil>
- <79AE9E27-EDB9-44C0-900B-918072FDCE11@nrl.navy.mil>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85465] [NVCF] X loses resources after suspend/resume
+Date: Mon, 08 Dec 2014 01:25:39 +0000
+Message-ID: <bug-85465-8800-6iHCCR3EhY@http.bugs.freedesktop.org/>
+References: <bug-85465-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0558118613=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <79AE9E27-EDB9-44C0-900B-918072FDCE11-qqJZlXDiQIP5oiiGuJUvLw@public.gmane.org>
+In-Reply-To: <bug-85465-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,68 +16,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Rob Jansen <rob.g.jansen-qqJZlXDiQIP5oiiGuJUvLw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlcmUgd2VyZSBmaXhlcyBpbiAzLjE3IHRoYXQgd2VyZSBzdXBwb3NlZCB0byBoZWxwIHRoaXMs
-IGJ1dAphcHBhcmVudGx5IHRoZXkgZGlkbid0IGhlbHAgZW5vdWdoLiBTZWUKaHR0cHM6Ly9idWdz
-LmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzIxODAgLS0gYmFzaWNhbGx5IHNvbWUK
-c29ydCBvZiBjYXJkIHNldHVwIGZhaWx1cmUgb24gb3VyIHBhcnQgaXMgY2F1c2luZyBvdXIgY3R4
-c3cgdG8gZGllLApidXQgbnZpZGlhJ3MgYXBwZWFycyB0byBiZSBtb3JlIHJlc2lsaWVudCB0byB0
-aGUgc2NyZXd1cHMuCgpPbiBGcmksIERlYyA1LCAyMDE0IGF0IDE6MTYgUE0sIFJvYiBKYW5zZW4g
-PHJvYi5nLmphbnNlbkBucmwubmF2eS5taWw+IHdyb3RlOgo+IFdlbGwsIEkgZG93bmdyYWRlZCBi
-YWNrIHRvIDIgbW9uaXRvcnMgYW5kIGl0IHR1cm5zIG91dCB0aGF0IHRoaXMgcHJvYmxlbSBoYXMg
-cmVhcHBlYXJlZCB3aGVuIHVzaW5nIG9ubHkgMiBtb25pdG9ycyBhcyB3ZWxsLiBUaGVyZSBtdXN0
-IGhhdmUgYmVlbiBhIHJlZ3Jlc3Npb24gb2Ygc29tZSBzb3J0IHNvbWV3aGVyZSBhbG9uZyB0aGUg
-bGluZSwgcG9zc2libHkgaW4gb25lIG9mIHRoZSBsYXRlc3Qga2VybmVscz8gV2hhdCBjYW4gSSBw
-cm92aWRlIHRvIGhlbHAgdGhpcyBpc3N1ZSBnZXQgZml4ZWQ/Cj4KPiAtUm9iCj4KPj4gT24gRGVj
-IDUsIDIwMTQsIGF0IDg6MDcgQU0sIFJvYiBKYW5zZW4gPHJvYi5nLmphbnNlbkBucmwubmF2eS5t
-aWw+IHdyb3RlOgo+Pgo+PiBIaSwKPj4KPj4gVXNpbmcgMyBtb25pdG9ycyBvbiB0aGUgR2VGb3Jj
-ZSBHVFggNjUwIFRpIGNhcmQgKDIgRFZJIGFuZCAxIFZHQSkgd29ya3MgZ3JlYXQgb3V0IG9mIHRo
-ZSBib3ggb24gRmVkb3JhIDIwLiBIb3dldmVyLCBldmVyeSBjb3VwbGUgb2YgZGF5cyB0aGUgZ3Jh
-cGhpY3MgZHJpdmVyIHNlZW1zIHRvIGNyYXNoLiBUaGUgc2FtZSB0aGluZyB1c2VkIHRvIGhhcHBl
-biB3aGVuIDIgbW9uaXRvcnMgd2VyZSBpbiB1c2UsIGJ1dCB0aGF0IGhhcyBwcmV0dHkgbXVjaCBz
-dGFiaWxpemVkIGFzIG9mIGxhdGUuIERvZXMgYW55b25lIGhhdmUgYSBzdGFibGUgc2V0dXAgd2l0
-aCB0aGlzIGNhcmQgdXNpbmcgMyBtb25pdG9ycz8gV2lsbCAzIG1vbml0b3JzIGJlIHN1cHBvcnRl
-ZD8KPj4KPj4gVGhhbmtzLAo+PiBSb2IKPj4KPj4gJCB1bmFtZSAtcgo+PiAzLjE3LjQtMjAwLmZj
-MjAueDg2XzY0Cj4+Cj4+ICQgbHNwY2kgfCBncmVwIFRpCj4+IDAxOjAwLjAgVkdBIGNvbXBhdGli
-bGUgY29udHJvbGxlcjogTlZJRElBIENvcnBvcmF0aW9uIEdLMTA2IFtHZUZvcmNlIEdUWCA2NTAg
-VGldIChyZXYgYTEpCj4+Cj4+ICQgZG1lc2cKPj4gWzE0MTQ0Ny4xNzA5NzNdIHRyYXBzOiBwb2xr
-aXRkWzk3MDddIGdlbmVyYWwgcHJvdGVjdGlvbiBpcDo3ZjM4MzUwOGMwMjIgc3A6N2ZmZmRkMWFj
-MTEwIGVycm9yOjAgaW4gbGlibW96anMtMTcuMC5zb1s3ZjM4MzRmNGQwMDArM2IzMDAwXQo+PiBb
-MTQxODY5LjUyMTI0Nl0gbm91dmVhdSBFWyAgIFBGSUZPXVswMDAwOjAxOjAwLjBdIFNDSEVEX0VS
-Uk9SIFsgQ1RYU1dfVElNRU9VVCBdCj4+IFsxNDE4NjkuNTIxMjU4XSBub3V2ZWF1IEVbICAgUEZJ
-Rk9dWzAwMDA6MDE6MDAuMF0gUEdSQVBIIGVuZ2luZSBmYXVsdCBvbiBjaGFubmVsIDQsIHJlY292
-ZXJpbmcuLi4KPj4gWzE0MjA0NC4zODQxMTBdIG5vdXZlYXUgRVtYb3JnWzEwNThdXSBmYWlsZWQg
-dG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAwMDAgW1hvcmdbMTA1OF1dCj4+IFsxNDIwNTkuMzgxODM2
-XSBub3V2ZWF1IEVbWG9yZ1sxMDU4XV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAw
-IFtYb3JnWzEwNThdXQo+PiBbMTQyMDU5LjM4MTkzM10gbm91dmVhdSBFWyAgIFBGSUZPXVswMDAw
-OjAxOjAwLjBdIHJlYWQgZmF1bHQgYXQgMHgwMDAwMDIzMDAwIFtQVEVdIGZyb20gUEJETUEwL0hP
-U1RfQ1BVIG9uIGNoYW5uZWwgMHgwMDdmOTY2MDAwIFt1bmtub3duXQo+PiBbMTQyMDc0LjQzNzU1
-M10gbm91dmVhdSBFW2Nocm9tZVsyNDUxXV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2Mw
-MDAwIFtjaHJvbWVbMjQ1MV1dCj4+IFsxNDIwODkuNDM1Mjc4XSBub3V2ZWF1IEVbY2hyb21lWzI0
-NTFdXSBmYWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAwMDAgW2Nocm9tZVsyNDUxXV0KPj4g
-WzE0MjExNC4wOTI1NDFdIG5vdXZlYXUgRVtnbm9tZS1zaGVsbFsxOTE2XV0gZmFpbGVkIHRvIGlk
-bGUgY2hhbm5lbCAweGNjY2MwMDAwIFtnbm9tZS1zaGVsbFsxOTE2XV0KPj4gWzE0MjEyOS4wOTAy
-NjZdIG5vdXZlYXUgRVtnbm9tZS1zaGVsbFsxOTE2XV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAw
-eGNjY2MwMDAwIFtnbm9tZS1zaGVsbFsxOTE2XV0KPj4gWzE0MjE0NS4yMjk4MTldIG5vdXZlYXUg
-RVtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXSBmYWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAw
-MDAgW2dub21lLXNlc3Npb24tY1sxNjAxMF1dCj4+IFsxNDIxNjAuMjI3NTQ2XSBub3V2ZWF1IEVb
-Z25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAw
-IFtnbm9tZS1zZXNzaW9uLWNbMTYwMTBdXQo+PiBbMTQyMTc1LjIyNTI3Ml0gbm91dmVhdSBFW2du
-b21lLXNlc3Npb24tY1sxNjAxMF1dIGZhaWxlZCB0byBpZGxlIGNoYW5uZWwgMHhjY2NjMDAwMCBb
-Z25vbWUtc2Vzc2lvbi1jWzE2MDEwXV0KPj4gWzE0MjE5MC4yMjI5OTldIG5vdXZlYXUgRVtnbm9t
-ZS1zZXNzaW9uLWNbMTYwMTBdXSBmYWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAwMDAgW2du
-b21lLXNlc3Npb24tY1sxNjAxMF1dCj4+IFsxNDIyMDUuMjIwNzI0XSBub3V2ZWF1IEVbZ25vbWUt
-c2Vzc2lvbi1jWzE2MDEwXV0gZmFpbGVkIHRvIGlkbGUgY2hhbm5lbCAweGNjY2MwMDAwIFtnbm9t
-ZS1zZXNzaW9uLWNbMTYwMTBdXQo+PiBbMTQyMjIwLjIxODQ1MF0gbm91dmVhdSBFW2dub21lLXNl
-c3Npb24tY1sxNjAxMF1dIGZhaWxlZCB0byBpZGxlIGNoYW5uZWwgMHhjY2NjMDAwMCBbZ25vbWUt
-c2Vzc2lvbi1jWzE2MDEwXV0KPj4gWzE0MjIzNS4yMTYxNzZdIG5vdXZlYXUgRVtnbm9tZS1zZXNz
-aW9uLWNbMTYwMTBdXSBmYWlsZWQgdG8gaWRsZSBjaGFubmVsIDB4Y2NjYzAwMDAgW2dub21lLXNl
-c3Npb24tY1sxNjAxMF1dCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0558118613==
+Content-Type: multipart/alternative; boundary="1418001939.bb6142.16862"; charset="UTF-8"
+
+
+--1418001939.bb6142.16862
+Date: Mon, 8 Dec 2014 01:25:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85465
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+After further investigation it appears that no GF116's actually contain a
+second "regular" copy engine, so it's been disabled completely. 3.18 should fix
+it and the patch is being backported to the stable trees.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418001939.bb6142.16862
+Date: Mon, 8 Dec 2014 01:25:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCF] X loses resources after suspend/resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465">bug 85465</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCF] X loses resources after suspend/resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVCF] X loses resources after suspend/resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85465">bug 85465</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>After further investigation it appears that no GF116's actually contain a
+second &quot;regular&quot; copy engine, so it's been disabled completely. 3.18 should fix
+it and the patch is being backported to the stable trees.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418001939.bb6142.16862--
+
+--===============0558118613==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0558118613==--
