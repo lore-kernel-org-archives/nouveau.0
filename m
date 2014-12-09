@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 34296] Failure loading nouveau for nVidia GeForce
- 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)
-Date: Tue, 09 Dec 2014 18:13:48 +0000
-Message-ID: <bug-34296-8800-GTPKMTCjut@http.bugs.freedesktop.org/>
-References: <bug-34296-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 57352] [nouveau] Kernel Tux logo incorrectly
+	displayed at boot
+Date: Tue, 09 Dec 2014 18:23:41 +0000
+Message-ID: <bug-57352-8800-OemnmzibLp@http.bugs.freedesktop.org/>
+References: <bug-57352-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1416416566=="
+Content-Type: multipart/mixed; boundary="===============1423796414=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-34296-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-57352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1416416566==
-Content-Type: multipart/alternative; boundary="1418148828.Bd622.3189"; charset="UTF-8"
+--===============1423796414==
+Content-Type: multipart/alternative; boundary="1418149421.FCcf2.7632"; charset="UTF-8"
 
 
---1418148828.Bd622.3189
-Date: Tue, 9 Dec 2014 18:13:48 +0000
+--1418149421.FCcf2.7632
+Date: Tue, 9 Dec 2014 18:23:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=34296
+https://bugs.freedesktop.org/show_bug.cgi?id=57352
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
@@ -38,24 +38,27 @@ Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 ----------------------------------------------------------------------------
              Status|NEW                         |NEEDINFO
           Component|DRM/other                   |Driver/nouveau
+           Hardware|Other                       |x86-64 (AMD64)
             Version|XOrg git                    |unspecified
            Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
                    |.org                        |rg
             Product|DRI                         |xorg
          QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
 Moving to Nouveau.
 
-Could you please retest with a recent kernel?
-(The bug went unnoticed as it wasn't linked to Nouveau.)
+This issue should be fixed by now, but could you still please test with a
+recent kernel? You will need patch v4.5 listed in bug #27501 if you want to use
+acceleration on that card. Otherwise, set nouveau.noaccel=1 and you should be
+fine.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418148828.Bd622.3189
-Date: Tue, 9 Dec 2014 18:13:48 +0000
+--1418149421.FCcf2.7632
+Date: Tue, 9 Dec 2014 18:23:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,8 +70,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296">bug 34296</a>
+   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -90,6 +93,14 @@ Content-Type: text/html; charset="UTF-8"
            <td>DRM/other
            </td>
            <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Hardware</td>
+           <td>Other
+           </td>
+           <td>x86-64 (AMD64)
            </td>
          </tr>
 
@@ -129,18 +140,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296#c4">Comment # 4</a>
+   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296">bug 34296</a>
+   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
         <pre>Moving to Nouveau.
 
-Could you please retest with a recent kernel?
-(The bug went unnoticed as it wasn't linked to Nouveau.)</pre>
+This issue should be fixed by now, but could you still please test with a
+recent kernel? You will need patch v4.5 listed in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="show_bug.cgi?id=27501">bug #27501</a> if you want to use
+acceleration on that card. Otherwise, set nouveau.noaccel=1 and you should be
+fine.</pre>
         </div>
       </p>
       <hr>
@@ -152,9 +168,9 @@ Could you please retest with a recent kernel?
     </body>
 </html>
 
---1418148828.Bd622.3189--
+--1418149421.FCcf2.7632--
 
---===============1416416566==
+--===============1423796414==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -164,4 +180,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1416416566==--
+--===============1423796414==--
