@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
-Date: Tue, 09 Dec 2014 18:32:00 +0000
-Message-ID: <bug-82714-8800-macHzRvBfQ@http.bugs.freedesktop.org/>
-References: <bug-82714-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 63192] [nouveau]
+ drmModeSetCursor->nouveau_bo_rd32->ioread32 provides high cpu load when
+ using weston drm-compositor
+Date: Tue, 09 Dec 2014 18:39:12 +0000
+Message-ID: <bug-63192-8800-xM16B1uyFS@http.bugs.freedesktop.org/>
+References: <bug-63192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2082854429=="
+Content-Type: multipart/mixed; boundary="===============1265729596=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-63192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +22,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2082854429==
-Content-Type: multipart/alternative; boundary="1418149919.Af5E21.11642"; charset="UTF-8"
+--===============1265729596==
+Content-Type: multipart/alternative; boundary="1418150352.40bea3.14756"; charset="UTF-8"
 
 
---1418149919.Af5E21.11642
-Date: Tue, 9 Dec 2014 18:31:59 +0000
+--1418150352.40bea3.14756
+Date: Tue, 9 Dec 2014 18:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82714
+https://bugs.freedesktop.org/show_bug.cgi?id=63192
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|nouveau: fails to properly  |[G84] nouveau fails to
-                   |initialize GPU              |properly initialize GPU
+             Status|NEW                         |NEEDINFO
+          Component|DRM/other                   |Driver/nouveau
+            Version|DRI git                     |unspecified
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+            Product|DRI                         |xorg
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+--- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Moving to Nouveau.
+
+Are you still experiencing this issue with an updated graphic stack, aka.
+kernel 3.18, mesa 10.4, libdrm 2.4.58 and waylaid/weston 1.6?
+(The bug went unnoticed as it wasn't linked to Nouveau.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418149919.Af5E21.11642
-Date: Tue, 9 Dec 2014 18:31:59 +0000
+--1418150352.40bea3.14756
+Date: Tue, 9 Dec 2014 18:39:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +69,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192">bug 63192</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -66,13 +80,71 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau: fails to properly initialize GPU
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[G84] nouveau fails to properly initialize GPU
+           <td>NEEDINFO
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>DRM/other
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>DRI git
+           </td>
+           <td>unspecified
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192">bug 63192</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Moving to Nouveau.
+
+Are you still experiencing this issue with an updated graphic stack, aka.
+kernel 3.18, mesa 10.4, libdrm 2.4.58 and waylaid/weston 1.6?
+(The bug went unnoticed as it wasn't linked to Nouveau.)</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +155,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418149919.Af5E21.11642--
+--1418150352.40bea3.14756--
 
---===============2082854429==
+--===============1265729596==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +167,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2082854429==--
+--===============1265729596==--
