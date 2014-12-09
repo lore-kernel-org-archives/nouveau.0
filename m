@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57352] [nouveau] Kernel Tux logo incorrectly
-	displayed at boot
-Date: Tue, 09 Dec 2014 18:23:41 +0000
-Message-ID: <bug-57352-8800-OemnmzibLp@http.bugs.freedesktop.org/>
-References: <bug-57352-8800@http.bugs.freedesktop.org/>
+From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: DCB 4.1 spec update
+Date: Tue, 9 Dec 2014 10:26:27 -0800
+Message-ID: <20141209182627.GO29251@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1423796414=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,164 +19,15 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1423796414==
-Content-Type: multipart/alternative; boundary="1418149421.FCcf2.7632"; charset="UTF-8"
-
-
---1418149421.FCcf2.7632
-Date: Tue, 9 Dec 2014 18:23:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=57352
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-          Component|DRM/other                   |Driver/nouveau
-           Hardware|Other                       |x86-64 (AMD64)
-            Version|XOrg git                    |unspecified
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-            Product|DRI                         |xorg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
---- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Moving to Nouveau.
-
-This issue should be fixed by now, but could you still please test with a
-recent kernel? You will need patch v4.5 listed in bug #27501 if you want to use
-acceleration on that card. Otherwise, set nouveau.noaccel=1 and you should be
-fine.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1418149421.FCcf2.7632
-Date: Tue, 9 Dec 2014 18:23:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Hardware</td>
-           <td>Other
-           </td>
-           <td>x86-64 (AMD64)
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Moving to Nouveau.
-
-This issue should be fixed by now, but could you still please test with a
-recent kernel? You will need patch v4.5 listed in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="show_bug.cgi?id=27501">bug #27501</a> if you want to use
-acceleration on that card. Otherwise, set nouveau.noaccel=1 and you should be
-fine.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1418149421.FCcf2.7632--
-
---===============1423796414==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1423796414==--
+SGksCgpUaGUgVkJJT1Mgb24gR00yMHggR1BVcyB1c2VzIGEgc2xpZ2h0bHkgdXBkYXRlZCB2ZXJz
+aW9uIG9mIHRoZSBEQ0IuCkkndmUgcG9zdGVkIGFuIHVwZGF0ZWQgRENCIHNwZWMgaGVyZToKCmZ0
+cDovL2Rvd25sb2FkLm52aWRpYS5jb20vb3Blbi1ncHUtZG9jL0RDQi8yL0RDQi00LngtU3BlY2lm
+aWNhdGlvbi5odG1sCgpZb3UgY2FuIGRpZmYgaXQgYWdhaW5zdCB0aGUgcHJldmlvdXMgdmVyc2lv
+bjoKCmZ0cDovL2Rvd25sb2FkLm52aWRpYS5jb20vb3Blbi1ncHUtZG9jL0RDQi8xL0RDQi00LjAt
+U3BlY2lmaWNhdGlvbi5odG1sCgp0byBzZWUgd2hhdCBjaGFuZ2VkIChzb3JyeSBmb3IgaGF2aW5n
+IHRvIGRpZmYgaHRtbCBmaWxlcykuICBUaGUgYmlnZ2VzdApkaWZmZXJlbmNlcyBhcmUgU2VyaWFs
+IE91dHB1dCBSZXNvdXJjZSAoU09SKSBhc3NpZ25tZW50LCBhbmQgdGhlIHVwZGF0ZWQKQ29tbXVu
+aWNhdGlvbnMgQ29udHJvbCBCbG9jayBsYXlvdXQuCgpJIGhvcGUgdGhhdCBpcyBoZWxwZnVsLAot
+IEFuZHkKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5v
+dXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
