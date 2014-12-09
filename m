@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 59168] [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic
- garbage/corruption/noise on resume
-Date: Mon, 08 Dec 2014 01:27:59 +0000
-Message-ID: <bug-59168-8800-6TwnH2GCnu@http.bugs.freedesktop.org/>
-References: <bug-59168-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81690] nouveau GPU locks up under memory pressure
+Date: Tue, 09 Dec 2014 17:44:12 +0000
+Message-ID: <bug-81690-8800-71zR37f1XP@http.bugs.freedesktop.org/>
+References: <bug-81690-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1182967232=="
+Content-Type: multipart/mixed; boundary="===============0462624420=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-59168-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81690-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1182967232==
-Content-Type: multipart/alternative; boundary="1418002079.F02B352.17844"; charset="UTF-8"
+--===============0462624420==
+Content-Type: multipart/alternative; boundary="1418147052.82AFC4A3.23045"; charset="UTF-8"
 
 
---1418002079.F02B352.17844
-Date: Mon, 8 Dec 2014 01:27:59 +0000
+--1418147052.82AFC4A3.23045
+Date: Tue, 9 Dec 2014 17:44:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=59168
+https://bugs.freedesktop.org/show_bug.cgi?id=81690
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
+          Component|DRM/other                   |Driver/nouveau
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
+            Product|DRI                         |xorg
+         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---- Comment #52 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This bug covered a lot of different issues over its lifetime. The last one of
-them is a NVCF issue where the second copy engine does not appear to be there.
-We've disabled nouveau attempting to use it on any NVCF's and the patch is in
-3.18 (and being backported to stable trees).
-
-If you feel like you still have an issue related to this bug, open a new one,
-do not under any circumstances reopen this one, as it has been too polluted by
-unrelated issues and comments.
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Correcting product and component to link it to Nouveau.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418002079.F02B352.17844
-Date: Mon, 8 Dec 2014 01:27:59 +0000
+--1418147052.82AFC4A3.23045
+Date: Tue, 9 Dec 2014 17:44:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,12 +57,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
+          bz_status_NEW "
+   title="NEW - nouveau GPU locks up under memory pressure"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690">bug 81690</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -77,40 +72,50 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
+           <td style="text-align:right;">Component</td>
+           <td>DRM/other
            </td>
-           <td>RESOLVED
+           <td>Driver/nouveau
            </td>
          </tr>
 
          <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
+           <td style="text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
            </td>
-           <td>FIXED
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Product</td>
+           <td>DRI
+           </td>
+           <td>xorg
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>xorg-team&#64;lists.x.org
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168#c52">Comment # 52</a>
+          bz_status_NEW "
+   title="NEW - nouveau GPU locks up under memory pressure"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nvc1/Quardro1000M|nvc3/Quadro2000M] graphic garbage/corruption/noise on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59168">bug 59168</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - nouveau GPU locks up under memory pressure"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690">bug 81690</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>This bug covered a lot of different issues over its lifetime. The last one of
-them is a NVCF issue where the second copy engine does not appear to be there.
-We've disabled nouveau attempting to use it on any NVCF's and the patch is in
-3.18 (and being backported to stable trees).
-
-If you feel like you still have an issue related to this bug, open a new one,
-do not under any circumstances reopen this one, as it has been too polluted by
-unrelated issues and comments.</pre>
+        <pre>Correcting product and component to link it to Nouveau.</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +127,9 @@ unrelated issues and comments.</pre>
     </body>
 </html>
 
---1418002079.F02B352.17844--
+--1418147052.82AFC4A3.23045--
 
---===============1182967232==
+--===============0462624420==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1182967232==--
+--===============0462624420==--
