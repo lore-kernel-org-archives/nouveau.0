@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Tue, 09 Dec 2014 18:10:06 +0000
-Message-ID: <bug-31780-8800-KRdmHjNq6G@http.bugs.freedesktop.org/>
-References: <bug-31780-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34296] Failure loading nouveau for nVidia GeForce
+ 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)
+Date: Tue, 09 Dec 2014 18:13:48 +0000
+Message-ID: <bug-34296-8800-GTPKMTCjut@http.bugs.freedesktop.org/>
+References: <bug-34296-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2050931916=="
+Content-Type: multipart/mixed; boundary="===============1416416566=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34296-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2050931916==
-Content-Type: multipart/alternative; boundary="1418148606.EB53f2.1921"; charset="UTF-8"
+--===============1416416566==
+Content-Type: multipart/alternative; boundary="1418148828.Bd622.3189"; charset="UTF-8"
 
 
---1418148606.EB53f2.1921
-Date: Tue, 9 Dec 2014 18:10:06 +0000
+--1418148828.Bd622.3189
+Date: Tue, 9 Dec 2014 18:13:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31780
+https://bugs.freedesktop.org/show_bug.cgi?id=34296
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
@@ -38,21 +39,23 @@ Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
              Status|NEW                         |NEEDINFO
           Component|DRM/other                   |Driver/nouveau
             Version|XOrg git                    |unspecified
+           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |.org                        |rg
             Product|DRI                         |xorg
          QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---- Comment #12 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+--- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
 Moving to Nouveau.
 
 Could you please retest with a recent kernel?
-I should receive an 8500 GT in a few days, so I'll be able to test anyway.
+(The bug went unnoticed as it wasn't linked to Nouveau.)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418148606.EB53f2.1921
-Date: Tue, 9 Dec 2014 18:10:06 +0000
+--1418148828.Bd622.3189
+Date: Tue, 9 Dec 2014 18:13:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,8 +67,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780">bug 31780</a>
+   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296">bug 34296</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -99,6 +102,14 @@ Content-Type: text/html; charset="UTF-8"
          </tr>
 
          <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>dri-devel&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
            <td style="text-align:right;">Product</td>
            <td>DRI
            </td>
@@ -118,18 +129,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780#c12">Comment # 12</a>
+   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780">bug 31780</a>
+   title="NEEDINFO - Failure loading nouveau for nVidia GeForce 8600 GT on ASUS XG Station(external 1x PCIe encasing for an GPU)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34296">bug 34296</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
         <pre>Moving to Nouveau.
 
 Could you please retest with a recent kernel?
-I should receive an 8500 GT in a few days, so I'll be able to test anyway.</pre>
+(The bug went unnoticed as it wasn't linked to Nouveau.)</pre>
         </div>
       </p>
       <hr>
@@ -141,9 +152,9 @@ I should receive an 8500 GT in a few days, so I'll be able to test anyway.</pre>
     </body>
 </html>
 
---1418148606.EB53f2.1921--
+--1418148828.Bd622.3189--
 
---===============2050931916==
+--===============1416416566==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -153,4 +164,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2050931916==--
+--===============1416416566==--
