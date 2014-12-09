@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82714] nouveau: fails to properly initialize GPU
-Date: Tue, 09 Dec 2014 18:31:10 +0000
-Message-ID: <bug-82714-8800-iuvA9xZLpi@http.bugs.freedesktop.org/>
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Tue, 09 Dec 2014 18:32:00 +0000
+Message-ID: <bug-82714-8800-macHzRvBfQ@http.bugs.freedesktop.org/>
 References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0537359494=="
+Content-Type: multipart/mixed; boundary="===============2082854429=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0537359494==
-Content-Type: multipart/alternative; boundary="1418149869.0f8dfb72.11065"; charset="UTF-8"
+--===============2082854429==
+Content-Type: multipart/alternative; boundary="1418149919.Af5E21.11642"; charset="UTF-8"
 
 
---1418149869.0f8dfb72.11065
-Date: Tue, 9 Dec 2014 18:31:09 +0000
+--1418149919.Af5E21.11642
+Date: Tue, 9 Dec 2014 18:31:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,26 +35,15 @@ Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-          Component|DRM/other                   |Driver/nouveau
-            Version|XOrg git                    |unspecified
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-            Product|DRI                         |xorg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
---- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Moving to Nouveau.
-
-Is this still an issue with kernel 3.18?
-(The bug went unnoticed as it wasn't linked to Nouveau.)
+            Summary|nouveau: fails to properly  |[G84] nouveau fails to
+                   |initialize GPU              |properly initialize GPU
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418149869.0f8dfb72.11065
-Date: Tue, 9 Dec 2014 18:31:09 +0000
+--1418149919.Af5E21.11642
+Date: Tue, 9 Dec 2014 18:31:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,7 +55,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - nouveau: fails to properly initialize GPU"
+   title="NEEDINFO - [G84] nouveau fails to properly initialize GPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -77,70 +66,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>nouveau: fails to properly initialize GPU
            </td>
-           <td>NEEDINFO
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
+           <td>[G84] nouveau fails to properly initialize GPU
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - nouveau: fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - nouveau: fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Moving to Nouveau.
-
-Is this still an issue with kernel 3.18?
-(The bug went unnoticed as it wasn't linked to Nouveau.)</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -151,9 +83,9 @@ Is this still an issue with kernel 3.18?
     </body>
 </html>
 
---1418149869.0f8dfb72.11065--
+--1418149919.Af5E21.11642--
 
---===============0537359494==
+--===============2082854429==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -163,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0537359494==--
+--===============2082854429==--
