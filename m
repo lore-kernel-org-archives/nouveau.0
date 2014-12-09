@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31780] DRM/Nouveau Blank Screen with 8500 GT
-Date: Tue, 09 Dec 2014 18:56:37 +0000
-Message-ID: <bug-31780-8800-HVTTDLIE6p@http.bugs.freedesktop.org/>
-References: <bug-31780-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: DCB 4.1 spec update
+Date: Wed, 10 Dec 2014 07:36:31 +1000
+Message-ID: <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ@mail.gmail.com>
+References: <20141209182627.GO29251@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0506444028=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31780-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20141209182627.GO29251-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,111 +17,27 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0506444028==
-Content-Type: multipart/alternative; boundary="1418151397.E5A6b621.23333"; charset="UTF-8"
-
-
---1418151397.E5A6b621.23333
-Date: Tue, 9 Dec 2014 18:56:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=31780
-
-Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #13 from Kevin Winchester <kjwinchester-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Not sure if you noticed, this bug was from 4 years ago.
-
-It has been fixed for quite a while now, but I thank you for following up.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1418151397.E5A6b621.23333
-Date: Tue, 9 Dec 2014 18:56:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:kjwinchester&#64;gmail.com" title="Kevin Winchester &lt;kjwinchester&#64;gmail.com&gt;"> <span class="fn">Kevin Winchester</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780">bug 31780</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - DRM/Nouveau Blank Screen with 8500 GT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31780">bug 31780</a>
-              from <span class="vcard"><a class="email" href="mailto:kjwinchester&#64;gmail.com" title="Kevin Winchester &lt;kjwinchester&#64;gmail.com&gt;"> <span class="fn">Kevin Winchester</span></a>
-</span></b>
-        <pre>Not sure if you noticed, this bug was from 4 years ago.
-
-It has been fixed for quite a while now, but I thank you for following up.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1418151397.E5A6b621.23333--
-
---===============0506444028==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0506444028==--
+T24gV2VkLCBEZWMgMTAsIDIwMTQgYXQgNDoyNiBBTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJAbnZp
+ZGlhLmNvbT4gd3JvdGU6Cj4gSGksCkhleSBBbmR5LAoKPgo+IFRoZSBWQklPUyBvbiBHTTIweCBH
+UFVzIHVzZXMgYSBzbGlnaHRseSB1cGRhdGVkIHZlcnNpb24gb2YgdGhlIERDQi4KPiBJJ3ZlIHBv
+c3RlZCBhbiB1cGRhdGVkIERDQiBzcGVjIGhlcmU6Cj4KPiBmdHA6Ly9kb3dubG9hZC5udmlkaWEu
+Y29tL29wZW4tZ3B1LWRvYy9EQ0IvMi9EQ0ItNC54LVNwZWNpZmljYXRpb24uaHRtbAo+Cj4gWW91
+IGNhbiBkaWZmIGl0IGFnYWluc3QgdGhlIHByZXZpb3VzIHZlcnNpb246Cj4KPiBmdHA6Ly9kb3du
+bG9hZC5udmlkaWEuY29tL29wZW4tZ3B1LWRvYy9EQ0IvMS9EQ0ItNC4wLVNwZWNpZmljYXRpb24u
+aHRtbAo+Cj4gdG8gc2VlIHdoYXQgY2hhbmdlZCAoc29ycnkgZm9yIGhhdmluZyB0byBkaWZmIGh0
+bWwgZmlsZXMpLiAgVGhlIGJpZ2dlc3QKPiBkaWZmZXJlbmNlcyBhcmUgU2VyaWFsIE91dHB1dCBS
+ZXNvdXJjZSAoU09SKSBhc3NpZ25tZW50LCBhbmQgdGhlIHVwZGF0ZWQKPiBDb21tdW5pY2F0aW9u
+cyBDb250cm9sIEJsb2NrIGxheW91dC4KVGhhbmtzIGZvciB0aGUgaGVhZHMtdXAgb24gdGhlIHVw
+ZGF0ZS4gIFRoZSBTT1IgYXNzaWdubWVudCBjaGFuZ2VzCmV4cGxhaW4gc29tZSB0aGluZ3MgSSBu
+b3RpY2VkIHdoZW4gYnJpbmdpbmcgdXAgdGhlIEdNMjA0IHlvdSBndXlzIHNlbnQKbWUgOikKCkJl
+bi4KCj4KPiBJIGhvcGUgdGhhdCBpcyBoZWxwZnVsLAo+IC0gQW5keQo+Cj4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlz
+dAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
