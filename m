@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 63192] [nouveau]
- drmModeSetCursor->nouveau_bo_rd32->ioread32 provides high cpu load when
- using weston drm-compositor
-Date: Tue, 09 Dec 2014 18:39:12 +0000
-Message-ID: <bug-63192-8800-xM16B1uyFS@http.bugs.freedesktop.org/>
-References: <bug-63192-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34969] [nouveau] Card lockup on openarena
+Date: Tue, 09 Dec 2014 18:52:24 +0000
+Message-ID: <bug-34969-8800-LpmOPHXpee@http.bugs.freedesktop.org/>
+References: <bug-34969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1265729596=="
+Content-Type: multipart/mixed; boundary="===============1583519438=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-63192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1265729596==
-Content-Type: multipart/alternative; boundary="1418150352.40bea3.14756"; charset="UTF-8"
+--===============1583519438==
+Content-Type: multipart/alternative; boundary="1418151144.4Be704Df4.20865"; charset="UTF-8"
 
 
---1418150352.40bea3.14756
-Date: Tue, 9 Dec 2014 18:39:12 +0000
+--1418151144.4Be704Df4.20865
+Date: Tue, 9 Dec 2014 18:52:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=63192
+https://bugs.freedesktop.org/show_bug.cgi?id=34969
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
@@ -39,25 +37,24 @@ Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 ----------------------------------------------------------------------------
              Status|NEW                         |NEEDINFO
           Component|DRM/other                   |Driver/nouveau
-            Version|DRI git                     |unspecified
+            Version|XOrg git                    |unspecified
            Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
                    |.org                        |rg
             Product|DRI                         |xorg
          QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+--- Comment #21 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
 Moving to Nouveau.
 
 Are you still experiencing this issue with an updated graphic stack, aka.
-kernel 3.18, mesa 10.4, libdrm 2.4.58 and waylaid/weston 1.6?
-(The bug went unnoticed as it wasn't linked to Nouveau.)
+kernel 3.18, mesa 10.4, libdrm 2.4.58 and f86-video-nouveau 1.0.11?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418150352.40bea3.14756
-Date: Tue, 9 Dec 2014 18:39:12 +0000
+--1418151144.4Be704Df4.20865
+Date: Tue, 9 Dec 2014 18:52:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,8 +66,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192">bug 63192</a>
+   title="NEEDINFO - [nouveau] Card lockup on openarena"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34969">bug 34969</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -97,7 +94,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Version</td>
-           <td>DRI git
+           <td>XOrg git
            </td>
            <td>unspecified
            </td>
@@ -131,19 +128,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192#c1">Comment # 1</a>
+   title="NEEDINFO - [nouveau] Card lockup on openarena"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34969#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [nouveau] drmModeSetCursor-&gt;nouveau_bo_rd32-&gt;ioread32 provides high cpu load when using weston drm-compositor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=63192">bug 63192</a>
+   title="NEEDINFO - [nouveau] Card lockup on openarena"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34969">bug 34969</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
         <pre>Moving to Nouveau.
 
 Are you still experiencing this issue with an updated graphic stack, aka.
-kernel 3.18, mesa 10.4, libdrm 2.4.58 and waylaid/weston 1.6?
-(The bug went unnoticed as it wasn't linked to Nouveau.)</pre>
+kernel 3.18, mesa 10.4, libdrm 2.4.58 and f86-video-nouveau 1.0.11?</pre>
         </div>
       </p>
       <hr>
@@ -155,9 +151,9 @@ kernel 3.18, mesa 10.4, libdrm 2.4.58 and waylaid/weston 1.6?
     </body>
 </html>
 
---1418150352.40bea3.14756--
+--1418151144.4Be704Df4.20865--
 
---===============1265729596==
+--===============1583519438==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -167,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1265729596==--
+--===============1583519438==--
