@@ -1,16 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm: sgdma: free allocated memory if TT init
-	fails
-Date: Thu, 11 Dec 2014 08:07:24 +1000
-Message-ID: <CACAvsv4+eNaLNYaXLe9T8ejTx89y4Sb4hTJuBwFCttNMPLToCw@mail.gmail.com>
-References: <1418236637-15053-1-git-send-email-acourbot@nvidia.com>
- <CAKb7UvgOwK469E6z_nEC+UHXVgs5d-6rNFiwiqApO63tbs2P6Q@mail.gmail.com>
- <548897C2.8020401@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87179] [NVE7] Warning while reenabling Optimus
+	dedicated card
+Date: Wed, 10 Dec 2014 23:43:55 +0000
+Message-ID: <bug-87179-8800-3yzekcZzoq@http.bugs.freedesktop.org/>
+References: <bug-87179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1161048292=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <548897C2.8020401-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-87179-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +17,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBEZWMgMTEsIDIwMTQgYXQgNDo1OCBBTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3Vy
-Ym90QG52aWRpYS5jb20+IHdyb3RlOgo+IE9uIDEyLzExLzIwMTQgMDM6NDcgQU0sIElsaWEgTWly
-a2luIHdyb3RlOgo+Pgo+PiBXZSBnZXQgdGhpcyBwYXRjaCBldmVyeSBmZXcgbW9udGhzLi4uIEhv
-dyBhYm91dCBvbmUgdGhhdCBpbnN0ZWFkIGFkZHMKPj4gYSBjb21tZW50IHdoaWNoIGV4cGxhaW5z
-IHdoeSB0aGlzIGtmcmVlIGlzbid0IG5lZWRlZCA6KSBbSSdtIGxlYXZpbmcKPj4gdGhlIHJlYXNv
-biB0byB0aGUgcmVhZGVyLCB3aGljaCB3aWxsIGZvcmNlIHlvdSB0byBnbGFuY2UgYXQgdGhlIHR0
-bQo+PiBjb2RlLl0KSSdkIHF1aXRlIGxpa2UgaXQgaWYgcGVvcGxlIGxvb2tlZCBhdCBhIGJpdCBt
-b3JlIGNvbnRleHQgZm9yIHNlbmRpbmcKc3VjaCBwYXRjaGVzLi4uLi4uCgo+Cj4KPiB0dG1fZG1h
-X3R0X2luaXQgLT4gdHRtX3R0X2Rlc3Ryb3kgLT4gbm91dmVhdV9zZ2RtYV9kZXN0cm95IC0+IGtm
-cmVlCj4KPiBVcnJrLgouLi4uLiBUaGF0IHNhaWQuLiAgSSBtYWRlIHRoZSBzYW1lIG1pc3Rha2Ug
-bXlzZWxmIGEgZmV3IHllYXJzIGJhY2sgOykKCj4KPiBJJ20gZGVmaW5pdGVseSBub3QgYSBmYW4g
-b2YgdGhpbmdzIGhhcHBlbmluZyB0aGlzIHdheSwgYnV0IGxldCBpdCBiZS4KPgo+IEluZGVlZCBh
-IGNvbW1lbnQgd291bGQgYmUgbmljZSB0byBoYXZlIGhlcmUsIGxldCBtZSBwcmVwIGEgcGF0Y2gg
-Zm9yIHRoaXMKPiBpbnN0ZWFkLi4uCkkndmUgcGlja2VkIHVwIGFsbCB0aHJlZSBwYXRjaGVzLgoK
-VGhhbmtzLApCZW4uCgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1161048292==
+Content-Type: multipart/alternative; boundary="1418255035.4fBd1.9860"; charset="UTF-8"
+
+
+--1418255035.4fBd1.9860
+Date: Wed, 10 Dec 2014 23:43:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87179
+
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE7] Oops while           |[NVE7] Warning while
+                   |reenabling Optimus          |reenabling Optimus
+                   |dedicated card              |dedicated card
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418255035.4fBd1.9860
+Date: Wed, 10 Dec 2014 23:43:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179">bug 87179</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE7] Oops while reenabling Optimus dedicated card
+           </td>
+           <td>[NVE7] Warning while reenabling Optimus dedicated card
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418255035.4fBd1.9860--
+
+--===============1161048292==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1161048292==--
