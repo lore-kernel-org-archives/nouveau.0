@@ -1,14 +1,12 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: [PATCH v3 2/2] fb/nvaa: Enable non-isometric poller on
-	NVAA/NVAC
-Date: Wed, 10 Dec 2014 08:53:43 +0100
-Message-ID: <1418198023-14225-2-git-send-email-pierre.morrow@free.fr>
-References: <1418198023-14225-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 34969] [nouveau] Card lockup on openarena
+Date: Wed, 10 Dec 2014 08:38:45 +0000
+Message-ID: <bug-34969-8800-j4vRYkhAaA@http.bugs.freedesktop.org/>
+References: <bug-34969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2026192995=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1418198023-14225-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-34969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,96 +16,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI List <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-KFRoaXMgaXMgYSB2MyBvZiBwYXRjaCAiZHJtL25vdXZlYXUvZmIvbnY1MDogQWRkIFBGQiB3cml0
-ZXMiKQoKVGhpcyBmaXggYSBHUFUgbG9ja3VwIG9uIDk0MDBNIChOVkFDKSB3aGVuIHVzaW5nIGFj
-Y2VsZXJhdGlvbiwgc2VlCmh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dp
-P2lkPTI3NTAxCgp2MjoKLSBNb3ZlIGNvZGUgdG8gc3ViZGV2L2ZiL252NTAuYyBhcyBzdWdnZXN0
-ZWQgYnkgUm95IFNwbGlldDsKLSBSZW1vdmUgYXJiaXRyYXJ5IHdyaXRlcyB0byAxMDBjMTgvMTAw
-YzI0Ci0gUmVwbGFjZSB3cml0ZSB0byAxMDBjMWMgb2YgYXJiaXRyYXJ5IHZhbHVlIGJ5IHRoZSBh
-ZGRyZXNzIG9mIGEgc2NyYXRjaCBwYWdlCiAgYXMgcHJvcG9zZWQgYnkgSWxpYSBNaXJraW47Ci0g
-UmVtb3ZlIGVuYWJsaW5nIG9mIGJpdHMgMTYgYW5kIDAgYXMgdGhleSBkb24ndCB5aWVsZCBpbiBh
-bnkgY2hhbmdlcy4KCnYzOgotIE1vdmUgY29kZSB0byBzdWJkZXYvZmIvbnZhYS5jIGFzIHN1Z2dl
-c3RlZCBieSBJbGlhIE1pcmtpbi4KVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHdlcmUgbWFkZSB0aGFu
-a3MgdG8gaW5mb3JtYXRpb24gcHJvdmlkZWQgYnkgUm9iZXJ0IE1vcmVsbApmcm9tIE5WaWRpYToK
-LSBBbGxvY2F0ZSBhIGRtYSBwYWdlIGZvciB1c2UgYnkgdGhlIHBvbGxlcnM7Ci0gUmUtZW5hYmxl
-IHBvbGxlcnMgYXQgYml0cyAxNiBhbmQgMDsKLSBTZXQgcG9sbGVycyBhZGRyZXNzIHRvIGEgcHJv
-cGVyIHZhbHVlLgoKU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0Bm
-cmVlLmZyPgotLS0KIGRybS9jb3JlL3N1YmRldi9mYi9udmFhLmggfCAgMSArCiBudmttL3N1YmRl
-di9mYi9udjUwLmggICAgIHwgIDQgKysrCiBudmttL3N1YmRldi9mYi9udmFhLmMgICAgIHwgNzQg
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0KIG52a20vc3Vi
-ZGV2L2ZiL252YWEuaCAgICAgfCAxOSArKysrKysrKysrKysKIDQgZmlsZXMgY2hhbmdlZCwgOTQg
-aW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEyMDAwMCBkcm0vY29y
-ZS9zdWJkZXYvZmIvbnZhYS5oCiBjcmVhdGUgbW9kZSAxMDA2NDQgbnZrbS9zdWJkZXYvZmIvbnZh
-YS5oCgpkaWZmIC0tZ2l0IGEvZHJtL2NvcmUvc3ViZGV2L2ZiL252YWEuaCBiL2RybS9jb3JlL3N1
-YmRldi9mYi9udmFhLmgKbmV3IGZpbGUgbW9kZSAxMjAwMDAKaW5kZXggMDAwMDAwMC4uYjQ1MGU4
-YwotLS0gL2Rldi9udWxsCisrKyBiL2RybS9jb3JlL3N1YmRldi9mYi9udmFhLmgKQEAgLTAsMCAr
-MSBAQAorLi4vLi4vLi4vLi4vbnZrbS9zdWJkZXYvZmIvbnZhYS5oClwgTm8gbmV3bGluZSBhdCBl
-bmQgb2YgZmlsZQpkaWZmIC0tZ2l0IGEvbnZrbS9zdWJkZXYvZmIvbnY1MC5oIGIvbnZrbS9zdWJk
-ZXYvZmIvbnY1MC5oCmluZGV4IGM1ZTVhODguLjBiMjA5NzUgMTAwNjQ0Ci0tLSBhL252a20vc3Vi
-ZGV2L2ZiL252NTAuaAorKysgYi9udmttL3N1YmRldi9mYi9udjUwLmgKQEAgLTksNiArOSwxMCBA
-QCBzdHJ1Y3QgbnY1MF9mYl9wcml2IHsKIAlkbWFfYWRkcl90IHIxMDBjMDg7CiB9OwogCisjZGVm
-aW5lIG52NTBfZmJfY3JlYXRlKHAsZSxjLGQsbykgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgXAorCW52NTBfZmJfY3RvcigocCksIChlKSwgKGMpLCAoZCksIHNp
-emVvZigqKm8pLCAgICAgICAgICAgICAgICAgICAgICAgICAgXAorCQkJKHN0cnVjdCBub3V2ZWF1
-X29iamVjdCAqKilvKQorCiBpbnQgIG52NTBfZmJfY3RvcihzdHJ1Y3Qgbm91dmVhdV9vYmplY3Qg
-Kiwgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICosCiAJCSAgc3RydWN0IG5vdXZlYXVfb2NsYXNzICos
-IHZvaWQgKiwgdTMyLAogCQkgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKik7CmRpZmYgLS1naXQg
-YS9udmttL3N1YmRldi9mYi9udmFhLmMgYi9udmttL3N1YmRldi9mYi9udmFhLmMKaW5kZXggY2Jh
-OGU2OC4uYjcwYWIyZiAxMDA2NDQKLS0tIGEvbnZrbS9zdWJkZXYvZmIvbnZhYS5jCisrKyBiL252
-a20vc3ViZGV2L2ZiL252YWEuYwpAQCAtMjIsMTUgKzIyLDgxIEBACiAgKiBBdXRob3JzOiBCZW4g
-U2tlZ2dzCiAgKi8KIAotI2luY2x1ZGUgIm52NTAuaCIKKyNpbmNsdWRlICJudmFhLmgiCisKK2lu
-dAorbnZhYV9mYl9jdG9yKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqcGFyZW50LCBzdHJ1Y3Qgbm91
-dmVhdV9vYmplY3QgKmVuZ2luZSwKKwkgICAgIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqb2NsYXNz
-LCB2b2lkICpkYXRhLCB1MzIgc2l6ZSwKKwkgICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKnBv
-YmplY3QpCit7CisJc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXZpY2UgPSBudl9kZXZpY2UocGFy
-ZW50KTsKKwlzdHJ1Y3QgbnZhYV9mYl9wcml2ICpwcml2OworCWludCByZXQ7CisKKwlyZXQgPSBu
-djUwX2ZiX2NyZWF0ZShwYXJlbnQsIGVuZ2luZSwgb2NsYXNzLCBkYXRhLCAmcHJpdik7CisJKnBv
-YmplY3QgPSBudl9vYmplY3QocHJpdik7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKworCXBy
-aXYgPSAoc3RydWN0IG52YWFfZmJfcHJpdiAqKSgqcG9iamVjdCk7CisKKwlwcml2LT5yMTAwYzE4
-X3BhZ2UgPSBhbGxvY19wYWdlKEdGUF9LRVJORUwgfCBfX0dGUF9aRVJPKTsKKwlpZiAocHJpdi0+
-cjEwMGMxOF9wYWdlKSB7CisJCXByaXYtPnIxMDBjMTggPSBkbWFfbWFwX3BhZ2UobnZfZGV2aWNl
-X2Jhc2UoZGV2aWNlKSwKKwkJCQkJICAgICBwcml2LT5yMTAwYzE4X3BhZ2UsIDAsIFBBR0VfU0la
-RSwKKwkJCQkJICAgICBETUFfQklESVJFQ1RJT05BTCk7CisJCWlmIChkbWFfbWFwcGluZ19lcnJv
-cihudl9kZXZpY2VfYmFzZShkZXZpY2UpLCBwcml2LT5yMTAwYzE4KSkKKwkJCXJldHVybiAtRUZB
-VUxUOworCX0gZWxzZSB7CisJCW52X3dhcm4ocHJpdiwgImZhaWxlZCAweDEwMGMxOCBwYWdlIGFs
-bG9jXG4iKTsKKwl9CisJcmV0dXJuIDA7Cit9CisKK3ZvaWQKK252YWFfZmJfZHRvcihzdHJ1Y3Qg
-bm91dmVhdV9vYmplY3QgKm9iamVjdCkKK3sKKwlzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldmlj
-ZSA9IG52X2RldmljZShvYmplY3QpOworCXN0cnVjdCBudmFhX2ZiX3ByaXYgKnByaXYgPSAodm9p
-ZCAqKW9iamVjdDsKKworCWlmIChwcml2LT5yMTAwYzE4X3BhZ2UpIHsKKwkJZG1hX3VubWFwX3Bh
-Z2UobnZfZGV2aWNlX2Jhc2UoZGV2aWNlKSwgcHJpdi0+cjEwMGMxOCwgUEFHRV9TSVpFLAorCQkJ
-ICAgICAgIERNQV9CSURJUkVDVElPTkFMKTsKKwkJX19mcmVlX3BhZ2UocHJpdi0+cjEwMGMxOF9w
-YWdlKTsKKwl9CisKKwludjUwX2ZiX2R0b3Iob2JqZWN0KTsKK30KKworaW50CitudmFhX2ZiX2lu
-aXQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmplY3QpCit7CisJc3RydWN0IG52YWFfZmJfcHJp
-diAqcHJpdiA9ICh2b2lkICopb2JqZWN0OworCWludCByZXQ7CisKKwlyZXQgPSBudjUwX2ZiX2lu
-aXQob2JqZWN0KTsKKwlpZiAocmV0KQorCQlyZXR1cm4gcmV0OworCisJLyogRW5hYmxlIE5JU08g
-cG9sbGVyIGZvciB2YXJpb3VzIGNsaWVudHMgYW5kIHNldCB0aGVpciBhc3NvY2lhdGVkCisJICog
-cmVhZCBhZGRyZXNzLCBvbmx5IGZvciBNQ1A3Ny83OCBhbmQgTUNQNzkvN0EuIChmZCMyNTcwMSkK
-KwkgKi8KKwludl93cjMyKHByaXYsIDB4MTAwYzE4LCBwcml2LT5yMTAwYzE4ID4+IDgpOworCW52
-X21hc2socHJpdiwgMHgxMDBjMTQsIDB4MDAwMDAwMDAsIDB4MDAwMDAwMDEpOworCW52X3dyMzIo
-cHJpdiwgMHgxMDBjMWMsIChwcml2LT5yMTAwYzE4ID4+IDgpICsgMSk7CisJbnZfbWFzayhwcml2
-LCAweDEwMGMxNCwgMHgwMDAwMDAwMCwgMHgwMDAwMDAwMik7CisJbnZfd3IzMihwcml2LCAweDEw
-MGMyNCwgKHByaXYtPnIxMDBjMTggPj4gOCkgKyAyKTsKKwludl9tYXNrKHByaXYsIDB4MTAwYzE0
-LCAweDAwMDAwMDAwLCAweDAwMDEwMDAwKTsKKwlyZXR1cm4gMDsKK30KIAogc3RydWN0IG5vdXZl
-YXVfb2NsYXNzICoKIG52YWFfZmJfb2NsYXNzID0gJihzdHJ1Y3QgbnY1MF9mYl9pbXBsKSB7CiAJ
-LmJhc2UuYmFzZS5oYW5kbGUgPSBOVl9TVUJERVYoRkIsIDB4YWEpLAogCS5iYXNlLmJhc2Uub2Z1
-bmNzID0gJihzdHJ1Y3Qgbm91dmVhdV9vZnVuY3MpIHsKLQkJLmN0b3IgPSBudjUwX2ZiX2N0b3Is
-Ci0JCS5kdG9yID0gbnY1MF9mYl9kdG9yLAotCQkuaW5pdCA9IG52NTBfZmJfaW5pdCwKKwkJLmN0
-b3IgPSBudmFhX2ZiX2N0b3IsCisJCS5kdG9yID0gbnZhYV9mYl9kdG9yLAorCQkuaW5pdCA9IG52
-YWFfZmJfaW5pdCwKIAkJLmZpbmkgPSBfbm91dmVhdV9mYl9maW5pLAogCX0sCiAJLmJhc2UubWVt
-dHlwZSA9IG52NTBfZmJfbWVtdHlwZV92YWxpZCwKZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L2Zi
-L252YWEuaCBiL252a20vc3ViZGV2L2ZiL252YWEuaApuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRl
-eCAwMDAwMDAwLi44NGUxZWNhCi0tLSAvZGV2L251bGwKKysrIGIvbnZrbS9zdWJkZXYvZmIvbnZh
-YS5oCkBAIC0wLDAgKzEsMTkgQEAKKyNpZm5kZWYgX19OVktNX0ZCX05WQUFfSF9fCisjZGVmaW5l
-IF9fTlZLTV9GQl9OVkFBX0hfXworCisjaW5jbHVkZSAibnY1MC5oIgorCitzdHJ1Y3QgbnZhYV9m
-Yl9wcml2IHsKKwlzdHJ1Y3QgbnY1MF9mYl9wcml2IGJhc2U7CisJc3RydWN0IHBhZ2UgKnIxMDBj
-MThfcGFnZTsKKwlkbWFfYWRkcl90IHIxMDBjMTg7Cit9OworCitpbnQgIG52YWFfZmJfY3Rvcihz
-dHJ1Y3Qgbm91dmVhdV9vYmplY3QgKiwgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICosCisJCSAgc3Ry
-dWN0IG5vdXZlYXVfb2NsYXNzICosIHZvaWQgKiwgdTMyLAorCQkgIHN0cnVjdCBub3V2ZWF1X29i
-amVjdCAqKik7Cit2b2lkIG52YWFfZmJfZHRvcihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKik7Citp
-bnQgIG52YWFfZmJfaW5pdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKik7CisKKworI2VuZGlmCi0t
-IAoyLjEuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2026192995==
+Content-Type: multipart/alternative; boundary="1418200725.6a841C72.17005"; charset="UTF-8"
+
+
+--1418200725.6a841C72.17005
+Date: Wed, 10 Dec 2014 08:38:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=34969
+
+--- Comment #22 from Nikolay Rysev <mad.f3ka-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Pierre Moreau from comment #21)
+> Moving to Nouveau.
+> 
+> Are you still experiencing this issue with an updated graphic stack, aka.
+> kernel 3.18, mesa 10.4, libdrm 2.4.58 and f86-video-nouveau 1.0.11?
+
+Sorry, but I cannot test because I no longer have that card.
+If the new code works fine for Andrew, I think we can change the status of the
+bug to "resolved/fixed" or something similar.
+Thanks.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418200725.6a841C72.17005
+Date: Wed, 10 Dec 2014 08:38:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [nouveau] Card lockup on openarena"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34969#c22">Comment # 22</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [nouveau] Card lockup on openarena"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34969">bug 34969</a>
+              from <span class="vcard"><a class="email" href="mailto:mad.f3ka&#64;gmail.com" title="Nikolay Rysev &lt;mad.f3ka&#64;gmail.com&gt;"> <span class="fn">Nikolay Rysev</span></a>
+</span></b>
+        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=34969#c21">comment #21</a>)
+<span class="quote">&gt; Moving to Nouveau.
+&gt; 
+&gt; Are you still experiencing this issue with an updated graphic stack, aka.
+&gt; kernel 3.18, mesa 10.4, libdrm 2.4.58 and f86-video-nouveau 1.0.11?</span >
+
+Sorry, but I cannot test because I no longer have that card.
+If the new code works fine for Andrew, I think we can change the status of the
+bug to &quot;resolved/fixed&quot; or something similar.
+Thanks.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418200725.6a841C72.17005--
+
+--===============2026192995==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2026192995==--
