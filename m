@@ -1,52 +1,59 @@
-From: Tim Howard <timothy.howard-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Intel KVMGT-like solution with Nouveau
-Date: Mon, 8 Dec 2014 16:54:59 -0500
-Message-ID: <CA+-hKOX3KdKZu10TAxnGcL2MBKfLVxOwY+9QUkUE=EYcoNeNOg@mail.gmail.com>
+From: Pierre Moreau <pierre.morrow@free.fr>
+Subject: [PATCH RESEND 1/2] Allow noaccel to be a pci address
+Date: Wed, 10 Dec 2014 08:53:42 +0100
+Message-ID: <1418198023-14225-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0554155090=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Nouveau List <nouveau@lists.freedesktop.org>, DRI List <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
---===============0554155090==
-Content-Type: multipart/alternative; boundary=047d7b472948569bcf0509bb7ae6
-
---047d7b472948569bcf0509bb7ae6
-Content-Type: text/plain; charset=UTF-8
-
-At the risk of asking a dumb question, is there any chance of something
-similar happening for Nouveau?
-
-
-Thanks,
-
-
-Tim
-
---047d7b472948569bcf0509bb7ae6
-Content-Type: text/html; charset=UTF-8
-
-<div dir="ltr"><div>At the risk of asking a dumb question, is there any chance of something similar happening for Nouveau?<br><br><br></div>Thanks,<br><br><br>Tim<br></div>
-
---047d7b472948569bcf0509bb7ae6--
-
---===============0554155090==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0554155090==--
+U2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgotLS0K
+IGRybS9ub3V2ZWF1X2RybS5jIHwgMTYgKysrKysrKysrKystLS0tLQogMSBmaWxlIGNoYW5nZWQs
+IDExIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
+YXVfZHJtLmMgYi9kcm0vbm91dmVhdV9kcm0uYwppbmRleCBhZmI5M2JiLi5mZmExZTRmIDEwMDY0
+NAotLS0gYS9kcm0vbm91dmVhdV9kcm0uYworKysgYi9kcm0vbm91dmVhdV9kcm0uYwpAQCAtNjEs
+OSArNjEsMTAgQEAgTU9EVUxFX1BBUk1fREVTQyhkZWJ1ZywgImRlYnVnIHN0cmluZyB0byBwYXNz
+IHRvIGRyaXZlciBjb3JlIik7CiBzdGF0aWMgY2hhciAqbm91dmVhdV9kZWJ1ZzsKIG1vZHVsZV9w
+YXJhbV9uYW1lZChkZWJ1Zywgbm91dmVhdV9kZWJ1ZywgY2hhcnAsIDA0MDApOwogCi1NT0RVTEVf
+UEFSTV9ERVNDKG5vYWNjZWwsICJkaXNhYmxlIGtlcm5lbC9hYmkxNiBhY2NlbGVyYXRpb24iKTsK
+LXN0YXRpYyBpbnQgbm91dmVhdV9ub2FjY2VsID0gMDsKLW1vZHVsZV9wYXJhbV9uYW1lZChub2Fj
+Y2VsLCBub3V2ZWF1X25vYWNjZWwsIGludCwgMDQwMCk7CitNT0RVTEVfUEFSTV9ERVNDKG5vYWNj
+ZWwsICJkaXNhYmxlIGtlcm5lbC9hYmkxNiBhY2NlbGVyYXRpb24gZm9yIGFsbCBjYXJkcywiCisJ
+CSAgICAgICAgICAib3Igb25seSBmb3IgdGhlIGNhcmQgZ2l2ZW4gaXRzIHBjaSBidXMgbmFtZSIp
+Oworc3RhdGljIGNoYXIgKm5vdXZlYXVfbm9hY2NlbDsKK21vZHVsZV9wYXJhbV9uYW1lZChub2Fj
+Y2VsLCBub3V2ZWF1X25vYWNjZWwsIGNoYXJwLCAwNDAwKTsKIAogTU9EVUxFX1BBUk1fREVTQyht
+b2Rlc2V0LCAiZW5hYmxlIGRyaXZlciAoZGVmYXVsdDogYXV0bywgIgogCQkgICAgICAgICAgIjAg
+PSBkaXNhYmxlZCwgMSA9IGVuYWJsZWQsIDIgPSBoZWFkbGVzcykiKTsKQEAgLTE0OSw4ICsxNTAs
+MTMgQEAgbm91dmVhdV9hY2NlbF9pbml0KHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtKQogCXUzMiBz
+Y2xhc3NbMTZdOwogCWludCByZXQsIGk7CiAKLQlpZiAobm91dmVhdV9ub2FjY2VsKQorCWlmIChu
+b3V2ZWF1X25vYWNjZWwgIT0gTlVMTCAmJgorCSAgICAoIXN0cmNtcChub3V2ZWF1X25vYWNjZWws
+ICIxIikgfHwKKwkgICAgICFzdHJjbXAobm91dmVhdV9ub2FjY2VsLCBudmttX2RldmljZShkZXZp
+Y2UpLT5uYW1lKSkpCisJeworCQlOVl9XQVJOKGRybSwgIkFjY2VsZXJhdGlvbiBkaXNhYmxlZCBm
+b3IgY2FyZCBvbiBidXMgJXNcbiIsIG52a21fZGV2aWNlKGRldmljZSktPm5hbWUpOwogCQlyZXR1
+cm47CisJfQogCiAJLyogaW5pdGlhbGlzZSBzeW5jaHJvbmlzYXRpb24gcm91dGluZXMgKi8KIAkv
+KlhYWDogdGhpcyBpcyBjcmFwLCBidXQgdGhlIGZlbmNlL2NoYW5uZWwgc3R1ZmYgaXMgYSBsaXR0
+bGUKQEAgLTEwMjEsNyArMTAyNyw3IEBAIHN0YXRpYyB2b2lkIG5vdXZlYXVfZGlzcGxheV9vcHRp
+b25zKHZvaWQpCiAJRFJNX0RFQlVHX0RSSVZFUigiLi4uIG5vZmJhY2NlbCAgICA6ICVkXG4iLCBu
+b3V2ZWF1X25vZmJhY2NlbCk7CiAJRFJNX0RFQlVHX0RSSVZFUigiLi4uIGNvbmZpZyAgICAgICA6
+ICVzXG4iLCBub3V2ZWF1X2NvbmZpZyk7CiAJRFJNX0RFQlVHX0RSSVZFUigiLi4uIGRlYnVnICAg
+ICAgICA6ICVzXG4iLCBub3V2ZWF1X2RlYnVnKTsKLQlEUk1fREVCVUdfRFJJVkVSKCIuLi4gbm9h
+Y2NlbCAgICAgIDogJWRcbiIsIG5vdXZlYXVfbm9hY2NlbCk7CisJRFJNX0RFQlVHX0RSSVZFUigi
+Li4uIG5vYWNjZWwgICAgICA6ICVzXG4iLCBub3V2ZWF1X25vYWNjZWwpOwogCURSTV9ERUJVR19E
+UklWRVIoIi4uLiBtb2Rlc2V0ICAgICAgOiAlZFxuIiwgbm91dmVhdV9tb2Rlc2V0KTsKIAlEUk1f
+REVCVUdfRFJJVkVSKCIuLi4gcnVucG0gICAgICAgIDogJWRcbiIsIG5vdXZlYXVfcnVudGltZV9w
+bSk7CiAJRFJNX0RFQlVHX0RSSVZFUigiLi4uIHZyYW1fcHVzaGJ1ZiA6ICVkXG4iLCBub3V2ZWF1
+X3ZyYW1fcHVzaGJ1Zik7Ci0tIAoyLjEuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwK
