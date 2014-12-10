@@ -1,14 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: DCB 4.1 spec update
-Date: Wed, 10 Dec 2014 07:46:16 +1000
-Message-ID: <CACAvsv684JM8EtZEzBgy7tb6-C5yWfwBKJ0CD5XhkeBmMuP5WQ@mail.gmail.com>
-References: <20141209182627.GO29251@parker.nvidia.com>
- <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87179] New: [NVE7] Oops while reenabling Optimus
+	dedicated card
+Date: Wed, 10 Dec 2014 02:55:33 +0000
+Message-ID: <bug-87179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1163985251=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +15,176 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBEZWMgMTAsIDIwMTQgYXQgNzozNiBBTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFp
-bC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgRGVjIDEwLCAyMDE0IGF0IDQ6MjYgQU0sIEFuZHkgUml0
-Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3RlOgo+PiBIaSwKPiBIZXkgQW5keSwKPgo+Pgo+
-PiBUaGUgVkJJT1Mgb24gR00yMHggR1BVcyB1c2VzIGEgc2xpZ2h0bHkgdXBkYXRlZCB2ZXJzaW9u
-IG9mIHRoZSBEQ0IuCj4+IEkndmUgcG9zdGVkIGFuIHVwZGF0ZWQgRENCIHNwZWMgaGVyZToKPj4K
-Pj4gZnRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2MvRENCLzIvRENCLTQueC1T
-cGVjaWZpY2F0aW9uLmh0bWwKPj4KPj4gWW91IGNhbiBkaWZmIGl0IGFnYWluc3QgdGhlIHByZXZp
-b3VzIHZlcnNpb246Cj4+Cj4+IGZ0cDovL2Rvd25sb2FkLm52aWRpYS5jb20vb3Blbi1ncHUtZG9j
-L0RDQi8xL0RDQi00LjAtU3BlY2lmaWNhdGlvbi5odG1sCj4+Cj4+IHRvIHNlZSB3aGF0IGNoYW5n
-ZWQgKHNvcnJ5IGZvciBoYXZpbmcgdG8gZGlmZiBodG1sIGZpbGVzKS4gIFRoZSBiaWdnZXN0Cj4+
-IGRpZmZlcmVuY2VzIGFyZSBTZXJpYWwgT3V0cHV0IFJlc291cmNlIChTT1IpIGFzc2lnbm1lbnQs
-IGFuZCB0aGUgdXBkYXRlZAo+PiBDb21tdW5pY2F0aW9ucyBDb250cm9sIEJsb2NrIGxheW91dC4K
-PiBUaGFua3MgZm9yIHRoZSBoZWFkcy11cCBvbiB0aGUgdXBkYXRlLiAgVGhlIFNPUiBhc3NpZ25t
-ZW50IGNoYW5nZXMKPiBleHBsYWluIHNvbWUgdGhpbmdzIEkgbm90aWNlZCB3aGVuIGJyaW5naW5n
-IHVwIHRoZSBHTTIwNCB5b3UgZ3V5cyBzZW50Cj4gbWUgOikKT25lIHF1ZXN0aW9uIEkgaGF2ZSBv
-biBtYWtpbmcgcHJvcGVyIHVzZSBvZiB0aGlzIGlzIGhvdyBzaG91bGQgdGhlIFJNCmRldGVybWlu
-ZSB3aGljaCBEQ0IgZW50cnkgKGFuZCBoZW5jZSwgdGhlIGNvcnJlY3QgcGFkIG1hY3JvKSB0byB1
-c2UKYmFzZWQgb24gdGhlIFNvclNldENvbnRyb2wgaW5kZXggZnJvbSB0aGUgc3VwZXJ2aXNvcj8K
-ClRoYW5rcywKQmVuLgoKPgo+IEJlbi4KPgo+Pgo+PiBJIGhvcGUgdGhhdCBpcyBoZWxwZnVsLAo+
-PiAtIEFuZHkKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1163985251==
+Content-Type: multipart/alternative; boundary="1418180133.D8Ad261.19329"; charset="UTF-8"
+
+
+--1418180133.D8Ad261.19329
+Date: Wed, 10 Dec 2014 02:55:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87179
+
+            Bug ID: 87179
+           Summary: [NVE7] Oops while reenabling Optimus dedicated card
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 110662
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110662&action=edit
+kernel 3.18 oops
+
+Sometimes while waking the dedicated card, the system oopses and gets
+unresponsive (sometimes this hangs the entire graphics system). 
+Steam triggers this very easily somehow...
+
+These hangs plague me for a while now, but this is the first hang i could
+capture in a whole!
+
+Kernel: 3.18.0, occurred with kernels at least down to 3.16
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418180133.D8Ad261.19329
+Date: Wed, 10 Dec 2014 02:55:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Oops while reenabling Optimus dedicated card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179">87179</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE7] Oops while reenabling Optimus dedicated card
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tobias.klausmann&#64;mni.thm.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=110662" name="attach_110662" title="kernel 3.18 oops">attachment 110662</a> <a href="attachment.cgi?id=110662&amp;action=edit" title="kernel 3.18 oops">[details]</a></span>
+kernel 3.18 oops
+
+Sometimes while waking the dedicated card, the system oopses and gets
+unresponsive (sometimes this hangs the entire graphics system). 
+Steam triggers this very easily somehow...
+
+These hangs plague me for a while now, but this is the first hang i could
+capture in a whole!
+
+Kernel: 3.18.0, occurred with kernels at least down to 3.16</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418180133.D8Ad261.19329--
+
+--===============1163985251==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1163985251==--
