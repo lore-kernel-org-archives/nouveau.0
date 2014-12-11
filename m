@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87179] [NVE7] Warning while reenabling Optimus
 	dedicated card
-Date: Thu, 11 Dec 2014 00:08:22 +0000
-Message-ID: <bug-87179-8800-Eq6vg32odz@http.bugs.freedesktop.org/>
+Date: Thu, 11 Dec 2014 02:06:44 +0000
+Message-ID: <bug-87179-8800-kERuk5PzKA@http.bugs.freedesktop.org/>
 References: <bug-87179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0632737810=="
+Content-Type: multipart/mixed; boundary="===============1782270395=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87179-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0632737810==
-Content-Type: multipart/alternative; boundary="1418256502.Aba4FdE1.19069"; charset="UTF-8"
+--===============1782270395==
+Content-Type: multipart/alternative; boundary="1418263604.F8b81.25012"; charset="UTF-8"
 
 
---1418256502.Aba4FdE1.19069
-Date: Thu, 11 Dec 2014 00:08:22 +0000
+--1418263604.F8b81.25012
+Date: Thu, 11 Dec 2014 02:06:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87179
 
---- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 110702
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110702&action=edit
-possible fix
+--- Comment #3 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Created attachment 110703
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110703&action=edit
+nouveau errors with "110702: possible fix"
 
-Is this issue creproducible for you?  If so, please give the attached patch a
-try and see if it helps!
+While running with the above patch, several (40+) suspend/resume cycles worked
+fine. The initial Warning does not seem to get triggered anymore.
+
+Later on the machine hung while resuming, but recovered from the hang. The
+attached log is from that timeframe. ~2 min later X was hanging, not
+recovering. Could ssh in, nothing in dmesg.
+
+I'm not sure if this is still the same bug or if i should open yet another one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418256502.Aba4FdE1.19069
-Date: Thu, 11 Dec 2014 00:08:22 +0000
+--1418263604.F8b81.25012
+Date: Thu, 11 Dec 2014 02:06:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +65,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87179">bug 87179</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110702" name="attach_110702" title="possible fix">attachment 110702</a> <a href="attachment.cgi?id=110702&amp;action=edit" title="possible fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=87179&amp;attachment=110702'>[review]</a>
-possible fix
+        <pre>Created <span class=""><a href="attachment.cgi?id=110703" name="attach_110703" title="nouveau errors with &quot;110702: possible fix&quot;">attachment 110703</a> <a href="attachment.cgi?id=110703&amp;action=edit" title="nouveau errors with &quot;110702: possible fix&quot;">[details]</a></span>
+nouveau errors with &quot;110702: possible fix&quot;
 
-Is this issue creproducible for you?  If so, please give the attached patch a
-try and see if it helps!</pre>
+While running with the above patch, several (40+) suspend/resume cycles worked
+fine. The initial Warning does not seem to get triggered anymore.
+
+Later on the machine hung while resuming, but recovered from the hang. The
+attached log is from that timeframe. ~2 min later X was hanging, not
+recovering. Could ssh in, nothing in dmesg.
+
+I'm not sure if this is still the same bug or if i should open yet another one.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +94,9 @@ try and see if it helps!</pre>
     </body>
 </html>
 
---1418256502.Aba4FdE1.19069--
+--1418263604.F8b81.25012--
 
---===============0632737810==
+--===============1782270395==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0632737810==--
+--===============1782270395==--
