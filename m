@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87179] [NVE7] Warning while reenabling Optimus
 	dedicated card
-Date: Wed, 10 Dec 2014 23:43:55 +0000
-Message-ID: <bug-87179-8800-3yzekcZzoq@http.bugs.freedesktop.org/>
+Date: Thu, 11 Dec 2014 00:08:22 +0000
+Message-ID: <bug-87179-8800-Eq6vg32odz@http.bugs.freedesktop.org/>
 References: <bug-87179-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1161048292=="
+Content-Type: multipart/mixed; boundary="===============0632737810=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87179-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1161048292==
-Content-Type: multipart/alternative; boundary="1418255035.4fBd1.9860"; charset="UTF-8"
+--===============0632737810==
+Content-Type: multipart/alternative; boundary="1418256502.Aba4FdE1.19069"; charset="UTF-8"
 
 
---1418255035.4fBd1.9860
-Date: Wed, 10 Dec 2014 23:43:55 +0000
+--1418256502.Aba4FdE1.19069
+Date: Thu, 11 Dec 2014 00:08:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87179
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+--- Comment #2 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 110702
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110702&action=edit
+possible fix
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVE7] Oops while           |[NVE7] Warning while
-                   |reenabling Optimus          |reenabling Optimus
-                   |dedicated card              |dedicated card
+Is this issue creproducible for you?  If so, please give the attached patch a
+try and see if it helps!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418255035.4fBd1.9860
-Date: Wed, 10 Dec 2014 23:43:55 +0000
+--1418256502.Aba4FdE1.19069
+Date: Thu, 11 Dec 2014 00:08:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +53,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87179">bug 87179</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=110702" name="attach_110702" title="possible fix">attachment 110702</a> <a href="attachment.cgi?id=110702&amp;action=edit" title="possible fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=87179&amp;attachment=110702'>[review]</a>
+possible fix
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE7] Oops while reenabling Optimus dedicated card
-           </td>
-           <td>[NVE7] Warning while reenabling Optimus dedicated card
-           </td>
-         </tr></table>
-      <p>
+Is this issue creproducible for you?  If so, please give the attached patch a
+try and see if it helps!</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418255035.4fBd1.9860--
+--1418256502.Aba4FdE1.19069--
 
---===============1161048292==
+--===============0632737810==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1161048292==--
+--===============0632737810==--
