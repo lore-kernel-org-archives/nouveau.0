@@ -1,16 +1,12 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: DCB 4.1 spec update
-Date: Sat, 13 Dec 2014 00:42:01 -0800
-Message-ID: <20141213084201.GB1574@parker.nvidia.com>
-References: <20141209182627.GO29251@parker.nvidia.com>
- <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ@mail.gmail.com>
- <CACAvsv684JM8EtZEzBgy7tb6-C5yWfwBKJ0CD5XhkeBmMuP5WQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Sat, 13 Dec 2014 10:35:39 +0000
+Message-ID: <bug-82714-8800-CKkuWdozfi@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0732522843=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CACAvsv684JM8EtZEzBgy7tb6-C5yWfwBKJ0CD5XhkeBmMuP5WQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,115 +16,109 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBEZWMgMTAsIDIwMTQgYXQgMDc6NDY6MTZBTSArMTAwMCwgQmVuIFNrZWdncyB3cm90
-ZToKPiBPbiBXZWQsIERlYyAxMCwgMjAxNCBhdCA3OjM2IEFNLCBCZW4gU2tlZ2dzIDxza2VnZ3Ni
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4gPiBPbiBXZWQsIERlYyAxMCwgMjAxNCBhdCA0OjI2IEFNLCBB
-bmR5IFJpdGdlciA8YXJpdGdlckBudmlkaWEuY29tPiB3cm90ZToKPiA+PiBIaSwKPiA+IEhleSBB
-bmR5LAo+ID4KPiA+Pgo+ID4+IFRoZSBWQklPUyBvbiBHTTIweCBHUFVzIHVzZXMgYSBzbGlnaHRs
-eSB1cGRhdGVkIHZlcnNpb24gb2YgdGhlIERDQi4KPiA+PiBJJ3ZlIHBvc3RlZCBhbiB1cGRhdGVk
-IERDQiBzcGVjIGhlcmU6Cj4gPj4KPiA+PiBmdHA6Ly9kb3dubG9hZC5udmlkaWEuY29tL29wZW4t
-Z3B1LWRvYy9EQ0IvMi9EQ0ItNC54LVNwZWNpZmljYXRpb24uaHRtbAo+ID4+Cj4gPj4gWW91IGNh
-biBkaWZmIGl0IGFnYWluc3QgdGhlIHByZXZpb3VzIHZlcnNpb246Cj4gPj4KPiA+PiBmdHA6Ly9k
-b3dubG9hZC5udmlkaWEuY29tL29wZW4tZ3B1LWRvYy9EQ0IvMS9EQ0ItNC4wLVNwZWNpZmljYXRp
-b24uaHRtbAo+ID4+Cj4gPj4gdG8gc2VlIHdoYXQgY2hhbmdlZCAoc29ycnkgZm9yIGhhdmluZyB0
-byBkaWZmIGh0bWwgZmlsZXMpLiAgVGhlIGJpZ2dlc3QKPiA+PiBkaWZmZXJlbmNlcyBhcmUgU2Vy
-aWFsIE91dHB1dCBSZXNvdXJjZSAoU09SKSBhc3NpZ25tZW50LCBhbmQgdGhlIHVwZGF0ZWQKPiA+
-PiBDb21tdW5pY2F0aW9ucyBDb250cm9sIEJsb2NrIGxheW91dC4KPiA+IFRoYW5rcyBmb3IgdGhl
-IGhlYWRzLXVwIG9uIHRoZSB1cGRhdGUuICBUaGUgU09SIGFzc2lnbm1lbnQgY2hhbmdlcwo+ID4g
-ZXhwbGFpbiBzb21lIHRoaW5ncyBJIG5vdGljZWQgd2hlbiBicmluZ2luZyB1cCB0aGUgR00yMDQg
-eW91IGd1eXMgc2VudAo+ID4gbWUgOikKPiBPbmUgcXVlc3Rpb24gSSBoYXZlIG9uIG1ha2luZyBw
-cm9wZXIgdXNlIG9mIHRoaXMgaXMgaG93IHNob3VsZCB0aGUgUk0KPiBkZXRlcm1pbmUgd2hpY2gg
-RENCIGVudHJ5IChhbmQgaGVuY2UsIHRoZSBjb3JyZWN0IHBhZCBtYWNybykgdG8gdXNlCj4gYmFz
-ZWQgb24gdGhlIFNvclNldENvbnRyb2wgaW5kZXggZnJvbSB0aGUgc3VwZXJ2aXNvcj8KCkhpIEJl
-bi4KClllcywgdGhpcyBpcyBhIGxpdHRsZSBjb25mdXNpbmcuICBJIGhhZCB0byByZXZpZXcgZm9y
-IG15c2VsZiBhbmQgY29uc3VsdAp3aXRoIG9uZSBvZiBvdXIgVkJJT1MgZXhwZXJ0cy4KCkJlbG93
-IGlzIG15IHVuZGVyc3RhbmRpbmcuICBZb3UgcHJvYmFibHkga25vdyBtb3N0IG9mIHRoaXMgYWxy
-ZWFkeSwKc28gc29ycnkgZm9yIHN0YXRpbmcgYW55dGhpbmcgb2J2aW91cy4KClRlcm1pbm9sb2d5
-OgoKU09SOiBTZXJpYWwgT3V0cHV0IFJlc291cmNlLiAgV2hhdCBpcyB1c2VkIHRvIGRyaXZlIExW
-RFMsIFRNRFMsIGFuZAogICAgRGlzcGxheVBvcnQuICBHTTIweCBoYXMgZm91ciBTT1JzLgoKU09S
-IFN1Ymxpbms6IEFuIGluZGl2aWR1YWwgbGluayB3aXRoaW4gYW4gU09SLiAgRWFjaCBTT1IgaGFz
-IHR3byBsaW5rcwogICAgKFNPUiBMaW5rQSBhbmQgU09SIExpbmtCLCBwZXIgU09SKS4KCk1hY3Jv
-OiBSZWNlaXZlcyBzaWduYWwgZnJvbSBvbmUgb3IgdHdvIFNPUiBzdWJsaW5rcywgYW5kIHRyYW5z
-bWl0cyB0bwogICAgYSBjb25uZWN0b3IuICBHTTIweCBoYXMgZm91ciBNYWNyb3MuCgpNYWNybyBM
-aW5rIChha2EgUGFkIExpbmspOiBBbiBpbmRpdmlkdWFsIGxpbmsgd2l0aGluIGEgTWFjcm8uICBU
-aGUgZmlyc3QKICAgIHRocmVlIE1hY3JvcyBoYXZlIHR3byBNYWNybyBMaW5rcyBlYWNoLCBhbmQg
-dGhlIGZvdXJ0aCBoYXMgb25lCiAgICBNYWNybyBMaW5rLiAgVGhlIE1hY3JvIExpbmtzIGFyZSBs
-YWJlbGVkIEEgLSBHLgoKSW4gR00yMHgsIHdlIGFkZGVkIGFuICJTT1IgQ3Jvc3NiYXIiIGJldHdl
-ZW4gdGhlIFNPUnMgYW5kIHRoZSBNYWNyb3MsIApzdWNoIHRoYXQgYW55IFNPUiBTdWJsaW5rIGNh
-biBkcml2ZSBhbnkgTWFjcm8gTGluay4KClRoZSByZWdpc3RlcnMgdG8gY29udHJvbCB0aGUgU09S
-IENyb3NzYmFyIGFyZSAweDAwNjEyMzA4KyhpKSoxMjg6CgogICAgI2RlZmluZSBOVl9QRElTUF9D
-TEtfUkVNX0xJTktfQ1RSTChpKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICgweDAwNjEy
-MzA4KyhpKSoxMjgpICAvKiBSVy00QSAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJ
-TktfQ1RSTF9fU0laRV8xICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICA3ICAvKiAgICAgICAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9G
-Uk9OVEVORCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMzowICAvKiBS
-V0lWRiAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9J
-TklUICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSV0ktViAqLwog
-ICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9OT05FICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSVy0tViAqLwogICAgI2RlZmlu
-ZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1IwICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgMHgwMDAwMDAwMSAvKiBSVy0tViAqLwogICAgI2RlZmluZSBOVl9QRElT
-UF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1IxICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwMDAwMDAwMiAvKiBSVy0tViAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVN
-X0xJTktfQ1RSTF9GUk9OVEVORF9TT1IyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgw
-MDAwMDAwMyAvKiBSVy0tViAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RS
-TF9GUk9OVEVORF9TT1IzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwNCAv
-KiBSVy0tViAqLwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVO
-RF9TT1IgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNDo0ICAvKiBSV0lWRiAq
-LwogICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1JfSU5J
-VCAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSV0ktViAqLwogICAgI2Rl
-ZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1JfUFJJTUFSWSAgICAg
-ICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSVy0tViAgKi8KICAgICNkZWZpbmUgTlZf
-UERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfU09SX1NFQ09OREFSWSAgICAgICAgICAg
-ICAgICAgICAgIDB4MDAwMDAwMDEgLyogUlctLVYgICovCgpUaGUgaW5kZXggKGkpIGlzIHRoZSBN
-YWNybyBMaW5rIG51bWJlciAoMCB0aHJvdWdoIDYpLiAgWW91IGNhbiBkaXJlY3QgCnRoZSBNYWNy
-byBMaW5rIHRvIGxpc3RlbiB0byBvbmUgb2YgdGhlIGZvdXIgU09ScywgYW5kIGVpdGhlciBMaW5r
-QQooU09SX1BSSU1BUlkpIG9yIExpbmtCIChTT1JfU0VDT05EQVJZKSBvZiB0aGUgc2VsZWN0ZWQg
-U09SLgoKTm90ZSB0aGUgZGVmYXVsdCBNYWNybyBMaW5rIHRvIFNPUiBTdWJsaW5rIGFzc2lnbm1l
-bnQgaXMgTk9ORSwgc28geW91J2xsIG5lZWQKdG8gcHJvZ3JhbSBOVl9QRElTUF9DTEtfUkVNX0xJ
-TktfQ1RSTCB0byBkcml2ZSBhbnkgU09ScyBub3Qgc2V0IHVwIGJ5CnRoZSBWQklPUy4KCkxvb2tp
-bmcgYXQgdGhlIERDQiBzcGVjLCBiaXRzIDI0LTI3IGluIHRoZSBEaXNwbGF5IFBhdGggSW5mb3Jt
-YXRpb24gCmVudHJ5IHdpbGwgaW5kaWNhdGUgd2hpY2ggTWFjcm8gdGhlIGVudHJ5IGlzIHRhbGtp
-bmcgYWJvdXQ6CgogICAgRm9yIEludGVybmFsIGFuZCBFeHRlcm5hbCBERlBzIHdlIGNhbiB1c2Ug
-YW55IG9mIHRoZSBhdmFpbGFibGUgU09ScwogICAgYnV0IHRoZSBQYWQgTWFjcm8gaXMgZml4ZWQg
-cGVyIERldmljZSBFbnRyeS4KICAgICAgICBCaXQgMCA9IFBhZCBNYWNybyAwIChQYWQgTGlua3Mg
-QSBhbmQgQikKICAgICAgICBCaXQgMSA9IFBhZCBNYWNybyAxIChQYWQgTGlua3MgQyBhbmQgRCkK
-ICAgICAgICBCaXQgMiA9IFBhZCBNYWNybyAyIChQYWQgTGlua3MgRSBhbmQgRikKICAgICAgICBC
-aXQgMyA9IFBhZCBNYWNybyAzIChQYWQgTGluayBHKQoKKEFJVUksIG9ubHkgb25lIGJpdCB3aWxs
-IGJlIHNldCBwZXIgZW50cnkpCgpBbmQgdGhlbiBiaXRzIDQtNSBpbiB0aGUgdGhlIERGUCBTcGVj
-aWZpYyBJbmZvcm1hdGlvbiB0YWJsZSBpbmRpY2F0ZSAKd2hpY2ggTWFjcm8gTGluayhzKSAoYWth
-IFBhZCBMaW5rKHMpKSB3aXRoaW4gdGhlIE1hY3JvIHRoZSBlbnRyeSBpcwp0YWxraW5nIGFib3V0
-OgoKICAgIEZvciBEQ0IgNC4xOiBGb3IgVE1EUy9MVkRTL0RQIHRoaXMgZmllbGQgZGVzY3JpYmVz
-IHdoaWNoIGxpbmtzIG9mCiAgICB0aGUgUGFkIE1hY3JvIGFyZSByb3V0ZWQgdG8gdGhlIGNvbm5l
-Y3RvciBvbiB0aGUgYm9hcmQuCiAgICAgICAgQml0IDA6IFBhZCBMaW5rIDAKICAgICAgICBCaXQg
-MTogUGFkIExpbmsgMQoKVGhlIFNvclNldENvbnRyb2wgaW5kZXgsIGFzIHVzZWQgaW4gdGhlIHN1
-cGVydmlzb3IgaW50ZXJydXB0LCBpbmRpY2F0ZXMKb25lIG9mIHRoZSBmb3VyIFNPUnMsIGFuZCB5
-b3UgY2FuIHJlZmVyIHRvIHRoZSBTT1IgQ3Jvc3NiYXIgY29uZmlndXJhdGlvbgp0byBkZXRlcm1p
-bmUgd2hpY2ggTWFjcm8gTGluayhzKSBhcmUgbGlzdGVuaW5nIHRvIHRoZSBTT1IgTGlua3Mgb2YK
-dGhhdCBTT1IuICBGcm9tIHRoZSBNYWNybyBMaW5rcywgeW91IHNob3VsZCBiZSBhYmxlIHRvIGNv
-cnJlbGF0ZSB0bwpEQ0IgZW50cmllcy4KCkZvciBhbiBleGFtcGxlIHRvcG9sb2d5LCBvdXIgcmVm
-ZXJlbmNlIEdUWCA5ODAgYm9hcmQgaGFzIHRoZSBmb2xsb3dpbmcgbGF5b3V0OgoKKiBQYWQgbGlu
-a3MgQStCIGFuZCBEQUMxIGFyZSBjb25uZWN0ZWQgdG8gdGhlIERWSS1JIGNvbm5lY3RvcgoqIExp
-bmsgQyAoTWFjcm8gMSBQYWQgTGluayAwKSBpcyBjb25uZWN0ZWQgdG8gdGhlIEhETUktQSBjb25u
-ZWN0b3IKKiBMaW5rIEQgKE1hY3JvIDEgUGFkIExpbmsgMSkgaXMgY29ubmVjdGVkIHRvIGEgRFAg
-Y29ubmVjdG9yCiogTGluayBFIChNYWNybyAyIFBhZCBMaW5rIDApIGlzIGNvbm5lY3RlZCB0byBh
-IERQIGNvbm5lY3RvcgoqIExpbmsgRiAoTWFjcm8gMiBQYWQgTGluayAxKSBpcyBjb25uZWN0ZWQg
-dG8gYSBEUCBjb25uZWN0b3IKCkV4Y2VwdCBmb3IgRFAgbXVsdGktc3RyZWFtLCBvbmUgU09SIHNo
-b3VsZCBiZSB1c2VkIHRvIGRyaXZlIGEgY29ubmVjdG9yLgoKVGhlIHNldHVwIHNlcXVlbmNlIHdv
-dWxkIG5vcm1hbGx5IGJlOgoqIERlY2lkZSB3aGljaCBjb25uZWN0b3JzIHlvdSB3YW50IHRvIGRy
-aXZlLgoqIENoZWNrIHdoaWNoIGxpbmsgKGxpbmtzIGZvciBkdWFsbGluay1EVkkpIHRvIHVzZSB3
-aXRoIHRoYXQgY29ubmVjdG9yLCBwZXIgdGhlIERDQi4KKiBBc3NpZ24gYW4gdW51c2VkIFNPUiB0
-byB0aG9zZSBsaW5rKHMpIHZpYSB0aGUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkwgcmVnaXN0
-ZXJzLgoqIFVzZSBTb3JTZXRDb250cm9sIHRvIGF0dGFjaCBhIGhlYWQgdG8gdGhhdCBTT1IuCgpJ
-IGhvcGUgdGhhdCBtYWtlcyBzZW5zZS4KClRoYW5rcywKLSBBbmR5CgoKPiBUaGFua3MsCj4gQmVu
-Lgo+IAo+ID4KPiA+IEJlbi4KPiA+Cj4gPj4KPiA+PiBJIGhvcGUgdGhhdCBpcyBoZWxwZnVsLAo+
-ID4+IC0gQW5keQo+ID4+Cj4gPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiA+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+ID4+IE5vdXZlYXVAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCj4gPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0732522843==
+Content-Type: multipart/alternative; boundary="1418466939.D8A88FF1.32063"; charset="UTF-8"
+
+
+--1418466939.D8A88FF1.32063
+Date: Sat, 13 Dec 2014 10:35:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
+
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I just tested on a GeForce 8600 GTS and had no problem loading Nouveau,
+launching X or kmscon or glxgears. Closing as fixed.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418466939.D8A88FF1.32063
+Date: Sat, 13 Dec 2014 10:35:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEEDINFO
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>I just tested on a GeForce 8600 GTS and had no problem loading Nouveau,
+launching X or kmscon or glxgears. Closing as fixed.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418466939.D8A88FF1.32063--
+
+--===============0732522843==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0732522843==--
