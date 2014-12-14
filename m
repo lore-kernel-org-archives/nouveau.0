@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57352] [nouveau] Kernel Tux logo incorrectly
-	displayed at boot
-Date: Sun, 14 Dec 2014 20:29:25 +0000
-Message-ID: <bug-57352-8800-WyGbihEmTg@http.bugs.freedesktop.org/>
-References: <bug-57352-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: DCB 4.1 spec update
+Date: Mon, 15 Dec 2014 07:40:32 +1000
+Message-ID: <CACAvsv6iKWJC7YbPAO6hJhipExOk6ErJiqU-Lu7jEOUqecX0KA@mail.gmail.com>
+References: <20141209182627.GO29251@parker.nvidia.com>
+ <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ@mail.gmail.com>
+ <CACAvsv684JM8EtZEzBgy7tb6-C5yWfwBKJ0CD5XhkeBmMuP5WQ@mail.gmail.com>
+ <20141213084201.GB1574@parker.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1032717478=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57352-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20141213084201.GB1574-4K9zQNqW3/fFT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +20,131 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1032717478==
-Content-Type: multipart/alternative; boundary="1418588965.B7D41.24973"; charset="UTF-8"
-
-
---1418588965.B7D41.24973
-Date: Sun, 14 Dec 2014 20:29:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=57352
-
-Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #3 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-The bug has been fixed sometime between 3.7 an 3.17. With 3.17 and 3.18 Tux
-renders correctly.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1418588965.B7D41.24973
-Date: Sun, 14 Dec 2014 20:29:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [nouveau] Kernel Tux logo incorrectly displayed at boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57352">bug 57352</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
-</span></b>
-        <pre>The bug has been fixed sometime between 3.7 an 3.17. With 3.17 and 3.18 Tux
-renders correctly.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1418588965.B7D41.24973--
-
---===============1032717478==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1032717478==--
+T24gU2F0LCBEZWMgMTMsIDIwMTQgYXQgNjo0MiBQTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJAbnZp
+ZGlhLmNvbT4gd3JvdGU6Cj4gT24gV2VkLCBEZWMgMTAsIDIwMTQgYXQgMDc6NDY6MTZBTSArMTAw
+MCwgQmVuIFNrZWdncyB3cm90ZToKPj4gT24gV2VkLCBEZWMgMTAsIDIwMTQgYXQgNzozNiBBTSwg
+QmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdyb3RlOgo+PiA+IE9uIFdlZCwgRGVjIDEw
+LCAyMDE0IGF0IDQ6MjYgQU0sIEFuZHkgUml0Z2VyIDxhcml0Z2VyQG52aWRpYS5jb20+IHdyb3Rl
+Ogo+PiA+PiBIaSwKPj4gPiBIZXkgQW5keSwKPj4gPgo+PiA+Pgo+PiA+PiBUaGUgVkJJT1Mgb24g
+R00yMHggR1BVcyB1c2VzIGEgc2xpZ2h0bHkgdXBkYXRlZCB2ZXJzaW9uIG9mIHRoZSBEQ0IuCj4+
+ID4+IEkndmUgcG9zdGVkIGFuIHVwZGF0ZWQgRENCIHNwZWMgaGVyZToKPj4gPj4KPj4gPj4gZnRw
+Oi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2MvRENCLzIvRENCLTQueC1TcGVjaWZp
+Y2F0aW9uLmh0bWwKPj4gPj4KPj4gPj4gWW91IGNhbiBkaWZmIGl0IGFnYWluc3QgdGhlIHByZXZp
+b3VzIHZlcnNpb246Cj4+ID4+Cj4+ID4+IGZ0cDovL2Rvd25sb2FkLm52aWRpYS5jb20vb3Blbi1n
+cHUtZG9jL0RDQi8xL0RDQi00LjAtU3BlY2lmaWNhdGlvbi5odG1sCj4+ID4+Cj4+ID4+IHRvIHNl
+ZSB3aGF0IGNoYW5nZWQgKHNvcnJ5IGZvciBoYXZpbmcgdG8gZGlmZiBodG1sIGZpbGVzKS4gIFRo
+ZSBiaWdnZXN0Cj4+ID4+IGRpZmZlcmVuY2VzIGFyZSBTZXJpYWwgT3V0cHV0IFJlc291cmNlIChT
+T1IpIGFzc2lnbm1lbnQsIGFuZCB0aGUgdXBkYXRlZAo+PiA+PiBDb21tdW5pY2F0aW9ucyBDb250
+cm9sIEJsb2NrIGxheW91dC4KPj4gPiBUaGFua3MgZm9yIHRoZSBoZWFkcy11cCBvbiB0aGUgdXBk
+YXRlLiAgVGhlIFNPUiBhc3NpZ25tZW50IGNoYW5nZXMKPj4gPiBleHBsYWluIHNvbWUgdGhpbmdz
+IEkgbm90aWNlZCB3aGVuIGJyaW5naW5nIHVwIHRoZSBHTTIwNCB5b3UgZ3V5cyBzZW50Cj4+ID4g
+bWUgOikKPj4gT25lIHF1ZXN0aW9uIEkgaGF2ZSBvbiBtYWtpbmcgcHJvcGVyIHVzZSBvZiB0aGlz
+IGlzIGhvdyBzaG91bGQgdGhlIFJNCj4+IGRldGVybWluZSB3aGljaCBEQ0IgZW50cnkgKGFuZCBo
+ZW5jZSwgdGhlIGNvcnJlY3QgcGFkIG1hY3JvKSB0byB1c2UKPj4gYmFzZWQgb24gdGhlIFNvclNl
+dENvbnRyb2wgaW5kZXggZnJvbSB0aGUgc3VwZXJ2aXNvcj8KPgo+IEhpIEJlbi4KPgo+IFllcywg
+dGhpcyBpcyBhIGxpdHRsZSBjb25mdXNpbmcuICBJIGhhZCB0byByZXZpZXcgZm9yIG15c2VsZiBh
+bmQgY29uc3VsdAo+IHdpdGggb25lIG9mIG91ciBWQklPUyBleHBlcnRzLgo+Cj4gQmVsb3cgaXMg
+bXkgdW5kZXJzdGFuZGluZy4gIFlvdSBwcm9iYWJseSBrbm93IG1vc3Qgb2YgdGhpcyBhbHJlYWR5
+LAo+IHNvIHNvcnJ5IGZvciBzdGF0aW5nIGFueXRoaW5nIG9idmlvdXMuCj4KPiBUZXJtaW5vbG9n
+eToKPgo+IFNPUjogU2VyaWFsIE91dHB1dCBSZXNvdXJjZS4gIFdoYXQgaXMgdXNlZCB0byBkcml2
+ZSBMVkRTLCBUTURTLCBhbmQKPiAgICAgRGlzcGxheVBvcnQuICBHTTIweCBoYXMgZm91ciBTT1Jz
+Lgo+Cj4gU09SIFN1Ymxpbms6IEFuIGluZGl2aWR1YWwgbGluayB3aXRoaW4gYW4gU09SLiAgRWFj
+aCBTT1IgaGFzIHR3byBsaW5rcwo+ICAgICAoU09SIExpbmtBIGFuZCBTT1IgTGlua0IsIHBlciBT
+T1IpLgo+Cj4gTWFjcm86IFJlY2VpdmVzIHNpZ25hbCBmcm9tIG9uZSBvciB0d28gU09SIHN1Ymxp
+bmtzLCBhbmQgdHJhbnNtaXRzIHRvCj4gICAgIGEgY29ubmVjdG9yLiAgR00yMHggaGFzIGZvdXIg
+TWFjcm9zLgo+Cj4gTWFjcm8gTGluayAoYWthIFBhZCBMaW5rKTogQW4gaW5kaXZpZHVhbCBsaW5r
+IHdpdGhpbiBhIE1hY3JvLiAgVGhlIGZpcnN0Cj4gICAgIHRocmVlIE1hY3JvcyBoYXZlIHR3byBN
+YWNybyBMaW5rcyBlYWNoLCBhbmQgdGhlIGZvdXJ0aCBoYXMgb25lCj4gICAgIE1hY3JvIExpbmsu
+ICBUaGUgTWFjcm8gTGlua3MgYXJlIGxhYmVsZWQgQSAtIEcuCj4KPiBJbiBHTTIweCwgd2UgYWRk
+ZWQgYW4gIlNPUiBDcm9zc2JhciIgYmV0d2VlbiB0aGUgU09ScyBhbmQgdGhlIE1hY3JvcywKPiBz
+dWNoIHRoYXQgYW55IFNPUiBTdWJsaW5rIGNhbiBkcml2ZSBhbnkgTWFjcm8gTGluay4KPgo+IFRo
+ZSByZWdpc3RlcnMgdG8gY29udHJvbCB0aGUgU09SIENyb3NzYmFyIGFyZSAweDAwNjEyMzA4Kyhp
+KSoxMjg6Cj4KPiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTChpKSAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICgweDAwNjEyMzA4KyhpKSoxMjgpICAvKiBSVy00QSAq
+Lwo+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMX19TSVpFXzEgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDcgIC8qICAgICAgICovCj4gICAg
+ICNkZWZpbmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkQgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDM6MCAgLyogUldJVkYgKi8KPiAgICAgI2RlZmlu
+ZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9JTklUICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSV0ktViAqLwo+ICAgICAjZGVmaW5lIE5WX1BE
+SVNQX0NMS19SRU1fTElOS19DVFJMX0ZST05URU5EX05PTkUgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAweDAwMDAwMDAwIC8qIFJXLS1WICovCj4gICAgICNkZWZpbmUgTlZfUERJU1BfQ0xL
+X1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfU09SMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IDB4MDAwMDAwMDEgLyogUlctLVYgKi8KPiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJ
+TktfQ1RSTF9GUk9OVEVORF9TT1IxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAw
+MDAwMiAvKiBSVy0tViAqLwo+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJM
+X0ZST05URU5EX1NPUjIgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAzIC8q
+IFJXLS1WICovCj4gICAgICNkZWZpbmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRF
+TkRfU09SMyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDQgLyogUlctLVYg
+Ki8KPiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1Ig
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNDo0ICAvKiBSV0lWRiAqLwo+ICAg
+ICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMX0ZST05URU5EX1NPUl9JTklUICAg
+ICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAwIC8qIFJXSS1WICovCj4gICAgICNkZWZp
+bmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfU09SX1BSSU1BUlkgICAgICAg
+ICAgICAgICAgICAgICAgIDB4MDAwMDAwMDAgLyogUlctLVYgICovCj4gICAgICNkZWZpbmUgTlZf
+UERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfU09SX1NFQ09OREFSWSAgICAgICAgICAg
+ICAgICAgICAgIDB4MDAwMDAwMDEgLyogUlctLVYgICovCj4KPiBUaGUgaW5kZXggKGkpIGlzIHRo
+ZSBNYWNybyBMaW5rIG51bWJlciAoMCB0aHJvdWdoIDYpLiAgWW91IGNhbiBkaXJlY3QKPiB0aGUg
+TWFjcm8gTGluayB0byBsaXN0ZW4gdG8gb25lIG9mIHRoZSBmb3VyIFNPUnMsIGFuZCBlaXRoZXIg
+TGlua0EKPiAoU09SX1BSSU1BUlkpIG9yIExpbmtCIChTT1JfU0VDT05EQVJZKSBvZiB0aGUgc2Vs
+ZWN0ZWQgU09SLgo+Cj4gTm90ZSB0aGUgZGVmYXVsdCBNYWNybyBMaW5rIHRvIFNPUiBTdWJsaW5r
+IGFzc2lnbm1lbnQgaXMgTk9ORSwgc28geW91J2xsIG5lZWQKPiB0byBwcm9ncmFtIE5WX1BESVNQ
+X0NMS19SRU1fTElOS19DVFJMIHRvIGRyaXZlIGFueSBTT1JzIG5vdCBzZXQgdXAgYnkKPiB0aGUg
+VkJJT1MuCj4KPiBMb29raW5nIGF0IHRoZSBEQ0Igc3BlYywgYml0cyAyNC0yNyBpbiB0aGUgRGlz
+cGxheSBQYXRoIEluZm9ybWF0aW9uCj4gZW50cnkgd2lsbCBpbmRpY2F0ZSB3aGljaCBNYWNybyB0
+aGUgZW50cnkgaXMgdGFsa2luZyBhYm91dDoKPgo+ICAgICBGb3IgSW50ZXJuYWwgYW5kIEV4dGVy
+bmFsIERGUHMgd2UgY2FuIHVzZSBhbnkgb2YgdGhlIGF2YWlsYWJsZSBTT1JzCj4gICAgIGJ1dCB0
+aGUgUGFkIE1hY3JvIGlzIGZpeGVkIHBlciBEZXZpY2UgRW50cnkuCj4gICAgICAgICBCaXQgMCA9
+IFBhZCBNYWNybyAwIChQYWQgTGlua3MgQSBhbmQgQikKPiAgICAgICAgIEJpdCAxID0gUGFkIE1h
+Y3JvIDEgKFBhZCBMaW5rcyBDIGFuZCBEKQo+ICAgICAgICAgQml0IDIgPSBQYWQgTWFjcm8gMiAo
+UGFkIExpbmtzIEUgYW5kIEYpCj4gICAgICAgICBCaXQgMyA9IFBhZCBNYWNybyAzIChQYWQgTGlu
+ayBHKQo+Cj4gKEFJVUksIG9ubHkgb25lIGJpdCB3aWxsIGJlIHNldCBwZXIgZW50cnkpCj4KPiBB
+bmQgdGhlbiBiaXRzIDQtNSBpbiB0aGUgdGhlIERGUCBTcGVjaWZpYyBJbmZvcm1hdGlvbiB0YWJs
+ZSBpbmRpY2F0ZQo+IHdoaWNoIE1hY3JvIExpbmsocykgKGFrYSBQYWQgTGluayhzKSkgd2l0aGlu
+IHRoZSBNYWNybyB0aGUgZW50cnkgaXMKPiB0YWxraW5nIGFib3V0Ogo+Cj4gICAgIEZvciBEQ0Ig
+NC4xOiBGb3IgVE1EUy9MVkRTL0RQIHRoaXMgZmllbGQgZGVzY3JpYmVzIHdoaWNoIGxpbmtzIG9m
+Cj4gICAgIHRoZSBQYWQgTWFjcm8gYXJlIHJvdXRlZCB0byB0aGUgY29ubmVjdG9yIG9uIHRoZSBi
+b2FyZC4KPiAgICAgICAgIEJpdCAwOiBQYWQgTGluayAwCj4gICAgICAgICBCaXQgMTogUGFkIExp
+bmsgMQo+Cj4gVGhlIFNvclNldENvbnRyb2wgaW5kZXgsIGFzIHVzZWQgaW4gdGhlIHN1cGVydmlz
+b3IgaW50ZXJydXB0LCBpbmRpY2F0ZXMKPiBvbmUgb2YgdGhlIGZvdXIgU09ScywgYW5kIHlvdSBj
+YW4gcmVmZXIgdG8gdGhlIFNPUiBDcm9zc2JhciBjb25maWd1cmF0aW9uCj4gdG8gZGV0ZXJtaW5l
+IHdoaWNoIE1hY3JvIExpbmsocykgYXJlIGxpc3RlbmluZyB0byB0aGUgU09SIExpbmtzIG9mCj4g
+dGhhdCBTT1IuICBGcm9tIHRoZSBNYWNybyBMaW5rcywgeW91IHNob3VsZCBiZSBhYmxlIHRvIGNv
+cnJlbGF0ZSB0bwo+IERDQiBlbnRyaWVzLgo+Cj4gRm9yIGFuIGV4YW1wbGUgdG9wb2xvZ3ksIG91
+ciByZWZlcmVuY2UgR1RYIDk4MCBib2FyZCBoYXMgdGhlIGZvbGxvd2luZyBsYXlvdXQ6Cj4KPiAq
+IFBhZCBsaW5rcyBBK0IgYW5kIERBQzEgYXJlIGNvbm5lY3RlZCB0byB0aGUgRFZJLUkgY29ubmVj
+dG9yCj4gKiBMaW5rIEMgKE1hY3JvIDEgUGFkIExpbmsgMCkgaXMgY29ubmVjdGVkIHRvIHRoZSBI
+RE1JLUEgY29ubmVjdG9yCj4gKiBMaW5rIEQgKE1hY3JvIDEgUGFkIExpbmsgMSkgaXMgY29ubmVj
+dGVkIHRvIGEgRFAgY29ubmVjdG9yCj4gKiBMaW5rIEUgKE1hY3JvIDIgUGFkIExpbmsgMCkgaXMg
+Y29ubmVjdGVkIHRvIGEgRFAgY29ubmVjdG9yCj4gKiBMaW5rIEYgKE1hY3JvIDIgUGFkIExpbmsg
+MSkgaXMgY29ubmVjdGVkIHRvIGEgRFAgY29ubmVjdG9yCj4KPiBFeGNlcHQgZm9yIERQIG11bHRp
+LXN0cmVhbSwgb25lIFNPUiBzaG91bGQgYmUgdXNlZCB0byBkcml2ZSBhIGNvbm5lY3Rvci4KSG0s
+IGlzIHRoaXMgdHJ1ZT8gIEkndmUgbm90IGxvb2tlZCBhdCBNU1Qgb24gR00yMDQgeWV0LCBidXQg
+ZWFybGllcgpLZXBsZXJzIGl0IHdhcyBzdGlsbCBvbmUgU09SIGJ1dCBtdWx0aXBsZSBoZWFkcyBh
+dHRhY2hlZCB0byBpdC4KCj4KPiBUaGUgc2V0dXAgc2VxdWVuY2Ugd291bGQgbm9ybWFsbHkgYmU6
+Cj4gKiBEZWNpZGUgd2hpY2ggY29ubmVjdG9ycyB5b3Ugd2FudCB0byBkcml2ZS4KPiAqIENoZWNr
+IHdoaWNoIGxpbmsgKGxpbmtzIGZvciBkdWFsbGluay1EVkkpIHRvIHVzZSB3aXRoIHRoYXQgY29u
+bmVjdG9yLCBwZXIgdGhlIERDQi4KSXQncyB0aGlzIHN0ZXAgSSB3YXMgdW5zdXJlIG9mLiAgVGhl
+IG9ubHkgaW5mb3JtYXRpb24gY2hhbm5lbCB3ZQpjdXJyZW50bHkgaGF2ZSBiZXR3ZWVuIHRoZSAi
+dXNlciIgc2lkZSBvZiBkaXNwbGF5IGFuZCB0aGUgc3VwZXJ2aXNvcgppcyB3aGF0IGNhbiBiZSBw
+dXNoZWQgdGhyb3VnaCBjb3JlIGNoYW5uZWwgbWV0aG9kcy4gIEkgZ3Vlc3MgYSBtb3JlCmV4cGxp
+Y2l0IHdheSB0byBwaHJhc2Ugd2hhdCBJIHdhcyB3YW50aW5nIHRvIGtub3cgaXM6ICBBcmUgdGhl
+cmUgYW55CmFkZGl0aW9uYWwgbWV0aG9kcyBmb3IgdGhlIHVzZXIgb2YgY29yZSB0byBjb25maWd1
+cmUgdGhlIHNvci0+bWFjcm8Kcm91dGluZywgb3IgaXMgdGhpcyBzb21ldGhpbmcgdGhhdCBpcyB1
+cCB0byB0aGUgZHJpdmVyIHRvIGltcGxlbWVudApob3dldmVyIGl0IHNlZXMgZml0PwoKVGhhbmtz
+IGFnYWluIQpCZW4uCgo+ICogQXNzaWduIGFuIHVudXNlZCBTT1IgdG8gdGhvc2UgbGluayhzKSB2
+aWEgdGhlIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMIHJlZ2lzdGVycy4KPiAqIFVzZSBTb3JT
+ZXRDb250cm9sIHRvIGF0dGFjaCBhIGhlYWQgdG8gdGhhdCBTT1IuCj4KPiBJIGhvcGUgdGhhdCBt
+YWtlcyBzZW5zZS4KPgo+IFRoYW5rcywKPiAtIEFuZHkKPgo+Cj4+IFRoYW5rcywKPj4gQmVuLgo+
+Pgo+PiA+Cj4+ID4gQmVuLgo+PiA+Cj4+ID4+Cj4+ID4+IEkgaG9wZSB0aGF0IGlzIGhlbHBmdWws
+Cj4+ID4+IC0gQW5keQo+PiA+Pgo+PiA+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+PiA+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiA+PiBOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
