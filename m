@@ -1,18 +1,13 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: DCB 4.1 spec update
-Date: Mon, 15 Dec 2014 09:45:39 -0800
-Message-ID: <20141215174539.GA3039@parker.nvidia.com>
-References: <20141209182627.GO29251@parker.nvidia.com>
- <CACAvsv6itPnaZFPwapZeOogLA-QhkvY=Wfk8Sq4vnuMA652MLQ@mail.gmail.com>
- <CACAvsv684JM8EtZEzBgy7tb6-C5yWfwBKJ0CD5XhkeBmMuP5WQ@mail.gmail.com>
- <20141213084201.GB1574@parker.nvidia.com>
- <CACAvsv6iKWJC7YbPAO6hJhipExOk6ErJiqU-Lu7jEOUqecX0KA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
+ increasing CPU usage
+Date: Mon, 15 Dec 2014 19:37:30 +0000
+Message-ID: <bug-69827-8800-xU4slreqUI@http.bugs.freedesktop.org/>
+References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2124636804=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CACAvsv6iKWJC7YbPAO6hJhipExOk6ErJiqU-Lu7jEOUqecX0KA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,147 +17,104 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBEZWMgMTUsIDIwMTQgYXQgMDc6NDA6MzJBTSArMTAwMCwgQmVuIFNrZWdncyB3cm90
-ZToKPiBPbiBTYXQsIERlYyAxMywgMjAxNCBhdCA2OjQyIFBNLCBBbmR5IFJpdGdlciA8YXJpdGdl
-ckBudmlkaWEuY29tPiB3cm90ZToKPiA+IE9uIFdlZCwgRGVjIDEwLCAyMDE0IGF0IDA3OjQ2OjE2
-QU0gKzEwMDAsIEJlbiBTa2VnZ3Mgd3JvdGU6Cj4gPj4gT24gV2VkLCBEZWMgMTAsIDIwMTQgYXQg
-NzozNiBBTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdyb3RlOgo+ID4+ID4gT24g
-V2VkLCBEZWMgMTAsIDIwMTQgYXQgNDoyNiBBTSwgQW5keSBSaXRnZXIgPGFyaXRnZXJAbnZpZGlh
-LmNvbT4gd3JvdGU6Cj4gPj4gPj4gSGksCj4gPj4gPiBIZXkgQW5keSwKPiA+PiA+Cj4gPj4gPj4K
-PiA+PiA+PiBUaGUgVkJJT1Mgb24gR00yMHggR1BVcyB1c2VzIGEgc2xpZ2h0bHkgdXBkYXRlZCB2
-ZXJzaW9uIG9mIHRoZSBEQ0IuCj4gPj4gPj4gSSd2ZSBwb3N0ZWQgYW4gdXBkYXRlZCBEQ0Igc3Bl
-YyBoZXJlOgo+ID4+ID4+Cj4gPj4gPj4gZnRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdw
-dS1kb2MvRENCLzIvRENCLTQueC1TcGVjaWZpY2F0aW9uLmh0bWwKPiA+PiA+Pgo+ID4+ID4+IFlv
-dSBjYW4gZGlmZiBpdCBhZ2FpbnN0IHRoZSBwcmV2aW91cyB2ZXJzaW9uOgo+ID4+ID4+Cj4gPj4g
-Pj4gZnRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2MvRENCLzEvRENCLTQuMC1T
-cGVjaWZpY2F0aW9uLmh0bWwKPiA+PiA+Pgo+ID4+ID4+IHRvIHNlZSB3aGF0IGNoYW5nZWQgKHNv
-cnJ5IGZvciBoYXZpbmcgdG8gZGlmZiBodG1sIGZpbGVzKS4gIFRoZSBiaWdnZXN0Cj4gPj4gPj4g
-ZGlmZmVyZW5jZXMgYXJlIFNlcmlhbCBPdXRwdXQgUmVzb3VyY2UgKFNPUikgYXNzaWdubWVudCwg
-YW5kIHRoZSB1cGRhdGVkCj4gPj4gPj4gQ29tbXVuaWNhdGlvbnMgQ29udHJvbCBCbG9jayBsYXlv
-dXQuCj4gPj4gPiBUaGFua3MgZm9yIHRoZSBoZWFkcy11cCBvbiB0aGUgdXBkYXRlLiAgVGhlIFNP
-UiBhc3NpZ25tZW50IGNoYW5nZXMKPiA+PiA+IGV4cGxhaW4gc29tZSB0aGluZ3MgSSBub3RpY2Vk
-IHdoZW4gYnJpbmdpbmcgdXAgdGhlIEdNMjA0IHlvdSBndXlzIHNlbnQKPiA+PiA+IG1lIDopCj4g
-Pj4gT25lIHF1ZXN0aW9uIEkgaGF2ZSBvbiBtYWtpbmcgcHJvcGVyIHVzZSBvZiB0aGlzIGlzIGhv
-dyBzaG91bGQgdGhlIFJNCj4gPj4gZGV0ZXJtaW5lIHdoaWNoIERDQiBlbnRyeSAoYW5kIGhlbmNl
-LCB0aGUgY29ycmVjdCBwYWQgbWFjcm8pIHRvIHVzZQo+ID4+IGJhc2VkIG9uIHRoZSBTb3JTZXRD
-b250cm9sIGluZGV4IGZyb20gdGhlIHN1cGVydmlzb3I/Cj4gPgo+ID4gSGkgQmVuLgo+ID4KPiA+
-IFllcywgdGhpcyBpcyBhIGxpdHRsZSBjb25mdXNpbmcuICBJIGhhZCB0byByZXZpZXcgZm9yIG15
-c2VsZiBhbmQgY29uc3VsdAo+ID4gd2l0aCBvbmUgb2Ygb3VyIFZCSU9TIGV4cGVydHMuCj4gPgo+
-ID4gQmVsb3cgaXMgbXkgdW5kZXJzdGFuZGluZy4gIFlvdSBwcm9iYWJseSBrbm93IG1vc3Qgb2Yg
-dGhpcyBhbHJlYWR5LAo+ID4gc28gc29ycnkgZm9yIHN0YXRpbmcgYW55dGhpbmcgb2J2aW91cy4K
-PiA+Cj4gPiBUZXJtaW5vbG9neToKPiA+Cj4gPiBTT1I6IFNlcmlhbCBPdXRwdXQgUmVzb3VyY2Uu
-ICBXaGF0IGlzIHVzZWQgdG8gZHJpdmUgTFZEUywgVE1EUywgYW5kCj4gPiAgICAgRGlzcGxheVBv
-cnQuICBHTTIweCBoYXMgZm91ciBTT1JzLgo+ID4KPiA+IFNPUiBTdWJsaW5rOiBBbiBpbmRpdmlk
-dWFsIGxpbmsgd2l0aGluIGFuIFNPUi4gIEVhY2ggU09SIGhhcyB0d28gbGlua3MKPiA+ICAgICAo
-U09SIExpbmtBIGFuZCBTT1IgTGlua0IsIHBlciBTT1IpLgo+ID4KPiA+IE1hY3JvOiBSZWNlaXZl
-cyBzaWduYWwgZnJvbSBvbmUgb3IgdHdvIFNPUiBzdWJsaW5rcywgYW5kIHRyYW5zbWl0cyB0bwo+
-ID4gICAgIGEgY29ubmVjdG9yLiAgR00yMHggaGFzIGZvdXIgTWFjcm9zLgo+ID4KPiA+IE1hY3Jv
-IExpbmsgKGFrYSBQYWQgTGluayk6IEFuIGluZGl2aWR1YWwgbGluayB3aXRoaW4gYSBNYWNyby4g
-IFRoZSBmaXJzdAo+ID4gICAgIHRocmVlIE1hY3JvcyBoYXZlIHR3byBNYWNybyBMaW5rcyBlYWNo
-LCBhbmQgdGhlIGZvdXJ0aCBoYXMgb25lCj4gPiAgICAgTWFjcm8gTGluay4gIFRoZSBNYWNybyBM
-aW5rcyBhcmUgbGFiZWxlZCBBIC0gRy4KPiA+Cj4gPiBJbiBHTTIweCwgd2UgYWRkZWQgYW4gIlNP
-UiBDcm9zc2JhciIgYmV0d2VlbiB0aGUgU09ScyBhbmQgdGhlIE1hY3JvcywKPiA+IHN1Y2ggdGhh
-dCBhbnkgU09SIFN1YmxpbmsgY2FuIGRyaXZlIGFueSBNYWNybyBMaW5rLgo+ID4KPiA+IFRoZSBy
-ZWdpc3RlcnMgdG8gY29udHJvbCB0aGUgU09SIENyb3NzYmFyIGFyZSAweDAwNjEyMzA4KyhpKSox
-Mjg6Cj4gPgo+ID4gICAgICNkZWZpbmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkwoaSkgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAoMHgwMDYxMjMwOCsoaSkqMTI4KSAgLyogUlctNEEg
-Ki8KPiA+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMX19TSVpFXzEgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDcgIC8qICAgICAgICovCj4g
-PiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORCAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMzowICAvKiBSV0lWRiAqLwo+ID4gICAg
-ICNkZWZpbmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfSU5JVCAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDAwMDAgLyogUldJLVYgKi8KPiA+ICAgICAjZGVm
-aW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMX0ZST05URU5EX05PTkUgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAweDAwMDAwMDAwIC8qIFJXLS1WICovCj4gPiAgICAgI2RlZmluZSBO
-Vl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9OVEVORF9TT1IwICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgMHgwMDAwMDAwMSAvKiBSVy0tViAqLwo+ID4gICAgICNkZWZpbmUgTlZfUERJ
-U1BfQ0xLX1JFTV9MSU5LX0NUUkxfRlJPTlRFTkRfU09SMSAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDB4MDAwMDAwMDIgLyogUlctLVYgKi8KPiA+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NM
-S19SRU1fTElOS19DVFJMX0ZST05URU5EX1NPUjIgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAweDAwMDAwMDAzIC8qIFJXLS1WICovCj4gPiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVN
-X0xJTktfQ1RSTF9GUk9OVEVORF9TT1IzICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgw
-MDAwMDAwNCAvKiBSVy0tViAqLwo+ID4gICAgICNkZWZpbmUgTlZfUERJU1BfQ0xLX1JFTV9MSU5L
-X0NUUkxfRlJPTlRFTkRfU09SICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDQ6
-NCAgLyogUldJVkYgKi8KPiA+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJM
-X0ZST05URU5EX1NPUl9JTklUICAgICAgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAwIC8q
-IFJXSS1WICovCj4gPiAgICAgI2RlZmluZSBOVl9QRElTUF9DTEtfUkVNX0xJTktfQ1RSTF9GUk9O
-VEVORF9TT1JfUFJJTUFSWSAgICAgICAgICAgICAgICAgICAgICAgMHgwMDAwMDAwMCAvKiBSVy0t
-ViAgKi8KPiA+ICAgICAjZGVmaW5lIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMX0ZST05URU5E
-X1NPUl9TRUNPTkRBUlkgICAgICAgICAgICAgICAgICAgICAweDAwMDAwMDAxIC8qIFJXLS1WICAq
-Lwo+ID4KPiA+IFRoZSBpbmRleCAoaSkgaXMgdGhlIE1hY3JvIExpbmsgbnVtYmVyICgwIHRocm91
-Z2ggNikuICBZb3UgY2FuIGRpcmVjdAo+ID4gdGhlIE1hY3JvIExpbmsgdG8gbGlzdGVuIHRvIG9u
-ZSBvZiB0aGUgZm91ciBTT1JzLCBhbmQgZWl0aGVyIExpbmtBCj4gPiAoU09SX1BSSU1BUlkpIG9y
-IExpbmtCIChTT1JfU0VDT05EQVJZKSBvZiB0aGUgc2VsZWN0ZWQgU09SLgo+ID4KPiA+IE5vdGUg
-dGhlIGRlZmF1bHQgTWFjcm8gTGluayB0byBTT1IgU3VibGluayBhc3NpZ25tZW50IGlzIE5PTkUs
-IHNvIHlvdSdsbCBuZWVkCj4gPiB0byBwcm9ncmFtIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJM
-IHRvIGRyaXZlIGFueSBTT1JzIG5vdCBzZXQgdXAgYnkKPiA+IHRoZSBWQklPUy4KPiA+Cj4gPiBM
-b29raW5nIGF0IHRoZSBEQ0Igc3BlYywgYml0cyAyNC0yNyBpbiB0aGUgRGlzcGxheSBQYXRoIElu
-Zm9ybWF0aW9uCj4gPiBlbnRyeSB3aWxsIGluZGljYXRlIHdoaWNoIE1hY3JvIHRoZSBlbnRyeSBp
-cyB0YWxraW5nIGFib3V0Ogo+ID4KPiA+ICAgICBGb3IgSW50ZXJuYWwgYW5kIEV4dGVybmFsIERG
-UHMgd2UgY2FuIHVzZSBhbnkgb2YgdGhlIGF2YWlsYWJsZSBTT1JzCj4gPiAgICAgYnV0IHRoZSBQ
-YWQgTWFjcm8gaXMgZml4ZWQgcGVyIERldmljZSBFbnRyeS4KPiA+ICAgICAgICAgQml0IDAgPSBQ
-YWQgTWFjcm8gMCAoUGFkIExpbmtzIEEgYW5kIEIpCj4gPiAgICAgICAgIEJpdCAxID0gUGFkIE1h
-Y3JvIDEgKFBhZCBMaW5rcyBDIGFuZCBEKQo+ID4gICAgICAgICBCaXQgMiA9IFBhZCBNYWNybyAy
-IChQYWQgTGlua3MgRSBhbmQgRikKPiA+ICAgICAgICAgQml0IDMgPSBQYWQgTWFjcm8gMyAoUGFk
-IExpbmsgRykKPiA+Cj4gPiAoQUlVSSwgb25seSBvbmUgYml0IHdpbGwgYmUgc2V0IHBlciBlbnRy
-eSkKPiA+Cj4gPiBBbmQgdGhlbiBiaXRzIDQtNSBpbiB0aGUgdGhlIERGUCBTcGVjaWZpYyBJbmZv
-cm1hdGlvbiB0YWJsZSBpbmRpY2F0ZQo+ID4gd2hpY2ggTWFjcm8gTGluayhzKSAoYWthIFBhZCBM
-aW5rKHMpKSB3aXRoaW4gdGhlIE1hY3JvIHRoZSBlbnRyeSBpcwo+ID4gdGFsa2luZyBhYm91dDoK
-PiA+Cj4gPiAgICAgRm9yIERDQiA0LjE6IEZvciBUTURTL0xWRFMvRFAgdGhpcyBmaWVsZCBkZXNj
-cmliZXMgd2hpY2ggbGlua3Mgb2YKPiA+ICAgICB0aGUgUGFkIE1hY3JvIGFyZSByb3V0ZWQgdG8g
-dGhlIGNvbm5lY3RvciBvbiB0aGUgYm9hcmQuCj4gPiAgICAgICAgIEJpdCAwOiBQYWQgTGluayAw
-Cj4gPiAgICAgICAgIEJpdCAxOiBQYWQgTGluayAxCj4gPgo+ID4gVGhlIFNvclNldENvbnRyb2wg
-aW5kZXgsIGFzIHVzZWQgaW4gdGhlIHN1cGVydmlzb3IgaW50ZXJydXB0LCBpbmRpY2F0ZXMKPiA+
-IG9uZSBvZiB0aGUgZm91ciBTT1JzLCBhbmQgeW91IGNhbiByZWZlciB0byB0aGUgU09SIENyb3Nz
-YmFyIGNvbmZpZ3VyYXRpb24KPiA+IHRvIGRldGVybWluZSB3aGljaCBNYWNybyBMaW5rKHMpIGFy
-ZSBsaXN0ZW5pbmcgdG8gdGhlIFNPUiBMaW5rcyBvZgo+ID4gdGhhdCBTT1IuICBGcm9tIHRoZSBN
-YWNybyBMaW5rcywgeW91IHNob3VsZCBiZSBhYmxlIHRvIGNvcnJlbGF0ZSB0bwo+ID4gRENCIGVu
-dHJpZXMuCj4gPgo+ID4gRm9yIGFuIGV4YW1wbGUgdG9wb2xvZ3ksIG91ciByZWZlcmVuY2UgR1RY
-IDk4MCBib2FyZCBoYXMgdGhlIGZvbGxvd2luZyBsYXlvdXQ6Cj4gPgo+ID4gKiBQYWQgbGlua3Mg
-QStCIGFuZCBEQUMxIGFyZSBjb25uZWN0ZWQgdG8gdGhlIERWSS1JIGNvbm5lY3Rvcgo+ID4gKiBM
-aW5rIEMgKE1hY3JvIDEgUGFkIExpbmsgMCkgaXMgY29ubmVjdGVkIHRvIHRoZSBIRE1JLUEgY29u
-bmVjdG9yCj4gPiAqIExpbmsgRCAoTWFjcm8gMSBQYWQgTGluayAxKSBpcyBjb25uZWN0ZWQgdG8g
-YSBEUCBjb25uZWN0b3IKPiA+ICogTGluayBFIChNYWNybyAyIFBhZCBMaW5rIDApIGlzIGNvbm5l
-Y3RlZCB0byBhIERQIGNvbm5lY3Rvcgo+ID4gKiBMaW5rIEYgKE1hY3JvIDIgUGFkIExpbmsgMSkg
-aXMgY29ubmVjdGVkIHRvIGEgRFAgY29ubmVjdG9yCj4gPgo+ID4gRXhjZXB0IGZvciBEUCBtdWx0
-aS1zdHJlYW0sIG9uZSBTT1Igc2hvdWxkIGJlIHVzZWQgdG8gZHJpdmUgYSBjb25uZWN0b3IuCj4g
-SG0sIGlzIHRoaXMgdHJ1ZT8gIEkndmUgbm90IGxvb2tlZCBhdCBNU1Qgb24gR00yMDQgeWV0LCBi
-dXQgZWFybGllcgo+IEtlcGxlcnMgaXQgd2FzIHN0aWxsIG9uZSBTT1IgYnV0IG11bHRpcGxlIGhl
-YWRzIGF0dGFjaGVkIHRvIGl0LgoKSG1tLCBJJ20gbm90IHN1cmUuICBCZWZvcmUgYWxsIG9mIHRo
-aXMgU09SIGNyb3NzYmFyIGNvbXBsZXhpdHksIEkgdGhvdWdodAphIGNvbm5lY3RvciBpbXBsaWVk
-IGEgc3BlY2lmaWMgU09SPyAgVGhlIHBhdGggd291bGQgYmU6CgogICAgbXVsdGlwbGUgaGVhZHMg
-LT4gb25lIFNPUiAtPiBvbmUgY29ubmVjdG9yCgpUaGUgU09SX1NFVF9DT05UUk9MIGNvcmUgY2hh
-bm5lbCBtZXRob2QgKDB4MDAwMDAyMDApIChvbiA+PSBHRjExOSkgaGFzCmEgaGVhZCBtYXNrIGlu
-IGJpdHMgMC0zLCB3aGljaCBpcyBob3cgeW91IGFyZSBzdXBwb3NlZCB0byB0ZWxsIHRoZSBTT1IK
-d2hhdCBoZWFkKHMpIHRvIGxpc3RlbiB0by4gIEF0IGxlYXN0LCB0aGF0IGlzIG15IHVuZGVyc3Rh
-bmRpbmcuCgo+ID4gVGhlIHNldHVwIHNlcXVlbmNlIHdvdWxkIG5vcm1hbGx5IGJlOgo+ID4gKiBE
-ZWNpZGUgd2hpY2ggY29ubmVjdG9ycyB5b3Ugd2FudCB0byBkcml2ZS4KPiA+ICogQ2hlY2sgd2hp
-Y2ggbGluayAobGlua3MgZm9yIGR1YWxsaW5rLURWSSkgdG8gdXNlIHdpdGggdGhhdCBjb25uZWN0
-b3IsIHBlciB0aGUgRENCLgo+IEl0J3MgdGhpcyBzdGVwIEkgd2FzIHVuc3VyZSBvZi4gIFRoZSBv
-bmx5IGluZm9ybWF0aW9uIGNoYW5uZWwgd2UKPiBjdXJyZW50bHkgaGF2ZSBiZXR3ZWVuIHRoZSAi
-dXNlciIgc2lkZSBvZiBkaXNwbGF5IGFuZCB0aGUgc3VwZXJ2aXNvcgo+IGlzIHdoYXQgY2FuIGJl
-IHB1c2hlZCB0aHJvdWdoIGNvcmUgY2hhbm5lbCBtZXRob2RzLiAgSSBndWVzcyBhIG1vcmUKPiBl
-eHBsaWNpdCB3YXkgdG8gcGhyYXNlIHdoYXQgSSB3YXMgd2FudGluZyB0byBrbm93IGlzOiAgQXJl
-IHRoZXJlIGFueQo+IGFkZGl0aW9uYWwgbWV0aG9kcyBmb3IgdGhlIHVzZXIgb2YgY29yZSB0byBj
-b25maWd1cmUgdGhlIHNvci0+bWFjcm8KPiByb3V0aW5nLCBvciBpcyB0aGlzIHNvbWV0aGluZyB0
-aGF0IGlzIHVwIHRvIHRoZSBkcml2ZXIgdG8gaW1wbGVtZW50Cj4gaG93ZXZlciBpdCBzZWVzIGZp
-dD8KCkkgdGhpbmsgdGhlIGRyaXZlciBoYXMgZmxleGliaWxpdHkgdG8gY2hvb3NlLCBhbmQgdGhl
-IGNob2ljZSBpcyByZWxhdGl2ZWx5CmFyYml0cmFyeSwgYmV5b25kIHNhdGlzZnlpbmcgdGhlIGNv
-bnRyYWludHMgZGVzY3JpYmVkIGluIHRoZSBEQ0IuCgpUaGFua3MsCi0gQW5keQoKCj4gVGhhbmtz
-IGFnYWluIQo+IEJlbi4KPiAKPiA+ICogQXNzaWduIGFuIHVudXNlZCBTT1IgdG8gdGhvc2UgbGlu
-ayhzKSB2aWEgdGhlIE5WX1BESVNQX0NMS19SRU1fTElOS19DVFJMIHJlZ2lzdGVycy4KPiA+ICog
-VXNlIFNvclNldENvbnRyb2wgdG8gYXR0YWNoIGEgaGVhZCB0byB0aGF0IFNPUi4KPiA+Cj4gPiBJ
-IGhvcGUgdGhhdCBtYWtlcyBzZW5zZS4KPiA+Cj4gPiBUaGFua3MsCj4gPiAtIEFuZHkKPiA+Cj4g
-Pgo+ID4+IFRoYW5rcywKPiA+PiBCZW4uCj4gPj4KPiA+PiA+Cj4gPj4gPiBCZW4uCj4gPj4gPgo+
-ID4+ID4+Cj4gPj4gPj4gSSBob3BlIHRoYXQgaXMgaGVscGZ1bCwKPiA+PiA+PiAtIEFuZHkKPiA+
-PiA+Pgo+ID4+ID4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCj4gPj4gPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiA+PiA+PiBOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwo+ID4+ID4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============2124636804==
+Content-Type: multipart/alternative; boundary="1418672249.17bDBF41.5906"; charset="UTF-8"
+
+
+--1418672249.17bDBF41.5906
+Date: Mon, 15 Dec 2014 19:37:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69827
+
+--- Comment #8 from James Moe <jimoe-zgPZrQL6nFyVmwMjj6irZQ@public.gmane.org> ---
+openSuse 13.2
+linux 3.16.6-2-desktop x86_64
+Gnome 3.14.1
+Gallium 0.4 on NVC1
+nVidia geforce gt 730
+
+It's baaaack.
+
+The mouse movement is not jerky like the original report.
+
+The CPU usage increases quite quickly this time around. The usage value (from
+TOP) starts at about 2 - 3% for gnome-session, increases to about 15% in 24
+hours. I have installed opensuse 13.2 on two other computers that have ATI
+graphics adapters; they do not exhibit this issue.
+
+If I do not boot every morning, the desktop is likely to freeze by the third
+day of uptime.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1418672249.17bDBF41.5906
+Date: Mon, 15 Dec 2014 19:37:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
+              from <span class="vcard"><a class="email" href="mailto:jimoe&#64;sohnen-moe.com" title="James Moe &lt;jimoe&#64;sohnen-moe.com&gt;"> <span class="fn">James Moe</span></a>
+</span></b>
+        <pre>openSuse 13.2
+linux 3.16.6-2-desktop x86_64
+Gnome 3.14.1
+Gallium 0.4 on NVC1
+nVidia geforce gt 730
+
+It's baaaack.
+
+The mouse movement is not jerky like the original report.
+
+The CPU usage increases quite quickly this time around. The usage value (from
+TOP) starts at about 2 - 3% for gnome-session, increases to about 15% in 24
+hours. I have installed opensuse 13.2 on two other computers that have ATI
+graphics adapters; they do not exhibit this issue.
+
+If I do not boot every morning, the desktop is likely to freeze by the third
+day of uptime.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1418672249.17bDBF41.5906--
+
+--===============2124636804==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2124636804==--
