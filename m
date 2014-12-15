@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
  increasing CPU usage
-Date: Mon, 15 Dec 2014 19:37:30 +0000
-Message-ID: <bug-69827-8800-xU4slreqUI@http.bugs.freedesktop.org/>
+Date: Mon, 15 Dec 2014 20:04:08 +0000
+Message-ID: <bug-69827-8800-BoUxEjiRjh@http.bugs.freedesktop.org/>
 References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2124636804=="
+Content-Type: multipart/mixed; boundary="===============2135302035=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2124636804==
-Content-Type: multipart/alternative; boundary="1418672249.17bDBF41.5906"; charset="UTF-8"
+--===============2135302035==
+Content-Type: multipart/alternative; boundary="1418673847.6Cba7fA2.14548"; charset="UTF-8"
 
 
---1418672249.17bDBF41.5906
-Date: Mon, 15 Dec 2014 19:37:29 +0000
+--1418673847.6Cba7fA2.14548
+Date: Mon, 15 Dec 2014 20:04:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69827
 
---- Comment #8 from James Moe <jimoe-zgPZrQL6nFyVmwMjj6irZQ@public.gmane.org> ---
-openSuse 13.2
-linux 3.16.6-2-desktop x86_64
-Gnome 3.14.1
-Gallium 0.4 on NVC1
-nVidia geforce gt 730
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
-It's baaaack.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|REOPENED                    |NEEDINFO
 
-The mouse movement is not jerky like the original report.
+--- Comment #9 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Try the latest software and see if this happens there:
 
-The CPU usage increases quite quickly this time around. The usage value (from
-TOP) starts at about 2 - 3% for gnome-session, increases to about 15% in 24
-hours. I have installed opensuse 13.2 on two other computers that have ATI
-graphics adapters; they do not exhibit this issue.
+Kernel:stable for a 3.18 kernel
+X11:XOrg for the X Stack + Mesa
 
-If I do not boot every morning, the desktop is likely to freeze by the third
-day of uptime.
+Report back anyway...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418672249.17bDBF41.5906
-Date: Mon, 15 Dec 2014 19:37:29 +0000
+--1418673847.6Cba7fA2.14548
+Date: Mon, 15 Dec 2014 20:04:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,36 +59,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>REOPENED
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c8">Comment # 8</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c9">Comment # 9</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
-              from <span class="vcard"><a class="email" href="mailto:jimoe&#64;sohnen-moe.com" title="James Moe &lt;jimoe&#64;sohnen-moe.com&gt;"> <span class="fn">James Moe</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>openSuse 13.2
-linux 3.16.6-2-desktop x86_64
-Gnome 3.14.1
-Gallium 0.4 on NVC1
-nVidia geforce gt 730
+        <pre>Try the latest software and see if this happens there:
 
-It's baaaack.
+Kernel:stable for a 3.18 kernel
+X11:XOrg for the X Stack + Mesa
 
-The mouse movement is not jerky like the original report.
-
-The CPU usage increases quite quickly this time around. The usage value (from
-TOP) starts at about 2 - 3% for gnome-session, increases to about 15% in 24
-hours. I have installed opensuse 13.2 on two other computers that have ATI
-graphics adapters; they do not exhibit this issue.
-
-If I do not boot every morning, the desktop is likely to freeze by the third
-day of uptime.</pre>
+Report back anyway...</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +109,9 @@ day of uptime.</pre>
     </body>
 </html>
 
---1418672249.17bDBF41.5906--
+--1418673847.6Cba7fA2.14548--
 
---===============2124636804==
+--===============2135302035==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2124636804==--
+--===============2135302035==--
