@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87361] [NV4C] GPU lock-up after booting to desktop
- in Fedora 20 & 21 (Nvidia Geforce 6100 IGP)
-Date: Tue, 16 Dec 2014 14:16:45 +0000
-Message-ID: <bug-87361-8800-DwwsTPgxTv@http.bugs.freedesktop.org/>
-References: <bug-87361-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71382] [NV4C] Nouveau dmesg error, computer hangs
+Date: Tue, 16 Dec 2014 16:19:12 +0000
+Message-ID: <bug-71382-8800-ETYR4WJSwH@http.bugs.freedesktop.org/>
+References: <bug-71382-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1858190679=="
+Content-Type: multipart/mixed; boundary="===============2087432422=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1858190679==
-Content-Type: multipart/alternative; boundary="1418739404.5fe5b1d0.9817"; charset="UTF-8"
+--===============2087432422==
+Content-Type: multipart/alternative; boundary="1418746752.Fc3Cd2.14972"; charset="UTF-8"
 
 
---1418739404.5fe5b1d0.9817
-Date: Tue, 16 Dec 2014 14:16:44 +0000
+--1418746752.Fc3Cd2.14972
+Date: Tue, 16 Dec 2014 16:19:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87361
+https://bugs.freedesktop.org/show_bug.cgi?id=71382
 
-Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #10 from Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hello everybody.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV4C] Kernel lock-up after |[NV4C] GPU lock-up after
-                   |booting to desktop in       |booting to desktop in
-                   |Fedora 20 & 21 (Nvidia      |Fedora 20 & 21 (Nvidia
-                   |Geforce 6100 IGP)           |Geforce 6100 IGP)
+I also filed the same bug only in the Mesa section.
+It can be found over here: https://bugs.freedesktop.org/show_bug.cgi?id=87361
+The solution to make the system workable is to append a kernel boot parameter.
+The parameter is: nouveau.config=NvMSI=0
+This seems to be incompatible with the NV4C chipset.
+Someone on IRC pointed out this function may need to be blacklisted for this
+chipset, so it works out of the box for everybody.
+
+Greetings Jan Jasper de Kroon
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418739404.5fe5b1d0.9817
-Date: Tue, 16 Dec 2014 14:16:44 +0000
+--1418746752.Fc3Cd2.14972
+Date: Tue, 16 Dec 2014 16:19:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,28 +57,34 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:jajadekroon&#64;gmail.com" title="Jan Jasper de Kroon &lt;jajadekroon&#64;gmail.com&gt;"> <span class="fn">Jan Jasper de Kroon</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV4C] Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV4C] Nouveau dmesg error, computer hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
+              from <span class="vcard"><a class="email" href="mailto:jajadekroon&#64;gmail.com" title="Jan Jasper de Kroon &lt;jajadekroon&#64;gmail.com&gt;"> <span class="fn">Jan Jasper de Kroon</span></a>
+</span></b>
+        <pre>Hello everybody.
+
+I also filed the same bug only in the Mesa section.
+It can be found over here: <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361">bug 87361</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   href="show_bug.cgi?id=87361">https://bugs.freedesktop.org/show_bug.cgi?id=87361</a>
+The solution to make the system workable is to append a kernel boot parameter.
+The parameter is: nouveau.config=NvMSI=0
+This seems to be incompatible with the NV4C chipset.
+Someone on IRC pointed out this function may need to be blacklisted for this
+chipset, so it works out of the box for everybody.
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV4C] Kernel lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)
-           </td>
-           <td>[NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)
-           </td>
-         </tr></table>
-      <p>
+Greetings Jan Jasper de Kroon</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +95,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418739404.5fe5b1d0.9817--
+--1418746752.Fc3Cd2.14972--
 
---===============1858190679==
+--===============2087432422==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1858190679==--
+--===============2087432422==--
