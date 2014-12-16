@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71382] [NV4C] Nouveau dmesg error, computer hangs
-Date: Tue, 16 Dec 2014 16:19:12 +0000
-Message-ID: <bug-71382-8800-ETYR4WJSwH@http.bugs.freedesktop.org/>
-References: <bug-71382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87361] [NV4C] GPU lock-up after booting to desktop
+ in Fedora 20 & 21 (Nvidia Geforce 6100 IGP)
+Date: Tue, 16 Dec 2014 16:30:47 +0000
+Message-ID: <bug-87361-8800-Lzf2WmlFVc@http.bugs.freedesktop.org/>
+References: <bug-87361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2087432422=="
+Content-Type: multipart/mixed; boundary="===============1266894904=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2087432422==
-Content-Type: multipart/alternative; boundary="1418746752.Fc3Cd2.14972"; charset="UTF-8"
+--===============1266894904==
+Content-Type: multipart/alternative; boundary="1418747447.5F7d8E1.18478"; charset="UTF-8"
 
 
---1418746752.Fc3Cd2.14972
-Date: Tue, 16 Dec 2014 16:19:12 +0000
+--1418747447.5F7d8E1.18478
+Date: Tue, 16 Dec 2014 16:30:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71382
+https://bugs.freedesktop.org/show_bug.cgi?id=87361
 
---- Comment #10 from Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hello everybody.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+We did make some wild assumptions that nv4c msi worked like nv4e msi. Perhaps
+they were unwarranted. Could you change
+drivers/gpu/drm/nouveau/core/engine/device/nv40.c to have
 
-I also filed the same bug only in the Mesa section.
-It can be found over here: https://bugs.freedesktop.org/show_bug.cgi?id=87361
-The solution to make the system workable is to append a kernel boot parameter.
-The parameter is: nouveau.config=NvMSI=0
-This seems to be incompatible with the NV4C chipset.
-Someone on IRC pointed out this function may need to be blacklisted for this
-chipset, so it works out of the box for everybody.
+device->oclass[NVDEV_SUBDEV_MC     ] =  nv44_mc_oclass
 
-Greetings Jan Jasper de Kroon
+instead of nv4c_mc_oclass for the 0x4c case? (and remove NvMSI=0 from your
+boot)
+
+BTW, to answer some questions from the IRC log:
+
+<4>[    1.628331] nouveau W[     DRM] DCB type 4 not known
+<4>[    1.628335] nouveau W[     DRM] Unknown-1 has no encoders, removing
+
+This is just the DVI connector on your motherboard which is implemented as an
+external encoder. nouveau doesn't support that, there's a bug open about it.
+
+<3>[   25.103513] nouveau E[    PBUS][0000:00:0d.0] MMIO write of 0x01000001
+FAULT at 0x00b000
+
+And the others -- these come from VPE, I have no idea how they happen since I'm
+sure you're not even using VPE. But I've seen them on a bunch of people's boot
+logs and they appear harmless. If you wanted to disable VPE, you'd boot with
+nouveau.config=PMPEG=0. However it's unlikely to have any effect. PVP=0 should
+have had literally 0 effect since you don't have a (functioning) VP engine on
+those boards (you have VP1, but it's wholly unsupported by nouveau).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418746752.Fc3Cd2.14972
-Date: Tue, 16 Dec 2014 16:19:12 +0000
+--1418747447.5F7d8E1.18478
+Date: Tue, 16 Dec 2014 16:30:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,28 +78,40 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV4C] Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382#c10">Comment # 10</a>
+   title="NEW - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV4C] Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
-              from <span class="vcard"><a class="email" href="mailto:jajadekroon&#64;gmail.com" title="Jan Jasper de Kroon &lt;jajadekroon&#64;gmail.com&gt;"> <span class="fn">Jan Jasper de Kroon</span></a>
-</span></b>
-        <pre>Hello everybody.
-
-I also filed the same bug only in the Mesa section.
-It can be found over here: <a class="bz_bug_link 
-          bz_status_NEW "
    title="NEW - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
-   href="show_bug.cgi?id=87361">https://bugs.freedesktop.org/show_bug.cgi?id=87361</a>
-The solution to make the system workable is to append a kernel boot parameter.
-The parameter is: nouveau.config=NvMSI=0
-This seems to be incompatible with the NV4C chipset.
-Someone on IRC pointed out this function may need to be blacklisted for this
-chipset, so it works out of the box for everybody.
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361">bug 87361</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>We did make some wild assumptions that nv4c msi worked like nv4e msi. Perhaps
+they were unwarranted. Could you change
+drivers/gpu/drm/nouveau/core/engine/device/nv40.c to have
 
-Greetings Jan Jasper de Kroon</pre>
+device-&gt;oclass[NVDEV_SUBDEV_MC     ] =  nv44_mc_oclass
+
+instead of nv4c_mc_oclass for the 0x4c case? (and remove NvMSI=0 from your
+boot)
+
+BTW, to answer some questions from the IRC log:
+
+&lt;4&gt;[    1.628331] nouveau W[     DRM] DCB type 4 not known
+&lt;4&gt;[    1.628335] nouveau W[     DRM] Unknown-1 has no encoders, removing
+
+This is just the DVI connector on your motherboard which is implemented as an
+external encoder. nouveau doesn't support that, there's a bug open about it.
+
+&lt;3&gt;[   25.103513] nouveau E[    PBUS][0000:00:0d.0] MMIO write of 0x01000001
+FAULT at 0x00b000
+
+And the others -- these come from VPE, I have no idea how they happen since I'm
+sure you're not even using VPE. But I've seen them on a bunch of people's boot
+logs and they appear harmless. If you wanted to disable VPE, you'd boot with
+nouveau.config=PMPEG=0. However it's unlikely to have any effect. PVP=0 should
+have had literally 0 effect since you don't have a (functioning) VP engine on
+those boards (you have VP1, but it's wholly unsupported by nouveau).</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +123,9 @@ Greetings Jan Jasper de Kroon</pre>
     </body>
 </html>
 
---1418746752.Fc3Cd2.14972--
+--1418747447.5F7d8E1.18478--
 
---===============2087432422==
+--===============1266894904==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2087432422==--
+--===============1266894904==--
