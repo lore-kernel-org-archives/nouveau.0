@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71382] [NV4C] Nouveau dmesg error, computer hangs
-Date: Wed, 17 Dec 2014 08:27:25 +0000
-Message-ID: <bug-71382-8800-ds3RvbdH2I@http.bugs.freedesktop.org/>
-References: <bug-71382-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87361] [NV4C] GPU lock-up after booting to desktop
+ in Fedora 20 & 21 (Nvidia Geforce 6100 IGP)
+Date: Wed, 17 Dec 2014 08:26:14 +0000
+Message-ID: <bug-87361-8800-fODwyUF5pN@http.bugs.freedesktop.org/>
+References: <bug-87361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0242570262=="
+Content-Type: multipart/mixed; boundary="===============0883332353=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71382-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0242570262==
-Content-Type: multipart/alternative; boundary="1418804845.2eE83.28581"; charset="UTF-8"
+--===============0883332353==
+Content-Type: multipart/alternative; boundary="1418804774.c3e7A0.28208"; charset="UTF-8"
 
 
---1418804845.2eE83.28581
-Date: Wed, 17 Dec 2014 08:27:25 +0000
+--1418804774.c3e7A0.28208
+Date: Wed, 17 Dec 2014 08:26:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71382
+https://bugs.freedesktop.org/show_bug.cgi?id=87361
 
 Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-           See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=87361
+           See Also|                            |https://bugzilla.kernel.org
+                   |                            |/show_bug.cgi?id=50091
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418804845.2eE83.28581
-Date: Wed, 17 Dec 2014 08:27:25 +0000
+--1418804774.c3e7A0.28208
+Date: Wed, 17 Dec 2014 08:26:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV4C] Nouveau dmesg error, computer hangs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71382">bug 71382</a>
+   title="NEW - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361">bug 87361</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,7 +71,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=87361
+           <td>https://bugzilla.kernel.org/show_bug.cgi?id=50091
            </td>
          </tr></table>
       <p>
@@ -84,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418804845.2eE83.28581--
+--1418804774.c3e7A0.28208--
 
---===============0242570262==
+--===============0883332353==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0242570262==--
+--===============0883332353==--
