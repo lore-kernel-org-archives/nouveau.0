@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87361] [NV4C] GPU lock-up after booting to desktop
  in Fedora 20 & 21 (Nvidia Geforce 6100 IGP)
-Date: Wed, 17 Dec 2014 08:23:24 +0000
-Message-ID: <bug-87361-8800-IhUCrRYkYV@http.bugs.freedesktop.org/>
+Date: Wed, 17 Dec 2014 08:27:25 +0000
+Message-ID: <bug-87361-8800-FdV7t9qkrf@http.bugs.freedesktop.org/>
 References: <bug-87361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0079224855=="
+Content-Type: multipart/mixed; boundary="===============0827079572=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0079224855==
-Content-Type: multipart/alternative; boundary="1418804603.A65C0.27071"; charset="UTF-8"
+--===============0827079572==
+Content-Type: multipart/alternative; boundary="1418804845.E8BBC1E60.28581"; charset="UTF-8"
 
 
---1418804603.A65C0.27071
-Date: Wed, 17 Dec 2014 08:23:23 +0000
+--1418804845.E8BBC1E60.28581
+Date: Wed, 17 Dec 2014 08:27:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -37,14 +37,14 @@ Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> change
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=61321
+                   |                            |g/show_bug.cgi?id=71382
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418804603.A65C0.27071
-Date: Wed, 17 Dec 2014 08:23:23 +0000
+--1418804845.E8BBC1E60.28581
+Date: Wed, 17 Dec 2014 08:27:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,7 +71,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=61321
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=71382
            </td>
          </tr></table>
       <p>
@@ -85,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418804603.A65C0.27071--
+--1418804845.E8BBC1E60.28581--
 
---===============0079224855==
+--===============0827079572==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0079224855==--
+--===============0827079572==--
