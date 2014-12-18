@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
 	0x00000000
-Date: Thu, 18 Dec 2014 11:29:05 +0000
-Message-ID: <bug-87436-8800-ThuzCj9EOT@http.bugs.freedesktop.org/>
+Date: Thu, 18 Dec 2014 11:39:47 +0000
+Message-ID: <bug-87436-8800-qsI2yMHG6H@http.bugs.freedesktop.org/>
 References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1970196915=="
+Content-Type: multipart/mixed; boundary="===============0913860324=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1970196915==
-Content-Type: multipart/alternative; boundary="1418902145.A55FCDfF1.695"; charset="UTF-8"
+--===============0913860324==
+Content-Type: multipart/alternative; boundary="1418902786.8aAC2.4708"; charset="UTF-8"
 
 
---1418902145.A55FCDfF1.695
-Date: Thu, 18 Dec 2014 11:29:05 +0000
+--1418902786.8aAC2.4708
+Date: Thu, 18 Dec 2014 11:39:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87436
 
-Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> changed:
+--- Comment #3 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
+(In reply to Laurent Bigonville from comment #2)
+> Created attachment 110979 [details]
+> full dmesg
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #110978|0                           |1
-        is obsolete|                            |
+Unfortunately the start of the log (containing, amongst others, the full kernel
+version and kernel parameters) have fallen off. Could you paste them as well
+please?
 
---- Comment #2 from Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 110979
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110979&action=edit
-full dmesg
+One thing I did notice is that, other than for bug #84203, you were not
+attempting to resume from suspend when the error occured. What was the action
+you performed about 45 minutes after boot? Did you plug in a monitor, or
+disable one, or change your resolution?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418902145.A55FCDfF1.695
-Date: Thu, 18 Dec 2014 11:29:05 +0000
+--1418902786.8aAC2.4708
+Date: Thu, 18 Dec 2014 11:39:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,42 +59,34 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #110978 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-              from <span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
+              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110979" name="attach_110979" title="full dmesg">attachment 110979</a> <a href="attachment.cgi?id=110979&amp;action=edit" title="full dmesg">[details]</a></span>
-full dmesg</pre>
+        <pre>(In reply to Laurent Bigonville from <a href="show_bug.cgi?id=87436#c2">comment #2</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=110979" name="attach_110979" title="full dmesg">attachment 110979</a> <a href="attachment.cgi?id=110979&amp;action=edit" title="full dmesg">[details]</a></span>
+&gt; full dmesg</span >
+
+Unfortunately the start of the log (containing, amongst others, the full kernel
+version and kernel parameters) have fallen off. Could you paste them as well
+please?
+
+One thing I did notice is that, other than for <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
+   href="show_bug.cgi?id=84203">bug #84203</a>, you were not
+attempting to resume from suspend when the error occured. What was the action
+you performed about 45 minutes after boot? Did you plug in a monitor, or
+disable one, or change your resolution?</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +98,9 @@ full dmesg</pre>
     </body>
 </html>
 
---1418902145.A55FCDfF1.695--
+--1418902786.8aAC2.4708--
 
---===============1970196915==
+--===============0913860324==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1970196915==--
+--===============0913860324==--
