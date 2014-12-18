@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
 	0x00000000
-Date: Thu, 18 Dec 2014 11:14:27 +0000
-Message-ID: <bug-87436-8800-wtliLo8PJ7@http.bugs.freedesktop.org/>
+Date: Thu, 18 Dec 2014 11:29:05 +0000
+Message-ID: <bug-87436-8800-ThuzCj9EOT@http.bugs.freedesktop.org/>
 References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1125618728=="
+Content-Type: multipart/mixed; boundary="===============1970196915=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1125618728==
-Content-Type: multipart/alternative; boundary="1418901266.eaADEDBe2.28392"; charset="UTF-8"
+--===============1970196915==
+Content-Type: multipart/alternative; boundary="1418902145.A55FCDfF1.695"; charset="UTF-8"
 
 
---1418901266.eaADEDBe2.28392
-Date: Thu, 18 Dec 2014 11:14:26 +0000
+--1418902145.A55FCDfF1.695
+Date: Thu, 18 Dec 2014 11:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87436
 
---- Comment #1 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-Please post the full dmesg output, rather than filtered on nouveau.
+Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #110978|0                           |1
+        is obsolete|                            |
+
+--- Comment #2 from Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 110979
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110979&action=edit
+full dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418901266.eaADEDBe2.28392
-Date: Thu, 18 Dec 2014 11:14:26 +0000
+--1418902145.A55FCDfF1.695
+Date: Thu, 18 Dec 2014 11:29:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,20 +57,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #110978 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+              from <span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
 </span></b>
-        <pre>Please post the full dmesg output, rather than filtered on nouveau.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=110979" name="attach_110979" title="full dmesg">attachment 110979</a> <a href="attachment.cgi?id=110979&amp;action=edit" title="full dmesg">[details]</a></span>
+full dmesg</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +104,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1418901266.eaADEDBe2.28392--
+--1418902145.A55FCDfF1.695--
 
---===============1125618728==
+--===============1970196915==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1125618728==--
+--===============1970196915==--
