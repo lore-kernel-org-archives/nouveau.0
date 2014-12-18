@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87361] [NV4C] GPU lock-up after booting to desktop
- in Fedora 20 & 21 (Nvidia Geforce 6100 IGP)
-Date: Wed, 17 Dec 2014 18:14:37 +0000
-Message-ID: <bug-87361-8800-R3t5cikIXN@http.bugs.freedesktop.org/>
-References: <bug-87361-8800@http.bugs.freedesktop.org/>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC PATCH 0/3] introduce DVFS for GK20A
+Date: Thu, 18 Dec 2014 14:28:09 +0800
+Message-ID: <1418884092-14448-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1143485879=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +15,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1143485879==
-Content-Type: multipart/alternative; boundary="1418840077.67C77c0.31692"; charset="UTF-8"
-
-
---1418840077.67C77c0.31692
-Date: Wed, 17 Dec 2014 18:14:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87361
-
-Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Jan Jasper de Kroon <jajadekroon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-To resolve the bug these changes from the mailing list need to be applied:
-http://lists.freedesktop.org/archives/nouveau/2014-December/019417.html
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1418840077.67C77c0.31692
-Date: Wed, 17 Dec 2014 18:14:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:jajadekroon&#64;gmail.com" title="Jan Jasper de Kroon &lt;jajadekroon&#64;gmail.com&gt;"> <span class="fn">Jan Jasper de Kroon</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361">bug 87361</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV4C] GPU lock-up after booting to desktop in Fedora 20 &amp; 21 (Nvidia Geforce 6100 IGP)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87361">bug 87361</a>
-              from <span class="vcard"><a class="email" href="mailto:jajadekroon&#64;gmail.com" title="Jan Jasper de Kroon &lt;jajadekroon&#64;gmail.com&gt;"> <span class="fn">Jan Jasper de Kroon</span></a>
-</span></b>
-        <pre>To resolve the bug these changes from the mailing list need to be applied:
-<a href="http://lists.freedesktop.org/archives/nouveau/2014-December/019417.html">http://lists.freedesktop.org/archives/nouveau/2014-December/019417.html</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1418840077.67C77c0.31692--
-
---===============1143485879==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1143485879==--
+SGksCgpUaGlzIGlzIGEgdHJ5IHRvIGhhdmUgc29tZSBzaW1wbGUgRFZGUyAoRHluYW1pYyBWb2x0
+YWdlIGFuZCBGcmVxdWVuY3kgU2NhbGluZykKc3VwcG9ydCBmb3IgR0syMEEuIEluc3RlYWQgb2Yg
+cmVseWluZyBvbiBvdGhlciBleGlzdGluZyBmcmVxdWVuY3kgc2NhbGluZwpmcmFtZXdvcmssIHdl
+IGNyZWF0ZSBhIHNpbXBsZSBzdWJkZXYgaW4gTm91dmVhdSBmb3IgdGhlIHNhbWUgcHVycG9zZS4g
+VGhhdCdzCmJlY2F1c2Ugd2UgZG9uJ3Qgd2FudCB0byBtYWtlIHRoZSBEVkZTIGltcGxlbWVudGF0
+aW9uIGZvciBHSzIwQSBmYXIgbW9yZQp0aGFuIGVub3VnaCBpbiB0aGUgYmVnaW5uaW5nIGFuZCBo
+aW5kZXIgdGhlIGltcGxlbWVudGF0aW9uIGZvciBkR1BVIGluIHRoZQpmdXR1cmUuCgpUaGFua3Ms
+ClZpbmNlCgpWaW5jZSBIc3UgKDMpOgogIGNsazogYWxsb3cgbm9uLWJsb2NraW5nIGZvciBub3V2
+ZWF1X2Nsb2NrX2FzdGF0ZSgpCiAgZHZmczogYWRkIHN1cHBvcnQgZm9yIEdLMjBBCiAgY2xrOiBh
+bGxvdyB1c2VycyB0byBlbmFibGUgYXV0byBtb2RlIHdoZW4gbG9hZGluZyBkcml2ZXIKCiBkcm0v
+S2J1aWxkICAgICAgICAgICAgICAgICAgICAgfCAgIDIgKwogZHJtL2NvcmUvaW5jbHVkZS9zdWJk
+ZXYvZHZmcy5oIHwgICAxICsKIGRybS9jb3JlL3N1YmRldi9kdmZzL2Jhc2UuYyAgICB8ICAgMSAr
+CiBkcm0vY29yZS9zdWJkZXYvZHZmcy9nazIwYS5jICAgfCAgIDEgKwogZHJtL2NvcmUvc3ViZGV2
+L2R2ZnMvcHJpdi5oICAgIHwgICAxICsKIG52a20vZW5naW5lL2RldmljZS9udmUwLmMgICAgICB8
+ICAgMiArCiBudmttL2luY2x1ZGUvY29yZS9kZXZpY2UuaCAgICAgfCAgIDEgKwogbnZrbS9pbmNs
+dWRlL3N1YmRldi9jbG9jay5oICAgIHwgICAyICstCiBudmttL2luY2x1ZGUvc3ViZGV2L2R2ZnMu
+aCAgICAgfCAgMzAgKysrKysrKysKIG52a20vc3ViZGV2L01ha2VmaWxlLmFtICAgICAgICB8ICAg
+NSArLQogbnZrbS9zdWJkZXYvY2xvY2svYmFzZS5jICAgICAgIHwgICA3ICstCiBudmttL3N1YmRl
+di9kdmZzL01ha2VmaWxlLmFtICAgfCAgIDYgKysKIG52a20vc3ViZGV2L2R2ZnMvYmFzZS5jICAg
+ICAgICB8IDEyOSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCiBudmttL3N1YmRl
+di9kdmZzL2drMjBhLmMgICAgICAgfCAxNTYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysKIG52a20vc3ViZGV2L2R2ZnMvcHJpdi5oICAgICAgICB8ICA0MyArKysrKysr
+KysrKysKIDE1IGZpbGVzIGNoYW5nZWQsIDM4MiBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygt
+KQogY3JlYXRlIG1vZGUgMTIwMDAwIGRybS9jb3JlL2luY2x1ZGUvc3ViZGV2L2R2ZnMuaAogY3Jl
+YXRlIG1vZGUgMTIwMDAwIGRybS9jb3JlL3N1YmRldi9kdmZzL2Jhc2UuYwogY3JlYXRlIG1vZGUg
+MTIwMDAwIGRybS9jb3JlL3N1YmRldi9kdmZzL2drMjBhLmMKIGNyZWF0ZSBtb2RlIDEyMDAwMCBk
+cm0vY29yZS9zdWJkZXYvZHZmcy9wcml2LmgKIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmttL2luY2x1
+ZGUvc3ViZGV2L2R2ZnMuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IG52a20vc3ViZGV2L2R2ZnMvTWFr
+ZWZpbGUuYW0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmttL3N1YmRldi9kdmZzL2Jhc2UuYwogY3Jl
+YXRlIG1vZGUgMTAwNjQ0IG52a20vc3ViZGV2L2R2ZnMvZ2syMGEuYwogY3JlYXRlIG1vZGUgMTAw
+NjQ0IG52a20vc3ViZGV2L2R2ZnMvcHJpdi5oCgotLSAKMS45LjEKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
