@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
-	0x00000000
-Date: Thu, 18 Dec 2014 13:02:13 +0000
-Message-ID: <bug-87436-8800-ZuVR7tJEBh@http.bugs.freedesktop.org/>
-References: <bug-87436-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84101] [NV96] null deref in nouveau_i2c_acquire_pad,
+ triggered by xcmddc
+Date: Thu, 18 Dec 2014 18:12:02 +0000
+Message-ID: <bug-84101-8800-mdY8dFmtx7@http.bugs.freedesktop.org/>
+References: <bug-84101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0851440427=="
+Content-Type: multipart/mixed; boundary="===============1807637670=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0851440427==
-Content-Type: multipart/alternative; boundary="1418907733.8b32C0A41.2451"; charset="UTF-8"
+--===============1807637670==
+Content-Type: multipart/alternative; boundary="1418926322.e31C34c1.13757"; charset="UTF-8"
 
 
---1418907733.8b32C0A41.2451
-Date: Thu, 18 Dec 2014 13:02:13 +0000
+--1418926322.e31C34c1.13757
+Date: Thu, 18 Dec 2014 18:12:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87436
+https://bugs.freedesktop.org/show_bug.cgi?id=84101
 
-Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> changed:
+--- Comment #3 from danny_archer-97jfqw80gc6171pxa8y+qA@public.gmane.org ---
+Created attachment 110997
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110997&action=edit
+Another kernel log
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #110979|0                           |1
-        is obsolete|                            |
-
---- Comment #4 from Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> ---
-Created attachment 110987
-  --> https://bugs.freedesktop.org/attachment.cgi?id=110987&action=edit
-full dmesg output, really
-
-third time's a charm...
-
-I don't remember doing anything special regarding the video output at that
-time, just running dmesg after updating my kernel to see if the wifi
-disconnections messages were gone (as you can see they aren't, but that's an
-other story).
-
-I didn't notice any functional issues after seeing these messages, but I still
-thought it was interesting to report them...
+I had another crash that seems to be caused by the same thing. Kernel version:
+3.18.1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418907733.8b32C0A41.2451
-Date: Thu, 18 Dec 2014 13:02:13 +0000
+--1418926322.e31C34c1.13757
+Date: Thu, 18 Dec 2014 18:12:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,52 +53,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #110979 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c4">Comment # 4</a>
+   title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-              from <span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
+   title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101">bug 84101</a>
+              from <span class="vcard"><a class="email" href="mailto:danny_archer&#64;fastmail.fm" title="danny_archer&#64;fastmail.fm">danny_archer&#64;fastmail.fm</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=110987" name="attach_110987" title="full dmesg output, really">attachment 110987</a> <a href="attachment.cgi?id=110987&amp;action=edit" title="full dmesg output, really">[details]</a></span>
-full dmesg output, really
+        <pre>Created <span class=""><a href="attachment.cgi?id=110997" name="attach_110997" title="Another kernel log">attachment 110997</a> <a href="attachment.cgi?id=110997&amp;action=edit" title="Another kernel log">[details]</a></span>
+Another kernel log
 
-third time's a charm...
-
-I don't remember doing anything special regarding the video output at that
-time, just running dmesg after updating my kernel to see if the wifi
-disconnections messages were gone (as you can see they aren't, but that's an
-other story).
-
-I didn't notice any functional issues after seeing these messages, but I still
-thought it was interesting to report them...</pre>
+I had another crash that seems to be caused by the same thing. Kernel version:
+3.18.1</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +82,9 @@ thought it was interesting to report them...</pre>
     </body>
 </html>
 
---1418907733.8b32C0A41.2451--
+--1418926322.e31C34c1.13757--
 
---===============0851440427==
+--===============1807637670==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0851440427==--
+--===============1807637670==--
