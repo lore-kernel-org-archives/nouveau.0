@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
 	0x00000000
-Date: Thu, 18 Dec 2014 11:39:47 +0000
-Message-ID: <bug-87436-8800-qsI2yMHG6H@http.bugs.freedesktop.org/>
+Date: Thu, 18 Dec 2014 13:02:13 +0000
+Message-ID: <bug-87436-8800-ZuVR7tJEBh@http.bugs.freedesktop.org/>
 References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0913860324=="
+Content-Type: multipart/mixed; boundary="===============0851440427=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,45 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0913860324==
-Content-Type: multipart/alternative; boundary="1418902786.8aAC2.4708"; charset="UTF-8"
+--===============0851440427==
+Content-Type: multipart/alternative; boundary="1418907733.8b32C0A41.2451"; charset="UTF-8"
 
 
---1418902786.8aAC2.4708
-Date: Thu, 18 Dec 2014 11:39:46 +0000
+--1418907733.8b32C0A41.2451
+Date: Thu, 18 Dec 2014 13:02:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87436
 
---- Comment #3 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-(In reply to Laurent Bigonville from comment #2)
-> Created attachment 110979 [details]
-> full dmesg
+Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> changed:
 
-Unfortunately the start of the log (containing, amongst others, the full kernel
-version and kernel parameters) have fallen off. Could you paste them as well
-please?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #110979|0                           |1
+        is obsolete|                            |
 
-One thing I did notice is that, other than for bug #84203, you were not
-attempting to resume from suspend when the error occured. What was the action
-you performed about 45 minutes after boot? Did you plug in a monitor, or
-disable one, or change your resolution?
+--- Comment #4 from Laurent Bigonville <l.bigonville-/PFmmAUIoI+zQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 110987
+  --> https://bugs.freedesktop.org/attachment.cgi?id=110987&action=edit
+full dmesg output, really
+
+third time's a charm...
+
+I don't remember doing anything special regarding the video output at that
+time, just running dmesg after updating my kernel to see if the wifi
+disconnections messages were gone (as you can see they aren't, but that's an
+other story).
+
+I didn't notice any functional issues after seeing these messages, but I still
+thought it was interesting to report them...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418902786.8aAC2.4708
-Date: Thu, 18 Dec 2014 11:39:46 +0000
+--1418907733.8b32C0A41.2451
+Date: Thu, 18 Dec 2014 13:02:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,34 +67,52 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #110979 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+              from <span class="vcard"><a class="email" href="mailto:l.bigonville&#64;edpnet.be" title="Laurent Bigonville &lt;l.bigonville&#64;edpnet.be&gt;"> <span class="fn">Laurent Bigonville</span></a>
 </span></b>
-        <pre>(In reply to Laurent Bigonville from <a href="show_bug.cgi?id=87436#c2">comment #2</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=110979" name="attach_110979" title="full dmesg">attachment 110979</a> <a href="attachment.cgi?id=110979&amp;action=edit" title="full dmesg">[details]</a></span>
-&gt; full dmesg</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=110987" name="attach_110987" title="full dmesg output, really">attachment 110987</a> <a href="attachment.cgi?id=110987&amp;action=edit" title="full dmesg output, really">[details]</a></span>
+full dmesg output, really
 
-Unfortunately the start of the log (containing, amongst others, the full kernel
-version and kernel parameters) have fallen off. Could you paste them as well
-please?
+third time's a charm...
 
-One thing I did notice is that, other than for <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] HDMI gives no more signal since 3.15 (optimus)"
-   href="show_bug.cgi?id=84203">bug #84203</a>, you were not
-attempting to resume from suspend when the error occured. What was the action
-you performed about 45 minutes after boot? Did you plug in a monitor, or
-disable one, or change your resolution?</pre>
+I don't remember doing anything special regarding the video output at that
+time, just running dmesg after updating my kernel to see if the wifi
+disconnections messages were gone (as you can see they aren't, but that's an
+other story).
+
+I didn't notice any functional issues after seeing these messages, but I still
+thought it was interesting to report them...</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +124,9 @@ disable one, or change your resolution?</pre>
     </body>
 </html>
 
---1418902786.8aAC2.4708--
+--1418907733.8b32C0A41.2451--
 
---===============0913860324==
+--===============0851440427==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0913860324==--
+--===============0851440427==--
