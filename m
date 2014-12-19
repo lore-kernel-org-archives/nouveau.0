@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87469] [NV34] Invisible cursor on Xorg
-Date: Fri, 19 Dec 2014 02:43:40 +0000
-Message-ID: <bug-87469-8800-CX0TPYWaFH@http.bugs.freedesktop.org/>
+Date: Fri, 19 Dec 2014 02:44:13 +0000
+Message-ID: <bug-87469-8800-K9FVjIpJtp@http.bugs.freedesktop.org/>
 References: <bug-87469-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0221184514=="
+Content-Type: multipart/mixed; boundary="===============1989287128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87469-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0221184514==
-Content-Type: multipart/alternative; boundary="1418957020.11Fdc8Ec1.9865"; charset="UTF-8"
+--===============1989287128==
+Content-Type: multipart/alternative; boundary="1418957053.B40F1.10071"; charset="UTF-8"
 
 
---1418957020.11Fdc8Ec1.9865
-Date: Fri, 19 Dec 2014 02:43:40 +0000
+--1418957053.B40F1.10071
+Date: Fri, 19 Dec 2014 02:44:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87469
 
---- Comment #5 from Fernando Rodriguez <frodriguez.developer-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 111026
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111026&action=edit
-dmesg from 3.17.2
-
-There you go.
+--- Comment #6 from Fernando Rodriguez <frodriguez.developer-1ViLX0X+lBJBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 111027
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111027&action=edit
+Xorg log 3.17.2
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1418957020.11Fdc8Ec1.9865
-Date: Fri, 19 Dec 2014 02:43:40 +0000
+--1418957053.B40F1.10071
+Date: Fri, 19 Dec 2014 02:44:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV34] Invisible cursor on Xorg"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87469#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87469#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV34] Invisible cursor on Xorg"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87469">bug 87469</a>
               from <span class="vcard"><a class="email" href="mailto:frodriguez.developer&#64;outlook.com" title="Fernando Rodriguez &lt;frodriguez.developer&#64;outlook.com&gt;"> <span class="fn">Fernando Rodriguez</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111026" name="attach_111026" title="dmesg from 3.17.2">attachment 111026</a> <a href="attachment.cgi?id=111026&amp;action=edit" title="dmesg from 3.17.2">[details]</a></span>
-dmesg from 3.17.2
-
-There you go.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111027" name="attach_111027" title="Xorg log 3.17.2">attachment 111027</a> <a href="attachment.cgi?id=111027&amp;action=edit" title="Xorg log 3.17.2">[details]</a></span>
+Xorg log 3.17.2</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +75,9 @@ There you go.</pre>
     </body>
 </html>
 
---1418957020.11Fdc8Ec1.9865--
+--1418957053.B40F1.10071--
 
---===============0221184514==
+--===============1989287128==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0221184514==--
+--===============1989287128==--
