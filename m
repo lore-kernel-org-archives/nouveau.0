@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87543] [NV96] MXM "unmatched output device
- 0x0103010201010100" when connecting to hdmi
-Date: Sun, 21 Dec 2014 00:23:18 +0000
-Message-ID: <bug-87543-8800-dCf3IPwp6d@http.bugs.freedesktop.org/>
-References: <bug-87543-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84870] [NV92] [PBUS] write fault on boot
+Date: Sun, 21 Dec 2014 11:04:19 +0000
+Message-ID: <bug-84870-8800-T3JSyI16We@http.bugs.freedesktop.org/>
+References: <bug-84870-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1906425277=="
+Content-Type: multipart/mixed; boundary="===============0550440561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87543-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84870-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1906425277==
-Content-Type: multipart/alternative; boundary="1419121398.F47d222.15613"; charset="UTF-8"
+--===============0550440561==
+Content-Type: multipart/alternative; boundary="1419159859.04Dd45C1.15168"; charset="UTF-8"
 
 
---1419121398.F47d222.15613
-Date: Sun, 21 Dec 2014 00:23:18 +0000
+--1419159859.04Dd45C1.15168
+Date: Sun, 21 Dec 2014 11:04:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87543
+https://bugs.freedesktop.org/show_bug.cgi?id=84870
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #111096|text/plain                  |application/x-gzip
-          mime type|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #2 from mattia.b89 <mattia.b89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+starting from 6 Dec I can't see these lines.
+look curiously I haven't upgraded "libdrm" package but instead kernel has been
+upgraded
+I'm not sure but starting from kernel 3.17.3 the issue has gone
+
+thank you
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419121398.F47d222.15613
-Date: Sun, 21 Dec 2014 00:23:18 +0000
+--1419159859.04Dd45C1.15168
+Date: Sun, 21 Dec 2014 11:04:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,12 +59,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] MXM &quot;unmatched output device 0x0103010201010100&quot; when connecting to hdmi"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87543">bug 87543</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV92] [PBUS] write fault on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84870">bug 84870</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,13 +74,39 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #111096 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>application/x-gzip
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV92] [PBUS] write fault on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84870#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV92] [PBUS] write fault on boot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84870">bug 84870</a>
+              from <span class="vcard"><a class="email" href="mailto:mattia.b89&#64;gmail.com" title="mattia.b89 &lt;mattia.b89&#64;gmail.com&gt;"> <span class="fn">mattia.b89</span></a>
+</span></b>
+        <pre>starting from 6 Dec I can't see these lines.
+look curiously I haven't upgraded &quot;libdrm&quot; package but instead kernel has been
+upgraded
+I'm not sure but starting from kernel 3.17.3 the issue has gone
+
+thank you</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +117,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1419121398.F47d222.15613--
+--1419159859.04Dd45C1.15168--
 
---===============1906425277==
+--===============0550440561==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1906425277==--
+--===============0550440561==--
