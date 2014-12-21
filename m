@@ -1,58 +1,126 @@
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@linux-vserver.org>
-Subject: [PATCH 1/3] nouveau: Do not BUG_ON(!spin_is_locked()) on UP
-Date: Sun, 21 Dec 2014 17:43:31 +0100
-Message-ID: <20141221174331.3647ac49@neptune.home>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
+	0x00000000
+Date: Sun, 21 Dec 2014 19:28:06 +0000
+Message-ID: <bug-87436-8800-DEiwjhvH3c@http.bugs.freedesktop.org/>
+References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
-Cc: Nouveau List <nouveau@lists.freedesktop.org>, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0647804635=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gIVNNUCBzeXN0ZW1zIHNwaW5sb2NrcyBkbyBub3QgZXhpc3QuIFRodXMgY2hlY2tpbmcgb2Yg
-dGhleQphcmUgYWN0aXZlIHdpbGwgYWx3YXlzIGZhaWwuCgpVc2UKICBhc3NlcnRfc3Bpbl9sb2Nr
-ZWQobG9jayk7Cmluc3RlYWQgb2YKICBCVUdfT04oIXNwaW5faXNfbG9ja2VkKGxvY2spKTsKdG8g
-bm90IEJVRygpIG9uIGFsbCBVUCBzeXN0ZW1zLgoKU2lnbmVkLW9mZi1ieTogQnJ1bm8gUHLDqW1v
-bnQgPGJvbmJvbnNAbGludXgtdnNlcnZlci5vcmc+Ci0tLQpTZWUgYWxzbyBmZG8gYnVnICM4NzU1
-MgoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvY29yZS9ldmVudC5jICB8IDQgKystLQog
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL25vdGlmeS5jIHwgMiArLQogMiBmaWxl
-cyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL2V2ZW50LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYwppbmRleCBmZjJiNDM0Li43NjA5NDdlIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYwpAQCAtMjYsNyArMjYsNyBA
-QAogdm9pZAogbnZrbV9ldmVudF9wdXQoc3RydWN0IG52a21fZXZlbnQgKmV2ZW50LCB1MzIgdHlw
-ZXMsIGludCBpbmRleCkKIHsKLQlCVUdfT04oIXNwaW5faXNfbG9ja2VkKCZldmVudC0+cmVmc19s
-b2NrKSk7CisJYXNzZXJ0X3NwaW5fbG9ja2VkKCZldmVudC0+cmVmc19sb2NrKTsKIAl3aGlsZSAo
-dHlwZXMpIHsKIAkJaW50IHR5cGUgPSBfX2Zmcyh0eXBlcyk7IHR5cGVzICY9IH4oMSA8PCB0eXBl
-KTsKIAkJaWYgKC0tZXZlbnQtPnJlZnNbaW5kZXggKiBldmVudC0+dHlwZXNfbnIgKyB0eXBlXSA9
-PSAwKSB7CkBAIC0zOSw3ICszOSw3IEBAIG52a21fZXZlbnRfcHV0KHN0cnVjdCBudmttX2V2ZW50
-ICpldmVudCwgdTMyIHR5cGVzLCBpbnQgaW5kZXgpCiB2b2lkCiBudmttX2V2ZW50X2dldChzdHJ1
-Y3QgbnZrbV9ldmVudCAqZXZlbnQsIHUzMiB0eXBlcywgaW50IGluZGV4KQogewotCUJVR19PTigh
-c3Bpbl9pc19sb2NrZWQoJmV2ZW50LT5yZWZzX2xvY2spKTsKKwlhc3NlcnRfc3Bpbl9sb2NrZWQo
-JmV2ZW50LT5yZWZzX2xvY2spOwogCXdoaWxlICh0eXBlcykgewogCQlpbnQgdHlwZSA9IF9fZmZz
-KHR5cGVzKTsgdHlwZXMgJj0gfigxIDw8IHR5cGUpOwogCQlpZiAoKytldmVudC0+cmVmc1tpbmRl
-eCAqIGV2ZW50LT50eXBlc19uciArIHR5cGVdID09IDEpIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9ub3V2ZWF1L2NvcmUvY29yZS9ub3RpZnkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L2NvcmUvY29yZS9ub3RpZnkuYwppbmRleCBkMWJjZGU1Li44MzlhMzI1IDEwMDY0NAotLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvbm90aWZ5LmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL25vdGlmeS5jCkBAIC05OCw3ICs5OCw3IEBAIG52
-a21fbm90aWZ5X3NlbmQoc3RydWN0IG52a21fbm90aWZ5ICpub3RpZnksIHZvaWQgKmRhdGEsIHUz
-MiBzaXplKQogCXN0cnVjdCBudmttX2V2ZW50ICpldmVudCA9IG5vdGlmeS0+ZXZlbnQ7CiAJdW5z
-aWduZWQgbG9uZyBmbGFnczsKIAotCUJVR19PTighc3Bpbl9pc19sb2NrZWQoJmV2ZW50LT5saXN0
-X2xvY2spKTsKKwlhc3NlcnRfc3Bpbl9sb2NrZWQoJmV2ZW50LT5saXN0X2xvY2spOwogCUJVR19P
-TihzaXplICE9IG5vdGlmeS0+c2l6ZSk7CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmZXZlbnQtPnJl
-ZnNfbG9jaywgZmxhZ3MpOwotLSAKMS44LjEuNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0647804635==
+Content-Type: multipart/alternative; boundary="1419190086.43EcAc2.4532"; charset="UTF-8"
+
+
+--1419190086.43EcAc2.4532
+Date: Sun, 21 Dec 2014 19:28:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87436
+
+--- Comment #6 from Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'm running Fedora 21 with:
+xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
+xorg-x11-server-common-1.16.2.901-1.fc21.x86_64
+kernel: 3.17.6-300.fc21.x86_64
+
+I have:
+01:00.0 VGA compatible controller: NVIDIA Corporation G86M [GeForce 8400M GS]
+(rev a1)
+
+I've caught this one:
+[0000:01:00.0] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000
+[0000:01:00.0] Core:
+[0000:01:00.0]     0x0084: 0x019e02e2 -> 0x00000000
+[0000:01:00.0]     0x0088: 0xf0000000 
+
+Screen hung (was not updated) but I was able to login to the box over SSH.
+
+Not sure if it the same bug. Let me know if I need to open another one.
+
+Attached: journalctl -ab1 | grep -i nouveau
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419190086.43EcAc2.4532
+Date: Sun, 21 Dec 2014 19:28:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
+              from <span class="vcard"><a class="email" href="mailto:p.malishev&#64;gmail.com" title="Pavel Malyshev &lt;p.malishev&#64;gmail.com&gt;"> <span class="fn">Pavel Malyshev</span></a>
+</span></b>
+        <pre>I'm running Fedora 21 with:
+xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
+xorg-x11-server-common-1.16.2.901-1.fc21.x86_64
+kernel: 3.17.6-300.fc21.x86_64
+
+I have:
+01:00.0 VGA compatible controller: NVIDIA Corporation G86M [GeForce 8400M GS]
+(rev a1)
+
+I've caught this one:
+[0000:01:00.0] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000
+[0000:01:00.0] Core:
+[0000:01:00.0]     0x0084: 0x019e02e2 -&gt; 0x00000000
+[0000:01:00.0]     0x0088: 0xf0000000 
+
+Screen hung (was not updated) but I was able to login to the box over SSH.
+
+Not sure if it the same bug. Let me know if I need to open another one.
+
+Attached: journalctl -ab1 | grep -i nouveau</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419190086.43EcAc2.4532--
+
+--===============0647804635==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0647804635==--
