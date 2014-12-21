@@ -1,125 +1,58 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87552] [NV1A] 3.18.1 BUG on modprobe nouveau in
- drivers/gpu/drm/nouveau/core/core/event.c:42
-Date: Sun, 21 Dec 2014 16:36:27 +0000
-Message-ID: <bug-87552-8800-FftCAYRyhf@http.bugs.freedesktop.org/>
-References: <bug-87552-8800@http.bugs.freedesktop.org/>
+From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@linux-vserver.org>
+Subject: [PATCH 1/3] nouveau: Do not BUG_ON(!spin_is_locked()) on UP
+Date: Sun, 21 Dec 2014 17:43:31 +0100
+Message-ID: <20141221174331.3647ac49@neptune.home>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1754773599=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87552-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>
+Cc: Nouveau List <nouveau@lists.freedesktop.org>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1754773599==
-Content-Type: multipart/alternative; boundary="1419179787.cdedAe81.4811"; charset="UTF-8"
-
-
---1419179787.cdedAe81.4811
-Date: Sun, 21 Dec 2014 16:36:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87552
-
---- Comment #2 from Bruno <bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org> ---
-Created attachment 111115
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111115&action=edit
-BUG_ON(!spin_is_locked(lock)) is taboo on UP
-
-void
-nvkm_event_get(struct nvkm_event *event, u32 types, int index)
-{
-        BUG_ON(!spin_is_locked(&event->refs_lock));
-        while (types) {
-                int type = __ffs(types); types &= ~(1 << type);
-                if (++event->refs[index * event->types_nr + type] == 1) {
-                        if (event->func->init)
-                                event->func->init(event, 1 << type, index);
-                }
-        }
-}
-
-Is it ever valid to do these spin_is_locked() checks on !SMP system?
-
-!SMP system do not have spinlocks at all!
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419179787.cdedAe81.4811
-Date: Sun, 21 Dec 2014 16:36:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.18.1 BUG on modprobe nouveau in drivers/gpu/drm/nouveau/core/core/event.c:42"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87552#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.18.1 BUG on modprobe nouveau in drivers/gpu/drm/nouveau/core/core/event.c:42"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87552">bug 87552</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons67&#64;internet.lu" title="Bruno &lt;bonbons67&#64;internet.lu&gt;"> <span class="fn">Bruno</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111115" name="attach_111115" title="BUG_ON(!spin_is_locked(lock)) is taboo on UP">attachment 111115</a> <a href="attachment.cgi?id=111115&amp;action=edit" title="BUG_ON(!spin_is_locked(lock)) is taboo on UP">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=87552&amp;attachment=111115'>[review]</a>
-BUG_ON(!spin_is_locked(lock)) is taboo on UP
-
-void
-nvkm_event_get(struct nvkm_event *event, u32 types, int index)
-{
-        BUG_ON(!spin_is_locked(&amp;event-&gt;refs_lock));
-        while (types) {
-                int type = __ffs(types); types &amp;= ~(1 &lt;&lt; type);
-                if (++event-&gt;refs[index * event-&gt;types_nr + type] == 1) {
-                        if (event-&gt;func-&gt;init)
-                                event-&gt;func-&gt;init(event, 1 &lt;&lt; type, index);
-                }
-        }
-}
-
-Is it ever valid to do these spin_is_locked() checks on !SMP system?
-
-!SMP system do not have spinlocks at all!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419179787.cdedAe81.4811--
-
---===============1754773599==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1754773599==--
+T24gIVNNUCBzeXN0ZW1zIHNwaW5sb2NrcyBkbyBub3QgZXhpc3QuIFRodXMgY2hlY2tpbmcgb2Yg
+dGhleQphcmUgYWN0aXZlIHdpbGwgYWx3YXlzIGZhaWwuCgpVc2UKICBhc3NlcnRfc3Bpbl9sb2Nr
+ZWQobG9jayk7Cmluc3RlYWQgb2YKICBCVUdfT04oIXNwaW5faXNfbG9ja2VkKGxvY2spKTsKdG8g
+bm90IEJVRygpIG9uIGFsbCBVUCBzeXN0ZW1zLgoKU2lnbmVkLW9mZi1ieTogQnJ1bm8gUHLDqW1v
+bnQgPGJvbmJvbnNAbGludXgtdnNlcnZlci5vcmc+Ci0tLQpTZWUgYWxzbyBmZG8gYnVnICM4NzU1
+MgoKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvY29yZS9ldmVudC5jICB8IDQgKystLQog
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL25vdGlmeS5jIHwgMiArLQogMiBmaWxl
+cyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL2V2ZW50LmMgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYwppbmRleCBmZjJiNDM0Li43NjA5NDdlIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYworKysgYi9k
+cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvZXZlbnQuYwpAQCAtMjYsNyArMjYsNyBA
+QAogdm9pZAogbnZrbV9ldmVudF9wdXQoc3RydWN0IG52a21fZXZlbnQgKmV2ZW50LCB1MzIgdHlw
+ZXMsIGludCBpbmRleCkKIHsKLQlCVUdfT04oIXNwaW5faXNfbG9ja2VkKCZldmVudC0+cmVmc19s
+b2NrKSk7CisJYXNzZXJ0X3NwaW5fbG9ja2VkKCZldmVudC0+cmVmc19sb2NrKTsKIAl3aGlsZSAo
+dHlwZXMpIHsKIAkJaW50IHR5cGUgPSBfX2Zmcyh0eXBlcyk7IHR5cGVzICY9IH4oMSA8PCB0eXBl
+KTsKIAkJaWYgKC0tZXZlbnQtPnJlZnNbaW5kZXggKiBldmVudC0+dHlwZXNfbnIgKyB0eXBlXSA9
+PSAwKSB7CkBAIC0zOSw3ICszOSw3IEBAIG52a21fZXZlbnRfcHV0KHN0cnVjdCBudmttX2V2ZW50
+ICpldmVudCwgdTMyIHR5cGVzLCBpbnQgaW5kZXgpCiB2b2lkCiBudmttX2V2ZW50X2dldChzdHJ1
+Y3QgbnZrbV9ldmVudCAqZXZlbnQsIHUzMiB0eXBlcywgaW50IGluZGV4KQogewotCUJVR19PTigh
+c3Bpbl9pc19sb2NrZWQoJmV2ZW50LT5yZWZzX2xvY2spKTsKKwlhc3NlcnRfc3Bpbl9sb2NrZWQo
+JmV2ZW50LT5yZWZzX2xvY2spOwogCXdoaWxlICh0eXBlcykgewogCQlpbnQgdHlwZSA9IF9fZmZz
+KHR5cGVzKTsgdHlwZXMgJj0gfigxIDw8IHR5cGUpOwogCQlpZiAoKytldmVudC0+cmVmc1tpbmRl
+eCAqIGV2ZW50LT50eXBlc19uciArIHR5cGVdID09IDEpIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9ub3V2ZWF1L2NvcmUvY29yZS9ub3RpZnkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L2NvcmUvY29yZS9ub3RpZnkuYwppbmRleCBkMWJjZGU1Li44MzlhMzI1IDEwMDY0NAotLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2NvcmUvbm90aWZ5LmMKKysrIGIvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvY29yZS9jb3JlL25vdGlmeS5jCkBAIC05OCw3ICs5OCw3IEBAIG52
+a21fbm90aWZ5X3NlbmQoc3RydWN0IG52a21fbm90aWZ5ICpub3RpZnksIHZvaWQgKmRhdGEsIHUz
+MiBzaXplKQogCXN0cnVjdCBudmttX2V2ZW50ICpldmVudCA9IG5vdGlmeS0+ZXZlbnQ7CiAJdW5z
+aWduZWQgbG9uZyBmbGFnczsKIAotCUJVR19PTighc3Bpbl9pc19sb2NrZWQoJmV2ZW50LT5saXN0
+X2xvY2spKTsKKwlhc3NlcnRfc3Bpbl9sb2NrZWQoJmV2ZW50LT5saXN0X2xvY2spOwogCUJVR19P
+TihzaXplICE9IG5vdGlmeS0+c2l6ZSk7CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmZXZlbnQtPnJl
+ZnNfbG9jaywgZmxhZ3MpOwotLSAKMS44LjEuNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9kcmktZGV2ZWwK
