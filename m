@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87543] [NV96] MXM "unmatched output device
  0x0103010201010100" when connecting to hdmi
-Date: Sun, 21 Dec 2014 00:12:21 +0000
-Message-ID: <bug-87543-8800-oHiypTGd29@http.bugs.freedesktop.org/>
+Date: Sun, 21 Dec 2014 00:23:18 +0000
+Message-ID: <bug-87543-8800-dCf3IPwp6d@http.bugs.freedesktop.org/>
 References: <bug-87543-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1071879493=="
+Content-Type: multipart/mixed; boundary="===============1906425277=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87543-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1071879493==
-Content-Type: multipart/alternative; boundary="1419120741.D5CB8Bf2.11180"; charset="UTF-8"
+--===============1906425277==
+Content-Type: multipart/alternative; boundary="1419121398.F47d222.15613"; charset="UTF-8"
 
 
---1419120741.D5CB8Bf2.11180
-Date: Sun, 21 Dec 2014 00:12:21 +0000
+--1419121398.F47d222.15613
+Date: Sun, 21 Dec 2014 00:23:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87543
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|"unmatched output device    |[NV96] MXM "unmatched
-                   |0x0103010201010100" when    |output device
-                   |connecting to hdmi          |0x0103010201010100" when
-                   |                            |connecting to hdmi
+ Attachment #111096|text/plain                  |application/x-gzip
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419120741.D5CB8Bf2.11180
-Date: Sun, 21 Dec 2014 00:12:21 +0000
+--1419121398.F47d222.15613
+Date: Sun, 21 Dec 2014 00:23:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,7 +52,7 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
@@ -69,10 +67,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>&quot;unmatched output device 0x0103010201010100&quot; when connecting to hdmi
+           <td style="text-align:right;">Attachment #111096 mime type</td>
+           <td>text/plain
            </td>
-           <td>[NV96] MXM &quot;unmatched output device 0x0103010201010100&quot; when connecting to hdmi
+           <td>application/x-gzip
            </td>
          </tr></table>
       <p>
@@ -86,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1419120741.D5CB8Bf2.11180--
+--1419121398.F47d222.15613--
 
---===============1071879493==
+--===============1906425277==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1071879493==--
+--===============1906425277==--
