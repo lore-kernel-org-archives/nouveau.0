@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
 	0x00000000
-Date: Sun, 21 Dec 2014 19:28:06 +0000
-Message-ID: <bug-87436-8800-DEiwjhvH3c@http.bugs.freedesktop.org/>
+Date: Sun, 21 Dec 2014 19:29:10 +0000
+Message-ID: <bug-87436-8800-66LvfZcYAq@http.bugs.freedesktop.org/>
 References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0647804635=="
+Content-Type: multipart/mixed; boundary="===============1401513948=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,45 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0647804635==
-Content-Type: multipart/alternative; boundary="1419190086.43EcAc2.4532"; charset="UTF-8"
+--===============1401513948==
+Content-Type: multipart/alternative; boundary="1419190150.dD37711A2.5026"; charset="UTF-8"
 
 
---1419190086.43EcAc2.4532
-Date: Sun, 21 Dec 2014 19:28:06 +0000
+--1419190150.dD37711A2.5026
+Date: Sun, 21 Dec 2014 19:29:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87436
 
---- Comment #6 from Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm running Fedora 21 with:
-xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
-xorg-x11-server-common-1.16.2.901-1.fc21.x86_64
-kernel: 3.17.6-300.fc21.x86_64
+Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-I have:
-01:00.0 VGA compatible controller: NVIDIA Corporation G86M [GeForce 8400M GS]
-(rev a1)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-I've caught this one:
-[0000:01:00.0] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000
-[0000:01:00.0] Core:
-[0000:01:00.0]     0x0084: 0x019e02e2 -> 0x00000000
-[0000:01:00.0]     0x0088: 0xf0000000 
-
-Screen hung (was not updated) but I was able to login to the box over SSH.
-
-Not sure if it the same bug. Let me know if I need to open another one.
-
-Attached: journalctl -ab1 | grep -i nouveau
+--- Comment #7 from Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 111128
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111128&action=edit
+F-21_journalctl_grep_nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419190086.43EcAc2.4532
-Date: Sun, 21 Dec 2014 19:28:06 +0000
+--1419190150.dD37711A2.5026
+Date: Sun, 21 Dec 2014 19:29:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,39 +56,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:p.malishev&#64;gmail.com" title="Pavel Malyshev &lt;p.malishev&#64;gmail.com&gt;"> <span class="fn">Pavel Malyshev</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>p.malishev&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
               from <span class="vcard"><a class="email" href="mailto:p.malishev&#64;gmail.com" title="Pavel Malyshev &lt;p.malishev&#64;gmail.com&gt;"> <span class="fn">Pavel Malyshev</span></a>
 </span></b>
-        <pre>I'm running Fedora 21 with:
-xorg-x11-drv-nouveau-1.0.11-1.fc21.x86_64
-xorg-x11-server-common-1.16.2.901-1.fc21.x86_64
-kernel: 3.17.6-300.fc21.x86_64
-
-I have:
-01:00.0 VGA compatible controller: NVIDIA Corporation G86M [GeForce 8400M GS]
-(rev a1)
-
-I've caught this one:
-[0000:01:00.0] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000
-[0000:01:00.0] Core:
-[0000:01:00.0]     0x0084: 0x019e02e2 -&gt; 0x00000000
-[0000:01:00.0]     0x0088: 0xf0000000 
-
-Screen hung (was not updated) but I was able to login to the box over SSH.
-
-Not sure if it the same bug. Let me know if I need to open another one.
-
-Attached: journalctl -ab1 | grep -i nouveau</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111128" name="attach_111128" title="F-21_journalctl_grep_nouveau">attachment 111128</a> <a href="attachment.cgi?id=111128&amp;action=edit" title="F-21_journalctl_grep_nouveau">[details]</a></span>
+F-21_journalctl_grep_nouveau</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +103,9 @@ Attached: journalctl -ab1 | grep -i nouveau</pre>
     </body>
 </html>
 
---1419190086.43EcAc2.4532--
+--1419190150.dD37711A2.5026--
 
---===============0647804635==
+--===============1401513948==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0647804635==--
+--===============1401513948==--
