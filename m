@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87552] New: [NV1A] 3.18.1 BUG on modprobe nouveau in
- drivers/gpu/drm/nouveau/core/core/event.c:42
-Date: Sun, 21 Dec 2014 13:47:24 +0000
-Message-ID: <bug-87552-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87554] New: [NV1A] 3.19-rc1 NULL dereference on
+ modprobe in pramin_fini
+Date: Sun, 21 Dec 2014 15:06:34 +0000
+Message-ID: <bug-87554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1751224268=="
+Content-Type: multipart/mixed; boundary="===============0012675502=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,20 +19,20 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1751224268==
-Content-Type: multipart/alternative; boundary="1419169644.23b7c1.7694"; charset="UTF-8"
+--===============0012675502==
+Content-Type: multipart/alternative; boundary="1419174394.CA58d61.1896"; charset="UTF-8"
 
 
---1419169644.23b7c1.7694
-Date: Sun, 21 Dec 2014 13:47:24 +0000
+--1419174394.CA58d61.1896
+Date: Sun, 21 Dec 2014 15:06:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87552
+https://bugs.freedesktop.org/show_bug.cgi?id=87554
 
-            Bug ID: 87552
-           Summary: [NV1A] 3.18.1 BUG on modprobe nouveau in
-                    drivers/gpu/drm/nouveau/core/core/event.c:42
+            Bug ID: 87554
+           Summary: [NV1A] 3.19-rc1 NULL dereference on modprobe in
+                    pramin_fini
            Product: xorg
            Version: unspecified
           Hardware: x86 (IA32)
@@ -45,75 +45,95 @@ https://bugs.freedesktop.org/show_bug.cgi?id=87552
           Reporter: bonbons67-H4aWS73dXupiYsDpGMXq6A@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-[  289.984831] nouveau  [  DEVICE][0000:02:00.0] BOOT0  : 0x01a000b1
-[  289.991043] nouveau  [  DEVICE][0000:02:00.0] Chipset: nForce (NV1A)
-[  289.997439] nouveau  [  DEVICE][0000:02:00.0] Family : NV10
-[  290.003256] nouveau  [   VBIOS][0000:02:00.0] checking PRAMIN for image...
-[  290.045349] nouveau  [   VBIOS][0000:02:00.0] ... checksum invalid
-[  290.051619] nouveau  [   VBIOS][0000:02:00.0] checking PROM for image...
-[  290.058391] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[  290.064895] nouveau  [   VBIOS][0000:02:00.0] checking ACPI for image...
-[  290.071710] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[  290.078205] nouveau  [   VBIOS][0000:02:00.0] checking PCIROM for image...
-[  290.085961] nouveau  [   VBIOS][0000:02:00.0] ... appears to be valid
-[  290.092511] nouveau  [   VBIOS][0000:02:00.0] using image from PCIROM
-[  290.099003] nouveau  [   VBIOS][0000:02:00.0] BMP version 5.14
-[  290.105141] nouveau  [   VBIOS][0000:02:00.0] version 03.1a.01.03.00
-[  290.111606] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.120249] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.128356] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.135257] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.142279] nouveau W[  PTIMER][0000:02:00.0] unknown input clock freq
-[  290.148881] nouveau  [     PFB][0000:02:00.0] RAM type: stolen system memory
-[  290.155987] nouveau  [     PFB][0000:02:00.0] RAM size: 32 MiB
-[  290.161882] nouveau  [     PFB][0000:02:00.0]    ZCOMP: 0 tags
-[  290.173304] nouveau  [     CLK][0000:02:00.0] --:   
-[  290.178387] ------------[ cut here ]------------
-[  290.180008] kernel BUG at
-/usr/src/linux-git/drivers/gpu/drm/nouveau/core/core/event.c:42!
-[  290.180008] invalid opcode: 0000 [#1] 
-[  290.180008] Modules linked in: nouveau(+) wmi ttm drm_kms_helper nfsv3
+[  441.685835] wmi: Mapper loaded
+[  442.129083] ACPI: PCI Interrupt Link [LNK5] enabled at IRQ 12
+[  442.135019] PCI: setting IRQ 12 as level-triggered
+[  442.144839] nouveau  [  DEVICE][0000:02:00.0] BOOT0  : 0x01a000b1
+[  442.151063] nouveau  [  DEVICE][0000:02:00.0] Chipset: nForce (NV1A)
+[  442.157481] nouveau  [  DEVICE][0000:02:00.0] Family : NV10
+[  442.172505] BUG: unable to handle kernel NULL pointer dereference at  
+(null)
+[  442.179823] IP: [<dea2c6c6>] pramin_fini+0x6/0x30 [nouveau]
+[  442.180015] *pde = 00000000 
+[  442.180015] Oops: 0000 [#1] 
+[  442.180015] Modules linked in: nouveau(+) wmi ttm drm_kms_helper nfsv3
 nfs_acl nfs lockd grace sunrpc
-[  290.180008] CPU: 0 PID: 41 Comm: kworker/0:2 Not tainted 3.18.1-jupiter #1
-[  290.180008] Hardware name: NVIDIA Corporation. nFORCE-MCP/MS-6373, BIOS 6.00
+[  442.180015] CPU: 0 PID: 1267 Comm: modprobe Not tainted 3.19.0-rc1-jupiter
+#1
+[  442.180015] Hardware name: NVIDIA Corporation. nFORCE-MCP/MS-6373, BIOS 6.00
 PG 04/12/2002
-[  290.180008] Workqueue: events nouveau_pstate_work [nouveau]
-[  290.180008] task: dd71c000 ti: dd720000 task.ti: dd720000
-[  290.180008] EIP: 0060:[<dea19e63>] EFLAGS: 00010046 CPU: 0
-[  290.180008] EIP is at nvkm_event_get+0x3/0x10 [nouveau]
-[  290.180008] EAX: dc31eab4 EBX: 00000286 ECX: 00000000 EDX: 00000001
-[  290.180008] ESI: 00000000 EDI: ffffffff EBP: dd721ea8 ESP: dd721ea8
-[  290.180008]  DS: 007b ES: 007b FS: 0000 GS: 00e0 SS: 0068
-[  290.180008] CR0: 8005003b CR2: b7742000 CR3: 1cf95000 CR4: 000007d0
-[  290.180008] Stack:
-[  290.180008]  dd721eb4 dea1ce02 dce7cb28 dd721f04 dea2f386 00000000 00000005
-deaea246
-[  290.180008]  ffffffff 00000001 ffffffff ffffffff ffffffff 00000000 00000000
-dd71c000
-[  290.180008]  dce07670 ffffffff 00000000 dce7ca50 dce7cb28 00000000 dd6f8e70
-dd721f44
-[  290.180008] Call Trace:
-[  290.180008]  [<dea1ce02>] nvkm_notify_get+0x32/0x40 [nouveau]
-[  290.180008]  [<dea2f386>] nouveau_pstate_work+0x396/0x3a0 [nouveau]
-[  290.180008]  [<c1048af7>] process_one_work+0x1d7/0x360
-[  290.180008]  [<c104912f>] worker_thread+0x2af/0x380
-[  290.180008]  [<c1048e80>] ? rescuer_thread+0x1d0/0x1d0
-[  290.180008]  [<c1048e80>] ? rescuer_thread+0x1d0/0x1d0
-[  290.180008]  [<c104cb64>] kthread+0xa4/0xb0
-[  290.180008]  [<c14bcc40>] ret_from_kernel_thread+0x20/0x30
-[  290.180008]  [<c104cac0>] ? flush_kthread_worker+0x70/0x70
-[  290.180008] Code: cf a9 e2 90 8d 74 26 00 83 c4 0c 5b 5e 5f 5d c3 66 90 66
-90 66 90 66 90 55 89 e5 0f 0b 8d 74 
-[  290.180008] EIP: [<dea19e63>] nvkm_event_get+0x3/0x10 [nouveau] SS:ESP
-0068:dd721ea8
-[  290.180008] ---[ end trace da282f24d1451e27 ]---
+[  442.180015] task: dc010c90 ti: dcfba000 task.ti: dcfba000
+[  442.180015] EIP: 0060:[<dea2c6c6>] EFLAGS: 00010286 CPU: 0
+[  442.180015] EIP is at pramin_fini+0x6/0x30 [nouveau]
+[  442.180015] EAX: 00000000 EBX: 00000000 ECX: 00000000 EDX: dea2c6c0
+[  442.180015] ESI: dcfbb8a4 EDI: deacf670 EBP: dcfbb834 ESP: dcfbb830
+[  442.180015]  DS: 007b ES: 007b FS: 0000 GS: 00e0 SS: 0068
+[  442.180015] CR0: 8005003b CR2: 00000000 CR3: 1c042000 CR4: 000007d0
+[  442.180015] Stack:
+[  442.180015]  dcedad90 dcfbb860 dea2c02e dcedad90 00000004 deaef771 deaef81b
+00000000
+[  442.180015]  deaf5320 dcfbb8a4 dcfbb884 dcfbb884 dcfbb994 dea2c2db dcfbb87c
+c10dbf41
+[  442.180015]  ddfcdb40 dd401180 dcedad90 00000000 dcfbb8a4 10000001 deaf54a0
+00000000
+[  442.180015] Call Trace:
+[  442.180015]  [<dea2c02e>] shadow_method+0x8e/0xe0 [nouveau]
+[  442.180015]  [<dea2c2db>] nvbios_shadow+0x25b/0x360 [nouveau]
+[  442.180015]  [<c10dbf41>] ? init_object+0x51/0x60
+[  442.180015]  [<dea1f0eb>] nouveau_bios_ctor+0x4b/0x3b0 [nouveau]
+[  442.180015]  [<c10dd62f>] ? kmem_cache_alloc_trace+0xcf/0x160
+[  442.180015]  [<dea1cd25>] nouveau_object_ctor+0x35/0xd0 [nouveau]
+[  442.180015]  [<dea64ebf>] nouveau_devobj_ctor+0x77f/0x880 [nouveau]
+[  442.180015]  [<dea1cd25>] nouveau_object_ctor+0x35/0xd0 [nouveau]
+[  442.180015]  [<dea1bb89>] nvkm_ioctl_new+0x229/0x300 [nouveau]
+[  442.180015]  [<dea1c020>] nvkm_ioctl+0x2a0/0x340 [nouveau]
+[  442.180015]  [<deaa913c>] nvkm_client_ioctl+0x1c/0x30 [nouveau]
+[  442.180015]  [<dea9ccee>] nvif_object_ioctl+0x7e/0x90 [nouveau]
+[  442.180015]  [<dea9d44a>] nvif_object_init+0x10a/0x130 [nouveau]
+[  442.180015]  [<dea9d7a8>] nvif_device_init+0x28/0x50 [nouveau]
+[  442.180015]  [<dea9f630>] nouveau_drm_load+0x2e0/0x560 [nouveau]
+[  442.180015]  [<c12c6bff>] drm_dev_register+0x5f/0xe0
+[  442.180015]  [<c12c9231>] drm_get_pci_dev+0xe1/0x1a0
+[  442.180015]  [<c122e9f5>] ? pcibios_set_master+0x25/0x80
+[  442.180015]  [<dea9f068>] nouveau_drm_probe+0x1a8/0x1d0 [nouveau]
+[  442.180015]  [<c122fed5>] pci_device_probe+0x65/0xc0
+[  442.180015]  [<c12e801d>] driver_probe_device+0x14d/0x330
+[  442.180015]  [<c12e824d>] __driver_attach+0x4d/0x80
+[  442.180015]  [<c12e8200>] ? driver_probe_device+0x330/0x330
+[  442.180015]  [<c12e68dc>] bus_for_each_dev+0x3c/0x70
+[  442.180015]  [<c12e7b7c>] driver_attach+0x1c/0x30
+[  442.180015]  [<c12e8200>] ? driver_probe_device+0x330/0x330
+[  442.180015]  [<c12e76ec>] bus_add_driver+0xdc/0x1f0
+[  442.180015]  [<c12e89b7>] driver_register+0x87/0xc0
+[  442.180015]  [<c10dffff>] ? migrate_page_copy+0x18f/0x250
+[  442.180015]  [<c122ffb8>] __pci_register_driver+0x28/0x30
+[  442.180015]  [<c12c933b>] drm_pci_init+0x4b/0xe0
+[  442.180015]  [<deb39235>] nouveau_drm_init+0x235/0x1000 [nouveau]
+[  442.180015]  [<c1000441>] ? do_one_initcall+0xb1/0x1d0
+[  442.180015]  [<c10004b4>] do_one_initcall+0x124/0x1d0
+[  442.180015]  [<deb39000>] ? 0xdeb39000
+[  442.180015]  [<deb39000>] ? 0xdeb39000
+[  442.180015]  [<c10dd344>] ? kfree+0x134/0x140
+[  442.180015]  [<c10d52ac>] ? __vunmap+0xcc/0xe0
+[  442.180015]  [<c10d52ac>] ? __vunmap+0xcc/0xe0
+[  442.180015]  [<c10d52ac>] ? __vunmap+0xcc/0xe0
+[  442.180015]  [<c10d52ac>] ? __vunmap+0xcc/0xe0
+[  442.180015]  [<c107e125>] load_module+0x1035/0x16b0
+[  442.180015]  [<c107e885>] SyS_init_module+0xe5/0xf0
+[  442.180015]  [<c14c23d2>] sysenter_do_call+0x12/0x12
+[  442.180015] Code: 43 7f e2 39 5d f0 89 07 77 e3 eb 08 90 c7 45 ec 00 00 00
+00 8b 45 ec 83 c4 08 5b 5e 5f 5d c3 
+[  442.180015] EIP: [<dea2c6c6>] pramin_fini+0x6/0x30 [nouveau] SS:ESP
+0068:dcfbb830
+[  442.180015] CR2: 0000000000000000
+[  442.555577] ---[ end trace 5944a013025347a6 ]---
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419169644.23b7c1.7694
-Date: Sun, 21 Dec 2014 13:47:24 +0000
+--1419174394.CA58d61.1896
+Date: Sun, 21 Dec 2014 15:06:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -126,14 +146,14 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV1A] 3.18.1 BUG on modprobe nouveau in drivers/gpu/drm/nouveau/core/core/event.c:42"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87552">87552</a>
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554">87554</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>[NV1A] 3.18.1 BUG on modprobe nouveau in drivers/gpu/drm/nouveau/core/core/event.c:42
+          <td>[NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini
           </td>
         </tr>
 
@@ -204,68 +224,88 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>[  289.984831] nouveau  [  DEVICE][0000:02:00.0] BOOT0  : 0x01a000b1
-[  289.991043] nouveau  [  DEVICE][0000:02:00.0] Chipset: nForce (NV1A)
-[  289.997439] nouveau  [  DEVICE][0000:02:00.0] Family : NV10
-[  290.003256] nouveau  [   VBIOS][0000:02:00.0] checking PRAMIN for image...
-[  290.045349] nouveau  [   VBIOS][0000:02:00.0] ... checksum invalid
-[  290.051619] nouveau  [   VBIOS][0000:02:00.0] checking PROM for image...
-[  290.058391] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[  290.064895] nouveau  [   VBIOS][0000:02:00.0] checking ACPI for image...
-[  290.071710] nouveau  [   VBIOS][0000:02:00.0] ... signature not found
-[  290.078205] nouveau  [   VBIOS][0000:02:00.0] checking PCIROM for image...
-[  290.085961] nouveau  [   VBIOS][0000:02:00.0] ... appears to be valid
-[  290.092511] nouveau  [   VBIOS][0000:02:00.0] using image from PCIROM
-[  290.099003] nouveau  [   VBIOS][0000:02:00.0] BMP version 5.14
-[  290.105141] nouveau  [   VBIOS][0000:02:00.0] version 03.1a.01.03.00
-[  290.111606] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.120249] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.128356] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.135257] nouveau W[   VBIOS][0000:02:00.0] DCB contains no useful data
-[  290.142279] nouveau W[  PTIMER][0000:02:00.0] unknown input clock freq
-[  290.148881] nouveau  [     PFB][0000:02:00.0] RAM type: stolen system memory
-[  290.155987] nouveau  [     PFB][0000:02:00.0] RAM size: 32 MiB
-[  290.161882] nouveau  [     PFB][0000:02:00.0]    ZCOMP: 0 tags
-[  290.173304] nouveau  [     CLK][0000:02:00.0] --:   
-[  290.178387] ------------[ cut here ]------------
-[  290.180008] kernel BUG at
-/usr/src/linux-git/drivers/gpu/drm/nouveau/core/core/event.c:42!
-[  290.180008] invalid opcode: 0000 [#1] 
-[  290.180008] Modules linked in: nouveau(+) wmi ttm drm_kms_helper nfsv3
+        <pre>[  441.685835] wmi: Mapper loaded
+[  442.129083] ACPI: PCI Interrupt Link [LNK5] enabled at IRQ 12
+[  442.135019] PCI: setting IRQ 12 as level-triggered
+[  442.144839] nouveau  [  DEVICE][0000:02:00.0] BOOT0  : 0x01a000b1
+[  442.151063] nouveau  [  DEVICE][0000:02:00.0] Chipset: nForce (NV1A)
+[  442.157481] nouveau  [  DEVICE][0000:02:00.0] Family : NV10
+[  442.172505] BUG: unable to handle kernel NULL pointer dereference at  
+(null)
+[  442.179823] IP: [&lt;dea2c6c6&gt;] pramin_fini+0x6/0x30 [nouveau]
+[  442.180015] *pde = 00000000 
+[  442.180015] Oops: 0000 [#1] 
+[  442.180015] Modules linked in: nouveau(+) wmi ttm drm_kms_helper nfsv3
 nfs_acl nfs lockd grace sunrpc
-[  290.180008] CPU: 0 PID: 41 Comm: kworker/0:2 Not tainted 3.18.1-jupiter #1
-[  290.180008] Hardware name: NVIDIA Corporation. nFORCE-MCP/MS-6373, BIOS 6.00
+[  442.180015] CPU: 0 PID: 1267 Comm: modprobe Not tainted 3.19.0-rc1-jupiter
+#1
+[  442.180015] Hardware name: NVIDIA Corporation. nFORCE-MCP/MS-6373, BIOS 6.00
 PG 04/12/2002
-[  290.180008] Workqueue: events nouveau_pstate_work [nouveau]
-[  290.180008] task: dd71c000 ti: dd720000 task.ti: dd720000
-[  290.180008] EIP: 0060:[&lt;dea19e63&gt;] EFLAGS: 00010046 CPU: 0
-[  290.180008] EIP is at nvkm_event_get+0x3/0x10 [nouveau]
-[  290.180008] EAX: dc31eab4 EBX: 00000286 ECX: 00000000 EDX: 00000001
-[  290.180008] ESI: 00000000 EDI: ffffffff EBP: dd721ea8 ESP: dd721ea8
-[  290.180008]  DS: 007b ES: 007b FS: 0000 GS: 00e0 SS: 0068
-[  290.180008] CR0: 8005003b CR2: b7742000 CR3: 1cf95000 CR4: 000007d0
-[  290.180008] Stack:
-[  290.180008]  dd721eb4 dea1ce02 dce7cb28 dd721f04 dea2f386 00000000 00000005
-deaea246
-[  290.180008]  ffffffff 00000001 ffffffff ffffffff ffffffff 00000000 00000000
-dd71c000
-[  290.180008]  dce07670 ffffffff 00000000 dce7ca50 dce7cb28 00000000 dd6f8e70
-dd721f44
-[  290.180008] Call Trace:
-[  290.180008]  [&lt;dea1ce02&gt;] nvkm_notify_get+0x32/0x40 [nouveau]
-[  290.180008]  [&lt;dea2f386&gt;] nouveau_pstate_work+0x396/0x3a0 [nouveau]
-[  290.180008]  [&lt;c1048af7&gt;] process_one_work+0x1d7/0x360
-[  290.180008]  [&lt;c104912f&gt;] worker_thread+0x2af/0x380
-[  290.180008]  [&lt;c1048e80&gt;] ? rescuer_thread+0x1d0/0x1d0
-[  290.180008]  [&lt;c1048e80&gt;] ? rescuer_thread+0x1d0/0x1d0
-[  290.180008]  [&lt;c104cb64&gt;] kthread+0xa4/0xb0
-[  290.180008]  [&lt;c14bcc40&gt;] ret_from_kernel_thread+0x20/0x30
-[  290.180008]  [&lt;c104cac0&gt;] ? flush_kthread_worker+0x70/0x70
-[  290.180008] Code: cf a9 e2 90 8d 74 26 00 83 c4 0c 5b 5e 5f 5d c3 66 90 66
-90 66 90 66 90 55 89 e5 0f 0b 8d 74 
-[  290.180008] EIP: [&lt;dea19e63&gt;] nvkm_event_get+0x3/0x10 [nouveau] SS:ESP
-0068:dd721ea8
-[  290.180008] ---[ end trace da282f24d1451e27 ]---</pre>
+[  442.180015] task: dc010c90 ti: dcfba000 task.ti: dcfba000
+[  442.180015] EIP: 0060:[&lt;dea2c6c6&gt;] EFLAGS: 00010286 CPU: 0
+[  442.180015] EIP is at pramin_fini+0x6/0x30 [nouveau]
+[  442.180015] EAX: 00000000 EBX: 00000000 ECX: 00000000 EDX: dea2c6c0
+[  442.180015] ESI: dcfbb8a4 EDI: deacf670 EBP: dcfbb834 ESP: dcfbb830
+[  442.180015]  DS: 007b ES: 007b FS: 0000 GS: 00e0 SS: 0068
+[  442.180015] CR0: 8005003b CR2: 00000000 CR3: 1c042000 CR4: 000007d0
+[  442.180015] Stack:
+[  442.180015]  dcedad90 dcfbb860 dea2c02e dcedad90 00000004 deaef771 deaef81b
+00000000
+[  442.180015]  deaf5320 dcfbb8a4 dcfbb884 dcfbb884 dcfbb994 dea2c2db dcfbb87c
+c10dbf41
+[  442.180015]  ddfcdb40 dd401180 dcedad90 00000000 dcfbb8a4 10000001 deaf54a0
+00000000
+[  442.180015] Call Trace:
+[  442.180015]  [&lt;dea2c02e&gt;] shadow_method+0x8e/0xe0 [nouveau]
+[  442.180015]  [&lt;dea2c2db&gt;] nvbios_shadow+0x25b/0x360 [nouveau]
+[  442.180015]  [&lt;c10dbf41&gt;] ? init_object+0x51/0x60
+[  442.180015]  [&lt;dea1f0eb&gt;] nouveau_bios_ctor+0x4b/0x3b0 [nouveau]
+[  442.180015]  [&lt;c10dd62f&gt;] ? kmem_cache_alloc_trace+0xcf/0x160
+[  442.180015]  [&lt;dea1cd25&gt;] nouveau_object_ctor+0x35/0xd0 [nouveau]
+[  442.180015]  [&lt;dea64ebf&gt;] nouveau_devobj_ctor+0x77f/0x880 [nouveau]
+[  442.180015]  [&lt;dea1cd25&gt;] nouveau_object_ctor+0x35/0xd0 [nouveau]
+[  442.180015]  [&lt;dea1bb89&gt;] nvkm_ioctl_new+0x229/0x300 [nouveau]
+[  442.180015]  [&lt;dea1c020&gt;] nvkm_ioctl+0x2a0/0x340 [nouveau]
+[  442.180015]  [&lt;deaa913c&gt;] nvkm_client_ioctl+0x1c/0x30 [nouveau]
+[  442.180015]  [&lt;dea9ccee&gt;] nvif_object_ioctl+0x7e/0x90 [nouveau]
+[  442.180015]  [&lt;dea9d44a&gt;] nvif_object_init+0x10a/0x130 [nouveau]
+[  442.180015]  [&lt;dea9d7a8&gt;] nvif_device_init+0x28/0x50 [nouveau]
+[  442.180015]  [&lt;dea9f630&gt;] nouveau_drm_load+0x2e0/0x560 [nouveau]
+[  442.180015]  [&lt;c12c6bff&gt;] drm_dev_register+0x5f/0xe0
+[  442.180015]  [&lt;c12c9231&gt;] drm_get_pci_dev+0xe1/0x1a0
+[  442.180015]  [&lt;c122e9f5&gt;] ? pcibios_set_master+0x25/0x80
+[  442.180015]  [&lt;dea9f068&gt;] nouveau_drm_probe+0x1a8/0x1d0 [nouveau]
+[  442.180015]  [&lt;c122fed5&gt;] pci_device_probe+0x65/0xc0
+[  442.180015]  [&lt;c12e801d&gt;] driver_probe_device+0x14d/0x330
+[  442.180015]  [&lt;c12e824d&gt;] __driver_attach+0x4d/0x80
+[  442.180015]  [&lt;c12e8200&gt;] ? driver_probe_device+0x330/0x330
+[  442.180015]  [&lt;c12e68dc&gt;] bus_for_each_dev+0x3c/0x70
+[  442.180015]  [&lt;c12e7b7c&gt;] driver_attach+0x1c/0x30
+[  442.180015]  [&lt;c12e8200&gt;] ? driver_probe_device+0x330/0x330
+[  442.180015]  [&lt;c12e76ec&gt;] bus_add_driver+0xdc/0x1f0
+[  442.180015]  [&lt;c12e89b7&gt;] driver_register+0x87/0xc0
+[  442.180015]  [&lt;c10dffff&gt;] ? migrate_page_copy+0x18f/0x250
+[  442.180015]  [&lt;c122ffb8&gt;] __pci_register_driver+0x28/0x30
+[  442.180015]  [&lt;c12c933b&gt;] drm_pci_init+0x4b/0xe0
+[  442.180015]  [&lt;deb39235&gt;] nouveau_drm_init+0x235/0x1000 [nouveau]
+[  442.180015]  [&lt;c1000441&gt;] ? do_one_initcall+0xb1/0x1d0
+[  442.180015]  [&lt;c10004b4&gt;] do_one_initcall+0x124/0x1d0
+[  442.180015]  [&lt;deb39000&gt;] ? 0xdeb39000
+[  442.180015]  [&lt;deb39000&gt;] ? 0xdeb39000
+[  442.180015]  [&lt;c10dd344&gt;] ? kfree+0x134/0x140
+[  442.180015]  [&lt;c10d52ac&gt;] ? __vunmap+0xcc/0xe0
+[  442.180015]  [&lt;c10d52ac&gt;] ? __vunmap+0xcc/0xe0
+[  442.180015]  [&lt;c10d52ac&gt;] ? __vunmap+0xcc/0xe0
+[  442.180015]  [&lt;c10d52ac&gt;] ? __vunmap+0xcc/0xe0
+[  442.180015]  [&lt;c107e125&gt;] load_module+0x1035/0x16b0
+[  442.180015]  [&lt;c107e885&gt;] SyS_init_module+0xe5/0xf0
+[  442.180015]  [&lt;c14c23d2&gt;] sysenter_do_call+0x12/0x12
+[  442.180015] Code: 43 7f e2 39 5d f0 89 07 77 e3 eb 08 90 c7 45 ec 00 00 00
+00 8b 45 ec 83 c4 08 5b 5e 5f 5d c3 
+[  442.180015] EIP: [&lt;dea2c6c6&gt;] pramin_fini+0x6/0x30 [nouveau] SS:ESP
+0068:dcfbb830
+[  442.180015] CR2: 0000000000000000
+[  442.555577] ---[ end trace 5944a013025347a6 ]---</pre>
         </div>
       </p>
       <hr>
@@ -277,9 +317,9 @@ dd721f44
     </body>
 </html>
 
---1419169644.23b7c1.7694--
+--1419174394.CA58d61.1896--
 
---===============1751224268==
+--===============0012675502==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -289,4 +329,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1751224268==--
+--===============0012675502==--
