@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
-	0x00000000
-Date: Sun, 21 Dec 2014 19:29:10 +0000
-Message-ID: <bug-87436-8800-66LvfZcYAq@http.bugs.freedesktop.org/>
-References: <bug-87436-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87554] [NV1A] 3.19-rc1 NULL dereference on modprobe
+ in pramin_fini
+Date: Sun, 21 Dec 2014 22:07:47 +0000
+Message-ID: <bug-87554-8800-W56lZZlpNS@http.bugs.freedesktop.org/>
+References: <bug-87554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1401513948=="
+Content-Type: multipart/mixed; boundary="===============0320103021=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1401513948==
-Content-Type: multipart/alternative; boundary="1419190150.dD37711A2.5026"; charset="UTF-8"
+--===============0320103021==
+Content-Type: multipart/alternative; boundary="1419199667.bfDD1.12077"; charset="UTF-8"
 
 
---1419190150.dD37711A2.5026
-Date: Sun, 21 Dec 2014 19:29:10 +0000
+--1419199667.bfDD1.12077
+Date: Sun, 21 Dec 2014 22:07:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87436
+https://bugs.freedesktop.org/show_bug.cgi?id=87554
 
-Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #7 from Pavel Malyshev <p.malishev-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 111128
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111128&action=edit
-F-21_journalctl_grep_nouveau
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=b19dbc526bb963670dafc86da92d9fa2755b1997
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419190150.dD37711A2.5026
-Date: Sun, 21 Dec 2014 19:29:10 +0000
+--1419199667.bfDD1.12077
+Date: Sun, 21 Dec 2014 22:07:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,42 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:p.malishev&#64;gmail.com" title="Pavel Malyshev &lt;p.malishev&#64;gmail.com&gt;"> <span class="fn">Pavel Malyshev</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>p.malishev&#64;gmail.com
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c7">Comment # 7</a>
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
-              from <span class="vcard"><a class="email" href="mailto:p.malishev&#64;gmail.com" title="Pavel Malyshev &lt;p.malishev&#64;gmail.com&gt;"> <span class="fn">Pavel Malyshev</span></a>
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554">bug 87554</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111128" name="attach_111128" title="F-21_journalctl_grep_nouveau">attachment 111128</a> <a href="attachment.cgi?id=111128&amp;action=edit" title="F-21_journalctl_grep_nouveau">[details]</a></span>
-F-21_journalctl_grep_nouveau</pre>
+        <pre><a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=b19dbc526bb963670dafc86da92d9fa2755b1997">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=b19dbc526bb963670dafc86da92d9fa2755b1997</a></pre>
         </div>
       </p>
       <hr>
@@ -103,9 +73,9 @@ F-21_journalctl_grep_nouveau</pre>
     </body>
 </html>
 
---1419190150.dD37711A2.5026--
+--1419199667.bfDD1.12077--
 
---===============1401513948==
+--===============0320103021==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1401513948==--
+--===============0320103021==--
