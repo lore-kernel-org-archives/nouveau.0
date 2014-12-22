@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87554] [NV1A] 3.19-rc1 NULL dereference on modprobe
- in pramin_fini
+Subject: [Bug 87576] Null dereference in npramin_finit
 Date: Mon, 22 Dec 2014 06:15:59 +0000
-Message-ID: <bug-87554-8800-9VXZ2XlzKW@http.bugs.freedesktop.org/>
-References: <bug-87554-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-87576-8800-onbDIPQOsN@http.bugs.freedesktop.org/>
+References: <bug-87576-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1751977492=="
+Content-Type: multipart/mixed; boundary="===============0196042946=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87576-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1751977492==
-Content-Type: multipart/alternative; boundary="1419228959.2d2BFE4.461"; charset="UTF-8"
+--===============0196042946==
+Content-Type: multipart/alternative; boundary="1419228959.b878eb1.461"; charset="UTF-8"
 
 
---1419228959.2d2BFE4.461
+--1419228959.b878eb1.461
 Date: Mon, 22 Dec 2014 06:15:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87554
+https://bugs.freedesktop.org/show_bug.cgi?id=87576
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 87576 has been marked as a duplicate of this bug. ***
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 87554 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419228959.2d2BFE4.461
+--1419228959.b878eb1.461
 Date: Mon, 22 Dec 2014 06:15:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -57,9 +59,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554">bug 87554</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576">bug 87576</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -69,29 +71,38 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>rjgleits&#64;bellsouth.net
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554">bug 87554</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
-   href="show_bug.cgi?id=87576">Bug 87576</a> has been marked as a duplicate of this bug. ***</pre>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576">bug 87576</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="show_bug.cgi?id=87554">bug 87554</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +114,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1419228959.2d2BFE4.461--
+--1419228959.b878eb1.461--
 
---===============1751977492==
+--===============0196042946==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1751977492==--
+--===============0196042946==--
