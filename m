@@ -1,83 +1,101 @@
-From: Paul Bolle <pebolle@tiscali.nl>
-Subject: Re: 3.19.0-rc1 nouvea build failure on GeForce GT 610 only
-Date: Mon, 22 Dec 2014 14:54:53 +0100
-Message-ID: <1419256493.30945.53.camel@x220>
-References: <54981647.8010409@blueyonder.co.uk>
-	 <1419255471.30945.47.camel@x220>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85742] GF117M Can *not* use nouveau at all
+Date: Mon, 22 Dec 2014 14:59:20 +0000
+Message-ID: <bug-85742-8800-hp6TEIunVk@http.bugs.freedesktop.org/>
+References: <bug-85742-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <linux-kernel-owner@vger.kernel.org>
-In-Reply-To: <1419255471.30945.47.camel@x220>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Sid Boyce <sboyce@blueyonder.co.uk>
-Cc: Mark Hounschell <markh@compro.net>, linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0117982336=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-85742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Mon, 2014-12-22 at 14:37 +0100, Paul Bolle wrote:
-> On Mon, 2014-12-22 at 13:01 +0000, Sid Boyce wrote:
-> >    CHK     kernel/config_data.h
-> >    CC [M]  drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o
-> > drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c: In function=20
-> > =E2=80=98nvd0_dmaobj_bind=E2=80=99:
-> > drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c:54:8: error:=20
-> > =E2=80=98GM204_DISP_CORE_CHANNEL_DMA=E2=80=99 undeclared (first use=
- in this function)
-> >     case GM204_DISP_CORE_CHANNEL_DMA:
-> >          ^
-> > drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c:54:8: note: each=20
-> > undeclared identifier is reported only once for each function it ap=
-pears in
-> > scripts/Makefile.build:257: recipe for target=20
-> > 'drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o' failed
-> > make[4]: *** [drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o] Er=
-ror 1
-> > scripts/Makefile.build:402: recipe for target 'drivers/gpu/drm/nouv=
-eau'=20
-> > failed
-> > make[3]: *** [drivers/gpu/drm/nouveau] Error 2
-> > scripts/Makefile.build:402: recipe for target 'drivers/gpu/drm' fai=
-led
-> > make[2]: *** [drivers/gpu/drm] Error 2
-> > scripts/Makefile.build:402: recipe for target 'drivers/gpu' failed
-> > make[1]: *** [drivers/gpu] Error 2
-> > Makefile:938: recipe for target 'drivers' failed
-> > make: *** [drivers] Error 2
-> >=20
-> > 01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForc=
-e GT=20
-> > 610] (rev a1)
->=20
-> Why would that controller influence the build?
->=20
-> > No problems on 2 other boxes with GeForce 8600 GT] (rev a1)
->=20
-> I ran into this error twice, while building Fedora 21 kernel rpms for
-> v3.19-rc1 on my outdated ThinkPad X41 (which uses i915, for what it's
-> worth). The error made very little sense to me. Especially since it
-> didn't happen when building in the local git repository.
->=20
-> So I basically, well, scrubbed the rpmbuild environment. And then the
-> the third attempt to build kernels rpm succeeded! I assumed a hardwar=
-e
-> failure (see outdated above) and made a mental note to investigate th=
-at
-> one of these days.
->=20
-> But your report makes me think it's not my hardware. Could there be s=
-ome
-> _random_ failure with this driver in the build? Very odd...
 
-A theory based on Mark's message in
-https://lkml.org/lkml/2014/12/8/602 :
-
-My two failed builds somehow used previous version of class.h, that
-didn't yet have commit 1f89b4756fb8 ("drm/gm204/disp: initial support")
-applied. It's that commit which added the define for
-GM204_DISP_CORE_CHANNEL_DMA.
-
-Is that even possible? Perhaps rpmbuild has a surprising way to handle
-symlinks? All very puzzling...
+--===============0117982336==
+Content-Type: multipart/alternative; boundary="1419260360.cd3BA361.5573"; charset="UTF-8"
 
 
-Paul Bolle
+--1419260360.cd3BA361.5573
+Date: Mon, 22 Dec 2014 14:59:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85742
+
+--- Comment #2 from lampshade-IjDXvh/HVVUAvxtiuMwx3w@public.gmane.org ---
+I am not familiar with git so I started to test official kernel sources from
+kernel.org. 3.14-rc1 have broken nouveau driver for me. Unfortunatel 3.13.0
+also contains bug with filesystem or HDD or something similar. I think he have
+the same bug as me:
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1380881
+So I can not test a lot of 3.13* kernels :/
+As far as I remember Ubuntu with 3.13 *something worked for me (both filesystem
+and nouveau).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419260360.cd3BA361.5573
+Date: Mon, 22 Dec 2014 14:59:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GF117M Can *not* use nouveau at all"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GF117M Can *not* use nouveau at all"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742">bug 85742</a>
+              from <span class="vcard"><a class="email" href="mailto:lampshade&#64;poczta.fm" title="lampshade&#64;poczta.fm">lampshade&#64;poczta.fm</a>
+</span></b>
+        <pre>I am not familiar with git so I started to test official kernel sources from
+kernel.org. 3.14-rc1 have broken nouveau driver for me. Unfortunatel 3.13.0
+also contains bug with filesystem or HDD or something similar. I think he have
+the same bug as me:
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1380881">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1380881</a>
+So I can not test a lot of 3.13* kernels :/
+As far as I remember Ubuntu with 3.13 *something worked for me (both filesystem
+and nouveau).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419260360.cd3BA361.5573--
+
+--===============0117982336==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0117982336==--
