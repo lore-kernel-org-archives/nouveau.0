@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87576] Null dereference in npramin_finit
-Date: Mon, 22 Dec 2014 06:15:59 +0000
-Message-ID: <bug-87576-8800-onbDIPQOsN@http.bugs.freedesktop.org/>
-References: <bug-87576-8800@http.bugs.freedesktop.org/>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH V2 2/4] pwr: make nouveau_pwr_pgob() non-static
+Date: Mon, 22 Dec 2014 17:11:38 +0800
+Message-ID: <1419239500-19703-2-git-send-email-vinceh@nvidia.com>
+References: <1419239500-19703-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0196042946=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87576-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1419239500-19703-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,114 +17,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0196042946==
-Content-Type: multipart/alternative; boundary="1419228959.b878eb1.461"; charset="UTF-8"
-
-
---1419228959.b878eb1.461
-Date: Mon, 22 Dec 2014 06:15:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87576
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 87554 ***
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419228959.b878eb1.461
-Date: Mon, 22 Dec 2014 06:15:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576">bug 87576</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Null dereference in npramin_finit"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87576">bug 87576</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
-   href="show_bug.cgi?id=87554">bug 87554</a> ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419228959.b878eb1.461--
-
---===============0196042946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0196042946==--
+VGhlIHBsYXRmb3JtIGRldmljZSBkb2VzIG5vdCB1c2UgdGhlIGNvbW1vbiBub3V2ZWF1X3B3cl9p
+bml0KCkgdG8gaW5pdGlhbGl6ZQp0aGUgUFdSLCBidXQgaXQgZG9lcyBuZWVkIHRoZSAucHJvYigp
+IGJlIGFzc2lnbmVkIHRvIGF2b2lkIE5VTEwgcG9pbnRlcgpkZXJlZmVyZW5jZSBpbiBncmFwaC9u
+dmU0LmMuCgpTaWduZWQtb2ZmLWJ5OiBWaW5jZSBIc3UgPHZpbmNlaEBudmlkaWEuY29tPgotLS0K
+CnYyOiB0aGlzIHBhdGNoIGlzIGFkZGVkIHNpbmNlIHYyLiAodjEgaXMgdGhlIFJGQyBhY3R1YWxs
+eSkKCiBudmttL3N1YmRldi9wd3IvYmFzZS5jIHwgMiArLQogbnZrbS9zdWJkZXYvcHdyL3ByaXYu
+aCB8IDEgKwogMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkK
+CmRpZmYgLS1naXQgYS9udmttL3N1YmRldi9wd3IvYmFzZS5jIGIvbnZrbS9zdWJkZXYvcHdyL2Jh
+c2UuYwppbmRleCAwYWI1NWYyN2VjNDUuLjFlYTQzM2E1ZTExOCAxMDA2NDQKLS0tIGEvbnZrbS9z
+dWJkZXYvcHdyL2Jhc2UuYworKysgYi9udmttL3N1YmRldi9wd3IvYmFzZS5jCkBAIC0yNiw3ICsy
+Niw3IEBACiAKICNpbmNsdWRlICJwcml2LmgiCiAKLXN0YXRpYyB2b2lkCit2b2lkCiBub3V2ZWF1
+X3B3cl9wZ29iKHN0cnVjdCBub3V2ZWF1X3B3ciAqcHB3ciwgYm9vbCBlbmFibGUpCiB7CiAJY29u
+c3Qgc3RydWN0IG52a21fcHdyX2ltcGwgKmltcGwgPSAodm9pZCAqKW52X29jbGFzcyhwcHdyKTsK
+ZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L3B3ci9wcml2LmggYi9udmttL3N1YmRldi9wd3IvcHJp
+di5oCmluZGV4IDM4MTRhMzQxZGIzMi4uODYxNDlkOWE0NDBjIDEwMDY0NAotLS0gYS9udmttL3N1
+YmRldi9wd3IvcHJpdi5oCisrKyBiL252a20vc3ViZGV2L3B3ci9wcml2LmgKQEAgLTI2LDYgKzI2
+LDcgQEAgaW50IF9ub3V2ZWF1X3B3cl9jdG9yKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqLCBzdHJ1
+Y3Qgbm91dmVhdV9vYmplY3QgKiwKICNkZWZpbmUgX25vdXZlYXVfcHdyX2R0b3IgX25vdXZlYXVf
+c3ViZGV2X2R0b3IKIGludCBfbm91dmVhdV9wd3JfaW5pdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3Qg
+Kik7CiBpbnQgX25vdXZlYXVfcHdyX2Zpbmkoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICosIGJvb2wp
+Owordm9pZCBub3V2ZWF1X3B3cl9wZ29iKHN0cnVjdCBub3V2ZWF1X3B3ciAqcHB3ciwgYm9vbCBl
+bmFibGUpOwogCiBzdHJ1Y3QgbnZrbV9wd3JfaW1wbCB7CiAJc3RydWN0IG5vdXZlYXVfb2NsYXNz
+IGJhc2U7Ci0tIAoxLjkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
