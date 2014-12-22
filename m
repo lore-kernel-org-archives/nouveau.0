@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85742] GF117M Can *not* use nouveau at all
-Date: Mon, 22 Dec 2014 15:01:05 +0000
-Message-ID: <bug-85742-8800-eUXBxmhO2c@http.bugs.freedesktop.org/>
-References: <bug-85742-8800@http.bugs.freedesktop.org/>
+From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
+Subject: Re: 3.19.0-rc1 nouvea build failure on GeForce GT 610 only
+Date: Mon, 22 Dec 2014 15:48:54 +0000
+Message-ID: <54983D66.6020506@blueyonder.co.uk>
+References: <54981647.8010409@blueyonder.co.uk>	
+ <1419255471.30945.47.camel@x220> <1419256493.30945.53.camel@x220>
+Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0735431674=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85742-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1419256493.30945.53.camel@x220>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,206 +19,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Paul Bolle <pebolle-IWqWACnzNjzz+pZb47iToQ@public.gmane.org>
+Cc: Mark Hounschell <markh-n2QNKt385d+sTnJN9+BGXg@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0735431674==
-Content-Type: multipart/alternative; boundary="1419260464.5e7AFEfD1.6123"; charset="UTF-8"
-
-
---1419260464.5e7AFEfD1.6123
-Date: Mon, 22 Dec 2014 15:01:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=85742
-
---- Comment #3 from lampshade-IjDXvh/HVVUAvxtiuMwx3w@public.gmane.org ---
-And I have some more info form dmesg from vanilla 3.14.1
-[    0.023586] pci 0000:01:00.0: [10de:1140] type 00 class 0x030000
-[    0.023595] pci 0000:01:00.0: reg 0x10: [mem 0xb2000000-0xb2ffffff]
-[    0.023606] pci 0000:01:00.0: reg 0x14: [mem 0xa0000000-0xafffffff 64bit
-pref]
-[    0.023617] pci 0000:01:00.0: reg 0x1c: [mem 0xb0000000-0xb1ffffff 64bit
-pref]
-[    0.023625] pci 0000:01:00.0: reg 0x24: [io  0x2000-0x207f]
-[    0.023633] pci 0000:01:00.0: reg 0x30: [mem 0xfff80000-0xffffffff pref]
-[    0.023694] vgaarb: device added:
-PCI:0000:01:00.0,decodes=io+mem,owns=none,locks=none
-[    0.050452] pci 0000:01:00.0: no compatible bridge window for [mem
-0xfff80000-0xffffffff pref]
-[    0.050497] pci 0000:01:00.0: BAR 6: can't assign mem pref (size 0x80000)
-[    0.077544] pci 0000:01:00.0: Signaling PME through PCIe PME interrupt
-[    0.938676] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
-[    0.938682] nouveau 0000:01:00.0: can't find IRQ for PCI INT A; please try
-using pci=biosirq
-[    0.938740] nouveau T[  DEVICE][0000:01:00.0] inc() == 2
-[    0.938755] nouveau T[     DRM] inc() == 3
-[    0.938758] nouveau T[  DEVICE][0000:01:00.0] use(+1) == 1
-[    0.938759] nouveau T[  DEVICE][0000:01:00.0] initialising...
-[    0.938761] nouveau D[  DEVICE][0000:01:00.0] initialised
-[    0.938762] nouveau T[     DRM] inc() == 4
-[    0.938764] nouveau T[     DRM] inc() == 5
-[    0.938766] nouveau T[  DEVICE][0000:01:00.0] inc() == 3
-[    0.938943] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d7000a2
-[    0.938945] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF117 (NVD7)
-[    0.938946] nouveau  [  DEVICE][0000:01:00.0] Family : NVD0
-[    0.938948] nouveau D[  DEVICE][0000:01:00.0] crystal freq: 27000KHz
-[    0.941491] nouveau T[  DEVICE][0000:01:00.0] inc() == 4
-[    0.941493] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
-[    0.989660] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989662] nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
-[    0.989721] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989722] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
-[    0.989724] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989725] nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
-[    0.989727] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989728] nouveau  [   VBIOS][0000:01:00.0] checking PLATFORM for image...
-[    0.989730] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989731] nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
-[    0.989762] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
--22
-[    0.989793] nouveau T[  DEVICE][0000:01:00.0] dec() == 3
-[    0.989795] nouveau E[     DRM] failed to create 0x80000080, -22
-[    0.989821] nouveau T[  DEVICE][0000:01:00.0] dec() == 2
-[    0.989823] nouveau T[     DRM] dec() == 4
-[    0.989824] nouveau T[     DRM] dec() == 3
-[    0.989825] nouveau T[  DEVICE][0000:01:00.0] use(-1) == 0
-[    0.989827] nouveau T[  DEVICE][0000:01:00.0] stopping...
-[    0.989828] nouveau D[  DEVICE][0000:01:00.0] stopped
-[    0.989829] nouveau T[     DRM] dec() == 2
-[    0.989831] nouveau D[     DRM] fini running
-[    0.989833] nouveau T[     DRM] 0xffffffff:0xffffffff fini children
-[    0.989835] nouveau T[     DRM] 0xffffffff:0xffffffff fini running
-[    0.989836] nouveau T[     DRM] use(-1) == 1
-[    0.989838] nouveau T[     DRM] 0xffffffff:0xffffffff fini completed
-[    0.989839] nouveau D[     DRM] fini completed with 0
-[    0.989840] nouveau T[     DRM] dec() == 0
-[    0.989842] nouveau D[     DRM] destroying
-[    0.989843] nouveau T[  DEVICE][0000:01:00.0] dec() == 1
-[    0.989845] nouveau T[     DRM] 0xffffffff:0xffffffff destroy running
-[    0.989846] nouveau T[     DRM] 0xffffffff:0xffffffff destroy completed
-[    0.989848] nouveau T[     DRM] dec() == -1
-[    0.989895] nouveau T[  DEVICE][0000:01:00.0] dec() == 0
-[    0.989897] nouveau D[  DEVICE][0000:01:00.0] destroying
-[    0.989940] nouveau: probe of 0000:01:00.0 failed with error -22
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419260464.5e7AFEfD1.6123
-Date: Mon, 22 Dec 2014 15:01:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GF117M Can *not* use nouveau at all"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GF117M Can *not* use nouveau at all"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85742">bug 85742</a>
-              from <span class="vcard"><a class="email" href="mailto:lampshade&#64;poczta.fm" title="lampshade&#64;poczta.fm">lampshade&#64;poczta.fm</a>
-</span></b>
-        <pre>And I have some more info form dmesg from vanilla 3.14.1
-[    0.023586] pci 0000:01:00.0: [10de:1140] type 00 class 0x030000
-[    0.023595] pci 0000:01:00.0: reg 0x10: [mem 0xb2000000-0xb2ffffff]
-[    0.023606] pci 0000:01:00.0: reg 0x14: [mem 0xa0000000-0xafffffff 64bit
-pref]
-[    0.023617] pci 0000:01:00.0: reg 0x1c: [mem 0xb0000000-0xb1ffffff 64bit
-pref]
-[    0.023625] pci 0000:01:00.0: reg 0x24: [io  0x2000-0x207f]
-[    0.023633] pci 0000:01:00.0: reg 0x30: [mem 0xfff80000-0xffffffff pref]
-[    0.023694] vgaarb: device added:
-PCI:0000:01:00.0,decodes=io+mem,owns=none,locks=none
-[    0.050452] pci 0000:01:00.0: no compatible bridge window for [mem
-0xfff80000-0xffffffff pref]
-[    0.050497] pci 0000:01:00.0: BAR 6: can't assign mem pref (size 0x80000)
-[    0.077544] pci 0000:01:00.0: Signaling PME through PCIe PME interrupt
-[    0.938676] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
-[    0.938682] nouveau 0000:01:00.0: can't find IRQ for PCI INT A; please try
-using pci=biosirq
-[    0.938740] nouveau T[  DEVICE][0000:01:00.0] inc() == 2
-[    0.938755] nouveau T[     DRM] inc() == 3
-[    0.938758] nouveau T[  DEVICE][0000:01:00.0] use(+1) == 1
-[    0.938759] nouveau T[  DEVICE][0000:01:00.0] initialising...
-[    0.938761] nouveau D[  DEVICE][0000:01:00.0] initialised
-[    0.938762] nouveau T[     DRM] inc() == 4
-[    0.938764] nouveau T[     DRM] inc() == 5
-[    0.938766] nouveau T[  DEVICE][0000:01:00.0] inc() == 3
-[    0.938943] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d7000a2
-[    0.938945] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF117 (NVD7)
-[    0.938946] nouveau  [  DEVICE][0000:01:00.0] Family : NVD0
-[    0.938948] nouveau D[  DEVICE][0000:01:00.0] crystal freq: 27000KHz
-[    0.941491] nouveau T[  DEVICE][0000:01:00.0] inc() == 4
-[    0.941493] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for image...
-[    0.989660] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989662] nouveau  [   VBIOS][0000:01:00.0] checking PROM for image...
-[    0.989721] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989722] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for image...
-[    0.989724] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989725] nouveau  [   VBIOS][0000:01:00.0] checking PCIROM for image...
-[    0.989727] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989728] nouveau  [   VBIOS][0000:01:00.0] checking PLATFORM for image...
-[    0.989730] nouveau  [   VBIOS][0000:01:00.0] ... signature not found
-[    0.989731] nouveau E[   VBIOS][0000:01:00.0] unable to locate usable image
-[    0.989762] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
--22
-[    0.989793] nouveau T[  DEVICE][0000:01:00.0] dec() == 3
-[    0.989795] nouveau E[     DRM] failed to create 0x80000080, -22
-[    0.989821] nouveau T[  DEVICE][0000:01:00.0] dec() == 2
-[    0.989823] nouveau T[     DRM] dec() == 4
-[    0.989824] nouveau T[     DRM] dec() == 3
-[    0.989825] nouveau T[  DEVICE][0000:01:00.0] use(-1) == 0
-[    0.989827] nouveau T[  DEVICE][0000:01:00.0] stopping...
-[    0.989828] nouveau D[  DEVICE][0000:01:00.0] stopped
-[    0.989829] nouveau T[     DRM] dec() == 2
-[    0.989831] nouveau D[     DRM] fini running
-[    0.989833] nouveau T[     DRM] 0xffffffff:0xffffffff fini children
-[    0.989835] nouveau T[     DRM] 0xffffffff:0xffffffff fini running
-[    0.989836] nouveau T[     DRM] use(-1) == 1
-[    0.989838] nouveau T[     DRM] 0xffffffff:0xffffffff fini completed
-[    0.989839] nouveau D[     DRM] fini completed with 0
-[    0.989840] nouveau T[     DRM] dec() == 0
-[    0.989842] nouveau D[     DRM] destroying
-[    0.989843] nouveau T[  DEVICE][0000:01:00.0] dec() == 1
-[    0.989845] nouveau T[     DRM] 0xffffffff:0xffffffff destroy running
-[    0.989846] nouveau T[     DRM] 0xffffffff:0xffffffff destroy completed
-[    0.989848] nouveau T[     DRM] dec() == -1
-[    0.989895] nouveau T[  DEVICE][0000:01:00.0] dec() == 0
-[    0.989897] nouveau D[  DEVICE][0000:01:00.0] destroying
-[    0.989940] nouveau: probe of 0000:01:00.0 failed with error -22</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419260464.5e7AFEfD1.6123--
-
---===============0735431674==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0735431674==--
+T24gMjIvMTIvMTQgMTM6NTQsIFBhdWwgQm9sbGUgd3JvdGU6Cj4gT24gTW9uLCAyMDE0LTEyLTIy
+IGF0IDE0OjM3ICswMTAwLCBQYXVsIEJvbGxlIHdyb3RlOgo+PiBPbiBNb24sIDIwMTQtMTItMjIg
+YXQgMTM6MDEgKzAwMDAsIFNpZCBCb3ljZSB3cm90ZToKPj4+ICAgICBDSEsgICAgIGtlcm5lbC9j
+b25maWdfZGF0YS5oCj4+PiAgICAgQ0MgW01dICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3Jl
+L2VuZ2luZS9kbWFvYmovbnZkMC5vCj4+PiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2Vu
+Z2luZS9kbWFvYmovbnZkMC5jOiBJbiBmdW5jdGlvbgo+Pj4gw6LigqzLnG52ZDBfZG1hb2JqX2Jp
+bmTDouKCrOKEojoKPj4+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RtYW9i
+ai9udmQwLmM6NTQ6ODogZXJyb3I6Cj4+PiDDouKCrMucR00yMDRfRElTUF9DT1JFX0NIQU5ORUxf
+RE1Bw6LigqzihKIgdW5kZWNsYXJlZCAoZmlyc3QgdXNlIGluIHRoaXMgZnVuY3Rpb24pCj4+PiAg
+ICAgIGNhc2UgR00yMDRfRElTUF9DT1JFX0NIQU5ORUxfRE1BOgo+Pj4gICAgICAgICAgIF4KPj4+
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RtYW9iai9udmQwLmM6NTQ6ODog
+bm90ZTogZWFjaAo+Pj4gdW5kZWNsYXJlZCBpZGVudGlmaWVyIGlzIHJlcG9ydGVkIG9ubHkgb25j
+ZSBmb3IgZWFjaCBmdW5jdGlvbiBpdCBhcHBlYXJzIGluCj4+PiBzY3JpcHRzL01ha2VmaWxlLmJ1
+aWxkOjI1NzogcmVjaXBlIGZvciB0YXJnZXQKPj4+ICdkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9j
+b3JlL2VuZ2luZS9kbWFvYmovbnZkMC5vJyBmYWlsZWQKPj4+IG1ha2VbNF06ICoqKiBbZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvY29yZS9lbmdpbmUvZG1hb2JqL252ZDAub10gRXJyb3IgMQo+Pj4g
+c2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0MDI6IHJlY2lwZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdScKPj4+IGZhaWxlZAo+Pj4gbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdV0gRXJyb3IgMgo+Pj4gc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo0MDI6IHJlY2lw
+ZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0nIGZhaWxlZAo+Pj4gbWFrZVsyXTogKioqIFtk
+cml2ZXJzL2dwdS9kcm1dIEVycm9yIDIKPj4+IHNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDAyOiBy
+ZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAo+Pj4gbWFrZVsxXTogKioqIFtk
+cml2ZXJzL2dwdV0gRXJyb3IgMgo+Pj4gTWFrZWZpbGU6OTM4OiByZWNpcGUgZm9yIHRhcmdldCAn
+ZHJpdmVycycgZmFpbGVkCj4+PiBtYWtlOiAqKiogW2RyaXZlcnNdIEVycm9yIDIKPj4+Cj4+PiAw
+MTowMC4wIFZHQSBjb21wYXRpYmxlIGNvbnRyb2xsZXI6IE5WSURJQSBDb3Jwb3JhdGlvbiBHRjEx
+OSBbR2VGb3JjZSBHVAo+Pj4gNjEwXSAocmV2IGExKQo+PiBXaHkgd291bGQgdGhhdCBjb250cm9s
+bGVyIGluZmx1ZW5jZSB0aGUgYnVpbGQ/Cj4+Cj4+PiBObyBwcm9ibGVtcyBvbiAyIG90aGVyIGJv
+eGVzIHdpdGggR2VGb3JjZSA4NjAwIEdUXSAocmV2IGExKQo+PiBJIHJhbiBpbnRvIHRoaXMgZXJy
+b3IgdHdpY2UsIHdoaWxlIGJ1aWxkaW5nIEZlZG9yYSAyMSBrZXJuZWwgcnBtcyBmb3IKPj4gdjMu
+MTktcmMxIG9uIG15IG91dGRhdGVkIFRoaW5rUGFkIFg0MSAod2hpY2ggdXNlcyBpOTE1LCBmb3Ig
+d2hhdCBpdCdzCj4+IHdvcnRoKS4gVGhlIGVycm9yIG1hZGUgdmVyeSBsaXR0bGUgc2Vuc2UgdG8g
+bWUuIEVzcGVjaWFsbHkgc2luY2UgaXQKPj4gZGlkbid0IGhhcHBlbiB3aGVuIGJ1aWxkaW5nIGlu
+IHRoZSBsb2NhbCBnaXQgcmVwb3NpdG9yeS4KPj4KPj4gU28gSSBiYXNpY2FsbHksIHdlbGwsIHNj
+cnViYmVkIHRoZSBycG1idWlsZCBlbnZpcm9ubWVudC4gQW5kIHRoZW4gdGhlCj4+IHRoZSB0aGly
+ZCBhdHRlbXB0IHRvIGJ1aWxkIGtlcm5lbHMgcnBtIHN1Y2NlZWRlZCEgSSBhc3N1bWVkIGEgaGFy
+ZHdhcmUKPj4gZmFpbHVyZSAoc2VlIG91dGRhdGVkIGFib3ZlKSBhbmQgbWFkZSBhIG1lbnRhbCBu
+b3RlIHRvIGludmVzdGlnYXRlIHRoYXQKPj4gb25lIG9mIHRoZXNlIGRheXMuCj4+Cj4+IEJ1dCB5
+b3VyIHJlcG9ydCBtYWtlcyBtZSB0aGluayBpdCdzIG5vdCBteSBoYXJkd2FyZS4gQ291bGQgdGhl
+cmUgYmUgc29tZQo+PiBfcmFuZG9tXyBmYWlsdXJlIHdpdGggdGhpcyBkcml2ZXIgaW4gdGhlIGJ1
+aWxkPyBWZXJ5IG9kZC4uLgo+IEEgdGhlb3J5IGJhc2VkIG9uIE1hcmsncyBtZXNzYWdlIGluCj4g
+aHR0cHM6Ly9sa21sLm9yZy9sa21sLzIwMTQvMTIvOC82MDIgOgo+Cj4gTXkgdHdvIGZhaWxlZCBi
+dWlsZHMgc29tZWhvdyB1c2VkIHByZXZpb3VzIHZlcnNpb24gb2YgY2xhc3MuaCwgdGhhdAo+IGRp
+ZG4ndCB5ZXQgaGF2ZSBjb21taXQgMWY4OWI0NzU2ZmI4ICgiZHJtL2dtMjA0L2Rpc3A6IGluaXRp
+YWwgc3VwcG9ydCIpCj4gYXBwbGllZC4gSXQncyB0aGF0IGNvbW1pdCB3aGljaCBhZGRlZCB0aGUg
+ZGVmaW5lIGZvcgo+IEdNMjA0X0RJU1BfQ09SRV9DSEFOTkVMX0RNQS4KPgo+IElzIHRoYXQgZXZl
+biBwb3NzaWJsZT8gUGVyaGFwcyBycG1idWlsZCBoYXMgYSBzdXJwcmlzaW5nIHdheSB0byBoYW5k
+bGUKPiBzeW1saW5rcz8gQWxsIHZlcnkgcHV6emxpbmcuLi4KPgo+Cj4gUGF1bCBCb2xsZQo+Cj4K
+SSBkaWQgYSBnaXQgcHVsbCB1cCB0byAzLjE5LXJjMSBzZXBhcmF0ZWx5IG9uIHRoZSAzIGJveGVz
+IGFuZCB1c2VkIHRoZSAKLmNvbmZpZyBmcm9tIDMuMTguMCBhcyB0aGUgYmFzZSBvZiBtYWtlIG9s
+ZGNvbmZpZy4KCldoZW4gdGhlIGJ1aWxkIGZhaWxlZCBJIGRpZCAibWFrZSBtcnByb3BlciIgYW5k
+IHVzZWQgdGhlIC5jb25maWcgZnJvbSAKb25lIG9mIHRoZSBvdGhlciBib3hlcywgdGhlbiBmcm9t
+IHRoZSBvdGhlciwgYWxsIDMgLmNvbmZpZyBnYXZlIHRoZSBzYW1lIAplcnJvci4KClN1Y2Nlc3Nm
+dWxseSByZWJvb3RlZCBvbmUgb2YgdGhlIGJveGVzLgpzYWJyZTp+ICMgdW5hbWUgLXIKMy4xOS4w
+LXJjMS1zbXArCgpSZWdhcmRzIC4uLiBTaWQuCi0tIApTaWQgQm95Y2UgLi4uIEhhbXJhZGlvIExp
+Y2Vuc2UgRzNWQlYsIExpY2Vuc2VkIFByaXZhdGUgUGlsb3QgRW1lcml0dXMgCklCTS9BbWRhaGwg
+TWFpbmZyYW1lcyBhbmQgU3VuL0Z1aml0c3UgU2VydmVycyBUZWNoIFN1cHBvcnQgU2VuaW9yIFN0
+YWZmIApTcGVjaWFsaXN0LCBDcmlja2V0IENvYWNoIE1pY3Jvc29mdCBXaW5kb3dzIEZyZWUgWm9u
+ZSAtIExpbnV4IHVzZWQgZm9yIAphbGwgQ29tcHV0aW5nIFRhc2tzCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
