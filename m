@@ -1,51 +1,70 @@
-From: Sid Boyce <sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org>
-Subject: 3.19.0-rc1 nouvea build failure on GeForce GT 610 only
-Date: Mon, 22 Dec 2014 13:01:59 +0000
-Message-ID: <54981647.8010409@blueyonder.co.uk>
-Reply-To: sboyce-QgLWrMLu8clzjhtm8Ag3mw@public.gmane.org
+From: Paul Bolle <pebolle@tiscali.nl>
+Subject: Re: 3.19.0-rc1 nouvea build failure on GeForce GT 610 only
+Date: Mon, 22 Dec 2014 14:37:51 +0100
+Message-ID: <1419255471.30945.47.camel@x220>
+References: <54981647.8010409@blueyonder.co.uk>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: LKML Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-kernel-owner@vger.kernel.org>
+In-Reply-To: <54981647.8010409@blueyonder.co.uk>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Sid Boyce <sboyce@blueyonder.co.uk>
+Cc: linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-ICAgQ0hLICAgICBrZXJuZWwvY29uZmlnX2RhdGEuaAogICBDQyBbTV0gIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RtYW9iai9udmQwLm8KZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvY29yZS9lbmdpbmUvZG1hb2JqL252ZDAuYzogSW4gZnVuY3Rpb24gCuKAmG52ZDBfZG1hb2Jq
-X2JpbmTigJk6CmRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvZW5naW5lL2RtYW9iai9udmQw
-LmM6NTQ6ODogZXJyb3I6IArigJhHTTIwNF9ESVNQX0NPUkVfQ0hBTk5FTF9ETUHigJkgdW5kZWNs
-YXJlZCAoZmlyc3QgdXNlIGluIHRoaXMgZnVuY3Rpb24pCiAgICBjYXNlIEdNMjA0X0RJU1BfQ09S
-RV9DSEFOTkVMX0RNQToKICAgICAgICAgXgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2Vu
-Z2luZS9kbWFvYmovbnZkMC5jOjU0Ojg6IG5vdGU6IGVhY2ggCnVuZGVjbGFyZWQgaWRlbnRpZmll
-ciBpcyByZXBvcnRlZCBvbmx5IG9uY2UgZm9yIGVhY2ggZnVuY3Rpb24gaXQgYXBwZWFycyBpbgpz
-Y3JpcHRzL01ha2VmaWxlLmJ1aWxkOjI1NzogcmVjaXBlIGZvciB0YXJnZXQgCidkcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9jb3JlL2VuZ2luZS9kbWFvYmovbnZkMC5vJyBmYWlsZWQKbWFrZVs0XTog
-KioqIFtkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL2VuZ2luZS9kbWFvYmovbnZkMC5vXSBF
-cnJvciAxCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDAyOiByZWNpcGUgZm9yIHRhcmdldCAnZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUnIApmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjQwMjogcmVjaXBlIGZv
-ciB0YXJnZXQgJ2RyaXZlcnMvZ3B1L2RybScgZmFpbGVkCm1ha2VbMl06ICoqKiBbZHJpdmVycy9n
-cHUvZHJtXSBFcnJvciAyCnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6NDAyOiByZWNpcGUgZm9yIHRh
-cmdldCAnZHJpdmVycy9ncHUnIGZhaWxlZAptYWtlWzFdOiAqKiogW2RyaXZlcnMvZ3B1XSBFcnJv
-ciAyCk1ha2VmaWxlOjkzODogcmVjaXBlIGZvciB0YXJnZXQgJ2RyaXZlcnMnIGZhaWxlZAptYWtl
-OiAqKiogW2RyaXZlcnNdIEVycm9yIDIKCjAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxl
-cjogTlZJRElBIENvcnBvcmF0aW9uIEdGMTE5IFtHZUZvcmNlIEdUIAo2MTBdIChyZXYgYTEpCgpO
-byBwcm9ibGVtcyBvbiAyIG90aGVyIGJveGVzIHdpdGggR2VGb3JjZSA4NjAwIEdUXSAocmV2IGEx
-KQpSZWdhcmRzClNpZC4KCi0tIApTaWQgQm95Y2UgLi4uIEhhbXJhZGlvIExpY2Vuc2UgRzNWQlYs
-IExpY2Vuc2VkIFByaXZhdGUgUGlsb3QKRW1lcml0dXMgSUJNL0FtZGFobCBNYWluZnJhbWVzIGFu
-ZCBTdW4vRnVqaXRzdSBTZXJ2ZXJzIFRlY2ggU3VwcG9ydApTZW5pb3IgU3RhZmYgU3BlY2lhbGlz
-dCwgQ3JpY2tldCBDb2FjaApNaWNyb3NvZnQgV2luZG93cyBGcmVlIFpvbmUgLSBMaW51eCB1c2Vk
-IGZvciBhbGwgQ29tcHV0aW5nIFRhc2tzCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+Hi Sid,
+
+On Mon, 2014-12-22 at 13:01 +0000, Sid Boyce wrote:
+>    CHK     kernel/config_data.h
+>    CC [M]  drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o
+> drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c: In function=20
+> =E2=80=98nvd0_dmaobj_bind=E2=80=99:
+> drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c:54:8: error:=20
+> =E2=80=98GM204_DISP_CORE_CHANNEL_DMA=E2=80=99 undeclared (first use i=
+n this function)
+>     case GM204_DISP_CORE_CHANNEL_DMA:
+>          ^
+> drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.c:54:8: note: each=20
+> undeclared identifier is reported only once for each function it appe=
+ars in
+> scripts/Makefile.build:257: recipe for target=20
+> 'drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o' failed
+> make[4]: *** [drivers/gpu/drm/nouveau/core/engine/dmaobj/nvd0.o] Erro=
+r 1
+> scripts/Makefile.build:402: recipe for target 'drivers/gpu/drm/nouvea=
+u'=20
+> failed
+> make[3]: *** [drivers/gpu/drm/nouveau] Error 2
+> scripts/Makefile.build:402: recipe for target 'drivers/gpu/drm' faile=
+d
+> make[2]: *** [drivers/gpu/drm] Error 2
+> scripts/Makefile.build:402: recipe for target 'drivers/gpu' failed
+> make[1]: *** [drivers/gpu] Error 2
+> Makefile:938: recipe for target 'drivers' failed
+> make: *** [drivers] Error 2
+>=20
+> 01:00.0 VGA compatible controller: NVIDIA Corporation GF119 [GeForce =
+GT=20
+> 610] (rev a1)
+
+Why would that controller influence the build?
+
+> No problems on 2 other boxes with GeForce 8600 GT] (rev a1)
+
+I ran into this error twice, while building Fedora 21 kernel rpms for
+v3.19-rc1 on my outdated ThinkPad X41 (which uses i915, for what it's
+worth). The error made very little sense to me. Especially since it
+didn't happen when building in the local git repository.
+
+So I basically, well, scrubbed the rpmbuild environment. And then the
+the third attempt to build kernels rpm succeeded! I assumed a hardware
+failure (see outdated above) and made a mental note to investigate that
+one of these days.
+
+But your report makes me think it's not my hardware. Could there be som=
+e
+_random_ failure with this driver in the build? Very odd...
+
+
+Paul Bolle
