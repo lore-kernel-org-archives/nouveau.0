@@ -1,13 +1,11 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH nouveau 08/11] instmem: add dummy support for GK20A
-Date: Tue, 23 Dec 2014 18:40:01 +0800
-Message-ID: <1419331204-26679-9-git-send-email-vinceh@nvidia.com>
-References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87641] New: Oops in 3.19.0-rc1 - nv40 and older -
+ patch included
+Date: Tue, 23 Dec 2014 16:14:17 +0000
+Message-ID: <bug-87641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1034904175=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1419331204-26679-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +15,174 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyBhIHdvcmthcm91bmQgdG8gYXZvaWQgdGhlIGluc3RtZW0gYmFja3VwL3Jlc3RvcmUg
-ZHVyaW5nIHRoZSBzdXNwZW5kCmFuZCByZXN1bWUgcHJvY2VzcyBpbiBudjUwIGluc3RlbWVtIGRy
-aXZlci4KClNpZ25lZC1vZmYtYnk6IFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+Ci0tLQog
-ZHJtL0tidWlsZCAgICAgICAgICAgICAgICAgICAgfCAgMSArCiBudmttL2VuZ2luZS9kZXZpY2Uv
-bnZlMC5jICAgICB8ICAyICstCiBudmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaCB8ICAxICsK
-IG52a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYyAgIHwgNzAgKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKwogNCBmaWxlcyBjaGFuZ2VkLCA3MyBpbnNlcnRpb25zKCsp
-LCAxIGRlbGV0aW9uKC0pCiBjcmVhdGUgbW9kZSAxMDA2NDQgbnZrbS9zdWJkZXYvaW5zdG1lbS9n
-azIwYS5jCgpkaWZmIC0tZ2l0IGEvZHJtL0tidWlsZCBiL2RybS9LYnVpbGQKaW5kZXggNjQ2MWUz
-NTY1YWZlLi5lYTQwY2Q2NTNjN2MgMTAwNjQ0Ci0tLSBhL2RybS9LYnVpbGQKKysrIGIvZHJtL0ti
-dWlsZApAQCAtMTc2LDYgKzE3Niw3IEBAIG5vdXZlYXUteSArPSBjb3JlL3N1YmRldi9pbnN0bWVt
-L2Jhc2Uubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L2luc3RtZW0vbnYwNC5vCiBub3V2ZWF1
-LXkgKz0gY29yZS9zdWJkZXYvaW5zdG1lbS9udjQwLm8KIG5vdXZlYXUteSArPSBjb3JlL3N1YmRl
-di9pbnN0bWVtL252NTAubworbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L2luc3RtZW0vZ2syMGEu
-bwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L2x0Yy9iYXNlLm8KIG5vdXZlYXUteSArPSBjb3Jl
-L3N1YmRldi9sdGMvZ2YxMDAubwogbm91dmVhdS15ICs9IGNvcmUvc3ViZGV2L2x0Yy9nazEwNC5v
-CmRpZmYgLS1naXQgYS9udmttL2VuZ2luZS9kZXZpY2UvbnZlMC5jIGIvbnZrbS9lbmdpbmUvZGV2
-aWNlL252ZTAuYwppbmRleCA3MzI5MjI2OTA2NTMuLmZjYmRjNTI1OWM3YyAxMDA2NDQKLS0tIGEv
-bnZrbS9lbmdpbmUvZGV2aWNlL252ZTAuYworKysgYi9udmttL2VuZ2luZS9kZXZpY2UvbnZlMC5j
-CkBAIC0xNzAsNyArMTcwLDcgQEAgbnZlMF9pZGVudGlmeShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2Ug
-KmRldmljZSkKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0ZCICAgICBdID0gIGdrMjBh
-X2ZiX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0xUQyAgICBdID0gIGdr
-MTA0X2x0Y19vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9JQlVTICAgXSA9
-ICZnazIwYV9pYnVzX29jbGFzczsKLQkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0lOU1RN
-RU1dID0gbnY1MF9pbnN0bWVtX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVW
-X0lOU1RNRU1dID0gZ2syMGFfaW5zdG1lbV9vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVW
-X1NVQkRFVl9WTSAgICAgXSA9ICZudmMwX3ZtbWdyX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3Nb
-TlZERVZfU1VCREVWX0JBUiAgICBdID0gJmdrMjBhX2Jhcl9vY2xhc3M7CiAJCWRldmljZS0+b2Ns
-YXNzW05WREVWX0VOR0lORV9ETUFPQkogXSA9ICBudmQwX2RtYWVuZ19vY2xhc3M7CmRpZmYgLS1n
-aXQgYS9udmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaCBiL252a20vaW5jbHVkZS9zdWJkZXYv
-aW5zdG1lbS5oCmluZGV4IGMxZGYyNmYzMjMwYy4uNjI2NDY2MGJlZGNlIDEwMDY0NAotLS0gYS9u
-dmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaAorKysgYi9udmttL2luY2x1ZGUvc3ViZGV2L2lu
-c3RtZW0uaApAQCAtNDgsNSArNDgsNiBAQCBub3V2ZWF1X2luc3RtZW0odm9pZCAqb2JqKQogZXh0
-ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqbnYwNF9pbnN0bWVtX29jbGFzczsKIGV4dGVybiBz
-dHJ1Y3Qgbm91dmVhdV9vY2xhc3MgKm52NDBfaW5zdG1lbV9vY2xhc3M7CiBleHRlcm4gc3RydWN0
-IG5vdXZlYXVfb2NsYXNzICpudjUwX2luc3RtZW1fb2NsYXNzOworZXh0ZXJuIHN0cnVjdCBub3V2
-ZWF1X29jbGFzcyAqZ2syMGFfaW5zdG1lbV9vY2xhc3M7CiAKICNlbmRpZgpkaWZmIC0tZ2l0IGEv
-bnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5jIGIvbnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5j
-Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAwMDAwMC4uNWUwNzJkNmU3NDNmCi0t
-LSAvZGV2L251bGwKKysrIGIvbnZrbS9zdWJkZXYvaW5zdG1lbS9nazIwYS5jCkBAIC0wLDAgKzEs
-NzAgQEAKKy8qCisgKiBDb3B5cmlnaHQgKGMpIDIwMTQsIE5WSURJQSBDT1JQT1JBVElPTi4gQWxs
-IHJpZ2h0cyByZXNlcnZlZC4KKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBm
-cmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29weSBvZiB0aGlz
-IHNvZnR3YXJlIGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdh
-cmUiKSwKKyAqIHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGlu
-Y2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBt
-b2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICogYW5kL29y
-IHNlbGwgY29waWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdo
-b20gdGhlCisgKiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhl
-IGZvbGxvd2luZyBjb25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNl
-IGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluCisgKiBhbGwg
-Y29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KKyAqCisgKiBU
-SEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkg
-S0lORCwgRVhQUkVTUyBPUgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBU
-TyBUSEUgV0FSUkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNTIEZPUiBBIFBB
-UlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwK
-KyAqIFRIRSBBVVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJTIEJFIExJQUJMRSBGT1IgQU5ZIENM
-QUlNLCBEQU1BR0VTIE9SIE9USEVSCisgKiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9O
-IE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORworICogRlJPTSwgT1VUIE9G
-IE9SIElOIENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUgor
-ICogREVBTElOR1MgSU4gVEhFIFNPRlRXQVJFLgorICoKKyAqLworCisjaW5jbHVkZSAibnY1MC5o
-IgorI2luY2x1ZGUgInByaXYuaCIKKworc3RhdGljIGludAorZ2syMGFfaW5zdG1lbV9maW5pKHN0
-cnVjdCBub3V2ZWF1X29iamVjdCAqb2JqZWN0LCBib29sIHN1c3BlbmQpCit7CisJc3RydWN0IG5v
-dXZlYXVfaW5zdG1lbSAqaW1lbSA9ICh2b2lkICopb2JqZWN0OworCisJcmV0dXJuIG5vdXZlYXVf
-c3ViZGV2X2ZpbmkoJmltZW0tPmJhc2UsIHN1c3BlbmQpOworfQorCitzdGF0aWMgaW50CitnazIw
-YV9pbnN0bWVtX2luaXQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmplY3QpCit7CisJc3RydWN0
-IG5vdXZlYXVfaW5zdG1lbSAqaW1lbSA9ICh2b2lkICopb2JqZWN0OworCisJcmV0dXJuIG5vdXZl
-YXVfc3ViZGV2X2luaXQoJmltZW0tPmJhc2UpOworfQorCitzdGF0aWMgaW50CitnazIwYV9pbnN0
-bWVtX2N0b3Ioc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpwYXJlbnQsIHN0cnVjdCBub3V2ZWF1X29i
-amVjdCAqZW5naW5lLAorCQkgIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqb2NsYXNzLCB2b2lkICpk
-YXRhLCB1MzIgc2l6ZSwKKwkJICBzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKipwb2JqZWN0KQorewor
-CXN0cnVjdCBudjUwX2luc3RtZW1fcHJpdiAqcHJpdjsKKwlpbnQgcmV0OworCisJcmV0ID0gbm91
-dmVhdV9pbnN0bWVtX2NyZWF0ZShwYXJlbnQsIGVuZ2luZSwgb2NsYXNzLCAmcHJpdik7CisJKnBv
-YmplY3QgPSBudl9vYmplY3QocHJpdik7CisJaWYgKHJldCkKKwkJcmV0dXJuIHJldDsKKworCXNw
-aW5fbG9ja19pbml0KCZwcml2LT5sb2NrKTsKKwlyZXR1cm4gMDsKK30KKworc3RydWN0IG5vdXZl
-YXVfb2NsYXNzICoKK2drMjBhX2luc3RtZW1fb2NsYXNzID0gJihzdHJ1Y3Qgbm91dmVhdV9pbnN0
-bWVtX2ltcGwpIHsKKwkuYmFzZS5oYW5kbGUgPSBOVl9TVUJERVYoSU5TVE1FTSwgMHg1MCksCisJ
-LmJhc2Uub2Z1bmNzID0gJihzdHJ1Y3Qgbm91dmVhdV9vZnVuY3MpIHsKKwkJLmN0b3IgPSBnazIw
-YV9pbnN0bWVtX2N0b3IsCisJCS5kdG9yID0gX25vdXZlYXVfaW5zdG1lbV9kdG9yLAorCQkuaW5p
-dCA9IGdrMjBhX2luc3RtZW1faW5pdCwKKwkJLmZpbmkgPSBnazIwYV9pbnN0bWVtX2ZpbmksCisJ
-fSwKKwkuaW5zdG9iaiA9ICZudjUwX2luc3RvYmpfb2NsYXNzLmJhc2UsCit9LmJhc2U7Ci0tIAox
-LjkuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1034904175==
+Content-Type: multipart/alternative; boundary="1419351258.448aE11.28297"; charset="UTF-8"
+
+
+--1419351258.448aE11.28297
+Date: Tue, 23 Dec 2014 16:14:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87641
+
+            Bug ID: 87641
+           Summary: Oops in 3.19.0-rc1 - nv40 and older - patch included
+           Product: xorg
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: blocker
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 111222
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111222&action=edit
+fix null dereference oops in nouveau.ko
+
+A null pointer is returned from pramin_init for chipset < nv50. This causes an
+oops when it finds its way to pramin_fini. See attached patch, which is signed
+off by me. 
+
+Best Wishes,
+
+Bob Gleitsmann
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419351258.448aE11.28297
+Date: Tue, 23 Dec 2014 16:14:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Oops in 3.19.0-rc1 - nv40 and older - patch included"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">87641</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Oops in 3.19.0-rc1 - nv40 and older - patch included
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>blocker
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rjgleits&#64;bellsouth.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111222" name="attach_111222" title="fix null dereference oops in nouveau.ko">attachment 111222</a> <a href="attachment.cgi?id=111222&amp;action=edit" title="fix null dereference oops in nouveau.ko">[details]</a></span>
+fix null dereference oops in nouveau.ko
+
+A null pointer is returned from pramin_init for chipset &lt; nv50. This causes an
+oops when it finds its way to pramin_fini. See attached patch, which is signed
+off by me. 
+
+Best Wishes,
+
+Bob Gleitsmann</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419351258.448aE11.28297--
+
+--===============1034904175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1034904175==--
