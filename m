@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87641] New: Oops in 3.19.0-rc1 - nv40 and older -
- patch included
-Date: Tue, 23 Dec 2014 16:14:17 +0000
-Message-ID: <bug-87641-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87641] Oops in 3.19.0-rc1 - nv40 and older - patch
+	included
+Date: Tue, 23 Dec 2014 16:18:19 +0000
+Message-ID: <bug-87641-8800-mk4L35cLJt@http.bugs.freedesktop.org/>
+References: <bug-87641-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1034904175=="
+Content-Type: multipart/mixed; boundary="===============0740792153=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-87641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1034904175==
-Content-Type: multipart/alternative; boundary="1419351258.448aE11.28297"; charset="UTF-8"
+--===============0740792153==
+Content-Type: multipart/alternative; boundary="1419351499.4ad8D2.29464"; charset="UTF-8"
 
 
---1419351258.448aE11.28297
-Date: Tue, 23 Dec 2014 16:14:18 +0000
+--1419351499.4ad8D2.29464
+Date: Tue, 23 Dec 2014 16:18:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87641
 
-            Bug ID: 87641
-           Summary: Oops in 3.19.0-rc1 - nv40 and older - patch included
-           Product: xorg
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: blocker
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: rjgleits-Bdlq13kUjeyLZ21kGMrzwg@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
-Created attachment 111222
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111222&action=edit
-fix null dereference oops in nouveau.ko
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
-A null pointer is returned from pramin_init for chipset < nv50. This causes an
-oops when it finds its way to pramin_fini. See attached patch, which is signed
-off by me. 
+--- Comment #1 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
 
-Best Wishes,
 
-Bob Gleitsmann
+*** This bug has been marked as a duplicate of bug 87554 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419351258.448aE11.28297
-Date: Tue, 23 Dec 2014 16:14:18 +0000
+--1419351499.4ad8D2.29464
+Date: Tue, 23 Dec 2014 16:18:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,99 +57,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Oops in 3.19.0-rc1 - nv40 and older - patch included"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">87641</a>
-          </td>
-        </tr>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">bug 87641</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>Oops in 3.19.0-rc1 - nv40 and older - patch included
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>blocker
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>rjgleits&#64;bellsouth.net
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111222" name="attach_111222" title="fix null dereference oops in nouveau.ko">attachment 111222</a> <a href="attachment.cgi?id=111222&amp;action=edit" title="fix null dereference oops in nouveau.ko">[details]</a></span>
-fix null dereference oops in nouveau.ko
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">bug 87641</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span></b>
+        <pre>
 
-A null pointer is returned from pramin_init for chipset &lt; nv50. This causes an
-oops when it finds its way to pramin_fini. See attached patch, which is signed
-off by me. 
-
-Best Wishes,
-
-Bob Gleitsmann</pre>
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="show_bug.cgi?id=87554">bug 87554</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -173,9 +115,9 @@ Bob Gleitsmann</pre>
     </body>
 </html>
 
---1419351258.448aE11.28297--
+--1419351499.4ad8D2.29464--
 
---===============1034904175==
+--===============0740792153==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -185,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1034904175==--
+--===============0740792153==--
