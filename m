@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87641] Oops in 3.19.0-rc1 - nv40 and older - patch
-	included
+Subject: [Bug 87554] [NV1A] 3.19-rc1 NULL dereference on modprobe
+ in pramin_fini
 Date: Tue, 23 Dec 2014 16:18:19 +0000
-Message-ID: <bug-87641-8800-mk4L35cLJt@http.bugs.freedesktop.org/>
-References: <bug-87641-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-87554-8800-KADukcT3Px@http.bugs.freedesktop.org/>
+References: <bug-87554-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0740792153=="
+Content-Type: multipart/mixed; boundary="===============1543758059=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87641-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87554-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0740792153==
-Content-Type: multipart/alternative; boundary="1419351499.4ad8D2.29464"; charset="UTF-8"
+--===============1543758059==
+Content-Type: multipart/alternative; boundary="1419351500.EEf45.29464"; charset="UTF-8"
 
 
---1419351499.4ad8D2.29464
-Date: Tue, 23 Dec 2014 16:18:19 +0000
+--1419351500.EEf45.29464
+Date: Tue, 23 Dec 2014 16:18:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87641
+https://bugs.freedesktop.org/show_bug.cgi?id=87554
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-
---- Comment #1 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 87554 ***
+--- Comment #5 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+*** Bug 87641 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419351499.4ad8D2.29464
-Date: Tue, 23 Dec 2014 16:18:19 +0000
+--1419351500.EEf45.29464
+Date: Tue, 23 Dec 2014 16:18:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,53 +48,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">bug 87641</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87641">bug 87641</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
-   href="show_bug.cgi?id=87554">bug 87554</a> ***</pre>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV1A] 3.19-rc1 NULL dereference on modprobe in pramin_fini"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87554">bug 87554</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span></b>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Oops in 3.19.0-rc1 - nv40 and older - patch included"
+   href="show_bug.cgi?id=87641">Bug 87641</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1419351499.4ad8D2.29464--
+--1419351500.EEf45.29464--
 
---===============0740792153==
+--===============1543758059==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0740792153==--
+--===============1543758059==--
