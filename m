@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Tue, 23 Dec 2014 22:00:29 +0000
-Message-ID: <bug-80901-8800-M3V81eVlmH@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH nouveau 08/11] instmem: add dummy support for
+ GK20A
+Date: Wed, 24 Dec 2014 10:44:43 +0800
+Message-ID: <549A289B.7030705@nvidia.com>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>	<1419331204-26679-9-git-send-email-vinceh@nvidia.com>
+ <CAKb7UvgCizkaK2aZeWp=mgH34Ur3hi0hSFghopkpkkBeuqzsoQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0283001210=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgCizkaK2aZeWp=mgH34Ur3hi0hSFghopkpkkBeuqzsoQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,161 +19,115 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: Stephen Warren <swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0283001210==
-Content-Type: multipart/alternative; boundary="1419372029.DF72e3A2.30182"; charset="UTF-8"
-
-
---1419372029.DF72e3A2.30182
-Date: Tue, 23 Dec 2014 22:00:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
-
---- Comment #26 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
-(In reply to K.-P. Schrage from comment #25)
-> It seems that I am struck by this very bug as well since several months now.
-> 
-> Fedora 21, kernel-3.17.7-300.fc21.x86_64 (but it started on Fedora 20,
-> around kernel-3.15.5-200.fc20.x86_64)
-> 
-> Graphics card:
-> 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 630]
-> (rev a1) (prog-if 00 [VGA controller])
->         Subsystem: Micro-Star International Co., Ltd. [MSI] Device 8a90
->         Flags: bus master, fast devsel, latency 0, IRQ 43
->         Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
->         Memory at e8000000 (64-bit, prefetchable) [size=128M]
->         Memory at f0000000 (64-bit, prefetchable) [size=32M]
->         I/O ports at e000 [size=128]
->         Expansion ROM at f7000000 [disabled] [size=512K]
->         Capabilities: [60] Power Management version 3
->         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
->         Capabilities: [78] Express Endpoint, MSI 00
->         Capabilities: [b4] Vendor Specific Information: Len=14 <?>
->         Capabilities: [100] Virtual Channel
->         Capabilities: [128] Power Budgeting <?>
->         Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1
-> Len=024 <?>
->         Kernel driver in use: nouveau
->         Kernel modules: nouveau
-> 
-> It seems as if problems started with this commit:
-> http://lists.freedesktop.org/archives/nouveau/2014-March/016589.html
-> At least reverting this patch to the nouveau source is a workaround, see
-> discussion on Redhat bugzilla:
-> https://bugzilla.redhat.com/show_bug.cgi?id=1121331
-> 
-> BTW, isn't bug 84721 a duplicate of this one? It is the very same NVIDIA
-> controller as mine that is affected.
-
-It depends on your problem. If by "too high", you mean fan at 100% constantly,
-then the bug is a duplicate. If you mean the default fan speed is 35% instead
-of 30%, then the bugs are not related and this is a bug hijacking :p Please
-send your vbios in your answer and I'll or will not advise you to open a new
-bug report.
-
-I am currently in the process of moving to another home, but I can still write
-code for you to try :)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419372029.DF72e3A2.30182
-Date: Tue, 23 Dec 2014 22:00:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c26">Comment # 26</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>(In reply to K.-P. Schrage from <a href="show_bug.cgi?id=80901#c25">comment #25</a>)
-<span class="quote">&gt; It seems that I am struck by this very bug as well since several months now.
-&gt; 
-&gt; Fedora 21, kernel-3.17.7-300.fc21.x86_64 (but it started on Fedora 20,
-&gt; around kernel-3.15.5-200.fc20.x86_64)
-&gt; 
-&gt; Graphics card:
-&gt; 01:00.0 VGA compatible controller: NVIDIA Corporation GF108 [GeForce GT 630]
-&gt; (rev a1) (prog-if 00 [VGA controller])
-&gt;         Subsystem: Micro-Star International Co., Ltd. [MSI] Device 8a90
-&gt;         Flags: bus master, fast devsel, latency 0, IRQ 43
-&gt;         Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
-&gt;         Memory at e8000000 (64-bit, prefetchable) [size=128M]
-&gt;         Memory at f0000000 (64-bit, prefetchable) [size=32M]
-&gt;         I/O ports at e000 [size=128]
-&gt;         Expansion ROM at f7000000 [disabled] [size=512K]
-&gt;         Capabilities: [60] Power Management version 3
-&gt;         Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-&gt;         Capabilities: [78] Express Endpoint, MSI 00
-&gt;         Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
-&gt;         Capabilities: [100] Virtual Channel
-&gt;         Capabilities: [128] Power Budgeting &lt;?&gt;
-&gt;         Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1
-&gt; Len=024 &lt;?&gt;
-&gt;         Kernel driver in use: nouveau
-&gt;         Kernel modules: nouveau
-&gt; 
-&gt; It seems as if problems started with this commit:
-&gt; <a href="http://lists.freedesktop.org/archives/nouveau/2014-March/016589.html">http://lists.freedesktop.org/archives/nouveau/2014-March/016589.html</a>
-&gt; At least reverting this patch to the nouveau source is a workaround, see
-&gt; discussion on Redhat bugzilla:
-&gt; <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1121331">https://bugzilla.redhat.com/show_bug.cgi?id=1121331</a>
-&gt; 
-&gt; BTW, isn't <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="show_bug.cgi?id=84721">bug 84721</a> a duplicate of this one? It is the very same NVIDIA
-&gt; controller as mine that is affected.</span >
-
-It depends on your problem. If by &quot;too high&quot;, you mean fan at 100% constantly,
-then the bug is a duplicate. If you mean the default fan speed is 35% instead
-of 30%, then the bugs are not related and this is a bug hijacking :p Please
-send your vbios in your answer and I'll or will not advise you to open a new
-bug report.
-
-I am currently in the process of moving to another home, but I can still write
-code for you to try :)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419372029.DF72e3A2.30182--
-
---===============0283001210==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0283001210==--
+SGksCgpPbiAxMi8yNC8yMDE0IDEyOjM5IEFNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBUdWUs
+IERlYyAyMywgMjAxNCBhdCA1OjQwIEFNLCBWaW5jZSBIc3UgPHZpbmNlaEBudmlkaWEuY29tPiB3
+cm90ZToKPj4gVGhpcyBpcyBhIHdvcmthcm91bmQgdG8gYXZvaWQgdGhlIGluc3RtZW0gYmFja3Vw
+L3Jlc3RvcmUgZHVyaW5nIHRoZSBzdXNwZW5kCj4+IGFuZCByZXN1bWUgcHJvY2VzcyBpbiBudjUw
+IGluc3RlbWVtIGRyaXZlci4KPj4KPj4gU2lnbmVkLW9mZi1ieTogVmluY2UgSHN1IDx2aW5jZWhA
+bnZpZGlhLmNvbT4KPj4gLS0tCj4+ICAgZHJtL0tidWlsZCAgICAgICAgICAgICAgICAgICAgfCAg
+MSArCj4+ICAgbnZrbS9lbmdpbmUvZGV2aWNlL252ZTAuYyAgICAgfCAgMiArLQo+PiAgIG52a20v
+aW5jbHVkZS9zdWJkZXYvaW5zdG1lbS5oIHwgIDEgKwo+PiAgIG52a20vc3ViZGV2L2luc3RtZW0v
+Z2syMGEuYyAgIHwgNzAgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
+Kwo+PiAgIDQgZmlsZXMgY2hhbmdlZCwgNzMgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQo+
+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBudmttL3N1YmRldi9pbnN0bWVtL2drMjBhLmMKPj4KPj4g
+ZGlmZiAtLWdpdCBhL2RybS9LYnVpbGQgYi9kcm0vS2J1aWxkCj4+IGluZGV4IDY0NjFlMzU2NWFm
+ZS4uZWE0MGNkNjUzYzdjIDEwMDY0NAo+PiAtLS0gYS9kcm0vS2J1aWxkCj4+ICsrKyBiL2RybS9L
+YnVpbGQKPj4gQEAgLTE3Niw2ICsxNzYsNyBAQCBub3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvaW5z
+dG1lbS9iYXNlLm8KPj4gICBub3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvaW5zdG1lbS9udjA0Lm8K
+Pj4gICBub3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvaW5zdG1lbS9udjQwLm8KPj4gICBub3V2ZWF1
+LXkgKz0gY29yZS9zdWJkZXYvaW5zdG1lbS9udjUwLm8KPj4gK25vdXZlYXUteSArPSBjb3JlL3N1
+YmRldi9pbnN0bWVtL2drMjBhLm8KPj4gICBub3V2ZWF1LXkgKz0gY29yZS9zdWJkZXYvbHRjL2Jh
+c2Uubwo+PiAgIG5vdXZlYXUteSArPSBjb3JlL3N1YmRldi9sdGMvZ2YxMDAubwo+PiAgIG5vdXZl
+YXUteSArPSBjb3JlL3N1YmRldi9sdGMvZ2sxMDQubwo+PiBkaWZmIC0tZ2l0IGEvbnZrbS9lbmdp
+bmUvZGV2aWNlL252ZTAuYyBiL252a20vZW5naW5lL2RldmljZS9udmUwLmMKPj4gaW5kZXggNzMy
+OTIyNjkwNjUzLi5mY2JkYzUyNTljN2MgMTAwNjQ0Cj4+IC0tLSBhL252a20vZW5naW5lL2Rldmlj
+ZS9udmUwLmMKPj4gKysrIGIvbnZrbS9lbmdpbmUvZGV2aWNlL252ZTAuYwo+PiBAQCAtMTcwLDcg
+KzE3MCw3IEBAIG52ZTBfaWRlbnRpZnkoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXZpY2UpCj4+
+ICAgICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0ZCICAgICBdID0g
+IGdrMjBhX2ZiX29jbGFzczsKPj4gICAgICAgICAgICAgICAgICBkZXZpY2UtPm9jbGFzc1tOVkRF
+Vl9TVUJERVZfTFRDICAgIF0gPSAgZ2sxMDRfbHRjX29jbGFzczsKPj4gICAgICAgICAgICAgICAg
+ICBkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfSUJVUyAgIF0gPSAmZ2syMGFfaWJ1c19vY2xh
+c3M7Cj4+IC0gICAgICAgICAgICAgICBkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfSU5TVE1F
+TV0gPSBudjUwX2luc3RtZW1fb2NsYXNzOwo+PiArICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xh
+c3NbTlZERVZfU1VCREVWX0lOU1RNRU1dID0gZ2syMGFfaW5zdG1lbV9vY2xhc3M7Cj4+ICAgICAg
+ICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1ZNICAgICBdID0gJm52YzBf
+dm1tZ3Jfb2NsYXNzOwo+PiAgICAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05WREVWX1NV
+QkRFVl9CQVIgICAgXSA9ICZnazIwYV9iYXJfb2NsYXNzOwo+PiAgICAgICAgICAgICAgICAgIGRl
+dmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9ETUFPQkogXSA9ICBudmQwX2RtYWVuZ19vY2xhc3M7
+Cj4+IGRpZmYgLS1naXQgYS9udmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaCBiL252a20vaW5j
+bHVkZS9zdWJkZXYvaW5zdG1lbS5oCj4+IGluZGV4IGMxZGYyNmYzMjMwYy4uNjI2NDY2MGJlZGNl
+IDEwMDY0NAo+PiAtLS0gYS9udmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaAo+PiArKysgYi9u
+dmttL2luY2x1ZGUvc3ViZGV2L2luc3RtZW0uaAo+PiBAQCAtNDgsNSArNDgsNiBAQCBub3V2ZWF1
+X2luc3RtZW0odm9pZCAqb2JqKQo+PiAgIGV4dGVybiBzdHJ1Y3Qgbm91dmVhdV9vY2xhc3MgKm52
+MDRfaW5zdG1lbV9vY2xhc3M7Cj4+ICAgZXh0ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqbnY0
+MF9pbnN0bWVtX29jbGFzczsKPj4gICBleHRlcm4gc3RydWN0IG5vdXZlYXVfb2NsYXNzICpudjUw
+X2luc3RtZW1fb2NsYXNzOwo+PiArZXh0ZXJuIHN0cnVjdCBub3V2ZWF1X29jbGFzcyAqZ2syMGFf
+aW5zdG1lbV9vY2xhc3M7Cj4+Cj4+ICAgI2VuZGlmCj4+IGRpZmYgLS1naXQgYS9udmttL3N1YmRl
+di9pbnN0bWVtL2drMjBhLmMgYi9udmttL3N1YmRldi9pbnN0bWVtL2drMjBhLmMKPj4gbmV3IGZp
+bGUgbW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMDAwMDAwLi41ZTA3MmQ2ZTc0M2YKPj4gLS0t
+IC9kZXYvbnVsbAo+PiArKysgYi9udmttL3N1YmRldi9pbnN0bWVtL2drMjBhLmMKPj4gQEAgLTAs
+MCArMSw3MCBAQAo+PiArLyoKPj4gKyAqIENvcHlyaWdodCAoYykgMjAxNCwgTlZJRElBIENPUlBP
+UkFUSU9OLiBBbGwgcmlnaHRzIHJlc2VydmVkLgo+PiArICoKPj4gKyAqIFBlcm1pc3Npb24gaXMg
+aGVyZWJ5IGdyYW50ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBh
+Cj4+ICsgKiBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlv
+biBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLAo+PiArICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUg
+d2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbgo+PiArICog
+dGhlIHJpZ2h0cyB0byB1c2UsIGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1
+dGUsIHN1YmxpY2Vuc2UsCj4+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJl
+LCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPj4gKyAqIFNvZnR3YXJlIGlzIGZ1
+cm5pc2hlZCB0byBkbyBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6Cj4+
+ICsgKgo+PiArICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lv
+biBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KPj4gKyAqIGFsbCBjb3BpZXMgb3Igc3Vic3Rh
+bnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNvZnR3YXJlLgo+PiArICoKPj4gKyAqIFRIRSBTT0ZUV0FS
+RSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBS
+RVNTIE9SCj4+ICsgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBX
+QVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwKPj4gKyAqIEZJVE5FU1MgRk9SIEEgUEFSVElD
+VUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBTSEFMTAo+PiAr
+ICogVEhFIEFVVEhPUlMgT1IgQ09QWVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xB
+SU0sIERBTUFHRVMgT1IgT1RIRVIKPj4gKyAqIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJ
+T04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLCBBUklTSU5HCj4+ICsgKiBGUk9NLCBP
+VVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9U
+SEVSCj4+ICsgKiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCj4+ICsgKgo+PiArICovCj4+ICsK
+Pj4gKyNpbmNsdWRlICJudjUwLmgiCj4gSSdtIGNvbmZ1c2VkLi4uIHdoYXQgZXhhY3RseSBkZXBl
+bmRzIG9uIG52NTBfaW5zdG1lbV9wcml2IGhlcmU/IFdoeQo+IG5vdCBqdXN0IGNyZWF0ZSBhIGdr
+MjBhX2luc3RtZW1fcHJpdiBhbmQgbGVhdmUgdGhlIG52NTAgb25lIGFsb25lPwpZb3UncmUgcmln
+aHQuIFdpbGwgZml4IGluIHRoZSBuZXh0IHZlcnNpb24uCj4KPj4gKyNpbmNsdWRlICJwcml2Lmgi
+Cj4+ICsKPj4gK3N0YXRpYyBpbnQKPj4gK2drMjBhX2luc3RtZW1fZmluaShzdHJ1Y3Qgbm91dmVh
+dV9vYmplY3QgKm9iamVjdCwgYm9vbCBzdXNwZW5kKQo+PiArewo+PiArICAgICAgIHN0cnVjdCBu
+b3V2ZWF1X2luc3RtZW0gKmltZW0gPSAodm9pZCAqKW9iamVjdDsKPj4gKwo+PiArICAgICAgIHJl
+dHVybiBub3V2ZWF1X3N1YmRldl9maW5pKCZpbWVtLT5iYXNlLCBzdXNwZW5kKTsKPj4gK30KPj4g
+Kwo+PiArc3RhdGljIGludAo+PiArZ2syMGFfaW5zdG1lbV9pbml0KHN0cnVjdCBub3V2ZWF1X29i
+amVjdCAqb2JqZWN0KQo+PiArewo+PiArICAgICAgIHN0cnVjdCBub3V2ZWF1X2luc3RtZW0gKmlt
+ZW0gPSAodm9pZCAqKW9iamVjdDsKPj4gKwo+PiArICAgICAgIHJldHVybiBub3V2ZWF1X3N1YmRl
+dl9pbml0KCZpbWVtLT5iYXNlKTsKPj4gK30KPiBJIHRoaW5rIHRoZSBzdHlsZSBpcyB0byBqdXN0
+IGxpbmsgdGhvc2UgdXAgZGlyZWN0bHkgaW4gdGhlIGNsYXNzCj4gZGVmaW5pdGlvbiB3aGVuIHRo
+ZXkncmUgdHJpdmlhbCBsaWtlIHRoYXQsIGkuZS4gcG9pbnQgdGhlbSBhdAo+IF9ub3V2ZWF1X3N1
+YmRldl9pbml0IGFuZCBzdWNoLgpUaGFua3MgZm9yIHRoZSBoaW50LiBXaWxsIGZpeC4gOikKCj4K
+Pj4gKwo+PiArc3RhdGljIGludAo+PiArZ2syMGFfaW5zdG1lbV9jdG9yKHN0cnVjdCBub3V2ZWF1
+X29iamVjdCAqcGFyZW50LCBzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKmVuZ2luZSwKPj4gKyAgICAg
+ICAgICAgICAgICAgc3RydWN0IG5vdXZlYXVfb2NsYXNzICpvY2xhc3MsIHZvaWQgKmRhdGEsIHUz
+MiBzaXplLAo+PiArICAgICAgICAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKipwb2Jq
+ZWN0KQo+PiArewo+PiArICAgICAgIHN0cnVjdCBudjUwX2luc3RtZW1fcHJpdiAqcHJpdjsKPj4g
+KyAgICAgICBpbnQgcmV0Owo+PiArCj4+ICsgICAgICAgcmV0ID0gbm91dmVhdV9pbnN0bWVtX2Ny
+ZWF0ZShwYXJlbnQsIGVuZ2luZSwgb2NsYXNzLCAmcHJpdik7Cj4+ICsgICAgICAgKnBvYmplY3Qg
+PSBudl9vYmplY3QocHJpdik7Cj4+ICsgICAgICAgaWYgKHJldCkKPj4gKyAgICAgICAgICAgICAg
+IHJldHVybiByZXQ7Cj4+ICsKPj4gKyAgICAgICBzcGluX2xvY2tfaW5pdCgmcHJpdi0+bG9jayk7
+Cj4+ICsgICAgICAgcmV0dXJuIDA7Cj4+ICt9Cj4+ICsKPj4gK3N0cnVjdCBub3V2ZWF1X29jbGFz
+cyAqCj4+ICtnazIwYV9pbnN0bWVtX29jbGFzcyA9ICYoc3RydWN0IG5vdXZlYXVfaW5zdG1lbV9p
+bXBsKSB7Cj4+ICsgICAgICAgLmJhc2UuaGFuZGxlID0gTlZfU1VCREVWKElOU1RNRU0sIDB4NTAp
+LAo+PiArICAgICAgIC5iYXNlLm9mdW5jcyA9ICYoc3RydWN0IG5vdXZlYXVfb2Z1bmNzKSB7Cj4+
+ICsgICAgICAgICAgICAgICAuY3RvciA9IGdrMjBhX2luc3RtZW1fY3RvciwKPj4gKyAgICAgICAg
+ICAgICAgIC5kdG9yID0gX25vdXZlYXVfaW5zdG1lbV9kdG9yLAo+PiArICAgICAgICAgICAgICAg
+LmluaXQgPSBnazIwYV9pbnN0bWVtX2luaXQsCj4+ICsgICAgICAgICAgICAgICAuZmluaSA9IGdr
+MjBhX2luc3RtZW1fZmluaSwKPj4gKyAgICAgICB9LAo+PiArICAgICAgIC5pbnN0b2JqID0gJm52
+NTBfaW5zdG9ial9vY2xhc3MuYmFzZSwKPj4gK30uYmFzZTsKPj4gLS0KPj4gMS45LjEKPj4KPj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVh
+dSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
