@@ -1,16 +1,11 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH nouveau 06/11] platform: complete the power
-	up/down sequence
-Date: Thu, 25 Dec 2014 10:42:58 +0800
-Message-ID: <549B79B2.6010301@nvidia.com>
-References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>	
- <1419331204-26679-7-git-send-email-vinceh@nvidia.com>
- <1419427385.2179.13.camel@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87715] New: Changing resolution away from 1680x1050
+ results in scattered display
+Date: Thu, 25 Dec 2014 18:06:13 +0000
+Message-ID: <bug-87715-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1482758453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1419427385.2179.13.camel-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,82 +15,184 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Cc: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDEyLzI0LzIwMTQgMDk6MjMgUE0sIEx1Y2FzIFN0YWNoIHdyb3RlOgo+IEFtIERpZW5zdGFn
-LCBkZW4gMjMuMTIuMjAxNCwgMTg6MzkgKzA4MDAgc2NocmllYiBWaW5jZSBIc3U6Cj4+IFRoaXMg
-cGF0Y2ggYWRkcyBzb21lIG1pc3NpbmcgcGllY2VzIG9mIHRoZSByYWlsIGdhaW5nL3VuZ2F0aW5n
-IHNlcXVlbmNlIHRoYXQKPj4gY2FuIGltcHJvdmUgdGhlIHN0YWJpbGl0eSBpbiB0aGVvcnkuCj4+
-Cj4+IFNpZ25lZC1vZmYtYnk6IFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+Cj4+IC0tLQo+
-PiAgIGRybS9ub3V2ZWF1X3BsYXRmb3JtLmMgfCA0MiArKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysKPj4gICBkcm0vbm91dmVhdV9wbGF0Zm9ybS5oIHwgIDMgKysrCj4+
-ICAgMiBmaWxlcyBjaGFuZ2VkLCA0NSBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9k
-cm0vbm91dmVhdV9wbGF0Zm9ybS5jIGIvZHJtL25vdXZlYXVfcGxhdGZvcm0uYwo+PiBpbmRleCA2
-ODc4OGIxN2E0NWMuLjUyN2ZlMjM1OGZjOSAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXVfcGxh
-dGZvcm0uYwo+PiArKysgYi9kcm0vbm91dmVhdV9wbGF0Zm9ybS5jCj4+IEBAIC0yNSw5ICsyNSwx
-MSBAQAo+PiAgICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4KPj4gICAjaW5jbHVkZSA8bGludXgv
-cGxhdGZvcm1fZGV2aWNlLmg+Cj4+ICAgI2luY2x1ZGUgPGxpbnV4L29mLmg+Cj4+ICsjaW5jbHVk
-ZSA8bGludXgvb2ZfcGxhdGZvcm0uaD4KPj4gICAjaW5jbHVkZSA8bGludXgvcmVzZXQuaD4KPj4g
-ICAjaW5jbHVkZSA8bGludXgvcmVndWxhdG9yL2NvbnN1bWVyLmg+Cj4+ICAgI2luY2x1ZGUgPHNv
-Yy90ZWdyYS9mdXNlLmg+Cj4+ICsjaW5jbHVkZSA8c29jL3RlZ3JhL21jLmg+Cj4+ICAgI2luY2x1
-ZGUgPHNvYy90ZWdyYS9wbWMuaD4KPj4gICAKPj4gICAjaW5jbHVkZSAibm91dmVhdV9kcm0uaCIK
-Pj4gQEAgLTYxLDYgKzYzLDkgQEAgc3RhdGljIGludCBub3V2ZWF1X3BsYXRmb3JtX3Bvd2VyX3Vw
-KHN0cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2dwdSAqZ3B1KQo+PiAgIAlyZXNldF9jb250cm9sX2Rl
-YXNzZXJ0KGdwdS0+cnN0KTsKPj4gICAJdWRlbGF5KDEwKTsKPj4gICAKPj4gKwl0ZWdyYV9tY19m
-bHVzaChncHUtPm1jLCBncHUtPnN3Z3JvdXAsIGZhbHNlKTsKPj4gKwl1ZGVsYXkoMTApOwo+PiAr
-Cj4+ICAgCXJldHVybiAwOwo+PiAgIAo+PiAgIGVycl9jbGFtcDoKPj4gQEAgLTc3LDYgKzgyLDE0
-IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9wbGF0Zm9ybV9wb3dlcl9kb3duKHN0cnVjdCBub3V2ZWF1
-X3BsYXRmb3JtX2dwdSAqZ3B1KQo+PiAgIHsKPj4gICAJaW50IGVycjsKPj4gICAKPj4gKwl0ZWdy
-YV9tY19mbHVzaChncHUtPm1jLCBncHUtPnN3Z3JvdXAsIHRydWUpOwo+PiArCXVkZWxheSgxMCk7
-Cj4+ICsKPj4gKwllcnIgPSB0ZWdyYV9wb3dlcmdhdGVfZ3B1X3NldF9jbGFtcGluZyh0cnVlKTsK
-Pj4gKwlpZiAoZXJyKQo+PiArCQlyZXR1cm4gZXJyOwo+PiArCXVkZWxheSgxMCk7Cj4+ICsKPj4g
-ICAJcmVzZXRfY29udHJvbF9hc3NlcnQoZ3B1LT5yc3QpOwo+PiAgIAl1ZGVsYXkoMTApOwo+PiAg
-IAo+PiBAQCAtOTEsNiArMTA0LDMxIEBAIHN0YXRpYyBpbnQgbm91dmVhdV9wbGF0Zm9ybV9wb3dl
-cl9kb3duKHN0cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2dwdSAqZ3B1KQo+PiAgIAlyZXR1cm4gMDsK
-Pj4gICB9Cj4+ICAgCj4+ICtzdGF0aWMgaW50IG5vdXZlYXVfcGxhdGZvcm1fZ2V0X21jKHN0cnVj
-dCBkZXZpY2UgKmRldiwKPj4gKwkJc3RydWN0IHRlZ3JhX21jICoqbWMsIHVuc2lnbmVkIGludCAq
-c3dncm91cCkKPiBVaG0sIG5vLiBJZiB0aGlzIGlzIG5lZWRlZCB0aGlzIGhhcyB0byBiZSBhIFRl
-Z3JhIE1DIGZ1bmN0aW9uIGFuZCBub3QKPiBidXJyaWVkIGludG8gbm91dmVhdSBjb2RlLiBZb3Ug
-YXJlIHVzaW5nIGtub3dsZWRnZSBhYm91dCB0aGUgaW50ZXJuYWwKPiB3b3JraW5ncyBvZiB0aGUg
-TUMgZHJpdmVyIGhlcmUuCj4KPiBBbHNvIHRoaXMgc2hvdWxkIHByb2JhYmx5IG9ubHkgdGFrZSB0
-aGUgRHQgbm9kZSBwb2ludGVyIGFzIGFyZ3VtZW50IGFuZAo+IHJldHVybiBhIHNvbWV0aGluZyBs
-aWtlIGEgdGVncmFfbWNfY2xpZW50IHN0cnVjdCB0aGF0IGNvbnRhaW5zIGJvdGggdGhlCj4gTUMg
-ZGV2aWNlIHBvaW50ZXIgYW5kIHRoZSBzd2dyb3VwIHNvIHlvdSBjYW4gcGFzcyB0aGF0IHRvCj4g
-dGVncmFfbWNfZmx1c2goKS4KR29vZCBpZGVhLiBJIHdpbGwgaGF2ZSBzb21ldGhpbmcgYXMgYmVs
-b3cgaW4gVjIgaWYgdGhlcmUgaXMgbm8gb3RoZXIgCmNvbW1lbnRzIGZvciB0aGlzLgoKdGVncmFf
-bWNfY2xpZW50ICp0ZWdyYV9tY19maW5kX2NsaWVudChzdHJ1Y3QgZGV2aWNlX25vZGUgKm5vZGUp
-CnsKICAgICAuLi4KICAgICByZXQgPSBvZl9wYXJzZV9waGFuZGxlX3dpdGhfYXJncyhub2RlLCAi
-bnZpZGlhLG1lbW9yeS1jbGllbnQiLCAuLi4pCiAgICAgLi4uCn0KClRoZXJlIHdlcmUgc29tZSBk
-aXNjdXNzaW9uIGFib3V0IHRoaXMgZmV3IHdlZWtzIGFnby4gSSdtIG5vdCBzdXJlIAp3aGV0aGVy
-IHdlIGhhdmUgc29tZSBjb25jbHVzaW9uL2ltcGxlbWVudGF0aW9uIHRob3VnaC4gVGhpZXJyeT8K
-Cmh0dHA6Ly9saXN0cy5pbmZyYWRlYWQub3JnL3BpcGVybWFpbC9saW51eC1hcm0ta2VybmVsLzIw
-MTQtRGVjZW1iZXIvMzA4NzAzLmh0bWwKCj4KPj4gK3sKPj4gKwlzdHJ1Y3Qgb2ZfcGhhbmRsZV9h
-cmdzIGFyZ3M7Cj4+ICsJc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldjsKPj4gKwlpbnQgcmV0
-Owo+PiArCj4+ICsJcmV0ID0gb2ZfcGFyc2VfcGhhbmRsZV93aXRoX2ZpeGVkX2FyZ3MoZGV2LT5v
-Zl9ub2RlLCAibWMiLAo+PiArCQkJCTEsIDAsICZhcmdzKTsKPj4gKwlpZiAocmV0KQo+PiArCQly
-ZXR1cm4gcmV0Owo+PiArCj4+ICsJcGRldiA9IG9mX2ZpbmRfZGV2aWNlX2J5X25vZGUoYXJncy5u
-cCk7Cj4+ICsJaWYgKCFwZGV2KQo+PiArCQlyZXR1cm4gLUVJTlZBTDsKPiBUaGlzIGlzIHdyb25n
-LCB5b3UgbmVlZCB0byBoYW5kbGUgLUVQUk9CRV9ERUZFUiBoZXJlLgpJbmRlZWQuIFdpbGwgZml4
-Lgo+Cj4+ICsKPj4gKwkqbWMgPSBwbGF0Zm9ybV9nZXRfZHJ2ZGF0YShwZGV2KTsKPj4gKwlpZiAo
-ISptYykKPj4gKwkJcmV0dXJuIC1FSU5WQUw7Cj4+ICsKPj4gKwkqc3dncm91cCA9IGFyZ3MuYXJn
-c1swXTsKPj4gKwo+PiArCXJldHVybiAwOwo+PiArfQo+PiArCj4+ICAgc3RhdGljIGludCBub3V2
-ZWF1X3BsYXRmb3JtX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpCj4+ICAgewo+
-PiAgIAlzdHJ1Y3Qgbm91dmVhdV9wbGF0Zm9ybV9ncHUgKmdwdTsKPj4gQEAgLTExOCw2ICsxNTYs
-MTAgQEAgc3RhdGljIGludCBub3V2ZWF1X3BsYXRmb3JtX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9k
-ZXZpY2UgKnBkZXYpCj4+ICAgCWlmIChJU19FUlIoZ3B1LT5jbGtfcHdyKSkKPj4gICAJCXJldHVy
-biBQVFJfRVJSKGdwdS0+Y2xrX3B3cik7Cj4+ICAgCj4+ICsJZXJyID0gbm91dmVhdV9wbGF0Zm9y
-bV9nZXRfbWMoJnBkZXYtPmRldiwgJmdwdS0+bWMsICZncHUtPnN3Z3JvdXApOwo+PiArCWlmIChl
-cnIpCj4+ICsJCXJldHVybiBlcnI7Cj4+ICsKPj4gICAJZXJyID0gbm91dmVhdV9wbGF0Zm9ybV9w
-b3dlcl91cChncHUpOwo+PiAgIAlpZiAoZXJyKQo+PiAgIAkJcmV0dXJuIGVycjsKPj4gZGlmZiAt
-LWdpdCBhL2RybS9ub3V2ZWF1X3BsYXRmb3JtLmggYi9kcm0vbm91dmVhdV9wbGF0Zm9ybS5oCj4+
-IGluZGV4IDU4YzI4YjU2NTNkNS4uOTY5ZGJkZGQ3ODZkIDEwMDY0NAo+PiAtLS0gYS9kcm0vbm91
-dmVhdV9wbGF0Zm9ybS5oCj4+ICsrKyBiL2RybS9ub3V2ZWF1X3BsYXRmb3JtLmgKPj4gQEAgLTM1
-LDYgKzM1LDkgQEAgc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1IHsKPj4gICAJc3RydWN0IGNs
-ayAqY2xrX3B3cjsKPj4gICAKPj4gICAJc3RydWN0IHJlZ3VsYXRvciAqdmRkOwo+PiArCj4+ICsJ
-c3RydWN0IHRlZ3JhX21jICptYzsKPj4gKwl1bnNpZ25lZCBpbnQgc3dncm91cDsKPj4gICB9Owo+
-PiAgIAo+PiAgIHN0cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2RldmljZSB7Cj4KCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1482758453==
+Content-Type: multipart/alternative; boundary="1419530773.4b20f8c0.18792"; charset="UTF-8"
+
+
+--1419530773.4b20f8c0.18792
+Date: Thu, 25 Dec 2014 18:06:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87715
+
+            Bug ID: 87715
+           Summary: Changing resolution away from 1680x1050 results in
+                    scattered display
+           Product: Mesa
+           Version: 10.4
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bruno-bdMChIhFSYk@public.gmane.org
+
+Created attachment 111332
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111332&action=edit
+dmesg output just after attempt to switch to 800x600 and recovery
+
+When I boot up and login I end up with the desktop in 1680x1050 resolution. I
+can do scaling to get other effective resolutions, but if I actually try to
+switch the used resolution to any of the other availble ones (e.g. 1280x1024,
+800x600) I end up with parts of the output scattered all over the screen in
+medium sized blocks. Usually the screen will switch back to 1680x1050 and work
+OK when I don't confirm I want to stay in the new resolution, but sometimes
+things end up messed up when it switches back and I ned to shutdown to recover.
+I am using x86_64 Fedora 21 with various kernels. I have seen this issue with
+the normal 3.17 kernels, 3.18 rawhide nodebug kernels and the mainline 3.19
+kernel (the latter fixes another Nouveau problem I had).
+Currently mesa is at 10.4, though I think it was at 10.3 when I first switched
+this machine over to linux and I still had the same issue.
+The reason I care about this is that I want to play some games in wine that use
+800x600 and the workaround of using xrandr scaling before and after slows
+things down and is ugly.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419530773.4b20f8c0.18792
+Date: Thu, 25 Dec 2014 18:06:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">87715</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Changing resolution away from 1680x1050 results in scattered display
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.4
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bruno&#64;wolff.to
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111332" name="attach_111332" title="dmesg output just after attempt to switch to 800x600 and recovery">attachment 111332</a> <a href="attachment.cgi?id=111332&amp;action=edit" title="dmesg output just after attempt to switch to 800x600 and recovery">[details]</a></span>
+dmesg output just after attempt to switch to 800x600 and recovery
+
+When I boot up and login I end up with the desktop in 1680x1050 resolution. I
+can do scaling to get other effective resolutions, but if I actually try to
+switch the used resolution to any of the other availble ones (e.g. 1280x1024,
+800x600) I end up with parts of the output scattered all over the screen in
+medium sized blocks. Usually the screen will switch back to 1680x1050 and work
+OK when I don't confirm I want to stay in the new resolution, but sometimes
+things end up messed up when it switches back and I ned to shutdown to recover.
+I am using x86_64 Fedora 21 with various kernels. I have seen this issue with
+the normal 3.17 kernels, 3.18 rawhide nodebug kernels and the mainline 3.19
+kernel (the latter fixes another Nouveau problem I had).
+Currently mesa is at 10.4, though I think it was at 10.3 when I first switched
+this machine over to linux and I still had the same issue.
+The reason I care about this is that I want to play some games in wine that use
+800x600 and the workaround of using xrandr scaling before and after slows
+things down and is ugly.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419530773.4b20f8c0.18792--
+
+--===============1482758453==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1482758453==--
