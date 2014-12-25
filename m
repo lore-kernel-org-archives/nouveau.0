@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87715] Changing resolution away from 1680x1050
- results in scattered display
-Date: Thu, 25 Dec 2014 18:10:14 +0000
-Message-ID: <bug-87715-8800-LCYDyad7b3@http.bugs.freedesktop.org/>
-References: <bug-87715-8800@http.bugs.freedesktop.org/>
+From: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the
+ GPU rail clamp
+Date: Thu, 25 Dec 2014 21:34:43 +0100
+Message-ID: <1419539683.2165.6.camel@lynxeye.de>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>
+ <1419331204-26679-2-git-send-email-vinceh@nvidia.com>
+ <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1023041562=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <549B7638.2010405-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +20,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1023041562==
-Content-Type: multipart/alternative; boundary="1419531014.10eC0.19898"; charset="UTF-8"
-
-
---1419531014.10eC0.19898
-Date: Thu, 25 Dec 2014 18:10:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87715
-
---- Comment #1 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
-Created attachment 111333
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111333&action=edit
-xorg.log
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419531014.10eC0.19898
-Date: Thu, 25 Dec 2014 18:10:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
-              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111333" name="attach_111333" title="xorg.log">attachment 111333</a> <a href="attachment.cgi?id=111333&amp;action=edit" title="xorg.log">[details]</a></span>
-xorg.log</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419531014.10eC0.19898--
-
---===============1023041562==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1023041562==--
+QW0gRG9ubmVyc3RhZywgZGVuIDI1LjEyLjIwMTQsIDEwOjI4ICswODAwIHNjaHJpZWIgVmluY2Ug
+SHN1Ogo+IE9uIDEyLzI0LzIwMTQgMDk6MTYgUE0sIEx1Y2FzIFN0YWNoIHdyb3RlOgo+ID4gQW0g
+RGllbnN0YWcsIGRlbiAyMy4xMi4yMDE0LCAxODozOSArMDgwMCBzY2hyaWViIFZpbmNlIEhzdToK
+PiA+PiBUaGUgVGVncmExMjQgYW5kIGxhdGVyIFRlZ3JhIFNvQ3MgaGF2ZSBhIHNlcGF0YXRlIHJh
+aWwgZ2F0aW5nIHJlZ2lzdGVyCj4gPj4gdG8gZW5hYmxlL2Rpc2FibGUgdGhlIGNsYW1wLiBUaGUg
+b3JpZ2luYWwgZnVuY3Rpb24KPiA+PiB0ZWdyYV9wb3dlcmdhdGVfcmVtb3ZlX2NsYW1waW5nKCkg
+aXMgbm90IHN1ZmZpY2llbnQgZm9yIHRoZSBlbmFibGUKPiA+PiBmdW5jdGlvbi4gU28gYWRkIGEg
+bmV3IGZ1bmN0aW9uIHdoaWNoIGlzIGRlZGljYXRlZCB0byB0aGUgR1BVIHJhaWwKPiA+PiBnYXRp
+bmcuIEFsc28gZG9uJ3QgcmVmZXIgdG8gdGhlIHBvd2VyZ2F0ZSBJRCBzaW5jZSB0aGUgR1BVIElE
+IG1ha2VzIG5vCj4gPj4gc2Vuc2UgaGVyZS4KPiA+Pgo+ID4+IFNpZ25lZC1vZmYtYnk6IFZpbmNl
+IEhzdSA8dmluY2VoQG52aWRpYS5jb20+Cj4gPiBUbyBiZSBob25lc3QgSSBkb24ndCBzZWUgdGhl
+IHBvaW50IG9mIHRoaXMgcGF0Y2guCj4gPiBZb3UgYXJlIGJsb2F0aW5nIHRoZSBQTUMgaW50ZXJm
+YWNlIGJ5IGludHJvZHVjaW5nIGFub3RoZXIgZXhwb3J0ZWQKPiA+IGZ1bmN0aW9uIHRoYXQgZG9l
+cyBub3RoaW5nIGRpZmZlcmVudCB0aGFuIHdoYXQgdGhlIGN1cnJlbnQgZnVuY3Rpb24KPiA+IGFs
+cmVhZHkgZG9lcy4KPiA+Cj4gPiBJZiB5b3UgbmVlZCBhIHdheSB0byBhc3NlcnQgdGhlIGNsYW1w
+IEkgd291bGQgaGF2ZSBleHBlY3RlZCB5b3UgdG8KPiA+IGludHJvZHVjZSBhIGNvbW1vbiBmdW5j
+dGlvbiB0byBkbyB0aGlzIGZvciBhbGwgcG93ZXIgcGFydGl0aW9ucy4KPiBJIHRob3VnaHQgYWJv
+dXQgYWRkaW5nIGFuIHRlZ3JhX3Bvd2VyZ2F0ZV9hc3NlcnRfY2xhbXBpbmcoKSwgYnV0IHRoYXQg
+Cj4gZG9lc24ndCBtYWtlIHNlbnNlIHRvIGFsbCB0aGUgcG93ZXIgcGFydGl0aW9ucyBleGNlcHQg
+R1BVLiBOb3RlIHRoZSAKPiBkaWZmZXJlbmNlIGluIFRSTS4gQW55IHN1Z2dlc3Rpb24gZm9yIHRo
+ZSBjb21tb24gZnVuY3Rpb24/CgpJcyB0aGVyZSBhbnl0aGluZyBzcGVha2luZyBhZ2FpbnN0IGFk
+ZGluZyB0aGlzIGZ1bmN0aW9uIGFuZCBvbmx5IGFjY2VwdAp0aGUgR1BVIHBhcnRpdGlvbiBhcyB2
+YWxpZCBwYXJhbWV0ZXIgZm9yIG5vdy4gU28gYXQgbGVhc3QgdGhlIGludGVyZmFjZQpzdGF5cyBz
+eW1tZXRyaWMgYW5kIGNhbiBiZSBlYXNpbHkgZXh0ZW5kZWQgaWYgYW55IGZ1dHVyZSBwYXJ0aXRp
+b25zIGhhdmUKc2ltaWxhciBjaGFyYWN0ZXJpc3RpY3MgYXMgdGhlIEdQVSBvbmUuCgo+ID4KPiA+
+IE90aGVyIGNvbW1lbnRzIGlubGluZS4KPiA+Cj4gPiBSZWdhcmRzLAo+ID4gTHVjYXMKPiA+Cj4g
+Pj4gLS0tCj4gPj4gICBkcml2ZXJzL3NvYy90ZWdyYS9wbWMuYyB8IDM0ICsrKysrKysrKysrKysr
+KysrKysrKysrLS0tLS0tLS0tLS0KPiA+PiAgIGluY2x1ZGUvc29jL3RlZ3JhL3BtYy5oIHwgIDIg
+KysKPiA+PiAgIDIgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25z
+KC0pCj4gPj4KPiA+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvdGVncmEvcG1jLmMgYi9kcml2
+ZXJzL3NvYy90ZWdyYS9wbWMuYwo+ID4+IGluZGV4IGEyYzBjZWI5NWY4Zi4uNzc5OGM1MzBlYWQx
+IDEwMDY0NAo+ID4+IC0tLSBhL2RyaXZlcnMvc29jL3RlZ3JhL3BtYy5jCj4gPj4gKysrIGIvZHJp
+dmVycy9zb2MvdGVncmEvcG1jLmMKPiA+PiBAQCAtMjI1LDE3ICsyMjUsNiBAQCBpbnQgdGVncmFf
+cG93ZXJnYXRlX3JlbW92ZV9jbGFtcGluZyhpbnQgaWQpCj4gPj4gICAJCXJldHVybiAtRUlOVkFM
+Owo+ID4+ICAgCj4gPj4gICAJLyoKPiA+PiAtCSAqIFRoZSBUZWdyYTEyNCBHUFUgaGFzIGEgc2Vw
+YXJhdGUgcmVnaXN0ZXIgKHdpdGggZGlmZmVyZW50IHNlbWFudGljcykKPiA+PiAtCSAqIHRvIHJl
+bW92ZSBjbGFtcHMuCj4gPj4gLQkgKi8KPiA+PiAtCWlmICh0ZWdyYV9nZXRfY2hpcF9pZCgpID09
+IFRFR1JBMTI0KSB7Cj4gPj4gLQkJaWYgKGlkID09IFRFR1JBX1BPV0VSR0FURV8zRCkgewo+ID4+
+IC0JCQl0ZWdyYV9wbWNfd3JpdGVsKDAsIEdQVV9SR19DTlRSTCk7Cj4gPj4gLQkJCXJldHVybiAw
+Owo+ID4+IC0JCX0KPiA+PiAtCX0KPiA+PiAtCj4gPj4gLQkvKgo+ID4+ICAgCSAqIFRlZ3JhIDIg
+aGFzIGEgYnVnIHdoZXJlIFBDSUUgYW5kIFZERSBjbGFtcGluZyBtYXNrcyBhcmUKPiA+PiAgIAkg
+KiBzd2FwcGVkIHJlbGF0aXZlbHkgdG8gdGhlIHBhcnRpdGlvbiBpZHMKPiA+PiAgIAkgKi8KPiA+
+PiBAQCAtMjUzLDYgKzI0MiwyOSBAQCBpbnQgdGVncmFfcG93ZXJnYXRlX3JlbW92ZV9jbGFtcGlu
+ZyhpbnQgaWQpCj4gPj4gICBFWFBPUlRfU1lNQk9MKHRlZ3JhX3Bvd2VyZ2F0ZV9yZW1vdmVfY2xh
+bXBpbmcpOwo+ID4+ICAgCj4gPj4gICAvKioKPiA+PiArICogdGVncmFfcG93ZXJnYXRlX2dwdV9z
+ZXRfY2xhbXBpbmcgLSBjb250cm9sIEdQVS1TT0MgY2xhbXBzCj4gPj4gKyAqCj4gPj4gKyAqIFRo
+ZSBwb3N0LVRlZ3JhMTE0IGNoaXBzIGhhdmUgYSBzZXBhcmF0ZSByYWlsIGdhdGluZyByZWdpc3Rl
+ciB0byBjb25maWd1cmUKPiA+PiArICogY2xhbXBzLgo+ID4+ICsgKgo+ID4+ICsgKiBAYXNzZXJ0
+OiB0cnVlIHRvIGFzc2VydCBjbGFtcCwgYW5kIGZhbHNlIHRvIHJlbW92ZQo+ID4+ICsgKi8KPiA+
+PiAraW50IHRlZ3JhX3Bvd2VyZ2F0ZV9ncHVfc2V0X2NsYW1waW5nKGJvb2wgYXNzZXJ0KQo+ID4g
+VGhvc2UgZnVuY3Rpb25zIHdpdGggYSBib29sIHBhcmFtZXRlciB0byBzZXQvdW5zZXQgc29tZXRo
+aW5nIGFyZSByZWFsbHkKPiA+IGFubm95aW5nLiBQbGVhc2UgYXZvaWQgdGhpcyBwYXR0ZXJuLiBU
+aGUgbmFtaW5nIG9mIHRoZSBvcmlnaW5hbCBmdW5jdGlvbgo+ID4gaXMgbXVjaCBtb3JlIGludHVp
+dGl2ZS4KPiBCdXQgdGhlIG9yaWdpbmFsIGZ1bmN0aW9uIGlzIG5vdCBzdWZmaWNpZW50LiBNYXli
+ZSBhZGQgYSAKPiB0ZWdyYV9wb3dlcmdhdGVfYXNzZXJ0X2dwdV9jbGFtcGluZygpPyBUaGF0IHdh
+eSBJIHdpbGwgcHJlZmVyIHRvIGFkZGluZyAKPiBvbmUgbW9yZSByZW1vdmFsIGZ1bmN0aW9uIGZv
+ciBHUFUuIEFuZCB0aGVuIGFnYWluIHRoYXQncyBhIGJsb2F0LCB0b28uCj4gPgo+ID4+ICt7Cj4g
+Pj4gKwlpZiAoIXBtYy0+c29jKQo+ID4+ICsJCXJldHVybiAtRUlOVkFMOwo+ID4+ICsKPiA+PiAr
+CWlmICh0ZWdyYV9nZXRfY2hpcF9pZCgpID09IFRFR1JBMTI0KSB7Cj4gPj4gKwkJdGVncmFfcG1j
+X3dyaXRlbChhc3NlcnQgPyAxIDogMCwgR1BVX1JHX0NOVFJMKTsKPiA+PiArCQl0ZWdyYV9wbWNf
+cmVhZGwoR1BVX1JHX0NOVFJMKTsKPiA+IFlvdSBhcmUgcmVhZGluZyB0aGUgcmVnaXN0ZXIgYmFj
+ayBoZXJlLCB3aGljaCB0byBtZSBzZWVtcyBsaWtlIHlvdSBhcmUKPiA+IHRyeWluZyB0byBtYWtl
+IHN1cmUgdGhhdCB0aGUgd3JpdGUgaXMgZmx1c2hlZC4gV2h5IGlzIHRoaXMgbmVlZGVkPwo+ID4g
+SSBhbHNvIG9ic2VydmVkIHRoZSBuZWVkIHRvIGRvIHRoaXMgd2hpbGUgd29ya2luZyBvbiBUZWdy
+YTEyNCBQQ0llIGluCj4gPiBCYXJlYm94LCBvdGhlcndpc2UgdGhlIHBhcnRpdGlvbiB3b3VsZG4n
+dCBwb3dlciB1cC4gSSBkaWRuJ3QgaGF2ZSB0aW1lCj4gPiB0byBmb2xsb3cgdXAgb24gdGhpcyB5
+ZXQsIHNvIGl0IHdvdWxkIGJlIG5pY2UgaWYgeW91IGNvdWxkIGV4cGxhaW4gd2h5Cj4gPiB0aGlz
+IGlzIG5lZWRlZCwgb3IgaWYgeW91IGRvbid0IGtub3cgYXNrIEhXIGFib3V0IGl0Lgo+IFRoYXQn
+cyBhIHJlYWQgZmVuY2UgdG8gYXNzdXJlIHRoZSBwb3N0IG9mIHRoZSBwcmV2aW91cyB3cml0ZXMg
+dGhyb3VnaCAKPiBUZWdyYSBpbnRlcmNvbm5lY3QuIChjb3B5LXBhc3RlciBmcm9tIAo+IGh0dHBz
+Oi8vYW5kcm9pZC5nb29nbGVzb3VyY2UuY29tL2tlcm5lbC90ZWdyYS5naXQvKy8yOGIxMDdkY2Iz
+YWExMjJkZThlOTRlNDhhZjU0ODE0MGQ1MTkyOThmKQoKSSBzZWUgd2hhdCBpdCBkb2VzLCB0aGUg
+cXVlc3Rpb24gaXMgbW9yZSBhYm91dCB3aHkgdGhpcyBpcyBuZWVkZWQuCldoYXQgaXMgdGhlIFRl
+Z3JhIGludGVyY29ubmVjdD8gQWNjb3JkaW5nIHRvIHRoZSBUUk0gdGhlIFRlZ3JhIGNvbnRhaW5z
+CnNvbWUgc3RhbmRhcmQgQVhJIDwtPiBBSEIgPC0+IEFQQiBicmlkZ2VzLiBUaGF0IGEgcmVhZCBp
+cyBuZWVkZWQgdG8KYXNzdXJlIHRoZSB3cml0ZSBpcyBwb3N0ZWQgdG8gdGhlIEFQQiBidXMgc2Vl
+bXMgdG8gaW1wbHkgdGhhdCB0aGVyZSBpcwpzb21lIHdyaXRlIGJ1ZmZlcmluZyBpbiBvbmUgb2Yg
+dGhvc2UgYnJpZGdlcy4gQ2FuIHdlIGdldCB0aGlzIGRvY3VtZW50ZWQKc29tZXdoZXJlPwoKQW5k
+IGlzbid0IGl0IG5lZWRlZCBmb3IgdGhlIG90aGVyIHBhcnRpdGlvbiB1bmdhdGluZyBmdW5jdGlv
+biB0b28gdGhlbj8KClJlZ2FyZHMsCkx1Y2FzCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
