@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Fri, 26 Dec 2014 16:53:16 +0000
-Message-ID: <bug-87244-8800-vdQqDbfozF@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87715] Changing resolution away from 1680x1050
+ results in scattered display
+Date: Fri, 26 Dec 2014 18:49:59 +0000
+Message-ID: <bug-87715-8800-kiYByBjHIB@http.bugs.freedesktop.org/>
+References: <bug-87715-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0748122897=="
+Content-Type: multipart/mixed; boundary="===============1890809316=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,28 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0748122897==
-Content-Type: multipart/alternative; boundary="1419612796.8f16e31.2075"; charset="UTF-8"
+--===============1890809316==
+Content-Type: multipart/alternative; boundary="1419619798.0fa2A0.10247"; charset="UTF-8"
 
 
---1419612796.8f16e31.2075
-Date: Fri, 26 Dec 2014 16:53:16 +0000
+--1419619798.0fa2A0.10247
+Date: Fri, 26 Dec 2014 18:49:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
+https://bugs.freedesktop.org/show_bug.cgi?id=87715
 
---- Comment #4 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-awesome - I love it when someone else does the hard work. I'll build with that
-revert and confirm if I can, thanks! (it doesn't happen very often to me, so a
-bit hard to confirm a negative, but I'll do my best).
+Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |bruno-bdMChIhFSYk@public.gmane.org
+
+--- Comment #2 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
+I restested this after updating to 3.19 with
+08b022a9655bf925e6683422590306429b752ccd which included:
+ nouveau:
+          fix 3.18 regression for old userspace
+
+Things are still behaving the same way.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419612796.8f16e31.2075
-Date: Fri, 26 Dec 2014 16:53:16 +0000
+--1419619798.0fa2A0.10247
+Date: Fri, 26 Dec 2014 18:49:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,22 +59,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>bruno&#64;wolff.to
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c4">Comment # 4</a>
+   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
 </span></b>
-        <pre>awesome - I love it when someone else does the hard work. I'll build with that
-revert and confirm if I can, thanks! (it doesn't happen very often to me, so a
-bit hard to confirm a negative, but I'll do my best).</pre>
+        <pre>I restested this after updating to 3.19 with
+08b022a9655bf925e6683422590306429b752ccd which included:
+ nouveau:
+          fix 3.18 regression for old userspace
+
+Things are still behaving the same way.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +110,9 @@ bit hard to confirm a negative, but I'll do my best).</pre>
     </body>
 </html>
 
---1419612796.8f16e31.2075--
+--1419619798.0fa2A0.10247--
 
---===============0748122897==
+--===============1890809316==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0748122897==--
+--===============1890809316==--
