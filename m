@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87715] Changing resolution away from 1680x1050
- results in scattered display
-Date: Fri, 26 Dec 2014 18:49:59 +0000
-Message-ID: <bug-87715-8800-kiYByBjHIB@http.bugs.freedesktop.org/>
-References: <bug-87715-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87244] [NV94] X hangs,
+ logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
+ 101 spins, halt followed by an X trace
+Date: Fri, 26 Dec 2014 19:23:10 +0000
+Message-ID: <bug-87244-8800-jDqRjBI9JZ@http.bugs.freedesktop.org/>
+References: <bug-87244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1890809316=="
+Content-Type: multipart/mixed; boundary="===============1084517217=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +22,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1890809316==
-Content-Type: multipart/alternative; boundary="1419619798.0fa2A0.10247"; charset="UTF-8"
+--===============1084517217==
+Content-Type: multipart/alternative; boundary="1419621790.B1B32.20331"; charset="UTF-8"
 
 
---1419619798.0fa2A0.10247
-Date: Fri, 26 Dec 2014 18:49:58 +0000
+--1419621790.B1B32.20331
+Date: Fri, 26 Dec 2014 19:23:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87715
+https://bugs.freedesktop.org/show_bug.cgi?id=87244
 
-Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> changed:
+--- Comment #5 from Zlatko Calusic <zcalusic-7aYyyD3GOf7R7s880joybQ@public.gmane.org> ---
+Ha ha ha, you made me laugh with "hard to confirm a negative" comment, been
+there - done that. :) This time I got a bit lucky, because I ran
+3.18-rc-something the whole time (fixing some other kernel bugs I reported),
+and when 3.18 got released and suddenly become unstable there were only about a
+dozen nouveau commits to bisect. It was quite easy to find the faulty one.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |bruno-bdMChIhFSYk@public.gmane.org
-
---- Comment #2 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
-I restested this after updating to 3.19 with
-08b022a9655bf925e6683422590306429b752ccd which included:
- nouveau:
-          fix 3.18 regression for old userspace
-
-Things are still behaving the same way.
+Also, I was getting lockups pretty fast, about 6-12 hours after reboot, before
+I reverted that commit. And now my system has been rock solid for 2 weeks, so
+I'm pretty confident the revert is the right fix.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419619798.0fa2A0.10247
-Date: Fri, 26 Dec 2014 18:49:58 +0000
+--1419621790.B1B32.20331
+Date: Fri, 26 Dec 2014 19:23:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,46 +57,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>bruno&#64;wolff.to
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c2">Comment # 2</a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Changing resolution away from 1680x1050 results in scattered display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
-              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
+              from <span class="vcard"><a class="email" href="mailto:zcalusic&#64;bitsync.net" title="Zlatko Calusic &lt;zcalusic&#64;bitsync.net&gt;"> <span class="fn">Zlatko Calusic</span></a>
 </span></b>
-        <pre>I restested this after updating to 3.19 with
-08b022a9655bf925e6683422590306429b752ccd which included:
- nouveau:
-          fix 3.18 regression for old userspace
+        <pre>Ha ha ha, you made me laugh with &quot;hard to confirm a negative&quot; comment, been
+there - done that. :) This time I got a bit lucky, because I ran
+3.18-rc-something the whole time (fixing some other kernel bugs I reported),
+and when 3.18 got released and suddenly become unstable there were only about a
+dozen nouveau commits to bisect. It was quite easy to find the faulty one.
 
-Things are still behaving the same way.</pre>
+Also, I was getting lockups pretty fast, about 6-12 hours after reboot, before
+I reverted that commit. And now my system has been rock solid for 2 weeks, so
+I'm pretty confident the revert is the right fix.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +90,9 @@ Things are still behaving the same way.</pre>
     </body>
 </html>
 
---1419619798.0fa2A0.10247--
+--1419621790.B1B32.20331--
 
---===============1890809316==
+--===============1084517217==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1890809316==--
+--===============1084517217==--
