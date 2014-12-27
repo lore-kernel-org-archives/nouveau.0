@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
-Date: Sat, 27 Dec 2014 18:04:20 +0000
-Message-ID: <bug-86935-8800-U36d0pO7YQ@http.bugs.freedesktop.org/>
+Date: Sat, 27 Dec 2014 18:10:22 +0000
+Message-ID: <bug-86935-8800-FJGLeqRkOM@http.bugs.freedesktop.org/>
 References: <bug-86935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2020743174=="
+Content-Type: multipart/mixed; boundary="===============0210539547=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2020743174==
-Content-Type: multipart/alternative; boundary="1419703460.e55aF0B1.22681"; charset="UTF-8"
+--===============0210539547==
+Content-Type: multipart/alternative; boundary="1419703821.cd5d1.25180"; charset="UTF-8"
 
 
---1419703460.e55aF0B1.22681
-Date: Sat, 27 Dec 2014 18:04:19 +0000
+--1419703821.cd5d1.25180
+Date: Sat, 27 Dec 2014 18:10:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D86935
 
---- Comment #13 from Bj=C3=B8rn Lie <bjorn.lie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Any chance we can get this into 3.20?
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Bj=C3=B8rn Lie from comment #13)
+> Any chance we can get this into 3.20?
+
+The current plan is for it to be added into 3.19 I believe.
+
+http://cgit.freedesktop.org/~darktama/nouveau/log/?h=3Dlinux-3.19
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419703460.e55aF0B1.22681
-Date: Sat, 27 Dec 2014 18:04:20 +0000
+--1419703821.cd5d1.25180
+Date: Sat, 27 Dec 2014 18:10:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -55,18 +60,26 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV106] unknown kepler chipset 0x106"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86935#c13">Commen=
-t # 13</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86935#c14">Commen=
+t # 14</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NV106] unknown kepler chipset 0x106"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86935">bug 86935<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bjorn.lie&#64;gmail.com" title=3D"Bj=C3=B8rn Lie &lt;bjorn.lie&#64;gmail.co=
-m&gt;"> <span class=3D"fn">Bj=C3=B8rn Lie</span></a>
+imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
+&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Any chance we can get this into 3.20?</pre>
+        <pre>(In reply to Bj=C3=B8rn Lie from <a href=3D"show_bug.cgi?id=3D=
+86935#c13">comment #13</a>)
+<span class=3D"quote">&gt; Any chance we can get this into 3.20?</span >
+
+The current plan is for it to be added into 3.19 I believe.
+
+<a href=3D"http://cgit.freedesktop.org/~darktama/nouveau/log/?h=3Dlinux-3.1=
+9">http://cgit.freedesktop.org/~darktama/nouveau/log/?h=3Dlinux-3.19</a></p=
+re>
         </div>
       </p>
       <hr>
@@ -78,9 +91,9 @@ m&gt;"> <span class=3D"fn">Bj=C3=B8rn Lie</span></a>
     </body>
 </html>
 
---1419703460.e55aF0B1.22681--
+--1419703821.cd5d1.25180--
 
---===============2020743174==
+--===============0210539547==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2020743174==--
+--===============0210539547==--
