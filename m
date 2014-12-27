@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87771] X freezes after login
-Date: Sat, 27 Dec 2014 19:15:39 +0000
-Message-ID: <bug-87771-8800-pnOMP5obNf@http.bugs.freedesktop.org/>
+Date: Sat, 27 Dec 2014 19:16:50 +0000
+Message-ID: <bug-87771-8800-ibGL6xYzPi@http.bugs.freedesktop.org/>
 References: <bug-87771-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0595871221=="
+Content-Type: multipart/mixed; boundary="===============2093516779=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87771-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0595871221==
-Content-Type: multipart/alternative; boundary="1419707739.aE24F21.15250"; charset="UTF-8"
+--===============2093516779==
+Content-Type: multipart/alternative; boundary="1419707810.24faDCF2.15600"; charset="UTF-8"
 
 
---1419707739.aE24F21.15250
-Date: Sat, 27 Dec 2014 19:15:39 +0000
+--1419707810.24faDCF2.15600
+Date: Sat, 27 Dec 2014 19:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87771
 
---- Comment #2 from Vivek <vivek.asci-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I forgot to mention that my machine is an old machine with Nvidia 7050.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Hmmm...
+
+[     5.710] (EE) [drm] KMS not enabled
+[     5.710] (EE) open /dev/dri/card0: No such file or directory
+
+You need to look into that -- is /dev/dri/card0 really not there, or are the
+permissions just messed up (e.g. you're trying to run X as non-root and not in
+the right group). This means that nouveau isn't really being used by X.
+
+Separately, we've recently disabled MSI on all nv4x IGP's -- it was just
+causing too much trouble for too little gain. Try booting with
+
+nouveau.config=NvMSI=0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419707739.aE24F21.15250
-Date: Sat, 27 Dec 2014 19:15:39 +0000
+--1419707810.24faDCF2.15600
+Date: Sat, 27 Dec 2014 19:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +65,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X freezes after login"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87771#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87771#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X freezes after login"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87771">bug 87771</a>
-              from <span class="vcard"><a class="email" href="mailto:vivek.asci&#64;gmail.com" title="Vivek &lt;vivek.asci&#64;gmail.com&gt;"> <span class="fn">Vivek</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I forgot to mention that my machine is an old machine with Nvidia 7050.</pre>
+        <pre>Hmmm...
+
+[     5.710] (EE) [drm] KMS not enabled
+[     5.710] (EE) open /dev/dri/card0: No such file or directory
+
+You need to look into that -- is /dev/dri/card0 really not there, or are the
+permissions just messed up (e.g. you're trying to run X as non-root and not in
+the right group). This means that nouveau isn't really being used by X.
+
+Separately, we've recently disabled MSI on all nv4x IGP's -- it was just
+causing too much trouble for too little gain. Try booting with
+
+nouveau.config=NvMSI=0</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +96,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1419707739.aE24F21.15250--
+--1419707810.24faDCF2.15600--
 
---===============0595871221==
+--===============2093516779==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0595871221==--
+--===============2093516779==--
