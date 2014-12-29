@@ -1,17 +1,12 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the
- GPU rail clamp
-Date: Mon, 29 Dec 2014 10:49:44 +0800
-Message-ID: <54A0C148.6030400@nvidia.com>
-References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>		
- <1419331204-26679-2-git-send-email-vinceh@nvidia.com>	
- <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com>
- <1419539683.2165.6.camel@lynxeye.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87771] [NV63] X freezes after login
+Date: Mon, 29 Dec 2014 04:31:44 +0000
+Message-ID: <bug-87771-8800-Tc3GMCC80N@http.bugs.freedesktop.org/>
+References: <bug-87771-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0348767279=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1419539683.2165.6.camel-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-87771-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,98 +16,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Cc: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDEyLzI2LzIwMTQgMDQ6MzQgQU0sIEx1Y2FzIFN0YWNoIHdyb3RlOgo+IEFtIERvbm5lcnN0
-YWcsIGRlbiAyNS4xMi4yMDE0LCAxMDoyOCArMDgwMCBzY2hyaWViIFZpbmNlIEhzdToKPj4gT24g
-MTIvMjQvMjAxNCAwOToxNiBQTSwgTHVjYXMgU3RhY2ggd3JvdGU6Cj4+PiBBbSBEaWVuc3RhZywg
-ZGVuIDIzLjEyLjIwMTQsIDE4OjM5ICswODAwIHNjaHJpZWIgVmluY2UgSHN1Ogo+Pj4+IFRoZSBU
-ZWdyYTEyNCBhbmQgbGF0ZXIgVGVncmEgU29DcyBoYXZlIGEgc2VwYXRhdGUgcmFpbCBnYXRpbmcg
-cmVnaXN0ZXIKPj4+PiB0byBlbmFibGUvZGlzYWJsZSB0aGUgY2xhbXAuIFRoZSBvcmlnaW5hbCBm
-dW5jdGlvbgo+Pj4+IHRlZ3JhX3Bvd2VyZ2F0ZV9yZW1vdmVfY2xhbXBpbmcoKSBpcyBub3Qgc3Vm
-ZmljaWVudCBmb3IgdGhlIGVuYWJsZQo+Pj4+IGZ1bmN0aW9uLiBTbyBhZGQgYSBuZXcgZnVuY3Rp
-b24gd2hpY2ggaXMgZGVkaWNhdGVkIHRvIHRoZSBHUFUgcmFpbAo+Pj4+IGdhdGluZy4gQWxzbyBk
-b24ndCByZWZlciB0byB0aGUgcG93ZXJnYXRlIElEIHNpbmNlIHRoZSBHUFUgSUQgbWFrZXMgbm8K
-Pj4+PiBzZW5zZSBoZXJlLgo+Pj4+Cj4+Pj4gU2lnbmVkLW9mZi1ieTogVmluY2UgSHN1IDx2aW5j
-ZWhAbnZpZGlhLmNvbT4KPj4+IFRvIGJlIGhvbmVzdCBJIGRvbid0IHNlZSB0aGUgcG9pbnQgb2Yg
-dGhpcyBwYXRjaC4KPj4+IFlvdSBhcmUgYmxvYXRpbmcgdGhlIFBNQyBpbnRlcmZhY2UgYnkgaW50
-cm9kdWNpbmcgYW5vdGhlciBleHBvcnRlZAo+Pj4gZnVuY3Rpb24gdGhhdCBkb2VzIG5vdGhpbmcg
-ZGlmZmVyZW50IHRoYW4gd2hhdCB0aGUgY3VycmVudCBmdW5jdGlvbgo+Pj4gYWxyZWFkeSBkb2Vz
-Lgo+Pj4KPj4+IElmIHlvdSBuZWVkIGEgd2F5IHRvIGFzc2VydCB0aGUgY2xhbXAgSSB3b3VsZCBo
-YXZlIGV4cGVjdGVkIHlvdSB0bwo+Pj4gaW50cm9kdWNlIGEgY29tbW9uIGZ1bmN0aW9uIHRvIGRv
-IHRoaXMgZm9yIGFsbCBwb3dlciBwYXJ0aXRpb25zLgo+PiBJIHRob3VnaHQgYWJvdXQgYWRkaW5n
-IGFuIHRlZ3JhX3Bvd2VyZ2F0ZV9hc3NlcnRfY2xhbXBpbmcoKSwgYnV0IHRoYXQKPj4gZG9lc24n
-dCBtYWtlIHNlbnNlIHRvIGFsbCB0aGUgcG93ZXIgcGFydGl0aW9ucyBleGNlcHQgR1BVLiBOb3Rl
-IHRoZQo+PiBkaWZmZXJlbmNlIGluIFRSTS4gQW55IHN1Z2dlc3Rpb24gZm9yIHRoZSBjb21tb24g
-ZnVuY3Rpb24/Cj4gSXMgdGhlcmUgYW55dGhpbmcgc3BlYWtpbmcgYWdhaW5zdCBhZGRpbmcgdGhp
-cyBmdW5jdGlvbiBhbmQgb25seSBhY2NlcHQKPiB0aGUgR1BVIHBhcnRpdGlvbiBhcyB2YWxpZCBw
-YXJhbWV0ZXIgZm9yIG5vdy4gU28gYXQgbGVhc3QgdGhlIGludGVyZmFjZQo+IHN0YXlzIHN5bW1l
-dHJpYyBhbmQgY2FuIGJlIGVhc2lseSBleHRlbmRlZCBpZiBhbnkgZnV0dXJlIHBhcnRpdGlvbnMg
-aGF2ZQo+IHNpbWlsYXIgY2hhcmFjdGVyaXN0aWNzIGFzIHRoZSBHUFUgb25lLgpUaGUgcmVnaXN0
-ZXIgQVBCREVWX1BNQ19HUFVfUkdfQ05UUkxfMCBpcyBvbmx5IGZvciBHUFUgYW5kIGNhbiBiZSB1
-c2VkIApmb3IgYXNzZXJ0aW9uIGFuZCBkZWFzc2VydGlvbi4gVGhlIEFQQkRFVl9QTUNfUkVNT1ZF
-X0NMQU1QSU5HX0NNRF8wIGlzIApvbmx5IHVzZWQgZm9yIGRlYXNzZXJ0aW9uLiBJZiB3ZSBoYXZl
-IGFueSBmdXR1cmUgcGFydGl0aW9ucyB0aGF0IGNhbiBiZSAKYXNzZXJ0ZWQgYnkgU1cgbGlrZSBH
-UFUsIHdlIGNhbiBpbXByb3ZlIHRoZSBpbnRlcmZhY2UgdGhlbi4KCj4KPj4+IE90aGVyIGNvbW1l
-bnRzIGlubGluZS4KPj4+Cj4+PiBSZWdhcmRzLAo+Pj4gTHVjYXMKPj4+Cj4+Pj4gLS0tCj4+Pj4g
-ICAgZHJpdmVycy9zb2MvdGVncmEvcG1jLmMgfCAzNCArKysrKysrKysrKysrKysrKysrKysrKy0t
-LS0tLS0tLS0tCj4+Pj4gICAgaW5jbHVkZS9zb2MvdGVncmEvcG1jLmggfCAgMiArKwo+Pj4+ICAg
-IDIgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCj4+Pj4K
-Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvdGVncmEvcG1jLmMgYi9kcml2ZXJzL3NvYy90
-ZWdyYS9wbWMuYwo+Pj4+IGluZGV4IGEyYzBjZWI5NWY4Zi4uNzc5OGM1MzBlYWQxIDEwMDY0NAo+
-Pj4+IC0tLSBhL2RyaXZlcnMvc29jL3RlZ3JhL3BtYy5jCj4+Pj4gKysrIGIvZHJpdmVycy9zb2Mv
-dGVncmEvcG1jLmMKPj4+PiBAQCAtMjI1LDE3ICsyMjUsNiBAQCBpbnQgdGVncmFfcG93ZXJnYXRl
-X3JlbW92ZV9jbGFtcGluZyhpbnQgaWQpCj4+Pj4gICAgCQlyZXR1cm4gLUVJTlZBTDsKPj4+PiAg
-ICAKPj4+PiAgICAJLyoKPj4+PiAtCSAqIFRoZSBUZWdyYTEyNCBHUFUgaGFzIGEgc2VwYXJhdGUg
-cmVnaXN0ZXIgKHdpdGggZGlmZmVyZW50IHNlbWFudGljcykKPj4+PiAtCSAqIHRvIHJlbW92ZSBj
-bGFtcHMuCj4+Pj4gLQkgKi8KPj4+PiAtCWlmICh0ZWdyYV9nZXRfY2hpcF9pZCgpID09IFRFR1JB
-MTI0KSB7Cj4+Pj4gLQkJaWYgKGlkID09IFRFR1JBX1BPV0VSR0FURV8zRCkgewo+Pj4+IC0JCQl0
-ZWdyYV9wbWNfd3JpdGVsKDAsIEdQVV9SR19DTlRSTCk7Cj4+Pj4gLQkJCXJldHVybiAwOwo+Pj4+
-IC0JCX0KPj4+PiAtCX0KPj4+PiAtCj4+Pj4gLQkvKgo+Pj4+ICAgIAkgKiBUZWdyYSAyIGhhcyBh
-IGJ1ZyB3aGVyZSBQQ0lFIGFuZCBWREUgY2xhbXBpbmcgbWFza3MgYXJlCj4+Pj4gICAgCSAqIHN3
-YXBwZWQgcmVsYXRpdmVseSB0byB0aGUgcGFydGl0aW9uIGlkcwo+Pj4+ICAgIAkgKi8KPj4+PiBA
-QCAtMjUzLDYgKzI0MiwyOSBAQCBpbnQgdGVncmFfcG93ZXJnYXRlX3JlbW92ZV9jbGFtcGluZyhp
-bnQgaWQpCj4+Pj4gICAgRVhQT1JUX1NZTUJPTCh0ZWdyYV9wb3dlcmdhdGVfcmVtb3ZlX2NsYW1w
-aW5nKTsKPj4+PiAgICAKPj4+PiAgICAvKioKPj4+PiArICogdGVncmFfcG93ZXJnYXRlX2dwdV9z
-ZXRfY2xhbXBpbmcgLSBjb250cm9sIEdQVS1TT0MgY2xhbXBzCj4+Pj4gKyAqCj4+Pj4gKyAqIFRo
-ZSBwb3N0LVRlZ3JhMTE0IGNoaXBzIGhhdmUgYSBzZXBhcmF0ZSByYWlsIGdhdGluZyByZWdpc3Rl
-ciB0byBjb25maWd1cmUKPj4+PiArICogY2xhbXBzLgo+Pj4+ICsgKgo+Pj4+ICsgKiBAYXNzZXJ0
-OiB0cnVlIHRvIGFzc2VydCBjbGFtcCwgYW5kIGZhbHNlIHRvIHJlbW92ZQo+Pj4+ICsgKi8KPj4+
-PiAraW50IHRlZ3JhX3Bvd2VyZ2F0ZV9ncHVfc2V0X2NsYW1waW5nKGJvb2wgYXNzZXJ0KQo+Pj4g
-VGhvc2UgZnVuY3Rpb25zIHdpdGggYSBib29sIHBhcmFtZXRlciB0byBzZXQvdW5zZXQgc29tZXRo
-aW5nIGFyZSByZWFsbHkKPj4+IGFubm95aW5nLiBQbGVhc2UgYXZvaWQgdGhpcyBwYXR0ZXJuLiBU
-aGUgbmFtaW5nIG9mIHRoZSBvcmlnaW5hbCBmdW5jdGlvbgo+Pj4gaXMgbXVjaCBtb3JlIGludHVp
-dGl2ZS4KPj4gQnV0IHRoZSBvcmlnaW5hbCBmdW5jdGlvbiBpcyBub3Qgc3VmZmljaWVudC4gTWF5
-YmUgYWRkIGEKPj4gdGVncmFfcG93ZXJnYXRlX2Fzc2VydF9ncHVfY2xhbXBpbmcoKT8gVGhhdCB3
-YXkgSSB3aWxsIHByZWZlciB0byBhZGRpbmcKPj4gb25lIG1vcmUgcmVtb3ZhbCBmdW5jdGlvbiBm
-b3IgR1BVLiBBbmQgdGhlbiBhZ2FpbiB0aGF0J3MgYSBibG9hdCwgdG9vLgo+Pj4+ICt7Cj4+Pj4g
-KwlpZiAoIXBtYy0+c29jKQo+Pj4+ICsJCXJldHVybiAtRUlOVkFMOwo+Pj4+ICsKPj4+PiArCWlm
-ICh0ZWdyYV9nZXRfY2hpcF9pZCgpID09IFRFR1JBMTI0KSB7Cj4+Pj4gKwkJdGVncmFfcG1jX3dy
-aXRlbChhc3NlcnQgPyAxIDogMCwgR1BVX1JHX0NOVFJMKTsKPj4+PiArCQl0ZWdyYV9wbWNfcmVh
-ZGwoR1BVX1JHX0NOVFJMKTsKPj4+IFlvdSBhcmUgcmVhZGluZyB0aGUgcmVnaXN0ZXIgYmFjayBo
-ZXJlLCB3aGljaCB0byBtZSBzZWVtcyBsaWtlIHlvdSBhcmUKPj4+IHRyeWluZyB0byBtYWtlIHN1
-cmUgdGhhdCB0aGUgd3JpdGUgaXMgZmx1c2hlZC4gV2h5IGlzIHRoaXMgbmVlZGVkPwo+Pj4gSSBh
-bHNvIG9ic2VydmVkIHRoZSBuZWVkIHRvIGRvIHRoaXMgd2hpbGUgd29ya2luZyBvbiBUZWdyYTEy
-NCBQQ0llIGluCj4+PiBCYXJlYm94LCBvdGhlcndpc2UgdGhlIHBhcnRpdGlvbiB3b3VsZG4ndCBw
-b3dlciB1cC4gSSBkaWRuJ3QgaGF2ZSB0aW1lCj4+PiB0byBmb2xsb3cgdXAgb24gdGhpcyB5ZXQs
-IHNvIGl0IHdvdWxkIGJlIG5pY2UgaWYgeW91IGNvdWxkIGV4cGxhaW4gd2h5Cj4+PiB0aGlzIGlz
-IG5lZWRlZCwgb3IgaWYgeW91IGRvbid0IGtub3cgYXNrIEhXIGFib3V0IGl0Lgo+PiBUaGF0J3Mg
-YSByZWFkIGZlbmNlIHRvIGFzc3VyZSB0aGUgcG9zdCBvZiB0aGUgcHJldmlvdXMgd3JpdGVzIHRo
-cm91Z2gKPj4gVGVncmEgaW50ZXJjb25uZWN0LiAoY29weS1wYXN0ZXIgZnJvbQo+PiBodHRwczov
-L2FuZHJvaWQuZ29vZ2xlc291cmNlLmNvbS9rZXJuZWwvdGVncmEuZ2l0LysvMjhiMTA3ZGNiM2Fh
-MTIyZGU4ZTk0ZTQ4YWY1NDgxNDBkNTE5Mjk4ZikKPiBJIHNlZSB3aGF0IGl0IGRvZXMsIHRoZSBx
-dWVzdGlvbiBpcyBtb3JlIGFib3V0IHdoeSB0aGlzIGlzIG5lZWRlZC4KPiBXaGF0IGlzIHRoZSBU
-ZWdyYSBpbnRlcmNvbm5lY3Q/IEFjY29yZGluZyB0byB0aGUgVFJNIHRoZSBUZWdyYSBjb250YWlu
-cwo+IHNvbWUgc3RhbmRhcmQgQVhJIDwtPiBBSEIgPC0+IEFQQiBicmlkZ2VzLiBUaGF0IGEgcmVh
-ZCBpcyBuZWVkZWQgdG8KPiBhc3N1cmUgdGhlIHdyaXRlIGlzIHBvc3RlZCB0byB0aGUgQVBCIGJ1
-cyBzZWVtcyB0byBpbXBseSB0aGF0IHRoZXJlIGlzCj4gc29tZSB3cml0ZSBidWZmZXJpbmcgaW4g
-b25lIG9mIHRob3NlIGJyaWRnZXMuIENhbiB3ZSBnZXQgdGhpcyBkb2N1bWVudGVkCj4gc29tZXdo
-ZXJlPwpUaGUgVFJNIGRvZXMgbWVudGlvbiBhIHJlYWQgYWZ0ZXIgdGhlIHdyaXRlLiBDaGVjayB0
-aGUgc2VjdGlvbiAzMi4yLjIuMy4KClRoYW5rcywKVmluY2UKCj4KPiBBbmQgaXNuJ3QgaXQgbmVl
-ZGVkIGZvciB0aGUgb3RoZXIgcGFydGl0aW9uIHVuZ2F0aW5nIGZ1bmN0aW9uIHRvbyB0aGVuPwpJ
-IGJlbGlldmUgeWVzLgoKPgo+IFJlZ2FyZHMsCj4gTHVjYXMKPgo+CgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0348767279==
+Content-Type: multipart/alternative; boundary="1419827503.1B45e6301.13170"; charset="UTF-8"
+
+
+--1419827503.1B45e6301.13170
+Date: Mon, 29 Dec 2014 04:31:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87771
+
+--- Comment #10 from Vivek <vivek.asci-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 111448
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111448&action=edit
+dmesg
+
+It did hang with nouveau.config=PMPEG=0 but this time I could ssh and get the
+dmesg and Xorg log.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419827503.1B45e6301.13170
+Date: Mon, 29 Dec 2014 04:31:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV63] X freezes after login"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87771#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV63] X freezes after login"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87771">bug 87771</a>
+              from <span class="vcard"><a class="email" href="mailto:vivek.asci&#64;gmail.com" title="Vivek &lt;vivek.asci&#64;gmail.com&gt;"> <span class="fn">Vivek</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111448" name="attach_111448" title="dmesg">attachment 111448</a> <a href="attachment.cgi?id=111448&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
+
+It did hang with nouveau.config=PMPEG=0 but this time I could ssh and get the
+dmesg and Xorg log.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419827503.1B45e6301.13170--
+
+--===============0348767279==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0348767279==--
