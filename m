@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87830] [GF116] I got bright noise screen (static)
  like on TV after boot.
-Date: Tue, 30 Dec 2014 12:44:35 +0000
-Message-ID: <bug-87830-8800-Hwl4Qi5l1f@http.bugs.freedesktop.org/>
+Date: Tue, 30 Dec 2014 12:44:59 +0000
+Message-ID: <bug-87830-8800-6laCjOoIy5@http.bugs.freedesktop.org/>
 References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1301327582=="
+Content-Type: multipart/mixed; boundary="===============0366176981=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1301327582==
-Content-Type: multipart/alternative; boundary="1419943475.efb61.6032"; charset="UTF-8"
+--===============0366176981==
+Content-Type: multipart/alternative; boundary="1419943499.F60ba4Aa1.6145"; charset="UTF-8"
 
 
---1419943475.efb61.6032
-Date: Tue, 30 Dec 2014 12:44:35 +0000
+--1419943499.F60ba4Aa1.6145
+Date: Tue, 30 Dec 2014 12:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87830
 
---- Comment #12 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-Created attachment 111514
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111514&action=edit
-lspci -vnnmm
+--- Comment #13 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+Created attachment 111515
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111515&action=edit
+lsmod
 
-lspci -vnnmm
+lsmod
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419943475.efb61.6032
-Date: Tue, 30 Dec 2014 12:44:35 +0000
+--1419943499.F60ba4Aa1.6145
+Date: Tue, 30 Dec 2014 12:44:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
               from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111514" name="attach_111514" title="lspci -vnnmm">attachment 111514</a> <a href="attachment.cgi?id=111514&amp;action=edit" title="lspci -vnnmm">[details]</a></span>
-lspci -vnnmm
+        <pre>Created <span class=""><a href="attachment.cgi?id=111515" name="attach_111515" title="lsmod">attachment 111515</a> <a href="attachment.cgi?id=111515&amp;action=edit" title="lsmod">[details]</a></span>
+lsmod
 
-lspci -vnnmm</pre>
+lsmod</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +80,9 @@ lspci -vnnmm</pre>
     </body>
 </html>
 
---1419943475.efb61.6032--
+--1419943499.F60ba4Aa1.6145--
 
---===============1301327582==
+--===============0366176981==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1301327582==--
+--===============0366176981==--
