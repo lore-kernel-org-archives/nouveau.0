@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87830] [GF116] I got bright noise screen (static)
- like on TV after boot.
-Date: Mon, 29 Dec 2014 21:18:01 +0000
-Message-ID: <bug-87830-8800-MR6ma6hem5@http.bugs.freedesktop.org/>
-References: <bug-87830-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH nouveau 09/11] drm: export some variable and
+ functions to resue the PM functions
+Date: Tue, 30 Dec 2014 02:34:53 +0000
+Message-ID: <54A20F4D.4040100@gmail.com>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>
+ <1419331204-26679-10-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0902615804=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1419331204-26679-10-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +19,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0902615804==
-Content-Type: multipart/alternative; boundary="1419887881.5e43a1.913"; charset="UTF-8"
-
-
---1419887881.5e43a1.913
-Date: Mon, 29 Dec 2014 21:18:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87830
-
---- Comment #9 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-Created attachment 111489
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111489&action=edit
-I have that nouveau_drv.so
-
-I have nouveau driver
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1419887881.5e43a1.913
-Date: Mon, 29 Dec 2014 21:18:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
-              from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111489" name="attach_111489" title="I have that nouveau_drv.so">attachment 111489</a> <a href="attachment.cgi?id=111489&amp;action=edit" title="I have that nouveau_drv.so">[details]</a></span>
-I have that nouveau_drv.so
-
-I have nouveau driver</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1419887881.5e43a1.913--
-
---===============0902615804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0902615804==--
+T24gMjMvMTIvMTQgMTA6NDAsIFZpbmNlIEhzdSB3cm90ZToKPiBUaGlzIHBhdGNoIGFkZHMgc29t
+ZSBjaGVja3MgaW4gdGhlIHN1c3BlbmQvcmVzdW1lIGZ1bmN0aW9ucyB0byBkaXN0aW5ndWlzaAo+
+IHRoZSBkR1BVIGFuZCBtb2JpbGUgR1BVIGFuZCBleHBvcnRzIHNvbWUgdmFyaWFibGVzL2Z1bmN0
+aW9ucyBzbyB0aGF0IHRoZQo+IG5vdXZlYXUgcGxhdGZvcm0gZGV2aWNlIGNhbiByZXVzZSB0aGVt
+Lgo+IApIaSBWaW5jZSwKCkFmYWl1IG9uZSBuZWVkcyB0byBleHBvcnQgYSBzeW1ib2wgYXMgaXQn
+cyB1c2VkIGJ5IGFub3RoZXIgbW9kdWxlIG9yCnN1YnN5c3RlbS4gV2l0aCB0aGUgZm9sbG93IHVw
+IHR3byBwYXRjaGVzIHlvdSBhcmUgbm90IGRvaW5nIGVpdGhlciBvbmUsCnNvIEknZCBhc3N1bWUg
+dGhhdCB5b3UgY2FuIGp1c3Qgb21pdCB0aGUgRVhQT1JUXyogY2hhbmdlcy4KCkkgY291bGQgYmUg
+d3JvbmcgdGhvdWdoIDotKQoKQ2hlZXJzCkVtaWwKCgo+IFNpZ25lZC1vZmYtYnk6IFZpbmNlIEhz
+dSA8dmluY2VoQG52aWRpYS5jb20+Cj4gLS0tCj4gIGRybS9ub3V2ZWF1X2RybS5jIHwgMTYgKysr
+KysrKysrKystLS0tLQo+ICBkcm0vbm91dmVhdV9kcm0uaCB8ICAyICsrCj4gIDIgZmlsZXMgY2hh
+bmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
+ZHJtL25vdXZlYXVfZHJtLmMgYi9kcm0vbm91dmVhdV9kcm0uYwo+IGluZGV4IGFmYjkzYmI3MmY5
+Ny4uMGVkOTllZjgwMjExIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1X2RybS5jCj4gKysrIGIv
+ZHJtL25vdXZlYXVfZHJtLmMKPiBAQCAtNzIsNiArNzIsNyBAQCBtb2R1bGVfcGFyYW1fbmFtZWQo
+bW9kZXNldCwgbm91dmVhdV9tb2Rlc2V0LCBpbnQsIDA0MDApOwo+ICAKPiAgTU9EVUxFX1BBUk1f
+REVTQyhydW5wbSwgImRpc2FibGUgKDApLCBmb3JjZSBlbmFibGUgKDEpLCBvcHRpbXVzIG9ubHkg
+ZGVmYXVsdCAoLTEpIik7Cj4gIGludCBub3V2ZWF1X3J1bnRpbWVfcG0gPSAtMTsKPiArRVhQT1JU
+X1NZTUJPTChub3V2ZWF1X3J1bnRpbWVfcG0pOwo+ICBtb2R1bGVfcGFyYW1fbmFtZWQocnVucG0s
+IG5vdXZlYXVfcnVudGltZV9wbSwgaW50LCAwNDAwKTsKPiAgCj4gIHN0YXRpYyBzdHJ1Y3QgZHJt
+X2RyaXZlciBkcml2ZXJfc3R1YjsKPiBAQCAtNTQzLDcgKzU0NCw3IEBAIG5vdXZlYXVfZHJtX3Jl
+bW92ZShzdHJ1Y3QgcGNpX2RldiAqcGRldikKPiAgCW5vdXZlYXVfZHJtX2RldmljZV9yZW1vdmUo
+ZGV2KTsKPiAgfQo+ICAKPiAtc3RhdGljIGludAo+ICtpbnQKPiAgbm91dmVhdV9kb19zdXNwZW5k
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKPiAgewo+ICAJc3RydWN0IG5v
+dXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShkZXYpOwo+IEBAIC01NTksOCArNTYwLDEwIEBA
+IG5vdXZlYXVfZG9fc3VzcGVuZChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBib29sIHJ1bnRpbWUp
+Cj4gIAkJCXJldHVybiByZXQ7Cj4gIAl9Cj4gIAo+IC0JTlZfSU5GTyhkcm0sICJldmljdGluZyBi
+dWZmZXJzLi4uXG4iKTsKPiAtCXR0bV9ib19ldmljdF9tbSgmZHJtLT50dG0uYmRldiwgVFRNX1BM
+X1ZSQU0pOwo+ICsJaWYgKGRldi0+cGRldikgewo+ICsJCU5WX0lORk8oZHJtLCAiZXZpY3Rpbmcg
+YnVmZmVycy4uLlxuIik7Cj4gKwkJdHRtX2JvX2V2aWN0X21tKCZkcm0tPnR0bS5iZGV2LCBUVE1f
+UExfVlJBTSk7Cj4gKwl9Cj4gIAo+ICAJTlZfSU5GTyhkcm0sICJ3YWl0aW5nIGZvciBrZXJuZWwg
+Y2hhbm5lbHMgdG8gZ28gaWRsZS4uLlxuIik7Cj4gIAlpZiAoZHJtLT5jZWNoYW4pIHsKPiBAQCAt
+NjEyLDggKzYxNSw5IEBAIGZhaWxfZGlzcGxheToKPiAgCX0KPiAgCXJldHVybiByZXQ7Cj4gIH0K
+PiArRVhQT1JUX1NZTUJPTChub3V2ZWF1X2RvX3N1c3BlbmQpOwo+ICAKPiAtc3RhdGljIGludAo+
+ICtpbnQKPiAgbm91dmVhdV9kb19yZXN1bWUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBy
+dW50aW1lKQo+ICB7Cj4gIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJtKGRl
+dik7Cj4gQEAgLTYzNSw3ICs2MzksOCBAQCBub3V2ZWF1X2RvX3Jlc3VtZShzdHJ1Y3QgZHJtX2Rl
+dmljZSAqZGV2LCBib29sIHJ1bnRpbWUpCj4gIAkJbnZpZl9jbGllbnRfcmVzdW1lKCZjbGktPmJh
+c2UpOwo+ICAJfQo+ICAKPiAtCW5vdXZlYXVfcnVuX3ZiaW9zX2luaXQoZGV2KTsKPiArCWlmIChk
+ZXYtPnBkZXYpCj4gKwkJbm91dmVhdV9ydW5fdmJpb3NfaW5pdChkZXYpOwo+ICAKPiAgCWlmIChk
+ZXYtPm1vZGVfY29uZmlnLm51bV9jcnRjKSB7Cj4gIAkJTlZfSU5GTyhkcm0sICJyZXN1bWluZyBk
+aXNwbGF5Li4uXG4iKTsKPiBAQCAtNjQ2LDYgKzY1MSw3IEBAIG5vdXZlYXVfZG9fcmVzdW1lKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJvb2wgcnVudGltZSkKPiAgCj4gIAlyZXR1cm4gMDsKPiAg
+fQo+ICtFWFBPUlRfU1lNQk9MKG5vdXZlYXVfZG9fcmVzdW1lKTsKPiAgCj4gIGludAo+ICBub3V2
+ZWF1X3Btb3BzX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQo+IGRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdV9kcm0uaCBiL2RybS9ub3V2ZWF1X2RybS5oCj4gaW5kZXggOGFlMzZmMjY1ZmI4Li44
+OTdkMjk1ZGQxZTMgMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXVfZHJtLmgKPiArKysgYi9kcm0v
+bm91dmVhdV9kcm0uaAo+IEBAIC0xNzcsNiArMTc3LDggQEAgbm91dmVhdV9kcm0oc3RydWN0IGRy
+bV9kZXZpY2UgKmRldikKPiAgCj4gIGludCBub3V2ZWF1X3Btb3BzX3N1c3BlbmQoc3RydWN0IGRl
+dmljZSAqKTsKPiAgaW50IG5vdXZlYXVfcG1vcHNfcmVzdW1lKHN0cnVjdCBkZXZpY2UgKik7Cj4g
+K2ludCBub3V2ZWF1X2RvX3N1c3BlbmQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgYm9vbCBydW50
+aW1lKTsKPiAraW50IG5vdXZlYXVfZG9fcmVzdW1lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGJv
+b2wgcnVudGltZSk7Cj4gIAo+ICAjZGVmaW5lIG5vdXZlYXVfcGxhdGZvcm1fZGV2aWNlX2NyZWF0
+ZShwLCB1KSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXAo+ICAJbm91dmVhdV9w
+bGF0Zm9ybV9kZXZpY2VfY3JlYXRlXyhwLCBzaXplb2YoKip1KSwgKHZvaWQgKiopdSkKPiAKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
