@@ -1,11 +1,13 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] mc: add missing braces
-Date: Tue, 30 Dec 2014 14:59:42 +0800
-Message-ID: <1419922782-28700-1-git-send-email-vinceh@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87830] [GF116] I got bright noise screen (static)
+ like on TV after boot.
+Date: Tue, 30 Dec 2014 12:42:46 +0000
+Message-ID: <bug-87830-8800-ElFFeZIVsK@http.bugs.freedesktop.org/>
+References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1627485818=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,27 +17,94 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2V2ZXJhbCBicmFjZXMgd2VyZSBtaXNwbGFjZWQgdW5pbnRlbnRpb25hbGx5LiBUaGF0IGNhdXNl
-ZCB0aGUgbXNpIGhhbmRsaW5nCmJlY2FtZSBwYXJ0IG9mIHRoZSBkZWZhdWx0IGNhc2Ugb2YgdGhl
-IGZpcnN0IHN3aXRjaCBzdGF0ZW1lbnQuIFNvIGFkZCB0aGUKbWlzc2luZyBvbmVzLgoKU2lnbmVk
-LW9mZi1ieTogVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlhLmNvbT4KLS0tCiBudmttL3N1YmRldi9t
-Yy9iYXNlLmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
-dGlvbigtKQoKZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L21jL2Jhc2UuYyBiL252a20vc3ViZGV2
-L21jL2Jhc2UuYwppbmRleCBjYTdjZWUzYTMxNGEuLjI1ZTNiOTY0NGEzZiAxMDA2NDQKLS0tIGEv
-bnZrbS9zdWJkZXYvbWMvYmFzZS5jCisrKyBiL252a20vc3ViZGV2L21jL2Jhc2UuYwpAQCAtMTI0
-LDcgKzEyNCw3IEBAIG5vdXZlYXVfbWNfY3JlYXRlXyhzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBh
-cmVudCwgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmdpbmUsCiAKIAlwbWMtPnVuazI2MCA9IG5v
-dXZlYXVfbWNfdW5rMjYwOwogCi0JaWYgKG52X2RldmljZV9pc19wY2koZGV2aWNlKSkKKwlpZiAo
-bnZfZGV2aWNlX2lzX3BjaShkZXZpY2UpKSB7CiAJCXN3aXRjaCAoZGV2aWNlLT5wZGV2LT5kZXZp
-Y2UgJiAweDBmZjApIHsKIAkJY2FzZSAweDAwZjA6CiAJCWNhc2UgMHgwMmUwOgpAQCAtMTM4LDYg
-KzEzOCw3IEBAIG5vdXZlYXVfbWNfY3JlYXRlXyhzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVu
-dCwgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmdpbmUsCiAJCQlkZWZhdWx0OgogCQkJCXBtYy0+
-dXNlX21zaSA9IHRydWU7CiAJCQkJYnJlYWs7CisJCQl9CiAJCX0KIAogCQlwbWMtPnVzZV9tc2kg
-PSBub3V2ZWF1X2Jvb2xvcHQoZGV2aWNlLT5jZmdvcHQsICJOdk1TSSIsCi0tIAoxLjkuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1627485818==
+Content-Type: multipart/alternative; boundary="1419943366.506FE1.5123"; charset="UTF-8"
+
+
+--1419943366.506FE1.5123
+Date: Tue, 30 Dec 2014 12:42:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87830
+
+--- Comment #10 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+I've just rechecked video card work with:
+Linux thepc 3.13.0-43-lowlatency #72+7.0trisquel2 SMP PREEMPT Mon Dec 15
+03:41:11 UTC 2014 i686 athlon i686 GNU/Linux
+
+And got same problem again (noise screen). But after 5-10 minutes all of a
+sudden logon screen appears, but background was absolutely white (no image). I
+could login and desktop appears partially (Gnome Menu, System Tray, Workspace
+switcher, Window buttons), but with no background - all around is white... You
+can see Desktop Icons also and can even run Home, Trash and etc. I tried to run
+Urban Terror, but it hangs...
+
+Attached 3 files
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1419943366.506FE1.5123
+Date: Tue, 30 Dec 2014 12:42:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
+              from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
+</span></b>
+        <pre>I've just rechecked video card work with:
+Linux thepc 3.13.0-43-lowlatency #72+7.0trisquel2 SMP PREEMPT Mon Dec 15
+03:41:11 UTC 2014 i686 athlon i686 GNU/Linux
+
+And got same problem again (noise screen). But after 5-10 minutes all of a
+sudden logon screen appears, but background was absolutely white (no image). I
+could login and desktop appears partially (Gnome Menu, System Tray, Workspace
+switcher, Window buttons), but with no background - all around is white... You
+can see Desktop Icons also and can even run Home, Trash and etc. I tried to run
+Urban Terror, but it hangs...
+
+Attached 3 files</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1419943366.506FE1.5123--
+
+--===============1627485818==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1627485818==--
