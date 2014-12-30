@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87830] [GF116] I got bright noise screen (static)
- like on TV after boot.
-Date: Tue, 30 Dec 2014 23:25:47 +0000
-Message-ID: <bug-87830-8800-kp2OhVqIO8@http.bugs.freedesktop.org/>
-References: <bug-87830-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87885] New: Fan speed of Nvidia GeForce 9600GT (G94)
+ constantly too high
+Date: Tue, 30 Dec 2014 23:59:00 +0000
+Message-ID: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0603008617=="
+Content-Type: multipart/mixed; boundary="===============2040212592=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +19,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0603008617==
-Content-Type: multipart/alternative; boundary="1419981947.DbC8431.12962"; charset="UTF-8"
+--===============2040212592==
+Content-Type: multipart/alternative; boundary="1419983942.57e02Fa1.24651"; charset="UTF-8"
 
 
---1419981947.DbC8431.12962
-Date: Tue, 30 Dec 2014 23:25:47 +0000
+--1419983942.57e02Fa1.24651
+Date: Tue, 30 Dec 2014 23:59:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87830
+https://bugs.freedesktop.org/show_bug.cgi?id=87885
 
---- Comment #17 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-(In reply to IlyasRK from comment #15)
+            Bug ID: 87885
+           Summary: Fan speed of Nvidia GeForce 9600GT (G94) constantly
+                    too high
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: asiasuppenesser-Mmb7MZpHnFY@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-> May you suggest me live-cd distribution which should work properly with my
-> NVidia GTX550Ti after boot?
+Created attachment 111546
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111546&action=edit
+vbios
 
-It's mostly not an distribution related problem, but if you really want to test
-live-cd distibution, pick an alternate one (away from your normal
-distribution), any will do: Mint, Fedora, openSUSE, Arch, ... (just to name a
-few, no particular order or preference)
+The above-mentioned graphics card produces a lot of noise. The fan speed never
+changes (hasn't changed in years ;) ). Judging from the noise level it must be
+at its maximum.
+People on IRC (#nouveau) asked me to place a bug report here, providing all
+necessary information. If I missed some info you need, feel free to ask for
+more!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419981947.DbC8431.12962
-Date: Tue, 30 Dec 2014 23:25:47 +0000
+--1419983942.57e02Fa1.24651
+Date: Tue, 30 Dec 2014 23:59:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,28 +69,98 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">87885</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Fan speed of Nvidia GeForce 9600GT (G94) constantly too high
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>asiasuppenesser&#64;gmx.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>(In reply to IlyasRK from <a href="show_bug.cgi?id=87830#c15">comment #15</a>)
+        <pre>Created <span class=""><a href="attachment.cgi?id=111546" name="attach_111546" title="vbios">attachment 111546</a> <a href="attachment.cgi?id=111546&amp;action=edit" title="vbios">[details]</a></span>
+vbios
 
-<span class="quote">&gt; May you suggest me live-cd distribution which should work properly with my
-&gt; NVidia GTX550Ti after boot?</span >
-
-It's mostly not an distribution related problem, but if you really want to test
-live-cd distibution, pick an alternate one (away from your normal
-distribution), any will do: Mint, Fedora, openSUSE, Arch, ... (just to name a
-few, no particular order or preference)</pre>
+The above-mentioned graphics card produces a lot of noise. The fan speed never
+changes (hasn't changed in years ;) ). Judging from the noise level it must be
+at its maximum.
+People on IRC (#nouveau) asked me to place a bug report here, providing all
+necessary information. If I missed some info you need, feel free to ask for
+more!</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +172,9 @@ few, no particular order or preference)</pre>
     </body>
 </html>
 
---1419981947.DbC8431.12962--
+--1419983942.57e02Fa1.24651--
 
---===============0603008617==
+--===============2040212592==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +184,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0603008617==--
+--===============2040212592==--
