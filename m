@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87830] [GF116] I got bright noise screen (static)
  like on TV after boot.
-Date: Tue, 30 Dec 2014 17:37:04 +0000
-Message-ID: <bug-87830-8800-7WyGw3kHp0@http.bugs.freedesktop.org/>
+Date: Tue, 30 Dec 2014 20:42:17 +0000
+Message-ID: <bug-87830-8800-nmLVRwbXQR@http.bugs.freedesktop.org/>
 References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702119866=="
+Content-Type: multipart/mixed; boundary="===============1120850355=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1702119866==
-Content-Type: multipart/alternative; boundary="1419961023.066Ad1.10253"; charset="UTF-8"
+--===============1120850355==
+Content-Type: multipart/alternative; boundary="1419972137.af3e211.16415"; charset="UTF-8"
 
 
---1419961023.066Ad1.10253
-Date: Tue, 30 Dec 2014 17:37:03 +0000
+--1419972137.af3e211.16415
+Date: Tue, 30 Dec 2014 20:42:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87830
 
---- Comment #15 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-(In reply to Tobias Klausmann from comment #14)
-> If you can reproduce that behavior, save the dmesg of that run. Can you as
-> well try a Desktop without compositing/OpenGL and see if the problem happens
-> there?
+--- Comment #16 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+> May you suggest me live-cd distribution which should work properly with my
+> NVidia GTX550Ti after boot?
 
-May you suggest me live-cd distribution which should work properly with my
-NVidia GTX550Ti after boot?
+I've just tried trisquel-mini_7.0_i686.iso
+After boot I got same problem. Switched to tty1 and after 10 minutes tty7
+became absolutely black... Even after 15 minutes nothing changed. Just black
+screen on tty7 and tty8. But you can very quickly switch from one tty to
+another. Resolution is indeed 1280x1024 (native resolution of my Flatron),
+scrolling in man pages is fast...
+I've tried:
+modprobe -r nouveau
+and got "it's in use!" error
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419961023.066Ad1.10253
-Date: Tue, 30 Dec 2014 17:37:03 +0000
+--1419972137.af3e211.16415
+Date: Tue, 30 Dec 2014 20:42:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +65,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
               from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
 </span></b>
-        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=87830#c14">comment #14</a>)
-<span class="quote">&gt; If you can reproduce that behavior, save the dmesg of that run. Can you as
-&gt; well try a Desktop without compositing/OpenGL and see if the problem happens
-&gt; there?</span >
+        <pre><span class="quote">&gt; May you suggest me live-cd distribution which should work properly with my
+&gt; NVidia GTX550Ti after boot?</span >
 
-May you suggest me live-cd distribution which should work properly with my
-NVidia GTX550Ti after boot?</pre>
+I've just tried trisquel-mini_7.0_i686.iso
+After boot I got same problem. Switched to tty1 and after 10 minutes tty7
+became absolutely black... Even after 15 minutes nothing changed. Just black
+screen on tty7 and tty8. But you can very quickly switch from one tty to
+another. Resolution is indeed 1280x1024 (native resolution of my Flatron),
+scrolling in man pages is fast...
+I've tried:
+modprobe -r nouveau
+and got &quot;it's in use!&quot; error</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +95,9 @@ NVidia GTX550Ti after boot?</pre>
     </body>
 </html>
 
---1419961023.066Ad1.10253--
+--1419972137.af3e211.16415--
 
---===============1702119866==
+--===============1120850355==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1702119866==--
+--===============1120850355==--
