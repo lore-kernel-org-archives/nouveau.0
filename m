@@ -1,11 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50,nvc0: set vertex id base to index_bias
-Date: Tue, 30 Dec 2014 23:32:35 -0500
-Message-ID: <1420000355-1012-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87830] [GF116] I got bright noise screen (static)
+ like on TV after boot.
+Date: Wed, 31 Dec 2014 12:23:13 +0000
+Message-ID: <bug-87830-8800-14GnShEFyS@http.bugs.freedesktop.org/>
+References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0905770437=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,113 +17,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "10.3 10.4" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rml4ZXMgdGhlIHBpZ2xpdHMgd2hpY2ggY2hlY2sgdGhhdCBnbF9WZXJ0ZXhJRCBpbmNsdWRlcyB0
-aGUgYmFzZSB2ZXJ0ZXgKb2Zmc2V0OgogIGFyYl9kcmF3X2luZGlyZWN0LXZlcnRleGlkIGVsZW1l
-bnRzCiAgZ2wtMy4yLWJhc2V2ZXJ0ZXgtdmVydGV4aWQKCk5vdGUgdGhhdCB0aGlzIGxlYXZlcyBv
-dXQgdGhlIG9yaWdpbmFsIEc4MCwgZm9yIHdoaWNoIHRoaXMgd2lsbCBjb250aW51ZQp0byBmYWls
-LiBJdCBjb3VsZCBiZSBmaXhlZCBieSBwYXNzaW5nIGEgZHJpdmVyIGNvbnN0YnVmIHZhbHVlIGlu
-LCBidXQKdGhhdCdzIGJleW9uZCB0aGUgc2NvcGUgb2YgdGhpcyBjaGFuZ2UuCgpTaWduZWQtb2Zm
-LWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkNjOiAiMTAuMyAxMC40IiA8
-bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMgICAgIHwgIDcgKysrKysrKwogc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYyAgICAgICAgfCAgOCArKysrKysrKwog
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbW1lL2NvbTkwOTcubW1lICAgfCAgNyAr
-KysrKystCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9tbWUvY29tOTA5Ny5tbWUu
-aCB8IDEyICsrKysrKysrLS0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZj
-MF92Ym8uYyAgICAgICAgfCAgOCArKysrKystLQogNSBmaWxlcyBjaGFuZ2VkLCAzNSBpbnNlcnRp
-b25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnY1MC9udjUwX3NjcmVlbi5jCmluZGV4IGZmMDg3MzQuLjJkODM0N2IgMTAwNjQ0Ci0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKKysrIGIvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYwpAQCAtNjA4LDYgKzYwOCwx
-MyBAQCBudjUwX3NjcmVlbl9pbml0X2h3Y3R4KHN0cnVjdCBudjUwX3NjcmVlbiAqc2NyZWVuKQog
-ICAgQkVHSU5fTlYwNChwdXNoLCBOVjUwXzNEKEVER0VGTEFHKSwgMSk7CiAgICBQVVNIX0RBVEEg
-KHB1c2gsIDEpOwogCisgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoVkJfRUxFTUVOVF9CQVNF
-KSwgMSk7CisgICBQVVNIX0RBVEEgKHB1c2gsIDApOworICAgaWYgKHNjcmVlbi0+YmFzZS5jbGFz
-c18zZCA+PSBOVjg0XzNEX0NMQVNTKSB7CisgICAgICBCRUdJTl9OVjA0KHB1c2gsIFNVQkNfM0Qo
-TlY4NF8zRF9WRVJURVhfSURfQkFTRSksIDEpOworICAgICAgUFVTSF9EQVRBIChwdXNoLCAwKTsK
-KyAgIH0KKwogICAgUFVTSF9LSUNLIChwdXNoKTsKIH0KIApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udjUwL252NTBfdmJvLmMKaW5kZXggNWE0YTQ1Ny4uYzE1OTBlZSAxMDA2NDQKLS0t
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYworKysgYi9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Ziby5jCkBAIC00NzIsNiArNDcyLDEw
-IEBAIG52NTBfZHJhd19hcnJheXMoc3RydWN0IG52NTBfY29udGV4dCAqbnY1MCwKICAgIGlmIChu
-djUwLT5zdGF0ZS5pbmRleF9iaWFzKSB7CiAgICAgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0Qo
-VkJfRUxFTUVOVF9CQVNFKSwgMSk7CiAgICAgICBQVVNIX0RBVEEgKHB1c2gsIDApOworICAgICAg
-aWYgKG52NTAtPnNjcmVlbi0+YmFzZS5jbGFzc18zZCA+PSBOVjg0XzNEX0NMQVNTKSB7CisgICAg
-ICAgICBCRUdJTl9OVjA0KHB1c2gsIFNVQkNfM0QoTlY4NF8zRF9WRVJURVhfSURfQkFTRSksIDEp
-OworICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAwKTsKKyAgICAgIH0KICAgICAgIG52NTAtPnN0
-YXRlLmluZGV4X2JpYXMgPSAwOwogICAgfQogCkBAIC01OTQsNiArNTk4LDEwIEBAIG52NTBfZHJh
-d19lbGVtZW50cyhzdHJ1Y3QgbnY1MF9jb250ZXh0ICpudjUwLCBib29sZWFuIHNob3J0ZW4sCiAg
-ICBpZiAoaW5kZXhfYmlhcyAhPSBudjUwLT5zdGF0ZS5pbmRleF9iaWFzKSB7CiAgICAgICBCRUdJ
-Tl9OVjA0KHB1c2gsIE5WNTBfM0QoVkJfRUxFTUVOVF9CQVNFKSwgMSk7CiAgICAgICBQVVNIX0RB
-VEEgKHB1c2gsIGluZGV4X2JpYXMpOworICAgICAgaWYgKG52NTAtPnNjcmVlbi0+YmFzZS5jbGFz
-c18zZCA+PSBOVjg0XzNEX0NMQVNTKSB7CisgICAgICAgICBCRUdJTl9OVjA0KHB1c2gsIFNVQkNf
-M0QoTlY4NF8zRF9WRVJURVhfSURfQkFTRSksIDEpOworICAgICAgICAgUFVTSF9EQVRBIChwdXNo
-LCBpbmRleF9iaWFzKTsKKyAgICAgIH0KICAgICAgIG52NTAtPnN0YXRlLmluZGV4X2JpYXMgPSBp
-bmRleF9iaWFzOwogICAgfQogCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnZjMC9tbWUvY29tOTA5Ny5tbWUgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
-MC9tbWUvY29tOTA5Ny5tbWUKaW5kZXggMDdlNDUxOS4uYjIwNjBkMSAxMDA2NDQKLS0tIGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbW1lL2NvbTkwOTcubW1lCisrKyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL21tZS9jb205MDk3Lm1tZQpAQCAtMjI3LDYgKzIy
-Nyw3IEBAIGxvY25fMGZfdHM6CiAvKiBOVkMwXzNEX01BQ1JPX0RSQVdfRUxFTUVOVFNfSU5ESVJF
-Q1QKICAqCiAgKiBOT1RFOiBTYXZlcyBhbmQgcmVzdG9yZXMgVkJfRUxFTUVOVCxJTlNUQU5DRV9C
-QVNFLgorICogRm9yY2VmdWxseSBzZXRzIFZFUlRFWF9JRF9CQVNFIHRvIHRoZSB2YWx1ZSBvZiBW
-Ql9FTEVNRU5UX0JBU0UuCiAgKgogICogYXJnICAgICA9IG1vZGUKICAqIHBhcm1bMF0gPSBjb3Vu
-dApAQCAtMjQ3LDYgKzI0OCw4IEBAIGxvY25fMGZfdHM6CiAgICBtYWRkciAweDE1MGQgLyogVkJf
-RUxFTUVOVCxJTlNUQU5DRV9CQVNFICovCiAgICBzZW5kICRyNAogICAgc2VuZCAkcjUKKyAgIG1h
-ZGRyIDB4NDQ2CisgICBzZW5kICRyNAogICAgbW92ICRyNCAweDEKIGRlaV9hZ2FpbjoKICAgIG1h
-ZGRyIDB4NTg2IC8qIFZFUlRFWF9CRUdJTl9HTCAqLwpAQCAtMjU4LDggKzI2MSwxMCBAQCBkZWlf
-YWdhaW46CiAgICBicmFueiAkcjIgI2RlaV9hZ2FpbgogICAgbW92ICRyMSAoZXh0cmluc3J0ICRy
-MSAkcjQgMCAxIDI2KSAvKiBzZXQgSU5TVEFOQ0VfTkVYVCAqLwogICAgbWFkZHIgMHgxNTBkIC8q
-IFZCX0VMRU1FTlQsSU5TVEFOQ0VfQkFTRSAqLwotICAgZXhpdCBzZW5kICRyNgorICAgc2VuZCAk
-cjYKICAgIHNlbmQgJHI3CisgICBleGl0IG1hZGRyIDB4NDQ2CisgICBzZW5kICRyNgogZGVpX2Vu
-ZDoKICAgIGV4aXQKICAgIG5vcApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252YzAvbW1lL2NvbTkwOTcubW1lLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnZjMC9tbWUvY29tOTA5Ny5tbWUuaAppbmRleCA2NTRiZjkzLi5iYWM5MDQyIDEwMDY0NAotLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9tbWUvY29tOTA5Ny5tbWUuaAorKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9tbWUvY29tOTA5Ny5tbWUuaApAQCAt
-MTI4LDE2ICsxMjgsMTggQEAgdWludDMyX3QgbW1lOTA5N19kcmF3X2VsdHNfaW5kaXJlY3RbXSA9
-IHsKIAkweDAwMDAwMzAxLAogCTB4MDAwMDAyMDEsCiAJMHgwMTdkYzQ1MSwKLS8qIDB4MDAwYzog
-ZGVpX2FnYWluICovCisvKiAweDAwMGU6IGRlaV9hZ2FpbiAqLwogCTB4MDAwMDI0MzEsCi0JMHgw
-MDA0ZDAwNywKLS8qIDB4MDAxNzogZGVpX2VuZCAqLworCTB4MDAwNWQwMDcsCiAJMHgwMDAwMDUw
-MSwKKy8qIDB4MDAxYjogZGVpX2VuZCAqLwogCTB4MDE0MzQ2MTUsCiAJMHgwMTQzODcxNSwKIAkw
-eDA1NDM0MDIxLAogCTB4MDAwMDIwNDEsCiAJMHgwMDAwMjg0MSwKKwkweDAxMTE4MDIxLAorCTB4
-MDAwMDIwNDEsCiAJMHgwMDAwNDQxMSwKIAkweDAxNjE4MDIxLAogCTB4MDAwMDA4NDEsCkBAIC0x
-NDgsOCArMTUwLDEwIEBAIHVpbnQzMl90IG1tZTkwOTdfZHJhd19lbHRzX2luZGlyZWN0W10gPSB7
-CiAJMHhmZmZlOTAxNywKIAkweGQwNDEwOTEyLAogCTB4MDU0MzQwMjEsCi0JMHgwMDAwMzBjMSwK
-KwkweDAwMDAzMDQxLAogCTB4MDAwMDM4NDEsCisJMHgwMTExODBhMSwKKwkweDAwMDAzMDQxLAog
-CTB4MDAwMDAwOTEsCiAJMHgwMDAwMDAxMSwKIH07CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Ziby5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252YzAvbnZjMF92Ym8uYwppbmRleCBmOTlkNTMzLi4yNTBkNDk1IDEwMDY0NAotLS0gYS9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Ziby5jCisrKyBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdmJvLmMKQEAgLTU3NSw4ICs1NzUsOSBAQCBu
-dmMwX2RyYXdfYXJyYXlzKHN0cnVjdCBudmMwX2NvbnRleHQgKm52YzAsCiAgICBpZiAobnZjMC0+
-c3RhdGUuaW5kZXhfYmlhcykgewogICAgICAgLyogaW5kZXhfYmlhcyBpcyBpbXBsaWVkIDAgaWYg
-IWluZm8tPmluZGV4ZWQgKHJlYWxseSA/KSAqLwogICAgICAgLyogVE9ETzogY2FuIHdlIGRlYWN0
-aXZhdGUgaXQgZm9yIHRoZSBWRVJURVhfQlVGRkVSX0ZJUlNUIGNvbW1hbmQgPyAqLwotICAgICAg
-UFVTSF9TUEFDRShwdXNoLCAxKTsKKyAgICAgIFBVU0hfU1BBQ0UocHVzaCwgMik7CiAgICAgICBJ
-TU1FRF9OVkMwKHB1c2gsIE5WQzBfM0QoVkJfRUxFTUVOVF9CQVNFKSwgMCk7CisgICAgICBJTU1F
-RF9OVkMwKHB1c2gsIE5WQzBfM0QoVkVSVEVYX0lEKSwgMCk7CiAgICAgICBudmMwLT5zdGF0ZS5p
-bmRleF9iaWFzID0gMDsKICAgIH0KIApAQCAtNzA1LDkgKzcwNiwxMSBAQCBudmMwX2RyYXdfZWxl
-bWVudHMoc3RydWN0IG52YzBfY29udGV4dCAqbnZjMCwgYm9vbGVhbiBzaG9ydGVuLAogICAgcHJp
-bSA9IG52YzBfcHJpbV9nbChtb2RlKTsKIAogICAgaWYgKGluZGV4X2JpYXMgIT0gbnZjMC0+c3Rh
-dGUuaW5kZXhfYmlhcykgewotICAgICAgUFVTSF9TUEFDRShwdXNoLCAyKTsKKyAgICAgIFBVU0hf
-U1BBQ0UocHVzaCwgNCk7CiAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoVkJfRUxFTUVO
-VF9CQVNFKSwgMSk7CiAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGluZGV4X2JpYXMpOworICAgICAg
-QkVHSU5fTlZDMChwdXNoLCBOVkMwXzNEKFZFUlRFWF9JRCksIDEpOworICAgICAgUFVTSF9EQVRB
-IChwdXNoLCBpbmRleF9iaWFzKTsKICAgICAgIG52YzAtPnN0YXRlLmluZGV4X2JpYXMgPSBpbmRl
-eF9iaWFzOwogICAgfQogCkBAIC04MTgsNiArODIxLDcgQEAgbnZjMF9kcmF3X2luZGlyZWN0KHN0
-cnVjdCBudmMwX2NvbnRleHQgKm52YzAsIGNvbnN0IHN0cnVjdCBwaXBlX2RyYXdfaW5mbyAqaW5m
-bykKICAgICAgIGlmIChudmMwLT5zdGF0ZS5pbmRleF9iaWFzKSB7CiAgICAgICAgICAvKiBpbmRl
-eF9iaWFzIGlzIGltcGxpZWQgMCBpZiAhaW5mby0+aW5kZXhlZCAocmVhbGx5ID8pICovCiAgICAg
-ICAgICBJTU1FRF9OVkMwKHB1c2gsIE5WQzBfM0QoVkJfRUxFTUVOVF9CQVNFKSwgMCk7CisgICAg
-ICAgICBJTU1FRF9OVkMwKHB1c2gsIE5WQzBfM0QoVkVSVEVYX0lEKSwgMCk7CiAgICAgICAgICBu
-dmMwLT5zdGF0ZS5pbmRleF9iaWFzID0gMDsKICAgICAgIH0KICAgICAgIHNpemUgPSA0ICogNDsK
-LS0gCjIuMC41CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0905770437==
+Content-Type: multipart/alternative; boundary="1420028593.bA3E1.7380"; charset="UTF-8"
+
+
+--1420028593.bA3E1.7380
+Date: Wed, 31 Dec 2014 12:23:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87830
+
+--- Comment #20 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+Tried:
+ubuntu-14.04.1-desktop-i386
+ubuntu-14.10-desktop-i386
+CrunchBang Linux 11 "Waldorf"
+All with same problem...
+Then I tried Linux Mint 17.1 "Rebecca" - MATE (32-bit)
+After boot from flash-drive (mint 17.1) you can select usual mode or
+compatibility mode.
+With usual mode I got same problem.
+With compatibility mode mint works fine. Screen res - 1024x768 with 3d
+acceleration. Urban Terror (800x600) runs with ~10fps... Slow. But works
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1420028593.bA3E1.7380
+Date: Wed, 31 Dec 2014 12:23:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
+              from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
+</span></b>
+        <pre>Tried:
+ubuntu-14.04.1-desktop-i386
+ubuntu-14.10-desktop-i386
+CrunchBang Linux 11 &quot;Waldorf&quot;
+All with same problem...
+Then I tried Linux Mint 17.1 &quot;Rebecca&quot; - MATE (32-bit)
+After boot from flash-drive (mint 17.1) you can select usual mode or
+compatibility mode.
+With usual mode I got same problem.
+With compatibility mode mint works fine. Screen res - 1024x768 with 3d
+acceleration. Urban Terror (800x600) runs with ~10fps... Slow. But works</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1420028593.bA3E1.7380--
+
+--===============0905770437==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0905770437==--
