@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87885] Fan speed of Nvidia GeForce 9600GT (G94)
  constantly too high
-Date: Wed, 31 Dec 2014 00:00:44 +0000
-Message-ID: <bug-87885-8800-3fexozY4Vq@http.bugs.freedesktop.org/>
+Date: Wed, 31 Dec 2014 00:01:07 +0000
+Message-ID: <bug-87885-8800-xSJn6IAmac@http.bugs.freedesktop.org/>
 References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0854879318=="
+Content-Type: multipart/mixed; boundary="===============0220512850=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0854879318==
-Content-Type: multipart/alternative; boundary="1419984044.D6Cb7a1.25392"; charset="UTF-8"
+--===============0220512850==
+Content-Type: multipart/alternative; boundary="1419984068.eE5CB1.25581"; charset="UTF-8"
 
 
---1419984044.D6Cb7a1.25392
-Date: Wed, 31 Dec 2014 00:00:44 +0000
+--1419984068.eE5CB1.25581
+Date: Wed, 31 Dec 2014 00:01:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87885
 
---- Comment #1 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 111547
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111547&action=edit
-dmegs output
+--- Comment #2 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
+Created attachment 111548
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111548&action=edit
+"sensors" output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419984044.D6Cb7a1.25392
-Date: Wed, 31 Dec 2014 00:00:44 +0000
+--1419984068.eE5CB1.25581
+Date: Wed, 31 Dec 2014 00:01:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
               from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111547" name="attach_111547" title="dmegs output">attachment 111547</a> <a href="attachment.cgi?id=111547&amp;action=edit" title="dmegs output">[details]</a></span>
-dmegs output</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111548" name="attach_111548" title="&quot;sensors&quot; output">attachment 111548</a> <a href="attachment.cgi?id=111548&amp;action=edit" title="&quot;sensors&quot; output">[details]</a></span>
+&quot;sensors&quot; output</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmegs output</pre>
     </body>
 </html>
 
---1419984044.D6Cb7a1.25392--
+--1419984068.eE5CB1.25581--
 
---===============0854879318==
+--===============0220512850==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0854879318==--
+--===============0220512850==--
