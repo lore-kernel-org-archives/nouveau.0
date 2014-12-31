@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87830] [GF116] I got bright noise screen (static)
  like on TV after boot.
-Date: Wed, 31 Dec 2014 00:08:22 +0000
-Message-ID: <bug-87830-8800-canbSk5tFE@http.bugs.freedesktop.org/>
+Date: Wed, 31 Dec 2014 00:34:55 +0000
+Message-ID: <bug-87830-8800-DCRolyxhLm@http.bugs.freedesktop.org/>
 References: <bug-87830-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1475601514=="
+Content-Type: multipart/mixed; boundary="===============0444044745=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87830-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1475601514==
-Content-Type: multipart/alternative; boundary="1419984502.2c531.28085"; charset="UTF-8"
+--===============0444044745==
+Content-Type: multipart/alternative; boundary="1419986095.8BC8DDcb1.6820"; charset="UTF-8"
 
 
---1419984502.2c531.28085
-Date: Wed, 31 Dec 2014 00:08:21 +0000
+--1419986095.8BC8DDcb1.6820
+Date: Wed, 31 Dec 2014 00:34:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87830
 
---- Comment #18 from IlyasRK <shordak-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-Created attachment 111549
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111549&action=edit
-ubuntu 10.10 desktop i386 logs
+--- Comment #19 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+(In reply to IlyasRK from comment #18)
+> 
+> I've just tried ubuntu-10.10-beta-desktop-i386.iso
+> ...
+> uname -a:
+> Linux ubuntu 2.6.35-19-generic #28-Ubuntu SMP Sun Aug 29 06:36:51 UTC 2010
+> i686 GNU/Linux
+> 
 
-I've just tried ubuntu-10.10-beta-desktop-i386.iso
-I works with my video card. But max resolution is 640x480. With 3d
-acceleration. But it's too slow...
-
-uname -a:
-Linux ubuntu 2.6.35-19-generic #28-Ubuntu SMP Sun Aug 29 06:36:51 UTC 2010 i686
-GNU/Linux
-
-dmesg and other things attached
+Pick a non-ancient one please... that one is from 2010
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1419984502.2c531.28085
-Date: Wed, 31 Dec 2014 00:08:22 +0000
+--1419986095.8BC8DDcb1.6820
+Date: Wed, 31 Dec 2014 00:34:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,25 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87830#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [GF116] I got bright noise screen (static) like on TV after boot."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87830">bug 87830</a>
-              from <span class="vcard"><a class="email" href="mailto:shordak&#64;yandex.ru" title="IlyasRK &lt;shordak&#64;yandex.ru&gt;"> <span class="fn">IlyasRK</span></a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111549" name="attach_111549" title="ubuntu 10.10 desktop i386 logs">attachment 111549</a> <a href="attachment.cgi?id=111549&amp;action=edit" title="ubuntu 10.10 desktop i386 logs">[details]</a></span>
-ubuntu 10.10 desktop i386 logs
+        <pre>(In reply to IlyasRK from <a href="show_bug.cgi?id=87830#c18">comment #18</a>)
+<span class="quote">&gt; 
+&gt; I've just tried ubuntu-10.10-beta-desktop-i386.iso
+&gt; ...
+&gt; uname -a:
+&gt; Linux ubuntu 2.6.35-19-generic #28-Ubuntu SMP Sun Aug 29 06:36:51 UTC 2010
+&gt; i686 GNU/Linux
+&gt; </span >
 
-I've just tried ubuntu-10.10-beta-desktop-i386.iso
-I works with my video card. But max resolution is 640x480. With 3d
-acceleration. But it's too slow...
-
-uname -a:
-Linux ubuntu 2.6.35-19-generic #28-Ubuntu SMP Sun Aug 29 06:36:51 UTC 2010 i686
-GNU/Linux
-
-dmesg and other things attached</pre>
+Pick a non-ancient one please... that one is from 2010</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +91,9 @@ dmesg and other things attached</pre>
     </body>
 </html>
 
---1419984502.2c531.28085--
+--1419986095.8BC8DDcb1.6820--
 
---===============1475601514==
+--===============0444044745==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1475601514==--
+--===============0444044745==--
