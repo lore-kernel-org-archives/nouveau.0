@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87983] nouveau E[Xorg.bin[1119]] failed to idle
  channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)
-Date: Fri, 02 Jan 2015 22:30:33 +0000
-Message-ID: <bug-87983-8800-ilXUWuBFKn@http.bugs.freedesktop.org/>
+Date: Fri, 02 Jan 2015 22:40:27 +0000
+Message-ID: <bug-87983-8800-FR7EdZSGOy@http.bugs.freedesktop.org/>
 References: <bug-87983-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1191972390=="
+Content-Type: multipart/mixed; boundary="===============1552489292=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87983-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1191972390==
-Content-Type: multipart/alternative; boundary="1420237833.8D5ee1.30269"; charset="UTF-8"
+--===============1552489292==
+Content-Type: multipart/alternative; boundary="1420238427.d6FFA3E1.3537"; charset="UTF-8"
 
 
---1420237833.8D5ee1.30269
-Date: Fri, 2 Jan 2015 22:30:33 +0000
+--1420238427.d6FFA3E1.3537
+Date: Fri, 2 Jan 2015 22:40:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87983
 
---- Comment #4 from bofh666-RbZlAiThDcE@public.gmane.org ---
-Thanks for the fast reply.
-
-Haven't tried this particular machine with older kernels yet as i was
-attempting to upgrade from Windows Vista to Fedora 21 and am now trying to get
-something else but Vesa drivers with 1024x768 to work.
-The system did work fine with that other OS.
+--- Comment #5 from bofh666-RbZlAiThDcE@public.gmane.org ---
+Booting with nouveau.config=NvMSI=0 is a working.
+Thanks for the hint, now to find some info what that actually does :-)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420237833.8D5ee1.30269
-Date: Fri, 2 Jan 2015 22:30:33 +0000
+--1420238427.d6FFA3E1.3537
+Date: Fri, 2 Jan 2015 22:40:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,19 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87983">bug 87983</a>
               from <span class="vcard"><a class="email" href="mailto:bofh666&#64;gmx.at" title="bofh666&#64;gmx.at">bofh666&#64;gmx.at</a>
 </span></b>
-        <pre>Thanks for the fast reply.
-
-Haven't tried this particular machine with older kernels yet as i was
-attempting to upgrade from Windows Vista to Fedora 21 and am now trying to get
-something else but Vesa drivers with 1024x768 to work.
-The system did work fine with that other OS.</pre>
+        <pre>Booting with nouveau.config=NvMSI=0 is a working.
+Thanks for the hint, now to find some info what that actually does :-)</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +75,9 @@ The system did work fine with that other OS.</pre>
     </body>
 </html>
 
---1420237833.8D5ee1.30269--
+--1420238427.d6FFA3E1.3537--
 
---===============1191972390==
+--===============1552489292==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1191972390==--
+--===============1552489292==--
