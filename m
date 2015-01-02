@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
-Date: Fri, 02 Jan 2015 02:09:19 +0000
-Message-ID: <bug-81363-8800-Q5NgrksPHo@http.bugs.freedesktop.org/>
-References: <bug-81363-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH] nv50/ir: Fold sat into mad
+Date: Fri,  2 Jan 2015 03:28:50 +0100
+Message-ID: <1420165730-24277-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138433873=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,72 +15,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0138433873==
-Content-Type: multipart/alternative; boundary="1420164558.aedFD4581.6788"; charset="UTF-8"
-
-
---1420164558.aedFD4581.6788
-Date: Fri, 2 Jan 2015 02:09:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81363
-
---- Comment #10 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-kernel 3.18 has the same issue
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420164558.aedFD4581.6788
-Date: Fri, 2 Jan 2015 02:09:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV84] Black screen after UDEV is intialized"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
-              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
-</span></b>
-        <pre>kernel 3.18 has the same issue</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420164558.aedFD4581.6788--
-
---===============0138433873==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0138433873==--
+VGhlIG1hZCBpbnN0cnVjdGlvbiBlbWl0dGVyIGFscmVhZHkgc3VwcG9ydGVkIHRoZSBzYXR1cmF0
+ZSBtb2RpZmllciwgYnV0IHRoZSBNb2RpZmllckZvbGRpbmcgcGFzcyBuZXZlciB0cmllZCBmb2xk
+aW5nIGN2dCBzYXQgb3BlcmF0aW9ucyBpbiBmb3IgTlY1MC4KClNpZ25lZC1vZmYtYnk6IFJveSBT
+cGxpZXQgPHJzcGxpZXRAZWNsaXBzby5ldT4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcCB8IDIgKy0KIDEgZmlsZSBjaGFuZ2Vk
+LCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwIGIvc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKaW5k
+ZXggZWJjYjBhYy4uMzY5NDIwOSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKQEAgLTg3LDcgKzg3
+LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBvcFByb3BlcnRpZXMgX2luaXRQcm9wc1tdID0KICAg
+IHsgT1BfTVVMLCAgICAweDMsIDB4MCwgMHgwLCAweDAsIDB4MiwgMHgxLCAweDEsIDB4MiB9LAog
+ICAgeyBPUF9NQVgsICAgIDB4MywgMHgzLCAweDAsIDB4MCwgMHgyLCAweDEsIDB4MSwgMHgwIH0s
+CiAgICB7IE9QX01JTiwgICAgMHgzLCAweDMsIDB4MCwgMHgwLCAweDIsIDB4MSwgMHgxLCAweDAg
+fSwKLSAgIHsgT1BfTUFELCAgICAweDcsIDB4MCwgMHgwLCAweDAsIDB4NiwgMHgxLCAweDEsIDB4
+MCB9LCAvLyBzcGVjaWFsIGNvbnN0cmFpbnQKKyAgIHsgT1BfTUFELCAgICAweDcsIDB4MCwgMHgw
+LCAweDgsIDB4NiwgMHgxLCAweDEsIDB4MCB9LCAvLyBzcGVjaWFsIGNvbnN0cmFpbnQKICAgIHsg
+T1BfQUJTLCAgICAweDAsIDB4MCwgMHgwLCAweDAsIDB4MCwgMHgxLCAweDEsIDB4MCB9LAogICAg
+eyBPUF9ORUcsICAgIDB4MCwgMHgxLCAweDAsIDB4MCwgMHgwLCAweDEsIDB4MSwgMHgwIH0sCiAg
+ICB7IE9QX0NWVCwgICAgMHgxLCAweDEsIDB4MCwgMHg4LCAweDAsIDB4MSwgMHgxLCAweDAgfSwK
+LS0gCjIuMS4wCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
