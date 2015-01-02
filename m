@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87983] nouveau E[Xorg.bin[1119]] failed to idle
- channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)
-Date: Fri, 02 Jan 2015 22:19:49 +0000
-Message-ID: <bug-87983-8800-Hy3P08marD@http.bugs.freedesktop.org/>
-References: <bug-87983-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Fri, 02 Jan 2015 22:20:34 +0000
+Message-ID: <bug-70354-8800-jVekmHeqLJ@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0900225856=="
+Content-Type: multipart/mixed; boundary="===============1465195120=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87983-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0900225856==
-Content-Type: multipart/alternative; boundary="1420237189.48dE331.24677"; charset="UTF-8"
+--===============1465195120==
+Content-Type: multipart/alternative; boundary="1420237234.0fc7aBd5.25089"; charset="UTF-8"
 
 
---1420237189.48dE331.24677
-Date: Fri, 2 Jan 2015 22:19:49 +0000
+--1420237234.0fc7aBd5.25089
+Date: Fri, 2 Jan 2015 22:20:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87983
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #2 from bofh666-RbZlAiThDcE@public.gmane.org ---
-Created attachment 111675
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111675&action=edit
-Xorg.0.log
+--- Comment #35 from nshp-g/b1ySJe57IkP3XJZ0H8fw@public.gmane.org ---
+Bruno, the patch does not seem to help (at least for me).
+I also have this issue with GK107. Not sure if there's anything useful in this
+kernel log, I just tried ignoring the HUB_INIT timeout to see if it spat out
+anything more interesting: http://ix.io/fzc
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420237189.48dE331.24677
-Date: Fri, 2 Jan 2015 22:19:49 +0000
+--1420237234.0fc7aBd5.25089
+Date: Fri, 2 Jan 2015 22:20:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c2">Comment # 2</a>
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c35">Comment # 35</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983">bug 87983</a>
-              from <span class="vcard"><a class="email" href="mailto:bofh666&#64;gmx.at" title="bofh666&#64;gmx.at">bofh666&#64;gmx.at</a>
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:nshp&#64;protonmail.ch" title="nshp&#64;protonmail.ch">nshp&#64;protonmail.ch</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111675" name="attach_111675" title="Xorg.0.log">attachment 111675</a> <a href="attachment.cgi?id=111675&amp;action=edit" title="Xorg.0.log">[details]</a></span>
-Xorg.0.log</pre>
+        <pre>Bruno, the patch does not seem to help (at least for me).
+I also have this issue with GK107. Not sure if there's anything useful in this
+kernel log, I just tried ignoring the HUB_INIT timeout to see if it spat out
+anything more interesting: <a href="http://ix.io/fzc">http://ix.io/fzc</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +79,9 @@ Xorg.0.log</pre>
     </body>
 </html>
 
---1420237189.48dE331.24677--
+--1420237234.0fc7aBd5.25089--
 
---===============0900225856==
+--===============1465195120==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0900225856==--
+--===============1465195120==--
