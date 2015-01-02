@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87983] nouveau E[Xorg.bin[1119]] failed to idle
  channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)
-Date: Fri, 02 Jan 2015 22:40:27 +0000
-Message-ID: <bug-87983-8800-FR7EdZSGOy@http.bugs.freedesktop.org/>
+Date: Fri, 02 Jan 2015 22:45:10 +0000
+Message-ID: <bug-87983-8800-iwk4g0gQhf@http.bugs.freedesktop.org/>
 References: <bug-87983-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1552489292=="
+Content-Type: multipart/mixed; boundary="===============0403016642=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87983-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1552489292==
-Content-Type: multipart/alternative; boundary="1420238427.d6FFA3E1.3537"; charset="UTF-8"
+--===============0403016642==
+Content-Type: multipart/alternative; boundary="1420238709.C8b231.5831"; charset="UTF-8"
 
 
---1420238427.d6FFA3E1.3537
-Date: Fri, 2 Jan 2015 22:40:27 +0000
+--1420238709.C8b231.5831
+Date: Fri, 2 Jan 2015 22:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87983
 
---- Comment #5 from bofh666-RbZlAiThDcE@public.gmane.org ---
-Booting with nouveau.config=NvMSI=0 is a working.
-Thanks for the hint, now to find some info what that actually does :-)
+--- Comment #6 from bofh666-RbZlAiThDcE@public.gmane.org ---
+As i have a solution for my issue i wonder whether i should change the status
+to resolved already.
+I'd still prefer to find out why the parameter is necessary.
+If the logic when it is necessary is known there might be a way to get the
+Fedora installer to automatically set it.
+
+Suggestions whether to leave this open and provide more information or to close
+it are welcome :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420238427.d6FFA3E1.3537
-Date: Fri, 2 Jan 2015 22:40:27 +0000
+--1420238709.C8b231.5831
+Date: Fri, 2 Jan 2015 22:45:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87983">bug 87983</a>
               from <span class="vcard"><a class="email" href="mailto:bofh666&#64;gmx.at" title="bofh666&#64;gmx.at">bofh666&#64;gmx.at</a>
 </span></b>
-        <pre>Booting with nouveau.config=NvMSI=0 is a working.
-Thanks for the hint, now to find some info what that actually does :-)</pre>
+        <pre>As i have a solution for my issue i wonder whether i should change the status
+to resolved already.
+I'd still prefer to find out why the parameter is necessary.
+If the logic when it is necessary is known there might be a way to get the
+Fedora installer to automatically set it.
+
+Suggestions whether to leave this open and provide more information or to close
+it are welcome :)</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +87,9 @@ Thanks for the hint, now to find some info what that actually does :-)</pre>
     </body>
 </html>
 
---1420238427.d6FFA3E1.3537--
+--1420238709.C8b231.5831--
 
---===============1552489292==
+--===============0403016642==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1552489292==--
+--===============0403016642==--
