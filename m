@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87942] [NVE7] Unable to use nouveau
-Date: Thu, 01 Jan 2015 21:44:41 +0000
-Message-ID: <bug-87942-8800-U0qof2CCNn@http.bugs.freedesktop.org/>
-References: <bug-87942-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81363] [NV84] Black screen after UDEV is intialized
+Date: Fri, 02 Jan 2015 02:09:19 +0000
+Message-ID: <bug-81363-8800-Q5NgrksPHo@http.bugs.freedesktop.org/>
+References: <bug-81363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1508331733=="
+Content-Type: multipart/mixed; boundary="===============0138433873=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87942-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1508331733==
-Content-Type: multipart/alternative; boundary="1420148681.D07A1.31410"; charset="UTF-8"
+--===============0138433873==
+Content-Type: multipart/alternative; boundary="1420164558.aedFD4581.6788"; charset="UTF-8"
 
 
---1420148681.D07A1.31410
-Date: Thu, 1 Jan 2015 21:44:41 +0000
+--1420164558.aedFD4581.6788
+Date: Fri, 2 Jan 2015 02:09:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87942
+https://bugs.freedesktop.org/show_bug.cgi?id=81363
 
---- Comment #11 from bruno.pagani-vYW+cPY1g1pg9hUCZPvPmw@public.gmane.org ---
-Oh, and thank you for you very quick answers and your help figuring this issue
-out!
+--- Comment #10 from Jeff <jrsx13-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+kernel 3.18 has the same issue
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420148681.D07A1.31410
-Date: Thu, 1 Jan 2015 21:44:41 +0000
+--1420164558.aedFD4581.6788
+Date: Fri, 2 Jan 2015 02:09:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,16 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] Unable to use nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87942#c11">Comment # 11</a>
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] Unable to use nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87942">bug 87942</a>
-              from <span class="vcard"><a class="email" href="mailto:bruno.pagani&#64;ens-lyon.org" title="bruno.pagani&#64;ens-lyon.org">bruno.pagani&#64;ens-lyon.org</a>
+   title="NEW - [NV84] Black screen after UDEV is intialized"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81363">bug 81363</a>
+              from <span class="vcard"><a class="email" href="mailto:jrsx13&#64;gmail.com" title="Jeff &lt;jrsx13&#64;gmail.com&gt;"> <span class="fn">Jeff</span></a>
 </span></b>
-        <pre>Oh, and thank you for you very quick answers and your help figuring this issue
-out!</pre>
+        <pre>kernel 3.18 has the same issue</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +72,9 @@ out!</pre>
     </body>
 </html>
 
---1420148681.D07A1.31410--
+--1420164558.aedFD4581.6788--
 
---===============1508331733==
+--===============0138433873==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1508331733==--
+--===============0138433873==--
