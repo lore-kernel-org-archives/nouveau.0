@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87983] nouveau E[Xorg.bin[1119]] failed to idle
  channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)
-Date: Fri, 02 Jan 2015 22:19:06 +0000
-Message-ID: <bug-87983-8800-kdnczlC5ue@http.bugs.freedesktop.org/>
+Date: Fri, 02 Jan 2015 22:19:49 +0000
+Message-ID: <bug-87983-8800-Hy3P08marD@http.bugs.freedesktop.org/>
 References: <bug-87983-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0916003622=="
+Content-Type: multipart/mixed; boundary="===============0900225856=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87983-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0916003622==
-Content-Type: multipart/alternative; boundary="1420237146.dca16B1.24243"; charset="UTF-8"
+--===============0900225856==
+Content-Type: multipart/alternative; boundary="1420237189.48dE331.24677"; charset="UTF-8"
 
 
---1420237146.dca16B1.24243
-Date: Fri, 2 Jan 2015 22:19:06 +0000
+--1420237189.48dE331.24677
+Date: Fri, 2 Jan 2015 22:19:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87983
 
---- Comment #1 from bofh666-RbZlAiThDcE@public.gmane.org ---
-Created attachment 111674
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111674&action=edit
-lspci -vv
-
-complete output of lspci -vv, you are probably only interested in details of
-device 02:00.0
+--- Comment #2 from bofh666-RbZlAiThDcE@public.gmane.org ---
+Created attachment 111675
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111675&action=edit
+Xorg.0.log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420237146.dca16B1.24243
-Date: Fri, 2 Jan 2015 22:19:06 +0000
+--1420237189.48dE331.24677
+Date: Fri, 2 Jan 2015 22:19:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau E[Xorg.bin[1119]] failed to idle channel 0xcccc0001 on G86 [GeForce 8500 GT] (rev a1)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87983">bug 87983</a>
               from <span class="vcard"><a class="email" href="mailto:bofh666&#64;gmx.at" title="bofh666&#64;gmx.at">bofh666&#64;gmx.at</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111674" name="attach_111674" title="lspci -vv">attachment 111674</a> <a href="attachment.cgi?id=111674&amp;action=edit" title="lspci -vv">[details]</a></span>
-lspci -vv
-
-complete output of lspci -vv, you are probably only interested in details of
-device 02:00.0</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111675" name="attach_111675" title="Xorg.0.log">attachment 111675</a> <a href="attachment.cgi?id=111675&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +76,9 @@ device 02:00.0</pre>
     </body>
 </html>
 
---1420237146.dca16B1.24243--
+--1420237189.48dE331.24677--
 
---===============0916003622==
+--===============0900225856==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0916003622==--
+--===============0900225856==--
