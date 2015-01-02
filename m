@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87983] [NV86] GPU hangs on start,
-	disabling MSI fixes it
-Date: Fri, 02 Jan 2015 23:04:29 +0000
-Message-ID: <bug-87983-8800-qVtzhvqc90@http.bugs.freedesktop.org/>
-References: <bug-87983-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v2] nv50: enable texture compression
+Date: Sat,  3 Jan 2015 00:09:53 +0100
+Message-ID: <1420240193-16070-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+References: <CAKb7UviwHNX-+bvzrafi13dnsJdm1fiA95miPTGdgTn7Oh_9kg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1511127036=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87983-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UviwHNX-+bvzrafi13dnsJdm1fiA95miPTGdgTn7Oh_9kg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,131 +20,54 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1511127036==
-Content-Type: multipart/alternative; boundary="1420239869.58Ea21.14651"; charset="UTF-8"
-
-
---1420239869.58Ea21.14651
-Date: Fri, 2 Jan 2015 23:04:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87983
-
---- Comment #9 from bofh666-RbZlAiThDcE@public.gmane.org ---
-Output from `cat /proc/interrupts` in ssh after reenabling msi:
-           CPU0       CPU1       
-  0:        141          0   IO-APIC-edge      timer
-  1:         12          0   IO-APIC-edge      i8042
-  7:          0          0   IO-APIC-edge      parport0
-  8:          0          0   IO-APIC-edge      rtc0
-  9:          0          0   IO-APIC-fasteoi   acpi
- 14:        174          0   IO-APIC-edge      pata_via
- 15:          0          0   IO-APIC-edge      pata_via
- 20:          0          0   IO-APIC  20-fasteoi   uhci_hcd:usb2
- 21:       6405          0   IO-APIC  21-fasteoi   ehci_hcd:usb1,
-uhci_hcd:usb4, sata_via
- 22:         39          0   IO-APIC  22-fasteoi   uhci_hcd:usb3
- 23:        286          0   IO-APIC  23-fasteoi   uhci_hcd:usb5, enp0s18
- 29:          0          0   PCI-MSI-edge      nouveau
- 30:       6171          0   PCI-MSI-edge      snd_hda_intel
-NMI:         22         25   Non-maskable interrupts
-LOC:    1223029     976317   Local timer interrupts
-SPU:          0          0   Spurious interrupts
-PMI:         22         25   Performance monitoring interrupts
-IWI:          0          0   IRQ work interrupts
-RTR:          0          0   APIC ICR read retries
-RES:      13372      12819   Rescheduling interrupts
-CAL:        282        432   Function call interrupts
-TLB:         42         38   TLB shootdowns
-TRM:          0          0   Thermal event interrupts
-THR:          0          0   Threshold APIC interrupts
-MCE:          0          0   Machine check exceptions
-MCP:          1          1   Machine check polls
-THR:          0          0   Hypervisor callback interrupts
-ERR:          0
-MIS:          0
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420239869.58Ea21.14651
-Date: Fri, 2 Jan 2015 23:04:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] GPU hangs on start, disabling MSI fixes it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] GPU hangs on start, disabling MSI fixes it"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87983">bug 87983</a>
-              from <span class="vcard"><a class="email" href="mailto:bofh666&#64;gmx.at" title="bofh666&#64;gmx.at">bofh666&#64;gmx.at</a>
-</span></b>
-        <pre>Output from `cat /proc/interrupts` in ssh after reenabling msi:
-           CPU0       CPU1       
-  0:        141          0   IO-APIC-edge      timer
-  1:         12          0   IO-APIC-edge      i8042
-  7:          0          0   IO-APIC-edge      parport0
-  8:          0          0   IO-APIC-edge      rtc0
-  9:          0          0   IO-APIC-fasteoi   acpi
- 14:        174          0   IO-APIC-edge      pata_via
- 15:          0          0   IO-APIC-edge      pata_via
- 20:          0          0   IO-APIC  20-fasteoi   uhci_hcd:usb2
- 21:       6405          0   IO-APIC  21-fasteoi   ehci_hcd:usb1,
-uhci_hcd:usb4, sata_via
- 22:         39          0   IO-APIC  22-fasteoi   uhci_hcd:usb3
- 23:        286          0   IO-APIC  23-fasteoi   uhci_hcd:usb5, enp0s18
- 29:          0          0   PCI-MSI-edge      nouveau
- 30:       6171          0   PCI-MSI-edge      snd_hda_intel
-NMI:         22         25   Non-maskable interrupts
-LOC:    1223029     976317   Local timer interrupts
-SPU:          0          0   Spurious interrupts
-PMI:         22         25   Performance monitoring interrupts
-IWI:          0          0   IRQ work interrupts
-RTR:          0          0   APIC ICR read retries
-RES:      13372      12819   Rescheduling interrupts
-CAL:        282        432   Function call interrupts
-TLB:         42         38   TLB shootdowns
-TRM:          0          0   Thermal event interrupts
-THR:          0          0   Threshold APIC interrupts
-MCE:          0          0   Machine check exceptions
-MCP:          1          1   Machine check polls
-THR:          0          0   Hypervisor callback interrupts
-ERR:          0
-MIS:          0</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420239869.58Ea21.14651--
-
---===============1511127036==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1511127036==--
+V2UgZW5hYmxlIGNvbXByZXNzaW9uIG9ubHkgZm9yIHNvbWUgc3VwcG9ydGVkIGZvcm1hdHMKClN1
+Z2dlc3RlZC1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpTaWduZWQtb2Zm
+LWJ5OiBUb2JpYXMgS2xhdXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0u
+ZGU+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0cmVlLmMg
+fCAyMyArKysrKysrKysrKysrKysrKysrKystLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L252NTAvbnY1MF9zY3JlZW4uYyAgfCAgNyArKysrKysrCiAyIGZpbGVzIGNoYW5nZWQsIDI4IGlu
+c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0cmVlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwppbmRleCAxYWFjYWVjLi4xM2VkOGEzIDEwMDY0NAot
+LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYworKysg
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwpAQCAtNjUs
+OCArNjUsNyBAQCBudjUwX3RleF9jaG9vc2VfdGlsZV9kaW1zKHVuc2lnbmVkIG54LCB1bnNpZ25l
+ZCBueSwgdW5zaWduZWQgbnopCiBzdGF0aWMgdWludDMyX3QKIG52NTBfbXRfY2hvb3NlX3N0b3Jh
+Z2VfdHlwZShzdHJ1Y3QgbnY1MF9taXB0cmVlICptdCwgYm9vbGVhbiBjb21wcmVzc2VkKQogewot
+ICAgY29uc3QgdW5zaWduZWQgbXMgPSBtdC0+bXNfeCArIG10LT5tc195OwotCisgICBjb25zdCB1
+bnNpZ25lZCBtcyA9IHV0aWxfbG9nYmFzZTIobXQtPmJhc2UuYmFzZS5ucl9zYW1wbGVzKTsKICAg
+IHVpbnQzMl90IHRpbGVfZmxhZ3M7CiAKICAgIGlmICh1bmxpa2VseShtdC0+YmFzZS5iYXNlLmZs
+YWdzICYgTk9VVkVBVV9SRVNPVVJDRV9GTEFHX0xJTkVBUikpCkBAIC05Niw2ICs5NSwyNiBAQCBu
+djUwX210X2Nob29zZV9zdG9yYWdlX3R5cGUoc3RydWN0IG52NTBfbWlwdHJlZSAqbXQsIGJvb2xl
+YW4gY29tcHJlc3NlZCkKICAgICAgIHRpbGVfZmxhZ3MgPSAweDYwICsgbXM7CiAgICAgICBicmVh
+azsKICAgIGRlZmF1bHQ6CisgICAgICBzd2l0Y2ggKG10LT5iYXNlLmJhc2UuZm9ybWF0KSB7Cisg
+ICAgICBjYXNlIFBJUEVfRk9STUFUX1IxNkcxNkIxNkExNl9GTE9BVDoKKyAgICAgIGNhc2UgUElQ
+RV9GT1JNQVRfUjE2RzE2QjE2WDE2X0ZMT0FUOgorICAgICAgY2FzZSBQSVBFX0ZPUk1BVF9SOEc4
+QjhBOF9VTk9STToKKyAgICAgIGNhc2UgUElQRV9GT1JNQVRfUjhHOEI4QThfU1JHQjoKKyAgICAg
+IGNhc2UgUElQRV9GT1JNQVRfQjhHOFI4QThfVU5PUk06CisgICAgICBjYXNlIFBJUEVfRk9STUFU
+X0I4RzhSOEE4X1NSR0I6CisgICAgICBjYXNlIFBJUEVfRk9STUFUX1IxMEcxMEIxMEEyX1VOT1JN
+OgorICAgICAgY2FzZSBQSVBFX0ZPUk1BVF9CMTBHMTBSMTBBMl9VTk9STToKKyAgICAgIGNhc2Ug
+UElQRV9GT1JNQVRfUjExRzExQjEwX0ZMT0FUOgorICAgICAgY2FzZSBQSVBFX0ZPUk1BVF9COEc4
+UjhYOF9VTk9STToKKyAgICAgIGNhc2UgUElQRV9GT1JNQVRfQjhHOFI4WDhfU1JHQjoKKyAgICAg
+IGNhc2UgUElQRV9GT1JNQVRfUjhHOEI4WDhfVU5PUk06CisgICAgICBjYXNlIFBJUEVfRk9STUFU
+X1I4RzhCOFg4X1NSR0I6CisgICAgICAgICAvKiBBbGxvdyBjb21wcmVzc2lvbiBmb3IgdGhlc2Ug
+Zm9ybWF0cyBpZiBkZXNpcmVkICovCisgICAgICAgICBicmVhazsKKyAgICAgIGRlZmF1bHQ6Cisg
+ICAgICAgICBjb21wcmVzc2VkID0gZmFsc2U7CisgICAgICAgICBicmVhazsKKyAgICAgIH0KICAg
+ICAgIHN3aXRjaCAodXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZWJpdHMobXQtPmJhc2UuYmFzZS5m
+b3JtYXQpKSB7CiAgICAgICBjYXNlIDEyODoKICAgICAgICAgIGFzc2VydChtcyA8IDMpOwpkaWZm
+IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYyBi
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKaW5kZXggMmQ4
+MzQ3Yi4uZGEyMzdmOSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252
+NTAvbnY1MF9zY3JlZW4uYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9u
+djUwX3NjcmVlbi5jCkBAIC00NDksNiArNDQ5LDEzIEBAIG52NTBfc2NyZWVuX2luaXRfaHdjdHgo
+c3RydWN0IG52NTBfc2NyZWVuICpzY3JlZW4pCiAgICAgICBQVVNIX0RBVEEgKHB1c2gsIDB4MTgp
+OwogICAgfQogCisgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoWkVUQV9DT01QX0VOQUJMRSks
+IDEpOworICAgUFVTSF9EQVRBKHB1c2gsIHNjcmVlbi0+YmFzZS5kZXZpY2UtPmRybV92ZXJzaW9u
+ID49IDB4MDEwMDAxMDEpOworCisgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoUlRfQ09NUF9F
+TkFCTEUoMCkpLCA4KTsKKyAgIGZvciAoaSA9IDA7IGkgPCA4OyArK2kpCisgICAgICBQVVNIX0RB
+VEEocHVzaCwgc2NyZWVuLT5iYXNlLmRldmljZS0+ZHJtX3ZlcnNpb24gPj0gMHgwMTAwMDEwMSk7
+CisKICAgIEJFR0lOX05WMDQocHVzaCwgTlY1MF8zRChSVF9DT05UUk9MKSwgMSk7CiAgICBQVVNI
+X0RBVEEgKHB1c2gsIDEpOwogCi0tIAoyLjIuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
