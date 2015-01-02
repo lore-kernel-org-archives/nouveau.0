@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] nv50: enable texture compression
-Date: Thu, 1 Jan 2015 22:26:50 -0500
-Message-ID: <CAKb7UviwHNX-+bvzrafi13dnsJdm1fiA95miPTGdgTn7Oh_9kg@mail.gmail.com>
-References: <1420167363-3297-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87819] [NVAC] EQ overflowing
+Date: Fri, 02 Jan 2015 13:01:41 +0000
+Message-ID: <bug-87819-8800-R9oOHIcyvo@http.bugs.freedesktop.org/>
+References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1661369590=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1420167363-3297-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,65 +16,150 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXMgSSBtZW50aW9uZWQgb24gSVJDLCBJIHRoaW5rIHRoYXQgc29tZSBjb2xvciBmb3JtYXRzIGFy
-ZQpjb21wcmVzc2libGUuIFdvdWxkIGJlIG5pY2UgdG8gZmlndXJlIG91dCB3aGljaC4uLiBlLmcu
-IHRyYWNlIHRoZQpibG9iLCBvciBqdXN0IHRyeSBzdHVmZi4KCk9uIFRodSwgSmFuIDEsIDIwMTUg
-YXQgOTo1NiBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBt
-bmkudGhtLmRlPiB3cm90ZToKPiBXZSBlbmFibGUgY29tcHJlc3Npb24gb25seSBmb3Igc29tZSBz
-dXBwb3J0ZWQgZm9ybWF0cwo+Cj4gU3VnZ2VzdGVkLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+Cj4gU2lnbmVkLW9mZi1ieTogVG9iaWFzIEtsYXVzbWFubiA8dG9iaWFzLmpv
-aGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgo+IC0tLQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYyB8ICA0ICsrLS0KPiAgc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYyAgfCAxMSArKysrKysrKystLQo+ICAyIGZp
-bGVzIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0t
-Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0cmVlLmMgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwo+IGluZGV4IDFh
-YWNhZWMuLmE0MGU2ZDMgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252NTAvbnY1MF9taXB0cmVlLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnY1MC9udjUwX21pcHRyZWUuYwo+IEBAIC02NSw4ICs2NSw3IEBAIG52NTBfdGV4X2Nob29zZV90
-aWxlX2RpbXModW5zaWduZWQgbngsIHVuc2lnbmVkIG55LCB1bnNpZ25lZCBueikKPiAgc3RhdGlj
-IHVpbnQzMl90Cj4gIG52NTBfbXRfY2hvb3NlX3N0b3JhZ2VfdHlwZShzdHJ1Y3QgbnY1MF9taXB0
-cmVlICptdCwgYm9vbGVhbiBjb21wcmVzc2VkKQo+ICB7Cj4gLSAgIGNvbnN0IHVuc2lnbmVkIG1z
-ID0gbXQtPm1zX3ggKyBtdC0+bXNfeTsKPiAtCj4gKyAgIGNvbnN0IHVuc2lnbmVkIG1zID0gdXRp
-bF9sb2diYXNlMihtdC0+YmFzZS5iYXNlLm5yX3NhbXBsZXMpOwo+ICAgICB1aW50MzJfdCB0aWxl
-X2ZsYWdzOwo+Cj4gICAgIGlmICh1bmxpa2VseShtdC0+YmFzZS5iYXNlLmZsYWdzICYgTk9VVkVB
-VV9SRVNPVVJDRV9GTEFHX0xJTkVBUikpCj4gQEAgLTk2LDYgKzk1LDcgQEAgbnY1MF9tdF9jaG9v
-c2Vfc3RvcmFnZV90eXBlKHN0cnVjdCBudjUwX21pcHRyZWUgKm10LCBib29sZWFuIGNvbXByZXNz
-ZWQpCj4gICAgICAgIHRpbGVfZmxhZ3MgPSAweDYwICsgbXM7Cj4gICAgICAgIGJyZWFrOwo+ICAg
-ICBkZWZhdWx0Ogo+ICsgICAgICBjb21wcmVzc2VkID0gZmFsc2U7Cj4gICAgICAgIHN3aXRjaCAo
-dXRpbF9mb3JtYXRfZ2V0X2Jsb2Nrc2l6ZWJpdHMobXQtPmJhc2UuYmFzZS5mb3JtYXQpKSB7Cj4g
-ICAgICAgIGNhc2UgMTI4Ogo+ICAgICAgICAgICBhc3NlcnQobXMgPCAzKTsKPiBkaWZmIC0tZ2l0
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKPiBpbmRleCAyZDgzNDdi
-Li44ZDc1OWE3IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUw
-L252NTBfc2NyZWVuLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9u
-djUwX3NjcmVlbi5jCj4gQEAgLTM5MSw3ICszOTEsNyBAQCBudjUwX3NjcmVlbl9mZW5jZV91cGRh
-dGUoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuKQo+ICB9Cj4KPiAgc3RhdGljIHZvaWQKPiAt
-bnY1MF9zY3JlZW5faW5pdF9od2N0eChzdHJ1Y3QgbnY1MF9zY3JlZW4gKnNjcmVlbikKPiArbnY1
-MF9zY3JlZW5faW5pdF9od2N0eChzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldiwgc3RydWN0IG52
-NTBfc2NyZWVuICpzY3JlZW4pCj4gIHsKPiAgICAgc3RydWN0IG5vdXZlYXVfcHVzaGJ1ZiAqcHVz
-aCA9IHNjcmVlbi0+YmFzZS5wdXNoYnVmOwo+ICAgICBzdHJ1Y3QgbnYwNF9maWZvICpmaWZvOwo+
-IEBAIC00NDksNiArNDQ5LDEzIEBAIG52NTBfc2NyZWVuX2luaXRfaHdjdHgoc3RydWN0IG52NTBf
-c2NyZWVuICpzY3JlZW4pCj4gICAgICAgIFBVU0hfREFUQSAocHVzaCwgMHgxOCk7Cj4gICAgIH0K
-Pgo+ICsgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoWkVUQV9DT01QX0VOQUJMRSksIDEpOwo+
-ICsgICBQVVNIX0RBVEEocHVzaCwgZGV2LT5kcm1fdmVyc2lvbiA+PSAweDAxMDAwMTAxKTsKCnNj
-cmVlbi0+YmFzZS5kZXZpY2UKCkFuZCB0aGVuIG5vIG5lZWQgdG8gcGFzcyBkZXYgaW4sIEkgdGhp
-bmsuCgo+ICsKPiArICAgQkVHSU5fTlYwNChwdXNoLCBOVjUwXzNEKFJUX0NPTVBfRU5BQkxFKDAp
-KSwgOCk7Cj4gKyAgIGZvciAoaSA9IDA7IGkgPCA4OyArK2kpCj4gKyAgICAgIFBVU0hfREFUQShw
-dXNoLCBkZXYtPmRybV92ZXJzaW9uID49IDB4MDEwMDAxMDEpOwo+ICsKPiAgICAgQkVHSU5fTlYw
-NChwdXNoLCBOVjUwXzNEKFJUX0NPTlRST0wpLCAxKTsKPiAgICAgUFVTSF9EQVRBIChwdXNoLCAx
-KTsKPgo+IEBAIC04NzEsNyArODc4LDcgQEAgbnY1MF9zY3JlZW5fY3JlYXRlKHN0cnVjdCBub3V2
-ZWF1X2RldmljZSAqZGV2KQo+ICAgICBpZiAoIW52NTBfYmxpdHRlcl9jcmVhdGUoc2NyZWVuKSkK
-PiAgICAgICAgZ290byBmYWlsOwo+Cj4gLSAgIG52NTBfc2NyZWVuX2luaXRfaHdjdHgoc2NyZWVu
-KTsKPiArICAgbnY1MF9zY3JlZW5faW5pdF9od2N0eChkZXYsIHNjcmVlbik7Cj4KPiAgICAgbm91
-dmVhdV9mZW5jZV9uZXcoJnNjcmVlbi0+YmFzZSwgJnNjcmVlbi0+YmFzZS5mZW5jZS5jdXJyZW50
-LCBGQUxTRSk7Cj4KPiAtLQo+IDIuMi4xCj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1661369590==
+Content-Type: multipart/alternative; boundary="1420203701.326dcCfB0.19131"; charset="UTF-8"
+
+
+--1420203701.326dcCfB0.19131
+Date: Fri, 2 Jan 2015 13:01:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87819
+
+--- Comment #3 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+In Firefox, I was NOT doing anything in particular.
+
+I am NOT able to compile a Linux kernel, nor compile a custom module and
+include it inside a Linux Kernel.
+
+The machine equipped with NVAC is an iMac 9,1 used in production under Ubuntu
+with package 'nvidia-331-updates'.
+So, I am just able to test from time to time, at night, an upstream Linux
+Kernel published as an Ubuntu package at
+http://kernel.ubuntu.com/~kernel-ppa/mainline
+
+Concerning the correct quantity of stolen memory to be used as VRAM :
+Using the graphical driver coming from Ubuntu package 'nvidia-331-updates' :
+
+The command 'nvidia-settings -q VideoRam -q GPUMemoryInterface' provides :
+-  VideoRam           = 262144
+-  GPUMemoryInterface = 128
+
+$ sudo lspci -nn -vv -s 03:00
+03:00.0 VGA compatible controller [0300]: NVIDIA Corporation C79 [GeForce 9400]
+[10de:0867] (rev b1) (prog-if 00 [VGA controller])
+    Subsystem: Apple Inc. iMac 9,1 [106b:00ad]
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort-
+<MAbort- >SERR- <PERR- INTx-
+    Latency: 0
+    Interrupt: pin A routed to IRQ 46
+    Region 0: Memory at d2000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at d0000000 (64-bit, prefetchable) [size=32M]
+    Region 5: I/O ports at 1000 [size=128]
+    [virtual] Expansion ROM at d3000000 [disabled] [size=128K]
+    Capabilities: [60] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Address: 00000000fee0300c  Data: 4192
+    Kernel driver in use: nvidia
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1420203701.326dcCfB0.19131
+Date: Fri, 2 Jan 2015 13:01:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
+              from <span class="vcard"><a class="email" href="mailto:eurbah&#64;free.fr" title="Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <span class="fn">Etienne URBAH</span></a>
+</span></b>
+        <pre>In Firefox, I was NOT doing anything in particular.
+
+I am NOT able to compile a Linux kernel, nor compile a custom module and
+include it inside a Linux Kernel.
+
+The machine equipped with NVAC is an iMac 9,1 used in production under Ubuntu
+with package 'nvidia-331-updates'.
+So, I am just able to test from time to time, at night, an upstream Linux
+Kernel published as an Ubuntu package at
+<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline">http://kernel.ubuntu.com/~kernel-ppa/mainline</a>
+
+Concerning the correct quantity of stolen memory to be used as VRAM :
+Using the graphical driver coming from Ubuntu package 'nvidia-331-updates' :
+
+The command 'nvidia-settings -q VideoRam -q GPUMemoryInterface' provides :
+-  VideoRam           = 262144
+-  GPUMemoryInterface = 128
+
+$ sudo lspci -nn -vv -s 03:00
+03:00.0 VGA compatible controller [0300]: NVIDIA Corporation C79 [GeForce 9400]
+[10de:0867] (rev b1) (prog-if 00 [VGA controller])
+    Subsystem: Apple Inc. iMac 9,1 [106b:00ad]
+    Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr-
+Stepping- SERR- FastB2B- DisINTx-
+    Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort-
+&lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+    Latency: 0
+    Interrupt: pin A routed to IRQ 46
+    Region 0: Memory at d2000000 (32-bit, non-prefetchable) [size=16M]
+    Region 1: Memory at c0000000 (64-bit, prefetchable) [size=256M]
+    Region 3: Memory at d0000000 (64-bit, prefetchable) [size=32M]
+    Region 5: I/O ports at 1000 [size=128]
+    [virtual] Expansion ROM at d3000000 [disabled] [size=128K]
+    Capabilities: [60] Power Management version 2
+        Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA
+PME(D0-,D1-,D2-,D3hot-,D3cold-)
+        Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Address: 00000000fee0300c  Data: 4192
+    Kernel driver in use: nvidia</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1420203701.326dcCfB0.19131--
+
+--===============1661369590==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1661369590==--
