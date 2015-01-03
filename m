@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
  (G94) constantly too high
-Date: Sat, 03 Jan 2015 02:58:50 +0000
-Message-ID: <bug-87885-8800-36wamWY5uO@http.bugs.freedesktop.org/>
+Date: Sat, 03 Jan 2015 03:17:02 +0000
+Message-ID: <bug-87885-8800-e46RVcLHVj@http.bugs.freedesktop.org/>
 References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2032775088=="
+Content-Type: multipart/mixed; boundary="===============0329562600=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,59 +21,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2032775088==
-Content-Type: multipart/alternative; boundary="1420253930.1DaA8a31.16112"; charset="UTF-8"
+--===============0329562600==
+Content-Type: multipart/alternative; boundary="1420255021.535381.22996"; charset="UTF-8"
 
 
---1420253930.1DaA8a31.16112
-Date: Sat, 3 Jan 2015 02:58:50 +0000
+--1420255021.535381.22996
+Date: Sat, 3 Jan 2015 03:17:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87885
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to TM from comment #8)
-> Hmm; I installed the proprietary driver now (strange enough: I had to use
-> the G02 driver, not the G03 one which I thought I was supposed to use
-> according to web pages like https://en.opensuse.org/SDB:NVIDIA_drivers).
-> It's running fine, I can see in the nvidia-settings utility that the fan
-> speed is reported to be at 35%.
-> 
-> Running
->   nvapoke e114 21c
->   nvapoke e118 8000010e
-> doesn't have any effect.
-> 
-> Nevertheless, here's the output of
-> ./nvapeek e114 20
-> _after_ running the above commands:
-> # ./nvapeek e114 20
-> 0000e114: 0000021c 0000010e 0000021c 030000bd
-> 0000e124: 10000000 00000000 0001010e 00000000
-> 
-> Does this help in any way?
+--- Comment #10 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
+Thanks for the clarification. I was already suspecting I was doing sth wrong :)
 
-Martin's comments weren't entirely clear... what he meant was
+So, after a reboot, here's what nvapeek looks like:
+# ./nvapeek 20000 1000
+00020000: ca000114 00000018 c00836f7 00009c40
+00020010: 00000000 fe4c038d 9e9c9a9a fe0202ee
+00020020: 02080e07 07000a09 000a0802 00050601
+00020030: 02020801 00091006 15020805 1a056000
+00020040: 07000201 00ff0239 000000ff 44072a0b
+00020050: 00000a07 ffffffff ffffffff 00000000
+00020060: 00040001 40400000 ffff8480 ffffffff
+00020070: ffffffff 40000104 01100000 00000000
+00020080: 100c0736 00000000 00000000 00000000
+...
+000200a0: 01000000 00000003 c10910de 00000004
+...
+00020100: 00000000 1a114c99 082a0000 00000000
+00020110: 00000000 00000000 00000000 00876530
+00020120: 00000241 00000200 00000000 00000000
+...
+00020400: 00000032 00000000 00000000 00000001
+00020410: 00000000 00000069 00000000 00000000
+...
+00020440: 00000000 00000080 00000000 00000000
+...
+00020480: 00000087 0000000a 00000000 00000000
+...
+000204c0: 00000068 00000000 00000080 0000005d
+...
+000207f0: 00000000 00000000 000010de 00000001
+...
 
-(a) See if those commands fix things on top of nouveau. And if not, then:
-
-(b) On the blob, run the nvapeek. Running the pokes first overwrites the values
-which negates the usefulness of the peek.
-
-Actually to preempt further questions just run
-
-nvapeek 20000 1000
-nvapeek e114 20
-
-when running blob drivers. (And no pokes.)
+# ./nvapeek e114 20
+0000e114: 00000001 00000000 0000021c 030000bd
+0000e124: 10000000 00000000 0001010e 00000000
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420253930.1DaA8a31.16112
-Date: Sat, 3 Jan 2015 02:58:50 +0000
+--1420255021.535381.22996
+Date: Sat, 3 Jan 2015 03:17:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -87,47 +88,48 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
 </span></b>
-        <pre>(In reply to TM from <a href="show_bug.cgi?id=87885#c8">comment #8</a>)
-<span class="quote">&gt; Hmm; I installed the proprietary driver now (strange enough: I had to use
-&gt; the G02 driver, not the G03 one which I thought I was supposed to use
-&gt; according to web pages like <a href="https://en.opensuse.org/SDB:NVIDIA_drivers">https://en.opensuse.org/SDB:NVIDIA_drivers</a>).
-&gt; It's running fine, I can see in the nvidia-settings utility that the fan
-&gt; speed is reported to be at 35%.
-&gt; 
-&gt; Running
-&gt;   nvapoke e114 21c
-&gt;   nvapoke e118 8000010e
-&gt; doesn't have any effect.
-&gt; 
-&gt; Nevertheless, here's the output of
-&gt; ./nvapeek e114 20
-&gt; _after_ running the above commands:
-&gt; # ./nvapeek e114 20
-&gt; 0000e114: 0000021c 0000010e 0000021c 030000bd
-&gt; 0000e124: 10000000 00000000 0001010e 00000000
-&gt; 
-&gt; Does this help in any way?</span >
+        <pre>Thanks for the clarification. I was already suspecting I was doing sth wrong :)
 
-Martin's comments weren't entirely clear... what he meant was
+So, after a reboot, here's what nvapeek looks like:
+# ./nvapeek 20000 1000
+00020000: ca000114 00000018 c00836f7 00009c40
+00020010: 00000000 fe4c038d 9e9c9a9a fe0202ee
+00020020: 02080e07 07000a09 000a0802 00050601
+00020030: 02020801 00091006 15020805 1a056000
+00020040: 07000201 00ff0239 000000ff 44072a0b
+00020050: 00000a07 ffffffff ffffffff 00000000
+00020060: 00040001 40400000 ffff8480 ffffffff
+00020070: ffffffff 40000104 01100000 00000000
+00020080: 100c0736 00000000 00000000 00000000
+...
+000200a0: 01000000 00000003 c10910de 00000004
+...
+00020100: 00000000 1a114c99 082a0000 00000000
+00020110: 00000000 00000000 00000000 00876530
+00020120: 00000241 00000200 00000000 00000000
+...
+00020400: 00000032 00000000 00000000 00000001
+00020410: 00000000 00000069 00000000 00000000
+...
+00020440: 00000000 00000080 00000000 00000000
+...
+00020480: 00000087 0000000a 00000000 00000000
+...
+000204c0: 00000068 00000000 00000080 0000005d
+...
+000207f0: 00000000 00000000 000010de 00000001
+...
 
-(a) See if those commands fix things on top of nouveau. And if not, then:
-
-(b) On the blob, run the nvapeek. Running the pokes first overwrites the values
-which negates the usefulness of the peek.
-
-Actually to preempt further questions just run
-
-nvapeek 20000 1000
-nvapeek e114 20
-
-when running blob drivers. (And no pokes.)</pre>
+# ./nvapeek e114 20
+0000e114: 00000001 00000000 0000021c 030000bd
+0000e124: 10000000 00000000 0001010e 00000000</pre>
         </div>
       </p>
       <hr>
@@ -139,9 +141,9 @@ when running blob drivers. (And no pokes.)</pre>
     </body>
 </html>
 
---1420253930.1DaA8a31.16112--
+--1420255021.535381.22996--
 
---===============2032775088==
+--===============0329562600==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -151,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2032775088==--
+--===============0329562600==--
