@@ -1,13 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v3] nv50: enable texture compression
-Date: Sat,  3 Jan 2015 01:00:08 +0100
-Message-ID: <1420243208-26926-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-References: <54A72EDD.8020501@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
+ (G94) constantly too high
+Date: Sat, 03 Jan 2015 02:53:29 +0000
+Message-ID: <bug-87885-8800-NlfKHX46jF@http.bugs.freedesktop.org/>
+References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1171084109=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54A72EDD.8020501-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +20,105 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2UgZW5hYmxlIGNvbXByZXNzaW9uIG9ubHkgZm9yIHNvbWUgc3VwcG9ydGVkIGZvcm1hdHMKClN1
-Z2dlc3RlZC1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpTaWduZWQtb2Zm
-LWJ5OiBUb2JpYXMgS2xhdXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0u
-ZGU+Ci0tLQp2MjogYWRkIG1vcmUgZm9ybWF0cyBmb3IgY29tcHJlc3Npb24KdjM6IG9ubHkgZW5h
-YmxlIGNvbXByZXNzaW9uIGlmIHN1cHBvcnRlZCBieSBkcm0KCiBzcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYyB8IDIxICsrKysrKysrKysrKysrKysrKy0tLQog
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYyAgfCAgNyArKysr
-KysrCiAyIGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpk
-aWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0cmVl
-LmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwppbmRl
-eCAxYWFjYWVjLi5jYzFhZDY1IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnY1MC9udjUwX21pcHRyZWUuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnY1MC9udjUwX21pcHRyZWUuYwpAQCAtNjUsOCArNjUsNyBAQCBudjUwX3RleF9jaG9vc2VfdGls
-ZV9kaW1zKHVuc2lnbmVkIG54LCB1bnNpZ25lZCBueSwgdW5zaWduZWQgbnopCiBzdGF0aWMgdWlu
-dDMyX3QKIG52NTBfbXRfY2hvb3NlX3N0b3JhZ2VfdHlwZShzdHJ1Y3QgbnY1MF9taXB0cmVlICpt
-dCwgYm9vbGVhbiBjb21wcmVzc2VkKQogewotICAgY29uc3QgdW5zaWduZWQgbXMgPSBtdC0+bXNf
-eCArIG10LT5tc195OwotCisgICBjb25zdCB1bnNpZ25lZCBtcyA9IHV0aWxfbG9nYmFzZTIobXQt
-PmJhc2UuYmFzZS5ucl9zYW1wbGVzKTsKICAgIHVpbnQzMl90IHRpbGVfZmxhZ3M7CiAKICAgIGlm
-ICh1bmxpa2VseShtdC0+YmFzZS5iYXNlLmZsYWdzICYgTk9VVkVBVV9SRVNPVVJDRV9GTEFHX0xJ
-TkVBUikpCkBAIC05Niw2ICs5NSwyMSBAQCBudjUwX210X2Nob29zZV9zdG9yYWdlX3R5cGUoc3Ry
-dWN0IG52NTBfbWlwdHJlZSAqbXQsIGJvb2xlYW4gY29tcHJlc3NlZCkKICAgICAgIHRpbGVfZmxh
-Z3MgPSAweDYwICsgbXM7CiAgICAgICBicmVhazsKICAgIGRlZmF1bHQ6CisgICAgICBjb21wcmVz
-c2VkID0gZmFsc2U7CisgICAgICAvKiBmYWxsdGhyb3VnaCAqLworICAgY2FzZSBQSVBFX0ZPUk1B
-VF9SMTZHMTZCMTZBMTZfRkxPQVQ6CisgICBjYXNlIFBJUEVfRk9STUFUX1IxNkcxNkIxNlgxNl9G
-TE9BVDoKKyAgIGNhc2UgUElQRV9GT1JNQVRfUjhHOEI4QThfVU5PUk06CisgICBjYXNlIFBJUEVf
-Rk9STUFUX1I4RzhCOEE4X1NSR0I6CisgICBjYXNlIFBJUEVfRk9STUFUX0I4RzhSOEE4X1VOT1JN
-OgorICAgY2FzZSBQSVBFX0ZPUk1BVF9COEc4UjhBOF9TUkdCOgorICAgY2FzZSBQSVBFX0ZPUk1B
-VF9SMTBHMTBCMTBBMl9VTk9STToKKyAgIGNhc2UgUElQRV9GT1JNQVRfQjEwRzEwUjEwQTJfVU5P
-Uk06CisgICBjYXNlIFBJUEVfRk9STUFUX1IxMUcxMUIxMF9GTE9BVDoKKyAgIGNhc2UgUElQRV9G
-T1JNQVRfQjhHOFI4WDhfVU5PUk06CisgICBjYXNlIFBJUEVfRk9STUFUX0I4RzhSOFg4X1NSR0I6
-CisgICBjYXNlIFBJUEVfRk9STUFUX1I4RzhCOFg4X1VOT1JNOgorICAgY2FzZSBQSVBFX0ZPUk1B
-VF9SOEc4QjhYOF9TUkdCOgogICAgICAgc3dpdGNoICh1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXpl
-Yml0cyhtdC0+YmFzZS5iYXNlLmZvcm1hdCkpIHsKICAgICAgIGNhc2UgMTI4OgogICAgICAgICAg
-YXNzZXJ0KG1zIDwgMyk7CkBAIC0zMTgsNiArMzMyLDcgQEAgbnY1MF9taXB0cmVlX2NyZWF0ZShz
-dHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sCiAgICBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRl
-diA9IG5vdXZlYXVfc2NyZWVuKHBzY3JlZW4pLT5kZXZpY2U7CiAgICBzdHJ1Y3QgbnY1MF9taXB0
-cmVlICptdCA9IENBTExPQ19TVFJVQ1QobnY1MF9taXB0cmVlKTsKICAgIHN0cnVjdCBwaXBlX3Jl
-c291cmNlICpwdCA9ICZtdC0+YmFzZS5iYXNlOworICAgYm9vbGVhbiBjb21wcmVzc2VkID0gZGV2
-LT5kcm1fdmVyc2lvbiA+PSAweDAxMDAwMTAxOwogICAgaW50IHJldDsKICAgIHVuaW9uIG5vdXZl
-YXVfYm9fY29uZmlnIGJvX2NvbmZpZzsKICAgIHVpbnQzMl90IGJvX2ZsYWdzOwpAQCAtMzMzLDcg
-KzM0OCw3IEBAIG52NTBfbWlwdHJlZV9jcmVhdGUoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVu
-LAogICAgaWYgKHB0LT5iaW5kICYgUElQRV9CSU5EX0xJTkVBUikKICAgICAgIHB0LT5mbGFncyB8
-PSBOT1VWRUFVX1JFU09VUkNFX0ZMQUdfTElORUFSOwogCi0gICBib19jb25maWcubnY1MC5tZW10
-eXBlID0gbnY1MF9tdF9jaG9vc2Vfc3RvcmFnZV90eXBlKG10LCBUUlVFKTsKKyAgIGJvX2NvbmZp
-Zy5udjUwLm1lbXR5cGUgPSBudjUwX210X2Nob29zZV9zdG9yYWdlX3R5cGUobXQsIGNvbXByZXNz
-ZWQpOwogCiAgICBpZiAoIW52NTBfbWlwdHJlZV9pbml0X21zX21vZGUobXQpKSB7CiAgICAgICBG
-UkVFKG10KTsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252
-NTBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVl
-bi5jCmluZGV4IDJkODM0N2IuLmRhMjM3ZjkgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYwpAQCAtNDQ5LDYgKzQ0OSwxMyBAQCBudjUwX3NjcmVl
-bl9pbml0X2h3Y3R4KHN0cnVjdCBudjUwX3NjcmVlbiAqc2NyZWVuKQogICAgICAgUFVTSF9EQVRB
-IChwdXNoLCAweDE4KTsKICAgIH0KIAorICAgQkVHSU5fTlYwNChwdXNoLCBOVjUwXzNEKFpFVEFf
-Q09NUF9FTkFCTEUpLCAxKTsKKyAgIFBVU0hfREFUQShwdXNoLCBzY3JlZW4tPmJhc2UuZGV2aWNl
-LT5kcm1fdmVyc2lvbiA+PSAweDAxMDAwMTAxKTsKKworICAgQkVHSU5fTlYwNChwdXNoLCBOVjUw
-XzNEKFJUX0NPTVBfRU5BQkxFKDApKSwgOCk7CisgICBmb3IgKGkgPSAwOyBpIDwgODsgKytpKQor
-ICAgICAgUFVTSF9EQVRBKHB1c2gsIHNjcmVlbi0+YmFzZS5kZXZpY2UtPmRybV92ZXJzaW9uID49
-IDB4MDEwMDAxMDEpOworCiAgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoUlRfQ09OVFJPTCks
-IDEpOwogICAgUFVTSF9EQVRBIChwdXNoLCAxKTsKIAotLSAKMi4yLjEKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1171084109==
+Content-Type: multipart/alternative; boundary="1420253609.C3ac341.14192"; charset="UTF-8"
+
+
+--1420253609.C3ac341.14192
+Date: Sat, 3 Jan 2015 02:53:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87885
+
+--- Comment #8 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
+Hmm; I installed the proprietary driver now (strange enough: I had to use the
+G02 driver, not the G03 one which I thought I was supposed to use according to
+web pages like https://en.opensuse.org/SDB:NVIDIA_drivers). It's running fine,
+I can see in the nvidia-settings utility that the fan speed is reported to be
+at 35%.
+
+Running
+  nvapoke e114 21c
+  nvapoke e118 8000010e
+doesn't have any effect.
+
+Nevertheless, here's the output of
+./nvapeek e114 20
+_after_ running the above commands:
+# ./nvapeek e114 20
+0000e114: 0000021c 0000010e 0000021c 030000bd
+0000e124: 10000000 00000000 0001010e 00000000
+
+Does this help in any way?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1420253609.C3ac341.14192
+Date: Sat, 3 Jan 2015 02:53:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
+              from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
+</span></b>
+        <pre>Hmm; I installed the proprietary driver now (strange enough: I had to use the
+G02 driver, not the G03 one which I thought I was supposed to use according to
+web pages like <a href="https://en.opensuse.org/SDB:NVIDIA_drivers">https://en.opensuse.org/SDB:NVIDIA_drivers</a>). It's running fine,
+I can see in the nvidia-settings utility that the fan speed is reported to be
+at 35%.
+
+Running
+  nvapoke e114 21c
+  nvapoke e118 8000010e
+doesn't have any effect.
+
+Nevertheless, here's the output of
+./nvapeek e114 20
+_after_ running the above commands:
+# ./nvapeek e114 20
+0000e114: 0000021c 0000010e 0000021c 030000bd
+0000e124: 10000000 00000000 0001010e 00000000
+
+Does this help in any way?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1420253609.C3ac341.14192--
+
+--===============1171084109==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1171084109==--
