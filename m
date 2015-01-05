@@ -1,71 +1,41 @@
 From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH V2 2/4] pwr: make nouveau_pwr_pgob() non-static
-Date: Mon, 5 Jan 2015 09:30:11 +0800
-Message-ID: <54A9E923.1020602@nvidia.com>
-References: <1419239500-19703-1-git-send-email-vinceh@nvidia.com>	<1419239500-19703-2-git-send-email-vinceh@nvidia.com>	<5498C743.9060402@nvidia.com>
- <CACAvsv771pkd+p6eEQPCyYBXzL+YmCOg9CeMQ8Gghe_2=d2r9w@mail.gmail.com>
+Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
+ clamp
+Date: Mon, 5 Jan 2015 14:55:38 +0800
+Message-ID: <54AA356A.8080309@nvidia.com>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>			 <1419331204-26679-2-git-send-email-vinceh@nvidia.com>		 <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com>	 <1419539683.2165.6.camel@lynxeye.de> <54A0C148.6030400@nvidia.com> <1419957752.4082.2.camel@lynxeye.de>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv771pkd+p6eEQPCyYBXzL+YmCOg9CeMQ8Gghe_2=d2r9w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1419957752.4082.2.camel-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
+Cc: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwMS8wNS8yMDE1IDA2OjI5IEFNLCBCZW4gU2tlZ2dzIHdyb3RlOgo+IE9uIFR1ZSwg
-RGVjIDIzLCAyMDE0IGF0IDExOjM3IEFNLCBWaW5jZSBIc3UgPHZpbmNlaEBudmlkaWEuY29tPiB3
-cm90ZToKPj4gT24gMTIvMjIvMjAxNCAwNToxMSBQTSwgVmluY2UgSHN1IHdyb3RlOgo+Pj4gVGhl
-IHBsYXRmb3JtIGRldmljZSBkb2VzIG5vdCB1c2UgdGhlIGNvbW1vbiBub3V2ZWF1X3B3cl9pbml0
-KCkgdG8KPj4+IGluaXRpYWxpemUKPj4+IHRoZSBQV1IsIGJ1dCBpdCBkb2VzIG5lZWQgdGhlIC5w
-cm9iKCkgYmUgYXNzaWduZWQgdG8gYXZvaWQgTlVMTCBwb2ludGVyCj4+PiBkZXJlZmVyZW5jZSBp
-biBncmFwaC9udmU0LmMuCj4+IHMvcHJvYi9wZ29iLyAgOi0oCj4+IFdpbGwgZml4IGluIG5leHQg
-dmVyc2lvbi4KPiBJcyB0aGlzIHRoZSBvbmx5IGNoYW5nZSB5b3UgbmVlZCBmb3IgYSBuZXh0IHZl
-cnNpb24/ICBJZiBzbywgSSBjYW4KPiBtb2RpZnkgdGhlIGNvbW1pdCBtZXNzYWdlIG15c2VsZiB3
-aGVuIEkgbWVyZ2UgaXQuClllcyBpZiBubyBvbmUgaGFzIG9iamVjdGlvbiB0byB0aGlzIHBhdGNo
-c2V0LiA6KQoKVGhhbmtzLApWaW5jZQoKPgo+Pj4gU2lnbmVkLW9mZi1ieTogVmluY2UgSHN1IDx2
-aW5jZWhAbnZpZGlhLmNvbT4KPj4+IC0tLQo+Pj4KPj4+IHYyOiB0aGlzIHBhdGNoIGlzIGFkZGVk
-IHNpbmNlIHYyLiAodjEgaXMgdGhlIFJGQyBhY3R1YWxseSkKPj4+Cj4+PiAgICBudmttL3N1YmRl
-di9wd3IvYmFzZS5jIHwgMiArLQo+Pj4gICAgbnZrbS9zdWJkZXYvcHdyL3ByaXYuaCB8IDEgKwo+
-Pj4gICAgMiBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4+
-Cj4+PiBkaWZmIC0tZ2l0IGEvbnZrbS9zdWJkZXYvcHdyL2Jhc2UuYyBiL252a20vc3ViZGV2L3B3
-ci9iYXNlLmMKPj4+IGluZGV4IDBhYjU1ZjI3ZWM0NS4uMWVhNDMzYTVlMTE4IDEwMDY0NAo+Pj4g
-LS0tIGEvbnZrbS9zdWJkZXYvcHdyL2Jhc2UuYwo+Pj4gKysrIGIvbnZrbS9zdWJkZXYvcHdyL2Jh
-c2UuYwo+Pj4gQEAgLTI2LDcgKzI2LDcgQEAKPj4+ICAgICAgI2luY2x1ZGUgInByaXYuaCIKPj4+
-ICAgIC1zdGF0aWMgdm9pZAo+Pj4gK3ZvaWQKPj4+ICAgIG5vdXZlYXVfcHdyX3Bnb2Ioc3RydWN0
-IG5vdXZlYXVfcHdyICpwcHdyLCBib29sIGVuYWJsZSkKPj4+ICAgIHsKPj4+ICAgICAgICAgIGNv
-bnN0IHN0cnVjdCBudmttX3B3cl9pbXBsICppbXBsID0gKHZvaWQgKiludl9vY2xhc3MocHB3cik7
-Cj4+PiBkaWZmIC0tZ2l0IGEvbnZrbS9zdWJkZXYvcHdyL3ByaXYuaCBiL252a20vc3ViZGV2L3B3
-ci9wcml2LmgKPj4+IGluZGV4IDM4MTRhMzQxZGIzMi4uODYxNDlkOWE0NDBjIDEwMDY0NAo+Pj4g
-LS0tIGEvbnZrbS9zdWJkZXYvcHdyL3ByaXYuaAo+Pj4gKysrIGIvbnZrbS9zdWJkZXYvcHdyL3By
-aXYuaAo+Pj4gQEAgLTI2LDYgKzI2LDcgQEAgaW50IF9ub3V2ZWF1X3B3cl9jdG9yKHN0cnVjdCBu
-b3V2ZWF1X29iamVjdCAqLCBzdHJ1Y3QKPj4+IG5vdXZlYXVfb2JqZWN0ICosCj4+PiAgICAjZGVm
-aW5lIF9ub3V2ZWF1X3B3cl9kdG9yIF9ub3V2ZWF1X3N1YmRldl9kdG9yCj4+PiAgICBpbnQgX25v
-dXZlYXVfcHdyX2luaXQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICopOwo+Pj4gICAgaW50IF9ub3V2
-ZWF1X3B3cl9maW5pKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqLCBib29sKTsKPj4+ICt2b2lkIG5v
-dXZlYXVfcHdyX3Bnb2Ioc3RydWN0IG5vdXZlYXVfcHdyICpwcHdyLCBib29sIGVuYWJsZSk7Cj4+
-PiAgICAgIHN0cnVjdCBudmttX3B3cl9pbXBsIHsKPj4+ICAgICAgICAgIHN0cnVjdCBub3V2ZWF1
-X29jbGFzcyBiYXNlOwo+Pgo+Pgo+PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+PiBUaGlz
-IGVtYWlsIG1lc3NhZ2UgaXMgZm9yIHRoZSBzb2xlIHVzZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBp
-ZW50KHMpIGFuZCBtYXkKPj4gY29udGFpbgo+PiBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24uICBB
-bnkgdW5hdXRob3JpemVkIHJldmlldywgdXNlLCBkaXNjbG9zdXJlIG9yCj4+IGRpc3RyaWJ1dGlv
-bgo+PiBpcyBwcm9oaWJpdGVkLiAgSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
-dCwgcGxlYXNlIGNvbnRhY3QgdGhlCj4+IHNlbmRlciBieQo+PiByZXBseSBlbWFpbCBhbmQgZGVz
-dHJveSBhbGwgY29waWVzIG9mIHRoZSBvcmlnaW5hbCBtZXNzYWdlLgo+PiAtLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+On 12/31/2014 12:42 AM, Lucas Stach wrote:
+> Am Montag, den 29.12.2014, 10:49 +0800 schrieb Vince Hsu:
+>
+> [...]
+>
+>>>> That's a read fence to assure the post of the previous writes through
+>>>> Tegra interconnect. (copy-paster from
+>>>> https://android.googlesource.com/kernel/tegra.git/+/28b107dcb3aa122de8e94e48af548140d519298f)
+>>> I see what it does, the question is more about why this is needed.
+>>> What is the Tegra interconnect? According to the TRM the Tegra contains
+>>> some standard AXI <-> AHB <-> APB bridges. That a read is needed to
+>>> assure the write is posted to the APB bus seems to imply that there is
+>>> some write buffering in one of those bridges. Can we get this documented
+>>> somewhere?
+>> The TRM does mention a read after the write. Check the section 32.2.2.3.
+>>
+> Unfortunately this doesn't seem to be included in the public TRM. It
+> would be nice if this could be documented either in the next version of
+> the TRM or as a public Appnote.
+>
+It should be in the latest public TRM. Could you check again?
+
+Thanks,
+Vince
