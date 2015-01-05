@@ -1,41 +1,33 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
- clamp
-Date: Mon, 5 Jan 2015 14:55:38 +0800
-Message-ID: <54AA356A.8080309@nvidia.com>
-References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>			 <1419331204-26679-2-git-send-email-vinceh@nvidia.com>		 <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com>	 <1419539683.2165.6.camel@lynxeye.de> <54A0C148.6030400@nvidia.com> <1419957752.4082.2.camel@lynxeye.de>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: drm/nouveau: dont switch vt on suspend
+Date: Mon, 05 Jan 2015 13:17:01 +0100
+Message-ID: <54AA80BD.6080004@canonical.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1419957752.4082.2.camel-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>
-Cc: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
-On 12/31/2014 12:42 AM, Lucas Stach wrote:
-> Am Montag, den 29.12.2014, 10:49 +0800 schrieb Vince Hsu:
->
-> [...]
->
->>>> That's a read fence to assure the post of the previous writes through
->>>> Tegra interconnect. (copy-paster from
->>>> https://android.googlesource.com/kernel/tegra.git/+/28b107dcb3aa122de8e94e48af548140d519298f)
->>> I see what it does, the question is more about why this is needed.
->>> What is the Tegra interconnect? According to the TRM the Tegra contains
->>> some standard AXI <-> AHB <-> APB bridges. That a read is needed to
->>> assure the write is posted to the APB bus seems to imply that there is
->>> some write buffering in one of those bridges. Can we get this documented
->>> somewhere?
->> The TRM does mention a read after the write. Check the section 32.2.2.3.
->>
-> Unfortunately this doesn't seem to be included in the public TRM. It
-> would be nice if this could be documented either in the next version of
-> the TRM or as a public Appnote.
->
-It should be in the latest public TRM. Could you check again?
-
-Thanks,
-Vince
+U2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QHVidW50
+dS5jb20+Ci0tLQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9m
+YmNvbi5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9mYmNvbi5jCmluZGV4IDNl
+ZDEyYThjZmM5MS4uYTRhNTg2ODA3OTAzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91
+dmVhdS9ub3V2ZWF1X2ZiY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9mYmNvbi5jCkBAIC0zNzAsNiArMzcwLDcgQEAgbm91dmVhdV9mYmNvbl9jcmVhdGUoc3RydWN0
+IGRybV9mYl9oZWxwZXIgKmhlbHBlciwKIAkJcmV0ID0gLUVOT01FTTsKIAkJZ290byBvdXRfdW5s
+b2NrOwogCX0KKwlpbmZvLT5za2lwX3Z0X3N3aXRjaCA9IDE7CiAKIAlyZXQgPSBmYl9hbGxvY19j
+bWFwKCZpbmZvLT5jbWFwLCAyNTYsIDApOwogCWlmIChyZXQpIHsKCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
