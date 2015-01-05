@@ -1,78 +1,56 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
- clamp
-Date: Tue, 6 Jan 2015 10:11:41 +0800
-Message-ID: <54AB445D.7010303@nvidia.com>
-References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com> <1419331204-26679-2-git-send-email-vinceh@nvidia.com> <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com> <20150105150932.GG12010@ulmo.nvidia.com>
+From: a e <ad68fk@gmail.com>
+Subject: Remove my bugzilla account
+Date: Mon, 5 Jan 2015 15:54:20 +0100
+Message-ID: <CAO-MTV1OJvf_3yXeVHDiLKvKMELuk2t_pJK8Q2kh1yg=exo1Hg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <20150105150932.GG12010-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1425712806=="
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: gehadelrobey@gmail.com, gatlinsullivan@yahoo.com, jwrdegoede@fedoraproject.org, dri-devel@lists.freedesktop.org, fedor.lyakhov@gmail.com, daniel@fooishbar.org, lars@uebernic.de, ajohnson@redneon.com, chipx86@gnupdate.org, d74n5pohf9@ipharzle.e4ward.com, xorg-team@lists.x.org, nouveau@lists.freedesktop.org, xorg-driver-ati@lists.x.org, sujaym.sujaym@gmail.com, brian.e.paul@gmail.com, emmanuel.pacaud@lapp.in2p3.fr, libreoffice-bugs@lists.freedesktop.org, eric@anholt.net, mesa-dev@lists.freedesktop.org, jeff@jgarrett.org, carlosgc@gnome.org, ds@schleef.org, zbyszek@in.waw.pl, william.jon.mccann@gmail.com, idr@freedesktop.org, telepathy-bugs@lists.freedesktop.org, jam@mcquil.com, dcbw@redhat.com, intel-gfx-bugs@lists.freedesktop.org, peter.hutterer@who-t.net, xkb@listserv.bat.ru, bugzi11.fdo.tormod@xoxy.net, timar74@gmail.com, colnton3@bigpond.com, libfprint-bug
 List-Id: nouveau.vger.kernel.org
 
+--===============1425712806==
+Content-Type: multipart/alternative; boundary=90e6ba6143f2861ce5050be8dd5c
 
-On 01/05/2015 11:09 PM, Thierry Reding wrote:
-> * PGP Signed by an unknown key
->
-> On Thu, Dec 25, 2014 at 10:28:08AM +0800, Vince Hsu wrote:
->> On 12/24/2014 09:16 PM, Lucas Stach wrote:
->>> Am Dienstag, den 23.12.2014, 18:39 +0800 schrieb Vince Hsu:
->>>> The Tegra124 and later Tegra SoCs have a sepatate rail gating register
->>>> to enable/disable the clamp. The original function
->>>> tegra_powergate_remove_clamping() is not sufficient for the enable
->>>> function. So add a new function which is dedicated to the GPU rail
->>>> gating. Also don't refer to the powergate ID since the GPU ID makes no
->>>> sense here.
->>>>
->>>> Signed-off-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>> To be honest I don't see the point of this patch.
->>> You are bloating the PMC interface by introducing another exported
->>> function that does nothing different than what the current function
->>> already does.
->>>
->>> If you need a way to assert the clamp I would have expected you to
->>> introduce a common function to do this for all power partitions.
->> I thought about adding an tegra_powergate_assert_clamping(), but that
->> doesn't make sense to all the power partitions except GPU. Note the
->> difference in TRM. Any suggestion for the common function?
-> I don't think extending the powergate API is useful at this point. We've
-> long had an open TODO item to replace this with a generic API. I did
-> some prototyping a while ago to use generic power domains for this, that
-> way all the details and dependencies between the partitions could be
-> properly modeled.
->
-> Can you take a look at my staging/powergate branch here:
->
-> 	https://github.com/thierryreding/linux/commits/staging/powergate
->
-> and see if you can use that instead? The idea is to completely hide the
-> details of power partitions from drivers and use runtime PM instead.
-You generic power domains work is exactly what we want for powergate 
-eventually. :) I recall we used your prototyping in somewhere internal 
-tree. We have to add more to complete it though, e.g. power domain 
-dependency, mc flush, and clamping register difference like this patch 
-does.
+--90e6ba6143f2861ce5050be8dd5c
+Content-Type: text/plain; charset=UTF-8
 
-But I have a question here. Since the GK20A is not powered on/off by the 
-PMC except the clamping control, and GK20A has its own power rail, do we 
-really want to hide the power sequence in the generic powergate code? We 
-still have to control the voltage level in the GK20A driver through the 
-regulator framework. It seems weird to me if we put the 
-regulator_{enable|disable} somewhere other than the GK20A driver.
+Hi,
 
-Thanks,
-Vince
+Please, could you remove completly all my bugzilla account and all the
+informations attached to it ?
 
->
-> Also adding Peter whom I had discussed this with earlier. Can we finally
-> get this converted? I'd rather not keep complicating this custom API to
-> avoid making the conversion even more difficult.
->
-> Thierry
->
-> * Unknown Key
-> * 0x7F3EB3A1
+I don't have found this feature in the website to do that...
+
+Thank you.
+
+--90e6ba6143f2861ce5050be8dd5c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hi,<br><br></div>Please, could you remove comple=
+tly all my bugzilla account and all the informations attached to it ?<br></=
+div><div><br>I don&#39;t have found this feature in the website to do that.=
+..<br></div><div><br></div>Thank you.<br></div>
+
+--90e6ba6143f2861ce5050be8dd5c--
+
+--===============1425712806==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
+bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1425712806==--
