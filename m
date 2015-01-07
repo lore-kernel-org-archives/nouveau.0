@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88164] Text in menus not rendered by LibreOffice
-Date: Wed, 07 Jan 2015 17:01:39 +0000
-Message-ID: <bug-88164-8800-fyfBkZGc8j@http.bugs.freedesktop.org/>
-References: <bug-88164-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [RFC] mesa/st: Avoid passing a NULL buffer to the drivers
+Date: Wed,  7 Jan 2015 19:52:46 +0100
+Message-ID: <1420656766-7342-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1702914167=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,78 +15,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1702914167==
-Content-Type: multipart/alternative; boundary="1420650098.eC50CDb1.15893"; charset="UTF-8"
-
-
---1420650098.eC50CDb1.15893
-Date: Wed, 7 Jan 2015 17:01:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88164
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I just noticed that you said that this is a regression from 3.17 to 3.18 --
-that is _very_ surprising, as acceleration is not being used and it's all just
-software rendering. Perhaps there's more going on here... Could you try doing a
-bisect? You can limit it to drivers/gpu/drm to speed things up.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420650098.eC50CDb1.15893
-Date: Wed, 7 Jan 2015 17:01:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Text in menus not rendered by LibreOffice"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Text in menus not rendered by LibreOffice"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164">bug 88164</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I just noticed that you said that this is a regression from 3.17 to 3.18 --
-that is _very_ surprising, as acceleration is not being used and it's all just
-software rendering. Perhaps there's more going on here... Could you try doing a
-bisect? You can limit it to drivers/gpu/drm to speed things up.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420650098.eC50CDb1.15893--
-
---===============1702914167==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1702914167==--
+SWYgd2UgY2FwdHVyZSB0cmFuc2Zvcm0gZmVlZGJhY2sgZnJvbSBuIHN0cmVhbSBpbiAobi0xKSBi
+dWZmZXJzIHdlIGZhY2UgYQpOVUxMIGJ1ZmZlciwgdXNlIHRoZSBidWZmZXIgKG4tMSkgdG8gY2Fw
+dHVyZSB0aGUgb3V0cHV0IG9mIHN0cmVhbSBuLgoKVGhpcyBmaXhlcyBvbmUgcGlnbGl0IHRlc3Qg
+d2l0aCBudmMwOgogICBhcmJfZ3B1X3NoYWRlcjUteGZiLXN0cmVhbXMtd2l0aG91dC1pbnZvY2F0
+aW9ucwoKU2lnbmVkLW9mZi1ieTogVG9iaWFzIEtsYXVzbWFubiA8dG9iaWFzLmpvaGFubmVzLmts
+YXVzbWFubkBtbmkudGhtLmRlPgotLS0KIHNyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZv
+cm1mYi5jIHwgNSArKysrKwogMSBmaWxlIGNoYW5nZWQsIDUgaW5zZXJ0aW9ucygrKQoKZGlmZiAt
+LWdpdCBhL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jIGIvc3JjL21lc2Ev
+c3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMKaW5kZXggOGY3NWVkYS4uNWExMmRhNCAxMDA2
+NDQKLS0tIGEvc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMKKysrIGIvc3Jj
+L21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMKQEAgLTEyMyw2ICsxMjMsMTEgQEAg
+c3RfYmVnaW5fdHJhbnNmb3JtX2ZlZWRiYWNrKHN0cnVjdCBnbF9jb250ZXh0ICpjdHgsIEdMZW51
+bSBtb2RlLAogICAgICAgc3RydWN0IHN0X2J1ZmZlcl9vYmplY3QgKmJvID0gc3RfYnVmZmVyX29i
+amVjdChzb2JqLT5iYXNlLkJ1ZmZlcnNbaV0pOwogCiAgICAgICBpZiAoYm8pIHsKKyAgICAgICAg
+IGlmICghYm8tPmJ1ZmZlcikKKyAgICAgICAgICAgIC8qIElmIHdlIGNhcHR1cmUgdHJhbnNmb3Jt
+IGZlZWRiYWNrIGZyb20gbiBzdHJlYW1zIGludG8gKG4tMSkKKyAgICAgICAgICAgICAqIGJ1ZmZl
+cnMgd2UgaGF2ZSB0byB3cml0ZSB0byBidWZmZXIgKG4tMSkgZm9yIHN0cmVhbSBuLgorICAgICAg
+ICAgICAgICovCisgICAgICAgICAgICBibyA9IHN0X2J1ZmZlcl9vYmplY3Qoc29iai0+YmFzZS5C
+dWZmZXJzW2ktMV0pOwogICAgICAgICAgLyogQ2hlY2sgd2hldGhlciB3ZSBuZWVkIHRvIHJlY3Jl
+YXRlIHRoZSB0YXJnZXQuICovCiAgICAgICAgICBpZiAoIXNvYmotPnRhcmdldHNbaV0gfHwKICAg
+ICAgICAgICAgICBzb2JqLT50YXJnZXRzW2ldID09IHNvYmotPmRyYXdfY291bnQgfHwKLS0gCjIu
+Mi4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
