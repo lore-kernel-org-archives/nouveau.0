@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88164] Text in menus not rendered by LibreOffice
-Date: Wed, 07 Jan 2015 15:55:42 +0000
-Message-ID: <bug-88164-8800-GuvvazFIPY@http.bugs.freedesktop.org/>
+Date: Wed, 07 Jan 2015 17:01:39 +0000
+Message-ID: <bug-88164-8800-fyfBkZGc8j@http.bugs.freedesktop.org/>
 References: <bug-88164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0136716519=="
+Content-Type: multipart/mixed; boundary="===============1702914167=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0136716519==
-Content-Type: multipart/alternative; boundary="1420646142.115a861.25066"; charset="UTF-8"
+--===============1702914167==
+Content-Type: multipart/alternative; boundary="1420650098.eC50CDb1.15893"; charset="UTF-8"
 
 
---1420646142.115a861.25066
-Date: Wed, 7 Jan 2015 15:55:42 +0000
+--1420650098.eC50CDb1.15893
+Date: Wed, 7 Jan 2015 17:01:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88164
 
---- Comment #3 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
-Created attachment 111924
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111924&action=edit
-X log
-
-The log is taken after booting and logging in.
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I just noticed that you said that this is a regression from 3.17 to 3.18 --
+that is _very_ surprising, as acceleration is not being used and it's all just
+software rendering. Perhaps there's more going on here... Could you try doing a
+bisect? You can limit it to drivers/gpu/drm to speed things up.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420646142.115a861.25066
-Date: Wed, 7 Jan 2015 15:55:42 +0000
+--1420650098.eC50CDb1.15893
+Date: Wed, 7 Jan 2015 17:01:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Text in menus not rendered by LibreOffice"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Text in menus not rendered by LibreOffice"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88164">bug 88164</a>
-              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111924" name="attach_111924" title="X log">attachment 111924</a> <a href="attachment.cgi?id=111924&amp;action=edit" title="X log">[details]</a></span>
-X log
-
-The log is taken after booting and logging in.</pre>
+        <pre>I just noticed that you said that this is a regression from 3.17 to 3.18 --
+that is _very_ surprising, as acceleration is not being used and it's all just
+software rendering. Perhaps there's more going on here... Could you try doing a
+bisect? You can limit it to drivers/gpu/drm to speed things up.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +78,9 @@ The log is taken after booting and logging in.</pre>
     </body>
 </html>
 
---1420646142.115a861.25066--
+--1420650098.eC50CDb1.15893--
 
---===============0136716519==
+--===============1702914167==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0136716519==--
+--===============1702914167==--
