@@ -1,83 +1,128 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH V2 1/4] clk: allow non-blocking for
-	nouveau_clock_astate()
-Date: Wed, 7 Jan 2015 21:22:04 +1000
-Message-ID: <CACAvsv7ej-nd-x8stSvH8uHVu0W1p1A+O4mQJDV1yc76cUgcKg@mail.gmail.com>
-References: <1419239500-19703-1-git-send-email-vinceh@nvidia.com>
- <54ACBFDC.4000603@nvidia.com>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
+ clamp
+Date: Wed, 7 Jan 2015 14:27:10 +0100
+Message-ID: <20150107132709.GA6988@ulmo>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>
+ <1419331204-26679-2-git-send-email-vinceh@nvidia.com>
+ <1419426990.2179.7.camel@lynxeye.de>
+ <549B7638.2010405@nvidia.com>
+ <20150105150932.GG12010@ulmo.nvidia.com>
+ <20150107101900.GP10073@tbergstrom-lnx.Nvidia.com>
+ <54AD0F37.5080609@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54ACBFDC.4000603-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Roy Spliet <seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org>
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="BOKacYhQ+x31HxR3"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <54AD0F37.5080609@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Vince Hsu <vinceh@nvidia.com>
+Cc: Peter De Schrijver <pdeschrijver@nvidia.com>, Lucas Stach <dev@lynxeye.de>, swarren@wwwdotorg.org, gnurou@gmail.com, bskeggs@redhat.com, martin.peres@free.fr, seven@nimrod-online.com, samuel.pitoiset@gmail.com, nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKYW4gNywgMjAxNSBhdCAzOjEwIFBNLCBWaW5jZSBIc3UgPHZpbmNlaEBudmlkaWEu
-Y29tPiB3cm90ZToKPiBIZWxsbyBCZW4gYW5kIE1hcnRpbiwKPgo+IEFueSBjb21tZW50cyBmb3Ig
-dGhpcyBzZXJpZXM/CkhleSBWaW5jZSwKCkFoIHNvcnJ5LCBJIHRob3VnaHQgbXkgY29tbWVudCBv
-biB0aGUgb3RoZXIgcGF0Y2ggaW5kaWNhdGVkIEkgd2FzIGZpbmUKd2l0aCBpdC4gIEknbGwgbWVy
-Z2UgdGhlbSBub3cgc28gdGhleSBkb24ndCBnZXQgbG9zdCA6KQoKVGhhbmtzLApCZW4uCgo+Cj4g
-VGhhbmtzLAo+IFZpbmNlCj4KPgo+IE9uIDEyLzIyLzIwMTQgMDU6MTEgUE0sIFZpbmNlIEhzdSB3
-cm90ZToKPj4KPj4gVGhlcmUgbWlnaHQgYmUgc29tZSBjYWxsZXJzIG9mIG5vdXZlYXVfY2xvY2tf
-YXN0YXRlKCksIGFuZCB0aGV5IGFyZSBmcm9tCj4+IGluZXRycnVwdCBjb250ZXh0LiBTbyB3ZSBt
-dXN0IGVuc3VyZSB0aGF0IHRoaXMgZnVuY3Rpb24gY2FuIGJlIGF0b21pYyBpbgo+PiB0aGF0IGNv
-bmRpdGlvbi4gVGhpcyBwYXRjaCBhZGRzIG9uZSBwYXJhbWV0ZXIgd2hpY2ggaXMgc3Vic2VxdWVu
-dGx5IHBhc3NlZAo+PiB0byBub3V2ZWF1X3BzdGF0ZV9jYWxjKCkuIFRoZXJlZm9yZSB3ZSBjYW4g
-Y2hvb3NlIHdoZXRoZXIgd2Ugd2FudCB0byB3YWl0Cj4+IGZvciB0aGUgcHN0YXRlIHdvcmsncyBj
-b21wbGV0aW9uIG9yIG5vdC4KPj4KPj4gU2lnbmVkLW9mZi1ieTogVmluY2UgSHN1IDx2aW5jZWhA
-bnZpZGlhLmNvbT4KPj4gLS0tCj4+Cj4+IHYyOiBub25lLiAodjEgaXMgdGhlIFJGQyBhY3R1YWxs
-eSkKPj4KPj4gICBudmttL2luY2x1ZGUvc3ViZGV2L2Nsb2NrLmggfCAyICstCj4+ICAgbnZrbS9z
-dWJkZXYvY2xvY2svYmFzZS5jICAgIHwgNCArKy0tCj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCAzIGlu
-c2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9udmttL2luY2x1
-ZGUvc3ViZGV2L2Nsb2NrLmggYi9udmttL2luY2x1ZGUvc3ViZGV2L2Nsb2NrLmgKPj4gaW5kZXgg
-MzZlZDAzNWQ0ZDQyLi42YzM2ZjBlNDM4NWIgMTAwNjQ0Cj4+IC0tLSBhL252a20vaW5jbHVkZS9z
-dWJkZXYvY2xvY2suaAo+PiArKysgYi9udmttL2luY2x1ZGUvc3ViZGV2L2Nsb2NrLmgKPj4gQEAg
-LTE1OSw3ICsxNTksNyBAQCBpbnQgbnZhM19jbG9ja19wbGxfY2FsYyhzdHJ1Y3Qgbm91dmVhdV9j
-bG9jayAqLCBzdHJ1Y3QKPj4gbnZiaW9zX3BsbCAqLAo+PiAgICAgICAgICAgICAgICAgICAgICAg
-ICBpbnQgY2xrLCBzdHJ1Y3Qgbm91dmVhdV9wbGxfdmFscyAqKTsKPj4gICAgIGludCBub3V2ZWF1
-X2Nsb2NrX3VzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQgcmVxLCBpbnQgcHdyKTsK
-Pj4gLWludCBub3V2ZWF1X2Nsb2NrX2FzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQg
-cmVxLCBpbnQgcmVsKTsKPj4gK2ludCBub3V2ZWF1X2Nsb2NrX2FzdGF0ZShzdHJ1Y3Qgbm91dmVh
-dV9jbG9jayAqLCBpbnQgcmVxLCBpbnQgcmVsLCBib29sCj4+IHdhaXQpOwo+PiAgIGludCBub3V2
-ZWF1X2Nsb2NrX2RzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQgcmVxLCBpbnQgcmVs
-KTsKPj4gICBpbnQgbm91dmVhdV9jbG9ja190c3RhdGUoc3RydWN0IG5vdXZlYXVfY2xvY2sgKiwg
-aW50IHJlcSwgaW50IHJlbCk7Cj4+ICAgZGlmZiAtLWdpdCBhL252a20vc3ViZGV2L2Nsb2NrL2Jh
-c2UuYyBiL252a20vc3ViZGV2L2Nsb2NrL2Jhc2UuYwo+PiBpbmRleCBlNTFiNzJkNDcxMjkuLmIx
-YmJlNzY0ZmEzNSAxMDA2NDQKPj4gLS0tIGEvbnZrbS9zdWJkZXYvY2xvY2svYmFzZS5jCj4+ICsr
-KyBiL252a20vc3ViZGV2L2Nsb2NrL2Jhc2UuYwo+PiBAQCAtNDMwLDEzICs0MzAsMTMgQEAgbm91
-dmVhdV9jbG9ja191c3RhdGUoc3RydWN0IG5vdXZlYXVfY2xvY2sgKmNsaywgaW50Cj4+IHJlcSwg
-aW50IHB3cikKPj4gICB9Cj4+ICAgICBpbnQKPj4gLW5vdXZlYXVfY2xvY2tfYXN0YXRlKHN0cnVj
-dCBub3V2ZWF1X2Nsb2NrICpjbGssIGludCByZXEsIGludCByZWwpCj4+ICtub3V2ZWF1X2Nsb2Nr
-X2FzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqY2xrLCBpbnQgcmVxLCBpbnQgcmVsLCBib29s
-Cj4+IHdhaXQpCj4+ICAgewo+PiAgICAgICAgIGlmICghcmVsKSBjbGstPmFzdGF0ZSAgPSByZXE7
-Cj4+ICAgICAgICAgaWYgKCByZWwpIGNsay0+YXN0YXRlICs9IHJlbDsKPj4gICAgICAgICBjbGst
-PmFzdGF0ZSA9IG1pbihjbGstPmFzdGF0ZSwgY2xrLT5zdGF0ZV9uciAtIDEpOwo+PiAgICAgICAg
-IGNsay0+YXN0YXRlID0gbWF4KGNsay0+YXN0YXRlLCAwKTsKPj4gLSAgICAgICByZXR1cm4gbm91
-dmVhdV9wc3RhdGVfY2FsYyhjbGssIHRydWUpOwo+PiArICAgICAgIHJldHVybiBub3V2ZWF1X3Bz
-dGF0ZV9jYWxjKGNsaywgd2FpdCk7Cj4+ICAgfQo+PiAgICAgaW50Cj4KPgo+Cj4gLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0KPiBUaGlzIGVtYWlsIG1lc3NhZ2UgaXMgZm9yIHRoZSBzb2xlIHVz
-ZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50KHMpIGFuZCBtYXkKPiBjb250YWluCj4gY29uZmlk
-ZW50aWFsIGluZm9ybWF0aW9uLiAgQW55IHVuYXV0aG9yaXplZCByZXZpZXcsIHVzZSwgZGlzY2xv
-c3VyZSBvcgo+IGRpc3RyaWJ1dGlvbgo+IGlzIHByb2hpYml0ZWQuICBJZiB5b3UgYXJlIG5vdCB0
-aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2UgY29udGFjdCB0aGUKPiBzZW5kZXIgYnkKPiBy
-ZXBseSBlbWFpbCBhbmQgZGVzdHJveSBhbGwgY29waWVzIG9mIHRoZSBvcmlnaW5hbCBtZXNzYWdl
-Lgo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4KPiBfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--BOKacYhQ+x31HxR3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jan 07, 2015 at 06:49:27PM +0800, Vince Hsu wrote:
+>=20
+> On 01/07/2015 06:19 PM, Peter De Schrijver wrote:
+> >On Mon, Jan 05, 2015 at 04:09:33PM +0100, Thierry Reding wrote:
+> >>* PGP Signed by an unknown key
+> >>
+> >>On Thu, Dec 25, 2014 at 10:28:08AM +0800, Vince Hsu wrote:
+> >>>On 12/24/2014 09:16 PM, Lucas Stach wrote:
+> >>>>Am Dienstag, den 23.12.2014, 18:39 +0800 schrieb Vince Hsu:
+> >>>>>The Tegra124 and later Tegra SoCs have a sepatate rail gating regist=
+er
+> >>>>>to enable/disable the clamp. The original function
+> >>>>>tegra_powergate_remove_clamping() is not sufficient for the enable
+> >>>>>function. So add a new function which is dedicated to the GPU rail
+> >>>>>gating. Also don't refer to the powergate ID since the GPU ID makes =
+no
+> >>>>>sense here.
+> >>>>>
+> >>>>>Signed-off-by: Vince Hsu <vinceh@nvidia.com>
+> >>>>To be honest I don't see the point of this patch.
+> >>>>You are bloating the PMC interface by introducing another exported
+> >>>>function that does nothing different than what the current function
+> >>>>already does.
+> >>>>
+> >>>>If you need a way to assert the clamp I would have expected you to
+> >>>>introduce a common function to do this for all power partitions.
+> >>>I thought about adding an tegra_powergate_assert_clamping(), but that
+> >>>doesn't make sense to all the power partitions except GPU. Note the
+> >>>difference in TRM. Any suggestion for the common function?
+> >>I don't think extending the powergate API is useful at this point. We've
+> >>long had an open TODO item to replace this with a generic API. I did
+> >>some prototyping a while ago to use generic power domains for this, that
+> >>way all the details and dependencies between the partitions could be
+> >>properly modeled.
+> >>
+> >>Can you take a look at my staging/powergate branch here:
+> >>
+> >>	https://github.com/thierryreding/linux/commits/staging/powergate
+> >>
+> >>and see if you can use that instead? The idea is to completely hide the
+> >>details of power partitions from drivers and use runtime PM instead.
+> >>
+> >>Also adding Peter whom I had discussed this with earlier. Can we finally
+> >>get this converted? I'd rather not keep complicating this custom API to
+> >>avoid making the conversion even more difficult.
+> >Conceptually I fully agree that we should use runtime PM and powerdomain=
+s.
+> >However I don't think the implementation you mentioned is correct. The r=
+esets
+> >of all modules in a domain need to be asserted and the memory clients ne=
+ed to
+> >be flushed. All this needs to be done with module clocks enabled (resets=
+ are
+> >synchronous).  Then all module clocks need to be disabled and then the
+> >partition can be powergated. After ungating, the module resets need to be
+> >deasserted and the FLUSH bit cleared with clocks enabled.
+> Yeah. I plan to have the information of all the clock client of the
+> partitions and
+> the memory clients be defined statically in c source, e.g. pmc-tegra124.c.
+> All modules can declare which domain they belong to in DT. One domain can
+> be really power gated only when no module is awake. Note the clock clients
+> of
+> one domain might not equal to the clocks of the module. The reset is not
+> either.
+> So I don't get the clock and reset from module. How do you think?
+
+This whole situation is quite messy. The above sequence basically means
+that drivers can't reset hardware modules because otherwise they might
+race with the power domain code. It also means that we can't powergate
+modules on demand because they might be in the same power domain as one
+other module that's still busy.
+
+How would we handle a situation where a hardware module hangs and we can
+only get it back via a reset?
+
+Thierry
+
+--BOKacYhQ+x31HxR3
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBAgAGBQJUrTQtAAoJEN0jrNd/PrOh/9EQAKf/mZULHAs26/RBtIWdumbx
+jVoe375Cmd/TwmcD0lpIaXep5OnDxid9cMRTNebJydKkTlp9QzNKWbMUdA0gX/Oz
+ZqlkmlIKW60p1exFGPkuw0dXoB3aF5odXXtEopJv3QrbNzg8YUEQ+3IxPIAWn4iR
+AwU1xi9GZpgEE5igMrRRAipBS+S02nDj2TRi4NPWu5ZvY/NL9cQatIhT7uEJCNzP
+qC2lwkreXrLzYqKpCCqKo41XNL7Oi9HaUPUbWDZ1PUtYa0ZUkpa+tPJzFWf/3scD
+VsgRks1WhJ9NyuONIZ1Fdithh0J0m0FFIt62CPrCnM/yGP4fezeHU7mdNysuvQmJ
+WZX0TqPH17rLUwasthq2wvNzzWDx8DHQ7A8T469JE/qFNEB9eJZzzIx/ulyRiLJ5
+g1rwZ57hZCOcxZR3F16uuUSGBQ/oxYY1S1DQzRDNT0D3SD7WPMyXQAA8F/VSrKp1
+zlfS+g1m4FawJ9cWjJCy5yMqlqbmSPBsEQ4jTrGEhHR1j9IIzJIcOBqwbHjFDqHT
+4M9/p4FRuk9VRerWKSLnUR4IoWhpqkEPNNJ7gmXLW3JLSGL538Swr2wAbwT+J35n
+io2YjUfsctcysDAWSW9WfeInv9SX73MbqMLHzNPuKQbYARm180qJTWe2KrtSSYlv
+LZ5n2w2iqYiO5nLk4e3t
+=4j+5
+-----END PGP SIGNATURE-----
+
+--BOKacYhQ+x31HxR3--
