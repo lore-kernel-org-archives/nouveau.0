@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Wed, 07 Jan 2015 01:44:37 +0000
-Message-ID: <bug-87244-8800-P6Z7UOqI7T@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH V2 1/4] clk: allow non-blocking for
+	nouveau_clock_astate()
+Date: Wed, 7 Jan 2015 13:10:52 +0800
+Message-ID: <54ACBFDC.4000603@nvidia.com>
+References: <1419239500-19703-1-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1823057326=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1419239500-19703-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,76 +18,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1823057326==
-Content-Type: multipart/alternative; boundary="1420595076.31DffF1.10107"; charset="UTF-8"
-
-
---1420595076.31DffF1.10107
-Date: Wed, 7 Jan 2015 01:44:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
-
---- Comment #6 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-So I didn't hit this for like two weeks (12-26 till today) but then I hit it
-twice today. I'm now running a kernel with the reversion applied, so I guess
-I'll have to see if that survives three weeks? :)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420595076.31DffF1.10107
-Date: Wed, 7 Jan 2015 01:44:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
-</span></b>
-        <pre>So I didn't hit this for like two weeks (12-26 till today) but then I hit it
-twice today. I'm now running a kernel with the reversion applied, so I guess
-I'll have to see if that survives three weeks? :)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420595076.31DffF1.10107--
-
---===============1823057326==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1823057326==--
+SGVsbG8gQmVuIGFuZCBNYXJ0aW4sCgpBbnkgY29tbWVudHMgZm9yIHRoaXMgc2VyaWVzPwoKVGhh
+bmtzLApWaW5jZQoKT24gMTIvMjIvMjAxNCAwNToxMSBQTSwgVmluY2UgSHN1IHdyb3RlOgo+IFRo
+ZXJlIG1pZ2h0IGJlIHNvbWUgY2FsbGVycyBvZiBub3V2ZWF1X2Nsb2NrX2FzdGF0ZSgpLCBhbmQg
+dGhleSBhcmUgZnJvbQo+IGluZXRycnVwdCBjb250ZXh0LiBTbyB3ZSBtdXN0IGVuc3VyZSB0aGF0
+IHRoaXMgZnVuY3Rpb24gY2FuIGJlIGF0b21pYyBpbgo+IHRoYXQgY29uZGl0aW9uLiBUaGlzIHBh
+dGNoIGFkZHMgb25lIHBhcmFtZXRlciB3aGljaCBpcyBzdWJzZXF1ZW50bHkgcGFzc2VkCj4gdG8g
+bm91dmVhdV9wc3RhdGVfY2FsYygpLiBUaGVyZWZvcmUgd2UgY2FuIGNob29zZSB3aGV0aGVyIHdl
+IHdhbnQgdG8gd2FpdAo+IGZvciB0aGUgcHN0YXRlIHdvcmsncyBjb21wbGV0aW9uIG9yIG5vdC4K
+Pgo+IFNpZ25lZC1vZmYtYnk6IFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+Cj4gLS0tCj4K
+PiB2Mjogbm9uZS4gKHYxIGlzIHRoZSBSRkMgYWN0dWFsbHkpCj4KPiAgIG52a20vaW5jbHVkZS9z
+dWJkZXYvY2xvY2suaCB8IDIgKy0KPiAgIG52a20vc3ViZGV2L2Nsb2NrL2Jhc2UuYyAgICB8IDQg
+KystLQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
+Cj4KPiBkaWZmIC0tZ2l0IGEvbnZrbS9pbmNsdWRlL3N1YmRldi9jbG9jay5oIGIvbnZrbS9pbmNs
+dWRlL3N1YmRldi9jbG9jay5oCj4gaW5kZXggMzZlZDAzNWQ0ZDQyLi42YzM2ZjBlNDM4NWIgMTAw
+NjQ0Cj4gLS0tIGEvbnZrbS9pbmNsdWRlL3N1YmRldi9jbG9jay5oCj4gKysrIGIvbnZrbS9pbmNs
+dWRlL3N1YmRldi9jbG9jay5oCj4gQEAgLTE1OSw3ICsxNTksNyBAQCBpbnQgbnZhM19jbG9ja19w
+bGxfY2FsYyhzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBzdHJ1Y3QgbnZiaW9zX3BsbCAqLAo+ICAg
+CQkJaW50IGNsaywgc3RydWN0IG5vdXZlYXVfcGxsX3ZhbHMgKik7Cj4gICAKPiAgIGludCBub3V2
+ZWF1X2Nsb2NrX3VzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQgcmVxLCBpbnQgcHdy
+KTsKPiAtaW50IG5vdXZlYXVfY2xvY2tfYXN0YXRlKHN0cnVjdCBub3V2ZWF1X2Nsb2NrICosIGlu
+dCByZXEsIGludCByZWwpOwo+ICtpbnQgbm91dmVhdV9jbG9ja19hc3RhdGUoc3RydWN0IG5vdXZl
+YXVfY2xvY2sgKiwgaW50IHJlcSwgaW50IHJlbCwgYm9vbCB3YWl0KTsKPiAgIGludCBub3V2ZWF1
+X2Nsb2NrX2RzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQgcmVxLCBpbnQgcmVsKTsK
+PiAgIGludCBub3V2ZWF1X2Nsb2NrX3RzdGF0ZShzdHJ1Y3Qgbm91dmVhdV9jbG9jayAqLCBpbnQg
+cmVxLCBpbnQgcmVsKTsKPiAgIAo+IGRpZmYgLS1naXQgYS9udmttL3N1YmRldi9jbG9jay9iYXNl
+LmMgYi9udmttL3N1YmRldi9jbG9jay9iYXNlLmMKPiBpbmRleCBlNTFiNzJkNDcxMjkuLmIxYmJl
+NzY0ZmEzNSAxMDA2NDQKPiAtLS0gYS9udmttL3N1YmRldi9jbG9jay9iYXNlLmMKPiArKysgYi9u
+dmttL3N1YmRldi9jbG9jay9iYXNlLmMKPiBAQCAtNDMwLDEzICs0MzAsMTMgQEAgbm91dmVhdV9j
+bG9ja191c3RhdGUoc3RydWN0IG5vdXZlYXVfY2xvY2sgKmNsaywgaW50IHJlcSwgaW50IHB3cikK
+PiAgIH0KPiAgIAo+ICAgaW50Cj4gLW5vdXZlYXVfY2xvY2tfYXN0YXRlKHN0cnVjdCBub3V2ZWF1
+X2Nsb2NrICpjbGssIGludCByZXEsIGludCByZWwpCj4gK25vdXZlYXVfY2xvY2tfYXN0YXRlKHN0
+cnVjdCBub3V2ZWF1X2Nsb2NrICpjbGssIGludCByZXEsIGludCByZWwsIGJvb2wgd2FpdCkKPiAg
+IHsKPiAgIAlpZiAoIXJlbCkgY2xrLT5hc3RhdGUgID0gcmVxOwo+ICAgCWlmICggcmVsKSBjbGst
+PmFzdGF0ZSArPSByZWw7Cj4gICAJY2xrLT5hc3RhdGUgPSBtaW4oY2xrLT5hc3RhdGUsIGNsay0+
+c3RhdGVfbnIgLSAxKTsKPiAgIAljbGstPmFzdGF0ZSA9IG1heChjbGstPmFzdGF0ZSwgMCk7Cj4g
+LQlyZXR1cm4gbm91dmVhdV9wc3RhdGVfY2FsYyhjbGssIHRydWUpOwo+ICsJcmV0dXJuIG5vdXZl
+YXVfcHN0YXRlX2NhbGMoY2xrLCB3YWl0KTsKPiAgIH0KPiAgIAo+ICAgaW50CgoKLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0KVGhpcyBlbWFpbCBtZXNzYWdlIGlzIGZvciB0aGUgc29sZSB1c2Ug
+b2YgdGhlIGludGVuZGVkIHJlY2lwaWVudChzKSBhbmQgbWF5IGNvbnRhaW4KY29uZmlkZW50aWFs
+IGluZm9ybWF0aW9uLiAgQW55IHVuYXV0aG9yaXplZCByZXZpZXcsIHVzZSwgZGlzY2xvc3VyZSBv
+ciBkaXN0cmlidXRpb24KaXMgcHJvaGliaXRlZC4gIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRl
+ZCByZWNpcGllbnQsIHBsZWFzZSBjb250YWN0IHRoZSBzZW5kZXIgYnkKcmVwbHkgZW1haWwgYW5k
+IGRlc3Ryb3kgYWxsIGNvcGllcyBvZiB0aGUgb3JpZ2luYWwgbWVzc2FnZS4KLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
