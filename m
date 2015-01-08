@@ -1,99 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88164] Text in menus not rendered by LibreOffice
-Date: Thu, 08 Jan 2015 09:12:44 +0000
-Message-ID: <bug-88164-8800-lrrcDS4L0K@http.bugs.freedesktop.org/>
-References: <bug-88164-8800@http.bugs.freedesktop.org/>
+From: Peter De Schrijver <pdeschrijver@nvidia.com>
+Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
+ clamp
+Date: Thu, 8 Jan 2015 11:32:06 +0200
+Message-ID: <20150108093205.GV10073@tbergstrom-lnx.Nvidia.com>
+References: <1419331204-26679-1-git-send-email-vinceh@nvidia.com>
+ <1419331204-26679-2-git-send-email-vinceh@nvidia.com>
+ <1419426990.2179.7.camel@lynxeye.de>
+ <549B7638.2010405@nvidia.com>
+ <20150105150932.GG12010@ulmo.nvidia.com>
+ <20150107101900.GP10073@tbergstrom-lnx.Nvidia.com>
+ <54AD0F37.5080609@nvidia.com>
+ <20150107141254.GS10073@tbergstrom-lnx.Nvidia.com>
+ <20150107141938.GA7392@nvidia.com>
+ <20150107151206.GG1621@ulmo>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1700478421=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="us-ascii"
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <20150107151206.GG1621@ulmo>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Vince Hsu <vinceh@nvidia.com>, Lucas Stach <dev@lynxeye.de>, swarren@wwwdotorg.org, gnurou@gmail.com, bskeggs@redhat.com, martin.peres@free.fr, seven@nimrod-online.com, samuel.pitoiset@gmail.com, nouveau@lists.freedesktop.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
+> > And specify the dependencies between domains in DT?
+> 
+> I think the dependencies could be in the driver. Of course the power
+> domains are per-SoC data, so really shouldn't be in the DTS either (the
+> data is all implied by the compatible value) but there's no good way to
+> get at the clocks and resets without DT, so I think that's a reasonable
+> trade-off.
+> 
+> It seems to me like there are only two dependencies:
+> 
+> 	DIS and DISB depend on SOR
+> 	VE depends on DIS
+> 
+> That's according to 5.6.6 "Programming Guide for Power Gating and
+> Ungating" of the Tegra K1 TRM. It also seems like a bunch of modules are
+> part of seemingly unrelated domains. Especially SOR seems to cover a
+> large range of modules (MIPI-CAL, DPAUX, SOR, HDMI, DSI, DSIB and
+> HDA2HDMI).
+> 
+> Given that we may want to more fine-grainedly control clocks to save
+> power, don't we need to control clocks and resets within the drivers? I
+> think the runtime PM framework makes sure to call this in the right
+> order, so for suspend, the sequence would be:
+> 
+> 	1) device->suspend
+> 	2) domain->suspend
+> 
+> and for resume:
+> 
+> 	1) domain->resume
+> 	2) device->resume
+> 
+> But then we're back to square one, namely that the MC flush doesn't work
+> properly, since it needs to be implemented in domain->suspend. Does that
+> mean we can't clock-gate modules? In order to ensure a proper powergate
+> sequence, the domain code would need to clk_enable() the module clock to
+> make sure it stays on during the reset sequence. But if the domain code
+> has a reference to the clock, then the driver can't clock-gate the
+> module anymore by calling clk_disable().
+> 
+> Am I missing something?
+> 
 
---===============1700478421==
-Content-Type: multipart/alternative; boundary="1420708363.56AF621.31029"; charset="UTF-8"
+There's a difference between having a reference and actually enabling the
+clock. the domain powergate method will only be called when the clocks of
+all modules in the domain are off. So the powergate method can then turn them
+on again, do the module resets and client flushes and then disable them
+again. Same for ungate. So I don't see a problem here?
 
+Cheers,
 
---1420708363.56AF621.31029
-Date: Thu, 8 Jan 2015 09:12:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88164
-
---- Comment #5 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #4)
-> I just noticed that you said that this is a regression from 3.17 to 3.18 --
-> that is _very_ surprising, as acceleration is not being used and it's all
-> just software rendering. Perhaps there's more going on here... Could you try
-> doing a bisect? You can limit it to drivers/gpu/drm to speed things up.
-
-I just rechecked with vanilla v3.17. It does work. I am starting a bisection.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420708363.56AF621.31029
-Date: Thu, 8 Jan 2015 09:12:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Text in menus not rendered by LibreOffice"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Text in menus not rendered by LibreOffice"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164">bug 88164</a>
-              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=88164#c4">comment #4</a>)
-<span class="quote">&gt; I just noticed that you said that this is a regression from 3.17 to 3.18 --
-&gt; that is _very_ surprising, as acceleration is not being used and it's all
-&gt; just software rendering. Perhaps there's more going on here... Could you try
-&gt; doing a bisect? You can limit it to drivers/gpu/drm to speed things up.</span >
-
-I just rechecked with vanilla v3.17. It does work. I am starting a bisection.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420708363.56AF621.31029--
-
---===============1700478421==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1700478421==--
+Peter.
