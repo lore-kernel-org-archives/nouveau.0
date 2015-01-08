@@ -1,130 +1,99 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
- clamp
-Date: Thu, 8 Jan 2015 09:03:40 +0100
-Message-ID: <20150108080338.GA27845@ulmo.nvidia.com>
-References: <1419426990.2179.7.camel@lynxeye.de>
- <549B7638.2010405@nvidia.com>
- <20150105150932.GG12010@ulmo.nvidia.com>
- <20150107101900.GP10073@tbergstrom-lnx.Nvidia.com>
- <54AD0F37.5080609@nvidia.com>
- <20150107132709.GA6988@ulmo>
- <20150107140852.GR10073@tbergstrom-lnx.Nvidia.com>
- <20150107142828.GB7392@nvidia.com>
- <20150107144805.GF1621@ulmo>
- <54AE06AE.8080603@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88164] Text in menus not rendered by LibreOffice
+Date: Thu, 08 Jan 2015 09:12:44 +0000
+Message-ID: <bug-88164-8800-lrrcDS4L0K@http.bugs.freedesktop.org/>
+References: <bug-88164-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="8t9RHnE3ZwKMSgU+"
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <54AE06AE.8080603-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============1700478421=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-88164-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---8t9RHnE3ZwKMSgU+
-Content-Type: text/plain; charset=us-ascii
+--===============1700478421==
+Content-Type: multipart/alternative; boundary="1420708363.56AF621.31029"; charset="UTF-8"
+
+
+--1420708363.56AF621.31029
+Date: Thu, 8 Jan 2015 09:12:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88164
+
+--- Comment #5 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> I just noticed that you said that this is a regression from 3.17 to 3.18 --
+> that is _very_ surprising, as acceleration is not being used and it's all
+> just software rendering. Perhaps there's more going on here... Could you try
+> doing a bisect? You can limit it to drivers/gpu/drm to speed things up.
+
+I just rechecked with vanilla v3.17. It does work. I am starting a bisection.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1420708363.56AF621.31029
+Date: Thu, 8 Jan 2015 09:12:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Text in menus not rendered by LibreOffice"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Text in menus not rendered by LibreOffice"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88164">bug 88164</a>
+              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=88164#c4">comment #4</a>)
+<span class="quote">&gt; I just noticed that you said that this is a regression from 3.17 to 3.18 --
+&gt; that is _very_ surprising, as acceleration is not being used and it's all
+&gt; just software rendering. Perhaps there's more going on here... Could you try
+&gt; doing a bisect? You can limit it to drivers/gpu/drm to speed things up.</span >
+
+I just rechecked with vanilla v3.17. It does work. I am starting a bisection.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1420708363.56AF621.31029--
+
+--===============1700478421==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 08, 2015 at 12:25:18PM +0800, Vince Hsu wrote:
->=20
-> On 01/07/2015 10:48 PM, Thierry Reding wrote:
-> >* PGP Signed by an unknown key
-> >
-> >On Wed, Jan 07, 2015 at 10:28:29PM +0800, Vince Hsu wrote:
-> >>On 04:08:52PM Jan 07, Peter De Schrijver wrote:
-> >>>On Wed, Jan 07, 2015 at 02:27:10PM +0100, Thierry Reding wrote:
-> >>>
-> >>>>>Yeah. I plan to have the information of all the clock client of the
-> >>>>>partitions and
-> >>>>>the memory clients be defined statically in c source, e.g. pmc-tegra=
-124.c.
-> >>>>>All modules can declare which domain they belong to in DT. One domai=
-n can
-> >>>>>be really power gated only when no module is awake. Note the clock c=
-lients
-> >>>>>of
-> >>>>>one domain might not equal to the clocks of the module. The reset is=
- not
-> >>>>>either.
-> >>>>>So I don't get the clock and reset from module. How do you think?
-> >>>>This whole situation is quite messy. The above sequence basically mea=
-ns
-> >>>>that drivers can't reset hardware modules because otherwise they might
-> >>>>race with the power domain code. It also means that we can't powergate
-> >>>The powerdomain framework won't call any powergating method as long as=
- a
-> >>>module in the domain is still active. So as long as drivers don't try =
-to
-> >>>reset the hw without having done a pm_runtime_get(), we shouldn't have=
- such
-> >>>a race?
-> >>Agree. And as long as the driver has the correct reset procedure, that =
-should
-> >>be fine to occur between power ungating and gating sequences.
-> >>
-> >>>>modules on demand because they might be in the same power domain as o=
-ne
-> >>>>other module that's still busy.
-> >>>>
-> >>>The powerdomain framework keeps track of which modules are active (by =
-hooking
-> >>>into runtime pm) and won't try to shutdown a domain unless all modules=
- are
-> >>>inactive.
-> >>Yeah. By the way, that means we should start supporting runtime pm for =
-all
-> >>the modules to use generic power domain.
-> >Indeed, that'll be a prerequisite before we can merge power domain
-> >support. I do have a couple of local patches that add very rudimentary
-> >runtime PM for various drivers. For starters we could probably just do
-> >the
-> >
-> >	pm_runtime_enable(...);
-> >	pm_runtime_get_sync(...)
-> >
-> >in the ->probe() and
-> >
-> >	pm_runtime_put_sync(...);
-> >	pm_runtime_disable(...);
-> >
-> >in the ->remove() callbacks for those drivers. That's by no means
-> >optimal but should get us pretty close to what we do now and still
-> >support the generic power domains.
-> Cool. Could you send me the patches?
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
-Here are two examples:
-
-	https://github.com/thierryreding/linux/commit/36b5c34f68edb8135b9afb3e62c7=
-ce9a527d6793
-	https://github.com/thierryreding/linux/commit/6a6145d9e0fcbd4f9599552181fc=
-02f4606b6a0e
-
-Thierry
-
---8t9RHnE3ZwKMSgU+
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJUrjnaAAoJEN0jrNd/PrOhz14P/3RdQpqGO/h/IVMDnKHldey3
-ObcS6z2uatoTfVhAM74FRTEtfwvIyPbSfy+OYfSXcMf4mZ7t/j7FLYiDVyatNoEe
-8VODBU4JYoVhkcqcYCAK8PCAudR1kB4qQxuNeimUle4z0rXGJ4EFap9RrIOxwbtU
-0Wa/v2XxAiUx19dq3DDjvxEa1Qe+x0AndYPRIA4uWl6S6kB98odMSMMNQ7dupNq6
-qns5cMdLI44lJ7uZYPfA1wBsgrM3OTqQK2ClbAi7SDa0LPEMc/7gX6OQV6KaclCl
-TafJuFGX4jWwmS5/LoHLp5dzeQRCf4oPbHhvLhOPhQpLHa6rCUeGn/fNMSHJXDGJ
-4gjVmYyWWbnKaWc/nEf9DF/NCU0F2vZVjBhatQ+1EDQpcMDPKzK6gI+qDGKDbTK/
-RXJvT1jfBxOKx6g+5Caz+OM7HRyIFmJk93dpZY4wJoBRHK/e1drg6bfekvn9Hxu8
-ZlFi9mzoBMeWw/oiqRy73VGPh40n1Rf4Df4isPZ+2WM2uehSgyHpvgqUcCiW0K2J
-3/+a2F2psmfrZiJYgbIzDV8+4QZFcrWGtxv7RWt5umLEfxnxhxTMaoV925ZraHK0
-VpCgPWL1wOW54e4fzrVjlOCScrsMKKlvYhgcD3wopeUeXOUwB/+uKggavux9JfKs
-ptyWW1EOejsPWgCT2nYq
-=18vR
------END PGP SIGNATURE-----
-
---8t9RHnE3ZwKMSgU+--
+--===============1700478421==--
