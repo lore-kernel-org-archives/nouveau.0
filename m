@@ -1,76 +1,94 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the GPU rail
- clamp
-Date: Thu, 8 Jan 2015 12:44:46 +0100
-Message-ID: <20150108114444.GM1987@ulmo.nvidia.com>
-References: <1419331204-26679-2-git-send-email-vinceh@nvidia.com>
- <1419426990.2179.7.camel@lynxeye.de>
- <549B7638.2010405@nvidia.com>
+From: Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH 1/11] ARM: tegra: add function to control the
+ GPU rail clamp
+Date: Thu, 8 Jan 2015 14:41:22 +0200
+Message-ID: <20150108124122.GY10073@tbergstrom-lnx.Nvidia.com>
+References: <1419426990.2179.7.camel@lynxeye.de> <549B7638.2010405@nvidia.com>
  <20150105150932.GG12010@ulmo.nvidia.com>
  <20150107101900.GP10073@tbergstrom-lnx.Nvidia.com>
  <54AD0F37.5080609@nvidia.com>
  <20150107141254.GS10073@tbergstrom-lnx.Nvidia.com>
- <20150107141938.GA7392@nvidia.com>
- <20150107151206.GG1621@ulmo>
- <20150108093957.GW10073@tbergstrom-lnx.Nvidia.com>
+ <20150107141938.GA7392@nvidia.com> <20150107151206.GG1621@ulmo>
+ <20150108093205.GV10073@tbergstrom-lnx.Nvidia.com>
+ <20150108114153.GL1987@ulmo.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="nrXiCraHbXeog9mY"
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Disposition: inline
-In-Reply-To: <20150108093957.GW10073-Rysk9IDjsxmJz7etNGeUX8VPkgjIgRvpAL8bYrjMMd8@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Peter De Schrijver <pdeschrijver-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, martin.peres-GANU6spQydw@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org, samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+In-Reply-To: <20150108114153.GL1987-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: swarren-3lzwWm7+Weoh9ZMKESR00Q@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, seven-FA6nBp6kBxZzu6KWmfFNGwC/G2K4zDHf@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---nrXiCraHbXeog9mY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jan 08, 2015 at 11:39:57AM +0200, Peter De Schrijver wrote:
-> > > And specify the dependencies between domains in DT?
-> >=20
-> > I think the dependencies could be in the driver. Of course the power
-> > domains are per-SoC data, so really shouldn't be in the DTS either (the
-> > data is all implied by the compatible value) but there's no good way to
->=20
-> The clock references could also be retrieved via clk_get_sys(). We could =
-add
-> some more clkdev entries. If we use the domain name as the dev_id and the
-> module names as the con_id's, the domain code could then retrieve the
-> clocks by iterating over the module names and performing a
-> clk_get_sys(domain_name, module_name) for each module. Unfortunately no s=
-uch
-> mechanism exists for resets.
-
-I don't think having both clock and reset references in the device tree
-is all that bad. We could possibly add a lookup mechanism for reset
-controls that doesn't rely on DT, but I'm not sure it's really worth it.
-
-Thierry
-
---nrXiCraHbXeog9mY
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBAgAGBQJUrm2sAAoJEN0jrNd/PrOha84P/1wY2w9+orYwoBE8WixTHfrC
-I/j4RixXnDqtaUnoO9/yP5kBFEe87yfUv9eXdDABVIGSR2/iymClgC3zTNGQ/RZN
-6EVH4ga99wNiIPUE/+xkmhezeccNv+FEk6B4DhTRbKu6weKDX2IA+IHvAJlkrLvO
-08Y8vEzrEkL8FuoiUC+pQnsNOtUW8Yn4/c8hr2M0Ac0N631Krwy3d8SDYCylYp1s
-8IUd0I/6stAjWOHuXPHGYJ1fzeM2j40Vn7HvvdUX/XvJWrwhf8HJhreX6UpPRsZV
-MbwHPwR0Sbd4cbSnbkVdfjGEHLb3GcyaPZrpOTrqq0WF694y2g19/ff/LtetQLEq
-9WVrRH4YNv5VS+kJK1mk9ObHs4DK5kmDpOlVOcaY4yea540x+yv8CCR+GliQ/pXc
-zR7SIpyEsTCAm76EiS/YRohPW78Q698yL8+cOkOX9YUHktFFCWDfJQg2au8AHX5t
-fiBwIR2tw6wbaedHsmhFfXp9z2wArSyO/sXdDs9GIZ7tzOJ67yC1xVZbGQtJgtrF
-7Yra0YZv8H/In6aXg35XilgcyjMdaKbZe3vnsTuzWm9Br9jrptpAcL5Yj/0O3nhg
-lB3nqT1pf9Y/Fi/M1TLzl7PXI9JpaaRahwOzl9BVU2NJNpTI3ui6+JvD604kmdMT
-CSPEtLWkeZiLJ0MYlv+H
-=mAG6
------END PGP SIGNATURE-----
-
---nrXiCraHbXeog9mY--
+T24gVGh1LCBKYW4gMDgsIDIwMTUgYXQgMTI6NDE6NTRQTSArMDEwMCwgVGhpZXJyeSBSZWRpbmcg
+d3JvdGU6Cj4gKiBQR1AgU2lnbmVkIGJ5IGFuIHVua25vd24ga2V5Cj4gCj4gT24gVGh1LCBKYW4g
+MDgsIDIwMTUgYXQgMTE6MzI6MDZBTSArMDIwMCwgUGV0ZXIgRGUgU2NocmlqdmVyIHdyb3RlOgo+
+ID4gPiA+IEFuZCBzcGVjaWZ5IHRoZSBkZXBlbmRlbmNpZXMgYmV0d2VlbiBkb21haW5zIGluIERU
+Pwo+ID4gPiAKPiA+ID4gSSB0aGluayB0aGUgZGVwZW5kZW5jaWVzIGNvdWxkIGJlIGluIHRoZSBk
+cml2ZXIuIE9mIGNvdXJzZSB0aGUgcG93ZXIKPiA+ID4gZG9tYWlucyBhcmUgcGVyLVNvQyBkYXRh
+LCBzbyByZWFsbHkgc2hvdWxkbid0IGJlIGluIHRoZSBEVFMgZWl0aGVyICh0aGUKPiA+ID4gZGF0
+YSBpcyBhbGwgaW1wbGllZCBieSB0aGUgY29tcGF0aWJsZSB2YWx1ZSkgYnV0IHRoZXJlJ3Mgbm8g
+Z29vZCB3YXkgdG8KPiA+ID4gZ2V0IGF0IHRoZSBjbG9ja3MgYW5kIHJlc2V0cyB3aXRob3V0IERU
+LCBzbyBJIHRoaW5rIHRoYXQncyBhIHJlYXNvbmFibGUKPiA+ID4gdHJhZGUtb2ZmLgo+ID4gPiAK
+PiA+ID4gSXQgc2VlbXMgdG8gbWUgbGlrZSB0aGVyZSBhcmUgb25seSB0d28gZGVwZW5kZW5jaWVz
+Ogo+ID4gPiAKPiA+ID4gCURJUyBhbmQgRElTQiBkZXBlbmQgb24gU09SCj4gPiA+IAlWRSBkZXBl
+bmRzIG9uIERJUwo+ID4gPiAKPiA+ID4gVGhhdCdzIGFjY29yZGluZyB0byA1LjYuNiAiUHJvZ3Jh
+bW1pbmcgR3VpZGUgZm9yIFBvd2VyIEdhdGluZyBhbmQKPiA+ID4gVW5nYXRpbmciIG9mIHRoZSBU
+ZWdyYSBLMSBUUk0uIEl0IGFsc28gc2VlbXMgbGlrZSBhIGJ1bmNoIG9mIG1vZHVsZXMgYXJlCj4g
+PiA+IHBhcnQgb2Ygc2VlbWluZ2x5IHVucmVsYXRlZCBkb21haW5zLiBFc3BlY2lhbGx5IFNPUiBz
+ZWVtcyB0byBjb3ZlciBhCj4gPiA+IGxhcmdlIHJhbmdlIG9mIG1vZHVsZXMgKE1JUEktQ0FMLCBE
+UEFVWCwgU09SLCBIRE1JLCBEU0ksIERTSUIgYW5kCj4gPiA+IEhEQTJIRE1JKS4KPiA+ID4gCj4g
+PiA+IEdpdmVuIHRoYXQgd2UgbWF5IHdhbnQgdG8gbW9yZSBmaW5lLWdyYWluZWRseSBjb250cm9s
+IGNsb2NrcyB0byBzYXZlCj4gPiA+IHBvd2VyLCBkb24ndCB3ZSBuZWVkIHRvIGNvbnRyb2wgY2xv
+Y2tzIGFuZCByZXNldHMgd2l0aGluIHRoZSBkcml2ZXJzPyBJCj4gPiA+IHRoaW5rIHRoZSBydW50
+aW1lIFBNIGZyYW1ld29yayBtYWtlcyBzdXJlIHRvIGNhbGwgdGhpcyBpbiB0aGUgcmlnaHQKPiA+
+ID4gb3JkZXIsIHNvIGZvciBzdXNwZW5kLCB0aGUgc2VxdWVuY2Ugd291bGQgYmU6Cj4gPiA+IAo+
+ID4gPiAJMSkgZGV2aWNlLT5zdXNwZW5kCj4gPiA+IAkyKSBkb21haW4tPnN1c3BlbmQKPiA+ID4g
+Cj4gPiA+IGFuZCBmb3IgcmVzdW1lOgo+ID4gPiAKPiA+ID4gCTEpIGRvbWFpbi0+cmVzdW1lCj4g
+PiA+IAkyKSBkZXZpY2UtPnJlc3VtZQo+ID4gPiAKPiA+ID4gQnV0IHRoZW4gd2UncmUgYmFjayB0
+byBzcXVhcmUgb25lLCBuYW1lbHkgdGhhdCB0aGUgTUMgZmx1c2ggZG9lc24ndCB3b3JrCj4gPiA+
+IHByb3Blcmx5LCBzaW5jZSBpdCBuZWVkcyB0byBiZSBpbXBsZW1lbnRlZCBpbiBkb21haW4tPnN1
+c3BlbmQuIERvZXMgdGhhdAo+ID4gPiBtZWFuIHdlIGNhbid0IGNsb2NrLWdhdGUgbW9kdWxlcz8g
+SW4gb3JkZXIgdG8gZW5zdXJlIGEgcHJvcGVyIHBvd2VyZ2F0ZQo+ID4gPiBzZXF1ZW5jZSwgdGhl
+IGRvbWFpbiBjb2RlIHdvdWxkIG5lZWQgdG8gY2xrX2VuYWJsZSgpIHRoZSBtb2R1bGUgY2xvY2sg
+dG8KPiA+ID4gbWFrZSBzdXJlIGl0IHN0YXlzIG9uIGR1cmluZyB0aGUgcmVzZXQgc2VxdWVuY2Uu
+IEJ1dCBpZiB0aGUgZG9tYWluIGNvZGUKPiA+ID4gaGFzIGEgcmVmZXJlbmNlIHRvIHRoZSBjbG9j
+aywgdGhlbiB0aGUgZHJpdmVyIGNhbid0IGNsb2NrLWdhdGUgdGhlCj4gPiA+IG1vZHVsZSBhbnlt
+b3JlIGJ5IGNhbGxpbmcgY2xrX2Rpc2FibGUoKS4KPiA+ID4gCj4gPiA+IEFtIEkgbWlzc2luZyBz
+b21ldGhpbmc/Cj4gPiA+IAo+ID4gCj4gPiBUaGVyZSdzIGEgZGlmZmVyZW5jZSBiZXR3ZWVuIGhh
+dmluZyBhIHJlZmVyZW5jZSBhbmQgYWN0dWFsbHkgZW5hYmxpbmcgdGhlCj4gPiBjbG9jay4KPiAK
+PiBNeSBwb2ludCB3YXMgdGhhdCBhcyBsb25nIGFzIGFueW9uZSB3YXMga2VlcGluZyBhIHJlZmVy
+ZW5jZSB0aGUgY2xvY2sKPiBjb3VsZG4ndCBpbiBmYWN0IGJlIHR1cm5lZCBvZmYuCj4gCj4gPiB0
+aGUgZG9tYWluIHBvd2VyZ2F0ZSBtZXRob2Qgd2lsbCBvbmx5IGJlIGNhbGxlZCB3aGVuIHRoZSBj
+bG9ja3Mgb2YKPiA+IGFsbCBtb2R1bGVzIGluIHRoZSBkb21haW4gYXJlIG9mZi4KPiAKPiBObywg
+dGhlIHBvd2VyIGRvbWFpbiB3aWxsIGJlIGRpc2FibGVkIHdoZW4gYWxsIGRldmljZXMgaW4gdGhl
+IGRvbWFpbiBhcmUKPiBpZGxlLgo+IAo+ID4gU28gdGhlIHBvd2VyZ2F0ZSBtZXRob2QgY2FuIHRo
+ZW4gdHVybiB0aGVtIG9uIGFnYWluLCBkbyB0aGUgbW9kdWxlCj4gPiByZXNldHMgYW5kIGNsaWVu
+dCBmbHVzaGVzIGFuZCB0aGVuIGRpc2FibGUgdGhlbSBhZ2Fpbi4gU2FtZSBmb3IKPiA+IHVuZ2F0
+ZS4gU28gSSBkb24ndCBzZWUgYSBwcm9ibGVtIGhlcmU/Cj4gCj4gSSB0aGluayB0aGF0IGNvdWxk
+IHdvcmssIGJ1dCB3ZSdkIG5lZWQgdG8gbWFrZSBzdXJlIHRoYXQgZHJpdmVycyB0aGF0Cj4gdXNl
+IHJ1bnRpbWUgUE0gYW5kIGFyZSBjb25uZWN0ZWQgdG8gYSBwb3dlciBkb21haW4gZW5hYmxlIGNs
+b2NrcyBvbmx5Cj4gYWZ0ZXIgdGFraW5nIGEgcnVudGltZSBQTSByZWZlcmVuY2UgYW5kIGRpc2Fi
+bGUgdGhlIGNsb2NrcyBiZWZvcmUgdGhleQo+IHJlbGVhc2UgdGhhdCByZWZlcmVuY2UuCj4gCj4g
+U28gdG8gc2ltcGxpZnkgdGhpbmdzLCBtYXliZSBhbGwgY2xvY2sgaGFuZGxpbmcgZm9yIGRyaXZl
+cnMgc2hvdWxkIGJlCj4gbW92ZWQgaW50byBydW50aW1lIFBNIG9wZXJhdGlvbnMsIGFuZCB3aGVu
+ZXZlciB0aGUgZHJpdmVyIG5lZWRzIHRoZQo+IGNsb2NrIGVuYWJsZWQgaXQgdGFrZXMgYSBydW50
+aW1lIFBNIHJlZmVyZW5jZS4gVGhhdCB3b3VsZCBlbnN1cmUgdGhhdAo+IGNsb2NrcyBhcmVuJ3Qg
+YWNjaWRlbnRhbGx5IGxlZnQgb24uCgpZZXMuIFRoYXQncyBleGFjdGx5IHdoYXQgbmVlZHMgdG8g
+aGFwcGVuIChhcGFydCBmcm9tIHNvbWUgc3BlY2lhbCBjYXNlcyB3aGVyZQp0aGUgZHJpdmVyIGFs
+c28gY29udHJvbHMgc29tZSBjbG9ja3MgZm9yIHRoZSBleHRlcm5hbCBzaWduYWxzIGxpa2UgZGlz
+cGxheS4KdGhvc2UgY2xvY2tzIG1vc3QgbGlrZWx5IHN0aWxsIG5lZWQgdG8gYmUgaGFuZGxlZCBi
+eSB0aGUgZHJpdmVycykuCgpDaGVlcnMsCgpQZXRlci4KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
