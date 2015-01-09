@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 84101] [NV96] null deref in nouveau_i2c_acquire_pad,
  triggered by xcmddc
-Date: Fri, 09 Jan 2015 06:28:14 +0000
-Message-ID: <bug-84101-8800-JFeDgREWFn@http.bugs.freedesktop.org/>
+Date: Fri, 09 Jan 2015 06:29:23 +0000
+Message-ID: <bug-84101-8800-9BvjMWaeBO@http.bugs.freedesktop.org/>
 References: <bug-84101-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0072589668=="
+Content-Type: multipart/mixed; boundary="===============0750708359=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-84101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0072589668==
-Content-Type: multipart/alternative; boundary="1420784894.F771D2.12378"; charset="UTF-8"
+--===============0750708359==
+Content-Type: multipart/alternative; boundary="1420784963.bBaCb2.12900"; charset="UTF-8"
 
 
---1420784894.F771D2.12378
-Date: Fri, 9 Jan 2015 06:28:14 +0000
+--1420784963.bBaCb2.12900
+Date: Fri, 9 Jan 2015 06:29:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=84101
 
---- Comment #5 from hong-fMnCZbbUwqqsTnJN9+BGXg@public.gmane.org ---
-Created attachment 111988
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111988&action=edit
-dmesg
+--- Comment #6 from hong-fMnCZbbUwqqsTnJN9+BGXg@public.gmane.org ---
+Created attachment 111989
+  --> https://bugs.freedesktop.org/attachment.cgi?id=111989&action=edit
+The log shows the backtrace of the crash
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1420784894.F771D2.12378
-Date: Fri, 9 Jan 2015 06:28:14 +0000
+--1420784963.bBaCb2.12900
+Date: Fri, 9 Jan 2015 06:29:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=84101">bug 84101</a>
               from <span class="vcard"><a class="email" href="mailto:hong&#64;topbug.net" title="hong&#64;topbug.net">hong&#64;topbug.net</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111988" name="attach_111988" title="dmesg">attachment 111988</a> <a href="attachment.cgi?id=111988&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=111989" name="attach_111989" title="The log shows the backtrace of the crash">attachment 111989</a> <a href="attachment.cgi?id=111989&amp;action=edit" title="The log shows the backtrace of the crash">[details]</a></span>
+The log shows the backtrace of the crash</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg</pre>
     </body>
 </html>
 
---1420784894.F771D2.12378--
+--1420784963.bBaCb2.12900--
 
---===============0072589668==
+--===============0750708359==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0072589668==--
+--===============0750708359==--
