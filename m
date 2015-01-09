@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84101] [NV96] null deref in nouveau_i2c_acquire_pad,
- triggered by xcmddc
-Date: Fri, 09 Jan 2015 06:36:56 +0000
-Message-ID: <bug-84101-8800-fSz3w6cv39@http.bugs.freedesktop.org/>
-References: <bug-84101-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: [RESEND/PATCH] nv50/ir: Handle OP_CVT when folding
+	constant expressions
+Date: Sat, 10 Jan 2015 00:47:56 +0100
+Message-ID: <1420847276-8754-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1719390378=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84101-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,72 +19,87 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1719390378==
-Content-Type: multipart/alternative; boundary="1420785416.dDd82.15719"; charset="UTF-8"
-
-
---1420785416.dDd82.15719
-Date: Fri, 9 Jan 2015 06:36:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=84101
-
---- Comment #7 from hong-fMnCZbbUwqqsTnJN9+BGXg@public.gmane.org ---
-Created attachment 111990
-  --> https://bugs.freedesktop.org/attachment.cgi?id=111990&action=edit
-VBIOS.rom
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420785416.dDd82.15719
-Date: Fri, 9 Jan 2015 06:36:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] null deref in nouveau_i2c_acquire_pad, triggered by xcmddc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84101">bug 84101</a>
-              from <span class="vcard"><a class="email" href="mailto:hong&#64;topbug.net" title="hong&#64;topbug.net">hong&#64;topbug.net</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=111990" name="attach_111990" title="VBIOS.rom">attachment 111990</a> <a href="attachment.cgi?id=111990&amp;action=edit" title="VBIOS.rom">[details]</a></span>
-VBIOS.rom</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420785416.dDd82.15719--
-
---===============1719390378==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1719390378==--
+Rm9sZGluZyBmb3IgY29udmVyc2lvbnM6IEYzMi0+KFV7MTYvMzJ9LCBTezE2LzMyfSkgYW5kIChV
+ezE2LzMyfSwge1MxNi8zMn0pLT5GMzIKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4g
+PHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KLS0tCiAuLi4vZHJpdmVycy9u
+b3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgICB8IDEwOSArKysrKysrKysrKysr
+KysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxMDkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3Bw
+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5j
+cHAKaW5kZXggOWEwYmI2MC4uNmEzZDUxNSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKKysrIGIvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKQEAgLTk5Nyw2ICs5
+OTcsMTE1IEBAIENvbnN0YW50Rm9sZGluZzo6b3BuZChJbnN0cnVjdGlvbiAqaSwgSW1tZWRpYXRl
+VmFsdWUgJmltbTAsIGludCBzKQogICAgICAgaS0+b3AgPSBPUF9NT1Y7CiAgICAgICBicmVhazsK
+ICAgIH0KKyAgIGNhc2UgT1BfQ1ZUOiB7CisgICAgICBTdG9yYWdlIHJlczsKKyAgICAgIGJsZC5z
+ZXRQb3NpdGlvbihpLCB0cnVlKTsgLyogbWFrZSBzdXJlIGJsZCBpcyBpbml0J2VkICovCisgICAg
+ICBzd2l0Y2goaS0+ZFR5cGUpIHsKKyAgICAgIGNhc2UgVFlQRV9VMTY6CisgICAgICAgICBzd2l0
+Y2ggKGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAgICAgICAgaWYg
+KGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEudTE2ID0gdXRpbF9pcm91bmQo
+Q0xBTVAoaW1tMC5yZWcuZGF0YS5mMzIsIDAsCisgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBVSU5UMTZfTUFYKSk7CisgICAgICAgICAgICBlbHNlCisgICAg
+ICAgICAgICAgICByZXMuZGF0YS51MTYgPSB1dGlsX2lyb3VuZChpbW0wLnJlZy5kYXRhLmYzMik7
+CisgICAgICAgICAgICBicmVhazsKKyAgICAgICAgIGNhc2UgVFlQRV9GNjQ6CisgICAgICAgICAg
+ICBpZiAoaS0+c2F0dXJhdGUpCisgICAgICAgICAgICAgICByZXMuZGF0YS51MTYgPSB1dGlsX2ly
+b3VuZChDTEFNUChpbW0wLnJlZy5kYXRhLmY2NCwgMCwKKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIFVJTlQxNl9NQVgpKTsKKyAgICAgICAgICAgIGVsc2UK
+KyAgICAgICAgICAgICAgIHJlcy5kYXRhLnUxNiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEu
+ZjY0KTsKKyAgICAgICAgICAgIGJyZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAgICAg
+IHJldHVybjsKKyAgICAgICAgIH0KKyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJbW0ocmVz
+LmRhdGEudTE2KSk7CisgICAgICAgICBicmVhazsKKyAgICAgIGNhc2UgVFlQRV9VMzI6CisgICAg
+ICAgICBzd2l0Y2ggKGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAg
+ICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEudTMyID0gdXRp
+bF9pcm91bmQoQ0xBTVAoaW1tMC5yZWcuZGF0YS5mMzIsIDAsCisgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBVSU5UMzJfTUFYKSk7CisgICAgICAgICAgICBl
+bHNlCisgICAgICAgICAgICAgICByZXMuZGF0YS51MzIgPSB1dGlsX2lyb3VuZChpbW0wLnJlZy5k
+YXRhLmYzMik7CisgICAgICAgICAgICBicmVhazsKKyAgICAgICAgIGNhc2UgVFlQRV9GNjQ6Cisg
+ICAgICAgICAgICBpZiAoaS0+c2F0dXJhdGUpCisgICAgICAgICAgICAgICByZXMuZGF0YS51MzIg
+PSB1dGlsX2lyb3VuZChDTEFNUChpbW0wLnJlZy5kYXRhLmY2NCwgMCwKKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFVJTlQzMl9NQVgpKTsKKyAgICAgICAg
+ICAgIGVsc2UKKyAgICAgICAgICAgICAgIHJlcy5kYXRhLnUzMiA9IHV0aWxfaXJvdW5kKGltbTAu
+cmVnLmRhdGEuZjY0KTsKKyAgICAgICAgIGJyZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAg
+ICAgICAgIHJldHVybjsKKyAgICAgICAgIH0KKyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJ
+bW0ocmVzLmRhdGEudTMyKSk7CisgICAgICAgICBicmVhazsKKyAgICAgIGNhc2UgVFlQRV9TMTY6
+CisgICAgICAgICBzd2l0Y2ggKGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgor
+ICAgICAgICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczE2
+ID0gdXRpbF9pcm91bmQoQ0xBTVAoaW1tMC5yZWcuZGF0YS5mMzIsIElOVDE2X01JTiwKKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElOVDE2X01BWCkpOwor
+ICAgICAgICAgICAgZWxzZQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczE2ID0gdXRpbF9pcm91
+bmQoaW1tMC5yZWcuZGF0YS5mMzIpOworICAgICAgICAgICAgYnJlYWs7CisgICAgICAgICBjYXNl
+IFRZUEVfRjY0OgorICAgICAgICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAg
+cmVzLmRhdGEuczE2ID0gdXRpbF9pcm91bmQoQ0xBTVAoaW1tMC5yZWcuZGF0YS5mNjQsIElOVDE2
+X01JTiwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElO
+VDE2X01BWCkpOworICAgICAgICAgICAgZWxzZQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczE2
+ID0gdXRpbF9pcm91bmQoaW1tMC5yZWcuZGF0YS5mNjQpOworICAgICAgICAgYnJlYWs7CisgICAg
+ICAgICBkZWZhdWx0OgorICAgICAgICAgICAgcmV0dXJuOworICAgICAgICAgfQorICAgICAgICAg
+aS0+c2V0U3JjKDAsIGJsZC5ta0ltbShyZXMuZGF0YS5zMTYpKTsKKyAgICAgICAgIGJyZWFrOwor
+ICAgICAgY2FzZSBUWVBFX1MzMjoKKyAgICAgICAgIHN3aXRjaCAoaS0+c1R5cGUpIHsKKyAgICAg
+ICAgIGNhc2UgVFlQRV9GMzI6CisgICAgICAgICAgICBpZiAoaS0+c2F0dXJhdGUpCisgICAgICAg
+ICAgICAgICByZXMuZGF0YS5zMzIgPSB1dGlsX2lyb3VuZChDTEFNUChpbW0wLnJlZy5kYXRhLmYz
+MiwgSU5UMzJfTUlOLAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBJTlQzMl9NQVgpKTsKKyAgICAgICAgICAgIGVsc2UKKyAgICAgICAgICAgICAgIHJlcy5k
+YXRhLnMzMiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEuZjMyKTsKKyAgICAgICAgICAgIGJy
+ZWFrOworICAgICAgICAgY2FzZSBUWVBFX0Y2NDoKKyAgICAgICAgICAgIGlmIChpLT5zYXR1cmF0
+ZSkKKyAgICAgICAgICAgICAgIHJlcy5kYXRhLnMzMiA9IHV0aWxfaXJvdW5kKENMQU1QKGltbTAu
+cmVnLmRhdGEuZjY0LCBJTlQzMl9NSU4sCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIElOVDMyX01BWCkpOworICAgICAgICAgICAgZWxzZQorICAgICAgICAg
+ICAgICAgcmVzLmRhdGEuczMyID0gdXRpbF9pcm91bmQoaW1tMC5yZWcuZGF0YS5mNjQpOworICAg
+ICAgICAgICAgYnJlYWs7CisgICAgICAgICBkZWZhdWx0OgorICAgICAgICAgICAgcmV0dXJuOwor
+ICAgICAgICAgfQorICAgICAgICAgaS0+c2V0U3JjKDAsIGJsZC5ta0ltbShyZXMuZGF0YS5zMzIp
+KTsKKyAgICAgICAgIGJyZWFrOworICAgICAgY2FzZSBUWVBFX0YzMjoKKyAgICAgICAgIHN3aXRj
+aCAoaS0+c1R5cGUpIHsKKyAgICAgICAgIGNhc2UgVFlQRV9VMTY6IHJlcy5kYXRhLmYzMiA9IChm
+bG9hdCkgaW1tMC5yZWcuZGF0YS51MTY7IGJyZWFrOworICAgICAgICAgY2FzZSBUWVBFX1UzMjog
+cmVzLmRhdGEuZjMyID0gKGZsb2F0KSBpbW0wLnJlZy5kYXRhLnUzMjsgYnJlYWs7CisgICAgICAg
+ICBjYXNlIFRZUEVfUzE2OiByZXMuZGF0YS5mMzIgPSAoZmxvYXQpIGltbTAucmVnLmRhdGEuczE2
+OyBicmVhazsKKyAgICAgICAgIGNhc2UgVFlQRV9TMzI6IHJlcy5kYXRhLmYzMiA9IChmbG9hdCkg
+aW1tMC5yZWcuZGF0YS5zMzI7IGJyZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAgICAg
+IHJldHVybjsKKyAgICAgICAgIH0KKyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJbW0ocmVz
+LmRhdGEuZjMyKSk7CisgICAgICAgICBicmVhazsKKyAgICAgIGRlZmF1bHQ6CisgICAgICAgICBy
+ZXR1cm47CisgICAgICB9CisgICAgICBpLT5zZXRUeXBlKGktPmRUeXBlKTsgLyogUmVtb3ZlIGkt
+PnNUeXBlLCB3aGljaCB3ZSBkb24ndCBuZWVkIGFueW1vcmUgKi8KKyAgICAgIGktPnNldFNyYygx
+LCBOVUxMKTsKKyAgICAgIGktPm9wID0gT1BfTU9WOworCisgICAgICBpLT5zcmMoMCkubW9kID0g
+TW9kaWZpZXIoMCk7IC8qIENsZWFyIHRoZSBhbHJlYWR5IGFwcGxpZWQgbW9kaWZpZXIgKi8KKyAg
+ICAgIGJyZWFrOworICAgfQogICAgZGVmYXVsdDoKICAgICAgIHJldHVybjsKICAgIH0KLS0gCjIu
+Mi4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
