@@ -1,14 +1,11 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v2] nv50/ir: Handle OP_CVT when folding constant
-	expressions
-Date: Sat, 10 Jan 2015 02:24:27 +0100
-Message-ID: <1420853067-13115-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-References: <CAKb7UvhkHtoRFP1rk8=9w68ZcgesV21mGAMmdB5LsHvFVNzo3Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88262] New: 3.19 kernels hang during boot for an
+ NV28 based card
+Date: Sat, 10 Jan 2015 09:21:29 +0000
+Message-ID: <bug-88262-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0562059867=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhkHtoRFP1rk8=9w68ZcgesV21mGAMmdB5LsHvFVNzo3Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,67 +18,173 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rm9sZGluZyBmb3IgY29udmVyc2lvbnM6IEYzMi0+KFV7MTYvMzJ9LCBTezE2LzMyfSkgYW5kIChV
-ezE2LzMyfSwge1MxNi8zMn0pLT5GMzIKClNpZ25lZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4g
-PHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KLS0tClYyOiBiZWF0IG1lLCB3
-aGlwIG1lLCBzcGxpdCBvdXQgRjY0CgogLi4uL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
-aXJfcGVlcGhvbGUuY3BwICAgfCA4MSArKysrKysrKysrKysrKysrKysrKysrCiAxIGZpbGUgY2hh
-bmdlZCwgODEgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKaW5kZXggOWEwYmI2MC4uNzQx
-Yzc0ZiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
-MF9pcl9wZWVwaG9sZS5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
-ZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKQEAgLTk5Nyw2ICs5OTcsODcgQEAgQ29uc3RhbnRGb2xk
-aW5nOjpvcG5kKEluc3RydWN0aW9uICppLCBJbW1lZGlhdGVWYWx1ZSAmaW1tMCwgaW50IHMpCiAg
-ICAgICBpLT5vcCA9IE9QX01PVjsKICAgICAgIGJyZWFrOwogICAgfQorICAgY2FzZSBPUF9DVlQ6
-IHsKKyAgICAgIFN0b3JhZ2UgcmVzOworICAgICAgYmxkLnNldFBvc2l0aW9uKGksIHRydWUpOyAv
-KiBtYWtlIHN1cmUgYmxkIGlzIGluaXQnZWQgKi8KKyAgICAgIHN3aXRjaChpLT5kVHlwZSkgewor
-ICAgICAgY2FzZSBUWVBFX1UxNjoKKyAgICAgICAgIHN3aXRjaCAoaS0+c1R5cGUpIHsKKyAgICAg
-ICAgIGNhc2UgVFlQRV9GMzI6CisgICAgICAgICAgICBpZiAoaS0+c2F0dXJhdGUpCisgICAgICAg
-ICAgICAgICByZXMuZGF0YS51MTYgPSB1dGlsX2lyb3VuZChDTEFNUChpbW0wLnJlZy5kYXRhLmYz
-MiwgMCwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFVJ
-TlQxNl9NQVgpKTsKKyAgICAgICAgICAgIGVsc2UKKyAgICAgICAgICAgICAgIHJlcy5kYXRhLnUx
-NiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEuZjMyKTsKKyAgICAgICAgICAgIGJyZWFrOwor
-ICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAgICAgIHJldHVybjsKKyAgICAgICAgIH0KKyAgICAg
-ICAgIGktPnNldFNyYygwLCBibGQubWtJbW0ocmVzLmRhdGEudTE2KSk7CisgICAgICAgICBicmVh
-azsKKyAgICAgIGNhc2UgVFlQRV9VMzI6CisgICAgICAgICBzd2l0Y2ggKGktPnNUeXBlKSB7Cisg
-ICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAgICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAg
-ICAgICAgICAgICAgcmVzLmRhdGEudTMyID0gdXRpbF9pcm91bmQoQ0xBTVAoaW1tMC5yZWcuZGF0
-YS5mMzIsIDAsCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBVSU5UMzJfTUFYKSk7CisgICAgICAgICAgICBlbHNlCisgICAgICAgICAgICAgICByZXMuZGF0
-YS51MzIgPSB1dGlsX2lyb3VuZChpbW0wLnJlZy5kYXRhLmYzMik7CisgICAgICAgICAgICBicmVh
-azsKKyAgICAgICAgIGRlZmF1bHQ6CisgICAgICAgICAgICByZXR1cm47CisgICAgICAgICB9Cisg
-ICAgICAgICBpLT5zZXRTcmMoMCwgYmxkLm1rSW1tKHJlcy5kYXRhLnUzMikpOworICAgICAgICAg
-YnJlYWs7CisgICAgICBjYXNlIFRZUEVfUzE2OgorICAgICAgICAgc3dpdGNoIChpLT5zVHlwZSkg
-eworICAgICAgICAgY2FzZSBUWVBFX0YzMjoKKyAgICAgICAgICAgIGlmIChpLT5zYXR1cmF0ZSkK
-KyAgICAgICAgICAgICAgIHJlcy5kYXRhLnMxNiA9IHV0aWxfaXJvdW5kKENMQU1QKGltbTAucmVn
-LmRhdGEuZjMyLCBJTlQxNl9NSU4sCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBJTlQxNl9NQVgpKTsKKyAgICAgICAgICAgIGVsc2UKKyAgICAgICAgICAg
-ICAgIHJlcy5kYXRhLnMxNiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEuZjMyKTsKKyAgICAg
-ICAgICAgIGJyZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAgICAgIHJldHVybjsKKyAg
-ICAgICAgIH0KKyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJbW0ocmVzLmRhdGEuczE2KSk7
-CisgICAgICAgICBicmVhazsKKyAgICAgIGNhc2UgVFlQRV9TMzI6CisgICAgICAgICBzd2l0Y2gg
-KGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAgICAgICAgaWYgKGkt
-PnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczMyID0gdXRpbF9pcm91bmQoQ0xB
-TVAoaW1tMC5yZWcuZGF0YS5mMzIsIElOVDMyX01JTiwKKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgSU5UMzJfTUFYKSk7CisgICAgICAgICAgICBlbHNlCisg
-ICAgICAgICAgICAgICByZXMuZGF0YS5zMzIgPSB1dGlsX2lyb3VuZChpbW0wLnJlZy5kYXRhLmYz
-Mik7CisgICAgICAgICAgICBicmVhazsKKyAgICAgICAgIGRlZmF1bHQ6CisgICAgICAgICAgICBy
-ZXR1cm47CisgICAgICAgICB9CisgICAgICAgICBpLT5zZXRTcmMoMCwgYmxkLm1rSW1tKHJlcy5k
-YXRhLnMzMikpOworICAgICAgICAgYnJlYWs7CisgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAg
-ICAgc3dpdGNoIChpLT5zVHlwZSkgeworICAgICAgICAgY2FzZSBUWVBFX1UxNjogcmVzLmRhdGEu
-ZjMyID0gKGZsb2F0KSBpbW0wLnJlZy5kYXRhLnUxNjsgYnJlYWs7CisgICAgICAgICBjYXNlIFRZ
-UEVfVTMyOiByZXMuZGF0YS5mMzIgPSAoZmxvYXQpIGltbTAucmVnLmRhdGEudTMyOyBicmVhazsK
-KyAgICAgICAgIGNhc2UgVFlQRV9TMTY6IHJlcy5kYXRhLmYzMiA9IChmbG9hdCkgaW1tMC5yZWcu
-ZGF0YS5zMTY7IGJyZWFrOworICAgICAgICAgY2FzZSBUWVBFX1MzMjogcmVzLmRhdGEuZjMyID0g
-KGZsb2F0KSBpbW0wLnJlZy5kYXRhLnMzMjsgYnJlYWs7CisgICAgICAgICBkZWZhdWx0OgorICAg
-ICAgICAgICAgcmV0dXJuOworICAgICAgICAgfQorICAgICAgICAgaS0+c2V0U3JjKDAsIGJsZC5t
-a0ltbShyZXMuZGF0YS5mMzIpKTsKKyAgICAgICAgIGJyZWFrOworICAgICAgZGVmYXVsdDoKKyAg
-ICAgICAgIHJldHVybjsKKyAgICAgIH0KKyAgICAgIGktPnNldFR5cGUoaS0+ZFR5cGUpOyAvKiBS
-ZW1vdmUgaS0+c1R5cGUsIHdoaWNoIHdlIGRvbid0IG5lZWQgYW55bW9yZSAqLworICAgICAgaS0+
-c2V0U3JjKDEsIE5VTEwpOworICAgICAgaS0+b3AgPSBPUF9NT1Y7CisKKyAgICAgIGktPnNyYygw
-KS5tb2QgPSBNb2RpZmllcigwKTsgLyogQ2xlYXIgdGhlIGFscmVhZHkgYXBwbGllZCBtb2RpZmll
-ciAqLworICAgICAgYnJlYWs7CisgICB9CiAgICBkZWZhdWx0OgogICAgICAgcmV0dXJuOwogICAg
-fQotLSAKMi4yLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0562059867==
+Content-Type: multipart/alternative; boundary="1420881689.40b41.6250"; charset="UTF-8"
+
+
+--1420881689.40b41.6250
+Date: Sat, 10 Jan 2015 09:21:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88262
+
+            Bug ID: 88262
+           Summary: 3.19 kernels hang during boot for an NV28 based card
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: bruno-bdMChIhFSYk@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 112047
+  --> https://bugs.freedesktop.org/attachment.cgi?id=112047&action=edit
+dmesg output from a successful 3.18 boot
+
+3.19 kernels having been hanging for me during boot for one of my machines. 
+This is still happening as of commit dc9319f5a3e1f67d2a2fbf190e30f6d03f569fed
+(post rc3). The problem first happens with commit
+ad4a362635353f7ceb66f4038269770fee1025fa. I tried reverting
+ad4a362635353f7ceb66f4038269770fee1025fa from
+dc9319f5a3e1f67d2a2fbf190e30f6d03f569fed, but there were conflicts and I don't
+know enough to properly resolve them.
+The hang is early enough that I can't get logging output from the boot.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1420881689.40b41.6250
+Date: Sat, 10 Jan 2015 09:21:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - 3.19 kernels hang during boot for an NV28 based card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88262">88262</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>3.19 kernels hang during boot for an NV28 based card
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>bruno&#64;wolff.to
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=112047" name="attach_112047" title="dmesg output from a successful 3.18 boot">attachment 112047</a> <a href="attachment.cgi?id=112047&amp;action=edit" title="dmesg output from a successful 3.18 boot">[details]</a></span>
+dmesg output from a successful 3.18 boot
+
+3.19 kernels having been hanging for me during boot for one of my machines. 
+This is still happening as of commit dc9319f5a3e1f67d2a2fbf190e30f6d03f569fed
+(post rc3). The problem first happens with commit
+ad4a362635353f7ceb66f4038269770fee1025fa. I tried reverting
+ad4a362635353f7ceb66f4038269770fee1025fa from
+dc9319f5a3e1f67d2a2fbf190e30f6d03f569fed, but there were conflicts and I don't
+know enough to properly resolve them.
+The hang is early enough that I can't get logging output from the boot.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1420881689.40b41.6250--
+
+--===============0562059867==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0562059867==--
