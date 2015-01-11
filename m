@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88262] [NV28] 3.19 kernels hang during boot
-Date: Sat, 10 Jan 2015 16:12:51 +0000
-Message-ID: <bug-88262-8800-uPGZOUev6O@http.bugs.freedesktop.org/>
-References: <bug-88262-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH 1/3] nv50/ir: Add support for MAD short+IMM
+	notation
+Date: Sun, 11 Jan 2015 01:22:58 +0100
+Message-ID: <1420935780-17104-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0215899205=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88262-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,119 +16,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0215899205==
-Content-Type: multipart/alternative; boundary="1420906371.c688aC1.11666"; charset="UTF-8"
-
-
---1420906371.c688aC1.11666
-Date: Sat, 10 Jan 2015 16:12:51 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88262
-
-Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #4 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
-Thanks. Next time I suspect a Nouveau bug, I'm going to remember to look though
-the queued up fixes before (or while starting) a bisect. I remember seeing the
-summary from the fix a week or so a ago when working with an nv50 issue and
-didn't put two and two together. I should have noticed this fix right away and
-tested it to see if it fixed my problem.
-
-Anyway, I tested current mainline and things are fixed. Thanks again.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1420906371.c688aC1.11666
-Date: Sat, 10 Jan 2015 16:12:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV28] 3.19 kernels hang during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88262">bug 88262</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV28] 3.19 kernels hang during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88262#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV28] 3.19 kernels hang during boot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88262">bug 88262</a>
-              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
-</span></b>
-        <pre>Thanks. Next time I suspect a Nouveau bug, I'm going to remember to look though
-the queued up fixes before (or while starting) a bisect. I remember seeing the
-summary from the fix a week or so a ago when working with an nv50 issue and
-didn't put two and two together. I should have noticed this fix right away and
-tested it to see if it fixed my problem.
-
-Anyway, I tested current mainline and things are fixed. Thanks again.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1420906371.c688aC1.11666--
-
---===============0215899205==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0215899205==--
+TUFEIElNTSBoYXMgYSB2ZXJ5IHNwZWNpZmljIFNEU1QgPT0gU1NSQzIgcmVxdWlyZW1lbnQsIHNv
+IGRvbid0IGVtaXQKClNpZ25lZC1vZmYtYnk6IFJveSBTcGxpZXQgPHJzcGxpZXRAZWNsaXBzby5l
+dT4KLS0tCiAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3Bw
+ICAgICAgfCAxOCArKysrKysrKysrKystLS0tLS0KIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX3RhcmdldF9udjUwLmNwcCAgICB8ICAyICstCiAyIGZpbGVzIGNoYW5nZWQsIDEz
+IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3BwIGIvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3BwCmluZGV4IDIw
+NzczODguLmIxZTc0MDkgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
+b2RlZ2VuL252NTBfaXJfZW1pdF9udjUwLmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvY29kZWdlbi9udjUwX2lyX2VtaXRfbnY1MC5jcHAKQEAgLTkzOSw5ICs5MzksMjAgQEAg
+Q29kZUVtaXR0ZXJOVjUwOjplbWl0Rk1BRChjb25zdCBJbnN0cnVjdGlvbiAqaSkKIAogICAgY29k
+ZVswXSA9IDB4ZTAwMDAwMDA7CiAKKyAgIGlmIChpLT5zcmMoMSkuZ2V0RmlsZSgpID09IEZJTEVf
+SU1NRURJQVRFKSB7CisgICAgICBjb2RlWzFdID0gMDsKKyAgICAgIGVtaXRGb3JtX0lNTShpKTsK
+KyAgICAgIGNvZGVbMF0gfD0gbmVnX211bCA8PCAxNTsKKyAgICAgIGNvZGVbMF0gfD0gbmVnX2Fk
+ZCA8PCAyMjsKKyAgICAgIGlmIChpLT5zYXR1cmF0ZSkKKyAgICAgICAgIGNvZGVbMF0gfD0gMSA8
+PCA4OworICAgfSBlbHNlCiAgICBpZiAoaS0+ZW5jU2l6ZSA9PSA0KSB7CiAgICAgICBlbWl0Rm9y
+bV9NVUwoaSk7Ci0gICAgICBhc3NlcnQoIW5lZ19tdWwgJiYgIW5lZ19hZGQpOworICAgICAgY29k
+ZVswXSB8PSBuZWdfbXVsIDw8IDE1OworICAgICAgY29kZVswXSB8PSBuZWdfYWRkIDw8IDIyOwor
+ICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAgICAgICAgY29kZVswXSB8PSAxIDw8IDg7CiAgICB9
+IGVsc2UgewogICAgICAgY29kZVsxXSAgPSBuZWdfbXVsIDw8IDI2OwogICAgICAgY29kZVsxXSB8
+PSBuZWdfYWRkIDw8IDI3OwpAQCAtMTkzMSwxMSArMTk0Miw2IEBAIENvZGVFbWl0dGVyTlY1MDo6
+Z2V0TWluRW5jb2RpbmdTaXplKGNvbnN0IEluc3RydWN0aW9uICppKSBjb25zdAogCiAgICAvLyBj
+aGVjayBjb25zdHJhaW50cyBvbiBzaG9ydCBNQUQKICAgIGlmIChpbmZvLnNyY05yID49IDIgJiYg
+aS0+c3JjRXhpc3RzKDIpKSB7Ci0gICAgICBpZiAoaS0+c2F0dXJhdGUgfHwgaS0+c3JjKDIpLm1v
+ZCkKLSAgICAgICAgIHJldHVybiA4OwotICAgICAgaWYgKChpLT5zcmMoMCkubW9kIF4gaS0+c3Jj
+KDEpLm1vZCkgfHwKLSAgICAgICAgICAoaS0+c3JjKDApLm1vZCB8IGktPnNyYygxKS5tb2QpLmFi
+cygpKQotICAgICAgICAgcmV0dXJuIDg7CiAgICAgICBpZiAoIWktPmRlZkV4aXN0cygwKSB8fAog
+ICAgICAgICAgIGktPmRlZigwKS5yZXAoKS0+cmVnLmRhdGEuaWQgIT0gaS0+c3JjKDIpLnJlcCgp
+LT5yZWcuZGF0YS5pZCkKICAgICAgICAgIHJldHVybiA4OwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAgYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcApp
+bmRleCA0OGY5OTZiLi5mNGRlZGQ3IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcAorKysgYi9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcApAQCAtMTE4LDcg
+KzExOCw3IEBAIHZvaWQgVGFyZ2V0TlY1MDo6aW5pdE9wSW5mbygpCiAgICBzdGF0aWMgY29uc3Qg
+dWludDMyX3Qgc2hvcnRGb3JtWyhPUF9MQVNUICsgMzEpIC8gMzJdID0KICAgIHsKICAgICAgIC8v
+IE1PVixBREQsU1VCLE1VTCxTQUQsTC9QSU5URVJQLFJDUCxURVgsVFhGCi0gICAgICAweDAwMDEw
+ZTQwLCAweDAwMDAwMDQwLCAweDAwMDAwNDk4LCAweDAwMDAwMDAwCisgICAgICAweDAwMDE0ZTQw
+LCAweDAwMDAwMDQwLCAweDAwMDAwNDk4LCAweDAwMDAwMDAwCiAgICB9OwogICAgc3RhdGljIGNv
+bnN0IG9wZXJhdGlvbiBub0Rlc3RMaXN0W10gPQogICAgewotLSAKMi4xLjAKCgoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
