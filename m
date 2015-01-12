@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Mon, 12 Jan 2015 12:07:46 +0000
-Message-ID: <bug-27501-8800-pYHb7IHaan@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
+ with 9400M in MacbookPro 5, 5
+Date: Mon, 12 Jan 2015 12:11:04 +0000
+Message-ID: <bug-88272-8800-JCkWOm9B35@http.bugs.freedesktop.org/>
+References: <bug-88272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1584053207=="
+Content-Type: multipart/mixed; boundary="===============0266828181=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,38 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1584053207==
-Content-Type: multipart/alternative; boundary="1421064467.1a5FF5.23144"; charset="UTF-8"
+--===============0266828181==
+Content-Type: multipart/alternative; boundary="1421064664.81B52.24270"; charset="UTF-8"
 
 
---1421064467.1a5FF5.23144
-Date: Mon, 12 Jan 2015 12:07:47 +0000
+--1421064664.81B52.24270
+Date: Mon, 12 Jan 2015 12:11:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
+https://bugs.freedesktop.org/show_bug.cgi?id=88272
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+             Status|NEW                         |ASSIGNED
 
---- Comment #62 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Patch is now present in 3.19-rc4, closing this bug report as solved.
+--- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I wasn't enable to reproduce it, as the external screen receives absolutely no
+signals from the card (though it works with the blob).
 
-For those who have the NV96 along the NVAC, you need to use l3iggs technique
-and reset+rescan (echo 1 > /sys/bus/pci/devices/0000:02:00.0/{reset,rescan})
-the NV96 **before** loading Nouveau to avoid a hang when starting X and another
-hang when trying to power off the NV96.
+So I'll try to hack mine to get it to a working state, and hopefully it will
+solve your flickering.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421064467.1a5FF5.23144
-Date: Mon, 12 Jan 2015 12:07:47 +0000
+--1421064664.81B52.24270
+Date: Mon, 12 Jan 2015 12:11:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,9 +61,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -77,35 +76,26 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>ASSIGNED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c62">Comment # 62</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Patch is now present in 3.19-rc4, closing this bug report as solved.
+        <pre>I wasn't enable to reproduce it, as the external screen receives absolutely no
+signals from the card (though it works with the blob).
 
-For those who have the NV96 along the NVAC, you need to use l3iggs technique
-and reset+rescan (echo 1 &gt; /sys/bus/pci/devices/0000:02:00.0/{reset,rescan})
-the NV96 **before** loading Nouveau to avoid a hang when starting X and another
-hang when trying to power off the NV96.</pre>
+So I'll try to hack mine to get it to a working state, and hopefully it will
+solve your flickering.</pre>
         </div>
       </p>
       <hr>
@@ -117,9 +107,9 @@ hang when trying to power off the NV96.</pre>
     </body>
 </html>
 
---1421064467.1a5FF5.23144--
+--1421064664.81B52.24270--
 
---===============1584053207==
+--===============0266828181==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1584053207==--
+--===============0266828181==--
