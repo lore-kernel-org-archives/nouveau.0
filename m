@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
- with 9400M in MacbookPro 5, 5
-Date: Mon, 12 Jan 2015 12:11:04 +0000
-Message-ID: <bug-88272-8800-JCkWOm9B35@http.bugs.freedesktop.org/>
-References: <bug-88272-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] [RFC] mesa/st: Avoid passing a NULL buffer
+	to the drivers
+Date: Mon, 12 Jan 2015 13:14:13 +0100
+Message-ID: <CAAxE2A4-KAre-HLo5xmnUggBHKhPcxP3VgbyjdSG=MEr6iutAw@mail.gmail.com>
+References: <1420656766-7342-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0266828181=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1420656766-7342-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,106 +18,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0266828181==
-Content-Type: multipart/alternative; boundary="1421064664.81B52.24270"; charset="UTF-8"
-
-
---1421064664.81B52.24270
-Date: Mon, 12 Jan 2015 12:11:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88272
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |ASSIGNED
-
---- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-I wasn't enable to reproduce it, as the external screen receives absolutely no
-signals from the card (though it works with the blob).
-
-So I'll try to hack mine to get it to a working state, and hopefully it will
-solve your flickering.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1421064664.81B52.24270
-Date: Mon, 12 Jan 2015 12:11:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>ASSIGNED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>I wasn't enable to reproduce it, as the external screen receives absolutely no
-signals from the card (though it works with the blob).
-
-So I'll try to hack mine to get it to a working state, and hopefully it will
-solve your flickering.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1421064664.81B52.24270--
-
---===============0266828181==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0266828181==--
+TkFLLgoKTlVMTCBidWZmZXJzIGFyZSBhbGxvd2VkLiBBbGwgdHJhbnNmb3JtIGZlZWRiYWNrIHdy
+aXRlcyB0byBOVUxMCmJ1ZmZlcnMgc2hvdWxkIGJlIGRpc2NhcmRlZC4KCk1hcmVrCgpPbiBXZWQs
+IEphbiA3LCAyMDE1IGF0IDc6NTIgUE0sIFRvYmlhcyBLbGF1c21hbm4KPHRvYmlhcy5qb2hhbm5l
+cy5rbGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4gSWYgd2UgY2FwdHVyZSB0cmFuc2Zvcm0g
+ZmVlZGJhY2sgZnJvbSBuIHN0cmVhbSBpbiAobi0xKSBidWZmZXJzIHdlIGZhY2UgYQo+IE5VTEwg
+YnVmZmVyLCB1c2UgdGhlIGJ1ZmZlciAobi0xKSB0byBjYXB0dXJlIHRoZSBvdXRwdXQgb2Ygc3Ry
+ZWFtIG4uCj4KPiBUaGlzIGZpeGVzIG9uZSBwaWdsaXQgdGVzdCB3aXRoIG52YzA6Cj4gICAgYXJi
+X2dwdV9zaGFkZXI1LXhmYi1zdHJlYW1zLXdpdGhvdXQtaW52b2NhdGlvbnMKPgo+IFNpZ25lZC1v
+ZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRo
+bS5kZT4KPiAtLS0KPiAgc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMgfCA1
+ICsrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykKPgo+IGRpZmYgLS1naXQg
+YS9zcmMvbWVzYS9zdGF0ZV90cmFja2VyL3N0X2NiX3hmb3JtZmIuYyBiL3NyYy9tZXNhL3N0YXRl
+X3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jCj4gaW5kZXggOGY3NWVkYS4uNWExMmRhNCAxMDA2NDQK
+PiAtLS0gYS9zcmMvbWVzYS9zdGF0ZV90cmFja2VyL3N0X2NiX3hmb3JtZmIuYwo+ICsrKyBiL3Ny
+Yy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jCj4gQEAgLTEyMyw2ICsxMjMsMTEg
+QEAgc3RfYmVnaW5fdHJhbnNmb3JtX2ZlZWRiYWNrKHN0cnVjdCBnbF9jb250ZXh0ICpjdHgsIEdM
+ZW51bSBtb2RlLAo+ICAgICAgICBzdHJ1Y3Qgc3RfYnVmZmVyX29iamVjdCAqYm8gPSBzdF9idWZm
+ZXJfb2JqZWN0KHNvYmotPmJhc2UuQnVmZmVyc1tpXSk7Cj4KPiAgICAgICAgaWYgKGJvKSB7Cj4g
+KyAgICAgICAgIGlmICghYm8tPmJ1ZmZlcikKPiArICAgICAgICAgICAgLyogSWYgd2UgY2FwdHVy
+ZSB0cmFuc2Zvcm0gZmVlZGJhY2sgZnJvbSBuIHN0cmVhbXMgaW50byAobi0xKQo+ICsgICAgICAg
+ICAgICAgKiBidWZmZXJzIHdlIGhhdmUgdG8gd3JpdGUgdG8gYnVmZmVyIChuLTEpIGZvciBzdHJl
+YW0gbi4KPiArICAgICAgICAgICAgICovCj4gKyAgICAgICAgICAgIGJvID0gc3RfYnVmZmVyX29i
+amVjdChzb2JqLT5iYXNlLkJ1ZmZlcnNbaS0xXSk7Cj4gICAgICAgICAgIC8qIENoZWNrIHdoZXRo
+ZXIgd2UgbmVlZCB0byByZWNyZWF0ZSB0aGUgdGFyZ2V0LiAqLwo+ICAgICAgICAgICBpZiAoIXNv
+YmotPnRhcmdldHNbaV0gfHwKPiAgICAgICAgICAgICAgIHNvYmotPnRhcmdldHNbaV0gPT0gc29i
+ai0+ZHJhd19jb3VudCB8fAo+IC0tCj4gMi4yLjEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4gbWVzYS1kZXYgbWFpbGluZyBsaXN0Cj4gbWVzYS1k
+ZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
