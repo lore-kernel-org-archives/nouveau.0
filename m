@@ -1,18 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [RFC] mesa/st: Avoid passing a NULL buffer to the
-	drivers
-Date: Sun, 11 Jan 2015 20:17:33 -0500
-Message-ID: <CAKb7UvhXHCCvZ-mfzPGZnyMpR1tbEhaQ0WhivK9405=034QrXQ@mail.gmail.com>
-References: <1420656766-7342-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <CAKb7Uvj51aHE2M+brYnQgQ8kTDpP6QEH9WdQWRX7G5uMozKb_w@mail.gmail.com>
- <54B3189F.4010100@mni.thm.de>
- <CAKb7Uvj+HrZCN+P+Lwduvg=Ou+QRKYYOfVPZR7qyrmjjza-nVA@mail.gmail.com>
- <54B31F25.3070104@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
+Date: Mon, 12 Jan 2015 12:07:46 +0000
+Message-ID: <bug-27501-8800-pYHb7IHaan@http.bugs.freedesktop.org/>
+References: <bug-27501-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1584053207=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54B31F25.3070104-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,117 +16,117 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBKYW4gMTEsIDIwMTUgYXQgODoxMSBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
-LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPgo+Cj4gT24gMTIuMDEuMjAx
-NSAwMTo1NywgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Cj4+IE9uIFN1biwgSmFuIDExLCAyMDE1IGF0
-IDc6NDMgUE0sIFRvYmlhcyBLbGF1c21hbm4KPj4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5A
-bW5pLnRobS5kZT4gd3JvdGU6Cj4+Pgo+Pj4KPj4+IE9uIDExLjAxLjIwMTUgMDY6MDUsIElsaWEg
-TWlya2luIHdyb3RlOgo+Pj4+Cj4+Pj4gQ2FuIHlvdSBlbGFib3JhdGUgYSBiaXQgYXMgdG8gd2h5
-IHRoYXQncyB0aGUgcmlnaHQgdGhpbmcgdG8gZG8/Cj4+Pj4KPj4+PiBPbiBXZWQsIEphbiA3LCAy
-MDE1IGF0IDE6NTIgUE0sIFRvYmlhcyBLbGF1c21hbm4KPj4+PiA8dG9iaWFzLmpvaGFubmVzLmts
-YXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPj4+Pj4KPj4+Pj4gSWYgd2UgY2FwdHVyZSB0cmFu
-c2Zvcm0gZmVlZGJhY2sgZnJvbSBuIHN0cmVhbSBpbiAobi0xKSBidWZmZXJzIHdlIGZhY2UKPj4+
-Pj4gYQo+Pj4+PiBOVUxMIGJ1ZmZlciwgdXNlIHRoZSBidWZmZXIgKG4tMSkgdG8gY2FwdHVyZSB0
-aGUgb3V0cHV0IG9mIHN0cmVhbSBuLgo+Pj4+Pgo+Pj4+PiBUaGlzIGZpeGVzIG9uZSBwaWdsaXQg
-dGVzdCB3aXRoIG52YzA6Cj4+Pj4+ICAgICAgYXJiX2dwdV9zaGFkZXI1LXhmYi1zdHJlYW1zLXdp
-dGhvdXQtaW52b2NhdGlvbnMKPj4+Pj4KPj4+Pj4gU2lnbmVkLW9mZi1ieTogVG9iaWFzIEtsYXVz
-bWFubiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgo+Pj4+PiAtLS0KPj4+
-Pj4gICAgc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMgfCA1ICsrKysrCj4+
-Pj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykKPj4+Pj4KPj4+Pj4gZGlmZiAt
-LWdpdCBhL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jCj4+Pj4+IGIvc3Jj
-L21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZiLmMKPj4+Pj4gaW5kZXggOGY3NWVkYS4u
-NWExMmRhNCAxMDA2NDQKPj4+Pj4gLS0tIGEvc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94
-Zm9ybWZiLmMKPj4+Pj4gKysrIGIvc3JjL21lc2Evc3RhdGVfdHJhY2tlci9zdF9jYl94Zm9ybWZi
-LmMKPj4+Pj4gQEAgLTEyMyw2ICsxMjMsMTEgQEAgc3RfYmVnaW5fdHJhbnNmb3JtX2ZlZWRiYWNr
-KHN0cnVjdCBnbF9jb250ZXh0Cj4+Pj4+ICpjdHgsCj4+Pj4+IEdMZW51bSBtb2RlLAo+Pj4+PiAg
-ICAgICAgICBzdHJ1Y3Qgc3RfYnVmZmVyX29iamVjdCAqYm8gPQo+Pj4+PiBzdF9idWZmZXJfb2Jq
-ZWN0KHNvYmotPmJhc2UuQnVmZmVyc1tpXSk7Cj4+Pj4+Cj4+Pj4+ICAgICAgICAgIGlmIChibykg
-ewo+Pj4+PiArICAgICAgICAgaWYgKCFiby0+YnVmZmVyKQo+Pj4+PiArICAgICAgICAgICAgLyog
-SWYgd2UgY2FwdHVyZSB0cmFuc2Zvcm0gZmVlZGJhY2sgZnJvbSBuIHN0cmVhbXMgaW50bwo+Pj4+
-PiAobi0xKQo+Pj4+PiArICAgICAgICAgICAgICogYnVmZmVycyB3ZSBoYXZlIHRvIHdyaXRlIHRv
-IGJ1ZmZlciAobi0xKSBmb3Igc3RyZWFtIG4uCj4+Pj4+ICsgICAgICAgICAgICAgKi8KPj4+Pj4g
-KyAgICAgICAgICAgIGJvID0gc3RfYnVmZmVyX29iamVjdChzb2JqLT5iYXNlLkJ1ZmZlcnNbaS0x
-XSk7Cj4+Pj4+ICAgICAgICAgICAgIC8qIENoZWNrIHdoZXRoZXIgd2UgbmVlZCB0byByZWNyZWF0
-ZSB0aGUgdGFyZ2V0LiAqLwo+Pj4+PiAgICAgICAgICAgICBpZiAoIXNvYmotPnRhcmdldHNbaV0g
-fHwKPj4+Pj4gICAgICAgICAgICAgICAgIHNvYmotPnRhcmdldHNbaV0gPT0gc29iai0+ZHJhd19j
-b3VudCB8fAo+Pj4+PiAtLQo+Pj4+PiAyLjIuMQo+Pj4KPj4+IFF1b3RlZCBmcm9tIElsaWEgTWly
-a2luLCB0byBzcGVjaWZ5IHdoYXQgc2hhbGwgYmUgZWxhYm9yYXRlZDoKPj4+ICJDYW4geW91IGV4
-cGxhaW4gKG9uLWxpc3QpIHdoeSB1c2luZyBidWZmZXIgbiAtIDEgaXMgdGhlIHJpZ2h0IHRoaW5n
-IHRvCj4+PiBkbyB0byBjYXB0dXJlIG91dHB1dCBvZiBzdHJlYW0gbj8gSSB3b3VsZCBoYXZlIHRo
-b3VnaHQgdGhhdCB0aGUgb3V0cHV0Cj4+PiBmb3IgdGhhdCBzdHJlYW0gc2hvdWxkIGJlIGRpc2Nh
-cmRlZCBvciBzb21ldGhpbmcuCj4+Pgo+Pj4gTGlrZSB3aXRoIGEgc3BlYyBxdW90YXRpb24gb3Ig
-c29tZSBvdGhlciBqdXN0aWZpY2F0aW9uLiBpLmUuIHdoeSBpcwo+Pj4gdGhlIGNvZGUgeW91IHdy
-b3RlIGNvcnJlY3Q/IFdoeSBpcyBpdCBiZXR0ZXIgdGhhbiwgc2F5LCBibyA9Cj4+PiBidWZmZXJz
-WzBdLCBvciBzb21lIG90aGVyIHRoaW5nIGVudGlyZWx5PyIKPj4+Cj4+PiBZZWFoIHRoYXRzIHRo
-ZSBtb3N0IGNvbmNlcm5pbmcgcG9pbnQgaSBzZWUgYXMgd2VsbC4gVGhlIHByb2JsZW0gaXMgdGhh
-dAo+Pj4gdGhlcmUgaXMgYSBpbnRlcmFjdGlvbiBiZXR3ZWVuIGFyYl9ncHVfc2hhZGVyNSBhbmQK
-Pj4+IGFyYl90cmFuc2Zvcm1fZmVlZGJhY2szLAo+Pj4gYnV0IGFmdGVyIGEgYml0IG9mIHJlYWRp
-bmcgaSB0aGluayB0aGUgcGF0Y2ggaXMgYWN0dWFsbHkgd2hhdCB3ZSBzaG91bGQKPj4+IGRvOgo+
-Pj4KPj4+ICBGcm9tIHRoZSBhcmJfdHJhbnNmcm9tX2ZlZWRiYWNrMyBzcGVjOgo+Pj4gIgo+Pj4g
-KDMpIEhvdyBtaWdodCB5b3UgdXNlIHRyYW5zZm9ybSBmZWVkYmFjayB3aXRoIGdlb21ldHJ5IHNo
-YWRlcnMgYW5kCj4+PiAgICAgICAgICBtdWx0aXBsZSB2ZXJ0ZXggc3RyZWFtcz8KPj4+Cj4+PiAg
-ICAgICAgUkVTT0xWRUQ6ICBBcyBhIHNpbXBsZSBleGFtcGxlLCBsZXQncyBzYXkgeW91IGFyZSBw
-cm9jZXNzaW5nCj4+PiB0cmlhbmdsZXMKPj4+ICAgICAgICBhbmQgY2FwdHVyZSBib3RoIHByb2Nl
-c3NlZCB0cmlhbmdsZSB2ZXJ0aWNlcyBhbmQgc29tZSB2YWx1ZXMgdGhhdAo+Pj4gYXJlCj4+PiAg
-ICAgICAgY29tcHV0ZWQgcGVyLXByaW1pdGl2ZSAoZS5nLiwgZmFjZXQgbm9ybWFsKS4gIFRoZSBn
-ZW9tZXRyeSBzaGFkZXIKPj4+ICAgICAgICBtaWdodCBkZWNsYXJlIGl0cyBvdXRwdXRzIGxpa2Ug
-dGhlIGZvbGxvd2luZzoKPj4+Cj4+PiAgICAgICAgICBsYXlvdXQoc3RyZWFtID0gMCkgb3V0IHZl
-YzQgcG9zaXRpb247Cj4+PiAgICAgICAgICBsYXlvdXQoc3RyZWFtID0gMCkgb3V0IHZlYzQgdGV4
-Y29vcmQ7Cj4+PiAgICAgICAgICBsYXlvdXQoc3RyZWFtID0gMSkgb3V0IHZlYzQgbm9ybWFsOwo+
-Pj4KPj4+ICAgICAgICAicG9zaXRpb24iIGFuZCAidGV4Y29vcmQiIHdvdWxkIGJlIHBlci12ZXJ0
-ZXggYXR0cmlidXRlcyB3cml0dGVuCj4+PiB0bwo+Pj4gICAgICAgIHZlcnRleCBzdHJlYW0gMDsg
-Im5vcm1hbCIgd291bGQgYmUgYSBwZXItdHJpYW5nbGUgZmFjZXQgbm9ybWFsLgo+Pj4gVGhlCj4+
-PiAgICAgICAgZ2VvbWV0cnkgc2hhZGVyIHdvdWxkIGVtaXQgdGhyZWUgdmVydGljZXMgdG8gc3Ry
-ZWFtIHplcm8gKHRoZQo+Pj4gcHJvY2Vzc2VkCj4+PiAgICAgICAgaW5wdXQgdmVydGljZXMpIGFu
-ZCBhIHNpbmdsZSB2ZXJ0ZXggdG8gc3RyZWFtIG9uZSAodGhlCj4+PiBwZXItdHJpYW5nbGUKPj4+
-ICAgICAgICBkYXRhKS4gIFRoZSB0cmFuc2Zvcm0gZmVlZGJhY2sgQVBJIHVzYWdlIGZvciB0aGlz
-IGNhc2Ugd291bGQgYmUKPj4+ICAgICAgICBzb21ldGhpbmcgbGlrZToKPj4+Cj4+PiAgICAgICAg
-ICAvLyBTZXQgdXAgYnVmZmVyIG9iamVjdHMgMjEgYW5kIDIyIHRvIGNhcHR1cmUgZGF0YSBmb3IK
-Pj4+IHBlci12ZXJ0ZXgKPj4+IGFuZAo+Pj4gICAgICAgICAgLy8gcGVyIHByaW1pdGl2ZSB2YWx1
-ZXMuCj4+PiAgICAgICAgICBnbEJpbmRCdWZmZXJCYXNlKEdMX1RSQU5TRk9STV9GRUVEQkFDS19C
-VUZGRVIsIDAsIDIxKTsKPj4+ICAgICAgICAgIGdsQmluZEJ1ZmZlckJhc2UoR0xfVFJBTlNGT1JN
-X0ZFRURCQUNLX0JVRkZFUiwgMSwgMjIpOwo+Pj4KPj4+ICAgICAgICAgIC8vIFNldCB1cCBYRkIg
-dG8gY2FwdHVyZSBwb3NpdGlvbiBhbmQgdGV4Y29vcmQgdG8gYnVmZmVyIGJpbmRpbmcKPj4+ICAg
-ICAgICAgIC8vIHBvaW50IDAgKGJ1ZmZlciAyMSBib3VuZCksIGFuZCBub3JtYWwgdG8gYmluZGlu
-ZyBwb2ludCAxCj4+PiAoYnVmZmVyCj4+PiAgICAgICAgICAvLyAyMiBib3VuZCkuCj4+PiAgICAg
-ICAgICBjaGFyICpzdHJpbmdzW10gPSB7ICJwb3NpdGlvbiIsICJ0ZXhjb29yZCIsICJnbF9OZXh0
-QnVmZmVyIiwKPj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIm5vcm1hbCIgfTsKPj4+
-ICIKPj4+Cj4+PiAtPiBFc3BlY2lhbGx5IHRoZSBjb21tZW50cyBhcmUgZW5saWdodGVuaW5nIGFz
-IHRvIHdoZXJlIHRoZSBvdXRwdXRzCj4+PiBzaG91bGQKPj4+IGdvLiBUaGF0cyB3aGF0IGhhcHBl
-bnMgd2l0aCB0aGUKPj4+ICJhcmJfZ3B1X3NoYWRlcjUteGZiLXN0cmVhbXMtd2l0aG91dC1pbnZv
-Y2F0aW9ucyIgdGVzdCwgd2hlcmUgdHdvCj4+PiBzdHJlYW0ob3V0cHV0cykgYXJlIGNhcHR1cmVk
-IGludG8gb25lIGJ1ZmZlci4KPj4+Cj4+PiBPbmUgbWlnaHQgYXJndWUgbm93IGlmIHdlIGhhdmUg
-dG8gY291bnQgLkJ1ZmZlcnNbaS0xXSBmb3IgYWxsIGJ1ZmZlcnMKPj4+IGFmdGVyCj4+PiB0aGlz
-Li4uCj4+Pgo+Pj4gQ29tbWVudHMgYW5kIGFkZGl0aW9uYWwgZmVlZGJhY2sgaXMgYWx3YXlzIGFw
-cHJlY2lhdGVkIQo+Pgo+PiBUaGUgdGhpbmcgeW91J3JlIHF1b3RpbmcgaXMgdGFsa2luZyBhYm91
-dCB0aGUgY2FzZSB3aGVyZSBldmVyeXRoaW5nJ3MKPj4gc3VwcG9zZWQgdG8gd29yay4gSSBoYXZl
-bid0IGludmVzdGlnYXRlZCwgYnV0IEknbSBndWVzc2luZyB0aGF0IHRoZQo+PiB0ZXN0IGhhcyBh
-IGxheW91dChzdHJlYW09MSkgYnV0IG5vIGJ1ZmZlciBpcyBib3VuZCBhdCBpbmRleCAxLgo+Cj4K
-PiBBY3R1YWxseSBubywgdGhlIGxheW91dCByZWFkcyBsaWtlIHRoaXM6Cj4gICAgIGxheW91dChz
-dHJlYW0gPSAwKSBvdXQgZmxvYXQgc3RyZWFtMF8wX291dDsKPiAgICAgbGF5b3V0KHN0cmVhbSA9
-IDEpIG91dCB2ZWMyIHN0cmVhbTFfMF9vdXQ7Cj4gICAgIGxheW91dChzdHJlYW0gPSAyKSBvdXQg
-ZmxvYXQgc3RyZWFtMl8wX291dDsKPiAgICAgbGF5b3V0KHN0cmVhbSA9IDIpIG91dCB2ZWM0IHN0
-cmVhbTJfMV9vdXQ7Cj4gd2hlcmUgbm8gYnVmZmVyIGlzIGJvdW5kIHRvIHN0cmVhbTJfMV9vdXQu
-Cj4KPj4gICBJcyB0aGF0IHJpZ2h0PyBJbiB0aGF0IGNhc2UsIEkgd291bGQgaW1hZ2luZSB0aGF0
-IHRoZSBURiBvdXRwdXQgc2hvdWxkCj4+IGFjdHVhbGx5IGp1c3QgZ2V0IGRyb3BwZWQgb24gdGhl
-IGZsb29yLiBJIHdvdWxkIGFzc3VtZSB0aGF0IHRoaXMgaXMgaW4KPj4gdGhlIEFSQl90ZjMgc3Bl
-YywgYnV0IEkgZG9uJ3QgaGF2ZSB0aW1lIHRvIGdvIGRpZ2dpbmcgcmlnaHQgbm93Lgo+Cj4KPiBB
-cyB0aGUgbGF5b3V0IHJlYWQgbW9yZSBsaWtlIHRoZSBvbmUgZnJvbSB0aGUgc3BlY3MsIGknZCBz
-dGlsbCBnbyB3aXRoIFtuLTFdCj4gYW5kIGhvbmVzdGx5IChub3QgcHJvdmVuIGNvcnJlY3QpIGkg
-YXNzdW1lIHRoYXQgYSBzdHJlYW0gd2l0aG91dCBhbiBvdXRwdXQKPiBpcyBqdXN0IHdyb25nIGFu
-ZCBzaG91bGQgbm90IGV2ZW4gZ2V0IHRocm91Z2ggdGhlIGxpbmtlci4uLgoKV2VsbCwgbGlua2lu
-ZyBoYXMgbm90aGluZyB0byBkbyB3aXRoIGN1cnJlbnQgYmluZGluZ3M7IGl0IGhhcyB0byBkbwp3
-aXRoIGNvbm5lY3RpbmcgaW50ZXItc3RhZ2UgaW5wdXRzL291dHB1dHMuLi4gQW55d2F5cywgSSdt
-IG1vZGVyYXRlbHkKc3VyZSB0aGF0IHRoZSB0aGluZyB5b3UncmUgY3VycmVudGx5IGRvaW5nIGhh
-cyBubyBqdXN0aWZpY2F0aW9uLiBUcnkKdG8gZmluZCB3aGF0IHRoZSBwcm9wZXIgd2F5IG9mIGRl
-YWxpbmcgd2l0aCB0aGlzIGlzIChJIGFzc3VtZSBpOTY1CmRlYWxzIHdpdGggaXQsIHNlZSB3aGF0
-IHRoZXkgZG8pLCBvciBhc2sgYXJvdW5kLiBJZiBvbmx5IG5vIGJ1ZmZlciBpcwpib3VuZCB0byBz
-dHJlYW0yXzFfb3V0LCBJIGFzc3VtZSB0aGF0IGl0J3MgZG9pbmcgdGhlICJzZXBhcmF0ZSIKb3V0
-cHV0cz8gVGhhdCBwcm9iYWJseSBjb21wbGljYXRlcyBtYXR0ZXJzLi4uCgogIC1pbGlhCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1584053207==
+Content-Type: multipart/alternative; boundary="1421064467.1a5FF5.23144"; charset="UTF-8"
+
+
+--1421064467.1a5FF5.23144
+Date: Mon, 12 Jan 2015 12:07:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=27501
+
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #62 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Patch is now present in 3.19-rc4, closing this bug report as solved.
+
+For those who have the NV96 along the NVAC, you need to use l3iggs technique
+and reset+rescan (echo 1 > /sys/bus/pci/devices/0000:02:00.0/{reset,rescan})
+the NV96 **before** loading Nouveau to avoid a hang when starting X and another
+hang when trying to power off the NV96.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1421064467.1a5FF5.23144
+Date: Mon, 12 Jan 2015 12:07:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c62">Comment # 62</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Patch is now present in 3.19-rc4, closing this bug report as solved.
+
+For those who have the NV96 along the NVAC, you need to use l3iggs technique
+and reset+rescan (echo 1 &gt; /sys/bus/pci/devices/0000:02:00.0/{reset,rescan})
+the NV96 **before** loading Nouveau to avoid a hang when starting X and another
+hang when trying to power off the NV96.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1421064467.1a5FF5.23144--
+
+--===============1584053207==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1584053207==--
