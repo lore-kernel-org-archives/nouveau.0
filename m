@@ -1,11 +1,13 @@
-From: "Curtis Hamilton" <hamiltcl-H+0wwilmMs3R7s880joybQ@public.gmane.org>
-Subject: Nouveau for FreeBSD
-Date: Mon, 12 Jan 2015 17:28:56 -0500
-Message-ID: <012f01d02eb7$277709f0$76651dd0$@verizon.net>
+From: "Chris" <nouveau-uqy9GaD9SVlWk0Htik3J/w@public.gmane.org>
+Subject: Re: Nouveau for FreeBSD
+Date: Mon, 12 Jan 2015 16:06:39 -0800
+Message-ID: <6e7a35bb1e676524fdf0be7636797a56@ultimatedns.net>
+References: <012f01d02eb7$277709f0$76651dd0$@verizon.net>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0812043158=="
+Content-Type: text/plain; charset="utf-8"; Format="fixed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-language: en-us
+In-Reply-To: <012f01d02eb7$277709f0$76651dd0$@verizon.net>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,88 +20,26 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
-
---===============0812043158==
-Content-type: multipart/alternative;
- boundary="----=_NextPart_000_0130_01D02E8D.3EAA9EE0"
-Content-language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0130_01D02E8D.3EAA9EE0
-Content-Type: text/plain;
-	charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-
-Is anyone working on nouveau for FreeBSD?
-
-
-------=_NextPart_000_0130_01D02E8D.3EAA9EE0
-Content-Type: text/html;
-	charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Is anyone =
-working on nouveau for FreeBSD?<o:p></o:p></p></div></body></html>
-------=_NextPart_000_0130_01D02E8D.3EAA9EE0--
-
-
---===============0812043158==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0812043158==--
+T24gTW9uLCAxMiBKYW4gMjAxNSAxNzoyODo1NiAtMDUwMCAiQ3VydGlzIEhhbWlsdG9uIiA8aGFt
+aWx0Y2xAdmVyaXpvbi5uZXQ+Cndyb3RlCgo+IElzIGFueW9uZSB3b3JraW5nIG9uIG5vdXZlYXUg
+Zm9yIEZyZWVCU0Q/CkkgYXNrZWQgdGhlIHNhbWUgcXVlc3Rpb24sIHdoZW4gSSBqb2luZWQgdGhl
+IGxpc3QuIEhlcmUncyB0aGUKcmVzcG9uc2UgSSBnb3QgZnJvbSBKZWFuLVPDqWJhc3RpZW4gUMOp
+ZHJvbjoKCkhpIQoKVGhlIE5vdXZlYXUga2VybmVsIGRyaXZlciBpcyBjbG9zZSB0byB0aGUgUmFk
+ZW9uIGtlcm5lbCBpbiB0ZXJtcyBvZgpEUk0vVFRNIGluZnJhc3RydWN0dXJlIHJlcXVpcmVtZW50
+cy4gV2UgaGF2ZSB0aGF0IHdvcmtpbmcgaW4gRnJlZUJTRC4KClNvIHRoZSB0YXNrIGNvbnNpc3Rz
+IG9mOgogICAgMS4gVGFraW5nIE5vdXZlYXUgZnJvbSBMaW51eCwgcHJlZmVycmFibHkgMy44IHRv
+IGtlZXAgb3VyIERSTSBjb2RlCiAgICAgICBvbiB0aGUgc2FtZSBiYXNlIChzbyB3ZSBjYW4gdXBk
+YXRlIHRoZSB3aG9sZSBjb25zaXN0ZW50bHkpLgogICAgMi4gQWRkaW5nIHRoZSBzb3VyY2UgZmls
+ZXMgdG8gdGhlIEZyZWVCU0Qga2VybmVsCiAgICAzLiBTdGFydCB0aGUgcG9ydGluZyBlZmZvcnQ6
+IHRoZSBsb2NraW5nIHByaW1pdGl2ZXMsIHRoZSBQQ0kgQVBJLAogICAgICAgaG93IG1lbW9yeSBp
+cyBhbGxvY2F0ZWQsIGV0Yy4gYXJlIGRpZmZlcmVudCBjb21wYXJlZCB0byBMaW51eC4KCkl0J3Mg
+cHJvYmFibHkgbm90IHRoYXQgZGlmZmljdWx0IHRvIGRvLCBob3dldmVyLCBpdCBuZWVkcyB0aW1l
+LiBJIHdvdWxkCnJlY29tbWVuZCB0byBub3Qgc3RhcnQgdGhpcyBlZmZvcnQgcmlnaHQgbm93OiB3
+ZSBhcmUgaW4gdGhlIHByb2Nlc3Mgb2YKdXBkYXRpbmcgdGhlIERSTSBkZXZpY2UtaW5kZXBlbmRl
+bnQgY29kZSB0byBtYXRjaCBMaW51eCAzLjguCkZ1cnRoZXJtb3JlLCBJJ20gcHJlcGFyaW5nIGEg
+cHJvcG9zYWwgdG8gaGF2ZSBzb21lIHNvcnQgb2YgTGludXgga2VybmVsCkFQSSB3cmFwcGVyIGFi
+b3ZlIEZyZWVCU0QgZmFjaWxpdGllcyB0byByZWR1Y2UgdGhlIGRpZmYgd2l0aCBMaW51eCBhbmQK
+aGVscCB3aXRoIHBvcnRpbmcgbmV3IGRyaXZlcnMuCgotLSAKSmVhbi1Tw6liYXN0aWVuIFDDqWRy
+b24KCgotLUNocmlzCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
