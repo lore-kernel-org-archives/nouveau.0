@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 2/3] nv50/ir: Fold IMM into MAD
-Date: Tue, 13 Jan 2015 15:43:56 -0500
-Message-ID: <CAKb7UvjGNve0Uh1z=yeUo5Ag-aBEz4bEiEBPyxCOebmi9pVQ3w@mail.gmail.com>
-References: <1421181348-14113-1-git-send-email-rspliet@eclipso.eu>
- <1421181348-14113-3-git-send-email-rspliet@eclipso.eu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87715] [NV50] Changing resolution away from
+ 1680x1050 results in scattered display
+Date: Wed, 14 Jan 2015 06:58:09 +0000
+Message-ID: <bug-87715-8800-UL9K2LC5P1@http.bugs.freedesktop.org/>
+References: <bug-87715-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2147466468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1421181348-14113-3-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,73 +17,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Cc: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKYW4gMTMsIDIwMTUgYXQgMzozNSBQTSwgUm95IFNwbGlldCA8cnNwbGlldEBlY2xp
-cHNvLmV1PiB3cm90ZToKPiBBZGQgYSBzcGVjaWZpYyBvcHRpbWlzYXRpb24gcGFzcyBmb3IgTlY1
-MCB0byBjaGVjayB3aGV0aGVyIFNSQzAgb3IgU1JDMSBpcwo+IGEgTU9WIGRzdCwgSU1NLiBJZiBz
-bzogZm9sZCB0aGUgSU1NIGluIGFuZCB0cnkgdG8gZHJvcCB0aGUgTU9WLiBNdXN0IGJlCj4gZG9u
-ZSBwb3N0LVJBIGJlY2F1c2UgaXQgcmVxdWlyZXMgdGhhdCBTRFNUID09IFNTUkMyLgo+Cj4gVjI6
-IGltcHJvdmUgcmVhZGFiaWxpdHkgYW5kIGFkZCBjb21tZW50cyB0byBjbGFyaWZ5IGRlY2lzaW9u
-cwo+Cj4gU2lnbmVkLW9mZi1ieTogUm95IFNwbGlldCA8cnNwbGlldEBlY2xpcHNvLmV1Pgo+IC0t
-LQo+ICAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgICB8
-IDYwICsrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDYwIGluc2VydGlv
-bnMoKykKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
-bi9udjUwX2lyX3BlZXBob2xlLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2Rl
-Z2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4gaW5kZXggMjFkMjBjYS4uNzIzYzI1NSAxMDA2NDQK
-PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBo
-b2xlLmNwcAo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
-aXJfcGVlcGhvbGUuY3BwCj4gQEAgLTIyNTksNiArMjI1OSw2MyBAQCBGbGF0dGVuaW5nUGFzczo6
-dHJ5UHJlZGljYXRlQ29uZGl0aW9uYWwoQmFzaWNCbG9jayAqYmIpCj4KPiAgLy8gPT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT0KPgo+ICsvLyBGb2xkIEltbWVkaWF0ZSBpbnRvIE1BRDsgbXVzdCBiZSBkb25l
-IGFmdGVyIHJlZ2lzdGVyIGFsbG9jYXRpb24gZHVlIHRvCj4gKy8vIGNvbnN0cmFpbnQgU0RTVCA9
-PSBTU1JDMgo+ICsvLyBUT0RPOgo+ICsvLyBEb2VzIE5WQzArIGhhdmUgb3RoZXIgc2l0dWF0aW9u
-cyB3aGVyZSB0aGlzIHBhc3MgbWFrZXMgc2Vuc2U/Cj4gK2NsYXNzIE5WNTBQb3N0UmFDb25zdGFu
-dEZvbGRpbmcgOiBwdWJsaWMgUGFzcwo+ICt7Cj4gK3ByaXZhdGU6Cj4gKyAgIHZpcnR1YWwgYm9v
-bCB2aXNpdChCYXNpY0Jsb2NrICopOwo+ICt9Owo+ICsKPiArYm9vbAo+ICtOVjUwUG9zdFJhQ29u
-c3RhbnRGb2xkaW5nOjp2aXNpdChCYXNpY0Jsb2NrICpiYikKPiArewo+ICsgICBWYWx1ZSAqdnRt
-cDsKPiArICAgSW5zdHJ1Y3Rpb24gKmRlZjsKPiArCj4gKyAgIGZvciAoSW5zdHJ1Y3Rpb24gKmkg
-PSBiYi0+Z2V0Rmlyc3QoKTsgaTsgaSA9IGktPm5leHQpIHsKPiArICAgICAgc3dpdGNoIChpLT5v
-cCkgewo+ICsgICAgICBjYXNlIE9QX01BRDoKPiArICAgICAgICAgaWYoaS0+ZGVmKDApLmdldEZp
-bGUoKSAhPSBGSUxFX0dQUiB8fAoKaWYgKAoKPiArICAgICAgICAgICAgaS0+c3JjKDApLmdldEZp
-bGUoKSAhPSBGSUxFX0dQUiB8fAo+ICsgICAgICAgICAgICBpLT5zcmMoMSkuZ2V0RmlsZSgpICE9
-IEZJTEVfR1BSIHx8Cj4gKyAgICAgICAgICAgIGktPnNyYygyKS5nZXRGaWxlKCkgIT0gRklMRV9H
-UFIgfHwKPiArICAgICAgICAgICAgaS0+Z2V0RGVmKDApLT5yZWcuZGF0YS5pZCAhPSBpLT5nZXRT
-cmMoMiktPnJlZy5kYXRhLmlkKQoKfHwgbmVpdGhlciBzcmMwIG5vciBzcmMxJ3MgZGVmIGlzIGFu
-IGltbWVkaWF0ZSBsb2FkLiBUaGVyZSdzIGEKZ2V0SW1tZWRpYXRlKCkgdGhhdCBtYXkgZG8gdGhl
-IHRyaWNrLgoKT25jZSB5b3Uga25vdyB0aGF0LCB5b3UgY2FuIHByZS1lbXB0aXZlbHkgZG8gdGhl
-IHN3YXAgKHRoZXJlJ3MgYQotPnN3YXBTb3VyY2VzKCkgKSBhbmQgYXZvaWQgdGhlIGxvb3AuCgo+
-ICsgICAgICAgICAgICBicmVhazsKPiArCj4gKyAgICAgICAgIGZvciAoaW50IHMgPSAwOyBzIDwg
-MjsgcysrKSB7Cj4gKyAgICAgICAgICAgIGRlZiA9IGktPmdldFNyYygxKS0+Z2V0SW5zbigpOwo+
-ICsgICAgICAgICAgICBpZiAoZGVmLT5vcCA9PSBPUF9NT1YgJiYgZGVmLT5zcmMoMCkuZ2V0Rmls
-ZSgpID09IEZJTEVfSU1NRURJQVRFKSB7Cj4gKyAgICAgICAgICAgICAgIHZ0bXAgPSBpLT5nZXRT
-cmMoMSk7Cj4gKyAgICAgICAgICAgICAgIGktPnNldFNyYygxLCBkZWYtPmdldFNyYygwKSk7Cj4g
-Kwo+ICsgICAgICAgICAgICAgICAvKiBUaGVyZSdzIG5vIHBvc3QtUkEgZGVhZCBjb2RlIGVsaW1p
-bmF0aW9uLCBzbyBkbyBpdCBoZXJlCj4gKyAgICAgICAgICAgICAgICAqIFhYWDogaWYgd2UgYWRk
-IG1vcmUgY29kZS1yZW1vdmluZyBwb3N0LVJBIHBhc3Nlcywgd2UgbWlnaHQKPiArICAgICAgICAg
-ICAgICAgICogICAgICB3YW50IHRvIGNyZWF0ZSBhIHBvc3QtUkEgZGVhZC1jb2RlIGVsaW0gcGFz
-cyAqLwo+ICsgICAgICAgICAgICAgICBpZiAodnRtcC0+cmVmQ291bnQoKSA9PSAwKQo+ICsgICAg
-ICAgICAgICAgICAgICBkZWxldGVfSW5zdHJ1Y3Rpb24oYmItPmdldFByb2dyYW0oKSwgZGVmKTsK
-PiArCj4gKyAgICAgICAgICAgICAgIGJyZWFrOwo+ICsgICAgICAgICAgICB9Cj4gKwo+ICsgICAg
-ICAgICAgICAvKiBTd2FwIGlucHV0cywgSU1NIG11c3QgYmUgU1JDMSAqLwo+ICsgICAgICAgICAg
-ICB2dG1wID0gaS0+Z2V0U3JjKDApOwo+ICsgICAgICAgICAgICBpLT5zZXRTcmMoMCwgaS0+Z2V0
-U3JjKDEpKTsKPiArICAgICAgICAgICAgaS0+c2V0U3JjKDEsIHZ0bXApOwo+ICsgICAgICAgICB9
-Cj4gKyAgICAgICAgIGJyZWFrOwo+ICsgICAgICBkZWZhdWx0Ogo+ICsgICAgICAgICBicmVhazsK
-PiArICAgICAgfQo+ICsgICB9Cj4gKwo+ICsgICByZXR1cm4gdHJ1ZTsKPiArfQo+ICsKPiArLy8g
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT0KPiArCj4gIC8vIENvbW1vbiBzdWJleHByZXNzaW9uIGVsaW1p
-bmF0aW9uLiBTdHVwaWQgT14yIGltcGxlbWVudGF0aW9uLgo+ICBjbGFzcyBMb2NhbENTRSA6IHB1
-YmxpYyBQYXNzCj4gIHsKPiBAQCAtMjYyOSw2ICsyNjg2LDkgQEAgYm9vbAo+ICBQcm9ncmFtOjpv
-cHRpbWl6ZVBvc3RSQShpbnQgbGV2ZWwpCj4gIHsKPiAgICAgUlVOX1BBU1MoMiwgRmxhdHRlbmlu
-Z1Bhc3MsIHJ1bik7Cj4gKyAgIGlmIChnZXRUYXJnZXQoKS0+Z2V0Q2hpcHNldCgpIDwgMHhjMCkK
-PiArICAgICAgUlVOX1BBU1MoMiwgTlY1MFBvc3RSYUNvbnN0YW50Rm9sZGluZywgcnVuKTsKPiAr
-Cj4gICAgIHJldHVybiB0cnVlOwo+ICB9Cj4KPiAtLQo+IDIuMS4wCj4KPgo+Cj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcg
-bGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2147466468==
+Content-Type: multipart/alternative; boundary="1421218688.Fe7AFf1.29575"; charset="UTF-8"
+
+
+--1421218688.Fe7AFf1.29575
+Date: Wed, 14 Jan 2015 06:58:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87715
+
+--- Comment #8 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
+Does
+http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf
+(modetest: Allocate dumb buffers with the correct bpp) look like a change that
+might help me? (i.e. is it worth me rebuilding libdrm to test?)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1421218688.Fe7AFf1.29575
+Date: Wed, 14 Jan 2015 06:58:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
+</span></b>
+        <pre>Does
+<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf">http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf</a>
+(modetest: Allocate dumb buffers with the correct bpp) look like a change that
+might help me? (i.e. is it worth me rebuilding libdrm to test?)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1421218688.Fe7AFf1.29575--
+
+--===============2147466468==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2147466468==--
