@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88415] [NVA8] nouveau GPU lockup when reclocking
-Date: Wed, 14 Jan 2015 18:13:33 +0000
-Message-ID: <bug-88415-8800-0ORgbc64rz@http.bugs.freedesktop.org/>
+Date: Wed, 14 Jan 2015 18:14:06 +0000
+Message-ID: <bug-88415-8800-BO8bCrYci5@http.bugs.freedesktop.org/>
 References: <bug-88415-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0690174998=="
+Content-Type: multipart/mixed; boundary="===============2119186709=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88415-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0690174998==
-Content-Type: multipart/alternative; boundary="1421259212.ABc8a6C51.28473"; charset="UTF-8"
+--===============2119186709==
+Content-Type: multipart/alternative; boundary="1421259246.5dba5d2f1.28646"; charset="UTF-8"
 
 
---1421259212.ABc8a6C51.28473
-Date: Wed, 14 Jan 2015 18:13:32 +0000
+--1421259246.5dba5d2f1.28646
+Date: Wed, 14 Jan 2015 18:14:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88415
 
---- Comment #2 from Benedikt Morbach <benedikt.morbach-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
-Created attachment 112241
-  --> https://bugs.freedesktop.org/attachment.cgi?id=112241&action=edit
-vbios
+--- Comment #3 from Benedikt Morbach <benedikt.morbach-gM/Ye1E23mwN+BqQ9rBEUg@public.gmane.org> ---
+> Which levels exactly did you clock between? 03 and 07? Or did you use 0f?
+
+between 03 and 07
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421259212.ABc8a6C51.28473
-Date: Wed, 14 Jan 2015 18:13:32 +0000
+--1421259246.5dba5d2f1.28646
+Date: Wed, 14 Jan 2015 18:14:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau GPU lockup when reclocking"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88415#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88415#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau GPU lockup when reclocking"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88415">bug 88415</a>
               from <span class="vcard"><a class="email" href="mailto:benedikt.morbach&#64;googlemail.com" title="Benedikt Morbach &lt;benedikt.morbach&#64;googlemail.com&gt;"> <span class="fn">Benedikt Morbach</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=112241" name="attach_112241" title="vbios">attachment 112241</a> <a href="attachment.cgi?id=112241&amp;action=edit" title="vbios">[details]</a></span>
-vbios</pre>
+        <pre><span class="quote">&gt; Which levels exactly did you clock between? 03 and 07? Or did you use 0f?</span >
+
+between 03 and 07</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +76,9 @@ vbios</pre>
     </body>
 </html>
 
---1421259212.ABc8a6C51.28473--
+--1421259246.5dba5d2f1.28646--
 
---===============0690174998==
+--===============2119186709==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0690174998==--
+--===============2119186709==--
