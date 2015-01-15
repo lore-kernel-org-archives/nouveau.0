@@ -1,15 +1,13 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] drm: merge nouveau_platform.ko into nouveau.ko
-Date: Thu, 15 Jan 2015 15:00:10 +0800
-Message-ID: <54B7657A.2000609@nvidia.com>
-References: <1421303396-11867-1-git-send-email-acourbot@nvidia.com>
- <CACAvsv6zHMizeA-r2qnngUaMXnorNfOXg6+998UWA4GzfFBOSA@mail.gmail.com>
- <CAAVeFu+=-FQSGiL0Wqt2of1nYHd8qnXBw2jFUB6Z8+_p3kOr4w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87715] [NV50] Changing resolution away from
+ 1680x1050 results in scattered display
+Date: Thu, 15 Jan 2015 08:00:52 +0000
+Message-ID: <bug-87715-8800-q0vAmPeAYT@http.bugs.freedesktop.org/>
+References: <bug-87715-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1690673488=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFu+=-FQSGiL0Wqt2of1nYHd8qnXBw2jFUB6Z8+_p3kOr4w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,38 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDAxLzE1LzIwMTUgMDI6NDMgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IE9uIFRo
-dSwgSmFuIDE1LCAyMDE1IGF0IDM6MzkgUE0sIEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29t
-PiB3cm90ZToKPj4gT24gVGh1LCBKYW4gMTUsIDIwMTUgYXQgNDoyOSBQTSwgQWxleGFuZHJlIENv
-dXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+Pj4gSGF2aW5nIHRoZSB0d28gbW9k
-dWxlcyBzZXBhcmF0ZWQgY2F1c2VzIHZhcmlvdXMgdW5uZWVkZWQgY29tcGxpY2F0aW9ucywKPj4+
-IGluY2x1ZGluZyBoYXZpbmcgdG8gZXhwb3J0IHN5bWJvbHMgYWNjZXNzZWQgYmV0d2VlbiB0aGUg
-bW9kdWxlcy4gTWFrZQo+Pj4gdGhpbmdzIHNpbXBsZXIgYnkgY29tcGlsaW5nIHBsYXRmb3JtIGRl
-dmljZSBzdXBwb3J0IGludG8gbm91dmVhdS5rby4KPj4+IFBsYXRmb3JtIGRldmljZSBzdXBwb3J0
-IHJlbWFpbnMgb3B0aW9uYWwgYW5kIGlzIG9ubHkgY29tcGlsZWQgb24gVGVncmEuCj4+Pgo+Pj4g
-U2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+
-PiAtLS0KPj4+IFZpbmNlLCB3aXRoIHRoaXMgeW91IHdvbid0IGhhdmUgdG8gZXhwb3J0IG5ldyBm
-dW5jdGlvbnMgZm9yIFBNLiBJIGVuZGVkCj4+PiB1cCB3cml0aW5nIGl0IG15c2VsZiBiZWNhdXNl
-IEkgaGl0IHRoZSBzYW1lIGlzc3VlIChudl9kZXZpY2UoKSB3b3VsZCBub3cKPj4+IG5lZWQgdG8g
-YmUgZXhwb3J0ZWQgb24gQmVuJ3MgbWFzdGVyIGJyYW5jaCkuCj4+Pgo+Pj4gQmUgY2FyZWZ1bCB0
-aGF0IHdoZW4gY29tcGlsaW5nIGFnYWluc3QgYSBrZXJuZWwsIENPTkZJR19OT1VWRUFVX1BMQVRG
-T1JNX0RSSVZFUgo+Pj4gbm93ICptdXN0KiBiZSBlcXVhbCB0byAneScuIEl0IGlzICdtJyBjdXJy
-ZW50bHksIHNvIHlvdSB3aWxsIG5lZWQgdG8gY2hhbmdlIGl0Cj4+PiBmcm9tIHRyaXN0YXRlIHRv
-IGJvb2wgaW4gdGhlIGtlcm5lbCdzIEtjb25maWcuIEZvciB0aGlzIHJlYXNvbiBpdCBtaWdodCBi
-ZSBnb29kCj4+PiB0byBnZXQgdGhpcyBwYXRjaCBpbnRvIC1uZXh0IHF1aWNrbHkuCj4+IEkndmUg
-Z290IGEgaHVnZSBjaHVuayBvZiBjaHVybiAoZmluYWxseSBmaW5pc2hlZCB0aGUgInJlbmFtZSB0
-byBudmlkaWEKPj4gbmFtZXMgZm9yIHN0dWZmIiB0aGluZykgcGVuZGluZyB0b28gd2hpY2ggSSB3
-YW50IHRvIGdldCB0byBEYXZlIChBU0FQLAo+PiBzZXBhcmF0ZWx5IGZyb20gbXkgb3RoZXIgcGVu
-ZGluZyB3b3JrKSB0byBhdm9pZCBoYXZpbmcgdG8ga2VlcCBmaXhpbmcKPj4gY29uZmxpY3RzIGlu
-IHRoZSBtZWFudGltZSA6KQo+Pgo+PiBTbywgaWYgeW91IGd1eXMgYm90aCBhZ3JlZSBvbiB0aGUg
-cGF0Y2gsIEknbGwgc2VuZCBpdCBhbG9uZyBlYXJseSB3aXRoIHRob3NlLgo+IFRoYXQgd291bGQg
-YmUganVzdCBwZXJmZWN0Lgo+Cj4gVmluY2UsIGRvIHlvdSBoYXZlIGFueXRoaW5nIGFnYWluc3Qg
-dGhpcyBwYXRjaD8KT2YgY291cnNlIG5vdC4gSSBqdXN0IHRlc3RlZCBpdCBhbmQgaXQgd29ya2Vk
-IGFzIGdvb2QgYXMgZXhwZWN0ZWQuIApUaGFua3MgZm9yIHNlbmRpbmcgdGhpcy4KClZpbmNlCgoK
+
+--===============1690673488==
+Content-Type: multipart/alternative; boundary="1421308852.Bb387d4E1.4804"; charset="UTF-8"
+
+
+--1421308852.Bb387d4E1.4804
+Date: Thu, 15 Jan 2015 08:00:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87715
+
+--- Comment #9 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
+I tested
+http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf
+, but it didn't help.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1421308852.Bb387d4E1.4804
+Date: Thu, 15 Jan 2015 08:00:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
+</span></b>
+        <pre>I tested
+<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf">http://cgit.freedesktop.org/mesa/drm/commit/?id=d7c0a08bc576deb07df6c3f91f393ca8edd0c4bf</a>
+, but it didn't help.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1421308852.Bb387d4E1.4804--
+
+--===============1690673488==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1690673488==--
