@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88515] After waking up from sleep nouveau fails with
-	errors
-Date: Fri, 16 Jan 2015 23:37:35 +0000
-Message-ID: <bug-88515-8800-R8bIrKBOM4@http.bugs.freedesktop.org/>
-References: <bug-88515-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Fri, 16 Jan 2015 23:45:38 +0000
+Message-ID: <bug-47846-8800-fUzBMYb6yJ@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1151920955=="
+Content-Type: multipart/mixed; boundary="===============2102045863=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1151920955==
-Content-Type: multipart/alternative; boundary="1421451455.BB3E33Bc2.5386"; charset="UTF-8"
+--===============2102045863==
+Content-Type: multipart/alternative; boundary="1421451938.56A7C18D1.7596"; charset="UTF-8"
 
 
---1421451455.BB3E33Bc2.5386
-Date: Fri, 16 Jan 2015 23:37:35 +0000
+--1421451938.56A7C18D1.7596
+Date: Fri, 16 Jan 2015 23:45:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88515
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
 Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #112364|text/plain                  |application/zip
-          mime type|                            |
+             Status|NEW                         |NEEDINFO
+
+--- Comment #14 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Still a problem with a recent kernel and other sw components (especially xrandr
+and xserver)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421451455.BB3E33Bc2.5386
-Date: Fri, 16 Jan 2015 23:37:35 +0000
+--1421451938.56A7C18D1.7596
+Date: Fri, 16 Jan 2015 23:45:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515">bug 88515</a>
+   title="NEEDINFO - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846">bug 47846</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,13 +69,27 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #112364 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>application/zip
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846">bug 47846</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+</span></b>
+        <pre>Still a problem with a recent kernel and other sw components (especially xrandr
+and xserver)?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +100,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1421451455.BB3E33Bc2.5386--
+--1421451938.56A7C18D1.7596--
 
---===============1151920955==
+--===============2102045863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1151920955==--
+--===============2102045863==--
