@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88515] After waking up from sleep nouveau fails with
 	errors
-Date: Fri, 16 Jan 2015 23:36:53 +0000
-Message-ID: <bug-88515-8800-Q9J67vNEuf@http.bugs.freedesktop.org/>
+Date: Fri, 16 Jan 2015 23:37:35 +0000
+Message-ID: <bug-88515-8800-R8bIrKBOM4@http.bugs.freedesktop.org/>
 References: <bug-88515-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0097223832=="
+Content-Type: multipart/mixed; boundary="===============1151920955=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0097223832==
-Content-Type: multipart/alternative; boundary="1421451413.07A2eF3D2.5170"; charset="UTF-8"
+--===============1151920955==
+Content-Type: multipart/alternative; boundary="1421451455.BB3E33Bc2.5386"; charset="UTF-8"
 
 
---1421451413.07A2eF3D2.5170
-Date: Fri, 16 Jan 2015 23:36:53 +0000
+--1421451455.BB3E33Bc2.5386
+Date: Fri, 16 Jan 2015 23:37:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,18 +36,15 @@ Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> chan
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #1 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-There were some major fence redesigns in kernel 3.18 and a fix in 3.19-rc2 or
-rc3, which might fix the problem, please retest with a recent kernel!
+ Attachment #112364|text/plain                  |application/zip
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421451413.07A2eF3D2.5170
-Date: Fri, 16 Jan 2015 23:36:53 +0000
+--1421451455.BB3E33Bc2.5386
+Date: Fri, 16 Jan 2015 23:37:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,27 +67,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Attachment #112364 mime type</td>
+           <td>text/plain
            </td>
-           <td>NEEDINFO
+           <td>application/zip
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515">bug 88515</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>There were some major fence redesigns in kernel 3.18 and a fix in 3.19-rc2 or
-rc3, which might fix the problem, please retest with a recent kernel!</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -101,9 +84,9 @@ rc3, which might fix the problem, please retest with a recent kernel!</pre>
     </body>
 </html>
 
---1421451413.07A2eF3D2.5170--
+--1421451455.BB3E33Bc2.5386--
 
---===============0097223832==
+--===============1151920955==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0097223832==--
+--===============1151920955==--
