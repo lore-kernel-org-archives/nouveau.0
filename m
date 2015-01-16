@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88463] Black screen on "Unlocking the disk" screen
-Date: Fri, 16 Jan 2015 13:32:06 +0000
-Message-ID: <bug-88463-8800-nqzuFjR2se@http.bugs.freedesktop.org/>
-References: <bug-88463-8800@http.bugs.freedesktop.org/>
+From: Peter Hurley <peter-WaGBZJeGNqdsbIuE7sb01tBPR1lH4CV8@public.gmane.org>
+Subject: [3.19-rcX+] New VBIOS dmesg warnings
+Date: Fri, 16 Jan 2015 16:25:15 -0500
+Message-ID: <54B981BB.4070008@hurleysoftware.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1894380210=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88463-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,82 +15,66 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1894380210==
-Content-Type: multipart/alternative; boundary="1421415125.21C5bA1.1795"; charset="UTF-8"
-
-
---1421415125.21C5bA1.1795
-Date: Fri, 16 Jan 2015 13:32:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88463
-
-Roman <c3787909-mUGfDteaTM8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|medium                      |high
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1421415125.21C5bA1.1795
-Date: Fri, 16 Jan 2015 13:32:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:c3787909&#64;trbvm.com" title="Roman &lt;c3787909&#64;trbvm.com&gt;"> <span class="fn">Roman</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Black screen on &quot;Unlocking the disk&quot; screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88463">bug 88463</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>medium
-           </td>
-           <td>high
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1421415125.21C5bA1.1795--
-
---===============1894380210==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1894380210==--
+SSdtIHNlZWluZyBuZXcgVkJJT1MgVyBtZXNzYWdlcyB3aXRoIDMuMTktcmNYKyBvbiB0aGlzIHdv
+cmtzdGF0aW9uJ3MKRlg1NzA6CgpbICAgIDEuOTYwNzg2XSBub3V2ZWF1IFdbICAgVkJJT1NdWzAw
+MDA6MDI6MDAuMF0gTTAyMDNUIG5vdCBmb3VuZApbICAgIDEuOTYwODQ4XSBub3V2ZWF1IFdbICAg
+VkJJT1NdWzAwMDA6MDI6MDAuMF0gTTAyMDNFIG5vdCBtYXRjaGVkIQoKTGV0IG1lIGtub3cgaWYg
+eW91IHdhbnQgbW9yZSBpbmZvLgoKUmVnYXJkcywKUGV0ZXIgSHVybGV5CgpbMV0gbm91dmVhdS9k
+cm0gZG1lc2cKClsgICAgMS43NjY3MzddIFtkcm1dIEluaXRpYWxpemVkIGRybSAxLjEuMCAyMDA2
+MDgxMApbICAgIDEuODI4NTE2XSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDI6MDAuMF0gQk9P
+VDAgIDogMHgwODRlMDBhMgpbICAgIDEuODI4NTg3XSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6
+MDI6MDAuMF0gQ2hpcHNldDogRzg0IChOVjg0KQpbICAgIDEuODI4NjQ0XSBub3V2ZWF1ICBbICBE
+RVZJQ0VdWzAwMDA6MDI6MDAuMF0gRmFtaWx5IDogTlY1MApbICAgIDEuOTM5NTY0XSBub3V2ZWF1
+ICBbICAgVkJJT1NdWzAwMDA6MDI6MDAuMF0gdXNpbmcgaW1hZ2UgZnJvbSBQUkFNSU4KWyAgICAx
+LjkzOTczNV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBdIEJJVCBzaWduYXR1cmUg
+Zm91bmQKWyAgICAxLjkzOTc5OV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBdIHZl
+cnNpb24gNjAuODQuNjMuMDAuMTEKWyAgICAxLjk2MDYwN10gbm91dmVhdSAgWyAgICAgUE1DXVsw
+MDAwOjAyOjAwLjBdIE1TSSBpbnRlcnJ1cHRzIGVuYWJsZWQKWyAgICAxLjk2MDc4Nl0gbm91dmVh
+dSBXWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBdIE0wMjAzVCBub3QgZm91bmQKWyAgICAxLjk2MDg0
+OF0gbm91dmVhdSBXWyAgIFZCSU9TXVswMDAwOjAyOjAwLjBdIE0wMjAzRSBub3QgbWF0Y2hlZCEK
+WyAgICAxLjk2MDkxNl0gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAyOjAwLjBdIFJBTSB0eXBl
+OiBERFIyClsgICAgMS45NjA5NzddIG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDowMjowMC4wXSBS
+QU0gc2l6ZTogMjU2IE1pQgpbICAgIDEuOTYxMDM5XSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6
+MDI6MDAuMF0gICAgWkNPTVA6IDE4OTIgdGFncwpbICAgIDEuOTY5NjIzXSBub3V2ZWF1ICBbICAg
+IFZPTFRdWzAwMDA6MDI6MDAuMF0gR1BVIHZvbHRhZ2U6IDEyMDAwMDB1dgpbICAgIDIuMDEwMDA4
+XSBub3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6MDI6MDAuMF0gRkFOIGNvbnRyb2w6IFBXTQpbICAg
+IDIuMDEwMTIzXSBub3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6MDI6MDAuMF0gZmFuIG1hbmFnZW1l
+bnQ6IGF1dG9tYXRpYwpbICAgIDIuMDEwMjI0XSBub3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6MDI6
+MDAuMF0gaW50ZXJuYWwgc2Vuc29yOiB5ZXMKWyAgICAyLjAzMDE3Nl0gbm91dmVhdSAgWyAgICAg
+Q0xLXVswMDAwOjAyOjAwLjBdIDIwOiBjb3JlIDIwOCBNSHogc2hhZGVyIDQxNiBNSHogbWVtb3J5
+IDEwMCBNSHoKWyAgICAyLjAzMDI1NF0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAyOjAwLjBd
+IDIxOiBjb3JlIDQ2MCBNSHogc2hhZGVyIDkyMCBNSHogbWVtb3J5IDQwMCBNSHoKWyAgICAyLjAz
+MDQxOF0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAyOjAwLjBdIC0tOiBjb3JlIDQ1OSBNSHog
+c2hhZGVyIDkxOCBNSHogbWVtb3J5IDM5OSBNSHoKWyAgICAyLjAzMTU3MF0gW1RUTV0gWm9uZSAg
+a2VybmVsOiBBdmFpbGFibGUgZ3JhcGhpY3MgbWVtb3J5OiA1MTM3NDM0IGtpQgpbICAgIDIuMDMx
+NjMzXSBbVFRNXSBab25lICAgZG1hMzI6IEF2YWlsYWJsZSBncmFwaGljcyBtZW1vcnk6IDIwOTcx
+NTIga2lCClsgICAgMi4wMzE2OTVdIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgpb
+ICAgIDIuMDMxNzg2XSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yClsgICAg
+Mi4wMzE5ODRdIG5vdXZlYXUgIFsgICAgIERSTV0gVlJBTTogMjU2IE1pQgpbICAgIDIuMDMyMDU0
+XSBub3V2ZWF1ICBbICAgICBEUk1dIEdBUlQ6IDEwNDg1NzYgTWlCClsgICAgMi4wMzIxMThdIG5v
+dXZlYXUgIFsgICAgIERSTV0gVE1EUyB0YWJsZSB2ZXJzaW9uIDIuMApbICAgIDIuMDMyMTc4XSBu
+b3V2ZWF1ICBbICAgICBEUk1dIERDQiB2ZXJzaW9uIDQuMApbICAgIDIuMDMyMjM5XSBub3V2ZWF1
+ICBbICAgICBEUk1dIERDQiBvdXRwIDAwOiAwMjAwMDMwMCAwMDAwMDAyOApbICAgIDIuMDMyMzAx
+XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAxOiAwMTAwMDMwMiAwMDAwMDAzMApbICAg
+IDIuMDMyMzYxXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAyOiAwNDAxMTMxMCAwMDAw
+MDAyOApbICAgIDIuMDMyNDIyXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAzOiAwMjAx
+MTMxMiAwMDAwMDAzMApbICAgIDIuMDMyNDgzXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBjb25u
+IDAwOiAxMDMwClsgICAgMi4wMzI1ODldIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDE6
+IDIxMzAKWyAgICAyLjA1MzY5OF0gW2RybV0gU3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNo
+aW5nIFJldiAyICgyMS4xMC4yMDEzKS4KWyAgICAyLjA1Mzc2Nl0gW2RybV0gRHJpdmVyIHN1cHBv
+cnRzIHByZWNpc2UgdmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4KWyAgICAyLjMyNzczOV0gbm91dmVh
+dSAgWyAgICAgRFJNXSBNTTogdXNpbmcgQ1JZUFQgZm9yIGJ1ZmZlciBjb3BpZXMKWyAgICAyLjQx
+NTY2Ml0gbm91dmVhdSAgWyAgICAgRFJNXSBhbGxvY2F0ZWQgMTY4MHgxMDUwIGZiOiAweDUwMDAw
+LCBibyBmZmZmODgwMmIyMjA1MDAwClsgICAgMi40MTc2MzJdIGZiY29uOiBub3V2ZWF1ZmIgKGZi
+MCkgaXMgcHJpbWFyeSBkZXZpY2UKWyAgICAyLjUwNDIyM10gQ29uc29sZTogc3dpdGNoaW5nIHRv
+IGNvbG91ciBmcmFtZSBidWZmZXIgZGV2aWNlIDE2MHg2NApbICAgIDIuNTA1NjkxXSBub3V2ZWF1
+IDAwMDA6MDI6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbICAgIDIu
+NTA1NzAwXSBub3V2ZWF1IDAwMDA6MDI6MDAuMDogcmVnaXN0ZXJlZCBwYW5pYyBub3RpZmllcgpb
+ICAgIDIuNTE2MDg2XSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEuMi4xIDIwMTIwODAxIGZv
+ciAwMDAwOjAyOjAwLjAgb24gbWlub3IgMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
