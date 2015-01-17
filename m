@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 62305] [NV4B] No HDMI Audio out (pass-thru) on
-	Geforce 7600 Go
-Date: Sat, 17 Jan 2015 00:29:33 +0000
-Message-ID: <bug-62305-8800-a9Soua3tJC@http.bugs.freedesktop.org/>
-References: <bug-62305-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 47846] Nouveau -> overscan using HDMI
+Date: Sat, 17 Jan 2015 00:33:39 +0000
+Message-ID: <bug-47846-8800-x9mkjhFBvm@http.bugs.freedesktop.org/>
+References: <bug-47846-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0252070990=="
+Content-Type: multipart/mixed; boundary="===============0434273964=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-62305-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-47846-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0252070990==
-Content-Type: multipart/alternative; boundary="1421454573.BBCCeA2.21407"; charset="UTF-8"
+--===============0434273964==
+Content-Type: multipart/alternative; boundary="1421454818.03Da1.22518"; charset="UTF-8"
 
 
---1421454573.BBCCeA2.21407
-Date: Sat, 17 Jan 2015 00:29:33 +0000
+--1421454818.03Da1.22518
+Date: Sat, 17 Jan 2015 00:33:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=62305
+https://bugs.freedesktop.org/show_bug.cgi?id=47846
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+--- Comment #15 from lameventanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+(In reply to Tobias Klausmann from comment #14)
+> Still a problem with a recent kernel and other sw components (especially
+> xrandr and xserver)?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+The problem was never solved by updating the software to the latest available
+up to September 2013.  After that, there is no way to know, since that is when
+I changed to a new TV that doesn't have overscan.
 
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-I'm not sure if HDMI audio support was added for NV4B, but it might be worth
-trying a recent kernel (3.18, 3.19-rc4).
-If it still doesn't work, please provide the traces Ilia asked for.
+Sorry, but I can't help anymore with this.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421454573.BBCCeA2.21407
-Date: Sat, 17 Jan 2015 00:29:33 +0000
+--1421454818.03Da1.22518
+Date: Sat, 17 Jan 2015 00:33:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,42 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NV4B] No HDMI Audio out (pass-thru) on Geforce 7600 Go"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62305">bug 62305</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [NV4B] No HDMI Audio out (pass-thru) on Geforce 7600 Go"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62305#c3">Comment # 3</a>
+   title="NEEDINFO - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [NV4B] No HDMI Audio out (pass-thru) on Geforce 7600 Go"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=62305">bug 62305</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEEDINFO - Nouveau -&gt; overscan using HDMI"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47846">bug 47846</a>
+              from <span class="vcard"><a class="email" href="mailto:lameventanas&#64;gmail.com" title="lameventanas&#64;gmail.com">lameventanas&#64;gmail.com</a>
 </span></b>
-        <pre>I'm not sure if HDMI audio support was added for NV4B, but it might be worth
-trying a recent kernel (3.18, 3.19-rc4).
-If it still doesn't work, please provide the traces Ilia asked for.</pre>
+        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=47846#c14">comment #14</a>)
+<span class="quote">&gt; Still a problem with a recent kernel and other sw components (especially
+&gt; xrandr and xserver)?</span >
+
+The problem was never solved by updating the software to the latest available
+up to September 2013.  After that, there is no way to know, since that is when
+I changed to a new TV that doesn't have overscan.
+
+Sorry, but I can't help anymore with this.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +88,9 @@ If it still doesn't work, please provide the traces Ilia asked for.</pre>
     </body>
 </html>
 
---1421454573.BBCCeA2.21407--
+--1421454818.03Da1.22518--
 
---===============0252070990==
+--===============0434273964==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0252070990==--
+--===============0434273964==--
