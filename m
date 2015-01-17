@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88514] X segfaults when using prime offloading to
-	nouveau card
-Date: Sat, 17 Jan 2015 10:05:41 +0000
-Message-ID: <bug-88514-8800-VwTp6Wrena@http.bugs.freedesktop.org/>
-References: <bug-88514-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88535] New: Mesa 10.3.0 implementation error:
+ gen7_update_renderbuffer_surface: renderbuffer format
+ MESA_FORMAT_RGBX_UNORM16 unsupported
+Date: Sat, 17 Jan 2015 14:42:50 +0000
+Message-ID: <bug-88535-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1716092294=="
+Content-Type: multipart/mixed; boundary="===============0833769642=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +20,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1716092294==
-Content-Type: multipart/alternative; boundary="1421489141.201e1.12099"; charset="UTF-8"
+--===============0833769642==
+Content-Type: multipart/alternative; boundary="1421505770.C4700.29806"; charset="UTF-8"
 
 
---1421489141.201e1.12099
-Date: Sat, 17 Jan 2015 10:05:41 +0000
+--1421505770.C4700.29806
+Date: Sat, 17 Jan 2015 14:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88514
+https://bugs.freedesktop.org/show_bug.cgi?id=88535
 
---- Comment #12 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
-diff --git a/hw/xfree86/dri2/dri2.c b/hw/xfree86/dri2/dri2.c
-index 8b94b8f..e048224 100644
---- a/hw/xfree86/dri2/dri2.c
-+++ b/hw/xfree86/dri2/dri2.c
-@@ -158,6 +158,9 @@ GetScreenPrime(ScreenPtr master, int prime_id)
-         DRI2ScreenPtr ds;
+            Bug ID: 88535
+           Summary: Mesa 10.3.0 implementation error:
+                    gen7_update_renderbuffer_surface: renderbuffer format
+                    MESA_FORMAT_RGBX_UNORM16 unsupported
+           Product: Mesa
+           Version: 10.3
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: dexcelstraun7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-         ds = DRI2GetScreen(slave);
-+        if (ds == NULL)
-+            continue;
-+
-         if (ds->prime_id == prime_id)
-             return slave;
-     }
+When attempting to create an OpenGL framebuffer with the RGBA16 format, this
+error is returned by glGetError.
+
+System specs:
+CPU: Intel i7-4710MQ
+RAM: 16GB DDR3
+GPU: nVidia GTX 970M (6GB VRAM)
+OS: Ubuntu 14.10
+
+Program: Minecraft 1.7.10, with Forge, Optifine, and the Shader Mod installed.
+I'm using the shaderpack from http://jotunstudios.com/dragon/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421489141.201e1.12099
-Date: Sat, 17 Jan 2015 10:05:41 +0000
+--1421505770.C4700.29806
+Date: Sat, 17 Jan 2015 14:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,33 +71,94 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Mesa 10.3.0 implementation error: gen7_update_renderbuffer_surface: renderbuffer format MESA_FORMAT_RGBX_UNORM16 unsupported"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88535">88535</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Mesa 10.3.0 implementation error: gen7_update_renderbuffer_surface: renderbuffer format MESA_FORMAT_RGBX_UNORM16 unsupported
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.3
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>dexcelstraun7&#64;gmail.com
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c12">Comment # 12</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514">bug 88514</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
-</span></b>
-        <pre>diff --git a/hw/xfree86/dri2/dri2.c b/hw/xfree86/dri2/dri2.c
-index 8b94b8f..e048224 100644
---- a/hw/xfree86/dri2/dri2.c
-+++ b/hw/xfree86/dri2/dri2.c
-&#64;&#64; -158,6 +158,9 &#64;&#64; GetScreenPrime(ScreenPtr master, int prime_id)
-         DRI2ScreenPtr ds;
+        <pre>When attempting to create an OpenGL framebuffer with the RGBA16 format, this
+error is returned by glGetError.
 
-         ds = DRI2GetScreen(slave);
-+        if (ds == NULL)
-+            continue;
-+
-         if (ds-&gt;prime_id == prime_id)
-             return slave;
-     }</pre>
+System specs:
+CPU: Intel i7-4710MQ
+RAM: 16GB DDR3
+GPU: nVidia GTX 970M (6GB VRAM)
+OS: Ubuntu 14.10
+
+Program: Minecraft 1.7.10, with Forge, Optifine, and the Shader Mod installed.
+I'm using the shaderpack from <a href="http://jotunstudios.com/dragon/">http://jotunstudios.com/dragon/</a></pre>
         </div>
       </p>
       <hr>
@@ -99,9 +170,9 @@ index 8b94b8f..e048224 100644
     </body>
 </html>
 
---1421489141.201e1.12099--
+--1421505770.C4700.29806--
 
---===============1716092294==
+--===============0833769642==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +182,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1716092294==--
+--===============0833769642==--
