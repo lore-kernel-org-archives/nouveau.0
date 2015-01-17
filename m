@@ -1,11 +1,13 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: [PATCH RFC] nouveau: Add support for Gmux _DSM method
-Date: Sat, 17 Jan 2015 02:18:48 +0100
-Message-ID: <1421457528-878-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88514] X segfaults when using prime offloading to
+	nouveau card
+Date: Sat, 17 Jan 2015 01:23:08 +0000
+Message-ID: <bug-88514-8800-vQ2AtwTSsT@http.bugs.freedesktop.org/>
+References: <bug-88514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1955004806=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-88514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,142 +17,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCBjZXJ0YWlubHkgbmVlZHMgc29tZSBtb3JlIHdvcmssIGJ1dCBJJ2QgbGlrZSB0
-byBnZXQgc29tZSBjb21tZW50cy4KCk5vdCBzdXJlIGlmIGl0IGlzIHJlYWxseSByZWxhdGVkIHRv
-IHRoZSBnbXV4IG9yIGlmIGl0IGlzIGEgZGlmZmVyZW50IE9wdGltdXMKX0RTTSB2ZXJzaW9uLgoK
-SSB0ZXN0ZWQgaXQgb24gbXkgbGFwdG9wIChNQ1A3OS83QSArIEc5NikgYW5kIHRoZSBHOTYgc3Vj
-Y2Vzc2Z1bGx5IGdvZXMgdG8Kc2xlZXAsIGhvd2V2ZXIgaXQgaXMgc3RpbGwgbWFya2VkIGFzIFBX
-UiBpbiB2Z2Ffc3dpdGNoZXJvbywgZGVzcGl0ZQpgdmdhX3N3aXRjaGVyb29fc2V0X2R5bmFtaWNf
-c3dpdGNoKHBkZXYsIFZHQV9TV0lUQ0hFUk9PX09GRilgIGJlaW5nIGNhbGxlZC4KLS0tCiBkcm0v
-bm91dmVhdV9hY3BpLmMgfCA5NCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKystLS0KIGRybS9ub3V2ZWF1X2FjcGkuaCB8ICAyICsrCiBkcm0vbm91dmVh
-dV9kcm0uYyAgfCAgNCArLS0KIDMgZmlsZXMgY2hhbmdlZCwgOTQgaW5zZXJ0aW9ucygrKSwgNiBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdV9hY3BpLmMgYi9kcm0vbm91dmVh
-dV9hY3BpLmMKaW5kZXggNjIyNDI0Ni4uYTcxMjI5YSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXVf
-YWNwaS5jCisrKyBiL2RybS9ub3V2ZWF1X2FjcGkuYwpAQCAtMjksNiArMjksOCBAQAogCiAjZGVm
-aW5lIE5PVVZFQVVfRFNNX09QVElNVVNfU0VUX1BPV0VSRE9XTiAoTk9VVkVBVV9EU01fT1BUSU1V
-U19QT1dFUkRPV05fUFMzIHwgTk9VVkVBVV9EU01fT1BUSU1VU19GTEFHU19DSEFOR0VEKQogCisj
-ZGVmaW5lIE5PVVZFQVVfRFNNX0dNVVhfVU5LNyAweDcKKwogLyogcmVzdWx0IG9mIHRoZSBvcHRp
-bXVzIGNhcHMgZnVuY3Rpb24gKi8KICNkZWZpbmUgT1BUSU1VU19FTkFCTEVEICgxIDw8IDApCiAj
-ZGVmaW5lIE9QVElNVVNfU1RBVFVTX01BU0sgKDMgPDwgMykKQEAgLTQ1LDYgKzQ3LDcgQEAKIHN0
-YXRpYyBzdHJ1Y3Qgbm91dmVhdV9kc21fcHJpdiB7CiAJYm9vbCBkc21fZGV0ZWN0ZWQ7CiAJYm9v
-bCBvcHRpbXVzX2RldGVjdGVkOworCWJvb2wgZ211eF9kZXRlY3RlZDsKIAlhY3BpX2hhbmRsZSBk
-aGFuZGxlOwogCWFjcGlfaGFuZGxlIHJvbV9oYW5kbGU7CiB9IG5vdXZlYXVfZHNtX3ByaXY7CkBA
-IC01Nyw4ICs2MCwxMyBAQCBib29sIG5vdXZlYXVfaXNfdjFfZHNtKHZvaWQpIHsKIAlyZXR1cm4g
-bm91dmVhdV9kc21fcHJpdi5kc21fZGV0ZWN0ZWQ7CiB9CiAKLSNkZWZpbmUgTk9VVkVBVV9EU01f
-SEFTX01VWCAweDEKLSNkZWZpbmUgTk9VVkVBVV9EU01fSEFTX09QVCAweDIKK2Jvb2wgbm91dmVh
-dV9oYXNfZ211eF9kc20odm9pZCkgeworCXJldHVybiBub3V2ZWF1X2RzbV9wcml2LmdtdXhfZGV0
-ZWN0ZWQ7Cit9CisKKyNkZWZpbmUgTk9VVkVBVV9EU01fSEFTX01VWCAgMHgxCisjZGVmaW5lIE5P
-VVZFQVVfRFNNX0hBU19PUFQgIDB4MgorI2RlZmluZSBOT1VWRUFVX0RTTV9IQVNfR01VWCAweDQK
-IAogI2lmZGVmIENPTkZJR19WR0FfU1dJVENIRVJPTwogc3RhdGljIGNvbnN0IGNoYXIgbm91dmVh
-dV9kc21fbXVpZFtdID0gewpAQCAtNzEsNiArNzksMTEgQEAgc3RhdGljIGNvbnN0IGNoYXIgbm91
-dmVhdV9vcF9kc21fbXVpZFtdID0gewogCTB4QTcsIDB4MkIsIDB4NjAsIDB4NDIsIDB4QTYsIDB4
-QjUsIDB4QkUsIDB4RTAsCiB9OwogCitzdGF0aWMgY29uc3QgY2hhciBub3V2ZWF1X2dtdXhfZHNt
-X211aWRbXSA9IHsKKwkweEE2LCAweDY5LCAweDg2LCAweDk5LCAweEU5LCAweDhCLCAweEZCLCAw
-eDQ5LAorCTB4QkQsIDB4REIsIDB4NTEsIDB4QTEsIDB4RUYsIDB4RTEsIDB4OUMsIDB4M0QsCit9
-OworCiBzdGF0aWMgaW50IG5vdXZlYXVfb3B0aW11c19kc20oYWNwaV9oYW5kbGUgaGFuZGxlLCBp
-bnQgZnVuYywgaW50IGFyZywgdWludDMyX3QgKnJlc3VsdCkKIHsKIAlpbnQgaTsKQEAgLTIxMiw2
-ICsyMjUsNjMgQEAgc3RhdGljIHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIG5vdXZlYXVf
-ZHNtX2hhbmRsZXIgPSB7CiAJLmdldF9jbGllbnRfaWQgPSBub3V2ZWF1X2RzbV9nZXRfY2xpZW50
-X2lkLAogfTsKIAorc3RhdGljIGludCBub3V2ZWF1X2dtdXhfZHNtKGFjcGlfaGFuZGxlIGhhbmRs
-ZSwgaW50IGZ1bmMsIGludCBhcmcsIHVpbnQzMl90ICpyZXN1bHQpCit7CisJaW50IGk7CisJdW5p
-b24gYWNwaV9vYmplY3QgKm9iajsKKwljaGFyIGFyZ3NfYnVmZls0XTsKKwl1bmlvbiBhY3BpX29i
-amVjdCBhcmd2NCA9IHsKKwkJLmJ1ZmZlci50eXBlID0gQUNQSV9UWVBFX0JVRkZFUiwKKwkJLmJ1
-ZmZlci5sZW5ndGggPSA0LAorCQkuYnVmZmVyLnBvaW50ZXIgPSBhcmdzX2J1ZmYKKwl9OworCisJ
-LyogQUNQSSBpcyBsaXR0bGUgZW5kaWFuLCBBQUJCQ0NERCBiZWNvbWVzIHtERCxDQyxCQixBQX0g
-Ki8KKwlmb3IgKGkgPSAwOyBpIDwgNDsgaSsrKQorCQlhcmdzX2J1ZmZbaV0gPSAoYXJnID4+IGkg
-KiA4KSAmIDB4RkY7CisKKwkqcmVzdWx0ID0gMDsKKwlvYmogPSBhY3BpX2V2YWx1YXRlX2RzbV90
-eXBlZChoYW5kbGUsIG5vdXZlYXVfZ211eF9kc21fbXVpZCwgMHgwMDAwMDEwMSwKKwkJCQkgICAg
-ICBmdW5jLCAmYXJndjQsIEFDUElfVFlQRV9CVUZGRVIpOworCWlmICghb2JqKSB7CisJCWFjcGlf
-aGFuZGxlX2luZm8oaGFuZGxlLCAiZmFpbGVkIHRvIGV2YWx1YXRlIF9EU01cbiIpOworCQlyZXR1
-cm4gQUVfRVJST1I7CisJfSBlbHNlIHsKKwkJaWYgKG9iai0+YnVmZmVyLmxlbmd0aCA9PSA0KSB7
-CisJCQkqcmVzdWx0IHw9IG9iai0+YnVmZmVyLnBvaW50ZXJbMF07CisJCQkqcmVzdWx0IHw9IChv
-YmotPmJ1ZmZlci5wb2ludGVyWzFdIDw8IDgpOworCQkJKnJlc3VsdCB8PSAob2JqLT5idWZmZXIu
-cG9pbnRlclsyXSA8PCAxNik7CisJCQkqcmVzdWx0IHw9IChvYmotPmJ1ZmZlci5wb2ludGVyWzNd
-IDw8IDI0KTsKKwkJfQorCQlBQ1BJX0ZSRUUob2JqKTsKKwl9CisKKwlyZXR1cm4gMDsKK30KKwor
-LyoKKyAqIE9uIHNvbWUgcGxhdGZvcm1zLCBfRFNNKG5vdXZlYXVfb3BfZHNtX211aWQsIGZ1bmMw
-KSBoYXMgc3BlY2lhbAorICogcmVxdWlyZW1lbnRzIG9uIHRoZSBmb3VydGggcGFyYW1ldGVyLCBz
-byBhIHByaXZhdGUgaW1wbGVtZW50YXRpb24KKyAqIGluc3RlYWQgb2YgdXNpbmcgYWNwaV9jaGVj
-a19kc20oKS4KKyAqLworc3RhdGljIGludCBub3V2ZWF1X2NoZWNrX2dtdXhfZHNtKGFjcGlfaGFu
-ZGxlIGhhbmRsZSkKK3sKKwlpbnQgcmVzdWx0OworCisJLyoKKwkgKiBGdW5jdGlvbiAwIHJldHVy
-bnMgYSBCdWZmZXIgY29udGFpbmluZyBhdmFpbGFibGUgZnVuY3Rpb25zLgorCSAqIFRoZSBhcmdz
-IHBhcmFtZXRlciBpcyBpZ25vcmVkIGZvciBmdW5jdGlvbiAwLCBzbyBqdXN0IHB1dCAwIGluIGl0
-CisJICovCisJaWYgKG5vdXZlYXVfZ211eF9kc20oaGFuZGxlLCAwLCAwLCAmcmVzdWx0KSkKKwkJ
-cmV0dXJuIDA7CisKKwkvKgorCSAqIEFDUEkgU3BlYyB2NCA5LjE0LjE6IGlmIGJpdCAwIGlzIHpl
-cm8sIG5vIGZ1bmN0aW9uIGlzIHN1cHBvcnRlZC4KKwkgKiBJZiB0aGUgbi10aCBiaXQgaXMgZW5h
-YmxlZCwgZnVuY3Rpb24gbiBpcyBzdXBwb3J0ZWQKKwkgKi8KKwlyZXR1cm4gcmVzdWx0ICYgMSAm
-JiByZXN1bHQgJiAoMSA8PCBOT1VWRUFVX0RTTV9HTVVYX1VOSzcpOworfQorCiBzdGF0aWMgaW50
-IG5vdXZlYXVfZHNtX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldikKIHsKIAlhY3BpX2hh
-bmRsZSBkaGFuZGxlOwpAQCAtMjMxLDYgKzMwMSw5IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9kc21f
-cGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQogCWlmIChub3V2ZWF1X2NoZWNrX29wdGlt
-dXNfZHNtKGRoYW5kbGUpKQogCQlyZXR2YWwgfD0gTk9VVkVBVV9EU01fSEFTX09QVDsKIAorCWlm
-IChub3V2ZWF1X2NoZWNrX2dtdXhfZHNtKGRoYW5kbGUpKQorCQlyZXR2YWwgfD0gTk9VVkVBVV9E
-U01fSEFTX0dNVVg7CisKIAlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkgewogCQl1
-aW50MzJfdCByZXN1bHQ7CiAJCW5vdXZlYXVfb3B0aW11c19kc20oZGhhbmRsZSwgTk9VVkVBVV9E
-U01fT1BUSU1VU19DQVBTLCAwLApAQCAtMjUzLDYgKzMyNiw3IEBAIHN0YXRpYyBib29sIG5vdXZl
-YXVfZHNtX2RldGVjdCh2b2lkKQogCXN0cnVjdCBwY2lfZGV2ICpwZGV2ID0gTlVMTDsKIAlpbnQg
-aGFzX2RzbSA9IDA7CiAJaW50IGhhc19vcHRpbXVzID0gMDsKKwlpbnQgaGFzX2dtdXggPSAwOwog
-CWludCB2Z2FfY291bnQgPSAwOwogCWJvb2wgZ3VpZF92YWxpZDsKIAlpbnQgcmV0dmFsOwpAQCAt
-MjczLDYgKzM0Nyw4IEBAIHN0YXRpYyBib29sIG5vdXZlYXVfZHNtX2RldGVjdCh2b2lkKQogCQkJ
-aGFzX2RzbSB8PSAxOwogCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX09QVCkKIAkJCWhh
-c19vcHRpbXVzID0gMTsKKwkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNNX0hBU19HTVVYKQorCQkJ
-aGFzX2dtdXggPSAxOwogCX0KIAogCXdoaWxlICgocGRldiA9IHBjaV9nZXRfY2xhc3MoUENJX0NM
-QVNTX0RJU1BMQVlfM0QgPDwgOCwgcGRldikpICE9IE5VTEwpIHsKQEAgLTI4Myw5ICszNTksMTEg
-QEAgc3RhdGljIGJvb2wgbm91dmVhdV9kc21fZGV0ZWN0KHZvaWQpCiAJCQloYXNfZHNtIHw9IDE7
-CiAJCWlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfT1BUKQogCQkJaGFzX29wdGltdXMgPSAx
-OworCQlpZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX0dNVVgpCisJCQloYXNfZ211eCA9IDE7
-CiAJfQogCi0JLyogZmluZCB0aGUgb3B0aW11cyBEU00gb3IgdGhlIG9sZCB2MSBEU00gKi8KKwkv
-KiBmaW5kIHRoZSBvcHRpbXVzIERTTSwgdGhlIG9sZCB2MSBEU00gb3IgdGhlIGdtdXggRFNNICov
-CiAJaWYgKGhhc19vcHRpbXVzID09IDEpIHsKIAkJYWNwaV9nZXRfbmFtZShub3V2ZWF1X2RzbV9w
-cml2LmRoYW5kbGUsIEFDUElfRlVMTF9QQVRITkFNRSwKIAkJCSZidWZmZXIpOwpAQCAtMzAwLDYg
-KzM3OCwxMyBAQCBzdGF0aWMgYm9vbCBub3V2ZWF1X2RzbV9kZXRlY3Qodm9pZCkKIAkJCWFjcGlf
-bWV0aG9kX25hbWUpOwogCQlub3V2ZWF1X2RzbV9wcml2LmRzbV9kZXRlY3RlZCA9IHRydWU7CiAJ
-CXJldCA9IHRydWU7CisJfSBlbHNlIGlmIChoYXNfZ211eCA9PSAxKSB7CisJCWFjcGlfZ2V0X25h
-bWUobm91dmVhdV9kc21fcHJpdi5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFUSE5BTUUsCisJCQkmYnVm
-ZmVyKTsKKwkJcHJpbnRrKEtFUk5fSU5GTyAiVkdBIHN3aXRjaGVyb286IGRldGVjdGVkIEdtdXgg
-RFNNIHN3aXRjaGluZyBtZXRob2QgJXMgaGFuZGxlXG4iLAorCQkJYWNwaV9tZXRob2RfbmFtZSk7
-CisJCW5vdXZlYXVfZHNtX3ByaXYuZ211eF9kZXRlY3RlZCA9IHRydWU7CisJCXJldCA9IHRydWU7
-CiAJfQogCiAKQEAgLTMxMSw3ICszOTYsOCBAQCB2b2lkIG5vdXZlYXVfcmVnaXN0ZXJfZHNtX2hh
-bmRsZXIodm9pZCkKIAlib29sIHI7CiAKIAlyID0gbm91dmVhdV9kc21fZGV0ZWN0KCk7Ci0JaWYg
-KCFyKQorCS8qIEdtdXggd2lsbCByZWdpc3RlciBpdHMgb3duIGhhbmRsZXIgdG8gdmdhX3N3aXRj
-aGVyb28gKi8KKwlpZiAoIXIgfHwgbm91dmVhdV9kc21fcHJpdi5nbXV4X2RldGVjdGVkKQogCQly
-ZXR1cm47CiAKIAl2Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9oYW5kbGVyKCZub3V2ZWF1X2RzbV9o
-YW5kbGVyKTsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1X2FjcGkuaCBiL2RybS9ub3V2ZWF1X2Fj
-cGkuaAppbmRleCA3NGFjZjBmLi4zNjY4ZGNlIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdV9hY3Bp
-LmgKKysrIGIvZHJtL25vdXZlYXVfYWNwaS5oCkBAIC02LDYgKzYsNyBAQAogI2lmIGRlZmluZWQo
-Q09ORklHX0FDUEkpICYmIGRlZmluZWQoQ09ORklHX1g4NikKIGJvb2wgbm91dmVhdV9pc19vcHRp
-bXVzKHZvaWQpOwogYm9vbCBub3V2ZWF1X2lzX3YxX2RzbSh2b2lkKTsKK2Jvb2wgbm91dmVhdV9o
-YXNfZ211eF9kc20odm9pZCk7CiB2b2lkIG5vdXZlYXVfcmVnaXN0ZXJfZHNtX2hhbmRsZXIodm9p
-ZCk7CiB2b2lkIG5vdXZlYXVfdW5yZWdpc3Rlcl9kc21faGFuZGxlcih2b2lkKTsKIHZvaWQgbm91
-dmVhdV9zd2l0Y2hlcm9vX29wdGltdXNfZHNtKHZvaWQpOwpAQCAtMTUsNiArMTYsNyBAQCB2b2lk
-ICpub3V2ZWF1X2FjcGlfZWRpZChzdHJ1Y3QgZHJtX2RldmljZSAqLCBzdHJ1Y3QgZHJtX2Nvbm5l
-Y3RvciAqKTsKICNlbHNlCiBzdGF0aWMgaW5saW5lIGJvb2wgbm91dmVhdV9pc19vcHRpbXVzKHZv
-aWQpIHsgcmV0dXJuIGZhbHNlOyB9Owogc3RhdGljIGlubGluZSBib29sIG5vdXZlYXVfaXNfdjFf
-ZHNtKHZvaWQpIHsgcmV0dXJuIGZhbHNlOyB9Oworc3RhdGljIGlubGluZSBib29sIG5vdXZlYXVf
-aGFzX2dtdXhfZHNtKHZvaWQpIHsgcmV0dXJuIGZhbHNlOyB9Owogc3RhdGljIGlubGluZSB2b2lk
-IG5vdXZlYXVfcmVnaXN0ZXJfZHNtX2hhbmRsZXIodm9pZCkge30KIHN0YXRpYyBpbmxpbmUgdm9p
-ZCBub3V2ZWF1X3VucmVnaXN0ZXJfZHNtX2hhbmRsZXIodm9pZCkge30KIHN0YXRpYyBpbmxpbmUg
-dm9pZCBub3V2ZWF1X3N3aXRjaGVyb29fb3B0aW11c19kc20odm9pZCkge30KZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1X2RybS5jIGIvZHJtL25vdXZlYXVfZHJtLmMKaW5kZXggOWViOTBhNi4uNDE0
-YWNjNCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXVfZHJtLmMKKysrIGIvZHJtL25vdXZlYXVfZHJt
-LmMKQEAgLTcxOSw3ICs3MTksNyBAQCBub3V2ZWF1X3Btb3BzX3J1bnRpbWVfc3VzcGVuZChzdHJ1
-Y3QgZGV2aWNlICpkZXYpCiAJfQogCiAJLyogYXJlIHdlIG9wdGltdXMgZW5hYmxlZD8gKi8KLQlp
-ZiAobm91dmVhdV9ydW50aW1lX3BtID09IC0xICYmICFub3V2ZWF1X2lzX29wdGltdXMoKSAmJiAh
-bm91dmVhdV9pc192MV9kc20oKSkgeworCWlmIChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gLTEgJiYg
-IW5vdXZlYXVfaXNfb3B0aW11cygpICYmICFub3V2ZWF1X2lzX3YxX2RzbSgpICYmICFub3V2ZWF1
-X2hhc19nbXV4X2RzbSgpKSB7CiAJCURSTV9ERUJVR19EUklWRVIoImZhaWxpbmcgdG8gcG93ZXIg
-b2ZmIC0gbm90IG9wdGltdXNcbiIpOwogCQlwbV9ydW50aW1lX2ZvcmJpZChkZXYpOwogCQlyZXR1
-cm4gLUVCVVNZOwpAQCAtNzgwLDcgKzc4MCw3IEBAIG5vdXZlYXVfcG1vcHNfcnVudGltZV9pZGxl
-KHN0cnVjdCBkZXZpY2UgKmRldikKIAl9CiAKIAkvKiBhcmUgd2Ugb3B0aW11cyBlbmFibGVkPyAq
-LwotCWlmIChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gLTEgJiYgIW5vdXZlYXVfaXNfb3B0aW11cygp
-ICYmICFub3V2ZWF1X2lzX3YxX2RzbSgpKSB7CisJaWYgKG5vdXZlYXVfcnVudGltZV9wbSA9PSAt
-MSAmJiAhbm91dmVhdV9pc19vcHRpbXVzKCkgJiYgIW5vdXZlYXVfaXNfdjFfZHNtKCkgJiYgIW5v
-dXZlYXVfaGFzX2dtdXhfZHNtKCkpIHsKIAkJRFJNX0RFQlVHX0RSSVZFUigiZmFpbGluZyB0byBw
-b3dlciBvZmYgLSBub3Qgb3B0aW11c1xuIik7CiAJCXBtX3J1bnRpbWVfZm9yYmlkKGRldik7CiAJ
-CXJldHVybiAtRUJVU1k7Ci0tIAoyLjIuMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============1955004806==
+Content-Type: multipart/alternative; boundary="1421457788.23EAa1.4427"; charset="UTF-8"
+
+
+--1421457788.23EAa1.4427
+Date: Sat, 17 Jan 2015 01:23:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88514
+
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Tobias Klausmann from comment #8)
+> (In reply to aidan from comment #7)
+> (snip)
+> > I might try one of these solutions.  A couple questions for DRI3: how do I
+> > check if X and mesa have DRI3 support?  Also, what setup do I need to do? 
+> > Do I just need to use DRI_PRIME=1, without using xrandr
+> > --setprovideroffloadsink (like I would for DRI2)?
+> 
+> You'll need the setup described at the nouveau's prime page, linked above,
+> other than that, you just have to do:
+> DRI_PRIME=1 app
+> and it will offload to nouveau
+
+Except it won't work because we can't get accel going on his card... this bug
+should just be about the crash.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1421457788.23EAa1.4427
+Date: Sat, 17 Jan 2015 01:23:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - X segfaults when using prime offloading to nouveau card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - X segfaults when using prime offloading to nouveau card"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514">bug 88514</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=88514#c8">comment #8</a>)
+<span class="quote">&gt; (In reply to aidan from <a href="show_bug.cgi?id=88514#c7">comment #7</a>)
+&gt; (snip)
+&gt; &gt; I might try one of these solutions.  A couple questions for DRI3: how do I
+&gt; &gt; check if X and mesa have DRI3 support?  Also, what setup do I need to do? 
+&gt; &gt; Do I just need to use DRI_PRIME=1, without using xrandr
+&gt; &gt; --setprovideroffloadsink (like I would for DRI2)?
+&gt; 
+&gt; You'll need the setup described at the nouveau's prime page, linked above,
+&gt; other than that, you just have to do:
+&gt; DRI_PRIME=1 app
+&gt; and it will offload to nouveau</span >
+
+Except it won't work because we can't get accel going on his card... this bug
+should just be about the crash.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1421457788.23EAa1.4427--
+
+--===============1955004806==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1955004806==--
