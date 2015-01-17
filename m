@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88514] X segfaults when using prime offloading to
-	nouveau card
-Date: Fri, 16 Jan 2015 23:59:25 +0000
-Message-ID: <bug-88514-8800-Us5o1xB96q@http.bugs.freedesktop.org/>
-References: <bug-88514-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 37922] NV86: too high power usage.
+Date: Sat, 17 Jan 2015 00:04:39 +0000
+Message-ID: <bug-37922-8800-5zqWiAXOqK@http.bugs.freedesktop.org/>
+References: <bug-37922-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1490662361=="
+Content-Type: multipart/mixed; boundary="===============1247069978=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1490662361==
-Content-Type: multipart/alternative; boundary="1421452764.a7F801.12455"; charset="UTF-8"
+--===============1247069978==
+Content-Type: multipart/alternative; boundary="1421453079.FeB606e81.14098"; charset="UTF-8"
 
 
---1421452764.a7F801.12455
-Date: Fri, 16 Jan 2015 23:59:24 +0000
+--1421453079.FeB606e81.14098
+Date: Sat, 17 Jan 2015 00:04:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88514
+https://bugs.freedesktop.org/show_bug.cgi?id=37922
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
-From the backtrace, the crash appears to be happening in core X though... but
-perhaps as a result of something nouveau or intel is doing wrong.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #31 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Is this still an issue with latest kernel version (3.18, 3.19-rc4)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421452764.a7F801.12455
-Date: Fri, 16 Jan 2015 23:59:24 +0000
+--1421453079.FeB606e81.14098
+Date: Sat, 17 Jan 2015 00:04:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,26 +53,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - NV86: too high power usage."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922">bug 37922</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c4">Comment # 4</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - NV86: too high power usage."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922#c31">Comment # 31</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514">bug 88514</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - NV86: too high power usage."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922">bug 37922</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="show_bug.cgi?id=70354">https://bugs.freedesktop.org/show_bug.cgi?id=70354</a>
-
-From the backtrace, the crash appears to be happening in core X though... but
-perhaps as a result of something nouveau or intel is doing wrong.</pre>
+        <pre>Is this still an issue with latest kernel version (3.18, 3.19-rc4)?</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +98,9 @@ perhaps as a result of something nouveau or intel is doing wrong.</pre>
     </body>
 </html>
 
---1421452764.a7F801.12455--
+--1421453079.FeB606e81.14098--
 
---===============1490662361==
+--===============1247069978==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1490662361==--
+--===============1247069978==--
