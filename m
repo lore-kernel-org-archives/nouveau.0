@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37922] NV86: too high power usage.
-Date: Sat, 17 Jan 2015 00:04:39 +0000
-Message-ID: <bug-37922-8800-5zqWiAXOqK@http.bugs.freedesktop.org/>
-References: <bug-37922-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 26534] nouveau does not fetch edid from connected
+ monitor on nforce1 (nv1a)
+Date: Sat, 17 Jan 2015 00:04:55 +0000
+Message-ID: <bug-26534-8800-553mjDoJqw@http.bugs.freedesktop.org/>
+References: <bug-26534-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1247069978=="
+Content-Type: multipart/mixed; boundary="===============1009540527=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37922-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-26534-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1247069978==
-Content-Type: multipart/alternative; boundary="1421453079.FeB606e81.14098"; charset="UTF-8"
+--===============1009540527==
+Content-Type: multipart/alternative; boundary="1421453095.4f0B1.14176"; charset="UTF-8"
 
 
---1421453079.FeB606e81.14098
-Date: Sat, 17 Jan 2015 00:04:39 +0000
+--1421453095.4f0B1.14176
+Date: Sat, 17 Jan 2015 00:04:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=37922
+https://bugs.freedesktop.org/show_bug.cgi?id=26534
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #31 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Is this still an issue with latest kernel version (3.18, 3.19-rc4)?
+--- Comment #22 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Can you still reproduce this with recent kernels (3.17, 3.18)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421453079.FeB606e81.14098
-Date: Sat, 17 Jan 2015 00:04:39 +0000
+--1421453095.4f0B1.14176
+Date: Sat, 17 Jan 2015 00:04:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,40 +48,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - NV86: too high power usage."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922">bug 37922</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - NV86: too high power usage."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922#c31">Comment # 31</a>
+          bz_status_REOPENED "
+   title="REOPENED - nouveau does not fetch edid from connected monitor on nforce1 (nv1a)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26534#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - NV86: too high power usage."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37922">bug 37922</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - nouveau does not fetch edid from connected monitor on nforce1 (nv1a)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=26534">bug 26534</a>
+              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Is this still an issue with latest kernel version (3.18, 3.19-rc4)?</pre>
+        <pre>Can you still reproduce this with recent kernels (3.17, 3.18)?</pre>
         </div>
       </p>
       <hr>
@@ -98,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1421453079.FeB606e81.14098--
+--1421453095.4f0B1.14176--
 
---===============1247069978==
+--===============1009540527==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1247069978==--
+--===============1009540527==--
