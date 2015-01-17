@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88514] X segfaults when using prime offloading to
 	nouveau card
-Date: Sat, 17 Jan 2015 10:03:04 +0000
-Message-ID: <bug-88514-8800-ZU5kntP9Ix@http.bugs.freedesktop.org/>
+Date: Sat, 17 Jan 2015 10:05:41 +0000
+Message-ID: <bug-88514-8800-VwTp6Wrena@http.bugs.freedesktop.org/>
 References: <bug-88514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2136694384=="
+Content-Type: multipart/mixed; boundary="===============1716092294=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2136694384==
-Content-Type: multipart/alternative; boundary="1421488984.21ecEbA1.11446"; charset="UTF-8"
+--===============1716092294==
+Content-Type: multipart/alternative; boundary="1421489141.201e1.12099"; charset="UTF-8"
 
 
---1421488984.21ecEbA1.11446
-Date: Sat, 17 Jan 2015 10:03:04 +0000
+--1421489141.201e1.12099
+Date: Sat, 17 Jan 2015 10:05:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88514
 
---- Comment #11 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
-(In reply to Chris Wilson from comment #10)
-> 2. Nouveau shouldn't be claiming to be an offload slave if it doesn't
-> support offloading (due to NoAccel).
+--- Comment #12 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
+diff --git a/hw/xfree86/dri2/dri2.c b/hw/xfree86/dri2/dri2.c
+index 8b94b8f..e048224 100644
+--- a/hw/xfree86/dri2/dri2.c
++++ b/hw/xfree86/dri2/dri2.c
+@@ -158,6 +158,9 @@ GetScreenPrime(ScreenPtr master, int prime_id)
+         DRI2ScreenPtr ds;
 
-Except, offloading may be eiter DRI2 or DRI3 so this doesn't make sense.
+         ds = DRI2GetScreen(slave);
++        if (ds == NULL)
++            continue;
++
+         if (ds->prime_id == prime_id)
+             return slave;
+     }
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421488984.21ecEbA1.11446
-Date: Sat, 17 Jan 2015 10:03:04 +0000
+--1421489141.201e1.12099
+Date: Sat, 17 Jan 2015 10:05:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +67,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X segfaults when using prime offloading to nouveau card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88514">bug 88514</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
 </span></b>
-        <pre>(In reply to Chris Wilson from <a href="show_bug.cgi?id=88514#c10">comment #10</a>)
-<span class="quote">&gt; 2. Nouveau shouldn't be claiming to be an offload slave if it doesn't
-&gt; support offloading (due to NoAccel).</span >
+        <pre>diff --git a/hw/xfree86/dri2/dri2.c b/hw/xfree86/dri2/dri2.c
+index 8b94b8f..e048224 100644
+--- a/hw/xfree86/dri2/dri2.c
++++ b/hw/xfree86/dri2/dri2.c
+&#64;&#64; -158,6 +158,9 &#64;&#64; GetScreenPrime(ScreenPtr master, int prime_id)
+         DRI2ScreenPtr ds;
 
-Except, offloading may be eiter DRI2 or DRI3 so this doesn't make sense.</pre>
+         ds = DRI2GetScreen(slave);
++        if (ds == NULL)
++            continue;
++
+         if (ds-&gt;prime_id == prime_id)
+             return slave;
+     }</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +99,9 @@ Except, offloading may be eiter DRI2 or DRI3 so this doesn't make sense.</pre>
     </body>
 </html>
 
---1421488984.21ecEbA1.11446--
+--1421489141.201e1.12099--
 
---===============2136694384==
+--===============1716092294==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2136694384==--
+--===============1716092294==--
