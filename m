@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88514] X segfaults when using prime offloading to
 	nouveau card
-Date: Sat, 17 Jan 2015 09:56:04 +0000
-Message-ID: <bug-88514-8800-FFV4rx6OVn@http.bugs.freedesktop.org/>
+Date: Sat, 17 Jan 2015 10:03:04 +0000
+Message-ID: <bug-88514-8800-ZU5kntP9Ix@http.bugs.freedesktop.org/>
 References: <bug-88514-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1295149040=="
+Content-Type: multipart/mixed; boundary="===============2136694384=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88514-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1295149040==
-Content-Type: multipart/alternative; boundary="1421488563.A612a1.9314"; charset="UTF-8"
+--===============2136694384==
+Content-Type: multipart/alternative; boundary="1421488984.21ecEbA1.11446"; charset="UTF-8"
 
 
---1421488563.A612a1.9314
-Date: Sat, 17 Jan 2015 09:56:03 +0000
+--1421488984.21ecEbA1.11446
+Date: Sat, 17 Jan 2015 10:03:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88514
 
---- Comment #10 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
-Right, the bug is just that we attempted to dereference a DRI2ScreenPtr on a
-GPU screen for which DRI2 was never initialised (due to NoAccel). So we have 2
-bugs:
+--- Comment #11 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
+(In reply to Chris Wilson from comment #10)
+> 2. Nouveau shouldn't be claiming to be an offload slave if it doesn't
+> support offloading (due to NoAccel).
 
-1. The code should be more robust and only add an offload_slave if DRI2 was
-enabled on that Screen (or be prepared for lies).
-
-2. Nouveau shouldn't be claiming to be an offload slave if it doesn't support
-offloading (due to NoAccel).
+Except, offloading may be eiter DRI2 or DRI3 so this doesn't make sense.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421488563.A612a1.9314
-Date: Sat, 17 Jan 2015 09:56:03 +0000
+--1421488984.21ecEbA1.11446
+Date: Sat, 17 Jan 2015 10:03:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,22 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88514#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X segfaults when using prime offloading to nouveau card"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88514">bug 88514</a>
               from <span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
 </span></b>
-        <pre>Right, the bug is just that we attempted to dereference a DRI2ScreenPtr on a
-GPU screen for which DRI2 was never initialised (due to NoAccel). So we have 2
-bugs:
+        <pre>(In reply to Chris Wilson from <a href="show_bug.cgi?id=88514#c10">comment #10</a>)
+<span class="quote">&gt; 2. Nouveau shouldn't be claiming to be an offload slave if it doesn't
+&gt; support offloading (due to NoAccel).</span >
 
-1. The code should be more robust and only add an offload_slave if DRI2 was
-enabled on that Screen (or be prepared for lies).
-
-2. Nouveau shouldn't be claiming to be an offload slave if it doesn't support
-offloading (due to NoAccel).</pre>
+Except, offloading may be eiter DRI2 or DRI3 so this doesn't make sense.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +81,9 @@ offloading (due to NoAccel).</pre>
     </body>
 </html>
 
---1421488563.A612a1.9314--
+--1421488984.21ecEbA1.11446--
 
---===============1295149040==
+--===============2136694384==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1295149040==--
+--===============2136694384==--
