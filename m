@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61765] Regression: null pointer dereference on
- reboot after switcheroo use
-Date: Sat, 17 Jan 2015 00:08:09 +0000
-Message-ID: <bug-61765-8800-C9Ynvg3S9w@http.bugs.freedesktop.org/>
-References: <bug-61765-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 34430] nouveau driver does not return VGA connector
+ status breaking upower
+Date: Sat, 17 Jan 2015 00:12:14 +0000
+Message-ID: <bug-34430-8800-PQasdFXzup@http.bugs.freedesktop.org/>
+References: <bug-34430-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1989536601=="
+Content-Type: multipart/mixed; boundary="===============0572126395=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61765-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-34430-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1989536601==
-Content-Type: multipart/alternative; boundary="1421453289.6723eF11.15345"; charset="UTF-8"
+--===============0572126395==
+Content-Type: multipart/alternative; boundary="1421453534.43337b5.16687"; charset="UTF-8"
 
 
---1421453289.6723eF11.15345
-Date: Sat, 17 Jan 2015 00:08:09 +0000
+--1421453534.43337b5.16687
+Date: Sat, 17 Jan 2015 00:12:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=61765
+https://bugs.freedesktop.org/show_bug.cgi?id=34430
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |NEEDINFO
 
---- Comment #3 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-still a problem with newer kernels (3.17, 3.18)? there were really many fixes
-in between that could fix this...
+--- Comment #5 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I did a quick check and it doesn't seem like the proposed fix was merged. Does
+it still occur on a recent kernel (3.18, 3.19-rc4)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421453289.6723eF11.15345
-Date: Sat, 17 Jan 2015 00:08:09 +0000
+--1421453534.43337b5.16687
+Date: Sat, 17 Jan 2015 00:12:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Regression: null pointer dereference on reboot after switcheroo use"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765">bug 61765</a>
+   title="NEEDINFO - nouveau driver does not return VGA connector status breaking upower"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34430">bug 34430</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -80,16 +80,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Regression: null pointer dereference on reboot after switcheroo use"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765#c3">Comment # 3</a>
+   title="NEEDINFO - nouveau driver does not return VGA connector status breaking upower"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34430#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - Regression: null pointer dereference on reboot after switcheroo use"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61765">bug 61765</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+   title="NEEDINFO - nouveau driver does not return VGA connector status breaking upower"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=34430">bug 34430</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>still a problem with newer kernels (3.17, 3.18)? there were really many fixes
-in between that could fix this...</pre>
+        <pre>I did a quick check and it doesn't seem like the proposed fix was merged. Does
+it still occur on a recent kernel (3.18, 3.19-rc4)?</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +101,9 @@ in between that could fix this...</pre>
     </body>
 </html>
 
---1421453289.6723eF11.15345--
+--1421453534.43337b5.16687--
 
---===============1989536601==
+--===============0572126395==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1989536601==--
+--===============0572126395==--
