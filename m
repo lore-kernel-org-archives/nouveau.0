@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68348] [piglit] shaders/glsl-array-bounds-02 (+even
- nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001
-Date: Sat, 17 Jan 2015 00:23:31 +0000
-Message-ID: <bug-68348-8800-TTQU7TB0Uv@http.bugs.freedesktop.org/>
-References: <bug-68348-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69982] [NV86] GPU+system crash with nouveau and
+	kernel 3.12-rc3
+Date: Sat, 17 Jan 2015 00:27:34 +0000
+Message-ID: <bug-69982-8800-5HlQJ7U0GU@http.bugs.freedesktop.org/>
+References: <bug-69982-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0803110355=="
+Content-Type: multipart/mixed; boundary="===============0545134314=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69982-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0803110355==
-Content-Type: multipart/alternative; boundary="1421454211.D3DF2.19849"; charset="UTF-8"
+--===============0545134314==
+Content-Type: multipart/alternative; boundary="1421454454.E83203.20976"; charset="UTF-8"
 
 
---1421454211.D3DF2.19849
-Date: Sat, 17 Jan 2015 00:23:31 +0000
+--1421454454.E83203.20976
+Date: Sat, 17 Jan 2015 00:27:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68348
+https://bugs.freedesktop.org/show_bug.cgi?id=69982
 
 Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
@@ -38,16 +38,16 @@ Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> chan
 ----------------------------------------------------------------------------
              Status|NEW                         |NEEDINFO
 
---- Comment #2 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-Is this still a bug with recent kernels and other software? Please retest with
-3.19-rc4 as there were some fixes for these chips in particular.
+--- Comment #14 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+Do the freezes still occur with a recent kernel (3.17, 3.18) and newer Mesa,
+Xserver while not specifying "nouveau.config=NvMSI=0"?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421454211.D3DF2.19849
-Date: Sat, 17 Jan 2015 00:23:31 +0000
+--1421454454.E83203.20976
+Date: Sat, 17 Jan 2015 00:27:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">bug 68348</a>
+   title="NEEDINFO - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -80,16 +80,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348#c2">Comment # 2</a>
+   title="NEEDINFO - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEEDINFO "
-   title="NEEDINFO - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">bug 68348</a>
+   title="NEEDINFO - [NV86] GPU+system crash with nouveau and kernel 3.12-rc3"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69982">bug 69982</a>
               from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>Is this still a bug with recent kernels and other software? Please retest with
-3.19-rc4 as there were some fixes for these chips in particular.</pre>
+        <pre>Do the freezes still occur with a recent kernel (3.17, 3.18) and newer Mesa,
+Xserver while not specifying &quot;nouveau.config=NvMSI=0&quot;?</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +101,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1421454211.D3DF2.19849--
+--1421454454.E83203.20976--
 
---===============0803110355==
+--===============0545134314==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0803110355==--
+--===============0545134314==--
