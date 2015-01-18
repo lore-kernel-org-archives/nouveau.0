@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Sun, 18 Jan 2015 19:07:14 +0000
-Message-ID: <bug-70354-8800-8WKiIX5cgP@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69928] [NVAA] Boot of linux kernel 3.12-rc2 hangs
+Date: Sun, 18 Jan 2015 20:09:30 +0000
+Message-ID: <bug-69928-8800-dV6795usuf@http.bugs.freedesktop.org/>
+References: <bug-69928-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1057078228=="
+Content-Type: multipart/mixed; boundary="===============0243061620=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69928-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1057078228==
-Content-Type: multipart/alternative; boundary="1421608034.ebF55.7784"; charset="UTF-8"
+--===============0243061620==
+Content-Type: multipart/alternative; boundary="1421611770.f83652.27348"; charset="UTF-8"
 
 
---1421608034.ebF55.7784
-Date: Sun, 18 Jan 2015 19:07:14 +0000
+--1421611770.f83652.27348
+Date: Sun, 18 Jan 2015 20:09:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=69928
 
---- Comment #40 from aidan-FQpVkr58hxg@public.gmane.org ---
-(In reply to Vitaly Torshyn from comment #39)
-> Hi folks,
-> Please see previously attached dmesg and xorg logs.
-> I was using Ben's git repo to apply a patch for 3.18.2 kernel.
-> Actually, the patch is only removed INIT HUB error. In addition, X was
-> managed to start with AIGLX enabled but nouveau crashed on start any GL
-> enabled application.
-> Please note, the same behavior with SLI enabled. 
-> HW is Lenovo Y510P with dual GT 755M video.
-> 
-> Please, feel free to request additional information.
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
-I have a similar laptop, and I think the X crashing is this
-(https://bugs.freedesktop.org/show_bug.cgi?id=88514) issue.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+
+--- Comment #18 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Is this still an issue using kernel 3.19-rc4?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421608034.ebF55.7784
-Date: Sun, 18 Jan 2015 19:07:14 +0000
+--1421611770.f83652.27348
+Date: Sun, 18 Jan 2015 20:09:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,36 +53,40 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c40">Comment # 40</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928#c18">Comment # 18</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:aidan&#64;jmad.org" title="aidan&#64;jmad.org">aidan&#64;jmad.org</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - [NVAA] Boot of linux kernel 3.12-rc2 hangs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69928">bug 69928</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>(In reply to Vitaly Torshyn from <a href="show_bug.cgi?id=70354#c39">comment #39</a>)
-<span class="quote">&gt; Hi folks,
-&gt; Please see previously attached dmesg and xorg logs.
-&gt; I was using Ben's git repo to apply a patch for 3.18.2 kernel.
-&gt; Actually, the patch is only removed INIT HUB error. In addition, X was
-&gt; managed to start with AIGLX enabled but nouveau crashed on start any GL
-&gt; enabled application.
-&gt; Please note, the same behavior with SLI enabled. 
-&gt; HW is Lenovo Y510P with dual GT 755M video.
-&gt; 
-&gt; Please, feel free to request additional information.</span >
-
-I have a similar laptop, and I think the X crashing is this
-(<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - X segfaults when using prime offloading to nouveau card"
-   href="show_bug.cgi?id=88514">https://bugs.freedesktop.org/show_bug.cgi?id=88514</a>) issue.</pre>
+        <pre>Is this still an issue using kernel 3.19-rc4?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +98,9 @@ I have a similar laptop, and I think the X crashing is this
     </body>
 </html>
 
---1421608034.ebF55.7784--
+--1421611770.f83652.27348--
 
---===============1057078228==
+--===============0243061620==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1057078228==--
+--===============0243061620==--
