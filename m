@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88515] After waking up from sleep nouveau fails with
-	errors
-Date: Sun, 18 Jan 2015 03:24:52 +0000
-Message-ID: <bug-88515-8800-itsbBxQ9Rw@http.bugs.freedesktop.org/>
-References: <bug-88515-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83992] [NVE0][NVF1] regression,
+	linux 3.17 causes gpu lockups
+Date: Sun, 18 Jan 2015 05:27:33 +0000
+Message-ID: <bug-83992-8800-jO1GTdmg9Z@http.bugs.freedesktop.org/>
+References: <bug-83992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0651442199=="
+Content-Type: multipart/mixed; boundary="===============0214867468=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0651442199==
-Content-Type: multipart/alternative; boundary="1421551491.Cd06A272.6717"; charset="UTF-8"
+--===============0214867468==
+Content-Type: multipart/alternative; boundary="1421558853.6a154cE72.10765"; charset="UTF-8"
 
 
---1421551491.Cd06A272.6717
-Date: Sun, 18 Jan 2015 03:24:51 +0000
+--1421558853.6a154cE72.10765
+Date: Sun, 18 Jan 2015 05:27:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88515
+https://bugs.freedesktop.org/show_bug.cgi?id=83992
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+--- Comment #7 from Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 112412
+  --> https://bugs.freedesktop.org/attachment.cgi?id=112412&action=edit
+patch for lockups.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |NEW
-
---- Comment #3 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-I don't know about Ubuntu, sorry. Try asking in a Ubuntu related channel or
-open a bug at their bugtracker and mention its fixed with 3.19-rcX.
-
-Leaving this open for a while, just in case something problematic comes up...
+thanks to xexaxo from #d3d9 on freenode.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421551491.Cd06A272.6717
-Date: Sun, 18 Jan 2015 03:24:51 +0000
+--1421558853.6a154cE72.10765
+Date: Sun, 18 Jan 2015 05:27:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,43 +52,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515">bug 88515</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>NEW
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515#c3">Comment # 3</a>
+   title="NEW - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - After waking up from sleep nouveau fails with errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88515">bug 88515</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+   title="NEW - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992">bug 83992</a>
+              from <span class="vcard"><a class="email" href="mailto:tomenglund26&#64;gmail.com" title="Tom Englund &lt;tomenglund26&#64;gmail.com&gt;"> <span class="fn">Tom Englund</span></a>
 </span></b>
-        <pre>I don't know about Ubuntu, sorry. Try asking in a Ubuntu related channel or
-open a bug at their bugtracker and mention its fixed with 3.19-rcX.
+        <pre>Created <span class=""><a href="attachment.cgi?id=112412" name="attach_112412" title="patch for lockups.">attachment 112412</a> <a href="attachment.cgi?id=112412&amp;action=edit" title="patch for lockups.">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=83992&amp;attachment=112412'>[review]</a>
+patch for lockups.
 
-Leaving this open for a while, just in case something problematic comes up...</pre>
+thanks to xexaxo from #d3d9 on freenode.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +80,9 @@ Leaving this open for a while, just in case something problematic comes up...</p
     </body>
 </html>
 
---1421551491.Cd06A272.6717--
+--1421558853.6a154cE72.10765--
 
---===============0651442199==
+--===============0214867468==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0651442199==--
+--===============0214867468==--
