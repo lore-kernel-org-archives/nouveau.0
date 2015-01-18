@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
  blob fw doesn't help
-Date: Sun, 18 Jan 2015 13:32:05 +0000
-Message-ID: <bug-70354-8800-pf61FqQoGJ@http.bugs.freedesktop.org/>
+Date: Sun, 18 Jan 2015 13:32:31 +0000
+Message-ID: <bug-70354-8800-uchgHA5X2r@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0522983311=="
+Content-Type: multipart/mixed; boundary="===============0545553301=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0522983311==
-Content-Type: multipart/alternative; boundary="1421587926.Ac5351735.25194"; charset="UTF-8"
+--===============0545553301==
+Content-Type: multipart/alternative; boundary="1421587952.Da72DD4019.25194"; charset="UTF-8"
 
 
---1421587926.Ac5351735.25194
-Date: Sun, 18 Jan 2015 13:32:06 +0000
+--1421587952.Da72DD4019.25194
+Date: Sun, 18 Jan 2015 13:32:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #36 from Vitaly Torshyn <vitaly.torshyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 112418
-  --> https://bugs.freedesktop.org/attachment.cgi?id=112418&action=edit
-Xorg log
+--- Comment #37 from Vitaly Torshyn <vitaly.torshyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 112419
+  --> https://bugs.freedesktop.org/attachment.cgi?id=112419&action=edit
+dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421587926.Ac5351735.25194
-Date: Sun, 18 Jan 2015 13:32:06 +0000
+--1421587952.Da72DD4019.25194
+Date: Sun, 18 Jan 2015 13:32:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c36">Comment # 36</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c37">Comment # 37</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
               from <span class="vcard"><a class="email" href="mailto:vitaly.torshyn&#64;gmail.com" title="Vitaly Torshyn &lt;vitaly.torshyn&#64;gmail.com&gt;"> <span class="fn">Vitaly Torshyn</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=112418" name="attach_112418" title="Xorg log">attachment 112418</a> <a href="attachment.cgi?id=112418&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=112419" name="attach_112419" title="dmesg">attachment 112419</a> <a href="attachment.cgi?id=112419&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1421587926.Ac5351735.25194--
+--1421587952.Da72DD4019.25194--
 
---===============0522983311==
+--===============0545553301==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0522983311==--
+--===============0545553301==--
