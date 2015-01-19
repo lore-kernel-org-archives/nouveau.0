@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 67315] [NVAA] System lockup with X consuming all CPU
-Date: Mon, 19 Jan 2015 13:18:37 +0000
-Message-ID: <bug-67315-8800-Ryluo5TMjw@http.bugs.freedesktop.org/>
-References: <bug-67315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Mon, 19 Jan 2015 15:58:59 +0000
+Message-ID: <bug-70354-8800-jclECRdTFY@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0886716537=="
+Content-Type: multipart/mixed; boundary="===============2080986174=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-67315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,37 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0886716537==
-Content-Type: multipart/alternative; boundary="1421673516.e8Acfa72.3454"; charset="UTF-8"
+--===============2080986174==
+Content-Type: multipart/alternative; boundary="1421683139.3f5a855.30118"; charset="UTF-8"
 
 
---1421673516.e8Acfa72.3454
-Date: Mon, 19 Jan 2015 13:18:36 +0000
+--1421683139.3f5a855.30118
+Date: Mon, 19 Jan 2015 15:58:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=67315
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #26 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to poma from comment #25)
-> (In reply to Pierre Moreau from comment #24)
-> > Is this still an issue using kernel 3.19-rc4?
+--- Comment #43 from Vitaly Torshyn <vitaly.torshyn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to aidan from comment #40)
+> (In reply to Vitaly Torshyn from comment #39)
+> > Hi folks,
+> > Please see previously attached dmesg and xorg logs.
+> > I was using Ben's git repo to apply a patch for 3.18.2 kernel.
+> > Actually, the patch is only removed INIT HUB error. In addition, X was
+> > managed to start with AIGLX enabled but nouveau crashed on start any GL
+> > enabled application.
+> > Please note, the same behavior with SLI enabled. 
+> > HW is Lenovo Y510P with dual GT 755M video.
+> > 
+> > Please, feel free to request additional information.
 > 
-> Questionable kernel version is not only,
-> Fedora 19 End of Life
-> https://lists.fedoraproject.org/pipermail/announce/2015-January/003248.html
+> I have a similar laptop, and I think the X crashing is this
+> (https://bugs.freedesktop.org/show_bug.cgi?id=88514) issue.
 
-The fact that he had F19 when he opened the bug report doesn't imply that he
-didn't upgrade to F20 or F21 since his last post.
-Besides, one can compile a kernel, or test using one of the live images here:
-https://nouveau.pmoreau.org.
+I don't think so. The X crashing even with second nvidia GPU installed. In case
+intel gpu is turned off by notebooks firmware.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421673516.e8Acfa72.3454
-Date: Mon, 19 Jan 2015 13:18:36 +0000
+--1421683139.3f5a855.30118
+Date: Mon, 19 Jan 2015 15:58:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,27 +69,36 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NVAA] System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315#c26">Comment # 26</a>
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c43">Comment # 43</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - [NVAA] System lockup with X consuming all CPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=67315">bug 67315</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:vitaly.torshyn&#64;gmail.com" title="Vitaly Torshyn &lt;vitaly.torshyn&#64;gmail.com&gt;"> <span class="fn">Vitaly Torshyn</span></a>
 </span></b>
-        <pre>(In reply to poma from <a href="show_bug.cgi?id=67315#c25">comment #25</a>)
-<span class="quote">&gt; (In reply to Pierre Moreau from <a href="show_bug.cgi?id=67315#c24">comment #24</a>)
-&gt; &gt; Is this still an issue using kernel 3.19-rc4?
+        <pre>(In reply to aidan from <a href="show_bug.cgi?id=70354#c40">comment #40</a>)
+<span class="quote">&gt; (In reply to Vitaly Torshyn from <a href="show_bug.cgi?id=70354#c39">comment #39</a>)
+&gt; &gt; Hi folks,
+&gt; &gt; Please see previously attached dmesg and xorg logs.
+&gt; &gt; I was using Ben's git repo to apply a patch for 3.18.2 kernel.
+&gt; &gt; Actually, the patch is only removed INIT HUB error. In addition, X was
+&gt; &gt; managed to start with AIGLX enabled but nouveau crashed on start any GL
+&gt; &gt; enabled application.
+&gt; &gt; Please note, the same behavior with SLI enabled. 
+&gt; &gt; HW is Lenovo Y510P with dual GT 755M video.
+&gt; &gt; 
+&gt; &gt; Please, feel free to request additional information.
 &gt; 
-&gt; Questionable kernel version is not only,
-&gt; Fedora 19 End of Life
-&gt; <a href="https://lists.fedoraproject.org/pipermail/announce/2015-January/003248.html">https://lists.fedoraproject.org/pipermail/announce/2015-January/003248.html</a></span >
+&gt; I have a similar laptop, and I think the X crashing is this
+&gt; (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - X segfaults when using prime offloading to nouveau card"
+   href="show_bug.cgi?id=88514">https://bugs.freedesktop.org/show_bug.cgi?id=88514</a>) issue.</span >
 
-The fact that he had F19 when he opened the bug report doesn't imply that he
-didn't upgrade to F20 or F21 since his last post.
-Besides, one can compile a kernel, or test using one of the live images here:
-<a href="https://nouveau.pmoreau.org">https://nouveau.pmoreau.org</a>.</pre>
+I don't think so. The X crashing even with second nvidia GPU installed. In case
+intel gpu is turned off by notebooks firmware.</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +110,9 @@ Besides, one can compile a kernel, or test using one of the live images here:
     </body>
 </html>
 
---1421673516.e8Acfa72.3454--
+--1421683139.3f5a855.30118--
 
---===============0886716537==
+--===============2080986174==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0886716537==--
+--===============2080986174==--
