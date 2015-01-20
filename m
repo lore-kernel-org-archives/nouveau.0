@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
  blob fw doesn't help
-Date: Tue, 20 Jan 2015 19:31:57 +0000
-Message-ID: <bug-70354-8800-dIa26Qax1A@http.bugs.freedesktop.org/>
+Date: Tue, 20 Jan 2015 19:36:02 +0000
+Message-ID: <bug-70354-8800-QhqSZwSZFD@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2095398992=="
+Content-Type: multipart/mixed; boundary="===============0512565407=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,18 +21,18 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2095398992==
-Content-Type: multipart/alternative; boundary="1421782317.12Ae4de5.17670"; charset="UTF-8"
+--===============0512565407==
+Content-Type: multipart/alternative; boundary="1421782562.Ba5Ed5.19063"; charset="UTF-8"
 
 
---1421782317.12Ae4de5.17670
-Date: Tue, 20 Jan 2015 19:31:57 +0000
+--1421782562.Ba5Ed5.19063
+Date: Tue, 20 Jan 2015 19:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #48 from Karol Herbst <karolherbst-BUHhN+a2lJ4@public.gmane.org> ---
+--- Comment #49 from Karol Herbst <karolherbst-BUHhN+a2lJ4@public.gmane.org> ---
 (In reply to Vitaly Torshyn from comment #44)
 > (In reply to Karol Herbst from comment #42)
 > > at least this patch made it more likely to suceed for me.
@@ -41,20 +41,16 @@ https://bugs.freedesktop.org/show_bug.cgi?id=70354
 > It's weird to fix ACPI stuff for our cards.
 > Also, please respond if you applied this fix with Ben's fixes.
 
-no, I don't use Ben's fixes, because I wanted to try this patch out allone. The
-thing is, that for me nouveau fails most of the time loading my card, but with
-this patch it seems to be more likely to succeed, allthough it may be not
-related, but it kinda helped me.
-
-On a side note: if it succeeds the kernel moudle is loaded under a second, so
-it is far bellow the timeout.
+Also note that rcutree.rcu_idle_gp_delay=1 helped for some and the kernel patch
+tries to make this not needed anymore. So it kinda makes sense, even if not for
+all.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421782317.12Ae4de5.17670
-Date: Tue, 20 Jan 2015 19:31:57 +0000
+--1421782562.Ba5Ed5.19063
+Date: Tue, 20 Jan 2015 19:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,7 +64,7 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c48">Comment # 48</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c49">Comment # 49</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
@@ -83,13 +79,9 @@ Content-Type: text/html; charset="UTF-8"
 &gt; It's weird to fix ACPI stuff for our cards.
 &gt; Also, please respond if you applied this fix with Ben's fixes.</span >
 
-no, I don't use Ben's fixes, because I wanted to try this patch out allone. The
-thing is, that for me nouveau fails most of the time loading my card, but with
-this patch it seems to be more likely to succeed, allthough it may be not
-related, but it kinda helped me.
-
-On a side note: if it succeeds the kernel moudle is loaded under a second, so
-it is far bellow the timeout.</pre>
+Also note that rcutree.rcu_idle_gp_delay=1 helped for some and the kernel patch
+tries to make this not needed anymore. So it kinda makes sense, even if not for
+all.</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +93,9 @@ it is far bellow the timeout.</pre>
     </body>
 </html>
 
---1421782317.12Ae4de5.17670--
+--1421782562.Ba5Ed5.19063--
 
---===============2095398992==
+--===============0512565407==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2095398992==--
+--===============0512565407==--
