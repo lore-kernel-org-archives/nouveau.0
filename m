@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58615] [NV43] hangs with direct rendering since 3.7
-	rework
-Date: Mon, 19 Jan 2015 20:26:09 +0000
-Message-ID: <bug-58615-8800-SpSpxV2jQu@http.bugs.freedesktop.org/>
-References: <bug-58615-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87244] [NV94] X hangs,
+ logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
+ 101 spins, halt followed by an X trace
+Date: Tue, 20 Jan 2015 08:01:55 +0000
+Message-ID: <bug-87244-8800-rYIKT8uO2p@http.bugs.freedesktop.org/>
+References: <bug-87244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1893056946=="
+Content-Type: multipart/mixed; boundary="===============0030606004=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58615-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1893056946==
-Content-Type: multipart/alternative; boundary="1421699169.fED6b2.1885"; charset="UTF-8"
+--===============0030606004==
+Content-Type: multipart/alternative; boundary="1421740914.80E1b02.19469"; charset="UTF-8"
 
 
---1421699169.fED6b2.1885
-Date: Mon, 19 Jan 2015 20:26:09 +0000
+--1421740914.80E1b02.19469
+Date: Tue, 20 Jan 2015 08:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58615
+https://bugs.freedesktop.org/show_bug.cgi?id=87244
 
---- Comment #13 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-I seems I  can avoid (workaround) this bug by simply changing in my .config
-CONFIG_PREEMPT_NONE=y to CONFIG_PREEMPT_VOLUNTARY=y . I made  this  discovery 
-while  trying  official Slackware kernel from Slackware-current. May be this
-bug has something in  common with bug described  in
-https://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.18.3 as "mm, vmscan:
-prevent kswapd livelock due to pfmemalloc-throttled process being killed' . 
-Bug seems to hit  only nv40 (and less?) codepath, because my nv50 works fine
-without preemption.
-
-Should I  leave  this  bugreport open, or resolve it as WORKSFORME? (currently
-I'm  compiling additional test kernel based on nouveau/linux-2.6 linux-3.19
-branch , just  to test my workaround one more time.)
-
-Reclocking still seems to work only partially (lost  display  and  another 
-kind  of  hang  after  just  few seconds of glxgears  on highest perf level,
-lost  display after I switch clocks back to lower frequencies), but this is 
-another  issue
+--- Comment #7 from Ungifted <ungift-ed-k+OT61UuxXo@public.gmane.org> ---
+Nouveau still angry in 3.19-rc5
+Filed issue on kernel.org: https://bugzilla.kernel.org/show_bug.cgi?id=91581
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1421699169.fED6b2.1885
-Date: Mon, 19 Jan 2015 20:26:09 +0000
+--1421740914.80E1b02.19469
+Date: Tue, 20 Jan 2015 08:01:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,31 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV43] hangs with direct rendering since 3.7 rework"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615#c13">Comment # 13</a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV43] hangs with direct rendering since 3.7 rework"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58615">bug 58615</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
+              from <span class="vcard"><a class="email" href="mailto:ungift-ed&#64;ya.ru" title="Ungifted &lt;ungift-ed&#64;ya.ru&gt;"> <span class="fn">Ungifted</span></a>
 </span></b>
-        <pre>I seems I  can avoid (workaround) this bug by simply changing in my .config
-CONFIG_PREEMPT_NONE=y to CONFIG_PREEMPT_VOLUNTARY=y . I made  this  discovery 
-while  trying  official Slackware kernel from Slackware-current. May be this
-bug has something in  common with bug described  in
-<a href="https://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.18.3">https://www.kernel.org/pub/linux/kernel/v3.x/ChangeLog-3.18.3</a> as &quot;mm, vmscan:
-prevent kswapd livelock due to pfmemalloc-throttled process being killed' . 
-Bug seems to hit  only nv40 (and less?) codepath, because my nv50 works fine
-without preemption.
-
-Should I  leave  this  bugreport open, or resolve it as WORKSFORME? (currently
-I'm  compiling additional test kernel based on nouveau/linux-2.6 linux-3.19
-branch , just  to test my workaround one more time.)
-
-Reclocking still seems to work only partially (lost  display  and  another 
-kind  of  hang  after  just  few seconds of glxgears  on highest perf level,
-lost  display after I switch clocks back to lower frequencies), but this is 
-another  issue</pre>
+        <pre>Nouveau still angry in 3.19-rc5
+Filed issue on kernel.org: <a href="https://bugzilla.kernel.org/show_bug.cgi?id=91581">https://bugzilla.kernel.org/show_bug.cgi?id=91581</a></pre>
         </div>
       </p>
       <hr>
@@ -105,9 +76,9 @@ another  issue</pre>
     </body>
 </html>
 
---1421699169.fED6b2.1885--
+--1421740914.80E1b02.19469--
 
---===============1893056946==
+--===============0030606004==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1893056946==--
+--===============0030606004==--
