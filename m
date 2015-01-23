@@ -1,64 +1,71 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH 1/6] make RAM device optional
-Date: Fri, 23 Jan 2015 10:27:08 -0800
-Message-ID: <CAKb7Uvj9n4vfPmvxCODyRBZbNoLcvwUkT9HJEpyHxqM1g_t=Lw@mail.gmail.com>
-References: <1422003238-14572-1-git-send-email-acourbot@nvidia.com>
-	<1422003238-14572-2-git-send-email-acourbot@nvidia.com>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH 1/2] nv50/ir: Add support for MAD short+IMM
+	notation
+Date: Fri, 23 Jan 2015 22:46:54 +0100
+Message-ID: <1422049615-12604-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1422003238-14572-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Jan 23, 2015 at 12:53 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
-> Having a RAM device does not make sense for chips like GK20A which have
-> no dedicated video memory. The dummy RAM device that we used so far
-> works as a temporary band-aid, but in the long-term it is desirable for
-> the driver to be able to work without any kind of VRAM.
->
-> This patch adds a few conditionals in places where a RAM device was
-> assumed to be present and allows some more objects to be allocated from
-> the TT domain, allowing Nouveau to handle GPUs for which
-> pfb->ram == NULL.
->
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drm/nouveau/nouveau_display.c         |  9 ++++++++-
->  drm/nouveau/nouveau_ttm.c             |  3 +++
->  drm/nouveau/nv84_fence.c              |  7 +++++--
->  drm/nouveau/nvkm/engine/device/base.c |  9 ++++++---
->  drm/nouveau/nvkm/subdev/clk/base.c    |  2 +-
->  drm/nouveau/nvkm/subdev/fb/base.c     | 26 ++++++++++++++++++--------
->  drm/nouveau/nvkm/subdev/ltc/gf100.c   | 14 ++++++++++----
->  7 files changed, 51 insertions(+), 19 deletions(-)
->
-> diff --git a/drm/nouveau/nvkm/subdev/ltc/gf100.c b/drm/nouveau/nvkm/subdev/ltc/gf100.c
-> index 8e7cc62..ceaa104 100644
-> --- a/drm/nouveau/nvkm/subdev/ltc/gf100.c
-> +++ b/drm/nouveau/nvkm/subdev/ltc/gf100.c
-> @@ -170,8 +174,10 @@ gf100_ltc_init_tag_ram(struct nvkm_fb *pfb, struct nvkm_ltc_priv *priv)
->         tag_size += tag_align;
->         tag_size  = (tag_size + 0xfff) >> 12; /* round up */
->
-> -       ret = nvkm_mm_tail(&pfb->vram, 1, 1, tag_size, tag_size, 1,
-> -                          &priv->tag_ram);
-> +       if (pfb->ram)
-> +               ret = nvkm_mm_tail(&pfb->vram, 1, 1, tag_size, tag_size, 1,
-> +                                  &priv->tag_ram);
-> +       ret = -1;
-
-Was there supposed to be an else somewhere in there?
-
->         if (ret) {
->                 priv->num_tags = 0;
->         } else {
-> --
-> 2.2.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
+QWRkIGVtaXNzaW9uIHJ1bGVzIGZvciBuZWdhdGl2ZSBhbmQgc2F0dXJhdGUgZmxhZ3MgZm9yIE1B
+RCA0LWJ5dGUgb3Bjb2RlcywKYW5kIGdldCByaWQgb2YgY29uc3RyYWludHMuIFNob3J0IE1BRCBo
+YXMgYSB2ZXJ5IHNwZWNpZmljIFNEU1QgPT0gU1NSQzIKcmVxdWlyZW1lbnQsIGFuZCBzaW5jZSBN
+QUQgSU1NIGlzIHNob3J0IG5vdGF0aW9uICsgNC1ieXRlIGltbWVkaWF0ZSwgZG9uJ3QKaGF2ZSB0
+aGUgY29tcGlsZXIgY3JlYXRlIE1BRCBJTU0gaW5zdHJ1Y3Rpb25zIHlldC4KClYyOiBEb2N1bWVu
+dCBNQUQgYXMgc3VwcG9ydGVkIHNob3J0IGZvcm0KClNpZ25lZC1vZmYtYnk6IFJveSBTcGxpZXQg
+PHJzcGxpZXRAZWNsaXBzby5ldT4KLS0tCiAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
+MF9pcl9lbWl0X252NTAuY3BwICAgICAgfCAxOCArKysrKysrKysrKystLS0tLS0KIC4uLi9kcml2
+ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcCAgICB8ICA0ICsrLS0K
+IDIgZmlsZXMgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYg
+LS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2VtaXRf
+bnY1MC5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Vt
+aXRfbnY1MC5jcHAKaW5kZXggMjA3NzM4OC4uYjFlNzQwOSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3BwCisrKyBiL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZW1pdF9udjUwLmNwcApA
+QCAtOTM5LDkgKzkzOSwyMCBAQCBDb2RlRW1pdHRlck5WNTA6OmVtaXRGTUFEKGNvbnN0IEluc3Ry
+dWN0aW9uICppKQogCiAgICBjb2RlWzBdID0gMHhlMDAwMDAwMDsKIAorICAgaWYgKGktPnNyYygx
+KS5nZXRGaWxlKCkgPT0gRklMRV9JTU1FRElBVEUpIHsKKyAgICAgIGNvZGVbMV0gPSAwOworICAg
+ICAgZW1pdEZvcm1fSU1NKGkpOworICAgICAgY29kZVswXSB8PSBuZWdfbXVsIDw8IDE1OworICAg
+ICAgY29kZVswXSB8PSBuZWdfYWRkIDw8IDIyOworICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAg
+ICAgICAgY29kZVswXSB8PSAxIDw8IDg7CisgICB9IGVsc2UKICAgIGlmIChpLT5lbmNTaXplID09
+IDQpIHsKICAgICAgIGVtaXRGb3JtX01VTChpKTsKLSAgICAgIGFzc2VydCghbmVnX211bCAmJiAh
+bmVnX2FkZCk7CisgICAgICBjb2RlWzBdIHw9IG5lZ19tdWwgPDwgMTU7CisgICAgICBjb2RlWzBd
+IHw9IG5lZ19hZGQgPDwgMjI7CisgICAgICBpZiAoaS0+c2F0dXJhdGUpCisgICAgICAgICBjb2Rl
+WzBdIHw9IDEgPDwgODsKICAgIH0gZWxzZSB7CiAgICAgICBjb2RlWzFdICA9IG5lZ19tdWwgPDwg
+MjY7CiAgICAgICBjb2RlWzFdIHw9IG5lZ19hZGQgPDwgMjc7CkBAIC0xOTMxLDExICsxOTQyLDYg
+QEAgQ29kZUVtaXR0ZXJOVjUwOjpnZXRNaW5FbmNvZGluZ1NpemUoY29uc3QgSW5zdHJ1Y3Rpb24g
+KmkpIGNvbnN0CiAKICAgIC8vIGNoZWNrIGNvbnN0cmFpbnRzIG9uIHNob3J0IE1BRAogICAgaWYg
+KGluZm8uc3JjTnIgPj0gMiAmJiBpLT5zcmNFeGlzdHMoMikpIHsKLSAgICAgIGlmIChpLT5zYXR1
+cmF0ZSB8fCBpLT5zcmMoMikubW9kKQotICAgICAgICAgcmV0dXJuIDg7Ci0gICAgICBpZiAoKGkt
+PnNyYygwKS5tb2QgXiBpLT5zcmMoMSkubW9kKSB8fAotICAgICAgICAgIChpLT5zcmMoMCkubW9k
+IHwgaS0+c3JjKDEpLm1vZCkuYWJzKCkpCi0gICAgICAgICByZXR1cm4gODsKICAgICAgIGlmICgh
+aS0+ZGVmRXhpc3RzKDApIHx8CiAgICAgICAgICAgaS0+ZGVmKDApLnJlcCgpLT5yZWcuZGF0YS5p
+ZCAhPSBpLT5zcmMoMikucmVwKCktPnJlZy5kYXRhLmlkKQogICAgICAgICAgcmV0dXJuIDg7CmRp
+ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3Rh
+cmdldF9udjUwLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfdGFyZ2V0X252NTAuY3BwCmluZGV4IDQ4Zjk5NmIuLjE3OGExNjcgMTAwNjQ0Ci0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3Bw
+CisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0
+X252NTAuY3BwCkBAIC0xMTcsOCArMTE3LDggQEAgdm9pZCBUYXJnZXROVjUwOjppbml0T3BJbmZv
+KCkKICAgIH07CiAgICBzdGF0aWMgY29uc3QgdWludDMyX3Qgc2hvcnRGb3JtWyhPUF9MQVNUICsg
+MzEpIC8gMzJdID0KICAgIHsKLSAgICAgIC8vIE1PVixBREQsU1VCLE1VTCxTQUQsTC9QSU5URVJQ
+LFJDUCxURVgsVFhGCi0gICAgICAweDAwMDEwZTQwLCAweDAwMDAwMDQwLCAweDAwMDAwNDk4LCAw
+eDAwMDAwMDAwCisgICAgICAvLyBNT1YsQURELFNVQixNVUwsTUFELFNBRCxML1BJTlRFUlAsUkNQ
+LFRFWCxUWEYKKyAgICAgIDB4MDAwMTRlNDAsIDB4MDAwMDAwNDAsIDB4MDAwMDA0OTgsIDB4MDAw
+MDAwMDAKICAgIH07CiAgICBzdGF0aWMgY29uc3Qgb3BlcmF0aW9uIG5vRGVzdExpc3RbXSA9CiAg
+ICB7Ci0tIAoyLjEuMAoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
