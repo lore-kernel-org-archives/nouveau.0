@@ -1,131 +1,64 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 5/6] platform: probe IOMMU if present
-Date: Fri, 23 Jan 2015 17:53:57 +0900
-Message-ID: <1422003238-14572-6-git-send-email-acourbot@nvidia.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH 1/6] make RAM device optional
+Date: Fri, 23 Jan 2015 10:27:08 -0800
+Message-ID: <CAKb7Uvj9n4vfPmvxCODyRBZbNoLcvwUkT9HJEpyHxqM1g_t=Lw@mail.gmail.com>
 References: <1422003238-14572-1-git-send-email-acourbot@nvidia.com>
+	<1422003238-14572-2-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1422003238-14572-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1422003238-14572-2-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-VGVncmEgU29DcyBoYXZlIGFuIElPTU1VIHRoYXQgY2FuIGJlIHVzZWQgdG8gcHJlc2VudCBub24t
-Y29udGlndW91cwpwaHlzaWNhbCBtZW1vcnkgYXMgY29udGlndW91cyB0byB0aGUgR1BVIGFuZCBt
-YXhpbWl6ZSB0aGUgdXNlIG9mIGxhcmdlCnBhZ2VzIGluIHRoZSBHUFUgTU1VLCBsZWFkaW5nIHRv
-IHBlcmZvcm1hbmNlIGdhaW5zLiBUaGlzIHBhdGNoIGFkZHMKc3VwcG9ydCBmb3IgcHJvYmluZyBz
-dWNoIGEgSU9NTVUgaWYgcHJlc2VudCBhbmQgbWFrZSBpdHMgcHJvcGVydGllcwphdmFpbGFibGUg
-aW4gdGhlIG5vdXZlYXVfcGxhdGZvcm1fZ3B1IHN0cnVjdHVyZSBzbyBzdWJzeXN0ZW1zIGNhbiB0
-YWtlCmFkdmFudGFnZSBvZiBpdC4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxh
-Y291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYyB8
-IDc1ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLQogZHJtL25vdXZl
-YXUvbm91dmVhdV9wbGF0Zm9ybS5oIHwgMTggKysrKysrKysrKwogbGliL2luY2x1ZGUvbnZpZi9v
-cy5oICAgICAgICAgIHwgMzIgKysrKysrKysrKysrKysrKysrCiAzIGZpbGVzIGNoYW5nZWQsIDEy
-NCBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
-bm91dmVhdV9wbGF0Zm9ybS5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5jCmluZGV4
-IGRjNTkwMGIuLjM2OTE5ODIgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZv
-cm0uYworKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMKQEAgLTI3LDYgKzI3LDcg
-QEAKICNpbmNsdWRlIDxsaW51eC9vZi5oPgogI2luY2x1ZGUgPGxpbnV4L3Jlc2V0Lmg+CiAjaW5j
-bHVkZSA8bGludXgvcmVndWxhdG9yL2NvbnN1bWVyLmg+CisjaW5jbHVkZSA8bGludXgvaW9tbXUu
-aD4KICNpbmNsdWRlIDxzb2MvdGVncmEvZnVzZS5oPgogI2luY2x1ZGUgPHNvYy90ZWdyYS9wbWMu
-aD4KIApAQCAtOTEsNiArOTIsNzEgQEAgc3RhdGljIGludCBub3V2ZWF1X3BsYXRmb3JtX3Bvd2Vy
-X2Rvd24oc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1ICpncHUpCiAJcmV0dXJuIDA7CiB9CiAK
-K3N0YXRpYyB2b2lkIG5vdXZlYXVfcGxhdGZvcm1fcHJvYmVfaW9tbXUoc3RydWN0IGRldmljZSAq
-ZGV2LAorCQkJCQkgc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1ICpncHUpCit7CisJaW50IGVy
-cjsKKwl1bnNpZ25lZCBsb25nIHBnc2l6ZV9iaXRtYXA7CisKKwltdXRleF9pbml0KCZncHUtPmlv
-bW11Lm11dGV4KTsKKworCWlmIChpb21tdV9wcmVzZW50KCZwbGF0Zm9ybV9idXNfdHlwZSkpIHsK
-KwkJZ3B1LT5pb21tdS5kb21haW4gPSBpb21tdV9kb21haW5fYWxsb2MoJnBsYXRmb3JtX2J1c190
-eXBlKTsKKwkJaWYgKElTX0VSUihncHUtPmlvbW11LmRvbWFpbikpCisJCQlnb3RvIGVycm9yOwor
-CisJCS8qCisJCSAqIEEgSU9NTVUgaXMgb25seSB1c2FibGUgaWYgaXQgc3VwcG9ydHMgcGFnZSBz
-aXplcyBzbWFsbGVyCisJCSAqIG9yIGVxdWFsIHRvIHRoZSBzeXN0ZW0ncyBQQUdFX1NJWkUsIHdp
-dGggYSBwcmVmZXJlbmNlIGlmCisJCSAqIGJvdGggYXJlIGVxdWFsLgorCQkgKi8KKwkJcGdzaXpl
-X2JpdG1hcCA9IGdwdS0+aW9tbXUuZG9tYWluLT5vcHMtPnBnc2l6ZV9iaXRtYXA7CisJCWlmIChw
-Z3NpemVfYml0bWFwICYgUEFHRV9TSVpFKSB7CisJCQlncHUtPmlvbW11LnBnc2hpZnQgPSBQQUdF
-X1NISUZUOworCQl9IGVsc2UgeworCQkJZ3B1LT5pb21tdS5wZ3NoaWZ0ID0gZmxzKHBnc2l6ZV9i
-aXRtYXAgJiB+UEFHRV9NQVNLKTsKKwkJCWlmIChncHUtPmlvbW11LnBnc2hpZnQgPT0gMCkgewor
-CQkJCWRldl93YXJuKGRldiwgInVuc3VwcG9ydGVkIElPTU1VIHBhZ2Ugc2l6ZVxuIik7CisJCQkJ
-Z290byBmcmVlX2RvbWFpbjsKKwkJCX0KKwkJCWdwdS0+aW9tbXUucGdzaGlmdCAtPSAxOworCQl9
-CisKKwkJZXJyID0gaW9tbXVfYXR0YWNoX2RldmljZShncHUtPmlvbW11LmRvbWFpbiwgZGV2KTsK
-KwkJaWYgKGVycikKKwkJCWdvdG8gZnJlZV9kb21haW47CisKKwkJZXJyID0gbnZrbV9tbV9pbml0
-KCZncHUtPmlvbW11Ll9tbSwgMCwKKwkJCQkgICAoMVVMTCA8PCA0MCkgPj4gZ3B1LT5pb21tdS5w
-Z3NoaWZ0LCAxKTsKKwkJaWYgKGVycikKKwkJCWdvdG8gZGV0YWNoX2RldmljZTsKKworCQlncHUt
-PmlvbW11Lm1tID0gJmdwdS0+aW9tbXUuX21tOworCX0KKworCXJldHVybjsKKworZGV0YWNoX2Rl
-dmljZToKKwlpb21tdV9kZXRhY2hfZGV2aWNlKGdwdS0+aW9tbXUuZG9tYWluLCBkZXYpOworCitm
-cmVlX2RvbWFpbjoKKwlpb21tdV9kb21haW5fZnJlZShncHUtPmlvbW11LmRvbWFpbik7CisKK2Vy
-cm9yOgorCWdwdS0+aW9tbXUuZG9tYWluID0gTlVMTDsKKwlncHUtPmlvbW11LnBnc2hpZnQgPSAw
-OworCWRldl9lcnIoZGV2LCAiY2Fubm90IGluaXRpYWxpemUgSU9NTVUgTU1cbiIpOworfQorCitz
-dGF0aWMgdm9pZCBub3V2ZWF1X3BsYXRmb3JtX3JlbW92ZV9pb21tdShzdHJ1Y3QgZGV2aWNlICpk
-ZXYsCisJCQkJCSAgc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1ICpncHUpCit7CisJaWYgKGdw
-dS0+aW9tbXUuZG9tYWluKSB7CisJCWlvbW11X2RldGFjaF9kZXZpY2UoZ3B1LT5pb21tdS5kb21h
-aW4sIGRldik7CisJCWlvbW11X2RvbWFpbl9mcmVlKGdwdS0+aW9tbXUuZG9tYWluKTsKKwl9Cit9
-CisKIHN0YXRpYyBpbnQgbm91dmVhdV9wbGF0Zm9ybV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2
-aWNlICpwZGV2KQogewogCXN0cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2dwdSAqZ3B1OwpAQCAtMTE4
-LDYgKzE4NCw4IEBAIHN0YXRpYyBpbnQgbm91dmVhdV9wbGF0Zm9ybV9wcm9iZShzdHJ1Y3QgcGxh
-dGZvcm1fZGV2aWNlICpwZGV2KQogCWlmIChJU19FUlIoZ3B1LT5jbGtfcHdyKSkKIAkJcmV0dXJu
-IFBUUl9FUlIoZ3B1LT5jbGtfcHdyKTsKIAorCW5vdXZlYXVfcGxhdGZvcm1fcHJvYmVfaW9tbXUo
-JnBkZXYtPmRldiwgZ3B1KTsKKwogCWVyciA9IG5vdXZlYXVfcGxhdGZvcm1fcG93ZXJfdXAoZ3B1
-KTsKIAlpZiAoZXJyKQogCQlyZXR1cm4gZXJyOwpAQCAtMTU0LDEwICsyMjIsMTUgQEAgc3RhdGlj
-IGludCBub3V2ZWF1X3BsYXRmb3JtX3JlbW92ZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2
-KQogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oZHJtX2Rldik7CiAJc3Ry
-dWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBudnh4X2RldmljZSgmZHJtLT5kZXZpY2UpOwogCXN0
-cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2dwdSAqZ3B1ID0gbnZfZGV2aWNlX3RvX3BsYXRmb3JtKGRl
-dmljZSktPmdwdTsKKwlpbnQgZXJyOwogCiAJbm91dmVhdV9kcm1fZGV2aWNlX3JlbW92ZShkcm1f
-ZGV2KTsKIAotCXJldHVybiBub3V2ZWF1X3BsYXRmb3JtX3Bvd2VyX2Rvd24oZ3B1KTsKKwllcnIg
-PSBub3V2ZWF1X3BsYXRmb3JtX3Bvd2VyX2Rvd24oZ3B1KTsKKworCW5vdXZlYXVfcGxhdGZvcm1f
-cmVtb3ZlX2lvbW11KCZwZGV2LT5kZXYsIGdwdSk7CisKKwlyZXR1cm4gZXJyOwogfQogCiAjaWYg
-SVNfRU5BQkxFRChDT05GSUdfT0YpCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X3Bs
-YXRmb3JtLmggYi9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmgKaW5kZXggMjY4YmI3Mi4u
-MzkyODc0YyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5oCisrKyBi
-L2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uaApAQCAtMjQsMTAgKzI0LDEyIEBACiAjZGVm
-aW5lIF9fTk9VVkVBVV9QTEFURk9STV9IX18KIAogI2luY2x1ZGUgImNvcmUvZGV2aWNlLmgiCisj
-aW5jbHVkZSAiY29yZS9tbS5oIgogCiBzdHJ1Y3QgcmVzZXRfY29udHJvbDsKIHN0cnVjdCBjbGs7
-CiBzdHJ1Y3QgcmVndWxhdG9yOworc3RydWN0IGlvbW11X2RvbWFpbjsKIHN0cnVjdCBwbGF0Zm9y
-bV9kcml2ZXI7CiAKIHN0cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2dwdSB7CkBAIC0zNiw2ICszOCwy
-MiBAQCBzdHJ1Y3Qgbm91dmVhdV9wbGF0Zm9ybV9ncHUgewogCXN0cnVjdCBjbGsgKmNsa19wd3I7
-CiAKIAlzdHJ1Y3QgcmVndWxhdG9yICp2ZGQ7CisKKwlzdHJ1Y3QgeworCQkvKgorCQkgKiBQcm90
-ZWN0cyBhY2Nlc3NlcyB0byBtbSBmcm9tIHN1YnN5c3RlbXMKKwkJICovCisJCXN0cnVjdCBtdXRl
-eCBtdXRleDsKKworCQlzdHJ1Y3QgbnZrbV9tbSBfbW07CisJCS8qCisJCSAqIEp1c3QgcG9pbnRz
-IHRvIF9tbS4gV2UgbmVlZCB0aGlzIHRvIGF2b2lkIGVtYmVkZGluZworCQkgKiBzdHJ1Y3QgbnZr
-bV9tbSBpbiBvcy5oCisJCSAqLworCQlzdHJ1Y3QgbnZrbV9tbSAqbW07CisJCXN0cnVjdCBpb21t
-dV9kb21haW4gKmRvbWFpbjsKKwkJdW5zaWduZWQgbG9uZyBwZ3NoaWZ0OworCX0gaW9tbXU7CiB9
-OwogCiBzdHJ1Y3Qgbm91dmVhdV9wbGF0Zm9ybV9kZXZpY2UgewpkaWZmIC0tZ2l0IGEvbGliL2lu
-Y2x1ZGUvbnZpZi9vcy5oIGIvbGliL2luY2x1ZGUvbnZpZi9vcy5oCmluZGV4IGI0ZDMwN2UuLjI3
-NWZhODQgMTAwNjQ0Ci0tLSBhL2xpYi9pbmNsdWRlL252aWYvb3MuaAorKysgYi9saWIvaW5jbHVk
-ZS9udmlmL29zLmgKQEAgLTcxNSw2ICs3MTUsMjkgQEAgZG1hX2ZyZWVfYXR0cnMoc3RydWN0IGRl
-dmljZSAqZGV2LCBzaXplX3Qgc3osIHZvaWQgKnZhZGRyLCBkbWFfYWRkcl90IGJ1cywKIAogCiAv
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqCisgKiBJT01NVQorICoqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLwor
-c3RydWN0IGlvbW11X2RvbWFpbjsKKworI2RlZmluZSBJT01NVV9SRUFEICAgICAoMSA8PCAwKQor
-I2RlZmluZSBJT01NVV9XUklURSAgICAoMSA8PCAxKQorI2RlZmluZSBJT01NVV9DQUNIRSAgICAo
-MSA8PCAyKSAvKiBETUEgY2FjaGUgY29oZXJlbmN5ICovCisjZGVmaW5lIElPTU1VX05PRVhFQyAg
-ICgxIDw8IDMpCisKK3N0YXRpYyBpbmxpbmUgaW50Citpb21tdV9tYXAoc3RydWN0IGlvbW11X2Rv
-bWFpbiAqZG9tYWluLCB1bnNpZ25lZCBsb25nIGlvdmEsIGRtYV9hZGRyX3QgcGFkZHIsCisJICBz
-aXplX3Qgc2l6ZSwgaW50IHByb3QpCit7CisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyBpbmxpbmUg
-c2l6ZV90Citpb21tdV91bm1hcChzdHJ1Y3QgaW9tbXVfZG9tYWluICpkb21haW4sIHVuc2lnbmVk
-IGxvbmcgaW92YSwgc2l6ZV90IHNpemUpCit7CisJcmV0dXJuIDA7Cit9CisKKy8qKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioKICAqIFBDSQogICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLwogI2luY2x1ZGUgPHBj
-aWFjY2Vzcy5oPgpAQCAtMTIwOCw5ICsxMjMxLDE4IEBAIHJlZ3VsYXRvcl9nZXRfdm9sdGFnZShz
-dHJ1Y3QgcmVndWxhdG9yICpyZWd1bGF0b3IpCiAgKiBub3V2ZWF1IGRybSBwbGF0Zm9ybSBkZXZp
-Y2UKICAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKi8KIAorc3RydWN0IG52a21fbW07CisKIHN0cnVjdCBu
-b3V2ZWF1X3BsYXRmb3JtX2dwdSB7CiAJc3RydWN0IGNsayAqY2xrOwogCXN0cnVjdCByZWd1bGF0
-b3IgKnZkZDsKKworCXN0cnVjdCB7CisJCXN0cnVjdCBtdXRleCBtdXRleDsKKwkJc3RydWN0IG52
-a21fbW0gKm1tOworCQlzdHJ1Y3QgaW9tbXVfZG9tYWluICpkb21haW47CisJCXVuc2lnbmVkIGxv
-bmcgcGdzaGlmdDsKKwl9IGlvbW11OwogfTsKIAogc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZGV2
-aWNlIHsKLS0gCjIuMi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+On Fri, Jan 23, 2015 at 12:53 AM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+> Having a RAM device does not make sense for chips like GK20A which have
+> no dedicated video memory. The dummy RAM device that we used so far
+> works as a temporary band-aid, but in the long-term it is desirable for
+> the driver to be able to work without any kind of VRAM.
+>
+> This patch adds a few conditionals in places where a RAM device was
+> assumed to be present and allows some more objects to be allocated from
+> the TT domain, allowing Nouveau to handle GPUs for which
+> pfb->ram == NULL.
+>
+> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+> ---
+>  drm/nouveau/nouveau_display.c         |  9 ++++++++-
+>  drm/nouveau/nouveau_ttm.c             |  3 +++
+>  drm/nouveau/nv84_fence.c              |  7 +++++--
+>  drm/nouveau/nvkm/engine/device/base.c |  9 ++++++---
+>  drm/nouveau/nvkm/subdev/clk/base.c    |  2 +-
+>  drm/nouveau/nvkm/subdev/fb/base.c     | 26 ++++++++++++++++++--------
+>  drm/nouveau/nvkm/subdev/ltc/gf100.c   | 14 ++++++++++----
+>  7 files changed, 51 insertions(+), 19 deletions(-)
+>
+> diff --git a/drm/nouveau/nvkm/subdev/ltc/gf100.c b/drm/nouveau/nvkm/subdev/ltc/gf100.c
+> index 8e7cc62..ceaa104 100644
+> --- a/drm/nouveau/nvkm/subdev/ltc/gf100.c
+> +++ b/drm/nouveau/nvkm/subdev/ltc/gf100.c
+> @@ -170,8 +174,10 @@ gf100_ltc_init_tag_ram(struct nvkm_fb *pfb, struct nvkm_ltc_priv *priv)
+>         tag_size += tag_align;
+>         tag_size  = (tag_size + 0xfff) >> 12; /* round up */
+>
+> -       ret = nvkm_mm_tail(&pfb->vram, 1, 1, tag_size, tag_size, 1,
+> -                          &priv->tag_ram);
+> +       if (pfb->ram)
+> +               ret = nvkm_mm_tail(&pfb->vram, 1, 1, tag_size, tag_size, 1,
+> +                                  &priv->tag_ram);
+> +       ret = -1;
+
+Was there supposed to be an else somewhere in there?
+
+>         if (ret) {
+>                 priv->num_tags = 0;
+>         } else {
+> --
+> 2.2.2
+>
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
