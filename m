@@ -1,14 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: [PATCH v4] nv50/ir: Handle OP_CVT when folding constant
-	expressions
-Date: Sat, 24 Jan 2015 19:18:50 +0100
-Message-ID: <1422123530-23399-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
-References: <CAKb7UvidgoVLmvvG3r2M2Eio-EexLh1RsXh9GK8Pf-UMSVOPgw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
+ with 9400M in MacbookPro 5, 5
+Date: Sat, 24 Jan 2015 20:14:46 +0000
+Message-ID: <bug-88272-8800-8tcVDjYrci@http.bugs.freedesktop.org/>
+References: <bug-88272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2104638018=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvidgoVLmvvG3r2M2Eio-EexLh1RsXh9GK8Pf-UMSVOPgw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,70 +17,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Rm9sZGluZyBmb3IgY29udmVyc2lvbnM6CiAgIEYzMi0+KFV7MTYvMzJ9LCBTezE2LzMyfSkKICAg
-KFV7MTYvMzJ9LCB7UzE2LzMyfSktPkYzMgogICBVMzIgLT4gVTE2CgpTaWduZWQtb2ZmLWJ5OiBU
-b2JpYXMgS2xhdXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+Ci0t
-LQpWMjogU3BsaXQgb3V0IEY2NCBwYXJ0cwpWMzogcmVtb3ZlIGhhbmRsaW5nIG9mIHNhdHVyYXRl
-IGZvciAoVS9TKTMyClY0OiBoYW5kbGUgVTMyLT5VMTYgZm9yIE9QX1RYRgoKIC4uLi9kcml2ZXJz
-L25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCAgIHwgNzkgKysrKysrKysrKysr
-KysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDc5IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQg
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNw
-cCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUu
-Y3BwCmluZGV4IDIxZDIwY2EuLjIzNWFlZDkgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCisrKyBiL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCkBAIC05OTcsNiAr
-OTk3LDg1IEBAIENvbnN0YW50Rm9sZGluZzo6b3BuZChJbnN0cnVjdGlvbiAqaSwgSW1tZWRpYXRl
-VmFsdWUgJmltbTAsIGludCBzKQogICAgICAgaS0+b3AgPSBPUF9NT1Y7CiAgICAgICBicmVhazsK
-ICAgIH0KKyAgIGNhc2UgT1BfQ1ZUOiB7CisgICAgICBTdG9yYWdlIHJlczsKKyAgICAgIGJsZC5z
-ZXRQb3NpdGlvbihpLCB0cnVlKTsgLyogbWFrZSBzdXJlIGJsZCBpcyBpbml0J2VkICovCisgICAg
-ICBzd2l0Y2goaS0+ZFR5cGUpIHsKKyAgICAgIGNhc2UgVFlQRV9VMTY6CisgICAgICAgICBzd2l0
-Y2ggKGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAgICAgICAgICAgaWYg
-KGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEudTE2ID0gdXRpbF9pcm91bmQo
-Q0xBTVAoaW1tMC5yZWcuZGF0YS5mMzIsIDAsCisgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBVSU5UMTZfTUFYKSk7CisgICAgICAgICAgICBlbHNlCisgICAg
-ICAgICAgICAgIHJlcy5kYXRhLnUxNiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEuZjMyKTsK
-KyAgICAgICAgICAgIGJyZWFrOworICAgICAgICAgY2FzZSBUWVBFX1UzMjoKKyAgICAgICAgICAg
-IGlmIChpLT5zYXR1cmF0ZSkKKyAgICAgICAgICAgICAgIHJlcy5kYXRhLnUxNiA9IENMQU1QKGlt
-bTAucmVnLmRhdGEudTMyLCAwLCBVSU5UMTZfTUFYKTsKKyAgICAgICAgICAgIGVsc2UKKyAgICAg
-ICAgICAgICAgIHJlcy5kYXRhLnUxNiA9IGltbTAucmVnLmRhdGEudTMyOworICAgICAgICAgICAg
-YnJlYWs7CisgICAgICAgICBkZWZhdWx0OgorICAgICAgICAgICAgcmV0dXJuOworICAgICAgICAg
-fQorICAgICAgICAgaS0+c2V0U3JjKDAsIGJsZC5ta0ltbShyZXMuZGF0YS51MTYpKTsKKyAgICAg
-ICAgIGJyZWFrOworICAgICAgY2FzZSBUWVBFX1UzMjoKKyAgICAgICAgIGFzc2VydCghaS0+c2F0
-dXJhdGUpOworICAgICAgICAgc3dpdGNoIChpLT5zVHlwZSkgeworICAgICAgICAgY2FzZSBUWVBF
-X0YzMjoKKyAgICAgICAgICAgIHJlcy5kYXRhLnUzMiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRh
-dGEuZjMyKTsKKyAgICAgICAgICAgIGJyZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAg
-ICAgIHJldHVybjsKKyAgICAgICAgIH0KKyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJbW0o
-cmVzLmRhdGEudTMyKSk7CisgICAgICAgICBicmVhazsKKyAgICAgIGNhc2UgVFlQRV9TMTY6Cisg
-ICAgICAgICBzd2l0Y2ggKGktPnNUeXBlKSB7CisgICAgICAgICBjYXNlIFRZUEVfRjMyOgorICAg
-ICAgICAgICAgaWYgKGktPnNhdHVyYXRlKQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczE2ID0g
-dXRpbF9pcm91bmQoQ0xBTVAoaW1tMC5yZWcuZGF0YS5mMzIsIElOVDE2X01JTiwKKyAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIElOVDE2X01BWCkpOworICAg
-ICAgICAgICAgZWxzZQorICAgICAgICAgICAgICAgcmVzLmRhdGEuczE2ID0gdXRpbF9pcm91bmQo
-aW1tMC5yZWcuZGF0YS5mMzIpOworICAgICAgICAgICAgYnJlYWs7CisgICAgICAgICBkZWZhdWx0
-OgorICAgICAgICAgICAgcmV0dXJuOworICAgICAgICAgfQorICAgICAgICAgaS0+c2V0U3JjKDAs
-IGJsZC5ta0ltbShyZXMuZGF0YS5zMTYpKTsKKyAgICAgICAgIGJyZWFrOworICAgICAgY2FzZSBU
-WVBFX1MzMjoKKyAgICAgICAgIGFzc2VydCghaS0+c2F0dXJhdGUpOworICAgICAgICAgc3dpdGNo
-IChpLT5zVHlwZSkgeworICAgICAgICAgY2FzZSBUWVBFX0YzMjoKKyAgICAgICAgICAgIHJlcy5k
-YXRhLnMzMiA9IHV0aWxfaXJvdW5kKGltbTAucmVnLmRhdGEuZjMyKTsKKyAgICAgICAgICAgIGJy
-ZWFrOworICAgICAgICAgZGVmYXVsdDoKKyAgICAgICAgICAgIHJldHVybjsKKyAgICAgICAgIH0K
-KyAgICAgICAgIGktPnNldFNyYygwLCBibGQubWtJbW0ocmVzLmRhdGEuczMyKSk7CisgICAgICAg
-ICBicmVhazsKKyAgICAgIGNhc2UgVFlQRV9GMzI6CisgICAgICAgICBzd2l0Y2ggKGktPnNUeXBl
-KSB7CisgICAgICAgICBjYXNlIFRZUEVfVTE2OiByZXMuZGF0YS5mMzIgPSAoZmxvYXQpIGltbTAu
-cmVnLmRhdGEudTE2OyBicmVhazsKKyAgICAgICAgIGNhc2UgVFlQRV9VMzI6IHJlcy5kYXRhLmYz
-MiA9IChmbG9hdCkgaW1tMC5yZWcuZGF0YS51MzI7IGJyZWFrOworICAgICAgICAgY2FzZSBUWVBF
-X1MxNjogcmVzLmRhdGEuZjMyID0gKGZsb2F0KSBpbW0wLnJlZy5kYXRhLnMxNjsgYnJlYWs7Cisg
-ICAgICAgICBjYXNlIFRZUEVfUzMyOiByZXMuZGF0YS5mMzIgPSAoZmxvYXQpIGltbTAucmVnLmRh
-dGEuczMyOyBicmVhazsKKyAgICAgICAgIGRlZmF1bHQ6CisgICAgICAgICAgICByZXR1cm47Cisg
-ICAgICAgICB9CisgICAgICAgICBpLT5zZXRTcmMoMCwgYmxkLm1rSW1tKHJlcy5kYXRhLmYzMikp
-OworICAgICAgICAgYnJlYWs7CisgICAgICBkZWZhdWx0OgorICAgICAgICAgcmV0dXJuOworICAg
-ICAgfQorICAgICAgaS0+c2V0VHlwZShpLT5kVHlwZSk7IC8qIFJlbW92ZSBpLT5zVHlwZSwgd2hp
-Y2ggd2UgZG9uJ3QgbmVlZCBhbnltb3JlICovCisgICAgICBpLT5vcCA9IE9QX01PVjsKKyAgICAg
-IGktPnNyYygwKS5tb2QgPSBNb2RpZmllcigwKTsgLyogQ2xlYXIgdGhlIGFscmVhZHkgYXBwbGll
-ZCBtb2RpZmllciAqLworICAgICAgYnJlYWs7CisgICB9CiAgICBkZWZhdWx0OgogICAgICAgcmV0
-dXJuOwogICAgfQotLSAKMi4yLjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============2104638018==
+Content-Type: multipart/alternative; boundary="1422130486.a20f2.14311"; charset="UTF-8"
+
+
+--1422130486.a20f2.14311
+Date: Sat, 24 Jan 2015 20:14:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88272
+
+--- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Tried again using an mDP -> HDMI adapter and I was able to reproduce it.
+
+Level 03 and 05 give some weird display no matter what.
+Level 0e and 0f display the desktop without flickering; it starts flickering
+when running glxgears though.
+
+I'll try to quickly solve some another bug and then come back to this one.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1422130486.a20f2.14311
+Date: Sat, 24 Jan 2015 20:14:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Tried again using an mDP -&gt; HDMI adapter and I was able to reproduce it.
+
+Level 03 and 05 give some weird display no matter what.
+Level 0e and 0f display the desktop without flickering; it starts flickering
+when running glxgears though.
+
+I'll try to quickly solve some another bug and then come back to this one.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1422130486.a20f2.14311--
+
+--===============2104638018==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2104638018==--
