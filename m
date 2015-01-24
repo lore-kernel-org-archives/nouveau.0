@@ -1,13 +1,20 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
- 3.16 kernel. dangerous Fan speed
-Date: Sat, 24 Jan 2015 04:05:32 +0000
-Message-ID: <bug-84721-8800-boa3xbIphC@http.bugs.freedesktop.org/>
-References: <bug-84721-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] nv50/ir: Handle OP_CVT when folding constant
+	expressions
+Date: Sat, 24 Jan 2015 19:19:50 +0100
+Message-ID: <54C3E246.8080402@mni.thm.de>
+References: <54B2DA6A.7080505@mni.thm.de>
+ <1421012422-30607-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <CAKb7Uvgnd25Ubm4m_-auNHw8p_Z9g=7sSxDrRb+CmbE5MZtohA@mail.gmail.com>
+ <54B2F467.3050007@mni.thm.de>
+ <CAKb7UvgiWyNAumaKaiw_B2f49Q+xXszdwBE1abJwoC8SEpH8Lg@mail.gmail.com>
+ <54B2FDB9.60906@mni.thm.de>
+ <CAKb7UvidgoVLmvvG3r2M2Eio-EexLh1RsXh9GK8Pf-UMSVOPgw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0894020236=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+in-reply-to: <CAKb7UvidgoVLmvvG3r2M2Eio-EexLh1RsXh9GK8Pf-UMSVOPgw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,83 +24,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0894020236==
-Content-Type: multipart/alternative; boundary="1422072331.f2fa2.962"; charset="UTF-8"
-
-
---1422072331.f2fa2.962
-Date: Sat, 24 Jan 2015 04:05:31 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=84721
-
-r004 <roo4.id-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Assignee|roo4.id-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org           |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1422072331.f2fa2.962
-Date: Sat, 24 Jan 2015 04:05:31 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:roo4.id&#64;gmail.com" title="r004 &lt;roo4.id&#64;gmail.com&gt;"> <span class="fn">r004</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>roo4.id&#64;gmail.com
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1422072331.f2fa2.962--
-
---===============0894020236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0894020236==--
+Ck9uIDExLjAxLjIwMTUgMjM6NTMsIElsaWEgTWlya2luIHdyb3RlOgo+IE9uIFN1biwgSmFuIDEx
+LCAyMDE1IGF0IDU6NDggUE0sIFRvYmlhcyBLbGF1c21hbm4gCj4gPHRvYmlhcy5qb2hhbm5lcy5r
+bGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4+IE9uIDExLjAxLjIwMTUgMjM6MTIsIElsaWEg
+TWlya2luIHdyb3RlOgo+Pj4gT24gU3VuLCBKYW4gMTEsIDIwMTUgYXQgNTowOCBQTSwgVG9iaWFz
+IEtsYXVzbWFubiAKPj4+IDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdy
+b3RlOgo+Pj4+IE9uIDExLjAxLjIwMTUgMjI6NTQsIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+PiBP
+biBTdW4sIEphbiAxMSwgMjAxNSBhdCA0OjQwIFBNLCBUb2JpYXMgS2xhdXNtYW5uIAo+Pj4+PiA8
+dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPj4+Pj4+IEZvbGRp
+bmcgZm9yIGNvbnZlcnNpb25zOiBGMzItPihVezE2LzMyfSwgU3sxNi8zMn0pIGFuZCAoVXsxNi8z
+Mn0sIAo+Pj4+Pj4ge1MxNi8zMn0pLT5GMzIgU2lnbmVkLW9mZi1ieTogVG9iaWFzIEtsYXVzbWFu
+biAKPj4+Pj4+IDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IC0tLSBWMjog
+U3BsaXQgb3V0IEY2NCAKPj4+Pj4+IHBhcnRzIFYzOiByZW1vdmUgaGFuZGxpbmcgb2Ygc2F0dXJh
+dGUgZm9yIChVL1MpMzIsIAo+Pj4+Pj4gLi4uL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfcGVlcGhvbGUuY3BwIHwgNzMgCj4+Pj4+PiArKysrKysrKysrKysrKysrKysrKysrIDEgZmls
+ZSBjaGFuZ2VkLCA3MyBpbnNlcnRpb25zKCspIGRpZmYgCj4+Pj4+PiAtLWdpdCBhL3NyYy9nYWxs
+aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwIAo+Pj4+Pj4g
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNw
+cCBpbmRleCAKPj4+Pj4+IDIxZDIwY2EuLmFhZjBkMGQgMTAwNjQ0IC0tLSAKPj4+Pj4+IGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgKysr
+IAo+Pj4+Pj4gYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3Bl
+ZXBob2xlLmNwcCBAQCAKPj4+Pj4+IC05OTcsNiArOTk3LDc5IEBAIENvbnN0YW50Rm9sZGluZzo6
+b3BuZChJbnN0cnVjdGlvbiAqaSwgCj4+Pj4+PiBJbW1lZGlhdGVWYWx1ZSAmaW1tMCwgaW50IHMp
+IGktPm9wID0gT1BfTU9WOyBicmVhazsgfSArIGNhc2UgCj4+Pj4+PiBPUF9DVlQ6IHsgKyBTdG9y
+YWdlIHJlczsgKyBibGQuc2V0UG9zaXRpb24oaSwgdHJ1ZSk7IC8qIG1ha2Ugc3VyZSAKPj4+Pj4+
+IGJsZCBpcyBpbml0J2VkICovICsgc3dpdGNoKGktPmRUeXBlKSB7ICsgY2FzZSBUWVBFX1UxNjog
+KyBzd2l0Y2ggCj4+Pj4+PiAoaS0+c1R5cGUpIHsgKyBjYXNlIFRZUEVfRjMyOiArIGlmIChpLT5z
+YXR1cmF0ZSkgKyByZXMuZGF0YS51MTYgPSAKPj4+Pj4+IHV0aWxfaXJvdW5kKENMQU1QKGltbTAu
+cmVnLmRhdGEuZjMyLCAwLCArIFVJTlQxNl9NQVgpKTsgKyBlbHNlICsgCj4+Pj4+PiByZXMuZGF0
+YS51MTYgPSB1dGlsX2lyb3VuZChpbW0wLnJlZy5kYXRhLmYzMik7ICsgYnJlYWs7ICsgCj4+Pj4+
+PiBkZWZhdWx0OiArIHJldHVybjsgKyB9Cj4+Pj4+IFRoaXMgd29uJ3QgZ2V0IGhpdCBmb3IgdGhl
+IFUzMiAtPiBVMTYgY29udmVyc2lvbiB0aG91Z2ggcmlnaHQ/IERpZCAKPj4+Pj4geW91IHRlc3Qg
+dGhhdCBjYXNlPyBBbSBJIG1pc3JlYWRpbmcvbWlzdW5kZXJzdGFuZGluZyBwZXJoYXBzPwo+Pj4+
+IEEgY29tcGxldGUgcGlnbGl0IHJ1biBkaWQgbm90IGhpdCBpLT5zYXR1cmF0ZSBmb3IgVTMyIG9y
+IFMzMi4gVGhhdCAKPj4+PiBzYWlkLCBpIGtlcHQgdGhlIGFzc2VydCgpIHRoZXJlIG9uIHB1cnBv
+c2UgZm9yIG5vdyB0byBhY3R1YWxseSBtYWtlIAo+Pj4+IHN1cmUgd2UgYXJlIG5vIGhpdHRpbmcg
+c3VjaCBhIGNhc2UuIERvIGkgbWlzcmVhZCB5b3Ugbm93PyA6KQo+Pj4gRnJvbSBteSByZWFkIG9m
+IHRoZSBjb2RlLCB3ZSdkIGhpdCB0aGF0IGNhc2Ugbm93IHdpdGggVFhGIG9uIGEgCj4+PiAyRF9B
+UlJBWSB3aXRoIGEgY29uc3RhbnQgYXMgdGhlIGFycmF5IGVsZW1lbnQuIGkuZS4gYSBwaWdsaXQg
+d2l0aCAKPj4+IHVuaWZvcm0gc2FtcGxlcjJEQXJyYXkgZm9vOyB0ZXhlbEZldGNoKGZvbywgaXZl
+YzMoMSwgMiwgMykpOwo+PiBUZXN0ZWQgdGhpcyAoaG9wZSBpIGRpZCB0aGUgcmlnaHQgdGhpbmcp
+IGFuZCB0aGUgYXNzZXJ0IGRpZCBub3QgZ2V0IAo+PiB0cmlnZ2VyZWQsIGJ1dCBpIGFtIHN0aWxs
+IHVuY2VydGFpbiBvZiB0aGlzLiAtPiBtb3ZlIHRoZSBhc3NlcnQgaW50byAKPj4gdGhlIEYzMiBj
+YXNlIGZvciBVMzIvUzMyIGp1c3QgdG8gbWFrZSBzdXJlLi4uIHN3aXRjaCAoaS0+c1R5cGUpIGNh
+c2UgCj4+IFRZUEVfRjMyOiBhc3NlcnQoLi4uKSAuLi4gb3RoZXIgdGhhbiB0aGF0LCB3ZSBhcmUg
+bm90IGV2ZW4gZ29pbmcgdG8gCj4+IGZvbGQgVTMyIC0+IFUxNiA7LSkKPiBSaWdodCwgYW5kIHRo
+YXQncyB0aGUgcHJvYmxlbS4gVHJ5IGl0IHdpdGggYSBwaWdsaXQgdGhhdCBoYXMgdGhlIGNvZGUg
+Cj4gSSBzdWdnZXN0Li4uIGlmIHlvdSBkb24ndCBlbmQgdXAgY29sbGFwc2luZyBpdCwgaW5jbHVk
+ZSB0aGUgVEdTSSAKPiB0aGF0J3MgZ2VuZXJhdGVkIChhbmQgYWxzbyB0aGUgc2hhZGVyIHRlc3Qg
+c291cmNlKSBhbmQgd2UnbGwgZ28gZnJvbSAKPiB0aGVyZS4gLWlsaWEKCkhhdmVuJ3QgZm91bmQg
+YSBwaWdsaXQgdGVzdCB0cmlnZ2VyaW5nIHRoYXQsIGJ1dCBpIGhhdmUgY3JlYXRlZCBhIFRHU0kg
+CnNoYWRlciBvbiBteSBvd24uIFRoYXQncyB0aGUgb25seSByZWFzb24gaSBhbSB3cml0aW5nIHRo
+aXMgZW1haWwgYW5kIG5vdCAKanVzdCBwb3N0aW5nIHRoZSBwYXRjaC4gVGhpcyBvbmUgaXMgY29s
+bGFwc2VkIGp1c3QgZmluZSB0aG91Z2guCgpGUkFHCkRDTCBPVVRbMC4uMl0sIENPTE9SCkRDTCBD
+T05TVFswLi4yXQpEQ0wgVEVNUFswLi4yXSwgTE9DQUwKSU1NWzBdIEZMVDMyIHsgMSwgMiwgMywg
+NH0KSU1NWzFdIFVJTlQzMiB7IDUsIDYsIDcsIDh9CjA6IFRFWCBURU1QWzBdLCBJTU1bMF0sIFNB
+TVBbMF0sIDJEX0FSUkFZCjE6IFRYRiBURU1QWzFdLCBJTU1bMV0sIFNBTVBbMF0sIDJEX0FSUkFZ
+CjI6IE1PViBPVVRbMF0sIFRFTVBbMF0KMzogTU9WIE9VVFsxXSwgVEVNUFsxXQo0OiBFTkQKCgpH
+cmVldGluZ3MsClRvYmlhcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
