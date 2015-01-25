@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
- with 9400M in MacbookPro 5, 5
-Date: Sat, 24 Jan 2015 20:14:46 +0000
-Message-ID: <bug-88272-8800-8tcVDjYrci@http.bugs.freedesktop.org/>
-References: <bug-88272-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/6] make RAM device optional
+Date: Sun, 25 Jan 2015 16:56:38 +0900
+Message-ID: <CAAVeFuLxY3Gh4o2BOZZx01-aZe1oqEcvJT4Z63ixSPMdjpwD7w@mail.gmail.com>
+References: <1422003238-14572-1-git-send-email-acourbot@nvidia.com>
+ <1422003238-14572-2-git-send-email-acourbot@nvidia.com>
+ <CAKb7Uvj9n4vfPmvxCODyRBZbNoLcvwUkT9HJEpyHxqM1g_t=Lw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2104638018=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvj9n4vfPmvxCODyRBZbNoLcvwUkT9HJEpyHxqM1g_t=Lw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +19,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2104638018==
-Content-Type: multipart/alternative; boundary="1422130486.a20f2.14311"; charset="UTF-8"
-
-
---1422130486.a20f2.14311
-Date: Sat, 24 Jan 2015 20:14:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88272
-
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Tried again using an mDP -> HDMI adapter and I was able to reproduce it.
-
-Level 03 and 05 give some weird display no matter what.
-Level 0e and 0f display the desktop without flickering; it starts flickering
-when running glxgears though.
-
-I'll try to quickly solve some another bug and then come back to this one.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1422130486.a20f2.14311
-Date: Sat, 24 Jan 2015 20:14:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Tried again using an mDP -&gt; HDMI adapter and I was able to reproduce it.
-
-Level 03 and 05 give some weird display no matter what.
-Level 0e and 0f display the desktop without flickering; it starts flickering
-when running glxgears though.
-
-I'll try to quickly solve some another bug and then come back to this one.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1422130486.a20f2.14311--
-
---===============2104638018==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2104638018==--
+T24gU2F0LCBKYW4gMjQsIDIwMTUgYXQgMzoyNyBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBPbiBGcmksIEphbiAyMywgMjAxNSBhdCAxMjo1MyBBTSwgQWxl
+eGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+PiBIYXZpbmcgYSBS
+QU0gZGV2aWNlIGRvZXMgbm90IG1ha2Ugc2Vuc2UgZm9yIGNoaXBzIGxpa2UgR0syMEEgd2hpY2gg
+aGF2ZQo+PiBubyBkZWRpY2F0ZWQgdmlkZW8gbWVtb3J5LiBUaGUgZHVtbXkgUkFNIGRldmljZSB0
+aGF0IHdlIHVzZWQgc28gZmFyCj4+IHdvcmtzIGFzIGEgdGVtcG9yYXJ5IGJhbmQtYWlkLCBidXQg
+aW4gdGhlIGxvbmctdGVybSBpdCBpcyBkZXNpcmFibGUgZm9yCj4+IHRoZSBkcml2ZXIgdG8gYmUg
+YWJsZSB0byB3b3JrIHdpdGhvdXQgYW55IGtpbmQgb2YgVlJBTS4KPj4KPj4gVGhpcyBwYXRjaCBh
+ZGRzIGEgZmV3IGNvbmRpdGlvbmFscyBpbiBwbGFjZXMgd2hlcmUgYSBSQU0gZGV2aWNlIHdhcwo+
+PiBhc3N1bWVkIHRvIGJlIHByZXNlbnQgYW5kIGFsbG93cyBzb21lIG1vcmUgb2JqZWN0cyB0byBi
+ZSBhbGxvY2F0ZWQgZnJvbQo+PiB0aGUgVFQgZG9tYWluLCBhbGxvd2luZyBOb3V2ZWF1IHRvIGhh
+bmRsZSBHUFVzIGZvciB3aGljaAo+PiBwZmItPnJhbSA9PSBOVUxMLgo+Pgo+PiBTaWduZWQtb2Zm
+LWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4gLS0tCj4+ICBk
+cm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyAgICAgICAgIHwgIDkgKysrKysrKystCj4+ICBk
+cm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jICAgICAgICAgICAgIHwgIDMgKysrCj4+ICBkcm0vbm91
+dmVhdS9udjg0X2ZlbmNlLmMgICAgICAgICAgICAgIHwgIDcgKysrKystLQo+PiAgZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyB8ICA5ICsrKysrKy0tLQo+PiAgZHJtL25vdXZl
+YXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyAgICB8ICAyICstCj4+ICBkcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9mYi9iYXNlLmMgICAgIHwgMjYgKysrKysrKysrKysrKysrKysrLS0tLS0tLS0KPj4g
+IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nZjEwMC5jICAgfCAxNCArKysrKysrKysrLS0t
+LQo+PiAgNyBmaWxlcyBjaGFuZ2VkLCA1MSBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkK
+Pj4KPj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nZjEwMC5jIGIv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dmMTAwLmMKPj4gaW5kZXggOGU3Y2M2Mi4uY2Vh
+YTEwNCAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dmMTAwLmMK
+Pj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dmMTAwLmMKPj4gQEAgLTE3MCw4
+ICsxNzQsMTAgQEAgZ2YxMDBfbHRjX2luaXRfdGFnX3JhbShzdHJ1Y3QgbnZrbV9mYiAqcGZiLCBz
+dHJ1Y3QgbnZrbV9sdGNfcHJpdiAqcHJpdikKPj4gICAgICAgICB0YWdfc2l6ZSArPSB0YWdfYWxp
+Z247Cj4+ICAgICAgICAgdGFnX3NpemUgID0gKHRhZ19zaXplICsgMHhmZmYpID4+IDEyOyAvKiBy
+b3VuZCB1cCAqLwo+Pgo+PiAtICAgICAgIHJldCA9IG52a21fbW1fdGFpbCgmcGZiLT52cmFtLCAx
+LCAxLCB0YWdfc2l6ZSwgdGFnX3NpemUsIDEsCj4+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
+ICZwcml2LT50YWdfcmFtKTsKPj4gKyAgICAgICBpZiAocGZiLT5yYW0pCj4+ICsgICAgICAgICAg
+ICAgICByZXQgPSBudmttX21tX3RhaWwoJnBmYi0+dnJhbSwgMSwgMSwgdGFnX3NpemUsIHRhZ19z
+aXplLCAxLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZwcml2LT50YWdf
+cmFtKTsKPj4gKyAgICAgICByZXQgPSAtMTsKPgo+IFdhcyB0aGVyZSBzdXBwb3NlZCB0byBiZSBh
+biBlbHNlIHNvbWV3aGVyZSBpbiB0aGVyZT8KClllcywgdGhlcmUgd2FzIC0gdGhhbmtzIQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
