@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31122] Cannot control backlight intensity on
-	Powerbook
-Date: Sun, 25 Jan 2015 19:33:13 +0000
-Message-ID: <bug-31122-8800-XVTFvtxDeH@http.bugs.freedesktop.org/>
-References: <bug-31122-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH] fuse/gm107: simplify the return logic
+Date: Sun, 25 Jan 2015 21:35:44 +0200
+Message-ID: <1422214544-2181-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1934247674=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,95 +18,19 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1934247674==
-Content-Type: multipart/alternative; boundary="1422214393.3ECdAb3.26043"; charset="UTF-8"
-
-
---1422214393.3ECdAb3.26043
-Date: Sun, 25 Jan 2015 19:33:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=31122
-
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
-
---- Comment #6 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-No comment after all, did the last comment resolve this?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1422214393.3ECdAb3.26043
-Date: Sun, 25 Jan 2015 19:33:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122">bug 31122</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122">bug 31122</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>No comment after all, did the last comment resolve this?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1422214393.3ECdAb3.26043--
-
---===============1934247674==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1934247674==--
+U3BvdHRlZCBieSBjb2NjaW5lbGxlOgpkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRl
+di9mdXNlL2dtMTA3LmM6NTA6NS04OiBXQVJOSU5HOiBlbmQgcmV0dXJucyBjYW4gYmUgc2ltcGlm
+aWVkCgpTaWduZWQtb2ZmLWJ5OiBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgot
+LS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Z1c2UvZ20xMDcuYyB8IDQgKy0tLQogMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2Ry
+bS9ub3V2ZWF1L252a20vc3ViZGV2L2Z1c2UvZ20xMDcuYyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2Z1c2UvZ20xMDcuYwppbmRleCBiYTE5MTU4Li4wYjI1NmFhIDEwMDY0NAotLS0gYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mdXNlL2dtMTA3LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvZnVzZS9nbTEwNy5jCkBAIC00NSwxMCArNDUsOCBAQCBnbTEwN19mdXNlX2N0b3Ioc3Ry
+dWN0IG52a21fb2JqZWN0ICpwYXJlbnQsIHN0cnVjdCBudmttX29iamVjdCAqZW5naW5lLAogCiAJ
+cmV0ID0gbnZrbV9mdXNlX2NyZWF0ZShwYXJlbnQsIGVuZ2luZSwgb2NsYXNzLCAmcHJpdik7CiAJ
+KnBvYmplY3QgPSBudl9vYmplY3QocHJpdik7Ci0JaWYgKHJldCkKLQkJcmV0dXJuIHJldDsKIAot
+CXJldHVybiAwOworCXJldHVybiByZXQ7CiB9CiAKIHN0cnVjdCBudmttX29jbGFzcwotLSAKMi4y
+LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
