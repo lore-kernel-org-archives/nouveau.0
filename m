@@ -1,13 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] fuse/gm107: simplify the return logic
-Date: Sun, 25 Jan 2015 20:41:16 +0100
-Message-ID: <54C546DC.2010004@mni.thm.de>
-References: <1422214544-2181-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31120] Backlight off after suspend-to-disk on
+	Powerbook
+Date: Sun, 25 Jan 2015 21:20:42 +0000
+Message-ID: <bug-31120-8800-EVK56xa3Ku@http.bugs.freedesktop.org/>
+References: <bug-31120-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1275131541=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-in-reply-to: <1422214544-2181-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,25 +17,117 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDI1LjAxLjIwMTUgMjA6MzUsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiBTcG90dGVkIGJ5IGNv
-Y2NpbmVsbGU6IAo+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2NvcmUvc3ViZGV2L2Z1c2UvZ20x
-MDcuYzo1MDo1LTg6IFdBUk5JTkc6IGVuZCAKPiByZXR1cm5zIGNhbiBiZSBzaW1waWZpZWQgU2ln
-bmVkLW9mZi1ieTogTWFydGluIFBlcmVzIAo+IDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gLS0tIGRy
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Z1c2UvZ20xMDcuYyB8IDQgCj4gKy0tLSAxIGZpbGUgY2hh
-bmdlZCwgMSBpbnNlcnRpb24oKyksIDMgZGVsZXRpb25zKC0pIGRpZmYgLS1naXQgCj4gYS9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9mdXNlL2dtMTA3LmMgCj4gYi9kcm0vbm91dmVhdS9udmttL3N1
-YmRldi9mdXNlL2dtMTA3LmMgaW5kZXggYmExOTE1OC4uMGIyNTZhYSAxMDA2NDQgCj4gLS0tIGEv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZnVzZS9nbTEwNy5jICsrKyAKPiBiL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L2Z1c2UvZ20xMDcuYyBAQCAtNDUsMTAgKzQ1LDggQEAgCj4gZ20xMDdfZnVz
-ZV9jdG9yKHN0cnVjdCBudmttX29iamVjdCAqcGFyZW50LCBzdHJ1Y3QgbnZrbV9vYmplY3QgCj4g
-KmVuZ2luZSwgcmV0ID0gbnZrbV9mdXNlX2NyZWF0ZShwYXJlbnQsIGVuZ2luZSwgb2NsYXNzLCAm
-cHJpdik7IAo+ICpwb2JqZWN0ID0gbnZfb2JqZWN0KHByaXYpOyAtIGlmIChyZXQpIC0gcmV0dXJu
-IHJldDsgLSByZXR1cm4gMDsgKyAKPiByZXR1cm4gcmV0OyB9IHN0cnVjdCBudmttX29jbGFzcwoK
-UmV2aWV3ZWQtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5A
-bW5pLnRobS5kZT4KCklmIGl0IGlzIGhlbHBpbmcgOikKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============1275131541==
+Content-Type: multipart/alternative; boundary="1422220842.1fa44f2.27964"; charset="UTF-8"
+
+
+--1422220842.1fa44f2.27964
+Date: Sun, 25 Jan 2015 21:20:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=31120
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|INVALID                     |---
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Tobias Klausmann from comment #3)
+> No comment in over one year, closing as invalid!
+> 
+> Feel free to reopen if the problem does still exist!
+
+That patch actually had no effect the way that nv_mask works.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1422220842.1fa44f2.27964
+Date: Sun, 25 Jan 2015 21:20:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>INVALID
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=31120#c3">comment #3</a>)
+<span class="quote">&gt; No comment in over one year, closing as invalid!
+&gt; 
+&gt; Feel free to reopen if the problem does still exist!</span >
+
+That patch actually had no effect the way that nv_mask works.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1422220842.1fa44f2.27964--
+
+--===============1275131541==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1275131541==--
