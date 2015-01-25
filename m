@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31120] Backlight off after suspend-to-disk on
-	Powerbook
-Date: Sun, 25 Jan 2015 21:20:42 +0000
-Message-ID: <bug-31120-8800-EVK56xa3Ku@http.bugs.freedesktop.org/>
-References: <bug-31120-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Sun, 25 Jan 2015 23:04:25 +0000
+Message-ID: <bug-84721-8800-bljlc9V0KA@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1275131541=="
+Content-Type: multipart/mixed; boundary="===============0512880002=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1275131541==
-Content-Type: multipart/alternative; boundary="1422220842.1fa44f2.27964"; charset="UTF-8"
+--===============0512880002==
+Content-Type: multipart/alternative; boundary="1422227065.FC7a53.28025"; charset="UTF-8"
 
 
---1422220842.1fa44f2.27964
-Date: Sun, 25 Jan 2015 21:20:42 +0000
+--1422227065.FC7a53.28025
+Date: Sun, 25 Jan 2015 23:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31120
+https://bugs.freedesktop.org/show_bug.cgi?id=84721
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|INVALID                     |---
-
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Tobias Klausmann from comment #3)
-> No comment in over one year, closing as invalid!
-> 
-> Feel free to reopen if the problem does still exist!
-
-That patch actually had no effect the way that nv_mask works.
+--- Comment #10 from Krzysztof Katowicz-Kowalewski <vnd-da06O8EuSQE@public.gmane.org> ---
+As far as I've checked, the problem appeared in 3.15 kernel. I've tried
+hardened-sources-3.14.29 and there's no problem with the fan, at least in auto
+mode. But since you change the mode to manual (echo 1 > pwm1_enable), the fan
+gets mad as in 3.15 kernel branch. Related info from me:
+https://forums.gentoo.org/viewtopic-t-1009318.html
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422220842.1fa44f2.27964
-Date: Sun, 25 Jan 2015 21:20:42 +0000
+--1422227065.FC7a53.28025
+Date: Sun, 25 Jan 2015 23:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,53 +52,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>INVALID
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c4">Comment # 4</a>
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c10">Comment # 10</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
+              from <span class="vcard"><a class="email" href="mailto:vnd&#64;vndh.net" title="Krzysztof Katowicz-Kowalewski &lt;vnd&#64;vndh.net&gt;"> <span class="fn">Krzysztof Katowicz-Kowalewski</span></a>
 </span></b>
-        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=31120#c3">comment #3</a>)
-<span class="quote">&gt; No comment in over one year, closing as invalid!
-&gt; 
-&gt; Feel free to reopen if the problem does still exist!</span >
-
-That patch actually had no effect the way that nv_mask works.</pre>
+        <pre>As far as I've checked, the problem appeared in 3.15 kernel. I've tried
+hardened-sources-3.14.29 and there's no problem with the fan, at least in auto
+mode. But since you change the mode to manual (echo 1 &gt; pwm1_enable), the fan
+gets mad as in 3.15 kernel branch. Related info from me:
+<a href="https://forums.gentoo.org/viewtopic-t-1009318.html">https://forums.gentoo.org/viewtopic-t-1009318.html</a></pre>
         </div>
       </p>
       <hr>
@@ -118,9 +81,9 @@ That patch actually had no effect the way that nv_mask works.</pre>
     </body>
 </html>
 
---1422220842.1fa44f2.27964--
+--1422227065.FC7a53.28025--
 
---===============1275131541==
+--===============0512880002==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1275131541==--
+--===============0512880002==--
