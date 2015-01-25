@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31120] Backlight off after suspend-to-disk on
+Subject: [Bug 31122] Cannot control backlight intensity on
 	Powerbook
-Date: Sun, 25 Jan 2015 19:29:48 +0000
-Message-ID: <bug-31120-8800-vv6emUXVSX@http.bugs.freedesktop.org/>
-References: <bug-31120-8800@http.bugs.freedesktop.org/>
+Date: Sun, 25 Jan 2015 19:33:13 +0000
+Message-ID: <bug-31122-8800-XVTFvtxDeH@http.bugs.freedesktop.org/>
+References: <bug-31122-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1565594001=="
+Content-Type: multipart/mixed; boundary="===============1934247674=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31120-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-31122-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1565594001==
-Content-Type: multipart/alternative; boundary="1422214188.2c5E3ca52.25063"; charset="UTF-8"
+--===============1934247674==
+Content-Type: multipart/alternative; boundary="1422214393.3ECdAb3.26043"; charset="UTF-8"
 
 
---1422214188.2c5E3ca52.25063
-Date: Sun, 25 Jan 2015 19:29:48 +0000
+--1422214393.3ECdAb3.26043
+Date: Sun, 25 Jan 2015 19:33:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=31120
+https://bugs.freedesktop.org/show_bug.cgi?id=31122
 
 Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+             Status|NEW                         |NEEDINFO
 
---- Comment #3 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-No comment in over one year, closing as invalid!
-
-Feel free to reopen if the problem does still exist!
+--- Comment #6 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
+No comment after all, did the last comment resolve this?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422214188.2c5E3ca52.25063
-Date: Sun, 25 Jan 2015 19:29:48 +0000
+--1422214393.3ECdAb3.26043
+Date: Sun, 25 Jan 2015 19:33:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,9 +57,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122">bug 31122</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -75,32 +72,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
+           <td>NEEDINFO
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120#c3">Comment # 3</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Backlight off after suspend-to-disk on Powerbook"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31120">bug 31120</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Cannot control backlight intensity on Powerbook"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31122">bug 31122</a>
               from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span></b>
-        <pre>No comment in over one year, closing as invalid!
-
-Feel free to reopen if the problem does still exist!</pre>
+        <pre>No comment after all, did the last comment resolve this?</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +99,9 @@ Feel free to reopen if the problem does still exist!</pre>
     </body>
 </html>
 
---1422214188.2c5E3ca52.25063--
+--1422214393.3ECdAb3.26043--
 
---===============1565594001==
+--===============1934247674==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1565594001==--
+--===============1934247674==--
