@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88801] Xorg causes a critical error while playing a
- vide on kaffeine causing immediate logout
-Date: Mon, 26 Jan 2015 15:48:32 +0000
-Message-ID: <bug-88801-8800-BPQcIOrc9u@http.bugs.freedesktop.org/>
+Subject: [Bug 88801] Xorg segfaults while playing a video on
+ kaffeine causing immediate logout
+Date: Mon, 26 Jan 2015 15:48:47 +0000
+Message-ID: <bug-88801-8800-NFIuFEWLUz@http.bugs.freedesktop.org/>
 References: <bug-88801-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1538738152=="
+Content-Type: multipart/mixed; boundary="===============1058222382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88801-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1538738152==
-Content-Type: multipart/alternative; boundary="1422287311.4605C5c2.15758"; charset="UTF-8"
+--===============1058222382==
+Content-Type: multipart/alternative; boundary="1422287327.72c014a82.15790"; charset="UTF-8"
 
 
---1422287311.4605C5c2.15758
-Date: Mon, 26 Jan 2015 15:48:31 +0000
+--1422287327.72c014a82.15790
+Date: Mon, 26 Jan 2015 15:48:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,16 +36,17 @@ Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> chan
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|* Other                     |Driver/nouveau
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+            Summary|Xorg causes a critical      |Xorg segfaults while
+                   |error while playing a vide  |playing a video on kaffeine
+                   |on kaffeine causing         |causing immediate logout
+                   |immediate logout            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422287311.4605C5c2.15758
-Date: Mon, 26 Jan 2015 15:48:31 +0000
+--1422287327.72c014a82.15790
+Date: Mon, 26 Jan 2015 15:48:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,7 +58,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Xorg causes a critical error while playing a vide on kaffeine causing immediate logout"
+   title="NEW - Xorg segfaults while playing a video on kaffeine causing immediate logout"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88801">bug 88801</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -68,18 +69,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Component</td>
-           <td>* Other
+           <td style="text-align:right;">Summary</td>
+           <td>Xorg causes a critical error while playing a vide on kaffeine causing immediate logout
            </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>Xorg segfaults while playing a video on kaffeine causing immediate logout
            </td>
          </tr></table>
       <p>
@@ -93,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1422287311.4605C5c2.15758--
+--1422287327.72c014a82.15790--
 
---===============1538738152==
+--===============1058222382==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1538738152==--
+--===============1058222382==--
