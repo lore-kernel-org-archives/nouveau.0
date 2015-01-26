@@ -1,13 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: Problem with GTX 970 under Fedora 21
-Date: Mon, 26 Jan 2015 21:11:25 +0100
-Message-ID: <54C69F6D.8030004@mni.thm.de>
-References: <54C554CD.7010906@yahoo.co.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Mon, 26 Jan 2015 22:10:01 +0000
+Message-ID: <bug-84721-8800-9VyBiZ4cm7@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1413782074=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-in-reply-to: <54C554CD.7010906-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,41 +17,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: super_7b <super_7b-/E1597aS9LT10XsdtD+oqA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDI1LjAxLjIwMTUgMjE6NDAsIHN1cGVyXzdiIHdyb3RlOgo+IEhpLAo+Cj4gSSB0b29rIHRo
-aXMgaXNzdWUgdG8gdGhlIEZlZG9yYSBmb3J1bSBpbml0aWFsbHksIGJ1dCBuby1vbmUgdGhlcmUg
-aGFzIAo+IGJlZW4gYWJsZSB0byBvZmZlciBhbnkgZ3VpZGFuY2UsIHNvIEkgaGF2ZSBkZWNpZGVk
-IHRvIGNvbWUgdG8gdGhlIAo+IG5vdXZlYXUgY29tbXVuaXR5IGRpcmVjdGx5Lgo+Cj4gSSB3YXMg
-cnVubmluZyBhIEtERSBkZXNrdG9wIHVuZGVyIEZlZG9yYSAyMSBzdWNjZXNzZnVsbHksIGluY2x1
-ZGluZyAKPiB0aGUgYWJpbGl0eSB0byB1c2UgYSBkaXJlY3QgdGV4dCBsb2dpbiBvbiBhbiBvbGRl
-ciBjYXJkIChHWFQgNTYwIFRpKSAKPiB3aXRoIGFuIGVudGlyZWx5IHN0b2NrIEZlZG9yYSwgZnVs
-bHkgdXBkYXRlZC4KPgo+IEkgc2ltcGx5IHJlcGxhY2VkIHRoZSBvbGQgY2FyZCB3aXRoIGFuIEFz
-dXMgR1RYIDk3MCBhbmQgcmUtYm9vdGVkLgo+Cj4gSSBydW4gd2l0aCB0aGUgInJoZ2IgcXVpZXQi
-IG9wdGlvbiByZW1vdmVkIGZyb20gZ3J1YjIsIHNvIEkgY2FuIHNlZSAKPiBhbGwgdGhhdCBoYXBw
-ZW5zIHVwIHRvIHRoZSBncmFwaGljYWwgbG9naW4gc2NyZWVuIGFuZCBJIG5vdGljZWQgdGhhdCAK
-PiB0aGUgcmUtYm9vdCB3YXMgZGlmZmVyZW50IGF0IHRoZSBwb2ludCBhdCB3aGljaCB0aGUgc2Ny
-ZWVuIGNoYW5nZWQgCj4gZnJvbSBhIGJhc2ljICg4MHgyNSA/KSB0ZXh0IHRvIGEgaGlnaGVyIHJl
-c29sdXRpb24gKDEyOFg1MCA/KS4gVGhpcyBubyAKPiBsb25nZXIgaGFwcGVuZWQgYW5kIEkgZ290
-IGEgc2ltcGxlIGJsYW5rIHNjcmVlbi4KPgo+IElmIEkgd2FpdCwgdGhlIGdyYXBoaWNhbCBib290
-IHNjcmVlbiBldmVudHVhbGx5IGFwcGVhcnMgYW5kIEkgY2FuIAo+IGxvZ2luIHRvIEtERSBzdWNj
-ZXNzZnVsbHkgYW5kIHJ1biBteSBkZXNrdG9wIGFwcHMgYXMgbm9ybWFsLiBJZiBJIAo+IHN3aXRj
-aCBjb25zb2xlcyAoZS5nLiBDdHJsLUFsdC1GMikgZm9yIGEgdGV4dCBsb2dpbiwgSSBnZXQgYSBi
-bGFjayAKPiBzY3JlZW4uCj4KPiBUaGUgbGFzdCB2aXNpYmxlIHRoaW5nIG9uIG15IGJvb3Qgc2Ny
-ZWVuIGJlZm9yZSB0aGUgYmxhY2sgaXMgc29tZXRoaW5nIAo+IGxpa2UgImZiOiBzd2l0Y2hpbmcg
-dG8gbm91dmVhdWZiIGZyb20gRUZJIFZHQSIuCj4KPiBXaGVuIEkgbG9va2VkIGF0IHRoZSBkbWVz
-ZyBvdXRwdXQsIGxzbW9kIGFuZCBsc2h3LCBpdCBhcHBlYXJzIHRoYXQgdGhlIAo+IG5vdXZlYXUg
-ZHJpdmVyIGRvZXMgbm90IGNvcnJlY3RseSBkZXRlY3QgYW5kIGluaXRpYWxpc2UgdGhlIEdUWCA5
-NzAuCj4KPiBIYXZlIEkgYSBjb25maWd1cmF0aW9uIGVycm9yLCBvciBpcyB0aGVyZSBzb21ldGhp
-bmcgbm90IHdvcmtpbmcgaW4gCj4gbm91dmVhdT8KPgo+IEkgYXR0YWNoIGxvZ3MgZnJvbSBkbWVz
-ZywgbHNodyBhbmQgbHNtb2QgYW5kIEkgY2FuIHN1cHBseSBtb3JlIGRhdGEgaWYgCj4gbmVlZGVk
-Lgo+Cj4gQlIKPgo+IE1pY2sKPgoKSGksCnRoZSA5eHggc2VyaWVzIGlzIHJhdGhlciBuZXcgYW5k
-IGlzIG5vdCBzdXBwb3J0ZWQgYnkgbm91dmVhdSBmb3Igbm93IAoobW9kZXNldHRpbmcgaXMgaW4g
-My4xOXJjWCBpbWhvKS4gQ29uY2VybmluZyBhY2NlbGVyYXRpb246IE52aWRpYSBuZWVkcyAKdG8g
-cHJvdmlkZSBzaWduZWQgZmlybXdhcmVzIGZvciB0aG9zZSBjYXJkcyB1bmRlciBhIGxpY2Vuc2Ug
-YXBwcm9wcmlhdGUgCnRvIGluY2x1ZGUgaW4gYW4gb3BlbiBzb3VyY2UgcHJvamVjdCwgdW50aWwg
-dGhhdCBoYXBwZW5zLCB0aGVyZSB3b250IGJlIApzdWJzdGFudGlhbCBpbXByb3ZlbWVudHMuCgpH
-cmVldGluZ3MKVG9iaWFzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1413782074==
+Content-Type: multipart/alternative; boundary="1422310201.0A4688a4.3835"; charset="UTF-8"
+
+
+--1422310201.0A4688a4.3835
+Date: Mon, 26 Jan 2015 22:10:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=84721
+
+--- Comment #12 from Krzysztof Katowicz-Kowalewski <vnd-da06O8EuSQE@public.gmane.org> ---
+@r004, I had the same problem with my system and I've made little
+investigation. Indeed the problem appeared in 3.15 and it's still there in
+latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
+lower.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1422310201.0A4688a4.3835
+Date: Mon, 26 Jan 2015 22:10:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
+              from <span class="vcard"><a class="email" href="mailto:vnd&#64;vndh.net" title="Krzysztof Katowicz-Kowalewski &lt;vnd&#64;vndh.net&gt;"> <span class="fn">Krzysztof Katowicz-Kowalewski</span></a>
+</span></b>
+        <pre>&#64;r004, I had the same problem with my system and I've made little
+investigation. Indeed the problem appeared in 3.15 and it's still there in
+latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
+lower.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1422310201.0A4688a4.3835--
+
+--===============1413782074==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1413782074==--
