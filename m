@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Problem with GTX 970 under Fedora 21
-Date: Mon, 26 Jan 2015 14:54:20 -0800
-Message-ID: <CAKb7UvjACYeVfdhzkWyMvxxhtwR4bci=G3fDxKU3yLDa+YqTKA@mail.gmail.com>
-References: <54C554CD.7010906@yahoo.co.uk> <54C69F6D.8030004@mni.thm.de>
- <54C6C104.6070409@yahoo.co.uk>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Mon, 26 Jan 2015 23:13:43 +0000
+Message-ID: <bug-84721-8800-ptcaMmYVqo@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1679008503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54C6C104.6070409-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,63 +17,94 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: super_7b <super_7b-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-My4xOSBicmluZ3MgbW9kZXNldHRpbmcgc3VwcG9ydCBmb3IgR00yMDQgY2hpcHMsIGJ1dCBubyBh
-Y2NlbGVyYXRpb24uCldoYXQgdGhpcyBtZWFucyBpcyB0aGF0IHdlIGNhbiBkaXNwbGF5IHRoaW5n
-cyBvbiB0aGUgc2NyZWVuLCBidXQgY2FuJ3QKdXNlIHRoZSBHUFUgdG8gcGVyZm9ybSBhbnkgY29t
-cHV0YXRpb24gb2YgYW55IHNvcnQuIFRoaXMgaXMgYQpwZXJmZWN0bHkgdXNhYmxlIGV4cGVyaWVu
-Y2UsIHNpbmNlIHlvdSdsbCBlbmQgdXAgdXNpbmcgdGhlIGxsdm1waXBlCmRyaXZlciBmb3IgdGhl
-IGxpZ2h0IDNkLXJlbmRlcmluZyByZXF1aXJlZCBieSBnbm9tZS1zaGVsbCBhbmQgdGhlCnN1Y2gs
-IGhvd2V2ZXIgaXQgd2lsbCBiZSBpbnN1ZmZpY2VudCBmb3IgYW55IGdhbWluZy4KCk9uIE1vbiwg
-SmFuIDI2LCAyMDE1IGF0IDI6MzQgUE0sIHN1cGVyXzdiIDxzdXBlcl83YkB5YWhvby5jby51az4g
-d3JvdGU6Cj4KPgo+IE9uIDI2LzAxLzE1IDIwOjExLCBUb2JpYXMgS2xhdXNtYW5uIHdyb3RlOgo+
-Pgo+Pgo+PiBPbiAyNS4wMS4yMDE1IDIxOjQwLCBzdXBlcl83YiB3cm90ZToKPj4+Cj4+PiBIaSwK
-Pj4+Cj4+PiBJIHRvb2sgdGhpcyBpc3N1ZSB0byB0aGUgRmVkb3JhIGZvcnVtIGluaXRpYWxseSwg
-YnV0IG5vLW9uZSB0aGVyZSBoYXMKPj4+IGJlZW4gYWJsZSB0byBvZmZlciBhbnkgZ3VpZGFuY2Us
-IHNvIEkgaGF2ZSBkZWNpZGVkIHRvIGNvbWUgdG8gdGhlCj4+PiBub3V2ZWF1IGNvbW11bml0eSBk
-aXJlY3RseS4KPj4+Cj4+PiBJIHdhcyBydW5uaW5nIGEgS0RFIGRlc2t0b3AgdW5kZXIgRmVkb3Jh
-IDIxIHN1Y2Nlc3NmdWxseSwgaW5jbHVkaW5nCj4+PiB0aGUgYWJpbGl0eSB0byB1c2UgYSBkaXJl
-Y3QgdGV4dCBsb2dpbiBvbiBhbiBvbGRlciBjYXJkIChHWFQgNTYwIFRpKQo+Pj4gd2l0aCBhbiBl
-bnRpcmVseSBzdG9jayBGZWRvcmEsIGZ1bGx5IHVwZGF0ZWQuCj4+Pgo+Pj4gSSBzaW1wbHkgcmVw
-bGFjZWQgdGhlIG9sZCBjYXJkIHdpdGggYW4gQXN1cyBHVFggOTcwIGFuZCByZS1ib290ZWQuCj4+
-Pgo+Pj4gSSBydW4gd2l0aCB0aGUgInJoZ2IgcXVpZXQiIG9wdGlvbiByZW1vdmVkIGZyb20gZ3J1
-YjIsIHNvIEkgY2FuIHNlZQo+Pj4gYWxsIHRoYXQgaGFwcGVucyB1cCB0byB0aGUgZ3JhcGhpY2Fs
-IGxvZ2luIHNjcmVlbiBhbmQgSSBub3RpY2VkIHRoYXQKPj4+IHRoZSByZS1ib290IHdhcyBkaWZm
-ZXJlbnQgYXQgdGhlIHBvaW50IGF0IHdoaWNoIHRoZSBzY3JlZW4gY2hhbmdlZAo+Pj4gZnJvbSBh
-IGJhc2ljICg4MHgyNSA/KSB0ZXh0IHRvIGEgaGlnaGVyIHJlc29sdXRpb24gKDEyOFg1MCA/KS4g
-VGhpcyBubwo+Pj4gbG9uZ2VyIGhhcHBlbmVkIGFuZCBJIGdvdCBhIHNpbXBsZSBibGFuayBzY3Jl
-ZW4uCj4+Pgo+Pj4gSWYgSSB3YWl0LCB0aGUgZ3JhcGhpY2FsIGJvb3Qgc2NyZWVuIGV2ZW50dWFs
-bHkgYXBwZWFycyBhbmQgSSBjYW4KPj4+IGxvZ2luIHRvIEtERSBzdWNjZXNzZnVsbHkgYW5kIHJ1
-biBteSBkZXNrdG9wIGFwcHMgYXMgbm9ybWFsLiBJZiBJCj4+PiBzd2l0Y2ggY29uc29sZXMgKGUu
-Zy4gQ3RybC1BbHQtRjIpIGZvciBhIHRleHQgbG9naW4sIEkgZ2V0IGEgYmxhY2sKPj4+IHNjcmVl
-bi4KPj4+Cj4+PiBUaGUgbGFzdCB2aXNpYmxlIHRoaW5nIG9uIG15IGJvb3Qgc2NyZWVuIGJlZm9y
-ZSB0aGUgYmxhY2sgaXMgc29tZXRoaW5nCj4+PiBsaWtlICJmYjogc3dpdGNoaW5nIHRvIG5vdXZl
-YXVmYiBmcm9tIEVGSSBWR0EiLgo+Pj4KPj4+IFdoZW4gSSBsb29rZWQgYXQgdGhlIGRtZXNnIG91
-dHB1dCwgbHNtb2QgYW5kIGxzaHcsIGl0IGFwcGVhcnMgdGhhdCB0aGUKPj4+IG5vdXZlYXUgZHJp
-dmVyIGRvZXMgbm90IGNvcnJlY3RseSBkZXRlY3QgYW5kIGluaXRpYWxpc2UgdGhlIEdUWCA5NzAu
-Cj4+Pgo+Pj4gSGF2ZSBJIGEgY29uZmlndXJhdGlvbiBlcnJvciwgb3IgaXMgdGhlcmUgc29tZXRo
-aW5nIG5vdCB3b3JraW5nIGluCj4+PiBub3V2ZWF1Pwo+Pj4KPj4+IEkgYXR0YWNoIGxvZ3MgZnJv
-bSBkbWVzZywgbHNodyBhbmQgbHNtb2QgYW5kIEkgY2FuIHN1cHBseSBtb3JlIGRhdGEgaWYKPj4+
-IG5lZWRlZC4KPj4+Cj4+PiBCUgo+Pj4KPj4+IE1pY2sKPj4+Cj4+Cj4+IEhpLAo+PiB0aGUgOXh4
-IHNlcmllcyBpcyByYXRoZXIgbmV3IGFuZCBpcyBub3Qgc3VwcG9ydGVkIGJ5IG5vdXZlYXUgZm9y
-IG5vdwo+PiAobW9kZXNldHRpbmcgaXMgaW4gMy4xOXJjWCBpbWhvKS4gQ29uY2VybmluZyBhY2Nl
-bGVyYXRpb246IE52aWRpYSBuZWVkcwo+PiB0byBwcm92aWRlIHNpZ25lZCBmaXJtd2FyZXMgZm9y
-IHRob3NlIGNhcmRzIHVuZGVyIGEgbGljZW5zZSBhcHByb3ByaWF0ZQo+PiB0byBpbmNsdWRlIGlu
-IGFuIG9wZW4gc291cmNlIHByb2plY3QsIHVudGlsIHRoYXQgaGFwcGVucywgdGhlcmUgd29udCBi
-ZQo+PiBzdWJzdGFudGlhbCBpbXByb3ZlbWVudHMuCj4+Cj4+IEdyZWV0aW5ncwo+PiBUb2JpYXMK
-Pgo+Cj4KPiBIaSBUb2JpYXMsCj4KPiBUaGFua3MgZm9yIHRoZSByZXBseS4gQWNjZWxlcmF0aW9u
-IGlzIG5vdCBhbiBpc3N1ZSwgYnV0IG5vIHN1cHBvcnQgZm9yIHRleHQKPiBtb2RlIGlzLCA4Xigu
-Cj4KPiBEb2VzIHlvdXIgcmVtYXJrIGFib3V0IDMuMTlyY1ggcmVmZXIgdG8ga2VybmVsIDMuMTk/
-IEkganVzdCByYW4gdGhlIEZlZG9yYQo+IHVwZGF0ZXMgYW5kIGl0IGhhcyBpbnN0YWxsZWQgMy4x
-OC4zLTIwMS4gSWYgSSBuZWVkIHRvIHdhaXQgZm9yIDMuMTksIEkgZ3Vlc3MKPiBJIG5lZWQgdG8g
-YmUgcGF0aWVudCBmb3IgYSB3aGlsZSBsb25nZXIuCj4KPiBJIGFtIGFzc3VtaW5nIHRoYXQgMy4x
-OSB3aWxsIGJyaW5nIHRleHQgc3VwcG9ydCBhbmQgYmFzaWMgZ3JhcGhpY3M/Cj4KPiBCUgo+Cj4g
-TWljawo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1679008503==
+Content-Type: multipart/alternative; boundary="1422314023.62D8c5.21112"; charset="UTF-8"
+
+
+--1422314023.62D8c5.21112
+Date: Mon, 26 Jan 2015 23:13:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=84721
+
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Krzysztof Katowicz-Kowalewski from comment #12)
+> @r004, I had the same problem with my system and I've made little
+> investigation. Indeed the problem appeared in 3.15 and it's still there in
+> latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
+> lower.
+
+Identifying the commit that broke things between 3.14 and 3.15 would go a long
+way to solving this issue.
+
+git bisect start v3.15 v3.14 -- drivers/gpu/drm/nouveau
+
+should limit the bisect to just nouveau.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1422314023.62D8c5.21112
+Date: Mon, 26 Jan 2015 23:13:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Krzysztof Katowicz-Kowalewski from <a href="show_bug.cgi?id=84721#c12">comment #12</a>)
+<span class="quote">&gt; &#64;r004, I had the same problem with my system and I've made little
+&gt; investigation. Indeed the problem appeared in 3.15 and it's still there in
+&gt; latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
+&gt; lower.</span >
+
+Identifying the commit that broke things between 3.14 and 3.15 would go a long
+way to solving this issue.
+
+git bisect start v3.15 v3.14 -- drivers/gpu/drm/nouveau
+
+should limit the bisect to just nouveau.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1422314023.62D8c5.21112--
+
+--===============1679008503==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1679008503==--
