@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88822] X freezes after watching videos
-Date: Tue, 27 Jan 2015 16:24:56 +0000
-Message-ID: <bug-88822-8800-zmfY9jbb1D@http.bugs.freedesktop.org/>
-References: <bug-88822-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Tue, 27 Jan 2015 18:10:39 +0000
+Message-ID: <bug-84721-8800-FqmVHYHn0a@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139810356=="
+Content-Type: multipart/mixed; boundary="===============1177606241=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139810356==
-Content-Type: multipart/alternative; boundary="1422375896.86C81.17160"; charset="UTF-8"
+--===============1177606241==
+Content-Type: multipart/alternative; boundary="1422382239.Fd645.19050"; charset="UTF-8"
 
 
---1422375896.86C81.17160
-Date: Tue, 27 Jan 2015 16:24:56 +0000
+--1422382239.Fd645.19050
+Date: Tue, 27 Jan 2015 18:10:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88822
+https://bugs.freedesktop.org/show_bug.cgi?id=84721
 
-Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> changed:
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|Server/General              |Driver/nouveau
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+           Severity|critical                    |normal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422375896.86C81.17160
-Date: Tue, 27 Jan 2015 16:24:56 +0000
+--1422382239.Fd645.19050
+Date: Tue, 27 Jan 2015 18:10:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,12 +51,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:alan.coopersmith&#64;oracle.com" title="Alan Coopersmith &lt;alan.coopersmith&#64;oracle.com&gt;"> <span class="fn">Alan Coopersmith</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X freezes after watching videos"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822">bug 88822</a>
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,18 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Server/General
+           <td style="text-align:right;">Severity</td>
+           <td>critical
            </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>normal
            </td>
          </tr></table>
       <p>
@@ -92,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1422375896.86C81.17160--
+--1422382239.Fd645.19050--
 
---===============0139810356==
+--===============1177606241==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0139810356==--
+--===============1177606241==--
