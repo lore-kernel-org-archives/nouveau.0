@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Tue, 27 Jan 2015 08:09:23 +0000
-Message-ID: <bug-87244-8800-TURFjtQEWD@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+From: super_7b <super_7b-/E1597aS9LT10XsdtD+oqA@public.gmane.org>
+Subject: Re: Problem with GTX 970 under Fedora 21
+Date: Tue, 27 Jan 2015 11:38:04 +0000
+Message-ID: <54C7789C.7020600@yahoo.co.uk>
+References: <54C554CD.7010906@yahoo.co.uk>	<54C69F6D.8030004@mni.thm.de>	<54C6C104.6070409@yahoo.co.uk>
+ <CAKb7UvjACYeVfdhzkWyMvxxhtwR4bci=G3fDxKU3yLDa+YqTKA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2115947268=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjACYeVfdhzkWyMvxxhtwR4bci=G3fDxKU3yLDa+YqTKA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,83 +18,70 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2115947268==
-Content-Type: multipart/alternative; boundary="1422346163.458EB302.16681"; charset="UTF-8"
-
-
---1422346163.458EB302.16681
-Date: Tue, 27 Jan 2015 08:09:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
-
---- Comment #10 from Zlatko Calusic <zcalusic-7aYyyD3GOf7R7s880joybQ@public.gmane.org> ---
-Created attachment 112875
-  --> https://bugs.freedesktop.org/attachment.cgi?id=112875&action=edit
-fifo-nv04-remove-the-loop-from-the-interrupt-handler
-
-Would not apply cleanly to 3.19.0-rc6+, so I modified it and attached the patch
-that I have currently applied and testing. I'd give it at least 2 days before
-we can be reasonably sure it fixes the issue.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1422346163.458EB302.16681
-Date: Tue, 27 Jan 2015 08:09:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:zcalusic&#64;bitsync.net" title="Zlatko Calusic &lt;zcalusic&#64;bitsync.net&gt;"> <span class="fn">Zlatko Calusic</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=112875" name="attach_112875" title="fifo-nv04-remove-the-loop-from-the-interrupt-handler">attachment 112875</a> <a href="attachment.cgi?id=112875&amp;action=edit" title="fifo-nv04-remove-the-loop-from-the-interrupt-handler">[details]</a></span>
-fifo-nv04-remove-the-loop-from-the-interrupt-handler
-
-Would not apply cleanly to 3.19.0-rc6+, so I modified it and attached the patch
-that I have currently applied and testing. I'd give it at least 2 days before
-we can be reasonably sure it fixes the issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1422346163.458EB302.16681--
-
---===============2115947268==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2115947268==--
+CgpPbiAyNi8wMS8xNSAyMjo1NCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gMy4xOSBicmluZ3MgbW9k
+ZXNldHRpbmcgc3VwcG9ydCBmb3IgR00yMDQgY2hpcHMsIGJ1dCBubyBhY2NlbGVyYXRpb24uCj4g
+V2hhdCB0aGlzIG1lYW5zIGlzIHRoYXQgd2UgY2FuIGRpc3BsYXkgdGhpbmdzIG9uIHRoZSBzY3Jl
+ZW4sIGJ1dCBjYW4ndAo+IHVzZSB0aGUgR1BVIHRvIHBlcmZvcm0gYW55IGNvbXB1dGF0aW9uIG9m
+IGFueSBzb3J0LiBUaGlzIGlzIGEKPiBwZXJmZWN0bHkgdXNhYmxlIGV4cGVyaWVuY2UsIHNpbmNl
+IHlvdSdsbCBlbmQgdXAgdXNpbmcgdGhlIGxsdm1waXBlCj4gZHJpdmVyIGZvciB0aGUgbGlnaHQg
+M2QtcmVuZGVyaW5nIHJlcXVpcmVkIGJ5IGdub21lLXNoZWxsIGFuZCB0aGUKPiBzdWNoLCBob3dl
+dmVyIGl0IHdpbGwgYmUgaW5zdWZmaWNlbnQgZm9yIGFueSBnYW1pbmcuCj4KPiBPbiBNb24sIEph
+biAyNiwgMjAxNSBhdCAyOjM0IFBNLCBzdXBlcl83YiA8c3VwZXJfN2JAeWFob28uY28udWs+IHdy
+b3RlOgo+Pgo+Pgo+PiBPbiAyNi8wMS8xNSAyMDoxMSwgVG9iaWFzIEtsYXVzbWFubiB3cm90ZToK
+Pj4+Cj4+Pgo+Pj4gT24gMjUuMDEuMjAxNSAyMTo0MCwgc3VwZXJfN2Igd3JvdGU6Cj4+Pj4KPj4+
+PiBIaSwKPj4+Pgo+Pj4+IEkgdG9vayB0aGlzIGlzc3VlIHRvIHRoZSBGZWRvcmEgZm9ydW0gaW5p
+dGlhbGx5LCBidXQgbm8tb25lIHRoZXJlIGhhcwo+Pj4+IGJlZW4gYWJsZSB0byBvZmZlciBhbnkg
+Z3VpZGFuY2UsIHNvIEkgaGF2ZSBkZWNpZGVkIHRvIGNvbWUgdG8gdGhlCj4+Pj4gbm91dmVhdSBj
+b21tdW5pdHkgZGlyZWN0bHkuCj4+Pj4KPj4+PiBJIHdhcyBydW5uaW5nIGEgS0RFIGRlc2t0b3Ag
+dW5kZXIgRmVkb3JhIDIxIHN1Y2Nlc3NmdWxseSwgaW5jbHVkaW5nCj4+Pj4gdGhlIGFiaWxpdHkg
+dG8gdXNlIGEgZGlyZWN0IHRleHQgbG9naW4gb24gYW4gb2xkZXIgY2FyZCAoR1hUIDU2MCBUaSkK
+Pj4+PiB3aXRoIGFuIGVudGlyZWx5IHN0b2NrIEZlZG9yYSwgZnVsbHkgdXBkYXRlZC4KPj4+Pgo+
+Pj4+IEkgc2ltcGx5IHJlcGxhY2VkIHRoZSBvbGQgY2FyZCB3aXRoIGFuIEFzdXMgR1RYIDk3MCBh
+bmQgcmUtYm9vdGVkLgo+Pj4+Cj4+Pj4gSSBydW4gd2l0aCB0aGUgInJoZ2IgcXVpZXQiIG9wdGlv
+biByZW1vdmVkIGZyb20gZ3J1YjIsIHNvIEkgY2FuIHNlZQo+Pj4+IGFsbCB0aGF0IGhhcHBlbnMg
+dXAgdG8gdGhlIGdyYXBoaWNhbCBsb2dpbiBzY3JlZW4gYW5kIEkgbm90aWNlZCB0aGF0Cj4+Pj4g
+dGhlIHJlLWJvb3Qgd2FzIGRpZmZlcmVudCBhdCB0aGUgcG9pbnQgYXQgd2hpY2ggdGhlIHNjcmVl
+biBjaGFuZ2VkCj4+Pj4gZnJvbSBhIGJhc2ljICg4MHgyNSA/KSB0ZXh0IHRvIGEgaGlnaGVyIHJl
+c29sdXRpb24gKDEyOFg1MCA/KS4gVGhpcyBubwo+Pj4+IGxvbmdlciBoYXBwZW5lZCBhbmQgSSBn
+b3QgYSBzaW1wbGUgYmxhbmsgc2NyZWVuLgo+Pj4+Cj4+Pj4gSWYgSSB3YWl0LCB0aGUgZ3JhcGhp
+Y2FsIGJvb3Qgc2NyZWVuIGV2ZW50dWFsbHkgYXBwZWFycyBhbmQgSSBjYW4KPj4+PiBsb2dpbiB0
+byBLREUgc3VjY2Vzc2Z1bGx5IGFuZCBydW4gbXkgZGVza3RvcCBhcHBzIGFzIG5vcm1hbC4gSWYg
+SQo+Pj4+IHN3aXRjaCBjb25zb2xlcyAoZS5nLiBDdHJsLUFsdC1GMikgZm9yIGEgdGV4dCBsb2dp
+biwgSSBnZXQgYSBibGFjawo+Pj4+IHNjcmVlbi4KPj4+Pgo+Pj4+IFRoZSBsYXN0IHZpc2libGUg
+dGhpbmcgb24gbXkgYm9vdCBzY3JlZW4gYmVmb3JlIHRoZSBibGFjayBpcyBzb21ldGhpbmcKPj4+
+PiBsaWtlICJmYjogc3dpdGNoaW5nIHRvIG5vdXZlYXVmYiBmcm9tIEVGSSBWR0EiLgo+Pj4+Cj4+
+Pj4gV2hlbiBJIGxvb2tlZCBhdCB0aGUgZG1lc2cgb3V0cHV0LCBsc21vZCBhbmQgbHNodywgaXQg
+YXBwZWFycyB0aGF0IHRoZQo+Pj4+IG5vdXZlYXUgZHJpdmVyIGRvZXMgbm90IGNvcnJlY3RseSBk
+ZXRlY3QgYW5kIGluaXRpYWxpc2UgdGhlIEdUWCA5NzAuCj4+Pj4KPj4+PiBIYXZlIEkgYSBjb25m
+aWd1cmF0aW9uIGVycm9yLCBvciBpcyB0aGVyZSBzb21ldGhpbmcgbm90IHdvcmtpbmcgaW4KPj4+
+PiBub3V2ZWF1Pwo+Pj4+Cj4+Pj4gSSBhdHRhY2ggbG9ncyBmcm9tIGRtZXNnLCBsc2h3IGFuZCBs
+c21vZCBhbmQgSSBjYW4gc3VwcGx5IG1vcmUgZGF0YSBpZgo+Pj4+IG5lZWRlZC4KPj4+Pgo+Pj4+
+IEJSCj4+Pj4KPj4+PiBNaWNrCj4+Pj4KPj4+Cj4+PiBIaSwKPj4+IHRoZSA5eHggc2VyaWVzIGlz
+IHJhdGhlciBuZXcgYW5kIGlzIG5vdCBzdXBwb3J0ZWQgYnkgbm91dmVhdSBmb3Igbm93Cj4+PiAo
+bW9kZXNldHRpbmcgaXMgaW4gMy4xOXJjWCBpbWhvKS4gQ29uY2VybmluZyBhY2NlbGVyYXRpb246
+IE52aWRpYSBuZWVkcwo+Pj4gdG8gcHJvdmlkZSBzaWduZWQgZmlybXdhcmVzIGZvciB0aG9zZSBj
+YXJkcyB1bmRlciBhIGxpY2Vuc2UgYXBwcm9wcmlhdGUKPj4+IHRvIGluY2x1ZGUgaW4gYW4gb3Bl
+biBzb3VyY2UgcHJvamVjdCwgdW50aWwgdGhhdCBoYXBwZW5zLCB0aGVyZSB3b250IGJlCj4+PiBz
+dWJzdGFudGlhbCBpbXByb3ZlbWVudHMuCj4+Pgo+Pj4gR3JlZXRpbmdzCj4+PiBUb2JpYXMKPj4K
+Pj4KPj4KPj4gSGkgVG9iaWFzLAo+Pgo+PiBUaGFua3MgZm9yIHRoZSByZXBseS4gQWNjZWxlcmF0
+aW9uIGlzIG5vdCBhbiBpc3N1ZSwgYnV0IG5vIHN1cHBvcnQgZm9yIHRleHQKPj4gbW9kZSBpcywg
+OF4oLgo+Pgo+PiBEb2VzIHlvdXIgcmVtYXJrIGFib3V0IDMuMTlyY1ggcmVmZXIgdG8ga2VybmVs
+IDMuMTk/IEkganVzdCByYW4gdGhlIEZlZG9yYQo+PiB1cGRhdGVzIGFuZCBpdCBoYXMgaW5zdGFs
+bGVkIDMuMTguMy0yMDEuIElmIEkgbmVlZCB0byB3YWl0IGZvciAzLjE5LCBJIGd1ZXNzCj4+IEkg
+bmVlZCB0byBiZSBwYXRpZW50IGZvciBhIHdoaWxlIGxvbmdlci4KPj4KPj4gSSBhbSBhc3N1bWlu
+ZyB0aGF0IDMuMTkgd2lsbCBicmluZyB0ZXh0IHN1cHBvcnQgYW5kIGJhc2ljIGdyYXBoaWNzPwo+
+Pgo+PiBCUgo+Pgo+PiBNaWNrCj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1CgoKSGkgSWxpYSwKClRoYW5rcy4gVGhhdCBpcyBnb29kIHRvIGtub3cu
+IEkgZG9uJ3QgZ2FtZSBvbiBMaW51eCwganVzdCBkZXNrdG9wIHN0dWZmIAphbmQgY29kaW5nLiBJ
+IHdpbGwgYmUgZ2FtaW5nIG9uIFdpbmRvd3MgKGR1YWwgYm9vdCBvbiB0aGlzIG1hY2hpbmUpLCAK
+d2hpY2ggaXMgd2h5IEkgYm91Z2h0IHRoZSBjYXJkIGFuZCBJIGFtIHN1cmUgdGhlIGNhcmQgd2ls
+bCBiZSB3ZWxsIApzdXBwb3J0ZWQgdGhlcmUuCgpCUgoKTWljawpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
