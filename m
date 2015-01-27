@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
- 3.16 kernel. dangerous Fan speed
-Date: Mon, 26 Jan 2015 23:13:43 +0000
-Message-ID: <bug-84721-8800-ptcaMmYVqo@http.bugs.freedesktop.org/>
-References: <bug-84721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87244] [NV94] X hangs,
+ logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
+ 101 spins, halt followed by an X trace
+Date: Tue, 27 Jan 2015 05:54:34 +0000
+Message-ID: <bug-87244-8800-Isxry2Xpg8@http.bugs.freedesktop.org/>
+References: <bug-87244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1679008503=="
+Content-Type: multipart/mixed; boundary="===============1207730204=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +22,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1679008503==
-Content-Type: multipart/alternative; boundary="1422314023.62D8c5.21112"; charset="UTF-8"
+--===============1207730204==
+Content-Type: multipart/alternative; boundary="1422338074.eCb36aDb2.7942"; charset="UTF-8"
 
 
---1422314023.62D8c5.21112
-Date: Mon, 26 Jan 2015 23:13:43 +0000
+--1422338074.eCb36aDb2.7942
+Date: Tue, 27 Jan 2015 05:54:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84721
+https://bugs.freedesktop.org/show_bug.cgi?id=87244
 
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Krzysztof Katowicz-Kowalewski from comment #12)
-> @r004, I had the same problem with my system and I've made little
-> investigation. Indeed the problem appeared in 3.15 and it's still there in
-> latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
-> lower.
+--- Comment #9 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It'd be worth giving this patch a try:
 
-Identifying the commit that broke things between 3.14 and 3.15 would go a long
-way to solving this issue.
-
-git bisect start v3.15 v3.14 -- drivers/gpu/drm/nouveau
-
-should limit the bisect to just nouveau.
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422314023.62D8c5.21112
-Date: Mon, 26 Jan 2015 23:13:43 +0000
+--1422338074.eCb36aDb2.7942
+Date: Tue, 27 Jan 2015 05:54:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +56,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c13">Comment # 13</a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>(In reply to Krzysztof Katowicz-Kowalewski from <a href="show_bug.cgi?id=84721#c12">comment #12</a>)
-<span class="quote">&gt; &#64;r004, I had the same problem with my system and I've made little
-&gt; investigation. Indeed the problem appeared in 3.15 and it's still there in
-&gt; latest 3.18 kernel. For the quick and easy work-around use kernel 3.14 or
-&gt; lower.</span >
+        <pre>It'd be worth giving this patch a try:
 
-Identifying the commit that broke things between 3.14 and 3.15 would go a long
-way to solving this issue.
-
-git bisect start v3.15 v3.14 -- drivers/gpu/drm/nouveau
-
-should limit the bisect to just nouveau.</pre>
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844</a></pre>
         </div>
       </p>
       <hr>
@@ -95,9 +78,9 @@ should limit the bisect to just nouveau.</pre>
     </body>
 </html>
 
---1422314023.62D8c5.21112--
+--1422338074.eCb36aDb2.7942--
 
---===============1679008503==
+--===============1207730204==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1679008503==--
+--===============1207730204==--
