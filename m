@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
- 3.16 kernel. dangerous Fan speed
-Date: Tue, 27 Jan 2015 18:10:39 +0000
-Message-ID: <bug-84721-8800-FqmVHYHn0a@http.bugs.freedesktop.org/>
-References: <bug-84721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28095] X crash with PFIFO_CACHE_ERROR. (Nouveau on
+	Riva TNT).
+Date: Tue, 27 Jan 2015 21:14:57 +0000
+Message-ID: <bug-28095-8800-4yTjPucHWT@http.bugs.freedesktop.org/>
+References: <bug-28095-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1177606241=="
+Content-Type: multipart/mixed; boundary="===============0894022146=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1177606241==
-Content-Type: multipart/alternative; boundary="1422382239.Fd645.19050"; charset="UTF-8"
+--===============0894022146==
+Content-Type: multipart/alternative; boundary="1422393296.326C1.31606"; charset="UTF-8"
 
 
---1422382239.Fd645.19050
-Date: Tue, 27 Jan 2015 18:10:39 +0000
+--1422393296.326C1.31606
+Date: Tue, 27 Jan 2015 21:14:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84721
+https://bugs.freedesktop.org/show_bug.cgi?id=28095
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+--- Comment #8 from Brent <bzipitidoo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Tried Puppy Linux 6 with Linux kernel version 3.17.7, and got the identical
+errors as with 3.14.20.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|critical                    |normal
+I can't say if the PFIFO_CACHE_ERROR is still present, because I can't get past
+this error to run any XWindows apps.  X is running, it has not crashed, but the
+display is corrupted and unusable.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422382239.Fd645.19050
-Date: Tue, 27 Jan 2015 18:10:39 +0000
+--1422393296.326C1.31606
+Date: Tue, 27 Jan 2015 21:14:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +53,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Severity</td>
-           <td>critical
-           </td>
-           <td>normal
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095">bug 28095</a>
+              from <span class="vcard"><a class="email" href="mailto:bzipitidoo&#64;hotmail.com" title="Brent &lt;bzipitidoo&#64;hotmail.com&gt;"> <span class="fn">Brent</span></a>
+</span></b>
+        <pre>Tried Puppy Linux 6 with Linux kernel version 3.17.7, and got the identical
+errors as with 3.14.20.
+
+I can't say if the PFIFO_CACHE_ERROR is still present, because I can't get past
+this error to run any XWindows apps.  X is running, it has not crashed, but the
+display is corrupted and unusable.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1422382239.Fd645.19050--
+--1422393296.326C1.31606--
 
---===============1177606241==
+--===============0894022146==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1177606241==--
+--===============0894022146==--
