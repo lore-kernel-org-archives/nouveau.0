@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28095] X crash with PFIFO_CACHE_ERROR. (Nouveau on
-	Riva TNT).
-Date: Tue, 27 Jan 2015 21:33:50 +0000
-Message-ID: <bug-28095-8800-9C0rEI9kDB@http.bugs.freedesktop.org/>
-References: <bug-28095-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86987] Requesting a New Account
+Date: Tue, 27 Jan 2015 22:07:21 +0000
+Message-ID: <bug-86987-8800-xMMDBzICdM@http.bugs.freedesktop.org/>
+References: <bug-86987-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1008041549=="
+Content-Type: multipart/mixed; boundary="===============1604226900=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-86987-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1008041549==
-Content-Type: multipart/alternative; boundary="1422394430.B0018D2.3616"; charset="UTF-8"
+--===============1604226900==
+Content-Type: multipart/alternative; boundary="1422396442.DB034E3.12553"; charset="UTF-8"
 
 
---1422394430.B0018D2.3616
-Date: Tue, 27 Jan 2015 21:33:50 +0000
+--1422396442.DB034E3.12553
+Date: Tue, 27 Jan 2015 22:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28095
+https://bugs.freedesktop.org/show_bug.cgi?id=86987
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Brent from comment #8)
-> X is running, it has not crashed, but the display is corrupted and unusable.
+Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> changed:
 
-Oh, that's the issue. OK. At what point does the display become corrupted? Can
-you describe the corruption, and/or take a photo?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/nouveau              |New Accounts
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |sitewranglers-PD4FTy7X32mqWrfYKbYh0A@public.gmane.org
+                   |rg                          |ktop.org
+            Product|xorg                        |freedesktop.org
+         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |
+
+--- Comment #2 from Martin Peres <martin.peres-Iz16wY1oaNPLSKGbIzaifA@public.gmane.org> ---
+Samuel has been working on Nouveau for a long time and has a good track of
+record. I will add him
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422394430.B0018D2.3616
-Date: Tue, 27 Jan 2015 21:33:50 +0000
+--1422396442.DB034E3.12553
+Date: Tue, 27 Jan 2015 22:07:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,24 +58,66 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Requesting a New Account"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86987">bug 86987</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Driver/nouveau
+           </td>
+           <td>New Accounts
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>sitewranglers&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Product</td>
+           <td>xorg
+           </td>
+           <td>freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+           <td>
+               &nbsp;
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095#c10">Comment # 10</a>
+          bz_status_NEW "
+   title="NEW - Requesting a New Account"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86987#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095">bug 28095</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_NEW "
+   title="NEW - Requesting a New Account"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86987">bug 86987</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;ensi-bourges.fr" title="Martin Peres &lt;martin.peres&#64;ensi-bourges.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to Brent from <a href="show_bug.cgi?id=28095#c8">comment #8</a>)
-<span class="quote">&gt; X is running, it has not crashed, but the display is corrupted and unusable.</span >
-
-Oh, that's the issue. OK. At what point does the display become corrupted? Can
-you describe the corruption, and/or take a photo?</pre>
+        <pre>Samuel has been working on Nouveau for a long time and has a good track of
+record. I will add him</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +129,9 @@ you describe the corruption, and/or take a photo?</pre>
     </body>
 </html>
 
---1422394430.B0018D2.3616--
+--1422396442.DB034E3.12553--
 
---===============1008041549==
+--===============1604226900==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1008041549==--
+--===============1604226900==--
