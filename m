@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88868] PowerPC e5500, kernel crash, GT520, GT610
-Date: Thu, 29 Jan 2015 15:26:50 +0000
-Message-ID: <bug-88868-8800-837ZMEue4s@http.bugs.freedesktop.org/>
+Date: Thu, 29 Jan 2015 15:30:25 +0000
+Message-ID: <bug-88868-8800-yZtiOX0DNM@http.bugs.freedesktop.org/>
 References: <bug-88868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0458344643=="
+Content-Type: multipart/mixed; boundary="===============0171820916=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0458344643==
-Content-Type: multipart/alternative; boundary="1422545210.07dA1c2d1.4613"; charset="UTF-8"
+--===============0171820916==
+Content-Type: multipart/alternative; boundary="1422545424.F0aD0E1.5633"; charset="UTF-8"
 
 
---1422545210.07dA1c2d1.4613
-Date: Thu, 29 Jan 2015 15:26:50 +0000
+--1422545424.F0aD0E1.5633
+Date: Thu, 29 Jan 2015 15:30:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88868
 
-Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #6 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+"log by nvagetbios -s PRAMIN >vbios_pramin.rom" - for nvidia card with
+"boot"=0x43100a4
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #112947|0                           |1
-        is obsolete|                            |
+"nvagetbios -s PROM >vbios_prom.rom" - for nvidia card with "boot"=0x43100a4
 
---- Comment #5 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 112948
-  --> https://bugs.freedesktop.org/attachment.cgi?id=112948&action=edit
-nvagetbios_gt610
+"nvagetbios_gt610" - for nvidia card gt610
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422545210.07dA1c2d1.4613
-Date: Thu, 29 Jan 2015 15:26:50 +0000
+--1422545424.F0aD0E1.5633
+Date: Thu, 29 Jan 2015 15:30:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,42 +52,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #112947 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
               from <span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=112948" name="attach_112948" title="nvagetbios_gt610">attachment 112948</a> <a href="attachment.cgi?id=112948&amp;action=edit" title="nvagetbios_gt610">[details]</a></span>
-nvagetbios_gt610</pre>
+        <pre>&quot;log by nvagetbios -s PRAMIN &gt;vbios_pramin.rom&quot; - for nvidia card with
+&quot;boot&quot;=0x43100a4
+
+&quot;nvagetbios -s PROM &gt;vbios_prom.rom&quot; - for nvidia card with &quot;boot&quot;=0x43100a4
+
+&quot;nvagetbios_gt610&quot; - for nvidia card gt610</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +82,9 @@ nvagetbios_gt610</pre>
     </body>
 </html>
 
---1422545210.07dA1c2d1.4613--
+--1422545424.F0aD0E1.5633--
 
---===============0458344643==
+--===============0171820916==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0458344643==--
+--===============0171820916==--
