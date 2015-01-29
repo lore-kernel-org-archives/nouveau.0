@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88868] PowerPC e5500, kernel crash, GT520, GT610
-Date: Thu, 29 Jan 2015 15:19:35 +0000
-Message-ID: <bug-88868-8800-GA6EMOV4v7@http.bugs.freedesktop.org/>
+Date: Thu, 29 Jan 2015 15:25:25 +0000
+Message-ID: <bug-88868-8800-2IPYcD3kDY@http.bugs.freedesktop.org/>
 References: <bug-88868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1640215357=="
+Content-Type: multipart/mixed; boundary="===============0502790515=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1640215357==
-Content-Type: multipart/alternative; boundary="1422544775.B7421.2720"; charset="UTF-8"
+--===============0502790515==
+Content-Type: multipart/alternative; boundary="1422545125.4410F1.4229"; charset="UTF-8"
 
 
---1422544775.B7421.2720
-Date: Thu, 29 Jan 2015 15:19:35 +0000
+--1422545125.4410F1.4229
+Date: Thu, 29 Jan 2015 15:25:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88868
 
---- Comment #3 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 112946
-  --> https://bugs.freedesktop.org/attachment.cgi?id=112946&action=edit
+Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #112946|0                           |1
+        is obsolete|                            |
+
+--- Comment #4 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 112947
+  --> https://bugs.freedesktop.org/attachment.cgi?id=112947&action=edit
 nvagetbios_gt610
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422544775.B7421.2720
-Date: Thu, 29 Jan 2015 15:19:35 +0000
+--1422545125.4410F1.4229
+Date: Thu, 29 Jan 2015 15:25:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,20 +56,41 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #112946 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
               from <span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=112946" name="attach_112946" title="nvagetbios_gt610">attachment 112946</a> <a href="attachment.cgi?id=112946&amp;action=edit" title="nvagetbios_gt610">[details]</a></span>
+        <pre>Created <span class=""><a href="attachment.cgi?id=112947" name="attach_112947" title="nvagetbios_gt610">attachment 112947</a> <a href="attachment.cgi?id=112947&amp;action=edit" title="nvagetbios_gt610">[details]</a></span>
 nvagetbios_gt610</pre>
         </div>
       </p>
@@ -75,9 +103,9 @@ nvagetbios_gt610</pre>
     </body>
 </html>
 
---1422544775.B7421.2720--
+--1422545125.4410F1.4229--
 
---===============1640215357==
+--===============0502790515==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1640215357==--
+--===============0502790515==--
