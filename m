@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88893] New: [NV46] GPU lockup with Quadro NVS 110M
-Date: Sun, 01 Feb 2015 02:56:48 +0000
-Message-ID: <bug-88893-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88893] [NV46] GPU lockup with Quadro NVS 110M
+Date: Sun, 01 Feb 2015 14:01:05 +0000
+Message-ID: <bug-88893-8800-8Aqwms15tE@http.bugs.freedesktop.org/>
+References: <bug-88893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1847701954=="
+Content-Type: multipart/mixed; boundary="===============1183143267=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-88893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1847701954==
-Content-Type: multipart/alternative; boundary="1422759408.52a38A41.26432"; charset="UTF-8"
+--===============1183143267==
+Content-Type: multipart/alternative; boundary="1422799265.0BdfDB7C1.4513"; charset="UTF-8"
 
 
---1422759408.52a38A41.26432
-Date: Sun, 1 Feb 2015 02:56:48 +0000
+--1422799265.0BdfDB7C1.4513
+Date: Sun, 1 Feb 2015 14:01:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88893
 
-            Bug ID: 88893
-           Summary: [NV46] GPU lockup with Quadro NVS 110M
-           Product: xorg
-           Version: 7.7 (2012.06)
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-System Info:
-Dell Latitude D620
-Nvidia Quadro NVS 110M
-Fedora 21 x86_64
-
-With initial system install with 1.0.9 I could get a usable system with
-nouveau.noaccel=1.
-
-After an update which included 1.0.11 I would get the GPU lockup regardless of
-the kernel parameter. I also tried current git with the same result.
-
-libdrm is current 2.4.58.
+--- Comment #1 from Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 113016
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113016&action=edit
+dmesg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422759408.52a38A41.26432
-Date: Sun, 1 Feb 2015 02:56:48 +0000
+--1422799265.0BdfDB7C1.4513
+Date: Sun, 1 Feb 2015 14:01:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,101 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">88893</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NV46] GPU lockup with Quadro NVS 110M
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>7.7 (2012.06)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>hobbes1069&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>System Info:
-Dell Latitude D620
-Nvidia Quadro NVS 110M
-Fedora 21 x86_64
-
-With initial system install with 1.0.9 I could get a usable system with
-nouveau.noaccel=1.
-
-After an update which included 1.0.11 I would get the GPU lockup regardless of
-the kernel parameter. I also tried current git with the same result.
-
-libdrm is current 2.4.58.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
+              from <span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=113016" name="attach_113016" title="dmesg log">attachment 113016</a> <a href="attachment.cgi?id=113016&amp;action=edit" title="dmesg log">[details]</a></span>
+dmesg log</pre>
         </div>
       </p>
       <hr>
@@ -175,9 +75,9 @@ libdrm is current 2.4.58.</pre>
     </body>
 </html>
 
---1422759408.52a38A41.26432--
+--1422799265.0BdfDB7C1.4513--
 
---===============1847701954==
+--===============1183143267==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -187,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1847701954==--
+--===============1183143267==--
