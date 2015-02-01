@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88893] [NV46] GPU lockup with Quadro NVS 110M
-Date: Sun, 01 Feb 2015 14:06:53 +0000
-Message-ID: <bug-88893-8800-2OCj2GCqMZ@http.bugs.freedesktop.org/>
+Date: Sun, 01 Feb 2015 14:09:06 +0000
+Message-ID: <bug-88893-8800-NYCTGGuxQe@http.bugs.freedesktop.org/>
 References: <bug-88893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1803955472=="
+Content-Type: multipart/mixed; boundary="===============0523568789=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1803955472==
-Content-Type: multipart/alternative; boundary="1422799613.4b3a042.5225"; charset="UTF-8"
+--===============0523568789==
+Content-Type: multipart/alternative; boundary="1422799746.2428fFf01.5573"; charset="UTF-8"
 
 
---1422799613.4b3a042.5225
-Date: Sun, 1 Feb 2015 14:06:53 +0000
+--1422799746.2428fFf01.5573
+Date: Sun, 1 Feb 2015 14:09:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88893
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FWIW I don't see anywhere that you're disabling acceleration with
-nouveau.noaccel=1...
+--- Comment #4 from Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I turned it off to get a unmolested boot. I can reboot with and attach another
+log.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422799613.4b3a042.5225
-Date: Sun, 1 Feb 2015 14:06:53 +0000
+--1422799746.2428fFf01.5573
+Date: Sun, 1 Feb 2015 14:09:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
 </span></b>
-        <pre>FWIW I don't see anywhere that you're disabling acceleration with
-nouveau.noaccel=1...</pre>
+        <pre>I turned it off to get a unmolested boot. I can reboot with and attach another
+log.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +74,9 @@ nouveau.noaccel=1...</pre>
     </body>
 </html>
 
---1422799613.4b3a042.5225--
+--1422799746.2428fFf01.5573--
 
---===============1803955472==
+--===============0523568789==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1803955472==--
+--===============0523568789==--
