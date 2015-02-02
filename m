@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88868] PowerPC e5500, kernel crash, GT520, GT610
-Date: Mon, 02 Feb 2015 12:34:44 +0000
-Message-ID: <bug-88868-8800-VY40gzJJ3y@http.bugs.freedesktop.org/>
-References: <bug-88868-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
+ 3.16 kernel. dangerous Fan speed
+Date: Mon, 02 Feb 2015 21:19:52 +0000
+Message-ID: <bug-84721-8800-GxUqUEMziX@http.bugs.freedesktop.org/>
+References: <bug-84721-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1752658800=="
+Content-Type: multipart/mixed; boundary="===============0250330507=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1752658800==
-Content-Type: multipart/alternative; boundary="1422880484.47ba751C1.7017"; charset="UTF-8"
+--===============0250330507==
+Content-Type: multipart/alternative; boundary="1422911992.3d8eeF4.11707"; charset="UTF-8"
 
 
---1422880484.47ba751C1.7017
-Date: Mon, 2 Feb 2015 12:34:44 +0000
+--1422911992.3d8eeF4.11707
+Date: Mon, 2 Feb 2015 21:19:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88868
+https://bugs.freedesktop.org/show_bug.cgi?id=84721
 
---- Comment #20 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ben, I understand all of this and I can't demand anything from you.
+--- Comment #16 from Krzysztof Katowicz-Kowalewski <vnd-da06O8EuSQE@public.gmane.org> ---
+Created attachment 113073
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113073&action=edit
+VBIOS of GT 730
 
-May I ask you 2 questions:
-
-1. Is there any possibility that you will create a new patch which will support
-GT610 or GT520?
-
- 2. What do you think, is it possible that I will solve the problem by myself
-and create the patch by myself?
+I've added my gfx card vbios for further investigation.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422880484.47ba751C1.7017
-Date: Mon, 2 Feb 2015 12:34:44 +0000
+--1422911992.3d8eeF4.11707
+Date: Mon, 2 Feb 2015 21:19:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,23 +57,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c20">Comment # 20</a>
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
-              from <span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
+   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
+              from <span class="vcard"><a class="email" href="mailto:vnd&#64;vndh.net" title="Krzysztof Katowicz-Kowalewski &lt;vnd&#64;vndh.net&gt;"> <span class="fn">Krzysztof Katowicz-Kowalewski</span></a>
 </span></b>
-        <pre>Ben, I understand all of this and I can't demand anything from you.
+        <pre>Created <span class=""><a href="attachment.cgi?id=113073" name="attach_113073" title="VBIOS of GT 730">attachment 113073</a> <a href="attachment.cgi?id=113073&amp;action=edit" title="VBIOS of GT 730">[details]</a></span>
+VBIOS of GT 730
 
-May I ask you 2 questions:
-
-1. Is there any possibility that you will create a new patch which will support
-GT610 or GT520?
-
- 2. What do you think, is it possible that I will solve the problem by myself
-and create the patch by myself?</pre>
+I've added my gfx card vbios for further investigation.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +80,9 @@ and create the patch by myself?</pre>
     </body>
 </html>
 
---1422880484.47ba751C1.7017--
+--1422911992.3d8eeF4.11707--
 
---===============1752658800==
+--===============0250330507==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1752658800==--
+--===============0250330507==--
