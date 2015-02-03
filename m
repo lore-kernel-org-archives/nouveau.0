@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88947] "Unknown" display appears with no external
  display connected
-Date: Tue, 03 Feb 2015 20:36:19 +0000
-Message-ID: <bug-88947-8800-j2YVYgimDR@http.bugs.freedesktop.org/>
+Date: Tue, 03 Feb 2015 21:18:32 +0000
+Message-ID: <bug-88947-8800-dZkBVQIJnj@http.bugs.freedesktop.org/>
 References: <bug-88947-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0696531282=="
+Content-Type: multipart/mixed; boundary="===============0618479827=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88947-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0696531282==
-Content-Type: multipart/alternative; boundary="1422995779.D0BEf8f83.26173"; charset="UTF-8"
+--===============0618479827==
+Content-Type: multipart/alternative; boundary="1422998312.E3a6ED62.7880"; charset="UTF-8"
 
 
---1422995779.D0BEf8f83.26173
-Date: Tue, 3 Feb 2015 20:36:19 +0000
+--1422998312.E3a6ED62.7880
+Date: Tue, 3 Feb 2015 21:18:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88947
 
-Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|General                     |Driver/nouveau
-            Version|DRI git                     |unspecified
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-            Product|DRI                         |xorg
-         QA Contact|                            |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #1 from Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'm guessing this is a muxed hybrid laptop?  We hit a similar issue in radeon. 
+Basically the desktop environment doesn't understand muxed displays so it
+reports the status of both GPUs.  Arguably vgaswitcheroo needs to be augmented
+to properly report the mux information so userspace can do the right thing with
+respect to muxed laptops, but a short term fix would be to just report
+disconnected on whatever GPU is not currently selected via the mux.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422995779.D0BEf8f83.26173
-Date: Tue, 3 Feb 2015 20:36:19 +0000
+--1422998312.E3a6ED62.7880
+Date: Tue, 3 Feb 2015 21:18:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,61 +53,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - &quot;Unknown&quot; display appears with no external display connected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88947#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - &quot;Unknown&quot; display appears with no external display connected"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88947">bug 88947</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>General
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>DRI git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>xorg
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:alexdeucher&#64;gmail.com" title="Alex Deucher &lt;alexdeucher&#64;gmail.com&gt;"> <span class="fn">Alex Deucher</span></a>
+</span></b>
+        <pre>I'm guessing this is a muxed hybrid laptop?  We hit a similar issue in radeon. 
+Basically the desktop environment doesn't understand muxed displays so it
+reports the status of both GPUs.  Arguably vgaswitcheroo needs to be augmented
+to properly report the mux information so userspace can do the right thing with
+respect to muxed laptops, but a short term fix would be to just report
+disconnected on whatever GPU is not currently selected via the mux.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -121,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1422995779.D0BEf8f83.26173--
+--1422998312.E3a6ED62.7880--
 
---===============0696531282==
+--===============0618479827==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0696531282==--
+--===============0618479827==--
