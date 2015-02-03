@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84721] [NVC1] Nvidia Geforce GT 630 using nouveau on
- 3.16 kernel. dangerous Fan speed
-Date: Mon, 02 Feb 2015 21:19:52 +0000
-Message-ID: <bug-84721-8800-GxUqUEMziX@http.bugs.freedesktop.org/>
-References: <bug-84721-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88893] [NV46] GPU lockup with Quadro NVS 110M
+Date: Tue, 03 Feb 2015 02:47:53 +0000
+Message-ID: <bug-88893-8800-HvoAui9rl0@http.bugs.freedesktop.org/>
+References: <bug-88893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0250330507=="
+Content-Type: multipart/mixed; boundary="===============1270091811=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84721-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0250330507==
-Content-Type: multipart/alternative; boundary="1422911992.3d8eeF4.11707"; charset="UTF-8"
+--===============1270091811==
+Content-Type: multipart/alternative; boundary="1422931672.B3CCBa0d1.10114"; charset="UTF-8"
 
 
---1422911992.3d8eeF4.11707
-Date: Mon, 2 Feb 2015 21:19:52 +0000
+--1422931672.B3CCBa0d1.10114
+Date: Tue, 3 Feb 2015 02:47:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84721
+https://bugs.freedesktop.org/show_bug.cgi?id=88893
 
---- Comment #16 from Krzysztof Katowicz-Kowalewski <vnd-da06O8EuSQE@public.gmane.org> ---
-Created attachment 113073
-  --> https://bugs.freedesktop.org/attachment.cgi?id=113073&action=edit
-VBIOS of GT 730
+--- Comment #13 from Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Ok, a bit more info!
 
-I've added my gfx card vbios for further investigation.
+It turns out that X wasn't completely hanging but it was taking a REALLY long
+time to get to gnome-shell, long enough that it actually sleeps the monitor and
+then I get the lock screen when I wake it up. 
+
+Current versions:
+nouveau: current git (as of a few days ago)
+libdrm: 2.4.59
+
+kernel options: nouveau.noaccel=1
+
+I can attach the journal log but nothing is jumping out except maybe:
+kernel: perf interrupt took too long (10103 > 9615), lowering
+kernel.perf_event_max_sample_rate to 13000
+
+But I'm not sure that's related.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422911992.3d8eeF4.11707
-Date: Mon, 2 Feb 2015 21:19:52 +0000
+--1422931672.B3CCBa0d1.10114
+Date: Tue, 3 Feb 2015 02:47:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +68,31 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721#c16">Comment # 16</a>
+   title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] Nvidia Geforce GT 630 using nouveau on 3.16 kernel. dangerous Fan speed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84721">bug 84721</a>
-              from <span class="vcard"><a class="email" href="mailto:vnd&#64;vndh.net" title="Krzysztof Katowicz-Kowalewski &lt;vnd&#64;vndh.net&gt;"> <span class="fn">Krzysztof Katowicz-Kowalewski</span></a>
+   title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
+              from <span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=113073" name="attach_113073" title="VBIOS of GT 730">attachment 113073</a> <a href="attachment.cgi?id=113073&amp;action=edit" title="VBIOS of GT 730">[details]</a></span>
-VBIOS of GT 730
+        <pre>Ok, a bit more info!
 
-I've added my gfx card vbios for further investigation.</pre>
+It turns out that X wasn't completely hanging but it was taking a REALLY long
+time to get to gnome-shell, long enough that it actually sleeps the monitor and
+then I get the lock screen when I wake it up. 
+
+Current versions:
+nouveau: current git (as of a few days ago)
+libdrm: 2.4.59
+
+kernel options: nouveau.noaccel=1
+
+I can attach the journal log but nothing is jumping out except maybe:
+kernel: perf interrupt took too long (10103 &gt; 9615), lowering
+kernel.perf_event_max_sample_rate to 13000
+
+But I'm not sure that's related.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +104,9 @@ I've added my gfx card vbios for further investigation.</pre>
     </body>
 </html>
 
---1422911992.3d8eeF4.11707--
+--1422931672.B3CCBa0d1.10114--
 
---===============0250330507==
+--===============1270091811==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0250330507==--
+--===============1270091811==--
