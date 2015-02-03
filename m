@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88946] [NVC1] black screen after resuming from
 	hibernate
-Date: Tue, 03 Feb 2015 17:09:05 +0000
-Message-ID: <bug-88946-8800-VbT5su8MrB@http.bugs.freedesktop.org/>
+Date: Tue, 03 Feb 2015 17:10:02 +0000
+Message-ID: <bug-88946-8800-fhZ1emDdIB@http.bugs.freedesktop.org/>
 References: <bug-88946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1776870898=="
+Content-Type: multipart/mixed; boundary="===============2037229367=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1776870898==
-Content-Type: multipart/alternative; boundary="1422983345.b0F121.24210"; charset="UTF-8"
+--===============2037229367==
+Content-Type: multipart/alternative; boundary="1422983401.aAe477dE1.24472"; charset="UTF-8"
 
 
---1422983345.b0F121.24210
-Date: Tue, 3 Feb 2015 17:09:05 +0000
+--1422983401.aAe477dE1.24472
+Date: Tue, 3 Feb 2015 17:10:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88946
 
---- Comment #1 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 113125
-  --> https://bugs.freedesktop.org/attachment.cgi?id=113125&action=edit
-Xorg log standy and resume - working
+--- Comment #2 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Created attachment 113126
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113126&action=edit
+syslog messages hibernate and resume - NOT working
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1422983345.b0F121.24210
-Date: Tue, 3 Feb 2015 17:09:05 +0000
+--1422983401.aAe477dE1.24472
+Date: Tue, 3 Feb 2015 17:10:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88946">bug 88946</a>
               from <span class="vcard"><a class="email" href="mailto:baumber&#64;hotmail.com" title="B. A. &lt;baumber&#64;hotmail.com&gt;"> <span class="fn">B. A.</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=113125" name="attach_113125" title="Xorg log standy and resume - working">attachment 113125</a> <a href="attachment.cgi?id=113125&amp;action=edit" title="Xorg log standy and resume - working">[details]</a></span>
-Xorg log standy and resume - working</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=113126" name="attach_113126" title="syslog messages hibernate and resume - NOT working">attachment 113126</a> <a href="attachment.cgi?id=113126&amp;action=edit" title="syslog messages hibernate and resume - NOT working">[details]</a></span>
+syslog messages hibernate and resume - NOT working</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg log standy and resume - working</pre>
     </body>
 </html>
 
---1422983345.b0F121.24210--
+--1422983401.aAe477dE1.24472--
 
---===============1776870898==
+--===============2037229367==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1776870898==--
+--===============2037229367==--
