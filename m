@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87819] [NVAC] EQ overflowing
-Date: Wed, 04 Feb 2015 15:06:23 +0000
-Message-ID: <bug-87819-8800-hcRlOk482i@http.bugs.freedesktop.org/>
+Date: Wed, 04 Feb 2015 17:56:56 +0000
+Message-ID: <bug-87819-8800-zv4nidR0tS@http.bugs.freedesktop.org/>
 References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0464451204=="
+Content-Type: multipart/mixed; boundary="===============1115481225=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,79 +20,133 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0464451204==
-Content-Type: multipart/alternative; boundary="1423062383.4Ca7fF82.21801"; charset="UTF-8"
+--===============1115481225==
+Content-Type: multipart/alternative; boundary="1423072616.0eFA1.13309"; charset="UTF-8"
 
 
---1423062383.4Ca7fF82.21801
-Date: Wed, 4 Feb 2015 15:06:23 +0000
+--1423072616.0eFA1.13309
+Date: Wed, 4 Feb 2015 17:56:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87819
+https://bugs.freedesktop.org/show_bug.cgi?id=3D87819
 
---- Comment #10 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Thank you for the files.
-I'll see if I can spend some time on it, but have unfortunately some other bugs
-to fix first.
+--- Comment #11 from Stuart Longland <stuartl-3e+Fe6x+Dsh6S/UX/emfpkB+6BGkLq7r@public.gmane.org> ---
+Now running a kernel built from the Nouveau git tree at this commit:
 
-(In reply to Etienne URBAH from comment #9)
-> I am NOT sure that I can test the latest 'Arch Linux' image from
-> http://nouveau.pmoreau.org but I will try.
+commit ff4c0d5213b015e60aa87c1352604f10ba9c3e12
+Author: Bruno Pr=C3=A9mont <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
+Date:   Sun Dec 21 17:43:31 2014 +0100
 
-The patch we were talking about made it into 3.19.0-rc4, so by testing
-3.19.0-rc7 it's clear it wasn't enough to fix the issue.
+    drm/nouveau/nouveau: Do not BUG_ON(!spin_is_locked()) on UP
 
--- 
+    On !SMP systems spinlocks do not exist. Thus checking of they
+    are active will always fail.
+
+    Use
+      assert_spin_locked(lock);
+    instead of
+      BUG_ON(!spin_is_locked(lock));
+    to not BUG() on all UP systems.
+
+    Signed-off-by: Bruno Pr=C3=A9mont <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+RC=3D0 stuartl@vk4msl-mb ~ $ uname -a
+Linux vk4msl-mb 3.18.0-rc4-vk4msl-mb-00789-gff4c0d5 #1 SMP PREEMPT Wed Feb 4
+20:19:39 EST 2015 x86_64 Intel(R) Core(TM)2 Duo CPU P7350 @ 2.00GHz
+GenuineIntel GNU/Linux
+RC=3D0 stuartl@vk4msl-mb ~ $ uptime
+ 03:52:41 up 17 min,  1 user,  load average: 0.62, 0.49, 0.47
+
+I've been tinkering in OpenSCAD for a while and it has not yet crashed.  Ma=
+ybe
+this weekend I'll try stock kernel 3.18.0-rc4 then bisect until we figure o=
+ut
+what patches fix it and try cherry-picking those.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423062383.4Ca7fF82.21801
-Date: Wed, 4 Feb 2015 15:06:23 +0000
+--1423072616.0eFA1.13309
+Date: Wed, 4 Feb 2015 17:56:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NVAC] EQ overflowing"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title=3D"NEW - [NVAC] EQ overflowing"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819">bug 87819<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+stuartl&#64;longlandclan.yi.org" title=3D"Stuart Longland &lt;stuartl&#64;l=
+onglandclan.yi.org&gt;"> <span class=3D"fn">Stuart Longland</span></a>
 </span></b>
-        <pre>Thank you for the files.
-I'll see if I can spend some time on it, but have unfortunately some other bugs
-to fix first.
+        <pre>Now running a kernel built from the Nouveau git tree at this c=
+ommit:
 
-(In reply to Etienne URBAH from <a href="show_bug.cgi?id=87819#c9">comment #9</a>)
-<span class="quote">&gt; I am NOT sure that I can test the latest 'Arch Linux' image from
-&gt; <a href="http://nouveau.pmoreau.org">http://nouveau.pmoreau.org</a> but I will try.</span >
+commit ff4c0d5213b015e60aa87c1352604f10ba9c3e12
+Author: Bruno Pr=C3=A9mont &lt;<a href=3D"mailto:bonbons&#64;linux-vserver.=
+org">bonbons&#64;linux-vserver.org</a>&gt;
+Date:   Sun Dec 21 17:43:31 2014 +0100
 
-The patch we were talking about made it into 3.19.0-rc4, so by testing
-3.19.0-rc7 it's clear it wasn't enough to fix the issue.</pre>
+    drm/nouveau/nouveau: Do not BUG_ON(!spin_is_locked()) on UP
+
+    On !SMP systems spinlocks do not exist. Thus checking of they
+    are active will always fail.
+
+    Use
+      assert_spin_locked(lock);
+    instead of
+      BUG_ON(!spin_is_locked(lock));
+    to not BUG() on all UP systems.
+
+    Signed-off-by: Bruno Pr=C3=A9mont &lt;<a href=3D"mailto:bonbons&#64;lin=
+ux-vserver.org">bonbons&#64;linux-vserver.org</a>&gt;
+    Signed-off-by: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com"=
+>bskeggs&#64;redhat.com</a>&gt;
+
+RC=3D0 stuartl&#64;vk4msl-mb ~ $ uname -a
+Linux vk4msl-mb 3.18.0-rc4-vk4msl-mb-00789-gff4c0d5 #1 SMP PREEMPT Wed Feb 4
+20:19:39 EST 2015 x86_64 Intel(R) Core(TM)2 Duo CPU P7350 &#64; 2.00GHz
+GenuineIntel GNU/Linux
+RC=3D0 stuartl&#64;vk4msl-mb ~ $ uptime
+ 03:52:41 up 17 min,  1 user,  load average: 0.62, 0.49, 0.47
+
+I've been tinkering in OpenSCAD for a while and it has not yet crashed.  Ma=
+ybe
+this weekend I'll try stock kernel 3.18.0-rc4 then bisect until we figure o=
+ut
+what patches fix it and try cherry-picking those.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1423062383.4Ca7fF82.21801--
+--1423072616.0eFA1.13309--
 
---===============0464451204==
+--===============1115481225==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0464451204==--
+--===============1115481225==--
