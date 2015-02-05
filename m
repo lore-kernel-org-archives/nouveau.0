@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88868] PowerPC e5500, kernel crash, GT520, GT610
-Date: Thu, 05 Feb 2015 15:19:55 +0000
-Message-ID: <bug-88868-8800-CGp2aXvBe6@http.bugs.freedesktop.org/>
+Date: Thu, 05 Feb 2015 15:59:55 +0000
+Message-ID: <bug-88868-8800-jtJ1EmRhGo@http.bugs.freedesktop.org/>
 References: <bug-88868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0585442033=="
+Content-Type: multipart/mixed; boundary="===============1689473321=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,77 +20,81 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0585442033==
-Content-Type: multipart/alternative; boundary="1423149595.E2ccd1e71.11986"; charset="UTF-8"
+--===============1689473321==
+Content-Type: multipart/alternative; boundary="1423151995.775a1.24977"; charset="UTF-8"
 
 
---1423149595.E2ccd1e71.11986
-Date: Thu, 5 Feb 2015 15:19:55 +0000
+--1423151995.775a1.24977
+Date: Thu, 5 Feb 2015 15:59:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88868
+https://bugs.freedesktop.org/show_bug.cgi?id=3D88868
 
---- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Dmitriy from comment #24)
-> As I understand my card cannot be initialized because of the missing of this
-> field.
+--- Comment #26 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+=D0=B1=D0=BB=D0=B8=D0=BD =D0=BA=D0=B0=D0=BA=D0=BE=D0=B9-=D1=82=D0=BE =D1=82=
+=D1=80=D0=B5=D1=88,
 
-Huh? Your card comes up fine now. NVDA,BMP is how macs passed in their vbios.
-Your vbios is read out using PROM just fine.
+=D0=BE=D0=B4=D0=B8=D0=BD =D0=BF=D0=B8=D1=88=D0=B5=D1=82 =D0=BF=D1=80=D0=BE=
+=D0=B8=D0=BD=D0=B8=D1=86=D0=B8=D0=B0=D0=BB=D0=B8=D0=B7=D0=B8=D1=80=D0=BE=D0=
+=B2=D0=B0=D0=BD=D0=B0, =D0=B4=D1=80=D1=83=D0=B3=D0=BE=D0=B9 =D0=BD=D0=B5 =
+=D0=BF=D1=80=D0=BE=D0=B8=D0=BD=D0=B8=D1=86=D0=B8=D0=B0=D0=BB=D0=B8=D0=B7=D0=
+=B8=D1=80=D0=BE=D0=B2=D0=B0=D0=BD=D0=B0. (((
 
-Your current issue is something minor, like the color LUT being written in
-wrong, or a missing byteswap on a texture (or one too many!)
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423149595.E2ccd1e71.11986
-Date: Thu, 5 Feb 2015 15:19:55 +0000
+--1423151995.775a1.24977
+Date: Thu, 5 Feb 2015 15:59:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - PowerPC e5500, kernel crash, GT520, GT610"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88868#c26">Commen=
+t # 26</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - PowerPC e5500, kernel crash, GT520, GT610"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D88868">bug 88868<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+oboturoff&#64;gmail.com" title=3D"Dmitriy &lt;oboturoff&#64;gmail.com&gt;">=
+ <span class=3D"fn">Dmitriy</span></a>
 </span></b>
-        <pre>(In reply to Dmitriy from <a href="show_bug.cgi?id=88868#c24">comment #24</a>)
-<span class="quote">&gt; As I understand my card cannot be initialized because of the missing of this
-&gt; field.</span >
+        <pre>=D0=B1=D0=BB=D0=B8=D0=BD =D0=BA=D0=B0=D0=BA=D0=BE=D0=B9-=D1=82=
+=D0=BE =D1=82=D1=80=D0=B5=D1=88,
 
-Huh? Your card comes up fine now. NVDA,BMP is how macs passed in their vbios.
-Your vbios is read out using PROM just fine.
-
-Your current issue is something minor, like the color LUT being written in
-wrong, or a missing byteswap on a texture (or one too many!)</pre>
+=D0=BE=D0=B4=D0=B8=D0=BD =D0=BF=D0=B8=D1=88=D0=B5=D1=82 =D0=BF=D1=80=D0=BE=
+=D0=B8=D0=BD=D0=B8=D1=86=D0=B8=D0=B0=D0=BB=D0=B8=D0=B7=D0=B8=D1=80=D0=BE=D0=
+=B2=D0=B0=D0=BD=D0=B0, =D0=B4=D1=80=D1=83=D0=B3=D0=BE=D0=B9 =D0=BD=D0=B5 =
+=D0=BF=D1=80=D0=BE=D0=B8=D0=BD=D0=B8=D1=86=D0=B8=D0=B0=D0=BB=D0=B8=D0=B7=D0=
+=B8=D1=80=D0=BE=D0=B2=D0=B0=D0=BD=D0=B0. (((</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1423149595.E2ccd1e71.11986--
+--1423151995.775a1.24977--
 
---===============0585442033==
+--===============1689473321==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0585442033==--
+--===============1689473321==--
