@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87819] [NVAC] EQ overflowing
-Date: Wed, 04 Feb 2015 17:56:56 +0000
-Message-ID: <bug-87819-8800-zv4nidR0tS@http.bugs.freedesktop.org/>
-References: <bug-87819-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88868] PowerPC e5500, kernel crash, GT520, GT610
+Date: Thu, 05 Feb 2015 15:07:26 +0000
+Message-ID: <bug-88868-8800-HCfv29EFtO@http.bugs.freedesktop.org/>
+References: <bug-88868-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1115481225=="
+Content-Type: multipart/mixed; boundary="===============0232174963=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88868-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,133 +20,98 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1115481225==
-Content-Type: multipart/alternative; boundary="1423072616.0eFA1.13309"; charset="UTF-8"
+--===============0232174963==
+Content-Type: multipart/alternative; boundary="1423148846.fAcBC1.8240"; charset="UTF-8"
 
 
---1423072616.0eFA1.13309
-Date: Wed, 4 Feb 2015 17:56:56 +0000
+--1423148846.fAcBC1.8240
+Date: Thu, 5 Feb 2015 15:07:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D87819
+https://bugs.freedesktop.org/show_bug.cgi?id=88868
 
---- Comment #11 from Stuart Longland <stuartl-3e+Fe6x+Dsh6S/UX/emfpkB+6BGkLq7r@public.gmane.org> ---
-Now running a kernel built from the Nouveau git tree at this commit:
+--- Comment #24 from Dmitriy <oboturoff-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 113202
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113202&action=edit
+fragment of my fdt
 
-commit ff4c0d5213b015e60aa87c1352604f10ba9c3e12
-Author: Bruno Pr=C3=A9mont <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
-Date:   Sun Dec 21 17:43:31 2014 +0100
+Ben, help me please with the code.
 
-    drm/nouveau/nouveau: Do not BUG_ON(!spin_is_locked()) on UP
+I don't ask you to create the patch. Please give me only comments to your code.
 
-    On !SMP systems spinlocks do not exist. Thus checking of they
-    are active will always fail.
+There is the following line in your code (bios/base.c):
 
-    Use
-      assert_spin_locked(lock);
-    instead of
-      BUG_ON(!spin_is_locked(lock));
-    to not BUG() on all UP systems.
+data = of_get_property(dn, "NVDA,BMP", &size);
 
-    Signed-off-by: Bruno Pr=C3=A9mont <bonbons-ud5FBsm0p/xEiooADzr8i9i2O/JbrIOy@public.gmane.org>
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+As I understand there is the operation for "NVDA" searching on flat device tree
+file.
 
-RC=3D0 stuartl@vk4msl-mb ~ $ uname -a
-Linux vk4msl-mb 3.18.0-rc4-vk4msl-mb-00789-gff4c0d5 #1 SMP PREEMPT Wed Feb 4
-20:19:39 EST 2015 x86_64 Intel(R) Core(TM)2 Duo CPU P7350 @ 2.00GHz
-GenuineIntel GNU/Linux
-RC=3D0 stuartl@vk4msl-mb ~ $ uptime
- 03:52:41 up 17 min,  1 user,  load average: 0.62, 0.49, 0.47
+I haven't this field in my fdt. Tell me please how should it look like? I can'
+t find any example in internet.
 
-I've been tinkering in OpenSCAD for a while and it has not yet crashed.  Ma=
-ybe
-this weekend I'll try stock kernel 3.18.0-rc4 then bisect until we figure o=
-ut
-what patches fix it and try cherry-picking those.
+As I understand my card cannot be initialized because of the missing of this
+field.
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423072616.0eFA1.13309
-Date: Wed, 4 Feb 2015 17:56:56 +0000
+--1423148846.fAcBC1.8240
+Date: Thu, 5 Feb 2015 15:07:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVAC] EQ overflowing"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVAC] EQ overflowing"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819">bug 87819<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-stuartl&#64;longlandclan.yi.org" title=3D"Stuart Longland &lt;stuartl&#64;l=
-onglandclan.yi.org&gt;"> <span class=3D"fn">Stuart Longland</span></a>
+   title="NEW - PowerPC e5500, kernel crash, GT520, GT610"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88868">bug 88868</a>
+              from <span class="vcard"><a class="email" href="mailto:oboturoff&#64;gmail.com" title="Dmitriy &lt;oboturoff&#64;gmail.com&gt;"> <span class="fn">Dmitriy</span></a>
 </span></b>
-        <pre>Now running a kernel built from the Nouveau git tree at this c=
-ommit:
+        <pre>Created <span class=""><a href="attachment.cgi?id=113202" name="attach_113202" title="fragment of my fdt">attachment 113202</a> <a href="attachment.cgi?id=113202&amp;action=edit" title="fragment of my fdt">[details]</a></span>
+fragment of my fdt
 
-commit ff4c0d5213b015e60aa87c1352604f10ba9c3e12
-Author: Bruno Pr=C3=A9mont &lt;<a href=3D"mailto:bonbons&#64;linux-vserver.=
-org">bonbons&#64;linux-vserver.org</a>&gt;
-Date:   Sun Dec 21 17:43:31 2014 +0100
+Ben, help me please with the code.
 
-    drm/nouveau/nouveau: Do not BUG_ON(!spin_is_locked()) on UP
+I don't ask you to create the patch. Please give me only comments to your code.
 
-    On !SMP systems spinlocks do not exist. Thus checking of they
-    are active will always fail.
+There is the following line in your code (bios/base.c):
 
-    Use
-      assert_spin_locked(lock);
-    instead of
-      BUG_ON(!spin_is_locked(lock));
-    to not BUG() on all UP systems.
+data = of_get_property(dn, &quot;NVDA,BMP&quot;, &amp;size);
 
-    Signed-off-by: Bruno Pr=C3=A9mont &lt;<a href=3D"mailto:bonbons&#64;lin=
-ux-vserver.org">bonbons&#64;linux-vserver.org</a>&gt;
-    Signed-off-by: Ben Skeggs &lt;<a href=3D"mailto:bskeggs&#64;redhat.com"=
->bskeggs&#64;redhat.com</a>&gt;
+As I understand there is the operation for &quot;NVDA&quot; searching on flat device tree
+file.
 
-RC=3D0 stuartl&#64;vk4msl-mb ~ $ uname -a
-Linux vk4msl-mb 3.18.0-rc4-vk4msl-mb-00789-gff4c0d5 #1 SMP PREEMPT Wed Feb 4
-20:19:39 EST 2015 x86_64 Intel(R) Core(TM)2 Duo CPU P7350 &#64; 2.00GHz
-GenuineIntel GNU/Linux
-RC=3D0 stuartl&#64;vk4msl-mb ~ $ uptime
- 03:52:41 up 17 min,  1 user,  load average: 0.62, 0.49, 0.47
+I haven't this field in my fdt. Tell me please how should it look like? I can'
+t find any example in internet.
 
-I've been tinkering in OpenSCAD for a while and it has not yet crashed.  Ma=
-ybe
-this weekend I'll try stock kernel 3.18.0-rc4 then bisect until we figure o=
-ut
-what patches fix it and try cherry-picking those.</pre>
+As I understand my card cannot be initialized because of the missing of this
+field.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1423072616.0eFA1.13309--
+--1423148846.fAcBC1.8240--
 
---===============1115481225==
+--===============0232174963==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1115481225==--
+--===============0232174963==--
