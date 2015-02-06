@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84842] Xorg freezes every time on long idle
-Date: Fri, 06 Feb 2015 10:50:14 +0000
-Message-ID: <bug-84842-8800-u7fERcbqIF@http.bugs.freedesktop.org/>
-References: <bug-84842-8800@http.bugs.freedesktop.org/>
+From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: [PATCH 2/3] nv50/ir: Add emit support for MAD IMM format
+Date: Fri,  6 Feb 2015 22:46:55 +0100
+Message-ID: <1423259216-7202-2-git-send-email-rspliet@eclipso.eu>
+References: <1423259216-7202-1-git-send-email-rspliet@eclipso.eu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1145047074=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1423259216-7202-1-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,92 +17,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1145047074==
-Content-Type: multipart/alternative; boundary="1423219814.f22D1a5f2.3278"; charset="UTF-8"
-
-
---1423219814.f22D1a5f2.3278
-Date: Fri, 6 Feb 2015 10:50:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=84842
-
-Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Server/General              |Driver/nouveau
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1423219814.f22D1a5f2.3278
-Date: Fri, 6 Feb 2015 10:50:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Xorg freezes every time on long idle"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84842">bug 84842</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Server/General
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1423219814.f22D1a5f2.3278--
-
---===============1145047074==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1145047074==--
+QnV0IGRvbid0IGVuYWJsZSBnZW5lcmF0aW9uIG9mIGl0IGluIHRoZSBvcFByb3BlcnRpZXMsIGJl
+Y2F1c2Ugd2UgY2FuJ3QKZ3VhcmFudGVlIHRoZSBTRFNUPT1TUkMyIGNvbnN0cmFpbnQgdW50aWwg
+YWZ0ZXIgcmVnaXN0ZXIgYXNzaWdubWVudC4gV2UnbGwKYWRkIGEgcG9zdC1SQSBmb2xkaW5nIHBh
+c3MgdG8gdXRpbGlzZSB0aGlzLgoKU2lnbmVkLW9mZi1ieTogUm95IFNwbGlldCA8cnNwbGlldEBl
+Y2xpcHNvLmV1PgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfZW1pdF9udjUwLmNwcCB8IDggKysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlv
+bnMoKykKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
+djUwX2lyX2VtaXRfbnY1MC5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
+bi9udjUwX2lyX2VtaXRfbnY1MC5jcHAKaW5kZXggMjNlNGJhYi4uYjFlNzQwOSAxMDA2NDQKLS0t
+IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAu
+Y3BwCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZW1p
+dF9udjUwLmNwcApAQCAtOTM5LDYgKzkzOSwxNCBAQCBDb2RlRW1pdHRlck5WNTA6OmVtaXRGTUFE
+KGNvbnN0IEluc3RydWN0aW9uICppKQogCiAgICBjb2RlWzBdID0gMHhlMDAwMDAwMDsKIAorICAg
+aWYgKGktPnNyYygxKS5nZXRGaWxlKCkgPT0gRklMRV9JTU1FRElBVEUpIHsKKyAgICAgIGNvZGVb
+MV0gPSAwOworICAgICAgZW1pdEZvcm1fSU1NKGkpOworICAgICAgY29kZVswXSB8PSBuZWdfbXVs
+IDw8IDE1OworICAgICAgY29kZVswXSB8PSBuZWdfYWRkIDw8IDIyOworICAgICAgaWYgKGktPnNh
+dHVyYXRlKQorICAgICAgICAgY29kZVswXSB8PSAxIDw8IDg7CisgICB9IGVsc2UKICAgIGlmIChp
+LT5lbmNTaXplID09IDQpIHsKICAgICAgIGVtaXRGb3JtX01VTChpKTsKICAgICAgIGNvZGVbMF0g
+fD0gbmVnX211bCA8PCAxNTsKLS0gCjIuMS4wCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
