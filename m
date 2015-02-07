@@ -1,10 +1,9 @@
-From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 1/3] nv50/ir: Add support for MAD 4-byte opcode
-Date: Fri,  6 Feb 2015 22:46:54 +0100
-Message-ID: <1423259216-7202-1-git-send-email-rspliet@eclipso.eu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89019] New: Black texture using Qt5
+Date: Sat, 07 Feb 2015 11:37:46 +0000
+Message-ID: <bug-89019-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1040171671=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,51 +14,184 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QWRkIGVtaXNzaW9uIHJ1bGVzIGZvciBuZWdhdGl2ZSBhbmQgc2F0dXJhdGUgZmxhZ3MgZm9yIE1B
-RCA0LWJ5dGUgb3Bjb2RlcywKYW5kIGdldCByaWQgb2Ygc29tZSBvZiB0aGUgY29uc3RyYWludHMu
-IE9idmlvdXNseSB0ZXN0ZWQgd2l0aCBhIHdpZGUgdmFyaWV0eQpvZiBzaGFkZXJzLgoKVjI6IERv
-Y3VtZW50IE1BRCBhcyBzdXBwb3J0ZWQgc2hvcnQgZm9ybQpWMzogU3BsaXQgdXAgSU1NIGZyb20g
-c2hvcnQtZm9ybSBtb2RpZmllcnMKClNpZ25lZC1vZmYtYnk6IFJveSBTcGxpZXQgPHJzcGxpZXRA
-ZWNsaXBzby5ldT4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
-X2lyX2VtaXRfbnY1MC5jcHAgICB8IDEwICsrKystLS0tLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwIHwgIDQgKystLQogMiBmaWxl
-cyBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3Bw
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAu
-Y3BwCmluZGV4IDIwNzczODguLjIzZTRiYWIgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZW1pdF9udjUwLmNwcAorKysgYi9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2VtaXRfbnY1MC5jcHAKQEAgLTk0MSw3
-ICs5NDEsMTAgQEAgQ29kZUVtaXR0ZXJOVjUwOjplbWl0Rk1BRChjb25zdCBJbnN0cnVjdGlvbiAq
-aSkKIAogICAgaWYgKGktPmVuY1NpemUgPT0gNCkgewogICAgICAgZW1pdEZvcm1fTVVMKGkpOwot
-ICAgICAgYXNzZXJ0KCFuZWdfbXVsICYmICFuZWdfYWRkKTsKKyAgICAgIGNvZGVbMF0gfD0gbmVn
-X211bCA8PCAxNTsKKyAgICAgIGNvZGVbMF0gfD0gbmVnX2FkZCA8PCAyMjsKKyAgICAgIGlmIChp
-LT5zYXR1cmF0ZSkKKyAgICAgICAgIGNvZGVbMF0gfD0gMSA8PCA4OwogICAgfSBlbHNlIHsKICAg
-ICAgIGNvZGVbMV0gID0gbmVnX211bCA8PCAyNjsKICAgICAgIGNvZGVbMV0gfD0gbmVnX2FkZCA8
-PCAyNzsKQEAgLTE5MzEsMTEgKzE5MzQsNiBAQCBDb2RlRW1pdHRlck5WNTA6OmdldE1pbkVuY29k
-aW5nU2l6ZShjb25zdCBJbnN0cnVjdGlvbiAqaSkgY29uc3QKIAogICAgLy8gY2hlY2sgY29uc3Ry
-YWludHMgb24gc2hvcnQgTUFECiAgICBpZiAoaW5mby5zcmNOciA+PSAyICYmIGktPnNyY0V4aXN0
-cygyKSkgewotICAgICAgaWYgKGktPnNhdHVyYXRlIHx8IGktPnNyYygyKS5tb2QpCi0gICAgICAg
-ICByZXR1cm4gODsKLSAgICAgIGlmICgoaS0+c3JjKDApLm1vZCBeIGktPnNyYygxKS5tb2QpIHx8
-Ci0gICAgICAgICAgKGktPnNyYygwKS5tb2QgfCBpLT5zcmMoMSkubW9kKS5hYnMoKSkKLSAgICAg
-ICAgIHJldHVybiA4OwogICAgICAgaWYgKCFpLT5kZWZFeGlzdHMoMCkgfHwKICAgICAgICAgICBp
-LT5kZWYoMCkucmVwKCktPnJlZy5kYXRhLmlkICE9IGktPnNyYygyKS5yZXAoKS0+cmVnLmRhdGEu
-aWQpCiAgICAgICAgICByZXR1cm4gODsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwIGIvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKaW5kZXggNDhmOTk2
-Yi4uMTc4YTE2NyAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
-ZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAKQEAgLTExNyw4ICsxMTcsOCBAQCB2
-b2lkIFRhcmdldE5WNTA6OmluaXRPcEluZm8oKQogICAgfTsKICAgIHN0YXRpYyBjb25zdCB1aW50
-MzJfdCBzaG9ydEZvcm1bKE9QX0xBU1QgKyAzMSkgLyAzMl0gPQogICAgewotICAgICAgLy8gTU9W
-LEFERCxTVUIsTVVMLFNBRCxML1BJTlRFUlAsUkNQLFRFWCxUWEYKLSAgICAgIDB4MDAwMTBlNDAs
-IDB4MDAwMDAwNDAsIDB4MDAwMDA0OTgsIDB4MDAwMDAwMDAKKyAgICAgIC8vIE1PVixBREQsU1VC
-LE1VTCxNQUQsU0FELEwvUElOVEVSUCxSQ1AsVEVYLFRYRgorICAgICAgMHgwMDAxNGU0MCwgMHgw
-MDAwMDA0MCwgMHgwMDAwMDQ5OCwgMHgwMDAwMDAwMAogICAgfTsKICAgIHN0YXRpYyBjb25zdCBv
-cGVyYXRpb24gbm9EZXN0TGlzdFtdID0KICAgIHsKLS0gCjIuMS4wCgoKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1040171671==
+Content-Type: multipart/alternative; boundary="1423309066.fc2b8cfe0.4971"; charset="UTF-8"
+
+
+--1423309066.fc2b8cfe0.4971
+Date: Sat, 7 Feb 2015 11:37:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89019
+
+            Bug ID: 89019
+           Summary: Black texture using Qt5
+           Product: Mesa
+           Version: 10.4
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: andrea-fd97jBR+K/6hPH1hqNUYSQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 113241
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113241&action=edit
+Screenshot of Plasma 2
+
+Hi there,
+I don't know where to start because I just migrated to Plasma 2 and got this
+black texture (see attachment).
+
+Everything is fine using Qt4, so I suppose this could be a Qt issue? But then I
+used vesa as Xorg driver and the texture is painted correctly.
+The same black texture is used in SDDM too, which is also a Qt5 application.
+
+Any idea on where to start?
+
+NVIDIA FX 5500, Xorg 1.16.3, mesa 10.4.4, nouveau 1.0.11, Qt 5.4.0
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1423309066.fc2b8cfe0.4971
+Date: Sat, 7 Feb 2015 11:37:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Black texture using Qt5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">89019</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Black texture using Qt5
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.4
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>andrea&#64;archlinux.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=113241" name="attach_113241" title="Screenshot of Plasma 2">attachment 113241</a> <a href="attachment.cgi?id=113241&amp;action=edit" title="Screenshot of Plasma 2">[details]</a></span>
+Screenshot of Plasma 2
+
+Hi there,
+I don't know where to start because I just migrated to Plasma 2 and got this
+black texture (see attachment).
+
+Everything is fine using Qt4, so I suppose this could be a Qt issue? But then I
+used vesa as Xorg driver and the texture is painted correctly.
+The same black texture is used in SDDM too, which is also a Qt5 application.
+
+Any idea on where to start?
+
+NVIDIA FX 5500, Xorg 1.16.3, mesa 10.4.4, nouveau 1.0.11, Qt 5.4.0</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1423309066.fc2b8cfe0.4971--
+
+--===============1040171671==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1040171671==--
