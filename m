@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78530] Memory corruption on Lenovo t440p with runpm
-Date: Sat, 07 Feb 2015 13:15:08 +0000
-Message-ID: <bug-78530-8800-3FAAAyOk8I@http.bugs.freedesktop.org/>
-References: <bug-78530-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89019] Black texture using Qt5
+Date: Sat, 07 Feb 2015 15:22:56 +0000
+Message-ID: <bug-89019-8800-SpEGCN1QWW@http.bugs.freedesktop.org/>
+References: <bug-89019-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0733148292=="
+Content-Type: multipart/mixed; boundary="===============1987978282=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78530-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89019-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0733148292==
-Content-Type: multipart/alternative; boundary="1423314908.e77B573.28077"; charset="UTF-8"
+--===============1987978282==
+Content-Type: multipart/alternative; boundary="1423322575.f2c3EE0.25589"; charset="UTF-8"
 
 
---1423314908.e77B573.28077
-Date: Sat, 7 Feb 2015 13:15:08 +0000
+--1423322575.f2c3EE0.25589
+Date: Sat, 7 Feb 2015 15:22:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=78530
+https://bugs.freedesktop.org/show_bug.cgi?id=89019
 
---- Comment #21 from Nikolay Amiantov <nikoamia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@doudou on Github managed to solve this problem[1][2] -- Nouveau can port the
-same fix, I think.
+Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-[1]:
-https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecomment-67741841
-[2]: https://github.com/Bumblebee-Project/bbswitch/pull/102
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #113241|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1423314908.e77B573.28077
-Date: Sat, 7 Feb 2015 13:15:08 +0000
+--1423322575.f2c3EE0.25589
+Date: Sat, 7 Feb 2015 15:22:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,39 +52,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - Memory corruption on Lenovo t440p with runpm"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78530">bug 78530</a>
-              from <span class="vcard"><a class="email" href="mailto:nikoamia&#64;gmail.com" title="Nikolay Amiantov &lt;nikoamia&#64;gmail.com&gt;"> <span class="fn">Nikolay Amiantov</span></a>
-</span></b>
-        <pre>&#64;doudou on Github managed to solve this problem[1][2] -- Nouveau can port the
-same fix, I think.
+    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Black texture using Qt5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">bug 89019</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-[1]:
-<a href="https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecomment-67741841">https://github.com/Bumblebee-Project/bbswitch/issues/78#issuecomment-67741841</a>
-[2]: <a href="https://github.com/Bumblebee-Project/bbswitch/pull/102">https://github.com/Bumblebee-Project/bbswitch/pull/102</a></pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #113241 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1423314908.e77B573.28077--
+--1423322575.f2c3EE0.25589--
 
---===============0733148292==
+--===============1987978282==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0733148292==--
+--===============1987978282==--
