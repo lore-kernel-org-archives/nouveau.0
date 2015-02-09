@@ -1,12 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 84842] [NVC4] Xorg freezes every time on long idle
-Date: Mon, 09 Feb 2015 09:10:41 +0000
-Message-ID: <bug-84842-8800-xpCDBR1xQ4@http.bugs.freedesktop.org/>
-References: <bug-84842-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89047] New: linux-3.19 nvd9 Invalid rom content
+Date: Mon, 09 Feb 2015 19:35:06 +0000
+Message-ID: <bug-89047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0449929831=="
+Content-Type: multipart/mixed; boundary="===============1722535666=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-84842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +18,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0449929831==
-Content-Type: multipart/alternative; boundary="1423473041.ea77E2.28448"; charset="UTF-8"
+--===============1722535666==
+Content-Type: multipart/alternative; boundary="1423510506.d31EecA1.18666"; charset="UTF-8"
 
 
---1423473041.ea77E2.28448
-Date: Mon, 9 Feb 2015 09:10:41 +0000
+--1423510506.d31EecA1.18666
+Date: Mon, 9 Feb 2015 19:35:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=84842
+https://bugs.freedesktop.org/show_bug.cgi?id=89047
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 89047
+           Summary: linux-3.19 nvd9 Invalid rom content
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jan.vesely-kgbqMDwikbSVc3sceRu5cw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Xorg freezes every time on  |[NVC4] Xorg freezes every
-                   |long idle                   |time on long idle
+booting linux 3.19.0 fails to init nvd9 card with these messges in dmesg:
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.19.0-gentoo
+root=/dev/sda3 ro quiet splash i915.lvds_downclock=1
+init=/usr/lib/systemd/systemd drm.rnodes=1 reboot=a nouveau.pstate=1
+[    7.980357] nouveau 0000:01:00.0: enabling device (0004 -> 0007)
+[    7.980901] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d9160a1
+[    7.980904] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119 (NVD9)
+[    7.980906] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
+[    8.034908] nouveau 0000:01:00.0: Invalid ROM contents
+[    8.035060] nouveau ![   VBIOS][0000:01:00.0] unable to locate usable image
+[    8.035114] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
+-22
+[    8.035171] nouveau E[     DRM] failed to create 0x00000080, -22
+[    8.037770] nouveau: probe of 0000:01:00.0 failed with error -22
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Build Operating System: Linux 2.6.32-5-686-bigmem i686 Debian
-
-nouveau has come a long way in the past 5+ years since 2.6.32 came out. Please
-try something a little bit more recent and see if the issue persists.
+the usual output (on 3.18.6) is:
+Feb 09 12:55:18 [kernel] nouveau 0000:01:00.0: enabling device (0004 -> 0007)
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d9160a1
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119
+(NVD9)
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... signature not
+found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking PROM for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... signature not
+found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... appears to be
+valid
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] using image from
+ACPI
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] version
+75.19.6a.01.01
+Feb 09 12:55:18 [kernel] nouveau  [ DEVINIT][0000:01:00.0] adaptor not
+initialised
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] running init tables
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423473041.ea77E2.28448
-Date: Mon, 9 Feb 2015 09:10:41 +0000
+--1423510506.d31EecA1.18666
+Date: Mon, 9 Feb 2015 19:35:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,43 +98,130 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC4] Xorg freezes every time on long idle"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84842">bug 84842</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title="NEW - linux-3.19 nvd9 Invalid rom content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89047">89047</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Xorg freezes every time on long idle
-           </td>
-           <td>[NVC4] Xorg freezes every time on long idle
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>linux-3.19 nvd9 Invalid rom content
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jan.vesely&#64;rutgers.edu
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC4] Xorg freezes every time on long idle"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84842#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC4] Xorg freezes every time on long idle"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=84842">bug 84842</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Build Operating System: Linux 2.6.32-5-686-bigmem i686 Debian
+        <pre>booting linux 3.19.0 fails to init nvd9 card with these messges in dmesg:
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.19.0-gentoo
+root=/dev/sda3 ro quiet splash i915.lvds_downclock=1
+init=/usr/lib/systemd/systemd drm.rnodes=1 reboot=a nouveau.pstate=1
+[    7.980357] nouveau 0000:01:00.0: enabling device (0004 -&gt; 0007)
+[    7.980901] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d9160a1
+[    7.980904] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119 (NVD9)
+[    7.980906] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
+[    8.034908] nouveau 0000:01:00.0: Invalid ROM contents
+[    8.035060] nouveau ![   VBIOS][0000:01:00.0] unable to locate usable image
+[    8.035114] nouveau E[  DEVICE][0000:01:00.0] failed to create 0x10000001,
+-22
+[    8.035171] nouveau E[     DRM] failed to create 0x00000080, -22
+[    8.037770] nouveau: probe of 0000:01:00.0 failed with error -22
 
-nouveau has come a long way in the past 5+ years since 2.6.32 came out. Please
-try something a little bit more recent and see if the issue persists.</pre>
+the usual output (on 3.18.6) is:
+Feb 09 12:55:18 [kernel] nouveau 0000:01:00.0: enabling device (0004 -&gt; 0007)
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0d9160a1
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] Chipset: GF119
+(NVD9)
+Feb 09 12:55:18 [kernel] nouveau  [  DEVICE][0000:01:00.0] Family : NVC0
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking PRAMIN for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... signature not
+found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking PROM for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... signature not
+found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] checking ACPI for
+image...
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] ... appears to be
+valid
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] using image from
+ACPI
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] version
+75.19.6a.01.01
+Feb 09 12:55:18 [kernel] nouveau  [ DEVINIT][0000:01:00.0] adaptor not
+initialised
+Feb 09 12:55:18 [kernel] nouveau  [   VBIOS][0000:01:00.0] running init tables</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +233,9 @@ try something a little bit more recent and see if the issue persists.</pre>
     </body>
 </html>
 
---1423473041.ea77E2.28448--
+--1423510506.d31EecA1.18666--
 
---===============0449929831==
+--===============1722535666==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +245,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0449929831==--
+--===============1722535666==--
