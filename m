@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88822] X freezes after watching videos
-Date: Wed, 11 Feb 2015 21:12:43 +0000
-Message-ID: <bug-88822-8800-xfpyX4xhVN@http.bugs.freedesktop.org/>
-References: <bug-88822-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87244] [NV94] X hangs,
+ logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
+ 101 spins, halt followed by an X trace
+Date: Wed, 11 Feb 2015 21:21:28 +0000
+Message-ID: <bug-87244-8800-8RqH0c2c02@http.bugs.freedesktop.org/>
+References: <bug-87244-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0250746004=="
+Content-Type: multipart/mixed; boundary="===============0505754552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +22,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0250746004==
-Content-Type: multipart/alternative; boundary="1423689162.83cdcb1.5482"; charset="UTF-8"
+--===============0505754552==
+Content-Type: multipart/alternative; boundary="1423689688.DF0E11.7520"; charset="UTF-8"
 
 
---1423689162.83cdcb1.5482
-Date: Wed, 11 Feb 2015 21:12:42 +0000
+--1423689688.DF0E11.7520
+Date: Wed, 11 Feb 2015 21:21:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88822
+https://bugs.freedesktop.org/show_bug.cgi?id=87244
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to rv from comment #3)
-> Is there a possible workaround? How can I help to solve this issue? With
-> those crashes, my computer is getting unusable (losing my work all the
-> time...)
-> 
-> Thanks for your help
-
-nouveau E[   PFIFO][0000:01:00.0] still angry after 101 spins, halt
-
-So... seems like nouveau gets stuck. I think I saw a patch recently which may
-help with that:
-
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844
-
-With some creativity, you can apply it to a regular kernel tree.
+--- Comment #12 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+So Ben told me on IRC he'd committed a change that should address this, but I
+guess it didn't make it in time for 3.19 because I just hit it with 3.19 stable
+:( Ben, any chance it could be backported for 3.19 updates? It's a pretty icky
+bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423689162.83cdcb1.5482
-Date: Wed, 11 Feb 2015 21:12:42 +0000
+--1423689688.DF0E11.7520
+Date: Wed, 11 Feb 2015 21:21:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,29 +57,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X freezes after watching videos"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822#c4">Comment # 4</a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X freezes after watching videos"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822">bug 88822</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
+              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre>(In reply to rv from <a href="show_bug.cgi?id=88822#c3">comment #3</a>)
-<span class="quote">&gt; Is there a possible workaround? How can I help to solve this issue? With
-&gt; those crashes, my computer is getting unusable (losing my work all the
-&gt; time...)
-&gt; 
-&gt; Thanks for your help</span >
-
-nouveau E[   PFIFO][0000:01:00.0] still angry after 101 spins, halt
-
-So... seems like nouveau gets stuck. I think I saw a patch recently which may
-help with that:
-
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=c869d99187a356b886bdecc757caa0038d142844</a>
-
-With some creativity, you can apply it to a regular kernel tree.</pre>
+        <pre>So Ben told me on IRC he'd committed a change that should address this, but I
+guess it didn't make it in time for 3.19 because I just hit it with 3.19 stable
+:( Ben, any chance it could be backported for 3.19 updates? It's a pretty icky
+bug.</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +80,9 @@ With some creativity, you can apply it to a regular kernel tree.</pre>
     </body>
 </html>
 
---1423689162.83cdcb1.5482--
+--1423689688.DF0E11.7520--
 
---===============0250746004==
+--===============0505754552==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0250746004==--
+--===============0505754552==--
