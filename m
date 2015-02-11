@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88946] [NVC1] black screen after resuming from
-	hibernate
-Date: Wed, 11 Feb 2015 15:20:56 +0000
-Message-ID: <bug-88946-8800-Wp1ANBjcTW@http.bugs.freedesktop.org/>
-References: <bug-88946-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88822] X freezes after watching videos
+Date: Wed, 11 Feb 2015 21:09:28 +0000
+Message-ID: <bug-88822-8800-fW8PL6dQql@http.bugs.freedesktop.org/>
+References: <bug-88822-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1187430255=="
+Content-Type: multipart/mixed; boundary="===============1632502992=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1187430255==
-Content-Type: multipart/alternative; boundary="1423668056.03E7D1.10902"; charset="UTF-8"
+--===============1632502992==
+Content-Type: multipart/alternative; boundary="1423688968.2eC4DA1.4654"; charset="UTF-8"
 
 
---1423668056.03E7D1.10902
-Date: Wed, 11 Feb 2015 15:20:56 +0000
+--1423688968.2eC4DA1.4654
+Date: Wed, 11 Feb 2015 21:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88946
+https://bugs.freedesktop.org/show_bug.cgi?id=88822
 
---- Comment #8 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-In the final kernel 3.19 the problem persists. 
+--- Comment #3 from rv <shuihuzhuan-GANU6spQydw@public.gmane.org> ---
+Is there a possible workaround? How can I help to solve this issue? With those
+crashes, my computer is getting unusable (losing my work all the time...)
 
-Shall I provide further debugging information?
+Thanks for your help
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423668056.03E7D1.10902
-Date: Wed, 11 Feb 2015 15:20:56 +0000
+--1423688968.2eC4DA1.4654
+Date: Wed, 11 Feb 2015 21:09:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +55,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] black screen after resuming from hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c8">Comment # 8</a>
+   title="NEW - X freezes after watching videos"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVC1] black screen after resuming from hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946">bug 88946</a>
-              from <span class="vcard"><a class="email" href="mailto:baumber&#64;hotmail.com" title="B. A. &lt;baumber&#64;hotmail.com&gt;"> <span class="fn">B. A.</span></a>
+   title="NEW - X freezes after watching videos"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822">bug 88822</a>
+              from <span class="vcard"><a class="email" href="mailto:shuihuzhuan&#64;free.fr" title="rv &lt;shuihuzhuan&#64;free.fr&gt;"> <span class="fn">rv</span></a>
 </span></b>
-        <pre>In the final kernel 3.19 the problem persists. 
+        <pre>Is there a possible workaround? How can I help to solve this issue? With those
+crashes, my computer is getting unusable (losing my work all the time...)
 
-Shall I provide further debugging information?</pre>
+Thanks for your help</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +78,9 @@ Shall I provide further debugging information?</pre>
     </body>
 </html>
 
---1423668056.03E7D1.10902--
+--1423688968.2eC4DA1.4654--
 
---===============1187430255==
+--===============1632502992==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1187430255==--
+--===============1632502992==--
