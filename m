@@ -1,61 +1,92 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2 6/6] instmem/gk20a: add IOMMU support
-Date: Wed, 11 Feb 2015 03:03:59 -0500
-Message-ID: <CAKb7UvidbJH_Gvv8YaGD45kiA+pt9UL4LBDsJc8p3mCVFTE1jw@mail.gmail.com>
-References: <1423639301-27304-1-git-send-email-acourbot@nvidia.com>
-	<1423639301-27304-7-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88946] [NVC1] black screen after resuming from
+	hibernate
+Date: Wed, 11 Feb 2015 15:20:56 +0000
+Message-ID: <bug-88946-8800-Wp1ANBjcTW@http.bugs.freedesktop.org/>
+References: <bug-88946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1423639301-27304-7-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1187430255=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-88946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Wed, Feb 11, 2015 at 2:21 AM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> Let GK20A's instmem take advantage of the IOMMU if it is present. Having
-> an IOMMU means that instmem is no longer allocated using the DMA API,
-> but instead obtained through page_alloc and made contiguous to the GPU
-> by IOMMU mappings.
->
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drm/nouveau/nvkm/subdev/instmem/gk20a.c | 272 ++++++++++++++++++++++++++++----
->  1 file changed, 241 insertions(+), 31 deletions(-)
->
-> diff --git a/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-> index 4c8af6e..a20b93c 100644
-> --- a/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-> +++ b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-> @@ -20,12 +20,32 @@
->   * DEALINGS IN THE SOFTWARE.
->   */
->
-> +/*
-> + * GK20A does not have dedicated video memory, and to accurately represent this
-> + * fact Nouveau will not create a RAM device for it. Therefore its instmem
-> + * implementation must be done directly on top of system memory, while providing
-> + * coherent read and write operations.
-> + *
-> + * Instmem can be allocated through two means:
-> + * 1) If a IOMMU mapping has been probed, the IOMMU API is used to make memory
 
-an IOMMU mapping
+--===============1187430255==
+Content-Type: multipart/alternative; boundary="1423668056.03E7D1.10902"; charset="UTF-8"
 
-> + *    pages contiguous to the GPU. This is the preferred way.
-> + * 2) If no IOMMU mapping is probed, the DMA API is used to allocated physically
 
-to allocate physically
+--1423668056.03E7D1.10902
+Date: Wed, 11 Feb 2015 15:20:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-> + *    contiguous memory.
-> + *
-> + * In both cases CPU read and writes are performed using PRAMIN (i.e. using the
-> + * GPU path) to ensure these operations are coherent for the GPU. This allows us
-> + * to use more "relaxed" allocation parameters when using the DMA API, since we
-> + * never need a kernel mapping.
-> + */
+https://bugs.freedesktop.org/show_bug.cgi?id=88946
 
-Er yeah... obviously ignore my comments about sharing nv50_instmem_priv stuff.
+--- Comment #8 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+In the final kernel 3.19 the problem persists. 
 
-  -ilia
+Shall I provide further debugging information?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1423668056.03E7D1.10902
+Date: Wed, 11 Feb 2015 15:20:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] black screen after resuming from hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] black screen after resuming from hibernate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946">bug 88946</a>
+              from <span class="vcard"><a class="email" href="mailto:baumber&#64;hotmail.com" title="B. A. &lt;baumber&#64;hotmail.com&gt;"> <span class="fn">B. A.</span></a>
+</span></b>
+        <pre>In the final kernel 3.19 the problem persists. 
+
+Shall I provide further debugging information?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1423668056.03E7D1.10902--
+
+--===============1187430255==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1187430255==--
