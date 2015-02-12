@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88822] X freezes after watching videos
-Date: Wed, 11 Feb 2015 21:25:36 +0000
-Message-ID: <bug-88822-8800-UD7Rfyy3Mh@http.bugs.freedesktop.org/>
-References: <bug-88822-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87819] [NVAC] EQ overflowing
+Date: Thu, 12 Feb 2015 10:29:46 +0000
+Message-ID: <bug-87819-8800-F5qDx6Tstm@http.bugs.freedesktop.org/>
+References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1076321684=="
+Content-Type: multipart/mixed; boundary="===============1927696269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1076321684==
-Content-Type: multipart/alternative; boundary="1423689936.b3F43eA1.8246"; charset="UTF-8"
+--===============1927696269==
+Content-Type: multipart/alternative; boundary="1423736985.e0DfBD52.9921"; charset="UTF-8"
 
 
---1423689936.b3F43eA1.8246
-Date: Wed, 11 Feb 2015 21:25:36 +0000
+--1423736985.e0DfBD52.9921
+Date: Thu, 12 Feb 2015 10:29:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88822
+https://bugs.freedesktop.org/show_bug.cgi?id=87819
 
---- Comment #5 from rv <shuihuzhuan-GANU6spQydw@public.gmane.org> ---
-Thanks, I'll try.
+--- Comment #12 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Is it still an issue with 3.19? I tried Xonotic and video streaming with
+Firefox but was unable to trigger those isses using Nouveau's HEAD (currently
+at
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e616d549c78c27b6b4d4da25a2369b32bb2a99db).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423689936.b3F43eA1.8246
-Date: Wed, 11 Feb 2015 21:25:36 +0000
+--1423736985.e0DfBD52.9921
+Date: Thu, 12 Feb 2015 10:29:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +55,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X freezes after watching videos"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822#c5">Comment # 5</a>
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X freezes after watching videos"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822">bug 88822</a>
-              from <span class="vcard"><a class="email" href="mailto:shuihuzhuan&#64;free.fr" title="rv &lt;shuihuzhuan&#64;free.fr&gt;"> <span class="fn">rv</span></a>
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Thanks, I'll try.</pre>
+        <pre>Is it still an issue with 3.19? I tried Xonotic and video streaming with
+Firefox but was unable to trigger those isses using Nouveau's HEAD (currently
+at
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e616d549c78c27b6b4d4da25a2369b32bb2a99db">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=e616d549c78c27b6b4d4da25a2369b32bb2a99db</a>).</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1423689936.b3F43eA1.8246--
+--1423736985.e0DfBD52.9921--
 
---===============1076321684==
+--===============1927696269==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1076321684==--
+--===============1927696269==--
