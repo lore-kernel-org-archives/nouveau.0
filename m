@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89113] NVA8 constantly flickers when clocked to
-	lowest pstate
-Date: Fri, 13 Feb 2015 01:18:13 +0000
-Message-ID: <bug-89113-8800-e7r0qbI4yC@http.bugs.freedesktop.org/>
-References: <bug-89113-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58784] Nouveau on NVCE,
+	reclocking: memory type not supported?
+Date: Fri, 13 Feb 2015 09:02:02 +0000
+Message-ID: <bug-58784-8800-A3CFvYhDbm@http.bugs.freedesktop.org/>
+References: <bug-58784-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1255961369=="
+Content-Type: multipart/mixed; boundary="===============2035974268=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89113-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1255961369==
-Content-Type: multipart/alternative; boundary="1423790293.2cFbA21.13858"; charset="UTF-8"
+--===============2035974268==
+Content-Type: multipart/alternative; boundary="1423818122.Bc8231B3.26991"; charset="UTF-8"
 
 
---1423790293.2cFbA21.13858
-Date: Fri, 13 Feb 2015 01:18:13 +0000
+--1423818122.Bc8231B3.26991
+Date: Fri, 13 Feb 2015 09:02:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89113
+https://bugs.freedesktop.org/show_bug.cgi?id=58784
 
---- Comment #2 from C, Zhang <charleszhang77-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 113430
-  --> https://bugs.freedesktop.org/attachment.cgi?id=113430&action=edit
-PFB region peeks for pstate 07
+--- Comment #5 from Wojciech Arabczyk <arabek-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> No one has stepped up with the time (and effort) required to make it happen.
+
+What kind of effort and knowledge would be needed to make it happen? Perhaps a
+bounty? To my knowledge the 560 was/is a really popular graphics adapter
+amongst the community.
+
+According to the steam survey, 550/560/560 Ti are amongst top20 used cards
+around the globe.
+
+source: http://store.steampowered.com/hwsurvey/
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423790293.2cFbA21.13858
-Date: Fri, 13 Feb 2015 01:18:13 +0000
+--1423818122.Bc8231B3.26991
+Date: Fri, 13 Feb 2015 09:02:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +62,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113#c2">Comment # 2</a>
+   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113">bug 89113</a>
-              from <span class="vcard"><a class="email" href="mailto:charleszhang77&#64;gmail.com" title="C, Zhang &lt;charleszhang77&#64;gmail.com&gt;"> <span class="fn">C, Zhang</span></a>
+   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">bug 58784</a>
+              from <span class="vcard"><a class="email" href="mailto:arabek&#64;gmail.com" title="Wojciech Arabczyk &lt;arabek&#64;gmail.com&gt;"> <span class="fn">Wojciech Arabczyk</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=113430" name="attach_113430" title="PFB region peeks for pstate 07">attachment 113430</a> <a href="attachment.cgi?id=113430&amp;action=edit" title="PFB region peeks for pstate 07">[details]</a></span>
-PFB region peeks for pstate 07</pre>
+        <pre><span class="quote">&gt; No one has stepped up with the time (and effort) required to make it happen.</span >
+
+What kind of effort and knowledge would be needed to make it happen? Perhaps a
+bounty? To my knowledge the 560 was/is a really popular graphics adapter
+amongst the community.
+
+According to the steam survey, 550/560/560 Ti are amongst top20 used cards
+around the globe.
+
+source: <a href="http://store.steampowered.com/hwsurvey/">http://store.steampowered.com/hwsurvey/</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +91,9 @@ PFB region peeks for pstate 07</pre>
     </body>
 </html>
 
---1423790293.2cFbA21.13858--
+--1423818122.Bc8231B3.26991--
 
---===============1255961369==
+--===============2035974268==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1255961369==--
+--===============2035974268==--
