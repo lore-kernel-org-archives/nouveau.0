@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89113] NVA8 constantly flickers when clocked to
-	lowest pstate
-Date: Fri, 13 Feb 2015 10:06:13 +0000
-Message-ID: <bug-89113-8800-ccXCBgulxA@http.bugs.freedesktop.org/>
-References: <bug-89113-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 58784] Nouveau on NVCE,
+	reclocking: memory type not supported?
+Date: Fri, 13 Feb 2015 14:08:13 +0000
+Message-ID: <bug-58784-8800-0AOTlAbTkO@http.bugs.freedesktop.org/>
+References: <bug-58784-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0973837385=="
+Content-Type: multipart/mixed; boundary="===============0108062699=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89113-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-58784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0973837385==
-Content-Type: multipart/alternative; boundary="1423821973.f3CFc1.7683"; charset="UTF-8"
+--===============0108062699==
+Content-Type: multipart/alternative; boundary="1423836493.Be8A23.23316"; charset="UTF-8"
 
 
---1423821973.f3CFc1.7683
-Date: Fri, 13 Feb 2015 10:06:13 +0000
+--1423836493.Be8A23.23316
+Date: Fri, 13 Feb 2015 14:08:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89113
+https://bugs.freedesktop.org/show_bug.cgi?id=58784
 
---- Comment #3 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to C, Zhang from comment #0)
-> however, when clocking to pstate=03 i get constant flickering (maybe <5-10
-> hz)
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Wojciech Arabczyk from comment #5)
+> > No one has stepped up with the time (and effort) required to make it happen.
+> 
+> What kind of effort and knowledge would be needed to make it happen?
 
-Flickering at low clocks is expected and is most likely due to hardware
-constraints - memory not being quick enough to deal with the additional screen,
-hence no flickering at higher clock - rather than a driver bug. Look in
-nvidia-settings which clocks the blob sets when you plug your external screen
-in: most likely it will automatically go from level 03 to level 07 and won't go
-back to 03 unless you unplug the external screen.
-See "Blank monitor, flicker, snow, or other random live image corruption" at
-http://nouveau.freedesktop.org/wiki/TroubleShooting/#index8h3.
+a few $k for buying up lots of cards for testing, and probably 3-4 months of
+full-time work for someone familiar with the project; add a month for someone
+who isn't.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423821973.f3CFc1.7683
-Date: Fri, 13 Feb 2015 10:06:13 +0000
+--1423836493.Be8A23.23316
+Date: Fri, 13 Feb 2015 14:08:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,26 +60,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113#c3">Comment # 3</a>
+   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113">bug 89113</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">bug 58784</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to C, Zhang from <a href="show_bug.cgi?id=89113#c0">comment #0</a>)
-<span class="quote">&gt; however, when clocking to pstate=03 i get constant flickering (maybe &lt;5-10
-&gt; hz)</span >
+        <pre>(In reply to Wojciech Arabczyk from <a href="show_bug.cgi?id=58784#c5">comment #5</a>)
+<span class="quote">&gt; &gt; No one has stepped up with the time (and effort) required to make it happen.
+&gt; 
+&gt; What kind of effort and knowledge would be needed to make it happen?</span >
 
-Flickering at low clocks is expected and is most likely due to hardware
-constraints - memory not being quick enough to deal with the additional screen,
-hence no flickering at higher clock - rather than a driver bug. Look in
-nvidia-settings which clocks the blob sets when you plug your external screen
-in: most likely it will automatically go from level 03 to level 07 and won't go
-back to 03 unless you unplug the external screen.
-See &quot;Blank monitor, flicker, snow, or other random live image corruption&quot; at
-<a href="http://nouveau.freedesktop.org/wiki/TroubleShooting/#index8h3">http://nouveau.freedesktop.org/wiki/TroubleShooting/#index8h3</a>.</pre>
+a few $k for buying up lots of cards for testing, and probably 3-4 months of
+full-time work for someone familiar with the project; add a month for someone
+who isn't.</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +87,9 @@ See &quot;Blank monitor, flicker, snow, or other random live image corruption&qu
     </body>
 </html>
 
---1423821973.f3CFc1.7683--
+--1423836493.Be8A23.23316--
 
---===============0973837385==
+--===============0108062699==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0973837385==--
+--===============0108062699==--
