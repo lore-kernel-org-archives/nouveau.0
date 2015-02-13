@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 58784] Nouveau on NVCE,
-	reclocking: memory type not supported?
-Date: Fri, 13 Feb 2015 14:08:13 +0000
-Message-ID: <bug-58784-8800-0AOTlAbTkO@http.bugs.freedesktop.org/>
-References: <bug-58784-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89113] NVA8 constantly flickers when clocked to
+	lowest pstate
+Date: Fri, 13 Feb 2015 22:53:01 +0000
+Message-ID: <bug-89113-8800-kojAXrPwdC@http.bugs.freedesktop.org/>
+References: <bug-89113-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0108062699=="
+Content-Type: multipart/mixed; boundary="===============0185033267=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-58784-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89113-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0108062699==
-Content-Type: multipart/alternative; boundary="1423836493.Be8A23.23316"; charset="UTF-8"
+--===============0185033267==
+Content-Type: multipart/alternative; boundary="1423867980.fFCbcAE1.19406"; charset="UTF-8"
 
 
---1423836493.Be8A23.23316
-Date: Fri, 13 Feb 2015 14:08:13 +0000
+--1423867980.fFCbcAE1.19406
+Date: Fri, 13 Feb 2015 22:53:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=58784
+https://bugs.freedesktop.org/show_bug.cgi?id=89113
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Wojciech Arabczyk from comment #5)
-> > No one has stepped up with the time (and effort) required to make it happen.
-> 
-> What kind of effort and knowledge would be needed to make it happen?
-
-a few $k for buying up lots of cards for testing, and probably 3-4 months of
-full-time work for someone familiar with the project; add a month for someone
-who isn't.
+--- Comment #4 from C, Zhang <charleszhang77-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Right. That makes a lot of sense; unplugging an external monitor fixes the
+issue. I guess it's just a hardware limitation then. The blob does indeed avoid
+03 with an extra monitor attached. Thanks for the help! That'd be another thing
+to worry about if dynamic power scaling were ever implemented for nouveau then.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423836493.Be8A23.23316
-Date: Fri, 13 Feb 2015 14:08:13 +0000
+--1423867980.fFCbcAE1.19406
+Date: Fri, 13 Feb 2015 22:53:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,22 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784#c6">Comment # 6</a>
+   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau on NVCE, reclocking: memory type not supported?"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=58784">bug 58784</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113">bug 89113</a>
+              from <span class="vcard"><a class="email" href="mailto:charleszhang77&#64;gmail.com" title="C, Zhang &lt;charleszhang77&#64;gmail.com&gt;"> <span class="fn">C, Zhang</span></a>
 </span></b>
-        <pre>(In reply to Wojciech Arabczyk from <a href="show_bug.cgi?id=58784#c5">comment #5</a>)
-<span class="quote">&gt; &gt; No one has stepped up with the time (and effort) required to make it happen.
-&gt; 
-&gt; What kind of effort and knowledge would be needed to make it happen?</span >
-
-a few $k for buying up lots of cards for testing, and probably 3-4 months of
-full-time work for someone familiar with the project; add a month for someone
-who isn't.</pre>
+        <pre>Right. That makes a lot of sense; unplugging an external monitor fixes the
+issue. I guess it's just a hardware limitation then. The blob does indeed avoid
+03 with an extra monitor attached. Thanks for the help! That'd be another thing
+to worry about if dynamic power scaling were ever implemented for nouveau then.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +79,9 @@ who isn't.</pre>
     </body>
 </html>
 
---1423836493.Be8A23.23316--
+--1423867980.fFCbcAE1.19406--
 
---===============0108062699==
+--===============0185033267==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0108062699==--
+--===============0185033267==--
