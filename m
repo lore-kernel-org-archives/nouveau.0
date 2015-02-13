@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89113] NVA8 constantly flickers when clocked to
 	lowest pstate
-Date: Fri, 13 Feb 2015 00:40:29 +0000
-Message-ID: <bug-89113-8800-cFX9mIaZqz@http.bugs.freedesktop.org/>
+Date: Fri, 13 Feb 2015 01:18:13 +0000
+Message-ID: <bug-89113-8800-e7r0qbI4yC@http.bugs.freedesktop.org/>
 References: <bug-89113-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0945659407=="
+Content-Type: multipart/mixed; boundary="===============1255961369=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89113-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0945659407==
-Content-Type: multipart/alternative; boundary="1423788029.b11b1.8037"; charset="UTF-8"
+--===============1255961369==
+Content-Type: multipart/alternative; boundary="1423790293.2cFbA21.13858"; charset="UTF-8"
 
 
---1423788029.b11b1.8037
-Date: Fri, 13 Feb 2015 00:40:29 +0000
+--1423790293.2cFbA21.13858
+Date: Fri, 13 Feb 2015 01:18:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89113
 
---- Comment #1 from C, Zhang <charleszhang77-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-there are no additional kernel messages when reclocking as well
+--- Comment #2 from C, Zhang <charleszhang77-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 113430
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113430&action=edit
+PFB region peeks for pstate 07
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423788029.b11b1.8037
-Date: Fri, 13 Feb 2015 00:40:29 +0000
+--1423790293.2cFbA21.13858
+Date: Fri, 13 Feb 2015 01:18:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89113#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NVA8 constantly flickers when clocked to lowest pstate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89113">bug 89113</a>
               from <span class="vcard"><a class="email" href="mailto:charleszhang77&#64;gmail.com" title="C, Zhang &lt;charleszhang77&#64;gmail.com&gt;"> <span class="fn">C, Zhang</span></a>
 </span></b>
-        <pre>there are no additional kernel messages when reclocking as well</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=113430" name="attach_113430" title="PFB region peeks for pstate 07">attachment 113430</a> <a href="attachment.cgi?id=113430&amp;action=edit" title="PFB region peeks for pstate 07">[details]</a></span>
+PFB region peeks for pstate 07</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1423788029.b11b1.8037--
+--1423790293.2cFbA21.13858--
 
---===============0945659407==
+--===============1255961369==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0945659407==--
+--===============1255961369==--
