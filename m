@@ -1,44 +1,43 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GM206 support?
-Date: Sat, 14 Feb 2015 00:52:48 -0500
-Message-ID: <CAKb7Uvi5zxN9_yw9OmuWLWDUz3Ce3xHYK4=fgp8Qp=nZu_N3hA@mail.gmail.com>
-References: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 1/2] st/mesa: treat resource-less xfb buffers as
+	if they weren't there
+Date: Sat, 14 Feb 2015 01:46:01 -0500
+Message-ID: <1423896362-6808-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgODo1OSBQTSwgQW5keSBMdXRvbWlyc2tpIDxsdXRvQGFt
-YWNhcGl0YWwubmV0PiB3cm90ZToKPiBNeSBuZXcgR1RYIDk2MCAoR00yMDYsIEkgdGhpbmspIHNh
-eXM6Cj4KPiBbICAgMTAuMzI5MzUxXSBub3V2ZWF1ICFbICBERVZJQ0VdWzAwMDA6MDk6MDAuMF0g
-dW5rbm93biBNYXh3ZWxsIGNoaXBzZXQKPiBbICAgMTAuMzI5MzU1XSBub3V2ZWF1IEVbICBERVZJ
-Q0VdWzAwMDA6MDk6MDAuMF0gdW5rbm93biBjaGlwc2V0LCAweDEyNjAxMGExCj4gWyAgIDEwLjMy
-OTM1Nl0gbm91dmVhdSBFWyAgICAgRFJNXSBmYWlsZWQgdG8gY3JlYXRlIDB4MDAwMDAwODAsIC0y
-Mgo+IFsgICAxMC4zMzAxMjldIG5vdXZlYXU6IHByb2JlIG9mIDAwMDA6MDk6MDAuMCBmYWlsZWQg
-d2l0aCBlcnJvciAtMjIKPgo+IEhhY2tpbmcgdXAgbm91dmVhdSBzbyB0aGF0IGl0IHRyZWF0cyBp
-dCBsaWtlIGEgR00yMDQgZG9lc24ndCB3b3JrLgoKV2hhdCBoYXBwZW5zIGlmIHlvdSBqdXN0IGRy
-b3AgdGhlIDB4MTI2IG5leHQgdG8gdGhlIDB4MTI0IGluCmVuZ2luZS9kZXZpY2UvZ20xMDAuYyA/
-Cgo+IEFyZSB0aGVyZSBhbnkgbmVhci10ZXJtIHBsYW5zIHRvIHN1cHBvcnQgdGhpcyBjYXJkPwoK
-SSBkb24ndCBrbm93IG9mIGFueW9uZSB3aXRoIHRoZSBody4uLiBtYXliZSBCZW4gZ290IG9uZT8g
-SWYgeW91J3JlCmludGVyZXN0ZWQgaW4gaGVscGluZywgdGhlIGtlcm5lbCBsb2dzIGZyb20gdGhl
-IGFib3ZlIGV4cGVyaW1lbnQgKyBhbgptbWlvdHJhY2Ugb2YgdGhlIGJsb2IgZHJpdmVycyAoc2Vl
-Cmh0dHBzOi8vd2lraS51YnVudHUuY29tL1gvTU1JT1RyYWNpbmcpICsgdmJpb3MgKHNlZQpodHRw
-Oi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9EdW1waW5nVmlkZW9CaW9zLykuCgpJIGFz
-c3VtZSB5b3UncmUgb24gYSByZWNlbnQga2VybmVsPyBZb3UgbmVlZCAzLjE5IGZvciB0aGUgR00y
-MDQgc3R1ZmYKdG8gd29yayBpbiB0aGUgZmlyc3QgcGxhY2UuCgogIC1pbGlhCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+SWYgYSB0cmFuc2Zvcm0gZmVlZGJhY2sgYnVmZmVyJ3Mgc2l6ZSBpcyAwLCBzdF9idWZmZXJvYmpf
+ZGF0YSBkb2Vzbid0CmVuZCB1cCBjcmVhdGluZyBhIGJ1ZmZlciBmb3IgaXQuIFRoZXJlJ3Mgbm8g
+cG9pbnQgaW4gdHJ5aW5nIHRvIHdyaXRlIHRvCnN1Y2ggYSBidWZmZXIsIHNvIGp1c3QgcHJldGVu
+ZCBhcyBpZiBpdCdzIG5vdCByZWFsbHkgdGhlcmUuCgpUaGlzIGZpeGVzIGFyYl9ncHVfc2hhZGVy
+NS14ZmItc3RyZWFtcy13aXRob3V0LWludm9jYXRpb25zIG9uIG52YzAuCgpTaWduZWQtb2ZmLWJ5
+OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogc3JjL21lc2Evc3RhdGVf
+dHJhY2tlci9zdF9jYl94Zm9ybWZiLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9zcmMvbWVzYS9zdGF0ZV90cmFja2Vy
+L3N0X2NiX3hmb3JtZmIuYyBiL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5j
+CmluZGV4IDhmNzVlZGEuLmEyYmQ4NmEgMTAwNjQ0Ci0tLSBhL3NyYy9tZXNhL3N0YXRlX3RyYWNr
+ZXIvc3RfY2JfeGZvcm1mYi5jCisrKyBiL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZv
+cm1mYi5jCkBAIC0xMjIsNyArMTIyLDcgQEAgc3RfYmVnaW5fdHJhbnNmb3JtX2ZlZWRiYWNrKHN0
+cnVjdCBnbF9jb250ZXh0ICpjdHgsIEdMZW51bSBtb2RlLAogICAgZm9yIChpID0gMDsgaSA8IG1h
+eF9udW1fdGFyZ2V0czsgaSsrKSB7CiAgICAgICBzdHJ1Y3Qgc3RfYnVmZmVyX29iamVjdCAqYm8g
+PSBzdF9idWZmZXJfb2JqZWN0KHNvYmotPmJhc2UuQnVmZmVyc1tpXSk7CiAKLSAgICAgIGlmIChi
+bykgeworICAgICAgaWYgKGJvICYmIGJvLT5idWZmZXIpIHsKICAgICAgICAgIC8qIENoZWNrIHdo
+ZXRoZXIgd2UgbmVlZCB0byByZWNyZWF0ZSB0aGUgdGFyZ2V0LiAqLwogICAgICAgICAgaWYgKCFz
+b2JqLT50YXJnZXRzW2ldIHx8CiAgICAgICAgICAgICAgc29iai0+dGFyZ2V0c1tpXSA9PSBzb2Jq
+LT5kcmF3X2NvdW50IHx8Ci0tIAoyLjAuNQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbWVzYS1kZXYK
