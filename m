@@ -1,14 +1,12 @@
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Mesa-dev] [PATCH 1/2] st/mesa: treat resource-less
- xfb buffers as if they weren't there
-Date: Sat, 14 Feb 2015 20:33:21 +0100
-Message-ID: <CAAxE2A6ZFr+JiSjbnz1Bdvu31Ra1T44doRnQSyymUdF2bk=JwA@mail.gmail.com>
-References: <1423896362-6808-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
+Date: Sat, 14 Feb 2015 20:18:12 +0000
+Message-ID: <bug-86935-8800-umdaRxVJnF@http.bugs.freedesktop.org/>
+References: <bug-86935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1939135745=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1423896362-6808-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +16,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UmV2aWV3ZWQtYnk6IE1hcmVrIE9sxaHDoWsgPG1hcmVrLm9sc2FrQGFtZC5jb20+CgpNYXJlawoK
-T24gU2F0LCBGZWIgMTQsIDIwMTUgYXQgNzo0NiBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBJZiBhIHRyYW5zZm9ybSBmZWVkYmFjayBidWZmZXIncyBzaXpl
-IGlzIDAsIHN0X2J1ZmZlcm9ial9kYXRhIGRvZXNuJ3QKPiBlbmQgdXAgY3JlYXRpbmcgYSBidWZm
-ZXIgZm9yIGl0LiBUaGVyZSdzIG5vIHBvaW50IGluIHRyeWluZyB0byB3cml0ZSB0bwo+IHN1Y2gg
-YSBidWZmZXIsIHNvIGp1c3QgcHJldGVuZCBhcyBpZiBpdCdzIG5vdCByZWFsbHkgdGhlcmUuCj4K
-PiBUaGlzIGZpeGVzIGFyYl9ncHVfc2hhZGVyNS14ZmItc3RyZWFtcy13aXRob3V0LWludm9jYXRp
-b25zIG9uIG52YzAuCj4KPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+Cj4gLS0tCj4gIHNyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5j
-IHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkK
-Pgo+IGRpZmYgLS1naXQgYS9zcmMvbWVzYS9zdGF0ZV90cmFja2VyL3N0X2NiX3hmb3JtZmIuYyBi
-L3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jCj4gaW5kZXggOGY3NWVkYS4u
-YTJiZDg2YSAxMDA2NDQKPiAtLS0gYS9zcmMvbWVzYS9zdGF0ZV90cmFja2VyL3N0X2NiX3hmb3Jt
-ZmIuYwo+ICsrKyBiL3NyYy9tZXNhL3N0YXRlX3RyYWNrZXIvc3RfY2JfeGZvcm1mYi5jCj4gQEAg
-LTEyMiw3ICsxMjIsNyBAQCBzdF9iZWdpbl90cmFuc2Zvcm1fZmVlZGJhY2soc3RydWN0IGdsX2Nv
-bnRleHQgKmN0eCwgR0xlbnVtIG1vZGUsCj4gICAgIGZvciAoaSA9IDA7IGkgPCBtYXhfbnVtX3Rh
-cmdldHM7IGkrKykgewo+ICAgICAgICBzdHJ1Y3Qgc3RfYnVmZmVyX29iamVjdCAqYm8gPSBzdF9i
-dWZmZXJfb2JqZWN0KHNvYmotPmJhc2UuQnVmZmVyc1tpXSk7Cj4KPiAtICAgICAgaWYgKGJvKSB7
-Cj4gKyAgICAgIGlmIChibyAmJiBiby0+YnVmZmVyKSB7Cj4gICAgICAgICAgIC8qIENoZWNrIHdo
-ZXRoZXIgd2UgbmVlZCB0byByZWNyZWF0ZSB0aGUgdGFyZ2V0LiAqLwo+ICAgICAgICAgICBpZiAo
-IXNvYmotPnRhcmdldHNbaV0gfHwKPiAgICAgICAgICAgICAgIHNvYmotPnRhcmdldHNbaV0gPT0g
-c29iai0+ZHJhd19jb3VudCB8fAo+IC0tCj4gMi4wLjUKPgo+IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gbWVzYS1kZXYgbWFpbGluZyBsaXN0Cj4gbWVz
-YS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+
+--===============1939135745==
+Content-Type: multipart/alternative; boundary="1423945092.46Cc1.1444"; charset="UTF-8"
+
+
+--1423945092.46Cc1.1444
+Date: Sat, 14 Feb 2015 20:18:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D86935
+
+--- Comment #15 from Bj=C3=B8rn Lie <bjorn.lie-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Running kernel 3.19.0 now, and nouveau driver now recognizes my card :-)
+
+I guess this bug can be closed, but leaving it up to the developer.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1423945092.46Cc1.1444
+Date: Sat, 14 Feb 2015 20:18:12 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV106] unknown kepler chipset 0x106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86935#c15">Commen=
+t # 15</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV106] unknown kepler chipset 0x106"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D86935">bug 86935<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+bjorn.lie&#64;gmail.com" title=3D"Bj=C3=B8rn Lie &lt;bjorn.lie&#64;gmail.co=
+m&gt;"> <span class=3D"fn">Bj=C3=B8rn Lie</span></a>
+</span></b>
+        <pre>Running kernel 3.19.0 now, and nouveau driver now recognizes m=
+y card :-)
+
+I guess this bug can be closed, but leaving it up to the developer.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1423945092.46Cc1.1444--
+
+--===============1939135745==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1939135745==--
