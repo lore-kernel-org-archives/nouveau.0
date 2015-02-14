@@ -1,48 +1,31 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nvc0: bail out of 2d blits with non-A8_UNORM
-	alpha formats
-Date: Fri, 13 Feb 2015 23:23:10 -0500
-Message-ID: <1423887790-26862-1-git-send-email-imirkin@alum.mit.edu>
+From: Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
+Subject: GM206 support?
+Date: Fri, 13 Feb 2015 17:59:28 -0800
+Message-ID: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBmaXhlcyB0aGUgdGV4aW1hZ2UtY29sb3JzIHVwbG9hZHMgd2l0aCBHTF9BTFBIQSBmb3Jt
-YXQgYW5kCm5vbi1HTF9VTlNJR05FRF9CWVRFIHR5cGUuCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1p
-cmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252YzAvbnZjMF9zdXJmYWNlLmMgfCA3ICsrKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA1IGlu
-c2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252YzAvbnZjMF9zdXJmYWNlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3N1cmZhY2UuYwppbmRleCA0MTMwZDM2Li40NDA0ZDhjIDEwMDY0NAot
-LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N1cmZhY2UuYworKysg
-Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N1cmZhY2UuYwpAQCAtMTQw
-MSwxMSArMTQwMSwxNCBAQCBudmMwX2JsaXQoc3RydWN0IHBpcGVfY29udGV4dCAqcGlwZSwgY29u
-c3Qgc3RydWN0IHBpcGVfYmxpdF9pbmZvICppbmZvKQogICAgICAgfSBlbHNlCiAgICAgICBpZiAo
-IW52NTBfMmRfc3JjX2Zvcm1hdF9mYWl0aGZ1bChpbmZvLT5zcmMuZm9ybWF0KSkgewogICAgICAg
-ICAgaWYgKCF1dGlsX2Zvcm1hdF9pc19sdW1pbmFuY2UoaW5mby0+c3JjLmZvcm1hdCkpIHsKKyAg
-ICAgICAgICAgIGlmICghbnY1MF8yZF9kc3RfZm9ybWF0X29wc19zdXBwb3J0ZWQoaW5mby0+ZHN0
-LmZvcm1hdCkpCisgICAgICAgICAgICAgICBlbmczZCA9IFRSVUU7CisgICAgICAgICAgICBlbHNl
-CiAgICAgICAgICAgICBpZiAodXRpbF9mb3JtYXRfaXNfaW50ZW5zaXR5KGluZm8tPnNyYy5mb3Jt
-YXQpKQogICAgICAgICAgICAgICAgZW5nM2QgPSBpbmZvLT5zcmMuZm9ybWF0ICE9IFBJUEVfRk9S
-TUFUX0k4X1VOT1JNOwogICAgICAgICAgICAgZWxzZQotICAgICAgICAgICAgaWYgKCFudjUwXzJk
-X2RzdF9mb3JtYXRfb3BzX3N1cHBvcnRlZChpbmZvLT5kc3QuZm9ybWF0KSkKLSAgICAgICAgICAg
-ICAgIGVuZzNkID0gVFJVRTsKKyAgICAgICAgICAgIGlmICh1dGlsX2Zvcm1hdF9pc19hbHBoYShp
-bmZvLT5zcmMuZm9ybWF0KSkKKyAgICAgICAgICAgICAgIGVuZzNkID0gaW5mby0+c3JjLmZvcm1h
-dCAhPSBQSVBFX0ZPUk1BVF9BOF9VTk9STTsKICAgICAgICAgICAgIGVsc2UKICAgICAgICAgICAg
-ICAgIGVuZzNkID0gIW52NTBfMmRfZm9ybWF0X3N1cHBvcnRlZChpbmZvLT5zcmMuZm9ybWF0KTsK
-ICAgICAgICAgIH0KLS0gCjIuMC41CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9t
-ZXNhLWRldgo=
+TXkgbmV3IEdUWCA5NjAgKEdNMjA2LCBJIHRoaW5rKSBzYXlzOgoKWyAgIDEwLjMyOTM1MV0gbm91
+dmVhdSAhWyAgREVWSUNFXVswMDAwOjA5OjAwLjBdIHVua25vd24gTWF4d2VsbCBjaGlwc2V0Clsg
+ICAxMC4zMjkzNTVdIG5vdXZlYXUgRVsgIERFVklDRV1bMDAwMDowOTowMC4wXSB1bmtub3duIGNo
+aXBzZXQsIDB4MTI2MDEwYTEKWyAgIDEwLjMyOTM1Nl0gbm91dmVhdSBFWyAgICAgRFJNXSBmYWls
+ZWQgdG8gY3JlYXRlIDB4MDAwMDAwODAsIC0yMgpbICAgMTAuMzMwMTI5XSBub3V2ZWF1OiBwcm9i
+ZSBvZiAwMDAwOjA5OjAwLjAgZmFpbGVkIHdpdGggZXJyb3IgLTIyCgpIYWNraW5nIHVwIG5vdXZl
+YXUgc28gdGhhdCBpdCB0cmVhdHMgaXQgbGlrZSBhIEdNMjA0IGRvZXNuJ3Qgd29yay4KQXJlIHRo
+ZXJlIGFueSBuZWFyLXRlcm0gcGxhbnMgdG8gc3VwcG9ydCB0aGlzIGNhcmQ/CgpUaGFua3MsCkFu
+ZHkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
