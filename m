@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 28095] X crash with PFIFO_CACHE_ERROR. (Nouveau on
-	Riva TNT).
-Date: Sat, 14 Feb 2015 20:54:55 +0000
-Message-ID: <bug-28095-8800-g1gJjN3QRS@http.bugs.freedesktop.org/>
-References: <bug-28095-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87819] [NVAC] EQ overflowing
+Date: Sun, 15 Feb 2015 00:21:56 +0000
+Message-ID: <bug-87819-8800-yRzohZDY14@http.bugs.freedesktop.org/>
+References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1042354215=="
+Content-Type: multipart/mixed; boundary="===============1729589387=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-28095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1042354215==
-Content-Type: multipart/alternative; boundary="1423947295.16ca62.7502"; charset="UTF-8"
+--===============1729589387==
+Content-Type: multipart/alternative; boundary="1423959715.F0aCA1.6223"; charset="UTF-8"
 
 
---1423947295.16ca62.7502
-Date: Sat, 14 Feb 2015 20:54:55 +0000
+--1423959715.F0aCA1.6223
+Date: Sun, 15 Feb 2015 00:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=28095
+https://bugs.freedesktop.org/show_bug.cgi?id=87819
 
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-So by the sounds of it, we broke the display stuff at some point between
-pre-history (i.e. before nouveau was in mainline) and... now. I'm fairly sure
-that it's a fairly self-contained problem -- my NV05 TNT2 M64 works fine (or at
-least did recently, I think I last tested after 3.10 or so). Another user's
-NV04 also worked OK on linux-3.9 (from bug 68854), although it was the Creative
-Labs one. However he also had the resolution issue (maxing out at 1024x768).
+--- Comment #16 from Stuart Longland <stuartl-3e+Fe6x+Dsh6S/UX/emfpkB+6BGkLq7r@public.gmane.org> ---
+Ahh right, I understood it was a fork of the kernel tree and so added it as a
+remote in my git repository, pulled it in and tried to build it as such.
 
-You have one of the (infamous?) BMP v0 vbioses, may be interesting to attach it
-to this bug, although I sincerely doubt that is the source of the issues
-(before BMP v2 or so, we just ignore it entirely). Without nouveau loaded, you
-can get it from /sys/kernel/debug/dri/0/vbios.rom .
+So I've now built kernel 3.19 (commit
+bfa76d49576599a4b9f9b7a71f23d73d6dcff735).  I shall reboot and test with that
+in its stock configuration.
 
-The unfortunate reality here is that you are in posession of fairly unique
-piece of hardware, and that (I believe) similar HW works fine. So... it's
-something "funny" going on. 
-
-You might try booting with
-
-nouveau.debug=debug drm.debug=14
-
-and capturing the kernel messages from that. Perhaps something interesting will
-come up.
+Then if I get problems, I'll try out the above git tree, building the
+nouveau.ko module out-of-tree, install it, do another reboot and see if the
+problem persists.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423947295.16ca62.7502
-Date: Sat, 14 Feb 2015 20:54:55 +0000
+--1423959715.F0aCA1.6223
+Date: Sun, 15 Feb 2015 00:21:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,40 +60,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095">bug 28095</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>So by the sounds of it, we broke the display stuff at some point between
-pre-history (i.e. before nouveau was in mainline) and... now. I'm fairly sure
-that it's a fairly self-contained problem -- my NV05 TNT2 M64 works fine (or at
-least did recently, I think I last tested after 3.10 or so). Another user's
-NV04 also worked OK on linux-3.9 (from <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV04] PROTECTION_ERROR / PROTECTION_FAULT"
-   href="show_bug.cgi?id=68854">bug 68854</a>), although it was the Creative
-Labs one. However he also had the resolution issue (maxing out at 1024x768).
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
+              from <span class="vcard"><a class="email" href="mailto:stuartl&#64;longlandclan.yi.org" title="Stuart Longland &lt;stuartl&#64;longlandclan.yi.org&gt;"> <span class="fn">Stuart Longland</span></a>
+</span></b>
+        <pre>Ahh right, I understood it was a fork of the kernel tree and so added it as a
+remote in my git repository, pulled it in and tried to build it as such.
 
-You have one of the (infamous?) BMP v0 vbioses, may be interesting to attach it
-to this bug, although I sincerely doubt that is the source of the issues
-(before BMP v2 or so, we just ignore it entirely). Without nouveau loaded, you
-can get it from /sys/kernel/debug/dri/0/vbios.rom .
+So I've now built kernel 3.19 (commit
+bfa76d49576599a4b9f9b7a71f23d73d6dcff735).  I shall reboot and test with that
+in its stock configuration.
 
-The unfortunate reality here is that you are in posession of fairly unique
-piece of hardware, and that (I believe) similar HW works fine. So... it's
-something &quot;funny&quot; going on. 
-
-You might try booting with
-
-nouveau.debug=debug drm.debug=14
-
-and capturing the kernel messages from that. Perhaps something interesting will
-come up.</pre>
+Then if I get problems, I'll try out the above git tree, building the
+nouveau.ko module out-of-tree, install it, do another reboot and see if the
+problem persists.</pre>
         </div>
       </p>
       <hr>
@@ -118,9 +90,9 @@ come up.</pre>
     </body>
 </html>
 
---1423947295.16ca62.7502--
+--1423959715.F0aCA1.6223--
 
---===============1042354215==
+--===============1729589387==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1042354215==--
+--===============1729589387==--
