@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87819] [NVAC] EQ overflowing
-Date: Sun, 15 Feb 2015 01:44:47 +0000
-Message-ID: <bug-87819-8800-Cy8AWsd7LE@http.bugs.freedesktop.org/>
-References: <bug-87819-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71455] Thermal management in nouveau running hot
+	3.12.0+ kernel
+Date: Sun, 15 Feb 2015 02:51:23 +0000
+Message-ID: <bug-71455-8800-iGqqxhAKIA@http.bugs.freedesktop.org/>
+References: <bug-71455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333589713=="
+Content-Type: multipart/mixed; boundary="===============0738295825=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0333589713==
-Content-Type: multipart/alternative; boundary="1423964687.8Fb6E1.18514"; charset="UTF-8"
+--===============0738295825==
+Content-Type: multipart/alternative; boundary="1423968685.02D6DBE2.28575"; charset="UTF-8"
 
 
---1423964687.8Fb6E1.18514
-Date: Sun, 15 Feb 2015 01:44:47 +0000
+--1423968685.02D6DBE2.28575
+Date: Sun, 15 Feb 2015 02:51:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87819
+https://bugs.freedesktop.org/show_bug.cgi?id=71455
 
---- Comment #17 from Stuart Longland <stuartl-3e+Fe6x+Dsh6S/UX/emfpkB+6BGkLq7r@public.gmane.org> ---
-So far, so good.  I've been tinkering for an hour and haven't yet triggered the
-EQ overflow.
+Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-So the standard vanilla 3.19 kernel's nouveau module is talking nicely to the
-GPU and both are getting along well.  I haven't yet checked out the out-of-tree
-module.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
-I'm seeing no kernel messages regarding the video device either, other than
-what shows in `dmesg` on boot-up.  Whatever went upstream between 3.18 and 3.19
-seems to be doing the trick.
+--- Comment #7 from Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 113500
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113500&action=edit
+dmesg text
+
+I am running a mid 2012 macbook pro. 650M nVidia chip. There is something funky
+with the glx rendering. I tried the various things in the troubleshooting guide
+and got no where. If need be I can email the following two images to the list
+but I thought I would save everyones mailboxes some bloat. 
+
+https://www.flickr.com/photos/evanfoss/15912299653/
+https://www.flickr.com/photos/evanfoss/16507165346/in/photostream/
+
+For those in the far future who may find the above links dead the images show
+glxgears rendering at +3K frames a second. The glxgears window however has
+blocks missing with only a single pixel in each one being rendered.
+
+I have tested the following kernel versions and found this to be true for all
+of the following. 
+
+gentoo-sources-3.12.13
+gentoo-sources-3.14.6
+gentoo-sources-3.16.1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1423964687.8Fb6E1.18514
-Date: Sun, 15 Feb 2015 01:44:47 +0000
+--1423968685.02D6DBE2.28575
+Date: Sun, 15 Feb 2015 02:51:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,29 +75,61 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:evanfoss&#64;gmail.com" title="Evan Foss &lt;evanfoss&#64;gmail.com&gt;"> <span class="fn">Evan Foss</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>evanfoss&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c17">Comment # 17</a>
+   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
-              from <span class="vcard"><a class="email" href="mailto:stuartl&#64;longlandclan.yi.org" title="Stuart Longland &lt;stuartl&#64;longlandclan.yi.org&gt;"> <span class="fn">Stuart Longland</span></a>
+   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
+              from <span class="vcard"><a class="email" href="mailto:evanfoss&#64;gmail.com" title="Evan Foss &lt;evanfoss&#64;gmail.com&gt;"> <span class="fn">Evan Foss</span></a>
 </span></b>
-        <pre>So far, so good.  I've been tinkering for an hour and haven't yet triggered the
-EQ overflow.
+        <pre>Created <span class=""><a href="attachment.cgi?id=113500" name="attach_113500" title="dmesg text">attachment 113500</a> <a href="attachment.cgi?id=113500&amp;action=edit" title="dmesg text">[details]</a></span>
+dmesg text
 
-So the standard vanilla 3.19 kernel's nouveau module is talking nicely to the
-GPU and both are getting along well.  I haven't yet checked out the out-of-tree
-module.
+I am running a mid 2012 macbook pro. 650M nVidia chip. There is something funky
+with the glx rendering. I tried the various things in the troubleshooting guide
+and got no where. If need be I can email the following two images to the list
+but I thought I would save everyones mailboxes some bloat. 
 
-I'm seeing no kernel messages regarding the video device either, other than
-what shows in `dmesg` on boot-up.  Whatever went upstream between 3.18 and 3.19
-seems to be doing the trick.</pre>
+<a href="https://www.flickr.com/photos/evanfoss/15912299653/">https://www.flickr.com/photos/evanfoss/15912299653/</a>
+<a href="https://www.flickr.com/photos/evanfoss/16507165346/in/photostream/">https://www.flickr.com/photos/evanfoss/16507165346/in/photostream/</a>
+
+For those in the far future who may find the above links dead the images show
+glxgears rendering at +3K frames a second. The glxgears window however has
+blocks missing with only a single pixel in each one being rendered.
+
+I have tested the following kernel versions and found this to be true for all
+of the following. 
+
+gentoo-sources-3.12.13
+gentoo-sources-3.14.6
+gentoo-sources-3.16.1</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +141,9 @@ seems to be doing the trick.</pre>
     </body>
 </html>
 
---1423964687.8Fb6E1.18514--
+--1423968685.02D6DBE2.28575--
 
---===============0333589713==
+--===============0738295825==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +153,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0333589713==--
+--===============0738295825==--
