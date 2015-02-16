@@ -1,19 +1,13 @@
-From: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Bug or not?
-Date: Sun, 15 Feb 2015 15:19:20 -0500
-Message-ID: <CAM2RGhSec9thGMbURKNN1v0SjLKFB3vEjaS-VDgU3pmrOpSEOw@mail.gmail.com>
-References: <CAM2RGhQxbgxRssR5vbK1=GKK9MEANK8W=_k3C=+SC4MBvxaGLw@mail.gmail.com>
- <CAKb7UvgE=OjzC8ZKBcaWcYQgefa5WJ76J=MwAJRUc719oHpDgw@mail.gmail.com>
- <CAM2RGhSqJe-UZkUg==53qUjEBnuWwxyDufbkRJeNs7OSGNNmTw@mail.gmail.com>
- <CAM2RGhQ-ud4QjDYwP+2o4w2SELp3NG=33q=G5Fwk3V-hUqHNTQ@mail.gmail.com>
- <CAM2RGhSkauuCp2y5Jt3DHX5_cWTfiCRLq1HhZatK6FC2KFgmjg@mail.gmail.com>
- <C7A4BB62-0BF8-4DDF-B62E-856C7C803762@free.fr>
- <CAM2RGhRK3prON_D8-0O-bhB1vJxCKEU3-vTG2=dK1SDihpRHJQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
+ (G94) constantly too high
+Date: Mon, 16 Feb 2015 20:28:10 +0000
+Message-ID: <bug-87885-8800-1uscjPjkZf@http.bugs.freedesktop.org/>
+References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1174817542=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAM2RGhRK3prON_D8-0O-bhB1vJxCKEU3-vTG2=dK1SDihpRHJQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,149 +17,128 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SXMgdGhlcmUgYSB3YXkgZm9yIG1lIHRvIG1hbnVhbGx5IGZvcmNlIHRoZSBjbG9jayBzcGVlZHMg
-Zm9yIHRoZSBHUFUKZG93biB0byB0aGVpciBsb3dlciBvcGVyYXRpbmcgbGltaXQ/IElzIHRoYXQg
-ZGFuZ2Vyb3VzPwoKT24gU3VuLCBGZWIgMTUsIDIwMTUgYXQgMjo1OCBQTSwgRXZhbiBGb3NzIDxl
-dmFuZm9zc0BnbWFpbC5jb20+IHdyb3RlOgo+IFRoZSBmaXJzdCBncmVwIG9mIGRtZXNnIGlzIGZv
-ciB0aGUgYXBwbGUgaW5mbyBzbyB5b3Uga25vdyBleGFjdGx5IHdoYXQKPiBib3ggSSBoYXZlLiBU
-aGUgc2Vjb25kIGlzIHRvIHNob3cgdGhhdCBJIGFtIGJvb3RpbmcgaW4gRUZJIG1vZGUgYW5kCj4g
-bm90IHNvbWUgYm9ndXMgYmlvcyBjb21wYXRpYmlsaXR5IHRoaW5nLiBUaGUgdGhpcmQgaXMgdG8g
-c2hvdyB0aGUgZ211eAo+IHZlcnNpb24uIFRoZSBmb3VydGggaXMgdG8gYW5zd2VyIHRoZSBxdWVz
-dGlvbiB5b3UgYWN0dWFsbHkgYXNrZWQuCj4KPiAkIGNhdCAvcHJvYy92ZXJzaW9uCj4gTGludXgg
-dmVyc2lvbiAzLjE5LjAgKHJvb3RAdHVyaW5nYXRsYXJnZSkgKGdjYyB2ZXJzaW9uIDQuNy4zIChH
-ZW50b28KPiA0LjcuMy1yMSBwMS40LCBwaWUtMC41LjUpICkgIzMgU01QIFN1biBGZWIgMTUgMDE6
-MDk6NTkgRVNUIDIwMTUKPgo+IC0tLS0tLSAkIGRtZXNnfGdyZXAgQXBwbGUKPiBbICAgIDAuMDAw
-MDAwXSBlZmk6IEVGSSB2MS4xMCBieSBBcHBsZQo+IFsgICAgMC4wMDAwMDBdIERNSTogQXBwbGUg
-SW5jLiBNYWNCb29rUHJvOSwxL01hYy00QjdBQzdFNDM5NDU1OTdFLAo+IEJJT1MgTUJQOTEuODha
-LjAwRDMuQjA4LjEyMDgwODExMzIgMDgvMDgvMjAxMgo+IFsgICAgMC4wMDAwMDBdIEFDUEk6IFhT
-RFQgMHgwMDAwMDAwMDhDRDhFMUMwIDAwMDBCNCAodjAxIEFQUExFCj4gQXBwbGUwMCAgMDAwMDAw
-MDAgICAgICAwMTAwMDAxMykKPiBbICAgIDAuMDAwMDAwXSBBQ1BJOiBGQUNQIDB4MDAwMDAwMDA4
-Q0Q4QzAwMCAwMDAwRjQgKHYwNCBBUFBMRQo+IEFwcGxlMDAgIDAwMDAwMDAwIExva2kgMDAwMDAw
-NUYpCj4gWyAgICAwLjAwMDAwMF0gQUNQSTogSFBFVCAweDAwMDAwMDAwOENEOEIwMDAgMDAwMDM4
-ICh2MDEgQVBQTEUKPiBBcHBsZTAwICAwMDAwMDAwMSBMb2tpIDAwMDAwMDVGKQo+IFsgICAgMC4w
-MDAwMDBdIEFDUEk6IEFQSUMgMHgwMDAwMDAwMDhDRDhBMDAwIDAwMDBCQyAodjAyIEFQUExFCj4g
-QXBwbGUwMCAgMDAwMDAwMDEgTG9raSAwMDAwMDA1RikKPiBbICAgIDAuMDAwMDAwXSBBQ1BJOiBT
-QlNUIDB4MDAwMDAwMDA4Q0Q4ODAwMCAwMDAwMzAgKHYwMSBBUFBMRQo+IEFwcGxlMDAgIDAwMDAw
-MDAxIExva2kgMDAwMDAwNUYpCj4gWyAgICAwLjAwMDAwMF0gQUNQSTogRUNEVCAweDAwMDAwMDAw
-OENEODcwMDAgMDAwMDUzICh2MDEgQVBQTEUKPiBBcHBsZTAwICAwMDAwMDAwMSBMb2tpIDAwMDAw
-MDVGKQo+IFsgICAgMC4wMDAwMDBdIEFDUEk6IE1DRkcgMHgwMDAwMDAwMDhDRDg5MDAwIDAwMDAz
-QyAodjAxIEFQUExFCj4gQXBwbGUwMCAgMDAwMDAwMDEgTG9raSAwMDAwMDA1RikKPiBbICAgIDMu
-MDkxNzQwXSB1c2IgMy0xLjE6IE1hbnVmYWN0dXJlcjogQXBwbGUgSW5jLgo+IFsgICAgMy40MTA1
-MTZdIHVzYiA0LTEuOC4xOiBNYW51ZmFjdHVyZXI6IEFwcGxlIEluYy4KPiBbICAgIDMuNTgxMTQx
-XSB1c2IgNC0xLjguMjogTWFudWZhY3R1cmVyOiBBcHBsZSBDb21wdXRlciwgSW5jLgo+IFsgICAg
-My43NzcyNjVdIHVzYiA0LTEuOC4zOiBQcm9kdWN0OiBBcHBsZSBJbnRlcm5hbCBLZXlib2FyZCAv
-IFRyYWNrcGFkCj4gWyAgICAzLjc3NzI2N10gdXNiIDQtMS44LjM6IE1hbnVmYWN0dXJlcjogQXBw
-bGUgSW5jLgo+IFsgICAgMy43ODI2MTVdIGlucHV0OiBBcHBsZSBJbmMuIEFwcGxlIEludGVybmFs
-IEtleWJvYXJkIC8gVHJhY2twYWQgYXMKPiAvZGV2aWNlcy9wY2kwMDAwOjAwLzAwMDA6MDA6MWQu
-MC91c2I0LzQtMS80LTEuOC80LTEuOC4zLzQtMS44LjM6MS4wLzAwMDM6MDVBQzowMjUyLjAwMDIv
-aW5wdXQvaW5wdXQxMwo+IFsgICAgMy44MzM0NDBdIGFwcGxlIDAwMDM6MDVBQzowMjUyLjAwMDI6
-IGlucHV0LGhpZHJhdzA6IFVTQiBISUQgdjEuMTEKPiBLZXlib2FyZCBbQXBwbGUgSW5jLiBBcHBs
-ZSBJbnRlcm5hbCBLZXlib2FyZCAvIFRyYWNrcGFkXSBvbgo+IHVzYi0wMDAwOjAwOjFkLjAtMS44
-LjMvaW5wdXQwCj4gWyAgICA0LjA5MTI0OF0gYXBwbGUgMDAwMzowNUFDOjAyNTIuMDAwMzogaGlk
-cmF3MjogVVNCIEhJRCB2MS4xMQo+IERldmljZSBbQXBwbGUgSW5jLiBBcHBsZSBJbnRlcm5hbCBL
-ZXlib2FyZCAvIFRyYWNrcGFkXSBvbgo+IHVzYi0wMDAwOjAwOjFkLjAtMS44LjMvaW5wdXQxCj4g
-WyAgICA0LjMxOTUwOV0gdXNiIDQtMS44LjEuMzogTWFudWZhY3R1cmVyOiBBcHBsZSBJbmMuCj4g
-WyAgICA0LjQ1Nzc5OF0gaW5wdXQ6IEFwcGxlIENvbXB1dGVyLCBJbmMuIElSIFJlY2VpdmVyIGFz
-Cj4gL2RldmljZXMvcGNpMDAwMDowMC8wMDAwOjAwOjFkLjAvdXNiNC80LTEvNC0xLjgvNC0xLjgu
-Mi80LTEuOC4yOjEuMC8wMDAzOjA1QUM6ODI0Mi4wMDAxL2lucHV0L2lucHV0MTgKPiBbICAgIDQu
-NTA5OTgyXSBhcHBsZWlyIDAwMDM6MDVBQzo4MjQyLjAwMDE6IGlucHV0LGhpZGRldjAsaGlkcmF3
-NDogVVNCCj4gSElEIHYxLjExIERldmljZSBbQXBwbGUgQ29tcHV0ZXIsIEluYy4gSVIgUmVjZWl2
-ZXJdIG9uCj4gdXNiLTAwMDA6MDA6MWQuMC0xLjguMi9pbnB1dDAKPgo+IC0tLS0tLSAkIGRtZXNn
-fGdyZXAgRUZJCj4gWyAgICAwLjAwMDAwMF0gZWZpOiBFRkkgdjEuMTAgYnkgQXBwbGUKPiBbICAg
-IDEuMjIwMjY5XSBmYjA6IEVGSSBWR0EgZnJhbWUgYnVmZmVyIGRldmljZQo+IFsgICAgMi42MTkx
-NDRdIEVGSSBWYXJpYWJsZXMgRmFjaWxpdHkgdjAuMDggMjAwNC1NYXktMTcKPiBbICAgIDQuMjA1
-NzY3XSBmYjogc3dpdGNoaW5nIHRvIG5vdXZlYXVmYiBmcm9tIEVGSSBWR0EKPgo+IC0tLS0tLSAk
-IGRtZXNnfGdyZXAgZ211eAo+IFsgICAgMi43Mzk4NDVdIGFwcGxlX2dtdXg6IEZvdW5kIGdtdXgg
-dmVyc2lvbiAxLjkuMzUgW2NsYXNzaWNdCj4gWyA0Mjk5LjM4Njg0M10gYXBwbGUtZ211eCAwMDow
-MzogU3lzdGVtIHdha2V1cCBkaXNhYmxlZCBieSBBQ1BJCj4KPiAtLS0tLS0gfi9Eb2N1bWVudHMg
-JCBkbWVzZ3xncmVwIERTTQo+IFsgICAgNC4yMDU3MTBdIEFDUEkgV2FybmluZzogXF9TQl8uUENJ
-MC5JR1BVLl9EU006IEFyZ3VtZW50ICM0IHR5cGUKPiBtaXNtYXRjaCAtIEZvdW5kIFtCdWZmZXJd
-LCBBQ1BJIHJlcXVpcmVzIFtQYWNrYWdlXQo+ICgyMDE0MTEwNy9uc2FyZ3VtZW50cy05NSkKPiBb
-ICAgIDQuMjA1NzI0XSBBQ1BJOiBcX1NCXy5QQ0kwLklHUFU6IGZhaWxlZCB0byBldmFsdWF0ZSBf
-RFNNCj4gWyAgICA0LjIwNTczOV0gQUNQSSBXYXJuaW5nOiBcX1NCXy5QQ0kwLlAwUDIuR0ZYMC5f
-RFNNOiBBcmd1bWVudCAjNAo+IHR5cGUgbWlzbWF0Y2ggLSBGb3VuZCBbQnVmZmVyXSwgQUNQSSBy
-ZXF1aXJlcyBbUGFja2FnZV0KPiAoMjAxNDExMDcvbnNhcmd1bWVudHMtOTUpCj4gWyAgICA0LjIw
-NTc0OV0gQUNQSTogXF9TQl8uUENJMC5QMFAyLkdGWDA6IGZhaWxlZCB0byBldmFsdWF0ZSBfRFNN
-Cj4KPiBPbiBTdW4sIEZlYiAxNSwgMjAxNSBhdCA1OjEzIEFNLCBQaWVycmUgTW9yZWF1IDxwaWVy
-cmUubW9ycm93QGZyZWUuZnI+IHdyb3RlOgo+PiBEb2VzIHRoZSBOdmlkaWEgY2FyZCBhdXRvLXN1
-c3BlbmRzIG9yIGRvIHlvdSBoYXZlIHRvIGZvcmNlIGl0PyBJZiBub3QsIGRvZXMKPj4gaXQgcmVw
-b3J0IHNvbWUg4oCcZmFpbGVkIHRvIHBhcnNlIF9EU03igJ0gbWVzc2FnZT8KPj4gSSBoYXZlIGEg
-bWlkIDIwMDkgTUJQIHdobyB1c2VzIGEgZGlmZmVyZW50IF9EU00gaGFuZGxlcyB0aGFuIHRoZSBv
-bmVzCj4+IE5vdXZlYXUgY3VycmVudGx5IHN1cHBvcnRzLCBhbmQgSSB3b25kZXJlZCBpZiB0aGV5
-IHdlcmUgcmVsYXRlZCB0byB0aGUgQXBwbGUKPj4gR211eCBvciBub3QuIFNvLCBhcyB5b3UgaGF2
-ZSBhIGRpZmZlcmVudCBtb2RlbCB3aXRoIGEgZGlmZmVyZW50IE52aWRpYSBjYXJkCj4+IGJ1dCBz
-dGlsbCB3aXRoIGFuIEFwcGxlIEdtdXgsIEnigJlkIGJlIGludGVyZXN0ZWQgdG8ga25vdyBpZiB5
-b3UgaGF2ZSB0aGUgc2FtZQo+PiBfRFNNIGhhbmRsZXMgYXMgSSBoYXZlLgo+Pgo+PiBQaWVycmUK
-Pj4KPj4gT24gMTUgRmViIDIwMTUsIGF0IDA2OjQ0LCBFdmFuIEZvc3MgPGV2YW5mb3NzQGdtYWls
-LmNvbT4gd3JvdGU6Cj4+Cj4+IFRoYW5rcyBhZ2Fpbi4KPj4KPj4gVGhpcyB3b3JrcyBhbmQgdGhl
-IGhlYXQgaGFzIGRyb3BwZWQgc3Vic3RhbnRpYWxseS4gSXQgaXMgc3RpbGwgbm90IGFzCj4+IGNv
-b2wgYXMgSSB3b3VsZCBsaWtlIGJ1dCB0aGlzIHdpbGwgZG8gZm9yIG5vdy4gSSBzdGlsbCBuZWVk
-IHRvIGZpbGUgYQo+PiBidWcgcmVwb3J0IHdpdGggdGhlIGludGVsIC8gYXBwbGUgZ211eCBwZW9w
-bGUuCj4+Cj4+IC1FdmFuCj4+Cj4+IE9uIFNhdCwgRmViIDE0LCAyMDE1IGF0IDEwOjQyIFBNLCBF
-dmFuIEZvc3MgPGV2YW5mb3NzQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIHRoZSBvbGRlciBr
-ZXJuZWwKPj4KPj4gWyAgICA2LjQ5NDk1Nl0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAxOjAw
-LjBdIDA3OiBjb3JlIDI3MC00MDUgTUh6Cj4+IG1lbW9yeSA4MzggTUh6Cj4+IFsgICAgNi40OTQ5
-ODldIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwYTogY29yZSAyNzAtNzc0IE1I
-ego+PiBtZW1vcnkgMTU2MCBNSHoKPj4gWyAgICA2LjQ5NTAxNV0gbm91dmVhdSAgWyAgICAgQ0xL
-XVswMDAwOjAxOjAwLjBdIDBlOiBjb3JlIDI3MC03NzQgTUh6Cj4+IG1lbW9yeSA0MDAwIE1Iego+
-PiBbICAgIDYuNDk1MTgyXSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDE6MDAuMF0gLS06IGNv
-cmUgNDA1IE1IeiBtZW1vcnkgNjgwCj4+IE1Iego+Pgo+PiBPbiBTYXQsIEZlYiAxNCwgMjAxNSBh
-dCAxMDozNSBQTSwgRXZhbiBGb3NzIDxldmFuZm9zc0BnbWFpbC5jb20+IHdyb3RlOgo+Pgo+PiBC
-ZWNhdXNlIEkgYW0gb24gYSBtYWNib29rIHRoZSBWQklPUyBtaWdodCBiZSB3b25reS4KPj4KPj4g
-SSB0cmllZCB0dXJuaW5nIG9mZiBuVmlkaWEgYW5kIHVzaW5nIGludGVsLiBUaGUgcmVzdWx0IHdh
-cyBhIGJsYW5rCj4+IHNjcmVlbi4gSSBrbm93IG90aGVyIHBlb3BsZSBoYWQgdGhlIHNhbWUgYnVn
-IHdoaWNoIHdhcyBzb21ldGhpbmcgdG8gZG8KPj4gd2l0aCByZXByb2JpbmcgbHZkcz8hIEkgc2F3
-IHBhdGNoZXMgZ28gYnkgYW5kIGV2ZXJ5IHRpbWUgSSB0cmllZCBvbmUKPj4gdGhlIHJlc3VsdHMg
-d2VyZSB0aGUgc2FtZS4gZmFpbC4gSSB3YXMgYWN0dWFsbHkgYWJvdXQgdG8gcG9zdCBhIGJ1Zwo+
-PiByZXBvcnQgdG8gdGhlIGludGVsIChpOTE1KSBwZW9wbGUgYWJvdXQgaXQuCj4+Cj4+IEkgdHJp
-ZWQgdG8gd29yayBvdXQgaG93IHRvIGdldCBvcHRpbXVzIHRvIHdvcmsuIEFmdGVyIHRyeWluZyBz
-ZXZlcmFsCj4+IGRpZmZlcmVudCBzZXRzIG9mIGluc3RydWN0aW9ucyBJIG5ldmVyIGZvdW5kIGEg
-d29ya2luZyBjb25maWd1cmF0aW9uCj4+IGFuZCBwdXQgaXQgYXNpZGUuIEkgbmV2ZXIgdXNlZCB0
-byB1c2Ugb3BlbmdsIGJ1dCBsYXRlbHkgbXkgcGNiCj4+IHNvZnR3YXJlIGhhcyBhZG9wdGVkIGl0
-IHNvIG15IG5lZWRzIGNoYW5nZWQuCj4+Cj4+IEkgd2lsbCBnZXQgYmFjayB0byB5b3Ugd2l0aCBt
-b3JlIHJlc3VsdHMgb24gdGhpcyBtYXR0ZXIgYWZ0ZXIgSSBnZXQKPj4gdGhlIG5ld2VyIGtlcm5l
-bCB1cC4KPj4KPj4KPj4gT24gU2F0LCBGZWIgMTQsIDIwMTUgYXQgMTA6MDkgUE0sIElsaWEgTWly
-a2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+Cj4+IE9uIFNhdCwgRmViIDE0LCAy
-MDE1IGF0IDk6NTYgUE0sIEV2YW4gRm9zcyA8ZXZhbmZvc3NAZ21haWwuY29tPiB3cm90ZToKPj4K
-Pj4gSSBoYXZlIGEgc2lkZSBxdWVzdGlvbiB3aGljaCBtYXkgYmUgdGhlIHN1YmplY3Qgb2YgYSBm
-dXR1cmUgc2Vjb25kIGJ1Zwo+PiByZXBvcnQuIEkgaGF2ZSBiZWVuIGx1cmtpbmcgb24gdGhlIG5v
-dXZlYXUgbWFpbGluZyBsaXN0IGZvciBzb21lIHRpbWUuCj4+IEkgdW5kZXJzdGFuZCBmcm9tIHZh
-cmlvdXMgcG9zdHMgdGhhdCB0aGUgbnZpZGlhIGdwdSBjbG9jayBzcGVlZCByaWdodAo+PiBub3cg
-aXMgc2V0IHRvIHRoZSBsb3dlc3QgcG9zc2libGUgc2V0dGluZy4gV2h5IGRvZXMgbXkgbWFjaGlu
-ZSBydW4gc28KPj4KPj4KPj4gT2Z0ZW4gYnV0IG5vdCBhbHdheXMgdGhlIGNhc2UgLS0gdGhlIGNs
-b2NrIHNwZWVkIGlzIHdoYXRldmVyIHRoZSBWQklPUwo+PiBsZWF2ZXMgaXQgaW4uIEZvciBrZXBs
-ZXIsIHRoYXQgaXMgdXN1YWxseSB0aGUgbG93ZXN0IHNldHRpbmcuCj4+Cj4+IG11Y2ggaG90dGVy
-IGluIGxpbnV4IHRoYW4gbWFjb3M/IEkgdHVybmVkIG9mZiB0aGUgaW50ZWwgZ3JhcGhpY3MgYW5k
-Cj4+IHRoZSBjcHUgY2xvY2sgaXMgc2V0IHRvIHRoZSBsb3dlc3QgYXZhaWxhYmxlIHNwZWVkLgo+
-Pgo+Pgo+PiBZb3Ugc2hvdWxkIGluc3RlYWQgdHVybiBvZmYgdGhlIG52aWRpYSBncmFwaGljcyBh
-bmQgcnVuIG9mZiBpbnRlbCAtLQo+PiBpbnRlbCBpcyBtdWNoIGxlc3MgcG93ZXItaHVuZ3J5IHRo
-YW4gbnZpZGlhLCBldmVuIGF0IHRoZSBsb3dlc3QKPj4gY2xvY2tzLiBJZiBpdCdzIGFuIG9wdGlt
-dXMgc2V0dXAsIHRoZSBudmlkaWEgZ3B1IHNob3VsZCBhdXRvbWF0aWNhbGx5Cj4+IHBvd2VyIG9m
-ZiB1bnRpbCBuZWVkZWQgKGVpdGhlciBiZWNhdXNlIHNvbWUgZGlzcGxheSBpcyBjb25uZWN0ZWQg
-dG8KPj4gaXQsIG9yIGZvciBvZmZsb2FkaW5nKS4KPj4KPj4KPj4gSG93IGRvIEkgZ2V0IGEgZGlz
-cGxheSBvZiB0aGUgR1BVIGNsb2NraW5nIHNwZWVkcz8KPj4KPj4KPj4gWW91IHNob3VsZCBzZWUg
-aXQgaW4gZG1lc2cuLi4gbG9vayBmb3IgQ0xLIGxpbmVzLiBUaGUgb25lcyB3aXRoIC0tIChvcgo+
-PiBBQy9EQykgd2lsbCBzaG93IHRoZSBjdXJyZW50IHNldHRpbmcuIE9yIGJvb3Qgd2l0aCBub3V2
-ZWF1LnBzdGF0ZT0xCj4+IGFuZCB5b3Ugc2hvdWxkIGhhdmUgYSAvc3lzL2NsYXNzL2RybS9jYXJk
-Ki9kZXZpY2UvcHN0YXRlIGZpbGUuCj4+Cj4+ICAtaWxpYQo+Pgo+Pgo+Pgo+Pgo+PiAtLQo+PiBI
-b21lCj4+IGh0dHA6Ly9ldmFuZm9zcy5nb29nbGVwYWdlcy5jb20vCj4+IFdvcmsKPj4gaHR0cDov
-L2ZvcmdlLmFiY2QuaGFydmFyZC5lZHUvZ2YvcHJvamVjdC9lcGxfZW5naW5lZXJpbmcvd2lraS8K
-Pj4KPj4KPj4KPj4KPj4gLS0KPj4gSG9tZQo+PiBodHRwOi8vZXZhbmZvc3MuZ29vZ2xlcGFnZXMu
-Y29tLwo+PiBXb3JrCj4+IGh0dHA6Ly9mb3JnZS5hYmNkLmhhcnZhcmQuZWR1L2dmL3Byb2plY3Qv
-ZXBsX2VuZ2luZWVyaW5nL3dpa2kvCj4+Cj4+Cj4+Cj4+Cj4+IC0tCj4+IEhvbWUKPj4gaHR0cDov
-L2V2YW5mb3NzLmdvb2dsZXBhZ2VzLmNvbS8KPj4gV29yawo+PiBodHRwOi8vZm9yZ2UuYWJjZC5o
-YXJ2YXJkLmVkdS9nZi9wcm9qZWN0L2VwbF9lbmdpbmVlcmluZy93aWtpLwo+PiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcg
-bGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Pgo+Pgo+Cj4KPgo+IC0tCj4g
-SG9tZQo+IGh0dHA6Ly9ldmFuZm9zcy5nb29nbGVwYWdlcy5jb20vCj4gV29yawo+IGh0dHA6Ly9m
-b3JnZS5hYmNkLmhhcnZhcmQuZWR1L2dmL3Byb2plY3QvZXBsX2VuZ2luZWVyaW5nL3dpa2kvCgoK
-Ci0tIApIb21lCmh0dHA6Ly9ldmFuZm9zcy5nb29nbGVwYWdlcy5jb20vCldvcmsKaHR0cDovL2Zv
-cmdlLmFiY2QuaGFydmFyZC5lZHUvZ2YvcHJvamVjdC9lcGxfZW5naW5lZXJpbmcvd2lraS8KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1174817542==
+Content-Type: multipart/alternative; boundary="1424118490.505b7D1.19499"; charset="UTF-8"
+
+
+--1424118490.505b7D1.19499
+Date: Mon, 16 Feb 2015 20:28:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87885
+
+--- Comment #16 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+(In reply to JonS from comment #14)
+> Hi all,
+> 
+> Came across this thread while googling for a similar problem on a CentOS 7
+> install.
+> 
+> I have a solution.
+> 
+> echo 10000 >
+> /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
+> 
+> echo 50000 >
+> /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
+> 
+> Worth noting that 50000 is a custom value, but you could use the 90000 it is
+> originally set to.
+> 
+> I put that in rc.local
+> 
+> Anyway, it does the trick for me.
+> 
+> Not sure why it is necessary, but I'm sure nouveau people upstream might be
+> able to identify why it's necessary and code a proper fix. In the mean-time
+> this solves the issue for me.
+
+Hey,
+
+Seems like your vbios is broken. Please open another bug report as it is not
+the same bug as this one. I will have a look at it!
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424118490.505b7D1.19499
+Date: Mon, 16 Feb 2015 20:28:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
+              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
+</span></b>
+        <pre>(In reply to JonS from <a href="show_bug.cgi?id=87885#c14">comment #14</a>)
+<span class="quote">&gt; Hi all,
+&gt; 
+&gt; Came across this thread while googling for a similar problem on a CentOS 7
+&gt; install.
+&gt; 
+&gt; I have a solution.
+&gt; 
+&gt; echo 10000 &gt;
+&gt; /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
+&gt; 
+&gt; echo 50000 &gt;
+&gt; /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
+&gt; 
+&gt; Worth noting that 50000 is a custom value, but you could use the 90000 it is
+&gt; originally set to.
+&gt; 
+&gt; I put that in rc.local
+&gt; 
+&gt; Anyway, it does the trick for me.
+&gt; 
+&gt; Not sure why it is necessary, but I'm sure nouveau people upstream might be
+&gt; able to identify why it's necessary and code a proper fix. In the mean-time
+&gt; this solves the issue for me.</span >
+
+Hey,
+
+Seems like your vbios is broken. Please open another bug report as it is not
+the same bug as this one. I will have a look at it!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424118490.505b7D1.19499--
+
+--===============1174817542==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1174817542==--
