@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
- (G94) constantly too high
-Date: Mon, 16 Feb 2015 21:40:08 +0000
-Message-ID: <bug-87885-8800-o53TmjVwR3@http.bugs.freedesktop.org/>
-References: <bug-87885-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Only stereo sound with gtx570 over hdmi (regression)
+Date: Tue, 17 Feb 2015 09:47:49 +1000
+Message-ID: <CACAvsv4809j-fuQB5nOp23vc7M5vL7DKxTHppRZ1guXh9dvnmQ@mail.gmail.com>
+References: <1424027006.51914.YahooMailBasic@web172405.mail.ir2.yahoo.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1946872176=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1424027006.51914.YahooMailBasic-UplRsOVdabU874a3UngkqtbnKcCSMkHPVpNB7YpNyf8@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,128 +17,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Farid BENAMROUCHE <fariouche-Qt13gs6zZMY@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1946872176==
-Content-Type: multipart/alternative; boundary="1424122808.0D1c1.31266"; charset="UTF-8"
-
-
---1424122808.0D1c1.31266
-Date: Mon, 16 Feb 2015 21:40:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87885
-
---- Comment #17 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to TM from comment #13)
-> Quick update, not sure if valuable or not:
-> I changed some Xorg config, therefore remembered this thread, and just went
-> and tried the last advice concerning the situation using nouveau again. Here
-> are the steps:
-> 
-> # ./nvapoke e120 830000bd
-> # cd /sys/class/drm/card0/device/hwmon/hwmon0
-> # echo 1 > pwm1_enable
-> # echo 65 > pwm1
-> # cat pwm1_min
-> 65
-> 
-> # cd /path/to/envytools/nva
-> # ./nvapoke e120 830000bd
-> # cd /sys/class/drm/card0/device/hwmon/hwmon0
-> # cat pwm1_min 
-> 35
-> # cat pwm1
-> 14
-> 
-> I found it odd that the state of pwm1 is below the min after issuing the
-> nvapoke command.
-> Apart from that, the fan speed again didn't change :/
-> Hope it helps, if not: sorry for the noise.
-
-I'm very sorry for not giving you any feedback on this. I don't understand what
-is going on now but that's very helpful! I'll spend my wednesday evening on
-this!
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424122808.0D1c1.31266
-Date: Mon, 16 Feb 2015 21:40:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>(In reply to TM from <a href="show_bug.cgi?id=87885#c13">comment #13</a>)
-<span class="quote">&gt; Quick update, not sure if valuable or not:
-&gt; I changed some Xorg config, therefore remembered this thread, and just went
-&gt; and tried the last advice concerning the situation using nouveau again. Here
-&gt; are the steps:
-&gt; 
-&gt; # ./nvapoke e120 830000bd
-&gt; # cd /sys/class/drm/card0/device/hwmon/hwmon0
-&gt; # echo 1 &gt; pwm1_enable
-&gt; # echo 65 &gt; pwm1
-&gt; # cat pwm1_min
-&gt; 65
-&gt; 
-&gt; # cd /path/to/envytools/nva
-&gt; # ./nvapoke e120 830000bd
-&gt; # cd /sys/class/drm/card0/device/hwmon/hwmon0
-&gt; # cat pwm1_min 
-&gt; 35
-&gt; # cat pwm1
-&gt; 14
-&gt; 
-&gt; I found it odd that the state of pwm1 is below the min after issuing the
-&gt; nvapoke command.
-&gt; Apart from that, the fan speed again didn't change :/
-&gt; Hope it helps, if not: sorry for the noise.</span >
-
-I'm very sorry for not giving you any feedback on this. I don't understand what
-is going on now but that's very helpful! I'll spend my wednesday evening on
-this!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424122808.0D1c1.31266--
-
---===============1946872176==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1946872176==--
+T24gTW9uLCBGZWIgMTYsIDIwMTUgYXQgNTowMyBBTSwgRmFyaWQgQkVOQU1ST1VDSEUgPGZhcmlv
+dWNoZUB5YWhvby5mcj4gd3JvdGU6Cj4gSGVsbG8gYWxsLAo+Cj4gSSdtIHVzaW5nIGdlbnRvbywg
+d2l0aCBrZXJuZWwgMy4xNy4wLXAxLXBmIGFuZCBhdCBzb21lIHBvaW50LCBhIHBhdGNoIHdhcyBp
+bmNsdWRlZCBpbiB0aGlzIGJyYW5jaCBvZiB0aGUgZ2VudG9vIGtlcm5lbCB0aGF0IGJyb2tlIGhk
+bWkgYXVkaW8uCj4KPiBJJ3ZlIGNoZWNrZWQgd2l0aCB0aGUgbGF0ZXN0IDMuMTkgdmFuaWxsYSBr
+ZXJuZWwsIGFuZCBJIHN0aWxsIGhhdmUgdGhlIHNhbWUgcHJvYmxlbS4gSSBjYW5ub3Qgb3V0cHV0
+IG11bHRpY2hhbm5lbCBzb3VuZCBvdmVyIGhkbWkuCj4KPiBBZnRlciBzb21lIGludmVzdGlnYXRp
+b25zLCBJJ3ZlIG5hcnJvd2VkIGRvd24gdGhlIGlzc3VlIHRvIHRoZSBmb2xsb3dpbmcgbGluZXMg
+aW4gdGhlIGZpbGUgbnY1MF9kaXNwbGF5LmM6Cj4KPiAodGhlIHN0cnVjdHVyZSBzbGlnaHRseSBj
+aGFuZ2VkIGFuZCBkZWNsYXJlZCAicGFja2VkIi4gUmV2ZXJ0aW5nIHRoaXMgY2hhbmdlIG1hZGUg
+dGhlIG11bHRpY2hhbm5lbCBhdWRpbyBiYWNrKQo+IEkgc3RpbGwgZG8gbm90IGtub3duIGV4YWN0
+bHkgd2hlbiB0aGlzIG1vZGlmaWNhdGlvbiB3YXMgaW50cm9vZHVjZWQuIElmIHlvdSBuZWVkIG1v
+cmUgZGV0YWlscywgcGxlYXNlIGxldCBtZSBrbm93LgpUaGVyZSB3ZXJlIGJ1Z3MgaW4gdGhlIGlt
+cGxlbWVudGF0aW9uIGZvciBhIHdoaWxlIHRoYXQgY291bGQndmUgY2F1c2VkCnRoaXMgcHJvYmxl
+bS4gIEhvd2V2ZXIsIHRob3NlIHNob3VsZCBiZSBmaXhlZCBhbHJlYWR5IGJ5IDMuMTkuICBXaGF0
+Cmtlcm5lbCB2ZXJzaW9uIGlzIHlvdXIgcmV2ZXJ0IGFnYWluc3Q/ICBJdCdzIG5vdCB0aGUgbGF0
+ZXN0IGNvZGUsCmJlY2F1c2UgdGhhdCB1c2VzIGRybV9lbGRfc2l6ZSgpLgoKVGVzdGluZyBvbiBt
+eSBUViBhdCBob21lICgzLjE5LjAtcmM1KSwgSSBzZWUgdGhpcyBpbiAvcHJvYy9hc291bmQvY2Fy
+ZDEvZWxkIzAuMDoKCm1vbml0b3JfcHJlc2VudCAxCmVsZF92YWxpZCAxCm1vbml0b3JfbmFtZSBT
+QU1TVU5HCmNvbm5lY3Rpb25fdHlwZSBIRE1JCmVsZF92ZXJzaW9uIFsweDJdIENFQS04NjFEIG9y
+IGJlbG93CmVkaWRfdmVyc2lvbiBbMHgzXSBDRUEtODYxLUIsIEMgb3IgRAptYW51ZmFjdHVyZV9p
+ZCAweDJkNGMKcHJvZHVjdF9pZCAweDY5Ygpwb3J0X2lkIDB4MApzdXBwb3J0X2hkY3AgMApzdXBw
+b3J0X2FpIDEKYXVkaW9fc3luY19kZWxheSAwCnNwZWFrZXJzIFsweGZdIEZML0ZSIExGRSBGQyBS
+TC9SUgpzYWRfY291bnQgNApzYWQwX2NvZGluZ190eXBlIFsweDFdIExQQ00Kc2FkMF9jaGFubmVs
+cyAyCnNhZDBfcmF0ZXMgWzB4NmUwXSAzMjAwMCA0NDEwMCA0ODAwMCA4ODIwMCA5NjAwMApzYWQw
+X2JpdHMgWzB4ZTAwMDBdIDE2IDIwIDI0CnNhZDFfY29kaW5nX3R5cGUgWzB4MV0gTFBDTQpzYWQx
+X2NoYW5uZWxzIDYKc2FkMV9yYXRlcyBbMHg2ZTBdIDMyMDAwIDQ0MTAwIDQ4MDAwIDg4MjAwIDk2
+MDAwCnNhZDFfYml0cyBbMHhlMDAwMF0gMTYgMjAgMjQKc2FkMl9jb2RpbmdfdHlwZSBbMHgyXSBB
+Qy0zCnNhZDJfY2hhbm5lbHMgNgpzYWQyX3JhdGVzIFsweGUwXSAzMjAwMCA0NDEwMCA0ODAwMApz
+YWQyX21heF9iaXRyYXRlIDY0MDAwMApzYWQzX2NvZGluZ190eXBlIFsweDddIERUUwpzYWQzX2No
+YW5uZWxzIDYKc2FkM19yYXRlcyBbMHhlMF0gMzIwMDAgNDQxMDAgNDgwMDAKc2FkM19tYXhfYml0
+cmF0ZSAxNTM2MDAwCgpXaGljaCBsb29rcyBjb3JyZWN0LCBhbmQgbGlrZSB0aGUgY29kZSB5b3Ug
+bWVudGlvbiBpcyBkb2luZyB0aGUgcmlnaHQgdGhpbmcuCgpUaGFua3MsCkJlbi4KCgo+Cj4gLS0t
+IHdvcmtpbmdfa2VybmVsL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4g
+KysrIG5vdF93b3JraW5nX2tlcm5lbC9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3Bs
+YXkuYwo+IEBAIC0xNjUzLDE1ICsxNjUzLDE3IEBACj4gICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9l
+bmNvZGVyICpudl9lbmNvZGVyID0gbm91dmVhdV9lbmNvZGVyKGVuY29kZXIpOwo+ICAgICAgICAg
+c3RydWN0IG5vdXZlYXVfY29ubmVjdG9yICpudl9jb25uZWN0b3I7Cj4gICAgICAgICBzdHJ1Y3Qg
+bnY1MF9kaXNwICpkaXNwID0gbnY1MF9kaXNwKGVuY29kZXItPmRldik7Cj4gLSAgICAgICBzdHJ1
+Y3Qgewo+IC0gICAgICAgICAgICAgICBzdHJ1Y3QgbnY1MF9kaXNwX210aGRfdjEgYmFzZTsKPiAt
+ICAgICAgICAgICAgICAgc3RydWN0IG52NTBfZGlzcF9zb3JfaGRhX2VsZF92MCBlbGQ7Cj4gKyAg
+ICAgICBzdHJ1Y3QgX19wYWNrZWQgewo+ICsgICAgICAgICAgICAgICBzdHJ1Y3Qgewo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIHN0cnVjdCBudjUwX2Rpc3BfbXRoZF92MSBtdGhkOwo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIHN0cnVjdCBudjUwX2Rpc3Bfc29yX2hkYV9lbGRfdjAgZWxkOwo+
+ICsgICAgICAgICAgICAgICB9IGJhc2U7Cj4gICAgICAgICAgICAgICAgIHU4IGRhdGFbc2l6ZW9m
+KG52X2Nvbm5lY3Rvci0+YmFzZS5lbGQpXTsKPiAgICAgICAgIH0gYXJncyA9IHsKPiAtICAgICAg
+ICAgICAgICAgLmJhc2UudmVyc2lvbiA9IDEsCj4gLSAgICAgICAgICAgICAgIC5iYXNlLm1ldGhv
+ZCAgPSBOVjUwX0RJU1BfTVRIRF9WMV9TT1JfSERBX0VMRCwKPiAtICAgICAgICAgICAgICAgLmJh
+c2UuaGFzaHQgICA9IG52X2VuY29kZXItPmRjYi0+aGFzaHQsCj4gLSAgICAgICAgICAgICAgIC5i
+YXNlLmhhc2htICAgPSBudl9lbmNvZGVyLT5kY2ItPmhhc2htLAo+ICsgICAgICAgICAgICAgICAu
+YmFzZS5tdGhkLnZlcnNpb24gPSAxLAo+ICsgICAgICAgICAgICAgICAuYmFzZS5tdGhkLm1ldGhv
+ZCAgPSBOVjUwX0RJU1BfTVRIRF9WMV9TT1JfSERBX0VMRCwKPiArICAgICAgICAgICAgICAgLmJh
+c2UubXRoZC5oYXNodCAgID0gbnZfZW5jb2Rlci0+ZGNiLT5oYXNodCwKPiArICAgICAgICAgICAg
+ICAgLmJhc2UubXRoZC5oYXNobSAgID0gbnZfZW5jb2Rlci0+ZGNiLT5oYXNobSwKPiAgICAgICAg
+IH07Cj4KPiAgICAgICAgIG52X2Nvbm5lY3RvciA9IG5vdXZlYXVfZW5jb2Rlcl9jb25uZWN0b3Jf
+Z2V0KG52X2VuY29kZXIpOwo+IEBAIC0xNjcxLDcgKzE2NzMsNyBAQAo+ICAgICAgICAgZHJtX2Vk
+aWRfdG9fZWxkKCZudl9jb25uZWN0b3ItPmJhc2UsIG52X2Nvbm5lY3Rvci0+ZWRpZCk7Cj4gICAg
+ICAgICBtZW1jcHkoYXJncy5kYXRhLCBudl9jb25uZWN0b3ItPmJhc2UuZWxkLCBzaXplb2YoYXJn
+cy5kYXRhKSk7Cj4KPiAtICAgICAgIG52aWZfbXRoZChkaXNwLT5kaXNwLCAwLCAmYXJncywgc2l6
+ZW9mKGFyZ3MpKTsKPiArICAgICAgIG52aWZfbXRoZChkaXNwLT5kaXNwLCAwLCAmYXJncywgc2l6
+ZW9mKGFyZ3MuYmFzZSkgKyBhcmdzLmRhdGFbMl0gKiA0KTsKPiAgfQo+Cj4gIHN0YXRpYyB2b2lk
+Cj4KPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4g
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
