@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
  (G94) constantly too high
-Date: Mon, 16 Feb 2015 20:28:10 +0000
-Message-ID: <bug-87885-8800-1uscjPjkZf@http.bugs.freedesktop.org/>
+Date: Mon, 16 Feb 2015 21:40:08 +0000
+Message-ID: <bug-87885-8800-o53TmjVwR3@http.bugs.freedesktop.org/>
 References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1174817542=="
+Content-Type: multipart/mixed; boundary="===============1946872176=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,54 +21,54 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1174817542==
-Content-Type: multipart/alternative; boundary="1424118490.505b7D1.19499"; charset="UTF-8"
+--===============1946872176==
+Content-Type: multipart/alternative; boundary="1424122808.0D1c1.31266"; charset="UTF-8"
 
 
---1424118490.505b7D1.19499
-Date: Mon, 16 Feb 2015 20:28:10 +0000
+--1424122808.0D1c1.31266
+Date: Mon, 16 Feb 2015 21:40:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87885
 
---- Comment #16 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-(In reply to JonS from comment #14)
-> Hi all,
+--- Comment #17 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
+(In reply to TM from comment #13)
+> Quick update, not sure if valuable or not:
+> I changed some Xorg config, therefore remembered this thread, and just went
+> and tried the last advice concerning the situation using nouveau again. Here
+> are the steps:
 > 
-> Came across this thread while googling for a similar problem on a CentOS 7
-> install.
+> # ./nvapoke e120 830000bd
+> # cd /sys/class/drm/card0/device/hwmon/hwmon0
+> # echo 1 > pwm1_enable
+> # echo 65 > pwm1
+> # cat pwm1_min
+> 65
 > 
-> I have a solution.
+> # cd /path/to/envytools/nva
+> # ./nvapoke e120 830000bd
+> # cd /sys/class/drm/card0/device/hwmon/hwmon0
+> # cat pwm1_min 
+> 35
+> # cat pwm1
+> 14
 > 
-> echo 10000 >
-> /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
-> 
-> echo 50000 >
-> /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
-> 
-> Worth noting that 50000 is a custom value, but you could use the 90000 it is
-> originally set to.
-> 
-> I put that in rc.local
-> 
-> Anyway, it does the trick for me.
-> 
-> Not sure why it is necessary, but I'm sure nouveau people upstream might be
-> able to identify why it's necessary and code a proper fix. In the mean-time
-> this solves the issue for me.
+> I found it odd that the state of pwm1 is below the min after issuing the
+> nvapoke command.
+> Apart from that, the fan speed again didn't change :/
+> Hope it helps, if not: sorry for the noise.
 
-Hey,
-
-Seems like your vbios is broken. Please open another bug report as it is not
-the same bug as this one. I will have a look at it!
+I'm very sorry for not giving you any feedback on this. I don't understand what
+is going on now but that's very helpful! I'll spend my wednesday evening on
+this!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424118490.505b7D1.19499
-Date: Mon, 16 Feb 2015 20:28:10 +0000
+--1424122808.0D1c1.31266
+Date: Mon, 16 Feb 2015 21:40:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,42 +82,42 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c16">Comment # 16</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
               from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
 </span></b>
-        <pre>(In reply to JonS from <a href="show_bug.cgi?id=87885#c14">comment #14</a>)
-<span class="quote">&gt; Hi all,
+        <pre>(In reply to TM from <a href="show_bug.cgi?id=87885#c13">comment #13</a>)
+<span class="quote">&gt; Quick update, not sure if valuable or not:
+&gt; I changed some Xorg config, therefore remembered this thread, and just went
+&gt; and tried the last advice concerning the situation using nouveau again. Here
+&gt; are the steps:
 &gt; 
-&gt; Came across this thread while googling for a similar problem on a CentOS 7
-&gt; install.
+&gt; # ./nvapoke e120 830000bd
+&gt; # cd /sys/class/drm/card0/device/hwmon/hwmon0
+&gt; # echo 1 &gt; pwm1_enable
+&gt; # echo 65 &gt; pwm1
+&gt; # cat pwm1_min
+&gt; 65
 &gt; 
-&gt; I have a solution.
+&gt; # cd /path/to/envytools/nva
+&gt; # ./nvapoke e120 830000bd
+&gt; # cd /sys/class/drm/card0/device/hwmon/hwmon0
+&gt; # cat pwm1_min 
+&gt; 35
+&gt; # cat pwm1
+&gt; 14
 &gt; 
-&gt; echo 10000 &gt;
-&gt; /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
-&gt; 
-&gt; echo 50000 &gt;
-&gt; /sys/class/drm/controlD64/device/hwmon/hwmon0/temp1_auto_point1_temp
-&gt; 
-&gt; Worth noting that 50000 is a custom value, but you could use the 90000 it is
-&gt; originally set to.
-&gt; 
-&gt; I put that in rc.local
-&gt; 
-&gt; Anyway, it does the trick for me.
-&gt; 
-&gt; Not sure why it is necessary, but I'm sure nouveau people upstream might be
-&gt; able to identify why it's necessary and code a proper fix. In the mean-time
-&gt; this solves the issue for me.</span >
+&gt; I found it odd that the state of pwm1 is below the min after issuing the
+&gt; nvapoke command.
+&gt; Apart from that, the fan speed again didn't change :/
+&gt; Hope it helps, if not: sorry for the noise.</span >
 
-Hey,
-
-Seems like your vbios is broken. Please open another bug report as it is not
-the same bug as this one. I will have a look at it!</pre>
+I'm very sorry for not giving you any feedback on this. I don't understand what
+is going on now but that's very helpful! I'll spend my wednesday evening on
+this!</pre>
         </div>
       </p>
       <hr>
@@ -129,9 +129,9 @@ the same bug as this one. I will have a look at it!</pre>
     </body>
 </html>
 
---1424118490.505b7D1.19499--
+--1424122808.0D1c1.31266--
 
---===============1174817542==
+--===============1946872176==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +141,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1174817542==--
+--===============1946872176==--
