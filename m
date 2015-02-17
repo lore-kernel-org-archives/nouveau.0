@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54700] Distorted graphics (double cursor) with
- GeForce 4200Go (NV28M)
-Date: Tue, 17 Feb 2015 09:09:50 +0000
-Message-ID: <bug-54700-8800-WrDeDyOyoR@http.bugs.freedesktop.org/>
-References: <bug-54700-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 88822] X freezes after watching videos
+Date: Tue, 17 Feb 2015 09:49:28 +0000
+Message-ID: <bug-88822-8800-0GzL0sg9gy@http.bugs.freedesktop.org/>
+References: <bug-88822-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1681215958=="
+Content-Type: multipart/mixed; boundary="===============0680531109=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54700-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-88822-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1681215958==
-Content-Type: multipart/alternative; boundary="1424164190.AcA0fcc33.8271"; charset="UTF-8"
+--===============0680531109==
+Content-Type: multipart/alternative; boundary="1424166568.22CF30E1.17242"; charset="UTF-8"
 
 
---1424164190.AcA0fcc33.8271
-Date: Tue, 17 Feb 2015 09:09:50 +0000
+--1424166568.22CF30E1.17242
+Date: Tue, 17 Feb 2015 09:49:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54700
+https://bugs.freedesktop.org/show_bug.cgi?id=88822
 
---- Comment #72 from VF <f0rhum-GANU6spQydw@public.gmane.org> ---
-I reached to retreive my video bios version*:
-cat /proc/driver/nvidia/cards/0
-Model: GeForce4 4200 Go
-IRQ: 11
-Video BIOS: 04.28.20.31.c1
-Card Type: AGP
-DMA Size: 32 bits
-DMA Mask: 0xffffffff
+--- Comment #6 from rv <shuihuzhuan-GANU6spQydw@public.gmane.org> ---
+I've patched kernel 3.19 and had no crash the whole day, yesterday. Thanks.
 
-Maybe you will like to check against your own and tell me you need something
-else from me.
-
-* not that difficult, but I'm unskilled where/what to dig in.
-
-Bye bye
+Will it be integrated to kernel 3.20? Or backported to 3.19?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424164190.AcA0fcc33.8271
-Date: Tue, 17 Feb 2015 09:09:50 +0000
+--1424166568.22CF30E1.17242
+Date: Tue, 17 Feb 2015 09:49:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,29 +54,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700#c72">Comment # 72</a>
+   title="NEW - X freezes after watching videos"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Distorted graphics (double cursor) with GeForce 4200Go (NV28M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54700">bug 54700</a>
-              from <span class="vcard"><a class="email" href="mailto:f0rhum&#64;free.fr" title="VF &lt;f0rhum&#64;free.fr&gt;"> <span class="fn">VF</span></a>
+   title="NEW - X freezes after watching videos"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88822">bug 88822</a>
+              from <span class="vcard"><a class="email" href="mailto:shuihuzhuan&#64;free.fr" title="rv &lt;shuihuzhuan&#64;free.fr&gt;"> <span class="fn">rv</span></a>
 </span></b>
-        <pre>I reached to retreive my video bios version*:
-cat /proc/driver/nvidia/cards/0
-Model: GeForce4 4200 Go
-IRQ: 11
-Video BIOS: 04.28.20.31.c1
-Card Type: AGP
-DMA Size: 32 bits
-DMA Mask: 0xffffffff
+        <pre>I've patched kernel 3.19 and had no crash the whole day, yesterday. Thanks.
 
-Maybe you will like to check against your own and tell me you need something
-else from me.
-
-* not that difficult, but I'm unskilled where/what to dig in.
-
-Bye bye</pre>
+Will it be integrated to kernel 3.20? Or backported to 3.19?</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +76,9 @@ Bye bye</pre>
     </body>
 </html>
 
---1424164190.AcA0fcc33.8271--
+--1424166568.22CF30E1.17242--
 
---===============1681215958==
+--===============0680531109==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1681215958==--
+--===============0680531109==--
