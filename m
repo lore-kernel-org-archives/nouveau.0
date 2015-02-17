@@ -1,13 +1,13 @@
-From: Farid BENAMROUCHE <fariouche-Qt13gs6zZMY@public.gmane.org>
-Subject: Re: Only stereo sound with gtx570 over hdmi (regression)
-Date: Tue, 17 Feb 2015 13:41:19 +0000
-Message-ID: <1424180479.1612.YahooMailBasic@web172402.mail.ir2.yahoo.com>
-References: <CACAvsv4809j-fuQB5nOp23vc7M5vL7DKxTHppRZ1guXh9dvnmQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 28095] X crash with PFIFO_CACHE_ERROR. (Nouveau on
+	Riva TNT).
+Date: Tue, 17 Feb 2015 18:43:35 +0000
+Message-ID: <bug-28095-8800-Qqwhnu9Emn@http.bugs.freedesktop.org/>
+References: <bug-28095-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1126321052=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv4809j-fuQB5nOp23vc7M5vL7DKxTHppRZ1guXh9dvnmQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-28095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,103 +17,126 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8gQmVuLAoKVGhlIHdvcmtpbmcga2VybmVsIGNvZGUgSSBiYXNlZCBteSBpbnZlc3RpZ2F0
-aW9uIHdhcyBhIDEuMy4xNyArIGdlbnRvbyBwYXRjaCAoc28geWVzLCBwcmV0dHkgb2xkKQoKVGhl
-IG5ldyBvbmUgYmVsb3csIG5vdCB3b3JraW5nIGlzIHRoZSB2YW5pbGxhIDMuMTkgKGZyb20gdGhl
-IGdlbnRvbyByZXBvLCBzaG91bGQgYmUgaWRlbnRpY2FsIHRvIHRoZSBsYXRlc3QgMy4xOSBzdGFi
-bGUpCgpJJ3ZlIG5hcnJvd2VkIGRvd24gdGhlIGlzc3VlIHRvIHRoZSBzaXplIG9mIHRoZSBlbGQu
-ClRoZSBuZXcgcGF0Y2ggKHRoYXQgaW5kZWVkIHVzZXMgZHJtX2VsZF9zaXplKSAod2l0aCB0aGlz
-IHBhdGNoLCBJIGhhdmUgYSB3b3JraW5nIDMuMTkga2VybmVsKToKSSB3aWxsIG5lZWQgdG8gcmVz
-dGFydCBteSBjb21wdXRlciB3aXRoIHRoZSBub24gd29ya2luZyBrZXJuZWwgdG8gY2hlY2sgdGhl
-IGVsZCBvdXRwdXQgKGJ5IHRoZSB3YXksIHdoYXQgaXMgdGhlIEVMRD8sIGlzIGl0IHRoZSBFRElE
-PykKClRoYW5rcwoKLS0tIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jLm9y
-aWcJMjAxNS0wMi0xNSAyMDowNDoxMC41ODM4NjA2OTggKzAxMDAKKysrIGRyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCTIwMTUtMDItMTUgMjA6NDY6NDMuNTE4MTQ4Nzc3ICsw
-MTAwCkBAIC0xNzAwLDcgKzE3MDAsNyBAQAogCW1lbWNweShhcmdzLmRhdGEsIG52X2Nvbm5lY3Rv
-ci0+YmFzZS5lbGQsIHNpemVvZihhcmdzLmRhdGEpKTsKIAogCW52aWZfbXRoZChkaXNwLT5kaXNw
-LCAwLCAmYXJncywKLQkJICBzaXplb2YoYXJncy5iYXNlKSArIGRybV9lbGRfc2l6ZShhcmdzLmRh
-dGEpKTsKKwkJICBzaXplb2YoYXJncy5iYXNlKSk7CiB9CiAKIHN0YXRpYyB2b2lkCgotLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpFbiBkYXRlIGRlwqA6IE1hciAx
-Ny4yLjE1LCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWlsLmNvbT4gYSDDqWNyaXTCoDoKCiBPYmpl
-dDogUmU6IFtOb3V2ZWF1XSBPbmx5IHN0ZXJlbyBzb3VuZCB3aXRoIGd0eDU3MCBvdmVyIGhkbWkg
-KHJlZ3Jlc3Npb24pCiDDgDogIkZhcmlkIEJFTkFNUk9VQ0hFIiA8ZmFyaW91Y2hlQHlhaG9vLmZy
-PgogQ2M6ICJub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZyIgPG5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnPgogRGF0ZTogTWFyZGkgMTcgZsOpdnJpZXIgMjAxNSwgMGg0NwogCiBPbiBN
-b24sIEZlYiAxNiwgMjAxNSBhdAogNTowMyBBTSwgRmFyaWQgQkVOQU1ST1VDSEUgPGZhcmlvdWNo
-ZUB5YWhvby5mcj4KIHdyb3RlOgogPiBIZWxsbyBhbGwsCiA+CiA+IEknbSB1c2luZyBnZW50b28s
-CiB3aXRoIGtlcm5lbCAzLjE3LjAtcDEtcGYgYW5kIGF0IHNvbWUgcG9pbnQsIGEgcGF0Y2ggd2Fz
-CiBpbmNsdWRlZCBpbiB0aGlzIGJyYW5jaCBvZiB0aGUgZ2VudG9vIGtlcm5lbCB0aGF0IGJyb2tl
-IGhkbWkKIGF1ZGlvLgogPgogPiBJJ3ZlCiBjaGVja2VkIHdpdGggdGhlIGxhdGVzdCAzLjE5IHZh
-bmlsbGEga2VybmVsLCBhbmQgSSBzdGlsbAogaGF2ZSB0aGUgc2FtZSBwcm9ibGVtLiBJIGNhbm5v
-dCBvdXRwdXQgbXVsdGljaGFubmVsIHNvdW5kCiBvdmVyIGhkbWkuCiA+CiA+IEFmdGVyCiBzb21l
-IGludmVzdGlnYXRpb25zLCBJJ3ZlIG5hcnJvd2VkIGRvd24gdGhlIGlzc3VlIHRvIHRoZQogZm9s
-bG93aW5nIGxpbmVzIGluIHRoZSBmaWxlIG52NTBfZGlzcGxheS5jOgogPgogPiAodGhlIHN0cnVj
-dHVyZQogc2xpZ2h0bHkgY2hhbmdlZCBhbmQgZGVjbGFyZWQgInBhY2tlZCIuIFJldmVydGluZwog
-dGhpcyBjaGFuZ2UgbWFkZSB0aGUgbXVsdGljaGFubmVsIGF1ZGlvIGJhY2spCiA+IEkgc3RpbGwg
-ZG8gbm90IGtub3duIGV4YWN0bHkgd2hlbiB0aGlzCiBtb2RpZmljYXRpb24gd2FzIGludHJvb2R1
-Y2VkLiBJZiB5b3UgbmVlZCBtb3JlIGRldGFpbHMsCiBwbGVhc2UgbGV0IG1lIGtub3cuCiBUaGVy
-ZSB3ZXJlIGJ1Z3MgaW4gdGhlCiBpbXBsZW1lbnRhdGlvbiBmb3IgYSB3aGlsZSB0aGF0IGNvdWxk
-J3ZlIGNhdXNlZAogdGhpcyBwcm9ibGVtLsKgIEhvd2V2ZXIsIHRob3NlIHNob3VsZCBiZSBmaXhl
-ZAogYWxyZWFkeSBieSAzLjE5LsKgIFdoYXQKIGtlcm5lbCB2ZXJzaW9uIGlzCiB5b3VyIHJldmVy
-dCBhZ2FpbnN0P8KgIEl0J3Mgbm90IHRoZSBsYXRlc3QgY29kZSwKIGJlY2F1c2UgdGhhdCB1c2Vz
-IGRybV9lbGRfc2l6ZSgpLgogCiBUZXN0aW5nIG9uIG15IFRWIGF0IGhvbWUKICgzLjE5LjAtcmM1
-KSwgSSBzZWUgdGhpcyBpbiAvcHJvYy9hc291bmQvY2FyZDEvZWxkIzAuMDoKIAogbW9uaXRvcl9w
-cmVzZW50IDEKIGVsZF92YWxpZCAxCiBtb25pdG9yX25hbWUKIFNBTVNVTkcKIGNvbm5lY3Rpb25f
-dHlwZSBIRE1JCiBlbGRfdmVyc2lvbiBbMHgyXSBDRUEtODYxRCBvciBiZWxvdwogZWRpZF92ZXJz
-aW9uIFsweDNdIENFQS04NjEtQiwgQyBvciBECiBtYW51ZmFjdHVyZV9pZCAweDJkNGMKIHByb2R1
-Y3RfaWQgMHg2OWIKIHBvcnRfaWQgMHgwCiBzdXBwb3J0X2hkY3AgMAogc3VwcG9ydF9haSAxCiBh
-dWRpb19zeW5jX2RlbGF5IDAKIHNwZWFrZXJzCiBbMHhmXSBGTC9GUiBMRkUgRkMgUkwvUlIKIHNh
-ZF9jb3VudCA0CiBzYWQwX2NvZGluZ190eXBlIFsweDFdIExQQ00KIHNhZDBfY2hhbm5lbHMgMgog
-c2FkMF9yYXRlcwogWzB4NmUwXSAzMjAwMCA0NDEwMCA0ODAwMCA4ODIwMCA5NjAwMAogc2FkMF9i
-aXRzIFsweGUwMDAwXSAxNiAyMCAyNAogc2FkMV9jb2RpbmdfdHlwZSBbMHgxXSBMUENNCiBzYWQx
-X2NoYW5uZWxzIDYKIHNhZDFfcmF0ZXMKIFsweDZlMF0gMzIwMDAgNDQxMDAgNDgwMDAgODgyMDAg
-OTYwMDAKIHNhZDFfYml0cyBbMHhlMDAwMF0gMTYgMjAgMjQKIHNhZDJfY29kaW5nX3R5cGUgWzB4
-Ml0gQUMtMwogc2FkMl9jaGFubmVscyA2CiBzYWQyX3JhdGVzCiBbMHhlMF0gMzIwMDAgNDQxMDAg
-NDgwMDAKIHNhZDJfbWF4X2JpdHJhdGUKIDY0MDAwMAogc2FkM19jb2RpbmdfdHlwZSBbMHg3XSBE
-VFMKIHNhZDNfY2hhbm5lbHMgNgogc2FkM19yYXRlcwogWzB4ZTBdIDMyMDAwIDQ0MTAwIDQ4MDAw
-CiBzYWQzX21heF9iaXRyYXRlCiAxNTM2MDAwCiAKIFdoaWNoIGxvb2tzCiBjb3JyZWN0LCBhbmQg
-bGlrZSB0aGUgY29kZSB5b3UgbWVudGlvbiBpcyBkb2luZyB0aGUgcmlnaHQKIHRoaW5nLgogCiBU
-aGFua3MsCiBCZW4uCiAKIAogPgogPiAtLS0KIHdvcmtpbmdfa2VybmVsL2RyaXZlcnMvZ3B1L2Ry
-bS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCiA+ICsrKwogbm90X3dvcmtpbmdfa2VybmVsL2RyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCiA+IEBAIC0xNjUzLDE1ICsxNjUzLDE3
-IEBACiA+wqAgwqAgwqAgwqDCoMKgc3RydWN0CiBub3V2ZWF1X2VuY29kZXIgKm52X2VuY29kZXIg
-PSBub3V2ZWF1X2VuY29kZXIoZW5jb2Rlcik7CiA+wqAgwqAgwqAgwqDCoMKgc3RydWN0CiBub3V2
-ZWF1X2Nvbm5lY3RvciAqbnZfY29ubmVjdG9yOwogPsKgIMKgCiDCoCDCoMKgwqBzdHJ1Y3QgbnY1
-MF9kaXNwICpkaXNwID0KIG52NTBfZGlzcChlbmNvZGVyLT5kZXYpOwogPiAtwqAgwqAKIMKgwqDC
-oHN0cnVjdCB7CiA+IC3CoCDCoCDCoCDCoCDCoAogwqAgwqDCoMKgc3RydWN0IG52NTBfZGlzcF9t
-dGhkX3YxIGJhc2U7CiA+IC3CoCDCoCDCoCDCoCDCoCDCoCDCoMKgwqBzdHJ1Y3QKIG52NTBfZGlz
-cF9zb3JfaGRhX2VsZF92MCBlbGQ7CiA+ICvCoCDCoAogwqDCoMKgc3RydWN0IF9fcGFja2VkIHsK
-ID4gK8KgIMKgCiDCoCDCoCDCoCDCoCDCoMKgwqBzdHJ1Y3QgewogPiArwqAKIMKgIMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgwqDCoHN0cnVjdAogbnY1MF9kaXNwX210aGRfdjEgbXRoZDsKID4g
-K8KgIMKgIMKgIMKgIMKgCiDCoCDCoCDCoCDCoCDCoCDCoMKgwqBzdHJ1Y3QgbnY1MF9kaXNwX3Nv
-cl9oZGFfZWxkX3YwCiBlbGQ7CiA+ICvCoCDCoCDCoCDCoCDCoCDCoCDCoMKgwqB9CiBiYXNlOwog
-PsKgIMKgIMKgIMKgIMKgIMKgIMKgCiDCoMKgwqB1OCBkYXRhW3NpemVvZihudl9jb25uZWN0b3It
-PmJhc2UuZWxkKV07CiA+wqAgwqAgwqAgwqDCoMKgfSBhcmdzID0gewogPiAtwqAgwqAgwqAgwqAg
-wqAgwqAKIMKgwqDCoC5iYXNlLnZlcnNpb24gPSAxLAogPiAtwqAgwqAKIMKgIMKgIMKgIMKgIMKg
-wqDCoC5iYXNlLm1ldGhvZMKgID0KIE5WNTBfRElTUF9NVEhEX1YxX1NPUl9IREFfRUxELAogPiAt
-wqAgwqAKIMKgIMKgIMKgIMKgIMKgwqDCoC5iYXNlLmhhc2h0wqDCoMKgPQogbnZfZW5jb2Rlci0+
-ZGNiLT5oYXNodCwKID4gLcKgIMKgIMKgCiDCoCDCoCDCoCDCoMKgwqAuYmFzZS5oYXNobcKgwqDC
-oD0KIG52X2VuY29kZXItPmRjYi0+aGFzaG0sCiA+ICvCoCDCoCDCoAogwqAgwqAgwqAgwqDCoMKg
-LmJhc2UubXRoZC52ZXJzaW9uID0gMSwKID4gK8KgIMKgIMKgIMKgIMKgIMKgCiDCoMKgwqAuYmFz
-ZS5tdGhkLm1ldGhvZMKgID0KIE5WNTBfRElTUF9NVEhEX1YxX1NPUl9IREFfRUxELAogPiArwqAg
-wqAKIMKgIMKgIMKgIMKgIMKgwqDCoC5iYXNlLm10aGQuaGFzaHTCoMKgwqA9CiBudl9lbmNvZGVy
-LT5kY2ItPmhhc2h0LAogPiArwqAgwqAgwqAKIMKgIMKgIMKgIMKgwqDCoC5iYXNlLm10aGQuaGFz
-aG3CoMKgwqA9CiBudl9lbmNvZGVyLT5kY2ItPmhhc2htLAogPsKgIMKgIMKgCiDCoMKgwqB9Owog
-PgogPsKgCiDCoCDCoCDCoMKgwqBudl9jb25uZWN0b3IgPQogbm91dmVhdV9lbmNvZGVyX2Nvbm5l
-Y3Rvcl9nZXQobnZfZW5jb2Rlcik7CiA+IEBAIC0xNjcxLDcgKzE2NzMsNyBAQAogPsKgIMKgIMKg
-CiDCoMKgwqBkcm1fZWRpZF90b19lbGQoJm52X2Nvbm5lY3Rvci0+YmFzZSwKIG52X2Nvbm5lY3Rv
-ci0+ZWRpZCk7CiA+wqAgwqAgwqAKIMKgwqDCoG1lbWNweShhcmdzLmRhdGEsIG52X2Nvbm5lY3Rv
-ci0+YmFzZS5lbGQsCiBzaXplb2YoYXJncy5kYXRhKSk7CiA+CiA+IC3CoCDCoAogwqDCoMKgbnZp
-Zl9tdGhkKGRpc3AtPmRpc3AsIDAsICZhcmdzLAogc2l6ZW9mKGFyZ3MpKTsKID4gK8KgIMKgCiDC
-oMKgwqBudmlmX210aGQoZGlzcC0+ZGlzcCwgMCwgJmFyZ3MsCiBzaXplb2YoYXJncy5iYXNlKSAr
-IGFyZ3MuZGF0YVsyXSAqIDQpOwogPsKgIH0KID4KID7CoCBzdGF0aWMgdm9pZAogPgogPgogPgog
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KID4gTm91dmVh
-dSBtYWlsaW5nIGxpc3QKID4KIE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCiA+IGh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CiAKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1126321052==
+Content-Type: multipart/alternative; boundary="1424198615.cbEe26131.32354"; charset="UTF-8"
+
+
+--1424198615.cbEe26131.32354
+Date: Tue, 17 Feb 2015 18:43:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=28095
+
+--- Comment #15 from Brent <bzipitidoo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Yes, someone else said that hardware was unusual.  But Nouveau did work with
+it, at elast somewhat, in the later 2.6 kernels.  If it helps at all, the
+Diamond Viper V550 video card reports a version of 1.93E during POST.
+
+Tried older versions of Puppy Linux, and ran into other problems.  First, the
+older Puppy tried to load the saved configuration files from the newer Puppy. 
+Once I stopped that, I got this.  In Xorg.0.log, 5.3.3 Slacko Puppy says:
+
+failed to load kernel module "nouveau"
+
+Puppy falls back to the vesa driver, which, while very slow, does work, and at
+1280x1024.
+
+If I do "modprobe nouveau" I get 7 error messages of the form "WARNING: Error
+inserting xxx (/lib/modules/3.1.10-slacko_4gA/kernel/drivers/.." where xxx is:
+
+button
+wmi
+agpgart
+drm
+ttm
+drm_kms_helper
+nouveau
+
+Tried the debug boot parameters you suggested, with Slacko Puppy and Tahr Puppy
+but they had no effect.  There is no debug subdirectory in /proc/sys/kernel. 
+No doubt the stock Puppy kernel does not have debugging included.  Suppose I'll
+have to build my own kernel to get that, which means a good bit of work.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424198615.cbEe26131.32354
+Date: Tue, 17 Feb 2015 18:43:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095">bug 28095</a>
+              from <span class="vcard"><a class="email" href="mailto:bzipitidoo&#64;hotmail.com" title="Brent &lt;bzipitidoo&#64;hotmail.com&gt;"> <span class="fn">Brent</span></a>
+</span></b>
+        <pre>Yes, someone else said that hardware was unusual.  But Nouveau did work with
+it, at elast somewhat, in the later 2.6 kernels.  If it helps at all, the
+Diamond Viper V550 video card reports a version of 1.93E during POST.
+
+Tried older versions of Puppy Linux, and ran into other problems.  First, the
+older Puppy tried to load the saved configuration files from the newer Puppy. 
+Once I stopped that, I got this.  In Xorg.0.log, 5.3.3 Slacko Puppy says:
+
+failed to load kernel module &quot;nouveau&quot;
+
+Puppy falls back to the vesa driver, which, while very slow, does work, and at
+1280x1024.
+
+If I do &quot;modprobe nouveau&quot; I get 7 error messages of the form &quot;WARNING: Error
+inserting xxx (/lib/modules/3.1.10-slacko_4gA/kernel/drivers/..&quot; where xxx is:
+
+button
+wmi
+agpgart
+drm
+ttm
+drm_kms_helper
+nouveau
+
+Tried the debug boot parameters you suggested, with Slacko Puppy and Tahr Puppy
+but they had no effect.  There is no debug subdirectory in /proc/sys/kernel. 
+No doubt the stock Puppy kernel does not have debugging included.  Suppose I'll
+have to build my own kernel to get that, which means a good bit of work.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424198615.cbEe26131.32354--
+
+--===============1126321052==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1126321052==--
