@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89186] [G86] Artifacts after waking up from suspend
-Date: Thu, 19 Feb 2015 09:56:09 +0000
-Message-ID: <bug-89186-8800-SSFLOduBnP@http.bugs.freedesktop.org/>
+Date: Thu, 19 Feb 2015 10:01:00 +0000
+Message-ID: <bug-89186-8800-WxfG6WxNji@http.bugs.freedesktop.org/>
 References: <bug-89186-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1374792708=="
+Content-Type: multipart/mixed; boundary="===============0981693732=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1374792708==
-Content-Type: multipart/alternative; boundary="1424339769.0511E1.30263"; charset="UTF-8"
+--===============0981693732==
+Content-Type: multipart/alternative; boundary="1424340060.aDE0D6.31264"; charset="UTF-8"
 
 
---1424339769.0511E1.30263
-Date: Thu, 19 Feb 2015 09:56:09 +0000
+--1424340060.aDE0D6.31264
+Date: Thu, 19 Feb 2015 10:01:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89186
 
---- Comment #5 from Jan Naumann <janluca-1Olz3AKvcsuAKZTfuerNgRvVK+yQ3ZXh@public.gmane.org> ---
-I have the notebook for only some days and set up it with Debian testing. I
-don't know if this problem exists before. But the nouveau driver seems to be
-the current one: https://packages.debian.org/jessie/xserver-xorg-video-nouveau
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Blocks|                            |68488
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424339769.0511E1.30263
-Date: Thu, 19 Feb 2015 09:56:09 +0000
+--1424340060.aDE0D6.31264
+Date: Thu, 19 Feb 2015 10:01:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,23 +50,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G86] Artifacts after waking up from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89186#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [G86] Artifacts after waking up from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89186">bug 89186</a>
-              from <span class="vcard"><a class="email" href="mailto:janluca&#64;physik.fu-berlin.de" title="Jan Naumann &lt;janluca&#64;physik.fu-berlin.de&gt;"> <span class="fn">Jan Naumann</span></a>
-</span></b>
-        <pre>I have the notebook for only some days and set up it with Debian testing. I
-don't know if this problem exists before. But the nouveau driver seems to be
-the current one: <a href="https://packages.debian.org/jessie/xserver-xorg-video-nouveau">https://packages.debian.org/jessie/xserver-xorg-video-nouveau</a></pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Blocks</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>68488
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +83,9 @@ the current one: <a href="https://packages.debian.org/jessie/xserver-xorg-video-
     </body>
 </html>
 
---1424339769.0511E1.30263--
+--1424340060.aDE0D6.31264--
 
---===============1374792708==
+--===============0981693732==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1374792708==--
+--===============0981693732==--
