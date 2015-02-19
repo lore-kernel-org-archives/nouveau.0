@@ -1,17 +1,12 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v3 1/6] make RAM device optional
-Date: Thu, 19 Feb 2015 18:12:45 +0900
-Message-ID: <CAAVeFu+f8BBqfaR8yaY7pLv1nR+tMaTde73u_X=af9kkSDqKCQ@mail.gmail.com>
-References: <1424159284-19920-1-git-send-email-acourbot@nvidia.com>
- <1424159284-19920-2-git-send-email-acourbot@nvidia.com>
- <CACAvsv5mNb3bPzbkVoSCvXKtX195w3c8OX=543V5JHnM=hsN+w@mail.gmail.com>
- <CAAVeFuKxzz7cMeaC7wKno17aErLSbqBYGtQLN=pH1qsK5DgFkQ@mail.gmail.com>
- <CACAvsv4uj92K+eCMCq=3+EyrL3JFFH6Mtf9G6nCpb55HhkhFnA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87819] [NVAC] EQ overflowing
+Date: Thu, 19 Feb 2015 09:17:35 +0000
+Message-ID: <bug-87819-8800-PboJVAA2jj@http.bugs.freedesktop.org/>
+References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1659291872=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv4uj92K+eCMCq=3+EyrL3JFFH6Mtf9G6nCpb55HhkhFnA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,63 +16,146 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBGZWIgMTksIDIwMTUgYXQgMTE6MjAgQU0sIEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21h
-aWwuY29tPiB3cm90ZToKPiBPbiAxOCBGZWIgMjAxNSAxNzowOCwgIkFsZXhhbmRyZSBDb3VyYm90
-IiA8Z251cm91QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIFdlZCwgRmViIDE4LCAyMDE1IGF0
-IDg6MDEgQU0sIEJlbiBTa2VnZ3MgPHNrZWdnc2JAZ21haWwuY29tPiB3cm90ZToKPj4gPiBPbiBU
-dWUsIEZlYiAxNywgMjAxNSBhdCA1OjQ3IFBNLCBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RA
-bnZpZGlhLmNvbT4KPj4gPiB3cm90ZToKPj4gPj4gSGF2aW5nIGEgUkFNIGRldmljZSBkb2VzIG5v
-dCBtYWtlIHNlbnNlIGZvciBjaGlwcyBsaWtlIEdLMjBBIHdoaWNoIGhhdmUKPj4gPj4gbm8gZGVk
-aWNhdGVkIHZpZGVvIG1lbW9yeS4gVGhlIGR1bW15IFJBTSBkZXZpY2UgdGhhdCB3ZSB1c2VkIHNv
-IGZhcgo+PiA+PiB3b3JrcyBhcyBhIHRlbXBvcmFyeSBiYW5kLWFpZCwgYnV0IGluIHRoZSBsb25n
-LXRlcm0gaXQgaXMgZGVzaXJhYmxlIGZvcgo+PiA+PiB0aGUgZHJpdmVyIHRvIGJlIGFibGUgdG8g
-d29yayB3aXRob3V0IGFueSBraW5kIG9mIFZSQU0uCj4+ID4+Cj4+ID4+IFRoaXMgcGF0Y2ggYWRk
-cyBhIGZldyBjb25kaXRpb25hbHMgaW4gcGxhY2VzIHdoZXJlIGEgUkFNIGRldmljZSB3YXMKPj4g
-Pj4gYXNzdW1lZCB0byBiZSBwcmVzZW50IGFuZCBhbGxvd3Mgc29tZSBtb3JlIG9iamVjdHMgdG8g
-YmUgYWxsb2NhdGVkIGZyb20KPj4gPj4gdGhlIFRUIGRvbWFpbiwgYWxsb3dpbmcgTm91dmVhdSB0
-byBoYW5kbGUgR1BVcyBmb3Igd2hpY2gKPj4gPj4gcGZiLT5yYW0gPT0gTlVMTC4KPj4gPj4KPj4g
-Pj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+
-Cj4+ID4+IC0tLQo+PiA+PiAgZHJtL25vdXZlYXUvbm91dmVhdV9kaXNwbGF5LmMgICAgICAgICB8
-ICA4ICsrKysrKystCj4+ID4+ICBkcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jICAgICAgICAgICAg
-IHwgIDMgKysrCj4+ID4+ICBkcm0vbm91dmVhdS9udjg0X2ZlbmNlLmMgICAgICAgICAgICAgIHwg
-MTQgKysrKysrKysrKystLS0KPj4gPj4gIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9i
-YXNlLmMgfCAgOSArKysrKystLS0KPj4gPj4gIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9i
-YXNlLmMgICAgfCAgMiArLQo+PiA+PiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvYmFzZS5j
-ICAgICB8IDI2ICsrKysrKysrKysrKysrKysrKy0tLS0tLS0tCj4+ID4+ICBkcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9sdGMvZ2YxMDAuYyAgIHwgMTAgKysrKysrKysrLQo+PiA+PiAgNyBmaWxlcyBj
-aGFuZ2VkLCA1NSBpbnNlcnRpb25zKCspLCAxNyBkZWxldGlvbnMoLSkKPj4gPj4KPj4gPj4gZGlm
-ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4+ID4+IGIvZHJtL25vdXZl
-YXUvbm91dmVhdV9kaXNwbGF5LmMKPj4gPj4gaW5kZXggODYwYjBlMmQ0MTgxLi42OGVlMGFmMjJl
-ZWEgMTAwNjQ0Cj4+ID4+IC0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4+ID4+
-ICsrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4+ID4+IEBAIC04NjksMTMgKzg2
-OSwxOSBAQCBub3V2ZWF1X2Rpc3BsYXlfZHVtYl9jcmVhdGUoc3RydWN0IGRybV9maWxlCj4+ID4+
-ICpmaWxlX3ByaXYsIHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4+ID4+ICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBzdHJ1Y3QgZHJtX21vZGVfY3JlYXRlX2R1bWIgKmFyZ3MpCj4+ID4+ICB7
-Cj4+ID4+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfYm8gKmJvOwo+PiA+PiArICAgICAgIHVpbnQz
-Ml90IGRvbWFpbjsKPj4gPj4gICAgICAgICBpbnQgcmV0Owo+PiA+Pgo+PiA+PiAgICAgICAgIGFy
-Z3MtPnBpdGNoID0gcm91bmR1cChhcmdzLT53aWR0aCAqIChhcmdzLT5icHAgLyA4KSwgMjU2KTsK
-Pj4gPj4gICAgICAgICBhcmdzLT5zaXplID0gYXJncy0+cGl0Y2ggKiBhcmdzLT5oZWlnaHQ7Cj4+
-ID4+ICAgICAgICAgYXJncy0+c2l6ZSA9IHJvdW5kdXAoYXJncy0+c2l6ZSwgUEFHRV9TSVpFKTsK
-Pj4gPj4KPj4gPj4gLSAgICAgICByZXQgPSBub3V2ZWF1X2dlbV9uZXcoZGV2LCBhcmdzLT5zaXpl
-LCAwLAo+PiA+PiBOT1VWRUFVX0dFTV9ET01BSU5fVlJBTSwgMCwgMCwgJmJvKTsKPj4gPj4gKyAg
-ICAgICBpZiAobnZ4eF9mYigmbm91dmVhdV9kcm0oZGV2KS0+ZGV2aWNlKS0+cmFtKQo+PiA+IEZv
-ciB0aGVzZSBjaGVja3MgaW4gdGhlIGRybSwgaXQncyBwcm9iYWJseSBiZXR0ZXIgdG8gdXNlCj4+
-ID4gbm91dmVhdV9kcm0oZGV2KS0+ZGV2aWNlLmluZm8ucmFtX3NpemUuCj4+Cj4+IEkgd29uZGVy
-IC0gaW4gb3RoZXIgcGxhY2VzIChlLmcuIGNsb2NrLCBsdGMpIHdlIGRvbid0IGhhdmUgYWNjZXNz
-IHRvCj4+IG5vdXZlYXVfZHJtLCBzbyBJSVVDIHdlIG5lZWQgdG8gcmVseSBvbiBwZmItPnJhbSB0
-aGVyZS4KPiBDb3JyZWN0Lgo+Cj4+V291bGRuJ3QgaXQgYmUKPj4gbW9yZSBjb25mdXNpbmcgdG8g
-dXNlIHR3byBkaWZmZXJlbnQgd2F5cyB0byBjaGVjayB0aGUgcHJlc2VuY2Ugb2YgVlJBTQo+PiB3
-aGVuIHdlIGNvdWxkIHN0aWNrIHRvIGEgc2luZ2xlIG9uZT8KPiBJdCdzIGJlc3QgdG8gdGhpbmsg
-b2YgbnZrbS8gYXMgYSBzZXBhcmF0ZSBlbnRpdHksIGFuZCBpdCB3aWxsIGJlIGF0IHNvbWUKPiBw
-b2ludCAoZHJtIGxvYWQgb24gaXRzIG93biwgaW5zaWRlIGEgdm0pLCBhbmQgZHJtIG1pZ2h0IG5v
-dCBiZSBhYmxlIHRvCj4gYWNjZXNzIGl0J3MgaW50ZXJuYWwgc3RydWN0dXJlcy4KPgo+IFRoYXQn
-cyBub3QgdGhlIGNhc2Ugbm93LCBzbyB0aGUgY29kZSBpcyBmaW5lIGFzLWlzIGZvciB0aGUgbW9t
-ZW50LiBCdXQgaXQncwo+IHdvcnRoIGtlZXBpbmcgaW4gbWluZC4KClRoYW5rcyBmb3IgY2xhcmlm
-eWluZyEgSSB3aWxsIHVwZGF0ZSBhY2NvcmRpbmcgdG8geW91ciBzdWdnZXN0aW9uLgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1659291872==
+Content-Type: multipart/alternative; boundary="1424337455.77eFdF21.22334"; charset="UTF-8"
+
+
+--1424337455.77eFdF21.22334
+Date: Thu, 19 Feb 2015 09:17:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D87819
+
+--- Comment #21 from Stuart Longland <stuartl-3e+Fe6x+Dsh6S/UX/emfpkB+6BGkLq7r@public.gmane.org> ---
+(In reply to Pierre Moreau from comment #20)
+> (In reply to Stuart Longland from comment #17)
+> > So far, so good.  I've been tinkering for an hour and haven't yet trigg=
+ered
+> > the EQ overflow.
+>=20
+> Good to hear! :)
+>=20
+> > Whatever went upstream between 3.18 and 3.19 seems to be doing the tric=
+k.
+>=20
+> There have some patches specific for NVAA/AC cards - see commits
+> [=E2=80=A6] but it was fixing an issue
+> where the laptop will hang during Nouveau's initialisation of the card.
+
+Ahh, I think I've had that bug too.  Basically I'd power the laptop on and =
+the
+machine would get as far as loading drivers then hang.  I had it on my TODO
+list to eventually track down which driver, but lately I've noticed this has
+stopped happening.
+
+So slowly we're getting the upper hand in this fight.
+
+It's a pity that Nvidia don't direct more resources to supporting the Nouve=
+au
+driver.  I've vowed to never buy an Nvidia card again due to their poor sup=
+port
+of their cards.  (I don't consider a proprietary driver as "support", more a
+cop-out and a support head-ache.)
+
+It's thanks to teams like Nouveau that I can make reasonable use of the two
+Nvidia-based systems I have at all.
+For this, I thank-you.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424337455.77eFdF21.22334
+Date: Thu, 19 Feb 2015 09:17:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVAC] EQ overflowing"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819#c21">Commen=
+t # 21</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVAC] EQ overflowing"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D87819">bug 87819<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+stuartl&#64;longlandclan.yi.org" title=3D"Stuart Longland &lt;stuartl&#64;l=
+onglandclan.yi.org&gt;"> <span class=3D"fn">Stuart Longland</span></a>
+</span></b>
+        <pre>(In reply to Pierre Moreau from <a href=3D"show_bug.cgi?id=3D8=
+7819#c20">comment #20</a>)
+<span class=3D"quote">&gt; (In reply to Stuart Longland from <a href=3D"sho=
+w_bug.cgi?id=3D87819#c17">comment #17</a>)
+&gt; &gt; So far, so good.  I've been tinkering for an hour and haven't yet=
+ triggered
+&gt; &gt; the EQ overflow.
+&gt;=20
+&gt; Good to hear! :)
+&gt;=20
+&gt; &gt; Whatever went upstream between 3.18 and 3.19 seems to be doing th=
+e trick.
+&gt;=20
+&gt; There have some patches specific for NVAA/AC cards - see commits
+&gt; [=E2=80=A6] but it was fixing an issue
+&gt; where the laptop will hang during Nouveau's initialisation of the card=
+.</span >
+
+Ahh, I think I've had that bug too.  Basically I'd power the laptop on and =
+the
+machine would get as far as loading drivers then hang.  I had it on my TODO
+list to eventually track down which driver, but lately I've noticed this has
+stopped happening.
+
+So slowly we're getting the upper hand in this fight.
+
+It's a pity that Nvidia don't direct more resources to supporting the Nouve=
+au
+driver.  I've vowed to never buy an Nvidia card again due to their poor sup=
+port
+of their cards.  (I don't consider a proprietary driver as &quot;support&qu=
+ot;, more a
+cop-out and a support head-ache.)
+
+It's thanks to teams like Nouveau that I can make reasonable use of the two
+Nvidia-based systems I have at all.
+For this, I thank-you.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424337455.77eFdF21.22334--
+
+--===============1659291872==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1659291872==--
