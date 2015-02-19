@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89186] [G86] Artifacts after waking up from suspend
+Subject: [Bug 65116] [NV86/NVD9] gnome background misrendered
 Date: Thu, 19 Feb 2015 10:13:50 +0000
-Message-ID: <bug-89186-8800-TQdufhuGdp@http.bugs.freedesktop.org/>
-References: <bug-89186-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-65116-8800-B1rgbontw0@http.bugs.freedesktop.org/>
+References: <bug-65116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1782616057=="
+Content-Type: multipart/mixed; boundary="===============0066668085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89186-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1782616057==
-Content-Type: multipart/alternative; boundary="1424340831.CFAf16.2356"; charset="UTF-8"
+--===============0066668085==
+Content-Type: multipart/alternative; boundary="1424340830.A15b021.2356"; charset="UTF-8"
 
 
---1424340831.CFAf16.2356
-Date: Thu, 19 Feb 2015 10:13:51 +0000
+--1424340830.A15b021.2356
+Date: Thu, 19 Feb 2015 10:13:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89186
+https://bugs.freedesktop.org/show_bug.cgi?id=65116
 
 Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Blocks|                            |65116
+         Depends on|81986                       |89186
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424340831.CFAf16.2356
-Date: Thu, 19 Feb 2015 10:13:51 +0000
+--1424340830.A15b021.2356
+Date: Thu, 19 Feb 2015 10:13:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,8 +54,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [G86] Artifacts after waking up from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89186">bug 89186</a>
+   title="NEW - [NV86/NVD9] gnome background misrendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">bug 65116</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -65,11 +65,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Blocks</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Depends on</td>
+           <td>81986
            </td>
-           <td>65116
+           <td>89186
            </td>
          </tr></table>
       <p>
@@ -83,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1424340831.CFAf16.2356--
+--1424340830.A15b021.2356--
 
---===============1782616057==
+--===============0066668085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1782616057==--
+--===============0066668085==--
