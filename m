@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
-	driver/exa
-Date: Fri, 20 Feb 2015 17:33:09 +0000
-Message-ID: <bug-68488-8800-EjUyw432yo@http.bugs.freedesktop.org/>
-References: <bug-68488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65116] [NV86/NVD9] gnome background misrendered
+Date: Fri, 20 Feb 2015 17:33:08 +0000
+Message-ID: <bug-65116-8800-hV0lb0etYl@http.bugs.freedesktop.org/>
+References: <bug-65116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0446628754=="
+Content-Type: multipart/mixed; boundary="===============1439166983=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,17 +20,17 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0446628754==
-Content-Type: multipart/alternative; boundary="1424453588.aC8aBf9.32145"; charset="UTF-8"
+--===============1439166983==
+Content-Type: multipart/alternative; boundary="1424453588.DF0A5fA3.32145"; charset="UTF-8"
 
 
---1424453588.aC8aBf9.32145
+--1424453588.DF0A5fA3.32145
 Date: Fri, 20 Feb 2015 17:33:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68488
-Bug 68488 depends on bug 89186, which changed state.
+https://bugs.freedesktop.org/show_bug.cgi?id=65116
+Bug 65116 depends on bug 89186, which changed state.
 
 Bug 89186 Summary: [G86] Artifacts after waking up from suspend
 https://bugs.freedesktop.org/show_bug.cgi?id=89186
@@ -45,7 +44,7 @@ https://bugs.freedesktop.org/show_bug.cgi?id=89186
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424453588.aC8aBf9.32145
+--1424453588.DF0A5fA3.32145
 Date: Fri, 20 Feb 2015 17:33:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -56,8 +55,8 @@ Content-Type: text/html; charset="UTF-8"
     </head>
     <body><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">Bug 68488</a>
+   title="NEW - [NV86/NVD9] gnome background misrendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">Bug 65116</a>
               depends on
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
@@ -98,9 +97,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1424453588.aC8aBf9.32145--
+--1424453588.DF0A5fA3.32145--
 
---===============0446628754==
+--===============1439166983==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0446628754==--
+--===============1439166983==--
