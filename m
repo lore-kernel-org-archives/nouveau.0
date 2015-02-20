@@ -1,95 +1,86 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Thu, 19 Feb 2015 22:57:22 +0000
-Message-ID: <bug-87244-8800-HApIbdKece@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 01/11] nvc0/ir: add emission of dadd/dmul/dmad
+	opcodes, fix minmax
+Date: Thu, 19 Feb 2015 20:02:30 -0500
+Message-ID: <1424394160-22417-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0641987633=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0641987633==
-Content-Type: multipart/alternative; boundary="1424386642.cAF13.4988"; charset="UTF-8"
-
-
---1424386642.cAF13.4988
-Date: Thu, 19 Feb 2015 22:57:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
-
---- Comment #15 from K1 <keivan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have the same problem and it is usually triggered within minutes of using
-PyCharm IDE. When I work with Eclipse and other things it seems fine but as
-soon as I have PyCharm running (even in the background while I am not working
-with it) this happens. I am using 3.18.7-200.fc21.x86_64.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424386642.cAF13.4988
-Date: Thu, 19 Feb 2015 22:57:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:keivan&#64;gmail.com" title="K1 &lt;keivan&#64;gmail.com&gt;"> <span class="fn">K1</span></a>
-</span></b>
-        <pre>I have the same problem and it is usually triggered within minutes of using
-PyCharm IDE. When I work with Eclipse and other things it seems fine but as
-soon as I have PyCharm running (even in the background while I am not working
-with it) this happens. I am using 3.18.7-200.fc21.x86_64.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424386642.cAF13.4988--
-
---===============0641987633==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0641987633==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIC4u
+Li9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2VtaXRfbnZjMC5jcHAgIHwgNjYgKysr
+KysrKysrKysrKysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDYzIGluc2VydGlvbnMoKyksIDMg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
+ZGVnZW4vbnY1MF9pcl9lbWl0X252YzAuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252YzAuY3BwCmluZGV4IGRmYjA5M2MuLmUzOGEzYjggMTAw
+NjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZW1p
+dF9udmMwLmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUw
+X2lyX2VtaXRfbnZjMC5jcHAKQEAgLTkyLDExICs5MiwxNCBAQCBwcml2YXRlOgogCiAgICB2b2lk
+IGVtaXRVQUREKGNvbnN0IEluc3RydWN0aW9uICopOwogICAgdm9pZCBlbWl0RkFERChjb25zdCBJ
+bnN0cnVjdGlvbiAqKTsKKyAgIHZvaWQgZW1pdERBREQoY29uc3QgSW5zdHJ1Y3Rpb24gKik7CiAg
+ICB2b2lkIGVtaXRVTVVMKGNvbnN0IEluc3RydWN0aW9uICopOwogICAgdm9pZCBlbWl0Rk1VTChj
+b25zdCBJbnN0cnVjdGlvbiAqKTsKKyAgIHZvaWQgZW1pdERNVUwoY29uc3QgSW5zdHJ1Y3Rpb24g
+Kik7CiAgICB2b2lkIGVtaXRJTUFEKGNvbnN0IEluc3RydWN0aW9uICopOwogICAgdm9pZCBlbWl0
+SVNBRChjb25zdCBJbnN0cnVjdGlvbiAqKTsKICAgIHZvaWQgZW1pdEZNQUQoY29uc3QgSW5zdHJ1
+Y3Rpb24gKik7CisgICB2b2lkIGVtaXRETUFEKGNvbnN0IEluc3RydWN0aW9uICopOwogICAgdm9p
+ZCBlbWl0TUFEU1AoY29uc3QgSW5zdHJ1Y3Rpb24gKik7CiAKICAgIHZvaWQgZW1pdE5PVChJbnN0
+cnVjdGlvbiAqKTsKQEAgLTUyMyw2ICs1MjYsMjUgQEAgQ29kZUVtaXR0ZXJOVkMwOjplbWl0Rk1B
+RChjb25zdCBJbnN0cnVjdGlvbiAqaSkKIH0KIAogdm9pZAorQ29kZUVtaXR0ZXJOVkMwOjplbWl0
+RE1BRChjb25zdCBJbnN0cnVjdGlvbiAqaSkKK3sKKyAgIGJvb2wgbmVnMSA9IChpLT5zcmMoMCku
+bW9kIF4gaS0+c3JjKDEpLm1vZCkubmVnKCk7CisKKyAgIGVtaXRGb3JtX0EoaSwgSEVYNjQoMjAw
+MDAwMDAsIDAwMDAwMDAxKSk7CisKKyAgIGlmIChpLT5zcmMoMikubW9kLm5lZygpKQorICAgICAg
+Y29kZVswXSB8PSAxIDw8IDg7CisKKyAgIHJvdW5kTW9kZV9BKGkpOworCisgICBpZiAobmVnMSkK
+KyAgICAgIGNvZGVbMF0gfD0gMSA8PCA5OworCisgICBhc3NlcnQoIWktPnNhdHVyYXRlKTsKKyAg
+IGFzc2VydCghaS0+ZnR6KTsKK30KKwordm9pZAogQ29kZUVtaXR0ZXJOVkMwOjplbWl0Rk1VTChj
+b25zdCBJbnN0cnVjdGlvbiAqaSkKIHsKICAgIGJvb2wgbmVnID0gKGktPnNyYygwKS5tb2QgXiBp
+LT5zcmMoMSkubW9kKS5uZWcoKTsKQEAgLTU1Nyw2ICs1NzksMjMgQEAgQ29kZUVtaXR0ZXJOVkMw
+OjplbWl0Rk1VTChjb25zdCBJbnN0cnVjdGlvbiAqaSkKIH0KIAogdm9pZAorQ29kZUVtaXR0ZXJO
+VkMwOjplbWl0RE1VTChjb25zdCBJbnN0cnVjdGlvbiAqaSkKK3sKKyAgIGJvb2wgbmVnID0gKGkt
+PnNyYygwKS5tb2QgXiBpLT5zcmMoMSkubW9kKS5uZWcoKTsKKworICAgZW1pdEZvcm1fQShpLCBI
+RVg2NCg1MDAwMDAwMCwgMDAwMDAwMDEpKTsKKyAgIHJvdW5kTW9kZV9BKGkpOworCisgICBpZiAo
+bmVnKQorICAgICAgY29kZVswXSB8PSAxIDw8IDk7CisKKyAgIGFzc2VydCghaS0+c2F0dXJhdGUp
+OworICAgYXNzZXJ0KCFpLT5mdHopOworICAgYXNzZXJ0KCFpLT5kbnopOworICAgYXNzZXJ0KCFp
+LT5wb3N0RmFjdG9yKTsKK30KKwordm9pZAogQ29kZUVtaXR0ZXJOVkMwOjplbWl0VU1VTChjb25z
+dCBJbnN0cnVjdGlvbiAqaSkKIHsKICAgIGlmIChpLT5lbmNTaXplID09IDgpIHsKQEAgLTYxOSw2
+ICs2NTgsMTkgQEAgQ29kZUVtaXR0ZXJOVkMwOjplbWl0RkFERChjb25zdCBJbnN0cnVjdGlvbiAq
+aSkKIH0KIAogdm9pZAorQ29kZUVtaXR0ZXJOVkMwOjplbWl0REFERChjb25zdCBJbnN0cnVjdGlv
+biAqaSkKK3sKKyAgIGFzc2VydChpLT5lbmNTaXplID09IDgpOworICAgZW1pdEZvcm1fQShpLCBI
+RVg2NCg0ODAwMDAwMCwgMDAwMDAwMDEpKTsKKyAgIHJvdW5kTW9kZV9BKGkpOworICAgYXNzZXJ0
+KCFpLT5zYXR1cmF0ZSk7CisgICBhc3NlcnQoIWktPmZ0eik7CisgICBlbWl0TmVnQWJzMTIoaSk7
+CisgICBpZiAoaS0+b3AgPT0gT1BfU1VCKQorICAgICAgY29kZVswXSBePSAxIDw8IDg7Cit9CisK
+K3ZvaWQKIENvZGVFbWl0dGVyTlZDMDo6ZW1pdFVBREQoY29uc3QgSW5zdHJ1Y3Rpb24gKmkpCiB7
+CiAgICB1aW50MzJfdCBhZGRPcCA9IDA7CkBAIC04OTUsNiArOTQ3LDggQEAgQ29kZUVtaXR0ZXJO
+VkMwOjplbWl0TUlOTUFYKGNvbnN0IEluc3RydWN0aW9uICppKQogICAgZWxzZQogICAgaWYgKCFp
+c0Zsb2F0VHlwZShpLT5kVHlwZSkpCiAgICAgICBvcCB8PSBpc1NpZ25lZFR5cGUoaS0+ZFR5cGUp
+ID8gMHgyMyA6IDB4MDM7CisgICBpZiAoaS0+ZFR5cGUgPT0gVFlQRV9GNjQpCisgICAgICBvcCB8
+PSAweDAxOwogCiAgICBlbWl0Rm9ybV9BKGksIG9wKTsKICAgIGVtaXROZWdBYnMxMihpKTsKQEAg
+LTIyNDIsMjAgKzIyOTYsMjYgQEAgQ29kZUVtaXR0ZXJOVkMwOjplbWl0SW5zdHJ1Y3Rpb24oSW5z
+dHJ1Y3Rpb24gKmluc24pCiAgICAgICBicmVhazsKICAgIGNhc2UgT1BfQUREOgogICAgY2FzZSBP
+UF9TVUI6Ci0gICAgICBpZiAoaXNGbG9hdFR5cGUoaW5zbi0+ZFR5cGUpKQorICAgICAgaWYgKGlu
+c24tPmRUeXBlID09IFRZUEVfRjY0KQorICAgICAgICAgZW1pdERBREQoaW5zbik7CisgICAgICBl
+bHNlIGlmIChpc0Zsb2F0VHlwZShpbnNuLT5kVHlwZSkpCiAgICAgICAgICBlbWl0RkFERChpbnNu
+KTsKICAgICAgIGVsc2UKICAgICAgICAgIGVtaXRVQUREKGluc24pOwogICAgICAgYnJlYWs7CiAg
+ICBjYXNlIE9QX01VTDoKLSAgICAgIGlmIChpc0Zsb2F0VHlwZShpbnNuLT5kVHlwZSkpCisgICAg
+ICBpZiAoaW5zbi0+ZFR5cGUgPT0gVFlQRV9GNjQpCisgICAgICAgICBlbWl0RE1VTChpbnNuKTsK
+KyAgICAgIGVsc2UgaWYgKGlzRmxvYXRUeXBlKGluc24tPmRUeXBlKSkKICAgICAgICAgIGVtaXRG
+TVVMKGluc24pOwogICAgICAgZWxzZQogICAgICAgICAgZW1pdFVNVUwoaW5zbik7CiAgICAgICBi
+cmVhazsKICAgIGNhc2UgT1BfTUFEOgogICAgY2FzZSBPUF9GTUE6Ci0gICAgICBpZiAoaXNGbG9h
+dFR5cGUoaW5zbi0+ZFR5cGUpKQorICAgICAgaWYgKGluc24tPmRUeXBlID09IFRZUEVfRjY0KQor
+ICAgICAgICAgZW1pdERNQUQoaW5zbik7CisgICAgICBlbHNlIGlmIChpc0Zsb2F0VHlwZShpbnNu
+LT5kVHlwZSkpCiAgICAgICAgICBlbWl0Rk1BRChpbnNuKTsKICAgICAgIGVsc2UKICAgICAgICAg
+IGVtaXRJTUFEKGluc24pOwotLSAKMi4wLjUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL21lc2EtZGV2Cg==
