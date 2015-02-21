@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89273] [NVA8] nouveau screen corruption and X lockup
  when reclocking
-Date: Sat, 21 Feb 2015 23:21:17 +0000
-Message-ID: <bug-89273-8800-rpbOiqsv7o@http.bugs.freedesktop.org/>
+Date: Sat, 21 Feb 2015 23:32:32 +0000
+Message-ID: <bug-89273-8800-27TIJkrT4S@http.bugs.freedesktop.org/>
 References: <bug-89273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0278872498=="
+Content-Type: multipart/mixed; boundary="===============0169398705=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,43 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0278872498==
-Content-Type: multipart/alternative; boundary="1424560877.064EC1.32146"; charset="UTF-8"
+--===============0169398705==
+Content-Type: multipart/alternative; boundary="1424561552.0b2851.1506"; charset="UTF-8"
 
 
---1424560877.064EC1.32146
-Date: Sat, 21 Feb 2015 23:21:17 +0000
+--1424561552.0b2851.1506
+Date: Sat, 21 Feb 2015 23:32:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89273
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe the two issues are unrelated. The flickering issue is probably due to
-incorrect timing parameters somewhere. The hang is, more than likely, due to
-
-[  144.038590] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00000040, ch 3
-
-Which we don't handle currently. rnndb has it as
-
-                        <bitfield pos="6" name="PEEPHOLE_FAULT"/>
-
-So we probably have to reprogram PBUS.HOST_MEM.CHAN and PBUS.HOST_MEM.PEEPHOLE
-(or at the very least the latter) -- that's 0x1704 and 0x1710 respectively. Not
-100% sure what they are, but software/nv50.c does:
-
-    nv_wr32(priv, 0x001704, chan->vblank.channel);
-    nv_wr32(priv, 0x001710, 0x80000000 | chan->vblank.ctxdma);
-
-Hopefully someone who understands these things a little better will step in
-here.
+--- Comment #5 from Max Sydorenko <maxim.stargazer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+> Thanks for reporting. I've had very little GDDR3 cards to test with (in
+> fact... just one), so these logs will be extremely useful. If you can,
+> please provide the trace in full. Feel free to compress it using xz or
+> similar.
+Here is direct link to xz-ed mmiotrace
+https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424560877.064EC1.32146
-Date: Sat, 21 Feb 2015 23:21:17 +0000
+--1424561552.0b2851.1506
+Date: Sat, 21 Feb 2015 23:32:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,31 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89273">bug 89273</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:maxim.stargazer&#64;gmail.com" title="Max Sydorenko &lt;maxim.stargazer&#64;gmail.com&gt;"> <span class="fn">Max Sydorenko</span></a>
 </span></b>
-        <pre>I believe the two issues are unrelated. The flickering issue is probably due to
-incorrect timing parameters somewhere. The hang is, more than likely, due to
-
-[  144.038590] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00000040, ch 3
-
-Which we don't handle currently. rnndb has it as
-
-                        &lt;bitfield pos=&quot;6&quot; name=&quot;PEEPHOLE_FAULT&quot;/&gt;
-
-So we probably have to reprogram PBUS.HOST_MEM.CHAN and PBUS.HOST_MEM.PEEPHOLE
-(or at the very least the latter) -- that's 0x1704 and 0x1710 respectively. Not
-100% sure what they are, but software/nv50.c does:
-
-    nv_wr32(priv, 0x001704, chan-&gt;vblank.channel);
-    nv_wr32(priv, 0x001710, 0x80000000 | chan-&gt;vblank.ctxdma);
-
-Hopefully someone who understands these things a little better will step in
-here.</pre>
+        <pre><span class="quote">&gt; Thanks for reporting. I've had very little GDDR3 cards to test with (in
+&gt; fact... just one), so these logs will be extremely useful. If you can,
+&gt; please provide the trace in full. Feel free to compress it using xz or
+&gt; similar.</span >
+Here is direct link to xz-ed mmiotrace
+<a href="https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0">https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0</a></pre>
         </div>
       </p>
       <hr>
@@ -107,9 +83,9 @@ here.</pre>
     </body>
 </html>
 
---1424560877.064EC1.32146--
+--1424561552.0b2851.1506--
 
---===============0278872498==
+--===============0169398705==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0278872498==--
+--===============0169398705==--
