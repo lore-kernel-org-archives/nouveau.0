@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89273] [NVA8] nouveau screen corruption and X lockup
  when reclocking
-Date: Sat, 21 Feb 2015 22:52:07 +0000
-Message-ID: <bug-89273-8800-lKVe5OWl24@http.bugs.freedesktop.org/>
+Date: Sat, 21 Feb 2015 23:21:17 +0000
+Message-ID: <bug-89273-8800-rpbOiqsv7o@http.bugs.freedesktop.org/>
 References: <bug-89273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0010324409=="
+Content-Type: multipart/mixed; boundary="===============0278872498=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0010324409==
-Content-Type: multipart/alternative; boundary="1424559127.fe001.27553"; charset="UTF-8"
+--===============0278872498==
+Content-Type: multipart/alternative; boundary="1424560877.064EC1.32146"; charset="UTF-8"
 
 
---1424559127.fe001.27553
-Date: Sat, 21 Feb 2015 22:52:07 +0000
+--1424560877.064EC1.32146
+Date: Sat, 21 Feb 2015 23:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89273
 
---- Comment #3 from Roy <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org> ---
-(In reply to Max Sydorenko from comment #0)
-> Created attachment 113734 [details]
-> Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump
-> 
-> Kernel: 3.19.1
-> Hardware: Thinkpad T410, Quadro NVS 3100M (256M GDDR3) [similar hw but
-> different VRAM compared to bug 88415]
-> Problem: reclocking between pstates 3 and 7 is flawless, but reclocking to
-> pstate f causes problems.
-[...]
-> I also mmiotraced functioning reclocking with the nvidia blob. Trace is
-> quite large (120MB). Should I truncate it somehow to upload, or just provide
-> as is?
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe the two issues are unrelated. The flickering issue is probably due to
+incorrect timing parameters somewhere. The hang is, more than likely, due to
 
-Thanks for reporting. I've had very little GDDR3 cards to test with (in fact...
-just one), so these logs will be extremely useful. If you can, please provide
-the trace in full. Feel free to compress it using xz or similar.
+[  144.038590] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00000040, ch 3
+
+Which we don't handle currently. rnndb has it as
+
+                        <bitfield pos="6" name="PEEPHOLE_FAULT"/>
+
+So we probably have to reprogram PBUS.HOST_MEM.CHAN and PBUS.HOST_MEM.PEEPHOLE
+(or at the very least the latter) -- that's 0x1704 and 0x1710 respectively. Not
+100% sure what they are, but software/nv50.c does:
+
+    nv_wr32(priv, 0x001704, chan->vblank.channel);
+    nv_wr32(priv, 0x001710, 0x80000000 | chan->vblank.ctxdma);
+
+Hopefully someone who understands these things a little better will step in
+here.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424559127.fe001.27553
-Date: Sat, 21 Feb 2015 22:52:07 +0000
+--1424560877.064EC1.32146
+Date: Sat, 21 Feb 2015 23:21:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,33 +71,31 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89273">bug 89273</a>
-              from <span class="vcard"><a class="email" href="mailto:rspliet&#64;eclipso.eu" title="Roy &lt;rspliet&#64;eclipso.eu&gt;"> <span class="fn">Roy</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Max Sydorenko from <a href="show_bug.cgi?id=89273#c0">comment #0</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=113734" name="attach_113734" title="Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump">attachment 113734</a> <a href="attachment.cgi?id=113734&amp;action=edit" title="Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump">[details]</a></span>
-&gt; Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump
-&gt; 
-&gt; Kernel: 3.19.1
-&gt; Hardware: Thinkpad T410, Quadro NVS 3100M (256M GDDR3) [similar hw but
-&gt; different VRAM compared to <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA8] nouveau GPU lockup when reclocking"
-   href="show_bug.cgi?id=88415">bug 88415</a>]
-&gt; Problem: reclocking between pstates 3 and 7 is flawless, but reclocking to
-&gt; pstate f causes problems.</span >
-[...]
-<span class="quote">&gt; I also mmiotraced functioning reclocking with the nvidia blob. Trace is
-&gt; quite large (120MB). Should I truncate it somehow to upload, or just provide
-&gt; as is?</span >
+        <pre>I believe the two issues are unrelated. The flickering issue is probably due to
+incorrect timing parameters somewhere. The hang is, more than likely, due to
 
-Thanks for reporting. I've had very little GDDR3 cards to test with (in fact...
-just one), so these logs will be extremely useful. If you can, please provide
-the trace in full. Feel free to compress it using xz or similar.</pre>
+[  144.038590] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00000040, ch 3
+
+Which we don't handle currently. rnndb has it as
+
+                        &lt;bitfield pos=&quot;6&quot; name=&quot;PEEPHOLE_FAULT&quot;/&gt;
+
+So we probably have to reprogram PBUS.HOST_MEM.CHAN and PBUS.HOST_MEM.PEEPHOLE
+(or at the very least the latter) -- that's 0x1704 and 0x1710 respectively. Not
+100% sure what they are, but software/nv50.c does:
+
+    nv_wr32(priv, 0x001704, chan-&gt;vblank.channel);
+    nv_wr32(priv, 0x001710, 0x80000000 | chan-&gt;vblank.ctxdma);
+
+Hopefully someone who understands these things a little better will step in
+here.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +107,9 @@ the trace in full. Feel free to compress it using xz or similar.</pre>
     </body>
 </html>
 
---1424559127.fe001.27553--
+--1424560877.064EC1.32146--
 
---===============0010324409==
+--===============0278872498==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0010324409==--
+--===============0278872498==--
