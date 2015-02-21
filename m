@@ -1,11 +1,10 @@
-From: Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org>
-Subject: [PATCH] device/gm100: Basic GM206 bring up (as copy of
-	GM204)
-Date: Sat, 21 Feb 2015 22:23:56 +0100
-Message-ID: <1424553836-3132-1-git-send-email-stefan@huehner.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89272] New: GM206 does not recognize attached hdmi
+	monitor
+Date: Sat, 21 Feb 2015 21:45:08 +0000
+Message-ID: <bug-89272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1176227203=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,58 +15,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RW5vdWdoIHRvIGdldCBWR0EgbW9uaXRvciBvbiBEVkktSSBvdXRwdXQgaGF2ZSBvdXRwdXQuCkhE
-TUkgb3V0cHV0IG5vdCB5ZXQgd29ya2luZwotLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
-dmljZS9nbTEwMC5jIHwgNDMgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwogMSBm
-aWxlIGNoYW5nZWQsIDQzIGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL2VuZ2luZS9kZXZpY2UvZ20xMDAuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
-ZS9nbTEwMC5jCmluZGV4IDUzOTU2MWUuLjEwOGQwNDggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2RldmljZS9nbTEwMC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5l
-L2RldmljZS9nbTEwMC5jCkBAIC0xNDIsNiArMTQyLDQ5IEBAIGdtMTAwX2lkZW50aWZ5KHN0cnVj
-dCBudmttX2RldmljZSAqZGV2aWNlKQogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfTVNQ
-UFAgIF0gPSAmZ2YxMDBfbXNwcHBfb2NsYXNzOwogI2VuZGlmCiAJCWJyZWFrOworCWNhc2UgMHgx
-MjY6CisJCWRldmljZS0+Y25hbWUgPSAiR00yMDYiOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9T
-VUJERVZfVkJJT1MgIF0gPSAmbnZrbV9iaW9zX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZE
-RVZfU1VCREVWX0dQSU8gICBdID0gIGdrMTA0X2dwaW9fb2NsYXNzOworCQlkZXZpY2UtPm9jbGFz
-c1tOVkRFVl9TVUJERVZfSTJDICAgIF0gPSAgZ20yMDRfaTJjX29jbGFzczsKKwkJZGV2aWNlLT5v
-Y2xhc3NbTlZERVZfU1VCREVWX0ZVU0UgICBdID0gJmdtMTA3X2Z1c2Vfb2NsYXNzOworI2lmIDAK
-KwkJLyogbG9va3MgdG8gYmUgc29tZSBub24tdHJpdmlhbCBjaGFuZ2VzICovCisJCWRldmljZS0+
-b2NsYXNzW05WREVWX1NVQkRFVl9DTEsgICAgXSA9ICZnazEwNF9jbGtfb2NsYXNzOworCQkvKiBw
-cml2IHJpbmcgc2F5cyBubyB0byAweDEwZWIxNCB3cml0ZXMgKi8KKwkJZGV2aWNlLT5vY2xhc3Nb
-TlZERVZfU1VCREVWX1RIRVJNICBdID0gJmdtMTA3X3RoZXJtX29jbGFzczsKKyNlbmRpZgorCQlk
-ZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTVhNICAgIF0gPSAmbnY1MF9teG1fb2NsYXNzOwor
-CQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfREVWSU5JVF0gPSAgZ20yMDRfZGV2aW5pdF9v
-Y2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAgXSA9ICBnazIwYV9t
-Y19vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9CVVMgICAgXSA9ICBnZjEw
-MF9idXNfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfVElNRVIgIF0gPSAm
-Z2syMGFfdGltZXJfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAg
-IF0gPSAgZ20xMDdfZmJfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTFRD
-ICAgIF0gPSAgZ20xMDdfbHRjX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVW
-X0lCVVMgICBdID0gJmdrMTA0X2lidXNfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9T
-VUJERVZfSU5TVE1FTV0gPSAgbnY1MF9pbnN0bWVtX29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3Nb
-TlZERVZfU1VCREVWX01NVSAgICBdID0gJmdmMTAwX21tdV9vY2xhc3M7CisJCWRldmljZS0+b2Ns
-YXNzW05WREVWX1NVQkRFVl9CQVIgICAgXSA9ICZnZjEwMF9iYXJfb2NsYXNzOworCQlkZXZpY2Ut
-Pm9jbGFzc1tOVkRFVl9TVUJERVZfUE1VICAgIF0gPSAgZ2syMDhfcG11X29jbGFzczsKKyNpZiAw
-CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9WT0xUICAgXSA9ICZudjQwX3ZvbHRfb2Ns
-YXNzOworI2VuZGlmCisJCWRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9ETUFPQkogXSA9ICBn
-ZjExMF9kbWFlbmdfb2NsYXNzOworI2lmIDAKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5F
-X0ZJRk8gICBdID0gIGdrMjA4X2ZpZm9fb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9F
-TkdJTkVfU1cgICAgIF0gPSAgZ2YxMDBfc3dfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRF
-Vl9FTkdJTkVfR1IgICAgIF0gPSAgZ20xMDdfZ3Jfb2NsYXNzOworI2VuZGlmCisJCWRldmljZS0+
-b2NsYXNzW05WREVWX0VOR0lORV9ESVNQICAgXSA9ICBnbTIwNF9kaXNwX29jbGFzczsKKyNpZiAw
-CisJCWRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9DRTAgICAgXSA9ICZnbTIwNF9jZTBfb2Ns
-YXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfQ0UxICAgIF0gPSAmZ20yMDRfY2Ux
-X29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0NFMiAgICBdID0gJmdtMjA0
-X2NlMl9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9NU1ZMRCAgXSA9ICZn
-azEwNF9tc3ZsZF9vY2xhc3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX0VOR0lORV9NU1BERUMg
-XSA9ICZnazEwNF9tc3BkZWNfb2NsYXNzOworCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVf
-TVNQUFAgIF0gPSAmZ2YxMDBfbXNwcHBfb2NsYXNzOworI2VuZGlmCisJCWJyZWFrOwogCWRlZmF1
-bHQ6CiAJCW52X2ZhdGFsKGRldmljZSwgInVua25vd24gTWF4d2VsbCBjaGlwc2V0XG4iKTsKIAkJ
-cmV0dXJuIC1FSU5WQUw7Ci0tIAoyLjEuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUK
+
+--===============1176227203==
+Content-Type: multipart/alternative; boundary="1424555108.D7c47cf1.16717"; charset="UTF-8"
+
+
+--1424555108.D7c47cf1.16717
+Date: Sat, 21 Feb 2015 21:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89272
+
+            Bug ID: 89272
+           Summary: GM206 does not recognize attached hdmi monitor
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 113732
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113732&action=edit
+dmesg with nouveau.debug=debug drm.debug=0xe
+
+Hi,
+adding this patch on top of linux-3.19 or tip of
+http://cgit.freedesktop.org/~darktama/nouveau
+
+is enough to get a GM206 / GTX 960 to get 'modprove nouveau' to work and
+getting output on a VGA monitor attached to the DVI-I port.
+
+However trying the same with a HDMI monitor attached to the hdmi port does not
+work.
+
+Attached is dmesg output with extra debugging enabled + a 2nd file with debug
+level=trace enabled.
+
+I have also sent an mmiotrace of that hdmi use-case by mail.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424555108.D7c47cf1.16717
+Date: Sat, 21 Feb 2015 21:45:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GM206 does not recognize attached hdmi monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">89272</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GM206 does not recognize attached hdmi monitor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>stefan&#64;huehner.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=113732" name="attach_113732" title="dmesg with nouveau.debug=debug drm.debug=0xe">attachment 113732</a> <a href="attachment.cgi?id=113732&amp;action=edit" title="dmesg with nouveau.debug=debug drm.debug=0xe">[details]</a></span>
+dmesg with nouveau.debug=debug drm.debug=0xe
+
+Hi,
+adding this patch on top of linux-3.19 or tip of
+<a href="http://cgit.freedesktop.org/~darktama/nouveau">http://cgit.freedesktop.org/~darktama/nouveau</a>
+
+is enough to get a GM206 / GTX 960 to get 'modprove nouveau' to work and
+getting output on a VGA monitor attached to the DVI-I port.
+
+However trying the same with a HDMI monitor attached to the hdmi port does not
+work.
+
+Attached is dmesg output with extra debugging enabled + a 2nd file with debug
+level=trace enabled.
+
+I have also sent an mmiotrace of that hdmi use-case by mail.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424555108.D7c47cf1.16717--
+
+--===============1176227203==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1176227203==--
