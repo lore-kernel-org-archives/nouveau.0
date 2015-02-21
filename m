@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89272] GM206 does not recognize attached hdmi monitor
-Date: Sat, 21 Feb 2015 21:52:49 +0000
-Message-ID: <bug-89272-8800-kavBDQkRCi@http.bugs.freedesktop.org/>
-References: <bug-89272-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89273] New: [NVA8] nouveau screen corruption and X
+ lockup when reclocking
+Date: Sat, 21 Feb 2015 22:31:30 +0000
+Message-ID: <bug-89273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2032167167=="
+Content-Type: multipart/mixed; boundary="===============1381339958=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,84 +19,66 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2032167167==
-Content-Type: multipart/alternative; boundary="1424555569.dAF8edEC1.18121"; charset="UTF-8"
+--===============1381339958==
+Content-Type: multipart/alternative; boundary="1424557890.4A1e3D1.24156"; charset="UTF-8"
 
 
---1424555569.dAF8edEC1.18121
-Date: Sat, 21 Feb 2015 21:52:49 +0000
+--1424557890.4A1e3D1.24156
+Date: Sat, 21 Feb 2015 22:31:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89272
+https://bugs.freedesktop.org/show_bug.cgi?id=89273
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-One observation about the mmiotrace... grepping for PDISPLAY (and MARK), I see
-the following sequence after the replug happens. I don't know of anything we
-have any code to reproduce something like that. It also looks like the blob is
-using PDAEMON to do a *lot* more stuff now...
+            Bug ID: 89273
+           Summary: [NVA8] nouveau screen corruption and X lockup when
+                    reclocking
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: maxim.stargazer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-[0] 215.511929 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 => 0x70
-[0] 215.511979 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 => 0
-[0] 215.512027 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 <= 0x1f
-[0] 215.512076 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 <= 0x10700f71
-[0] 215.512418 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 => 0
-[0] 215.512466 MMIO32 W 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 <= 0
-[0] 215.512520 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 <= 0
-[0] 215.512568 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 <= 0x70
-[0] 215.521885 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 => 0
-[0] 215.521937 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 => 0x70
-[0] 215.521983 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 => 0
-[0] 215.522029 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 <= 0x1f
-[0] 215.522075 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 <= 0x10700f71
-[0] 215.522395 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 => 0
-[0] 215.522440 MMIO32 W 0x61d380 0x00000001 PDISPLAY.SOR[0x2]+0x380 <= 0x1
-[0] 215.522654 MMIO32 R 0x61d380 0x00000101 PDISPLAY.SOR[0x2]+0x380 => 0x101
-[0] 215.522704 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 <= 0
-[0] 215.522750 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 <= 0x70
-[0] 215.522795 MMIO32 W 0x61d36c 0x2b94fae2 PDISPLAY.SOR[0x2]+0x36c <=
-0x2b94fae2
-[0] 215.522842 MMIO32 R 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 => 0x34
-[0] 215.522887 MMIO32 W 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 <= 0x34
-[0] 215.522938 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 => 0x70
-[0] 215.522985 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 => 0
-[0] 215.523030 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 <= 0x1f
-[0] 215.523076 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 <= 0x10700f71
-[0] 215.523395 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 => 0x301
-[0] 215.523440 MMIO32 W 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 <= 0x300
-[0] 215.523491 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 <= 0
-[0] 215.523536 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 <= 0x70
-[0] 215.523584 MMIO32 R 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 => 0x300
-[0] 215.523636 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 => 0x70
-[0] 215.523682 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 => 0
-[0] 215.523727 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 <= 0x1f
-[0] 215.523772 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 <= 0x10700f71
-[0] 215.524092 MMIO32 R 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 => 0x300
-[0] 215.524138 MMIO32 W 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 <= 0x301
-[0] 215.524348 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 => 0x301
-[0] 215.524398 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 <= 0
-[0] 215.524444 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 <= 0x70
-[0] 215.524490 MMIO32 W 0x61d3c0 0x00000000 PDISPLAY.SOR[0x2]+0x3c0 <= 0
-[0] 215.524536 MMIO32 R 0x61d3bc 0x00000000 PDISPLAY.SOR[0x2]+0x3bc => 0
-[0] 215.524581 MMIO32 W 0x61d3bc 0x00000000 PDISPLAY.SOR[0x2]+0x3bc <= 0
-[0] 215.524632 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 => 0x70
-[0] 215.524679 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 => 0
-[0] 215.524724 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 <= 0x1f
-[0] 215.524769 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 <= 0x10700f71
-[0] 215.525089 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 => 0x301
-[0] 215.525134 MMIO32 W 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 <= 0x300
-[0] 215.525185 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 <= 0
-[0] 215.525230 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 <= 0x70
-[0] 215.525278 MMIO32 R 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 => 0x34
-[0] 215.525323 MMIO32 W 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 <= 0x34
-[0] 215.527945 MMIO32 R 0x619498 0x00008000 PDISPLAY.VGA.CR+0x98 => 0x8000
+Created attachment 113734
+  --> https://bugs.freedesktop.org/attachment.cgi?id=113734&action=edit
+Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump
+
+Kernel: 3.19.1
+Hardware: Thinkpad T410, Quadro NVS 3100M (256M GDDR3) [similar hw but
+different VRAM compared to bug 88415]
+Problem: reclocking between pstates 3 and 7 is flawless, but reclocking to
+pstate f causes problems.
+Possible scenarios:
+
+1. X server is not running, trying to reclock from the fb. 
+   echo f > pstate
+  Image gets corrupted (vertical flickering lines), but there is no lockup and
+after
+   echo 7 > pstate
+everything gets back to normal. After that system works just fine.
+Dmesg attached (with nouveau.debug=debug)
+
+2. X server is running. 
+   echo f > pstate
+   Screen gets corrupted in similar fashion, but system locks up and after few
+second stops to respond even to SysRq.
+I managed to get dmesg for this scenario too.
+
+I also mmiotraced functioning reclocking with the nvidia blob. Trace is quite
+large (120MB). Should I truncate it somehow to upload, or just provide as is?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424555569.dAF8edEC1.18121
-Date: Sat, 21 Feb 2015 21:52:49 +0000
+--1424557890.4A1e3D1.24156
+Date: Sat, 21 Feb 2015 22:31:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -105,78 +86,118 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273">89273</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVA8] nouveau screen corruption and X lockup when reclocking
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>maxim.stargazer&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM206 does not recognize attached hdmi monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM206 does not recognize attached hdmi monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">bug 89272</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>One observation about the mmiotrace... grepping for PDISPLAY (and MARK), I see
-the following sequence after the replug happens. I don't know of anything we
-have any code to reproduce something like that. It also looks like the blob is
-using PDAEMON to do a *lot* more stuff now...
+        <pre>Created <span class=""><a href="attachment.cgi?id=113734" name="attach_113734" title="Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump">attachment 113734</a> <a href="attachment.cgi?id=113734&amp;action=edit" title="Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump">[details]</a></span>
+Thinkpad T410, Quadro NVS 3100M (256M GDDR3) vbios dump
 
-[0] 215.511929 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 =&gt; 0x70
-[0] 215.511979 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 =&gt; 0
-[0] 215.512027 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 &lt;= 0x1f
-[0] 215.512076 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 &lt;= 0x10700f71
-[0] 215.512418 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 =&gt; 0
-[0] 215.512466 MMIO32 W 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 &lt;= 0
-[0] 215.512520 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 &lt;= 0
-[0] 215.512568 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 &lt;= 0x70
-[0] 215.521885 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 =&gt; 0
-[0] 215.521937 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 =&gt; 0x70
-[0] 215.521983 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 =&gt; 0
-[0] 215.522029 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 &lt;= 0x1f
-[0] 215.522075 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 &lt;= 0x10700f71
-[0] 215.522395 MMIO32 R 0x61d380 0x00000000 PDISPLAY.SOR[0x2]+0x380 =&gt; 0
-[0] 215.522440 MMIO32 W 0x61d380 0x00000001 PDISPLAY.SOR[0x2]+0x380 &lt;= 0x1
-[0] 215.522654 MMIO32 R 0x61d380 0x00000101 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x101
-[0] 215.522704 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 &lt;= 0
-[0] 215.522750 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 &lt;= 0x70
-[0] 215.522795 MMIO32 W 0x61d36c 0x2b94fae2 PDISPLAY.SOR[0x2]+0x36c &lt;=
-0x2b94fae2
-[0] 215.522842 MMIO32 R 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 =&gt; 0x34
-[0] 215.522887 MMIO32 W 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 &lt;= 0x34
-[0] 215.522938 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 =&gt; 0x70
-[0] 215.522985 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 =&gt; 0
-[0] 215.523030 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 &lt;= 0x1f
-[0] 215.523076 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 &lt;= 0x10700f71
-[0] 215.523395 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x301
-[0] 215.523440 MMIO32 W 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 &lt;= 0x300
-[0] 215.523491 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 &lt;= 0
-[0] 215.523536 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 &lt;= 0x70
-[0] 215.523584 MMIO32 R 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x300
-[0] 215.523636 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 =&gt; 0x70
-[0] 215.523682 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 =&gt; 0
-[0] 215.523727 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 &lt;= 0x1f
-[0] 215.523772 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 &lt;= 0x10700f71
-[0] 215.524092 MMIO32 R 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x300
-[0] 215.524138 MMIO32 W 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 &lt;= 0x301
-[0] 215.524348 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x301
-[0] 215.524398 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 &lt;= 0
-[0] 215.524444 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 &lt;= 0x70
-[0] 215.524490 MMIO32 W 0x61d3c0 0x00000000 PDISPLAY.SOR[0x2]+0x3c0 &lt;= 0
-[0] 215.524536 MMIO32 R 0x61d3bc 0x00000000 PDISPLAY.SOR[0x2]+0x3bc =&gt; 0
-[0] 215.524581 MMIO32 W 0x61d3bc 0x00000000 PDISPLAY.SOR[0x2]+0x3bc &lt;= 0
-[0] 215.524632 MMIO32 R 0x610024 0x00000070 PDISPLAY+0x24 =&gt; 0x70
-[0] 215.524679 MMIO32 R 0x610020 0x00000000 PDISPLAY+0x20 =&gt; 0
-[0] 215.524724 MMIO32 W 0x610020 0x0000001f PDISPLAY+0x20 &lt;= 0x1f
-[0] 215.524769 MMIO32 W 0x610024 0x10700f71 PDISPLAY+0x24 &lt;= 0x10700f71
-[0] 215.525089 MMIO32 R 0x61d380 0x00000301 PDISPLAY.SOR[0x2]+0x380 =&gt; 0x301
-[0] 215.525134 MMIO32 W 0x61d380 0x00000300 PDISPLAY.SOR[0x2]+0x380 &lt;= 0x300
-[0] 215.525185 MMIO32 W 0x610020 0x00000000 PDISPLAY+0x20 &lt;= 0
-[0] 215.525230 MMIO32 W 0x610024 0x00000070 PDISPLAY+0x24 &lt;= 0x70
-[0] 215.525278 MMIO32 R 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 =&gt; 0x34
-[0] 215.525323 MMIO32 W 0x61d368 0x00000034 PDISPLAY.SOR[0x2]+0x368 &lt;= 0x34
-[0] 215.527945 MMIO32 R 0x619498 0x00008000 PDISPLAY.VGA.CR+0x98 =&gt; 0x8000</pre>
+Kernel: 3.19.1
+Hardware: Thinkpad T410, Quadro NVS 3100M (256M GDDR3) [similar hw but
+different VRAM compared to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8] nouveau GPU lockup when reclocking"
+   href="show_bug.cgi?id=88415">bug 88415</a>]
+Problem: reclocking between pstates 3 and 7 is flawless, but reclocking to
+pstate f causes problems.
+Possible scenarios:
+
+1. X server is not running, trying to reclock from the fb. 
+   echo f &gt; pstate
+  Image gets corrupted (vertical flickering lines), but there is no lockup and
+after
+   echo 7 &gt; pstate
+everything gets back to normal. After that system works just fine.
+Dmesg attached (with nouveau.debug=debug)
+
+2. X server is running. 
+   echo f &gt; pstate
+   Screen gets corrupted in similar fashion, but system locks up and after few
+second stops to respond even to SysRq.
+I managed to get dmesg for this scenario too.
+
+I also mmiotraced functioning reclocking with the nvidia blob. Trace is quite
+large (120MB). Should I truncate it somehow to upload, or just provide as is?</pre>
         </div>
       </p>
       <hr>
@@ -188,9 +209,9 @@ using PDAEMON to do a *lot* more stuff now...
     </body>
 </html>
 
---1424555569.dAF8edEC1.18121--
+--1424557890.4A1e3D1.24156--
 
---===============2032167167==
+--===============1381339958==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -200,4 +221,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2032167167==--
+--===============1381339958==--
