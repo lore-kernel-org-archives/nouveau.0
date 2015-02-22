@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89273] [NVA8] nouveau screen corruption and X lockup
- when reclocking
-Date: Sat, 21 Feb 2015 23:32:32 +0000
-Message-ID: <bug-89273-8800-27TIJkrT4S@http.bugs.freedesktop.org/>
-References: <bug-89273-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87715] [NV50] Changing resolution away from
+ 1680x1050 results in scattered display
+Date: Sun, 22 Feb 2015 12:35:53 +0000
+Message-ID: <bug-87715-8800-0ffQlxPXbr@http.bugs.freedesktop.org/>
+References: <bug-87715-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0169398705=="
+Content-Type: multipart/mixed; boundary="===============0240068497=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87715-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0169398705==
-Content-Type: multipart/alternative; boundary="1424561552.0b2851.1506"; charset="UTF-8"
+--===============0240068497==
+Content-Type: multipart/alternative; boundary="1424608553.2eF51.16457"; charset="UTF-8"
 
 
---1424561552.0b2851.1506
-Date: Sat, 21 Feb 2015 23:32:32 +0000
+--1424608553.2eF51.16457
+Date: Sun, 22 Feb 2015 12:35:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89273
+https://bugs.freedesktop.org/show_bug.cgi?id=87715
 
---- Comment #5 from Max Sydorenko <maxim.stargazer-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-> Thanks for reporting. I've had very little GDDR3 cards to test with (in
-> fact... just one), so these logs will be extremely useful. If you can,
-> please provide the trace in full. Feel free to compress it using xz or
-> similar.
-Here is direct link to xz-ed mmiotrace
-https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0
+Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #10 from Bruno Wolff <bruno-bdMChIhFSYk@public.gmane.org> ---
+Things seem to be working now. I am not sure what fixed it. I recently got mesa
+10.5 and I am running 3.20 test kernels.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424561552.0b2851.1506
-Date: Sat, 21 Feb 2015 23:32:32 +0000
+--1424608553.2eF51.16457
+Date: Sun, 22 Feb 2015 12:35:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,25 +56,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273#c5">Comment # 5</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715#c10">Comment # 10</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA8] nouveau screen corruption and X lockup when reclocking"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89273">bug 89273</a>
-              from <span class="vcard"><a class="email" href="mailto:maxim.stargazer&#64;gmail.com" title="Max Sydorenko &lt;maxim.stargazer&#64;gmail.com&gt;"> <span class="fn">Max Sydorenko</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Changing resolution away from 1680x1050 results in scattered display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87715">bug 87715</a>
+              from <span class="vcard"><a class="email" href="mailto:bruno&#64;wolff.to" title="Bruno Wolff &lt;bruno&#64;wolff.to&gt;"> <span class="fn">Bruno Wolff</span></a>
 </span></b>
-        <pre><span class="quote">&gt; Thanks for reporting. I've had very little GDDR3 cards to test with (in
-&gt; fact... just one), so these logs will be extremely useful. If you can,
-&gt; please provide the trace in full. Feel free to compress it using xz or
-&gt; similar.</span >
-Here is direct link to xz-ed mmiotrace
-<a href="https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0">https://www.dropbox.com/s/el0zzw80ttmt584/mmiotrace.log.tar.xz?dl=0</a></pre>
+        <pre>Things seem to be working now. I am not sure what fixed it. I recently got mesa
+10.5 and I am running 3.20 test kernels.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +110,9 @@ Here is direct link to xz-ed mmiotrace
     </body>
 </html>
 
---1424561552.0b2851.1506--
+--1424608553.2eF51.16457--
 
---===============0169398705==
+--===============0240068497==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0169398705==--
+--===============0240068497==--
