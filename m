@@ -1,100 +1,107 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
-Date: Mon, 23 Feb 2015 14:46:17 +0000
-Message-ID: <bug-89047-8800-7cOOqWhoIj@http.bugs.freedesktop.org/>
-References: <bug-89047-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH 2/2] nvc0/ir: improve precision of double
+ RCP/RSQ results
+Date: Mon, 23 Feb 2015 10:40:05 -0500
+Message-ID: <CAKb7Uvg2Gfm9y-=bUs8C-EYyks=xPCwDUizt6SyAq70-B9W8Xw@mail.gmail.com>
+References: <1424664088-14913-1-git-send-email-imirkin@alum.mit.edu>
+ <1424664088-14913-2-git-send-email-imirkin@alum.mit.edu>
+ <54EB2A2B.5000605@vmware.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1947078476=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <54EB2A2B.5000605@vmware.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Roland Scheidegger <sroland@vmware.com>
+Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1947078476==
-Content-Type: multipart/alternative; boundary="1424702777.f16e1.10740"; charset="UTF-8"
-
-
---1424702777.f16e1.10740
-Date: Mon, 23 Feb 2015 14:46:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89047
-
---- Comment #1 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I can confirm this also for kernel 3.19.0 on OpenSUSE Factory for a HP ZBoo=
-k 5,
-NVIDIA Corporation GK208GLM [Quadro K610M].
-See https://bugzilla.opensuse.org/show_bug.cgi?id=3D919036
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424702777.f16e1.10740
-Date: Mon, 23 Feb 2015 14:46:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
-&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
-</span></b>
-        <pre>I can confirm this also for kernel 3.19.0 on OpenSUSE Factory =
-for a HP ZBook 5,
-NVIDIA Corporation GK208GLM [Quadro K610M].
-See <a href=3D"https://bugzilla.opensuse.org/show_bug.cgi?id=3D919036">http=
-s://bugzilla.opensuse.org/show_bug.cgi?id=3D919036</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424702777.f16e1.10740--
-
---===============1947078476==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1947078476==--
+T2ggcmlnaHQuIEkgdGhpbmsgdGhlIE5WSURJQSBibG9iIGV4ZWN1dGVzIHRob3NlIHN0ZXBzIGNv
+bmRpdGlvbmFsbHkKYmFzZWQgb24gdGhlIHVwcGVyIGJpdHMgbm90IGJlaW5nIDB4N2ZmICg9PSBp
+bmZpbml0eS9uYW4pLiBJIHNob3VsZCBkbwp0aGUgc2FtZSB0aGluZyBoZXJlLiBbRldJVyBJIHdh
+cyBhYmxlIHRvIHRlc3QgdGhlIG52NTAgY29kZSBsYXN0IG5pZ2h0CmFuZCB0aGF0IG9uZSdzIGEg
+dG90YWwgZmFpbCBmb3IgcmNwL3JzcS4uLiB3aWxsIG5lZWQgdG8gcG9ydCB0aGF0IG92ZXIKdG8g
+bXkgbnZjMCBhbmQgZGVidWcgdGhlcmUuXQoKT24gTW9uLCBGZWIgMjMsIDIwMTUgYXQgODoyNCBB
+TSwgUm9sYW5kIFNjaGVpZGVnZ2VyIDxzcm9sYW5kQHZtd2FyZS5jb20+IHdyb3RlOgo+IERvZXMg
+dGhpcyBnaXZlIGNvcnJlY3QgcmVzdWx0cyBmb3Igc3BlY2lhbCBmbG9hdHMgKDAsIGluZnMpPwo+
+IFdlIHRyaWVkIHRvIGltcHJvdmUgKGZvciBzaW5nbGUgZmxvYXRzKSB4ODYgcmNwIGluIGxsdm1w
+aXBlIHdpdGgKPiBuZXd0b24tcmFwaHNvbiwgYnV0IHVuZm9ydHVuYXRlbHkgbm90IGJlaW5nIGFi
+bGUgdG8gZ2l2ZSBjb3JyZWN0IHJlc3VsdHMKPiBmb3IgdGhlc2UgdHdvIGNhc2VzICh3aXRob3V0
+IGV2ZW4gbW9yZSBhZGRpdGlvbmFsIGNvZGUpIG1lYW50IGl0IGdvdCBhbGwKPiBkaXNhYmxlZCBp
+biB0aGUgZW5kICh5b3UgY2FuIHN0aWxsIHNlZSB0aGF0IGNvZGUgaW4gdGhlIGRyaXZlcikgc2lu
+Y2UKPiB0aGUgcHJvYmxlbXMgYXJlIGF0IGxlYXN0IGFzIGJhZCBhcyB0aG9zZSBkdWUgdG8gYmFk
+IGFjY3VyYWN5Li4uCj4KPiBSb2xhbmQKPgo+IEFtIDIzLjAyLjIwMTUgdW0gMDU6MDEgc2Nocmll
+YiBJbGlhIE1pcmtpbjoKPj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1Pgo+PiAtLS0KPj4KPj4gTm90IHN1cmUgaG93IG1hbnkgc3RlcHMgYXJlIG5lZWRl
+ZCBmb3IgdGhlIG5lY2Vzc2FyeSBhY2N1cmFjeS4gSnVzdAo+PiBkb2luZyAyIGJlY2F1c2UgdGhh
+dCBzZWVtcyBsaWtlIGEgcmVhc29uYWJsZSBudW1iZXIuCj4+Cj4+ICAuLi4vbm91dmVhdS9jb2Rl
+Z2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAgICAgICB8IDQyICsrKysrKysrKysrKysrKysr
+KysrLS0KPj4gIDEgZmlsZSBjaGFuZ2VkLCAzOSBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygt
+KQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4v
+bnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
+b2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAKPj4gaW5kZXggODdlNzVlMS4uOTc2NzU2
+NiAxMDA2NDQKPj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
+MF9pcl9sb3dlcmluZ19udmMwLmNwcAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwCj4+IEBAIC03Nyw4ICs3Nyw5IEBA
+IE5WQzBMZWdhbGl6ZVNTQTo6aGFuZGxlUkNQUlNRKEluc3RydWN0aW9uICppKQo+PiAgICAgYmxk
+LnNldFBvc2l0aW9uKGksIGZhbHNlKTsKPj4KPj4gICAgIC8vIDEuIFRha2UgdGhlIHNvdXJjZSBh
+bmQgaXQgdXAuCj4+IC0gICBWYWx1ZSAqc3JjWzJdLCAqZHN0WzJdLCAqZGVmID0gaS0+Z2V0RGVm
+KDApOwo+PiAtICAgYmxkLm1rU3BsaXQoc3JjLCA0LCBpLT5nZXRTcmMoMCkpOwo+PiArICAgVmFs
+dWUgKmlucHV0ID0gaS0+Z2V0U3JjKDApOwo+PiArICAgVmFsdWUgKnNyY1syXSwgKmRzdFsyXSwg
+Kmd1ZXNzLCAqZGVmID0gaS0+Z2V0RGVmKDApOwo+PiArICAgYmxkLm1rU3BsaXQoc3JjLCA0LCBp
+bnB1dCk7Cj4+Cj4+ICAgICAvLyAyLiBXZSBkb24ndCBjYXJlIGFib3V0IHRoZSBsb3cgMzIgYml0
+cyBvZiB0aGUgZGVzdGluYXRpb24uIFN0aWNrIGEgMCBpbi4KPj4gICAgIGRzdFswXSA9IGJsZC5s
+b2FkSW1tKE5VTEwsIDApOwo+PiBAQCAtOTMsNyArOTQsNDIgQEAgTlZDMExlZ2FsaXplU1NBOjpo
+YW5kbGVSQ1BSU1EoSW5zdHJ1Y3Rpb24gKmkpCj4+Cj4+ICAgICAvLyA0LiBSZWNvbWJpbmUgdGhl
+IHR3byBkc3QgcGllY2VzIGJhY2sgaW50byB0aGUgb3JpZ2luYWwgZGVzdGluYXRpb24uCj4+ICAg
+ICBibGQuc2V0UG9zaXRpb24oaSwgdHJ1ZSk7Cj4+IC0gICBibGQubWtPcDIoT1BfTUVSR0UsIFRZ
+UEVfVTY0LCBkZWYsIGRzdFswXSwgZHN0WzFdKTsKPj4gKyAgIGd1ZXNzID0gYmxkLm1rT3AydihP
+UF9NRVJHRSwgVFlQRV9VNjQsIGJsZC5nZXRTU0EoOCksIGRzdFswXSwgZHN0WzFdKTsKPj4gKwo+
+PiArICAgLy8gNS4gUGVyZm9ybSAyIE5ld3Rvbi1SYXBoc29uIHN0ZXBzCj4+ICsgICBpZiAoaS0+
+b3AgPT0gT1BfUkNQKSB7Cj4+ICsgICAgICAvLyBSQ1A6IHhfe24rMX0gPSAyICogeF9uIC0gaW5w
+dXQgKiB4X25eMgo+PiArICAgICAgVmFsdWUgKnR3byA9IGJsZC5nZXRTU0EoOCk7Cj4+ICsKPj4g
+KyAgICAgIGJsZC5ta0N2dChPUF9DVlQsIFRZUEVfRjY0LCB0d28sIFRZUEVfRjMyLCBibGQubG9h
+ZEltbShOVUxMLCAyLjBmKSk7Cj4+ICsKPj4gKyAgICAgIGd1ZXNzID0gYmxkLm1rT3AydihPUF9T
+VUIsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLAo+PiArICAgICAgICAgICAgICAgICAgICAgICAg
+IGJsZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgdHdvLCBndWVzcyks
+Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgYmxkLm1rT3AydihPUF9NVUwsIFRZUEVfRjY0
+LCBibGQuZ2V0U1NBKDgpLCBpbnB1dCwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIGJsZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgZ3Vlc3Ms
+IGd1ZXNzKSkpOwo+PiArICAgICAgZ3Vlc3MgPSBibGQubWtPcDJ2KE9QX1NVQiwgVFlQRV9GNjQs
+IGJsZC5nZXRTU0EoOCksCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgYmxkLm1rT3AydihP
+UF9NVUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCB0d28sIGd1ZXNzKSwKPj4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICBibGQubWtPcDJ2KE9QX01VTCwgVFlQRV9GNjQsIGJsZC5nZXRTU0Eo
+OCksIGlucHV0LAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmxkLm1r
+T3AydihPUF9NVUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywgZ3Vlc3MpKSk7Cj4+
+ICsgICB9IGVsc2Ugewo+PiArICAgICAgLy8gUlNROiB4X3tuKzF9ID0geF9uICgxLjUgLSAwLjUg
+KiBpbnB1dCAqIHhfbl4yKQo+PiArICAgICAgVmFsdWUgKmhhbGZfaW5wdXQgPSBibGQuZ2V0U1NB
+KDgpLCAqdGhyZWVfaGFsZiA9IGJsZC5nZXRTU0EoOCk7Cj4+ICsgICAgICBibGQubWtDdnQoT1Bf
+Q1ZULCBUWVBFX0Y2NCwgaGFsZl9pbnB1dCwgVFlQRV9GMzIsIGJsZC5sb2FkSW1tKE5VTEwsIC0w
+LjVmKSk7Cj4+ICsgICAgICBibGQubWtDdnQoT1BfQ1ZULCBUWVBFX0Y2NCwgdGhyZWVfaGFsZiwg
+VFlQRV9GMzIsIGJsZC5sb2FkSW1tKE5VTEwsIDEuNWYpKTsKPj4gKwo+PiArICAgICAgaGFsZl9p
+bnB1dCA9IGJsZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgaGFsZl9p
+bnB1dCwgaW5wdXQpOwo+PiArICAgICAgLy8gUlNROiB4X3tuKzF9ID0geF9uICogKDEuNSAtIDAu
+NSAqIGlucHV0ICogeF9uXjIpCj4+ICsgICAgICBndWVzcyA9IGJsZC5ta09wMnYoT1BfTVVMLCBU
+WVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgZ3Vlc3MsCj4+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgYmxkLm1rT3AzdihPUF9NQUQsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBoYWxmX2lucHV0
+LAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmxkLm1rT3AydihPUF9N
+VUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywgZ3Vlc3MpLAo+PiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhyZWVfaGFsZikpOwo+PiArICAgICAgZ3Vlc3Mg
+PSBibGQubWtPcDJ2KE9QX01VTCwgVFlQRV9GNjQsIGJsZC5nZXRTU0EoOCksIGd1ZXNzLAo+PiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgIGJsZC5ta09wM3YoT1BfTUFELCBUWVBFX0Y2NCwgYmxk
+LmdldFNTQSg4KSwgaGFsZl9pbnB1dCwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIGJsZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgZ3Vlc3Ms
+IGd1ZXNzKSwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRocmVlX2hh
+bGYpKTsKPj4gKyAgIH0KPj4gKwo+PiArICAgYmxkLm1rTW92KGRlZiwgZ3Vlc3MpOwo+PiAgfQo+
+Pgo+PiAgYm9vbAo+Pgo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2
+Cg==
