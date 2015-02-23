@@ -1,96 +1,100 @@
-From: Roland Scheidegger <sroland@vmware.com>
-Subject: Re: [PATCH 2/2] nvc0/ir: improve precision of double
- RCP/RSQ results
-Date: Mon, 23 Feb 2015 14:24:59 +0100
-Message-ID: <54EB2A2B.5000605@vmware.com>
-References: <1424664088-14913-1-git-send-email-imirkin@alum.mit.edu>
- <1424664088-14913-2-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
+Date: Mon, 23 Feb 2015 14:46:17 +0000
+Message-ID: <bug-89047-8800-7cOOqWhoIj@http.bugs.freedesktop.org/>
+References: <bug-89047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1424664088-14913-2-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1947078476=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RG9lcyB0aGlzIGdpdmUgY29ycmVjdCByZXN1bHRzIGZvciBzcGVjaWFsIGZsb2F0cyAoMCwgaW5m
-cyk/CldlIHRyaWVkIHRvIGltcHJvdmUgKGZvciBzaW5nbGUgZmxvYXRzKSB4ODYgcmNwIGluIGxs
-dm1waXBlIHdpdGgKbmV3dG9uLXJhcGhzb24sIGJ1dCB1bmZvcnR1bmF0ZWx5IG5vdCBiZWluZyBh
-YmxlIHRvIGdpdmUgY29ycmVjdCByZXN1bHRzCmZvciB0aGVzZSB0d28gY2FzZXMgKHdpdGhvdXQg
-ZXZlbiBtb3JlIGFkZGl0aW9uYWwgY29kZSkgbWVhbnQgaXQgZ290IGFsbApkaXNhYmxlZCBpbiB0
-aGUgZW5kICh5b3UgY2FuIHN0aWxsIHNlZSB0aGF0IGNvZGUgaW4gdGhlIGRyaXZlcikgc2luY2UK
-dGhlIHByb2JsZW1zIGFyZSBhdCBsZWFzdCBhcyBiYWQgYXMgdGhvc2UgZHVlIHRvIGJhZCBhY2N1
-cmFjeS4uLgoKUm9sYW5kCgpBbSAyMy4wMi4yMDE1IHVtIDA1OjAxIHNjaHJpZWIgSWxpYSBNaXJr
-aW46Cj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+
-IC0tLQo+IAo+IE5vdCBzdXJlIGhvdyBtYW55IHN0ZXBzIGFyZSBuZWVkZWQgZm9yIHRoZSBuZWNl
-c3NhcnkgYWNjdXJhY3kuIEp1c3QKPiBkb2luZyAyIGJlY2F1c2UgdGhhdCBzZWVtcyBsaWtlIGEg
-cmVhc29uYWJsZSBudW1iZXIuCj4gCj4gIC4uLi9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dl
-cmluZ19udmMwLmNwcCAgICAgIHwgNDIgKysrKysrKysrKysrKysrKysrKystLQo+ICAxIGZpbGUg
-Y2hhbmdlZCwgMzkgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19u
-dmMwLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93
-ZXJpbmdfbnZjMC5jcHAKPiBpbmRleCA4N2U3NWUxLi45NzY3NTY2IDEwMDY0NAo+IC0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5j
-cHAKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xv
-d2VyaW5nX252YzAuY3BwCj4gQEAgLTc3LDggKzc3LDkgQEAgTlZDMExlZ2FsaXplU1NBOjpoYW5k
-bGVSQ1BSU1EoSW5zdHJ1Y3Rpb24gKmkpCj4gICAgIGJsZC5zZXRQb3NpdGlvbihpLCBmYWxzZSk7
-Cj4gIAo+ICAgICAvLyAxLiBUYWtlIHRoZSBzb3VyY2UgYW5kIGl0IHVwLgo+IC0gICBWYWx1ZSAq
-c3JjWzJdLCAqZHN0WzJdLCAqZGVmID0gaS0+Z2V0RGVmKDApOwo+IC0gICBibGQubWtTcGxpdChz
-cmMsIDQsIGktPmdldFNyYygwKSk7Cj4gKyAgIFZhbHVlICppbnB1dCA9IGktPmdldFNyYygwKTsK
-PiArICAgVmFsdWUgKnNyY1syXSwgKmRzdFsyXSwgKmd1ZXNzLCAqZGVmID0gaS0+Z2V0RGVmKDAp
-Owo+ICsgICBibGQubWtTcGxpdChzcmMsIDQsIGlucHV0KTsKPiAgCj4gICAgIC8vIDIuIFdlIGRv
-bid0IGNhcmUgYWJvdXQgdGhlIGxvdyAzMiBiaXRzIG9mIHRoZSBkZXN0aW5hdGlvbi4gU3RpY2sg
-YSAwIGluLgo+ICAgICBkc3RbMF0gPSBibGQubG9hZEltbShOVUxMLCAwKTsKPiBAQCAtOTMsNyAr
-OTQsNDIgQEAgTlZDMExlZ2FsaXplU1NBOjpoYW5kbGVSQ1BSU1EoSW5zdHJ1Y3Rpb24gKmkpCj4g
-IAo+ICAgICAvLyA0LiBSZWNvbWJpbmUgdGhlIHR3byBkc3QgcGllY2VzIGJhY2sgaW50byB0aGUg
-b3JpZ2luYWwgZGVzdGluYXRpb24uCj4gICAgIGJsZC5zZXRQb3NpdGlvbihpLCB0cnVlKTsKPiAt
-ICAgYmxkLm1rT3AyKE9QX01FUkdFLCBUWVBFX1U2NCwgZGVmLCBkc3RbMF0sIGRzdFsxXSk7Cj4g
-KyAgIGd1ZXNzID0gYmxkLm1rT3AydihPUF9NRVJHRSwgVFlQRV9VNjQsIGJsZC5nZXRTU0EoOCks
-IGRzdFswXSwgZHN0WzFdKTsKPiArCj4gKyAgIC8vIDUuIFBlcmZvcm0gMiBOZXd0b24tUmFwaHNv
-biBzdGVwcwo+ICsgICBpZiAoaS0+b3AgPT0gT1BfUkNQKSB7Cj4gKyAgICAgIC8vIFJDUDogeF97
-bisxfSA9IDIgKiB4X24gLSBpbnB1dCAqIHhfbl4yCj4gKyAgICAgIFZhbHVlICp0d28gPSBibGQu
-Z2V0U1NBKDgpOwo+ICsKPiArICAgICAgYmxkLm1rQ3Z0KE9QX0NWVCwgVFlQRV9GNjQsIHR3bywg
-VFlQRV9GMzIsIGJsZC5sb2FkSW1tKE5VTEwsIDIuMGYpKTsKPiArCj4gKyAgICAgIGd1ZXNzID0g
-YmxkLm1rT3AydihPUF9TVUIsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLAo+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgYmxkLm1rT3AydihPUF9NVUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgp
-LCB0d28sIGd1ZXNzKSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgIGJsZC5ta09wMnYoT1Bf
-TVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgaW5wdXQsCj4gKyAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIGJsZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNT
-QSg4KSwgZ3Vlc3MsIGd1ZXNzKSkpOwo+ICsgICAgICBndWVzcyA9IGJsZC5ta09wMnYoT1BfU1VC
-LCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgIGJs
-ZC5ta09wMnYoT1BfTVVMLCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgdHdvLCBndWVzcyksCj4g
-KyAgICAgICAgICAgICAgICAgICAgICAgICBibGQubWtPcDJ2KE9QX01VTCwgVFlQRV9GNjQsIGJs
-ZC5nZXRTU0EoOCksIGlucHV0LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBibGQubWtPcDJ2KE9QX01VTCwgVFlQRV9GNjQsIGJsZC5nZXRTU0EoOCksIGd1ZXNzLCBndWVz
-cykpKTsKPiArICAgfSBlbHNlIHsKPiArICAgICAgLy8gUlNROiB4X3tuKzF9ID0geF9uICgxLjUg
-LSAwLjUgKiBpbnB1dCAqIHhfbl4yKQo+ICsgICAgICBWYWx1ZSAqaGFsZl9pbnB1dCA9IGJsZC5n
-ZXRTU0EoOCksICp0aHJlZV9oYWxmID0gYmxkLmdldFNTQSg4KTsKPiArICAgICAgYmxkLm1rQ3Z0
-KE9QX0NWVCwgVFlQRV9GNjQsIGhhbGZfaW5wdXQsIFRZUEVfRjMyLCBibGQubG9hZEltbShOVUxM
-LCAtMC41ZikpOwo+ICsgICAgICBibGQubWtDdnQoT1BfQ1ZULCBUWVBFX0Y2NCwgdGhyZWVfaGFs
-ZiwgVFlQRV9GMzIsIGJsZC5sb2FkSW1tKE5VTEwsIDEuNWYpKTsKPiArCj4gKyAgICAgIGhhbGZf
-aW5wdXQgPSBibGQubWtPcDJ2KE9QX01VTCwgVFlQRV9GNjQsIGJsZC5nZXRTU0EoOCksIGhhbGZf
-aW5wdXQsIGlucHV0KTsKPiArICAgICAgLy8gUlNROiB4X3tuKzF9ID0geF9uICogKDEuNSAtIDAu
-NSAqIGlucHV0ICogeF9uXjIpCj4gKyAgICAgIGd1ZXNzID0gYmxkLm1rT3AydihPUF9NVUwsIFRZ
-UEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywKPiArICAgICAgICAgICAgICAgICAgICAgICAg
-IGJsZC5ta09wM3YoT1BfTUFELCBUWVBFX0Y2NCwgYmxkLmdldFNTQSg4KSwgaGFsZl9pbnB1dCwK
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYmxkLm1rT3AydihPUF9NVUws
-IFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywgZ3Vlc3MpLAo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICB0aHJlZV9oYWxmKSk7Cj4gKyAgICAgIGd1ZXNzID0gYmxk
-Lm1rT3AydihPUF9NVUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywKPiArICAgICAg
-ICAgICAgICAgICAgICAgICAgIGJsZC5ta09wM3YoT1BfTUFELCBUWVBFX0Y2NCwgYmxkLmdldFNT
-QSg4KSwgaGFsZl9pbnB1dCwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-YmxkLm1rT3AydihPUF9NVUwsIFRZUEVfRjY0LCBibGQuZ2V0U1NBKDgpLCBndWVzcywgZ3Vlc3Mp
-LAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aHJlZV9oYWxmKSk7Cj4g
-KyAgIH0KPiArCj4gKyAgIGJsZC5ta01vdihkZWYsIGd1ZXNzKTsKPiAgfQo+ICAKPiAgYm9vbAo+
-IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1k
-ZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1947078476==
+Content-Type: multipart/alternative; boundary="1424702777.f16e1.10740"; charset="UTF-8"
+
+
+--1424702777.f16e1.10740
+Date: Mon, 23 Feb 2015 14:46:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89047
+
+--- Comment #1 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can confirm this also for kernel 3.19.0 on OpenSUSE Factory for a HP ZBoo=
+k 5,
+NVIDIA Corporation GK208GLM [Quadro K610M].
+See https://bugzilla.opensuse.org/show_bug.cgi?id=3D919036
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424702777.f16e1.10740
+Date: Mon, 23 Feb 2015 14:46:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
+&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+</span></b>
+        <pre>I can confirm this also for kernel 3.19.0 on OpenSUSE Factory =
+for a HP ZBook 5,
+NVIDIA Corporation GK208GLM [Quadro K610M].
+See <a href=3D"https://bugzilla.opensuse.org/show_bug.cgi?id=3D919036">http=
+s://bugzilla.opensuse.org/show_bug.cgi?id=3D919036</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424702777.f16e1.10740--
+
+--===============1947078476==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1947078476==--
