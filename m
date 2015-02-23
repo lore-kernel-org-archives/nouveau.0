@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Mon, 23 Feb 2015 16:03:03 +0000
-Message-ID: <bug-70972-8800-eIHg7Uel3X@http.bugs.freedesktop.org/>
-References: <bug-70972-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Mon, 23 Feb 2015 19:11:07 +0000
+Message-ID: <bug-70354-8800-lmYkg50Ne4@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0476648726=="
+Content-Type: multipart/mixed; boundary="===============0947198936=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0476648726==
-Content-Type: multipart/alternative; boundary="1424707383.D58BbdFF2.24651"; charset="UTF-8"
+--===============0947198936==
+Content-Type: multipart/alternative; boundary="1424718667.d1c15d5.2430"; charset="UTF-8"
 
 
---1424707383.D58BbdFF2.24651
-Date: Mon, 23 Feb 2015 16:03:03 +0000
+--1424718667.d1c15d5.2430
+Date: Mon, 23 Feb 2015 19:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70972
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A few things to try if you're feeling motivated to resolve this:
-
-(a) Does setting the mode work properly with the xf86-video-nv driver (and with
-nouveau entirely disabled)? If so, try to see what the two are doing
-differently.
-
-(b) What about nvidiafb (drivers/video/nvidia)?
-
-(c) Do a mmiotrace of the blob and compare what it's doing to what nouveau's
-doing.
+--- Comment #52 from Richard <rich-2ZpFXoJyzMtkMtayTlHv3w@public.gmane.org> ---
+I think I should update my post... I should say that nouveau loads reliably,
+but I still get the HUB_INIT timeout error from the OP. Applying the patch does
+not fix it. The driver works for 2D applications, but 3D applications cause it
+to hang the GPU.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424707383.D58BbdFF2.24651
-Date: Mon, 23 Feb 2015 16:03:03 +0000
+--1424718667.d1c15d5.2430
+Date: Mon, 23 Feb 2015 19:11:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,24 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c12">Comment # 12</a>
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c52">Comment # 52</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:rich&#64;warfaresdl.com" title="Richard &lt;rich&#64;warfaresdl.com&gt;"> <span class="fn">Richard</span></a>
 </span></b>
-        <pre>A few things to try if you're feeling motivated to resolve this:
-
-(a) Does setting the mode work properly with the xf86-video-nv driver (and with
-nouveau entirely disabled)? If so, try to see what the two are doing
-differently.
-
-(b) What about nvidiafb (drivers/video/nvidia)?
-
-(c) Do a mmiotrace of the blob and compare what it's doing to what nouveau's
-doing.</pre>
+        <pre>I think I should update my post... I should say that nouveau loads reliably,
+but I still get the HUB_INIT timeout error from the OP. Applying the patch does
+not fix it. The driver works for 2D applications, but 3D applications cause it
+to hang the GPU.</pre>
         </div>
       </p>
       <hr>
@@ -90,9 +79,9 @@ doing.</pre>
     </body>
 </html>
 
---1424707383.D58BbdFF2.24651--
+--1424718667.d1c15d5.2430--
 
---===============0476648726==
+--===============0947198936==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0476648726==--
+--===============0947198936==--
