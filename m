@@ -1,20 +1,12 @@
-From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] nouveau: Do not add most bo's to the
- global bo list.
-Date: Wed, 25 Feb 2015 10:28:22 -0600
-Message-ID: <CAEk2StmOwhMecfkNsVj7j3PbmnazNQ7CAPMs-VNvv-QtrSEmCQ@mail.gmail.com>
-References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
- <1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>
- <CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>
- <54EDE354.6030700@ubuntu.com>
- <CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw@mail.gmail.com>
- <54EDE51B.1070000@ubuntu.com>
- <CAEk2Stk1x86MM0x6FLFutgBGC+0ksG+VKFLoEH=z+zLGKvYyRg@mail.gmail.com>
- <54EDED9B.3000303@ubuntu.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 61731] Nouveau not working on second monitor
+Date: Wed, 25 Feb 2015 16:34:05 +0000
+Message-ID: <bug-61731-8800-QZGET9QrNN@http.bugs.freedesktop.org/>
+References: <bug-61731-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0556821224=="
+Content-Type: multipart/mixed; boundary="===============1545072437=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54EDED9B.3000303-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,133 +16,137 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0556821224==
-Content-Type: multipart/alternative; boundary=001a113a967cc05fd4050fec1f07
 
---001a113a967cc05fd4050fec1f07
-Content-Type: text/plain; charset=UTF-8
+--===============1545072437==
+Content-Type: multipart/alternative; boundary="1424882045.df26A7Ee2.7003"; charset="UTF-8"
 
-So you're saying a compiler can optimize:
 
->
-> - statement with memory access
-> - read memory barrier
-> - statement with memory access
->
-> To drop the second statement? I would worry about your definition of
-> memory barrier then..
->
-This is tricky, but I think you're mixing up the general case with the
-actual code you have. In general, you are pointing to this example:
+--1424882045.df26A7Ee2.7003
+Date: Wed, 25 Feb 2015 16:34:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-- Read memory location 1 (asm level)
-- RMB
-- Read memory location 2 (asm level)
+https://bugs.freedesktop.org/show_bug.cgi?id=61731
 
-In this case, you are precisely correct, the compiler will not reorder the
-reads, and the CPU won't either.
+--- Comment #16 from Kyle Auble <kyle.auble-ytc+IHgoah0@public.gmane.org> ---
+(In reply to Tobias Klausmann from comment #15)
+> Is this still a problem with a recent kernel? (3.17/3.18)
 
-What you actually have is this:
-- Access memory location 1 (C code)
-- RMB
-- Acesss memory location 1 (C code)
+I was actually trying to debug this driver-loading problem on & off for a
+while, and while I won't be running any more tests, I'd still like to see it
+resolved, if only for a sense of closure.
 
-I say "access" here because looking at the C code, not assembly. You have
-this:
+The last test I ran was with v3.17-rc2 of the PAE kernel on Ubuntu 12.04, and
+the problem was still there at that point in time. I can't vouch for more
+recent changes though. One thing I eventually found out is that there's an even
+simpler workaround than unplugging the laptop during boot: try passing the
+"pci=bios" boot parameter to the kernel.
 
-read nvbo->head.next
-RMB
-read nvbo->head.next
+I was keeping track of the tests at a Launchpad account, and I eventually sent
+a couple emails to the linux-pci mail list. You can tell I'm an amateur at
+systems debugging, especially in the beginning, but all those records are here:
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312
+http://thread.gmane.org/gmane.linux.kernel.pci/33181
+http://thread.gmane.org/gmane.linux.kernel.pci/34437
 
-This only works if you can guarantee that the compiler will actually
-generate a MOV instruction for the second read. If the variable isn't
-marked as "volatile", the compiler has no requirement to. Barriers control
-ordering and when a variable can be loaded, but you've already loaded it.
-You need to reload the variable, but you haven't shown the compiler a
-reason why it should. "Volatile" is a reason why.
+As for what causes it, I made several guesses that all eventually turned out
+wrong. It's just one more guess, but based on everything I figured out through
+the tests, I think there's some kind of race happening in or between the kernel
+& the BIOS pci initialization code. The earliest symptom in the logs is that
+there will be a ~30 ms gap between these two lines in dmesg (from the original
+reporter's in this thread):
+> [    0.379459] pci 0000:01:00.0: reg 30: [mem 0x00000000-0x0001ffff pref]
+> [    0.408041] pci 0000:00:01.0: PCI bridge to [bus 01-01]
 
-I tested this code on gcc:
+I think that's due to a timeout in pci link-retraining, but using an initscript
+to dump the GPU's pci config, I was able to find out that something is
+accidentally resetting or turning off the GPU prior to that. A race condition
+in the pci initialization might explain why the bug is intermittent and also
+why it's much more common in the x32 kernel (the smaller word length leading to
+more machine instructions something could wedge between?) I think the
+unplugging trick works by putting the PCI bus into a power-saving mode, which
+slows down the initialization enough to avoid a race.
 
-if(globalFlag) {
-    math...
-    if(globalFlag) {
-        more math
-    }
-}
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-It only tests once. If you replace "math" with printf(), it retests the
-value of globalFlag. Printf(), which has absolutely no barrier semantics at
-all. In other words, GCC conservatively will assume any function call will
-require a reload because it could modify anything. The code will work as-is.
+--1424882045.df26A7Ee2.7003
+Date: Wed, 25 Feb 2015 16:34:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
-Obviously, pthread_mutex_lock() does not modify the value of
-`nvbo->head.next`. Once GCC knows that (and maybe other compilers already
-do), perhaps with LTO, it doesn't have to generate a second load. If you
-ever switch to an inlined lock or different compiler that understands that,
-your code will break. I suggest you simply do the right thing the first
-time and cast the pointer to volatile since you're treating the value as if
-it is volatile (i.e. changing outside of the scope of the compiler's
-knowledge).
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - Nouveau not working on second monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
+              from <span class="vcard"><a class="email" href="mailto:kyle.auble&#64;zoho.com" title="Kyle Auble &lt;kyle.auble&#64;zoho.com&gt;"> <span class="fn">Kyle Auble</span></a>
+</span></b>
+        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=61731#c15">comment #15</a>)
+<span class="quote">&gt; Is this still a problem with a recent kernel? (3.17/3.18)</span >
 
-Patrick
+I was actually trying to debug this driver-loading problem on &amp; off for a
+while, and while I won't be running any more tests, I'd still like to see it
+resolved, if only for a sense of closure.
 
---001a113a967cc05fd4050fec1f07
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The last test I ran was with v3.17-rc2 of the PAE kernel on Ubuntu 12.04, and
+the problem was still there at that point in time. I can't vouch for more
+recent changes though. One thing I eventually found out is that there's an even
+simpler workaround than unplugging the laptop during boot: try passing the
+&quot;pci=bios&quot; boot parameter to the kernel.
 
-<div dir=3D"ltr">So you&#39;re saying a compiler can optimize:<br><div clas=
-s=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex">
-<br>
-- statement with memory access<br>
-- read memory barrier<br>
-- statement with memory access<br>
-<br>
-To drop the second statement? I would worry about your definition of memory=
- barrier then..<span><font color=3D"#888888"><br></font></span></blockquote=
-><div>This is tricky, but I think you&#39;re mixing up the general case wit=
-h the actual code you have. In general, you are pointing to this example:<b=
-r><br></div><div>- Read memory location 1 (asm level)<br></div><div>- RMB<b=
-r></div><div>- Read memory location 2 (asm level)<br><br></div><div>In this=
- case, you are precisely correct, the compiler will not reorder the reads, =
-and the CPU won&#39;t either.<br></div><div><br></div><div>What you actuall=
-y have is this:<br></div><div><div>- Access memory location 1 (C code)<br><=
-/div><div>- RMB<br></div>- Acesss memory location 1 (C code)<br></div><div>=
-<br>I say &quot;access&quot; here because looking at the C code, not assemb=
-ly. You have this:<br><br></div><div>read nvbo-&gt;head.next<br></div><div>=
-RMB<br><div>read nvbo-&gt;head.next<br></div><br></div><div>This only works=
- if you can guarantee that the compiler will actually generate a MOV instru=
-ction for the second read. If the variable isn&#39;t marked as &quot;volati=
-le&quot;, the compiler has no requirement to. Barriers control ordering and=
- when a variable can be loaded, but you&#39;ve already loaded it. You need =
-to reload the variable, but you haven&#39;t shown the compiler a reason why=
- it should. &quot;Volatile&quot; is a reason why.<br><br></div><div>I teste=
-d this code on gcc:<br><br></div><div>if(globalFlag) {<br></div><div>=C2=A0=
-=C2=A0=C2=A0 math...<br></div><div>=C2=A0=C2=A0=C2=A0 if(globalFlag) {<br><=
-/div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 more math<br>=C2=A0=C2=
-=A0=C2=A0 }<br>}<br></div><br></div><div class=3D"gmail_quote">It only test=
-s once. If you replace &quot;math&quot; with printf(), it retests the value=
- of globalFlag. Printf(), which has absolutely no barrier semantics at all.=
- In other words, GCC conservatively will assume any function call will requ=
-ire a reload because it could modify anything. The code will work as-is.<br=
-><br>Obviously, pthread_mutex_lock() does not modify the value of `nvbo-&gt=
-;head.next`. Once GCC knows that (and maybe other compilers already do), pe=
-rhaps with LTO, it doesn&#39;t have to generate a second load. If you ever =
-switch to an inlined lock or different compiler that understands that, your=
- code will break. I suggest you simply do the right thing the first time an=
-d cast the pointer to volatile since you&#39;re treating the value as if it=
- is volatile (i.e. changing outside of the scope of the compiler&#39;s know=
-ledge).<br><br></div><div class=3D"gmail_quote">Patrick<br></div><div class=
-=3D"gmail_quote"><div><br></div><div><br><br></div></div></div></div>
+I was keeping track of the tests at a Launchpad account, and I eventually sent
+a couple emails to the linux-pci mail list. You can tell I'm an amateur at
+systems debugging, especially in the beginning, but all those records are here:
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312</a>
+<a href="http://thread.gmane.org/gmane.linux.kernel.pci/33181">http://thread.gmane.org/gmane.linux.kernel.pci/33181</a>
+<a href="http://thread.gmane.org/gmane.linux.kernel.pci/34437">http://thread.gmane.org/gmane.linux.kernel.pci/34437</a>
 
---001a113a967cc05fd4050fec1f07--
+As for what causes it, I made several guesses that all eventually turned out
+wrong. It's just one more guess, but based on everything I figured out through
+the tests, I think there's some kind of race happening in or between the kernel
+&amp; the BIOS pci initialization code. The earliest symptom in the logs is that
+there will be a ~30 ms gap between these two lines in dmesg (from the original
+reporter's in this thread):
+<span class="quote">&gt; [    0.379459] pci 0000:01:00.0: reg 30: [mem 0x00000000-0x0001ffff pref]
+&gt; [    0.408041] pci 0000:00:01.0: PCI bridge to [bus 01-01]</span >
 
---===============0556821224==
+I think that's due to a timeout in pci link-retraining, but using an initscript
+to dump the GPU's pci config, I was able to find out that something is
+accidentally resetting or turning off the GPU prior to that. A race condition
+in the pci initialization might explain why the bug is intermittent and also
+why it's much more common in the x32 kernel (the smaller word length leading to
+more machine instructions something could wedge between?) I think the
+unplugging trick works by putting the PCI bus into a power-saving mode, which
+slows down the initialization enough to avoid a race.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424882045.df26A7Ee2.7003--
+
+--===============1545072437==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -160,4 +156,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0556821224==--
+--===============1545072437==--
