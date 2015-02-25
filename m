@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups,
-	works with blob PGRAPH fw
-Date: Wed, 25 Feb 2015 17:10:08 +0000
-Message-ID: <bug-72180-8800-P3GjgRhkev@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+Subject: Re: [PATCH 2/2] nouveau: Do not add most bo's to the
+ global bo list.
+Date: Wed, 25 Feb 2015 18:13:12 +0100
+Message-ID: <54EE02A8.2040004@canonical.com>
+References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>	<1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>	<CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>	<54EDE354.6030700@ubuntu.com>	<CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw@mail.gmail.com>	<54EDE51B.1070000@ubuntu.com>	<CAEk2Stk1x86MM0x6FLFutgBGC+0ksG+VKFLoEH=z+zLGKvYyRg@mail.gmail.com>	<54EDED9B.3000303@ubuntu.com>	<CAEk2StmOwhMecfkNsVj7j3PbmnazNQ7CAPMs-VNvv-QtrSEmCQ@mail.gmail.com>	<CAKb7UvhinRCVezUKwVpJR2V4hwTs+8mgQZBvEtHE0MVp7PYc9A@mail.gmail.com>	<CAEk2St=hxYL7QTnC=7=EnAyD8Bw4KJER4Dd+9pYKYckM5m+4Jg@mail.gmail.com>
+ <CAKb7UvgnB-Tvy1EFF-8ERfOFUBGCzBbPjL0Yv1TZAWRm1Be0wg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0476687939=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgnB-Tvy1EFF-8ERfOFUBGCzBbPjL0Yv1TZAWRm1Be0wg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,84 +19,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0476687939==
-Content-Type: multipart/alternative; boundary="1424884208.a642AD4.17239"; charset="UTF-8"
-
-
---1424884208.a642AD4.17239
-Date: Wed, 25 Feb 2015 17:10:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
-
---- Comment #41 from Cedric Brandenbourger <cedric-qhlb1eHUncGdZSis0rhKc4dd74u8MsAO@public.gmane.org> ---
-Hi, i'm back again
-
-I found the solution here for ubuntu and debian (it's working for BIOS and
-UEFI)
-
-
-https://bugs.launchpad.net/ubuntu/+source/nouveau-firmware/+bug/1309134
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424884208.a642AD4.17239
-Date: Wed, 25 Feb 2015 17:10:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c41">Comment # 41</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:cedric&#64;brandenbourger.lu" title="Cedric Brandenbourger &lt;cedric&#64;brandenbourger.lu&gt;"> <span class="fn">Cedric Brandenbourger</span></a>
-</span></b>
-        <pre>Hi, i'm back again
-
-I found the solution here for ubuntu and debian (it's working for BIOS and
-UEFI)
-
-
-<a href="https://bugs.launchpad.net/ubuntu/+source/nouveau-firmware/+bug/1309134">https://bugs.launchpad.net/ubuntu/+source/nouveau-firmware/+bug/1309134</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424884208.a642AD4.17239--
-
---===============0476687939==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0476687939==--
+SGV5LAoKT24gMjUtMDItMTUgMTg6MDUsIElsaWEgTWlya2luIHdyb3RlOgo+IE9uIFdlZCwgRmVi
+IDI1LCAyMDE1IGF0IDExOjU5IEFNLCBQYXRyaWNrIEJhZ2dldHQKPiA8YmFnZ2V0dC5wYXRyaWNr
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4+PiBJZiBjb2RlIGxpa2UKPj4+Cj4+PiB4ID0gKmE7Cj4+PiBw
+dGhyZWFkX211dGV4X2xvY2sgb3IgdW5sb2NrIG9yIF9fbWVtb3J5X2JhcnJpZXIoKQo+Pj4geSA9
+ICphOwo+Pj4KPj4+IGRvZXNuJ3QgY2F1c2UgYSB0byBnZXQgbG9hZGVkIHR3aWNlLCB0aGVuIHRo
+ZSBjb21waWxlcidzIGluIHNlcmlvdXMKPj4+IHRyb3VibGUuIEJhc2ljYWxseSBmdW5jdGlvbnMg
+bGlrZSBwdGhyZWFkX211dGV4X2xvY2sgaW1wbHkgdGhhdCBhbGwKPj4+IG1lbW9yeSBpcyBjaGFu
+Z2VkIHRvIHRoZSBjb21waWxlciwgYW5kIHRodXMgbmVlZCB0byBiZSByZWxvYWRlZC4KPj4+Cj4+
+IFdlbGwsIEkndmUgc2FpZCBiZWZvcmUgYW5kIEkgbWlnaHQgYmUgYWxvbmUsIGJ1dCBJIGRpc2Fn
+cmVlIHdpdGggeW91LiBUaGUKPj4gY29tcGlsZXIgaXMgdW5kZXIgbm8gcmVxdWlyZW1lbnQgdG8g
+cmVsb2FkICgqYSkgYmVjYXVzZSBhIGxvY2sgd2FzIGNoYW5nZWQuCj4+IEl0IGRvZXMsIGJ1dCBp
+dCBkb2Vzbid0IGhhdmUgdG8uIEl0J3MgZmluZSBpZiB5b3UgZ3V5cyBkb24ndCB3YW50IHRvIGNo
+YW5nZQo+PiBpdC4gSXQgbWF5IG5ldmVyIGJlIGEgcHJvYmxlbSB3aXRoIGdjYy4KPj4KPj4gVGhp
+cyBpcyB0aGUgZGVmaW5pdGlvbiBvZiBwdGhyZWFkX211dGV4X2xvY2soKSBpbiBnbGliYy4gVGhl
+cmUgYXJlbid0IGFueQo+PiBtYWdpYyBoaW50cyB0aGF0IHRoaXMgaW52YWxpZGF0ZXMgbWVtb3J5
+Ogo+Pgo+PiBleHRlcm4gaW50IHB0aHJlYWRfbXV0ZXhfbG9jayAocHRocmVhZF9tdXRleF90ICpf
+X211dGV4KQo+PiBfX1RIUk9XTkwgX19ub25udWxsICgoMSkpOwo+Pgo+PiBUSE9XTkwgaXMgYXR0
+cmlidXRlKChub3Rocm93KSkuCj4gCj4gSG0sIHRoaXMgaXMgYWN0dWFsbHkgYSBsaXR0bGUgd29y
+cnlpbmcuIE1hYXJ0ZW4sIHRob3VnaHRzPyBJIHdvdWxkCj4gaGF2ZSBhc3N1bWVkIHRoZXJlJ2Qg
+YmUgYSBfX2F0dHJpYnV0ZV9fKChzb21lX21hZ2ljX3RoaW5nKSkgaW4gdGhlcmUuCkluIGdlbmVy
+YWwgdGhpbmdzIGRvbid0IGdldCBvcHRpbWl6ZWQgYWNyb3NzIGZ1bmN0aW9uIGNhbGxzLCBleGNl
+cHQgaW4gY2FzZSBvZiBpbmxpbmFibGUgZnVuY3Rpb25zLgoKQW5kIGZvciBjb21waWxlciBhdHRy
+aWJ1dGVzIGl0J3MgdGhlIG9wcG9zaXRlLF9fYXR0cmlidXRlX18oKGNvbnN0KSkgYW5kIF9fYXR0
+cmlidXRlKChwdXJlKSkgY2FuIGJlIHVzZWQgdG8gaW5kaWNhdGUgc29tZSBraW5kIG9mIHNhZmV0
+eSB0byBvcHRpbWl6ZSBhY3Jvc3MgZnVuY3Rpb25zLgoKaHR0cHM6Ly9nY2MuZ251Lm9yZy9vbmxp
+bmVkb2NzL2djYy9GdW5jdGlvbi1BdHRyaWJ1dGVzLmh0bWwKCn5NYWFydGVuCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
