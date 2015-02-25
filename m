@@ -1,12 +1,22 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 61731] Nouveau not working on second monitor
-Date: Wed, 25 Feb 2015 16:34:05 +0000
-Message-ID: <bug-61731-8800-QZGET9QrNN@http.bugs.freedesktop.org/>
-References: <bug-61731-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH 2/2] nouveau: Do not add most bo's to the
+ global bo list.
+Date: Wed, 25 Feb 2015 11:35:25 -0500
+Message-ID: <CAKb7UvhinRCVezUKwVpJR2V4hwTs+8mgQZBvEtHE0MVp7PYc9A@mail.gmail.com>
+References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
+ <1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>
+ <CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>
+ <54EDE354.6030700@ubuntu.com>
+ <CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw@mail.gmail.com>
+ <54EDE51B.1070000@ubuntu.com>
+ <CAEk2Stk1x86MM0x6FLFutgBGC+0ksG+VKFLoEH=z+zLGKvYyRg@mail.gmail.com>
+ <54EDED9B.3000303@ubuntu.com>
+ <CAEk2StmOwhMecfkNsVj7j3PbmnazNQ7CAPMs-VNvv-QtrSEmCQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1545072437=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-61731-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAEk2StmOwhMecfkNsVj7j3PbmnazNQ7CAPMs-VNvv-QtrSEmCQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,144 +26,63 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1545072437==
-Content-Type: multipart/alternative; boundary="1424882045.df26A7Ee2.7003"; charset="UTF-8"
-
-
---1424882045.df26A7Ee2.7003
-Date: Wed, 25 Feb 2015 16:34:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=61731
-
---- Comment #16 from Kyle Auble <kyle.auble-ytc+IHgoah0@public.gmane.org> ---
-(In reply to Tobias Klausmann from comment #15)
-> Is this still a problem with a recent kernel? (3.17/3.18)
-
-I was actually trying to debug this driver-loading problem on & off for a
-while, and while I won't be running any more tests, I'd still like to see it
-resolved, if only for a sense of closure.
-
-The last test I ran was with v3.17-rc2 of the PAE kernel on Ubuntu 12.04, and
-the problem was still there at that point in time. I can't vouch for more
-recent changes though. One thing I eventually found out is that there's an even
-simpler workaround than unplugging the laptop during boot: try passing the
-"pci=bios" boot parameter to the kernel.
-
-I was keeping track of the tests at a Launchpad account, and I eventually sent
-a couple emails to the linux-pci mail list. You can tell I'm an amateur at
-systems debugging, especially in the beginning, but all those records are here:
-https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312
-http://thread.gmane.org/gmane.linux.kernel.pci/33181
-http://thread.gmane.org/gmane.linux.kernel.pci/34437
-
-As for what causes it, I made several guesses that all eventually turned out
-wrong. It's just one more guess, but based on everything I figured out through
-the tests, I think there's some kind of race happening in or between the kernel
-& the BIOS pci initialization code. The earliest symptom in the logs is that
-there will be a ~30 ms gap between these two lines in dmesg (from the original
-reporter's in this thread):
-> [    0.379459] pci 0000:01:00.0: reg 30: [mem 0x00000000-0x0001ffff pref]
-> [    0.408041] pci 0000:00:01.0: PCI bridge to [bus 01-01]
-
-I think that's due to a timeout in pci link-retraining, but using an initscript
-to dump the GPU's pci config, I was able to find out that something is
-accidentally resetting or turning off the GPU prior to that. A race condition
-in the pci initialization might explain why the bug is intermittent and also
-why it's much more common in the x32 kernel (the smaller word length leading to
-more machine instructions something could wedge between?) I think the
-unplugging trick works by putting the PCI bus into a power-saving mode, which
-slows down the initialization enough to avoid a race.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424882045.df26A7Ee2.7003
-Date: Wed, 25 Feb 2015 16:34:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Nouveau not working on second monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=61731">bug 61731</a>
-              from <span class="vcard"><a class="email" href="mailto:kyle.auble&#64;zoho.com" title="Kyle Auble &lt;kyle.auble&#64;zoho.com&gt;"> <span class="fn">Kyle Auble</span></a>
-</span></b>
-        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=61731#c15">comment #15</a>)
-<span class="quote">&gt; Is this still a problem with a recent kernel? (3.17/3.18)</span >
-
-I was actually trying to debug this driver-loading problem on &amp; off for a
-while, and while I won't be running any more tests, I'd still like to see it
-resolved, if only for a sense of closure.
-
-The last test I ran was with v3.17-rc2 of the PAE kernel on Ubuntu 12.04, and
-the problem was still there at that point in time. I can't vouch for more
-recent changes though. One thing I eventually found out is that there's an even
-simpler workaround than unplugging the laptop during boot: try passing the
-&quot;pci=bios&quot; boot parameter to the kernel.
-
-I was keeping track of the tests at a Launchpad account, and I eventually sent
-a couple emails to the linux-pci mail list. You can tell I'm an amateur at
-systems debugging, especially in the beginning, but all those records are here:
-<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1009312</a>
-<a href="http://thread.gmane.org/gmane.linux.kernel.pci/33181">http://thread.gmane.org/gmane.linux.kernel.pci/33181</a>
-<a href="http://thread.gmane.org/gmane.linux.kernel.pci/34437">http://thread.gmane.org/gmane.linux.kernel.pci/34437</a>
-
-As for what causes it, I made several guesses that all eventually turned out
-wrong. It's just one more guess, but based on everything I figured out through
-the tests, I think there's some kind of race happening in or between the kernel
-&amp; the BIOS pci initialization code. The earliest symptom in the logs is that
-there will be a ~30 ms gap between these two lines in dmesg (from the original
-reporter's in this thread):
-<span class="quote">&gt; [    0.379459] pci 0000:01:00.0: reg 30: [mem 0x00000000-0x0001ffff pref]
-&gt; [    0.408041] pci 0000:00:01.0: PCI bridge to [bus 01-01]</span >
-
-I think that's due to a timeout in pci link-retraining, but using an initscript
-to dump the GPU's pci config, I was able to find out that something is
-accidentally resetting or turning off the GPU prior to that. A race condition
-in the pci initialization might explain why the bug is intermittent and also
-why it's much more common in the x32 kernel (the smaller word length leading to
-more machine instructions something could wedge between?) I think the
-unplugging trick works by putting the PCI bus into a power-saving mode, which
-slows down the initialization enough to avoid a race.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424882045.df26A7Ee2.7003--
-
---===============1545072437==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1545072437==--
+cHRocmVhZF9tdXRleF9sb2NrIGhhZCAqYmV0dGVyKiBpbXBseSBhIGNvbXBpbGVyIGJhcnJpZXIg
+YWNyb3NzIHdoaWNoCmNvZGUgY2FuJ3QgYmUgbW92ZWQuLi4gd2hpY2ggaXMgdmVyeSBkaWZmZXJl
+bnQgZnJvbSB0aGUgcHJpbnRmIGNhc2UKd2hlcmUgaXQgbWlnaHQgaGF2ZSBkb25lIGl0IGR1ZSB0
+byByZWdpc3RlciBwcmVzc3VyZSBvciB3aG8ga25vd3MKd2hhdC4KCklmIGNvZGUgbGlrZQoKeCA9
+ICphOwpwdGhyZWFkX211dGV4X2xvY2sgb3IgdW5sb2NrIG9yIF9fbWVtb3J5X2JhcnJpZXIoKQp5
+ID0gKmE7Cgpkb2Vzbid0IGNhdXNlIGEgdG8gZ2V0IGxvYWRlZCB0d2ljZSwgdGhlbiB0aGUgY29t
+cGlsZXIncyBpbiBzZXJpb3VzCnRyb3VibGUuIEJhc2ljYWxseSBmdW5jdGlvbnMgbGlrZSBwdGhy
+ZWFkX211dGV4X2xvY2sgaW1wbHkgdGhhdCBhbGwKbWVtb3J5IGlzIGNoYW5nZWQgdG8gdGhlIGNv
+bXBpbGVyLCBhbmQgdGh1cyBuZWVkIHRvIGJlIHJlbG9hZGVkLgoKICAtaWxpYQoKCk9uIFdlZCwg
+RmViIDI1LCAyMDE1IGF0IDExOjI4IEFNLCBQYXRyaWNrIEJhZ2dldHQKPGJhZ2dldHQucGF0cmlj
+a0BnbWFpbC5jb20+IHdyb3RlOgo+IFNvIHlvdSdyZSBzYXlpbmcgYSBjb21waWxlciBjYW4gb3B0
+aW1pemU6Cj4+Cj4+Cj4+IC0gc3RhdGVtZW50IHdpdGggbWVtb3J5IGFjY2Vzcwo+PiAtIHJlYWQg
+bWVtb3J5IGJhcnJpZXIKPj4gLSBzdGF0ZW1lbnQgd2l0aCBtZW1vcnkgYWNjZXNzCj4+Cj4+IFRv
+IGRyb3AgdGhlIHNlY29uZCBzdGF0ZW1lbnQ/IEkgd291bGQgd29ycnkgYWJvdXQgeW91ciBkZWZp
+bml0aW9uIG9mCj4+IG1lbW9yeSBiYXJyaWVyIHRoZW4uLgo+Cj4gVGhpcyBpcyB0cmlja3ksIGJ1
+dCBJIHRoaW5rIHlvdSdyZSBtaXhpbmcgdXAgdGhlIGdlbmVyYWwgY2FzZSB3aXRoIHRoZQo+IGFj
+dHVhbCBjb2RlIHlvdSBoYXZlLiBJbiBnZW5lcmFsLCB5b3UgYXJlIHBvaW50aW5nIHRvIHRoaXMg
+ZXhhbXBsZToKPgo+IC0gUmVhZCBtZW1vcnkgbG9jYXRpb24gMSAoYXNtIGxldmVsKQo+IC0gUk1C
+Cj4gLSBSZWFkIG1lbW9yeSBsb2NhdGlvbiAyIChhc20gbGV2ZWwpCj4KPiBJbiB0aGlzIGNhc2Us
+IHlvdSBhcmUgcHJlY2lzZWx5IGNvcnJlY3QsIHRoZSBjb21waWxlciB3aWxsIG5vdCByZW9yZGVy
+IHRoZQo+IHJlYWRzLCBhbmQgdGhlIENQVSB3b24ndCBlaXRoZXIuCj4KPiBXaGF0IHlvdSBhY3R1
+YWxseSBoYXZlIGlzIHRoaXM6Cj4gLSBBY2Nlc3MgbWVtb3J5IGxvY2F0aW9uIDEgKEMgY29kZSkK
+PiAtIFJNQgo+IC0gQWNlc3NzIG1lbW9yeSBsb2NhdGlvbiAxIChDIGNvZGUpCj4KPiBJIHNheSAi
+YWNjZXNzIiBoZXJlIGJlY2F1c2UgbG9va2luZyBhdCB0aGUgQyBjb2RlLCBub3QgYXNzZW1ibHku
+IFlvdSBoYXZlCj4gdGhpczoKPgo+IHJlYWQgbnZiby0+aGVhZC5uZXh0Cj4gUk1CCj4gcmVhZCBu
+dmJvLT5oZWFkLm5leHQKPgo+IFRoaXMgb25seSB3b3JrcyBpZiB5b3UgY2FuIGd1YXJhbnRlZSB0
+aGF0IHRoZSBjb21waWxlciB3aWxsIGFjdHVhbGx5Cj4gZ2VuZXJhdGUgYSBNT1YgaW5zdHJ1Y3Rp
+b24gZm9yIHRoZSBzZWNvbmQgcmVhZC4gSWYgdGhlIHZhcmlhYmxlIGlzbid0IG1hcmtlZAo+IGFz
+ICJ2b2xhdGlsZSIsIHRoZSBjb21waWxlciBoYXMgbm8gcmVxdWlyZW1lbnQgdG8uIEJhcnJpZXJz
+IGNvbnRyb2wgb3JkZXJpbmcKPiBhbmQgd2hlbiBhIHZhcmlhYmxlIGNhbiBiZSBsb2FkZWQsIGJ1
+dCB5b3UndmUgYWxyZWFkeSBsb2FkZWQgaXQuIFlvdSBuZWVkIHRvCj4gcmVsb2FkIHRoZSB2YXJp
+YWJsZSwgYnV0IHlvdSBoYXZlbid0IHNob3duIHRoZSBjb21waWxlciBhIHJlYXNvbiB3aHkgaXQK
+PiBzaG91bGQuICJWb2xhdGlsZSIgaXMgYSByZWFzb24gd2h5Lgo+Cj4gSSB0ZXN0ZWQgdGhpcyBj
+b2RlIG9uIGdjYzoKPgo+IGlmKGdsb2JhbEZsYWcpIHsKPiAgICAgbWF0aC4uLgo+ICAgICBpZihn
+bG9iYWxGbGFnKSB7Cj4gICAgICAgICBtb3JlIG1hdGgKPiAgICAgfQo+IH0KPgo+IEl0IG9ubHkg
+dGVzdHMgb25jZS4gSWYgeW91IHJlcGxhY2UgIm1hdGgiIHdpdGggcHJpbnRmKCksIGl0IHJldGVz
+dHMgdGhlCj4gdmFsdWUgb2YgZ2xvYmFsRmxhZy4gUHJpbnRmKCksIHdoaWNoIGhhcyBhYnNvbHV0
+ZWx5IG5vIGJhcnJpZXIgc2VtYW50aWNzIGF0Cj4gYWxsLiBJbiBvdGhlciB3b3JkcywgR0NDIGNv
+bnNlcnZhdGl2ZWx5IHdpbGwgYXNzdW1lIGFueSBmdW5jdGlvbiBjYWxsIHdpbGwKPiByZXF1aXJl
+IGEgcmVsb2FkIGJlY2F1c2UgaXQgY291bGQgbW9kaWZ5IGFueXRoaW5nLiBUaGUgY29kZSB3aWxs
+IHdvcmsgYXMtaXMuCj4KPiBPYnZpb3VzbHksIHB0aHJlYWRfbXV0ZXhfbG9jaygpIGRvZXMgbm90
+IG1vZGlmeSB0aGUgdmFsdWUgb2YKPiBgbnZiby0+aGVhZC5uZXh0YC4gT25jZSBHQ0Mga25vd3Mg
+dGhhdCAoYW5kIG1heWJlIG90aGVyIGNvbXBpbGVycyBhbHJlYWR5Cj4gZG8pLCBwZXJoYXBzIHdp
+dGggTFRPLCBpdCBkb2Vzbid0IGhhdmUgdG8gZ2VuZXJhdGUgYSBzZWNvbmQgbG9hZC4gSWYgeW91
+Cj4gZXZlciBzd2l0Y2ggdG8gYW4gaW5saW5lZCBsb2NrIG9yIGRpZmZlcmVudCBjb21waWxlciB0
+aGF0IHVuZGVyc3RhbmRzIHRoYXQsCj4geW91ciBjb2RlIHdpbGwgYnJlYWsuIEkgc3VnZ2VzdCB5
+b3Ugc2ltcGx5IGRvIHRoZSByaWdodCB0aGluZyB0aGUgZmlyc3QgdGltZQo+IGFuZCBjYXN0IHRo
+ZSBwb2ludGVyIHRvIHZvbGF0aWxlIHNpbmNlIHlvdSdyZSB0cmVhdGluZyB0aGUgdmFsdWUgYXMg
+aWYgaXQgaXMKPiB2b2xhdGlsZSAoaS5lLiBjaGFuZ2luZyBvdXRzaWRlIG9mIHRoZSBzY29wZSBv
+ZiB0aGUgY29tcGlsZXIncyBrbm93bGVkZ2UpLgo+Cj4gUGF0cmljawo+Cj4KPgo+Cj4gX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxp
+bmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
+ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
