@@ -1,8 +1,8 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH 2/2] nouveau: Do not add most bo's to the
  global bo list.
-Date: Wed, 25 Feb 2015 16:14:04 +0000
-Message-ID: <CACvgo52p-_fqpkYOWiDa_xKhfUYyLQ2insbGCeNcLSsj63K3EA@mail.gmail.com>
+Date: Wed, 25 Feb 2015 10:28:22 -0600
+Message-ID: <CAEk2StmOwhMecfkNsVj7j3PbmnazNQ7CAPMs-VNvv-QtrSEmCQ@mail.gmail.com>
 References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
  <1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>
  <CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>
@@ -12,8 +12,7 @@ References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
  <CAEk2Stk1x86MM0x6FLFutgBGC+0ksG+VKFLoEH=z+zLGKvYyRg@mail.gmail.com>
  <54EDED9B.3000303@ubuntu.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0556821224=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <54EDED9B.3000303-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -26,100 +25,139 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjUgRmVicnVhcnkgMjAxNSBhdCAxNTo0MywgTWFhcnRlbiBMYW5raG9yc3QKPG1hYXJ0ZW4u
-bGFua2hvcnN0QHVidW50dS5jb20+IHdyb3RlOgo+IE9wIDI1LTAyLTE1IG9tIDE2OjI4IHNjaHJl
-ZWYgUGF0cmljayBCYWdnZXR0Ogo+PiBPbiBXZWQsIEZlYiAyNSwgMjAxNSBhdCA5OjA3IEFNLCBN
-YWFydGVuIExhbmtob3JzdCA8Cj4+IG1hYXJ0ZW4ubGFua2hvcnN0QHVidW50dS5jb20+IHdyb3Rl
-Ogo+Pgo+Pj4gT3AgMjUtMDItMTUgb20gMTY6MDQgc2NocmVlZiBQYXRyaWNrIEJhZ2dldHQ6Cj4+
-Pj4gT24gV2VkLCBGZWIgMjUsIDIwMTUgYXQgODo1OSBBTSwgTWFhcnRlbiBMYW5raG9yc3QgPAo+
-Pj4+IG1hYXJ0ZW4ubGFua2hvcnN0QHVidW50dS5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4+IE9wIDI1
-LTAyLTE1IG9tIDE1OjExIHNjaHJlZWYgRW1pbCBWZWxpa292Ogo+Pj4+Pj4gT24gMjQgRmVicnVh
-cnkgMjAxNSBhdCAwOTowMSwgTWFhcnRlbiBMYW5raG9yc3QKPj4+Pj4+IDxtYWFydGVuLmxhbmto
-b3JzdEB1YnVudHUuY29tPiB3cm90ZToKPj4+Pj4+PiBPbmx5IGFkZCB3cmFwcGVkIGJvJ3MgYW5k
-IGJvJ3MgdGhhdCBoYXZlIGJlZW4gZXhwb3J0ZWQgdGhyb3VnaCBmbGluawo+Pj4gb3IKPj4+Pj4g
-ZG1hLWJ1Zi4KPj4+Pj4+PiBUaGlzIGF2b2lkcyBhIGxvY2sgaW4gdGhlIGNvbW1vbiBjYXNlLCBh
-bmQgZGVjcmVhc2VzIHRyYXZlcnNhbCBuZWVkZWQKPj4+Pj4gZm9yIGltcG9ydGluZwo+Pj4+Pj4+
-IGEgZG1hLWJ1ZiBvciBmbGluay4KPj4+Pj4+Pgo+Pj4+Pj4+IFNpZ25lZC1vZmYtYnk6IE1hYXJ0
-ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEB1YnVudHUuY29tPgo+Pj4+Pj4+IC0tLQo+
-Pj4+Pj4+ICBub3V2ZWF1L25vdXZlYXUuYyB8IDQ3Cj4+PiArKysrKysrKysrKysrKysrKysrKysr
-Ky0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+Pj4+Pj4+ICAxIGZpbGUgY2hhbmdlZCwgMjMgaW5z
-ZXJ0aW9ucygrKSwgMjQgZGVsZXRpb25zKC0pCj4+Pj4+Pj4KPj4+Pj4+PiBkaWZmIC0tZ2l0IGEv
-bm91dmVhdS9ub3V2ZWF1LmMgYi9ub3V2ZWF1L25vdXZlYXUuYwo+Pj4+Pj4+IGluZGV4IDFjNzIz
-YjkuLmQ0MTE1MjMgMTAwNjQ0Cj4+Pj4+Pj4gLS0tIGEvbm91dmVhdS9ub3V2ZWF1LmMKPj4+Pj4+
-PiArKysgYi9ub3V2ZWF1L25vdXZlYXUuYwo+Pj4+Pj4+IEBAIC0zNDksOCArMzQ5LDggQEAgbm91
-dmVhdV9ib19kZWwoc3RydWN0IG5vdXZlYXVfYm8gKmJvKQo+Pj4+Pj4+ICAgICAgICAgc3RydWN0
-IG5vdXZlYXVfYm9fcHJpdiAqbnZibyA9IG5vdXZlYXVfYm8oYm8pOwo+Pj4+Pj4+ICAgICAgICAg
-c3RydWN0IGRybV9nZW1fY2xvc2UgcmVxID0geyBiby0+aGFuZGxlIH07Cj4+Pj4+Pj4KPj4+Pj4+
-PiAtICAgICAgIHB0aHJlYWRfbXV0ZXhfbG9jaygmbnZkZXYtPmxvY2spOwo+Pj4+Pj4+IC0gICAg
-ICAgaWYgKG52Ym8tPm5hbWUpIHsKPj4+Pj4+PiArICAgICAgIGlmIChudmJvLT5oZWFkLm5leHQp
-IHsKPj4+Pj4+PiArICAgICAgICAgICAgICAgcHRocmVhZF9tdXRleF9sb2NrKCZudmRldi0+bG9j
-ayk7Cj4+Pj4+Pj4gICAgICAgICAgICAgICAgIGlmIChhdG9taWNfcmVhZCgmbnZiby0+cmVmY250
-KSA9PSAwKSB7Cj4+Pj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgRFJNTElTVERFTCgmbnZi
-by0+aGVhZCk7Cj4+Pj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgLyoKPj4+Pj4+PiBAQCAt
-MzY1LDggKzM2NSw2IEBAIG5vdXZlYXVfYm9fZGVsKHN0cnVjdCBub3V2ZWF1X2JvICpibykKPj4+
-Pj4+PiAgICAgICAgICAgICAgICAgfQo+Pj4+Pj4+ICAgICAgICAgICAgICAgICBwdGhyZWFkX211
-dGV4X3VubG9jaygmbnZkZXYtPmxvY2spOwo+Pj4+Pj4+ICAgICAgICAgfSBlbHNlIHsKPj4+Pj4+
-PiAtICAgICAgICAgICAgICAgRFJNTElTVERFTCgmbnZiby0+aGVhZCk7Cj4+Pj4+Pj4gLSAgICAg
-ICAgICAgICAgIHB0aHJlYWRfbXV0ZXhfdW5sb2NrKCZudmRldi0+bG9jayk7Cj4+Pj4+Pj4gICAg
-ICAgICAgICAgICAgIGRybUlvY3RsKGJvLT5kZXZpY2UtPmZkLCBEUk1fSU9DVExfR0VNX0NMT1NF
-LCAmcmVxKTsKPj4+Pj4+PiAgICAgICAgIH0KPj4+Pj4+PiAgICAgICAgIGlmIChiby0+bWFwKQo+
-Pj4+Pj4+IEBAIC0zNzksNyArMzc3LDYgQEAgbm91dmVhdV9ib19uZXcoc3RydWN0IG5vdXZlYXVf
-ZGV2aWNlICpkZXYsCj4+PiB1aW50MzJfdAo+Pj4+PiBmbGFncywgdWludDMyX3QgYWxpZ24sCj4+
-Pj4+Pj4gICAgICAgICAgICAgICAgdWludDY0X3Qgc2l6ZSwgdW5pb24gbm91dmVhdV9ib19jb25m
-aWcgKmNvbmZpZywKPj4+Pj4+PiAgICAgICAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9ibyAqKnBi
-bykKPj4+Pj4+PiAgewo+Pj4+Pj4+IC0gICAgICAgc3RydWN0IG5vdXZlYXVfZGV2aWNlX3ByaXYg
-Km52ZGV2ID0gbm91dmVhdV9kZXZpY2UoZGV2KTsKPj4+Pj4+PiAgICAgICAgIHN0cnVjdCBub3V2
-ZWF1X2JvX3ByaXYgKm52Ym8gPSBjYWxsb2MoMSwgc2l6ZW9mKCpudmJvKSk7Cj4+Pj4+Pj4gICAg
-ICAgICBzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8gPSAmbnZiby0+YmFzZTsKPj4+Pj4+PiAgICAgICAg
-IGludCByZXQ7Cj4+Pj4+Pj4gQEAgLTM5NywxMCArMzk0LDYgQEAgbm91dmVhdV9ib19uZXcoc3Ry
-dWN0IG5vdXZlYXVfZGV2aWNlICpkZXYsCj4+Pj4+IHVpbnQzMl90IGZsYWdzLCB1aW50MzJfdCBh
-bGlnbiwKPj4+Pj4+PiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPj4+Pj4+PiAgICAgICAg
-IH0KPj4+Pj4+Pgo+Pj4+Pj4+IC0gICAgICAgcHRocmVhZF9tdXRleF9sb2NrKCZudmRldi0+bG9j
-ayk7Cj4+Pj4+Pj4gLSAgICAgICBEUk1MSVNUQUREKCZudmJvLT5oZWFkLCAmbnZkZXYtPmJvX2xp
-c3QpOwo+Pj4+Pj4+IC0gICAgICAgcHRocmVhZF9tdXRleF91bmxvY2soJm52ZGV2LT5sb2NrKTsK
-Pj4+Pj4+PiAtCj4+Pj4+Pj4gICAgICAgICAqcGJvID0gYm87Cj4+Pj4+Pj4gICAgICAgICByZXR1
-cm4gMDsKPj4+Pj4+PiAgfQo+Pj4+Pj4+IEBAIC00NTcsNiArNDUwLDE4IEBAIG5vdXZlYXVfYm9f
-d3JhcF9sb2NrZWQoc3RydWN0IG5vdXZlYXVfZGV2aWNlCj4+PiAqZGV2LAo+Pj4+PiB1aW50MzJf
-dCBoYW5kbGUsCj4+Pj4+Pj4gICAgICAgICByZXR1cm4gLUVOT01FTTsKPj4+Pj4+PiAgfQo+Pj4+
-Pj4+Cj4+Pj4+Pj4gK3N0YXRpYyB2b2lkCj4+Pj4+Pj4gK25vdXZlYXVfYm9fbWFrZV9nbG9iYWwo
-c3RydWN0IG5vdXZlYXVfYm9fcHJpdiAqbnZibykKPj4+Pj4+PiArewo+Pj4+Pj4+ICsgICAgICAg
-aWYgKCFudmJvLT5oZWFkLm5leHQpIHsKPj4+Pj4+PiArICAgICAgICAgICAgICAgc3RydWN0IG5v
-dXZlYXVfZGV2aWNlX3ByaXYgKm52ZGV2ID0KPj4+Pj4gbm91dmVhdV9kZXZpY2UobnZiby0+YmFz
-ZS5kZXZpY2UpOwo+Pj4+Pj4+ICsgICAgICAgICAgICAgICBwdGhyZWFkX211dGV4X2xvY2soJm52
-ZGV2LT5sb2NrKTsKPj4+Pj4+PiArICAgICAgICAgICAgICAgaWYgKCFudmJvLT5oZWFkLm5leHQp
-Cj4+Pj4gSSBndWVzcyB0aGUgYm9fbWFrZV9nbG9iYWwgY2FsbCBpcyBub3QgcGFydGljdWxhcmx5
-IHNlbnNpdGl2ZSwgc28KPj4+Pj4gcmVtb3ZpbmcncyBmaW5lIHdpdGggbWUuCj4+Pj4+Cj4+Pj4g
-SSB3b3VsZCBiZSB3b3JyaWVkIGFib3V0IHRoZSBkdXBsaWNhdGVkIGNoZWNrLiBJdCBzZWVtcyBs
-aWtlIGEgInNtYXJ0Igo+Pj4+IGNvbXBpbGVyIGNvdWxkIGNhY2hlIHRoZSB2YWx1ZSBvZiAibnZi
-by0+aGVhZC5uZXh0IiAodW5sZXNzIG1hcmtlZCBhcwo+Pj4+IHZvbGF0aWxlKSwgcmVuZGVyaW5n
-IHRoZSBzZWNvbmQgaWYoKSB1c2VsZXNzLiBJZiB0aGUgZmllbGQgaXMgbWFya2VkCj4+Pj4gdm9s
-YXRpbGUsIHRoZW4gb2YgY291cnNlLCB0aGlzIGRvZXMgbm90IGFwcGx5Lgo+Pj4+Cj4+PiBJbiB0
-aGF0IGNhc2UgSSB3b3VsZCBiZSB3b3JyaWVkIGFib3V0IGEgY29tcGlsZXIgdGhhdCBpZ25vcmVz
-IHRoZSBhY3F1aXJlCj4+PiBzZW1hbnRpY3Mgb2YgcHRocmVhZF9tdXRleF9sb2NrLi4KPj4+Cj4+
-IFRoaXMgaXNuJ3QgYWJvdXQgdGhlIGFjcXVpcmUgc2VtYW50aWNzIGhlcmUsIGJlY2F1c2UgeW91
-J3JlIHJlYWRpbmcgaXQgb24KPj4gYm90aCBzaWRlcyBvZiB0aGUgbG9jay4gVGhlIGNvbXBpbGVy
-IG5lZWQgbm90IHJlb3JkZXIgdGhlIHJlYWRzIGF0IGFsbCwKPj4gbWVyZWx5IGp1c3Qgc2F2ZSB0
-aGUgdmFsdWUgb2YgdGhlIGZpcnN0IHJlYWQuIFVubGVzcyB0aGUgY29tcGlsZXIga25vd3MKPj4g
-dGhhdCB0aGUgdmFsdWUgY2FuIGNoYW5nZSBhZnRlciB0aGUgbG9jayBpcyBhY3F1aXJlZCwgaXQg
-Y2FuIHNpbXBseSBjYWNoZQo+PiB0aGUgcmVzdWx0LiBDb25zaWRlciB0aGUgbmVhcmx5IGlkZW50
-aWNhbCB0cmFuc2Zvcm1hdGlvbjoKPj4KPj4gY29uc3QgaW50IGNvbmRpdGlvbiA9ICghbnZiby0+
-aGVhZC5uZXh0KTsKPj4gaWYoY29uZGl0aW9uKXsKPj4gICAgcHRocmVhZF9tdXRleF9sb2NrKC4u
-Lik7Cj4+ICAgICBpZihjb25kaXRpb24peyAvL3JlZHVuZGFudCwgYWxyZWFkeSBjYW4gYXNzZXJ0
-IGl0IGlzIHRydWUKPj4gICAgICAgICAuLi4KPj4KPiBTbyB5b3UncmUgc2F5aW5nIGEgY29tcGls
-ZXIgY2FuIG9wdGltaXplOgo+Cj4gLSBzdGF0ZW1lbnQgd2l0aCBtZW1vcnkgYWNjZXNzCj4gLSBy
-ZWFkIG1lbW9yeSBiYXJyaWVyCj4gLSBzdGF0ZW1lbnQgd2l0aCBtZW1vcnkgYWNjZXNzCj4KPiBU
-byBkcm9wIHRoZSBzZWNvbmQgc3RhdGVtZW50PyBJIHdvdWxkIHdvcnJ5IGFib3V0IHlvdXIgZGVm
-aW5pdGlvbiBvZiBtZW1vcnkgYmFycmllciB0aGVuLi4KPgpQYXRyaWNrIHRoYW5rcyBmb3IgZWxh
-Ym9yYXRpbmcgbXkgY29uY2VybiBpbiBhIG1vcmUgY29tcGxldGUgbWFubmVyLgoKTWFhcnRlbiwg
-SSB3b3VsZCBhc3N1bWUgdGhhdCB0aGUgb3ZlcmhlYWQgb2YgZHJvcHBpbmcgdGhlIGZpcnN0IGlm
-CnN0YXRlbWVudCB3aWxsIGJlIG5lZ2xpZ2libGUgd3J0IHRoZSB0aW1lIHNwZW50IGRlYnVnZ2lu
-ZyB3aGVuIHRoZQpjb21waWxlciBkb2VzIHRoZSBzaWxseSB0aGluZy4gQWZhaWN0IGV2ZW4gd2l0
-aCBhIHNpbmdsZSBpZiwgeW91cgpwYXRjaCBkb2VzIHJlZHVjZSB0aGUgdGltZSBzcGVuZCBpbiBs
-aWJkcm1fbm91dmVhdSBxdWl0ZSBhIGJpdC4KClRoYXQgc2FpZCwgaXQncyB1cC10byB5b3UgYW5k
-IG90aGVycyB0byBkcmF3IHRoZSBmaW5hbCBjYWxsLgoKQ2hlZXJzLApFbWlsCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+--===============0556821224==
+Content-Type: multipart/alternative; boundary=001a113a967cc05fd4050fec1f07
+
+--001a113a967cc05fd4050fec1f07
+Content-Type: text/plain; charset=UTF-8
+
+So you're saying a compiler can optimize:
+
+>
+> - statement with memory access
+> - read memory barrier
+> - statement with memory access
+>
+> To drop the second statement? I would worry about your definition of
+> memory barrier then..
+>
+This is tricky, but I think you're mixing up the general case with the
+actual code you have. In general, you are pointing to this example:
+
+- Read memory location 1 (asm level)
+- RMB
+- Read memory location 2 (asm level)
+
+In this case, you are precisely correct, the compiler will not reorder the
+reads, and the CPU won't either.
+
+What you actually have is this:
+- Access memory location 1 (C code)
+- RMB
+- Acesss memory location 1 (C code)
+
+I say "access" here because looking at the C code, not assembly. You have
+this:
+
+read nvbo->head.next
+RMB
+read nvbo->head.next
+
+This only works if you can guarantee that the compiler will actually
+generate a MOV instruction for the second read. If the variable isn't
+marked as "volatile", the compiler has no requirement to. Barriers control
+ordering and when a variable can be loaded, but you've already loaded it.
+You need to reload the variable, but you haven't shown the compiler a
+reason why it should. "Volatile" is a reason why.
+
+I tested this code on gcc:
+
+if(globalFlag) {
+    math...
+    if(globalFlag) {
+        more math
+    }
+}
+
+It only tests once. If you replace "math" with printf(), it retests the
+value of globalFlag. Printf(), which has absolutely no barrier semantics at
+all. In other words, GCC conservatively will assume any function call will
+require a reload because it could modify anything. The code will work as-is.
+
+Obviously, pthread_mutex_lock() does not modify the value of
+`nvbo->head.next`. Once GCC knows that (and maybe other compilers already
+do), perhaps with LTO, it doesn't have to generate a second load. If you
+ever switch to an inlined lock or different compiler that understands that,
+your code will break. I suggest you simply do the right thing the first
+time and cast the pointer to volatile since you're treating the value as if
+it is volatile (i.e. changing outside of the scope of the compiler's
+knowledge).
+
+Patrick
+
+--001a113a967cc05fd4050fec1f07
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">So you&#39;re saying a compiler can optimize:<br><div clas=
+s=3D"gmail_extra"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">
+<br>
+- statement with memory access<br>
+- read memory barrier<br>
+- statement with memory access<br>
+<br>
+To drop the second statement? I would worry about your definition of memory=
+ barrier then..<span><font color=3D"#888888"><br></font></span></blockquote=
+><div>This is tricky, but I think you&#39;re mixing up the general case wit=
+h the actual code you have. In general, you are pointing to this example:<b=
+r><br></div><div>- Read memory location 1 (asm level)<br></div><div>- RMB<b=
+r></div><div>- Read memory location 2 (asm level)<br><br></div><div>In this=
+ case, you are precisely correct, the compiler will not reorder the reads, =
+and the CPU won&#39;t either.<br></div><div><br></div><div>What you actuall=
+y have is this:<br></div><div><div>- Access memory location 1 (C code)<br><=
+/div><div>- RMB<br></div>- Acesss memory location 1 (C code)<br></div><div>=
+<br>I say &quot;access&quot; here because looking at the C code, not assemb=
+ly. You have this:<br><br></div><div>read nvbo-&gt;head.next<br></div><div>=
+RMB<br><div>read nvbo-&gt;head.next<br></div><br></div><div>This only works=
+ if you can guarantee that the compiler will actually generate a MOV instru=
+ction for the second read. If the variable isn&#39;t marked as &quot;volati=
+le&quot;, the compiler has no requirement to. Barriers control ordering and=
+ when a variable can be loaded, but you&#39;ve already loaded it. You need =
+to reload the variable, but you haven&#39;t shown the compiler a reason why=
+ it should. &quot;Volatile&quot; is a reason why.<br><br></div><div>I teste=
+d this code on gcc:<br><br></div><div>if(globalFlag) {<br></div><div>=C2=A0=
+=C2=A0=C2=A0 math...<br></div><div>=C2=A0=C2=A0=C2=A0 if(globalFlag) {<br><=
+/div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 more math<br>=C2=A0=C2=
+=A0=C2=A0 }<br>}<br></div><br></div><div class=3D"gmail_quote">It only test=
+s once. If you replace &quot;math&quot; with printf(), it retests the value=
+ of globalFlag. Printf(), which has absolutely no barrier semantics at all.=
+ In other words, GCC conservatively will assume any function call will requ=
+ire a reload because it could modify anything. The code will work as-is.<br=
+><br>Obviously, pthread_mutex_lock() does not modify the value of `nvbo-&gt=
+;head.next`. Once GCC knows that (and maybe other compilers already do), pe=
+rhaps with LTO, it doesn&#39;t have to generate a second load. If you ever =
+switch to an inlined lock or different compiler that understands that, your=
+ code will break. I suggest you simply do the right thing the first time an=
+d cast the pointer to volatile since you&#39;re treating the value as if it=
+ is volatile (i.e. changing outside of the scope of the compiler&#39;s know=
+ledge).<br><br></div><div class=3D"gmail_quote">Patrick<br></div><div class=
+=3D"gmail_quote"><div><br></div><div><br><br></div></div></div></div>
+
+--001a113a967cc05fd4050fec1f07--
+
+--===============0556821224==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0556821224==--
