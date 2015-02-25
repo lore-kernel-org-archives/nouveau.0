@@ -1,16 +1,15 @@
-From: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 Subject: Re: [PATCH 2/2] nouveau: Do not add most bo's to the
  global bo list.
-Date: Wed, 25 Feb 2015 09:04:23 -0600
-Message-ID: <CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw@mail.gmail.com>
-References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
- <1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>
- <CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>
- <54EDE354.6030700@ubuntu.com>
+Date: Wed, 25 Feb 2015 16:07:07 +0100
+Message-ID: <54EDE51B.1070000@ubuntu.com>
+References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>	<1424768511-25156-2-git-send-email-maarten.lankhorst@ubuntu.com>	<CACvgo53DRfa9JkweCRVB9va7oD5RoKVM9KFkXk99rQwO=vxi0g@mail.gmail.com>	<54EDE354.6030700@ubuntu.com>
+ <CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1981664430=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54EDE354.6030700-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <CAEk2Stmr7k+Tq_JH+9iuo8iz+NouhJ8tG3RaX9vJA-FHzewBAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,246 +19,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1981664430==
-Content-Type: multipart/alternative; boundary=001a113506b86916ac050feaf39f
-
---001a113506b86916ac050feaf39f
-Content-Type: text/plain; charset=UTF-8
-
-On Wed, Feb 25, 2015 at 8:59 AM, Maarten Lankhorst <
-maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> wrote:
-
-> Op 25-02-15 om 15:11 schreef Emil Velikov:
-> > On 24 February 2015 at 09:01, Maarten Lankhorst
-> > <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org> wrote:
-> >> Only add wrapped bo's and bo's that have been exported through flink or
-> dma-buf.
-> >> This avoids a lock in the common case, and decreases traversal needed
-> for importing
-> >> a dma-buf or flink.
-> >>
-> >> Signed-off-by: Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
-> >> ---
-> >>  nouveau/nouveau.c | 47 +++++++++++++++++++++++------------------------
-> >>  1 file changed, 23 insertions(+), 24 deletions(-)
-> >>
-> >> diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c
-> >> index 1c723b9..d411523 100644
-> >> --- a/nouveau/nouveau.c
-> >> +++ b/nouveau/nouveau.c
-> >> @@ -349,8 +349,8 @@ nouveau_bo_del(struct nouveau_bo *bo)
-> >>         struct nouveau_bo_priv *nvbo = nouveau_bo(bo);
-> >>         struct drm_gem_close req = { bo->handle };
-> >>
-> >> -       pthread_mutex_lock(&nvdev->lock);
-> >> -       if (nvbo->name) {
-> >> +       if (nvbo->head.next) {
-> >> +               pthread_mutex_lock(&nvdev->lock);
-> >>                 if (atomic_read(&nvbo->refcnt) == 0) {
-> >>                         DRMLISTDEL(&nvbo->head);
-> >>                         /*
-> >> @@ -365,8 +365,6 @@ nouveau_bo_del(struct nouveau_bo *bo)
-> >>                 }
-> >>                 pthread_mutex_unlock(&nvdev->lock);
-> >>         } else {
-> >> -               DRMLISTDEL(&nvbo->head);
-> >> -               pthread_mutex_unlock(&nvdev->lock);
-> >>                 drmIoctl(bo->device->fd, DRM_IOCTL_GEM_CLOSE, &req);
-> >>         }
-> >>         if (bo->map)
-> >> @@ -379,7 +377,6 @@ nouveau_bo_new(struct nouveau_device *dev, uint32_t
-> flags, uint32_t align,
-> >>                uint64_t size, union nouveau_bo_config *config,
-> >>                struct nouveau_bo **pbo)
-> >>  {
-> >> -       struct nouveau_device_priv *nvdev = nouveau_device(dev);
-> >>         struct nouveau_bo_priv *nvbo = calloc(1, sizeof(*nvbo));
-> >>         struct nouveau_bo *bo = &nvbo->base;
-> >>         int ret;
-> >> @@ -397,10 +394,6 @@ nouveau_bo_new(struct nouveau_device *dev,
-> uint32_t flags, uint32_t align,
-> >>                 return ret;
-> >>         }
-> >>
-> >> -       pthread_mutex_lock(&nvdev->lock);
-> >> -       DRMLISTADD(&nvbo->head, &nvdev->bo_list);
-> >> -       pthread_mutex_unlock(&nvdev->lock);
-> >> -
-> >>         *pbo = bo;
-> >>         return 0;
-> >>  }
-> >> @@ -457,6 +450,18 @@ nouveau_bo_wrap_locked(struct nouveau_device *dev,
-> uint32_t handle,
-> >>         return -ENOMEM;
-> >>  }
-> >>
-> >> +static void
-> >> +nouveau_bo_make_global(struct nouveau_bo_priv *nvbo)
-> >> +{
-> >> +       if (!nvbo->head.next) {
-> >> +               struct nouveau_device_priv *nvdev =
-> nouveau_device(nvbo->base.device);
-> >> +               pthread_mutex_lock(&nvdev->lock);
-> >> +               if (!nvbo->head.next)
->
-I guess the bo_make_global call is not particularly sensitive, so
-> removing's fine with me.
->
-I would be worried about the duplicated check. It seems like a "smart"
-compiler could cache the value of "nvbo->head.next" (unless marked as
-volatile), rendering the second if() useless. If the field is marked
-volatile, then of course, this does not apply.
-
--Patrick
-
->
-> ~Maarten
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
---001a113506b86916ac050feaf39f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Wed, Feb 25, 2015 at 8:59 AM, Maarten Lankhorst <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org" target=3D"_blank">maarten=
-.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex">Op 25-02-15 om 15:11 schreef Emil Velikov:<br>
-&gt; On 24 February 2015 at 09:01, Maarten Lankhorst<br>
-&gt; &lt;<a href=3D"mailto:maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org">maarten.lankhorst@=
-ubuntu.com</a>&gt; wrote:<br>
-&gt;&gt; Only add wrapped bo&#39;s and bo&#39;s that have been exported thr=
-ough flink or dma-buf.<br>
-&gt;&gt; This avoids a lock in the common case, and decreases traversal nee=
-ded for importing<br>
-&gt;&gt; a dma-buf or flink.<br>
-&gt;&gt;<br>
-&gt;&gt; Signed-off-by: Maarten Lankhorst &lt;<a href=3D"mailto:maarten.lan=
-khorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org">maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org</a>&gt;<br>
-&gt;&gt; ---<br>
-&gt;&gt;=C2=A0 nouveau/nouveau.c | 47 +++++++++++++++++++++++--------------=
-----------<br>
-&gt;&gt;=C2=A0 1 file changed, 23 insertions(+), 24 deletions(-)<br>
-&gt;&gt;<br>
-&gt;&gt; diff --git a/nouveau/nouveau.c b/nouveau/nouveau.c<br>
-&gt;&gt; index 1c723b9..d411523 100644<br>
-&gt;&gt; --- a/nouveau/nouveau.c<br>
-&gt;&gt; +++ b/nouveau/nouveau.c<br>
-&gt;&gt; @@ -349,8 +349,8 @@ nouveau_bo_del(struct nouveau_bo *bo)<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_bo_priv *nvbo =3D =
-nouveau_bo(bo);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct drm_gem_close req =3D { bo=
--&gt;handle };<br>
-&gt;&gt;<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mutex_lock(&amp;nvdev-&gt;lock=
-);<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvbo-&gt;name) {<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (nvbo-&gt;head.next) {<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mu=
-tex_lock(&amp;nvdev-&gt;lock);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (a=
-tomic_read(&amp;nvbo-&gt;refcnt) =3D=3D 0) {<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0DRMLISTDEL(&amp;nvbo-&gt;head);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0/*<br>
-&gt;&gt; @@ -365,8 +365,6 @@ nouveau_bo_del(struct nouveau_bo *bo)<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pthre=
-ad_mutex_unlock(&amp;nvdev-&gt;lock);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0DRMLISTDEL=
-(&amp;nvbo-&gt;head);<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mu=
-tex_unlock(&amp;nvdev-&gt;lock);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0drmIo=
-ctl(bo-&gt;device-&gt;fd, DRM_IOCTL_GEM_CLOSE, &amp;req);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (bo-&gt;map)<br>
-&gt;&gt; @@ -379,7 +377,6 @@ nouveau_bo_new(struct nouveau_device *dev, uin=
-t32_t flags, uint32_t align,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uint64_t si=
-ze, union nouveau_bo_config *config,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct nouv=
-eau_bo **pbo)<br>
-&gt;&gt;=C2=A0 {<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_device_priv *nvdev =3D =
-nouveau_device(dev);<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_bo_priv *nvbo =3D =
-calloc(1, sizeof(*nvbo));<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nouveau_bo *bo =3D &amp;nv=
-bo-&gt;base;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int ret;<br>
-&gt;&gt; @@ -397,10 +394,6 @@ nouveau_bo_new(struct nouveau_device *dev, ui=
-nt32_t flags, uint32_t align,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retur=
-n ret;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;&gt;<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mutex_lock(&amp;nvdev-&gt;lock=
-);<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0DRMLISTADD(&amp;nvbo-&gt;head, &amp;nv=
-dev-&gt;bo_list);<br>
-&gt;&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mutex_unlock(&amp;nvdev-&gt;lo=
-ck);<br>
-&gt;&gt; -<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*pbo =3D bo;<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt;&gt;=C2=A0 }<br>
-&gt;&gt; @@ -457,6 +450,18 @@ nouveau_bo_wrap_locked(struct nouveau_device =
-*dev, uint32_t handle,<br>
-&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -ENOMEM;<br>
-&gt;&gt;=C2=A0 }<br>
-&gt;&gt;<br>
-&gt;&gt; +static void<br>
-&gt;&gt; +nouveau_bo_make_global(struct nouveau_bo_priv *nvbo)<br>
-&gt;&gt; +{<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0if (!nvbo-&gt;head.next) {<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct nou=
-veau_device_priv *nvdev =3D nouveau_device(nvbo-&gt;base.device);<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pthread_mu=
-tex_lock(&amp;nvdev-&gt;lock);<br>
-&gt;&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!nvbo-=
-&gt;head.next)<br></blockquote><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">
-I guess the bo_make_global call is not particularly sensitive, so removing&=
-#39;s fine with me.<br></blockquote><div>I would be worried about the dupli=
-cated check. It seems like a &quot;smart&quot; compiler could cache the val=
-ue of &quot;nvbo-&gt;head.next&quot; (unless marked as volatile), rendering=
- the second if() useless. If the field is marked volatile, then of course, =
-this does not apply.<br><br></div><div>-Patrick<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-<br>
-~Maarten<br>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
-org</a><br>
-<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
-"_blank">http://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
-</blockquote></div><br></div></div>
-
---001a113506b86916ac050feaf39f--
-
---===============1981664430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1981664430==--
+T3AgMjUtMDItMTUgb20gMTY6MDQgc2NocmVlZiBQYXRyaWNrIEJhZ2dldHQ6Cj4gT24gV2VkLCBG
+ZWIgMjUsIDIwMTUgYXQgODo1OSBBTSwgTWFhcnRlbiBMYW5raG9yc3QgPAo+IG1hYXJ0ZW4ubGFu
+a2hvcnN0QHVidW50dS5jb20+IHdyb3RlOgo+Cj4+IE9wIDI1LTAyLTE1IG9tIDE1OjExIHNjaHJl
+ZWYgRW1pbCBWZWxpa292Ogo+Pj4gT24gMjQgRmVicnVhcnkgMjAxNSBhdCAwOTowMSwgTWFhcnRl
+biBMYW5raG9yc3QKPj4+IDxtYWFydGVuLmxhbmtob3JzdEB1YnVudHUuY29tPiB3cm90ZToKPj4+
+PiBPbmx5IGFkZCB3cmFwcGVkIGJvJ3MgYW5kIGJvJ3MgdGhhdCBoYXZlIGJlZW4gZXhwb3J0ZWQg
+dGhyb3VnaCBmbGluayBvcgo+PiBkbWEtYnVmLgo+Pj4+IFRoaXMgYXZvaWRzIGEgbG9jayBpbiB0
+aGUgY29tbW9uIGNhc2UsIGFuZCBkZWNyZWFzZXMgdHJhdmVyc2FsIG5lZWRlZAo+PiBmb3IgaW1w
+b3J0aW5nCj4+Pj4gYSBkbWEtYnVmIG9yIGZsaW5rLgo+Pj4+Cj4+Pj4gU2lnbmVkLW9mZi1ieTog
+TWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QHVidW50dS5jb20+Cj4+Pj4gLS0t
+Cj4+Pj4gIG5vdXZlYXUvbm91dmVhdS5jIHwgNDcgKysrKysrKysrKysrKysrKysrKysrKystLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0KPj4+PiAgMSBmaWxlIGNoYW5nZWQsIDIzIGluc2VydGlvbnMo
+KyksIDI0IGRlbGV0aW9ucygtKQo+Pj4+Cj4+Pj4gZGlmZiAtLWdpdCBhL25vdXZlYXUvbm91dmVh
+dS5jIGIvbm91dmVhdS9ub3V2ZWF1LmMKPj4+PiBpbmRleCAxYzcyM2I5Li5kNDExNTIzIDEwMDY0
+NAo+Pj4+IC0tLSBhL25vdXZlYXUvbm91dmVhdS5jCj4+Pj4gKysrIGIvbm91dmVhdS9ub3V2ZWF1
+LmMKPj4+PiBAQCAtMzQ5LDggKzM0OSw4IEBAIG5vdXZlYXVfYm9fZGVsKHN0cnVjdCBub3V2ZWF1
+X2JvICpibykKPj4+PiAgICAgICAgIHN0cnVjdCBub3V2ZWF1X2JvX3ByaXYgKm52Ym8gPSBub3V2
+ZWF1X2JvKGJvKTsKPj4+PiAgICAgICAgIHN0cnVjdCBkcm1fZ2VtX2Nsb3NlIHJlcSA9IHsgYm8t
+PmhhbmRsZSB9Owo+Pj4+Cj4+Pj4gLSAgICAgICBwdGhyZWFkX211dGV4X2xvY2soJm52ZGV2LT5s
+b2NrKTsKPj4+PiAtICAgICAgIGlmIChudmJvLT5uYW1lKSB7Cj4+Pj4gKyAgICAgICBpZiAobnZi
+by0+aGVhZC5uZXh0KSB7Cj4+Pj4gKyAgICAgICAgICAgICAgIHB0aHJlYWRfbXV0ZXhfbG9jaygm
+bnZkZXYtPmxvY2spOwo+Pj4+ICAgICAgICAgICAgICAgICBpZiAoYXRvbWljX3JlYWQoJm52Ym8t
+PnJlZmNudCkgPT0gMCkgewo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAgIERSTUxJU1RERUwo
+Jm52Ym8tPmhlYWQpOwo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAgIC8qCj4+Pj4gQEAgLTM2
+NSw4ICszNjUsNiBAQCBub3V2ZWF1X2JvX2RlbChzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8pCj4+Pj4g
+ICAgICAgICAgICAgICAgIH0KPj4+PiAgICAgICAgICAgICAgICAgcHRocmVhZF9tdXRleF91bmxv
+Y2soJm52ZGV2LT5sb2NrKTsKPj4+PiAgICAgICAgIH0gZWxzZSB7Cj4+Pj4gLSAgICAgICAgICAg
+ICAgIERSTUxJU1RERUwoJm52Ym8tPmhlYWQpOwo+Pj4+IC0gICAgICAgICAgICAgICBwdGhyZWFk
+X211dGV4X3VubG9jaygmbnZkZXYtPmxvY2spOwo+Pj4+ICAgICAgICAgICAgICAgICBkcm1Jb2N0
+bChiby0+ZGV2aWNlLT5mZCwgRFJNX0lPQ1RMX0dFTV9DTE9TRSwgJnJlcSk7Cj4+Pj4gICAgICAg
+ICB9Cj4+Pj4gICAgICAgICBpZiAoYm8tPm1hcCkKPj4+PiBAQCAtMzc5LDcgKzM3Nyw2IEBAIG5v
+dXZlYXVfYm9fbmV3KHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2LCB1aW50MzJfdAo+PiBmbGFn
+cywgdWludDMyX3QgYWxpZ24sCj4+Pj4gICAgICAgICAgICAgICAgdWludDY0X3Qgc2l6ZSwgdW5p
+b24gbm91dmVhdV9ib19jb25maWcgKmNvbmZpZywKPj4+PiAgICAgICAgICAgICAgICBzdHJ1Y3Qg
+bm91dmVhdV9ibyAqKnBibykKPj4+PiAgewo+Pj4+IC0gICAgICAgc3RydWN0IG5vdXZlYXVfZGV2
+aWNlX3ByaXYgKm52ZGV2ID0gbm91dmVhdV9kZXZpY2UoZGV2KTsKPj4+PiAgICAgICAgIHN0cnVj
+dCBub3V2ZWF1X2JvX3ByaXYgKm52Ym8gPSBjYWxsb2MoMSwgc2l6ZW9mKCpudmJvKSk7Cj4+Pj4g
+ICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8gPSAmbnZiby0+YmFzZTsKPj4+PiAgICAgICAg
+IGludCByZXQ7Cj4+Pj4gQEAgLTM5NywxMCArMzk0LDYgQEAgbm91dmVhdV9ib19uZXcoc3RydWN0
+IG5vdXZlYXVfZGV2aWNlICpkZXYsCj4+IHVpbnQzMl90IGZsYWdzLCB1aW50MzJfdCBhbGlnbiwK
+Pj4+PiAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsKPj4+PiAgICAgICAgIH0KPj4+Pgo+Pj4+
+IC0gICAgICAgcHRocmVhZF9tdXRleF9sb2NrKCZudmRldi0+bG9jayk7Cj4+Pj4gLSAgICAgICBE
+Uk1MSVNUQUREKCZudmJvLT5oZWFkLCAmbnZkZXYtPmJvX2xpc3QpOwo+Pj4+IC0gICAgICAgcHRo
+cmVhZF9tdXRleF91bmxvY2soJm52ZGV2LT5sb2NrKTsKPj4+PiAtCj4+Pj4gICAgICAgICAqcGJv
+ID0gYm87Cj4+Pj4gICAgICAgICByZXR1cm4gMDsKPj4+PiAgfQo+Pj4+IEBAIC00NTcsNiArNDUw
+LDE4IEBAIG5vdXZlYXVfYm9fd3JhcF9sb2NrZWQoc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYs
+Cj4+IHVpbnQzMl90IGhhbmRsZSwKPj4+PiAgICAgICAgIHJldHVybiAtRU5PTUVNOwo+Pj4+ICB9
+Cj4+Pj4KPj4+PiArc3RhdGljIHZvaWQKPj4+PiArbm91dmVhdV9ib19tYWtlX2dsb2JhbChzdHJ1
+Y3Qgbm91dmVhdV9ib19wcml2ICpudmJvKQo+Pj4+ICt7Cj4+Pj4gKyAgICAgICBpZiAoIW52Ym8t
+PmhlYWQubmV4dCkgewo+Pj4+ICsgICAgICAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2Vf
+cHJpdiAqbnZkZXYgPQo+PiBub3V2ZWF1X2RldmljZShudmJvLT5iYXNlLmRldmljZSk7Cj4+Pj4g
+KyAgICAgICAgICAgICAgIHB0aHJlYWRfbXV0ZXhfbG9jaygmbnZkZXYtPmxvY2spOwo+Pj4+ICsg
+ICAgICAgICAgICAgICBpZiAoIW52Ym8tPmhlYWQubmV4dCkKPiBJIGd1ZXNzIHRoZSBib19tYWtl
+X2dsb2JhbCBjYWxsIGlzIG5vdCBwYXJ0aWN1bGFybHkgc2Vuc2l0aXZlLCBzbwo+PiByZW1vdmlu
+ZydzIGZpbmUgd2l0aCBtZS4KPj4KPiBJIHdvdWxkIGJlIHdvcnJpZWQgYWJvdXQgdGhlIGR1cGxp
+Y2F0ZWQgY2hlY2suIEl0IHNlZW1zIGxpa2UgYSAic21hcnQiCj4gY29tcGlsZXIgY291bGQgY2Fj
+aGUgdGhlIHZhbHVlIG9mICJudmJvLT5oZWFkLm5leHQiICh1bmxlc3MgbWFya2VkIGFzCj4gdm9s
+YXRpbGUpLCByZW5kZXJpbmcgdGhlIHNlY29uZCBpZigpIHVzZWxlc3MuIElmIHRoZSBmaWVsZCBp
+cyBtYXJrZWQKPiB2b2xhdGlsZSwgdGhlbiBvZiBjb3Vyc2UsIHRoaXMgZG9lcyBub3QgYXBwbHku
+Cj4KSW4gdGhhdCBjYXNlIEkgd291bGQgYmUgd29ycmllZCBhYm91dCBhIGNvbXBpbGVyIHRoYXQg
+aWdub3JlcyB0aGUgYWNxdWlyZSBzZW1hbnRpY3Mgb2YgcHRocmVhZF9tdXRleF9sb2NrLi4KCn5N
+YWFydGVuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
