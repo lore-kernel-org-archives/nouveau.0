@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Wed, 25 Feb 2015 22:02:49 +0000
-Message-ID: <bug-80901-8800-2b2jtwq7oJ@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] gem: allow user-space to specify an object should
+	be coherent
+Date: Thu, 26 Feb 2015 12:44:51 +0900
+Message-ID: <1424922292-20688-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1762490876=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +16,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1762490876==
-Content-Type: multipart/alternative; boundary="1424901769.883D7763.14370"; charset="UTF-8"
-
-
---1424901769.883D7763.14370
-Date: Wed, 25 Feb 2015 22:02:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
-
---- Comment #33 from Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> ---
-Hey guys,
-
-I may finally have managed to reproduce your bug. To check that, I need you to
-install envytools and send me the result of the following command:
-
-nvapeek e114 10
-
-When selecting the manual fan management mode, you should be able to bring down
-the fan speed by running:
-
-nvapoke e118 80000005 or nvapoke e120 80000005
-
-In any case, please open a separate bug report as this bug clearly is not
-related to your bug.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1424901769.883D7763.14370
-Date: Wed, 25 Feb 2015 22:02:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c33">Comment # 33</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:martin.peres&#64;free.fr" title="Martin Peres &lt;martin.peres&#64;free.fr&gt;"> <span class="fn">Martin Peres</span></a>
-</span></b>
-        <pre>Hey guys,
-
-I may finally have managed to reproduce your bug. To check that, I need you to
-install envytools and send me the result of the following command:
-
-nvapeek e114 10
-
-When selecting the manual fan management mode, you should be able to bring down
-the fan speed by running:
-
-nvapoke e118 80000005 or nvapoke e120 80000005
-
-In any case, please open a separate bug report as this bug clearly is not
-related to your bug.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1424901769.883D7763.14370--
-
---===============1762490876==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1762490876==--
+VXNlci1zcGFjZSB1c2UgbWFwcGFibGUgQk9zIG5vdGFibHkgZm9yIGZlbmNlcywgYW5kIGV4cGVj
+dHMgdGhhdCBhCnZhbHVlIHVwZGF0ZSBieSB0aGUgR1BVIHdpbGwgYmUgaW1tZWRpYXRseSB2aXNp
+YmxlIHRocm91Z2ggdGhlCnVzZXItc3BhY2UgbWFwcGluZy4KCkFSTSBoYXMgYSBwcm9wZXJ0eSB0
+aGF0IG1heSBwcmV2ZW50IHRoaXMgZnJvbSBoYXBwZW5pbmcgdGhvdWdoOiBtZW1vcnkKY2FuIGJl
+IG1hcHBlZCBtdWx0aXBsZSB0aW1lcyBvbmx5IGlmIHRoZSBkaWZmZXJlbnQgbWFwcGluZ3Mgc2hh
+cmUgdGhlCnNhbWUgY2FjaGluZyBwcm9wZXJ0aWVzLiBIb3dldmVyIGFsbCB0aGUgbG93bWVtIG1l
+bW9yeSBpcyBhbHJlYWR5CmlkZW50aXR5LW1hcHBlZCBpbnRvIHRoZSBrZXJuZWwgd2l0aCBjYWNo
+ZSBlbmFibGVkLCBzbyB3aGVuIHVzZXItc3BhY2UKcmVxdWVzdHMgYW4gdW5jYWNoZWQgbWFwcGlu
+Zywgd2UgYWN0dWFsbHkgZ2V0IGFuICJ1bmRlZmluZWQgY2FjaGluZwpwb2xpY3kiIG9uZSBhbmQg
+dGhpcyBoYXMgc3RyYW5nZSBzaWRlLWVmZmVjdHMgZGVzY3JpYmVkIG9uIEZyZWVkZXNrdG9wCmJ1
+ZyA4NjY5MC4KClRvIHByZXZlbnQgdGhpcyBmcm9tIGhhcHBlbmluZywgYWxsb3cgdXNlci1zcGFj
+ZSB0byBleHBsaWNpdGx5IHNwZWNpZnkKd2hpY2ggb2JqZWN0cyBzaG91bGQgYmUgY29oZXJlbnQs
+IGFuZCBjcmVhdGUgc3VjaCBvYmplY3RzIHdpdGggdGhlClRUTV9QTF9GTEFHX1VOQ0FDSEVEIGZs
+YWcuIFRoaXMgd2lsbCBtYWtlIFRUTSBhbGxvY2F0ZSBtZW1vcnkgdXNpbmcgdGhlCkRNQSBBUEks
+IHdoaWNoIHdpbGwgZml4IHRoZSBpZGVudGlmeSBtYXBwaW5nIGFuZCBhbGxvdyB1cyB0byBzYWZl
+bHkgbWFwCnRoZSBvYmplY3RzIHRvIHVzZXItc3BhY2UgdW5jYWNoZWQuCgpTaWduZWQtb2ZmLWJ5
+OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tClBhdGNoZXMgdGhh
+dCB0YWtlIGFkdmFudGFnZSBvZiB0aGlzIGluIE1lc2Egd2lsbCBmb2xsb3cgdXAgc2hvcnRseS4g
+SSdkCnRvIG1ha2Ugc3VyZSB0aGUgbmV3IGZsYWcgaXMgb2sgZmlyc3QgYmVmb3JlIGFsc28gYWRk
+aW5nIGl0IHRvIGxpYmRybS4KCiBkcm0vbm91dmVhdS9pbmNsdWRlL3VhcGkvZHJtL25vdXZlYXVf
+ZHJtLmggfCAxICsKIGRybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMgICAgICAgICAgICAgICAgICB8
+IDMgKysrCiAyIGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2Ry
+bS9ub3V2ZWF1L2luY2x1ZGUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaCBiL2RybS9ub3V2ZWF1L2lu
+Y2x1ZGUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaAppbmRleCAwZDc2MDhkYzFhMzQuLjU1MDdlZWFk
+NTg2MyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS91YXBpL2RybS9ub3V2ZWF1X2Ry
+bS5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvdWFwaS9kcm0vbm91dmVhdV9kcm0uaApAQCAt
+MzksNiArMzksNyBAQAogI2RlZmluZSBOT1VWRUFVX0dFTV9ET01BSU5fVlJBTSAgICAgICgxIDw8
+IDEpCiAjZGVmaW5lIE5PVVZFQVVfR0VNX0RPTUFJTl9HQVJUICAgICAgKDEgPDwgMikKICNkZWZp
+bmUgTk9VVkVBVV9HRU1fRE9NQUlOX01BUFBBQkxFICAoMSA8PCAzKQorI2RlZmluZSBOT1VWRUFV
+X0dFTV9ET01BSU5fQ09IRVJFTlQgICgxIDw8IDQpCiAKICNkZWZpbmUgTk9VVkVBVV9HRU1fVElM
+RV9DT01QICAgICAgICAweDAwMDMwMDAwIC8qIG52NTAtb25seSAqLwogI2RlZmluZSBOT1VWRUFV
+X0dFTV9USUxFX0xBWU9VVF9NQVNLIDB4MDAwMGZmMDAKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
+L25vdXZlYXVfZ2VtLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCmluZGV4IDdjMDc3ZmNl
+ZDFkMS4uMGU2OTBiZjE5ZmM5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5j
+CisrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMKQEAgLTE4OSw2ICsxODksOSBAQCBub3V2
+ZWF1X2dlbV9uZXcoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgaW50IHNpemUsIGludCBhbGlnbiwg
+dWludDMyX3QgZG9tYWluLAogCWlmICghZmxhZ3MgfHwgZG9tYWluICYgTk9VVkVBVV9HRU1fRE9N
+QUlOX0NQVSkKIAkJZmxhZ3MgfD0gVFRNX1BMX0ZMQUdfU1lTVEVNOwogCisJaWYgKGRvbWFpbiAm
+IE5PVVZFQVVfR0VNX0RPTUFJTl9DT0hFUkVOVCkKKwkJZmxhZ3MgfD0gVFRNX1BMX0ZMQUdfVU5D
+QUNIRUQ7CisKIAlyZXQgPSBub3V2ZWF1X2JvX25ldyhkZXYsIHNpemUsIGFsaWduLCBmbGFncywg
+dGlsZV9tb2RlLAogCQkJICAgICB0aWxlX2ZsYWdzLCBOVUxMLCBOVUxMLCBwbnZibyk7CiAJaWYg
+KHJldCkKLS0gCjIuMy4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
