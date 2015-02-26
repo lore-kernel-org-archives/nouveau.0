@@ -1,16 +1,12 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/2] nouveau: make nouveau importing global
- buffers completely thread-safe, with tests
-Date: Thu, 26 Feb 2015 09:52:06 +0000
-Message-ID: <CACvgo53E_6UOV94P-AnxRpXnC6puRyUXn18px1zD6xG1vtyXJQ@mail.gmail.com>
-References: <1424768511-25156-1-git-send-email-maarten.lankhorst@ubuntu.com>
- <CACvgo529aHY=pbBUqjvw4ecGE_Y3VD0M=p47MdZkuPdM-UYT6g@mail.gmail.com>
- <54EE45D6.9030604@canonical.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Thu, 26 Feb 2015 10:24:14 +0000
+Message-ID: <bug-80901-8800-0fEcRX0oXq@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0884252060=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54EE45D6.9030604-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +16,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjUgRmVicnVhcnkgMjAxNSBhdCAyMTo1OSwgTWFhcnRlbiBMYW5raG9yc3QKPG1hYXJ0ZW4u
-bGFua2hvcnN0QGNhbm9uaWNhbC5jb20+IHdyb3RlOgo+IE9uIDI1LTAyLTE1IDE1OjE0LCBFbWls
-IFZlbGlrb3Ygd3JvdGU6Cj4+IE9uIDI0IEZlYnJ1YXJ5IDIwMTUgYXQgMDk6MDEsIE1hYXJ0ZW4g
-TGFua2hvcnN0Cj4+IDxtYWFydGVuLmxhbmtob3JzdEB1YnVudHUuY29tPiB3cm90ZToKLi4uCj4+
-PiArc3RhdGljIGNvbnN0IGNoYXIgZGVmYXVsdF9kZXZpY2VbXSA9ICIvZGV2L2RyaS9yZW5kZXJE
-MTI4IjsKPj4+ICsKPj4gUmV1c2UgdGhlIGRlZmluZXMgaW4geGY4NmRybS5oID8KPgo+IEhtbSwg
-c3dpdGNoaW5nIHRvIGRybU9wZW5XaXRoVHlwZSgibm91dmVhdSIsIE5VTEwsIERSTV9OT0RFX1JF
-TkRFUikgbWlnaHQgYmUgYmV0dGVyLi4KPgpJIHNhdyB0aGF0IHBhdGNoIGZsb2F0aW5nIG9uIHRo
-ZSBsaXN0LCBidXQgZGlkIG5vdCBrbm93IGl0IGxhbmRlZCBhbHJlYWR5LiBOaWNlCgouLi4KPj4+
-IC0jIGRlZmluZSBhdG9taWNfZGVjX2FuZF90ZXN0KHgpIChfX3N5bmNfZmV0Y2hfYW5kX2FkZCAo
-Jih4KS0+YXRvbWljLCAtMSkgPT0gMSkKPj4+ICsjIGRlZmluZSBhdG9taWNfaW5jX3JldHVybih4
-KSAoX19zeW5jX2FkZF9hbmRfZmV0Y2ggKCYoeCktPmF0b21pYywgMSkpCj4+PiArIyBkZWZpbmUg
-YXRvbWljX2RlY19hbmRfdGVzdCh4KSAoX19zeW5jX2FkZF9hbmRfZmV0Y2ggKCYoeCktPmF0b21p
-YywgLTEpID09IDApCj4+IFRoZSBhdG9taWNfZGVjX2FuZF90ZXN0IGNoYW5nZSBzZWVtcyBsaWtl
-IHVucmVsYXRlZCBidWdmaXguIFNwbGl0IGl0Cj4+IG91dCBwZXJoYXBzID8KPiBOb3QgYSBidWcg
-Zml4LCBqdXN0IHN3YXBwaW5nIHRoZSBvcmRlci4uCj4gLSBhdG9taWNfZmV0Y2hfYW5kX2FkZCgt
-MSkgPT0gMQo+ICsgYXRvbWljX2FkZF9hbmRfZmV0Y2goLTEpID09IDAKPgpPb3BzLCBJJ20gYmxp
-bmQuCgouLi4KPj4gSU1ITyBzZW5kaW5nIHRoZSBzZXJpZXMgZm9yIGRyaS1kZXZlbCBtaWdodCBi
-ZSBuaWNlLCBmb3IgYXQgbGVhc3QgdGhlCj4+IHhmODZhdG9taWMuaCBjaGFuZ2VzLgo+IFByb2Jh
-Ymx5LCBub3Qgc3VyZSBhbnlvbmUgd2lsbCByZXZpZXcgaXQgdGhvdWdoLCBzbyBJIHRoaW5rIGp1
-c3QgYWRkaW5nIGluIGEgc2VwYXJhdGUgY29tbWl0IGlzIGZpbmUuCj4KSWYgdGhleSBkb24ndCB0
-aGVuIGl0J3MgdGhlaXIgcHJvYmxlbS4gQXQgbGVhc3QgeW91J3ZlIGRvbmUgdGhlIHJpZ2h0IHRo
-aW5nIDotKQoKVGhhbmtzCkVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0884252060==
+Content-Type: multipart/alternative; boundary="1424946254.31DA3.3112"; charset="UTF-8"
+
+
+--1424946254.31DA3.3112
+Date: Thu, 26 Feb 2015 10:24:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
+
+--- Comment #34 from K.-P. Schrage <kpschrage-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to Martin Peres from comment #33)
+
+Hello, Martin,
+
+thank you for caring!
+
+
+# nvapeek e114 10
+0000e114: 0000021c 000000d8 00000001 00000000
+
+(that's with the latest nouveau driver from darktama)
+
+After enabling manual fan control mode (pwm1_enable = 1),
+'nvapoke e118 80000005' somewhat reduces fan speed audibly, but still seems to
+be too high (pwm1 shows a value of 0).
+
+FWIW, after 'nvapoke e118 80000005", the output of the nvapeek command has
+changed to
+0000e114: 0000021c 00000005 00000001 00000000
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1424946254.31DA3.3112
+Date: Thu, 26 Feb 2015 10:24:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:kpschrage&#64;gmx.de" title="K.-P. Schrage &lt;kpschrage&#64;gmx.de&gt;"> <span class="fn">K.-P. Schrage</span></a>
+</span></b>
+        <pre>(In reply to Martin Peres from <a href="show_bug.cgi?id=80901#c33">comment #33</a>)
+
+Hello, Martin,
+
+thank you for caring!
+
+
+# nvapeek e114 10
+0000e114: 0000021c 000000d8 00000001 00000000
+
+(that's with the latest nouveau driver from darktama)
+
+After enabling manual fan control mode (pwm1_enable = 1),
+'nvapoke e118 80000005' somewhat reduces fan speed audibly, but still seems to
+be too high (pwm1 shows a value of 0).
+
+FWIW, after 'nvapoke e118 80000005&quot;, the output of the nvapeek command has
+changed to
+0000e114: 0000021c 00000005 00000001 00000000</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1424946254.31DA3.3112--
+
+--===============0884252060==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0884252060==--
