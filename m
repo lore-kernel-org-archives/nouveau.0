@@ -1,32 +1,56 @@
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Subject: Re: [Nouveau] [PATCH v2 1/4] Add atomic_inc_return to atomics.
-Date: Fri, 27 Feb 2015 13:46:00 +0000
-Message-ID: <54F07518.60307@gmail.com>
-References: <1424948044-32228-1-git-send-email-maarten.lankhorst@ubuntu.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [Mesa-dev] Crash with Mesa-10.4.4 and NV68
+Date: Fri, 27 Feb 2015 10:36:33 -0500
+Message-ID: <CAKb7UvhgPG6V6_TMu5u=miWNDSKssXoiJwEF8fRi360yn=MyNA@mail.gmail.com>
+References: <54F08232.6000206@hertz.st>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1424948044-32228-1-git-send-email-maarten.lankhorst@ubuntu.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: emil.l.velikov@gmail.com
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <54F08232.6000206-aGFhFkwWe+8@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Arno Willig <arno.willig-aGFhFkwWe+8@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjYvMDIvMTUgMTA6NTQsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+IFNpZ25lZC1vZmYt
-Ynk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEB1YnVudHUuY29tPgpIbW0g
-YXRvbWljIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIGRpZmZlcmVudCBwbGF0Zm9ybXMgYXJlIGZ1
-bi4gQnJpbmcgb24KQzExIGF0b21pY3MgOi1QCgpCdXQgc2VyaW91c2x5LCBmZWVsIGZyZWUgdG8g
-YWRkIGFja2VkLWJ5IGZvciBwYXRjaGVzIDEgJiAyLCBhbmQKdGVzdGVkLWJ5IGZvciB0aGUgd2hv
-bGUgc2VyaWVzLgoKVGhhbmtzCkVtaWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vZHJpLWRldmVsCg==
+SGkgQXJubywKCkkgdGhpbmsgYXQgdGhpcyBwb2ludCB0aGUgbW9zdCBoZWxwZnVsIHRoaW5nIHdv
+dWxkIGJlIHRvIGdldCBhbgphcGl0cmFjZSAoaHR0cHM6Ly9naXRodWIuY29tL2FwaXRyYWNlL2Fw
+aXRyYWNlKSB3aXRoIHlvdXIgImZpeCIgaW4KcGxhY2UuIE9uY2UgeW91IG1ha2UgdGhlIHRyYWNl
+LCBjaGFuZ2UgeW91ciBmaXggdG8gaW5zdGVhZCBhYm9ydCB0aGUKcHJvZ3JhbSwgYW5kIHJlcGxh
+eSB0aGUgdHJhY2UuIFRoaXMgd2lsbCBhbGxvdyB1cyB0byBsb29rIGF0IHRoZQpwcmVjaXNlIGNh
+bGwgc2VxdWVuY2UgdGhhdCBjYXVzZXMgdGhlIGlzc3VlLgoKV2hhdCBpcyB0aGUgbnVtZXJpY2Fs
+IHZhbHVlIG9mIHZlLT52ZXJ0ZXhfYnVmZmVyX2luZGV4IHdoZW4gaXQncyA+PQpudW1fdnR4YnVm
+cz8gW1doYXQgYWJvdXQgbnVtX3Z0eGJ1ZnM/XQoKQ2hlZXJzLAoKICAtaWxpYQoKT24gRnJpLCBG
+ZWIgMjcsIDIwMTUgYXQgOTo0MSBBTSwgQXJubyBXaWxsaWcgPGFybm8ud2lsbGlnQGhlcnR6LnN0
+PiB3cm90ZToKPgo+IEhpLAo+Cj4gSSBleHBlcmllbmNlIGEgY3Jhc2ggaW4gdGhlIG5vdXZlYXUg
+cGFydCBvZiB0aGUgbWVzYSBkcml2ZXI6Cj4KPiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bnYzMC9udjMwX3Ziby5jCj4KPiBpbiBmdW5jdGlvbjoKPgo+IHZvaWQgbnYzMF92Ym9fdmFsaWRh
+dGUoc3RydWN0IG52MzBfY29udGV4dCAqbnYzMCkKPgo+Cj4gU29tZXRpbWVzLCB2ZS0+dmVydGV4
+X2J1ZmZlcl9pbmRleCBzZWVtcyB0byBiZSBncmVhdGVyIG9yIGVxdWFsCj4gbnYzMC0+bnVtX3Z0
+eGJ1Zi4gSWYgdGhpcyBoYXBwZW5zLCBQVVNIX1JFU1JDIGNyYXNoZXMhCj4gSG93IGNhbiB0aGlz
+IGhhcHBlbj8/Cj4KPiBJIHRyaWVkIHRvIGJyZWFrIG91dCBvZiB0aGUgZm9yLWxvb3AKPiBmb3Ig
+KGkgPSAwOyBpIDwgdmVydGV4LT5udW1fZWxlbWVudHM7IGkrKykKPiB3aGVuIHRoZSBwcm9ibGVt
+IGFwcGVhcnMuCj4gSWYgSSBkbyB0aGlzLCB0aGUgZHJpdmVyIHdvbid0IGNyYXNoIGFueW1vcmUs
+IGJ1dCBzb21lIHNjcmVlbiBlbGVtZW50cwo+IGFyZSBtaXNzaW5nLgo+IEEgc2hvcnQgd2hpbGUg
+bGF0ZXIgSSBnZXQgYSBHUFUgbG9ja3VwIG1lc3NhZ2U6Cj4+IGtlcm5lbDogbm91dmVhdSBFWyAg
+ICAgRFJNXSBHUFUgbG9ja3VwIC0gc3dpdGNoaW5nIHRvIHNvZnR3YXJlIGZiY29uCj4KPgo+IEkg
+Y2FuIHJlcHJvZHVjZSB0aGlzIGNyYXNoIHdpdGggYSBRdDUuMyBRdWljazIgYXBwbGljYXRpb24u
+Cj4KPiBXaGVyZSB3b3VsZCBiZSB0aGUgbmV4dCBwb2ludCB0byBsb29rIGludG8gdGhpcz8KPgo+
+IENhbiBhbnlvbmUgaGVscCBtZSB3aXRoIHRoaXM/IERvZXMgYSBtbWlvdHJhY2UgaGVscD8KPgo+
+Cj4gTXkgc3lzdGVtOgo+IC0gQm9hcmQ6IEFTUm9jayBONjhDLUdTIEZYIHdpdGggTlY2OCBHZUZv
+cmNlIDcwMjUgT25Cb2FyZAo+IC0gTGludXggMy4xOC40LCAoMzIgYml0KQo+IC0gTWVzYS0xMC40
+LjQKPiAtCj4KPiBSZWdhcmRzLAo+Cj4gQXJubwo+Cj4KPgo+Cj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBtZXNhLWRldiBtYWlsaW5nIGxpc3QKPiBt
+ZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYKPgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
