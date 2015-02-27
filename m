@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [Mesa-dev] Crash with Mesa-10.4.4 and NV68
-Date: Fri, 27 Feb 2015 10:36:33 -0500
-Message-ID: <CAKb7UvhgPG6V6_TMu5u=miWNDSKssXoiJwEF8fRi360yn=MyNA@mail.gmail.com>
-References: <54F08232.6000206@hertz.st>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Fri, 27 Feb 2015 20:08:51 +0000
+Message-ID: <bug-80901-8800-JW3g3VSX6q@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1193885073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <54F08232.6000206-aGFhFkwWe+8@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,40 +16,142 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Arno Willig <arno.willig-aGFhFkwWe+8@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgQXJubywKCkkgdGhpbmsgYXQgdGhpcyBwb2ludCB0aGUgbW9zdCBoZWxwZnVsIHRoaW5nIHdv
-dWxkIGJlIHRvIGdldCBhbgphcGl0cmFjZSAoaHR0cHM6Ly9naXRodWIuY29tL2FwaXRyYWNlL2Fw
-aXRyYWNlKSB3aXRoIHlvdXIgImZpeCIgaW4KcGxhY2UuIE9uY2UgeW91IG1ha2UgdGhlIHRyYWNl
-LCBjaGFuZ2UgeW91ciBmaXggdG8gaW5zdGVhZCBhYm9ydCB0aGUKcHJvZ3JhbSwgYW5kIHJlcGxh
-eSB0aGUgdHJhY2UuIFRoaXMgd2lsbCBhbGxvdyB1cyB0byBsb29rIGF0IHRoZQpwcmVjaXNlIGNh
-bGwgc2VxdWVuY2UgdGhhdCBjYXVzZXMgdGhlIGlzc3VlLgoKV2hhdCBpcyB0aGUgbnVtZXJpY2Fs
-IHZhbHVlIG9mIHZlLT52ZXJ0ZXhfYnVmZmVyX2luZGV4IHdoZW4gaXQncyA+PQpudW1fdnR4YnVm
-cz8gW1doYXQgYWJvdXQgbnVtX3Z0eGJ1ZnM/XQoKQ2hlZXJzLAoKICAtaWxpYQoKT24gRnJpLCBG
-ZWIgMjcsIDIwMTUgYXQgOTo0MSBBTSwgQXJubyBXaWxsaWcgPGFybm8ud2lsbGlnQGhlcnR6LnN0
-PiB3cm90ZToKPgo+IEhpLAo+Cj4gSSBleHBlcmllbmNlIGEgY3Jhc2ggaW4gdGhlIG5vdXZlYXUg
-cGFydCBvZiB0aGUgbWVzYSBkcml2ZXI6Cj4KPiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnYzMC9udjMwX3Ziby5jCj4KPiBpbiBmdW5jdGlvbjoKPgo+IHZvaWQgbnYzMF92Ym9fdmFsaWRh
-dGUoc3RydWN0IG52MzBfY29udGV4dCAqbnYzMCkKPgo+Cj4gU29tZXRpbWVzLCB2ZS0+dmVydGV4
-X2J1ZmZlcl9pbmRleCBzZWVtcyB0byBiZSBncmVhdGVyIG9yIGVxdWFsCj4gbnYzMC0+bnVtX3Z0
-eGJ1Zi4gSWYgdGhpcyBoYXBwZW5zLCBQVVNIX1JFU1JDIGNyYXNoZXMhCj4gSG93IGNhbiB0aGlz
-IGhhcHBlbj8/Cj4KPiBJIHRyaWVkIHRvIGJyZWFrIG91dCBvZiB0aGUgZm9yLWxvb3AKPiBmb3Ig
-KGkgPSAwOyBpIDwgdmVydGV4LT5udW1fZWxlbWVudHM7IGkrKykKPiB3aGVuIHRoZSBwcm9ibGVt
-IGFwcGVhcnMuCj4gSWYgSSBkbyB0aGlzLCB0aGUgZHJpdmVyIHdvbid0IGNyYXNoIGFueW1vcmUs
-IGJ1dCBzb21lIHNjcmVlbiBlbGVtZW50cwo+IGFyZSBtaXNzaW5nLgo+IEEgc2hvcnQgd2hpbGUg
-bGF0ZXIgSSBnZXQgYSBHUFUgbG9ja3VwIG1lc3NhZ2U6Cj4+IGtlcm5lbDogbm91dmVhdSBFWyAg
-ICAgRFJNXSBHUFUgbG9ja3VwIC0gc3dpdGNoaW5nIHRvIHNvZnR3YXJlIGZiY29uCj4KPgo+IEkg
-Y2FuIHJlcHJvZHVjZSB0aGlzIGNyYXNoIHdpdGggYSBRdDUuMyBRdWljazIgYXBwbGljYXRpb24u
-Cj4KPiBXaGVyZSB3b3VsZCBiZSB0aGUgbmV4dCBwb2ludCB0byBsb29rIGludG8gdGhpcz8KPgo+
-IENhbiBhbnlvbmUgaGVscCBtZSB3aXRoIHRoaXM/IERvZXMgYSBtbWlvdHJhY2UgaGVscD8KPgo+
-Cj4gTXkgc3lzdGVtOgo+IC0gQm9hcmQ6IEFTUm9jayBONjhDLUdTIEZYIHdpdGggTlY2OCBHZUZv
-cmNlIDcwMjUgT25Cb2FyZAo+IC0gTGludXggMy4xOC40LCAoMzIgYml0KQo+IC0gTWVzYS0xMC40
-LjQKPiAtCj4KPiBSZWdhcmRzLAo+Cj4gQXJubwo+Cj4KPgo+Cj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBtZXNhLWRldiBtYWlsaW5nIGxpc3QKPiBt
-ZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYKPgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+
+--===============1193885073==
+Content-Type: multipart/alternative; boundary="1425067731.204A7Bc2.12954"; charset="UTF-8"
+
+
+--1425067731.204A7Bc2.12954
+Date: Fri, 27 Feb 2015 20:08:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
+
+--- Comment #39 from Lars E Pettersson <lars-mDsk/mlFC80@public.gmane.org> ---
+OK, lets see...
+
+# ./nvapeek e114 10
+0000e114: 0000021c 000000f9 00000001 00000000
+
+sometimes I get the following answer:
+
+0000e114: 0000021c 000000fe 00000001 00000000
+
+I then select manual control and do the following:
+
+[root@tux nva]# ./nvapoke e118 80000005
+[root@tux nva]# ./nvapeek e114 10
+0000e114: 0000021c 00000005 00000001 00000000
+
+Silent fan. Check with 'sensors' command. RPM is 0! Temperature raising! Set
+fan control back to old setting and fan returns to normal.
+
+Restart with the module blacklisted.
+
+[root@tux nva]# ./nvapeek e114 10
+0000e114: 0000021c 000000a2 00000001 00000000
+
+Restart with the nouveau module in place again.
+
+You asked K.-P. Schrage to use 'nvapoke e118 80000002' As I have 000000a2 I
+instead tried the following:
+
+[root@tux nva]# ./nvapoke e118 800000a2
+
+(If I try 'nvapoke e118 80000002' the RPM goes down to 0 rpm, so I think that
+800000a2 is correct for me to use. The RPM then stays slightly above 2000 rpm
+and the temperature is at about 60-65 degC, as it was before the change in the
+3.15 kernel.)
+
+Not sure what all these numbers means though... :)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1425067731.204A7Bc2.12954
+Date: Fri, 27 Feb 2015 20:08:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c39">Comment # 39</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:lars&#64;homer.se" title="Lars E Pettersson &lt;lars&#64;homer.se&gt;"> <span class="fn">Lars E Pettersson</span></a>
+</span></b>
+        <pre>OK, lets see...
+
+# ./nvapeek e114 10
+0000e114: 0000021c 000000f9 00000001 00000000
+
+sometimes I get the following answer:
+
+0000e114: 0000021c 000000fe 00000001 00000000
+
+I then select manual control and do the following:
+
+[root&#64;tux nva]# ./nvapoke e118 80000005
+[root&#64;tux nva]# ./nvapeek e114 10
+0000e114: 0000021c 00000005 00000001 00000000
+
+Silent fan. Check with 'sensors' command. RPM is 0! Temperature raising! Set
+fan control back to old setting and fan returns to normal.
+
+Restart with the module blacklisted.
+
+[root&#64;tux nva]# ./nvapeek e114 10
+0000e114: 0000021c 000000a2 00000001 00000000
+
+Restart with the nouveau module in place again.
+
+You asked K.-P. Schrage to use 'nvapoke e118 80000002' As I have 000000a2 I
+instead tried the following:
+
+[root&#64;tux nva]# ./nvapoke e118 800000a2
+
+(If I try 'nvapoke e118 80000002' the RPM goes down to 0 rpm, so I think that
+800000a2 is correct for me to use. The RPM then stays slightly above 2000 rpm
+and the temperature is at about 60-65 degC, as it was before the change in the
+3.15 kernel.)
+
+Not sure what all these numbers means though... :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1425067731.204A7Bc2.12954--
+
+--===============1193885073==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1193885073==--
