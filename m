@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 32406] nouveau fails to send hotplug event to ALSA
- hda hdmi audio
-Date: Fri, 27 Feb 2015 00:51:30 +0000
-Message-ID: <bug-32406-8800-cmtP4tlSP3@http.bugs.freedesktop.org/>
-References: <bug-32406-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Fri, 27 Feb 2015 09:16:44 +0000
+Message-ID: <bug-80901-8800-q4siJcXu52@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2058975293=="
+Content-Type: multipart/mixed; boundary="===============1505126040=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-32406-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2058975293==
-Content-Type: multipart/alternative; boundary="1424998290.d0DDCF7b4.9580"; charset="UTF-8"
+--===============1505126040==
+Content-Type: multipart/alternative; boundary="1425028604.A7a83cC23.17247"; charset="UTF-8"
 
 
---1424998290.d0DDCF7b4.9580
-Date: Fri, 27 Feb 2015 00:51:30 +0000
+--1425028604.A7a83cC23.17247
+Date: Fri, 27 Feb 2015 09:16:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=32406
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
---- Comment #9 from Kip Warner <Kip-pQI53ePfAtSt/hvpvFFPbQ@public.gmane.org> ---
-Hey Ilia,
+--- Comment #36 from K.-P. Schrage <kpschrage-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to Martin Peres from comment #35)
 
-I can confirm that this is still an issue. In fact, I noticed it not just with
-the Nouveau driver (Ubuntu, amd64, 1:1.0.11+git1411032101.3fb97d~gd~u), but
-also with the non-free nVidia 346 driver. 
+> Ok, try to boot with nouveau blacklisted then run nvapeek e114 10 again and
+> send me the result. We may be on to something here.
 
-In both cases the hotplug notification was not being reported by udevadm (and
-presumably the kernel hotplug system either via netlink or script driven). The
-card in question was an nVidia GeForce GTX 960. 
 
-This may be a hardware issue because plugging in the same HDMI sink (Onkyo
-TX-NR535) to my integrated Intel HDMI port emits several hotplug events no
-problem on both connect and disconnect.
+# nvapeek e114 10
+0000e114: 0000021c 00000002 00000001 00000000
+
+(nouveau hopefully killed: blacklist.conf, grub commandline, dracut)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1424998290.d0DDCF7b4.9580
-Date: Fri, 27 Feb 2015 00:51:30 +0000
+--1425028604.A7a83cC23.17247
+Date: Fri, 27 Feb 2015 09:16:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,28 +60,25 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau fails to send hotplug event to ALSA hda hdmi audio"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=32406#c9">Comment # 9</a>
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c36">Comment # 36</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - nouveau fails to send hotplug event to ALSA hda hdmi audio"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=32406">bug 32406</a>
-              from <span class="vcard"><a class="email" href="mailto:Kip&#64;TheVertigo.com" title="Kip Warner &lt;Kip&#64;TheVertigo.com&gt;"> <span class="fn">Kip Warner</span></a>
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:kpschrage&#64;gmx.de" title="K.-P. Schrage &lt;kpschrage&#64;gmx.de&gt;"> <span class="fn">K.-P. Schrage</span></a>
 </span></b>
-        <pre>Hey Ilia,
+        <pre>(In reply to Martin Peres from <a href="show_bug.cgi?id=80901#c35">comment #35</a>)
 
-I can confirm that this is still an issue. In fact, I noticed it not just with
-the Nouveau driver (Ubuntu, amd64, 1:1.0.11+git1411032101.3fb97d~gd~u), but
-also with the non-free nVidia 346 driver. 
+<span class="quote">&gt; Ok, try to boot with nouveau blacklisted then run nvapeek e114 10 again and
+&gt; send me the result. We may be on to something here.</span >
 
-In both cases the hotplug notification was not being reported by udevadm (and
-presumably the kernel hotplug system either via netlink or script driven). The
-card in question was an nVidia GeForce GTX 960. 
 
-This may be a hardware issue because plugging in the same HDMI sink (Onkyo
-TX-NR535) to my integrated Intel HDMI port emits several hotplug events no
-problem on both connect and disconnect.</pre>
+# nvapeek e114 10
+0000e114: 0000021c 00000002 00000001 00000000
+
+(nouveau hopefully killed: blacklist.conf, grub commandline, dracut)</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +90,9 @@ problem on both connect and disconnect.</pre>
     </body>
 </html>
 
---1424998290.d0DDCF7b4.9580--
+--1425028604.A7a83cC23.17247--
 
---===============2058975293==
+--===============1505126040==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2058975293==--
+--===============1505126040==--
