@@ -1,117 +1,32 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Fri, 27 Feb 2015 10:40:05 +0000
-Message-ID: <bug-80901-8800-w2lS2nVRyv@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [Nouveau] [PATCH v2 1/4] Add atomic_inc_return to atomics.
+Date: Fri, 27 Feb 2015 13:46:00 +0000
+Message-ID: <54F07518.60307@gmail.com>
+References: <1424948044-32228-1-git-send-email-maarten.lankhorst@ubuntu.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1952223111=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1424948044-32228-1-git-send-email-maarten.lankhorst@ubuntu.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Maarten Lankhorst <maarten.lankhorst@ubuntu.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: emil.l.velikov@gmail.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============1952223111==
-Content-Type: multipart/alternative; boundary="1425033605.d2eaf83.1128"; charset="UTF-8"
-
-
---1425033605.d2eaf83.1128
-Date: Fri, 27 Feb 2015 10:40:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
-
---- Comment #38 from K.-P. Schrage <kpschrage-Mmb7MZpHnFY@public.gmane.org> ---
-(In reply to Martin Peres from comment #37)
-
-> It worked. Set fan management to manual then nvapoke e118 80000002 and
-> you'll get quietness.
-> 
-
-Yes, it works (Silence Is Golden ...)
-
-I put the two lines
-echo 1 >
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable
-/usr/local/bin/nvapoke e118 80000002
-into /etc/rc.d/rc.local (don't know any other way to make this workaround
-permanent).
-
-Thanks again!
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1425033605.d2eaf83.1128
-Date: Fri, 27 Feb 2015 10:40:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c38">Comment # 38</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:kpschrage&#64;gmx.de" title="K.-P. Schrage &lt;kpschrage&#64;gmx.de&gt;"> <span class="fn">K.-P. Schrage</span></a>
-</span></b>
-        <pre>(In reply to Martin Peres from <a href="show_bug.cgi?id=80901#c37">comment #37</a>)
-
-<span class="quote">&gt; It worked. Set fan management to manual then nvapoke e118 80000002 and
-&gt; you'll get quietness.
-&gt; </span >
-
-Yes, it works (Silence Is Golden ...)
-
-I put the two lines
-echo 1 &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable
-/usr/local/bin/nvapoke e118 80000002
-into /etc/rc.d/rc.local (don't know any other way to make this workaround
-permanent).
-
-Thanks again!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1425033605.d2eaf83.1128--
-
---===============1952223111==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1952223111==--
+T24gMjYvMDIvMTUgMTA6NTQsIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+IFNpZ25lZC1vZmYt
+Ynk6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEB1YnVudHUuY29tPgpIbW0g
+YXRvbWljIGRpZmZlcmVuY2VzIGJldHdlZW4gdGhlIGRpZmZlcmVudCBwbGF0Zm9ybXMgYXJlIGZ1
+bi4gQnJpbmcgb24KQzExIGF0b21pY3MgOi1QCgpCdXQgc2VyaW91c2x5LCBmZWVsIGZyZWUgdG8g
+YWRkIGFja2VkLWJ5IGZvciBwYXRjaGVzIDEgJiAyLCBhbmQKdGVzdGVkLWJ5IGZvciB0aGUgd2hv
+bGUgc2VyaWVzLgoKVGhhbmtzCkVtaWwKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vZHJpLWRldmVsCg==
