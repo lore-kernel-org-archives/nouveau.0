@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89019] Black texture using Qt5
-Date: Sat, 28 Feb 2015 08:39:50 +0000
-Message-ID: <bug-89019-8800-sI8xyvhXny@http.bugs.freedesktop.org/>
+Subject: [Bug 89019] [NV30/Gallium] Black texture using Qt5
+Date: Sat, 28 Feb 2015 23:08:08 +0000
+Message-ID: <bug-89019-8800-azdEzmMKub@http.bugs.freedesktop.org/>
 References: <bug-89019-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0971958711=="
+Content-Type: multipart/mixed; boundary="===============0016347828=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89019-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0971958711==
-Content-Type: multipart/alternative; boundary="1425112790.7B7E0.30642"; charset="UTF-8"
+--===============0016347828==
+Content-Type: multipart/alternative; boundary="1425164887.38eE0.20953"; charset="UTF-8"
 
 
---1425112790.7B7E0.30642
-Date: Sat, 28 Feb 2015 08:39:50 +0000
+--1425164887.38eE0.20953
+Date: Sat, 28 Feb 2015 23:08:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89019
 
---- Comment #1 from Andrea Scarpino <andrea-fd97jBR+K/6hPH1hqNUYSQ@public.gmane.org> ---
-(In reply to Andrea Scarpino from comment #0)
-> NVIDIA FX 5500, Xorg 1.16.3, mesa 10.4.4, nouveau 1.0.11, Qt 5.4.0
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Still the same with Xorg 1.17.1, mesa 10.4.5, Qt 5.4.1
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Black texture using Qt5     |[NV30/Gallium] Black
+                   |                            |texture using Qt5
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The thing immediately coming to mind was the workaround I added for dealing
+with mismatching color/depth render targets. The "fix" was to just not render
+to depth at all, but that may mess up other things of course. (Not the least of
+which is that the depth texture will remain untouched.)
+
+To start, you should get an apitrace (https://github.com/apitrace/apitrace) of
+the failing application. This should help determine what's going on. Make a
+debug mesa build and see if the driver outputs any "aaaah, i don't know how to
+handle this" type messages.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1425112790.7B7E0.30642
-Date: Sat, 28 Feb 2015 08:39:50 +0000
+--1425164887.38eE0.20953
+Date: Sat, 28 Feb 2015 23:08:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,23 +63,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV30/Gallium] Black texture using Qt5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">bug 89019</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Black texture using Qt5
+           </td>
+           <td>[NV30/Gallium] Black texture using Qt5
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Black texture using Qt5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019#c1">Comment # 1</a>
+   title="NEW - [NV30/Gallium] Black texture using Qt5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Black texture using Qt5"
+   title="NEW - [NV30/Gallium] Black texture using Qt5"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">bug 89019</a>
-              from <span class="vcard"><a class="email" href="mailto:andrea&#64;archlinux.org" title="Andrea Scarpino &lt;andrea&#64;archlinux.org&gt;"> <span class="fn">Andrea Scarpino</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Andrea Scarpino from <a href="show_bug.cgi?id=89019#c0">comment #0</a>)
-<span class="quote">&gt; NVIDIA FX 5500, Xorg 1.16.3, mesa 10.4.4, nouveau 1.0.11, Qt 5.4.0</span >
+        <pre>The thing immediately coming to mind was the workaround I added for dealing
+with mismatching color/depth render targets. The &quot;fix&quot; was to just not render
+to depth at all, but that may mess up other things of course. (Not the least of
+which is that the depth texture will remain untouched.)
 
-Still the same with Xorg 1.17.1, mesa 10.4.5, Qt 5.4.1</pre>
+To start, you should get an apitrace (<a href="https://github.com/apitrace/apitrace">https://github.com/apitrace/apitrace</a>) of
+the failing application. This should help determine what's going on. Make a
+debug mesa build and see if the driver outputs any &quot;aaaah, i don't know how to
+handle this&quot; type messages.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +117,9 @@ Still the same with Xorg 1.17.1, mesa 10.4.5, Qt 5.4.1</pre>
     </body>
 </html>
 
---1425112790.7B7E0.30642--
+--1425164887.38eE0.20953--
 
---===============0971958711==
+--===============0016347828==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0971958711==--
+--===============0016347828==--
