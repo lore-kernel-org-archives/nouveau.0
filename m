@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89019] [NV30/Gallium] Black texture using Qt5
-Date: Sat, 28 Feb 2015 23:08:08 +0000
-Message-ID: <bug-89019-8800-azdEzmMKub@http.bugs.freedesktop.org/>
-References: <bug-89019-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69349] Random image corruptions (in Debian Wheezy
+ with Linux 3.2)
+Date: Mon, 02 Mar 2015 07:44:09 +0000
+Message-ID: <bug-69349-8800-5Ser0BgxtO@http.bugs.freedesktop.org/>
+References: <bug-69349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0016347828=="
+Content-Type: multipart/mixed; boundary="===============1626106620=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89019-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,106 +21,92 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0016347828==
-Content-Type: multipart/alternative; boundary="1425164887.38eE0.20953"; charset="UTF-8"
+--===============1626106620==
+Content-Type: multipart/alternative; boundary="1425282249.D2Be74112.16189"; charset="UTF-8"
 
 
---1425164887.38eE0.20953
-Date: Sat, 28 Feb 2015 23:08:07 +0000
+--1425282249.D2Be74112.16189
+Date: Mon, 2 Mar 2015 07:44:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89019
+https://bugs.freedesktop.org/show_bug.cgi?id=3D69349
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from Paul Menzel <paulepanter-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> ---
+(In reply to Tobias Klausmann from comment #4)
+> Is this still a problem with newer software (kernel/xf86-video-nouveau)?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Black texture using Qt5     |[NV30/Gallium] Black
-                   |                            |texture using Qt5
+Yes, I am still able to reproduce this with Debian Jessie/testing, which
+currently has Linux kernel 3.19.x and `xserver-xorg-video-nouveau` 1:1.0.11=
+-1.
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The thing immediately coming to mind was the workaround I added for dealing
-with mismatching color/depth render targets. The "fix" was to just not render
-to depth at all, but that may mess up other things of course. (Not the least of
-which is that the depth texture will remain untouched.)
+Suddenly the corruptions start on the left side of the monitor and then I c=
+an
+see how slow the window of uxterm is rendered line by line (takes maybe two
+seconds). If I do not shut the system down, it=E2=80=99ll eventually freeze.
 
-To start, you should get an apitrace (https://github.com/apitrace/apitrace) of
-the failing application. This should help determine what's going on. Make a
-debug mesa build and see if the driver outputs any "aaaah, i don't know how to
-handle this" type messages.
-
--- 
+--=20
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1425164887.38eE0.20953
-Date: Sat, 28 Feb 2015 23:08:07 +0000
+--1425282249.D2Be74112.16189
+Date: Mon, 2 Mar 2015 07:44:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV30/Gallium] Black texture using Qt5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">bug 89019</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Black texture using Qt5
-           </td>
-           <td>[NV30/Gallium] Black texture using Qt5
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV30/Gallium] Black texture using Qt5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Random image corruptions (in Debian Wheezy with Linux 3.2=
+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69349#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV30/Gallium] Black texture using Qt5"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89019">bug 89019</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - Random image corruptions (in Debian Wheezy with Linux 3.2=
+)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69349">bug 69349<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+paulepanter&#64;users.sourceforge.net" title=3D"Paul Menzel &lt;paulepanter=
+&#64;users.sourceforge.net&gt;"> <span class=3D"fn">Paul Menzel</span></a>
 </span></b>
-        <pre>The thing immediately coming to mind was the workaround I added for dealing
-with mismatching color/depth render targets. The &quot;fix&quot; was to just not render
-to depth at all, but that may mess up other things of course. (Not the least of
-which is that the depth texture will remain untouched.)
+        <pre>(In reply to Tobias Klausmann from <a href=3D"show_bug.cgi?id=
+=3D69349#c4">comment #4</a>)
+<span class=3D"quote">&gt; Is this still a problem with newer software (ker=
+nel/xf86-video-nouveau)?</span >
 
-To start, you should get an apitrace (<a href="https://github.com/apitrace/apitrace">https://github.com/apitrace/apitrace</a>) of
-the failing application. This should help determine what's going on. Make a
-debug mesa build and see if the driver outputs any &quot;aaaah, i don't know how to
-handle this&quot; type messages.</pre>
+Yes, I am still able to reproduce this with Debian Jessie/testing, which
+currently has Linux kernel 3.19.x and `xserver-xorg-video-nouveau` 1:1.0.11=
+-1.
+
+Suddenly the corruptions start on the left side of the monitor and then I c=
+an
+see how slow the window of uxterm is rendered line by line (takes maybe two
+seconds). If I do not shut the system down, it=E2=80=99ll eventually freeze=
+.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1425164887.38eE0.20953--
+--1425282249.D2Be74112.16189--
 
---===============0016347828==
+--===============1626106620==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0016347828==--
+--===============1626106620==--
