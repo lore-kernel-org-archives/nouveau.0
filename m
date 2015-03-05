@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88946] [NVC1] black screen after resuming from
 	hibernate
-Date: Thu, 05 Mar 2015 17:32:44 +0000
-Message-ID: <bug-88946-8800-DPjdm1u9ho@http.bugs.freedesktop.org/>
+Date: Thu, 05 Mar 2015 17:36:13 +0000
+Message-ID: <bug-88946-8800-DRIFlzScaV@http.bugs.freedesktop.org/>
 References: <bug-88946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0700817307=="
+Content-Type: multipart/mixed; boundary="===============0011924745=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0700817307==
-Content-Type: multipart/alternative; boundary="1425576764.7aCd1.7889"; charset="UTF-8"
+--===============0011924745==
+Content-Type: multipart/alternative; boundary="1425576973.8cf3E1661.8688"; charset="UTF-8"
 
 
---1425576764.7aCd1.7889
-Date: Thu, 5 Mar 2015 17:32:44 +0000
+--1425576973.8cf3E1661.8688
+Date: Thu, 5 Mar 2015 17:36:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88946
 
---- Comment #9 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Same problem in 4.0rc2
+--- Comment #10 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Is "suspend to disk"-support planned for driver nouveau?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1425576764.7aCd1.7889
-Date: Thu, 5 Mar 2015 17:32:44 +0000
+--1425576973.8cf3E1661.8688
+Date: Thu, 5 Mar 2015 17:36:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88946">bug 88946</a>
               from <span class="vcard"><a class="email" href="mailto:baumber&#64;hotmail.com" title="B. A. &lt;baumber&#64;hotmail.com&gt;"> <span class="fn">B. A.</span></a>
 </span></b>
-        <pre>Same problem in 4.0rc2</pre>
+        <pre>Is &quot;suspend to disk&quot;-support planned for driver nouveau?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1425576764.7aCd1.7889--
+--1425576973.8cf3E1661.8688--
 
---===============0700817307==
+--===============0011924745==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0700817307==--
+--===============0011924745==--
