@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88946] [NVC1] black screen after resuming from
 	hibernate
-Date: Thu, 05 Mar 2015 17:36:13 +0000
-Message-ID: <bug-88946-8800-DRIFlzScaV@http.bugs.freedesktop.org/>
+Date: Thu, 05 Mar 2015 19:12:43 +0000
+Message-ID: <bug-88946-8800-4V0NIyPfls@http.bugs.freedesktop.org/>
 References: <bug-88946-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0011924745=="
+Content-Type: multipart/mixed; boundary="===============0555907189=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88946-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0011924745==
-Content-Type: multipart/alternative; boundary="1425576973.8cf3E1661.8688"; charset="UTF-8"
+--===============0555907189==
+Content-Type: multipart/alternative; boundary="1425582763.7CdEd5A2.30952"; charset="UTF-8"
 
 
---1425576973.8cf3E1661.8688
-Date: Thu, 5 Mar 2015 17:36:13 +0000
+--1425582763.7CdEd5A2.30952
+Date: Thu, 5 Mar 2015 19:12:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88946
 
---- Comment #10 from B. A. <baumber-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Is "suspend to disk"-support planned for driver nouveau?
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to B. A. from comment #10)
+> Is "suspend to disk"-support planned for driver nouveau?
+
+It's not broken on purpose... I believe it *ought* to work. It'll just require
+someone to debug this to figure out what's going wrong.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1425576973.8cf3E1661.8688
-Date: Thu, 5 Mar 2015 17:36:13 +0000
+--1425582763.7CdEd5A2.30952
+Date: Thu, 5 Mar 2015 19:12:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88946#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVC1] black screen after resuming from hibernate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88946">bug 88946</a>
-              from <span class="vcard"><a class="email" href="mailto:baumber&#64;hotmail.com" title="B. A. &lt;baumber&#64;hotmail.com&gt;"> <span class="fn">B. A.</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is &quot;suspend to disk&quot;-support planned for driver nouveau?</pre>
+        <pre>(In reply to B. A. from <a href="show_bug.cgi?id=88946#c10">comment #10</a>)
+<span class="quote">&gt; Is &quot;suspend to disk&quot;-support planned for driver nouveau?</span >
+
+It's not broken on purpose... I believe it *ought* to work. It'll just require
+someone to debug this to figure out what's going wrong.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1425576973.8cf3E1661.8688--
+--1425582763.7CdEd5A2.30952--
 
---===============0011924745==
+--===============0555907189==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0011924745==--
+--===============0555907189==--
