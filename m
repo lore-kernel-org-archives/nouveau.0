@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89455] Unigine Heaven black and white boxes
-Date: Fri, 06 Mar 2015 05:30:32 +0000
-Message-ID: <bug-89455-8800-Jf4UN1HaJX@http.bugs.freedesktop.org/>
+Subject: [Bug 89455] [NVC0/Gallium] Unigine Heaven black and white
+	boxes
+Date: Fri, 06 Mar 2015 05:32:51 +0000
+Message-ID: <bug-89455-8800-v4YgNmZVrc@http.bugs.freedesktop.org/>
 References: <bug-89455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1727838511=="
+Content-Type: multipart/mixed; boundary="===============1585041291=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1727838511==
-Content-Type: multipart/alternative; boundary="1425619832.ed0331.10603"; charset="UTF-8"
+--===============1585041291==
+Content-Type: multipart/alternative; boundary="1425619971.FAEbE5A1.11358"; charset="UTF-8"
 
 
---1425619832.ed0331.10603
-Date: Fri, 6 Mar 2015 05:30:32 +0000
+--1425619971.FAEbE5A1.11358
+Date: Fri, 6 Mar 2015 05:32:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89455
 
-Luke <lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #114066|text/plain                  |image/jpeg
-          mime type|                            |
+            Summary|Unigine Heaven black and    |[NVC0/Gallium] Unigine
+                   |white boxes                 |Heaven black and white
+                   |                            |boxes
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Yeah... I thought it was my bad at one point, but I was able to repro the issue
+going back to mesa 9.1 or 9.0 iirc (which predates any of my changes). Note
+that this does not affect NV50, only NVC0.
+
+The one issue on NVC0 that I'm aware of is _some_ sort of constbuf flushing
+problem... might be what's going on here.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1425619832.ed0331.10603
-Date: Fri, 6 Mar 2015 05:30:32 +0000
+--1425619971.FAEbE5A1.11358
+Date: Fri, 6 Mar 2015 05:32:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,11 +62,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:lukebenes&#64;hotmail.com" title="Luke &lt;lukebenes&#64;hotmail.com&gt;"> <span class="fn">Luke</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Unigine Heaven black and white boxes"
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89455">bug 89455</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,13 +77,31 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #114066 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Summary</td>
+           <td>Unigine Heaven black and white boxes
            </td>
-           <td>image/jpeg
+           <td>[NVC0/Gallium] Unigine Heaven black and white boxes
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455">bug 89455</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Yeah... I thought it was my bad at one point, but I was able to repro the issue
+going back to mesa 9.1 or 9.0 iirc (which predates any of my changes). Note
+that this does not affect NV50, only NVC0.
+
+The one issue on NVC0 that I'm aware of is _some_ sort of constbuf flushing
+problem... might be what's going on here.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +113,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1425619832.ed0331.10603--
+--1425619971.FAEbE5A1.11358--
 
---===============1727838511==
+--===============1585041291==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1727838511==--
+--===============1585041291==--
