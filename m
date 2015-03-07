@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89483] [NV11] Hangs on boot with external monitor
- active on Dell Latitude C810
-Date: Sat, 07 Mar 2015 17:06:24 +0000
-Message-ID: <bug-89483-8800-Idpw5dMLyw@http.bugs.freedesktop.org/>
-References: <bug-89483-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89484] New: xrandr no output to DisplayPort with
+ GeForce GT 520M.
+Date: Sat, 07 Mar 2015 19:02:18 +0000
+Message-ID: <bug-89484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872463921=="
+Content-Type: multipart/mixed; boundary="===============0874589470=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +19,58 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1872463921==
-Content-Type: multipart/alternative; boundary="1425747984.6BeaC02.4910"; charset="UTF-8"
+--===============0874589470==
+Content-Type: multipart/alternative; boundary="1425754938.4FBb5321.26766"; charset="UTF-8"
 
 
---1425747984.6BeaC02.4910
-Date: Sat, 7 Mar 2015 17:06:24 +0000
+--1425754938.4FBb5321.26766
+Date: Sat, 7 Mar 2015 19:02:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89483
+https://bugs.freedesktop.org/show_bug.cgi?id=89484
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 89484
+           Summary: xrandr no output to DisplayPort with GeForce GT 520M.
+           Product: xorg
+           Version: 7.7 (2012.06)
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: corey.quixote-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Hangs on boot with external |[NV11] Hangs on boot with
-                   |monitor active on Dell      |external monitor active on
-                   |Latitude C810               |Dell Latitude C810
+Originially posted in Archlinux BBS:
+https://bbs.archlinux.org/viewtopic.php?id=193143
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you do the problematic boot with
+DisplayPort fails to show output when using xrandr to set display.  Monitor
+shown as "connected" and displays correct modes, however no output is sent to
+the attached monitor. 
 
-nouveau.debug=trace
+dmesg and xorg.0.log are showing errors related to Nouveau driver (see
+attachments in subsequent posts).
 
-I assume that the nouveau messages are the last ones you see before the hang? 
+xorg.conf is empty (defaults).
 
-Also upload your vbios (/sys/kernel/debug/dri/0/vbios.rom) from a
-non-problematic boot.
+Machine uses descrete graphics (Optimus), with DisplayPort attached to the
+Nvidia card:
+
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core
+Processor Family Integrated Graphics Controller (rev 09)
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GF119M 
+[GeForce GT 520M] (rev a1)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1425747984.6BeaC02.4910
-Date: Sat, 7 Mar 2015 17:06:24 +0000
+--1425754938.4FBb5321.26766
+Date: Sat, 7 Mar 2015 19:02:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,47 +78,109 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483">bug 89483</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title="NEW - xrandr no output to DisplayPort with GeForce GT 520M."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89484">89484</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Hangs on boot with external monitor active on Dell Latitude C810
-           </td>
-           <td>[NV11] Hangs on boot with external monitor active on Dell Latitude C810
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>xrandr no output to DisplayPort with GeForce GT 520M.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>7.7 (2012.06)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>corey.quixote&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483">bug 89483</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Could you do the problematic boot with
+        <pre>Originially posted in Archlinux BBS:
+<a href="https://bbs.archlinux.org/viewtopic.php?id=193143">https://bbs.archlinux.org/viewtopic.php?id=193143</a>
 
-nouveau.debug=trace
+DisplayPort fails to show output when using xrandr to set display.  Monitor
+shown as &quot;connected&quot; and displays correct modes, however no output is sent to
+the attached monitor. 
 
-I assume that the nouveau messages are the last ones you see before the hang? 
+dmesg and xorg.0.log are showing errors related to Nouveau driver (see
+attachments in subsequent posts).
 
-Also upload your vbios (/sys/kernel/debug/dri/0/vbios.rom) from a
-non-problematic boot.</pre>
+xorg.conf is empty (defaults).
+
+Machine uses descrete graphics (Optimus), with DisplayPort attached to the
+Nvidia card:
+
+00:02.0 VGA compatible controller: Intel Corporation 2nd Generation Core
+Processor Family Integrated Graphics Controller (rev 09)
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GF119M 
+[GeForce GT 520M] (rev a1)</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +192,9 @@ non-problematic boot.</pre>
     </body>
 </html>
 
---1425747984.6BeaC02.4910--
+--1425754938.4FBb5321.26766--
 
---===============1872463921==
+--===============0874589470==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +204,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1872463921==--
+--===============0874589470==--
