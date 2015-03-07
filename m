@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89484] xrandr no output to DisplayPort with GeForce
-	GT 520M.
-Date: Sat, 07 Mar 2015 19:23:01 +0000
-Message-ID: <bug-89484-8800-A6kL0jKDqT@http.bugs.freedesktop.org/>
+Subject: [Bug 89484] [NVD9] xrandr no output to DisplayPort with
+ GeForce GT 520M.
+Date: Sat, 07 Mar 2015 19:45:49 +0000
+Message-ID: <bug-89484-8800-L0RnLqb4sS@http.bugs.freedesktop.org/>
 References: <bug-89484-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0024928049=="
+Content-Type: multipart/mixed; boundary="===============0909913352=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0024928049==
-Content-Type: multipart/alternative; boundary="1425756181.5AEF72.30268"; charset="UTF-8"
+--===============0909913352==
+Content-Type: multipart/alternative; boundary="1425757549.eEC7Ad352.1518"; charset="UTF-8"
 
 
---1425756181.5AEF72.30268
-Date: Sat, 7 Mar 2015 19:23:01 +0000
+--1425757549.eEC7Ad352.1518
+Date: Sat, 7 Mar 2015 19:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89484
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[    5.212934] nouveau  [     DRM] TMDS table version 2.0
-[    5.212935] nouveau  [     DRM] DCB version 4.0
-[    5.212937] nouveau  [     DRM] DCB outp 00: 020003a6 0f220010
-[    5.212938] nouveau  [     DRM] DCB outp 01: 02000362 00020010
-[    5.212940] nouveau  [     DRM] DCB conn 00: 00101046
-[    5.213611] nouveau E[   VBIOS][0000:01:00.0] 0x5c86[0]: script needs crtc
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Something unexpected is going on in the VBIOS which breaks everything. Did this
-work with older kernels?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|xrandr no output to         |[NVD9] xrandr no output to
+                   |DisplayPort with GeForce GT |DisplayPort with GeForce GT
+                   |520M.                       |520M.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1425756181.5AEF72.30268
-Date: Sat, 7 Mar 2015 19:23:01 +0000
+--1425757549.eEC7Ad352.1518
+Date: Sat, 7 Mar 2015 19:45:49 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,29 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - xrandr no output to DisplayPort with GeForce GT 520M."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89484#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - xrandr no output to DisplayPort with GeForce GT 520M."
+   title="NEW - [NVD9] xrandr no output to DisplayPort with GeForce GT 520M."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89484">bug 89484</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>[    5.212934] nouveau  [     DRM] TMDS table version 2.0
-[    5.212935] nouveau  [     DRM] DCB version 4.0
-[    5.212937] nouveau  [     DRM] DCB outp 00: 020003a6 0f220010
-[    5.212938] nouveau  [     DRM] DCB outp 01: 02000362 00020010
-[    5.212940] nouveau  [     DRM] DCB conn 00: 00101046
-[    5.213611] nouveau E[   VBIOS][0000:01:00.0] 0x5c86[0]: script needs crtc
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Something unexpected is going on in the VBIOS which breaks everything. Did this
-work with older kernels?</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>xrandr no output to DisplayPort with GeForce GT 520M.
+           </td>
+           <td>[NVD9] xrandr no output to DisplayPort with GeForce GT 520M.
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -89,9 +85,9 @@ work with older kernels?</pre>
     </body>
 </html>
 
---1425756181.5AEF72.30268--
+--1425757549.eEC7Ad352.1518--
 
---===============0024928049==
+--===============0909913352==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0024928049==--
+--===============0909913352==--
