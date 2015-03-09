@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89484] [NVD9] xrandr no output to DisplayPort with
- GeForce GT 520M.
-Date: Mon, 09 Mar 2015 14:20:27 +0000
-Message-ID: <bug-89484-8800-etdGExW9eU@http.bugs.freedesktop.org/>
-References: <bug-89484-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: 3D part of the Godot engine
+Date: Mon, 9 Mar 2015 10:48:09 -0400
+Message-ID: <CAKb7Uvg_o2xGoVXjt4m7ZMr_4DoXipP92Ao64W7D46VN9BAe2A@mail.gmail.com>
+References: <COL128-W896234E437ACB4A541DC5EA91B0@phx.gbl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0858557298=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89484-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <COL128-W896234E437ACB4A541DC5EA91B0-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,98 +17,46 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: theUser BL <theuserbl-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0858557298==
-Content-Type: multipart/alternative; boundary="1425910827.3bB372.20066"; charset="UTF-8"
-
-
---1425910827.3bB372.20066
-Date: Mon, 9 Mar 2015 14:20:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89484
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could you supply a dmesg from a boot with
-
-nouveau.debug=trace drm.debug=0xe
-
-where you try to activate the DP screen? It's unclear whether your vbios issue
-is related to your DP problems. Additionally, can you confirm that you've
-properly set up the provider stuff as per
-http://nouveau.freedesktop.org/wiki/Optimus/ to be able to use reverse prime?
-(I guess if it shows up in xrandr, that's a pretty good sign.)
-
-Lastly, the reason for the VBIOS errors is that we hit unexpected opcodes in
-some scripts. Seeing what the blob does would be instructional. If possible,
-please produce a mmiotrace of nvidia's driver. See
-https://wiki.ubuntu.com/X/MMIOTracing for a quick guide.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1425910827.3bB372.20066
-Date: Mon, 9 Mar 2015 14:20:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVD9] xrandr no output to DisplayPort with GeForce GT 520M."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89484#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVD9] xrandr no output to DisplayPort with GeForce GT 520M."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89484">bug 89484</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Could you supply a dmesg from a boot with
-
-nouveau.debug=trace drm.debug=0xe
-
-where you try to activate the DP screen? It's unclear whether your vbios issue
-is related to your DP problems. Additionally, can you confirm that you've
-properly set up the provider stuff as per
-<a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a> to be able to use reverse prime?
-(I guess if it shows up in xrandr, that's a pretty good sign.)
-
-Lastly, the reason for the VBIOS errors is that we hit unexpected opcodes in
-some scripts. Seeing what the blob does would be instructional. If possible,
-please produce a mmiotrace of nvidia's driver. See
-<a href="https://wiki.ubuntu.com/X/MMIOTracing">https://wiki.ubuntu.com/X/MMIOTracing</a> for a quick guide.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1425910827.3bB372.20066--
-
---===============0858557298==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0858557298==--
+VGhlIGZvcnVtIHJlcXVpcmVzIGxvZ2luIHRvIHBvc3QsIHNvIHRoYXQgd29uJ3QgaGFwcGVuLCBh
+dCBsZWFzdCBieQptZS4gSXQgc2VlbXMgYSBsaXR0bGUgaGFyc2ggdG8gc2F5IHRoYXQKCiIiIgpX
+aGlsZSBJIGNhbid0IHNheSB0aGlzIHdpdGggYW55IGNlcnRhaW50eSwgSSdtIGFsbW9zdCB3aWxs
+aW5nIHRvIGJldAp0aGF0IHRoZSBwcm9ibGVtIGlzIHdpdGggeW91ciBkcml2ZXJzLCBnaXZlbiBO
+b3V2ZWF1J3Mgbm90b3Jpb3VzCk9wZW5HTC1yZWxhdGVkIGlzc3Vlcy4gSSB3b3VsZCBzdWdnZXN0
+IGdpdmluZyB0aGUgcHJvcHJpZXRhcnkgTnZpZGlhCmRyaXZlcnMgYSBzaG90IGFuZCBzZWUgaWYg
+dGhhdCBmaXhlcyBpdC4KIiIiCgphbmQKCiIiIgpUaGUgTm91dmVhdSBncmFwaGljcyBkcml2ZXIg
+aXMgdGVycmlibGUgZm9yIGFueXRoaW5nIDNEICh1c3VhbGx5IGl0CmRvZXNuJ3QgZXZlbiB3b3Jr
+IGF0IGFsbCwgc28gdGhlIGZhY3QgaXQgc2hvd3MgYW55dGhpbmcgaXMgYSBtaW5vcgptaXJhY2xl
+IGluIGl0c2VsZikuIEl0J3MgZGVmaW5pdGVseSB0aGUgZHJpdmVyLgoiIiIKCldoaWNoLCBpbiB0
+dXJuLCBtYWtlcyBtZSBsZXNzIGluY2xpbmVkIHRvIGNhcmUgYWJvdXQgdGhlaXIgc29mdHdhcmUu
+CkluIHJlYWxpdHksIG5vdXZlYXUncyBPcGVuR0wgaW1wbGVtZW50YXRpb24gdGVuZHMgdG8gYmUg
+YWJvdXQgb24gcGFyCndpdGggdGhlIHJhZGVvbiBkcml2ZXJzIGluIHRlcm1zIG9mIGNvbXBsaWFu
+Y2UsIG9mdGVuIGJldHRlciAoYXQgbGVhc3QKYmFzZWQgb24gcGlnbGl0IHJlc3VsdHMpLiBJdCdz
+IHRydWUgdGhhdCByZWNsb2NraW5nIGlzIG9mdGVuCnVuYXZhaWxhYmxlLCBzbyBpdCB0ZW5kcyB0
+byBydW4gc2xvd2x5IGNvbXBhcmVkIHRvIHRoZSBjYXJkJ3MKcG90ZW50aWFsLCBidXQgdGhhdCBo
+YXMgbGl0dGxlIHRvIGRvIHdpdGggT3BlbkdMIGRyaXZlciBxdWFsaXR5LgoKTWlzc2luZyB0ZXh0
+dXJlcyBtb3N0IG9mdGVuIG1lYW4gdGhhdCB0aGUgYXBwbGljYXRpb24gaXMgYXR0ZW1wdGluZyB0
+bwp1c2UgZS5nLiBzM3RjIHRleHR1cmVzIHdpdGhvdXQgY2hlY2tpbmcgZm9yIHRoZWlyIHN1cHBv
+cnQuIFBlcmhhcHMgdGhlCnVzZXIgaXMgbWlzc2luZyBsaWJ0eGNfZHh0biAod2hpY2ggYWxsb3dz
+IG1lc2EgdG8gc3VwcG9ydCBzM3RjCnRleHR1cmVzKS4gQW4gYXBpdHJhY2Ugb2YgdGhlIGlzc3Vl
+ICsgYnVnIGZpbGVkIG9uCmJ1Z3MuZnJlZWRlc2t0b3Aub3JnIHdvdWxkIGFsbG93IG1lIHRvIGlu
+dmVzdGlnYXRlIHRoZSBpc3N1ZSBmb3IgcmVhbC4KCiAgLWlsaWEKCgpPbiBNb24sIE1hciA5LCAy
+MDE1IGF0IDU6NDkgQU0sIHRoZVVzZXIgQkwgPHRoZXVzZXJibEBob3RtYWlsLmNvbT4gd3JvdGU6
+Cj4gSGkhCj4gQXQKPiBodHRwOi8vd3d3LmdvZG90ZW5naW5lLm9yZy9mb3J1bS92aWV3dG9waWMu
+cGhwP2Y9OSZ0PTE3MTAmc2lkPWYzZGUwMDA5ZjliNzA2ZmE2ZTgwZDU0MGFmZTZlNTQ0Cj4gYXJl
+IHNob3duIHNjcmVlbnNob3RzIHRha2VuIGZyb20gV2luZG93cyB3aXRoIHRoZSBOVmlkaWEgZHJp
+dmVyIGFuZCBmcm9tIExpbnV4IHdpdGggdGhlIE5vdXZlYXUgZHJpdmVyLgo+Cj4gSSB0aGluayB0
+byBmaXggYnVncyBpbiB0aGlzIGNhc2Ugd291bGQgYmUgZWFzaWVyIHRoZW4gbGV0IFVuaXR5LSBv
+ciBVbnJlYWwtcHJvZ3JhbSBydW4sIGJlY2F1c2UgdGhlIEdvZG90IGVuZ2luZSBpcyBPcGVuU291
+cmNlIChNSVQtbGljZW5zZSk6Cj4gaHR0cHM6Ly9naXRodWIuY29tL29rYW1zdHVkaW8vZ29kb3QK
+Pgo+IFNvIHdvdWxkIGJlIG5pY2UsIGlmIHlvdSBjb3VsZCBicmluZyB0aGUgM0QgcGFydCBvZiBH
+b2RvdCB0byB3b3JrIGNvcnJlY3QuCj4KPiBHcmVhdGluZ3MKPiB0aGV1c2VyYmwKPgo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
+aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
+YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
