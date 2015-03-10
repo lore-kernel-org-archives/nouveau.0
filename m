@@ -1,34 +1,39 @@
-From: theUser BL <theuserbl-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: 3D part of the Godot engine
-Date: Tue, 10 Mar 2015 01:01:10 +0000
-Message-ID: <COL128-W87B7689EC148497716D07A9180@phx.gbl>
-References: <COL128-W896234E437ACB4A541DC5EA91B0@phx.gbl>,
- <CAKb7Uvg_o2xGoVXjt4m7ZMr_4DoXipP92Ao64W7D46VN9BAe2A@mail.gmail.com>,
- <CA+DR-TrhzmnEm=ap5yVoPqPJULKjYSCxMTAtrpQNRGiFOH+GMw@mail.gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] instmem/gk20a: fix crash during error path
+Date: Tue, 10 Mar 2015 15:46:08 +0900
+Message-ID: <1425969968-25691-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CA+DR-TrhzmnEm=ap5yVoPqPJULKjYSCxMTAtrpQNRGiFOH+GMw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Gerben Welter <gerben-65TlOEBfe8yHXe+LvDLADg@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-PsKgIChzbyBpdCBoYXMgbm90aGluZyB0byBkbyB3aXRoCj4gbm91dmVhdSEpIGFuZCBpdCB3YXMg
-Zml4ZWQgYnkgaW5zdGFsbGluZyB0aGUgczN0YyBsaWJyYXJ5IGFzIElsaWEKPiBzdWdnZXN0ZWQu
-Cj4KPiBTbyBmaW5kIG91dCBob3cgeW91IGNhbiBpbnN0YWxsIHRoaXMgbGlicmFyeSBmb3IgeW91
-ciBkaXN0cmlidXRpb24uCj4gRm9yIEZlZG9yYSB0aGUgbGlicmFyeSBjYW4gYmUgZm91bmQgaW4g
-dGhlIHJwbWZ1c2lvbiByZXBvIGFuZCBpcwo+IGNhbGxlZCBsaWJ0eGNfZHh0bi4KClRoYW5rcy4g
-SGF2ZSBub3cgaW5zdGFsbGVkIG9uIE9wZW5TdXNlIGxpYnR4Y19keHRuLiBBbmQgaXQgd29ya3Mg
-ZmluZS4gOi1ECgpHcmVhdGluZ3MKdGhldXNlcmJsCgogCQkgCSAgIAkJICAKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+If a memory allocation fails when using the DMA allocator,
+gk20a_instobj_dtor_dma() will be called on the failed instmem object.
+At this time, node->handle might not be NULL despite the call to
+dma_alloc_attrs() having failed. node->cpuaddr is the right member to
+check for such a failure, so use it instead.
+
+Reported-by: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ drm/nouveau/nvkm/subdev/instmem/gk20a.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+index fcba72eb74a3..dd0994d9ebfc 100644
+--- a/drm/nouveau/nvkm/subdev/instmem/gk20a.c
++++ b/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+@@ -148,7 +148,7 @@ gk20a_instobj_dtor_dma(struct gk20a_instobj_priv *_node)
+ 	struct gk20a_instmem_priv *priv = (void *)nvkm_instmem(node);
+ 	struct device *dev = nv_device_base(nv_device(priv));
+ 
+-	if (unlikely(!node->handle))
++	if (unlikely(!node->cpuaddr))
+ 		return;
+ 
+ 	dma_free_attrs(dev, _node->mem->size << PAGE_SHIFT, node->cpuaddr,
+-- 
+2.3.2
