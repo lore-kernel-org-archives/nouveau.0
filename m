@@ -1,12 +1,12 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] instmem/gk20a: fix crash during error path
-Date: Wed, 11 Mar 2015 10:01:39 +0100
-Message-ID: <20150311090138.GD19577@ulmo.nvidia.com>
-References: <1425969968-25691-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Wed, 11 Mar 2015 15:59:41 +0000
+Message-ID: <bug-80901-8800-EsAohUznv4@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0945890223=="
+Content-Type: multipart/mixed; boundary="===============1914918032=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1425969968-25691-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,57 +16,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0945890223==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="llIrKcgUOe3dCx0c"
-Content-Disposition: inline
+--===============1914918032==
+Content-Type: multipart/alternative; boundary="1426089581.c62364D3.23961"; charset="UTF-8"
 
 
---llIrKcgUOe3dCx0c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--1426089581.c62364D3.23961
+Date: Wed, 11 Mar 2015 15:59:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, Mar 10, 2015 at 03:46:08PM +0900, Alexandre Courbot wrote:
-> If a memory allocation fails when using the DMA allocator,
-> gk20a_instobj_dtor_dma() will be called on the failed instmem object.
-> At this time, node->handle might not be NULL despite the call to
-> dma_alloc_attrs() having failed. node->cpuaddr is the right member to
-> check for such a failure, so use it instead.
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
-Indeed. The DMA address handle is in fact the very opposite of 0 in the
-failure case (DMA_ERROR_CODE).
+--- Comment #40 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to K.-P. Schrage from comment #38)
+...
+> I put the two lines
+> echo 1 >
+> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable
+> /usr/local/bin/nvapoke e118 80000002
+> into /etc/rc.d/rc.local (don't know any other way to make this workaround
+> permanent).
+> 
 
-Reviewed-by: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+$ udevadm info -a -p /sys/class/drm/card0 | grep -m2
+'ATTRS{device}\|ATTRS{vendor}'
+    ATTRS{device}=="0xabcd"
+    ATTRS{vendor}=="0x1234"
 
---llIrKcgUOe3dCx0c
-Content-Type: application/pgp-signature
+/etc/udev/rules.d/10-unladen-swallow.rules
+ACTION=="add", ATTRS{vendor}=="0x1234", ATTRS{device}=="0xabcd", RUN+="/bin/sh
+-c '/bin/echo 1 >
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'",
+RUN+="/usr/local/bin/nvapoke e118 80000002"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
-iQIcBAABCAAGBQJVAARyAAoJEN0jrNd/PrOhL6sQALO4aOdIQ0SBMoLZUSY9UJIF
-h5T209li5yi1/ddk7kPyCpd6Bx5ytBPJkgDgfrLFJiMkTGEFhbFNv6qEnlWJhaGy
-xG9lG2U8s2qgRCgnGRLTJIVAxb8AClj3bba8pA0cxJsIQWV1OomrxYFO0v9wBHcY
-huGuRR62Owv8NEqbAH0/QfxdOBiZN25G3wQVc481+KgLAjvvaX1lHeoVjctt5uUk
-eG56fenyI2LOp8xXJs1I9bBCVJAbTQ/N6cZ3QyYo+ENZCUR6n00paRCV1+y7lEtG
-Y6+oQB69WsVvwaF2z46dOgsQprYGEiJ2bKSgfqa8UjfFQZvL0zmvqsz1WVYkcJpG
-uB9Ib6Xjlm9hxmfq2GKG4fTAzAIONx315wplfbEQNIlTma/g4e5x1N2eJeUKCoe8
-4T9Z3x1185UrxSjSUmBCHR8FyzIqccVZ4KmkblqnQd13TRnFMDk1uaum13aujVSF
-pJi/tJuRecQsvGLHqMQ0jT2ntlgoVOt7WljdyTnkhWAu8wOZeRUzyw/CgQclNExj
-jHUpUxiMg/qbIP8tQjP39vrbhSFwQAZ4CYUjiL8wbL180F97Jo3JCCSCL7Fqpy1U
-tiHrNLupXhNo3zCECi7nIniZQACnxnwpwCymd+Pe2Z6esCFqScTm0qu3THP4HrrL
-qRIqNycyKAsS97D9mhdm
-=ZNwA
------END PGP SIGNATURE-----
+--1426089581.c62364D3.23961
+Date: Wed, 11 Mar 2015 15:59:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
---llIrKcgUOe3dCx0c--
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c40">Comment # 40</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>(In reply to K.-P. Schrage from <a href="show_bug.cgi?id=80901#c38">comment #38</a>)
+...
+<span class="quote">&gt; I put the two lines
+&gt; echo 1 &gt;
+&gt; /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable
+&gt; /usr/local/bin/nvapoke e118 80000002
+&gt; into /etc/rc.d/rc.local (don't know any other way to make this workaround
+&gt; permanent).
+&gt; </span >
 
---===============0945890223==
+$ udevadm info -a -p /sys/class/drm/card0 | grep -m2
+'ATTRS{device}\|ATTRS{vendor}'
+    ATTRS{device}==&quot;0xabcd&quot;
+    ATTRS{vendor}==&quot;0x1234&quot;
+
+/etc/udev/rules.d/10-unladen-swallow.rules
+ACTION==&quot;add&quot;, ATTRS{vendor}==&quot;0x1234&quot;, ATTRS{device}==&quot;0xabcd&quot;, RUN+=&quot;/bin/sh
+-c '/bin/echo 1 &gt;
+/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'&quot;,
+RUN+=&quot;/usr/local/bin/nvapoke e118 80000002&quot;</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426089581.c62364D3.23961--
+
+--===============1914918032==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -76,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0945890223==--
+--===============1914918032==--
