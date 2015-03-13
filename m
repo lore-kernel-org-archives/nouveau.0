@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Fri, 13 Mar 2015 16:05:11 +0000
-Message-ID: <bug-80901-8800-segwkW0las@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89572] New: [NV86] Video playback corruption with
+ nouveau, vdpau
+Date: Fri, 13 Mar 2015 18:36:41 +0000
+Message-ID: <bug-89572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1616523703=="
+Content-Type: multipart/mixed; boundary="===============0244319999=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,53 +19,56 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1616523703==
-Content-Type: multipart/alternative; boundary="1426262711.BA7cd3.27449"; charset="UTF-8"
+--===============0244319999==
+Content-Type: multipart/alternative; boundary="1426271801.6FcEE1.16893"; charset="UTF-8"
 
 
---1426262711.BA7cd3.27449
-Date: Fri, 13 Mar 2015 16:05:11 +0000
+--1426271801.6FcEE1.16893
+Date: Fri, 13 Mar 2015 18:36:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
+https://bugs.freedesktop.org/show_bug.cgi?id=89572
 
---- Comment #43 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to K.-P. Schrage from comment #42)
-> (In reply to poma from comment #40)
-> 
-> > /etc/udev/rules.d/10-unladen-swallow.rules
-> > ACTION=="add", ATTRS{vendor}=="0x1234", ATTRS{device}=="0xabcd",
-> > RUN+="/bin/sh -c '/bin/echo 1 >
-> > /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'",
-> > RUN+="/usr/local/bin/nvapoke e118 80000002"
-> 
-> Thanks, Poma, this rule (all in one line, with my appropriate device and
-> vendor id's) seems to work correctly, but it only reduces fan speed for a
-> second or so during the boot process, then speed is up again, and the value
-> that nvapoke writes is overwritten (800000d8 instead of 80000002).
-> Perhaps this rule comes up too early, but changing the prefix number from 10
-> to e. g. 99 doesn't help.
+            Bug ID: 89572
+           Summary: [NV86] Video playback corruption with nouveau, vdpau
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: matthias-eXl60zzu3X2b9/CCa1Sigw@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
+Created attachment 114290
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114290&action=edit
+screenshot of corrupted video
 
-Exactly, these are oneliners.
+Using archlinux x86_64 with the current mainline kernel (4.0rc3), xorg 1.17.1,
+mesa-vdpau 10.4.6, nouveau-fw 325.15, xf86-video-nouveau 1.0.11.
 
-There is no the GPU fan here, so I tested the CPU fan, and this is how it
-works:
-/etc/udev/rules.d/10-cpu-fan-manual-mode.rules
-RUN+="/bin/sh -c '/bin/echo 1 > /sys/devices/platform/it87.656/pwm1_enable'"
+Playing back a h264 video file (test file big buck bunny,
+http://blender-mirror.kino3d.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov)
+causes major graphical corruption in the video playback (see attachment).
+Several errors appear in the kernel log. The playback is done using "mplayer
+-vo vdpau -vc ffh264vdpau -fs".   (mplayer 37379)
 
-Therefore remove ACTION & ATTRS part, so it runs unconditionally.
+Playing back the same file without acceleration ("mplayer -vo vdpau -fs") works
+perfectly.
 
-Before you reboot, check with:
-# udevadm trigger
+I have had similiar problems in the past, so this is (probably) not a new
+problem of the current 4.0 development kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426262711.BA7cd3.27449
-Date: Fri, 13 Mar 2015 16:05:11 +0000
+--1426271801.6FcEE1.16893
+Date: Fri, 13 Mar 2015 18:36:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,47 +76,106 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV86] Video playback corruption with nouveau, vdpau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89572">89572</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NV86] Video playback corruption with nouveau, vdpau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>matthias&#64;blankertz.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c43">Comment # 43</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>(In reply to K.-P. Schrage from <a href="show_bug.cgi?id=80901#c42">comment #42</a>)
-<span class="quote">&gt; (In reply to poma from <a href="show_bug.cgi?id=80901#c40">comment #40</a>)
-&gt; 
-&gt; &gt; /etc/udev/rules.d/10-unladen-swallow.rules
-&gt; &gt; ACTION==&quot;add&quot;, ATTRS{vendor}==&quot;0x1234&quot;, ATTRS{device}==&quot;0xabcd&quot;,
-&gt; &gt; RUN+=&quot;/bin/sh -c '/bin/echo 1 &gt;
-&gt; &gt; /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'&quot;,
-&gt; &gt; RUN+=&quot;/usr/local/bin/nvapoke e118 80000002&quot;
-&gt; 
-&gt; Thanks, Poma, this rule (all in one line, with my appropriate device and
-&gt; vendor id's) seems to work correctly, but it only reduces fan speed for a
-&gt; second or so during the boot process, then speed is up again, and the value
-&gt; that nvapoke writes is overwritten (800000d8 instead of 80000002).
-&gt; Perhaps this rule comes up too early, but changing the prefix number from 10
-&gt; to e. g. 99 doesn't help.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=114290" name="attach_114290" title="screenshot of corrupted video">attachment 114290</a> <a href="attachment.cgi?id=114290&amp;action=edit" title="screenshot of corrupted video">[details]</a></span>
+screenshot of corrupted video
 
+Using archlinux x86_64 with the current mainline kernel (4.0rc3), xorg 1.17.1,
+mesa-vdpau 10.4.6, nouveau-fw 325.15, xf86-video-nouveau 1.0.11.
 
-Exactly, these are oneliners.
+Playing back a h264 video file (test file big buck bunny,
+<a href="http://blender-mirror.kino3d.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov">http://blender-mirror.kino3d.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov</a>)
+causes major graphical corruption in the video playback (see attachment).
+Several errors appear in the kernel log. The playback is done using &quot;mplayer
+-vo vdpau -vc ffh264vdpau -fs&quot;.   (mplayer 37379)
 
-There is no the GPU fan here, so I tested the CPU fan, and this is how it
-works:
-/etc/udev/rules.d/10-cpu-fan-manual-mode.rules
-RUN+=&quot;/bin/sh -c '/bin/echo 1 &gt; /sys/devices/platform/it87.656/pwm1_enable'&quot;
+Playing back the same file without acceleration (&quot;mplayer -vo vdpau -fs&quot;) works
+perfectly.
 
-Therefore remove ACTION &amp; ATTRS part, so it runs unconditionally.
-
-Before you reboot, check with:
-# udevadm trigger</pre>
+I have had similiar problems in the past, so this is (probably) not a new
+problem of the current 4.0 development kernel.</pre>
         </div>
       </p>
       <hr>
@@ -126,9 +187,9 @@ Before you reboot, check with:
     </body>
 </html>
 
---1426262711.BA7cd3.27449--
+--1426271801.6FcEE1.16893--
 
---===============1616523703==
+--===============0244319999==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -138,4 +199,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1616523703==--
+--===============0244319999==--
