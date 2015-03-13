@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Fri, 13 Mar 2015 21:16:10 +0000
-Message-ID: <bug-80901-8800-1wMAyPYIkH@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 85570] DPMS does not turn off LCD backlight on G73
+ (NV4B) [GeForce 7600 GS]
+Date: Fri, 13 Mar 2015 21:19:04 +0000
+Message-ID: <bug-85570-8800-4G6VMc3uIv@http.bugs.freedesktop.org/>
+References: <bug-85570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0409392259=="
+Content-Type: multipart/mixed; boundary="===============1675367725=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-85570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +21,60 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0409392259==
-Content-Type: multipart/alternative; boundary="1426281369.5716BE3.16308"; charset="UTF-8"
+--===============1675367725==
+Content-Type: multipart/alternative; boundary="1426281544.E82A72.17059"; charset="UTF-8"
 
 
---1426281369.5716BE3.16308
-Date: Fri, 13 Mar 2015 21:16:09 +0000
+--1426281544.E82A72.17059
+Date: Fri, 13 Mar 2015 21:19:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=80901
+https://bugs.freedesktop.org/show_bug.cgi?id=85570
 
---- Comment #45 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to K.-P. Schrage from comment #44)
+Erik van Pienbroek <erik-freedesktop-bugzilla-7hpmIAI+aCYpZwe9G04TCw@public.gmane.org> changed:
 
-> Now my 10-...rules file in /etc/udev/rules.d/ looks like this:
-> RUN+="/bin/sh -c '/bin/echo 1 >
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'",
-> RUN+="/usr/local/bin/nvapoke e118 80000002"
-> 
-> During boot, it sounds as if it gets triggered several times
-> (noise-silence-noise-silence), but it ends up with a silent gpu fan when the
-> graphical desktop has started.
-> Startup logs are flooded with messages like:
-> 
-> nvapoke:473 conflicting memory types e8000000-f0000000
-> uncached-minus<->write-combining
-> reserve_memtype failed [mem 0xe8000000-0xefffffff], track uncached-minus,
-> req uncached-minus
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |erik-freedesktop-bugzilla@v
+                   |                            |anpienbroek.nl
 
+--- Comment #1 from Erik van Pienbroek <erik-freedesktop-bugzilla-7hpmIAI+aCYpZwe9G04TCw@public.gmane.org> ---
+Hi,
 
-# rm /etc/udev/rules.d/10-gpu-fan.rules
+I'm also on Fedora and have been observing similar issues on my Dell XPS
+17/GeForce GT 555M where the backlight of the internal display doesn't turn off
+any more (xset dpms force off) starting with early kernel 3.16 snapshots (git
+tag v3.15-9837-g682b7c1c8ea8 was the first one to be broken). This was reported
+to Red Hat bugzilla @ https://bugzilla.redhat.com/show_bug.cgi?id=1123661 which
+is currently still open.
 
-And try this:
-/etc/systemd/system/gpu-fan.service 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[Unit]
-Description=GPU fan lower speed
+In this bug report I've found out which exact commit is likely to be the cause
+of my backlight issue and I've also prepared a patch which resolves the issue
+for me. Perhaps it will resolve your backlight issue as well.
 
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c '/bin/echo 1 >
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'
-ExecStart=/usr/local/bin/nvapoke e118 80000002
-StandardOutput=null
-StandardError=null
+If you want to try it out yourself, you can find a test kernel build @
+https://koji.fedoraproject.org/koji/taskinfo?taskID=9172516 which can be
+installed with 'yum install
+http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-core-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm
+http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-modules-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm'
 
-[Install]
-WantedBy=basic.target
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This kernel is targeted for Fedora 22 (currently in Alpha) but should also work
+fine on Fedora 20 and 21.
 
-# systemctl enable gpu-fan.service
-# systemctl start gpu-fan.service
-# systemctl status gpu-fan.service
+To make a fair comparison you should also try the regular kernel (without the
+patch) which can be installed with 'yum install
+http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-core-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm
+http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-modules-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm'
 
-If everything is OK:
-# systemctl reboot
-...
-
-BOOT
-...
-# systemctl status gpu-fan.service
+Could you test if this also resolves your backlight issue?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426281369.5716BE3.16308
-Date: Fri, 13 Mar 2015 21:16:09 +0000
+--1426281544.E82A72.17059
+Date: Fri, 13 Mar 2015 21:19:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -95,68 +82,68 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:erik-freedesktop-bugzilla&#64;vanpienbroek.nl" title="Erik van Pienbroek &lt;erik-freedesktop-bugzilla&#64;vanpienbroek.nl&gt;"> <span class="fn">Erik van Pienbroek</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DPMS does not turn off LCD backlight on G73 (NV4B) [GeForce 7600 GS]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85570">bug 85570</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>erik-freedesktop-bugzilla&#64;vanpienbroek.nl
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c45">Comment # 45</a>
+   title="NEW - DPMS does not turn off LCD backlight on G73 (NV4B) [GeForce 7600 GS]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85570#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVCF] PWM fan speed too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+   title="NEW - DPMS does not turn off LCD backlight on G73 (NV4B) [GeForce 7600 GS]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85570">bug 85570</a>
+              from <span class="vcard"><a class="email" href="mailto:erik-freedesktop-bugzilla&#64;vanpienbroek.nl" title="Erik van Pienbroek &lt;erik-freedesktop-bugzilla&#64;vanpienbroek.nl&gt;"> <span class="fn">Erik van Pienbroek</span></a>
 </span></b>
-        <pre>(In reply to K.-P. Schrage from <a href="show_bug.cgi?id=80901#c44">comment #44</a>)
+        <pre>Hi,
 
-<span class="quote">&gt; Now my 10-...rules file in /etc/udev/rules.d/ looks like this:
-&gt; RUN+=&quot;/bin/sh -c '/bin/echo 1 &gt;
-&gt; /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'&quot;,
-&gt; RUN+=&quot;/usr/local/bin/nvapoke e118 80000002&quot;
-&gt; 
-&gt; During boot, it sounds as if it gets triggered several times
-&gt; (noise-silence-noise-silence), but it ends up with a silent gpu fan when the
-&gt; graphical desktop has started.
-&gt; Startup logs are flooded with messages like:
-&gt; 
-&gt; nvapoke:473 conflicting memory types e8000000-f0000000
-&gt; uncached-minus&lt;-&gt;write-combining
-&gt; reserve_memtype failed [mem 0xe8000000-0xefffffff], track uncached-minus,
-&gt; req uncached-minus</span >
+I'm also on Fedora and have been observing similar issues on my Dell XPS
+17/GeForce GT 555M where the backlight of the internal display doesn't turn off
+any more (xset dpms force off) starting with early kernel 3.16 snapshots (git
+tag v3.15-9837-g682b7c1c8ea8 was the first one to be broken). This was reported
+to Red Hat bugzilla &#64; <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1123661">https://bugzilla.redhat.com/show_bug.cgi?id=1123661</a> which
+is currently still open.
 
+In this bug report I've found out which exact commit is likely to be the cause
+of my backlight issue and I've also prepared a patch which resolves the issue
+for me. Perhaps it will resolve your backlight issue as well.
 
-# rm /etc/udev/rules.d/10-gpu-fan.rules
+If you want to try it out yourself, you can find a test kernel build &#64;
+<a href="https://koji.fedoraproject.org/koji/taskinfo?taskID=9172516">https://koji.fedoraproject.org/koji/taskinfo?taskID=9172516</a> which can be
+installed with 'yum install
+<a href="http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-core-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm">http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-core-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm</a>
+<a href="http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-modules-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm">http://kojipkgs.fedoraproject.org//work/tasks/2518/9172518/kernel-modules-4.0.0-0.rc2.git2.1.bug1123661.fc22.x86_64.rpm</a>'
 
-And try this:
-/etc/systemd/system/gpu-fan.service 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[Unit]
-Description=GPU fan lower speed
+This kernel is targeted for Fedora 22 (currently in Alpha) but should also work
+fine on Fedora 20 and 21.
 
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c '/bin/echo 1 &gt;
-/sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable'
-ExecStart=/usr/local/bin/nvapoke e118 80000002
-StandardOutput=null
-StandardError=null
+To make a fair comparison you should also try the regular kernel (without the
+patch) which can be installed with 'yum install
+<a href="http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-core-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm">http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-core-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm</a>
+<a href="http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-modules-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm">http://kojipkgs.fedoraproject.org//packages/kernel/4.0.0/0.rc2.git2.1.fc22/x86_64/kernel-modules-4.0.0-0.rc2.git2.1.fc22.x86_64.rpm</a>'
 
-[Install]
-WantedBy=basic.target
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# systemctl enable gpu-fan.service
-# systemctl start gpu-fan.service
-# systemctl status gpu-fan.service
-
-If everything is OK:
-# systemctl reboot
-...
-
-BOOT
-...
-# systemctl status gpu-fan.service</pre>
+Could you test if this also resolves your backlight issue?</pre>
         </div>
       </p>
       <hr>
@@ -168,9 +155,9 @@ BOOT
     </body>
 </html>
 
---1426281369.5716BE3.16308--
+--1426281544.E82A72.17059--
 
---===============0409392259==
+--===============1675367725==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -180,4 +167,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0409392259==--
+--===============1675367725==--
