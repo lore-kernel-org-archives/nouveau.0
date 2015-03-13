@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89572] [NV86] Video playback corruption with nouveau,
 	vdpau
-Date: Fri, 13 Mar 2015 18:37:08 +0000
-Message-ID: <bug-89572-8800-6kT8IvOOpb@http.bugs.freedesktop.org/>
+Date: Fri, 13 Mar 2015 18:37:41 +0000
+Message-ID: <bug-89572-8800-nWyIjbYlR7@http.bugs.freedesktop.org/>
 References: <bug-89572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0920793184=="
+Content-Type: multipart/mixed; boundary="===============0064948212=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0920793184==
-Content-Type: multipart/alternative; boundary="1426271828.FebbBaF1.17041"; charset="UTF-8"
+--===============0064948212==
+Content-Type: multipart/alternative; boundary="1426271861.7D3Bb61.17130"; charset="UTF-8"
 
 
---1426271828.FebbBaF1.17041
-Date: Fri, 13 Mar 2015 18:37:08 +0000
+--1426271861.7D3Bb61.17130
+Date: Fri, 13 Mar 2015 18:37:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89572
 
---- Comment #1 from Matthias Blankertz <matthias-eXl60zzu3X2b9/CCa1Sigw@public.gmane.org> ---
-Created attachment 114291
-  --> https://bugs.freedesktop.org/attachment.cgi?id=114291&action=edit
-dmesg w/ errors
+--- Comment #2 from Matthias Blankertz <matthias-eXl60zzu3X2b9/CCa1Sigw@public.gmane.org> ---
+Created attachment 114292
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114292&action=edit
+output of vdpauinfo
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426271828.FebbBaF1.17041
-Date: Fri, 13 Mar 2015 18:37:08 +0000
+--1426271861.7D3Bb61.17130
+Date: Fri, 13 Mar 2015 18:37:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV86] Video playback corruption with nouveau, vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89572#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89572#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV86] Video playback corruption with nouveau, vdpau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89572">bug 89572</a>
               from <span class="vcard"><a class="email" href="mailto:matthias&#64;blankertz.org" title="Matthias Blankertz &lt;matthias&#64;blankertz.org&gt;"> <span class="fn">Matthias Blankertz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=114291" name="attach_114291" title="dmesg w/ errors">attachment 114291</a> <a href="attachment.cgi?id=114291&amp;action=edit" title="dmesg w/ errors">[details]</a></span>
-dmesg w/ errors</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114292" name="attach_114292" title="output of vdpauinfo">attachment 114292</a> <a href="attachment.cgi?id=114292&amp;action=edit" title="output of vdpauinfo">[details]</a></span>
+output of vdpauinfo</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg w/ errors</pre>
     </body>
 </html>
 
---1426271828.FebbBaF1.17041--
+--1426271861.7D3Bb61.17130--
 
---===============0920793184==
+--===============0064948212==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0920793184==--
+--===============0064948212==--
