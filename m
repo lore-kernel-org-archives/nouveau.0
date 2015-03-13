@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89572] [NV86] Video playback corruption with nouveau,
 	vdpau
-Date: Fri, 13 Mar 2015 18:37:41 +0000
-Message-ID: <bug-89572-8800-nWyIjbYlR7@http.bugs.freedesktop.org/>
+Date: Fri, 13 Mar 2015 18:38:05 +0000
+Message-ID: <bug-89572-8800-W2O9fYl1Q6@http.bugs.freedesktop.org/>
 References: <bug-89572-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0064948212=="
+Content-Type: multipart/mixed; boundary="===============0074315027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89572-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0064948212==
-Content-Type: multipart/alternative; boundary="1426271861.7D3Bb61.17130"; charset="UTF-8"
+--===============0074315027==
+Content-Type: multipart/alternative; boundary="1426271884.C7EF32.17162"; charset="UTF-8"
 
 
---1426271861.7D3Bb61.17130
-Date: Fri, 13 Mar 2015 18:37:41 +0000
+--1426271884.C7EF32.17162
+Date: Fri, 13 Mar 2015 18:38:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89572
 
---- Comment #2 from Matthias Blankertz <matthias-eXl60zzu3X2b9/CCa1Sigw@public.gmane.org> ---
-Created attachment 114292
-  --> https://bugs.freedesktop.org/attachment.cgi?id=114292&action=edit
-output of vdpauinfo
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #114290|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426271861.7D3Bb61.17130
-Date: Fri, 13 Mar 2015 18:37:41 +0000
+--1426271884.C7EF32.17162
+Date: Fri, 13 Mar 2015 18:38:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV86] Video playback corruption with nouveau, vdpau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89572#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV86] Video playback corruption with nouveau, vdpau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89572">bug 89572</a>
-              from <span class="vcard"><a class="email" href="mailto:matthias&#64;blankertz.org" title="Matthias Blankertz &lt;matthias&#64;blankertz.org&gt;"> <span class="fn">Matthias Blankertz</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=114292" name="attach_114292" title="output of vdpauinfo">attachment 114292</a> <a href="attachment.cgi?id=114292&amp;action=edit" title="output of vdpauinfo">[details]</a></span>
-output of vdpauinfo</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #114290 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ output of vdpauinfo</pre>
     </body>
 </html>
 
---1426271861.7D3Bb61.17130--
+--1426271884.C7EF32.17162--
 
---===============0064948212==
+--===============0074315027==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0064948212==--
+--===============0074315027==--
