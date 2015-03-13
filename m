@@ -1,31 +1,65 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH] pmu/gk20a: PMU boot support.
-Date: Fri, 13 Mar 2015 10:56:26 +0900
-Message-ID: <CAAVeFuJi2tSwuRyU+-yp3OQ_Un7J_--S=7VgPCatpGk_JJ6BdQ@mail.gmail.com>
-References: <1426055631-1166-1-git-send-email-dgoyal@nvidia.com>
- <CAKb7Uvj0xMvDWjKjGzbD6Tk0NArfkh4Vjvt4eRQ8XoHgR+7bsg@mail.gmail.com>
- <25b5050176544f47b0ac74d4086f145c@bgmail104.nvidia.com> <CAKb7UvgDq-FzZwAZ8VwbhaVHi4B29jXL5qjOCQ47TWfqDBDQaA@mail.gmail.com>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] nouveau: add coherent BO attribute
+Date: Fri, 13 Mar 2015 15:27:31 +0900
+Message-ID: <1426228051-20298-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain
 Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <CAKb7UvgDq-FzZwAZ8VwbhaVHi4B29jXL5qjOCQ47TWfqDBDQaA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Deepak Goyal <dgoyal-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: Maarten Lankhorst <maarten.lankhorst-Z7WLFzj8eWMS+FvcfC7Uqw@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Fri, Mar 13, 2015 at 7:11 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> I guess Alexandre will help you prepare this for upstream inclusion,
-> but just want to make sure that my main point makes it across -- this
-> is a 3K line patch. Please try to split it up into patches that add no
-> more than 300 lines at a time, preferably fewer (but this isn't always
-> possible). Ideally each patch should introduce one conceptual unit. Of
-> course different people might draw the line of "conceptual unit"
-> differently, but try to do it so that each one becomes 100-300 lines
-> of code :)
+Add a flag allowing Nouveau to specify that an object should be coherent
+at allocation time. This is required for some class of objects like
+fences which are randomly-accessed by both the CPU and GPU. This flag
+instructs the kernel driver to make sure the object remains coherent
+even on architectures for which coherency is not guaranteed by the bus.
 
-Yes, please let me take care of the first few rounds of reviews. I
-don't know how much this patch can be split though, as it is supposed
-to be the "basic" stuff for PMU. :)
+Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+---
+ include/drm/nouveau_drm.h | 1 +
+ nouveau/abi16.c           | 3 +++
+ nouveau/nouveau.h         | 1 +
+ 3 files changed, 5 insertions(+)
 
-Anyway, will come again later today with a thorough review.
+diff --git a/include/drm/nouveau_drm.h b/include/drm/nouveau_drm.h
+index b18cad02419b..87aefc5e9d2f 100644
+--- a/include/drm/nouveau_drm.h
++++ b/include/drm/nouveau_drm.h
+@@ -96,6 +96,7 @@ struct drm_nouveau_setparam {
+ #define NOUVEAU_GEM_DOMAIN_VRAM      (1 << 1)
+ #define NOUVEAU_GEM_DOMAIN_GART      (1 << 2)
+ #define NOUVEAU_GEM_DOMAIN_MAPPABLE  (1 << 3)
++#define NOUVEAU_GEM_DOMAIN_COHERENT  (1 << 4)
+ 
+ #define NOUVEAU_GEM_TILE_LAYOUT_MASK 0x0000ff00
+ #define NOUVEAU_GEM_TILE_16BPP       0x00000001
+diff --git a/nouveau/abi16.c b/nouveau/abi16.c
+index ae13821bc0cc..d2d1d0d1942d 100644
+--- a/nouveau/abi16.c
++++ b/nouveau/abi16.c
+@@ -195,6 +195,9 @@ abi16_bo_init(struct nouveau_bo *bo, uint32_t alignment,
+ 	if (bo->flags & NOUVEAU_BO_MAP)
+ 		info->domain |= NOUVEAU_GEM_DOMAIN_MAPPABLE;
+ 
++	if (bo->flags & NOUVEAU_BO_COHERENT)
++		info->domain |= NOUVEAU_GEM_DOMAIN_COHERENT;
++
+ 	if (!(bo->flags & NOUVEAU_BO_CONTIG))
+ 		info->tile_flags = NOUVEAU_GEM_TILE_NONCONTIG;
+ 
+diff --git a/nouveau/nouveau.h b/nouveau/nouveau.h
+index a55e2b020778..4adda0e3594c 100644
+--- a/nouveau/nouveau.h
++++ b/nouveau/nouveau.h
+@@ -127,6 +127,7 @@ union nouveau_bo_config {
+ #define NOUVEAU_BO_MAP     0x80000000
+ #define NOUVEAU_BO_CONTIG  0x40000000
+ #define NOUVEAU_BO_NOSNOOP 0x20000000
++#define NOUVEAU_BO_COHERENT 0x10000000
+ 
+ struct nouveau_bo {
+ 	struct nouveau_device *device;
+-- 
+2.3.2
