@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80901] [NVCF] PWM fan speed too high
-Date: Sat, 14 Mar 2015 12:05:13 +0000
-Message-ID: <bug-80901-8800-2y3slOUUt2@http.bugs.freedesktop.org/>
-References: <bug-80901-8800@http.bugs.freedesktop.org/>
+From: Maarten Lankhorst <dev-FcfepWsj2zOByvU0x3ry2g@public.gmane.org>
+Subject: [PATCH ddx] Add support for VRAM-less devices to the ddx
+Date: Sat, 14 Mar 2015 20:30:17 +0100
+Message-ID: <55048C49.4050109@mblankhorst.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1377204713=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,207 +15,140 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1377204713==
-Content-Type: multipart/alternative; boundary="1426334713.C74C33E3.25157"; charset="UTF-8"
-
-
---1426334713.C74C33E3.25157
-Date: Sat, 14 Mar 2015 12:05:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D80901
-
---- Comment #47 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to K.-P. Schrage from comment #46)
-> (In reply to poma from comment #45)
->=20
-> > And try this:
-> > /etc/systemd/system/gpu-fan.service=20
-> > ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > [Unit]
-> > Description=3DGPU fan lower speed
-> >=20
-> > [Service]
-> > Type=3Doneshot
-> > ExecStart=3D/bin/sh -c '/bin/echo 1 >
-> > /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_ena=
-ble'
-> > ExecStart=3D/usr/local/bin/nvapoke e118 80000002
-> > StandardOutput=3Dnull
-> > StandardError=3Dnull
-> >=20
-> > [Install]
-> > WantedBy=3Dbasic.target
-> > ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> >=20
-> > # systemctl enable gpu-fan.service
-> > # systemctl start gpu-fan.service
-> > # systemctl status gpu-fan.service
-> >=20
-> > If everything is OK:
-> > # systemctl reboot
-> > ...
-> >=20
-> > BOOT
-> > ...
-> > # systemctl status gpu-fan.service
->=20
-> After reboot:
-> [root@linux_keller kp]# systemctl status gpu-fan.service
-> =E2=97=8F gpu-fan.service - GPU fan lower speed
->    Loaded: loaded (/etc/systemd/system/gpu-fan.service; enabled)
->    Active: inactive (dead) since Sa 2015-03-14 11:40:03 CET; 33s ago
->   Process: 683 ExecStart=3D/usr/local/bin/nvapoke e118 80000002 (code=3De=
-xited,
-> status=3D0/SUCCESS)
->   Process: 672 ExecStart=3D/bin/sh -c /bin/echo 1 >
-> /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_enable
-> (code=3Dexited, status=3D0/SUCCESS)
->  Main PID: 683 (code=3Dexited, status=3D0/SUCCESS)
->=20
-> M=C3=A4r 14 11:40:03 linux_keller systemd[1]: Starting GPU fan lower spee=
-d...
-> M=C3=A4r 14 11:40:03 linux_keller systemd[1]: Started GPU fan lower speed.
-> ---------------
-> BUT: Fan speed is high, register e118 shows value 000000d8, not 00000002,=
- as
-> expected. I have to restart the service manually to calm down the fan.
->=20
-> Let me be honest, poma: I am very grateful for all your help, but I think
-> I'll stick to the old-school method rc.local which seems to be rather
-> straightforward to me (although even that is now governed by systemd and =
-not
-> so old-school anymore).
-
-
-No problemos. ;)
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1426334713.C74C33E3.25157
-Date: Sat, 14 Mar 2015 12:05:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVCF] PWM fan speed too high"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901#c47">Commen=
-t # 47</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVCF] PWM fan speed too high"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D80901">bug 80901<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>(In reply to K.-P. Schrage from <a href=3D"show_bug.cgi?id=3D8=
-0901#c46">comment #46</a>)
-<span class=3D"quote">&gt; (In reply to poma from <a href=3D"show_bug.cgi?i=
-d=3D80901#c45">comment #45</a>)
-&gt;=20
-&gt; &gt; And try this:
-&gt; &gt; /etc/systemd/system/gpu-fan.service=20
-&gt; &gt; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-&gt; &gt; [Unit]
-&gt; &gt; Description=3DGPU fan lower speed
-&gt; &gt;=20
-&gt; &gt; [Service]
-&gt; &gt; Type=3Doneshot
-&gt; &gt; ExecStart=3D/bin/sh -c '/bin/echo 1 &gt;
-&gt; &gt; /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pw=
-m1_enable'
-&gt; &gt; ExecStart=3D/usr/local/bin/nvapoke e118 80000002
-&gt; &gt; StandardOutput=3Dnull
-&gt; &gt; StandardError=3Dnull
-&gt; &gt;=20
-&gt; &gt; [Install]
-&gt; &gt; WantedBy=3Dbasic.target
-&gt; &gt; ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-&gt; &gt;=20
-&gt; &gt; # systemctl enable gpu-fan.service
-&gt; &gt; # systemctl start gpu-fan.service
-&gt; &gt; # systemctl status gpu-fan.service
-&gt; &gt;=20
-&gt; &gt; If everything is OK:
-&gt; &gt; # systemctl reboot
-&gt; &gt; ...
-&gt; &gt;=20
-&gt; &gt; BOOT
-&gt; &gt; ...
-&gt; &gt; # systemctl status gpu-fan.service
-&gt;=20
-&gt; After reboot:
-&gt; [root&#64;linux_keller kp]# systemctl status gpu-fan.service
-&gt; =E2=97=8F gpu-fan.service - GPU fan lower speed
-&gt;    Loaded: loaded (/etc/systemd/system/gpu-fan.service; enabled)
-&gt;    Active: inactive (dead) since Sa 2015-03-14 11:40:03 CET; 33s ago
-&gt;   Process: 683 ExecStart=3D/usr/local/bin/nvapoke e118 80000002 (code=
-=3Dexited,
-&gt; status=3D0/SUCCESS)
-&gt;   Process: 672 ExecStart=3D/bin/sh -c /bin/echo 1 &gt;
-&gt; /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0/hwmon/hwmon1/pwm1_en=
-able
-&gt; (code=3Dexited, status=3D0/SUCCESS)
-&gt;  Main PID: 683 (code=3Dexited, status=3D0/SUCCESS)
-&gt;=20
-&gt; M=C3=A4r 14 11:40:03 linux_keller systemd[1]: Starting GPU fan lower s=
-peed...
-&gt; M=C3=A4r 14 11:40:03 linux_keller systemd[1]: Started GPU fan lower sp=
-eed.
-&gt; ---------------
-&gt; BUT: Fan speed is high, register e118 shows value 000000d8, not 000000=
-02, as
-&gt; expected. I have to restart the service manually to calm down the fan.
-&gt;=20
-&gt; Let me be honest, poma: I am very grateful for all your help, but I th=
-ink
-&gt; I'll stick to the old-school method rc.local which seems to be rather
-&gt; straightforward to me (although even that is now governed by systemd a=
-nd not
-&gt; so old-school anymore).</span >
-
-
-No problemos. ;)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1426334713.C74C33E3.25157--
-
---===============1377204713==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1377204713==--
+V2l0aCB0aGlzIHBhdGNoIHRoZSBERFggYWxtb3N0IHdvcmtzIHdpdGggR0syMEEsIHRoZSBtaXNz
+aW5nIHBpZWNlIGlzIGFkZGluZyBDT0hFUkVOVCBtYXBwaW5ncyB0byB0aGUgcmlnaHQgcGxhY2Vz
+LiA7LSkKSWYgeW91IHNwZWNpZnkgTk9VVkVBVV9CT19BUEVSIHRoZSBrZXJuZWwgd2lsbCB0cnVu
+Y2F0ZSB2YWxpZF9kb21haW5zIHRvIHRoZSBkb21haW5zIHNwZWNpZmllZCBhdCBjcmVhdGlvbiB0
+aW1lLgpUaGlzIG1lYW5zIHRoYXQgYXMgbG9uZyBhcyB3ZSBvbmx5IHNwZWNpZnkgdGhlIGNvcnJl
+Y3QgZG9tYWluIGluIG5vdXZlYXVfYWxsb2NhdGVfc3VyZmFjZSB0aGUgZWZmZWN0IGlzIHN0aWxs
+IHRoZSBzYW1lLgoKU2lnbmVkLW9mZi1ieTogTWFhcnRlbiBMYW5raG9yc3QgPGRldkBtYmxhbmto
+b3JzdC5ubD4KLS0tClRoZSBvbmx5IHRoaW5nIHN0aWxsIG1pc3NpbmcgaXMgYWRkaW5nIE5PVVZF
+QVVfQk9fQ09IRVJFTlQgdG8gbm91dmVhdV9hbGxvY2F0ZV9zdXJmYWNlLCB0aGUgc2NyYXRjaCBi
+dWZmZXIsIGFuZCBub3V2ZWF1X2V4YV9zY3JhdGNoLgpBZnRlciB0aGF0IHhvcmcgc3RheXMgdXAg
+bG9uZyBlbm91Z2ggdG8gY3Jhc2ggaW4gbm91dmVhdV9leGFfc2hhcmVfcGl4bWFwX2JhY2tpbmcs
+IEknbSBzdGlsbCBpbnZlc3RpZ2F0aW5nIHRoYXQuIDotKQoKZGlmZiAtLWdpdCBhL3NyYy9ub3V2
+ZWF1X2RyaTIuYyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwppbmRleCBlMzQ0NWIyLi42OWZjZDhjIDEw
+MDY0NAotLS0gYS9zcmMvbm91dmVhdV9kcmkyLmMKKysrIGIvc3JjL25vdXZlYXVfZHJpMi5jCkBA
+IC02ODQsNyArNjg0LDcgQEAgbm91dmVhdV9kcmkyX2ZpbmlzaF9zd2FwKERyYXdhYmxlUHRyIGRy
+YXcsIHVuc2lnbmVkIGludCBmcmFtZSwKIAkJLyogUmVmZXJlbmNlIHRoZSBiYWNrIGJ1ZmZlciB0
+byBzeW5jIGl0IHRvIHZibGFuayAqLwogCQlub3V2ZWF1X3B1c2hidWZfcmVmbihwdXNoLCAmKHN0
+cnVjdCBub3V2ZWF1X3B1c2hidWZfcmVmbikgewogCQkJCQkgICBzcmNfYm8sCi0JCQkJCSAgIE5P
+VVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fUkQKKwkJCQkJICAgTk9VVkVBVV9CT19BUEVSIHwg
+Tk9VVkVBVV9CT19SRAogCQkJCSAgICAgfSwgMSk7CiAKIAkJaWYgKHBOdi0+QXJjaGl0ZWN0dXJl
+ID49IE5WX0ZFUk1JKQpAQCAtNzI1LDcgKzcyNSw3IEBAIG5vdXZlYXVfZHJpMl9maW5pc2hfc3dh
+cChEcmF3YWJsZVB0ciBkcmF3LCB1bnNpZ25lZCBpbnQgZnJhbWUsCiAJCSAqIG9uIG9jY2x1ZGVk
+IGRyYXdhYmxlcy4gKi8KIAkJbm91dmVhdV9wdXNoYnVmX3JlZm4ocHVzaCwgJihzdHJ1Y3Qgbm91
+dmVhdV9wdXNoYnVmX3JlZm4pIHsKIAkJCQkJICAgZHN0X2JvLAotCQkJCQkgICBOT1VWRUFVX0JP
+X1ZSQU0gfCBOT1VWRUFVX0JPX1JECisJCQkJCSAgIE5PVVZFQVVfQk9fQVBFUiB8IE5PVVZFQVVf
+Qk9fUkQKIAkJCQkgICAgIH0sIDEpOwogCiAJCVJFR0lPTl9UUkFOU0xBVEUoMCwgJnJlZywgLWRy
+YXctPngsIC1kcmF3LT55KTsKZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2V4YS5jIGIvc3JjL25v
+dXZlYXVfZXhhLmMKaW5kZXggZGVmNjZhYy4uM2E5M2QwMiAxMDA2NDQKLS0tIGEvc3JjL25vdXZl
+YXVfZXhhLmMKKysrIGIvc3JjL25vdXZlYXVfZXhhLmMKQEAgLTI2Myw3ICsyNjMsNyBAQCBub3V2
+ZWF1X2V4YV9kb3dubG9hZF9mcm9tX3NjcmVlbihQaXhtYXBQdHIgcHNwaXgsIGludCB4LCBpbnQg
+eSwgaW50IHcsIGludCBoLAogCQkJZ290byBtZW1jcHk7CiAKIAkJaWYgKCFOVkFjY2VsTTJNRihw
+TnYsIHcsIGxpbmVzLCBjcHAsIDAsIHRtcF9vZmZzZXQsCi0JCQkJIG5vdXZlYXVfcGl4bWFwX2Jv
+KHBzcGl4KSwgTk9VVkVBVV9CT19WUkFNLAorCQkJCSBub3V2ZWF1X3BpeG1hcF9ibyhwc3BpeCks
+IE5PVVZFQVVfQk9fQVBFUiwKIAkJCQkgc3JjX3BpdGNoLCBwc3BpeC0+ZHJhd2FibGUuaGVpZ2h0
+LCB4LCB5LAogCQkJCSB0bXAsIE5PVVZFQVVfQk9fR0FSVCwgdG1wX3BpdGNoLAogCQkJCSBsaW5l
+cywgMCwgMCkpCkBAIC0zNjEsNyArMzYxLDcgQEAgbm91dmVhdV9leGFfdXBsb2FkX3RvX3NjcmVl
+bihQaXhtYXBQdHIgcGRwaXgsIGludCB4LCBpbnQgeSwgaW50IHcsIGludCBoLAogCiAJCWlmICgh
+TlZBY2NlbE0yTUYocE52LCB3LCBsaW5lcywgY3BwLCB0bXBfb2Zmc2V0LCAwLCB0bXAsCiAJCQkJ
+IE5PVVZFQVVfQk9fR0FSVCwgdG1wX3BpdGNoLCBsaW5lcywgMCwgMCwKLQkJCQkgbm91dmVhdV9w
+aXhtYXBfYm8ocGRwaXgpLCBOT1VWRUFVX0JPX1ZSQU0sCisJCQkJIG5vdXZlYXVfcGl4bWFwX2Jv
+KHBkcGl4KSwgTk9VVkVBVV9CT19BUEVSLAogCQkJCSBkc3RfcGl0Y2gsIHBkcGl4LT5kcmF3YWJs
+ZS5oZWlnaHQsIHgsIHkpKQogCQkJZ290byBtZW1jcHk7CiAKZGlmZiAtLWdpdCBhL3NyYy9udl9h
+Y2NlbF9jb21tb24uYyBiL3NyYy9udl9hY2NlbF9jb21tb24uYwppbmRleCA0NDg0YzFjLi5lMWE4
+YTEyIDEwMDY0NAotLS0gYS9zcmMvbnZfYWNjZWxfY29tbW9uLmMKKysrIGIvc3JjL252X2FjY2Vs
+X2NvbW1vbi5jCkBAIC0zNyw3ICszNyw3IEBAIG5vdXZlYXVfYWxsb2NhdGVfc3VyZmFjZShTY3Ju
+SW5mb1B0ciBzY3JuLCBpbnQgd2lkdGgsIGludCBoZWlnaHQsIGludCBicHAsCiAJQm9vbCB0aWxl
+ZCA9ICh1c2FnZV9oaW50ICYgTk9VVkVBVV9DUkVBVEVfUElYTUFQX1RJTEVEKTsKIAlCb29sIHNo
+YXJlZCA9IEZBTFNFOwogCXVuaW9uIG5vdXZlYXVfYm9fY29uZmlnIGNmZyA9IHt9OwotCWludCBm
+bGFncyA9IE5PVVZFQVVfQk9fTUFQIHwgKGJwcCA+PSA4ID8gTk9VVkVBVV9CT19WUkFNIDogMCk7
+CisJaW50IGZsYWdzID0gTk9VVkVBVV9CT19NQVA7CiAJaW50IGNwcCA9IGJwcCAvIDgsIHJldDsK
+IAogI2lmZGVmIE5PVVZFQVVfUElYTUFQX1NIQVJJTkcKQEAgLTQ2LDcgKzQ2LDcgQEAgbm91dmVh
+dV9hbGxvY2F0ZV9zdXJmYWNlKFNjcm5JbmZvUHRyIHNjcm4sIGludCB3aWR0aCwgaW50IGhlaWdo
+dCwgaW50IGJwcCwKIAogCWZsYWdzID0gTk9VVkVBVV9CT19NQVA7CiAJaWYgKGJwcCA+PSA4KQot
+CQlmbGFncyB8PSBzaGFyZWQgPyBOT1VWRUFVX0JPX0dBUlQgOiBOT1VWRUFVX0JPX1ZSQU07CisJ
+CWZsYWdzIHw9IHNoYXJlZCA/IE5PVVZFQVVfQk9fR0FSVCA6IHBOdi0+dnJhbV9kb21haW47CiAK
+IAlpZiAocE52LT5BcmNoaXRlY3R1cmUgPj0gTlZfVEVTTEEpIHsKIAkJaWYgKHNjYW5vdXQpIHsK
+QEAgLTY3Nyw3ICs2NzcsNyBAQCBOVkFjY2VsQ29tbW9uSW5pdChTY3JuSW5mb1B0ciBwU2NybikK
+IAlwTnYtPnB1c2hidWYtPnVzZXJfcHJpdiA9IHBOdi0+YnVmY3R4OwogCiAJLyogU2NyYXRjaCBi
+dWZmZXIgKi8KLQlyZXQgPSBub3V2ZWF1X2JvX25ldyhwTnYtPmRldiwgTk9VVkVBVV9CT19WUkFN
+IHwgTk9VVkVBVV9CT19NQVAsCisJcmV0ID0gbm91dmVhdV9ib19uZXcocE52LT5kZXYsIHBOdi0+
+dnJhbV9kb21haW4gfCBOT1VWRUFVX0JPX01BUCwKIAkJCSAgICAgMTI4ICogMTAyNCwgMTI4ICog
+MTAyNCwgTlVMTCwgJnBOdi0+c2NyYXRjaCk7CiAJaWYgKCFyZXQpCiAJCXJldCA9IG5vdXZlYXVf
+Ym9fbWFwKHBOdi0+c2NyYXRjaCwgMCwgcE52LT5jbGllbnQpOwpkaWZmIC0tZ2l0IGEvc3JjL252
+X2RyaXZlci5jIGIvc3JjL252X2RyaXZlci5jCmluZGV4IDhlMmFlMDMuLmIwZTlkMTEgMTAwNjQ0
+Ci0tLSBhL3NyYy9udl9kcml2ZXIuYworKysgYi9zcmMvbnZfZHJpdmVyLmMKQEAgLTk1NCw3ICs5
+NTQsMTAgQEAgTlZQcmVJbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBpbnQgZmxhZ3MpCiAJICogVGhl
+IGZpcnN0IHRoaW5nIHdlIHNob3VsZCBmaWd1cmUgb3V0IGlzIHRoZSBkZXB0aCwgYnBwLCBldGMu
+CiAJICovCiAKLQlpZiAoZGV2LT52cmFtX3NpemUgPD0gMTYgKiAxMDI0ICogMTAyNCkKKwlwTnYt
+PnZyYW1fZG9tYWluID0gTk9VVkVBVV9CT19WUkFNOworCWlmICghZGV2LT52cmFtX3NpemUpCisJ
+CXBOdi0+dnJhbV9kb21haW4gPSBOT1VWRUFVX0JPX0dBUlQ7CisJZWxzZSBpZiAoZGV2LT52cmFt
+X3NpemUgPD0gMTYgKiAxMDI0ICogMTAyNCkKIAkJZGVmYXVsdERlcHRoID0gMTY7CiAJaWYgKCF4
+Zjg2U2V0RGVwdGhCcHAocFNjcm4sIGRlZmF1bHREZXB0aCwgMCwgMCwgU3VwcG9ydDMyYnBwRmIp
+KSB7CiAJCU5WUHJlSW5pdEZhaWwoIlxuIik7CmRpZmYgLS1naXQgYS9zcmMvbnZfdHlwZS5oIGIv
+c3JjL252X3R5cGUuaAppbmRleCBlNmFiMTkyLi5jNWEyNjg0IDEwMDY0NAotLS0gYS9zcmMvbnZf
+dHlwZS5oCisrKyBiL3NyYy9udl90eXBlLmgKQEAgLTEyMiw2ICsxMjIsNyBAQCB0eXBlZGVmIHN0
+cnVjdCBfTlZSZWMgewogCXN0cnVjdCBub3V2ZWF1X2JvICpzY3JhdGNoOwogCiAJQm9vbCBjZV9l
+bmFibGVkOworCXVpbnQzMl90IHZyYW1fZG9tYWluOwogCXN0cnVjdCBub3V2ZWF1X29iamVjdCAq
+Y2VfY2hhbm5lbDsKIAlzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmICpjZV9wdXNoYnVmOwogCXN0cnVj
+dCBub3V2ZWF1X29iamVjdCAqTnZDb3B5OwpkaWZmIC0tZ2l0IGEvc3JjL252YzBfYWNjZWwuYyBi
+L3NyYy9udmMwX2FjY2VsLmMKaW5kZXggODQ4Y2E4Ny4uNzE4ODIzMCAxMDA2NDQKLS0tIGEvc3Jj
+L252YzBfYWNjZWwuYworKysgYi9zcmMvbnZjMF9hY2NlbC5jCkBAIC0yNDIsNyArMjQyLDcgQEAg
+TlZBY2NlbEluaXQzRF9OVkMwKFNjcm5JbmZvUHRyIHBTY3JuKQogCiAJaWYgKG5vdXZlYXVfcHVz
+aGJ1Zl9zcGFjZShwdXNoLCA1MTIsIDAsIDApIHx8CiAJICAgIG5vdXZlYXVfcHVzaGJ1Zl9yZWZu
+IChwdXNoLCAmKHN0cnVjdCBub3V2ZWF1X3B1c2hidWZfcmVmbikgewotCQkJCQlwTnYtPnNjcmF0
+Y2gsIE5PVVZFQVVfQk9fVlJBTSB8CisJCQkJCXBOdi0+c2NyYXRjaCwgTk9VVkVBVV9CT19BUEVS
+IHwKIAkJCQkJTk9VVkVBVV9CT19XUiB9LCAxKSkKIAkJcmV0dXJuIEZBTFNFOwogCmRpZmYgLS1n
+aXQgYS9zcmMvbnZjMF9leGEuYyBiL3NyYy9udmMwX2V4YS5jCmluZGV4IDFmMzMzNTMuLjU5NjM2
+MWUgMTAwNjQ0Ci0tLSBhL3NyYy9udmMwX2V4YS5jCisrKyBiL3NyYy9udmMwX2V4YS5jCkBAIC05
+NiwxMSArOTYsMTAgQEAgTlZDMEVYQUFjcXVpcmVTdXJmYWNlMkQoUGl4bWFwUHRyIHBwaXgsIGlu
+dCBpc19zcmMsIHVpbnQzMl90IGZtdCkKIHsKIAlOVkMwRVhBX0xPQ0FMUyhwcGl4KTsKIAlzdHJ1
+Y3Qgbm91dmVhdV9ibyAqYm8gPSBub3V2ZWF1X3BpeG1hcF9ibyhwcGl4KTsKLQlzdHJ1Y3Qgbm91
+dmVhdV9waXhtYXAgKm52cGl4ID0gbm91dmVhdV9waXhtYXAocHBpeCk7CiAJaW50IG10aGQgPSBp
+c19zcmMgPyBOVjUwXzJEX1NSQ19GT1JNQVQgOiBOVjUwXzJEX0RTVF9GT1JNQVQ7CiAJdWludDMy
+X3QgYm9fZmxhZ3M7CiAKLQlib19mbGFncyA9IG52cGl4LT5zaGFyZWQgPyBOT1VWRUFVX0JPX0dB
+UlQgOiBOT1VWRUFVX0JPX1ZSQU07CisJYm9fZmxhZ3MgPSBOT1VWRUFVX0JPX0FQRVI7CiAJYm9f
+ZmxhZ3MgfD0gaXNfc3JjID8gTk9VVkVBVV9CT19SRCA6IE5PVVZFQVVfQk9fV1I7CiAKIAlpZiAo
+IW52NTBfc3R5bGVfdGlsZWRfcGl4bWFwKHBwaXgpKSB7CkBAIC01NzksNyArNTc4LDcgQEAgTlZD
+MEVYQVBpY3RUZXh0dXJlKE5WUHRyIHBOdiwgUGl4bWFwUHRyIHBwaXgsIFBpY3R1cmVQdHIgcHBp
+Y3QsIHVuc2lnbmVkIHVuaXQpCiAJaWYgKCFudjUwX3N0eWxlX3RpbGVkX3BpeG1hcChwcGl4KSkK
+IAkJTk9VVkVBVV9GQUxMQkFDSygicGl4bWFwIGlzIHNjYW5vdXQgYnVmZmVyXG4iKTsKIAotCVBV
+U0hfUkVGTiAocHVzaCwgYm8sIE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fUkQpOworCVBV
+U0hfUkVGTiAocHVzaCwgYm8sIE5PVVZFQVVfQk9fQVBFUiB8IE5PVVZFQVVfQk9fUkQpOwogCVBV
+U0hfREFUQXUocHVzaCwgcE52LT5zY3JhdGNoLCBUSUNfT0ZGU0VUICsgKHVuaXQgKiAzMiksIDgp
+OwogCXN3aXRjaCAocHBpY3QtPmZvcm1hdCkgewogCWNhc2UgUElDVF9hOHI4ZzhiODoKQEAgLTg4
+NCwxNCArODgzLDE0IEBAIE5WQzBFWEFQcmVwYXJlQ29tcG9zaXRlKGludCBvcCwKIAlQVVNIX0RB
+VEEgKHB1c2gsIDApOwogCiAJUFVTSF9SRVNFVChwdXNoKTsKLQlQVVNIX1JFRk4gKHB1c2gsIHBO
+di0+c2NyYXRjaCwgTk9VVkVBVV9CT19WUkFNIHwgTk9VVkVBVV9CT19SRFdSKTsKKwlQVVNIX1JF
+Rk4gKHB1c2gsIHBOdi0+c2NyYXRjaCwgTk9VVkVBVV9CT19BUEVSIHwgTk9VVkVBVV9CT19SRFdS
+KTsKIAlpZiAocHNwaWN0LT5wRHJhd2FibGUpCiAJCVBVU0hfUkVGTiAocHVzaCwgbm91dmVhdV9w
+aXhtYXBfYm8ocHNwaXgpLAotCQkJICAgTk9VVkVBVV9CT19WUkFNIHwgTk9VVkVBVV9CT19SRCk7
+Ci0JUFVTSF9SRUZOIChwdXNoLCBkc3QsIE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fV1Ip
+OworCQkJICAgTk9VVkVBVV9CT19BUEVSIHwgTk9VVkVBVV9CT19SRCk7CisJUFVTSF9SRUZOIChw
+dXNoLCBkc3QsIE5PVVZFQVVfQk9fQVBFUiB8IE5PVVZFQVVfQk9fV1IpOwogCWlmIChwbXBpY3Qg
+JiYgcG1waWN0LT5wRHJhd2FibGUpCiAJCVBVU0hfUkVGTiAocHVzaCwgbm91dmVhdV9waXhtYXBf
+Ym8ocG1waXgpLAotCQkJICAgTk9VVkVBVV9CT19WUkFNIHwgTk9VVkVBVV9CT19SRCk7CisJCQkg
+ICBOT1VWRUFVX0JPX0FQRVIgfCBOT1VWRUFVX0JPX1JEKTsKIAogCW5vdXZlYXVfcHVzaGJ1Zl9i
+dWZjdHgocHVzaCwgcE52LT5idWZjdHgpOwogCWlmIChub3V2ZWF1X3B1c2hidWZfdmFsaWRhdGUo
+cHVzaCkpIHsKZGlmZiAtLWdpdCBhL3NyYy9udmMwX3h2LmMgYi9zcmMvbnZjMF94di5jCmluZGV4
+IGQxZDhmMTguLjMxZTIzMDkgMTAwNjQ0Ci0tLSBhL3NyYy9udmMwX3h2LmMKKysrIGIvc3JjL252
+YzBfeHYuYwpAQCAtNjksOSArNjksOSBAQCBudmMwX3h2X2ltYWdlX3B1dChTY3JuSW5mb1B0ciBw
+U2NybiwKIAlOVlB0ciBwTnYgPSBOVlBUUihwU2Nybik7CiAJc3RydWN0IG5vdXZlYXVfYm8gKmRz
+dCA9IG5vdXZlYXVfcGl4bWFwX2JvKHBwaXgpOwogCXN0cnVjdCBub3V2ZWF1X3B1c2hidWZfcmVm
+biByZWZzW10gPSB7Ci0JCXsgcE52LT5zY3JhdGNoLCBOT1VWRUFVX0JPX1ZSQU0gfCBOT1VWRUFV
+X0JPX1JEV1IgfSwKLQkJeyBzcmMsIE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fUkQgfSwK
+LQkJeyBkc3QsIE5PVVZFQVVfQk9fVlJBTSB8IE5PVVZFQVVfQk9fV1IgfSwKKwkJeyBwTnYtPnNj
+cmF0Y2gsIE5PVVZFQVVfQk9fQVBFUiB8IE5PVVZFQVVfQk9fUkRXUiB9LAorCQl7IHNyYywgTk9V
+VkVBVV9CT19BUEVSIHwgTk9VVkVBVV9CT19SRCB9LAorCQl7IGRzdCwgTk9VVkVBVV9CT19BUEVS
+IHwgTk9VVkVBVV9CT19XUiB9LAogCX07CiAJc3RydWN0IG5vdXZlYXVfcHVzaGJ1ZiAqcHVzaCA9
+IHBOdi0+cHVzaGJ1ZjsKIAl1aW50MzJfdCBtb2RlID0gMHhkMDAwNTAwMCB8IChzcmMtPmNvbmZp
+Zy5udmMwLnRpbGVfbW9kZSA8PCAxOCk7Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cg==
