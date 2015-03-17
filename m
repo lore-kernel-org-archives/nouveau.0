@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89571] [NV46] XFX 7300 GS - Black screen with DVI
- when KMS(nouveau) starts - VGA working
-Date: Mon, 16 Mar 2015 16:20:55 +0000
-Message-ID: <bug-89571-8800-f0ZgdkeUYW@http.bugs.freedesktop.org/>
-References: <bug-89571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 28095] X crash with PFIFO_CACHE_ERROR. (Nouveau on
+	Riva TNT).
+Date: Tue, 17 Mar 2015 16:10:13 +0000
+Message-ID: <bug-28095-8800-NCqPaQJmS2@http.bugs.freedesktop.org/>
+References: <bug-28095-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0549622110=="
+Content-Type: multipart/mixed; boundary="===============0403058885=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-28095-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0549622110==
-Content-Type: multipart/alternative; boundary="1426522855.12D11.9915"; charset="UTF-8"
+--===============0403058885==
+Content-Type: multipart/alternative; boundary="1426608613.3E5BA8731.27901"; charset="UTF-8"
 
 
---1426522855.12D11.9915
-Date: Mon, 16 Mar 2015 16:20:55 +0000
+--1426608613.3E5BA8731.27901
+Date: Tue, 17 Mar 2015 16:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89571
+https://bugs.freedesktop.org/show_bug.cgi?id=28095
 
---- Comment #2 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-A small note - there has been other XFX cards with messed up DCB table.
-See the current kernel [1] for examples
+--- Comment #21 from Brent <bzipitidoo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
+Tried the noaccel and nofbaccel kernel options under Puppy Linux 6.0 with the
+3.17.7 kernel.  Didn't make any difference to the display, it is still bad, in
+the same way as without those options.  Xorg.0.log confirms that acceleration
+is indeed off.  It is mostly the same as the log I uploaded here, except after
+the line "(--) Depth 24 pixmap format is 32 bpp", I see:
 
-[1]
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/nouveau/nouveau_bios.c?id=refs/tags/v4.0-rc4#n1678
+(EE) NOUVEAU(0): Error creating GPU channel: -19
+(EE) NOUVEAU(0): Error initialising acceleration.  Falling back to NoAccel
+(==) NOUVEAU(0): Backing store enabled
+...
+
+I also tried kernel 3.10.71 on the Arch system.  It was no different than
+3.4.106-- [drm] failed to open device.  Yes, I know there could be an API
+mismatch, and maybe the 3.4 and 3.10 kernels would work with a more recent
+XWindows.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426522855.12D11.9915
-Date: Mon, 16 Mar 2015 16:20:55 +0000
+--1426608613.3E5BA8731.27901
+Date: Tue, 17 Mar 2015 16:10:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,20 +66,30 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] XFX 7300 GS - Black screen with DVI when KMS(nouveau) starts - VGA working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89571#c2">Comment # 2</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095#c21">Comment # 21</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] XFX 7300 GS - Black screen with DVI when KMS(nouveau) starts - VGA working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89571">bug 89571</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - X crash with PFIFO_CACHE_ERROR. (Nouveau on Riva TNT)."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=28095">bug 28095</a>
+              from <span class="vcard"><a class="email" href="mailto:bzipitidoo&#64;hotmail.com" title="Brent &lt;bzipitidoo&#64;hotmail.com&gt;"> <span class="fn">Brent</span></a>
 </span></b>
-        <pre>A small note - there has been other XFX cards with messed up DCB table.
-See the current kernel [1] for examples
+        <pre>Tried the noaccel and nofbaccel kernel options under Puppy Linux 6.0 with the
+3.17.7 kernel.  Didn't make any difference to the display, it is still bad, in
+the same way as without those options.  Xorg.0.log confirms that acceleration
+is indeed off.  It is mostly the same as the log I uploaded here, except after
+the line &quot;(--) Depth 24 pixmap format is 32 bpp&quot;, I see:
 
-[1]
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/nouveau/nouveau_bios.c?id=refs/tags/v4.0-rc4#n1678">https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/nouveau/nouveau_bios.c?id=refs/tags/v4.0-rc4#n1678</a></pre>
+(EE) NOUVEAU(0): Error creating GPU channel: -19
+(EE) NOUVEAU(0): Error initialising acceleration.  Falling back to NoAccel
+(==) NOUVEAU(0): Backing store enabled
+...
+
+I also tried kernel 3.10.71 on the Arch system.  It was no different than
+3.4.106-- [drm] failed to open device.  Yes, I know there could be an API
+mismatch, and maybe the 3.4 and 3.10 kernels would work with a more recent
+XWindows.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +101,9 @@ See the current kernel [1] for examples
     </body>
 </html>
 
---1426522855.12D11.9915--
+--1426608613.3E5BA8731.27901--
 
---===============0549622110==
+--===============0403058885==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0549622110==--
+--===============0403058885==--
