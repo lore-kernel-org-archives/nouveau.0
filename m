@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89571] [NV46] XFX 7300 GS - Black screen with DVI
- when KMS(nouveau) starts - VGA working
-Date: Tue, 17 Mar 2015 20:19:40 +0000
-Message-ID: <bug-89571-8800-onUobFkxYo@http.bugs.freedesktop.org/>
-References: <bug-89571-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 87819] [NVAC] EQ overflowing
+Date: Tue, 17 Mar 2015 21:45:04 +0000
+Message-ID: <bug-87819-8800-uofiaHwLpT@http.bugs.freedesktop.org/>
+References: <bug-87819-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0065188927=="
+Content-Type: multipart/mixed; boundary="===============1315910565=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89571-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0065188927==
-Content-Type: multipart/alternative; boundary="1426623580.beDBa1.854"; charset="UTF-8"
+--===============1315910565==
+Content-Type: multipart/alternative; boundary="1426628704.2cfE1.26768"; charset="UTF-8"
 
 
---1426623580.beDBa1.854
-Date: Tue, 17 Mar 2015 20:19:40 +0000
+--1426628704.2cfE1.26768
+Date: Tue, 17 Mar 2015 21:45:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89571
+https://bugs.freedesktop.org/show_bug.cgi?id=87819
 
---- Comment #4 from bxmixzxm-GK+4nHxFadIswetKESUqMA@public.gmane.org ---
-Following boot command makes it possible to use the full resolution over VGA
-cable in X:
-video=TV-1:1920x1200@60
+--- Comment #23 from Etienne URBAH <eurbah-GANU6spQydw@public.gmane.org> ---
+Created attachment 114403
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114403&action=edit
+Xorg.0.log OK with nouveau from linux-3.19.1
+
+Module nouveau from linux-3.19.1 seems to be fix the bug :
+
+Even with video streaming under Firefox, I could NOT trigger any problem.
+
+Lot of thanks to the developers.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426623580.beDBa1.854
-Date: Tue, 17 Mar 2015 20:19:40 +0000
+--1426628704.2cfE1.26768
+Date: Tue, 17 Mar 2015 21:45:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +60,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV46] XFX 7300 GS - Black screen with DVI when KMS(nouveau) starts - VGA working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89571#c4">Comment # 4</a>
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c23">Comment # 23</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV46] XFX 7300 GS - Black screen with DVI when KMS(nouveau) starts - VGA working"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89571">bug 89571</a>
-              from <span class="vcard"><a class="email" href="mailto:bxmixzxm&#64;sharklasers.com" title="bxmixzxm&#64;sharklasers.com">bxmixzxm&#64;sharklasers.com</a>
+   title="NEW - [NVAC] EQ overflowing"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
+              from <span class="vcard"><a class="email" href="mailto:eurbah&#64;free.fr" title="Etienne URBAH &lt;eurbah&#64;free.fr&gt;"> <span class="fn">Etienne URBAH</span></a>
 </span></b>
-        <pre>Following boot command makes it possible to use the full resolution over VGA
-cable in X:
-video=TV-1:1920x1200&#64;60</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114403" name="attach_114403" title="Xorg.0.log OK with nouveau from linux-3.19.1">attachment 114403</a> <a href="attachment.cgi?id=114403&amp;action=edit" title="Xorg.0.log OK with nouveau from linux-3.19.1">[details]</a></span>
+Xorg.0.log OK with nouveau from linux-3.19.1
+
+Module nouveau from linux-3.19.1 seems to be fix the bug :
+
+Even with video streaming under Firefox, I could NOT trigger any problem.
+
+Lot of thanks to the developers.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +87,9 @@ video=TV-1:1920x1200&#64;60</pre>
     </body>
 </html>
 
---1426623580.beDBa1.854--
+--1426628704.2cfE1.26768--
 
---===============0065188927==
+--===============1315910565==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0065188927==--
+--===============1315910565==--
