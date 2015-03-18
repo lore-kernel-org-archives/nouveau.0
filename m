@@ -1,14 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Wed, 18 Mar 2015 19:29:00 +0000
-Message-ID: <bug-87244-8800-4wxEYaL9Tl@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Wed, 18 Mar 2015 19:29:57 +0000
+Message-ID: <bug-89664-8800-5xbceXY2aq@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1943730574=="
+Content-Type: multipart/mixed; boundary="===============0366399884=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,26 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1943730574==
-Content-Type: multipart/alternative; boundary="1426706939.13FFE60D2.8857"; charset="UTF-8"
+--===============0366399884==
+Content-Type: multipart/alternative; boundary="1426706997.0a617AcA1.9262"; charset="UTF-8"
 
 
---1426706939.13FFE60D2.8857
-Date: Wed, 18 Mar 2015 19:28:59 +0000
+--1426706997.0a617AcA1.9262
+Date: Wed, 18 Mar 2015 19:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
+https://bugs.freedesktop.org/show_bug.cgi?id=89664
 
---- Comment #21 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-The fix is already in mainline, just hasn't been backported.
+--- Comment #2 from Omar <Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 114450
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114450&action=edit
+journalctl dump of the boot
+
+The journal dump I mentioned in the OP.
+Capped around line 15K as the original totalled at almost 50K, crossing the 3MB
+file size limit.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426706939.13FFE60D2.8857
-Date: Wed, 18 Mar 2015 19:28:59 +0000
+--1426706997.0a617AcA1.9262
+Date: Wed, 18 Mar 2015 19:29:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +59,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c21">Comment # 21</a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
+              from <span class="vcard"><a class="email" href="mailto:Omar.networkhosting&#64;gmail.com" title="Omar &lt;Omar.networkhosting&#64;gmail.com&gt;"> <span class="fn">Omar</span></a>
 </span></b>
-        <pre>The fix is already in mainline, just hasn't been backported.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114450" name="attach_114450" title="journalctl dump of the boot">attachment 114450</a> <a href="attachment.cgi?id=114450&amp;action=edit" title="journalctl dump of the boot">[details]</a></span>
+journalctl dump of the boot
+
+The journal dump I mentioned in the OP.
+Capped around line 15K as the original totalled at almost 50K, crossing the 3MB
+file size limit.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1426706939.13FFE60D2.8857--
+--1426706997.0a617AcA1.9262--
 
---===============1943730574==
+--===============0366399884==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1943730574==--
+--===============0366399884==--
