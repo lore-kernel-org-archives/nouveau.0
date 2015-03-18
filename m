@@ -1,13 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89620] Nouveau driver for Nvidia card GeForce GT
-	550M]
-Date: Wed, 18 Mar 2015 01:20:53 +0000
-Message-ID: <bug-89620-8800-4ZBA5teKa3@http.bugs.freedesktop.org/>
-References: <bug-89620-8800@http.bugs.freedesktop.org/>
+From: Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org>
+Subject: Re: GM206 support?
+Date: Wed, 18 Mar 2015 10:25:39 +0000
+Message-ID: <20150318102538.GA30814@huehner.biz>
+References: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
+ <CAKb7Uvi5zxN9_yw9OmuWLWDUz3Ce3xHYK4=fgp8Qp=nZu_N3hA@mail.gmail.com>
+ <CALCETrV5XjUxOLvyd2qukJbx0s8+qwE3ivG8s-Koc1VPe_Zezg@mail.gmail.com>
+ <CAKb7UvgpjeLUn2+kAfPpMaYkuJgYKEosr7uc7BySE2xS0mcQdg@mail.gmail.com>
+ <CALCETrV7tyDgz7OYw6GCTmk0hLFNhi1bMP+-Eabg5NuxBSXUeA@mail.gmail.com>
+ <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0817930002=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,100 +23,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0817930002==
-Content-Type: multipart/alternative; boundary="1426641653.edf77A2.31279"; charset="UTF-8"
-
-
---1426641653.edf77A2.31279
-Date: Wed, 18 Mar 2015 01:20:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89620
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Priority|high                        |medium
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Sounds like you are seeing a software cursor. Can you include dmesg for your
-system as well as your Xorg.0.log?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1426641653.edf77A2.31279
-Date: Wed, 18 Mar 2015 01:20:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Priority</td>
-           <td>high
-           </td>
-           <td>medium
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Sounds like you are seeing a software cursor. Can you include dmesg for your
-system as well as your Xorg.0.log?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1426641653.edf77A2.31279--
-
---===============0817930002==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0817930002==--
+T24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgMDY6NTk6MjVQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gT24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgNjo0MCBQTSwgQW5keSBMdXRvbWlyc2tpIDxs
+dXRvQGFtYWNhcGl0YWwubmV0PiB3cm90ZToKPiA+IE9uIFR1ZSwgTWFyIDE3LCAyMDE1IGF0IDI6
+NTcgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4gPj4gT24g
+VHVlLCBNYXIgMTcsIDIwMTUgYXQgNTo1MiBQTSwgQW5keSBMdXRvbWlyc2tpIDxsdXRvQGFtYWNh
+cGl0YWwubmV0PiB3cm90ZToKPiA+Pj4gT24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgOTo1MiBQTSwg
+SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPiA+Pj4+IE9uIEZyaSwg
+RmViIDEzLCAyMDE1IGF0IDg6NTkgUE0sIEFuZHkgTHV0b21pcnNraSA8bHV0b0BhbWFjYXBpdGFs
+Lm5ldD4gd3JvdGU6Cj4gPj4+Pj4gTXkgbmV3IEdUWCA5NjAgKEdNMjA2LCBJIHRoaW5rKSBzYXlz
+Ogo+ID4+Pj4+Cj4gPj4+Pj4gWyAgIDEwLjMyOTM1MV0gbm91dmVhdSAhWyAgREVWSUNFXVswMDAw
+OjA5OjAwLjBdIHVua25vd24gTWF4d2VsbCBjaGlwc2V0Cj4gPj4+Pj4gWyAgIDEwLjMyOTM1NV0g
+bm91dmVhdSBFWyAgREVWSUNFXVswMDAwOjA5OjAwLjBdIHVua25vd24gY2hpcHNldCwgMHgxMjYw
+MTBhMQo+ID4+Pj4+IFsgICAxMC4zMjkzNTZdIG5vdXZlYXUgRVsgICAgIERSTV0gZmFpbGVkIHRv
+IGNyZWF0ZSAweDAwMDAwMDgwLCAtMjIKPiA+Pj4+PiBbICAgMTAuMzMwMTI5XSBub3V2ZWF1OiBw
+cm9iZSBvZiAwMDAwOjA5OjAwLjAgZmFpbGVkIHdpdGggZXJyb3IgLTIyCj4gPj4+Pj4KPiA+Pj4+
+PiBIYWNraW5nIHVwIG5vdXZlYXUgc28gdGhhdCBpdCB0cmVhdHMgaXQgbGlrZSBhIEdNMjA0IGRv
+ZXNuJ3Qgd29yay4KPiA+Pj4+Cj4gPj4+PiBXaGF0IGhhcHBlbnMgaWYgeW91IGp1c3QgZHJvcCB0
+aGUgMHgxMjYgbmV4dCB0byB0aGUgMHgxMjQgaW4KPiA+Pj4+IGVuZ2luZS9kZXZpY2UvZ20xMDAu
+YyA/Cj4gPj4+Pgo+ID4+Pj4+IEFyZSB0aGVyZSBhbnkgbmVhci10ZXJtIHBsYW5zIHRvIHN1cHBv
+cnQgdGhpcyBjYXJkPwo+ID4+Pj4KPiA+Pj4+IEkgZG9uJ3Qga25vdyBvZiBhbnlvbmUgd2l0aCB0
+aGUgaHcuLi4gbWF5YmUgQmVuIGdvdCBvbmU/IElmIHlvdSdyZQo+ID4+Pj4gaW50ZXJlc3RlZCBp
+biBoZWxwaW5nLCB0aGUga2VybmVsIGxvZ3MgZnJvbSB0aGUgYWJvdmUgZXhwZXJpbWVudCArIGFu
+Cj4gPj4+PiBtbWlvdHJhY2Ugb2YgdGhlIGJsb2IgZHJpdmVycyAoc2VlCj4gPj4+PiBodHRwczov
+L3dpa2kudWJ1bnR1LmNvbS9YL01NSU9UcmFjaW5nKSArIHZiaW9zIChzZWUKPiA+Pj4+IGh0dHA6
+Ly9ub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZy93aWtpL0R1bXBpbmdWaWRlb0Jpb3MvKS4KPiA+Pj4+
+Cj4gPj4+PiBJIGFzc3VtZSB5b3UncmUgb24gYSByZWNlbnQga2VybmVsPyBZb3UgbmVlZCAzLjE5
+IGZvciB0aGUgR00yMDQgc3R1ZmYKPiA+Pj4+IHRvIHdvcmsgaW4gdGhlIGZpcnN0IHBsYWNlLgo+
+ID4+Pgo+ID4+PiBOZWl0aGVyIDMuMTkgbm9yIDQuMC1yY3NvbWV0aGluZyB3b3Jrcy4KPiA+Pj4K
+PiA+Pj4gSSBwdXQgYW4gbW1pbyB0cmFjZSAoWCBzdGFydHVwIGFuZCBnbHhnZWFycykgYW5kIGEg
+dmJpb3MgZHVtcCBoZXJlOgo+ID4+Pgo+ID4+PiBodHRwOi8vd2ViLm1pdC5lZHUvbHV0by93d3cv
+R00yMDYvCj4gPj4KPiA+PiBTdGVmYW4gc2VudCBwcm9wZXIgcGF0Y2hlcyB0byBnZXQgbm91dmVh
+dSBnb2luZyBvbiBoaXMgR00yMDYsIHdoaWNoCj4gPj4gd2lsbCBtYWtlIGl0IGludG8gdGhlIG5l
+eHQgNC4wLXJjLiBIZXJlIGlzIGEgdHJlZSB0aGF0IGlzIGRlc3RpbmVkCj4gPj4gdG93YXJkcyBk
+cm0tZml4ZXM6Cj4gPj4KPiA+PiBodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbm91dmVhdS9s
+aW51eC0yLjYvbG9nLz9oPWxpbnV4LTQuMAo+ID4+Cj4gPj4gTGV0IHVzIGtub3cgaWYgaXQgbWFr
+ZXMgdGhlIGNhcmQgd29yay4gKERlZmluaXRlbHkgbm8gYWNjZWxlcmF0aW9uCj4gPj4gd2l0aG91
+dCBzaWduZWQgZmlybXdhcmUgZm9yIG5vdyB0aG91Z2guKQo+ID4KPiA+IFRoZSBkcml2ZXIgbG9h
+ZHMgYW5kIHNlZW1zIHRvIHdvcmsuCj4gCj4gRXhjZWxsZW50IQo+IAo+ID4gVGhlIG5vdXZlYXUg
+WCBkcml2ZXIgZG9lc24ndCBsb2FkLCB0aG91Z2guCj4gCj4gWWVhaCwgeGY4Ni12aWRlby1ub3V2
+ZWF1IGhhcyBubyBzdXBwb3J0IGZvciB0aGUgR00yMHggZmFtaWx5PyBOb3RlCj4gdGhhdCBldmVu
+IGlmIGl0IGRpZCBsb2FkLCB5b3Ugd291bGRuJ3QgZ2V0IGFueSBhY2NlbGVyYXRpb24gLS0gbWF5
+IGFzCj4gd2VsbCBqdXN0IHVzZSB0aGUgJ3hmODYtdmlkZW8tbW9kZXNldHRpbmcnIGRyaXZlci4K
+PiAKCkhpIGd1eXMsCmkgZGlkIHNlbnQgYSBwYXRjaCB0byBhZGQgR00yMDYgdG8gdGhlIGRkeCBh
+bHNvIGJ1dCBsb29rcyBsaWtlIGl0IGdvdCBtaXNzZWQgeW91IGNhbiBmaW5kIGl0IGhlcmUuCgpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUvMjAxNS1GZWJydWFy
+eS8wMjAxNDQuaHRtbAoKQnV0IGFzIHNhaWQgbm8gYWNjZWxlcmF0aW9uIHlldC4KCkknbGwgcGlu
+ZyBpbiB0aGF0IG9sZGVyIG1haWwtdGhyZWFkIGFzIHByb2JhYmx5IG1haWwgd2FzIG92ZXJsb29r
+ZWQgKHByb2JhYmx5IGkgc2hvdWxkIGhhdmUgbWVudGlvbmVkIGRkeCBpbiBteSBzdWJqZWN0KQoK
+U3RlZmFuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
