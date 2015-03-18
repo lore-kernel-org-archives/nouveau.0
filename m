@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87819] [NVAC] EQ overflowing
-Date: Wed, 18 Mar 2015 20:52:37 +0000
-Message-ID: <bug-87819-8800-PtJvcvYNO3@http.bugs.freedesktop.org/>
-References: <bug-87819-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] Basic GM206 bringup (as copy of GM100)
+Date: Thu, 19 Mar 2015 09:35:24 +1000
+Message-ID: <CACAvsv58Zcd_=jvoDS-2PBwd=rf8Tj9NJSQHrpaQ2rU4nC7HgQ@mail.gmail.com>
+References: <1424616802-2097-1-git-send-email-stefan@huehner.org>
+ <CAKb7UvicmqOF1tmVBHjdPLPbviJnHSU=uXLepsUyNnrrA=r65w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0598964234=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87819-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvicmqOF1tmVBHjdPLPbviJnHSU=uXLepsUyNnrrA=r65w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,127 +18,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0598964234==
-Content-Type: multipart/alternative; boundary="1426711957.3CE248d2.2518"; charset="UTF-8"
-
-
---1426711957.3CE248d2.2518
-Date: Wed, 18 Mar 2015 20:52:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87819
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #24 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to Etienne URBAH from comment #23)
-> Created attachment 114403 [details]
-> Xorg.0.log OK with nouveau from linux-3.19.1
-> 
-> Module nouveau from linux-3.19.1 seems to be fix the bug :
-> 
-> Even with video streaming under Firefox, I could NOT trigger any problem.
-> 
-> Lot of thanks to the developers.
-
-Awesome! I'll close the bug report then.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1426711957.3CE248d2.2518
-Date: Wed, 18 Mar 2015 20:52:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819#c24">Comment # 24</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVAC] EQ overflowing"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87819">bug 87819</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>(In reply to Etienne URBAH from <a href="show_bug.cgi?id=87819#c23">comment #23</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=114403" name="attach_114403" title="Xorg.0.log OK with nouveau from linux-3.19.1">attachment 114403</a> <a href="attachment.cgi?id=114403&amp;action=edit" title="Xorg.0.log OK with nouveau from linux-3.19.1">[details]</a></span>
-&gt; Xorg.0.log OK with nouveau from linux-3.19.1
-&gt; 
-&gt; Module nouveau from linux-3.19.1 seems to be fix the bug :
-&gt; 
-&gt; Even with video streaming under Firefox, I could NOT trigger any problem.
-&gt; 
-&gt; Lot of thanks to the developers.</span >
-
-Awesome! I'll close the bug report then.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1426711957.3CE248d2.2518--
-
---===============0598964234==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0598964234==--
+T24gMTkgTWFyY2ggMjAxNSBhdCAwMjo0NCwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1PiB3cm90ZToKPiBUaGVyZSdzIG5vIHdheSB0byBnZXQgYWNjZWxlcmF0aW9uIHdpdGggR00y
+MHguLi4gSSdkIHJhdGhlciBzYXZlIHRoaXMKPiB1bnRpbCB0aGVyZSBpcy4gRm9yIG5vdyByZWpl
+Y3QgdGhlIGxvYWQgYW5kIGxldCB0aGUgbW9kZXNldHRpbmcgZHJpdmVyCj4gZ2V0IHVzZWQuIE9U
+T0gsIHRoZSBERFggaXNuJ3QgcmVsZWFzZWQvaW50ZWdyYXRlZCBpbnRvIGRpc3Ryb3MgYXQgYW4K
+PiBpbmZpbml0ZSByYXRlLCBhbmQgZXZlbnR1YWxseSBHTTIweCB3aWxsIHByb2JhYmx5IGdldCBh
+Y2NlbGVyYXRpb24uLi4uCj4gY291bGQgZ28gZWl0aGVyIHdheS4gTXkgaW1tZWRpYXRlIHJlYWN0
+aW9uIGlzIHRvIGhvbGQgdGhvdWdoLiBUaGVyZQo+IG1heSBiZSBmdXJ0aGVyIGRpZmZlcmVuY2Vz
+Li4uCkl0J3MgbXkgKHBlcnNvbmFsKSBvcGluaW9uIGluIHRoYXQgdXBkYXRpbmcgdGhlIEREWCB0
+byBzdXBwb3J0IHRoZXNlCm5ld2VyIGNoaXBzZXRzIGlzIHJhdGhlciBwb2ludGxlc3MgYW55d2F5
+LiAgeGY4Ni12aWRlby1tb2Rlc2V0dGluZwpwcm92aWRlcyBwcmV0dHkgbXVjaCBleGFjdGx5IHRo
+ZSBzYW1lIGZ1bmN0aW9uYWxpdHkgKEdsYW1vciwgRFJJMywKUHJlc2VudCkgYXMgb3VyIEREWCBk
+b2VzIGZvciBNYXh3ZWxsIEdQVXMuICBJIGV2ZW4gdXNlIC1tb2Rlc2V0dGluZyBvbgpteSBLZXBs
+ZXIgbGFwdG9wIHRoZXNlIGRheXMuCgpCZW4uCgo+Cj4gT24gU3VuLCBGZWIgMjIsIDIwMTUgYXQg
+OTo1MyBBTSwgU3RlZmFuIEh1ZWhuZXIgPHN0ZWZhbkBodWVobmVyLm9yZz4gd3JvdGU6Cj4+IC0t
+LQo+PiAgc3JjL252X2RyaXZlci5jIHwgMiArKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
+aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL252X2RyaXZlci5jIGIvc3JjL252X2RyaXZl
+ci5jCj4+IGluZGV4IGU3MjYyOTIuLjRjNDA3NjMgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9udl9kcml2
+ZXIuYwo+PiArKysgYi9zcmMvbnZfZHJpdmVyLmMKPj4gQEAgLTM3Nyw2ICszNzcsNyBAQCBOVkhh
+c0tNUyhzdHJ1Y3QgcGNpX2RldmljZSAqcGNpX2Rldiwgc3RydWN0IHhmODZfcGxhdGZvcm1fZGV2
+aWNlICpwbGF0Zm9ybV9kZXYpCj4+ICAgICAgICAgY2FzZSAweGYwOgo+PiAgICAgICAgIGNhc2Ug
+MHgxMDA6Cj4+ICAgICAgICAgY2FzZSAweDExMDoKPj4gKyAgICAgICBjYXNlIDB4MTIwOgo+PiAg
+ICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICAgICAgICAgZGVmYXVsdDoKPj4gICAgICAgICAgICAg
+ICAgIHhmODZEcnZNc2coLTEsIFhfRVJST1IsICJVbmtub3duIGNoaXBzZXQ6IE5WJTAyeFxuIiwg
+Y2hpcHNldCk7Cj4+IEBAIC05MzAsNiArOTMxLDcgQEAgTlZQcmVJbml0KFNjcm5JbmZvUHRyIHBT
+Y3JuLCBpbnQgZmxhZ3MpCj4+ICAgICAgICAgICAgICAgICBwTnYtPkFyY2hpdGVjdHVyZSA9IE5W
+X0tFUExFUjsKPj4gICAgICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgIGNhc2UgMHgxMTA6
+Cj4+ICsgICAgICAgY2FzZSAweDEyMDoKPj4gICAgICAgICAgICAgICAgIHBOdi0+QXJjaGl0ZWN0
+dXJlID0gTlZfTUFYV0VMTDsKPj4gICAgICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgIGRl
+ZmF1bHQ6Cj4+IC0tCj4+IDIuMS40Cj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
