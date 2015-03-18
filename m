@@ -1,17 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: GM206 support?
-Date: Tue, 17 Mar 2015 18:59:25 -0400
-Message-ID: <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ@mail.gmail.com>
-References: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
- <CAKb7Uvi5zxN9_yw9OmuWLWDUz3Ce3xHYK4=fgp8Qp=nZu_N3hA@mail.gmail.com>
- <CALCETrV5XjUxOLvyd2qukJbx0s8+qwE3ivG8s-Koc1VPe_Zezg@mail.gmail.com>
- <CAKb7UvgpjeLUn2+kAfPpMaYkuJgYKEosr7uc7BySE2xS0mcQdg@mail.gmail.com>
- <CALCETrV7tyDgz7OYw6GCTmk0hLFNhi1bMP+-Eabg5NuxBSXUeA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89620] New: Nouveau driver for Nvidia card GeForce
+	GT 550M]
+Date: Wed, 18 Mar 2015 01:19:41 +0000
+Message-ID: <bug-89620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1110715100=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CALCETrV7tyDgz7OYw6GCTmk0hLFNhi1bMP+-Eabg5NuxBSXUeA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,63 +15,177 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgNjo0MCBQTSwgQW5keSBMdXRvbWlyc2tpIDxsdXRvQGFt
-YWNhcGl0YWwubmV0PiB3cm90ZToKPiBPbiBUdWUsIE1hciAxNywgMjAxNSBhdCAyOjU3IFBNLCBJ
-bGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiBPbiBUdWUsIE1hciAx
-NywgMjAxNSBhdCA1OjUyIFBNLCBBbmR5IEx1dG9taXJza2kgPGx1dG9AYW1hY2FwaXRhbC5uZXQ+
-IHdyb3RlOgo+Pj4gT24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgOTo1MiBQTSwgSWxpYSBNaXJraW4g
-PGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+PiBPbiBGcmksIEZlYiAxMywgMjAxNSBh
-dCA4OjU5IFBNLCBBbmR5IEx1dG9taXJza2kgPGx1dG9AYW1hY2FwaXRhbC5uZXQ+IHdyb3RlOgo+
-Pj4+PiBNeSBuZXcgR1RYIDk2MCAoR00yMDYsIEkgdGhpbmspIHNheXM6Cj4+Pj4+Cj4+Pj4+IFsg
-ICAxMC4zMjkzNTFdIG5vdXZlYXUgIVsgIERFVklDRV1bMDAwMDowOTowMC4wXSB1bmtub3duIE1h
-eHdlbGwgY2hpcHNldAo+Pj4+PiBbICAgMTAuMzI5MzU1XSBub3V2ZWF1IEVbICBERVZJQ0VdWzAw
-MDA6MDk6MDAuMF0gdW5rbm93biBjaGlwc2V0LCAweDEyNjAxMGExCj4+Pj4+IFsgICAxMC4zMjkz
-NTZdIG5vdXZlYXUgRVsgICAgIERSTV0gZmFpbGVkIHRvIGNyZWF0ZSAweDAwMDAwMDgwLCAtMjIK
-Pj4+Pj4gWyAgIDEwLjMzMDEyOV0gbm91dmVhdTogcHJvYmUgb2YgMDAwMDowOTowMC4wIGZhaWxl
-ZCB3aXRoIGVycm9yIC0yMgo+Pj4+Pgo+Pj4+PiBIYWNraW5nIHVwIG5vdXZlYXUgc28gdGhhdCBp
-dCB0cmVhdHMgaXQgbGlrZSBhIEdNMjA0IGRvZXNuJ3Qgd29yay4KPj4+Pgo+Pj4+IFdoYXQgaGFw
-cGVucyBpZiB5b3UganVzdCBkcm9wIHRoZSAweDEyNiBuZXh0IHRvIHRoZSAweDEyNCBpbgo+Pj4+
-IGVuZ2luZS9kZXZpY2UvZ20xMDAuYyA/Cj4+Pj4KPj4+Pj4gQXJlIHRoZXJlIGFueSBuZWFyLXRl
-cm0gcGxhbnMgdG8gc3VwcG9ydCB0aGlzIGNhcmQ/Cj4+Pj4KPj4+PiBJIGRvbid0IGtub3cgb2Yg
-YW55b25lIHdpdGggdGhlIGh3Li4uIG1heWJlIEJlbiBnb3Qgb25lPyBJZiB5b3UncmUKPj4+PiBp
-bnRlcmVzdGVkIGluIGhlbHBpbmcsIHRoZSBrZXJuZWwgbG9ncyBmcm9tIHRoZSBhYm92ZSBleHBl
-cmltZW50ICsgYW4KPj4+PiBtbWlvdHJhY2Ugb2YgdGhlIGJsb2IgZHJpdmVycyAoc2VlCj4+Pj4g
-aHR0cHM6Ly93aWtpLnVidW50dS5jb20vWC9NTUlPVHJhY2luZykgKyB2YmlvcyAoc2VlCj4+Pj4g
-aHR0cDovL25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnL3dpa2kvRHVtcGluZ1ZpZGVvQmlvcy8pLgo+
-Pj4+Cj4+Pj4gSSBhc3N1bWUgeW91J3JlIG9uIGEgcmVjZW50IGtlcm5lbD8gWW91IG5lZWQgMy4x
-OSBmb3IgdGhlIEdNMjA0IHN0dWZmCj4+Pj4gdG8gd29yayBpbiB0aGUgZmlyc3QgcGxhY2UuCj4+
-Pgo+Pj4gTmVpdGhlciAzLjE5IG5vciA0LjAtcmNzb21ldGhpbmcgd29ya3MuCj4+Pgo+Pj4gSSBw
-dXQgYW4gbW1pbyB0cmFjZSAoWCBzdGFydHVwIGFuZCBnbHhnZWFycykgYW5kIGEgdmJpb3MgZHVt
-cCBoZXJlOgo+Pj4KPj4+IGh0dHA6Ly93ZWIubWl0LmVkdS9sdXRvL3d3dy9HTTIwNi8KPj4KPj4g
-U3RlZmFuIHNlbnQgcHJvcGVyIHBhdGNoZXMgdG8gZ2V0IG5vdXZlYXUgZ29pbmcgb24gaGlzIEdN
-MjA2LCB3aGljaAo+PiB3aWxsIG1ha2UgaXQgaW50byB0aGUgbmV4dCA0LjAtcmMuIEhlcmUgaXMg
-YSB0cmVlIHRoYXQgaXMgZGVzdGluZWQKPj4gdG93YXJkcyBkcm0tZml4ZXM6Cj4+Cj4+IGh0dHA6
-Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9ub3V2ZWF1L2xpbnV4LTIuNi9sb2cvP2g9bGludXgtNC4w
-Cj4+Cj4+IExldCB1cyBrbm93IGlmIGl0IG1ha2VzIHRoZSBjYXJkIHdvcmsuIChEZWZpbml0ZWx5
-IG5vIGFjY2VsZXJhdGlvbgo+PiB3aXRob3V0IHNpZ25lZCBmaXJtd2FyZSBmb3Igbm93IHRob3Vn
-aC4pCj4KPiBUaGUgZHJpdmVyIGxvYWRzIGFuZCBzZWVtcyB0byB3b3JrLgoKRXhjZWxsZW50IQoK
-PiBUaGUgbm91dmVhdSBYIGRyaXZlciBkb2Vzbid0IGxvYWQsIHRob3VnaC4KClllYWgsIHhmODYt
-dmlkZW8tbm91dmVhdSBoYXMgbm8gc3VwcG9ydCBmb3IgdGhlIEdNMjB4IGZhbWlseT8gTm90ZQp0
-aGF0IGV2ZW4gaWYgaXQgZGlkIGxvYWQsIHlvdSB3b3VsZG4ndCBnZXQgYW55IGFjY2VsZXJhdGlv
-biAtLSBtYXkgYXMKd2VsbCBqdXN0IHVzZSB0aGUgJ3hmODYtdmlkZW8tbW9kZXNldHRpbmcnIGRy
-aXZlci4KCj4KPiBJIHRyaWVkIHRvIHVzZSB0aGUgbnZpZGlhIGZpcm13YXJlOgo+CgpbLi4uXQoK
-Pgo+IHdpdGg6Cj4KPiBvcHRpb25zIG5vdXZlYXUgY29uZmlnPU52R3JVc2VGVz0xCj4KPiBpbiBt
-eSBtb2Rwcm9iZSBjb25maWd1cmF0aW9uLCBhbmQgdGhhdCBtYWRlIG5vIG9idmlvdXMgZGlmZmVy
-ZW5jZSwKPiBldmVuIGluIHRoZSBrZXJuZWwgbG9ncy4KClJpZ2h0LCB0aGF0J3MgZXhwZWN0ZWQu
-IEdNMjB4IHJlcXVpcmVzIHNpZ25lZCBmaXJtd2FyZS4gV2UgaGF2ZW4ndApldmVuIGdvdHRlbiBh
-cyBmYXIgYXMgYmVpbmcgYWJsZSB0byBmaWd1cmUgb3V0IHdoYXQgYWxsIHRoZQoqcHJvcHJpZXRh
-cnkqIGZpcm13YXJlIGlzLCBuZXZlciBtaW5kIGV2ZW4gbG9hZGluZyBpdC4gSXQgZG9lc24ndCBz
-aG93CnVwIGluIG1taW90cmFjZXMsIHByb2JhYmx5IHJlYWQgYnkgdGhlIGNhcmQgZGlyZWN0bHkg
-b3V0IG9mIHN5c3RlbQptZW1vcnkuIEl0J3MgYSBtdWx0aS1zdGFnZSBwcm9jZXNzLCBjb21wbGlj
-YXRpbmcgUkUuIFRoZSBmaXJtd2FyZSB0aGF0CnlvdSd2ZSBleHRyYWN0ZWQgaXMgZXhjbHVzaXZl
-bHkgZm9yIHZpZGVvIGRlY29kaW5nIGFjY2VsZXJhdGlvbi4gWW91CmNvdWxkIGV4dHJhY3QgZmly
-bXdhcmUgZnJvbSAzMjUuMTUgd2hpY2ggd2lsbCBpbmNsdWRlIHRoZSBwZ3JhcGggZnVjCmJsb2Jz
-IHRvbyBbd2hpY2ggd291bGQgZ2V0IGxvYWRlZCBieSBOdkdyVXNlRlc9MV0sIGJ1dCBub3RoaW5n
-IHRoYXQnbGwKaGVscCB5b3UuCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1110715100==
+Content-Type: multipart/alternative; boundary="1426641581.edeBeC81.30795"; charset="UTF-8"
+
+
+--1426641581.edeBeC81.30795
+Date: Wed, 18 Mar 2015 01:19:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89620
+
+            Bug ID: 89620
+           Summary: Nouveau driver for Nvidia card GeForce GT 550M]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: high
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: grgoffe-/E1597aS9LQAvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+I presume that the nouveau driver is responsible for drawing the mouse pointer.
+My pointer seems to be redrawn constantly producing what Windows used to call
+"Tails". Multiple images of the mouse pointer. Additionally, there seems to be
+some wild pointer because data from somewhere else in memory sometimes appears
+with the mouse pointer.
+
+There appears to be no messages related to this behavior in the dmesg buffer.
+
+Occasionally I get a segfault. I have Xorg.0.log files and their corresponding
+dmesg buffer files available if needed.
+
+This is a Fedora 21 x86_64 system with a kernel at 3.18.8-201.fc21.x86_64
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426641581.edeBeC81.30795
+Date: Wed, 18 Mar 2015 01:19:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">89620</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau driver for Nvidia card GeForce GT 550M]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>high
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>grgoffe&#64;yahoo.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I presume that the nouveau driver is responsible for drawing the mouse pointer.
+My pointer seems to be redrawn constantly producing what Windows used to call
+&quot;Tails&quot;. Multiple images of the mouse pointer. Additionally, there seems to be
+some wild pointer because data from somewhere else in memory sometimes appears
+with the mouse pointer.
+
+There appears to be no messages related to this behavior in the dmesg buffer.
+
+Occasionally I get a segfault. I have Xorg.0.log files and their corresponding
+dmesg buffer files available if needed.
+
+This is a Fedora 21 x86_64 system with a kernel at 3.18.8-201.fc21.x86_64</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426641581.edeBeC81.30795--
+
+--===============1110715100==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1110715100==--
