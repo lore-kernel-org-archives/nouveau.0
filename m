@@ -1,19 +1,11 @@
-From: Andy Lutomirski <luto-kltTT9wpgjJwATOyAt5JVQ@public.gmane.org>
-Subject: Re: GM206 support?
-Date: Wed, 18 Mar 2015 11:59:11 -0700
-Message-ID: <CALCETrWPq=FWvGLjUgfEu1fPqRQki+zMKmy3hd+dMhVtWtE0ng@mail.gmail.com>
-References: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
- <CAKb7Uvi5zxN9_yw9OmuWLWDUz3Ce3xHYK4=fgp8Qp=nZu_N3hA@mail.gmail.com>
- <CALCETrV5XjUxOLvyd2qukJbx0s8+qwE3ivG8s-Koc1VPe_Zezg@mail.gmail.com>
- <CAKb7UvgpjeLUn2+kAfPpMaYkuJgYKEosr7uc7BySE2xS0mcQdg@mail.gmail.com>
- <CALCETrV7tyDgz7OYw6GCTmk0hLFNhi1bMP+-Eabg5NuxBSXUeA@mail.gmail.com>
- <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ@mail.gmail.com>
- <20150318102538.GA30814@huehner.biz>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89664] New: Nouveau fails to enter KMS with the
+ Gigabyte G1 Gaming GTX970
+Date: Wed, 18 Mar 2015 19:17:10 +0000
+Message-ID: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0350769472=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20150318102538.GA30814-Xd65/bSt806pwFb5G8XvHQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,63 +15,170 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBNYXIgMTgsIDIwMTUgYXQgMzoyNSBBTSwgU3RlZmFuIEh1ZWhuZXIgPHN0ZWZhbkBo
-dWVobmVyLm9yZz4gd3JvdGU6Cj4gT24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgMDY6NTk6MjVQTSAt
-MDQwMCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+IE9uIFR1ZSwgTWFyIDE3LCAyMDE1IGF0IDY6NDAg
-UE0sIEFuZHkgTHV0b21pcnNraSA8bHV0b0BhbWFjYXBpdGFsLm5ldD4gd3JvdGU6Cj4+ID4gT24g
-VHVlLCBNYXIgMTcsIDIwMTUgYXQgMjo1NyBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5t
-aXQuZWR1PiB3cm90ZToKPj4gPj4gT24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgNTo1MiBQTSwgQW5k
-eSBMdXRvbWlyc2tpIDxsdXRvQGFtYWNhcGl0YWwubmV0PiB3cm90ZToKPj4gPj4+IE9uIEZyaSwg
-RmViIDEzLCAyMDE1IGF0IDk6NTIgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
-dT4gd3JvdGU6Cj4+ID4+Pj4gT24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgODo1OSBQTSwgQW5keSBM
-dXRvbWlyc2tpIDxsdXRvQGFtYWNhcGl0YWwubmV0PiB3cm90ZToKPj4gPj4+Pj4gTXkgbmV3IEdU
-WCA5NjAgKEdNMjA2LCBJIHRoaW5rKSBzYXlzOgo+PiA+Pj4+Pgo+PiA+Pj4+PiBbICAgMTAuMzI5
-MzUxXSBub3V2ZWF1ICFbICBERVZJQ0VdWzAwMDA6MDk6MDAuMF0gdW5rbm93biBNYXh3ZWxsIGNo
-aXBzZXQKPj4gPj4+Pj4gWyAgIDEwLjMyOTM1NV0gbm91dmVhdSBFWyAgREVWSUNFXVswMDAwOjA5
-OjAwLjBdIHVua25vd24gY2hpcHNldCwgMHgxMjYwMTBhMQo+PiA+Pj4+PiBbICAgMTAuMzI5MzU2
-XSBub3V2ZWF1IEVbICAgICBEUk1dIGZhaWxlZCB0byBjcmVhdGUgMHgwMDAwMDA4MCwgLTIyCj4+
-ID4+Pj4+IFsgICAxMC4zMzAxMjldIG5vdXZlYXU6IHByb2JlIG9mIDAwMDA6MDk6MDAuMCBmYWls
-ZWQgd2l0aCBlcnJvciAtMjIKPj4gPj4+Pj4KPj4gPj4+Pj4gSGFja2luZyB1cCBub3V2ZWF1IHNv
-IHRoYXQgaXQgdHJlYXRzIGl0IGxpa2UgYSBHTTIwNCBkb2Vzbid0IHdvcmsuCj4+ID4+Pj4KPj4g
-Pj4+PiBXaGF0IGhhcHBlbnMgaWYgeW91IGp1c3QgZHJvcCB0aGUgMHgxMjYgbmV4dCB0byB0aGUg
-MHgxMjQgaW4KPj4gPj4+PiBlbmdpbmUvZGV2aWNlL2dtMTAwLmMgPwo+PiA+Pj4+Cj4+ID4+Pj4+
-IEFyZSB0aGVyZSBhbnkgbmVhci10ZXJtIHBsYW5zIHRvIHN1cHBvcnQgdGhpcyBjYXJkPwo+PiA+
-Pj4+Cj4+ID4+Pj4gSSBkb24ndCBrbm93IG9mIGFueW9uZSB3aXRoIHRoZSBody4uLiBtYXliZSBC
-ZW4gZ290IG9uZT8gSWYgeW91J3JlCj4+ID4+Pj4gaW50ZXJlc3RlZCBpbiBoZWxwaW5nLCB0aGUg
-a2VybmVsIGxvZ3MgZnJvbSB0aGUgYWJvdmUgZXhwZXJpbWVudCArIGFuCj4+ID4+Pj4gbW1pb3Ry
-YWNlIG9mIHRoZSBibG9iIGRyaXZlcnMgKHNlZQo+PiA+Pj4+IGh0dHBzOi8vd2lraS51YnVudHUu
-Y29tL1gvTU1JT1RyYWNpbmcpICsgdmJpb3MgKHNlZQo+PiA+Pj4+IGh0dHA6Ly9ub3V2ZWF1LmZy
-ZWVkZXNrdG9wLm9yZy93aWtpL0R1bXBpbmdWaWRlb0Jpb3MvKS4KPj4gPj4+Pgo+PiA+Pj4+IEkg
-YXNzdW1lIHlvdSdyZSBvbiBhIHJlY2VudCBrZXJuZWw/IFlvdSBuZWVkIDMuMTkgZm9yIHRoZSBH
-TTIwNCBzdHVmZgo+PiA+Pj4+IHRvIHdvcmsgaW4gdGhlIGZpcnN0IHBsYWNlLgo+PiA+Pj4KPj4g
-Pj4+IE5laXRoZXIgMy4xOSBub3IgNC4wLXJjc29tZXRoaW5nIHdvcmtzLgo+PiA+Pj4KPj4gPj4+
-IEkgcHV0IGFuIG1taW8gdHJhY2UgKFggc3RhcnR1cCBhbmQgZ2x4Z2VhcnMpIGFuZCBhIHZiaW9z
-IGR1bXAgaGVyZToKPj4gPj4+Cj4+ID4+PiBodHRwOi8vd2ViLm1pdC5lZHUvbHV0by93d3cvR00y
-MDYvCj4+ID4+Cj4+ID4+IFN0ZWZhbiBzZW50IHByb3BlciBwYXRjaGVzIHRvIGdldCBub3V2ZWF1
-IGdvaW5nIG9uIGhpcyBHTTIwNiwgd2hpY2gKPj4gPj4gd2lsbCBtYWtlIGl0IGludG8gdGhlIG5l
-eHQgNC4wLXJjLiBIZXJlIGlzIGEgdHJlZSB0aGF0IGlzIGRlc3RpbmVkCj4+ID4+IHRvd2FyZHMg
-ZHJtLWZpeGVzOgo+PiA+Pgo+PiA+PiBodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbm91dmVh
-dS9saW51eC0yLjYvbG9nLz9oPWxpbnV4LTQuMAo+PiA+Pgo+PiA+PiBMZXQgdXMga25vdyBpZiBp
-dCBtYWtlcyB0aGUgY2FyZCB3b3JrLiAoRGVmaW5pdGVseSBubyBhY2NlbGVyYXRpb24KPj4gPj4g
-d2l0aG91dCBzaWduZWQgZmlybXdhcmUgZm9yIG5vdyB0aG91Z2guKQo+PiA+Cj4+ID4gVGhlIGRy
-aXZlciBsb2FkcyBhbmQgc2VlbXMgdG8gd29yay4KPj4KPj4gRXhjZWxsZW50IQo+Pgo+PiA+IFRo
-ZSBub3V2ZWF1IFggZHJpdmVyIGRvZXNuJ3QgbG9hZCwgdGhvdWdoLgo+Pgo+PiBZZWFoLCB4Zjg2
-LXZpZGVvLW5vdXZlYXUgaGFzIG5vIHN1cHBvcnQgZm9yIHRoZSBHTTIweCBmYW1pbHk/IE5vdGUK
-Pj4gdGhhdCBldmVuIGlmIGl0IGRpZCBsb2FkLCB5b3Ugd291bGRuJ3QgZ2V0IGFueSBhY2NlbGVy
-YXRpb24gLS0gbWF5IGFzCj4+IHdlbGwganVzdCB1c2UgdGhlICd4Zjg2LXZpZGVvLW1vZGVzZXR0
-aW5nJyBkcml2ZXIuCj4+Cj4KPiBIaSBndXlzLAo+IGkgZGlkIHNlbnQgYSBwYXRjaCB0byBhZGQg
-R00yMDYgdG8gdGhlIGRkeCBhbHNvIGJ1dCBsb29rcyBsaWtlIGl0IGdvdCBtaXNzZWQgeW91IGNh
-biBmaW5kIGl0IGhlcmUuCj4KPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVz
-L25vdXZlYXUvMjAxNS1GZWJydWFyeS8wMjAxNDQuaHRtbAo+Cj4gQnV0IGFzIHNhaWQgbm8gYWNj
-ZWxlcmF0aW9uIHlldC4KCkknbGwgcHJvYmFibHkgc3RpY2sgd2l0aCB0aGUgYmluYXJ5IGRyaXZl
-ciB1bnRpbCB0aGVyZSdzIGFjY2VsZXJhdGlvbi4KSSBoYXZlIHRvbyBtYW55IHBpeGVscyBvbiBt
-eSBtb25pdG9yIGZvciByZWFzb25hYmxlIHVuYWNjZWxlcmF0ZWQKY29tcG9zaXRpbmcgcGVyZm9y
-bWFuY2UsIEkgdGhpbmsuCgpUaGFua3MgZm9yIGJyaW5naW5nIHRoaXMgdXAsIHRob3VnaCEgIFdv
-cmtpbmcgbW9kZXNldHRpbmcgaXMgYSAqaHVnZSoKaW1wcm92ZW1lbnQgb3ZlciB2ZXNhZmIuCgot
-LUFuZHkKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0350769472==
+Content-Type: multipart/alternative; boundary="1426706230.A1C5AEA71.4661"; charset="UTF-8"
+
+
+--1426706230.A1C5AEA71.4661
+Date: Wed, 18 Mar 2015 19:17:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89664
+
+            Bug ID: 89664
+           Summary: Nouveau fails to enter KMS with the Gigabyte G1 Gaming
+                    GTX970
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Using the kernel from the linux-4.0 branch I attempted to use nouveau with my
+GTX970.
+At the moment the nouveau driver started and the system should switch to KMS,
+the screen turned black instead.
+
+
+DMESG output was cut of due to to many message from nouveau.
+As such I attached the journalctl output of that boot session instead.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426706230.A1C5AEA71.4661
+Date: Wed, 18 Mar 2015 19:17:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">89664</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>Omar.networkhosting&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Using the kernel from the linux-4.0 branch I attempted to use nouveau with my
+GTX970.
+At the moment the nouveau driver started and the system should switch to KMS,
+the screen turned black instead.
+
+
+DMESG output was cut of due to to many message from nouveau.
+As such I attached the journalctl output of that boot session instead.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426706230.A1C5AEA71.4661--
+
+--===============0350769472==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0350769472==--
