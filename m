@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
  G1 Gaming GTX970
-Date: Wed, 18 Mar 2015 19:29:57 +0000
-Message-ID: <bug-89664-8800-5xbceXY2aq@http.bugs.freedesktop.org/>
+Date: Wed, 18 Mar 2015 19:51:36 +0000
+Message-ID: <bug-89664-8800-jDimIBv0PW@http.bugs.freedesktop.org/>
 References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0366399884=="
+Content-Type: multipart/mixed; boundary="===============0074057130=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0366399884==
-Content-Type: multipart/alternative; boundary="1426706997.0a617AcA1.9262"; charset="UTF-8"
+--===============0074057130==
+Content-Type: multipart/alternative; boundary="1426708296.e34DC01.16368"; charset="UTF-8"
 
 
---1426706997.0a617AcA1.9262
-Date: Wed, 18 Mar 2015 19:29:57 +0000
+--1426708296.e34DC01.16368
+Date: Wed, 18 Mar 2015 19:51:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89664
 
---- Comment #2 from Omar <Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 114450
-  --> https://bugs.freedesktop.org/attachment.cgi?id=114450&action=edit
-journalctl dump of the boot
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+As I mentioned on IRC, there are actually 2x GM204's. And *neither* says that
+it's running its vbios tables, which is very odd. Try booting with
 
-The journal dump I mentioned in the OP.
-Capped around line 15K as the original totalled at almost 50K, crossing the 3MB
-file size limit.
+nouveau.config=NvForcePost=1
+
+Perhaps we're misdetecting the posting-ness state of things. The card that's
+bitching is 0000:01:00.0 but the :2 one is probed by nouveau first, not sure if
+that's significant.
+
+If this doesn't help. I'd recommend retesting with just one of them plugged in.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426706997.0a617AcA1.9262
-Date: Wed, 18 Mar 2015 19:29:57 +0000
+--1426708296.e34DC01.16368
+Date: Wed, 18 Mar 2015 19:51:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,19 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
-              from <span class="vcard"><a class="email" href="mailto:Omar.networkhosting&#64;gmail.com" title="Omar &lt;Omar.networkhosting&#64;gmail.com&gt;"> <span class="fn">Omar</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=114450" name="attach_114450" title="journalctl dump of the boot">attachment 114450</a> <a href="attachment.cgi?id=114450&amp;action=edit" title="journalctl dump of the boot">[details]</a></span>
-journalctl dump of the boot
+        <pre>As I mentioned on IRC, there are actually 2x GM204's. And *neither* says that
+it's running its vbios tables, which is very odd. Try booting with
 
-The journal dump I mentioned in the OP.
-Capped around line 15K as the original totalled at almost 50K, crossing the 3MB
-file size limit.</pre>
+nouveau.config=NvForcePost=1
+
+Perhaps we're misdetecting the posting-ness state of things. The card that's
+bitching is 0000:01:00.0 but the :2 one is probed by nouveau first, not sure if
+that's significant.
+
+If this doesn't help. I'd recommend retesting with just one of them plugged in.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +91,9 @@ file size limit.</pre>
     </body>
 </html>
 
---1426706997.0a617AcA1.9262--
+--1426708296.e34DC01.16368--
 
---===============0366399884==
+--===============0074057130==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0366399884==--
+--===============0074057130==--
