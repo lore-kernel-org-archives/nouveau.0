@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89620] Nouveau driver for Nvidia card GeForce GT
-	550M]
-Date: Thu, 19 Mar 2015 04:47:59 +0000
-Message-ID: <bug-89620-8800-7p5Bfz3KE8@http.bugs.freedesktop.org/>
-References: <bug-89620-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
+Date: Thu, 19 Mar 2015 12:14:17 +0000
+Message-ID: <bug-89047-8800-fuoogcby7D@http.bugs.freedesktop.org/>
+References: <bug-89047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2137845678=="
+Content-Type: multipart/mixed; boundary="===============0702448526=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,76 +20,100 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2137845678==
-Content-Type: multipart/alternative; boundary="1426740479.1D22B1.17029"; charset="UTF-8"
+--===============0702448526==
+Content-Type: multipart/alternative; boundary="1426767257.1F8B8bdE1.10059"; charset="UTF-8"
 
 
---1426740479.1D22B1.17029
-Date: Thu, 19 Mar 2015 04:47:59 +0000
+--1426767257.1F8B8bdE1.10059
+Date: Thu, 19 Mar 2015 12:14:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89620
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89047
 
---- Comment #2 from George R. Goffe <grgoffe-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 114461
-  --> https://bugs.freedesktop.org/attachment.cgi?id=114461&action=edit
-tar.gz file containing logs
+Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Contents of this file are:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |critical
 
-      1 -rw-r--r-- root/root    145232 2015-03-13 20:04 Xorg.0.log12
-      2 -rw-r--r-- root/root    103255 2015-03-13 20:05 dmesg-try12.buf
-      3 -rw-r--r-- root/root    763417 2015-03-13 20:05 startx.log.log12
+--- Comment #2 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Some patch available?
+Increased the severity to Critical since this prevents systems using nouveau
+from booting completely.
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426740479.1D22B1.17029
-Date: Thu, 19 Mar 2015 04:47:59 +0000
+--1426767257.1F8B8bdE1.10059
+Date: Thu, 19 Mar 2015 12:14:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:renda.kre=
+ll&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com&gt;"> <s=
+pan class=3D"fn">Ren=C3=A9</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>critical
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
-              from <span class="vcard"><a class="email" href="mailto:grgoffe&#64;yahoo.com" title="George R. Goffe &lt;grgoffe&#64;yahoo.com&gt;"> <span class="fn">George R. Goffe</span></a>
+   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
+&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=114461" name="attach_114461" title="tar.gz file containing logs">attachment 114461</a> <a href="attachment.cgi?id=114461&amp;action=edit" title="tar.gz file containing logs">[details]</a></span>
-tar.gz file containing logs
-
-Contents of this file are:
-
-      1 -rw-r--r-- root/root    145232 2015-03-13 20:04 Xorg.0.log12
-      2 -rw-r--r-- root/root    103255 2015-03-13 20:05 dmesg-try12.buf
-      3 -rw-r--r-- root/root    763417 2015-03-13 20:05 startx.log.log12</pre>
+        <pre>Some patch available?
+Increased the severity to Critical since this prevents systems using nouveau
+from booting completely.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1426740479.1D22B1.17029--
+--1426767257.1F8B8bdE1.10059--
 
---===============2137845678==
+--===============0702448526==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2137845678==--
+--===============0702448526==--
