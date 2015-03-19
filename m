@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
-Date: Thu, 19 Mar 2015 12:14:17 +0000
-Message-ID: <bug-89047-8800-fuoogcby7D@http.bugs.freedesktop.org/>
-References: <bug-89047-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80901] [NVCF] PWM fan speed too high
+Date: Thu, 19 Mar 2015 12:38:26 +0000
+Message-ID: <bug-80901-8800-TnTcgG9nDv@http.bugs.freedesktop.org/>
+References: <bug-80901-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0702448526=="
+Content-Type: multipart/mixed; boundary="===============1985230589=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80901-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,100 +20,71 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0702448526==
-Content-Type: multipart/alternative; boundary="1426767257.1F8B8bdE1.10059"; charset="UTF-8"
+--===============1985230589==
+Content-Type: multipart/alternative; boundary="1426768705.D1E61D3.16272"; charset="UTF-8"
 
 
---1426767257.1F8B8bdE1.10059
-Date: Thu, 19 Mar 2015 12:14:17 +0000
+--1426768705.D1E61D3.16272
+Date: Thu, 19 Mar 2015 12:38:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89047
+https://bugs.freedesktop.org/show_bug.cgi?id=80901
 
-Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #49 from K.-P. Schrage <kpschrage-Mmb7MZpHnFY@public.gmane.org> ---
+(In reply to Martin Peres from comment #48)
+> Sorry guys, I'm back at the problem ... again ...
+> 
+> I really want to fix this upstream!
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|normal                      |critical
+Fine. Tell me if I can supply any more information.
 
---- Comment #2 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Some patch available?
-Increased the severity to Critical since this prevents systems using nouveau
-from booting completely.
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1426767257.1F8B8bdE1.10059
-Date: Thu, 19 Mar 2015 12:14:17 +0000
+--1426768705.D1E61D3.16272
+Date: Thu, 19 Mar 2015 12:38:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:renda.kre=
-ll&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com&gt;"> <s=
-pan class=3D"fn">Ren=C3=A9</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Severity</td>
-           <td>normal
-           </td>
-           <td>critical
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047#c2">Comment=
- # 2</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901#c49">Comment # 49</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - linux-3.19 nvd9 Invalid rom content"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89047">bug 89047<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
-&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+   title="NEW - [NVCF] PWM fan speed too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80901">bug 80901</a>
+              from <span class="vcard"><a class="email" href="mailto:kpschrage&#64;gmx.de" title="K.-P. Schrage &lt;kpschrage&#64;gmx.de&gt;"> <span class="fn">K.-P. Schrage</span></a>
 </span></b>
-        <pre>Some patch available?
-Increased the severity to Critical since this prevents systems using nouveau
-from booting completely.</pre>
+        <pre>(In reply to Martin Peres from <a href="show_bug.cgi?id=80901#c48">comment #48</a>)
+<span class="quote">&gt; Sorry guys, I'm back at the problem ... again ...
+&gt; 
+&gt; I really want to fix this upstream!</span >
+
+Fine. Tell me if I can supply any more information.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1426767257.1F8B8bdE1.10059--
+--1426768705.D1E61D3.16272--
 
---===============0702448526==
+--===============1985230589==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0702448526==--
+--===============1985230589==--
