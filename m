@@ -1,14 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Basic GM206 bringup (as copy of GM100)
-Date: Thu, 19 Mar 2015 09:35:24 +1000
-Message-ID: <CACAvsv58Zcd_=jvoDS-2PBwd=rf8Tj9NJSQHrpaQ2rU4nC7HgQ@mail.gmail.com>
-References: <1424616802-2097-1-git-send-email-stefan@huehner.org>
- <CAKb7UvicmqOF1tmVBHjdPLPbviJnHSU=uXLepsUyNnrrA=r65w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89620] Nouveau driver for Nvidia card GeForce GT
+	550M]
+Date: Thu, 19 Mar 2015 04:47:59 +0000
+Message-ID: <bug-89620-8800-7p5Bfz3KE8@http.bugs.freedesktop.org/>
+References: <bug-89620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2137845678=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvicmqOF1tmVBHjdPLPbviJnHSU=uXLepsUyNnrrA=r65w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,45 +17,87 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkgTWFyY2ggMjAxNSBhdCAwMjo0NCwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PiB3cm90ZToKPiBUaGVyZSdzIG5vIHdheSB0byBnZXQgYWNjZWxlcmF0aW9uIHdpdGggR00y
-MHguLi4gSSdkIHJhdGhlciBzYXZlIHRoaXMKPiB1bnRpbCB0aGVyZSBpcy4gRm9yIG5vdyByZWpl
-Y3QgdGhlIGxvYWQgYW5kIGxldCB0aGUgbW9kZXNldHRpbmcgZHJpdmVyCj4gZ2V0IHVzZWQuIE9U
-T0gsIHRoZSBERFggaXNuJ3QgcmVsZWFzZWQvaW50ZWdyYXRlZCBpbnRvIGRpc3Ryb3MgYXQgYW4K
-PiBpbmZpbml0ZSByYXRlLCBhbmQgZXZlbnR1YWxseSBHTTIweCB3aWxsIHByb2JhYmx5IGdldCBh
-Y2NlbGVyYXRpb24uLi4uCj4gY291bGQgZ28gZWl0aGVyIHdheS4gTXkgaW1tZWRpYXRlIHJlYWN0
-aW9uIGlzIHRvIGhvbGQgdGhvdWdoLiBUaGVyZQo+IG1heSBiZSBmdXJ0aGVyIGRpZmZlcmVuY2Vz
-Li4uCkl0J3MgbXkgKHBlcnNvbmFsKSBvcGluaW9uIGluIHRoYXQgdXBkYXRpbmcgdGhlIEREWCB0
-byBzdXBwb3J0IHRoZXNlCm5ld2VyIGNoaXBzZXRzIGlzIHJhdGhlciBwb2ludGxlc3MgYW55d2F5
-LiAgeGY4Ni12aWRlby1tb2Rlc2V0dGluZwpwcm92aWRlcyBwcmV0dHkgbXVjaCBleGFjdGx5IHRo
-ZSBzYW1lIGZ1bmN0aW9uYWxpdHkgKEdsYW1vciwgRFJJMywKUHJlc2VudCkgYXMgb3VyIEREWCBk
-b2VzIGZvciBNYXh3ZWxsIEdQVXMuICBJIGV2ZW4gdXNlIC1tb2Rlc2V0dGluZyBvbgpteSBLZXBs
-ZXIgbGFwdG9wIHRoZXNlIGRheXMuCgpCZW4uCgo+Cj4gT24gU3VuLCBGZWIgMjIsIDIwMTUgYXQg
-OTo1MyBBTSwgU3RlZmFuIEh1ZWhuZXIgPHN0ZWZhbkBodWVobmVyLm9yZz4gd3JvdGU6Cj4+IC0t
-LQo+PiAgc3JjL252X2RyaXZlci5jIHwgMiArKwo+PiAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0
-aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL252X2RyaXZlci5jIGIvc3JjL252X2RyaXZl
-ci5jCj4+IGluZGV4IGU3MjYyOTIuLjRjNDA3NjMgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9udl9kcml2
-ZXIuYwo+PiArKysgYi9zcmMvbnZfZHJpdmVyLmMKPj4gQEAgLTM3Nyw2ICszNzcsNyBAQCBOVkhh
-c0tNUyhzdHJ1Y3QgcGNpX2RldmljZSAqcGNpX2Rldiwgc3RydWN0IHhmODZfcGxhdGZvcm1fZGV2
-aWNlICpwbGF0Zm9ybV9kZXYpCj4+ICAgICAgICAgY2FzZSAweGYwOgo+PiAgICAgICAgIGNhc2Ug
-MHgxMDA6Cj4+ICAgICAgICAgY2FzZSAweDExMDoKPj4gKyAgICAgICBjYXNlIDB4MTIwOgo+PiAg
-ICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICAgICAgICAgZGVmYXVsdDoKPj4gICAgICAgICAgICAg
-ICAgIHhmODZEcnZNc2coLTEsIFhfRVJST1IsICJVbmtub3duIGNoaXBzZXQ6IE5WJTAyeFxuIiwg
-Y2hpcHNldCk7Cj4+IEBAIC05MzAsNiArOTMxLDcgQEAgTlZQcmVJbml0KFNjcm5JbmZvUHRyIHBT
-Y3JuLCBpbnQgZmxhZ3MpCj4+ICAgICAgICAgICAgICAgICBwTnYtPkFyY2hpdGVjdHVyZSA9IE5W
-X0tFUExFUjsKPj4gICAgICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgIGNhc2UgMHgxMTA6
-Cj4+ICsgICAgICAgY2FzZSAweDEyMDoKPj4gICAgICAgICAgICAgICAgIHBOdi0+QXJjaGl0ZWN0
-dXJlID0gTlZfTUFYV0VMTDsKPj4gICAgICAgICAgICAgICAgIGJyZWFrOwo+PiAgICAgICAgIGRl
-ZmF1bHQ6Cj4+IC0tCj4+IDIuMS40Cj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2137845678==
+Content-Type: multipart/alternative; boundary="1426740479.1D22B1.17029"; charset="UTF-8"
+
+
+--1426740479.1D22B1.17029
+Date: Thu, 19 Mar 2015 04:47:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89620
+
+--- Comment #2 from George R. Goffe <grgoffe-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 114461
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114461&action=edit
+tar.gz file containing logs
+
+Contents of this file are:
+
+      1 -rw-r--r-- root/root    145232 2015-03-13 20:04 Xorg.0.log12
+      2 -rw-r--r-- root/root    103255 2015-03-13 20:05 dmesg-try12.buf
+      3 -rw-r--r-- root/root    763417 2015-03-13 20:05 startx.log.log12
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426740479.1D22B1.17029
+Date: Thu, 19 Mar 2015 04:47:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
+              from <span class="vcard"><a class="email" href="mailto:grgoffe&#64;yahoo.com" title="George R. Goffe &lt;grgoffe&#64;yahoo.com&gt;"> <span class="fn">George R. Goffe</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114461" name="attach_114461" title="tar.gz file containing logs">attachment 114461</a> <a href="attachment.cgi?id=114461&amp;action=edit" title="tar.gz file containing logs">[details]</a></span>
+tar.gz file containing logs
+
+Contents of this file are:
+
+      1 -rw-r--r-- root/root    145232 2015-03-13 20:04 Xorg.0.log12
+      2 -rw-r--r-- root/root    103255 2015-03-13 20:05 dmesg-try12.buf
+      3 -rw-r--r-- root/root    763417 2015-03-13 20:05 startx.log.log12</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426740479.1D22B1.17029--
+
+--===============2137845678==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2137845678==--
