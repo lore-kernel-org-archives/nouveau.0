@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
-Date: Fri, 20 Mar 2015 04:57:18 +0000
-Message-ID: <bug-86935-8800-74qZyW63NU@http.bugs.freedesktop.org/>
-References: <bug-86935-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/3] platform: release IOMMU's mm upon exit
+Date: Fri, 20 Mar 2015 19:41:04 +0900
+Message-ID: <1426848066-13700-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0716003271=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,91 +15,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0716003271==
-Content-Type: multipart/alternative; boundary="1426827438.CBCc321.18080"; charset="UTF-8"
-
-
---1426827438.CBCc321.18080
-Date: Fri, 20 Mar 2015 04:57:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86935
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1426827438.CBCc321.18080
-Date: Fri, 20 Mar 2015 04:57:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV106] unknown kepler chipset 0x106"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1426827438.CBCc321.18080--
-
---===============0716003271==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0716003271==--
+bnZrbV9tbV9maW5pKCkgd2FzIG5vdCBjYWxsZWQgd2hlbiBleGl0aW5nIHRoZSBkcml2ZXIsIHJl
+c3VsdGluZyBpbiBhCm1lbW9yeSBsZWFrLiBGaXggdGhpcy4KClNpZ25lZC1vZmYtYnk6IEFsZXhh
+bmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L25vdXZl
+YXVfcGxhdGZvcm0uYyB8IDEgKwogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZm
+IC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5jIGIvZHJtL25vdXZlYXUvbm91
+dmVhdV9wbGF0Zm9ybS5jCmluZGV4IDM2OTE5ODI0NTJhOS4uZjgzYWExMmVlNWM2IDEwMDY0NAot
+LS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMKKysrIGIvZHJtL25vdXZlYXUvbm91
+dmVhdV9wbGF0Zm9ybS5jCkBAIC0xNTIsNiArMTUyLDcgQEAgc3RhdGljIHZvaWQgbm91dmVhdV9w
+bGF0Zm9ybV9yZW1vdmVfaW9tbXUoc3RydWN0IGRldmljZSAqZGV2LAogCQkJCQkgIHN0cnVjdCBu
+b3V2ZWF1X3BsYXRmb3JtX2dwdSAqZ3B1KQogewogCWlmIChncHUtPmlvbW11LmRvbWFpbikgewor
+CQludmttX21tX2ZpbmkoJmdwdS0+aW9tbXUuX21tKTsKIAkJaW9tbXVfZGV0YWNoX2RldmljZShn
+cHUtPmlvbW11LmRvbWFpbiwgZGV2KTsKIAkJaW9tbXVfZG9tYWluX2ZyZWUoZ3B1LT5pb21tdS5k
+b21haW4pOwogCX0KLS0gCjIuMy4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
