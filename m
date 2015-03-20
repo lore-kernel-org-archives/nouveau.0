@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 78161] [NV96] Artifacts in output of fragment
- program containing not unrolled loops with conditional break
-Date: Fri, 20 Mar 2015 14:09:13 +0000
-Message-ID: <bug-78161-8800-XayqvrQVjG@http.bugs.freedesktop.org/>
-References: <bug-78161-8800@http.bugs.freedesktop.org/>
+From: Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
+Subject: SLI development
+Date: Fri, 20 Mar 2015 19:40:27 +0200
+Message-ID: <550C5B8B.7060209@varciai.lt>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1275394283=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-78161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,71 +18,36 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1275394283==
-Content-Type: multipart/alternative; boundary="1426860552.af6AB0cf1.27770"; charset="UTF-8"
-
-
---1426860552.af6AB0cf1.27770
-Date: Fri, 20 Mar 2015 14:09:12 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=78161
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-and/or changing the 0x18 value written to WATCHDOG_TIMER in nv50_screen.c to
-0x1e.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1426860552.af6AB0cf1.27770
-Date: Fri, 20 Mar 2015 14:09:12 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161">bug 78161</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>and/or changing the 0x18 value written to WATCHDOG_TIMER in nv50_screen.c to
-0x1e.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1426860552.af6AB0cf1.27770--
-
---===============1275394283==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1275394283==--
+LS0tLS1CRUdJTiBQR1AgU0lHTkVEIE1FU1NBR0UtLS0tLQpIYXNoOiBTSEEyNTYKCkdvb2QgZGF5
+IQoKLSBGcm9tIE5vdXZlYXUgZmVhdHVyZSBtYXRyaXggcGFnZToKPlNMSSBvciBldmVuIG11bHRp
+Y2FyZCBzZXR1cHMgYXJlIHZlcnkgcmFyZSBhbW9uZyBkZXZlbG9wZXJzLgo+WW91IHNob3VsZCBz
+dGFydCBoYWNraW5nIHdpdGggdXMsIGlmIHlvdSBoYXZlIHN1Y2ggYSBzZXR1cC4KCkkgaGF2ZSB0
+d28gR1RYIDc3MCBjYXJkcyBydW5uaW5nIGluIFNMSVsxXSBhbmQgd291bGQgbGlrZSB0byBoZWxw
+IGJyaW5naW5nClNMSSBjYXBhYmlsaXR5IGludG8gTm91dmVhdS4KCkkgd291bGQgZ2xhZGx5IHdy
+aXRlIGNvZGUgZm9yIGl0IGFuZCBJIGFtIGEgY29tcGV0ZW50IEMgcHJvZ3JhbW1lciBwZXIgc2UK
+KEMgaXMgbXkgbWFpbiBsYW5ndWFnZSkuIEJ1dCwgSSBkb24ndCBoYXZlIG11Y2ggZXhwZXJpZW5j
+ZSB3aXRoIGdyYXBoaWNzCnByb2dyYW1taW5nIGFuZCBoYXZlIHZlcnkgbGl0dGxlIGV4cGVyaWVu
+Y2Ugd2hlbiBpdCBjb21lcyB0byAidGFsa2luZyIgd2l0aApoYXJkd2FyZSBkaXJlY3RseS4gVGh1
+cywgSSBhbSBub3QgY29uZmlkZW50IEkgd291bGQgbWFuYWdlIHRvIGRvIGl0CnByb3Blcmx5LiBJ
+IHdvdWxkIGxpa2UgdG8gYXQgbGVhc3QgdHJ5LCBub25ldGhlbGVzcy4KCkFueSBwb2ludGVycyBv
+biB3aGVyZSB0byBzdGFydCBhbmQvb3Igd2hhdCB0aGluZ3MgdG8gcmVzZWFyY2ggZmlyc3Q/Cgpb
+MV0gcnVubmluZyBpbiBTTEkgbW9kZSB3aGVuIHVuZGVyIFdpbmRvd3MsIGJ1dCB0aGF0IGhhcmRs
+eSBldmVyCmhhcHBlbnMgYW55bW9yZS4KCi0gLS0gCkdlZGltaW5hcyBKYWt1dGlzCkxESyBWYXLE
+jWlhaSB3d3cudmFyY2lhaS5sdAoKLS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0KVmVyc2lv
+bjogR251UEcgdjIKCmlRSWNCQUVCQ0FBR0JRSlZERnRpQUFvSkVMaGpUQ0xXTGhJRlc5c1AvQXVB
+SHdndEZzMnlJVFZnSmtVQ0dvME0KZ2VaRDZBY1hRQnpldG1qTkNKeXl0aGpkWlhGalRsMUhFaFlG
+RHNqRXFVaFltWEdEWUNYRU1jVHkvYmNFM0l2cApRa1RacGU2cGw2Y1VpZU5RQlk3dStybUp1emt0
+d2xINWVodU9TbjRTTzQ1K3FhcjdFMnlIeGFkR2hGcWtheGJoClgreUVIaWtIaXdwVzBNYjVxUmJk
+TVFrTUZLMW5PSmRTL3V3alk4S2RNSzV0NFB0SjRBdUVwa0ZlbmpOU1hNbmoKdmorYURjTVJuSTQy
+QkJsdmQwQWhtMVpsNGk2UFVMT3NjZDBIdTV1ZGswZ1NsVnpDcGloQ1BPcjRJam43MEdDbAozeFVW
+aCtONllDRVpxc0lSMlJLZ2JUS0EwNGxwZmNPREgweWNLWXdHUG9nMzBldUtibSthNWhnc1NaSFZ2
+OXlYClBwbHpmZ3Z3U2xpSkZsU05zYllMQm5oS0NBTU9Udy8zWmt0cHRGUVBrdEZHMFJYZm56a3Y3
+STlpS3k5QzZHR3oKb0pabklzSnlmTlpiRUhaL1RodDBkVHUxMWVVUE9VRVBRLzZGRUtPamVXeXBW
+MVoyOS8veTRrMEJzSlg0bWxPUApzQ1MzVVkzVmNzMDZvSlAwam9Ja3V3UWRHWHN6Mk1EZDdDWmQz
+TDZUMndlNFVFWkZQNkZNTFFaVlltWFQvOGlaCkoyRnJkWEE0bVFPMmorWmVkZm41WkVJb2VzMjV0
+V1I0TVhiU3JaZHloMG9xcXZaOUxrYkhWYXZEa3RLakVndzIKWERKYnFhQkFBTW9EcVhxVXVLZ3dk
+ekNOQjdhQU1ZUXA5QmtrWHU0Ym9NMm9FSkpzdHAvbFBwbUJKNFoxL29zMgp2dk1mVXQ0MVV4S0Yr
+R0FtVEdhcgo9Wk8vNgotLS0tLUVORCBQR1AgU0lHTkFUVVJFLS0tLS0KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
