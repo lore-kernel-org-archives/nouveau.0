@@ -1,44 +1,96 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/3] platform: fix probe error path
-Date: Fri, 20 Mar 2015 19:41:05 +0900
-Message-ID: <1426848066-13700-2-git-send-email-acourbot@nvidia.com>
-References: <1426848066-13700-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 78161] [NV96] Artifacts in output of fragment
+ program containing not unrolled loops with conditional break
+Date: Fri, 20 Mar 2015 14:04:23 +0000
+Message-ID: <bug-78161-8800-eL03Upq1Eq@http.bugs.freedesktop.org/>
+References: <bug-78161-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1426848066-13700-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============0027422105=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-78161-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-A "return 0" found its way in the middle of the error path of
-nouveau_platform_probe(), remove it as it will make the kernel crash if
-we try to unload the module afterwards.
 
-While we are at it, also remove the IOMMU domain if it has been created,
-as we should.
+--===============0027422105==
+Content-Type: multipart/alternative; boundary="1426860262.a7bc181.26684"; charset="UTF-8"
 
-Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drm/nouveau/nouveau_platform.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drm/nouveau/nouveau_platform.c b/drm/nouveau/nouveau_platform.c
-index f83aa12ee5c6..775277f1edb0 100644
---- a/drm/nouveau/nouveau_platform.c
-+++ b/drm/nouveau/nouveau_platform.c
-@@ -209,10 +209,9 @@ static int nouveau_platform_probe(struct platform_device *pdev)
- err_unref:
- 	drm_dev_unref(drm);
- 
--	return 0;
--
- power_down:
- 	nouveau_platform_power_down(gpu);
-+	nouveau_platform_remove_iommu(&pdev->dev, gpu);
- 
- 	return err;
- }
+--1426860262.a7bc181.26684
+Date: Fri, 20 Mar 2015 14:04:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=78161
+
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Can one of the people with the issue try running an affected program with
+
+NOUVEAU_SHADER_WATCHDOG=false
+
+in the environment?
+
 -- 
-2.3.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426860262.a7bc181.26684
+Date: Fri, 20 Mar 2015 14:04:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Artifacts in output of fragment program containing not unrolled loops with conditional break"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=78161">bug 78161</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Can one of the people with the issue try running an affected program with
+
+NOUVEAU_SHADER_WATCHDOG=false
+
+in the environment?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426860262.a7bc181.26684--
+
+--===============0027422105==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0027422105==--
