@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Meaning of MMIO register 100080 on NV28
-Date: Thu, 19 Mar 2015 23:17:53 -0400
-Message-ID: <CAKb7UvhUZn9G3SPwvi4bMuDmEnnBWQhC+mSwJQCpdVbMi-uXvA@mail.gmail.com>
-References: <CAKb7UvgxkvBijj2AsfQyPRTax53YRzXvPqWLL8BR1istdP+nbw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86935] [NV106] unknown kepler chipset 0x106
+Date: Fri, 20 Mar 2015 04:57:18 +0000
+Message-ID: <bug-86935-8800-74qZyW63NU@http.bugs.freedesktop.org/>
+References: <bug-86935-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0716003271=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgxkvBijj2AsfQyPRTax53YRzXvPqWLL8BR1istdP+nbw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-86935-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,28 +16,91 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGluZz8KCk9uIFRodSwgTWF5IDEsIDIwMTQgYXQgNjoyNiBQTSwgSWxpYSBNaXJraW4gPGltaXJr
-aW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPiBIZWxsbywKPgo+IFRoZXJlIGhhdmUgYmVlbiBzb21l
-IHVzZXJzIHJlcG9ydGluZyBvZGQgZnJhbWVidWZmZXIgYW5kIGN1cnNvcgo+IGNvcnJ1cHRpb24g
-b24gR2VGb3JjZTQgVGkgNDIwMCBHbyBjYXJkcyAoeWVhaCwgcHJldHR5IGFuY2llbnQKPiBoYXJk
-d2FyZSkuIFRoZXNlIGlkZW50aWZ5IGFzIE5WMjgncy4KPgo+IEhlcmUgaXMgdGhlIGZ1bGwgYnVn
-LCB3aXRoIHNjcmVlbnNob3RzLCBkZXNjcmlwdGlvbnMsIGV0YzoKPiBodHRwczovL2J1Z3MuZnJl
-ZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD01NDcwMAo+Cj4gQSB1c2VyIGhhcyBpc29sYXRl
-ZCBiaXQgMjQgb2YgMTAwMDgwIG5lZWRpbmcgdG8gYmUgc2V0LCBhdCB3aGljaCBwb2ludAo+IGFs
-bCB0aGUgcHJvYmxlbXMgZGlzYXBwZWFyLiBXZSBkb24ndCBrbm93IHZlcnkgbXVjaCBhYm91dCB0
-aGlzCj4gcmVnaXN0ZXIgLS0gd2Ugd3JpdGUgdG8gaXQgYXQgZGV2aWNlIGluaXQgdGltZSBvbiBO
-VjA0L05WMDUgKFJpdmEKPiBUTlQvVE5UMiksIHRvZ2dsaW5nIGJpdCA0IG9uIGFuZCBvZmYgKCJS
-RUZSRVNIX09GRiIpLCBidXQgbm90IG9uIGFueQo+IGNoaXBzIGFmdGVyIHRoYXQuCj4KPiBNeSBt
-YWluIHF1ZXN0aW9uIGlzIHRoaXMgLS0gd2hlbiBzaG91bGQgd2UgYmUgc2V0dGluZyBiaXQgMjQg
-b2YKPiAxMDAwODAsIGFuZCBvbiB3aGF0IGNoaXBzPyBJZiBpdCdzIGVhc3ksIGEgYnJpZWYgZGVz
-Y3JpcHRpb24gb2Ygd2hhdAo+IGl0IG1lYW5zIHdvdWxkIGJlIGdyZWF0IHRvby4gQW5kIGFueSBv
-dGhlciBhZHZpY2UgeW91IG1heSBoYXZlIG9uIHRoaXMKPiBpc3N1ZSwgYXMgYWx3YXlzLCB3b3Vs
-ZCBiZSBtb3N0IHdlbGNvbWUuCj4KPiBUaGFua3MsCj4KPiAgIC1pbGlhCj4KPiBQLlMuIFRoYW5r
-cyBmb3IgcmVzcG9uZGluZyB0byBteSBvdGhlciBxdWVzdGlvbnMgYXMgd2VsbC4gSG9wZSBJJ20g
-bm90Cj4gYmVjb21pbmcgdG9vIG11Y2ggb2YgYSBudWlzYW5jZSA6KQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0716003271==
+Content-Type: multipart/alternative; boundary="1426827438.CBCc321.18080"; charset="UTF-8"
+
+
+--1426827438.CBCc321.18080
+Date: Fri, 20 Mar 2015 04:57:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86935
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426827438.CBCc321.18080
+Date: Fri, 20 Mar 2015 04:57:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV106] unknown kepler chipset 0x106"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86935">bug 86935</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426827438.CBCc321.18080--
+
+--===============0716003271==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0716003271==--
