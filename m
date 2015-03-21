@@ -1,10 +1,13 @@
-From: Megaf <mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nouveau locking up on Debian Jessie.
-Date: Fri, 20 Mar 2015 22:02:14 +0000
-Message-ID: <CAH0ntzyWJLoMuGoDrviRG9ufDR7vO02TaQPppQGW0xZ092dsWA@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nouveau locking up on Debian Jessie.
+Date: Sat, 21 Mar 2015 10:35:18 -0400
+Message-ID: <CAKb7UvhORYk+R=ur1B0-7vH5s3CTGVNVKuEG_gt9WUwdcgeFzA@mail.gmail.com>
+References: <CAH0ntzyWJLoMuGoDrviRG9ufDR7vO02TaQPppQGW0xZ092dsWA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0166658823=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAH0ntzyWJLoMuGoDrviRG9ufDR7vO02TaQPppQGW0xZ092dsWA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,577 +17,211 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Megaf <mmegaf-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0166658823==
-Content-Type: multipart/alternative; boundary=001a11c2eff27ba60f0511bf7ac0
-
---001a11c2eff27ba60f0511bf7ac0
-Content-Type: text/plain; charset=UTF-8
-
-Hi Ladies and Gentlemans.
-
-I'd like to report a possible bug and ask for help in solving it.
-
-I have a Mid 2010 Macbook Pro running Debian Jessie.
-The bug seems to happen at random, but mainly when using a 3D application
-with other apps running, such as Chromium (Chrome) and Iceweasel (Firefox).
-It happens when watching videos with VLC and mplayer2.
-
-I hope someone will manage to help.
-Thanks.
-
-
-
-[*] Here is some information on the GPU itself according to kernel messages.
-======================================================
-
-Mar 17 23:31:31 MacSam kernel: [    4.116055] nouveau  [
-PTHERM][0000:04:00.0] FAN control: none / external
-Mar 17 23:31:31 MacSam kernel: [    4.116064] nouveau  [
-PTHERM][0000:04:00.0] fan management: automatic
-Mar 17 23:31:31 MacSam kernel: [    4.116068] nouveau  [
-PTHERM][0000:04:00.0] internal sensor: yes
-Mar 17 23:31:31 MacSam kernel: [    4.116092] nouveau  [
-CLK][0000:04:00.0] 03: core 405 MHz shader 405 MHz memory 405 MHz
-Mar 17 23:31:31 MacSam kernel: [    4.116098] nouveau  [
-CLK][0000:04:00.0] 07: core 450 MHz shader 810 MHz memory 450 MHz
-Mar 17 23:31:31 MacSam kernel: [    4.116101] nouveau  [
-CLK][0000:04:00.0] 0e: core 450 MHz shader 810 MHz memory 450 MHz
-Mar 17 23:31:31 MacSam kernel: [    4.116104] nouveau  [
-CLK][0000:04:00.0] 0f: core 450 MHz shader 950 MHz memory 450 MHz
-Mar 17 23:31:31 MacSam kernel: [    4.116119] nouveau  [
-CLK][0000:04:00.0] --: core 405 MHz shader 810 MHz
-Mar 17 23:31:31 MacSam kernel: [    4.116168] nouveau W[
-PCE0][0000:04:00.0] disabled, PCE0=1 to enable
-Mar 17 23:31:31 MacSam kernel: [    4.116301] [TTM] Zone  kernel: Available
-graphics memory: 1897648 kiB
-Mar 17 23:31:31 MacSam kernel: [    4.116303] [TTM] Initializing pool
-allocator
-Mar 17 23:31:31 MacSam kernel: [    4.116309] [TTM] Initializing DMA pool
-allocator
-Mar 17 23:31:31 MacSam kernel: [    4.116321] nouveau  [     DRM] VRAM: 256
-MiB
-Mar 17 23:31:31 MacSam kernel: [    4.116323] nouveau  [     DRM] GART:
-1048576 MiB
-Mar 17 23:31:31 MacSam kernel: [    4.116327] nouveau  [     DRM] TMDS
-table version 2.0
-Mar 17 23:31:31 MacSam kernel: [    4.116329] nouveau  [     DRM] DCB
-version 4.0
-Mar 17 23:31:31 MacSam kernel: [    4.116332] nouveau  [     DRM] DCB outp
-00: 01800113 00010030
-Mar 17 23:31:31 MacSam kernel: [    4.116334] nouveau  [     DRM] DCB outp
-01: 020112a6 0f220010
-Mar 17 23:31:31 MacSam kernel: [    4.116336] nouveau  [     DRM] DCB outp
-02: 02011262 00020010
-Mar 17 23:31:31 MacSam kernel: [    4.116337] nouveau  [     DRM] DCB conn
-00: 00000040
-Mar 17 23:31:31 MacSam kernel: [    4.116339] nouveau  [     DRM] DCB conn
-01: 00101146
-Mar 17 23:31:31 MacSam kernel: [    4.124954] [drm] Supports vblank
-timestamp caching Rev 2 (21.10.2013).
-Mar 17 23:31:31 MacSam kernel: [    4.124956] [drm] Driver supports precise
-vblank timestamp query.
-Mar 17 23:31:31 MacSam kernel: [    4.136978] nouveau  [     DRM] MM: using
-M2MF for buffer copies
-Mar 17 23:31:31 MacSam kernel: [    4.151394] input: HDA NVidia Headphone
-as /devices/pci0000:00/0000:00:08.0/sound/card0/input10
-Mar 17 23:31:31 MacSam kernel: [    4.151527] input: HDA NVidia
-HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:08.0/sound/card0/input11
-Mar 17 23:31:31 MacSam kernel: [    4.151654] input: HDA NVidia
-HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:08.0/sound/card0/input12
-Mar 17 23:31:31 MacSam kernel: [    4.151780] input: HDA NVidia
-HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:08.0/sound/card0/input13
-Mar 17 23:31:31 MacSam kernel: [    4.252701] nouveau  [     DRM] allocated
-1280x800 fb: 0x50000, bo ffff8800aa383800
-Mar 17 23:31:31 MacSam kernel: [    4.252825] fbcon: nouveaufb (fb0) is
-primary device
-Mar 17 23:31:31 MacSam kernel: [    4.326232] Console: switching to colour
-frame buffer device 160x50
-Mar 17 23:31:31 MacSam kernel: [    4.328317] nouveau 0000:04:00.0: fb0:
-nouveaufb frame buffer device
-Mar 17 23:31:31 MacSam kernel: [    4.328319] nouveau 0000:04:00.0:
-registered panic notifier
-Mar 17 23:31:31 MacSam kernel: [    4.336093] usb 4-5: new low-speed USB
-device number 3 using ohci-pci
-Mar 17 23:31:31 MacSam kernel: [    4.340098] [drm] Initialized nouveau
-1.1.2 20120801 for 0000:04:00.0 on minor 0
-
-It's a nvidia 320M by the way.
-
-[*] And here is the bug itself.
-===================
-
-Mar 20 21:18:42 MacSam kernel: [41316.923835] nouveau E[
-PGRAPH][0000:04:00.0] DATA_ERROR INVALID_VALUE
-Mar 20 21:18:42 MacSam kernel: [41316.923848] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x060c data 0x00044110
-Mar 20 21:18:42 MacSam kernel: [41316.945939] nouveau E[
-PFIFO][0000:04:00.0] DMA_PUSHER - ch 3 [Xorg[19317]] get 0x002002c61c put
-0x002002ca80 ib_get 0x000001d5 ib_put 0x000001da state 0x80000024 (err:
-INVALID_CMD) push 0x003060b0
-Mar 20 21:18:42 MacSam kernel: [41316.956144] nouveau E[
-PGRAPH][0000:04:00.0] magic set 0:
-Mar 20 21:18:42 MacSam kernel: [41316.956152] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408604: 0x20090d0f
-Mar 20 21:18:42 MacSam kernel: [41316.956155] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408608: 0x00206365
-Mar 20 21:18:42 MacSam kernel: [41316.956159] nouveau E[
-PGRAPH][0000:04:00.0]     0x0040860c: 0x80000432
-Mar 20 21:18:42 MacSam kernel: [41316.956162] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408610: 0x62100003
-Mar 20 21:18:42 MacSam kernel: [41316.956165] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_TEXTURE - TP0:  FAULT
-Mar 20 21:18:42 MacSam kernel: [41316.956176] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x08dc data 0x00000000
-Mar 20 21:18:42 MacSam kernel: [41316.956186] nouveau E[
-PFB][0000:04:00.0] trapped read at 0x0020634d00 on channel 0x0000fb2a
-[Xorg[19317]] PGRAPH/TEXTURE/00 reason: VRAM_LIMIT
-Mar 20 21:18:42 MacSam kernel: [41316.981543] nouveau E[
-PFIFO][0000:04:00.0] DMA_PUSHER - ch 3 [Xorg[19317]] get 0x0020036fd8 put
-0x0020036fe8 ib_get 0x000001fd ib_put 0x00000204 state 0x80000024 (err:
-INVALID_CMD) push 0x00400040
-Mar 20 21:18:42 MacSam kernel: [41316.988933] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - DST2D_FAULT - Address 00410e7a00
-Mar 20 21:18:42 MacSam kernel: [41316.988945] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c:
-012a00f6, e20: 00000011, e24: 0c330000
-Mar 20 21:18:42 MacSam kernel: [41316.988954] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x0860 data 0x00000000
-Mar 20 21:18:42 MacSam kernel: [41316.988965] nouveau E[
-PFB][0000:04:00.0] trapped write at 0x00410e7a00 on channel 0x0000fb2a
-[Xorg[19317]] PGRAPH/PROP/DST2D reason: VRAM_LIMIT
-Mar 20 21:18:42 MacSam kernel: [41316.988987] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - DST2D_FAULT - Address 00410eae00
-Mar 20 21:18:42 MacSam kernel: [41316.988993] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c:
-01780000, e20: 00000011, e24: 0c330000
-Mar 20 21:18:42 MacSam kernel: [41316.988999] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x024c data 0x0000018d
-Mar 20 21:18:42 MacSam kernel: [41316.989031] nouveau E[
-PGRAPH][0000:04:00.0] magic set 0:
-Mar 20 21:18:42 MacSam kernel: [41316.989036] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408604: 0x2009970c
-Mar 20 21:18:42 MacSam kernel: [41316.989039] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408608: 0x00410e9b
-Mar 20 21:18:42 MacSam kernel: [41316.989043] nouveau E[
-PGRAPH][0000:04:00.0]     0x0040860c: 0x80000432
-Mar 20 21:18:42 MacSam kernel: [41316.989046] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408610: 0x09000003
-Mar 20 21:18:42 MacSam kernel: [41316.989049] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_TEXTURE - TP0:  FAULT
-Mar 20 21:18:42 MacSam kernel: [41316.989057] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x08dc data 0x000000ce
-Mar 20 21:18:42 MacSam kernel: [41316.989066] nouveau E[
-PFB][0000:04:00.0] trapped read at 0x00410e9b00 on channel 0x0000fb2a
-[Xorg[19317]] PGRAPH/TEXTURE/00 reason: VRAM_LIMIT
-Mar 20 21:18:42 MacSam kernel: [41316.989081] nouveau E[
-PGRAPH][0000:04:00.0] magic set 0:
-Mar 20 21:18:42 MacSam kernel: [41316.989085] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408604: 0x2008b605
-Mar 20 21:18:42 MacSam kernel: [41316.989088] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408608: 0x00410fc2
-Mar 20 21:18:42 MacSam kernel: [41316.989092] nouveau E[
-PGRAPH][0000:04:00.0]     0x0040860c: 0x80000432
-Mar 20 21:18:42 MacSam kernel: [41316.989095] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408610: 0x09000003
-Mar 20 21:18:42 MacSam kernel: [41316.989098] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_TEXTURE - TP0:  FAULT
-Mar 20 21:18:42 MacSam kernel: [41316.989109] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - DST2D_FAULT - Address 0020358000
-Mar 20 21:18:42 MacSam kernel: [41316.989115] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c:
-00000000, e20: 00000011, e24: 0c330000
-Mar 20 21:18:42 MacSam kernel: [41316.989120] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x024c data 0x00000168
-Mar 20 21:18:42 MacSam kernel: [41316.989129] nouveau E[
-PFB][0000:04:00.0] trapped write at 0x0020358800 on channel 0x0000fb2a
-[Xorg[19317]] PGRAPH/PROP/DST2D reason: VRAM_LIMIT
-Mar 20 21:18:42 MacSam kernel: [41316.989296] nouveau E[
-PGRAPH][0000:04:00.0] magic set 0:
-Mar 20 21:18:42 MacSam kernel: [41316.989302] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408604: 0x2009a105
-Mar 20 21:18:42 MacSam kernel: [41316.989306] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408608: 0x002035d9
-Mar 20 21:18:42 MacSam kernel: [41316.989309] nouveau E[
-PGRAPH][0000:04:00.0]     0x0040860c: 0x80000432
-Mar 20 21:18:42 MacSam kernel: [41316.989312] nouveau E[
-PGRAPH][0000:04:00.0]     0x00408610: 0x35800003
-Mar 20 21:18:42 MacSam kernel: [41316.989315] nouveau E[
-PGRAPH][0000:04:00.0] TRAP_TEXTURE - TP0:  FAULT
-Mar 20 21:18:42 MacSam kernel: [41316.989324] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d
-mthd 0x08dc data 0x00000000
-Mar 20 21:18:42 MacSam kernel: [41316.989334] nouveau E[
-PFB][0000:04:00.0] trapped write at 0x0020358a00 on channel 0x0000fb2a
-[Xorg[19317]] PGRAPH/PROP/DST2D reason: VRAM_LIMIT
-Mar 20 21:23:01 MacSam kernel: [41576.440234] nouveau E[
-PGRAPH][0000:04:00.0] DATA_ERROR BEGIN_END_ACTIVE
-Mar 20 21:23:01 MacSam kernel: [41576.440260] nouveau E[
-PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 7 class 0x8697
-mthd 0x1360 data 0x00000000
-Mar 20 21:23:18 MacSam kernel: [41591.448010] nouveau E[
-PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail
-
-
-[*] dmesg | grep nouveau:
-======================
-
-[    2.654061] fb: switching to nouveaufb from simple
-[    2.666836] nouveau 0000:04:00.0: enabling device (0006 -> 0007)
-[    2.667790] nouveau  [  DEVICE][0000:04:00.0] BOOT0  : 0x0af000a2
-[    2.667793] nouveau  [  DEVICE][0000:04:00.0] Chipset: MCP89 (NVAF)
-[    2.667795] nouveau  [  DEVICE][0000:04:00.0] Family : NV50
-[    2.667837] nouveau  [   VBIOS][0000:04:00.0] checking PRAMIN for
-image...
-[    2.730295] nouveau  [   VBIOS][0000:04:00.0] ... appears to be valid
-[    2.730298] nouveau  [   VBIOS][0000:04:00.0] using image from PRAMIN
-[    2.730399] nouveau  [   VBIOS][0000:04:00.0] BIT signature found
-[    2.730402] nouveau  [   VBIOS][0000:04:00.0] version 70.89.02.00.00
-[    2.756101] nouveau 0000:04:00.0: irq 45 for MSI/MSI-X
-[    2.756117] nouveau  [     PMC][0000:04:00.0] MSI interrupts enabled
-[    2.756141] nouveau  [     PFB][0000:04:00.0] RAM type: stolen system
-memory
-[    2.756143] nouveau  [     PFB][0000:04:00.0] RAM size: 256 MiB
-[    2.756145] nouveau  [     PFB][0000:04:00.0]    ZCOMP: 0 tags
-[    2.757742] nouveau  [    VOLT][0000:04:00.0] GPU voltage: 810000uv
-[    4.120027] nouveau  [  PTHERM][0000:04:00.0] FAN control: none /
-external
-[    4.120036] nouveau  [  PTHERM][0000:04:00.0] fan management: automatic
-[    4.120040] nouveau  [  PTHERM][0000:04:00.0] internal sensor: yes
-[    4.120057] nouveau  [     CLK][0000:04:00.0] 03: core 405 MHz shader
-405 MHz memory 405 MHz
-[    4.120061] nouveau  [     CLK][0000:04:00.0] 07: core 450 MHz shader
-810 MHz memory 450 MHz
-[    4.120064] nouveau  [     CLK][0000:04:00.0] 0e: core 450 MHz shader
-810 MHz memory 450 MHz
-[    4.120068] nouveau  [     CLK][0000:04:00.0] 0f: core 450 MHz shader
-950 MHz memory 450 MHz
-[    4.120083] nouveau  [     CLK][0000:04:00.0] --: core 405 MHz shader
-810 MHz
-[    4.120130] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
-[    4.120260] nouveau  [     DRM] VRAM: 256 MiB
-[    4.120262] nouveau  [     DRM] GART: 1048576 MiB
-[    4.120266] nouveau  [     DRM] TMDS table version 2.0
-[    4.120268] nouveau  [     DRM] DCB version 4.0
-[    4.120271] nouveau  [     DRM] DCB outp 00: 01800113 00010030
-[    4.120273] nouveau  [     DRM] DCB outp 01: 020112a6 0f220010
-[    4.120275] nouveau  [     DRM] DCB outp 02: 02011262 00020010
-[    4.120277] nouveau  [     DRM] DCB conn 00: 00000040
-[    4.120279] nouveau  [     DRM] DCB conn 01: 00101146
-[    4.141082] nouveau  [     DRM] MM: using M2MF for buffer copies
-[    4.252704] nouveau  [     DRM] allocated 1280x800 fb: 0x50000, bo
-ffff8800a820e000
-[    4.252820] fbcon: nouveaufb (fb0) is primary device
-[    4.326530] nouveau 0000:04:00.0: fb0: nouveaufb frame buffer device
-[    4.326533] nouveau 0000:04:00.0: registered panic notifier
-[    4.340171] [drm] Initialized nouveau 1.1.2 20120801 for 0000:04:00.0 on
-minor 0
-[    7.847812] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
-[   57.278684] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
-[   80.746844] nouveau W[    PCE0][0000:04:00.0] disabled, PCE0=1 to enable
-
-
-Linux MacSam 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt7-1 (2015-03-01) x86_64
-GNU/Linux
-/etc/debian_version
-8.0
-
-# glxinfo
-name of display: :0.0
-display: :0  screen: 0
-direct rendering: Yes
-server glx vendor string: SGI
-server glx version string: 1.4
-
-X.Org X Server 1.16.4
-Release Date: 2014-12-20
-X Protocol Version 11, Revision 0
-Build Operating System: Linux 3.16.0-4-amd64 x86_64 Debian
-Current Operating System: Linux MacSam 3.16.0-4-amd64 #1 SMP Debian
-3.16.7-ckt7-1 (2015-03-01) x86_64
-Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.16.0-4-amd64
-root=UUID=cdf52b77-b313-4cd2-b4b8-f16561761833 ro quiet
-Build Date: 11 February 2015  12:32:02AM
-xorg-server 2:1.16.4-1 (http://www.debian.org/support)
-Current version of pixman: 0.32.6
-    Before reporting problems, check http://wiki.x.org
-    to make sure that you have the latest version.
-
---001a11c2eff27ba60f0511bf7ac0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi Ladies and Gentleman=
-s.<br><br></div>I&#39;d like to report a possible bug and ask for help in s=
-olving it.<br><br></div>I have a Mid 2010 Macbook Pro running Debian Jessie=
-.<br></div>The bug seems to happen at random, but mainly when using a 3D ap=
-plication with other apps running, such as Chromium (Chrome) and Iceweasel =
-(Firefox). It happens when watching videos with VLC and mplayer2.<br><br></=
-div><div>I hope someone will manage to help.<br></div><div>Thanks.<br><br><=
-br></div><div><br></div>[*] Here is some information on the GPU itself acco=
-rding to kernel messages.<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br><br><font size=3D"1"><span st=
-yle=3D"font-family:monospace,monospace">Mar 17 23:31:31 MacSam kernel: [=C2=
-=A0=C2=A0=C2=A0 4.116055] nouveau=C2=A0 [=C2=A0 PTHERM][0000:04:00.0] FAN c=
-ontrol: none / external<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=
-=A0 4.116064] nouveau=C2=A0 [=C2=A0 PTHERM][0000:04:00.0] fan management: a=
-utomatic<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116068] no=
-uveau=C2=A0 [=C2=A0 PTHERM][0000:04:00.0] internal sensor: yes<br>Mar 17 23=
-:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116092] nouveau=C2=A0 [=C2=A0=
-=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] 03: core 405 MHz shader 405 MHz memor=
-y 405 MHz<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116098] n=
-ouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] 07: core 450 MHz =
-shader 810 MHz memory 450 MHz<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=
-=A0=C2=A0 4.116101] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00=
-.0] 0e: core 450 MHz shader 810 MHz memory 450 MHz<br>Mar 17 23:31:31 MacSa=
-m kernel: [=C2=A0=C2=A0=C2=A0 4.116104] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=
-=C2=A0 CLK][0000:04:00.0] 0f: core 450 MHz shader 950 MHz memory 450 MHz<br=
->Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116119] nouveau=C2=A0=
- [=C2=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] --: core 405 MHz shader 810 M=
-Hz <br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116168] nouveau=
- W[=C2=A0=C2=A0=C2=A0 PCE0][0000:04:00.0] disabled, PCE0=3D1 to enable<br>M=
-ar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116301] [TTM] Zone=C2=
-=A0 kernel: Available graphics memory: 1897648 kiB<br>Mar 17 23:31:31 MacSa=
-m kernel: [=C2=A0=C2=A0=C2=A0 4.116303] [TTM] Initializing pool allocator<b=
-r>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116309] [TTM] Initia=
-lizing DMA pool allocator<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=
-=C2=A0 4.116321] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] VRAM: 256 MiB=
-<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116323] nouveau=C2=
-=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] GART: 1048576 MiB<br>Mar 17 23:31:31 Mac=
-Sam kernel: [=C2=A0=C2=A0=C2=A0 4.116327] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=
-=C2=A0 DRM] TMDS table version 2.0<br>Mar 17 23:31:31 MacSam kernel: [=C2=
-=A0=C2=A0=C2=A0 4.116329] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB =
-version 4.0<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116332]=
- nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB outp 00: 01800113 0001003=
-0<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116334] nouveau=
-=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB outp 01: 020112a6 0f220010<br>Mar=
- 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116336] nouveau=C2=A0 [=
-=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB outp 02: 02011262 00020010<br>Mar 17 23:3=
-1:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.116337] nouveau=C2=A0 [=C2=A0=C2=
-=A0=C2=A0=C2=A0 DRM] DCB conn 00: 00000040<br>Mar 17 23:31:31 MacSam kernel=
-: [=C2=A0=C2=A0=C2=A0 4.116339] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM=
-] DCB conn 01: 00101146<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=
-=A0 4.124954] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).<b=
-r>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.124956] [drm] Driver=
- supports precise vblank timestamp query.<br>Mar 17 23:31:31 MacSam kernel:=
- [=C2=A0=C2=A0=C2=A0 4.136978] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM]=
- MM: using M2MF for buffer copies<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=
-=C2=A0=C2=A0 4.151394] input: HDA NVidia Headphone as /devices/pci0000:00/0=
-000:00:08.0/sound/card0/input10<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=
-=C2=A0=C2=A0 4.151527] input: HDA NVidia HDMI/DP,pcm=3D3 as /devices/pci000=
-0:00/0000:00:08.0/sound/card0/input11<br>Mar 17 23:31:31 MacSam kernel: [=
-=C2=A0=C2=A0=C2=A0 4.151654] input: HDA NVidia HDMI/DP,pcm=3D7 as /devices/=
-pci0000:00/0000:00:08.0/sound/card0/input12<br>Mar 17 23:31:31 MacSam kerne=
-l: [=C2=A0=C2=A0=C2=A0 4.151780] input: HDA NVidia HDMI/DP,pcm=3D8 as /devi=
-ces/pci0000:00/0000:00:08.0/sound/card0/input13<br>Mar 17 23:31:31 MacSam k=
-ernel: [=C2=A0=C2=A0=C2=A0 4.252701] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=
-=A0 DRM] allocated 1280x800 fb: 0x50000, bo ffff8800aa383800<br>Mar 17 23:3=
-1:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.252825] fbcon: nouveaufb (fb0) is=
- primary device<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.326=
-232] Console: switching to colour frame buffer device 160x50<br>Mar 17 23:3=
-1:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.328317] nouveau 0000:04:00.0: fb0=
-: nouveaufb frame buffer device<br>Mar 17 23:31:31 MacSam kernel: [=C2=A0=
-=C2=A0=C2=A0 4.328319] nouveau 0000:04:00.0: registered panic notifier<br>M=
-ar 17 23:31:31 MacSam kernel: [=C2=A0=C2=A0=C2=A0 4.336093] usb 4-5: new lo=
-w-speed USB device number 3 using ohci-pci<br>Mar 17 23:31:31 MacSam kernel=
-: [=C2=A0=C2=A0=C2=A0 4.340098] [drm] Initialized nouveau 1.1.2 20120801 fo=
-r 0000:04:00.0 on minor 0</span></font><br><br></div>It&#39;s a nvidia 320M=
- by the way.<br><br></div>[*] And here is the bug itself.<br>=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br><br><span style=3D"font-fa=
-mily:monospace,monospace"><font size=3D"1">Mar 20 21:18:42 MacSam kernel: [=
-41316.923835] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] DATA_ERROR INVALID_VAL=
-UE<br>Mar 20 21:18:42 MacSam kernel: [41316.923848] nouveau E[=C2=A0 PGRAPH=
-][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d mthd 0x=
-060c data 0x00044110<br>Mar 20 21:18:42 MacSam kernel: [41316.945939] nouve=
-au E[=C2=A0=C2=A0 PFIFO][0000:04:00.0] DMA_PUSHER - ch 3 [Xorg[19317]] get =
-0x002002c61c put 0x002002ca80 ib_get 0x000001d5 ib_put 0x000001da state 0x8=
-0000024 (err: INVALID_CMD) push 0x003060b0<br>Mar 20 21:18:42 MacSam kernel=
-: [41316.956144] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] magic set 0:<br>Mar=
- 20 21:18:42 MacSam kernel: [41316.956152] nouveau E[=C2=A0 PGRAPH][0000:04=
-:00.0] =C2=A0=C2=A0=C2=A0 0x00408604: 0x20090d0f<br>Mar 20 21:18:42 MacSam =
-kernel: [41316.956155] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=
-=C2=A0 0x00408608: 0x00206365<br>Mar 20 21:18:42 MacSam kernel: [41316.9561=
-59] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x0040860c: 0=
-x80000432<br>Mar 20 21:18:42 MacSam kernel: [41316.956162] nouveau E[=C2=A0=
- PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x00408610: 0x62100003<br>Mar 20 =
-21:18:42 MacSam kernel: [41316.956165] nouveau E[=C2=A0 PGRAPH][0000:04:00.=
-0] TRAP_TEXTURE - TP0:=C2=A0 FAULT<br>Mar 20 21:18:42 MacSam kernel: [41316=
-.956176] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[193=
-17]] subc 2 class 0x502d mthd 0x08dc data 0x00000000<br>Mar 20 21:18:42 Mac=
-Sam kernel: [41316.956186] nouveau E[=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000:04:=
-00.0] trapped read at 0x0020634d00 on channel 0x0000fb2a [Xorg[19317]] PGRA=
-PH/TEXTURE/00 reason: VRAM_LIMIT<br>Mar 20 21:18:42 MacSam kernel: [41316.9=
-81543] nouveau E[=C2=A0=C2=A0 PFIFO][0000:04:00.0] DMA_PUSHER - ch 3 [Xorg[=
-19317]] get 0x0020036fd8 put 0x0020036fe8 ib_get 0x000001fd ib_put 0x000002=
-04 state 0x80000024 (err: INVALID_CMD) push 0x00400040<br>Mar 20 21:18:42 M=
-acSam kernel: [41316.988933] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] TRAP_PR=
-OP - TP 0 - DST2D_FAULT - Address 00410e7a00<br>Mar 20 21:18:42 MacSam kern=
-el: [41316.988945] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 =
-- e0c: 00000000, e18: 00000000, e1c: 012a00f6, e20: 00000011, e24: 0c330000=
-<br>Mar 20 21:18:42 MacSam kernel: [41316.988954] nouveau E[=C2=A0 PGRAPH][=
-0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 class 0x502d mthd 0x08=
-60 data 0x00000000<br>Mar 20 21:18:42 MacSam kernel: [41316.988965] nouveau=
- E[=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000:04:00.0] trapped write at 0x00410e7a0=
-0 on channel 0x0000fb2a [Xorg[19317]] PGRAPH/PROP/DST2D reason: VRAM_LIMIT<=
-br>Mar 20 21:18:42 MacSam kernel: [41316.988987] nouveau E[=C2=A0 PGRAPH][0=
-000:04:00.0] TRAP_PROP - TP 0 - DST2D_FAULT - Address 00410eae00<br>Mar 20 =
-21:18:42 MacSam kernel: [41316.988993] nouveau E[=C2=A0 PGRAPH][0000:04:00.=
-0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 01780000, e20: 000=
-00011, e24: 0c330000<br>Mar 20 21:18:42 MacSam kernel: [41316.988999] nouve=
-au E[=C2=A0 PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 2 cl=
-ass 0x502d mthd 0x024c data 0x0000018d<br>Mar 20 21:18:42 MacSam kernel: [4=
-1316.989031] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] magic set 0:<br>Mar 20 =
-21:18:42 MacSam kernel: [41316.989036] nouveau E[=C2=A0 PGRAPH][0000:04:00.=
-0] =C2=A0=C2=A0=C2=A0 0x00408604: 0x2009970c<br>Mar 20 21:18:42 MacSam kern=
-el: [41316.989039] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=
-=A0 0x00408608: 0x00410e9b<br>Mar 20 21:18:42 MacSam kernel: [41316.989043]=
- nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x0040860c: 0x80=
-000432<br>Mar 20 21:18:42 MacSam kernel: [41316.989046] nouveau E[=C2=A0 PG=
-RAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x00408610: 0x09000003<br>Mar 20 21:=
-18:42 MacSam kernel: [41316.989049] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =
-TRAP_TEXTURE - TP0:=C2=A0 FAULT<br>Mar 20 21:18:42 MacSam kernel: [41316.98=
-9057] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]=
-] subc 2 class 0x502d mthd 0x08dc data 0x000000ce<br>Mar 20 21:18:42 MacSam=
- kernel: [41316.989066] nouveau E[=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000:04:00.=
-0] trapped read at 0x00410e9b00 on channel 0x0000fb2a [Xorg[19317]] PGRAPH/=
-TEXTURE/00 reason: VRAM_LIMIT<br>Mar 20 21:18:42 MacSam kernel: [41316.9890=
-81] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] magic set 0:<br>Mar 20 21:18:42 =
-MacSam kernel: [41316.989085] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=
-=C2=A0=C2=A0 0x00408604: 0x2008b605<br>Mar 20 21:18:42 MacSam kernel: [4131=
-6.989088] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x00408=
-608: 0x00410fc2<br>Mar 20 21:18:42 MacSam kernel: [41316.989092] nouveau E[=
-=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x0040860c: 0x80000432<br>M=
-ar 20 21:18:42 MacSam kernel: [41316.989095] nouveau E[=C2=A0 PGRAPH][0000:=
-04:00.0] =C2=A0=C2=A0=C2=A0 0x00408610: 0x09000003<br>Mar 20 21:18:42 MacSa=
-m kernel: [41316.989098] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] TRAP_TEXTUR=
-E - TP0:=C2=A0 FAULT<br>Mar 20 21:18:42 MacSam kernel: [41316.989109] nouve=
-au E[=C2=A0 PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - DST2D_FAULT - Address =
-0020358000<br>Mar 20 21:18:42 MacSam kernel: [41316.989115] nouveau E[=C2=
-=A0 PGRAPH][0000:04:00.0] TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, =
-e1c: 00000000, e20: 00000011, e24: 0c330000<br>Mar 20 21:18:42 MacSam kerne=
-l: [41316.989120] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000=
- Xorg[19317]] subc 2 class 0x502d mthd 0x024c data 0x00000168<br>Mar 20 21:=
-18:42 MacSam kernel: [41316.989129] nouveau E[=C2=A0=C2=A0=C2=A0=C2=A0 PFB]=
-[0000:04:00.0] trapped write at 0x0020358800 on channel 0x0000fb2a [Xorg[19=
-317]] PGRAPH/PROP/DST2D reason: VRAM_LIMIT<br>Mar 20 21:18:42 MacSam kernel=
-: [41316.989296] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] magic set 0:<br>Mar=
- 20 21:18:42 MacSam kernel: [41316.989302] nouveau E[=C2=A0 PGRAPH][0000:04=
-:00.0] =C2=A0=C2=A0=C2=A0 0x00408604: 0x2009a105<br>Mar 20 21:18:42 MacSam =
-kernel: [41316.989306] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=
-=C2=A0 0x00408608: 0x002035d9<br>Mar 20 21:18:42 MacSam kernel: [41316.9893=
-09] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x0040860c: 0=
-x80000432<br>Mar 20 21:18:42 MacSam kernel: [41316.989312] nouveau E[=C2=A0=
- PGRAPH][0000:04:00.0] =C2=A0=C2=A0=C2=A0 0x00408610: 0x35800003<br>Mar 20 =
-21:18:42 MacSam kernel: [41316.989315] nouveau E[=C2=A0 PGRAPH][0000:04:00.=
-0] TRAP_TEXTURE - TP0:=C2=A0 FAULT<br>Mar 20 21:18:42 MacSam kernel: [41316=
-.989324] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] ch 3 [0x000fb2a000 Xorg[193=
-17]] subc 2 class 0x502d mthd 0x08dc data 0x00000000<br>Mar 20 21:18:42 Mac=
-Sam kernel: [41316.989334] nouveau E[=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000:04:=
-00.0] trapped write at 0x0020358a00 on channel 0x0000fb2a [Xorg[19317]] PGR=
-APH/PROP/DST2D reason: VRAM_LIMIT<br>Mar 20 21:23:01 MacSam kernel: [41576.=
-440234] nouveau E[=C2=A0 PGRAPH][0000:04:00.0] DATA_ERROR BEGIN_END_ACTIVE<=
-br>Mar 20 21:23:01 MacSam kernel: [41576.440260] nouveau E[=C2=A0 PGRAPH][0=
-000:04:00.0] ch 3 [0x000fb2a000 Xorg[19317]] subc 7 class 0x8697 mthd 0x136=
-0 data 0x00000000<br>Mar 20 21:23:18 MacSam kernel: [41591.448010] nouveau =
-E[=C2=A0 PGRAPH][0000:04:00.0] PGRAPH TLB flush idle timeout fail</font></s=
-pan><br><br><br></div>[*] dmesg | grep nouveau:<font size=3D"1"><span style=
-=3D"font-family:monospace,monospace"><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br><br>[=C2=A0=C2=A0=C2=A0 2.654061] fb: =
-switching to nouveaufb from simple<br>[=C2=A0=C2=A0=C2=A0 2.666836] nouveau=
- 0000:04:00.0: enabling device (0006 -&gt; 0007)<br>[=C2=A0=C2=A0=C2=A0 2.6=
-67790] nouveau=C2=A0 [=C2=A0 DEVICE][0000:04:00.0] BOOT0=C2=A0 : 0x0af000a2=
-<br>[=C2=A0=C2=A0=C2=A0 2.667793] nouveau=C2=A0 [=C2=A0 DEVICE][0000:04:00.=
-0] Chipset: MCP89 (NVAF)<br>[=C2=A0=C2=A0=C2=A0 2.667795] nouveau=C2=A0 [=
-=C2=A0 DEVICE][0000:04:00.0] Family : NV50<br>[=C2=A0=C2=A0=C2=A0 2.667837]=
- nouveau=C2=A0 [=C2=A0=C2=A0 VBIOS][0000:04:00.0] checking PRAMIN for image=
-...<br>[=C2=A0=C2=A0=C2=A0 2.730295] nouveau=C2=A0 [=C2=A0=C2=A0 VBIOS][000=
-0:04:00.0] ... appears to be valid<br>[=C2=A0=C2=A0=C2=A0 2.730298] nouveau=
-=C2=A0 [=C2=A0=C2=A0 VBIOS][0000:04:00.0] using image from PRAMIN<br>[=C2=
-=A0=C2=A0=C2=A0 2.730399] nouveau=C2=A0 [=C2=A0=C2=A0 VBIOS][0000:04:00.0] =
-BIT signature found<br>[=C2=A0=C2=A0=C2=A0 2.730402] nouveau=C2=A0 [=C2=A0=
-=C2=A0 VBIOS][0000:04:00.0] version 70.89.02.00.00<br>[=C2=A0=C2=A0=C2=A0 2=
-.756101] nouveau 0000:04:00.0: irq 45 for MSI/MSI-X<br>[=C2=A0=C2=A0=C2=A0 =
-2.756117] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 PMC][0000:04:00.0] MSI in=
-terrupts enabled<br>[=C2=A0=C2=A0=C2=A0 2.756141] nouveau=C2=A0 [=C2=A0=C2=
-=A0=C2=A0=C2=A0 PFB][0000:04:00.0] RAM type: stolen system memory<br>[=C2=
-=A0=C2=A0=C2=A0 2.756143] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000=
-:04:00.0] RAM size: 256 MiB<br>[=C2=A0=C2=A0=C2=A0 2.756145] nouveau=C2=A0 =
-[=C2=A0=C2=A0=C2=A0=C2=A0 PFB][0000:04:00.0]=C2=A0=C2=A0=C2=A0 ZCOMP: 0 tag=
-s<br>[=C2=A0=C2=A0=C2=A0 2.757742] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0 VOLT][=
-0000:04:00.0] GPU voltage: 810000uv<br>[=C2=A0=C2=A0=C2=A0 4.120027] nouvea=
-u=C2=A0 [=C2=A0 PTHERM][0000:04:00.0] FAN control: none / external<br>[=C2=
-=A0=C2=A0=C2=A0 4.120036] nouveau=C2=A0 [=C2=A0 PTHERM][0000:04:00.0] fan m=
-anagement: automatic<br>[=C2=A0=C2=A0=C2=A0 4.120040] nouveau=C2=A0 [=C2=A0=
- PTHERM][0000:04:00.0] internal sensor: yes<br>[=C2=A0=C2=A0=C2=A0 4.120057=
-] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] 03: core 405 M=
-Hz shader 405 MHz memory 405 MHz<br>[=C2=A0=C2=A0=C2=A0 4.120061] nouveau=
-=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] 07: core 450 MHz shader=
- 810 MHz memory 450 MHz<br>[=C2=A0=C2=A0=C2=A0 4.120064] nouveau=C2=A0 [=C2=
-=A0=C2=A0=C2=A0=C2=A0 CLK][0000:04:00.0] 0e: core 450 MHz shader 810 MHz me=
-mory 450 MHz<br>[=C2=A0=C2=A0=C2=A0 4.120068] nouveau=C2=A0 [=C2=A0=C2=A0=
-=C2=A0=C2=A0 CLK][0000:04:00.0] 0f: core 450 MHz shader 950 MHz memory 450 =
-MHz<br>[=C2=A0=C2=A0=C2=A0 4.120083] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=
-=A0 CLK][0000:04:00.0] --: core 405 MHz shader 810 MHz <br>[=C2=A0=C2=A0=C2=
-=A0 4.120130] nouveau W[=C2=A0=C2=A0=C2=A0 PCE0][0000:04:00.0] disabled, PC=
-E0=3D1 to enable<br>[=C2=A0=C2=A0=C2=A0 4.120260] nouveau=C2=A0 [=C2=A0=C2=
-=A0=C2=A0=C2=A0 DRM] VRAM: 256 MiB<br>[=C2=A0=C2=A0=C2=A0 4.120262] nouveau=
-=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] GART: 1048576 MiB<br>[=C2=A0=C2=A0=C2=
-=A0 4.120266] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] TMDS table versi=
-on 2.0<br>[=C2=A0=C2=A0=C2=A0 4.120268] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=
-=C2=A0 DRM] DCB version 4.0<br>[=C2=A0=C2=A0=C2=A0 4.120271] nouveau=C2=A0 =
-[=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB outp 00: 01800113 00010030<br>[=C2=A0=C2=
-=A0=C2=A0 4.120273] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB outp 0=
-1: 020112a6 0f220010<br>[=C2=A0=C2=A0=C2=A0 4.120275] nouveau=C2=A0 [=C2=A0=
-=C2=A0=C2=A0=C2=A0 DRM] DCB outp 02: 02011262 00020010<br>[=C2=A0=C2=A0=C2=
-=A0 4.120277] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] DCB conn 00: 000=
-00040<br>[=C2=A0=C2=A0=C2=A0 4.120279] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=
-=A0 DRM] DCB conn 01: 00101146<br>[=C2=A0=C2=A0=C2=A0 4.141082] nouveau=C2=
-=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] MM: using M2MF for buffer copies<br>[=C2=
-=A0=C2=A0=C2=A0 4.252704] nouveau=C2=A0 [=C2=A0=C2=A0=C2=A0=C2=A0 DRM] allo=
-cated 1280x800 fb: 0x50000, bo ffff8800a820e000<br>[=C2=A0=C2=A0=C2=A0 4.25=
-2820] fbcon: nouveaufb (fb0) is primary device<br>[=C2=A0=C2=A0=C2=A0 4.326=
-530] nouveau 0000:04:00.0: fb0: nouveaufb frame buffer device<br>[=C2=A0=C2=
-=A0=C2=A0 4.326533] nouveau 0000:04:00.0: registered panic notifier<br>[=C2=
-=A0=C2=A0=C2=A0 4.340171] [drm] Initialized nouveau 1.1.2 20120801 for 0000=
-:04:00.0 on minor 0<br>[=C2=A0=C2=A0=C2=A0 7.847812] nouveau W[=C2=A0=C2=A0=
-=C2=A0 PCE0][0000:04:00.0] disabled, PCE0=3D1 to enable<br>[=C2=A0=C2=A0 57=
-.278684] nouveau W[=C2=A0=C2=A0=C2=A0 PCE0][0000:04:00.0] disabled, PCE0=3D=
-1 to enable<br>[=C2=A0=C2=A0 80.746844] nouveau W[=C2=A0=C2=A0=C2=A0 PCE0][=
-0000:04:00.0] disabled, PCE0=3D1 to enable</span></font><br><br><br>Linux M=
-acSam 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt7-1 (2015-03-01) x86_64 GNU/Li=
-nux<br>/etc/debian_version <br>8.0<br><br># glxinfo <br>name of display: :0=
-.0<br>display: :0=C2=A0 screen: 0<br>direct rendering: Yes<br>server glx ve=
-ndor string: SGI<br>server glx version string: 1.4<br><br>X.Org X Server 1.=
-16.4<br>Release Date: 2014-12-20<br>X Protocol Version 11, Revision 0<br>Bu=
-ild Operating System: Linux 3.16.0-4-amd64 x86_64 Debian<br>Current Operati=
-ng System: Linux MacSam 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt7-1 (2015-03=
--01) x86_64<br>Kernel command line: BOOT_IMAGE=3D/boot/vmlinuz-3.16.0-4-amd=
-64 root=3DUUID=3Dcdf52b77-b313-4cd2-b4b8-f16561761833 ro quiet<br>Build Dat=
-e: 11 February 2015=C2=A0 12:32:02AM<br>xorg-server 2:1.16.4-1 (<a href=3D"=
-http://www.debian.org/support">http://www.debian.org/support</a>) <br>Curre=
-nt version of pixman: 0.32.6<br>=C2=A0=C2=A0=C2=A0 Before reporting problem=
-s, check <a href=3D"http://wiki.x.org">http://wiki.x.org</a><br>=C2=A0=C2=
-=A0=C2=A0 to make sure that you have the latest version.<br><br><br></div>
-
---001a11c2eff27ba60f0511bf7ac0--
-
---===============0166658823==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0166658823==--
+T24gRnJpLCBNYXIgMjAsIDIwMTUgYXQgNjowMiBQTSwgTWVnYWYgPG1tZWdhZkBnbWFpbC5jb20+
+IHdyb3RlOgo+IEhpIExhZGllcyBhbmQgR2VudGxlbWFucy4KPgo+IEknZCBsaWtlIHRvIHJlcG9y
+dCBhIHBvc3NpYmxlIGJ1ZyBhbmQgYXNrIGZvciBoZWxwIGluIHNvbHZpbmcgaXQuCj4KPiBJIGhh
+dmUgYSBNaWQgMjAxMCBNYWNib29rIFBybyBydW5uaW5nIERlYmlhbiBKZXNzaWUuCj4gVGhlIGJ1
+ZyBzZWVtcyB0byBoYXBwZW4gYXQgcmFuZG9tLCBidXQgbWFpbmx5IHdoZW4gdXNpbmcgYSAzRCBh
+cHBsaWNhdGlvbgo+IHdpdGggb3RoZXIgYXBwcyBydW5uaW5nLCBzdWNoIGFzIENocm9taXVtIChD
+aHJvbWUpIGFuZCBJY2V3ZWFzZWwgKEZpcmVmb3gpLgo+IEl0IGhhcHBlbnMgd2hlbiB3YXRjaGlu
+ZyB2aWRlb3Mgd2l0aCBWTEMgYW5kIG1wbGF5ZXIyLgo+Cj4gSSBob3BlIHNvbWVvbmUgd2lsbCBt
+YW5hZ2UgdG8gaGVscC4KPiBUaGFua3MuCj4KPgo+Cj4gWypdIEhlcmUgaXMgc29tZSBpbmZvcm1h
+dGlvbiBvbiB0aGUgR1BVIGl0c2VsZiBhY2NvcmRpbmcgdG8ga2VybmVsIG1lc3NhZ2VzLgo+ID09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo+Cj4g
+TWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAgNC4xMTYwNTVdIG5vdXZlYXUgIFsK
+PiBQVEhFUk1dWzAwMDA6MDQ6MDAuMF0gRkFOIGNvbnRyb2w6IG5vbmUgLyBleHRlcm5hbAo+IE1h
+ciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMTE2MDY0XSBub3V2ZWF1ICBbCj4g
+UFRIRVJNXVswMDAwOjA0OjAwLjBdIGZhbiBtYW5hZ2VtZW50OiBhdXRvbWF0aWMKPiBNYXIgMTcg
+MjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjExNjA2OF0gbm91dmVhdSAgWwo+IFBUSEVS
+TV1bMDAwMDowNDowMC4wXSBpbnRlcm5hbCBzZW5zb3I6IHllcwo+IE1hciAxNyAyMzozMTozMSBN
+YWNTYW0ga2VybmVsOiBbICAgIDQuMTE2MDkyXSBub3V2ZWF1ICBbCj4gQ0xLXVswMDAwOjA0OjAw
+LjBdIDAzOiBjb3JlIDQwNSBNSHogc2hhZGVyIDQwNSBNSHogbWVtb3J5IDQwNSBNSHoKPiBNYXIg
+MTcgMjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjExNjA5OF0gbm91dmVhdSAgWwo+IENM
+S11bMDAwMDowNDowMC4wXSAwNzogY29yZSA0NTAgTUh6IHNoYWRlciA4MTAgTUh6IG1lbW9yeSA0
+NTAgTUh6Cj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAgNC4xMTYxMDFdIG5v
+dXZlYXUgIFsKPiBDTEtdWzAwMDA6MDQ6MDAuMF0gMGU6IGNvcmUgNDUwIE1IeiBzaGFkZXIgODEw
+IE1IeiBtZW1vcnkgNDUwIE1Iego+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAg
+IDQuMTE2MTA0XSBub3V2ZWF1ICBbCj4gQ0xLXVswMDAwOjA0OjAwLjBdIDBmOiBjb3JlIDQ1MCBN
+SHogc2hhZGVyIDk1MCBNSHogbWVtb3J5IDQ1MCBNSHoKPiBNYXIgMTcgMjM6MzE6MzEgTWFjU2Ft
+IGtlcm5lbDogWyAgICA0LjExNjExOV0gbm91dmVhdSAgWwo+IENMS11bMDAwMDowNDowMC4wXSAt
+LTogY29yZSA0MDUgTUh6IHNoYWRlciA4MTAgTUh6Cj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBr
+ZXJuZWw6IFsgICAgNC4xMTYxNjhdIG5vdXZlYXUgV1sKPiBQQ0UwXVswMDAwOjA0OjAwLjBdIGRp
+c2FibGVkLCBQQ0UwPTEgdG8gZW5hYmxlCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6
+IFsgICAgNC4xMTYzMDFdIFtUVE1dIFpvbmUgIGtlcm5lbDogQXZhaWxhYmxlCj4gZ3JhcGhpY3Mg
+bWVtb3J5OiAxODk3NjQ4IGtpQgo+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAg
+IDQuMTE2MzAzXSBbVFRNXSBJbml0aWFsaXppbmcgcG9vbAo+IGFsbG9jYXRvcgo+IE1hciAxNyAy
+MzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMTE2MzA5XSBbVFRNXSBJbml0aWFsaXppbmcg
+RE1BIHBvb2wKPiBhbGxvY2F0b3IKPiBNYXIgMTcgMjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAg
+ICA0LjExNjMyMV0gbm91dmVhdSAgWyAgICAgRFJNXSBWUkFNOiAyNTYKPiBNaUIKPiBNYXIgMTcg
+MjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjExNjMyM10gbm91dmVhdSAgWyAgICAgRFJN
+XSBHQVJUOgo+IDEwNDg1NzYgTWlCCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsg
+ICAgNC4xMTYzMjddIG5vdXZlYXUgIFsgICAgIERSTV0gVE1EUyB0YWJsZQo+IHZlcnNpb24gMi4w
+Cj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAgNC4xMTYzMjldIG5vdXZlYXUg
+IFsgICAgIERSTV0gRENCCj4gdmVyc2lvbiA0LjAKPiBNYXIgMTcgMjM6MzE6MzEgTWFjU2FtIGtl
+cm5lbDogWyAgICA0LjExNjMzMl0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cAo+IDAwOiAw
+MTgwMDExMyAwMDAxMDAzMAo+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQu
+MTE2MzM0XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwCj4gMDE6IDAyMDExMmE2IDBmMjIw
+MDEwCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAgNC4xMTYzMzZdIG5vdXZl
+YXUgIFsgICAgIERSTV0gRENCIG91dHAKPiAwMjogMDIwMTEyNjIgMDAwMjAwMTAKPiBNYXIgMTcg
+MjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjExNjMzN10gbm91dmVhdSAgWyAgICAgRFJN
+XSBEQ0IgY29ubgo+IDAwOiAwMDAwMDA0MAo+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVs
+OiBbICAgIDQuMTE2MzM5XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBjb25uCj4gMDE6IDAwMTAx
+MTQ2Cj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAgNC4xMjQ5NTRdIFtkcm1d
+IFN1cHBvcnRzIHZibGFuawo+IHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEzKS4K
+PiBNYXIgMTcgMjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjEyNDk1Nl0gW2RybV0gRHJp
+dmVyIHN1cHBvcnRzIHByZWNpc2UKPiB2YmxhbmsgdGltZXN0YW1wIHF1ZXJ5Lgo+IE1hciAxNyAy
+MzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMTM2OTc4XSBub3V2ZWF1ICBbICAgICBEUk1d
+IE1NOiB1c2luZwo+IE0yTUYgZm9yIGJ1ZmZlciBjb3BpZXMKPiBNYXIgMTcgMjM6MzE6MzEgTWFj
+U2FtIGtlcm5lbDogWyAgICA0LjE1MTM5NF0gaW5wdXQ6IEhEQSBOVmlkaWEgSGVhZHBob25lIGFz
+Cj4gL2RldmljZXMvcGNpMDAwMDowMC8wMDAwOjAwOjA4LjAvc291bmQvY2FyZDAvaW5wdXQxMAo+
+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMTUxNTI3XSBpbnB1dDogSERB
+IE5WaWRpYQo+IEhETUkvRFAscGNtPTMgYXMgL2RldmljZXMvcGNpMDAwMDowMC8wMDAwOjAwOjA4
+LjAvc291bmQvY2FyZDAvaW5wdXQxMQo+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBb
+ICAgIDQuMTUxNjU0XSBpbnB1dDogSERBIE5WaWRpYQo+IEhETUkvRFAscGNtPTcgYXMgL2Rldmlj
+ZXMvcGNpMDAwMDowMC8wMDAwOjAwOjA4LjAvc291bmQvY2FyZDAvaW5wdXQxMgo+IE1hciAxNyAy
+MzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMTUxNzgwXSBpbnB1dDogSERBIE5WaWRpYQo+
+IEhETUkvRFAscGNtPTggYXMgL2RldmljZXMvcGNpMDAwMDowMC8wMDAwOjAwOjA4LjAvc291bmQv
+Y2FyZDAvaW5wdXQxMwo+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMjUy
+NzAxXSBub3V2ZWF1ICBbICAgICBEUk1dIGFsbG9jYXRlZAo+IDEyODB4ODAwIGZiOiAweDUwMDAw
+LCBibyBmZmZmODgwMGFhMzgzODAwCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsg
+ICAgNC4yNTI4MjVdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMKPiBwcmltYXJ5IGRldmljZQo+
+IE1hciAxNyAyMzozMTozMSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMzI2MjMyXSBDb25zb2xlOiBz
+d2l0Y2hpbmcgdG8gY29sb3VyCj4gZnJhbWUgYnVmZmVyIGRldmljZSAxNjB4NTAKPiBNYXIgMTcg
+MjM6MzE6MzEgTWFjU2FtIGtlcm5lbDogWyAgICA0LjMyODMxN10gbm91dmVhdSAwMDAwOjA0OjAw
+LjA6IGZiMDoKPiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQo+IE1hciAxNyAyMzozMToz
+MSBNYWNTYW0ga2VybmVsOiBbICAgIDQuMzI4MzE5XSBub3V2ZWF1IDAwMDA6MDQ6MDAuMDoKPiBy
+ZWdpc3RlcmVkIHBhbmljIG5vdGlmaWVyCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6
+IFsgICAgNC4zMzYwOTNdIHVzYiA0LTU6IG5ldyBsb3ctc3BlZWQgVVNCCj4gZGV2aWNlIG51bWJl
+ciAzIHVzaW5nIG9oY2ktcGNpCj4gTWFyIDE3IDIzOjMxOjMxIE1hY1NhbSBrZXJuZWw6IFsgICAg
+NC4zNDAwOThdIFtkcm1dIEluaXRpYWxpemVkIG5vdXZlYXUKPiAxLjEuMiAyMDEyMDgwMSBmb3Ig
+MDAwMDowNDowMC4wIG9uIG1pbm9yIDAKPgo+IEl0J3MgYSBudmlkaWEgMzIwTSBieSB0aGUgd2F5
+Lgo+Cj4gWypdIEFuZCBoZXJlIGlzIHRoZSBidWcgaXRzZWxmLgo+ID09PT09PT09PT09PT09PT09
+PT0KPgo+IE1hciAyMCAyMToxODo0MiBNYWNTYW0ga2VybmVsOiBbNDEzMTYuOTIzODM1XSBub3V2
+ZWF1IEVbCj4gUEdSQVBIXVswMDAwOjA0OjAwLjBdIERBVEFfRVJST1IgSU5WQUxJRF9WQUxVRQo+
+IE1hciAyMCAyMToxODo0MiBNYWNTYW0ga2VybmVsOiBbNDEzMTYuOTIzODQ4XSBub3V2ZWF1IEVb
+Cj4gUEdSQVBIXVswMDAwOjA0OjAwLjBdIGNoIDMgWzB4MDAwZmIyYTAwMCBYb3JnWzE5MzE3XV0g
+c3ViYyAyIGNsYXNzIDB4NTAyZAo+IG10aGQgMHgwNjBjIGRhdGEgMHgwMDA0NDExMAoKVGhpcyBk
+b2VzIHNlZW0gYSBsaXR0bGUgaGlnaC4uLiB0aGUgY29kZSB0aGF0IHByb2R1Y2VzIHRoaXMgaXMg
+aW4gdGhlCmRkeCdzIE5WNTBFWEFTb2xpZCAoc3JjL252NTBfZXhhLmMpOgoKICAgICAgICBCRUdJ
+Tl9OVjA0KHB1c2gsIE5WNTBfMkQoRFJBV19QT0lOVDMyX1goMCkpLCA0KTsKICAgICAgICBQVVNI
+X0RBVEEgKHB1c2gsIHgxKTsKICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHkxKTsKICAgICAgICBQ
+VVNIX0RBVEEgKHB1c2gsIHgyKTsKICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHkyKTsKCkl0J3Mg
+c3VnZ2VzdGluZyB0aGF0IHRoZSB4MiB2YWx1ZSBpcyAweDQ0MTEwLiBUaGlzIHNlZW1zIGF3ZnVs
+bHkgaGlnaCwKdW5sZXNzIHlvdSBoYXZlIGEgUkVBTExZIGhpLWRwaSBzY3JlZW4uCgpIb3dldmVy
+IHRoYXQgdmFsdWUgYWxzbyBsb29rcyBhbiBhd2Z1bCBsb3QgbGlrZSBhIHJlZ3VsYXIgcHVzaGJ1
+Zgpjb21tYW5kLi4uIHRoaXMgd291bGQgY29ycmVzcG9uZCB0bwoKc2l6ZSA9IDEsIHN1YmNoYW5u
+ZWwgPSAyLCBtZXRob2QgPSAweDExMAoKd2hpY2ggaXMgYSBTRVJJQUxJWkUgY2FsbCwgd2hpY2gg
+aGFwcGVucyBhdCB0aGUgc3RhcnQgb2YgTlY1MEVYQUNvcHkuCgo+IE1hciAyMCAyMToxODo0MiBN
+YWNTYW0ga2VybmVsOiBbNDEzMTYuOTQ1OTM5XSBub3V2ZWF1IEVbCj4gUEZJRk9dWzAwMDA6MDQ6
+MDAuMF0gRE1BX1BVU0hFUiAtIGNoIDMgW1hvcmdbMTkzMTddXSBnZXQgMHgwMDIwMDJjNjFjIHB1
+dAo+IDB4MDAyMDAyY2E4MCBpYl9nZXQgMHgwMDAwMDFkNSBpYl9wdXQgMHgwMDAwMDFkYSBzdGF0
+ZSAweDgwMDAwMDI0IChlcnI6Cj4gSU5WQUxJRF9DTUQpIHB1c2ggMHgwMDMwNjBiMAo+IE1hciAy
+MCAyMToxODo0MiBNYWNTYW0ga2VybmVsOiBbNDEzMTYuOTU2MTQ0XSBub3V2ZWF1IEVbCj4gUEdS
+QVBIXVswMDAwOjA0OjAwLjBdIG1hZ2ljIHNldCAwOgo+IE1hciAyMCAyMToxODo0MiBNYWNTYW0g
+a2VybmVsOiBbNDEzMTYuOTU2MTUyXSBub3V2ZWF1IEVbCj4gUEdSQVBIXVswMDAwOjA0OjAwLjBd
+ICAgICAweDAwNDA4NjA0OiAweDIwMDkwZDBmCj4gTWFyIDIwIDIxOjE4OjQyIE1hY1NhbSBrZXJu
+ZWw6IFs0MTMxNi45NTYxNTVdIG5vdXZlYXUgRVsKPiBQR1JBUEhdWzAwMDA6MDQ6MDAuMF0gICAg
+IDB4MDA0MDg2MDg6IDB4MDAyMDYzNjUKPiBNYXIgMjAgMjE6MTg6NDIgTWFjU2FtIGtlcm5lbDog
+WzQxMzE2Ljk1NjE1OV0gbm91dmVhdSBFWwo+IFBHUkFQSF1bMDAwMDowNDowMC4wXSAgICAgMHgw
+MDQwODYwYzogMHg4MDAwMDQzMgo+IE1hciAyMCAyMToxODo0MiBNYWNTYW0ga2VybmVsOiBbNDEz
+MTYuOTU2MTYyXSBub3V2ZWF1IEVbCj4gUEdSQVBIXVswMDAwOjA0OjAwLjBdICAgICAweDAwNDA4
+NjEwOiAweDYyMTAwMDAzCj4gTWFyIDIwIDIxOjE4OjQyIE1hY1NhbSBrZXJuZWw6IFs0MTMxNi45
+NTYxNjVdIG5vdXZlYXUgRVsKPiBQR1JBUEhdWzAwMDA6MDQ6MDAuMF0gVFJBUF9URVhUVVJFIC0g
+VFAwOiAgRkFVTFQKPiBNYXIgMjAgMjE6MTg6NDIgTWFjU2FtIGtlcm5lbDogWzQxMzE2Ljk1NjE3
+Nl0gbm91dmVhdSBFWwo+IFBHUkFQSF1bMDAwMDowNDowMC4wXSBjaCAzIFsweDAwMGZiMmEwMDAg
+WG9yZ1sxOTMxN11dIHN1YmMgMiBjbGFzcyAweDUwMmQKPiBtdGhkIDB4MDhkYyBkYXRhIDB4MDAw
+MDAwMDAKCkFuZCB0aGlzIGlzIHRoZSBlbmQgb2YgdGhlIGJsaXQgY2FsbCAoMHg4ZGMgaXMgdGhl
+IGxhc3QgcGFyYW0pLiBUaGUKc2ltcGxlc3QgZXhwbGFuYXRpb24gaXMgdGhhdCBYIGNhbGxlZCBp
+bnRvIHRoZSBERFgncyBFWEEgY29weSBhbmQKc29saWQgaGFuZGxlcnMgYXQgdGhlIHNhbWUgdGlt
+ZSwgYW5kIHRoZXkgd3JvdGUgb3ZlciBlYWNoIG90aGVyLgpIb3dldmVyIEkgZGlkbid0IHRoaW5r
+IHRoYXQgc3VjaCBhIHRoaW5nIHdvdWxkIGJlIHBvc3NpYmxlLCBzbyBwZXJoYXBzCnRoZXJlJ3Mg
+c29tZXRoaW5nIGVsc2UgZ29pbmcgb24uCgpUaGUgcmVzdCBvZiB0aGUgcHVzaGJ1ZiBqdXN0IHJl
+YWRzIGxpa2UgZXJyb3JzIGR1ZSB0byBhCm1pc2FsaWduZWQvY29uZnVzZWQgcHVzaGJ1Ziwgd2hp
+Y2ggY291bGQgZWFzaWx5IGhhcHBlbiBhcyBhIHJlc3VsdCBvZgp0aGUgYWJvdmUuCgo+Cj4KPiBb
+Kl0gZG1lc2cgfCBncmVwIG5vdXZlYXU6Cj4gPT09PT09PT09PT09PT09PT09PT09PQo+Cj4gWyAg
+ICAyLjY1NDA2MV0gZmI6IHN3aXRjaGluZyB0byBub3V2ZWF1ZmIgZnJvbSBzaW1wbGUKPiBbICAg
+IDIuNjY2ODM2XSBub3V2ZWF1IDAwMDA6MDQ6MDAuMDogZW5hYmxpbmcgZGV2aWNlICgwMDA2IC0+
+IDAwMDcpCj4gWyAgICAyLjY2Nzc5MF0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjA0OjAwLjBd
+IEJPT1QwICA6IDB4MGFmMDAwYTIKPiBbICAgIDIuNjY3NzkzXSBub3V2ZWF1ICBbICBERVZJQ0Vd
+WzAwMDA6MDQ6MDAuMF0gQ2hpcHNldDogTUNQODkgKE5WQUYpCj4gWyAgICAyLjY2Nzc5NV0gbm91
+dmVhdSAgWyAgREVWSUNFXVswMDAwOjA0OjAwLjBdIEZhbWlseSA6IE5WNTAKPiBbICAgIDIuNjY3
+ODM3XSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDQ6MDAuMF0gY2hlY2tpbmcgUFJBTUlOIGZv
+cgo+IGltYWdlLi4uCj4gWyAgICAyLjczMDI5NV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjA0
+OjAwLjBdIC4uLiBhcHBlYXJzIHRvIGJlIHZhbGlkCj4gWyAgICAyLjczMDI5OF0gbm91dmVhdSAg
+WyAgIFZCSU9TXVswMDAwOjA0OjAwLjBdIHVzaW5nIGltYWdlIGZyb20gUFJBTUlOCj4gWyAgICAy
+LjczMDM5OV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjA0OjAwLjBdIEJJVCBzaWduYXR1cmUg
+Zm91bmQKPiBbICAgIDIuNzMwNDAyXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDQ6MDAuMF0g
+dmVyc2lvbiA3MC44OS4wMi4wMC4wMAo+IFsgICAgMi43NTYxMDFdIG5vdXZlYXUgMDAwMDowNDow
+MC4wOiBpcnEgNDUgZm9yIE1TSS9NU0ktWAo+IFsgICAgMi43NTYxMTddIG5vdXZlYXUgIFsgICAg
+IFBNQ11bMDAwMDowNDowMC4wXSBNU0kgaW50ZXJydXB0cyBlbmFibGVkCj4gWyAgICAyLjc1NjE0
+MV0gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjA0OjAwLjBdIFJBTSB0eXBlOiBzdG9sZW4gc3lz
+dGVtCj4gbWVtb3J5Cj4gWyAgICAyLjc1NjE0M10gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjA0
+OjAwLjBdIFJBTSBzaXplOiAyNTYgTWlCCj4gWyAgICAyLjc1NjE0NV0gbm91dmVhdSAgWyAgICAg
+UEZCXVswMDAwOjA0OjAwLjBdICAgIFpDT01QOiAwIHRhZ3MKPiBbICAgIDIuNzU3NzQyXSBub3V2
+ZWF1ICBbICAgIFZPTFRdWzAwMDA6MDQ6MDAuMF0gR1BVIHZvbHRhZ2U6IDgxMDAwMHV2Cj4gWyAg
+ICA0LjEyMDAyN10gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjA0OjAwLjBdIEZBTiBjb250cm9s
+OiBub25lIC8KPiBleHRlcm5hbAo+IFsgICAgNC4xMjAwMzZdIG5vdXZlYXUgIFsgIFBUSEVSTV1b
+MDAwMDowNDowMC4wXSBmYW4gbWFuYWdlbWVudDogYXV0b21hdGljCj4gWyAgICA0LjEyMDA0MF0g
+bm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjA0OjAwLjBdIGludGVybmFsIHNlbnNvcjogeWVzCj4g
+WyAgICA0LjEyMDA1N10gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjA0OjAwLjBdIDAzOiBjb3Jl
+IDQwNSBNSHogc2hhZGVyIDQwNQo+IE1IeiBtZW1vcnkgNDA1IE1Iego+IFsgICAgNC4xMjAwNjFd
+IG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowNDowMC4wXSAwNzogY29yZSA0NTAgTUh6IHNoYWRl
+ciA4MTAKPiBNSHogbWVtb3J5IDQ1MCBNSHoKPiBbICAgIDQuMTIwMDY0XSBub3V2ZWF1ICBbICAg
+ICBDTEtdWzAwMDA6MDQ6MDAuMF0gMGU6IGNvcmUgNDUwIE1IeiBzaGFkZXIgODEwCj4gTUh6IG1l
+bW9yeSA0NTAgTUh6Cj4gWyAgICA0LjEyMDA2OF0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjA0
+OjAwLjBdIDBmOiBjb3JlIDQ1MCBNSHogc2hhZGVyIDk1MAo+IE1IeiBtZW1vcnkgNDUwIE1Iego+
+IFsgICAgNC4xMjAwODNdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowNDowMC4wXSAtLTogY29y
+ZSA0MDUgTUh6IHNoYWRlciA4MTAKPiBNSHoKPiBbICAgIDQuMTIwMTMwXSBub3V2ZWF1IFdbICAg
+IFBDRTBdWzAwMDA6MDQ6MDAuMF0gZGlzYWJsZWQsIFBDRTA9MSB0byBlbmFibGUKPiBbICAgIDQu
+MTIwMjYwXSBub3V2ZWF1ICBbICAgICBEUk1dIFZSQU06IDI1NiBNaUIKPiBbICAgIDQuMTIwMjYy
+XSBub3V2ZWF1ICBbICAgICBEUk1dIEdBUlQ6IDEwNDg1NzYgTWlCCj4gWyAgICA0LjEyMDI2Nl0g
+bm91dmVhdSAgWyAgICAgRFJNXSBUTURTIHRhYmxlIHZlcnNpb24gMi4wCj4gWyAgICA0LjEyMDI2
+OF0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0IgdmVyc2lvbiA0LjAKPiBbICAgIDQuMTIwMjcxXSBu
+b3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAwOiAwMTgwMDExMyAwMDAxMDAzMAo+IFsgICAg
+NC4xMjAyNzNdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91dHAgMDE6IDAyMDExMmE2IDBmMjIw
+MDEwCj4gWyAgICA0LjEyMDI3NV0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMjogMDIw
+MTEyNjIgMDAwMjAwMTAKPiBbICAgIDQuMTIwMjc3XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBj
+b25uIDAwOiAwMDAwMDA0MAo+IFsgICAgNC4xMjAyNzldIG5vdXZlYXUgIFsgICAgIERSTV0gRENC
+IGNvbm4gMDE6IDAwMTAxMTQ2Cj4gWyAgICA0LjE0MTA4Ml0gbm91dmVhdSAgWyAgICAgRFJNXSBN
+TTogdXNpbmcgTTJNRiBmb3IgYnVmZmVyIGNvcGllcwo+IFsgICAgNC4yNTI3MDRdIG5vdXZlYXUg
+IFsgICAgIERSTV0gYWxsb2NhdGVkIDEyODB4ODAwIGZiOiAweDUwMDAwLCBibwo+IGZmZmY4ODAw
+YTgyMGUwMDAKPiBbICAgIDQuMjUyODIwXSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1h
+cnkgZGV2aWNlCj4gWyAgICA0LjMyNjUzMF0gbm91dmVhdSAwMDAwOjA0OjAwLjA6IGZiMDogbm91
+dmVhdWZiIGZyYW1lIGJ1ZmZlciBkZXZpY2UKPiBbICAgIDQuMzI2NTMzXSBub3V2ZWF1IDAwMDA6
+MDQ6MDAuMDogcmVnaXN0ZXJlZCBwYW5pYyBub3RpZmllcgo+IFsgICAgNC4zNDAxNzFdIFtkcm1d
+IEluaXRpYWxpemVkIG5vdXZlYXUgMS4xLjIgMjAxMjA4MDEgZm9yIDAwMDA6MDQ6MDAuMCBvbgo+
+IG1pbm9yIDAKPiBbICAgIDcuODQ3ODEyXSBub3V2ZWF1IFdbICAgIFBDRTBdWzAwMDA6MDQ6MDAu
+MF0gZGlzYWJsZWQsIFBDRTA9MSB0byBlbmFibGUKPiBbICAgNTcuMjc4Njg0XSBub3V2ZWF1IFdb
+ICAgIFBDRTBdWzAwMDA6MDQ6MDAuMF0gZGlzYWJsZWQsIFBDRTA9MSB0byBlbmFibGUKPiBbICAg
+ODAuNzQ2ODQ0XSBub3V2ZWF1IFdbICAgIFBDRTBdWzAwMDA6MDQ6MDAuMF0gZGlzYWJsZWQsIFBD
+RTA9MSB0byBlbmFibGUKPgo+Cj4gTGludXggTWFjU2FtIDMuMTYuMC00LWFtZDY0ICMxIFNNUCBE
+ZWJpYW4gMy4xNi43LWNrdDctMSAoMjAxNS0wMy0wMSkgeDg2XzY0Cj4gR05VL0xpbnV4Cj4gL2V0
+Yy9kZWJpYW5fdmVyc2lvbgo+IDguMAo+Cj4gIyBnbHhpbmZvCj4gbmFtZSBvZiBkaXNwbGF5OiA6
+MC4wCj4gZGlzcGxheTogOjAgIHNjcmVlbjogMAo+IGRpcmVjdCByZW5kZXJpbmc6IFllcwo+IHNl
+cnZlciBnbHggdmVuZG9yIHN0cmluZzogU0dJCj4gc2VydmVyIGdseCB2ZXJzaW9uIHN0cmluZzog
+MS40CgpBbmQgSSBhc3N1bWUgYXQgc29tZSBwb2ludCBpdCBzYXlzICJHYWxsaXVtIDAuNCBvbiBO
+VkFGIj8KCj4KPiBYLk9yZyBYIFNlcnZlciAxLjE2LjQKPiBSZWxlYXNlIERhdGU6IDIwMTQtMTIt
+MjAKPiBYIFByb3RvY29sIFZlcnNpb24gMTEsIFJldmlzaW9uIDAKPiBCdWlsZCBPcGVyYXRpbmcg
+U3lzdGVtOiBMaW51eCAzLjE2LjAtNC1hbWQ2NCB4ODZfNjQgRGViaWFuCj4gQ3VycmVudCBPcGVy
+YXRpbmcgU3lzdGVtOiBMaW51eCBNYWNTYW0gMy4xNi4wLTQtYW1kNjQgIzEgU01QIERlYmlhbgo+
+IDMuMTYuNy1ja3Q3LTEgKDIwMTUtMDMtMDEpIHg4Nl82NAo+IEtlcm5lbCBjb21tYW5kIGxpbmU6
+IEJPT1RfSU1BR0U9L2Jvb3Qvdm1saW51ei0zLjE2LjAtNC1hbWQ2NAo+IHJvb3Q9VVVJRD1jZGY1
+MmI3Ny1iMzEzLTRjZDItYjRiOC1mMTY1NjE3NjE4MzMgcm8gcXVpZXQKPiBCdWlsZCBEYXRlOiAx
+MSBGZWJydWFyeSAyMDE1ICAxMjozMjowMkFNCj4geG9yZy1zZXJ2ZXIgMjoxLjE2LjQtMSAoaHR0
+cDovL3d3dy5kZWJpYW4ub3JnL3N1cHBvcnQpCj4gQ3VycmVudCB2ZXJzaW9uIG9mIHBpeG1hbjog
+MC4zMi42Cj4gICAgIEJlZm9yZSByZXBvcnRpbmcgcHJvYmxlbXMsIGNoZWNrIGh0dHA6Ly93aWtp
+Lngub3JnCj4gICAgIHRvIG1ha2Ugc3VyZSB0aGF0IHlvdSBoYXZlIHRoZSBsYXRlc3QgdmVyc2lv
+bi4KCkhtLCB0b28gYmFkLiBJIHdhcyBob3BpbmcgeW91IGhhZCBzb21lIGFuY2llbnQgdmVyc2lv
+biBvZiBYIEkgY291bGQKYmxhbWUgYWxsIHRoaXMgb24gOigKCkFyZSB5b3UgY29tZm9ydGFibGUg
+bW9kaWZ5aW5nIEMgY29kZT8gSWYgc28sIHdoYXQgaGFwcGVucyBpZiB5b3UgYWRkCmxvY2tpbmcg
+dG8gdGhlIEREWD8gaS5lLiBleHBsaWNpdGx5IGFjcXVpcmUgYSBtdXRleCBhdCB0aGUgc3RhcnQg
+b2YKYWxsIHRoZSBQcmVwYXJlIG1ldGhvZHMsIGFuZCByZWxlYXNlIGl0IGF0IHRoZSBlbmQgb2Yg
+dGhlIERvbmUgbWV0aG9kCihobSwgZG9lcyB0aGF0IHN0aWxsIGdldCBjYWxsZWQgaWYgcHJlcGFy
+ZSBmYWlscz8gcHJvYmFibHkgbm90LCBzbyBiZQpjYXJlZnVsKS4KCiAgLWlsaWEKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
