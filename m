@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: SLI development
-Date: Fri, 20 Mar 2015 13:50:43 -0400
-Message-ID: <CAKb7UvgUC2us_RCD48AYtrtixsy2mXE990nTZ_M7L+wf4-63Vg@mail.gmail.com>
-References: <550C5B8B.7060209@varciai.lt>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 72315] Fedora 19 64-bit X crash
+Date: Sat, 21 Mar 2015 01:25:55 +0000
+Message-ID: <bug-72315-8800-MGBWJlrK64@http.bugs.freedesktop.org/>
+References: <bug-72315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0559474091=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <550C5B8B.7060209-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
+In-Reply-To: <bug-72315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,54 +16,150 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBNYXIgMjAsIDIwMTUgYXQgMTo0MCBQTSwgR2VkaW1pbmFzIEpha3V0aXMgPGdlZGlt
-aW5hc0B2YXJjaWFpLmx0PiB3cm90ZToKPiAtLS0tLUJFR0lOIFBHUCBTSUdORUQgTUVTU0FHRS0t
-LS0tCj4gSGFzaDogU0hBMjU2Cj4KPiBHb29kIGRheSEKPgo+IC0gRnJvbSBOb3V2ZWF1IGZlYXR1
-cmUgbWF0cml4IHBhZ2U6Cj4+U0xJIG9yIGV2ZW4gbXVsdGljYXJkIHNldHVwcyBhcmUgdmVyeSBy
-YXJlIGFtb25nIGRldmVsb3BlcnMuCj4+WW91IHNob3VsZCBzdGFydCBoYWNraW5nIHdpdGggdXMs
-IGlmIHlvdSBoYXZlIHN1Y2ggYSBzZXR1cC4KPgo+IEkgaGF2ZSB0d28gR1RYIDc3MCBjYXJkcyBy
-dW5uaW5nIGluIFNMSVsxXSBhbmQgd291bGQgbGlrZSB0byBoZWxwIGJyaW5naW5nCj4gU0xJIGNh
-cGFiaWxpdHkgaW50byBOb3V2ZWF1Lgo+Cj4gSSB3b3VsZCBnbGFkbHkgd3JpdGUgY29kZSBmb3Ig
-aXQgYW5kIEkgYW0gYSBjb21wZXRlbnQgQyBwcm9ncmFtbWVyIHBlciBzZQo+IChDIGlzIG15IG1h
-aW4gbGFuZ3VhZ2UpLiBCdXQsIEkgZG9uJ3QgaGF2ZSBtdWNoIGV4cGVyaWVuY2Ugd2l0aCBncmFw
-aGljcwo+IHByb2dyYW1taW5nIGFuZCBoYXZlIHZlcnkgbGl0dGxlIGV4cGVyaWVuY2Ugd2hlbiBp
-dCBjb21lcyB0byAidGFsa2luZyIgd2l0aAo+IGhhcmR3YXJlIGRpcmVjdGx5LiBUaHVzLCBJIGFt
-IG5vdCBjb25maWRlbnQgSSB3b3VsZCBtYW5hZ2UgdG8gZG8gaXQKPiBwcm9wZXJseS4gSSB3b3Vs
-ZCBsaWtlIHRvIGF0IGxlYXN0IHRyeSwgbm9uZXRoZWxlc3MuCj4KPiBBbnkgcG9pbnRlcnMgb24g
-d2hlcmUgdG8gc3RhcnQgYW5kL29yIHdoYXQgdGhpbmdzIHRvIHJlc2VhcmNoIGZpcnN0PwoKT25l
-IG9mIHRoZSBtYWluIGlzc3VlcyB3aXRoIFNMSSBpcyB0aGF0IGl0J3MgdW5jbGVhciB3aGF0IHRv
-IGRvLiBXZQpoYXZlIGFsbCB0aGUgdG9vbHMgaW4gcGxhY2UgdG8gYmUgYWJsZSB0byBkbyBpdCwg
-anVzdCBkb24ndCBrbm93IHdoYXQKdG8gZG8gd2l0aCB0aGF0IGNhcGFiaWxpdHkgOikKCkxldCdz
-IHNheSB5b3Ugd2FudGVkIHRvLCBvaCwgSSBkb24ndCBrbm93Li4uIHJlbmRlciBhIHRyaWFuZ2xl
-LiBBCnJlYWxseSBiaWcgdHJpYW5nbGUsIHRvIGEgOEt4OEsgdGV4dHVyZSAob3IgMTZLeDE2Syku
-IEhvdyB3b3VsZCB5b3UKbGV2ZXJhZ2UgbXVsdGlwbGUgZ3JhcGhpY3MgY2FyZHMgdG8gaGVscCB3
-aXRoIHRoYXQ/CgpPbmUgd2F5IHRvIGxvb2sgYXQgaXQgaXMgdG8gdGFrZSBhIGxpbmUgZnJvbSB0
-aWxlZCByZW5kZXJlcnMgYW5kIGp1c3QKY29uc2lkZXIgdGhhdCB5b3UgaGF2ZSAyIHRpbGVzIChv
-ciBob3dldmVyIG1hbnkgR1BVJ3MgeW91IGhhdmUpLCBkbyBhCmJpbm5pbmcgcGFzcywgYW5kIHRo
-ZW4gcmUtcmVuZGVyIHRoZSBmcmFnbWVudCBzaGFkZXIgYWNyb3NzIGFsbCBHUFUncy4KW09yIHNj
-cmV3IHRoZSBiaW5uaW5nIHBhc3MsIGp1c3QgZG8gdGhlIHJlbmRlciBvbiBib3RoIEdQVSdzIGJ1
-dCB0bwpkaWZmZXJlbnQgdmlld3BvcnRzLiBUaGF0IGNvdWxkIHByZXNlbnQgY29tcGxpY2F0aW9u
-cyBmb3Igc2hhZGVycyB0aGF0CndhbnQgdG8gb3BlcmF0ZSBvbiBnbG9iYWwgc3RhdGUgd2l0aCB0
-aGluZ3MgbGlrZSBBUkJfc3Niby9ldGMgdGhvdWdoLgpCdXQgeW91IGNvdWxkIGp1c3Qga2ljayB0
-aGVtIG9mZiB0aGUgU0xJIHBhdGggaWYgdGhleSBkbyBhbnl0aGluZyB5b3UKZG9uJ3QgbGlrZS5d
-CgpBbm90aGVyIGFwcHJvYWNoIGlzIHRvIGtlZXAgdHJhY2sgb2Ygd2hpY2ggZHJhdyBkZXBlbmRz
-IG9uIHdoYXQsIGFuZAppZiB5b3UncmUgZXhlY3V0aW5nIGEgZHJhdywgYWxsb3cgYW5vdGhlciBk
-cmF3IHRvIGV4ZWN1dGUgb24gYW5vdGhlcgpHUFUgaWYgaXQgaGFzIG5vIGRlcGVuZGVuY2llcyBv
-biB0aGF0IGZpcnN0IGRyYXcncyBvdXRwdXQuIFBlcmhhcHMKdGhlcmUgYXJlIG90aGVyIHRoaW5n
-cyBzdGlsbCB5b3UgbWlnaHQgZG8uCgpOb3QgdGhhdCBJIHdhbnQgdG8gZGlzY291cmFnZSB5b3Ug
-ZnJvbSB3b3JraW5nIG9uIHRoaXMsIGJ1dCB0aGVyZSB3aWxsCmJlIGEgTE9UIG9yIHJvYWRibG9j
-a3MsIGZyb20gdHJpdmlhbCB0aGluZ3MgdG8gYWN0dWFsbHkgZ2V0dGluZyBtZXNhCnRvIGZlZWQg
-MiBHUFVzIHRvIGEgc2luZ2xlIGRyaXZlciwgdG8gdGhlIGZhY3QgdGhhdCB0aGUgZHJpdmVyIGlz
-bid0CnJlYWxseSBzdHJ1Y3R1cmVkIHRvIHRha2UgYWR2YW50YWdlIG9mIHRoaXMuCgpJZiB5b3Un
-cmUgbG9va2luZyB0byBjb250cmlidXRlIHRvIG5vdXZlYXUsIEknZCByZWNvbW1lbmQgeW91IGpv
-aW4KI25vdXZlYXUgb24gZnJlZW5vZGUgYW5kIGRpc2N1c3MgdGhlcmUuIFBlcmhhcHMgdGhlcmUg
-YXJlIG90aGVyCnByb2plY3RzIHlvdSdkIGJlIGVxdWFsbHkgaW50ZXJlc3RlZCBpbiBidXQgYXJl
-IG1vcmUgaW1tZWRpYXRlbHkKYWN0aW9uYWJsZS4gQW5kIHRoZW4geW91IGNvdWxkIGJ1aWxkIHVw
-IHRoZSBrbm93bGVkZ2UgdG8gZXZlbnR1YWxseQp0YWNrbGUgU0xJLgoKQ2hlZXJzLAoKICAtaWxp
-YQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0559474091==
+Content-Type: multipart/alternative; boundary="1426901155.f73C1.12823"; charset="UTF-8"
+
+
+--1426901155.f73C1.12823
+Date: Sat, 21 Mar 2015 01:25:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=72315
+
+--- Comment #5 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+I experience crashes like this two, normally every two or three days of
+continuous functioning, last time I got repeatedly this:
+
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:46 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+
+I have a VGA compatible controller: NVIDIA Corporation GK104M [GeForce GTX
+670MX] (rev a1).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1426901155.f73C1.12823
+Date: Sat, 21 Mar 2015 01:25:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315">bug 72315</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+</span></b>
+        <pre>I experience crashes like this two, normally every two or three days of
+continuous functioning, last time I got repeatedly this:
+
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:06:53 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:06 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:19 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP0
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP1
+0x80000000 0x80000001
+Mar 20 19:07:33 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] ROP2
+0x80000000 0x80000001
+Mar 20 19:07:46 localhost kernel: nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 5
+[0x00bf6d0000 compiz[1282]]
+
+I have a VGA compatible controller: NVIDIA Corporation GK104M [GeForce GTX
+670MX] (rev a1).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1426901155.f73C1.12823--
+
+--===============0559474091==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0559474091==--
