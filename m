@@ -1,18 +1,12 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: GM206 support?
-Date: Sun, 22 Mar 2015 10:19:05 +0200
-Message-ID: <550E7AF9.5080609@free.fr>
-References: <CALCETrVXm2ypJ1cRRzqwyoq-cowZn47eYv3JHmz7kW5b4TTTtA@mail.gmail.com>
- <CAKb7Uvi5zxN9_yw9OmuWLWDUz3Ce3xHYK4=fgp8Qp=nZu_N3hA@mail.gmail.com>
- <CALCETrV5XjUxOLvyd2qukJbx0s8+qwE3ivG8s-Koc1VPe_Zezg@mail.gmail.com>
- <CAKb7UvgpjeLUn2+kAfPpMaYkuJgYKEosr7uc7BySE2xS0mcQdg@mail.gmail.com>
- <CALCETrV7tyDgz7OYw6GCTmk0hLFNhi1bMP+-Eabg5NuxBSXUeA@mail.gmail.com>
- <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Sun, 22 Mar 2015 15:33:56 +0000
+Message-ID: <bug-89558-8800-qdEmjwCZDp@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0551422720=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgAZw2XrmanoMd7emGiBEGC_mC1VT4-7qzqKcb0terNtQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,65 +19,123 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTgvMDMvMjAxNSAwMDo1OSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVHVlLCBNYXIgMTcs
-IDIwMTUgYXQgNjo0MCBQTSwgQW5keSBMdXRvbWlyc2tpIDxsdXRvQGFtYWNhcGl0YWwubmV0PiB3
-cm90ZToKPj4gT24gVHVlLCBNYXIgMTcsIDIwMTUgYXQgMjo1NyBQTSwgSWxpYSBNaXJraW4gPGlt
-aXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+IE9uIFR1ZSwgTWFyIDE3LCAyMDE1IGF0IDU6
-NTIgUE0sIEFuZHkgTHV0b21pcnNraSA8bHV0b0BhbWFjYXBpdGFsLm5ldD4gd3JvdGU6Cj4+Pj4g
-T24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgOTo1MiBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPj4+Pj4gT24gRnJpLCBGZWIgMTMsIDIwMTUgYXQgODo1OSBQTSwg
-QW5keSBMdXRvbWlyc2tpIDxsdXRvQGFtYWNhcGl0YWwubmV0PiB3cm90ZToKPj4+Pj4+IE15IG5l
-dyBHVFggOTYwIChHTTIwNiwgSSB0aGluaykgc2F5czoKPj4+Pj4+Cj4+Pj4+PiBbICAgMTAuMzI5
-MzUxXSBub3V2ZWF1ICFbICBERVZJQ0VdWzAwMDA6MDk6MDAuMF0gdW5rbm93biBNYXh3ZWxsIGNo
-aXBzZXQKPj4+Pj4+IFsgICAxMC4zMjkzNTVdIG5vdXZlYXUgRVsgIERFVklDRV1bMDAwMDowOTow
-MC4wXSB1bmtub3duIGNoaXBzZXQsIDB4MTI2MDEwYTEKPj4+Pj4+IFsgICAxMC4zMjkzNTZdIG5v
-dXZlYXUgRVsgICAgIERSTV0gZmFpbGVkIHRvIGNyZWF0ZSAweDAwMDAwMDgwLCAtMjIKPj4+Pj4+
-IFsgICAxMC4zMzAxMjldIG5vdXZlYXU6IHByb2JlIG9mIDAwMDA6MDk6MDAuMCBmYWlsZWQgd2l0
-aCBlcnJvciAtMjIKPj4+Pj4+Cj4+Pj4+PiBIYWNraW5nIHVwIG5vdXZlYXUgc28gdGhhdCBpdCB0
-cmVhdHMgaXQgbGlrZSBhIEdNMjA0IGRvZXNuJ3Qgd29yay4KPj4+Pj4gV2hhdCBoYXBwZW5zIGlm
-IHlvdSBqdXN0IGRyb3AgdGhlIDB4MTI2IG5leHQgdG8gdGhlIDB4MTI0IGluCj4+Pj4+IGVuZ2lu
-ZS9kZXZpY2UvZ20xMDAuYyA/Cj4+Pj4+Cj4+Pj4+PiBBcmUgdGhlcmUgYW55IG5lYXItdGVybSBw
-bGFucyB0byBzdXBwb3J0IHRoaXMgY2FyZD8KPj4+Pj4gSSBkb24ndCBrbm93IG9mIGFueW9uZSB3
-aXRoIHRoZSBody4uLiBtYXliZSBCZW4gZ290IG9uZT8gSWYgeW91J3JlCj4+Pj4+IGludGVyZXN0
-ZWQgaW4gaGVscGluZywgdGhlIGtlcm5lbCBsb2dzIGZyb20gdGhlIGFib3ZlIGV4cGVyaW1lbnQg
-KyBhbgo+Pj4+PiBtbWlvdHJhY2Ugb2YgdGhlIGJsb2IgZHJpdmVycyAoc2VlCj4+Pj4+IGh0dHBz
-Oi8vd2lraS51YnVudHUuY29tL1gvTU1JT1RyYWNpbmcpICsgdmJpb3MgKHNlZQo+Pj4+PiBodHRw
-Oi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9EdW1waW5nVmlkZW9CaW9zLykuCj4+Pj4+
-Cj4+Pj4+IEkgYXNzdW1lIHlvdSdyZSBvbiBhIHJlY2VudCBrZXJuZWw/IFlvdSBuZWVkIDMuMTkg
-Zm9yIHRoZSBHTTIwNCBzdHVmZgo+Pj4+PiB0byB3b3JrIGluIHRoZSBmaXJzdCBwbGFjZS4KPj4+
-PiBOZWl0aGVyIDMuMTkgbm9yIDQuMC1yY3NvbWV0aGluZyB3b3Jrcy4KPj4+Pgo+Pj4+IEkgcHV0
-IGFuIG1taW8gdHJhY2UgKFggc3RhcnR1cCBhbmQgZ2x4Z2VhcnMpIGFuZCBhIHZiaW9zIGR1bXAg
-aGVyZToKPj4+Pgo+Pj4+IGh0dHA6Ly93ZWIubWl0LmVkdS9sdXRvL3d3dy9HTTIwNi8KPj4+IFN0
-ZWZhbiBzZW50IHByb3BlciBwYXRjaGVzIHRvIGdldCBub3V2ZWF1IGdvaW5nIG9uIGhpcyBHTTIw
-Niwgd2hpY2gKPj4+IHdpbGwgbWFrZSBpdCBpbnRvIHRoZSBuZXh0IDQuMC1yYy4gSGVyZSBpcyBh
-IHRyZWUgdGhhdCBpcyBkZXN0aW5lZAo+Pj4gdG93YXJkcyBkcm0tZml4ZXM6Cj4+Pgo+Pj4gaHR0
-cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL25vdXZlYXUvbGludXgtMi42L2xvZy8/aD1saW51eC00
-LjAKPj4+Cj4+PiBMZXQgdXMga25vdyBpZiBpdCBtYWtlcyB0aGUgY2FyZCB3b3JrLiAoRGVmaW5p
-dGVseSBubyBhY2NlbGVyYXRpb24KPj4+IHdpdGhvdXQgc2lnbmVkIGZpcm13YXJlIGZvciBub3cg
-dGhvdWdoLikKPj4gVGhlIGRyaXZlciBsb2FkcyBhbmQgc2VlbXMgdG8gd29yay4KPiBFeGNlbGxl
-bnQhCj4KPj4gVGhlIG5vdXZlYXUgWCBkcml2ZXIgZG9lc24ndCBsb2FkLCB0aG91Z2guCj4gWWVh
-aCwgeGY4Ni12aWRlby1ub3V2ZWF1IGhhcyBubyBzdXBwb3J0IGZvciB0aGUgR00yMHggZmFtaWx5
-PyBOb3RlCj4gdGhhdCBldmVuIGlmIGl0IGRpZCBsb2FkLCB5b3Ugd291bGRuJ3QgZ2V0IGFueSBh
-Y2NlbGVyYXRpb24gLS0gbWF5IGFzCj4gd2VsbCBqdXN0IHVzZSB0aGUgJ3hmODYtdmlkZW8tbW9k
-ZXNldHRpbmcnIGRyaXZlci4KPgo+PiBJIHRyaWVkIHRvIHVzZSB0aGUgbnZpZGlhIGZpcm13YXJl
-Ogo+Pgo+IFsuLi5dCj4KPj4gd2l0aDoKPj4KPj4gb3B0aW9ucyBub3V2ZWF1IGNvbmZpZz1Odkdy
-VXNlRlc9MQo+Pgo+PiBpbiBteSBtb2Rwcm9iZSBjb25maWd1cmF0aW9uLCBhbmQgdGhhdCBtYWRl
-IG5vIG9idmlvdXMgZGlmZmVyZW5jZSwKPj4gZXZlbiBpbiB0aGUga2VybmVsIGxvZ3MuCj4gUmln
-aHQsIHRoYXQncyBleHBlY3RlZC4gR00yMHggcmVxdWlyZXMgc2lnbmVkIGZpcm13YXJlLiBXZSBo
-YXZlbid0Cj4gZXZlbiBnb3R0ZW4gYXMgZmFyIGFzIGJlaW5nIGFibGUgdG8gZmlndXJlIG91dCB3
-aGF0IGFsbCB0aGUKPiAqcHJvcHJpZXRhcnkqIGZpcm13YXJlIGlzLCBuZXZlciBtaW5kIGV2ZW4g
-bG9hZGluZyBpdC4gSXQgZG9lc24ndCBzaG93Cj4gdXAgaW4gbW1pb3RyYWNlcywgcHJvYmFibHkg
-cmVhZCBieSB0aGUgY2FyZCBkaXJlY3RseSBvdXQgb2Ygc3lzdGVtCj4gbWVtb3J5LiBJdCdzIGEg
-bXVsdGktc3RhZ2UgcHJvY2VzcywgY29tcGxpY2F0aW5nIFJFLiBUaGUgZmlybXdhcmUgdGhhdAo+
-IHlvdSd2ZSBleHRyYWN0ZWQgaXMgZXhjbHVzaXZlbHkgZm9yIHZpZGVvIGRlY29kaW5nIGFjY2Vs
-ZXJhdGlvbi4gWW91Cj4gY291bGQgZXh0cmFjdCBmaXJtd2FyZSBmcm9tIDMyNS4xNSB3aGljaCB3
-aWxsIGluY2x1ZGUgdGhlIHBncmFwaCBmdWMKPiBibG9icyB0b28gW3doaWNoIHdvdWxkIGdldCBs
-b2FkZWQgYnkgTnZHclVzZUZXPTFdLCBidXQgbm90aGluZyB0aGF0J2xsCj4gaGVscCB5b3UuClRo
-aXMgaXMgc29tZXRoaW5nIHRoYXQgdGhlIHJlY2VudCB3b3JrIGRvbmUgYnkgU2FtdWVsIGNvdWxk
-IGhlbHAuIEhlCmdvdCB0aGUgbnZpZGlhIGRyaXZlciB0byB3b3JrIGluIGt2bSBhbmQgdGhlbiBt
-YW5hZ2VkIHRvIHRyYWNlIHRoZQpNTUlPIG9wZXJhdGlvbnMuIElmIHRoZSBjYXJkIHJlYWxseSBy
-ZWFkcyB0aGUgZncgZnJvbSBzeXN0ZW0gbWVtb3J5LAppdCBzaG91bGQgc2hvdyB1cCBpbiBoaXMg
-dHJhY2UuCgpNb3JlIGluZm86IGh0dHBzOi8vaGFrenNhbS53b3JkcHJlc3MuY29tLzIwMTUvMDIv
-MjEvNDcxLwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0551422720==
+Content-Type: multipart/alternative; boundary="1427038436.11462.26653"; charset="UTF-8"
+
+
+--1427038436.11462.26653
+Date: Sun, 22 Mar 2015 15:33:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
+
+SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org
+
+--- Comment #3 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 114524
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114524&action=edit
+part dmesg log
+
+Hi,
+I have a Lenovo Z70-50 with the Intel/Nvidia graphics and I am also interested
+in getting the gm108 component functional. I use Linux From Scratch for my
+system and so far I have had no luck with getting the Nvidia binary
+(NVIDIA-Linux-x86-346.47.run) fuctional ( I have also tried UBUNTU also without
+luck). I have however added the 0x118 case option to gm100.c in kernel 3.19.2 (
+see attached partial dmesg log ) and I have a script ready to run the MMIOTrace
+on my LFS setup.
+
+Have you had any luck obtaining the nv118_fuc409c firmware the nouveau modules
+is now requesting?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1427038436.11462.26653
+Date: Sun, 22 Mar 2015 15:33:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>smf.linux&#64;ntlworld.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114524" name="attach_114524" title="part dmesg log">attachment 114524</a> <a href="attachment.cgi?id=114524&amp;action=edit" title="part dmesg log">[details]</a></span>
+part dmesg log
+
+Hi,
+I have a Lenovo Z70-50 with the Intel/Nvidia graphics and I am also interested
+in getting the gm108 component functional. I use Linux From Scratch for my
+system and so far I have had no luck with getting the Nvidia binary
+(NVIDIA-Linux-x86-346.47.run) fuctional ( I have also tried UBUNTU also without
+luck). I have however added the 0x118 case option to gm100.c in kernel 3.19.2 (
+see attached partial dmesg log ) and I have a script ready to run the MMIOTrace
+on my LFS setup.
+
+Have you had any luck obtaining the nv118_fuc409c firmware the nouveau modules
+is now requesting?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1427038436.11462.26653--
+
+--===============0551422720==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0551422720==--
