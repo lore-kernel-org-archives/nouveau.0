@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Sun, 22 Mar 2015 23:00:45 +0000
-Message-ID: <bug-89558-8800-i6gpSLLGVi@http.bugs.freedesktop.org/>
+Date: Sun, 22 Mar 2015 23:06:56 +0000
+Message-ID: <bug-89558-8800-v89xCRa0T1@http.bugs.freedesktop.org/>
 References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1331367416=="
+Content-Type: multipart/mixed; boundary="===============1051338913=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1331367416==
-Content-Type: multipart/alternative; boundary="1427065245.AA8bbceD2.7509"; charset="UTF-8"
+--===============1051338913==
+Content-Type: multipart/alternative; boundary="1427065616.c2d87AC32.8714"; charset="UTF-8"
 
 
---1427065245.AA8bbceD2.7509
-Date: Sun, 22 Mar 2015 23:00:45 +0000
+--1427065616.c2d87AC32.8714
+Date: Sun, 22 Mar 2015 23:06:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #7 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 114537
-  --> https://bugs.freedesktop.org/attachment.cgi?id=114537&action=edit
-Full dmesg log
+--- Comment #8 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 114538
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114538&action=edit
+dmesg alternate nouveau tree
 
-I have increased the kernel log buffers to maximum has you suggested and I now
-have a complete dmesg log from bootup.
+In this log I have removed the 3.19.2 kernel nouveau.ko and build the software
+from the git source has you suggested. The new nouveau.ko module has loaded but
+I cannot see anything in the log to indicate any functionality ( I modified the
+gm100.c file has before), any suggestions has to what I have done wrong ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427065245.AA8bbceD2.7509
-Date: Sun, 22 Mar 2015 23:00:45 +0000
+--1427065616.c2d87AC32.8714
+Date: Sun, 22 Mar 2015 23:06:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +60,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
               from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=114537" name="attach_114537" title="Full dmesg log">attachment 114537</a> <a href="attachment.cgi?id=114537&amp;action=edit" title="Full dmesg log">[details]</a></span>
-Full dmesg log
+        <pre>Created <span class=""><a href="attachment.cgi?id=114538" name="attach_114538" title="dmesg alternate nouveau tree">attachment 114538</a> <a href="attachment.cgi?id=114538&amp;action=edit" title="dmesg alternate nouveau tree">[details]</a></span>
+dmesg alternate nouveau tree
 
-I have increased the kernel log buffers to maximum has you suggested and I now
-have a complete dmesg log from bootup.</pre>
+In this log I have removed the 3.19.2 kernel nouveau.ko and build the software
+from the git source has you suggested. The new nouveau.ko module has loaded but
+I cannot see anything in the log to indicate any functionality ( I modified the
+gm100.c file has before), any suggestions has to what I have done wrong ?</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +85,9 @@ have a complete dmesg log from bootup.</pre>
     </body>
 </html>
 
---1427065245.AA8bbceD2.7509--
+--1427065616.c2d87AC32.8714--
 
---===============1331367416==
+--===============1051338913==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1331367416==--
+--===============1051338913==--
