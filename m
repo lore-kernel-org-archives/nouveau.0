@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
  inconsistent display
-Date: Mon, 23 Mar 2015 17:06:18 +0000
-Message-ID: <bug-89730-8800-PxvQ7afM2d@http.bugs.freedesktop.org/>
+Date: Mon, 23 Mar 2015 17:21:29 +0000
+Message-ID: <bug-89730-8800-6aPUSiJz2q@http.bugs.freedesktop.org/>
 References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0748493426=="
+Content-Type: multipart/mixed; boundary="===============1566929577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,185 +21,139 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0748493426==
-Content-Type: multipart/alternative; boundary="1427130378.E7e51e1.23664"; charset="UTF-8"
+--===============1566929577==
+Content-Type: multipart/alternative; boundary="1427131288.D6acCcfB1.27920"; charset="UTF-8"
 
 
---1427130378.E7e51e1.23664
-Date: Mon, 23 Mar 2015 17:06:18 +0000
+--1427131288.D6acCcfB1.27920
+Date: Mon, 23 Mar 2015 17:21:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89730
+https://bugs.freedesktop.org/show_bug.cgi?id=89730
 
---- Comment #4 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #2)
-> Here's a simple patch to try... *no* idea if it'll help. I assume not, but
-> who knows. [Patch to xf86-video-nouveau.]
->=20
-> diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-> index 5efbd19..ecad602 100644
-> --- a/src/nv50_accel.c
-> +++ b/src/nv50_accel.c
-> @@ -207,6 +207,8 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
->  	PUSH_DATA (push, 0);
->  	BEGIN_NV04(push, NV50_3D(COLOR_MASK_COMMON), 1);
->  	PUSH_DATA (push, 1);
-> +	BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-> +	PUSH_DATA (push, 0);
->=20=20
->  	BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
->  	PUSH_DATA (push, (pNv->scratch->offset + TIC_OFFSET) >> 32);
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to poma from comment #4)
+> dunno whether it is proper position, but comparing with the
+> NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
+> your patch fit like this:
 
+Yes, this is what I had in mind. On my local branch I've replaced a bunch of
+the 0xbla values with names :) Thanks for testing, it was a long shot though.
 
-With this nouve git:
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/
+> Nevertheless it still has no effect.
+> 
+> With regard to your question - GL, I tried the following:
+> options nouveau noaccel=1
+> 
+> and it has a positive effect - Greeter Background is displayed correctly.
+> 
+> After all this, if I understand it correctly:
+> 1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200 
+>    because it has no problemos in this case - per se is not accelerated?
 
-dunno whether it is proper position, but comparing with the
-NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
-your patch fit like this:
+Nope, it's accelerated. Just all the acceleration logic is different, it's very
+different hardware.
 
-diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-index b27f67a..50b3a08 100644
---- a/src/nv50_accel.c
-+++ b/src/nv50_accel.c
-@@ -207,6 +207,8 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
-     PUSH_DATA (push, 0);
-     BEGIN_NV04(push, SUBC_3D(0x0f90), 1);
-     PUSH_DATA (push, 1);
-+    BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-+    PUSH_DATA (push, 0);
+> 2. the same applies if the modesetting is used - not accelerated?
 
-     BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
-     PUSH_DATA (push, (pNv->scratch->offset + TIC_OFFSET) >> 32);
+Right. Or perhaps it's using glamor to implement EXA? Depends on the
+modesetting version.
 
+> 3. also there is no problemos if nouveau noaccel=1 is used - not accelerated?
 
-Nevertheless it still has no effect.
+Right, not accelerated. You can be more targeted and set Option "AccelMethod"
+"none" in your xorg.conf which will only disable 2d accel via the ddx. Or you
+can try setting it to "glamor" and see if the problem goes away.
 
-With regard to your question - GL, I tried the following:
-options nouveau noaccel=3D1
+> 
+> Perhaps this is flaw within the greeter application then?
 
-and it has a positive effect - Greeter Background is displayed correctly.
+Perhaps. Would be nice to know wtf the application is doing in the first place,
+then we may be able to work out where the issue might lie. At this point I
+don't know if it's using X or GL for drawing this stuff to the screen, which
+are very different paths.
 
-After all this, if I understand it correctly:
-1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200=20
-   because it has no problemos in this case - per se is not accelerated?
-2. the same applies if the modesetting is used - not accelerated?
-3. also there is no problemos if nouveau noaccel=3D1 is used - not accelera=
-ted?
-
-Perhaps this is flaw within the greeter application then?
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427130378.E7e51e1.23664
-Date: Mon, 23 Mar 2015 17:06:18 +0000
+--1427131288.D6acCcfB1.27920
+Date: Mon, 23 Mar 2015 17:21:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - NV50: LightDM GTK+ Greeter Background - inconsistent disp=
-lay"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89730#c4">Comment=
- # 4</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - NV50: LightDM GTK+ Greeter Background - inconsistent disp=
-lay"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89730">bug 89730<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D897=
-30#c2">comment #2</a>)
-<span class=3D"quote">&gt; Here's a simple patch to try... *no* idea if it'=
-ll help. I assume not, but
-&gt; who knows. [Patch to xf86-video-nouveau.]
-&gt;=20
-&gt; diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-&gt; index 5efbd19..ecad602 100644
-&gt; --- a/src/nv50_accel.c
-&gt; +++ b/src/nv50_accel.c
-&gt; &#64;&#64; -207,6 +207,8 &#64;&#64; NVAccelInitNV50TCL(ScrnInfoPtr pSc=
-rn)
-&gt;  	PUSH_DATA (push, 0);
-&gt;  	BEGIN_NV04(push, NV50_3D(COLOR_MASK_COMMON), 1);
-&gt;  	PUSH_DATA (push, 1);
-&gt; +	BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-&gt; +	PUSH_DATA (push, 0);
-&gt;=20=20
-&gt;  	BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
-&gt;  	PUSH_DATA (push, (pNv-&gt;scratch-&gt;offset + TIC_OFFSET) &gt;&gt; =
-32);</span >
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=89730#c4">comment #4</a>)
+<span class="quote">&gt; dunno whether it is proper position, but comparing with the
+&gt; NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
+&gt; your patch fit like this:</span >
 
+Yes, this is what I had in mind. On my local branch I've replaced a bunch of
+the 0xbla values with names :) Thanks for testing, it was a long shot though.
 
-With this nouve git:
-<a href=3D"http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/">http://=
-cgit.freedesktop.org/nouveau/xf86-video-nouveau/</a>
+<span class="quote">&gt; Nevertheless it still has no effect.
+&gt; 
+&gt; With regard to your question - GL, I tried the following:
+&gt; options nouveau noaccel=1
+&gt; 
+&gt; and it has a positive effect - Greeter Background is displayed correctly.
+&gt; 
+&gt; After all this, if I understand it correctly:
+&gt; 1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200 
+&gt;    because it has no problemos in this case - per se is not accelerated?</span >
 
-dunno whether it is proper position, but comparing with the
-NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
-your patch fit like this:
+Nope, it's accelerated. Just all the acceleration logic is different, it's very
+different hardware.
 
-diff --git a/src/nv50_accel.c b/src/nv50_accel.c
-index b27f67a..50b3a08 100644
---- a/src/nv50_accel.c
-+++ b/src/nv50_accel.c
-&#64;&#64; -207,6 +207,8 &#64;&#64; NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
-     PUSH_DATA (push, 0);
-     BEGIN_NV04(push, SUBC_3D(0x0f90), 1);
-     PUSH_DATA (push, 1);
-+    BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
-+    PUSH_DATA (push, 0);
+<span class="quote">&gt; 2. the same applies if the modesetting is used - not accelerated?</span >
 
-     BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
-     PUSH_DATA (push, (pNv-&gt;scratch-&gt;offset + TIC_OFFSET) &gt;&gt; 32=
-);
+Right. Or perhaps it's using glamor to implement EXA? Depends on the
+modesetting version.
 
+<span class="quote">&gt; 3. also there is no problemos if nouveau noaccel=1 is used - not accelerated?</span >
 
-Nevertheless it still has no effect.
+Right, not accelerated. You can be more targeted and set Option &quot;AccelMethod&quot;
+&quot;none&quot; in your xorg.conf which will only disable 2d accel via the ddx. Or you
+can try setting it to &quot;glamor&quot; and see if the problem goes away.
 
-With regard to your question - GL, I tried the following:
-options nouveau noaccel=3D1
+<span class="quote">&gt; 
+&gt; Perhaps this is flaw within the greeter application then?</span >
 
-and it has a positive effect - Greeter Background is displayed correctly.
-
-After all this, if I understand it correctly:
-1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200=20
-   because it has no problemos in this case - per se is not accelerated?
-2. the same applies if the modesetting is used - not accelerated?
-3. also there is no problemos if nouveau noaccel=3D1 is used - not accelera=
-ted?
-
-Perhaps this is flaw within the greeter application then?</pre>
+Perhaps. Would be nice to know wtf the application is doing in the first place,
+then we may be able to work out where the issue might lie. At this point I
+don't know if it's using X or GL for drawing this stuff to the screen, which
+are very different paths.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1427130378.E7e51e1.23664--
+--1427131288.D6acCcfB1.27920--
 
---===============0748493426==
+--===============1566929577==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -209,4 +163,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0748493426==--
+--===============1566929577==--
