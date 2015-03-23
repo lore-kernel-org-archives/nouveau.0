@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
- inconsistent display
-Date: Mon, 23 Mar 2015 17:21:29 +0000
-Message-ID: <bug-89730-8800-6aPUSiJz2q@http.bugs.freedesktop.org/>
-References: <bug-89730-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Mon, 23 Mar 2015 17:32:47 +0000
+Message-ID: <bug-89558-8800-vup9hT8J0I@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1566929577=="
+Content-Type: multipart/mixed; boundary="===============0802048670=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,65 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1566929577==
-Content-Type: multipart/alternative; boundary="1427131288.D6acCcfB1.27920"; charset="UTF-8"
+--===============0802048670==
+Content-Type: multipart/alternative; boundary="1427131967.3A23C2.30446"; charset="UTF-8"
 
 
---1427131288.D6acCcfB1.27920
-Date: Mon, 23 Mar 2015 17:21:28 +0000
+--1427131967.3A23C2.30446
+Date: Mon, 23 Mar 2015 17:32:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89730
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to poma from comment #4)
-> dunno whether it is proper position, but comparing with the
-> NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
-> your patch fit like this:
+--- Comment #16 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 114553
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114553&action=edit
+mmiotrace
 
-Yes, this is what I had in mind. On my local branch I've replaced a bunch of
-the 0xbla values with names :) Thanks for testing, it was a long shot though.
+Herewith my attempt at a mmiotrace of the nouveau driver startup. If this is
+not correct please advise what is required.
 
-> Nevertheless it still has no effect.
-> 
-> With regard to your question - GL, I tried the following:
-> options nouveau noaccel=1
-> 
-> and it has a positive effect - Greeter Background is displayed correctly.
-> 
-> After all this, if I understand it correctly:
-> 1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200 
->    because it has no problemos in this case - per se is not accelerated?
+thanks
 
-Nope, it's accelerated. Just all the acceleration logic is different, it's very
-different hardware.
-
-> 2. the same applies if the modesetting is used - not accelerated?
-
-Right. Or perhaps it's using glamor to implement EXA? Depends on the
-modesetting version.
-
-> 3. also there is no problemos if nouveau noaccel=1 is used - not accelerated?
-
-Right, not accelerated. You can be more targeted and set Option "AccelMethod"
-"none" in your xorg.conf which will only disable 2d accel via the ddx. Or you
-can try setting it to "glamor" and see if the problem goes away.
-
-> 
-> Perhaps this is flaw within the greeter application then?
-
-Perhaps. Would be nice to know wtf the application is doing in the first place,
-then we may be able to work out where the issue might lie. At this point I
-don't know if it's using X or GL for drawing this stuff to the screen, which
-are very different paths.
+Stuart
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427131288.D6acCcfB1.27920
-Date: Mon, 23 Mar 2015 17:21:28 +0000
+--1427131967.3A23C2.30446
+Date: Mon, 23 Mar 2015 17:32:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -92,54 +61,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c5">Comment # 5</a>
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
 </span></b>
-        <pre>(In reply to poma from <a href="show_bug.cgi?id=89730#c4">comment #4</a>)
-<span class="quote">&gt; dunno whether it is proper position, but comparing with the
-&gt; NV50_3D(ZETA_ENABLE) in src/nvc0_accel.c
-&gt; your patch fit like this:</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=114553" name="attach_114553" title="mmiotrace">attachment 114553</a> <a href="attachment.cgi?id=114553&amp;action=edit" title="mmiotrace">[details]</a></span>
+mmiotrace
 
-Yes, this is what I had in mind. On my local branch I've replaced a bunch of
-the 0xbla values with names :) Thanks for testing, it was a long shot though.
+Herewith my attempt at a mmiotrace of the nouveau driver startup. If this is
+not correct please advise what is required.
 
-<span class="quote">&gt; Nevertheless it still has no effect.
-&gt; 
-&gt; With regard to your question - GL, I tried the following:
-&gt; options nouveau noaccel=1
-&gt; 
-&gt; and it has a positive effect - Greeter Background is displayed correctly.
-&gt; 
-&gt; After all this, if I understand it correctly:
-&gt; 1. Family : NV30 / Chipset: NV34 (NV34) / GeForce FX 5200 
-&gt;    because it has no problemos in this case - per se is not accelerated?</span >
+thanks
 
-Nope, it's accelerated. Just all the acceleration logic is different, it's very
-different hardware.
-
-<span class="quote">&gt; 2. the same applies if the modesetting is used - not accelerated?</span >
-
-Right. Or perhaps it's using glamor to implement EXA? Depends on the
-modesetting version.
-
-<span class="quote">&gt; 3. also there is no problemos if nouveau noaccel=1 is used - not accelerated?</span >
-
-Right, not accelerated. You can be more targeted and set Option &quot;AccelMethod&quot;
-&quot;none&quot; in your xorg.conf which will only disable 2d accel via the ddx. Or you
-can try setting it to &quot;glamor&quot; and see if the problem goes away.
-
-<span class="quote">&gt; 
-&gt; Perhaps this is flaw within the greeter application then?</span >
-
-Perhaps. Would be nice to know wtf the application is doing in the first place,
-then we may be able to work out where the issue might lie. At this point I
-don't know if it's using X or GL for drawing this stuff to the screen, which
-are very different paths.</pre>
+Stuart</pre>
         </div>
       </p>
       <hr>
@@ -151,9 +89,9 @@ are very different paths.</pre>
     </body>
 </html>
 
---1427131288.D6acCcfB1.27920--
+--1427131967.3A23C2.30446--
 
---===============1566929577==
+--===============0802048670==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -163,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1566929577==--
+--===============0802048670==--
