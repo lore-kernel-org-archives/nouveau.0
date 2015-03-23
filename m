@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
  inconsistent display
-Date: Mon, 23 Mar 2015 13:11:38 +0000
-Message-ID: <bug-89730-8800-URKvXlHlK4@http.bugs.freedesktop.org/>
+Date: Mon, 23 Mar 2015 13:19:51 +0000
+Message-ID: <bug-89730-8800-085XiQQNsL@http.bugs.freedesktop.org/>
 References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0908538787=="
+Content-Type: multipart/mixed; boundary="===============0259964257=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0908538787==
-Content-Type: multipart/alternative; boundary="1427116297.DaD7F521.1184"; charset="UTF-8"
+--===============0259964257==
+Content-Type: multipart/alternative; boundary="1427116791.7fb6B861.3087"; charset="UTF-8"
 
 
---1427116297.DaD7F521.1184
-Date: Mon, 23 Mar 2015 13:11:37 +0000
+--1427116791.7fb6B861.3087
+Date: Mon, 23 Mar 2015 13:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89730
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I may be slow... but I don't fully comprehend what the problem is. Note that
-I'm not familiar with lightdm beyond it being an xdm replacement.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Here's a simple patch to try... *no* idea if it'll help. I assume not, but who
+knows. [Patch to xf86-video-nouveau.]
 
-Is it using X or GL to do the displaying? I note that CSS is being used -- do
-you know what processes this?
+diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+index 5efbd19..ecad602 100644
+--- a/src/nv50_accel.c
++++ b/src/nv50_accel.c
+@@ -207,6 +207,8 @@ NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+     PUSH_DATA (push, 0);
+     BEGIN_NV04(push, NV50_3D(COLOR_MASK_COMMON), 1);
+     PUSH_DATA (push, 1);
++    BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
++    PUSH_DATA (push, 0);
 
-Perhaps you can get a lightdm person to help with debugging?
+     BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
+     PUSH_DATA (push, (pNv->scratch->offset + TIC_OFFSET) >> 32);
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427116297.DaD7F521.1184
-Date: Mon, 23 Mar 2015 13:11:37 +0000
+--1427116791.7fb6B861.3087
+Date: Mon, 23 Mar 2015 13:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +69,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I may be slow... but I don't fully comprehend what the problem is. Note that
-I'm not familiar with lightdm beyond it being an xdm replacement.
+        <pre>Here's a simple patch to try... *no* idea if it'll help. I assume not, but who
+knows. [Patch to xf86-video-nouveau.]
 
-Is it using X or GL to do the displaying? I note that CSS is being used -- do
-you know what processes this?
+diff --git a/src/nv50_accel.c b/src/nv50_accel.c
+index 5efbd19..ecad602 100644
+--- a/src/nv50_accel.c
++++ b/src/nv50_accel.c
+&#64;&#64; -207,6 +207,8 &#64;&#64; NVAccelInitNV50TCL(ScrnInfoPtr pScrn)
+     PUSH_DATA (push, 0);
+     BEGIN_NV04(push, NV50_3D(COLOR_MASK_COMMON), 1);
+     PUSH_DATA (push, 1);
++    BEGIN_NV04(push, NV50_3D(ZETA_ENABLE), 1);
++    PUSH_DATA (push, 0);
 
-Perhaps you can get a lightdm person to help with debugging?</pre>
+     BEGIN_NV04(push, NV50_3D(TIC_ADDRESS_HIGH), 3);
+     PUSH_DATA (push, (pNv-&gt;scratch-&gt;offset + TIC_OFFSET) &gt;&gt; 32);</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +103,9 @@ Perhaps you can get a lightdm person to help with debugging?</pre>
     </body>
 </html>
 
---1427116297.DaD7F521.1184--
+--1427116791.7fb6B861.3087--
 
---===============0908538787==
+--===============0259964257==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0908538787==--
+--===============0259964257==--
