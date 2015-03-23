@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Mon, 23 Mar 2015 20:15:11 +0000
-Message-ID: <bug-89558-8800-ISJOGeTYpK@http.bugs.freedesktop.org/>
+Date: Mon, 23 Mar 2015 22:13:01 +0000
+Message-ID: <bug-89558-8800-FQVskZfR2a@http.bugs.freedesktop.org/>
 References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0295318727=="
+Content-Type: multipart/mixed; boundary="===============0898951741=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0295318727==
-Content-Type: multipart/alternative; boundary="1427141711.C4ecb12.5511"; charset="UTF-8"
+--===============0898951741==
+Content-Type: multipart/alternative; boundary="1427148781.fAbd2.328"; charset="UTF-8"
 
 
---1427141711.C4ecb12.5511
-Date: Mon, 23 Mar 2015 20:15:11 +0000
+--1427148781.fAbd2.328
+Date: Mon, 23 Mar 2015 22:13:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #21 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Using cpu-z on windows the graphics tab shows the Intel device as having 4GB
-and the Nvidia devices is reported as 1GB.
+--- Comment #22 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+For what it is worth using demmio I now have the firmware from the
+mmiotrace.log.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427141711.C4ecb12.5511
-Date: Mon, 23 Mar 2015 20:15:11 +0000
+--1427148781.fAbd2.328
+Date: Mon, 23 Mar 2015 22:13:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
               from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
 </span></b>
-        <pre>Using cpu-z on windows the graphics tab shows the Intel device as having 4GB
-and the Nvidia devices is reported as 1GB.</pre>
+        <pre>For what it is worth using demmio I now have the firmware from the
+mmiotrace.log.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +74,9 @@ and the Nvidia devices is reported as 1GB.</pre>
     </body>
 </html>
 
---1427141711.C4ecb12.5511--
+--1427148781.fAbd2.328--
 
---===============0295318727==
+--===============0898951741==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0295318727==--
+--===============0898951741==--
