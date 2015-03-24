@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Mon, 23 Mar 2015 22:13:01 +0000
-Message-ID: <bug-89558-8800-FQVskZfR2a@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Arash Khoshghadam <arash.khoshghadamnia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: header intact
+Date: Tue, 24 Mar 2015 10:49:31 +0430
+Message-ID: <5511036c.aa5cb40a.5661.462d@mx.google.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0898951741=="
+Content-Type: multipart/mixed; boundary="===============1866026915=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,64 +17,16 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============1866026915==
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="Windows-1252"
 
---===============0898951741==
-Content-Type: multipart/alternative; boundary="1427148781.fAbd2.328"; charset="UTF-8"
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3Dwindows-1252"></head><body><div><div style=3D"font-family: Calibri,sans-=
+serif; font-size: 11pt;"></div></div></body></html>=
 
 
---1427148781.fAbd2.328
-Date: Mon, 23 Mar 2015 22:13:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #22 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-For what it is worth using demmio I now have the firmware from the
-mmiotrace.log.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1427148781.fAbd2.328
-Date: Mon, 23 Mar 2015 22:13:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
-</span></b>
-        <pre>For what it is worth using demmio I now have the firmware from the
-mmiotrace.log.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1427148781.fAbd2.328--
-
---===============0898951741==
+--===============1866026915==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +36,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0898951741==--
+--===============1866026915==--
