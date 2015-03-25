@@ -1,14 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87244] [NV94] X hangs,
- logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after
- 101 spins, halt followed by an X trace
-Date: Wed, 25 Mar 2015 16:21:01 +0000
-Message-ID: <bug-87244-8800-u7c7mC3woy@http.bugs.freedesktop.org/>
-References: <bug-87244-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50/ir: take postFactor into account when doing
+	peephole optimizations
+Date: Wed, 25 Mar 2015 18:00:00 -0400
+Message-ID: <1427320800-20628-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0678974287=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87244-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,78 +16,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0678974287==
-Content-Type: multipart/alternative; boundary="1427300461.37D4DD3.15754"; charset="UTF-8"
-
-
---1427300461.37D4DD3.15754
-Date: Wed, 25 Mar 2015 16:21:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=87244
-
---- Comment #22 from Sergio Pascual <sergio.pasra-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Adam Williamson from comment #21)
-> The fix is already in mainline, just hasn't been backported.
-
-Is the fix going to appear in F21 any time soon?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1427300461.37D4DD3.15754
-Date: Wed, 25 Mar 2015 16:21:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] X hangs, logs show kernel: nouveau E[ PFIFO][0000:01:00.0] still angry after 101 spins, halt followed by an X trace"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87244">bug 87244</a>
-              from <span class="vcard"><a class="email" href="mailto:sergio.pasra&#64;gmail.com" title="Sergio Pascual &lt;sergio.pasra&#64;gmail.com&gt;"> <span class="fn">Sergio Pascual</span></a>
-</span></b>
-        <pre>(In reply to Adam Williamson from <a href="show_bug.cgi?id=87244#c21">comment #21</a>)
-<span class="quote">&gt; The fix is already in mainline, just hasn't been backported.</span >
-
-Is the fix going to appear in F21 any time soon?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1427300461.37D4DD3.15754--
-
---===============0678974287==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0678974287==--
+TXVsdGlwbHkgb3BlcmF0aW9ucyBjYW4gaGF2ZSBhIHBvc3QtZmFjdG9yIG9uIHRoZW0sIHdoaWNo
+IG90aGVyIG9wcwpkb24ndCBzdXBwb3J0LiBPbmx5IHBlcmZvcm0gdGhlIHBlZXBob2xlIG9wdGlt
+aXphdGlvbnMgd2hlbiB0aGVyZSBpcyBubwpwb3N0LWZhY3RvciBpbnZvbHZlZC4KCkJ1Z3ppbGxh
+OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD04OTc1OApTaWdu
+ZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgfCAxMiAr
+KysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
+MF9pcl9wZWVwaG9sZS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9u
+djUwX2lyX3BlZXBob2xlLmNwcAppbmRleCA2YTRlYTRlLi5kYzA0OGU2IDEwMDY0NAotLS0gYS9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAor
+KysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xl
+LmNwcApAQCAtNDUxLDcgKzQ1MSw5IEBAIENvbnN0YW50Rm9sZGluZzo6ZXhwcihJbnN0cnVjdGlv
+biAqaSwKICAgICAgICAgICAgIGItPmRhdGEuZjMyID0gMC4wZjsKICAgICAgIH0KICAgICAgIHN3
+aXRjaCAoaS0+ZFR5cGUpIHsKLSAgICAgIGNhc2UgVFlQRV9GMzI6IHJlcy5kYXRhLmYzMiA9IGEt
+PmRhdGEuZjMyICogYi0+ZGF0YS5mMzI7IGJyZWFrOworICAgICAgY2FzZSBUWVBFX0YzMjoKKyAg
+ICAgICAgIHJlcy5kYXRhLmYzMiA9IGEtPmRhdGEuZjMyICogYi0+ZGF0YS5mMzIgKiBleHAyZihp
+LT5wb3N0RmFjdG9yKTsKKyAgICAgICAgIGJyZWFrOwogICAgICAgY2FzZSBUWVBFX0Y2NDogcmVz
+LmRhdGEuZjY0ID0gYS0+ZGF0YS5mNjQgKiBiLT5kYXRhLmY2NDsgYnJlYWs7CiAgICAgICBjYXNl
+IFRZUEVfUzMyOgogICAgICAgICAgaWYgKGktPnN1Yk9wID09IE5WNTBfSVJfU1VCT1BfTVVMX0hJ
+R0gpIHsKQEAgLTU3OSw2ICs1ODEsNyBAQCBDb25zdGFudEZvbGRpbmc6OmV4cHIoSW5zdHJ1Y3Rp
+b24gKmksCiAKICAgIGktPnNyYygwKS5tb2QgPSBNb2RpZmllcigwKTsKICAgIGktPnNyYygxKS5t
+b2QgPSBNb2RpZmllcigwKTsKKyAgIGktPnBvc3RGYWN0b3IgPSAwOwogCiAgICBpLT5zZXRTcmMo
+MCwgbmV3X0ltbWVkaWF0ZVZhbHVlKGktPmJiLT5nZXRQcm9ncmFtKCksIHJlcy5kYXRhLnUzMikp
+OwogICAgaS0+c2V0U3JjKDEsIE5VTEwpOwpAQCAtNjgyLDcgKzY4NSw3IEBAIENvbnN0YW50Rm9s
+ZGluZzo6dHJ5Q29sbGFwc2VDaGFpbmVkTVVMcyhJbnN0cnVjdGlvbiAqbXVsMiwKICAgIEluc3Ry
+dWN0aW9uICppbnNuOwogICAgSW5zdHJ1Y3Rpb24gKm11bDEgPSBOVUxMOyAvLyBtdWwxIGJlZm9y
+ZSBtdWwyCiAgICBpbnQgZSA9IDA7Ci0gICBmbG9hdCBmID0gaW1tMi5yZWcuZGF0YS5mMzI7Cisg
+ICBmbG9hdCBmID0gaW1tMi5yZWcuZGF0YS5mMzIgKiBleHAyZihtdWwyLT5wb3N0RmFjdG9yKTsK
+ICAgIEltbWVkaWF0ZVZhbHVlIGltbTE7CiAKICAgIGFzc2VydChtdWwyLT5vcCA9PSBPUF9NVUwg
+JiYgbXVsMi0+ZFR5cGUgPT0gVFlQRV9GMzIpOwpAQCAtNzgyLDkgKzc4NSwxMCBAQCBDb25zdGFu
+dEZvbGRpbmc6Om9wbmQoSW5zdHJ1Y3Rpb24gKmksIEltbWVkaWF0ZVZhbHVlICZpbW0wLCBpbnQg
+cykKICAgICAgICAgIGktPm9wID0gT1BfTU9WOwogICAgICAgICAgaS0+c2V0U3JjKDAsIG5ld19J
+bW1lZGlhdGVWYWx1ZShwcm9nLCAwdSkpOwogICAgICAgICAgaS0+c3JjKDApLm1vZCA9IE1vZGlm
+aWVyKDApOworICAgICAgICAgaS0+cG9zdEZhY3RvciA9IDA7CiAgICAgICAgICBpLT5zZXRTcmMo
+MSwgTlVMTCk7CiAgICAgICB9IGVsc2UKLSAgICAgIGlmIChpbW0wLmlzSW50ZWdlcigxKSB8fCBp
+bW0wLmlzSW50ZWdlcigtMSkpIHsKKyAgICAgIGlmICghaS0+cG9zdEZhY3RvciAmJiAoaW1tMC5p
+c0ludGVnZXIoMSkgfHwgaW1tMC5pc0ludGVnZXIoLTEpKSkgewogICAgICAgICAgaWYgKGltbTAu
+aXNOZWdhdGl2ZSgpKQogICAgICAgICAgICAgaS0+c3JjKHQpLm1vZCA9IGktPnNyYyh0KS5tb2Qg
+XiBNb2RpZmllcihOVjUwX0lSX01PRF9ORUcpOwogICAgICAgICAgaS0+b3AgPSBpLT5zcmModCku
+bW9kLmdldE9wKCk7CkBAIC03OTcsNyArODAxLDcgQEAgQ29uc3RhbnRGb2xkaW5nOjpvcG5kKElu
+c3RydWN0aW9uICppLCBJbW1lZGlhdGVWYWx1ZSAmaW1tMCwgaW50IHMpCiAgICAgICAgICAgICBp
+LT5zcmMoMCkubW9kID0gMDsKICAgICAgICAgIGktPnNldFNyYygxLCBOVUxMKTsKICAgICAgIH0g
+ZWxzZQotICAgICAgaWYgKGltbTAuaXNJbnRlZ2VyKDIpIHx8IGltbTAuaXNJbnRlZ2VyKC0yKSkg
+eworICAgICAgaWYgKCFpLT5wb3N0RmFjdG9yICYmIChpbW0wLmlzSW50ZWdlcigyKSB8fCBpbW0w
+LmlzSW50ZWdlcigtMikpKSB7CiAgICAgICAgICBpZiAoaW1tMC5pc05lZ2F0aXZlKCkpCiAgICAg
+ICAgICAgICBpLT5zcmModCkubW9kID0gaS0+c3JjKHQpLm1vZCBeIE1vZGlmaWVyKE5WNTBfSVJf
+TU9EX05FRyk7CiAgICAgICAgICBpLT5vcCA9IE9QX0FERDsKLS0gCjIuMC41CgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
