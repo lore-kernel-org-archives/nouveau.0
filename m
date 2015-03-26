@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89758] pow WebGL Conformance test with mesa drivers
-Date: Wed, 25 Mar 2015 22:01:53 +0000
-Message-ID: <bug-89758-8800-lVzEGLaac0@http.bugs.freedesktop.org/>
-References: <bug-89758-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89775] New: Grpahics card G72 [GeForce 7200 GS /
+ 7300 SE] 3d does not work
+Date: Thu, 26 Mar 2015 07:51:14 +0000
+Message-ID: <bug-89775-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0831456631=="
+Content-Type: multipart/mixed; boundary="===============0750719799=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89758-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,65 +19,152 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0831456631==
-Content-Type: multipart/alternative; boundary="1427320913.8d2Ada1.2699"; charset="UTF-8"
+--===============0750719799==
+Content-Type: multipart/alternative; boundary="1427356273.B5FE0.4274"; charset="UTF-8"
 
 
---1427320913.8d2Ada1.2699
-Date: Wed, 25 Mar 2015 22:01:53 +0000
+--1427356273.B5FE0.4274
+Date: Thu, 26 Mar 2015 07:51:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89758
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89775
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Thanks for the report. As I suspected, nothing actually to do with pow, just
-that the test, as written, happens to tickle a nouveau optimization bug. Should
-be fixed by:
+            Bug ID: 89775
+           Summary: Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does
+                    not work
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: elefat-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-http://patchwork.freedesktop.org/patch/45657/
+=CE=A7org version 1.11.3
+Kernel 3.13
+ubuntu 12.04
+I am sorry if info is not complete, as I am a newbie. When I run Alice3 (3d
+program), mouse events (click, move) are ignored by the program. Identical
+installations to other pc run smoothly, so I suppose it is the graphics card
+driver problem.
 
-Still need to run it through piglit.
-
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1427320913.8d2Ada1.2699
-Date: Wed, 25 Mar 2015 22:01:53 +0000
+--1427356273.B5FE0.4274
+Date: Thu, 26 Mar 2015 07:51:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does not=
+ work"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89775">89775</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does not work
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>elefat&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - pow WebGL Conformance test with mesa drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89758#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - pow WebGL Conformance test with mesa drivers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89758">bug 89758</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Thanks for the report. As I suspected, nothing actually to do with pow, just
-that the test, as written, happens to tickle a nouveau optimization bug. Should
-be fixed by:
-
-<a href="http://patchwork.freedesktop.org/patch/45657/">http://patchwork.freedesktop.org/patch/45657/</a>
-
-Still need to run it through piglit.</pre>
+        <pre>=CE=A7org version 1.11.3
+Kernel 3.13
+ubuntu 12.04
+I am sorry if info is not complete, as I am a newbie. When I run Alice3 (3d
+program), mouse events (click, move) are ignored by the program. Identical
+installations to other pc run smoothly, so I suppose it is the graphics card
+driver problem.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -86,9 +172,9 @@ Still need to run it through piglit.</pre>
     </body>
 </html>
 
---1427320913.8d2Ada1.2699--
+--1427356273.B5FE0.4274--
 
---===============0831456631==
+--===============0750719799==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +184,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0831456631==--
+--===============0750719799==--
