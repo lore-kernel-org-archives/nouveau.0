@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89483] [NV11] Hangs on boot with external monitor
  active on Dell Latitude C810
-Date: Sat, 28 Mar 2015 14:35:27 +0000
-Message-ID: <bug-89483-8800-TYuGXJBmKF@http.bugs.freedesktop.org/>
+Date: Sat, 28 Mar 2015 14:47:57 +0000
+Message-ID: <bug-89483-8800-nUi85p8e0T@http.bugs.freedesktop.org/>
 References: <bug-89483-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1959111750=="
+Content-Type: multipart/mixed; boundary="===============1876220763=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1959111750==
-Content-Type: multipart/alternative; boundary="1427553327.7cbAD1.3430"; charset="UTF-8"
+--===============1876220763==
+Content-Type: multipart/alternative; boundary="1427554077.D2Dd442.6281"; charset="UTF-8"
 
 
---1427553327.7cbAD1.3430
-Date: Sat, 28 Mar 2015 14:35:27 +0000
+--1427554077.D2Dd442.6281
+Date: Sat, 28 Mar 2015 14:47:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89483
 
---- Comment #7 from Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org> ---
-Hangs while disabling LVDS:
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+One thing to note is that your DCB has 3 items:
 
-[  261.444665] before fbcon_init
-[  261.444733] before helper_prepare
-[  261.444743] before helper_init
-[  261.444769] before helper_add_all_conn
-[  261.444780] after helper_add_all_conn, ret=0
-[  261.444833] before disable_unused
-[  261.444843] drm_helper_disable_unused_functions
-[  261.445683] __drm_helper_disable_unused_functions
-[  261.445697] encoder=DAC-28
-[  261.445755] encoder not in use
-[  261.445765] setting dpms off
-[  261.445797] encoder disabled ok
-[  261.445806] encoder=LVDS-30
-[  261.445859] encoder not in use
-[  261.445868] setting dpms off
+DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
+DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
+DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
+
+Type 4 is a reserved type, I've seen it used for external encoders like the
+external DVI encoder on 6150SE nForce motherboards. (There is also Type 3,
+LVDS, which you don't appear to have, but perhaps it didn't exist in the NV11
+days.) However you're seeing a LVDS connector in the logs, which means that
+*somehow* it knows...
+
+BTW, a bunch of the dispnv04 code uses NV_DEBUG() which IIRC will show up with
+drm.debug=0xe. I thought I had changed it to work with nouveau.debug, but...
+you may be using an older kernel, or I'm misremembering.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427553327.7cbAD1.3430
-Date: Sat, 28 Mar 2015 14:35:27 +0000
+--1427554077.D2Dd442.6281
+Date: Sat, 28 Mar 2015 14:47:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +68,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89483">bug 89483</a>
-              from <span class="vcard"><a class="email" href="mailto:linux&#64;rainbow-software.org" title="Ondrej Zary &lt;linux&#64;rainbow-software.org&gt;"> <span class="fn">Ondrej Zary</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hangs while disabling LVDS:
+        <pre>One thing to note is that your DCB has 3 items:
 
-[  261.444665] before fbcon_init
-[  261.444733] before helper_prepare
-[  261.444743] before helper_init
-[  261.444769] before helper_add_all_conn
-[  261.444780] after helper_add_all_conn, ret=0
-[  261.444833] before disable_unused
-[  261.444843] drm_helper_disable_unused_functions
-[  261.445683] __drm_helper_disable_unused_functions
-[  261.445697] encoder=DAC-28
-[  261.445755] encoder not in use
-[  261.445765] setting dpms off
-[  261.445797] encoder disabled ok
-[  261.445806] encoder=LVDS-30
-[  261.445859] encoder not in use
-[  261.445868] setting dpms off</pre>
+DCB 0: type 0 [ANALOG] I2C 0 heads 0 conntag 0 LOCAL OR 0 maxfreq 350000kHz
+DCB 1: type 4 [???] I2C 1 heads 1 unk00_4 1 conntag 1 LOCAL OR 1
+DCB 2: type 1 [TV] I2C 1 heads 0 unk00_4 1 conntag 2 EXT 0 OR 0
+
+Type 4 is a reserved type, I've seen it used for external encoders like the
+external DVI encoder on 6150SE nForce motherboards. (There is also Type 3,
+LVDS, which you don't appear to have, but perhaps it didn't exist in the NV11
+days.) However you're seeing a LVDS connector in the logs, which means that
+*somehow* it knows...
+
+BTW, a bunch of the dispnv04 code uses NV_DEBUG() which IIRC will show up with
+drm.debug=0xe. I thought I had changed it to work with nouveau.debug, but...
+you may be using an older kernel, or I'm misremembering.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +101,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1427553327.7cbAD1.3430--
+--1427554077.D2Dd442.6281--
 
---===============1959111750==
+--===============1876220763==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1959111750==--
+--===============1876220763==--
