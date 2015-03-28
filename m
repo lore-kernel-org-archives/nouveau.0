@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89483] [NV11] Hangs on boot with external monitor
  active on Dell Latitude C810
-Date: Sat, 28 Mar 2015 13:52:08 +0000
-Message-ID: <bug-89483-8800-ND7Q5V44AY@http.bugs.freedesktop.org/>
+Date: Sat, 28 Mar 2015 14:00:38 +0000
+Message-ID: <bug-89483-8800-QCZMfmkoxJ@http.bugs.freedesktop.org/>
 References: <bug-89483-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0835260043=="
+Content-Type: multipart/mixed; boundary="===============0400953440=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89483-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0835260043==
-Content-Type: multipart/alternative; boundary="1427550728.38Ff11.25811"; charset="UTF-8"
+--===============0400953440==
+Content-Type: multipart/alternative; boundary="1427551238.a11a3c1.27798"; charset="UTF-8"
 
 
---1427550728.38Ff11.25811
-Date: Sat, 28 Mar 2015 13:52:08 +0000
+--1427551238.a11a3c1.27798
+Date: Sat, 28 Mar 2015 14:00:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89483
 
---- Comment #5 from Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org> ---
-By adding printks to the code, I found that it hangs in
-drm_fb_helper_single_add_all_connectors()
+--- Comment #6 from Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org> ---
+Sorry, I missed one printk. It hangs in drm_helper_disable_unused_functions()
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1427550728.38Ff11.25811
-Date: Sat, 28 Mar 2015 13:52:08 +0000
+--1427551238.a11a3c1.27798
+Date: Sat, 28 Mar 2015 14:00:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89483#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV11] Hangs on boot with external monitor active on Dell Latitude C810"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89483">bug 89483</a>
               from <span class="vcard"><a class="email" href="mailto:linux&#64;rainbow-software.org" title="Ondrej Zary &lt;linux&#64;rainbow-software.org&gt;"> <span class="fn">Ondrej Zary</span></a>
 </span></b>
-        <pre>By adding printks to the code, I found that it hangs in
-drm_fb_helper_single_add_all_connectors()</pre>
+        <pre>Sorry, I missed one printk. It hangs in drm_helper_disable_unused_functions()</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +73,9 @@ drm_fb_helper_single_add_all_connectors()</pre>
     </body>
 </html>
 
---1427550728.38Ff11.25811--
+--1427551238.a11a3c1.27798--
 
---===============0835260043==
+--===============0400953440==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0835260043==--
+--===============0400953440==--
