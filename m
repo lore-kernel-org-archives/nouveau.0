@@ -1,13 +1,13 @@
-From: Marcin =?utf-8?Q?=C5=9Alusarz?= <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] nouveau: synchronize "scratch runout" destruction
- with the command stream
-Date: Sun, 29 Mar 2015 18:24:28 +0200
-Message-ID: <20150329162428.GA13731@marcin-Inspiron-7720>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
+ inconsistent display
+Date: Sun, 29 Mar 2015 23:15:02 +0000
+Message-ID: <bug-89730-8800-HkWZUVs9Et@http.bugs.freedesktop.org/>
+References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0254877821=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +20,217 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hlbiBudmMwX3B1c2hfdmJvIGNhbGxzIG5vdXZlYXVfc2NyYXRjaF9kb25lIGl0IGRvZXMgbm90
-IG1lYW4Kc2NyYXRjaCBidWZmZXJzIGNhbiBiZSBmcmVlZCBpbW1lZGlhdGVseS4gSXQgbWVhbnMg
-IndoZW4gaGFyZHdhcmUKYWR2YW5jZXMgdG8gdGhpcyBwbGFjZSBpbiB0aGUgY29tbWFuZCBzdHJl
-YW0gdGhlIHNjcmF0Y2ggYnVmZmVycwpjYW4gYmUgZnJlZWQiLgoKVGhlIGJ1ZyBleGlzdGVkIGZv
-ciBhIHZlcnkgbG9uZyB0aW1lLiBOb2JvZHkgbm90aWNlZCwgYmVjYXVzZQoic2NyYXRjaCBydW5v
-dXQiIGNvZGUgcGF0aCBpcyByYXJlbHkgZXhlY3V0ZWQuCgpGaXhlcyAiU2VyaW91cyBTYW0gMyIg
-b24gbnZlNy9nazEwNy4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9i
-dWZmZXIuYyB8IDMzICsrKysrKysrKysrKysrKysrKysrKysrLS0tLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCAyOCBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2J1ZmZlci5jIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKaW5kZXggNDlmZjEwMC4uZTY0OTc1MiAxMDA2NDQK
-LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKKysrIGIv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKQEAgLTg0NiwxOSAr
-ODQ2LDQyIEBAIG5vdXZlYXVfc2NyYXRjaF9ib19hbGxvYyhzdHJ1Y3Qgbm91dmVhdV9jb250ZXh0
-ICpudiwgc3RydWN0IG5vdXZlYXVfYm8gKipwYm8sCiAgICAgICAgICAgICAgICAgICAgICAgICAg
-NDA5Niwgc2l6ZSwgTlVMTCwgcGJvKTsKIH0KIAorc3RydWN0IGJvcworeworICAgIHVuc2lnbmVk
-IG5yOworICAgIHN0cnVjdCBub3V2ZWF1X2JvICoqYXJyOworfTsKKworc3RhdGljIHZvaWQKK3Vu
-cmVmX2Jvcyh2b2lkICpkKQoreworICAgc3RydWN0IGJvcyAqYiA9IGQ7CisgICBpbnQgaTsKKwor
-ICAgZm9yIChpID0gMDsgaSA8IGItPm5yOyArK2kpCisgICAgICBub3V2ZWF1X2JvX3JlZihOVUxM
-LCAmYi0+YXJyW2ldKTsKKworICAgRlJFRShiLT5hcnIpOworICAgRlJFRShiKTsKK30KKwogdm9p
-ZAogbm91dmVhdV9zY3JhdGNoX3J1bm91dF9yZWxlYXNlKHN0cnVjdCBub3V2ZWF1X2NvbnRleHQg
-Km52KQogewogICAgaWYgKCFudi0+c2NyYXRjaC5ucl9ydW5vdXQpCiAgICAgICByZXR1cm47Ci0g
-ICBkbyB7Ci0gICAgICAtLW52LT5zY3JhdGNoLm5yX3J1bm91dDsKLSAgICAgIG5vdXZlYXVfYm9f
-cmVmKE5VTEwsICZudi0+c2NyYXRjaC5ydW5vdXRbbnYtPnNjcmF0Y2gubnJfcnVub3V0XSk7Ci0g
-ICB9IHdoaWxlIChudi0+c2NyYXRjaC5ucl9ydW5vdXQpOwogCi0gICBGUkVFKG52LT5zY3JhdGNo
-LnJ1bm91dCk7CisgICBzdHJ1Y3QgYm9zICpiID0gTUFMTE9DKHNpemVvZigqYikpOworICAgYi0+
-YXJyID0gbnYtPnNjcmF0Y2gucnVub3V0OworICAgYi0+bnIgID0gbnYtPnNjcmF0Y2gubnJfcnVu
-b3V0OworCisgICBzdHJ1Y3Qgbm91dmVhdV9mZW5jZSAqZmVuY2UgPSBOVUxMOworICAgbm91dmVh
-dV9mZW5jZV9uZXcobnYtPnNjcmVlbiwgJmZlbmNlLCBUUlVFKTsKKyAgIG5vdXZlYXVfZmVuY2Vf
-d29yayhmZW5jZSwgdW5yZWZfYm9zLCBiKTsKKwogICAgbnYtPnNjcmF0Y2guZW5kID0gMDsKICAg
-IG52LT5zY3JhdGNoLnJ1bm91dCA9IE5VTEw7CisgICBudi0+c2NyYXRjaC5ucl9ydW5vdXQgPSAw
-OwogfQogCiAvKiBBbGxvY2F0ZSBhbiBleHRyYSBibyBpZiB3ZSBjYW4ndCBmaXQgZXZlcnl0aGlu
-ZyB3ZSBuZWVkIHNpbXVsdGFuZW91c2x5LgotLSAKMi4xLjAKCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0254877821==
+Content-Type: multipart/alternative; boundary="1427670901.6Af41.11174"; charset="UTF-8"
+
+
+--1427670901.6Af41.11174
+Date: Sun, 29 Mar 2015 23:15:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89730
+
+--- Comment #15 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+I also tested all these extensions:
+
+$ Xorg -extension ?
+...
+[mi] Only the following extensions can be run-time disabled:
+[mi]    Generic Events
+[mi]    Composite
+[mi]    DAMAGE
+[mi]    DOUBLE-BUFFER
+[mi]    DPMS
+[mi]    GLX
+[mi]    MIT-SCREEN-SAVER
+[mi]    MIT-SHM
+[mi]    RANDR
+[mi]    RENDER
+[mi]    X-Resource
+[mi]    XFree86-DGA
+[mi]    XFree86-DRI
+[mi]    XFree86-VidModeExtension
+[mi]    XFIXES
+[mi]    XINERAMA
+[mi]    SELinux
+[mi]    XTEST
+[mi]    XVideo
+...
+
+RENDER disabled has a positive effect on Greeter Background image loading,
+BUT it also turns off Xfwm4 compositing within Desktop session.
+
+Section "Extensions"
+    Option "RENDER" "Disable"
+EndSection
+
+[9.516] (**) Extension "RENDER" is disabled
+
+~~~~~~~~~~~~~~~~~~~
+
+Apart from all this, with XVideo disabled, X crashes.
+
+Section "Extensions"
+    Option "XVideo" "Disable"
+EndSection
+
+[9.251] (EE) 
+[9.251] (EE) Backtrace:
+[9.251] (EE) 0: /usr/libexec/Xorg (OsSigHandler+0x29) [0x598659]
+[9.251] (EE) 1: /lib64/libpthread.so.0 (__restore_rt+0x0) [0x7f7961a060cf]
+[9.252] (EE) 2: /usr/libexec/Xorg (xf86XvMCScreenInit+0x24) [0x494494]
+[9.252] (EE) 3: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(vlInitXvMC+0x69) [0x7f795d532929]
+[9.252] (EE) 4: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(NVInitVideo+0x138) [0x7f795d514808]
+[9.252] (EE) 5: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(NVScreenInit+0x3c6) [0x7f795d51a086]
+[9.252] (EE) 6: /usr/libexec/Xorg (AddScreen+0x101) [0x43a4e1]
+[9.253] (EE) 7: /usr/libexec/Xorg (InitOutput+0x3e1) [0x47c501]
+[9.253] (EE) 8: /usr/libexec/Xorg (dix_main+0x1ea) [0x43e0ca]
+[9.253] (EE) 9: /lib64/libc.so.6 (__libc_start_main+0xf0) [0x7f7961658fe0]
+[9.254] (EE) 10: /usr/libexec/Xorg (_start+0x29) [0x42876e]
+[9.254] (EE) 11: ? (?+0x29) [0x29]
+[9.254] (EE) 
+[9.254] (EE) Segmentation fault at address 0x4
+[9.254] (EE) 
+Fatal server error:
+[9.254] (EE) Caught signal 11 (Segmentation fault). Server aborting
+[9.254] (EE) 
+[9.254] (EE) 
+Please consult the Fedora Project support 
+     at http://wiki.x.org
+ for help. 
+[9.254] (EE) Please also check the log file at "/var/log/Xorg.0.log" for
+additional information.
+[9.254] (EE) 
+[9.259] (EE) Server terminated with error (1). Closing log file.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1427670901.6Af41.11174
+Date: Sun, 29 Mar 2015 23:15:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+I also tested all these extensions:
+
+$ Xorg -extension ?
+...
+[mi] Only the following extensions can be run-time disabled:
+[mi]    Generic Events
+[mi]    Composite
+[mi]    DAMAGE
+[mi]    DOUBLE-BUFFER
+[mi]    DPMS
+[mi]    GLX
+[mi]    MIT-SCREEN-SAVER
+[mi]    MIT-SHM
+[mi]    RANDR
+[mi]    RENDER
+[mi]    X-Resource
+[mi]    XFree86-DGA
+[mi]    XFree86-DRI
+[mi]    XFree86-VidModeExtension
+[mi]    XFIXES
+[mi]    XINERAMA
+[mi]    SELinux
+[mi]    XTEST
+[mi]    XVideo
+...
+
+RENDER disabled has a positive effect on Greeter Background image loading,
+BUT it also turns off Xfwm4 compositing within Desktop session.
+
+Section &quot;Extensions&quot;
+    Option &quot;RENDER&quot; &quot;Disable&quot;
+EndSection
+
+[9.516] (**) Extension &quot;RENDER&quot; is disabled
+
+~~~~~~~~~~~~~~~~~~~
+
+Apart from all this, with XVideo disabled, X crashes.
+
+Section &quot;Extensions&quot;
+    Option &quot;XVideo&quot; &quot;Disable&quot;
+EndSection
+
+[9.251] (EE) 
+[9.251] (EE) Backtrace:
+[9.251] (EE) 0: /usr/libexec/Xorg (OsSigHandler+0x29) [0x598659]
+[9.251] (EE) 1: /lib64/libpthread.so.0 (__restore_rt+0x0) [0x7f7961a060cf]
+[9.252] (EE) 2: /usr/libexec/Xorg (xf86XvMCScreenInit+0x24) [0x494494]
+[9.252] (EE) 3: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(vlInitXvMC+0x69) [0x7f795d532929]
+[9.252] (EE) 4: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(NVInitVideo+0x138) [0x7f795d514808]
+[9.252] (EE) 5: /usr/lib64/xorg/modules/drivers/nouveau_drv.so
+(NVScreenInit+0x3c6) [0x7f795d51a086]
+[9.252] (EE) 6: /usr/libexec/Xorg (AddScreen+0x101) [0x43a4e1]
+[9.253] (EE) 7: /usr/libexec/Xorg (InitOutput+0x3e1) [0x47c501]
+[9.253] (EE) 8: /usr/libexec/Xorg (dix_main+0x1ea) [0x43e0ca]
+[9.253] (EE) 9: /lib64/libc.so.6 (__libc_start_main+0xf0) [0x7f7961658fe0]
+[9.254] (EE) 10: /usr/libexec/Xorg (_start+0x29) [0x42876e]
+[9.254] (EE) 11: ? (?+0x29) [0x29]
+[9.254] (EE) 
+[9.254] (EE) Segmentation fault at address 0x4
+[9.254] (EE) 
+Fatal server error:
+[9.254] (EE) Caught signal 11 (Segmentation fault). Server aborting
+[9.254] (EE) 
+[9.254] (EE) 
+Please consult the Fedora Project support 
+     at <a href="http://wiki.x.org">http://wiki.x.org</a>
+ for help. 
+[9.254] (EE) Please also check the log file at &quot;/var/log/Xorg.0.log&quot; for
+additional information.
+[9.254] (EE) 
+[9.259] (EE) Server terminated with error (1). Closing log file.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1427670901.6Af41.11174--
+
+--===============0254877821==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0254877821==--
