@@ -1,13 +1,11 @@
-From: =?euc-kr?B?wNO8usXD?= <stk.lim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org>
-Subject: Lockup/panic caused by nouveau_fantog_update recursion
-Date: Mon, 30 Mar 2015 05:25:37 +0000 (GMT)
-Message-ID: <1528298057.414891427693137799.JavaMail.weblogic@epmlwas01b>
-Reply-To: stk.lim-Sze3O3UU22JBDgjK7y7TUQ@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89842] New: Nvidia nouveau drivers hangs all gnome
+ when open the new legacy tray in 3.16.0
+Date: Tue, 31 Mar 2015 14:39:35 +0000
+Message-ID: <bug-89842-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1982496269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-MIME-version: 1.0
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,187 +18,190 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpJIHVzZWQgdG8gZXhwZXJpZW5jZSBrZXJuZWwgcGFuaWNzIGNhdXNlZCBieSBDUFV4IGhh
-cmQgbG9ja3VwIG9uY2UgYWxtb3N0IGV2ZXJ5ZGF5LgpJJ20gcnVubmluZyBVYnVudHUgMTQuMTAg
-b24gdmFuaWxsYSBsaW51eCBrZXJuZWwgMy4xOS4yIG9uIENvcmUgaTctMzc3MCB3aXRoIEdhbGxp
-dW0gMC40IG9uIE5WMTA4LgpUaGUgcGFuaWMgbG9nIGxvb2tlZCBsaWtlOgoKWyA5MjI3LjUwOTc0
-NF0gLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0tLS0tClsgOTIyNy41MDk3NTBdIFdB
-Uk5JTkc6IENQVTogMCBQSUQ6IDAgYXQga2VybmVsL3dhdGNoZG9nLmM6MjkwIHdhdGNoZG9nX292
-ZXJmbG93X2NhbGxiYWNrKzB4OTIvMHhjMCgpClsgOTIyNy41MDk3NTFdIFdhdGNoZG9nIGRldGVj
-dGVkIGhhcmQgTE9DS1VQIG9uIGNwdSAwClsgOTIyNy41MDk3NTFdIE1vZHVsZXMgbGlua2VkIGlu
-OiByZmNvbW0gYm5lcCBibHVldG9vdGggaW50ZWxfcmFwbCBpb3NmX21iaSB4ODZfcGtnX3RlbXBf
-dGhlcm1hbCBub3V2ZWF1IGludGVsX3Bvd2VyY2xhbXAgc25kX2hkYV9jb2RlY19oZG1pIGNvcmV0
-ZW1wIG14bV93bWkga3ZtX2ludGVsIHR0bSBkcm1fa21zX2hlbHBlciBrdm0gc25kX2hkYV9jb2Rl
-Y19yZWFsdGVrIGRybSBzbmRfaGRhX2NvZGVjX2dlbmVyaWMgc25kX2hkYV9pbnRlbCBjcmN0MTBk
-aWZfcGNsbXVsIGNyYzMyX3BjbG11bCBpMmNfYWxnb19iaXQgZ2hhc2hfY2xtdWxuaV9pbnRlbCBz
-bmRfaGRhX2NvbnRyb2xsZXIgYWVzbmlfaW50ZWwgc25kX2hkYV9jb2RlYyBhZXNfeDg2XzY0IHNu
-ZF9od2RlcCBscncgc25kX3BjbSBnZjEyOG11bCBzaHBjaHAgd21pIGdsdWVfaGVscGVyIHNuZF9z
-ZXFfbWlkaSBzbmRfc2VxX21pZGlfZXZlbnQgc25kX3Jhd21pZGkgc25kX3NlcSBhYmxrX2hlbHBl
-ciBjcnlwdGQgc25kX3NlcV9kZXZpY2Ugc25kX3RpbWVyIHBwZGV2IGxwIG1laV9tZSBwYXJwb3J0
-X3BjIHNuZCBtZWkgcGFycG9ydCBtYWNfaGlkIHNlcmlvX3JhdyBzb3VuZGNvcmUgdHBtX2luZmlu
-ZW9uIHZpZGVvIGxwY19pY2ggaGlkX2dlbmVyaWMgdXNiaGlkIGhpZCBlMTAwMGUgYWhjaSBwdHAg
-bGliYWhjaSBwcHNfY29yZQpbIDkyMjcuNTA5Nzc2XSBDUFU6IDAgUElEOiAwIENvbW06IHN3YXBw
-ZXIvMCBOb3QgdGFpbnRlZCAzLjE5LjItcGF0Y2hlZCsgIzEKWyA5MjI3LjUwOTc3N10gSGFyZHdh
-cmUgbmFtZTogU0FNU1VORyBFTEVDVFJPTklDUyBDTy4sIExURC4gU2Ftc3VuZyBEZXNrVG9wIFN5
-c3RlbS9TQU1TVU5HX0RUMTIzNDU2Nzg5MCwgQklPUyBQMDZLQk0uMDI1LjEzMDcxNS5TSyAwNy8x
-NS8yMDEzClsgOTIyNy41MDk3NzhdICBmZmZmZmZmZjgxYWFkNGNhIGZmZmY4ODA0MWRjMDVhYjAg
-ZmZmZmZmZmY4MTdhYTM0MyAwMDAwMDAwMDAwMDAwMDA3ClsgOTIyNy41MDk3NzldICBmZmZmODgw
-NDFkYzA1YjAwIGZmZmY4ODA0MWRjMDVhZjAgZmZmZmZmZmY4MTA3MzQ5YSAwMDAwMDAwMDAwMDAw
-MDAwClsgOTIyNy41MDk3ODBdICBmZmZmODgwNDBkMDE0ODAwIDAwMDAwMDAwMDAwMDAwMDAgZmZm
-Zjg4MDQxZGMwNWM0MCBmZmZmODgwNDFkYzA1ZWY4ClsgOTIyNy41MDk3ODJdIENhbGwgVHJhY2U6
-ClsgOTIyNy41MDk3ODNdICA8Tk1JPiAgWzxmZmZmZmZmZjgxN2FhMzQzPl0gZHVtcF9zdGFjaysw
-eDQ1LzB4NTcKWyA5MjI3LjUwOTc4OF0gIFs8ZmZmZmZmZmY4MTA3MzQ5YT5dIHdhcm5fc2xvd3Bh
-dGhfY29tbW9uKzB4OGEvMHhjMApbIDkyMjcuNTA5NzkwXSAgWzxmZmZmZmZmZjgxMDczNTE2Pl0g
-d2Fybl9zbG93cGF0aF9mbXQrMHg0Ni8weDUwClsgOTIyNy41MDk3OTFdICBbPGZmZmZmZmZmODEx
-Mjk1YjI+XSB3YXRjaGRvZ19vdmVyZmxvd19jYWxsYmFjaysweDkyLzB4YzAKWyA5MjI3LjUwOTc5
-NF0gIFs8ZmZmZmZmZmY4MTE2YTc5Yz5dIF9fcGVyZl9ldmVudF9vdmVyZmxvdysweDhjLzB4MmEw
-ClsgOTIyNy41MDk3OTddICBbPGZmZmZmZmZmODEwMmI5YmE+XSA/IHg4Nl9wZXJmX2V2ZW50X3Nl
-dF9wZXJpb2QrMHhjYS8weDE3MApbIDkyMjcuNTA5Nzk4XSAgWzxmZmZmZmZmZjgxMTZiMmI0Pl0g
-cGVyZl9ldmVudF9vdmVyZmxvdysweDE0LzB4MjAKWyA5MjI3LjUwOTgwMF0gIFs8ZmZmZmZmZmY4
-MTAzMmZkYT5dIGludGVsX3BtdV9oYW5kbGVfaXJxKzB4MWJhLzB4M2EwClsgOTIyNy41MDk4MDJd
-ICBbPGZmZmZmZmZmODEwMmE2ZGI+XSBwZXJmX2V2ZW50X25taV9oYW5kbGVyKzB4MmIvMHg1MApb
-IDkyMjcuNTA5ODA0XSAgWzxmZmZmZmZmZjgxMDE4NGMwPl0gbm1pX2hhbmRsZSsweDgwLzB4MTIw
-ClsgOTIyNy41MDk4MDVdICBbPGZmZmZmZmZmODEwMThhNmE+XSBkZWZhdWx0X2RvX25taSsweDRh
-LzB4MTQwClsgOTIyNy41MDk4MDZdICBbPGZmZmZmZmZmODEwMThiZTg+XSBkb19ubWkrMHg4OC8w
-eGQwClsgOTIyNy41MDk4MDhdICBbPGZmZmZmZmZmODE3YjNhZTE+XSBlbmRfcmVwZWF0X25taSsw
-eDFlLzB4MmUKWyA5MjI3LjUwOTgxMF0gIFs8ZmZmZmZmZmY4MTdiMGYxYT5dID8gX3Jhd19zcGlu
-X2xvY2tfaXJxc2F2ZSsweDRhLzB4OTAKWyA5MjI3LjUwOTgxMl0gIFs8ZmZmZmZmZmY4MTdiMGYx
-YT5dID8gX3Jhd19zcGluX2xvY2tfaXJxc2F2ZSsweDRhLzB4OTAKWyA5MjI3LjUwOTgxM10gIFs8
-ZmZmZmZmZmY4MTdiMGYxYT5dID8gX3Jhd19zcGluX2xvY2tfaXJxc2F2ZSsweDRhLzB4OTAKWyA5
-MjI3LjUwOTgxNF0gIDw8RU9FPj4gIDxJUlE+ICBbPGZmZmZmZmZmYzA3MGU1NjQ+XSBub3V2ZWF1
-X2ZhbnRvZ191cGRhdGUrMHg5NC8weDE4MCBbbm91dmVhdV0KWyA5MjI3LjUwOTgzOF0gIFs8ZmZm
-ZmZmZmZjMDcwZTZhNT5dIG5vdXZlYXVfZmFudG9nX3NldCsweDM1LzB4NDAgW25vdXZlYXVdClsg
-OTIyNy41MDk4NDddICBbPGZmZmZmZmZmYzA3MGQ5ZjE+XSBub3V2ZWF1X2Zhbl91cGRhdGUrMHgx
-MDEvMHgyMjAgW25vdXZlYXVdClsgOTIyNy41MDk4NTVdICBbPGZmZmZmZmZmYzA3MGRiNjk+XSBu
-b3V2ZWF1X3RoZXJtX2Zhbl9zZXQrMHgxOS8weDIwIFtub3V2ZWF1XQpbIDkyMjcuNTA5ODYzXSAg
-WzxmZmZmZmZmZmMwNzBkMWNkPl0gbm91dmVhdV90aGVybV91cGRhdGUrMHhiZC8weDM0MCBbbm91
-dmVhdV0KWyA5MjI3LjUwOTg3MV0gIFs8ZmZmZmZmZmZjMDZjZGQyOD5dID8gZGNiX2dwaW9fbWF0
-Y2grMHgzOC8weDEzMCBbbm91dmVhdV0KWyA5MjI3LjUwOTg3OV0gIFs8ZmZmZmZmZmZjMDcwZDQ2
-YT5dIG5vdXZlYXVfdGhlcm1fYWxhcm0rMHgxYS8weDIwIFtub3V2ZWF1XQpbIDkyMjcuNTA5ODg3
-XSAgWzxmZmZmZmZmZmMwNzEwZTkwPl0gbnYwNF90aW1lcl9hbGFybV90cmlnZ2VyKzB4MTIwLzB4
-MTcwIFtub3V2ZWF1XQpbIDkyMjcuNTA5ODk1XSAgWzxmZmZmZmZmZmMwNzEwZjViPl0gbnYwNF90
-aW1lcl9hbGFybSsweDdiLzB4ZTAgW25vdXZlYXVdClsgOTIyNy41MDk5MDNdICBbPGZmZmZmZmZm
-YzA3MGU2MmY+XSBub3V2ZWF1X2ZhbnRvZ191cGRhdGUrMHgxNWYvMHgxODAgW25vdXZlYXVdClsg
-OTIyNy41MDk5MTBdICBbPGZmZmZmZmZmYzA3MGU2NmE+XSBub3V2ZWF1X2ZhbnRvZ19hbGFybSsw
-eDFhLzB4MjAgW25vdXZlYXVdClsgOTIyNy41MDk5MThdICBbPGZmZmZmZmZmYzA3MTBlOTA+XSBu
-djA0X3RpbWVyX2FsYXJtX3RyaWdnZXIrMHgxMjAvMHgxNzAgW25vdXZlYXVdClsgOTIyNy41MDk5
-MjZdICBbPGZmZmZmZmZmYzA3MTEwMmI+XSBudjA0X3RpbWVyX2ludHIrMHg2Yi8weDkwIFtub3V2
-ZWF1XQpbIDkyMjcuNTA5OTM0XSAgWzxmZmZmZmZmZmMwNzBhNmJjPl0gbm91dmVhdV9tY19pbnRy
-KzB4MTJjLzB4MWIwIFtub3V2ZWF1XQpbIDkyMjcuNTA5OTM2XSAgWzxmZmZmZmZmZjgxMGNjMzk3
-Pl0gaGFuZGxlX2lycV9ldmVudF9wZXJjcHUrMHg3Ny8weDFhMApbIDkyMjcuNTA5OTM4XSAgWzxm
-ZmZmZmZmZjgxMGNjNTAxPl0gaGFuZGxlX2lycV9ldmVudCsweDQxLzB4NzAKWyA5MjI3LjUwOTkz
-OV0gIFs8ZmZmZmZmZmY4MTBjZjU5ZT5dIGhhbmRsZV9lZGdlX2lycSsweDZlLzB4MTIwClsgOTIy
-Ny41MDk5NDFdICBbPGZmZmZmZmZmODEwMTY5NTI+XSBoYW5kbGVfaXJxKzB4MjIvMHg0MApbIDky
-MjcuNTA5OTQzXSAgWzxmZmZmZmZmZjgxN2I0NTNmPl0gZG9fSVJRKzB4NGYvMHhmMApbIDkyMjcu
-NTA5OTQ1XSAgWzxmZmZmZmZmZjgxN2IyM2FkPl0gY29tbW9uX2ludGVycnVwdCsweDZkLzB4NmQK
-WyA5MjI3LjUwOTk0NV0gIDxFT0k+ICBbPGZmZmZmZmZmODE2NGNmNzY+XSA/IGNwdWlkbGVfZW50
-ZXJfc3RhdGUrMHg2Ni8weDE2MApbIDkyMjcuNTA5OTQ4XSAgWzxmZmZmZmZmZjgxNjRjZjYxPl0g
-PyBjcHVpZGxlX2VudGVyX3N0YXRlKzB4NTEvMHgxNjAKWyA5MjI3LjUwOTk0OV0gIFs8ZmZmZmZm
-ZmY4MTY0ZDE1Nz5dIGNwdWlkbGVfZW50ZXIrMHgxNy8weDIwClsgOTIyNy41MDk5NTFdICBbPGZm
-ZmZmZmZmODEwYjU3NDE+XSBjcHVfc3RhcnR1cF9lbnRyeSsweDM1MS8weDQwMApbIDkyMjcuNTA5
-OTUzXSAgWzxmZmZmZmZmZjgxNzlmMDM3Pl0gcmVzdF9pbml0KzB4NzcvMHg4MApbIDkyMjcuNTA5
-OTU1XSAgWzxmZmZmZmZmZjgxZDRjZmNlPl0gc3RhcnRfa2VybmVsKzB4NDgyLzB4NDhmClsgOTIy
-Ny41MDk5NTddICBbPGZmZmZmZmZmODFkNGMxMjA+XSA/IGVhcmx5X2lkdF9oYW5kbGVycysweDEy
-MC8weDEyMApbIDkyMjcuNTA5OTU4XSAgWzxmZmZmZmZmZjgxZDRjNGQ3Pl0geDg2XzY0X3N0YXJ0
-X3Jlc2VydmF0aW9ucysweDJhLzB4MmMKWyA5MjI3LjUwOTk2MF0gIFs8ZmZmZmZmZmY4MWQ0YzYx
-Yz5dIHg4Nl82NF9zdGFydF9rZXJuZWwrMHgxNDMvMHgxNTIKWyA5MjI3LjUwOTk2MV0gLS0tWyBl
-bmQgdHJhY2UgNjFhZmIxOTNjZGNkNDI2MyBdLS0tCgpJdCBsb29rZWQgbGlrZSB0aGVyZSB3YXMg
-YSByZWN1cnNpb24gYmV0d2VlbiAnbm91dmVhdV9mYW50b2dfdXBkYXRlJyBhbmQgJ252MDRfdGlt
-ZXJfYWxhcm0nIHdoaWNoIGludm9rZWQgc3BpbmxvY2sgbG9ja3VwIGFzIGEgY29uc2VxdWVuY2Uu
-CkkgdHJpZWQgYSBxdWljayBmaXg6CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvY29yZS9zdWJkZXYvdGhlcm0vZmFudG9nLmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9j
-b3JlL3N1YmRldi90aGVybS9mYW50b2cuYwppbmRleCBmNjlkYWIxLi5lZWMwY2YzIDEwMDY0NAot
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi90aGVybS9mYW50b2cuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9jb3JlL3N1YmRldi90aGVybS9mYW50b2cuYwpA
-QCAtNDgsNyArNDgsOCBAQCBub3V2ZWF1X2ZhbnRvZ191cGRhdGUoc3RydWN0IG5vdXZlYXVfZmFu
-dG9nX3ByaXYgKnByaXYsIGludCBwZXJjZW50KQogICAgICAgIHVuc2lnbmVkIGxvbmcgZmxhZ3M7
-CiAgICAgICAgaW50IGR1dHk7CiAKLSAgICAgICBzcGluX2xvY2tfaXJxc2F2ZSgmcHJpdi0+bG9j
-aywgZmxhZ3MpOworICAgICAgIGlmIChXQVJOX09OKCFzcGluX3RyeWxvY2tfaXJxc2F2ZSgmcHJp
-di0+bG9jaywgZmxhZ3MpKSkKKyAgICAgICAgICAgICAgIHJldHVybjsKICAgICAgICBpZiAocGVy
-Y2VudCA8IDApCiAgICAgICAgICAgICAgICBwZXJjZW50ID0gcHJpdi0+cGVyY2VudDsKICAgICAg
-ICBwcml2LT5wZXJjZW50ID0gcGVyY2VudDsKCkFmdGVyIGFwcGx5aW5nIGFib3ZlIHBhdGNoLCBt
-eSBkZXNrdG9wIGlzIHJ1bm5pbmcgZmluZSBmb3IgMyBkYXlzIHdpdGggb25lIHdhcm5pbmc6Cgpb
-MTA2OTkuMjY0NjA2XSAtLS0tLS0tLS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KWzEwNjk5
-LjI2NDY1NF0gV0FSTklORzogQ1BVOiA1IFBJRDogMCBhdCBkcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9jb3JlL3N1YmRldi90aGVybS9mYW50b2cuYzo1MSBub3V2ZWF1X2ZhbnRvZ191cGRhdGUrMHhj
-NC8weDFjMCBbbm91dmVhdV0oKQpbMTA2OTkuMjY0NjU3XSBNb2R1bGVzIGxpbmtlZCBpbjogYm5l
-cCByZmNvbW0gYmx1ZXRvb3RoIHNuZF9oZGFfY29kZWNfaGRtaSBpbnRlbF9yYXBsIGlvc2ZfbWJp
-IHg4Nl9wa2dfdGVtcF90aGVybWFsIGludGVsX3Bvd2VyY2xhbXAgY29yZXRlbXAga3ZtX2ludGVs
-IHNuZF9oZGFfY29kZWNfcmVhbHRlayBzbmRfaGRhX2NvZGVjX2dlbmVyaWMga3ZtIGNyY3QxMGRp
-Zl9wY2xtdWwgc25kX2hkYV9pbnRlbCBzbmRfaGRhX2NvbnRyb2xsZXIgc25kX2hkYV9jb2RlYyBj
-cmMzMl9wY2xtdWwgZ2hhc2hfY2xtdWxuaV9pbnRlbCBhZXNuaV9pbnRlbCBhZXNfeDg2XzY0IHNu
-ZF9od2RlcCBscncgZ2YxMjhtdWwgc25kX3BjbSBzbmRfc2VxX21pZGkgc25kX3NlcV9taWRpX2V2
-ZW50IHNuZF9yYXdtaWRpIHNuZF9zZXEgZ2x1ZV9oZWxwZXIgc25kX3NlcV9kZXZpY2Ugbm91dmVh
-dSBwcGRldiBtZWlfbWUgcGFycG9ydF9wYyBzbmRfdGltZXIgbHAgbXhtX3dtaSBhYmxrX2hlbHBl
-ciB0dG0gZHJtX2ttc19oZWxwZXIgcGFycG9ydCBkcm0gc25kIG1laSBjcnlwdGQgbWFjX2hpZCBz
-b3VuZGNvcmUgaTJjX2FsZ29fYml0IHNocGNocCB0cG1faW5maW5lb24gc2VyaW9fcmF3IHdtaSBs
-cGNfaWNoIHZpZGVvIGhpZF9nZW5lcmljIHVzYmhpZCBoaWQgZTEwMDBlIGFoY2kgcHRwIGxpYmFo
-Y2kgcHBzX2NvcmUKWzEwNjk5LjI2NDcxNF0gQ1BVOiA1IFBJRDogMCBDb21tOiBzd2FwcGVyLzUg
-Tm90IHRhaW50ZWQgMy4xOS4yLXBhdGNoZWQrICMzClsxMDY5OS4yNjQ3MTddIEhhcmR3YXJlIG5h
-bWU6IFNBTVNVTkcgRUxFQ1RST05JQ1MgQ08uLCBMVEQuIFNhbXN1bmcgRGVza1RvcCBTeXN0ZW0v
-U0FNU1VOR19EVDEyMzQ1Njc4OTAsIEJJT1MgUDA2S0JNLjAyNS4xMzA3MTUuU0sgMDcvMTUvMjAx
-MwpbMTA2OTkuMjY0NzIwXSAgZmZmZmZmZmZjMDUxMmRhMCBmZmZmODgwNDFkZDQzYjM4IGZmZmZm
-ZmZmODE3YWEzNDMgMDAwMDAwMDAwMDAwMDAwNwpbMTA2OTkuMjY0NzI1XSAgMDAwMDAwMDAwMDAw
-MDAwMCBmZmZmODgwNDFkZDQzYjc4IGZmZmZmZmZmODEwNzM0OWEgMDAwMDAwMDAwMDAwMDAxNApb
-MTA2OTkuMjY0NzI5XSAgMDAwMDAwMDAwMDAwMDA4NiAwMDAwMDAwMDAwMDAwMDE0IGZmZmY4ODAz
-ZmQ3ODAzMDggZmZmZjg4MDNmYmUwZTE4MApbMTA2OTkuMjY0NzMzXSBDYWxsIFRyYWNlOgpbMTA2
-OTkuMjY0NzM2XSAgPElSUT4gIFs8ZmZmZmZmZmY4MTdhYTM0Mz5dIGR1bXBfc3RhY2srMHg0NS8w
-eDU3ClsxMDY5OS4yNjQ3NTFdICBbPGZmZmZmZmZmODEwNzM0OWE+XSB3YXJuX3Nsb3dwYXRoX2Nv
-bW1vbisweDhhLzB4YzAKWzEwNjk5LjI2NDc1N10gIFs8ZmZmZmZmZmY4MTA3MzU4YT5dIHdhcm5f
-c2xvd3BhdGhfbnVsbCsweDFhLzB4MjAKWzEwNjk5LjI2NDc4N10gIFs8ZmZmZmZmZmZjMDQ2YzU5
-ND5dIG5vdXZlYXVfZmFudG9nX3VwZGF0ZSsweGM0LzB4MWMwIFtub3V2ZWF1XQpbMTA2OTkuMjY0
-NzkyXSAgWzxmZmZmZmZmZjgxN2IzZTI4Pl0gZnRyYWNlX2dyYXBoX2NhbGxlcisweGE4LzB4YTgK
-WzEwNjk5LjI2NDgyMV0gIFs8ZmZmZmZmZmZjMDQ2YzZlNT5dIG5vdXZlYXVfZmFudG9nX3NldCsw
-eDM1LzB4NDAgW25vdXZlYXVdClsxMDY5OS4yNjQ4MjVdICBbPGZmZmZmZmZmODE3YjNlMjg+XSBm
-dHJhY2VfZ3JhcGhfY2FsbGVyKzB4YTgvMHhhOApbMTA2OTkuMjY0ODQ5XSAgWzxmZmZmZmZmZmMw
-NDZiOWYxPl0gbm91dmVhdV9mYW5fdXBkYXRlKzB4MTAxLzB4MjIwIFtub3V2ZWF1XQpbMTA2OTku
-MjY0ODczXSAgWzxmZmZmZmZmZmMwNDZiOGY1Pl0gPyBub3V2ZWF1X2Zhbl91cGRhdGUrMHg1LzB4
-MjIwIFtub3V2ZWF1XQpbMTA2OTkuMjY0ODc4XSAgWzxmZmZmZmZmZjgxN2IzZTI4Pl0gZnRyYWNl
-X2dyYXBoX2NhbGxlcisweGE4LzB4YTgKWzEwNjk5LjI2NDkwMl0gIFs8ZmZmZmZmZmZjMDQ2YmI2
-OT5dIG5vdXZlYXVfdGhlcm1fZmFuX3NldCsweDE5LzB4MjAgW25vdXZlYXVdClsxMDY5OS4yNjQ5
-MDddICBbPGZmZmZmZmZmODE3YjNlMjg+XSBmdHJhY2VfZ3JhcGhfY2FsbGVyKzB4YTgvMHhhOApb
-MTA2OTkuMjY0OTMyXSAgWzxmZmZmZmZmZmMwNDZiMWNkPl0gbm91dmVhdV90aGVybV91cGRhdGUr
-MHhiZC8weDM0MCBbbm91dmVhdV0KWzEwNjk5LjI2NDk1NF0gIFs8ZmZmZmZmZmZjMDQ2YjQ1NT5d
-ID8gbm91dmVhdV90aGVybV9hbGFybSsweDUvMHgyMCBbbm91dmVhdV0KWzEwNjk5LjI2NDk1OV0g
-IFs8ZmZmZmZmZmY4MTdiM2UyOD5dID8gZnRyYWNlX2dyYXBoX2NhbGxlcisweGE4LzB4YTgKWzEw
-Njk5LjI2NDk4M10gIFs8ZmZmZmZmZmZjMDQ2YjQ2YT5dIG5vdXZlYXVfdGhlcm1fYWxhcm0rMHgx
-YS8weDIwIFtub3V2ZWF1XQpbMTA2OTkuMjY0OTg5XSAgWzxmZmZmZmZmZjgxN2IzZTI4Pl0gZnRy
-YWNlX2dyYXBoX2NhbGxlcisweGE4LzB4YTgKWzEwNjk5LjI2NTAxM10gIFs8ZmZmZmZmZmZjMDQ2
-ZWVkMD5dIG52MDRfdGltZXJfYWxhcm1fdHJpZ2dlcisweDEyMC8weDE3MCBbbm91dmVhdV0KWzEw
-Njk5LjI2NTAxOF0gIFs8ZmZmZmZmZmY4MTdiM2UyOD5dIGZ0cmFjZV9ncmFwaF9jYWxsZXIrMHhh
-OC8weGE4ClsxMDY5OS4yNjUwNDNdICBbPGZmZmZmZmZmYzA0NmVmOWI+XSBudjA0X3RpbWVyX2Fs
-YXJtKzB4N2IvMHhlMCBbbm91dmVhdV0KWzEwNjk5LjI2NTA0OF0gIFs8ZmZmZmZmZmY4MTdiM2Uy
-OD5dIGZ0cmFjZV9ncmFwaF9jYWxsZXIrMHhhOC8weGE4ClsxMDY5OS4yNjUwNzJdICBbPGZmZmZm
-ZmZmYzA0NmM2NmQ+XSBub3V2ZWF1X2ZhbnRvZ191cGRhdGUrMHgxOWQvMHgxYzAgW25vdXZlYXVd
-ClsxMDY5OS4yNjUwNzddICBbPGZmZmZmZmZmODE3YjNlMjg+XSBmdHJhY2VfZ3JhcGhfY2FsbGVy
-KzB4YTgvMHhhOApbMTA2OTkuMjY1MTAwXSAgWzxmZmZmZmZmZmMwNDZjNmFhPl0gbm91dmVhdV9m
-YW50b2dfYWxhcm0rMHgxYS8weDIwIFtub3V2ZWF1XQpbMTA2OTkuMjY1MTA1XSAgWzxmZmZmZmZm
-ZjgxN2IzZTI4Pl0gZnRyYWNlX2dyYXBoX2NhbGxlcisweGE4LzB4YTgKWzEwNjk5LjI2NTEzMF0g
-IFs8ZmZmZmZmZmZjMDQ2ZWVkMD5dIG52MDRfdGltZXJfYWxhcm1fdHJpZ2dlcisweDEyMC8weDE3
-MCBbbm91dmVhdV0KWzEwNjk5LjI2NTEzNF0gIFs8ZmZmZmZmZmY4MTdiM2UyOD5dIGZ0cmFjZV9n
-cmFwaF9jYWxsZXIrMHhhOC8weGE4ClsxMDY5OS4yNjUxNThdICBbPGZmZmZmZmZmYzA0NmYwNmI+
-XSBudjA0X3RpbWVyX2ludHIrMHg2Yi8weDkwIFtub3V2ZWF1XQpbMTA2OTkuMjY1MTgzXSAgWzxm
-ZmZmZmZmZmMwNDZmMDA1Pl0gPyBudjA0X3RpbWVyX2ludHIrMHg1LzB4OTAgW25vdXZlYXVdClsx
-MDY5OS4yNjUxODhdICBbPGZmZmZmZmZmODE3YjNlMjg+XSBmdHJhY2VfZ3JhcGhfY2FsbGVyKzB4
-YTgvMHhhOApbMTA2OTkuMjY1MjEyXSAgWzxmZmZmZmZmZmMwNDY4NmJjPl0gbm91dmVhdV9tY19p
-bnRyKzB4MTJjLzB4MWIwIFtub3V2ZWF1XQpbMTA2OTkuMjY1MjE4XSAgWzxmZmZmZmZmZjgxN2Iz
-ZTI4Pl0gZnRyYWNlX2dyYXBoX2NhbGxlcisweGE4LzB4YTgKWzEwNjk5LjI2NTIyNV0gIFs8ZmZm
-ZmZmZmY4MTBjYzM5Nz5dIGhhbmRsZV9pcnFfZXZlbnRfcGVyY3B1KzB4NzcvMHgxYTAKWzEwNjk5
-LjI2NTIyOV0gIFs8ZmZmZmZmZmY4MTBjYzUwMT5dIGhhbmRsZV9pcnFfZXZlbnQrMHg0MS8weDcw
-ClsxMDY5OS4yNjUyMzVdICBbPGZmZmZmZmZmODEwY2Y1OWU+XSBoYW5kbGVfZWRnZV9pcnErMHg2
-ZS8weDEyMApbMTA2OTkuMjY1MjQxXSAgWzxmZmZmZmZmZjgxMDE2OTUyPl0gaGFuZGxlX2lycSsw
-eDIyLzB4NDAKWzEwNjk5LjI2NTI0Nl0gIFs8ZmZmZmZmZmY4MTdiNDUzZj5dIGRvX0lSUSsweDRm
-LzB4ZjAKWzEwNjk5LjI2NTI1NV0gIFs8ZmZmZmZmZmY4MTdiMjNhZD5dIGNvbW1vbl9pbnRlcnJ1
-cHQrMHg2ZC8weDZkClsxMDY5OS4yNjUyNTddICA8RU9JPiAgWzxmZmZmZmZmZjgxNjRjZjc2Pl0g
-PyBjcHVpZGxlX2VudGVyX3N0YXRlKzB4NjYvMHgxNjAKWzEwNjk5LjI2NTI2M10gIFs8ZmZmZmZm
-ZmY4MTY0Y2Y2MT5dID8gY3B1aWRsZV9lbnRlcl9zdGF0ZSsweDUxLzB4MTYwClsxMDY5OS4yNjUy
-NjZdICBbPGZmZmZmZmZmODE2NGQxNTc+XSBjcHVpZGxlX2VudGVyKzB4MTcvMHgyMApbMTA2OTku
-MjY1MjcwXSAgWzxmZmZmZmZmZjgxMGI1NzQxPl0gY3B1X3N0YXJ0dXBfZW50cnkrMHgzNTEvMHg0
-MDAKWzEwNjk5LjI2NTI3NV0gIFs8ZmZmZmZmZmY4MTA0ODQxNz5dIHN0YXJ0X3NlY29uZGFyeSsw
-eDE5Ny8weDFjMApbMTA2OTkuMjY1Mjc4XSAtLS1bIGVuZCB0cmFjZSAyNWZiNzFjMzZmNGJhOWZh
-IF0tLS0KCk5vdyBJIHRoaW5rIEknbSBhdm9pZGluZyB0aGUgcGFuaWNzIHRob3VnaCBJIGRvbid0
-IHRoaW5rIHRoZSBhYm92ZSBwYXRjaCB3b3VsZCBmaXggdGhlIHJvb3QgY2F1c2Ugb2YgdGhlIHBy
-b2JsZW0uCgpUaGFuayB5b3UuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1982496269==
+Content-Type: multipart/alternative; boundary="1427812775.15a2bc21.1712"; charset="UTF-8"
+
+
+--1427812775.15a2bc21.1712
+Date: Tue, 31 Mar 2015 14:39:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89842
+
+            Bug ID: 89842
+           Summary: Nvidia nouveau drivers hangs all gnome when open the
+                    new legacy tray in 3.16.0
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ogarcia-8IrfgXQ0pwfYtjvyW6yDsg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 114766
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114766&action=edit
+Nouveau with Gnome 3.16.0 crash log
+
+Using nouveau drivers, when plays with the new legacy tray in Gnome 3.16.0
+(open it, close, and reopen again) the entire system hangs and must to restart
+Gnome Shell & GDM.
+
+Card: GeForce GTS 250
+
+Versions:
+Kernel 3.19.3-1-ARCH
+xf86-video-nouveau 1.0.11-3
+mesa 10.5.2-1
+
+I attach journal log.
+
+Note: I open related bug in GNOME
+https://bugzilla.gnome.org/show_bug.cgi?id=747115 They advised me that open bug
+here too.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1427812775.15a2bc21.1712
+Date: Tue, 31 Mar 2015 14:39:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">89842</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ogarcia&#64;moire.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114766" name="attach_114766" title="Nouveau with Gnome 3.16.0 crash log">attachment 114766</a> <a href="attachment.cgi?id=114766&amp;action=edit" title="Nouveau with Gnome 3.16.0 crash log">[details]</a></span>
+Nouveau with Gnome 3.16.0 crash log
+
+Using nouveau drivers, when plays with the new legacy tray in Gnome 3.16.0
+(open it, close, and reopen again) the entire system hangs and must to restart
+Gnome Shell &amp; GDM.
+
+Card: GeForce GTS 250
+
+Versions:
+Kernel 3.19.3-1-ARCH
+xf86-video-nouveau 1.0.11-3
+mesa 10.5.2-1
+
+I attach journal log.
+
+Note: I open related bug in GNOME
+<a href="https://bugzilla.gnome.org/show_bug.cgi?id=747115">https://bugzilla.gnome.org/show_bug.cgi?id=747115</a> They advised me that open bug
+here too.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1427812775.15a2bc21.1712--
+
+--===============1982496269==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1982496269==--
