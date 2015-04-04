@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
-Date: Sat, 04 Apr 2015 12:32:49 +0000
-Message-ID: <bug-82714-8800-CNQyuZThp2@http.bugs.freedesktop.org/>
-References: <bug-82714-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH] nv50: allocate more offset space
+ for occlusion queries
+Date: Sat, 04 Apr 2015 14:50:34 +0200
+Message-ID: <551FDE1A.1080703@gmail.com>
+References: <1428120023-9598-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729206016=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1428120023-9598-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,102 +18,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "10.4 10.5" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1729206016==
-Content-Type: multipart/alternative; boundary="1428150769.beBb4.12665"; charset="UTF-8"
-
-
---1428150769.beBb4.12665
-Date: Sat, 4 Apr 2015 12:32:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=82714
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |pierre.morrow-GANU6spQydw@public.gmane.org
-
---- Comment #11 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-*** Bug 86537 has been marked as a duplicate of this bug. ***
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1428150769.beBb4.12665
-Date: Sat, 4 Apr 2015 12:32:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>pierre.morrow&#64;free.fr
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV96] Unable to handle page request from nv50_crtc_prepare"
-   href="show_bug.cgi?id=86537">Bug 86537</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1428150769.beBb4.12665--
-
---===============1729206016==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+UmV2aWV3ZWQtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4K
+CkJ1dCBwbGVhc2UsIGZpeCB0aGUgY29tbWVudCBpbiB0aGUgbnY1MF9xdWVyeSBzdHJ1Y3QsIG5v
+dyBpdCBpcyAiLyogYmFzZSAKKyBpICogMzIgKi8iLgoKT24gMDQvMDQvMjAxNSAwNjowMCBBTSwg
+SWxpYSBNaXJraW4gd3JvdGU6Cj4gQ29tbWl0IDFhMTcwOTgwYTA5IHN0YXJ0ZWQgd3JpdGluZyB0
+byBxLT5kYXRhWzRdL1s1XSBidXQga2VwdCB0aGUKPiBwZXItcXVlcnkgc3BhY2UgYXQgMTYsIHdo
+aWNoIG1lYW50IHRoYXQgaW4gc29tZSBjYXNlcyB3ZSB3b3VsZCB3cml0ZQo+IHBhc3QgdGhlIGVu
+ZCBvZiB0aGUgYnVmZmVyLiBSb3RhdGUgYnkgMzIsIGxpa2UgbnZjMCBkb2VzLgo+Cj4gU2lnbmVk
+LW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+IFRlc3RlZC1ieTog
+TmljayBUZW5uZXkgPG5pY2sudGVubmV5QGdtYWlsLmNvbT4KPiBDYzogIjEwLjQgMTAuNSIgPG1l
+c2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KPiAtLS0KPiAgIHNyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9udjUwL252NTBfcXVlcnkuYyB8IDggKysrKy0tLS0KPiAgIDEgZmlsZSBj
+aGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9xdWVyeS5jIGIvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9xdWVyeS5jCj4gaW5kZXggZTgxYWM1YS4uNmEy
+M2RlNCAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUw
+X3F1ZXJ5LmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3F1
+ZXJ5LmMKPiBAQCAtMTE2LDggKzExNiw4IEBAIG52NTBfcXVlcnlfY3JlYXRlKHN0cnVjdCBwaXBl
+X2NvbnRleHQgKnBpcGUsIHVuc2lnbmVkIHR5cGUsIHVuc2lnbmVkIGluZGV4KQo+ICAgICAgcS0+
+dHlwZSA9IHR5cGU7Cj4gICAKPiAgICAgIGlmIChxLT50eXBlID09IFBJUEVfUVVFUllfT0NDTFVT
+SU9OX0NPVU5URVIpIHsKPiAtICAgICAgcS0+b2Zmc2V0IC09IDE2Owo+IC0gICAgICBxLT5kYXRh
+IC09IDE2IC8gc2l6ZW9mKCpxLT5kYXRhKTsgLyogd2UgYWR2YW5jZSBiZWZvcmUgcXVlcnlfYmVn
+aW4gISAqLwo+ICsgICAgICBxLT5vZmZzZXQgLT0gMzI7Cj4gKyAgICAgIHEtPmRhdGEgLT0gMzIg
+LyBzaXplb2YoKnEtPmRhdGEpOyAvKiB3ZSBhZHZhbmNlIGJlZm9yZSBxdWVyeV9iZWdpbiAhICov
+Cj4gICAgICB9Cj4gICAKPiAgICAgIHJldHVybiAoc3RydWN0IHBpcGVfcXVlcnkgKilxOwo+IEBA
+IC0xNTAsOCArMTUwLDggQEAgbnY1MF9xdWVyeV9iZWdpbihzdHJ1Y3QgcGlwZV9jb250ZXh0ICpw
+aXBlLCBzdHJ1Y3QgcGlwZV9xdWVyeSAqcHEpCj4gICAgICAgKiBpbml0aWFsaXplZCBpdCB0byBU
+UlVFLgo+ICAgICAgICovCj4gICAgICBpZiAocS0+dHlwZSA9PSBQSVBFX1FVRVJZX09DQ0xVU0lP
+Tl9DT1VOVEVSKSB7Cj4gLSAgICAgIHEtPm9mZnNldCArPSAxNjsKPiAtICAgICAgcS0+ZGF0YSAr
+PSAxNiAvIHNpemVvZigqcS0+ZGF0YSk7Cj4gKyAgICAgIHEtPm9mZnNldCArPSAzMjsKPiArICAg
+ICAgcS0+ZGF0YSArPSAzMiAvIHNpemVvZigqcS0+ZGF0YSk7Cj4gICAgICAgICBpZiAocS0+b2Zm
+c2V0IC0gcS0+YmFzZSA9PSBOVjUwX1FVRVJZX0FMTE9DX1NQQUNFKQo+ICAgICAgICAgICAgbnY1
+MF9xdWVyeV9hbGxvY2F0ZShudjUwLCBxLCBOVjUwX1FVRVJZX0FMTE9DX1NQQUNFKTsKPiAgIAoK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1729206016==--
