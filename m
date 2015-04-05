@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86109] kernel oops after lightdm startup
-Date: Sat, 04 Apr 2015 13:07:35 +0000
-Message-ID: <bug-86109-8800-4ZjzHaGkDl@http.bugs.freedesktop.org/>
-References: <bug-86109-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89679] [NV50] Portal/Half-Life 2 will not start
+	(native Steam)
+Date: Sun, 05 Apr 2015 02:02:05 +0000
+Message-ID: <bug-89679-8800-F6VJILMJlK@http.bugs.freedesktop.org/>
+References: <bug-89679-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1026348232=="
+Content-Type: multipart/mixed; boundary="===============1597837738=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1026348232==
-Content-Type: multipart/alternative; boundary="1428152855.7C8a42.19269"; charset="UTF-8"
+--===============1597837738==
+Content-Type: multipart/alternative; boundary="1428199325.e3Bad230.22796"; charset="UTF-8"
 
 
---1428152855.7C8a42.19269
-Date: Sat, 4 Apr 2015 13:07:35 +0000
+--1428199325.e3Bad230.22796
+Date: Sun, 5 Apr 2015 02:02:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86109
+https://bugs.freedesktop.org/show_bug.cgi?id=89679
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+Nick Tenney <nick.tenney-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---- Comment #1 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Could you please retry with kernel version 3.19 (or later) as there was some
-fixes related to fences and pci_ignore_hotplug that were merged?
+--- Comment #7 from Nick Tenney <nick.tenney-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Commit ba353935a392d2a43422f1d258456336b40b60ea fixed the issue. Thanks!
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1428152855.7C8a42.19269
-Date: Sat, 4 Apr 2015 13:07:35 +0000
+--1428199325.e3Bad230.22796
+Date: Sun, 5 Apr 2015 02:02:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,12 +56,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:nick.tenney&#64;gmail.com" title="Nick Tenney &lt;nick.tenney&#64;gmail.com&gt;"> <span class="fn">Nick Tenney</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679">bug 89679</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,37 +74,45 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Status</td>
            <td>NEW
            </td>
-           <td>NEEDINFO
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109#c1">Comment # 1</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679">bug 89679</a>
+              from <span class="vcard"><a class="email" href="mailto:nick.tenney&#64;gmail.com" title="Nick Tenney &lt;nick.tenney&#64;gmail.com&gt;"> <span class="fn">Nick Tenney</span></a>
 </span></b>
-        <pre>Could you please retry with kernel version 3.19 (or later) as there was some
-fixes related to fences and pci_ignore_hotplug that were merged?</pre>
+        <pre>Commit ba353935a392d2a43422f1d258456336b40b60ea fixed the issue. Thanks!</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1428152855.7C8a42.19269--
+--1428199325.e3Bad230.22796--
 
---===============1026348232==
+--===============1597837738==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1026348232==--
+--===============1597837738==--
