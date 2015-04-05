@@ -1,13 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Blank Screen on Mac Book Retina
-Date: Sun, 5 Apr 2015 09:28:30 -0400
-Message-ID: <CAKb7UvjwwKkkJyEPte6S-cNEZQWw98+aWZEf-Cch=6GQuTOAtw@mail.gmail.com>
-References: <55213720.2000401@hjit.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89910] New: Max resolution of 1024x768 with nouveau
+Date: Sun, 05 Apr 2015 16:46:24 +0000
+Message-ID: <bug-89910-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1898743430=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55213720.2000401-tGUyRVMVWKI@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +14,200 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Harald Jung <jung-tGUyRVMVWKI@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RGlkbid0IHlvdSBzZW5kIHRoaXMgc2FtZSBlbWFpbCB5ZXN0ZXJkYXk/IEFzIHlvdSBwb2ludCBv
-dXQgeW91cnNlbGYsCnlvdXIgYmlzZWN0IHJlc3VsdCBpcyBib2d1cy4gSWYgeW91IG5vIGxvbmdl
-ciBoYXZlIGFjY2VzcyB0byB0aGUKbWFjaGluZSwgdGhpcyB3aWxsIGhhdmUgdG8gd2FpdCB1bnRp
-bCBzb21lb25lIGVsc2Ugd2l0aCB0aGUgaXNzdWUgaXMKYWJsZSB0byBkZWJ1ZyBpdC4KCk9uIFN1
-biwgQXByIDUsIDIwMTUgYXQgOToyMiBBTSwgSGFyYWxkIEp1bmcgPGp1bmdAaGppdC5kZT4gd3Jv
-dGU6Cj4gSGksCj4KPiB3ZSBoYXZlIGEgYmxhbmsgc2NyZWVuIG9uIGEgbWFjIGJvb2sgcmV0aW5h
-IHNpbmNlIGtlcm5lbCAzLjE2Lgo+IFRoZSBiZWhhdm91ciBpcyBhIGJpdCB3ZWlyZDoKPiBJbiBr
-ZXJuZWwgMy4xNiBhbmQgaGlnaGVyIGl0IGlzIGxpa2UgdGhpcywgd2hlbiB5b3UgcmVzZXQgYWxs
-IGRpc3BsYXkgYW5kCj4geHJhbmRyIHNldHRpbmdzLCBzb21ldGltZXMgdGhlIHNjcmVlbiBjb21l
-cyB1cCBpbiB0aGUgaGlnaGVzdCBwb3NzaWJsZQo+IHJlc29sdXRpb24uCj4gQnV0IHdoZW4geW91
-IHRyeSB0byBjaG9vc2UgYW5vdGhlciByZXNvbHV0aW9uIHRoZSBzY3JlZW4gc3RheXMgdHVybnMg
-YmxhY2suCj4gQnV0IGluIDgwJSBvZiB0aGUgdHJpZXMgaXQgc3RheXMgYmxhY2ssIHdoZW4gdGhl
-IHNhdmVkIHNjcmVlbiByZXNvbHV0aW9ucyBpcwo+IGFub3RoZXIgdGhhbiB0aGUgaGlnaGVzdCBy
-ZXNvbHV0aW9uIGl0IGFsd2F5cyBzdGF5cyBibGFjay4KPgo+IEFzIGltaXJraW4gbWVudGlvbmVk
-IG9uIGlyYywgdGhlIHByb2JsZW0gaXMgY2F1c2VkIGJ5IHRoZSAibm91dmVhdSBFWwo+IFBESVNQ
-XVswMDAwOjAxOjAwLjBdIDAwOjAwMDY6MGY0NDogbGluayB0cmFpbmluZyBmYWlsZWQgIi4KPiBU
-aGUgbGFzdCB3b3JraW5nIGtlcm5lbCB3YXMgMy4xNS4xMC4KPgo+IEkndmUgdHJpZWQgdG8gYmlz
-ZWN0IGl0LCBidXQgaSB3YXNuJ3QgYWJsZSB0byBoYXZlIHRoZSBub3RlYm9vayBmb3IgdGhlCj4g
-d2hvbGUgdGltZS4KPiBBbmQgc28gd2UgdHJpZWQgdG8gZG8gdGhlIHJlc3Qgb2YgdGhlIGJpc2Vj
-dHMgcmVtb3RlLCBidXQgaSB0aGluayB3ZSd2ZQo+IG1lc3NlZCBzb21ldGhpbmcgdXAgaW4gdGhl
-IGNvb3JkaW5hdGlvbgo+IEkgaGF2ZSBubyBjaGFuY2UgdG8gdHJ5IGEgYmlzZWN0IGFnYWluIChu
-b3Qgd2hlbiBpIHN0YXJ0IHdpdGggMy4xNS4xMCBnb29kCj4gYW5kIDMuMTYgYmFkKSwgaXQgdGFr
-ZXMgdG8gbXVjaCB0aW1lIGFuZCBpIGRvbid0IGhhdmUgYWNjZXNzIHRvIHRoZSBub3RlYm9vawo+
-IGZvciBzbyBsb25nLgo+IElmIHdlIHJlYWxseSBuZWVkIGEgYmlzZWN0LCBtYXliZSB5b3UgY291
-bGQgaGVscCBtZSB3aXRoIGEgYmV0dGVyIHN0YXJ0aW5nCj4gYW5kIGVuZGluZyB2ZXJzaW9uIHRv
-IHRyeQo+Cj4gTG9nZmlsZXMgYW5kIHN0dWZmIGNhbiBiZSBmb3VuZCBhdCB0aGUgZW5kIG9mIHRo
-ZSBtYWlsLgo+Cj4gYmVzdCByZWdhcmRzCj4gSGFyYWxkCj4KPiBIYXJkd2FyZSBJbmZvIGNhbiBi
-ZSBmb3VuZCBhdDogaHR0cDovL3d3dy5oaml0LmRlL21hY3JldGluYS50eHQKPgo+IEhlcmUgaXMg
-dGhlIGJpc2VjdCBsb2c6Cj4gQmlzZWN0aW5nOiBhIG1lcmdlIGJhc2UgbXVzdCBiZSB0ZXN0ZWQK
-PiBbMTg2MGUzNzk4NzVkZmU3MjcxYzY0OTA1OGFlZGRmZmU1YWZkOWQwZF0gTGludXggMy4xNQo+
-IEJpc2VjdGluZzogNjk0MCByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFmdGVyIHRoaXMgKHJvdWdo
-bHkgMTMgc3RlcHMpCj4gWzdiMjE1ZGUzZDBhYmJjNGY2ZGFmMmVmZDE5ZTg4MDlhZjA1NjQ0OTBd
-IE1lcmdlIGJyYW5jaCAnaTJjL2Zvci1uZXh0JyBvZgo+IGdpdDovL2dpdC5rZXJuZWwub3JnL3B1
-Yi9zY20vbGludXgva2VybmVsL2dpdC93c2EvbGludXggaW50byBuZXh0Cj4gQmlzZWN0aW5nOiAz
-ODkyIHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSAxMiBzdGVwcykK
-PiBbMDQzMGU0OWI2ZTdjNmI1ZTA3NmJlOGZlZmRlZTA4OTk1OGM5YWRhZF0gaW1hOiBpbnRyb2R1
-Y2UgaW1hX2tlcm5lbF9yZWFkKCkKPiBCaXNlY3Rpbmc6IDE1NjcgcmV2aXNpb25zIGxlZnQgdG8g
-dGVzdCBhZnRlciB0aGlzIChyb3VnaGx5IDExIHN0ZXBzKQo+IFsyOTM3ZjVlZmE1NzU0NzU0ZGFm
-NDZkZTc0NWY2NzM1MGY3ZjA2ZWMyXSBNZXJnZSBicmFuY2ggJ2Zvcl9saW51cycgb2YKPiBnaXQ6
-Ly9jYXZhbi5jb2Rvbi5vcmcudWsvcGxhdGZvcm0tZHJpdmVycy14ODYKPiBCaXNlY3Rpbmc6IDc4
-NSByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFmdGVyIHRoaXMgKHJvdWdobHkgMTAgc3RlcHMpCj4g
-W2JjMWRmZmYwNGE1ZDQwNjRiYTBkYjFmYWIxM2Y4NGFiNGYzMzNkMmJdIE1lcmdlIGJyYW5jaCAn
-ZHJtLW5vdXZlYXUtbmV4dCcKPiBvZiBnaXQ6Ly9hbm9uZ2l0LmZyZWVkZXNrdG9wLm9yZy9naXQv
-bm91dmVhdS9saW51eC0yLjYgaW50byBkcm0tbmV4dAo+IEJpc2VjdGluZzogNDAyIHJldmlzaW9u
-cyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSA5IHN0ZXBzKQo+IFs0ZmE2MmM4OTBj
-ZWE4M2YyOGMzMGUxZDVkYzhmYzg2ZjYxMjEwMjgwXSBkcm0vaTkxNTogTW92ZSBidWZmZXIgcGlu
-bmluZyBhbmQKPiByaW5nIHNlbGVjdGlvbiB0byBpbnRlbF9jcnRjX3BhZ2VfZmxpcCgpCj4gQmlz
-ZWN0aW5nOiAxODkgcmV2aXNpb25zIGxlZnQgdG8gdGVzdCBhZnRlciB0aGlzIChyb3VnaGx5IDgg
-c3RlcHMpCj4gW2FlYWIwYjVhZjdkZjg4Mjg0ZDEwMWFiZjhkMTIxZjBlOTEzYjgxZmZdIGRybS9p
-OTE1OiBkaXNhYmxlIHJ1bnRpbWUgUE0gaWYKPiBSQzYgaXMgZGlzYWJsZWQKPiBCaXNlY3Rpbmc6
-IDk0IHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSA3IHN0ZXBzKQo+
-IFs5ZDBhNmZhNmM1ZTYxOGJkOTc4ZDYyNWEyMTVkYzRhMjQwYmEzYjNjXSBkcm0vaTkxNTogYWRk
-IHJlbmRlciBzdGF0ZQo+IGluaXRpYWxpemF0aW9uCj4gQmlzZWN0aW5nOiA0NyByZXZpc2lvbnMg
-bGVmdCB0byB0ZXN0IGFmdGVyIHRoaXMgKHJvdWdobHkgNiBzdGVwcykKPiBbYjNhM2YwM2Q3YjFj
-ZmVjZjA1NWUzNTI4OTM3MWY0MmE0MDFmZGQ5NF0gZHJtL2k5MTU6IEZpeCBJTEsgR1BVIHJlc2V0
-Cj4gZG9tYWluIGJpdHMKPiBCaXNlY3Rpbmc6IDIzIHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0
-ZXIgdGhpcyAocm91Z2hseSA1IHN0ZXBzKQo+IFtjMGMzNTMyOTljNDhiMTljOTVkZTFlN2JkYTQ5
-NGMwYzcxMjQ4YzBjXSBkcm0vaTkxNS9jaHY6IEZpeCBnbWJ1cyBmb3IgcG9ydAo+IEQKPiBCaXNl
-Y3Rpbmc6IDExIHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSA0IHN0
-ZXBzKQo+IFsxOTY2ZTU5ZWMxMDc1NTk3ZWZmNGQ3ZmViM2QxMTUzNmEyNDJkMGViXSBkcm0vaTkx
-NS9jaHY6IFVzZSBSTVcgdG8gdG9nZ2xlCj4gc3dpbmcgY2FsYyBpbml0Cj4gQmlzZWN0aW5nOiA1
-IHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSAzIHN0ZXBzKQo+IFs1
-MjU5OTdlMDBiZDMyYzNlMjVkNWY3N2MyNjcwM2Y3NmM0OThmNDI0XSBkcm0vaTkxNTogc2h1ZmZs
-ZSBwYW5lbCBjb2RlCj4gQmlzZWN0aW5nOiAyIHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIg
-dGhpcyAocm91Z2hseSAyIHN0ZXBzKQo+IFs3NWY3ZjNlYzYwMDUyNGM5NTQ0Y2MzMTY5NTE1NWYx
-YTlkZGJlMWQ5XSBkcm0vaTkxNTogRml4IG1taW8gdnMuIENTIGZsaXAKPiByYWNlIG9uIElMSysK
-PiBCaXNlY3Rpbmc6IDAgcmV2aXNpb25zIGxlZnQgdG8gdGVzdCBhZnRlciB0aGlzIChyb3VnaGx5
-IDEgc3RlcCkKPiBbNjMwNGNkOTFlN2YwNWY4ODAyZWE2ZjkxMjg3Y2FjMDk3NDFkOWM0Nl0gZHJt
-L2k5MTU6IERyb3AgdGhlIGV4Y2Vzc2l2ZQo+IHZibGFuayB3YWl0cyBmcm9tIG1vZGVzZXQgY29k
-ZXBhdGhzCj4gNGZhNjJjODkwY2VhODNmMjhjMzBlMWQ1ZGM4ZmM4NmY2MTIxMDI4MCBpcyB0aGUg
-Zmlyc3QgYmFkIGNvbW1pdAo+IGNvbW1pdCA0ZmE2MmM4OTBjZWE4M2YyOGMzMGUxZDVkYzhmYzg2
-ZjYxMjEwMjgwCj4gQXV0aG9yOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPgo+IERhdGU6ICAgVHVlIEFwciAxNSAyMTo0MTozOCAyMDE0ICswMzAwCj4KPiAg
-ICAgZHJtL2k5MTU6IE1vdmUgYnVmZmVyIHBpbm5pbmcgYW5kIHJpbmcgc2VsZWN0aW9uIHRvCj4g
-aW50ZWxfY3J0Y19wYWdlX2ZsaXAoKQo+Cj4gICAgIEFsbCBvZiB0aGUgLnF1ZXVlX2ZsaXAoKSBj
-YWxsYmFja3MgZHVwbGljYXRlIHRoZSBzYW1lIGNvZGUgdG8gcGluIHRoZQo+ICAgICBidWZmZXJz
-IGFuZCBjYWxjdWxhdGUgdGhlIGd0dF9vZmZzZXQuIE1vdmUgdGhhdCBjb2RlIHRvCj4gICAgIGlu
-dGVsX2NydGNfcGFnZV9mbGlwKCkuIEluIG9yZGVyIHRvIGRvIHRoYXQgd2UgbXVzdCBhbHNvIG1v
-dmUgdGhlIHJpbmcKPiAgICAgc2VsZWN0aW9uIGxvZ2ljIHRoZXJlLgo+Cj4gICAgIFNpZ25lZC1v
-ZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4g
-ICAgIFJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-PiAgICAgU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5j
-aD4KPgo+IDowNDAwMDAgMDQwMDAwIDgyOWViZjBmYTFlN2IzMWMxNjIzYWE0OThlZmM5MmJjYTQy
-OWE0ODMKPiA1MTExNDA4NzRjZDQ3NTljNGVhZGVmODdlZTk5Njg4MDhlZmE1ZjJhIE0gICAgICBk
-cml2ZXJzCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4g
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1898743430==
+Content-Type: multipart/alternative; boundary="1428252384.4Ac11.22268"; charset="UTF-8"
+
+
+--1428252384.4Ac11.22268
+Date: Sun, 5 Apr 2015 16:46:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89910
+
+            Bug ID: 89910
+           Summary: Max resolution of 1024x768 with nouveau
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tom.winterhalder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 114876
+  --> https://bugs.freedesktop.org/attachment.cgi?id=114876&action=edit
+Xorg.0.log after starting X session
+
+Hello
+On my HP Elitebook 8540w with a fresh installed Ubuntu Vivid (15.04) I can only
+use a screen resolution of 1024x768. With the Notebook monitor it should be
+possible to have a resolution of 1920x1080.
+
+Opening a bug in Ubuntu Launchpad I was told to open a bug here at Freedesktop.
+
+The following Ubuntu packages are installed for nouveau:
+libdrm-nouveau2:amd6       2.4.59-0ubuntu1
+libdrm-nouveau2:i386       2.4.59-0ubuntu1
+nouveau-firmware           20091212-0ubuntu1
+xserver-xorg-video-nouveau 1:1.0.11-1ubuntu2build1
+
+Attached I have the Xorg.0.log, the output of xrandr and the kernel log.
+
+If you need further information I will try to provide everything that is
+necessary.
+
+Best regards,
+Tom
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1428252384.4Ac11.22268
+Date: Sun, 5 Apr 2015 16:46:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Max resolution of 1024x768 with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89910">89910</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Max resolution of 1024x768 with nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tom.winterhalder&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=114876" name="attach_114876" title="Xorg.0.log after starting X session">attachment 114876</a> <a href="attachment.cgi?id=114876&amp;action=edit" title="Xorg.0.log after starting X session">[details]</a></span>
+Xorg.0.log after starting X session
+
+Hello
+On my HP Elitebook 8540w with a fresh installed Ubuntu Vivid (15.04) I can only
+use a screen resolution of 1024x768. With the Notebook monitor it should be
+possible to have a resolution of 1920x1080.
+
+Opening a bug in Ubuntu Launchpad I was told to open a bug here at Freedesktop.
+
+The following Ubuntu packages are installed for nouveau:
+libdrm-nouveau2:amd6       2.4.59-0ubuntu1
+libdrm-nouveau2:i386       2.4.59-0ubuntu1
+nouveau-firmware           20091212-0ubuntu1
+xserver-xorg-video-nouveau 1:1.0.11-1ubuntu2build1
+
+Attached I have the Xorg.0.log, the output of xrandr and the kernel log.
+
+If you need further information I will try to provide everything that is
+necessary.
+
+Best regards,
+Tom</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1428252384.4Ac11.22268--
+
+--===============1898743430==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1898743430==--
