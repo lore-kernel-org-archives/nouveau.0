@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Sun, 05 Apr 2015 17:16:05 +0000
-Message-ID: <bug-89558-8800-mJfsGk969i@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Matti Nykyri <Matti.Nykyri-X3B1VOXEql0@public.gmane.org>
+Subject: Nouveau kernel module exhausting CPU
+Date: Sun, 5 Apr 2015 20:42:18 +0300
+Message-ID: <20150405174218.GA20940@lyseo.edu.ouka.fi>
+Reply-To: Matti.Nykyri-X3B1VOXEql0@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1002643025=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,73 +20,105 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1002643025==
-Content-Type: multipart/alternative; boundary="1428254165.6Af8d3.28937"; charset="UTF-8"
-
-
---1428254165.6Af8d3.28937
-Date: Sun, 5 Apr 2015 17:16:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #28 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Small side note: the negative amount of ram as hex reads as 0xBADF3000.
-Although what makes me curious is why PBUS (or the equivalent sub-device for
-this chipset) does not produce a warning/intr.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1428254165.6Af8d3.28937
-Date: Sun, 5 Apr 2015 17:16:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c28">Comment # 28</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span></b>
-        <pre>Small side note: the negative amount of ram as hex reads as 0xBADF3000.
-Although what makes me curious is why PBUS (or the equivalent sub-device for
-this chipset) does not produce a warning/intr.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1428254165.6Af8d3.28937--
-
---===============1002643025==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1002643025==--
+SGVsbG8KCkkgcmVjZW50bHkgc3dpdGNoZWQgZnJvbSBOdmlkaWEgYmluYXJ5IGRyaXZlciB0byBO
+b3V2ZWF1LiBJIGhhdmUgZW5jb3VudGVyZWQgYSBwb3NzaWJsZSBidWcgaW4gdGhlIGtlcm5lbCBt
+b2R1bGUuIEJlZm9yZSBJIGZpbGUgYSBidWcgcmVwb3J0IEkgd291bGQgbGlrZSB0byBrbm93IGlm
+IHRoaXMgaXMgYSBrbm93biBpc3N1ZSBvciBub3QuCgpJIGJlbGlldmUgaXQgaXMgcmVsYXRlZCB0
+byBzbGVlcCBzdGF0ZSBhbmQgcG93ZXIgbWFuYWdlbWVudCBvZiB0aGUgZHJpdmVyLgoKVGhlIEJ1
+ZzoKCldoZW4gdGhlIGNvbXB1dGVyIGlzIGxlZnQgb24gaXQncyBvd24gdG8gZ28gdG8gYSBwb3dl
+ciBzYXZlIG1vZGUgWCB0YWtlcyAxMDAlIENQVS10aW1lIGluIGl0cyB0aHJlYWQuIEEgdHJhY2Ug
+dG8gWCBzZXJ2ZXIgc2hvd3MgdGhpcyBpcyBjYXVzZWQgYnkgc2VsZWN0LXN5c3RlbWNhbGwgaW1t
+ZWRpYXRlbHkgcmV0dXJuaW5nIHdoZW4gWCBpcyBwb2xsaW5nIGl0cyBGRCdzLiBUaGUgRkQgbnJv
+IDEyIGlzIGNvbnN0YW50bHkgaW5kaWNhdGluZyB0aGF0IHRoZXJlIGlzIGRhdGEgdG8gcmVhZCBz
+byBYIHdpbGwgbmV2ZXIgc2xlZXAuIFRoZSBGRCAxMiBpcyBhIHIvdyBzb2NrZXQgY29ubmVjdGVk
+IHZpYSBuZXRsaW5rIHRvIGtlcm5lbCdzIFVFVkVOVC4KClJlc3RhcnRpbmcgWCByZXNldHMgdGhl
+IHByb2JsZW0gdG8gd2FpdCBhZ2FpbiBmb3IgdGhlIHNsZWVwIHN0YXRlLiBBIG5ldyBzbGVlcCB3
+aWxsIG1ha2UgdGhlIHByb2JsZW0gYXJpY2UgYWdhaW4uCgoKSGFyZHdhcmU6CgpJIGhhdmUgRmVy
+bWkgblZpZGlhIGdwdSBHRjEwNCBOVkM0IChHZUZvcmNlIEdUWCA0NjApIGFuZCBpNSBxdWFkIGNv
+cmUgYW1kNjQgcHJvY2Vzc29yCgpTb2Z0d2FyZToKClN5c3RlbSBpcyBydW5uaW5nIGdlbnRvbyB3
+aXRoIHN0YWJsZSAnZGVmYXVsdC9saW51eC9hbWQ2NC8xMy4wL2Rlc2t0b3Ava2RlJy1wcm9maWxl
+CgpLZXJuZWw6CnN5cy1rZXJuZWwvZ2VudG9vLXNvdXJjZXMtMy4xOC43CgpOb3V2ZWF1IGRyaXZl
+cjoKeDExLWRyaXZlcnMveGY4Ni12aWRlby1ub3V2ZWF1LTEuMC4xMQoKWG9yZy1zZXJ2ZXI6Cngx
+MS1iYXNlL3hvcmctc2VydmVyLTEuMTYuNAoKS01TIGlzIHVzZWQgZm9yIHNlbGVjdGluZyB2aWRl
+byBtb2Rlcy4KCi0tLS0gZG1lc2cgLS0tLQpbICAgIDAuNjIzMDYzXSBbZHJtXSBJbml0aWFsaXpl
+ZCBkcm0gMS4xLjAgMjAwNjA4MTAKWyAgICAwLjYyMzI3Ml0gbm91dmVhdSAgWyAgREVWSUNFXVsw
+MDAwOjAxOjAwLjBdIEJPT1QwICA6IDB4MGM0MTAwYTEKWyAgICAwLjYyMzI3NF0gbm91dmVhdSAg
+WyAgREVWSUNFXVswMDAwOjAxOjAwLjBdIENoaXBzZXQ6IEdGMTA0IChOVkM0KQpbICAgIDAuNjIz
+Mjc1XSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDE6MDAuMF0gRmFtaWx5IDogTlZDMApbICAg
+IDAuNjIzMzA3XSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDE6MDAuMF0gY2hlY2tpbmcgUFJB
+TUlOIGZvciBpbWFnZS4uLgpbICAgIDAuNzE2OTgzXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6
+MDE6MDAuMF0gLi4uIGFwcGVhcnMgdG8gYmUgdmFsaWQKWyAgICAwLjcxNjk4NV0gbm91dmVhdSAg
+WyAgIFZCSU9TXVswMDAwOjAxOjAwLjBdIHVzaW5nIGltYWdlIGZyb20gUFJBTUlOClsgICAgMC43
+MTcwNzVdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSBCSVQgc2lnbmF0dXJlIGZv
+dW5kClsgICAgMC43MTcwNzZdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSB2ZXJz
+aW9uIDcwLjA0LjFiLjAwLjAyClsgICAgMC43MzkzMTldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBp
+cnEgMzQgZm9yIE1TSS9NU0ktWApbICAgIDAuNzM5MzI3XSBub3V2ZWF1ICBbICAgICBQTUNdWzAw
+MDA6MDE6MDAuMF0gTVNJIGludGVycnVwdHMgZW5hYmxlZApbICAgIDAuNzM5MzU5XSBub3V2ZWF1
+ICBbICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gUkFNIHR5cGU6IEdERFI1ClsgICAgMC43MzkzNjBd
+IG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDowMTowMC4wXSBSQU0gc2l6ZTogMTAyNCBNaUIKWyAg
+ICAwLjczOTM2MV0gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAxOjAwLjBdICAgIFpDT01QOiAw
+IHRhZ3MKWyAgICAwLjc0NDkzNF0gbm91dmVhdSAgWyAgICBWT0xUXVswMDAwOjAxOjAwLjBdIEdQ
+VSB2b2x0YWdlOiA4NzUwMDB1dgpbICAgIDAuNzczMzA0XSBub3V2ZWF1ICBbICBQVEhFUk1dWzAw
+MDA6MDE6MDAuMF0gRkFOIGNvbnRyb2w6IFBXTQpbICAgIDAuNzczMzE2XSBub3V2ZWF1ICBbICBQ
+VEhFUk1dWzAwMDA6MDE6MDAuMF0gZmFuIG1hbmFnZW1lbnQ6IGF1dG9tYXRpYwpbICAgIDAuNzcz
+MzQzXSBub3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6MDE6MDAuMF0gaW50ZXJuYWwgc2Vuc29yOiB5
+ZXMKWyAgICAwLjc5MzQxN10gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAxOjAwLjBdIDAzOiBj
+b3JlIDUwIE1IeiBtZW1vcnkgMTM1IE1IeiAKWyAgICAwLjc5MzQxOV0gbm91dmVhdSAgWyAgICAg
+Q0xLXVswMDAwOjAxOjAwLjBdIDA3OiBjb3JlIDQwNSBNSHogbWVtb3J5IDMyNCBNSHogClsgICAg
+MC43OTM0MjFdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwYzogY29yZSA0MDUg
+TUh6IG1lbW9yeSAxOTAwIE1IeiAKWyAgICAwLjc5MzQyM10gbm91dmVhdSAgWyAgICAgQ0xLXVsw
+MDAwOjAxOjAwLjBdIDBmOiBjb3JlIDgwMCBNSHogbWVtb3J5IDE5MDAgTUh6IApbICAgIDAuNzkz
+NDk4XSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDE6MDAuMF0gLS06IGNvcmUgNTAgTUh6IG1l
+bW9yeSAxMzUgTUh6IApbICAgIDAuODAzMTUwXSBub3V2ZWF1ICBbICAgICBEUk1dIFZSQU06IDEw
+MjQgTWlCClsgICAgMC44MDMxNTFdIG5vdXZlYXUgIFsgICAgIERSTV0gR0FSVDogMTA0ODU3NiBN
+aUIKWyAgICAwLjgwMzE1NF0gbm91dmVhdSAgWyAgICAgRFJNXSBUTURTIHRhYmxlIHZlcnNpb24g
+Mi4wClsgICAgMC44MDMxNTVdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIHZlcnNpb24gNC4wClsg
+ICAgMC44MDMxNTddIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91dHAgMDA6IDA0MDAwMzEwIDAw
+MDAwMDAwClsgICAgMC44MDMxNThdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91dHAgMDE6IDAy
+MDExMzAwIDAwMDIwMDMwClsgICAgMC44MDMxNTldIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91
+dHAgMDI6IDAxMDExMzAyIDAwMDIwMDMwClsgICAgMC44MDMxNjBdIG5vdXZlYXUgIFsgICAgIERS
+TV0gRENCIG91dHAgMDM6IDAyMDIyMzYyIDAwMDIwMDEwClsgICAgMC44MDMxNjFdIG5vdXZlYXUg
+IFsgICAgIERSTV0gRENCIG91dHAgMDQ6IDA4MDMzMzgyIDAwMDIwMDMwClsgICAgMC44MDMxNjJd
+IG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDA6IDAwMDAwMDAwClsgICAgMC44MDMxNjRd
+IG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDE6IDAwMDAxMTMwClsgICAgMC44MDMxNjVd
+IG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDI6IDAwMDAyMjYxClsgICAgMC44MDMxNjZd
+IG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDM6IDAwMDEwMzMwClsgICAgMC44MDM4MTld
+IFtkcm1dIGZvcmNpbmcgVkdBLTEgY29ubmVjdG9yIE9GRgpbICAgIDAuODAzOTI4XSBbZHJtXSBT
+dXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLgpbICAg
+IDAuODAzOTI4XSBbZHJtXSBEcml2ZXIgc3VwcG9ydHMgcHJlY2lzZSB2YmxhbmsgdGltZXN0YW1w
+IHF1ZXJ5LgpbICAgIDAuODE4Njk5XSBub3V2ZWF1ICBbICAgICBEUk1dIE1NOiB1c2luZyBDT1BZ
+MSBmb3IgYnVmZmVyIGNvcGllcwpbICAgIDEuMDYzMzAxXSBub3V2ZWF1ICBbICAgICBEUk1dIGFs
+bG9jYXRlZCAxOTIweDEwODAgZmI6IDB4NjAwMDAsIGJvIGZmZmY4ODAyMTViZWU4MDAKWyAgICAx
+LjA2MzQyM10gZmJjb246IG5vdXZlYXVmYiAoZmIwKSBpcyBwcmltYXJ5IGRldmljZQpbICAgIDEu
+MTgxODE2XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVy
+IGRldmljZQpbICAgIDEuMTgxODE3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogcmVnaXN0ZXJlZCBw
+YW5pYyBub3RpZmllcgpbICAgIDEuMTk3OTkwXSBbZHJtXSBJbml0aWFsaXplZCBub3V2ZWF1IDEu
+Mi4xIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlub3IgMAotLS0tIGVuZCAtLS0tCgpY
+IHVzZXMgMiBzZXBhcmF0ZSBzY3JlZW5zIGluIFphcGhvZEhlYWRzIG1vZGUKCi0tLS0gWG9yZy4w
+LmxvZyAtLS0tClsxNzY0MDQuMzc4XSAoSUkpIHhmcmVlODY6IEFkZGluZyBkcm0gZGV2aWNlICgv
+ZGV2L2RyaS9jYXJkMCkKWzE3NjQwNC4zODRdIChJSSkgTG9hZE1vZHVsZTogIm5vdXZlYXUiClsx
+NzY0MDQuMzg1XSAoSUkpIExvYWRpbmcgL3Vzci9saWI2NC94b3JnL21vZHVsZXMvZHJpdmVycy9u
+b3V2ZWF1X2Rydi5zbwpbMTc2NDA0LjM4NV0gKElJKSBNb2R1bGUgbm91dmVhdTogdmVuZG9yPSJY
+Lk9yZyBGb3VuZGF0aW9uIgpbMTc2NDA0LjM4NV0gKElJKSBOT1VWRUFVIGRyaXZlciAKWzE3NjQw
+NC4zODVdIChJSSkgTk9VVkVBVSBkcml2ZXIgZm9yIE5WSURJQSBjaGlwc2V0IGZhbWlsaWVzIDoK
+WzE3NjQwNC4zODZdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4yLjEK
+WzE3NjQwNC4zODZdIChJSSkgW2RybV0gbm91dmVhdSBpbnRlcmZhY2UgdmVyc2lvbjogMS4yLjEK
+WzE3NjQwNC4zODddICgtLSkgTk9VVkVBVSgwKTogQ2hpcHNldDogIk5WSURJQSBOVkM0IgpbMTc2
+NDA0LjM4N10gKD09KSBOT1VWRUFVKDApOiBEZXB0aCAyNCwgKC0tKSBmcmFtZWJ1ZmZlciBicHAg
+MzIKWzE3NjQwNC4zODddICg9PSkgTk9VVkVBVSgwKTogUkdCIHdlaWdodCA4ODgKWzE3NjQwNC4z
+ODddICg9PSkgTk9VVkVBVSgwKTogRGVmYXVsdCB2aXN1YWwgaXMgVHJ1ZUNvbG9yClsxNzY0MDQu
+Mzg3XSAoKiopIE5PVVZFQVUoMCk6IE9wdGlvbiAiWmFwaG9kSGVhZHMiICJIRE1JLTEiClsxNzY0
+MDQuMzg3XSAoPT0pIE5PVVZFQVUoMCk6IFVzaW5nIEhXIGN1cnNvcgpbMTc2NDA0LjM4N10gKD09
+KSBOT1VWRUFVKDApOiBHTFggc3luYyB0byBWQmxhbmsgZW5hYmxlZC4KWzE3NjQwNC4zODddICg9
+PSkgTk9VVkVBVSgwKTogUGFnZSBmbGlwcGluZyBlbmFibGVkClsxNzY0MDQuMzg3XSAoPT0pIE5P
+VVZFQVUoMCk6IFN3YXAgbGltaXQgc2V0IHRvIDEgW01heCBhbGxvd2VkIDJdClsxNzY0MDQuMzg3
+XSAoPT0pIE5PVVZFQVUoMCk6IFBhZ2UgZmxpcHBpbmcgc3luY2VkIHRvIHZibGFuayBieSBrZXJu
+ZWwuClsxNzY0MDQuMzg3XSAoSUkpIE5PVVZFQVUoMCk6IEluaXRpYWxpemluZyBvdXRwdXRzIC4u
+LgpbMTc2NDA0LjUwN10gKElJKSBOT1VWRUFVKDApOiBPdXRwdXQgSERNSS0xIHVzaW5nIG1vbml0
+b3Igc2VjdGlvbiBNb25pdG9yMApbMTc2NDA0LjUwN10gKCoqKSBOT1VWRUFVKDApOiBPcHRpb24g
+IlByZWZlcnJlZE1vZGUiICIxOTIweDEwODBfMjMiClsxNzY0MDQuNTA4XSAoV1cpIE5PVVZFQVUo
+MCk6IE9wdGlvbiAiTWF4Q2xvY2siIHJlcXVpcmVzIGEgZnJlcXVlbmN5IHZhbHVlCmV0Yy4uLgot
+LS0tIGVuZCAtLS0tCgpBbnkgaWRlYXM/CgotLSAKLU1hdHRpCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
