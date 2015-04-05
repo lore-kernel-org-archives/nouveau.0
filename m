@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89679] [NV50] Portal/Half-Life 2 will not start
-	(native Steam)
-Date: Sun, 05 Apr 2015 02:02:05 +0000
-Message-ID: <bug-89679-8800-F6VJILMJlK@http.bugs.freedesktop.org/>
-References: <bug-89679-8800@http.bugs.freedesktop.org/>
+From: Harald Jung <jung-tGUyRVMVWKI@public.gmane.org>
+Subject: Blank Screen on Mac Book Retina
+Date: Sun, 05 Apr 2015 15:22:40 +0200
+Message-ID: <55213720.2000401@hjit.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1597837738=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89679-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,106 +18,83 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1597837738==
-Content-Type: multipart/alternative; boundary="1428199325.e3Bad230.22796"; charset="UTF-8"
-
-
---1428199325.e3Bad230.22796
-Date: Sun, 5 Apr 2015 02:02:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89679
-
-Nick Tenney <nick.tenney-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Nick Tenney <nick.tenney-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Commit ba353935a392d2a43422f1d258456336b40b60ea fixed the issue. Thanks!
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1428199325.e3Bad230.22796
-Date: Sun, 5 Apr 2015 02:02:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:nick.tenney&#64;gmail.com" title="Nick Tenney &lt;nick.tenney&#64;gmail.com&gt;"> <span class="fn">Nick Tenney</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679">bug 89679</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV50] Portal/Half-Life 2 will not start (native Steam)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89679">bug 89679</a>
-              from <span class="vcard"><a class="email" href="mailto:nick.tenney&#64;gmail.com" title="Nick Tenney &lt;nick.tenney&#64;gmail.com&gt;"> <span class="fn">Nick Tenney</span></a>
-</span></b>
-        <pre>Commit ba353935a392d2a43422f1d258456336b40b60ea fixed the issue. Thanks!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1428199325.e3Bad230.22796--
-
---===============1597837738==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1597837738==--
+SGksCgp3ZSBoYXZlIGEgYmxhbmsgc2NyZWVuIG9uIGEgbWFjIGJvb2sgcmV0aW5hIHNpbmNlIGtl
+cm5lbCAzLjE2LgpUaGUgYmVoYXZvdXIgaXMgYSBiaXQgd2VpcmQ6CkluIGtlcm5lbCAzLjE2IGFu
+ZCBoaWdoZXIgaXQgaXMgbGlrZSB0aGlzLCB3aGVuIHlvdSByZXNldCBhbGwgZGlzcGxheSAKYW5k
+IHhyYW5kciBzZXR0aW5ncywgc29tZXRpbWVzIHRoZSBzY3JlZW4gY29tZXMgdXAgaW4gdGhlIGhp
+Z2hlc3QgCnBvc3NpYmxlIHJlc29sdXRpb24uCkJ1dCB3aGVuIHlvdSB0cnkgdG8gY2hvb3NlIGFu
+b3RoZXIgcmVzb2x1dGlvbiB0aGUgc2NyZWVuIHN0YXlzIHR1cm5zIGJsYWNrLgpCdXQgaW4gODAl
+IG9mIHRoZSB0cmllcyBpdCBzdGF5cyBibGFjaywgd2hlbiB0aGUgc2F2ZWQgc2NyZWVuIApyZXNv
+bHV0aW9ucyBpcyBhbm90aGVyIHRoYW4gdGhlIGhpZ2hlc3QgcmVzb2x1dGlvbiBpdCBhbHdheXMg
+c3RheXMgYmxhY2suCgpBcyBpbWlya2luIG1lbnRpb25lZCBvbiBpcmMsIHRoZSBwcm9ibGVtIGlz
+IGNhdXNlZCBieSB0aGUgIm5vdXZlYXUgRVsgICAKUERJU1BdWzAwMDA6MDE6MDAuMF0gMDA6MDAw
+NjowZjQ0OiBsaW5rIHRyYWluaW5nIGZhaWxlZCAiLgpUaGUgbGFzdCB3b3JraW5nIGtlcm5lbCB3
+YXMgMy4xNS4xMC4KCkkndmUgdHJpZWQgdG8gYmlzZWN0IGl0LCBidXQgaSB3YXNuJ3QgYWJsZSB0
+byBoYXZlIHRoZSBub3RlYm9vayBmb3IgdGhlIAp3aG9sZSB0aW1lLgpBbmQgc28gd2UgdHJpZWQg
+dG8gZG8gdGhlIHJlc3Qgb2YgdGhlIGJpc2VjdHMgcmVtb3RlLCBidXQgaSB0aGluayB3ZSd2ZSAK
+bWVzc2VkIHNvbWV0aGluZyB1cCBpbiB0aGUgY29vcmRpbmF0aW9uCkkgaGF2ZSBubyBjaGFuY2Ug
+dG8gdHJ5IGEgYmlzZWN0IGFnYWluIChub3Qgd2hlbiBpIHN0YXJ0IHdpdGggMy4xNS4xMCAKZ29v
+ZCBhbmQgMy4xNiBiYWQpLCBpdCB0YWtlcyB0byBtdWNoIHRpbWUgYW5kIGkgZG9uJ3QgaGF2ZSBh
+Y2Nlc3MgdG8gdGhlIApub3RlYm9vayBmb3Igc28gbG9uZy4KSWYgd2UgcmVhbGx5IG5lZWQgYSBi
+aXNlY3QsIG1heWJlIHlvdSBjb3VsZCBoZWxwIG1lIHdpdGggYSBiZXR0ZXIgCnN0YXJ0aW5nIGFu
+ZCBlbmRpbmcgdmVyc2lvbiB0byB0cnkKCkxvZ2ZpbGVzIGFuZCBzdHVmZiBjYW4gYmUgZm91bmQg
+YXQgdGhlIGVuZCBvZiB0aGUgbWFpbC4KCmJlc3QgcmVnYXJkcwpIYXJhbGQKCkhhcmR3YXJlIElu
+Zm8gY2FuIGJlIGZvdW5kIGF0OiBodHRwOi8vd3d3LmhqaXQuZGUvbWFjcmV0aW5hLnR4dAoKSGVy
+ZSBpcyB0aGUgYmlzZWN0IGxvZzoKQmlzZWN0aW5nOiBhIG1lcmdlIGJhc2UgbXVzdCBiZSB0ZXN0
+ZWQKWzE4NjBlMzc5ODc1ZGZlNzI3MWM2NDkwNThhZWRkZmZlNWFmZDlkMGRdIExpbnV4IDMuMTUK
+QmlzZWN0aW5nOiA2OTQwIHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hs
+eSAxMyBzdGVwcykKWzdiMjE1ZGUzZDBhYmJjNGY2ZGFmMmVmZDE5ZTg4MDlhZjA1NjQ0OTBdIE1l
+cmdlIGJyYW5jaCAnaTJjL2Zvci1uZXh0JyAKb2YgZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3Nj
+bS9saW51eC9rZXJuZWwvZ2l0L3dzYS9saW51eCBpbnRvIG5leHQKQmlzZWN0aW5nOiAzODkyIHJl
+dmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSAxMiBzdGVwcykKWzA0MzBl
+NDliNmU3YzZiNWUwNzZiZThmZWZkZWUwODk5NThjOWFkYWRdIGltYTogaW50cm9kdWNlIGltYV9r
+ZXJuZWxfcmVhZCgpCkJpc2VjdGluZzogMTU2NyByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFmdGVy
+IHRoaXMgKHJvdWdobHkgMTEgc3RlcHMpClsyOTM3ZjVlZmE1NzU0NzU0ZGFmNDZkZTc0NWY2NzM1
+MGY3ZjA2ZWMyXSBNZXJnZSBicmFuY2ggJ2Zvcl9saW51cycgb2YgCmdpdDovL2NhdmFuLmNvZG9u
+Lm9yZy51ay9wbGF0Zm9ybS1kcml2ZXJzLXg4NgpCaXNlY3Rpbmc6IDc4NSByZXZpc2lvbnMgbGVm
+dCB0byB0ZXN0IGFmdGVyIHRoaXMgKHJvdWdobHkgMTAgc3RlcHMpCltiYzFkZmZmMDRhNWQ0MDY0
+YmEwZGIxZmFiMTNmODRhYjRmMzMzZDJiXSBNZXJnZSBicmFuY2ggCidkcm0tbm91dmVhdS1uZXh0
+JyBvZiAKZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZ2l0L25vdXZlYXUvbGludXgtMi42
+IGludG8gZHJtLW5leHQKQmlzZWN0aW5nOiA0MDIgcmV2aXNpb25zIGxlZnQgdG8gdGVzdCBhZnRl
+ciB0aGlzIChyb3VnaGx5IDkgc3RlcHMpCls0ZmE2MmM4OTBjZWE4M2YyOGMzMGUxZDVkYzhmYzg2
+ZjYxMjEwMjgwXSBkcm0vaTkxNTogTW92ZSBidWZmZXIgcGlubmluZyAKYW5kIHJpbmcgc2VsZWN0
+aW9uIHRvIGludGVsX2NydGNfcGFnZV9mbGlwKCkKQmlzZWN0aW5nOiAxODkgcmV2aXNpb25zIGxl
+ZnQgdG8gdGVzdCBhZnRlciB0aGlzIChyb3VnaGx5IDggc3RlcHMpClthZWFiMGI1YWY3ZGY4ODI4
+NGQxMDFhYmY4ZDEyMWYwZTkxM2I4MWZmXSBkcm0vaTkxNTogZGlzYWJsZSBydW50aW1lIFBNIApp
+ZiBSQzYgaXMgZGlzYWJsZWQKQmlzZWN0aW5nOiA5NCByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFm
+dGVyIHRoaXMgKHJvdWdobHkgNyBzdGVwcykKWzlkMGE2ZmE2YzVlNjE4YmQ5NzhkNjI1YTIxNWRj
+NGEyNDBiYTNiM2NdIGRybS9pOTE1OiBhZGQgcmVuZGVyIHN0YXRlIAppbml0aWFsaXphdGlvbgpC
+aXNlY3Rpbmc6IDQ3IHJldmlzaW9ucyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSA2
+IHN0ZXBzKQpbYjNhM2YwM2Q3YjFjZmVjZjA1NWUzNTI4OTM3MWY0MmE0MDFmZGQ5NF0gZHJtL2k5
+MTU6IEZpeCBJTEsgR1BVIHJlc2V0IApkb21haW4gYml0cwpCaXNlY3Rpbmc6IDIzIHJldmlzaW9u
+cyBsZWZ0IHRvIHRlc3QgYWZ0ZXIgdGhpcyAocm91Z2hseSA1IHN0ZXBzKQpbYzBjMzUzMjk5YzQ4
+YjE5Yzk1ZGUxZTdiZGE0OTRjMGM3MTI0OGMwY10gZHJtL2k5MTUvY2h2OiBGaXggZ21idXMgZm9y
+IApwb3J0IEQKQmlzZWN0aW5nOiAxMSByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFmdGVyIHRoaXMg
+KHJvdWdobHkgNCBzdGVwcykKWzE5NjZlNTllYzEwNzU1OTdlZmY0ZDdmZWIzZDExNTM2YTI0MmQw
+ZWJdIGRybS9pOTE1L2NodjogVXNlIFJNVyB0byAKdG9nZ2xlIHN3aW5nIGNhbGMgaW5pdApCaXNl
+Y3Rpbmc6IDUgcmV2aXNpb25zIGxlZnQgdG8gdGVzdCBhZnRlciB0aGlzIChyb3VnaGx5IDMgc3Rl
+cHMpCls1MjU5OTdlMDBiZDMyYzNlMjVkNWY3N2MyNjcwM2Y3NmM0OThmNDI0XSBkcm0vaTkxNTog
+c2h1ZmZsZSBwYW5lbCBjb2RlCkJpc2VjdGluZzogMiByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFm
+dGVyIHRoaXMgKHJvdWdobHkgMiBzdGVwcykKWzc1ZjdmM2VjNjAwNTI0Yzk1NDRjYzMxNjk1MTU1
+ZjFhOWRkYmUxZDldIGRybS9pOTE1OiBGaXggbW1pbyB2cy4gQ1MgCmZsaXAgcmFjZSBvbiBJTEsr
+CkJpc2VjdGluZzogMCByZXZpc2lvbnMgbGVmdCB0byB0ZXN0IGFmdGVyIHRoaXMgKHJvdWdobHkg
+MSBzdGVwKQpbNjMwNGNkOTFlN2YwNWY4ODAyZWE2ZjkxMjg3Y2FjMDk3NDFkOWM0Nl0gZHJtL2k5
+MTU6IERyb3AgdGhlIGV4Y2Vzc2l2ZSAKdmJsYW5rIHdhaXRzIGZyb20gbW9kZXNldCBjb2RlcGF0
+aHMKNGZhNjJjODkwY2VhODNmMjhjMzBlMWQ1ZGM4ZmM4NmY2MTIxMDI4MCBpcyB0aGUgZmlyc3Qg
+YmFkIGNvbW1pdApjb21taXQgNGZhNjJjODkwY2VhODNmMjhjMzBlMWQ1ZGM4ZmM4NmY2MTIxMDI4
+MApBdXRob3I6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+CkRhdGU6ICAgVHVlIEFwciAxNSAyMTo0MTozOCAyMDE0ICswMzAwCgogICAgIGRybS9pOTE1OiBN
+b3ZlIGJ1ZmZlciBwaW5uaW5nIGFuZCByaW5nIHNlbGVjdGlvbiB0byAKaW50ZWxfY3J0Y19wYWdl
+X2ZsaXAoKQoKICAgICBBbGwgb2YgdGhlIC5xdWV1ZV9mbGlwKCkgY2FsbGJhY2tzIGR1cGxpY2F0
+ZSB0aGUgc2FtZSBjb2RlIHRvIHBpbiB0aGUKICAgICBidWZmZXJzIGFuZCBjYWxjdWxhdGUgdGhl
+IGd0dF9vZmZzZXQuIE1vdmUgdGhhdCBjb2RlIHRvCiAgICAgaW50ZWxfY3J0Y19wYWdlX2ZsaXAo
+KS4gSW4gb3JkZXIgdG8gZG8gdGhhdCB3ZSBtdXN0IGFsc28gbW92ZSB0aGUgcmluZwogICAgIHNl
+bGVjdGlvbiBsb2dpYyB0aGVyZS4KCiAgICAgU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KICAgICBSZXZpZXdlZC1ieTogQ2hyaXMg
+V2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CiAgICAgU2lnbmVkLW9mZi1ieTogRGFu
+aWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KCjowNDAwMDAgMDQwMDAwIDgyOWVi
+ZjBmYTFlN2IzMWMxNjIzYWE0OThlZmM5MmJjYTQyOWE0ODMgCjUxMTE0MDg3NGNkNDc1OWM0ZWFk
+ZWY4N2VlOTk2ODgwOGVmYTVmMmEgTSAgICAgIGRyaXZlcnMKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
