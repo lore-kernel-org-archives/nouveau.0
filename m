@@ -1,16 +1,12 @@
-From: Matti Nykyri <Matti.Nykyri-X3B1VOXEql0@public.gmane.org>
-Subject: Re: Nouveau kernel module exhausting CPU
-Date: Sun, 5 Apr 2015 21:48:12 +0300
-Message-ID: <20150405184812.GB20940@lyseo.edu.ouka.fi>
-References: <20150405174218.GA20940@lyseo.edu.ouka.fi>
- <CAKb7UviifdNpNFzK-yWaH9KODEANXUsX-nDkY+Gv-7=9x06Vaw@mail.gmail.com>
-Reply-To: Matti.Nykyri-X3B1VOXEql0@public.gmane.org
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89910] Max resolution of 1024x768 with nouveau
+Date: Sun, 05 Apr 2015 18:59:48 +0000
+Message-ID: <bug-89910-8800-cowmWzLXeB@http.bugs.freedesktop.org/>
+References: <bug-89910-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1655508461=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UviifdNpNFzK-yWaH9KODEANXUsX-nDkY+Gv-7=9x06Vaw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89910-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,139 +16,119 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGVyZiBzaG93cyB0aGlzOgoKLS0tLSBwZXJmIC0tLS0KICAgUGVyZlRvcDogICAgNDA3NSBpcnFz
-L3NlYyAga2VybmVsOjg4LjIlICBleGFjdDogIDAuMCUgWzQwMDBIeiBjeWNsZXNdLCAgKGFsbCwg
-NCBDUFVzKQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-CgogICAgMjAuMjIlICBba2VybmVsXSAgICAgICAgICAgICAgICAgW2tdIF9fZmdldF9saWdodCAg
-ICAgICAgICAgICAgIAogICAgMTkuMjklICBba2VybmVsXSAgICAgICAgICAgICAgICAgW2tdIHNv
-Y2tfcG9sbCAgICAgICAgICAgICAgICAgIAogICAgMTYuNTclICBba2VybmVsXSAgICAgICAgICAg
-ICAgICAgW2tdIGRvX3NlbGVjdCAgICAgICAgICAgICAgICAgIAogICAgMTIuOTIlICBba2VybmVs
-XSAgICAgICAgICAgICAgICAgW2tdIHVuaXhfcG9sbCAgICAgICAgICAgICAgICAgIAogICAgIDIu
-OTYlICBba2VybmVsXSAgICAgICAgICAgICAgICAgW2tdIGRvX3Jhd19zcGluX2xvY2sgICAgICAg
-ICAgIAogICAgIDEuNTUlICBYb3JnICAgICAgICAgICAgICAgICAgICAgWy5dIFdhaXRGb3JTb21l
-dGhpbmcgICAgICAgICAgIAotLS0tIGVuZCAtLS0tCgpJIGRpZCBzdHJhY2UgYmVmb3JlIHdpdGgg
-c2ltaWxhciByZXN1bHRzLiBUaGUgcHJvYmxlbSBpcyBpbnNpZGUga2VybmVsIGFuZCBwcm9iYWJw
-bHkgaW4gbm91dmVhdSBkcml2ZXIuIFNob3VsZCBJIHRyeSB0byBkaXNhYmxlIGFsbCBwb3dlciBt
-YW5hZ2VtZW50PyBIb3cgc2hvdWxkIEkgZGVidWcgdGhlIHJ1bm5pbmcgbm91dmVhdSBtb2R1bGU/
-CgpPbiBTdW4sIEFwciAwNSwgMjAxNSBhdCAwMTo1Njo1MVBNIC0wNDAwLCBJbGlhIE1pcmtpbiB3
-cm90ZToKPiBZb3UgY2FuIHVzZSBwZXJmIHRvIHRyeSB0byBzZWUgd2hlcmUgdGhlIGNwdSB0aW1l
-IGlzIGdvaW5nLgo+IAo+IE9uIFN1biwgQXByIDUsIDIwMTUgYXQgMTo0MiBQTSwgTWF0dGkgTnlr
-eXJpIDxNYXR0aS5OeWt5cmlAaWtpLmZpPiB3cm90ZToKPiA+IEhlbGxvCj4gPgo+ID4gSSByZWNl
-bnRseSBzd2l0Y2hlZCBmcm9tIE52aWRpYSBiaW5hcnkgZHJpdmVyIHRvIE5vdXZlYXUuIEkgaGF2
-ZSBlbmNvdW50ZXJlZCBhIHBvc3NpYmxlIGJ1ZyBpbiB0aGUga2VybmVsIG1vZHVsZS4gQmVmb3Jl
-IEkgZmlsZSBhIGJ1ZyByZXBvcnQgSSB3b3VsZCBsaWtlIHRvIGtub3cgaWYgdGhpcyBpcyBhIGtu
-b3duIGlzc3VlIG9yIG5vdC4KPiA+Cj4gPiBJIGJlbGlldmUgaXQgaXMgcmVsYXRlZCB0byBzbGVl
-cCBzdGF0ZSBhbmQgcG93ZXIgbWFuYWdlbWVudCBvZiB0aGUgZHJpdmVyLgo+ID4KPiA+IFRoZSBC
-dWc6Cj4gPgo+ID4gV2hlbiB0aGUgY29tcHV0ZXIgaXMgbGVmdCBvbiBpdCdzIG93biB0byBnbyB0
-byBhIHBvd2VyIHNhdmUgbW9kZSBYIHRha2VzIDEwMCUgQ1BVLXRpbWUgaW4gaXRzIHRocmVhZC4g
-QSB0cmFjZSB0byBYIHNlcnZlciBzaG93cyB0aGlzIGlzIGNhdXNlZCBieSBzZWxlY3Qtc3lzdGVt
-Y2FsbCBpbW1lZGlhdGVseSByZXR1cm5pbmcgd2hlbiBYIGlzIHBvbGxpbmcgaXRzIEZEJ3MuIFRo
-ZSBGRCBucm8gMTIgaXMgY29uc3RhbnRseSBpbmRpY2F0aW5nIHRoYXQgdGhlcmUgaXMgZGF0YSB0
-byByZWFkIHNvIFggd2lsbCBuZXZlciBzbGVlcC4gVGhlIEZEIDEyIGlzIGEgci93IHNvY2tldCBj
-b25uZWN0ZWQgdmlhIG5ldGxpbmsgdG8ga2VybmVsJ3MgVUVWRU5ULgo+ID4KPiA+IFJlc3RhcnRp
-bmcgWCByZXNldHMgdGhlIHByb2JsZW0gdG8gd2FpdCBhZ2FpbiBmb3IgdGhlIHNsZWVwIHN0YXRl
-LiBBIG5ldyBzbGVlcCB3aWxsIG1ha2UgdGhlIHByb2JsZW0gYXJpY2UgYWdhaW4uCj4gPgo+ID4K
-PiA+IEhhcmR3YXJlOgo+ID4KPiA+IEkgaGF2ZSBGZXJtaSBuVmlkaWEgZ3B1IEdGMTA0IE5WQzQg
-KEdlRm9yY2UgR1RYIDQ2MCkgYW5kIGk1IHF1YWQgY29yZSBhbWQ2NCBwcm9jZXNzb3IKPiA+Cj4g
-PiBTb2Z0d2FyZToKPiA+Cj4gPiBTeXN0ZW0gaXMgcnVubmluZyBnZW50b28gd2l0aCBzdGFibGUg
-J2RlZmF1bHQvbGludXgvYW1kNjQvMTMuMC9kZXNrdG9wL2tkZSctcHJvZmlsZQo+ID4KPiA+IEtl
-cm5lbDoKPiA+IHN5cy1rZXJuZWwvZ2VudG9vLXNvdXJjZXMtMy4xOC43Cj4gPgo+ID4gTm91dmVh
-dSBkcml2ZXI6Cj4gPiB4MTEtZHJpdmVycy94Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjExCj4gPgo+
-ID4gWG9yZy1zZXJ2ZXI6Cj4gPiB4MTEtYmFzZS94b3JnLXNlcnZlci0xLjE2LjQKPiA+Cj4gPiBL
-TVMgaXMgdXNlZCBmb3Igc2VsZWN0aW5nIHZpZGVvIG1vZGVzLgo+ID4KPiA+IC0tLS0gZG1lc2cg
-LS0tLQo+ID4gWyAgICAwLjYyMzA2M10gW2RybV0gSW5pdGlhbGl6ZWQgZHJtIDEuMS4wIDIwMDYw
-ODEwCj4gPiBbICAgIDAuNjIzMjcyXSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDE6MDAuMF0g
-Qk9PVDAgIDogMHgwYzQxMDBhMQo+ID4gWyAgICAwLjYyMzI3NF0gbm91dmVhdSAgWyAgREVWSUNF
-XVswMDAwOjAxOjAwLjBdIENoaXBzZXQ6IEdGMTA0IChOVkM0KQo+ID4gWyAgICAwLjYyMzI3NV0g
-bm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAxOjAwLjBdIEZhbWlseSA6IE5WQzAKPiA+IFsgICAg
-MC42MjMzMDddIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSBjaGVja2luZyBQUkFN
-SU4gZm9yIGltYWdlLi4uCj4gPiBbICAgIDAuNzE2OTgzXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAw
-MDA6MDE6MDAuMF0gLi4uIGFwcGVhcnMgdG8gYmUgdmFsaWQKPiA+IFsgICAgMC43MTY5ODVdIG5v
-dXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSB1c2luZyBpbWFnZSBmcm9tIFBSQU1JTgo+
-ID4gWyAgICAwLjcxNzA3NV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAxOjAwLjBdIEJJVCBz
-aWduYXR1cmUgZm91bmQKPiA+IFsgICAgMC43MTcwNzZdIG5vdXZlYXUgIFsgICBWQklPU11bMDAw
-MDowMTowMC4wXSB2ZXJzaW9uIDcwLjA0LjFiLjAwLjAyCj4gPiBbICAgIDAuNzM5MzE5XSBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogaXJxIDM0IGZvciBNU0kvTVNJLVgKPiA+IFsgICAgMC43MzkzMjdd
-IG5vdXZlYXUgIFsgICAgIFBNQ11bMDAwMDowMTowMC4wXSBNU0kgaW50ZXJydXB0cyBlbmFibGVk
-Cj4gPiBbICAgIDAuNzM5MzU5XSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gUkFN
-IHR5cGU6IEdERFI1Cj4gPiBbICAgIDAuNzM5MzYwXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6
-MDE6MDAuMF0gUkFNIHNpemU6IDEwMjQgTWlCCj4gPiBbICAgIDAuNzM5MzYxXSBub3V2ZWF1ICBb
-ICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gICAgWkNPTVA6IDAgdGFncwo+ID4gWyAgICAwLjc0NDkz
-NF0gbm91dmVhdSAgWyAgICBWT0xUXVswMDAwOjAxOjAwLjBdIEdQVSB2b2x0YWdlOiA4NzUwMDB1
-dgo+ID4gWyAgICAwLjc3MzMwNF0gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIEZB
-TiBjb250cm9sOiBQV00KPiA+IFsgICAgMC43NzMzMTZdIG5vdXZlYXUgIFsgIFBUSEVSTV1bMDAw
-MDowMTowMC4wXSBmYW4gbWFuYWdlbWVudDogYXV0b21hdGljCj4gPiBbICAgIDAuNzczMzQzXSBu
-b3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6MDE6MDAuMF0gaW50ZXJuYWwgc2Vuc29yOiB5ZXMKPiA+
-IFsgICAgMC43OTM0MTddIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwMzogY29y
-ZSA1MCBNSHogbWVtb3J5IDEzNSBNSHoKPiA+IFsgICAgMC43OTM0MTldIG5vdXZlYXUgIFsgICAg
-IENMS11bMDAwMDowMTowMC4wXSAwNzogY29yZSA0MDUgTUh6IG1lbW9yeSAzMjQgTUh6Cj4gPiBb
-ICAgIDAuNzkzNDIxXSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDE6MDAuMF0gMGM6IGNvcmUg
-NDA1IE1IeiBtZW1vcnkgMTkwMCBNSHoKPiA+IFsgICAgMC43OTM0MjNdIG5vdXZlYXUgIFsgICAg
-IENMS11bMDAwMDowMTowMC4wXSAwZjogY29yZSA4MDAgTUh6IG1lbW9yeSAxOTAwIE1Iego+ID4g
-WyAgICAwLjc5MzQ5OF0gbm91dmVhdSAgWyAgICAgQ0xLXVswMDAwOjAxOjAwLjBdIC0tOiBjb3Jl
-IDUwIE1IeiBtZW1vcnkgMTM1IE1Iego+ID4gWyAgICAwLjgwMzE1MF0gbm91dmVhdSAgWyAgICAg
-RFJNXSBWUkFNOiAxMDI0IE1pQgo+ID4gWyAgICAwLjgwMzE1MV0gbm91dmVhdSAgWyAgICAgRFJN
-XSBHQVJUOiAxMDQ4NTc2IE1pQgo+ID4gWyAgICAwLjgwMzE1NF0gbm91dmVhdSAgWyAgICAgRFJN
-XSBUTURTIHRhYmxlIHZlcnNpb24gMi4wCj4gPiBbICAgIDAuODAzMTU1XSBub3V2ZWF1ICBbICAg
-ICBEUk1dIERDQiB2ZXJzaW9uIDQuMAo+ID4gWyAgICAwLjgwMzE1N10gbm91dmVhdSAgWyAgICAg
-RFJNXSBEQ0Igb3V0cCAwMDogMDQwMDAzMTAgMDAwMDAwMDAKPiA+IFsgICAgMC44MDMxNThdIG5v
-dXZlYXUgIFsgICAgIERSTV0gRENCIG91dHAgMDE6IDAyMDExMzAwIDAwMDIwMDMwCj4gPiBbICAg
-IDAuODAzMTU5XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBvdXRwIDAyOiAwMTAxMTMwMiAwMDAy
-MDAzMAo+ID4gWyAgICAwLjgwMzE2MF0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMzog
-MDIwMjIzNjIgMDAwMjAwMTAKPiA+IFsgICAgMC44MDMxNjFdIG5vdXZlYXUgIFsgICAgIERSTV0g
-RENCIG91dHAgMDQ6IDA4MDMzMzgyIDAwMDIwMDMwCj4gPiBbICAgIDAuODAzMTYyXSBub3V2ZWF1
-ICBbICAgICBEUk1dIERDQiBjb25uIDAwOiAwMDAwMDAwMAo+ID4gWyAgICAwLjgwMzE2NF0gbm91
-dmVhdSAgWyAgICAgRFJNXSBEQ0IgY29ubiAwMTogMDAwMDExMzAKPiA+IFsgICAgMC44MDMxNjVd
-IG5vdXZlYXUgIFsgICAgIERSTV0gRENCIGNvbm4gMDI6IDAwMDAyMjYxCj4gPiBbICAgIDAuODAz
-MTY2XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBjb25uIDAzOiAwMDAxMDMzMAo+ID4gWyAgICAw
-LjgwMzgxOV0gW2RybV0gZm9yY2luZyBWR0EtMSBjb25uZWN0b3IgT0ZGCj4gPiBbICAgIDAuODAz
-OTI4XSBbZHJtXSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEw
-LjIwMTMpLgo+ID4gWyAgICAwLjgwMzkyOF0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2Ug
-dmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4KPiA+IFsgICAgMC44MTg2OTldIG5vdXZlYXUgIFsgICAg
-IERSTV0gTU06IHVzaW5nIENPUFkxIGZvciBidWZmZXIgY29waWVzCj4gPiBbICAgIDEuMDYzMzAx
-XSBub3V2ZWF1ICBbICAgICBEUk1dIGFsbG9jYXRlZCAxOTIweDEwODAgZmI6IDB4NjAwMDAsIGJv
-IGZmZmY4ODAyMTViZWU4MDAKPiA+IFsgICAgMS4wNjM0MjNdIGZiY29uOiBub3V2ZWF1ZmIgKGZi
-MCkgaXMgcHJpbWFyeSBkZXZpY2UKPiA+IFsgICAgMS4xODE4MTZdIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIgZGV2aWNlCj4gPiBbICAgIDEuMTgxODE3
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogcmVnaXN0ZXJlZCBwYW5pYyBub3RpZmllcgo+ID4gWyAg
-ICAxLjE5Nzk5MF0gW2RybV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAxLjIuMSAyMDEyMDgwMSBmb3Ig
-MDAwMDowMTowMC4wIG9uIG1pbm9yIDAKPiA+IC0tLS0gZW5kIC0tLS0KPiA+Cj4gPiBYIHVzZXMg
-MiBzZXBhcmF0ZSBzY3JlZW5zIGluIFphcGhvZEhlYWRzIG1vZGUKPiA+Cj4gPiAtLS0tIFhvcmcu
-MC5sb2cgLS0tLQo+ID4gWzE3NjQwNC4zNzhdIChJSSkgeGZyZWU4NjogQWRkaW5nIGRybSBkZXZp
-Y2UgKC9kZXYvZHJpL2NhcmQwKQo+ID4gWzE3NjQwNC4zODRdIChJSSkgTG9hZE1vZHVsZTogIm5v
-dXZlYXUiCj4gPiBbMTc2NDA0LjM4NV0gKElJKSBMb2FkaW5nIC91c3IvbGliNjQveG9yZy9tb2R1
-bGVzL2RyaXZlcnMvbm91dmVhdV9kcnYuc28KPiA+IFsxNzY0MDQuMzg1XSAoSUkpIE1vZHVsZSBu
-b3V2ZWF1OiB2ZW5kb3I9IlguT3JnIEZvdW5kYXRpb24iCj4gPiBbMTc2NDA0LjM4NV0gKElJKSBO
-T1VWRUFVIGRyaXZlcgo+ID4gWzE3NjQwNC4zODVdIChJSSkgTk9VVkVBVSBkcml2ZXIgZm9yIE5W
-SURJQSBjaGlwc2V0IGZhbWlsaWVzIDoKPiA+IFsxNzY0MDQuMzg2XSAoSUkpIFtkcm1dIG5vdXZl
-YXUgaW50ZXJmYWNlIHZlcnNpb246IDEuMi4xCj4gPiBbMTc2NDA0LjM4Nl0gKElJKSBbZHJtXSBu
-b3V2ZWF1IGludGVyZmFjZSB2ZXJzaW9uOiAxLjIuMQo+ID4gWzE3NjQwNC4zODddICgtLSkgTk9V
-VkVBVSgwKTogQ2hpcHNldDogIk5WSURJQSBOVkM0Igo+ID4gWzE3NjQwNC4zODddICg9PSkgTk9V
-VkVBVSgwKTogRGVwdGggMjQsICgtLSkgZnJhbWVidWZmZXIgYnBwIDMyCj4gPiBbMTc2NDA0LjM4
-N10gKD09KSBOT1VWRUFVKDApOiBSR0Igd2VpZ2h0IDg4OAo+ID4gWzE3NjQwNC4zODddICg9PSkg
-Tk9VVkVBVSgwKTogRGVmYXVsdCB2aXN1YWwgaXMgVHJ1ZUNvbG9yCj4gPiBbMTc2NDA0LjM4N10g
-KCoqKSBOT1VWRUFVKDApOiBPcHRpb24gIlphcGhvZEhlYWRzIiAiSERNSS0xIgo+ID4gWzE3NjQw
-NC4zODddICg9PSkgTk9VVkVBVSgwKTogVXNpbmcgSFcgY3Vyc29yCj4gPiBbMTc2NDA0LjM4N10g
-KD09KSBOT1VWRUFVKDApOiBHTFggc3luYyB0byBWQmxhbmsgZW5hYmxlZC4KPiA+IFsxNzY0MDQu
-Mzg3XSAoPT0pIE5PVVZFQVUoMCk6IFBhZ2UgZmxpcHBpbmcgZW5hYmxlZAo+ID4gWzE3NjQwNC4z
-ODddICg9PSkgTk9VVkVBVSgwKTogU3dhcCBsaW1pdCBzZXQgdG8gMSBbTWF4IGFsbG93ZWQgMl0K
-PiA+IFsxNzY0MDQuMzg3XSAoPT0pIE5PVVZFQVUoMCk6IFBhZ2UgZmxpcHBpbmcgc3luY2VkIHRv
-IHZibGFuayBieSBrZXJuZWwuCj4gPiBbMTc2NDA0LjM4N10gKElJKSBOT1VWRUFVKDApOiBJbml0
-aWFsaXppbmcgb3V0cHV0cyAuLi4KPiA+IFsxNzY0MDQuNTA3XSAoSUkpIE5PVVZFQVUoMCk6IE91
-dHB1dCBIRE1JLTEgdXNpbmcgbW9uaXRvciBzZWN0aW9uIE1vbml0b3IwCj4gPiBbMTc2NDA0LjUw
-N10gKCoqKSBOT1VWRUFVKDApOiBPcHRpb24gIlByZWZlcnJlZE1vZGUiICIxOTIweDEwODBfMjMi
-Cj4gPiBbMTc2NDA0LjUwOF0gKFdXKSBOT1VWRUFVKDApOiBPcHRpb24gIk1heENsb2NrIiByZXF1
-aXJlcyBhIGZyZXF1ZW5jeSB2YWx1ZQo+ID4gZXRjLi4uCj4gPiAtLS0tIGVuZCAtLS0tCj4gPgo+
-ID4gQW55IGlkZWFzPwo+ID4KPiA+IC0tCj4gPiAtTWF0dGkKPiA+IF9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
-ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1CgotLSAKLU1hdHRpCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1655508461==
+Content-Type: multipart/alternative; boundary="1428260387.4A6B1.20424"; charset="UTF-8"
+
+
+--1428260387.4A6B1.20424
+Date: Sun, 5 Apr 2015 18:59:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89910
+
+Tom Winterhalder <tom.winterhalder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTABUG
+
+--- Comment #4 from Tom Winterhalder <tom.winterhalder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It seems that the nomodeset was added during installation. 
+
+The nouveau.config was added by me trying to find solve the issue.
+
+Finally removing both settings solved the resoulution problem.
+
+Thank you very much.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1428260387.4A6B1.20424
+Date: Sun, 5 Apr 2015 18:59:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:tom.winterhalder&#64;gmail.com" title="Tom Winterhalder &lt;tom.winterhalder&#64;gmail.com&gt;"> <span class="fn">Tom Winterhalder</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Max resolution of 1024x768 with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89910">bug 89910</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Max resolution of 1024x768 with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89910#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - Max resolution of 1024x768 with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89910">bug 89910</a>
+              from <span class="vcard"><a class="email" href="mailto:tom.winterhalder&#64;gmail.com" title="Tom Winterhalder &lt;tom.winterhalder&#64;gmail.com&gt;"> <span class="fn">Tom Winterhalder</span></a>
+</span></b>
+        <pre>It seems that the nomodeset was added during installation. 
+
+The nouveau.config was added by me trying to find solve the issue.
+
+Finally removing both settings solved the resoulution problem.
+
+Thank you very much.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1428260387.4A6B1.20424--
+
+--===============1655508461==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1655508461==--
