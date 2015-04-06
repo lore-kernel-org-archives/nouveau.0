@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
- (G94) constantly too high
-Date: Mon, 06 Apr 2015 00:55:39 +0000
-Message-ID: <bug-87885-8800-iT8wESXd0N@http.bugs.freedesktop.org/>
-References: <bug-87885-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82152] [NVE7] NULL deref when putting card back to
+ sleep after unsuccessful init (HUB_INIT timeout)
+Date: Mon, 06 Apr 2015 07:41:43 +0000
+Message-ID: <bug-82152-8800-j6wQbq6NuT@http.bugs.freedesktop.org/>
+References: <bug-82152-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0505954359=="
+Content-Type: multipart/mixed; boundary="===============0947695740=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82152-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0505954359==
-Content-Type: multipart/alternative; boundary="1428281739.E73587C1.10840"; charset="UTF-8"
+--===============0947695740==
+Content-Type: multipart/alternative; boundary="1428306103.caF04Ae1.10351"; charset="UTF-8"
 
 
---1428281739.E73587C1.10840
-Date: Mon, 6 Apr 2015 00:55:39 +0000
+--1428306103.caF04Ae1.10351
+Date: Mon, 6 Apr 2015 07:41:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87885
+https://bugs.freedesktop.org/show_bug.cgi?id=82152
 
---- Comment #19 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
-Ping :)
-
-(no need to rush; just making sure this doesn't get forgotten)
+--- Comment #10 from Patrick Burroughs <celticmadman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Tried again with Linux 3.19.3 and Mesa 10.5.2, no changes.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1428281739.E73587C1.10840
-Date: Mon, 6 Apr 2015 00:55:39 +0000
+--1428306103.caF04Ae1.10351
+Date: Mon, 6 Apr 2015 07:41:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c19">Comment # 19</a>
+   title="NEW - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
-              from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
+   title="NEW - [NVE7] NULL deref when putting card back to sleep after unsuccessful init (HUB_INIT timeout)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82152">bug 82152</a>
+              from <span class="vcard"><a class="email" href="mailto:celticmadman&#64;gmail.com" title="Patrick Burroughs &lt;celticmadman&#64;gmail.com&gt;"> <span class="fn">Patrick Burroughs</span></a>
 </span></b>
-        <pre>Ping :)
-
-(no need to rush; just making sure this doesn't get forgotten)</pre>
+        <pre>Tried again with Linux 3.19.3 and Mesa 10.5.2, no changes.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1428281739.E73587C1.10840--
+--1428306103.caF04Ae1.10351--
 
---===============0505954359==
+--===============0947695740==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0505954359==--
+--===============0947695740==--
