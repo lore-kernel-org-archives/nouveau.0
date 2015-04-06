@@ -1,100 +1,92 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH v2] nv50,
-	nvc0: limit the y-tiling of 3d textures to the first level's tiling
-Date: Sun,  5 Apr 2015 20:46:30 -0400
-Message-ID: <1428281190-23750-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
+ (G94) constantly too high
+Date: Mon, 06 Apr 2015 00:55:39 +0000
+Message-ID: <bug-87885-8800-iT8wESXd0N@http.bugs.freedesktop.org/>
+References: <bug-87885-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0505954359=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2UgbGltaXQgeS10aWxpbmcgdG8gMHgyMCB3aGVuIGRlcHRoIGlzIGludm9sdmVkLiBIb3dldmVy
-IHRoZSBmdW5jdGlvbiBpcwpydW4gZm9yIGVhY2ggbWlwbGV2ZWwsIGFuZCB0aGUgaGFyZHdhcmUg
-ZXhwZWN0cyBtaXBsZXZlbCAwIHRvIGhhdmUgdGhlCmhpZ2hlc3QgdGlsaW5nIHNldHRpbmdzLiBQ
-ZXJmb3JtIHRoZSB5LXRpbGluZyBsaW1pdCBvbiBhbGwgbGV2ZWxzIG9mIGEKM2QgdGV4dHVyZSwg
-bm90IGp1c3QgdGhlIG9uZXMgdGhhdCBoYXZlIGRlcHRoLgoKRml4ZXM6CiAgdGV4ZWxGZXRjaCBm
-cyBzYW1wbGVyM0QgOTh4MTI5eDEtOTh4MTI5eDkKClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2lu
-IDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCgp2MjogcmV3b3JrIHRvIG1ha2UgdGhlIGRpbXMg
-Y2FsY3VsYXRpb24gdGFrZSBhbiBleHRyYSBhcmd1bWVudAppbnN0ZWFkLiBUaGlzIHdpbGwgY2hh
-bmdlIHRoZSB0aWxpbmcgZm9yIGRlcHRoPT0xIDNkIHRleHR1cmVzLCBidXQgSQpjYW4ndCBicmlu
-ZyBteXNlbGYgdG8gY2FyZS4KCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUw
-X21pcHRyZWUuYyAgfCAxNCArKysrKysrKy0tLS0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252NTAvbnY1MF9yZXNvdXJjZS5oIHwgIDMgKystCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX21pcHRyZWUuYyAgfCAgNiArKystLS0KIDMgZmlsZXMgY2hhbmdlZCwg
-MTMgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0cmVlLmMgYi9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwppbmRleCAyZTQxMDkxLi43NDRhM2E1IDEw
-MDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUu
-YworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX21pcHRyZWUuYwpA
-QCAtMjksNyArMjksOCBAQAogI2luY2x1ZGUgIm52NTAvbnY1MF9yZXNvdXJjZS5oIgogCiB1aW50
-MzJfdAotbnY1MF90ZXhfY2hvb3NlX3RpbGVfZGltc19oZWxwZXIodW5zaWduZWQgbngsIHVuc2ln
-bmVkIG55LCB1bnNpZ25lZCBueikKK252NTBfdGV4X2Nob29zZV90aWxlX2RpbXNfaGVscGVyKHVu
-c2lnbmVkIG54LCB1bnNpZ25lZCBueSwgdW5zaWduZWQgbnosCisgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBib29sZWFuIGlzXzNkKQogewogICAgdWludDMyX3QgdGlsZV9tb2RlID0g
-MHgwMDA7CiAKQEAgLTQxLDcgKzQyLDcgQEAgbnY1MF90ZXhfY2hvb3NlX3RpbGVfZGltc19oZWxw
-ZXIodW5zaWduZWQgbngsIHVuc2lnbmVkIG55LCB1bnNpZ25lZCBueikKICAgIGVsc2UKICAgIGlm
-IChueSA+ICA4KSB0aWxlX21vZGUgPSAweDAxMDsgLyogaGVpZ2h0IDE2IHRpbGVzICovCiAKLSAg
-IGlmIChueiA9PSAxKQorICAgaWYgKCFpc18zZCkKICAgICAgIHJldHVybiB0aWxlX21vZGU7CiAg
-ICBlbHNlCiAgICAgICBpZiAodGlsZV9tb2RlID4gMHgwMjApCkBAIC01MiwxNCArNTMsMTUgQEAg
-bnY1MF90ZXhfY2hvb3NlX3RpbGVfZGltc19oZWxwZXIodW5zaWduZWQgbngsIHVuc2lnbmVkIG55
-LCB1bnNpZ25lZCBueikKICAgIGlmIChueiA+IDgpIHJldHVybiB0aWxlX21vZGUgfCAweDQwMDsg
-LyogZGVwdGggMTYgdGlsZXMgKi8KICAgIGlmIChueiA+IDQpIHJldHVybiB0aWxlX21vZGUgfCAw
-eDMwMDsgLyogZGVwdGggOCB0aWxlcyAqLwogICAgaWYgKG56ID4gMikgcmV0dXJuIHRpbGVfbW9k
-ZSB8IDB4MjAwOyAvKiBkZXB0aCA0IHRpbGVzICovCisgICBpZiAobnogPiAxKSByZXR1cm4gdGls
-ZV9tb2RlIHwgMHgxMDA7IC8qIGRlcHRoIDIgdGlsZXMgKi8KIAotICAgcmV0dXJuIHRpbGVfbW9k
-ZSB8IDB4MTAwOworICAgcmV0dXJuIHRpbGVfbW9kZTsKIH0KIAogc3RhdGljIHVpbnQzMl90Ci1u
-djUwX3RleF9jaG9vc2VfdGlsZV9kaW1zKHVuc2lnbmVkIG54LCB1bnNpZ25lZCBueSwgdW5zaWdu
-ZWQgbnopCitudjUwX3RleF9jaG9vc2VfdGlsZV9kaW1zKHVuc2lnbmVkIG54LCB1bnNpZ25lZCBu
-eSwgdW5zaWduZWQgbnosIGJvb2xlYW4gaXNfM2QpCiB7Ci0gICByZXR1cm4gbnY1MF90ZXhfY2hv
-b3NlX3RpbGVfZGltc19oZWxwZXIobngsIG55ICogMiwgbnopOworICAgcmV0dXJuIG52NTBfdGV4
-X2Nob29zZV90aWxlX2RpbXNfaGVscGVyKG54LCBueSAqIDIsIG56LCBpc18zZCk7CiB9CiAKIHN0
-YXRpYyB1aW50MzJfdApAQCAtMzA0LDcgKzMwNiw3IEBAIG52NTBfbWlwdHJlZV9pbml0X2xheW91
-dF90aWxlZChzdHJ1Y3QgbnY1MF9taXB0cmVlICptdCkKIAogICAgICAgbHZsLT5vZmZzZXQgPSBt
-dC0+dG90YWxfc2l6ZTsKIAotICAgICAgbHZsLT50aWxlX21vZGUgPSBudjUwX3RleF9jaG9vc2Vf
-dGlsZV9kaW1zKG5ieCwgbmJ5LCBkKTsKKyAgICAgIGx2bC0+dGlsZV9tb2RlID0gbnY1MF90ZXhf
-Y2hvb3NlX3RpbGVfZGltcyhuYngsIG5ieSwgZCwgbXQtPmxheW91dF8zZCk7CiAKICAgICAgIHRz
-eCA9IE5WNTBfVElMRV9TSVpFX1gobHZsLT50aWxlX21vZGUpOyAvKiB4IGlzIHRpbGUgcm93IHBp
-dGNoIGluIGJ5dGVzICovCiAgICAgICB0c3kgPSBOVjUwX1RJTEVfU0laRV9ZKGx2bC0+dGlsZV9t
-b2RlKTsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBf
-cmVzb3VyY2UuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcmVzb3Vy
-Y2UuaAppbmRleCBjMDZkYWEzLi4zNmQ3MGQ4IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Jlc291cmNlLmgKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252NTAvbnY1MF9yZXNvdXJjZS5oCkBAIC0zNCw3ICszNCw4IEBAIG52NTBfc2Ny
-ZWVuX2luaXRfcmVzb3VyY2VfZnVuY3Rpb25zKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbik7
-CiAjZW5kaWYgLyogX19OVkMwX1JFU09VUkNFX0hfXyAqLwogCiB1aW50MzJfdAotbnY1MF90ZXhf
-Y2hvb3NlX3RpbGVfZGltc19oZWxwZXIodW5zaWduZWQgbngsIHVuc2lnbmVkIG55LCB1bnNpZ25l
-ZCBueik7CitudjUwX3RleF9jaG9vc2VfdGlsZV9kaW1zX2hlbHBlcih1bnNpZ25lZCBueCwgdW5z
-aWduZWQgbnksIHVuc2lnbmVkIG56LAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-Ym9vbGVhbiBpc18zZCk7CiAKIHN0cnVjdCBudjUwX21pcHRyZWVfbGV2ZWwgewogICAgdWludDMy
-X3Qgb2Zmc2V0OwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAv
-bnZjMF9taXB0cmVlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX21p
-cHRyZWUuYwppbmRleCAxYmVkYTdkLi5mYzc1ZmM2IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX21pcHRyZWUuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnZjMC9udmMwX21pcHRyZWUuYwpAQCAtMjksOSArMjksOSBAQAogI2luY2x1
-ZGUgIm52YzAvbnZjMF9yZXNvdXJjZS5oIgogCiBzdGF0aWMgdWludDMyX3QKLW52YzBfdGV4X2No
-b29zZV90aWxlX2RpbXModW5zaWduZWQgbngsIHVuc2lnbmVkIG55LCB1bnNpZ25lZCBueikKK252
-YzBfdGV4X2Nob29zZV90aWxlX2RpbXModW5zaWduZWQgbngsIHVuc2lnbmVkIG55LCB1bnNpZ25l
-ZCBueiwgYm9vbGVhbiBpc18zZCkKIHsKLSAgIHJldHVybiBudjUwX3RleF9jaG9vc2VfdGlsZV9k
-aW1zX2hlbHBlcihueCwgbnksIG56KTsKKyAgIHJldHVybiBudjUwX3RleF9jaG9vc2VfdGlsZV9k
-aW1zX2hlbHBlcihueCwgbnksIG56LCBpc18zZCk7CiB9CiAKIHN0YXRpYyB1aW50MzJfdApAQCAt
-MjExLDcgKzIxMSw3IEBAIG52YzBfbWlwdHJlZV9pbml0X2xheW91dF90aWxlZChzdHJ1Y3QgbnY1
-MF9taXB0cmVlICptdCkKIAogICAgICAgbHZsLT5vZmZzZXQgPSBtdC0+dG90YWxfc2l6ZTsKIAot
-ICAgICAgbHZsLT50aWxlX21vZGUgPSBudmMwX3RleF9jaG9vc2VfdGlsZV9kaW1zKG5ieCwgbmJ5
-LCBkKTsKKyAgICAgIGx2bC0+dGlsZV9tb2RlID0gbnZjMF90ZXhfY2hvb3NlX3RpbGVfZGltcyhu
-YngsIG5ieSwgZCwgbXQtPmxheW91dF8zZCk7CiAKICAgICAgIHRzeCA9IE5WQzBfVElMRV9TSVpF
-X1gobHZsLT50aWxlX21vZGUpOyAvKiB4IGlzIHRpbGUgcm93IHBpdGNoIGluIGJ5dGVzICovCiAg
-ICAgICB0c3kgPSBOVkMwX1RJTEVfU0laRV9ZKGx2bC0+dGlsZV9tb2RlKTsKLS0gCjIuMC41Cgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBt
-YWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+
+--===============0505954359==
+Content-Type: multipart/alternative; boundary="1428281739.E73587C1.10840"; charset="UTF-8"
+
+
+--1428281739.E73587C1.10840
+Date: Mon, 6 Apr 2015 00:55:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=87885
+
+--- Comment #19 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
+Ping :)
+
+(no need to rush; just making sure this doesn't get forgotten)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1428281739.E73587C1.10840
+Date: Mon, 6 Apr 2015 00:55:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
+              from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
+</span></b>
+        <pre>Ping :)
+
+(no need to rush; just making sure this doesn't get forgotten)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1428281739.E73587C1.10840--
+
+--===============0505954359==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0505954359==--
