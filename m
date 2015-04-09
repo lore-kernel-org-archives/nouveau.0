@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Thu, 09 Apr 2015 17:02:14 +0000
-Message-ID: <bug-89969-8800-Zx6X2ibrCo@http.bugs.freedesktop.org/>
+Date: Thu, 09 Apr 2015 17:13:33 +0000
+Message-ID: <bug-89969-8800-vzF7IcyZKQ@http.bugs.freedesktop.org/>
 References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0659453186=="
+Content-Type: multipart/mixed; boundary="===============0796826437=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,43 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0659453186==
-Content-Type: multipart/alternative; boundary="1428598933.Db44ea1.22184"; charset="UTF-8"
+--===============0796826437==
+Content-Type: multipart/alternative; boundary="1428599613.222672.24177"; charset="UTF-8"
 
 
---1428598933.Db44ea1.22184
-Date: Thu, 9 Apr 2015 17:02:13 +0000
+--1428599613.222672.24177
+Date: Thu, 9 Apr 2015 17:13:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89969
 
---- Comment #5 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I am interested but I would need some infos to start :)
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Unlike public API's, gallium API's are fluid and not extremely well-defined.
+They're primarily defined by the existing users, and secondarily by
+documentation when those users disagree. Video API's are especially poorly
+defined, as there are only 2 real driver implementations (radeon + nouveau),
+and until recently, only st/xvmc and st/vdpau (and everyone except me hates
+st/xvmc).
 
-Also I do not understand why a functionality is missing in drivers/nouveau
-since st/vdpau works (which means nouveau_vp3_fill_picparm_mpeg12_bsp and
-nouveau_vp3_fill_picparm_h264_bsp work).
-
-So I was suspecting something wrong in st/va/picture.c
-Using the above bt, I noticed that for st/vpdau
-http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/vdpau/decode.c#n557
-the third param is well defined.
-Whereas for st/va
-http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/va/picture.c#n520
-the third param is NULL which leads to the crash.
-
-Few minutes ago I tried naively to replace this NULL param with
-"&context->desc.base" but then I can see a wrong image in my application when
-rendering decoded images.
+I believe that st/va had to make some changes to how functions were called and
+what parameters they were allowed to have, but the updates were only made to
+the radeon drivers. Unfortunately I don't know what those updates were. Emil
+mentioned chunked decoding, but I don't really know what that is. Perhaps you
+can look at the st/va enablement patches for radeon and see what all they had
+to change.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1428598933.Db44ea1.22184
-Date: Thu, 9 Apr 2015 17:02:13 +0000
+--1428599613.222672.24177
+Date: Thu, 9 Apr 2015 17:13:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - vaDriverInit fails with gallium/nouveau driver"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I am interested but I would need some infos to start :)
+        <pre>Unlike public API's, gallium API's are fluid and not extremely well-defined.
+They're primarily defined by the existing users, and secondarily by
+documentation when those users disagree. Video API's are especially poorly
+defined, as there are only 2 real driver implementations (radeon + nouveau),
+and until recently, only st/xvmc and st/vdpau (and everyone except me hates
+st/xvmc).
 
-Also I do not understand why a functionality is missing in drivers/nouveau
-since st/vdpau works (which means nouveau_vp3_fill_picparm_mpeg12_bsp and
-nouveau_vp3_fill_picparm_h264_bsp work).
-
-So I was suspecting something wrong in st/va/picture.c
-Using the above bt, I noticed that for st/vpdau
-<a href="http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/vdpau/decode.c#n557">http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/vdpau/decode.c#n557</a>
-the third param is well defined.
-Whereas for st/va
-<a href="http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/va/picture.c#n520">http://cgit.freedesktop.org/mesa/mesa/tree/src/gallium/state_trackers/va/picture.c#n520</a>
-the third param is NULL which leads to the crash.
-
-Few minutes ago I tried naively to replace this NULL param with
-&quot;&amp;context-&gt;desc.base&quot; but then I can see a wrong image in my application when
-rendering decoded images.</pre>
+I believe that st/va had to make some changes to how functions were called and
+what parameters they were allowed to have, but the updates were only made to
+the radeon drivers. Unfortunately I don't know what those updates were. Emil
+mentioned chunked decoding, but I don't really know what that is. Perhaps you
+can look at the st/va enablement patches for radeon and see what all they had
+to change.</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +98,9 @@ rendering decoded images.</pre>
     </body>
 </html>
 
---1428598933.Db44ea1.22184--
+--1428599613.222672.24177--
 
---===============0659453186==
+--===============0796826437==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0659453186==--
+--===============0796826437==--
