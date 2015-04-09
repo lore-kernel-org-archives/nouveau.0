@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Thu, 09 Apr 2015 17:13:33 +0000
-Message-ID: <bug-89969-8800-vzF7IcyZKQ@http.bugs.freedesktop.org/>
+Date: Thu, 09 Apr 2015 18:42:56 +0000
+Message-ID: <bug-89969-8800-nw7mBHIWZ4@http.bugs.freedesktop.org/>
 References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0796826437=="
+Content-Type: multipart/mixed; boundary="===============1254869503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,77 +20,84 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0796826437==
-Content-Type: multipart/alternative; boundary="1428599613.222672.24177"; charset="UTF-8"
+--===============1254869503==
+Content-Type: multipart/alternative; boundary="1428604976.b4B7BE1.11653"; charset="UTF-8"
 
 
---1428599613.222672.24177
-Date: Thu, 9 Apr 2015 17:13:33 +0000
+--1428604976.b4B7BE1.11653
+Date: Thu, 9 Apr 2015 18:42:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89969
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89969
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Unlike public API's, gallium API's are fluid and not extremely well-defined.
-They're primarily defined by the existing users, and secondarily by
-documentation when those users disagree. Video API's are especially poorly
-defined, as there are only 2 real driver implementations (radeon + nouveau),
-and until recently, only st/xvmc and st/vdpau (and everyone except me hates
-st/xvmc).
+--- Comment #7 from Christian K=C3=B6nig <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org> ---
+Chunked decoding means that between begin picture and end picture the state
+tracker calls the decode function multiple times for the same picture.
 
-I believe that st/va had to make some changes to how functions were called and
-what parameters they were allowed to have, but the updates were only made to
-the radeon drivers. Unfortunately I don't know what those updates were. Emil
-mentioned chunked decoding, but I don't really know what that is. Perhaps you
-can look at the st/va enablement patches for radeon and see what all they had
-to change.
+E.g. you don't get the bitstream all at once, but rather in small chunks.
 
--- 
+Nouveau can't deal with that cause Maarten didn't wanted that interface, ra=
+deon
+on the other hand never used anything else.
+
+You just need to fix nouveau to implement bitstream buffer resizing in the =
+same
+way radeon does it (or move that stuff into the state tracker like I always
+suggested).
+
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1428599613.222672.24177
-Date: Thu, 9 Apr 2015 17:13:33 +0000
+--1428604976.b4B7BE1.11653
+Date: Thu, 9 Apr 2015 18:42:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969">bug 89969<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+deathsimple&#64;vodafone.de" title=3D"Christian K=C3=B6nig &lt;deathsimple&=
+#64;vodafone.de&gt;"> <span class=3D"fn">Christian K=C3=B6nig</span></a>
 </span></b>
-        <pre>Unlike public API's, gallium API's are fluid and not extremely well-defined.
-They're primarily defined by the existing users, and secondarily by
-documentation when those users disagree. Video API's are especially poorly
-defined, as there are only 2 real driver implementations (radeon + nouveau),
-and until recently, only st/xvmc and st/vdpau (and everyone except me hates
-st/xvmc).
+        <pre>Chunked decoding means that between begin picture and end pict=
+ure the state
+tracker calls the decode function multiple times for the same picture.
 
-I believe that st/va had to make some changes to how functions were called and
-what parameters they were allowed to have, but the updates were only made to
-the radeon drivers. Unfortunately I don't know what those updates were. Emil
-mentioned chunked decoding, but I don't really know what that is. Perhaps you
-can look at the st/va enablement patches for radeon and see what all they had
-to change.</pre>
+E.g. you don't get the bitstream all at once, but rather in small chunks.
+
+Nouveau can't deal with that cause Maarten didn't wanted that interface, ra=
+deon
+on the other hand never used anything else.
+
+You just need to fix nouveau to implement bitstream buffer resizing in the =
+same
+way radeon does it (or move that stuff into the state tracker like I always
+suggested).</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -98,9 +105,9 @@ to change.</pre>
     </body>
 </html>
 
---1428599613.222672.24177--
+--1428604976.b4B7BE1.11653--
 
---===============0796826437==
+--===============1254869503==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -110,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0796826437==--
+--===============1254869503==--
