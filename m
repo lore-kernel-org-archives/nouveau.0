@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86109] kernel oops after lightdm startup
-Date: Fri, 10 Apr 2015 12:45:38 +0000
-Message-ID: <bug-86109-8800-hDA5ncoYDe@http.bugs.freedesktop.org/>
-References: <bug-86109-8800@http.bugs.freedesktop.org/>
+From: "Ian T. Jacobsen" <ian-1/d78eZ59Lo@public.gmane.org>
+Subject: [PATCH] Remove nonexistant glamor flags from glamor_init
+Date: Fri, 10 Apr 2015 13:03:37 +0000 (UTC)
+Message-ID: <552927FD.3070504@itjac.me>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0229280726=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86109-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Date: Sat, 11 Apr 2015 13:56:13 +0000
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,116 +19,20 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0229280726==
-Content-Type: multipart/alternative; boundary="1428669938.46B61.12211"; charset="UTF-8"
-
-
---1428669938.46B61.12211
-Date: Fri, 10 Apr 2015 12:45:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86109
-
-Etienne Z. <etienne-cucUXmzBMd0@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from Etienne Z. <etienne-cucUXmzBMd0@public.gmane.org> ---
-Yes, sorry for the lack of follow-up. This has been fixed by a debian kernel
-update somewhere in february.
-
-Looking at the changelog, my guess would be by this commit:
-    - nouveau: move the hotplug ignore to correct place. (regression in 3.16.4)
-
-Merci
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1428669938.46B61.12211
-Date: Fri, 10 Apr 2015 12:45:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:etienne&#64;zol.fr" title="Etienne Z. &lt;etienne&#64;zol.fr&gt;"> <span class="fn">Etienne Z.</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - kernel oops after lightdm startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86109">bug 86109</a>
-              from <span class="vcard"><a class="email" href="mailto:etienne&#64;zol.fr" title="Etienne Z. &lt;etienne&#64;zol.fr&gt;"> <span class="fn">Etienne Z.</span></a>
-</span></b>
-        <pre>Yes, sorry for the lack of follow-up. This has been fixed by a debian kernel
-update somewhere in february.
-
-Looking at the changelog, my guess would be by this commit:
-    - nouveau: move the hotplug ignore to correct place. (regression in 3.16.4)
-
-Merci</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1428669938.46B61.12211--
-
---===============0229280726==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0229280726==--
+R2xhbW9yIHJlbW92ZWQgc29tZSBmbGFncy4KVGhpcyBpcyBteSBmaXJzdCB0aW1lIGNvbnRyaWJ1
+dGluZyB2aWEgbWFpbGluZyBsaXN0LApidXQgSSBob3BlIEknbSBkb2luZyBpdCBjb3JyZWN0bHkK
+CmRpZmYgLS1naXQgYS9zcmMvbm91dmVhdV9nbGFtb3IuYyBiL3NyYy9ub3V2ZWF1X2dsYW1vci5j
+CmluZGV4IGI4YmNhMTcuLmNhODRkZjYgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2dsYW1vci5j
+CisrKyBiL3NyYy9ub3V2ZWF1X2dsYW1vci5jCkBAIC0yMTcsMTAgKzIxNywxNCBAQCBub3V2ZWF1
+X2dsYW1vcl9pbml0KFNjcmVlblB0ciBzY3JlZW4pCiAgICAgU2NybkluZm9QdHIgc2NybiA9IHhm
+ODZTY3JlZW5Ub1Njcm4oc2NyZWVuKTsKICAgICBOVlB0ciBwTnYgPSBOVlBUUihzY3JuKTsKCisj
+aWZuZGVmIEdMQU1PUl9VU0VfU0NSRUVOCisgICAgaWYgKCFnbGFtb3JfaW5pdChzY3JlZW4sIEdM
+QU1PUl9VU0VfRUdMX1NDUkVFTikpIHsKKyNlbHNlCiAgICAgaWYgKCFnbGFtb3JfaW5pdChzY3Jl
+ZW4sIEdMQU1PUl9JTlZFUlRFRF9ZX0FYSVMgfAogICAgICAgICAgICAgICAgICBHTEFNT1JfVVNF
+X0VHTF9TQ1JFRU4gfAogICAgICAgICAgICAgICAgICBHTEFNT1JfVVNFX1NDUkVFTiB8CiAgICAg
+ICAgICAgICAgICAgIEdMQU1PUl9VU0VfUElDVFVSRV9TQ1JFRU4pKSB7CisjZW5kaWYKICAgICAg
+ICAgeGY4NkRydk1zZyhzY3JuLT5zY3JuSW5kZXgsIFhfRVJST1IsCiAgICAgICAgICAgICAgICAi
+W0dMQU1PUl0gZmFpbGVkIHRvIGluaXRpYWxpc2VcbiIpOwogICAgICAgICByZXR1cm4gRkFMU0U7
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
