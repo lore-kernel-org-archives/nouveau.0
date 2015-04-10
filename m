@@ -1,120 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Thu, 09 Apr 2015 18:42:56 +0000
-Message-ID: <bug-89969-8800-nw7mBHIWZ4@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH V2] pmu/gk20a: PMU boot support.
+Date: Fri, 10 Apr 2015 16:10:01 +0900
+Message-ID: <CAAVeFu+Z+H46CFYbWfZ8ngZr6fjx2Lato0dYw50HgVOxh_QgjQ@mail.gmail.com>
+References: <1428468144-13988-1-git-send-email-dgoyal@nvidia.com> <CAAVeFuLB8oiiB-Zu+bBpB_4=pi6c+9aNvVWm6NrKPgiLjPOa+w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1254869503=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAAVeFuLB8oiiB-Zu+bBpB_4=pi6c+9aNvVWm6NrKPgiLjPOa+w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Deepak Goyal <dgoyal-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+>> +
+>> +       ucode_image = (u32 *)((u8 *)desc + desc->descriptor_size);
+>> +       for (i = 0; i < (desc->app_start_offset + desc->app_size); i += 4)
+>> +               nv_wo32(pmu->ucode.obj, i, ucode_image[i/4]);
+>> +
+>> +       /* map allocated memory into GMMU */
+>> +       ret = nvkm_gpuobj_map_vm(nv_gpuobj(pmu->ucode.obj), vm,
+>> +                                   NV_MEM_ACCESS_RW, &pmu->ucode.vma);
+>> +       if (ret)
+>> +               goto map_err;
+>> +
+>> +       nv_debug(ppmu, "%s function end\n", __func__);
+>> +       return ret;
+>> +map_err:
+>> +       nvkm_gpuobj_destroy(pmu->ucode.obj);
+>> +fw_alloc_err:
+>> +       nvkm_gpuobj_destroy(ppmuvm->pgd);
+>> +pgd_alloc_err:
+>> +       nvkm_gpuobj_destroy(ppmuvm->mem);
+>
+> Use nvkm_gpuobj_ref(NULL, &ptr) to delete GPU objects to follow the
+> conventions established by Nouveau.
+>
+>> +instblk_alloc_err:
+>> +       return ret;
+>> +}
+>
+> So in this function you have allocated plenty of nice GPU objects, but
+> they are never deleted. Your fini function should call nvkm_gpuobj_ref
+> and nvkm_vm_ref in order to remove them properly.
+>
+> And actually, thanks to Nouveau's object-oriented nature, I don't even
+> think you need these error-handling labels at all. If your init
+> function fails, the fini function will be called. So all you need to
+> do is to have this in your fini function (probably only if !suspend):
 
---===============1254869503==
-Content-Type: multipart/alternative; boundary="1428604976.b4B7BE1.11653"; charset="UTF-8"
+Oops, what I said here is simply not true. Resource allocation needs
+to be moved to the ctor function for the desired behavior to occur. It
+should be done there to begin with anyway.
 
-
---1428604976.b4B7BE1.11653
-Date: Thu, 9 Apr 2015 18:42:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89969
-
---- Comment #7 from Christian K=C3=B6nig <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org> ---
-Chunked decoding means that between begin picture and end picture the state
-tracker calls the decode function multiple times for the same picture.
-
-E.g. you don't get the bitstream all at once, but rather in small chunks.
-
-Nouveau can't deal with that cause Maarten didn't wanted that interface, ra=
-deon
-on the other hand never used anything else.
-
-You just need to fix nouveau to implement bitstream buffer resizing in the =
-same
-way radeon does it (or move that stuff into the state tracker like I always
-suggested).
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1428604976.b4B7BE1.11653
-Date: Thu, 9 Apr 2015 18:42:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969">bug 89969<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-deathsimple&#64;vodafone.de" title=3D"Christian K=C3=B6nig &lt;deathsimple&=
-#64;vodafone.de&gt;"> <span class=3D"fn">Christian K=C3=B6nig</span></a>
-</span></b>
-        <pre>Chunked decoding means that between begin picture and end pict=
-ure the state
-tracker calls the decode function multiple times for the same picture.
-
-E.g. you don't get the bitstream all at once, but rather in small chunks.
-
-Nouveau can't deal with that cause Maarten didn't wanted that interface, ra=
-deon
-on the other hand never used anything else.
-
-You just need to fix nouveau to implement bitstream buffer resizing in the =
-same
-way radeon does it (or move that stuff into the state tracker like I always
-suggested).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1428604976.b4B7BE1.11653--
-
---===============1254869503==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1254869503==--
+Deepak, keep in mind that in that case your dtor function can be
+called on an incomplete object, so be sure to take that into account.
