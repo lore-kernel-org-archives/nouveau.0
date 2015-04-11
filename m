@@ -1,12 +1,13 @@
-From: "Ian T. Jacobsen" <ian-1/d78eZ59Lo@public.gmane.org>
-Subject: [PATCH] Remove nonexistant glamor flags from glamor_init
-Date: Fri, 10 Apr 2015 13:03:37 +0000 (UTC)
-Message-ID: <552927FD.3070504@itjac.me>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
+ open the new legacy tray in 3.16.0
+Date: Sat, 11 Apr 2015 00:50:15 +0000
+Message-ID: <bug-89842-8800-acDFzlmDCK@http.bugs.freedesktop.org/>
+References: <bug-89842-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0586975240=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Date: Sat, 11 Apr 2015 13:56:13 +0000
+In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,20 +20,79 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R2xhbW9yIHJlbW92ZWQgc29tZSBmbGFncy4KVGhpcyBpcyBteSBmaXJzdCB0aW1lIGNvbnRyaWJ1
-dGluZyB2aWEgbWFpbGluZyBsaXN0LApidXQgSSBob3BlIEknbSBkb2luZyBpdCBjb3JyZWN0bHkK
-CmRpZmYgLS1naXQgYS9zcmMvbm91dmVhdV9nbGFtb3IuYyBiL3NyYy9ub3V2ZWF1X2dsYW1vci5j
-CmluZGV4IGI4YmNhMTcuLmNhODRkZjYgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2dsYW1vci5j
-CisrKyBiL3NyYy9ub3V2ZWF1X2dsYW1vci5jCkBAIC0yMTcsMTAgKzIxNywxNCBAQCBub3V2ZWF1
-X2dsYW1vcl9pbml0KFNjcmVlblB0ciBzY3JlZW4pCiAgICAgU2NybkluZm9QdHIgc2NybiA9IHhm
-ODZTY3JlZW5Ub1Njcm4oc2NyZWVuKTsKICAgICBOVlB0ciBwTnYgPSBOVlBUUihzY3JuKTsKCisj
-aWZuZGVmIEdMQU1PUl9VU0VfU0NSRUVOCisgICAgaWYgKCFnbGFtb3JfaW5pdChzY3JlZW4sIEdM
-QU1PUl9VU0VfRUdMX1NDUkVFTikpIHsKKyNlbHNlCiAgICAgaWYgKCFnbGFtb3JfaW5pdChzY3Jl
-ZW4sIEdMQU1PUl9JTlZFUlRFRF9ZX0FYSVMgfAogICAgICAgICAgICAgICAgICBHTEFNT1JfVVNF
-X0VHTF9TQ1JFRU4gfAogICAgICAgICAgICAgICAgICBHTEFNT1JfVVNFX1NDUkVFTiB8CiAgICAg
-ICAgICAgICAgICAgIEdMQU1PUl9VU0VfUElDVFVSRV9TQ1JFRU4pKSB7CisjZW5kaWYKICAgICAg
-ICAgeGY4NkRydk1zZyhzY3JuLT5zY3JuSW5kZXgsIFhfRVJST1IsCiAgICAgICAgICAgICAgICAi
-W0dMQU1PUl0gZmFpbGVkIHRvIGluaXRpYWxpc2VcbiIpOwogICAgICAgICByZXR1cm4gRkFMU0U7
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0586975240==
+Content-Type: multipart/alternative; boundary="1428713414.C3DA412.21579"; charset="UTF-8"
+
+
+--1428713414.C3DA412.21579
+Date: Sat, 11 Apr 2015 00:50:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89842
+
+--- Comment #6 from Rennie <renatao.garcia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I have the same issue and can confirm that downgrading
+from libdrm-2.4.60 to libdrm-2.4.59 seems to stop the issue from
+happening as there are no more hangs.
+
+Thanks,
+Rennie
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1428713414.C3DA412.21579
+Date: Sat, 11 Apr 2015 00:50:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
+              from <span class="vcard"><a class="email" href="mailto:renatao.garcia&#64;gmail.com" title="Rennie &lt;renatao.garcia&#64;gmail.com&gt;"> <span class="fn">Rennie</span></a>
+</span></b>
+        <pre>I have the same issue and can confirm that downgrading
+from libdrm-2.4.60 to libdrm-2.4.59 seems to stop the issue from
+happening as there are no more hangs.
+
+Thanks,
+Rennie</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1428713414.C3DA412.21579--
+
+--===============0586975240==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0586975240==--
