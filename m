@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89985] system video hangs on video switch to
-	fullscreen
-Date: Sat, 11 Apr 2015 23:46:06 +0000
-Message-ID: <bug-89985-8800-luvWeCqOPV@http.bugs.freedesktop.org/>
-References: <bug-89985-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89991] New: Flickering and other image corruption
+Date: Sun, 12 Apr 2015 07:42:20 +0000
+Message-ID: <bug-89991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1582558909=="
+Content-Type: multipart/mixed; boundary="===============1665251540=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89985-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +18,57 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1582558909==
-Content-Type: multipart/alternative; boundary="1428795966.4F6FE00.4097"; charset="UTF-8"
+--===============1665251540==
+Content-Type: multipart/alternative; boundary="1428824540.bbAda5b1.11374"; charset="UTF-8"
 
 
---1428795966.4F6FE00.4097
-Date: Sat, 11 Apr 2015 23:46:06 +0000
+--1428824540.bbAda5b1.11374
+Date: Sun, 12 Apr 2015 07:42:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89985
+https://bugs.freedesktop.org/show_bug.cgi?id=89991
 
---- Comment #2 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> You shouldn't need to use blob context switching firmware... I'd start by
-> removing
-> 
-> nouveau.config=NvGrUseFW=1
-> 
-> Also, if this is recent, and you're using libdrm-2.4.60, try downgrading to
-> libdrm-2.4.59.
+            Bug ID: 89991
+           Summary: Flickering and other image corruption
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: tom.winterhalder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Effectively this is recent, I downgraded to libdrm-2.4.59 and removed the
-kernel parameter. I still could reproduce the issue with a secondary screen and
-with the primary only, It tried that because I though it could be because of
-the secondary display.
+Created attachment 115033
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115033&action=edit
+dmesg output
 
-relevant output of dmesg when reproducing with two displays:
+Hello
+I have some heavy flickering on my notebook screen.
 
-[  195.394185] compiz[1209]: segfault at 7f23ad5c7580 ip 00007f23ad5c7580 sp
-00007ffec56131a8 error 14 in card0[7f23ad7cd000+200000]
-[  518.479158] gstglcontext[2295]: segfault at 8 ip 00007f5d39a4272e sp
-00007f5b9bffe950 error 4 in libdrm_nouveau.so.2.0.0[7f5d39a3f000+6000]
-[  586.592466] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: PBENTRY
-[  586.592475] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 10
-[gstglcontext[3129]] subc 0 mthd 0x0000 data 0x00000000
+Chipset: GT215 (NVA3)
+Family : NV50
 
-relevant output of dmesg when reproducing with a single display:
+During a chat on IRC I got notice about the "disp/nv50-: fix push buffers in
+vram" patch which I also applied to the kernel.
 
-[  376.359606] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x01b3f00000
-[UNSUPPORTED_KIND] from CE2/GR_COPY on channel 0x00bf449000 [unknown]
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1c27bd1522d33075c9d9b625182530ea2bffd09b
+
+After building a custom kernel with this patch applied the problem is still
+there.
+
+Is there anything else I could do?
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1428795966.4F6FE00.4097
-Date: Sat, 11 Apr 2015 23:46:06 +0000
+--1428824540.bbAda5b1.11374
+Date: Sun, 12 Apr 2015 07:42:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -76,62 +76,121 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Flickering and other image corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89991">89991</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Flickering and other image corruption
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>tom.winterhalder&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - system video hangs on video switch to fullscreen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89985#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - system video hangs on video switch to fullscreen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89985">bug 89985</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89985#c1">comment #1</a>)
-<span class="quote">&gt; You shouldn't need to use blob context switching firmware... I'd start by
-&gt; removing
-&gt; 
-&gt; nouveau.config=NvGrUseFW=1
-&gt; 
-&gt; Also, if this is recent, and you're using libdrm-2.4.60, try downgrading to
-&gt; libdrm-2.4.59.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=115033" name="attach_115033" title="dmesg output">attachment 115033</a> <a href="attachment.cgi?id=115033&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output
 
-Effectively this is recent, I downgraded to libdrm-2.4.59 and removed the
-kernel parameter. I still could reproduce the issue with a secondary screen and
-with the primary only, It tried that because I though it could be because of
-the secondary display.
+Hello
+I have some heavy flickering on my notebook screen.
 
-relevant output of dmesg when reproducing with two displays:
+Chipset: GT215 (NVA3)
+Family : NV50
 
-[  195.394185] compiz[1209]: segfault at 7f23ad5c7580 ip 00007f23ad5c7580 sp
-00007ffec56131a8 error 14 in card0[7f23ad7cd000+200000]
-[  518.479158] gstglcontext[2295]: segfault at 8 ip 00007f5d39a4272e sp
-00007f5b9bffe950 error 4 in libdrm_nouveau.so.2.0.0[7f5d39a3f000+6000]
-[  586.592466] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: PBENTRY
-[  586.592475] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 10
-[gstglcontext[3129]] subc 0 mthd 0x0000 data 0x00000000
+During a chat on IRC I got notice about the &quot;disp/nv50-: fix push buffers in
+vram&quot; patch which I also applied to the kernel.
 
-relevant output of dmesg when reproducing with a single display:
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1c27bd1522d33075c9d9b625182530ea2bffd09b">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=1c27bd1522d33075c9d9b625182530ea2bffd09b</a>
 
-[  376.359606] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x01b3f00000
-[UNSUPPORTED_KIND] from CE2/GR_COPY on channel 0x00bf449000 [unknown]</pre>
+After building a custom kernel with this patch applied the problem is still
+there.
+
+Is there anything else I could do?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1428795966.4F6FE00.4097--
+--1428824540.bbAda5b1.11374--
 
---===============1582558909==
+--===============1665251540==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +200,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1582558909==--
+--===============1665251540==--
