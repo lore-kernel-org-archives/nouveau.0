@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89893] Windows slow/stall/freeze when
- minimizing/restoring/etc in Unity 7
-Date: Tue, 14 Apr 2015 07:24:02 +0000
-Message-ID: <bug-89893-8800-gEPrEBbOO9@http.bugs.freedesktop.org/>
-References: <bug-89893-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89991] Flickering and other image corruption
+Date: Tue, 14 Apr 2015 17:03:56 +0000
+Message-ID: <bug-89991-8800-QHpFVwGBv5@http.bugs.freedesktop.org/>
+References: <bug-89991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1559999720=="
+Content-Type: multipart/mixed; boundary="===============1903052069=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +20,53 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1559999720==
-Content-Type: multipart/alternative; boundary="1428996242.44C43052.31854"; charset="UTF-8"
+--===============1903052069==
+Content-Type: multipart/alternative; boundary="1429031036.d6ED2.17675"; charset="UTF-8"
 
 
---1428996242.44C43052.31854
-Date: Tue, 14 Apr 2015 07:24:02 +0000
+--1429031036.d6ED2.17675
+Date: Tue, 14 Apr 2015 17:03:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89893
+https://bugs.freedesktop.org/show_bug.cgi?id=89991
 
-Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|* Other                     |Driver/nouveau
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
 
---- Comment #1 from Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> ---
-Please attach the Xorg log file.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Sorry, NVA3 + GDDR5 is known to have issues, and they stand as-yet unresolved.
+However it used to insta-lock-up, now you just get flickering :) Unfortunately
+it's a rare combination, although a (the?) key developer now has one in his
+hands. But he's been busy with other things.
 
---=20
+*** This bug has been marked as a duplicate of bug 33165 ***
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1428996242.44C43052.31854
-Date: Tue, 14 Apr 2015 07:24:02 +0000
+--1429031036.d6ED2.17675
+Date: Tue, 14 Apr 2015 17:03:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:michel&#6=
-4;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.net&gt;">=
- <span class=3D"fn">Michel D=C3=A4nzer</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Windows slow/stall/freeze when minimizing/restoring/etc i=
-n Unity 7"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89893">bug 89893<=
-/a>
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Flickering and other image corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89991">bug 89991</a>
           <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+             <table border="1" cellspacing="0" cellpadding="8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -77,53 +74,55 @@ n Unity 7"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>* Other
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>Driver/nouveau
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
+           <td style="text-align:right;">Resolution</td>
+           <td>---
            </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>DUPLICATE
            </td>
          </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Windows slow/stall/freeze when minimizing/restoring/etc i=
-n Unity 7"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89893#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Windows slow/stall/freeze when minimizing/restoring/etc i=
-n Unity 7"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89893">bug 89893<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-michel&#64;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.=
-net&gt;"> <span class=3D"fn">Michel D=C3=A4nzer</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Flickering and other image corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89991#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Flickering and other image corruption"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89991">bug 89991</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Please attach the Xorg log file.</pre>
+        <pre>Sorry, NVA3 + GDDR5 is known to have issues, and they stand as-yet unresolved.
+However it used to insta-lock-up, now you just get flickering :) Unfortunately
+it's a rare combination, although a (the?) key developer now has one in his
+hands. But he's been busy with other things.
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   href="show_bug.cgi?id=33165">bug 33165</a> ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1428996242.44C43052.31854--
+--1429031036.d6ED2.17675--
 
---===============1559999720==
+--===============1903052069==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +132,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1559999720==--
+--===============1903052069==--
