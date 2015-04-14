@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3] GDDR5 vram -> flickering screen
- (previously GPU lockup)
-Date: Tue, 14 Apr 2015 17:05:40 +0000
-Message-ID: <bug-33165-8800-yn8rPZzu9c@http.bugs.freedesktop.org/>
-References: <bug-33165-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] pm: prevent freeing the wrong engine context
+Date: Tue, 14 Apr 2015 22:43:58 +0200
+Message-ID: <1429044239-2223-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0518069422=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,81 +18,22 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0518069422==
-Content-Type: multipart/alternative; boundary="1429031140.EEaf4D3.18050"; charset="UTF-8"
-
-
---1429031140.EEaf4D3.18050
-Date: Tue, 14 Apr 2015 17:05:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=33165
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVA3, NVA8] gpu lockup     |[NVA3] GDDR5 vram ->
-                   |during driver probe         |flickering screen
-                   |                            |(previously GPU lockup)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1429031140.EEaf4D3.18050
-Date: Tue, 14 Apr 2015 17:05:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA3] GDDR5 vram -&gt; flickering screen (previously GPU lockup)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVA3, NVA8] gpu lockup during driver probe
-           </td>
-           <td>[NVA3] GDDR5 vram -&gt; flickering screen (previously GPU lockup)
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1429031140.EEaf4D3.18050--
-
---===============0518069422==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0518069422==--
+VGhpcyBmaXhlcyBhIGNyYXNoIHdoZW4gbXVsdGlwbGUgUE0gZW5naW5lIGNvbnRleHRzIGFyZSBj
+cmVhdGVkLgoKU2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRA
+Z21haWwuY29tPgpSZXZpZXdlZC1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5m
+cj4KLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMgfCA3ICsrKysrLS0KIDEg
+ZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0
+IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvcG0vYmFzZS5jCmluZGV4IDIwMDZjNDQuLjI3NDQ1N2MgMTAwNjQ0Ci0tLSBhL2RybS9u
+b3V2ZWF1L252a20vZW5naW5lL3BtL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9wbS9iYXNlLmMKQEAgLTMzMiw5ICszMzIsMTIgQEAgc3RhdGljIHZvaWQKIG52a21fcGVyZmN0
+eF9kdG9yKHN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0KQogewogCXN0cnVjdCBudmttX3BtICpw
+cG0gPSAodm9pZCAqKW9iamVjdC0+ZW5naW5lOworCXN0cnVjdCBudmttX3BlcmZjdHggKmN0eCA9
+ICh2b2lkICopb2JqZWN0OworCiAJbXV0ZXhfbG9jaygmbnZfc3ViZGV2KHBwbSktPm11dGV4KTsK
+LQludmttX2VuZ2N0eF9kZXN0cm95KCZwcG0tPmNvbnRleHQtPmJhc2UpOwotCXBwbS0+Y29udGV4
+dCA9IE5VTEw7CisJbnZrbV9lbmdjdHhfZGVzdHJveSgmY3R4LT5iYXNlKTsKKwlpZiAocHBtLT5j
+b250ZXh0ID09IGN0eCkKKwkJcHBtLT5jb250ZXh0ID0gTlVMTDsKIAltdXRleF91bmxvY2soJm52
+X3N1YmRldihwcG0pLT5tdXRleCk7CiB9CiAKLS0gCjIuMy41CgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
