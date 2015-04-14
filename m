@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 33165] [NVA3, NVA8] gpu lockup during driver probe
-Date: Tue, 14 Apr 2015 17:03:56 +0000
-Message-ID: <bug-33165-8800-Eb2qju7Lor@http.bugs.freedesktop.org/>
+Subject: [Bug 33165] [NVA3] GDDR5 vram -> flickering screen
+ (previously GPU lockup)
+Date: Tue, 14 Apr 2015 17:05:40 +0000
+Message-ID: <bug-33165-8800-yn8rPZzu9c@http.bugs.freedesktop.org/>
 References: <bug-33165-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1417162061=="
+Content-Type: multipart/mixed; boundary="===============0518069422=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-33165-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1417162061==
-Content-Type: multipart/alternative; boundary="1429031037.0e7aa6.17675"; charset="UTF-8"
+--===============0518069422==
+Content-Type: multipart/alternative; boundary="1429031140.EEaf4D3.18050"; charset="UTF-8"
 
 
---1429031037.0e7aa6.17675
-Date: Tue, 14 Apr 2015 17:03:57 +0000
+--1429031140.EEaf4D3.18050
+Date: Tue, 14 Apr 2015 17:05:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,17 +36,16 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |tom.winterhalder-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 89991 has been marked as a duplicate of this bug. ***
+            Summary|[NVA3, NVA8] gpu lockup     |[NVA3] GDDR5 vram ->
+                   |during driver probe         |flickering screen
+                   |                            |(previously GPU lockup)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429031037.0e7aa6.17675
-Date: Tue, 14 Apr 2015 17:03:57 +0000
+--1429031140.EEaf4D3.18050
+Date: Tue, 14 Apr 2015 17:05:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,7 +57,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
+   title="NEW - [NVA3] GDDR5 vram -&gt; flickering screen (previously GPU lockup)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -68,30 +68,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
+           <td style="text-align:right;">Summary</td>
+           <td>[NVA3, NVA8] gpu lockup during driver probe
            </td>
-           <td>tom.winterhalder&#64;gmail.com
+           <td>[NVA3] GDDR5 vram -&gt; flickering screen (previously GPU lockup)
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165#c41">Comment # 41</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA3, NVA8] gpu lockup during driver probe"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=33165">bug 33165</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Flickering and other image corruption"
-   href="show_bug.cgi?id=89991">Bug 89991</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -102,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1429031037.0e7aa6.17675--
+--1429031140.EEaf4D3.18050--
 
---===============1417162061==
+--===============0518069422==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1417162061==--
+--===============0518069422==--
