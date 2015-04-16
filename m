@@ -1,14 +1,11 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 6/6] mmu: gk20a: implement IOMMU mapping for big
-	pages
-Date: Thu, 16 Apr 2015 19:06:19 +0800
-Message-ID: <1429182379-31964-7-git-send-email-vinceh@nvidia.com>
-References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90054] New: white screen reboot on gm107 with
+	multiple monitors
+Date: Thu, 16 Apr 2015 17:12:49 +0000
+Message-ID: <bug-90054-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0024304605=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1429182379-31964-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,163 +15,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCB1c2VzIElPTU1VIHRvIGFnZ3JlZ2F0ZSAocHJvYmFibHkpIGRpc2NyZXRlIHNt
-YWxsIHBhZ2VzIGFzIGxhcmdlcgpiaWcgcGFnZShzKSBhbmQgbWFwIGl0IHRvIEdNTVUuCgpTaWdu
-ZWQtb2ZmLWJ5OiBWaW5jZSBIc3UgPHZpbmNlaEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1
-L252a20vZW5naW5lL2RldmljZS9nazEwNC5jIHwgICAyICstCiBkcm0vbm91dmVhdS9udmttL3N1
-YmRldi9tbXUvS2J1aWxkICAgICB8ICAgMSArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUv
-Z2syMGEuYyAgICB8IDI1MyArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKIDMgZmls
-ZXMgY2hhbmdlZCwgMjU1IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKIGNyZWF0ZSBtb2Rl
-IDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvZ2syMGEuYwoKZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9nazEwNC5jIGIvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL2drMTA0LmMKaW5kZXggNmE5NDgzZjY1ZDgzLi45ZWE0OGJhMzFjMGQg
-MTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9nazEwNC5jCisrKyBi
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9nazEwNC5jCkBAIC0xNzIsNyArMTcyLDcg
-QEAgZ2sxMDRfaWRlbnRpZnkoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UpCiAJCWRldmljZS0+
-b2NsYXNzW05WREVWX1NVQkRFVl9MVEMgICAgXSA9ICBnazEwNF9sdGNfb2NsYXNzOwogCQlkZXZp
-Y2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfSUJVUyAgIF0gPSAmZ2syMGFfaWJ1c19vY2xhc3M7CiAJ
-CWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9JTlNUTUVNXSA9IGdrMjBhX2luc3RtZW1fb2Ns
-YXNzOwotCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTU1VICAgIF0gPSAmZ2YxMDBfbW11
-X29jbGFzczsKKwkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX01NVSAgICBdID0gJmdrMjBh
-X21tdV9vY2xhc3M7CiAJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9CQVIgICAgXSA9ICZn
-azIwYV9iYXJfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9FTkdJTkVfRE1BT0JKIF0g
-PSAgZ2YxMTBfZG1hZW5nX29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfRU5HSU5FX0ZJ
-Rk8gICBdID0gIGdrMjBhX2ZpZm9fb2NsYXNzOwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvbW11L0tidWlsZCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L21tdS9LYnVpbGQK
-aW5kZXggMDEyYzlkYjY4N2IyLi4xNDEzMDJhOGU5MzMgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L21tdS9LYnVpbGQKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbW11
-L0tidWlsZApAQCAtNCwzICs0LDQgQEAgbnZrbS15ICs9IG52a20vc3ViZGV2L21tdS9udjQxLm8K
-IG52a20teSArPSBudmttL3N1YmRldi9tbXUvbnY0NC5vCiBudmttLXkgKz0gbnZrbS9zdWJkZXYv
-bW11L252NTAubwogbnZrbS15ICs9IG52a20vc3ViZGV2L21tdS9nZjEwMC5vCitudmttLXkgKz0g
-bnZrbS9zdWJkZXYvbW11L2drMjBhLm8KZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L21tdS9nazIwYS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbW11L2drMjBhLmMKbmV3
-IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMDAwMDAwLi5iNDQ0YjczZTIwOGQKLS0tIC9k
-ZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvZ2syMGEuYwpAQCAtMCww
-ICsxLDI1MyBAQAorLyoKKyAqIENvcHlyaWdodCAoYykgMjAxNSwgTlZJRElBIENPUlBPUkFUSU9O
-LiBBbGwgcmlnaHRzIHJlc2VydmVkLgorICoKKyAqIFBlcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50
-ZWQsIGZyZWUgb2YgY2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBhCisgKiBjb3B5IG9m
-IHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJT
-b2Z0d2FyZSIpLAorICogdG8gZGVhbCBpbiB0aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlv
-biwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRhdGlvbgorICogdGhlIHJpZ2h0cyB0byB1c2UsIGNv
-cHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsCisgKiBh
-bmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMg
-dG8gd2hvbSB0aGUKKyAqIFNvZnR3YXJlIGlzIGZ1cm5pc2hlZCB0byBkbyBzbywgc3ViamVjdCB0
-byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6CisgKgorICogVGhlIGFib3ZlIGNvcHlyaWdodCBu
-b3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4KKyAq
-IGFsbCBjb3BpZXMgb3Igc3Vic3RhbnRpYWwgcG9ydGlvbnMgb2YgdGhlIFNvZnR3YXJlLgorICoK
-KyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9G
-IEFOWSBLSU5ELCBFWFBSRVNTIE9SCisgKiBJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1J
-VEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwKKyAqIEZJVE5FU1MgRk9S
-IEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuICBJTiBOTyBFVkVOVCBT
-SEFMTAorICogVEhFIEFVVEhPUlMgT1IgQ09QWVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBB
-TlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVIKKyAqIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBB
-Q1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLCBBUklTSU5HCisgKiBGUk9NLCBP
-VVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9U
-SEVSCisgKiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCisgKi8KKworI2luY2x1ZGUgPHN1YmRl
-di9mYi5oPgorI2luY2x1ZGUgPHN1YmRldi9sdGMuaD4KKyNpbmNsdWRlIDxzdWJkZXYvbW11Lmg+
-CisKKyNpZmRlZiBfX0tFUk5FTF9fCisjaW5jbHVkZSA8bGludXgvaW9tbXUuaD4KKyNpbmNsdWRl
-IDxub3V2ZWF1X3BsYXRmb3JtLmg+CisjZW5kaWYKKworI2luY2x1ZGUgImdmMTAwLmgiCisKK3N0
-cnVjdCBnazIwYV9tbXVfcHJpdiB7CisJc3RydWN0IG52a21fbW11IGJhc2U7Cit9OworCitzdHJ1
-Y3QgZ2syMGFfbW11X2lvbW11X21hcHBpbmcgeworCXN0cnVjdCBudmttX21tX25vZGUgKm5vZGU7
-CisJdTY0IGlvdmE7Cit9OworCitleHRlcm4gY29uc3QgdTggZ2YxMDBfcHRlX3N0b3JhZ2VfdHlw
-ZV9tYXBbMjU2XTsKKworc3RhdGljIHZvaWQKK2drMjBhX3ZtX21hcChzdHJ1Y3QgbnZrbV92bWEg
-KnZtYSwgc3RydWN0IG52a21fZ3B1b2JqICpwZ3QsCisJCXN0cnVjdCBudmttX21lbSAqbWVtLCB1
-MzIgcHRlLCB1NjQgbGlzdCkKK3sKKwl1MzIgdGFyZ2V0ID0gKHZtYS0+YWNjZXNzICYgTlZfTUVN
-X0FDQ0VTU19OT1NOT09QKSA/IDcgOiA1OworCXU2NCBwaHlzOworCisJcHRlIDw8PSAzOworCXBo
-eXMgPSBnZjEwMF92bV9hZGRyKHZtYSwgbGlzdCwgbWVtLT5tZW10eXBlLCB0YXJnZXQpOworCisJ
-aWYgKG1lbS0+dGFnKSB7CisJCXN0cnVjdCBudmttX2x0YyAqbHRjID0gbnZrbV9sdGModm1hLT52
-bS0+bW11KTsKKwkJdTMyIHRhZyA9IG1lbS0+dGFnLT5vZmZzZXQ7CisJCXBoeXMgfD0gKHU2NCl0
-YWcgPDwgKDMyICsgMTIpOworCQlsdGMtPnRhZ3NfY2xlYXIobHRjLCB0YWcsIDEpOworCX0KKwor
-CW52X3dvMzIocGd0LCBwdGUgKyAwLCBsb3dlcl8zMl9iaXRzKHBoeXMpKTsKKwludl93bzMyKHBn
-dCwgcHRlICsgNCwgdXBwZXJfMzJfYml0cyhwaHlzKSk7Cit9CisKK3N0YXRpYyB2b2lkCitnazIw
-YV92bV9tYXBfaW9tbXUoc3RydWN0IG52a21fdm1hICp2bWEsIHN0cnVjdCBudmttX2dwdW9iaiAq
-cGd0LAorCQlzdHJ1Y3QgbnZrbV9tZW0gKm1lbSwgdTMyIHB0ZSwgZG1hX2FkZHJfdCAqbGlzdCwK
-KwkJdm9pZCAqKnByaXYpCit7CisJc3RydWN0IG52a21fdm0gKnZtID0gdm1hLT52bTsKKwlzdHJ1
-Y3QgbnZrbV9tbXUgKm1tdSA9IHZtLT5tbXU7CisJc3RydWN0IG52a21fbW1fbm9kZSAqbm9kZTsK
-KwlzdHJ1Y3Qgbm91dmVhdV9wbGF0Zm9ybV9kZXZpY2UgKnBsYXQ7CisJc3RydWN0IGdrMjBhX21t
-dV9pb21tdV9tYXBwaW5nICpwOworCWludCBucGFnZXMgPSAxIDw8IChtbXUtPmxwZ19zaGlmdCAt
-IG1tdS0+c3BnX3NoaWZ0KTsKKwlpbnQgaSwgcmV0OworCXU2NCBhZGRyOworCisJcGxhdCA9IG52
-X2RldmljZV90b19wbGF0Zm9ybShudl9kZXZpY2UoJm1tdS0+YmFzZSkpOworCisJKnByaXYgPSBr
-emFsbG9jKHNpemVvZihzdHJ1Y3QgZ2syMGFfbW11X2lvbW11X21hcHBpbmcpLCBHRlBfS0VSTkVM
-KTsKKwlpZiAoISpwcml2KQorCQlyZXR1cm47CisKKwltdXRleF9sb2NrKCZwbGF0LT5ncHUtPmlv
-bW11Lm11dGV4KTsKKwlyZXQgPSBudmttX21tX2hlYWQocGxhdC0+Z3B1LT5pb21tdS5tbSwKKwkJ
-CTAsCisJCQkxLAorCQkJbnBhZ2VzLAorCQkJbnBhZ2VzLAorCQkJKDEgPDwgbW11LT5scGdfc2hp
-ZnQpID4+IDEyLAorCQkJJm5vZGUpOworCW11dGV4X3VubG9jaygmcGxhdC0+Z3B1LT5pb21tdS5t
-dXRleCk7CisJaWYgKHJldCkKKwkJcmV0dXJuOworCisJZm9yIChpID0gMDsgaSA8IG5wYWdlczsg
-aSsrLCBsaXN0KyspIHsKKwkJcmV0ID0gaW9tbXVfbWFwKHBsYXQtPmdwdS0+aW9tbXUuZG9tYWlu
-LAorCQkJCShub2RlLT5vZmZzZXQgKyBpKSA8PCBQQUdFX1NISUZULAorCQkJCSpsaXN0LAorCQkJ
-CVBBR0VfU0laRSwKKwkJCQlJT01NVV9SRUFEIHwgSU9NTVVfV1JJVEUpOworCisJCWlmIChyZXQg
-PCAwKQorCQkJcmV0dXJuOworCisJCW52X3RyYWNlKG1tdSwgIklPTU1VOiBJT1ZBPTB4JTAxNmxs
-eC0+IElPTU1VIC0+IFBBPSUwMTZsbHhcbiIsCisJCQkJKHU2NCkobm9kZS0+b2Zmc2V0ICsgaSkg
-PDwgUEFHRV9TSElGVCwgKHU2NCkoKmxpc3QpKTsKKwl9CisKKwlhZGRyID0gKHU2NClub2RlLT5v
-ZmZzZXQgPDwgUEFHRV9TSElGVDsKKwlhZGRyIHw9IEJJVF9VTEwocGxhdC0+Z3B1LT5pb21tdS5w
-aHlzX2FkZHJfYml0KTsKKworCWdrMjBhX3ZtX21hcCh2bWEsIHBndCwgbWVtLCBwdGUsIGFkZHIp
-OworCisJcCA9ICpwcml2OworCXAtPm5vZGUgPSBub2RlOworCXAtPmlvdmEgPSBub2RlLT5vZmZz
-ZXQgPDwgUEFHRV9TSElGVDsKK30KKworc3RhdGljIHZvaWQKK2drMjBhX3ZtX21hcF9zZ19pb21t
-dShzdHJ1Y3QgbnZrbV92bWEgKnZtYSwgc3RydWN0IG52a21fZ3B1b2JqICpwZ3QsCisJCXN0cnVj
-dCBudmttX21lbSAqbWVtLCB1MzIgcHRlLCBzdHJ1Y3Qgc2dfcGFnZV9pdGVyICppdGVyLAorCQl2
-b2lkICoqcHJpdikKK3sKKwlzdHJ1Y3QgbnZrbV92bSAqdm0gPSB2bWEtPnZtOworCXN0cnVjdCBu
-dmttX21tdSAqbW11ID0gdm0tPm1tdTsKKwlzdHJ1Y3QgbnZrbV9tbV9ub2RlICpub2RlOworCXN0
-cnVjdCBub3V2ZWF1X3BsYXRmb3JtX2RldmljZSAqcGxhdDsKKwlzdHJ1Y3QgZ2syMGFfbW11X2lv
-bW11X21hcHBpbmcgKnA7CisJaW50IG5wYWdlcyA9IDEgPDwgKG1tdS0+bHBnX3NoaWZ0IC0gbW11
-LT5zcGdfc2hpZnQpOworCWludCBpLCByZXQ7CisJdTY0IGFkZHI7CisKKwlwbGF0ID0gbnZfZGV2
-aWNlX3RvX3BsYXRmb3JtKG52X2RldmljZSgmbW11LT5iYXNlKSk7CisKKwkqcHJpdiA9IGt6YWxs
-b2Moc2l6ZW9mKHN0cnVjdCBnazIwYV9tbXVfaW9tbXVfbWFwcGluZyksIEdGUF9LRVJORUwpOwor
-CWlmICghKnByaXYpCisJCXJldHVybjsKKworCW11dGV4X2xvY2soJnBsYXQtPmdwdS0+aW9tbXUu
-bXV0ZXgpOworCXJldCA9IG52a21fbW1faGVhZChwbGF0LT5ncHUtPmlvbW11Lm1tLAorCQkJMCwK
-KwkJCTEsCisJCQlucGFnZXMsCisJCQlucGFnZXMsCisJCQkoMSA8PCBtbXUtPmxwZ19zaGlmdCkg
-Pj4gMTIsCisJCQkmbm9kZSk7CisJbXV0ZXhfdW5sb2NrKCZwbGF0LT5ncHUtPmlvbW11Lm11dGV4
-KTsKKwlpZiAocmV0KQorCQlyZXR1cm47CisKKwlmb3IgKGkgPSAwOyBpIDwgbnBhZ2VzOyBpKysp
-IHsKKwkJZG1hX2FkZHJfdCBwaHlzID0gc2dfcGFnZV9pdGVyX2RtYV9hZGRyZXNzKGl0ZXIpOwor
-CisJCXJldCA9IGlvbW11X21hcChwbGF0LT5ncHUtPmlvbW11LmRvbWFpbiwKKwkJCQkobm9kZS0+
-b2Zmc2V0ICsgaSkgPDwgUEFHRV9TSElGVCwKKwkJCQlwaHlzLAorCQkJCVBBR0VfU0laRSwKKwkJ
-CQlJT01NVV9SRUFEIHwgSU9NTVVfV1JJVEUpOworCisJCWlmIChyZXQgPCAwKQorCQkJcmV0dXJu
-OworCisJCW52X3RyYWNlKG1tdSwgIklPTU1VOiBJT1ZBPTB4JTAxNmxseC0+IElPTU1VIC0+IFBB
-PSUwMTZsbHhcbiIsCisJCQkJKHU2NCkobm9kZS0+b2Zmc2V0ICsgaSkgPDwgUEFHRV9TSElGVCwg
-KHU2NClwaHlzKTsKKworCQlpZiAoKGkgPCBucGFnZXMgLSAxKSAmJiAhX19zZ19wYWdlX2l0ZXJf
-bmV4dChpdGVyKSkgeworCQkJbnZfZXJyb3IobW11LCAiZmFpbGVkIHRvIGl0ZXJhdGUgc2cgdGFi
-bGVcbiIpOworCQkJcmV0dXJuOworCQl9CisJfQorCisJYWRkciA9ICh1NjQpbm9kZS0+b2Zmc2V0
-IDw8IFBBR0VfU0hJRlQ7CisJYWRkciB8PSBCSVRfVUxMKHBsYXQtPmdwdS0+aW9tbXUucGh5c19h
-ZGRyX2JpdCk7CisKKwlnazIwYV92bV9tYXAodm1hLCBwZ3QsIG1lbSwgcHRlLCBhZGRyKTsKKwor
-CXAgPSAqcHJpdjsKKwlwLT5ub2RlID0gbm9kZTsKKwlwLT5pb3ZhID0gbm9kZS0+b2Zmc2V0IDw8
-IFBBR0VfU0hJRlQ7Cit9CisKK3N0YXRpYyB2b2lkCitnazIwYV92bV91bm1hcF9pb21tdShzdHJ1
-Y3QgbnZrbV92bWEgKnZtYSwgdm9pZCAqcHJpdikKK3sKKwlzdHJ1Y3QgbnZrbV92bSAqdm0gPSB2
-bWEtPnZtOworCXN0cnVjdCBudmttX21tdSAqbW11ID0gdm0tPm1tdTsKKwlzdHJ1Y3Qgbm91dmVh
-dV9wbGF0Zm9ybV9kZXZpY2UgKnBsYXQ7CisJc3RydWN0IGdrMjBhX21tdV9pb21tdV9tYXBwaW5n
-ICpwID0gcHJpdjsKKwlpbnQgcmV0OworCisJcGxhdCA9IG52X2RldmljZV90b19wbGF0Zm9ybShu
-dl9kZXZpY2UoJm1tdS0+YmFzZSkpOworCisJcmV0ID0gaW9tbXVfdW5tYXAocGxhdC0+Z3B1LT5p
-b21tdS5kb21haW4sIHAtPmlvdmEsCisJCQkxIDw8IG1tdS0+bHBnX3NoaWZ0KTsKKwlXQVJOKHJl
-dCA8IDAsICJmYWlsZWQgdG8gdW5tYXAgSU9NTVUgYWRkcmVzcyAweCUxNmxseCwgcmV0PSVkXG4i
-LAorCQkJcC0+aW92YSwgcmV0KTsKKworCW11dGV4X2xvY2soJnBsYXQtPmdwdS0+aW9tbXUubXV0
-ZXgpOworCW52a21fbW1fZnJlZShwbGF0LT5ncHUtPmlvbW11Lm1tLCAmcC0+bm9kZSk7CisJbXV0
-ZXhfdW5sb2NrKCZwbGF0LT5ncHUtPmlvbW11Lm11dGV4KTsKKworCWtmcmVlKHByaXYpOworfQor
-CitzdGF0aWMgaW50CitnazIwYV9tbXVfY3RvcihzdHJ1Y3QgbnZrbV9vYmplY3QgKnBhcmVudCwg
-c3RydWN0IG52a21fb2JqZWN0ICplbmdpbmUsCisJICAgICAgIHN0cnVjdCBudmttX29jbGFzcyAq
-b2NsYXNzLCB2b2lkICpkYXRhLCB1MzIgc2l6ZSwKKwkgICAgICAgc3RydWN0IG52a21fb2JqZWN0
-ICoqcG9iamVjdCkKK3sKKwlzdHJ1Y3QgZ2syMGFfbW11X3ByaXYgKnByaXY7CisJc3RydWN0IG5v
-dXZlYXVfcGxhdGZvcm1fZGV2aWNlICpwbGF0OworCWludCByZXQ7CisKKwlyZXQgPSBudmttX21t
-dV9jcmVhdGUocGFyZW50LCBlbmdpbmUsIG9jbGFzcywgIlZNIiwgInZtIiwgJnByaXYpOworCSpw
-b2JqZWN0ID0gbnZfb2JqZWN0KHByaXYpOworCWlmIChyZXQpCisJCXJldHVybiByZXQ7CisKKwlw
-bGF0ID0gbnZfZGV2aWNlX3RvX3BsYXRmb3JtKG52X2RldmljZShwYXJlbnQpKTsKKwlpZiAocGxh
-dC0+Z3B1LT5pb21tdS5kb21haW4pCisJCXByaXYtPmJhc2UuaW9tbXVfY2FwYWJsZSA9IHRydWU7
-CisKKwlwcml2LT5iYXNlLmxpbWl0ID0gMVVMTCA8PCA0MDsKKwlwcml2LT5iYXNlLmRtYV9iaXRz
-ID0gNDA7CisJcHJpdi0+YmFzZS5wZ3RfYml0cyAgPSAyNyAtIDEyOworCXByaXYtPmJhc2Uuc3Bn
-X3NoaWZ0ID0gMTI7CisJcHJpdi0+YmFzZS5scGdfc2hpZnQgPSAxNzsKKwlwcml2LT5iYXNlLmNy
-ZWF0ZSA9IGdmMTAwX3ZtX2NyZWF0ZTsKKwlwcml2LT5iYXNlLm1hcF9wZ3QgPSBnZjEwMF92bV9t
-YXBfcGd0OworCXByaXYtPmJhc2UubWFwID0gZ2YxMDBfdm1fbWFwOworCXByaXYtPmJhc2UubWFw
-X3NnID0gZ2YxMDBfdm1fbWFwX3NnOworCXByaXYtPmJhc2UubWFwX2lvbW11ID0gZ2syMGFfdm1f
-bWFwX2lvbW11OworCXByaXYtPmJhc2UudW5tYXBfaW9tbXUgPSBnazIwYV92bV91bm1hcF9pb21t
-dTsKKwlwcml2LT5iYXNlLm1hcF9zZ19pb21tdSA9IGdrMjBhX3ZtX21hcF9zZ19pb21tdTsKKwlw
-cml2LT5iYXNlLnVubWFwID0gZ2YxMDBfdm1fdW5tYXA7CisJcHJpdi0+YmFzZS5mbHVzaCA9IGdm
-MTAwX3ZtX2ZsdXNoOworCisJcmV0dXJuIDA7Cit9CisKK3N0cnVjdCBudmttX29jbGFzcworZ2sy
-MGFfbW11X29jbGFzcyA9IHsKKwkuaGFuZGxlID0gTlZfU1VCREVWKE1NVSwgMHhlYSksCisJLm9m
-dW5jcyA9ICYoc3RydWN0IG52a21fb2Z1bmNzKSB7CisJCS5jdG9yID0gZ2syMGFfbW11X2N0b3Is
-CisJCS5kdG9yID0gX252a21fbW11X2R0b3IsCisJCS5pbml0ID0gX252a21fbW11X2luaXQsCisJ
-CS5maW5pID0gX252a21fbW11X2ZpbmksCisJfSwKK307Ci0tIAoyLjEuNAoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0024304605==
+Content-Type: multipart/alternative; boundary="1429204369.1C4Cc321.2165"; charset="UTF-8"
+
+
+--1429204369.1C4Cc321.2165
+Date: Thu, 16 Apr 2015 17:12:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90054
+
+            Bug ID: 90054
+           Summary: white screen reboot on gm107 with multiple monitors
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jamesstewartmiller-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 115127
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115127&action=edit
+vbios rom from /sys/kernel/debug/dri/0/vbios.rom
+
+Hi, just been chatting with user imirkin on #nouveau irc, and he's recommended
+that I open a bug report.
+
+I am getting a white screen on both monitors when I start or add a monitor that
+returns me to the login screen.
+
+This is on a fresh install of the ubuntu-studio daily build image (xubuntu
+base).
+
+As requested I include my vbios.
+
+The following pastebin is dmesg and xrandr output
+
+hastebin.com/icufuvupup.vhdl
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1429204369.1C4Cc321.2165
+Date: Thu, 16 Apr 2015 17:12:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - white screen reboot on gm107 with multiple monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90054">90054</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>white screen reboot on gm107 with multiple monitors
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jamesstewartmiller&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115127" name="attach_115127" title="vbios rom from /sys/kernel/debug/dri/0/vbios.rom">attachment 115127</a> <a href="attachment.cgi?id=115127&amp;action=edit" title="vbios rom from /sys/kernel/debug/dri/0/vbios.rom">[details]</a></span>
+vbios rom from /sys/kernel/debug/dri/0/vbios.rom
+
+Hi, just been chatting with user imirkin on #nouveau irc, and he's recommended
+that I open a bug report.
+
+I am getting a white screen on both monitors when I start or add a monitor that
+returns me to the login screen.
+
+This is on a fresh install of the ubuntu-studio daily build image (xubuntu
+base).
+
+As requested I include my vbios.
+
+The following pastebin is dmesg and xrandr output
+
+hastebin.com/icufuvupup.vhdl</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1429204369.1C4Cc321.2165--
+
+--===============0024304605==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0024304605==--
