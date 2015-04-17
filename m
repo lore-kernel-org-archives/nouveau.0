@@ -1,16 +1,10 @@
-From: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 0/6] map big page by platform IOMMU
-Date: Fri, 17 Apr 2015 15:42:13 +0800
-Message-ID: <5530B955.1040104@nvidia.com>
-References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
- <CAAVeFuJLRo1XYum3FZBhO5=5u63KLUY_tr0wk=TPxWutvCdL8A@mail.gmail.com>
- <5530B7D3.60700@nvidia.com>
- <CAAVeFuLdr7h29G6_1XGV8kTag=m4Spe_R9Aog38eRs9gAbgdVg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90069] New: input lag
+Date: Fri, 17 Apr 2015 08:36:47 +0000
+Message-ID: <bug-90069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0820137774=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuLdr7h29G6_1XGV8kTag=m4Spe_R9Aog38eRs9gAbgdVg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,25 +14,169 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDA0LzE3LzIwMTUgMDM6MzcgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IE9uIEZy
-aSwgQXByIDE3LCAyMDE1IGF0IDQ6MzUgUE0sIFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+
-IHdyb3RlOgo+PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+PiBUaGlzIGVtYWlsIG1lc3Nh
-Z2UgaXMgZm9yIHRoZSBzb2xlIHVzZSBvZiB0aGUgaW50ZW5kZWQgcmVjaXBpZW50KHMpIGFuZCBt
-YXkKPj4gY29udGFpbgo+PiBjb25maWRlbnRpYWwgaW5mb3JtYXRpb24uICBBbnkgdW5hdXRob3Jp
-emVkIHJldmlldywgdXNlLCBkaXNjbG9zdXJlIG9yCj4+IGRpc3RyaWJ1dGlvbgo+PiBpcyBwcm9o
-aWJpdGVkLiAgSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIGNv
-bnRhY3QgdGhlCj4+IHNlbmRlciBieQo+PiByZXBseSBlbWFpbCBhbmQgZGVzdHJveSBhbGwgY29w
-aWVzIG9mIHRoZSBvcmlnaW5hbCBtZXNzYWdlLgo+PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQo+IFVucmVsYXRlZDogSSBhc2tlZCBJVCB0byBhZGQgdGhlIE5vdXZlYXUgTUwgdG8gb3VyIGNv
-cHlyaWdodCBmb290ZXIKPiB3aGl0ZWxpc3QuIFNvcnJ5IGZvciB0aGUgaW5jb252ZW5pZW5jZSBn
-dXlzLCBwbGVhc2UgYmVhciB3aXRoIHVzLgpUZXJqZSB0b2xkIG1lIEkgY2FuIHJlbW92ZSB0aGlz
-IGJ5IHNvbWUgc2V0dGluZywgYnV0IEkgaGF2ZW4ndCB0cmllZCAKdGhhdC4gU29ycnkuCgpUaGFu
-a3MsClZpbmNlCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0820137774==
+Content-Type: multipart/alternative; boundary="1429259807.dDDb8D3D1.23486"; charset="UTF-8"
+
+
+--1429259807.dDDb8D3D1.23486
+Date: Fri, 17 Apr 2015 08:36:47 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90069
+
+            Bug ID: 90069
+           Summary: input lag
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: marcus.moeller-OI3hZJvNYWs@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+With latest kernel 4.0 I got an input lag on GDM when nouveau driver is used. G
+graphics Card is a NVidia Quadro K620.
+
+Neither mouse nor keyboard reacts correctly/in time.
+
+On the desktop (even with GNOME Shell) everything works fine again.
+
+The problem only occurs when KMS is used. With nomodeset everything works fine.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1429259807.dDDb8D3D1.23486
+Date: Fri, 17 Apr 2015 08:36:47 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - input lag"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90069">90069</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>input lag
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marcus.moeller&#64;gmx.ch
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>With latest kernel 4.0 I got an input lag on GDM when nouveau driver is used. G
+graphics Card is a NVidia Quadro K620.
+
+Neither mouse nor keyboard reacts correctly/in time.
+
+On the desktop (even with GNOME Shell) everything works fine again.
+
+The problem only occurs when KMS is used. With nomodeset everything works fine.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1429259807.dDDb8D3D1.23486--
+
+--===============0820137774==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0820137774==--
