@@ -1,16 +1,12 @@
-From: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 3/6] mmu: map small pages into big pages(s) by
- IOMMU if possible
-Date: Fri, 17 Apr 2015 08:37:46 -0700
-Message-ID: <553128CA.40304@nvidia.com>
-References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
- <1429182379-31964-4-git-send-email-vinceh@nvidia.com>
- <CAAVeFuLSYGV8ghOQ26ubA9kvWHCPD2y+y_bJMLHv1V1Ab8NOYg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Fri, 17 Apr 2015 21:06:11 +0000
+Message-ID: <bug-82714-8800-wYqGjKYLds@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1355369128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuLSYGV8ghOQ26ubA9kvWHCPD2y+y_bJMLHv1V1Ab8NOYg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,47 +16,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDA0LzE3LzIwMTUgMDI6MTEgQU0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IFRyYWNr
-aW5nIHRoZSBQREUgYW5kIFBURSBvZiBlYWNoIG1lbW9yeSBjaHVuayBjYW4gcHJvYmFibHkgYmUg
-YXZvaWRlZAo+IGlmIHlvdSBjaGFuZ2UgeW91ciB1bm1hcHBpbmcgc3RyYXRlZ3kuIEN1cnJlbnRs
-eSB5b3UgYXJlIGdvaW5nIHRocm91Z2gKPiB0aGUgbGlzdCBvZiBudmttX3ZtX2JwX2xpc3QsIGJ1
-dCB5b3Uga25vdyB5b3VyIFBERSBhbmQgUFRFIGFyZSBhbHdheXMKPiBnb2luZyB0byBiZSBhZGph
-Y2VudCwgc2luY2UgYSBudmttX3ZtYSByZXByZXNlbnRzIGEgY29udGlndW91cyBibG9jawo+IGlu
-IHRoZSBHUFUgVkEuIFNvIHdoZW4gdW5tYXBwaW5nLCB5b3UgY2FuIHNpbXBseSBjaGVjayBmb3Ig
-ZWFjaCBQVEUKPiBlbnRyeSB3aGV0aGVyIHRoZSBJT01NVSBiaXQgaXMgc2V0LCBhbmQgdW5tYXAg
-ZnJvbSB0aGUgSU9NTVUgc3BhY2UKPiBhZnRlciB1bm1hcHBpbmcgZnJvbSB0aGUgR1BVIFZBIHNw
-YWNlLCBpbiBhIGxvb3Agc2ltaWxhciB0byB0aGF0IG9mCj4gbnZrbV92bV91bm1hcF9hdCgpLgo+
-Cj4gVGhlbiB3ZSBvbmx5IG5lZWQgcHJpdi4gWW91IGFyZSBrZWVwaW5nIHRoZSBudmttX21tX25v
-ZGUgb2YgdGhlIElPTU1VCj4gc3BhY2UgaW50byBpdCwgYW5kIHlvdSBuZWVkIGl0IHRvIGZyZWUg
-dGhlIElPTU1VIFZBIHNwYWNlLiBJZiBvbmx5IHdlCj4gY291bGQgZmluZCBhbm90aGVyIHdheSB0
-byBzdG9yZSBpdCwgd2UgY291bGQgZ2V0IHJpZCBvZiB0aGUgd2hvbGUKPiBzdHJ1Y3R1cmUgYW5k
-IGFzc29jaWF0ZWQgbGlzdF9oZWFkIGluIG52a21fdm1hLi4uCj4KPiBJIG5lZWQgdG8gZ2l2ZSBp
-dCBzb21lIG1vcmUgdGhvdWdodHMsIGFuZCB3ZSB3aWxsIHByb2JhYmx5IG5lZWQgdG8KPiBjaGFu
-Z2UgYSBmZXcgdGhpbmdzIGluIGJhc2UuYyB0byBtYWtlIHRoZSBob29rcyBtb3JlIGZsZXhpYmxl
-LCBzbwo+IHBsZWFzZSBnaXZlIG1lIHNvbWUgbW9yZSB0aW1lIHRvIHRoaW5rIGFib3V0IGl0LiA6
-KSBJIGp1c3Qgd2FudGVkIHRvCj4gc2hhcmUgbXkgdGhvdWdodHMgc28gZmFyIGluIGNhc2UgdGhp
-cyBwdXRzIHlvdSBvbiB0cmFjay4KVGhlIHdheSB5b3UgZGVzY3JpYmVkIGl0IHdvdWxkIG1ha2Ug
-R1BVIE1NVSBhbmQgSU9NTVUgbWFwcGluZ3MgMToxLiBTbyAKd2hlbiB3ZSBtYXAgYSBidWZmZXIg
-dG8gR1BVIE1NVSwgd2UgYWx3YXlzIG1hcCBwYWdlIGJ5IHBhZ2UgdGhlIGJ1ZmZlciAKYWxzbyB0
-byBJT01NVS4gVGhlcmUgYXJlIGRpc2FkdmFudGFnZXMgaGVyZS4KCklPTU1VIGFkZHJlc3NlcyBh
-cmUgZ2xvYmFsLCBhbmQgdXNlcyBpbiB0aGUgR1BVIGNhY2hlcy4gV2hlbiBhIGJ1ZmZlciBpcyAK
-bWFwcGVkIG11bHRpcGxlIHRpbWVzIHRvIGRpZmZlcmVudCBncmFwaGljcyBjb250ZXh0cywgd2Ug
-d2FudCB0byBhdm9pZCAKY2FjaGUgYWxpYXNpbmcgYnkgbWFwcGluZyB0aGUgYnVmZmVyIG9ubHkg
-b25jZSB0byBJT01NVS4gV2UgYWxzbyB3YW50IHRvIAp1bm1hcCB0aGUgYnVmZmVyIGZyb20gSU9N
-TVUgb25seSBvbmNlIGFmdGVyIGFsbCB0aGUgaW5zdGFuY2VzIG9mIHRoZSAKYnVmZmVyIGhhdmUg
-YmVlbiB1bm1hcHBlZCwgb3Igb25seSB3aGVuIHRoZSBidWZmZXIgaXMgYWN0dWFsbHkgZnJlZWQg
-dG8gCmNhY2hlIElPTU1VIG1hcHBpbmdzLgoKRG9pbmcgSU9NTVUgbWFwcGluZyBmb3IgdGhlIHdo
-b2xlIGJ1ZmZlciB3aXRoIGRtYV9tYXBfc2cgaXMgYWxzbyBmYXN0ZXIgCnRoYW4gbWFwcGluZyBw
-YWdlIGJ5IHBhZ2UsIGJlY2F1c2UgeW91IGNhbiBkbyBvbmx5IG9uZSBUTEIgaW52YWxpZGF0ZSBp
-biAKdGhlIGVuZCBvZiB0aGUgbG9vcCBpbnN0ZWFkIG9mIGFmdGVyIGV2ZXJ5IHBhZ2UgaWYgeW91
-IHVzZSBkbWFfbWFwX3NpbmdsZS4KCkFsbCBvZiB0aGVzZSB3b3VsZCB0YWxrIGZvciBoYXZpbmcg
-SU9NTVUgYW5kIEdNTVUgbWFwcGluZyBsb29wcyAKc2VwYXJhdGUuIFRoaXMgcGF0Y2ggc2V0IGRv
-ZXMgbm90IGltcGxlbWVudCBib3RoIHRoZSBhZHZhbnRhZ2VzIGFib3ZlLCAKYnV0IHlvdXIgc3Vn
-Z2VzdGlvbiB3b3VsZCB0YWtlIHVzIGZ1cnRoZXIgYXdheSBmcm9tIHRoYXQgdGhhbiBWaW5jZSdz
-IAp2ZXJzaW9uLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1355369128==
+Content-Type: multipart/alternative; boundary="1429304771.f5EB2.22927"; charset="UTF-8"
+
+
+--1429304771.f5EB2.22927
+Date: Fri, 17 Apr 2015 21:06:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
+
+--- Comment #13 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+@Bruno
+Could you try bisecting which commit made it worse in 4.0-rc6? I'll have some
+time this week-end to get back to it.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1429304771.f5EB2.22927
+Date: Fri, 17 Apr 2015 21:06:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c13">Comment # 13</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>&#64;Bruno
+Could you try bisecting which commit made it worse in 4.0-rc6? I'll have some
+time this week-end to get back to it.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1429304771.f5EB2.22927--
+
+--===============1355369128==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1355369128==--
