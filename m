@@ -1,10 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90069] New: input lag
-Date: Fri, 17 Apr 2015 08:36:47 +0000
-Message-ID: <bug-90069-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 3/6] mmu: map small pages into big pages(s) by
+	IOMMU if possible
+Date: Fri, 17 Apr 2015 18:11:09 +0900
+Message-ID: <CAAVeFuLSYGV8ghOQ26ubA9kvWHCPD2y+y_bJMLHv1V1Ab8NOYg@mail.gmail.com>
+References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
+ <1429182379-31964-4-git-send-email-vinceh@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0820137774=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1429182379-31964-4-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,169 +19,60 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0820137774==
-Content-Type: multipart/alternative; boundary="1429259807.dDDb8D3D1.23486"; charset="UTF-8"
-
-
---1429259807.dDDb8D3D1.23486
-Date: Fri, 17 Apr 2015 08:36:47 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90069
-
-            Bug ID: 90069
-           Summary: input lag
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: marcus.moeller-OI3hZJvNYWs@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-With latest kernel 4.0 I got an input lag on GDM when nouveau driver is used. G
-graphics Card is a NVidia Quadro K620.
-
-Neither mouse nor keyboard reacts correctly/in time.
-
-On the desktop (even with GNOME Shell) everything works fine again.
-
-The problem only occurs when KMS is used. With nomodeset everything works fine.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1429259807.dDDb8D3D1.23486
-Date: Fri, 17 Apr 2015 08:36:47 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - input lag"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90069">90069</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>input lag
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>marcus.moeller&#64;gmx.ch
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>With latest kernel 4.0 I got an input lag on GDM when nouveau driver is used. G
-graphics Card is a NVidia Quadro K620.
-
-Neither mouse nor keyboard reacts correctly/in time.
-
-On the desktop (even with GNOME Shell) everything works fine again.
-
-The problem only occurs when KMS is used. With nomodeset everything works fine.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1429259807.dDDb8D3D1.23486--
-
---===============0820137774==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0820137774==--
+T24gVGh1LCBBcHIgMTYsIDIwMTUgYXQgODowNiBQTSwgVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlh
+LmNvbT4gd3JvdGU6Cj4gVGhpcyBwYXRjaCBpbXBsZW1lbnRzIGEgd2F5IHRvIGFnZ3JlZ2F0ZSB0
+aGUgc21hbGwgcGFnZXMgYW5kIG1ha2UgdGhlbSBiZQo+IG1hcHBlZCBhcyBiaWcgcGFnZShzKSBi
+eSB1dGlsaXppbmcgdGhlIHBsYXRmb3JtIElPTU1VIGlmIHN1cHBvcnRlZC4gQW5kIHRoZW4KPiB3
+ZSBjYW4gZW5hYmxlIGNvbXByZXNzaW9uIHN1cHBvcnQgZm9yIHRoZXNlIGJpZyBwYWdlcyBsYXRl
+ci4KPgo+IFNpZ25lZC1vZmYtYnk6IFZpbmNlIEhzdSA8dmluY2VoQG52aWRpYS5jb20+Cj4gLS0t
+Cj4gIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvbW11LmggfCAgMTYgKysrKwo+ICBk
+cm0vbm91dmVhdS9udmttL3N1YmRldi9tbXUvYmFzZS5jICAgIHwgMTU4ICsrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrLS0KCkkgYmVsaWV2ZSAoYWx0aG91Z2ggSSBtYXkgaGF2ZSBtaXNz
+ZWQgc29tZXRoaW5nKSB0aGF0IHRoaXMgcGF0Y2ggKGFuZApwYXRjaCA2LzYpIGNhbiBiZSByZXdy
+aXR0ZW4gc3VjaCBhcyB0aGVzZSB0d28gZmlsZXMgcmVtYWluIHVudG91Y2hlZC4KSU9XLCBubyBu
+ZXcgZGF0YSBzdHJ1Y3R1cmVzIChiZWNhdXNlIHRoZSBQVEUgd2lsbCBjb250YWluIGFsbCB0aGUK
+aW5mb3JtYXRpb24geW91IG5lZWQpLCBhbmQgbm8gY2hhbmdlIHRvIGJhc2UuYyAoYmVjYXVzZSBJ
+T01NVSBpcwpjaGlwLXNwZWNpZmljIGxvZ2ljLCBhbHRob3VnaCBvbmUgbWF5IGFyZ3VlIHRoYXQg
+dGhlIHVzZSBvZiB0aGUgSU9NTVUKQVBJIG1ha2VzIGl0IG1vcmUgZ2VuZXJpYykuCgpCdXQgbGV0
+J3MgcmV2aWV3IHRoZSBleHRyYSBkYXRhIHN0cnVjdHVyZXMgZmlyc3Q6Cgo+ICBsaWIvaW5jbHVk
+ZS9udmlmL29zLmggICAgICAgICAgICAgICAgIHwgIDEyICsrKwo+ICAzIGZpbGVzIGNoYW5nZWQs
+IDE3OSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9u
+b3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvbW11LmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L21tdS5oCj4gaW5kZXggM2E1MzY4Nzc2YzMxLi4zMjMwZDMxYTc5NzEgMTAwNjQ0
+Cj4gLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9tbXUuaAo+ICsrKyBiL2Ry
+bS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvbW11LmgKPiBAQCAtMjIsNiArMjIsOCBAQCBz
+dHJ1Y3QgbnZrbV92bWEgewo+ICAgICAgICAgc3RydWN0IG52a21fbW1fbm9kZSAqbm9kZTsKPiAg
+ICAgICAgIHU2NCBvZmZzZXQ7Cj4gICAgICAgICB1MzIgYWNjZXNzOwo+ICsgICAgICAgc3RydWN0
+IGxpc3RfaGVhZCBicDsKPiArICAgICAgIGJvb2wgaGFzX2lvbW11X2JwOwoKV2hldGhlciBhIGNo
+dW5rIG9mIG1lbW9yeSBpcyBtYXBwZWQgdGhyb3VnaCB0aGUgSU9NTVUgY2FuIGJlIHRlc3RlZCBi
+eQpjaGVja2luZyBpZiB0aGUgSU9NTVUgYml0IGlzIHNldCBpbiB0aGUgYWRkcmVzcyByZWNvcmRl
+ZCBpbiB0aGUgUFRFLgpTbyBoYXNfaW9tbXVfYnAgbG9va3MgcmVkdW5kYW50IGhlcmUuCgo+ICB9
+Owo+Cj4gIHN0cnVjdCBudmttX3ZtIHsKPiBAQCAtMzcsNiArMzksMTMgQEAgc3RydWN0IG52a21f
+dm0gewo+ICAgICAgICAgdTMyIGxwZGU7Cj4gIH07Cj4KPiArc3RydWN0IG52a21fdm1fYnBfbGlz
+dCB7Cj4gKyAgICAgICBzdHJ1Y3QgbGlzdF9oZWFkIGhlYWQ7Cj4gKyAgICAgICB1MzIgcGRlOwo+
+ICsgICAgICAgdTMyIHB0ZTsKPiArICAgICAgIHZvaWQgKnByaXY7Cj4gK307Cj4gKwoKVHJhY2tp
+bmcgdGhlIFBERSBhbmQgUFRFIG9mIGVhY2ggbWVtb3J5IGNodW5rIGNhbiBwcm9iYWJseSBiZSBh
+dm9pZGVkCmlmIHlvdSBjaGFuZ2UgeW91ciB1bm1hcHBpbmcgc3RyYXRlZ3kuIEN1cnJlbnRseSB5
+b3UgYXJlIGdvaW5nIHRocm91Z2gKdGhlIGxpc3Qgb2YgbnZrbV92bV9icF9saXN0LCBidXQgeW91
+IGtub3cgeW91ciBQREUgYW5kIFBURSBhcmUgYWx3YXlzCmdvaW5nIHRvIGJlIGFkamFjZW50LCBz
+aW5jZSBhIG52a21fdm1hIHJlcHJlc2VudHMgYSBjb250aWd1b3VzIGJsb2NrCmluIHRoZSBHUFUg
+VkEuIFNvIHdoZW4gdW5tYXBwaW5nLCB5b3UgY2FuIHNpbXBseSBjaGVjayBmb3IgZWFjaCBQVEUK
+ZW50cnkgd2hldGhlciB0aGUgSU9NTVUgYml0IGlzIHNldCwgYW5kIHVubWFwIGZyb20gdGhlIElP
+TU1VIHNwYWNlCmFmdGVyIHVubWFwcGluZyBmcm9tIHRoZSBHUFUgVkEgc3BhY2UsIGluIGEgbG9v
+cCBzaW1pbGFyIHRvIHRoYXQgb2YKbnZrbV92bV91bm1hcF9hdCgpLgoKVGhlbiB3ZSBvbmx5IG5l
+ZWQgcHJpdi4gWW91IGFyZSBrZWVwaW5nIHRoZSBudmttX21tX25vZGUgb2YgdGhlIElPTU1VCnNw
+YWNlIGludG8gaXQsIGFuZCB5b3UgbmVlZCBpdCB0byBmcmVlIHRoZSBJT01NVSBWQSBzcGFjZS4g
+SWYgb25seSB3ZQpjb3VsZCBmaW5kIGFub3RoZXIgd2F5IHRvIHN0b3JlIGl0LCB3ZSBjb3VsZCBn
+ZXQgcmlkIG9mIHRoZSB3aG9sZQpzdHJ1Y3R1cmUgYW5kIGFzc29jaWF0ZWQgbGlzdF9oZWFkIGlu
+IG52a21fdm1hLi4uCgpJIG5lZWQgdG8gZ2l2ZSBpdCBzb21lIG1vcmUgdGhvdWdodHMsIGFuZCB3
+ZSB3aWxsIHByb2JhYmx5IG5lZWQgdG8KY2hhbmdlIGEgZmV3IHRoaW5ncyBpbiBiYXNlLmMgdG8g
+bWFrZSB0aGUgaG9va3MgbW9yZSBmbGV4aWJsZSwgc28KcGxlYXNlIGdpdmUgbWUgc29tZSBtb3Jl
+IHRpbWUgdG8gdGhpbmsgYWJvdXQgaXQuIDopIEkganVzdCB3YW50ZWQgdG8Kc2hhcmUgbXkgdGhv
+dWdodHMgc28gZmFyIGluIGNhc2UgdGhpcyBwdXRzIHlvdSBvbiB0cmFjay4KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
