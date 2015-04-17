@@ -1,16 +1,17 @@
 From: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 2/6] instmem/gk20a: refer to IOMMU physical
- translation bit
-Date: Fri, 17 Apr 2015 08:14:20 -0700
-Message-ID: <5531234C.8020806@nvidia.com>
+Subject: Re: [PATCH 4/6] drm: enable big page mapping for small
+ pages when IOMMU is available
+Date: Fri, 17 Apr 2015 08:24:46 -0700
+Message-ID: <553125BE.9090706@nvidia.com>
 References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
- <1429182379-31964-3-git-send-email-vinceh@nvidia.com>
- <CAAVeFuJqWuQeH1tbAdkVpocBAjq52GPv_O_yxd0X+7gSHjCoJw@mail.gmail.com>
+ <1429182379-31964-5-git-send-email-vinceh@nvidia.com>
+ <CAAVeFu+_zJ4DUwebhzpfA9uJroFEVrOBRqiXUuS9Gk04hVA88A@mail.gmail.com>
+ <5530B603.9010703@nvidia.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuJqWuQeH1tbAdkVpocBAjq52GPv_O_yxd0X+7gSHjCoJw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <5530B603.9010703-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,17 +21,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDA0LzE2LzIwMTUgMTE6MjYgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IExvb2tz
-IGdvb2QsIGJ1dCBJIHRoaW5rIEkgd291bGQgZGVmaW5pdGVseSBwcmVmZXIgdGhpcyB0byBiZSBh
-IG1hc2sKPiBpbnN0ZWFkIG9mIGEgYml0IGluZGV4LCBpLmU6Cj4KPiAgICAgIHItPm9mZnNldCAm
-PSB+KHByaXYtPmlvbW11X2FkZHJfbWFzayA+PiBwcml2LT5pb21tdV9wZ3NoaWZ0KTsKPgo+IGFu
-ZAo+Cj4gICAgICByLT5vZmZzZXQgfD0gKHByaXYtPmlvbW11X2FkZHJfbWFzayA+PiBwcml2LT5p
-b21tdV9wZ3NoaWZ0KTsKV291bGRuJ3QgdGhhdCBiZSBqdXN0IGEgbW9yZSBjb21wbGljYXRlZCB3
-YXkgb2YgZXhwcmVzc2luZyB0aGUgc2FtZSB0aGluZz8KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+Ck9uIDA0LzE3LzIwMTUgMTI6MjggQU0sIFZpbmNlIEhzdSB3cm90ZToKPgo+IE9uIDA0LzE3LzIw
+MTUgMDI6MjYgUE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+PiBJIHdvbmRlciBpZiB3ZSBz
+aG91bGQgbm90IGp1c3QgdXNlIHRoZSBzYW1lIHNpemUgaGV1cmlzdGljcyBhcyBmb3IgCj4+IFZS
+QU0gYWJvdmU/Cj4+Cj4+IEhlcmUsIHVubGVzcyB5b3VyIGJ1ZmZlciBzaXplIGlzIGFuIGV4YWN0
+IG11bHRpcGxlIG9mIHRoZSBiaWcgcGFnZQo+PiBzaXplICgxMjhLIGZvciBHSzIwQSksIHlvdSB3
+aWxsIG5vdCB1c2UgYmlnIHBhZ2VzIGF0IGFsbC4gSW4gZWZmZWN0LAo+PiBtYW55IGJ1ZmZlcnMg
+d2lsbCBiZSByZWplY3RlZCBmb3IgdGhpcyByZWFzb24uIEEgYmVoYXZpb3IgbGlrZSAiaWYgdGhl
+Cj4+IGJ1ZmZlciBzaXplIG9mIG1vcmUgdGhhbiAyNTZLQiwgaW5jcmVhc2UgdGhlIHNpemUgb2Yg
+dGhlIGJ1ZmZlciB0byB0aGUKPj4gbmV4dCBtdWx0aXBsZSBvZiAxMjhLIGFuZCB1c2UgYmlnIHBh
+Z2VzIiB3b3VsZCBwcm9iYWJseSB5aWVsZCBiZXR0ZXIKPj4gcmVzdWx0cy4KPiBJJ20gdG9sZCB0
+aGF0IHRoZSB1c2VyIHNwYWNlIHdvdWxkIGFsaWduIHRoZSBidWZmZXIgdG8gdGhlIGJpZyBwYWdl
+IAo+IHNpemUuIFNvIEkgbWFkZSB0aGlzIHBhdGNoIGJhc2VkIG9uIHRoYXQgaW1wcmVzc2lvbi4g
+SSdtIG5vdCBwcmV0dHkgCj4gZmFtaWxpYXIgd2l0aCB0aGUgdXNlciBzcGFjZSBiZWhhdmlvciwg
+c28gc29ycnkgaWYgSSBzYXkgc29tZXRoaW5nIAo+IHdyb25nIGhlcmUuCj4KPiBBbmQgYXJlIHdl
+IGFsbG93ZWQgdG8gZXh0ZW5kIHRoZSBidWZmZXIgc2l6ZSBldmVuIHRoZSBleHBvcnRlciBkb2Vz
+bid0IAo+IGtub3cgYWJvdXQgdGhhdD8KVGhlIGFsaWdubWVudCBvZiBJT01NVSBWQSBiYXNlIGFk
+ZHJlc3MgYW5kIHNpemUgaGFzIHRvIGJlIGNvcnJlY3QuIEFzIGEgCmNvbnNlcXVlbmNlIHlvdSBj
+b3VsZCB0aGluayB0aGF0IHRoaXMgbWVhbnMgdGhhdCB0aGUgYWxsb2NhdGVkIHNpemUgb2YgCnRo
+ZSBidWZmZXIgaGFzIHRvIGJlIGJpZyBwYWdlIGFsaWduZWQuCgpZb3UgY291bGQgYWxzbyBqdXN0
+IGFsbG9jYXRlIGJ1ZmZlciBhY3R1YWwgc2l6ZSB3aXRoIHdoYXRldmVyIGFsaWdubWVudCwgCmFu
+ZCB0YWtlIGNhcmUgb2YgYWxpZ25tZW50IGF0IGJ1ZmZlciBtYXBwaW5nIHRpbWUuIEluIGNhc2Ug
+YnVmZmVyIGlzIAoxMjBrLCB3ZSBjb3VsZCBhbGxvY2F0ZSAxMjhrIG9mIElPTU1VIFZBIGF0IDEy
+OGsgYWxpZ25lZCBiYXNlIGFkZHJlc3MsIAphbmQgbGVhdmUgdGhlIHJlc3QgOGsgSU9NTVUgdW5t
+YXBwZWQsIGFuZCBtYXAgaXQgYXMgYSBzaW5nbGUgbGFyZ2UgcGFnZSAKdG8gR1BVIE1NVS4gQnV0
+IHRoYXQgd291bGQgYWxsb3cgdHJpZ2dlcmluZyBJT01NVSBmYXVsdCBmcm9tIEdQVSBjb21tYW5k
+IApidWZmZXJzLCBhbmQgSU9NTVUgZmF1bHRzIGFyZSBtdWNoIG1vcmUgZGlmZmljdWx0IHRvIGRl
+YnVnIHRoYW4gR1BVIE1NVSAKZmF1bHRzLCBzbyBJIGRvbid0IHJlY29tbWVuZCB0aGlzLgoKU28g
+aW4gc3VtbWFyeSwgSSBwcmVmZXIgdGFraW5nIGNhcmUgb2YgYnVmZmVyIHNpemUgYWxpZ25tZW50
+IGF0IAphbGxvY2F0aW9uIHRpbWUsIGFuZCBJT01NVSBWQSBiYXNlIGFsaWdubWVudCBhdCBtYXBw
+aW5nIHRpbWUuCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
