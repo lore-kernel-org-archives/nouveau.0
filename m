@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
  - Strange pink line on left screen side
-Date: Sun, 19 Apr 2015 05:51:46 +0000
-Message-ID: <bug-75203-8800-kTkkWNBV2U@http.bugs.freedesktop.org/>
+Date: Sun, 19 Apr 2015 05:56:23 +0000
+Message-ID: <bug-75203-8800-18KNyolnhC@http.bugs.freedesktop.org/>
 References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0397856033=="
+Content-Type: multipart/mixed; boundary="===============1319494637=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0397856033==
-Content-Type: multipart/alternative; boundary="1429422706.eC881DC3.12559"; charset="UTF-8"
+--===============1319494637==
+Content-Type: multipart/alternative; boundary="1429422983.fbde3.14105"; charset="UTF-8"
 
 
---1429422706.eC881DC3.12559
-Date: Sun, 19 Apr 2015 05:51:46 +0000
+--1429422983.fbde3.14105
+Date: Sun, 19 Apr 2015 05:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
---- Comment #17 from !evil <a_rappold-RbZlAiThDcE@public.gmane.org> ---
-found the solution to my issue. seems to be a bug with HDMI audio enabled by
-default.
-see https://bugzilla.kernel.org/show_bug.cgi?id=93701
-sry for the distraction
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This bug should have been fixed in ~3.18 or so. Re 'ret' being special, it is,
+see nvif_unpack macro definition. Feel free to reopen if you're still seeing
+pink lines on Kepler GPUs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429422706.eC881DC3.12559
-Date: Sun, 19 Apr 2015 05:51:46 +0000
+--1429422983.fbde3.14105
+Date: Sun, 19 Apr 2015 05:56:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,23 +57,50 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c17">Comment # 17</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c18">Comment # 18</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:a_rappold&#64;gmx.at" title="!evil &lt;a_rappold&#64;gmx.at&gt;"> <span class="fn">!evil</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>found the solution to my issue. seems to be a bug with HDMI audio enabled by
-default.
-see <a href="https://bugzilla.kernel.org/show_bug.cgi?id=93701">https://bugzilla.kernel.org/show_bug.cgi?id=93701</a>
-sry for the distraction</pre>
+        <pre>This bug should have been fixed in ~3.18 or so. Re 'ret' being special, it is,
+see nvif_unpack macro definition. Feel free to reopen if you're still seeing
+pink lines on Kepler GPUs.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +112,9 @@ sry for the distraction</pre>
     </body>
 </html>
 
---1429422706.eC881DC3.12559--
+--1429422983.fbde3.14105--
 
---===============0397856033==
+--===============1319494637==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0397856033==--
+--===============1319494637==--
