@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90092] Screen Hangs Displaying Black and White
- Rectangles After Resuming from Suspend
-Date: Sat, 18 Apr 2015 22:25:25 +0000
-Message-ID: <bug-90092-8800-1nCpWMpZ6q@http.bugs.freedesktop.org/>
-References: <bug-90092-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
+ - Strange pink line on left screen side
+Date: Sun, 19 Apr 2015 05:51:46 +0000
+Message-ID: <bug-75203-8800-kTkkWNBV2U@http.bugs.freedesktop.org/>
+References: <bug-75203-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1423004430=="
+Content-Type: multipart/mixed; boundary="===============0397856033=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90092-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1423004430==
-Content-Type: multipart/alternative; boundary="1429395925.851FAC1.17491"; charset="UTF-8"
+--===============0397856033==
+Content-Type: multipart/alternative; boundary="1429422706.eC881DC3.12559"; charset="UTF-8"
 
 
---1429395925.851FAC1.17491
-Date: Sat, 18 Apr 2015 22:25:25 +0000
+--1429422706.eC881DC3.12559
+Date: Sun, 19 Apr 2015 05:51:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90092
+https://bugs.freedesktop.org/show_bug.cgi?id=75203
 
---- Comment #2 from Jean-Marc <jean-marc-kSWvK2IlVM0@public.gmane.org> ---
-Created attachment 115186
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115186&action=edit
-modinfo nouveau
+--- Comment #17 from !evil <a_rappold-RbZlAiThDcE@public.gmane.org> ---
+found the solution to my issue. seems to be a bug with HDMI audio enabled by
+default.
+see https://bugzilla.kernel.org/show_bug.cgi?id=93701
+sry for the distraction
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429395925.851FAC1.17491
-Date: Sat, 18 Apr 2015 22:25:25 +0000
+--1429422706.eC881DC3.12559
+Date: Sun, 19 Apr 2015 05:51:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Screen Hangs Displaying Black and White Rectangles After Resuming from Suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90092#c2">Comment # 2</a>
+   title="NEW - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Screen Hangs Displaying Black and White Rectangles After Resuming from Suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90092">bug 90092</a>
-              from <span class="vcard"><a class="email" href="mailto:jean-marc&#64;6jf.be" title="Jean-Marc &lt;jean-marc&#64;6jf.be&gt;"> <span class="fn">Jean-Marc</span></a>
+   title="NEW - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
+              from <span class="vcard"><a class="email" href="mailto:a_rappold&#64;gmx.at" title="!evil &lt;a_rappold&#64;gmx.at&gt;"> <span class="fn">!evil</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115186" name="attach_115186" title="modinfo nouveau">attachment 115186</a> <a href="attachment.cgi?id=115186&amp;action=edit" title="modinfo nouveau">[details]</a></span>
-modinfo nouveau</pre>
+        <pre>found the solution to my issue. seems to be a bug with HDMI audio enabled by
+default.
+see <a href="https://bugzilla.kernel.org/show_bug.cgi?id=93701">https://bugzilla.kernel.org/show_bug.cgi?id=93701</a>
+sry for the distraction</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +79,9 @@ modinfo nouveau</pre>
     </body>
 </html>
 
---1429395925.851FAC1.17491--
+--1429422706.eC881DC3.12559--
 
---===============1423004430==
+--===============0397856033==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1423004430==--
+--===============0397856033==--
