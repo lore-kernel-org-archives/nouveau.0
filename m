@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75203] [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660
- - Strange pink line on left screen side
-Date: Sun, 19 Apr 2015 05:56:23 +0000
-Message-ID: <bug-75203-8800-18KNyolnhC@http.bugs.freedesktop.org/>
-References: <bug-75203-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/6] platform: specify the IOMMU physical
+	translation bit
+Date: Mon, 20 Apr 2015 16:37:09 +0900
+Message-ID: <CAAVeFuKSY9AvtmjkVY7CApMex3Gq5L5cQ=suaERY5-gtAYai6A@mail.gmail.com>
+References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
+ <1429182379-31964-2-git-send-email-vinceh@nvidia.com>
+ <CAAVeFuL10UidtE4_Y2mYEYpWjDqXn-FQF3zJQv2eQDqg_QTJ1Q@mail.gmail.com>
+ <55312257.8000606@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1319494637=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75203-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <55312257.8000606-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +21,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1319494637==
-Content-Type: multipart/alternative; boundary="1429422983.fbde3.14105"; charset="UTF-8"
-
-
---1429422983.fbde3.14105
-Date: Sun, 19 Apr 2015 05:56:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=75203
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This bug should have been fixed in ~3.18 or so. Re 'ret' being special, it is,
-see nvif_unpack macro definition. Feel free to reopen if you're still seeing
-pink lines on Kepler GPUs.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1429422983.fbde3.14105
-Date: Sun, 19 Apr 2015 05:56:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] Asus Maximus IV GENE-Z - Nvidia GTX660 - Strange pink line on left screen side"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75203">bug 75203</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This bug should have been fixed in ~3.18 or so. Re 'ret' being special, it is,
-see nvif_unpack macro definition. Feel free to reopen if you're still seeing
-pink lines on Kepler GPUs.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1429422983.fbde3.14105--
-
---===============1319494637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1319494637==--
+T24gU2F0LCBBcHIgMTgsIDIwMTUgYXQgMTI6MTAgQU0sIFRlcmplIEJlcmdzdHJvbSA8dGJlcmdz
+dHJvbUBudmlkaWEuY29tPiB3cm90ZToKPgo+IE9uIDA0LzE2LzIwMTUgMTE6MjYgUE0sIEFsZXhh
+bmRyZSBDb3VyYm90IHdyb3RlOgo+Pgo+PiBJbnN0ZWFkIG9mIHRoaXMgZnVuY3Rpb24sIHlvdSBz
+aG91bGQgcHJvYmFibHkgdXNlIHRoZSBkYXRhIGZpZWxkIG9mCj4+IHN0cnVjdCBvZl9kZXZpY2Vf
+aWQuIERlZmluZSBhIGxvY2FsIHN0cnVjdCBjYWxsZWQsIHNheSwKPj4gbm91dmVhdV9wbGF0Zm9y
+bV9wYXJhbXMgY29udGFpbmluZyAoZm9yIG5vdykgYSBzaW5nbGUgaW9tbXVfYWRkcl9iaXQKPj4g
+ZmllbGQgYW5kIGluc3RhbmNpYXRlIG9uZSBmb3IgZWFjaCBlbnRyeSBvZiBub3V2ZWF1X3BsYXRm
+b3JtX21hdGNoLgo+PiBUaGVuIHlvdSBjYW4gY2FzdCBtYXRjaC0+ZGF0YSBhbmQgcmV0cmlldmUg
+dGhlIGZpZWxkIGRpcmVjdGx5IGluc3RlYWQKPj4gb2YgdXNpbmcgc3RyY21wLgo+Pgo+PiBJJ2Qg
+c2F5IHRoaXMgaXMgdGhlbiBzaW1wbGUgZW5vdWdoIHRvIGRvIGRpcmVjdGx5IGluCj4+IG5vdXZl
+YXVfcGxhdGZvcm1fcHJvYmVfaW9tbXUoKSBpbnN0ZWFkIG9mIGhhdmluZyBhIGZ1bmN0aW9uIGRl
+ZGljYXRlZAo+PiB0byBpdC4gSXQgaXMgYWxzbyBzYWZlciBiZWNhdXNlIHdoZW4gd2UgYWRkIGEg
+bmV3IGNoaXAsIHdlIGhhdmUgdG8KPj4gdXBkYXRlIG5vdXZlYXVfcGxhdGZvcm1fbWF0Y2ggYnV0
+IG1pZ2h0IHZlcnkgd2VsbCBmb3JnZXQgYWJvdXQgeW91cgo+PiBmdW5jdGlvbiwgYW5kIHdpbGwg
+ZW5kIHVwIHdpdGggYml0IDAgYmVpbmcgc2V0IG9uIGFsbCBvdXIgR1BVCj4+IGFkZHJlc3NlcyBh
+bmQgZW5kbGVzcyBob3VycyBvZiBmdW4gZmlndXJpbmcgb3V0IGhvdyB0aGlzIGhhcHBlbmVkLiA6
+KQo+Pgo+PiBXaGlsZSBJIGFtIGF0IGl0OiBob3cgYWJvdXQgZGVmaW5pbmcgdGhpcyBhcyBhIHU2
+NCBtYXNrIHRvIHNldC91bnNldAo+PiBvbiBHUFUgYWRkcmVzc2VzIGluc3RlYWQgb2YganVzdCBh
+IGJpdD8gVGhpcyBpcyBtb3JlIGZsZXhpYmxlIGFuZAo+PiBhZ2FpbiBzYWZlciBpbiBjYXNlIHNv
+bWVvbmUgIm9taXRzIiB0byBzcGVjaWZ5IHRoZSBjb3JyZWN0IGJpdCBmb3IgYQo+PiBjaGlwLgo+
+Cj4gV291bGRuJ3QgdTY0IGJlIGFzIGRhbmdlcm91cz8gV2UnZCBiZSBqdXN0IG1lc3NpbmcgdXAg
+d2l0aCBhZGRyZXNzIGluCj4gYW5vdGhlciB3YXkuCj4KPiBBbm90aGVyIHdheSBvZiBleHByZXNz
+aW5nIHRoaXMgaW5mb3JtYXRpb24gd291bGQgYmUgZGVmaW5pbmcgbnVtYmVyIG9mCj4gcGh5c2lj
+YWwoKikgYWRkcmVzcyBiaXRzLiBJT01NVSBiaXQgaXMgdGhlIGJpdCBhZnRlciBwaHlzaWNhbCBh
+ZGRyZXNzIGJpdHMuCgpJIGRvbid0IGhhdmUgYSBzdHJvbmcgb3BpbmlvbiBvbiB0aGlzIC0gdGhl
+IGFkdmFudGFnZSBvZiBhIGJpdCBtYXNrCm92ZXIgYSBiaXQgaW5kZXggaXMgdGhhdCBpdCBhdCBs
+ZWFzdCBnaXZlcyB1cyB0aGUgb3B0aW9uIG9mIG5vdCBoYXZpbmcKYSBNTVUgdHJhbnNsYXRpb24g
+Yml0IGF0IGFsbCAobWFzayA9PSAwKSB3aGVyZWFzIGEgYml0IGluZGV4IG9mIDAgd2lsbApzZXQv
+dW5zZXQgdGhlIGZpcnN0IGJpdC4KCk5vdCB0aGF0IHdlIG5lZWQgdGhpcyBmb3Igbm93LCBidXQg
+a2VlcGluZyB0aGF0IHBvc3NpYmlsaXR5IG9wZW4KZG9lc24ndCBzb3VuZCBiYWQgZm9yIHRoZSBm
+dXR1cmUgKG5vdGhpbmcgZ3VhcmFudGVlcyB0aGUgR1BVIHdpbGwKYWx3YXlzIGJlIGJlaGluZCB0
+aGUgSU9NTVUpLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
