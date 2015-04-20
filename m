@@ -1,18 +1,18 @@
 From: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 2/6] instmem/gk20a: refer to IOMMU physical
- translation bit
-Date: Mon, 20 Apr 2015 09:37:43 -0700
-Message-ID: <55352B57.4000202@nvidia.com>
+Subject: Re: [PATCH 3/6] mmu: map small pages into big pages(s) by
+ IOMMU if possible
+Date: Mon, 20 Apr 2015 09:47:09 -0700
+Message-ID: <55352D8D.9080707@nvidia.com>
 References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
- <1429182379-31964-3-git-send-email-vinceh@nvidia.com>
- <CAAVeFuJqWuQeH1tbAdkVpocBAjq52GPv_O_yxd0X+7gSHjCoJw@mail.gmail.com>
- <5531234C.8020806@nvidia.com>
- <CAAVeFu+p=FFqMNTYNVo1DKnFWZ88_5osiTbiHQR=wQ6tJhHzBA@mail.gmail.com>
+ <1429182379-31964-4-git-send-email-vinceh@nvidia.com>
+ <CAAVeFuLSYGV8ghOQ26ubA9kvWHCPD2y+y_bJMLHv1V1Ab8NOYg@mail.gmail.com>
+ <553128CA.40304@nvidia.com>
+ <CAAVeFuKc1szojynHrGM9TJrJsTK0RjRiO7i7uwxoVPAW=tZJrA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFu+p=FFqMNTYNVo1DKnFWZ88_5osiTbiHQR=wQ6tJhHzBA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAAVeFuKc1szojynHrGM9TJrJsTK0RjRiO7i7uwxoVPAW=tZJrA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,15 +26,26 @@ To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDA0LzIwLzIwMTUgMTI6MzggQU0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IE9uIFNh
-dCwgQXByIDE4LCAyMDE1IGF0IDEyOjE0IEFNLCBUZXJqZSBCZXJnc3Ryb20gPHRiZXJnc3Ryb21A
-bnZpZGlhLmNvbT4gd3JvdGU6Cj4+IFdvdWxkbid0IHRoYXQgYmUganVzdCBhIG1vcmUgY29tcGxp
-Y2F0ZWQgd2F5IG9mIGV4cHJlc3NpbmcgdGhlIHNhbWUgCj4+IHRoaW5nPyAKPiBSaWdodCBub3cg
-d2UgaGF2ZSByLT5vZmZzZXQgfD0gQklUKHByaXYtPmlvbW11X3BoeXNfYWRkcl9iaXQgLQo+IHBy
-aXYtPmlvbW11X3Bnc2hpZnQpLCB3aGljaCBkb2Vzbid0IGxvb2sgbXVjaCBzaW1wbGVyLiA6KQoK
-T25lIHJlYXNvbiBpcyB0aGF0IHlvdSdyZSBkb2luZyB0d28gdGhpbmdzIGluIHRoZSBzYW1lIGJp
-dCBvcGVyYXRpb24uIApUaGUgb3JpZ2luYWwgYWRkcmVzcyBoYXMgYWxyZWFkeSBiZWVuIHNoaWZ0
-ZWQsIHNvIHlvdSdyZSBjb21wZW5zYXRpbmcgCnRoZSBzaGlmdCwgYW5kIHlvdSdyZSBzZXR0aW5n
-IGJpdCAzNC4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+Ck9uIDA0LzIwLzIwMTUgMTI6NDkgQU0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IEFoYSwg
+bG9va3MgbGlrZSBib3RoIFZpbmNlIGFuZCBJIG92ZXJsb29rZWQgdGhpcyBwb2ludC4gU28gSUlV
+QyB3ZQo+IHdvdWxkIG5lZWQgdG8gbWFrZSBzdXJlIGEgR1BVIGJ1ZmZlciBpcyBvbmx5IGV2ZXIg
+bWFwcGVkIG9uY2UgYnkgdGhlCj4gSU9NTVUuIFRoaXMgbWVhbnMgd2UgZWl0aGVyIG5lZWQgdG8g
+cHJlZW1wdGl2ZWx5IGVudGlsZXJ5IG1hcCBpdCBhdAo+IHNvbWUgcG9pbnQgYW5kIGp1c3Qga2Vl
+cCBhIHJlZmVyZW5jZSBjb3VudCwgb3Iga2VlcCB0cmFjayBvZiB3aGljaAo+IDEyOGsgcmFuZ2Vz
+IGFyZSBhbHJlYWR5IG1hcHBlZCAoYWdhaW4sIHdpdGggYSByZWZlcmVuY2UgY291bnQgdG8ga25v
+dwo+IHdoZW4gdG8gdW5tYXAgdGhlbSkuCj4KPiBGaXJzdCBzb2x1dGlvbiBpcyB0ZW1wdGluZyBi
+ZWNhdXNlIGl0IGlzIHNpbXBsZXIsIGJ1dCBzdXJlbHkgdGhlcmUgaXMKPiBzb21ldGhpbmcgd3Jv
+bmcgd2l0aCBpdD8KCklmIHlvdSBtYXAgdGhlIHdob2xlIGJ1ZmZlciB0byBJT01NVSBhdCBvbmNl
+LCB5b3UgY2FuIHVzZSBtYXBfc2cgc3R5bGUgCmNhbGxzLCB3aGljaCB3b3VsZCBtYWtlIHlvdXIg
+SU9NTVUgbWFwcGluZyBiZSBmYXN0ZXIuIEl0IGFsc28gbWF0Y2hlcyAKaG93IGRtYV9idWZfbWFw
+X2F0dGFjaG1lbnQoKSB3b3Jrcy4gU28gb25lIHdheSB3b3VsZCBiZSB0byBmaXJzdCBjaGVjayAK
+aWYgdGhlIGJ1ZmZlciBoYXMgYWxyZWFkeSBiZWVuIG1hcHBlZCB0byBHUFUgSU9NTVUgc3BhY2Us
+IGFuZCBpZiBzbywgCmluY3JlbWVudCByZWZjb3VudCBhbmQgcmV1c2UgYWRkcmVzcy4gSWYgbm90
+LCBtYXAgdGhlIGJ1ZmZlciBmb3IgZXhhbXBsZSAKdmlhIGRtYV9idWZfbWFwX2F0dGFjaG1lbnQo
+KSwgYW5kIHN0YXNoIHRoZSBJT01NVSBhZGRyZXNzLgoKRm9yIG1lIHRoZSB0cmlja2llc3QgdG8g
+Z2V0IHJpZ2h0IHdhcyBmcmVlaW5nIHRoZSBidWZmZXIuIFdoZW4gdGhlIHVzZXIgCnNwYWNlIHdh
+cyBkb25lIHdpdGggYnVmZmVyLCBjYW4gd2UgZW5zdXJlIGFsbCBtYXBwaW5ncyBhcmUgdG9ybiBk
+b3duIApmaXJzdD8gRG9lcyB0aGF0IGhvbGQgaWYgdXNlciBzcGFjZSBqdXN0IGNyYXNoZXM/Cl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
