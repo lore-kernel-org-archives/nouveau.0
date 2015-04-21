@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of Dual DVI connected monitors (second screen still off)
-Date: Tue, 21 Apr 2015 14:53:01 +0000
-Message-ID: <bug-38074-8800-huFgPz1oEa@http.bugs.freedesktop.org/>
+ combination of DVI connected monitors (second screen still off)
+Date: Tue, 21 Apr 2015 14:53:22 +0000
+Message-ID: <bug-38074-8800-d9G6L3ZPZs@http.bugs.freedesktop.org/>
 References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0020302570=="
+Content-Type: multipart/mixed; boundary="===============0402382161=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0020302570==
-Content-Type: multipart/alternative; boundary="1429627981.Be7653.1599"; charset="UTF-8"
+--===============0402382161==
+Content-Type: multipart/alternative; boundary="1429628002.a66aEF3.1761"; charset="UTF-8"
 
 
---1429627981.Be7653.1599
-Date: Tue, 21 Apr 2015 14:53:00 +0000
+--1429628002.a66aEF3.1761
+Date: Tue, 21 Apr 2015 14:53:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -38,16 +38,16 @@ Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> changed:
 ----------------------------------------------------------------------------
             Summary|[NV96] Dual head doesn't    |[NV96] Dual head doesn't
                    |work for some combination   |work for some combination
-                   |of monitors (second screen  |of Dual DVI connected
-                   |still off)                  |monitors (second screen
-                   |                            |still off)
+                   |of Dual DVI connected       |of DVI connected monitors
+                   |monitors (second screen     |(second screen still off)
+                   |still off)                  |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429627981.Be7653.1599
-Date: Tue, 21 Apr 2015 14:53:01 +0000
+--1429628002.a66aEF3.1761
+Date: Tue, 21 Apr 2015 14:53:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,7 +59,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of Dual DVI connected monitors (second screen still off)"
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -71,9 +71,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>[NV96] Dual head doesn't work for some combination of monitors (second screen still off)
-           </td>
            <td>[NV96] Dual head doesn't work for some combination of Dual DVI connected monitors (second screen still off)
+           </td>
+           <td>[NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)
            </td>
          </tr></table>
       <p>
@@ -87,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1429627981.Be7653.1599--
+--1429628002.a66aEF3.1761--
 
---===============0020302570==
+--===============0402382161==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0020302570==--
+--===============0402382161==--
