@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of monitors (second screen still off)
-Date: Tue, 21 Apr 2015 14:46:26 +0000
-Message-ID: <bug-38074-8800-XjfsLQiAyc@http.bugs.freedesktop.org/>
+ combination of Dual DVI connected monitors (second screen still off)
+Date: Tue, 21 Apr 2015 14:53:01 +0000
+Message-ID: <bug-38074-8800-huFgPz1oEa@http.bugs.freedesktop.org/>
 References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1024620897=="
+Content-Type: multipart/mixed; boundary="===============0020302570=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1024620897==
-Content-Type: multipart/alternative; boundary="1429627586.DdC4BC3f3.31994"; charset="UTF-8"
+--===============0020302570==
+Content-Type: multipart/alternative; boundary="1429627981.Be7653.1599"; charset="UTF-8"
 
 
---1429627586.DdC4BC3f3.31994
-Date: Tue, 21 Apr 2015 14:46:26 +0000
+--1429627981.Be7653.1599
+Date: Tue, 21 Apr 2015 14:53:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=38074
 
---- Comment #29 from Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 115250
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115250&action=edit
-Fedora 21, Xorg log with FX380 installed
+Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NV96] Dual head doesn't    |[NV96] Dual head doesn't
+                   |work for some combination   |work for some combination
+                   |of monitors (second screen  |of Dual DVI connected
+                   |still off)                  |monitors (second screen
+                   |                            |still off)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429627586.DdC4BC3f3.31994
-Date: Tue, 21 Apr 2015 14:46:26 +0000
+--1429627981.Be7653.1599
+Date: Tue, 21 Apr 2015 14:53:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c29">Comment # 29</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of Dual DVI connected monitors (second screen still off)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
-              from <span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115250" name="attach_115250" title="Fedora 21, Xorg log with FX380 installed">attachment 115250</a> <a href="attachment.cgi?id=115250&amp;action=edit" title="Fedora 21, Xorg log with FX380 installed">[details]</a></span>
-Fedora 21, Xorg log with FX380 installed</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NV96] Dual head doesn't work for some combination of monitors (second screen still off)
+           </td>
+           <td>[NV96] Dual head doesn't work for some combination of Dual DVI connected monitors (second screen still off)
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +87,9 @@ Fedora 21, Xorg log with FX380 installed</pre>
     </body>
 </html>
 
---1429627586.DdC4BC3f3.31994--
+--1429627981.Be7653.1599--
 
---===============1024620897==
+--===============0020302570==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1024620897==--
+--===============0020302570==--
