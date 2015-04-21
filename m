@@ -1,18 +1,13 @@
-From: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH 3/6] mmu: map small pages into big pages(s) by
- IOMMU if possible
-Date: Mon, 20 Apr 2015 09:47:09 -0700
-Message-ID: <55352D8D.9080707@nvidia.com>
-References: <1429182379-31964-1-git-send-email-vinceh@nvidia.com>
- <1429182379-31964-4-git-send-email-vinceh@nvidia.com>
- <CAAVeFuLSYGV8ghOQ26ubA9kvWHCPD2y+y_bJMLHv1V1Ab8NOYg@mail.gmail.com>
- <553128CA.40304@nvidia.com>
- <CAAVeFuKc1szojynHrGM9TJrJsTK0RjRiO7i7uwxoVPAW=tZJrA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 38074] [NV96] Dual head doesn't work for some
+ combination of monitors (second screen still off)
+Date: Tue, 21 Apr 2015 14:44:05 +0000
+Message-ID: <bug-38074-8800-vRF4tuyi5V@http.bugs.freedesktop.org/>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1055246794=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuKc1szojynHrGM9TJrJsTK0RjRiO7i7uwxoVPAW=tZJrA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,30 +17,98 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Ck9uIDA0LzIwLzIwMTUgMTI6NDkgQU0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+IEFoYSwg
-bG9va3MgbGlrZSBib3RoIFZpbmNlIGFuZCBJIG92ZXJsb29rZWQgdGhpcyBwb2ludC4gU28gSUlV
-QyB3ZQo+IHdvdWxkIG5lZWQgdG8gbWFrZSBzdXJlIGEgR1BVIGJ1ZmZlciBpcyBvbmx5IGV2ZXIg
-bWFwcGVkIG9uY2UgYnkgdGhlCj4gSU9NTVUuIFRoaXMgbWVhbnMgd2UgZWl0aGVyIG5lZWQgdG8g
-cHJlZW1wdGl2ZWx5IGVudGlsZXJ5IG1hcCBpdCBhdAo+IHNvbWUgcG9pbnQgYW5kIGp1c3Qga2Vl
-cCBhIHJlZmVyZW5jZSBjb3VudCwgb3Iga2VlcCB0cmFjayBvZiB3aGljaAo+IDEyOGsgcmFuZ2Vz
-IGFyZSBhbHJlYWR5IG1hcHBlZCAoYWdhaW4sIHdpdGggYSByZWZlcmVuY2UgY291bnQgdG8ga25v
-dwo+IHdoZW4gdG8gdW5tYXAgdGhlbSkuCj4KPiBGaXJzdCBzb2x1dGlvbiBpcyB0ZW1wdGluZyBi
-ZWNhdXNlIGl0IGlzIHNpbXBsZXIsIGJ1dCBzdXJlbHkgdGhlcmUgaXMKPiBzb21ldGhpbmcgd3Jv
-bmcgd2l0aCBpdD8KCklmIHlvdSBtYXAgdGhlIHdob2xlIGJ1ZmZlciB0byBJT01NVSBhdCBvbmNl
-LCB5b3UgY2FuIHVzZSBtYXBfc2cgc3R5bGUgCmNhbGxzLCB3aGljaCB3b3VsZCBtYWtlIHlvdXIg
-SU9NTVUgbWFwcGluZyBiZSBmYXN0ZXIuIEl0IGFsc28gbWF0Y2hlcyAKaG93IGRtYV9idWZfbWFw
-X2F0dGFjaG1lbnQoKSB3b3Jrcy4gU28gb25lIHdheSB3b3VsZCBiZSB0byBmaXJzdCBjaGVjayAK
-aWYgdGhlIGJ1ZmZlciBoYXMgYWxyZWFkeSBiZWVuIG1hcHBlZCB0byBHUFUgSU9NTVUgc3BhY2Us
-IGFuZCBpZiBzbywgCmluY3JlbWVudCByZWZjb3VudCBhbmQgcmV1c2UgYWRkcmVzcy4gSWYgbm90
-LCBtYXAgdGhlIGJ1ZmZlciBmb3IgZXhhbXBsZSAKdmlhIGRtYV9idWZfbWFwX2F0dGFjaG1lbnQo
-KSwgYW5kIHN0YXNoIHRoZSBJT01NVSBhZGRyZXNzLgoKRm9yIG1lIHRoZSB0cmlja2llc3QgdG8g
-Z2V0IHJpZ2h0IHdhcyBmcmVlaW5nIHRoZSBidWZmZXIuIFdoZW4gdGhlIHVzZXIgCnNwYWNlIHdh
-cyBkb25lIHdpdGggYnVmZmVyLCBjYW4gd2UgZW5zdXJlIGFsbCBtYXBwaW5ncyBhcmUgdG9ybiBk
-b3duIApmaXJzdD8gRG9lcyB0aGF0IGhvbGQgaWYgdXNlciBzcGFjZSBqdXN0IGNyYXNoZXM/Cl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1055246794==
+Content-Type: multipart/alternative; boundary="1429627445.4aaA3.31556"; charset="UTF-8"
+
+
+--1429627445.4aaA3.31556
+Date: Tue, 21 Apr 2015 14:44:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=38074
+
+--- Comment #27 from Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> ---
+Problem still exists on Fedora 21. Versions and hardware::
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G96GL [Quadro FX 380]
+(rev a1)
+
+Linux 3.19.3-200.fc21.x86_64 #1 SMP Thu Mar 26 21:39:42 UTC 2015 x86_64 x86_64
+x86_64 GNU/Linux
+
+Dual screens, both 1280x1024 connected via DVI. Both are connected and active
+according to xrandr, only one shows a picture.
+
+Xorg.0.log and dmesg - see attachment.
+
+Was also reproducable on a current Gentoo with kernel 3.19.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1429627445.4aaA3.31556
+Date: Tue, 21 Apr 2015 14:44:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c27">Comment # 27</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
+              from <span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
+</span></b>
+        <pre>Problem still exists on Fedora 21. Versions and hardware::
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G96GL [Quadro FX 380]
+(rev a1)
+
+Linux 3.19.3-200.fc21.x86_64 #1 SMP Thu Mar 26 21:39:42 UTC 2015 x86_64 x86_64
+x86_64 GNU/Linux
+
+Dual screens, both 1280x1024 connected via DVI. Both are connected and active
+according to xrandr, only one shows a picture.
+
+Xorg.0.log and dmesg - see attachment.
+
+Was also reproducable on a current Gentoo with kernel 3.19.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1429627445.4aaA3.31556--
+
+--===============1055246794==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1055246794==--
