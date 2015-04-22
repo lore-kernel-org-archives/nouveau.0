@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of DVI connected monitors (second screen still off)
-Date: Tue, 21 Apr 2015 15:10:49 +0000
-Message-ID: <bug-38074-8800-DsAtzA8KHt@http.bugs.freedesktop.org/>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Wed, 22 Apr 2015 00:46:47 +0000
+Message-ID: <bug-70972-8800-E3g0FToxpu@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0474182736=="
+Content-Type: multipart/mixed; boundary="===============1395473945=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0474182736==
-Content-Type: multipart/alternative; boundary="1429629049.a1fe3.5260"; charset="UTF-8"
+--===============1395473945==
+Content-Type: multipart/alternative; boundary="1429663607.fB2d2.17719"; charset="UTF-8"
 
 
---1429629049.a1fe3.5260
-Date: Tue, 21 Apr 2015 15:10:49 +0000
+--1429663607.fB2d2.17719
+Date: Wed, 22 Apr 2015 00:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=38074
+https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
---- Comment #30 from Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> ---
-Created attachment 115251
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115251&action=edit
-Quadro FX380, VBIOS
+--- Comment #14 from adlo <adloconwy+freebug-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 115254
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115254&action=edit
+mmiotrace of NVIDIA proprietary driver
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429629049.a1fe3.5260
-Date: Tue, 21 Apr 2015 15:10:49 +0000
+--1429663607.fB2d2.17719
+Date: Wed, 22 Apr 2015 00:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +53,17 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c30">Comment # 30</a>
+          bz_status_NEW "
+   title="NEW - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c14">Comment # 14</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
-              from <span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
+          bz_status_NEW "
+   title="NEW - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
+              from <span class="vcard"><a class="email" href="mailto:adloconwy+freebug&#64;gmail.com" title="adlo &lt;adloconwy+freebug&#64;gmail.com&gt;"> <span class="fn">adlo</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115251" name="attach_115251" title="Quadro FX380, VBIOS">attachment 115251</a> <a href="attachment.cgi?id=115251&amp;action=edit" title="Quadro FX380, VBIOS">[details]</a></span>
-Quadro FX380, VBIOS</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115254" name="attach_115254" title="mmiotrace of NVIDIA proprietary driver">attachment 115254</a> <a href="attachment.cgi?id=115254&amp;action=edit" title="mmiotrace of NVIDIA proprietary driver">[details]</a></span>
+mmiotrace of NVIDIA proprietary driver</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ Quadro FX380, VBIOS</pre>
     </body>
 </html>
 
---1429629049.a1fe3.5260--
+--1429663607.fB2d2.17719--
 
---===============0474182736==
+--===============1395473945==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0474182736==--
+--===============1395473945==--
