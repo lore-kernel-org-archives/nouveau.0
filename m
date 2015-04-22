@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Wed, 22 Apr 2015 00:46:47 +0000
-Message-ID: <bug-70972-8800-E3g0FToxpu@http.bugs.freedesktop.org/>
+Date: Wed, 22 Apr 2015 00:56:15 +0000
+Message-ID: <bug-70972-8800-3M3rGZ341j@http.bugs.freedesktop.org/>
 References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1395473945=="
+Content-Type: multipart/mixed; boundary="===============2087075555=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1395473945==
-Content-Type: multipart/alternative; boundary="1429663607.fB2d2.17719"; charset="UTF-8"
+--===============2087075555==
+Content-Type: multipart/alternative; boundary="1429664175.a52eaE852.19814"; charset="UTF-8"
 
 
---1429663607.fB2d2.17719
-Date: Wed, 22 Apr 2015 00:46:47 +0000
+--1429664175.a52eaE852.19814
+Date: Wed, 22 Apr 2015 00:56:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70972
 
---- Comment #14 from adlo <adloconwy+freebug-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 115254
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115254&action=edit
-mmiotrace of NVIDIA proprietary driver
+adlo <adloconwy+freebug-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #115254|mmiotrace_nvidia.tar.xz     |mmiotrace_GeForce_7150M_nFo
+           filename|                            |rce_630M_nvidia.tar.xz
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1429663607.fB2d2.17719
-Date: Wed, 22 Apr 2015 00:46:47 +0000
+--1429664175.a52eaE852.19814
+Date: Wed, 22 Apr 2015 00:56:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:adloconwy+freebug&#64;gmail.com" title="adlo &lt;adloconwy+freebug&#64;gmail.com&gt;"> <span class="fn">adlo</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV67] Modesetting failure at 1280x800"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:adloconwy+freebug&#64;gmail.com" title="adlo &lt;adloconwy+freebug&#64;gmail.com&gt;"> <span class="fn">adlo</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115254" name="attach_115254" title="mmiotrace of NVIDIA proprietary driver">attachment 115254</a> <a href="attachment.cgi?id=115254&amp;action=edit" title="mmiotrace of NVIDIA proprietary driver">[details]</a></span>
-mmiotrace of NVIDIA proprietary driver</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #115254 filename</td>
+           <td>mmiotrace_nvidia.tar.xz
+           </td>
+           <td>mmiotrace_GeForce_7150M_nForce_630M_nvidia.tar.xz
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +83,9 @@ mmiotrace of NVIDIA proprietary driver</pre>
     </body>
 </html>
 
---1429663607.fB2d2.17719--
+--1429664175.a52eaE852.19814--
 
---===============1395473945==
+--===============2087075555==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1395473945==--
+--===============2087075555==--
