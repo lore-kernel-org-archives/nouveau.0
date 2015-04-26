@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90181] New: [NVF1] native cs:go crashes when its
- about to load up a map.
-Date: Sun, 26 Apr 2015 02:04:00 +0000
-Message-ID: <bug-90181-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83992] [NVE0][NVF1] regression,
+	linux 3.17 causes gpu lockups
+Date: Sun, 26 Apr 2015 02:09:55 +0000
+Message-ID: <bug-83992-8800-KLzXhRa50Q@http.bugs.freedesktop.org/>
+References: <bug-83992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0904033651=="
+Content-Type: multipart/mixed; boundary="===============1069218171=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-83992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0904033651==
-Content-Type: multipart/alternative; boundary="1430013840.5ACfbDDf0.3850"; charset="UTF-8"
+--===============1069218171==
+Content-Type: multipart/alternative; boundary="1430014195.06D8A0822.5146"; charset="UTF-8"
 
 
---1430013840.5ACfbDDf0.3850
-Date: Sun, 26 Apr 2015 02:04:00 +0000
+--1430014195.06D8A0822.5146
+Date: Sun, 26 Apr 2015 02:09:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90181
+https://bugs.freedesktop.org/show_bug.cgi?id=83992
 
-            Bug ID: 90181
-           Summary: [NVF1] native cs:go crashes when its about to load up
-                    a map.
-           Product: Mesa
-           Version: 10.5
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-cs:go makes my X freeze as fast it tries to load a map, the game starts to main
-menu just fine, its when i try to load a game/map it freezes X with this error
-message in dmesg.
-
-[  239.285162] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x002be00000
-[UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x00bef7a0     00 [unknown]
-
-i tried setting compressed = false in nvc0_miptree_create , but didnt change
-anything.
+--- Comment #8 from Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+fixed in linux 4.0 ,
+https://github.com/torvalds/linux/commit/404ba3f79089a01c1ebacccafa08a5db4a4cd2af
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1430013840.5ACfbDDf0.3850
-Date: Sun, 26 Apr 2015 02:04:00 +0000
+--1430014195.06D8A0822.5146
+Date: Sun, 26 Apr 2015 02:09:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,113 +49,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVF1] native cs:go crashes when its about to load up a map."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181">90181</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVF1] native cs:go crashes when its about to load up a map.
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.5
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>tomenglund26&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>cs:go makes my X freeze as fast it tries to load a map, the game starts to main
-menu just fine, its when i try to load a game/map it freezes X with this error
-message in dmesg.
-
-[  239.285162] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x002be00000
-[UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x00bef7a0     00 [unknown]
-
-i tried setting compressed = false in nvc0_miptree_create , but didnt change
-anything.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE0][NVF1] regression, linux 3.17 causes gpu lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83992">bug 83992</a>
+              from <span class="vcard"><a class="email" href="mailto:tomenglund26&#64;gmail.com" title="Tom Englund &lt;tomenglund26&#64;gmail.com&gt;"> <span class="fn">Tom Englund</span></a>
+</span></b>
+        <pre>fixed in linux 4.0 ,
+<a href="https://github.com/torvalds/linux/commit/404ba3f79089a01c1ebacccafa08a5db4a4cd2af">https://github.com/torvalds/linux/commit/404ba3f79089a01c1ebacccafa08a5db4a4cd2af</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1430013840.5ACfbDDf0.3850--
+--1430014195.06D8A0822.5146--
 
---===============0904033651==
+--===============1069218171==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -185,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0904033651==--
+--===============1069218171==--
