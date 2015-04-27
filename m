@@ -1,13 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: First post
-Date: Mon, 27 Apr 2015 18:35:06 -0400
-Message-ID: <CAKb7UvhER61S6cqnduXbW4=OL1-PVnY5CKkndGuQKC3dkCbhWA@mail.gmail.com>
-References: <553EB4E9.8010100@comcast.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90201] repeatable freeze with nouveau and geeqie
+	context menus
+Date: Mon, 27 Apr 2015 23:20:15 +0000
+Message-ID: <bug-90201-8800-IXLNx0Kbjg@http.bugs.freedesktop.org/>
+References: <bug-90201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1903329770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <553EB4E9.8010100-Wuw85uim5zDR7s880joybQ@public.gmane.org>
+In-Reply-To: <bug-90201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,41 +17,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-WW91IGNvdWxkIGJlIGhpdHRpbmcKaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1
-Zy5jZ2k/aWQ9NzAzNTQgYWx0aG91Z2ggdGhhdCdzCnVuY2xlYXIgdG8gbWUuLi4gbW9zdCBvZiB0
-aGUgcGVvcGxlIHdpdGggdGhhdCBpc3N1ZSBoYXZlIEdLMTA2J3MgYW5kCml0J3MgOTklIHJlcHJv
-ZHVjaWJsZSBmb3IgdGhlbSwgd2hlcmVhcyBpdCdzIDEwJSBmb3IgeW91LiBBbmQgdGhleQpoYXZl
-IGl0IGFzIGEgc2Vjb25kYXJ5IEdQVSwgd2hlcmVhcyBJIGFzc3VtZSB0aGVyZSdzIG5vIGludGVs
-IGdwdQpleHBvc2VkIGluIHlvdXIgc3lzdGVtLgoKVGhhdCBzYWlkLCBubyBhZGRpdGlvbmFsIHdv
-cmRzIG9mIHdpc2RvbSBmcm9tIG1lID0vCgpXaGF0IGtlcm5lbCBhcmUgeW91IHVzaW5nPyBUaGVy
-ZSBoYXZlIGJlZW4gc29tZSBmaXhlcyB0byB0aGUgY29udGV4dApzd2l0Y2hpbmcgbG9naWMgcmVj
-ZW50bHkgKGtlcm5lbCA0LjApLCBwZXJoYXBzIHRoZXkgYWZmZWN0IHlvdXIKc2NlbmFyaW8/CgpP
-biBNb24sIEFwciAyNywgMjAxNSBhdCA2OjE1IFBNLCBkb24gZmlzaGVyIDxoZGYzQGNvbWNhc3Qu
-bmV0PiB3cm90ZToKPiBIZWxsbywKPgo+IEkgaGF2ZSBhbiBBbGllbndhcmUgOCBsYXB0b3AgdGhh
-dCBjb250YWlucyBkdWFsIEdlRm9yY2UgR1RYIDg4ME0gZ3JhcGhpY3MKPiBHUFVzIHdpdGggMTZH
-QiBvZiB2aWRlbyByYW0sIGFzIEkgdW5kZXJzdGFuZCBpdC4gSSBhbSBydW5uaW5nIG9wZW5zdXNl
-IDMuMi4KPiBBdCBzb21lIHRpbWVzLCBsaWtlIG9uY2UgZXZlcnkgMTAgYm9vdHMgb3Igc28sIG15
-IHN5c3RlbSB3aWxsIGhhbmcgb24gYm9vdC4KPiBCbGFjayBzY3JlZW4gc2hvd24uCj4KPiBJIGxv
-b2tlZCBhdCBteSAvdmFyL2xvZy9tZXNzYWdlcyBhbmQgdGhlcmUgYXJlIG51bWVyb3VzIG5vdXZl
-YXUgZXJyb3JzLiBJCj4gaGF2ZSBhdHRhY2hlZCBhIHNlY3Rpb24gb2YgdGhpcyBvdXRwdXQuIEkg
-YW0gd2lsbGluZyB0byBwZXJmb3JtIGFueSB0ZXN0cwo+IHRoYXQgd291bGQgYmUgaGVscGZ1bC4g
-SSBoYXZlIHR3byBvZiB0aGVzZSBjb21wdXRlcnMgYW5kIHRoZSBlcnJvciBtZXNzYWdlcwo+IGFw
-cGVhciB0aGUgc2FtZSBvbiBib3RoLCBzbyBpdCBpcyBwcm9iYWJseSBub3QgYSBoYXJkd2FyZSBp
-c3N1ZS4KPgo+IEV2ZW4gd2l0aCB0aGUgZXJyb3IgbWVzc2FnZXMsIGFmdGVyIHRoZSBzeXN0ZW0g
-Ym9vdHMgaXQgcnVucyB3ZWxsLiBJIGFtCj4gY3VycmVudGx5IG9ubHkgcnVubmluZyAyRCB3aW5k
-b3dzLCBzdWNoIGFzIHh0ZXJtIGFuZCBGaXJlZm94LiBJIGRvIG5vdCBrbm93Cj4gaWYgdGhlIGVy
-cm9ycyBhcmUganVzdCBzb21ldGhpbmcgdG8gYmUgaWdub3JlZCBvciBzaG91bGQgYmUgaW52ZXN0
-aWdhdGVkLgo+IEFsc28sIG9uIHR3byBvY2Nhc2lvbnMgYSByYW5kb20gcGF0dGVybiBoYXMgYXBw
-ZWFyZWQgc3VwZXJpbXBvc2VkIG9uIHRoZQo+IG9yaWdpbmFsIGRpc3BsYXkuIFRoZSBzeXN0ZW0g
-aXMgaHVuZyBhdCB0aGlzIHBvaW50IGFuZCBJIG11c3QgcmVib290Lgo+Cj4gUGxlYXNlIHRlbGwg
-bWUgaWYgdGhpcyBpcyBhIHByb3BlciB0eXBlIG9mIHBvc3QuCj4gRG9uCj4KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBs
-aXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Cl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1903329770==
+Content-Type: multipart/alternative; boundary="1430176814.7CbC21.23977"; charset="UTF-8"
+
+
+--1430176814.7CbC21.23977
+Date: Mon, 27 Apr 2015 23:20:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90201
+
+--- Comment #3 from Matthew Miller <mattdm-u0/72CSfwU0dnm+yROfE0A@public.gmane.org> ---
+I can confirm that the crash does not seem to occur with libdrm 2.4.59. Does
+that make this a libdrm bug, then?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1430176814.7CbC21.23977
+Date: Mon, 27 Apr 2015 23:20:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - repeatable freeze with nouveau and geeqie context menus"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - repeatable freeze with nouveau and geeqie context menus"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201">bug 90201</a>
+              from <span class="vcard"><a class="email" href="mailto:mattdm&#64;mattdm.org" title="Matthew Miller &lt;mattdm&#64;mattdm.org&gt;"> <span class="fn">Matthew Miller</span></a>
+</span></b>
+        <pre>I can confirm that the crash does not seem to occur with libdrm 2.4.59. Does
+that make this a libdrm bug, then?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1430176814.7CbC21.23977--
+
+--===============1903329770==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1903329770==--
