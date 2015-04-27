@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90201] repeatable freeze with nouveau and geeqie
-	context menus
+Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
+ open the new legacy tray in 3.16.0
 Date: Mon, 27 Apr 2015 23:22:39 +0000
-Message-ID: <bug-90201-8800-B7EWDMUyU8@http.bugs.freedesktop.org/>
-References: <bug-90201-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-89842-8800-eLiyuUWqhj@http.bugs.freedesktop.org/>
+References: <bug-89842-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1969613423=="
+Content-Type: multipart/mixed; boundary="===============0237695286=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1969613423==
-Content-Type: multipart/alternative; boundary="1430176959.D06DB5d72.24599"; charset="UTF-8"
+--===============0237695286==
+Content-Type: multipart/alternative; boundary="1430176959.4E1bAC58.24599"; charset="UTF-8"
 
 
---1430176959.D06DB5d72.24599
+--1430176959.4E1bAC58.24599
 Date: Mon, 27 Apr 2015 23:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90201
+https://bugs.freedesktop.org/show_bug.cgi?id=89842
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |mattdm-u0/72CSfwU0dnm+yROfE0A@public.gmane.org
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 89842 ***
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 90201 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430176959.D06DB5d72.24599
+--1430176959.4E1bAC58.24599
 Date: Mon, 27 Apr 2015 23:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -60,9 +57,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201">bug 90201</a>
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,38 +69,29 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>mattdm&#64;mattdm.org
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201">bug 90201</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
-   href="show_bug.cgi?id=89842">bug 89842</a> ***</pre>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
+   href="show_bug.cgi?id=90201">Bug 90201</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1430176959.D06DB5d72.24599--
+--1430176959.4E1bAC58.24599--
 
---===============1969613423==
+--===============0237695286==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1969613423==--
+--===============0237695286==--
