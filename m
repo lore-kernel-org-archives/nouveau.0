@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90201] repeatable freeze with nouveau and geeqie
 	context menus
-Date: Mon, 27 Apr 2015 23:20:15 +0000
-Message-ID: <bug-90201-8800-IXLNx0Kbjg@http.bugs.freedesktop.org/>
+Date: Mon, 27 Apr 2015 23:22:39 +0000
+Message-ID: <bug-90201-8800-B7EWDMUyU8@http.bugs.freedesktop.org/>
 References: <bug-90201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1903329770=="
+Content-Type: multipart/mixed; boundary="===============1969613423=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1903329770==
-Content-Type: multipart/alternative; boundary="1430176814.7CbC21.23977"; charset="UTF-8"
+--===============1969613423==
+Content-Type: multipart/alternative; boundary="1430176959.D06DB5d72.24599"; charset="UTF-8"
 
 
---1430176814.7CbC21.23977
-Date: Mon, 27 Apr 2015 23:20:14 +0000
+--1430176959.D06DB5d72.24599
+Date: Mon, 27 Apr 2015 23:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90201
 
---- Comment #3 from Matthew Miller <mattdm-u0/72CSfwU0dnm+yROfE0A@public.gmane.org> ---
-I can confirm that the crash does not seem to occur with libdrm 2.4.59. Does
-that make this a libdrm bug, then?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 89842 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430176814.7CbC21.23977
-Date: Mon, 27 Apr 2015 23:20:14 +0000
+--1430176959.D06DB5d72.24599
+Date: Mon, 27 Apr 2015 23:22:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +57,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201">bug 90201</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - repeatable freeze with nouveau and geeqie context menus"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90201#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - repeatable freeze with nouveau and geeqie context menus"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - repeatable freeze with nouveau and geeqie context menus"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90201">bug 90201</a>
-              from <span class="vcard"><a class="email" href="mailto:mattdm&#64;mattdm.org" title="Matthew Miller &lt;mattdm&#64;mattdm.org&gt;"> <span class="fn">Matthew Miller</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I can confirm that the crash does not seem to occur with libdrm 2.4.59. Does
-that make this a libdrm bug, then?</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0"
+   href="show_bug.cgi?id=89842">bug 89842</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +115,9 @@ that make this a libdrm bug, then?</pre>
     </body>
 </html>
 
---1430176814.7CbC21.23977--
+--1430176959.D06DB5d72.24599--
 
---===============1903329770==
+--===============1969613423==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1903329770==--
+--===============1969613423==--
