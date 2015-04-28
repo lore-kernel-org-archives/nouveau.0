@@ -1,14 +1,13 @@
-From: don fisher <hdf3-Wuw85uim5zDR7s880joybQ@public.gmane.org>
-Subject: Re: First post
-Date: Mon, 27 Apr 2015 19:36:24 -0700
-Message-ID: <553EF228.8010102@comcast.net>
-References: <553EB4E9.8010100@comcast.net>
- <CAKb7UvhER61S6cqnduXbW4=OL1-PVnY5CKkndGuQKC3dkCbhWA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89455] [NVC0/Gallium] Unigine Heaven black and white
+	boxes
+Date: Tue, 28 Apr 2015 06:01:45 +0000
+Message-ID: <bug-89455-8800-FgbMKjQP4S@http.bugs.freedesktop.org/>
+References: <bug-89455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0453674945=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhER61S6cqnduXbW4=OL1-PVnY5CKkndGuQKC3dkCbhWA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,52 +17,132 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBhbSBydW5uaW5nIExpbnV4IHZlcnNpb24gMy4xNi43LTcga2VybmVsLCBmcm9tIHRoZSBvcGVu
-c3VzZSAzLjIgCmRpc3RyaWJ1dGlvbi4gSSB0aGluayB0aGVyZSBhbHNvIG1heSBiZSBhbiBJbnRl
-bCBncHUgdGhhdCBwcmVjZWRlcyB0aGUgCk52aWRpYSA4ODBNIGdwdXMgaW4gbXkgY29tcHV0ZXIu
-IEkgaGF2ZSB2ZXJ5IGxpdHRsZSBkb2N1bWVudGF0aW9uIG9uIAp0aGVzZSBjb21wdXRlcnMsIHNv
-bGQgcmVmdXJiaXNoZWQgYnkgRGVsbCB3aXRoIG5vIGRvY3VtZW50YXRpb24uIGxzcGNpIApsaXN0
-cyB0aGUgZ3JhcGhpY3MgY2FyZCBhcyAiTlZJRElBIENvcnBvcmF0aW9uIEdLMTA0TSBbR2VGb3Jj
-ZSBHVFggODgwTV0gCihyZXYgYTEpIChwcm9nLWlmIDAwIFtWR0EgY29udHJvbGxlcl0pLiBObyBJ
-bnRlbCBtZW50aW9uZWQuIEdvb2dsZSAKc2VhcmNoIGZvdW5kICJpbnRlZ3JhdGVkIGludGVsIDQ2
-MDAgc2VyaWVzIHdpdGggTnZpZGlhIEdlRm9yY2UgR1RYIDg4ME0uIApEaWZmZXJlbnQgc3BlY3Mg
-ZnJvbSBkaWZmZXJlbnQgcGxhY2VzOi0oCgpJIHdpbGwgdHJ5IGtlcm5lbCA0LjAgYW5kIGNvbXBh
-cmUgdGhlIGVycm9ycy4KClRoYW5rcywKRG9uCk9uIDA0LzI3LzIwMTUgMDM6MzUgUE0sIElsaWEg
-TWlya2luIHdyb3RlOgo+IFlvdSBjb3VsZCBiZSBoaXR0aW5nCj4gaHR0cHM6Ly9idWdzLmZyZWVk
-ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzAzNTQgYWx0aG91Z2ggdGhhdCdzCj4gdW5jbGVh
-ciB0byBtZS4uLiBtb3N0IG9mIHRoZSBwZW9wbGUgd2l0aCB0aGF0IGlzc3VlIGhhdmUgR0sxMDYn
-cyBhbmQKPiBpdCdzIDk5JSByZXByb2R1Y2libGUgZm9yIHRoZW0sIHdoZXJlYXMgaXQncyAxMCUg
-Zm9yIHlvdS4gQW5kIHRoZXkKPiBoYXZlIGl0IGFzIGEgc2Vjb25kYXJ5IEdQVSwgd2hlcmVhcyBJ
-IGFzc3VtZSB0aGVyZSdzIG5vIGludGVsIGdwdQo+IGV4cG9zZWQgaW4geW91ciBzeXN0ZW0uCj4K
-PiBUaGF0IHNhaWQsIG5vIGFkZGl0aW9uYWwgd29yZHMgb2Ygd2lzZG9tIGZyb20gbWUgPS8KPgo+
-IFdoYXQga2VybmVsIGFyZSB5b3UgdXNpbmc/IFRoZXJlIGhhdmUgYmVlbiBzb21lIGZpeGVzIHRv
-IHRoZSBjb250ZXh0Cj4gc3dpdGNoaW5nIGxvZ2ljIHJlY2VudGx5IChrZXJuZWwgNC4wKSwgcGVy
-aGFwcyB0aGV5IGFmZmVjdCB5b3VyCj4gc2NlbmFyaW8/Cj4KPiBPbiBNb24sIEFwciAyNywgMjAx
-NSBhdCA2OjE1IFBNLCBkb24gZmlzaGVyIDxoZGYzQGNvbWNhc3QubmV0PiB3cm90ZToKPj4gSGVs
-bG8sCj4+Cj4+IEkgaGF2ZSBhbiBBbGllbndhcmUgOCBsYXB0b3AgdGhhdCBjb250YWlucyBkdWFs
-IEdlRm9yY2UgR1RYIDg4ME0gZ3JhcGhpY3MKPj4gR1BVcyB3aXRoIDE2R0Igb2YgdmlkZW8gcmFt
-LCBhcyBJIHVuZGVyc3RhbmQgaXQuIEkgYW0gcnVubmluZyBvcGVuc3VzZSAzLjIuCj4+IEF0IHNv
-bWUgdGltZXMsIGxpa2Ugb25jZSBldmVyeSAxMCBib290cyBvciBzbywgbXkgc3lzdGVtIHdpbGwg
-aGFuZyBvbiBib290Lgo+PiBCbGFjayBzY3JlZW4gc2hvd24uCj4+Cj4+IEkgbG9va2VkIGF0IG15
-IC92YXIvbG9nL21lc3NhZ2VzIGFuZCB0aGVyZSBhcmUgbnVtZXJvdXMgbm91dmVhdSBlcnJvcnMu
-IEkKPj4gaGF2ZSBhdHRhY2hlZCBhIHNlY3Rpb24gb2YgdGhpcyBvdXRwdXQuIEkgYW0gd2lsbGlu
-ZyB0byBwZXJmb3JtIGFueSB0ZXN0cwo+PiB0aGF0IHdvdWxkIGJlIGhlbHBmdWwuIEkgaGF2ZSB0
-d28gb2YgdGhlc2UgY29tcHV0ZXJzIGFuZCB0aGUgZXJyb3IgbWVzc2FnZXMKPj4gYXBwZWFyIHRo
-ZSBzYW1lIG9uIGJvdGgsIHNvIGl0IGlzIHByb2JhYmx5IG5vdCBhIGhhcmR3YXJlIGlzc3VlLgo+
-Pgo+PiBFdmVuIHdpdGggdGhlIGVycm9yIG1lc3NhZ2VzLCBhZnRlciB0aGUgc3lzdGVtIGJvb3Rz
-IGl0IHJ1bnMgd2VsbC4gSSBhbQo+PiBjdXJyZW50bHkgb25seSBydW5uaW5nIDJEIHdpbmRvd3Ms
-IHN1Y2ggYXMgeHRlcm0gYW5kIEZpcmVmb3guIEkgZG8gbm90IGtub3cKPj4gaWYgdGhlIGVycm9y
-cyBhcmUganVzdCBzb21ldGhpbmcgdG8gYmUgaWdub3JlZCBvciBzaG91bGQgYmUgaW52ZXN0aWdh
-dGVkLgo+PiBBbHNvLCBvbiB0d28gb2NjYXNpb25zIGEgcmFuZG9tIHBhdHRlcm4gaGFzIGFwcGVh
-cmVkIHN1cGVyaW1wb3NlZCBvbiB0aGUKPj4gb3JpZ2luYWwgZGlzcGxheS4gVGhlIHN5c3RlbSBp
-cyBodW5nIGF0IHRoaXMgcG9pbnQgYW5kIEkgbXVzdCByZWJvb3QuCj4+Cj4+IFBsZWFzZSB0ZWxs
-IG1lIGlmIHRoaXMgaXMgYSBwcm9wZXIgdHlwZSBvZiBwb3N0Lgo+PiBEb24KPj4KPj4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPj4KPgoKX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0453674945==
+Content-Type: multipart/alternative; boundary="1430200904.60FdB6cb1.25048"; charset="UTF-8"
+
+
+--1430200904.60FdB6cb1.25048
+Date: Tue, 28 Apr 2015 06:01:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89455
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This patch seems to improve things for me (on a GF108). Pretty sure this is
+incomplete though.
+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index 248f98d..0420bf2 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+@@ -2433,6 +2433,8 @@ Converter::handleInstruction(const struct
+tgsi_full_instruction *insn)
+          src1 = fetchSrc(1, c);
+          geni = mkOp2(op, dstTy, dst0[c], src0, src1);
+          geni->subOp = tgsi::opcodeToSubOp(tgsi.getOpcode());
++         if (dstTy == TYPE_F32)
++            geni->ftz = true;
+       }
+       break;
+    case TGSI_OPCODE_MAD:
+@@ -2442,7 +2444,9 @@ Converter::handleInstruction(const struct
+tgsi_full_instruction *insn)
+          src0 = fetchSrc(0, c);
+          src1 = fetchSrc(1, c);
+          src2 = fetchSrc(2, c);
+-         mkOp3(op, dstTy, dst0[c], src0, src1, src2);
++         geni = mkOp3(op, dstTy, dst0[c], src0, src1, src2);
++         if (dstTy == TYPE_F32)
++            geni->ftz = true;
+       }
+       break;
+    case TGSI_OPCODE_MOV:
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1430200904.60FdB6cb1.25048
+Date: Tue, 28 Apr 2015 06:01:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455">bug 89455</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This patch seems to improve things for me (on a GF108). Pretty sure this is
+incomplete though.
+
+diff --git a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+index 248f98d..0420bf2 100644
+--- a/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
++++ b/src/gallium/drivers/nouveau/codegen/nv50_ir_from_tgsi.cpp
+&#64;&#64; -2433,6 +2433,8 &#64;&#64; Converter::handleInstruction(const struct
+tgsi_full_instruction *insn)
+          src1 = fetchSrc(1, c);
+          geni = mkOp2(op, dstTy, dst0[c], src0, src1);
+          geni-&gt;subOp = tgsi::opcodeToSubOp(tgsi.getOpcode());
++         if (dstTy == TYPE_F32)
++            geni-&gt;ftz = true;
+       }
+       break;
+    case TGSI_OPCODE_MAD:
+&#64;&#64; -2442,7 +2444,9 &#64;&#64; Converter::handleInstruction(const struct
+tgsi_full_instruction *insn)
+          src0 = fetchSrc(0, c);
+          src1 = fetchSrc(1, c);
+          src2 = fetchSrc(2, c);
+-         mkOp3(op, dstTy, dst0[c], src0, src1, src2);
++         geni = mkOp3(op, dstTy, dst0[c], src0, src1, src2);
++         if (dstTy == TYPE_F32)
++            geni-&gt;ftz = true;
+       }
+       break;
+    case TGSI_OPCODE_MOV:</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1430200904.60FdB6cb1.25048--
+
+--===============0453674945==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0453674945==--
