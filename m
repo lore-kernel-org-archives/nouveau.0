@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nvc0/ir: set FTZ when the inputs are of uncertain
-	provenance
-Date: Tue, 28 Apr 2015 03:30:08 -0400
-Message-ID: <1430206208-1542-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89455] [NVC0/Gallium] Unigine Heaven black and white
+	boxes
+Date: Tue, 28 Apr 2015 07:37:18 +0000
+Message-ID: <bug-89455-8800-YQCKubEQOE@http.bugs.freedesktop.org/>
+References: <bug-89455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0902961793=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-89455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,61 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyB3aWxsIHNldCB0aGUgRlRaIGZsYWcgKGZsdXNoIGRlbm9ybXMgdG8gemVybykgb24gYWxs
-IG9wY29kZXMgdGhhdApjYW4gdGFrZSBpdCB3aGVuIHRoZXkgaGF2ZSBzb3VyY2VzIHRoYXQgY29t
-ZSBmcm9tIG90aGVyIHR5cGVzIG9mCm9wY29kZXMuCgpUaGlzIHJlc29sdmVzIGlzc3VlcyBpbiBV
-bmlnaW5lIEhlYXZlbiA0LjAgd2hlcmUgdGhlcmUgd2VyZSBzb2xpZC1maWxsZWQKYm94ZXMgcG9w
-cGluZyB1cC4KCkJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVn
-LmNnaT9pZD04OTQ1NQpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
-dC5lZHU+Ci0tLQogLi4uL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3Bw
-ICAgICAgfCAzMyArKysrKysrKysrKysrKysrKysrKystCiAuLi4vbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXJfbG93ZXJpbmdfbnZjMC5oICAgICAgICB8ICAxICsKIDIgZmlsZXMgY2hhbmdlZCwgMzMg
-aW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3BwCmlu
-ZGV4IDg3ZTc1ZTEuLjlhOGE0MWQgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5jcHAKKysrIGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMwLmNwcApAQCAtOTYs
-NiArOTYsMzIgQEAgTlZDMExlZ2FsaXplU1NBOjpoYW5kbGVSQ1BSU1EoSW5zdHJ1Y3Rpb24gKmkp
-CiAgICBibGQubWtPcDIoT1BfTUVSR0UsIFRZUEVfVTY0LCBkZWYsIGRzdFswXSwgZHN0WzFdKTsK
-IH0KIAordm9pZAorTlZDMExlZ2FsaXplU1NBOjpoYW5kbGVGVFooSW5zdHJ1Y3Rpb24gKmkpCit7
-CisgICB1bnNpZ25lZCBzOworCisgICBpZiAoaS0+ZFR5cGUgIT0gVFlQRV9GMzIgfHwgaS0+c1R5
-cGUgIT0gVFlQRV9GMzIpCisgICAgICByZXR1cm47CisKKyAgIC8vIEZsdXNoIGRlbm9ybXMgdG8g
-emVybyB0byBhdm9pZCB1bmV4cGVjdGVkIHNpdHVhdGlvbnMgaW4gY29kZS4gV2UgY2FuCisgICAv
-LyBhc3N1bWUgdGhhdCB0aGUgb3V0cHV0IG9mIGFueSBpbnN0cnVjdGlvbiB0aGF0ICpjb3VsZCog
-dGFrZSBhIGZ0eiAoZXZlbgorICAgLy8gaWYgaXQgZG9lc24ndCBoYXZlIG9uZSkgZG9lcyBub3Qg
-bmVlZCBmdXJ0aGVyIGZsdXNoaW5nLgorICAgZm9yIChzID0gMDsgaS0+c3JjRXhpc3RzKHMpOyAr
-K3MpIHsKKyAgICAgIEluc3RydWN0aW9uICpsZCA9IGktPmdldFNyYyhzKS0+Z2V0SW5zbigpOwor
-ICAgICAgaWYgKCFsZCkKKyAgICAgICAgIGNvbnRpbnVlOworCisgICAgICBPcENsYXNzIGNscyA9
-IHByb2ctPmdldFRhcmdldCgpLT5nZXRPcENsYXNzKGxkLT5vcCk7CisgICAgICBpZiAobGQtPmRU
-eXBlICE9IFRZUEVfRjMyIHx8ICgKKyAgICAgICAgICAgICBjbHMgIT0gT1BDTEFTU19BUklUSCAm
-JiBjbHMgIT0gT1BDTEFTU19DT01QQVJFICYmCisgICAgICAgICAgICAgY2xzICE9IE9QQ0xBU1Nf
-Q09OVkVSVCkpIHsKKyAgICAgICAgIGktPmZ0eiA9IHRydWU7CisgICAgICAgICByZXR1cm47Cisg
-ICAgICB9CisgICB9Cit9CisKIGJvb2wKIE5WQzBMZWdhbGl6ZVNTQTo6dmlzaXQoRnVuY3Rpb24g
-KmZuKQogewpAQCAtMTA5LDggKzEzNSwxMyBAQCBOVkMwTGVnYWxpemVTU0E6OnZpc2l0KEJhc2lj
-QmxvY2sgKmJiKQogICAgSW5zdHJ1Y3Rpb24gKm5leHQ7CiAgICBmb3IgKEluc3RydWN0aW9uICpp
-ID0gYmItPmdldEVudHJ5KCk7IGk7IGkgPSBuZXh0KSB7CiAgICAgICBuZXh0ID0gaS0+bmV4dDsK
-LSAgICAgIGlmIChpLT5kVHlwZSA9PSBUWVBFX0YzMikKKyAgICAgIGlmIChpLT5kVHlwZSA9PSBU
-WVBFX0YzMikgeworICAgICAgICAgT3BDbGFzcyBjbHMgPSBwcm9nLT5nZXRUYXJnZXQoKS0+Z2V0
-T3BDbGFzcyhpLT5vcCk7CisgICAgICAgICBpZiAoY2xzID09IE9QQ0xBU1NfQVJJVEggfHwgY2xz
-ID09IE9QQ0xBU1NfQ09NUEFSRSB8fAorICAgICAgICAgICAgIGNscyA9PSBPUENMQVNTX0NPTlZF
-UlQpCisgICAgICAgICAgICBoYW5kbGVGVFooaSk7CiAgICAgICAgICBjb250aW51ZTsKKyAgICAg
-IH0KICAgICAgIHN3aXRjaCAoaS0+b3ApIHsKICAgICAgIGNhc2UgT1BfRElWOgogICAgICAgY2Fz
-ZSBPUF9NT0Q6CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdl
-bi9udjUwX2lyX2xvd2VyaW5nX252YzAuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
-b2RlZ2VuL252NTBfaXJfbG93ZXJpbmdfbnZjMC5oCmluZGV4IGQ4ZmY1Y2QuLjI2MGUxMDEgMTAw
-NjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfbG93
-ZXJpbmdfbnZjMC5oCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252
-NTBfaXJfbG93ZXJpbmdfbnZjMC5oCkBAIC0zNiw2ICszNiw3IEBAIHByaXZhdGU6CiAgICAvLyB3
-ZSB3YW50IHRvIGluc2VydCBjYWxscyB0byB0aGUgYnVpbHRpbiBsaWJyYXJ5IG9ubHkgYWZ0ZXIg
-b3B0aW1pemF0aW9uCiAgICB2b2lkIGhhbmRsZURJVihJbnN0cnVjdGlvbiAqKTsgLy8gaW50ZWdl
-ciBkaXZpc2lvbiwgbW9kdWx1cwogICAgdm9pZCBoYW5kbGVSQ1BSU1EoSW5zdHJ1Y3Rpb24gKik7
-IC8vIGRvdWJsZSBwcmVjaXNpb24gZmxvYXQgcmVjaXAvcnNxcnQKKyAgIHZvaWQgaGFuZGxlRlRa
-KEluc3RydWN0aW9uICopOwogCiBwcml2YXRlOgogICAgQnVpbGRVdGlsIGJsZDsKLS0gCjIuMC41
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0902961793==
+Content-Type: multipart/alternative; boundary="1430206637.5DCFC1.22045"; charset="UTF-8"
+
+
+--1430206637.5DCFC1.22045
+Date: Tue, 28 Apr 2015 07:37:17 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89455
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I posted a more complete approach at
+http://patchwork.freedesktop.org/patch/48063/
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1430206637.5DCFC1.22045
+Date: Tue, 28 Apr 2015 07:37:17 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0/Gallium] Unigine Heaven black and white boxes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89455">bug 89455</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I posted a more complete approach at
+<a href="http://patchwork.freedesktop.org/patch/48063/">http://patchwork.freedesktop.org/patch/48063/</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1430206637.5DCFC1.22045--
+
+--===============0902961793==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0902961793==--
