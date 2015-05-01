@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90276] [NVE6] nouveau E[ PFIFO][0000:01:00.0] read
  fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel
  0x007f329000 [unknown]
-Date: Fri, 01 May 2015 19:34:01 +0000
-Message-ID: <bug-90276-8800-fGvuhUWgOh@http.bugs.freedesktop.org/>
+Date: Fri, 01 May 2015 21:59:06 +0000
+Message-ID: <bug-90276-8800-biAdLalrpN@http.bugs.freedesktop.org/>
 References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1903140789=="
+Content-Type: multipart/mixed; boundary="===============2126123047=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,26 +22,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1903140789==
-Content-Type: multipart/alternative; boundary="1430508841.aE04cD1.8938"; charset="UTF-8"
+--===============2126123047==
+Content-Type: multipart/alternative; boundary="1430517546.A5F205b1.18910"; charset="UTF-8"
 
 
---1430508841.aE04cD1.8938
-Date: Fri, 1 May 2015 19:34:01 +0000
+--1430517546.A5F205b1.18910
+Date: Fri, 1 May 2015 21:59:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #2 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Never done that but I'll try... (so might take a while)
+--- Comment #3 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 115506
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115506&action=edit
+kernel_log_3.17
+
+linux 3.17 fails to probe nouveau...
+nouveau: probe of 0000:01:00.0 failed with error -12
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430508841.aE04cD1.8938
-Date: Fri, 1 May 2015 19:34:01 +0000
+--1430517546.A5F205b1.18910
+Date: Fri, 1 May 2015 21:59:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,14 +60,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
               from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
 </span></b>
-        <pre>Never done that but I'll try... (so might take a while)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115506" name="attach_115506" title="kernel_log_3.17">attachment 115506</a> <a href="attachment.cgi?id=115506&amp;action=edit" title="kernel_log_3.17">[details]</a></span>
+kernel_log_3.17
+
+linux 3.17 fails to probe nouveau...
+nouveau: probe of 0000:01:00.0 failed with error -12</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1430508841.aE04cD1.8938--
+--1430517546.A5F205b1.18910--
 
---===============1903140789==
+--===============2126123047==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1903140789==--
+--===============2126123047==--
