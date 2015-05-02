@@ -2,11 +2,11 @@ From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90276] [NVE6] nouveau E[ PFIFO][0000:01:00.0] read
  fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel
  0x007f329000 [unknown]
-Date: Fri, 01 May 2015 22:49:06 +0000
-Message-ID: <bug-90276-8800-qzV1vS3Zus@http.bugs.freedesktop.org/>
+Date: Sat, 02 May 2015 12:45:24 +0000
+Message-ID: <bug-90276-8800-RI7zAL570Z@http.bugs.freedesktop.org/>
 References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0163492115=="
+Content-Type: multipart/mixed; boundary="===============0629461710=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,26 +22,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0163492115==
-Content-Type: multipart/alternative; boundary="1430520546.f1C421.2709"; charset="UTF-8"
+--===============0629461710==
+Content-Type: multipart/alternative; boundary="1430570724.dDBAE71.9037"; charset="UTF-8"
 
 
---1430520546.f1C421.2709
-Date: Fri, 1 May 2015 22:49:06 +0000
+--1430570724.dDBAE71.9037
+Date: Sat, 2 May 2015 12:45:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #7 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Same result :)
+--- Comment #8 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 115513
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115513&action=edit
+bisect_log
+
+found the patch that caused the PDISP errors
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430520546.f1C421.2709
-Date: Fri, 1 May 2015 22:49:06 +0000
+--1430570724.dDBAE71.9037
+Date: Sat, 2 May 2015 12:45:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,14 +59,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c7">Comment # 7</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
               from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
 </span></b>
-        <pre>Same result :)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115513" name="attach_115513" title="bisect_log">attachment 115513</a> <a href="attachment.cgi?id=115513&amp;action=edit" title="bisect_log">[details]</a></span>
+bisect_log
+
+found the patch that caused the PDISP errors</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1430520546.f1C421.2709--
+--1430570724.dDBAE71.9037--
 
---===============0163492115==
+--===============0629461710==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0163492115==--
+--===============0629461710==--
