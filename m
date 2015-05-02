@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
- opening the new legacy tray (and many other situations) in 3.16.0
-Date: Sat, 02 May 2015 16:13:09 +0000
-Message-ID: <bug-89842-8800-QKqGuFHsPk@http.bugs.freedesktop.org/>
-References: <bug-89842-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Fermi+ shader header docs
+Date: Sat, 2 May 2015 12:34:21 -0400
+Message-ID: <CAKb7Uvj=oisrfyGoehZFLtzWD38Nx_j435K2uZ9O5S8RXFayBw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0947438275=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,86 +15,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0947438275==
-Content-Type: multipart/alternative; boundary="1430583190.fC525.4186"; charset="UTF-8"
-
-
---1430583190.fC525.4186
-Date: Sat, 2 May 2015 16:13:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89842
-
-Matthew Miller <mattdm-u0/72CSfwU0dnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Nvidia nouveau drivers      |Nvidia nouveau drivers
-                   |hangs all gnome when open   |hangs all gnome when
-                   |the new legacy tray in      |opening the new legacy tray
-                   |3.16.0                      |(and many other situations)
-                   |                            |in 3.16.0
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1430583190.fC525.4186
-Date: Sat, 2 May 2015 16:13:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:mattdm&#64;mattdm.org" title="Matthew Miller &lt;mattdm&#64;mattdm.org&gt;"> <span class="fn">Matthew Miller</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Nvidia nouveau drivers hangs all gnome when open the new legacy tray in 3.16.0
-           </td>
-           <td>Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1430583190.fC525.4186--
-
---===============0947438275==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0947438275==--
+SGksCgpBcyBJJ20gbG9va2luZyB0byBhZGQgc29tZSBzdXBwb3J0IHRvIG5vdXZlYXUgZm9yIGZl
+YXR1cmVzIGxpa2UgYXRvbWljCmNvdW50ZXJzIGFuZCBpbWFnZXMsIEknbSBydW5uaW5nIGludG8g
+c29tZSBjb25mdXNpb24gYWJvdXQgd2hhdCB0aGUKZmlyc3Qgd29yZCBvZiB0aGUgc2hhZGVyIGhl
+YWRlciBtZWFucy4gSGVyZSBpcyB0aGUgZGVmaW5pdGlvbiBhcyB3ZQpoYXZlIGl0IHRvZGF5OgoK
+aHR0cHM6Ly9naXRodWIuY29tL2Vudnl0b29scy9lbnZ5dG9vbHMvYmxvYi9tYXN0ZXIvcm5uZGIv
+Z3JhcGgvZ2YxMDBfc2hhZGVycy54bWwKClZTL0hTL0RTL0dTOgo8cmVnMzIgb2Zmc2V0PSIwIiBu
+YW1lPSIwIj4KICA8Yml0ZmllbGQgaGlnaD0iNyIgbG93PSIwIiBuYW1lPSJNQUdJQyI+CiAgICA8
+dmFsdWUgdmFsdWU9IjB4NjEiIG5hbWU9IlZQX01BR0lDIi8+CiAgPC9iaXRmaWVsZD4KICA8Yml0
+ZmllbGQgaGlnaD0iMTIiIGxvdz0iMTAiIG5hbWU9IktJTkQiIHR5cGU9IkdGMTAwX1NIQURFUl9L
+SU5EIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTYiIG5hbWU9IkdNRU1fRU5BQkxFIi8+CiAgPGJpdGZp
+ZWxkIHBvcz0iMTciIG5hbWU9IlVOSzE3Ii8+PCEtLSBkZWZhdWx0IDEgLS0+CiAgPGJpdGZpZWxk
+IHBvcz0iMjYiIG5hbWU9IkxNRU1fRU5BQkxFIi8+CiAgPGJpdGZpZWxkIHBvcz0iMjciIG5hbWU9
+IkZQNjRfRU5BQkxFIi8+CjwvcmVnMzI+CgpGUzoKPHJlZzMyIG9mZnNldD0iMCIgbmFtZT0iMCI+
+CiAgPGJpdGZpZWxkIGhpZ2g9IjciIGxvdz0iMCIgbmFtZT0iTUFHSUMiPgogICAgPHZhbHVlIHZh
+bHVlPSIweDYyIiBuYW1lPSJGUF9NQUdJQyIvPgogIDwvYml0ZmllbGQ+CiAgPGJpdGZpZWxkIGhp
+Z2g9IjEyIiBsb3c9IjEwIiBuYW1lPSJLSU5EIiB0eXBlPSJHRjEwMF9TSEFERVJfS0lORCIvPgog
+IDxiaXRmaWVsZCBwb3M9IjE0IiBuYW1lPSJNVUxUSVBMRV9DT0xPUl9PVVRQVVRTIiB0eXBlPSJi
+b29sZWFuIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTUiIG5hbWU9IlVTRVNfS0lMIiB0eXBlPSJib29s
+ZWFuIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTYiIG5hbWU9IkdNRU1fRU5BQkxFIi8+CiAgPGJpdGZp
+ZWxkIHBvcz0iMTciIG5hbWU9IlVOSzE3Ii8+PCEtLSBkZWZhdWx0IDEgLS0+CiAgPGJpdGZpZWxk
+IHBvcz0iMjYiIG5hbWU9IkxNRU1fRU5BQkxFIi8+CiAgPGJpdGZpZWxkIHBvcz0iMjciIG5hbWU9
+IkZQNjRfRU5BQkxFIi8+CjwvcmVnMzI+CgpIb3dldmVyIEkga25vdyB0aGF0IHRoZXNlIGFyZSBz
+b21ld2hhdCB3cm9uZy4gSSd2ZSBzZWVuIHNoYWRlcnMgdGhhdAp1c2UgZ21lbSBhY2Nlc3NlcyAo
+aS5lLiBtb3YgcjAsIFtyMF0pIHRoYXQganVzdCBoYXZlIHRoZSBMTUVNIGVuYWJsZQpiaXQgc2V0
+IChhbmQgdGhleSB1c2Ugbm8gbG1lbSkuIEFuZCBJJ3ZlIHNlZW4gYWRkaXRpb25hbCBiaXRzIHNl
+dCwgZXNwCnJlbGF0aW5nIHRvIGltYWdlcywgYnV0IEkgaGF2ZW4ndCBzcGVudCBlbm91Z2ggdGlt
+ZSBsb29raW5nIGF0IGFsbCB0aGUKdmFyaWF0aW9ucyB0byBtYWtlIHNlbnNlIG9mIGl0IHlldC4g
+Rm9yIGV4YW1wbGUsIEkgdGhpbmsgdGhhdCBGZXJtaQphbmQgS2VwbGVyKyBoYXZlIGRpZmZlcmVu
+dCBtZWFuaW5ncyBmb3Igc29tZSBvZiB0aGUgYml0cy4KCkkgd2FzIGhvcGluZyB5b3UgY291bGQg
+anVzdCByZWxlYXNlIHRoZSBkb2NzIGZvciB0aGUgc2hhZGVyIGhlYWRlcnMsCm9yIGF0IGxlYXN0
+IHRoZSBmaXJzdCB3b3JkIG9mIHRoZSBzaGFkZXIgaGVhZGVyLgoKSSBrbm93IHRoYXQgaXQgY2Fu
+IHRha2Ugc29tZSB0aW1lIHRvIGdldCBpdCBhbGwgYXBwcm92ZWQsIGJ1dCBpZiB5b3UKdGhpbmsg
+dGhpcyBpcyAqbm90KiBpbmZvcm1hdGlvbiB5b3UgY2FuIHJlbGVhc2UsIHBsZWFzZSBsZXQgbWUg
+a25vdwpzb29uIHNvIHRoYXQgSSBkb24ndCBsb3NlIGEgbW9udGggd2FpdGluZy4KClRoYW5rcywK
+CiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
