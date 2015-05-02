@@ -1,11 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Fermi+ shader header docs
-Date: Sat, 2 May 2015 12:34:21 -0400
-Message-ID: <CAKb7Uvj=oisrfyGoehZFLtzWD38Nx_j435K2uZ9O5S8RXFayBw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90276] [NVE6] nouveau E[ PFIFO][0000:01:00.0] read
+ fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel
+ 0x007f329000 [unknown]
+Date: Sat, 02 May 2015 16:56:14 +0000
+Message-ID: <bug-90276-8800-bXqFv6DgEh@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0265429917=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,44 +18,121 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpBcyBJJ20gbG9va2luZyB0byBhZGQgc29tZSBzdXBwb3J0IHRvIG5vdXZlYXUgZm9yIGZl
-YXR1cmVzIGxpa2UgYXRvbWljCmNvdW50ZXJzIGFuZCBpbWFnZXMsIEknbSBydW5uaW5nIGludG8g
-c29tZSBjb25mdXNpb24gYWJvdXQgd2hhdCB0aGUKZmlyc3Qgd29yZCBvZiB0aGUgc2hhZGVyIGhl
-YWRlciBtZWFucy4gSGVyZSBpcyB0aGUgZGVmaW5pdGlvbiBhcyB3ZQpoYXZlIGl0IHRvZGF5OgoK
-aHR0cHM6Ly9naXRodWIuY29tL2Vudnl0b29scy9lbnZ5dG9vbHMvYmxvYi9tYXN0ZXIvcm5uZGIv
-Z3JhcGgvZ2YxMDBfc2hhZGVycy54bWwKClZTL0hTL0RTL0dTOgo8cmVnMzIgb2Zmc2V0PSIwIiBu
-YW1lPSIwIj4KICA8Yml0ZmllbGQgaGlnaD0iNyIgbG93PSIwIiBuYW1lPSJNQUdJQyI+CiAgICA8
-dmFsdWUgdmFsdWU9IjB4NjEiIG5hbWU9IlZQX01BR0lDIi8+CiAgPC9iaXRmaWVsZD4KICA8Yml0
-ZmllbGQgaGlnaD0iMTIiIGxvdz0iMTAiIG5hbWU9IktJTkQiIHR5cGU9IkdGMTAwX1NIQURFUl9L
-SU5EIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTYiIG5hbWU9IkdNRU1fRU5BQkxFIi8+CiAgPGJpdGZp
-ZWxkIHBvcz0iMTciIG5hbWU9IlVOSzE3Ii8+PCEtLSBkZWZhdWx0IDEgLS0+CiAgPGJpdGZpZWxk
-IHBvcz0iMjYiIG5hbWU9IkxNRU1fRU5BQkxFIi8+CiAgPGJpdGZpZWxkIHBvcz0iMjciIG5hbWU9
-IkZQNjRfRU5BQkxFIi8+CjwvcmVnMzI+CgpGUzoKPHJlZzMyIG9mZnNldD0iMCIgbmFtZT0iMCI+
-CiAgPGJpdGZpZWxkIGhpZ2g9IjciIGxvdz0iMCIgbmFtZT0iTUFHSUMiPgogICAgPHZhbHVlIHZh
-bHVlPSIweDYyIiBuYW1lPSJGUF9NQUdJQyIvPgogIDwvYml0ZmllbGQ+CiAgPGJpdGZpZWxkIGhp
-Z2g9IjEyIiBsb3c9IjEwIiBuYW1lPSJLSU5EIiB0eXBlPSJHRjEwMF9TSEFERVJfS0lORCIvPgog
-IDxiaXRmaWVsZCBwb3M9IjE0IiBuYW1lPSJNVUxUSVBMRV9DT0xPUl9PVVRQVVRTIiB0eXBlPSJi
-b29sZWFuIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTUiIG5hbWU9IlVTRVNfS0lMIiB0eXBlPSJib29s
-ZWFuIi8+CiAgPGJpdGZpZWxkIHBvcz0iMTYiIG5hbWU9IkdNRU1fRU5BQkxFIi8+CiAgPGJpdGZp
-ZWxkIHBvcz0iMTciIG5hbWU9IlVOSzE3Ii8+PCEtLSBkZWZhdWx0IDEgLS0+CiAgPGJpdGZpZWxk
-IHBvcz0iMjYiIG5hbWU9IkxNRU1fRU5BQkxFIi8+CiAgPGJpdGZpZWxkIHBvcz0iMjciIG5hbWU9
-IkZQNjRfRU5BQkxFIi8+CjwvcmVnMzI+CgpIb3dldmVyIEkga25vdyB0aGF0IHRoZXNlIGFyZSBz
-b21ld2hhdCB3cm9uZy4gSSd2ZSBzZWVuIHNoYWRlcnMgdGhhdAp1c2UgZ21lbSBhY2Nlc3NlcyAo
-aS5lLiBtb3YgcjAsIFtyMF0pIHRoYXQganVzdCBoYXZlIHRoZSBMTUVNIGVuYWJsZQpiaXQgc2V0
-IChhbmQgdGhleSB1c2Ugbm8gbG1lbSkuIEFuZCBJJ3ZlIHNlZW4gYWRkaXRpb25hbCBiaXRzIHNl
-dCwgZXNwCnJlbGF0aW5nIHRvIGltYWdlcywgYnV0IEkgaGF2ZW4ndCBzcGVudCBlbm91Z2ggdGlt
-ZSBsb29raW5nIGF0IGFsbCB0aGUKdmFyaWF0aW9ucyB0byBtYWtlIHNlbnNlIG9mIGl0IHlldC4g
-Rm9yIGV4YW1wbGUsIEkgdGhpbmsgdGhhdCBGZXJtaQphbmQgS2VwbGVyKyBoYXZlIGRpZmZlcmVu
-dCBtZWFuaW5ncyBmb3Igc29tZSBvZiB0aGUgYml0cy4KCkkgd2FzIGhvcGluZyB5b3UgY291bGQg
-anVzdCByZWxlYXNlIHRoZSBkb2NzIGZvciB0aGUgc2hhZGVyIGhlYWRlcnMsCm9yIGF0IGxlYXN0
-IHRoZSBmaXJzdCB3b3JkIG9mIHRoZSBzaGFkZXIgaGVhZGVyLgoKSSBrbm93IHRoYXQgaXQgY2Fu
-IHRha2Ugc29tZSB0aW1lIHRvIGdldCBpdCBhbGwgYXBwcm92ZWQsIGJ1dCBpZiB5b3UKdGhpbmsg
-dGhpcyBpcyAqbm90KiBpbmZvcm1hdGlvbiB5b3UgY2FuIHJlbGVhc2UsIHBsZWFzZSBsZXQgbWUg
-a25vdwpzb29uIHNvIHRoYXQgSSBkb24ndCBsb3NlIGEgbW9udGggd2FpdGluZy4KClRoYW5rcywK
-CiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-Tm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0265429917==
+Content-Type: multipart/alternative; boundary="1430585774.CdCf2b1.17606"; charset="UTF-8"
+
+
+--1430585774.CdCf2b1.17606
+Date: Sat, 2 May 2015 16:56:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
+
+--- Comment #10 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 115514
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115514&action=edit
+vbios.rom using linux v4.0
+
+xrandr:
+Screen 0: minimum 320 x 200, current 3200 x 1080, maximum 8192 x 8192
+DVI-I-1 connected 1280x1024+1920+0 (normal left inverted right x axis y axis)
+338mm x 270mm
+   1280x1024     60.02*+
+   1152x864      75.00  
+   1024x768      75.08    75.03    60.00  
+   832x624       74.55  
+   800x600       75.00    60.32  
+   640x480       75.00    60.00  
+   720x400       70.08  
+DVI-D-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y
+axis) 510mm x 287mm
+   1920x1080     60.00*+
+   1280x1024     75.02    60.02  
+   1152x864      75.00  
+   1024x768      75.08    60.00  
+   800x600       75.00    60.32  
+   640x480       75.00    60.00  
+   720x400       70.08  
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+DP-1 disconnected (normal left inverted right x axis y axis)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1430585774.CdCf2b1.17606
+Date: Sat, 2 May 2015 16:56:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x000a5c0000 [UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f329000 [unknown]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115514" name="attach_115514" title="vbios.rom using linux v4.0">attachment 115514</a> <a href="attachment.cgi?id=115514&amp;action=edit" title="vbios.rom using linux v4.0">[details]</a></span>
+vbios.rom using linux v4.0
+
+xrandr:
+Screen 0: minimum 320 x 200, current 3200 x 1080, maximum 8192 x 8192
+DVI-I-1 connected 1280x1024+1920+0 (normal left inverted right x axis y axis)
+338mm x 270mm
+   1280x1024     60.02*+
+   1152x864      75.00  
+   1024x768      75.08    75.03    60.00  
+   832x624       74.55  
+   800x600       75.00    60.32  
+   640x480       75.00    60.00  
+   720x400       70.08  
+DVI-D-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y
+axis) 510mm x 287mm
+   1920x1080     60.00*+
+   1280x1024     75.02    60.02  
+   1152x864      75.00  
+   1024x768      75.08    60.00  
+   800x600       75.00    60.32  
+   640x480       75.00    60.00  
+   720x400       70.08  
+HDMI-1 disconnected (normal left inverted right x axis y axis)
+DP-1 disconnected (normal left inverted right x axis y axis)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1430585774.CdCf2b1.17606--
+
+--===============0265429917==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0265429917==--
