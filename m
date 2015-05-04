@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87885] [NV94] Fan speed of Nvidia GeForce 9600GT
- (G94) constantly too high
-Date: Sun, 03 May 2015 01:55:34 +0000
-Message-ID: <bug-87885-8800-Zljz13Eswj@http.bugs.freedesktop.org/>
-References: <bug-87885-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90306] New: Nouveau crashes with multiple monitors
+Date: Mon, 04 May 2015 20:55:46 +0000
+Message-ID: <bug-90306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0384303783=="
+Content-Type: multipart/mixed; boundary="===============1209578185=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87885-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +18,62 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0384303783==
-Content-Type: multipart/alternative; boundary="1430618134.BFc4b81.26306"; charset="UTF-8"
+--===============1209578185==
+Content-Type: multipart/alternative; boundary="1430772946.aCdC1.14175"; charset="UTF-8"
 
 
---1430618134.BFc4b81.26306
-Date: Sun, 3 May 2015 01:55:34 +0000
+--1430772946.aCdC1.14175
+Date: Mon, 4 May 2015 20:55:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87885
+https://bugs.freedesktop.org/show_bug.cgi?id=90306
 
---- Comment #21 from TM <asiasuppenesser-Mmb7MZpHnFY@public.gmane.org> ---
-Hi, sorry for the late reply - Busy times...
+            Bug ID: 90306
+           Summary: Nouveau crashes with multiple monitors
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: ofpoj.20.Toranaga-San-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Unfortunately the new command didn't work either :/
+Hello all,
 
-I also re-installed the proprietary driver again, for testing purposes. The
-"nvidia-settings" GUI still reported a fan speed of 35% (as always), but this
-time (I guess I missed that information before) I saw a line saying that
-adjusting the fan speed is not supported. Were you aware of this already? I
-think I wasn't...
+I would like to direct your attention to this bug report from the arch linux
+tracker:
 
-Scrolling through this bug report again I saw that you were suspecting a
-adt7473 chip to be placed on the graphics card board. I had a look at it and
-couldn't find one. Here are the first lines written on all chips I could find
-on the board (apart from memory chips):
-- AT24C16B7
-- AZ358M
-- RT9214
-- RT9259
-- NXP 74HC08D
+https://bugs.archlinux.org/task/42121
 
-I hope that helps in some way :/
+Essentially the X server crashes when using nouveau with multiple monitors.
+Whenever an xrandr command is issued the server crashes. This is particularly
+irksome since this seems to send the monitors into power-saving mode (i.e. no
+more signals are sent) so that the problem can't even be resolved from a shell.
+
+I am not the author of the bug report above, I merely googled the error
+
+/usr/bin/Xorg.bin: symbol lookup error:
+/usr/lib/xorg/modules/drivers/nouveau_drv.so: undefined symbol:
+exaGetPixmapDriverPrivate
+
+So this seems to affect multiple users. I am currently running debian jessie
+using version 1.0.11 of xserver-xorg-video-nouveau and version 7.7+3~deb7u1 of
+xorg-xserver but I ran into the same problem with arch a couple of weeks ago.
+
+I would very much appreciate any help with this. This bug *really* breaks my
+setup.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430618134.BFc4b81.26306
-Date: Sun, 3 May 2015 01:55:34 +0000
+--1430772946.aCdC1.14175
+Date: Mon, 4 May 2015 20:55:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,40 +81,113 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau crashes with multiple monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90306">90306</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nouveau crashes with multiple monitors
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>ofpoj.20.Toranaga-San&#64;spamgourmet.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV94] Fan speed of Nvidia GeForce 9600GT (G94) constantly too high"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87885">bug 87885</a>
-              from <span class="vcard"><a class="email" href="mailto:asiasuppenesser&#64;gmx.de" title="TM &lt;asiasuppenesser&#64;gmx.de&gt;"> <span class="fn">TM</span></a>
-</span></b>
-        <pre>Hi, sorry for the late reply - Busy times...
+        <pre>Hello all,
 
-Unfortunately the new command didn't work either :/
+I would like to direct your attention to this bug report from the arch linux
+tracker:
 
-I also re-installed the proprietary driver again, for testing purposes. The
-&quot;nvidia-settings&quot; GUI still reported a fan speed of 35% (as always), but this
-time (I guess I missed that information before) I saw a line saying that
-adjusting the fan speed is not supported. Were you aware of this already? I
-think I wasn't...
+<a href="https://bugs.archlinux.org/task/42121">https://bugs.archlinux.org/task/42121</a>
 
-Scrolling through this bug report again I saw that you were suspecting a
-adt7473 chip to be placed on the graphics card board. I had a look at it and
-couldn't find one. Here are the first lines written on all chips I could find
-on the board (apart from memory chips):
-- AT24C16B7
-- AZ358M
-- RT9214
-- RT9259
-- NXP 74HC08D
+Essentially the X server crashes when using nouveau with multiple monitors.
+Whenever an xrandr command is issued the server crashes. This is particularly
+irksome since this seems to send the monitors into power-saving mode (i.e. no
+more signals are sent) so that the problem can't even be resolved from a shell.
 
-I hope that helps in some way :/</pre>
+I am not the author of the bug report above, I merely googled the error
+
+/usr/bin/Xorg.bin: symbol lookup error:
+/usr/lib/xorg/modules/drivers/nouveau_drv.so: undefined symbol:
+exaGetPixmapDriverPrivate
+
+So this seems to affect multiple users. I am currently running debian jessie
+using version 1.0.11 of xserver-xorg-video-nouveau and version 7.7+3~deb7u1 of
+xorg-xserver but I ran into the same problem with arch a couple of weeks ago.
+
+I would very much appreciate any help with this. This bug *really* breaks my
+setup.</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +199,9 @@ I hope that helps in some way :/</pre>
     </body>
 </html>
 
---1430618134.BFc4b81.26306--
+--1430772946.aCdC1.14175--
 
---===============0384303783==
+--===============1209578185==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +211,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0384303783==--
+--===============1209578185==--
