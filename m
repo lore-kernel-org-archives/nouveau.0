@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89247] [NVE7] short display freeze on xrandr --query
-Date: Tue, 05 May 2015 20:19:43 +0000
-Message-ID: <bug-89247-8800-YAsbALhx6i@http.bugs.freedesktop.org/>
+Date: Tue, 05 May 2015 20:30:45 +0000
+Message-ID: <bug-89247-8800-ReKXfLd9iO@http.bugs.freedesktop.org/>
 References: <bug-89247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1181547227=="
+Content-Type: multipart/mixed; boundary="===============1254541532=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,77 +20,125 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1181547227==
-Content-Type: multipart/alternative; boundary="1430857182.c3f12.29076"; charset="UTF-8"
+--===============1254541532==
+Content-Type: multipart/alternative; boundary="1430857845.32e71.31714"; charset="UTF-8"
 
 
---1430857182.c3f12.29076
-Date: Tue, 5 May 2015 20:19:42 +0000
+--1430857845.32e71.31714
+Date: Tue, 5 May 2015 20:30:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89247
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89247
 
---- Comment #11 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-(In reply to exi+freedesktop from comment #9)
-> Ah, I forgot to mention:
-> I usually disable the Intel GPU in the BIOS and force it to use the nvidia
-> gpu because the Intel one is unable to drive external displays.
+--- Comment #12 from exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org ---
+I just switched to Optimus mode in the bios.
+When I boot Linux, the Intel driver takes over immediately.
+In this mode, no external displays are recognized for both VGA and DP ports.
+In 'Intel only' mode, Windows is unable to recognize any external displays =
+too,
+so i think it is hard wired.
+In 'Nvidia only' mode, all external ports are working, except for the bug
+described in this ticket.
 
-sounds odd letting the dedicated card drive all the outputs.
+=E2=94=94> xrandr --listproviders
+Providers: number : 2
+Provider 0: id: 0x8f cap: 0xb, Source Output, Sink Output, Sink Offload crt=
+cs:
+4 outputs: 3 associated providers: 0 name:Intel
+Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 4 outputs: 5 associated providers: 0 name:nouveau
 
-you checked the outputs with "xrandr --listproviders" i guess? intel really
-drivers 0 of them?
+=E2=94=94> xrandr -q
+Screen 0: minimum 8 x 8, current 1920 x 1080, maximum 32767 x 32767
+LVDS2 connected primary 1920x1080+0+0 (normal left inverted right x axis y
+axis) 344mm x 193mm
+   1920x1080     60.02*+  50.03=20=20
+   1400x1050     59.98=20=20
+   1280x1024     60.02=20=20
+   1280x960      60.00=20=20
+   1024x768      60.00=20=20
+   800x600       60.32    56.25=20=20
+   640x480       59.94=20=20
+VGA2 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)
 
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430857182.c3f12.29076
-Date: Tue, 5 May 2015 20:19:42 +0000
+--1430857845.32e71.31714
+Date: Tue, 5 May 2015 20:30:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE7] short display freeze on xrandr --query"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NVE7] short display freeze on xrandr --query"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89247#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE7] short display freeze on xrandr --query"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247">bug 89247</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
+   title=3D"NEW - [NVE7] short display freeze on xrandr --query"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89247">bug 89247<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+exi+freedesktop&#64;wthack.de" title=3D"exi+freedesktop&#64;wthack.de">exi+=
+freedesktop&#64;wthack.de</a>
 </span></b>
-        <pre>(In reply to exi+freedesktop from <a href="show_bug.cgi?id=89247#c9">comment #9</a>)
-<span class="quote">&gt; Ah, I forgot to mention:
-&gt; I usually disable the Intel GPU in the BIOS and force it to use the nvidia
-&gt; gpu because the Intel one is unable to drive external displays.</span >
+        <pre>I just switched to Optimus mode in the bios.
+When I boot Linux, the Intel driver takes over immediately.
+In this mode, no external displays are recognized for both VGA and DP ports.
+In 'Intel only' mode, Windows is unable to recognize any external displays =
+too,
+so i think it is hard wired.
+In 'Nvidia only' mode, all external ports are working, except for the bug
+described in this ticket.
 
-sounds odd letting the dedicated card drive all the outputs.
+=E2=94=94&gt; xrandr --listproviders
+Providers: number : 2
+Provider 0: id: 0x8f cap: 0xb, Source Output, Sink Output, Sink Offload crt=
+cs:
+4 outputs: 3 associated providers: 0 name:Intel
+Provider 1: id: 0x68 cap: 0x7, Source Output, Sink Output, Source Offload
+crtcs: 4 outputs: 5 associated providers: 0 name:nouveau
 
-you checked the outputs with &quot;xrandr --listproviders&quot; i guess? intel really
-drivers 0 of them?</pre>
+=E2=94=94&gt; xrandr -q
+Screen 0: minimum 8 x 8, current 1920 x 1080, maximum 32767 x 32767
+LVDS2 connected primary 1920x1080+0+0 (normal left inverted right x axis y
+axis) 344mm x 193mm
+   1920x1080     60.02*+  50.03=20=20
+   1400x1050     59.98=20=20
+   1280x1024     60.02=20=20
+   1280x960      60.00=20=20
+   1024x768      60.00=20=20
+   800x600       60.32    56.25=20=20
+   640x480       59.94=20=20
+VGA2 disconnected (normal left inverted right x axis y axis)
+VIRTUAL1 disconnected (normal left inverted right x axis y axis)</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1430857182.c3f12.29076--
+--1430857845.32e71.31714--
 
---===============1181547227==
+--===============1254541532==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +148,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1181547227==--
+--===============1254541532==--
