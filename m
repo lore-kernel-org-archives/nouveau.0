@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89247] short display freeze on xrandr --query
-Date: Tue, 05 May 2015 19:53:35 +0000
-Message-ID: <bug-89247-8800-JU4ooLus2w@http.bugs.freedesktop.org/>
+Date: Tue, 05 May 2015 19:57:54 +0000
+Message-ID: <bug-89247-8800-wdU6Vc3JyA@http.bugs.freedesktop.org/>
 References: <bug-89247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1594738799=="
+Content-Type: multipart/mixed; boundary="===============0703942991=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1594738799==
-Content-Type: multipart/alternative; boundary="1430855615.f0482.22482"; charset="UTF-8"
+--===============0703942991==
+Content-Type: multipart/alternative; boundary="1430855873.DEFA1.23506"; charset="UTF-8"
 
 
---1430855615.f0482.22482
-Date: Tue, 5 May 2015 19:53:35 +0000
+--1430855873.DEFA1.23506
+Date: Tue, 5 May 2015 19:57:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89247
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I assume you have a pre-G80 GPU? I think it ends up doing a modeset or
-something crazy like that every time you run xrandr -q.
+--- Comment #3 from exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org ---
+Created attachment 115553
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115553&action=edit
+dmesg output containing nouveau
+
+I don't know whether this contains the information to answer this question, but
+I attached all dmesg lines containing nouveau from my journal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430855615.f0482.22482
-Date: Tue, 5 May 2015 19:53:35 +0000
+--1430855873.DEFA1.23506
+Date: Tue, 5 May 2015 19:57:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - short display freeze on xrandr --query"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - short display freeze on xrandr --query"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89247">bug 89247</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
 </span></b>
-        <pre>I assume you have a pre-G80 GPU? I think it ends up doing a modeset or
-something crazy like that every time you run xrandr -q.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115553" name="attach_115553" title="dmesg output containing nouveau">attachment 115553</a> <a href="attachment.cgi?id=115553&amp;action=edit" title="dmesg output containing nouveau">[details]</a></span>
+dmesg output containing nouveau
+
+I don't know whether this contains the information to answer this question, but
+I attached all dmesg lines containing nouveau from my journal</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +81,9 @@ something crazy like that every time you run xrandr -q.</pre>
     </body>
 </html>
 
---1430855615.f0482.22482--
+--1430855873.DEFA1.23506--
 
---===============1594738799==
+--===============0703942991==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1594738799==--
+--===============0703942991==--
