@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
- opening the new legacy tray (and many other situations) in 3.16.0
-Date: Wed, 06 May 2015 04:52:54 +0000
-Message-ID: <bug-89842-8800-VDGDBN8H4p@http.bugs.freedesktop.org/>
-References: <bug-89842-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89247] [NVE7] short display freeze on xrandr --query
+Date: Wed, 06 May 2015 07:07:59 +0000
+Message-ID: <bug-89247-8800-AyGibRJzvj@http.bugs.freedesktop.org/>
+References: <bug-89247-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529603531=="
+Content-Type: multipart/mixed; boundary="===============1003288854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,29 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0529603531==
-Content-Type: multipart/alternative; boundary="1430887975.eA686.15636"; charset="UTF-8"
+--===============1003288854==
+Content-Type: multipart/alternative; boundary="1430896079.608Cf1.5671"; charset="UTF-8"
 
 
---1430887975.eA686.15636
-Date: Wed, 6 May 2015 04:52:55 +0000
+--1430896079.608Cf1.5671
+Date: Wed, 6 May 2015 07:07:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89842
+https://bugs.freedesktop.org/show_bug.cgi?id=89247
 
---- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I just push a commit[1] to libdrm which should fix this issue.
+--- Comment #22 from exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org ---
+I just booted ubuntu 14.10 desktop from an USB stick to rule out any
+misconfiguration on my archlinux.
 
-[1]
-http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294
+Ubuntu comes with
+nouveau 1.1.2
+xrandr 1.4.1
+Xorg 1.16.0
+
+The problem is even worse here, xrandr -q consistently takes about 0.4 seconds.
+I also switched to Windows to rule out any hardware defects.
+Display switching under Windows 8 is instant.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430887975.eA686.15636
-Date: Wed, 6 May 2015 04:52:55 +0000
+--1430896079.608Cf1.5671
+Date: Wed, 6 May 2015 07:07:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,18 +62,25 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c10">Comment # 10</a>
+   title="NEW - [NVE7] short display freeze on xrandr --query"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+   title="NEW - [NVE7] short display freeze on xrandr --query"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247">bug 89247</a>
+              from <span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
 </span></b>
-        <pre>I just push a commit[1] to libdrm which should fix this issue.
+        <pre>I just booted ubuntu 14.10 desktop from an USB stick to rule out any
+misconfiguration on my archlinux.
 
-[1]
-<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294">http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294</a></pre>
+Ubuntu comes with
+nouveau 1.1.2
+xrandr 1.4.1
+Xorg 1.16.0
+
+The problem is even worse here, xrandr -q consistently takes about 0.4 seconds.
+I also switched to Windows to rule out any hardware defects.
+Display switching under Windows 8 is instant.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1430887975.eA686.15636--
+--1430896079.608Cf1.5671--
 
---===============0529603531==
+--===============1003288854==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0529603531==--
+--===============1003288854==--
