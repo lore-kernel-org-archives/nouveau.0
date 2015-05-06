@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 87436] INVALID_STATE [UNK05] chid 0 mthd 0x0080 data
 	0x00000000
-Date: Wed, 06 May 2015 13:52:31 +0000
-Message-ID: <bug-87436-8800-aQ8EypZEA6@http.bugs.freedesktop.org/>
+Date: Wed, 06 May 2015 13:53:28 +0000
+Message-ID: <bug-87436-8800-hWfUIeUk4J@http.bugs.freedesktop.org/>
 References: <bug-87436-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1638768726=="
+Content-Type: multipart/mixed; boundary="===============0075135083=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-87436-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,40 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1638768726==
-Content-Type: multipart/alternative; boundary="1430920351.C30dCe8d5.18387"; charset="UTF-8"
+--===============0075135083==
+Content-Type: multipart/alternative; boundary="1430920408.dAD65.18546"; charset="UTF-8"
 
 
---1430920351.C30dCe8d5.18387
-Date: Wed, 6 May 2015 13:52:31 +0000
+--1430920408.dAD65.18546
+Date: Wed, 6 May 2015 13:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=87436
 
---- Comment #10 from Michael Mercier <mickours-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have the same problem on Arch Linux. Some information:
-
-uname -a
-Linux laptours 4.0.1-1-ARCH #1 SMP PREEMPT Wed Apr 29 12:00:26 CEST 2015 x86_64
-GNU/Linux
-
-Packages versions:
-xf86-video-nouveau 1.0.11-3
-mesa 10.5.4-1
-xorg-server 1.17.1-5
-
-I already have posted my dmesg.
-
-I sometimes get a complete xorg freeze. I post the journalctl output grep with
-nouveau
+--- Comment #11 from Michael Mercier <mickours-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 115593
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115593&action=edit
+journal_grep_nouveau
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430920351.C30dCe8d5.18387
-Date: Wed, 6 May 2015 13:52:31 +0000
+--1430920408.dAD65.18546
+Date: Wed, 6 May 2015 13:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,28 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=87436#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - INVALID_STATE [UNK05] chid 0 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=87436">bug 87436</a>
               from <span class="vcard"><a class="email" href="mailto:mickours&#64;gmail.com" title="Michael Mercier &lt;mickours&#64;gmail.com&gt;"> <span class="fn">Michael Mercier</span></a>
 </span></b>
-        <pre>I have the same problem on Arch Linux. Some information:
-
-uname -a
-Linux laptours 4.0.1-1-ARCH #1 SMP PREEMPT Wed Apr 29 12:00:26 CEST 2015 x86_64
-GNU/Linux
-
-Packages versions:
-xf86-video-nouveau 1.0.11-3
-mesa 10.5.4-1
-xorg-server 1.17.1-5
-
-I already have posted my dmesg.
-
-I sometimes get a complete xorg freeze. I post the journalctl output grep with
-nouveau</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115593" name="attach_115593" title="journal_grep_nouveau">attachment 115593</a> <a href="attachment.cgi?id=115593&amp;action=edit" title="journal_grep_nouveau">[details]</a></span>
+journal_grep_nouveau</pre>
         </div>
       </p>
       <hr>
@@ -101,9 +76,9 @@ nouveau</pre>
     </body>
 </html>
 
---1430920351.C30dCe8d5.18387--
+--1430920408.dAD65.18546--
 
---===============1638768726==
+--===============0075135083==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -113,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1638768726==--
+--===============0075135083==--
