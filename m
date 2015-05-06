@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89247] [NVE7] short display freeze on xrandr --query
-Date: Tue, 05 May 2015 22:12:33 +0000
-Message-ID: <bug-89247-8800-zi4Jfxo3T7@http.bugs.freedesktop.org/>
-References: <bug-89247-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
+ opening the new legacy tray (and many other situations) in 3.16.0
+Date: Wed, 06 May 2015 04:52:54 +0000
+Message-ID: <bug-89842-8800-VDGDBN8H4p@http.bugs.freedesktop.org/>
+References: <bug-89842-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1189268003=="
+Content-Type: multipart/mixed; boundary="===============0529603531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89247-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,31 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1189268003==
-Content-Type: multipart/alternative; boundary="1430863953.3fa18F01.17113"; charset="UTF-8"
+--===============0529603531==
+Content-Type: multipart/alternative; boundary="1430887975.eA686.15636"; charset="UTF-8"
 
 
---1430863953.3fa18F01.17113
-Date: Tue, 5 May 2015 22:12:33 +0000
+--1430887975.eA686.15636
+Date: Wed, 6 May 2015 04:52:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89247
+https://bugs.freedesktop.org/show_bug.cgi?id=89842
 
---- Comment #21 from exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org ---
-Created attachment 115567
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115567&action=edit
-strace of xrandr with timing info
+--- Comment #10 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I just push a commit[1] to libdrm which should fix this issue.
 
-I don't know if this helps but here is an 'strace -f -r -C -- xrandr -q'
-output, showing the slow syscall.
+[1]
+http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1430863953.3fa18F01.17113
-Date: Tue, 5 May 2015 22:12:33 +0000
+--1430887975.eA686.15636
+Date: Wed, 6 May 2015 04:52:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,19 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] short display freeze on xrandr --query"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247#c21">Comment # 21</a>
+   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] short display freeze on xrandr --query"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89247">bug 89247</a>
-              from <span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
+   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115567" name="attach_115567" title="strace of xrandr with timing info">attachment 115567</a> <a href="attachment.cgi?id=115567&amp;action=edit" title="strace of xrandr with timing info">[details]</a></span>
-strace of xrandr with timing info
+        <pre>I just push a commit[1] to libdrm which should fix this issue.
 
-I don't know if this helps but here is an 'strace -f -r -C -- xrandr -q'
-output, showing the slow syscall.</pre>
+[1]
+<a href="http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294">http://cgit.freedesktop.org/mesa/drm/commit/?id=812e8fe6ce46d733c30207ee26c788c61f546294</a></pre>
         </div>
       </p>
       <hr>
@@ -81,9 +79,9 @@ output, showing the slow syscall.</pre>
     </body>
 </html>
 
---1430863953.3fa18F01.17113--
+--1430887975.eA686.15636--
 
---===============1189268003==
+--===============0529603531==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1189268003==--
+--===============0529603531==--
