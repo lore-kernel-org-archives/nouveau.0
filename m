@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90350] New: [G96] Portal's portal are incorrectly
-	rendered
-Date: Wed, 06 May 2015 20:46:23 +0000
-Message-ID: <bug-90350-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90350] [G96] Portal's portal are incorrectly rendered
+Date: Wed, 06 May 2015 20:51:00 +0000
+Message-ID: <bug-90350-8800-4wYlp12ZkF@http.bugs.freedesktop.org/>
+References: <bug-90350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2010416279=="
+Content-Type: multipart/mixed; boundary="===============0822370360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,41 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2010416279==
-Content-Type: multipart/alternative; boundary="1430945183.3bc830.14310"; charset="UTF-8"
+--===============0822370360==
+Content-Type: multipart/alternative; boundary="1430945460.15430.14886"; charset="UTF-8"
 
 
---1430945183.3bc830.14310
-Date: Wed, 6 May 2015 20:46:23 +0000
+--1430945460.15430.14886
+Date: Wed, 6 May 2015 20:51:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90350
 
-            Bug ID: 90350
-           Summary: [G96] Portal's portal are incorrectly rendered
-           Product: Mesa
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: pierre.morrow-GANU6spQydw@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Trace available at:
 
-Portal's portals are filled with some matter when running the game on my G96.
-Running on my MCP79 is fine.
+http://people.freedesktop.org/~imirkin/traces/portal_bug_portalrendering_G96.trace.xz
+
+Verified to render correctly on i965 haswell. Would be nice if someone else
+with a G96 or older card can verify it also renders wrong. Otherwise it's an
+issue on the macbook gpu setup.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1430945183.3bc830.14310
-Date: Wed, 6 May 2015 20:46:23 +0000
+--1430945460.15430.14886
+Date: Wed, 6 May 2015 20:51:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,91 +54,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G96] Portal's portal are incorrectly rendered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350">90350</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[G96] Portal's portal are incorrectly rendered
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>pierre.morrow&#64;free.fr
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Portal's portals are filled with some matter when running the game on my G96.
-Running on my MCP79 is fine.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G96] Portal's portal are incorrectly rendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G96] Portal's portal are incorrectly rendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350">bug 90350</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Trace available at:
+
+<a href="http://people.freedesktop.org/~imirkin/traces/portal_bug_portalrendering_G96.trace.xz">http://people.freedesktop.org/~imirkin/traces/portal_bug_portalrendering_G96.trace.xz</a>
+
+Verified to render correctly on i965 haswell. Would be nice if someone else
+with a G96 or older card can verify it also renders wrong. Otherwise it's an
+issue on the macbook gpu setup.</pre>
         </div>
       </p>
       <hr>
@@ -158,9 +86,9 @@ Running on my MCP79 is fine.</pre>
     </body>
 </html>
 
---1430945183.3bc830.14310--
+--1430945460.15430.14886--
 
---===============2010416279==
+--===============0822370360==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -170,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2010416279==--
+--===============0822370360==--
