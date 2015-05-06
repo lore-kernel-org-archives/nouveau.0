@@ -1,9 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90348] New: Spilling failure of b96 merged value
-Date: Wed, 06 May 2015 18:41:59 +0000
-Message-ID: <bug-90348-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90350] New: [G96] Portal's portal are incorrectly
+	rendered
+Date: Wed, 06 May 2015 20:46:23 +0000
+Message-ID: <bug-90350-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0060942039=="
+Content-Type: multipart/mixed; boundary="===============2010416279=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -18,47 +19,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0060942039==
-Content-Type: multipart/alternative; boundary="1430937719.5FD5C40.31382"; charset="UTF-8"
+--===============2010416279==
+Content-Type: multipart/alternative; boundary="1430945183.3bc830.14310"; charset="UTF-8"
 
 
---1430937719.5FD5C40.31382
-Date: Wed, 6 May 2015 18:41:59 +0000
+--1430945183.3bc830.14310
+Date: Wed, 6 May 2015 20:46:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90348
+https://bugs.freedesktop.org/show_bug.cgi?id=90350
 
-            Bug ID: 90348
-           Summary: Spilling failure of b96 merged value
+            Bug ID: 90350
+           Summary: [G96] Portal's portal are incorrectly rendered
            Product: Mesa
            Version: git
-          Hardware: Other
-                OS: All
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
             Status: NEW
           Severity: normal
           Priority: medium
          Component: Drivers/DRI/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
+          Reporter: pierre.morrow-GANU6spQydw@public.gmane.org
         QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Sometimes the spilling logic will decide to spill a merged def. This is fine
-for 2- and 4-wide values as there are appropriate load/store instructions for
-those, but not so with 3-wide values. We must take that into account in the
-SpillCodeInserter and emit a 64-bit and 32-bit store into lmem (and similar for
-load, although less important, as it tends to have gotten split up by the time
-the use rolls around).
-
-Unfortunately I've lost track of the program that repro'd this issue.
+Portal's portals are filled with some matter when running the game on my G96.
+Running on my MCP79 is fine.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1430937719.5FD5C40.31382
-Date: Wed, 6 May 2015 18:41:59 +0000
+--1430945183.3bc830.14310
+Date: Wed, 6 May 2015 20:46:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,14 +66,14 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Spilling failure of b96 merged value"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90348">90348</a>
+   title="NEW - [G96] Portal's portal are incorrectly rendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350">90350</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Spilling failure of b96 merged value
+          <td>[G96] Portal's portal are incorrectly rendered
           </td>
         </tr>
 
@@ -96,13 +91,13 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86-64 (AMD64)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -138,7 +133,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>imirkin&#64;alum.mit.edu
+          <td>pierre.morrow&#64;free.fr
           </td>
         </tr>
 
@@ -149,14 +144,8 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>Sometimes the spilling logic will decide to spill a merged def. This is fine
-for 2- and 4-wide values as there are appropriate load/store instructions for
-those, but not so with 3-wide values. We must take that into account in the
-SpillCodeInserter and emit a 64-bit and 32-bit store into lmem (and similar for
-load, although less important, as it tends to have gotten split up by the time
-the use rolls around).
-
-Unfortunately I've lost track of the program that repro'd this issue.</pre>
+        <pre>Portal's portals are filled with some matter when running the game on my G96.
+Running on my MCP79 is fine.</pre>
         </div>
       </p>
       <hr>
@@ -169,9 +158,9 @@ Unfortunately I've lost track of the program that repro'd this issue.</pre>
     </body>
 </html>
 
---1430937719.5FD5C40.31382--
+--1430945183.3bc830.14310--
 
---===============0060942039==
+--===============2010416279==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -181,4 +170,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0060942039==--
+--===============2010416279==--
