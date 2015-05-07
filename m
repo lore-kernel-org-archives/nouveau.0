@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90363] [nv50] HW state is not reset correctly when
  using a new GL context
-Date: Thu, 07 May 2015 18:25:01 +0000
-Message-ID: <bug-90363-8800-9SKgnXkRBS@http.bugs.freedesktop.org/>
+Date: Thu, 07 May 2015 19:32:57 +0000
+Message-ID: <bug-90363-8800-ODT8eAUUT3@http.bugs.freedesktop.org/>
 References: <bug-90363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1313653288=="
+Content-Type: multipart/mixed; boundary="===============0128990199=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1313653288==
-Content-Type: multipart/alternative; boundary="1431023101.A68e0.3602"; charset="UTF-8"
+--===============0128990199==
+Content-Type: multipart/alternative; boundary="1431027177.e1e4a0.16651"; charset="UTF-8"
 
 
---1431023101.A68e0.3602
-Date: Thu, 7 May 2015 18:25:01 +0000
+--1431027177.e1e4a0.16651
+Date: Thu, 7 May 2015 19:32:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90363
 
---- Comment #2 from Matteo Bruni <matteo.mystral-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 115624
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115624&action=edit
-Improved fix
-
-The attached works for me. It's the patch from Ilia with an additional state
-copy in nv50_create.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Ah yeah, that makes sense. Forgot that contexts liked to auto-attach
+themselves. cur_state seems like a dumb name, I'm going to change it to
+saved_state or something. Also that state needs to be initialized, so I'm going
+to move the state init bits from that state init function to the screen init.
+Will send a proper patch for testing tonight-ish.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1431023101.A68e0.3602
-Date: Thu, 7 May 2015 18:25:01 +0000
+--1431027177.e1e4a0.16651
+Date: Thu, 7 May 2015 19:32:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,18 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nv50] HW state is not reset correctly when using a new GL context"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90363#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90363#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nv50] HW state is not reset correctly when using a new GL context"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90363">bug 90363</a>
-              from <span class="vcard"><a class="email" href="mailto:matteo.mystral&#64;gmail.com" title="Matteo Bruni &lt;matteo.mystral&#64;gmail.com&gt;"> <span class="fn">Matteo Bruni</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115624" name="attach_115624" title="Improved fix">attachment 115624</a> <a href="attachment.cgi?id=115624&amp;action=edit" title="Improved fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90363&amp;attachment=115624'>[review]</a>
-Improved fix
-
-The attached works for me. It's the patch from Ilia with an additional state
-copy in nv50_create.</pre>
+        <pre>Ah yeah, that makes sense. Forgot that contexts liked to auto-attach
+themselves. cur_state seems like a dumb name, I'm going to change it to
+saved_state or something. Also that state needs to be initialized, so I'm going
+to move the state init bits from that state init function to the screen init.
+Will send a proper patch for testing tonight-ish.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +83,9 @@ copy in nv50_create.</pre>
     </body>
 </html>
 
---1431023101.A68e0.3602--
+--1431027177.e1e4a0.16651--
 
---===============1313653288==
+--===============0128990199==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1313653288==--
+--===============0128990199==--
