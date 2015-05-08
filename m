@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
-Date: Fri, 08 May 2015 02:28:48 +0000
-Message-ID: <bug-89047-8800-6VV4MauCap@http.bugs.freedesktop.org/>
-References: <bug-89047-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65368] X sesssion freeze at screensaver - mouse and
+ ssh still works
+Date: Fri, 08 May 2015 05:14:24 +0000
+Message-ID: <bug-65368-8800-QVClkcNQbQ@http.bugs.freedesktop.org/>
+References: <bug-65368-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0941991702=="
+Content-Type: multipart/mixed; boundary="===============2051133715=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,49 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0941991702==
-Content-Type: multipart/alternative; boundary="1431052128.c8eFBf3E2.27858"; charset="UTF-8"
+--===============2051133715==
+Content-Type: multipart/alternative; boundary="1431062064.2a70F32.27254"; charset="UTF-8"
 
 
---1431052128.c8eFBf3E2.27858
-Date: Fri, 8 May 2015 02:28:48 +0000
+--1431062064.2a70F32.27254
+Date: Fri, 8 May 2015 05:14:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89047
+https://bugs.freedesktop.org/show_bug.cgi?id=65368
 
---- Comment #10 from Jan Vesely <jan.vesely-kgbqMDwikbSVc3sceRu5cw@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #8)
-> (In reply to Jan Vesely from comment #7)
-> > (In reply to Ben Skeggs from comment #6)
-> > > (In reply to Jan Vesely from comment #5)
-> > > > Created attachment 115044 [details]
-> > > > vbois.rom
-> > > 
-> > > Thanks.
-> > > 
-> > > Does your patch still work for you with the change to subdev/bios/shadow.c
-> > > reverted (so, just keep the > to >= changes in shadowacpi.c) too?
-> > 
-> > It does, in fact I only need the change in acpi_read_slow (read_fast fails
-> > on my machine anyway #55948).
-> 
-> Ok, good, thanks.  I'll submit a modified version of your patch with a more
-> full explanation and to only do the ACPI changes.  The fast path will
-> possibly have the same bug too under certain circumstances, so I'll keep
-> that.
-> 
-> Thank you again.
+Alan Coopersmith <alan.coopersmith-QHcLZuEGTsvQT0dZR+AlfA@public.gmane.org> changed:
 
-Thanks. I see it went to 4.1. Should I send email to linux-stable to add it to
-3.19 and 4.0?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Protocol/Core               |Driver/nouveau
+           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431052128.c8eFBf3E2.27858
-Date: Fri, 8 May 2015 02:28:48 +0000
+--1431062064.2a70F32.27254
+Date: Fri, 8 May 2015 05:14:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,44 +53,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:alan.coopersmith&#64;oracle.com" title="Alan Coopersmith &lt;alan.coopersmith&#64;oracle.com&gt;"> <span class="fn">Alan Coopersmith</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - linux-3.19 nvd9 Invalid rom content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89047#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - linux-3.19 nvd9 Invalid rom content"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89047">bug 89047</a>
-              from <span class="vcard"><a class="email" href="mailto:jan.vesely&#64;rutgers.edu" title="Jan Vesely &lt;jan.vesely&#64;rutgers.edu&gt;"> <span class="fn">Jan Vesely</span></a>
-</span></b>
-        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=89047#c8">comment #8</a>)
-<span class="quote">&gt; (In reply to Jan Vesely from <a href="show_bug.cgi?id=89047#c7">comment #7</a>)
-&gt; &gt; (In reply to Ben Skeggs from <a href="show_bug.cgi?id=89047#c6">comment #6</a>)
-&gt; &gt; &gt; (In reply to Jan Vesely from <a href="show_bug.cgi?id=89047#c5">comment #5</a>)
-&gt; &gt; &gt; &gt; Created <span class=""><a href="attachment.cgi?id=115044" name="attach_115044" title="vbois.rom">attachment 115044</a> <a href="attachment.cgi?id=115044&amp;action=edit" title="vbois.rom">[details]</a></span>
-&gt; &gt; &gt; &gt; vbois.rom
-&gt; &gt; &gt; 
-&gt; &gt; &gt; Thanks.
-&gt; &gt; &gt; 
-&gt; &gt; &gt; Does your patch still work for you with the change to subdev/bios/shadow.c
-&gt; &gt; &gt; reverted (so, just keep the &gt; to &gt;= changes in shadowacpi.c) too?
-&gt; &gt; 
-&gt; &gt; It does, in fact I only need the change in acpi_read_slow (read_fast fails
-&gt; &gt; on my machine anyway #55948).
-&gt; 
-&gt; Ok, good, thanks.  I'll submit a modified version of your patch with a more
-&gt; full explanation and to only do the ACPI changes.  The fast path will
-&gt; possibly have the same bug too under certain circumstances, so I'll keep
-&gt; that.
-&gt; 
-&gt; Thank you again.</span >
+   title="NEW - X sesssion freeze at screensaver - mouse and ssh still works"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65368">bug 65368</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Thanks. I see it went to 4.1. Should I send email to linux-stable to add it to
-3.19 and 4.0?</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Protocol/Core
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -118,9 +93,9 @@ Thanks. I see it went to 4.1. Should I send email to linux-stable to add it to
     </body>
 </html>
 
---1431052128.c8eFBf3E2.27858--
+--1431062064.2a70F32.27254--
 
---===============0941991702==
+--===============2051133715==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0941991702==--
+--===============2051133715==--
