@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 65368] X sesssion freeze at screensaver - mouse and
- ssh still works
-Date: Fri, 08 May 2015 05:28:47 +0000
-Message-ID: <bug-65368-8800-OK8cueX6fm@http.bugs.freedesktop.org/>
-References: <bug-65368-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 36114] Dimming Laptop LCD causes buzz
+Date: Fri, 08 May 2015 05:30:27 +0000
+Message-ID: <bug-36114-8800-SOtVQrcXmT@http.bugs.freedesktop.org/>
+References: <bug-36114-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0201396962=="
+Content-Type: multipart/mixed; boundary="===============0927846261=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-65368-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-36114-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +20,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0201396962==
-Content-Type: multipart/alternative; boundary="1431062927.F5824A2.30023"; charset="UTF-8"
+--===============0927846261==
+Content-Type: multipart/alternative; boundary="1431063027.ae3D6F2.30311"; charset="UTF-8"
 
 
---1431062927.F5824A2.30023
-Date: Fri, 8 May 2015 05:28:47 +0000
+--1431063027.ae3D6F2.30311
+Date: Fri, 8 May 2015 05:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=65368
+https://bugs.freedesktop.org/show_bug.cgi?id=36114
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -40,17 +39,16 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
          Resolution|---                         |INVALID
 
 --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This bug is a couple years old with no updates, no mention of the hardware, no
-mention of software versions, or anything else that would make this
-investigatable. Feel free to reopen if it's still an issue and you can provide
-fresh information with fresh software versions.
+This bug is many years old. Closing, as there has been no activity. Feel free
+to reopen if this still happens with recent software versions, make sure to
+include logs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431062927.F5824A2.30023
-Date: Fri, 8 May 2015 05:28:47 +0000
+--1431063027.ae3D6F2.30311
+Date: Fri, 8 May 2015 05:30:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X sesssion freeze at screensaver - mouse and ssh still works"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65368">bug 65368</a>
+   title="RESOLVED INVALID - Dimming Laptop LCD causes buzz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36114">bug 36114</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -91,18 +89,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X sesssion freeze at screensaver - mouse and ssh still works"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65368#c1">Comment # 1</a>
+   title="RESOLVED INVALID - Dimming Laptop LCD causes buzz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36114#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - X sesssion freeze at screensaver - mouse and ssh still works"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=65368">bug 65368</a>
+   title="RESOLVED INVALID - Dimming Laptop LCD causes buzz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=36114">bug 36114</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>This bug is a couple years old with no updates, no mention of the hardware, no
-mention of software versions, or anything else that would make this
-investigatable. Feel free to reopen if it's still an issue and you can provide
-fresh information with fresh software versions.</pre>
+        <pre>This bug is many years old. Closing, as there has been no activity. Feel free
+to reopen if this still happens with recent software versions, make sure to
+include logs.</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +111,9 @@ fresh information with fresh software versions.</pre>
     </body>
 </html>
 
---1431062927.F5824A2.30023--
+--1431063027.ae3D6F2.30311--
 
---===============0201396962==
+--===============0927846261==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0201396962==--
+--===============0927846261==--
