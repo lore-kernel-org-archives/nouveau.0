@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 78439] [NVC1] Display corruption when DP connector
  is reattached
-Date: Fri, 08 May 2015 18:17:56 +0000
-Message-ID: <bug-78439-8800-kVcxtT1S4z@http.bugs.freedesktop.org/>
+Date: Fri, 08 May 2015 18:33:43 +0000
+Message-ID: <bug-78439-8800-xt6nN7Z0ge@http.bugs.freedesktop.org/>
 References: <bug-78439-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1530914033=="
+Content-Type: multipart/mixed; boundary="===============1800942021=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-78439-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,48 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1530914033==
-Content-Type: multipart/alternative; boundary="1431109076.3C617f6c1.31293"; charset="UTF-8"
+--===============1800942021==
+Content-Type: multipart/alternative; boundary="1431110023.7Ed3Bd41.2053"; charset="UTF-8"
 
 
---1431109076.3C617f6c1.31293
-Date: Fri, 8 May 2015 18:17:56 +0000
+--1431110023.7Ed3Bd41.2053
+Date: Fri, 8 May 2015 18:33:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D78439
 
-Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> changed:
+--- Comment #25 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
+Created attachment 115644
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D115644&action=3Dedit
+dmesg.txt.xz (lower modes, reattaching)
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #100924|0                           |1
-        is obsolete|                            |
- Attachment #101299|0                           |1
-        is obsolete|                            |
+only the lower modes are enabled:
 
---- Comment #24 from Andrius =C5=A0tikonas <andrius-4ZmsDwijFH7sq35pWSNszA@public.gmane.org> ---
-Created attachment 115643
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D115643&action=3Dedit
-dmesg.txt (higher modes)
-
-Ilia asked to create dmesg with the following nouveau_dp_rates[] enabled:
-
-{  648000, 0x06, 4 },
 {  324000, 0x06, 2 },
-{  162000, 0x06, 1 },
+{  162000, 0x06, 1 }
 
-In this 648 mode the whole screen flickers a lot (no reattaching is necessa=
-ry
-to reproduce it, it happens immediately)
+When booting, everything starts fine. After reattaching DP connector, the r=
+ight
+side of the screen flickers. (Note that flickering in 648 mode is more seve=
+re,
+affects the whole screen and even causes blinking of the screen)
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431109076.3C617f6c1.31293
-Date: Fri, 8 May 2015 18:17:56 +0000
+--1431110023.7Ed3Bd41.2053
+Date: Fri, 8 May 2015 18:33:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,49 +63,14 @@ Content-Transfer-Encoding: quoted-printable
     <head>
       <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:andrius&#=
-64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;stikonas.eu&=
-gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439">bug 78439<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #100924 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #101299 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c24">Commen=
-t # 24</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D78439#c25">Commen=
+t # 25</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - [NVC1] Display corruption when DP connector is reattached"
@@ -123,21 +80,22 @@ t # 24</a>
 andrius&#64;stikonas.eu" title=3D"Andrius =C5=A0tikonas &lt;andrius&#64;sti=
 konas.eu&gt;"> <span class=3D"fn">Andrius =C5=A0tikonas</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D115643=
-" name=3D"attach_115643" title=3D"dmesg.txt (higher modes)">attachment 1156=
-43</a> <a href=3D"attachment.cgi?id=3D115643&amp;action=3Dedit" title=3D"dm=
-esg.txt (higher modes)">[details]</a></span>
-dmesg.txt (higher modes)
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D115644=
+" name=3D"attach_115644" title=3D"dmesg.txt.xz (lower modes, reattaching)">=
+attachment 115644</a> <a href=3D"attachment.cgi?id=3D115644&amp;action=3Ded=
+it" title=3D"dmesg.txt.xz (lower modes, reattaching)">[details]</a></span>
+dmesg.txt.xz (lower modes, reattaching)
 
-Ilia asked to create dmesg with the following nouveau_dp_rates[] enabled:
+only the lower modes are enabled:
 
-{  648000, 0x06, 4 },
 {  324000, 0x06, 2 },
-{  162000, 0x06, 1 },
+{  162000, 0x06, 1 }
 
-In this 648 mode the whole screen flickers a lot (no reattaching is necessa=
-ry
-to reproduce it, it happens immediately)</pre>
+When booting, everything starts fine. After reattaching DP connector, the r=
+ight
+side of the screen flickers. (Note that flickering in 648 mode is more seve=
+re,
+affects the whole screen and even causes blinking of the screen)</pre>
         </div>
       </p>
       <hr>
@@ -149,9 +107,9 @@ to reproduce it, it happens immediately)</pre>
     </body>
 </html>
 
---1431109076.3C617f6c1.31293--
+--1431110023.7Ed3Bd41.2053--
 
---===============1530914033==
+--===============1800942021==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -161,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1530914033==--
+--===============1800942021==--
