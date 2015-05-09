@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86792] [NVC0] Portal 2 Crashes in Wine
-Date: Sat, 09 May 2015 19:44:29 +0000
-Message-ID: <bug-86792-8800-Dt8vwuFbkT@http.bugs.freedesktop.org/>
-References: <bug-86792-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH 3/4] nvc0/ir: optimize set & 1.0 to produce
+ boolean-float sets
+Date: Sat, 9 May 2015 21:47:04 +0200
+Message-ID: <554E6438.9080001@mni.thm.de>
+References: <1431149707-7159-1-git-send-email-imirkin@alum.mit.edu>
+ <1431149707-7159-3-git-send-email-imirkin@alum.mit.edu>
+ <554E2754.5080904@mni.thm.de>
+ <CAKb7Uvg-2tUxSpkXVh9M+a6G2bTO97MzowN=r0jRbYh5DiFmYw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1134717190=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvg-2tUxSpkXVh9M+a6G2bTO97MzowN=r0jRbYh5DiFmYw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,156 +21,63 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1134717190==
-Content-Type: multipart/alternative; boundary="1431200669.Bab1de1.15126"; charset="UTF-8"
-
-
---1431200669.Bab1de1.15126
-Date: Sat, 9 May 2015 19:44:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86792
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEEDINFO                    |NEW
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Looks like I got one pretty similar to yours:
-
-Unhandled exception: page fault on read access to 0x00000108 in 32-bit code
-(0xf6623734).
-Register dump:
- CS:0023 SS:002b DS:002b ES:002b FS:0063 GS:006b
- EIP:f6623734 ESP:14bbd650 EBP:7cf2df98 EFLAGS:00010202(  R- --  I   - - - )
- EAX:00000104 EBX:f686f000 ECX:f242b178 EDX:f135fc10
- ESI:f154ae60 EDI:f039eb18
-Stack dump:
-0x14bbd650:  00000000 edb22728 f6623659 f686f000
-0x14bbd660:  f6623717 f686f000 f154ae60 f6705e09
-0x14bbd670:  f135fc10 00000ac0 f039eb18 f039edf8
-0x14bbd680:  00000de1 00000001 f656c92e 7cf196a0
-0x14bbd690:  00000ac0 00157abc 000ffd00 f039edf8
-0x14bbd6a0:  f3122d98 f31f2280 f6705d19 f686f000
-000c: sel=0067 base=00000000 limit=00000000 32-bit r-x
-Backtrace:
-=>0 0xf6623734 nouveau_heap_free+0x24() in nouveau_dri.so (0x7cf2df98)
-  1 0xf6705e09 nvc0_program_upload_code+0xf8() in nouveau_dri.so (0x7cf2df98)
-  2 0xf670bfc3 nvc0_vertprog_validate+0x162() in nouveau_dri.so (0xf039eb18)
-  3 0xf6712985 nvc0_state_validate+0x134() in nouveau_dri.so (0xf3100598)
-  4 0xf671d0dc nvc0_draw_vbo+0xbb() in nouveau_dri.so (0xf3100598)
-  5 0xf656f4d0 cso_draw_vbo+0x3f() in nouveau_dri.so (0x00000003)
-  6 0xf644ce9a st_draw_vbo+0x279() in nouveau_dri.so (0x00000003)
-  7 0xf641a445 vbo_validated_drawrangeelements+0xf4() in nouveau_dri.so
-(0xf3102590)
-  8 0xf641a9b4 vbo_exec_DrawElementsBaseVertex+0x93() in nouveau_dri.so
-(0x00000000)
-  9 0xf6b00298 shared_dispatch_stub_702+0x47() in libglapi.so.0 (0x14bbdbd8)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431200669.Bab1de1.15126
-Date: Sat, 9 May 2015 19:44:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0] Portal 2 Crashes in Wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEEDINFO
-           </td>
-           <td>NEW
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0] Portal 2 Crashes in Wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0] Portal 2 Crashes in Wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Looks like I got one pretty similar to yours:
-
-Unhandled exception: page fault on read access to 0x00000108 in 32-bit code
-(0xf6623734).
-Register dump:
- CS:0023 SS:002b DS:002b ES:002b FS:0063 GS:006b
- EIP:f6623734 ESP:14bbd650 EBP:7cf2df98 EFLAGS:00010202(  R- --  I   - - - )
- EAX:00000104 EBX:f686f000 ECX:f242b178 EDX:f135fc10
- ESI:f154ae60 EDI:f039eb18
-Stack dump:
-0x14bbd650:  00000000 edb22728 f6623659 f686f000
-0x14bbd660:  f6623717 f686f000 f154ae60 f6705e09
-0x14bbd670:  f135fc10 00000ac0 f039eb18 f039edf8
-0x14bbd680:  00000de1 00000001 f656c92e 7cf196a0
-0x14bbd690:  00000ac0 00157abc 000ffd00 f039edf8
-0x14bbd6a0:  f3122d98 f31f2280 f6705d19 f686f000
-000c: sel=0067 base=00000000 limit=00000000 32-bit r-x
-Backtrace:
-=&gt;0 0xf6623734 nouveau_heap_free+0x24() in nouveau_dri.so (0x7cf2df98)
-  1 0xf6705e09 nvc0_program_upload_code+0xf8() in nouveau_dri.so (0x7cf2df98)
-  2 0xf670bfc3 nvc0_vertprog_validate+0x162() in nouveau_dri.so (0xf039eb18)
-  3 0xf6712985 nvc0_state_validate+0x134() in nouveau_dri.so (0xf3100598)
-  4 0xf671d0dc nvc0_draw_vbo+0xbb() in nouveau_dri.so (0xf3100598)
-  5 0xf656f4d0 cso_draw_vbo+0x3f() in nouveau_dri.so (0x00000003)
-  6 0xf644ce9a st_draw_vbo+0x279() in nouveau_dri.so (0x00000003)
-  7 0xf641a445 vbo_validated_drawrangeelements+0xf4() in nouveau_dri.so
-(0xf3102590)
-  8 0xf641a9b4 vbo_exec_DrawElementsBaseVertex+0x93() in nouveau_dri.so
-(0x00000000)
-  9 0xf6b00298 shared_dispatch_stub_702+0x47() in libglapi.so.0 (0x14bbdbd8)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431200669.Bab1de1.15126--
-
---===============1134717190==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1134717190==--
+CgpPbiAwOS4wNS4yMDE1IDE5OjUzLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBTYXQsIE1heSA5
+LCAyMDE1IGF0IDExOjI3IEFNLCBUb2JpYXMgS2xhdXNtYW5uCj4gPHRvYmlhcy5qb2hhbm5lcy5r
+bGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4+Cj4+IE9uIDA5LjA1LjIwMTUgMDc6MzUsIEls
+aWEgTWlya2luIHdyb3RlOgo+Pj4gVGhpcyBoYXMgc3RhcnRlZCB0byBoYXBwZW4gbW9yZSBub3cg
+dGhhdCB0aGUgYmFja2VuZCBpcyBwcm9kdWNpbmcKPj4+IEtJTExfSUYgbW9yZSBvZnRlbi4KPj4+
+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+
+PiAtLS0KPj4+ICAgIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xl
+LmNwcCAgIHwgMjkKPj4+ICsrKysrKysrKysrKysrKysrKysrKysKPj4+ICAgIC4uLi9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl90YXJnZXRfbnY1MC5jcHAgICAgICAgIHwgIDIgKysKPj4+ICAgIDIg
+ZmlsZXMgY2hhbmdlZCwgMzEgaW5zZXJ0aW9ucygrKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+Pj4g
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNw
+cAo+Pj4gaW5kZXggMTQ0NDZiNi4uZDhhZjE5YSAxMDA2NDQKPj4+IC0tLSBhL3NyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4+PiArKysgYi9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+
+Pj4gQEAgLTk3Myw2ICs5NzMsMzUgQEAgQ29uc3RhbnRGb2xkaW5nOjpvcG5kKEluc3RydWN0aW9u
+ICppLCBJbW1lZGlhdGVWYWx1ZQo+Pj4gJmltbTAsIGludCBzKQo+Pj4gICAgICAgfQo+Pj4gICAg
+ICAgICAgYnJlYWs7Cj4+PiAgICArICAgY2FzZSBPUF9BTkQ6Cj4+PiArICAgewo+Pj4gKyAgICAg
+IENtcEluc3RydWN0aW9uICpjbXAgPSBpLT5nZXRTcmModCktPmdldEluc24oKS0+YXNDbXAoKTsK
+Pj4+ICsgICAgICBpZiAoIWNtcCB8fCBjbXAtPm9wID09IE9QX1NMQ1QpCj4+Cj4+IGhvdyBhYm91
+dCBpZiAoY21wID09IE5VTEwgfHwgLi4uKSBhbmQga2lsbCB0aGUgc2FtZSBjb25kaXRpb24gbGF0
+ZXI/Cj4gSSBqdXN0IGtpbGxlZCB0aGUgb3RoZXIgb25lLiBJIHRoaW5rIHRoZSB1c3VhbCBzdHls
+ZSB0ZW5kcyB0byBiZSBpZgo+ICghcHRyKSByYXRoZXIgdGhhbiBpZiAocHRyID09IE5VTEwpIGlu
+IGNvZGVnZW4uIEJvdGggYXJlIGFjY2VwdGFibGUKPiB0aG91Z2guCgppdCB3YXMgbWFpbmx5IGFi
+b3V0IHRoZSBkZWFkIGNvZGUgeW91IGtpbGxlZCBub3cuIFdpdGggdGhpcyBpdCBsb29rcyAKZmlu
+ZSB0byBtZSwgc28gZmVlbCBmcmVlIHRvIGFkZAoKUmV2aWV3ZWQtYnk6IFRvYmlhcyBLbGF1c21h
+bm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4KCgo+Pgo+Pj4gKyAgICAg
+ICAgIHJldHVybjsKPj4+ICsgICAgICBpZiAoIXByb2ctPmdldFRhcmdldCgpLT5pc09wU3VwcG9y
+dGVkKGNtcC0+b3AsIFRZUEVfRjMyKSkKPj4+ICsgICAgICAgICByZXR1cm47Cj4+PiArICAgICAg
+aWYgKGltbTAucmVnLmRhdGEuZjMyICE9IDEuMCkKPj4+ICsgICAgICAgICByZXR1cm47Cj4+PiAr
+ICAgICAgaWYgKGNtcCA9PSBOVUxMKQo+Pj4gKyAgICAgICAgIHJldHVybjsKPj4+ICsgICAgICBp
+ZiAoaS0+Z2V0U3JjKHQpLT5nZXRJbnNuKCktPmRUeXBlICE9IFRZUEVfVTMyKQo+Pj4gKyAgICAg
+ICAgIHJldHVybjsKPj4+ICsKPj4+ICsgICAgICBpLT5nZXRTcmModCktPmdldEluc24oKS0+ZFR5
+cGUgPSBUWVBFX0YzMjsKPj4+ICsgICAgICBpZiAoaS0+c3JjKHQpLm1vZCAhPSBNb2RpZmllcigw
+KSkgewo+Pj4gKyAgICAgICAgIGFzc2VydChpLT5zcmModCkubW9kID09IE1vZGlmaWVyKE5WNTBf
+SVJfTU9EX05PVCkpOwo+Pj4gKyAgICAgICAgIGktPnNyYyh0KS5tb2QgPSBNb2RpZmllcigwKTsK
+Pj4+ICsgICAgICAgICBjbXAtPnNldENvbmQgPSByZXZlcnNlQ29uZENvZGUoY21wLT5zZXRDb25k
+KTsKPj4+ICsgICAgICB9Cj4+PiArICAgICAgaS0+b3AgPSBPUF9NT1Y7Cj4+PiArICAgICAgaS0+
+c2V0U3JjKHMsIE5VTEwpOwo+Pj4gKyAgICAgIGlmICh0KSB7Cj4+PiArICAgICAgICAgaS0+c2V0
+U3JjKDAsIGktPmdldFNyYyh0KSk7Cj4+PiArICAgICAgICAgaS0+c2V0U3JjKHQsIE5VTEwpOwo+
+Pj4gKyAgICAgIH0KPj4+ICsgICB9Cj4+PiArICAgICAgYnJlYWs7Cj4+PiArCj4+PiAgICAgICBj
+YXNlIE9QX1NITDoKPj4+ICAgICAgIHsKPj4+ICAgICAgICAgIGlmIChzICE9IDEgfHwgaS0+c3Jj
+KDApLm1vZCAhPSBNb2RpZmllcigwKSkKPj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcAo+Pj4gYi9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcAo+Pj4g
+aW5kZXggMTc4YTE2Ny4uNzAxODBlYiAxMDA2NDQKPj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwCj4+PiArKysgYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcAo+
+Pj4gQEAgLTQxMyw2ICs0MTMsOCBAQCBUYXJnZXROVjUwOjppc09wU3VwcG9ydGVkKG9wZXJhdGlv
+biBvcCwgRGF0YVR5cGUgdHkpCj4+PiBjb25zdAo+Pj4gICAgICAgICAgcmV0dXJuIGZhbHNlOwo+
+Pj4gICAgICAgY2FzZSBPUF9TQUQ6Cj4+PiAgICAgICAgICByZXR1cm4gdHkgPT0gVFlQRV9TMzI7
+Cj4+PiArICAgY2FzZSBPUF9TRVQ6Cj4+PiArICAgICAgcmV0dXJuICFpc0Zsb2F0VHlwZSh0eSk7
+Cj4+PiAgICAgICBkZWZhdWx0Ogo+Pj4gICAgICAgICAgcmV0dXJuIHRydWU7Cj4+PiAgICAgICB9
+Cj4+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
