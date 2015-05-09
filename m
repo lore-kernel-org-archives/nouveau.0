@@ -1,104 +1,108 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90350] [G96] Portal's portal are incorrectly rendered
-Date: Sat, 09 May 2015 00:24:54 +0000
-Message-ID: <bug-90350-8800-GdhUQKcazd@http.bugs.freedesktop.org/>
-References: <bug-90350-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 4/4] nv50/ir: allow OP_SET to merge with
+	OP_SET_AND/etc as well as a neg
+Date: Sat,  9 May 2015 01:35:07 -0400
+Message-ID: <1431149707-7159-4-git-send-email-imirkin@alum.mit.edu>
+References: <1431149707-7159-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1518792260=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90350-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1431149707-7159-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1518792260==
-Content-Type: multipart/alternative; boundary="1431131093.D4750.22340"; charset="UTF-8"
-
-
---1431131093.D4750.22340
-Date: Sat, 9 May 2015 00:24:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90350
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 115652
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115652&action=edit
-saturate shader test
-
-On each of your NV96 and NVAC, please run the attached test through
-shader_runner. Also remove the "+ arg2" from the result computation and run it
-again. I suspect that only NV96 + arg2 removed will fail.
-
-[The results that *actually* test clamping are 16, 20, 28, and 36.]
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1431131093.D4750.22340
-Date: Sat, 9 May 2015 00:24:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G96] Portal's portal are incorrectly rendered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G96] Portal's portal are incorrectly rendered"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90350">bug 90350</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115652" name="attach_115652" title="saturate shader test">attachment 115652</a> <a href="attachment.cgi?id=115652&amp;action=edit" title="saturate shader test">[details]</a></span>
-saturate shader test
-
-On each of your NV96 and NVAC, please run the attached test through
-shader_runner. Also remove the &quot;+ arg2&quot; from the result computation and run it
-again. I suspect that only NV96 + arg2 removed will fail.
-
-[The results that *actually* test clamping are 16, 20, 28, and 36.]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431131093.D4750.22340--
-
---===============1518792260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1518792260==--
+VGhpcyBjb3ZlcnMgdGhlIHBhdHRlcm4gd2hlcmUgYSBLSUxMX0lGIGlzIHVzZWQsIHdoaWNoIHRy
+aWdnZXJzIGEKY29tcGFyaXNvbiBvZiAteCB0byAwLiBUaGlzIGNhbiB1c3VhbGx5IGJlIGZvbGRl
+ZCBpbnRvIHRoZSBjb21wYXJpc29uIHdob3NlCnJlc3VsdCBpcyBiZWluZyBjb21wYXJlZCB0byAw
+LCBob3dldmVyIGl0IG1heSwgaXRzZWxmLCBoYXZlIGFscmVhZHkgYmVlbgpjb21iaW5lZCB3aXRo
+IGFub3RoZXIgY29tcGFyaXNvbi4gVGhhdCBzaG91bGRuJ3QgaW1wYWN0IHRoZSBsb2dpYyBvZgp0
+aGlzIHBhc3MgaG93ZXZlci4gV2l0aCB0aGlzIGFuZCB0aGUgJiAxLjAgY2hhbmdlLCBjb2RlIGxp
+a2UKCjAwMDAwMDIwOiAwMDFjMDAwMSA4MDA4MWRmNCAgICAgc2V0IGIzMiAkcjAgbHQgZjMyICRy
+MCAweDNlODAwMDAwCjAwMDAwMDI4OiAwMDFjMDAwMCAyMDFmYzAwMCAgICAgYW5kIGIzMiAkcjAg
+JHIwIDB4M2Y4MDAwMDAKMDAwMDAwMzA6IDdmOWMwMDFlIGRkODg1YzAwICAgICBzZXQgJHAwIDB4
+MSBsdCBmMzIgbmVnICRyMCAweDAKMDAwMDAwMzg6IDAwMDAwMDNjIDE5ODAwMDAwICAgICAkcDAg
+ZGlzY2FyZAoKYmVjb21lcwoKMDAwMDAwMjA6IDAwMWMwMDFkIGI1ODgxZGY0ICAgICBzZXQgJHAw
+IDB4MSBsdCBmMzIgJHIwIDB4M2U4MDAwMDAKMDAwMDAwMjg6IDAwMDAwMDNjIDE5ODAwMDAwICAg
+ICAkcDAgZGlzY2FyZAoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5t
+aXQuZWR1PgotLS0KIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xl
+LmNwcCAgIHwgNTEgKysrKysrKysrKysrKystLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDMzIGlu
+c2VydGlvbnMoKyksIDE4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwIGIvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKaW5kZXggZDhhZjE5
+YS4uNDNhMmZlOSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
+ZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKQEAgLTI3OCw3ICsyNzgsNiBAQCBwcml2YXRl
+OgogCiAgICB2b2lkIHRyeUNvbGxhcHNlQ2hhaW5lZE1VTHMoSW5zdHJ1Y3Rpb24gKiwgY29uc3Qg
+aW50IHMsIEltbWVkaWF0ZVZhbHVlJik7CiAKLSAgIC8vIFRHU0kgJ3RydWUnIGlzIGNvbnZlcnRl
+ZCB0byAtMSBieSBGMkkoTkVHKFNFVCkpLCB0cmFjayBiYWNrIHRvIFNFVAogICAgQ21wSW5zdHJ1
+Y3Rpb24gKmZpbmRPcmlnaW5Gb3JUZXN0V2l0aFplcm8oVmFsdWUgKik7CiAKICAgIHVuc2lnbmVk
+IGludCBmb2xkQ291bnQ7CkBAIC0zMzcsMTYgKzMzNiwxMCBAQCBDb25zdGFudEZvbGRpbmc6OmZp
+bmRPcmlnaW5Gb3JUZXN0V2l0aFplcm8oVmFsdWUgKnZhbHVlKQogICAgICAgcmV0dXJuIE5VTEw7
+CiAgICBJbnN0cnVjdGlvbiAqaW5zbiA9IHZhbHVlLT5nZXRJbnNuKCk7CiAKLSAgIHdoaWxlIChp
+bnNuICYmIGluc24tPm9wICE9IE9QX1NFVCkgeworICAgd2hpbGUgKGluc24gJiYgaW5zbi0+b3Ag
+IT0gT1BfU0VUICYmIGluc24tPm9wICE9IE9QX1NFVF9BTkQgJiYKKyAgICAgICAgICBpbnNuLT5v
+cCAhPSBPUF9TRVRfT1IgJiYgaW5zbi0+b3AgIT0gT1BfU0VUX1hPUikgewogICAgICAgSW5zdHJ1
+Y3Rpb24gKm5leHQgPSBOVUxMOwogICAgICAgc3dpdGNoIChpbnNuLT5vcCkgewotICAgICAgY2Fz
+ZSBPUF9ORUc6Ci0gICAgICBjYXNlIE9QX0FCUzoKLSAgICAgIGNhc2UgT1BfQ1ZUOgotICAgICAg
+ICAgbmV4dCA9IGluc24tPmdldFNyYygwKS0+Z2V0SW5zbigpOwotICAgICAgICAgaWYgKGluc24t
+PnNUeXBlICE9IG5leHQtPmRUeXBlKQotICAgICAgICAgICAgcmV0dXJuIE5VTEw7Ci0gICAgICAg
+ICBicmVhazsKICAgICAgIGNhc2UgT1BfTU9WOgogICAgICAgICAgbmV4dCA9IGluc24tPmdldFNy
+YygwKS0+Z2V0SW5zbigpOwogICAgICAgICAgYnJlYWs7CkBAIC05NDYsMjkgKzkzOSw1MSBAQCBD
+b25zdGFudEZvbGRpbmc6Om9wbmQoSW5zdHJ1Y3Rpb24gKmksIEltbWVkaWF0ZVZhbHVlICZpbW0w
+LCBpbnQgcykKIAogICAgY2FzZSBPUF9TRVQ6IC8vIFRPRE86IFNFVF9BTkQsT1IsWE9SCiAgICB7
+CisgICAgICAvKiBUaGlzIG9wdGltaXplcyB0aGUgY2FzZSB3aGVyZSB0aGUgb3V0cHV0IG9mIGEg
+c2V0IGlzIGJlaW5nIGNvbXBhcmVkCisgICAgICAgKiB0byB6ZXJvLiBTaW5jZSB0aGUgc2V0IGNh
+biBvbmx5IHByb2R1Y2UgMC8tMSAoaW50KSBvciAwLzEgKGZsb2F0KSwgd2UKKyAgICAgICAqIGNh
+biBiZSBhIGxvdCBjbGV2ZXJlciBpbiBvdXIgY29tcGFyaXNvbi4KKyAgICAgICAqLwogICAgICAg
+Q21wSW5zdHJ1Y3Rpb24gKnNpID0gZmluZE9yaWdpbkZvclRlc3RXaXRoWmVybyhpLT5nZXRTcmMo
+dCkpOwogICAgICAgQ29uZENvZGUgY2MsIGNjWjsKLSAgICAgIGlmIChpLT5zcmModCkubW9kICE9
+IE1vZGlmaWVyKDApKQotICAgICAgICAgcmV0dXJuOwotICAgICAgaWYgKGltbTAucmVnLmRhdGEu
+dTMyICE9IDAgfHwgIXNpIHx8IHNpLT5vcCAhPSBPUF9TRVQpCisgICAgICBpZiAoaW1tMC5yZWcu
+ZGF0YS51MzIgIT0gMCB8fCAhc2kpCiAgICAgICAgICByZXR1cm47CiAgICAgICBjYyA9IHNpLT5z
+ZXRDb25kOwogICAgICAgY2NaID0gKENvbmRDb2RlKSgodW5zaWduZWQgaW50KWktPmFzQ21wKCkt
+PnNldENvbmQgJiB+Q0NfVSk7CisgICAgICAvLyBXZSBkbyBldmVyeXRoaW5nIGFzc3VtaW5nIHZh
+ciAoY21wKSAwLCByZXZlcnNlIHRoZSBjb25kaXRpb24gaWYgMCBpcworICAgICAgLy8gZmlyc3Qu
+CiAgICAgICBpZiAocyA9PSAwKQogICAgICAgICAgY2NaID0gcmV2ZXJzZUNvbmRDb2RlKGNjWik7
+CisgICAgICAvLyBJZiB0aGVyZSBpcyBhIG5lZ2F0aXZlIG1vZGlmaWVyLCB3ZSBuZWVkIHRvIHVu
+ZG8gdGhhdCwgYnkgZmxpcHBpbmcKKyAgICAgIC8vIHRoZSBjb21wYXJpc29uIHRvIHplcm8uCisg
+ICAgICBpZiAoaS0+c3JjKHQpLm1vZC5uZWcoKSkKKyAgICAgICAgIGNjWiA9IHJldmVyc2VDb25k
+Q29kZShjY1opOworICAgICAgLy8gSWYgdGhpcyBpcyBhIHNpZ25lZCBjb21wYXJpc29uLCB3ZSBl
+eHBlY3QgdGhlIGlucHV0IHRvIGJlIGEgcmVndWxhcgorICAgICAgLy8gYm9vbGVhbiwgaS5lLiAw
+Ly0xLiBIb3dldmVyIHRoZSByZXN0IG9mIHRoZSBsb2dpYyBhc3N1bWVzIHRoYXQgdHJ1ZQorICAg
+ICAgLy8gaXMgcG9zaXRpdmUsIHNvIGp1c3QgZmxpcCB0aGUgc2lnbi4KKyAgICAgIGlmIChpLT5z
+VHlwZSA9PSBUWVBFX1MzMikgeworICAgICAgICAgYXNzZXJ0KCFpc0Zsb2F0VHlwZShzaS0+ZFR5
+cGUpKTsKKyAgICAgICAgIGNjWiA9IHJldmVyc2VDb25kQ29kZShjY1opOworICAgICAgfQogICAg
+ICAgc3dpdGNoIChjY1opIHsKLSAgICAgIGNhc2UgQ0NfTFQ6IGNjID0gQ0NfRkw7IGJyZWFrOwot
+ICAgICAgY2FzZSBDQ19HRTogY2MgPSBDQ19UUjsgYnJlYWs7Ci0gICAgICBjYXNlIENDX0VROiBj
+YyA9IGludmVyc2VDb25kQ29kZShjYyk7IGJyZWFrOwotICAgICAgY2FzZSBDQ19MRTogY2MgPSBp
+bnZlcnNlQ29uZENvZGUoY2MpOyBicmVhazsKLSAgICAgIGNhc2UgQ0NfR1Q6IGJyZWFrOwotICAg
+ICAgY2FzZSBDQ19ORTogYnJlYWs7CisgICAgICBjYXNlIENDX0xUOiBjYyA9IENDX0ZMOyBicmVh
+azsgLy8gYm9vbCA8IDAgLS0gdGhpcyBpcyBuZXZlciB0cnVlCisgICAgICBjYXNlIENDX0dFOiBj
+YyA9IENDX1RSOyBicmVhazsgLy8gYm9vbCA+PSAwIC0tIHRoaXMgaXMgYWx3YXlzIHRydWUKKyAg
+ICAgIGNhc2UgQ0NfRVE6IGNjID0gaW52ZXJzZUNvbmRDb2RlKGNjKTsgYnJlYWs7IC8vIGJvb2wg
+PT0gMCAtLSAhYm9vbAorICAgICAgY2FzZSBDQ19MRTogY2MgPSBpbnZlcnNlQ29uZENvZGUoY2Mp
+OyBicmVhazsgLy8gYm9vbCA8PSAwIC0tICFib29sCisgICAgICBjYXNlIENDX0dUOiBicmVhazsg
+Ly8gYm9vbCA+IDAgLS0gYm9vbAorICAgICAgY2FzZSBDQ19ORTogYnJlYWs7IC8vIGJvb2wgIT0g
+MCAtLSBib29sCiAgICAgICBkZWZhdWx0OgogICAgICAgICAgcmV0dXJuOwogICAgICAgfQorCisg
+ICAgICAvLyBVcGRhdGUgdGhlIGNvbmRpdGlvbiBvZiB0aGlzIFNFVCB0byBiZSBpZGVudGljYWwg
+dG8gdGhlIG9yaWdpbiBzZXQsCisgICAgICAvLyBidXQgd2l0aCB0aGUgdXBkYXRlZCBjb25kaXRp
+b24gY29kZS4gVGhlIG9yaWdpbmFsIFNFVCBzaG91bGQgZ2V0CisgICAgICAvLyBEQ0UnZCwgaWRl
+YWxseS4KKyAgICAgIGktPm9wID0gc2ktPm9wOwogICAgICAgaS0+YXNDbXAoKS0+c2V0Q29uZCA9
+IGNjOwogICAgICAgaS0+c2V0U3JjKDAsIHNpLT5zcmMoMCkpOwogICAgICAgaS0+c2V0U3JjKDEs
+IHNpLT5zcmMoMSkpOworICAgICAgaWYgKHNpLT5zcmNFeGlzdHMoMikpCisgICAgICAgICBpLT5z
+ZXRTcmMoMiwgc2ktPnNyYygyKSk7CiAgICAgICBpLT5zVHlwZSA9IHNpLT5zVHlwZTsKICAgIH0K
+ICAgICAgIGJyZWFrOwotLSAKMi4zLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L21lc2EtZGV2Cg==
