@@ -1,16 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 4/4] nv50/ir: allow OP_SET to merge with
- OP_SET_AND/etc as well as a neg
-Date: Sat, 9 May 2015 16:07:55 -0400
-Message-ID: <CAKb7Uvh7WuYnH2PeNbJvyrN4uCfCRMRG1utnb-ErabC8J=R8CQ@mail.gmail.com>
-References: <1431149707-7159-1-git-send-email-imirkin@alum.mit.edu>
- <1431149707-7159-4-git-send-email-imirkin@alum.mit.edu>
- <554E685B.1040602@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Sat, 09 May 2015 21:55:44 +0000
+Message-ID: <bug-70354-8800-1GbucABtNW@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1296282939=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <554E685B.1040602-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,109 +17,204 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXkgOSwgMjAxNSBhdCA0OjA0IFBNLCBUb2JpYXMgS2xhdXNtYW5uCjx0b2JpYXMu
-am9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdyb3RlOgo+Cj4KPiBPbiAwOS4wNS4yMDE1
-IDA3OjM1LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4KPj4gVGhpcyBjb3ZlcnMgdGhlIHBhdHRlcm4g
-d2hlcmUgYSBLSUxMX0lGIGlzIHVzZWQsIHdoaWNoIHRyaWdnZXJzIGEKPj4gY29tcGFyaXNvbiBv
-ZiAteCB0byAwLiBUaGlzIGNhbiB1c3VhbGx5IGJlIGZvbGRlZCBpbnRvIHRoZSBjb21wYXJpc29u
-Cj4+IHdob3NlCj4+IHJlc3VsdCBpcyBiZWluZyBjb21wYXJlZCB0byAwLCBob3dldmVyIGl0IG1h
-eSwgaXRzZWxmLCBoYXZlIGFscmVhZHkgYmVlbgo+PiBjb21iaW5lZCB3aXRoIGFub3RoZXIgY29t
-cGFyaXNvbi4gVGhhdCBzaG91bGRuJ3QgaW1wYWN0IHRoZSBsb2dpYyBvZgo+PiB0aGlzIHBhc3Mg
-aG93ZXZlci4gV2l0aCB0aGlzIGFuZCB0aGUgJiAxLjAgY2hhbmdlLCBjb2RlIGxpa2UKPj4KPj4g
-MDAwMDAwMjA6IDAwMWMwMDAxIDgwMDgxZGY0ICAgICBzZXQgYjMyICRyMCBsdCBmMzIgJHIwIDB4
-M2U4MDAwMDAKPj4gMDAwMDAwMjg6IDAwMWMwMDAwIDIwMWZjMDAwICAgICBhbmQgYjMyICRyMCAk
-cjAgMHgzZjgwMDAwMAo+PiAwMDAwMDAzMDogN2Y5YzAwMWUgZGQ4ODVjMDAgICAgIHNldCAkcDAg
-MHgxIGx0IGYzMiBuZWcgJHIwIDB4MAo+PiAwMDAwMDAzODogMDAwMDAwM2MgMTk4MDAwMDAgICAg
-ICRwMCBkaXNjYXJkCj4+Cj4+IGJlY29tZXMKPj4KPj4gMDAwMDAwMjA6IDAwMWMwMDFkIGI1ODgx
-ZGY0ICAgICBzZXQgJHAwIDB4MSBsdCBmMzIgJHIwIDB4M2U4MDAwMDAKPj4gMDAwMDAwMjg6IDAw
-MDAwMDNjIDE5ODAwMDAwICAgICAkcDAgZGlzY2FyZAo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBJbGlh
-IE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+IC0tLQo+PiAgIC4uLi9kcml2ZXJzL25v
-dXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCAgIHwgNTEKPj4gKysrKysrKysrKysr
-KystLS0tLS0tLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCAxOCBkZWxl
-dGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
-b2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPj4gaW5kZXggZDhhZjE5YS4uNDNhMmZl
-OSAxMDA2NDQKPj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
-MF9pcl9wZWVwaG9sZS5jcHAKPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2Nv
-ZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKPj4gQEAgLTI3OCw3ICsyNzgsNiBAQCBwcml2YXRl
-Ogo+PiAgICAgICAgdm9pZCB0cnlDb2xsYXBzZUNoYWluZWRNVUxzKEluc3RydWN0aW9uICosIGNv
-bnN0IGludCBzLAo+PiBJbW1lZGlhdGVWYWx1ZSYpOwo+PiAgIC0gICAvLyBUR1NJICd0cnVlJyBp
-cyBjb252ZXJ0ZWQgdG8gLTEgYnkgRjJJKE5FRyhTRVQpKSwgdHJhY2sgYmFjayB0bwo+PiBTRVQK
-Pj4gICAgICBDbXBJbnN0cnVjdGlvbiAqZmluZE9yaWdpbkZvclRlc3RXaXRoWmVybyhWYWx1ZSAq
-KTsKPj4gICAgICAgIHVuc2lnbmVkIGludCBmb2xkQ291bnQ7Cj4+IEBAIC0zMzcsMTYgKzMzNiwx
-MCBAQCBDb25zdGFudEZvbGRpbmc6OmZpbmRPcmlnaW5Gb3JUZXN0V2l0aFplcm8oVmFsdWUKPj4g
-KnZhbHVlKQo+PiAgICAgICAgIHJldHVybiBOVUxMOwo+PiAgICAgIEluc3RydWN0aW9uICppbnNu
-ID0gdmFsdWUtPmdldEluc24oKTsKPj4gICAtICAgd2hpbGUgKGluc24gJiYgaW5zbi0+b3AgIT0g
-T1BfU0VUKSB7Cj4+ICsgICB3aGlsZSAoaW5zbiAmJiBpbnNuLT5vcCAhPSBPUF9TRVQgJiYgaW5z
-bi0+b3AgIT0gT1BfU0VUX0FORCAmJgo+PiArICAgICAgICAgIGluc24tPm9wICE9IE9QX1NFVF9P
-UiAmJiBpbnNuLT5vcCAhPSBPUF9TRVRfWE9SKSB7Cj4+ICAgICAgICAgSW5zdHJ1Y3Rpb24gKm5l
-eHQgPSBOVUxMOwo+PiAgICAgICAgIHN3aXRjaCAoaW5zbi0+b3ApIHsKPj4gLSAgICAgIGNhc2Ug
-T1BfTkVHOgo+PiAtICAgICAgY2FzZSBPUF9BQlM6Cj4+IC0gICAgICBjYXNlIE9QX0NWVDoKPj4g
-LSAgICAgICAgIG5leHQgPSBpbnNuLT5nZXRTcmMoMCktPmdldEluc24oKTsKPj4gLSAgICAgICAg
-IGlmIChpbnNuLT5zVHlwZSAhPSBuZXh0LT5kVHlwZSkKPj4gLSAgICAgICAgICAgIHJldHVybiBO
-VUxMOwo+PiAtICAgICAgICAgYnJlYWs7Cj4+ICAgICAgICAgY2FzZSBPUF9NT1Y6Cj4+ICAgICAg
-ICAgICAgbmV4dCA9IGluc24tPmdldFNyYygwKS0+Z2V0SW5zbigpOwo+PiAgICAgICAgICAgIGJy
-ZWFrOwo+PiBAQCAtOTQ2LDI5ICs5MzksNTEgQEAgQ29uc3RhbnRGb2xkaW5nOjpvcG5kKEluc3Ry
-dWN0aW9uICppLCBJbW1lZGlhdGVWYWx1ZQo+PiAmaW1tMCwgaW50IHMpCj4+ICAgICAgICBjYXNl
-IE9QX1NFVDogLy8gVE9ETzogU0VUX0FORCxPUixYT1IKPgo+Cj4gZGVsZXRlIHRoaXMgY29tbWVu
-dD8hCgpOby4uLiB0aGlzIHN0aWxsIG9ubHkgaGFuZGxlcyBPUF9TRVQuCgo+Cj4KPj4gICAgICB7
-Cj4+ICsgICAgICAvKiBUaGlzIG9wdGltaXplcyB0aGUgY2FzZSB3aGVyZSB0aGUgb3V0cHV0IG9m
-IGEgc2V0IGlzIGJlaW5nCj4+IGNvbXBhcmVkCj4+ICsgICAgICAgKiB0byB6ZXJvLiBTaW5jZSB0
-aGUgc2V0IGNhbiBvbmx5IHByb2R1Y2UgMC8tMSAoaW50KSBvciAwLzEKPj4gKGZsb2F0KSwgd2UK
-Pj4gKyAgICAgICAqIGNhbiBiZSBhIGxvdCBjbGV2ZXJlciBpbiBvdXIgY29tcGFyaXNvbi4KPj4g
-KyAgICAgICAqLwo+PiAgICAgICAgIENtcEluc3RydWN0aW9uICpzaSA9IGZpbmRPcmlnaW5Gb3JU
-ZXN0V2l0aFplcm8oaS0+Z2V0U3JjKHQpKTsKPj4gICAgICAgICBDb25kQ29kZSBjYywgY2NaOwo+
-PiAtICAgICAgaWYgKGktPnNyYyh0KS5tb2QgIT0gTW9kaWZpZXIoMCkpCj4+IC0gICAgICAgICBy
-ZXR1cm47Cj4+IC0gICAgICBpZiAoaW1tMC5yZWcuZGF0YS51MzIgIT0gMCB8fCAhc2kgfHwgc2kt
-Pm9wICE9IE9QX1NFVCkKPj4gKyAgICAgIGlmIChpbW0wLnJlZy5kYXRhLnUzMiAhPSAwIHx8ICFz
-aSkKPj4gICAgICAgICAgICByZXR1cm47Cj4+ICAgICAgICAgY2MgPSBzaS0+c2V0Q29uZDsKPj4g
-ICAgICAgICBjY1ogPSAoQ29uZENvZGUpKCh1bnNpZ25lZCBpbnQpaS0+YXNDbXAoKS0+c2V0Q29u
-ZCAmIH5DQ19VKTsKPj4gKyAgICAgIC8vIFdlIGRvIGV2ZXJ5dGhpbmcgYXNzdW1pbmcgdmFyIChj
-bXApIDAsIHJldmVyc2UgdGhlIGNvbmRpdGlvbiBpZgo+PiAwIGlzCj4+ICsgICAgICAvLyBmaXJz
-dC4KPj4gICAgICAgICBpZiAocyA9PSAwKQo+PiAgICAgICAgICAgIGNjWiA9IHJldmVyc2VDb25k
-Q29kZShjY1opOwo+PiArICAgICAgLy8gSWYgdGhlcmUgaXMgYSBuZWdhdGl2ZSBtb2RpZmllciwg
-d2UgbmVlZCB0byB1bmRvIHRoYXQsIGJ5Cj4+IGZsaXBwaW5nCj4+ICsgICAgICAvLyB0aGUgY29t
-cGFyaXNvbiB0byB6ZXJvLgo+PiArICAgICAgaWYgKGktPnNyYyh0KS5tb2QubmVnKCkpCj4+ICsg
-ICAgICAgICBjY1ogPSByZXZlcnNlQ29uZENvZGUoY2NaKTsKPj4gKyAgICAgIC8vIElmIHRoaXMg
-aXMgYSBzaWduZWQgY29tcGFyaXNvbiwgd2UgZXhwZWN0IHRoZSBpbnB1dCB0byBiZSBhCj4+IHJl
-Z3VsYXIKPj4gKyAgICAgIC8vIGJvb2xlYW4sIGkuZS4gMC8tMS4gSG93ZXZlciB0aGUgcmVzdCBv
-ZiB0aGUgbG9naWMgYXNzdW1lcyB0aGF0Cj4+IHRydWUKPj4gKyAgICAgIC8vIGlzIHBvc2l0aXZl
-LCBzbyBqdXN0IGZsaXAgdGhlIHNpZ24uCj4+ICsgICAgICBpZiAoaS0+c1R5cGUgPT0gVFlQRV9T
-MzIpIHsKPj4gKyAgICAgICAgIGFzc2VydCghaXNGbG9hdFR5cGUoc2ktPmRUeXBlKSk7Cj4+ICsg
-ICAgICAgICBjY1ogPSByZXZlcnNlQ29uZENvZGUoY2NaKTsKPj4gKyAgICAgIH0KPgo+Cj4gY2Fu
-IGJvdGggdGhpcyBhbmQgdGhlIHByZXZpb3VzIGNvbmRpdGlvbiBldmFsdWF0ZSB0byB0cnVlPyBp
-ZiB5ZXMsIHRoaXMKPiBkb3VibGUtZmxpcHMgY2NaLi4uCgpUcmlwbGUsIGluIGZhY3QgOikgRWFj
-aCB0aGluZyBjYXVzZXMgYSBkaXJlY3Rpb24gZmxpcC4uLiBJIGd1ZXNzIEkKc2hvdWxkIGp1c3Qg
-c3VtIHRoZW0gdXAsIGFuZCBmbGlwIGl0IGlmIGl0J3Mgb2RkLCBidXQuLi4gd3R2ci4gVGhpcwpz
-ZWVtcyBtb3JlIHN0cmFpZ2h0Zm9yd2FyZC4KCkFjdHVhbGx5IGJvdGggdGhpcyBhbmQgdGhlIHBy
-ZXZpb3VzIGNvbW1pdCByZXF1aXJlZCBhIGJpdCBtb3JlIHdvcmssCkknbGwgc2VuZCB2MidzLCBi
-dXQgdGhlIGxhdGVzdCB2ZXJzaW9ucyBhcmUgYXQ6CgpodHRwczovL2dpdGh1Yi5jb20vaW1pcmtp
-bi9tZXNhL2NvbW1pdHMvdG1wNAoKPgo+Cj4+ICAgICAgICAgc3dpdGNoIChjY1opIHsKPj4gLSAg
-ICAgIGNhc2UgQ0NfTFQ6IGNjID0gQ0NfRkw7IGJyZWFrOwo+PiAtICAgICAgY2FzZSBDQ19HRTog
-Y2MgPSBDQ19UUjsgYnJlYWs7Cj4+IC0gICAgICBjYXNlIENDX0VROiBjYyA9IGludmVyc2VDb25k
-Q29kZShjYyk7IGJyZWFrOwo+PiAtICAgICAgY2FzZSBDQ19MRTogY2MgPSBpbnZlcnNlQ29uZENv
-ZGUoY2MpOyBicmVhazsKPj4gLSAgICAgIGNhc2UgQ0NfR1Q6IGJyZWFrOwo+PiAtICAgICAgY2Fz
-ZSBDQ19ORTogYnJlYWs7Cj4+ICsgICAgICBjYXNlIENDX0xUOiBjYyA9IENDX0ZMOyBicmVhazsg
-Ly8gYm9vbCA8IDAgLS0gdGhpcyBpcyBuZXZlciB0cnVlCj4+ICsgICAgICBjYXNlIENDX0dFOiBj
-YyA9IENDX1RSOyBicmVhazsgLy8gYm9vbCA+PSAwIC0tIHRoaXMgaXMgYWx3YXlzIHRydWUKPj4g
-KyAgICAgIGNhc2UgQ0NfRVE6IGNjID0gaW52ZXJzZUNvbmRDb2RlKGNjKTsgYnJlYWs7IC8vIGJv
-b2wgPT0gMCAtLSAhYm9vbAo+PiArICAgICAgY2FzZSBDQ19MRTogY2MgPSBpbnZlcnNlQ29uZENv
-ZGUoY2MpOyBicmVhazsgLy8gYm9vbCA8PSAwIC0tICFib29sCj4+ICsgICAgICBjYXNlIENDX0dU
-OiBicmVhazsgLy8gYm9vbCA+IDAgLS0gYm9vbAo+PiArICAgICAgY2FzZSBDQ19ORTogYnJlYWs7
-IC8vIGJvb2wgIT0gMCAtLSBib29sCj4+ICAgICAgICAgZGVmYXVsdDoKPj4gICAgICAgICAgICBy
-ZXR1cm47Cj4+ICAgICAgICAgfQo+PiArCj4+ICsgICAgICAvLyBVcGRhdGUgdGhlIGNvbmRpdGlv
-biBvZiB0aGlzIFNFVCB0byBiZSBpZGVudGljYWwgdG8gdGhlIG9yaWdpbgo+PiBzZXQsCj4+ICsg
-ICAgICAvLyBidXQgd2l0aCB0aGUgdXBkYXRlZCBjb25kaXRpb24gY29kZS4gVGhlIG9yaWdpbmFs
-IFNFVCBzaG91bGQgZ2V0Cj4+ICsgICAgICAvLyBEQ0UnZCwgaWRlYWxseS4KPj4gKyAgICAgIGkt
-Pm9wID0gc2ktPm9wOwo+PiAgICAgICAgIGktPmFzQ21wKCktPnNldENvbmQgPSBjYzsKPj4gICAg
-ICAgICBpLT5zZXRTcmMoMCwgc2ktPnNyYygwKSk7Cj4+ICAgICAgICAgaS0+c2V0U3JjKDEsIHNp
-LT5zcmMoMSkpOwo+PiArICAgICAgaWYgKHNpLT5zcmNFeGlzdHMoMikpCj4+ICsgICAgICAgICBp
-LT5zZXRTcmMoMiwgc2ktPnNyYygyKSk7Cj4+ICAgICAgICAgaS0+c1R5cGUgPSBzaS0+c1R5cGU7
-Cj4+ICAgICAgfQo+PiAgICAgICAgIGJyZWFrOwo+Cj4KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============1296282939==
+Content-Type: multipart/alternative; boundary="1431208544.a55CdaBc6.10361"; charset="UTF-8"
+
+
+--1431208544.a55CdaBc6.10361
+Date: Sat, 9 May 2015 21:55:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
+
+--- Comment #54 from Bozhan <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
+Linux bo 4.0.0-trunk-amd64 #1 SMP Debian 4.0-1~exp1 (2015-04-21) x86_64
+GNU/Linux
+
+bo@bo:~$ dmesg | grep nouve
+[   12.510157] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
+[   12.510320] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0e70d0a2
+[   12.510321] nouveau  [  DEVICE][0000:01:00.0] Chipset: GK107 (NVE7)
+[   12.510322] nouveau  [  DEVICE][0000:01:00.0] Family : NVE0
+[   12.519025] nouveau  [   VBIOS][0000:01:00.0] using image from ACPI
+[   12.519108] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[   12.519110] nouveau  [   VBIOS][0000:01:00.0] version 80.07.a8.00.0f
+[   12.519398] nouveau  [ DEVINIT][0000:01:00.0] adaptor not initialised
+[   12.519425] nouveau  [   VBIOS][0000:01:00.0] running init tables
+[   12.675786] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[   12.675835] nouveau  [     PFB][0000:01:00.0] RAM type: GDDR5
+[   12.675836] nouveau  [     PFB][0000:01:00.0] RAM size: 2048 MiB
+[   12.675837] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 0 tags
+[   12.675898] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+[   12.677860] nouveau  [    VOLT][0000:01:00.0] GPU voltage: 600000uv
+[   12.727255] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+[   12.727270] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+[   12.727295] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[   12.727363] nouveau  [     CLK][0000:01:00.0] 07: core 405 MHz memory 810
+MHz 
+[   12.727421] nouveau  [     CLK][0000:01:00.0] 0a: core 405-1097 MHz memory
+1600 MHz 
+[   12.727496] nouveau  [     CLK][0000:01:00.0] 0f: core 405-1097 MHz memory
+5400 MHz 
+[   12.727633] nouveau  [     CLK][0000:01:00.0] --: core 405 MHz memory 810
+MHz 
+[   12.760239] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
+at 0x500c30 [ IBUS ]
+[   12.760408] nouveau  [     DRM] VRAM: 2048 MiB
+[   12.760409] nouveau  [     DRM] GART: 1048576 MiB
+[   12.760421] nouveau E[     DRM] Pointer to TMDS table invalid
+[   12.760470] nouveau  [     DRM] DCB version 4.0
+[   12.760471] nouveau E[     DRM] Pointer to flat panel table invalid
+[   12.766380] nouveau  [     DRM] MM: using COPY for buffer copies
+[   12.766385] [drm] Initialized nouveau 1.2.1 20120801 for 0000:01:00.0 on
+minor 0
+[   31.531758] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+[   32.184387] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x418880 [ IBUS ]
+[   32.184479] nouveau E[   PIBUS][0000:01:00.0] GPC0: 0x419eb4 0xbadf1000
+(0x3800820c)
+[   32.184553] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x405804 [ IBUS ]
+[   32.184968] nouveau E[   PIBUS][0000:01:00.0] HUB0: 0x404170 0x00000012
+(0x0e008201)
+[   34.186577] nouveau E[     PGR][0000:01:00.0] HUB_INIT timed out
+[   34.186588] nouveau E[     PGR][0000:01:00.0] 409000 - done 0x00000204
+[   34.186600] nouveau E[     PGR][0000:01:00.0] 409000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186611] nouveau E[     PGR][0000:01:00.0] 409000 - stat 0x00000000
+0x00000000 0x00000002 0x00000009
+[   34.186617] nouveau E[     PGR][0000:01:00.0] 502000 - done 0x00000300
+[   34.186624] nouveau E[     PGR][0000:01:00.0] 502000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186631] nouveau E[     PGR][0000:01:00.0] 502000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186634] nouveau E[     PGR][0000:01:00.0] init failed, -16
+[16430.044081] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+
+Is there something that users can do to help with fixing this ? :)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1431208544.a55CdaBc6.10361
+Date: Sat, 9 May 2015 21:55:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c54">Comment # 54</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan</span></a>
+</span></b>
+        <pre>Linux bo 4.0.0-trunk-amd64 #1 SMP Debian 4.0-1~exp1 (2015-04-21) x86_64
+GNU/Linux
+
+bo&#64;bo:~$ dmesg | grep nouve
+[   12.510157] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
+[   12.510320] nouveau  [  DEVICE][0000:01:00.0] BOOT0  : 0x0e70d0a2
+[   12.510321] nouveau  [  DEVICE][0000:01:00.0] Chipset: GK107 (NVE7)
+[   12.510322] nouveau  [  DEVICE][0000:01:00.0] Family : NVE0
+[   12.519025] nouveau  [   VBIOS][0000:01:00.0] using image from ACPI
+[   12.519108] nouveau  [   VBIOS][0000:01:00.0] BIT signature found
+[   12.519110] nouveau  [   VBIOS][0000:01:00.0] version 80.07.a8.00.0f
+[   12.519398] nouveau  [ DEVINIT][0000:01:00.0] adaptor not initialised
+[   12.519425] nouveau  [   VBIOS][0000:01:00.0] running init tables
+[   12.675786] nouveau  [     PMC][0000:01:00.0] MSI interrupts enabled
+[   12.675835] nouveau  [     PFB][0000:01:00.0] RAM type: GDDR5
+[   12.675836] nouveau  [     PFB][0000:01:00.0] RAM size: 2048 MiB
+[   12.675837] nouveau  [     PFB][0000:01:00.0]    ZCOMP: 0 tags
+[   12.675898] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+[   12.677860] nouveau  [    VOLT][0000:01:00.0] GPU voltage: 600000uv
+[   12.727255] nouveau  [  PTHERM][0000:01:00.0] FAN control: none / external
+[   12.727270] nouveau  [  PTHERM][0000:01:00.0] fan management: automatic
+[   12.727295] nouveau  [  PTHERM][0000:01:00.0] internal sensor: yes
+[   12.727363] nouveau  [     CLK][0000:01:00.0] 07: core 405 MHz memory 810
+MHz 
+[   12.727421] nouveau  [     CLK][0000:01:00.0] 0a: core 405-1097 MHz memory
+1600 MHz 
+[   12.727496] nouveau  [     CLK][0000:01:00.0] 0f: core 405-1097 MHz memory
+5400 MHz 
+[   12.727633] nouveau  [     CLK][0000:01:00.0] --: core 405 MHz memory 810
+MHz 
+[   12.760239] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
+at 0x500c30 [ IBUS ]
+[   12.760408] nouveau  [     DRM] VRAM: 2048 MiB
+[   12.760409] nouveau  [     DRM] GART: 1048576 MiB
+[   12.760421] nouveau E[     DRM] Pointer to TMDS table invalid
+[   12.760470] nouveau  [     DRM] DCB version 4.0
+[   12.760471] nouveau E[     DRM] Pointer to flat panel table invalid
+[   12.766380] nouveau  [     DRM] MM: using COPY for buffer copies
+[   12.766385] [drm] Initialized nouveau 1.2.1 20120801 for 0000:01:00.0 on
+minor 0
+[   31.531758] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+[   32.184387] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x418880 [ IBUS ]
+[   32.184479] nouveau E[   PIBUS][0000:01:00.0] GPC0: 0x419eb4 0xbadf1000
+(0x3800820c)
+[   32.184553] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000000 FAULT
+at 0x405804 [ IBUS ]
+[   32.184968] nouveau E[   PIBUS][0000:01:00.0] HUB0: 0x404170 0x00000012
+(0x0e008201)
+[   34.186577] nouveau E[     PGR][0000:01:00.0] HUB_INIT timed out
+[   34.186588] nouveau E[     PGR][0000:01:00.0] 409000 - done 0x00000204
+[   34.186600] nouveau E[     PGR][0000:01:00.0] 409000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186611] nouveau E[     PGR][0000:01:00.0] 409000 - stat 0x00000000
+0x00000000 0x00000002 0x00000009
+[   34.186617] nouveau E[     PGR][0000:01:00.0] 502000 - done 0x00000300
+[   34.186624] nouveau E[     PGR][0000:01:00.0] 502000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186631] nouveau E[     PGR][0000:01:00.0] 502000 - stat 0x00000000
+0x00000000 0x00000000 0x00000000
+[   34.186634] nouveau E[     PGR][0000:01:00.0] init failed, -16
+[16430.044081] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000002 FAULT
+at 0x4188ac [ IBUS ]
+
+Is there something that users can do to help with fixing this ? :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431208544.a55CdaBc6.10361--
+
+--===============1296282939==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1296282939==--
