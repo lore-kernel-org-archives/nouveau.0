@@ -1,16 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 3/4] nvc0/ir: optimize set & 1.0 to produce
- boolean-float sets
-Date: Sat, 9 May 2015 13:53:38 -0400
-Message-ID: <CAKb7Uvg-2tUxSpkXVh9M+a6G2bTO97MzowN=r0jRbYh5DiFmYw@mail.gmail.com>
-References: <1431149707-7159-1-git-send-email-imirkin@alum.mit.edu>
- <1431149707-7159-3-git-send-email-imirkin@alum.mit.edu>
- <554E2754.5080904@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90363] [nv50] HW state is not reset correctly when
+ using a new GL context
+Date: Sat, 09 May 2015 17:56:19 +0000
+Message-ID: <bug-90363-8800-OLCblcrJBv@http.bugs.freedesktop.org/>
+References: <bug-90363-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1595972131=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <554E2754.5080904-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-90363-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,58 +17,119 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBNYXkgOSwgMjAxNSBhdCAxMToyNyBBTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
-LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPgo+Cj4gT24gMDkuMDUuMjAx
-NSAwNzozNSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Cj4+IFRoaXMgaGFzIHN0YXJ0ZWQgdG8gaGFw
-cGVuIG1vcmUgbm93IHRoYXQgdGhlIGJhY2tlbmQgaXMgcHJvZHVjaW5nCj4+IEtJTExfSUYgbW9y
-ZSBvZnRlbi4KPj4KPj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5t
-aXQuZWR1Pgo+PiAtLS0KPj4gICAuLi4vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9w
-ZWVwaG9sZS5jcHAgICB8IDI5Cj4+ICsrKysrKysrKysrKysrKysrKysrKysKPj4gICAuLi4vbm91
-dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwICAgICAgICB8ICAyICsrCj4+ICAg
-MiBmaWxlcyBjaGFuZ2VkLCAzMSBpbnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcAo+PiBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3Bw
-Cj4+IGluZGV4IDE0NDQ2YjYuLmQ4YWYxOWEgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4+ICsrKyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCj4+IEBA
-IC05NzMsNiArOTczLDM1IEBAIENvbnN0YW50Rm9sZGluZzo6b3BuZChJbnN0cnVjdGlvbiAqaSwg
-SW1tZWRpYXRlVmFsdWUKPj4gJmltbTAsIGludCBzKQo+PiAgICAgIH0KPj4gICAgICAgICBicmVh
-azsKPj4gICArICAgY2FzZSBPUF9BTkQ6Cj4+ICsgICB7Cj4+ICsgICAgICBDbXBJbnN0cnVjdGlv
-biAqY21wID0gaS0+Z2V0U3JjKHQpLT5nZXRJbnNuKCktPmFzQ21wKCk7Cj4+ICsgICAgICBpZiAo
-IWNtcCB8fCBjbXAtPm9wID09IE9QX1NMQ1QpCj4KPgo+IGhvdyBhYm91dCBpZiAoY21wID09IE5V
-TEwgfHwgLi4uKSBhbmQga2lsbCB0aGUgc2FtZSBjb25kaXRpb24gbGF0ZXI/CgpJIGp1c3Qga2ls
-bGVkIHRoZSBvdGhlciBvbmUuIEkgdGhpbmsgdGhlIHVzdWFsIHN0eWxlIHRlbmRzIHRvIGJlIGlm
-CighcHRyKSByYXRoZXIgdGhhbiBpZiAocHRyID09IE5VTEwpIGluIGNvZGVnZW4uIEJvdGggYXJl
-IGFjY2VwdGFibGUKdGhvdWdoLgoKPgo+Cj4+ICsgICAgICAgICByZXR1cm47Cj4+ICsgICAgICBp
-ZiAoIXByb2ctPmdldFRhcmdldCgpLT5pc09wU3VwcG9ydGVkKGNtcC0+b3AsIFRZUEVfRjMyKSkK
-Pj4gKyAgICAgICAgIHJldHVybjsKPj4gKyAgICAgIGlmIChpbW0wLnJlZy5kYXRhLmYzMiAhPSAx
-LjApCj4+ICsgICAgICAgICByZXR1cm47Cj4+ICsgICAgICBpZiAoY21wID09IE5VTEwpCj4+ICsg
-ICAgICAgICByZXR1cm47Cj4+ICsgICAgICBpZiAoaS0+Z2V0U3JjKHQpLT5nZXRJbnNuKCktPmRU
-eXBlICE9IFRZUEVfVTMyKQo+PiArICAgICAgICAgcmV0dXJuOwo+PiArCj4+ICsgICAgICBpLT5n
-ZXRTcmModCktPmdldEluc24oKS0+ZFR5cGUgPSBUWVBFX0YzMjsKPj4gKyAgICAgIGlmIChpLT5z
-cmModCkubW9kICE9IE1vZGlmaWVyKDApKSB7Cj4+ICsgICAgICAgICBhc3NlcnQoaS0+c3JjKHQp
-Lm1vZCA9PSBNb2RpZmllcihOVjUwX0lSX01PRF9OT1QpKTsKPj4gKyAgICAgICAgIGktPnNyYyh0
-KS5tb2QgPSBNb2RpZmllcigwKTsKPj4gKyAgICAgICAgIGNtcC0+c2V0Q29uZCA9IHJldmVyc2VD
-b25kQ29kZShjbXAtPnNldENvbmQpOwo+PiArICAgICAgfQo+PiArICAgICAgaS0+b3AgPSBPUF9N
-T1Y7Cj4+ICsgICAgICBpLT5zZXRTcmMocywgTlVMTCk7Cj4+ICsgICAgICBpZiAodCkgewo+PiAr
-ICAgICAgICAgaS0+c2V0U3JjKDAsIGktPmdldFNyYyh0KSk7Cj4+ICsgICAgICAgICBpLT5zZXRT
-cmModCwgTlVMTCk7Cj4+ICsgICAgICB9Cj4+ICsgICB9Cj4+ICsgICAgICBicmVhazsKPj4gKwo+
-PiAgICAgIGNhc2UgT1BfU0hMOgo+PiAgICAgIHsKPj4gICAgICAgICBpZiAocyAhPSAxIHx8IGkt
-PnNyYygwKS5tb2QgIT0gTW9kaWZpZXIoMCkpCj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3RhcmdldF9udjUwLmNwcAo+PiBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwCj4+
-IGluZGV4IDE3OGExNjcuLjcwMTgwZWIgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwCj4+ICsrKyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfdGFyZ2V0X252NTAuY3BwCj4+
-IEBAIC00MTMsNiArNDEzLDggQEAgVGFyZ2V0TlY1MDo6aXNPcFN1cHBvcnRlZChvcGVyYXRpb24g
-b3AsIERhdGFUeXBlIHR5KQo+PiBjb25zdAo+PiAgICAgICAgIHJldHVybiBmYWxzZTsKPj4gICAg
-ICBjYXNlIE9QX1NBRDoKPj4gICAgICAgICByZXR1cm4gdHkgPT0gVFlQRV9TMzI7Cj4+ICsgICBj
-YXNlIE9QX1NFVDoKPj4gKyAgICAgIHJldHVybiAhaXNGbG9hdFR5cGUodHkpOwo+PiAgICAgIGRl
-ZmF1bHQ6Cj4+ICAgICAgICAgcmV0dXJuIHRydWU7Cj4+ICAgICAgfQo+Cj4KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1595972131==
+Content-Type: multipart/alternative; boundary="1431194178.287FF0.22273"; charset="UTF-8"
+
+
+--1431194178.287FF0.22273
+Date: Sat, 9 May 2015 17:56:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90363
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Just pushed out the fixes to make it work on nv50 and nvc0. nvc0 had the
+additional bug that 3d-engine-based blits use a vbo, and were also forgetting
+to overwrite these attributes, leading to a fail even when having the proper
+"state".
+
+Thanks for reporting!
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1431194178.287FF0.22273
+Date: Sat, 9 May 2015 17:56:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv50] HW state is not reset correctly when using a new GL context"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90363">bug 90363</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv50] HW state is not reset correctly when using a new GL context"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90363#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nv50] HW state is not reset correctly when using a new GL context"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90363">bug 90363</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Just pushed out the fixes to make it work on nv50 and nvc0. nvc0 had the
+additional bug that 3d-engine-based blits use a vbo, and were also forgetting
+to overwrite these attributes, leading to a fail even when having the proper
+&quot;state&quot;.
+
+Thanks for reporting!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431194178.287FF0.22273--
+
+--===============1595972131==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1595972131==--
