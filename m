@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
- inconsistent display
-Date: Sun, 10 May 2015 16:53:41 +0000
-Message-ID: <bug-89730-8800-yaMS3iBu77@http.bugs.freedesktop.org/>
-References: <bug-89730-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77494] [NVE7] fails to load with error -22
+Date: Sun, 10 May 2015 17:06:19 +0000
+Message-ID: <bug-77494-8800-cIDUPYmHkP@http.bugs.freedesktop.org/>
+References: <bug-77494-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1316292289=="
+Content-Type: multipart/mixed; boundary="===============1364108850=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1316292289==
-Content-Type: multipart/alternative; boundary="1431276821.06E01.9931"; charset="UTF-8"
+--===============1364108850==
+Content-Type: multipart/alternative; boundary="1431277579.B4EFAfa71.13167"; charset="UTF-8"
 
 
---1431276821.06E01.9931
-Date: Sun, 10 May 2015 16:53:41 +0000
+--1431277579.B4EFAfa71.13167
+Date: Sun, 10 May 2015 17:06:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89730
+https://bugs.freedesktop.org/show_bug.cgi?id=77494
 
---- Comment #18 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-The "lazy background bitmap" issue can be tested with the Xfce test
-compilation:
-http://goo.gl/Gm4ffO
-ISO/
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #7 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+No answer since I asked one month ago. Let me close this old issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431276821.06E01.9931
-Date: Sun, 10 May 2015 16:53:41 +0000
+--1431277579.B4EFAfa71.13167
+Date: Sun, 10 May 2015 17:06:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,24 +54,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c18">Comment # 18</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
+              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
 </span></b>
-        <pre>
-The &quot;lazy background bitmap&quot; issue can be tested with the Xfce test
-compilation:
-<a href="http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
-ISO/</pre>
+        <pre>No answer since I asked one month ago. Let me close this old issue.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +107,9 @@ ISO/</pre>
     </body>
 </html>
 
---1431276821.06E01.9931--
+--1431277579.B4EFAfa71.13167--
 
---===============1316292289==
+--===============1364108850==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1316292289==--
+--===============1364108850==--
