@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90390] [NV98] Modesetting causes blank screen
  because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000
-Date: Sun, 10 May 2015 20:14:19 +0000
-Message-ID: <bug-90390-8800-NNzJQ0uK0l@http.bugs.freedesktop.org/>
+Date: Sun, 10 May 2015 21:14:51 +0000
+Message-ID: <bug-90390-8800-oiFPR1cA9X@http.bugs.freedesktop.org/>
 References: <bug-90390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0178616372=="
+Content-Type: multipart/mixed; boundary="===============1811301358=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0178616372==
-Content-Type: multipart/alternative; boundary="1431288859.Ba871.1263"; charset="UTF-8"
+--===============1811301358==
+Content-Type: multipart/alternative; boundary="1431292491.F2Aa1.17717"; charset="UTF-8"
 
 
---1431288859.Ba871.1263
-Date: Sun, 10 May 2015 20:14:19 +0000
+--1431292491.F2Aa1.17717
+Date: Sun, 10 May 2015 21:14:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90390
 
---- Comment #5 from Dmitry Potapov <analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-Unfortunately nouveau never worked for me.
-I've tried to migrate to nouveau from nvidia proprietary drivers earlier on
-3.16 and 3.18 kernels and probably on older kernels, and the result was the
-same: blank screen (not sure, probably is was a black screen)
+--- Comment #6 from Dmitry Potapov <analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+Created attachment 115671
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115671&action=edit
+kernel log for 3.14.41-gentoo
+
+Checked against kernel 3.14.41
+Symptoms are same, but the error message is a bit different although I used the
+same drm.debug=15
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431288859.Ba871.1263
-Date: Sun, 10 May 2015 20:14:19 +0000
+--1431292491.F2Aa1.17717
+Date: Sun, 10 May 2015 21:14:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90390">bug 90390</a>
               from <span class="vcard"><a class="email" href="mailto:analizer&#64;yandex.ru" title="Dmitry Potapov &lt;analizer&#64;yandex.ru&gt;"> <span class="fn">Dmitry Potapov</span></a>
 </span></b>
-        <pre>Unfortunately nouveau never worked for me.
-I've tried to migrate to nouveau from nvidia proprietary drivers earlier on
-3.16 and 3.18 kernels and probably on older kernels, and the result was the
-same: blank screen (not sure, probably is was a black screen)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115671" name="attach_115671" title="kernel log for 3.14.41-gentoo">attachment 115671</a> <a href="attachment.cgi?id=115671&amp;action=edit" title="kernel log for 3.14.41-gentoo">[details]</a></span>
+kernel log for 3.14.41-gentoo
+
+Checked against kernel 3.14.41
+Symptoms are same, but the error message is a bit different although I used the
+same drm.debug=15</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +84,9 @@ same: blank screen (not sure, probably is was a black screen)</pre>
     </body>
 </html>
 
---1431288859.Ba871.1263--
+--1431292491.F2Aa1.17717--
 
---===============0178616372==
+--===============1811301358==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0178616372==--
+--===============1811301358==--
