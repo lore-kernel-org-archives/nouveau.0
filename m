@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90390] [NV98] Modesetting causes blank screen
  because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000
-Date: Sun, 10 May 2015 19:57:20 +0000
-Message-ID: <bug-90390-8800-2meGmfKe21@http.bugs.freedesktop.org/>
+Date: Sun, 10 May 2015 19:58:24 +0000
+Message-ID: <bug-90390-8800-hQidByunwE@http.bugs.freedesktop.org/>
 References: <bug-90390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1306019084=="
+Content-Type: multipart/mixed; boundary="===============1630663197=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1306019084==
-Content-Type: multipart/alternative; boundary="1431287840.A46c1.28320"; charset="UTF-8"
+--===============1630663197==
+Content-Type: multipart/alternative; boundary="1431287904.fC3E812.28678"; charset="UTF-8"
 
 
---1431287840.A46c1.28320
-Date: Sun, 10 May 2015 19:57:20 +0000
+--1431287904.fC3E812.28678
+Date: Sun, 10 May 2015 19:58:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90390
 
-Dmitry Potapov <analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> changed:
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+FYI, modeset=0 == disable nouveau entirely, so it makes sense that you don't
+get any issues.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #115668|kernel lop                  |kernel log
-        description|                            |
+Looks like PDISP hangs almost immediately on initialization. Another user was
+able to bisect to a specific commit that came into 3.16, but on fairly
+different hardware (bug 90276). Is this a new issue, if so what was the last
+known working kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431287840.A46c1.28320
-Date: Sun, 10 May 2015 19:57:20 +0000
+--1431287904.fC3E812.28678
+Date: Sun, 10 May 2015 19:58:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +54,30 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:analizer&#64;yandex.ru" title="Dmitry Potapov &lt;analizer&#64;yandex.ru&gt;"> <span class="fn">Dmitry Potapov</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90390">bug 90390</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>FYI, modeset=0 == disable nouveau entirely, so it makes sense that you don't
+get any issues.
 
-         <tr>
-           <td style="text-align:right;">Attachment #115668 description</td>
-           <td>kernel lop
-           </td>
-           <td>kernel log
-           </td>
-         </tr></table>
-      <p>
+Looks like PDISP hangs almost immediately on initialization. Another user was
+able to bisect to a specific commit that came into 3.16, but on fairly
+different hardware (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
+   href="show_bug.cgi?id=90276">bug 90276</a>). Is this a new issue, if so what was the last
+known working kernel?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1431287840.A46c1.28320--
+--1431287904.fC3E812.28678--
 
---===============1306019084==
+--===============1630663197==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1306019084==--
+--===============1630663197==--
