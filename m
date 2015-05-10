@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90389] [
-Date: Sun, 10 May 2015 19:48:48 +0000
-Message-ID: <bug-90389-8800-i8W0vyBRqT@http.bugs.freedesktop.org/>
-References: <bug-90389-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90390] New: [NV98] Modesetting causes blank screen
+ because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000
+Date: Sun, 10 May 2015 19:53:30 +0000
+Message-ID: <bug-90390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1651864426=="
+Content-Type: multipart/mixed; boundary="===============1155254762=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90389-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +19,63 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1651864426==
-Content-Type: multipart/alternative; boundary="1431287328.6DeA51c2.26186"; charset="UTF-8"
+--===============1155254762==
+Content-Type: multipart/alternative; boundary="1431287610.075B441.27234"; charset="UTF-8"
 
 
---1431287328.6DeA51c2.26186
-Date: Sun, 10 May 2015 19:48:48 +0000
+--1431287610.075B441.27234
+Date: Sun, 10 May 2015 19:53:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90389
+https://bugs.freedesktop.org/show_bug.cgi?id=90390
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+            Bug ID: 90390
+           Summary: [NV98] Modesetting causes blank screen because of
+                    INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data
+                    0x00000000
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTABUG
+Environment:
+Video card: GeForce 9300M GS (laptop)
+Kernel: 4.0.2-gentoo
 
---- Comment #1 from Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> ---
-Bug is empty, it has no title! Closing as invalid! If i'm just to fast here:
-feel free to reopen and add a title + information.
+Steps to reproduce:
+1. Boot
+2. modprobe drm_kms_heloper
+3. modprobe nouveau
+
+Expected result:
+Framebuffer initialization
+Actually after dozen attempts I had framebuffer initialized once, background
+was red, foreground was black and I never was able to achieve this again.
+
+Actual result:
+Blank screen. Still able to process keyboard input, so kernel log can be
+gathered and system can be safely rebooted.
+
+Results with various parameters:
+With `nouveau.noaccel=1` I'm getting black screen instead of blank screen and
+system is not responsive to keyboard input.
+With `nouveau.modeset=0` nothing happens after `modprobe nouveau`, this makes
+me think this is a modesetting issue.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431287328.6DeA51c2.26186
-Date: Sun, 10 May 2015 19:48:48 +0000
+--1431287610.075B441.27234
+Date: Sun, 10 May 2015 19:53:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,49 +83,112 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - ["
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90389">bug 90389</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390">90390</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>[NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTABUG
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>analizer&#64;yandex.ru
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - ["
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90389#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTABUG - ["
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90389">bug 90389</a>
-              from <span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span></b>
-        <pre>Bug is empty, it has no title! Closing as invalid! If i'm just to fast here:
-feel free to reopen and add a title + information.</pre>
+        <pre>Environment:
+Video card: GeForce 9300M GS (laptop)
+Kernel: 4.0.2-gentoo
+
+Steps to reproduce:
+1. Boot
+2. modprobe drm_kms_heloper
+3. modprobe nouveau
+
+Expected result:
+Framebuffer initialization
+Actually after dozen attempts I had framebuffer initialized once, background
+was red, foreground was black and I never was able to achieve this again.
+
+Actual result:
+Blank screen. Still able to process keyboard input, so kernel log can be
+gathered and system can be safely rebooted.
+
+Results with various parameters:
+With `nouveau.noaccel=1` I'm getting black screen instead of blank screen and
+system is not responsive to keyboard input.
+With `nouveau.modeset=0` nothing happens after `modprobe nouveau`, this makes
+me think this is a modesetting issue.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +200,9 @@ feel free to reopen and add a title + information.</pre>
     </body>
 </html>
 
---1431287328.6DeA51c2.26186--
+--1431287610.075B441.27234--
 
---===============1651864426==
+--===============1155254762==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +212,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1651864426==--
+--===============1155254762==--
