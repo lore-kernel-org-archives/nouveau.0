@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77494] [NVE7] fails to load with error -22
-Date: Sun, 10 May 2015 17:06:19 +0000
-Message-ID: <bug-77494-8800-cIDUPYmHkP@http.bugs.freedesktop.org/>
-References: <bug-77494-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 2/2] pm: fix a potential race condition when
+ creating an engine context
+Date: Sun, 10 May 2015 19:16:02 +0200
+Message-ID: <554F9252.8020601@gmail.com>
+References: <1429044239-2223-1-git-send-email-samuel.pitoiset@gmail.com>
+ <1429044239-2223-2-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1364108850=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77494-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1429044239-2223-2-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,104 +22,28 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1364108850==
-Content-Type: multipart/alternative; boundary="1431277579.B4EFAfa71.13167"; charset="UTF-8"
-
-
---1431277579.B4EFAfa71.13167
-Date: Sun, 10 May 2015 17:06:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=77494
-
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WORKSFORME
-
---- Comment #7 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-No answer since I asked one month ago. Let me close this old issue.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431277579.B4EFAfa71.13167
-Date: Sun, 10 May 2015 17:06:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] fails to load with error -22"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77494">bug 77494</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>No answer since I asked one month ago. Let me close this old issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431277579.B4EFAfa71.13167--
-
---===============1364108850==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1364108850==--
+KiBidW1wICoKCkJlbiwgY291bGQgeW91IHRha2UgYSBsb29rIGF0IHRoZSBzZXJpZXMgPwoKT24g
+MDQvMTQvMjAxNSAxMDo0MyBQTSwgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+IFRoZXJlIGlzIGFs
+d2F5cyB0aGUgcG9zc2libGl0eSB0aGF0IHRoZSBwcG0tPmNvbnRleHQgcG9pbnRlciB3b3VsZCBn
+ZXQKPiBwYXJ0aWFsbHkgdXBkYXRlZCBhbmQgYWNjaWRlbnRhbGx5IHdvdWxkIGVxdWFsIGN0eC4g
+VGhpcyB3b3VsZCBhbGxvdyB0d28KPiBjb250ZXh0cyB0byBjby1leGlzdCwgd2hpY2ggaXMgbm90
+IGFjY2VwdGFibGUuIE1vdmluZyB0aGUgdGVzdCB0byB0aGUKPiBjcml0aWNhbCBzZWN0aW9uIHRh
+a2VzIGNhcmUgb2YgdGhpcyBwcm9ibGVtLgo+Cj4gU2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9p
+c2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6IE1hcnRpbiBQ
+ZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Cj4gLS0tCj4gICBkcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9wbS9iYXNlLmMgfCA3ICsrKy0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlv
+bnMoKyksIDQgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvcG0vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vYmFzZS5jCj4gaW5k
+ZXggMjc0NDU3Yy4uNGNmMzZhMyAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9wbS9iYXNlLmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMKPiBA
+QCAtMzU4LDEyICszNTgsMTEgQEAgbnZrbV9wZXJmY3R4X2N0b3Ioc3RydWN0IG52a21fb2JqZWN0
+ICpwYXJlbnQsIHN0cnVjdCBudmttX29iamVjdCAqZW5naW5lLAo+ICAgCW11dGV4X2xvY2soJm52
+X3N1YmRldihwcG0pLT5tdXRleCk7Cj4gICAJaWYgKHBwbS0+Y29udGV4dCA9PSBOVUxMKQo+ICAg
+CQlwcG0tPmNvbnRleHQgPSBjdHg7Cj4gLQltdXRleF91bmxvY2soJm52X3N1YmRldihwcG0pLT5t
+dXRleCk7Cj4gLQo+ICAgCWlmIChjdHggIT0gcHBtLT5jb250ZXh0KQo+IC0JCXJldHVybiAtRUJV
+U1k7Cj4gKwkJcmV0ID0gLUVCVVNZOwo+ICsJbXV0ZXhfdW5sb2NrKCZudl9zdWJkZXYocHBtKS0+
+bXV0ZXgpOwo+ICAgCj4gLQlyZXR1cm4gMDsKPiArCXJldHVybiByZXQ7Cj4gICB9Cj4gICAKPiAg
+IHN0cnVjdCBudmttX29jbGFzcwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
+YXUK
