@@ -1,14 +1,10 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [PATCH] nvc0: switch mechanism for shader eviction to
- be a while loop
-Date: Sun, 10 May 2015 15:47:46 +0200
-Message-ID: <554F6182.3070506@mni.thm.de>
-References: <1431237476-912-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90388] New: PDISP errors in logs
+Date: Sun, 10 May 2015 14:36:02 +0000
+Message-ID: <bug-90388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1915221770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1431237476-912-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,42 +14,278 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMC4wNS4yMDE1IDA3OjU3LCBJbGlhIE1pcmtpbiB3cm90ZToKPiBUaGlzIGFsaWducyBp
-dCB0byB3b3JrIHNpbWlsYXJseSB0byBudjUwLiBIb3dldmVyIHRoZXJlJ3Mgbm8gbGlicmFyeQo+
-IGNvZGUgdGhlcmUsIHNvIHRoZSB3aG9sZSB0aGluZyBjYW4gYmUgZnJlZWQuIEhlcmUgd2UgZW5k
-IHVwIHdpdGggYW4KPiBhbGxvY2F0ZWQgbm9kZSB0aGF0J3Mgbm90IGF0dGFjaGVkIHRvIGEgc3Bl
-Y2lmaWMgcHJvZ3JhbS4KPgo+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
-L3Nob3dfYnVnLmNnaT9pZD04Njc5Mgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWly
-a2luQGFsdW0ubWl0LmVkdT4KPiBDYzogbWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cj4gLS0tCj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0u
-YyB8IDExICsrKysrKy0tLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA1
-IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAv
-bnZjMF9wcm9ncmFtLmMKPiBpbmRleCBjMTU2ZTkxLi41NTg5Njk1IDEwMDY0NAo+IC0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfcHJvZ3JhbS5jCj4gKysrIGIvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKPiBAQCAtNjgzLDEx
-ICs2ODMsMTIgQEAgbnZjMF9wcm9ncmFtX3VwbG9hZF9jb2RlKHN0cnVjdCBudmMwX2NvbnRleHQg
-Km52YzAsIHN0cnVjdCBudmMwX3Byb2dyYW0gKnByb2cpCj4gICAgICByZXQgPSBub3V2ZWF1X2hl
-YXBfYWxsb2Moc2NyZWVuLT50ZXh0X2hlYXAsIHNpemUsIHByb2csICZwcm9nLT5tZW0pOwo+ICAg
-ICAgaWYgKHJldCkgewo+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfaGVhcCAqaGVhcCA9IHNjcmVl
-bi0+dGV4dF9oZWFwOwo+IC0gICAgICBzdHJ1Y3Qgbm91dmVhdV9oZWFwICppdGVyOwo+IC0gICAg
-ICBmb3IgKGl0ZXIgPSBoZWFwOyBpdGVyICYmIGl0ZXItPm5leHQgIT0gaGVhcDsgaXRlciA9IGl0
-ZXItPm5leHQpIHsKPiAtICAgICAgICAgc3RydWN0IG52YzBfcHJvZ3JhbSAqZXZpY3QgPSBpdGVy
-LT5wcml2Owo+IC0gICAgICAgICBpZiAoZXZpY3QpCj4gLSAgICAgICAgICAgIG5vdXZlYXVfaGVh
-cF9mcmVlKCZldmljdC0+bWVtKTsKPiArICAgICAgLyogTm90ZSB0aGF0IHRoZSBjb2RlIGxpYnJh
-cnksIHdoaWNoIGlzIGFsbG9jYXRlZCBiZWZvcmUgYW55dGhpbmcgZWxzZSwKPiArICAgICAgICog
-ZG9lcyBub3QgaGF2ZSBhIHByaXYgcG9pbnRlci4gV2UgY2FuIHN0b3Agb25jZSB3ZSBoaXQgaXQu
-Cj4gKyAgICAgICAqLwo+ICsgICAgICB3aGlsZSAoaGVhcC0+bmV4dCAmJiBoZWFwLT5uZXh0LT5w
-cml2KSB7Cj4gKyAgICAgICAgIHN0cnVjdCBudmMwX3Byb2dyYW0gKmV2aWN0ID0gaGVhcC0+bmV4
-dC0+cHJpdjsKPiArICAgICAgICAgbm91dmVhdV9oZWFwX2ZyZWUoJmV2aWN0LT5tZW0pOwo+ICAg
-ICAgICAgfQo+ICAgICAgICAgZGVidWdfcHJpbnRmKCJXQVJOSU5HOiBvdXQgb2YgY29kZSBzcGFj
-ZSwgZXZpY3RpbmcgYWxsIHNoYWRlcnMuXG4iKTsKPiAgICAgICAgIHJldCA9IG5vdXZlYXVfaGVh
-cF9hbGxvYyhoZWFwLCBzaXplLCBwcm9nLCAmcHJvZy0+bWVtKTsKClRoZSBuZXcgY29tbWVudCBp
-cyBhIGJpdCB1cHNpZGUgZG93biwgYnV0IHRoYXRzIG5vdCByZWFsbHkgYSBwcm9ibGVtCgpSLWIg
-aGVyZSBhcyB3ZWxsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1915221770==
+Content-Type: multipart/alternative; boundary="1431268562.328D2AD1.7287"; charset="UTF-8"
+
+
+--1431268562.328D2AD1.7287
+Date: Sun, 10 May 2015 14:36:02 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90388
+
+            Bug ID: 90388
+           Summary: PDISP errors in logs
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 115667
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115667&action=edit
+dmesg from a boot.
+
+PDISP error filling the dmesg. It's quite spammy but other than that the X
+works (GDM loads fine).
+
+Using Archlinux up to date.
+~$ pacman -Qi xf86-video-nouveau
+Name           : xf86-video-nouveau
+Version        : 1.0.11-3
+Description    : Open Source 2D acceleration driver for nVidia cards
+Architecture   : x86_64
+URL            : http://nouveau.freedesktop.org/
+Licenses       : GPL
+Groups         : xorg-drivers  xorg
+Provides       : None
+Depends On     : libdrm  systemd  mesa-dri
+Optional Deps  : None
+Required By    : None
+Optional For   : None
+Conflicts With : xorg-server<1.16  X-ABI-VIDEODRV_VERSION<19 
+X-ABI-VIDEODRV_VERSION>=20
+Replaces       : None
+Installed Size : 218.00 KiB
+Packager       : Laurent Carlier <lordheavym-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Build Date     : Thu 05 Feb 2015 08:01:59 PM GMT
+Install Date   : Thu 30 Apr 2015 08:09:35 PM BST
+Install Reason : Explicitly installed
+Install Script : Yes
+Validated By   : Signature
+~$ modinfo nouveau
+filename:      
+/lib/modules/4.0.2-2-ck/kernel/drivers/gpu/drm/nouveau/nouveau.ko.gz
+license:        GPL and additional rights
+description:    nVidia Riva/TNT/GeForce/Quadro/Tesla
+author:         Nouveau Project
+alias:          pci:v000012D2d*sv*sd*bc03sc*i*
+alias:          pci:v000010DEd*sv*sd*bc03sc*i*
+depends:       
+drm,drm_kms_helper,ttm,mxm-wmi,i2c-core,hwmon,button,wmi,video,i2c-algo-bit
+intree:         Y
+vermagic:       4.0.2-2-ck SMP preempt mod_unload modversions 
+parm:           tv_norm:Default TV norm.
+        Supported: PAL, PAL-M, PAL-N, PAL-Nc, NTSC-M, NTSC-J,
+            hd480i, hd480p, hd576i, hd576p, hd720p, hd1080i.
+        Default: PAL
+        *NOTE* Ignored for cards with external TV encoders. (charp)
+parm:           vram_pushbuf:Create DMA push buffers in VRAM (int)
+parm:           nofbaccel:Disable fbcon acceleration (int)
+parm:           tv_disable:Disable TV-out detection (int)
+parm:           ignorelid:Ignore ACPI lid status (int)
+parm:           duallink:Allow dual-link TMDS (default: enabled) (int)
+parm:           pstate:enable sysfs pstate file, which will be moved in the
+future (int)
+parm:           config:option string to pass to driver core (charp)
+parm:           debug:debug string to pass to driver core (charp)
+parm:           noaccel:disable kernel/abi16 acceleration (int)
+parm:           modeset:enable driver (default: auto, 0 = disabled, 1 =
+enabled, 2 = headless) (int)
+parm:           runpm:disable (0), force enable (1), optimus only default (-1)
+(int)
+parm:           agpmode:AGP mode (0 to disable AGP) (int)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1431268562.328D2AD1.7287
+Date: Sun, 10 May 2015 14:36:02 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PDISP errors in logs"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">90388</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>PDISP errors in logs
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>artafinde&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115667" name="attach_115667" title="dmesg from a boot.">attachment 115667</a> <a href="attachment.cgi?id=115667&amp;action=edit" title="dmesg from a boot.">[details]</a></span>
+dmesg from a boot.
+
+PDISP error filling the dmesg. It's quite spammy but other than that the X
+works (GDM loads fine).
+
+Using Archlinux up to date.
+~$ pacman -Qi xf86-video-nouveau
+Name           : xf86-video-nouveau
+Version        : 1.0.11-3
+Description    : Open Source 2D acceleration driver for nVidia cards
+Architecture   : x86_64
+URL            : <a href="http://nouveau.freedesktop.org/">http://nouveau.freedesktop.org/</a>
+Licenses       : GPL
+Groups         : xorg-drivers  xorg
+Provides       : None
+Depends On     : libdrm  systemd  mesa-dri
+Optional Deps  : None
+Required By    : None
+Optional For   : None
+Conflicts With : xorg-server&lt;1.16  X-ABI-VIDEODRV_VERSION&lt;19 
+X-ABI-VIDEODRV_VERSION&gt;=20
+Replaces       : None
+Installed Size : 218.00 KiB
+Packager       : Laurent Carlier &lt;<a href="mailto:lordheavym&#64;gmail.com">lordheavym&#64;gmail.com</a>&gt;
+Build Date     : Thu 05 Feb 2015 08:01:59 PM GMT
+Install Date   : Thu 30 Apr 2015 08:09:35 PM BST
+Install Reason : Explicitly installed
+Install Script : Yes
+Validated By   : Signature
+~$ modinfo nouveau
+filename:      
+/lib/modules/4.0.2-2-ck/kernel/drivers/gpu/drm/nouveau/nouveau.ko.gz
+license:        GPL and additional rights
+description:    nVidia Riva/TNT/GeForce/Quadro/Tesla
+author:         Nouveau Project
+alias:          pci:v000012D2d*sv*sd*bc03sc*i*
+alias:          pci:v000010DEd*sv*sd*bc03sc*i*
+depends:       
+drm,drm_kms_helper,ttm,mxm-wmi,i2c-core,hwmon,button,wmi,video,i2c-algo-bit
+intree:         Y
+vermagic:       4.0.2-2-ck SMP preempt mod_unload modversions 
+parm:           tv_norm:Default TV norm.
+        Supported: PAL, PAL-M, PAL-N, PAL-Nc, NTSC-M, NTSC-J,
+            hd480i, hd480p, hd576i, hd576p, hd720p, hd1080i.
+        Default: PAL
+        *NOTE* Ignored for cards with external TV encoders. (charp)
+parm:           vram_pushbuf:Create DMA push buffers in VRAM (int)
+parm:           nofbaccel:Disable fbcon acceleration (int)
+parm:           tv_disable:Disable TV-out detection (int)
+parm:           ignorelid:Ignore ACPI lid status (int)
+parm:           duallink:Allow dual-link TMDS (default: enabled) (int)
+parm:           pstate:enable sysfs pstate file, which will be moved in the
+future (int)
+parm:           config:option string to pass to driver core (charp)
+parm:           debug:debug string to pass to driver core (charp)
+parm:           noaccel:disable kernel/abi16 acceleration (int)
+parm:           modeset:enable driver (default: auto, 0 = disabled, 1 =
+enabled, 2 = headless) (int)
+parm:           runpm:disable (0), force enable (1), optimus only default (-1)
+(int)
+parm:           agpmode:AGP mode (0 to disable AGP) (int)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431268562.328D2AD1.7287--
+
+--===============1915221770==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1915221770==--
