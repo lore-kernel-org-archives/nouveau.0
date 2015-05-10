@@ -1,54 +1,97 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nvc0: switch mechanism for shader eviction to be
-	a while loop
-Date: Sun, 10 May 2015 01:57:56 -0400
-Message-ID: <1431237476-912-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 86792] [NVC0] Portal 2 Crashes in Wine
+Date: Sun, 10 May 2015 05:59:00 +0000
+Message-ID: <bug-86792-8800-rRzdguthuP@http.bugs.freedesktop.org/>
+References: <bug-86792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, mesa-stable@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1001359126=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-86792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBhbGlnbnMgaXQgdG8gd29yayBzaW1pbGFybHkgdG8gbnY1MC4gSG93ZXZlciB0aGVyZSdz
-IG5vIGxpYnJhcnkKY29kZSB0aGVyZSwgc28gdGhlIHdob2xlIHRoaW5nIGNhbiBiZSBmcmVlZC4g
-SGVyZSB3ZSBlbmQgdXAgd2l0aCBhbgphbGxvY2F0ZWQgbm9kZSB0aGF0J3Mgbm90IGF0dGFjaGVk
-IHRvIGEgc3BlY2lmaWMgcHJvZ3JhbS4KCkJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0
-b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD04Njc5MgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8
-aW1pcmtpbkBhbHVtLm1pdC5lZHU+CkNjOiBtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYyB8
-IDExICsrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA1IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9n
-cmFtLmMKaW5kZXggYzE1NmU5MS4uNTU4OTY5NSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKQEAgLTY4MywxMSArNjgzLDEyIEBAIG52YzBf
-cHJvZ3JhbV91cGxvYWRfY29kZShzdHJ1Y3QgbnZjMF9jb250ZXh0ICpudmMwLCBzdHJ1Y3QgbnZj
-MF9wcm9ncmFtICpwcm9nKQogICAgcmV0ID0gbm91dmVhdV9oZWFwX2FsbG9jKHNjcmVlbi0+dGV4
-dF9oZWFwLCBzaXplLCBwcm9nLCAmcHJvZy0+bWVtKTsKICAgIGlmIChyZXQpIHsKICAgICAgIHN0
-cnVjdCBub3V2ZWF1X2hlYXAgKmhlYXAgPSBzY3JlZW4tPnRleHRfaGVhcDsKLSAgICAgIHN0cnVj
-dCBub3V2ZWF1X2hlYXAgKml0ZXI7Ci0gICAgICBmb3IgKGl0ZXIgPSBoZWFwOyBpdGVyICYmIGl0
-ZXItPm5leHQgIT0gaGVhcDsgaXRlciA9IGl0ZXItPm5leHQpIHsKLSAgICAgICAgIHN0cnVjdCBu
-dmMwX3Byb2dyYW0gKmV2aWN0ID0gaXRlci0+cHJpdjsKLSAgICAgICAgIGlmIChldmljdCkKLSAg
-ICAgICAgICAgIG5vdXZlYXVfaGVhcF9mcmVlKCZldmljdC0+bWVtKTsKKyAgICAgIC8qIE5vdGUg
-dGhhdCB0aGUgY29kZSBsaWJyYXJ5LCB3aGljaCBpcyBhbGxvY2F0ZWQgYmVmb3JlIGFueXRoaW5n
-IGVsc2UsCisgICAgICAgKiBkb2VzIG5vdCBoYXZlIGEgcHJpdiBwb2ludGVyLiBXZSBjYW4gc3Rv
-cCBvbmNlIHdlIGhpdCBpdC4KKyAgICAgICAqLworICAgICAgd2hpbGUgKGhlYXAtPm5leHQgJiYg
-aGVhcC0+bmV4dC0+cHJpdikgeworICAgICAgICAgc3RydWN0IG52YzBfcHJvZ3JhbSAqZXZpY3Qg
-PSBoZWFwLT5uZXh0LT5wcml2OworICAgICAgICAgbm91dmVhdV9oZWFwX2ZyZWUoJmV2aWN0LT5t
-ZW0pOwogICAgICAgfQogICAgICAgZGVidWdfcHJpbnRmKCJXQVJOSU5HOiBvdXQgb2YgY29kZSBz
-cGFjZSwgZXZpY3RpbmcgYWxsIHNoYWRlcnMuXG4iKTsKICAgICAgIHJldCA9IG5vdXZlYXVfaGVh
-cF9hbGxvYyhoZWFwLCBzaXplLCBwcm9nLCAmcHJvZy0+bWVtKTsKLS0gCjIuMy42CgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5n
-IGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+
+--===============1001359126==
+Content-Type: multipart/alternative; boundary="1431237540.26D55dcA1.8668"; charset="UTF-8"
+
+
+--1431237540.26D55dcA1.8668
+Date: Sun, 10 May 2015 05:59:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=86792
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please test the patch at
+
+http://patchwork.freedesktop.org/patch/48944/
+
+And let me know if it helps things for you. It fixed the issues I was able to
+reproduce.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1431237540.26D55dcA1.8668
+Date: Sun, 10 May 2015 05:59:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0] Portal 2 Crashes in Wine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC0] Portal 2 Crashes in Wine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please test the patch at
+
+<a href="http://patchwork.freedesktop.org/patch/48944/">http://patchwork.freedesktop.org/patch/48944/</a>
+
+And let me know if it helps things for you. It fixed the issues I was able to
+reproduce.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431237540.26D55dcA1.8668--
+
+--===============1001359126==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1001359126==--
