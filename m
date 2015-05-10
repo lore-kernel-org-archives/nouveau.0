@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90390] [NV98] Modesetting causes blank screen
  because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000
-Date: Sun, 10 May 2015 19:54:32 +0000
-Message-ID: <bug-90390-8800-8oc9rU0fJg@http.bugs.freedesktop.org/>
+Date: Sun, 10 May 2015 19:54:51 +0000
+Message-ID: <bug-90390-8800-WzfDkU3aSJ@http.bugs.freedesktop.org/>
 References: <bug-90390-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1604972723=="
+Content-Type: multipart/mixed; boundary="===============0869831606=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90390-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1604972723==
-Content-Type: multipart/alternative; boundary="1431287672.c0D02BC61.27528"; charset="UTF-8"
+--===============0869831606==
+Content-Type: multipart/alternative; boundary="1431287691.3c7a3.27528"; charset="UTF-8"
 
 
---1431287672.c0D02BC61.27528
-Date: Sun, 10 May 2015 19:54:32 +0000
+--1431287691.3c7a3.27528
+Date: Sun, 10 May 2015 19:54:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90390
 
---- Comment #2 from Dmitry Potapov <analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-Created attachment 115669
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115669&action=edit
-vbios.rom gathered using nvagetbios
+--- Comment #3 from Dmitry Potapov <analizer-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
+Created attachment 115670
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115670&action=edit
+kernel config
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431287672.c0D02BC61.27528
-Date: Sun, 10 May 2015 19:54:32 +0000
+--1431287691.3c7a3.27528
+Date: Sun, 10 May 2015 19:54:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90390#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV98] Modesetting causes blank screen because of INVALID_STATE [UNK0B] chid 1 mthd 0x0080 data 0x00000000"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90390">bug 90390</a>
               from <span class="vcard"><a class="email" href="mailto:analizer&#64;yandex.ru" title="Dmitry Potapov &lt;analizer&#64;yandex.ru&gt;"> <span class="fn">Dmitry Potapov</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115669" name="attach_115669" title="vbios.rom gathered using nvagetbios">attachment 115669</a> <a href="attachment.cgi?id=115669&amp;action=edit" title="vbios.rom gathered using nvagetbios">[details]</a></span>
-vbios.rom gathered using nvagetbios</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115670" name="attach_115670" title="kernel config">attachment 115670</a> <a href="attachment.cgi?id=115670&amp;action=edit" title="kernel config">[details]</a></span>
+kernel config</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ vbios.rom gathered using nvagetbios</pre>
     </body>
 </html>
 
---1431287672.c0D02BC61.27528--
+--1431287691.3c7a3.27528--
 
---===============1604972723==
+--===============0869831606==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1604972723==--
+--===============0869831606==--
