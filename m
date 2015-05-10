@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86792] [NVC0] Portal 2 Crashes in Wine
-Date: Sun, 10 May 2015 05:59:00 +0000
-Message-ID: <bug-86792-8800-rRzdguthuP@http.bugs.freedesktop.org/>
-References: <bug-86792-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH] nvc0: switch mechanism for shader eviction to
+ be a while loop
+Date: Sun, 10 May 2015 15:47:46 +0200
+Message-ID: <554F6182.3070506@mni.thm.de>
+References: <1431237476-912-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1001359126=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1431237476-912-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,82 +18,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1001359126==
-Content-Type: multipart/alternative; boundary="1431237540.26D55dcA1.8668"; charset="UTF-8"
-
-
---1431237540.26D55dcA1.8668
-Date: Sun, 10 May 2015 05:59:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86792
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please test the patch at
-
-http://patchwork.freedesktop.org/patch/48944/
-
-And let me know if it helps things for you. It fixed the issues I was able to
-reproduce.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431237540.26D55dcA1.8668
-Date: Sun, 10 May 2015 05:59:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0] Portal 2 Crashes in Wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC0] Portal 2 Crashes in Wine"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please test the patch at
-
-<a href="http://patchwork.freedesktop.org/patch/48944/">http://patchwork.freedesktop.org/patch/48944/</a>
-
-And let me know if it helps things for you. It fixed the issues I was able to
-reproduce.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431237540.26D55dcA1.8668--
-
---===============1001359126==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1001359126==--
+CgpPbiAxMC4wNS4yMDE1IDA3OjU3LCBJbGlhIE1pcmtpbiB3cm90ZToKPiBUaGlzIGFsaWducyBp
+dCB0byB3b3JrIHNpbWlsYXJseSB0byBudjUwLiBIb3dldmVyIHRoZXJlJ3Mgbm8gbGlicmFyeQo+
+IGNvZGUgdGhlcmUsIHNvIHRoZSB3aG9sZSB0aGluZyBjYW4gYmUgZnJlZWQuIEhlcmUgd2UgZW5k
+IHVwIHdpdGggYW4KPiBhbGxvY2F0ZWQgbm9kZSB0aGF0J3Mgbm90IGF0dGFjaGVkIHRvIGEgc3Bl
+Y2lmaWMgcHJvZ3JhbS4KPgo+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3Jn
+L3Nob3dfYnVnLmNnaT9pZD04Njc5Mgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWly
+a2luQGFsdW0ubWl0LmVkdT4KPiBDYzogbWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cj4gLS0tCj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0u
+YyB8IDExICsrKysrKy0tLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA1
+IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9udmMwL252YzBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAv
+bnZjMF9wcm9ncmFtLmMKPiBpbmRleCBjMTU2ZTkxLi41NTg5Njk1IDEwMDY0NAo+IC0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfcHJvZ3JhbS5jCj4gKysrIGIvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKPiBAQCAtNjgzLDEx
+ICs2ODMsMTIgQEAgbnZjMF9wcm9ncmFtX3VwbG9hZF9jb2RlKHN0cnVjdCBudmMwX2NvbnRleHQg
+Km52YzAsIHN0cnVjdCBudmMwX3Byb2dyYW0gKnByb2cpCj4gICAgICByZXQgPSBub3V2ZWF1X2hl
+YXBfYWxsb2Moc2NyZWVuLT50ZXh0X2hlYXAsIHNpemUsIHByb2csICZwcm9nLT5tZW0pOwo+ICAg
+ICAgaWYgKHJldCkgewo+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfaGVhcCAqaGVhcCA9IHNjcmVl
+bi0+dGV4dF9oZWFwOwo+IC0gICAgICBzdHJ1Y3Qgbm91dmVhdV9oZWFwICppdGVyOwo+IC0gICAg
+ICBmb3IgKGl0ZXIgPSBoZWFwOyBpdGVyICYmIGl0ZXItPm5leHQgIT0gaGVhcDsgaXRlciA9IGl0
+ZXItPm5leHQpIHsKPiAtICAgICAgICAgc3RydWN0IG52YzBfcHJvZ3JhbSAqZXZpY3QgPSBpdGVy
+LT5wcml2Owo+IC0gICAgICAgICBpZiAoZXZpY3QpCj4gLSAgICAgICAgICAgIG5vdXZlYXVfaGVh
+cF9mcmVlKCZldmljdC0+bWVtKTsKPiArICAgICAgLyogTm90ZSB0aGF0IHRoZSBjb2RlIGxpYnJh
+cnksIHdoaWNoIGlzIGFsbG9jYXRlZCBiZWZvcmUgYW55dGhpbmcgZWxzZSwKPiArICAgICAgICog
+ZG9lcyBub3QgaGF2ZSBhIHByaXYgcG9pbnRlci4gV2UgY2FuIHN0b3Agb25jZSB3ZSBoaXQgaXQu
+Cj4gKyAgICAgICAqLwo+ICsgICAgICB3aGlsZSAoaGVhcC0+bmV4dCAmJiBoZWFwLT5uZXh0LT5w
+cml2KSB7Cj4gKyAgICAgICAgIHN0cnVjdCBudmMwX3Byb2dyYW0gKmV2aWN0ID0gaGVhcC0+bmV4
+dC0+cHJpdjsKPiArICAgICAgICAgbm91dmVhdV9oZWFwX2ZyZWUoJmV2aWN0LT5tZW0pOwo+ICAg
+ICAgICAgfQo+ICAgICAgICAgZGVidWdfcHJpbnRmKCJXQVJOSU5HOiBvdXQgb2YgY29kZSBzcGFj
+ZSwgZXZpY3RpbmcgYWxsIHNoYWRlcnMuXG4iKTsKPiAgICAgICAgIHJldCA9IG5vdXZlYXVfaGVh
+cF9hbGxvYyhoZWFwLCBzaXplLCBwcm9nLCAmcHJvZy0+bWVtKTsKClRoZSBuZXcgY29tbWVudCBp
+cyBhIGJpdCB1cHNpZGUgZG93biwgYnV0IHRoYXRzIG5vdCByZWFsbHkgYSBwcm9ibGVtCgpSLWIg
+aGVyZSBhcyB3ZWxsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
