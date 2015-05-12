@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90423] New: [NVAA]: Shutdown (poweroff) get stuck
- when runtime PM is enabled
-Date: Tue, 12 May 2015 16:04:45 +0000
-Message-ID: <bug-90423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90424] New: [NVAA] Xorg on HDMI regression since
+	v4.0-rc1
+Date: Tue, 12 May 2015 16:12:56 +0000
+Message-ID: <bug-90424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2069975732=="
+Content-Type: multipart/mixed; boundary="===============1142465074=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,20 +19,19 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2069975732==
-Content-Type: multipart/alternative; boundary="1431446685.28e5E561.20994"; charset="UTF-8"
+--===============1142465074==
+Content-Type: multipart/alternative; boundary="1431447176.1a7C1.23193"; charset="UTF-8"
 
 
---1431446685.28e5E561.20994
-Date: Tue, 12 May 2015 16:04:45 +0000
+--1431447176.1a7C1.23193
+Date: Tue, 12 May 2015 16:12:56 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90423
+https://bugs.freedesktop.org/show_bug.cgi?id=90424
 
-            Bug ID: 90423
-           Summary: [NVAA]: Shutdown (poweroff) get stuck when runtime PM
-                    is enabled
+            Bug ID: 90424
+           Summary: [NVAA] Xorg on HDMI regression since v4.0-rc1
            Product: xorg
            Version: unspecified
           Hardware: Other
@@ -45,37 +44,29 @@ https://bugs.freedesktop.org/show_bug.cgi?id=90423
           Reporter: alexanders83-S0/GAf8tV78@public.gmane.org
         QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I'm currently running a 3.19 kernel where I looked into the problem that one of
-my systems doesn't shutdown cleanly most of the time. THis behavior started
-from some older kernels, I _guess_ it's 5addcf0a5f0fadc ("nouveau: add runtime
-PM support (v0.9").
-My board is a Asus M3N78-EM with a
-> 02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8300] (rev a2)
-
-During shutdown dmesg shows the following:
-[   38.476675] systemd-shutdown[1]: Powering off.
-[   38.536997] sd 1:0:0:0: [sdb] Synchronizing SCSI cache
-[   38.542522] sd 1:0:0:0: [sdb] Stopping disk
-[   41.069224] sd 0:0:0:0: [sda] Synchronizing SCSI cache
-[   41.074745] sd 0:0:0:0: [sda] Stopping disk
-
-That's all.
-
-I added some printk to my source tree and could trace the shutdown execution
-path down to __pm_runtime_barrier where dev->power.runtime_status == 3. The
-call to schedule() finally seems to be the deadlock.
-Of course, if I compile my kernel with CONFIG_PM=n everything is fine.
-Reenabling it again the problem occurs again.
-A workaround suggested on IRC is to set runpm=0. This seems to work as the
-system did clean shutdowns from this change on.
-As I consider this really as a workaround I would like to fix this.
+While trying to fix another bug I tried using kernel v4.0 and noticed that
+after X.org has started (running fluxbox with mythtv in my case) the screen
+stays black. My screen is attached on HDMI.
+During boot I can see the console output just fine but when X started it stays
+black. I don't even see the first small X shaped cursor.
+I bisected this back to commit 0ea5fe8a83c2 ("drm/nouveau/kms: default to panel
+scaling, except for fixed panels prior to nv50").
+From the commit message I suspect that "panel scaling" (whatever that means)
+does not work on my NVAA. I check the values of nv_connector->type and
+nv_connector->scaling_mode on both the bisected commit and the parent (last
+commit working).
+The type is 0x61 (DCB_CONNECTOR_HDMI_1) in both cases and the scaling_mode is 0
+(DRM_MODE_SCALE_NONE) when the screen stays black while it is 1
+(DRM_MODE_SCALE_FULLSCREEN) when everything works normally.
+dmesg doesn't show anything interesting though. Maybe a higher log level,
+please give me some hints which component and which debug level you may need.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431446685.28e5E561.20994
-Date: Tue, 12 May 2015 16:04:45 +0000
+--1431447176.1a7C1.23193
+Date: Tue, 12 May 2015 16:12:56 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -88,14 +79,14 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">90423</a>
+   title="NEW - [NVAA] Xorg on HDMI regression since v4.0-rc1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90424">90424</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>[NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled
+          <td>[NVAA] Xorg on HDMI regression since v4.0-rc1
           </td>
         </tr>
 
@@ -166,30 +157,22 @@ Content-Type: text/html; charset="UTF-8"
         </tr></table>
       <p>
         <div>
-        <pre>I'm currently running a 3.19 kernel where I looked into the problem that one of
-my systems doesn't shutdown cleanly most of the time. THis behavior started
-from some older kernels, I _guess_ it's 5addcf0a5f0fadc (&quot;nouveau: add runtime
-PM support (v0.9&quot;).
-My board is a Asus M3N78-EM with a
-<span class="quote">&gt; 02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8300] (rev a2)</span >
-
-During shutdown dmesg shows the following:
-[   38.476675] systemd-shutdown[1]: Powering off.
-[   38.536997] sd 1:0:0:0: [sdb] Synchronizing SCSI cache
-[   38.542522] sd 1:0:0:0: [sdb] Stopping disk
-[   41.069224] sd 0:0:0:0: [sda] Synchronizing SCSI cache
-[   41.074745] sd 0:0:0:0: [sda] Stopping disk
-
-That's all.
-
-I added some printk to my source tree and could trace the shutdown execution
-path down to __pm_runtime_barrier where dev-&gt;power.runtime_status == 3. The
-call to schedule() finally seems to be the deadlock.
-Of course, if I compile my kernel with CONFIG_PM=n everything is fine.
-Reenabling it again the problem occurs again.
-A workaround suggested on IRC is to set runpm=0. This seems to work as the
-system did clean shutdowns from this change on.
-As I consider this really as a workaround I would like to fix this.</pre>
+        <pre>While trying to fix another bug I tried using kernel v4.0 and noticed that
+after X.org has started (running fluxbox with mythtv in my case) the screen
+stays black. My screen is attached on HDMI.
+During boot I can see the console output just fine but when X started it stays
+black. I don't even see the first small X shaped cursor.
+I bisected this back to commit 0ea5fe8a83c2 (&quot;drm/nouveau/kms: default to panel
+scaling, except for fixed panels prior to nv50&quot;).
+From the commit message I suspect that &quot;panel scaling&quot; (whatever that means)
+does not work on my NVAA. I check the values of nv_connector-&gt;type and
+nv_connector-&gt;scaling_mode on both the bisected commit and the parent (last
+commit working).
+The type is 0x61 (DCB_CONNECTOR_HDMI_1) in both cases and the scaling_mode is 0
+(DRM_MODE_SCALE_NONE) when the screen stays black while it is 1
+(DRM_MODE_SCALE_FULLSCREEN) when everything works normally.
+dmesg doesn't show anything interesting though. Maybe a higher log level,
+please give me some hints which component and which debug level you may need.</pre>
         </div>
       </p>
       <hr>
@@ -201,9 +184,9 @@ As I consider this really as a workaround I would like to fix this.</pre>
     </body>
 </html>
 
---1431446685.28e5E561.20994--
+--1431447176.1a7C1.23193--
 
---===============2069975732==
+--===============1142465074==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -213,4 +196,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2069975732==--
+--===============1142465074==--
