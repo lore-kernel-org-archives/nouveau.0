@@ -1,10 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90424] [NVAA] Xorg on HDMI regression since v4.0-rc1
-Date: Tue, 12 May 2015 18:48:59 +0000
-Message-ID: <bug-90424-8800-jMDwVD6tI4@http.bugs.freedesktop.org/>
+Subject: [Bug 90424] [NVAA] custom modesetting regression since
+	v4.0-rc1
+Date: Tue, 12 May 2015 18:49:47 +0000
+Message-ID: <bug-90424-8800-6Nb114SN1q@http.bugs.freedesktop.org/>
 References: <bug-90424-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0596200407=="
+Content-Type: multipart/mixed; boundary="===============0776559208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90424-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0596200407==
-Content-Type: multipart/alternative; boundary="1431456539.0EC7fD81.464"; charset="UTF-8"
+--===============0776559208==
+Content-Type: multipart/alternative; boundary="1431456587.12BBABE1.627"; charset="UTF-8"
 
 
---1431456539.0EC7fD81.464
-Date: Tue, 12 May 2015 18:48:59 +0000
+--1431456587.12BBABE1.627
+Date: Tue, 12 May 2015 18:49:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,26 +36,15 @@ Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #4 from Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> ---
-Apparently this is due a custom modesetting I needed to use before attaching a
-AV receiver. My TV required a custom modesetting with resolution 1360x768, but
-this is not supported by the AV receiver. So when using the unsupported
-resolution with panel scaling nothing is displayed.
-In my case I could remove the custom modesetting as the AV receiver has a
-proper EDID with 1920x1080 (which is scaled down by that box for the TV). If
-someone needs a custom modesetting the old fullscreen scaling should be used,
-e.g. 
-xrandr --output HDMI-1 --prop 'scaling mode' 'Full'
+            Summary|[NVAA] Xorg on HDMI         |[NVAA] custom modesetting
+                   |regression since v4.0-rc1   |regression since v4.0-rc1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431456539.0EC7fD81.464
-Date: Tue, 12 May 2015 18:48:59 +0000
+--1431456587.12BBABE1.627
+Date: Tue, 12 May 2015 18:49:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,7 +56,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAA] Xorg on HDMI regression since v4.0-rc1"
+   title="RESOLVED INVALID - [NVAA] custom modesetting regression since v4.0-rc1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90424">bug 90424</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -77,42 +67,13 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">Summary</td>
+           <td>[NVAA] Xorg on HDMI regression since v4.0-rc1
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
+           <td>[NVAA] custom modesetting regression since v4.0-rc1
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAA] Xorg on HDMI regression since v4.0-rc1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90424#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAA] Xorg on HDMI regression since v4.0-rc1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90424">bug 90424</a>
-              from <span class="vcard"><a class="email" href="mailto:alexanders83&#64;web.de" title="Alexander Stein &lt;alexanders83&#64;web.de&gt;"> <span class="fn">Alexander Stein</span></a>
-</span></b>
-        <pre>Apparently this is due a custom modesetting I needed to use before attaching a
-AV receiver. My TV required a custom modesetting with resolution 1360x768, but
-this is not supported by the AV receiver. So when using the unsupported
-resolution with panel scaling nothing is displayed.
-In my case I could remove the custom modesetting as the AV receiver has a
-proper EDID with 1920x1080 (which is scaled down by that box for the TV). If
-someone needs a custom modesetting the old fullscreen scaling should be used,
-e.g. 
-xrandr --output HDMI-1 --prop 'scaling mode' 'Full'</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -123,9 +84,9 @@ xrandr --output HDMI-1 --prop 'scaling mode' 'Full'</pre>
     </body>
 </html>
 
---1431456539.0EC7fD81.464--
+--1431456587.12BBABE1.627--
 
---===============0596200407==
+--===============0776559208==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0596200407==--
+--===============0776559208==--
