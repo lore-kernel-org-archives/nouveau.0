@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90424] [NVAA] custom modesetting regression since
-	v4.0-rc1
-Date: Tue, 12 May 2015 18:49:47 +0000
-Message-ID: <bug-90424-8800-6Nb114SN1q@http.bugs.freedesktop.org/>
-References: <bug-90424-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 86792] [NVC0] Portal 2 Crashes in Wine
+Date: Tue, 12 May 2015 23:35:03 +0000
+Message-ID: <bug-86792-8800-kTlRCCWs9C@http.bugs.freedesktop.org/>
+References: <bug-86792-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0776559208=="
+Content-Type: multipart/mixed; boundary="===============0802849014=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90424-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-86792-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0776559208==
-Content-Type: multipart/alternative; boundary="1431456587.12BBABE1.627"; charset="UTF-8"
+--===============0802849014==
+Content-Type: multipart/alternative; boundary="1431473703.8aE02FB1.2249"; charset="UTF-8"
 
 
---1431456587.12BBABE1.627
-Date: Tue, 12 May 2015 18:49:47 +0000
+--1431473703.8aE02FB1.2249
+Date: Tue, 12 May 2015 23:35:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90424
+https://bugs.freedesktop.org/show_bug.cgi?id=86792
 
-Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NVAA] Xorg on HDMI         |[NVAA] custom modesetting
-                   |regression since v4.0-rc1   |regression since v4.0-rc1
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Haven't heard back, but I'm moderately sure that the patch fixes the issue in
+question, so I'm marking this as fixed. I pushed it out today, it should make
+its way into mesa 10.5.6 and 10.6.0.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431456587.12BBABE1.627
-Date: Tue, 12 May 2015 18:49:47 +0000
+--1431473703.8aE02FB1.2249
+Date: Tue, 12 May 2015 23:35:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,12 +56,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:alexanders83&#64;web.de" title="Alexander Stein &lt;alexanders83&#64;web.de&gt;"> <span class="fn">Alexander Stein</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVAA] custom modesetting regression since v4.0-rc1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90424">bug 90424</a>
+   title="RESOLVED FIXED - [NVC0] Portal 2 Crashes in Wine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -67,13 +71,36 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVAA] Xorg on HDMI regression since v4.0-rc1
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVAA] custom modesetting regression since v4.0-rc1
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC0] Portal 2 Crashes in Wine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVC0] Portal 2 Crashes in Wine"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86792">bug 86792</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Haven't heard back, but I'm moderately sure that the patch fixes the issue in
+question, so I'm marking this as fixed. I pushed it out today, it should make
+its way into mesa 10.5.6 and 10.6.0.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +111,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1431456587.12BBABE1.627--
+--1431473703.8aE02FB1.2249--
 
---===============0776559208==
+--===============0802849014==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0776559208==--
+--===============0802849014==--
