@@ -1,69 +1,216 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v4] pmu/gk20a: PMU boot support
-Date: Tue, 12 May 2015 18:04:30 +0900
-Message-ID: <CAAVeFuL8R=hcO2u8xCZB6GuM58Kgx6RzW2oWwKPcwrs4bj4rqQ@mail.gmail.com>
-References: <1428921530-28556-1-git-send-email-acourbot@nvidia.com>
- <552B9D8A.5050202@nvidia.com> <CACAvsv4MC3hq5_DJ5c7NPfEYyrsG2vPMjadEhC+H4zcWzc+F=Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90423] New: [NVAA]: Shutdown (poweroff) get stuck
+ when runtime PM is enabled
+Date: Tue, 12 May 2015 16:04:45 +0000
+Message-ID: <bug-90423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <CACAvsv4MC3hq5_DJ5c7NPfEYyrsG2vPMjadEhC+H4zcWzc+F=Q@mail.gmail.com>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Deepak Goyal <dgoyal-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============2069975732=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Ben,
 
-On Fri, May 1, 2015 at 8:01 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> On 13 April 2015 at 20:42, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->> Ben, I guess our main remaining concern with this patch is how it should
->> integrate wrt. the existing PMU code. Since it is designed to interact with
->> the NVIDIA firmware, maybe we should use a different base code, or do you
->> think we can somehow share code and data structures?
-> Hey Alexandre,
->
-> Sorry for the delay in responding to this.
+--===============2069975732==
+Content-Type: multipart/alternative; boundary="1431446685.28e5E561.20994"; charset="UTF-8"
 
-It is my turn to apologize - I was (well still am, technically :)) on
-holidays and have just started unpiling my inbox...
 
->
-> My original thinking with transitioning to use NVIDIA's firmware was
-> that I'd modify our firmware interfaces to match yours, and share the
-> code.  I haven't started on any of this yet due to not having any word
-> on how you guys will be shipping the images, etc.  It would be nice to
-> have some communication on these things :)
+--1431446685.28e5E561.20994
+Date: Tue, 12 May 2015 16:04:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-Indeed. For the first time with Maxwell GPUs, NVIDIA-provided firmware
-will be required for GPUs to operate properly. This raises several
-questions:
+https://bugs.freedesktop.org/show_bug.cgi?id=90423
 
-- Should the firmware be released under /lib/firmware/nouveau or
-/lib/firmware/nvidia ? (this directory already exists for Tegra USB
-firmware and makes more sense to me, since the firmware is not
-Nouveau-specific)
-- For GPCCS/FECS firmware, should we release the netlist "pack" file
-or adopt the same format as Nouveau does? (1 file per firmware)
-- Should we keep the current files names (e.g. nvxx_fucxxxx[cd]), or
-try to switch to more meaningful ones?
-- What about signature files that are required for secure boot?
-- Knowing that NVIDIA's firmware ABI is a (very slowly) moving target,
-it is worth to aim at ABI compatibility, or should we assume different
-paths for Nouveau and NVIDIA firmware? If ABI incompatibilities are
-introduced in the way, how do we handle versioning?
+            Bug ID: 90423
+           Summary: [NVAA]: Shutdown (poweroff) get stuck when runtime PM
+                    is enabled
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: alexanders83-S0/GAf8tV78@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-All these issues make me tend towards having a separate handling of
-NVIDIA-released firmware (location, format, and ABI). It will also
-make the firmware easier to release if conversions are not necessary
-on the way out. What are your thoughts on this?
+I'm currently running a 3.19 kernel where I looked into the problem that one of
+my systems doesn't shutdown cleanly most of the time. THis behavior started
+from some older kernels, I _guess_ it's 5addcf0a5f0fadc ("nouveau: add runtime
+PM support (v0.9").
+My board is a Asus M3N78-EM with a
+> 02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8300] (rev a2)
 
-> I'm suspecting you won't be wanting to modify our falcon assembly, so
-> I guess I'll set aside some time to use this patch as a base and
-> transition our ucode to boot using it?  Then you guys can build more
-> stuff on top of that.  I'm also happy to let you modify our ucode if
-> you wish :)
+During shutdown dmesg shows the following:
+[   38.476675] systemd-shutdown[1]: Powering off.
+[   38.536997] sd 1:0:0:0: [sdb] Synchronizing SCSI cache
+[   38.542522] sd 1:0:0:0: [sdb] Stopping disk
+[   41.069224] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[   41.074745] sd 0:0:0:0: [sda] Stopping disk
 
-There may be legal issues with us touching the Nouveau firmware. But
-as I stated above, the first question is do we want to bother with
-this compatiblity at all?
+That's all.
+
+I added some printk to my source tree and could trace the shutdown execution
+path down to __pm_runtime_barrier where dev->power.runtime_status == 3. The
+call to schedule() finally seems to be the deadlock.
+Of course, if I compile my kernel with CONFIG_PM=n everything is fine.
+Reenabling it again the problem occurs again.
+A workaround suggested on IRC is to set runpm=0. This seems to work as the
+system did clean shutdowns from this change on.
+As I consider this really as a workaround I would like to fix this.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1431446685.28e5E561.20994
+Date: Tue, 12 May 2015 16:04:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">90423</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>alexanders83&#64;web.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I'm currently running a 3.19 kernel where I looked into the problem that one of
+my systems doesn't shutdown cleanly most of the time. THis behavior started
+from some older kernels, I _guess_ it's 5addcf0a5f0fadc (&quot;nouveau: add runtime
+PM support (v0.9&quot;).
+My board is a Asus M3N78-EM with a
+<span class="quote">&gt; 02:00.0 VGA compatible controller: NVIDIA Corporation C77 [GeForce 8300] (rev a2)</span >
+
+During shutdown dmesg shows the following:
+[   38.476675] systemd-shutdown[1]: Powering off.
+[   38.536997] sd 1:0:0:0: [sdb] Synchronizing SCSI cache
+[   38.542522] sd 1:0:0:0: [sdb] Stopping disk
+[   41.069224] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[   41.074745] sd 0:0:0:0: [sda] Stopping disk
+
+That's all.
+
+I added some printk to my source tree and could trace the shutdown execution
+path down to __pm_runtime_barrier where dev-&gt;power.runtime_status == 3. The
+call to schedule() finally seems to be the deadlock.
+Of course, if I compile my kernel with CONFIG_PM=n everything is fine.
+Reenabling it again the problem occurs again.
+A workaround suggested on IRC is to set runpm=0. This seems to work as the
+system did clean shutdowns from this change on.
+As I consider this really as a workaround I would like to fix this.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431446685.28e5E561.20994--
+
+--===============2069975732==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2069975732==--
