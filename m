@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89893] Windows slow/stall/freeze when
- minimizing/restoring/etc in Unity 7
-Date: Wed, 13 May 2015 14:09:52 +0000
-Message-ID: <bug-89893-8800-uwbLFJd1R4@http.bugs.freedesktop.org/>
-References: <bug-89893-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90423] [NVAA]: Shutdown (poweroff) get stuck when
+ runtime PM is enabled
+Date: Wed, 13 May 2015 15:57:51 +0000
+Message-ID: <bug-90423-8800-CPS3gGlgfx@http.bugs.freedesktop.org/>
+References: <bug-90423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0287955600=="
+Content-Type: multipart/mixed; boundary="===============0852055044=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0287955600==
-Content-Type: multipart/alternative; boundary="1431526192.edc2c4D71.28829"; charset="UTF-8"
+--===============0852055044==
+Content-Type: multipart/alternative; boundary="1431532671.45AFaBdc1.17043"; charset="UTF-8"
 
 
---1431526192.edc2c4D71.28829
-Date: Wed, 13 May 2015 14:09:52 +0000
+--1431532671.45AFaBdc1.17043
+Date: Wed, 13 May 2015 15:57:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89893
+https://bugs.freedesktop.org/show_bug.cgi?id=90423
 
---- Comment #2 from d3vid <dseaward925-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 115741
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115741&action=edit
-Recent xorg log file
+--- Comment #2 from Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> ---
+Created attachment 115743
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115743&action=edit
+ascidump output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431526192.edc2c4D71.28829
-Date: Wed, 13 May 2015 14:09:52 +0000
+--1431532671.45AFaBdc1.17043
+Date: Wed, 13 May 2015 15:57:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Windows slow/stall/freeze when minimizing/restoring/etc in Unity 7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89893#c2">Comment # 2</a>
+   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Windows slow/stall/freeze when minimizing/restoring/etc in Unity 7"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89893">bug 89893</a>
-              from <span class="vcard"><a class="email" href="mailto:dseaward925&#64;gmail.com" title="d3vid &lt;dseaward925&#64;gmail.com&gt;"> <span class="fn">d3vid</span></a>
+   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">bug 90423</a>
+              from <span class="vcard"><a class="email" href="mailto:alexanders83&#64;web.de" title="Alexander Stein &lt;alexanders83&#64;web.de&gt;"> <span class="fn">Alexander Stein</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115741" name="attach_115741" title="Recent xorg log file">attachment 115741</a> <a href="attachment.cgi?id=115741&amp;action=edit" title="Recent xorg log file">[details]</a></span>
-Recent xorg log file</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115743" name="attach_115743" title="ascidump output">attachment 115743</a> <a href="attachment.cgi?id=115743&amp;action=edit" title="ascidump output">[details]</a></span>
+ascidump output</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Recent xorg log file</pre>
     </body>
 </html>
 
---1431526192.edc2c4D71.28829--
+--1431532671.45AFaBdc1.17043--
 
---===============0287955600==
+--===============0852055044==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0287955600==--
+--===============0852055044==--
