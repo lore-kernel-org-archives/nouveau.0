@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90423] [NVAA]: Shutdown (poweroff) get stuck when
- runtime PM is enabled
-Date: Wed, 13 May 2015 15:59:18 +0000
-Message-ID: <bug-90423-8800-XL89DmWKd2@http.bugs.freedesktop.org/>
-References: <bug-90423-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Wed, 13 May 2015 21:39:24 +0000
+Message-ID: <bug-90435-8800-GcCXbbrDlZ@http.bugs.freedesktop.org/>
+References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1216726906=="
+Content-Type: multipart/mixed; boundary="===============1176607998=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1216726906==
-Content-Type: multipart/alternative; boundary="1431532758.DaF8ffD71.17357"; charset="UTF-8"
+--===============1176607998==
+Content-Type: multipart/alternative; boundary="1431553164.Ef3a841.19952"; charset="UTF-8"
 
 
---1431532758.DaF8ffD71.17357
-Date: Wed, 13 May 2015 15:59:18 +0000
+--1431553164.Ef3a841.19952
+Date: Wed, 13 May 2015 21:39:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90423
+https://bugs.freedesktop.org/show_bug.cgi?id=90435
 
---- Comment #3 from Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 115744
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115744&action=edit
-serial console output
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+While the nv30 gallium driver is far from perfect, I'm fairly sure that
+glxgears is supposed to work. Can you try older mesa versions to see if they
+work? Like 10.4, 10.3, etc.
 
-As the problem occurs at shutdown after disks has been stopped, I logged the
-serial console output.
-This is from plain v4.0.3 kernel
+The only thing that comes to mind is a change I added to avoid color/depth size
+conflicts (the hw can only do 32-bit color with 24-bit depth, or 16-bit color
+with 16-bit depth). Ideally the driver would create a shadow version, but my
+change was just enough to avoid faults, I just don't set a depth buffer at all
+during the render in such cases.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431532758.DaF8ffD71.17357
-Date: Wed, 13 May 2015 15:59:18 +0000
+--1431553164.Ef3a841.19952
+Date: Wed, 13 May 2015 21:39:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +60,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423#c3">Comment # 3</a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">bug 90423</a>
-              from <span class="vcard"><a class="email" href="mailto:alexanders83&#64;web.de" title="Alexander Stein &lt;alexanders83&#64;web.de&gt;"> <span class="fn">Alexander Stein</span></a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115744" name="attach_115744" title="serial console output">attachment 115744</a> <a href="attachment.cgi?id=115744&amp;action=edit" title="serial console output">[details]</a></span>
-serial console output
+        <pre>While the nv30 gallium driver is far from perfect, I'm fairly sure that
+glxgears is supposed to work. Can you try older mesa versions to see if they
+work? Like 10.4, 10.3, etc.
 
-As the problem occurs at shutdown after disks has been stopped, I logged the
-serial console output.
-This is from plain v4.0.3 kernel</pre>
+The only thing that comes to mind is a change I added to avoid color/depth size
+conflicts (the hw can only do 32-bit color with 24-bit depth, or 16-bit color
+with 16-bit depth). Ideally the driver would create a shadow version, but my
+change was just enough to avoid faults, I just don't set a depth buffer at all
+during the render in such cases.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +88,9 @@ This is from plain v4.0.3 kernel</pre>
     </body>
 </html>
 
---1431532758.DaF8ffD71.17357--
+--1431553164.Ef3a841.19952--
 
---===============1216726906==
+--===============1176607998==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1216726906==--
+--===============1176607998==--
