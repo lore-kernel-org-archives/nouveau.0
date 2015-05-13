@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90423] [NVAA]: Shutdown (poweroff) get stuck when
  runtime PM is enabled
-Date: Wed, 13 May 2015 15:57:51 +0000
-Message-ID: <bug-90423-8800-CPS3gGlgfx@http.bugs.freedesktop.org/>
+Date: Wed, 13 May 2015 15:59:18 +0000
+Message-ID: <bug-90423-8800-XL89DmWKd2@http.bugs.freedesktop.org/>
 References: <bug-90423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0852055044=="
+Content-Type: multipart/mixed; boundary="===============1216726906=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0852055044==
-Content-Type: multipart/alternative; boundary="1431532671.45AFaBdc1.17043"; charset="UTF-8"
+--===============1216726906==
+Content-Type: multipart/alternative; boundary="1431532758.DaF8ffD71.17357"; charset="UTF-8"
 
 
---1431532671.45AFaBdc1.17043
-Date: Wed, 13 May 2015 15:57:51 +0000
+--1431532758.DaF8ffD71.17357
+Date: Wed, 13 May 2015 15:59:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90423
 
---- Comment #2 from Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> ---
-Created attachment 115743
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115743&action=edit
-ascidump output
+--- Comment #3 from Alexander Stein <alexanders83-S0/GAf8tV78@public.gmane.org> ---
+Created attachment 115744
+  --> https://bugs.freedesktop.org/attachment.cgi?id=115744&action=edit
+serial console output
+
+As the problem occurs at shutdown after disks has been stopped, I logged the
+serial console output.
+This is from plain v4.0.3 kernel
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431532671.45AFaBdc1.17043
-Date: Wed, 13 May 2015 15:57:51 +0000
+--1431532758.DaF8ffD71.17357
+Date: Wed, 13 May 2015 15:59:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">bug 90423</a>
               from <span class="vcard"><a class="email" href="mailto:alexanders83&#64;web.de" title="Alexander Stein &lt;alexanders83&#64;web.de&gt;"> <span class="fn">Alexander Stein</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115743" name="attach_115743" title="ascidump output">attachment 115743</a> <a href="attachment.cgi?id=115743&amp;action=edit" title="ascidump output">[details]</a></span>
-ascidump output</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=115744" name="attach_115744" title="serial console output">attachment 115744</a> <a href="attachment.cgi?id=115744&amp;action=edit" title="serial console output">[details]</a></span>
+serial console output
+
+As the problem occurs at shutdown after disks has been stopped, I logged the
+serial console output.
+This is from plain v4.0.3 kernel</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +84,9 @@ ascidump output</pre>
     </body>
 </html>
 
---1431532671.45AFaBdc1.17043--
+--1431532758.DaF8ffD71.17357--
 
---===============0852055044==
+--===============1216726906==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0852055044==--
+--===============1216726906==--
