@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] 3D on 7300GS does not work
-Date: Wed, 13 May 2015 13:17:05 +0000
-Message-ID: <bug-90435-8800-jiBf6WKCQF@http.bugs.freedesktop.org/>
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Wed, 13 May 2015 13:24:01 +0000
+Message-ID: <bug-90435-8800-T56wQDNjA6@http.bugs.freedesktop.org/>
 References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0359735251=="
+Content-Type: multipart/mixed; boundary="===============0897514531=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0359735251==
-Content-Type: multipart/alternative; boundary="1431523025.BfDf1.14930"; charset="UTF-8"
+--===============0897514531==
+Content-Type: multipart/alternative; boundary="1431523440.B41f51.16613"; charset="UTF-8"
 
 
---1431523025.BfDf1.14930
-Date: Wed, 13 May 2015 13:17:05 +0000
+--1431523440.B41f51.16613
+Date: Wed, 13 May 2015 13:24:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90435
 
-dikiy_evrej-S0/GAf8tV78@public.gmane.org changed:
+Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|Driver/nouveau              |Drivers/DRI/nouveau
-            Product|xorg                        |Mesa
+            Summary|3D on 7300GS does not work  |[NV46] moving 3D objects
+                   |                            |drawn static
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431523025.BfDf1.14930
-Date: Wed, 13 May 2015 13:17:05 +0000
+--1431523440.B41f51.16613
+Date: Wed, 13 May 2015 13:24:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,11 +51,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:dikiy_evrej&#64;web.de" title="dikiy_evrej&#64;web.de">dikiy_evrej&#64;web.de</a>
+    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - 3D on 7300GS does not work"
+   title="NEW - [NV46] moving 3D objects drawn static"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -66,18 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nouveau
+           <td style="text-align:right;">Summary</td>
+           <td>3D on 7300GS does not work
            </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>xorg
-           </td>
-           <td>Mesa
+           <td>[NV46] moving 3D objects drawn static
            </td>
          </tr></table>
       <p>
@@ -91,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1431523025.BfDf1.14930--
+--1431523440.B41f51.16613--
 
---===============0359735251==
+--===============0897514531==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0359735251==--
+--===============0897514531==--
