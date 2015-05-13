@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66696] Nouveau does DMA to/from unexpected address
-Date: Wed, 13 May 2015 00:18:13 +0000
-Message-ID: <bug-66696-8800-IBPX6GfLGw@http.bugs.freedesktop.org/>
-References: <bug-66696-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90423] [NVAA]: Shutdown (poweroff) get stuck when
+ runtime PM is enabled
+Date: Wed, 13 May 2015 00:42:06 +0000
+Message-ID: <bug-90423-8800-H5UuKtZCAH@http.bugs.freedesktop.org/>
+References: <bug-90423-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0907621054=="
+Content-Type: multipart/mixed; boundary="===============0279446022=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66696-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90423-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0907621054==
-Content-Type: multipart/alternative; boundary="1431476293.c716bd2.11603"; charset="UTF-8"
+--===============0279446022==
+Content-Type: multipart/alternative; boundary="1431477725.FcFCc2.17233"; charset="UTF-8"
 
 
---1431476293.c716bd2.11603
-Date: Wed, 13 May 2015 00:18:13 +0000
+--1431477725.FcFCc2.17233
+Date: Wed, 13 May 2015 00:42:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66696
+https://bugs.freedesktop.org/show_bug.cgi?id=90423
 
---- Comment #8 from Stijn Tintel <stijn+bugs-VfPWfsRibaPZj6PxcwrBaQ@public.gmane.org> ---
-(In reply to Tobias Klausmann from comment #7)
-> Still something actually happening with newer kernels (3.17/3.18)?
-
-Unfortunately the card died so I am unable to test anything.
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+runpm really shouldn't have any effect on your machine since you shouldn't have
+the ACPI methods for it... can you include your dmesg and, if possible,
+acpidump?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431476293.c716bd2.11603
-Date: Wed, 13 May 2015 00:18:13 +0000
+--1431477725.FcFCc2.17233
+Date: Wed, 13 May 2015 00:42:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,19 +54,18 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696#c8">Comment # 8</a>
+          bz_status_NEW "
+   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - Nouveau does DMA to/from unexpected address"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66696">bug 66696</a>
-              from <span class="vcard"><a class="email" href="mailto:stijn+bugs&#64;linux-ipv6.be" title="Stijn Tintel &lt;stijn+bugs&#64;linux-ipv6.be&gt;"> <span class="fn">Stijn Tintel</span></a>
+          bz_status_NEW "
+   title="NEW - [NVAA]: Shutdown (poweroff) get stuck when runtime PM is enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90423">bug 90423</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Tobias Klausmann from <a href="show_bug.cgi?id=66696#c7">comment #7</a>)
-<span class="quote">&gt; Still something actually happening with newer kernels (3.17/3.18)?</span >
-
-Unfortunately the card died so I am unable to test anything.</pre>
+        <pre>runpm really shouldn't have any effect on your machine since you shouldn't have
+the ACPI methods for it... can you include your dmesg and, if possible,
+acpidump?</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +77,9 @@ Unfortunately the card died so I am unable to test anything.</pre>
     </body>
 </html>
 
---1431476293.c716bd2.11603--
+--1431477725.FcFCc2.17233--
 
---===============0907621054==
+--===============0279446022==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0907621054==--
+--===============0279446022==--
