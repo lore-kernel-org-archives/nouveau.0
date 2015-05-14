@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP errors
-Date: Thu, 14 May 2015 17:02:00 +0000
-Message-ID: <bug-90453-8800-XDJaqXyTl0@http.bugs.freedesktop.org/>
+Date: Thu, 14 May 2015 17:04:48 +0000
+Message-ID: <bug-90453-8800-PBzkOrbS2Z@http.bugs.freedesktop.org/>
 References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1035838317=="
+Content-Type: multipart/mixed; boundary="===============2035654073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1035838317==
-Content-Type: multipart/alternative; boundary="1431622920.7f7f1.24872"; charset="UTF-8"
+--===============2035654073==
+Content-Type: multipart/alternative; boundary="1431623087.Ec42C1.25536"; charset="UTF-8"
 
 
---1431622920.7f7f1.24872
-Date: Thu, 14 May 2015 17:02:00 +0000
+--1431623087.Ec42C1.25536
+Date: Thu, 14 May 2015 17:04:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,17 +35,14 @@ Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> chan
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Desktop periodically        |[NVE4] Desktop freezes &
-                   |freezes when using Nouveau  |PDISP errors
-                   |& getting "nouveau          |
-                   |E[PDISP]" errors in dmesg   |
+           Severity|critical                    |normal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431622920.7f7f1.24872
-Date: Thu, 14 May 2015 17:02:00 +0000
+--1431623087.Ec42C1.25536
+Date: Thu, 14 May 2015 17:04:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +65,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Desktop periodically freezes when using Nouveau &amp; getting &quot;nouveau E[PDISP]&quot; errors in dmesg
+           <td style="text-align:right;">Severity</td>
+           <td>critical
            </td>
-           <td>[NVE4] Desktop freezes &amp; PDISP errors
+           <td>normal
            </td>
          </tr></table>
       <p>
@@ -85,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1431622920.7f7f1.24872--
+--1431623087.Ec42C1.25536--
 
---===============1035838317==
+--===============2035654073==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1035838317==--
+--===============2035654073==--
