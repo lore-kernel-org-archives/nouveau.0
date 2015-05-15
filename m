@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE6] screen freeze with PDISP errors,
-	bisected
-Date: Fri, 15 May 2015 06:08:55 +0000
-Message-ID: <bug-90276-8800-5tabyDYLMM@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: add coherent BO attribute
+Date: Fri, 15 May 2015 16:11:39 +0900
+Message-ID: <CAAVeFu+kRcWT2zxbduA6MU9v1cTVb8HU3GEDdaviUAkYa6SbSQ@mail.gmail.com>
+References: <1426228051-20298-1-git-send-email-acourbot@nvidia.com>
+ <55033B99.4040300@canonical.com> <550545A4.6060106@nvidia.com>
+ <CAAVeFuKoryrWPcDkcFuk+OwJjaUn6C-he+xxphkZ7iMBa=Qdkg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2087439013=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuKoryrWPcDkcFuk+OwJjaUn6C-he+xxphkZ7iMBa=Qdkg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +19,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: m.b.lankhorst-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Cc: "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2087439013==
-Content-Type: multipart/alternative; boundary="1431670134.Db4A2.21541"; charset="UTF-8"
-
-
---1431670134.Db4A2.21541
-Date: Fri, 15 May 2015 06:08:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
-
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A suggestion from Ben:
-
-In drivers/gpu/drm/nouveau/nv50_display.c:
-
--       if (show && nv_crtc->cursor.nvbo)
-+       if (show && nv_crtc->base.enabled && nv_crtc->cursor.nvbo)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431670134.Db4A2.21541
-Date: Fri, 15 May 2015 06:08:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A suggestion from Ben:
-
-In drivers/gpu/drm/nouveau/nv50_display.c:
-
--       if (show &amp;&amp; nv_crtc-&gt;cursor.nvbo)
-+       if (show &amp;&amp; nv_crtc-&gt;base.enabled &amp;&amp; nv_crtc-&gt;cursor.nvbo)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431670134.Db4A2.21541--
-
---===============2087439013==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2087439013==--
+UmUtcGluZ2luZyBNYXJ0ZWVuIG9uIGFuIGVtYWlsIGFkZHJlc3MgdGhhdCBzdGlsbCBleGlzdHMg
+OlAKCk9uIFdlZCwgQXByIDIyLCAyMDE1IGF0IDY6MDggUE0sIEFsZXhhbmRyZSBDb3VyYm90IDxn
+bnVyb3VAZ21haWwuY29tPiB3cm90ZToKPiBPbiBTdW4sIE1hciAxNSwgMjAxNSBhdCA1OjQxIFBN
+LCBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4gd3JvdGU6Cj4+IE9uIDAz
+LzE0LzIwMTUgMDQ6MzMgQU0sIE1hYXJ0ZW4gTGFua2hvcnN0IHdyb3RlOgo+Pj4KPj4+IEhleSwK
+Pj4+Cj4+PiBPcCAxMy0wMy0xNSBvbSAwNzoyNyBzY2hyZWVmIEFsZXhhbmRyZSBDb3VyYm90Ogo+
+Pj4+Cj4+Pj4gQWRkIGEgZmxhZyBhbGxvd2luZyBOb3V2ZWF1IHRvIHNwZWNpZnkgdGhhdCBhbiBv
+YmplY3Qgc2hvdWxkIGJlIGNvaGVyZW50Cj4+Pj4gYXQgYWxsb2NhdGlvbiB0aW1lLiBUaGlzIGlz
+IHJlcXVpcmVkIGZvciBzb21lIGNsYXNzIG9mIG9iamVjdHMgbGlrZQo+Pj4+IGZlbmNlcyB3aGlj
+aCBhcmUgcmFuZG9tbHktYWNjZXNzZWQgYnkgYm90aCB0aGUgQ1BVIGFuZCBHUFUuIFRoaXMgZmxh
+Zwo+Pj4+IGluc3RydWN0cyB0aGUga2VybmVsIGRyaXZlciB0byBtYWtlIHN1cmUgdGhlIG9iamVj
+dCByZW1haW5zIGNvaGVyZW50Cj4+Pj4gZXZlbiBvbiBhcmNoaXRlY3R1cmVzIGZvciB3aGljaCBj
+b2hlcmVuY3kgaXMgbm90IGd1YXJhbnRlZWQgYnkgdGhlIGJ1cy4KPj4+Pgo+Pj4+IFNpZ25lZC1v
+ZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+Pj4KPj4+IEkg
+ZG9uJ3Qgc2VlIGEgcHJvYmxlbSB3aXRoIHRoaXMgcGF0Y2gsIGJ1dCBzaW1pbGFyIHBhdGNoZXMg
+dG8gaW50ZWwgdG8KPj4+IGxpYmRybSBoYXZlIGJlZW4gc2hvdCBkb3duIHdoZW4gdGhlIGNoYW5n
+ZXMgd2VyZW4ndCBpbiBhbiBvZmZpY2lhbCBrZXJuZWwKPj4+IHlldCwgc28gSSB0aGluayB0aGlz
+IHNob3VsZCB3YWl0IHVudGlsIHRoZSBjaGFuZ2UgaXMgYXQgbGVhc3QgaW4gZHJtLW5leHQuCj4+
+PiA7LSkKPj4KPj4KPj4gU291bmRzIGdvb2QuIEkgd2lsbCBwaW5nIHlvdSBhZ2FpbiBvbmNlIHRo
+ZSBrZXJuZWwgY2hhbmdlIHJlYWNoZXMgLW5leHQuCj4KPiBIaSBNYXJ0ZWVuLAo+Cj4gVGhlIGtl
+cm5lbCBjaGFuZ2UgcmVxdWlyZWQgZm9yIHRoaXMgcGF0Y2ggaXMgbm93IGluIC1uZXh0LiBEbyB5
+b3UKPiB0aGluayB3ZSBjYW4gbWVyZ2UgaXQgbm93PwpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
