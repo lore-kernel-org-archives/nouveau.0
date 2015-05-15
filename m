@@ -1,112 +1,103 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP errors & PFIFO
-	errors
-Date: Thu, 14 May 2015 21:21:19 +0000
-Message-ID: <bug-90453-8800-dUKCqNlSS9@http.bugs.freedesktop.org/>
-References: <bug-90453-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH v4] pmu/gk20a: PMU boot support
+Date: Fri, 15 May 2015 15:37:28 +1000
+Message-ID: <CACAvsv7un7b38_s6Whu7JdOegNs-+3ci_GFYHAzwO5CL6KWA1Q@mail.gmail.com>
+References: <1428921530-28556-1-git-send-email-acourbot@nvidia.com>
+	<552B9D8A.5050202@nvidia.com>
+	<CACAvsv4MC3hq5_DJ5c7NPfEYyrsG2vPMjadEhC+H4zcWzc+F=Q@mail.gmail.com>
+	<CAAVeFuL8R=hcO2u8xCZB6GuM58Kgx6RzW2oWwKPcwrs4bj4rqQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2135658729=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAAVeFuL8R=hcO2u8xCZB6GuM58Kgx6RzW2oWwKPcwrs4bj4rqQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Deepak Goyal <dgoyal-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 12 May 2015 at 19:04, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> Hi Ben,
+>
+> On Fri, May 1, 2015 at 8:01 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> On 13 April 2015 at 20:42, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>>> Ben, I guess our main remaining concern with this patch is how it should
+>>> integrate wrt. the existing PMU code. Since it is designed to interact with
+>>> the NVIDIA firmware, maybe we should use a different base code, or do you
+>>> think we can somehow share code and data structures?
+>> Hey Alexandre,
+>>
+>> Sorry for the delay in responding to this.
+>
+> It is my turn to apologize - I was (well still am, technically :)) on
+> holidays and have just started unpiling my inbox...
+>
+>>
+>> My original thinking with transitioning to use NVIDIA's firmware was
+>> that I'd modify our firmware interfaces to match yours, and share the
+>> code.  I haven't started on any of this yet due to not having any word
+>> on how you guys will be shipping the images, etc.  It would be nice to
+>> have some communication on these things :)
+>
+> Indeed. For the first time with Maxwell GPUs, NVIDIA-provided firmware
+> will be required for GPUs to operate properly. This raises several
+> questions:
+>
+> - Should the firmware be released under /lib/firmware/nouveau or
+> /lib/firmware/nvidia ? (this directory already exists for Tegra USB
+> firmware and makes more sense to me, since the firmware is not
+> Nouveau-specific)
+I think /lib/firmware/nvidia makes sense here too.
 
---===============2135658729==
-Content-Type: multipart/alternative; boundary="1431638479.cDfF0AF01.3057"; charset="UTF-8"
+> - For GPCCS/FECS firmware, should we release the netlist "pack" file
+> or adopt the same format as Nouveau does? (1 file per firmware)
+> - Should we keep the current files names (e.g. nvxx_fucxxxx[cd]), or
+> try to switch to more meaningful ones?
+I'd actually prefer to have the entire netlists bundled, that gives us
+updated reg/ctx production values too as you guys tweak/update them
+for hw bugs (etc).  They're also nicer in that you get a single bundle
+of everything that's required for that chipset+engine.
 
+I don't have too much opinion on naming.  The current model of
+nv{CHIPSET}_{UCODE_TYPE}{REGISTER_BASE}[CODE,DATA] was just nice and
+convenient to snprintf into a buffer :)
 
---1431638479.cDfF0AF01.3057
-Date: Thu, 14 May 2015 21:21:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> - What about signature files that are required for secure boot?
+As with above, if it's possible to ship them in a single file with the
+ucode that it belongs to, that'd be ideal.  It's not a huge deal
+though.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90453
+> - Knowing that NVIDIA's firmware ABI is a (very slowly) moving target,
+> it is worth to aim at ABI compatibility, or should we assume different
+> paths for Nouveau and NVIDIA firmware? If ABI incompatibilities are
+> introduced in the way, how do we handle versioning?
+For incompatible changes, I think appending a -VERSION to each
+firmware blob is probably the simplest approach.  The driver can
+select the necessary codepath based on what it finds (probably trying
+newer versions first, obviously).
 
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Michiel Helvensteijn from comment #10)
-> I was finally able to connect to my pc *after* a freeze-up using SSH. Here
-> is the coinciding dmesg output:
-> 
-> [ 8970.897260] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT
-> ]
-> [ 8970.897265] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
-> 6, recovering...
+>
+> All these issues make me tend towards having a separate handling of
+> NVIDIA-released firmware (location, format, and ABI). It will also
+> make the firmware easier to release if conversions are not necessary
+> on the way out. What are your thoughts on this?
+I'm not entirely set here, either way.  I somewhat think that
+initially I should adapt our interfaces to match, and a keep single
+code path as long as we can.  A lot of the changes so far have seemed
+minor enough we could stick conditionals on firmware version, and if
+fw changes come along that warrant a radical change in handling from
+the host, we can abstract it away then.
 
-Hrmph... could well have been fixed by one of the ctxsw changes since 3.15 :(
+But, I'm open to other suggestions :)
 
-Sorry, this will require someone who knows what they're talking about (i.e. not
-me) to properly diagnose.
+Ben.
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431638479.cDfF0AF01.3057
-Date: Thu, 14 May 2015 21:21:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP errors &amp; PFIFO errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP errors &amp; PFIFO errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Michiel Helvensteijn from <a href="show_bug.cgi?id=90453#c10">comment #10</a>)
-<span class="quote">&gt; I was finally able to connect to my pc *after* a freeze-up using SSH. Here
-&gt; is the coinciding dmesg output:
-&gt; 
-&gt; [ 8970.897260] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT
-&gt; ]
-&gt; [ 8970.897265] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
-&gt; 6, recovering...</span >
-
-Hrmph... could well have been fixed by one of the ctxsw changes since 3.15 :(
-
-Sorry, this will require someone who knows what they're talking about (i.e. not
-me) to properly diagnose.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431638479.cDfF0AF01.3057--
-
---===============2135658729==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2135658729==--
+>
+>> I'm suspecting you won't be wanting to modify our falcon assembly, so
+>> I guess I'll set aside some time to use this patch as a base and
+>> transition our ucode to boot using it?  Then you guys can build more
+>> stuff on top of that.  I'm also happy to let you modify our ucode if
+>> you wish :)
+>
+> There may be legal issues with us touching the Nouveau firmware. But
+> as I stated above, the first question is do we want to bother with
+> this compatiblity at all?
