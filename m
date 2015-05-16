@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
- PGRAPH and PGR errors
-Date: Sat, 16 May 2015 21:11:17 +0000
-Message-ID: <bug-90453-8800-Kx2TAXSltx@http.bugs.freedesktop.org/>
-References: <bug-90453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90276] [NVE6] screen freeze with PDISP errors,
+	bisected
+Date: Sat, 16 May 2015 23:22:27 +0000
+Message-ID: <bug-90276-8800-Rd5wCWrLBS@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1887057849=="
+Content-Type: multipart/mixed; boundary="===============1389132122=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1887057849==
-Content-Type: multipart/alternative; boundary="1431810677.B168d1.12153"; charset="UTF-8"
+--===============1389132122==
+Content-Type: multipart/alternative; boundary="1431818547.Abdfeffd1.10792"; charset="UTF-8"
 
 
---1431810677.B168d1.12153
-Date: Sat, 16 May 2015 21:11:17 +0000
+--1431818547.Abdfeffd1.10792
+Date: Sat, 16 May 2015 23:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90453
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #21 from Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Marcin Slusarz from comment #20)
-> If we'll fix the OpenGL driver, the other bugs won't matter (and they are
-> much harder to fix). So the first step is figuring out how to reproduce this
-> bug in a matter of minutes and generating an apitrace and/or mmt trace.
-
-In order to get some work done, I switched back to the binary nvidia drivers
-for now.
-
-If you have an actual plan of attack, I'll happily switch back to try it out.
+--- Comment #15 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + those 4 patches has the read fault
+error!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431810677.B168d1.12153
-Date: Sat, 16 May 2015 21:11:17 +0000
+--1431818547.Abdfeffd1.10792
+Date: Sat, 16 May 2015 23:22:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c21">Comment # 21</a>
+   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
+   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
 </span></b>
-        <pre>(In reply to Marcin Slusarz from <a href="show_bug.cgi?id=90453#c20">comment #20</a>)
-<span class="quote">&gt; If we'll fix the OpenGL driver, the other bugs won't matter (and they are
-&gt; much harder to fix). So the first step is figuring out how to reproduce this
-&gt; bug in a matter of minutes and generating an apitrace and/or mmt trace.</span >
-
-In order to get some work done, I switched back to the binary nvidia drivers
-for now.
-
-If you have an actual plan of attack, I'll happily switch back to try it out.</pre>
+        <pre>3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + those 4 patches has the read fault
+error!</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +75,9 @@ If you have an actual plan of attack, I'll happily switch back to try it out.</p
     </body>
 </html>
 
---1431810677.B168d1.12153--
+--1431818547.Abdfeffd1.10792--
 
---===============1887057849==
+--===============1389132122==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1887057849==--
+--===============1389132122==--
