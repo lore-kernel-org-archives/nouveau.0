@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
  PGRAPH and PGR errors
-Date: Sat, 16 May 2015 08:41:12 +0000
-Message-ID: <bug-90453-8800-d5hEQu5ats@http.bugs.freedesktop.org/>
+Date: Sat, 16 May 2015 10:58:20 +0000
+Message-ID: <bug-90453-8800-yhzswAEuuU@http.bugs.freedesktop.org/>
 References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1103062203=="
+Content-Type: multipart/mixed; boundary="===============0742449620=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1103062203==
-Content-Type: multipart/alternative; boundary="1431765672.31405.22836"; charset="UTF-8"
+--===============0742449620==
+Content-Type: multipart/alternative; boundary="1431773900.1Fa0A1.21707"; charset="UTF-8"
 
 
---1431765672.31405.22836
-Date: Sat, 16 May 2015 08:41:12 +0000
+--1431773900.1Fa0A1.21707
+Date: Sat, 16 May 2015 10:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90453
 
-Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #18 from Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+This latest instance is also interesting, and might help diagnose the problem.
+I was watching a YouTube video, and this time only the Chromium browser froze,
+and I got a 'page unresponsive' popup. For a while, I could still move the
+mouse and interact with other windows. After about 30 seconds, everything froze
+once again. dmesg output:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NVE4] Desktop freezes &    |[NVE4] Desktop freezes &
-                   |PDISP, PFIFO and PGRAPH,    |PDISP, PFIFO, PGRAPH and
-                   |PGR errors                  |PGR errors
+[ 7583.945899] nouveau E[     PGR][0000:01:00.0] TRAP ch 8 [0x007f2f2000
+gnome-shell[1189]]
+[ 7583.945909] nouveau E[     PGR][0000:01:00.0] GPC2/PROP trap: (unknown enum
+0x00000002)
+[ 7583.945912] nouveau E[     PGR][0000:01:00.0] x = 3488, y = 104, format = 0,
+storage type = 0
+[ 7588.249980] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+[ 7588.249985] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
+10, recovering...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431765672.31405.22836
-Date: Sat, 16 May 2015 08:41:12 +0000
+--1431773900.1Fa0A1.21707
+Date: Sat, 16 May 2015 10:58:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +62,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
+</span></b>
+        <pre>This latest instance is also interesting, and might help diagnose the problem.
+I was watching a YouTube video, and this time only the Chromium browser froze,
+and I got a 'page unresponsive' popup. For a while, I could still move the
+mouse and interact with other windows. After about 30 seconds, everything froze
+once again. dmesg output:
 
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH, PGR errors
-           </td>
-           <td>[NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors
-           </td>
-         </tr></table>
-      <p>
+[ 7583.945899] nouveau E[     PGR][0000:01:00.0] TRAP ch 8 [0x007f2f2000
+gnome-shell[1189]]
+[ 7583.945909] nouveau E[     PGR][0000:01:00.0] GPC2/PROP trap: (unknown enum
+0x00000002)
+[ 7583.945912] nouveau E[     PGR][0000:01:00.0] x = 3488, y = 104, format = 0,
+storage type = 0
+[ 7588.249980] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+[ 7588.249985] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
+10, recovering...</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +101,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1431765672.31405.22836--
+--1431773900.1Fa0A1.21707--
 
---===============1103062203==
+--===============0742449620==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1103062203==--
+--===============0742449620==--
