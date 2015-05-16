@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE6] screen freeze with PDISP errors,
-	bisected
-Date: Sat, 16 May 2015 20:27:13 +0000
-Message-ID: <bug-90276-8800-i0PBV1sKz2@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+From: Matti Nykyri <Matti.Nykyri-X3B1VOXEql0@public.gmane.org>
+Subject: Re: Nouveau kernel module exhausting CPU
+Date: Sat, 16 May 2015 23:23:37 +0300
+Message-ID: <20150516202337.GA7789@lyseo.edu.ouka.fi>
+References: <20150405174218.GA20940@lyseo.edu.ouka.fi>
+ <CAKb7UviifdNpNFzK-yWaH9KODEANXUsX-nDkY+Gv-7=9x06Vaw@mail.gmail.com>
+Reply-To: Matti.Nykyri-X3B1VOXEql0@public.gmane.org
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0711941382=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAKb7UviifdNpNFzK-yWaH9KODEANXUsX-nDkY+Gv-7=9x06Vaw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,90 +20,125 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0711941382==
-Content-Type: multipart/alternative; boundary="1431808033.BaEadaC72.2166"; charset="UTF-8"
-
-
---1431808033.BaEadaC72.2166
-Date: Sat, 16 May 2015 20:27:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
-
---- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-You can workaround it by applying the contents of commits: 
-79456e1a10d5f4e708822287ed0e97af469bf49b
-d979ab975ecdb336ed4da77a808be813a293b59e
-d7bda18c9102b65078c132fd7d7ffd835058f021
-13dfe1286d1ea1af4c9330b039c2316d0d92c484
-at each step of the bisection.
-
-Of course it's possible that those 5 patches (4 above and
-3d9e3921f4d77bcaeea913c48b894d1208f0cb06) are the culprit, so first check
-whether 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + above patches works.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431808033.BaEadaC72.2166
-Date: Sat, 16 May 2015 20:27:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>You can workaround it by applying the contents of commits: 
-79456e1a10d5f4e708822287ed0e97af469bf49b
-d979ab975ecdb336ed4da77a808be813a293b59e
-d7bda18c9102b65078c132fd7d7ffd835058f021
-13dfe1286d1ea1af4c9330b039c2316d0d92c484
-at each step of the bisection.
-
-Of course it's possible that those 5 patches (4 above and
-3d9e3921f4d77bcaeea913c48b894d1208f0cb06) are the culprit, so first check
-whether 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + above patches works.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431808033.BaEadaC72.2166--
-
---===============0711941382==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0711941382==--
+WWVzLCBzbyB0aGlzIHdhcyBhbGwgZHVlIHRvIHRoaXMgYnVnOgoKaHR0cHM6Ly9idWdzLmZyZWVk
+ZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTA0ODIKCgpPbiBTdW4sIEFwciAwNSwgMjAxNSBh
+dCAwMTo1Njo1MVBNIC0wNDAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBZb3UgY2FuIHVzZSBwZXJm
+IHRvIHRyeSB0byBzZWUgd2hlcmUgdGhlIGNwdSB0aW1lIGlzIGdvaW5nLgo+IAo+IE9uIFN1biwg
+QXByIDUsIDIwMTUgYXQgMTo0MiBQTSwgTWF0dGkgTnlreXJpIDxNYXR0aS5OeWt5cmlAaWtpLmZp
+PiB3cm90ZToKPiA+IEhlbGxvCj4gPgo+ID4gSSByZWNlbnRseSBzd2l0Y2hlZCBmcm9tIE52aWRp
+YSBiaW5hcnkgZHJpdmVyIHRvIE5vdXZlYXUuIEkgaGF2ZSBlbmNvdW50ZXJlZCBhIHBvc3NpYmxl
+IGJ1ZyBpbiB0aGUga2VybmVsIG1vZHVsZS4gQmVmb3JlIEkgZmlsZSBhIGJ1ZyByZXBvcnQgSSB3
+b3VsZCBsaWtlIHRvIGtub3cgaWYgdGhpcyBpcyBhIGtub3duIGlzc3VlIG9yIG5vdC4KPiA+Cj4g
+PiBJIGJlbGlldmUgaXQgaXMgcmVsYXRlZCB0byBzbGVlcCBzdGF0ZSBhbmQgcG93ZXIgbWFuYWdl
+bWVudCBvZiB0aGUgZHJpdmVyLgo+ID4KPiA+IFRoZSBCdWc6Cj4gPgo+ID4gV2hlbiB0aGUgY29t
+cHV0ZXIgaXMgbGVmdCBvbiBpdCdzIG93biB0byBnbyB0byBhIHBvd2VyIHNhdmUgbW9kZSBYIHRh
+a2VzIDEwMCUgQ1BVLXRpbWUgaW4gaXRzIHRocmVhZC4gQSB0cmFjZSB0byBYIHNlcnZlciBzaG93
+cyB0aGlzIGlzIGNhdXNlZCBieSBzZWxlY3Qtc3lzdGVtY2FsbCBpbW1lZGlhdGVseSByZXR1cm5p
+bmcgd2hlbiBYIGlzIHBvbGxpbmcgaXRzIEZEJ3MuIFRoZSBGRCBucm8gMTIgaXMgY29uc3RhbnRs
+eSBpbmRpY2F0aW5nIHRoYXQgdGhlcmUgaXMgZGF0YSB0byByZWFkIHNvIFggd2lsbCBuZXZlciBz
+bGVlcC4gVGhlIEZEIDEyIGlzIGEgci93IHNvY2tldCBjb25uZWN0ZWQgdmlhIG5ldGxpbmsgdG8g
+a2VybmVsJ3MgVUVWRU5ULgo+ID4KPiA+IFJlc3RhcnRpbmcgWCByZXNldHMgdGhlIHByb2JsZW0g
+dG8gd2FpdCBhZ2FpbiBmb3IgdGhlIHNsZWVwIHN0YXRlLiBBIG5ldyBzbGVlcCB3aWxsIG1ha2Ug
+dGhlIHByb2JsZW0gYXJpY2UgYWdhaW4uCj4gPgo+ID4KPiA+IEhhcmR3YXJlOgo+ID4KPiA+IEkg
+aGF2ZSBGZXJtaSBuVmlkaWEgZ3B1IEdGMTA0IE5WQzQgKEdlRm9yY2UgR1RYIDQ2MCkgYW5kIGk1
+IHF1YWQgY29yZSBhbWQ2NCBwcm9jZXNzb3IKPiA+Cj4gPiBTb2Z0d2FyZToKPiA+Cj4gPiBTeXN0
+ZW0gaXMgcnVubmluZyBnZW50b28gd2l0aCBzdGFibGUgJ2RlZmF1bHQvbGludXgvYW1kNjQvMTMu
+MC9kZXNrdG9wL2tkZSctcHJvZmlsZQo+ID4KPiA+IEtlcm5lbDoKPiA+IHN5cy1rZXJuZWwvZ2Vu
+dG9vLXNvdXJjZXMtMy4xOC43Cj4gPgo+ID4gTm91dmVhdSBkcml2ZXI6Cj4gPiB4MTEtZHJpdmVy
+cy94Zjg2LXZpZGVvLW5vdXZlYXUtMS4wLjExCj4gPgo+ID4gWG9yZy1zZXJ2ZXI6Cj4gPiB4MTEt
+YmFzZS94b3JnLXNlcnZlci0xLjE2LjQKPiA+Cj4gPiBLTVMgaXMgdXNlZCBmb3Igc2VsZWN0aW5n
+IHZpZGVvIG1vZGVzLgo+ID4KPiA+IC0tLS0gZG1lc2cgLS0tLQo+ID4gWyAgICAwLjYyMzA2M10g
+W2RybV0gSW5pdGlhbGl6ZWQgZHJtIDEuMS4wIDIwMDYwODEwCj4gPiBbICAgIDAuNjIzMjcyXSBu
+b3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDE6MDAuMF0gQk9PVDAgIDogMHgwYzQxMDBhMQo+ID4g
+WyAgICAwLjYyMzI3NF0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAxOjAwLjBdIENoaXBzZXQ6
+IEdGMTA0IChOVkM0KQo+ID4gWyAgICAwLjYyMzI3NV0gbm91dmVhdSAgWyAgREVWSUNFXVswMDAw
+OjAxOjAwLjBdIEZhbWlseSA6IE5WQzAKPiA+IFsgICAgMC42MjMzMDddIG5vdXZlYXUgIFsgICBW
+QklPU11bMDAwMDowMTowMC4wXSBjaGVja2luZyBQUkFNSU4gZm9yIGltYWdlLi4uCj4gPiBbICAg
+IDAuNzE2OTgzXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDE6MDAuMF0gLi4uIGFwcGVhcnMg
+dG8gYmUgdmFsaWQKPiA+IFsgICAgMC43MTY5ODVdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDow
+MTowMC4wXSB1c2luZyBpbWFnZSBmcm9tIFBSQU1JTgo+ID4gWyAgICAwLjcxNzA3NV0gbm91dmVh
+dSAgWyAgIFZCSU9TXVswMDAwOjAxOjAwLjBdIEJJVCBzaWduYXR1cmUgZm91bmQKPiA+IFsgICAg
+MC43MTcwNzZdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSB2ZXJzaW9uIDcwLjA0
+LjFiLjAwLjAyCj4gPiBbICAgIDAuNzM5MzE5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogaXJxIDM0
+IGZvciBNU0kvTVNJLVgKPiA+IFsgICAgMC43MzkzMjddIG5vdXZlYXUgIFsgICAgIFBNQ11bMDAw
+MDowMTowMC4wXSBNU0kgaW50ZXJydXB0cyBlbmFibGVkCj4gPiBbICAgIDAuNzM5MzU5XSBub3V2
+ZWF1ICBbICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gUkFNIHR5cGU6IEdERFI1Cj4gPiBbICAgIDAu
+NzM5MzYwXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDE6MDAuMF0gUkFNIHNpemU6IDEwMjQg
+TWlCCj4gPiBbICAgIDAuNzM5MzYxXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDE6MDAuMF0g
+ICAgWkNPTVA6IDAgdGFncwo+ID4gWyAgICAwLjc0NDkzNF0gbm91dmVhdSAgWyAgICBWT0xUXVsw
+MDAwOjAxOjAwLjBdIEdQVSB2b2x0YWdlOiA4NzUwMDB1dgo+ID4gWyAgICAwLjc3MzMwNF0gbm91
+dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIEZBTiBjb250cm9sOiBQV00KPiA+IFsgICAg
+MC43NzMzMTZdIG5vdXZlYXUgIFsgIFBUSEVSTV1bMDAwMDowMTowMC4wXSBmYW4gbWFuYWdlbWVu
+dDogYXV0b21hdGljCj4gPiBbICAgIDAuNzczMzQzXSBub3V2ZWF1ICBbICBQVEhFUk1dWzAwMDA6
+MDE6MDAuMF0gaW50ZXJuYWwgc2Vuc29yOiB5ZXMKPiA+IFsgICAgMC43OTM0MTddIG5vdXZlYXUg
+IFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwMzogY29yZSA1MCBNSHogbWVtb3J5IDEzNSBNSHoK
+PiA+IFsgICAgMC43OTM0MTldIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwNzog
+Y29yZSA0MDUgTUh6IG1lbW9yeSAzMjQgTUh6Cj4gPiBbICAgIDAuNzkzNDIxXSBub3V2ZWF1ICBb
+ICAgICBDTEtdWzAwMDA6MDE6MDAuMF0gMGM6IGNvcmUgNDA1IE1IeiBtZW1vcnkgMTkwMCBNSHoK
+PiA+IFsgICAgMC43OTM0MjNdIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwZjog
+Y29yZSA4MDAgTUh6IG1lbW9yeSAxOTAwIE1Iego+ID4gWyAgICAwLjc5MzQ5OF0gbm91dmVhdSAg
+WyAgICAgQ0xLXVswMDAwOjAxOjAwLjBdIC0tOiBjb3JlIDUwIE1IeiBtZW1vcnkgMTM1IE1Iego+
+ID4gWyAgICAwLjgwMzE1MF0gbm91dmVhdSAgWyAgICAgRFJNXSBWUkFNOiAxMDI0IE1pQgo+ID4g
+WyAgICAwLjgwMzE1MV0gbm91dmVhdSAgWyAgICAgRFJNXSBHQVJUOiAxMDQ4NTc2IE1pQgo+ID4g
+WyAgICAwLjgwMzE1NF0gbm91dmVhdSAgWyAgICAgRFJNXSBUTURTIHRhYmxlIHZlcnNpb24gMi4w
+Cj4gPiBbICAgIDAuODAzMTU1XSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiB2ZXJzaW9uIDQuMAo+
+ID4gWyAgICAwLjgwMzE1N10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMDogMDQwMDAz
+MTAgMDAwMDAwMDAKPiA+IFsgICAgMC44MDMxNThdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91
+dHAgMDE6IDAyMDExMzAwIDAwMDIwMDMwCj4gPiBbICAgIDAuODAzMTU5XSBub3V2ZWF1ICBbICAg
+ICBEUk1dIERDQiBvdXRwIDAyOiAwMTAxMTMwMiAwMDAyMDAzMAo+ID4gWyAgICAwLjgwMzE2MF0g
+bm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMzogMDIwMjIzNjIgMDAwMjAwMTAKPiA+IFsg
+ICAgMC44MDMxNjFdIG5vdXZlYXUgIFsgICAgIERSTV0gRENCIG91dHAgMDQ6IDA4MDMzMzgyIDAw
+MDIwMDMwCj4gPiBbICAgIDAuODAzMTYyXSBub3V2ZWF1ICBbICAgICBEUk1dIERDQiBjb25uIDAw
+OiAwMDAwMDAwMAo+ID4gWyAgICAwLjgwMzE2NF0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0IgY29u
+biAwMTogMDAwMDExMzAKPiA+IFsgICAgMC44MDMxNjVdIG5vdXZlYXUgIFsgICAgIERSTV0gRENC
+IGNvbm4gMDI6IDAwMDAyMjYxCj4gPiBbICAgIDAuODAzMTY2XSBub3V2ZWF1ICBbICAgICBEUk1d
+IERDQiBjb25uIDAzOiAwMDAxMDMzMAo+ID4gWyAgICAwLjgwMzgxOV0gW2RybV0gZm9yY2luZyBW
+R0EtMSBjb25uZWN0b3IgT0ZGCj4gPiBbICAgIDAuODAzOTI4XSBbZHJtXSBTdXBwb3J0cyB2Ymxh
+bmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLgo+ID4gWyAgICAwLjgwMzky
+OF0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4K
+PiA+IFsgICAgMC44MTg2OTldIG5vdXZlYXUgIFsgICAgIERSTV0gTU06IHVzaW5nIENPUFkxIGZv
+ciBidWZmZXIgY29waWVzCj4gPiBbICAgIDEuMDYzMzAxXSBub3V2ZWF1ICBbICAgICBEUk1dIGFs
+bG9jYXRlZCAxOTIweDEwODAgZmI6IDB4NjAwMDAsIGJvIGZmZmY4ODAyMTViZWU4MDAKPiA+IFsg
+ICAgMS4wNjM0MjNdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKPiA+
+IFsgICAgMS4xODE4MTZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmYjA6IG5vdXZlYXVmYiBmcmFt
+ZSBidWZmZXIgZGV2aWNlCj4gPiBbICAgIDEuMTgxODE3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
+cmVnaXN0ZXJlZCBwYW5pYyBub3RpZmllcgo+ID4gWyAgICAxLjE5Nzk5MF0gW2RybV0gSW5pdGlh
+bGl6ZWQgbm91dmVhdSAxLjIuMSAyMDEyMDgwMSBmb3IgMDAwMDowMTowMC4wIG9uIG1pbm9yIDAK
+PiA+IC0tLS0gZW5kIC0tLS0KPiA+Cj4gPiBYIHVzZXMgMiBzZXBhcmF0ZSBzY3JlZW5zIGluIFph
+cGhvZEhlYWRzIG1vZGUKPiA+Cj4gPiAtLS0tIFhvcmcuMC5sb2cgLS0tLQo+ID4gWzE3NjQwNC4z
+NzhdIChJSSkgeGZyZWU4NjogQWRkaW5nIGRybSBkZXZpY2UgKC9kZXYvZHJpL2NhcmQwKQo+ID4g
+WzE3NjQwNC4zODRdIChJSSkgTG9hZE1vZHVsZTogIm5vdXZlYXUiCj4gPiBbMTc2NDA0LjM4NV0g
+KElJKSBMb2FkaW5nIC91c3IvbGliNjQveG9yZy9tb2R1bGVzL2RyaXZlcnMvbm91dmVhdV9kcnYu
+c28KPiA+IFsxNzY0MDQuMzg1XSAoSUkpIE1vZHVsZSBub3V2ZWF1OiB2ZW5kb3I9IlguT3JnIEZv
+dW5kYXRpb24iCj4gPiBbMTc2NDA0LjM4NV0gKElJKSBOT1VWRUFVIGRyaXZlcgo+ID4gWzE3NjQw
+NC4zODVdIChJSSkgTk9VVkVBVSBkcml2ZXIgZm9yIE5WSURJQSBjaGlwc2V0IGZhbWlsaWVzIDoK
+PiA+IFsxNzY0MDQuMzg2XSAoSUkpIFtkcm1dIG5vdXZlYXUgaW50ZXJmYWNlIHZlcnNpb246IDEu
+Mi4xCj4gPiBbMTc2NDA0LjM4Nl0gKElJKSBbZHJtXSBub3V2ZWF1IGludGVyZmFjZSB2ZXJzaW9u
+OiAxLjIuMQo+ID4gWzE3NjQwNC4zODddICgtLSkgTk9VVkVBVSgwKTogQ2hpcHNldDogIk5WSURJ
+QSBOVkM0Igo+ID4gWzE3NjQwNC4zODddICg9PSkgTk9VVkVBVSgwKTogRGVwdGggMjQsICgtLSkg
+ZnJhbWVidWZmZXIgYnBwIDMyCj4gPiBbMTc2NDA0LjM4N10gKD09KSBOT1VWRUFVKDApOiBSR0Ig
+d2VpZ2h0IDg4OAo+ID4gWzE3NjQwNC4zODddICg9PSkgTk9VVkVBVSgwKTogRGVmYXVsdCB2aXN1
+YWwgaXMgVHJ1ZUNvbG9yCj4gPiBbMTc2NDA0LjM4N10gKCoqKSBOT1VWRUFVKDApOiBPcHRpb24g
+IlphcGhvZEhlYWRzIiAiSERNSS0xIgo+ID4gWzE3NjQwNC4zODddICg9PSkgTk9VVkVBVSgwKTog
+VXNpbmcgSFcgY3Vyc29yCj4gPiBbMTc2NDA0LjM4N10gKD09KSBOT1VWRUFVKDApOiBHTFggc3lu
+YyB0byBWQmxhbmsgZW5hYmxlZC4KPiA+IFsxNzY0MDQuMzg3XSAoPT0pIE5PVVZFQVUoMCk6IFBh
+Z2UgZmxpcHBpbmcgZW5hYmxlZAo+ID4gWzE3NjQwNC4zODddICg9PSkgTk9VVkVBVSgwKTogU3dh
+cCBsaW1pdCBzZXQgdG8gMSBbTWF4IGFsbG93ZWQgMl0KPiA+IFsxNzY0MDQuMzg3XSAoPT0pIE5P
+VVZFQVUoMCk6IFBhZ2UgZmxpcHBpbmcgc3luY2VkIHRvIHZibGFuayBieSBrZXJuZWwuCj4gPiBb
+MTc2NDA0LjM4N10gKElJKSBOT1VWRUFVKDApOiBJbml0aWFsaXppbmcgb3V0cHV0cyAuLi4KPiA+
+IFsxNzY0MDQuNTA3XSAoSUkpIE5PVVZFQVUoMCk6IE91dHB1dCBIRE1JLTEgdXNpbmcgbW9uaXRv
+ciBzZWN0aW9uIE1vbml0b3IwCj4gPiBbMTc2NDA0LjUwN10gKCoqKSBOT1VWRUFVKDApOiBPcHRp
+b24gIlByZWZlcnJlZE1vZGUiICIxOTIweDEwODBfMjMiCj4gPiBbMTc2NDA0LjUwOF0gKFdXKSBO
+T1VWRUFVKDApOiBPcHRpb24gIk1heENsb2NrIiByZXF1aXJlcyBhIGZyZXF1ZW5jeSB2YWx1ZQo+
+ID4gZXRjLi4uCj4gPiAtLS0tIGVuZCAtLS0tCj4gPgo+ID4gQW55IGlkZWFzPwo+ID4KPiA+IC0t
+Cj4gPiAtTWF0dGkKPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCj4gPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+ID4gTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKPiA+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1CgotLSAKLU1hdHRpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
