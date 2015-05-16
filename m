@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP,
-	PFIFO and PGRAPH errors
-Date: Sat, 16 May 2015 08:40:48 +0000
-Message-ID: <bug-90453-8800-qGa1RhRml7@http.bugs.freedesktop.org/>
+ PFIFO and PGRAPH, PGR errors
+Date: Sat, 16 May 2015 08:41:00 +0000
+Message-ID: <bug-90453-8800-6CS7B6NEe7@http.bugs.freedesktop.org/>
 References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1831743895=="
+Content-Type: multipart/mixed; boundary="===============1097128450=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,43 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1831743895==
-Content-Type: multipart/alternative; boundary="1431765648.2Ed4721D1.22836"; charset="UTF-8"
+--===============1097128450==
+Content-Type: multipart/alternative; boundary="1431765660.3c8014c3.22836"; charset="UTF-8"
 
 
---1431765648.2Ed4721D1.22836
-Date: Sat, 16 May 2015 08:40:48 +0000
+--1431765660.3c8014c3.22836
+Date: Sat, 16 May 2015 08:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90453
 
---- Comment #17 from Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Indeed, problem not solved. Here's a new set of errors produced during a
-freeze:
+Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-[  690.870744] nouveau E[     PGR][0000:01:00.0] TRAP ch 8 [0x007f2f2000
-gnome-shell[2652]]
-[  690.870754] nouveau E[     PGR][0000:01:00.0] GPC1/PROP trap:
-ZETA_STORAGE_TYPE_MISMATCH
-[  690.870756] nouveau E[     PGR][0000:01:00.0] x = 1232, y = 56, format = 0,
-storage type = fe
-[  690.870763] nouveau E[     PGR][0000:01:00.0] GPC2/PROP trap:
-ZETA_STORAGE_TYPE_MISMATCH
-[  690.870765] nouveau E[     PGR][0000:01:00.0] x = 1056, y = 328, format = 0,
-storage type = fe
-[  695.179294] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[  695.179298] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
-10, recovering...
-
-This one happened earlier than usual.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE4] Desktop freezes &    |[NVE4] Desktop freezes &
+                   |PDISP, PFIFO and PGRAPH     |PDISP, PFIFO and PGRAPH,
+                   |errors                      |PGR errors
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431765648.2Ed4721D1.22836
-Date: Sat, 16 May 2015 08:40:48 +0000
+--1431765660.3c8014c3.22836
+Date: Sat, 16 May 2015 08:41:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,38 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH errors"
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH, PGR errors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
-</span></b>
-        <pre>Indeed, problem not solved. Here's a new set of errors produced during a
-freeze:
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-[  690.870744] nouveau E[     PGR][0000:01:00.0] TRAP ch 8 [0x007f2f2000
-gnome-shell[2652]]
-[  690.870754] nouveau E[     PGR][0000:01:00.0] GPC1/PROP trap:
-ZETA_STORAGE_TYPE_MISMATCH
-[  690.870756] nouveau E[     PGR][0000:01:00.0] x = 1232, y = 56, format = 0,
-storage type = fe
-[  690.870763] nouveau E[     PGR][0000:01:00.0] GPC2/PROP trap:
-ZETA_STORAGE_TYPE_MISMATCH
-[  690.870765] nouveau E[     PGR][0000:01:00.0] x = 1056, y = 328, format = 0,
-storage type = fe
-[  695.179294] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[  695.179298] nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel
-10, recovering...
-
-This one happened earlier than usual.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH errors
+           </td>
+           <td>[NVE4] Desktop freezes &amp; PDISP, PFIFO and PGRAPH, PGR errors
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -107,9 +85,9 @@ This one happened earlier than usual.</pre>
     </body>
 </html>
 
---1431765648.2Ed4721D1.22836--
+--1431765660.3c8014c3.22836--
 
---===============1831743895==
+--===============1097128450==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1831743895==--
+--===============1097128450==--
