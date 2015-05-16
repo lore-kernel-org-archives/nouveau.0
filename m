@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
  PGRAPH and PGR errors
-Date: Sat, 16 May 2015 21:06:21 +0000
-Message-ID: <bug-90453-8800-b0jtENd3Oa@http.bugs.freedesktop.org/>
+Date: Sat, 16 May 2015 21:11:17 +0000
+Message-ID: <bug-90453-8800-Kx2TAXSltx@http.bugs.freedesktop.org/>
 References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2034740292=="
+Content-Type: multipart/mixed; boundary="===============1887057849=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2034740292==
-Content-Type: multipart/alternative; boundary="1431810381.52dee1.10948"; charset="UTF-8"
+--===============1887057849==
+Content-Type: multipart/alternative; boundary="1431810677.B168d1.12153"; charset="UTF-8"
 
 
---1431810381.52dee1.10948
-Date: Sat, 16 May 2015 21:06:21 +0000
+--1431810677.B168d1.12153
+Date: Sat, 16 May 2015 21:11:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90453
 
---- Comment #20 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It seems gnome-shell triggers some bug in our OpenGL driver, which causes the
-hardware to raise errors (GPC1/PROP traps), which kernel fails to ack/cleanup
-and eventually this leads to context switching failure.
+--- Comment #21 from Michiel Helvensteijn <mhelvens-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Marcin Slusarz from comment #20)
+> If we'll fix the OpenGL driver, the other bugs won't matter (and they are
+> much harder to fix). So the first step is figuring out how to reproduce this
+> bug in a matter of minutes and generating an apitrace and/or mmt trace.
 
-If we'll fix the OpenGL driver, the other bugs won't matter (and they are much
-harder to fix). So the first step is figuring out how to reproduce this bug in
-a matter of minutes and generating an apitrace and/or mmt trace.
+In order to get some work done, I switched back to the binary nvidia drivers
+for now.
+
+If you have an actual plan of attack, I'll happily switch back to try it out.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431810381.52dee1.10948
-Date: Sat, 16 May 2015 21:06:21 +0000
+--1431810677.B168d1.12153
+Date: Sat, 16 May 2015 21:11:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +62,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:mhelvens&#64;gmail.com" title="Michiel Helvensteijn &lt;mhelvens&#64;gmail.com&gt;"> <span class="fn">Michiel Helvensteijn</span></a>
 </span></b>
-        <pre>It seems gnome-shell triggers some bug in our OpenGL driver, which causes the
-hardware to raise errors (GPC1/PROP traps), which kernel fails to ack/cleanup
-and eventually this leads to context switching failure.
+        <pre>(In reply to Marcin Slusarz from <a href="show_bug.cgi?id=90453#c20">comment #20</a>)
+<span class="quote">&gt; If we'll fix the OpenGL driver, the other bugs won't matter (and they are
+&gt; much harder to fix). So the first step is figuring out how to reproduce this
+&gt; bug in a matter of minutes and generating an apitrace and/or mmt trace.</span >
 
-If we'll fix the OpenGL driver, the other bugs won't matter (and they are much
-harder to fix). So the first step is figuring out how to reproduce this bug in
-a matter of minutes and generating an apitrace and/or mmt trace.</pre>
+In order to get some work done, I switched back to the binary nvidia drivers
+for now.
+
+If you have an actual plan of attack, I'll happily switch back to try it out.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +89,9 @@ a matter of minutes and generating an apitrace and/or mmt trace.</pre>
     </body>
 </html>
 
---1431810381.52dee1.10948--
+--1431810677.B168d1.12153--
 
---===============2034740292==
+--===============1887057849==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2034740292==--
+--===============1887057849==--
