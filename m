@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90482] Xorg take 100% CPU when using multiple
- independent screen configuration
-Date: Sat, 16 May 2015 15:15:58 +0000
-Message-ID: <bug-90482-8800-JZHWfQ59Ng@http.bugs.freedesktop.org/>
-References: <bug-90482-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90276] [NVE6] screen freeze with PDISP errors,
+	bisected
+Date: Sat, 16 May 2015 20:27:13 +0000
+Message-ID: <bug-90276-8800-i0PBV1sKz2@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1089173281=="
+Content-Type: multipart/mixed; boundary="===============0711941382=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90482-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1089173281==
-Content-Type: multipart/alternative; boundary="1431789358.F6ce1.22468"; charset="UTF-8"
+--===============0711941382==
+Content-Type: multipart/alternative; boundary="1431808033.BaEadaC72.2166"; charset="UTF-8"
 
 
---1431789358.F6ce1.22468
-Date: Sat, 16 May 2015 15:15:58 +0000
+--1431808033.BaEadaC72.2166
+Date: Sat, 16 May 2015 20:27:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90482
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #1 from dura <dura-PlyTytoxC32F389P3+uynUB+6BGkLq7r@public.gmane.org> ---
-Created attachment 115836
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115836&action=edit
-quick and dirty fix
+--- Comment #14 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+You can workaround it by applying the contents of commits: 
+79456e1a10d5f4e708822287ed0e97af469bf49b
+d979ab975ecdb336ed4da77a808be813a293b59e
+d7bda18c9102b65078c132fd7d7ffd835058f021
+13dfe1286d1ea1af4c9330b039c2316d0d92c484
+at each step of the bisection.
+
+Of course it's possible that those 5 patches (4 above and
+3d9e3921f4d77bcaeea913c48b894d1208f0cb06) are the culprit, so first check
+whether 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + above patches works.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431789358.F6ce1.22468
-Date: Sat, 16 May 2015 15:15:58 +0000
+--1431808033.BaEadaC72.2166
+Date: Sat, 16 May 2015 20:27:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +62,24 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Xorg take 100% CPU when using multiple independent screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90482#c1">Comment # 1</a>
+   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Xorg take 100% CPU when using multiple independent screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90482">bug 90482</a>
-              from <span class="vcard"><a class="email" href="mailto:dura&#64;duradsl.duckdns.org" title="dura &lt;dura&#64;duradsl.duckdns.org&gt;"> <span class="fn">dura</span></a>
+   title="NEW - [NVE6] screen freeze with PDISP errors, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115836" name="attach_115836" title="quick and dirty fix">attachment 115836</a> <a href="attachment.cgi?id=115836&amp;action=edit" title="quick and dirty fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90482&amp;attachment=115836'>[review]</a>
-quick and dirty fix</pre>
+        <pre>You can workaround it by applying the contents of commits: 
+79456e1a10d5f4e708822287ed0e97af469bf49b
+d979ab975ecdb336ed4da77a808be813a293b59e
+d7bda18c9102b65078c132fd7d7ffd835058f021
+13dfe1286d1ea1af4c9330b039c2316d0d92c484
+at each step of the bisection.
+
+Of course it's possible that those 5 patches (4 above and
+3d9e3921f4d77bcaeea913c48b894d1208f0cb06) are the culprit, so first check
+whether 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 + above patches works.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +91,9 @@ quick and dirty fix</pre>
     </body>
 </html>
 
---1431789358.F6ce1.22468--
+--1431808033.BaEadaC72.2166--
 
---===============1089173281==
+--===============0711941382==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1089173281==--
+--===============0711941382==--
