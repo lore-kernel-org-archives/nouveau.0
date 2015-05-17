@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Sun, 17 May 2015 14:02:11 +0000
-Message-ID: <bug-90435-8800-eW5fSJaAcO@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH 00/12] Tessellation support for nvc0
+Date: Sun, 17 May 2015 16:15:37 +0200
+Message-ID: <5558A289.8090503@mni.thm.de>
+References: <1431839235-10256-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1583454224=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1431839235-10256-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,74 +17,58 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1583454224==
-Content-Type: multipart/alternative; boundary="1431871331.88287e1.17122"; charset="UTF-8"
-
-
---1431871331.88287e1.17122
-Date: Sun, 17 May 2015 14:02:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #6 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-What I not changed - is the kernel driver nouveau. It was the last version from
-the kernel...
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1431871331.88287e1.17122
-Date: Sun, 17 May 2015 14:02:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:dikiy_evrej&#64;web.de" title="Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <span class="fn">Ilya</span></a>
-</span></b>
-        <pre>What I not changed - is the kernel driver nouveau. It was the last version from
-the kernel...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431871331.88287e1.17122--
-
---===============1583454224==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1583454224==--
+YXMgZmFyIGFzIGkgY2FuIGV2YWx1YXRlIHRoaXMgd2l0aG91dCBkZWVwZXIgaW5zaWdodCBpbnRv
+IHRlc3MsIHRoaXMgCnBhdGNoc2VyaWVzIGxvb2tzIGdvb2QgdG8gbWUhCgpSZXZpZXdlZC1ieTog
+VG9iaWFzIEtsYXVzbWFubiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPgoK
+T24gMTcuMDUuMjAxNSAwNzowNywgSWxpYSBNaXJraW4gd3JvdGU6Cj4gVGhpcyBpcyBlbm91Z2gg
+dG8gZW5hYmxlIHRlc3NlbGxhdGlvbiBzdXBwb3J0IG9uIG52YzAuIEl0IHNlZW1zIHRvCj4gd29y
+ayBhIGxvdCBiZXR0ZXIgb24gbXkgR0YxMDggdGhhbiBHSzIwOC4gSSBzdXNwZWN0IHRoYXQgdGhl
+cmUncyBzb21lCj4gc29ydCBvZiBzY2hlZHVsaW5nIHNoZW5hbmlnYW5zIHRoYXQgbmVlZCB0byBi
+ZSBhZGp1c3RlZCBmb3IKPiBrZXBsZXIrLiBPciBwZXJoYXBzIHNvbWUgc2hhZGVyIGhlYWRlciB0
+aGluZ3MuCj4KPiBFdmVuIHdpdGggdGhlIEdGMTA4LCBJIHN0aWxsIGdldCBvY2Nhc2lvbmFsIGJs
+dWUgdHJpYW5nbGVzIGluIEhlYXZlbiwKPiBidXQgSSBnZXQgYSAqdG9uKiBvZiB0aGVtIG9uIHRo
+ZSBHSzIwOCAtLSBzZWVtaW5nbHkgdGhlIHNhbWUgaXNzdWUsCj4gYnV0IGl0J3MgbXVjaCB3b3Jz
+ZSBvbiB0aGVyZS4KPgo+IEFsc28gdGhlcmUncyBhYm91dCBhIDEwMCUgY2hhbmNlIHRoYXQgZ2xf
+UHJpbWl0aXZlSUQgZG9lc24ndCB3b3JrLgo+Cj4gSW4gYW55IGNhc2UsIEkgcGxhbiBvbiBwdXNo
+aW5nIHRoaXMgc2VtaS1zb29uIHVubGVzcyB0aGVyZSBhcmUgYW55Cj4gbG91ZCBvYmplY3Rpb25z
+LiBJIGRvbid0IHRoaW5rIGl0J3MgZ29pbmcgdG8gZG8gdG9vIG11Y2ggZ29vZCBzaXR0aW5nCj4g
+aW4gbXkgdHJlZSwgb3IgdG9vIG11Y2ggZXZpbCBzaXR0aW5nIHVwc3RyZWFtIHdoaWxlIGNvcmUg
+KyBzdC9tZXNhIGFyZQo+IHdvcmtlZCBvdXQuCj4KPiBJbGlhIE1pcmtpbiAoMTIpOgo+ICAgIG52
+YzA6IHByZWxpbWluYXJ5IHRlc3Mgc3VwcG9ydAo+ICAgIG52YzA6IGFkZCBzdXBwb3J0IGZvciBz
+ZXR0aW5nIHBhdGNoIHZlcnRpY2VzIGF0IGRyYXcgdGltZQo+ICAgIG52YzA6IGFkZCBoYW5kbGlu
+ZyBmb3Igc2V0X3Rlc3Nfc3RhdGUgY2FsbGJhY2sKPiAgICBudmMwOiBURVNTQ09PUkQgY29tZXMg
+aW4gYXMgYSBzeXN2YWwsIG5vdCBhbiBpbnB1dAo+ICAgIG52YzAvaXI6IG1hcmsgdmFyeWluZ3Mg
+YXMgcGVyLXBhdGNoIGJhc2VkIG9uIHNlbWFudGljIG5hbWUKPiAgICBudjUwL2lyOiBwb3B1bGF0
+ZSBpbmZvIHN0cnVjdHVyZSBiYXNlZCBvbiBuZXcgdGVzcyBwcm9wZXJ0aWVzCj4gICAgbnY1MC9p
+cjogc2V0IHBlclBhdGNoIGZsYWcgb24gbG9hZC9zdG9yZXMgdG8gcGVyLXBhdGNoIHZhcnlpbmdz
+Cj4gICAgbnY1MC9pcjogYWRkIHN1cHBvcnQgZm9yIHJlYWRpbmcgb3V0cHV0cyBpbiB0ZXNzIGNv
+bnRyb2wgc2hhZGVycwo+ICAgIG52YzAvaXI6IHBhdGNoIHZlcnRleCBjb3VudCBpcyBzdG9yZWQg
+aW4gdGhlIHVwcGVyIGJpdHMKPiAgICBudmMwL2lyOiBoYW5kbGUgbG9hZHMgZnJvbSBvdXRwdXRz
+IGluIGNvbnRyb2wgc2hhZGVycwo+ICAgIG52YzAvaXI6IGFsbG93IHRlc3MgZXZhbCBvdXRwdXQg
+bG9hZHMgdG8gYmUgQ1NFJ2QKPiAgICBudjUwL2lyOiBjbGVhbnVwIHByaXZhdGUgZW51bXMgdGhh
+dCBoYXZlIGdyYWR1YXRlZCB0byBnYWxsaXVtCj4KPiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9jb2RlZ2VuL252NTBfaXIuY3BwICAgIHwgIDQgKy0KPiAgIC4uLi9kcml2ZXJzL25vdXZl
+YXUvY29kZWdlbi9udjUwX2lyX2RyaXZlci5oICAgICAgIHwgMTIgLS0tLQo+ICAgLi4uL2RyaXZl
+cnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNwcCAgfCA1NiArKysrKysrKysr
+KysrKystLQo+ICAgLi4uL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5nX252YzAuY3Bw
+ICAgICAgfCAgNyArKysKPiAgIC4uLi9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3Bl
+ZXBob2xlLmNwcCAgIHwgIDIgKwo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAv
+bnZjMF9jb250ZXh0LmggICAgfCAgOCArKy0KPiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9udmMwL252YzBfcHJvZ3JhbS5jICAgIHwgNTYgKysrKysrKy0tLS0tLS0tLS0KPiAgIHNyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMgICAgIHwgIDcgKy0tCj4g
+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oICAgICB8ICAx
+ICsKPiAgIC4uLi9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jICAgICAg
+IHwgIDMgLQo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zdGF0ZS5j
+ICAgICAgfCA3MSArKysrKysrKysrKysrKysrKysrKysrCj4gICAuLi4vZHJpdmVycy9ub3V2ZWF1
+L252YzAvbnZjMF9zdGF0ZV92YWxpZGF0ZS5jICAgICB8IDExICsrKysKPiAgIHNyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdGV4LmMgICAgICAgIHwgMzQgKysrKystLS0tLS0K
+PiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdmJvLmMgICAgICAgIHwg
+IDkgKystCj4gICAuLi4vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym9fdHJhbnNsYXRlLmMg
+ICAgICB8ICAzICstCj4gICAxNSBmaWxlcyBjaGFuZ2VkLCAyMDAgaW5zZXJ0aW9ucygrKSwgODQg
+ZGVsZXRpb25zKC0pCj4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
