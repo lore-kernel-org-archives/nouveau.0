@@ -1,83 +1,107 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH 02/12] nvc0: add support for setting patch
- vertices at draw time
-Date: Sun, 17 May 2015 01:18:08 -0400
-Message-ID: <CAKb7UvhfPHQRY6Q+jFa3jWoR7TDSkhrRp_FHwnQ42MUBpt8LYw@mail.gmail.com>
-References: <1431839235-10256-1-git-send-email-imirkin@alum.mit.edu>
- <1431839235-10256-3-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Sun, 17 May 2015 13:59:05 +0000
+Message-ID: <bug-90435-8800-hXeYg565hW@http.bugs.freedesktop.org/>
+References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1431839235-10256-3-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1064027386=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXkgMTcsIDIwMTUgYXQgMTowNyBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
-bS5taXQuZWR1PiB3cm90ZToKPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+Cj4gLS0tCj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc2NyZWVuLmMgICAgICAgfCAxICsKPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252
-YzAvbnZjMF9zY3JlZW4uaCAgICAgICB8IDEgKwo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jIHwgMyAtLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF92Ym8uYyAgICAgICAgICB8IDYgKysrKysrCj4gIDQgZmlsZXMg
-Y2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBh
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCj4gaW5kZXggZmY1NTJhZS4u
-NGJjNDFmMiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9u
-dmMwX3NjcmVlbi5jCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZj
-MF9zY3JlZW4uYwo+IEBAIC0xMDA0LDYgKzEwMDQsNyBAQCBudmMwX3NjcmVlbl9jcmVhdGUoc3Ry
-dWN0IG5vdXZlYXVfZGV2aWNlICpkZXYpCj4gICAgIFBVU0hfREFUQSAocHVzaCwgMHgyMCk7Cj4g
-ICAgIEJFR0lOX05WQzAocHVzaCwgTlZDMF8zRChTUF9TRUxFQ1QoMCkpLCAxKTsKPiAgICAgUFVT
-SF9EQVRBIChwdXNoLCAweDAwKTsKPiArICAgc2NyZWVuLT5zYXZlX3N0YXRlLnBhdGNoX3ZlcnRp
-Y2VzID0gMzsKPgo+ICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoUE9JTlRfQ09PUkRfUkVQ
-TEFDRSksIDEpOwo+ICAgICBQVVNIX0RBVEEgKHB1c2gsIDApOwo+IGRpZmYgLS1naXQgYS9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oIGIvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uaAo+IGluZGV4IGVmMmJkNDMuLmM3OTIx
-MWUgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9z
-Y3JlZW4uaAo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2Ny
-ZWVuLmgKPiBAQCAtMzgsNiArMzgsNyBAQCBzdHJ1Y3QgbnZjMF9ncmFwaF9zdGF0ZSB7Cj4gICAg
-IHVpbnQzMl90IGNvbnN0YW50X2VsdHM7Cj4gICAgIGludDMyX3QgaW5kZXhfYmlhczsKPiAgICAg
-dWludDE2X3Qgc2Npc3NvcjsKPiArICAgdWludDhfdCBwYXRjaF92ZXJ0aWNlczsKPiAgICAgdWlu
-dDhfdCB2Ym9fbW9kZTsgLyogMCA9IG5vcm1hbCwgMSA9IHRyYW5zbGF0ZSwgMyA9IHRyYW5zbGF0
-ZSwgZm9yY2VkICovCj4gICAgIHVpbnQ4X3QgbnVtX3Z0eGJ1ZnM7Cj4gICAgIHVpbnQ4X3QgbnVt
-X3Z0eGVsdHM7Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMw
-L252YzBfc2hhZGVyX3N0YXRlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9u
-dmMwX3NoYWRlcl9zdGF0ZS5jCj4gaW5kZXggNTE2YjMzYi4uMzJmNDUxOSAxMDA2NDQKPiAtLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jCj4g
-KysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zaGFkZXJfc3RhdGUu
-Ywo+IEBAIC0xNDcsOSArMTQ3LDYgQEAgbnZjMF90Y3RscHJvZ192YWxpZGF0ZShzdHJ1Y3QgbnZj
-MF9jb250ZXh0ICpudmMwKQo+ICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHRwLT5jb2RlX2Jhc2Up
-Owo+ICAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoU1BfR1BSX0FMTE9DKDIpKSwgMSk7
-Cj4gICAgICAgIFBVU0hfREFUQSAocHVzaCwgdHAtPm51bV9ncHJzKTsKPiAtCj4gLSAgICAgIGlm
-ICh0cC0+dHAuaW5wdXRfcGF0Y2hfc2l6ZSA8PSAzMikKPiAtICAgICAgICAgSU1NRURfTlZDMChw
-dXNoLCBOVkMwXzNEKFBBVENIX1ZFUlRJQ0VTKSwgdHAtPnRwLmlucHV0X3BhdGNoX3NpemUpOwo+
-ICAgICB9IGVsc2Ugewo+ICAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoU1BfU0VMRUNU
-KDIpKSwgMSk7Cj4gICAgICAgIFBVU0hfREFUQSAocHVzaCwgMHgyMCk7Cj4gZGlmZiAtLWdpdCBh
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdmJvLmMgYi9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Ziby5jCj4gaW5kZXggZjhlMjc1OS4uZmI3YjA3
-MyAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Zi
-by5jCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym8uYwo+
-IEBAIC04ODcsNiArODg3LDEyIEBAIG52YzBfZHJhd192Ym8oc3RydWN0IHBpcGVfY29udGV4dCAq
-cGlwZSwgY29uc3Qgc3RydWN0IHBpcGVfZHJhd19pbmZvICppbmZvKQo+ICAgICAgICB9Cj4gICAg
-IH0KPgo+ICsgICBpZiAoaW5mby0+bW9kZSA9PSBQSVBFX1BSSU1fUEFUQ0hFUyAmJgo+ICsgICAg
-ICAgbnZjMC0+c3RhdGUucGF0Y2hfdmVydGljZXMgIT0gaW5mby0+dmVydGljZXNfcGVyX3BhdGNo
-KSB7Cj4gKyAgICAgIElNTUVEX05WQzAocHVzaCwgTlZDMF8zRChQQVRDSF9WRVJUSUNFUyksIG52
-YzAtPnN0YXRlLnBhdGNoX3ZlcnRpY2VzKTsKPiArICAgICAgbnZjMC0+c3RhdGUucGF0Y2hfdmVy
-dGljZXMgPSBpbmZvLT52ZXJ0aWNlc19wZXJfcGF0Y2g7CgpOYXR1cmFsbHkgdGhvc2UgbGluZXMg
-YXJlIHN3YXBwZWQsIGZpeGVkIGxvY2FsbHkuIFRoYXQncyB3aGF0IEkgZ2V0CmZvciBsYXN0LXNl
-Y29uZCB1bnRlc3RlZCBjaGFuZ2VzIDooCgo+ICsgICB9Cj4gKwo+ICAgICAvKiA4IGFzIG1pbmlt
-dW0gdG8gYXZvaWQgaW1tZWRpYXRlIGRvdWJsZSB2YWxpZGF0aW9uIG9mIG5ldyBidWZmZXJzICov
-Cj4gICAgIG52YzBfc3RhdGVfdmFsaWRhdGUobnZjMCwgfjAsIDgpOwo+Cj4gLS0KPiAyLjMuNgo+
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2
-IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============1064027386==
+Content-Type: multipart/alternative; boundary="1431871144.DbEeCc1.16384"; charset="UTF-8"
+
+
+--1431871144.DbEeCc1.16384
+Date: Sun, 17 May 2015 13:59:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90435
+
+--- Comment #4 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #3)
+> OK, well at one point or another (like mesa 10.0), glxgears definitely
+> worked on my NV43 and NV44 (which cover both 3d classes available in the
+> nv4x family). Could be that there's something funky about NV46 specifically,
+> or worse, something funky about *your* nv46.
+
+So, I tried Mesa 10.4 - same behaviour. Then I tried Mesa 10.0 - glxgears
+works! But then I tried to start my simple program - and I catch a hangup fo
+X-server.
+
+program code (shadow.c) is in attach.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1431871144.DbEeCc1.16384
+Date: Sun, 17 May 2015 13:59:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+              from <span class="vcard"><a class="email" href="mailto:dikiy_evrej&#64;web.de" title="Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <span class="fn">Ilya</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90435#c3">comment #3</a>)
+<span class="quote">&gt; OK, well at one point or another (like mesa 10.0), glxgears definitely
+&gt; worked on my NV43 and NV44 (which cover both 3d classes available in the
+&gt; nv4x family). Could be that there's something funky about NV46 specifically,
+&gt; or worse, something funky about *your* nv46.</span >
+
+So, I tried Mesa 10.4 - same behaviour. Then I tried Mesa 10.0 - glxgears
+works! But then I tried to start my simple program - and I catch a hangup fo
+X-server.
+
+program code (shadow.c) is in attach.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1431871144.DbEeCc1.16384--
+
+--===============1064027386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1064027386==--
