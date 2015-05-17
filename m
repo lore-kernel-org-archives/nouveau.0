@@ -1,52 +1,41 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 06/12] nv50/ir: populate info structure based on
-	new tess properties
-Date: Sun, 17 May 2015 01:07:09 -0400
-Message-ID: <1431839235-10256-7-git-send-email-imirkin@alum.mit.edu>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 09/12] nvc0/ir: patch vertex count is stored in
+	the upper bits
+Date: Sun, 17 May 2015 01:07:12 -0400
+Message-ID: <1431839235-10256-10-git-send-email-imirkin@alum.mit.edu>
 References: <1431839235-10256-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1431839235-10256-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <1431839235-10256-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIC4u
-Li9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zyb21fdGdzaS5jcHAgICAgICB8IDE4
-ICsrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKykKCmRp
-ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2Zy
-b21fdGdzaS5jcHAgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2ly
-X2Zyb21fdGdzaS5jcHAKaW5kZXggZjUyMzMxOC4uY2I5ZTFiZSAxMDA2NDQKLS0tIGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9mcm9tX3Rnc2kuY3BwCisrKyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZnJvbV90Z3NpLmNw
-cApAQCAtOTQ5LDYgKzk0OSwyNCBAQCB2b2lkIFNvdXJjZTo6c2NhblByb3BlcnR5KGNvbnN0IHN0
-cnVjdCB0Z3NpX2Z1bGxfcHJvcGVydHkgKnByb3ApCiAgICBjYXNlIFRHU0lfUFJPUEVSVFlfVlNf
-UFJPSElCSVRfVUNQUzoKICAgICAgIGluZm8tPmlvLmdlblVzZXJDbGlwID0gLTE7CiAgICAgICBi
-cmVhazsKKyAgIGNhc2UgVEdTSV9QUk9QRVJUWV9UQ1NfVkVSVElDRVNfT1VUOgorICAgICAgaW5m
-by0+cHJvcC50cC5vdXRwdXRQYXRjaFNpemUgPSBwcm9wLT51WzBdLkRhdGE7CisgICAgICBicmVh
-azsKKyAgIGNhc2UgVEdTSV9QUk9QRVJUWV9URVNfUFJJTV9NT0RFOgorICAgICAgaW5mby0+cHJv
-cC50cC5kb21haW4gPSBwcm9wLT51WzBdLkRhdGE7CisgICAgICBicmVhazsKKyAgIGNhc2UgVEdT
-SV9QUk9QRVJUWV9URVNfU1BBQ0lORzoKKyAgICAgIGluZm8tPnByb3AudHAucGFydGl0aW9uaW5n
-ID0gcHJvcC0+dVswXS5EYXRhOworICAgICAgYnJlYWs7CisgICBjYXNlIFRHU0lfUFJPUEVSVFlf
-VEVTX1ZFUlRFWF9PUkRFUl9DVzoKKyAgICAgIGluZm8tPnByb3AudHAud2luZGluZyA9IHByb3At
-PnVbMF0uRGF0YTsKKyAgICAgIGJyZWFrOworICAgY2FzZSBUR1NJX1BST1BFUlRZX1RFU19QT0lO
-VF9NT0RFOgorICAgICAgaWYgKHByb3AtPnVbMF0uRGF0YSkKKyAgICAgICAgIGluZm8tPnByb3Au
-dHAub3V0cHV0UHJpbSA9IFBJUEVfUFJJTV9QT0lOVFM7CisgICAgICBlbHNlCisgICAgICAgICBp
-bmZvLT5wcm9wLnRwLm91dHB1dFByaW0gPSBQSVBFX1BSSU1fVFJJQU5HTEVTOyAvKiBhbnl0aGlu
-ZyBidXQgcG9pbnRzICovCisgICAgICBicmVhazsKICAgIGRlZmF1bHQ6CiAgICAgICBJTkZPKCJ1
-bmhhbmRsZWQgVEdTSSBwcm9wZXJ0eSAlZFxuIiwgcHJvcC0+UHJvcGVydHkuUHJvcGVydHlOYW1l
-KTsKICAgICAgIGJyZWFrOwotLSAKMi4zLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL21lc2EtZGV2Cg==
+LS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xvd2VyaW5n
+X252YzAuY3BwIHwgNCArKysrCiAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspCgpkaWZm
+IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dl
+cmluZ19udmMwLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBf
+aXJfbG93ZXJpbmdfbnZjMC5jcHAKaW5kZXggYjYxZjNjNC4uYmU4Mjk0NCAxMDA2NDQKLS0tIGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9sb3dlcmluZ19udmMw
+LmNwcAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2xv
+d2VyaW5nX252YzAuY3BwCkBAIC0xNDgwLDYgKzE0ODAsMTAgQEAgTlZDMExvd2VyaW5nUGFzczo6
+aGFuZGxlUkRTVihJbnN0cnVjdGlvbiAqaSkKICAgICAgICAgIGktPm9wID0gT1BfTU9WOwogICAg
+ICAgICAgaS0+c2V0U3JjKDAsIGJsZC5ta0ltbSgoc3YgPT0gU1ZfTlRJRCB8fCBzdiA9PSBTVl9O
+Q1RBSUQpID8gMSA6IDApKTsKICAgICAgIH0KKyAgICAgIGlmIChzdiA9PSBTVl9WRVJURVhfQ09V
+TlQpIHsKKyAgICAgICAgIGJsZC5zZXRQb3NpdGlvbihpLCB0cnVlKTsKKyAgICAgICAgIGJsZC5t
+a09wMihPUF9FWFRCRiwgVFlQRV9VMzIsIGktPmdldERlZigwKSwgaS0+Z2V0RGVmKDApLCBibGQu
+bWtJbW0oMHg4MDgpKTsKKyAgICAgIH0KICAgICAgIHJldHVybiB0cnVlOwogICAgfQogCi0tIAoy
+LjMuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
