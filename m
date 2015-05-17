@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90306] Nouveau crashes with multiple monitors
-Date: Sun, 17 May 2015 02:25:27 +0000
-Message-ID: <bug-90306-8800-RcsYfZqvBp@http.bugs.freedesktop.org/>
-References: <bug-90306-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89912] Sometimes Nouveau hangs kernel with PGRAPH
+	engine fault
+Date: Sun, 17 May 2015 03:52:31 +0000
+Message-ID: <bug-89912-8800-JuXjUHmHFk@http.bugs.freedesktop.org/>
+References: <bug-89912-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0482805603=="
+Content-Type: multipart/mixed; boundary="===============1059153786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89912-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,64 +21,83 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0482805603==
-Content-Type: multipart/alternative; boundary="1431829527.E10c2.20718"; charset="UTF-8"
+--===============1059153786==
+Content-Type: multipart/alternative; boundary="1431834751.D8f8AbDA1.9104"; charset="UTF-8"
 
 
---1431829527.E10c2.20718
-Date: Sun, 17 May 2015 02:25:27 +0000
+--1431834751.D8f8AbDA1.9104
+Date: Sun, 17 May 2015 03:52:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90306
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89912
 
---- Comment #5 from Lars Seipel <lars.seipel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 115846
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115846&action=edit
-dmesg output
+--- Comment #1 from D=C4=81vis <davispuh-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Still happening with kernel 4.0.2
 
--- 
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002aa000 [PTE]
+from GR/GPC1/PROP_0 on channel 0x003fa28000 [Xorg[485]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel 2,
+recovering...
+
+
+Any idea how to find cause? why it hangs...
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1431829527.E10c2.20718
-Date: Sun, 17 May 2015 02:25:27 +0000
+--1431834751.D8f8AbDA1.9104
+Date: Sun, 17 May 2015 03:52:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau crashes with multiple monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90306#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89912#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau crashes with multiple monitors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90306">bug 90306</a>
-              from <span class="vcard"><a class="email" href="mailto:lars.seipel&#64;gmail.com" title="Lars Seipel &lt;lars.seipel&#64;gmail.com&gt;"> <span class="fn">Lars Seipel</span></a>
+   title=3D"NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89912">bug 89912<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+davispuh&#64;gmail.com" title=3D"D=C4=81vis &lt;davispuh&#64;gmail.com&gt;"=
+> <span class=3D"fn">D=C4=81vis</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115846" name="attach_115846" title="dmesg output">attachment 115846</a> <a href="attachment.cgi?id=115846&amp;action=edit" title="dmesg output">[details]</a></span>
-dmesg output</pre>
+        <pre>Still happening with kernel 4.0.2
+
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002aa000 [PTE]
+from GR/GPC1/PROP_0 on channel 0x003fa28000 [Xorg[485]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel 2,
+recovering...
+
+
+Any idea how to find cause? why it hangs...</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1431829527.E10c2.20718--
+--1431834751.D8f8AbDA1.9104--
 
---===============0482805603==
+--===============1059153786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0482805603==--
+--===============1059153786==--
