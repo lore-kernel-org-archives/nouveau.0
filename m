@@ -1,16 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 2/2] nv04-nv40: don't attempt to do 32-bit
-	shifts
-Date: Tue, 19 May 2015 16:42:36 -0400
-Message-ID: <CAKb7Uvgq1cWEv5W8kgd7U8qAL9iTw9BNzkiQXbjGFbiro24B8w@mail.gmail.com>
-References: <1432067309-14175-1-git-send-email-imirkin@alum.mit.edu>
- <1432067309-14175-2-git-send-email-imirkin@alum.mit.edu>
- <555B9E83.8000509@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Tue, 19 May 2015 23:32:30 +0000
+Message-ID: <bug-90513-8800-VwdOwcAm49@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1642914949=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <555B9E83.8000509-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,39 +17,94 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMTksIDIwMTUgYXQgNDozNSBQTSwgTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVy
-ZXNAZnJlZS5mcj4gd3JvdGU6Cj4gT24gMTkvMDUvMTUgMjM6MjgsIElsaWEgTWlya2luIHdyb3Rl
-Ogo+Pgo+PiBBIDMyLWJpdCBzaGlmdCBpcyBhIG5vLW9wLCB3aGljaCB3aWxsIGFsc28gbWFrZSB0
-aGUgbmV3IHBsYW5lbWFzayBnZXQKPj4gb3InZCB3aXRoIH4wLCB0aHVzIG5lZ2F0aW5nIHRoZSB1
-c2VmdWxuZXNzIG9mIHRoZSBzdWJzZXF1ZW50Cj4+IHBsYW5lbWFzayAhPSB+MCBjaGVjay4gT25s
-eSBkbyB0aGlzIGlmIGl0J3MgYSBsZXNzLXRoYW4tMzItYml0IHBlciBwaXhlbAo+PiBmb3JtYXQs
-IGluIHdoaWNoIGNhc2UgaXQgd2lsbCBoYXZlIHRoZSBkZXNpcmVkIGVmZmVjdCBvZiBzZXR0aW5n
-IHRoZQo+PiBoaWdoIGJpdHMuCj4+Cj4+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWly
-a2luQGFsdW0ubWl0LmVkdT4KPj4gLS0tCj4+ICAgc3JjL252MDRfZXhhLmMgfCAzICsrLQo+PiAg
-IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPj4KPj4gZGlm
-ZiAtLWdpdCBhL3NyYy9udjA0X2V4YS5jIGIvc3JjL252MDRfZXhhLmMKPj4gaW5kZXggN2E1OGRk
-Ny4uZDVkZWM2OCAxMDA2NDQKPj4gLS0tIGEvc3JjL252MDRfZXhhLmMKPj4gKysrIGIvc3JjL252
-MDRfZXhhLmMKPj4gQEAgLTQ5LDcgKzQ5LDggQEAgTlYwNEVYQVNldFJPUChQaXhtYXBQdHIgcHBp
-eCwgaW50IHN1YmMsIGludCBtdGhkLCBpbnQKPj4gYWx1LCBQaXhlbCBwbGFuZW1hc2spCj4+ICAg
-ICAgICAgTlZQdHIgcE52ID0gTlZQVFIocFNjcm4pOwo+PiAgICAgICAgIHN0cnVjdCBub3V2ZWF1
-X3B1c2hidWYgKnB1c2ggPSBwTnYtPnB1c2hidWY7Cj4+ICAgLSAgICAgcGxhbmVtYXNrIHw9IH4w
-IDw8IHBwaXgtPmRyYXdhYmxlLmJpdHNQZXJQaXhlbDsKPj4gKyAgICAgICBpZiAocHBpeC0+ZHJh
-d2FibGUuYml0c1BlclBpeGVsIDwgMzIpCj4+ICsgICAgICAgICAgICAgICBwbGFuZW1hc2sgfD0g
-fjAgPDwgcHBpeC0+ZHJhd2FibGUuYml0c1BlclBpeGVsOwo+PiAgICAgICAgIGlmIChwbGFuZW1h
-c2sgIT0gfjAgfHwgYWx1ICE9IEdYY29weSkgewo+PiAgICAgICAgICAgICAgICAgaWYgKHBwaXgt
-PmRyYXdhYmxlLmJpdHNQZXJQaXhlbCA9PSAzMikKPj4gICAgICAgICAgICAgICAgICAgICAgICAg
-cmV0dXJuIEZBTFNFOwo+Cj4KPiBCb3RoIHBhdGNoZXMgbG9vayBnb29kIHRvIG1lLiBUaGFua3Mg
-Zm9yIHRyYWNraW5nIHRob3NlIGJ1Z3MgZG93biA6KQo+Cj4gUmV2aWV3ZWQtYnk6IE1hcnRpbiBQ
-ZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+CgpUaGFua3MhIEZXSVcgSSBqdXN0IGhhcHBlbmVk
-IHRvIG5vdGljZSB0aGlzIGFzIEkgd2FzIHJlYWRpbmcgdGhlIGNvZGUsCnNvIGl0J3MgdW50ZXN0
-ZWQgYW5kIG5vdCBpbiByZXNwb25zZSB0byBhbnkgYnVnLiBJIGhhdmUgbm8gaWRlYSBpZiBpdAph
-Y3R1YWxseSBhZmZlY3RzIHRoaW5ncy4uLiBJIHN1c3BlY3QgcGxhbmVtYXNrICE9IH4wVSBpcyBw
-cmV0dHkgcmFyZQp0byBiZWdpbiB3aXRoLCBvdXRzaWRlIG9mIHRoaW5ncyB0aGF0IHRlc3QgaXQg
-ZXhwbGljaXRseS4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============1642914949==
+Content-Type: multipart/alternative; boundary="1432078350.45Fd1.11153"; charset="UTF-8"
+
+
+--1432078350.45Fd1.11153
+Date: Tue, 19 May 2015 23:32:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Confirmed that I get redness coming in on that draw on my GK208, whereas it's
+fine on i965.
+
+There are a few awkward things, but nothing completely ridiculous:
+
+1. 4096x4096 srgb dxt1/5 textures, specifically GL_TEXTURE4, GL_TEXTURE6.
+2. Multiple vertex elements are mapped to the same position in the same buffer
+(3, 4, and 5).
+
+Curiously, no shaders appear to be bound, which is very odd. I'm guessing
+that's some sort of qapitrace fail. Very weird.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1432078350.45Fd1.11153
+Date: Tue, 19 May 2015 23:32:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Confirmed that I get redness coming in on that draw on my GK208, whereas it's
+fine on i965.
+
+There are a few awkward things, but nothing completely ridiculous:
+
+1. 4096x4096 srgb dxt1/5 textures, specifically GL_TEXTURE4, GL_TEXTURE6.
+2. Multiple vertex elements are mapped to the same position in the same buffer
+(3, 4, and 5).
+
+Curiously, no shaders appear to be bound, which is very odd. I'm guessing
+that's some sort of qapitrace fail. Very weird.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432078350.45Fd1.11153--
+
+--===============1642914949==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1642914949==--
