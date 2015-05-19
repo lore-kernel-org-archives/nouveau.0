@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90513] Odd gray and red flicker in The Talos
-	Principle on GK104
-Date: Tue, 19 May 2015 01:45:58 +0000
-Message-ID: <bug-90513-8800-GjQ0yueAMd@http.bugs.freedesktop.org/>
-References: <bug-90513-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] Check before trying a solid fill
+Date: Tue, 19 May 2015 16:28:28 -0400
+Message-ID: <1432067309-14175-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2019357014=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,73 +18,28 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2019357014==
-Content-Type: multipart/alternative; boundary="1431999958.0C4F0.13218"; charset="UTF-8"
-
-
---1431999958.0C4F0.13218
-Date: Tue, 19 May 2015 01:45:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90513
-
---- Comment #1 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
-In the trace in the OP, as an example of an "offending call":
-on frame 1950, on call #2160519 the ground gets painted red.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1431999958.0C4F0.13218
-Date: Tue, 19 May 2015 01:45:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
-              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
-</span></b>
-        <pre>In the trace in the OP, as an example of an &quot;offending call&quot;:
-on frame 1950, on call #2160519 the ground gets painted red.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1431999958.0C4F0.13218--
-
---===============2019357014==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2019357014==--
+UHJlLW52NTAgaGFzIGFsbCBzb3J0cyBvZiBmdW5ueSByZXF1aXJlbWVudHMgZm9yIG5vbi1jb3B5
+IGFsdQpvcGVyYXRpb25zLCBhbmQgd2lsbCBiYWlsIG91dCBvZiBzb2xpZCBmaWxscyBsZWZ0IGFu
+ZCByaWdodC4gQWNjb3VudCBmb3IKdGhhdCBjYXNlIGFuZCBmYWxsIGJhY2sgdG8gdGhlIG1lbXNl
+dC4KClJlcG9ydGVkLWJ5OiBBbmRyZXcgUmFuZHJpYW5hc3VsdSA8cmFuZHJpYW5hc3VsdUBnbWFp
+bC5jb20+ClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
+LS0tCiBzcmMvZHJtbW9kZV9kaXNwbGF5LmMgfCAxMyArKysrKysrKy0tLS0tCiAxIGZpbGUgY2hh
+bmdlZCwgOCBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9k
+cm1tb2RlX2Rpc3BsYXkuYyBiL3NyYy9kcm1tb2RlX2Rpc3BsYXkuYwppbmRleCA3YzFkMmJiLi4y
+Y2ExZGJhIDEwMDY0NAotLS0gYS9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKKysrIGIvc3JjL2RybW1v
+ZGVfZGlzcGxheS5jCkBAIC00MTAsMTIgKzQxMCwxNSBAQCBkcm1tb2RlX2ZiY29uX2NvcHkoU2Ny
+ZWVuUHRyIHBTY3JlZW4pCiAKIGZhbGxiYWNrOgogCWlmIChwZHBpeCkgewotCQlwTnYtPkVYQURy
+aXZlclB0ci0+UHJlcGFyZVNvbGlkKHBkcGl4LCBHWGNsZWFyLCB+MCwgMCk7Ci0JCXBOdi0+RVhB
+RHJpdmVyUHRyLT5Tb2xpZChwZHBpeCwgMCwgMCwgdywgaCk7Ci0JCXBOdi0+RVhBRHJpdmVyUHRy
+LT5Eb25lU29saWQocGRwaXgpOwotCQlub3V2ZWF1X2JvX3dhaXQocE52LT5zY2Fub3V0LCBOT1VW
+RUFVX0JPX1JEV1IsIHBOdi0+Y2xpZW50KTsKKwkJaWYgKGV4YS0+UHJlcGFyZVNvbGlkKHBkcGl4
+LCBHWGNsZWFyLCB+MCwgMCkpIHsKKwkJCWV4YS0+U29saWQocGRwaXgsIDAsIDAsIHcsIGgpOwor
+CQkJZXhhLT5Eb25lU29saWQocGRwaXgpOworCQkJUFVTSF9LSUNLKHBOdi0+cHVzaGJ1Zik7CisJ
+CQlub3V2ZWF1X2JvX3dhaXQocE52LT5zY2Fub3V0LCBOT1VWRUFVX0JPX1JEV1IsIHBOdi0+Y2xp
+ZW50KTsKKwkJCXBTY3JlZW4tPkRlc3Ryb3lQaXhtYXAocGRwaXgpOworCQkJcmV0dXJuOworCQl9
+CiAJCXBTY3JlZW4tPkRlc3Ryb3lQaXhtYXAocGRwaXgpOwotCQlyZXR1cm47CiAJfQogI2VuZGlm
+CiAJaWYgKG5vdXZlYXVfYm9fbWFwKHBOdi0+c2Nhbm91dCwgTk9VVkVBVV9CT19XUiwgcE52LT5j
+bGllbnQpKQotLSAKMi4zLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
