@@ -1,15 +1,12 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] fix a wrong use of a logical operator in
-	drmmode_output_dpms()
-Date: Wed, 20 May 2015 19:26:25 +0200
-Message-ID: <555CC3C1.3010102@gmail.com>
-References: <1432134538-13701-1-git-send-email-samuel.pitoiset@inria.fr>	<555CC056.4020006@mni.thm.de>
- <CAKb7Uvhy-o3-iAZD+EJLhhHVDGc_Zvm=-exna8waTa9QV_CVvA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
+Date: Wed, 20 May 2015 17:41:55 +0000
+Message-ID: <bug-70972-8800-bO6dm4qA0C@http.bugs.freedesktop.org/>
+References: <bug-70972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0644027574=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvhy-o3-iAZD+EJLhhHVDGc_Zvm=-exna8waTa9QV_CVvA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +16,93 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwNS8yMC8yMDE1IDA3OjEzIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBUaGlzIGlzIG9i
-dmlvdXNseSBhIGJ1ZywgYnV0IG9uZSB0aGF0IGhhcyBiZWVuIHRoZXJlIGZvciBzb21lIHRpbWUu
-Cj4gUGxlYXNlIGZpZ3VyZSBvdXQgd2hhdCB0aGlzIGlzIGd1YXJkaW5nLCBhbmQgY29uZmlybSB0
-aGF0IHRoZSBmZWF0dXJlCj4gY29udGludWVzIHRvIHdvcmsuCgpTdXJlLCBidXQgZG8geW91IGhh
-dmUgYW55IGlkZWFzIGhvdyB0byB0ZXN0IHRoaXMgcGFydCBvZiB0aGUgRERYID8KSXQncyB0aGUg
-Zmlyc3QgdGltZSBJIHBsYXkgd2l0aCBpdC4uLgoKPgo+IE9uIFdlZCwgTWF5IDIwLCAyMDE1IGF0
-IDE6MTEgUE0sIFRvYmlhcyBLbGF1c21hbm4KPiA8dG9iaWFzLmpvaGFubmVzLmtsYXVzbWFubkBt
-bmkudGhtLmRlPiB3cm90ZToKPj4gbG9va3MgZ29vZCB0byBtZSEgOikKPj4KPj4gRmVlbCBmcmVl
-IHRvIGFkZCBteSBSLWIuCj4+Cj4+IE9uIDIwLjA1LjIwMTUgMTc6MDgsIFNhbXVlbCBQaXRvaXNl
-dCB3cm90ZToKPj4+IFRoaXMgaXMgcHJvYmFibHkgYSB0eXBvIGVycm9yIHdoaWNoIGhhcyBiZWVu
-IGludHJvZHVjZWQgaW4gMjAwOS4uLgo+Pj4gVGhpcyBmaXhlcyB0aGUgZm9sbG93aW5nIHdhcm5p
-bmcgZGV0ZWN0ZWQgYnkgQ2xhbmcgOgo+Pj4KPj4+IGRybW1vZGVfZGlzcGxheS5jOjkwNzozMDog
-d2FybmluZzogdXNlIG9mIGxvZ2ljYWwgJyYmJyB3aXRoIGNvbnN0YW50Cj4+PiBvcGVyYW5kIFst
-V2NvbnN0YW50LWxvZ2ljYWwtb3BlcmFuZF0KPj4+ICAgICAgIGlmIChwcm9wcyAmJiAocHJvcHMt
-PmZsYWdzICYmIERSTV9NT0RFX1BST1BfRU5VTSkpIHsKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBT
-YW11ZWwgUGl0b2lzZXQgPHNhbXVlbC5waXRvaXNldEBnbWFpbC5jb20+Cj4+PiAtLS0KPj4+ICAg
-IHNyYy9kcm1tb2RlX2Rpc3BsYXkuYyB8IDIgKy0KPj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCAxIGlu
-c2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9zcmMvZHJtbW9k
-ZV9kaXNwbGF5LmMgYi9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKPj4+IGluZGV4IDdjMWQyYmIuLjE2
-MWJjY2QgMTAwNjQ0Cj4+PiAtLS0gYS9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKPj4+ICsrKyBiL3Ny
-Yy9kcm1tb2RlX2Rpc3BsYXkuYwo+Pj4gQEAgLTkwNCw3ICs5MDQsNyBAQCBkcm1tb2RlX291dHB1
-dF9kcG1zKHhmODZPdXRwdXRQdHIgb3V0cHV0LCBpbnQgbW9kZSkKPj4+ICAgICAgICAgIGZvciAo
-aSA9IDA7IGkgPCBrb3V0cHV0LT5jb3VudF9wcm9wczsgaSsrKSB7Cj4+PiAgICAgICAgICAgICAg
-ICAgIHByb3BzID0gZHJtTW9kZUdldFByb3BlcnR5KGRybW1vZGUtPmZkLAo+Pj4ga291dHB1dC0+
-cHJvcHNbaV0pOwo+Pj4gLSAgICAgICAgICAgICAgIGlmIChwcm9wcyAmJiAocHJvcHMtPmZsYWdz
-ICYmIERSTV9NT0RFX1BST1BfRU5VTSkpIHsKPj4+ICsgICAgICAgICAgICAgICBpZiAocHJvcHMg
-JiYgKHByb3BzLT5mbGFncyAmIERSTV9NT0RFX1BST1BfRU5VTSkpIHsKPj4+ICAgICAgICAgICAg
-ICAgICAgICAgICAgICBpZiAoIXN0cmNtcChwcm9wcy0+bmFtZSwgIkRQTVMiKSkgewo+Pj4gICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZV9pZCA9IGtvdXRwdXQtPnByb3BzW2ld
-Owo+Pj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZHJtTW9kZUZyZWVQcm9wZXJ0
-eShwcm9wcyk7Cj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCj4+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0644027574==
+Content-Type: multipart/alternative; boundary="1432143715.FcBBBe2.16617"; charset="UTF-8"
+
+
+--1432143715.FcBBBe2.16617
+Date: Wed, 20 May 2015 17:41:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70972
+
+adlo <adloconwy+freebug-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #115254|mmiotrace_GeForce_7150M_nFo |mmiotrace_GeForce_7150M_nFo
+           filename|rce_630M_nvidia.tar.xz      |rce_630M_proprietary.tar.xz
+ Attachment #115254|mmiotrace                   |mmiotrace of NVIDIA
+        description|                            |proprietary driver
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432143715.FcBBBe2.16617
+Date: Wed, 20 May 2015 17:41:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:adloconwy+freebug&#64;gmail.com" title="adlo &lt;adloconwy+freebug&#64;gmail.com&gt;"> <span class="fn">adlo</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV67] Modesetting failure at 1280x800"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #115254 filename</td>
+           <td>mmiotrace_GeForce_7150M_nForce_630M_nvidia.tar.xz
+           </td>
+           <td>mmiotrace_GeForce_7150M_nForce_630M_proprietary.tar.xz
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #115254 description</td>
+           <td>mmiotrace
+           </td>
+           <td>mmiotrace of NVIDIA proprietary driver
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432143715.FcBBBe2.16617--
+
+--===============0644027574==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0644027574==--
