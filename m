@@ -1,11 +1,13 @@
-From: Alex Henrie <alexhenrie24-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Hardware wish list?
-Date: Wed, 20 May 2015 14:24:03 -0600
-Message-ID: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA@mail.gmail.com>
+From: caocoa-ruvOiOuSH0dWk0Htik3J/w@public.gmane.org
+Subject: Re: Hardware wish list?
+Date: Wed, 20 May 2015 20:57:53 -0000
+Message-ID: <9e6f064ba327c8547c321d078cc13952.squirrel@mail2tor2zyjdctd.onion>
+References: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,15 +17,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Lucas Stach <dev-8ppwABl0HbeELgA04lAiVw@public.gmane.org>, Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, =?UTF-8?Q?Marcin_Ko=C5=9Bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>, Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+To: Alex Henrie <alexhenrie24-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-R3JlZXRpbmdzIE5vdXZlYXUgZGV2ZWxvcGVycywKCkl0J3MgYmVlbiBhIHdoaWxlIHNpbmNlIEkn
-dmUgc2VudCBhbnkgaGFyZHdhcmUgeW91ciB3YXkuIEkgZmVlbCB0aGF0Ck5vdXZlYXUgaXMgb25l
-IG9mIHRoZSBtb3N0IGltcG9ydGFudCBwaWVjZXMgb2Ygc29mdHdhcmUgaG9sZGluZyBMaW51eApi
-YWNrLCBhbmQgSSdtIGhhcHB5IHRvIHN1cHBvcnQgeW91LiBJZiB5b3Ugc2VuZCBtZSBhIHZlcnkg
-c3BlY2lmaWMKbGlzdCBvZiBjYXJkcywgYm9hcmRzLCBldGMuIHRoYXQgeW91IHdhbnQgb3IgbmVl
-ZCwgSSdsbCBzZWUgd2hhdCBJIGNhbgpkby4KCi1BbGV4Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+QnkgdGhlIHdheSwKSXMgdGhlcmUgYW55IHBsYWNlIHdoZXJlIG5vdXZlYXUgdXNlcnMgY2FuIHNo
+b3cgdGhlaXIgY29uZmlndXJhdGlvbiAob3IgYXQKbGVhc3QgdGhlaXIgR1BVKT8gSXQgbWlnaHQg
+YmUgdXNlZnVsIGlmIGRldmVsb3BlcnMgbmVlZCB0byBrbm93IGhvdyBhCmdpdmVuIEdQVSByZXNw
+b25kcyB0byB0aGVpciBjb2RlLgoKPiBHcmVldGluZ3MgTm91dmVhdSBkZXZlbG9wZXJzLAo+Cj4g
+SXQncyBiZWVuIGEgd2hpbGUgc2luY2UgSSd2ZSBzZW50IGFueSBoYXJkd2FyZSB5b3VyIHdheS4g
+SSBmZWVsIHRoYXQKPiBOb3V2ZWF1IGlzIG9uZSBvZiB0aGUgbW9zdCBpbXBvcnRhbnQgcGllY2Vz
+IG9mIHNvZnR3YXJlIGhvbGRpbmcgTGludXgKPiBiYWNrLCBhbmQgSSdtIGhhcHB5IHRvIHN1cHBv
+cnQgeW91LiBJZiB5b3Ugc2VuZCBtZSBhIHZlcnkgc3BlY2lmaWMKPiBsaXN0IG9mIGNhcmRzLCBi
+b2FyZHMsIGV0Yy4gdGhhdCB5b3Ugd2FudCBvciBuZWVkLCBJJ2xsIHNlZSB3aGF0IEkgY2FuCj4g
+ZG8uCj4KPiAtQWxleAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cj4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
