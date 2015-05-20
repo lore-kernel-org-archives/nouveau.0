@@ -1,110 +1,48 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90513] Odd gray and red flicker in The Talos
-	Principle on GK104
-Date: Tue, 19 May 2015 23:32:30 +0000
-Message-ID: <bug-90513-8800-VwdOwcAm49@http.bugs.freedesktop.org/>
-References: <bug-90513-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nouveau: add coherent BO attribute
+Date: Wed, 20 May 2015 14:11:33 +0900
+Message-ID: <CAAVeFuLKeEsf=at_gahCw9qzRWhrxtCVZ==H26y2xUx8-K75eA@mail.gmail.com>
+References: <1426228051-20298-1-git-send-email-acourbot@nvidia.com>
+ <55033B99.4040300@canonical.com> <550545A4.6060106@nvidia.com>
+ <CAAVeFuKoryrWPcDkcFuk+OwJjaUn6C-he+xxphkZ7iMBa=Qdkg@mail.gmail.com>
+ <CAAVeFu+kRcWT2zxbduA6MU9v1cTVb8HU3GEDdaviUAkYa6SbSQ@mail.gmail.com> <5555DAF6.4030309@mblankhorst.nl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1642914949=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <5555DAF6.4030309-FcfepWsj2zOByvU0x3ry2g@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Maarten Lankhorst <maarten-FcfepWsj2zOByvU0x3ry2g@public.gmane.org>
+Cc: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Fri, May 15, 2015 at 8:39 PM, Maarten Lankhorst
+<maarten-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> wrote:
+> Op 15-05-15 om 09:11 schreef Alexandre Courbot:
+>> Re-pinging Marteen on an email address that still exists :P
+>>
+>> On Wed, Apr 22, 2015 at 6:08 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>> On Sun, Mar 15, 2015 at 5:41 PM, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>>>> On 03/14/2015 04:33 AM, Maarten Lankhorst wrote:
+>>>>> Hey,
+>>>>>
+>>>>> Op 13-03-15 om 07:27 schreef Alexandre Courbot:
+>>>>>> Add a flag allowing Nouveau to specify that an object should be coherent
+>>>>>> at allocation time. This is required for some class of objects like
+>>>>>> fences which are randomly-accessed by both the CPU and GPU. This flag
+>>>>>> instructs the kernel driver to make sure the object remains coherent
+>>>>>> even on architectures for which coherency is not guaranteed by the bus.
+>>>>>>
+>>>>>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>>>> I don't see a problem with this patch, but similar patches to intel to
+>>>>> libdrm have been shot down when the changes weren't in an official kernel
+>>>>> yet, so I think this should wait until the change is at least in drm-next.
+>>>>> ;-)
+>>>>
+>>>> Sounds good. I will ping you again once the kernel change reaches -next.
+>>> Hi Marteen,
+>>>
+>>> The kernel change required for this patch is now in -next. Do you
+>>> think we can merge it now?
+> I think it would be ok to merge now.
 
---===============1642914949==
-Content-Type: multipart/alternative; boundary="1432078350.45Fd1.11153"; charset="UTF-8"
-
-
---1432078350.45Fd1.11153
-Date: Tue, 19 May 2015 23:32:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90513
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Confirmed that I get redness coming in on that draw on my GK208, whereas it's
-fine on i965.
-
-There are a few awkward things, but nothing completely ridiculous:
-
-1. 4096x4096 srgb dxt1/5 textures, specifically GL_TEXTURE4, GL_TEXTURE6.
-2. Multiple vertex elements are mapped to the same position in the same buffer
-(3, 4, and 5).
-
-Curiously, no shaders appear to be bound, which is very odd. I'm guessing
-that's some sort of qapitrace fail. Very weird.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1432078350.45Fd1.11153
-Date: Tue, 19 May 2015 23:32:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Confirmed that I get redness coming in on that draw on my GK208, whereas it's
-fine on i965.
-
-There are a few awkward things, but nothing completely ridiculous:
-
-1. 4096x4096 srgb dxt1/5 textures, specifically GL_TEXTURE4, GL_TEXTURE6.
-2. Multiple vertex elements are mapped to the same position in the same buffer
-(3, 4, and 5).
-
-Curiously, no shaders appear to be bound, which is very odd. I'm guessing
-that's some sort of qapitrace fail. Very weird.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432078350.45Fd1.11153--
-
---===============1642914949==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1642914949==--
+Great - who could do this? :P
