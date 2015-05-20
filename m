@@ -1,13 +1,13 @@
-From: caocoa-ruvOiOuSH0dWk0Htik3J/w@public.gmane.org
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
 Subject: Re: Hardware wish list?
-Date: Wed, 20 May 2015 20:57:53 -0000
-Message-ID: <9e6f064ba327c8547c321d078cc13952.squirrel@mail2tor2zyjdctd.onion>
+Date: Wed, 20 May 2015 23:10:02 +0200
+Message-ID: <C3D3069F-546F-48FE-ACBC-E3A78F4B84B9@free.fr>
 References: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ <9e6f064ba327c8547c321d078cc13952.squirrel@mail2tor2zyjdctd.onion>
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
+Content-Type: multipart/mixed; boundary="===============2123782166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <9e6f064ba327c8547c321d078cc13952.squirrel-ruvOiOuSH0fsJmqe0W8EJvmVnJLW1JIT@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,22 +17,151 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alex Henrie <alexhenrie24-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: caocoa-ruvOiOuSH0dWk0Htik3J/w@public.gmane.org
+Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, Alex Henrie <alexhenrie24-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QnkgdGhlIHdheSwKSXMgdGhlcmUgYW55IHBsYWNlIHdoZXJlIG5vdXZlYXUgdXNlcnMgY2FuIHNo
-b3cgdGhlaXIgY29uZmlndXJhdGlvbiAob3IgYXQKbGVhc3QgdGhlaXIgR1BVKT8gSXQgbWlnaHQg
-YmUgdXNlZnVsIGlmIGRldmVsb3BlcnMgbmVlZCB0byBrbm93IGhvdyBhCmdpdmVuIEdQVSByZXNw
-b25kcyB0byB0aGVpciBjb2RlLgoKPiBHcmVldGluZ3MgTm91dmVhdSBkZXZlbG9wZXJzLAo+Cj4g
-SXQncyBiZWVuIGEgd2hpbGUgc2luY2UgSSd2ZSBzZW50IGFueSBoYXJkd2FyZSB5b3VyIHdheS4g
-SSBmZWVsIHRoYXQKPiBOb3V2ZWF1IGlzIG9uZSBvZiB0aGUgbW9zdCBpbXBvcnRhbnQgcGllY2Vz
-IG9mIHNvZnR3YXJlIGhvbGRpbmcgTGludXgKPiBiYWNrLCBhbmQgSSdtIGhhcHB5IHRvIHN1cHBv
-cnQgeW91LiBJZiB5b3Ugc2VuZCBtZSBhIHZlcnkgc3BlY2lmaWMKPiBsaXN0IG9mIGNhcmRzLCBi
-b2FyZHMsIGV0Yy4gdGhhdCB5b3Ugd2FudCBvciBuZWVkLCBJJ2xsIHNlZSB3aGF0IEkgY2FuCj4g
-ZG8uCj4KPiAtQWxleAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cj4KCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============2123782166==
+Content-Type: multipart/signed; boundary="Apple-Mail=_2E8AF91E-7A4D-49D9-9441-21E8E6A2C398"; protocol="application/pkcs7-signature"; micalg=sha1
+
+
+--Apple-Mail=_2E8AF91E-7A4D-49D9-9441-21E8E6A2C398
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=iso-8859-1
+
+Hello,
+
+> On 20 May 2015, at 22:57, caocoa-ruvOiOuSH0dWk0Htik3J/w@public.gmane.org wrote:
+>=20
+> By the way,
+> Is there any place where nouveau users can show their configuration =
+(or at
+> least their GPU)? It might be useful if developers need to know how a
+> given GPU responds to their code.
+
+What has be done so far, is that developers ask (almost exclusively) on =
+IRC or on the mailing list for testers. Maybe that could be improved.
+
+>=20
+>> Greetings Nouveau developers,
+>>=20
+>> It's been a while since I've sent any hardware your way. I feel that
+>> Nouveau is one of the most important pieces of software holding Linux
+>> back, and I'm happy to support you. If you send me a very specific
+>> list of cards, boards, etc. that you want or need, I'll see what I =
+can
+>> do.
+
+Thank you for the proposal, but I have almost no time to work on Nouveau =
+at the moment, and I still have a few cards I need to play with =
+(including the G96 you sent me :) ).
+
+
+Pierre
+
+>>=20
+>> -Alex
+>> _______________________________________________
+>> Nouveau mailing list
+>> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+>> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>>=20
+>=20
+>=20
+
+
+--Apple-Mail=_2E8AF91E-7A4D-49D9-9441-21E8E6A2C398
+Content-Disposition: attachment;
+	filename=smime.p7s
+Content-Type: application/pkcs7-signature;
+	name=smime.p7s
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIMhDCCBjQw
+ggQcoAMCAQICAR4wDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDE1NVoX
+DTE3MTAyNDIxMDE1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMcJg8zOLdgasSmkLhOrlr6KMoOMpohBllVHrdRvEg/q6r8jR+EK
+75xCGhR8ToREoqe7zM9/UnC6TS2y9UKTpT1v7RSMzR0t6ndl0TWBuUr/UXBhPk+Kmy7bI4yW4urC
++y7P3/1/X7U8ocb8VpH/Clt+4iq7nirMcNh6qJR+xjOhV+VHzQMALuGYn5KZmc1NbJQYclsGkDxD
+z2UbFqE2+6vIZoL+jb9x4Pa5gNf1TwSDkOkikZB1xtB4ZqtXThaABSONdfmv/Z1pua3FYxnCFmdr
+/+N2JLKutIxMYqQOJebr/f/h5t95m4JgrM3Y/w7YX9d7YAL9jvN4SydHsU6n65cCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBRTcu2SnODaywFc
+fH6WNU7y1LhRgjAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBAAqDCH14qywG
+XLhjjF6uHLkjd02hcdh9hrw+VUsv+q1eeQWB21jWj3kJ96AUlPCoEGZ/ynJNScWy6QMVQjbbMXlt
+UfO4n4bGGdKo3awPWp61tjAFgraLJgDk+DsSvUD6EowjMTNx25GQgyYJ5RPIzKKR9tQW8gGK+2+R
+HxkUCTbYFnL6kl8Ch507rUdPPipJ9CgJFws3kDS3gOS5WFMxcjO5DwKfKSETEPrHh7p5shuuNktv
+sv6hxHTLhiMKX893gxdT3XLS9OKmCv87vkINQcNEcIIoFWbP9HORz9v3vQwR4e3ksLc2JZOAFK+s
+sS5XMEoznzpihEP0PLc4dCBYjbvSD7kxgDwZ+Aj8Q9PkbvE9sIPP7ON0fz095HdThKjiVJe6vofq
++n6b1NBc8XdrQvBmunwxD5nvtTW4vtN6VY7mUCmxsCieuoBJ9OlqmsVWQvifIYf40dJPZkk9YgGT
+zWLpXDSfLSplbY2LL9C9U0ptvjcDjefLTvqSFc7tw1sEhF0n/qpA2r0GpvkLRDmcSwVyPvmjFBGq
+Up/pNy8ZuPGQmHwFi2/14+xeSUDG2bwnsYJQG2EdJCB6luQ57GEnTA/yKZSTKI8dDQa8Sd3zfXb1
+9mOgSF0bBdXbuKhEpuP9wirslFe6fQ1t5j5R0xi72MZ8ikMu1RQZKCyDbMwazlHiMIIGSDCCBTCg
+AwIBAgIDDEDcMA0GCSqGSIb3DQEBBQUAMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRD
+b20gTHRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYG
+A1UEAxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0EwHhcN
+MTQxMjE0MTg0NTA1WhcNMTUxMjE1MDkxMzUxWjBhMRkwFwYDVQQNExBURnJHNzJmak03OERTWVFR
+MR4wHAYDVQQDDBVwaWVycmUubW9ycm93QGZyZWUuZnIxJDAiBgkqhkiG9w0BCQEWFXBpZXJyZS5t
+b3Jyb3dAZnJlZS5mcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALzC9baao7RHqaVb
+Eb06OjZyRKsZNwQptzU2fOBkKQjC58C/tYIvA56z2hDcF+jz7xjzvP52R2GqzcFuuV17RSa4rn9M
+yqLo9Xs09uQ5ktBnv97skTD9ifFB/i8wqHuUflrlE8ROn0DiibsKCZOwO2ylbzOFsRPFHzEDAUB9
+Fovem8XFIbDc01mwKqKsDyhfIJIQ8kbIaJVu0wM0gP21UB+1Hk/bDrrJaw2mAT+DaEkMiuPAYkSr
+97pTNDdsqhSB9u2d5wgaLllWXK36mWf0jQ1cc0oV44Ap8L65bvAo3WhZqqmfHvaxuKVDBEPZJdV1
+gcCL4eU7zfcBAVHGsgDb2LUCAwEAAaOCAtswggLXMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0G
+A1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUKdwrh69aDJuOcFtsqv3bYEtu
+HaEwHwYDVR0jBBgwFoAUU3Ltkpzg2ssBXHx+ljVO8tS4UYIwIAYDVR0RBBkwF4EVcGllcnJlLm1v
+cnJvd0BmcmVlLmZyMIIBTAYDVR0gBIIBQzCCAT8wggE7BgsrBgEEAYG1NwECAzCCASowLgYIKwYB
+BQUHAgEWImh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwgfcGCCsGAQUFBwICMIHq
+MCcWIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmlj
+YXRlIHdhcyBpc3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAxIFZhbGlkYXRpb24gcmVxdWly
+ZW1lbnRzIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBp
+bnRlbmRlZCBwdXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdh
+dGlvbnMuMDYGA1UdHwQvMC0wK6ApoCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUxLWNy
+bC5jcmwwgY4GCCsGAQUFBwEBBIGBMH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3Ns
+LmNvbS9zdWIvY2xhc3MxL2NsaWVudC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNz
+bC5jb20vY2VydHMvc3ViLmNsYXNzMS5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93
+d3cuc3RhcnRzc2wuY29tLzANBgkqhkiG9w0BAQUFAAOCAQEAUQEMhjmm4yZyLf8jRn7mJpu9lAxR
+zn1Ec/Q3iqOg0lhKxNglTPL1H6WRuio+xOOof8WJs7b7InpDn3+0XaK6a7WwDssNwF4YtadcRR9i
+/jVGUthSeuVykj2wqElLiIfit4j5TomLfdN5B+Dv6kL5CG+IyaxSS6Y8qbZkZH1N8aVWUGyFT4EL
+uvPW/UI2iwhEjyutiRpNEWCYKH6f1nnIFJQGRd9v83kk7gzGiD2QtjzGVb2YxYDLdyE4Xj1N32ZP
+mBZMgK/68rMkI6VpxqoyblODP5F6YY3+T7YgjpLfUu7gGvEuacP/ZZ0kJyS7deBnriRYuVfSi5Cp
+Tg1RPS2o2TGCA28wggNrAgEBMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20g
+THRkLjErMCkGA1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UE
+AxMvU3RhcnRDb20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwxA3DAJ
+BgUrDgMCGgUAoIIBrzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0x
+NTA1MjAyMTEwMDNaMCMGCSqGSIb3DQEJBDEWBBTfdFoSMmfv3BAlJNUIGVPh9ZT9TTCBpQYJKwYB
+BAGCNxAEMYGXMIGUMIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkG
+A1UECxMiU2VjdXJlIERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRD
+b20gQ2xhc3MgMSBQcmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAwxA3DCBpwYLKoZIhvcN
+AQkQAgsxgZeggZQwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYD
+VQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENv
+bSBDbGFzcyAxIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQQIDDEDcMA0GCSqGSIb3DQEB
+AQUABIIBAIGc8PB1/1jiXmdbmrciFbRERgUyGUeJyvTAzZ5Y7ybM0V73wYje488NahlI1jr231sD
+uQqz7ja9ze1UEJlsusAIWIWRifwoUXQZ8dGyxaNaD4mcWfYjKD447+YAqGeHRVu0rwFmG66CUmso
+cuH67R+VHOBKZFoWXxJS+kRmF4iH22Fbxn2HLAb2O2y1dQymb2iYHxy1cqZc4rOTwXhiPM2TFETO
+YLYLcU/D1u/U4QXb+L9YfYfhA9ZNnKNeDuv3G3OBUqMTqM6gvW3bSTDXdDn2yltuMzoCgCDsPIj3
+eUpdMLsnIrt47hV5gpq8dat55BA+Vg53b5781V5gnJxO1jAAAAAAAAA=
+--Apple-Mail=_2E8AF91E-7A4D-49D9-9441-21E8E6A2C398--
+
+--===============2123782166==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2123782166==--
