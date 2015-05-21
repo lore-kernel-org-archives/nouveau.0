@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Fermi+ shader header docs
-Date: Thu, 21 May 2015 11:32:31 -0400
-Message-ID: <CAKb7UvgQRqh_8gBWmRJska-O-wR=+R8eaf9815FBv-Z0erjQ9A@mail.gmail.com>
-References: <CAKb7Uvj=oisrfyGoehZFLtzWD38Nx_j435K2uZ9O5S8RXFayBw@mail.gmail.com>
- <20150521140516.GA8516@morell.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Thu, 21 May 2015 16:03:03 +0000
+Message-ID: <bug-90567-8800-uy9zOKN2y6@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0115676314=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20150521140516.GA8516-f3YH7lVHJt/FT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,46 +17,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBNYXkgMjEsIDIwMTUgYXQgMTA6MDUgQU0sIFJvYmVydCBNb3JlbGwgPHJtb3JlbGxA
-bnZpZGlhLmNvbT4gd3JvdGU6Cj4gSGkgSWxpYSwKPgo+IE9uIFNhdCwgTWF5IDAyLCAyMDE1IGF0
-IDEyOjM0OjIxUE0gLTA0MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBIaSwKPj4KPj4gQXMgSSdt
-IGxvb2tpbmcgdG8gYWRkIHNvbWUgc3VwcG9ydCB0byBub3V2ZWF1IGZvciBmZWF0dXJlcyBsaWtl
-IGF0b21pYwo+PiBjb3VudGVycyBhbmQgaW1hZ2VzLCBJJ20gcnVubmluZyBpbnRvIHNvbWUgY29u
-ZnVzaW9uIGFib3V0IHdoYXQgdGhlCj4+IGZpcnN0IHdvcmQgb2YgdGhlIHNoYWRlciBoZWFkZXIg
-bWVhbnMuIEhlcmUgaXMgdGhlIGRlZmluaXRpb24gYXMgd2UKPj4gaGF2ZSBpdCB0b2RheToKPgo+
-IFsuLi5dCj4KPj4gSG93ZXZlciBJIGtub3cgdGhhdCB0aGVzZSBhcmUgc29tZXdoYXQgd3Jvbmcu
-IEkndmUgc2VlbiBzaGFkZXJzIHRoYXQKPj4gdXNlIGdtZW0gYWNjZXNzZXMgKGkuZS4gbW92IHIw
-LCBbcjBdKSB0aGF0IGp1c3QgaGF2ZSB0aGUgTE1FTSBlbmFibGUKPj4gYml0IHNldCAoYW5kIHRo
-ZXkgdXNlIG5vIGxtZW0pLiBBbmQgSSd2ZSBzZWVuIGFkZGl0aW9uYWwgYml0cyBzZXQsIGVzcAo+
-PiByZWxhdGluZyB0byBpbWFnZXMsIGJ1dCBJIGhhdmVuJ3Qgc3BlbnQgZW5vdWdoIHRpbWUgbG9v
-a2luZyBhdCBhbGwgdGhlCj4+IHZhcmlhdGlvbnMgdG8gbWFrZSBzZW5zZSBvZiBpdCB5ZXQuIEZv
-ciBleGFtcGxlLCBJIHRoaW5rIHRoYXQgRmVybWkKPj4gYW5kIEtlcGxlcisgaGF2ZSBkaWZmZXJl
-bnQgbWVhbmluZ3MgZm9yIHNvbWUgb2YgdGhlIGJpdHMuCj4KPiBUaG9zZSBsb29rIHByZXR0eSBj
-bG9zZSA6KQo+Cj4+IEkgd2FzIGhvcGluZyB5b3UgY291bGQganVzdCByZWxlYXNlIHRoZSBkb2Nz
-IGZvciB0aGUgc2hhZGVyIGhlYWRlcnMsCj4+IG9yIGF0IGxlYXN0IHRoZSBmaXJzdCB3b3JkIG9m
-IHRoZSBzaGFkZXIgaGVhZGVyLgo+Cj4gV2UndmUgcG9zdGVkIHRoZSBzcGVjaWZpY2F0aW9uIGZv
-ciB0aGUgZnVsbCBTaGFkZXIgUHJvZ3JhbSBIZWFkZXIgdG8gb3VyCj4gR1BVIGRvY3VtZW50YXRp
-b24gc2l0ZSBoZXJlOgo+Cj4gZnRwOi8vZG93bmxvYWQubnZpZGlhLmNvbS9vcGVuLWdwdS1kb2Mv
-U2hhZGVyLVByb2dyYW0tSGVhZGVyLzEvU2hhZGVyLVByb2dyYW0tSGVhZGVyLmh0bWwKPgo+IEkg
-aG9wZSBpdCBoZWxwcyBjbGVhciB0aGluZ3MgdXAuCgpZZXAsIGp1c3QgYSBmZXcgZm9sbG93LXVw
-IHF1ZXN0aW9uczoKCi0gU1BIIFR5cGUgMSBhbmQgdHlwZSAyIGFwcGVhciB0byBiZSBmbGlwcGVk
-IHdydCB0aGUgdGFibGVzIC0tICJXaGVuClBTIGlzIHVzZWQsIGZpZWxkIFNwaFR5cGUgaW4gQ29t
-bW9uV29yZDAgbXVzdCBiZSBzZXQgdG8gMTsgc2ltaWxhcmx5LAp3aGVuIFZURyBpcyB1c2VkLCBT
-cGhUeXBlIGluIENvbW1vbldvcmQwIG11c3QgYmUgc2V0IHRvIDIuIiBCdXQgdGhlCiJUYWJsZSAx
-LiBTUEggVHlwZSAxIERlZmluaXRpb24iIGlzIGNsZWFybHkgbWVhbnQgZm9yIFZURyBhbmQgdGFi
-bGUgMgppcyBjbGVhcmx5IG1lYW50IGZvciBQUy4uLgotIFlvdSBza2lwIG92ZXIgU2Fzc1ZlcnNp
-b24gLS0gd2hhdCBpcyB0aGF0PwotIFlvdSBoYXZlIGEgZnVubnkgbm90ZSBpbiB0aGVyZSAtLSAi
-VHJpYW5nbGVzIGdlbmVyYXRlZCBieSB0aGUKZ2VvbWV0cnkgc2hhZGVyIGFsd2F5cyBoYXZlIGFs
-bCB0aGVpciBlZGdlIGZsYWdzIHNldCB0byBUUlVFIiAtLSB0aGF0CmlzIHRoZSAqb25seSogcmVm
-ZXJlbmNlIHRvIGVkZ2UgZmxhZ3MgaW4gdGhlIHdob2xlIGRvY3VtZW50LiBSaWdodCBub3cKd2Ug
-ZG8gc29tZSBjcmF6eSB0aGluZyB0byBnZXQgZWRnZSBmbGFncyByaWdodCBvbiBmZXJtaSsgKGFu
-ZCBJIHRoaW5rCndlIGp1c3QgZ2V0IHRoZW0gd3Jvbmcgb24gdGVzbGEpLiBJcyB0aGVyZSBhIHdh
-eSB0byBlbWl0IGVkZ2UgZmxhZ3MKZnJvbSB2ZXJ0ZXggc2hhZGVyPwotIFRvIGJlIGNsZWFyOiBE
-b2VzTG9hZE9yU3RvcmUgLS0gKmFueSogbG9hZC9zdG9yZT8gRXZlbiBMREM/IEFMRD8KClRoYW5r
-cyEKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0115676314==
+Content-Type: multipart/alternative; boundary="1432224183.4Cc62.26351"; charset="UTF-8"
+
+
+--1432224183.4Cc62.26351
+Date: Thu, 21 May 2015 16:03:03 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The first error messages are the most informative. Can you provide a full dmesg
+log from boot until some of those errors happen?
+
+Also, what version of mesa are you using? If not the latest, please try with
+the latest.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432224183.4Cc62.26351
+Date: Thu, 21 May 2015 16:03:03 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The first error messages are the most informative. Can you provide a full dmesg
+log from boot until some of those errors happen?
+
+Also, what version of mesa are you using? If not the latest, please try with
+the latest.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432224183.4Cc62.26351--
+
+--===============0115676314==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0115676314==--
