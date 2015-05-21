@@ -1,120 +1,154 @@
-From: Ben Skeggs <skeggsb@gmail.com>
-Subject: Re: [PATCH 1/2] drm/nouveau: add staging module option
-Date: Thu, 21 May 2015 18:35:58 +1000
-Message-ID: <CACAvsv6OR0HcSnvrcsJRi=JJ0m09EPY9vi0QDuRiqCTfPVjvaQ@mail.gmail.com>
-References: <1432101379-9515-1-git-send-email-acourbot@nvidia.com>
- <1432101379-9515-2-git-send-email-acourbot@nvidia.com>
- <CACAvsv4vW4bBddq2s9eWMzbYcG_F5j+KCkZAfivxKW9AWDBXQQ@mail.gmail.com>
- <CAAVeFu+N6VvPHispeXBTGykncfnOQkJ-J1PxxVa42-ahX2YDsA@mail.gmail.com>
- <CACAvsv7brfoe51eEOibw39_t=Hg6gvb0T2V8YO0-pDdxZ-nPLw@mail.gmail.com>
- <CAAVeFuKYxHQiUObG+78UdCg+R0Zm9UxaFW5WtKQFcHs33vLbAA@mail.gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH v4] pmu/gk20a: PMU boot support
+Date: Thu, 21 May 2015 18:46:02 +1000
+Message-ID: <CACAvsv7TLxXZrGhwiDKzXGgVumWQEARJRV2x-97O8SbMj+3bRQ@mail.gmail.com>
+References: <1428921530-28556-1-git-send-email-acourbot@nvidia.com>
+	<552B9D8A.5050202@nvidia.com>
+	<CACAvsv4MC3hq5_DJ5c7NPfEYyrsG2vPMjadEhC+H4zcWzc+F=Q@mail.gmail.com>
+	<CAAVeFuL8R=hcO2u8xCZB6GuM58Kgx6RzW2oWwKPcwrs4bj4rqQ@mail.gmail.com>
+	<CACAvsv7un7b38_s6Whu7JdOegNs-+3ci_GFYHAzwO5CL6KWA1Q@mail.gmail.com>
+	<CAAVeFuKOwLiOM-fkadp5dvutrxE-QHP-y=TmSVvBgJ5syHfiHg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAAVeFuKYxHQiUObG+78UdCg+R0Zm9UxaFW5WtKQFcHs33vLbAA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <gnurou@gmail.com>
-Cc: "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAAVeFuKOwLiOM-fkadp5dvutrxE-QHP-y=TmSVvBgJ5syHfiHg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Deepak Goyal <dgoyal-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjEgTWF5IDIwMTUgYXQgMTY6MDQsIEFsZXhhbmRyZSBDb3VyYm90IDxnbnVyb3VAZ21haWwu
-Y29tPiB3cm90ZToKPiBPbiBUaHUsIE1heSAyMSwgMjAxNSBhdCAyOjU1IFBNLCBCZW4gU2tlZ2dz
-IDxza2VnZ3NiQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIDIxIE1heSAyMDE1IGF0IDE1OjQ5LCBB
-bGV4YW5kcmUgQ291cmJvdCA8Z251cm91QGdtYWlsLmNvbT4gd3JvdGU6Cj4+PiBPbiBUaHUsIE1h
-eSAyMSwgMjAxNSBhdCAxOjQ4IFBNLCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWlsLmNvbT4gd3Jv
-dGU6Cj4+Pj4gT24gMjAgTWF5IDIwMTUgYXQgMTU6NTYsIEFsZXhhbmRyZSBDb3VyYm90IDxhY291
-cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4+Pj4gQWRkIGEgbW9kdWxlIG9wdGlvbiBhbGxvd2lu
-ZyB0byBlbmFibGUgc3RhZ2luZy91bnN0YWJsZSBBUElzLiBUaGlzIHdpbGwKPj4+Pj4gYWxsb3cg
-dXMgdG8gZXhwZXJpbWVudCBmcmVlbHkgd2l0aCBleHBlcmltZW50YWwgQVBJcyBmb3IgYSB3aGls
-ZSBiZWZvcmUKPj4+Pj4gc2V0dGluZyB0aGVtIGluIHN0b25lLgo+Pj4+Pgo+Pj4+PiBTaWduZWQt
-b2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KPj4+Pj4gLS0t
-Cj4+Pj4+ICBkcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jICAgICAgICAgIHwgMTggKysrKysrKysr
-KysrKysrKysrCj4+Pj4+ICBkcm0vbm91dmVhdS91YXBpL2RybS9ub3V2ZWF1X2RybS5oIHwgIDMg
-KysrCj4+Pj4+ICAyIGZpbGVzIGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKykKPj4+Pj4KPj4+Pj4g
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2RybS5jCj4+Pj4+IGluZGV4IDg5MDQ5MzM1YjczOC4uZTRiZDZlZDUxZTczIDEwMDY0NAo+
-Pj4+PiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4+Pj4+ICsrKyBiL2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMKPj4+Pj4gQEAgLTc1LDYgKzc1LDEwIEBAIE1PRFVMRV9QQVJNX0RF
-U0MocnVucG0sICJkaXNhYmxlICgwKSwgZm9yY2UgZW5hYmxlICgxKSwgb3B0aW11cyBvbmx5IGRl
-ZmF1bHQgKC0xCj4+Pj4+ICBpbnQgbm91dmVhdV9ydW50aW1lX3BtID0gLTE7Cj4+Pj4+ICBtb2R1
-bGVfcGFyYW1fbmFtZWQocnVucG0sIG5vdXZlYXVfcnVudGltZV9wbSwgaW50LCAwNDAwKTsKPj4+
-Pj4KPj4+Pj4gK01PRFVMRV9QQVJNX0RFU0Moc3RhZ2luZywgImVuYWJsZSBzdGFnaW5nIEFQSXMi
-KTsKPj4+Pj4gK2ludCBub3V2ZWF1X3N0YWdpbmcgPSAwOwo+Pj4+PiArbW9kdWxlX3BhcmFtX25h
-bWVkKHN0YWdpbmcsIG5vdXZlYXVfc3RhZ2luZywgaW50LCAwNDAwKTsKPj4+Pj4gKwo+Pj4+PiAg
-c3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGRyaXZlcl9zdHViOwo+Pj4+PiAgc3RhdGljIHN0cnVj
-dCBkcm1fZHJpdmVyIGRyaXZlcl9wY2k7Cj4+Pj4+ICBzdGF0aWMgc3RydWN0IGRybV9kcml2ZXIg
-ZHJpdmVyX3BsYXRmb3JtOwo+Pj4+PiBAQCAtODk1LDYgKzg5OSw3IEBAIG5vdXZlYXVfaW9jdGxz
-W10gPSB7Cj4+Pj4+ICAgICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9HRU1fQ1BVX1BS
-RVAsIG5vdXZlYXVfZ2VtX2lvY3RsX2NwdV9wcmVwLCBEUk1fVU5MT0NLRUR8RFJNX0FVVEh8RFJN
-X1JFTkRFUl9BTExPVyksCj4+Pj4+ICAgICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYoTk9VVkVBVV9H
-RU1fQ1BVX0ZJTkksIG5vdXZlYXVfZ2VtX2lvY3RsX2NwdV9maW5pLCBEUk1fVU5MT0NLRUR8RFJN
-X0FVVEh8RFJNX1JFTkRFUl9BTExPVyksCj4+Pj4+ICAgICAgICAgRFJNX0lPQ1RMX0RFRl9EUlYo
-Tk9VVkVBVV9HRU1fSU5GTywgbm91dmVhdV9nZW1faW9jdGxfaW5mbywgRFJNX1VOTE9DS0VEfERS
-TV9BVVRIfERSTV9SRU5ERVJfQUxMT1cpLAo+Pj4+PiArICAgICAgIC8qIFN0YWdpbmcgaW9jdGxz
-ICovCj4+Pj4+ICB9Owo+Pj4+Pgo+Pj4+PiAgbG9uZwo+Pj4+PiBAQCAtMTAyNyw2ICsxMDMyLDcg
-QEAgc3RhdGljIHZvaWQgbm91dmVhdV9kaXNwbGF5X29wdGlvbnModm9pZCkKPj4+Pj4gICAgICAg
-ICBEUk1fREVCVUdfRFJJVkVSKCIuLi4gcnVucG0gICAgICAgIDogJWRcbiIsIG5vdXZlYXVfcnVu
-dGltZV9wbSk7Cj4+Pj4+ICAgICAgICAgRFJNX0RFQlVHX0RSSVZFUigiLi4uIHZyYW1fcHVzaGJ1
-ZiA6ICVkXG4iLCBub3V2ZWF1X3ZyYW1fcHVzaGJ1Zik7Cj4+Pj4+ICAgICAgICAgRFJNX0RFQlVH
-X0RSSVZFUigiLi4uIHBzdGF0ZSAgICAgICA6ICVkXG4iLCBub3V2ZWF1X3BzdGF0ZSk7Cj4+Pj4+
-ICsgICAgICAgRFJNX0RFQlVHX0RSSVZFUigiLi4uIHN0YWdpbmcgICAgICA6ICVkXG4iLCBub3V2
-ZWF1X3N0YWdpbmcpOwo+Pj4+PiAgfQo+Pj4+Pgo+Pj4+PiAgc3RhdGljIGNvbnN0IHN0cnVjdCBk
-ZXZfcG1fb3BzIG5vdXZlYXVfcG1fb3BzID0gewo+Pj4+PiBAQCAtMTA4OCw2ICsxMDk0LDE4IEBA
-IGVycl9mcmVlOgo+Pj4+PiAgc3RhdGljIGludCBfX2luaXQKPj4+Pj4gIG5vdXZlYXVfZHJtX2lu
-aXQodm9pZCkKPj4+Pj4gIHsKPj4+Pj4gKyAgICAgICAvKiBEbyBub3QgcmVnaXN0ZXIgc3RhZ2lu
-ZyBpb2N0c2wgaWYgb3B0aW9uIG5vdCBzcGVjaWZpZWQgKi8KPj4+Pj4gKyAgICAgICBpZiAoIW5v
-dXZlYXVfc3RhZ2luZykgewo+Pj4+PiArICAgICAgICAgICAgICAgdW5zaWduZWQgaTsKPj4+Pj4g
-Kwo+Pj4+PiArICAgICAgICAgICAgICAgLyogVGhpcyBrZWVwcyB1cyBzYWZlIGlzIG5vIHN0YWdp
-bmcgaW9jdGxzIGFyZSBkZWZpbmVkICovCj4+Pj4+ICsgICAgICAgICAgICAgICBpID0gbWluKGRy
-aXZlcl9zdHViLm51bV9pb2N0bHMsIERSTV9OT1VWRUFVX1NUQUdJTkdfSU9DVEwpOwo+Pj4+PiAr
-ICAgICAgICAgICAgICAgd2hpbGUgKCFub3V2ZWF1X2lvY3Rsc1tpIC0gMV0uZnVuYykKPj4+Pj4g
-KyAgICAgICAgICAgICAgICAgICAgICAgaS0tOwo+Pj4+PiArCj4+Pj4+ICsgICAgICAgICAgICAg
-ICBkcml2ZXJfc3R1Yi5udW1faW9jdGxzID0gaTsKPj4+Pj4gKyAgICAgICB9Cj4+Pj4gSGV5IEFs
-ZXgsCj4+Pj4KPj4+PiBJJ3ZlIGdvdCBubyBzcGVjaWZpYyBvYmplY3Rpb24uICBCdXQgSSdtIGN1
-cmlvdXMgYXMgdG8gd2h5IHlvdSB0b29rCj4+Pj4gdGhpcyBhcHByb2FjaCBhcyBvcHBvc2VkIHRv
-IGp1c3QgYWRkaW5nICJpZiAoIW5vdXZlYXVfc3RhZ2luZykgcmV0dXJuCj4+Pj4gLUVJTlZBTDsi
-IGRpcmVjdGx5IGluIHRoZSBleHBlcmltZW50YWwgaW9jdGxzPwo+Pj4KPj4+IE1haW5seSBiZWNh
-dXNlIHdlIHdpbGwgbGlrZWx5IGZvcmdldCB0byBhZGQgdGhpcyBjaGVjayAob3IgdG8gcmVtb3Zl
-Cj4+PiBpdCkgaW4gc29tZSBvZiB0aGUgc3RhZ2luZyBpb2N0bHMuIFRoZSBjdXJyZW50IHNvbHV0
-aW9uIGRvZXNuJ3QKPj4+IHJlcXVpcmUgdXMgdG8gdGhpbmsgYWJvdXQgdGhhdCAtIGFuZCB0aGUg
-bGVzcyB0aGluZ3MgdG8gdGhpbmsgYWJvdXQsCj4+PiB0aGUgYmV0dGVyLgo+Pj4KPj4+PiBJIHRo
-aW5rLCBpbiBsaW5lIHdpdGgKPj4+PiB3aGF0J3MgYmVlbiBkb25lIGluIG90aGVyIHBsYWNlcywg
-aGF2aW5nIG1vZHVsZSBvcHRpb25zIHBlci1hcGkgaXMKPj4+PiBwZXJoYXBzIGEgYmV0dGVyIGNo
-b2ljZSB0b28uCj4+Pgo+Pj4gRG8geW91IG1lYW4gdGhhdCBlYWNoIGV4cGVyaW1lbnRhbCBpb2N0
-bCBzaG91bGQgaGF2ZSBpdHMgb3duIGVuYWJsZQo+Pj4gb3B0aW9uPyBJIGRvbid0IG1pbmQgZ29p
-bmcgdGhhdCB3YXkgaWYgeW91IHRoaW5rIGl0IGlzIHByZWZlcmFibGUuIEFuZAo+Pj4gaW4gdGhh
-dCBjYXNlIG15IGNvbW1lbnQgYWJvdmUgaXMgdm9pZC4KPj4gVGhhdCB3b3VsZCBiZSBtb3JlIHBy
-ZWZlcmFibGUgSSB0aGluaywgYW5kIG9idmlvdXMgYXMgdG8gd2hhdCBleGFjdGx5Cj4+IHlvdSdy
-ZSBlbmFibGluZy4KPj4KPj4+Cj4+PiBCdXQgYWN0dWFsbHkgSSB3b25kZXIgaWYgaGF2aW5nIHRo
-ZXNlIGV4cGVyaW1lbnRhbCBpb2N0bHMgZW5hYmxlZCBhcwo+Pj4gY29tcGlsZSBvcHRpb25zIChl
-aXRoZXIgaW5kaXZpZHVhbGx5IG9yIGFzIGEgd2hvbGUpIHdvdWxkIG5vdCBiZQo+Pj4gYmV0dGVy
-LiBTb21lIGV4cGVyaW1lbnRhbCBpb2N0bHMgbWF5IHJlcXVpcmUgY29kZSBpbiBzdGFnaW5nIChs
-aWtlIHRoZQo+Pj4gUFVTSEJVRl8yIGlvY3RsIHRoYXQgSSB3b3VsZCBsaWtlIHRvIHN1Ym1pdCBu
-ZXh0KSwgYW5kIEkgZG9uJ3QgdGhpbmsKPj4+IGl0IGlzIGRlc2lyYWJsZSB0byBmb3JjZSBleHRy
-YSBjb2RlIG9yIGtlcm5lbCBvcHRpb25zIChpbiB0aGlzIGNhc2UsCj4+PiBDT05GSUdfU1RBR0lO
-RykgdG8gTm91dmVhdSB1c2VycyB3aG8gd2lsbCBub3QgbWFrZSB1c2Ugb2YgdGhlbS4gSQo+Pj4g
-cmVtZW1iZXIgdGhhdCB3ZSBjb25jbHVkZWQgaW4gZmF2b3Igb3IgbW9kdWxlIG9wdGlvbnMgb24g
-SVJDLCBidXQgaW4KPj4+IHRoZSBsaWdodCBvZiB0aGlzLCB3b3VsZG4ndCBhIGNvbmZpZyBvcHRp
-b24gYmUgYSBsZXNzIGludHJ1c2l2ZQo+Pj4gY2hvaWNlPwo+PiBSaWdodCwgYnV0IHRoZSB3aG9s
-ZSBwb2ludCBvZiB0aGlzIGlzIHRvIGVuY291cmFnZSB0aGUgaW9jdGxzIHRvIG5vdAo+PiBsaXZl
-IHRoZXJlIGZvciB0b28gbG9uZywgYW5kIHByb2dyZXNzIHRvIGZ1bGx5IHN1cHBvcnRlZCBpbnRl
-cmZhY2VzLgo+Cj4gRGVmaW5pdGVseSwgYnV0IG15IGNvbmNlcm4gaXMgdGhhdCBkb2luZyB0aGlz
-IHdpbGwgbWFrZSBOb3V2ZWF1IGRlcGVuZAo+IG9uIFNUQUdJTkcgZm9yIGF0IGxlYXN0IHNob3J0
-IHBlcmlvZHMgb2YgdGltZS4gRG8gd2UgcmVhbGx5IHdhbnQgdGhpcz8KSSBhZG1pdCB0byBoYXZp
-bmcgc2xpZ2h0bHkgbWlzcmVhZCB5b3VyIGxhc3QgcGFyYWdyYXBoLiAgRm9yIGNhc2VzCnN1Y2gg
-YXMgdGhhcywgYSBjb25maWcgb3B0aW9uIHRoYXQgZGVwZW5kcyBvbiBTVEFHSU5HICphbmQqIHRo
-ZSBrZXJuZWwKcGFyYW1ldGVyIHNob3VsZCBiZSB1c2VkLgoKV2hhdCBpcyBwdXNoYnVmMiBkb2lu
-ZyB0aGF0IHJlcXVpcmVzIHN0YWdpbmcgYnR3PyAgWW91J3ZlIGxpbmtlZCBtZSB0bwpwYXRjaGVz
-IHByZXZpb3VzbHksIGJ1dCBJIG1pc3NlZCB0aGF0LgoKQmVuLgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1k
-ZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
+On 21 May 2015 at 16:03, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On Fri, May 15, 2015 at 2:37 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote=
+:
+>> On 12 May 2015 at 19:04, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>>> Hi Ben,
+>>>
+>>> On Fri, May 1, 2015 at 8:01 AM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrot=
+e:
+>>>> On 13 April 2015 at 20:42, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>=
+ wrote:
+>>>>> Ben, I guess our main remaining concern with this patch is how it=
+ should
+>>>>> integrate wrt. the existing PMU code. Since it is designed to int=
+eract with
+>>>>> the NVIDIA firmware, maybe we should use a different base code, o=
+r do you
+>>>>> think we can somehow share code and data structures?
+>>>> Hey Alexandre,
+>>>>
+>>>> Sorry for the delay in responding to this.
+>>>
+>>> It is my turn to apologize - I was (well still am, technically :)) =
+on
+>>> holidays and have just started unpiling my inbox...
+>>>
+>>>>
+>>>> My original thinking with transitioning to use NVIDIA's firmware w=
+as
+>>>> that I'd modify our firmware interfaces to match yours, and share =
+the
+>>>> code.  I haven't started on any of this yet due to not having any =
+word
+>>>> on how you guys will be shipping the images, etc.  It would be nic=
+e to
+>>>> have some communication on these things :)
+>>>
+>>> Indeed. For the first time with Maxwell GPUs, NVIDIA-provided firmw=
+are
+>>> will be required for GPUs to operate properly. This raises several
+>>> questions:
+>>>
+>>> - Should the firmware be released under /lib/firmware/nouveau or
+>>> /lib/firmware/nvidia ? (this directory already exists for Tegra USB
+>>> firmware and makes more sense to me, since the firmware is not
+>>> Nouveau-specific)
+>> I think /lib/firmware/nvidia makes sense here too.
+>>
+>>> - For GPCCS/FECS firmware, should we release the netlist "pack" fil=
+e
+>>> or adopt the same format as Nouveau does? (1 file per firmware)
+>>> - Should we keep the current files names (e.g. nvxx_fucxxxx[cd]), o=
+r
+>>> try to switch to more meaningful ones?
+>> I'd actually prefer to have the entire netlists bundled, that gives =
+us
+>> updated reg/ctx production values too as you guys tweak/update them
+>> for hw bugs (etc).  They're also nicer in that you get a single bund=
+le
+>> of everything that's required for that chipset+engine.
+>
+> Good for me - actually that's the solution I implemented first before
+> deciding to go "=C3=A0 la Nouveau". ;) Some extra code will be needed=
+, but
+> nothing crazy, and we will limit that feature to these chips for whic=
+h
+> NVIDIA officially provides the firmware.
+>
+>> I don't have too much opinion on naming.  The current model of
+>> nv{CHIPSET}_{UCODE_TYPE}{REGISTER_BASE}[CODE,DATA] was just nice and
+>> convenient to snprintf into a buffer :)
+>
+> Since the firmware will be provided by us, shall we store it into
+> nvidia/<chip>/gpcfe.bin on linux-firmware?
+Sounds fine.
+
+>
+>>> - What about signature files that are required for secure boot?
+>> As with above, if it's possible to ship them in a single file with t=
+he
+>> ucode that it belongs to, that'd be ideal.  It's not a huge deal
+>> though.
+>
+> So here we actually have several files - it is kind of a mess
+> actually. However I could probably merge them into a single netlist
+> file like we did for the GPC/FE CS code.
+If that's possible, that'd be great.
+
+>
+>>> - Knowing that NVIDIA's firmware ABI is a (very slowly) moving targ=
+et,
+>>> it is worth to aim at ABI compatibility, or should we assume differ=
+ent
+>>> paths for Nouveau and NVIDIA firmware? If ABI incompatibilities are
+>>> introduced in the way, how do we handle versioning?
+>> For incompatible changes, I think appending a -VERSION to each
+>> firmware blob is probably the simplest approach.  The driver can
+>> select the necessary codepath based on what it finds (probably tryin=
+g
+>> newer versions first, obviously).
+>
+> I agree. Hopefully we won't have too much of this.
+>
+>>> All these issues make me tend towards having a separate handling of
+>>> NVIDIA-released firmware (location, format, and ABI). It will also
+>>> make the firmware easier to release if conversions are not necessar=
+y
+>>> on the way out. What are your thoughts on this?
+>> I'm not entirely set here, either way.  I somewhat think that
+>> initially I should adapt our interfaces to match, and a keep single
+>> code path as long as we can.  A lot of the changes so far have seeme=
+d
+>> minor enough we could stick conditionals on firmware version, and if
+>> fw changes come along that warrant a radical change in handling from
+>> the host, we can abstract it away then.
+>>
+>> But, I'm open to other suggestions :)
+>
+> Right now my main concern is to get secure boot support in, and the
+> shortest path seems to be to not care about ABI compatibility between
+> Nouveau and NV firmwares (at least for PMU). Basically I am hoping
+> that you will agree to proceed this way in a first time. ^_^
+If it's really that urgent, my suggestion is to submit the patches as
+you did previously, keeping them confined to GK20A/GM20B, and I'll do
+something nicer to support boards in general.
+
+=46rankly, I'd have had secure boot support in the driver already had
+NVIDIA played things a little differently...  Going forward, I'd like
+to see NVIDIA not treating the Tegra parts of nouveau as a little
+black box where anything goes and things are different from the rest
+of the driver.  The chips operate, for the most part, identically to
+their big siblings...
+
+Thanks,
+Ben.
