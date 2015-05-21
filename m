@@ -1,17 +1,14 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] fix a wrong use of a logical operator in
-	drmmode_output_dpms()
-Date: Thu, 21 May 2015 14:40:41 +1000
-Message-ID: <CAPM=9tyH-Xo09iAQ=0F-Vk8YtEDQkaaeLdDnmOwpDkEdC2t=sw@mail.gmail.com>
-References: <1432134538-13701-1-git-send-email-samuel.pitoiset@inria.fr>
- <555CC056.4020006@mni.thm.de>
- <CAKb7Uvhy-o3-iAZD+EJLhhHVDGc_Zvm=-exna8waTa9QV_CVvA@mail.gmail.com>
- <555CC3C1.3010102@gmail.com>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau/gr/gf100-: fix wrong constant
+	definition
+Date: Thu, 21 May 2015 14:42:14 +1000
+Message-ID: <CACAvsv5zxxGb49rN5QU2aV1dbsSvYxX1mBDmwM-9Bq_56Bq+Gw@mail.gmail.com>
+References: <20150521010410.GA1812@horsthansen.slrz.net>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <555CC3C1.3010102-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20150521010410.GA1812-K9HkBuzoh0B2uXPEXqTSleTW4wlIGRCZ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,21 +18,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Lars Seipel <ls-iLhA6XU9Z2A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMjEgTWF5IDIwMTUgYXQgMDM6MjYsIFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4KPgo+IE9uIDA1LzIwLzIwMTUgMDc6MTMgUE0sIElsaWEgTWly
-a2luIHdyb3RlOgo+Pgo+PiBUaGlzIGlzIG9idmlvdXNseSBhIGJ1ZywgYnV0IG9uZSB0aGF0IGhh
-cyBiZWVuIHRoZXJlIGZvciBzb21lIHRpbWUuCj4+IFBsZWFzZSBmaWd1cmUgb3V0IHdoYXQgdGhp
-cyBpcyBndWFyZGluZywgYW5kIGNvbmZpcm0gdGhhdCB0aGUgZmVhdHVyZQo+PiBjb250aW51ZXMg
-dG8gd29yay4KPgo+Cj4gU3VyZSwgYnV0IGRvIHlvdSBoYXZlIGFueSBpZGVhcyBob3cgdG8gdGVz
-dCB0aGlzIHBhcnQgb2YgdGhlIEREWCA/Cj4gSXQncyB0aGUgZmlyc3QgdGltZSBJIHBsYXkgd2l0
-aCBpdC4uLgo+CgpJdCdzIGZpbmUsIHRoZSBjb2RlIGp1c3QgYXZvaWRzIGdvaW5nIGludG8gdGhl
-IG5hbWUgY2hlY2tzIGlmIHRoZSB0eXBlCmlzbid0IGEgZW51bSwKaXQgd29uJ3QgYnJlYWsgYW55
-dGhpbmcgYWN0dWFsbHkgZml4aW5nIGl0LgoKVGhlIGZpeCBpcwoKUmV2aWV3ZWQtYnk6IERhdmUg
-QWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9ub3V2ZWF1Cg==
+T24gMjEgTWF5IDIwMTUgYXQgMTE6MDQsIExhcnMgU2VpcGVsIDxsc0BzbHJ6Lm5ldD4gd3JvdGU6
+Cj4gQ29tbWl0IDM3NDBjODI1OTBkOCAoImRybS9ub3V2ZWF1L2dyL2dmMTAwLTogYWRkIHN5bWJv
+bGljIG5hbWVzIGZvcgo+IGNsYXNzZXMiKSBpbnRyb2R1Y2VkIGEgd3JvbmcgbWFjcm8gZGVmaW5p
+dGlvbiBjYXVzaW5nIGFjY2VsZXJhdGlvbiBzZXR1cAo+IHRvIGZhaWwuIEZpeCBpdC4KT29wcywg
+bXkgYXBvbG9naWVzLiAgSSd2ZSBtZXJnZWQgdGhlIHBhdGNoLgoKVGhhbmtzLApCZW4uCgo+Cj4g
+U2lnbmVkLW9mZi1ieTogTGFycyBTZWlwZWwgPGxzQHNscnoubmV0Pgo+IEZpeGVzOiAzNzQwYzgy
+NTkwZDggKCJkcm0vbm91dmVhdS9nci9nZjEwMC06IGFkZCBzeW1ib2xpYyBuYW1lcyBmb3IgY2xh
+c3NlcyIpCj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9jbGFz
+cy5oIHwgMiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24o
+LSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252aWYv
+Y2xhc3MuaCBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9jbGFzcy5oCj4g
+aW5kZXggMGI1YWYwZmU4NjU5Li42NGY4YjJmNjg3ZDIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlmL2NsYXNzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9pbmNsdWRlL252aWYvY2xhc3MuaAo+IEBAIC0xNCw3ICsxNCw3IEBACj4KPiAg
+I2RlZmluZSBGRVJNSV9UV09EX0EgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgMHgwMDAwOTAyZAo+Cj4gLSNkZWZpbmUgRkVSTUlfTUVNT1JZX1RPX01FTU9S
+WV9GT1JNQVRfQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMDkwM2QKPiArI2Rl
+ZmluZSBGRVJNSV9NRU1PUllfVE9fTUVNT1JZX0ZPUk1BVF9BICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgMHgwMDAwOTAzOQo+Cj4gICNkZWZpbmUgS0VQTEVSX0lOTElORV9UT19NRU1PUllf
+QSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDB4MDAwMGEwNDAKPiAgI2RlZmlu
+ZSBLRVBMRVJfSU5MSU5FX1RPX01FTU9SWV9CICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgMHgwMDAwYTE0MAo+IC0tCj4gMi40LjEKPgo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
+ZWF1Cg==
