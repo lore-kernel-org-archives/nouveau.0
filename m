@@ -1,96 +1,38 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Thu, 21 May 2015 16:03:03 +0000
-Message-ID: <bug-90567-8800-uy9zOKN2y6@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres@free.fr>
+Subject: Re: [Nouveau] [PATCH v2] nouveau: add coherent BO attribute
+Date: Thu, 21 May 2015 21:23:07 +0300
+Message-ID: <555E228B.9090400@free.fr>
+References: <1432188508-650-1-git-send-email-acourbot@nvidia.com>
+ <CACAvsv5qW74Lp5pYke-4GKi2BYgXot2SM93T_aZX=rztWwGJHA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0115676314=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CACAvsv5qW74Lp5pYke-4GKi2BYgXot2SM93T_aZX=rztWwGJHA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <skeggsb@gmail.com>, Alexandre Courbot <acourbot@nvidia.com>
+Cc: "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Maarten Lankhorst <maarten@mblankhorst.nl>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0115676314==
-Content-Type: multipart/alternative; boundary="1432224183.4Cc62.26351"; charset="UTF-8"
-
-
---1432224183.4Cc62.26351
-Date: Thu, 21 May 2015 16:03:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-The first error messages are the most informative. Can you provide a full dmesg
-log from boot until some of those errors happen?
-
-Also, what version of mesa are you using? If not the latest, please try with
-the latest.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432224183.4Cc62.26351
-Date: Thu, 21 May 2015 16:03:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>The first error messages are the most informative. Can you provide a full dmesg
-log from boot until some of those errors happen?
-
-Also, what version of mesa are you using? If not the latest, please try with
-the latest.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432224183.4Cc62.26351--
-
---===============0115676314==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0115676314==--
+T24gMjEvMDUvMjAxNSAxMTo0NywgQmVuIFNrZWdncyB3cm90ZToKPiBPbiAyMSBNYXkgMjAxNSBh
+dCAxNjowOCwgQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+
+PiBBZGQgYSBmbGFnIGFsbG93aW5nIE5vdXZlYXUgdG8gc3BlY2lmeSB0aGF0IGFuIG9iamVjdCBz
+aG91bGQgYmUgY29oZXJlbnQKPj4gYXQgYWxsb2NhdGlvbiB0aW1lLiBUaGlzIGlzIHJlcXVpcmVk
+IGZvciBzb21lIGNsYXNzIG9mIG9iamVjdHMgbGlrZQo+PiBmZW5jZXMgd2hpY2ggYXJlIHJhbmRv
+bWx5LWFjY2Vzc2VkIGJ5IGJvdGggdGhlIENQVSBhbmQgR1BVLiBUaGlzIGZsYWcKPj4gaW5zdHJ1
+Y3RzIHRoZSBrZXJuZWwgZHJpdmVyIHRvIG1ha2Ugc3VyZSB0aGUgb2JqZWN0IHJlbWFpbnMgY29o
+ZXJlbnQKPj4gZXZlbiBvbiBhcmNoaXRlY3R1cmVzIGZvciB3aGljaCBjb2hlcmVuY3kgaXMgbm90
+IGd1YXJhbnRlZWQgYnkgdGhlIGJ1cy4KPj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENv
+dXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4gUmV2aWV3ZWQtYnk6IEJlbiBTa2VnZ3MgPGJz
+a2VnZ3NAcmVkaGF0LmNvbT4KClB1c2hlZCEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9kcmktZGV2ZWwK
