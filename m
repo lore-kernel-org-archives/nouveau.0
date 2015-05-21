@@ -1,14 +1,12 @@
-From: Alex Henrie <alexhenrie24-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Hardware wish list?
-Date: Wed, 20 May 2015 17:27:19 -0600
-Message-ID: <CAMMLpeRG7yfAZ3R=DS_=d9Dbc-eoevXfxUz4O8HmWi51gWysuQ@mail.gmail.com>
-References: <CAMMLpeTXs4XWRz+8igxw1=e4px_Seq=mRbvsu=T3L5JNVNfwiA@mail.gmail.com>
- <CAKb7UviL4iSOE0k9VbcyLKiO3JXA4it-2wnKG+9bd0-4RAOvPw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90306] Nouveau crashes with multiple monitors
+Date: Thu, 21 May 2015 02:15:34 +0000
+Message-ID: <bug-90306-8800-INLDcSXuOI@http.bugs.freedesktop.org/>
+References: <bug-90306-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0141745941=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviL4iSOE0k9VbcyLKiO3JXA4it-2wnKG+9bd0-4RAOvPw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,48 +16,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Martin Peres <martin.peres-BktLLJ5BOkI@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNS0wNS0yMCAxNzowMCBHTVQtMDY6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBPbiBXZWQsIE1heSAyMCwgMjAxNSBhdCA0OjI0IFBNLCBBbGV4IEhlbnJpZSA8YWxl
-eGhlbnJpZTI0QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IEdyZWV0aW5ncyBOb3V2ZWF1IGRldmVsb3Bl
-cnMsCj4+Cj4+IEl0J3MgYmVlbiBhIHdoaWxlIHNpbmNlIEkndmUgc2VudCBhbnkgaGFyZHdhcmUg
-eW91ciB3YXkuIEkgZmVlbCB0aGF0Cj4+IE5vdXZlYXUgaXMgb25lIG9mIHRoZSBtb3N0IGltcG9y
-dGFudCBwaWVjZXMgb2Ygc29mdHdhcmUgaG9sZGluZyBMaW51eAo+PiBiYWNrLAo+Cj4gVGhhdCdz
-IGNlcnRhaW5seSBhIGZ1bm55IHdheSBvZiBwdXR0aW5nIGl0LiBJZiB0aGF0IHdlcmUgdHJ1ZSwg
-SSdkCj4gaW1hZ2luZSB0aGF0IHRoZXJlIHdvdWxkIGJlIHRvbnMgb2YgcGVvcGxlIGxvb2tpbmcg
-dG8gY29udHJpYnV0ZSB0bwo+IHRoZSBwcm9qZWN0LiBCdXQgdGhhdCBkb2Vzbid0IHNlZW0gdG8g
-YmUgdGhlIHByZXNlbnQgcmVhbGl0eS4KCk15IGRyZWFtIGlzIHRvIGJlIGFibGUgdG8gcGx1ZyBh
-IGxpdmUgTGludXggZmxhc2ggZHJpdmUgaW50byBhbnkKZGVza3RvcCBjb21wdXRlciBhbmQgcGxh
-eSBnYW1lcyB3aXRob3V0IGdyYXBoaWNzIGFydGlmYWN0cywgc3BlY2lhbApjb25maWd1cmF0aW9u
-LCBvciBiYWQgcGVyZm9ybWFuY2UuIEl0IGlzIGdldHRpbmcgYmV0dGVyLCBidXQgSSB0aGluawp3
-ZSBoYXZlIGEgbG9uZyB3YXlzIHRvIGdvLCBlc3BlY2lhbGx5IHNpbmNlIHdlJ3JlIG1vdmluZyB0
-b3dhcmRzCldheWxhbmQgYW5kIHRoZSBwcm9wcmlldGFyeSBOdmlkaWEgZHJpdmVycyBkb24ndCB3
-b3JrIGF0IGFsbCB0aGVyZS4KCj4gVGhlcmUgYXJlIHBsZW50eSBvZiBhcmVhcyB3aGVyZSBub3V2
-ZWF1IGlzIGxhY2tpbmcuLi4gYXJlIHRoZXJlIGFueSBpbgo+IHBhcnRpY3VsYXIgdGhhdCB5b3Ug
-dGhpbmsgbmVlZCBzcGVjaWFsIGF0dGVudGlvbj8gTm90ZSB0aGF0IHRoaW5ncwo+IGxpa2UgInJl
-Y2xvY2tpbmciIGFyZSBoaWdobHkgdW5saWtlbHkgdG8gaGFwcGVuIHdpdGhvdXQgYSBjb25zaWRl
-cmFibGUKPiBzb3VyY2Ugb2YgZnVuZHMsIGFzIGl0IHdvdWxkIHJlcXVpcmUgYSBmYWlybHkgbG9u
-Zy10ZXJtIGVmZm9ydCBmcm9tIGEKPiBoaWdobHkgc2tpbGxlZCBkZXZlbG9wZXIuIFtBbmQgaXQn
-cyBhbGwgbW9vdCBvbmNlIHlvdSBnZXQgdG8gTWF4d2VsbCwKPiBzaW5jZSB3ZSdyZSBsb2NrZWQg
-b3V0IG9mIHRvdWNoaW5nIGFueSBvZiB0aGF0IHN0dWZmIGJ5IHNpZ25lZCBjb2RlLgo+IFdpdGgg
-c29tZSBsdWNrIE5WSURJQSB3aWxsIG1ha2UgZmlybXdhcmUgYXZhaWxhYmxlIGZvciBkZXNrdG9w
-IEdQVXMsCj4gYnV0IEknbSBub3QgaG9sZGluZyBteSBicmVhdGguXQoKQW55IGltcHJvdmVtZW50
-IHdvdWxkIG1vdmUgdXMgY2xvc2VyIHRvIHRoZSBhYm92ZS1zdGF0ZWQgZHJlYW0uCgo+PiBhbmQg
-SSdtIGhhcHB5IHRvIHN1cHBvcnQgeW91LiBJZiB5b3Ugc2VuZCBtZSBhIHZlcnkgc3BlY2lmaWMK
-Pj4gbGlzdCBvZiBjYXJkcywgYm9hcmRzLCBldGMuIHRoYXQgeW91IHdhbnQgb3IgbmVlZCwgSSds
-bCBzZWUgd2hhdCBJIGNhbgo+PiBkby4KPgo+IFVuZm9ydHVuYXRlbHkgdGhlIG1vc3QgcHJlY2lv
-dXMgcmVzb3VyY2UgaXMgaHVtYW4gdGltZSwgbm90IGhhcmR3YXJlLgo+IElmIHlvdSdyZSBob3Bp
-bmcgdG8gY29udHJpYnV0ZSB0byBub3V2ZWF1J3MgaW1wcm92ZW1lbnQgKGFuZCBhcmVuJ3QKPiBs
-b29raW5nIHRvIGRvIHNvIGRpcmVjdGx5IGJ5IG1ha2luZyBjb2RlIGNvbnRyaWJ1dGlvbnMpLCB5
-b3VyIHRpbWUgaXMKPiBwcm9iYWJseSBiZXN0IHNwZW50IGRydW1taW5nIHVwIGRldmVsb3BlciBp
-bnRlcmVzdCBpbiBjb250cmlidXRpbmcuCgpPSy4gSSBqdXN0IHRob3VnaHQgSSdkIG9mZmVyLiBJ
-IGFncmVlIHdpdGggeW91IHRoYXQgaHVtYW4gZGV2ZWxvcGVyCnRpbWUgaXMgYSBmYXIgbW9yZSBw
-cmVjaW91cyByZXNvdXJjZSwgYnV0IHVuZm9ydHVuYXRlbHkgSSBkb24ndCBoYXZlCm11Y2ggdG8g
-b2ZmZXIgaW4gdGhlIHdheSBvZiBhY3R1YWwgY29kZS4gU28gSSdsbCBnZXQgb3V0IG9mIHlvdXIg
-aGFpcjsKZ29vZCBsdWNrIQoKLUFsZXgKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0141745941==
+Content-Type: multipart/alternative; boundary="1432174534.fE883.3815"; charset="UTF-8"
+
+
+--1432174534.fE883.3815
+Date: Thu, 21 May 2015 02:15:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90306
+
+--- Comment #6 from Lars Seipel <lars.seipel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Turns out the issue was introduced with:
+
+commit 3740c82590d87714b41b8b48bd3062178cbe0b17
+Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Date:   Thu Mar 26 09:18:32 2015 +1000
+
+    drm/nouveau/gr/gf100-: add symbolic names for classes
+
+    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+
+It seems that one of the added constants got hit by a typo. I sent
+a patch to the list (CCed to Ben).
+
+Now, that fixes things for me. The original report could still be an unrelated
+problem.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432174534.fE883.3815
+Date: Thu, 21 May 2015 02:15:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau crashes with multiple monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90306#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau crashes with multiple monitors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90306">bug 90306</a>
+              from <span class="vcard"><a class="email" href="mailto:lars.seipel&#64;gmail.com" title="Lars Seipel &lt;lars.seipel&#64;gmail.com&gt;"> <span class="fn">Lars Seipel</span></a>
+</span></b>
+        <pre>Turns out the issue was introduced with:
+
+commit 3740c82590d87714b41b8b48bd3062178cbe0b17
+Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+Date:   Thu Mar 26 09:18:32 2015 +1000
+
+    drm/nouveau/gr/gf100-: add symbolic names for classes
+
+    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
+
+It seems that one of the added constants got hit by a typo. I sent
+a patch to the list (CCed to Ben).
+
+Now, that fixes things for me. The original report could still be an unrelated
+problem.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432174534.fE883.3815--
+
+--===============0141745941==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0141745941==--
