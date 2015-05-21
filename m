@@ -1,123 +1,101 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Thu, 21 May 2015 05:47:58 +0000
-Message-ID: <bug-89558-8800-EZxCoYPIag@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 1/2] drm/nouveau: add staging module option
+Date: Thu, 21 May 2015 14:49:28 +0900
+Message-ID: <CAAVeFu+N6VvPHispeXBTGykncfnOQkJ-J1PxxVa42-ahX2YDsA@mail.gmail.com>
+References: <1432101379-9515-1-git-send-email-acourbot@nvidia.com>
+ <1432101379-9515-2-git-send-email-acourbot@nvidia.com> <CACAvsv4vW4bBddq2s9eWMzbYcG_F5j+KCkZAfivxKW9AWDBXQQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0589389582=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CACAvsv4vW4bBddq2s9eWMzbYcG_F5j+KCkZAfivxKW9AWDBXQQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On Thu, May 21, 2015 at 1:48 PM, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> On 20 May 2015 at 15:56, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>> Add a module option allowing to enable staging/unstable APIs. This will
+>> allow us to experiment freely with experimental APIs for a while before
+>> setting them in stone.
+>>
+>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>> ---
+>>  drm/nouveau/nouveau_drm.c          | 18 ++++++++++++++++++
+>>  drm/nouveau/uapi/drm/nouveau_drm.h |  3 +++
+>>  2 files changed, 21 insertions(+)
+>>
+>> diff --git a/drm/nouveau/nouveau_drm.c b/drm/nouveau/nouveau_drm.c
+>> index 89049335b738..e4bd6ed51e73 100644
+>> --- a/drm/nouveau/nouveau_drm.c
+>> +++ b/drm/nouveau/nouveau_drm.c
+>> @@ -75,6 +75,10 @@ MODULE_PARM_DESC(runpm, "disable (0), force enable (1), optimus only default (-1
+>>  int nouveau_runtime_pm = -1;
+>>  module_param_named(runpm, nouveau_runtime_pm, int, 0400);
+>>
+>> +MODULE_PARM_DESC(staging, "enable staging APIs");
+>> +int nouveau_staging = 0;
+>> +module_param_named(staging, nouveau_staging, int, 0400);
+>> +
+>>  static struct drm_driver driver_stub;
+>>  static struct drm_driver driver_pci;
+>>  static struct drm_driver driver_platform;
+>> @@ -895,6 +899,7 @@ nouveau_ioctls[] = {
+>>         DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_PREP, nouveau_gem_ioctl_cpu_prep, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
+>>         DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_CPU_FINI, nouveau_gem_ioctl_cpu_fini, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
+>>         DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_INFO, nouveau_gem_ioctl_info, DRM_UNLOCKED|DRM_AUTH|DRM_RENDER_ALLOW),
+>> +       /* Staging ioctls */
+>>  };
+>>
+>>  long
+>> @@ -1027,6 +1032,7 @@ static void nouveau_display_options(void)
+>>         DRM_DEBUG_DRIVER("... runpm        : %d\n", nouveau_runtime_pm);
+>>         DRM_DEBUG_DRIVER("... vram_pushbuf : %d\n", nouveau_vram_pushbuf);
+>>         DRM_DEBUG_DRIVER("... pstate       : %d\n", nouveau_pstate);
+>> +       DRM_DEBUG_DRIVER("... staging      : %d\n", nouveau_staging);
+>>  }
+>>
+>>  static const struct dev_pm_ops nouveau_pm_ops = {
+>> @@ -1088,6 +1094,18 @@ err_free:
+>>  static int __init
+>>  nouveau_drm_init(void)
+>>  {
+>> +       /* Do not register staging ioctsl if option not specified */
+>> +       if (!nouveau_staging) {
+>> +               unsigned i;
+>> +
+>> +               /* This keeps us safe is no staging ioctls are defined */
+>> +               i = min(driver_stub.num_ioctls, DRM_NOUVEAU_STAGING_IOCTL);
+>> +               while (!nouveau_ioctls[i - 1].func)
+>> +                       i--;
+>> +
+>> +               driver_stub.num_ioctls = i;
+>> +       }
+> Hey Alex,
+>
+> I've got no specific objection.  But I'm curious as to why you took
+> this approach as opposed to just adding "if (!nouveau_staging) return
+> -EINVAL;" directly in the experimental ioctls?
 
---===============0589389582==
-Content-Type: multipart/alternative; boundary="1432187278.EFAD3.22764"; charset="UTF-8"
+Mainly because we will likely forget to add this check (or to remove
+it) in some of the staging ioctls. The current solution doesn't
+require us to think about that - and the less things to think about,
+the better.
 
+> I think, in line with
+> what's been done in other places, having module options per-api is
+> perhaps a better choice too.
 
---1432187278.EFAD3.22764
-Date: Thu, 21 May 2015 05:47:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Do you mean that each experimental ioctl should have its own enable
+option? I don't mind going that way if you think it is preferable. And
+in that case my comment above is void.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #32 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #31)
-> (In reply to Ben Skeggs from comment #30)
-> > (In reply to SMF from comment #27)
-> > > I have noticed that if the nouveau module is removed and re-added the second
-> > > instance calculated the VRAM size correctly:
-> > > 
-> > > modprobe nouveau;rmmod nouveau;modprobe nouveau
-> > Can you please grab a mmiotrace of attempting to load nouveau the first
-> > time?  Perhaps also grab the second time too for comparison.
-> > 
-> > Thanks,
-> > Ben.
-> 
-> Also, another thing worth trying in the meantime is adding
-> "nouveau.config=NvForcePost=1" to your kernel config options.
-
-Even better, try this commit (and the previous one):
-
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=cf5c2a749912102055844b51a40b3ef64210afe6
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432187278.EFAD3.22764
-Date: Thu, 21 May 2015 05:47:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
-</span></b>
-        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=89558#c31">comment #31</a>)
-<span class="quote">&gt; (In reply to Ben Skeggs from <a href="show_bug.cgi?id=89558#c30">comment #30</a>)
-&gt; &gt; (In reply to SMF from <a href="show_bug.cgi?id=89558#c27">comment #27</a>)
-&gt; &gt; &gt; I have noticed that if the nouveau module is removed and re-added the second
-&gt; &gt; &gt; instance calculated the VRAM size correctly:
-&gt; &gt; &gt; 
-&gt; &gt; &gt; modprobe nouveau;rmmod nouveau;modprobe nouveau
-&gt; &gt; Can you please grab a mmiotrace of attempting to load nouveau the first
-&gt; &gt; time?  Perhaps also grab the second time too for comparison.
-&gt; &gt; 
-&gt; &gt; Thanks,
-&gt; &gt; Ben.
-&gt; 
-&gt; Also, another thing worth trying in the meantime is adding
-&gt; &quot;nouveau.config=NvForcePost=1&quot; to your kernel config options.</span >
-
-Even better, try this commit (and the previous one):
-
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=cf5c2a749912102055844b51a40b3ef64210afe6">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=cf5c2a749912102055844b51a40b3ef64210afe6</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432187278.EFAD3.22764--
-
---===============0589389582==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0589389582==--
+But actually I wonder if having these experimental ioctls enabled as
+compile options (either individually or as a whole) would not be
+better. Some experimental ioctls may require code in staging (like the
+PUSHBUF_2 ioctl that I would like to submit next), and I don't think
+it is desirable to force extra code or kernel options (in this case,
+CONFIG_STAGING) to Nouveau users who will not make use of them. I
+remember that we concluded in favor or module options on IRC, but in
+the light of this, wouldn't a config option be a less intrusive
+choice?
