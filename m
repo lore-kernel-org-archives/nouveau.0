@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Fri, 22 May 2015 08:27:43 +0000
-Message-ID: <bug-89558-8800-8pYbb0aMDn@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Fri, 22 May 2015 14:45:36 +0000
+Message-ID: <bug-90435-8800-uFqUpm2oTJ@http.bugs.freedesktop.org/>
+References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1884493136=="
+Content-Type: multipart/mixed; boundary="===============2040683595=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1884493136==
-Content-Type: multipart/alternative; boundary="1432283263.CB2Ff2.28737"; charset="UTF-8"
+--===============2040683595==
+Content-Type: multipart/alternative; boundary="1432305936.02DA08B1.29908"; charset="UTF-8"
 
 
---1432283263.CB2Ff2.28737
-Date: Fri, 22 May 2015 08:27:43 +0000
+--1432305936.02DA08B1.29908
+Date: Fri, 22 May 2015 14:45:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
+https://bugs.freedesktop.org/show_bug.cgi?id=90435
 
---- Comment #33 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 115969
-  --> https://bugs.freedesktop.org/attachment.cgi?id=115969&action=edit
-kernel 4.0.4 nouveau driver with patches applied
+--- Comment #7 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+Hi Ilya,
 
-Ben,
+(In reply to Ilya from comment #6)
+> What I not changed - is the kernel driver nouveau. It was the last version
+> from the kernel...
 
-Applying the two patches you suggested allows the GM108 to initialise and
-calculate the correct VRAM size (see attached log from 4.0.4 kernel).
+I've tried to reproduce your problem and 10.4 (and newer) for me only show a
+black window with glxgears, not even a static picture.
 
-thanks
-Stuart.
+Then I tried 10.0.0 as you said that works, but that does not work for me
+either. Are you sure you're using nouveau_dri and not llvmpipe in your 10.0.0
+build ? Can you run glxinfo in the working build please?
+
+Regards,
+
+Hans
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432283263.CB2Ff2.28737
-Date: Fri, 22 May 2015 08:27:43 +0000
+--1432305936.02DA08B1.29908
+Date: Fri, 22 May 2015 14:45:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,24 +67,30 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c33">Comment # 33</a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=115969" name="attach_115969" title="kernel 4.0.4 nouveau driver with patches applied">attachment 115969</a> <a href="attachment.cgi?id=115969&amp;action=edit" title="kernel 4.0.4 nouveau driver with patches applied">[details]</a></span>
-kernel 4.0.4 nouveau driver with patches applied
+        <pre>Hi Ilya,
 
-Ben,
+(In reply to Ilya from <a href="show_bug.cgi?id=90435#c6">comment #6</a>)
+<span class="quote">&gt; What I not changed - is the kernel driver nouveau. It was the last version
+&gt; from the kernel...</span >
 
-Applying the two patches you suggested allows the GM108 to initialise and
-calculate the correct VRAM size (see attached log from 4.0.4 kernel).
+I've tried to reproduce your problem and 10.4 (and newer) for me only show a
+black window with glxgears, not even a static picture.
 
-thanks
-Stuart.</pre>
+Then I tried 10.0.0 as you said that works, but that does not work for me
+either. Are you sure you're using nouveau_dri and not llvmpipe in your 10.0.0
+build ? Can you run glxinfo in the working build please?
+
+Regards,
+
+Hans</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +102,9 @@ Stuart.</pre>
     </body>
 </html>
 
---1432283263.CB2Ff2.28737--
+--1432305936.02DA08B1.29908--
 
---===============1884493136==
+--===============2040683595==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1884493136==--
+--===============2040683595==--
