@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Fri, 22 May 2015 19:29:17 +0000
-Message-ID: <bug-90435-8800-wCEBsIx52u@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Tessellation shaders get MEM_OUT_OF_BOUNDS errors /
+	missing triangles
+Date: Fri, 22 May 2015 17:10:04 -0400
+Message-ID: <CAKb7UvgW=X8zo8DJD-xkKB=+TihRyPhxN7mPPnORybU0oyEQiQ@mail.gmail.com>
+References: <CAKb7UvixGi2pd8sp-qcOM5-Fuj7U+1Vn7ih4VGS7O06iAFgYeA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0859398383=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvixGi2pd8sp-qcOM5-Fuj7U+1Vn7ih4VGS7O06iAFgYeA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,100 +18,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0859398383==
-Content-Type: multipart/alternative; boundary="1432322957.BeeD1.9468"; charset="UTF-8"
-
-
---1432322957.BeeD1.9468
-Date: Fri, 22 May 2015 19:29:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Hans de Goede from comment #7)
-> Hi Ilya,
-> 
-> (In reply to Ilya from comment #6)
-> > What I not changed - is the kernel driver nouveau. It was the last version
-> > from the kernel...
-> 
-> I've tried to reproduce your problem and 10.4 (and newer) for me only show a
-> black window with glxgears, not even a static picture.
-
-OK, 2 people telling me that the whole everything is broken... probably time to
-plug in my NV44 and see what's is going on.
-
-Hans, can you confirm which HW you were using to reproduce this? Did you get
-your hands on an actual NV46, same as the OP? PCIe, I presume?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432322957.BeeD1.9468
-Date: Fri, 22 May 2015 19:29:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Hans de Goede from <a href="show_bug.cgi?id=90435#c7">comment #7</a>)
-<span class="quote">&gt; Hi Ilya,
-&gt; 
-&gt; (In reply to Ilya from <a href="show_bug.cgi?id=90435#c6">comment #6</a>)
-&gt; &gt; What I not changed - is the kernel driver nouveau. It was the last version
-&gt; &gt; from the kernel...
-&gt; 
-&gt; I've tried to reproduce your problem and 10.4 (and newer) for me only show a
-&gt; black window with glxgears, not even a static picture.</span >
-
-OK, 2 people telling me that the whole everything is broken... probably time to
-plug in my NV44 and see what's is going on.
-
-Hans, can you confirm which HW you were using to reproduce this? Did you get
-your hands on an actual NV46, same as the OP? PCIe, I presume?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432322957.BeeD1.9468--
-
---===============0859398383==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0859398383==--
+T24gTW9uLCBNYXkgMTgsIDIwMTUgYXQgNDo0OCBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1PiB3cm90ZToKPiBIZWxsbywKPgo+IEkndmUgYmVlbiBkZWJ1Z2dpbmcgYSBmZXcg
+ZGlmZmVyZW50IHRlc3NlbGxhdGlvbiBzaGFkZXIgaXNzdWVzIHdpdGgKPiBub3V2ZWF1LCBidXQg
+bGV0J3Mgc3RhcnQgc21hbGwuIEkgc2VlIHRoaXMgaXNzdWUgb24gbXkgR0syMDggd2l0aCBoaWdo
+Cj4gZnJlcXVlbmN5LCBhbmQgSSAqdGhpbmsqIEkndmUgc2VlbiBpdCBvbmNlIG9yIHR3aWNlIG9u
+IG15IEdGMTA4LCBidXQKPiBpdCdzIGV4Y2VlZGluZ2x5IHJhcmUsIGlmIGl0IGRvZXMgaGFwcGVu
+LiBJIGRvbid0IGhhdmUgYSBHSzEweCB0byB0ZXN0Cj4gb24sIHVuZm9ydHVuYXRlbHksIGJ1dCBJ
+IGFzc3VtZSBpdCdsbCBoYXZlIHRoZSBzYW1lIGlzc3VlIGFzIHRoZQo+IEdLMjA4Lgo+Cj4gVGhl
+IGlzc3VlIGlzIHRoaXMgLS0gYSBidW5jaCBvZiB0cmlhbmdsZXMgdGhhdCBzaG91bGQgY29tZSBv
+dXQgb2YgdGhlCj4gdGVzc2VsbGF0b3IgZW5kIHVwIGJsYWNrLiBJIGFsc28gc2VlIGEgR1BDMC9U
+UEMxL01QIHRyYXA6Cj4gTUVNX09VVF9PRl9CT1VORFMgZXJyb3IgcHJvZHVjZWQgYnkgbm91dmVh
+dSAtLSB0aGlzIGlzIG91dHB1dCBpbgo+IHJlc3BvbnNlIHRvIGEgaW50ZXJydXB0IGFuZCBNUCB0
+cmFwIGdlbmVyYXRlZCBieSB0aGUgaGFyZHdhcmUsIHJlYWQKPiBvdXQgd2l0aCBudl9yZDMyKHBy
+aXYsIFRQQ19VTklUKGdwYywgdHBjLCAweDY0OCkpOyAoc2VlCj4gZ2YxMDBfZ3JfdHJhcF9tcCku
+IEkgYXNzdW1lIHNvbWUgb2YgdGhlIHRlc3NlbGxhdGlvbiBldmFsdWF0aW9uCj4gaW52b2NhdGlv
+bnMgZ2V0IGtpbGxlZCwgYnV0IEkgaGF2ZSBubyBwcm9vZiBvZiB0aGlzLgo+Cj4gSSBhbHNvIHNl
+ZSB0aGlzOiBUUkFQIGNoIDUgWzB4MDAzZmFjZjAwMCBzaGFkZXJfcnVubmVyWzE5MDQ0XV0KPgo+
+IEkgd291bGQgaW1hZ2luZSB0aGF0J3Mgc29tZSBmbG9hdGluZyBwb2ludCBudW1iZXIgZW5kaW5n
+IHVwIGluIHRoZQo+IHJlZ2lzdGVyIGluc3RlYWQgb2YgYW4gYWRkcmVzcywgYnV0IHRoZSBmcDMy
+IHZhbHVlIG9mIGl0Cj4gKDEuMzUxMDc0MjE4NzUpIGRvZXMgbm90IHNlZW0gZmFtaWxpYXIuCgpC
+ZW4gcG9pbnRlZCBvdXQgdGhhdCB0aGUgMHgzZmFjZjAwMCBpcyBhIGNoYW5uZWwgYWRkcmVzcywg
+bm90IGEgdmFsdWUKZnJvbSB0aGUgc2hhZGVyLiBPb3BzLiBTbyB0aGF0IHRoZW9yeSBjb21wbGV0
+ZWx5IGRvZXNuJ3QgaG9sZCB3YXRlci4KUGVyaGFwcyBzb21lIGJ1ZmZlciBpc24ndCBiaWcgZW5v
+dWdoPyBUaGlzIGVuZHMgdXAgdXNpbmcgOSBvdXRwdXQKdmVydGljZXMgcGVyIHBhdGNoLCB3aXRo
+IDIgdmVjNCdzIGVhY2guIEkndmUgdHJpZWQgcGxheWluZyB3aXRoIHRoZQpwZXItd2FycCBzdGFj
+ayBzaXplIHRvIG5vIGF2YWlsLCBidXQgSSBkaWRuJ3QgKmVudGlyZWx5KiBrbm93IHdoYXQgSQp3
+YXMgZG9pbmcgZWl0aGVyIHRob3VnaC4KCj4KPiBFdmVuIHdoZW4gYWxsIHRoZSB0cmlhbmdsZXMg
+c2hvdyB1cCwgSSBzdGlsbCBzZWUgdGhlIGVycm9yIG9uIHRoZQo+IEdLMjA4LCBzbyBJJ20gbm90
+IHN1cmUgaWYgdGhleSdyZSB0aGUgc2FtZSBpc3N1ZSBvciBub3QuCj4KPiBOb3csIGhlcmUncyB0
+aGUgZnVuIHBhcnQgLS0gdGhpcyBpcyBjb21wbGV0ZWx5IG5vbi1kZXRlcm1pbmlzdGljLgo+IFNv
+bWV0aW1lcyBldmVyeXRoaW5nIHNob3dzIHVwIG9uIHRoZSBHSzIwOCwgb3RoZXIgdGltZXMgSSBz
+ZWUgaG9sZXMsCj4gaW4gdmFyeWluZyBsb2NhdGlvbnMuIEknbSBmYWlybHkgc3VyZSB0aGF0IHRo
+ZSBhY3R1YWwgc2hhZGVyIGNvZGUgaXMKPiBjb3JyZWN0Li4uIHNvIEknbSBkb2luZyBzb21ldGhp
+bmcgZnVubnkgd3JvbmcuIChBbmQgeWVhaCwgdG9ucyBvZgo+IG1pc3NlZCBvcHRpbWl6YXRpb24g
+b3Bwb3J0dW5pdGllcyBpbiB0aGlzIGNvZGUsIGJ1dCBsZXQncyBub3QgZHdlbGwgb24KPiB0aGF0
+LikKPgo+IFRoaXMgaXMgdGhlIHBpZ2xpdCB0ZXN0Ogo+Cj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0
+b3Aub3JnL3BpZ2xpdC90cmVlL3Rlc3RzL3NwZWMvYXJiX3Rlc3NlbGxhdGlvbl9zaGFkZXIvZXhl
+Y3V0aW9uL3F1YWRzLnNoYWRlcl90ZXN0Cj4KPiBJdCBzaG91bGQgYmUgbm90ZWQgdGhhdCBvdGhl
+ciBwaWdsaXQgdGVzdHMgZG9uJ3QgZXhoaWJpdCB0aGlzIGVycm9yLAo+IGhvd2V2ZXIgdGhleSBh
+bHNvIHRlbmQgdG8gYmUgc2ltcGxlci4gT25lIGtleSBkaWZmZXJlbmNlIGlzIHRoYXQgdGhleQo+
+IGRvbid0IGNoYW5nZSB0aGUgcGF0Y2ggc2l6ZSBpbiBUQ1MuIEknbSBpbmNsdWRpbmcgYSBsaW5r
+IHRvIGEgdGV4dAo+IGZpbGUgd2l0aCB0aGUgdGVzc2VsbGF0aW9uIGNvbnRyb2wgYW5kIGV2YWx1
+YXRpb24gc2hhZGVycyAoZGVjb2RlZAo+IHdpdGggbnZkaXNhc20gd2hpY2ggeW91J3JlIGhvcGVm
+dWxseSBtb3JlIGZhbWlsaWFyIHdpdGgpLCBhbG9uZyB3aXRoCj4gdGhlIHNoYWRlciBoZWFkZXJz
+IHRoYXQgd2UgZ2VuZXJhdGUuCj4KPiBGVFIsIHRoaXMgaXMgaG93IEkgZmVlZCB0aGUgcmF3IHNo
+YWRlciBvcGNvZGUgYnl0ZXMgaW50byBudmRpc2FzbToKPgo+IHBlcmwgLWFuZSAnZm9yZWFjaCAo
+QEYpIHsgcHJpbnQgcGFjayAiSSIsIGhleCgkXykgfScgPiB0dDsgbnZkaXNhc20gLWIgU00zNSB0
+dAo+Cj4gKGZvciBzb21lIHJlYXNvbiBpdCBkb2Vzbid0IHdhbnQgdG8gcmVhZCBmcm9tIGEgcGlw
+ZSBvciBldmVuIGEgZmQpLgo+Cj4gaHR0cDovL3Blb3BsZS5mcmVlZGVza3RvcC5vcmcvfmltaXJr
+aW4vdGVzc19zaGFkZXJzX3F1YWRzLnR4dAo+Cj4gTXkgc3VzcGljaW9uIGlzIHRoYXQgd2UncmUg
+ZG9pbmcgc29tZXRoaW5nIHdyb25nIHdpdGggdGhlIHNjaGVkIGNvZGVzLgo+IFdlIGhhdmUgYW4g
+ZWxhYm9yYXRlIGNhbGN1bGF0b3IsIGJ1dC4uLiBwZXJoYXBzIG5vdCBlbGFib3JhdGUgZW5vdWdo
+Pwo+IFlvdSBjYW4gc2VlIGl0IGhlcmU6Cj4KPiBodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcv
+bWVzYS9tZXNhL3RyZWUvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
+cl9lbWl0X252YzAuY3BwI24yNTc0Cj4KPiBUaGUgcmVhc29uIEkgdGhpbmsgaXQncyBhbiBlcnJv
+ciBpbiBzY2hlZCBjb2RlcyBpcyBkdWUgdG8gdGhlIFRSQVAKPiBtZW1vcnkgbG9jYXRpb24gdGhh
+dCBJIHNlZSAtLSBjb3VsZCB3ZWxsIGJlIHNvbWUgInN0YWxlIiB2YWx1ZSBpbiB0aGUKPiByZWdp
+c3RlciBhbmQgdGhlIHZhbHVlIGZyb20gUzJSIG9yIFZJTEQgZG9lc24ndCBtYWtlIGl0IGluIHRo
+ZXJlIGluCj4gdGltZSBiZWZvcmUgdGhlIEFMRCByZWFkcyBpdC4KPgo+IElmIHlvdSBzaG91bGQg
+bGlrZSB0byB0cnkgdGhpcyB5b3Vyc2VsZiwgeW91IGNhbiB1c2UKPiBodHRwczovL2dpdGh1Yi5j
+b20vaW1pcmtpbi9tZXNhL2NvbW1pdHMvZ2w0LWludGVncmF0aW9uLTIgLiBUaGlzCj4gYnJhbmNo
+IGlzIGdvb2QgZW5vdWdoIHRvIHJ1biBVbmlnaW5lIEhlYXZlbiwgYnV0IHN0aWxsIGhhcyBhIGxv
+dCBvZgo+IGtub3duIHNob3J0Y29taW5ncy4gKEJvdGggYXQgdGhlIGNvcmUgYW5kIHRoZSBub3V2
+ZWF1IGxldmVscy4pCj4KPiBBbnkgYWR2aWNlIG9yIHN1Z2dlc3Rpb25zIGZvciBkZWJ1Z2dpbmcg
+dGhpcyB3b3VsZCBiZSBncmVhdGx5Cj4gYXBwcmVjaWF0ZWQuIEFuZCBsZXQgbWUga25vdyBpZiB5
+b3UnZCBsaWtlIG1lIHRvIGdlbmVyYXRlIGFkZGl0aW9uYWwKPiBpbmZvIG9uIHRoaXMuIEZvciBl
+eGFtcGxlIEkgY2FuIHN1cHBseSBhIGZ1bGwgY29tbWFuZCB0cmFjZSB0aGF0IGNhbgo+IGJlIHBp
+cGVkIHRvIGRlbW10LCBpZiB0aGF0J3MgaGVscGZ1bC4KPgo+IFRoYW5rcyBpbiBhZHZhbmNlLAo+
+Cj4gICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
