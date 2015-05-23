@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Sat, 23 May 2015 02:30:19 +0000
-Message-ID: <bug-90435-8800-Q0gLL56ac1@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50/ir: avoid messing up arg1 of PFETCH
+Date: Sat, 23 May 2015 02:06:50 -0400
+Message-ID: <1432361210-14711-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0654276013=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,98 +15,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.5 10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0654276013==
-Content-Type: multipart/alternative; boundary="1432348219.cad2AbBf1.947"; charset="UTF-8"
-
-
---1432348219.cad2AbBf1.947
-Date: Sat, 23 May 2015 02:30:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, so I just plugged in a
-
-04:00.0 VGA compatible controller: NVIDIA Corporation NV44 [GeForce 6200
-TurboCache] (rev a1)
-
-and ran:
-
-X -config /etc/X11/xorg-nv44.conf -sharevts -novtswitch :1
-DISPLAY=:1 glxgears
-
-And glxgears showed up just fine on the S-Video output with mesa 10.5.4.
-
-The shadow.c application does start out by working, but eventually appears to
-stop. [hmmm... and it appears to have hung that gpu on a restart.]
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432348219.cad2AbBf1.947
-Date: Sat, 23 May 2015 02:30:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>OK, so I just plugged in a
-
-04:00.0 VGA compatible controller: NVIDIA Corporation NV44 [GeForce 6200
-TurboCache] (rev a1)
-
-and ran:
-
-X -config /etc/X11/xorg-nv44.conf -sharevts -novtswitch :1
-DISPLAY=:1 glxgears
-
-And glxgears showed up just fine on the S-Video output with mesa 10.5.4.
-
-The shadow.c application does start out by working, but eventually appears to
-stop. [hmmm... and it appears to have hung that gpu on a restart.]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432348219.cad2AbBf1.947--
-
---===============0654276013==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0654276013==--
+VGhlcmUgY2FuIGJlIHNjZW5hcmlvcyB3aGVyZSB0aGUgImluZGlyZWN0IiBhcmcgb2YgYSBQRkVU
+Q0ggYmVjb21lcwprbm93biwgYW5kIHNvIHRoZSBjb2RlIHdpbGwgYXR0ZW1wdCB0byBwcm9wYWdh
+dGUgaXQuIFVzZSB0aGlzCm9wcG9ydHVuaXR5IHRvIGp1c3QgZm9sZCBpdCBpbnRvIHRoZSBmaXJz
+dCBhcmd1bWVudCwgYW5kIHByZXZlbnQgdGhlCmxvYWQgcHJvcGFnYXRpb24gcGFzcyBmcm9tIHRv
+dWNoaW5nIFBGRVRDSCBmdXJ0aGVyLgoKVGhpcyBmaXhlcyBncy1pbnB1dC1hcnJheS12ZWM0LWlu
+ZGV4LXJkLnNoYWRlcl90ZXN0IGFuZAp2cy1vdXRwdXQtYXJyYXktdmVjNC1pbmRleC13ci1iZWZv
+cmUtZ3Muc2hhZGVyX3Rlc3Qgb24gbnZjMCBhdCBsZWFzdC4KClNpZ25lZC1vZmYtYnk6IElsaWEg
+TWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KQ2M6ICIxMC41IDEwLjYiIDxtZXNhLXN0YWJs
+ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAgfCAxMCArKysrKysrKysrCiAxIGZpbGUgY2hh
+bmdlZCwgMTAgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKaW5kZXggNzJkZDMxZS4uOThl
+M2QxZiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1
+MF9pcl9wZWVwaG9sZS5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVn
+ZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKQEAgLTIzNiw2ICsyMzYsOSBAQCBMb2FkUHJvcGFnYXRp
+b246OnZpc2l0KEJhc2ljQmxvY2sgKmJiKQogICAgICAgaWYgKGktPm9wID09IE9QX0NBTEwpIC8v
+IGNhbGxzIGhhdmUgYXJncyBhcyBzb3VyY2VzLCB0aGV5IG11c3QgYmUgaW4gcmVncwogICAgICAg
+ICAgY29udGludWU7CiAKKyAgICAgIGlmIChpLT5vcCA9PSBPUF9QRkVUQ0gpIC8vIHBmZXRjaCBl
+eHBlY3RzIGFyZzEgdG8gYmUgYSByZWcKKyAgICAgICAgIGNvbnRpbnVlOworCiAgICAgICBpZiAo
+aS0+c3JjRXhpc3RzKDEpKQogICAgICAgICAgY2hlY2tTd2FwU3JjMDEoaSk7CiAKQEAgLTU4MSw2
+ICs1ODQsMTEgQEAgQ29uc3RhbnRGb2xkaW5nOjpleHByKEluc3RydWN0aW9uICppLAogICAgY2Fz
+ZSBPUF9QT1BDTlQ6CiAgICAgICByZXMuZGF0YS51MzIgPSB1dGlsX2JpdGNvdW50KGEtPmRhdGEu
+dTMyICYgYi0+ZGF0YS51MzIpOwogICAgICAgYnJlYWs7CisgICBjYXNlIE9QX1BGRVRDSDoKKyAg
+ICAgIC8vIFRoZSB0d28gYXJndW1lbnRzIHRvIHBmZXRjaCBhcmUgbG9naWNhbGx5IGFkZGVkIHRv
+Z2V0aGVyLiBOb3JtYWxseQorICAgICAgLy8gdGhlIHNlY29uZCBhcmd1bWVudCB3aWxsIG5vdCBi
+ZSBjb25zdGFudCwgYnV0IHRoYXQgY2FuIGhhcHBlbi4KKyAgICAgIHJlcy5kYXRhLnUzMiA9IGEt
+PmRhdGEudTMyICsgYi0+ZGF0YS51MzI7CisgICAgICBicmVhazsKICAgIGRlZmF1bHQ6CiAgICAg
+ICByZXR1cm47CiAgICB9CkBAIC02MTAsNiArNjE4LDggQEAgQ29uc3RhbnRGb2xkaW5nOjpleHBy
+KEluc3RydWN0aW9uICppLAogICAgICAgICAgYmxkLnNldFBvc2l0aW9uKGksIGZhbHNlKTsKICAg
+ICAgICAgIGktPnNldFNyYygxLCBibGQubG9hZEltbShOVUxMLCByZXMuZGF0YS51MzIpKTsKICAg
+ICAgIH0KKyAgIH0gZWxzZSBpZiAoaS0+b3AgPT0gT1BfUEZFVENIKSB7CisgICAgICAvLyBMZWF2
+ZSBQRkVUQ0ggYWxvbmUuLi4gd2UganVzdCBmb2xkZWQgaXRzIDIgYXJncyBpbnRvIDEuCiAgICB9
+IGVsc2UgewogICAgICAgaS0+b3AgPSBpLT5zYXR1cmF0ZSA/IE9QX1NBVCA6IE9QX01PVjsgLyog
+U0FUIGhhbmRsZWQgYnkgdW5hcnkoKSAqLwogICAgfQotLSAKMi4zLjYKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
+dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
