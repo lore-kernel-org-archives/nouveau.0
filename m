@@ -1,34 +1,71 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2] nouveau: add coherent BO attribute
-Date: Sat, 23 May 2015 15:45:57 +0900
-Message-ID: <CAAVeFuJHL664jbsEBUYFp0atnuF3gisbwhJhR-R=cy+iB8gUCg@mail.gmail.com>
-References: <1432188508-650-1-git-send-email-acourbot@nvidia.com>
- <CACAvsv5qW74Lp5pYke-4GKi2BYgXot2SM93T_aZX=rztWwGJHA@mail.gmail.com> <555E228B.9090400@free.fr>
+From: "Roy Spliet" <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: Re: [PATCH 4/9] nvkm/fb/ramnv50: Ressurect timing code,
+	use  proper timing/rammap handlers
+Date: Sat, 23 May 2015 10:35:06 +0200
+Message-ID: <d4529d55db71f0aa7ac6c0b96ca1f979@mail.eclipso.de>
+References: <1432334028-15234-1-git-send-email-rspliet@eclipso.eu>
+ <1432334028-15234-5-git-send-email-rspliet@eclipso.eu>
+ <555FB501.4010206@mni.thm.de>
+Reply-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <555E228B.9090400-GANU6spQydw@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten-FcfepWsj2zOByvU0x3ry2g@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <555FB501.4010206-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Content-Disposition: inline
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On Fri, May 22, 2015 at 3:23 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
-> On 21/05/2015 11:47, Ben Skeggs wrote:
->>
->> On 21 May 2015 at 16:08, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->>>
->>> Add a flag allowing Nouveau to specify that an object should be coherent
->>> at allocation time. This is required for some class of objects like
->>> fences which are randomly-accessed by both the CPU and GPU. This flag
->>> instructs the kernel driver to make sure the object remains coherent
->>> even on architectures for which coherency is not guaranteed by the bus.
->>>
->>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
->>
->> Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->
->
-> Pushed!
-
-Thanks! Should we also bump the ABI version or something?
+SGVsbG8gVG9iaWFzLAoKUmVwbHkgaW5saW5lLgoKLS0tIG9yaWdpbmFsIG1lc3NhZ2UgLS0tCkZy
+b206IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5k
+ZT4KRGF0ZTogMDE6MDA6MTcgMjMtMDUtMjAxNQpUbzogUm95IFNwbGlldCA8cnNwbGlldEBlY2xp
+cHNvLmV1Piwgbm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKU3ViamVjdDogUmU6IFtOb3V2
+ZWF1XSBbUEFUQ0ggNC85XSBudmttL2ZiL3JhbW52NTA6IFJlc3N1cmVjdCB0aW1pbmcgY29kZSwg
+dXNlICBwcm9wZXIgdGltaW5nL3JhbW1hcCBoYW5kbGVycwoKPiBPbiAyMy4wNS4yMDE1IDAwOjMz
+LCBSb3kgU3BsaWV0IHdyb3RlOgo+ID4gTWlnaHQgbmVlZCBzb21lIGdlbmVyYWxpc2F0aW9uIHRv
+IDwgR1QyMDAuIEZvciB0aG9zZTogdXNlIGF0IHlvdXIKPiBvd24gcmlzayEKPiA+Cj4gPiBTaWdu
+ZWQtb2ZmLWJ5OiBSb3kgU3BsaWV0IDxyc3BsaWV0QGVjbGlwc28uZXU+Cj4gPiAtLS0KPiA+ICAg
+Li4uL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9yYW1jZmcuaCAgfCAgMTYg
+KysKPiA+ICAgLi4uL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9yYW1tYXAu
+aCAgfCAgIDIgKwo+ID4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
+L3JhbW1hcC5jICB8ICAyOSArKysrCj4gPiAgIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2ZiL3JhbW52NTAuYyAgIHwgMTY3ICsrKysrKysrKysrKysrKysrLS0tLQo+IAo+ID4g
+ICA0IGZpbGVzIGNoYW5nZWQsIDE4MSBpbnNlcnRpb25zKCspLCAzMyBkZWxldGlvbnMoLSkKPiA+
+Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1
+YmRldi9iaW9zL3JhbWNmZy5oCj4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252
+a20vc3ViZGV2L2Jpb3MvcmFtY2ZnLmgKPiA+IGluZGV4IGM2ZmI2YWEuLmYwOWI2YmYgMTAwNjQ0
+ClsuLi5dCj4gPiArCXRpbWluZ1swXSA9IChUKFJQKSA8PCAyNCB8IFQoUkFTKSA8PCAxNiB8IFQo
+UkZDKSA8PAo+IDggfCBUKFJDKSk7Cj4gPiArCXRpbWluZ1sxXSA9IChUKFdSKSArIDEgKyBUKENX
+TCkpIDw8IDI0IHwKPiA+ICsJCSAgICBtYXhfdCh1OCwgVCgxOCksIDEpIDw8IDE2IHwKPiA+ICsJ
+CSAgICAoVChXVFIpICsgMSArIFQoQ1dMKSkgPDwgOCB8Cj4gPiArCQkgICAgKDMgKyBUKENMKSAt
+IFQoQ1dMKSk7Cj4gPiArCXRpbWluZ1syXSA9IChUKENXTCkgLSAxKSA8PCAyNCB8Cj4gPiArCQkg
+ICAgKFQoUlJEKSA8PCAxNikgfAo+ID4gKwkJICAgIChUKFJDRFdSKSA8PCA4KSB8Cj4gPiArCQkg
+ICAgVChSQ0RSRCk7Cj4gPiArCXRpbWluZ1szXSA9ICh1bmt0M2IgLSAyICsgVChDTCkpIDw8IDI0
+IHwKPiA+ICsJCSAgICB1bmt0M2IgPDwgMTYgfAo+ID4gKwkJICAgIChUKENMKSAtIDEpIDw8IDgg
+fAo+ID4gKwkJICAgIChUKENMKSAtIDEpOwo+ID4gKwl0aW1pbmdbNF0gPSAoY3VyNCAmIDB4ZmZm
+ZjAwMDApIHwKPiA+ICsJCSAgICBUKDEzKSA8PCA4IHwKPiA+ICsJCSAgICBUKDEzKTsKPiA+ICsJ
+dGltaW5nWzVdID0gVChSRkMpIDw8IDI0IHwKPiA+ICsJCSAgICBtYXhfdCh1OCwgVChSQ0RSRCks
+IFQoUkNEV1IpKSA8PCAxNiB8Cj4gPiArCQkgICAgVChSUCk7Cj4gPiArCS8qIFRpbWluZyA2IGlz
+IGFscmVhZHkgZG9uZSBhYm92ZSAqLwo+ID4gKwl0aW1pbmdbN10gPSAoY3VyNyAmIDB4ZmYwMGZm
+ZmYpIHwgKFQoQ0wpIC0gMSkgPDwgMTY7Cj4gPiArCXRpbWluZ1s4XSA9IChjdXI4ICYgMHhmZmZm
+ZmYwMCk7Cj4gPiArCj4gPiArCS8qIFhYWDogUC52ZXJzaW9uID09IDEgb25seSBoYXMgRERSMiBh
+bmQgR0REUjM/ICovCj4gCj4gbWggY2FuIHlvdSBzdGF0ZSBib3RoIChERFIyL0dERFIzKSBoZXJl
+IGFuZCBiYWlsIG91dCBvbiBkZWZhdWx0IGFzIHdlbGw/CgpUaGlzIHR5cGUgb2YgZXJyb3IgY2hl
+Y2tpbmcgaXMgd2F5IGVhcmxpZXIsIGluIG52NTBfcmFtX2N0b3IoKS4gSGVuY2UsIHRoaXMgY29k
+ZSB3aWxsCmN1cnJlbnRseSBvbmx5IGJlIGV4ZWN1dGVkIHdpdGggR0REUjMgY2FyZHMsIEkganVz
+dCBkaWRuJ3QgZmVlbCBpdCdzIGp1c3RpZmllZCB0byByZW1vdmUKRERSMiBjb25kaXRpb25hbCBj
+b2RlIHRoYXQgSSBpbnZlc3RpZ2F0ZWQgeWVhcnMgYWdvLCBvdGhlcndpc2UgaXQgd291bGQgaGF2
+ZSBiZWVuIGV2ZW4Kc2xpZ2h0bHkgY2xlYW5lci4KClJveQoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
