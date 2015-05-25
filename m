@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Mon, 25 May 2015 19:01:05 +0000
-Message-ID: <bug-90567-8800-pg06X84C10@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH 1/2] nv30/draw: rework some of the output vertex
+	buffer logic
+Date: Mon, 25 May 2015 15:29:11 -0400
+Message-ID: <1432582152-29389-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0991800157=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +16,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.5 10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0991800157==
-Content-Type: multipart/alternative; boundary="1432580465.8AE31.1189"; charset="UTF-8"
-
-
---1432580465.8AE31.1189
-Date: Mon, 25 May 2015 19:01:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #7 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Mesa git won't solve the issue. I'm trying the patch as soon as possible :)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432580465.8AE31.1189
-Date: Mon, 25 May 2015 19:01:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
-</span></b>
-        <pre>Mesa git won't solve the issue. I'm trying the patch as soon as possible :)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432580465.8AE31.1189--
-
---===============0991800157==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0991800157==--
+VGhpcyBtYWtlcyB0aGUgdmVydGV4IGJ1ZmZlciBnbyB0byBHQVJULCBub3QgVlJBTSwgYW5kIHJl
+ZG9lcyB0aGUKbWFwcGluZyB0byBub3QgdXNlIHRoZSBVTlNZTkNIUk9OSVpFRCBhY2Nlc3MgKHdo
+aWNoIGlzIG1lYW5pbmdsZXNzIG9uIGEKVlJBTSBidWZmZXIgYW55d2F5cykuIFdoaWxlIHdlJ3Jl
+IGF0IGl0LCBhZGQgc29tZSBmbHVzaGVzIGZvciBWQk8gZGF0YS4KCk1vdmluZyB0aGUgdmVydGV4
+IGJ1ZmZlciBmcm9tIFZSQU0gdG8gR0FSVCBtYWtlcyBnbHhnZWFycyB3b3JrIGZ1bGx5CndpdGgg
+TlYzMF9TV1ROTD0xLiBUaGUgb3RoZXIgY2hhbmdlcyBqdXN0IHNlZW0gbGlrZSBhIGdvb2QgaWRl
+YS4gSSdtIG5vdApzdXJlICp3aHkqIG1vdmluZyB0aGUgYnVmZmVyIGZyb20gVlJBTSBtYWtlcyBp
+dCB3b3JrLi4uIHBlcmhhcHMKc29tZXRoaW5nIGRvZXNuJ3QgZ2V0IGZsdXNoZWQgaW4gdGltZT8g
+SG93ZXZlciB0aGlzIGlzIGEgc2luZ2xlIHVzZSBieQp0aGUgR1BVIGJ1ZmZlciwgc28gU1RSRUFN
+IHNlZW1zIGxpa2UgdGhlIGNvcnJlY3QgdXNhZ2Ugc2VtYW50aWMgZm9yIGl0LgoKU2lnbmVkLW9m
+Zi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzogIjEwLjUgMTAuNiIg
+PG1lc2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0tCiBzcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvbnYzMC9udjMwX2RyYXcuYyB8IDMwICsrKysrKysrKysrKysrKysrKysrKy0t
+LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyMyBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoK
+ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJhdy5j
+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9kcmF3LmMKaW5kZXggNmEw
+ZDA2Zi4uYTY4MTEzNSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252
+MzAvbnYzMF9kcmF3LmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYz
+MF9kcmF3LmMKQEAgLTcxLDEyICs3MSwxMiBAQCBudjMwX3JlbmRlcl9hbGxvY2F0ZV92ZXJ0aWNl
+cyhzdHJ1Y3QgdmJ1Zl9yZW5kZXIgKnJlbmRlciwKICAgIHN0cnVjdCBudjMwX3JlbmRlciAqciA9
+IG52MzBfcmVuZGVyKHJlbmRlcik7CiAgICBzdHJ1Y3QgbnYzMF9jb250ZXh0ICpudjMwID0gci0+
+bnYzMDsKIAotICAgci0+bGVuZ3RoID0gdmVydGV4X3NpemUgKiBucl92ZXJ0aWNlczsKKyAgIHIt
+Pmxlbmd0aCA9ICh1aW50MzJfdCl2ZXJ0ZXhfc2l6ZSAqICh1aW50MzJfdClucl92ZXJ0aWNlczsK
+IAogICAgaWYgKHItPm9mZnNldCArIHItPmxlbmd0aCA+PSByZW5kZXItPm1heF92ZXJ0ZXhfYnVm
+ZmVyX2J5dGVzKSB7CiAgICAgICBwaXBlX3Jlc291cmNlX3JlZmVyZW5jZSgmci0+YnVmZmVyLCBO
+VUxMKTsKICAgICAgIHItPmJ1ZmZlciA9IHBpcGVfYnVmZmVyX2NyZWF0ZSgmbnYzMC0+c2NyZWVu
+LT5iYXNlLmJhc2UsCi0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgUElQRV9C
+SU5EX1ZFUlRFWF9CVUZGRVIsIDAsCisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgUElQRV9CSU5EX1ZFUlRFWF9CVUZGRVIsIFBJUEVfVVNBR0VfU1RSRUFNLAogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlbmRlci0+bWF4X3ZlcnRleF9idWZmZXJfYnl0
+ZXMpOwogICAgICAgaWYgKCFyLT5idWZmZXIpCiAgICAgICAgICByZXR1cm4gRkFMU0U7CkBAIC05
+MSwxMCArOTEsMTQgQEAgc3RhdGljIHZvaWQgKgogbnYzMF9yZW5kZXJfbWFwX3ZlcnRpY2VzKHN0
+cnVjdCB2YnVmX3JlbmRlciAqcmVuZGVyKQogewogICAgc3RydWN0IG52MzBfcmVuZGVyICpyID0g
+bnYzMF9yZW5kZXIocmVuZGVyKTsKLSAgIGNoYXIgKm1hcCA9IHBpcGVfYnVmZmVyX21hcCgmci0+
+bnYzMC0+YmFzZS5waXBlLCByLT5idWZmZXIsCi0gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgUElQRV9UUkFOU0ZFUl9XUklURSB8Ci0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+UElQRV9UUkFOU0ZFUl9VTlNZTkNIUk9OSVpFRCwgJnItPnRyYW5zZmVyKTsKLSAgIHJldHVybiBt
+YXAgKyByLT5vZmZzZXQ7CisgICBjaGFyICptYXAgPSBwaXBlX2J1ZmZlcl9tYXBfcmFuZ2UoCisg
+ICAgICAgICAmci0+bnYzMC0+YmFzZS5waXBlLCByLT5idWZmZXIsCisgICAgICAgICByLT5vZmZz
+ZXQsIHItPmxlbmd0aCwKKyAgICAgICAgIFBJUEVfVFJBTlNGRVJfV1JJVEUgfAorICAgICAgICAg
+UElQRV9UUkFOU0ZFUl9ESVNDQVJEX1JBTkdFLAorICAgICAgICAgJnItPnRyYW5zZmVyKTsKKyAg
+IGFzc2VydChtYXApOworICAgcmV0dXJuIG1hcDsKIH0KIAogc3RhdGljIHZvaWQKQEAgLTEyNywx
+MiArMTMxLDE4IEBAIG52MzBfcmVuZGVyX2RyYXdfZWxlbWVudHMoc3RydWN0IHZidWZfcmVuZGVy
+ICpyZW5kZXIsCiAgICBmb3IgKGkgPSAwOyBpIDwgci0+dmVydGV4X2luZm8ubnVtX2F0dHJpYnM7
+IGkrKykgewogICAgICAgUFVTSF9SRVNSQyhwdXNoLCBOVjMwXzNEKFZUWEJVRihpKSksIEJVRkNU
+WF9WVFhUTVAsCiAgICAgICAgICAgICAgICAgICAgICAgIG52MDRfcmVzb3VyY2Uoci0+YnVmZmVy
+KSwgci0+b2Zmc2V0ICsgci0+dnR4cHRyW2ldLAotICAgICAgICAgICAgICAgICAgICAgICBOT1VW
+RUFVX0JPX0xPVyB8IE5PVVZFQVVfQk9fUkQsIDAsIDApOworICAgICAgICAgICAgICAgICAgICAg
+ICBOT1VWRUFVX0JPX0xPVyB8IE5PVVZFQVVfQk9fUkQsIDAsIE5WMzBfM0RfVlRYQlVGX0RNQTEp
+OwogICAgfQogCiAgICBpZiAoIW52MzBfc3RhdGVfdmFsaWRhdGUobnYzMCwgfjAsIEZBTFNFKSkK
+ICAgICAgIHJldHVybjsKIAorICAgaWYgKG52MzAtPmJhc2UudmJvX2RpcnR5KSB7CisgICAgICBC
+RUdJTl9OVjA0KHB1c2gsIE5WMzBfM0QoVlRYX0NBQ0hFX0lOVkFMSURBVEVfMTcxMCksIDEpOwor
+ICAgICAgUFVTSF9EQVRBIChwdXNoLCAwKTsKKyAgICAgIG52MzAtPmJhc2UudmJvX2RpcnR5ID0g
+RkFMU0U7CisgICB9CisKICAgIEJFR0lOX05WMDQocHVzaCwgTlYzMF8zRChWRVJURVhfQkVHSU5f
+RU5EKSwgMSk7CiAgICBQVVNIX0RBVEEgKHB1c2gsIHItPnByaW0pOwogCkBAIC0xNzgsNiArMTg4
+LDEyIEBAIG52MzBfcmVuZGVyX2RyYXdfYXJyYXlzKHN0cnVjdCB2YnVmX3JlbmRlciAqcmVuZGVy
+LCB1bnNpZ25lZCBzdGFydCwgdWludCBucikKICAgIGlmICghbnYzMF9zdGF0ZV92YWxpZGF0ZShu
+djMwLCB+MCwgRkFMU0UpKQogICAgICAgcmV0dXJuOwogCisgICBpZiAobnYzMC0+YmFzZS52Ym9f
+ZGlydHkpIHsKKyAgICAgIEJFR0lOX05WMDQocHVzaCwgTlYzMF8zRChWVFhfQ0FDSEVfSU5WQUxJ
+REFURV8xNzEwKSwgMSk7CisgICAgICBQVVNIX0RBVEEgKHB1c2gsIDApOworICAgICAgbnYzMC0+
+YmFzZS52Ym9fZGlydHkgPSBGQUxTRTsKKyAgIH0KKwogICAgQkVHSU5fTlYwNChwdXNoLCBOVjMw
+XzNEKFZFUlRFWF9CRUdJTl9FTkQpLCAxKTsKICAgIFBVU0hfREFUQSAocHVzaCwgci0+cHJpbSk7
+CiAKLS0gCjIuMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
