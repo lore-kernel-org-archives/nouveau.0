@@ -1,20 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [RFC PATCH 00/11] Implement ARB_cull_distance
-Date: Mon, 25 May 2015 11:07:33 -0400
-Message-ID: <CAKb7Uvj3CP3wBA1mWLhTdt-9RJRemHKYwqezOKD=GTw6zFOsbg@mail.gmail.com>
-References: <1432490289-29353-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <CAKb7UvjqEq9M639ZXhFeLqPjEVcP5Zfqc_Df7yjBA34ww70jMQ@mail.gmail.com>
- <556226F1.8020502@mni.thm.de>
- <CAKb7Uvgby-ycm5rQJWNJmC-4hkB2L9msgOiGh0YXNTBj+2-yaQ@mail.gmail.com>
- <55622D00.4000308@mni.thm.de>
- <CAAxE2A4Zc3G+Rw9VcaAcXj24RJvZsBY1hW6RDA=Mt+aO6s2nKw@mail.gmail.com>
- <CAPM=9tzeBhg-srEZgud4p3AUx59GAA7ogastm7Jy8erq1-0zzw@mail.gmail.com>
- <5563264B.4010008@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Mon, 25 May 2015 17:11:06 +0000
+Message-ID: <bug-89558-8800-mSzBSEHuGO@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0550298590=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5563264B.4010008-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,41 +16,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBNYXkgMjUsIDIwMTUgYXQgOTo0MCBBTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
-LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPgo+IE9uIDI1LjA1LjIwMTUg
-MDc6MTcsIERhdmUgQWlybGllIHdyb3RlOgo+Pgo+PiBPbiAyNSBNYXkgMjAxNSBhdCAwODoxMSwg
-TWFyZWsgT2zFocOhayA8bWFyYWVvQGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pgo+Pj4gSXQncyB0aGUg
-c2FtZSBvbiBSYWRlb24uIFRoZXJlIGFyZSAyeCBDbGlwT3JDdWxsRGlzdGFuY2Ugb3V0cHV0Cj4+
-PiB2ZWN0b3JzIGFuZCBhIG1hc2sgc2F5aW5nIGl0IHNob3VsZCBjbGlwIG9yIGN1bGwgb3IgZG8g
-bm90aGluZy4KPj4+Cj4+PiBNYXJlawo+Pj4KPj4gTXkgdGhpbmtpbmcgd2FzIGdhbGxpdW0gc2hv
-dWxkIGhhdmUgYSBzaW5nbGUgc2VtYW50aWMgYW5kIGEgbWFzayBpbgo+PiB0aGUgc2hhZGVyIGRl
-ZmluaXRpb24gbWF5YmUuCj4+Cj4+IHRob3VnaCBpdCBkb2Vzbid0IHNvbHZlIHRoZSBkb2VzIG52
-aWRpYSBkbyB0aGUgcmlnaHQgdGhpbmcgd2l0aAo+PiBjdWxsWzBdIGFuZCBjbGlwWzBdLCBhbmQg
-d2hhdCBpcyB0aGUgcmlnaHQgdGhpbmcuCj4+Cj4+IERhdmUuCj4KPgo+IEknbSBzdGlsbCBjb252
-aW5jZWQgdGhhdCBib3RoIGNsaXBbMF0gYW5kIGN1bGxbMF0gc2hvdWxkIGJlIHBvc3NpYmxlLiBQ
-bHVzIGkKPiBoYXZlIHdyaXR0ZW4gYSBzaGFkZXJfdGVzdCBmb3IgdGhpcyBhIHdoaWxlIGFnbyB3
-aGljaCB5b3UgcHVzaGVkIHRvIHBpZ2xpdAo+IChmcy1jdWxsLWFuZC1jbGlwLWRpc3RhbmNlLWRp
-ZmZlcmVudC5zaGFkZXJfdGVzdCkuIElmIGkgcmVtZW1iZXIgcmlnaHQKPiBudmlkaWEgcGFzc2Vk
-IHRoYXQgdGVzdCBqdXN0IGZpbmUuCgpNeSB0YWtlIChhbmQgbm90ZSB0aGF0IEkgbGFzdCByZWFk
-IHRoZSBleHRlbnNpb24gbWFueSBtb250aHMgYWdvKSBpcwp0aGF0IHlvdSdyZSBzdXBwb3NlZCB0
-byBmaWd1cmUgb3V0IHRoZSBtYXggZ2xfQ2xpcERpc3RhbmNlW10gd3JpdHRlbiwKYW5kIHRoZW4g
-d3JpdGUgYWxsIHlvdXIgY3VsbCBkaXN0YW5jZXMgYWJvdmUgdGhhdC4gU28gaWYgeW91LCBlLmcu
-LApoYXZlIHNvbWV0aGluZyBsaWtlCgpnbF9DbGlwRGlzdGFuY2VbNV0gPSAxOwpnbF9DdWxsRGlz
-dGFuY2VbMF0gPSAxOwoKVGhlbiBpdCB3b3VsZCBkZWNpZGUgdGhhdCB0aGVyZSBhcmUgNiBjbGlw
-IGRpc3RhbmNlcyAob3IgaWYgdGhlcmUncyBhbgpleHBsaWNpdCBvdXQgZmxvYXQgZ2xfQ2xpcERp
-c3RhbmNlW25dLCB0aGVuIHVzZSB0aGF0KSwgYW5kIDEgY3VsbApkaXN0YW5jZS4gSW4gdGhlIFRH
-U0ksIEknbSB0aGlua2luZyB0aGlzIG1pZ2h0IGxvb2sgYXBwcm94aW1hdGVseSBsaWtlCgpQUk9Q
-RVJUWSBDVUxMX01BU0sgKDE8PDYpCkRDTCBPVVRbMF0sIENMSVBESVNUWzBdCkRDTCBPVVRbMV0s
-IENMSVBESVNUWzFdCk1PViBPVVRbMV0ueSwgMSAoY2xpcCBkaXN0YW5jZVs1XSkKTU9WIE9VVFsx
-XS56LCAxIChjdWxsIGRpc3RhbmNlWzBdKQoKVGhlbiBiYXNpY2FsbHkgeW91J2QgaGF2ZQoKKHJh
-c3QtPmNsaXBfZW5hYmxlICYgc2hhZGVyLT5hY3R1YWxfY2xpcF93cml0ZXNfbWFzaykgfCBjdWxs
-X21hc2sgPQp0aGUgZW5hYmxlZCBkaXN0YW5jZXMKY3VsbF9tYXNrID0gY3VsbCBtYXNrCgpUaGlz
-IHdvdWxkIHdvcmsgKnZlcnkqIHdlbGwgZm9yIG5vdXZlYXUsIG5vdCBzdXJlIGhvdyBzdWl0YWJs
-ZSBpdCBpcwpmb3Igb3RoZXIgaGFyZHdhcmUuCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0550298590==
+Content-Type: multipart/alternative; boundary="1432573866.Fcd2442.32432"; charset="UTF-8"
+
+
+--1432573866.Fcd2442.32432
+Date: Mon, 25 May 2015 17:11:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
+
+--- Comment #34 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Created attachment 116031
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116031&action=edit
+kernel 4.1-rc5 nouveau driver with patches applied
+
+For interest tested patches against kernel 4.1-rc5 (with nouveau debug on).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432573866.Fcd2442.32432
+Date: Mon, 25 May 2015 17:11:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116031" name="attach_116031" title="kernel 4.1-rc5 nouveau driver with patches applied">attachment 116031</a> <a href="attachment.cgi?id=116031&amp;action=edit" title="kernel 4.1-rc5 nouveau driver with patches applied">[details]</a></span>
+kernel 4.1-rc5 nouveau driver with patches applied
+
+For interest tested patches against kernel 4.1-rc5 (with nouveau debug on).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432573866.Fcd2442.32432--
+
+--===============0550298590==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0550298590==--
