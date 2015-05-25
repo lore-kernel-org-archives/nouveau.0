@@ -1,91 +1,94 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH 2/2] nv30/draw: switch varying hookup logic to
-	know about texcoords
-Date: Mon, 25 May 2015 15:29:12 -0400
-Message-ID: <1432582152-29389-2-git-send-email-imirkin@alum.mit.edu>
-References: <1432582152-29389-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Mon, 25 May 2015 19:53:43 +0000
+Message-ID: <bug-90567-8800-vxwVNafz9m@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1432582152-29389-1-git-send-email-imirkin@alum.mit.edu>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: nouveau@lists.freedesktop.org, mesa-dev@lists.freedesktop.org
-Cc: "10.5 10.6" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1550015919=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q29tbWl0IDhhY2FmODYyZGZlIHN3aXRjaGVkIHRoaW5ncyBvdmVyIHRvIHVzZSBURVhDT09SRCBp
-bnN0ZWFkIG9mCkdFTkVSSUMsIGJ1dCBkaWQgbm90IHVwZGF0ZSB0aGUgbnYzMCBzd3RubCBkcmF3
-IHBhdGhzLiBUaGlzIHRlYWNoZXMgdGhlCmRyYXcgbG9naWMgYWJvdXQgVEVYQ09PUkQuCgpBbW9u
-ZyBvdGhlciB0aGluZ3MsIHRoaXMgZml4ZXMgYSBjcmFzaCBpbiBkZW1vcy9hcmJvY2NsdWRlIHdo
-ZW4gdXNpbmcKc3d0bmwuIEN1cmlvdXNseSBlbm91Z2gsIHRoZSBwb2ludC1zcHJpdGUgcGlnbGl0
-IHdvcmtzIHdpdGhvdXQgdGhpcy4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2lu
-QGFsdW0ubWl0LmVkdT4KQ2M6ICIxMC41IDEwLjYiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmc+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9kcmF3
-LmMgfCAyNSArKysrKysrKysrKysrKysrLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTYgaW5z
-ZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnYzMC9udjMwX2RyYXcuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udjMwL252MzBfZHJhdy5jCmluZGV4IGE2ODExMzUuLjAzYzBjNzAgMTAwNjQ0Ci0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJhdy5jCisrKyBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJhdy5jCkBAIC0yMzAsMjIgKzIzMCwyNCBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IHsKICAgIFtUR1NJX1NFTUFOVElDX0JDT0xPUiAgXSA9IHsg
-RU1JVF80RiwgSU5URVJQX0xJTkVBUiAgICAgLCAxLCAzLCAweDAwMDAwMDA0IH0sCiAgICBbVEdT
-SV9TRU1BTlRJQ19GT0cgICAgIF0gPSB7IEVNSVRfNEYsIElOVEVSUF9QRVJTUEVDVElWRSwgNSwg
-NSwgMHgwMDAwMDAxMCB9LAogICAgW1RHU0lfU0VNQU5USUNfUFNJWkUgICBdID0geyBFTUlUXzFG
-X1BTSVpFLCBJTlRFUlBfUE9TICAsIDYsIDYsIDB4MDAwMDAwMjAgfSwKLSAgIFtUR1NJX1NFTUFO
-VElDX0dFTkVSSUMgXSA9IHsgRU1JVF80RiwgSU5URVJQX1BFUlNQRUNUSVZFLCA4LCA3LCAweDAw
-MDA0MDAwIH0KKyAgIFtUR1NJX1NFTUFOVElDX1RFWENPT1JEXSA9IHsgRU1JVF80RiwgSU5URVJQ
-X1BFUlNQRUNUSVZFLCA4LCA3LCAweDAwMDA0MDAwIH0sCiB9OwogCiBzdGF0aWMgYm9vbGVhbgog
-dnJvdXRlX2FkZChzdHJ1Y3QgbnYzMF9yZW5kZXIgKnIsIHVpbnQgYXR0cmliLCB1aW50IHNlbSwg
-dWludCAqaWR4KQogewotICAgc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuID0gJnItPm52MzAt
-PnNjcmVlbi0+YmFzZS5iYXNlOworICAgc3RydWN0IG52MzBfc2NyZWVuICpzY3JlZW4gPSByLT5u
-djMwLT5zY3JlZW47CiAgICBzdHJ1Y3QgbnYzMF9mcmFncHJvZyAqZnAgPSByLT5udjMwLT5mcmFn
-cHJvZy5wcm9ncmFtOwogICAgc3RydWN0IHZlcnRleF9pbmZvICp2aW5mbyA9ICZyLT52ZXJ0ZXhf
-aW5mbzsKICAgIGVudW0gcGlwZV9mb3JtYXQgZm9ybWF0OwogICAgdWludCBlbWl0ID0gRU1JVF9P
-TUlUOwogICAgdWludCByZXN1bHQgPSAqaWR4OwogCi0gICBpZiAoc2VtID09IFRHU0lfU0VNQU5U
-SUNfR0VORVJJQyAmJiByZXN1bHQgPj0gOCkgewotICAgICAgZm9yIChyZXN1bHQgPSAwOyByZXN1
-bHQgPCA4OyByZXN1bHQrKykgewotICAgICAgICAgaWYgKGZwLT50ZXhjb29yZFtyZXN1bHRdID09
-ICppZHgpIHsKKyAgIGlmIChzZW0gPT0gVEdTSV9TRU1BTlRJQ19HRU5FUklDKSB7CisgICAgICB1
-aW50IG51bV90ZXhjb29yZHMgPSAoc2NyZWVuLT5lbmczZC0+b2NsYXNzIDwgTlY0MF8zRF9DTEFT
-UykgPyA4IDogMTA7CisgICAgICBmb3IgKHJlc3VsdCA9IDA7IHJlc3VsdCA8IG51bV90ZXhjb29y
-ZHM7IHJlc3VsdCsrKSB7CisgICAgICAgICBpZiAoZnAtPnRleGNvb3JkW3Jlc3VsdF0gPT0gKmlk
-eCArIDgpIHsKKyAgICAgICAgICAgIHNlbSA9IFRHU0lfU0VNQU5USUNfVEVYQ09PUkQ7CiAgICAg
-ICAgICAgICBlbWl0ID0gdnJvdXRlW3NlbV0uZW1pdDsKICAgICAgICAgICAgIGJyZWFrOwogICAg
-ICAgICAgfQpAQCAtMjYwLDExICsyNjIsMTEgQEAgdnJvdXRlX2FkZChzdHJ1Y3QgbnYzMF9yZW5k
-ZXIgKnIsIHVpbnQgYXR0cmliLCB1aW50IHNlbSwgdWludCAqaWR4KQogICAgZHJhd19lbWl0X3Zl
-cnRleF9hdHRyKHZpbmZvLCBlbWl0LCB2cm91dGVbc2VtXS5pbnRlcnAsIGF0dHJpYik7CiAgICBm
-b3JtYXQgPSBkcmF3X3RyYW5zbGF0ZV92aW5mb19mb3JtYXQoZW1pdCk7CiAKLSAgIHItPnZ0eGZt
-dFthdHRyaWJdID0gbnYzMF92dHhmbXQocHNjcmVlbiwgZm9ybWF0KS0+aHc7CisgICByLT52dHhm
-bXRbYXR0cmliXSA9IG52MzBfdnR4Zm10KCZzY3JlZW4tPmJhc2UuYmFzZSwgZm9ybWF0KS0+aHc7
-CiAgICByLT52dHhwdHJbYXR0cmliXSA9IHZpbmZvLT5zaXplIHwgTlYzMF8zRF9WVFhCVUZfRE1B
-MTsKICAgIHZpbmZvLT5zaXplICs9IGRyYXdfdHJhbnNsYXRlX3ZpbmZvX3NpemUoZW1pdCk7CiAK
-LSAgIGlmIChudjMwX3NjcmVlbihwc2NyZWVuKS0+ZW5nM2QtPm9jbGFzcyA8IE5WNDBfM0RfQ0xB
-U1MpIHsKKyAgIGlmIChzY3JlZW4tPmVuZzNkLT5vY2xhc3MgPCBOVjQwXzNEX0NMQVNTKSB7CiAg
-ICAgICByLT52dHhwcm9nW2F0dHJpYl1bMF0gPSAweDAwMWYzOGQ4OwogICAgICAgci0+dnR4cHJv
-Z1thdHRyaWJdWzFdID0gMHgwMDgwMDAxYiB8IChhdHRyaWIgPDwgOSk7CiAgICAgICByLT52dHhw
-cm9nW2F0dHJpYl1bMl0gPSAweDA4MzYxMDZjOwpAQCAtMjc2LDcgKzI3OCwxMiBAQCB2cm91dGVf
-YWRkKHN0cnVjdCBudjMwX3JlbmRlciAqciwgdWludCBhdHRyaWIsIHVpbnQgc2VtLCB1aW50ICpp
-ZHgpCiAgICAgICByLT52dHhwcm9nW2F0dHJpYl1bM10gPSAweDYwNDFmZjgwIHwgKHJlc3VsdCAr
-IHZyb3V0ZVtzZW1dLnZwNDApIDw8IDI7CiAgICB9CiAKLSAgICppZHggPSB2cm91dGVbc2VtXS5v
-dzQwIDw8IHJlc3VsdDsKKyAgIGlmIChyZXN1bHQgPCA4KQorICAgICAgKmlkeCA9IHZyb3V0ZVtz
-ZW1dLm93NDAgPDwgcmVzdWx0OworICAgZWxzZSB7CisgICAgICBhc3NlcnQoc2VtID09IFRHU0lf
-U0VNQU5USUNfVEVYQ09PUkQpOworICAgICAgKmlkeCA9IDB4MDAwMDEwMDAgPDwgKHJlc3VsdCAt
-IDgpOworICAgfQogICAgcmV0dXJuIFRSVUU7CiB9CiAKQEAgLTMzMCw3ICszMzcsNyBAQCBudjMw
-X3JlbmRlcl92YWxpZGF0ZShzdHJ1Y3QgbnYzMF9jb250ZXh0ICpudjMwKQogCiAgICB3aGlsZSAo
-cG50YyAmJiBhdHRyaWIgPCAxNikgewogICAgICAgdWludCBpbmRleCA9IGZmcyhwbnRjKSAtIDE7
-IHBudGMgJj0gfigxIDw8IGluZGV4KTsKLSAgICAgIGlmICh2cm91dGVfYWRkKHIsIGF0dHJpYiwg
-VEdTSV9TRU1BTlRJQ19HRU5FUklDLCAmaW5kZXgpKSB7CisgICAgICBpZiAodnJvdXRlX2FkZChy
-LCBhdHRyaWIsIFRHU0lfU0VNQU5USUNfVEVYQ09PUkQsICZpbmRleCkpIHsKICAgICAgICAgIHZw
-X2F0dHJpYnMgfD0gKDEgPDwgYXR0cmliKyspOwogICAgICAgICAgdnBfcmVzdWx0cyB8PSBpbmRl
-eDsKICAgICAgIH0KLS0gCjIuMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9t
-ZXNhLWRldgo=
+
+--===============1550015919==
+Content-Type: multipart/alternative; boundary="1432583622.bde6F1.17385"; charset="UTF-8"
+
+
+--1432583622.bde6F1.17385
+Date: Mon, 25 May 2015 19:53:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
+
+--- Comment #8 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Unfortunately, the patch did not fix the problem. Though now, I can Alt-Tab to
+switch to other windows and even kill the app with Ctrl-Alt-Esc.
+
+I attach the log for the start of the game.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432583622.bde6F1.17385
+Date: Mon, 25 May 2015 19:53:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
+</span></b>
+        <pre>Unfortunately, the patch did not fix the problem. Though now, I can Alt-Tab to
+switch to other windows and even kill the app with Ctrl-Alt-Esc.
+
+I attach the log for the start of the game.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432583622.bde6F1.17385--
+
+--===============1550015919==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1550015919==--
