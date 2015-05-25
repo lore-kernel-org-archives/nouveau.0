@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90632] DRI_PRIME=1 has no effect with GK106M
-Date: Mon, 25 May 2015 20:42:51 +0000
-Message-ID: <bug-90632-8800-ZMGBps8wHT@http.bugs.freedesktop.org/>
+Subject: [Bug 90632] [NVE6] grctx template channel unload timeout
+Date: Mon, 25 May 2015 20:44:41 +0000
+Message-ID: <bug-90632-8800-SRyYhSCntO@http.bugs.freedesktop.org/>
 References: <bug-90632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0024838084=="
+Content-Type: multipart/mixed; boundary="===============0577109722=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0024838084==
-Content-Type: multipart/alternative; boundary="1432586570.C0aCc5E31.32022"; charset="UTF-8"
+--===============0577109722==
+Content-Type: multipart/alternative; boundary="1432586681.eC3F2.32600"; charset="UTF-8"
 
 
---1432586570.C0aCc5E31.32022
-Date: Mon, 25 May 2015 20:42:50 +0000
+--1432586681.eC3F2.32600
+Date: Mon, 25 May 2015 20:44:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90632
 
---- Comment #1 from Willem Mulder <14mRh4X0r+fd.o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 116034
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116034&action=edit
-dmesg output
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|DRI_PRIME=1 has no effect   |[NVE6] grctx template
+                   |with GK106M                 |channel unload timeout
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The issue here is with the bringup... the driver doesn't load, which means X
+doesn't see it, etc.
+
+[   15.063868] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000004 FAULT
+at 0x620018 [ IBUS ]
+[   15.149993] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
+at 0x500c30 [ IBUS ]
+
+Not sure if those are (semi-)expected.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432586570.C0aCc5E31.32022
-Date: Mon, 25 May 2015 20:42:50 +0000
+--1432586681.eC3F2.32600
+Date: Mon, 25 May 2015 20:44:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +62,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] grctx template channel unload timeout"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632">bug 90632</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>DRI_PRIME=1 has no effect with GK106M
+           </td>
+           <td>[NVE6] grctx template channel unload timeout
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - DRI_PRIME=1 has no effect with GK106M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632#c1">Comment # 1</a>
+   title="NEW - [NVE6] grctx template channel unload timeout"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - DRI_PRIME=1 has no effect with GK106M"
+   title="NEW - [NVE6] grctx template channel unload timeout"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90632">bug 90632</a>
-              from <span class="vcard"><a class="email" href="mailto:14mRh4X0r+fd.o&#64;gmail.com" title="Willem Mulder &lt;14mRh4X0r+fd.o&#64;gmail.com&gt;"> <span class="fn">Willem Mulder</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116034" name="attach_116034" title="dmesg output">attachment 116034</a> <a href="attachment.cgi?id=116034&amp;action=edit" title="dmesg output">[details]</a></span>
-dmesg output</pre>
+        <pre>The issue here is with the bringup... the driver doesn't load, which means X
+doesn't see it, etc.
+
+[   15.063868] nouveau E[    PBUS][0000:01:00.0] MMIO write of 0x00000004 FAULT
+at 0x620018 [ IBUS ]
+[   15.149993] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT
+at 0x500c30 [ IBUS ]
+
+Not sure if those are (semi-)expected.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +115,9 @@ dmesg output</pre>
     </body>
 </html>
 
---1432586570.C0aCc5E31.32022--
+--1432586681.eC3F2.32600--
 
---===============0024838084==
+--===============0577109722==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0024838084==--
+--===============0577109722==--
