@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90632] New: DRI_PRIME=1 has no effect with GK106M
-Date: Mon, 25 May 2015 20:42:16 +0000
-Message-ID: <bug-90632-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90632] DRI_PRIME=1 has no effect with GK106M
+Date: Mon, 25 May 2015 20:42:51 +0000
+Message-ID: <bug-90632-8800-ZMGBps8wHT@http.bugs.freedesktop.org/>
+References: <bug-90632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1122072594=="
+Content-Type: multipart/mixed; boundary="===============0024838084=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,52 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1122072594==
-Content-Type: multipart/alternative; boundary="1432586536.027eAB1.31813"; charset="UTF-8"
+--===============0024838084==
+Content-Type: multipart/alternative; boundary="1432586570.C0aCc5E31.32022"; charset="UTF-8"
 
 
---1432586536.027eAB1.31813
-Date: Mon, 25 May 2015 20:42:16 +0000
+--1432586570.C0aCc5E31.32022
+Date: Mon, 25 May 2015 20:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90632
 
-            Bug ID: 90632
-           Summary: DRI_PRIME=1 has no effect with GK106M
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: 14mRh4X0r+fd.o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 116033
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116033&action=edit
-Xorg.0.log
-
-When running xrandr --listproviders, both nouveau and Intel are listed.
-However, after using xrandr --setprovideroffloadsink nouveau Intel, running
-DRI_PRIME=1 glxinfo | fgrep "OpenGL vendor" still shows Intel.
-
-dmesg includes the following line:
-[   21.537016] nouveau E[     PGR][0000:01:00.0] grctx template channel unload
-timeout
-
-Attached are Xorg.0.log, dmesg, and an mmiotrace of glxinfo running through
-bumblebee.
+--- Comment #1 from Willem Mulder <14mRh4X0r+fd.o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 116034
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116034&action=edit
+dmesg output
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432586536.027eAB1.31813
-Date: Mon, 25 May 2015 20:42:16 +0000
+--1432586570.C0aCc5E31.32022
+Date: Mon, 25 May 2015 20:42:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,102 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DRI_PRIME=1 has no effect with GK106M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632">90632</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>DRI_PRIME=1 has no effect with GK106M
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>14mRh4X0r+fd.o&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116033" name="attach_116033" title="Xorg.0.log">attachment 116033</a> <a href="attachment.cgi?id=116033&amp;action=edit" title="Xorg.0.log">[details]</a></span>
-Xorg.0.log
-
-When running xrandr --listproviders, both nouveau and Intel are listed.
-However, after using xrandr --setprovideroffloadsink nouveau Intel, running
-DRI_PRIME=1 glxinfo | fgrep &quot;OpenGL vendor&quot; still shows Intel.
-
-dmesg includes the following line:
-[   21.537016] nouveau E[     PGR][0000:01:00.0] grctx template channel unload
-timeout
-
-Attached are Xorg.0.log, dmesg, and an mmiotrace of glxinfo running through
-bumblebee.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DRI_PRIME=1 has no effect with GK106M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DRI_PRIME=1 has no effect with GK106M"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632">bug 90632</a>
+              from <span class="vcard"><a class="email" href="mailto:14mRh4X0r+fd.o&#64;gmail.com" title="Willem Mulder &lt;14mRh4X0r+fd.o&#64;gmail.com&gt;"> <span class="fn">Willem Mulder</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116034" name="attach_116034" title="dmesg output">attachment 116034</a> <a href="attachment.cgi?id=116034&amp;action=edit" title="dmesg output">[details]</a></span>
+dmesg output</pre>
         </div>
       </p>
       <hr>
@@ -178,9 +75,9 @@ bumblebee.</pre>
     </body>
 </html>
 
---1432586536.027eAB1.31813--
+--1432586570.C0aCc5E31.32022--
 
---===============1122072594==
+--===============0024838084==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -190,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1122072594==--
+--===============0024838084==--
