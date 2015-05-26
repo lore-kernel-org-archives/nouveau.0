@@ -1,55 +1,105 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] [PATCH v2] nouveau: add coherent BO attribute
-Date: Tue, 26 May 2015 22:23:17 +0900
-Message-ID: <CAAVeFuJ4oNi-_ALd3NRNeje7wNntcJ5QME2TWHKTBVWzE0yG1w@mail.gmail.com>
-References: <1432188508-650-1-git-send-email-acourbot@nvidia.com>
- <CACAvsv5qW74Lp5pYke-4GKi2BYgXot2SM93T_aZX=rztWwGJHA@mail.gmail.com>
- <555E228B.9090400@free.fr>
- <CAAVeFuJHL664jbsEBUYFp0atnuF3gisbwhJhR-R=cy+iB8gUCg@mail.gmail.com>
- <55616F1E.7020602@mblankhorst.nl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
+Date: Tue, 26 May 2015 14:08:25 +0000
+Message-ID: <bug-90626-8800-apUJqlbEgx@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <55616F1E.7020602@mblankhorst.nl>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Maarten Lankhorst <maarten@mblankhorst.nl>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0290389215=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU3VuLCBNYXkgMjQsIDIwMTUgYXQgMzoyNiBQTSwgTWFhcnRlbiBMYW5raG9yc3QKPG1hYXJ0
-ZW5AbWJsYW5raG9yc3Qubmw+IHdyb3RlOgo+IE9wIDIzLTA1LTE1IG9tIDA4OjQ1IHNjaHJlZWYg
-QWxleGFuZHJlIENvdXJib3Q6Cj4+IE9uIEZyaSwgTWF5IDIyLCAyMDE1IGF0IDM6MjMgQU0sIE1h
-cnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+IHdyb3RlOgo+Pj4gT24gMjEvMDUvMjAx
-NSAxMTo0NywgQmVuIFNrZWdncyB3cm90ZToKPj4+PiBPbiAyMSBNYXkgMjAxNSBhdCAxNjowOCwg
-QWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+Pj4+PiBBZGQg
-YSBmbGFnIGFsbG93aW5nIE5vdXZlYXUgdG8gc3BlY2lmeSB0aGF0IGFuIG9iamVjdCBzaG91bGQg
-YmUgY29oZXJlbnQKPj4+Pj4gYXQgYWxsb2NhdGlvbiB0aW1lLiBUaGlzIGlzIHJlcXVpcmVkIGZv
-ciBzb21lIGNsYXNzIG9mIG9iamVjdHMgbGlrZQo+Pj4+PiBmZW5jZXMgd2hpY2ggYXJlIHJhbmRv
-bWx5LWFjY2Vzc2VkIGJ5IGJvdGggdGhlIENQVSBhbmQgR1BVLiBUaGlzIGZsYWcKPj4+Pj4gaW5z
-dHJ1Y3RzIHRoZSBrZXJuZWwgZHJpdmVyIHRvIG1ha2Ugc3VyZSB0aGUgb2JqZWN0IHJlbWFpbnMg
-Y29oZXJlbnQKPj4+Pj4gZXZlbiBvbiBhcmNoaXRlY3R1cmVzIGZvciB3aGljaCBjb2hlcmVuY3kg
-aXMgbm90IGd1YXJhbnRlZWQgYnkgdGhlIGJ1cy4KPj4+Pj4KPj4+Pj4gU2lnbmVkLW9mZi1ieTog
-QWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+Pj4gUmV2aWV3ZWQtYnk6
-IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPj4+Cj4+PiBQdXNoZWQhCj4+IFRoYW5r
-cyEgU2hvdWxkIHdlIGFsc28gYnVtcCB0aGUgQUJJIHZlcnNpb24gb3Igc29tZXRoaW5nPwo+IElm
-IHlvdSBtZWFuIGNoYW5naW5nIGxpYmRybV9ub3V2ZWF1LnNvLjIgdG8gLnNvLjMgbm8hIElmIHlv
-dSBtZWFuIGhhdmluZyBzb21ldGhpbmcgdGhhdCBwa2ctY29uZmlnIGNhbiBwaWNrIHVwIHRoYXQn
-cyBkb25lIGF1dG9tYXRpY2FsbHkgb24gZXZlcnkgZHJtIHJlbGVhc2UuCgpTb3JyeSBmb3Igbm90
-IGhhdmluZyBiZWVuIGNsZWFyLiBJIHdhcyB0YWxraW5nIGFib3V0IGNoZWNraW5nIGFnYWluc3QK
-dGhlIGRyaXZlciB2ZXJzaW9uIHRvIGVuc3VyZSBpdCBzdXBwb3J0cyBhbGwgdGhlIGZlYXR1cmVz
-IHRoYXQgbGliZHJtCmNhbiB0aHJvdyBhdCBpdC4gV2UgaW5jcmVhc2VkIHRoZSBtb2R1bGVzJ3Mg
-dmVyc2lvbiB0byAxLjIuMiB3aGVuCmFkZGluZyB0aGUgY29oZXJlbnQgZmxhZzoKCmRybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmg6CiAqIDEuMi4yOgogKiAgICAgIC0gYWRkIE5PVVZFQVVfR0VNX0RP
-TUFJTl9DT0hFUkVOVCBmbGFnCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJp
-LWRldmVsCg==
+
+--===============0290389215==
+Content-Type: multipart/alternative; boundary="1432649305.b73a2.22951"; charset="UTF-8"
+
+
+--1432649305.b73a2.22951
+Date: Tue, 26 May 2015 14:08:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+
+--- Comment #1 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+For completeness I just got to mention another time (because it has been
+mentioned in another issue):
+The nouveau driver worked _before_ kernel 3.19.x on the same hardware and
+stopped to work beginning from 3.19.x.
+The problem reported in this issue applies to the kernel after commit
+4195f40685a5f2783b4decece13ed740b61ee038.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432649305.b73a2.22951
+Date: Tue, 26 May 2015 14:08:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
+&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+</span></b>
+        <pre>For completeness I just got to mention another time (because i=
+t has been
+mentioned in another issue):
+The nouveau driver worked _before_ kernel 3.19.x on the same hardware and
+stopped to work beginning from 3.19.x.
+The problem reported in this issue applies to the kernel after commit
+4195f40685a5f2783b4decece13ed740b61ee038.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432649305.b73a2.22951--
+
+--===============0290389215==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0290389215==--
