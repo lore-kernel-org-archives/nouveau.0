@@ -1,14 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 8/8] acpi: Use booleans when probing different
- _DSM types
-Date: Tue, 26 May 2015 22:42:10 +0200
-Message-ID: <5564DAA2.2070800@gmail.com>
-References: <1279603096.13154002.1432644369153.JavaMail.root@spooler8-g27.priv.proxad.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Tue, 26 May 2015 20:50:21 +0000
+Message-ID: <bug-90567-8800-HwCEbzKLXq@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2114134088=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1279603096.13154002.1432644369153.JavaMail.root-x5ewXQG5twBsFmKuirFwRhh1pbbyJDp15NbjCUgZEJk@public.gmane.org>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,77 +17,78 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwNS8yNi8yMDE1IDAyOjQ2IFBNLCBQaWVycmUgTW9yZWF1IHdyb3RlOgo+IEknbSB0aGlu
-a2luZyBvZiByZS13cml0aW5nIHRoaXMgcGF0Y2ggdG8ganVzdCBPUiB0aGUgZGlmZmVyZW50IHJl
-dHVybmVkIHJldHZhbCBhbmQgdGVzdCBmb3IgaW5kaXZpZHVhbCBiaXRzIGRpcmVjdGx5IGluIHRo
-ZSBmaW5hbCBjb25kaXRpb25hbHMuCj4gU28gdGhpcyB3b3VsZCBnaXZlIHNvbWV0aGluZyBsaWtl
-Ogo+Cj4KPiBpbnQgcmV0dmFsID0gMDsKPgo+IHdoaWxlICgocGRldiA9IHBjaV9nZXRfY2xhc3Mo
-UENJX0NMQVNTX0RJU1BMQVlfVkdBIDw8IDgsIHBkZXYpKSAhPSBOVUxMKSB7Cj4gCXZnYV9jb3Vu
-dCsrOwo+IAlyZXR2YWwgfD0gbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYpOwo+IH0KPiB3aGls
-ZSAoKHBkZXYgPSBwY2lfZ2V0X2NsYXNzKFBDSV9DTEFTU19ESVNQTEFZXzNEIDw8IDgsIHBkZXYp
-KSAhPSBOVUxMKSB7Cj4gCXZnYV9jb3VudCsrOwo+IAlyZXR2YWwgfD0gbm91dmVhdV9kc21fcGNp
-X3Byb2JlKHBkZXYpOwo+IH0KPgo+IGlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfT1BUKSB7
-Cj4gCWFjcGlfZ2V0X25hbWUobm91dmVhdV9kc21fcHJpdi5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFU
-SE5BTUUsCj4gCQkmYnVmZmVyKTsKPiAJcHJpbnRrKEtFUk5fSU5GTyAiVkdBIHN3aXRjaGVyb286
-IGRldGVjdGVkIE9wdGltdXMgRFNNIG1ldGhvZCAlcyBoYW5kbGVcbiIsCj4gCQlhY3BpX21ldGhv
-ZF9uYW1lKTsKPiAJbm91dmVhdV9kc21fcHJpdi5vcHRpbXVzX2RldGVjdGVkID0gdHJ1ZTsKPiAJ
-cmV0ID0gdHJ1ZTsKPiB9IGVsc2UgaWYgKHZnYV9jb3VudCA9PSAyICYmIChyZXR2YWwgJiBOT1VW
-RUFVX0RTTV9IQVNfTVVYKSAmJiBndWlkX3ZhbGlkKSB7Cj4gCWFjcGlfZ2V0X25hbWUobm91dmVh
-dV9kc21fcHJpdi5kaGFuZGxlLCBBQ1BJX0ZVTExfUEFUSE5BTUUsCj4gCQkmYnVmZmVyKTsKPiAJ
-cHJpbnRrKEtFUk5fSU5GTyAiVkdBIHN3aXRjaGVyb286IGRldGVjdGVkIG11eCBEU00gc3dpdGNo
-aW5nIG1ldGhvZCAlcyBoYW5kbGVcbiIsCj4gCQlhY3BpX21ldGhvZF9uYW1lKTsKPiAJbm91dmVh
-dV9kc21fcHJpdi5tdXhfZGV0ZWN0ZWQgPSB0cnVlOwo+IAlyZXQgPSB0cnVlOwo+IH0gZWxzZSBp
-ZiAocmV0dmFsICYgTk9VVkVBVV9EU01fSEFTX0dNVVgpIHsKPiAJYWNwaV9nZXRfbmFtZShub3V2
-ZWF1X2RzbV9wcml2LmRoYW5kbGUsIEFDUElfRlVMTF9QQVRITkFNRSwKPiAJCSZidWZmZXIpOwo+
-IAlwcmludGsoS0VSTl9JTkZPICJWR0Egc3dpdGNoZXJvbzogZGV0ZWN0ZWQgZ211eCBEU00gc3dp
-dGNoaW5nIG1ldGhvZCAlcyBoYW5kbGVcbiIsCj4gCQlhY3BpX21ldGhvZF9uYW1lKTsKPiAJbm91
-dmVhdV9kc21fcHJpdi5nbXV4X2RldGVjdGVkID0gdHJ1ZTsKPiAJcmV0ID0gdHJ1ZTsKPiB9Cj4K
-Pgo+IEFueSBvcGluaW9ucyBvbiB0aGlzPwoKSWYgdGhpcyBpbXByb3ZlcyByZWFkYWJpbGl0eSBv
-ZiB0aGUgY29kZSwgZ28gYWhlYWQuCgo+Cj4gUGllcnJlCj4KPiAtLS0tLSBNYWlsIG9yaWdpbmFs
-IC0tLS0tCj4+IFNpZ25lZC1vZmYtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJl
-ZS5mcj4KPj4gLS0tCj4+ICAgZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgfCAxNCArKysrKysr
-LS0tLS0tLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25z
-KC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBiL2RybS9u
-b3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4+IGluZGV4IDNkNmExZWEuLjVkNjM2MjEgMTAwNjQ0Cj4+
-IC0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4+ICsrKyBiL2RybS9ub3V2ZWF1L25v
-dXZlYXVfYWNwaS5jCj4+IEBAIC0yOTcsOCArMjk3LDggQEAgc3RhdGljIGJvb2wgbm91dmVhdV9k
-c21fZGV0ZWN0KHZvaWQpCj4+ICAgCWNoYXIgYWNwaV9tZXRob2RfbmFtZVsyNTVdID0geyAwIH07
-Cj4+ICAgCXN0cnVjdCBhY3BpX2J1ZmZlciBidWZmZXIgPSB7c2l6ZW9mKGFjcGlfbWV0aG9kX25h
-bWUpLAo+PiAgIAlhY3BpX21ldGhvZF9uYW1lfTsKPj4gICAJc3RydWN0IHBjaV9kZXYgKnBkZXYg
-PSBOVUxMOwo+PiAtCWludCBoYXNfZHNtID0gMDsKPj4gLQlpbnQgaGFzX29wdGltdXMgPSAwOwo+
-PiArCWJvb2wgaGFzX211eCA9IGZhbHNlOwo+PiArCWJvb2wgaGFzX29wdGltdXMgPSBmYWxzZTsK
-Pj4gICAJYm9vbCBoYXNfZ211eCA9IGZhbHNlOwo+PiAgIAlpbnQgdmdhX2NvdW50ID0gMDsKPj4g
-ICAJYm9vbCBndWlkX3ZhbGlkOwo+PiBAQCAtMzE3LDkgKzMxNyw5IEBAIHN0YXRpYyBib29sIG5v
-dXZlYXVfZHNtX2RldGVjdCh2b2lkKQo+PiAgIAo+PiAgIAkJcmV0dmFsID0gbm91dmVhdV9kc21f
-cGNpX3Byb2JlKHBkZXYpOwo+PiAgIAkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNNX0hBU19NVVgp
-Cj4+IC0JCQloYXNfZHNtIHw9IDE7Cj4+ICsJCQloYXNfbXV4ID0gdHJ1ZTsKPj4gICAJCWlmIChy
-ZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfT1BUKQo+PiAtCQkJaGFzX29wdGltdXMgPSAxOwo+PiAr
-CQkJaGFzX29wdGltdXMgPSB0cnVlOwo+PiAgIAkJaWYgKHJldHZhbCAmIE5PVVZFQVVfRFNNX0hB
-U19HTVVYKQo+PiAgIAkJCWhhc19nbXV4ID0gdHJ1ZTsKPj4gICAJfQo+PiBAQCAtMzI5LDkgKzMy
-OSw5IEBAIHN0YXRpYyBib29sIG5vdXZlYXVfZHNtX2RldGVjdCh2b2lkKQo+PiAgIAo+PiAgIAkJ
-cmV0dmFsID0gbm91dmVhdV9kc21fcGNpX3Byb2JlKHBkZXYpOwo+PiAgIAkJaWYgKHJldHZhbCAm
-IE5PVVZFQVVfRFNNX0hBU19NVVgpCj4+IC0JCQloYXNfZHNtIHw9IDE7Cj4+ICsJCQloYXNfbXV4
-ID0gdHJ1ZTsKPj4gICAJCWlmIChyZXR2YWwgJiBOT1VWRUFVX0RTTV9IQVNfT1BUKQo+PiAtCQkJ
-aGFzX29wdGltdXMgPSAxOwo+PiArCQkJaGFzX29wdGltdXMgPSB0cnVlOwo+PiAgIAkJaWYgKHJl
-dHZhbCAmIE5PVVZFQVVfRFNNX0hBU19HTVVYKQo+PiAgIAkJCWhhc19nbXV4ID0gdHJ1ZTsKPj4g
-ICAJfQo+PiBAQCAtMzQ0LDcgKzM0NCw3IEBAIHN0YXRpYyBib29sIG5vdXZlYXVfZHNtX2RldGVj
-dCh2b2lkKQo+PiAgIAkJCWFjcGlfbWV0aG9kX25hbWUpOwo+PiAgIAkJbm91dmVhdV9kc21fcHJp
-di5vcHRpbXVzX2RldGVjdGVkID0gdHJ1ZTsKPj4gICAJCXJldCA9IHRydWU7Cj4+IC0JfSBlbHNl
-IGlmICh2Z2FfY291bnQgPT0gMiAmJiBoYXNfZHNtICYmIGd1aWRfdmFsaWQpIHsKPj4gKwl9IGVs
-c2UgaWYgKHZnYV9jb3VudCA9PSAyICYmIGhhc19tdXggJiYgZ3VpZF92YWxpZCkgewo+PiAgIAkJ
-YWNwaV9nZXRfbmFtZShub3V2ZWF1X2RzbV9wcml2LmRoYW5kbGUsIEFDUElfRlVMTF9QQVRITkFN
-RSwKPj4gICAJCQkmYnVmZmVyKTsKPj4gICAJCXByaW50ayhLRVJOX0lORk8gIlZHQSBzd2l0Y2hl
-cm9vOiBkZXRlY3RlZCBtdXggRFNNIHN3aXRjaGluZwo+PiAgIAkJbWV0aG9kICVzIGhhbmRsZVxu
-IiwKPj4gLS0KPj4gMi40LjEKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KPj4gZHJpLWRldmVsIG1haWxpbmcgbGlzdAo+PiBkcmktZGV2ZWxAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9kcmktZGV2ZWwKPj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2114134088==
+Content-Type: multipart/alternative; boundary="1432673421.A8f7Ead2.18176"; charset="UTF-8"
+
+
+--1432673421.A8f7Ead2.18176
+Date: Tue, 26 May 2015 20:50:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
+
+--- Comment #18 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the trace, but we can't reproduce the issue. That's strange.
+
+Could you try to generate a new trace and make sure the issue occurs when you
+replay it, please?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432673421.A8f7Ead2.18176
+Date: Tue, 26 May 2015 20:50:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
+</span></b>
+        <pre>Thanks for the trace, but we can't reproduce the issue. That's strange.
+
+Could you try to generate a new trace and make sure the issue occurs when you
+replay it, please?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432673421.A8f7Ead2.18176--
+
+--===============2114134088==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2114134088==--
