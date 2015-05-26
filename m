@@ -1,114 +1,43 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Tue, 26 May 2015 18:43:59 +0000
-Message-ID: <bug-90567-8800-x6IIgMJco6@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [Nouveau] [PATCH v2] nouveau: add coherent BO attribute
+Date: Tue, 26 May 2015 22:06:24 +0300
+Message-ID: <5564C430.7000900@free.fr>
+References: <1432188508-650-1-git-send-email-acourbot@nvidia.com> <CACAvsv5qW74Lp5pYke-4GKi2BYgXot2SM93T_aZX=rztWwGJHA@mail.gmail.com> <555E228B.9090400@free.fr> <CAAVeFuJHL664jbsEBUYFp0atnuF3gisbwhJhR-R=cy+iB8gUCg@mail.gmail.com> <55616F1E.7020602@mblankhorst.nl> <CAAVeFuJ4oNi-_ALd3NRNeje7wNntcJ5QME2TWHKTBVWzE0yG1w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0722133988=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CAAVeFuJ4oNi-_ALd3NRNeje7wNntcJ5QME2TWHKTBVWzE0yG1w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Maarten Lankhorst <maarten-FcfepWsj2zOByvU0x3ry2g@public.gmane.org>
+Cc: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+On 26/05/2015 16:23, Alexandre Courbot wrote:
+> On Sun, May 24, 2015 at 3:26 PM, Maarten Lankhorst
+> <maarten-FcfepWsj2zOByvU0x3ry2g@public.gmane.org> wrote:
+>> Op 23-05-15 om 08:45 schreef Alexandre Courbot:
+>>> On Fri, May 22, 2015 at 3:23 AM, Martin Peres <martin.peres-GANU6spQydw@public.gmane.org> wrote:
+>>>> On 21/05/2015 11:47, Ben Skeggs wrote:
+>>>>> On 21 May 2015 at 16:08, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
+>>>>>> Add a flag allowing Nouveau to specify that an object should be coherent
+>>>>>> at allocation time. This is required for some class of objects like
+>>>>>> fences which are randomly-accessed by both the CPU and GPU. This flag
+>>>>>> instructs the kernel driver to make sure the object remains coherent
+>>>>>> even on architectures for which coherency is not guaranteed by the bus.
+>>>>>>
+>>>>>> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>>>>> Reviewed-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+>>>> Pushed!
+>>> Thanks! Should we also bump the ABI version or something?
+>> If you mean changing libdrm_nouveau.so.2 to .so.3 no! If you mean having something that pkg-config can pick up that's done automatically on every drm release.
+> Sorry for not having been clear. I was talking about checking against
+> the driver version to ensure it supports all the features that libdrm
+> can throw at it. We increased the modules's version to 1.2.2 when
+> adding the coherent flag:
+>
+> drm/nouveau/nouveau_drm.h:
+>   * 1.2.2:
+>   *      - add NOUVEAU_GEM_DOMAIN_COHERENT flag
 
---===============0722133988==
-Content-Type: multipart/alternative; boundary="1432665839.Ba571.15420"; charset="UTF-8"
-
-
---1432665839.Ba571.15420
-Date: Tue, 26 May 2015 18:43:59 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #17 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The bug doesn't seem to be logged in the journal and the screen doesnt freeze
-whet replayed.
-
-though some messages like:
-91596 @1 glXSwapIntervalMESA(interval = 1) = 0
-91596: warning: unsupported glXSwapIntervalMESA call
-107191: message: api issue 1: FBO incomplete: driver marked FBO as incomplete
-[-1]
-[repeated]
-
-are shown.
-
-anyway, if it helps, here is the compressed trace:
-https://drive.google.com/folderview?id=0B9ElNtcsRXKbfk1zZ0N0cDdPQW1ZRnRmR1NHdnRIMldQUjBQdkhUdHRtaGxGX082dXA5NkE&usp=sharing#list
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432665839.Ba571.15420
-Date: Tue, 26 May 2015 18:43:59 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
-</span></b>
-        <pre>The bug doesn't seem to be logged in the journal and the screen doesnt freeze
-whet replayed.
-
-though some messages like:
-91596 &#64;1 glXSwapIntervalMESA(interval = 1) = 0
-91596: warning: unsupported glXSwapIntervalMESA call
-107191: message: api issue 1: FBO incomplete: driver marked FBO as incomplete
-[-1]
-[repeated]
-
-are shown.
-
-anyway, if it helps, here is the compressed trace:
-<a href="https://drive.google.com/folderview?id=0B9ElNtcsRXKbfk1zZ0N0cDdPQW1ZRnRmR1NHdnRIMldQUjBQdkhUdHRtaGxGX082dXA5NkE&amp;usp=sharing#list">https://drive.google.com/folderview?id=0B9ElNtcsRXKbfk1zZ0N0cDdPQW1ZRnRmR1NHdnRIMldQUjBQdkhUdHRtaGxGX082dXA5NkE&amp;usp=sharing#list</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432665839.Ba571.15420--
-
---===============0722133988==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0722133988==--
+That will be the job of mesa to check the DRM version, I would guess.
