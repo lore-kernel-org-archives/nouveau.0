@@ -1,12 +1,19 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Tue, 26 May 2015 10:49:16 +0000
-Message-ID: <bug-90435-8800-C1QZuvSvPh@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Subject: Re: [PATCH 2/2] nv30/draw: switch varying hookup logic to
+ know about texcoords
+Date: Tue, 26 May 2015 13:12:43 +0200
+Message-ID: <5564552B.7080806@mni.thm.de>
+References: <1432582152-29389-1-git-send-email-imirkin@alum.mit.edu>
+ <1432582152-29389-2-git-send-email-imirkin@alum.mit.edu>
+ <5563C04D.7060303@mni.thm.de>
+ <CAKb7UvhLi_r6A6L1SyjjT8TmuVRW+SS1p1Ewgg2bLJTiuh+zJQ@mail.gmail.com>
+ <5563C473.5070207@mni.thm.de>
+ <CAKb7Uvh-c=RY=o7MxgayAATKYNPpEB2FFcnNrVm6n5Dk5vGw1g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1186612266=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvh-c=RY=o7MxgayAATKYNPpEB2FFcnNrVm6n5Dk5vGw1g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,122 +23,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1186612266==
-Content-Type: multipart/alternative; boundary="1432637355.Abf5e1.18452"; charset="UTF-8"
-
-
---1432637355.Abf5e1.18452
-Date: Tue, 26 May 2015 10:49:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #11 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
-Hi all,
-
-I've been looking into this toay, it seems that with the latest
-xf86-video-nouveau + latest mesa (both git master) I can reproduce the problem
-and work around it by starting glxgears like this:
-
-"vblank_mode=0 glxgears"
-
-I need this workaround on both mesa-10.0 and mesa-git-master, so it seems that
-whatever problem Ilya was original seeing has been fixed in mesa-git-master.
-
-Ilya can you please try mesa-git-master and if that does not work (the vblank
-issue may be specific to my card), try it with: "vblank_mode=0 glxgears" ?
-
-Downgrading xf86-video-nouveau to 1.0.10 fixes the vblank issue for me, a git
-bisect points to:
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=f0fa8313714c2a5b16e784b257b5ff79da3a443b
-
-Which is a commit which enables sync-to-vblank by default and as such is not
-really useful, and the real problem lies elsewhere.
-
-Suggestions how to further debug the vblank issue are welcome.
-
-Regards,
-
-Hans
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432637355.Abf5e1.18452
-Date: Tue, 26 May 2015 10:49:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
-</span></b>
-        <pre>Hi all,
-
-I've been looking into this toay, it seems that with the latest
-xf86-video-nouveau + latest mesa (both git master) I can reproduce the problem
-and work around it by starting glxgears like this:
-
-&quot;vblank_mode=0 glxgears&quot;
-
-I need this workaround on both mesa-10.0 and mesa-git-master, so it seems that
-whatever problem Ilya was original seeing has been fixed in mesa-git-master.
-
-Ilya can you please try mesa-git-master and if that does not work (the vblank
-issue may be specific to my card), try it with: &quot;vblank_mode=0 glxgears&quot; ?
-
-Downgrading xf86-video-nouveau to 1.0.10 fixes the vblank issue for me, a git
-bisect points to:
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=f0fa8313714c2a5b16e784b257b5ff79da3a443b">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=f0fa8313714c2a5b16e784b257b5ff79da3a443b</a>
-
-Which is a commit which enables sync-to-vblank by default and as such is not
-really useful, and the real problem lies elsewhere.
-
-Suggestions how to further debug the vblank issue are welcome.
-
-Regards,
-
-Hans</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432637355.Abf5e1.18452--
-
---===============1186612266==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1186612266==--
+CgpPbiAyNi4wNS4yMDE1IDAyOjU5LCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBNb24sIE1heSAy
+NSwgMjAxNSBhdCA4OjU1IFBNLCBUb2JpYXMgS2xhdXNtYW5uCj4gPHRvYmlhcy5qb2hhbm5lcy5r
+bGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6Cj4+Cj4+IE9uIDI2LjA1LjIwMTUgMDI6NDksIEls
+aWEgTWlya2luIHdyb3RlOgo+Pj4gT24gTW9uLCBNYXkgMjUsIDIwMTUgYXQgODozNyBQTSwgVG9i
+aWFzIEtsYXVzbWFubgo+Pj4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4g
+d3JvdGU6Cj4+Pj4KPj4+PiBPbiAyNS4wNS4yMDE1IDIxOjI5LCBJbGlhIE1pcmtpbiB3cm90ZToK
+Pj4+Pj4gQ29tbWl0IDhhY2FmODYyZGZlIHN3aXRjaGVkIHRoaW5ncyBvdmVyIHRvIHVzZSBURVhD
+T09SRCBpbnN0ZWFkIG9mCj4+Pj4+IEdFTkVSSUMsIGJ1dCBkaWQgbm90IHVwZGF0ZSB0aGUgbnYz
+MCBzd3RubCBkcmF3IHBhdGhzLiBUaGlzIHRlYWNoZXMgdGhlCj4+Pj4+IGRyYXcgbG9naWMgYWJv
+dXQgVEVYQ09PUkQuCj4+Pj4+Cj4+Pj4+IEFtb25nIG90aGVyIHRoaW5ncywgdGhpcyBmaXhlcyBh
+IGNyYXNoIGluIGRlbW9zL2FyYm9jY2x1ZGUgd2hlbiB1c2luZwo+Pj4+PiBzd3RubC4gQ3VyaW91
+c2x5IGVub3VnaCwgdGhlIHBvaW50LXNwcml0ZSBwaWdsaXQgd29ya3Mgd2l0aG91dCB0aGlzLgo+
+Pj4+Pgo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
+ZHU+Cj4+Pj4+IENjOiAiMTAuNSAxMC42IiA8bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnPgo+Pj4+PiAtLS0KPj4+Pj4gICAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMw
+L252MzBfZHJhdy5jIHwgMjUKPj4+Pj4gKysrKysrKysrKysrKysrKy0tLS0tLS0tLQo+Pj4+PiAg
+ICAgMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4+Pj4+
+Cj4+Pj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMw
+X2RyYXcuYwo+Pj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJh
+dy5jCj4+Pj4+IGluZGV4IGE2ODExMzUuLjAzYzBjNzAgMTAwNjQ0Cj4+Pj4+IC0tLSBhL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJhdy5jCj4+Pj4+ICsrKyBiL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfZHJhdy5jCj4+Pj4+IEBAIC0yMzAsMjIg
+KzIzMCwyNCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHsKPj4+Pj4gICAgICAgIFtUR1NJX1NFTUFO
+VElDX0JDT0xPUiAgXSA9IHsgRU1JVF80RiwgSU5URVJQX0xJTkVBUiAgICAgLCAxLCAzLAo+Pj4+
+PiAweDAwMDAwMDA0IH0sCj4+Pj4+ICAgICAgICBbVEdTSV9TRU1BTlRJQ19GT0cgICAgIF0gPSB7
+IEVNSVRfNEYsIElOVEVSUF9QRVJTUEVDVElWRSwgNSwgNSwKPj4+Pj4gMHgwMDAwMDAxMCB9LAo+
+Pj4+PiAgICAgICAgW1RHU0lfU0VNQU5USUNfUFNJWkUgICBdID0geyBFTUlUXzFGX1BTSVpFLCBJ
+TlRFUlBfUE9TICAsIDYsIDYsCj4+Pj4+IDB4MDAwMDAwMjAgfSwKPj4+Pj4gLSAgIFtUR1NJX1NF
+TUFOVElDX0dFTkVSSUMgXSA9IHsgRU1JVF80RiwgSU5URVJQX1BFUlNQRUNUSVZFLCA4LCA3LAo+
+Pj4+PiAweDAwMDA0MDAwIH0KPj4+Pj4gKyAgIFtUR1NJX1NFTUFOVElDX1RFWENPT1JEXSA9IHsg
+RU1JVF80RiwgSU5URVJQX1BFUlNQRUNUSVZFLCA4LCA3LAo+Pj4+PiAweDAwMDA0MDAwIH0sCj4+
+Pj4+ICAgICB9Owo+Pj4+PiAgICAgICBzdGF0aWMgYm9vbGVhbgo+Pj4+PiAgICAgdnJvdXRlX2Fk
+ZChzdHJ1Y3QgbnYzMF9yZW5kZXIgKnIsIHVpbnQgYXR0cmliLCB1aW50IHNlbSwgdWludCAqaWR4
+KQo+Pj4+PiAgICAgewo+Pj4+PiAtICAgc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuID0gJnIt
+Pm52MzAtPnNjcmVlbi0+YmFzZS5iYXNlOwo+Pj4+PiArICAgc3RydWN0IG52MzBfc2NyZWVuICpz
+Y3JlZW4gPSByLT5udjMwLT5zY3JlZW47Cj4+Pj4+ICAgICAgICBzdHJ1Y3QgbnYzMF9mcmFncHJv
+ZyAqZnAgPSByLT5udjMwLT5mcmFncHJvZy5wcm9ncmFtOwo+Pj4+PiAgICAgICAgc3RydWN0IHZl
+cnRleF9pbmZvICp2aW5mbyA9ICZyLT52ZXJ0ZXhfaW5mbzsKPj4+Pj4gICAgICAgIGVudW0gcGlw
+ZV9mb3JtYXQgZm9ybWF0Owo+Pj4+PiAgICAgICAgdWludCBlbWl0ID0gRU1JVF9PTUlUOwo+Pj4+
+PiAgICAgICAgdWludCByZXN1bHQgPSAqaWR4Owo+Pj4+PiAgICAgLSAgIGlmIChzZW0gPT0gVEdT
+SV9TRU1BTlRJQ19HRU5FUklDICYmIHJlc3VsdCA+PSA4KSB7Cj4+Pj4+IC0gICAgICBmb3IgKHJl
+c3VsdCA9IDA7IHJlc3VsdCA8IDg7IHJlc3VsdCsrKSB7Cj4+Pj4+IC0gICAgICAgICBpZiAoZnAt
+PnRleGNvb3JkW3Jlc3VsdF0gPT0gKmlkeCkgewo+Pj4+PiArICAgaWYgKHNlbSA9PSBUR1NJX1NF
+TUFOVElDX0dFTkVSSUMpIHsKPj4+Pj4gKyAgICAgIHVpbnQgbnVtX3RleGNvb3JkcyA9IChzY3Jl
+ZW4tPmVuZzNkLT5vY2xhc3MgPCBOVjQwXzNEX0NMQVNTKSA/IDgKPj4+Pj4gOgo+Pj4+PiAxMDsK
+Pj4+Pj4gKyAgICAgIGZvciAocmVzdWx0ID0gMDsgcmVzdWx0IDwgbnVtX3RleGNvb3JkczsgcmVz
+dWx0KyspIHsKPj4+Pj4gKyAgICAgICAgIGlmIChmcC0+dGV4Y29vcmRbcmVzdWx0XSA9PSAqaWR4
+ICsgOCkgewo+Pj4+Cj4+Pj4gbWF5YmUgaSdtIHRvbyB0aXJlZCwgYnV0IHdoeSBleGFjdGx5ICpp
+ZHggKyA4ID8KPj4+IFNlZSBudmZ4X2ZyYWdwcm9nLmM6Cj4+Pgo+Pj4gICAgICAgICAgICAgICAg
+ICBmcGMtPmZwLT50ZXhjb29yZFtod10gPSBmZGVjLT5TZW1hbnRpYy5JbmRleCArIDg7Cj4+Pgo+
+Pj4gd2hlbiB0aGUgc2VtYW50aWMgaXMgR0VORVJJQy4gKGFuZCAweGZmZmUgd2hlbiBpdCdzIFBD
+T09SRCkuIFRoaXMgaXMKPj4+IGJlY2F1c2UgdGhlcmUgY2FuIGJlIHVwIHRvIDggVEVYQ09PUkQn
+cy4KPj4KPj4geWV0IHlvdSBydW4gZm9yIDggb3IgMTAgdGV4Y29vcmRzLiBXb250IHRoaXMgY2F1
+c2UgcHJvYmxlbXMgb24gbnY0MCs/Cj4gdGhpcyBpcyBqdXN0IHRoZSBoYW5kbGUuLi4gaXQgY291
+bGQganVzdCBhcyB3ZWxsIGJlICsgMTAwMC4gQXMgbG9uZyBhcwo+IGl0J3MgPiA4LCBzaW5jZSB0
+aGF0J3Mgd2hhdCBnZXRzIHN0b3JlZCBmb3IgdGhlIFRFWENPT1JEIHNlbWFudGljcy4KCm9oIHJp
+Z2h0IDopCgo+Pgo+Pj4+PiArICAgICAgICAgICAgc2VtID0gVEdTSV9TRU1BTlRJQ19URVhDT09S
+RDsKPj4+Pj4gICAgICAgICAgICAgICAgIGVtaXQgPSB2cm91dGVbc2VtXS5lbWl0Owo+Pj4+PiAg
+ICAgICAgICAgICAgICAgYnJlYWs7Cj4+Pj4+ICAgICAgICAgICAgICB9Cj4+Pj4+IEBAIC0yNjAs
+MTEgKzI2MiwxMSBAQCB2cm91dGVfYWRkKHN0cnVjdCBudjMwX3JlbmRlciAqciwgdWludCBhdHRy
+aWIsCj4+Pj4+IHVpbnQKPj4+Pj4gc2VtLCB1aW50ICppZHgpCj4+Pj4+ICAgICAgICBkcmF3X2Vt
+aXRfdmVydGV4X2F0dHIodmluZm8sIGVtaXQsIHZyb3V0ZVtzZW1dLmludGVycCwgYXR0cmliKTsK
+Pj4+Pj4gICAgICAgIGZvcm1hdCA9IGRyYXdfdHJhbnNsYXRlX3ZpbmZvX2Zvcm1hdChlbWl0KTsK
+Pj4+Pj4gICAgIC0gICByLT52dHhmbXRbYXR0cmliXSA9IG52MzBfdnR4Zm10KHBzY3JlZW4sIGZv
+cm1hdCktPmh3Owo+Pj4+PiArICAgci0+dnR4Zm10W2F0dHJpYl0gPSBudjMwX3Z0eGZtdCgmc2Ny
+ZWVuLT5iYXNlLmJhc2UsIGZvcm1hdCktPmh3Owo+Pj4+PiAgICAgICAgci0+dnR4cHRyW2F0dHJp
+Yl0gPSB2aW5mby0+c2l6ZSB8IE5WMzBfM0RfVlRYQlVGX0RNQTE7Cj4+Pj4+ICAgICAgICB2aW5m
+by0+c2l6ZSArPSBkcmF3X3RyYW5zbGF0ZV92aW5mb19zaXplKGVtaXQpOwo+Pj4+PiAgICAgLSAg
+IGlmIChudjMwX3NjcmVlbihwc2NyZWVuKS0+ZW5nM2QtPm9jbGFzcyA8IE5WNDBfM0RfQ0xBU1Mp
+IHsKPj4+Pj4gKyAgIGlmIChzY3JlZW4tPmVuZzNkLT5vY2xhc3MgPCBOVjQwXzNEX0NMQVNTKSB7
+Cj4+Pj4+ICAgICAgICAgICByLT52dHhwcm9nW2F0dHJpYl1bMF0gPSAweDAwMWYzOGQ4Owo+Pj4+
+PiAgICAgICAgICAgci0+dnR4cHJvZ1thdHRyaWJdWzFdID0gMHgwMDgwMDAxYiB8IChhdHRyaWIg
+PDwgOSk7Cj4+Pj4+ICAgICAgICAgICByLT52dHhwcm9nW2F0dHJpYl1bMl0gPSAweDA4MzYxMDZj
+Owo+Pj4+PiBAQCAtMjc2LDcgKzI3OCwxMiBAQCB2cm91dGVfYWRkKHN0cnVjdCBudjMwX3JlbmRl
+ciAqciwgdWludCBhdHRyaWIsIHVpbnQKPj4+Pj4gc2VtLCB1aW50ICppZHgpCj4+Pj4+ICAgICAg
+ICAgICByLT52dHhwcm9nW2F0dHJpYl1bM10gPSAweDYwNDFmZjgwIHwgKHJlc3VsdCArCj4+Pj4+
+IHZyb3V0ZVtzZW1dLnZwNDApCj4+Pj4+IDw8IDI7Cj4+Pj4+ICAgICAgICB9Cj4+Pj4+ICAgICAt
+ICAgKmlkeCA9IHZyb3V0ZVtzZW1dLm93NDAgPDwgcmVzdWx0Owo+Pj4+PiArICAgaWYgKHJlc3Vs
+dCA8IDgpCj4+Pj4+ICsgICAgICAqaWR4ID0gdnJvdXRlW3NlbV0ub3c0MCA8PCByZXN1bHQ7Cj4+
+Pj4+ICsgICBlbHNlIHsKPj4+Pj4gKyAgICAgIGFzc2VydChzZW0gPT0gVEdTSV9TRU1BTlRJQ19U
+RVhDT09SRCk7Cj4+Pj4+ICsgICAgICAqaWR4ID0gMHgwMDAwMTAwMCA8PCAocmVzdWx0IC0gOCk7
+Cj4+Pj4+ICsgICB9Cj4+Pj4+ICAgICAgICByZXR1cm4gVFJVRTsKPj4+Pj4gICAgIH0KPj4+Pj4g
+ICAgIEBAIC0zMzAsNyArMzM3LDcgQEAgbnYzMF9yZW5kZXJfdmFsaWRhdGUoc3RydWN0IG52MzBf
+Y29udGV4dCAqbnYzMCkKPj4+Pj4gICAgICAgICAgd2hpbGUgKHBudGMgJiYgYXR0cmliIDwgMTYp
+IHsKPj4+Pj4gICAgICAgICAgIHVpbnQgaW5kZXggPSBmZnMocG50YykgLSAxOyBwbnRjICY9IH4o
+MSA8PCBpbmRleCk7Cj4+Pj4+IC0gICAgICBpZiAodnJvdXRlX2FkZChyLCBhdHRyaWIsIFRHU0lf
+U0VNQU5USUNfR0VORVJJQywgJmluZGV4KSkgewo+Pj4+PiArICAgICAgaWYgKHZyb3V0ZV9hZGQo
+ciwgYXR0cmliLCBUR1NJX1NFTUFOVElDX1RFWENPT1JELCAmaW5kZXgpKSB7Cj4+Pj4+ICAgICAg
+ICAgICAgICB2cF9hdHRyaWJzIHw9ICgxIDw8IGF0dHJpYisrKTsKPj4+Pj4gICAgICAgICAgICAg
+IHZwX3Jlc3VsdHMgfD0gaW5kZXg7Cj4+Pj4+ICAgICAgICAgICB9Cj4+Pj4KCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
+Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
