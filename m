@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Tue, 26 May 2015 14:50:59 +0000
-Message-ID: <bug-90626-8800-dBycZwcrFO@http.bugs.freedesktop.org/>
+Date: Tue, 26 May 2015 15:04:18 +0000
+Message-ID: <bug-90626-8800-87RuDdNKGU@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0484557920=="
+Content-Type: multipart/mixed; boundary="===============0751769003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,71 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0484557920==
-Content-Type: multipart/alternative; boundary="1432651858.C555822.4625"; charset="UTF-8"
+--===============0751769003==
+Content-Type: multipart/alternative; boundary="1432652658.3dDedCf2.8467"; charset="UTF-8"
 
 
---1432651858.C555822.4625
-Date: Tue, 26 May 2015 14:50:58 +0000
+--1432652658.3dDedCf2.8467
+Date: Tue, 26 May 2015 15:04:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90626
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Interesting. So the VBIOS you uploaded has:
+--- Comment #8 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Can I provide something else or help somehow? I'm not a nouveau driver expe=
+rt,
+but I can help in testing and reproducing, just need a HOWTO from some poin=
+ts
+:-)
 
-0xce73: 71                                             DONE
-
-However the error print from the more recent kernel says "unknown opcode 0xff".
-That means it's getting read in wrong somehow.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432651858.C555822.4625
-Date: Tue, 26 May 2015 14:50:58 +0000
+--1432652658.3dDedCf2.8467
+Date: Tue, 26 May 2015 15:04:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
+&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
 </span></b>
-        <pre>Interesting. So the VBIOS you uploaded has:
-
-0xce73: 71                                             DONE
-
-However the error print from the more recent kernel says &quot;unknown opcode 0xff&quot;.
-That means it's getting read in wrong somehow.</pre>
+        <pre>Can I provide something else or help somehow? I'm not a nouvea=
+u driver expert,
+but I can help in testing and reproducing, just need a HOWTO from some poin=
+ts
+:-)</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1432651858.C555822.4625--
+--1432652658.3dDedCf2.8467--
 
---===============0484557920==
+--===============0751769003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0484557920==--
+--===============0751769003==--
