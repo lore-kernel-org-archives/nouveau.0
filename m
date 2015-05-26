@@ -1,17 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 5/8] acpi: Check returned object type by
- Optimus _DSM locally
-Date: Tue, 26 May 2015 01:17:12 -0400
-Message-ID: <CAKb7UvjDTgVYM+XYs6ui-vjxy4x50DQ0p9zKKMPePph8M0jZwA@mail.gmail.com>
-References: <1432592573-13743-1-git-send-email-pierre.morrow@free.fr>
- <1432592573-13743-5-git-send-email-pierre.morrow@free.fr>
- <CAKb7UvhaSiu19L3eKJ26mtHcB8DRELB-G7sNJEgRDC9U8Ui2=A@mail.gmail.com>
- <84DFBDB0-0382-479C-8019-7CD888B7B466@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Tue, 26 May 2015 07:17:23 +0000
+Message-ID: <bug-90435-8800-8gubXD203m@http.bugs.freedesktop.org/>
+References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1874932795=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <84DFBDB0-0382-479C-8019-7CD888B7B466-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,67 +16,140 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBNYXkgMjYsIDIwMTUgYXQgMToxMCBBTSwgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1v
-cnJvd0BmcmVlLmZyPiB3cm90ZToKPj4gT24gMjYgTWF5IDIwMTUsIGF0IDAwOjM5LCBJbGlhIE1p
-cmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+Pgo+Pj4gT24gTW9uLCBNYXkgMjUs
-IDIwMTUgYXQgNjoyMiBQTSwgUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPiB3
-cm90ZToKPj4+IE1vc3QgX0RTTSB3aWxsIHJldHVybiBhbiBpbnRlZ2VyIHZhbHVlIG9mIDB4ODAw
-MDAwMDIgd2hlbiBnaXZlbiBhbiB1bmtub3duCj4+PiBVVUlELCByZXZpc2lvbiBJRCBvciBmdW5j
-dGlvbiBJRC4gQ2hlY2tpbmcgbG9jYWxseSBhbGxvd3MgdXMgdG8gZGlmZmVyZW50aWF0ZQo+Pj4g
-dGhhdCBjYXNlIGZyb20gb3RoZXIgQUNQSSBlcnJvcnMsIGFuZCB0byBub3QgcmVwb3J0IGEgImZh
-aWxlZCB0byBldmFsdWF0ZSBfRFNNIgo+Pj4gaWYgMHg4MDAwMDAwMiBpcyByZXR1cm5lZCB3aGlj
-aCB3YXMgY29uZnVzaW5nLgo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IFBpZXJyZSBNb3JlYXUgPHBp
-ZXJyZS5tb3Jyb3dAZnJlZS5mcj4KPj4+IC0tLQo+Pj4gZHJtL25vdXZlYXUvbm91dmVhdV9hY3Bp
-LmMgfCAxNSArKysrKysrKysrKystLS0KPj4+IDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNlcnRpb25z
-KCspLCAzIGRlbGV0aW9ucygtKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2
-ZWF1X2FjcGkuYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4+PiBpbmRleCAwNzNmN2Q3
-Li43YWVhZjdkIDEwMDY0NAo+Pj4gLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMKPj4+
-ICsrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4+PiBAQCAtODgsMTIgKzg4LDEyIEBA
-IHN0YXRpYyBpbnQgbm91dmVhdV9ldmFsdWF0ZV9vcHRpbXVzX2RzbShhY3BpX2hhbmRsZSBoYW5k
-bGUsIGludCBmdW5jLCBpbnQgYXJnLCB1Cj4+PiAgICAgICAgZm9yIChpID0gMDsgaSA8IDQ7IGkr
-KykKPj4+ICAgICAgICAgICAgICAgIGFyZ3NfYnVmZltpXSA9IChhcmcgPj4gaSAqIDgpICYgMHhG
-RjsKPj4+Cj4+PiAtICAgICAgIG9iaiA9IGFjcGlfZXZhbHVhdGVfZHNtX3R5cGVkKGhhbmRsZSwg
-bm91dmVhdV9vcF9kc21fbXVpZCwgbm91dmVhdV9vcF9kc21fcmlkLAo+Pj4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBmdW5jLCAmYXJndjQsIEFDUElfVFlQRV9CVUZGRVIp
-Owo+Pj4gKyAgICAgICBvYmogPSBhY3BpX2V2YWx1YXRlX2RzbShoYW5kbGUsIG5vdXZlYXVfb3Bf
-ZHNtX211aWQsIG5vdXZlYXVfb3BfZHNtX3JpZCwKPj4+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgZnVuYywgJmFyZ3Y0KTsKPj4+ICAgICAgICBpZiAoIW9iaikgewo+Pj4gICAgICAg
-ICAgICAgICAgYWNwaV9oYW5kbGVfaW5mbyhoYW5kbGUsICJmYWlsZWQgdG8gZXZhbHVhdGUgX0RT
-TVxuIik7Cj4+PiAgICAgICAgICAgICAgICByZXR1cm4gQUVfRVJST1I7Cj4+PiAtICAgICAgIH0g
-ZWxzZSB7Cj4+PiArICAgICAgIH0gZWxzZSBpZiAob2JqLT50eXBlID09IEFDUElfVFlQRV9CVUZG
-RVIpIHsKPj4+ICAgICAgICAgICAgICAgIGlmICghcmVzdWx0ICYmIG9iai0+YnVmZmVyLmxlbmd0
-aCA9PSA0KSB7Cj4+PiAgICAgICAgICAgICAgICAgICAgICAgICpyZXN1bHQgID0gb2JqLT5idWZm
-ZXIucG9pbnRlclswXTsKPj4+ICAgICAgICAgICAgICAgICAgICAgICAgKnJlc3VsdCB8PSAob2Jq
-LT5idWZmZXIucG9pbnRlclsxXSA8PCA4KTsKPj4+IEBAIC0xMDEsNiArMTAxLDE1IEBAIHN0YXRp
-YyBpbnQgbm91dmVhdV9ldmFsdWF0ZV9vcHRpbXVzX2RzbShhY3BpX2hhbmRsZSBoYW5kbGUsIGlu
-dCBmdW5jLCBpbnQgYXJnLCB1Cj4+PiAgICAgICAgICAgICAgICAgICAgICAgICpyZXN1bHQgfD0g
-KG9iai0+YnVmZmVyLnBvaW50ZXJbM10gPDwgMjQpOwo+Pj4gICAgICAgICAgICAgICAgfQo+Pj4g
-ICAgICAgICAgICAgICAgQUNQSV9GUkVFKG9iaik7Cj4+PiArICAgICAgIH0gZWxzZSBpZiAob2Jq
-LT50eXBlID09IEFDUElfVFlQRV9JTlRFR0VSICYmCj4+PiArICAgICAgICAgICAgICAgICAgb2Jq
-LT5pbnRlZ2VyLnZhbHVlID09IDB4ODAwMDAwMDIpIHsKPj4+ICsgICAgICAgICAgICAgICBhY3Bp
-X2hhbmRsZV9kZWJ1ZyhoYW5kbGUsICJmYWlsZWQgdG8gcXVlcnkgT3B0aW11cyBfRFNNXG4iKTsK
-Pj4+ICsgICAgICAgICAgICAgICBBQ1BJX0ZSRUUob2JqKTsKPj4+ICsgICAgICAgICAgICAgICBy
-ZXR1cm4gLUVOT0RFVjsKPj4KPj4gc2hvdWxkIHRoaXMgYmUgQUVfRVJST1I/Cj4KPiBJIHdvdWxk
-IHNheSBubywgYmVjYXVzZSBBQ1BJIHdhcyBwYXJzZWQgY29ycmVjdGx5LCBqdXN0IHRoYXQgd2Ug
-ZGlkbid0IGl0IGdpdmUgdGhlIGNvcnJlY3QgYXJndW1lbnRzLCBvciByYXRoZXIsIHRoZSBfRFNN
-IHdlIHRlc3RlZCBpc24ndCBhbiBPcHRpbXVzIG9uZSwgYnV0IGl0IGNvdWxkIGEgbXV4IG9yIGdt
-dXguIEFuZCBJIHVzZWQgRU5PREVWIGFzIGl0IGlzIHRoZSB2YWx1ZSByZXR1cm5lZCBieSBub3V2
-ZWF1X2V2YWx1YXRlX211eF9kc20gaW4gdGhlIHNhbWUgY29udGV4dC4KCkhtIG9rLiBJdCBqdXN0
-IHNlZW1lZCBvZGQgdG8gYmUgcmV0dXJuaW5nIEFFXyogaW4gb25lIGNvbnRleHQsIGFuZAotRU5P
-REVWIGluIGFub3RoZXIgY29udGV4dCAtLSB0aGV5J3JlIGRpZmZlcmVudCB0eXBlcyBvZiBlcnJv
-cnMuCkhvd2V2ZXIgaWYgdGhlIGNhbGxlciBoYW5kbGVzIGl0LCBJIGd1ZXNzIGl0J3MgT0suLi4g
-SSBoYXZlbid0IGxvb2tlZAphdCB0aGUgQVBJIGluIGRlcHRoLgoKPgo+Pgo+Pj4gKyAgICAgICB9
-IGVsc2Ugewo+Pj4gKyAgICAgICAgICAgICAgIGFjcGlfaGFuZGxlX2VycihoYW5kbGUsICJ1bmV4
-cGVjdGVkIHJldHVybmVkIHZhbHVlIGJ5IE9wdGltdXMgX0RTTVxuIik7Cj4+PiArICAgICAgICAg
-ICAgICAgQUNQSV9GUkVFKG9iaik7Cj4+PiArICAgICAgICAgICAgICAgcmV0dXJuIEFFX0VSUk9S
-Owo+Pj4gICAgICAgIH0KPj4+Cj4+PiAgICAgICAgcmV0dXJuIDA7Cj4+PiAtLQo+Pj4gMi40LjEK
-Pj4+Cj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+
-Pj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cj4+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
-IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1874932795==
+Content-Type: multipart/alternative; boundary="1432624643.F435A61.14702"; charset="UTF-8"
+
+
+--1432624643.F435A61.14702
+Date: Tue, 26 May 2015 07:17:23 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90435
+
+Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jwrdegoede-rxtnV0ftBwyoClj4AeEUqw@public.gmane.org
+                   |                            |g
+
+--- Comment #10 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #8)
+> (In reply to Hans de Goede from comment #7)
+> > Hi Ilya,
+> > 
+> > (In reply to Ilya from comment #6)
+> > > What I not changed - is the kernel driver nouveau. It was the last version
+> > > from the kernel...
+> > 
+> > I've tried to reproduce your problem and 10.4 (and newer) for me only show a
+> > black window with glxgears, not even a static picture.
+> 
+> OK, 2 people telling me that the whole everything is broken... probably time
+> to plug in my NV44 and see what's is going on.
+> 
+> Hans, can you confirm which HW you were using to reproduce this?
+
+I'm using a Asus EN7300TC512
+
+> Did you get your hands on an actual NV46, same as the OP? PCIe, I presume?
+
+According to glxinfo it is a NV46, yes, and yes it is a PCIe card.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432624643.F435A61.14702
+Date: Tue, 26 May 2015 07:17:23 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>jwrdegoede&#64;fedoraproject.org
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90435#c8">comment #8</a>)
+<span class="quote">&gt; (In reply to Hans de Goede from <a href="show_bug.cgi?id=90435#c7">comment #7</a>)
+&gt; &gt; Hi Ilya,
+&gt; &gt; 
+&gt; &gt; (In reply to Ilya from <a href="show_bug.cgi?id=90435#c6">comment #6</a>)
+&gt; &gt; &gt; What I not changed - is the kernel driver nouveau. It was the last version
+&gt; &gt; &gt; from the kernel...
+&gt; &gt; 
+&gt; &gt; I've tried to reproduce your problem and 10.4 (and newer) for me only show a
+&gt; &gt; black window with glxgears, not even a static picture.
+&gt; 
+&gt; OK, 2 people telling me that the whole everything is broken... probably time
+&gt; to plug in my NV44 and see what's is going on.
+&gt; 
+&gt; Hans, can you confirm which HW you were using to reproduce this?</span >
+
+I'm using a Asus EN7300TC512
+
+<span class="quote">&gt; Did you get your hands on an actual NV46, same as the OP? PCIe, I presume?</span >
+
+According to glxinfo it is a NV46, yes, and yes it is a PCIe card.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432624643.F435A61.14702--
+
+--===============1874932795==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1874932795==--
