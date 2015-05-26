@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90567] Display freeze when starting League of
 	Legends (Wine)
-Date: Tue, 26 May 2015 20:50:21 +0000
-Message-ID: <bug-90567-8800-HwCEbzKLXq@http.bugs.freedesktop.org/>
+Date: Tue, 26 May 2015 20:52:41 +0000
+Message-ID: <bug-90567-8800-TJ7hlbasPR@http.bugs.freedesktop.org/>
 References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2114134088=="
+Content-Type: multipart/mixed; boundary="===============0238372881=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2114134088==
-Content-Type: multipart/alternative; boundary="1432673421.A8f7Ead2.18176"; charset="UTF-8"
+--===============0238372881==
+Content-Type: multipart/alternative; boundary="1432673561.fc7bac2.18770"; charset="UTF-8"
 
 
---1432673421.A8f7Ead2.18176
-Date: Tue, 26 May 2015 20:50:21 +0000
+--1432673561.fc7bac2.18770
+Date: Tue, 26 May 2015 20:52:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90567
 
---- Comment #18 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the trace, but we can't reproduce the issue. That's strange.
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+By the way I just noticed that League of Legends is a free game, so I'm going
+to check it out tonight.
 
-Could you try to generate a new trace and make sure the issue occurs when you
-replay it, please?
+Detlev, I've never played this game -- what do I need to do in order to make
+the freeze occur?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432673421.A8f7Ead2.18176
-Date: Tue, 26 May 2015 20:50:21 +0000
+--1432673561.fc7bac2.18770
+Date: Tue, 26 May 2015 20:52:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c18">Comment # 18</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Display freeze when starting League of Legends (Wine)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks for the trace, but we can't reproduce the issue. That's strange.
+        <pre>By the way I just noticed that League of Legends is a free game, so I'm going
+to check it out tonight.
 
-Could you try to generate a new trace and make sure the issue occurs when you
-replay it, please?</pre>
+Detlev, I've never played this game -- what do I need to do in order to make
+the freeze occur?</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +81,9 @@ replay it, please?</pre>
     </body>
 </html>
 
---1432673421.A8f7Ead2.18176--
+--1432673561.fc7bac2.18770--
 
---===============2114134088==
+--===============0238372881==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2114134088==--
+--===============0238372881==--
