@@ -1,18 +1,15 @@
 From: Pierre Moreau <pierre.morrow@free.fr>
-Subject: Re: [Nouveau] [PATCH 5/8] acpi: Check returned object type by Optimus
- _DSM locally
-Date: Tue, 26 May 2015 10:26:39 +0200
-Message-ID: <754009E0-60CD-4E58-BA04-5FF8F3315E23@free.fr>
+Subject: Re: [Nouveau] [PATCH 4/8] acpi: Allow evaluate_optimus_dsm to take
+ NULL results
+Date: Tue, 26 May 2015 10:27:45 +0200
+Message-ID: <1353DB34-8F6D-4AC9-BC04-C955A0BEB66A@free.fr>
 References: <1432592573-13743-1-git-send-email-pierre.morrow@free.fr>
- <1432592573-13743-5-git-send-email-pierre.morrow@free.fr>
- <CAKb7UvhaSiu19L3eKJ26mtHcB8DRELB-G7sNJEgRDC9U8Ui2=A@mail.gmail.com>
- <84DFBDB0-0382-479C-8019-7CD888B7B466@free.fr>
- <CAKb7UvjDTgVYM+XYs6ui-vjxy4x50DQ0p9zKKMPePph8M0jZwA@mail.gmail.com>
+ <1432592573-13743-4-git-send-email-pierre.morrow@free.fr>
+ <5564287C.6030209@gmail.com>
 Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1055282898=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvjDTgVYM+XYs6ui-vjxy4x50DQ0p9zKKMPePph8M0jZwA@mail.gmail.com>
+In-Reply-To: <5564287C.6030209@gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -22,72 +19,279 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+To: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Cc: nouveau@lists.freedesktop.org, bskeggs@redhat.com, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-Cj4gT24gMjYgTWF5IDIwMTUsIGF0IDA3OjE3LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
-dC5lZHU+IHdyb3RlOgo+IAo+IE9uIFR1ZSwgTWF5IDI2LCAyMDE1IGF0IDE6MTAgQU0sIFBpZXJy
-ZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4gd3JvdGU6Cj4+PiBPbiAyNiBNYXkgMjAx
-NSwgYXQgMDA6MzksIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+
-PiAKPj4+PiBPbiBNb24sIE1heSAyNSwgMjAxNSBhdCA2OjIyIFBNLCBQaWVycmUgTW9yZWF1IDxw
-aWVycmUubW9ycm93QGZyZWUuZnI+IHdyb3RlOgo+Pj4+IE1vc3QgX0RTTSB3aWxsIHJldHVybiBh
-biBpbnRlZ2VyIHZhbHVlIG9mIDB4ODAwMDAwMDIgd2hlbiBnaXZlbiBhbiB1bmtub3duCj4+Pj4g
-VVVJRCwgcmV2aXNpb24gSUQgb3IgZnVuY3Rpb24gSUQuIENoZWNraW5nIGxvY2FsbHkgYWxsb3dz
-IHVzIHRvIGRpZmZlcmVudGlhdGUKPj4+PiB0aGF0IGNhc2UgZnJvbSBvdGhlciBBQ1BJIGVycm9y
-cywgYW5kIHRvIG5vdCByZXBvcnQgYSAiZmFpbGVkIHRvIGV2YWx1YXRlIF9EU00iCj4+Pj4gaWYg
-MHg4MDAwMDAwMiBpcyByZXR1cm5lZCB3aGljaCB3YXMgY29uZnVzaW5nLgo+Pj4+IAo+Pj4+IFNp
-Z25lZC1vZmYtYnk6IFBpZXJyZSBNb3JlYXUgPHBpZXJyZS5tb3Jyb3dAZnJlZS5mcj4KPj4+PiAt
-LS0KPj4+PiBkcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyB8IDE1ICsrKysrKysrKysrKy0tLQo+
-Pj4+IDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQo+Pj4+
-IAo+Pj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBiL2RybS9ub3V2
-ZWF1L25vdXZlYXVfYWNwaS5jCj4+Pj4gaW5kZXggMDczZjdkNy4uN2FlYWY3ZCAxMDA2NDQKPj4+
-PiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwo+Pj4+ICsrKyBiL2RybS9ub3V2ZWF1
-L25vdXZlYXVfYWNwaS5jCj4+Pj4gQEAgLTg4LDEyICs4OCwxMiBAQCBzdGF0aWMgaW50IG5vdXZl
-YXVfZXZhbHVhdGVfb3B0aW11c19kc20oYWNwaV9oYW5kbGUgaGFuZGxlLCBpbnQgZnVuYywgaW50
-IGFyZywgdQo+Pj4+ICAgICAgIGZvciAoaSA9IDA7IGkgPCA0OyBpKyspCj4+Pj4gICAgICAgICAg
-ICAgICBhcmdzX2J1ZmZbaV0gPSAoYXJnID4+IGkgKiA4KSAmIDB4RkY7Cj4+Pj4gCj4+Pj4gLSAg
-ICAgICBvYmogPSBhY3BpX2V2YWx1YXRlX2RzbV90eXBlZChoYW5kbGUsIG5vdXZlYXVfb3BfZHNt
-X211aWQsIG5vdXZlYXVfb3BfZHNtX3JpZCwKPj4+PiAtICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIGZ1bmMsICZhcmd2NCwgQUNQSV9UWVBFX0JVRkZFUik7Cj4+Pj4gKyAgICAg
-ICBvYmogPSBhY3BpX2V2YWx1YXRlX2RzbShoYW5kbGUsIG5vdXZlYXVfb3BfZHNtX211aWQsIG5v
-dXZlYXVfb3BfZHNtX3JpZCwKPj4+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZ1
-bmMsICZhcmd2NCk7Cj4+Pj4gICAgICAgaWYgKCFvYmopIHsKPj4+PiAgICAgICAgICAgICAgIGFj
-cGlfaGFuZGxlX2luZm8oaGFuZGxlLCAiZmFpbGVkIHRvIGV2YWx1YXRlIF9EU01cbiIpOwo+Pj4+
-ICAgICAgICAgICAgICAgcmV0dXJuIEFFX0VSUk9SOwo+Pj4+IC0gICAgICAgfSBlbHNlIHsKPj4+
-PiArICAgICAgIH0gZWxzZSBpZiAob2JqLT50eXBlID09IEFDUElfVFlQRV9CVUZGRVIpIHsKPj4+
-PiAgICAgICAgICAgICAgIGlmICghcmVzdWx0ICYmIG9iai0+YnVmZmVyLmxlbmd0aCA9PSA0KSB7
-Cj4+Pj4gICAgICAgICAgICAgICAgICAgICAgICpyZXN1bHQgID0gb2JqLT5idWZmZXIucG9pbnRl
-clswXTsKPj4+PiAgICAgICAgICAgICAgICAgICAgICAgKnJlc3VsdCB8PSAob2JqLT5idWZmZXIu
-cG9pbnRlclsxXSA8PCA4KTsKPj4+PiBAQCAtMTAxLDYgKzEwMSwxNSBAQCBzdGF0aWMgaW50IG5v
-dXZlYXVfZXZhbHVhdGVfb3B0aW11c19kc20oYWNwaV9oYW5kbGUgaGFuZGxlLCBpbnQgZnVuYywg
-aW50IGFyZywgdQo+Pj4+ICAgICAgICAgICAgICAgICAgICAgICAqcmVzdWx0IHw9IChvYmotPmJ1
-ZmZlci5wb2ludGVyWzNdIDw8IDI0KTsKPj4+PiAgICAgICAgICAgICAgIH0KPj4+PiAgICAgICAg
-ICAgICAgIEFDUElfRlJFRShvYmopOwo+Pj4+ICsgICAgICAgfSBlbHNlIGlmIChvYmotPnR5cGUg
-PT0gQUNQSV9UWVBFX0lOVEVHRVIgJiYKPj4+PiArICAgICAgICAgICAgICAgICAgb2JqLT5pbnRl
-Z2VyLnZhbHVlID09IDB4ODAwMDAwMDIpIHsKPj4+PiArICAgICAgICAgICAgICAgYWNwaV9oYW5k
-bGVfZGVidWcoaGFuZGxlLCAiZmFpbGVkIHRvIHF1ZXJ5IE9wdGltdXMgX0RTTVxuIik7Cj4+Pj4g
-KyAgICAgICAgICAgICAgIEFDUElfRlJFRShvYmopOwo+Pj4+ICsgICAgICAgICAgICAgICByZXR1
-cm4gLUVOT0RFVjsKPj4+IAo+Pj4gc2hvdWxkIHRoaXMgYmUgQUVfRVJST1I/Cj4+IAo+PiBJIHdv
-dWxkIHNheSBubywgYmVjYXVzZSBBQ1BJIHdhcyBwYXJzZWQgY29ycmVjdGx5LCBqdXN0IHRoYXQg
-d2UgZGlkbid0IGl0IGdpdmUgdGhlIGNvcnJlY3QgYXJndW1lbnRzLCBvciByYXRoZXIsIHRoZSBf
-RFNNIHdlIHRlc3RlZCBpc24ndCBhbiBPcHRpbXVzIG9uZSwgYnV0IGl0IGNvdWxkIGEgbXV4IG9y
-IGdtdXguIEFuZCBJIHVzZWQgRU5PREVWIGFzIGl0IGlzIHRoZSB2YWx1ZSByZXR1cm5lZCBieSBu
-b3V2ZWF1X2V2YWx1YXRlX211eF9kc20gaW4gdGhlIHNhbWUgY29udGV4dC4KPiAKPiBIbSBvay4g
-SXQganVzdCBzZWVtZWQgb2RkIHRvIGJlIHJldHVybmluZyBBRV8qIGluIG9uZSBjb250ZXh0LCBh
-bmQKPiAtRU5PREVWIGluIGFub3RoZXIgY29udGV4dCAtLSB0aGV5J3JlIGRpZmZlcmVudCB0eXBl
-cyBvZiBlcnJvcnMuCj4gSG93ZXZlciBpZiB0aGUgY2FsbGVyIGhhbmRsZXMgaXQsIEkgZ3Vlc3Mg
-aXQncyBPSy4uLiBJIGhhdmVuJ3QgbG9va2VkCj4gYXQgdGhlIEFQSSBpbiBkZXB0aC4KClRoZSBj
-YWxsZXIgZG9lc27igJl0IGNhcmUgYWJvdXQgdGhlIHJldHVybmVkIGVycm9yIGFuZCBqdXN0IGNo
-ZWNrIHdldGhlcgppdOKAmXMgbm9uLXplcm8gKGFuZCBzb21ldGltZXMgaXQgZG9lc27igJl0IGV2
-ZW4gY2hlY2spLgoKPiAKPj4gCj4+PiAKPj4+PiArICAgICAgIH0gZWxzZSB7Cj4+Pj4gKyAgICAg
-ICAgICAgICAgIGFjcGlfaGFuZGxlX2VycihoYW5kbGUsICJ1bmV4cGVjdGVkIHJldHVybmVkIHZh
-bHVlIGJ5IE9wdGltdXMgX0RTTVxuIik7Cj4+Pj4gKyAgICAgICAgICAgICAgIEFDUElfRlJFRShv
-YmopOwo+Pj4+ICsgICAgICAgICAgICAgICByZXR1cm4gQUVfRVJST1I7Cj4+Pj4gICAgICAgfQo+
-Pj4+IAo+Pj4+ICAgICAgIHJldHVybiAwOwo+Pj4+IC0tCj4+Pj4gMi40LjEKPj4+PiAKPj4+PiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+IE5vdXZl
-YXUgbWFpbGluZyBsaXN0Cj4+Pj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+PiBo
-dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1h
-aWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1055282898==
+Content-Type: multipart/alternative; boundary="Apple-Mail=_5EE5FD56-00C4-47F7-8619-CAFF2B2585CF"
+
+
+--Apple-Mail=_5EE5FD56-00C4-47F7-8619-CAFF2B2585CF
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+
+> On 26 May 2015, at 10:02, Samuel Pitoiset <samuel.pitoiset@gmail.com> =
+wrote:
+>=20
+>=20
+>=20
+> On 05/26/2015 12:22 AM, Pierre Moreau wrote:
+>> Signed-off-by: Pierre Moreau <pierre.morrow@free.fr>
+>> ---
+>>  drm/nouveau/nouveau_acpi.c | 10 ++++------
+>>  1 file changed, 4 insertions(+), 6 deletions(-)
+>>=20
+>> diff --git a/drm/nouveau/nouveau_acpi.c b/drm/nouveau/nouveau_acpi.c
+>> index 36f4a40..073f7d7 100644
+>> --- a/drm/nouveau/nouveau_acpi.c
+>> +++ b/drm/nouveau/nouveau_acpi.c
+>> @@ -88,15 +88,14 @@ static int =
+nouveau_evaluate_optimus_dsm(acpi_handle handle, int func, int arg, u
+>>  	for (i =3D 0; i < 4; i++)
+>>  		args_buff[i] =3D (arg >> i * 8) & 0xFF;
+>>  -	*result =3D 0;
+>>  	obj =3D acpi_evaluate_dsm_typed(handle, nouveau_op_dsm_muid, =
+nouveau_op_dsm_rid,
+>>  				      func, &argv4, ACPI_TYPE_BUFFER);
+>>  	if (!obj) {
+>>  		acpi_handle_info(handle, "failed to evaluate _DSM\n");
+>>  		return AE_ERROR;
+>>  	} else {
+>> -		if (obj->buffer.length =3D=3D 4) {
+>> -			*result |=3D obj->buffer.pointer[0];
+>> +		if (!result && obj->buffer.length =3D=3D 4) {
+>> +			*result  =3D obj->buffer.pointer[0];
+>=20
+> segfault here if result is NULL! ;)
+
+Good catch!
+
+>=20
+>>  			*result |=3D (obj->buffer.pointer[1] << 8);
+>>  			*result |=3D (obj->buffer.pointer[2] << 16);
+>>  			*result |=3D (obj->buffer.pointer[3] << 24);
+>> @@ -322,18 +321,17 @@ void nouveau_register_dsm_handler(void)
+>>  /* Must be called for Optimus models before the card can be turned =
+off */
+>>  void nouveau_switcheroo_optimus_dsm(void)
+>>  {
+>> -	u32 result =3D 0;
+>>  	if (!nouveau_dsm_priv.optimus_detected)
+>>  		return;
+>>    	nouveau_evaluate_optimus_dsm(nouveau_dsm_priv.dhandle,
+>>  			             NOUVEAU_DSM_OPTIMUS_FLAGS,
+>> -			             0x3, &result);
+>> +			             0x3, NULL);
+>>    	nouveau_evaluate_optimus_dsm(nouveau_dsm_priv.dhandle,
+>>  			             NOUVEAU_DSM_OPTIMUS_CAPS,
+>>  			             NOUVEAU_DSM_OPTIMUS_SET_POWERDOWN,
+>> -			             &result);
+>> +			             NULL);
+>>    }
+
+
+--Apple-Mail=_5EE5FD56-00C4-47F7-8619-CAFF2B2585CF
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On 26 May 2015, at 10:02, Samuel Pitoiset &lt;<a =
+href=3D"mailto:samuel.pitoiset@gmail.com" =
+class=3D"">samuel.pitoiset@gmail.com</a>&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div class=3D""><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D""><br style=3D"font-family:=
+ Helvetica; font-size: 12px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">On 05/26/2015 12:22 AM, Pierre Moreau =
+wrote:</span><br style=3D"font-family: Helvetica; font-size: 12px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D""><blockquote type=3D"cite" style=3D"font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D"">Signed-off-by: Pierre Moreau &lt;<a =
+href=3D"mailto:pierre.morrow@free.fr" =
+class=3D"">pierre.morrow@free.fr</a>&gt;<br class=3D"">---<br =
+class=3D"">&nbsp;drm/nouveau/nouveau_acpi.c | 10 ++++------<br =
+class=3D"">&nbsp;1 file changed, 4 insertions(+), 6 deletions(-)<br =
+class=3D""><br class=3D"">diff --git a/drm/nouveau/nouveau_acpi.c =
+b/drm/nouveau/nouveau_acpi.c<br class=3D"">index 36f4a40..073f7d7 =
+100644<br class=3D"">--- a/drm/nouveau/nouveau_acpi.c<br class=3D"">+++ =
+b/drm/nouveau/nouveau_acpi.c<br class=3D"">@@ -88,15 +88,14 @@ static =
+int nouveau_evaluate_optimus_dsm(acpi_handle handle, int func, int arg, =
+u<br class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space:=
+ pre;">	</span>for (i =3D 0; i &lt; 4; i++)<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>args_buff[i] =3D (arg &gt;&gt; i * 8) &amp; 0xFF;<br =
+class=3D"">&nbsp;-<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>*result =3D 0;<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>obj =3D =
+acpi_evaluate_dsm_typed(handle, nouveau_op_dsm_muid, =
+nouveau_op_dsm_rid,<br class=3D"">&nbsp;<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;func, &amp;argv4, ACPI_TYPE_BUFFER);<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>if (!obj) =
+{<br class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space:=
+ pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>acpi_handle_info(handle, "failed to evaluate _DSM\n");<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>return AE_ERROR;<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>} else =
+{<br class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>if (obj-&gt;buffer.length =3D=3D 4) {<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>*result =
+|=3D obj-&gt;buffer.pointer[0];<br class=3D"">+<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>if =
+(!result &amp;&amp; obj-&gt;buffer.length =3D=3D 4) {<br class=3D"">+<span=
+ class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>*result =
+&nbsp;=3D obj-&gt;buffer.pointer[0];<br class=3D""></blockquote><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">segfault here if result is NULL! ;)</span><br =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" =
+class=3D""></div></blockquote><div><br class=3D""></div><div>Good =
+catch!</div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D""><br style=3D"font-family: Helvetica; font-size: 12px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D""><blockquote type=3D"cite" style=3D"font-family: Helvetica; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D"">&nbsp;<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span><span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>*result |=3D =
+(obj-&gt;buffer.pointer[1] &lt;&lt; 8);<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>*result =
+|=3D (obj-&gt;buffer.pointer[2] &lt;&lt; 16);<br class=3D"">&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>*result =
+|=3D (obj-&gt;buffer.pointer[3] &lt;&lt; 24);<br class=3D"">@@ -322,18 =
++321,17 @@ void nouveau_register_dsm_handler(void)<br class=3D"">&nbsp;/* =
+Must be called for Optimus models before the card can be turned off =
+*/<br class=3D"">&nbsp;void nouveau_switcheroo_optimus_dsm(void)<br =
+class=3D"">&nbsp;{<br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>u32 result =3D 0;<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>if (!nouveau_dsm_priv.optimus_detected)<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>return;<br class=3D"">&nbsp;&nbsp;&nbsp;<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>nouveau_evaluate_optimus_dsm(nouveau_dsm_priv.dhandle,<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOUVEAU_DSM_OPTIMUS_FLAGS,<br =
+class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x3, &amp;result);<br =
+class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x3, NULL);<br =
+class=3D"">&nbsp;&nbsp;&nbsp;<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	=
+</span>nouveau_evaluate_optimus_dsm(nouveau_dsm_priv.dhandle,<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOUVEAU_DSM_OPTIMUS_CAPS,<br =
+class=3D"">&nbsp;<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOUVEAU_DSM_OPTIMUS_SET_POWERDO=
+WN,<br class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;result);<br =
+class=3D"">+<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span><span =
+class=3D"Apple-converted-space">&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NULL);<br =
+class=3D"">&nbsp;&nbsp;&nbsp;}</blockquote></div></blockquote></div><br =
+class=3D""></body></html>=
+
+--Apple-Mail=_5EE5FD56-00C4-47F7-8619-CAFF2B2585CF--
+
+--===============1055282898==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1055282898==--
