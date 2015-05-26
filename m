@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Tue, 26 May 2015 16:02:07 +0000
-Message-ID: <bug-90567-8800-p1JLgE8HlT@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 21273] [NV17] PowerMac3,
+ 6 Driver can't detect video output and xserver doesn't start
+Date: Tue, 26 May 2015 16:39:33 +0000
+Message-ID: <bug-21273-8800-aDfImimQ83@http.bugs.freedesktop.org/>
+References: <bug-21273-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2061794897=="
+Content-Type: multipart/mixed; boundary="===============0730932599=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-21273-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2061794897==
-Content-Type: multipart/alternative; boundary="1432656126.cb71deA1.28065"; charset="UTF-8"
+--===============0730932599==
+Content-Type: multipart/alternative; boundary="1432658373.B1bA4fda1.7143"; charset="UTF-8"
 
 
---1432656126.cb71deA1.28065
-Date: Tue, 26 May 2015 16:02:06 +0000
+--1432658373.B1bA4fda1.7143
+Date: Tue, 26 May 2015 16:39:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
+https://bugs.freedesktop.org/show_bug.cgi?id=21273
 
---- Comment #14 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I am not sure I will be able to get a trace, the game automatically starts
-different programs when setting up the game in wine.
+Tim Riker <Tim-borCbr3g9csdnm+yROfE0A@public.gmane.org> changed:
 
-The behavior today is quite random:
- * Sometimes the game crashes
- * Sometimes it freezes while loading
- * Sometimes it freeze when the game starts
- * Sometimes I loose control (keyboard and GUI not responding but mouse still
-moving)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |Tim-borCbr3g9csdnm+yROfE0A@public.gmane.org
 
-I haven't been able to reproduce the bug with Wine running through apitrace.
-I'll try again.
+--- Comment #104 from Tim Riker <Tim-borCbr3g9csdnm+yROfE0A@public.gmane.org> ---
+What became of this? I installed Ubuntu 14.04 on a Powermac G4 Quicksilver 2002
+edition and got a blank screen. I look at the output and it thinks it's using
+VGA when I suspect it should be using TMDS
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432656126.cb71deA1.28065
-Date: Tue, 26 May 2015 16:02:06 +0000
+--1432658373.B1bA4fda1.7143
+Date: Tue, 26 May 2015 16:39:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,31 +56,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:Tim&#64;Rikers.org" title="Tim Riker &lt;Tim&#64;Rikers.org&gt;"> <span class="fn">Tim Riker</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>Tim&#64;Rikers.org
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c14">Comment # 14</a>
+   title="NEW - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273#c104">Comment # 104</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
+   title="NEW - [NV17] PowerMac3,6 Driver can't detect video output and xserver doesn't start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=21273">bug 21273</a>
+              from <span class="vcard"><a class="email" href="mailto:Tim&#64;Rikers.org" title="Tim Riker &lt;Tim&#64;Rikers.org&gt;"> <span class="fn">Tim Riker</span></a>
 </span></b>
-        <pre>I am not sure I will be able to get a trace, the game automatically starts
-different programs when setting up the game in wine.
-
-The behavior today is quite random:
- * Sometimes the game crashes
- * Sometimes it freezes while loading
- * Sometimes it freeze when the game starts
- * Sometimes I loose control (keyboard and GUI not responding but mouse still
-moving)
-
-I haven't been able to reproduce the bug with Wine running through apitrace.
-I'll try again.</pre>
+        <pre>What became of this? I installed Ubuntu 14.04 on a Powermac G4 Quicksilver 2002
+edition and got a blank screen. I look at the output and it thinks it's using
+VGA when I suspect it should be using TMDS</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +104,9 @@ I'll try again.</pre>
     </body>
 </html>
 
---1432656126.cb71deA1.28065--
+--1432658373.B1bA4fda1.7143--
 
---===============2061794897==
+--===============0730932599==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2061794897==--
+--===============0730932599==--
