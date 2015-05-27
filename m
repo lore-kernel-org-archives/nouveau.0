@@ -1,13 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Wed, 27 May 2015 16:19:05 +0000
-Message-ID: <bug-90567-8800-XPJC2ydxpS@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC PATCH 00/11] Implement ARB_cull_distance
+Date: Wed, 27 May 2015 18:28:04 +0200
+Message-ID: <CAAxE2A6=9rK3XuJTexcg-dj0F_NWXHisg9OMv99mMvZ-4E2nVg@mail.gmail.com>
+References: <1432490289-29353-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <CAKb7UvjqEq9M639ZXhFeLqPjEVcP5Zfqc_Df7yjBA34ww70jMQ@mail.gmail.com>
+ <556226F1.8020502@mni.thm.de>
+ <CAKb7Uvgby-ycm5rQJWNJmC-4hkB2L9msgOiGh0YXNTBj+2-yaQ@mail.gmail.com>
+ <55622D00.4000308@mni.thm.de>
+ <CAAxE2A4Zc3G+Rw9VcaAcXj24RJvZsBY1hW6RDA=Mt+aO6s2nKw@mail.gmail.com>
+ <CAPM=9tzeBhg-srEZgud4p3AUx59GAA7ogastm7Jy8erq1-0zzw@mail.gmail.com>
+ <5563264B.4010008@mni.thm.de>
+ <CAKb7Uvj3CP3wBA1mWLhTdt-9RJRemHKYwqezOKD=GTw6zFOsbg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1083146251=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvj3CP3wBA1mWLhTdt-9RJRemHKYwqezOKD=GTw6zFOsbg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +25,51 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1083146251==
-Content-Type: multipart/alternative; boundary="1432743545.d4eAa0Ba2.7320"; charset="UTF-8"
-
-
---1432743545.d4eAa0Ba2.7320
-Date: Wed, 27 May 2015 16:19:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #22 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-What version of apitrace do you use?
-If you use the archlinux package, you should perhaps try to build your own
-apitrace from the repo.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432743545.d4eAa0Ba2.7320
-Date: Wed, 27 May 2015 16:19:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>What version of apitrace do you use?
-If you use the archlinux package, you should perhaps try to build your own
-apitrace from the repo.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432743545.d4eAa0Ba2.7320--
-
---===============1083146251==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1083146251==--
+QW5vdGhlciB0aGluZyB0byBjb25zaWRlciBpcyBsaW5raW5nIHNoYWRlcnMgdGhhdCBvY2N1ciBi
+ZWZvcmUgdGhlCnJhc3Rlcml6ZXIgKGUuZy4gYW55IHR3byBzaGFkZXJzIGZyb20gVlMtPlRDUy0+
+VEVTLT5HUykuIFRoZSBtYXhpbXVtCm51bWJlciBvZiB3cml0dGVuIGRpc3RhbmNlcyBpcyBzdGls
+bCA4LCBidXQgd2hhdCBoYXBwZW5zIGlmIFZTIHdyaXRlcwoxeCBjbGlwIGFuZCA3eCBjdWxsIGFu
+ZCBHUyByZWFkcyA4eCBjbGlwIGFuZCBubyBjdWxsPyBJbiB0aGlzIGNhc2UKaXQncyBiYXNpY2Fs
+bHkgYSBnZW5lcmljIHZhcnlpbmcuIEhvdyBpcyBsaW5raW5nIHNlcGFyYXRlIHNoYWRlcnMKc3Vw
+cG9zZWQgdG8gd29yayB3aXRoIG9uZSBjb21iaW5lZCBjbGlwLW9yLWN1bGwgYXJyYXk/IEl0IGRv
+ZXNuJ3Qgc2VlbQp0byBiZSBwb3NzaWJsZS4KCk1hcmVrCgpPbiBNb24sIE1heSAyNSwgMjAxNSBh
+dCA1OjA3IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+IE9u
+IE1vbiwgTWF5IDI1LCAyMDE1IGF0IDk6NDAgQU0sIFRvYmlhcyBLbGF1c21hbm4KPiA8dG9iaWFz
+LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPj4KPj4gT24gMjUuMDUuMjAx
+NSAwNzoxNywgRGF2ZSBBaXJsaWUgd3JvdGU6Cj4+Pgo+Pj4gT24gMjUgTWF5IDIwMTUgYXQgMDg6
+MTEsIE1hcmVrIE9sxaHDoWsgPG1hcmFlb0BnbWFpbC5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4gSXQn
+cyB0aGUgc2FtZSBvbiBSYWRlb24uIFRoZXJlIGFyZSAyeCBDbGlwT3JDdWxsRGlzdGFuY2Ugb3V0
+cHV0Cj4+Pj4gdmVjdG9ycyBhbmQgYSBtYXNrIHNheWluZyBpdCBzaG91bGQgY2xpcCBvciBjdWxs
+IG9yIGRvIG5vdGhpbmcuCj4+Pj4KPj4+PiBNYXJlawo+Pj4+Cj4+PiBNeSB0aGlua2luZyB3YXMg
+Z2FsbGl1bSBzaG91bGQgaGF2ZSBhIHNpbmdsZSBzZW1hbnRpYyBhbmQgYSBtYXNrIGluCj4+PiB0
+aGUgc2hhZGVyIGRlZmluaXRpb24gbWF5YmUuCj4+Pgo+Pj4gdGhvdWdoIGl0IGRvZXNuJ3Qgc29s
+dmUgdGhlIGRvZXMgbnZpZGlhIGRvIHRoZSByaWdodCB0aGluZyB3aXRoCj4+PiBjdWxsWzBdIGFu
+ZCBjbGlwWzBdLCBhbmQgd2hhdCBpcyB0aGUgcmlnaHQgdGhpbmcuCj4+Pgo+Pj4gRGF2ZS4KPj4K
+Pj4KPj4gSSdtIHN0aWxsIGNvbnZpbmNlZCB0aGF0IGJvdGggY2xpcFswXSBhbmQgY3VsbFswXSBz
+aG91bGQgYmUgcG9zc2libGUuIFBsdXMgaQo+PiBoYXZlIHdyaXR0ZW4gYSBzaGFkZXJfdGVzdCBm
+b3IgdGhpcyBhIHdoaWxlIGFnbyB3aGljaCB5b3UgcHVzaGVkIHRvIHBpZ2xpdAo+PiAoZnMtY3Vs
+bC1hbmQtY2xpcC1kaXN0YW5jZS1kaWZmZXJlbnQuc2hhZGVyX3Rlc3QpLiBJZiBpIHJlbWVtYmVy
+IHJpZ2h0Cj4+IG52aWRpYSBwYXNzZWQgdGhhdCB0ZXN0IGp1c3QgZmluZS4KPgo+IE15IHRha2Ug
+KGFuZCBub3RlIHRoYXQgSSBsYXN0IHJlYWQgdGhlIGV4dGVuc2lvbiBtYW55IG1vbnRocyBhZ28p
+IGlzCj4gdGhhdCB5b3UncmUgc3VwcG9zZWQgdG8gZmlndXJlIG91dCB0aGUgbWF4IGdsX0NsaXBE
+aXN0YW5jZVtdIHdyaXR0ZW4sCj4gYW5kIHRoZW4gd3JpdGUgYWxsIHlvdXIgY3VsbCBkaXN0YW5j
+ZXMgYWJvdmUgdGhhdC4gU28gaWYgeW91LCBlLmcuLAo+IGhhdmUgc29tZXRoaW5nIGxpa2UKPgo+
+IGdsX0NsaXBEaXN0YW5jZVs1XSA9IDE7Cj4gZ2xfQ3VsbERpc3RhbmNlWzBdID0gMTsKPgo+IFRo
+ZW4gaXQgd291bGQgZGVjaWRlIHRoYXQgdGhlcmUgYXJlIDYgY2xpcCBkaXN0YW5jZXMgKG9yIGlm
+IHRoZXJlJ3MgYW4KPiBleHBsaWNpdCBvdXQgZmxvYXQgZ2xfQ2xpcERpc3RhbmNlW25dLCB0aGVu
+IHVzZSB0aGF0KSwgYW5kIDEgY3VsbAo+IGRpc3RhbmNlLiBJbiB0aGUgVEdTSSwgSSdtIHRoaW5r
+aW5nIHRoaXMgbWlnaHQgbG9vayBhcHByb3hpbWF0ZWx5IGxpa2UKPgo+IFBST1BFUlRZIENVTExf
+TUFTSyAoMTw8NikKPiBEQ0wgT1VUWzBdLCBDTElQRElTVFswXQo+IERDTCBPVVRbMV0sIENMSVBE
+SVNUWzFdCj4gTU9WIE9VVFsxXS55LCAxIChjbGlwIGRpc3RhbmNlWzVdKQo+IE1PViBPVVRbMV0u
+eiwgMSAoY3VsbCBkaXN0YW5jZVswXSkKPgo+IFRoZW4gYmFzaWNhbGx5IHlvdSdkIGhhdmUKPgo+
+IChyYXN0LT5jbGlwX2VuYWJsZSAmIHNoYWRlci0+YWN0dWFsX2NsaXBfd3JpdGVzX21hc2spIHwg
+Y3VsbF9tYXNrID0KPiB0aGUgZW5hYmxlZCBkaXN0YW5jZXMKPiBjdWxsX21hc2sgPSBjdWxsIG1h
+c2sKPgo+IFRoaXMgd291bGQgd29yayAqdmVyeSogd2VsbCBmb3Igbm91dmVhdSwgbm90IHN1cmUg
+aG93IHN1aXRhYmxlIGl0IGlzCj4gZm9yIG90aGVyIGhhcmR3YXJlLgo+Cj4gQ2hlZXJzLAo+Cj4g
+ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
+b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
