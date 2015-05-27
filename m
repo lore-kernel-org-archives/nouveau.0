@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90682] [NVE6] failed to idle channel 0xcccc0001 +
 	crash
-Date: Wed, 27 May 2015 15:48:27 +0000
-Message-ID: <bug-90682-8800-AHxC9fDT4K@http.bugs.freedesktop.org/>
+Date: Wed, 27 May 2015 15:51:35 +0000
+Message-ID: <bug-90682-8800-2bDFwx2XCa@http.bugs.freedesktop.org/>
 References: <bug-90682-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1711607823=="
+Content-Type: multipart/mixed; boundary="===============0265581442=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90682-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1711607823==
-Content-Type: multipart/alternative; boundary="1432741707.bD1e51.29889"; charset="UTF-8"
+--===============0265581442==
+Content-Type: multipart/alternative; boundary="1432741895.BAcB2e71.30969"; charset="UTF-8"
 
 
---1432741707.bD1e51.29889
-Date: Wed, 27 May 2015 15:48:27 +0000
+--1432741895.BAcB2e71.30969
+Date: Wed, 27 May 2015 15:51:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90682
 
---- Comment #3 from Thomas Stewart <thomas-jC2YvWITRxqtmTQ+vhA3Yw@public.gmane.org> ---
-Created attachment 116086
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116086&action=edit
-Xorg.0.log with nouveau.noaccel=1
+--- Comment #4 from Thomas Stewart <thomas-jC2YvWITRxqtmTQ+vhA3Yw@public.gmane.org> ---
+Apologies, I copy and pasted the wrong resolutions. The external monitors are
+1920x1200.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432741707.bD1e51.29889
-Date: Wed, 27 May 2015 15:48:27 +0000
+--1432741895.BAcB2e71.30969
+Date: Wed, 27 May 2015 15:51:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] failed to idle channel 0xcccc0001 + crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90682#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90682#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6] failed to idle channel 0xcccc0001 + crash"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90682">bug 90682</a>
               from <span class="vcard"><a class="email" href="mailto:thomas&#64;stewarts.org.uk" title="Thomas Stewart &lt;thomas&#64;stewarts.org.uk&gt;"> <span class="fn">Thomas Stewart</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116086" name="attach_116086" title="Xorg.0.log with nouveau.noaccel=1">attachment 116086</a> <a href="attachment.cgi?id=116086&amp;action=edit" title="Xorg.0.log with nouveau.noaccel=1">[details]</a></span>
-Xorg.0.log with nouveau.noaccel=1</pre>
+        <pre>Apologies, I copy and pasted the wrong resolutions. The external monitors are
+1920x1200.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +75,9 @@ Xorg.0.log with nouveau.noaccel=1</pre>
     </body>
 </html>
 
---1432741707.bD1e51.29889--
+--1432741895.BAcB2e71.30969--
 
---===============1711607823==
+--===============0265581442==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1711607823==--
+--===============0265581442==--
