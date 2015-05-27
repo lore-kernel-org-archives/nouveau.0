@@ -1,13 +1,23 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
- inconsistent display
-Date: Wed, 27 May 2015 21:40:00 +0000
-Message-ID: <bug-89730-8800-TdR3g3eqhV@http.bugs.freedesktop.org/>
-References: <bug-89730-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [RFC PATCH 00/11] Implement ARB_cull_distance
+Date: Thu, 28 May 2015 00:51:37 +0200
+Message-ID: <CAAxE2A78arFZdv1caKK_viR+AYydCyD45ENmTzw3M3cfLqLzhg@mail.gmail.com>
+References: <1432490289-29353-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+ <CAKb7UvjqEq9M639ZXhFeLqPjEVcP5Zfqc_Df7yjBA34ww70jMQ@mail.gmail.com>
+ <556226F1.8020502@mni.thm.de>
+ <CAKb7Uvgby-ycm5rQJWNJmC-4hkB2L9msgOiGh0YXNTBj+2-yaQ@mail.gmail.com>
+ <55622D00.4000308@mni.thm.de>
+ <CAAxE2A4Zc3G+Rw9VcaAcXj24RJvZsBY1hW6RDA=Mt+aO6s2nKw@mail.gmail.com>
+ <CAPM=9tzeBhg-srEZgud4p3AUx59GAA7ogastm7Jy8erq1-0zzw@mail.gmail.com>
+ <5563264B.4010008@mni.thm.de>
+ <CAKb7Uvj3CP3wBA1mWLhTdt-9RJRemHKYwqezOKD=GTw6zFOsbg@mail.gmail.com>
+ <CAAxE2A6=9rK3XuJTexcg-dj0F_NWXHisg9OMv99mMvZ-4E2nVg@mail.gmail.com>
+ <55661597.30809@mni.thm.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1379792536=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <55661597.30809-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,88 +27,21 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1379792536==
-Content-Type: multipart/alternative; boundary="1432762800.ecc0411.13544"; charset="UTF-8"
-
-
---1432762800.ecc0411.13544
-Date: Wed, 27 May 2015 21:40:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89730
-
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #21)
-> Created attachment 116090 [details] [review]
-> kick pushbuf before mapping bo
-> 
-> This is the patch I had in mind... totally untested, but seems like it could
-> be the right thing to do.
-
-Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing this
-anyways. Oh well.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432762800.ecc0411.13544
-Date: Wed, 27 May 2015 21:40:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89730#c21">comment #21</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=116090" name="attach_116090" title="kick pushbuf before mapping bo">attachment 116090</a> <a href="attachment.cgi?id=116090&amp;action=edit" title="kick pushbuf before mapping bo">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=89730&amp;attachment=116090'>[review]</a> [review]
-&gt; kick pushbuf before mapping bo
-&gt; 
-&gt; This is the patch I had in mind... totally untested, but seems like it could
-&gt; be the right thing to do.</span >
-
-Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing this
-anyways. Oh well.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432762800.ecc0411.13544--
-
---===============1379792536==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1379792536==--
+T24gV2VkLCBNYXkgMjcsIDIwMTUgYXQgOTowNSBQTSwgVG9iaWFzIEtsYXVzbWFubgo8dG9iaWFz
+LmpvaGFubmVzLmtsYXVzbWFubkBtbmkudGhtLmRlPiB3cm90ZToKPgo+Cj4gT24gMjcuMDUuMjAx
+NSAxODoyOCwgTWFyZWsgT2zFocOhayB3cm90ZToKPj4KPj4gQW5vdGhlciB0aGluZyB0byBjb25z
+aWRlciBpcyBsaW5raW5nIHNoYWRlcnMgdGhhdCBvY2N1ciBiZWZvcmUgdGhlCj4+IHJhc3Rlcml6
+ZXIgKGUuZy4gYW55IHR3byBzaGFkZXJzIGZyb20gVlMtPlRDUy0+VEVTLT5HUykuIFRoZSBtYXhp
+bXVtCj4+IG51bWJlciBvZiB3cml0dGVuIGRpc3RhbmNlcyBpcyBzdGlsbCA4LCBidXQgd2hhdCBo
+YXBwZW5zIGlmIFZTIHdyaXRlcwo+PiAxeCBjbGlwIGFuZCA3eCBjdWxsIGFuZCBHUyByZWFkcyA4
+eCBjbGlwIGFuZCBubyBjdWxsPwo+Cj4KPiBpIHRoaW5rIHRoaXMgc2hvdWxkIGJlIHJlamVjdGVk
+IGFueXdheSAoaW4gdGhlIGdsc2w/ISksIGNvbnN0cmFpbmluZyB2cwo+IG91dHB1dCB0byBiZSB0
+aGUgc2FtZSBhcyBncyBpbnB1dCB3aGVyZSB0aGUgbGFzdCBkZWZpbml0aW9uIGlzIHRoZSB2YWxp
+ZAo+IG9uZS4uLi4KCk5vLCBpdCBjYW4ndCBiZSByZWplY3RlZCB3aXRoIHNlcGFyYXRlIHNoYWRl
+ciBvYmplY3RzLgoKTWFyZWsKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
