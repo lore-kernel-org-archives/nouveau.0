@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90682] [NVE6] failed to idle channel 0xcccc0001 +
-	crash
-Date: Wed, 27 May 2015 16:53:15 +0000
-Message-ID: <bug-90682-8800-IsXtXP1FBE@http.bugs.freedesktop.org/>
-References: <bug-90682-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
+ inconsistent display
+Date: Wed, 27 May 2015 18:08:00 +0000
+Message-ID: <bug-89730-8800-g7yokjp6z7@http.bugs.freedesktop.org/>
+References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0945975027=="
+Content-Type: multipart/mixed; boundary="===============1202588183=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90682-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0945975027==
-Content-Type: multipart/alternative; boundary="1432745595.F2ed13dE1.18020"; charset="UTF-8"
+--===============1202588183==
+Content-Type: multipart/alternative; boundary="1432750080.FdF31.8751"; charset="UTF-8"
 
 
---1432745595.F2ed13dE1.18020
-Date: Wed, 27 May 2015 16:53:15 +0000
+--1432750080.FdF31.8751
+Date: Wed, 27 May 2015 18:08:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90682
+https://bugs.freedesktop.org/show_bug.cgi?id=89730
 
---- Comment #9 from Thomas Stewart <thomas-jC2YvWITRxqtmTQ+vhA3Yw@public.gmane.org> ---
-Created attachment 116089
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116089&action=edit
-Xorg.0.log with nouveau.noaccel=1 video=eDP-1:d
+--- Comment #19 from andrew p. <pan.pav.7c5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi, it's me again. I'm not familiar with all this nouveau stuff, so can you
+tell what is the current status of the bug?
+I received bug reports that look very similar to this. Is there any fix or
+maybe workaround?
+
+https://bugs.launchpad.net/ubuntu/+source/lightdm-gtk-greeter/+bug/1459079
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432745595.F2ed13dE1.18020
-Date: Wed, 27 May 2015 16:53:15 +0000
+--1432750080.FdF31.8751
+Date: Wed, 27 May 2015 18:08:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] failed to idle channel 0xcccc0001 + crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90682#c9">Comment # 9</a>
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] failed to idle channel 0xcccc0001 + crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90682">bug 90682</a>
-              from <span class="vcard"><a class="email" href="mailto:thomas&#64;stewarts.org.uk" title="Thomas Stewart &lt;thomas&#64;stewarts.org.uk&gt;"> <span class="fn">Thomas Stewart</span></a>
+   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
+              from <span class="vcard"><a class="email" href="mailto:pan.pav.7c5&#64;gmail.com" title="andrew p. &lt;pan.pav.7c5&#64;gmail.com&gt;"> <span class="fn">andrew p.</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116089" name="attach_116089" title="Xorg.0.log with nouveau.noaccel=1 video=eDP-1:d">attachment 116089</a> <a href="attachment.cgi?id=116089&amp;action=edit" title="Xorg.0.log with nouveau.noaccel=1 video=eDP-1:d">[details]</a></span>
-Xorg.0.log with nouveau.noaccel=1 video=eDP-1:d</pre>
+        <pre>Hi, it's me again. I'm not familiar with all this nouveau stuff, so can you
+tell what is the current status of the bug?
+I received bug reports that look very similar to this. Is there any fix or
+maybe workaround?
+
+<a href="https://bugs.launchpad.net/ubuntu/+source/lightdm-gtk-greeter/+bug/1459079">https://bugs.launchpad.net/ubuntu/+source/lightdm-gtk-greeter/+bug/1459079</a></pre>
         </div>
       </p>
       <hr>
@@ -76,9 +83,9 @@ Xorg.0.log with nouveau.noaccel=1 video=eDP-1:d</pre>
     </body>
 </html>
 
---1432745595.F2ed13dE1.18020--
+--1432750080.FdF31.8751--
 
---===============0945975027==
+--===============1202588183==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0945975027==--
+--===============1202588183==--
