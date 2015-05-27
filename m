@@ -1,22 +1,13 @@
-From: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Subject: Re: [RFC PATCH 00/11] Implement ARB_cull_distance
-Date: Wed, 27 May 2015 21:05:59 +0200
-Message-ID: <55661597.30809@mni.thm.de>
-References: <1432490289-29353-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <CAKb7UvjqEq9M639ZXhFeLqPjEVcP5Zfqc_Df7yjBA34ww70jMQ@mail.gmail.com>
- <556226F1.8020502@mni.thm.de>
- <CAKb7Uvgby-ycm5rQJWNJmC-4hkB2L9msgOiGh0YXNTBj+2-yaQ@mail.gmail.com>
- <55622D00.4000308@mni.thm.de>
- <CAAxE2A4Zc3G+Rw9VcaAcXj24RJvZsBY1hW6RDA=Mt+aO6s2nKw@mail.gmail.com>
- <CAPM=9tzeBhg-srEZgud4p3AUx59GAA7ogastm7Jy8erq1-0zzw@mail.gmail.com>
- <5563264B.4010008@mni.thm.de>
- <CAKb7Uvj3CP3wBA1mWLhTdt-9RJRemHKYwqezOKD=GTw6zFOsbg@mail.gmail.com>
- <CAAxE2A6=9rK3XuJTexcg-dj0F_NWXHisg9OMv99mMvZ-4E2nVg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Wed, 27 May 2015 19:58:25 +0000
+Message-ID: <bug-90567-8800-HdQhp7LXJ0@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1538035471=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAxE2A6=9rK3XuJTexcg-dj0F_NWXHisg9OMv99mMvZ-4E2nVg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,58 +17,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAyNy4wNS4yMDE1IDE4OjI4LCBNYXJlayBPbMWhw6FrIHdyb3RlOgo+IEFub3RoZXIgdGhp
-bmcgdG8gY29uc2lkZXIgaXMgbGlua2luZyBzaGFkZXJzIHRoYXQgb2NjdXIgYmVmb3JlIHRoZQo+
-IHJhc3Rlcml6ZXIgKGUuZy4gYW55IHR3byBzaGFkZXJzIGZyb20gVlMtPlRDUy0+VEVTLT5HUyku
-IFRoZSBtYXhpbXVtCj4gbnVtYmVyIG9mIHdyaXR0ZW4gZGlzdGFuY2VzIGlzIHN0aWxsIDgsIGJ1
-dCB3aGF0IGhhcHBlbnMgaWYgVlMgd3JpdGVzCj4gMXggY2xpcCBhbmQgN3ggY3VsbCBhbmQgR1Mg
-cmVhZHMgOHggY2xpcCBhbmQgbm8gY3VsbD8KCmkgdGhpbmsgdGhpcyBzaG91bGQgYmUgcmVqZWN0
-ZWQgYW55d2F5IChpbiB0aGUgZ2xzbD8hKSwgY29uc3RyYWluaW5nIHZzIApvdXRwdXQgdG8gYmUg
-dGhlIHNhbWUgYXMgZ3MgaW5wdXQgd2hlcmUgdGhlIGxhc3QgZGVmaW5pdGlvbiBpcyB0aGUgdmFs
-aWQgCm9uZS4uLi4KCj4gICBJbiB0aGlzIGNhc2UKPiBpdCdzIGJhc2ljYWxseSBhIGdlbmVyaWMg
-dmFyeWluZy4gSG93IGlzIGxpbmtpbmcgc2VwYXJhdGUgc2hhZGVycwo+IHN1cHBvc2VkIHRvIHdv
-cmsgd2l0aCBvbmUgY29tYmluZWQgY2xpcC1vci1jdWxsIGFycmF5PyBJdCBkb2Vzbid0IHNlZW0K
-PiB0byBiZSBwb3NzaWJsZS4KPgo+IE1hcmVrCj4KPiBPbiBNb24sIE1heSAyNSwgMjAxNSBhdCA1
-OjA3IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiBPbiBN
-b24sIE1heSAyNSwgMjAxNSBhdCA5OjQwIEFNLCBUb2JpYXMgS2xhdXNtYW5uCj4+IDx0b2JpYXMu
-am9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdyb3RlOgo+Pj4gT24gMjUuMDUuMjAxNSAw
-NzoxNywgRGF2ZSBBaXJsaWUgd3JvdGU6Cj4+Pj4gT24gMjUgTWF5IDIwMTUgYXQgMDg6MTEsIE1h
-cmVrIE9sxaHDoWsgPG1hcmFlb0BnbWFpbC5jb20+IHdyb3RlOgo+Pj4+PiBJdCdzIHRoZSBzYW1l
-IG9uIFJhZGVvbi4gVGhlcmUgYXJlIDJ4IENsaXBPckN1bGxEaXN0YW5jZSBvdXRwdXQKPj4+Pj4g
-dmVjdG9ycyBhbmQgYSBtYXNrIHNheWluZyBpdCBzaG91bGQgY2xpcCBvciBjdWxsIG9yIGRvIG5v
-dGhpbmcuCj4+Pj4+Cj4+Pj4+IE1hcmVrCj4+Pj4+Cj4+Pj4gTXkgdGhpbmtpbmcgd2FzIGdhbGxp
-dW0gc2hvdWxkIGhhdmUgYSBzaW5nbGUgc2VtYW50aWMgYW5kIGEgbWFzayBpbgo+Pj4+IHRoZSBz
-aGFkZXIgZGVmaW5pdGlvbiBtYXliZS4KPj4+Pgo+Pj4+IHRob3VnaCBpdCBkb2Vzbid0IHNvbHZl
-IHRoZSBkb2VzIG52aWRpYSBkbyB0aGUgcmlnaHQgdGhpbmcgd2l0aAo+Pj4+IGN1bGxbMF0gYW5k
-IGNsaXBbMF0sIGFuZCB3aGF0IGlzIHRoZSByaWdodCB0aGluZy4KPj4+Pgo+Pj4+IERhdmUuCj4+
-Pgo+Pj4gSSdtIHN0aWxsIGNvbnZpbmNlZCB0aGF0IGJvdGggY2xpcFswXSBhbmQgY3VsbFswXSBz
-aG91bGQgYmUgcG9zc2libGUuIFBsdXMgaQo+Pj4gaGF2ZSB3cml0dGVuIGEgc2hhZGVyX3Rlc3Qg
-Zm9yIHRoaXMgYSB3aGlsZSBhZ28gd2hpY2ggeW91IHB1c2hlZCB0byBwaWdsaXQKPj4+IChmcy1j
-dWxsLWFuZC1jbGlwLWRpc3RhbmNlLWRpZmZlcmVudC5zaGFkZXJfdGVzdCkuIElmIGkgcmVtZW1i
-ZXIgcmlnaHQKPj4+IG52aWRpYSBwYXNzZWQgdGhhdCB0ZXN0IGp1c3QgZmluZS4KCkFoIGJ0dywg
-aWYgd2UgZm9sbG93IEJyaWFuIFBhdWwsIG92ZXJsYXBwaW5nIGluZGV4ZXMgYXJlIGZpbmUhIChh
-bmQgaXQgCmlzIHdheSBtb3JlIGludHVpdGl2ZSB0byB1c2UgZm9yIGEgc2hhZGVyIGRldmVsb3Bl
-cikKCj4+IE15IHRha2UgKGFuZCBub3RlIHRoYXQgSSBsYXN0IHJlYWQgdGhlIGV4dGVuc2lvbiBt
-YW55IG1vbnRocyBhZ28pIGlzCj4+IHRoYXQgeW91J3JlIHN1cHBvc2VkIHRvIGZpZ3VyZSBvdXQg
-dGhlIG1heCBnbF9DbGlwRGlzdGFuY2VbXSB3cml0dGVuLAo+PiBhbmQgdGhlbiB3cml0ZSBhbGwg
-eW91ciBjdWxsIGRpc3RhbmNlcyBhYm92ZSB0aGF0LiBTbyBpZiB5b3UsIGUuZy4sCj4+IGhhdmUg
-c29tZXRoaW5nIGxpa2UKPj4KPj4gZ2xfQ2xpcERpc3RhbmNlWzVdID0gMTsKPj4gZ2xfQ3VsbERp
-c3RhbmNlWzBdID0gMTsKPj4KPj4gVGhlbiBpdCB3b3VsZCBkZWNpZGUgdGhhdCB0aGVyZSBhcmUg
-NiBjbGlwIGRpc3RhbmNlcyAob3IgaWYgdGhlcmUncyBhbgo+PiBleHBsaWNpdCBvdXQgZmxvYXQg
-Z2xfQ2xpcERpc3RhbmNlW25dLCB0aGVuIHVzZSB0aGF0KSwgYW5kIDEgY3VsbAo+PiBkaXN0YW5j
-ZS4gSW4gdGhlIFRHU0ksIEknbSB0aGlua2luZyB0aGlzIG1pZ2h0IGxvb2sgYXBwcm94aW1hdGVs
-eSBsaWtlCj4+Cj4+IFBST1BFUlRZIENVTExfTUFTSyAoMTw8NikKPj4gRENMIE9VVFswXSwgQ0xJ
-UERJU1RbMF0KPj4gRENMIE9VVFsxXSwgQ0xJUERJU1RbMV0KPj4gTU9WIE9VVFsxXS55LCAxIChj
-bGlwIGRpc3RhbmNlWzVdKQo+PiBNT1YgT1VUWzFdLnosIDEgKGN1bGwgZGlzdGFuY2VbMF0pCj4+
-Cj4+IFRoZW4gYmFzaWNhbGx5IHlvdSdkIGhhdmUKPj4KPj4gKHJhc3QtPmNsaXBfZW5hYmxlICYg
-c2hhZGVyLT5hY3R1YWxfY2xpcF93cml0ZXNfbWFzaykgfCBjdWxsX21hc2sgPQo+PiB0aGUgZW5h
-YmxlZCBkaXN0YW5jZXMKPj4gY3VsbF9tYXNrID0gY3VsbCBtYXNrCj4+Cj4+IFRoaXMgd291bGQg
-d29yayAqdmVyeSogd2VsbCBmb3Igbm91dmVhdSwgbm90IHN1cmUgaG93IHN1aXRhYmxlIGl0IGlz
-Cj4+IGZvciBvdGhlciBoYXJkd2FyZS4KPj4KPj4gQ2hlZXJzLAo+Pgo+PiAgICAtaWxpYQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1538035471==
+Content-Type: multipart/alternative; boundary="1432756705.b7bbE121.11572"; charset="UTF-8"
+
+
+--1432756705.b7bbE121.11572
+Date: Wed, 27 May 2015 19:58:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
+
+--- Comment #23 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Archlinux ships apitrace version 6.1.
+
+With the latest git version, it doesn't seem to segfault but the kernel errors
+are not reproducible...
+
+I don't know what else I can do :/
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432756705.b7bbE121.11572
+Date: Wed, 27 May 2015 19:58:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c23">Comment # 23</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
+</span></b>
+        <pre>Archlinux ships apitrace version 6.1.
+
+With the latest git version, it doesn't seem to segfault but the kernel errors
+are not reproducible...
+
+I don't know what else I can do :/</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432756705.b7bbE121.11572--
+
+--===============1538035471==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1538035471==--
