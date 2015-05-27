@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Wed, 27 May 2015 15:08:20 +0000
-Message-ID: <bug-90567-8800-grxZCvzzY3@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90435] [NV46] moving 3D objects drawn static
+Date: Wed, 27 May 2015 15:26:36 +0000
+Message-ID: <bug-90435-8800-YTAb9boPJg@http.bugs.freedesktop.org/>
+References: <bug-90435-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2083560959=="
+Content-Type: multipart/mixed; boundary="===============1976450490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,50 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2083560959==
-Content-Type: multipart/alternative; boundary="1432739300.BDDEA1.17133"; charset="UTF-8"
+--===============1976450490==
+Content-Type: multipart/alternative; boundary="1432740395.0EfeE1.22619"; charset="UTF-8"
 
 
---1432739300.BDDEA1.17133
-Date: Wed, 27 May 2015 15:08:20 +0000
+--1432740395.0EfeE1.22619
+Date: Wed, 27 May 2015 15:26:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
+https://bugs.freedesktop.org/show_bug.cgi?id=90435
 
---- Comment #21 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I haven't been able to reproduce the issue with a trace, I tried multiple ones.
+--- Comment #12 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
+(In reply to Hans de Goede from comment #11)
+> Hi all,
+> 
+> I've been looking into this toay, it seems that with the latest
+> xf86-video-nouveau + latest mesa (both git master) I can reproduce the
+> problem and work around it by starting glxgears like this:
+> 
+> "vblank_mode=0 glxgears"
+> 
+> I need this workaround on both mesa-10.0 and mesa-git-master, so it seems
+> that whatever problem Ilya was original seeing has been fixed in
+> mesa-git-master.
+> 
+> Ilya can you please try mesa-git-master and if that does not work (the
+> vblank issue may be specific to my card), try it with: "vblank_mode=0
+> glxgears" ?
+> 
 
-I realized that when retracing, with verbose output, I get this in the end:
-
-451252 @0 glEnable(cap = GL_BLEND) // incomplete
-453956 @1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0) //
-incomplete
-apitrace: warning: caught signal 11
-453956: error: caught an unhandled exception
-glretrace+0x2a637c
-/usr/lib/libpthread.so.0+0x1065f
-glretrace+0x217db2
-glretrace+0xf363
-glretrace+0xb2d5
-glretrace+0xb8eb
-/usr/lib/libpthread.so.0+0x7353
-/usr/lib/libc.so.6: clone+0x6c
-?
-apitrace: info: taking default action for signal 11
-Erreur de segmentation (core dumped)
-
-The last 2 calls seem incomplete (not completely traced by apitrace ?) and
-then, glretrace crashes.
-
-Is there a way to end apitrace32 to properly generate the end of the trace ?
+I have not already tested git-version, but the mesa 10.5.5 from Arch the
+vblank_mode=0 works good for me. glxgears, lugaru, sauerbraten work fine (slow,
+but, it wokrs).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432739300.BDDEA1.17133
-Date: Wed, 27 May 2015 15:08:20 +0000
+--1432740395.0EfeE1.22619
+Date: Wed, 27 May 2015 15:26:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,39 +72,35 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c21">Comment # 21</a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
+   title="NEW - [NV46] moving 3D objects drawn static"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
+              from <span class="vcard"><a class="email" href="mailto:dikiy_evrej&#64;web.de" title="Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <span class="fn">Ilya</span></a>
 </span></b>
-        <pre>I haven't been able to reproduce the issue with a trace, I tried multiple ones.
+        <pre>(In reply to Hans de Goede from <a href="show_bug.cgi?id=90435#c11">comment #11</a>)
+<span class="quote">&gt; Hi all,
+&gt; 
+&gt; I've been looking into this toay, it seems that with the latest
+&gt; xf86-video-nouveau + latest mesa (both git master) I can reproduce the
+&gt; problem and work around it by starting glxgears like this:
+&gt; 
+&gt; &quot;vblank_mode=0 glxgears&quot;
+&gt; 
+&gt; I need this workaround on both mesa-10.0 and mesa-git-master, so it seems
+&gt; that whatever problem Ilya was original seeing has been fixed in
+&gt; mesa-git-master.
+&gt; 
+&gt; Ilya can you please try mesa-git-master and if that does not work (the
+&gt; vblank issue may be specific to my card), try it with: &quot;vblank_mode=0
+&gt; glxgears&quot; ?
+&gt; </span >
 
-I realized that when retracing, with verbose output, I get this in the end:
-
-451252 &#64;0 glEnable(cap = GL_BLEND) // incomplete
-453956 &#64;1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0) //
-incomplete
-apitrace: warning: caught signal 11
-453956: error: caught an unhandled exception
-glretrace+0x2a637c
-/usr/lib/libpthread.so.0+0x1065f
-glretrace+0x217db2
-glretrace+0xf363
-glretrace+0xb2d5
-glretrace+0xb8eb
-/usr/lib/libpthread.so.0+0x7353
-/usr/lib/libc.so.6: clone+0x6c
-?
-apitrace: info: taking default action for signal 11
-Erreur de segmentation (core dumped)
-
-The last 2 calls seem incomplete (not completely traced by apitrace ?) and
-then, glretrace crashes.
-
-Is there a way to end apitrace32 to properly generate the end of the trace ?</pre>
+I have not already tested git-version, but the mesa 10.5.5 from Arch the
+vblank_mode=0 works good for me. glxgears, lugaru, sauerbraten work fine (slow,
+but, it wokrs).</pre>
         </div>
       </p>
       <hr>
@@ -121,9 +112,9 @@ Is there a way to end apitrace32 to properly generate the end of the trace ?</pr
     </body>
 </html>
 
---1432739300.BDDEA1.17133--
+--1432740395.0EfeE1.22619--
 
---===============2083560959==
+--===============1976450490==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -133,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2083560959==--
+--===============1976450490==--
