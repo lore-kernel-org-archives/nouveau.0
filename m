@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90682] [NVE6] failed to idle channel 0xcccc0001 +
-	crash
-Date: Wed, 27 May 2015 14:47:26 +0000
-Message-ID: <bug-90682-8800-onrCv0TOMb@http.bugs.freedesktop.org/>
-References: <bug-90682-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Wed, 27 May 2015 15:08:20 +0000
+Message-ID: <bug-90567-8800-grxZCvzzY3@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0745822912=="
+Content-Type: multipart/mixed; boundary="===============2083560959=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90682-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,50 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0745822912==
-Content-Type: multipart/alternative; boundary="1432738046.ED6aEd2.10594"; charset="UTF-8"
+--===============2083560959==
+Content-Type: multipart/alternative; boundary="1432739300.BDDEA1.17133"; charset="UTF-8"
 
 
---1432738046.ED6aEd2.10594
-Date: Wed, 27 May 2015 14:47:26 +0000
+--1432739300.BDDEA1.17133
+Date: Wed, 27 May 2015 15:08:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90682
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
 
-Tobias Klausmann <tobias.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org> changed:
+--- Comment #21 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I haven't been able to reproduce the issue with a trace, I tried multiple ones.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|failed to idle channel      |[NVE6] failed to idle
-                   |0xcccc0001 then crash       |channel 0xcccc0001 + crash
+I realized that when retracing, with verbose output, I get this in the end:
+
+451252 @0 glEnable(cap = GL_BLEND) // incomplete
+453956 @1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0) //
+incomplete
+apitrace: warning: caught signal 11
+453956: error: caught an unhandled exception
+glretrace+0x2a637c
+/usr/lib/libpthread.so.0+0x1065f
+glretrace+0x217db2
+glretrace+0xf363
+glretrace+0xb2d5
+glretrace+0xb8eb
+/usr/lib/libpthread.so.0+0x7353
+/usr/lib/libc.so.6: clone+0x6c
+?
+apitrace: info: taking default action for signal 11
+Erreur de segmentation (core dumped)
+
+The last 2 calls seem incomplete (not completely traced by apitrace ?) and
+then, glretrace crashes.
+
+Is there a way to end apitrace32 to properly generate the end of the trace ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432738046.ED6aEd2.10594
-Date: Wed, 27 May 2015 14:47:26 +0000
+--1432739300.BDDEA1.17133
+Date: Wed, 27 May 2015 15:08:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +72,45 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:tobias.klausmann&#64;mni.thm.de" title="Tobias Klausmann &lt;tobias.klausmann&#64;mni.thm.de&gt;"> <span class="fn">Tobias Klausmann</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6] failed to idle channel 0xcccc0001 + crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90682">bug 90682</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>failed to idle channel 0xcccc0001 then crash
-           </td>
-           <td>[NVE6] failed to idle channel 0xcccc0001 + crash
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
+</span></b>
+        <pre>I haven't been able to reproduce the issue with a trace, I tried multiple ones.
+
+I realized that when retracing, with verbose output, I get this in the end:
+
+451252 &#64;0 glEnable(cap = GL_BLEND) // incomplete
+453956 &#64;1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0) //
+incomplete
+apitrace: warning: caught signal 11
+453956: error: caught an unhandled exception
+glretrace+0x2a637c
+/usr/lib/libpthread.so.0+0x1065f
+glretrace+0x217db2
+glretrace+0xf363
+glretrace+0xb2d5
+glretrace+0xb8eb
+/usr/lib/libpthread.so.0+0x7353
+/usr/lib/libc.so.6: clone+0x6c
+?
+apitrace: info: taking default action for signal 11
+Erreur de segmentation (core dumped)
+
+The last 2 calls seem incomplete (not completely traced by apitrace ?) and
+then, glretrace crashes.
+
+Is there a way to end apitrace32 to properly generate the end of the trace ?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +121,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1432738046.ED6aEd2.10594--
+--1432739300.BDDEA1.17133--
 
---===============0745822912==
+--===============2083560959==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +133,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0745822912==--
+--===============2083560959==--
