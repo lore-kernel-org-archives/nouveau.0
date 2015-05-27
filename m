@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Wed, 27 May 2015 05:31:57 +0000
-Message-ID: <bug-90567-8800-rn2SifHJgm@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] fix a wrong use of a logical operator in
+	drmmode_output_dpms()
+Date: Wed, 27 May 2015 13:23:37 +0200
+Message-ID: <5565A939.7060800@gmail.com>
+References: <1432134538-13701-1-git-send-email-samuel.pitoiset@inria.fr>	<555CC056.4020006@mni.thm.de>	<CAKb7Uvhy-o3-iAZD+EJLhhHVDGc_Zvm=-exna8waTa9QV_CVvA@mail.gmail.com>	<555CC3C1.3010102@gmail.com>
+ <CAPM=9tyH-Xo09iAQ=0F-Vk8YtEDQkaaeLdDnmOwpDkEdC2t=sw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1234180539=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAPM=9tyH-Xo09iAQ=0F-Vk8YtEDQkaaeLdDnmOwpDkEdC2t=sw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,96 +19,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1234180539==
-Content-Type: multipart/alternative; boundary="1432704716.5ACaA1.32053"; charset="UTF-8"
-
-
---1432704716.5ACaA1.32053
-Date: Wed, 27 May 2015 05:31:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #20 from Detlev Casanova <detlev.casanova-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'm not sure you can do it with a new account, the game is very restrictive.
-The bug occurs with every type of game. To avoid being banned for leaving an
-actual game (that's not fair because i would leave a team with 4 against 5), I
-create a custom game with bots:
-
-Launch -> login -> play -> select Custom -> Normal -> Create game -> Team size:
-1 -> Create game -> Add Bot in team 2 -> Start game -> click yes -> select a
-champion -> Lock In -> Wait for freeze.
-
-To generate the trace, I ran playonlinux within apitrace32. I recommand
-installing league of legends from playonlinux.
-
-I'll try to generate a new trace tonight.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1432704716.5ACaA1.32053
-Date: Wed, 27 May 2015 05:31:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:detlev.casanova&#64;gmail.com" title="Detlev Casanova &lt;detlev.casanova&#64;gmail.com&gt;"> <span class="fn">Detlev Casanova</span></a>
-</span></b>
-        <pre>I'm not sure you can do it with a new account, the game is very restrictive.
-The bug occurs with every type of game. To avoid being banned for leaving an
-actual game (that's not fair because i would leave a team with 4 against 5), I
-create a custom game with bots:
-
-Launch -&gt; login -&gt; play -&gt; select Custom -&gt; Normal -&gt; Create game -&gt; Team size:
-1 -&gt; Create game -&gt; Add Bot in team 2 -&gt; Start game -&gt; click yes -&gt; select a
-champion -&gt; Lock In -&gt; Wait for freeze.
-
-To generate the trace, I ran playonlinux within apitrace32. I recommand
-installing league of legends from playonlinux.
-
-I'll try to generate a new trace tonight.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1432704716.5ACaA1.32053--
-
---===============1234180539==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1234180539==--
+CgpPbiAwNS8yMS8yMDE1IDA2OjQwIEFNLCBEYXZlIEFpcmxpZSB3cm90ZToKPiBPbiAyMSBNYXkg
+MjAxNSBhdCAwMzoyNiwgU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29t
+PiB3cm90ZToKPj4KPj4gT24gMDUvMjAvMjAxNSAwNzoxMyBQTSwgSWxpYSBNaXJraW4gd3JvdGU6
+Cj4+PiBUaGlzIGlzIG9idmlvdXNseSBhIGJ1ZywgYnV0IG9uZSB0aGF0IGhhcyBiZWVuIHRoZXJl
+IGZvciBzb21lIHRpbWUuCj4+PiBQbGVhc2UgZmlndXJlIG91dCB3aGF0IHRoaXMgaXMgZ3VhcmRp
+bmcsIGFuZCBjb25maXJtIHRoYXQgdGhlIGZlYXR1cmUKPj4+IGNvbnRpbnVlcyB0byB3b3JrLgo+
+Pgo+PiBTdXJlLCBidXQgZG8geW91IGhhdmUgYW55IGlkZWFzIGhvdyB0byB0ZXN0IHRoaXMgcGFy
+dCBvZiB0aGUgRERYID8KPj4gSXQncyB0aGUgZmlyc3QgdGltZSBJIHBsYXkgd2l0aCBpdC4uLgo+
+Pgo+IEl0J3MgZmluZSwgdGhlIGNvZGUganVzdCBhdm9pZHMgZ29pbmcgaW50byB0aGUgbmFtZSBj
+aGVja3MgaWYgdGhlIHR5cGUKPiBpc24ndCBhIGVudW0sCj4gaXQgd29uJ3QgYnJlYWsgYW55dGhp
+bmcgYWN0dWFsbHkgZml4aW5nIGl0Lgo+Cj4gVGhlIGZpeCBpcwo+Cj4gUmV2aWV3ZWQtYnk6IERh
+dmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CgpPa2F5LCB0aGFua3MgRGF2ZS4KX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
