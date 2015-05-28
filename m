@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Thu, 28 May 2015 12:20:21 +0000
-Message-ID: <bug-90276-8800-lY8o0stjLC@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77003] [NV50] Fan speed to high with Kernel versions
+ 3.13.x - Nvidia GeForce GTS 240 (NV92)
+Date: Thu, 28 May 2015 12:28:03 +0000
+Message-ID: <bug-77003-8800-Xl6ox54WtV@http.bugs.freedesktop.org/>
+References: <bug-77003-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0530516272=="
+Content-Type: multipart/mixed; boundary="===============0732391029=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77003-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0530516272==
-Content-Type: multipart/alternative; boundary="1432815621.DbbD1.13689"; charset="UTF-8"
+--===============0732391029==
+Content-Type: multipart/alternative; boundary="1432816084.ce43fab1.16243"; charset="UTF-8"
 
 
---1432815621.DbbD1.13689
-Date: Thu, 28 May 2015 12:20:21 +0000
+--1432816084.ce43fab1.16243
+Date: Thu, 28 May 2015 12:28:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
+https://bugs.freedesktop.org/show_bug.cgi?id=77003
 
-Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Roman Spirgi <the.ant-hi6Y0CQ0nG0@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|[NVE6] screen freeze with   |[NVE4] read fault error,
-                   |PDISP errors, bisected      |bisected
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
+
+--- Comment #8 from Roman Spirgi <the.ant-hi6Y0CQ0nG0@public.gmane.org> ---
+Obsolete, changed my hardware
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432815621.DbbD1.13689
-Date: Thu, 28 May 2015 12:20:21 +0000
+--1432816084.ce43fab1.16243
+Date: Thu, 28 May 2015 12:28:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,12 +55,12 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:the.ant&#64;gmx.net" title="Roman Spirgi &lt;the.ant&#64;gmx.net&gt;"> <span class="fn">Roman Spirgi</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003">bug 77003</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -66,13 +70,34 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NVE6] screen freeze with PDISP errors, bisected
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>[NVE4] read fault error, bisected
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV50] Fan speed to high with Kernel versions 3.13.x - Nvidia GeForce GTS 240 (NV92)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77003">bug 77003</a>
+              from <span class="vcard"><a class="email" href="mailto:the.ant&#64;gmx.net" title="Roman Spirgi &lt;the.ant&#64;gmx.net&gt;"> <span class="fn">Roman Spirgi</span></a>
+</span></b>
+        <pre>Obsolete, changed my hardware</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1432815621.DbbD1.13689--
+--1432816084.ce43fab1.16243--
 
---===============0530516272==
+--===============0732391029==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0530516272==--
+--===============0732391029==--
