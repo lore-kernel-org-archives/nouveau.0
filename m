@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
  inconsistent display
-Date: Thu, 28 May 2015 15:06:05 +0000
-Message-ID: <bug-89730-8800-RKFJs7fite@http.bugs.freedesktop.org/>
+Date: Thu, 28 May 2015 15:25:27 +0000
+Message-ID: <bug-89730-8800-cJqBnW3Spd@http.bugs.freedesktop.org/>
 References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2093012529=="
+Content-Type: multipart/mixed; boundary="===============0471471379=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2093012529==
-Content-Type: multipart/alternative; boundary="1432825565.d8eF1.2585"; charset="UTF-8"
+--===============0471471379==
+Content-Type: multipart/alternative; boundary="1432826727.4d2FB1.8233"; charset="UTF-8"
 
 
---1432825565.d8eF1.2585
-Date: Thu, 28 May 2015 15:06:05 +0000
+--1432826727.4d2FB1.8233
+Date: Thu, 28 May 2015 15:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89730
 
---- Comment #23 from andrew p. <pan.pav.7c5-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #22)
-> Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing
-> this anyways. Oh well.
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to andrew p. from comment #23)
+> (In reply to Ilia Mirkin from comment #22)
+> > Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing
+> > this anyways. Oh well.
+> 
+> Is it bad, right? So, no hope in the near future?
 
-Is it bad, right? So, no hope in the near future?
+It's good that it does that. It's bad for figuring out what the cause of the
+bug is.
+
+*Ideally* someone would submit an x11trace (aka xtrace too) of the buggy
+application so that we can better see what's going on. I have no experience
+analyzing such traces, but everything should be in there...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432825565.d8eF1.2585
-Date: Thu, 28 May 2015 15:06:05 +0000
+--1432826727.4d2FB1.8233
+Date: Thu, 28 May 2015 15:25:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +66,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c23">Comment # 23</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
-              from <span class="vcard"><a class="email" href="mailto:pan.pav.7c5&#64;gmail.com" title="andrew p. &lt;pan.pav.7c5&#64;gmail.com&gt;"> <span class="fn">andrew p.</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89730#c22">comment #22</a>)
-<span class="quote">&gt; Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing
-&gt; this anyways. Oh well.</span >
+        <pre>(In reply to andrew p. from <a href="show_bug.cgi?id=89730#c23">comment #23</a>)
+<span class="quote">&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89730#c22">comment #22</a>)
+&gt; &gt; Ben tells me that nouveau_bo_wait (called by nouveau_bo_map) ends up doing
+&gt; &gt; this anyways. Oh well.
+&gt; 
+&gt; Is it bad, right? So, no hope in the near future?</span >
 
-Is it bad, right? So, no hope in the near future?</pre>
+It's good that it does that. It's bad for figuring out what the cause of the
+bug is.
+
+*Ideally* someone would submit an x11trace (aka xtrace too) of the buggy
+application so that we can better see what's going on. I have no experience
+analyzing such traces, but everything should be in there...</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +97,9 @@ Is it bad, right? So, no hope in the near future?</pre>
     </body>
 </html>
 
---1432825565.d8eF1.2585--
+--1432826727.4d2FB1.8233--
 
---===============2093012529==
+--===============0471471379==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2093012529==--
+--===============0471471379==--
