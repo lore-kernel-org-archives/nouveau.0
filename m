@@ -1,13 +1,12 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v2 8/9] acpi: Add support for Apple Gmux _DMS
-Date: Thu, 28 May 2015 10:52:56 +0200 (CEST)
-Message-ID: <1121819706.18409644.1432803176893.JavaMail.root@spooler8-g27.priv.proxad.net>
-References: <1432795249-4458-8-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90276] [NVE4] read fault error, bisected
+Date: Thu, 28 May 2015 12:20:21 +0000
+Message-ID: <bug-90276-8800-lY8o0stjLC@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0530516272=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1432795249-4458-8-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,53 +16,83 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgRGF2ZSwKCgotLS0tLSBNYWlsIG9yaWdpbmFsIC0tLS0tCj4gQ2hhbmdlcyBzaW5jZSB2MToK
-Wy4uLl0KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV92Z2EuYyBiL2RybS9ub3V2
-ZWF1L25vdXZlYXVfdmdhLmMKPiBpbmRleCA5YTYzMjhmLi43YjEzODA0IDEwMDY0NAo+IC0tLSBh
-L2RybS9ub3V2ZWF1L25vdXZlYXVfdmdhLmMKPiArKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X3Zn
-YS5jCj4gQEAgLTM2LDcgKzM2LDcgQEAgbm91dmVhdV9zd2l0Y2hlcm9vX3NldF9zdGF0ZShzdHJ1
-Y3QgcGNpX2RldiAqcGRldiwKPiAgewo+ICAJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IHBjaV9n
-ZXRfZHJ2ZGF0YShwZGV2KTsKPiAgCj4gLQlpZiAoKG5vdXZlYXVfaXNfb3B0aW11cygpIHx8IG5v
-dXZlYXVfaGFzX211eCgpKSAmJiBzdGF0ZSA9PQo+IFZHQV9TV0lUQ0hFUk9PX09GRikKCklmIEkg
-dW5kZXJzdGFuZCBpdCBjb3JyZWN0bHksIGlmIHRoZSBsYXB0b3AgaXMgYW4gT3B0aW11cyBvbmUg
-b3IgaGFzIGEgbXV4LCB3ZSBhcmUgbm90ICJhbGxvd2VkIiB0byBvcHQtb3V0IG9mIER5blB3ci9E
-eW5PZmYgYnkgcG93ZXJpbmcgZG93biB0aGUgY2FyZD8KSW4gdGhlIHNhbWUgY29tbWl0IGFkZGlu
-ZyB0aGlzIGNvbmRpdGlvbmFsICg1YWRkY2YwYTVmMGZhZGNlYmE2YmQ1NjJkMDYxNmExYzVkNGMx
-YTRkKSwgeW91IGFkZGVkIHRoZSBwb3NzaWJpbGl0eSB0byBlbmFibGUvZGlzYWJsZSBkeW5wbS4g
-SG93IGlzIGl0IHN1cHBvc2VkIHRvIHdvcmssIGJ5IHNpbXBseSBlY2hvJ2luZyBPTiBvciBPRkYg
-dG8gdmdhX3N3aXRjaGVyb28vc3dpdGNoPyBUaGVuIEkgcHJvYmFibHkgZm9yZ290IHNvbWUgc3R1
-ZmYgYXMgaXQgZG9lc24ndCB3YW50IHRvIHdvcmsgb24gbXkgbGFwdG9wLgoKUGllcnJlCgo+ICsJ
-aWYgKG5vdXZlYXVfaGFzX2RzbSgpICYmIHN0YXRlID09IFZHQV9TV0lUQ0hFUk9PX09GRikKPiAg
-CQlyZXR1cm47Cj4gIAo+ICAJaWYgKHN0YXRlID09IFZHQV9TV0lUQ0hFUk9PX09OKSB7Cj4gQEAg
-LTk2LDExICs5NiwxMSBAQCBub3V2ZWF1X3ZnYV9pbml0KHN0cnVjdCBub3V2ZWF1X2RybSAqZHJt
-KQo+ICAKPiAgCWlmIChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gMSkKPiAgCQlydW50aW1lID0gdHJ1
-ZTsKPiAtCWlmICgobm91dmVhdV9ydW50aW1lX3BtID09IC0xKSAmJiAobm91dmVhdV9pc19vcHRp
-bXVzKCkgfHwKPiBub3V2ZWF1X2hhc19tdXgoKSkpCj4gKwlpZiAoKG5vdXZlYXVfcnVudGltZV9w
-bSA9PSAtMSkgJiYgbm91dmVhdV9oYXNfZHNtKCkpCj4gIAkJcnVudGltZSA9IHRydWU7Cj4gIAl2
-Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9jbGllbnQoZGV2LT5wZGV2LCAmbm91dmVhdV9zd2l0Y2hl
-cm9vX29wcywKPiAgCXJ1bnRpbWUpOwo+ICAKPiAtCWlmIChydW50aW1lICYmIG5vdXZlYXVfaGFz
-X211eCgpICYmICFub3V2ZWF1X2lzX29wdGltdXMoKSkKPiArCWlmIChydW50aW1lICYmIChub3V2
-ZWF1X2hhc19tdXgoKSB8fCBub3V2ZWF1X2hhc19nbXV4KCkpICYmCj4gIW5vdXZlYXVfaXNfb3B0
-aW11cygpKQo+ICAJCXZnYV9zd2l0Y2hlcm9vX2luaXRfZG9tYWluX3BtX29wcyhkcm0tPmRldi0+
-ZGV2LAo+ICAJCSZkcm0tPnZnYV9wbV9kb21haW4pOwo+ICB9Cj4gIAo+IEBAIC0xMTIsMTEgKzEx
-MiwxMSBAQCBub3V2ZWF1X3ZnYV9maW5pKHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtKQo+ICAKPiAg
-CWlmIChub3V2ZWF1X3J1bnRpbWVfcG0gPT0gMSkKPiAgCQlydW50aW1lID0gdHJ1ZTsKPiAtCWlm
-ICgobm91dmVhdV9ydW50aW1lX3BtID09IC0xKSAmJiAobm91dmVhdV9pc19vcHRpbXVzKCkgfHwK
-PiBub3V2ZWF1X2hhc19tdXgoKSkpCj4gKwlpZiAoKG5vdXZlYXVfcnVudGltZV9wbSA9PSAtMSkg
-JiYgbm91dmVhdV9oYXNfZHNtKCkpCj4gIAkJcnVudGltZSA9IHRydWU7Cj4gIAo+ICAJdmdhX3N3
-aXRjaGVyb29fdW5yZWdpc3Rlcl9jbGllbnQoZGV2LT5wZGV2KTsKPiAtCWlmIChydW50aW1lICYm
-IG5vdXZlYXVfaGFzX211eCgpICYmICFub3V2ZWF1X2lzX29wdGltdXMoKSkKPiArCWlmIChydW50
-aW1lICYmIChub3V2ZWF1X2hhc19tdXgoKSB8fCBub3V2ZWF1X2hhc19nbXV4KCkpICYmCj4gIW5v
-dXZlYXVfaXNfb3B0aW11cygpKQo+ICAJCXZnYV9zd2l0Y2hlcm9vX2ZpbmlfZG9tYWluX3BtX29w
-cyhkcm0tPmRldi0+ZGV2KTsKPiAgCXZnYV9jbGllbnRfcmVnaXN0ZXIoZGV2LT5wZGV2LCBOVUxM
-LCBOVUxMLCBOVUxMKTsKPiAgfQo+IC0tCj4gMi40LjIKPiAKPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbm91dmVhdQo=
+
+--===============0530516272==
+Content-Type: multipart/alternative; boundary="1432815621.DbbD1.13689"; charset="UTF-8"
+
+
+--1432815621.DbbD1.13689
+Date: Thu, 28 May 2015 12:20:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
+
+Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE6] screen freeze with   |[NVE4] read fault error,
+                   |PDISP errors, bisected      |bisected
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1432815621.DbbD1.13689
+Date: Thu, 28 May 2015 12:20:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE6] screen freeze with PDISP errors, bisected
+           </td>
+           <td>[NVE4] read fault error, bisected
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1432815621.DbbD1.13689--
+
+--===============0530516272==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0530516272==--
