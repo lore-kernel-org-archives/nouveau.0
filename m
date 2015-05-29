@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
- inconsistent display
-Date: Fri, 29 May 2015 04:35:09 +0000
-Message-ID: <bug-89730-8800-Mg0Gm85EcN@http.bugs.freedesktop.org/>
-References: <bug-89730-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Fri, 29 May 2015 21:43:38 +0000
+Message-ID: <bug-82714-8800-FqPupN1OKf@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0050613347=="
+Content-Type: multipart/mixed; boundary="===============0833780720=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0050613347==
-Content-Type: multipart/alternative; boundary="1432874109.Ebc45Ac81.30262"; charset="UTF-8"
+--===============0833780720==
+Content-Type: multipart/alternative; boundary="1432935818.abae72.28815"; charset="UTF-8"
 
 
---1432874109.Ebc45Ac81.30262
-Date: Fri, 29 May 2015 04:35:09 +0000
+--1432935818.abae72.28815
+Date: Fri, 29 May 2015 21:43:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89730
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #14 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Could you please run `nvapeek 8841c` and post the result here please? If you
+get a non-zero value v, write value = (v & 0xffffff00) to 8841c using `nvapoke
+8841c value` **before** loading Nouveau. nvapeek and nvapoke are found in the
+envytools repo: https://github.com/envytools/envytools
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #116137|text/plain                  |application/octet-stream
-          mime type|                            |
+This works on my laptop---finally no more evo_wait errors---, but it remains a
+temporary fix.
+If it works on your machine too, I'll probably ask you for a mmiotrace of the
+blob, except if I write and get some answers from Nvidia, so no rush. :-)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1432874109.Ebc45Ac81.30262
-Date: Fri, 29 May 2015 04:35:09 +0000
+--1432935818.abae72.28815
+Date: Fri, 29 May 2015 21:43:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +55,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #116137 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/octet-stream
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>Could you please run `nvapeek 8841c` and post the result here please? If you
+get a non-zero value v, write value = (v &amp; 0xffffff00) to 8841c using `nvapoke
+8841c value` **before** loading Nouveau. nvapeek and nvapoke are found in the
+envytools repo: <a href="https://github.com/envytools/envytools">https://github.com/envytools/envytools</a>
+
+This works on my laptop---finally no more evo_wait errors---, but it remains a
+temporary fix.
+If it works on your machine too, I'll probably ask you for a mmiotrace of the
+blob, except if I write and get some answers from Nvidia, so no rush. :-)</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1432874109.Ebc45Ac81.30262--
+--1432935818.abae72.28815--
 
---===============0050613347==
+--===============0833780720==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0050613347==--
+--===============0833780720==--
