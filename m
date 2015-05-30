@@ -1,120 +1,110 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
-Date: Sat, 30 May 2015 18:27:06 +0000
-Message-ID: <bug-82714-8800-znW7SmM2m5@http.bugs.freedesktop.org/>
-References: <bug-82714-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow@free.fr>
+Subject: Re: [Nouveau] [PATCH v2 8/9] acpi: Add support for Apple Gmux _DMS
+Date: Sat, 30 May 2015 23:21:41 +0200 (CEST)
+Message-ID: <485970014.25490398.1433020901437.JavaMail.root@spooler8-g27.priv.proxad.net>
+References: <20150530182346.GA3625@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1174452036=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20150530182346.GA3625@wunner.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Lukas Wunner <lukas@wunner.de>
+Cc: nouveau@lists.freedesktop.org, bskeggs@redhat.com, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1174452036==
-Content-Type: multipart/alternative; boundary="1433010426.B84E6CcF2.7761"; charset="UTF-8"
-
-
---1433010426.B84E6CcF2.7761
-Date: Sat, 30 May 2015 18:27:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=82714
-
---- Comment #18 from Bruno <bonbons-lhzhVDjRGQBulxpn9UvDqw@public.gmane.org> ---
-Created attachment 116185
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116185&action=edit
-linux-4.1-rc5+
-
-Same 4.1-rc5+ kernel but this time around performing nvapeek/nvapoke.
-
-Doing the peek/poke makes display get signal over DVI but does not prevent the
-system from freezing after X has started.
-
-The last lines of output from X were (the COPY failure coming some time after
-the rest):
-(--) Depth 24 pixmap format is 32 bpp
-(II) NOUVEAU(0): Channel setup complete.
-(EE) NOUVEAU(0): [COPY] failed to allocate class.
-
-
-The PGRAPH/VM FLUSH timeouts look like they could have something to do with the
-freeze and be cause of X COPY failure.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1433010426.B84E6CcF2.7761
-Date: Sat, 30 May 2015 18:27:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-              from <span class="vcard"><a class="email" href="mailto:bonbons&#64;sysophe.eu" title="Bruno &lt;bonbons&#64;sysophe.eu&gt;"> <span class="fn">Bruno</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116185" name="attach_116185" title="linux-4.1-rc5+">attachment 116185</a> <a href="attachment.cgi?id=116185&amp;action=edit" title="linux-4.1-rc5+">[details]</a></span>
-linux-4.1-rc5+
-
-Same 4.1-rc5+ kernel but this time around performing nvapeek/nvapoke.
-
-Doing the peek/poke makes display get signal over DVI but does not prevent the
-system from freezing after X has started.
-
-The last lines of output from X were (the COPY failure coming some time after
-the rest):
-(--) Depth 24 pixmap format is 32 bpp
-(II) NOUVEAU(0): Channel setup complete.
-(EE) NOUVEAU(0): [COPY] failed to allocate class.
-
-
-The PGRAPH/VM FLUSH timeouts look like they could have something to do with the
-freeze and be cause of X COPY failure.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433010426.B84E6CcF2.7761--
-
---===============1174452036==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1174452036==--
+SGkgTHVrYXMKCi0tLS0tIE1haWwgb3JpZ2luYWwgLS0tLS0KPiBIaSBQaWVycmUsCj4gCj4gT24g
+VGh1LCBNYXkgMjgsIDIwMTUgYXQgMTA6NTI6NTZBTSArMDIwMCwgUGllcnJlIE1vcmVhdSB3cm90
+ZToKPiA+IEhvdyBpcyBpdCBzdXBwb3NlZCB0byB3b3JrLCBieSBzaW1wbHkgZWNobydpbmcgT04g
+b3IgT0ZGIHRvCj4gPiB2Z2Ffc3dpdGNoZXJvby9zd2l0Y2g/IFRoZW4gSSBwcm9iYWJseSBmb3Jn
+b3Qgc29tZSBzdHVmZiBhcwo+ID4gaXQgZG9lc24ndCB3YW50IHRvIHdvcmsgb24gbXkgbGFwdG9w
+Lgo+IAo+IFdoYXQgZXhhY3RseSBkb2Vzbid0IHdvcmsgYW5kIHdoaWNoIHZlcnNpb24gb2YgdGhl
+IE1hY0Jvb2sgUHJvIGRpZAo+IHlvdSB0cnkgdGhpcyBvbj8gVGhlIGV4cGVjdGVkIGJlaGF2aW91
+ciB3aGVuIHN3aXRjaGluZyBHUFVzIG9uIHRoZQo+IE1CUCBpcyB0aGF0IHRoZSBHUFUgdGhhdCB3
+YXMgaW5hY3RpdmUgb24gYm9vdHVwIHdpbGwgb25seSBzaG93IGEKPiBibGFjayBzY3JlZW4gYmVj
+YXVzZSBpdCB3YXMgdW5hYmxlIHRvIHJlYWQgdGhlIEVESUQgKGFuZCBEUENEIG9uCj4gcmV0aW5h
+IE1CUHMpIG9uIGJvb3R1cC4gSW4gb3RoZXIgd29yZHMsIGl0J3MgYnJva2VuLgoKSSdtIHRyeWlu
+ZyBvbiBhIG1pZC0yMDA5IE1CUCwgd2hpY2ggaGFzIGEgZG91YmxlIE5WaWRpYSBzZXR1cCB3aXRo
+IGEgOTQwME0gYXMgSUdEIGFuZCA5NjAwTSBHVCBhcyBESVMuIFN3aXRjaGluZyBiZXR3ZWVuIGJv
+dGggd29ya3MgKGFzIGxvbmcgYXMgZG8gYSBQQ0ktcmVzZXQgb2YgdGhlIEc5NiwgYnV0IHRoYXQn
+cyBhbm90aGVyIHN0b3J5IGFuZCBJIHNob3VsZCBoYXZlIGEgcGF0Y2ggc29vbiwgaG9wZWZ1bGx5
+KS4KSXQgd2FzIGFsc28gdGVzdGVkIGJ5IGFub3RoZXIgdXNlciBvbiBhIHJldGluYSBNQlAgYW5k
+IHdlIHJhbiBpbnRvIHRoZSBibGFjayBzY3JlZW4gaXNzdWUuIEkgcG9pbnRlZCBoaW0gdG8geW91
+ciBwYXRjaGVzLCBidXQgSSBkb24ndCBrbm93IHlldCBpZiBpdCBoZWxwZWQgb3Igbm90LgoKPiAK
+PiBUaGVyZSBoYXZlIGJlZW4gYXR0ZW1wdHMgdG8gc29sdmUgdGhpcyBieSBtdWx0aXBsZSBmb2xr
+cywgdGhlIGxhc3QKPiBvbmUgd2FzIHN1Ym1pdHRlZCB0byBkcmktZGV2ZWwgaW4gQXByaWwgYnkg
+eW91cnMgdHJ1bHk6Cj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmkt
+ZGV2ZWwvMjAxNS1BcHJpbC8wODE1MTUuaHRtbAo+IAo+IFRoYXQgaW5pdGlhbCB2ZXJzaW9uIG9m
+IG15IHBhdGNoIHNldCB0dXJuZWQgb3V0IHRvIG9ubHkgd29yayBvbgo+IHByZS1yZXRpbmEgTUJQ
+cywgYW5kIG9ubHkgaWYgdGhlIGFjdGl2ZSBHUFUgb24gYm9vdHVwIGlzIHRoZQo+IGRpc2NyZXRl
+IG9uZS4gSSdtIGN1cnJlbnRseSB3b3JraW5nIG9uIGEgdjIgdG8gc29sdmUgYWxsIHRoYXQuCgpD
+b29sISBMb29raW5nIGZvcndhcmQgdG8gaXQhCgo+IAo+IFdlIG5lZWQgdG8gZ2V0IHN3aXRjaGlu
+ZyB3b3JraW5nIGJlZm9yZSB3ZSBjYW4gZW5hYmxlIHJ1bnRpbWUgUE0gb24KPiBNQlBzLCBvdGhl
+cndpc2UgdGhlIHVzZXIgd2lsbCBiZSBncmVldGVkIGJ5IGEgYmxhY2sgc2NyZWVuIHdoZW4gdGhl
+Cj4gTnZpZGlhIEdQVSBnb2VzIHRvIHNsZWVwIGFuZCBoYW5kcyBvdmVyIHRvIHRoZSBpbnRlZ3Jh
+dGVkIEdQVS4KPiBTbyB5b3VyIHBhdGNoIGlzIGEgYml0IHByZW1hdHVyZSBJJ20gYWZyYWlkLiA6
+LSgKCkl0J3MgcG93ZXIgbWFuYWdlbWVudCsrOiB3ZSBldmVuIHNhdmUgZW5lcmd5IG9uIHRoZSBz
+Y3JlZW4gYnkgInBvd2VyaW5nIGl0IG9mZiIgZm9yIGJldHRlciBiYXR0ZXJ5IGxpZmUhIDspCgo+
+IAo+IAo+IEFzIHRvIHRoZSBwYXRjaCBpdHNlbGYsIHlvdSdyZSBjaGVja2luZyBmb3IgZXhpc3Rl
+bmNlIG9mIHRoZSBnbXV4Cj4gYnV0IHdlIGNhbid0IG1ha2UgdXNlIG9mIGl0IHVubGVzcyBpdHMg
+ZHJpdmVyIGlzIGxvYWRlZC4gSGVuY2UgaXQKPiBtYXkgYmUgZWFzaWVyIHRvIHNpbXBseSBxdWVy
+eSBmb3IgdGhlIGV4aXN0ZW5jZSBvZiB0aGUgZHJpdmVyLAo+IHVzaW5nIHNvbWV0aGluZyBhbG9u
+ZyB0aGUgbGluZXMgb2YgZmluZF9tb2R1bGUoImFwcGxlLWdtdXgiKS4KPiBJIGltYWdpbmUgdGhp
+cyBpcyBtdWNoIGxlc3MgY29kZSB0aGFuIGNoZWNraW5nIGZvciB0aGUgRE1JIElEcy4KCkkgZGlk
+bid0IGtub3cgdGhlcmUgd2FzIHN1Y2ggYSBmdW5jdGlvbiEgU2VlbXMgbmljZSEKCj4gCj4gQWxz
+bywgRGF2ZSBBaXJsaWUgYW5kIE1hdHRoZXcgR2FycmV0dCBhbHJlYWR5IHdyb3RlIGEgcGF0Y2gg
+c2V0IHRvCj4gZW5hYmxlIHJ1bnRpbWUgUE0gZm9yIG5vdXZlYXUgb24gTUJQcyB3aGljaCBpcyBt
+b3JlIGdlbmVyaWM6IEl0IHdvcmtzCj4gd2l0aCBhbnkgdmdhX3N3aXRjaGVyb28gaGFuZGxlciwg
+bm90IGp1c3QgZ211eDoKPiAKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVz
+L2RyaS1kZXZlbC8yMDE0LUp1bmUvMDYwOTI3Lmh0bWwKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE0LUp1bmUvMDYwOTI4Lmh0bWwKPiBodHRwOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE0LUp1bmUvMDYwOTQy
+Lmh0bWwKPiBodHRwOi8vd3d3LmNvZG9uLm9yZy51ay9+bWpnNTkvdG1wL3JldGluYV9wYXRjaGVz
+LzAwMjctbm91dmVhdS1lbmFibGUtcnVudGltZS1wbS1vbi1hcHBsZS1nbXV4LW1hY2hpbmVzLnBh
+dGNoCj4gaHR0cDovL3d3dy5jb2Rvbi5vcmcudWsvfm1qZzU5L3RtcC9yZXRpbmFfcGF0Y2hlcy8w
+MDI4LW5vdXZlYXUtRW5hYmxlLXN3aXRjaGVyb28tZHluYW1pYy1QTS1hdC1zd2l0Y2hlcm9vLWUu
+cGF0Y2gKPiAKPiBUaGUgZm91cnRoIG9uZSBpbiB0aGF0IGxpc3QgaXMgYnkgRGF2ZSBBaXJsaWUg
+YW5kIGFsbCB0aGUgb3RoZXJzIGFyZQo+IGJ5IE1hdHRoZXcgR2FycmV0dC4gQnV0LCBhcyBJIHNh
+aWQsIHdlIGNhbid0IGFwcGx5IHRoZXNlIGVpdGhlciB1bnRpbAo+IHN3aXRjaGluZyB3b3Jrcy4g
+SSdtIHdvcmtpbmcgb24gaXQuIDstKQoKSSBoYWQgbm8gaWRlYSB0aGVzZSBwYXRjaGVzIGV4aXN0
+ZWQ6IEkgc2hvdWxkIGhhdmUgbG9va2VkIGFyb3VuZCBiZWZvcmUuCkknbGwgZHJvcCB0aGUgcGF0
+Y2hlcywgYXBhcnQgcHJvYmFibHkgZnJvbSB0aGUgKmNsZWFuaW5nKiBvbmVzLCBidXQgSSdsbCB3
+YWl0IGZvciB0aGUgcHJldmlvdXNseSBtZW50aW9uZWQgb25lcyB0byBmaXJzdCBsYW5kLgoKPiAK
+PiAKPiBBcyB0byB5b3VyIHF1ZXN0aW9uczoKPiAKPiA+IEhvdyBpcyBpdCBzdXBwb3NlZCB0byB3
+b3JrLCBieSBzaW1wbHkgZWNobydpbmcgT04gb3IgT0ZGIHRvCj4gPiB2Z2Ffc3dpdGNoZXJvby9z
+d2l0Y2g/Cj4gCj4gRWNob2luZyBPTi9PRkYgdG8gdGhlICJzd2l0Y2giIGZpbGUgd2lsbCBwb3dl
+ciB0aGUgaW5hY3RpdmUgZGV2aWNlCj4gdXAgb3IgZG93bi4gSWYgdGhlIGN1cnJlbnRseSBhY3Rp
+dmUgZ3B1IGlzIHRoZSBkaXNjcmV0ZSBvbmUgKHdoaWNoCj4gaXMgdGhlIGRlZmF1bHQgd2hlbiBi
+b290aW5nIGEgTWFjQm9vayBQcm8pCgpOb3Qgb24gdGhlIG1pZC0yMDA5IE1CUCEgOykgV2hpY2gg
+aXMgZ3JlYXQhCgo+ICwgdGhpcyB3aWxsIHBvd2VyIHVwL2Rvd24KPiB0aGUgaW50ZWdyYXRlZCBn
+cHUuIFlvdSBjYW4gdXNlIHRoZSB0b29sICJncHUtc3dpdGNoIiB0byBmb3JjZSB0aGUKPiBNQlAg
+dG8gdGhlIGludGVncmF0ZWQgR1BVIG9uIG5leHQgYm9vdHVwLCB0aGVuIHlvdSBjYW4gZWNobyBP
+Ti9PRkZJJ2RkZAo+IHRvIGNoYW5nZSB0aGUgcG93ZXIgc3RhdGUgb2YgdGhlIE52aWRpYSBHUFU6
+Cj4gaHR0cHM6Ly9naXRodWIuY29tLzB4YmIvZ3B1LXN3aXRjaAo+IAo+ID4gSWYgSSB1bmRlcnN0
+YW5kIGl0IGNvcnJlY3RseSwgaWYgdGhlIGxhcHRvcCBpcyBhbiBPcHRpbXVzIG9uZSBvcgo+ID4g
+aGFzIGEgbXV4LCB3ZSBhcmUgbm90ICJhbGxvd2VkIiB0byBvcHQtb3V0IG9mIER5blB3ci9EeW5P
+ZmYgYnkKPiA+IHBvd2VyaW5nIGRvd24gdGhlIGNhcmQ/Cj4gCj4gSWYgd2UgcG93ZXIgdGhlIEdQ
+VSBkb3duIG1hbnVhbGx5IGJ5IGVjaG9pbmcgT0ZGIHRvIHRoZSAic3dpdGNoIgo+IGZpbGUsIHRo
+ZSBydW50aW1lIFBNIGNvZGUgd291bGQgcHJvYmFibHkgZ2V0IGNvbmZ1c2VkLCBJIGltYWdpbmUK
+PiB0aGF0J3MgdGhlIHJlYXNvbiB3aHkgT04vT0ZGIGlzIGlnbm9yZWQgaWYKPiBjbGllbnQtPmRy
+aXZlcl9wb3dlcl9jb250cm9sCj4gaXMgc2V0IHRvIHRydWUuCgpJIHdvdWxkIGhhdmUgZ3Vlc3Nl
+ZCB0aGF0IHJ1bnRpbWUgcG0gd291bGQgdGhlbiBnZXQgZGlzYWJsZWQuCgo+IAo+IFNwZWFraW5n
+IG9mIHdoaWNoLCB0aGUgZXh0ZXJuYWwgcG9ydHMgb2YgdGhlIE1CUCBhcmUgc29sZGVyZWQgdG8K
+PiB0aGUgZGlzY3JldGUgR1BVIGFuZCBjYW4ndCBiZSBzd2l0Y2hlZC4gT25seSB0aGUgcGFuZWwg
+Y2FuIGJlCj4gc3dpdGNoZWQuIFNvIGlmIHRoZXJlIGFyZSBEUCBvciBIRE1JIGNvbm5lY3RvcnMg
+d2l0aCBzdGF0dXMKPiBjb25uZWN0ZWQsIHdlIGNhbid0IHN1c3BlbmQuIFRoYXQncyBvbmUgb2Yg
+dGhlIE1CUCdzIG51bWVyb3VzCj4gcGVjdWxpYXJpdGllcyB0aGF0IEkgaGF2ZW4ndCB2ZXJpZmll
+ZCB5ZXQgdGhleSdyZSBoYW5kbGVkIHByb3Blcmx5Cj4gYnkgdGhlIGNvZGUuCgpJIGNvdWxkIGNo
+ZWNrIHRoYXQgb24gbXkgTUJQIGlmIHlvdSB3YW50LgoKCgpCZXN0IHJlZ2FyZHMsCgpQaWVycmUK
+Cgo+IAo+IEJlc3QgcmVnYXJkcywKPiAKPiBMdWthcwo+IApfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
