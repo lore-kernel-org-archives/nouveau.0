@@ -1,91 +1,120 @@
-From: Lukas Wunner <lukas@wunner.de>
-Subject: Re: [Nouveau] [PATCH v2 8/9] acpi: Add support for Apple Gmux _DMS
-Date: Sat, 30 May 2015 20:23:46 +0200
-Message-ID: <20150530182346.GA3625@wunner.de>
-References: <1432795249-4458-8-git-send-email-pierre.morrow@free.fr>
- <1121819706.18409644.1432803176893.JavaMail.root@spooler8-g27.priv.proxad.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Sat, 30 May 2015 18:27:06 +0000
+Message-ID: <bug-82714-8800-znW7SmM2m5@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <1121819706.18409644.1432803176893.JavaMail.root@spooler8-g27.priv.proxad.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Pierre Moreau <pierre.morrow@free.fr>
-Cc: nouveau@lists.freedesktop.org, bskeggs@redhat.com, dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1174452036=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgUGllcnJlLAoKT24gVGh1LCBNYXkgMjgsIDIwMTUgYXQgMTA6NTI6NTZBTSArMDIwMCwgUGll
-cnJlIE1vcmVhdSB3cm90ZToKPiBIb3cgaXMgaXQgc3VwcG9zZWQgdG8gd29yaywgYnkgc2ltcGx5
-IGVjaG8naW5nIE9OIG9yIE9GRiB0bwo+IHZnYV9zd2l0Y2hlcm9vL3N3aXRjaD8gVGhlbiBJIHBy
-b2JhYmx5IGZvcmdvdCBzb21lIHN0dWZmIGFzCj4gaXQgZG9lc24ndCB3YW50IHRvIHdvcmsgb24g
-bXkgbGFwdG9wLgoKV2hhdCBleGFjdGx5IGRvZXNuJ3Qgd29yayBhbmQgd2hpY2ggdmVyc2lvbiBv
-ZiB0aGUgTWFjQm9vayBQcm8gZGlkCnlvdSB0cnkgdGhpcyBvbj8gVGhlIGV4cGVjdGVkIGJlaGF2
-aW91ciB3aGVuIHN3aXRjaGluZyBHUFVzIG9uIHRoZQpNQlAgaXMgdGhhdCB0aGUgR1BVIHRoYXQg
-d2FzIGluYWN0aXZlIG9uIGJvb3R1cCB3aWxsIG9ubHkgc2hvdyBhCmJsYWNrIHNjcmVlbiBiZWNh
-dXNlIGl0IHdhcyB1bmFibGUgdG8gcmVhZCB0aGUgRURJRCAoYW5kIERQQ0Qgb24KcmV0aW5hIE1C
-UHMpIG9uIGJvb3R1cC4gSW4gb3RoZXIgd29yZHMsIGl0J3MgYnJva2VuLgoKVGhlcmUgaGF2ZSBi
-ZWVuIGF0dGVtcHRzIHRvIHNvbHZlIHRoaXMgYnkgbXVsdGlwbGUgZm9sa3MsIHRoZSBsYXN0Cm9u
-ZSB3YXMgc3VibWl0dGVkIHRvIGRyaS1kZXZlbCBpbiBBcHJpbCBieSB5b3VycyB0cnVseToKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNS1BcHJpbC8w
-ODE1MTUuaHRtbAoKVGhhdCBpbml0aWFsIHZlcnNpb24gb2YgbXkgcGF0Y2ggc2V0IHR1cm5lZCBv
-dXQgdG8gb25seSB3b3JrIG9uCnByZS1yZXRpbmEgTUJQcywgYW5kIG9ubHkgaWYgdGhlIGFjdGl2
-ZSBHUFUgb24gYm9vdHVwIGlzIHRoZQpkaXNjcmV0ZSBvbmUuIEknbSBjdXJyZW50bHkgd29ya2lu
-ZyBvbiBhIHYyIHRvIHNvbHZlIGFsbCB0aGF0LgoKV2UgbmVlZCB0byBnZXQgc3dpdGNoaW5nIHdv
-cmtpbmcgYmVmb3JlIHdlIGNhbiBlbmFibGUgcnVudGltZSBQTSBvbgpNQlBzLCBvdGhlcndpc2Ug
-dGhlIHVzZXIgd2lsbCBiZSBncmVldGVkIGJ5IGEgYmxhY2sgc2NyZWVuIHdoZW4gdGhlCk52aWRp
-YSBHUFUgZ29lcyB0byBzbGVlcCBhbmQgaGFuZHMgb3ZlciB0byB0aGUgaW50ZWdyYXRlZCBHUFUu
-ClNvIHlvdXIgcGF0Y2ggaXMgYSBiaXQgcHJlbWF0dXJlIEknbSBhZnJhaWQuIDotKAoKCkFzIHRv
-IHRoZSBwYXRjaCBpdHNlbGYsIHlvdSdyZSBjaGVja2luZyBmb3IgZXhpc3RlbmNlIG9mIHRoZSBn
-bXV4CmJ1dCB3ZSBjYW4ndCBtYWtlIHVzZSBvZiBpdCB1bmxlc3MgaXRzIGRyaXZlciBpcyBsb2Fk
-ZWQuIEhlbmNlIGl0Cm1heSBiZSBlYXNpZXIgdG8gc2ltcGx5IHF1ZXJ5IGZvciB0aGUgZXhpc3Rl
-bmNlIG9mIHRoZSBkcml2ZXIsCnVzaW5nIHNvbWV0aGluZyBhbG9uZyB0aGUgbGluZXMgb2YgZmlu
-ZF9tb2R1bGUoImFwcGxlLWdtdXgiKS4KSSBpbWFnaW5lIHRoaXMgaXMgbXVjaCBsZXNzIGNvZGUg
-dGhhbiBjaGVja2luZyBmb3IgdGhlIERNSSBJRHMuCgpBbHNvLCBEYXZlIEFpcmxpZSBhbmQgTWF0
-dGhldyBHYXJyZXR0IGFscmVhZHkgd3JvdGUgYSBwYXRjaCBzZXQgdG8KZW5hYmxlIHJ1bnRpbWUg
-UE0gZm9yIG5vdXZlYXUgb24gTUJQcyB3aGljaCBpcyBtb3JlIGdlbmVyaWM6IEl0IHdvcmtzCndp
-dGggYW55IHZnYV9zd2l0Y2hlcm9vIGhhbmRsZXIsIG5vdCBqdXN0IGdtdXg6CgpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE0LUp1bmUvMDYwOTI3Lmh0
-bWwKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZlcy9kcmktZGV2ZWwvMjAxNC1K
-dW5lLzA2MDkyOC5odG1sCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJp
-LWRldmVsLzIwMTQtSnVuZS8wNjA5NDIuaHRtbApodHRwOi8vd3d3LmNvZG9uLm9yZy51ay9+bWpn
-NTkvdG1wL3JldGluYV9wYXRjaGVzLzAwMjctbm91dmVhdS1lbmFibGUtcnVudGltZS1wbS1vbi1h
-cHBsZS1nbXV4LW1hY2hpbmVzLnBhdGNoCmh0dHA6Ly93d3cuY29kb24ub3JnLnVrL35tamc1OS90
-bXAvcmV0aW5hX3BhdGNoZXMvMDAyOC1ub3V2ZWF1LUVuYWJsZS1zd2l0Y2hlcm9vLWR5bmFtaWMt
-UE0tYXQtc3dpdGNoZXJvby1lLnBhdGNoCgpUaGUgZm91cnRoIG9uZSBpbiB0aGF0IGxpc3QgaXMg
-YnkgRGF2ZSBBaXJsaWUgYW5kIGFsbCB0aGUgb3RoZXJzIGFyZQpieSBNYXR0aGV3IEdhcnJldHQu
-IEJ1dCwgYXMgSSBzYWlkLCB3ZSBjYW4ndCBhcHBseSB0aGVzZSBlaXRoZXIgdW50aWwKc3dpdGNo
-aW5nIHdvcmtzLiBJJ20gd29ya2luZyBvbiBpdC4gOy0pCgoKQXMgdG8geW91ciBxdWVzdGlvbnM6
-Cgo+IEhvdyBpcyBpdCBzdXBwb3NlZCB0byB3b3JrLCBieSBzaW1wbHkgZWNobydpbmcgT04gb3Ig
-T0ZGIHRvCj4gdmdhX3N3aXRjaGVyb28vc3dpdGNoPwoKRWNob2luZyBPTi9PRkYgdG8gdGhlICJz
-d2l0Y2giIGZpbGUgd2lsbCBwb3dlciB0aGUgaW5hY3RpdmUgZGV2aWNlCnVwIG9yIGRvd24uIElm
-IHRoZSBjdXJyZW50bHkgYWN0aXZlIGdwdSBpcyB0aGUgZGlzY3JldGUgb25lICh3aGljaAppcyB0
-aGUgZGVmYXVsdCB3aGVuIGJvb3RpbmcgYSBNYWNCb29rIFBybyksIHRoaXMgd2lsbCBwb3dlciB1
-cC9kb3duCnRoZSBpbnRlZ3JhdGVkIGdwdS4gWW91IGNhbiB1c2UgdGhlIHRvb2wgImdwdS1zd2l0
-Y2giIHRvIGZvcmNlIHRoZQpNQlAgdG8gdGhlIGludGVncmF0ZWQgR1BVIG9uIG5leHQgYm9vdHVw
-LCB0aGVuIHlvdSBjYW4gZWNobyBPTi9PRkYKdG8gY2hhbmdlIHRoZSBwb3dlciBzdGF0ZSBvZiB0
-aGUgTnZpZGlhIEdQVToKaHR0cHM6Ly9naXRodWIuY29tLzB4YmIvZ3B1LXN3aXRjaAoKPiBJZiBJ
-IHVuZGVyc3RhbmQgaXQgY29ycmVjdGx5LCBpZiB0aGUgbGFwdG9wIGlzIGFuIE9wdGltdXMgb25l
-IG9yCj4gaGFzIGEgbXV4LCB3ZSBhcmUgbm90ICJhbGxvd2VkIiB0byBvcHQtb3V0IG9mIER5blB3
-ci9EeW5PZmYgYnkKPiBwb3dlcmluZyBkb3duIHRoZSBjYXJkPwoKSWYgd2UgcG93ZXIgdGhlIEdQ
-VSBkb3duIG1hbnVhbGx5IGJ5IGVjaG9pbmcgT0ZGIHRvIHRoZSAic3dpdGNoIgpmaWxlLCB0aGUg
-cnVudGltZSBQTSBjb2RlIHdvdWxkIHByb2JhYmx5IGdldCBjb25mdXNlZCwgSSBpbWFnaW5lCnRo
-YXQncyB0aGUgcmVhc29uIHdoeSBPTi9PRkYgaXMgaWdub3JlZCBpZiBjbGllbnQtPmRyaXZlcl9w
-b3dlcl9jb250cm9sCmlzIHNldCB0byB0cnVlLgoKU3BlYWtpbmcgb2Ygd2hpY2gsIHRoZSBleHRl
-cm5hbCBwb3J0cyBvZiB0aGUgTUJQIGFyZSBzb2xkZXJlZCB0bwp0aGUgZGlzY3JldGUgR1BVIGFu
-ZCBjYW4ndCBiZSBzd2l0Y2hlZC4gT25seSB0aGUgcGFuZWwgY2FuIGJlCnN3aXRjaGVkLiBTbyBp
-ZiB0aGVyZSBhcmUgRFAgb3IgSERNSSBjb25uZWN0b3JzIHdpdGggc3RhdHVzCmNvbm5lY3RlZCwg
-d2UgY2FuJ3Qgc3VzcGVuZC4gVGhhdCdzIG9uZSBvZiB0aGUgTUJQJ3MgbnVtZXJvdXMKcGVjdWxp
-YXJpdGllcyB0aGF0IEkgaGF2ZW4ndCB2ZXJpZmllZCB5ZXQgdGhleSdyZSBoYW5kbGVkIHByb3Bl
-cmx5CmJ5IHRoZSBjb2RlLgoKQmVzdCByZWdhcmRzLAoKTHVrYXMKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmkt
-ZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1174452036==
+Content-Type: multipart/alternative; boundary="1433010426.B84E6CcF2.7761"; charset="UTF-8"
+
+
+--1433010426.B84E6CcF2.7761
+Date: Sat, 30 May 2015 18:27:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
+
+--- Comment #18 from Bruno <bonbons-lhzhVDjRGQBulxpn9UvDqw@public.gmane.org> ---
+Created attachment 116185
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116185&action=edit
+linux-4.1-rc5+
+
+Same 4.1-rc5+ kernel but this time around performing nvapeek/nvapoke.
+
+Doing the peek/poke makes display get signal over DVI but does not prevent the
+system from freezing after X has started.
+
+The last lines of output from X were (the COPY failure coming some time after
+the rest):
+(--) Depth 24 pixmap format is 32 bpp
+(II) NOUVEAU(0): Channel setup complete.
+(EE) NOUVEAU(0): [COPY] failed to allocate class.
+
+
+The PGRAPH/VM FLUSH timeouts look like they could have something to do with the
+freeze and be cause of X COPY failure.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1433010426.B84E6CcF2.7761
+Date: Sat, 30 May 2015 18:27:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c18">Comment # 18</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons&#64;sysophe.eu" title="Bruno &lt;bonbons&#64;sysophe.eu&gt;"> <span class="fn">Bruno</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116185" name="attach_116185" title="linux-4.1-rc5+">attachment 116185</a> <a href="attachment.cgi?id=116185&amp;action=edit" title="linux-4.1-rc5+">[details]</a></span>
+linux-4.1-rc5+
+
+Same 4.1-rc5+ kernel but this time around performing nvapeek/nvapoke.
+
+Doing the peek/poke makes display get signal over DVI but does not prevent the
+system from freezing after X has started.
+
+The last lines of output from X were (the COPY failure coming some time after
+the rest):
+(--) Depth 24 pixmap format is 32 bpp
+(II) NOUVEAU(0): Channel setup complete.
+(EE) NOUVEAU(0): [COPY] failed to allocate class.
+
+
+The PGRAPH/VM FLUSH timeouts look like they could have something to do with the
+freeze and be cause of X COPY failure.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433010426.B84E6CcF2.7761--
+
+--===============1174452036==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1174452036==--
