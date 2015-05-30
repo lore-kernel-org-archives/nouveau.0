@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
-Date: Sat, 30 May 2015 17:17:49 +0000
-Message-ID: <bug-82714-8800-wA6D9HFbpG@http.bugs.freedesktop.org/>
+Date: Sat, 30 May 2015 18:19:44 +0000
+Message-ID: <bug-82714-8800-UQETjV89Fj@http.bugs.freedesktop.org/>
 References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1023876261=="
+Content-Type: multipart/mixed; boundary="===============1174498685=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,43 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1023876261==
-Content-Type: multipart/alternative; boundary="1433006269.D314B22.21762"; charset="UTF-8"
+--===============1174498685==
+Content-Type: multipart/alternative; boundary="1433009984.BC31a1f2.5639"; charset="UTF-8"
 
 
---1433006269.D314B22.21762
-Date: Sat, 30 May 2015 17:17:49 +0000
+--1433009984.BC31a1f2.5639
+Date: Sat, 30 May 2015 18:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=82714
 
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+--- Comment #17 from Bruno <bonbons-lhzhVDjRGQBulxpn9UvDqw@public.gmane.org> ---
+Created attachment 116184
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116184&action=edit
+linux-4.1-rc5+
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|ASSIGNED                    |NEW
+Same result as previous kernel (though screen never detected signal), this time
+with 4.1-rc5+, but not doing the nvapeek/nvapoke.
 
---- Comment #16 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Hum... So the evo_wait error disappeared for some reason and you're back to the
-behaviour from 3.19.
-
-So, from the runpm=0:
-[   91.530766] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00200000
-[...]
-[  101.568583] nouveau E[   PDISP][0000:01:00.0][0xc000827c] channel stalled
-[...]
-[  183.835874] nouveau E[     PGR][0000:01:00.0] vm flush timeout
-
-I won't have time to have a look at the old behaviour before a few months
-sadly...
+System freeze some time after starting Xorg.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1433006269.D314B22.21762
-Date: Sat, 30 May 2015 17:17:49 +0000
+--1433009984.BC31a1f2.5639
+Date: Sat, 30 May 2015 18:19:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,51 +54,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>ASSIGNED
-           </td>
-           <td>NEW
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c16">Comment # 16</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [G84] nouveau fails to properly initialize GPU"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+              from <span class="vcard"><a class="email" href="mailto:bonbons&#64;sysophe.eu" title="Bruno &lt;bonbons&#64;sysophe.eu&gt;"> <span class="fn">Bruno</span></a>
 </span></b>
-        <pre>Hum... So the evo_wait error disappeared for some reason and you're back to the
-behaviour from 3.19.
+        <pre>Created <span class=""><a href="attachment.cgi?id=116184" name="attach_116184" title="linux-4.1-rc5+">attachment 116184</a> <a href="attachment.cgi?id=116184&amp;action=edit" title="linux-4.1-rc5+">[details]</a></span>
+linux-4.1-rc5+
 
-So, from the runpm=0:
-[   91.530766] nouveau W[   PFIFO][0000:01:00.0] unknown intr 0x00200000
-[...]
-[  101.568583] nouveau E[   PDISP][0000:01:00.0][0xc000827c] channel stalled
-[...]
-[  183.835874] nouveau E[     PGR][0000:01:00.0] vm flush timeout
+Same result as previous kernel (though screen never detected signal), this time
+with 4.1-rc5+, but not doing the nvapeek/nvapoke.
 
-I won't have time to have a look at the old behaviour before a few months
-sadly...</pre>
+System freeze some time after starting Xorg.</pre>
         </div>
       </p>
       <hr>
@@ -120,9 +85,9 @@ sadly...</pre>
     </body>
 </html>
 
---1433006269.D314B22.21762--
+--1433009984.BC31a1f2.5639--
 
---===============1023876261==
+--===============1174498685==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -132,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1023876261==--
+--===============1174498685==--
