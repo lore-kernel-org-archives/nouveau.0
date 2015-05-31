@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89730] NV50: LightDM GTK+ Greeter Background -
  inconsistent display
-Date: Sun, 31 May 2015 22:23:17 +0000
-Message-ID: <bug-89730-8800-JygohJi6wQ@http.bugs.freedesktop.org/>
+Date: Sun, 31 May 2015 22:27:11 +0000
+Message-ID: <bug-89730-8800-taIDyQpj5R@http.bugs.freedesktop.org/>
 References: <bug-89730-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2090524228=="
+Content-Type: multipart/mixed; boundary="===============1970449727=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89730-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2090524228==
-Content-Type: multipart/alternative; boundary="1433110996.CedAa1.30354"; charset="UTF-8"
+--===============1970449727==
+Content-Type: multipart/alternative; boundary="1433111230.0D6D5d71.31304"; charset="UTF-8"
 
 
---1433110996.CedAa1.30354
-Date: Sun, 31 May 2015 22:23:16 +0000
+--1433111230.0D6D5d71.31304
+Date: Sun, 31 May 2015 22:27:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,15 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #116192|text/plain                  |application/octet-stream
-          mime type|                            |
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1433110996.CedAa1.30354
-Date: Sun, 31 May 2015 22:23:16 +0000
+--1433111230.0D6D5d71.31304
+Date: Sun, 31 May 2015 22:27:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,8 +55,8 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV50: LightDM GTK+ Greeter Background - inconsistent display"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - NV50: LightDM GTK+ Greeter Background - inconsistent display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89730">bug 89730</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,10 +67,18 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #116192 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Status</td>
+           <td>NEW
            </td>
-           <td>application/octet-stream
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
            </td>
          </tr></table>
       <p>
@@ -84,9 +92,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1433110996.CedAa1.30354--
+--1433111230.0D6D5d71.31304--
 
---===============2090524228==
+--===============1970449727==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2090524228==--
+--===============1970449727==--
