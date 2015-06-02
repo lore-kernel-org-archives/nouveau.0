@@ -1,13 +1,11 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [RFC 2/3] util: add LIST_MOVE_TAIL to list.h
-Date: Tue,  2 Jun 2015 22:15:03 +0200
-Message-ID: <1433276104-16460-3-git-send-email-samuel.pitoiset@gmail.com>
-References: <1433276104-16460-1-git-send-email-samuel.pitoiset@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90825] New: nouveau crashes on MacBookPro when
+ VirtualBox hardware acceleration is used
+Date: Tue, 02 Jun 2015 22:25:37 +0000
+Message-ID: <bug-90825-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1967320177=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1433276104-16460-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,31 +15,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29t
-PgotLS0KIHNyYy91dGlsL2xpc3QuaCB8IDkgKysrKysrKysrCiAxIGZpbGUgY2hhbmdlZCwgOSBp
-bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvc3JjL3V0aWwvbGlzdC5oIGIvc3JjL3V0aWwvbGlz
-dC5oCmluZGV4IGZiNTY2ZjUuLmM3ODJlZjUgMTAwNjQ0Ci0tLSBhL3NyYy91dGlsL2xpc3QuaAor
-KysgYi9zcmMvdXRpbC9saXN0LmgKQEAgLTExNiwxMiArMTE2LDIxIEBAIHN0YXRpYyBpbmxpbmUg
-dm9pZCBsaXN0X3ZhbGlkYXRlKHN0cnVjdCBsaXN0X2hlYWQgKmxpc3QpCiAgICAgICBhc3NlcnQo
-bm9kZS0+bmV4dC0+cHJldiA9PSBub2RlICYmIG5vZGUtPnByZXYtPm5leHQgPT0gbm9kZSk7CiB9
-CiAKK3N0YXRpYyBpbmxpbmUgdm9pZCBsaXN0X21vdmVfdGFpbChzdHJ1Y3QgbGlzdF9oZWFkICps
-aXN0LAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cnVjdCBsaXN0X2hlYWQg
-KmhlYWQpCit7CisgICAgbGlzdC0+bmV4dC0+cHJldiA9IGxpc3QtPnByZXY7CisgICAgbGlzdC0+
-cHJldi0+bmV4dCA9IGxpc3QtPm5leHQ7CisgICAgbGlzdF9hZGR0YWlsKGxpc3QsIGhlYWQpOwor
-fQorCiAjZGVmaW5lIExJU1RfSU5JVEhFQUQoX19pdGVtKSBsaXN0X2luaXRoZWFkKF9faXRlbSkK
-ICNkZWZpbmUgTElTVF9BREQoX19pdGVtLCBfX2xpc3QpIGxpc3RfYWRkKF9faXRlbSwgX19saXN0
-KQogI2RlZmluZSBMSVNUX0FERFRBSUwoX19pdGVtLCBfX2xpc3QpIGxpc3RfYWRkdGFpbChfX2l0
-ZW0sIF9fbGlzdCkKICNkZWZpbmUgTElTVF9SRVBMQUNFKF9fZnJvbSwgX190bykgbGlzdF9yZXBs
-YWNlKF9fZnJvbSwgX190bykKICNkZWZpbmUgTElTVF9ERUwoX19pdGVtKSBsaXN0X2RlbChfX2l0
-ZW0pCiAjZGVmaW5lIExJU1RfREVMSU5JVChfX2l0ZW0pIGxpc3RfZGVsaW5pdChfX2l0ZW0pCisj
-ZGVmaW5lIExJU1RfTU9WRV9UQUlMKF9fbGlzdCwgX19oZWFkKSBsaXN0X21vdmVfdGFpbChfX2xp
-c3QsIF9faGVhZCkKIAogI2RlZmluZSBMSVNUX0VOVFJZKF9fdHlwZSwgX19pdGVtLCBfX2ZpZWxk
-KSAgIFwKICAgICAoKF9fdHlwZSAqKSgoKGNoYXIgKikoX19pdGVtKSkgLSBvZmZzZXRvZihfX3R5
-cGUsIF9fZmllbGQpKSkKLS0gCjIuNC4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============1967320177==
+Content-Type: multipart/alternative; boundary="1433283937.dC83FcE0.24303"; charset="UTF-8"
+
+
+--1433283937.dC83FcE0.24303
+Date: Tue, 2 Jun 2015 22:25:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90825
+
+            Bug ID: 90825
+           Summary: nouveau crashes on MacBookPro when VirtualBox hardware
+                    acceleration is used
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: costan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+I can repro this consistently by installing Hearthstone on Windows 7, and
+trying to run the game. The repro is rather bulky. FWIW, at least the bits can
+be obtained gratis (Win7 has a trial, Hearthstone is free to play).
+
+The kernel log is filled with these messages:
+
+[ 1167.316496] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 11
+[VBoxCrWinCmd[6069]] subc 0 mthd 0x000c data 0x20030298
+[ 1167.316510] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: METHOD
+
+
+The bug appears to be very similar to the following Ubuntu bug, which has more
+debugging information:
+https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1391086
+
+Please let me know if I can supply extra information to help debug this.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1433283937.dC83FcE0.24303
+Date: Tue, 2 Jun 2015 22:25:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau crashes on MacBookPro when VirtualBox hardware acceleration is used"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90825">90825</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau crashes on MacBookPro when VirtualBox hardware acceleration is used
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>costan&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>I can repro this consistently by installing Hearthstone on Windows 7, and
+trying to run the game. The repro is rather bulky. FWIW, at least the bits can
+be obtained gratis (Win7 has a trial, Hearthstone is free to play).
+
+The kernel log is filled with these messages:
+
+[ 1167.316496] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 11
+[VBoxCrWinCmd[6069]] subc 0 mthd 0x000c data 0x20030298
+[ 1167.316510] nouveau E[   PFIFO][0000:01:00.0] PBDMA0: METHOD
+
+
+The bug appears to be very similar to the following Ubuntu bug, which has more
+debugging information:
+<a href="https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1391086">https://bugs.launchpad.net/ubuntu/+source/xserver-xorg-video-nouveau/+bug/1391086</a>
+
+Please let me know if I can supply extra information to help debug this.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433283937.dC83FcE0.24303--
+
+--===============1967320177==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1967320177==--
