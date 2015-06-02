@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Mon, 01 Jun 2015 12:24:33 +0000
-Message-ID: <bug-89558-8800-yHjE2FQKAj@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [RFC 1/3] util: move LIST_FIRST_ENTRY from nv30_query.c
+	to list.h
+Date: Tue,  2 Jun 2015 22:15:02 +0200
+Message-ID: <1433276104-16460-2-git-send-email-samuel.pitoiset@gmail.com>
+References: <1433276104-16460-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0421714476=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1433276104-16460-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,79 +18,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0421714476==
-Content-Type: multipart/alternative; boundary="1433161473.2ae158b2.2565"; charset="UTF-8"
-
-
---1433161473.2ae158b2.2565
-Date: Mon, 1 Jun 2015 12:24:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #35 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 116199
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116199&action=edit
-Kernel 4.1-rc6 (with 0x118 added to gm100.c)
-
-Results with kernel 4.1-rc6.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1433161473.2ae158b2.2565
-Date: Mon, 1 Jun 2015 12:24:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c35">Comment # 35</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116199" name="attach_116199" title="Kernel 4.1-rc6 (with 0x118 added to gm100.c)">attachment 116199</a> <a href="attachment.cgi?id=116199&amp;action=edit" title="Kernel 4.1-rc6 (with 0x118 added to gm100.c)">[details]</a></span>
-Kernel 4.1-rc6 (with 0x118 added to gm100.c)
-
-Results with kernel 4.1-rc6.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433161473.2ae158b2.2565--
-
---===============0421714476==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0421714476==--
+U2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29t
+PgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfcXVlcnkuYyB8IDMg
+LS0tCiBzcmMvdXRpbC9saXN0LmggICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAzICsr
+KwogMiBmaWxlcyBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9xdWVyeS5jIGIv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9xdWVyeS5jCmluZGV4IDUxNmVl
+ODMuLjgwYTk3NTUgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMw
+L252MzBfcXVlcnkuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMw
+X3F1ZXJ5LmMKQEAgLTI4LDkgKzI4LDYgQEAKICNpbmNsdWRlICJudjMwL252MzBfc2NyZWVuLmgi
+CiAjaW5jbHVkZSAibnYzMC9udjMwX2NvbnRleHQuaCIKIAotI2RlZmluZSBMSVNUX0ZJUlNUX0VO
+VFJZKF9fdHlwZSwgX19pdGVtLCBfX2ZpZWxkKSBcCi0gICBMSVNUX0VOVFJZKF9fdHlwZSwgKF9f
+aXRlbSktPm5leHQsIF9fZmllbGQpCi0KIHN0cnVjdCBudjMwX3F1ZXJ5X29iamVjdCB7CiAgICBz
+dHJ1Y3QgbGlzdF9oZWFkIGxpc3Q7CiAgICBzdHJ1Y3Qgbm91dmVhdV9oZWFwICpodzsKZGlmZiAt
+LWdpdCBhL3NyYy91dGlsL2xpc3QuaCBiL3NyYy91dGlsL2xpc3QuaAppbmRleCA5NDYwMzQ3Li5m
+YjU2NmY1IDEwMDY0NAotLS0gYS9zcmMvdXRpbC9saXN0LmgKKysrIGIvc3JjL3V0aWwvbGlzdC5o
+CkBAIC0xMjYsNiArMTI2LDkgQEAgc3RhdGljIGlubGluZSB2b2lkIGxpc3RfdmFsaWRhdGUoc3Ry
+dWN0IGxpc3RfaGVhZCAqbGlzdCkKICNkZWZpbmUgTElTVF9FTlRSWShfX3R5cGUsIF9faXRlbSwg
+X19maWVsZCkgICBcCiAgICAgKChfX3R5cGUgKikoKChjaGFyICopKF9faXRlbSkpIC0gb2Zmc2V0
+b2YoX190eXBlLCBfX2ZpZWxkKSkpCiAKKyNkZWZpbmUgTElTVF9GSVJTVF9FTlRSWShfX3R5cGUs
+IF9faXRlbSwgX19maWVsZCkgXAorICAgTElTVF9FTlRSWShfX3R5cGUsIChfX2l0ZW0pLT5uZXh0
+LCBfX2ZpZWxkKQorCiAjZGVmaW5lIExJU1RfSVNfRU1QVFkoX19saXN0KSAgICAgICAgICAgICAg
+ICAgICBcCiAgICAgKChfX2xpc3QpLT5uZXh0ID09IChfX2xpc3QpKQogCi0tIAoyLjQuMgoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
