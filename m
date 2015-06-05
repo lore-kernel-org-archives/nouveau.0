@@ -1,124 +1,101 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90180] Segmentation Fault with CLANG builder
-Date: Thu, 04 Jun 2015 15:00:24 +0000
-Message-ID: <bug-90180-8800-UAVAHRN1DA@http.bugs.freedesktop.org/>
-References: <bug-90180-8800@http.bugs.freedesktop.org/>
+From: Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Do not leak client objects
+Date: Fri, 5 Jun 2015 13:35:26 +0200
+Message-ID: <20150605113525.GF17776@ulmo.nvidia.com>
+References: <1413453294-15787-1-git-send-email-thierry.reding@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1925637902=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============0640389963=="
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1413453294-15787-1-git-send-email-thierry.reding@gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1925637902==
-Content-Type: multipart/alternative; boundary="1433430024.F31FdF782.6870"; charset="UTF-8"
+--===============0640389963==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ULyIDA2m8JTe+TiX"
+Content-Disposition: inline
 
 
---1433430024.F31FdF782.6870
-Date: Thu, 4 Jun 2015 15:00:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--ULyIDA2m8JTe+TiX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90180
+On Thu, Oct 16, 2014 at 11:54:54AM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> The memory allocated for a nouveau_cli object in nouveau_cli_create() is
+> never freed. Free the memory in nouveau_cli_destroy() to plug this leak.
+>=20
+> kmemleak recorded this after running a couple of nouveau test programs.
+> Note that kmemleak points at drm_open_helper() because for some reason
+> it thinks that skipping the first two stack frames is a good idea.
+>=20
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
+eau/nouveau_drm.c
+> index 57238076049f..6dc2c915ba6e 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -126,6 +126,7 @@ nouveau_cli_destroy(struct nouveau_cli *cli)
+>  	nouveau_vm_ref(NULL, &nvkm_client(&cli->base)->vm, NULL);
+>  	nvif_client_fini(&cli->base);
+>  	usif_client_fini(cli);
+> +	kfree(cli);
+>  }
+> =20
+>  static void
 
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ben, any chance you could pick this up?
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+Thierry
 
---- Comment #3 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thank you for reporting this, but it's probably not related to Nouveau.
-I'm going to close this issue.
+--ULyIDA2m8JTe+TiX
+Content-Type: application/pgp-signature
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
---1433430024.F31FdF782.6870
-Date: Thu, 4 Jun 2015 15:00:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+iQIbBAABCAAGBQJVcYl9AAoJEN0jrNd/PrOhctkP9jQu7YNyRlJrWhmQtED1J6JZ
+g0Nl5E/zB5MibGiZXMwakAZc1KdV/b/3kVdDq+h1A2Hz60Dn/8N1iiIMmuyBjXTv
+suLeIU3MGn4NP7w3CY85HSjJYd2BCOPVu1IfptTyG/ma21CuwuA9M6Gz3l66V+yU
+hsNrLqSh/2XG/tBtcDbjQRvf1fWbQbwBy6y0rNN0qjWl795z/Og3wo/Fv+p94Cdk
+qMHxtb5KwitTTuSsHkTtCaUY8/b1OUDUEorPbTdBc2ytJ+h7dEVgQJoIFhcebpw0
+gXl24lL0rUgD5aBgI9ZQ3ZZB5k+g++JE2AUkHgOK3PLKxvxAlhtNQ0zhNmbUhXrQ
+LskNP3i87J6sbkGM6PR7WHerjgh6Z94GIk7IBl7FdlcixkUkO9AVnQBqGg9+cVo7
+DNxIS4rGwy9eNGuhYzshBNmfkyHUAivu8rQP4eSYHG+0BvK8yr1PQcVkdUKz4RaC
+lrej2ohTqK89kxYrvxS9866USh/5/ry9FUECd3O42P+ZbBnOCqCdtwo/0uulbSep
+teMKhTy4xIq2R4WPIn5sBeDoAM7DabyUM4/EeyI7Krphv22bSEna1BrotNFcgcej
+vLzVZUa0u30bbcg315SgdQvhcmTsIaFQxmJL3u/Wl2OyQrRmfeTJVCsqnOyEU0gi
+XfipWrmjB5Rv2otD0/k=
+=cEr6
+-----END PGP SIGNATURE-----
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Segmentation Fault with CLANG builder"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90180">bug 90180</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+--ULyIDA2m8JTe+TiX--
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Segmentation Fault with CLANG builder"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90180#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Segmentation Fault with CLANG builder"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90180">bug 90180</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span></b>
-        <pre>Thank you for reporting this, but it's probably not related to Nouveau.
-I'm going to close this issue.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433430024.F31FdF782.6870--
-
---===============1925637902==
+--===============0640389963==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
 
---===============1925637902==--
+--===============0640389963==--
