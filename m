@@ -1,101 +1,305 @@
-From: Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH] drm/nouveau: Do not leak client objects
-Date: Fri, 5 Jun 2015 13:35:26 +0200
-Message-ID: <20150605113525.GF17776@ulmo.nvidia.com>
-References: <1413453294-15787-1-git-send-email-thierry.reding@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] New: NV30: Xfwm4 use_compositing - garbled
+	display
+Date: Fri, 05 Jun 2015 14:04:44 +0000
+Message-ID: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0640389963=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1413453294-15787-1-git-send-email-thierry.reding@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============2130164363=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0640389963==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ULyIDA2m8JTe+TiX"
-Content-Disposition: inline
+--===============2130164363==
+Content-Type: multipart/alternative; boundary="1433513084.a842ba1.12207"; charset="UTF-8"
 
 
---ULyIDA2m8JTe+TiX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--1433513084.a842ba1.12207
+Date: Fri, 5 Jun 2015 14:04:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Oct 16, 2014 at 11:54:54AM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> The memory allocated for a nouveau_cli object in nouveau_cli_create() is
-> never freed. Free the memory in nouveau_cli_destroy() to plug this leak.
->=20
-> kmemleak recorded this after running a couple of nouveau test programs.
-> Note that kmemleak points at drm_open_helper() because for some reason
-> it thinks that skipping the first two stack frames is a good idea.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_drm.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 57238076049f..6dc2c915ba6e 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -126,6 +126,7 @@ nouveau_cli_destroy(struct nouveau_cli *cli)
->  	nouveau_vm_ref(NULL, &nvkm_client(&cli->base)->vm, NULL);
->  	nvif_client_fini(&cli->base);
->  	usif_client_fini(cli);
-> +	kfree(cli);
->  }
-> =20
->  static void
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-Ben, any chance you could pick this up?
+            Bug ID: 90871
+           Summary: NV30: Xfwm4 use_compositing -  garbled display
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Thierry
+Garbled display
+~~~~~~~~~~~~~~~
 
---ULyIDA2m8JTe+TiX
-Content-Type: application/pgp-signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+Chipset: NV34 (NV34)
+Family : NV30
 
-iQIbBAABCAAGBQJVcYl9AAoJEN0jrNd/PrOhctkP9jQu7YNyRlJrWhmQtED1J6JZ
-g0Nl5E/zB5MibGiZXMwakAZc1KdV/b/3kVdDq+h1A2Hz60Dn/8N1iiIMmuyBjXTv
-suLeIU3MGn4NP7w3CY85HSjJYd2BCOPVu1IfptTyG/ma21CuwuA9M6Gz3l66V+yU
-hsNrLqSh/2XG/tBtcDbjQRvf1fWbQbwBy6y0rNN0qjWl795z/Og3wo/Fv+p94Cdk
-qMHxtb5KwitTTuSsHkTtCaUY8/b1OUDUEorPbTdBc2ytJ+h7dEVgQJoIFhcebpw0
-gXl24lL0rUgD5aBgI9ZQ3ZZB5k+g++JE2AUkHgOK3PLKxvxAlhtNQ0zhNmbUhXrQ
-LskNP3i87J6sbkGM6PR7WHerjgh6Z94GIk7IBl7FdlcixkUkO9AVnQBqGg9+cVo7
-DNxIS4rGwy9eNGuhYzshBNmfkyHUAivu8rQP4eSYHG+0BvK8yr1PQcVkdUKz4RaC
-lrej2ohTqK89kxYrvxS9866USh/5/ry9FUECd3O42P+ZbBnOCqCdtwo/0uulbSep
-teMKhTy4xIq2R4WPIn5sBeDoAM7DabyUM4/EeyI7Krphv22bSEna1BrotNFcgcej
-vLzVZUa0u30bbcg315SgdQvhcmTsIaFQxmJL3u/Wl2OyQrRmfeTJVCsqnOyEU0gi
-XfipWrmjB5Rv2otD0/k=
-=cEr6
------END PGP SIGNATURE-----
+NVIDIA Corporation NV34 [GeForce FX 5200]
+Kernel driver in use: nouveau
+Kernel modules: nouveau
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fedora 22 i686
 
---ULyIDA2m8JTe+TiX--
 
---===============0640389963==
+1. Starting from - Xpresent support: no
+
+commit fee08eafa751a153ff93b04152ea66334141cac5
+Author: Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org>
+Date:   Thu Apr 9 23:06:38 2015 +0200
+
+    compositor: Add support for GLX
+
+    Bug: 10439
+
+    Using texture-from-pixmap extension.
+
+    Signed-off-by: Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org>
+
+
+Build Configuration for xfwm4 version 4.12.0git.fee08ea revision fee08ea:
+  Startup notification support: yes
+  XSync support:                yes
+  Render support:               yes
+  Xrandr support:               yes
+  Xpresent support:             no
+  Embedded compositor:          yes
+  Epoxy support:                yes
+  KDE systray protocol proxy:   no
+
+
+~~~~~~~~~~ ~~~~~~~~~ ~~~~~~~~ ~~~~~~~ ~~~~~~ ~~~~~ ~~~~ ~~~ ~~ ~
+
+
+2. Starting from - Xpresent support: yes
+
+commit aee242cec4c3d8e8232d67875ec9fbfbeb504a9d
+Author: Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org>
+Date:   Mon Apr 27 21:40:27 2015 +0200
+
+    compositor: Prefer GL over Present
+
+    If both are available, try to use GL first and next Present.
+
+    Signed-off-by: Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org>
+
+
+Build Configuration for xfwm4 version 4.12.0git.aee242c revision aee242c:
+  Startup notification support: yes
+  XSync support:                yes
+  Render support:               yes
+  Xrandr support:               yes
+  Xpresent support:             yes
+  Embedded compositor:          yes
+  Epoxy support:                yes
+  KDE systray protocol proxy:   no
+
+
+
+https://bugzilla.xfce.org/show_bug.cgi?id=11962
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1433513084.a842ba1.12207
+Date: Fri, 5 Jun 2015 14:04:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">90871</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>NV30: Xfwm4 use_compositing -  garbled display
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>pomidorabelisima&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Garbled display
+~~~~~~~~~~~~~~~
+
+
+Chipset: NV34 (NV34)
+Family : NV30
+
+NVIDIA Corporation NV34 [GeForce FX 5200]
+Kernel driver in use: nouveau
+Kernel modules: nouveau
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fedora 22 i686
+
+
+1. Starting from - Xpresent support: no
+
+commit fee08eafa751a153ff93b04152ea66334141cac5
+Author: Olivier Fourdan &lt;<a href="mailto:fourdan&#64;xfce.org">fourdan&#64;xfce.org</a>&gt;
+Date:   Thu Apr 9 23:06:38 2015 +0200
+
+    compositor: Add support for GLX
+
+    Bug: 10439
+
+    Using texture-from-pixmap extension.
+
+    Signed-off-by: Olivier Fourdan &lt;<a href="mailto:fourdan&#64;xfce.org">fourdan&#64;xfce.org</a>&gt;
+
+
+Build Configuration for xfwm4 version 4.12.0git.fee08ea revision fee08ea:
+  Startup notification support: yes
+  XSync support:                yes
+  Render support:               yes
+  Xrandr support:               yes
+  Xpresent support:             no
+  Embedded compositor:          yes
+  Epoxy support:                yes
+  KDE systray protocol proxy:   no
+
+
+~~~~~~~~~~ ~~~~~~~~~ ~~~~~~~~ ~~~~~~~ ~~~~~~ ~~~~~ ~~~~ ~~~ ~~ ~
+
+
+2. Starting from - Xpresent support: yes
+
+commit aee242cec4c3d8e8232d67875ec9fbfbeb504a9d
+Author: Olivier Fourdan &lt;<a href="mailto:fourdan&#64;xfce.org">fourdan&#64;xfce.org</a>&gt;
+Date:   Mon Apr 27 21:40:27 2015 +0200
+
+    compositor: Prefer GL over Present
+
+    If both are available, try to use GL first and next Present.
+
+    Signed-off-by: Olivier Fourdan &lt;<a href="mailto:fourdan&#64;xfce.org">fourdan&#64;xfce.org</a>&gt;
+
+
+Build Configuration for xfwm4 version 4.12.0git.aee242c revision aee242c:
+  Startup notification support: yes
+  XSync support:                yes
+  Render support:               yes
+  Xrandr support:               yes
+  Xpresent support:             yes
+  Embedded compositor:          yes
+  Epoxy support:                yes
+  KDE systray protocol proxy:   no
+
+
+
+<a href="https://bugzilla.xfce.org/show_bug.cgi?id=11962">https://bugzilla.xfce.org/show_bug.cgi?id=11962</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433513084.a842ba1.12207--
+
+--===============2130164363==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0640389963==--
+--===============2130164363==--
