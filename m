@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Fri, 05 Jun 2015 19:17:27 +0000
-Message-ID: <bug-90871-8800-IOco2cr1Cv@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Do not leak client objects
+Date: Sat, 6 Jun 2015 23:36:58 +1000
+Message-ID: <CACAvsv79uS0HnE48+ULWpG2LE5OezswS-1Kdgt0M76vUYAyfcA@mail.gmail.com>
+References: <1413453294-15787-1-git-send-email-thierry.reding@gmail.com>
+ <20150605113525.GF17776@ulmo.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1999575614=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20150605113525.GF17776-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,78 +18,36 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1999575614==
-Content-Type: multipart/alternative; boundary="1433531847.C8bB21.1078"; charset="UTF-8"
-
-
---1433531847.C8bB21.1078
-Date: Fri, 5 Jun 2015 19:17:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-All component downgraded to versions such as working setup on Fedora 21,
-but without positive effect.
-Looks like libepoxy has become broken for unknown reasons.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1433531847.C8bB21.1078
-Date: Fri, 5 Jun 2015 19:17:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-All component downgraded to versions such as working setup on Fedora 21,
-but without positive effect.
-Looks like libepoxy has become broken for unknown reasons.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433531847.C8bB21.1078--
-
---===============1999575614==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1999575614==--
+T24gNSBKdW5lIDIwMTUgYXQgMjE6MzUsIFRoaWVycnkgUmVkaW5nIDx0aGllcnJ5LnJlZGluZ0Bn
+bWFpbC5jb20+IHdyb3RlOgo+IE9uIFRodSwgT2N0IDE2LCAyMDE0IGF0IDExOjU0OjU0QU0gKzAy
+MDAsIFRoaWVycnkgUmVkaW5nIHdyb3RlOgo+PiBGcm9tOiBUaGllcnJ5IFJlZGluZyA8dHJlZGlu
+Z0BudmlkaWEuY29tPgo+Pgo+PiBUaGUgbWVtb3J5IGFsbG9jYXRlZCBmb3IgYSBub3V2ZWF1X2Ns
+aSBvYmplY3QgaW4gbm91dmVhdV9jbGlfY3JlYXRlKCkgaXMKPj4gbmV2ZXIgZnJlZWQuIEZyZWUg
+dGhlIG1lbW9yeSBpbiBub3V2ZWF1X2NsaV9kZXN0cm95KCkgdG8gcGx1ZyB0aGlzIGxlYWsuCj4+
+Cj4+IGttZW1sZWFrIHJlY29yZGVkIHRoaXMgYWZ0ZXIgcnVubmluZyBhIGNvdXBsZSBvZiBub3V2
+ZWF1IHRlc3QgcHJvZ3JhbXMuCj4+IE5vdGUgdGhhdCBrbWVtbGVhayBwb2ludHMgYXQgZHJtX29w
+ZW5faGVscGVyKCkgYmVjYXVzZSBmb3Igc29tZSByZWFzb24KPj4gaXQgdGhpbmtzIHRoYXQgc2tp
+cHBpbmcgdGhlIGZpcnN0IHR3byBzdGFjayBmcmFtZXMgaXMgYSBnb29kIGlkZWEuCj4+Cj4+IFNp
+Z25lZC1vZmYtYnk6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4+IC0tLQo+
+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyB8IDEgKwo+PiAgMSBmaWxl
+IGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9kcm0uYwo+PiBpbmRleCA1NzIzODA3NjA0OWYuLjZkYzJjOTE1YmE2ZSAxMDA2NDQKPj4gLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwo+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCj4+IEBAIC0xMjYsNiArMTI2LDcgQEAgbm91
+dmVhdV9jbGlfZGVzdHJveShzdHJ1Y3Qgbm91dmVhdV9jbGkgKmNsaSkKPj4gICAgICAgbm91dmVh
+dV92bV9yZWYoTlVMTCwgJm52a21fY2xpZW50KCZjbGktPmJhc2UpLT52bSwgTlVMTCk7Cj4+ICAg
+ICAgIG52aWZfY2xpZW50X2ZpbmkoJmNsaS0+YmFzZSk7Cj4+ICAgICAgIHVzaWZfY2xpZW50X2Zp
+bmkoY2xpKTsKPj4gKyAgICAga2ZyZWUoY2xpKTsKPj4gIH0KPj4KPj4gIHN0YXRpYyB2b2lkCj4K
+PiBCZW4sIGFueSBjaGFuY2UgeW91IGNvdWxkIHBpY2sgdGhpcyB1cD8KR290IGl0IDopICBUaGFu
+a3MgZm9yIHRoZSBwaW5nIQoKQmVuLgoKPgo+IFRoaWVycnkKPgo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
