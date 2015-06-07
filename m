@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Sat, 06 Jun 2015 20:42:00 +0000
-Message-ID: <bug-90435-8800-9jyKOqlAjM@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83897] [NVE6] GK106 (GeForce GTX 660): Frequent GPU
+	lockups
+Date: Sun, 07 Jun 2015 09:03:37 +0000
+Message-ID: <bug-83897-8800-xtlSf9N3Pw@http.bugs.freedesktop.org/>
+References: <bug-83897-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0619874734=="
+Content-Type: multipart/mixed; boundary="===============1495945546=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83897-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,69 +21,113 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0619874734==
-Content-Type: multipart/alternative; boundary="1433623319.DceAeE1.2973"; charset="UTF-8"
+--===============1495945546==
+Content-Type: multipart/alternative; boundary="1433667817.c0ddD5ff1.6589"; charset="UTF-8"
 
 
---1433623319.DceAeE1.2973
-Date: Sat, 6 Jun 2015 20:41:59 +0000
+--1433667817.c0ddD5ff1.6589
+Date: Sun, 7 Jun 2015 09:03:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
+https://bugs.freedesktop.org/show_bug.cgi?id=3D83897
 
---- Comment #14 from Ilya <dikiy_evrej-S0/GAf8tV78@public.gmane.org> ---
-> Great, thanks for testing, then it seems you've the same issue. I'll try to
-> investigate this further Friday (tomorrow I've some other items I need to
-> look into).
+freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org changed:
 
-Any news about it?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |freedesk.apriori@spamgourme
+                   |                            |t.com
 
--- 
+--- Comment #6 from freedesk.apriori-w1QkCcy0X+BxKfgMtfWJuA@public.gmane.org ---
+Created attachment 116335
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D116335&action=3Dedit
+Recent lock-up logs, on Linux 4.0.3 and 4.0.4
+
+I tried running Nouveau on Linux 4 again for a while, but the driver still
+locks up frequently. Here=E2=80=99s some of the recent logs in case it help=
+s.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1433623319.DceAeE1.2973
-Date: Sat, 6 Jun 2015 20:41:59 +0000
+--1433667817.c0ddD5ff1.6589
+Date: Sun, 7 Jun 2015 09:03:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:freedesk.=
+apriori&#64;spamgourmet.com" title=3D"freedesk.apriori&#64;spamgourmet.com"=
+>freedesk.apriori&#64;spamgourmet.com</a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897">bug 83897<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>freedesk.apriori&#64;spamgourmet.com
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:dikiy_evrej&#64;web.de" title="Ilya &lt;dikiy_evrej&#64;web.de&gt;"> <span class="fn">Ilya</span></a>
+   title=3D"NEW - [NVE6] GK106 (GeForce GTX 660): Frequent GPU lockups"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D83897">bug 83897<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+freedesk.apriori&#64;spamgourmet.com" title=3D"freedesk.apriori&#64;spamgou=
+rmet.com">freedesk.apriori&#64;spamgourmet.com</a>
 </span></b>
-        <pre><span class="quote">&gt; Great, thanks for testing, then it seems you've the same issue. I'll try to
-&gt; investigate this further Friday (tomorrow I've some other items I need to
-&gt; look into).</span >
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D116335=
+" name=3D"attach_116335" title=3D"Recent lock-up logs, on Linux 4.0.3 and 4=
+.0.4">attachment 116335</a> <a href=3D"attachment.cgi?id=3D116335&amp;actio=
+n=3Dedit" title=3D"Recent lock-up logs, on Linux 4.0.3 and 4.0.4">[details]=
+</a></span>
+Recent lock-up logs, on Linux 4.0.3 and 4.0.4
 
-Any news about it?</pre>
+I tried running Nouveau on Linux 4 again for a while, but the driver still
+locks up frequently. Here=E2=80=99s some of the recent logs in case it help=
+s.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1433623319.DceAeE1.2973--
+--1433667817.c0ddD5ff1.6589--
 
---===============0619874734==
+--===============1495945546==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +137,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0619874734==--
+--===============1495945546==--
