@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90883] Random text characters partially or
-	completely missing
-Date: Mon, 08 Jun 2015 01:17:16 +0000
-Message-ID: <bug-90883-8800-n2fNdJwBcl@http.bugs.freedesktop.org/>
-References: <bug-90883-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 1/5] platform: fix compile error if !CONFIG_IOMMU
+Date: Mon, 8 Jun 2015 17:53:53 +0900
+Message-ID: <1433753637-24706-2-git-send-email-acourbot@nvidia.com>
+References: <1433753637-24706-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1021729799=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90883-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1433753637-24706-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,97 +17,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1021729799==
-Content-Type: multipart/alternative; boundary="1433726236.023A5C2.25625"; charset="UTF-8"
-
-
---1433726236.023A5C2.25625
-Date: Mon, 8 Jun 2015 01:17:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90883
-
-Michel D=C3=A4nzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Server/General              |Driver/nouveau
-           Assignee|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1433726236.023A5C2.25625
-Date: Mon, 8 Jun 2015 01:17:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:michel&#6=
-4;daenzer.net" title=3D"Michel D=C3=A4nzer &lt;michel&#64;daenzer.net&gt;">=
- <span class=3D"fn">Michel D=C3=A4nzer</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Random text characters partially or completely missing"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90883">bug 90883<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Component</td>
-           <td>Server/General
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Assignee</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433726236.023A5C2.25625--
-
---===============1021729799==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1021729799==--
+VGhlIGxhY2sgb2YgSU9NTVUgQVBJIHN1cHBvcnQgY2FuIG1ha2Ugbm91dmVhdV9wbGF0Zm9ybV9w
+cm9iZV9pb21tdSgpCmZhaWwgdG8gY29tcGlsZSBiZWNhdXNlIHN0cnVjdCBpb21tdV9vcHMgaXMg
+dGhlbiBlbXB0eS4gRml4IHRoaXMgYnkKc2tpcHBpbmcgSU9NTVUgcHJvYmUgaW4gdGhhdCBjYXNl
+IC0gbGFjayBvZiBJT01NVSBvbiBwbGF0Zm9ybSBkZXZpY2VzCmlzIHN1Yi1vcHRpbWFsLCBidXQg
+aXMgbm90IGFuIGVycm9yLgoKU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3Vy
+Ym90QG52aWRpYS5jb20+Ci0tLQogZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5jIHwgMTYg
+KysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykKCmRpZmYg
+LS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMgYi9kcm0vbm91dmVhdS9ub3V2
+ZWF1X3BsYXRmb3JtLmMKaW5kZXggNzc1Mjc3ZjFlZGIwLi5kY2ZiYmZhZjE3MzkgMTAwNjQ0Ci0t
+LSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYworKysgYi9kcm0vbm91dmVhdS9ub3V2
+ZWF1X3BsYXRmb3JtLmMKQEAgLTkyLDYgKzkyLDggQEAgc3RhdGljIGludCBub3V2ZWF1X3BsYXRm
+b3JtX3Bvd2VyX2Rvd24oc3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1ICpncHUpCiAJcmV0dXJu
+IDA7CiB9CiAKKyNpZiBJU19FTkFCTEVEKENPTkZJR19JT01NVV9BUEkpCisKIHN0YXRpYyB2b2lk
+IG5vdXZlYXVfcGxhdGZvcm1fcHJvYmVfaW9tbXUoc3RydWN0IGRldmljZSAqZGV2LAogCQkJCQkg
+c3RydWN0IG5vdXZlYXVfcGxhdGZvcm1fZ3B1ICpncHUpCiB7CkBAIC0xNTgsNiArMTYwLDIwIEBA
+IHN0YXRpYyB2b2lkIG5vdXZlYXVfcGxhdGZvcm1fcmVtb3ZlX2lvbW11KHN0cnVjdCBkZXZpY2Ug
+KmRldiwKIAl9CiB9CiAKKyNlbHNlCisKK3N0YXRpYyB2b2lkIG5vdXZlYXVfcGxhdGZvcm1fcHJv
+YmVfaW9tbXUoc3RydWN0IGRldmljZSAqZGV2LAorCQkJCQkgc3RydWN0IG5vdXZlYXVfcGxhdGZv
+cm1fZ3B1ICpncHUpCit7Cit9CisKK3N0YXRpYyB2b2lkIG5vdXZlYXVfcGxhdGZvcm1fcmVtb3Zl
+X2lvbW11KHN0cnVjdCBkZXZpY2UgKmRldiwKKwkJCQkJICBzdHJ1Y3Qgbm91dmVhdV9wbGF0Zm9y
+bV9ncHUgKmdwdSkKK3sKK30KKworI2VuZGlmCisKIHN0YXRpYyBpbnQgbm91dmVhdV9wbGF0Zm9y
+bV9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQogewogCXN0cnVjdCBub3V2ZWF1
+X3BsYXRmb3JtX2dwdSAqZ3B1OwotLSAKMi40LjIKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
+aW5mby9ub3V2ZWF1Cg==
