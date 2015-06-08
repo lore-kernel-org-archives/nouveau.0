@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Mon, 08 Jun 2015 18:22:22 +0000
-Message-ID: <bug-90871-8800-bOmBqfeNMI@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH 4/5] gr/gf100: wait on bottom half of FE's
+	pipeline
+Date: Mon, 8 Jun 2015 22:43:54 +0900
+Message-ID: <CAAVeFuJQiNmjWzOdzY9rR2EJ_CX8dgM5DAG1-OOwbKXe2nLPAg@mail.gmail.com>
+References: <1433753637-24706-1-git-send-email-acourbot@nvidia.com>
+ <1433753637-24706-5-git-send-email-acourbot@nvidia.com>
+ <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396773931=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,88 +20,43 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0396773931==
-Content-Type: multipart/alternative; boundary="1433762542.eDafA1.25890"; charset="UTF-8"
-
-
---1433762542.eDafA1.25890
-Date: Mon, 8 Jun 2015 04:22:22 -0700
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #3 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-(In reply to poma from comment #2)
-> All component downgraded to versions such as working setup on Fedora 21,
-> but without positive effect.
-> Looks like libepoxy has become broken for unknown reasons.
-
-You mean it's a regression between F21 and F22?
-
-Then it isn't libepoxy (which is just a conveninent library to load GL
-extensions and such) nor the DDX but most likely Mesa or DRI/DRM instead.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1433762542.eDafA1.25890
-Date: Mon, 8 Jun 2015 04:22:22 -0700
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
-</span></b>
-        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c2">comment #2</a>)
-<span class="quote">&gt; All component downgraded to versions such as working setup on Fedora 21,
-&gt; but without positive effect.
-&gt; Looks like libepoxy has become broken for unknown reasons.</span >
-
-You mean it's a regression between F21 and F22?
-
-Then it isn't libepoxy (which is just a conveninent library to load GL
-extensions and such) nor the DDX but most likely Mesa or DRI/DRM instead.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1433762542.eDafA1.25890--
-
---===============0396773931==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0396773931==--
+T24gTW9uLCBKdW4gOCwgMjAxNSBhdCA4OjA0IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
+Lm1pdC5lZHU+IHdyb3RlOgo+IEEgbmFpdmUgcXVlc3Rpb24gZnJvbSBzb21lb25lIHdobyBrbm93
+cyBub3RoaW5nIG9mIGljbWQgb3IgYnVuZGxlcy4uLiBXb3VsZAo+IGl0IGJlIGJldHRlciB0byB3
+YWl0IGZvciBib3RoIGJpdHMgdG8gYmVjb21lIDAgKEkuZS4gMHg2KT8KCk15IHVuZGVyc3RhbmRp
+bmcgaXMgdGhhdCBhIG1ldGhvZCByZWFjaGluZyB0aGUgYm90dG9tIGhhbGYgaW1wbGllcyBpdApo
+YXMgcGFzc2VkIHRvIHVwcGVyIGhhbGYgKHdoYXRldmVyIHRoZXNlIGhhbGZzIGFyZSwgSSBuZWVk
+IHRvIGRpZyBpbnRvCnRoZSBkb2MgdG8gY29tcGxldGVseSBmaWd1cmUgaXQgb3V0KSwgYW5kIHRo
+dXMgdGhhdCB3aGlsZSB3YWl0aW5nIGZvcgpib3RoIGJpdHMgd291bGQgZG8gbm8gaGFybSwgaXQg
+d291bGQgbm90IGRvIGFueSBnb29kIGVpdGhlci4KCldhaXRpbmcgb24gdGhlIGJvdHRvbSBoYWxm
+IGlzIHdoYXQgZG93bnN0cmVhbSBkb2VzLCBzbyBJIHRoaW5rIHRoaXMKYmVoYXZpb3IgaXMgc2Fm
+ZSB0byBhcHBseSB0byBOb3V2ZWF1LgoKPgo+IE9uIEp1biA4LCAyMDE1IDExOjU0IEFNLCAiQWxl
+eGFuZHJlIENvdXJib3QiIDxhY291cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4KPj4gV2hlbiBl
+bWl0dGluZyB0aGUgSUNNRCBidW5kbGUsIHdhaXQgb24gdGhlIGJvdHRvbSBoYWxmIChiaXQgMyBv
+ZiB0aGUKPj4gR1JfU1RBVFVTIHJlZ2lzdGVyKSBpbnN0ZWFkIG9mIHVwcGVyIGhhbGYgKGJpdCAy
+KSB0byBtYWtlIHN1cmUgbWV0aG9kcwo+PiBhcmUgZWZmZWN0aXZlbHkgZW1pdHRlZC4KPj4KPj4g
+U2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+
+IC0tLQo+PiAgZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyB8IDIgKy0KPj4gIDEg
+ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBiL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gaW5kZXggNTYwNmMyNWU1ZDAyLi4wMWVmYzJjOTYw
+NDUgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4g
+KysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBAQCAtNjk5LDcgKzY5
+OSw3IEBAIGdmMTAwX2dyX2ljbWQoc3RydWN0IGdmMTAwX2dyX3ByaXYgKnByaXYsIGNvbnN0IHN0
+cnVjdAo+PiBnZjEwMF9ncl9wYWNrICpwKQo+Pgo+PiAgICAgICAgICAgICAgICAgd2hpbGUgKGFk
+ZHIgPCBuZXh0KSB7Cj4+ICAgICAgICAgICAgICAgICAgICAgICAgIG52X3dyMzIocHJpdiwgMHg0
+MDAyMDAsIGFkZHIpOwo+PiAtICAgICAgICAgICAgICAgICAgICAgICBudl93YWl0KHByaXYsIDB4
+NDAwNzAwLCAweDAwMDAwMDAyLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgbnZfd2FpdChwcml2LCAweDQwMDcwMCwgMHgwMDAwMDAwNCwgMHgwMDAwMDAwMCk7Cj4+ICAg
+ICAgICAgICAgICAgICAgICAgICAgIGFkZHIgKz0gaW5pdC0+cGl0Y2g7Cj4+ICAgICAgICAgICAg
+ICAgICB9Cj4+ICAgICAgICAgfQo+PiAtLQo+PiAyLjQuMgo+Pgo+PiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
