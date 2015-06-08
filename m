@@ -1,14 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 4/5] gr/gf100: wait on bottom half of FE's
-	pipeline
-Date: Mon, 8 Jun 2015 07:04:41 -0400
-Message-ID: <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g@mail.gmail.com>
-References: <1433753637-24706-1-git-send-email-acourbot@nvidia.com>
- <1433753637-24706-5-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Mon, 08 Jun 2015 18:22:22 +0000
+Message-ID: <bug-90871-8800-bOmBqfeNMI@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2060497844=="
+Content-Type: multipart/mixed; boundary="===============0396773931=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1433753637-24706-5-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,108 +16,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============2060497844==
-Content-Type: multipart/alternative; boundary=001a113d29dacb2ca10517ff9b16
 
---001a113d29dacb2ca10517ff9b16
-Content-Type: text/plain; charset=UTF-8
+--===============0396773931==
+Content-Type: multipart/alternative; boundary="1433762542.eDafA1.25890"; charset="UTF-8"
 
-A naive question from someone who knows nothing of icmd or bundles... Would
-it be better to wait for both bits to become 0 (I.e. 0x6)?
-On Jun 8, 2015 11:54 AM, "Alexandre Courbot" <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
 
-> When emitting the ICMD bundle, wait on the bottom half (bit 3 of the
-> GR_STATUS register) instead of upper half (bit 2) to make sure methods
-> are effectively emitted.
->
-> Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> ---
->  drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drm/nouveau/nvkm/engine/gr/gf100.c
-> b/drm/nouveau/nvkm/engine/gr/gf100.c
-> index 5606c25e5d02..01efc2c96045 100644
-> --- a/drm/nouveau/nvkm/engine/gr/gf100.c
-> +++ b/drm/nouveau/nvkm/engine/gr/gf100.c
-> @@ -699,7 +699,7 @@ gf100_gr_icmd(struct gf100_gr_priv *priv, const struct
-> gf100_gr_pack *p)
->
->                 while (addr < next) {
->                         nv_wr32(priv, 0x400200, addr);
-> -                       nv_wait(priv, 0x400700, 0x00000002, 0x00000000);
-> +                       nv_wait(priv, 0x400700, 0x00000004, 0x00000000);
->                         addr += init->pitch;
->                 }
->         }
-> --
-> 2.4.2
->
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
+--1433762542.eDafA1.25890
+Date: Mon, 8 Jun 2015 04:22:22 -0700
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
---001a113d29dacb2ca10517ff9b16
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-<p dir=3D"ltr">A naive question from someone who knows nothing of icmd or b=
-undles... Would it be better to wait for both bits to become 0 (I.e. 0x6)?<=
-/p>
-<div class=3D"gmail_quote">On Jun 8, 2015 11:54 AM, &quot;Alexandre Courbot=
-&quot; &lt;<a href=3D"mailto:acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org">acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org</a>&g=
-t; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">When emi=
-tting the ICMD bundle, wait on the bottom half (bit 3 of the<br>
-GR_STATUS register) instead of upper half (bit 2) to make sure methods<br>
-are effectively emitted.<br>
-<br>
-Signed-off-by: Alexandre Courbot &lt;<a href=3D"mailto:acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org"=
->acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org</a>&gt;<br>
----<br>
-=C2=A0drm/nouveau/nvkm/engine/gr/gf100.c | 2 +-<br>
-=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
-<br>
-diff --git a/drm/nouveau/nvkm/engine/gr/gf100.c b/drm/nouveau/nvkm/engine/g=
-r/gf100.c<br>
-index 5606c25e5d02..01efc2c96045 100644<br>
---- a/drm/nouveau/nvkm/engine/gr/gf100.c<br>
-+++ b/drm/nouveau/nvkm/engine/gr/gf100.c<br>
-@@ -699,7 +699,7 @@ gf100_gr_icmd(struct gf100_gr_priv *priv, const struct =
-gf100_gr_pack *p)<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 while (addr &lt; ne=
-xt) {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 nv_wr32(priv, 0x400200, addr);<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0nv_wait(priv, 0x400700, 0x00000002, 0x00000000);<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0nv_wait(priv, 0x400700, 0x00000004, 0x00000000);<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 addr +=3D init-&gt;pitch;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
---<br>
-2.4.2<br>
-<br>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org=
-org</a><br>
-<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" target=3D=
-"_blank">http://lists.freedesktop.org/mailman/listinfo/nouveau</a><br>
-</blockquote></div>
+--- Comment #3 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to poma from comment #2)
+> All component downgraded to versions such as working setup on Fedora 21,
+> but without positive effect.
+> Looks like libepoxy has become broken for unknown reasons.
 
---001a113d29dacb2ca10517ff9b16--
+You mean it's a regression between F21 and F22?
 
---===============2060497844==
+Then it isn't libepoxy (which is just a conveninent library to load GL
+extensions and such) nor the DDX but most likely Mesa or DRI/DRM instead.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1433762542.eDafA1.25890
+Date: Mon, 8 Jun 2015 04:22:22 -0700
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c2">comment #2</a>)
+<span class="quote">&gt; All component downgraded to versions such as working setup on Fedora 21,
+&gt; but without positive effect.
+&gt; Looks like libepoxy has become broken for unknown reasons.</span >
+
+You mean it's a regression between F21 and F22?
+
+Then it isn't libepoxy (which is just a conveninent library to load GL
+extensions and such) nor the DDX but most likely Mesa or DRI/DRM instead.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433762542.eDafA1.25890--
+
+--===============0396773931==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2060497844==--
+--===============0396773931==--
