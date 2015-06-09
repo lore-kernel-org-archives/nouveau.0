@@ -1,16 +1,12 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 4/5] gr/gf100: wait on bottom half of FE's
-	pipeline
-Date: Mon, 8 Jun 2015 22:43:54 +0900
-Message-ID: <CAAVeFuJQiNmjWzOdzY9rR2EJ_CX8dgM5DAG1-OOwbKXe2nLPAg@mail.gmail.com>
-References: <1433753637-24706-1-git-send-email-acourbot@nvidia.com>
- <1433753637-24706-5-git-send-email-acourbot@nvidia.com>
- <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Tue, 09 Jun 2015 00:53:45 +0000
+Message-ID: <bug-90871-8800-WMTjWPlAZB@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1272142360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,43 +16,154 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gOCwgMjAxNSBhdCA4OjA0IFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVt
-Lm1pdC5lZHU+IHdyb3RlOgo+IEEgbmFpdmUgcXVlc3Rpb24gZnJvbSBzb21lb25lIHdobyBrbm93
-cyBub3RoaW5nIG9mIGljbWQgb3IgYnVuZGxlcy4uLiBXb3VsZAo+IGl0IGJlIGJldHRlciB0byB3
-YWl0IGZvciBib3RoIGJpdHMgdG8gYmVjb21lIDAgKEkuZS4gMHg2KT8KCk15IHVuZGVyc3RhbmRp
-bmcgaXMgdGhhdCBhIG1ldGhvZCByZWFjaGluZyB0aGUgYm90dG9tIGhhbGYgaW1wbGllcyBpdApo
-YXMgcGFzc2VkIHRvIHVwcGVyIGhhbGYgKHdoYXRldmVyIHRoZXNlIGhhbGZzIGFyZSwgSSBuZWVk
-IHRvIGRpZyBpbnRvCnRoZSBkb2MgdG8gY29tcGxldGVseSBmaWd1cmUgaXQgb3V0KSwgYW5kIHRo
-dXMgdGhhdCB3aGlsZSB3YWl0aW5nIGZvcgpib3RoIGJpdHMgd291bGQgZG8gbm8gaGFybSwgaXQg
-d291bGQgbm90IGRvIGFueSBnb29kIGVpdGhlci4KCldhaXRpbmcgb24gdGhlIGJvdHRvbSBoYWxm
-IGlzIHdoYXQgZG93bnN0cmVhbSBkb2VzLCBzbyBJIHRoaW5rIHRoaXMKYmVoYXZpb3IgaXMgc2Fm
-ZSB0byBhcHBseSB0byBOb3V2ZWF1LgoKPgo+IE9uIEp1biA4LCAyMDE1IDExOjU0IEFNLCAiQWxl
-eGFuZHJlIENvdXJib3QiIDxhY291cmJvdEBudmlkaWEuY29tPiB3cm90ZToKPj4KPj4gV2hlbiBl
-bWl0dGluZyB0aGUgSUNNRCBidW5kbGUsIHdhaXQgb24gdGhlIGJvdHRvbSBoYWxmIChiaXQgMyBv
-ZiB0aGUKPj4gR1JfU1RBVFVTIHJlZ2lzdGVyKSBpbnN0ZWFkIG9mIHVwcGVyIGhhbGYgKGJpdCAy
-KSB0byBtYWtlIHN1cmUgbWV0aG9kcwo+PiBhcmUgZWZmZWN0aXZlbHkgZW1pdHRlZC4KPj4KPj4g
-U2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cj4+
-IC0tLQo+PiAgZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYyB8IDIgKy0KPj4gIDEg
-ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0t
-Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBiL2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4gaW5kZXggNTYwNmMyNWU1ZDAyLi4wMWVmYzJjOTYw
-NDUgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dmMTAwLmMKPj4g
-KysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+PiBAQCAtNjk5LDcgKzY5
-OSw3IEBAIGdmMTAwX2dyX2ljbWQoc3RydWN0IGdmMTAwX2dyX3ByaXYgKnByaXYsIGNvbnN0IHN0
-cnVjdAo+PiBnZjEwMF9ncl9wYWNrICpwKQo+Pgo+PiAgICAgICAgICAgICAgICAgd2hpbGUgKGFk
-ZHIgPCBuZXh0KSB7Cj4+ICAgICAgICAgICAgICAgICAgICAgICAgIG52X3dyMzIocHJpdiwgMHg0
-MDAyMDAsIGFkZHIpOwo+PiAtICAgICAgICAgICAgICAgICAgICAgICBudl93YWl0KHByaXYsIDB4
-NDAwNzAwLCAweDAwMDAwMDAyLCAweDAwMDAwMDAwKTsKPj4gKyAgICAgICAgICAgICAgICAgICAg
-ICAgbnZfd2FpdChwcml2LCAweDQwMDcwMCwgMHgwMDAwMDAwNCwgMHgwMDAwMDAwMCk7Cj4+ICAg
-ICAgICAgICAgICAgICAgICAgICAgIGFkZHIgKz0gaW5pdC0+cGl0Y2g7Cj4+ICAgICAgICAgICAg
-ICAgICB9Cj4+ICAgICAgICAgfQo+PiAtLQo+PiAyLjQuMgo+Pgo+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
-PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbm91dmVhdQo=
+
+--===============1272142360==
+Content-Type: multipart/alternative; boundary="1433786025.bFc8Aac1.18078"; charset="UTF-8"
+
+
+--1433786025.bFc8Aac1.18078
+Date: Mon, 8 Jun 2015 10:53:45 -0700
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #4 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+What I actually wanted to write,
+epoxy support is related to the usage, enablement of the OpenGL, right?
+And here it is about compositing part.
+If I understood this library simplifies writing code related to OpenGL.
+
+About distro versions "regression",
+I expected the Xorg/Mesa/libdrm from Fedora 21 to work also on Fedora 22,
+but surprise, surprise, it didn't happen.
+
+I tested also
+[Mesa-announce] Mesa 10.5.7
+http://lists.freedesktop.org/archives/mesa-announce/2015-June/000157.html
+No effect positivo.
+
+Also it is not possible to test whether the NV30 works with 'modesetting':
+
+Driver "modesetting"
+~~~~~~
+Require OpenGL version 2.1 or later.
+(EE) modeset(0): Failed to initialize glamor at ScreenInit() time.
+(EE) 
+Fatal server error:
+(EE) AddScreen/ScreenInit failed for driver 0
+(EE) 
+(EE) Server terminated with error (1). Closing log file.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Driver "modesetting"
+Option "AccelMethod" "none"
+~~~~~~
+(II) AIGLX: Screen 0 is not DRI2 capable
+(EE) AIGLX: reverting to software rendering
+(II) AIGLX: Loaded and initialized swrast
+(II) GLX: Initialized DRISWRAST GL provider for screen 0
+(EE) 
+Fatal server error:
+(EE) failed to create screen resources(EE) 
+(EE) Server terminated with error (1). Closing log file.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Therefore for now I can not conclude what this is all about.
+At least Xpresent rendering works, although "serrated" - not quite tear-free.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1433786025.bFc8Aac1.18078
+Date: Mon, 8 Jun 2015 10:53:45 -0700
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+What I actually wanted to write,
+epoxy support is related to the usage, enablement of the OpenGL, right?
+And here it is about compositing part.
+If I understood this library simplifies writing code related to OpenGL.
+
+About distro versions &quot;regression&quot;,
+I expected the Xorg/Mesa/libdrm from Fedora 21 to work also on Fedora 22,
+but surprise, surprise, it didn't happen.
+
+I tested also
+[Mesa-announce] Mesa 10.5.7
+<a href="http://lists.freedesktop.org/archives/mesa-announce/2015-June/000157.html">http://lists.freedesktop.org/archives/mesa-announce/2015-June/000157.html</a>
+No effect positivo.
+
+Also it is not possible to test whether the NV30 works with 'modesetting':
+
+Driver &quot;modesetting&quot;
+~~~~~~
+Require OpenGL version 2.1 or later.
+(EE) modeset(0): Failed to initialize glamor at ScreenInit() time.
+(EE) 
+Fatal server error:
+(EE) AddScreen/ScreenInit failed for driver 0
+(EE) 
+(EE) Server terminated with error (1). Closing log file.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Driver &quot;modesetting&quot;
+Option &quot;AccelMethod&quot; &quot;none&quot;
+~~~~~~
+(II) AIGLX: Screen 0 is not DRI2 capable
+(EE) AIGLX: reverting to software rendering
+(II) AIGLX: Loaded and initialized swrast
+(II) GLX: Initialized DRISWRAST GL provider for screen 0
+(EE) 
+Fatal server error:
+(EE) failed to create screen resources(EE) 
+(EE) Server terminated with error (1). Closing log file.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Therefore for now I can not conclude what this is all about.
+At least Xpresent rendering works, although &quot;serrated&quot; - not quite tear-free.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433786025.bFc8Aac1.18078--
+
+--===============1272142360==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1272142360==--
