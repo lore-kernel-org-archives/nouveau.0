@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Wed, 10 Jun 2015 14:37:35 +0000
-Message-ID: <bug-90871-8800-9ETlIWVhAu@http.bugs.freedesktop.org/>
+Date: Wed, 10 Jun 2015 14:39:23 +0000
+Message-ID: <bug-90871-8800-EBdYH2yEPK@http.bugs.freedesktop.org/>
 References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1474021690=="
+Content-Type: multipart/mixed; boundary="===============1630568060=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,50 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1474021690==
-Content-Type: multipart/alternative; boundary="1433921854.5dF60.9972"; charset="UTF-8"
+--===============1630568060==
+Content-Type: multipart/alternative; boundary="1433921963.14a610.10320"; charset="UTF-8"
 
 
---1433921854.5dF60.9972
-Date: Wed, 10 Jun 2015 00:37:34 -0700
+--1433921963.14a610.10320
+Date: Wed, 10 Jun 2015 00:39:23 -0700
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Version|10.5                        |git
-
---- Comment #6 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-Same with latest git:
-
-mesa-dri-drivers-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-filesystem-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libEGL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libgbm-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libglapi-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGLES-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGLU-9.0.0-7.fc22.i686
-mesa-libGLw-8.0.0-5.fc22.i686
-mesa-libOpenCL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libOSMesa-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libwayland-egl-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libxatracker-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-omx-drivers-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-vdpau-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+--- Comment #7 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 116415
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116415&action=edit
+Xfwm4 GLX compositing NV34 Mesa 10.7.0 devel git 563706c
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1433921854.5dF60.9972
-Date: Wed, 10 Jun 2015 00:37:34 -0700
+--1433921963.14a610.10320
+Date: Wed, 10 Jun 2015 00:39:23 -0700
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,57 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>10.5
-           </td>
-           <td>git
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV30: Xfwm4 use_compositing - garbled display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
               from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>
-Same with latest git:
-
-mesa-dri-drivers-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-filesystem-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libEGL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libgbm-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libglapi-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGLES-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libGLU-9.0.0-7.fc22.i686
-mesa-libGLw-8.0.0-5.fc22.i686
-mesa-libOpenCL-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libOSMesa-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libwayland-egl-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-libxatracker-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-omx-drivers-10.7.0-0.devel.1.563706c.fc22.i686
-mesa-vdpau-drivers-10.7.0-0.devel.1.563706c.fc22.i686</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116415" name="attach_116415" title="Xfwm4 GLX compositing NV34 Mesa 10.7.0 devel git 563706c">attachment 116415</a> <a href="attachment.cgi?id=116415&amp;action=edit" title="Xfwm4 GLX compositing NV34 Mesa 10.7.0 devel git 563706c">[details]</a></span>
+Xfwm4 GLX compositing NV34 Mesa 10.7.0 devel git 563706c</pre>
         </div>
       </p>
       <hr>
@@ -134,9 +77,9 @@ mesa-vdpau-drivers-10.7.0-0.devel.1.563706c.fc22.i686</pre>
     </body>
 </html>
 
---1433921854.5dF60.9972--
+--1433921963.14a610.10320--
 
---===============1474021690==
+--===============1630568060==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1474021690==--
+--===============1630568060==--
