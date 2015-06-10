@@ -1,19 +1,12 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 4/5] gr/gf100: wait on bottom half of FE's
-	pipeline
-Date: Wed, 10 Jun 2015 14:39:06 +0900
-Message-ID: <CAAVeFuL_4Z2_MvwDUDZj2v6+DpVDP-SkfZ5+UTcm1qLMCWXjLQ@mail.gmail.com>
-References: <1433753637-24706-1-git-send-email-acourbot@nvidia.com>
- <1433753637-24706-5-git-send-email-acourbot@nvidia.com>
- <CAKb7UvgC+eV1ot9CeZhCuBw79pK4v=-xja_AOMncfRjn=DsZ1g@mail.gmail.com>
- <CAAVeFuJQiNmjWzOdzY9rR2EJ_CX8dgM5DAG1-OOwbKXe2nLPAg@mail.gmail.com>
- <CAAVeFuLH8mbXSfJN88XdmFpEket=D5NHRNa2i4wcCq-mnbiTnw@mail.gmail.com>
- <CACAvsv7SJ3aU8NoeChg-SORRBu+jT-=+nmXqdW1LgzOkGOGoNw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Wed, 10 Jun 2015 14:37:35 +0000
+Message-ID: <bug-90871-8800-9ETlIWVhAu@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1474021690=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv7SJ3aU8NoeChg-SORRBu+jT-=+nmXqdW1LgzOkGOGoNw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,31 +16,134 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBKdW4gMTAsIDIwMTUgYXQgMjoyOCBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFp
-bC5jb20+IHdyb3RlOgo+IE9uIDEwIEp1bmUgMjAxNSBhdCAxNToyNSwgQWxleGFuZHJlIENvdXJi
-b3QgPGdudXJvdUBnbWFpbC5jb20+IHdyb3RlOgo+PiBPbiBNb24sIEp1biA4LCAyMDE1IGF0IDEw
-OjQzIFBNLCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91QGdtYWlsLmNvbT4gd3JvdGU6Cj4+PiBP
-biBNb24sIEp1biA4LCAyMDE1IGF0IDg6MDQgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
-bWl0LmVkdT4gd3JvdGU6Cj4+Pj4gQSBuYWl2ZSBxdWVzdGlvbiBmcm9tIHNvbWVvbmUgd2hvIGtu
-b3dzIG5vdGhpbmcgb2YgaWNtZCBvciBidW5kbGVzLi4uIFdvdWxkCj4+Pj4gaXQgYmUgYmV0dGVy
-IHRvIHdhaXQgZm9yIGJvdGggYml0cyB0byBiZWNvbWUgMCAoSS5lLiAweDYpPwo+Pj4KPj4+IE15
-IHVuZGVyc3RhbmRpbmcgaXMgdGhhdCBhIG1ldGhvZCByZWFjaGluZyB0aGUgYm90dG9tIGhhbGYg
-aW1wbGllcyBpdAo+Pj4gaGFzIHBhc3NlZCB0byB1cHBlciBoYWxmICh3aGF0ZXZlciB0aGVzZSBo
-YWxmcyBhcmUsIEkgbmVlZCB0byBkaWcgaW50bwo+Pj4gdGhlIGRvYyB0byBjb21wbGV0ZWx5IGZp
-Z3VyZSBpdCBvdXQpLCBhbmQgdGh1cyB0aGF0IHdoaWxlIHdhaXRpbmcgZm9yCj4+PiBib3RoIGJp
-dHMgd291bGQgZG8gbm8gaGFybSwgaXQgd291bGQgbm90IGRvIGFueSBnb29kIGVpdGhlci4KPj4+
-Cj4+PiBXYWl0aW5nIG9uIHRoZSBib3R0b20gaGFsZiBpcyB3aGF0IGRvd25zdHJlYW0gZG9lcywg
-c28gSSB0aGluayB0aGlzCj4+PiBiZWhhdmlvciBpcyBzYWZlIHRvIGFwcGx5IHRvIE5vdXZlYXUu
-Cj4+Cj4+IEFmdGVyIGNoZWNraW5nLCB0aGlzIHNlZW1zIHRvIGJlIGNvcnJlY3QuIFVwcGVyIGhh
-bGYgb2YgdGhlIGZyb250LWVuZAo+PiBtZXRob2QgcGlwZWxpbmUgY29ycmVzcG9uZHMgdG8gdGhl
-IGRlY29kZSBzdGFnZSwgYm90dG9tIGhhbGYgdG8KPj4gdmFsaWRhdGUgYW5kIGVtaXQuIFNvIHdl
-IG5lZWQgdG8gd2FpdCBvbiB0aGUgYm90dG9tIGhhbGYgdG8gYmUgc3VyZQo+PiBtZXRob2RzIGFy
-ZSBlbWl0dGVkLgo+IFRoZXNlIGRvY3Mgc2hvdWxkIHRvdGFsbHkgbWFrZSBpdCB0byBkb3dubG9h
-ZC5udmlkaWEuY29tL29wZW4tZ3B1L2RvYyA7KQoKSWYgb25seSB0aGF0IGp1c3QgZGVwZW5kZWQg
-b24gbWUhIDspCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1474021690==
+Content-Type: multipart/alternative; boundary="1433921854.5dF60.9972"; charset="UTF-8"
+
+
+--1433921854.5dF60.9972
+Date: Wed, 10 Jun 2015 00:37:34 -0700
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Version|10.5                        |git
+
+--- Comment #6 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+Same with latest git:
+
+mesa-dri-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-filesystem-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libEGL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libgbm-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libglapi-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGLES-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGLU-9.0.0-7.fc22.i686
+mesa-libGLw-8.0.0-5.fc22.i686
+mesa-libOpenCL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libOSMesa-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libwayland-egl-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libxatracker-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-omx-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-vdpau-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1433921854.5dF60.9972
+Date: Wed, 10 Jun 2015 00:37:34 -0700
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Version</td>
+           <td>10.5
+           </td>
+           <td>git
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+Same with latest git:
+
+mesa-dri-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-filesystem-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libEGL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libgbm-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libglapi-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGLES-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libGLU-9.0.0-7.fc22.i686
+mesa-libGLw-8.0.0-5.fc22.i686
+mesa-libOpenCL-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libOSMesa-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libwayland-egl-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-libxatracker-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-omx-drivers-10.7.0-0.devel.1.563706c.fc22.i686
+mesa-vdpau-drivers-10.7.0-0.devel.1.563706c.fc22.i686</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1433921854.5dF60.9972--
+
+--===============1474021690==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1474021690==--
