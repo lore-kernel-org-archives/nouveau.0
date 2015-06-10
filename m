@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Wed, 10 Jun 2015 01:45:32 +0000
-Message-ID: <bug-90871-8800-DeDG4ATAsx@http.bugs.freedesktop.org/>
+Date: Wed, 10 Jun 2015 01:45:50 +0000
+Message-ID: <bug-90871-8800-zI09l2cSA6@http.bugs.freedesktop.org/>
 References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0732058558=="
+Content-Type: multipart/mixed; boundary="===============0510981529=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,12 +20,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0732058558==
-Content-Type: multipart/alternative; boundary="1433875532.b7CaF1.17573"; charset="UTF-8"
+--===============0510981529==
+Content-Type: multipart/alternative; boundary="1433875550.0bbfcE0.17682"; charset="UTF-8"
 
 
---1433875532.b7CaF1.17573
-Date: Tue, 9 Jun 2015 11:45:32 -0700
+--1433875550.0bbfcE0.17682
+Date: Tue, 9 Jun 2015 11:45:50 -0700
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -35,19 +35,15 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-          Component|Driver/nouveau              |Drivers/DRI/nouveau
-            Version|unspecified                 |10.5
-            Product|xorg                        |Mesa
-         QA Contact|xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org       |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+           Hardware|x86 (IA32)                  |x86-64 (AMD64)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1433875532.b7CaF1.17573
-Date: Tue, 9 Jun 2015 11:45:32 -0700
+--1433875550.0bbfcE0.17682
+Date: Tue, 9 Jun 2015 11:45:50 -0700
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,34 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/nouveau
+           <td style="text-align:right;">Hardware</td>
+           <td>x86 (IA32)
            </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>unspecified
-           </td>
-           <td>10.5
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>xorg
-           </td>
-           <td>Mesa
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
+           <td>x86-64 (AMD64)
            </td>
          </tr></table>
       <p>
@@ -112,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1433875532.b7CaF1.17573--
+--1433875550.0bbfcE0.17682--
 
---===============0732058558==
+--===============0510981529==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0732058558==--
+--===============0510981529==--
