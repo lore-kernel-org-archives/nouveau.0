@@ -1,16 +1,10 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] fix a wrong use of a logical operator in
-	drmmode_output_dpms()
-Date: Wed, 10 Jun 2015 23:47:46 +0200
-Message-ID: <5578B082.3050608@gmail.com>
-References: <1432134538-13701-1-git-send-email-samuel.pitoiset@inria.fr>	<555CC056.4020006@mni.thm.de>	<CAKb7Uvhy-o3-iAZD+EJLhhHVDGc_Zvm=-exna8waTa9QV_CVvA@mail.gmail.com>	<555CC3C1.3010102@gmail.com>
- <CAPM=9tyH-Xo09iAQ=0F-Vk8YtEDQkaaeLdDnmOwpDkEdC2t=sw@mail.gmail.com>
- <5565A939.7060800@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90932] New: gm105 font glitches with kernel 4.1rc
+Date: Thu, 11 Jun 2015 07:02:26 +0000
+Message-ID: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1461726146=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5565A939.7060800-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,24 +14,170 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UHVzaGVkLgoKT24gMDUvMjcvMjAxNSAwMToyMyBQTSwgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+
-Cj4KPiBPbiAwNS8yMS8yMDE1IDA2OjQwIEFNLCBEYXZlIEFpcmxpZSB3cm90ZToKPj4gT24gMjEg
-TWF5IDIwMTUgYXQgMDM6MjYsIFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWls
-LmNvbT4gCj4+IHdyb3RlOgo+Pj4KPj4+IE9uIDA1LzIwLzIwMTUgMDc6MTMgUE0sIElsaWEgTWly
-a2luIHdyb3RlOgo+Pj4+IFRoaXMgaXMgb2J2aW91c2x5IGEgYnVnLCBidXQgb25lIHRoYXQgaGFz
-IGJlZW4gdGhlcmUgZm9yIHNvbWUgdGltZS4KPj4+PiBQbGVhc2UgZmlndXJlIG91dCB3aGF0IHRo
-aXMgaXMgZ3VhcmRpbmcsIGFuZCBjb25maXJtIHRoYXQgdGhlIGZlYXR1cmUKPj4+PiBjb250aW51
-ZXMgdG8gd29yay4KPj4+Cj4+PiBTdXJlLCBidXQgZG8geW91IGhhdmUgYW55IGlkZWFzIGhvdyB0
-byB0ZXN0IHRoaXMgcGFydCBvZiB0aGUgRERYID8KPj4+IEl0J3MgdGhlIGZpcnN0IHRpbWUgSSBw
-bGF5IHdpdGggaXQuLi4KPj4+Cj4+IEl0J3MgZmluZSwgdGhlIGNvZGUganVzdCBhdm9pZHMgZ29p
-bmcgaW50byB0aGUgbmFtZSBjaGVja3MgaWYgdGhlIHR5cGUKPj4gaXNuJ3QgYSBlbnVtLAo+PiBp
-dCB3b24ndCBicmVhayBhbnl0aGluZyBhY3R1YWxseSBmaXhpbmcgaXQuCj4+Cj4+IFRoZSBmaXgg
-aXMKPj4KPj4gUmV2aWV3ZWQtYnk6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4K
-PiBPa2F5LCB0aGFua3MgRGF2ZS4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============1461726146==
+Content-Type: multipart/alternative; boundary="1434006146.FC5d1.3636"; charset="UTF-8"
+
+
+--1434006146.FC5d1.3636
+Date: Thu, 11 Jun 2015 07:02:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
+
+            Bug ID: 90932
+           Summary: gm105 font glitches with kernel 4.1rc
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: marcus.moeller-OI3hZJvNYWs@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 116429
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116429&action=edit
+font glitches with gm105
+
+I have tried Kernel 4.1 with gm105 (NVidia K620 graphics card) and noticed some
+font glitches. Some characters are not displayed at all. Sometimes those chars
+appear while hovering them with the mouse, sometimes not. I have attached a
+screenshot of Firefox. Please note that the word Firefox is sometimes displayed
+as 'Fire  x'
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434006146.FC5d1.3636
+Date: Thu, 11 Jun 2015 07:02:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm105 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">90932</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>gm105 font glitches with kernel 4.1rc
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marcus.moeller&#64;gmx.ch
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116429" name="attach_116429" title="font glitches with gm105">attachment 116429</a> <a href="attachment.cgi?id=116429&amp;action=edit" title="font glitches with gm105">[details]</a></span>
+font glitches with gm105
+
+I have tried Kernel 4.1 with gm105 (NVidia K620 graphics card) and noticed some
+font glitches. Some characters are not displayed at all. Sometimes those chars
+appear while hovering them with the mouse, sometimes not. I have attached a
+screenshot of Firefox. Please note that the word Firefox is sometimes displayed
+as 'Fire  x'</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434006146.FC5d1.3636--
+
+--===============1461726146==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1461726146==--
