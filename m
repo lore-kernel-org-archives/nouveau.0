@@ -1,18 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Fwd: Problem with GT218 (GeForce GT210)
-Date: Fri, 12 Jun 2015 05:53:58 -0400
-Message-ID: <CAKb7UvjbCqN6wRBWXjrUGePyC07DOYLOvg9auX1ZjXzeSpFOpQ@mail.gmail.com>
-References: <CABLbVHNMTS9SzT_Qgn+N0L4p+fFOTHA=C2-FmUaYu0f-xA6zZg@mail.gmail.com>
- <CABLbVHP9Qgzh1RB3ZGeXJWqOpGhAbV3hF3DdS58bB2dxkdAHjg@mail.gmail.com>
- <CAKb7UvjD464REqBi=vz7qS-KLeYb+TEqbB8hsb+2L1qvP5aZSQ@mail.gmail.com>
- <CABLbVHO-Cw99WeW7mchDKfV2gNEvD=LC_gSFunO1YYv_tSXdMQ@mail.gmail.com>
- <CABLbVHPevEt7SBa8UqMzNDc-A5fC69hywzuZ-_rfAx=i7ti+_g@mail.gmail.com>
- <CAKb7UvhhsC4ShMP4rhzz3_Kt1ZDGSH3SVz=AZTsAWoqwZsvRiA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89912] Sometimes Nouveau hangs kernel with PGRAPH
+	engine fault
+Date: Fri, 12 Jun 2015 11:10:36 +0000
+Message-ID: <bug-89912-8800-5MZfG5AeYl@http.bugs.freedesktop.org/>
+References: <bug-89912-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0099460658=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhhsC4ShMP4rhzz3_Kt1ZDGSH3SVz=AZTsAWoqwZsvRiA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89912-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,84 +17,102 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andre Campos Rodovalho <andre.rodovalho-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-W2NsaXBwZWQgYSBiaXQgc28gdGhhdCBpdCBkb2Vzbid0IGdldCBoZWxkIHVwIGJ5IG1vZGVyYXRv
-ciwgaSd2ZSBsZWZ0CnRoZSByZWxldmFudCBkbWVzZyBiaXRzIGluXQoKT24gRnJpLCBKdW4gMTIs
-IDIwMTUgYXQgMzo0NyBBTSwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90
-ZToKPiBIbSwgd2VsbCB5b3UgY2FuIHNlZSB0aGUgbWVzc2FnZXMgYWJvdXQgZmFpbHVyZSB0byBz
-ZXQgcGxscywgd2hpY2ggaXMgd2h5Cj4geW91IGRvbid0IHNlZSBhbnl0aGluZy4gVGhlIG9ubHkg
-b2RkIHRoaW5nIEkgc2VlIGlzIHRoYXQgeW91J3JlIHVzaW5nIHZlc2EsCj4gd2hpY2ggY2FuIGRl
-ZmluaXRlbHkgbWVzcyB0aGluZ3MgdXAuIFRyeSBub3QgdXNpbmcgdGhhdC4gQWxzbyB0cnkgYm9v
-dGluZwo+IHdpdGggbm91dmVhdS5kZWJ1Zz1kZWJ1ZyBkcm0uZGVidWc9MHhlIHdoaWNoIG1pZ2h0
-IHByb3ZpZGUgbW9yZSByZWxldmFudAo+IGluZm8uCj4KPiBPbiBKdW4gMTIsIDIwMTUgODozNCBB
-TSwgIkFuZHJlIENhbXBvcyBSb2RvdmFsaG8iCj4gPGFuZHJlLnJvZG92YWxob0BnbWFpbC5jb20+
-IHdyb3RlOgo+Pgo+PiBkbWVzZyBvdXRwdXQ6Cj4+Cj4+Cj4+IC0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+Pgo+Pgo+PiBbICAgIDEuMDE4NzA0XSB2ZXNh
-ZmI6IG1vZGUgaXMgNjQweDQ4MHgzMiwgbGluZWxlbmd0aD0yNTYwLCBwYWdlcz0wCj4+IFsgICAg
-MS4wMTg3MDZdIHZlc2FmYjogc2Nyb2xsaW5nOiByZWRyYXcKPj4gWyAgICAxLjAxODcwOF0gdmVz
-YWZiOiBUcnVlY29sb3I6IHNpemU9ODo4Ojg6OCwgc2hpZnQ9MjQ6MTY6ODowCj4+IFsgICAgMS4w
-MjY4ODddIHZlc2FmYjogZnJhbWVidWZmZXIgYXQgMHhmYjAwMDAwMCwgbWFwcGVkIHRvCj4+IDB4
-ZmZmZmM5MDAxMGU4MDAwMCwgdXNpbmcgMTIxNmssIHRvdGFsIDEyMTZrCj4+IFsgICAgMS4wMjc2
-MjNdIENvbnNvbGU6IHN3aXRjaGluZyB0byBjb2xvdXIgZnJhbWUgYnVmZmVyIGRldmljZSA4MHgz
-MAo+PiBbICAgIDEuMDI4Mjc0XSBmYjA6IFZFU0EgVkdBIGZyYW1lIGJ1ZmZlciBkZXZpY2UKClsu
-Li5dCgo+PiBbICAgIDcuNjc1NzYxXSBmYjogc3dpdGNoaW5nIHRvIG5vdXZlYXVmYiBmcm9tIFZF
-U0EgVkdBCj4+IFsgICAgNy42NzU3ODJdIENvbnNvbGU6IHN3aXRjaGluZyB0byBjb2xvdXIgZHVt
-bXkgZGV2aWNlIDgweDI1Cj4+IFsgICAgNy42NzYxMTldIG5vdXZlYXUgIFsgIERFVklDRV1bMDAw
-MDowMTowMC4wXSBCT09UMCAgOiAweDI5ODI4MGEyCj4+IFsgICAgNy42NzYxMjJdIG5vdXZlYXUg
-IFsgIERFVklDRV1bMDAwMDowMTowMC4wXSBDaGlwc2V0OiBHOTggKE5WOTgpCj4+IFsgICAgNy42
-NzYxMjNdIG5vdXZlYXUgIFsgIERFVklDRV1bMDAwMDowMTowMC4wXSBGYW1pbHkgOiBOVjUwCj4+
-IFsgICAgNy42NzYyMTNdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSBjaGVja2lu
-ZyBQUkFNSU4gZm9yCj4+IGltYWdlLi4uCj4+IFsgICAgNy43MzM4MjJdIG5vdXZlYXUgIFsgICBW
-QklPU11bMDAwMDowMTowMC4wXSAuLi4gYXBwZWFycyB0byBiZSB2YWxpZAo+PiBbICAgIDcuNzMz
-ODIzXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAwMDA6MDE6MDAuMF0gdXNpbmcgaW1hZ2UgZnJvbSBQ
-UkFNSU4KPj4gWyAgICA3LjczMzkwNV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAxOjAwLjBd
-IEJJVCBzaWduYXR1cmUgZm91bmQKPj4gWyAgICA3LjczMzkwOF0gbm91dmVhdSAgWyAgIFZCSU9T
-XVswMDAwOjAxOjAwLjBdIHZlcnNpb24gNzAuMTguMzYuMDAuMDAKPj4gWyAgICA3Ljc1NDMyNV0g
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IGlycSA0OSBmb3IgTVNJL01TSS1YCj4+IFsgICAgNy43NTQz
-MzVdIG5vdXZlYXUgIFsgICAgIFBNQ11bMDAwMDowMTowMC4wXSBNU0kgaW50ZXJydXB0cyBlbmFi
-bGVkCj4+IFsgICAgNy43NTQzNThdIG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDowMTowMC4wXSBS
-QU0gdHlwZTogRERSMgo+PiBbICAgIDcuNzU0MzYwXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6
-MDE6MDAuMF0gUkFNIHNpemU6IDEwMjQgTWlCCj4+IFsgICAgNy43NTQzNjFdIG5vdXZlYXUgIFsg
-ICAgIFBGQl1bMDAwMDowMTowMC4wXSAgICBaQ09NUDogOTYwIHRhZ3MKPj4gWyAgICA3Ljc4NDA2
-NV0gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIEZBTiBjb250cm9sOiBub25lIC8K
-Pj4gZXh0ZXJuYWwKPj4gWyAgICA3Ljc4NDA3N10gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAx
-OjAwLjBdIGZhbiBtYW5hZ2VtZW50OiBhdXRvbWF0aWMKPj4gWyAgICA3Ljc4NDA3OV0gbm91dmVh
-dSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIGludGVybmFsIHNlbnNvcjogeWVzCj4+IFsgICAg
-Ny43ODQwODddIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDowMTowMC4wXSAwZjogY29yZSA1NTAg
-TUh6IHNoYWRlcgo+PiAxMzc1IE1IeiBtZW1vcnkgMjY2IE1Iego+PiBbICAgIDcuNzg0MTIxXSBu
-b3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDE6MDAuMF0gLS06IGNvcmUgNTY2IE1IeiBzaGFkZXIK
-Pj4gMTQwMCBNSHogbWVtb3J5IDI2NSBNSHoKPj4gWyAgICA3Ljc4NDE2N10gbm91dmVhdSBFWyAg
-IFBESVNQXVswMDAwOjAxOjAwLjBdIDAyOjAyNjE6IGZ1bmMgMDggbG9va3VwCj4+IGZhaWxlZCwg
-LTIKPj4gWyAgICA3Ljc4NDU1OF0gW1RUTV0gWm9uZSAga2VybmVsOiBBdmFpbGFibGUgZ3JhcGhp
-Y3MgbWVtb3J5OiA0MDc5OTA0IGtpQgo+PiBbICAgIDcuNzg0NTYwXSBbVFRNXSBab25lICAgZG1h
-MzI6IEF2YWlsYWJsZSBncmFwaGljcyBtZW1vcnk6IDIwOTcxNTIga2lCCj4+IFsgICAgNy43ODQ1
-NjFdIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgo+PiBbICAgIDcuNzg0NTY3XSBb
-VFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yCj4+IFsgICAgNy43ODQ1ODRdIG5v
-dXZlYXUgIFsgICAgIERSTV0gVlJBTTogMTAyNCBNaUIKPj4gWyAgICA3Ljc4NDU4Nl0gbm91dmVh
-dSAgWyAgICAgRFJNXSBHQVJUOiAxMDQ4NTc2IE1pQgo+PiBbICAgIDcuNzg0NTkwXSBub3V2ZWF1
-ICBbICAgICBEUk1dIFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPj4gWyAgICA3Ljc4NDU5M10gbm91
-dmVhdSAgWyAgICAgRFJNXSBEQ0IgdmVyc2lvbiA0LjAKPj4gWyAgICA3Ljc4NDU5Nl0gbm91dmVh
-dSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMDogMDIwMDAzMDAgMDAwMDAwMjgKPj4gWyAgICA3Ljc4
-NDU5OV0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMTogMDEwMDAzMDIgMDAwMjAwMzAK
-Pj4gWyAgICA3Ljc4NDYwMV0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMjogMDQwMTEz
-MTAgMDAwMDAwMjgKPj4gWyAgICA3Ljc4NDYwM10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0
-cCAwMzogMDIwMjIzMjIgMDBjMjAwOTAKPj4gWyAgICA3Ljc4NDYwNV0gbm91dmVhdSAgWyAgICAg
-RFJNXSBEQ0IgY29ubiAwMDogMDAwMDEwMzAKPj4gWyAgICA3Ljc4NDYwOF0gbm91dmVhdSAgWyAg
-ICAgRFJNXSBEQ0IgY29ubiAwMTogMDAwMDAxMDAKPj4gWyAgICA3Ljc4NDYxMF0gbm91dmVhdSAg
-WyAgICAgRFJNXSBEQ0IgY29ubiAwMjogMDAwMDIyNjEKPj4gWyAgICA3Ljc5MDY5N10gW2RybV0g
-U3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEzKS4KPj4g
-WyAgICA3Ljc5MDY5OV0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJsYW5rIHRpbWVz
-dGFtcCBxdWVyeS4KPj4gWyAgICA3Ljc5OTAwOV0gbm91dmVhdSAgWyAgICAgRFJNXSBNTTogdXNp
-bmcgTTJNRiBmb3IgYnVmZmVyIGNvcGllcwo+PiBbICAgIDcuODY5MTAxXSBub3V2ZWF1ICBbICAg
-ICBEUk1dIGFsbG9jYXRlZCAxMzYweDc2OCBmYjogMHg2MDAwMCwgYm8KPj4gZmZmZjg4MDBjYWRm
-ZTAwMAo+PiBbICAgIDcuODY5MTY4XSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkg
-ZGV2aWNlCj4+IFsgICAgNy44NzAwMTBdIG5vdXZlYXUgRVsgREVWSU5JVF1bMDAwMDowMTowMC4w
-XSB1bmFibGUgdG8gY29tcHV0ZQo+PiBhY2NlcHRhYmxlIHBsbCB2YWx1ZXMKPj4gWyAgICA3Ljg3
-MDAxMl0gbm91dmVhdSBFWyBERVZJTklUXVswMDAwOjAxOjAwLjBdIGZhaWxlZCBwbGwgY2FsY3Vs
-YXRpb24KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0099460658==
+Content-Type: multipart/alternative; boundary="1434107436.e6b36b2c2.7791"; charset="UTF-8"
+
+
+--1434107436.e6b36b2c2.7791
+Date: Fri, 12 Jun 2015 11:10:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89912
+
+--- Comment #2 from Argyris Megalios <argymeg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'm having the same issue here. Same card (GTX 650 Ti) on Arch, presently on
+kernel version 4.0.5. The last journal entries after each freeze are
+consistently:
+
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
+from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
+recovering...
+
+Except the channel number which is different every time.
+Everything except the mouse cursor freezes, while sound also continues for a
+few seconds before stopping. However, I can login from another machine via SSH
+and restart SDDM just fine, although it takes about half a minute (from the
+usual 2-3 seconds).
+I'm using KDE and although it happens randomly, there seems to be a correlation
+with having Kaffeine playing TV in the background. No consistency, though.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434107436.e6b36b2c2.7791
+Date: Fri, 12 Jun 2015 11:10:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89912#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89912">bug 89912</a>
+              from <span class="vcard"><a class="email" href="mailto:argymeg&#64;gmail.com" title="Argyris Megalios &lt;argymeg&#64;gmail.com&gt;"> <span class="fn">Argyris Megalios</span></a>
+</span></b>
+        <pre>I'm having the same issue here. Same card (GTX 650 Ti) on Arch, presently on
+kernel version 4.0.5. The last journal entries after each freeze are
+consistently:
+
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
+from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
+recovering...
+
+Except the channel number which is different every time.
+Everything except the mouse cursor freezes, while sound also continues for a
+few seconds before stopping. However, I can login from another machine via SSH
+and restart SDDM just fine, although it takes about half a minute (from the
+usual 2-3 seconds).
+I'm using KDE and although it happens randomly, there seems to be a correlation
+with having Kaffeine playing TV in the background. No consistency, though.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434107436.e6b36b2c2.7791--
+
+--===============0099460658==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0099460658==--
