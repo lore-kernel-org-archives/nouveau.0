@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90967] [NV92] System freeze using nouveau
-Date: Sat, 13 Jun 2015 14:31:32 +0000
-Message-ID: <bug-90967-8800-XR1iZv2puC@http.bugs.freedesktop.org/>
+Date: Sat, 13 Jun 2015 14:46:08 +0000
+Message-ID: <bug-90967-8800-yAKgMIQgTs@http.bugs.freedesktop.org/>
 References: <bug-90967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0637170943=="
+Content-Type: multipart/mixed; boundary="===============0706059079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,72 +20,81 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0637170943==
-Content-Type: multipart/alternative; boundary="1434205892.5a515a6.9371"; charset="UTF-8"
+--===============0706059079==
+Content-Type: multipart/alternative; boundary="1434206768.d5e441.13857"; charset="UTF-8"
 
 
---1434205892.5a515a6.9371
-Date: Sat, 13 Jun 2015 14:31:32 +0000
+--1434206768.d5e441.13857
+Date: Sat, 13 Jun 2015 14:46:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90967
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90967
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #5 from J=C3=A9r=C3=B4me <jerome-lLmxdfRNSPJWj0EZb7rXcA@public.gmane.org> ---
+I don't have it.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|System freeze using nouveau |[NV92] System freeze using
-                   |                            |nouveau
+ls: cannot access /lib/firmware/nouveau: No such file or directory
 
--- 
+I blurrily remember trying to install it once to see if it would solve those
+tearing issues I sometimes get, but I didn't succeed so I removed everythin=
+g. I
+can't remember exactly what the problem was.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434205892.5a515a6.9371
-Date: Sat, 13 Jun 2015 14:31:32 +0000
+--1434206768.d5e441.13857
+Date: Sat, 13 Jun 2015 14:46:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV92] System freeze using nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90967">bug 90967</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>System freeze using nouveau
-           </td>
-           <td>[NV92] System freeze using nouveau
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967">bug 90967<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jerome&#64;jolimont.fr" title=3D"J=C3=A9r=C3=B4me &lt;jerome&#64;jolimont.f=
+r&gt;"> <span class=3D"fn">J=C3=A9r=C3=B4me</span></a>
+</span></b>
+        <pre>I don't have it.
+
+ls: cannot access /lib/firmware/nouveau: No such file or directory
+
+I blurrily remember trying to install it once to see if it would solve those
+tearing issues I sometimes get, but I didn't succeed so I removed everythin=
+g. I
+can't remember exactly what the problem was.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1434205892.5a515a6.9371--
+--1434206768.d5e441.13857--
 
---===============0637170943==
+--===============0706059079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0637170943==--
+--===============0706059079==--
