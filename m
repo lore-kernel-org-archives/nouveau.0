@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm105 font glitches with kernel 4.1rc
-Date: Sat, 13 Jun 2015 16:05:34 +0000
-Message-ID: <bug-90932-8800-ofGqOB4Z1m@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90967] [NV92] System freeze using nouveau
+Date: Sat, 13 Jun 2015 16:08:02 +0000
+Message-ID: <bug-90967-8800-kD2md7BPcQ@http.bugs.freedesktop.org/>
+References: <bug-90967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0737028613=="
+Content-Type: multipart/mixed; boundary="===============1008829036=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,73 +20,78 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0737028613==
-Content-Type: multipart/alternative; boundary="1434211534.fAcaFb22.7332"; charset="UTF-8"
+--===============1008829036==
+Content-Type: multipart/alternative; boundary="1434211682.5db21.8044"; charset="UTF-8"
 
 
---1434211534.fAcaFb22.7332
-Date: Sat, 13 Jun 2015 16:05:34 +0000
+--1434211682.5db21.8044
+Date: Sat, 13 Jun 2015 16:08:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90967
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I'm not aware of a GM105. Do you perhaps mean GM107? Avoid using
-xf86-video-nouveau with that, just use the modesetting ddx directly. nouveau
-ddx has an incorrect integration with glamor (and no EXA support for maxwell).
+--- Comment #7 from J=C3=A9r=C3=B4me <jerome-lLmxdfRNSPJWj0EZb7rXcA@public.gmane.org> ---
+I'm using libdrm-nouveau2 (2.4.58-2)
 
-I also believe that there were generic level issues in GLAMOR which were fixed
-in Xorg 1.17 or so (at least, the font drawing got redone or something to that
-effect).
+https://packages.debian.org/jessie/libdrm-nouveau2
 
--- 
+I could try 2.4.60-3 from Debian Stretch. Would that be useful ? It would be
+hard to conclude anyway since the bug is not easy to reproduce.
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434211534.fAcaFb22.7332
-Date: Sat, 13 Jun 2015 16:05:34 +0000
+--1434211682.5db21.8044
+Date: Sat, 13 Jun 2015 16:08:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - gm105 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967#c7">Comment=
+ # 7</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - gm105 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967">bug 90967<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jerome&#64;jolimont.fr" title=3D"J=C3=A9r=C3=B4me &lt;jerome&#64;jolimont.f=
+r&gt;"> <span class=3D"fn">J=C3=A9r=C3=B4me</span></a>
 </span></b>
-        <pre>I'm not aware of a GM105. Do you perhaps mean GM107? Avoid using
-xf86-video-nouveau with that, just use the modesetting ddx directly. nouveau
-ddx has an incorrect integration with glamor (and no EXA support for maxwell).
+        <pre>I'm using libdrm-nouveau2 (2.4.58-2)
 
-I also believe that there were generic level issues in GLAMOR which were fixed
-in Xorg 1.17 or so (at least, the font drawing got redone or something to that
-effect).</pre>
+<a href=3D"https://packages.debian.org/jessie/libdrm-nouveau2">https://pack=
+ages.debian.org/jessie/libdrm-nouveau2</a>
+
+I could try 2.4.60-3 from Debian Stretch. Would that be useful ? It would be
+hard to conclude anyway since the bug is not easy to reproduce.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1434211534.fAcaFb22.7332--
+--1434211682.5db21.8044--
 
---===============0737028613==
+--===============1008829036==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0737028613==--
+--===============1008829036==--
