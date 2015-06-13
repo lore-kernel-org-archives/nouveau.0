@@ -1,20 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Fwd: Problem with GT218 (GeForce GT210)
-Date: Fri, 12 Jun 2015 16:51:57 -0400
-Message-ID: <CAKb7UvjPPc-v-Ww2Etprago3kXMUDYj3E6zBU-NH6dE0D7AY6g@mail.gmail.com>
-References: <CABLbVHNMTS9SzT_Qgn+N0L4p+fFOTHA=C2-FmUaYu0f-xA6zZg@mail.gmail.com>
- <CABLbVHP9Qgzh1RB3ZGeXJWqOpGhAbV3hF3DdS58bB2dxkdAHjg@mail.gmail.com>
- <CAKb7UvjD464REqBi=vz7qS-KLeYb+TEqbB8hsb+2L1qvP5aZSQ@mail.gmail.com>
- <CABLbVHO-Cw99WeW7mchDKfV2gNEvD=LC_gSFunO1YYv_tSXdMQ@mail.gmail.com>
- <CABLbVHPevEt7SBa8UqMzNDc-A5fC69hywzuZ-_rfAx=i7ti+_g@mail.gmail.com>
- <CAKb7UvhhsC4ShMP4rhzz3_Kt1ZDGSH3SVz=AZTsAWoqwZsvRiA@mail.gmail.com>
- <CAKb7UvjbCqN6wRBWXjrUGePyC07DOYLOvg9auX1ZjXzeSpFOpQ@mail.gmail.com>
- <CABLbVHNFbvmW7MvfpVLULw7w3_hjWRqTwfYoA7a-+WrOg_Wwog@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90967] New: System freeze using nouveau
+Date: Sat, 13 Jun 2015 10:10:54 +0000
+Message-ID: <bug-90967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0019310445=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CABLbVHNFbvmW7MvfpVLULw7w3_hjWRqTwfYoA7a-+WrOg_Wwog-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,103 +14,239 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andre Campos Rodovalho <andre.rodovalho-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VHJ5IHNvbWV0aGluZyBsaWtlIHZpZGVvPXZlc2FmYjpvZmYgb3IgZmFpbGluZyB0aGF0LAoKdmlk
-ZW89dmVzYTpvZmYgdmdhPW5vcm1hbAoKKGJhc2VkIG9uIHR3byBzZXBhcmF0ZSBndWlkZXMgZm91
-bmQgd2l0aCBhIHNlYXJjaCBlbmdpbmUpLgoKT24gRnJpLCBKdW4gMTIsIDIwMTUgYXQgMTA6MTgg
-QU0sIEFuZHJlIENhbXBvcyBSb2RvdmFsaG8KPGFuZHJlLnJvZG92YWxob0BnbWFpbC5jb20+IHdy
-b3RlOgo+IEhpIGFnYWluLAo+Cj4gSSBnb3QgYSBuZXcgZG1lc2cgbG9nIHdpdGggdGhlIGRlYnVn
-IHBhcmFtZXRlcnMsIGJ1dCBJIGd1ZXNzIEkgY291bGQgbm90Cj4gaXNvbGF0ZSBWRVNBLiBJIGJs
-YWNrbGlzdGVkIGl0IGF0IC9ldGMvbW9kcHJvYmUuZC9ibGFja2xpc3QuY29uZiBidXQKPiBjb21w
-YXJpbmcgdGhvc2UgbG9ncyBJIHNlZSBubyBkaWZmZXJlbmNlLi4uIElzIGl0IHBvc3NpYmxlIHRv
-IGlzb2xhdGUgVkVTQQo+IHNvbWVob3cgd2l0aG91dCByZW1vdmluZyBpdD8KPgo+IFRoZSBuZXcg
-bG9ncyBhcmUgaGVyZSwgSSdtIHBvc3RpbmcgZnVsbCBjb250ZW50IGJlY2F1c2UgSSdtIG5vdCBz
-dXJlIHdoYXQKPiBpbmZvcm1hdGlvbiBpcyBtb3JlIHJlbGV2YW50Li4uCj4gaHR0cDovL3dlYmF0
-aXZvLmNvbS91cGxvYWRzL2ZpbGVzL2RlYnVnX25vdXZlYXUuemlwCj4KPiBDaGVlcnMKPgo+IDIw
-MTUtMDYtMTIgNjo1MyBHTVQtMDM6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1
-PjoKPj4KPj4gW2NsaXBwZWQgYSBiaXQgc28gdGhhdCBpdCBkb2Vzbid0IGdldCBoZWxkIHVwIGJ5
-IG1vZGVyYXRvciwgaSd2ZSBsZWZ0Cj4+IHRoZSByZWxldmFudCBkbWVzZyBiaXRzIGluXQo+Pgo+
-PiBPbiBGcmksIEp1biAxMiwgMjAxNSBhdCAzOjQ3IEFNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+IHdyb3RlOgo+PiA+IEhtLCB3ZWxsIHlvdSBjYW4gc2VlIHRoZSBtZXNzYWdl
-cyBhYm91dCBmYWlsdXJlIHRvIHNldCBwbGxzLCB3aGljaCBpcwo+PiA+IHdoeQo+PiA+IHlvdSBk
-b24ndCBzZWUgYW55dGhpbmcuIFRoZSBvbmx5IG9kZCB0aGluZyBJIHNlZSBpcyB0aGF0IHlvdSdy
-ZSB1c2luZwo+PiA+IHZlc2EsCj4+ID4gd2hpY2ggY2FuIGRlZmluaXRlbHkgbWVzcyB0aGluZ3Mg
-dXAuIFRyeSBub3QgdXNpbmcgdGhhdC4gQWxzbyB0cnkKPj4gPiBib290aW5nCj4+ID4gd2l0aCBu
-b3V2ZWF1LmRlYnVnPWRlYnVnIGRybS5kZWJ1Zz0weGUgd2hpY2ggbWlnaHQgcHJvdmlkZSBtb3Jl
-IHJlbGV2YW50Cj4+ID4gaW5mby4KPj4gPgo+PiA+IE9uIEp1biAxMiwgMjAxNSA4OjM0IEFNLCAi
-QW5kcmUgQ2FtcG9zIFJvZG92YWxobyIKPj4gPiA8YW5kcmUucm9kb3ZhbGhvQGdtYWlsLmNvbT4g
-d3JvdGU6Cj4+ID4+Cj4+ID4+IGRtZXNnIG91dHB1dDoKPj4gPj4KPj4gPj4KPj4gPj4KPj4gPj4g
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4+ID4+Cj4+
-ID4+Cj4+ID4+IFsgICAgMS4wMTg3MDRdIHZlc2FmYjogbW9kZSBpcyA2NDB4NDgweDMyLCBsaW5l
-bGVuZ3RoPTI1NjAsIHBhZ2VzPTAKPj4gPj4gWyAgICAxLjAxODcwNl0gdmVzYWZiOiBzY3JvbGxp
-bmc6IHJlZHJhdwo+PiA+PiBbICAgIDEuMDE4NzA4XSB2ZXNhZmI6IFRydWVjb2xvcjogc2l6ZT04
-Ojg6ODo4LCBzaGlmdD0yNDoxNjo4OjAKPj4gPj4gWyAgICAxLjAyNjg4N10gdmVzYWZiOiBmcmFt
-ZWJ1ZmZlciBhdCAweGZiMDAwMDAwLCBtYXBwZWQgdG8KPj4gPj4gMHhmZmZmYzkwMDEwZTgwMDAw
-LCB1c2luZyAxMjE2aywgdG90YWwgMTIxNmsKPj4gPj4gWyAgICAxLjAyNzYyM10gQ29uc29sZTog
-c3dpdGNoaW5nIHRvIGNvbG91ciBmcmFtZSBidWZmZXIgZGV2aWNlIDgweDMwCj4+ID4+IFsgICAg
-MS4wMjgyNzRdIGZiMDogVkVTQSBWR0EgZnJhbWUgYnVmZmVyIGRldmljZQo+Pgo+PiBbLi4uXQo+
-Pgo+PiA+PiBbICAgIDcuNjc1NzYxXSBmYjogc3dpdGNoaW5nIHRvIG5vdXZlYXVmYiBmcm9tIFZF
-U0EgVkdBCj4+ID4+IFsgICAgNy42NzU3ODJdIENvbnNvbGU6IHN3aXRjaGluZyB0byBjb2xvdXIg
-ZHVtbXkgZGV2aWNlIDgweDI1Cj4+ID4+IFsgICAgNy42NzYxMTldIG5vdXZlYXUgIFsgIERFVklD
-RV1bMDAwMDowMTowMC4wXSBCT09UMCAgOiAweDI5ODI4MGEyCj4+ID4+IFsgICAgNy42NzYxMjJd
-IG5vdXZlYXUgIFsgIERFVklDRV1bMDAwMDowMTowMC4wXSBDaGlwc2V0OiBHOTggKE5WOTgpCj4+
-ID4+IFsgICAgNy42NzYxMjNdIG5vdXZlYXUgIFsgIERFVklDRV1bMDAwMDowMTowMC4wXSBGYW1p
-bHkgOiBOVjUwCj4+ID4+IFsgICAgNy42NzYyMTNdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDow
-MTowMC4wXSBjaGVja2luZyBQUkFNSU4gZm9yCj4+ID4+IGltYWdlLi4uCj4+ID4+IFsgICAgNy43
-MzM4MjJdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMTowMC4wXSAuLi4gYXBwZWFycyB0byBi
-ZQo+PiA+PiB2YWxpZAo+PiA+PiBbICAgIDcuNzMzODIzXSBub3V2ZWF1ICBbICAgVkJJT1NdWzAw
-MDA6MDE6MDAuMF0gdXNpbmcgaW1hZ2UgZnJvbQo+PiA+PiBQUkFNSU4KPj4gPj4gWyAgICA3Ljcz
-MzkwNV0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAxOjAwLjBdIEJJVCBzaWduYXR1cmUgZm91
-bmQKPj4gPj4gWyAgICA3LjczMzkwOF0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAxOjAwLjBd
-IHZlcnNpb24gNzAuMTguMzYuMDAuMDAKPj4gPj4gWyAgICA3Ljc1NDMyNV0gbm91dmVhdSAwMDAw
-OjAxOjAwLjA6IGlycSA0OSBmb3IgTVNJL01TSS1YCj4+ID4+IFsgICAgNy43NTQzMzVdIG5vdXZl
-YXUgIFsgICAgIFBNQ11bMDAwMDowMTowMC4wXSBNU0kgaW50ZXJydXB0cyBlbmFibGVkCj4+ID4+
-IFsgICAgNy43NTQzNThdIG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDowMTowMC4wXSBSQU0gdHlw
-ZTogRERSMgo+PiA+PiBbICAgIDcuNzU0MzYwXSBub3V2ZWF1ICBbICAgICBQRkJdWzAwMDA6MDE6
-MDAuMF0gUkFNIHNpemU6IDEwMjQgTWlCCj4+ID4+IFsgICAgNy43NTQzNjFdIG5vdXZlYXUgIFsg
-ICAgIFBGQl1bMDAwMDowMTowMC4wXSAgICBaQ09NUDogOTYwIHRhZ3MKPj4gPj4gWyAgICA3Ljc4
-NDA2NV0gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIEZBTiBjb250cm9sOiBub25l
-IC8KPj4gPj4gZXh0ZXJuYWwKPj4gPj4gWyAgICA3Ljc4NDA3N10gbm91dmVhdSAgWyAgUFRIRVJN
-XVswMDAwOjAxOjAwLjBdIGZhbiBtYW5hZ2VtZW50Ogo+PiA+PiBhdXRvbWF0aWMKPj4gPj4gWyAg
-ICA3Ljc4NDA3OV0gbm91dmVhdSAgWyAgUFRIRVJNXVswMDAwOjAxOjAwLjBdIGludGVybmFsIHNl
-bnNvcjogeWVzCj4+ID4+IFsgICAgNy43ODQwODddIG5vdXZlYXUgIFsgICAgIENMS11bMDAwMDow
-MTowMC4wXSAwZjogY29yZSA1NTAgTUh6Cj4+ID4+IHNoYWRlcgo+PiA+PiAxMzc1IE1IeiBtZW1v
-cnkgMjY2IE1Iego+PiA+PiBbICAgIDcuNzg0MTIxXSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6
-MDE6MDAuMF0gLS06IGNvcmUgNTY2IE1Iego+PiA+PiBzaGFkZXIKPj4gPj4gMTQwMCBNSHogbWVt
-b3J5IDI2NSBNSHoKPj4gPj4gWyAgICA3Ljc4NDE2N10gbm91dmVhdSBFWyAgIFBESVNQXVswMDAw
-OjAxOjAwLjBdIDAyOjAyNjE6IGZ1bmMgMDgKPj4gPj4gbG9va3VwCj4+ID4+IGZhaWxlZCwgLTIK
-Pj4gPj4gWyAgICA3Ljc4NDU1OF0gW1RUTV0gWm9uZSAga2VybmVsOiBBdmFpbGFibGUgZ3JhcGhp
-Y3MgbWVtb3J5OiA0MDc5OTA0Cj4+ID4+IGtpQgo+PiA+PiBbICAgIDcuNzg0NTYwXSBbVFRNXSBa
-b25lICAgZG1hMzI6IEF2YWlsYWJsZSBncmFwaGljcyBtZW1vcnk6IDIwOTcxNTIKPj4gPj4ga2lC
-Cj4+ID4+IFsgICAgNy43ODQ1NjFdIFtUVE1dIEluaXRpYWxpemluZyBwb29sIGFsbG9jYXRvcgo+
-PiA+PiBbICAgIDcuNzg0NTY3XSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9y
-Cj4+ID4+IFsgICAgNy43ODQ1ODRdIG5vdXZlYXUgIFsgICAgIERSTV0gVlJBTTogMTAyNCBNaUIK
-Pj4gPj4gWyAgICA3Ljc4NDU4Nl0gbm91dmVhdSAgWyAgICAgRFJNXSBHQVJUOiAxMDQ4NTc2IE1p
-Qgo+PiA+PiBbICAgIDcuNzg0NTkwXSBub3V2ZWF1ICBbICAgICBEUk1dIFRNRFMgdGFibGUgdmVy
-c2lvbiAyLjAKPj4gPj4gWyAgICA3Ljc4NDU5M10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0IgdmVy
-c2lvbiA0LjAKPj4gPj4gWyAgICA3Ljc4NDU5Nl0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0
-cCAwMDogMDIwMDAzMDAgMDAwMDAwMjgKPj4gPj4gWyAgICA3Ljc4NDU5OV0gbm91dmVhdSAgWyAg
-ICAgRFJNXSBEQ0Igb3V0cCAwMTogMDEwMDAzMDIgMDAwMjAwMzAKPj4gPj4gWyAgICA3Ljc4NDYw
-MV0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMjogMDQwMTEzMTAgMDAwMDAwMjgKPj4g
-Pj4gWyAgICA3Ljc4NDYwM10gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Igb3V0cCAwMzogMDIwMjIz
-MjIgMDBjMjAwOTAKPj4gPj4gWyAgICA3Ljc4NDYwNV0gbm91dmVhdSAgWyAgICAgRFJNXSBEQ0Ig
-Y29ubiAwMDogMDAwMDEwMzAKPj4gPj4gWyAgICA3Ljc4NDYwOF0gbm91dmVhdSAgWyAgICAgRFJN
-XSBEQ0IgY29ubiAwMTogMDAwMDAxMDAKPj4gPj4gWyAgICA3Ljc4NDYxMF0gbm91dmVhdSAgWyAg
-ICAgRFJNXSBEQ0IgY29ubiAwMjogMDAwMDIyNjEKPj4gPj4gWyAgICA3Ljc5MDY5N10gW2RybV0g
-U3VwcG9ydHMgdmJsYW5rIHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyCj4+ID4+ICgyMS4xMC4yMDEz
-KS4KPj4gPj4gWyAgICA3Ljc5MDY5OV0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJs
-YW5rIHRpbWVzdGFtcCBxdWVyeS4KPj4gPj4gWyAgICA3Ljc5OTAwOV0gbm91dmVhdSAgWyAgICAg
-RFJNXSBNTTogdXNpbmcgTTJNRiBmb3IgYnVmZmVyIGNvcGllcwo+PiA+PiBbICAgIDcuODY5MTAx
-XSBub3V2ZWF1ICBbICAgICBEUk1dIGFsbG9jYXRlZCAxMzYweDc2OCBmYjogMHg2MDAwMCwgYm8K
-Pj4gPj4gZmZmZjg4MDBjYWRmZTAwMAo+PiA+PiBbICAgIDcuODY5MTY4XSBmYmNvbjogbm91dmVh
-dWZiIChmYjApIGlzIHByaW1hcnkgZGV2aWNlCj4+ID4+IFsgICAgNy44NzAwMTBdIG5vdXZlYXUg
-RVsgREVWSU5JVF1bMDAwMDowMTowMC4wXSB1bmFibGUgdG8gY29tcHV0ZQo+PiA+PiBhY2NlcHRh
-YmxlIHBsbCB2YWx1ZXMKPj4gPj4gWyAgICA3Ljg3MDAxMl0gbm91dmVhdSBFWyBERVZJTklUXVsw
-MDAwOjAxOjAwLjBdIGZhaWxlZCBwbGwgY2FsY3VsYXRpb24KPgo+Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0019310445==
+Content-Type: multipart/alternative; boundary="1434190254.030C1.29377"; charset="UTF-8"
+
+
+--1434190254.030C1.29377
+Date: Sat, 13 Jun 2015 10:10:54 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90967
+
+            Bug ID: 90967
+           Summary: System freeze using nouveau
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: jerome-lLmxdfRNSPJWj0EZb7rXcA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Hi.
+
+Sometimes, my system freezes. No keyboard, no CTRL+Fx, altough I can REISUB.
+The mouse moves but the screen is frozen so it can't click anywhere.
+
+I tried to wait two or three minutes but nothing happens so I generally REISUB.
+
+Is there a point waiting any longer ? A timeout / watchdog of any kind ?
+
+When I switch the computer on, after logging with my user, before the desktop
+displays (background, panels, etc.), I get some kind of broken mozaic of images
+from my sessions before the failure (not images diplayed on frozen screen,
+rather images from different pages of my browser that where open when it
+occured).
+
+It seems to happen randomly, so I can't reproduce systematically, but I think
+it always happens when I'm watching a video (using vlc) and my brower is
+running, maybe some other apps like mail-client, and it could be linked to a
+specific user action (like moving window, or changing focus,...) because I
+don't remember it happening while I'm just sitting away from the keyboard, like
+watching a movie.
+
+Today, instead of REISUBing, I went to another computer to access mine through
+SSH. When I came back, lightdm was waiting for my user/pwd. Considering the
+uptime and the dates of /var/log/Xorg.0.log.old, I guess Xorg was restarted.
+When logging in, I didn't get the mozaic.
+
+I doubt it is another bug, so maybe Xorg was restarted due to me waiting longer
+than usual, or, more doubtedly, my remote logging. And I didn't get the mozaic
+because nouveau's buffer were flushed more cleanly than with REISUB.
+
+Anyway, I don't know much about graphics, so I can't make more guesses and I
+can't tell whether this is a duplicate or not.
+
+My system is an up-to-date Debian Jessie.
+
+xserver-xorg-video-nouveau -> 1:1.0.11-1
+Linux 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt11-1 (2015-05-24) x86_64 GNU/Linux
+
+Attaching dmesg output (same now than when remotely logged in, nothing about
+Xorg reboot or anything since the freeze).
+
+Also attaching /var/log/Xorg.0.log.old.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434190254.030C1.29377
+Date: Sat, 13 Jun 2015 10:10:54 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - System freeze using nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90967">90967</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>System freeze using nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>jerome&#64;jolimont.fr
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Hi.
+
+Sometimes, my system freezes. No keyboard, no CTRL+Fx, altough I can REISUB.
+The mouse moves but the screen is frozen so it can't click anywhere.
+
+I tried to wait two or three minutes but nothing happens so I generally REISUB.
+
+Is there a point waiting any longer ? A timeout / watchdog of any kind ?
+
+When I switch the computer on, after logging with my user, before the desktop
+displays (background, panels, etc.), I get some kind of broken mozaic of images
+from my sessions before the failure (not images diplayed on frozen screen,
+rather images from different pages of my browser that where open when it
+occured).
+
+It seems to happen randomly, so I can't reproduce systematically, but I think
+it always happens when I'm watching a video (using vlc) and my brower is
+running, maybe some other apps like mail-client, and it could be linked to a
+specific user action (like moving window, or changing focus,...) because I
+don't remember it happening while I'm just sitting away from the keyboard, like
+watching a movie.
+
+Today, instead of REISUBing, I went to another computer to access mine through
+SSH. When I came back, lightdm was waiting for my user/pwd. Considering the
+uptime and the dates of /var/log/Xorg.0.log.old, I guess Xorg was restarted.
+When logging in, I didn't get the mozaic.
+
+I doubt it is another bug, so maybe Xorg was restarted due to me waiting longer
+than usual, or, more doubtedly, my remote logging. And I didn't get the mozaic
+because nouveau's buffer were flushed more cleanly than with REISUB.
+
+Anyway, I don't know much about graphics, so I can't make more guesses and I
+can't tell whether this is a duplicate or not.
+
+My system is an up-to-date Debian Jessie.
+
+xserver-xorg-video-nouveau -&gt; 1:1.0.11-1
+Linux 3.16.0-4-amd64 #1 SMP Debian 3.16.7-ckt11-1 (2015-05-24) x86_64 GNU/Linux
+
+Attaching dmesg output (same now than when remotely logged in, nothing about
+Xorg reboot or anything since the freeze).
+
+Also attaching /var/log/Xorg.0.log.old.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434190254.030C1.29377--
+
+--===============0019310445==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0019310445==--
