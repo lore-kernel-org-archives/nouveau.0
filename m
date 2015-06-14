@@ -1,13 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
- PGRAPH and PGR errors
-Date: Sun, 14 Jun 2015 14:04:33 +0000
-Message-ID: <bug-90453-8800-pfQZ1aJ3nU@http.bugs.freedesktop.org/>
-References: <bug-90453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90976] New: GM204 (NV124) black screen on modesetting
+Date: Sun, 14 Jun 2015 16:56:26 +0000
+Message-ID: <bug-90976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0075304476=="
+Content-Type: multipart/mixed; boundary="===============0325303451=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +18,59 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0075304476==
-Content-Type: multipart/alternative; boundary="1434290673.2d8EA3AC1.10493"; charset="UTF-8"
+--===============0325303451==
+Content-Type: multipart/alternative; boundary="1434300986.e11c36d01.26071"; charset="UTF-8"
 
 
---1434290673.2d8EA3AC1.10493
-Date: Sun, 14 Jun 2015 14:04:33 +0000
+--1434300986.e11c36d01.26071
+Date: Sun, 14 Jun 2015 16:56:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90453
+https://bugs.freedesktop.org/show_bug.cgi?id=90976
 
---- Comment #22 from Argyris Megalios <argymeg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I originally added my problem to bug 89912, as my original error message was
-not seen here.
+            Bug ID: 90976
+           Summary: GM204 (NV124) black screen on modesetting
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: high
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
-from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
-kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
-recovering...
+Created attachment 116492
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116492&action=edit
+dmesg
 
-However, after also getting the following:
-kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 10,
-recovering...
+Modesetting does not work.
 
-I am inclined to thing the bugs are duplicates.
-Now, while playing a game (which actually played fine yesterday) I have had two
-consecutive freezes with the message:
+The card is linked to sony bravia TV through HDMI
 
-kernel: nouveau E[     DRM] GPU lockup - switching to software fbcon
+I achieved to get a trace by blacklisting nouveau then manually load it.
+error log here (full dmesg joinded):
+[  143.521000] nouveau E[     DRM] Pointer to flat panel table invalid
+[  143.525351] nouveau W[     DRM] unknown connector type 70
+[  143.525387] nouveau W[     DRM] failed to create encoder 1/8/0: -19
+[  143.525388] nouveau W[     DRM] Unknown-1 has no encoders, removing
+[  143.525407] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[  143.525407] [drm] Driver supports precise vblank timestamp query.
+[  143.525424] nouveau E[     DRM] failed to initialise sync subsystem, -38
+[  143.819264] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
+ffff8802135d3000
 
-I, too, will be switching to the nvidia driver for the moment, however I will
-be happy to assist with any fix tests.
+What could I do ?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434290673.2d8EA3AC1.10493
-Date: Sun, 14 Jun 2015 14:04:33 +0000
+--1434300986.e11c36d01.26071
+Date: Sun, 14 Jun 2015 16:56:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,43 +78,109 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GM204 (NV124) black screen on modesetting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">90976</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GM204 (NV124) black screen on modesetting
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>high
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>roucaries.bastien+bugs&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c22">Comment # 22</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:argymeg&#64;gmail.com" title="Argyris Megalios &lt;argymeg&#64;gmail.com&gt;"> <span class="fn">Argyris Megalios</span></a>
-</span></b>
-        <pre>I originally added my problem to <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
-   href="show_bug.cgi?id=89912">bug 89912</a>, as my original error message was
-not seen here.
+        <pre>Created <span class=""><a href="attachment.cgi?id=116492" name="attach_116492" title="dmesg">attachment 116492</a> <a href="attachment.cgi?id=116492&amp;action=edit" title="dmesg">[details]</a></span>
+dmesg
 
-kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
-from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
-kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
-recovering...
+Modesetting does not work.
 
-However, after also getting the following:
-kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 10,
-recovering...
+The card is linked to sony bravia TV through HDMI
 
-I am inclined to thing the bugs are duplicates.
-Now, while playing a game (which actually played fine yesterday) I have had two
-consecutive freezes with the message:
+I achieved to get a trace by blacklisting nouveau then manually load it.
+error log here (full dmesg joinded):
+[  143.521000] nouveau E[     DRM] Pointer to flat panel table invalid
+[  143.525351] nouveau W[     DRM] unknown connector type 70
+[  143.525387] nouveau W[     DRM] failed to create encoder 1/8/0: -19
+[  143.525388] nouveau W[     DRM] Unknown-1 has no encoders, removing
+[  143.525407] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[  143.525407] [drm] Driver supports precise vblank timestamp query.
+[  143.525424] nouveau E[     DRM] failed to initialise sync subsystem, -38
+[  143.819264] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
+ffff8802135d3000
 
-kernel: nouveau E[     DRM] GPU lockup - switching to software fbcon
-
-I, too, will be switching to the nvidia driver for the moment, however I will
-be happy to assist with any fix tests.</pre>
+What could I do ?</pre>
         </div>
       </p>
       <hr>
@@ -116,9 +192,9 @@ be happy to assist with any fix tests.</pre>
     </body>
 </html>
 
---1434290673.2d8EA3AC1.10493--
+--1434300986.e11c36d01.26071--
 
---===============0075304476==
+--===============0325303451==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -128,4 +204,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0075304476==--
+--===============0325303451==--
