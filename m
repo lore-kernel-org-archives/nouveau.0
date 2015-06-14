@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77529] [NVE7] NVS 510 DP-3 output doesn't work
-Date: Sun, 14 Jun 2015 12:04:19 +0000
-Message-ID: <bug-77529-8800-TliQMKPwKI@http.bugs.freedesktop.org/>
-References: <bug-77529-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
+	kernel
+Date: Sun, 14 Jun 2015 12:19:34 +0000
+Message-ID: <bug-77361-8800-M8wzwPnxAF@http.bugs.freedesktop.org/>
+References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0671980691=="
+Content-Type: multipart/mixed; boundary="===============1597890069=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77529-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0671980691==
-Content-Type: multipart/alternative; boundary="1434283459.Ae86210.5828"; charset="UTF-8"
+--===============1597890069==
+Content-Type: multipart/alternative; boundary="1434284374.dCCA172.10557"; charset="UTF-8"
 
 
---1434283459.Ae86210.5828
-Date: Sun, 14 Jun 2015 12:04:19 +0000
+--1434284374.dCCA172.10557
+Date: Sun, 14 Jun 2015 12:19:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77529
+https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
-Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #25 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Hi,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WORKSFORME
+I got the NVIDIA drivers to work so I haven't looked back. Good luck with
+the project, I really wish I could use it instead of the proprietary
+drivers. I'm never buying an NVIDIA card by choice.
 
---- Comment #15 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Feel free to re-open the issue if the bug still occurs.
+On 14 June 2015 at 13:04, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+
+>  Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed bug 77361
+> <https://bugs.freedesktop.org/show_bug.cgi?id=77361>
+>  What Removed Added  Status NEW RESOLVED  Resolution --- WORKSFORME
+>
+>  *Comment # 24 <https://bugs.freedesktop.org/show_bug.cgi?id=77361#c24>
+> on bug 77361 <https://bugs.freedesktop.org/show_bug.cgi?id=77361> from
+> Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> *
+>
+> Feel free to re-open the issue if the bug still occurs.
+>
+>  ------------------------------
+> You are receiving this mail because:
+>
+>    - You reported the bug.
+>
+>
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434283459.Ae86210.5828
-Date: Sun, 14 Jun 2015 12:04:19 +0000
+--1434284374.dCCA172.10557
+Date: Sun, 14 Jun 2015 12:19:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,48 +71,58 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] NVS 510 DP-3 output doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529">bug 77529</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] NVS 510 DP-3 output doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529#c15">Comment # 15</a>
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] NVS 510 DP-3 output doesn't work"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77529">bug 77529</a>
-              from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
+              from <span class="vcard"><a class="email" href="mailto:sam.halliday&#64;gmail.com" title="sam.halliday&#64;gmail.com">sam.halliday&#64;gmail.com</a>
 </span></b>
-        <pre>Feel free to re-open the issue if the bug still occurs.</pre>
+        <pre>Hi,
+
+I got the NVIDIA drivers to work so I haven't looked back. Good luck with
+the project, I really wish I could use it instead of the proprietary
+drivers. I'm never buying an NVIDIA card by choice.
+
+On 14 June 2015 at 13:04, &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+
+<span class="quote">&gt;  Samuel Pitoiset &lt;<a href="mailto:samuel.pitoiset&#64;gmail.com">samuel.pitoiset&#64;gmail.com</a>&gt; changed <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="show_bug.cgi?id=77361">bug 77361</a>
+&gt; &lt;<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="show_bug.cgi?id=77361">https://bugs.freedesktop.org/show_bug.cgi?id=77361</a>&gt;
+&gt;  What Removed Added  Status NEW RESOLVED  Resolution --- WORKSFORME</span >
+&gt;
+<span class="quote">&gt;  *<a href="show_bug.cgi?id=77361#c24">Comment # 24</a> &lt;<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="show_bug.cgi?id=77361#c24">https://bugs.freedesktop.org/show_bug.cgi?id=77361#c24</a>&gt;
+&gt; on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="show_bug.cgi?id=77361">bug 77361</a> &lt;<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="show_bug.cgi?id=77361">https://bugs.freedesktop.org/show_bug.cgi?id=77361</a>&gt; from
+&gt; Samuel Pitoiset &lt;<a href="mailto:samuel.pitoiset&#64;gmail.com">samuel.pitoiset&#64;gmail.com</a>&gt; *</span >
+&gt;
+<span class="quote">&gt; Feel free to re-open the issue if the bug still occurs.</span >
+&gt;
+<span class="quote">&gt;  ------------------------------
+&gt; You are receiving this mail because:</span >
+&gt;
+<span class="quote">&gt;    - You reported the bug.</span >
+&gt;
+&gt;</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +134,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1434283459.Ae86210.5828--
+--1434284374.dCCA172.10557--
 
---===============0671980691==
+--===============1597890069==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +146,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0671980691==--
+--===============1597890069==--
