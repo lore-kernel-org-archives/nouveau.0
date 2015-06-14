@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
-	kernel
-Date: Sun, 14 Jun 2015 12:19:34 +0000
-Message-ID: <bug-77361-8800-M8wzwPnxAF@http.bugs.freedesktop.org/>
-References: <bug-77361-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
+ PGRAPH and PGR errors
+Date: Sun, 14 Jun 2015 14:04:33 +0000
+Message-ID: <bug-90453-8800-pfQZ1aJ3nU@http.bugs.freedesktop.org/>
+References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1597890069=="
+Content-Type: multipart/mixed; boundary="===============0075304476=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,49 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1597890069==
-Content-Type: multipart/alternative; boundary="1434284374.dCCA172.10557"; charset="UTF-8"
+--===============0075304476==
+Content-Type: multipart/alternative; boundary="1434290673.2d8EA3AC1.10493"; charset="UTF-8"
 
 
---1434284374.dCCA172.10557
-Date: Sun, 14 Jun 2015 12:19:34 +0000
+--1434290673.2d8EA3AC1.10493
+Date: Sun, 14 Jun 2015 14:04:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=77361
+https://bugs.freedesktop.org/show_bug.cgi?id=90453
 
---- Comment #25 from sam.halliday-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Hi,
+--- Comment #22 from Argyris Megalios <argymeg-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I originally added my problem to bug 89912, as my original error message was
+not seen here.
 
-I got the NVIDIA drivers to work so I haven't looked back. Good luck with
-the project, I really wish I could use it instead of the proprietary
-drivers. I'm never buying an NVIDIA card by choice.
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
+from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
+recovering...
 
-On 14 June 2015 at 13:04, <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
+However, after also getting the following:
+kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 10,
+recovering...
 
->  Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed bug 77361
-> <https://bugs.freedesktop.org/show_bug.cgi?id=77361>
->  What Removed Added  Status NEW RESOLVED  Resolution --- WORKSFORME
->
->  *Comment # 24 <https://bugs.freedesktop.org/show_bug.cgi?id=77361#c24>
-> on bug 77361 <https://bugs.freedesktop.org/show_bug.cgi?id=77361> from
-> Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> *
->
-> Feel free to re-open the issue if the bug still occurs.
->
->  ------------------------------
-> You are receiving this mail because:
->
->    - You reported the bug.
->
->
+I am inclined to thing the bugs are duplicates.
+Now, while playing a game (which actually played fine yesterday) I have had two
+consecutive freezes with the message:
+
+kernel: nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+I, too, will be switching to the nvidia driver for the moment, however I will
+be happy to assist with any fix tests.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434284374.dCCA172.10557
-Date: Sun, 14 Jun 2015 12:19:34 +0000
+--1434290673.2d8EA3AC1.10493
+Date: Sun, 14 Jun 2015 14:04:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -75,54 +72,39 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c25">Comment # 25</a>
+          bz_status_NEW "
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
-              from <span class="vcard"><a class="email" href="mailto:sam.halliday&#64;gmail.com" title="sam.halliday&#64;gmail.com">sam.halliday&#64;gmail.com</a>
+          bz_status_NEW "
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
+              from <span class="vcard"><a class="email" href="mailto:argymeg&#64;gmail.com" title="Argyris Megalios &lt;argymeg&#64;gmail.com&gt;"> <span class="fn">Argyris Megalios</span></a>
 </span></b>
-        <pre>Hi,
+        <pre>I originally added my problem to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href="show_bug.cgi?id=89912">bug 89912</a>, as my original error message was
+not seen here.
 
-I got the NVIDIA drivers to work so I haven't looked back. Good luck with
-the project, I really wish I could use it instead of the proprietary
-drivers. I'm never buying an NVIDIA card by choice.
+kernel: nouveau E[   PFIFO][0000:01:00.0] write fault at 0x00002a0000 [PTE]
+from GR/GPC0/PROP_0 on channel 0x007f96c000 [Xorg[383]]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 2,
+recovering...
 
-On 14 June 2015 at 13:04, &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
+However, after also getting the following:
+kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine fault on channel 10,
+recovering...
 
-<span class="quote">&gt;  Samuel Pitoiset &lt;<a href="mailto:samuel.pitoiset&#64;gmail.com">samuel.pitoiset&#64;gmail.com</a>&gt; changed <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="show_bug.cgi?id=77361">bug 77361</a>
-&gt; &lt;<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="show_bug.cgi?id=77361">https://bugs.freedesktop.org/show_bug.cgi?id=77361</a>&gt;
-&gt;  What Removed Added  Status NEW RESOLVED  Resolution --- WORKSFORME</span >
-&gt;
-<span class="quote">&gt;  *<a href="show_bug.cgi?id=77361#c24">Comment # 24</a> &lt;<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="show_bug.cgi?id=77361#c24">https://bugs.freedesktop.org/show_bug.cgi?id=77361#c24</a>&gt;
-&gt; on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="show_bug.cgi?id=77361">bug 77361</a> &lt;<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
-   href="show_bug.cgi?id=77361">https://bugs.freedesktop.org/show_bug.cgi?id=77361</a>&gt; from
-&gt; Samuel Pitoiset &lt;<a href="mailto:samuel.pitoiset&#64;gmail.com">samuel.pitoiset&#64;gmail.com</a>&gt; *</span >
-&gt;
-<span class="quote">&gt; Feel free to re-open the issue if the bug still occurs.</span >
-&gt;
-<span class="quote">&gt;  ------------------------------
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class="quote">&gt;    - You reported the bug.</span >
-&gt;
-&gt;</pre>
+I am inclined to thing the bugs are duplicates.
+Now, while playing a game (which actually played fine yesterday) I have had two
+consecutive freezes with the message:
+
+kernel: nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+I, too, will be switching to the nvidia driver for the moment, however I will
+be happy to assist with any fix tests.</pre>
         </div>
       </p>
       <hr>
@@ -134,9 +116,9 @@ On 14 June 2015 at 13:04, &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.or
     </body>
 </html>
 
---1434284374.dCCA172.10557--
+--1434290673.2d8EA3AC1.10493--
 
---===============1597890069==
+--===============0075304476==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -146,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1597890069==--
+--===============0075304476==--
