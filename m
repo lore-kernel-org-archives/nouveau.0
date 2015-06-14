@@ -1,10 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90976] New: GM204 (NV124) black screen on modesetting
-Date: Sun, 14 Jun 2015 16:56:26 +0000
-Message-ID: <bug-90976-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Sun, 14 Jun 2015 21:31:46 +0000
+Message-ID: <bug-90871-8800-l7x3ecuXqr@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0325303451=="
+Content-Type: multipart/mixed; boundary="===============1699643882=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,59 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0325303451==
-Content-Type: multipart/alternative; boundary="1434300986.e11c36d01.26071"; charset="UTF-8"
+--===============1699643882==
+Content-Type: multipart/alternative; boundary="1434317506.23c38a0.18138"; charset="UTF-8"
 
 
---1434300986.e11c36d01.26071
-Date: Sun, 14 Jun 2015 16:56:26 +0000
+--1434317506.23c38a0.18138
+Date: Sun, 14 Jun 2015 21:31:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90976
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-            Bug ID: 90976
-           Summary: GM204 (NV124) black screen on modesetting
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: high
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #10 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to poma from comment #9)
+> (In reply to poma from comment #5)
+> ...
+> > Interestingly, in contrast to Xorg-1.17.1,
+> > on Xorg-1.16.3 NV30 can work with 'modesetting':
+> > 
+> 
+> FTR
+> Xorg-1.17.1 'modesetting' ist kaputt also with NV50.
 
-Created attachment 116492
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116492&action=edit
-dmesg
-
-Modesetting does not work.
-
-The card is linked to sony bravia TV through HDMI
-
-I achieved to get a trace by blacklisting nouveau then manually load it.
-error log here (full dmesg joinded):
-[  143.521000] nouveau E[     DRM] Pointer to flat panel table invalid
-[  143.525351] nouveau W[     DRM] unknown connector type 70
-[  143.525387] nouveau W[     DRM] failed to create encoder 1/8/0: -19
-[  143.525388] nouveau W[     DRM] Unknown-1 has no encoders, removing
-[  143.525407] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[  143.525407] [drm] Driver supports precise vblank timestamp query.
-[  143.525424] nouveau E[     DRM] failed to initialise sync subsystem, -38
-[  143.819264] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
-ffff8802135d3000
-
-What could I do ?
+Precisely - with 32 bit
+https://bugs.freedesktop.org/show_bug.cgi?id=90978
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1434300986.e11c36d01.26071
-Date: Sun, 14 Jun 2015 16:56:26 +0000
+--1434317506.23c38a0.18138
+Date: Sun, 14 Jun 2015 21:31:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -78,123 +59,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">90976</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>GM204 (NV124) black screen on modesetting
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>high
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>roucaries.bastien+bugs&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116492" name="attach_116492" title="dmesg">attachment 116492</a> <a href="attachment.cgi?id=116492&amp;action=edit" title="dmesg">[details]</a></span>
-dmesg
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c9">comment #9</a>)
+<span class="quote">&gt; (In reply to poma from <a href="show_bug.cgi?id=90871#c5">comment #5</a>)
+&gt; ...
+&gt; &gt; Interestingly, in contrast to Xorg-1.17.1,
+&gt; &gt; on Xorg-1.16.3 NV30 can work with 'modesetting':
+&gt; &gt; 
+&gt; 
+&gt; FTR
+&gt; Xorg-1.17.1 'modesetting' ist kaputt also with NV50.</span >
 
-Modesetting does not work.
-
-The card is linked to sony bravia TV through HDMI
-
-I achieved to get a trace by blacklisting nouveau then manually load it.
-error log here (full dmesg joinded):
-[  143.521000] nouveau E[     DRM] Pointer to flat panel table invalid
-[  143.525351] nouveau W[     DRM] unknown connector type 70
-[  143.525387] nouveau W[     DRM] failed to create encoder 1/8/0: -19
-[  143.525388] nouveau W[     DRM] Unknown-1 has no encoders, removing
-[  143.525407] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[  143.525407] [drm] Driver supports precise vblank timestamp query.
-[  143.525424] nouveau E[     DRM] failed to initialise sync subsystem, -38
-[  143.819264] nouveau  [     DRM] allocated 1920x1080 fb: 0x60000, bo
-ffff8802135d3000
-
-What could I do ?</pre>
+Precisely - with 32 bit
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV50: modesetting - Segmentation fault at address 0x0"
+   href="show_bug.cgi?id=90978">https://bugs.freedesktop.org/show_bug.cgi?id=90978</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1434300986.e11c36d01.26071--
+--1434317506.23c38a0.18138--
 
---===============0325303451==
+--===============1699643882==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -204,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0325303451==--
+--===============1699643882==--
