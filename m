@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 76818] [NVE7] GPU lockup
-Date: Sun, 14 Jun 2015 12:03:40 +0000
-Message-ID: <bug-76818-8800-c3qbCnFOod@http.bugs.freedesktop.org/>
-References: <bug-76818-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 77361] [nve7] nouveau not working on 3.13 linux
+	kernel
+Date: Sun, 14 Jun 2015 12:04:00 +0000
+Message-ID: <bug-77361-8800-uhEgY1Y6qM@http.bugs.freedesktop.org/>
+References: <bug-77361-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0510855262=="
+Content-Type: multipart/mixed; boundary="===============1750172076=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-76818-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-77361-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0510855262==
-Content-Type: multipart/alternative; boundary="1434283420.d42e06b23.5828"; charset="UTF-8"
+--===============1750172076==
+Content-Type: multipart/alternative; boundary="1434283440.73A36.5828"; charset="UTF-8"
 
 
---1434283420.d42e06b23.5828
-Date: Sun, 14 Jun 2015 12:03:40 +0000
+--1434283440.73A36.5828
+Date: Sun, 14 Jun 2015 12:04:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=76818
+https://bugs.freedesktop.org/show_bug.cgi?id=77361
 
 Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
@@ -38,15 +39,15 @@ Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> change
              Status|NEW                         |RESOLVED
          Resolution|---                         |WORKSFORME
 
---- Comment #11 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #24 from Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 Feel free to re-open the issue if the bug still occurs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434283420.d42e06b23.5828
-Date: Sun, 14 Jun 2015 12:03:40 +0000
+--1434283440.73A36.5828
+Date: Sun, 14 Jun 2015 12:04:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +59,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -87,12 +88,12 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818#c11">Comment # 11</a>
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361#c24">Comment # 24</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NVE7] GPU lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=76818">bug 76818</a>
+   title="RESOLVED WORKSFORME - [nve7] nouveau not working on 3.13 linux kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=77361">bug 77361</a>
               from <span class="vcard"><a class="email" href="mailto:samuel.pitoiset&#64;gmail.com" title="Samuel Pitoiset &lt;samuel.pitoiset&#64;gmail.com&gt;"> <span class="fn">Samuel Pitoiset</span></a>
 </span></b>
         <pre>Feel free to re-open the issue if the bug still occurs.</pre>
@@ -107,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1434283420.d42e06b23.5828--
+--1434283440.73A36.5828--
 
---===============0510855262==
+--===============1750172076==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0510855262==--
+--===============1750172076==--
