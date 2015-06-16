@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Progress on nv46 vblank bug
-Date: Tue, 16 Jun 2015 10:02:53 -0400
-Message-ID: <CAKb7Uvg0M9Buua7WYHymGvYByUuA7cySnu8Genznk-38zt8LKg@mail.gmail.com>
-References: <557FED9C.5090804@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Tue, 16 Jun 2015 19:13:15 +0000
+Message-ID: <bug-90871-8800-c3AfpbtSOz@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1898457577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <557FED9C.5090804-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,44 +16,115 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMTYsIDIwMTUgYXQgNTozNCBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gU28gYW55IGhpbnRzIGhvdyB0byBtdm9lIGZvcndhcmQgd2l0
-aCB0aGlzIGFyZSBhcHByZWNpYXRlZC4KCkkgY2FuIG9ubHkgc2F5IHdoYXQgSSB3b3VsZCBkby4u
-LiBmb3JnZXQgYWJvdXQgdHJ5aW5nIHRvIHF1YW50aWZ5CndoaWNoIGNhc2VzIHdvcmsgYW5kIHdo
-aWNoIGRvbid0LCBqdXN0IHRha2UgdGhlIGNhc2UgdGhhdCB5b3UgY2FuCnJlbGlhYmx5IHJlcHJv
-ZHVjZSB0aGUgcHJvYmxlbSB3aXRoLiBTdGFydCB1cCBhIHNlY29uZCB4dGVybSAob3Igc3NoCmlu
-LCB0aGF0IG1pZ2h0IGJlIHNpbXBsZXIpLCBhbmQgc3RhcnQgcG9raW5nIGF0IHN0dWZmIHdpdGgK
-bnZhcGVlay9udmFwb2tlLiBZb3UgY2FuIGxvb2sgaW4gdGhlIGRyaXZlciBmb3Igd2hhdCBpdCBk
-b2VzIHdoZW4KZW5hYmxpbmcvZGlzYWJsaW5nIHZibGFua3MsIGFuZCB5b3UgY2FuIHZlcmlmeSB0
-aGUgdmFsdWVzIG9mIHZhcmlvdXMKcmVnaXN0ZXJzIHRvIHNlZSBpZiB0aGV5J3JlIHdoYXQgeW91
-IGV4cGVjdCBvciBub3QuIE15IGJldCBpcyB0aGUgdGhlCnZibGFua3MgYXJlIHNvbWVob3cgbWFz
-a2VkIG9mZi4gVGhlIGRpc3BudjA0IGNvZGUgaXMgcHJldHR5CmNvbnZvbHV0ZWQsIGFuZCBwcm9i
-YWJseSBhbiBvZGQgY2FsbCBzZXF1ZW5jZSBjYXVzZXMgaXQgdG8gbWVzcyB0aGluZ3MKdXAuCgpB
-bHNvIGFkZGluZyBhIGRybS5kZWJ1Zz0weGYgYW5kIGNvbXBhcmluZyB0aGUgc3VjY2Vzc2Z1bCBh
-bmQgZmFpbHVyZQpjYXNlcyBtYXkgcHJvdmUgaW50ZXJlc3RpbmcuIFthbmQgbm91dmVhdS5kZWJ1
-Zz1kZWJ1ZyBmb3IgZ29vZCBtZWFzdXJlCmFzIHdlbGwsIGNhbid0IGh1cnRdCgo+IFBvc3NpYmx5
-IHJlbGF0ZWQsIGxpa2VseSB1bnJlbGF0ZWQgZHVyaW5nIG5vdXZlYXUgbW9kdWxlIChyZSkgbG9h
-ZCBJIGdldAo+IHRoZXNlIDIgZXJyb3JzOgo+Cj4gWyAgMjQwLjgzNzQ3MV0gbm91dmVhdSBFWyAg
-ICBQQlVTXVswMDAwOjAxOjAwLjBdIE1NSU8gd3JpdGUgb2YgMHgwMDAwMDAwMAo+IEZBVUxUIGF0
-IDB4NjgzM2M4Cj4gWyAgMjQwLjgzNzk0NV0gbm91dmVhdSBFWyAgICBQQlVTXVswMDAwOjAxOjAw
-LjBdIE1NSU8gd3JpdGUgb2YgMHg0ZjRmNWM0ZQo+IEZBVUxUIGF0IDB4NjgzM2M4Cj4KPiBXaGVy
-ZSBieSB0aGUgYWRkcmVzc2VzIGxpc3RlZCBhcyBiZWluZyB3cml0dGVuIHRvICgweDAwMDAwMDAw
-IGFuZAo+IDB4NGY0ZjVjNGUpIGFyZSBkaWZmZXJlbnQKPiBlYWNoIG1vZHVsZSBsb2FkLCBzbyB0
-aGV5IHNlZW0gdG8gYmUgdGFrZW4gZnJvbSB1bmluaXRpYWxpemVkIG1lbW9yeS4KCkhvdyBkaWZm
-ZXJlbnQ/IFRoaXMgZXhhbXBsZSBhcHBlYXJzIHRvIGRlY29kZSB0bzoKCiQgfi9zcmMvZW52eXRv
-b2xzL3Jubi9sb29rdXAgLWEgNDYgNjgzM2M4ClBSTURJTzIuUEFMX0lOREVYID0+IDAKCldoaWNo
-IGlzIGRlZmluaXRlbHkgdmlkZW8tcmVsYXRlZC4gUGVyaGFwcyBpdCdzIHNvbWV0aGluZyBleGVj
-dXRlZCBieQphIFZCSU9TIHNjcmlwdD8gKE9yIHdhaXQsIHlvdSB3ZXJlIHRoaW5raW5nIHRoYXQg
-MHg0ZjRmNWM0ZSBpcyB0aGUKYWRkcmVzcz8gbm8sIHRoYXQgaXMgdGhlIHZhbHVlIGJlaW5nIHdy
-aXR0ZW4uIEFuZCBpdCBvY2N1cnMgdG8gbWUgdGhhdAp0aGF0IGlzICdOXE9PJyBpbiBmb3VyY2Mu
-IFByb2JhYmx5IGlycmVsZXZhbnQuKSBZb3UgbWF5IGZpbmQgJ252YmlvcycKYSB1c2VmdWwgdG9v
-bCBmb3IgZGVjb2RpbmcgdGhlIGJpb3Mgc2NyaXB0cy4gQWxzbyB0aGUgM2M4IGlzCnN1c3BpY2lv
-dXNseSBzaW1pbGFyIHRvIHRoZSBWR0EgSS9PIDB4M2M0ICg/KSByZWdpc3Rlcj8gUHJvYmFibHkK
-Y29pbmNpZGVuY2UuCgpHb29kIGx1Y2ssCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1898457577==
+Content-Type: multipart/alternative; boundary="1434481995.C544fD1A0.11291"; charset="UTF-8"
+
+
+--1434481995.C544fD1A0.11291
+Date: Tue, 16 Jun 2015 19:13:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #11 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+Created attachment 116536
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116536&action=edit
+test program
+
+
+Can you try with this test program and see if you can reproduce:
+
+1. Save attachment as tfp-test.c
+
+2. Build with 
+
+  $ gcc -g tfp-test.c -o tfp-test $(pkg-config --cflags --libs epoxy xrender
+xfixes xcomposite x11)
+
+3. Run with 
+
+  $ ./tfp-test
+
+4. Use the mouse button to chaneg the Pixmap/texture or press a key to exit.
+
+If you can reproduce then we may have a simple reproducer, that could be
+helpful with the investigation.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1434481995.C544fD1A0.11291
+Date: Tue, 16 Jun 2015 19:13:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116536" name="attach_116536" title="test program">attachment 116536</a> <a href="attachment.cgi?id=116536&amp;action=edit" title="test program">[details]</a></span>
+test program
+
+
+Can you try with this test program and see if you can reproduce:
+
+1. Save attachment as tfp-test.c
+
+2. Build with 
+
+  $ gcc -g tfp-test.c -o tfp-test $(pkg-config --cflags --libs epoxy xrender
+xfixes xcomposite x11)
+
+3. Run with 
+
+  $ ./tfp-test
+
+4. Use the mouse button to chaneg the Pixmap/texture or press a key to exit.
+
+If you can reproduce then we may have a simple reproducer, that could be
+helpful with the investigation.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434481995.C544fD1A0.11291--
+
+--===============1898457577==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1898457577==--
