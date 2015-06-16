@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90347] [NVE0+] Failure to insert texbar under some
- circumstances (causing bad colors in Terasology)
-Date: Mon, 15 Jun 2015 18:46:11 +0000
-Message-ID: <bug-90347-8800-JeFFrwtAry@http.bugs.freedesktop.org/>
-References: <bug-90347-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Progress on nv46 vblank bug
+Date: Tue, 16 Jun 2015 11:34:20 +0200
+Message-ID: <557FED9C.5090804@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1964662682=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90347-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,146 +15,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1964662682==
-Content-Type: multipart/alternative; boundary="1434393971.EbBBbDE0.2142"; charset="UTF-8"
-
-
---1434393971.EbBBbDE0.2142
-Date: Mon, 15 Jun 2015 18:46:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90347
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Should be fixed by
-
-commit a2af42c1d2dc91f4c31e25ff9fff15a89a9b6ead
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Fri Jun 12 16:09:05 2015 +0200
-
-    nvc0/ir: fix collection of first uses for texture barrier insertion
-
-    One of the places we have to insert texbars is in situations where the
-    result of the tex gets overwritten by a different instruction (e.g. in a
-    conditional statement). However in some situations it can actually
-    appear as though the original tex itself is an overwriting instruction.
-    This can naturally never really happen, so just ignore the tex
-    instruction when it comes up.
-
-    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=90347
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Cc: "10.5 10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1434393971.EbBBbDE0.2142
-Date: Mon, 15 Jun 2015 18:46:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE0+] Failure to insert texbar under some circumstances (causing bad colors in Terasology)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90347">bug 90347</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE0+] Failure to insert texbar under some circumstances (causing bad colors in Terasology)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90347#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE0+] Failure to insert texbar under some circumstances (causing bad colors in Terasology)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90347">bug 90347</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Should be fixed by
-
-commit a2af42c1d2dc91f4c31e25ff9fff15a89a9b6ead
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Fri Jun 12 16:09:05 2015 +0200
-
-    nvc0/ir: fix collection of first uses for texture barrier insertion
-
-    One of the places we have to insert texbars is in situations where the
-    result of the tex gets overwritten by a different instruction (e.g. in a
-    conditional statement). However in some situations it can actually
-    appear as though the original tex itself is an overwriting instruction.
-    This can naturally never really happen, so just ignore the tex
-    instruction when it comes up.
-
-    Bugzilla: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE0+] Failure to insert texbar under some circumstances (causing bad colors in Terasology)"
-   href="show_bug.cgi?id=90347">https://bugs.freedesktop.org/show_bug.cgi?id=90347</a>
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Cc: &quot;10.5 10.6&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434393971.EbBBbDE0.2142--
-
---===============1964662682==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1964662682==--
+SGkgQWxsLAoKU28gSSd2ZSBiZWVuIHdvcmtpbmd+dyBiYW5naW5nIG15IGhlYWQgYWdhaW5zdCB0
+aGUgbnY0NiB2YmxhbmsgYnVnCmFnYWluIGFuZCBJJ3ZlIGJlZW4gZmluZGluZyBvdXQgc29tZSBp
+bnRlcmVzdGluZyB0aGluZ3MuCgpUaGlzIGlzIGFsbCB1c2luZyB0aGUgbGF0ZXN0IGtlcm5lbCAr
+IGRkeCArIG1lc2EgY29kZS4KCkFsbCBvZiB0aGlzIHdhcyB0ZXN0ZWQgd2l0aCAqY29sZCogKHBv
+d2VyIHJlbW92ZWQgZnJvbSB3YWxsIG91dGxldApmb3IgMjAgc2Vjb25kcykgYm9vdHMgaW4gYmV0
+d2VlbiB0aGUgc2NlbmFyaW9zIGJlY2F1c2UgdGhpcyBpcwpyZWFsbHkgd2VpcmQsIGFsbCBib290
+cyB3aGVyZSBpbnRvIHRleHQgbW9kZS4KClNjZW5hcmlvIDE6CmEpIHN0YXJ0eCAvdXNyL2Jpbi9n
+bHhnZWFycyAtaW5mbwogIGdseGdlYXJzIHdvcmtzLCBpcyB1c2luZyB0aGUgbm91dmVhdSBtZXNh
+IGRyaXZlciBhbmQgaXMgc3luY2VkIGF0CiAgNjAgZnBzLgpiKSBzdGFydHggL3Vzci9iaW4veHRl
+cm0gLXRpdGxlIGZvbwogIEFuZCB0aGVuIGluIHRoZSB4dGVybToKICBtZXRhY2l0eSYKICBnbHhn
+ZWFycyAtaW5mbwogIGdseGdlYXJzIHdvcmtzLCBpcyB1c2luZyB0aGUgbm91dmVhdSBtZXNhIGRy
+aXZlciBhbmQgaXMgc3luY2VkIGF0CiAgNjAgZnBzLgoKU2NlbmFyaW8gMjoKYSkgc3RhcnR4IC91
+c3IvYmluL3h0ZXJtIC10aXRsZSBmb28KICBBbmQgdGhlbiBpbiB0aGUgeHRlcm06CiAgbWV0YWNp
+dHkmCiAgZ2x4Z2VhcnMgLWluZm8KICBnbHhnZWFycyBkb2VzIG5vdCB3b3JrIC9wcm9jL2ludGVy
+cnVwdHMgc2hvd3MgdGhlIGludGVycnVwdCBmb3IKICAgbnZrbSBpcyBub3QgZmlyaW5nLgpiKSBz
+dGFydHggL3Vzci9iaW4vZ2x4Z2VhcnMgLWluZm8KICBnbHhnZWFycyBkb2VzIG5vdCB3b3JrIC9w
+cm9jL2ludGVycnVwdHMgc2hvd3MgdGhlIGludGVycnVwdCBmb3IKICAgbnZrbSBpcyBub3QgZmly
+aW5nLgoKV2VpcmQgaHVoLCBidXQgaXQgZ2V0cyBldmVuIHdlaXJkZXIsIGlmIGFmdGVyIHNjZW5h
+cmlvIDIgSSByZWxvYWQKdGhlIG5vdXZlYXUga2VybmVsIG1vZHVsZSwgdXNpbmcgdGhlIGV4YWN0
+IHNhbWUgbW9kdWxlIGFzIGxvYWRlZApkdXJpbmcgYm9vdCwgdGhlbiBJIGNhbiBydW4gc2NlbmFy
+aW8gMSBhbmQgaXQgd29ya3MgdGhlIHNhbWUgYXMKYWZ0ZXIgYSBjb2xkIGJvb3QgKGlvdyB0aGlu
+Z3Mgd29yayBhcyB0aGV5IHNob3VsZCkuCgpPaywgc28gcmVsb2FkaW5nIHRoZSBtb2R1bGUgc2V0
+cyB0aGluZ3MgYmFjayB0byBhIHByaXN0aW5lIHN0YXRlLAp3ZWxsIG5vdCBxdWl0ZS4gQmVjYXVz
+ZSBhZnRlciBhIG1vZHVsZSByZWxvYWQgc2NlbmFyaW8gMiBhbHNvCndvcmtzLCB3aGVyZSBhcyBh
+ZnRlciBhIGNvbGQgYm9vdCBzY2VuYXJpbyAyIGRvZXMgbm90IHdvcmsgLi4uCgpBbHNvIG9uY2Ug
+dGhpbmdzIGFyZSBpbiBhIHdvcmtpbmcgc3RhdGUgSSBjYW4gcHJldHR5IG11Y2ggZG8Kd2hhdGV2
+ZXIgSSB3YW50IGFuZCB0aGV5IHN0YXkgd29ya2luZy4uLgoKTXkgdGhlb3J5IHNvIGZhciBpcyB0
+aGF0IHBseW1vdXRoIGRvZXMgc29tZXRoaW5nIHdoaWNoIGNhdXNlcwpwcm9ibGVtcyB3aGVuIGZv
+bGxvd2VkIGJ5IHN0YXJ0aW5nIFggKyB4dGVybSArIG1ldGFjaXR5LCB3aGVyZSBhcwpmaXJpbmcg
+WCArIGdseGdlYXJzIGRpcmVjdGx5IGFmdGVyIGJvb3QgdW5kb2VzIHRoZSBzb21ldGhpbmcKcGx5
+bW91dGggaGFzIGRvbmUsIGFuZCBmcm9tIHRoZXJlIG9uIGV2ZXJ5dGhpbmcgaXMgZ29vZC4KClNv
+IGFueSBoaW50cyBob3cgdG8gbXZvZSBmb3J3YXJkIHdpdGggdGhpcyBhcmUgYXBwcmVjaWF0ZWQu
+CgpSZWdhcmRzLAoKSGFucwoKcC5zLgoKUG9zc2libHkgcmVsYXRlZCwgbGlrZWx5IHVucmVsYXRl
+ZCBkdXJpbmcgbm91dmVhdSBtb2R1bGUgKHJlKSBsb2FkIEkgZ2V0IHRoZXNlIDIgZXJyb3JzOgoK
+WyAgMjQwLjgzNzQ3MV0gbm91dmVhdSBFWyAgICBQQlVTXVswMDAwOjAxOjAwLjBdIE1NSU8gd3Jp
+dGUgb2YgMHgwMDAwMDAwMCBGQVVMVCBhdCAweDY4MzNjOApbICAyNDAuODM3OTQ1XSBub3V2ZWF1
+IEVbICAgIFBCVVNdWzAwMDA6MDE6MDAuMF0gTU1JTyB3cml0ZSBvZiAweDRmNGY1YzRlIEZBVUxU
+IGF0IDB4NjgzM2M4CgpXaGVyZSBieSB0aGUgYWRkcmVzc2VzIGxpc3RlZCBhcyBiZWluZyB3cml0
+dGVuIHRvICgweDAwMDAwMDAwIGFuZCAweDRmNGY1YzRlKSBhcmUgZGlmZmVyZW50CmVhY2ggbW9k
+dWxlIGxvYWQsIHNvIHRoZXkgc2VlbSB0byBiZSB0YWtlbiBmcm9tIHVuaW5pdGlhbGl6ZWQgbWVt
+b3J5LgoKSGludHMgb24gaG93IHRvIGRlYnVnIHRoaXMgYXJlIHdlbGNvbWUgdG9vLgoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
