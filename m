@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90999] New: xset dpms force off does not turn off
-	LCD backlight
-Date: Tue, 16 Jun 2015 20:24:41 +0000
-Message-ID: <bug-90999-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90999] xset dpms force off does not turn off LCD
+	backlight
+Date: Tue, 16 Jun 2015 20:29:23 +0000
+Message-ID: <bug-90999-8800-WLlg1cVoSf@http.bugs.freedesktop.org/>
+References: <bug-90999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0532962713=="
+Content-Type: multipart/mixed; boundary="===============0766482622=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90999-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,50 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0532962713==
-Content-Type: multipart/alternative; boundary="1434486281.aBBc1.31148"; charset="UTF-8"
+--===============0766482622==
+Content-Type: multipart/alternative; boundary="1434486563.0c7B61.32119"; charset="UTF-8"
 
 
---1434486281.aBBc1.31148
-Date: Tue, 16 Jun 2015 20:24:41 +0000
+--1434486563.0c7B61.32119
+Date: Tue, 16 Jun 2015 20:29:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90999
 
-            Bug ID: 90999
-           Summary: xset dpms force off does not turn off LCD backlight
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: freedesktop-ajeTAHKfd5c@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 116540
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116540&action=edit
-Output of dmesg (see detail in description)
-
-'xset dpms force off' turns the screen blank but the LCD backlight remains on.
-
-Linux kernel 4.0.5 running on a MacbookPro 11,3.
-
-dmesg.txt attached from running kernel with
-'nouveau.debug=VBIOS=trace,I2C=debug,DISP=debug,DRM=debug drm.debug=0xe' and
-should contain output generated from running xset dpms force off at the end of
-file.
+--- Comment #1 from freedesktop-ajeTAHKfd5c@public.gmane.org ---
+Created attachment 116541
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116541&action=edit
+/sys/kernel/debug/dri/0/vbios.rom
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434486281.aBBc1.31148
-Date: Tue, 16 Jun 2015 20:24:41 +0000
+--1434486563.0c7B61.32119
+Date: Tue, 16 Jun 2015 20:29:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,100 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - xset dpms force off does not turn off LCD backlight"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90999">90999</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>xset dpms force off does not turn off LCD backlight
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>freedesktop&#64;jsab.me
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116540" name="attach_116540" title="Output of dmesg (see detail in description)">attachment 116540</a> <a href="attachment.cgi?id=116540&amp;action=edit" title="Output of dmesg (see detail in description)">[details]</a></span>
-Output of dmesg (see detail in description)
-
-'xset dpms force off' turns the screen blank but the LCD backlight remains on.
-
-Linux kernel 4.0.5 running on a MacbookPro 11,3.
-
-dmesg.txt attached from running kernel with
-'nouveau.debug=VBIOS=trace,I2C=debug,DISP=debug,DRM=debug drm.debug=0xe' and
-should contain output generated from running xset dpms force off at the end of
-file.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - xset dpms force off does not turn off LCD backlight"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90999#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - xset dpms force off does not turn off LCD backlight"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90999">bug 90999</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;jsab.me" title="freedesktop&#64;jsab.me">freedesktop&#64;jsab.me</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116541" name="attach_116541" title="/sys/kernel/debug/dri/0/vbios.rom">attachment 116541</a> <a href="attachment.cgi?id=116541&amp;action=edit" title="/sys/kernel/debug/dri/0/vbios.rom">[details]</a></span>
+/sys/kernel/debug/dri/0/vbios.rom</pre>
         </div>
       </p>
       <hr>
@@ -175,9 +76,9 @@ file.</pre>
     </body>
 </html>
 
---1434486281.aBBc1.31148--
+--1434486563.0c7B61.32119--
 
---===============0532962713==
+--===============0766482622==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -187,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0532962713==--
+--===============0766482622==--
