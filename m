@@ -1,17 +1,11 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: support for dp 1.2
-Date: Tue, 16 Jun 2015 16:22:40 -0400
-Message-ID: <CAKb7Uvj1WAP1jEhoAD18h9Xag4Z0ZC5HiJt7A97Ure_dP89uxA@mail.gmail.com>
-References: <1434483237.11979.15.camel@stephenadler.com>
- <CAKb7Uvi16T4_L4v29YZOhyMrsdySFqp-MPXp-PvcH1cq+NrObQ@mail.gmail.com>
- <1434484413.11979.19.camel@stephenadler.com>
- <CAKb7UvjJNLCZwdHNqA6Ea8KEf+tS+QbTWmWzpzdO0q1C-6kTSw@mail.gmail.com>
- <1434485730.11979.21.camel@stephenadler.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90999] New: xset dpms force off does not turn off
+	LCD backlight
+Date: Tue, 16 Jun 2015 20:24:41 +0000
+Message-ID: <bug-90999-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0532962713=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1434485730.11979.21.camel-wRvlPVLobi1/31tCrMuHxg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,73 +15,176 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Stephen Adler <adler-wRvlPVLobi1/31tCrMuHxg@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdW4gMTYsIDIwMTUgYXQgNDoxNSBQTSwgU3RlcGhlbiBBZGxlciA8YWRsZXJAc3Rl
-cGhlbmFkbGVyLmNvbT4gd3JvdGU6Cj4gT24gVHVlLCAyMDE1LTA2LTE2IGF0IDE2OjAwIC0wNDAw
-LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4gT24gVHVlLCBKdW4gMTYsIDIwMTUgYXQgMzo1MyBQTSwg
-U3RlcGhlbiBBZGxlciA8Cj4+IGFkbGVyQHN0ZXBoZW5hZGxlci5jb20+IHdyb3RlOgo+PiA+IE9u
-IFR1ZSwgMjAxNS0wNi0xNiBhdCAxNTo0NyAtMDQwMCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+ID4g
-PiBPbiBUdWUsIEp1biAxNiwgMjAxNSBhdCAzOjMzIFBNLCBTdGVwaGVuIEFkbGVyIDwKPj4gPiA+
-IGFkbGVyQHN0ZXBoZW5hZGxlci5jb20+IHdyb3RlOgo+PiA+ID4gPiBHdXlzLAo+PiA+ID4gPgo+
-PiA+ID4gPiBJcyB0aGVyZSBzdXBwb3J0IGZvciBkaXNwbGF5IHBvcnQgMS4yIHdpdGggdGhlIG5v
-dXZlYXUgZHJpdmVyCj4+ID4gPiA+IGFuZAo+PiA+ID4gPiBHVFgKPj4gPiA+ID4gOTcwPwo+PiA+
-ID4gPgo+PiA+ID4gPiBJIGhhdmUgYSBkZWxsIDRLIG1vbml0b3IgYW5kIHRvIHJ1biBpdCBpbiA0
-SyBtb2RlIGF0IDYwSHogSQo+PiA+ID4gPiBuZWVkIHRvCj4+ID4gPiA+IGNvbmZpZ3VyZSB0aGUg
-bW9uaXRvciB0byBydW4gdmVyc2lvbiAxLjIgb2YgdGhlIGRpc3BsYXkgcG9ydAo+PiA+ID4gPiBw
-cm90b2NvbC4KPj4gPiA+ID4gdGhlIG5vdXZlYXUgZHJpdmVyIHdvcmtzIHdlbGwgd2l0aCBkaXNw
-bGF5IHBvcnQgMS4xIGJ1dCBJIG9ubHkKPj4gPiA+ID4gZ2V0Cj4+ID4gPiA+IGEKPj4gPiA+ID4g
-MzBIeiByZWZyZXNoIHJhdGUgYXQgNEsgcmVzb2x1dGlvbi4KPj4gPiA+Cj4+ID4gPiBUaGUgRFAg
-MS4yIDU0ME1IeiByYXRlIHNob3VsZCBiZSBzdXBwb3J0ZWQuIEhvd2V2ZXIgdGhlcmUgaXMKPj4g
-PiA+IHByZXNlbnRseQo+PiA+ID4gbm8gTVNUIHN1cHBvcnQsIHNvIGlmIHRoZSBtb25pdG9yIGhh
-cyAyIGludGVybmFsIHBhbmVscywgdGhhdAo+PiA+ID4gd29uJ3QKPj4gPiA+IHBhbiBvdXQgc28g
-d2VsbCAoeWV0KS4KPj4gPiA+Cj4+ID4gPiBBbHNvIG5vdGUgdGhhdCB0aGUgR1RYIDk3MCByZXF1
-aXJlcyBzaWduZWQgZmlybXdhcmUgZnJvbSBOVklESUEKPj4gPiA+IHRvCj4+ID4gPiB1c2UKPj4g
-PiA+IGFueSBhY2NlbGVyYXRpb24sIGFuZCB3ZSBoYXZlbid0IHF1aXRlIHlldCBmaWd1cmVkIG91
-dCBob3cgdG8gZ2V0Cj4+ID4gPiB0aGF0Cj4+ID4gPiBnb2luZy4gVGhpcyBtZWFucyB0aGF0IGFs
-bCB5b3UgZ2V0IGlzIG1vZGVzZXR0aW5nLCBubwo+PiA+ID4gYWNjZWxlcmF0aW9uLgo+PiA+ID4g
-RXNwIHdpdGggYSA0SyBzY3JlZW4sIHVzaW5nIGxsdm1waXBlIG1heSBmZWVsIHNsb3cgaWYgeW91
-IHVzZSBhCj4+ID4gPiBHTAo+PiA+ID4gY29tcG9zaXRvciwgYXMgbWFueSBtb2Rlcm4gZGVza3Rv
-cHMgZG8uCj4+ID4gPgo+PiA+ID4gICAtaWxpYQo+PiA+ID4KPj4gPgo+PiA+IFRoYW5rcyBmb3Ig
-dGhlIHF1aWNrIHJlc3BvbnNlLiBJJ20gaGF2aW5nIGEgaGVsbCBvZiBhIHRpbWUgd2l0aCB0aGUK
-Pj4gPiBudmlkaWEgZHJpdmVyIHNpbmNlIEkgaGF2ZSB0aHJlZSA0SyBtb25pdG9ycyB3aGljaCBo
-b29rIHVwIHRvIHRoZQo+PiA+IEdUWAo+PiA+IDk3MCBjYXJkLCBidXQgaW4gbGludXggaXQgd2ls
-bCBvbmx5IGRyaXZlIHR3byBvZiB0aGUgMyBtb25pdG9ycy4KPj4gPiBUaGUKPj4gPiBtb25pdG9y
-cyBkbyBoYXZlIHRoZSBkdWFsIGludGVybmFsIHBhbmVscyBlYWNoIHJ1bm5pbmcgYXQgMTkyMHgy
-MTYwCj4+ID4gb3IKPj4gPiBzb21ldGhpbmcgbGlrZSB0aGF0LiBGb3Igc29tZSByZWFzb24gbnZp
-ZGlhIG9ubHkgZHJpdmVzIDQgb2YgdGhlCj4+ID4gcGFuZWxzCj4+ID4gKHR3byBtb25pdG9ycykg
-cGVyIEdQVS4uLgo+Pgo+PiBLZXBsZXIrIEdQVXMgb25seSBoYXZlIDQgQ1JUQydzLCBzbyB5b3Ug
-Y2FuIG9ubHkgc2NhbiBvdXQgNCB0aGluZ3MgYXQKPj4gYSB0aW1lIFtwcmUtS2VwbGVyIGhhdmUg
-b25seSAyIENSVEMnc10uIEhvd2V2ZXIgcGVyaGFwcyB5b3UgY2FuIGhhdmUKPj4gYQo+PiBzaW5n
-bGUgQ1JUQyBzcGxpdCBhbiBpbWFnZSB1cCBpbnRvIDIgZW5jb2RlcnMsIEkgZG9uJ3QgcmVhbGx5
-IGtub3cKPj4gaG93Cj4+IHRoYXQgd29ya3MsIGVzcCBpbiB0aGUgY29udGV4dCBvZiBEUC1NU1Qs
-IHdoZXJlIGl0J3MgcmVhbGx5IGEgc2luZ2xlCj4+IGVuY29kZXIuCj4+Cj4+ID4KPj4gPiBJcyB0
-aGUgTVNUIHN1cHBvcnQgaW1taW5lbnQ/IG9yIG9mZiBpbnRvIHRoZSBmdXR1cmU/Cj4+Cj4+IEl0
-J3Mgb24gdGhlIGhvcml6b24uLi4gYSBob3Jpem9uLCBvZiBjb3Vyc2UsIGJlaW5nIGFuIGltYWdp
-bmFyeSBsaW5lCj4+IHRoYXQga2VlcHMgbW92aW5nIGZ1cnRoZXIgYXdheSBhcyB5b3UgYXR0ZW1w
-dCB0byBhcHByb2FjaCBpdCA6KQo+PiBIZXJlJ3MKPj4gQmVuJ3MgdHJlZSBmcm9tIGEgeWVhciBh
-Z28gKHdoaWNoIEJUVyBoYXMgbm8gc3VwcG9ydCBmb3IgeW91ciBHUFUgYXQKPj4gYWxsKToKPj4K
-Pj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL35kYXJrdGFtYS9ub3V2ZWF1L2xvZy8/aD1k
-ZXZlbC1tc3QKPj4KPj4gQUZBSUsgaGUncyBiZWVuIHB1dHRpbmcgaXQgb2ZmLCB0cnlpbmcgdG8g
-Y29tYmluZSBpdCB3aXRoIGEKPj4gY29udmVyc2lvbgo+PiB0byBhdG9taWMgbW9kZXNldHRpbmcu
-Cj4+Cj4+ICAgLWlsaWEKPj4KPgo+IFRoYW5rcyBJbGlhLCB5b3UgY2VydGlhbmx5IHNlZW0gdG8g
-a25vdyB3aGF0IHlvdXIgdGFsa2luZyBhYm91dC4uLgo+IFNvLi4uIGhvdyBhYm91dCB0aGlzIHF1
-ZXN0aW9uPyBXb3VsZCB5b3UgYmUgZmFtaWxpYXIgd2l0aCB0aGUgQmFzZQo+IE1vc2FpYyBhbmQv
-b3IgU0xJIG1vc2FpYyBjb25maWd1cmF0aW9ucyBmb3IgdGhlIG52aWRpYSBkcml2ZXI/Cj4gc3Bl
-Y2lmaWNhbGx5IGlmIHRoZXkgd29yayB3aXRoIGdlZm9yY2UgY2FyZHM/IEkga25vdyB0aGV5IHdv
-cmsgd2l0aAo+IHF1YWRybyBjYXJkcy4gKEF0IGxlYXN0IHRoZSBiYXNlIG1vc2FpYyBkb2VzIHdp
-dGggdGhlIHF1YWRybyBjYXJkcy4pCj4KPiBJIG1heSBqdXN0IGdldCBtZSBhbm90aGVyIGNhcmQg
-dG8gc29sdmUgdGhlIDMgbW9uaXRvciBwcm9ibGVtLgoKTm9wZSwgc29ycnkuIE5vdCByZWFsbHkg
-ZmFtaWxpYXIgd2l0aCB3aGF0IHRoZSBibG9iIGRyaXZlcnMgb2ZmZXIgaW4KdGhhdCByZWdhcmQu
-IEkgd2lsbCBzYXkgdGhhdCBpZiB0aGUgYWN0dWFsIEhXIHN1cHBvcnRzIHlvdXIKY29uZmlndXJh
-dGlvbiAoZS5nLiBpdCB3b3JrcyBmaW5lIGluIFdpbmRvd3Mgd2l0aCB0aGUgZXhhY3Qgc2FtZQpj
-YWJsZXMgLyBjb25uZWN0b3JzIC8gZXRjKSwgY2hhbmNlcyBhcmUgeW91IGNhbiBmaWxlIGEgYnVn
-IHdpdGggdGhlbQpzb21laG93LCBub3Qgc3VyZSB3aGF0IHRoZSByZXNwb25zZSByYXRlIGlzIHRo
-b3VnaC4KCkkgZG8ga25vdyB0aGF0IHRoaW5ncyB3aWxsIGdvIG11Y2ggc21vb3RoZXIgaWYgYWxs
-IHlvdXIgbW9uaXRvcnMgYXJlCmhvb2tlZCB1cCB0byBhIHNpbmdsZSBHUFUgdGhhbiB0byBtdWx0
-aXBsZSBHUFUncy4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0532962713==
+Content-Type: multipart/alternative; boundary="1434486281.aBBc1.31148"; charset="UTF-8"
+
+
+--1434486281.aBBc1.31148
+Date: Tue, 16 Jun 2015 20:24:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90999
+
+            Bug ID: 90999
+           Summary: xset dpms force off does not turn off LCD backlight
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-ajeTAHKfd5c@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 116540
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116540&action=edit
+Output of dmesg (see detail in description)
+
+'xset dpms force off' turns the screen blank but the LCD backlight remains on.
+
+Linux kernel 4.0.5 running on a MacbookPro 11,3.
+
+dmesg.txt attached from running kernel with
+'nouveau.debug=VBIOS=trace,I2C=debug,DISP=debug,DRM=debug drm.debug=0xe' and
+should contain output generated from running xset dpms force off at the end of
+file.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434486281.aBBc1.31148
+Date: Tue, 16 Jun 2015 20:24:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - xset dpms force off does not turn off LCD backlight"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90999">90999</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>xset dpms force off does not turn off LCD backlight
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;jsab.me
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116540" name="attach_116540" title="Output of dmesg (see detail in description)">attachment 116540</a> <a href="attachment.cgi?id=116540&amp;action=edit" title="Output of dmesg (see detail in description)">[details]</a></span>
+Output of dmesg (see detail in description)
+
+'xset dpms force off' turns the screen blank but the LCD backlight remains on.
+
+Linux kernel 4.0.5 running on a MacbookPro 11,3.
+
+dmesg.txt attached from running kernel with
+'nouveau.debug=VBIOS=trace,I2C=debug,DISP=debug,DRM=debug drm.debug=0xe' and
+should contain output generated from running xset dpms force off at the end of
+file.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434486281.aBBc1.31148--
+
+--===============0532962713==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0532962713==--
