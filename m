@@ -1,18 +1,12 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [PATCH v2 2/2] drm/nouveau: add GEM_SET_TILING
- staging ioctl
-Date: Tue, 16 Jun 2015 12:07:29 +0200
-Message-ID: <20150616100729.GP23637@phenom.ffwll.local>
-References: <1434352169-10501-1-git-send-email-acourbot@nvidia.com>
- <1434352169-10501-3-git-send-email-acourbot@nvidia.com>
- <20150615075618.GH8341@phenom.ffwll.local>
- <557E9605.9040406@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Tue, 16 Jun 2015 11:28:57 +0000
+Message-ID: <bug-90887-8800-DCfVqDZNMz@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1996418386=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <557E9605.9040406-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,127 +16,110 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ari Hirvonen <ahirvonen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdW4gMTUsIDIwMTUgYXQgMDY6MDg6MjFQTSArMDkwMCwgQWxleGFuZHJlIENvdXJi
-b3Qgd3JvdGU6Cj4gT24gMDYvMTUvMjAxNSAwNDo1NiBQTSwgRGFuaWVsIFZldHRlciB3cm90ZToK
-PiA+T24gTW9uLCBKdW4gMTUsIDIwMTUgYXQgMDQ6MDk6MjlQTSArMDkwMCwgQWxleGFuZHJlIENv
-dXJib3Qgd3JvdGU6Cj4gPj5Gcm9tOiBBcmkgSGlydm9uZW4gPGFoaXJ2b25lbkBudmlkaWEuY29t
-Pgo+ID4+Cj4gPj5BZGQgbmV3IE5PVVZFQVVfR0VNX1NFVF9USUxJTkcgaW9jdGwgdG8gc2V0IGNv
-cnJlY3QgdGlsaW5nCj4gPj5tb2RlIGZvciBpbXBvcnRlZCBkbWEtYnVmcy4gVGhpcyBpb2N0bCBp
-cyBzdGFnaW5nIGZvciBub3cKPiA+PmFuZCBlbmFibGVkIHdpdGggdGhlICJzdGFnaW5nX3RpbGlu
-ZyIgbW9kdWxlIG9wdGlvbi4KPiA+Pgo+ID4+U2lnbmVkLW9mZi1ieTogQXJpIEhpcnZvbmVuIDxh
-aGlydm9uZW5AbnZpZGlhLmNvbT4KPiA+PlthY291cmJvdEBudmlkaWEuY29tOiBjYXJyeSB1cHN0
-cmVhbSwgbWFueSBmaXhlc10KPiA+PlNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxh
-Y291cmJvdEBudmlkaWEuY29tPgo+ID4+LS0tCj4gPj4gIGRybS9ub3V2ZWF1L25vdXZlYXVfYm8u
-YyAgICAgICAgICAgfCAxOCArKysrKysrKysrKysKPiA+PiAgZHJtL25vdXZlYXUvbm91dmVhdV9i
-by5oICAgICAgICAgICB8ICAyICsrCj4gPj4gIGRybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgICAg
-ICAgICAgfCAgNiArKysrCj4gPj4gIGRybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMgICAgICAgICAg
-fCA1OCArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+ID4+ICBkcm0vbm91
-dmVhdS9ub3V2ZWF1X2dlbS5oICAgICAgICAgIHwgIDIgKysKPiA+PiAgZHJtL25vdXZlYXUvbm91
-dmVhdV90dG0uYyAgICAgICAgICB8IDEzICstLS0tLS0tLQo+ID4+ICBkcm0vbm91dmVhdS91YXBp
-L2RybS9ub3V2ZWF1X2RybS5oIHwgIDggKysrKysrCj4gPj4gIDcgZmlsZXMgY2hhbmdlZCwgOTUg
-aW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCj4gPj4KPiA+PmRpZmYgLS1naXQgYS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2JvLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPiA+PmluZGV4
-IDZlZGNjZTE2NThiNy4uMmEyZWJiZWI0ZmMwIDEwMDY0NAo+ID4+LS0tIGEvZHJtL25vdXZlYXUv
-bm91dmVhdV9iby5jCj4gPj4rKysgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmMKPiA+PkBAIC0x
-NzgsNiArMTc4LDI0IEBAIG5vdXZlYXVfYm9fZml4dXBfYWxpZ24oc3RydWN0IG5vdXZlYXVfYm8g
-Km52Ym8sIHUzMiBmbGFncywKPiA+PiAgCSpzaXplID0gcm91bmR1cCgqc2l6ZSwgUEFHRV9TSVpF
-KTsKPiA+PiAgfQo+ID4+Cj4gPj4rdm9pZAo+ID4+K25vdXZlYXVfYm9fdXBkYXRlX3RpbGluZyhz
-dHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSwgc3RydWN0IG5vdXZlYXVfYm8gKm52Ym8sCj4gPj4rCQkJ
-IHN0cnVjdCBudmttX21lbSAqbWVtKQo+ID4+K3sKPiA+PisJc3dpdGNoIChkcm0tPmRldmljZS5p
-bmZvLmZhbWlseSkgewo+ID4+KwljYXNlIE5WX0RFVklDRV9JTkZPX1YwX1RFU0xBOgo+ID4+KwkJ
-aWYgKGRybS0+ZGV2aWNlLmluZm8uY2hpcHNldCAhPSAweDUwKQo+ID4+KwkJCW1lbS0+bWVtdHlw
-ZSA9IChudmJvLT50aWxlX2ZsYWdzICYgMHg3ZjAwKSA+PiA4Owo+ID4+KwkJYnJlYWs7Cj4gPj4r
-CWNhc2UgTlZfREVWSUNFX0lORk9fVjBfRkVSTUk6Cj4gPj4rCWNhc2UgTlZfREVWSUNFX0lORk9f
-VjBfS0VQTEVSOgo+ID4+KwkJbWVtLT5tZW10eXBlID0gKG52Ym8tPnRpbGVfZmxhZ3MgJiAweGZm
-MDApID4+IDg7Cj4gPj4rCQlicmVhazsKPiA+PisJZGVmYXVsdDoKPiA+PisJCWJyZWFrOwo+ID4+
-Kwl9Cj4gPj4rfQo+ID4+Kwo+ID4+ICBpbnQKPiA+PiAgbm91dmVhdV9ib19uZXcoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiwgaW50IHNpemUsIGludCBhbGlnbiwKPiA+PiAgCSAgICAgICB1aW50MzJf
-dCBmbGFncywgdWludDMyX3QgdGlsZV9tb2RlLCB1aW50MzJfdCB0aWxlX2ZsYWdzLAo+ID4+ZGlm
-ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfYm8uaCBiL2RybS9ub3V2ZWF1L25vdXZlYXVf
-Ym8uaAo+ID4+aW5kZXggZTQyMzYwOTgzMjI5Li44N2QwN2UzNTMzZWIgMTAwNjQ0Cj4gPj4tLS0g
-YS9kcm0vbm91dmVhdS9ub3V2ZWF1X2JvLmgKPiA+PisrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVf
-Ym8uaAo+ID4+QEAgLTY5LDYgKzY5LDggQEAgbm91dmVhdV9ib19yZWYoc3RydWN0IG5vdXZlYXVf
-Ym8gKnJlZiwgc3RydWN0IG5vdXZlYXVfYm8gKipwbnZibykKPiA+PiAgZXh0ZXJuIHN0cnVjdCB0
-dG1fYm9fZHJpdmVyIG5vdXZlYXVfYm9fZHJpdmVyOwo+ID4+Cj4gPj4gIHZvaWQgbm91dmVhdV9i
-b19tb3ZlX2luaXQoc3RydWN0IG5vdXZlYXVfZHJtICopOwo+ID4+K3ZvaWQgbm91dmVhdV9ib191
-cGRhdGVfdGlsaW5nKHN0cnVjdCBub3V2ZWF1X2RybSAqLCBzdHJ1Y3Qgbm91dmVhdV9ibyAqLAo+
-ID4+KwkJCSAgICAgIHN0cnVjdCBudmttX21lbSAqKTsKPiA+PiAgaW50ICBub3V2ZWF1X2JvX25l
-dyhzdHJ1Y3QgZHJtX2RldmljZSAqLCBpbnQgc2l6ZSwgaW50IGFsaWduLCB1MzIgZmxhZ3MsCj4g
-Pj4gIAkJICAgIHUzMiB0aWxlX21vZGUsIHUzMiB0aWxlX2ZsYWdzLCBzdHJ1Y3Qgc2dfdGFibGUg
-KnNnLAo+ID4+ICAJCSAgICBzdHJ1Y3QgcmVzZXJ2YXRpb25fb2JqZWN0ICpyb2JqLAo+ID4+ZGlm
-ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1
-X2RybS5jCj4gPj5pbmRleCAyODg2MDI2OGNmMzguLjQ1YTJjODhlYmY4ZSAxMDA2NDQKPiA+Pi0t
-LSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiA+PisrKyBiL2RybS9ub3V2ZWF1L25vdXZl
-YXVfZHJtLmMKPiA+PkBAIC03NSw2ICs3NSwxMCBAQCBNT0RVTEVfUEFSTV9ERVNDKHJ1bnBtLCAi
-ZGlzYWJsZSAoMCksIGZvcmNlIGVuYWJsZSAoMSksIG9wdGltdXMgb25seSBkZWZhdWx0ICgtMQo+
-ID4+ICBpbnQgbm91dmVhdV9ydW50aW1lX3BtID0gLTE7Cj4gPj4gIG1vZHVsZV9wYXJhbV9uYW1l
-ZChydW5wbSwgbm91dmVhdV9ydW50aW1lX3BtLCBpbnQsIDA0MDApOwo+ID4+Cj4gPj4rTU9EVUxF
-X1BBUk1fREVTQyhzdGFnaW5nX3RpbGluZywgImVuYWJsZSBzdGFnaW5nIEdFTV9TRVRfVElMSU5H
-IGlvY3RsIik7Cj4gPj4raW50IG5vdXZlYXVfc3RhZ2luZ190aWxpbmcgPSAwOwo+ID4+K21vZHVs
-ZV9wYXJhbV9uYW1lZChzdGFnaW5nX3RpbGluZywgbm91dmVhdV9zdGFnaW5nX3RpbGluZywgaW50
-LCAwNjAwKTsKPiA+Cj4gPlBsZWFzZSB1c2UgX3Vuc2FmZSBoZXJlIHRvIG1ha2Ugc3VyZSB0aGF0
-IHNldHRpbmcgdGhpcyBvcHRpb24gdGFpbnRzIHRoZQo+ID5rZXJuZWwgYW5kIGdpdmVzIGF0IGxl
-YXN0IGEgYml0IG9mIGEgZGV0ZXJyZW50LiBCdXQgaW4gdGhlIGVuZCB0aGUgcG9saWN5Cj4gPmlz
-IHN0aWxsIHRoYXQgeW91IGNhbid0IHJlZ3Jlc3MgYW55dGhpbmcgaWYgcGVvcGxlIGNvbXBsYWlu
-LCB3aGljaCBtZWFucwo+ID55b3UgbWlnaHQgZW5kIHVwIHdpdGggYSBzdGFnaW5nIGlvY3RsIGxv
-Y2tlZCBkb3duIGZvcmV2ZXIuCj4gCj4gVGhhdCB3b3VsZCBraW5kIG9mIGtpbGwgdGhlIHdob2xl
-IHB1cnBvc2Ugb2YgdGhpcyBwYXRjaHNldC4gQnV0IGF0IHRoZSBzYW1lCj4gdGltZSB0aGUgcG9p
-bnQgb2YgaGF2aW5nIHN0YWdpbmcgaW9jdGxzIGlzIHRvIHNheSAiZG9uJ3QgdXNlIHRoZW0gaW4K
-PiBwcm9kdWN0aW9uIiwgc28gaG9wZWZ1bGx5IHRoZSBtZXNzYWdlIGlzIGNsZWFyLgo+IAo+ID5U
-aGUgb3RoZXIgcGFydCBJIGRvbid0IGxpa2Ugd2l0aCB0aGlzIHBsYW4gaXMgdGhhdCBpdCBsb29r
-cyBhIGJpdCBsaWtlIGl0Cj4gPmNvdWxkIGJlIGVhc2lseSBhYnVzZWQgdG8gZXZhZGUgdGhlIG9w
-ZW4gc291cmNlIHVzZXJzcGFjZSByZXF1aXJlbWVudAo+ID51cHN0cmVhbSBoYXMgZm9yIG5ldyBp
-bnRlcmZhY2VzLiBEb2Vzbid0IGhlbHAgdGhhdCB5b3VyIGZpcnN0IHN0YWdpbmcKPiA+aW9jdGwg
-ZG9lc24ndCBjb21lIHdpdGggbGlua3MgdG8gbWVzYS9od2Mvd2hhdGV2ZXIgcGF0Y2hlcyBhdHRh
-Y2hlZCA7LSkKPiAKPiBXZWxsLCB5b3UgY291bGQgYWJ1c2UgaXQgLSBubyBtb3JlIHRoYW4gOCB0
-aW1lcyB0aG91Z2guIDspCj4gCj4gVGhlIHBvaW50IGlzIG5vdCB0byBldmFkZSBhbnl0aGluZyB0
-aG91Z2gsIGJ1dCByYXRoZXIgdG8gaGF2ZSB0aGUgbmVjZXNzYXJ5Cj4ga2VybmVsIGNvZGUgbGFu
-ZCBpbiBzdWNoIGEgd2F5IHRoYXQgd2UgY2FuIGV4cGVyaW1lbnQgd2l0aCBNZXNhIGFuZCBvdGhl
-cgo+IHVzZXItc3BhY2UuCj4gCj4gPk92ZXJhbGwgSSBkb24ndCB0aGluayB0aGlzIHdpbGwgaGVs
-cCAtIHlvdSBuZWVkIGludGVybmFsIGJyYW5jaCBtYW5hZ2VtZW50Cj4gPmFueXdheSwgYW5kIHVw
-c3RyZWFtaW5nIG5ldyBBQkkgaXMgc29tZXdoYXQgcGFpbmZ1bCBmb3IgYSByZWFzb246IFNjcmV3
-aW5nCj4gPnRoaW5ncyB1cCBpcyByZWFsbHkgZXhwZW5zaXZlIGxvbmctdGVybSwgYW5kIHRoZSBk
-cm0gY29tbXVuaXR5IGhhcyBwYWlkCj4gPnRoYXQgcHJpY2UgYSBmZXcgdG9vIG1hbnkgdGltZXMu
-Cj4gCj4gSXQgc2VlbXMgdG8gbWUgdGhhdCB0aGlzIHN0YWdpbmcgZmVhdHVyZSBjYW4gZXhhY3Rs
-eSBoZWxwIHdpdGggdGhhdDogYWxsb3cKPiBuZXcgaW9jdGxzIHRvIG1hdHVyZSBhIGJpdCAobm8g
-bG9uZ2VyIHRoYW4gYSBrZXJuZWwgcmVsZWFzZSBjeWNsZSkgYW5kIGF2b2lkCj4gdGhhdCAiYWgs
-IEkgd2lzaCB3ZSBkaWQgdGhpcyBkaWZmZXJlbnRseSIgbW9tZW50LiBCdXQgY29uc2lkZXJpbmcg
-dGhlIG51bWJlcgo+IG9mIEFCSXMgSSBoYXZlIGRyaXZlbiBzbyBmYXIgKDApLCBzb21lb25lIG1v
-cmUgZXhwZXJpZW5jZWQgbWF5IGNoYWxsZW5nZQo+IHRoYXQgYmVsaWVmLgoKTWF5YmUgc29tZSBm
-b2xsb3cgdXAgZnJvbSBpcmMgZGlzY3Vzc2lvbnMgaXMgaW4gb3JkZXI6IEl0J3MgcmVhbGx5IGEK
-anVkZ21lbnQgY2FsbCB3aGV0aGVyIGl0IG1ha2VzIHNlbnNlLiBJbW8gdGhlIHByb2JsZW0gaXMg
-dGhhdCBtYXJraW5nCnNvbWV0aGluZyBhcyBzdGFnaW5nIGlzIHdheSB0b28gdGVtcHRpbmcgYW5k
-IHlvdSBnZXQgc2xvcHB5IGFuZCBlbmQgdXAKd2l0aCBhIGJha2VkLWluIGFiaSB0aGF0IHlvdSBk
-b24ndCByZWFsbHkgd2FudC4gU2luY2UgaW4gdGhlIGVuZCBpdApkb2Vzbid0IG1hdHRlciB3aGF0
-IHlvdSBkZWNsYXJlIGFzIHN0YWdpbmcgYnV0IHdoZXRoZXIgdGhlcmUgYXJlIHBlb3BsZQpjb21w
-bGFpbmluZyBhYm91dCByZWdyZXNzaW9ucyB3aGVuIHlvdSBicmVhayBpdCAoZmFtb3VzbHkgZGVt
-b25zdHJhdGVkCnllYXJzIGFnbyB3aXRoIG5vdXZlYXUgaW4gc3RhZ2luZyBhbmQgZ2lhbnQgZmxh
-bW91cnMgd2hlbiBub3V2ZWF1IGJyb2tlCnRoZWlyIGFiaSwgcmVzdWx0aW5nIGluIExpbnVzIHVs
-aXRtYXRlbHkgZGVtYW5kaW5nIHRoYXQgbm91dmVhdSBnZXRzCmRlc3RhZ2VkIGFzYXApLgoKR2l2
-ZW4gdGhhdCBpdCdzIGltbyBiZXR0ZXIgdG8ganVzdCByb2xsIHdpdGggYSBmaW5hbCBhYmkuIEkg
-dGhpbmsgaW4gdGhlCnBhc3Qgd2UndmUgb3ZlcmRvbmUgdGhpbmdzIGEgYml0IHdpdGggZXhwZXJp
-bWVudGFsIGFiaXMgaW4gdGhlIGRybSBjb3JlLApvbmx5IHRoZSBhdG9taWMgc3R1ZmYgbG9va3Mg
-YmlnIGVub3VnaCBpbiByZXRyb3NwZWN0aXZlIHRvIHJlYWxseSBqdXN0aWZ5CnN0YWdpbmcgaXQu
-IEV2ZXJ5dGhpbmcgZWxzZSB3YXMganVzdCBjaGlja2VuaW5nIG91dCBmcm9tIGNvbW1pdHRpbmcg
-dG8KdGhpbmdzIHJpZ2h0IGF3YXkuIEluIGk5MTUgdGhlIG9ubHkgdGhpbmcgd2Ugc3RhZ2Ugbm93
-YWRheXMgaXMgbmV3IGh3CmVuYWJsaW5nLCBzaW1wbHkgYmVjYXVzZSB3ZSBzdGFydCBzbyBlYXJs
-eSBub3dhZGF5cyB0aGF0IHdpdGggdGhlIGZpcnN0CmN1dCB3ZSBzaW1wbHkgZG9uJ3Qga25vdyB5
-ZXQgd2hldGhlciB0aGUgY29kZSB3aWxsIHdvcmsgcGVyZmVjdGx5IG9uIGZpbmFsCnNpbGljb24u
-IEFuZCB3ZSd2ZSBiZWVuIGJpdHRlbiBpbiB0aGUgcGFzdCBieSByZWdyZXNzaW9uIHJlcG9ydHMg
-d2hlcmUKcGVvcGxlIHVwZ3JhZGVkIGZyb20gb2xkIGtlcm5lbHMgdG8gdmVyc2lvbnMgd2l0aCBl
-eHBlcmltZW50YWwgc3VwcG9ydCBhbmQKY291bGRuJ3QgYm9vdCBhbnkgbW9yZSBhdCBhbGwuIEJ1
-dCB0aGF0J3MgdGhlIG9ubHkgZXhjZXB0aW9uLgoKWW91IGFsc28gbWVudGlvbiB0aGUgaXNzdWUg
-d2l0aCBoYXZpbmcgYSBjb21tb24gYXNzZW1ibHkgZ3JvdW5kIGZvcgppbnRlcm5hbCBwYXRjaGVz
-LiBTdGFnaW5nIGlvY3RscyBpc24ndCBnb2luZyB0byBzb2x2ZSB0aGF0LCB5b3UgbmVlZAppbnRl
-cm5hbCB0cmVlcyBhbnl3YXkuIFdlIGhhdmUgbG90cyBvZiB0aG9zZSBmb3IgaTkxNSwgeW91IGp1
-c3QgY2FuJ3Qgc2VlCnRoZW0gOy0pCgpTdW1tYXJ5IG9mIG15IHN0YW5jZTogSW4gYWxtb3N0IGFs
-bCBjYXNlcyBzdGFnaW5nIGlvY3RscyBpcyBqdXN0IGFuCmlsbHVzaW9uIGFuZCBkb2Vzbid0IGdp
-dmUgeW91IHJlYWwgYmVuZWZpdHMuCgpDaGVlcnMsIERhbmllbAotLSAKRGFuaWVsIFZldHRlcgpT
-b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gK
+
+--===============1996418386==
+Content-Type: multipart/alternative; boundary="1434454136.8743fBBF0.19067"; charset="UTF-8"
+
+
+--1434454136.8743fBBF0.19067
+Date: Tue, 16 Jun 2015 11:28:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
+
+--- Comment #4 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Thanks for reviewing and fixing the other patch! Meant to send it to the list,
+but was too busy elsewhere last week.
+
+I've been thinking a little about a better way to fix this inbound edge
+ordering dependency. Unfortunately it seems that unless there is a way to
+efficiently recompute the information there always will be an invariant that
+has to be respected by graph transformations (and which attach and detach
+simply cannot guarantee on their own).
+
+And because the PhiMoves pass actually needs the corresponding inbound edge
+instead of the BB the current encoding makes sense.
+
+The conclusion being that neither the encoding of the information nor graph
+transformations during SSA per se are the real problem. But attach and detach
+are not the right tools to do graph transformations (at least during SSA). It
+may be an improvement to add some more high level helpers, e.g. an Edge::split
+for this particular problem. Would there be interest in a patch in that
+direction? (Seems easy enough, but I cannot promise I'm up to the task,
+though:-)
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1434454136.8743fBBF0.19067
+Date: Tue, 16 Jun 2015 11:28:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+</span></b>
+        <pre>Thanks for reviewing and fixing the other patch! Meant to send it to the list,
+but was too busy elsewhere last week.
+
+I've been thinking a little about a better way to fix this inbound edge
+ordering dependency. Unfortunately it seems that unless there is a way to
+efficiently recompute the information there always will be an invariant that
+has to be respected by graph transformations (and which attach and detach
+simply cannot guarantee on their own).
+
+And because the PhiMoves pass actually needs the corresponding inbound edge
+instead of the BB the current encoding makes sense.
+
+The conclusion being that neither the encoding of the information nor graph
+transformations during SSA per se are the real problem. But attach and detach
+are not the right tools to do graph transformations (at least during SSA). It
+may be an improvement to add some more high level helpers, e.g. an Edge::split
+for this particular problem. Would there be interest in a patch in that
+direction? (Seems easy enough, but I cannot promise I'm up to the task,
+though:-)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434454136.8743fBBF0.19067--
+
+--===============1996418386==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1996418386==--
