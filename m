@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Wed, 17 Jun 2015 18:59:38 +0000
-Message-ID: <bug-90887-8800-5ZrZ39JIGf@http.bugs.freedesktop.org/>
+Date: Wed, 17 Jun 2015 23:32:16 +0000
+Message-ID: <bug-90887-8800-1Fuk8ZFzE4@http.bugs.freedesktop.org/>
 References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0139523473=="
+Content-Type: multipart/mixed; boundary="===============0889995681=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,43 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0139523473==
-Content-Type: multipart/alternative; boundary="1434567578.52207C0.18119"; charset="UTF-8"
+--===============0889995681==
+Content-Type: multipart/alternative; boundary="1434583936.033e1.25960"; charset="UTF-8"
 
 
---1434567578.52207C0.18119
-Date: Wed, 17 Jun 2015 18:59:38 +0000
+--1434583936.033e1.25960
+Date: Wed, 17 Jun 2015 23:32:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #8 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-Note that I really do have no clue of the whole system and only a very rough
-understanding of SSA, but I think your result is the same as mine. The targets
-of the newly inserted mov instructions are fine, because the PhiMoves pass
-inserts them corresponding to mthe new phi sources, but the sources are
-reversed, because the edges have been reordered (ironically by the PhiMoves
-pass itself).
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 116566
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116566&action=edit
+another attempted fix
 
-An edge newly attached using attach will always be the first in iteration
-order. Therefore the problem happens as follows: when - as is the case here -
-the second edge fulfills the needsNewElseBlock() condition it will be split to
-insert the new BB for the copies. The old code accomplishes this using detach()
-and attach() resulting in the new BB being attached - BB17 here - by the first
-incoming edge and the previous first incoming edge - from BB10 in this case -
-is now the second, but without a corresponding reorder of the phi node sources.
+ok, this is my attempt at fixing this. upon a very quick perusal, it seems like
+it works for the sample program.
 
-AFAICT the problem is that attach() or detach() don't preserve the incoming
-edge/phi source correspondence. They shouldn't be used during SSA.
+i like this a little more not only because i wrote it, but also because it
+avoids touching code that i barely understand and seems very fragile (including
+the graph code).
+
+could you give this a shot and see if it also fixes your issues?
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1434567578.52207C0.18119
-Date: Wed, 17 Jun 2015 18:59:38 +0000
+--1434583936.033e1.25960
+Date: Wed, 17 Jun 2015 23:32:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,30 +65,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PhiMovesPass in register allocator broken"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Note that I really do have no clue of the whole system and only a very rough
-understanding of SSA, but I think your result is the same as mine. The targets
-of the newly inserted mov instructions are fine, because the PhiMoves pass
-inserts them corresponding to mthe new phi sources, but the sources are
-reversed, because the edges have been reordered (ironically by the PhiMoves
-pass itself).
+        <pre>Created <span class=""><a href="attachment.cgi?id=116566" name="attach_116566" title="another attempted fix">attachment 116566</a> <a href="attachment.cgi?id=116566&amp;action=edit" title="another attempted fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90887&amp;attachment=116566'>[review]</a>
+another attempted fix
 
-An edge newly attached using attach will always be the first in iteration
-order. Therefore the problem happens as follows: when - as is the case here -
-the second edge fulfills the needsNewElseBlock() condition it will be split to
-insert the new BB for the copies. The old code accomplishes this using detach()
-and attach() resulting in the new BB being attached - BB17 here - by the first
-incoming edge and the previous first incoming edge - from BB10 in this case -
-is now the second, but without a corresponding reorder of the phi node sources.
+ok, this is my attempt at fixing this. upon a very quick perusal, it seems like
+it works for the sample program.
 
-AFAICT the problem is that attach() or detach() don't preserve the incoming
-edge/phi source correspondence. They shouldn't be used during SSA.</pre>
+i like this a little more not only because i wrote it, but also because it
+avoids touching code that i barely understand and seems very fragile (including
+the graph code).
+
+could you give this a shot and see if it also fixes your issues?</pre>
         </div>
       </p>
       <hr>
@@ -106,9 +95,9 @@ edge/phi source correspondence. They shouldn't be used during SSA.</pre>
     </body>
 </html>
 
---1434567578.52207C0.18119--
+--1434583936.033e1.25960--
 
---===============0139523473==
+--===============0889995681==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -118,4 +107,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0139523473==--
+--===============0889995681==--
