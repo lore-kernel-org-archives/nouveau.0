@@ -1,14 +1,12 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v2] drm/nouveau/clk: fix tstate to pstate
-	calculation
-Date: Wed, 17 Jun 2015 19:53:15 +1000
-Message-ID: <CACAvsv4yxkjnNgdcOLsNuq1HbwUp1oJ-KfnWm5jtfQswjSgfFw@mail.gmail.com>
-References: <1434447312-2218-1-git-send-email-wni@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Wed, 17 Jun 2015 14:06:27 +0000
+Message-ID: <bug-90887-8800-8qGAul35A0@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1977173416=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1434447312-2218-1-git-send-email-wni-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +16,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Wei Ni <wni-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTYgSnVuZSAyMDE1IGF0IDE5OjM1LCBXZWkgTmkgPHduaUBudmlkaWEuY29tPiB3cm90ZToK
-PiBBY2NvcmRpbmcgdG8gdGhlIHRzdGF0ZSBjYWxjdWxhdGlvbiBpbiBudmttX2Nsa190c3RhdGUo
-KSwKPiB0aGUgcmFuZ2Ugb2YgdHN0YXRlIGlzIGZyb20gLShjbGstPnN0YXRlX25yIC0gMSkgdG8g
-MCwKPiBpdCBtZWFuIHRoZSB0c3RhdGUgaXMgbmVnYXRpdmUgdmFsdWUuIEJ1dCBpbiBudmttX3Bz
-dGF0ZV93b3JrKCksCj4gaXQgdXNlIChjbGstPnN0YXRlX25yIC0gMSAtIGNsay0+dHN0YXRlKSB0
-byBsaW1pdCBwc3RhdGUsCj4gaXQncyBub3QgY29ycmVjdC4KPiBUaGlzIHBhdGNoIGZpeCBpdCB0
-byB1c2UgKGNsay0+c3RhdGVfbnIgLSAxICsgY2xrLT50c3RhdGUpIHRvCj4gbGltaXQgcHN0YXRl
-Lgo+Cj4gU2lnbmVkLW9mZi1ieTogV2VpIE5pIDx3bmlAbnZpZGlhLmNvbT4KPiAtLS0KPiB2Mjog
-Y3JlYXRlIHBhdGNoIGJhc2VkIG9uIGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3Rh
-bWEvbm91dmVhdS8KRm9yIGZ1dHVyZSByZWZlcmVuY2UsIGl0IGRvZXNuJ3QgbWF0dGVyIHRvIG1l
-IHdoaWNoIHRyZWUgaXQncyBiYXNlZApvbiwgdGhlcmVzIGEgc2NyaXB0IGluIHRoYXQgcmVwbyB1
-bmRlciBzY3JpcHRzLyB0aGF0IGNhbiBhcHBseSBlaXRoZXIKZm9ybSBlYXNpbHkuICBTbywgdXNl
-IHdoaWNoZXZlciBpcyBlYXNpZXN0IGZvciB5b3UgOikKCkkndmUgbWVyZ2VkIHRoZSBwYXRjaC4K
-ClRoYW5rcywKQmVuLgoKPgo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIHwg
-MiArLQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+
-IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jIGIvZHJtL25v
-dXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYwo+IGluZGV4IDM5YTgzZDgyZTBjZC4uNzdhMGFi
-NWNhM2IwIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMK
-PiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gQEAgLTIxNCw3ICsy
-MTQsNyBAQCBudmttX3BzdGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgICAg
-ICAgIHBzdGF0ZSA9IGNsay0+cHdyc3JjID8gY2xrLT51c3RhdGVfYWMgOiBjbGstPnVzdGF0ZV9k
-YzsKPiAgICAgICAgIGlmIChjbGstPnN0YXRlX25yICYmIHBzdGF0ZSAhPSAtMSkgewo+ICAgICAg
-ICAgICAgICAgICBwc3RhdGUgPSAocHN0YXRlIDwgMCkgPyBjbGstPmFzdGF0ZSA6IHBzdGF0ZTsK
-PiAtICAgICAgICAgICAgICAgcHN0YXRlID0gbWluKHBzdGF0ZSwgY2xrLT5zdGF0ZV9uciAtIDEg
-LSBjbGstPnRzdGF0ZSk7Cj4gKyAgICAgICAgICAgICAgIHBzdGF0ZSA9IG1pbihwc3RhdGUsIGNs
-ay0+c3RhdGVfbnIgLSAxICsgY2xrLT50c3RhdGUpOwo+ICAgICAgICAgICAgICAgICBwc3RhdGUg
-PSBtYXgocHN0YXRlLCBjbGstPmRzdGF0ZSk7Cj4gICAgICAgICB9IGVsc2Ugewo+ICAgICAgICAg
-ICAgICAgICBwc3RhdGUgPSBjbGstPnBzdGF0ZSA9IC0xOwo+IC0tCj4gMS45LjEKPgo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1977173416==
+Content-Type: multipart/alternative; boundary="1434549986.eA6FB1.32202"; charset="UTF-8"
+
+
+--1434549986.eA6FB1.32202
+Date: Wed, 17 Jun 2015 14:06:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+So... I looked at this closer and from the *looks* of it, the current code is
+correct. It fixes up all the phi nodes in bb, which is the block whose inbound
+edges got all messed up.
+
+I will analyze your sample shader in more detail, hopefully it will become
+apparent to me why the current logic fails, despite *looking* right :)
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1434549986.eA6FB1.32202
+Date: Wed, 17 Jun 2015 14:06:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>So... I looked at this closer and from the *looks* of it, the current code is
+correct. It fixes up all the phi nodes in bb, which is the block whose inbound
+edges got all messed up.
+
+I will analyze your sample shader in more detail, hopefully it will become
+apparent to me why the current logic fails, despite *looking* right :)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434549986.eA6FB1.32202--
+
+--===============1977173416==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1977173416==--
