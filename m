@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Wed, 17 Jun 2015 04:44:08 +0000
-Message-ID: <bug-90887-8800-tiTqu7jnWX@http.bugs.freedesktop.org/>
-References: <bug-90887-8800@http.bugs.freedesktop.org/>
+From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: support for dp 1.2
+Date: Wed, 17 Jun 2015 16:07:28 +1000
+Message-ID: <CAPM=9txYYGyC5JVDuT_0DNrbT=NtniM5vNhrRmNCOWPXyrQheA@mail.gmail.com>
+References: <1434483237.11979.15.camel@stephenadler.com>
+ <CAKb7Uvi16T4_L4v29YZOhyMrsdySFqp-MPXp-PvcH1cq+NrObQ@mail.gmail.com>
+ <1434484413.11979.19.camel@stephenadler.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1239494070=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1434484413.11979.19.camel-wRvlPVLobi1/31tCrMuHxg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,108 +19,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Stephen Adler <adler-wRvlPVLobi1/31tCrMuHxg@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1239494070==
-Content-Type: multipart/alternative; boundary="1434516248.86a267E1.29442"; charset="UTF-8"
-
-
---1434516248.86a267E1.29442
-Date: Wed, 17 Jun 2015 04:44:08 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90887
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to jr from comment #4)
-> I've been thinking a little about a better way to fix this inbound edge
-> ordering dependency. Unfortunately it seems that unless there is a way to
-> efficiently recompute the information there always will be an invariant that
-> has to be respected by graph transformations (and which attach and detach
-> simply cannot guarantee on their own).
-
-The way that LLVM deals with this is that the source actually contains a
-reference to the inbound bb as well. That way you can do whatever you want with
-the edges, each src of a phi node knows which bb it's coming from.
-
-It'd be a bit of a pain to introduce here... my strategy so far has been to
-hold my nose and just fix things up as they come, which I guess is what you've
-done as well. I need to look at this logic very carefully though.
-
-The fact that we were previously adding a FORWARD edge and aren't anymore is a
-bit worrying -- the meaning of those things is explained somewhere btw -- TREE
-== part of the MST; FORWARD/etc are various other edges.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1434516248.86a267E1.29442
-Date: Wed, 17 Jun 2015 04:44:08 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to jr from <a href="show_bug.cgi?id=90887#c4">comment #4</a>)
-<span class="quote">&gt; I've been thinking a little about a better way to fix this inbound edge
-&gt; ordering dependency. Unfortunately it seems that unless there is a way to
-&gt; efficiently recompute the information there always will be an invariant that
-&gt; has to be respected by graph transformations (and which attach and detach
-&gt; simply cannot guarantee on their own).</span >
-
-The way that LLVM deals with this is that the source actually contains a
-reference to the inbound bb as well. That way you can do whatever you want with
-the edges, each src of a phi node knows which bb it's coming from.
-
-It'd be a bit of a pain to introduce here... my strategy so far has been to
-hold my nose and just fix things up as they come, which I guess is what you've
-done as well. I need to look at this logic very carefully though.
-
-The fact that we were previously adding a FORWARD edge and aren't anymore is a
-bit worrying -- the meaning of those things is explained somewhere btw -- TREE
-== part of the MST; FORWARD/etc are various other edges.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434516248.86a267E1.29442--
-
---===============1239494070==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1239494070==--
+T24gMTcgSnVuZSAyMDE1IGF0IDA1OjUzLCBTdGVwaGVuIEFkbGVyIDxhZGxlckBzdGVwaGVuYWRs
+ZXIuY29tPiB3cm90ZToKPiBPbiBUdWUsIDIwMTUtMDYtMTYgYXQgMTU6NDcgLTA0MDAsIElsaWEg
+TWlya2luIHdyb3RlOgo+PiBPbiBUdWUsIEp1biAxNiwgMjAxNSBhdCAzOjMzIFBNLCBTdGVwaGVu
+IEFkbGVyIDwKPj4gYWRsZXJAc3RlcGhlbmFkbGVyLmNvbT4gd3JvdGU6Cj4+ID4gR3V5cywKPj4g
+Pgo+PiA+IElzIHRoZXJlIHN1cHBvcnQgZm9yIGRpc3BsYXkgcG9ydCAxLjIgd2l0aCB0aGUgbm91
+dmVhdSBkcml2ZXIgYW5kCj4+ID4gR1RYCj4+ID4gOTcwPwo+PiA+Cj4+ID4gSSBoYXZlIGEgZGVs
+bCA0SyBtb25pdG9yIGFuZCB0byBydW4gaXQgaW4gNEsgbW9kZSBhdCA2MEh6IEkgbmVlZCB0bwo+
+PiA+IGNvbmZpZ3VyZSB0aGUgbW9uaXRvciB0byBydW4gdmVyc2lvbiAxLjIgb2YgdGhlIGRpc3Bs
+YXkgcG9ydAo+PiA+IHByb3RvY29sLgo+PiA+IHRoZSBub3V2ZWF1IGRyaXZlciB3b3JrcyB3ZWxs
+IHdpdGggZGlzcGxheSBwb3J0IDEuMSBidXQgSSBvbmx5IGdldAo+PiA+IGEKPj4gPiAzMEh6IHJl
+ZnJlc2ggcmF0ZSBhdCA0SyByZXNvbHV0aW9uLgo+Pgo+PiBUaGUgRFAgMS4yIDU0ME1IeiByYXRl
+IHNob3VsZCBiZSBzdXBwb3J0ZWQuIEhvd2V2ZXIgdGhlcmUgaXMKPj4gcHJlc2VudGx5Cj4+IG5v
+IE1TVCBzdXBwb3J0LCBzbyBpZiB0aGUgbW9uaXRvciBoYXMgMiBpbnRlcm5hbCBwYW5lbHMsIHRo
+YXQgd29uJ3QKPj4gcGFuIG91dCBzbyB3ZWxsICh5ZXQpLgo+Pgo+PiBBbHNvIG5vdGUgdGhhdCB0
+aGUgR1RYIDk3MCByZXF1aXJlcyBzaWduZWQgZmlybXdhcmUgZnJvbSBOVklESUEgdG8KPj4gdXNl
+Cj4+IGFueSBhY2NlbGVyYXRpb24sIGFuZCB3ZSBoYXZlbid0IHF1aXRlIHlldCBmaWd1cmVkIG91
+dCBob3cgdG8gZ2V0Cj4+IHRoYXQKPj4gZ29pbmcuIFRoaXMgbWVhbnMgdGhhdCBhbGwgeW91IGdl
+dCBpcyBtb2Rlc2V0dGluZywgbm8gYWNjZWxlcmF0aW9uLgo+PiBFc3Agd2l0aCBhIDRLIHNjcmVl
+biwgdXNpbmcgbGx2bXBpcGUgbWF5IGZlZWwgc2xvdyBpZiB5b3UgdXNlIGEgR0wKPj4gY29tcG9z
+aXRvciwgYXMgbWFueSBtb2Rlcm4gZGVza3RvcHMgZG8uCj4+Cj4+ICAgLWlsaWEKPj4KPgo+IFRo
+YW5rcyBmb3IgdGhlIHF1aWNrIHJlc3BvbnNlLiBJJ20gaGF2aW5nIGEgaGVsbCBvZiBhIHRpbWUg
+d2l0aCB0aGUKPiBudmlkaWEgZHJpdmVyIHNpbmNlIEkgaGF2ZSB0aHJlZSA0SyBtb25pdG9ycyB3
+aGljaCBob29rIHVwIHRvIHRoZSBHVFgKPiA5NzAgY2FyZCwgYnV0IGluIGxpbnV4IGl0IHdpbGwg
+b25seSBkcml2ZSB0d28gb2YgdGhlIDMgbW9uaXRvcnMuIFRoZQo+IG1vbml0b3JzIGRvIGhhdmUg
+dGhlIGR1YWwgaW50ZXJuYWwgcGFuZWxzIGVhY2ggcnVubmluZyBhdCAxOTIweDIxNjAgb3IKPiBz
+b21ldGhpbmcgbGlrZSB0aGF0LiBGb3Igc29tZSByZWFzb24gbnZpZGlhIG9ubHkgZHJpdmVzIDQg
+b2YgdGhlIHBhbmVscwo+ICh0d28gbW9uaXRvcnMpIHBlciBHUFUuLi4KPgo+IElzIHRoZSBNU1Qg
+c3VwcG9ydCBpbW1pbmVudD8gb3Igb2ZmIGludG8gdGhlIGZ1dHVyZT8KCmV2ZW4gd2l0aCBNU1Qg
+NCBjcnRjLCB3aWxsIG9ubHkgcnVuIDIgNGsgbW9uaXRvcnMuCgpEYXZlLgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
