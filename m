@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Wed, 17 Jun 2015 23:32:16 +0000
-Message-ID: <bug-90887-8800-1Fuk8ZFzE4@http.bugs.freedesktop.org/>
-References: <bug-90887-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] nvidia/noveau: Fix color mask
+Date: Wed, 17 Jun 2015 20:47:17 -0400
+Message-ID: <CAKb7UvjUdOSrYE4L3AqE3Q06mXyyon42U26o9t3M5XLYz2aJmw@mail.gmail.com>
+References: <20150617190508.5205e8af@wiggum>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0889995681=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20150617190508.5205e8af@wiggum>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,95 +17,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Michael_B=C3=BCsch?= <m@bues.ch>
+Cc: linux-fbdev-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Antonino Daplas <adaplas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, David Airlie <airlied-cv59FeDIM0c@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0889995681==
-Content-Type: multipart/alternative; boundary="1434583936.033e1.25960"; charset="UTF-8"
-
-
---1434583936.033e1.25960
-Date: Wed, 17 Jun 2015 23:32:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90887
-
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 116566
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116566&action=edit
-another attempted fix
-
-ok, this is my attempt at fixing this. upon a very quick perusal, it seems like
-it works for the sample program.
-
-i like this a little more not only because i wrote it, but also because it
-avoids touching code that i barely understand and seems very fragile (including
-the graph code).
-
-could you give this a shot and see if it also fixes your issues?
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1434583936.033e1.25960
-Date: Wed, 17 Jun 2015 23:32:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116566" name="attach_116566" title="another attempted fix">attachment 116566</a> <a href="attachment.cgi?id=116566&amp;action=edit" title="another attempted fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90887&amp;attachment=116566'>[review]</a>
-another attempted fix
-
-ok, this is my attempt at fixing this. upon a very quick perusal, it seems like
-it works for the sample program.
-
-i like this a little more not only because i wrote it, but also because it
-avoids touching code that i barely understand and seems very fragile (including
-the graph code).
-
-could you give this a shot and see if it also fixes your issues?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434583936.033e1.25960--
-
---===============0889995681==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0889995681==--
+T24gV2VkLCBKdW4gMTcsIDIwMTUgYXQgMTowNSBQTSwgTWljaGFlbCBCw7xzY2ggPG1AYnVlcy5j
+aD4gd3JvdGU6Cj4gVGhlIGV4cHJlc3Npb24gKH4wID4+IHgpIHdpbGwgYWx3YXlzIHlpZWxkIGFs
+bC1vbmVzLCBiZWNhdXNlIHRoZSByaWdodAo+IHNoaWZ0IGlzIGFuIGFyaXRobWV0aWMgcmlnaHQg
+c2hpZnQgdGhhdCB3aWxsIGFsd2F5cyBzaGlmdCBvbmVzIGluLgo+IEFjY29yZGluZ2x5IH4ofjAg
+Pj4geCkgd2lsbCBhbHdheXMgYmUgemVyby4KPiBIZW5jZSAnbWFzaycgd2lsbCBhbHdheXMgYmUg
+emVybyBpbiB0aGlzIGNhc2UuCj4KPiBGaXggdGhpcyBieSBmb3JjaW5nIGEgbG9naWNhbCByaWdo
+dCBzaGlmdCBpbnN0ZWFkIG9mIGFuIGFyaXRobWV0aWMKPiByaWdodCBzaGlmdCBieSB1c2luZyBh
+biB1bnNpZ25lZCBpbnQgY29uc3RhbnQuCj4KPiBTaWduZWQtb2ZmLWJ5OiBNaWNoYWVsIEJ1ZXNj
+aCA8bUBidWVzLmNoPgoKQ29uZmlybWVkIHRoYXQgdGhpcyBkb2VzIGluZGVlZCBoYXBwZW4gd2l0
+aAoKI2luY2x1ZGUgPHN0ZGlvLmg+CmludCBtYWluKGludCBhcmdjLCBjaGFyICphcmd2W10pIHsK
+ICB1bnNpZ25lZCBtYXNrID0gfih+MCA+PiAoMzIgLSAoYXJndlsxXVswXSAtICcwJykpKTsKICBw
+cmludGYoIiUwOHhcbiIsIG1hc2spOwp9CgpJIGd1ZXNzIGZiZGV2L252aWRpYS9udl9hY2NlbC5j
+IHdhcyB0aGUgc291cmNlIG9mIGFsbCB0aGlzLCBhcyB0aGUKY29kZSBpcyBpZGVudGljYWwsIGFu
+ZCBpdCBwcm9iYWJseSBjYW1lIGZpcnN0LgoKRldJVyB0aGlzIGlzCgpSZXZpZXdlZC1ieTogSWxp
+YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgoKCj4KPiAtLS0KPgo+IFRoaXMgcGF0Y2gg
+aXMgdW50ZXN0ZWQsIGJlY2F1c2UgSSBkbyBub3QgaGF2ZSB0aGUgaGFyZHdhcmUuCj4KPgo+IElu
+ZGV4OiBsaW51eC9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2ZiY29uLmMKPiA9PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09Cj4gLS0tIGxpbnV4Lm9yaWcvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnY1MF9mYmNvbi5j
+Cj4gKysrIGxpbnV4L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBfZmJjb24uYwo+IEBAIC05
+Niw3ICs5Niw3IEBAIG52NTBfZmJjb25faW1hZ2VibGl0KHN0cnVjdCBmYl9pbmZvICppbmYKPiAg
+ICAgICAgIHN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0obmZiZGV2LT5kZXYp
+Owo+ICAgICAgICAgc3RydWN0IG5vdXZlYXVfY2hhbm5lbCAqY2hhbiA9IGRybS0+Y2hhbm5lbDsK
+PiAgICAgICAgIHVpbnQzMl90IHdpZHRoLCBkd29yZHMsICpkYXRhID0gKHVpbnQzMl90ICopaW1h
+Z2UtPmRhdGE7Cj4gLSAgICAgICB1aW50MzJfdCBtYXNrID0gfih+MCA+PiAoMzIgLSBpbmZvLT52
+YXIuYml0c19wZXJfcGl4ZWwpKTsKPiArICAgICAgIHVpbnQzMl90IG1hc2sgPSB+KH4wVSA+PiAo
+MzIgLSBpbmZvLT52YXIuYml0c19wZXJfcGl4ZWwpKTsKPiAgICAgICAgIHVpbnQzMl90ICpwYWxl
+dHRlID0gaW5mby0+cHNldWRvX3BhbGV0dGU7Cj4gICAgICAgICBpbnQgcmV0Owo+Cj4gSW5kZXg6
+IGxpbnV4L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252YzBfZmJjb24uYwo+ID09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0K
+PiAtLS0gbGludXgub3JpZy9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmMwX2ZiY29uLmMKPiAr
+KysgbGludXgvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZjMF9mYmNvbi5jCj4gQEAgLTk2LDcg
+Kzk2LDcgQEAgbnZjMF9mYmNvbl9pbWFnZWJsaXQoc3RydWN0IGZiX2luZm8gKmluZgo+ICAgICAg
+ICAgc3RydWN0IG5vdXZlYXVfZHJtICpkcm0gPSBub3V2ZWF1X2RybShuZmJkZXYtPmRldik7Cj4g
+ICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpjaGFuID0gZHJtLT5jaGFubmVsOwo+ICAg
+ICAgICAgdWludDMyX3Qgd2lkdGgsIGR3b3JkcywgKmRhdGEgPSAodWludDMyX3QgKilpbWFnZS0+
+ZGF0YTsKPiAtICAgICAgIHVpbnQzMl90IG1hc2sgPSB+KH4wID4+ICgzMiAtIGluZm8tPnZhci5i
+aXRzX3Blcl9waXhlbCkpOwo+ICsgICAgICAgdWludDMyX3QgbWFzayA9IH4ofjBVID4+ICgzMiAt
+IGluZm8tPnZhci5iaXRzX3Blcl9waXhlbCkpOwo+ICAgICAgICAgdWludDMyX3QgKnBhbGV0dGUg
+PSBpbmZvLT5wc2V1ZG9fcGFsZXR0ZTsKPiAgICAgICAgIGludCByZXQ7Cj4KPiBJbmRleDogbGlu
+dXgvZHJpdmVycy92aWRlby9mYmRldi9udmlkaWEvbnZfYWNjZWwuYwo+ID09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KPiAt
+LS0gbGludXgub3JpZy9kcml2ZXJzL3ZpZGVvL2ZiZGV2L252aWRpYS9udl9hY2NlbC5jCj4gKysr
+IGxpbnV4L2RyaXZlcnMvdmlkZW8vZmJkZXYvbnZpZGlhL252X2FjY2VsLmMKPiBAQCAtMzUxLDcg
+KzM1MSw3IEBAIHN0YXRpYyB2b2lkIG52aWRpYWZiX21vbm9fY29sb3JfZXhwYW5kKHMKPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBzdHJ1Y3QgZmJfaW1hZ2Ug
+KmltYWdlKQo+ICB7Cj4gICAgICAgICBzdHJ1Y3QgbnZpZGlhX3BhciAqcGFyID0gaW5mby0+cGFy
+Owo+IC0gICAgICAgdTMyIGZnLCBiZywgbWFzayA9IH4ofjAgPj4gKDMyIC0gaW5mby0+dmFyLmJp
+dHNfcGVyX3BpeGVsKSk7Cj4gKyAgICAgICB1MzIgZmcsIGJnLCBtYXNrID0gfih+MFUgPj4gKDMy
+IC0gaW5mby0+dmFyLmJpdHNfcGVyX3BpeGVsKSk7Cj4gICAgICAgICB1MzIgZHNpemUsIHdpZHRo
+LCAqZGF0YSA9ICh1MzIgKikgaW1hZ2UtPmRhdGEsIHRtcDsKPiAgICAgICAgIGludCBqLCBrID0g
+MDsKPgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+PiBkcmktZGV2ZWwgbWFpbGluZyBsaXN0Cj4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9y
+Zwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2
+ZWwKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
