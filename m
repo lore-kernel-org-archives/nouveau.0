@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Thu, 18 Jun 2015 18:13:35 +0000
-Message-ID: <bug-90887-8800-G1QdNgovNv@http.bugs.freedesktop.org/>
+Date: Thu, 18 Jun 2015 19:19:59 +0000
+Message-ID: <bug-90887-8800-tybWWVb0VS@http.bugs.freedesktop.org/>
 References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1811957339=="
+Content-Type: multipart/mixed; boundary="===============0434057432=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,40 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1811957339==
-Content-Type: multipart/alternative; boundary="1434651215.33EA4d0.22834"; charset="UTF-8"
+--===============0434057432==
+Content-Type: multipart/alternative; boundary="1434655199.bBAD1.7395"; charset="UTF-8"
 
 
---1434651215.33EA4d0.22834
-Date: Thu, 18 Jun 2015 18:13:35 +0000
+--1434655199.bBAD1.7395
+Date: Thu, 18 Jun 2015 19:19:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #10 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-I can confirm that your patch fixes all occurences of the problem I've found so
-far (Lifeless Planet, Eidolon, Costume Quest with FXAA option, Two Worlds 2 sky
-texture).
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Out of curiousity, could I trouble you to test out the trace in
 
-I slightly prefer keeping the edge order intact, as this feels 'more correct'
-to me (which admittedly doesn't mean much) and allows to collapse the separate
-loops into one (which is only a micro optimization preventing a little bit of
-alloc/free). But since I cannot promise to have time to debug and fix problems
-with my patch (though I expect to be reachable by this email address for the
-forseeable future), it is best to choose the approach you feel most comfortable
-with.
+https://bugs.freedesktop.org/show_bug.cgi?id=75776#c2
 
-I'm happy either way and very grateful that you could spend time on this issue.
-Thanks!
+And see if it was this same problem (I don't have a nv50-family card plugged in
+and suck at rebooting)? By the way, it's really impressive that you were able
+to figure all of this out on your own; nouveau's a huge code-base, compilers
+are complicated, and the error was pretty subtle. If you're interested in
+further contributing to nouveau, join us at #nouveau on irc.freenode.net .
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1434651215.33EA4d0.22834
-Date: Thu, 18 Jun 2015 18:13:35 +0000
+--1434655199.bBAD1.7395
+Date: Thu, 18 Jun 2015 19:19:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,27 +62,25 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c10">Comment # 10</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - PhiMovesPass in register allocator broken"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I can confirm that your patch fixes all occurences of the problem I've found so
-far (Lifeless Planet, Eidolon, Costume Quest with FXAA option, Two Worlds 2 sky
-texture).
+        <pre>Out of curiousity, could I trouble you to test out the trace in
 
-I slightly prefer keeping the edge order intact, as this feels 'more correct'
-to me (which admittedly doesn't mean much) and allows to collapse the separate
-loops into one (which is only a micro optimization preventing a little bit of
-alloc/free). But since I cannot promise to have time to debug and fix problems
-with my patch (though I expect to be reachable by this email address for the
-forseeable future), it is best to choose the approach you feel most comfortable
-with.
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV50 gallium] Hearthstone displays corrupted buffers"
+   href="show_bug.cgi?id=75776#c2">https://bugs.freedesktop.org/show_bug.cgi?id=75776#c2</a>
 
-I'm happy either way and very grateful that you could spend time on this issue.
-Thanks!</pre>
+And see if it was this same problem (I don't have a nv50-family card plugged in
+and suck at rebooting)? By the way, it's really impressive that you were able
+to figure all of this out on your own; nouveau's a huge code-base, compilers
+are complicated, and the error was pretty subtle. If you're interested in
+further contributing to nouveau, join us at #nouveau on irc.freenode.net .</pre>
         </div>
       </p>
       <hr>
@@ -100,9 +93,9 @@ Thanks!</pre>
     </body>
 </html>
 
---1434651215.33EA4d0.22834--
+--1434655199.bBAD1.7395--
 
---===============1811957339==
+--===============0434057432==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -112,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1811957339==--
+--===============0434057432==--
