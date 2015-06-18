@@ -1,87 +1,114 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm105 font glitches with kernel 4.1rc
-Date: Thu, 18 Jun 2015 12:39:16 +0000
-Message-ID: <bug-90932-8800-IeXygVrUzX@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: [PATCH 0/6] Improve GK20A and introduce GM20B support
+Date: Thu, 18 Jun 2015 23:47:46 +0900
+Message-ID: <1434638872-29061-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2099464320=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org, Andy Ritger <aritger@nvidia.com>, Aaron Plattner <aplattner@nvidia.com>, Allen Martin <AMartin@nvidia.com>, Ken Adams <KAdams@nvidia.com>, Terje Bergstrom <tbergstrom@nvidia.com>
+Cc: linux-tegra@vger.kernel.org, gnurou@gmail.com, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============2099464320==
-Content-Type: multipart/alternative; boundary="1434631156.eBe25d1.28152"; charset="UTF-8"
-
-
---1434631156.eBe25d1.28152
-Date: Thu, 18 Jun 2015 12:39:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
-
---- Comment #2 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
-The strange thing is, that it works perfectly with nouveau on 4.0.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1434631156.eBe25d1.28152
-Date: Thu, 18 Jun 2015 12:39:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm105 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm105 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
-</span></b>
-        <pre>The strange thing is, that it works perfectly with nouveau on 4.0.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434631156.eBe25d1.28152--
-
---===============2099464320==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2099464320==--
+SGVsbG8gZXZlcnlvbmUsCgpHTTIwQiBpcyB0aGUgR1BVIG9mIHRoZSB1cGNvbWluZyBUZWdyYSBY
+MSBTb0MuIFRoaXMgc2VyaWVzIGFkZHMgaW5pdGlhbCBzdXBwb3J0CmZvciBpdCwgYmFzZWQgb24g
+YSByZXdvcmsgb2YgdGhlIGFscmVhZHktc3VwcG9ydGVkIEdLMjBBLiBJdCBhbHNvIGludHJvZHVj
+ZXMKc3VwcG9ydCBmb3IgTlZJRElBLXByb3ZpZGVkIGZpcm13YXJlIGZpbGVzLCB3aGljaCBpcyB3
+aHkgSSBoYXZlIGFkZGVkIGEgZmV3Ck5WSURJQSBwZW9wbGUgd2hvIGFyZSByZWxldmFudCB0byB0
+aGlzIGRpc2N1c3Npb24uCgpUaGUgZmlyc3QgcGF0Y2ggYWRkcyBzdXBwb3J0IGZvciBsb2FkaW5n
+IHRoZSBGRUNTIGFuZCBHUENDUyBmaXJtd2FyZXMgZnJvbQpmaXJtd2FyZSBmaWxlcyBvZmZpY2lh
+bGx5IHJlbGVhc2VkIGJ5IE5WSURJQS4gQXMgeW91IGtub3cgc3VjaCBmaXJtd2FyZXMgd2lsbApz
+b29uIGJlY29tZSBhIG5lY2Vzc2l0eSBmb3IgbmV3ZXIgR1BVcyBiZWNhdXNlIHNvbWUgZmFsY29u
+cyB3aWxsIHJlcXVpcmUgc2lnbmVkCmZpcm13YXJlIHRvIG9wZXJhdGUuIEluIGFkZGl0aW9uIHRo
+ZXJlIGlzIG5vIHJldmVyc2UtZW5naW5lZXJlZCB2ZXJzaW9uIG9mIHRoZQpHSzIwQSBmaXJtd2Fy
+ZXMgeWV0LCBzbyBzaW5jZSBhbiBleHRlcm5hbCBmaWxlIGlzIG5lZWRlZCBhbnl3YXksIGl0IG1h
+eSBhcyB3ZWxsCmJlIHByb3ZpZGVkIG9mZmljaWFsbHkuIE5WSURJQSBwbGFucyB0byByZWxlYXNl
+IGZpcm13YXJlcyBhcyBvbmUgZmlsZSBwZXIgYmluYXJ5CnRvIGtlZXAgdGhpbmdzIHNpbXBsZS4g
+VGhlIGxheW91dCB3aWxsIGJlIG52aWRpYS88Z3B1Pi88ZmlybXdhcmU+LmJpbiwgc28gZm9yCkdL
+MjBBIEZFQ1MvR1BDQ1Mgd2UgaGF2ZToKCm52aWRpYS9nazIwYS9mZWNzX2luc3QuYmluIChha2Eg
+ZnVjNDA5YykKbnZpZGlhL2drMjBhL2ZlY3NfZGF0YS5iaW4gKGFrYSBmdWM0MDlkKQpudmlkaWEv
+Z2syMGEvZ3BjY3NfaW5zdC5iaW4gKGFrYSBmdWM0MWFjKQpudmlkaWEvZ2syMGEvZ3BjY3NfZGF0
+YS5iaW4gKGFrYSBmdWM0MWFkKQoKQWxsIGZpcm13YXJlIGZpbGVzIGxpc3RlZCBpbiB0aGlzIHBh
+dGNoc2V0IGFyZSBjbGVhbiBmb3IgcmVsZWFzZSwgYW5kIEkgYW0ganVzdAp3YWl0aW5nIGZvciBh
+IGNvbW11bml0eSBhY2sgb2YgdGhlIGxheW91dCB0byBzZW5kIGEgcGF0Y2ggdG8gbGludXgtZmly
+bXdhcmUuCgpUaGUgc2Vjb25kIHBhdGNoIHJld29ya3MgZXhpc3RpbmcgR0syMEEgc3VwcG9ydCB0
+byBtYWtlIGl0IGNsb3NlciB0byB3aGF0IG91cgpudmdwdSBkcml2ZXIgZG9lcy4gU3VwcG9ydCBz
+byBmYXIgd2FzIGhlYXZpbHkgYmFzZWQgb24gR0sxMDQsIHdoaWNoIHNvbWVob3cgbWFkZQptZSBm
+ZWVsIHVuZWFzeSAtIGFuZCBxdWl0ZSBzY2FyZWQgYWZ0ZXIgSSBsb29rZWQgbW9yZSBjbG9zZWx5
+IGF0IHdoYXQgbnZncHUKZG9lcy4gSW4gcGFydGljdWxhciB0aGUgR0sxMDQgTU1JTyBidW5kbGVz
+IGRpZmZlcmVkIHNpZ25pZmljYW50bHkgZnJvbSB3aGF0Cm52Z3B1IGRvZXMuIFRoaXMgY2hhbmdl
+IGFsaWducyB0aGluZ3MgYW5kIChwcm9iYWJseSBsZXNzIHNpZ25pZmljYW50LCBidXQgc3RpbGwK
+c2FmZXIpIHJlb3JkZXJzIHRoZSBpbml0aWFsaXphdGlvbiBzZXF1ZW5jZSB0byBtYXRjaCB0aGUg
+b25lIG9mIG52Z3B1LgoKWW91IHdpbGwgbm90ZSB0aGF0IHRoZSBNTUlPIGJ1bmRsZXMgbm93IGNv
+bWUgYXMgZmlybXdhcmUgZmlsZXMgb2YgdGhlaXIgb3duLiBJCmFtIG5vdCBzdXJlIHRoZSBjb21t
+dW5pdHkgd2lsbCBiZSBwbGVhc2VkIHdpdGggYW4gaW5jcmVhc2Ugb2YgZmlybXdhcmUgZmlsZXMs
+Cmhvd2V2ZXIgdGhlIHJhdGlvbmFsZSBmb3IgdGhpcyBpcyBhcyBmb2xsb3dzOgotIFRoZXNlIGlu
+aXRpYWxpemF0aW9uIHNlcXVlbmNlcyBhcmUgcmVsYXRlZCB0byB0aGUgZmlybXdhcmVzLCBzbyBp
+dCBtYWtlcyBzZW5zZQogIHRvIGRpc3RyaWJ1dGUgdGhlbSB1bmRlciB0aGUgc2FtZSBtZWRpdW0K
+LSBJZiBOVklESUEgbmVlZHMgdG8gdXBkYXRlIHRoZSBmaXJtd2FyZXMgZm9yIHNvbWUgcmVhc29u
+LCBpdCBjYW4gYXRvbWljYWxseQogIHVwZGF0ZSB0aGUgTU1JTyBidW5kbGVzIGFuZCBwcm92aWRl
+IGEgY29oZXJlbnQgc2V0LCBpbnN0ZWFkIG9mIGhhdmluZyB0bwogIGludHJvZHVjZSB2ZXJzaW9u
+aW5nIGludG8gdGhlIGZpcm13YXJlIGFuZCBkcml2ZXIKLSBGb3IgSVAgcmVhc29ucywgSSBhcyBh
+biBOVklESUEgZW1wbG95ZWUgY2Fubm90IGV4dHJhY3QgdGhlc2UgcmVnaXN0ZXIKICBzZXF1ZW5j
+ZXMgYW5kIGxpbmsgdGhlbSBpbnRvIE5vdXZlYXUKLSBUaGVzZSBhcmUganVzdCBhIGJ1bmNoIG9m
+IHJlZ2lzdGVyIGFkZHJlc3MvdmFsdWUgcGFpcnMgYW55d2F5CgpUaGUgbmV3IGZpcm13YXJlIGZp
+bGVzIGludHJvZHVjZWQgYXJlOgoKbnZpZGlhL2drMjBhL3N3X25vbmN0eC5iaW4gKGdyX3BhY2tf
+bW1pbykKbnZpZGlhL2drMjBhL3N3X2N0eC5iaW4gKGdyY3R4X3BhY2tfaHViLCBncmN0eF9wYWNr
+X2dwYywgZ3JjdHhfcGFja196Y3VsbCwKICAgICAgICAgICAgICAgICAgICAgICAgIGdyY3R4X3Bh
+Y2tfdHBjLCBncmN0eF9wYWNrX3BwYykKbnZpZGlhL2drMjBhL3N3X2J1bmRsZV9pbml0LmJpbiAo
+Z3JjdHhfcGFja19pY21kKQpudmlkaWEvZ2syMGEvc3dfbWV0aG9kX2luaXQuYmluIChncmN0eF9w
+YWNrX210aGQpCgpUaGlyZCBwYXRjaCBpcyB0cml2aWFsIGFuZCBhZGRzIHRoZSBHTTIwQiBGSUZP
+IGRldmljZS4KCkZvdXJ0aCBwYXRjaCBhZGRzIEdNMjBCIEdSIGJhc2VkIG9uIHRoZSByZXdvcmtl
+ZCBHSzIwQSBzdXBwb3J0LiBHTTIwQiB3aWxsIHJlbHkKb24gdGhlIHNhbWUgZmlybXdhcmUgZmls
+ZXMgYXMgR0syMEEgKGFsc28gY2xlYW4gZm9yIHJlbGVhc2UpLiBOb3RlIHRoYXQgdGhpcyBpcwpu
+b3QgZnVsbCBzdXBwb3J0IHlldCBmb3IgcmVsZWFzZWQgZGV2aWNlcywgd2hpY2ggd2lsbCByZXF1
+aXJlIHNlY3VyZSBib290LiBUaGlzCndpbGwgYmUgbXkgZm9jdXMgb25jZSB0aGlzIHBhdGNoc2V0
+IGlzIG1lcmdlZCAoRGVlcGFrIGdvdCBhIHdvcmtpbmcgdmVyc2lvbiwKYnV0IHRoZXJlIGlzIHN0
+aWxsIGEgbG90IG9mIHdvcmsgdG8gZG8gb24gaXQgYmVmb3JlIGl0IGlzIHVwc3RyZWFtYWJsZSku
+CgpUaGUgbGFzdCB0d28gcGF0Y2hlcyByZWNvZ25pemUgR00yMEIgYXQgdGhlIGRldmljZSBhbmQg
+cGxhdGZvcm0gbGV2ZWwuIE5vdGhpbmcKcmVhbGx5IGV4Y2l0aW5nLgoKSSBob3BlIHRoZSBhZGRp
+dGlvbiBvZiBmaXJtd2FyZSBmaWxlcyB3aWxsIG5vdCBiZWNvbWUgdG9vIGNvbnRyb3ZlcnNpYWwu
+IElmIGl0CmRvZXMsIEkgaGF2ZSBnb29kIGFyZ3VtZW50cyB0byBzdXBwb3J0IGl0LiA7KSBCZXNp
+ZGVzIHRoZSBHSzIwQSByZXdvcmsgdGhhdApwcm9iYWJseSBmZXcgcGVvcGxlIGNhcmUgYWJvdXQs
+IHRoZSBwb2ludCBpcyB0aGUgYWRkaXRpb24gb2YgYSBiYXNpYyBsYXlvdXQgZm9yCnRoZSBmaXJt
+d2FyZXMgdGhhdCBOVklESUEgd2lsbCBvZmZpY2lhbGx5IHJlbGVhc2UgdG8gZmluYWxseSBzdXBw
+b3J0IHNlY3VyZQpib290LCBhbmQgSSB3b3VsZCBsaWtlIHRvIG1ha2Ugc3VyZSB3ZSBnZXQgdGhp
+cyByaWdodC4KClRoYW5rcywKQWxleC4KCkFsZXhhbmRyZSBDb3VyYm90ICg2KToKICBncjogc3Vw
+cG9ydCBmb3IgTlZJRElBLXByb3ZpZGVkIGZpcm13YXJlcwogIGdyL2drMjBhOiB1c2Ugc2FtZSBp
+bml0aWFsaXphdGlvbiBzZXF1ZW5jZSBhcyBudmdwdQogIGZpZm86IGFkZCBHTTIwQiBmaWZvCiAg
+Z3I6IGFkZCBHTTIwQiBzdXBwb3J0CiAgZGV2aWNlOiByZWNvZ25pemUgR00yMEIKICBwbGF0Zm9y
+bTogcmVjb2duaXplIEdNMjBCCgogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2VuZ2luZS9maWZv
+LmggfCAgIDEgKwogZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2VuZ2luZS9nci5oICAgfCAgIDEg
+KwogZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5jICAgICAgICAgfCAgIDEgKwogZHJtL25v
+dXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2dtMTAwLmMgfCAgMjAgKysKIGRybS9ub3V2ZWF1L252
+a20vZW5naW5lL2ZpZm8vS2J1aWxkICAgIHwgICAxICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5l
+L2ZpZm8vZ2sxMDQuaCAgIHwgICA0ICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2ZpZm8vZ20y
+MDQuYyAgIHwgICAyICstCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9maWZvL2dtMjBiLmMgICB8
+ICAzNCArKysrCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9LYnVpbGQgICAgICB8ICAgMiAr
+CiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnZjEwMC5oICB8ICAgNyArCiBkcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9nci9jdHhnazIwYS5jICB8ICA2NSArKysrKy0tCiBkcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9nci9jdHhnbTEwNy5jICB8ICAgMiArLQogZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvZ3IvY3R4Z20yMDQuYyAgfCAgIDQgKy0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2dy
+L2N0eGdtMjBiLmMgIHwgMTEwICsrKysrKysrKysrCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9n
+ci9nZjEwMC5jICAgICB8ICA3MCArKysrKy0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9n
+ZjEwMC5oICAgICB8ICAxOCArKwogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2syMGEuYyAg
+ICAgfCAzMzYgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tCiBkcm0vbm91dmVhdS9u
+dmttL2VuZ2luZS9nci9nazIwYS5oICAgICB8ICAzNSArKysrCiBkcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9nci9nbTIwYi5jICAgICB8ICA4NCArKysrKysrKysKIDE5IGZpbGVzIGNoYW5nZWQsIDc0
+OCBpbnNlcnRpb25zKCspLCA0OSBkZWxldGlvbnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0v
+bm91dmVhdS9udmttL2VuZ2luZS9maWZvL2dtMjBiLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0v
+bm91dmVhdS9udmttL2VuZ2luZS9nci9jdHhnbTIwYi5jCiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJt
+L25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2syMGEuaAogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9u
+b3V2ZWF1L252a20vZW5naW5lL2dyL2dtMjBiLmMKCi0tIAoyLjQuMwoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApk
+cmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
