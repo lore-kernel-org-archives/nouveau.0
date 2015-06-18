@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 75776] [NV50 gallium] Hearthstone displays corrupted
-	buffers
-Date: Thu, 18 Jun 2015 20:34:07 +0000
-Message-ID: <bug-75776-8800-H3r5w1A4j8@http.bugs.freedesktop.org/>
-References: <bug-75776-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Thu, 18 Jun 2015 20:52:23 +0000
+Message-ID: <bug-90887-8800-XFh8firWtx@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0772851725=="
+Content-Type: multipart/mixed; boundary="===============2121012510=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-75776-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0772851725==
-Content-Type: multipart/alternative; boundary="1434659646.1b8A0.26492"; charset="UTF-8"
+--===============2121012510==
+Content-Type: multipart/alternative; boundary="1434660743.7F7F0.30834"; charset="UTF-8"
 
 
---1434659646.1b8A0.26492
-Date: Thu, 18 Jun 2015 20:34:06 +0000
+--1434660743.7F7F0.30834
+Date: Thu, 18 Jun 2015 20:52:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=75776
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #16 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-Using the trace I can reproduce the problem on NVA5 with 10.3.2 included in
-Debian Jessie.
+--- Comment #12 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+Thanks for pointing at the bug. I looked at it before filing this one. Cannot
+say now why I discarded it as a potential duplicate without testing the trace.
 
-The problem vanishes (AFAICT, am not a Hearthstone user) with Ilja's patch from
-bug #90887 on top of recent git.
+You'd be less impressed if I told you how long it took:-) But I'm probably
+better at debugging old than writing new code. And it did help that I do have
+some experience with compilers even if that was decades ago (when SSA was a new
+thing). Unfortunately after I changed jobs 7 years ago I had to drop pretty
+much all my free software activities due to severe lack of energy. I do miss
+that time, though. Feel free to mail me, if you want me to look at something.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1434659646.1b8A0.26492
-Date: Thu, 18 Jun 2015 20:34:06 +0000
+--1434660743.7F7F0.30834
+Date: Thu, 18 Jun 2015 20:52:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,36 +61,38 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776#c16">Comment # 16</a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=75776">bug 75776</a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
               from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
 </span></b>
-        <pre>Using the trace I can reproduce the problem on NVA5 with 10.3.2 included in
-Debian Jessie.
+        <pre>Thanks for pointing at the bug. I looked at it before filing this one. Cannot
+say now why I discarded it as a potential duplicate without testing the trace.
 
-The problem vanishes (AFAICT, am not a Hearthstone user) with Ilja's patch from
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="show_bug.cgi?id=90887">bug #90887</a> on top of recent git.</pre>
+You'd be less impressed if I told you how long it took:-) But I'm probably
+better at debugging old than writing new code. And it did help that I do have
+some experience with compilers even if that was decades ago (when SSA was a new
+thing). Unfortunately after I changed jobs 7 years ago I had to drop pretty
+much all my free software activities due to severe lack of energy. I do miss
+that time, though. Feel free to mail me, if you want me to look at something.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1434659646.1b8A0.26492--
+--1434660743.7F7F0.30834--
 
---===============0772851725==
+--===============2121012510==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +102,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0772851725==--
+--===============2121012510==--
