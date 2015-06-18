@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] [PATCH 1/6] gr: support for NVIDIA-provided firmwares
-Date: Thu, 18 Jun 2015 11:57:42 -0400
-Message-ID: <CAKb7UvhtGhpFBeFerJd8KJyKJdgKTGNvnqTCWCdmQ0OoMwpcew@mail.gmail.com>
-References: <1434638872-29061-1-git-send-email-acourbot@nvidia.com>
- <1434638872-29061-2-git-send-email-acourbot@nvidia.com>
+From: Michael =?UTF-8?B?QsO8c2No?= <m@bues.ch>
+Subject: Re: [PATCH] nvidia/noveau: Fix color mask
+Date: Thu, 18 Jun 2015 17:31:25 +0200
+Message-ID: <20150618173125.3ae0047c@wiggum>
+References: <20150617190508.5205e8af@wiggum>
+ <CAKb7UvjUdOSrYE4L3AqE3Q06mXyyon42U26o9t3M5XLYz2aJmw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0538843150=="
 Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1434638872-29061-2-git-send-email-acourbot@nvidia.com>
+In-Reply-To: <CAKb7UvjUdOSrYE4L3AqE3Q06mXyyon42U26o9t3M5XLYz2aJmw@mail.gmail.com>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
@@ -18,94 +17,194 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
  <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: dri-devel-bounces@lists.freedesktop.org
 Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <gnurou@gmail.com>
-Cc: Terje Bergstrom <tbergstrom@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Allen Martin <AMartin@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, Ken Adams <KAdams@nvidia.com>, Andy Ritger <aritger@nvidia.com>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: linux-fbdev@vger.kernel.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-V2h5IGRpZCB5b3UgY2hhbmdlIHJlcXVlc3RfZmlybXdhcmUgdG8gcmVxdWVzdF9maXJtd2FyZV9k
-aXJlY3Q/CgpPbiBUaHUsIEp1biAxOCwgMjAxNSBhdCAxMDo0NyBBTSwgQWxleGFuZHJlIENvdXJi
-b3QgPGdudXJvdUBnbWFpbC5jb20+IHdyb3RlOgo+IE5WSURJQSB3aWxsIG9mZmljaWFsbHkgc3Rh
-cnQgcHJvdmlkaW5nIHNpZ25lZCBmaXJtd2FyZXMgdGhyb3VnaAo+IGxpbnV4LWZpcm13YXJlLiBD
-aGFuZ2UgdGhlIEdSIGZpcm13YXJlIGxvb2t1cCBmdW5jdGlvbiB0byBsb29rIHRoZW0gdXAKPiBp
-biBhZGRpdGlvbiB0byB0aGUgZXh0cmFjdGVkIGZpcm13YXJlcy4KPgo+IFNpZ25lZC1vZmYtYnk6
-IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+IC0tLQo+ICBkcm0vbm91
-dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jIHwgNjYgKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKystLS0tLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDUxIGluc2VydGlvbnMoKyksIDE1IGRl
-bGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL2dm
-MTAwLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEwMC5jCj4gaW5kZXggY2ExMWRk
-Yi4uMzlkNDgyZiAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9nZjEw
-MC5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvZ2YxMDAuYwo+IEBAIC0xNTQ0
-LDI2ICsxNTQ0LDYyIEBAIGdmMTAwX2dyX2R0b3JfZncoc3RydWN0IGdmMTAwX2dyX2Z1YyAqZnVj
-KQo+ICAgICAgICAgZnVjLT5kYXRhID0gTlVMTDsKPiAgfQo+Cj4gKy8qKgo+ICsgKiBnZjEwMF9n
-cl9jdG9yX2Z3IC0gaGVscGVyIGZvciBsb2FkaW5nIGV4dGVybmFsIEdSIGZpcm13YXJlcwo+ICsg
-Kgo+ICsgKiBBIGZpcm13YXJlIGNhbiBlaXRoZXIgYmUgb2ZmaWNpYWxseSBwcm92aWRlZCBieSBO
-VklESUEgKGluIHdoaWNoIGNhc2UgaXQgd2lsbAo+ICsgKiB1c2UgYSAiTlZJRElBIG5hbWUiLCBv
-ciBiZSBleHRyYWN0ZWQgZnJvbSB0aGUgYmluYXJ5IGJsb2IgKGFuZCB1c2UgYQo+ICsgKiAiTm91
-dmVhdSBuYW1lIi4gVGhlIGZ3bmFtZSBhbmQgbnZmd25hbWUgYXJlIHRvIGJlIGdpdmVuIHRoZSBO
-b3V2ZWF1IGFuZAo+ICsgKiBOVklESUEgbmFtZXMgb2YgYSBnaXZlbiBmaXJtd2FyZSwgcmVzcGVj
-dGl2ZWx5LiBUaGlzIGZ1bmN0aW9uIHdpbGwgdGhlbgo+ICsgKiB0cnkgdG8gbG9hZCB0aGUgTlZJ
-RElBIGZpcm13YXJlLCB0aGVuIHRoZSBleHRyYWN0ZWQgb25lLCBpbiB0aGF0IG9yZGVyLgo+ICsg
-Kgo+ICsgKi8KPiAgaW50Cj4gIGdmMTAwX2dyX2N0b3JfZncoc3RydWN0IGdmMTAwX2dyX3ByaXYg
-KnByaXYsIGNvbnN0IGNoYXIgKmZ3bmFtZSwKPiAtICAgICAgICAgICAgICAgIHN0cnVjdCBnZjEw
-MF9ncl9mdWMgKmZ1YykKPiArICAgICAgICAgICAgICAgIGNvbnN0IGNoYXIgKm52ZnduYW1lLCBz
-dHJ1Y3QgZ2YxMDBfZ3JfZnVjICpmdWMpCj4gIHsKPiAgICAgICAgIHN0cnVjdCBudmttX2Rldmlj
-ZSAqZGV2aWNlID0gbnZfZGV2aWNlKHByaXYpOwo+ICAgICAgICAgY29uc3Qgc3RydWN0IGZpcm13
-YXJlICpmdzsKPiAtICAgICAgIGNoYXIgZlszMl07Cj4gLSAgICAgICBpbnQgcmV0Owo+ICsgICAg
-ICAgY2hhciBmWzY0XTsKPiArICAgICAgIGludCByZXQgPSAtRUlOVkFMOwo+ICsgICAgICAgaW50
-IGk7Cj4KPiAtICAgICAgIHNucHJpbnRmKGYsIHNpemVvZihmKSwgIm5vdXZlYXUvbnYlMDJ4XyVz
-IiwgZGV2aWNlLT5jaGlwc2V0LCBmd25hbWUpOwo+IC0gICAgICAgcmV0ID0gcmVxdWVzdF9maXJt
-d2FyZSgmZncsIGYsIG52X2RldmljZV9iYXNlKGRldmljZSkpOwo+IC0gICAgICAgaWYgKHJldCkg
-ewo+IC0gICAgICAgICAgICAgICBzbnByaW50ZihmLCBzaXplb2YoZiksICJub3V2ZWF1LyVzIiwg
-ZnduYW1lKTsKPiAtICAgICAgICAgICAgICAgcmV0ID0gcmVxdWVzdF9maXJtd2FyZSgmZncsIGYs
-IG52X2RldmljZV9iYXNlKGRldmljZSkpOwo+IC0gICAgICAgICAgICAgICBpZiAocmV0KSB7Cj4g
-LSAgICAgICAgICAgICAgICAgICAgICAgbnZfZXJyb3IocHJpdiwgImZhaWxlZCB0byBsb2FkICVz
-XG4iLCBmd25hbWUpOwo+IC0gICAgICAgICAgICAgICAgICAgICAgIHJldHVybiByZXQ7Cj4gKyAg
-ICAgICAvKgo+ICsgICAgICAgICogTlZJRElBIGZpcm13YXJlIG5hbWUgcHJvdmlkZWQgLSB0cnkg
-dG8gbG9hZCBpdAo+ICsgICAgICAgICogV2UgdHJ5IHRoaXMgZmlyc3Qgc2luY2UgbW9zdCBjaGlw
-cyB0aGF0IHJlcXVpcmUgZXh0ZXJuYWwgZmlybXdhcmUKPiArICAgICAgICAqIGFyZSBzdXBwb3J0
-ZWQgYnkgTlZJRElBCj4gKyAgICAgICAgKi8KPiArICAgICAgIGlmIChudmZ3bmFtZSkgewo+ICsg
-ICAgICAgICAgICAgICBzbnByaW50ZihmLCBzaXplb2YoZiksICJudmlkaWEvJXMvJXMuYmluIiwg
-ZGV2aWNlLT5jbmFtZSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgbnZmd25hbWUpOwo+ICsg
-ICAgICAgICAgICAgICBpID0gc3RybGVuKGYpOwo+ICsgICAgICAgICAgICAgICB3aGlsZSAoaSkg
-ewo+ICsgICAgICAgICAgICAgICAgICAgICAgIC0taTsKPiArICAgICAgICAgICAgICAgICAgICAg
-ICBmW2ldID0gdG9sb3dlcihmW2ldKTsKPiAgICAgICAgICAgICAgICAgfQo+ICsgICAgICAgICAg
-ICAgICByZXQgPSByZXF1ZXN0X2Zpcm13YXJlX2RpcmVjdCgmZncsIGYsIG52X2RldmljZV9iYXNl
-KGRldmljZSkpOwo+ICsgICAgICAgICAgICAgICBpZiAoIXJldCkKPiArICAgICAgICAgICAgICAg
-ICAgICAgICBnb3RvIGZvdW5kOwo+ICsgICAgICAgfQo+ICsKPiArICAgICAgIC8qIE5vdXZlYXUg
-ZmlybXdhcmUgbmFtZSBwcm92aWRlZCAtIHRyeSB0byBsb2FkIGl0ICovCj4gKyAgICAgICBpZiAo
-ZnduYW1lKSB7Cj4gKyAgICAgICAgICAgICAgIHNucHJpbnRmKGYsIHNpemVvZihmKSwgIm5vdXZl
-YXUvbnYlMDJ4XyVzIiwgZGV2aWNlLT5jaGlwc2V0LAo+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICBmd25hbWUpOwo+ICsgICAgICAgICAgICAgICByZXQgPSByZXF1ZXN0X2Zpcm13YXJlX2RpcmVj
-dCgmZncsIGYsIG52X2RldmljZV9iYXNlKGRldmljZSkpOwo+ICsgICAgICAgICAgICAgICBpZiAo
-IXJldCkKPiArICAgICAgICAgICAgICAgICAgICAgICBnb3RvIGZvdW5kOwo+ICsKPiArICAgICAg
-ICAgICAgICAgc25wcmludGYoZiwgc2l6ZW9mKGYpLCAibm91dmVhdS8lcyIsIGZ3bmFtZSk7Cj4g
-KyAgICAgICAgICAgICAgIHJldCA9IHJlcXVlc3RfZmlybXdhcmVfZGlyZWN0KCZmdywgZiwgbnZf
-ZGV2aWNlX2Jhc2UoZGV2aWNlKSk7Cj4gKyAgICAgICAgICAgICAgIGlmICghcmV0KQo+ICsgICAg
-ICAgICAgICAgICAgICAgICAgIGdvdG8gZm91bmQ7Cj4gICAgICAgICB9Cj4KPiArICAgICAgIG52
-X2Vycm9yKHByaXYsICJmYWlsZWQgdG8gbG9hZCAlcyAvICVzXG4iLCBmd25hbWUsIG52ZnduYW1l
-KTsKPiArICAgICAgIHJldHVybiByZXQ7Cj4gKwo+ICtmb3VuZDoKPiAgICAgICAgIGZ1Yy0+c2l6
-ZSA9IGZ3LT5zaXplOwo+ICAgICAgICAgZnVjLT5kYXRhID0ga21lbWR1cChmdy0+ZGF0YSwgZnVj
-LT5zaXplLCBHRlBfS0VSTkVMKTsKPiAgICAgICAgIHJlbGVhc2VfZmlybXdhcmUoZncpOwo+IEBA
-IC0xNjE1LDEwICsxNjUxLDEwIEBAIGdmMTAwX2dyX2N0b3Ioc3RydWN0IG52a21fb2JqZWN0ICpw
-YXJlbnQsIHN0cnVjdCBudmttX29iamVjdCAqZW5naW5lLAo+Cj4gICAgICAgICBpZiAodXNlX2V4
-dF9mdykgewo+ICAgICAgICAgICAgICAgICBudl9pbmZvKHByaXYsICJ1c2luZyBleHRlcm5hbCBm
-aXJtd2FyZVxuIik7Cj4gLSAgICAgICAgICAgICAgIGlmIChnZjEwMF9ncl9jdG9yX2Z3KHByaXYs
-ICJmdWM0MDljIiwgJnByaXYtPmZ1YzQwOWMpIHx8Cj4gLSAgICAgICAgICAgICAgICAgICBnZjEw
-MF9ncl9jdG9yX2Z3KHByaXYsICJmdWM0MDlkIiwgJnByaXYtPmZ1YzQwOWQpIHx8Cj4gLSAgICAg
-ICAgICAgICAgICAgICBnZjEwMF9ncl9jdG9yX2Z3KHByaXYsICJmdWM0MWFjIiwgJnByaXYtPmZ1
-YzQxYWMpIHx8Cj4gLSAgICAgICAgICAgICAgICAgICBnZjEwMF9ncl9jdG9yX2Z3KHByaXYsICJm
-dWM0MWFkIiwgJnByaXYtPmZ1YzQxYWQpKQo+ICsgICAgICAgICAgICAgICBpZiAoZ2YxMDBfZ3Jf
-Y3Rvcl9mdyhwcml2LCAiZnVjNDA5YyIsICJmZWNzX2luc3QiLCAmcHJpdi0+ZnVjNDA5YykgfHwK
-PiArICAgICAgICAgICAgICAgICAgIGdmMTAwX2dyX2N0b3JfZncocHJpdiwgImZ1YzQwOWQiLCAi
-ZmVjc19kYXRhIiwgJnByaXYtPmZ1YzQwOWQpIHx8Cj4gKyAgICAgICAgICAgICAgICAgICBnZjEw
-MF9ncl9jdG9yX2Z3KHByaXYsICJmdWM0MWFjIiwgImdwY2NzX2luc3QiLCAmcHJpdi0+ZnVjNDFh
-YykgfHwKPiArICAgICAgICAgICAgICAgICAgIGdmMTAwX2dyX2N0b3JfZncocHJpdiwgImZ1YzQx
-YWQiLCAiZ3BjY3NfZGF0YSIsICZwcml2LT5mdWM0MWFkKSkKPiAgICAgICAgICAgICAgICAgICAg
-ICAgICByZXR1cm4gLUVOT0RFVjsKPiAgICAgICAgICAgICAgICAgcHJpdi0+ZmlybXdhcmUgPSB0
-cnVlOwo+ICAgICAgICAgfQo+IC0tCj4gMi40LjMKPgo+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-ZHJpLWRldmVsCg==
+--===============0538843150==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/oQx8F2UhgJTKw0cSMVP2gah"; protocol="application/pgp-signature"
+
+--Sig_/oQx8F2UhgJTKw0cSMVP2gah
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, 17 Jun 2015 20:47:17 -0400
+Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+
+> On Wed, Jun 17, 2015 at 1:05 PM, Michael B=C3=BCsch <m@bues.ch> wrote:
+> > The expression (~0 >> x) will always yield all-ones, because the right
+> > shift is an arithmetic right shift that will always shift ones in.
+> > Accordingly ~(~0 >> x) will always be zero.
+> > Hence 'mask' will always be zero in this case.
+> >
+> > Fix this by forcing a logical right shift instead of an arithmetic
+> > right shift by using an unsigned int constant.
+> >
+> > Signed-off-by: Michael Buesch <m@bues.ch>
+>=20
+> Confirmed that this does indeed happen with
+>=20
+> #include <stdio.h>
+> int main(int argc, char *argv[]) {
+>   unsigned mask =3D ~(~0 >> (32 - (argv[1][0] - '0')));
+>   printf("%08x\n", mask);
+> }
+>=20
+> I guess fbdev/nvidia/nv_accel.c was the source of all this, as the
+> code is identical, and it probably came first.
+
+
+If anybody is able to help me in creating a working semantic patch
+(coccinelle) for this, that would be great.
+
+I found this using a very hacky and incorrect spatch (some
+version is attached). It throws many false positives, doesn't find all
+such bugs and does not create correct patch output (especially the
+#define related rule is just meant as a hint).
+
+Some basic thoughts that come to mind that could possibly be statically
+checked somehow are:
+
+- right shift of promoted variables. That is stuff like this:
+  u8 x, y =3D 0x0F;
+  x =3D ~y >> 1;
+  /* x is 0xF8, not 0x78 as someone might expect. */
+- Also check this for typedef'ed types where promotion takes place (that
+  are smaller than int)?
+- right shift of signed constants (like in this case). That probably is
+  wrong in most cases.
+  How to check signedness of constants in spatch? (123 vs 123U)
+  Is that even possible?
+- Also detect this stuff, if variables/constants are hidden via #define
+  or such:
+  #define REGVAL	0x0F
+  writereg(REGISTER, ~REGVAL >> 1);
+
+Probably more stuff could be checked. Ideas are welcome. :)
+
+--=20
+Michael
+
+
+
+@@
+u8 e;
+expression s;
+@@
+- ~e >> s
++ (u8)~e >> s
+
+@@
+s8 e;
+expression s;
+@@
+- ~e >> s
++ (s8)~e >> s
+
+@@
+u16 e;
+expression s;
+@@
+- ~e >> s
++ (u16)~e >> s
+
+@@
+s16 e;
+expression s;
+@@
+- ~e >> s
++ (s16)~e >> s
+
+@@
+char e;
+expression s;
+@@
+- ~e >> s
++ (char)~e >> s
+
+@@
+unsigned char e;
+expression s;
+@@
+- ~e >> s
++ (unsigned char)~e >> s
+
+@@
+short e;
+expression s;
+@@
+- ~e >> s
++ (short)~e >> s
+
+@@
+unsigned short e;
+expression s;
+@@
+- ~e >> s
++ (unsigned short)~e >> s
+
+
+
+
+@@
+constant c;
+expression s;
+@@
+- ~c >> s
++ (unsigned int)~c >> s
+
+
+
+
+
+@sh expression@
+identifier val;
+expression shift;
+@@
+val >> shift
+
+
+@@
+expression e;
+identifier sh.val;
+@@
+- #define val ~e
++ #define val e
+
+
+--Sig_/oQx8F2UhgJTKw0cSMVP2gah
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJVguRQAAoJEPUyvh2QjYsOeFgP/2JlxYvHctn/tSy2WNr7y9t6
+a42rF+TZIkgCCroi28txNWdfpmwW37WYyhPx9T/vJJtspqH+U44M7gLBH8ru9jGc
+SJt9gPdgll2l37CvAzIhIcZIKdlpNNlCFmNXpXM3JeAfQbRaFggJAVGaSHo1UMPO
+bmDnTXKFRevXSc9f8EcCMxT/g1RKvoIPzgcQCxU9h94gw3ayxQY8PpGNQiiTw5Yc
+6PlB3LA3+b4RjIohz+mSmoFK3Lqb7fNhbEdJAD/h7kH7kIyOnSfU7YkKBQsdLKEo
+PpjJuosEVFbSxS0V+CFHWTrCXGeLpXM4ofSuIMNZPuC+GTL+VfVAoMIjTntZAOmx
+vbvpP1CWCbxd5g32mDUEFvFVdcAUf67/Airh3QGMWMb7/HnbTGW2cJ4VJffbDiXj
+Uzn9VZ5QjMRL648VN/lzZ09rBSnbBsXwkeRsHRu46MS2khQH99xLDU2iSd8DLY0J
+Hc84Lj04NwOm/gNPK8Ro8ABtsaLeYQi3kU1T1sE65TTgwyvM3DqMTb7reuNy1AJX
+FIobt90JrPn5tg8IdduBIw6PLJjKCmatHkyuaqmZta1PBEHitESDD7/tsvxkSwWc
+f81iYhHrdSL56P2U2xjXXsaaOja9xFWIO0fpEeFGi4MBOA9nN81HF6Zs3ucn001t
+KNQ7Ox6RigLpdOoGMkz+
+=CL6R
+-----END PGP SIGNATURE-----
+
+--Sig_/oQx8F2UhgJTKw0cSMVP2gah--
+
+--===============0538843150==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
+IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0538843150==--
