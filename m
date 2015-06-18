@@ -1,210 +1,115 @@
-From: Michael =?UTF-8?B?QsO8c2No?= <m@bues.ch>
-Subject: Re: [PATCH] nvidia/noveau: Fix color mask
-Date: Thu, 18 Jun 2015 17:31:25 +0200
-Message-ID: <20150618173125.3ae0047c@wiggum>
-References: <20150617190508.5205e8af@wiggum>
- <CAKb7UvjUdOSrYE4L3AqE3Q06mXyyon42U26o9t3M5XLYz2aJmw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Thu, 18 Jun 2015 18:13:35 +0000
+Message-ID: <bug-90887-8800-G1QdNgovNv@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0538843150=="
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7UvjUdOSrYE4L3AqE3Q06mXyyon42U26o9t3M5XLYz2aJmw@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: linux-fbdev@vger.kernel.org, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1811957339=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0538843150==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/oQx8F2UhgJTKw0cSMVP2gah"; protocol="application/pgp-signature"
 
---Sig_/oQx8F2UhgJTKw0cSMVP2gah
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, 17 Jun 2015 20:47:17 -0400
-Ilia Mirkin <imirkin@alum.mit.edu> wrote:
-
-> On Wed, Jun 17, 2015 at 1:05 PM, Michael B=C3=BCsch <m@bues.ch> wrote:
-> > The expression (~0 >> x) will always yield all-ones, because the right
-> > shift is an arithmetic right shift that will always shift ones in.
-> > Accordingly ~(~0 >> x) will always be zero.
-> > Hence 'mask' will always be zero in this case.
-> >
-> > Fix this by forcing a logical right shift instead of an arithmetic
-> > right shift by using an unsigned int constant.
-> >
-> > Signed-off-by: Michael Buesch <m@bues.ch>
->=20
-> Confirmed that this does indeed happen with
->=20
-> #include <stdio.h>
-> int main(int argc, char *argv[]) {
->   unsigned mask =3D ~(~0 >> (32 - (argv[1][0] - '0')));
->   printf("%08x\n", mask);
-> }
->=20
-> I guess fbdev/nvidia/nv_accel.c was the source of all this, as the
-> code is identical, and it probably came first.
+--===============1811957339==
+Content-Type: multipart/alternative; boundary="1434651215.33EA4d0.22834"; charset="UTF-8"
 
 
-If anybody is able to help me in creating a working semantic patch
-(coccinelle) for this, that would be great.
+--1434651215.33EA4d0.22834
+Date: Thu, 18 Jun 2015 18:13:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-I found this using a very hacky and incorrect spatch (some
-version is attached). It throws many false positives, doesn't find all
-such bugs and does not create correct patch output (especially the
-#define related rule is just meant as a hint).
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
-Some basic thoughts that come to mind that could possibly be statically
-checked somehow are:
+--- Comment #10 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+I can confirm that your patch fixes all occurences of the problem I've found so
+far (Lifeless Planet, Eidolon, Costume Quest with FXAA option, Two Worlds 2 sky
+texture).
 
-- right shift of promoted variables. That is stuff like this:
-  u8 x, y =3D 0x0F;
-  x =3D ~y >> 1;
-  /* x is 0xF8, not 0x78 as someone might expect. */
-- Also check this for typedef'ed types where promotion takes place (that
-  are smaller than int)?
-- right shift of signed constants (like in this case). That probably is
-  wrong in most cases.
-  How to check signedness of constants in spatch? (123 vs 123U)
-  Is that even possible?
-- Also detect this stuff, if variables/constants are hidden via #define
-  or such:
-  #define REGVAL	0x0F
-  writereg(REGISTER, ~REGVAL >> 1);
+I slightly prefer keeping the edge order intact, as this feels 'more correct'
+to me (which admittedly doesn't mean much) and allows to collapse the separate
+loops into one (which is only a micro optimization preventing a little bit of
+alloc/free). But since I cannot promise to have time to debug and fix problems
+with my patch (though I expect to be reachable by this email address for the
+forseeable future), it is best to choose the approach you feel most comfortable
+with.
 
-Probably more stuff could be checked. Ideas are welcome. :)
+I'm happy either way and very grateful that you could spend time on this issue.
+Thanks!
 
---=20
-Michael
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
 
+--1434651215.33EA4d0.22834
+Date: Thu, 18 Jun 2015 18:13:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
 
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
+</span></b>
+        <pre>I can confirm that your patch fixes all occurences of the problem I've found so
+far (Lifeless Planet, Eidolon, Costume Quest with FXAA option, Two Worlds 2 sky
+texture).
 
-@@
-u8 e;
-expression s;
-@@
-- ~e >> s
-+ (u8)~e >> s
+I slightly prefer keeping the edge order intact, as this feels 'more correct'
+to me (which admittedly doesn't mean much) and allows to collapse the separate
+loops into one (which is only a micro optimization preventing a little bit of
+alloc/free). But since I cannot promise to have time to debug and fix problems
+with my patch (though I expect to be reachable by this email address for the
+forseeable future), it is best to choose the approach you feel most comfortable
+with.
 
-@@
-s8 e;
-expression s;
-@@
-- ~e >> s
-+ (s8)~e >> s
+I'm happy either way and very grateful that you could spend time on this issue.
+Thanks!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
 
-@@
-u16 e;
-expression s;
-@@
-- ~e >> s
-+ (u16)~e >> s
+--1434651215.33EA4d0.22834--
 
-@@
-s16 e;
-expression s;
-@@
-- ~e >> s
-+ (s16)~e >> s
-
-@@
-char e;
-expression s;
-@@
-- ~e >> s
-+ (char)~e >> s
-
-@@
-unsigned char e;
-expression s;
-@@
-- ~e >> s
-+ (unsigned char)~e >> s
-
-@@
-short e;
-expression s;
-@@
-- ~e >> s
-+ (short)~e >> s
-
-@@
-unsigned short e;
-expression s;
-@@
-- ~e >> s
-+ (unsigned short)~e >> s
-
-
-
-
-@@
-constant c;
-expression s;
-@@
-- ~c >> s
-+ (unsigned int)~c >> s
-
-
-
-
-
-@sh expression@
-identifier val;
-expression shift;
-@@
-val >> shift
-
-
-@@
-expression e;
-identifier sh.val;
-@@
-- #define val ~e
-+ #define val e
-
-
---Sig_/oQx8F2UhgJTKw0cSMVP2gah
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAEBCAAGBQJVguRQAAoJEPUyvh2QjYsOeFgP/2JlxYvHctn/tSy2WNr7y9t6
-a42rF+TZIkgCCroi28txNWdfpmwW37WYyhPx9T/vJJtspqH+U44M7gLBH8ru9jGc
-SJt9gPdgll2l37CvAzIhIcZIKdlpNNlCFmNXpXM3JeAfQbRaFggJAVGaSHo1UMPO
-bmDnTXKFRevXSc9f8EcCMxT/g1RKvoIPzgcQCxU9h94gw3ayxQY8PpGNQiiTw5Yc
-6PlB3LA3+b4RjIohz+mSmoFK3Lqb7fNhbEdJAD/h7kH7kIyOnSfU7YkKBQsdLKEo
-PpjJuosEVFbSxS0V+CFHWTrCXGeLpXM4ofSuIMNZPuC+GTL+VfVAoMIjTntZAOmx
-vbvpP1CWCbxd5g32mDUEFvFVdcAUf67/Airh3QGMWMb7/HnbTGW2cJ4VJffbDiXj
-Uzn9VZ5QjMRL648VN/lzZ09rBSnbBsXwkeRsHRu46MS2khQH99xLDU2iSd8DLY0J
-Hc84Lj04NwOm/gNPK8Ro8ABtsaLeYQi3kU1T1sE65TTgwyvM3DqMTb7reuNy1AJX
-FIobt90JrPn5tg8IdduBIw6PLJjKCmatHkyuaqmZta1PBEHitESDD7/tsvxkSwWc
-f81iYhHrdSL56P2U2xjXXsaaOja9xFWIO0fpEeFGi4MBOA9nN81HF6Zs3ucn001t
-KNQ7Ox6RigLpdOoGMkz+
-=CL6R
------END PGP SIGNATURE-----
-
---Sig_/oQx8F2UhgJTKw0cSMVP2gah--
-
---===============0538843150==
+--===============1811957339==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0538843150==--
+--===============1811957339==--
