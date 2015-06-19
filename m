@@ -1,39 +1,48 @@
-From: Martin Peres <martin.peres@free.fr>
-Subject: Re: [PATCH v3 0/2] nouveau: support for custom VRAM
-	domains
-Date: Fri, 19 Jun 2015 14:51:02 +0300
-Message-ID: <55840226.4090008@free.fr>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH v3 0/2] nouveau: support for custom
+ VRAM domains
+Date: Fri, 19 Jun 2015 22:38:46 +1000
+Message-ID: <CACAvsv6s6yw-hT-ZE=qRn0YUPUHc9euC4bDHv5QjUpicS6CG5Q@mail.gmail.com>
 References: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
+ <55840226.4090008@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <acourbot@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
-Cc: mesa-dev@lists.freedesktop.org, gnurou@gmail.com
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <55840226.4090008-GANU6spQydw@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkvMDYvMjAxNSAxMzowMiwgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4gTmV3IHJldmlz
-aW9uIG9mIHRoaXMgcGF0Y2hzZXQgdGhhdCBwcmV2ZW50cyBWUkFNIG9iamVjdHMgZnJvbSBiZWlu
-Zwo+IGFsbG9jYXRlZCBvbiBWUkFNLWxlc3Mgc3lzdGVtcyBsaWtlIFRlZ3JhLiBUaGlzIGlzIHJl
-cXVpcmVkIGZvciBNZXNhCj4gdG8gd29yayBvbiBzdWNoIHN5c3RlbXMuCj4KPiBDaGFuZ2VzIHNp
-bmNlIHYyOgo+IC0gVXNlIHZyYW1fc2l6ZSB0byBkZXRlY3Qgc3lzdGVtcyB3aXRob3V0IFZSQU0g
-YW5kIHNldCB0aGUgY29ycmVjdAo+ICAgIGRvbWFpbiBpbnN0ZWFkIG9mIGV4cGVjdGluZyBlYWNo
-IGNoaXAgdG8gc2V0IGl0cyBkb21haW4gZXhwbGljaXRseS4KClRoaXMgcXVlc3Rpb24gbWF5IGhh
-dmUgYmVlbiBhc2tlZCBhIHRvbiBvZiB0aW1lcywgYnV0IHdoYXQgaXMgdGhlIApkaWZmZXJlbmNl
-IHdpdGggdGhlIG52YWMgKElvbik/CgpXb3VsZCB0aGUgbnZhYyBoYXZlIHNvbWUgcmVzZXJ2ZWQg
-bWVtb3J5IGZvciBpdHMgdXNhZ2UgYnkgdGhlIGJpb3Mgd2hpY2ggCndvdWxkIHRoZW4gYmUgdXNl
-ZCBhcyAiVlJBTSI/CgpJbiBhbnkgY2FzZSwgdGhlIHBhdGNoc2VyaWVzIHNvdW5kcyBzaW1wbGUt
-ZW5vdWdoIHRvIGJlIG1haW50YWluYWJsZS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
-Zm8vbWVzYS1kZXYK
+T24gMTkgSnVuZSAyMDE1IGF0IDIxOjUxLCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJlc0BmcmVl
+LmZyPiB3cm90ZToKPiBPbiAxOS8wNi8yMDE1IDEzOjAyLCBBbGV4YW5kcmUgQ291cmJvdCB3cm90
+ZToKPj4KPj4gTmV3IHJldmlzaW9uIG9mIHRoaXMgcGF0Y2hzZXQgdGhhdCBwcmV2ZW50cyBWUkFN
+IG9iamVjdHMgZnJvbSBiZWluZwo+PiBhbGxvY2F0ZWQgb24gVlJBTS1sZXNzIHN5c3RlbXMgbGlr
+ZSBUZWdyYS4gVGhpcyBpcyByZXF1aXJlZCBmb3IgTWVzYQo+PiB0byB3b3JrIG9uIHN1Y2ggc3lz
+dGVtcy4KPj4KPj4gQ2hhbmdlcyBzaW5jZSB2MjoKPj4gLSBVc2UgdnJhbV9zaXplIHRvIGRldGVj
+dCBzeXN0ZW1zIHdpdGhvdXQgVlJBTSBhbmQgc2V0IHRoZSBjb3JyZWN0Cj4+ICAgIGRvbWFpbiBp
+bnN0ZWFkIG9mIGV4cGVjdGluZyBlYWNoIGNoaXAgdG8gc2V0IGl0cyBkb21haW4gZXhwbGljaXRs
+eS4KPgo+Cj4gVGhpcyBxdWVzdGlvbiBtYXkgaGF2ZSBiZWVuIGFza2VkIGEgdG9uIG9mIHRpbWVz
+LCBidXQgd2hhdCBpcyB0aGUgZGlmZmVyZW5jZQo+IHdpdGggdGhlIG52YWMgKElvbik/Cj4KPiBX
+b3VsZCB0aGUgbnZhYyBoYXZlIHNvbWUgcmVzZXJ2ZWQgbWVtb3J5IGZvciBpdHMgdXNhZ2UgYnkg
+dGhlIGJpb3Mgd2hpY2gKPiB3b3VsZCB0aGVuIGJlIHVzZWQgYXMgIlZSQU0iPwpQRkIgb24gdGhl
+IGRHUFUgSUdQcyBoYXMgZmFjaWxpdGllcyB0byBmYWtlIFZSQU0gZnJvbSBhbiBhcmVhIG9mCiJz
+dG9sZW4iIHN5c3RlbSBtZW1vcnkgcmVzZXJ2ZWQgYnkgdGhlIFNCSU9TLiAgR0syMEEvR00yMEIg
+ZG8gbm90IGRvCnRoaXMsIGFuZCByZXF1aXJlIGRpcmVjdCAob3IsIHZpYSBhIG1tdSwgd2hhdGV2
+ZXIpIGFjY2VzcyB0byBzeXN0ZW0KbWVtb3J5LgoKQmVuLgoKPgo+IEluIGFueSBjYXNlLCB0aGUg
+cGF0Y2hzZXJpZXMgc291bmRzIHNpbXBsZS1lbm91Z2ggdG8gYmUgbWFpbnRhaW5hYmxlLgo+Cj4g
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1
+IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
