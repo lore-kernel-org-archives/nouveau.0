@@ -1,16 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 1/6] gr: support for NVIDIA-provided firmwares
-Date: Fri, 19 Jun 2015 15:28:57 +1000
-Message-ID: <CACAvsv5uA0PWRddpdaBaFhkZeny7EtgEUrDgBiDA2UrRU=GLTQ@mail.gmail.com>
-References: <1434638872-29061-1-git-send-email-acourbot@nvidia.com>
- <1434638872-29061-2-git-send-email-acourbot@nvidia.com>
- <CACAvsv4cuwtcobmfFo-5N04vSY47kT5G7NoRnYd6PzHnVhkTrA@mail.gmail.com>
- <CAAVeFu+Kw6jU+HyAx5V6JEzDfYrpVvmOeM41k2U=extPTYi2oQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
+	TNT2 Pro]
+Date: Fri, 19 Jun 2015 05:34:31 +0000
+Message-ID: <bug-91025-8800-SW61SOcEZY@http.bugs.freedesktop.org/>
+References: <bug-91025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1532439549=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFu+Kw6jU+HyAx5V6JEzDfYrpVvmOeM41k2U=extPTYi2oQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +17,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkgSnVuZSAyMDE1IGF0IDE1OjIyLCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91QGdtYWls
-LmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBKdW4gMTksIDIwMTUgYXQgMTo0MCBQTSwgQmVuIFNrZWdn
-cyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdyb3RlOgo+PiBPbiAxOSBKdW5lIDIwMTUgYXQgMDA6NDcs
-IEFsZXhhbmRyZSBDb3VyYm90IDxnbnVyb3VAZ21haWwuY29tPiB3cm90ZToKPj4+IE5WSURJQSB3
-aWxsIG9mZmljaWFsbHkgc3RhcnQgcHJvdmlkaW5nIHNpZ25lZCBmaXJtd2FyZXMgdGhyb3VnaAo+
-Pj4gbGludXgtZmlybXdhcmUuIENoYW5nZSB0aGUgR1IgZmlybXdhcmUgbG9va3VwIGZ1bmN0aW9u
-IHRvIGxvb2sgdGhlbSB1cAo+Pj4gaW4gYWRkaXRpb24gdG8gdGhlIGV4dHJhY3RlZCBmaXJtd2Fy
-ZXMuCj4+IEkgd29uZGVyIGlmIHBlcmhhcHMgd2Ugc2hvdWxkIGp1c3QgcmVwbGFjZSB0aGUgbWVj
-aGFuaXNtIGVudGlyZWx5LCBhbmQKPj4gcmVtb3ZlIHRoZSBzdXBwb3J0IGZvciBub3V2ZWF1L2Z1
-YyogYXMgd2UgYWRkICJvZmZpY2lhbCIgc3VwcG9ydCBmb3IKPj4gTlZJRElBJ3MgdWNvZGUuICBU
-aGUgZXhpc3RpbmcgY29kZSBpcyBhY3R1YWxseSBwYXJ0aWFsbHkgYnJva2VuCj4+IGFueXdheSwg
-YW5kIG1vc3RseSB3b3JrcyBieSBsdWNrIGFuZCB3YXMgaW50ZW5kZWQgYXMgYSBkZXZlbG9wbWVu
-dCBhaWQKPj4gLyB3b3JrYXJvdW5kIGFueXdheS4gIFRoZXJlIGFyZSBubyBjaGlwc2V0cyAoYXNp
-ZGUgZnJvbSBHTTJ4eC4uLikKPj4gd2hpY2ggd2UgZG9uJ3QgY3VycmVudGx5IHN1cHBvcnQgdXNp
-bmcgb3VyIG93biB1Y29kZSwgc28gdGhlIGltcGFjdCBvZgo+PiByZW1vdmluZyBpdCB3aWxsIGJl
-IHZlcnkgbWluaW1hbC4KPj4KPj4gVGhvdWdodHM/Cj4KPiBJJ20gYWxsIGZvciBtYWtpbmcgdGhp
-bmdzIHNpbXBsZXIsIGFuZCBpZiBzb21lb25lIG5lZWRzIHRvIHVzZSBhbgo+IGV4dGVybmFsIGZp
-cm13YXJlIGZvciBhIE5vdXZlYXUtc3VwcG9ydGVkIEdQVSB0aGV5IGNhbiBhbHdheXMgcHV0IGl0
-Cj4gdW5kZXIgdGhlIG52aWRpYS8gZmlybXdhcmUgZGlyZWN0b3J5LiBTbyBpZiB5b3UgYWdyZWUg
-d2l0aCBpdCBJIHdpbGwKPiByZW1vdmUgc3VwcG9ydCBmb3IgZmlybXdhcmVzIGluIG5vdXZlYXUv
-IGluIEdSLiBJIGFtIG5vdCBzdXJlIHdoZXRoZXIKPiB5b3VyIHN0YXRlbWVudCBhbHNvIGFwcGxp
-ZXMgdG8gb3RoZXIgZmlybXdhcmVzIChmYWxjb24sIHh0ZW5zYSk/CkknZCBzYXkgbGVhdmUgdGhl
-IG5vbi1nciBlbmdpbmVzIGZvciBub3csIGF0IGxlYXN0IHVudGlsIHdlIGtub3cgd2hhdApOVklE
-SUEgcGxhbnMgb24gZG9pbmcgd2l0aCBkR1BVIGZpcm13YXJlcy4KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1532439549==
+Content-Type: multipart/alternative; boundary="1434692070.b7ac2.26154"; charset="UTF-8"
+
+
+--1434692070.b7ac2.26154
+Date: Fri, 19 Jun 2015 05:34:30 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91025
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, there are two patches available at
+
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ca8fe8c9f37a56391fc83449af92088a2a38f3ea
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a182357ef44bef38f0d42e0934f9fbc401761e8d
+
+which add support for those 2 opcodes, based on my analysis of the assembly.
+Looking at other NV05 scripts, my decoding of it seems reasonable.
+
+Those patches won't apply directly to a kernel tree, but it should be
+moderately easy to figure out what file those patches apply to. Give them a
+shot.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434692070.b7ac2.26154
+Date: Fri, 19 Jun 2015 05:34:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, there are two patches available at
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ca8fe8c9f37a56391fc83449af92088a2a38f3ea">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=ca8fe8c9f37a56391fc83449af92088a2a38f3ea</a>
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a182357ef44bef38f0d42e0934f9fbc401761e8d">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a182357ef44bef38f0d42e0934f9fbc401761e8d</a>
+
+which add support for those 2 opcodes, based on my analysis of the assembly.
+Looking at other NV05 scripts, my decoding of it seems reasonable.
+
+Those patches won't apply directly to a kernel tree, but it should be
+moderately easy to figure out what file those patches apply to. Give them a
+shot.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434692070.b7ac2.26154--
+
+--===============1532439549==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1532439549==--
