@@ -1,64 +1,118 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH v3 2/2] nvc0: use NV_VRAM_DOMAIN() macro
-Date: Fri, 19 Jun 2015 09:55:20 -0400
-Message-ID: <CAKb7Uvgi9UH5A39g7hORv53mC7GZQvQK-GRFO2807VmMkWjzjQ@mail.gmail.com>
-References: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
- <1434708167-6244-3-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
+	TNT2 Pro]
+Date: Fri, 19 Jun 2015 15:21:37 +0000
+Message-ID: <bug-91025-8800-rSmiM5zODV@http.bugs.freedesktop.org/>
+References: <bug-91025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1434708167-6244-3-git-send-email-acourbot@nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Alexandre Courbot <gnurou@gmail.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1462085197=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdW4gMTksIDIwMTUgYXQgNjowMiBBTSwgQWxleGFuZHJlIENvdXJib3QgPGFjb3Vy
-Ym90QG52aWRpYS5jb20+IHdyb3RlOgo+IFVzZSB0aGUgbmV3bHktaW50cm9kdWNlZCBOVl9WUkFN
-X0RPTUFJTigpIG1hY3JvIHRvIHN1cHBvcnQgYWx0ZXJuYXRpdmUKPiBWUkFNIGRvbWFpbnMgZm9y
-IGNoaXBzIHRoYXQgZG8gbm90IGhhdmUgZGVkaWNhdGVkIHZpZGVvIG1lbW9yeS4KPgo+IFNpZ25l
-ZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgo+IC0tLQo+
-ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZmZXIuYyAgICAgICAgICAg
-fCAgNiArKy0tLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9taXB0
-cmVlLmMgICAgICAgIHwgIDIgKy0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAv
-bnZjMF9jb21wdXRlLmMgICAgICAgIHwgIDIgKy0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252YzAvbnZjMF9jb250ZXh0LmMgICAgICAgIHwgIDQgKystLQo+ICBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX21pcHRyZWUuYyAgICAgICAgfCAgMiArLQo+ICBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYyAgICAgICAgfCAgOCAr
-KysrLS0tLQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5j
-ICAgICAgICAgfCAxNyArKysrKysrKysrKy0tLS0tLQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jICAgfCAgMiArLQo+ICBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N0YXRlX3ZhbGlkYXRlLmMgfCAgMiArLQo+ICBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3RleC5jICAgICAgICAgICAgfCAgMiAr
-LQo+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmU0X2NvbXB1dGUuYyAgICAg
-ICAgfCAgMiArLQo+ICAxMSBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCAyMyBkZWxl
-dGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91
-dmVhdV9idWZmZXIuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2J1ZmZl
-ci5jCj4gaW5kZXggMzJmYTY1YzhhNTFjLi5iYjc2NzZjZmZiYzAgMTAwNjQ0Cj4gLS0tIGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKPiArKysgYi9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZmZXIuYwo+IEBAIC02NTgsMTMgKzY1OCwx
-MSBAQCBub3V2ZWF1X2J1ZmZlcl9jcmVhdGUoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLAo+
-ICAgICAgICBzd2l0Y2ggKGJ1ZmZlci0+YmFzZS51c2FnZSkgewo+ICAgICAgICBjYXNlIFBJUEVf
-VVNBR0VfREVGQVVMVDoKPiAgICAgICAgY2FzZSBQSVBFX1VTQUdFX0lNTVVUQUJMRToKPiAtICAg
-ICAgICAgYnVmZmVyLT5kb21haW4gPSBOT1VWRUFVX0JPX1ZSQU07Cj4gLSAgICAgICAgIGJyZWFr
-Owo+ICAgICAgICBjYXNlIFBJUEVfVVNBR0VfRFlOQU1JQzoKPiAgICAgICAgICAgLyogRm9yIG1v
-c3QgYXBwcywgd2UnZCBoYXZlIHRvIGRvIHN0YWdpbmcgdHJhbnNmZXJzIHRvIGF2b2lkIHN5bmMK
-PiAgICAgICAgICAgICogd2l0aCB0aGlzIHVzYWdlLCBhbmQgR0FSVCAtPiBHQVJUIGNvcGllcyB3
-b3VsZCBiZSBzdWJvcHRpbWFsLgo+ICAgICAgICAgICAgKi8KClRoaXMgY29tbWVudCBvbmx5IGFw
-cGxpZXMgdG8gVVNBR0VfRFlOQU1JQy4gV2l0aCB0aGUgcmVtb3ZhbCBvZiB0aGUKaHVuayBhYm92
-ZSwgdGhhdCBtYWtlcyBpdCBzZWVtIGxpa2UgaXQgYXBwbGllcyB0byBhbGwgMy4gSnVzdCBrZWVw
-CmJvdGggaHVua3MgYW5kIHVwZGF0ZSBib3RoIG9mIHRoZW0uCgpPdGhlciB0aGFuIHRoYXQgdGhp
-cyBwYXRjaCBzZWVtcyBzdHJhaWdodGZvcndhcmQgZW5vdWdoLCB3aXRoIHRoZQphYm92ZSBmaXhl
-ZCwgdGhlIHNlcmllcyBpcwoKUmV2aWV3ZWQtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
-bWl0LmVkdT4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-bWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1462085197==
+Content-Type: multipart/alternative; boundary="1434727297.0d8e872.21064"; charset="UTF-8"
+
+
+--1434727297.0d8e872.21064
+Date: Fri, 19 Jun 2015 15:21:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91025
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to anonymissimus from comment #5)
+> Sorry, I only know how to apply git c source code patches onto a git
+> repository, not a Linux OS.
+
+What is linux, but a git repository :) Anyways, if you're not comfortable
+building your own kernel, I guess you'll have to wait until these patches hit
+mainline and make it into pre-built kernels.
+
+I didn't mark them for backporting since I didn't have a positive test result,
+but if you can test a kernel once these make it upstream (for linux kernel 4.2
+I'd guess), we can then mark it for backports.
+
+I can also give you a modified vbios image that uses other opcodes to achieve
+the same results if you like. You'd have to stick it in your initrd and add a
+kernel parameter to read from it instead of from the GPU. Let me know if you're
+interested.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434727297.0d8e872.21064
+Date: Fri, 19 Jun 2015 15:21:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to anonymissimus from <a href="show_bug.cgi?id=91025#c5">comment #5</a>)
+<span class="quote">&gt; Sorry, I only know how to apply git c source code patches onto a git
+&gt; repository, not a Linux OS.</span >
+
+What is linux, but a git repository :) Anyways, if you're not comfortable
+building your own kernel, I guess you'll have to wait until these patches hit
+mainline and make it into pre-built kernels.
+
+I didn't mark them for backporting since I didn't have a positive test result,
+but if you can test a kernel once these make it upstream (for linux kernel 4.2
+I'd guess), we can then mark it for backports.
+
+I can also give you a modified vbios image that uses other opcodes to achieve
+the same results if you like. You'd have to stick it in your initrd and add a
+kernel parameter to read from it instead of from the GPU. Let me know if you're
+interested.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434727297.0d8e872.21064--
+
+--===============1462085197==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1462085197==--
