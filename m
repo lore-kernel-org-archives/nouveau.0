@@ -1,53 +1,38 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] bios: add 0x59 and 0x5a opcodes
-Date: Thu, 18 Jun 2015 23:59:06 -0400
-Message-ID: <1434686346-7236-1-git-send-email-imirkin@alum.mit.edu>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [Nouveau] [PATCH 1/6] gr: support for NVIDIA-provided firmwares
+Date: Fri, 19 Jun 2015 13:04:24 +0900
+Message-ID: <CAAVeFuLsHx3dF-HOLbDwDwQg8EboggC6zusxWtsPdn-b1KJhzQ@mail.gmail.com>
+References: <1434638872-29061-1-git-send-email-acourbot@nvidia.com>
+ <1434638872-29061-2-git-send-email-acourbot@nvidia.com>
+ <CAKb7UvhtGhpFBeFerJd8KJyKJdgKTGNvnqTCWCdmQ0OoMwpcew@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvhtGhpFBeFerJd8KJyKJdgKTGNvnqTCWCdmQ0OoMwpcew@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Terje Bergstrom <tbergstrom@nvidia.com>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Allen Martin <AMartin@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>, Ken Adams <KAdams@nvidia.com>, Andy Ritger <aritger@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-T3Bjb2RlIDB4NWEgaXMgYSByZWdpc3RlciB3cml0ZSBmb3IgZGF0YSBsb29rZWQgdXAgZnJvbSBh
-bm90aGVyIHBhcnQgb2YKdGhlIFZCSU9TIGltYWdlLiAweDU5IGlzIGEgbW9yZSBjb21wbGV4IG9w
-Y29kZSwgYnV0IHdlIG1heSBhcyB3ZWxsCnJlY29nbml6ZSBpdC4gVGhlc2Ugb2NjdXIgb24gYSBz
-aW5nbGUga25vd24gaW5zdGFuY2Ugb2YgUml2YSBUTlQyCmhhcmR3YXJlLgoKQnVnemlsbGE6IGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTkxMDI1ClNpZ25lZC1v
-ZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KLS0tCiBkcm0vbm91dmVh
-dS9udmttL3N1YmRldi9iaW9zL2luaXQuYyB8IDI0ICsrKysrKysrKysrKysrKysrKysrKysrKwog
-MSBmaWxlIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9iaW9zL2luaXQuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-aW5pdC5jCmluZGV4IGY2N2NkYWUuLjFmNTkwZjggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2Jpb3MvaW5pdC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-aW5pdC5jCkBAIC01NzcsNiArNTc3LDkgQEAgaW5pdF9yZXNlcnZlZChzdHJ1Y3QgbnZiaW9zX2lu
-aXQgKmluaXQpCiAJdTggbGVuZ3RoLCBpOwogCiAJc3dpdGNoIChvcGNvZGUpIHsKKwljYXNlIDB4
-NTk6CisJCWxlbmd0aCA9IDc7CisJCWJyZWFrOwogCWNhc2UgMHhhYToKIAkJbGVuZ3RoID0gNDsK
-IAkJYnJlYWs7CkBAIC0xMjg1LDYgKzEyODgsMjUgQEAgaW5pdF96bV9yZWdfc2VxdWVuY2Uoc3Ry
-dWN0IG52Ymlvc19pbml0ICppbml0KQogfQogCiAvKioKKyAqIElOSVRfWk1fUkVHX0lORElSRUNU
-IC0gb3Bjb2RlIDB4NWEKKyAqCisgKi8KK3N0YXRpYyB2b2lkCitpbml0X3ptX3JlZ19pbmRpcmVj
-dChzdHJ1Y3QgbnZiaW9zX2luaXQgKmluaXQpCit7CisJc3RydWN0IG52a21fYmlvcyAqYmlvcyA9
-IGluaXQtPmJpb3M7CisJdTMyICByZWcgPSBudl9ybzMyKGJpb3MsIGluaXQtPm9mZnNldCArIDEp
-OworCXUxNiBhZGRyID0gbnZfcm8xNihiaW9zLCBpbml0LT5vZmZzZXQgKyA1KTsKKwl1MzIgZGF0
-YSA9IG52X3JvMzIoYmlvcywgYWRkcik7CisKKwl0cmFjZSgiWk1fUkVHX0lORElSRUNUXHRSWzB4
-JTA2eF0gPSBWQklPU1sweCUwNHhdID0gMHglMDh4XG4iLAorCSAgICAgIHJlZywgYWRkciwgZGF0
-YSk7CisJaW5pdC0+b2Zmc2V0ICs9IDc7CisKKwlpbml0X3dyMzIoaW5pdCwgYWRkciwgZGF0YSk7
-Cit9CisKKy8qKgogICogSU5JVF9TVUJfRElSRUNUIC0gb3Bjb2RlIDB4NWIKICAqCiAgKi8KQEAg
-LTIxNDUsNiArMjE2Nyw4IEBAIHN0YXRpYyBzdHJ1Y3QgbnZiaW9zX2luaXRfb3Bjb2RlIHsKIAlb
-MHg1Nl0gPSB7IGluaXRfY29uZGl0aW9uX3RpbWUgfSwKIAlbMHg1N10gPSB7IGluaXRfbHRpbWUg
-fSwKIAlbMHg1OF0gPSB7IGluaXRfem1fcmVnX3NlcXVlbmNlIH0sCisJWzB4NTldID0geyBpbml0
-X3Jlc2VydmVkIH0sCisJWzB4NWFdID0geyBpbml0X3ptX3JlZ19pbmRpcmVjdCB9LAogCVsweDVi
-XSA9IHsgaW5pdF9zdWJfZGlyZWN0IH0sCiAJWzB4NWNdID0geyBpbml0X2p1bXAgfSwKIAlbMHg1
-ZV0gPSB7IGluaXRfaTJjX2lmIH0sCi0tIAoyLjMuNgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+T24gRnJpLCBKdW4gMTksIDIwMTUgYXQgMTI6NTcgQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
+dW0ubWl0LmVkdT4gd3JvdGU6Cj4gV2h5IGRpZCB5b3UgY2hhbmdlIHJlcXVlc3RfZmlybXdhcmUg
+dG8gcmVxdWVzdF9maXJtd2FyZV9kaXJlY3Q/CgpyZXF1ZXN0X2Zpcm13YXJlKCkgb3V0cHV0cyBh
+biBlcnJvciBtZXNzYWdlIGlmIHRoZSBmaXJtd2FyZSBmaWxlIGRvZXMKbm90IGV4aXN0LCB3aGVy
+ZWFzIHJlcXVlc3RfZmlybXdhcmVfZGlyZWN0KCkgZG9lc24ndC4gU2luY2UgdGhlCmZpcm13YXJl
+IGZpbGUgY2FuIGJlIGluIG9uZSBvZiB0d28gbG9jYXRpb25zLCB0aGF0IHNlZW1zIHRvIGJlIHRo
+ZQptb3N0IGFwcHJvcHJpYXRlIGJlaGF2aW9yLgoKSG93ZXZlciwgcmVxdWVzdF9maXJtd2FyZV9k
+aXJlY3QoKSBhbHNvIGRvZXMgbm90IGludm9rZSB0aGUgdXNlcnNwYWNlCmhlbHBlci4gSW4gdGhl
+IGNhc2Ugb2YgTm91dmVhdSBJIGRvbid0IGJlbGlldmUgd2UgbmVlZCB0aGlzLCBidXQgaWYgSQpv
+dmVybG9va2VkIHNvbWV0aGluZyBsZXQgbWUga25vdyBhbmQgSSB3aWxsIHRoaW5rIG9mIHNvbWV0
+aGluZyBlbHNlLgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
