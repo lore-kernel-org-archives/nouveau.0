@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] bios: add opcodes 0x73 and 0x77
-Date: Fri, 19 Jun 2015 02:51:23 -0400
-Message-ID: <1434696683-3100-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Fri, 19 Jun 2015 08:17:41 +0000
+Message-ID: <bug-90871-8800-wUAD93hsia@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1941761812=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,39 +19,83 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Tm8ga25vd24gVkJJT1NlcyB1c2UgdGhlc2UsIGJ1dCB0aGV5IGFyZSBwcmVzZW50IGluIHRoZSBh
-Y3R1YWwgVkJJT1MKdGFibGUgcGFyc2luZyBsb2dpYy4gTm8gaGFybSBpbiBhZGRpbmcgdGhlc2Ug
-dG9vLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgot
-LS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jIHwgMzcgKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDM3IGluc2VydGlvbnMo
-KykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL2luaXQuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jCmluZGV4IGY0NjExZTMuLjhlNWY2Y2Ug
-MTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jCisrKyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvaW5pdC5jCkBAIC0xNzQyLDYgKzE3NDIsMjQgQEAg
-aW5pdF9yZXN1bWUoc3RydWN0IG52Ymlvc19pbml0ICppbml0KQogfQogCiAvKioKKyAqIElOSVRf
-U1RSQVBfQ09ORElUSU9OIC0gb3Bjb2RlIDB4NzMKKyAqCisgKi8KK3N0YXRpYyB2b2lkCitpbml0
-X3N0cmFwX2NvbmRpdGlvbihzdHJ1Y3QgbnZiaW9zX2luaXQgKmluaXQpCit7CisJc3RydWN0IG52
-a21fYmlvcyAqYmlvcyA9IGluaXQtPmJpb3M7CisJdTMyIG1hc2sgPSBudl9ybzMyKGJpb3MsIGlu
-aXQtPm9mZnNldCArIDEpOworCXUzMiB2YWx1ZSA9IG52X3JvMzIoYmlvcywgaW5pdC0+b2Zmc2V0
-ICsgNSk7CisKKwl0cmFjZSgiU1RSQVBfQ09ORElUSU9OXHQoUlsweDEwMTAwMF0gJiAweCUwOHgp
-ID09IDB4JTA4eFxuIiwgbWFzaywgdmFsdWUpOworCWluaXQtPm9mZnNldCArPSA5OworCisJaWYg
-KChpbml0X3JkMzIoaW5pdCwgMHgxMDEwMDApICYgbWFzaykgIT0gdmFsdWUpCisJCWluaXRfZXhl
-Y19zZXQoaW5pdCwgZmFsc2UpOworfQorCisvKioKICAqIElOSVRfVElNRSAtIG9wY29kZSAweDc0
-CiAgKgogICovCkBAIC0xNzk3LDYgKzE4MTUsMjMgQEAgaW5pdF9pb19jb25kaXRpb24oc3RydWN0
-IG52Ymlvc19pbml0ICppbml0KQogfQogCiAvKioKKyAqIElOSVRfWk1fUkVHMTYgLSBvcGNvZGUg
-MHg3NworICoKKyAqLworc3RhdGljIHZvaWQKK2luaXRfem1fcmVnMTYoc3RydWN0IG52Ymlvc19p
-bml0ICppbml0KQoreworCXN0cnVjdCBudmttX2Jpb3MgKmJpb3MgPSBpbml0LT5iaW9zOworCXUz
-MiBhZGRyID0gbnZfcm8zMihiaW9zLCBpbml0LT5vZmZzZXQgKyAxKTsKKwl1MTYgZGF0YSA9IG52
-X3JvMTYoYmlvcywgaW5pdC0+b2Zmc2V0ICsgNSk7CisKKwl0cmFjZSgiWk1fUkVHXHRSWzB4JTA2
-eF0gPSAweCUwNHhcbiIsIGFkZHIsIGRhdGEpOworCWluaXQtPm9mZnNldCArPSA3OworCisJaW5p
-dF93cjMyKGluaXQsIGFkZHIsIGRhdGEpOworfQorCisvKioKICAqIElOSVRfSU5ERVhfSU8gLSBv
-cGNvZGUgMHg3OAogICoKICAqLwpAQCAtMjIwMiw5ICsyMjM3LDExIEBAIHN0YXRpYyBzdHJ1Y3Qg
-bnZiaW9zX2luaXRfb3Bjb2RlIHsKIAlbMHg2Zl0gPSB7IGluaXRfbWFjcm8gfSwKIAlbMHg3MV0g
-PSB7IGluaXRfZG9uZSB9LAogCVsweDcyXSA9IHsgaW5pdF9yZXN1bWUgfSwKKwlbMHg3M10gPSB7
-IGluaXRfc3RyYXBfY29uZGl0aW9uIH0sCiAJWzB4NzRdID0geyBpbml0X3RpbWUgfSwKIAlbMHg3
-NV0gPSB7IGluaXRfY29uZGl0aW9uIH0sCiAJWzB4NzZdID0geyBpbml0X2lvX2NvbmRpdGlvbiB9
-LAorCVsweDc3XSA9IHsgaW5pdF96bV9yZWcxNiB9LAogCVsweDc4XSA9IHsgaW5pdF9pbmRleF9p
-byB9LAogCVsweDc5XSA9IHsgaW5pdF9wbGwgfSwKIAlbMHg3YV0gPSB7IGluaXRfem1fcmVnIH0s
-Ci0tIAoyLjMuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1941761812==
+Content-Type: multipart/alternative; boundary="1434701860.b656E70.2166"; charset="UTF-8"
+
+
+--1434701860.b656E70.2166
+Date: Fri, 19 Jun 2015 08:17:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #14 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+(In reply to poma from comment #13)
+
+I am not sure xfwm4 logs will help much here.
+
+What about the test program I posted in comment 11, it does the same as xfwm4
+but in a much shorter/simpler code so if you can reproduce with that, this may
+help investigating more than just the xfwm4 logs.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1434701860.b656E70.2166
+Date: Fri, 19 Jun 2015 08:17:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c13">comment #13</a>)
+
+I am not sure xfwm4 logs will help much here.
+
+What about the test program I posted in <a href="show_bug.cgi?id=90871#c11">comment 11</a>, it does the same as xfwm4
+but in a much shorter/simpler code so if you can reproduce with that, this may
+help investigating more than just the xfwm4 logs.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434701860.b656E70.2166--
+
+--===============1941761812==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1941761812==--
