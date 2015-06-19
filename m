@@ -1,15 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v3 2/2] nvc0: use NV_VRAM_DOMAIN() macro
-Date: Sat, 20 Jun 2015 01:28:12 +0900
-Message-ID: <CAAVeFuLoXZv+6GV0gGeZJVYJJwYntFGJ0dzqhS2xEdvj-cDP8g@mail.gmail.com>
-References: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
- <1434708167-6244-3-git-send-email-acourbot@nvidia.com>
- <CAKb7Uvgi9UH5A39g7hORv53mC7GZQvQK-GRFO2807VmMkWjzjQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
+	TNT2 Pro]
+Date: Fri, 19 Jun 2015 16:45:04 +0000
+Message-ID: <bug-91025-8800-vMm6N0fq3V@http.bugs.freedesktop.org/>
+References: <bug-91025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1991215013=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvgi9UH5A39g7hORv53mC7GZQvQK-GRFO2807VmMkWjzjQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,50 +17,97 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBKdW4gMTksIDIwMTUgYXQgMTA6NTUgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4gd3JvdGU6Cj4gT24gRnJpLCBKdW4gMTksIDIwMTUgYXQgNjowMiBBTSwgQWxl
-eGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+IHdyb3RlOgo+PiBVc2UgdGhlIG5l
-d2x5LWludHJvZHVjZWQgTlZfVlJBTV9ET01BSU4oKSBtYWNybyB0byBzdXBwb3J0IGFsdGVybmF0
-aXZlCj4+IFZSQU0gZG9tYWlucyBmb3IgY2hpcHMgdGhhdCBkbyBub3QgaGF2ZSBkZWRpY2F0ZWQg
-dmlkZW8gbWVtb3J5Lgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNv
-dXJib3RAbnZpZGlhLmNvbT4KPj4gLS0tCj4+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bm91dmVhdV9idWZmZXIuYyAgICAgICAgICAgfCAgNiArKy0tLS0KPj4gIHNyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udjUwL252NTBfbWlwdHJlZS5jICAgICAgICB8ICAyICstCj4+ICBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX2NvbXB1dGUuYyAgICAgICAgfCAgMiAr
-LQo+PiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9jb250ZXh0LmMgICAg
-ICAgIHwgIDQgKystLQo+PiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9t
-aXB0cmVlLmMgICAgICAgIHwgIDIgKy0KPj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-dmMwL252YzBfcHJvZ3JhbS5jICAgICAgICB8ICA4ICsrKystLS0tCj4+ICBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jICAgICAgICAgfCAxNyArKysrKysrKysr
-Ky0tLS0tLQo+PiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zaGFkZXJf
-c3RhdGUuYyAgIHwgIDIgKy0KPj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc3RhdGVfdmFsaWRhdGUuYyB8ICAyICstCj4+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnZjMC9udmMwX3RleC5jICAgICAgICAgICAgfCAgMiArLQo+PiAgc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252YzAvbnZlNF9jb21wdXRlLmMgICAgICAgIHwgIDIgKy0KPj4gIDExIGZp
-bGVzIGNoYW5nZWQsIDI2IGluc2VydGlvbnMoKyksIDIzIGRlbGV0aW9ucygtKQo+Pgo+PiBkaWZm
-IC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9idWZmZXIuYwo+PiBpbmRleCAzMmZh
-NjVjOGE1MWMuLmJiNzY3NmNmZmJjMCAxMDA2NDQKPj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKPj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKPj4gQEAgLTY1OCwxMyArNjU4LDExIEBAIG5vdXZlYXVf
-YnVmZmVyX2NyZWF0ZShzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sCj4+ICAgICAgICBzd2l0
-Y2ggKGJ1ZmZlci0+YmFzZS51c2FnZSkgewo+PiAgICAgICAgY2FzZSBQSVBFX1VTQUdFX0RFRkFV
-TFQ6Cj4+ICAgICAgICBjYXNlIFBJUEVfVVNBR0VfSU1NVVRBQkxFOgo+PiAtICAgICAgICAgYnVm
-ZmVyLT5kb21haW4gPSBOT1VWRUFVX0JPX1ZSQU07Cj4+IC0gICAgICAgICBicmVhazsKPj4gICAg
-ICAgIGNhc2UgUElQRV9VU0FHRV9EWU5BTUlDOgo+PiAgICAgICAgICAgLyogRm9yIG1vc3QgYXBw
-cywgd2UnZCBoYXZlIHRvIGRvIHN0YWdpbmcgdHJhbnNmZXJzIHRvIGF2b2lkIHN5bmMKPj4gICAg
-ICAgICAgICAqIHdpdGggdGhpcyB1c2FnZSwgYW5kIEdBUlQgLT4gR0FSVCBjb3BpZXMgd291bGQg
-YmUgc3Vib3B0aW1hbC4KPj4gICAgICAgICAgICAqLwo+Cj4gVGhpcyBjb21tZW50IG9ubHkgYXBw
-bGllcyB0byBVU0FHRV9EWU5BTUlDLiBXaXRoIHRoZSByZW1vdmFsIG9mIHRoZQo+IGh1bmsgYWJv
-dmUsIHRoYXQgbWFrZXMgaXQgc2VlbSBsaWtlIGl0IGFwcGxpZXMgdG8gYWxsIDMuIEp1c3Qga2Vl
-cAo+IGJvdGggaHVua3MgYW5kIHVwZGF0ZSBib3RoIG9mIHRoZW0uCj4KPiBPdGhlciB0aGFuIHRo
-YXQgdGhpcyBwYXRjaCBzZWVtcyBzdHJhaWdodGZvcndhcmQgZW5vdWdoLCB3aXRoIHRoZQo+IGFi
-b3ZlIGZpeGVkLCB0aGUgc2VyaWVzIGlzCj4KPiBSZXZpZXdlZC1ieTogSWxpYSBNaXJraW4gPGlt
-aXJraW5AYWx1bS5taXQuZWR1PgoKV2lsbCBmaXggdGhhdCBhbmQgcmVzZW5kLiBUaGFua3MgZm9y
-IHRoZSByZXZpZXchCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1991215013==
+Content-Type: multipart/alternative; boundary="1434732304.5567c42.18314"; charset="UTF-8"
+
+
+--1434732304.5567c42.18314
+Date: Fri, 19 Jun 2015 16:45:04 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91025
+
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Created attachment 116600
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116600&action=edit
+"fixed" vbios
+
+OK, so I've manually touched up the vbios. I had to do one slightly dodgy
+thing, but... it should probably be fine. In any case, the vbios is only
+executed on resume (or if it's a secondary GPU), so even if I messed it up,
+should be mostly fine.
+
+In order to use it, put it in /lib/firmware (and make sure it's accessible when
+nouveau loads, so if it's a module loaded from initrd, it must be in the
+initrd), and then boot with
+
+nouveau.config=NvBios=vbios-bug-91025-fixed.rom
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434732304.5567c42.18314
+Date: Fri, 19 Jun 2015 16:45:04 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116600" name="attach_116600" title="&quot;fixed&quot; vbios">attachment 116600</a> <a href="attachment.cgi?id=116600&amp;action=edit" title="&quot;fixed&quot; vbios">[details]</a></span>
+&quot;fixed&quot; vbios
+
+OK, so I've manually touched up the vbios. I had to do one slightly dodgy
+thing, but... it should probably be fine. In any case, the vbios is only
+executed on resume (or if it's a secondary GPU), so even if I messed it up,
+should be mostly fine.
+
+In order to use it, put it in /lib/firmware (and make sure it's accessible when
+nouveau loads, so if it's a module loaded from initrd, it must be in the
+initrd), and then boot with
+
+nouveau.config=NvBios=vbios-bug-91025-fixed.rom</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434732304.5567c42.18314--
+
+--===============1991215013==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1991215013==--
