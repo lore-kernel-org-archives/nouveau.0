@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
-	TNT2 Pro]
-Date: Fri, 19 Jun 2015 15:21:37 +0000
-Message-ID: <bug-91025-8800-rSmiM5zODV@http.bugs.freedesktop.org/>
-References: <bug-91025-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] pm: expose name of domains
+Date: Fri, 19 Jun 2015 17:36:37 +0200
+Message-ID: <1434728198-873-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1462085197=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,99 +18,28 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1462085197==
-Content-Type: multipart/alternative; boundary="1434727297.0d8e872.21064"; charset="UTF-8"
-
-
---1434727297.0d8e872.21064
-Date: Fri, 19 Jun 2015 15:21:37 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91025
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to anonymissimus from comment #5)
-> Sorry, I only know how to apply git c source code patches onto a git
-> repository, not a Linux OS.
-
-What is linux, but a git repository :) Anyways, if you're not comfortable
-building your own kernel, I guess you'll have to wait until these patches hit
-mainline and make it into pre-built kernels.
-
-I didn't mark them for backporting since I didn't have a positive test result,
-but if you can test a kernel once these make it upstream (for linux kernel 4.2
-I'd guess), we can then mark it for backports.
-
-I can also give you a modified vbios image that uses other opcodes to achieve
-the same results if you like. You'd have to stick it in your initrd and add a
-kernel parameter to read from it instead of from the GPU. Let me know if you're
-interested.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1434727297.0d8e872.21064
-Date: Fri, 19 Jun 2015 15:21:37 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to anonymissimus from <a href="show_bug.cgi?id=91025#c5">comment #5</a>)
-<span class="quote">&gt; Sorry, I only know how to apply git c source code patches onto a git
-&gt; repository, not a Linux OS.</span >
-
-What is linux, but a git repository :) Anyways, if you're not comfortable
-building your own kernel, I guess you'll have to wait until these patches hit
-mainline and make it into pre-built kernels.
-
-I didn't mark them for backporting since I didn't have a positive test result,
-but if you can test a kernel once these make it upstream (for linux kernel 4.2
-I'd guess), we can then mark it for backports.
-
-I can also give you a modified vbios image that uses other opcodes to achieve
-the same results if you like. You'd have to stick it in your initrd and add a
-kernel parameter to read from it instead of from the GPU. Let me know if you're
-interested.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434727297.0d8e872.21064--
-
---===============1462085197==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1462085197==--
+VGhpcyBpcyBnb2luZyB0byBiZSB2ZXJ5IHVzZWZ1bCBmb3IgR0YxMDArIGJlY2F1c2UgZWFjaCBH
+UEMgY2FuCmhhdmUgaXRzIG93biBkb21haW4gb2YgY291bnRlcnMuCgpTaWduZWQtb2ZmLWJ5OiBT
+YW11ZWwgUGl0b2lzZXQgPHNhbXVlbC5waXRvaXNldEBnbWFpbC5jb20+Ci0tLQogZHJtL25vdXZl
+YXUvaW5jbHVkZS9udmlmL2NsYXNzLmggIHwgMSArCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9w
+bS9iYXNlLmMgfCAxICsKIDIgZmlsZXMgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCgpkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmlmL2NsYXNzLmggYi9kcm0vbm91dmVhdS9pbmNs
+dWRlL252aWYvY2xhc3MuaAppbmRleCAzYjdmNDlmLi41OWQ1OTgzIDEwMDY0NAotLS0gYS9kcm0v
+bm91dmVhdS9pbmNsdWRlL252aWYvY2xhc3MuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252
+aWYvY2xhc3MuaApAQCAtMjYyLDYgKzI2Miw3IEBAIHN0cnVjdCBudmlmX3BlcmZtb25fcXVlcnlf
+ZG9tYWluX3YwIHsKIAlfX3U4ICBpdGVyOwogCV9fdTE2IHNpZ25hbF9ucjsKIAlfX3U4ICBwYWQw
+NVsyXTsKKwljaGFyICBuYW1lWzY0XTsKIH07CiAKIHN0cnVjdCBudmlmX3BlcmZtb25fcXVlcnlf
+c2lnbmFsX3YwIHsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2Jhc2Uu
+YyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2Jhc2UuYwppbmRleCA3ODY2ZTIyLi45NDk5
+MWQ2IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMKKysrIGIv
+ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vYmFzZS5jCkBAIC00NTQsNiArNDU0LDcgQEAgbnZr
+bV9wZXJmbW9uX210aGRfcXVlcnlfZG9tYWluKHN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0LCB2
+b2lkICpkYXRhLCB1MzIgc2l6ZSkKIAogCQlhcmdzLT52MC5pZCAgICAgICAgID0gZGk7CiAJCWFy
+Z3MtPnYwLnNpZ25hbF9uciAgPSBudmttX3BlcmZkb21fY291bnRfcGVyZnNpZyhkb20pOworCQlz
+dHJuY3B5KGFyZ3MtPnYwLm5hbWUsIGRvbS0+bmFtZSwgc2l6ZW9mKGFyZ3MtPnYwLm5hbWUpKTsK
+IAogCQkvKiBDdXJyZW50bHkgb25seSBnbG9iYWwgY291bnRlcnMgKFBDT1VOVEVSKSBhcmUgaW1w
+bGVtZW50ZWQKIAkJICogYnV0IHRoaXMgd2lsbCBiZSBkaWZmZXJlbnQgZm9yIGxvY2FsIGNvdW50
+ZXJzIChNUCkuICovCi0tIAoyLjQuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
