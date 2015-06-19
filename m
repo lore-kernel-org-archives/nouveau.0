@@ -1,101 +1,53 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Fri, 19 Jun 2015 08:17:41 +0000
-Message-ID: <bug-90871-8800-wUAD93hsia@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot@nvidia.com>
+Subject: [PATCH] nvc0: create screen fence objects with coherent
+	attribute
+Date: Fri, 19 Jun 2015 17:56:04 +0900
+Message-ID: <1434704164-10533-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1941761812=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>, Ben Skeggs <bskeggs@redhat.com>, nouveau@lists.freedesktop.org
+Cc: mesa-dev@lists.freedesktop.org, gnurou@gmail.com
 List-Id: nouveau.vger.kernel.org
 
-
---===============1941761812==
-Content-Type: multipart/alternative; boundary="1434701860.b656E70.2166"; charset="UTF-8"
-
-
---1434701860.b656E70.2166
-Date: Fri, 19 Jun 2015 08:17:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #14 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-(In reply to poma from comment #13)
-
-I am not sure xfwm4 logs will help much here.
-
-What about the test program I posted in comment 11, it does the same as xfwm4
-but in a much shorter/simpler code so if you can reproduce with that, this may
-help investigating more than just the xfwm4 logs.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1434701860.b656E70.2166
-Date: Fri, 19 Jun 2015 08:17:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
-</span></b>
-        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c13">comment #13</a>)
-
-I am not sure xfwm4 logs will help much here.
-
-What about the test program I posted in <a href="show_bug.cgi?id=90871#c11">comment 11</a>, it does the same as xfwm4
-but in a much shorter/simpler code so if you can reproduce with that, this may
-help investigating more than just the xfwm4 logs.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434701860.b656E70.2166--
-
---===============1941761812==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1941761812==--
+VGhpcyBpcyByZXF1aXJlZCBvbiBub24tY29oZXJlbnQgYXJjaGl0ZWN0dXJlcyB0byBlbnN1cmUg
+dGhlIHZhbHVlIG9mCnRoZSBmZW5jZSBpcyBjb3JyZWN0IGF0IGFsbCB0aW1lcy4gRmFpbHVyZSB0
+byBkbyB0aGlzIHJlc3VsdHMgaW4gdGhlCmRpc3BsYXkgZnJlZXppbmcgZm9yIGEgZmV3IHNlY29u
+ZHMgZXZlcnkgbm93IGFuZCB0aGVuIG9uIFRlZ3JhLgoKVGhlIE5PVVZFQVVfQk9fQ09IRVJFTlQg
+aXMgYSBuby1vcCBmb3IgY29oZXJlbnQgYXJjaGl0ZWN0dXJlcywgc28gYmVoYXZpb3IKb24geDg2
+IHNob3VsZCBub3QgYmUgYWZmZWN0ZWQgYnkgdGhpcyBwYXRjaC4KClNpZ25lZC1vZmYtYnk6IEFs
+ZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIHNyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMgfCA4ICsrKysrKy0tCiAxIGZpbGUgY2hh
+bmdlZCwgNiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMgYi9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCmluZGV4IDU5MzZkMDVhNWI5My4uMzA3
+Y2Y1ZjljZDc1IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9u
+dmMwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
+c2NyZWVuLmMKQEAgLTYxMCw2ICs2MTAsNyBAQCBudmMwX3NjcmVlbl9jcmVhdGUoc3RydWN0IG5v
+dXZlYXVfZGV2aWNlICpkZXYpCiAgICBzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmICpwdXNoOwogICAg
+dWludDY0X3QgdmFsdWU7CiAgICB1aW50MzJfdCBvYmpfY2xhc3M7CisgICB1aW50MzJfdCBmbGFn
+czsKICAgIGludCByZXQ7CiAgICB1bnNpZ25lZCBpOwogCkBAIC02NjAsOCArNjYxLDExIEBAIG52
+YzBfc2NyZWVuX2NyZWF0ZShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKICAgIHNjcmVlbi0+
+YmFzZS5iYXNlLmdldF92aWRlb19wYXJhbSA9IG5vdXZlYXVfdnAzX3NjcmVlbl9nZXRfdmlkZW9f
+cGFyYW07CiAgICBzY3JlZW4tPmJhc2UuYmFzZS5pc192aWRlb19mb3JtYXRfc3VwcG9ydGVkID0g
+bm91dmVhdV92cDNfc2NyZWVuX3ZpZGVvX3N1cHBvcnRlZDsKIAotICAgcmV0ID0gbm91dmVhdV9i
+b19uZXcoZGV2LCBOT1VWRUFVX0JPX0dBUlQgfCBOT1VWRUFVX0JPX01BUCwgMCwgNDA5NiwgTlVM
+TCwKLSAgICAgICAgICAgICAgICAgICAgICAgICZzY3JlZW4tPmZlbmNlLmJvKTsKKyAgIGZsYWdz
+ID0gTk9VVkVBVV9CT19HQVJUIHwgTk9VVkVBVV9CT19NQVA7CisgICBpZiAoZGV2LT5kcm1fdmVy
+c2lvbiA+PSAweDAxMDAwMjAyKQorICAgICAgZmxhZ3MgfD0gTk9VVkVBVV9CT19DT0hFUkVOVDsK
+KworICAgcmV0ID0gbm91dmVhdV9ib19uZXcoZGV2LCBmbGFncywgMCwgNDA5NiwgTlVMTCwgJnNj
+cmVlbi0+ZmVuY2UuYm8pOwogICAgaWYgKHJldCkKICAgICAgIGdvdG8gZmFpbDsKICAgIG5vdXZl
+YXVfYm9fbWFwKHNjcmVlbi0+ZmVuY2UuYm8sIDAsIE5VTEwpOwotLSAKMi40LjQKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcg
+bGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
