@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91037] desktop freezes shortly after boot with NV11
  [GeForce2 MX/MX 400]
-Date: Sat, 20 Jun 2015 12:46:08 +0000
-Message-ID: <bug-91037-8800-GpdxufsN5Q@http.bugs.freedesktop.org/>
+Date: Sat, 20 Jun 2015 14:20:58 +0000
+Message-ID: <bug-91037-8800-DZbcPC3H0N@http.bugs.freedesktop.org/>
 References: <bug-91037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1667788268=="
+Content-Type: multipart/mixed; boundary="===============1896186427=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91037-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1667788268==
-Content-Type: multipart/alternative; boundary="1434804368.b8b1A1.11931"; charset="UTF-8"
+--===============1896186427==
+Content-Type: multipart/alternative; boundary="1434810057.a4e61.12608"; charset="UTF-8"
 
 
---1434804368.b8b1A1.11931
-Date: Sat, 20 Jun 2015 12:46:08 +0000
+--1434810057.a4e61.12608
+Date: Sat, 20 Jun 2015 14:20:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91037
 
---- Comment #2 from anonymissimus-KvP5wT2u2U0@public.gmane.org ---
-Created attachment 116617
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116617&action=edit
-dmesg > kernel_log.txt from ctrl+alt+F2 console after UI hangs after startx
-command with systemrescuecd-x86-4.5.3
+--- Comment #3 from anonymissimus-KvP5wT2u2U0@public.gmane.org ---
+I tried to "momentarily fix" the problem by stopping/restarting X
 
-takes a little more window opening/closing until freeze
+/etc/init.d/lightdm stop
+/etc/init.d/lightdm start
+
+under debian; this only works for as long as the hang hasn't happened yet.
+Trying it afterwards takes me to a black screen when starting X. However,
+ctrl+alt+F1 did (I think) always work, with delay at least. Therefore, the hang
+level according to http://nouveau.freedesktop.org/wiki/HangDiagnosis/ is 2.
+Attaching the log from this session as well, supposedly the most useful one.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1434804368.b8b1A1.11931
-Date: Sat, 20 Jun 2015 12:46:08 +0000
+--1434810057.a4e61.12608
+Date: Sat, 20 Jun 2015 14:20:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - desktop freezes shortly after boot with NV11 [GeForce2 MX/MX 400]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91037#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91037#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - desktop freezes shortly after boot with NV11 [GeForce2 MX/MX 400]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91037">bug 91037</a>
               from <span class="vcard"><a class="email" href="mailto:anonymissimus&#64;arcor.de" title="anonymissimus&#64;arcor.de">anonymissimus&#64;arcor.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116617" name="attach_116617" title="dmesg &gt; kernel_log.txt from ctrl+alt+F2 console after UI hangs after startx command with systemrescuecd-x86-4.5.3">attachment 116617</a> <a href="attachment.cgi?id=116617&amp;action=edit" title="dmesg &gt; kernel_log.txt from ctrl+alt+F2 console after UI hangs after startx command with systemrescuecd-x86-4.5.3">[details]</a></span>
-dmesg &gt; kernel_log.txt from ctrl+alt+F2 console after UI hangs after startx
-command with systemrescuecd-x86-4.5.3
+        <pre>I tried to &quot;momentarily fix&quot; the problem by stopping/restarting X
 
-takes a little more window opening/closing until freeze</pre>
+/etc/init.d/lightdm stop
+/etc/init.d/lightdm start
+
+under debian; this only works for as long as the hang hasn't happened yet.
+Trying it afterwards takes me to a black screen when starting X. However,
+ctrl+alt+F1 did (I think) always work, with delay at least. Therefore, the hang
+level according to <a href="http://nouveau.freedesktop.org/wiki/HangDiagnosis/">http://nouveau.freedesktop.org/wiki/HangDiagnosis/</a> is 2.
+Attaching the log from this session as well, supposedly the most useful one.</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +91,9 @@ takes a little more window opening/closing until freeze</pre>
     </body>
 </html>
 
---1434804368.b8b1A1.11931--
+--1434810057.a4e61.12608--
 
---===============1667788268==
+--===============1896186427==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1667788268==--
+--===============1896186427==--
