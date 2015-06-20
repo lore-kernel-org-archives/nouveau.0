@@ -1,57 +1,228 @@
-From: Martin Peres <martin.peres@free.fr>
-Subject: Re: [Nouveau] [PATCH v3 0/2] nouveau: support for custom
- VRAM domains
-Date: Sat, 20 Jun 2015 13:17:38 +0300
-Message-ID: <55853DC2.7010003@free.fr>
-References: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
- <55840226.4090008@free.fr>
- <CACAvsv6s6yw-hT-ZE=qRn0YUPUHc9euC4bDHv5QjUpicS6CG5Q@mail.gmail.com>
- <CAAVeFuLGbGRoFNvR9qWb95t8ADTR=Qo8BfoByTKR76k+xKEEWQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91037] New: desktop freezes shortly after boot with
+ NV11 [GeForce2 MX/MX 400]
+Date: Sat, 20 Jun 2015 12:38:09 +0000
+Message-ID: <bug-91037-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAAVeFuLGbGRoFNvR9qWb95t8ADTR=Qo8BfoByTKR76k+xKEEWQ@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Alexandre Courbot <gnurou@gmail.com>, Ben Skeggs <skeggsb@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0072389184=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkvMDYvMjAxNSAxOToyNywgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4gT24gRnJpLCBK
-dW4gMTksIDIwMTUgYXQgOTozOCBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdy
-b3RlOgo+PiBPbiAxOSBKdW5lIDIwMTUgYXQgMjE6NTEsIE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
-cmVzQGZyZWUuZnI+IHdyb3RlOgo+Pj4gT24gMTkvMDYvMjAxNSAxMzowMiwgQWxleGFuZHJlIENv
-dXJib3Qgd3JvdGU6Cj4+Pj4gTmV3IHJldmlzaW9uIG9mIHRoaXMgcGF0Y2hzZXQgdGhhdCBwcmV2
-ZW50cyBWUkFNIG9iamVjdHMgZnJvbSBiZWluZwo+Pj4+IGFsbG9jYXRlZCBvbiBWUkFNLWxlc3Mg
-c3lzdGVtcyBsaWtlIFRlZ3JhLiBUaGlzIGlzIHJlcXVpcmVkIGZvciBNZXNhCj4+Pj4gdG8gd29y
-ayBvbiBzdWNoIHN5c3RlbXMuCj4+Pj4KPj4+PiBDaGFuZ2VzIHNpbmNlIHYyOgo+Pj4+IC0gVXNl
-IHZyYW1fc2l6ZSB0byBkZXRlY3Qgc3lzdGVtcyB3aXRob3V0IFZSQU0gYW5kIHNldCB0aGUgY29y
-cmVjdAo+Pj4+ICAgICBkb21haW4gaW5zdGVhZCBvZiBleHBlY3RpbmcgZWFjaCBjaGlwIHRvIHNl
-dCBpdHMgZG9tYWluIGV4cGxpY2l0bHkuCj4+Pgo+Pj4gVGhpcyBxdWVzdGlvbiBtYXkgaGF2ZSBi
-ZWVuIGFza2VkIGEgdG9uIG9mIHRpbWVzLCBidXQgd2hhdCBpcyB0aGUgZGlmZmVyZW5jZQo+Pj4g
-d2l0aCB0aGUgbnZhYyAoSW9uKT8KPj4+Cj4+PiBXb3VsZCB0aGUgbnZhYyBoYXZlIHNvbWUgcmVz
-ZXJ2ZWQgbWVtb3J5IGZvciBpdHMgdXNhZ2UgYnkgdGhlIGJpb3Mgd2hpY2gKPj4+IHdvdWxkIHRo
-ZW4gYmUgdXNlZCBhcyAiVlJBTSI/Cj4+IFBGQiBvbiB0aGUgZEdQVSBJR1BzIGhhcyBmYWNpbGl0
-aWVzIHRvIGZha2UgVlJBTSBmcm9tIGFuIGFyZWEgb2YKPj4gInN0b2xlbiIgc3lzdGVtIG1lbW9y
-eSByZXNlcnZlZCBieSB0aGUgU0JJT1MuICBHSzIwQS9HTTIwQiBkbyBub3QgZG8KPj4gdGhpcywg
-YW5kIHJlcXVpcmUgZGlyZWN0IChvciwgdmlhIGEgbW11LCB3aGF0ZXZlcikgYWNjZXNzIHRvIHN5
-c3RlbQo+PiBtZW1vcnkuCj4gRXhhY3RseS4gV2hpbGUgZEdQVSBkbyBhY3R1YWxseSBjYXJ2ZSBv
-dXQgYSByYW5nZSBvZiBzeXN0ZW0gbWVtb3J5IHRvCj4gYmUgZXhjbHVzaXZlbHkgdXNlZCBhcyAi
-ZmFrZSIgVlJBTSwgVGVncmEgR1BVcyBoYXZlIGFjY2VzcyB0byB0aGUKPiB3aG9sZSBzeXN0ZW0g
-bWVtb3J5IHdoaWNoIGlzIHNoYXJlZCB3aXRoIHRoZSBvdGhlciBJUHMgb2YgdGhlIFNvQywKPiB3
-aGljaCByZXF1aXJlcyBhIGRpZmZlcmVudCBtYW5hZ2VtZW50IHN0cmF0ZWd5LiBIZW5jZSB0aGUg
-Y2hvaWNlIHRvCj4gc2ltcGx5IHdpcGUgb3V0IHRoZSBjb25jZXB0IG9mIFZSQU0gYW5kIHVzZSBl
-dmVyeXRoaW5nIGFzIHN5c3RlbQo+IG1lbW9yeS4KVmVyeSB3ZWxsLCB0aGFua3MgQmVuIGFuZCBB
-bGV4YW5kcmUhCgpUaGUgc2VyaWVzIGlzOgoKUmV2aWV3ZWQtYnk6IE1hcnRpbiBQZXJlcyA8bWFy
-dGluLnBlcmVzQGZyZWUuZnI+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2Et
-ZGV2Cg==
+
+--===============0072389184==
+Content-Type: multipart/alternative; boundary="1434803889.C3cD1.8543"; charset="UTF-8"
+
+
+--1434803889.C3cD1.8543
+Date: Sat, 20 Jun 2015 12:38:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91037
+
+            Bug ID: 91037
+           Summary: desktop freezes shortly after boot with NV11 [GeForce2
+                    MX/MX 400]
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: anonymissimus-KvP5wT2u2U0@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 116615
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116615&action=edit
+dmesg > kernel_log.txt from ctrl+alt+F1 console after UI hangs in debian as
+described
+
+Using same computer/OS/packages as in
+https://bugs.freedesktop.org/show_bug.cgi?id=91025 I plugged in my other
+problematic card:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation NV11 [GeForce2
+MX/MX 400] [10de:0110] (rev b2) (prog-if 00 [VGA controller])
+    Subsystem: PROLINK Microsystems Corp MVGA-NVG11AM(400) [1554:1081]
+    Flags: bus master, 66MHz, medium devsel, latency 64, IRQ 11
+    Memory at ee000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at f0000000 (32-bit, prefetchable) [size=128M]
+    Expansion ROM at efff0000 [disabled] [size=64K]
+    Capabilities: [60] Power Management version 2
+    Capabilities: [44] AGP version 2.0
+    Kernel driver in use: nouveau
+
+symptoms:
+Clicking a little around (opening/closing some windows from lxde's menu or
+launcher) makes the UI hang quickly, usually after 10 seconds or less. After a
+while (maybe 20 or 30 secs) the system reacts to me having pressed or pressing
+ctrl+alt+F1 and I create log from that console. In case that I haven't pressed
+that shortcut yet, the display is almost unusable, the menu is hardly displayed
+when I try to open it, so there's nothing else left to do.
+Problem also happened booting systemrescuecd-x86-4.5.3 (live CD) in very
+similar way.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434803889.C3cD1.8543
+Date: Sat, 20 Jun 2015 12:38:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - desktop freezes shortly after boot with NV11 [GeForce2 MX/MX 400]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91037">91037</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>desktop freezes shortly after boot with NV11 [GeForce2 MX/MX 400]
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>anonymissimus&#64;arcor.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116615" name="attach_116615" title="dmesg &gt; kernel_log.txt from ctrl+alt+F1 console after UI hangs in debian as described">attachment 116615</a> <a href="attachment.cgi?id=116615&amp;action=edit" title="dmesg &gt; kernel_log.txt from ctrl+alt+F1 console after UI hangs in debian as described">[details]</a></span>
+dmesg &gt; kernel_log.txt from ctrl+alt+F1 console after UI hangs in debian as
+described
+
+Using same computer/OS/packages as in
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="show_bug.cgi?id=91025">https://bugs.freedesktop.org/show_bug.cgi?id=91025</a> I plugged in my other
+problematic card:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation NV11 [GeForce2
+MX/MX 400] [10de:0110] (rev b2) (prog-if 00 [VGA controller])
+    Subsystem: PROLINK Microsystems Corp MVGA-NVG11AM(400) [1554:1081]
+    Flags: bus master, 66MHz, medium devsel, latency 64, IRQ 11
+    Memory at ee000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at f0000000 (32-bit, prefetchable) [size=128M]
+    Expansion ROM at efff0000 [disabled] [size=64K]
+    Capabilities: [60] Power Management version 2
+    Capabilities: [44] AGP version 2.0
+    Kernel driver in use: nouveau
+
+symptoms:
+Clicking a little around (opening/closing some windows from lxde's menu or
+launcher) makes the UI hang quickly, usually after 10 seconds or less. After a
+while (maybe 20 or 30 secs) the system reacts to me having pressed or pressing
+ctrl+alt+F1 and I create log from that console. In case that I haven't pressed
+that shortcut yet, the display is almost unusable, the menu is hardly displayed
+when I try to open it, so there's nothing else left to do.
+Problem also happened booting systemrescuecd-x86-4.5.3 (live CD) in very
+similar way.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434803889.C3cD1.8543--
+
+--===============0072389184==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0072389184==--
