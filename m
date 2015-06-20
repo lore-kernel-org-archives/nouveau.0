@@ -1,98 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
-	TNT2 Pro]
-Date: Fri, 19 Jun 2015 21:51:26 +0000
-Message-ID: <bug-91025-8800-RoMNNJdi3O@http.bugs.freedesktop.org/>
-References: <bug-91025-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres@free.fr>
+Subject: Re: [Nouveau] [PATCH v3 0/2] nouveau: support for custom
+ VRAM domains
+Date: Sat, 20 Jun 2015 13:17:38 +0300
+Message-ID: <55853DC2.7010003@free.fr>
+References: <1434708167-6244-1-git-send-email-acourbot@nvidia.com>
+ <55840226.4090008@free.fr>
+ <CACAvsv6s6yw-hT-ZE=qRn0YUPUHc9euC4bDHv5QjUpicS6CG5Q@mail.gmail.com>
+ <CAAVeFuLGbGRoFNvR9qWb95t8ADTR=Qo8BfoByTKR76k+xKEEWQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0959942258=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAAVeFuLGbGRoFNvR9qWb95t8ADTR=Qo8BfoByTKR76k+xKEEWQ@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Alexandre Courbot <gnurou@gmail.com>, Ben Skeggs <skeggsb@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0959942258==
-Content-Type: multipart/alternative; boundary="1434750686.E7bbCB1.18153"; charset="UTF-8"
-
-
---1434750686.E7bbCB1.18153
-Date: Fri, 19 Jun 2015 21:51:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91025
-
---- Comment #10 from anonymissimus-KvP5wT2u2U0@public.gmane.org ---
-I'm kind of used to building applications such as envytools, but a kernel is
-likely too much (for the CPU/RAM especially).
-
-Yes, thanks a lot, much better. nouveau is in use according to lspci and I can
-set the desired 1600x900 with xrandr (still 3 lines of shell script).
-No issues for now, bug report can be closed.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1434750686.E7bbCB1.18153
-Date: Fri, 19 Jun 2015 21:51:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
-              from <span class="vcard"><a class="email" href="mailto:anonymissimus&#64;arcor.de" title="anonymissimus&#64;arcor.de">anonymissimus&#64;arcor.de</a>
-</span></b>
-        <pre>I'm kind of used to building applications such as envytools, but a kernel is
-likely too much (for the CPU/RAM especially).
-
-Yes, thanks a lot, much better. nouveau is in use according to lspci and I can
-set the desired 1600x900 with xrandr (still 3 lines of shell script).
-No issues for now, bug report can be closed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434750686.E7bbCB1.18153--
-
---===============0959942258==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0959942258==--
+T24gMTkvMDYvMjAxNSAxOToyNywgQWxleGFuZHJlIENvdXJib3Qgd3JvdGU6Cj4gT24gRnJpLCBK
+dW4gMTksIDIwMTUgYXQgOTozOCBQTSwgQmVuIFNrZWdncyA8c2tlZ2dzYkBnbWFpbC5jb20+IHdy
+b3RlOgo+PiBPbiAxOSBKdW5lIDIwMTUgYXQgMjE6NTEsIE1hcnRpbiBQZXJlcyA8bWFydGluLnBl
+cmVzQGZyZWUuZnI+IHdyb3RlOgo+Pj4gT24gMTkvMDYvMjAxNSAxMzowMiwgQWxleGFuZHJlIENv
+dXJib3Qgd3JvdGU6Cj4+Pj4gTmV3IHJldmlzaW9uIG9mIHRoaXMgcGF0Y2hzZXQgdGhhdCBwcmV2
+ZW50cyBWUkFNIG9iamVjdHMgZnJvbSBiZWluZwo+Pj4+IGFsbG9jYXRlZCBvbiBWUkFNLWxlc3Mg
+c3lzdGVtcyBsaWtlIFRlZ3JhLiBUaGlzIGlzIHJlcXVpcmVkIGZvciBNZXNhCj4+Pj4gdG8gd29y
+ayBvbiBzdWNoIHN5c3RlbXMuCj4+Pj4KPj4+PiBDaGFuZ2VzIHNpbmNlIHYyOgo+Pj4+IC0gVXNl
+IHZyYW1fc2l6ZSB0byBkZXRlY3Qgc3lzdGVtcyB3aXRob3V0IFZSQU0gYW5kIHNldCB0aGUgY29y
+cmVjdAo+Pj4+ICAgICBkb21haW4gaW5zdGVhZCBvZiBleHBlY3RpbmcgZWFjaCBjaGlwIHRvIHNl
+dCBpdHMgZG9tYWluIGV4cGxpY2l0bHkuCj4+Pgo+Pj4gVGhpcyBxdWVzdGlvbiBtYXkgaGF2ZSBi
+ZWVuIGFza2VkIGEgdG9uIG9mIHRpbWVzLCBidXQgd2hhdCBpcyB0aGUgZGlmZmVyZW5jZQo+Pj4g
+d2l0aCB0aGUgbnZhYyAoSW9uKT8KPj4+Cj4+PiBXb3VsZCB0aGUgbnZhYyBoYXZlIHNvbWUgcmVz
+ZXJ2ZWQgbWVtb3J5IGZvciBpdHMgdXNhZ2UgYnkgdGhlIGJpb3Mgd2hpY2gKPj4+IHdvdWxkIHRo
+ZW4gYmUgdXNlZCBhcyAiVlJBTSI/Cj4+IFBGQiBvbiB0aGUgZEdQVSBJR1BzIGhhcyBmYWNpbGl0
+aWVzIHRvIGZha2UgVlJBTSBmcm9tIGFuIGFyZWEgb2YKPj4gInN0b2xlbiIgc3lzdGVtIG1lbW9y
+eSByZXNlcnZlZCBieSB0aGUgU0JJT1MuICBHSzIwQS9HTTIwQiBkbyBub3QgZG8KPj4gdGhpcywg
+YW5kIHJlcXVpcmUgZGlyZWN0IChvciwgdmlhIGEgbW11LCB3aGF0ZXZlcikgYWNjZXNzIHRvIHN5
+c3RlbQo+PiBtZW1vcnkuCj4gRXhhY3RseS4gV2hpbGUgZEdQVSBkbyBhY3R1YWxseSBjYXJ2ZSBv
+dXQgYSByYW5nZSBvZiBzeXN0ZW0gbWVtb3J5IHRvCj4gYmUgZXhjbHVzaXZlbHkgdXNlZCBhcyAi
+ZmFrZSIgVlJBTSwgVGVncmEgR1BVcyBoYXZlIGFjY2VzcyB0byB0aGUKPiB3aG9sZSBzeXN0ZW0g
+bWVtb3J5IHdoaWNoIGlzIHNoYXJlZCB3aXRoIHRoZSBvdGhlciBJUHMgb2YgdGhlIFNvQywKPiB3
+aGljaCByZXF1aXJlcyBhIGRpZmZlcmVudCBtYW5hZ2VtZW50IHN0cmF0ZWd5LiBIZW5jZSB0aGUg
+Y2hvaWNlIHRvCj4gc2ltcGx5IHdpcGUgb3V0IHRoZSBjb25jZXB0IG9mIFZSQU0gYW5kIHVzZSBl
+dmVyeXRoaW5nIGFzIHN5c3RlbQo+IG1lbW9yeS4KVmVyeSB3ZWxsLCB0aGFua3MgQmVuIGFuZCBB
+bGV4YW5kcmUhCgpUaGUgc2VyaWVzIGlzOgoKUmV2aWV3ZWQtYnk6IE1hcnRpbiBQZXJlcyA8bWFy
+dGluLnBlcmVzQGZyZWUuZnI+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2Et
+ZGV2Cg==
