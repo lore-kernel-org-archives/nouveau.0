@@ -1,120 +1,46 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90567] Display freeze when starting League of
-	Legends (Wine)
-Date: Sun, 21 Jun 2015 23:15:46 +0000
-Message-ID: <bug-90567-8800-hdueHRSxcp@http.bugs.freedesktop.org/>
-References: <bug-90567-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nouveau: add asserts to make sure krefs are there
+Date: Sun, 21 Jun 2015 19:27:46 -0400
+Message-ID: <1434929266-29255-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1591128450=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1591128450==
-Content-Type: multipart/alternative; boundary="1434928546.d4deC6f2.32639"; charset="UTF-8"
-
-
---1434928546.d4deC6f2.32639
-Date: Sun, 21 Jun 2015 23:15:46 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90567
-
---- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Detlev Casanova from comment #21)
-> I haven't been able to reproduce the issue with a trace, I tried multiple
-> ones.
-> 
-> I realized that when retracing, with verbose output, I get this in the end:
-> 
-> 451252 @0 glEnable(cap = GL_BLEND) // incomplete
-> 453956 @1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0)
-> // incomplete
-
-This is the same issue that supertuxkart 0.9 was having, it'd die in a
-glFenceSync. I believe I tracked down the underlying issue and sent a patch to
-fix it:
-
-http://patchwork.freedesktop.org/patch/52425/
-
-Please try applying that patch to your mesa build and see if it helps.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1434928546.d4deC6f2.32639
-Date: Sun, 21 Jun 2015 23:15:46 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display freeze when starting League of Legends (Wine)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Detlev Casanova from <a href="show_bug.cgi?id=90567#c21">comment #21</a>)
-<span class="quote">&gt; I haven't been able to reproduce the issue with a trace, I tried multiple
-&gt; ones.
-&gt; 
-&gt; I realized that when retracing, with verbose output, I get this in the end:
-&gt; 
-&gt; 451252 &#64;0 glEnable(cap = GL_BLEND) // incomplete
-&gt; 453956 &#64;1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0)
-&gt; // incomplete</span >
-
-This is the same issue that supertuxkart 0.9 was having, it'd die in a
-glFenceSync. I believe I tracked down the underlying issue and sent a patch to
-fix it:
-
-<a href="http://patchwork.freedesktop.org/patch/52425/">http://patchwork.freedesktop.org/patch/52425/</a>
-
-Please try applying that patch to your mesa build and see if it helps.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1434928546.d4deC6f2.32639--
-
---===============1591128450==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1591128450==--
+VGhpcyBzaG91bGQgaGVscCBjYXRjaCBvZGQgYnVncyBhdCB0aGUgY2FsbHNpdGVzIHJhdGhlciB0
+aGFuIG11Y2ggbGF0ZXIKb24gd2l0aCBjb21wbGV0ZWx5IGJvZ3VzIGJvIGluZGljZXMuCgpTaWdu
+ZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogbm91dmVh
+dS9wdXNoYnVmLmMgfCA0ICsrKysKIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykKCmRp
+ZmYgLS1naXQgYS9ub3V2ZWF1L3B1c2hidWYuYyBiL25vdXZlYXUvcHVzaGJ1Zi5jCmluZGV4IDRm
+Nzc4ODEuLjhlN2RjZGYgMTAwNjQ0Ci0tLSBhL25vdXZlYXUvcHVzaGJ1Zi5jCisrKyBiL25vdXZl
+YXUvcHVzaGJ1Zi5jCkBAIC0yMzQsNiArMjM0LDggQEAgcHVzaGJ1Zl9rcmVsKHN0cnVjdCBub3V2
+ZWF1X3B1c2hidWYgKnB1c2gsIHN0cnVjdCBub3V2ZWF1X2JvICpibywKIAlia3JlZiA9IGNsaV9r
+cmVmX2dldChwdXNoLT5jbGllbnQsIGJvKTsKIAlrcmVsICA9ICZrcmVjLT5yZWxvY1trcmVjLT5u
+cl9yZWxvYysrXTsKIAorCWFzc2VydChwa3JlZik7CisJYXNzZXJ0KGJrcmVmKTsKIAlrcmVsLT5y
+ZWxvY19ib19pbmRleCA9IHBrcmVmIC0ga3JlYy0+YnVmZmVyOwogCWtyZWwtPnJlbG9jX2JvX29m
+ZnNldCA9IChwdXNoLT5jdXIgLSBudnBiLT5wdHIpICogNDsKIAlrcmVsLT5ib19pbmRleCA9IGJr
+cmVmIC0ga3JlYy0+YnVmZmVyOwpAQCAtNzIxLDYgKzcyMyw3IEBAIG5vdXZlYXVfcHVzaGJ1Zl9k
+YXRhKHN0cnVjdCBub3V2ZWF1X3B1c2hidWYgKnB1c2gsIHN0cnVjdCBub3V2ZWF1X2JvICpibywK
+IAogCWlmIChibykgewogCQlrcmVmID0gY2xpX2tyZWZfZ2V0KHB1c2gtPmNsaWVudCwgYm8pOwor
+CQlhc3NlcnQoa3JlZik7CiAJCWtwc2ggPSAma3JlYy0+cHVzaFtrcmVjLT5ucl9wdXNoKytdOwog
+CQlrcHNoLT5ib19pbmRleCA9IGtyZWYgLSBrcmVjLT5idWZmZXI7CiAJCWtwc2gtPm9mZnNldCAg
+ID0gb2Zmc2V0OwpAQCAtNzU3LDYgKzc2MCw3IEBAIG5vdXZlYXVfcHVzaGJ1Zl9yZWZkKHN0cnVj
+dCBub3V2ZWF1X3B1c2hidWYgKnB1c2gsIHN0cnVjdCBub3V2ZWF1X2JvICpibykKIAogCWlmIChj
+bGlfcHVzaF9nZXQocHVzaC0+Y2xpZW50LCBibykgPT0gcHVzaCkgewogCQlrcmVmID0gY2xpX2ty
+ZWZfZ2V0KHB1c2gtPmNsaWVudCwgYm8pOworCQlhc3NlcnQoa3JlZik7CiAJCWlmIChrcmVmLT5y
+ZWFkX2RvbWFpbnMpCiAJCQlmbGFncyB8PSBOT1VWRUFVX0JPX1JEOwogCQlpZiAoa3JlZi0+d3Jp
+dGVfZG9tYWlucykKLS0gCjIuMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2RyaS1kZXZlbAo=
