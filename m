@@ -1,79 +1,120 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50,
-	nvc0: make sure to pushbuf_refn before putting bo into pushbuf_data
-Date: Sun, 21 Jun 2015 19:06:08 -0400
-Message-ID: <1434927968-26255-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90567] Display freeze when starting League of
+	Legends (Wine)
+Date: Sun, 21 Jun 2015 23:15:46 +0000
+Message-ID: <bug-90567-8800-hdueHRSxcp@http.bugs.freedesktop.org/>
+References: <bug-90567-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: "10.5 10.6" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1591128450=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90567-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2l0aG91dCBmaXJzdCBydW5uaW5nIHRoZSBibyB0aHJvdWdoIHB1c2hidWZfcmVmbiwgdGhlIG5v
-dXZlYXUgZHJtCmxpYnJhcnkgd2lsbCBoYXZlIHVuaW5pdGlhbGl6ZWQgc3RydWN0dXJlcyByZWdh
-cmRpbmcgdGhpcyBibywgYW5kIHdpbGwKaW5zZXJ0IGluY29ycmVjdCBkYXRhLgoKVGhpcyBmaXhl
-cyBzdXBlcnR1eGthcnQgMC45IGNyYXNoIG9uIHN0YXJ0ICh3aGVyZSBpdCBlbmRzIHVwIGRvaW5n
-IGEgbG90Cm9mIGluZGlyZWN0IGRyYXdzKS4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxp
-bWlya2luQGFsdW0ubWl0LmVkdT4KQ2M6ICIxMC41IDEwLjYiIDxtZXNhLXN0YWJsZUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmc+Ci0tLQogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1
-MF9xdWVyeS5jIHwgMSArCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Zi
-by5jICAgfCAxICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfcXVlcnku
-YyB8IDEgKwogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym8uYyAgIHwg
-MSArCiA0IGZpbGVzIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcXVlcnkuYyBiL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udjUwL252NTBfcXVlcnkuYwppbmRleCA1NWZjYWM4Li44MWY3NDc0IDEw
-MDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3F1ZXJ5LmMK
-KysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9xdWVyeS5jCkBAIC00
-NTIsNiArNDUyLDcgQEAgbnY1MF9xdWVyeV9wdXNoYnVmX3N1Ym1pdChzdHJ1Y3Qgbm91dmVhdV9w
-dXNoYnVmICpwdXNoLAogICAgLyogWFhYOiBkb2VzIHRoaXMgZXhpc3QgPyAqLwogI2RlZmluZSBO
-VjUwX0lCX0VOVFJZXzFfTk9fUFJFRkVUQ0ggKDAgPDwgKDMxIC0gOCkpCiAKKyAgIFBVU0hfUkVG
-TihwdXNoLCBxLT5ibywgTk9VVkVBVV9CT19SRCB8IE5PVVZFQVVfQk9fR0FSVCk7CiAgICBub3V2
-ZWF1X3B1c2hidWZfc3BhY2UocHVzaCwgMCwgMCwgMSk7CiAgICBub3V2ZWF1X3B1c2hidWZfZGF0
-YShwdXNoLCBxLT5ibywgcS0+b2Zmc2V0ICsgcmVzdWx0X29mZnNldCwgNCB8CiAgICAgICAgICAg
-ICAgICAgICAgICAgICBOVjUwX0lCX0VOVFJZXzFfTk9fUFJFRkVUQ0gpOwpkaWZmIC0tZ2l0IGEv
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYyBiL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfdmJvLmMKaW5kZXggYzE1OTBlZS4uMWZkMzNiOCAx
-MDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYwor
-KysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Ziby5jCkBAIC02Mjgs
-NiArNjI4LDcgQEAgbnY1MF9kcmF3X2VsZW1lbnRzKHN0cnVjdCBudjUwX2NvbnRleHQgKm52NTAs
-IGJvb2xlYW4gc2hvcnRlbiwKICAgICAgICAgIEJFR0lOX05WMDQocHVzaCwgTlY1MF8zRChWRVJU
-RVhfQkVHSU5fR0wpLCAxKTsKICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgcHJpbSk7CiAKKyAg
-ICAgICAgIFBVU0hfUkVGTihwdXNoLCBidWYtPmJvLCBOT1VWRUFVX0JPX1JEIHwgYnVmLT5kb21h
-aW4pOwogICAgICAgICAgbm91dmVhdV9wdXNoYnVmX3NwYWNlKHB1c2gsIDgsIDAsIDEpOwogCiAg
-ICAgICAgICBzd2l0Y2ggKGluZGV4X3NpemUpIHsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udmMwL252YzBfcXVlcnkuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9udmMwL252YzBfcXVlcnkuYwppbmRleCA3NGYyMTBjLi5hZWE2Y2JkIDEwMDY0NAotLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3F1ZXJ5LmMKKysrIGIvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9xdWVyeS5jCkBAIC02MTcsNiArNjE3
-LDcgQEAgbnZjMF9xdWVyeV9wdXNoYnVmX3N1Ym1pdChzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmICpw
-dXNoLAogCiAjZGVmaW5lIE5WQzBfSUJfRU5UUllfMV9OT19QUkVGRVRDSCAoMSA8PCAoMzEgLSA4
-KSkKIAorICAgUFVTSF9SRUZOKHB1c2gsIHEtPmJvLCBOT1VWRUFVX0JPX1JEIHwgTk9VVkVBVV9C
-T19HQVJUKTsKICAgIG5vdXZlYXVfcHVzaGJ1Zl9zcGFjZShwdXNoLCAwLCAwLCAxKTsKICAgIG5v
-dXZlYXVfcHVzaGJ1Zl9kYXRhKHB1c2gsIHEtPmJvLCBxLT5vZmZzZXQgKyByZXN1bHRfb2Zmc2V0
-LCA0IHwKICAgICAgICAgICAgICAgICAgICAgICAgIE5WQzBfSUJfRU5UUllfMV9OT19QUkVGRVRD
-SCk7CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Zi
-by5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym8uYwppbmRleCBk
-MzU5M2MxLi44MzJlZTA0IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnZjMC9udmMwX3Ziby5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfdmJvLmMKQEAgLTgyOCw2ICs4MjgsNyBAQCBudmMwX2RyYXdfaW5kaXJlY3Qoc3RydWN0IG52
-YzBfY29udGV4dCAqbnZjMCwgY29uc3Qgc3RydWN0IHBpcGVfZHJhd19pbmZvICppbmZvKQogICAg
-fQogICAgUFVTSF9EQVRBKHB1c2gsIG52YzBfcHJpbV9nbChpbmZvLT5tb2RlKSk7CiAjZGVmaW5l
-IE5WQzBfSUJfRU5UUllfMV9OT19QUkVGRVRDSCAoMSA8PCAoMzEgLSA4KSkKKyAgIFBVU0hfUkVG
-TihwdXNoLCBidWYtPmJvLCBOT1VWRUFVX0JPX1JEIHwgYnVmLT5kb21haW4pOwogICAgbm91dmVh
-dV9wdXNoYnVmX3NwYWNlKHB1c2gsIDAsIDAsIDEpOwogICAgbm91dmVhdV9wdXNoYnVmX2RhdGEo
-cHVzaCwKICAgICAgICAgICAgICAgICAgICAgICAgIGJ1Zi0+Ym8sIG9mZnNldCwgTlZDMF9JQl9F
-TlRSWV8xX05PX1BSRUZFVENIIHwgc2l6ZSk7Ci0tIAoyLjMuNgoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2Et
-ZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1591128450==
+Content-Type: multipart/alternative; boundary="1434928546.d4deC6f2.32639"; charset="UTF-8"
+
+
+--1434928546.d4deC6f2.32639
+Date: Sun, 21 Jun 2015 23:15:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90567
+
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Detlev Casanova from comment #21)
+> I haven't been able to reproduce the issue with a trace, I tried multiple
+> ones.
+> 
+> I realized that when retracing, with verbose output, I get this in the end:
+> 
+> 451252 @0 glEnable(cap = GL_BLEND) // incomplete
+> 453956 @1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0)
+> // incomplete
+
+This is the same issue that supertuxkart 0.9 was having, it'd die in a
+glFenceSync. I believe I tracked down the underlying issue and sent a patch to
+fix it:
+
+http://patchwork.freedesktop.org/patch/52425/
+
+Please try applying that patch to your mesa build and see if it helps.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1434928546.d4deC6f2.32639
+Date: Sun, 21 Jun 2015 23:15:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Display freeze when starting League of Legends (Wine)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90567">bug 90567</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Detlev Casanova from <a href="show_bug.cgi?id=90567#c21">comment #21</a>)
+<span class="quote">&gt; I haven't been able to reproduce the issue with a trace, I tried multiple
+&gt; ones.
+&gt; 
+&gt; I realized that when retracing, with verbose output, I get this in the end:
+&gt; 
+&gt; 451252 &#64;0 glEnable(cap = GL_BLEND) // incomplete
+&gt; 453956 &#64;1 glFenceSync(condition = GL_SYNC_GPU_COMMANDS_COMPLETE, flags = 0)
+&gt; // incomplete</span >
+
+This is the same issue that supertuxkart 0.9 was having, it'd die in a
+glFenceSync. I believe I tracked down the underlying issue and sent a patch to
+fix it:
+
+<a href="http://patchwork.freedesktop.org/patch/52425/">http://patchwork.freedesktop.org/patch/52425/</a>
+
+Please try applying that patch to your mesa build and see if it helps.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1434928546.d4deC6f2.32639--
+
+--===============1591128450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1591128450==--
