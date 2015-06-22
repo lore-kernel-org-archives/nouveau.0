@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 80865] [NVE7] Hard hang (GPC0/TPC0/MP trap:
- MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)
-Date: Mon, 22 Jun 2015 19:07:19 +0000
-Message-ID: <bug-80865-8800-dyzacxtquF@http.bugs.freedesktop.org/>
-References: <bug-80865-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [RFC PATCH 0/8] nv50: expose global performance counters
+Date: Mon, 22 Jun 2015 22:53:11 +0200
+Message-ID: <1435006399-2088-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1124098603=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-80865-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,166 +15,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1124098603==
-Content-Type: multipart/alternative; boundary="1435000039.EeDcef2.29960"; charset="UTF-8"
-
-
---1435000039.EeDcef2.29960
-Date: Mon, 22 Jun 2015 19:07:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=80865
-
---- Comment #7 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-This has been happening to me for a while, now it is more frequent, it happens
-even twice a day.
-
-Relevant parts of the log from my latest crash.
-
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC3/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR
-[ CTXSW_TIMEOUT ]
-Jun 22 15:12:44 localhost kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine
-fault on channel 5, recovering...
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC3/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:13:19 localhost libvirtd[583]: No response from client 0x7faa4465af70
-after 5 keepalive messages in 30 seconds
-Jun 22 15:13:19 localhost libvirtd[1206]: No response from client
-0x7f37e7faea50 after 5 keepalive messages in 30 seconds
--- Reboot --
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1435000039.EeDcef2.29960
-Date: Mon, 22 Jun 2015 19:07:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Hard hang (GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=80865">bug 80865</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>This has been happening to me for a while, now it is more frequent, it happens
-even twice a day.
-
-Relevant parts of the log from my latest crash.
-
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC3/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:40 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR
-[ CTXSW_TIMEOUT ]
-Jun 22 15:12:44 localhost kernel: nouveau E[   PFIFO][0000:01:00.0] PGR engine
-fault on channel 5, recovering...
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0] TRAP ch 6
-[0x00bf556000 chromium[6894]]
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC0/TPC1/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC1/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC2/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:12:44 localhost kernel: nouveau E[     PGR][0000:01:00.0]
-GPC3/TPC0/MP trap: MULTIPLE_WARP_ERRORS MEM_OUT_OF_BOUNDS
-Jun 22 15:13:19 localhost libvirtd[583]: No response from client 0x7faa4465af70
-after 5 keepalive messages in 30 seconds
-Jun 22 15:13:19 localhost libvirtd[1206]: No response from client
-0x7f37e7faea50 after 5 keepalive messages in 30 seconds
--- Reboot --</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435000039.EeDcef2.29960--
-
---===============1124098603==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1124098603==--
+SGVsbG8gdGhlcmUsCgpUaGlzIHNlcmllcyBleHBvc2VzIE5WSURJQSdzIGdsb2JhbCBwZXJmb3Jt
+YW5jZSBjb3VudGVycyBmb3IgVGVzbGEgdGhyb3VnaCB0aGUKR2FsbGl1bSdzIEhVRCBhbmQgdGhl
+IEdMX0FNRF9wZXJmb3JtYW5jZV9tb25pdG9yIGV4dGVuc2lvbi4KClRoaXMgYWRkcyBzdXBwb3J0
+IGZvciAyNCBoYXJkd2FyZSBldmVudHMgd2hpY2ggaGF2ZSBiZWVuIHJldmVyc2UgZW5naW5lZXJl
+ZAp3aXRoIFBlcmZLaXQgKFdpbmRvd3MpIGFuZCBDVVBUSSAoTGludXgpLiBUaGVzZSBoYXJkd2Fy
+ZSBldmVudHMgd2lsbCBhbGxvdwpkZXZlbG9wZXJzIHRvIHByb2ZpbGUgT3BlbkdMIGFwcGxpY2F0
+aW9ucy4KClRvIHJlZHVjZSBsYXRlbmN5IGFuZCB0byBpbXByb3ZlIGFjY3VyYWN5LCB0aGVzZSBn
+bG9iYWwgcGVyZm9ybWFuY2UgY291bnRlcnMKYXJlIHRpZWQgdG8gdGhlIGNvbW1hbmQgc3RyZWFt
+IG9mIHRoZSBHUFUgdXNpbmcgYSBzZXQgb2Ygc29mdHdhcmUgbWV0aG9kcwppbnN0ZWFkIG9mIGlv
+Y3Rscy4gUmVzdWx0cyBhcmUgdGhlbiB3cml0dGVuIGJ5IHRoZSBrZXJuZWwgdG8gYSBtYXBwZWQg
+bm90aWZpZXIKYnVmZmVyIG9iamVjdCB0aGF0IGFsbG93cyB0aGUgdXNlcnNwYWNlIHRvIHJlYWQg
+YmFjayB0aGVtLgoKSG93ZXZlciwgdGhlIGxpYmRybSBicmFuY2ggd2hpY2ggaW1wbGVtZW50cyB0
+aGUgbmV3IG52aWYgaW50ZXJmYWNlIGV4cG9zZWQgYnkKTm91dmVhdSBhbmQgdGhlIHNvZnR3YXJl
+IG1ldGhvZHMgaW50ZXJmYWNlIGFyZSBub3QgdXBzdHJlYW0geWV0LiBJIGhvcGUgdGhpcwpzaG91
+bGQgZG9uZSBpbiB0aGUgbmV4dCBkYXlzLgoKVGhlIGNvZGUgb2YgdGhpcyBzZXJpZXMgY2FuIGJl
+IGZvdW5kIGhlcmU6Cmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+aGFrenNhbS9tZXNhL2xv
+Zy8/aD1ub3V2ZWF1X3BlcmZtb24KClRoZSBsaWJkcm0gYnJhbmNoIGNhbiBiZSBmb3VuZCBoZXJl
+OgpodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvfmhha3pzYW0vZHJtL2xvZy8/aD1ub3V2ZWF1
+X3BlcmZtb24KClRoZSBjb2RlIG9mIHRoZSBzb2Z0d2FyZSBtZXRob2RzIGludGVyZmFjZSBjYW4g
+YmUgZm91bmQgaGVyZSAodHdvIGxhc3QgY29tbWl0cyk6Cmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9w
+Lm9yZy9+aGFrenNhbS9ub3V2ZWF1L2xvZy8/aD1ub3V2ZWF1X3BlcmZtb24KCkFuIG90aGVyIHNl
+cmllcyB3aGljaCBleHBvc2VzIGdsb2JhbCBwZXJmb3JtYW5jZSBjb3VudGVycyBmb3IgRmVybWkg
+YW5kIEtlcGxlcgp3aWxsIGJlIHN1Ym1pdHRlZCBvbmNlIEkgaGF2ZSBnb3QgZW5vdWdoIHJldmll
+d3MgZm9yIHRoaXMgb25lLgoKRmVlbCBmcmVlIHRvIG1ha2UgYSByZXZpZXcuCgpUaGFua3MsClNh
+bXVlbC4KClNhbXVlbCBQaXRvaXNldCAoOCk6CiAgbm91dmVhdTogaW1wbGVtZW50IHRoZSBudmlm
+IGhhcmR3YXJlIHBlcmZvcm1hbmNlIGNvdW50ZXJzIGludGVyZmFjZQogIG52NTA6IGFsbG9jYXRl
+IGEgc29mdHdhcmUgb2JqZWN0IGNsYXNzCiAgbnY1MDogYWxsb2NhdGUgYW5kIG1hcCBhIG5vdGlm
+aWVyIGJ1ZmZlciBvYmplY3QgZm9yIFBNCiAgbnY1MDogY29uZmlndXJlIHRoZSByaW5nIGJ1ZmZl
+ciBmb3IgcmVhZGluZyBiYWNrIFBNIGNvdW50ZXJzCiAgbnY1MDogcHJldmVudCBOVUxMIHBvaW50
+ZXIgZGVyZWZlcmVuY2Ugd2l0aCBwaXBlX3F1ZXJ5IGZ1bmN0aW9ucwogIG52NTA6IGFkZCBzdXBw
+b3J0IGZvciBjb21wdXRlL2dyYXBoaWNzIGdsb2JhbCBwZXJmb3JtYW5jZSBjb3VudGVycwogIG52
+NTA6IGV4cG9zZSBnbG9iYWwgcGVyZm9ybWFuY2UgY291bnRlcnMgdG8gdGhlIEhVRAogIG52NTA6
+IGVuYWJsZSBHTF9BTURfcGVyZm9ybWFuY2VfbW9uaXRvcgoKIHNyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9NYWtlZmlsZS5zb3VyY2VzICAgfCAgICAyICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9ub3V2ZWF1X3BlcmZtb24uYyAgfCAgMzAyICsrKysrKysKIHNyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9ub3V2ZWF1X3BlcmZtb24uaCAgfCAgIDU5ICsrCiBzcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uYyAgIHwgICAgNSArCiBzcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbm91dmVhdV9zY3JlZW4uaCAgIHwgICAgMSArCiBzcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3F1ZXJ5LmMgIHwgMTE0OCArKysrKysrKysrKysrKysr
+KysrKysrKy0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMg
+fCAgIDQ5ICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmgg
+fCAgIDUxICsrCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3dpbnN5cy5o
+IHwgICAgMSArCiA5IGZpbGVzIGNoYW5nZWQsIDE2MTIgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlv
+bnMoLSkKIGNyZWF0ZSBtb2RlIDEwMDY0NCBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91
+dmVhdV9wZXJmbW9uLmMKIGNyZWF0ZSBtb2RlIDEwMDY0NCBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
+dXZlYXUvbm91dmVhdV9wZXJmbW9uLmgKCi0tIAoyLjQuNAoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
