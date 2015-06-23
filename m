@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Tue, 23 Jun 2015 13:40:59 +0000
-Message-ID: <bug-90932-8800-3MSjzT50h1@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jun 2015 13:45:29 +0000
+Message-ID: <bug-90932-8800-WslP6GVWNB@http.bugs.freedesktop.org/>
 References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1730240983=="
+Content-Type: multipart/mixed; boundary="===============0450173062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1730240983==
-Content-Type: multipart/alternative; boundary="1435066859.4baD2e2.8232"; charset="UTF-8"
+--===============0450173062==
+Content-Type: multipart/alternative; boundary="1435067128.17fAD2.9256"; charset="UTF-8"
 
 
---1435066859.4baD2e2.8232
-Date: Tue, 23 Jun 2015 13:40:59 +0000
+--1435067128.17fAD2.9256
+Date: Tue, 23 Jun 2015 13:45:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Marcus Moeller from comment #3)
+> It still appears in Kernel 4.1 final.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #116671|text/plain                  |application/octet-stream
-          mime type|                            |
+Updating Xorg to 1.17 and switching to the modesetting X ddx (instead of the
+nouveau X ddx) should fix this. The reason you're seeing this in 4.1 and not
+4.0 is that 4.1 finally has acceleration enabled by default for GM107.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435066859.4baD2e2.8232
-Date: Tue, 23 Jun 2015 13:40:59 +0000
+--1435067128.17fAD2.9256
+Date: Tue, 23 Jun 2015 13:45:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,28 +52,26 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - gm107 font glitches with kernel 4.1rc"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c3">comment #3</a>)
+<span class="quote">&gt; It still appears in Kernel 4.1 final.</span >
 
-         <tr>
-           <td style="text-align:right;">Attachment #116671 mime type</td>
-           <td>text/plain
-           </td>
-           <td>application/octet-stream
-           </td>
-         </tr></table>
-      <p>
+Updating Xorg to 1.17 and switching to the modesetting X ddx (instead of the
+nouveau X ddx) should fix this. The reason you're seeing this in 4.1 and not
+4.0 is that 4.1 finally has acceleration enabled by default for GM107.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +82,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1435066859.4baD2e2.8232--
+--1435067128.17fAD2.9256--
 
---===============1730240983==
+--===============0450173062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1730240983==--
+--===============0450173062==--
