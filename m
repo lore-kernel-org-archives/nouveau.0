@@ -1,13 +1,17 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 6/6] platform: recognize GM20B
-Date: Tue, 23 Jun 2015 15:16:06 +0900
-Message-ID: <1435040166-25651-7-git-send-email-acourbot@nvidia.com>
-References: <1435040166-25651-1-git-send-email-acourbot@nvidia.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>
+Subject: Re: [Mesa-dev] [RFC PATCH 5/8] nv50: prevent NULL pointer
+ dereference with pipe_query functions
+Date: Tue, 23 Jun 2015 15:57:57 +0900
+Message-ID: <55890375.10901@daenzer.net>
+References: <1435006399-2088-1-git-send-email-samuel.pitoiset@gmail.com>
+ <1435006399-2088-6-git-send-email-samuel.pitoiset@gmail.com>
+ <CAKb7UvjfuOu6hAhB7ywQsMc6OXcjF-cn_5UC_O5oUKt4HzgZnQ@mail.gmail.com>
+ <558877D9.8040501@gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1435040166-25651-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <558877D9.8040501-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,21 +21,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Allen Martin <AMartin-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QWxsb3cgdGhlIHBsYXRmb3JtIGRyaXZlciB0byByZWNvZ25pemUgR00yMEIuCgpTaWduZWQtb2Zm
-LWJ5OiBBbGV4YW5kcmUgQ291cmJvdCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCiBkcm0vbm91
-dmVhdS9ub3V2ZWF1X3BsYXRmb3JtLmMgfCAxICsKIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlv
-bigrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYyBiL2RybS9u
-b3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYwppbmRleCBkY2ZiYmZhZjE3MzkuLjdhMzlkNDQ5ZmVm
-YSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9wbGF0Zm9ybS5jCisrKyBiL2RybS9u
-b3V2ZWF1L25vdXZlYXVfcGxhdGZvcm0uYwpAQCAtMjUyLDYgKzI1Miw3IEBAIHN0YXRpYyBpbnQg
-bm91dmVhdV9wbGF0Zm9ybV9yZW1vdmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikKICNp
-ZiBJU19FTkFCTEVEKENPTkZJR19PRikKIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lk
-IG5vdXZlYXVfcGxhdGZvcm1fbWF0Y2hbXSA9IHsKIAl7IC5jb21wYXRpYmxlID0gIm52aWRpYSxn
-azIwYSIgfSwKKwl7IC5jb21wYXRpYmxlID0gIm52aWRpYSxnbTIwYiIgfSwKIAl7IH0KIH07CiAK
-LS0gCjIuNC40CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+T24gMjMuMDYuMjAxNSAwNjowMiwgU2FtdWVsIFBpdG9pc2V0IHdyb3RlOgo+IAo+IAo+IE9uIDA2
+LzIyLzIwMTUgMTA6NTIgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+PiBJZiBxdWVyeV9jcmVhdGUg
+ZmFpbHMsIHdoeSB3b3VsZCBhbnkgb2YgdGhlc2UgZnVuY3Rpb25zIGdldCBjYWxsZWQ/Cj4gCj4g
+QmVjYXVzZSB0aGUgSFVEIGRvZXNuJ3QgY2hlY2sgaWYgcXVlcnlfY3JlYXRlKCkgZmFpbHMgYW5k
+IGl0IGNhbGxzIG90aGVyCj4gcGlwZV9xdWVyeSBmdW5jdGlvbnMgd2l0aCBOVUxMIHBvaW50ZXIg
+aW5zdGVhZCBvZiBhIHZhbGlkIHF1ZXJ5IG9iamVjdC4KCkNvdWxkIHRoZSBIVUQgY29kZSBiZSBm
+aXhlZCBpbnN0ZWFkPwoKCi0tIApFYXJ0aGxpbmcgTWljaGVsIETDpG56ZXIgICAgICAgICAgICAg
+ICB8ICAgICAgICAgICAgICAgaHR0cDovL3d3dy5hbWQuY29tCkxpYnJlIHNvZnR3YXJlIGVudGh1
+c2lhc3QgICAgICAgICAgICAgfCAgICAgICAgICAgICBNZXNhIGFuZCBYIGRldmVsb3BlcgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
