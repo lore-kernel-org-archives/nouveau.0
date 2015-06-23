@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Tue, 23 Jun 2015 13:45:29 +0000
-Message-ID: <bug-90932-8800-WslP6GVWNB@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jun 2015 13:51:35 +0000
+Message-ID: <bug-90932-8800-CkAMvyKzSM@http.bugs.freedesktop.org/>
 References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450173062=="
+Content-Type: multipart/mixed; boundary="===============0533258189=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0450173062==
-Content-Type: multipart/alternative; boundary="1435067128.17fAD2.9256"; charset="UTF-8"
+--===============0533258189==
+Content-Type: multipart/alternative; boundary="1435067494.AD1D2.10565"; charset="UTF-8"
 
 
---1435067128.17fAD2.9256
-Date: Tue, 23 Jun 2015 13:45:28 +0000
+--1435067494.AD1D2.10565
+Date: Tue, 23 Jun 2015 13:51:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcus Moeller from comment #3)
-> It still appears in Kernel 4.1 final.
+--- Comment #6 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-Updating Xorg to 1.17 and switching to the modesetting X ddx (instead of the
-nouveau X ddx) should fix this. The reason you're seeing this in 4.1 and not
-4.0 is that 4.1 finally has acceleration enabled by default for GM107.
+/etc/X11/xorg.conf.d/00-modesetting.conf
+Section "Device"
+    Identifier "video0"
+    Driver     "modesetting"
+EndSection
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435067128.17fAD2.9256
-Date: Tue, 23 Jun 2015 13:45:28 +0000
+--1435067494.AD1D2.10565
+Date: Tue, 23 Jun 2015 13:51:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,19 +58,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - gm107 font glitches with kernel 4.1rc"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c3">comment #3</a>)
-<span class="quote">&gt; It still appears in Kernel 4.1 final.</span >
-
-Updating Xorg to 1.17 and switching to the modesetting X ddx (instead of the
-nouveau X ddx) should fix this. The reason you're seeing this in 4.1 and not
-4.0 is that 4.1 finally has acceleration enabled by default for GM107.</pre>
+        <pre>
+/etc/X11/xorg.conf.d/00-modesetting.conf
+Section &quot;Device&quot;
+    Identifier &quot;video0&quot;
+    Driver     &quot;modesetting&quot;
+EndSection</pre>
         </div>
       </p>
       <hr>
@@ -82,9 +82,9 @@ nouveau X ddx) should fix this. The reason you're seeing this in 4.1 and not
     </body>
 </html>
 
---1435067128.17fAD2.9256--
+--1435067494.AD1D2.10565--
 
---===============0450173062==
+--===============0533258189==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0450173062==--
+--===============0533258189==--
