@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Tue, 23 Jun 2015 11:51:58 +0000
-Message-ID: <bug-90932-8800-IrqMQ05q7Q@http.bugs.freedesktop.org/>
+Date: Tue, 23 Jun 2015 13:40:59 +0000
+Message-ID: <bug-90932-8800-3MSjzT50h1@http.bugs.freedesktop.org/>
 References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0552293316=="
+Content-Type: multipart/mixed; boundary="===============1730240983=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0552293316==
-Content-Type: multipart/alternative; boundary="1435060318.61AEf4e1.17995"; charset="UTF-8"
+--===============1730240983==
+Content-Type: multipart/alternative; boundary="1435066859.4baD2e2.8232"; charset="UTF-8"
 
 
---1435060318.61AEf4e1.17995
-Date: Tue, 23 Jun 2015 11:51:58 +0000
+--1435066859.4baD2e2.8232
+Date: Tue, 23 Jun 2015 13:40:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
---- Comment #4 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
-Created attachment 116671
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116671&action=edit
-Screencast showing the behavior
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #116671|text/plain                  |application/octet-stream
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435060318.61AEf4e1.17995
-Date: Tue, 23 Jun 2015 11:51:58 +0000
+--1435066859.4baD2e2.8232
+Date: Tue, 23 Jun 2015 13:40:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - gm107 font glitches with kernel 4.1rc"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116671" name="attach_116671" title="Screencast showing the behavior">attachment 116671</a> <a href="attachment.cgi?id=116671&amp;action=edit" title="Screencast showing the behavior">[details]</a></span>
-Screencast showing the behavior</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #116671 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/octet-stream
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +83,9 @@ Screencast showing the behavior</pre>
     </body>
 </html>
 
---1435060318.61AEf4e1.17995--
+--1435066859.4baD2e2.8232--
 
---===============0552293316==
+--===============1730240983==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0552293316==--
+--===============1730240983==--
