@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Wed, 24 Jun 2015 15:06:00 +0000
-Message-ID: <bug-90932-8800-QrPBdKQk5D@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+From: Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC] NVIDIA hardware reference headers
+Date: Wed, 24 Jun 2015 17:14:16 +0000
+Message-ID: <D1B05DA3.10549%kadams@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0998295844=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Language: en-US
+Content-ID: <A3BC9246BE2D6744BED944A796AE4FC5-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,82 +17,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0998295844==
-Content-Type: multipart/alternative; boundary="1435158360.e3F05F2.17379"; charset="UTF-8"
-
-
---1435158360.e3F05F2.17379
-Date: Wed, 24 Jun 2015 15:06:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
-
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcus Moeller from comment #9)
-> Thanks for the explanation. For me the exa sounds like a great option.
-> Besides that we have tried the modesetting driver with the K620 card and
-> noticed a much higher CPU load on gnome-shell (even on inactivity).
-
-I wonder if it's using llvmpipe or something... should be ~same perf.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1435158360.e3F05F2.17379
-Date: Wed, 24 Jun 2015 15:06:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c9">comment #9</a>)
-<span class="quote">&gt; Thanks for the explanation. For me the exa sounds like a great option.
-&gt; Besides that we have tried the modesetting driver with the K620 card and
-&gt; noticed a much higher CPU load on gnome-shell (even on inactivity).</span >
-
-I wonder if it's using llvmpipe or something... should be ~same perf.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435158360.e3F05F2.17379--
-
---===============0998295844==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0998295844==--
+SGVsbG8sCgpUaGUgVGVncmEgR1BVIHN5c3RlbSBzb2Z0d2FyZSB0ZWFtIGhhcyBiZWd1biB0byBh
+bGlnbiBvdXIgbmV3LWNoaXAKZGV2ZWxvcG1lbnQgZWZmb3J0cyB3aXRoIE5vdXZlYXUuICBJbiBw
+YXJ0aWN1bGFyIHdlIHdvdWxkIGxpa2UgdG8gYXJyaXZlCmF0IGEgcGxhY2Ugd2hlcmUgdGhlIE5v
+dXZlYXUga2VybmVsIGRyaXZlciBjb2RlIGJhc2UgaXMgb3VyIHByaW1hcnkKZGV2ZWxvcG1lbnQg
+ZW52aXJvbm1lbnQuCgpUbyB0aGF0IGVuZCBJJ2QgbGlrZSB0byBhZGQgc29tZSAib2ZmaWNpYWwi
+IGhhcmR3YXJlIHJlZmVyZW5jZSBoZWFkZXJzIHRvCk5vdXZlYXUuICBUaGUgaGVhZGVycyBhcmUg
+ZGVyaXZlZCBmcm9tIHRoZSBpbmZvcm1hdGlvbiB3ZSB1c2UgaW50ZXJuYWxseS4KSSBoYXZlIGFy
+cmFuZ2VkIHRoZSBkZWZpbml0aW9ucyBzdWNoIHRoYXQgdGhlIHNpbWlsYXJpdGllcyBhbmQgZGlm
+ZmVyZW5jZXMKYmV0d2VlbiBHUFVzIGlzIG1hZGUgZXhwbGljaXQuICBJIGFtIGhhcHB5IHRvIGV4
+cGxhaW4gdGhlIHJhdGlvbmFsZSBmb3IKYW55IGRlc2lnbiBjaG9pY2VzIGFuZCBzaW5jZSBJIHdy
+b3RlIHRoZSBnZW5lcmF0b3IgSSBhbSBhYmxlIHRvIHR3ZWFrIHRoZW0KaW4gYWxtb3N0IGFueSB3
+YXkgdGhlIGNvbW11bml0eSBwcmVmZXJzLgoKRm9yIHRoaXMgc3BlY2lmaWMgcGhhc2UgSSBjYW4g
+cHJvdmlkZSBpbmZvcm1hdGlvbiBhbHJlYWR5IGF2YWlsYWJsZSBmb3IKR0syMEEgYW5kIEdNMjBC
+ICh2aWEgZWl0aGVyIG52Z3B1IGFuZC9vciB0aGUgb25nb2luZyB3b3JrIHRvIGFkZCBUZWdyYQpz
+dXBwb3J0IHRvIE5vdXZlYXUpLiAgV2UgaGF2ZSBhbHJlYWR5IGdvbmUgdGhyb3VnaCBhbiBpbnRl
+cm5hbCBJUCByZXZpZXcKcHJvY2VzcyBvbiB0aG9zZS4uLiBidXQsIG92ZXIgdGhlIGxvbmctdGVy
+bSBJJ20gY29uZmlkZW50IGFueSBpbmZvcm1hdGlvbgp3ZSBuZWVkIHRvIGZpbGwtaW4gZnVuY3Rp
+b25hbGl0eSA+PSBOVjUwL0c4MCB3aWxsIGJlIG1hZGUgcHVibGljCmV2ZW50dWFsbHkuCldlIGp1
+c3QgbmVlZCB0byBnbyB0aHJvdWdoIHRoZSBpbnRlcm5hbCBzdGVwcyBuZWNlc3NhcnkgdG8gbWFr
+ZSB0aGF0CmhhcHBlbi4KCkkgc3RhcnRlZCBhIE5vdXZlYXUgYnJhbmNoIG9mIG15IG93biB0byB0
+cmVhdCBhcyBhIHNjcmF0Y2ggcGFkIGFuZCBmb3IKa2VlcGluZyB0cmFjayBvZiBkaXNjdXNzaW9u
+OgogICAgaHR0cHM6Ly9naXRodWIuY29tL2tmcmFjdGFsL25vdXZlYXUvdHJlZS9od3JlZgoKVGhh
+dCBicmFuY2ggdHJhY2tzOgogICAgaHR0cHM6Ly9naXRodWIuY29tL0dudXJvdS9ub3V2ZWF1L3Ry
+ZWUvc3RhZ2luZwoKSSBhbHNvIGhhdmU6CiAgaHR0cHM6Ly9naXRodWIuY29tL2tmcmFjdGFsL25v
+dXZlYXUvdHJlZS9vbGQtaHdyZWYKCiB3aGljaCBoYXMgc29tZSBlYXJsaWVyIG5vdGVzIGFuZCBk
+aXNjdXNzaW9uIG9uIHVzZS1wYXR0ZXJucy4KCk9uY2Ugd2UncmUgaGFwcHkgd2l0aCB0aGUgcGxh
+Y2VtZW50IGFuZCBvcmdhbml6YXRpb24gb2YgdGhlc2UgaGVhZGVycyBhbmQKYWNjZXNzb3JzLCBJ
+J3ZlIGJlZW4gZ2l2ZW4gdGhlIGZyZWVkb20gKGkuZS4gdGltZSBhbmQgc3BhY2UpIHRvIGZvbGxv
+dwp0aHJvdWdoIGFuZCBoZWxwIG1ha2UgTm91dmVhdSBvdXIgZ28tdG8gY2hpcCBkZXZlbG9wbWVu
+dCBrZXJuZWwgZHJpdmVyLgoKSSdtIGxvb2tpbmcgZm9yd2FyZCB0byBjb21tZW50cyBhbmQgdG8g
+YWN0dWFsbHksIGZpbmFsbHksIGp1bXBpbmcgaW4gOikKClRoYW5rcyEKLS0tCktlbiBBZGFtcwpr
+YWRhbXNAbnZpZGlhLmNvbQoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
