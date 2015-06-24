@@ -1,12 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Wed, 24 Jun 2015 06:03:25 +0000
-Message-ID: <bug-90932-8800-tvzkQpHUHf@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+From: "Bofei.Dong" <dorazzsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Will nouveau support for CUDA?
+Date: Wed, 24 Jun 2015 17:50:50 +0800
+Message-ID: <CA+ecGB5XQAUN_KQcXw8nkpc_7Ga5U2y4T1L8EqwPiHshWSJuiQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1050379661=="
+Content-Type: multipart/mixed; boundary="===============0249636799=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +17,24 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0249636799==
+Content-Type: multipart/alternative; boundary=089e011832ea2b3fc305194071d7
 
---===============1050379661==
-Content-Type: multipart/alternative; boundary="1435125805.8Af81b3D1.22677"; charset="UTF-8"
+--089e011832ea2b3fc305194071d7
+Content-Type: text/plain; charset=UTF-8
 
+I'm using GTX780 and need to use nouveau for some reasons.
+But I always use CUDA heavy. (Blender etc.)
+Will nouveau support for CUDA? If yes, when will it?
 
---1435125805.8Af81b3D1.22677
-Date: Wed, 24 Jun 2015 06:03:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+--089e011832ea2b3fc305194071d7
+Content-Type: text/html; charset=UTF-8
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
+<div dir="ltr">I&#39;m using GTX780 and need to use nouveau for some reasons.<div>But I always use CUDA heavy. (Blender etc.)</div><div>Will nouveau support for CUDA? If yes, when will it?</div></div>
 
---- Comment #9 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
-Thanks for the explanation. For me the exa sounds like a great option. Besides
-that we have tried the modesetting driver with the K620 card and noticed a much
-higher CPU load on gnome-shell (even on inactivity).
+--089e011832ea2b3fc305194071d7--
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1435125805.8Af81b3D1.22677
-Date: Wed, 24 Jun 2015 06:03:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
-</span></b>
-        <pre>Thanks for the explanation. For me the exa sounds like a great option. Besides
-that we have tried the modesetting driver with the K620 card and noticed a much
-higher CPU load on gnome-shell (even on inactivity).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435125805.8Af81b3D1.22677--
-
---===============1050379661==
+--===============0249636799==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +44,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1050379661==--
+--===============0249636799==--
