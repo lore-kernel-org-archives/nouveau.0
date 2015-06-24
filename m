@@ -1,10 +1,12 @@
-From: "Bofei.Dong" <dorazzsoft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Will nouveau support for CUDA?
-Date: Wed, 24 Jun 2015 17:50:50 +0800
-Message-ID: <CA+ecGB5XQAUN_KQcXw8nkpc_7Ga5U2y4T1L8EqwPiHshWSJuiQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
+Date: Wed, 24 Jun 2015 15:06:00 +0000
+Message-ID: <bug-90932-8800-QrPBdKQk5D@http.bugs.freedesktop.org/>
+References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0249636799=="
+Content-Type: multipart/mixed; boundary="===============0998295844=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,24 +19,72 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0249636799==
-Content-Type: multipart/alternative; boundary=089e011832ea2b3fc305194071d7
 
---089e011832ea2b3fc305194071d7
-Content-Type: text/plain; charset=UTF-8
+--===============0998295844==
+Content-Type: multipart/alternative; boundary="1435158360.e3F05F2.17379"; charset="UTF-8"
 
-I'm using GTX780 and need to use nouveau for some reasons.
-But I always use CUDA heavy. (Blender etc.)
-Will nouveau support for CUDA? If yes, when will it?
 
---089e011832ea2b3fc305194071d7
-Content-Type: text/html; charset=UTF-8
+--1435158360.e3F05F2.17379
+Date: Wed, 24 Jun 2015 15:06:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-<div dir="ltr">I&#39;m using GTX780 and need to use nouveau for some reasons.<div>But I always use CUDA heavy. (Blender etc.)</div><div>Will nouveau support for CUDA? If yes, when will it?</div></div>
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
---089e011832ea2b3fc305194071d7--
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Marcus Moeller from comment #9)
+> Thanks for the explanation. For me the exa sounds like a great option.
+> Besides that we have tried the modesetting driver with the K620 card and
+> noticed a much higher CPU load on gnome-shell (even on inactivity).
 
---===============0249636799==
+I wonder if it's using llvmpipe or something... should be ~same perf.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1435158360.e3F05F2.17379
+Date: Wed, 24 Jun 2015 15:06:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c9">comment #9</a>)
+<span class="quote">&gt; Thanks for the explanation. For me the exa sounds like a great option.
+&gt; Besides that we have tried the modesetting driver with the K620 card and
+&gt; noticed a much higher CPU load on gnome-shell (even on inactivity).</span >
+
+I wonder if it's using llvmpipe or something... should be ~same perf.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435158360.e3F05F2.17379--
+
+--===============0998295844==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -44,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0249636799==--
+--===============0998295844==--
