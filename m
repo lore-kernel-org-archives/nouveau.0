@@ -1,33 +1,58 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [Nouveau] [PATCH v2 0/6] Improve GK20A support, introduce GM20B,
- firmware paths
-Date: Thu, 25 Jun 2015 09:14:30 +0900
-Message-ID: <558B47E6.7040708@nvidia.com>
-References: <1435040166-25651-1-git-send-email-acourbot@nvidia.com>
- <CACAvsv75o33C10+5QjVPnjCJyYRrPNXhaHXSkbXK-vBDFXUZqg@mail.gmail.com>
+From: ZZ <dorazz-25CfU72zatU@public.gmane.org>
+Subject: Will nouveau support for cuda?
+Date: Wed, 24 Jun 2015 00:42:39 +0000
+Message-ID: <SNT148-W561FC4E26191A4FD0E54EED7AF0@phx.gbl>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <CACAvsv75o33C10+5QjVPnjCJyYRrPNXhaHXSkbXK-vBDFXUZqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Aaron Plattner <aplattner-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Allen Martin <AMartin-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Terje Bergstrom <tbergstrom-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: multipart/mixed; boundary="===============1241003318=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-On 06/25/2015 08:59 AM, Ben Skeggs wrote:
-> On 23 June 2015 at 16:16, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org> wrote:
->> Second version of this patchset. Not many changes since first version - I hope
->> this means the changes are not too controversial.
->>
->> Changes since v1:
->> - Removed lookup for previous FW files in "nouveau/"
->> - Went back to using request_firmware() since we only try to load one file
-> Hey Alex,
->
-> I've merged this in my tree as-is for the moment, hopefully to go to
-> Linus for the next merge window.  If there's any changes from you guys
-> on how you want the firmware to be handled, it'd be nice to have those
-> made concrete before then :)
+--===============1241003318==
+Content-Type: multipart/alternative;
+	boundary="_39144626-40f8-41ca-aa51-d4fb43ee37d9_"
 
-Excellent, that will give us a short grace period. Thanks Ben! :)
+--_39144626-40f8-41ca-aa51-d4fb43ee37d9_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
+
+SGkgZXZlcnlvbmUsDQpJIGhhdmUgYSBHVFg3ODAgZ3JhcGhpY3MgY2FyZCBhbmQgd2FudCB0byBt
+b3ZlIHRvIG5vdXZlYXUgZm9yIHNvbWUgcmVhc29uLg0KSSBuZWVkIGN1ZGEgZm9yIGhlYXZ5IHVz
+ZS4oQmxlbmRlciwgZXRjLikNCldpbGwgbm91dmVhdSBzdXBwb3J0IGZvciBjdWRhPyBJZiB5ZXMs
+IHdoZW4gd2lsbCBpdCBiZSByZWFsZXNlZD8NCg0KWloNCiAJCSAJICAgCQkgIA==
+
+--_39144626-40f8-41ca-aa51-d4fb43ee37d9_
+Content-Type: text/html; charset="gb2312"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
+DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
+bnQtZmFtaWx5Os6iyO3RxbraDQp9DQotLT48L3N0eWxlPjwvaGVhZD4NCjxib2R5IGNsYXNzPSdo
+bW1lc3NhZ2UnPjxkaXYgZGlyPSdsdHInPkhpIGV2ZXJ5b25lLDxicj5JIGhhdmUgYSBHVFg3ODAg
+Z3JhcGhpY3MgY2FyZCBhbmQgd2FudCB0byBtb3ZlIHRvIG5vdXZlYXUgZm9yIHNvbWUgcmVhc29u
+Ljxicj5JIG5lZWQgY3VkYSBmb3IgaGVhdnkgdXNlLihCbGVuZGVyLCBldGMuKTxicj5XaWxsIG5v
+dXZlYXUgc3VwcG9ydCBmb3IgY3VkYT8gSWYgeWVzLCB3aGVuIHdpbGwgaXQgYmUgcmVhbGVzZWQ/
+PGJyPjxicj5aWjxicj4gCQkgCSAgIAkJICA8L2Rpdj48L2JvZHk+DQo8L2h0bWw+
+
+--_39144626-40f8-41ca-aa51-d4fb43ee37d9_--
+
+--===============1241003318==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1241003318==--
