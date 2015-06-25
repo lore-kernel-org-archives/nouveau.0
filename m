@@ -1,10 +1,13 @@
-From: ZZ <dorazz-25CfU72zatU@public.gmane.org>
-Subject: Will nouveau support for cuda?
-Date: Wed, 24 Jun 2015 00:42:39 +0000
-Message-ID: <SNT148-W561FC4E26191A4FD0E54EED7AF0@phx.gbl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Thu, 25 Jun 2015 06:24:25 +0000
+Message-ID: <bug-70354-8800-UBL4zpcnl3@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1241003318=="
+Content-Type: multipart/mixed; boundary="===============1624596240=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,35 +20,72 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============1241003318==
-Content-Type: multipart/alternative;
-	boundary="_39144626-40f8-41ca-aa51-d4fb43ee37d9_"
 
---_39144626-40f8-41ca-aa51-d4fb43ee37d9_
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+--===============1624596240==
+Content-Type: multipart/alternative; boundary="1435213464.0c2203d71.28407"; charset="UTF-8"
 
-SGkgZXZlcnlvbmUsDQpJIGhhdmUgYSBHVFg3ODAgZ3JhcGhpY3MgY2FyZCBhbmQgd2FudCB0byBt
-b3ZlIHRvIG5vdXZlYXUgZm9yIHNvbWUgcmVhc29uLg0KSSBuZWVkIGN1ZGEgZm9yIGhlYXZ5IHVz
-ZS4oQmxlbmRlciwgZXRjLikNCldpbGwgbm91dmVhdSBzdXBwb3J0IGZvciBjdWRhPyBJZiB5ZXMs
-IHdoZW4gd2lsbCBpdCBiZSByZWFsZXNlZD8NCg0KWloNCiAJCSAJICAgCQkgIA==
 
---_39144626-40f8-41ca-aa51-d4fb43ee37d9_
-Content-Type: text/html; charset="gb2312"
-Content-Transfer-Encoding: base64
+--1435213464.0c2203d71.28407
+Date: Thu, 25 Jun 2015 06:24:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-PGh0bWw+DQo8aGVhZD4NCjxzdHlsZT48IS0tDQouaG1tZXNzYWdlIFANCnsNCm1hcmdpbjowcHg7
-DQpwYWRkaW5nOjBweA0KfQ0KYm9keS5obW1lc3NhZ2UNCnsNCmZvbnQtc2l6ZTogMTJwdDsNCmZv
-bnQtZmFtaWx5Os6iyO3RxbraDQp9DQotLT48L3N0eWxlPjwvaGVhZD4NCjxib2R5IGNsYXNzPSdo
-bW1lc3NhZ2UnPjxkaXYgZGlyPSdsdHInPkhpIGV2ZXJ5b25lLDxicj5JIGhhdmUgYSBHVFg3ODAg
-Z3JhcGhpY3MgY2FyZCBhbmQgd2FudCB0byBtb3ZlIHRvIG5vdXZlYXUgZm9yIHNvbWUgcmVhc29u
-Ljxicj5JIG5lZWQgY3VkYSBmb3IgaGVhdnkgdXNlLihCbGVuZGVyLCBldGMuKTxicj5XaWxsIG5v
-dXZlYXUgc3VwcG9ydCBmb3IgY3VkYT8gSWYgeWVzLCB3aGVuIHdpbGwgaXQgYmUgcmVhbGVzZWQ/
-PGJyPjxicj5aWjxicj4gCQkgCSAgIAkJICA8L2Rpdj48L2JvZHk+DQo8L2h0bWw+
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---_39144626-40f8-41ca-aa51-d4fb43ee37d9_--
+Bozhan <bozhan-uiMcrn6V0Vs@public.gmane.org> changed:
 
---===============1241003318==
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |major
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1435213464.0c2203d71.28407
+Date: Thu, 25 Jun 2015 06:24:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>major
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435213464.0c2203d71.28407--
+
+--===============1624596240==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -55,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1241003318==--
+--===============1624596240==--
