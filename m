@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91119] [NVE4] GPU hangs when opening several Firefox
  tabs at once
-Date: Fri, 26 Jun 2015 20:39:20 +0000
-Message-ID: <bug-91119-8800-2oEnfhxgfd@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jun 2015 20:39:40 +0000
+Message-ID: <bug-91119-8800-k1jskA0MVV@http.bugs.freedesktop.org/>
 References: <bug-91119-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0492105714=="
+Content-Type: multipart/mixed; boundary="===============0147398349=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91119-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0492105714==
-Content-Type: multipart/alternative; boundary="1435351160.4204445d3.22296"; charset="UTF-8"
+--===============0147398349==
+Content-Type: multipart/alternative; boundary="1435351180.AFE6315.22296"; charset="UTF-8"
 
 
---1435351160.4204445d3.22296
-Date: Fri, 26 Jun 2015 20:39:20 +0000
+--1435351180.AFE6315.22296
+Date: Fri, 26 Jun 2015 20:39:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91119
 
---- Comment #3 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 116734
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116734&action=edit
-Xorg.log
+Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #116734|Xorg.log                    |Xorg.log 1
+        description|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435351160.4204445d3.22296
-Date: Fri, 26 Jun 2015 20:39:20 +0000
+--1435351180.AFE6315.22296
+Date: Fri, 26 Jun 2015 20:39:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +52,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] GPU hangs when opening several Firefox tabs at once"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91119#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] GPU hangs when opening several Firefox tabs at once"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91119">bug 91119</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116734" name="attach_116734" title="Xorg.log">attachment 116734</a> <a href="attachment.cgi?id=116734&amp;action=edit" title="Xorg.log">[details]</a></span>
-Xorg.log</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #116734 description</td>
+           <td>Xorg.log
+           </td>
+           <td>Xorg.log 1
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +84,9 @@ Xorg.log</pre>
     </body>
 </html>
 
---1435351160.4204445d3.22296--
+--1435351180.AFE6315.22296--
 
---===============0492105714==
+--===============0147398349==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0492105714==--
+--===============0147398349==--
