@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91119] [NVE4] GPU hangs when opening several Firefox
  tabs at once
-Date: Fri, 26 Jun 2015 20:42:54 +0000
-Message-ID: <bug-91119-8800-4Ln6NUFNYD@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jun 2015 20:43:04 +0000
+Message-ID: <bug-91119-8800-kemC0ZRDgL@http.bugs.freedesktop.org/>
 References: <bug-91119-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0613198300=="
+Content-Type: multipart/mixed; boundary="===============0900019867=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91119-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0613198300==
-Content-Type: multipart/alternative; boundary="1435351374.C8dDDaC11.22697"; charset="UTF-8"
+--===============0900019867==
+Content-Type: multipart/alternative; boundary="1435351384.5eD7e7B13.22697"; charset="UTF-8"
 
 
---1435351374.C8dDDaC11.22697
-Date: Fri, 26 Jun 2015 20:42:54 +0000
+--1435351384.5eD7e7B13.22697
+Date: Fri, 26 Jun 2015 20:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,15 +36,15 @@ Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #116733|lsmod                       |lsmod 1
+ Attachment #116732|dmesg                       |dmesg 1
         description|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435351374.C8dDDaC11.22697
-Date: Fri, 26 Jun 2015 20:42:54 +0000
+--1435351384.5eD7e7B13.22697
+Date: Fri, 26 Jun 2015 20:43:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,10 +67,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #116733 description</td>
-           <td>lsmod
+           <td style="text-align:right;">Attachment #116732 description</td>
+           <td>dmesg
            </td>
-           <td>lsmod 1
+           <td>dmesg 1
            </td>
          </tr></table>
       <p>
@@ -84,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1435351374.C8dDDaC11.22697--
+--1435351384.5eD7e7B13.22697--
 
---===============0613198300==
+--===============0900019867==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0613198300==--
+--===============0900019867==--
