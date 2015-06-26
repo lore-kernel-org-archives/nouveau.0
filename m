@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91119] [NVE4] GPU hangs when opening several Firefox
  tabs at once
-Date: Fri, 26 Jun 2015 20:42:14 +0000
-Message-ID: <bug-91119-8800-7qf6miaTBY@http.bugs.freedesktop.org/>
+Date: Fri, 26 Jun 2015 20:42:40 +0000
+Message-ID: <bug-91119-8800-JoFabh9LJz@http.bugs.freedesktop.org/>
 References: <bug-91119-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0336091302=="
+Content-Type: multipart/mixed; boundary="===============1597009228=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91119-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0336091302==
-Content-Type: multipart/alternative; boundary="1435351334.cAabBDB7.22697"; charset="UTF-8"
+--===============1597009228==
+Content-Type: multipart/alternative; boundary="1435351360.1A5c642C9.22697"; charset="UTF-8"
 
 
---1435351334.cAabBDB7.22697
-Date: Fri, 26 Jun 2015 20:42:14 +0000
+--1435351360.1A5c642C9.22697
+Date: Fri, 26 Jun 2015 20:42:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91119
 
---- Comment #8 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Created attachment 116739
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116739&action=edit
-lsmod 3
+--- Comment #9 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+Created attachment 116740
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116740&action=edit
+Xorg.log 3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435351334.cAabBDB7.22697
-Date: Fri, 26 Jun 2015 20:42:14 +0000
+--1435351360.1A5c642C9.22697
+Date: Fri, 26 Jun 2015 20:42:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] GPU hangs when opening several Firefox tabs at once"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91119#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91119#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] GPU hangs when opening several Firefox tabs at once"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91119">bug 91119</a>
               from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116739" name="attach_116739" title="lsmod 3">attachment 116739</a> <a href="attachment.cgi?id=116739&amp;action=edit" title="lsmod 3">[details]</a></span>
-lsmod 3</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=116740" name="attach_116740" title="Xorg.log 3">attachment 116740</a> <a href="attachment.cgi?id=116740&amp;action=edit" title="Xorg.log 3">[details]</a></span>
+Xorg.log 3</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ lsmod 3</pre>
     </body>
 </html>
 
---1435351334.cAabBDB7.22697--
+--1435351360.1A5c642C9.22697--
 
---===============0336091302==
+--===============1597009228==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0336091302==--
+--===============1597009228==--
