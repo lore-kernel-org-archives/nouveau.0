@@ -1,46 +1,102 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50/ir: propagate modifier to right arg when
-	folding mad(const, const)
-Date: Fri, 26 Jun 2015 15:05:47 -0400
-Message-ID: <1435345547-15273-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91117] Nimbus (running in wine) has rendering issues,
+ objects are semi-transparent
+Date: Fri, 26 Jun 2015 19:07:18 +0000
+Message-ID: <bug-91117-8800-TWZWKRQPy5@http.bugs.freedesktop.org/>
+References: <bug-91117-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: "10.5 10.6" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0420528746=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91117-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW4gaW1tZWRpYXRlIGhhcyB0byBiZSB0aGUgc2Vjb25kIGFyZyBvZiBhbiBBREQgb3BlcmF0aW9u
-LiBIb3dldmVyIHdlCndlcmUgbWlzdGFrZW5seSBwcm9wYWdhdGluZyB0aGUgbW9kaWZpZXIgb2Yg
-dGhlIG5vbi1mb2xkZWQgdmFsdWUgdG8gdGhlCmZvbGRlZCBpbW1lZGlhdGUgYXJndW1lbnQuCgpC
-dWd6aWxsYTogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTEx
-MTcKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzog
-IjEwLjUgMTAuNiIgPG1lc2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0tCiBzcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCB8IDUg
-KysrKy0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRp
-ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3Bl
-ZXBob2xlLmNwcCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJf
-cGVlcGhvbGUuY3BwCmluZGV4IDc1MGExNDAuLjcyMjMyNjYgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCisrKyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9jb2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwCkBA
-IC02MDgsOSArNjA4LDEyIEBAIENvbnN0YW50Rm9sZGluZzo6ZXhwcihJbnN0cnVjdGlvbiAqaSwK
-ICAgIGNhc2UgT1BfRk1BOiB7CiAgICAgICBpLT5vcCA9IE9QX0FERDsKIAorICAgICAgLyogTW92
-ZSB0aGUgaW1tZWRpYXRlIHRvIHRoZSBzZWNvbmQgYXJnLCBvdGhlcndpc2UgdGhlIEFERCBvcGVy
-YXRpb24KKyAgICAgICAqIHdvbid0IGJlIGVtaXR0YWJsZQorICAgICAgICovCiAgICAgICBpLT5z
-ZXRTcmMoMSwgaS0+Z2V0U3JjKDApKTsKLSAgICAgIGktPnNyYygxKS5tb2QgPSBpLT5zcmMoMiku
-bW9kOwogICAgICAgaS0+c2V0U3JjKDAsIGktPmdldFNyYygyKSk7CisgICAgICBpLT5zcmMoMCku
-bW9kID0gaS0+c3JjKDIpLm1vZDsKICAgICAgIGktPnNldFNyYygyLCBOVUxMKTsKIAogICAgICAg
-SW1tZWRpYXRlVmFsdWUgc3JjMDsKLS0gCjIuMy42CgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9tZXNhLWRldgo=
+
+--===============0420528746==
+Content-Type: multipart/alternative; boundary="1435345638.C8E4E71.1771"; charset="UTF-8"
+
+
+--1435345638.C8E4E71.1771
+Date: Fri, 26 Jun 2015 19:07:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91117
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The trace starts working when applying
+
+http://patchwork.freedesktop.org/patch/53049/
+
+Note that the bisected commit merely enables the code fixed by the above to
+operate on the shaders in question rather than actually having a problem by
+itself. The resulting code ended up as "b - a" instead of "a - b".
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1435345638.C8E4E71.1771
+Date: Fri, 26 Jun 2015 19:07:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nimbus (running in wine) has rendering issues, objects are semi-transparent"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91117#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nimbus (running in wine) has rendering issues, objects are semi-transparent"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91117">bug 91117</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>The trace starts working when applying
+
+<a href="http://patchwork.freedesktop.org/patch/53049/">http://patchwork.freedesktop.org/patch/53049/</a>
+
+Note that the bisected commit merely enables the code fixed by the above to
+operate on the shaders in question rather than actually having a problem by
+itself. The resulting code ended up as &quot;b - a&quot; instead of &quot;a - b&quot;.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435345638.C8E4E71.1771--
+
+--===============0420528746==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0420528746==--
