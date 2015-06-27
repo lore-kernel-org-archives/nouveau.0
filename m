@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70972] [NV67] Modesetting failure at 1280x800
-Date: Sat, 27 Jun 2015 16:21:18 +0000
-Message-ID: <bug-70972-8800-S1LyTsmQPF@http.bugs.freedesktop.org/>
-References: <bug-70972-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Sat, 27 Jun 2015 18:18:08 +0000
+Message-ID: <bug-89558-8800-SxVvdQoqNC@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0946573253=="
+Content-Type: multipart/mixed; boundary="===============0750646514=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,42 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0946573253==
-Content-Type: multipart/alternative; boundary="1435422078.43Ec2.32226"; charset="UTF-8"
+--===============0750646514==
+Content-Type: multipart/alternative; boundary="1435429087.46FC4ad2.32047"; charset="UTF-8"
 
 
---1435422078.43Ec2.32226
-Date: Sat, 27 Jun 2015 16:21:18 +0000
+--1435429087.46FC4ad2.32047
+Date: Sat, 27 Jun 2015 18:18:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70972
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #21 from Viktor Sidochenko <clicman-o+MxOtu4lMCHXe+LvDLADg@public.gmane.org> ---
-I have laptop with NVIDIA Corporation C67 [GeForce 7150M / nForce 630M]
-[10de:0531] (rev a2) card onboard and native 1280x800 resolution. And it shows
-broken picture with nouveau. 
+--- Comment #36 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
+Interesting that the GM108 (0x118) appears to be not included in the reference
+headers supplied recently by Nvidia.
 
-Full info with  lspci -nnv:
+ref:
 
-00:12.0 VGA compatible controller [0300]: NVIDIA Corporation C67 [GeForce 7150M
-/ nForce 630M] [10de:0531] (rev a2) (prog-if 00 [VGA controller])
-    Subsystem: Hewlett-Packard Company Device [103c:30cf]
-    Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 16
-    Memory at f5000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at d0000000 (64-bit, prefetchable) [size=256M]
-    Memory at f4000000 (64-bit, non-prefetchable) [size=16M]
-    [virtual] Expansion ROM at f6280000 [disabled] [size=128K]
-    Capabilities: [48] Power Management version 2
-    Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-    Kernel driver in use: nvidia
+github.com/kfractal/nouveau/commit/0d942ce1fd1c0eaf70cdb6bf8633e982f0fe1922
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435422078.43Ec2.32226
-Date: Sat, 27 Jun 2015 16:21:18 +0000
+--1435429087.46FC4ad2.32047
+Date: Sat, 27 Jun 2015 18:18:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,31 +57,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972#c21">Comment # 21</a>
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c36">Comment # 36</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] Modesetting failure at 1280x800"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70972">bug 70972</a>
-              from <span class="vcard"><a class="email" href="mailto:clicman&#64;yandex.ru" title="Viktor Sidochenko &lt;clicman&#64;yandex.ru&gt;"> <span class="fn">Viktor Sidochenko</span></a>
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
 </span></b>
-        <pre>I have laptop with NVIDIA Corporation C67 [GeForce 7150M / nForce 630M]
-[10de:0531] (rev a2) card onboard and native 1280x800 resolution. And it shows
-broken picture with nouveau. 
+        <pre>Interesting that the GM108 (0x118) appears to be not included in the reference
+headers supplied recently by Nvidia.
 
-Full info with  lspci -nnv:
+ref:
 
-00:12.0 VGA compatible controller [0300]: NVIDIA Corporation C67 [GeForce 7150M
-/ nForce 630M] [10de:0531] (rev a2) (prog-if 00 [VGA controller])
-    Subsystem: Hewlett-Packard Company Device [103c:30cf]
-    Flags: bus master, 66MHz, fast devsel, latency 0, IRQ 16
-    Memory at f5000000 (32-bit, non-prefetchable) [size=16M]
-    Memory at d0000000 (64-bit, prefetchable) [size=256M]
-    Memory at f4000000 (64-bit, non-prefetchable) [size=16M]
-    [virtual] Expansion ROM at f6280000 [disabled] [size=128K]
-    Capabilities: [48] Power Management version 2
-    Capabilities: [50] MSI: Enable- Count=1/1 Maskable- 64bit+
-    Kernel driver in use: nvidia</pre>
+github.com/kfractal/nouveau/commit/0d942ce1fd1c0eaf70cdb6bf8633e982f0fe1922</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +82,9 @@ Full info with  lspci -nnv:
     </body>
 </html>
 
---1435422078.43Ec2.32226--
+--1435429087.46FC4ad2.32047--
 
---===============0946573253==
+--===============0750646514==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0946573253==--
+--===============0750646514==--
