@@ -1,119 +1,126 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Sun, 28 Jun 2015 06:25:33 +0000
-Message-ID: <bug-90887-8800-i1IeyWTQ0e@http.bugs.freedesktop.org/>
-References: <bug-90887-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Subject: Re: [Nouveau] [RFC PATCH 3/8] nv50: allocate and map a
+ notifier buffer object for PM
+Date: Sun, 28 Jun 2015 09:42:29 +0200
+Message-ID: <558FA565.9060009@gmail.com>
+References: <1435006399-2088-1-git-send-email-samuel.pitoiset@gmail.com>
+ <1435006399-2088-4-git-send-email-samuel.pitoiset@gmail.com>
+ <CAKb7UvjVFFyPNjqUcr-j87awuV1mR9xKRBVYdyWg3Wi+MsgLmw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1306689643=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7UvjVFFyPNjqUcr-j87awuV1mR9xKRBVYdyWg3Wi+MsgLmw@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1306689643==
-Content-Type: multipart/alternative; boundary="1435472734.6E74b5.23917"; charset="UTF-8"
-
-
---1435472734.6E74b5.23917
-Date: Sun, 28 Jun 2015 06:25:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90887
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |lubosz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 75776 has been marked as a duplicate of this bug. ***
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1435472734.6E74b5.23917
-Date: Sun, 28 Jun 2015 06:25:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>lubosz&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - [NV50 gallium] Hearthstone displays corrupted buffers"
-   href="show_bug.cgi?id=75776">Bug 75776</a> has been marked as a duplicate of this bug. ***</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435472734.6E74b5.23917--
-
---===============1306689643==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1306689643==--
+CgpPbiAwNi8yNi8yMDE1IDAxOjAyIEFNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBNb24sIEp1
+biAyMiwgMjAxNSBhdCA0OjUzIFBNLCBTYW11ZWwgUGl0b2lzZXQKPiA8c2FtdWVsLnBpdG9pc2V0
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IFRoaXMgbm90aWZpZXIgYnVmZmVyIG9iamVjdCB3aWxsIGJl
+IHVzZWQgdG8gcmVhZCBiYWNrIGdsb2JhbCBwZXJmb3JtYW5jZQo+PiBjb3VudGVycyByZXN1bHRz
+IHdyaXR0ZW4gYnkgdGhlIGtlcm5lbC4KPj4KPj4gRm9yIGVhY2ggZG9tYWluLCB3ZSB3aWxsIHN0
+b3JlIHRoZSBoYW5kbGUgb2YgdGhlIHBlcmZkb20gb2JqZWN0LCBhbgo+PiBhcnJheSBvZiA0IGNv
+dW50ZXJzIGFuZCB0aGUgbnVtYmVyIG9mIGN5Y2xlcy4gTGlrZSB0aGUgR2FsbGl1bSdzIEhVRCwK
+Pj4gd2Uga2VlcCBhIGxpc3Qgb2YgYnVzeSBxdWVyaWVzIGluIGEgcmluZyBpbiBvcmRlciB0byBw
+cmV2ZW50IHN0YWxscwo+PiB3aGVuIHJlYWRpbmcgcXVlcmllcy4KPj4KPj4gU2lnbmVkLW9mZi1i
+eTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPgo+PiAtLS0KPj4g
+ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jIHwgMjkgKysr
+KysrKysrKysrKysrKysrKysrKysrKysKPj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bnY1MC9udjUwX3NjcmVlbi5oIHwgIDYgKysrKysrCj4+ICAgMiBmaWxlcyBjaGFuZ2VkLCAzNSBp
+bnNlcnRpb25zKCspCj4+Cj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvbnY1MC9udjUwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAv
+bnY1MF9zY3JlZW4uYwo+PiBpbmRleCBjOTg1MzQ0Li4zYTk5Y2M4IDEwMDY0NAo+PiAtLS0gYS9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCj4+ICsrKyBiL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmMKPj4gQEAgLTM2OCw2
+ICszNjgsNyBAQCBudjUwX3NjcmVlbl9kZXN0cm95KHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVl
+bikKPj4gICAgICBub3V2ZWF1X29iamVjdF9kZWwoJnNjcmVlbi0+bTJtZik7Cj4+ICAgICAgbm91
+dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPnN5bmMpOwo+PiAgICAgIG5vdXZlYXVfb2JqZWN0X2Rl
+bCgmc2NyZWVuLT5zdyk7Cj4+ICsgICBub3V2ZWF1X29iamVjdF9kZWwoJnNjcmVlbi0+cXVlcnkp
+Owo+Pgo+PiAgICAgIG5vdXZlYXVfc2NyZWVuX2ZpbmkoJnNjcmVlbi0+YmFzZSk7Cj4+Cj4+IEBA
+IC02OTksOSArNzAwLDExIEBAIG52NTBfc2NyZWVuX2NyZWF0ZShzdHJ1Y3Qgbm91dmVhdV9kZXZp
+Y2UgKmRldikKPj4gICAgICBzdHJ1Y3QgbnY1MF9zY3JlZW4gKnNjcmVlbjsKPj4gICAgICBzdHJ1
+Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW47Cj4+ICAgICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpj
+aGFuOwo+PiArICAgc3RydWN0IG52MDRfZmlmbyAqZmlmbzsKPj4gICAgICB1aW50NjRfdCB2YWx1
+ZTsKPj4gICAgICB1aW50MzJfdCB0ZXNsYV9jbGFzczsKPj4gICAgICB1bnNpZ25lZCBzdGFja19z
+aXplOwo+PiArICAgdWludDMyX3QgbGVuZ3RoOwo+PiAgICAgIGludCByZXQ7Cj4+Cj4+ICAgICAg
+c2NyZWVuID0gQ0FMTE9DX1NUUlVDVChudjUwX3NjcmVlbik7Cj4+IEBAIC03MjcsNiArNzMwLDcg
+QEAgbnY1MF9zY3JlZW5fY3JlYXRlKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2KQo+PiAgICAg
+IHNjcmVlbi0+YmFzZS5wdXNoYnVmLT5yc3ZkX2tpY2sgPSA1Owo+Pgo+PiAgICAgIGNoYW4gPSBz
+Y3JlZW4tPmJhc2UuY2hhbm5lbDsKPj4gKyAgIGZpZm8gPSBjaGFuLT5kYXRhOwo+Pgo+PiAgICAg
+IHBzY3JlZW4tPmRlc3Ryb3kgPSBudjUwX3NjcmVlbl9kZXN0cm95Owo+PiAgICAgIHBzY3JlZW4t
+PmNvbnRleHRfY3JlYXRlID0gbnY1MF9jcmVhdGU7Cj4+IEBAIC03NzIsNiArNzc2LDIzIEBAIG52
+NTBfc2NyZWVuX2NyZWF0ZShzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKPj4gICAgICAgICBn
+b3RvIGZhaWw7Cj4+ICAgICAgfQo+Pgo+PiArICAgLyogQ29tcHV0ZSBzaXplIChpbiBieXRlcykg
+b2YgdGhlIG5vdGlmaWVyIGJ1ZmZlciBvYmplY3Qgd2hpY2ggaXMgdXNlZAo+PiArICAgICogaW4g
+b3JkZXIgdG8gcmVhZCBiYWNrIGdsb2JhbCBwZXJmb3JtYW5jZSBjb3VudGVycyByZXN1bHRzIHdy
+aXR0ZW4KPj4gKyAgICAqIGJ5IHRoZSBrZXJuZWwuIEZvciBlYWNoIGRvbWFpbiwgd2Ugc3RvcmUg
+dGhlIGhhbmRsZSBvZiB0aGUgcGVyZmRvbQo+PiArICAgICogb2JqZWN0LCBhbiBhcnJheSBvZiA0
+IGNvdW50ZXJzIGFuZCB0aGUgbnVtYmVyIG9mIGN5Y2xlcy4gTGlrZSBmb3IKPj4gKyAgICAqIHRo
+ZSBHYWxsaXVtJ3MgSFVELCB3ZSBrZWVwIGEgbGlzdCBvZiBidXN5IHF1ZXJpZXMgaW4gYSByaW5n
+IGluIG9yZGVyCj4+ICsgICAgKiB0byBwcmV2ZW50IHN0YWxscyB3aGVuIHJlYWRpbmcgcXVlcmll
+cy4gKi8KPj4gKyAgIGxlbmd0aCA9ICgxICsgKE5WNTBfSFdfUE1fUklOR19CVUZGRVJfTlVNX0RP
+TUFJTlMgKiA2KSAqCj4+ICsgICAgICBOVjUwX0hXX1BNX1JJTkdfQlVGRkVSX01BWF9RVUVSSUVT
+KSAqIDQ7Cj4gVGhpcyBjYWxjdWxhdGlvbiBtYXkgYmVjb21lIGFwcGFyZW50IHRvIG1lIGxhdGVy
+LCBidXQgaXQgY2VydGFpbmx5Cj4gaXNuJ3Qgbm93LiBXaGF0J3MgdGhlICo2PyBZb3UgcmVmZXIg
+dG8gYW4gYXJyYXkgb2YgNCBjb3VudGVycy4uLgo+IHNob3VsZCB0aGF0IGhhdmUgYmVlbiA2IGNv
+dW50ZXJzPyBPciBzaG91bGQgdGhpcyBoYXZlIGJlZW4gYSA0PwoKVGhpcyByZWZlcnMgdG8gdGhl
+IGhhbmRsZSBvZiB0aGUgb2JqZWN0LCB0aGUgYXJyYXkgb2YgNCBjb3VudGVycyBhbmQgdGhlIApu
+dW1iZXIgb2YgY3ljbGVzLgpJbiBvdGhlciB3b3JkcywgZm9yIGVhY2ggZG9tYWluIHdlIHN0b3Jl
+OiBpZCwgY3RyMCwgY3RyMSwgY3RyMiwgY3RyMywgY2xrLgoKPgo+PiArCj4+ICsgICByZXQgPSBu
+b3V2ZWF1X29iamVjdF9uZXcoY2hhbiwgMHhiZWVmMDMwMiwgTk9VVkVBVV9OT1RJRklFUl9DTEFT
+UywKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAmKHN0cnVjdCBudjA0X25vdGlmeSl7
+IC5sZW5ndGggPSBsZW5ndGggfSwKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICBzaXpl
+b2Yoc3RydWN0IG52MDRfbm90aWZ5KSwgJnNjcmVlbi0+cXVlcnkpOwo+PiArICAgaWYgKHJldCkg
+ewo+PiArICAgICAgIE5PVVZFQVVfRVJSKCJGYWlsZWQgdG8gYWxsb2NhdGUgbm90aWZpZXIgb2Jq
+ZWN0IGZvciBQTTogJWRcbiIsIHJldCk7Cj4+ICsgICAgICAgZ290byBmYWlsOwo+PiArICAgfQo+
+PiArCj4+ICAgICAgcmV0ID0gbm91dmVhdV9vYmplY3RfbmV3KGNoYW4sIDB4YmVlZjUwNmUsIDB4
+NTA2ZSwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTlVMTCwgMCwgJnNjcmVlbi0+
+c3cpOwo+PiAgICAgIGlmIChyZXQpIHsKPj4gQEAgLTg0NSw2ICs4NjYsMTQgQEAgbnY1MF9zY3Jl
+ZW5fY3JlYXRlKHN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2KQo+PiAgICAgIG5vdXZlYXVfaGVh
+cF9pbml0KCZzY3JlZW4tPmdwX2NvZGVfaGVhcCwgMCwgMSA8PCBOVjUwX0NPREVfQk9fU0laRV9M
+T0cyKTsKPj4gICAgICBub3V2ZWF1X2hlYXBfaW5pdCgmc2NyZWVuLT5mcF9jb2RlX2hlYXAsIDAs
+IDEgPDwgTlY1MF9DT0RFX0JPX1NJWkVfTE9HMik7Cj4+Cj4+ICsgICByZXQgPSBub3V2ZWF1X2Jv
+X3dyYXAoc2NyZWVuLT5iYXNlLmRldmljZSwgZmlmby0+bm90aWZ5LCAmc2NyZWVuLT5ub3RpZnlf
+Ym8pOwo+PiArICAgaWYgKHJldCA9PSAwKQo+PiArICAgICAgbm91dmVhdV9ib19tYXAoc2NyZWVu
+LT5ub3RpZnlfYm8sIDAsIHNjcmVlbi0+YmFzZS5jbGllbnQpOwo+IHJldCA9IC4uLgoKR29vZCBj
+YXRjaCwgdGhhbmtzLgoKPgo+PiArICAgaWYgKHJldCkgewo+PiArICAgICAgTk9VVkVBVV9FUlIo
+IkZhaWxlZCB0byBtYXAgbm90aWZpZXIgb2JqZWN0IGZvciBQTTogJWRcbiIsIHJldCk7Cj4+ICsg
+ICAgICBnb3RvIGZhaWw7Cj4+ICsgICB9Cj4+ICsKPj4gICAgICBub3V2ZWF1X2dldHBhcmFtKGRl
+diwgTk9VVkVBVV9HRVRQQVJBTV9HUkFQSF9VTklUUywgJnZhbHVlKTsKPj4KPj4gICAgICBzY3Jl
+ZW4tPlRQcyA9IHV0aWxfYml0Y291bnQodmFsdWUgJiAweGZmZmYpOwo+PiBkaWZmIC0tZ2l0IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uaCBiL3NyYy9nYWxs
+aXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2NyZWVuLmgKPj4gaW5kZXggNjlmZGZkYi4u
+NzFhNTI0NyAxMDA2NDQKPj4gLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAv
+bnY1MF9zY3JlZW4uaAo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9u
+djUwX3NjcmVlbi5oCj4+IEBAIC01OSw2ICs1OSw3IEBAIHN0cnVjdCBudjUwX3NjcmVlbiB7Cj4+
+ICAgICAgc3RydWN0IG5vdXZlYXVfYm8gKnR4YzsgLyogVElDIChvZmZzZXQgMCkgYW5kIFRTQyAo
+NjU1MzYpICovCj4+ICAgICAgc3RydWN0IG5vdXZlYXVfYm8gKnN0YWNrX2JvOwo+PiAgICAgIHN0
+cnVjdCBub3V2ZWF1X2JvICp0bHNfYm87Cj4+ICsgICBzdHJ1Y3Qgbm91dmVhdV9ibyAqbm90aWZ5
+X2JvOwo+Pgo+PiAgICAgIHVuc2lnbmVkIFRQczsKPj4gICAgICB1bnNpZ25lZCBNUHNJblRQOwo+
+PiBAQCAtODksNiArOTAsNyBAQCBzdHJ1Y3QgbnY1MF9zY3JlZW4gewo+PiAgICAgIH0gZmVuY2U7
+Cj4+Cj4+ICAgICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpzeW5jOwo+PiArICAgc3RydWN0IG5v
+dXZlYXVfb2JqZWN0ICpxdWVyeTsKPj4KPj4gICAgICBzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnRl
+c2xhOwo+PiAgICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqZW5nMmQ7Cj4+IEBAIC05Niw2ICs5
+OCwxMCBAQCBzdHJ1Y3QgbnY1MF9zY3JlZW4gewo+PiAgICAgIHN0cnVjdCBub3V2ZWF1X29iamVj
+dCAqc3c7Cj4+ICAgfTsKPj4KPj4gKy8qIFBhcmFtZXRlcnMgb2YgdGhlIHJpbmcgYnVmZmVyIHVz
+ZWQgdG8gcmVhZCBiYWNrIGdsb2JhbCBQTSBjb3VudGVycy4gKi8KPj4gKyNkZWZpbmUgTlY1MF9I
+V19QTV9SSU5HX0JVRkZFUl9OVU1fRE9NQUlOUyA4Cj4+ICsjZGVmaW5lIE5WNTBfSFdfUE1fUklO
+R19CVUZGRVJfTUFYX1FVRVJJRVMgOSAvKiBIVURfTlVNX1FVRVJJRVMgKyAxICovCj4+ICsKPj4g
+ICBzdGF0aWMgSU5MSU5FIHN0cnVjdCBudjUwX3NjcmVlbiAqCj4+ICAgbnY1MF9zY3JlZW4oc3Ry
+dWN0IHBpcGVfc2NyZWVuICpzY3JlZW4pCj4+ICAgewo+PiAtLQo+PiAyLjQuNAo+Pgo+PiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0
+Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
