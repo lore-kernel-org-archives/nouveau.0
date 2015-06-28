@@ -1,12 +1,12 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Take shift in crtc positions for ZaphodHeads
-	configs into account.
-Date: Sun, 28 Jun 2015 02:33:49 +0200
-Message-ID: <1435451629-17959-1-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Sun, 28 Jun 2015 06:17:58 +0000
+Message-ID: <bug-90887-8800-oaNAxwKWzx@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0375236360=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +17,171 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SW4gbXVsdGkteC1zY3JlZW4gWmFwaG9kSGVhZHMgY29uZmlndXJhdGlvbnMsIHRoZXJlIGlzbid0
-IGEKb25lLXRvLW9uZSBtYXBwaW5nIG9mIGtlcm5lbCBwcm92aWRlZCBkcm1tb2RlIGNydGMgaW5k
-ZXgKdG8gdGhlIGluZGV4IG9mIHRoZSBjb3JyZXNwb25kaW5nIHhmODZDcnRjIGluc2lkZSB0aGUK
-eGY4NkNydGNDb25maWcgY3J0YyBhcnJheSBhbnltb3JlLCBpZS4gZm9yIGtlcm5lbCBwcm92aWRl
-ZApkcm1tb2RlLT5tb2RlX3Jlcy0+Y3J0Y3NbaV0sIHRoZSBpJ3RoIGNydGMgd29uJ3QgY29ycmVz
-cG9uZAp0byB0aGUgeGY4NkNydGMgaW4gdGhlIGkndGggc2xvdCBvZiB0aGUgeC1zY3JlZW5zIHhm
-ODZDcnRjQ29uZmlnCmFueW1vcmUsIG9uY2UgWmFwaG9kSGVhZHMgaGFzIG9ubHkgc2VsZWN0ZWQg
-YSBzdWJzZXQgb2YgYWxsIGNydGNzCm9mIGEgZ3JhcGhpY3MgY2FyZCBmb3IgYSBnaXZlbiB4LXNj
-cmVlbiwgaW5zdGVhZCBvZiBhbGwgY3J0Y3MuCgpUaGlzIGJyZWFrcyB0aGUgbWFwcGluZyBvZiBi
-aXQgcG9zaXRpb25zIGluIHRoZSBiaXQgbWFza3MgcmV0dXJuZWQKaW4ga2VuY29kZXItPnBvc3Np
-YmxlX2NydGNzIGFuZCBrZW5jb2Rlci0+cG9zc2libGVfY2xvbmVzLiBBIDEgYml0CmluIHBvc2l0
-aW9uIGkgb2YgdGhvc2UgbWFza3MgYWxsb3dzIHVzZSBvZiB0aGUga2VybmVscyBpJ3RoIGNydGMg
-Zm9yCnRoZSBnaXZlbiBrZW5jb2Rlci4gVGhlIFgtU2VydmVycyBkaXggY29kZSBjaGVja3MgdGhv
-c2UgYml0IG1hc2tzCmZvciB2YWxpZCB4Zjg2T3V0cHV0IC0+IHhmODZDcnRjIGFzc2lnbm1lbnRz
-LCBhc3N1bWluZyB0aGF0IHRoZSBpJ3RoCnNsb3QgeGY4NkNydGNDb25maWdQdHIgY29uZmlnLT5j
-cnRjW2ldIGNvcnJlc3BvbmRzIHRvIGJpdCBpIGluIHRoZQp4Zjg2T3V0cHV0LT5wb3NzaWJlX2Ny
-dGNzIGJpdG1hc2ssIGFuZCBiYWlscyBpZiB0aGUgYml0bWFzayBkb2Vzbid0CmFsbG93IHRoZSBz
-cGVjaWZpZWQgYXNzaWdubWVudCBvZiBjcnRjIHRvIG91dHB1dC4gSWYgWmFwaG9kSGVhZHMKYnJl
-YWtzIHRoZSBhc3N1bXB0aW9uIG9mIGJpdCBpIDwtPiBjcnRjIHNsb3QgaSB0aGlzIGVuZHMgaW4g
-ZmFpbHVyZS4KClRha2UgdGhpcyBzaGlmdCBvZiBjcnRjIGluZGV4IHBvc2l0aW9ucyB3cnQuIGVu
-Y29kZXIgYml0bWFzayBiaXQKcG9zaXRpb25zIGludG8gYWNjb3VudCBieSBiaXQtc2hpZnRpbmcg
-cG9zaXRpb25zIGFjY29yZGluZ2x5IHdoZW4KYXNzaWduaW5nIGVuY29kZXItPnBvc3NpYmxlX2Ny
-dGNzIHRvIG91dHB1dC0+cG9zc2libGVfY3J0Y3MsIHNvCnRoZSBwcm9wZXIgaW5kaWNlcyBtYXRj
-aCB1cCBhZ2FpbiBmb3IgdmFsaWRhdGlvbiBieSB0aGUgZGl4LgoKVGhpcyBwcm9ibGVtIHdhc24n
-dCBhcHBhcmVudCBsYXN0IHllYXIgd2hlbiB0ZXN0aW5nIHRoZSBaYXBob2RIZWFkcwpzdXBwb3J0
-IG9uIHNvbWUgS2VwbGVyIGNhcmRzLCBhcyBhcHBhcmVudGx5IHRoZSBlbmNvZGVyLT5wb3NzaWJs
-ZV9jcnRjcwpiaXRtYXNrcyByZXR1cm5lZCBmb3IgdGhvc2UgY2FyZHMgYnkgdGhlIGtlcm5lbCBq
-dXN0IGhhZCBhbGwgNApsc2IgYml0cyBzZXQgZm9yIGFsbCB0ZXN0ZWQgZW5jb2RlcnMvb3V0cHV0
-LCBzbyBlYWNoIG9mIHRoZSBjYXJkcyA0CmNydGNzIGNvdWxkIGdvIHdpdGggZWFjaCBvdXRwdXQg
-YW5kIHRoaW5ncyB3b3JrZWQgYnkgY2hhbmNlLgoKVGhlIGN1cnJlbnQgY29kZSBicmVha3MsIGUu
-Zy4sIG9uIDIwMTAgTWFjQm9va1BybyB3aXRoIG52NTAsIHdoZXJlCm9uZSBjcnRjIGlzIGhhcmR3
-aXJlZCB0byB0aGUgaW50ZXJuYWwgbHZkcyBwYW5lbCwgYW5kIG9uZSBjcnRjCmlzIGhhcmR3aXJl
-ZCB0byB0aGUgZXh0ZXJuYWwgRFAgY29ubmVjdG9yLCByZXN1bHRpbmcgaW4gYSBmYWlsdXJlCndo
-ZXJlIGR1YWwtZGlzcGxheSBvbiBzaW5nbGUteC1zY3JlZW4gd29ya3MgZmluZSwgYnV0IGFzc2ln
-bmluZwplYWNoIG91dHB1dCB0byBhIHNlcGFyYXRlIHgtc2NyZWVuIHZpYSBaYXBob2RIZWFkcyBm
-YWlscyBkdWUgdG8KdGhlIG1pc21hdGNoZWQgZW5jb2Rlci0+cG9zc2libGVfY3J0Y3MgYml0bWFz
-a3MuCgpUaGlzIHBhdGNoIGZpeGVzIHRoZSBwcm9ibGVtLgoKU2lnbmVkLW9mZi1ieTogTWFyaW8g
-S2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+Ci0tLQogc3JjL2RybW1vZGVfZGlz
-cGxheS5jIHwgMTAgKysrKysrLS0tLQogMSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwg
-NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZHJtbW9kZV9kaXNwbGF5LmMgYi9zcmMv
-ZHJtbW9kZV9kaXNwbGF5LmMKaW5kZXggYzMwY2IzYS4uMzY3OTQ4MiAxMDA2NDQKLS0tIGEvc3Jj
-L2RybW1vZGVfZGlzcGxheS5jCisrKyBiL3NyYy9kcm1tb2RlX2Rpc3BsYXkuYwpAQCAtMTIxNCw3
-ICsxMjE0LDcgQEAgZHJtbW9kZV96YXBob2RfbWF0Y2goU2NybkluZm9QdHIgcFNjcm4sIGNvbnN0
-IGNoYXIgKnMsIGNoYXIgKm91dHB1dF9uYW1lKQogfQogCiBzdGF0aWMgdW5zaWduZWQgaW50Ci1k
-cm1tb2RlX291dHB1dF9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBkcm1tb2RlX3B0ciBkcm1tb2Rl
-LCBpbnQgbnVtKQorZHJtbW9kZV9vdXRwdXRfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgZHJtbW9k
-ZV9wdHIgZHJtbW9kZSwgaW50IG51bSwgaW50IGNydGNzaGlmdCkKIHsKIAlOVlB0ciBwTnYgPSBO
-VlBUUihwU2Nybik7CiAJeGY4Nk91dHB1dFB0ciBvdXRwdXQ7CkBAIC0xMjk2LDggKzEyOTYsOCBA
-QCBkcm1tb2RlX291dHB1dF9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBkcm1tb2RlX3B0ciBkcm1t
-b2RlLCBpbnQgbnVtKQogCW91dHB1dC0+c3VicGl4ZWxfb3JkZXIgPSBzdWJwaXhlbF9jb252X3Rh
-YmxlW2tvdXRwdXQtPnN1YnBpeGVsXTsKIAlvdXRwdXQtPmRyaXZlcl9wcml2YXRlID0gZHJtbW9k
-ZV9vdXRwdXQ7CiAKLQlvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBvc3NpYmxl
-X2NydGNzOwotCW91dHB1dC0+cG9zc2libGVfY2xvbmVzID0ga2VuY29kZXItPnBvc3NpYmxlX2Ns
-b25lczsKKwlvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBvc3NpYmxlX2NydGNz
-ID4+IGNydGNzaGlmdDsKKwlvdXRwdXQtPnBvc3NpYmxlX2Nsb25lcyA9IGtlbmNvZGVyLT5wb3Nz
-aWJsZV9jbG9uZXMgPj4gY3J0Y3NoaWZ0OwogCiAJb3V0cHV0LT5pbnRlcmxhY2VBbGxvd2VkID0g
-dHJ1ZTsKIAlvdXRwdXQtPmRvdWJsZVNjYW5BbGxvd2VkID0gdHJ1ZTsKQEAgLTE0MjEsNiArMTQy
-MSw3IEBAIEJvb2wgZHJtbW9kZV9wcmVfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgaW50IGZkLCBp
-bnQgY3BwKQogCU5WRW50UHRyIHBOVkVudCA9IE5WRW50UHJpdihwU2Nybik7CiAJaW50IGk7CiAJ
-dW5zaWduZWQgaW50IGNydGNzX25lZWRlZCA9IDA7CisJaW50IGNydGNzaGlmdDsKIAogCWRybW1v
-ZGUgPSB4bmZhbGxvYyhzaXplb2YgKmRybW1vZGUpOwogCWRybW1vZGUtPmZkID0gZmQ7CkBAIC0x
-NDQ0LDggKzE0NDUsOSBAQCBCb29sIGRybW1vZGVfcHJlX2luaXQoU2NybkluZm9QdHIgcFNjcm4s
-IGludCBmZCwgaW50IGNwcCkKIAl9CiAKIAl4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhf
-SU5GTywgIkluaXRpYWxpemluZyBvdXRwdXRzIC4uLlxuIik7CisJY3J0Y3NoaWZ0ID0gZmZzKHBO
-VkVudC0+YXNzaWduZWRfY3J0Y3MgXiAweGZmZmZmZmZmKSAtIDE7CiAJZm9yIChpID0gMDsgaSA8
-IGRybW1vZGUtPm1vZGVfcmVzLT5jb3VudF9jb25uZWN0b3JzOyBpKyspCi0JCWNydGNzX25lZWRl
-ZCArPSBkcm1tb2RlX291dHB1dF9pbml0KHBTY3JuLCBkcm1tb2RlLCBpKTsKKwkJY3J0Y3NfbmVl
-ZGVkICs9IGRybW1vZGVfb3V0cHV0X2luaXQocFNjcm4sIGRybW1vZGUsIGksIGNydGNzaGlmdCk7
-CiAKIAl4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywKIAkJICAgIiVkIGNydGNz
-IG5lZWRlZCBmb3Igc2NyZWVuLlxuIiwgY3J0Y3NfbmVlZGVkKTsKLS0gCjEuOS4xCgpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
-bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0375236360==
+Content-Type: multipart/alternative; boundary="1435472277.225BfD0F1.21193"; charset="UTF-8"
+
+
+--1435472277.225BfD0F1.21193
+Date: Sun, 28 Jun 2015 06:17:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
+
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, so among other changes, commit e43a3a66 had the following diff:
+
+@@ -312,23 +337,26 @@ RegAlloc::PhiMovesPass::visit(BasicBlock *bb)
+    Instruction *phi, *mov;
+    BasicBlock *pb, *pn;
+
++   std::stack<BasicBlock *> stack;
++
+    for (Graph::EdgeIterator ei = bb->cfg.incident(); !ei.end(); ei.next()) {
+-      pb = pn = BasicBlock::get(ei.getNode());
++      pb = BasicBlock::get(ei.getNode());
+       assert(pb);
+-
+-      if (needNewElseBlock(bb, pb)) {
+-         pn = new BasicBlock(func);
+-
+-         // deletes an edge, iterator is invalid after this:
+-         pb->cfg.detach(&bb->cfg);
+-         pb->cfg.attach(&pn->cfg, Graph::Edge::TREE);
+-         pn->cfg.attach(&bb->cfg, Graph::Edge::FORWARD); // XXX: check order !
+-
+-         assert(pb->getExit()->op != OP_CALL);
+-         if (pb->getExit()->asFlow()->target.bb == bb)
+-            pb->getExit()->asFlow()->target.bb = pn;
+-         break;
+-      }
++      if (needNewElseBlock(bb, pb))
++         stack.push(pb);
++   }
++   while (!stack.empty()) {
++      pb = stack.top();
++      pn = new BasicBlock(func);
++      stack.pop();
++
++      pb->cfg.detach(&bb->cfg);
++      pb->cfg.attach(&pn->cfg, Graph::Edge::TREE);
++      pn->cfg.attach(&bb->cfg, Graph::Edge::FORWARD);
++
++      assert(pb->getExit()->op != OP_CALL);
++      if (pb->getExit()->asFlow()->target.bb == bb)
++         pb->getExit()->asFlow()->target.bb = pn;
+    }
+
+    // insert MOVs (phi->src(j) should stem from j-th in-BB)
+
+which the patch in attachment 116339 effectively undoes. [Why was that in
+there? No idea. But presumably futzing with bb's affects needNewElseBlock's
+decisions.] So I'm still tending towards my solution. But I'm not particularly
+happy that it has to build up and use that hash table every time even if
+nothing's changed.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1435472277.225BfD0F1.21193
+Date: Sun, 28 Jun 2015 06:17:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>OK, so among other changes, commit e43a3a66 had the following diff:
+
+&#64;&#64; -312,23 +337,26 &#64;&#64; RegAlloc::PhiMovesPass::visit(BasicBlock *bb)
+    Instruction *phi, *mov;
+    BasicBlock *pb, *pn;
+
++   std::stack&lt;BasicBlock *&gt; stack;
++
+    for (Graph::EdgeIterator ei = bb-&gt;cfg.incident(); !ei.end(); ei.next()) {
+-      pb = pn = BasicBlock::get(ei.getNode());
++      pb = BasicBlock::get(ei.getNode());
+       assert(pb);
+-
+-      if (needNewElseBlock(bb, pb)) {
+-         pn = new BasicBlock(func);
+-
+-         // deletes an edge, iterator is invalid after this:
+-         pb-&gt;cfg.detach(&amp;bb-&gt;cfg);
+-         pb-&gt;cfg.attach(&amp;pn-&gt;cfg, Graph::Edge::TREE);
+-         pn-&gt;cfg.attach(&amp;bb-&gt;cfg, Graph::Edge::FORWARD); // XXX: check order !
+-
+-         assert(pb-&gt;getExit()-&gt;op != OP_CALL);
+-         if (pb-&gt;getExit()-&gt;asFlow()-&gt;target.bb == bb)
+-            pb-&gt;getExit()-&gt;asFlow()-&gt;target.bb = pn;
+-         break;
+-      }
++      if (needNewElseBlock(bb, pb))
++         stack.push(pb);
++   }
++   while (!stack.empty()) {
++      pb = stack.top();
++      pn = new BasicBlock(func);
++      stack.pop();
++
++      pb-&gt;cfg.detach(&amp;bb-&gt;cfg);
++      pb-&gt;cfg.attach(&amp;pn-&gt;cfg, Graph::Edge::TREE);
++      pn-&gt;cfg.attach(&amp;bb-&gt;cfg, Graph::Edge::FORWARD);
++
++      assert(pb-&gt;getExit()-&gt;op != OP_CALL);
++      if (pb-&gt;getExit()-&gt;asFlow()-&gt;target.bb == bb)
++         pb-&gt;getExit()-&gt;asFlow()-&gt;target.bb = pn;
+    }
+
+    // insert MOVs (phi-&gt;src(j) should stem from j-th in-BB)
+
+which the patch in <span class=""><a href="attachment.cgi?id=116339" name="attach_116339" title="Candidate Fix for nv50 PhiMovesPass">attachment 116339</a> <a href="attachment.cgi?id=116339&amp;action=edit" title="Candidate Fix for nv50 PhiMovesPass">[details]</a></span> effectively undoes. [Why was that in
+there? No idea. But presumably futzing with bb's affects needNewElseBlock's
+decisions.] So I'm still tending towards my solution. But I'm not particularly
+happy that it has to build up and use that hash table every time even if
+nothing's changed.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435472277.225BfD0F1.21193--
+
+--===============0375236360==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0375236360==--
