@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89842] Nvidia nouveau drivers hangs all gnome when
  opening the new legacy tray (and many other situations) in 3.16.0
-Date: Sun, 28 Jun 2015 15:07:14 +0000
-Message-ID: <bug-89842-8800-myeGK4hFkX@http.bugs.freedesktop.org/>
+Date: Sun, 28 Jun 2015 18:19:02 +0000
+Message-ID: <bug-89842-8800-hwlP7i5mBp@http.bugs.freedesktop.org/>
 References: <bug-89842-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1416972975=="
+Content-Type: multipart/mixed; boundary="===============1120715962=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89842-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1416972975==
-Content-Type: multipart/alternative; boundary="1435504034.bdB01356.31782"; charset="UTF-8"
+--===============1120715962==
+Content-Type: multipart/alternative; boundary="1435515543.CD76fd6.13462"; charset="UTF-8"
 
 
---1435504034.bdB01356.31782
-Date: Sun, 28 Jun 2015 15:07:14 +0000
+--1435515543.CD76fd6.13462
+Date: Sun, 28 Jun 2015 18:19:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89842
 
---- Comment #17 from Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> ---
-I have a similar bug with
+Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> changed:
 
-Debian Linux "testing" ("stretch")
-GeForce 8400 GS Rev. 3
-Linux 3.10-2-amd64
-xserver-xorg-video-nouveau 1:1.0.11-1+b1
-libdrm-nouveau1a 2.4.40-1~deb7u2
-libdrm-nouveau2 2.4.60-3
-libgl1-mesa-dri 10.5.7-1
-libgl1-mesa-glx 10.5.7-1
-Gnome 3.14.0-1
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |porton-Q+l+L2ir60w@public.gmane.org
+
+--- Comment #18 from Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> ---
+Created attachment 116767
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116767&action=edit
+when manipulating Gnome tray
+
+See the error log produced by journalctl when manipulating Gnome tray.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435504034.bdB01356.31782
-Date: Sun, 28 Jun 2015 15:07:14 +0000
+--1435515543.CD76fd6.13462
+Date: Sun, 28 Jun 2015 18:19:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,30 +58,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:porton&#64;narod.ru" title="Victor Porton &lt;porton&#64;narod.ru&gt;"> <span class="fn">Victor Porton</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>porton&#64;narod.ru
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89842#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89842">bug 89842</a>
               from <span class="vcard"><a class="email" href="mailto:porton&#64;narod.ru" title="Victor Porton &lt;porton&#64;narod.ru&gt;"> <span class="fn">Victor Porton</span></a>
 </span></b>
-        <pre>I have a similar bug with
+        <pre>Created <span class=""><a href="attachment.cgi?id=116767" name="attach_116767" title="when manipulating Gnome tray">attachment 116767</a> <a href="attachment.cgi?id=116767&amp;action=edit" title="when manipulating Gnome tray">[details]</a></span>
+when manipulating Gnome tray
 
-Debian Linux &quot;testing&quot; (&quot;stretch&quot;)
-GeForce 8400 GS Rev. 3
-Linux 3.10-2-amd64
-xserver-xorg-video-nouveau 1:1.0.11-1+b1
-libdrm-nouveau1a 2.4.40-1~deb7u2
-libdrm-nouveau2 2.4.60-3
-libgl1-mesa-dri 10.5.7-1
-libgl1-mesa-glx 10.5.7-1
-Gnome 3.14.0-1</pre>
+See the error log produced by journalctl when manipulating Gnome tray.</pre>
         </div>
       </p>
       <hr>
@@ -93,9 +107,9 @@ Gnome 3.14.0-1</pre>
     </body>
 </html>
 
---1435504034.bdB01356.31782--
+--1435515543.CD76fd6.13462--
 
---===============1416972975==
+--===============1120715962==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1416972975==--
+--===============1120715962==--
