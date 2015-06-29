@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91125] Nouveau read fault, locking up the gpu
-Date: Mon, 29 Jun 2015 14:43:45 +0000
-Message-ID: <bug-91125-8800-Wl4wtAehvs@http.bugs.freedesktop.org/>
+Subject: [Bug 91125] [NVE7] Nouveau read fault, locking up the gpu
+Date: Mon, 29 Jun 2015 14:45:16 +0000
+Message-ID: <bug-91125-8800-uyPrhkAyD0@http.bugs.freedesktop.org/>
 References: <bug-91125-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1412654247=="
+Content-Type: multipart/mixed; boundary="===============0060947326=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91125-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1412654247==
-Content-Type: multipart/alternative; boundary="1435589025.4Cdb55c51.17576"; charset="UTF-8"
+--===============0060947326==
+Content-Type: multipart/alternative; boundary="1435589116.82fE2.17889"; charset="UTF-8"
 
 
---1435589025.4Cdb55c51.17576
-Date: Mon, 29 Jun 2015 14:43:45 +0000
+--1435589116.82fE2.17889
+Date: Mon, 29 Jun 2015 14:45:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91125
 
-exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Nouveau read fault after    |Nouveau read fault, locking
-                   |suspend                     |up the gpu
+            Summary|Nouveau read fault, locking |[NVE7] Nouveau read fault,
+                   |up the gpu                  |locking up the gpu
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435589025.4Cdb55c51.17576
-Date: Mon, 29 Jun 2015 14:43:45 +0000
+--1435589116.82fE2.17889
+Date: Mon, 29 Jun 2015 14:45:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,11 +51,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau read fault, locking up the gpu"
+   title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91125">bug 91125</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -67,9 +67,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>Nouveau read fault after suspend
-           </td>
            <td>Nouveau read fault, locking up the gpu
+           </td>
+           <td>[NVE7] Nouveau read fault, locking up the gpu
            </td>
          </tr></table>
       <p>
@@ -83,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1435589025.4Cdb55c51.17576--
+--1435589116.82fE2.17889--
 
---===============1412654247==
+--===============0060947326==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1412654247==--
+--===============0060947326==--
