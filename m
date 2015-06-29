@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
-Date: Mon, 29 Jun 2015 19:43:14 +0000
-Message-ID: <bug-90932-8800-I2BeKheCjJ@http.bugs.freedesktop.org/>
-References: <bug-90932-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Constbuf uploads on G80 and GF100+
+Date: Mon, 29 Jun 2015 17:26:56 -0400
+Message-ID: <CAKb7UvhmHWi4X5RH3bGvbifgHVFk0xqX+SAwhTGgSj2J6VGd6Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2106176629=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,104 +15,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2106176629==
-Content-Type: multipart/alternative; boundary="1435606994.0eCFF7A2.27469"; charset="UTF-8"
-
-
---1435606994.0eCFF7A2.27469
-Date: Mon, 29 Jun 2015 19:43:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90932
-
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marcus Moeller from comment #14)
-> Created attachment 116784 [details]
-> modesetting driver with latest Xorg updates
-> 
-> Latest test with vmlinuz-4.1.0-1, updated xorg-x11-server-Xorg to 1.17.2-1
-> and modesetting driver makes it even worse (though there is no high CPU load
-> anymore)
-
-First it wasn't enough characters... now it's too many. Make up your mind! :)
-
-I need to re-run piglit against a GM107 to see if I've accidentally the whole
-thing. Martin has made one available for me remotely, but I haven't had time to
-actually do the run. But this look like a regular ol' bug in the 3d driver
-somewhere.
-
-Does this always happen? Windows of all sizes, or just huge ones? Anything else
-you could tell me that'll help me debug this?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1435606994.0eCFF7A2.27469
-Date: Mon, 29 Jun 2015 19:43:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - gm107 font glitches with kernel 4.1rc"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c14">comment #14</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=116784" name="attach_116784" title="modesetting driver with latest Xorg updates">attachment 116784</a> <a href="attachment.cgi?id=116784&amp;action=edit" title="modesetting driver with latest Xorg updates">[details]</a></span>
-&gt; modesetting driver with latest Xorg updates
-&gt; 
-&gt; Latest test with vmlinuz-4.1.0-1, updated xorg-x11-server-Xorg to 1.17.2-1
-&gt; and modesetting driver makes it even worse (though there is no high CPU load
-&gt; anymore)</span >
-
-First it wasn't enough characters... now it's too many. Make up your mind! :)
-
-I need to re-run piglit against a GM107 to see if I've accidentally the whole
-thing. Martin has made one available for me remotely, but I haven't had time to
-actually do the run. But this look like a regular ol' bug in the 3d driver
-somewhere.
-
-Does this always happen? Windows of all sizes, or just huge ones? Anything else
-you could tell me that'll help me debug this?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435606994.0eCFF7A2.27469--
-
---===============2106176629==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2106176629==--
+SGVsbG8sCgpJdCBzZWVtcyB0aGF0IE5WSURJQSBHUFVzLCBhdCBsZWFzdCBzdGFydGluZyB3aXRo
+IEc4MCwgaGF2ZSBhbgpvcHRpbWl6ZWQgcGF0aCBmb3IgdGhlIHNlcXVlbmNlCgpkcmF3Owp1cGRh
+dGUgY29uc3RzOwpkcmF3Owp1cGRhdGUgY29uc3RzOwpldGMKCldoZXJlYnkgaXQgd2lsbCBzdGFy
+dCBwcm9jZXNzaW5nIGRyYXcyIGJlZm9yZSBkcmF3MSBpcyBkb25lLiBUbyBkbwp0aGlzLCBpdCBh
+cHBlYXJzIHRoZXJlJ3Mgc29tZSBtYWdpYyBjb25zdGJ1ZiBjYWNoZSBvbiB0aGUgY2hpcCB3aGlj
+aApidWZmZXJzIHRoZSB1cGRhdGVzIHRvIHRoZSByaWdodCBkcmF3LCBldmVudHVhbGx5IHNlcmlh
+bGl6aW5nIHRoZW0gYWxsCm91dCB0byBtZW1vcnkgYXMgaWYgaXQgd2VyZSBhbGwgZG9uZSBzZXJp
+YWxseS4KCkluIG9yZGVyIHRvIG1ha2UgaXQgaW50byB0aGlzIG1hZ2ljIGNvbnN0YnVmIGNhY2hl
+LCB0aGVyZSBhcmUgc3BlY2lhbApjb25zdGJ1ZiB1cGxvYWQgZW50cnlwb2ludHMsIG9uIEdGMTAw
+IHRoZXkgYXJlIG1ldGhvZCAweDIzOTAgYW5kIHRoZQphc3NvY2lhdGVkIG1ldGhvZHMgdGhhdCBj
+b21lIHJpZ2h0IGJlZm9yZSBpdC4KCkhvd2V2ZXIgaW4gb3JkZXIgZm9yIGl0IHRvIGFsbCB3b3Jr
+IG91dCBhcyBvbmUgbWlnaHQgaG9wZSwgdGhlIENCCnNldHRpbmdzIHRoYXQgd2VyZSBpbiBwbGFj
+ZSB3aGVuIHRoZSBDQiB3YXMgYm91bmQgKHZpYSBtZXRob2QgMHgyNDEwKQpoYXZlIHRvIG1hdGNo
+IHRoZSBvbmVzIHVzZWQgZm9yIHVwbG9hZCwgc3BlY2lmaWNhbGx5IHRoZSBhZGRyZXNzLiBTbwpp
+ZiB5b3UgaGF2ZSBhIENCIGF0IGFkZHJlc3MgMHgxMDAwIG9mIHNpemUgMHgxMDAwLCBhbmQgeW91
+IGRlY2lkZSB0bwp1cGRhdGUgaXRzIGRhdGEgYXQgMHg4MDAsIGl0IGFwcGVhcnMgdGhhdCB5b3Ug
+aGF2ZSB0byB1c2UgdGhhdCBzYW1lCmluaXRpYWwgMHgxMDAwIGFzIHRoZSBiYXNlIGFuZCAweDgw
+MCBhcyB0aGUgb2Zmc2V0LiBJZiB5b3UgdXNlIGFuCmFkZHJlc3Mgb2YgMHgxODAwLCBpdCB3b24n
+dCBub3RpY2UgdGhhdCB0aGUgQ0IgaXMgYm91bmQuCgpUaGlzIGlzIGVhc3kgZW5vdWdoIHRvIGhh
+bmRsZS4gQnV0IHdoYXQgZG8geW91IGRvIHdoZW4gc29tZSBnZW5pdXMKd2FudHMgdG8gaGF2ZSB0
+d28gb3ZlcmxhcHBpbmcgYnVmZmVycywgYW5kIHVwZGF0ZXMgdGhlIG92ZXJsYXBwaW5nCmFyZWE/
+IEZvciBleGFtcGxlCgpnbEJ1ZmZlckRhdGEoR0xfVU5JRk9STV9CVUZGRVIsIDB4MTAwMCkKZ2xC
+aW5kQnVmZmVyUmFuZ2UoR0xfVU5JRk9STV9CVUZGRVIsIDEsIGJ1ZiwgMCwgMHgyMDApOwpnbEJp
+bmRCdWZmZXJSYW5nZShHTF9VTklGT1JNX0JVRkZFUiwgMiwgYnVmLCAweDEwMCwgMHgyMDApOwoK
+YW5kIHRoZW4gdHJ5IHRvIGRvIGEgZ2xNYXBCdWZmZXJSYW5nZShidWYsIDB4MTAwIC0gMHgxMDAw
+KSBvciBzb21ldGhpbmcuCgpJcyB0aGVyZSBhIHdheSB0byBoYW5kbGUgaXQgd2hpbGUgcGxheWlu
+ZyBuaWNlIHdpdGggdGhlIENCIHVwZGF0ZQpidWZmZXIgbWVjaGFuaXNtLCBvciBkbyB5b3UgaGF2
+ZSB0byBnaXZlIHVwIGFuZCBkbyBhIHNlcmlhbGl6ZSAobWV0aG9kCjB4MTEwKSBmb2xsb3dlZCBi
+eSBhIG1lbW9yeSBiYXJyaWVyICgweDIxYyk/IE9yIGRvIHlvdSBqdXN0IHBpY2sKd2hpY2hldmVy
+IG9uZSB5b3UgbGlrZSwgYXMgbG9uZyBhcyBhbnkgd2VyZSBib3VuZCBhbmQgaXQncyBnb29kPwoK
+QWxzbywgb24gRzgwLWVyYSBHUFVzIHRoZSBjb25zdGJ1ZiB1cGxvYWQgcHJvY2VzcyBpcyBhIGJp
+dCBkaWZmZXJlbnQsCndoZXJlIGl0IHdhbnRzIHRoZSB1cGxvYWRzIHRvIGdvIHRvIGEgc3BlY2lm
+aWMgYmluZGluZyBwb2ludC4gSG93CnNob3VsZCB0aGUgb3ZlcmxhcHBpbmcgc2l0dWF0aW9uIGJl
+IGhhbmRsZWQgdGhlcmU/CgpUaGFua3MgZm9yIGFueSBpbmZvIG9uIHRoaXMhCgogIC1pbGlhCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
