@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91125] Nouveau read fault after suspend
-Date: Mon, 29 Jun 2015 14:43:13 +0000
-Message-ID: <bug-91125-8800-0vtxtTaYkV@http.bugs.freedesktop.org/>
+Subject: [Bug 91125] Nouveau read fault, locking up the gpu
+Date: Mon, 29 Jun 2015 14:43:45 +0000
+Message-ID: <bug-91125-8800-Wl4wtAehvs@http.bugs.freedesktop.org/>
 References: <bug-91125-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0344687894=="
+Content-Type: multipart/mixed; boundary="===============1412654247=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91125-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0344687894==
-Content-Type: multipart/alternative; boundary="1435588993.BBD421.17400"; charset="UTF-8"
+--===============1412654247==
+Content-Type: multipart/alternative; boundary="1435589025.4Cdb55c51.17576"; charset="UTF-8"
 
 
---1435588993.BBD421.17400
-Date: Mon, 29 Jun 2015 14:43:13 +0000
+--1435589025.4Cdb55c51.17576
+Date: Mon, 29 Jun 2015 14:43:45 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91125
 
---- Comment #1 from exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org ---
-Created attachment 116800
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116800&action=edit
-complete yournal output including dmesg/kernel messages
+exi+freedesktop-LwM2R4sIHAOzQB+pC5nmwQ@public.gmane.org changed:
 
-I just got this bug again freezing up my screen.
-Just before restarting the computer via ssh I saw a "gpu lockup switching
-to..." message on the screen.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Nouveau read fault after    |Nouveau read fault, locking
+                   |suspend                     |up the gpu
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435588993.BBD421.17400
-Date: Mon, 29 Jun 2015 14:43:13 +0000
+--1435589025.4Cdb55c51.17576
+Date: Mon, 29 Jun 2015 14:43:45 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,26 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Nouveau read fault after suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau read fault after suspend"
+   title="NEW - Nouveau read fault, locking up the gpu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91125">bug 91125</a>
-              from <span class="vcard"><a class="email" href="mailto:exi+freedesktop&#64;wthack.de" title="exi+freedesktop&#64;wthack.de">exi+freedesktop&#64;wthack.de</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116800" name="attach_116800" title="complete yournal output including dmesg/kernel messages">attachment 116800</a> <a href="attachment.cgi?id=116800&amp;action=edit" title="complete yournal output including dmesg/kernel messages">[details]</a></span>
-complete yournal output including dmesg/kernel messages
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-I just got this bug again freezing up my screen.
-Just before restarting the computer via ssh I saw a &quot;gpu lockup switching
-to...&quot; message on the screen.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Nouveau read fault after suspend
+           </td>
+           <td>Nouveau read fault, locking up the gpu
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -83,9 +83,9 @@ to...&quot; message on the screen.</pre>
     </body>
 </html>
 
---1435588993.BBD421.17400--
+--1435589025.4Cdb55c51.17576--
 
---===============0344687894==
+--===============1412654247==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0344687894==--
+--===============1412654247==--
