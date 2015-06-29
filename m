@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72180] [NVE6] Random GPU Lockups,
-	works with blob PGRAPH fw
-Date: Sun, 28 Jun 2015 23:49:59 +0000
-Message-ID: <bug-72180-8800-AAGaLwixID@http.bugs.freedesktop.org/>
-References: <bug-72180-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
+Date: Mon, 29 Jun 2015 03:55:20 +0000
+Message-ID: <bug-90932-8800-Q6fvCFWVNh@http.bugs.freedesktop.org/>
+References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0793182473=="
+Content-Type: multipart/mixed; boundary="===============0429849064=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0793182473==
-Content-Type: multipart/alternative; boundary="1435535399.F76Bc4.25267"; charset="UTF-8"
+--===============0429849064==
+Content-Type: multipart/alternative; boundary="1435550120.ADF32.17721"; charset="UTF-8"
 
 
---1435535399.F76Bc4.25267
-Date: Sun, 28 Jun 2015 23:49:59 +0000
+--1435550120.ADF32.17721
+Date: Mon, 29 Jun 2015 03:55:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
---- Comment #42 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Could people who still had issues with 3.17 retest with 4.0+? There was another
-fix in commit 404ba3f79089a01c1ebacccafa08a5db4a4cd2af which among other things
-fixed an issue on GK110.
+--- Comment #12 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Marcus Moeller from comment #11)
+> Yes that might be the case. Is there any way to check this?
+
+# journalctl -b | grep -i 'foo\|bar'
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435535399.F76Bc4.25267
-Date: Sun, 28 Jun 2015 23:49:59 +0000
+--1435550120.ADF32.17721
+Date: Mon, 29 Jun 2015 03:55:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,17 +55,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c42">Comment # 42</a>
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>Could people who still had issues with 3.17 retest with 4.0+? There was another
-fix in commit 404ba3f79089a01c1ebacccafa08a5db4a4cd2af which among other things
-fixed an issue on GK110.</pre>
+        <pre>(In reply to Marcus Moeller from <a href="show_bug.cgi?id=90932#c11">comment #11</a>)
+<span class="quote">&gt; Yes that might be the case. Is there any way to check this?</span >
+
+# journalctl -b | grep -i 'foo\|bar'</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +78,9 @@ fixed an issue on GK110.</pre>
     </body>
 </html>
 
---1435535399.F76Bc4.25267--
+--1435550120.ADF32.17721--
 
---===============0793182473==
+--===============0429849064==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0793182473==--
+--===============0429849064==--
