@@ -1,14 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90569] [NV67] GUI freezes after startup of Ubuntu
- 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at
- f84c8000]
-Date: Mon, 29 Jun 2015 08:27:20 +0000
-Message-ID: <bug-90569-8800-S6i4GXAVOH@http.bugs.freedesktop.org/>
-References: <bug-90569-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
+Date: Mon, 29 Jun 2015 08:41:01 +0000
+Message-ID: <bug-90932-8800-joVtSucgQ6@http.bugs.freedesktop.org/>
+References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1847339925=="
+Content-Type: multipart/mixed; boundary="===============1888766206=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90569-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,40 +20,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1847339925==
-Content-Type: multipart/alternative; boundary="1435566440.dCDD21.20486"; charset="UTF-8"
+--===============1888766206==
+Content-Type: multipart/alternative; boundary="1435567261.C1d246B1.23518"; charset="UTF-8"
 
 
---1435566440.dCDD21.20486
-Date: Mon, 29 Jun 2015 08:27:20 +0000
+--1435567261.C1d246B1.23518
+Date: Mon, 29 Jun 2015 08:41:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90569
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this patch help at all?
+--- Comment #14 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
+Created attachment 116784
+  --> https://bugs.freedesktop.org/attachment.cgi?id=116784&action=edit
+modesetting driver with latest Xorg updates
 
-http://lists.freedesktop.org/archives/nouveau/2015-June/021416.html
-
-I believe the conditions are the same as the ones I hit...
-
-  25:   01 f2                   add    %esi,%edx
-...
-  2b:*  89 0a                   mov    %ecx,(%edx)              <-- trapping
-instruction
-
-ESI: f84b8000
-EDX: f84c8000
-
-So you're going over the 0x10000 size of the ring.
+Latest test with vmlinuz-4.1.0-1, updated xorg-x11-server-Xorg to 1.17.2-1 and
+modesetting driver makes it even worse (though there is no high CPU load
+anymore)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435566440.dCDD21.20486
-Date: Mon, 29 Jun 2015 08:27:20 +0000
+--1435567261.C1d246B1.23518
+Date: Mon, 29 Jun 2015 08:41:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,29 +58,20 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569#c2">Comment # 2</a>
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569">bug 90569</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
+              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
 </span></b>
-        <pre>Does this patch help at all?
+        <pre>Created <span class=""><a href="attachment.cgi?id=116784" name="attach_116784" title="modesetting driver with latest Xorg updates">attachment 116784</a> <a href="attachment.cgi?id=116784&amp;action=edit" title="modesetting driver with latest Xorg updates">[details]</a></span>
+modesetting driver with latest Xorg updates
 
-<a href="http://lists.freedesktop.org/archives/nouveau/2015-June/021416.html">http://lists.freedesktop.org/archives/nouveau/2015-June/021416.html</a>
-
-I believe the conditions are the same as the ones I hit...
-
-  25:   01 f2                   add    %esi,%edx
-...
-  2b:*  89 0a                   mov    %ecx,(%edx)              &lt;-- trapping
-instruction
-
-ESI: f84b8000
-EDX: f84c8000
-
-So you're going over the 0x10000 size of the ring.</pre>
+Latest test with vmlinuz-4.1.0-1, updated xorg-x11-server-Xorg to 1.17.2-1 and
+modesetting driver makes it even worse (though there is no high CPU load
+anymore)</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +83,9 @@ So you're going over the 0x10000 size of the ring.</pre>
     </body>
 </html>
 
---1435566440.dCDD21.20486--
+--1435567261.C1d246B1.23518--
 
---===============1847339925==
+--===============1888766206==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1847339925==--
+--===============1888766206==--
