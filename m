@@ -1,11 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Constbuf uploads on G80 and GF100+
-Date: Mon, 29 Jun 2015 17:26:56 -0400
-Message-ID: <CAKb7UvhmHWi4X5RH3bGvbifgHVFk0xqX+SAwhTGgSj2J6VGd6Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90569] [NV67] GUI freezes after startup of Ubuntu
+ 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at
+ f84c8000]
+Date: Mon, 29 Jun 2015 21:38:35 +0000
+Message-ID: <bug-90569-8800-17poqqsusW@http.bugs.freedesktop.org/>
+References: <bug-90569-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0412924482=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90569-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,44 +18,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpJdCBzZWVtcyB0aGF0IE5WSURJQSBHUFVzLCBhdCBsZWFzdCBzdGFydGluZyB3aXRo
-IEc4MCwgaGF2ZSBhbgpvcHRpbWl6ZWQgcGF0aCBmb3IgdGhlIHNlcXVlbmNlCgpkcmF3Owp1cGRh
-dGUgY29uc3RzOwpkcmF3Owp1cGRhdGUgY29uc3RzOwpldGMKCldoZXJlYnkgaXQgd2lsbCBzdGFy
-dCBwcm9jZXNzaW5nIGRyYXcyIGJlZm9yZSBkcmF3MSBpcyBkb25lLiBUbyBkbwp0aGlzLCBpdCBh
-cHBlYXJzIHRoZXJlJ3Mgc29tZSBtYWdpYyBjb25zdGJ1ZiBjYWNoZSBvbiB0aGUgY2hpcCB3aGlj
-aApidWZmZXJzIHRoZSB1cGRhdGVzIHRvIHRoZSByaWdodCBkcmF3LCBldmVudHVhbGx5IHNlcmlh
-bGl6aW5nIHRoZW0gYWxsCm91dCB0byBtZW1vcnkgYXMgaWYgaXQgd2VyZSBhbGwgZG9uZSBzZXJp
-YWxseS4KCkluIG9yZGVyIHRvIG1ha2UgaXQgaW50byB0aGlzIG1hZ2ljIGNvbnN0YnVmIGNhY2hl
-LCB0aGVyZSBhcmUgc3BlY2lhbApjb25zdGJ1ZiB1cGxvYWQgZW50cnlwb2ludHMsIG9uIEdGMTAw
-IHRoZXkgYXJlIG1ldGhvZCAweDIzOTAgYW5kIHRoZQphc3NvY2lhdGVkIG1ldGhvZHMgdGhhdCBj
-b21lIHJpZ2h0IGJlZm9yZSBpdC4KCkhvd2V2ZXIgaW4gb3JkZXIgZm9yIGl0IHRvIGFsbCB3b3Jr
-IG91dCBhcyBvbmUgbWlnaHQgaG9wZSwgdGhlIENCCnNldHRpbmdzIHRoYXQgd2VyZSBpbiBwbGFj
-ZSB3aGVuIHRoZSBDQiB3YXMgYm91bmQgKHZpYSBtZXRob2QgMHgyNDEwKQpoYXZlIHRvIG1hdGNo
-IHRoZSBvbmVzIHVzZWQgZm9yIHVwbG9hZCwgc3BlY2lmaWNhbGx5IHRoZSBhZGRyZXNzLiBTbwpp
-ZiB5b3UgaGF2ZSBhIENCIGF0IGFkZHJlc3MgMHgxMDAwIG9mIHNpemUgMHgxMDAwLCBhbmQgeW91
-IGRlY2lkZSB0bwp1cGRhdGUgaXRzIGRhdGEgYXQgMHg4MDAsIGl0IGFwcGVhcnMgdGhhdCB5b3Ug
-aGF2ZSB0byB1c2UgdGhhdCBzYW1lCmluaXRpYWwgMHgxMDAwIGFzIHRoZSBiYXNlIGFuZCAweDgw
-MCBhcyB0aGUgb2Zmc2V0LiBJZiB5b3UgdXNlIGFuCmFkZHJlc3Mgb2YgMHgxODAwLCBpdCB3b24n
-dCBub3RpY2UgdGhhdCB0aGUgQ0IgaXMgYm91bmQuCgpUaGlzIGlzIGVhc3kgZW5vdWdoIHRvIGhh
-bmRsZS4gQnV0IHdoYXQgZG8geW91IGRvIHdoZW4gc29tZSBnZW5pdXMKd2FudHMgdG8gaGF2ZSB0
-d28gb3ZlcmxhcHBpbmcgYnVmZmVycywgYW5kIHVwZGF0ZXMgdGhlIG92ZXJsYXBwaW5nCmFyZWE/
-IEZvciBleGFtcGxlCgpnbEJ1ZmZlckRhdGEoR0xfVU5JRk9STV9CVUZGRVIsIDB4MTAwMCkKZ2xC
-aW5kQnVmZmVyUmFuZ2UoR0xfVU5JRk9STV9CVUZGRVIsIDEsIGJ1ZiwgMCwgMHgyMDApOwpnbEJp
-bmRCdWZmZXJSYW5nZShHTF9VTklGT1JNX0JVRkZFUiwgMiwgYnVmLCAweDEwMCwgMHgyMDApOwoK
-YW5kIHRoZW4gdHJ5IHRvIGRvIGEgZ2xNYXBCdWZmZXJSYW5nZShidWYsIDB4MTAwIC0gMHgxMDAw
-KSBvciBzb21ldGhpbmcuCgpJcyB0aGVyZSBhIHdheSB0byBoYW5kbGUgaXQgd2hpbGUgcGxheWlu
-ZyBuaWNlIHdpdGggdGhlIENCIHVwZGF0ZQpidWZmZXIgbWVjaGFuaXNtLCBvciBkbyB5b3UgaGF2
-ZSB0byBnaXZlIHVwIGFuZCBkbyBhIHNlcmlhbGl6ZSAobWV0aG9kCjB4MTEwKSBmb2xsb3dlZCBi
-eSBhIG1lbW9yeSBiYXJyaWVyICgweDIxYyk/IE9yIGRvIHlvdSBqdXN0IHBpY2sKd2hpY2hldmVy
-IG9uZSB5b3UgbGlrZSwgYXMgbG9uZyBhcyBhbnkgd2VyZSBib3VuZCBhbmQgaXQncyBnb29kPwoK
-QWxzbywgb24gRzgwLWVyYSBHUFVzIHRoZSBjb25zdGJ1ZiB1cGxvYWQgcHJvY2VzcyBpcyBhIGJp
-dCBkaWZmZXJlbnQsCndoZXJlIGl0IHdhbnRzIHRoZSB1cGxvYWRzIHRvIGdvIHRvIGEgc3BlY2lm
-aWMgYmluZGluZyBwb2ludC4gSG93CnNob3VsZCB0aGUgb3ZlcmxhcHBpbmcgc2l0dWF0aW9uIGJl
-IGhhbmRsZWQgdGhlcmU/CgpUaGFua3MgZm9yIGFueSBpbmZvIG9uIHRoaXMhCgogIC1pbGlhCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0412924482==
+Content-Type: multipart/alternative; boundary="1435613915.406b1.24748"; charset="UTF-8"
+
+
+--1435613915.406b1.24748
+Date: Mon, 29 Jun 2015 21:38:35 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90569
+
+--- Comment #3 from Jedet Ilrihm <jedet-Mmb7MZpHnFY@public.gmane.org> ---
+How should I test your implementation/fix?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1435613915.406b1.24748
+Date: Mon, 29 Jun 2015 21:38:35 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569">bug 90569</a>
+              from <span class="vcard"><a class="email" href="mailto:jedet&#64;gmx.de" title="Jedet Ilrihm &lt;jedet&#64;gmx.de&gt;"> <span class="fn">Jedet Ilrihm</span></a>
+</span></b>
+        <pre>How should I test your implementation/fix?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435613915.406b1.24748--
+
+--===============0412924482==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0412924482==--
