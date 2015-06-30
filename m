@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91056] The Bard's Tale (2005,
-	native)  has rendering issues
-Date: Tue, 30 Jun 2015 06:56:41 +0000
-Message-ID: <bug-91056-8800-8wBtqX9KEE@http.bugs.freedesktop.org/>
-References: <bug-91056-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
+ under EXA.
+Date: Tue, 30 Jun 2015 10:00:42 +0300
+Message-ID: <55923E9A.2010702@free.fr>
+References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1714157603=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1435635043-3738-1-git-send-email-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,128 +18,97 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1714157603==
-Content-Type: multipart/alternative; boundary="1435647401.54b85781.742"; charset="UTF-8"
-
-
---1435647401.54b85781.742
-Date: Tue, 30 Jun 2015 06:56:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91056
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-commit d5f1253b0c4637ad996fd0da45095165006d61d3
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Tue Jun 30 02:46:26 2015 -0400
-
-    nv50/ir: fix emission of address reg in 3rd source
-
-    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=91056
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Cc: "10.5 10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1435647401.54b85781.742
-Date: Tue, 30 Jun 2015 06:56:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - The Bard's Tale (2005, native) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91056">bug 91056</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - The Bard's Tale (2005, native) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91056#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - The Bard's Tale (2005, native) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91056">bug 91056</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>commit d5f1253b0c4637ad996fd0da45095165006d61d3
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Tue Jun 30 02:46:26 2015 -0400
-
-    nv50/ir: fix emission of address reg in 3rd source
-
-    Bugzilla: <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - The Bard's Tale (2005, native) has rendering issues"
-   href="show_bug.cgi?id=91056">https://bugs.freedesktop.org/show_bug.cgi?id=91056</a>
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Cc: &quot;10.5 10.6&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435647401.54b85781.742--
-
---===============1714157603==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1714157603==--
+T24gMzAvMDYvMjAxNSAwNjozMCwgTWFyaW8gS2xlaW5lciB3cm90ZToKPiBYLVNlcnZlciB2ZXJz
+aW9ucyBvbGRlciB0aGFuIDEuMTYuMyBoYXZlIGJ1Z3MgaW4gdGhlaXIKPiBEUkkzL1ByZXNlbnQg
+aW1wbGVtZW50YXRpb24gd2hpY2ggaW1wYWlyIG5vdXZlYXUsIHNvCj4gaXQgaXMgYmV0dGVyIHRv
+IHN0aWNrIHRvIGdvb2Qgb2xkIERSSTIgYnkgZGVmYXVsdCBvbgo+IHN1Y2ggc2VydmVycy4gRS5n
+LiwgcGFnZSBmbGlwcGluZyBkb2Vzbid0IHdvcmsgYXQgYWxsCj4gdW5kZXIgRFJJMy9QcmVzZW50
+IHdpdGggb2xkZXIgc2VydmVycywgYW5kIHVzZSBvZgo+IGV4dGVuc2lvbnMgbGlrZSBPTUxfc3lu
+Y19jb250cm9sLCBTR0lfdmlkZW9fc3luYyBvcgo+IElOVEVMX3N3YXBfZXZlbnRzIGFsc28gY2F1
+c2VzIGZhaWx1cmUgb2YgUHJlc2VudC4KPgo+IG5vdXZlYXUncyBnbGFtb3IgYWNjZWwgYmFja2Vu
+ZCBjdXJyZW50bHkgZG9lc24ndCB3b3JrIHVuZGVyCj4gRFJJMiwgc28gY29udGludWUgdG8gdXNl
+IERSSTMgd2hlbmV2ZXIgaXQgaXMgc3VwcG9ydGVkLgo+Cj4gVW5kZXIgdGhlIGV4YSBhY2NlbCBi
+YWNrZW5kLCBEUkkyIHdvcmtzIGp1c3QgZmluZSwgc28KPiBkaXNhYmxlIERSSTMgYW5kIGNob29z
+ZSBEUkkyIGJ5IGRlZmF1bHQgd2hlbiBub3V2ZWF1Cj4gaXMgYnVpbHQgZm9yIFgtU2VydmVyIDwg
+MS4xNi4zLCBhbmQgZW5hYmxlIERSSTMgaWYKPiBidWlsZGluZyBvbiBsYXRlciBYLVNlcnZlcnMg
+d2hpY2ggd29yayByZWFzb25hYmx5IHdlbGwKPiB1bmRlciBEUkkzL1ByZXNlbnQuCj4KPiBBIG5l
+dyBib29sZWFuIHhvcmcuY29uZiBPcHRpb24gIkRSSTMiIGFsbG93cyB0byBlbmZvcmNlIG9yCj4g
+cHJldmVudCB1c2Ugb2YgRFJJMy9QcmVzZW50IHVuZGVyIEVYQSBhY2NlbGVyYXRpb24gZm9yCj4g
+dGVzdGluZy4KPgo+IEFsc28gYWRkIGEgYml0IG1vcmUgb3V0cHV0IGFib3V0IHN0YXR1cyBvZiBQ
+cmVzZW50IGFuZAo+IERSSTMgdG8gYWlkIGRlYnVnZ2luZy4KPgo+IFNpZ25lZC1vZmYtYnk6IE1h
+cmlvIEtsZWluZXIgPG1hcmlvLmtsZWluZXIuZGVAZ21haWwuY29tPgo+IC0tLQo+ICAgbWFuL25v
+dXZlYXUubWFuICAgIHwgIDYgKysrKysrCj4gICBzcmMvbm91dmVhdV9kcmkyLmMgfCAxMSArKysr
+KysrKysrLQo+ICAgc3JjL252X2NvbnN0LmggICAgIHwgIDIgKysKPiAgIHNyYy9udl9kcml2ZXIu
+YyAgICB8IDE3ICsrKysrKysrKysrKysrKy0tCj4gICA0IGZpbGVzIGNoYW5nZWQsIDMzIGluc2Vy
+dGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvbWFuL25vdXZlYXUubWFu
+IGIvbWFuL25vdXZlYXUubWFuCj4gaW5kZXggMTI5YmI3Zi4uMTJjZmJjMCAxMDA2NDQKPiAtLS0g
+YS9tYW4vbm91dmVhdS5tYW4KPiArKysgYi9tYW4vbm91dmVhdS5tYW4KPiBAQCAtMTI1LDYgKzEy
+NSwxMiBAQCB0aGF0IHJlbGllcyBvbiBjb3JyZWN0IHByZXNlbnRhdGlvbiB0aW1pbmcgYmVoYXZp
+b3VyIGFzIGRlZmluZWQgaW4gdGhhdAo+ICAgc3BlY2lmaWNhdGlvbi4KPiAgIC5icgo+ICAgRGVm
+YXVsdDogMS4KPiArLlRQCj4gKy5CSSAiT3B0aW9uIFwqcURSSTNcKnEgXCpxIiBib29sZWFuIFwq
+cQo+ICtFbmFibGUgdGhlIERSSTMgZXh0ZW5zaW9uIHVuZGVyIGV4YSBhY2NlbGVyYXRpb24gaWYg
+c3VwcG9ydGVkIGJ5IHNlcnZlci4KPiArQSBzZXR0aW5nIG9mICJvZmYiIHdpbGwgb25seSB1c2Ug
+RFJJMiBpbnN0ZWFkLiBVbmRlciBnbGFtb3IgYWNjZWxlcmF0aW9uLAo+ICtEUkkzIGlzIGFsd2F5
+cyBlbmFibGVkIGlmIHN1cHBvcnRlZC4gRGVmYXVsdDogb24gZm9yIFhPcmcgPj0gMS4xNi4zLCBv
+ZmYgZm9yCj4gK2VhcmxpZXIgdmVyc2lvbnMuCj4gICAuU0ggIlNFRSBBTFNPIgo+ICAgX194c2Vy
+dmVybmFtZV9fKF9fYXBwbWFuc3VmZml4X18pLCBfX3hjb25maWdmaWxlX18oX19maWxlbWFuc3Vm
+Zml4X18pLCBYc2VydmVyKF9fYXBwbWFuc3VmZml4X18pLCBYKF9fbWlzY21hbnN1ZmZpeF9fKQo+
+ICAgLlNIIEFVVEhPUlMKPiBkaWZmIC0tZ2l0IGEvc3JjL25vdXZlYXVfZHJpMi5jIGIvc3JjL25v
+dXZlYXVfZHJpMi5jCj4gaW5kZXggZjIyZTMxOS4uZDgxODk3NiAxMDA2NDQKPiAtLS0gYS9zcmMv
+bm91dmVhdV9kcmkyLmMKPiArKysgYi9zcmMvbm91dmVhdV9kcmkyLmMKPiBAQCAtMTEzMCw3ICsx
+MTMwLDE2IEBAIG5vdXZlYXVfZHJpM19zY3JlZW5faW5pdChTY3JlZW5QdHIgc2NyZWVuKQo+ICAg
+CWlmIChidWYgJiYgc3RhdChidWYsICZyZW5kZXIpID09IDAgJiYKPiAgIAkgICAgbWFzdGVyLnN0
+X21vZGUgPT0gcmVuZGVyLnN0X21vZGUpIHsKPiAgIAkJcE52LT5yZW5kZXJfbm9kZSA9IGJ1ZjsK
+PiAtCQlyZXR1cm4gZHJpM19zY3JlZW5faW5pdChzY3JlZW4sICZub3V2ZWF1X2RyaTNfc2NyZWVu
+X2luZm8pOwo+ICsJCWlmIChkcmkzX3NjcmVlbl9pbml0KHNjcmVlbiwgJm5vdXZlYXVfZHJpM19z
+Y3JlZW5faW5mbykpIHsKPiArCQkJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBYX0lORk8s
+Cj4gKwkJCQkgICAiRFJJMyBvbiBFWEEgZW5hYmxlZFxuIik7Cj4gKwkJCXJldHVybiBUUlVFOwo+
+ICsJCX0KPiArCQllbHNlIHsKPiArCQkJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBYX1dB
+Uk5JTkcsCj4gKwkJCQkgICAiRFJJMyBvbiBFWEEgaW5pdGlhbGl6YXRpb24gZmFpbGVkXG4iKTsK
+PiArCQkJcmV0dXJuIEZBTFNFOwo+ICsJCX0KPiAgIAl9IGVsc2UKPiAgIAkJZnJlZShidWYpOwo+
+ICAgI2VuZGlmCj4gZGlmZiAtLWdpdCBhL3NyYy9udl9jb25zdC5oIGIvc3JjL252X2NvbnN0LmgK
+PiBpbmRleCBmMWI0ZTliLi5kZjFlMzk4IDEwMDY0NAo+IC0tLSBhL3NyYy9udl9jb25zdC5oCj4g
+KysrIGIvc3JjL252X2NvbnN0LmgKPiBAQCAtMTgsNiArMTgsNyBAQCB0eXBlZGVmIGVudW0gewo+
+ICAgICAgIE9QVElPTl9TV0FQX0xJTUlULAo+ICAgICAgIE9QVElPTl9BU1lOQ19DT1BZLAo+ICAg
+ICAgIE9QVElPTl9BQ0NFTE1FVEhPRCwKPiArICAgIE9QVElPTl9EUkkzLAo+ICAgfSBOVk9wdHM7
+Cj4gICAKPiAgIAo+IEBAIC0zNCw2ICszNSw3IEBAIHN0YXRpYyBjb25zdCBPcHRpb25JbmZvUmVj
+IE5WT3B0aW9uc1tdID0gewo+ICAgICAgIHsgT1BUSU9OX1NXQVBfTElNSVQsCSJTd2FwTGltaXQi
+LAlPUFRWX0lOVEVHRVIsCXswfSwgRkFMU0UgfSwKPiAgICAgICB7IE9QVElPTl9BU1lOQ19DT1BZ
+LAkiQXN5bmNVVFNERlMiLAlPUFRWX0JPT0xFQU4sCXswfSwgRkFMU0UgfSwKPiAgICAgICB7IE9Q
+VElPTl9BQ0NFTE1FVEhPRCwJIkFjY2VsTWV0aG9kIiwJT1BUVl9TVFJJTkcsCXswfSwgRkFMU0Ug
+fSwKPiArICAgIHsgT1BUSU9OX0RSSTMsCQkiRFJJMyIsCQlPUFRWX0JPT0xFQU4sCXswfSwgRkFM
+U0UgfSwKPiAgICAgICB7IC0xLCAgICAgICAgICAgICAgICAgICAgICAgTlVMTCwgICAgICAgICAg
+IE9QVFZfTk9ORSwgICAgICB7MH0sIEZBTFNFIH0KPiAgIH07Cj4gICAKPiBkaWZmIC0tZ2l0IGEv
+c3JjL252X2RyaXZlci5jIGIvc3JjL252X2RyaXZlci5jCj4gaW5kZXggOGUyYWUwMy4uMzJmMDRk
+OCAxMDA2NDQKPiAtLS0gYS9zcmMvbnZfZHJpdmVyLmMKPiArKysgYi9zcmMvbnZfZHJpdmVyLmMK
+PiBAQCAtMTQ3MCw3ICsxNDcwLDEzIEBAIE5WU2NyZWVuSW5pdChTQ1JFRU5fSU5JVF9BUkdTX0RF
+Q0wpCj4gICAKPiAgIAl4Zjg2U2V0QmxhY2tXaGl0ZVBpeGVscyhwU2NyZWVuKTsKPiAgIAo+IC0J
+bm91dmVhdV9wcmVzZW50X2luaXQocFNjcmVlbik7Cj4gKwlpZiAobm91dmVhdV9wcmVzZW50X2lu
+aXQocFNjcmVlbikgPD0gMCkKPiArCQl4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5G
+TywKPiArCQkJICAgIkhhcmR3YXJlIHN1cHBvcnQgZm9yIFByZXNlbnQgZGlzYWJsZWRcbiIpOwo+
+ICsJZWxzZQo+ICsJCXhmODZEcnZNc2cocFNjcm4tPnNjcm5JbmRleCwgWF9JTkZPLAo+ICsJCQkg
+ICAiSGFyZHdhcmUgc3VwcG9ydCBmb3IgUHJlc2VudCBlbmFibGVkXG4iKTsKPiArCj4gICAJbm91
+dmVhdV9zeW5jX2luaXQocFNjcmVlbik7Cj4gICAJbm91dmVhdV9kcmkyX2luaXQocFNjcmVlbik7
+Cj4gICAJaWYgKHBOdi0+QWNjZWxNZXRob2QgPT0gR0xBTU9SKSB7Cj4gQEAgLTE0NzgsNyArMTQ4
+NCwxNCBAQCBOVlNjcmVlbkluaXQoU0NSRUVOX0lOSVRfQVJHU19ERUNMKQo+ICAgCQkJcmV0dXJu
+IEZBTFNFOwo+ICAgCX0gZWxzZQo+ICAgCWlmIChwTnYtPkFjY2VsTWV0aG9kID09IEVYQSkgewo+
+IC0JCWlmICghbm91dmVhdV9kcmkzX3NjcmVlbl9pbml0KHBTY3JlZW4pKQo+ICsJCS8qIERlZmF1
+bHQgdG8gRFJJMy9QcmVzZW50IG9uIFhPcmcgPj0gMS4xNi4zLCBEUkkyIG9uIG9sZGVyCj4gKwkJ
+ICogc2VydmVycywgYXMgb2xkZXIgc2VydmVycyBoYXZlIERSSTMvUHJlc2VudCBidWdzIGFmZmVj
+dGluZwo+ICsJCSAqIG5vdXZlYXUuCj4gKwkJICovCj4gKwkJcmV0ID0geGY4NlJldHVybk9wdFZh
+bEJvb2wocE52LT5PcHRpb25zLCBPUFRJT05fRFJJMywKPiArCQkJCQkgICBYT1JHX1ZFUlNJT05f
+Q1VSUkVOVCA+PQo+ICsJCQkJCSAgIFhPUkdfVkVSU0lPTl9OVU1FUklDKDEsMTYsMywwLDApKTsK
+PiArCQlpZiAocmV0ICYmICFub3V2ZWF1X2RyaTNfc2NyZWVuX2luaXQocFNjcmVlbikpCj4gICAJ
+CQlyZXR1cm4gRkFMU0U7Cj4gICAKPiAgIAkJaWYgKCFub3V2ZWF1X2V4YV9pbml0KHBTY3JlZW4p
+KQoKSSBsaWtlIHRoZSBhZGRlZCB2ZXJib3NpdHkgYW5kIGluZGVlZCwgZHJpMyBpcyBub3QgcmVh
+ZHkgeWV0IChJIHN0YXJ0ZWQgCndvcmtpbmcgb24gaXQpLiBJIHRydXN0IHlvdSBmb3Igd2hpY2gg
+dmVyc2lvbiBvZiB0aGUgeHNlcnZlciBpcyBzdGFydGVkIAp3b3JraW5nIGJldHRlciBhbmQgdGhh
+dCB5b3UgYWN0dWFsbHkgdGVzdGVkIHlvdXIgY29kZToKClJldmlld2VkLWJ5OiBNYXJ0aW4gUGVy
+ZXMgPG1hcnRpbi5wZXJlc0BmcmVlLmZyPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
