@@ -1,12 +1,13 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH] Add Option "DRI3" to allow to disable DRI3 under
-	EXA.
-Date: Tue, 30 Jun 2015 05:30:43 +0200
-Message-ID: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91056] The Bard's Tale (2005,
+	native)  has rendering issues
+Date: Tue, 30 Jun 2015 05:37:45 +0000
+Message-ID: <bug-91056-8800-A4OkKdtl3l@http.bugs.freedesktop.org/>
+References: <bug-91056-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1538567309=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91056-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,86 +18,129 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-WC1TZXJ2ZXIgdmVyc2lvbnMgb2xkZXIgdGhhbiAxLjE2LjMgaGF2ZSBidWdzIGluIHRoZWlyCkRS
-STMvUHJlc2VudCBpbXBsZW1lbnRhdGlvbiB3aGljaCBpbXBhaXIgbm91dmVhdSwgc28KaXQgaXMg
-YmV0dGVyIHRvIHN0aWNrIHRvIGdvb2Qgb2xkIERSSTIgYnkgZGVmYXVsdCBvbgpzdWNoIHNlcnZl
-cnMuIEUuZy4sIHBhZ2UgZmxpcHBpbmcgZG9lc24ndCB3b3JrIGF0IGFsbAp1bmRlciBEUkkzL1By
-ZXNlbnQgd2l0aCBvbGRlciBzZXJ2ZXJzLCBhbmQgdXNlIG9mCmV4dGVuc2lvbnMgbGlrZSBPTUxf
-c3luY19jb250cm9sLCBTR0lfdmlkZW9fc3luYyBvcgpJTlRFTF9zd2FwX2V2ZW50cyBhbHNvIGNh
-dXNlcyBmYWlsdXJlIG9mIFByZXNlbnQuCgpub3V2ZWF1J3MgZ2xhbW9yIGFjY2VsIGJhY2tlbmQg
-Y3VycmVudGx5IGRvZXNuJ3Qgd29yayB1bmRlcgpEUkkyLCBzbyBjb250aW51ZSB0byB1c2UgRFJJ
-MyB3aGVuZXZlciBpdCBpcyBzdXBwb3J0ZWQuCgpVbmRlciB0aGUgZXhhIGFjY2VsIGJhY2tlbmQs
-IERSSTIgd29ya3MganVzdCBmaW5lLCBzbwpkaXNhYmxlIERSSTMgYW5kIGNob29zZSBEUkkyIGJ5
-IGRlZmF1bHQgd2hlbiBub3V2ZWF1CmlzIGJ1aWx0IGZvciBYLVNlcnZlciA8IDEuMTYuMywgYW5k
-IGVuYWJsZSBEUkkzIGlmCmJ1aWxkaW5nIG9uIGxhdGVyIFgtU2VydmVycyB3aGljaCB3b3JrIHJl
-YXNvbmFibHkgd2VsbAp1bmRlciBEUkkzL1ByZXNlbnQuCgpBIG5ldyBib29sZWFuIHhvcmcuY29u
-ZiBPcHRpb24gIkRSSTMiIGFsbG93cyB0byBlbmZvcmNlIG9yCnByZXZlbnQgdXNlIG9mIERSSTMv
-UHJlc2VudCB1bmRlciBFWEEgYWNjZWxlcmF0aW9uIGZvcgp0ZXN0aW5nLgoKQWxzbyBhZGQgYSBi
-aXQgbW9yZSBvdXRwdXQgYWJvdXQgc3RhdHVzIG9mIFByZXNlbnQgYW5kCkRSSTMgdG8gYWlkIGRl
-YnVnZ2luZy4KClNpZ25lZC1vZmYtYnk6IE1hcmlvIEtsZWluZXIgPG1hcmlvLmtsZWluZXIuZGVA
-Z21haWwuY29tPgotLS0KIG1hbi9ub3V2ZWF1Lm1hbiAgICB8ICA2ICsrKysrKwogc3JjL25vdXZl
-YXVfZHJpMi5jIHwgMTEgKysrKysrKysrKy0KIHNyYy9udl9jb25zdC5oICAgICB8ICAyICsrCiBz
-cmMvbnZfZHJpdmVyLmMgICAgfCAxNyArKysrKysrKysrKysrKystLQogNCBmaWxlcyBjaGFuZ2Vk
-LCAzMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL21hbi9ub3V2
-ZWF1Lm1hbiBiL21hbi9ub3V2ZWF1Lm1hbgppbmRleCAxMjliYjdmLi4xMmNmYmMwIDEwMDY0NAot
-LS0gYS9tYW4vbm91dmVhdS5tYW4KKysrIGIvbWFuL25vdXZlYXUubWFuCkBAIC0xMjUsNiArMTI1
-LDEyIEBAIHRoYXQgcmVsaWVzIG9uIGNvcnJlY3QgcHJlc2VudGF0aW9uIHRpbWluZyBiZWhhdmlv
-dXIgYXMgZGVmaW5lZCBpbiB0aGF0CiBzcGVjaWZpY2F0aW9uLgogLmJyCiBEZWZhdWx0OiAxLgor
-LlRQCisuQkkgIk9wdGlvbiBcKnFEUkkzXCpxIFwqcSIgYm9vbGVhbiBcKnEKK0VuYWJsZSB0aGUg
-RFJJMyBleHRlbnNpb24gdW5kZXIgZXhhIGFjY2VsZXJhdGlvbiBpZiBzdXBwb3J0ZWQgYnkgc2Vy
-dmVyLgorQSBzZXR0aW5nIG9mICJvZmYiIHdpbGwgb25seSB1c2UgRFJJMiBpbnN0ZWFkLiBVbmRl
-ciBnbGFtb3IgYWNjZWxlcmF0aW9uLAorRFJJMyBpcyBhbHdheXMgZW5hYmxlZCBpZiBzdXBwb3J0
-ZWQuIERlZmF1bHQ6IG9uIGZvciBYT3JnID49IDEuMTYuMywgb2ZmIGZvcgorZWFybGllciB2ZXJz
-aW9ucy4KIC5TSCAiU0VFIEFMU08iCiBfX3hzZXJ2ZXJuYW1lX18oX19hcHBtYW5zdWZmaXhfXyks
-IF9feGNvbmZpZ2ZpbGVfXyhfX2ZpbGVtYW5zdWZmaXhfXyksIFhzZXJ2ZXIoX19hcHBtYW5zdWZm
-aXhfXyksIFgoX19taXNjbWFuc3VmZml4X18pCiAuU0ggQVVUSE9SUwpkaWZmIC0tZ2l0IGEvc3Jj
-L25vdXZlYXVfZHJpMi5jIGIvc3JjL25vdXZlYXVfZHJpMi5jCmluZGV4IGYyMmUzMTkuLmQ4MTg5
-NzYgMTAwNjQ0Ci0tLSBhL3NyYy9ub3V2ZWF1X2RyaTIuYworKysgYi9zcmMvbm91dmVhdV9kcmky
-LmMKQEAgLTExMzAsNyArMTEzMCwxNiBAQCBub3V2ZWF1X2RyaTNfc2NyZWVuX2luaXQoU2NyZWVu
-UHRyIHNjcmVlbikKIAlpZiAoYnVmICYmIHN0YXQoYnVmLCAmcmVuZGVyKSA9PSAwICYmCiAJICAg
-IG1hc3Rlci5zdF9tb2RlID09IHJlbmRlci5zdF9tb2RlKSB7CiAJCXBOdi0+cmVuZGVyX25vZGUg
-PSBidWY7Ci0JCXJldHVybiBkcmkzX3NjcmVlbl9pbml0KHNjcmVlbiwgJm5vdXZlYXVfZHJpM19z
-Y3JlZW5faW5mbyk7CisJCWlmIChkcmkzX3NjcmVlbl9pbml0KHNjcmVlbiwgJm5vdXZlYXVfZHJp
-M19zY3JlZW5faW5mbykpIHsKKwkJCXhmODZEcnZNc2cocFNjcm4tPnNjcm5JbmRleCwgWF9JTkZP
-LAorCQkJCSAgICJEUkkzIG9uIEVYQSBlbmFibGVkXG4iKTsKKwkJCXJldHVybiBUUlVFOworCQl9
-CisJCWVsc2UgeworCQkJeGY4NkRydk1zZyhwU2Nybi0+c2NybkluZGV4LCBYX1dBUk5JTkcsCisJ
-CQkJICAgIkRSSTMgb24gRVhBIGluaXRpYWxpemF0aW9uIGZhaWxlZFxuIik7CisJCQlyZXR1cm4g
-RkFMU0U7CisJCX0KIAl9IGVsc2UKIAkJZnJlZShidWYpOwogI2VuZGlmCmRpZmYgLS1naXQgYS9z
-cmMvbnZfY29uc3QuaCBiL3NyYy9udl9jb25zdC5oCmluZGV4IGYxYjRlOWIuLmRmMWUzOTggMTAw
-NjQ0Ci0tLSBhL3NyYy9udl9jb25zdC5oCisrKyBiL3NyYy9udl9jb25zdC5oCkBAIC0xOCw2ICsx
-OCw3IEBAIHR5cGVkZWYgZW51bSB7CiAgICAgT1BUSU9OX1NXQVBfTElNSVQsCiAgICAgT1BUSU9O
-X0FTWU5DX0NPUFksCiAgICAgT1BUSU9OX0FDQ0VMTUVUSE9ELAorICAgIE9QVElPTl9EUkkzLAog
-fSBOVk9wdHM7CiAKIApAQCAtMzQsNiArMzUsNyBAQCBzdGF0aWMgY29uc3QgT3B0aW9uSW5mb1Jl
-YyBOVk9wdGlvbnNbXSA9IHsKICAgICB7IE9QVElPTl9TV0FQX0xJTUlULAkiU3dhcExpbWl0IiwJ
-T1BUVl9JTlRFR0VSLAl7MH0sIEZBTFNFIH0sCiAgICAgeyBPUFRJT05fQVNZTkNfQ09QWSwJIkFz
-eW5jVVRTREZTIiwJT1BUVl9CT09MRUFOLAl7MH0sIEZBTFNFIH0sCiAgICAgeyBPUFRJT05fQUND
-RUxNRVRIT0QsCSJBY2NlbE1ldGhvZCIsCU9QVFZfU1RSSU5HLAl7MH0sIEZBTFNFIH0sCisgICAg
-eyBPUFRJT05fRFJJMywJCSJEUkkzIiwJCU9QVFZfQk9PTEVBTiwJezB9LCBGQUxTRSB9LAogICAg
-IHsgLTEsICAgICAgICAgICAgICAgICAgICAgICBOVUxMLCAgICAgICAgICAgT1BUVl9OT05FLCAg
-ICAgIHswfSwgRkFMU0UgfQogfTsKIApkaWZmIC0tZ2l0IGEvc3JjL252X2RyaXZlci5jIGIvc3Jj
-L252X2RyaXZlci5jCmluZGV4IDhlMmFlMDMuLjMyZjA0ZDggMTAwNjQ0Ci0tLSBhL3NyYy9udl9k
-cml2ZXIuYworKysgYi9zcmMvbnZfZHJpdmVyLmMKQEAgLTE0NzAsNyArMTQ3MCwxMyBAQCBOVlNj
-cmVlbkluaXQoU0NSRUVOX0lOSVRfQVJHU19ERUNMKQogCiAJeGY4NlNldEJsYWNrV2hpdGVQaXhl
-bHMocFNjcmVlbik7CiAKLQlub3V2ZWF1X3ByZXNlbnRfaW5pdChwU2NyZWVuKTsKKwlpZiAobm91
-dmVhdV9wcmVzZW50X2luaXQocFNjcmVlbikgPD0gMCkKKwkJeGY4NkRydk1zZyhwU2Nybi0+c2Ny
-bkluZGV4LCBYX0lORk8sCisJCQkgICAiSGFyZHdhcmUgc3VwcG9ydCBmb3IgUHJlc2VudCBkaXNh
-YmxlZFxuIik7CisJZWxzZQorCQl4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywK
-KwkJCSAgICJIYXJkd2FyZSBzdXBwb3J0IGZvciBQcmVzZW50IGVuYWJsZWRcbiIpOworCiAJbm91
-dmVhdV9zeW5jX2luaXQocFNjcmVlbik7CiAJbm91dmVhdV9kcmkyX2luaXQocFNjcmVlbik7CiAJ
-aWYgKHBOdi0+QWNjZWxNZXRob2QgPT0gR0xBTU9SKSB7CkBAIC0xNDc4LDcgKzE0ODQsMTQgQEAg
-TlZTY3JlZW5Jbml0KFNDUkVFTl9JTklUX0FSR1NfREVDTCkKIAkJCXJldHVybiBGQUxTRTsKIAl9
-IGVsc2UKIAlpZiAocE52LT5BY2NlbE1ldGhvZCA9PSBFWEEpIHsKLQkJaWYgKCFub3V2ZWF1X2Ry
-aTNfc2NyZWVuX2luaXQocFNjcmVlbikpCisJCS8qIERlZmF1bHQgdG8gRFJJMy9QcmVzZW50IG9u
-IFhPcmcgPj0gMS4xNi4zLCBEUkkyIG9uIG9sZGVyCisJCSAqIHNlcnZlcnMsIGFzIG9sZGVyIHNl
-cnZlcnMgaGF2ZSBEUkkzL1ByZXNlbnQgYnVncyBhZmZlY3RpbmcKKwkJICogbm91dmVhdS4KKwkJ
-ICovCisJCXJldCA9IHhmODZSZXR1cm5PcHRWYWxCb29sKHBOdi0+T3B0aW9ucywgT1BUSU9OX0RS
-STMsCisJCQkJCSAgIFhPUkdfVkVSU0lPTl9DVVJSRU5UID49CisJCQkJCSAgIFhPUkdfVkVSU0lP
-Tl9OVU1FUklDKDEsMTYsMywwLDApKTsKKwkJaWYgKHJldCAmJiAhbm91dmVhdV9kcmkzX3NjcmVl
-bl9pbml0KHBTY3JlZW4pKQogCQkJcmV0dXJuIEZBTFNFOwogCiAJCWlmICghbm91dmVhdV9leGFf
-aW5pdChwU2NyZWVuKSkKLS0gCjEuOS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============1538567309==
+Content-Type: multipart/alternative; boundary="1435642665.7Eb8b1.13528"; charset="UTF-8"
+
+
+--1435642665.7Eb8b1.13528
+Date: Tue, 30 Jun 2015 05:37:45 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91056
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> Created attachment 116707 [details] [review]
+> provisional fix
+> 
+> OK, so this patch appears to fix it. The shaders at the end of that opt
+> trace have
+> 
+> 00000028: b5000409 08000780     add rn f32 $r2 $r2 neg c0[$a1]
+> 00000040: b500060d 08004780     add rn f32 $r3 $r3 neg c0[$a1+0x4]
+> 
+> etc in them. Which seems innocuous enough, but... something about it is bad.
+> Perhaps the neg + indirect. Perhaps just indirect. Perhaps... who knows.
+> Needs testing.
+
+uniform vec4 colors[4];
+uniform int index;
+void main() { gl_FragColor = -vec4(0.2, 0.2, 0.2, 0) - colors[index]; }
+
+generates
+
+00000000: 10002001 2400c780     ld $r0 b32 c0[0x40]
+00000008: 100d8009 0be4cccf     mov b32 $r2 0xbe4ccccd
+00000010: 00040005 c0000780     shl $a1 $r0 0x4
+00000018: b5000401 08000780     add rn f32 $r0 $r2 neg c0[$a1]
+00000020: b5000405 08004780     add rn f32 $r1 $r2 neg c0[$a1+0x4]
+00000028: b5000409 08008780     add rn f32 $r2 $r2 neg c0[$a1+0x8]
+00000030: 1400060d 2400c780     ld $r3 b32 c0[$a1+0xc]
+
+Which works fine. There's something even more subtle going on :(
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1435642665.7Eb8b1.13528
+Date: Tue, 30 Jun 2015 05:37:45 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - The Bard's Tale (2005, native) has rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91056#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - The Bard's Tale (2005, native) has rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91056">bug 91056</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91056#c4">comment #4</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=116707" name="attach_116707" title="provisional fix">attachment 116707</a> <a href="attachment.cgi?id=116707&amp;action=edit" title="provisional fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91056&amp;attachment=116707'>[review]</a> [review]
+&gt; provisional fix
+&gt; 
+&gt; OK, so this patch appears to fix it. The shaders at the end of that opt
+&gt; trace have
+&gt; 
+&gt; 00000028: b5000409 08000780     add rn f32 $r2 $r2 neg c0[$a1]
+&gt; 00000040: b500060d 08004780     add rn f32 $r3 $r3 neg c0[$a1+0x4]
+&gt; 
+&gt; etc in them. Which seems innocuous enough, but... something about it is bad.
+&gt; Perhaps the neg + indirect. Perhaps just indirect. Perhaps... who knows.
+&gt; Needs testing.</span >
+
+uniform vec4 colors[4];
+uniform int index;
+void main() { gl_FragColor = -vec4(0.2, 0.2, 0.2, 0) - colors[index]; }
+
+generates
+
+00000000: 10002001 2400c780     ld $r0 b32 c0[0x40]
+00000008: 100d8009 0be4cccf     mov b32 $r2 0xbe4ccccd
+00000010: 00040005 c0000780     shl $a1 $r0 0x4
+00000018: b5000401 08000780     add rn f32 $r0 $r2 neg c0[$a1]
+00000020: b5000405 08004780     add rn f32 $r1 $r2 neg c0[$a1+0x4]
+00000028: b5000409 08008780     add rn f32 $r2 $r2 neg c0[$a1+0x8]
+00000030: 1400060d 2400c780     ld $r3 b32 c0[$a1+0xc]
+
+Which works fine. There's something even more subtle going on :(</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1435642665.7Eb8b1.13528--
+
+--===============1538567309==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1538567309==--
