@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91170] New: World of Zoo (in Wine) has rendering
-	issues
-Date: Wed, 01 Jul 2015 04:16:36 +0000
-Message-ID: <bug-91170-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91170] World of Zoo (in Wine) has rendering issues
+Date: Wed, 01 Jul 2015 04:21:30 +0000
+Message-ID: <bug-91170-8800-VxzbrYF3bq@http.bugs.freedesktop.org/>
+References: <bug-91170-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0733622744=="
+Content-Type: multipart/mixed; boundary="===============1469684473=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91170-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,183 +20,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0733622744==
-Content-Type: multipart/alternative; boundary="1435724196.F5687be1.5847"; charset="UTF-8"
+--===============1469684473==
+Content-Type: multipart/alternative; boundary="1435724490.EA28e41.6852"; charset="UTF-8"
 
 
---1435724196.F5687be1.5847
-Date: Wed, 1 Jul 2015 04:16:36 +0000
+--1435724490.EA28e41.6852
+Date: Wed, 1 Jul 2015 04:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91170
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91170
 
-            Bug ID: 91170
-           Summary: World of Zoo (in Wine) has rendering issues
-           Product: Mesa
-           Version: git
-          Hardware: Other
-               URL: http://store.steampowered.com/app/43100/
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+--- Comment #1 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Sorry, I missed to specify my video card:
 
-When the game loads to the menu the screen is scrambled with flashing polygons.
-This doesn't occur with the binary drivers (340.76) or when starting the game
-with the software renderer.Disabling shader optimization doesn't resolve the
-problem.
+VGA compatible controller: NVIDIA Corporation G92 [GeForce GTS 250] (rev a2)
+(prog-if 00 [VGA controller])
 
-Screenshot:
-http://imgur.com/xro8Ixr
-
-Trace file:
-https://drive.google.com/open?id=0B-tTbLKBl-tOdTJxT1o0c2dZMmc
-The problem is first visible in frame #152, when the second splash screen is
-displayed.
-
-Demo version is available on Steam (needs Wine to run):
-http://store.steampowered.com/app/43100/
-
-Fedora 22 32-bit
-Mesa 10.6-branchpoint-773-g1de93f9
-Kernel 4.0.6-300.fc22.i686+PAE
-Xorg 1.17.2
-libdrm-2.4.61-3.fc22.i686
-
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1435724196.F5687be1.5847
-Date: Wed, 1 Jul 2015 04:16:36 +0000
+--1435724490.EA28e41.6852
+Date: Wed, 1 Jul 2015 04:21:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Zoo (in Wine) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170">91170</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>World of Zoo (in Wine) has rendering issues
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>URL</th>
-          <td>http://store.steampowered.com/app/43100/
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>gyebro69&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>When the game loads to the menu the screen is scrambled with flashing polygons.
-This doesn't occur with the binary drivers (340.76) or when starting the game
-with the software renderer.Disabling shader optimization doesn't resolve the
-problem.
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - World of Zoo (in Wine) has rendering issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91170#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - World of Zoo (in Wine) has rendering issues"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91170">bug 91170<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
+;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+</span></b>
+        <pre>Sorry, I missed to specify my video card:
 
-Screenshot:
-<a href="http://imgur.com/xro8Ixr">http://imgur.com/xro8Ixr</a>
-
-Trace file:
-<a href="https://drive.google.com/open?id=0B-tTbLKBl-tOdTJxT1o0c2dZMmc">https://drive.google.com/open?id=0B-tTbLKBl-tOdTJxT1o0c2dZMmc</a>
-The problem is first visible in frame #152, when the second splash screen is
-displayed.
-
-Demo version is available on Steam (needs Wine to run):
-<a href="http://store.steampowered.com/app/43100/">http://store.steampowered.com/app/43100/</a>
-
-Fedora 22 32-bit
-Mesa 10.6-branchpoint-773-g1de93f9
-Kernel 4.0.6-300.fc22.i686+PAE
-Xorg 1.17.2
-libdrm-2.4.61-3.fc22.i686</pre>
+VGA compatible controller: NVIDIA Corporation G92 [GeForce GTS 250] (rev a2)
+(prog-if 00 [VGA controller])</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -203,9 +86,9 @@ libdrm-2.4.61-3.fc22.i686</pre>
     </body>
 </html>
 
---1435724196.F5687be1.5847--
+--1435724490.EA28e41.6852--
 
---===============0733622744==
+--===============1469684473==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -215,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0733622744==--
+--===============1469684473==--
