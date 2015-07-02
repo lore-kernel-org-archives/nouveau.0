@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
  blob fw doesn't help
-Date: Wed, 01 Jul 2015 21:21:36 +0000
-Message-ID: <bug-70354-8800-VnHR860AuX@http.bugs.freedesktop.org/>
+Date: Thu, 02 Jul 2015 09:01:23 +0000
+Message-ID: <bug-70354-8800-oVKhcrnoAn@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0469785622=="
+Content-Type: multipart/mixed; boundary="===============1624834856=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0469785622==
-Content-Type: multipart/alternative; boundary="1435785696.1F6681.11853"; charset="UTF-8"
+--===============1624834856==
+Content-Type: multipart/alternative; boundary="1435827683.A7fF1.7704"; charset="UTF-8"
 
 
---1435785696.1F6681.11853
-Date: Wed, 1 Jul 2015 21:21:36 +0000
+--1435827683.A7fF1.7704
+Date: Thu, 2 Jul 2015 09:01:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #61 from Bozhan <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
-Created attachment 116853
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116853&action=edit
-mmiotrace for GK107 ~39MB
+--- Comment #62 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Bozhan Boyadzhiev from comment #61)
+> Created attachment 116853 [details]
+> mmiotrace for GK107 ~39MB
+> 
+> mmiotrace for GK107
 
-mmiotrace for GK107
+Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and get
+back to you.  If I get time in the next few days, I'll hack you up a patch.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1435785696.1F6681.11853
-Date: Wed, 1 Jul 2015 21:21:36 +0000
+--1435827683.A7fF1.7704
+Date: Thu, 2 Jul 2015 09:01:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c61">Comment # 61</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c62">Comment # 62</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan</span></a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116853" name="attach_116853" title="mmiotrace for GK107 ~39MB">attachment 116853</a> <a href="attachment.cgi?id=116853&amp;action=edit" title="mmiotrace for GK107 ~39MB">[details]</a></span>
-mmiotrace for GK107 ~39MB
+        <pre>(In reply to Bozhan Boyadzhiev from <a href="show_bug.cgi?id=70354#c61">comment #61</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=116853" name="attach_116853" title="mmiotrace for GK107 ~39MB">attachment 116853</a> <a href="attachment.cgi?id=116853&amp;action=edit" title="mmiotrace for GK107 ~39MB">[details]</a></span>
+&gt; mmiotrace for GK107 ~39MB
+&gt; 
+&gt; mmiotrace for GK107</span >
 
-mmiotrace for GK107</pre>
+Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and get
+back to you.  If I get time in the next few days, I'll hack you up a patch.</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +87,9 @@ mmiotrace for GK107</pre>
     </body>
 </html>
 
---1435785696.1F6681.11853--
+--1435827683.A7fF1.7704--
 
---===============0469785622==
+--===============1624834856==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0469785622==--
+--===============1624834856==--
