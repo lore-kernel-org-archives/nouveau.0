@@ -1,95 +1,52 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91170] World of Zoo (in Wine) has rendering issues
-Date: Thu, 02 Jul 2015 21:11:21 +0000
-Message-ID: <bug-91170-8800-rRfgECyOkY@http.bugs.freedesktop.org/>
-References: <bug-91170-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nouveau: don't mark full range as used on unmap
+	with explicit flush
+Date: Thu,  2 Jul 2015 18:45:14 -0400
+Message-ID: <1435877114-10481-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1616097085=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91170-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1616097085==
-Content-Type: multipart/alternative; boundary="1435871481.3dE7D01.32440"; charset="UTF-8"
-
-
---1435871481.3dE7D01.32440
-Date: Thu, 2 Jul 2015 21:11:21 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91170
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reproduced on GT215. Does not happen on GF108.
-
-Geometry seems off as soon as the first or second title screen... will have to
-double-check old versions, hopefully it's a regression we can bisect.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1435871481.3dE7D01.32440
-Date: Thu, 2 Jul 2015 21:11:21 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Zoo (in Wine) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Zoo (in Wine) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170">bug 91170</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Reproduced on GT215. Does not happen on GF108.
-
-Geometry seems off as soon as the first or second title screen... will have to
-double-check old versions, hopefully it's a regression we can bisect.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435871481.3dE7D01.32440--
-
---===============1616097085==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1616097085==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIHNy
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2J1ZmZlci5jIHwgMTIgKysrKysrKy0t
+LS0tCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlm
+ZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2J1ZmZlci5jIGIv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVmZmVyLmMKaW5kZXggMDljZGJi
+NS4uYzE3MDJhZCAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZl
+YXVfYnVmZmVyLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfYnVm
+ZmVyLmMKQEAgLTUzNyw4ICs1MzcsMTMgQEAgbm91dmVhdV9idWZmZXJfdHJhbnNmZXJfdW5tYXAo
+c3RydWN0IHBpcGVfY29udGV4dCAqcGlwZSwKICAgIHN0cnVjdCBudjA0X3Jlc291cmNlICpidWYg
+PSBudjA0X3Jlc291cmNlKHRyYW5zZmVyLT5yZXNvdXJjZSk7CiAKICAgIGlmICh0eC0+YmFzZS51
+c2FnZSAmIFBJUEVfVFJBTlNGRVJfV1JJVEUpIHsKLSAgICAgIGlmICghKHR4LT5iYXNlLnVzYWdl
+ICYgUElQRV9UUkFOU0ZFUl9GTFVTSF9FWFBMSUNJVCkgJiYgdHgtPm1hcCkKLSAgICAgICAgIG5v
+dXZlYXVfdHJhbnNmZXJfd3JpdGUobnYsIHR4LCAwLCB0eC0+YmFzZS5ib3gud2lkdGgpOworICAg
+ICAgaWYgKCEodHgtPmJhc2UudXNhZ2UgJiBQSVBFX1RSQU5TRkVSX0ZMVVNIX0VYUExJQ0lUKSkg
+eworICAgICAgICAgaWYgKHR4LT5tYXApCisgICAgICAgICAgICBub3V2ZWF1X3RyYW5zZmVyX3dy
+aXRlKG52LCB0eCwgMCwgdHgtPmJhc2UuYm94LndpZHRoKTsKKworICAgICAgICAgdXRpbF9yYW5n
+ZV9hZGQoJmJ1Zi0+dmFsaWRfYnVmZmVyX3JhbmdlLAorICAgICAgICAgICAgICAgICAgICAgICAg
+dHgtPmJhc2UuYm94LngsIHR4LT5iYXNlLmJveC54ICsgdHgtPmJhc2UuYm94LndpZHRoKTsKKyAg
+ICAgIH0KIAogICAgICAgaWYgKGxpa2VseShidWYtPmRvbWFpbikpIHsKICAgICAgICAgIGNvbnN0
+IHVpbnQ4X3QgYmluZCA9IGJ1Zi0+YmFzZS5iaW5kOwpAQCAtNTQ2LDkgKzU1MSw2IEBAIG5vdXZl
+YXVfYnVmZmVyX3RyYW5zZmVyX3VubWFwKHN0cnVjdCBwaXBlX2NvbnRleHQgKnBpcGUsCiAgICAg
+ICAgICBpZiAoYmluZCAmIChQSVBFX0JJTkRfVkVSVEVYX0JVRkZFUiB8IFBJUEVfQklORF9JTkRF
+WF9CVUZGRVIpKQogICAgICAgICAgICAgbnYtPnZib19kaXJ0eSA9IFRSVUU7CiAgICAgICB9Ci0K
+LSAgICAgIHV0aWxfcmFuZ2VfYWRkKCZidWYtPnZhbGlkX2J1ZmZlcl9yYW5nZSwKLSAgICAgICAg
+ICAgICAgICAgICAgIHR4LT5iYXNlLmJveC54LCB0eC0+YmFzZS5ib3gueCArIHR4LT5iYXNlLmJv
+eC53aWR0aCk7CiAgICB9CiAKICAgIGlmICghdHgtPmJvICYmICh0eC0+YmFzZS51c2FnZSAmIFBJ
+UEVfVFJBTlNGRVJfV1JJVEUpKQotLSAKMi4zLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL21lc2EtZGV2Cg==
