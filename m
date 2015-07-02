@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91171] Space Rangers 2 (in Wine) shows only black
-	screen
-Date: Thu, 02 Jul 2015 20:48:09 +0000
-Message-ID: <bug-91171-8800-bd6fTvHn48@http.bugs.freedesktop.org/>
-References: <bug-91171-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91170] World of Zoo (in Wine) has rendering issues
+Date: Thu, 02 Jul 2015 21:11:21 +0000
+Message-ID: <bug-91170-8800-rRfgECyOkY@http.bugs.freedesktop.org/>
+References: <bug-91170-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1303575443=="
+Content-Type: multipart/mixed; boundary="===============1616097085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91170-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1303575443==
-Content-Type: multipart/alternative; boundary="1435870089.B10A1.26904"; charset="UTF-8"
+--===============1616097085==
+Content-Type: multipart/alternative; boundary="1435871481.3dE7D01.32440"; charset="UTF-8"
 
 
---1435870089.B10A1.26904
-Date: Thu, 2 Jul 2015 20:48:09 +0000
+--1435871481.3dE7D01.32440
+Date: Thu, 2 Jul 2015 21:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91171
+https://bugs.freedesktop.org/show_bug.cgi?id=91170
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Replays fine with glretrace --sb (at least I think it does). If there's only a
-single giant frame, that sounds like the definition of single buffering...
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Reproduced on GT215. Does not happen on GF108.
 
-Tested on both nvc0 (GF108) and nv50 (GT215).
+Geometry seems off as soon as the first or second title screen... will have to
+double-check old versions, hopefully it's a regression we can bisect.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1435870089.B10A1.26904
-Date: Thu, 2 Jul 2015 20:48:09 +0000
+--1435871481.3dE7D01.32440
+Date: Thu, 2 Jul 2015 21:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,18 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Space Rangers 2 (in Wine) shows only black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171#c1">Comment # 1</a>
+   title="NEW - World of Zoo (in Wine) has rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Space Rangers 2 (in Wine) shows only black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171">bug 91171</a>
+   title="NEW - World of Zoo (in Wine) has rendering issues"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170">bug 91170</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Replays fine with glretrace --sb (at least I think it does). If there's only a
-single giant frame, that sounds like the definition of single buffering...
+        <pre>Reproduced on GT215. Does not happen on GF108.
 
-Tested on both nvc0 (GF108) and nv50 (GT215).</pre>
+Geometry seems off as soon as the first or second title screen... will have to
+double-check old versions, hopefully it's a regression we can bisect.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +80,9 @@ Tested on both nvc0 (GF108) and nv50 (GT215).</pre>
     </body>
 </html>
 
---1435870089.B10A1.26904--
+--1435871481.3dE7D01.32440--
 
---===============1303575443==
+--===============1616097085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1303575443==--
+--===============1616097085==--
