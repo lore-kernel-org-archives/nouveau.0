@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91171] Space Rangers 2 (in Wine) shows only black
 	screen
-Date: Sat, 04 Jul 2015 20:23:05 +0000
-Message-ID: <bug-91171-8800-C3uV5zwJcz@http.bugs.freedesktop.org/>
+Date: Sat, 04 Jul 2015 20:55:45 +0000
+Message-ID: <bug-91171-8800-XHfGnv7gwU@http.bugs.freedesktop.org/>
 References: <bug-91171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333990941=="
+Content-Type: multipart/mixed; boundary="===============0895736549=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,54 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0333990941==
-Content-Type: multipart/alternative; boundary="1436041384.Bc8D5F412.29347"; charset="UTF-8"
+--===============0895736549==
+Content-Type: multipart/alternative; boundary="1436043344.73Ae88241.5881"; charset="UTF-8"
 
 
---1436041384.Bc8D5F412.29347
-Date: Sat, 4 Jul 2015 20:23:04 +0000
+--1436043344.73Ae88241.5881
+Date: Sat, 4 Jul 2015 20:55:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91171
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Ah yeah, nouveau fails pretty substantially at multiple concurrent GL contexts
-used simultaneously from different threads (this is a nouveau shortcoming, not
-a mesa one). Multiple contexts that are switched around with glXMakeCurrent
-from a single thread should operate fine though.
+--- Comment #5 from Henri Verbeet <hverbeet-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> discarding the old stuff. [Looks like it does both glXCreateContext *and*
+> glXCreateContextAttribsARB, and discards the first one of those.]
+> 
+Yeah... we first need a context to be able to call wglGetProcAddress(), to get
+the wglCreateContextAttribsARB() pointer.
 
-Indeed looking at the trace, I see
-
-79407 glBindFramebuffer(target = GL_DRAW_FRAMEBUFFER, framebuffer = 0)
-79409 glReadBuffer(mode = GL_COLOR_ATTACHMENT0)
-79412 glDrawBuffer(mode = GL_FRONT)
-79417 glBlitFramebuffer(srcX0 = 0, srcY0 = 0, srcX1 = 1024, srcY1 = 768, dstX0
-= 0, dstY0 = 768, dstX1 = 1024, dstY1 = 0, mask = 
-GL_COLOR_BUFFER_BIT, filter = GL_NEAREST)
-79419 glFlush()
-
-followed immediately by creating a (actually two!) new contexts, and discarding
-the old stuff. [Looks like it does both glXCreateContext *and*
-glXCreateContextAttribsARB, and discards the first one of those.]
-
-I was looking over what flush did, and it does indeed explicitly flush the
-frontbuffer to screen if it's the current drawbuffer. [or something along those
-lines]. Tracing through that flow, it's entirely over my head... interactions
-between multiple modules of which I know nothing. I don't see anywhere where
-it'd be waiting for that blit to complete either, but that doesn't mean it's
-not there. Perhaps this should be a glFinish()?
-
-I'm afraid this will have to wait for someone to understand what the issue is
-before it can be fixed.
+> I was looking over what flush did, and it does indeed explicitly flush the
+> frontbuffer to screen if it's the current drawbuffer. [or something along
+> those lines]. Tracing through that flow, it's entirely over my head...
+> interactions between multiple modules of which I know nothing. I don't see
+> anywhere where it'd be waiting for that blit to complete either, but that
+> doesn't mean it's not there. Perhaps this should be a glFinish()?
+> 
+We don't wait for it to finish, but we shouldn't have to.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436041384.Bc8D5F412.29347
-Date: Sat, 4 Jul 2015 20:23:04 +0000
+--1436043344.73Ae88241.5881
+Date: Sat, 4 Jul 2015 20:55:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -82,41 +69,28 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Space Rangers 2 (in Wine) shows only black screen"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Space Rangers 2 (in Wine) shows only black screen"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91171">bug 91171</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:hverbeet&#64;gmail.com" title="Henri Verbeet &lt;hverbeet&#64;gmail.com&gt;"> <span class="fn">Henri Verbeet</span></a>
 </span></b>
-        <pre>Ah yeah, nouveau fails pretty substantially at multiple concurrent GL contexts
-used simultaneously from different threads (this is a nouveau shortcoming, not
-a mesa one). Multiple contexts that are switched around with glXMakeCurrent
-from a single thread should operate fine though.
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91171#c4">comment #4</a>)
+<span class="quote">&gt; discarding the old stuff. [Looks like it does both glXCreateContext *and*
+&gt; glXCreateContextAttribsARB, and discards the first one of those.]
+&gt; </span >
+Yeah... we first need a context to be able to call wglGetProcAddress(), to get
+the wglCreateContextAttribsARB() pointer.
 
-Indeed looking at the trace, I see
-
-79407 glBindFramebuffer(target = GL_DRAW_FRAMEBUFFER, framebuffer = 0)
-79409 glReadBuffer(mode = GL_COLOR_ATTACHMENT0)
-79412 glDrawBuffer(mode = GL_FRONT)
-79417 glBlitFramebuffer(srcX0 = 0, srcY0 = 0, srcX1 = 1024, srcY1 = 768, dstX0
-= 0, dstY0 = 768, dstX1 = 1024, dstY1 = 0, mask = 
-GL_COLOR_BUFFER_BIT, filter = GL_NEAREST)
-79419 glFlush()
-
-followed immediately by creating a (actually two!) new contexts, and discarding
-the old stuff. [Looks like it does both glXCreateContext *and*
-glXCreateContextAttribsARB, and discards the first one of those.]
-
-I was looking over what flush did, and it does indeed explicitly flush the
-frontbuffer to screen if it's the current drawbuffer. [or something along those
-lines]. Tracing through that flow, it's entirely over my head... interactions
-between multiple modules of which I know nothing. I don't see anywhere where
-it'd be waiting for that blit to complete either, but that doesn't mean it's
-not there. Perhaps this should be a glFinish()?
-
-I'm afraid this will have to wait for someone to understand what the issue is
-before it can be fixed.</pre>
+<span class="quote">&gt; I was looking over what flush did, and it does indeed explicitly flush the
+&gt; frontbuffer to screen if it's the current drawbuffer. [or something along
+&gt; those lines]. Tracing through that flow, it's entirely over my head...
+&gt; interactions between multiple modules of which I know nothing. I don't see
+&gt; anywhere where it'd be waiting for that blit to complete either, but that
+&gt; doesn't mean it's not there. Perhaps this should be a glFinish()?
+&gt; </span >
+We don't wait for it to finish, but we shouldn't have to.</pre>
         </div>
       </p>
       <hr>
@@ -129,9 +103,9 @@ before it can be fixed.</pre>
     </body>
 </html>
 
---1436041384.Bc8D5F412.29347--
+--1436043344.73Ae88241.5881--
 
---===============0333990941==
+--===============0895736549==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0333990941==--
+--===============0895736549==--
