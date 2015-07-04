@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91170] World of Zoo (in Wine) has rendering issues
-Date: Fri, 03 Jul 2015 16:06:15 +0000
-Message-ID: <bug-91170-8800-zKByi9h15X@http.bugs.freedesktop.org/>
-References: <bug-91170-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
+ under EXA.
+Date: Sat, 4 Jul 2015 13:17:18 -0400
+Message-ID: <CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>
+References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1659254158=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91170-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1435635043-3738-1-git-send-email-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,123 +18,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1659254158==
-Content-Type: multipart/alternative; boundary="1435939575.D7Bd1.2758"; charset="UTF-8"
-
-
---1435939575.D7Bd1.2758
-Date: Fri, 3 Jul 2015 16:06:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91170
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 116925
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116925&action=edit
-another bs fix
-
-This is very worrying... emitting more fences seems to fix it. Another place
-where it helped was in nouveau_transfer_write. The joke of it is that emitting
-a fence doesn't even kick the pushbuf, just writes the commands.
-
-But since I'm not actually changing *which* fences are attached, I really don't
-see how this changes anything. Waiting on fence instead of fence_wr doesn't
-seem to affect it either.
-
-What this game does is totally NUTS btw. It has a 512KB vertex buffer, and
-every time it maps it is with GL_MAP_INVALIDATE_BUFFER_BIT and writes all 512KB
-each time. Which is fine, just... inefficient (probably).
-
-It also has a 128KB index buffer, of which it maps the whole range with 
-GL_MAP_READ_BIT | GL_MAP_WRITE_BIT | GL_MAP_FLUSH_EXPLICIT_BIT. And then draws,
-immediately maps it again, draws, etc. This is like the definition of how not
-to use these buffers. Anyways, this forces the creation of a staging bo (in
-GART), which receives a copy of the old 128KB of data, and returns a pointer to
-that. Then the program updates the 12 or whatever bytes of data, and flushes
-them, so *just* those 12 bytes get written. [I'm not kidding, it literally
-updates 12 bytes a lot of the time.]
-
-I tried adding kicks in copy_data & co, but that (expectedly) didn't help.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1435939575.D7Bd1.2758
-Date: Fri, 3 Jul 2015 16:06:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Zoo (in Wine) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Zoo (in Wine) has rendering issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91170">bug 91170</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116925" name="attach_116925" title="another bs fix">attachment 116925</a> <a href="attachment.cgi?id=116925&amp;action=edit" title="another bs fix">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91170&amp;attachment=116925'>[review]</a>
-another bs fix
-
-This is very worrying... emitting more fences seems to fix it. Another place
-where it helped was in nouveau_transfer_write. The joke of it is that emitting
-a fence doesn't even kick the pushbuf, just writes the commands.
-
-But since I'm not actually changing *which* fences are attached, I really don't
-see how this changes anything. Waiting on fence instead of fence_wr doesn't
-seem to affect it either.
-
-What this game does is totally NUTS btw. It has a 512KB vertex buffer, and
-every time it maps it is with GL_MAP_INVALIDATE_BUFFER_BIT and writes all 512KB
-each time. Which is fine, just... inefficient (probably).
-
-It also has a 128KB index buffer, of which it maps the whole range with 
-GL_MAP_READ_BIT | GL_MAP_WRITE_BIT | GL_MAP_FLUSH_EXPLICIT_BIT. And then draws,
-immediately maps it again, draws, etc. This is like the definition of how not
-to use these buffers. Anyways, this forces the creation of a staging bo (in
-GART), which receives a copy of the old 128KB of data, and returns a pointer to
-that. Then the program updates the 12 or whatever bytes of data, and flushes
-them, so *just* those 12 bytes get written. [I'm not kidding, it literally
-updates 12 bytes a lot of the time.]
-
-I tried adding kicks in copy_data &amp; co, but that (expectedly) didn't help.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1435939575.D7Bd1.2758--
-
---===============1659254158==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+SU1PIGl0J2QgYmUgbmljZSB0byBrZWVwIHRoaXMgY29tcGF0aWJsZSB3aXRoIHRoZSBpbnRlbCBk
+cml2ZXIsIHdoaWNoCmhhcyBhICJEUkkiIG9wdGlvbiwgd2hpY2ggY2FuIHRha2UgdGhlIHZhbHVl
+cyAxLCAyLCAzLiBPYnZpb3VzbHkgZm9yCm5vdXZlYXUsIDEgbWFrZXMgbm8gc2Vuc2UgYXMgdGhh
+dCB3YXMgZHJvcHBlZCBxdWl0ZSBzb21lIHRpbWUgYWdvLgoKU2VlIGh0dHA6Ly9jZ2l0LmZyZWVk
+ZXNrdG9wLm9yZy94b3JnL2RyaXZlci94Zjg2LXZpZGVvLWludGVsL3RyZWUvbWFuL2ludGVsLm1h
+biNuNjgKCk9uIE1vbiwgSnVuIDI5LCAyMDE1IGF0IDExOjMwIFBNLCBNYXJpbyBLbGVpbmVyCjxt
+YXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4gd3JvdGU6Cj4gWC1TZXJ2ZXIgdmVyc2lvbnMgb2xk
+ZXIgdGhhbiAxLjE2LjMgaGF2ZSBidWdzIGluIHRoZWlyCj4gRFJJMy9QcmVzZW50IGltcGxlbWVu
+dGF0aW9uIHdoaWNoIGltcGFpciBub3V2ZWF1LCBzbwo+IGl0IGlzIGJldHRlciB0byBzdGljayB0
+byBnb29kIG9sZCBEUkkyIGJ5IGRlZmF1bHQgb24KPiBzdWNoIHNlcnZlcnMuIEUuZy4sIHBhZ2Ug
+ZmxpcHBpbmcgZG9lc24ndCB3b3JrIGF0IGFsbAo+IHVuZGVyIERSSTMvUHJlc2VudCB3aXRoIG9s
+ZGVyIHNlcnZlcnMsIGFuZCB1c2Ugb2YKPiBleHRlbnNpb25zIGxpa2UgT01MX3N5bmNfY29udHJv
+bCwgU0dJX3ZpZGVvX3N5bmMgb3IKPiBJTlRFTF9zd2FwX2V2ZW50cyBhbHNvIGNhdXNlcyBmYWls
+dXJlIG9mIFByZXNlbnQuCj4KPiBub3V2ZWF1J3MgZ2xhbW9yIGFjY2VsIGJhY2tlbmQgY3VycmVu
+dGx5IGRvZXNuJ3Qgd29yayB1bmRlcgo+IERSSTIsIHNvIGNvbnRpbnVlIHRvIHVzZSBEUkkzIHdo
+ZW5ldmVyIGl0IGlzIHN1cHBvcnRlZC4KPgo+IFVuZGVyIHRoZSBleGEgYWNjZWwgYmFja2VuZCwg
+RFJJMiB3b3JrcyBqdXN0IGZpbmUsIHNvCj4gZGlzYWJsZSBEUkkzIGFuZCBjaG9vc2UgRFJJMiBi
+eSBkZWZhdWx0IHdoZW4gbm91dmVhdQo+IGlzIGJ1aWx0IGZvciBYLVNlcnZlciA8IDEuMTYuMywg
+YW5kIGVuYWJsZSBEUkkzIGlmCj4gYnVpbGRpbmcgb24gbGF0ZXIgWC1TZXJ2ZXJzIHdoaWNoIHdv
+cmsgcmVhc29uYWJseSB3ZWxsCj4gdW5kZXIgRFJJMy9QcmVzZW50Lgo+Cj4gQSBuZXcgYm9vbGVh
+biB4b3JnLmNvbmYgT3B0aW9uICJEUkkzIiBhbGxvd3MgdG8gZW5mb3JjZSBvcgo+IHByZXZlbnQg
+dXNlIG9mIERSSTMvUHJlc2VudCB1bmRlciBFWEEgYWNjZWxlcmF0aW9uIGZvcgo+IHRlc3Rpbmcu
+Cj4KPiBBbHNvIGFkZCBhIGJpdCBtb3JlIG91dHB1dCBhYm91dCBzdGF0dXMgb2YgUHJlc2VudCBh
+bmQKPiBEUkkzIHRvIGFpZCBkZWJ1Z2dpbmcuCj4KPiBTaWduZWQtb2ZmLWJ5OiBNYXJpbyBLbGVp
+bmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPiAtLS0KPiAgbWFuL25vdXZlYXUubWFu
+ICAgIHwgIDYgKysrKysrCj4gIHNyYy9ub3V2ZWF1X2RyaTIuYyB8IDExICsrKysrKysrKystCj4g
+IHNyYy9udl9jb25zdC5oICAgICB8ICAyICsrCj4gIHNyYy9udl9kcml2ZXIuYyAgICB8IDE3ICsr
+KysrKysrKysrKysrKy0tCj4gIDQgZmlsZXMgY2hhbmdlZCwgMzMgaW5zZXJ0aW9ucygrKSwgMyBk
+ZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9tYW4vbm91dmVhdS5tYW4gYi9tYW4vbm91dmVh
+dS5tYW4KPiBpbmRleCAxMjliYjdmLi4xMmNmYmMwIDEwMDY0NAo+IC0tLSBhL21hbi9ub3V2ZWF1
+Lm1hbgo+ICsrKyBiL21hbi9ub3V2ZWF1Lm1hbgo+IEBAIC0xMjUsNiArMTI1LDEyIEBAIHRoYXQg
+cmVsaWVzIG9uIGNvcnJlY3QgcHJlc2VudGF0aW9uIHRpbWluZyBiZWhhdmlvdXIgYXMgZGVmaW5l
+ZCBpbiB0aGF0Cj4gIHNwZWNpZmljYXRpb24uCj4gIC5icgo+ICBEZWZhdWx0OiAxLgo+ICsuVFAK
+PiArLkJJICJPcHRpb24gXCpxRFJJM1wqcSBcKnEiIGJvb2xlYW4gXCpxCj4gK0VuYWJsZSB0aGUg
+RFJJMyBleHRlbnNpb24gdW5kZXIgZXhhIGFjY2VsZXJhdGlvbiBpZiBzdXBwb3J0ZWQgYnkgc2Vy
+dmVyLgo+ICtBIHNldHRpbmcgb2YgIm9mZiIgd2lsbCBvbmx5IHVzZSBEUkkyIGluc3RlYWQuIFVu
+ZGVyIGdsYW1vciBhY2NlbGVyYXRpb24sCj4gK0RSSTMgaXMgYWx3YXlzIGVuYWJsZWQgaWYgc3Vw
+cG9ydGVkLiBEZWZhdWx0OiBvbiBmb3IgWE9yZyA+PSAxLjE2LjMsIG9mZiBmb3IKPiArZWFybGll
+ciB2ZXJzaW9ucy4KPiAgLlNIICJTRUUgQUxTTyIKPiAgX194c2VydmVybmFtZV9fKF9fYXBwbWFu
+c3VmZml4X18pLCBfX3hjb25maWdmaWxlX18oX19maWxlbWFuc3VmZml4X18pLCBYc2VydmVyKF9f
+YXBwbWFuc3VmZml4X18pLCBYKF9fbWlzY21hbnN1ZmZpeF9fKQo+ICAuU0ggQVVUSE9SUwo+IGRp
+ZmYgLS1naXQgYS9zcmMvbm91dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVhdV9kcmkyLmMKPiBpbmRl
+eCBmMjJlMzE5Li5kODE4OTc2IDEwMDY0NAo+IC0tLSBhL3NyYy9ub3V2ZWF1X2RyaTIuYwo+ICsr
+KyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwo+IEBAIC0xMTMwLDcgKzExMzAsMTYgQEAgbm91dmVhdV9k
+cmkzX3NjcmVlbl9pbml0KFNjcmVlblB0ciBzY3JlZW4pCj4gICAgICAgICBpZiAoYnVmICYmIHN0
+YXQoYnVmLCAmcmVuZGVyKSA9PSAwICYmCj4gICAgICAgICAgICAgbWFzdGVyLnN0X21vZGUgPT0g
+cmVuZGVyLnN0X21vZGUpIHsKPiAgICAgICAgICAgICAgICAgcE52LT5yZW5kZXJfbm9kZSA9IGJ1
+ZjsKPiAtICAgICAgICAgICAgICAgcmV0dXJuIGRyaTNfc2NyZWVuX2luaXQoc2NyZWVuLCAmbm91
+dmVhdV9kcmkzX3NjcmVlbl9pbmZvKTsKPiArICAgICAgICAgICAgICAgaWYgKGRyaTNfc2NyZWVu
+X2luaXQoc2NyZWVuLCAmbm91dmVhdV9kcmkzX3NjcmVlbl9pbmZvKSkgewo+ICsgICAgICAgICAg
+ICAgICAgICAgICAgIHhmODZEcnZNc2cocFNjcm4tPnNjcm5JbmRleCwgWF9JTkZPLAo+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIkRSSTMgb24gRVhBIGVuYWJsZWRcbiIpOwo+
+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBUUlVFOwo+ICsgICAgICAgICAgICAgICB9
+Cj4gKyAgICAgICAgICAgICAgIGVsc2Ugewo+ICsgICAgICAgICAgICAgICAgICAgICAgIHhmODZE
+cnZNc2cocFNjcm4tPnNjcm5JbmRleCwgWF9XQVJOSU5HLAo+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIkRSSTMgb24gRVhBIGluaXRpYWxpemF0aW9uIGZhaWxlZFxuIik7Cj4g
+KyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIEZBTFNFOwo+ICsgICAgICAgICAgICAgICB9
+Cj4gICAgICAgICB9IGVsc2UKPiAgICAgICAgICAgICAgICAgZnJlZShidWYpOwo+ICAjZW5kaWYK
+PiBkaWZmIC0tZ2l0IGEvc3JjL252X2NvbnN0LmggYi9zcmMvbnZfY29uc3QuaAo+IGluZGV4IGYx
+YjRlOWIuLmRmMWUzOTggMTAwNjQ0Cj4gLS0tIGEvc3JjL252X2NvbnN0LmgKPiArKysgYi9zcmMv
+bnZfY29uc3QuaAo+IEBAIC0xOCw2ICsxOCw3IEBAIHR5cGVkZWYgZW51bSB7Cj4gICAgICBPUFRJ
+T05fU1dBUF9MSU1JVCwKPiAgICAgIE9QVElPTl9BU1lOQ19DT1BZLAo+ICAgICAgT1BUSU9OX0FD
+Q0VMTUVUSE9ELAo+ICsgICAgT1BUSU9OX0RSSTMsCj4gIH0gTlZPcHRzOwo+Cj4KPiBAQCAtMzQs
+NiArMzUsNyBAQCBzdGF0aWMgY29uc3QgT3B0aW9uSW5mb1JlYyBOVk9wdGlvbnNbXSA9IHsKPiAg
+ICAgIHsgT1BUSU9OX1NXQVBfTElNSVQsICAgICAgICJTd2FwTGltaXQiLCAgICBPUFRWX0lOVEVH
+RVIsICAgezB9LCBGQUxTRSB9LAo+ICAgICAgeyBPUFRJT05fQVNZTkNfQ09QWSwgICAgICAgIkFz
+eW5jVVRTREZTIiwgIE9QVFZfQk9PTEVBTiwgICB7MH0sIEZBTFNFIH0sCj4gICAgICB7IE9QVElP
+Tl9BQ0NFTE1FVEhPRCwgICAgICAiQWNjZWxNZXRob2QiLCAgT1BUVl9TVFJJTkcsICAgIHswfSwg
+RkFMU0UgfSwKPiArICAgIHsgT1BUSU9OX0RSSTMsICAgICAgICAgICAgICJEUkkzIiwgICAgICAg
+ICBPUFRWX0JPT0xFQU4sICAgezB9LCBGQUxTRSB9LAo+ICAgICAgeyAtMSwgICAgICAgICAgICAg
+ICAgICAgICAgIE5VTEwsICAgICAgICAgICBPUFRWX05PTkUsICAgICAgezB9LCBGQUxTRSB9Cj4g
+IH07Cj4KPiBkaWZmIC0tZ2l0IGEvc3JjL252X2RyaXZlci5jIGIvc3JjL252X2RyaXZlci5jCj4g
+aW5kZXggOGUyYWUwMy4uMzJmMDRkOCAxMDA2NDQKPiAtLS0gYS9zcmMvbnZfZHJpdmVyLmMKPiAr
+KysgYi9zcmMvbnZfZHJpdmVyLmMKPiBAQCAtMTQ3MCw3ICsxNDcwLDEzIEBAIE5WU2NyZWVuSW5p
+dChTQ1JFRU5fSU5JVF9BUkdTX0RFQ0wpCj4KPiAgICAgICAgIHhmODZTZXRCbGFja1doaXRlUGl4
+ZWxzKHBTY3JlZW4pOwo+Cj4gLSAgICAgICBub3V2ZWF1X3ByZXNlbnRfaW5pdChwU2NyZWVuKTsK
+PiArICAgICAgIGlmIChub3V2ZWF1X3ByZXNlbnRfaW5pdChwU2NyZWVuKSA8PSAwKQo+ICsgICAg
+ICAgICAgICAgICB4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywKPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAiSGFyZHdhcmUgc3VwcG9ydCBmb3IgUHJlc2VudCBkaXNhYmxl
+ZFxuIik7Cj4gKyAgICAgICBlbHNlCj4gKyAgICAgICAgICAgICAgIHhmODZEcnZNc2cocFNjcm4t
+PnNjcm5JbmRleCwgWF9JTkZPLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICJIYXJkd2Fy
+ZSBzdXBwb3J0IGZvciBQcmVzZW50IGVuYWJsZWRcbiIpOwo+ICsKPiAgICAgICAgIG5vdXZlYXVf
+c3luY19pbml0KHBTY3JlZW4pOwo+ICAgICAgICAgbm91dmVhdV9kcmkyX2luaXQocFNjcmVlbik7
+Cj4gICAgICAgICBpZiAocE52LT5BY2NlbE1ldGhvZCA9PSBHTEFNT1IpIHsKPiBAQCAtMTQ3OCw3
+ICsxNDg0LDE0IEBAIE5WU2NyZWVuSW5pdChTQ1JFRU5fSU5JVF9BUkdTX0RFQ0wpCj4gICAgICAg
+ICAgICAgICAgICAgICAgICAgcmV0dXJuIEZBTFNFOwo+ICAgICAgICAgfSBlbHNlCj4gICAgICAg
+ICBpZiAocE52LT5BY2NlbE1ldGhvZCA9PSBFWEEpIHsKPiAtICAgICAgICAgICAgICAgaWYgKCFu
+b3V2ZWF1X2RyaTNfc2NyZWVuX2luaXQocFNjcmVlbikpCj4gKyAgICAgICAgICAgICAgIC8qIERl
+ZmF1bHQgdG8gRFJJMy9QcmVzZW50IG9uIFhPcmcgPj0gMS4xNi4zLCBEUkkyIG9uIG9sZGVyCj4g
+KyAgICAgICAgICAgICAgICAqIHNlcnZlcnMsIGFzIG9sZGVyIHNlcnZlcnMgaGF2ZSBEUkkzL1By
+ZXNlbnQgYnVncyBhZmZlY3RpbmcKPiArICAgICAgICAgICAgICAgICogbm91dmVhdS4KPiArICAg
+ICAgICAgICAgICAgICovCj4gKyAgICAgICAgICAgICAgIHJldCA9IHhmODZSZXR1cm5PcHRWYWxC
+b29sKHBOdi0+T3B0aW9ucywgT1BUSU9OX0RSSTMsCj4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIFhPUkdfVkVSU0lPTl9DVVJSRU5UID49Cj4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFhPUkdfVkVSU0lPTl9OVU1FUklDKDEsMTYs
+MywwLDApKTsKPiArICAgICAgICAgICAgICAgaWYgKHJldCAmJiAhbm91dmVhdV9kcmkzX3NjcmVl
+bl9pbml0KHBTY3JlZW4pKQo+ICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBGQUxTRTsK
+Pgo+ICAgICAgICAgICAgICAgICBpZiAoIW5vdXZlYXVfZXhhX2luaXQocFNjcmVlbikpCj4gLS0K
+PiAxLjkuMQo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1659254158==--
