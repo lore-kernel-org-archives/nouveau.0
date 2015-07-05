@@ -1,10 +1,9 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91232] New: Torchlight 1&2 (in Wine): glitchy models
- when hardware skinning enabled
-Date: Sun, 05 Jul 2015 07:08:42 +0000
-Message-ID: <bug-91232-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91233] New: The system hanged again
+Date: Sun, 05 Jul 2015 15:42:58 +0000
+Message-ID: <bug-91233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0296258591=="
+Content-Type: multipart/mixed; boundary="===============2121005886=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,67 +18,74 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0296258591==
-Content-Type: multipart/alternative; boundary="1436080122.302CCDc0.4708"; charset="UTF-8"
+--===============2121005886==
+Content-Type: multipart/alternative; boundary="1436110978.BFBBaA1.18523"; charset="UTF-8"
 
 
---1436080122.302CCDc0.4708
-Date: Sun, 5 Jul 2015 07:08:42 +0000
+--1436110978.BFBBaA1.18523
+Date: Sun, 5 Jul 2015 15:42:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91232
+https://bugs.freedesktop.org/show_bug.cgi?id=91233
 
-            Bug ID: 91232
-           Summary: Torchlight 1&2 (in Wine): glitchy models when hardware
-                    skinning enabled
-           Product: Mesa
-           Version: git
-          Hardware: Other
-                OS: All
+            Bug ID: 91233
+           Summary: The system hanged again
+           Product: xorg
+           Version: unspecified
+          Hardware: x86 (IA32)
+                OS: Linux (All)
             Status: NEW
-          Severity: normal
+          Severity: major
           Priority: medium
-         Component: Drivers/DRI/nouveau
+         Component: Driver/nouveau
           Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: porton-Q+l+L2ir60w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-Created attachment 116947
-  --> https://bugs.freedesktop.org/attachment.cgi?id=116947&action=edit
-screenshot, comparison (nouveau vs. nvidia blob)
+There was this bug with Nouveau:
+https://bugs.freedesktop.org/show_bug.cgi?id=89842
 
-I believe this is different from bug #90887, I tried the patch from that bug
-and it didn't help.
-Models in Torchlight 1 and 2 are rendered incorrectly, they have lots of
-flashing, white rectangles on them.Disabling hardware skinning in the options
-menu makes the problem go away.
-I see similar issues in some other games as well so this bug may affect
-multiple games.
+I believe this bug was fixed.
 
-I tried and reproduced the problem in Mesa 10.1 and 10.4 too.
-The software renderer doesn't have the problem.
-Disabling shader optimization doesn't help.
-The trace replays correctly on Nvidia blob 340.76.
+I have updated my Debian system to libdrm-nouveau2 2.4.62-1. After this the
+crashes became much less frequent.
 
-Trace (uncompressed 43 MB):
-https://drive.google.com/open?id=0B-tTbLKBl-tORHV2eGdleGk1dzQ
+But today my Gnome session hanged again. Only mouse was moving. Keyboard and
+mouse clicks became non-functional.
 
-Fedora 22 32-bit
-Kernel 4.0.6-300.fc22.i686+PAE
-VGA compatible controller: NVIDIA Corporation G92 [GeForce GTS 250] (rev a2)
-(prog-if 00 [VGA controller])
-Mesa 10.6-branchpoint-826-gff0a41b
-libdrm-2.4.62-1-g676c806
-xf86-video-nouveau-1.0.11-23-gdfd827c
+I pressed Alt+Ctrl+Backspace. After this I saw partially rendered buggy screen
+of GDM.
+
+I switched to a root console. There were the following errors: (Unfortunately,
+I haven't recorded the very first error.)
+
+[66411.140012] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+# service gpm [66400.124711] nouveau E[gnome-session-c[12401]] failed to idle
+channel 0xcccc0000 [gnome-session-c[12401]]
+start
+[66403.128885] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+[66406.133056] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+[66408.135863] nouveau E[   PFIFO][0000:01:00.0] channel 6
+[gnome-session-c[12401]] unload timeout
+victor:~# [66414.144184] nouveau E[gnome-session-c[12401]] failed to idle
+channel 0xcccc0000 [gnome-session-c[12401]]
+[66417.148357] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+
+libdrm-nouveau2 2.4.62-1
+Linux 3.10-2-amd64
+X.Org X Server 1.17.1
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436080122.302CCDc0.4708
-Date: Sun, 5 Jul 2015 07:08:42 +0000
+--1436110978.BFBBaA1.18523
+Date: Sun, 5 Jul 2015 15:42:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -92,38 +98,38 @@ Content-Type: text/html; charset="UTF-8"
           <th>Bug ID</th>
           <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Torchlight 1&amp;2 (in Wine): glitchy models when hardware skinning enabled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91232">91232</a>
+   title="NEW - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">91233</a>
           </td>
         </tr>
 
         <tr>
           <th>Summary</th>
-          <td>Torchlight 1&amp;2 (in Wine): glitchy models when hardware skinning enabled
+          <td>The system hanged again
           </td>
         </tr>
 
         <tr>
           <th>Product</th>
-          <td>Mesa
+          <td>xorg
           </td>
         </tr>
 
         <tr>
           <th>Version</th>
-          <td>git
+          <td>unspecified
           </td>
         </tr>
 
         <tr>
           <th>Hardware</th>
-          <td>Other
+          <td>x86 (IA32)
           </td>
         </tr>
 
         <tr>
           <th>OS</th>
-          <td>All
+          <td>Linux (All)
           </td>
         </tr>
 
@@ -135,7 +141,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Severity</th>
-          <td>normal
+          <td>major
           </td>
         </tr>
 
@@ -147,7 +153,7 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Component</th>
-          <td>Drivers/DRI/nouveau
+          <td>Driver/nouveau
           </td>
         </tr>
 
@@ -159,61 +165,70 @@ Content-Type: text/html; charset="UTF-8"
 
         <tr>
           <th>Reporter</th>
-          <td>gyebro69&#64;gmail.com
+          <td>porton&#64;narod.ru
           </td>
         </tr>
 
         <tr>
           <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
+          <td>xorg-team&#64;lists.x.org
           </td>
         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=116947" name="attach_116947" title="screenshot, comparison (nouveau vs. nvidia blob)">attachment 116947</a> <a href="attachment.cgi?id=116947&amp;action=edit" title="screenshot, comparison (nouveau vs. nvidia blob)">[details]</a></span>
-screenshot, comparison (nouveau vs. nvidia blob)
+        <pre>There was this bug with Nouveau:
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nvidia nouveau drivers hangs all gnome when opening the new legacy tray (and many other situations) in 3.16.0"
+   href="show_bug.cgi?id=89842">https://bugs.freedesktop.org/show_bug.cgi?id=89842</a>
 
-I believe this is different from <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="show_bug.cgi?id=90887">bug #90887</a>, I tried the patch from that bug
-and it didn't help.
-Models in Torchlight 1 and 2 are rendered incorrectly, they have lots of
-flashing, white rectangles on them.Disabling hardware skinning in the options
-menu makes the problem go away.
-I see similar issues in some other games as well so this bug may affect
-multiple games.
+I believe this bug was fixed.
 
-I tried and reproduced the problem in Mesa 10.1 and 10.4 too.
-The software renderer doesn't have the problem.
-Disabling shader optimization doesn't help.
-The trace replays correctly on Nvidia blob 340.76.
+I have updated my Debian system to libdrm-nouveau2 2.4.62-1. After this the
+crashes became much less frequent.
 
-Trace (uncompressed 43 MB):
-<a href="https://drive.google.com/open?id=0B-tTbLKBl-tORHV2eGdleGk1dzQ">https://drive.google.com/open?id=0B-tTbLKBl-tORHV2eGdleGk1dzQ</a>
+But today my Gnome session hanged again. Only mouse was moving. Keyboard and
+mouse clicks became non-functional.
 
-Fedora 22 32-bit
-Kernel 4.0.6-300.fc22.i686+PAE
-VGA compatible controller: NVIDIA Corporation G92 [GeForce GTS 250] (rev a2)
-(prog-if 00 [VGA controller])
-Mesa 10.6-branchpoint-826-gff0a41b
-libdrm-2.4.62-1-g676c806
-xf86-video-nouveau-1.0.11-23-gdfd827c</pre>
+I pressed Alt+Ctrl+Backspace. After this I saw partially rendered buggy screen
+of GDM.
+
+I switched to a root console. There were the following errors: (Unfortunately,
+I haven't recorded the very first error.)
+
+[66411.140012] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+# service gpm [66400.124711] nouveau E[gnome-session-c[12401]] failed to idle
+channel 0xcccc0000 [gnome-session-c[12401]]
+start
+[66403.128885] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+[66406.133056] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+[66408.135863] nouveau E[   PFIFO][0000:01:00.0] channel 6
+[gnome-session-c[12401]] unload timeout
+victor:~# [66414.144184] nouveau E[gnome-session-c[12401]] failed to idle
+channel 0xcccc0000 [gnome-session-c[12401]]
+[66417.148357] nouveau E[gnome-session-c[12401]] failed to idle channel
+0xcccc0000 [gnome-session-c[12401]]
+
+libdrm-nouveau2 2.4.62-1
+Linux 3.10-2-amd64
+X.Org X Server 1.17.1</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1436080122.302CCDc0.4708--
+--1436110978.BFBBaA1.18523--
 
---===============0296258591==
+--===============2121005886==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -223,4 +238,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0296258591==--
+--===============2121005886==--
