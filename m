@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Sun, 05 Jul 2015 15:43:17 +0000
-Message-ID: <bug-90435-8800-XUxOBiBGhh@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91233] The system hanged again
+Date: Sun, 05 Jul 2015 15:49:46 +0000
+Message-ID: <bug-91233-8800-ukhiKdRlCk@http.bugs.freedesktop.org/>
+References: <bug-91233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1342248229=="
+Content-Type: multipart/mixed; boundary="===============0396357914=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1342248229==
-Content-Type: multipart/alternative; boundary="1436110997.f1aec8F11.18689"; charset="UTF-8"
+--===============0396357914==
+Content-Type: multipart/alternative; boundary="1436111386.3EAA1d1.21348"; charset="UTF-8"
 
 
---1436110997.f1aec8F11.18689
-Date: Sun, 5 Jul 2015 15:43:17 +0000
+--1436111386.3EAA1d1.21348
+Date: Sun, 5 Jul 2015 15:49:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
+https://bugs.freedesktop.org/show_bug.cgi?id=91233
 
---- Comment #15 from Christoph Scholz <christoph.scholz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I seem to have the same problem with a G72GLM [Quadro FX 350M] using mesa
-10.6.1 and nouveau 1.0.11 on an x86-64.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I disabled GLXVBlank as a temporary workaround:
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
 
-Section "Device"
-        Identifier "system-video"
-        Option "GLXVBlank" "off"
-EndSection
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You don't mention what hardware you have, but there have been *countless* fixes
+since linux 3.10 to almost all generations.
+
+"failed to idle channel" means "hey, in case you haven't noticed, your
+application hung for some reason". Eventually it kills the application. The
+other bug was overly generically named -- really it was about a very specific
+error that occurred only with libdrm 2.4.60.
+
+Please retest with linux 4.1.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1436110997.f1aec8F11.18689
-Date: Sun, 5 Jul 2015 15:43:17 +0000
+--1436111386.3EAA1d1.21348
+Date: Sun, 5 Jul 2015 15:49:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,28 +61,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c15">Comment # 15</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:christoph.scholz&#64;gmail.com" title="Christoph Scholz &lt;christoph.scholz&#64;gmail.com&gt;"> <span class="fn">Christoph Scholz</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I seem to have the same problem with a G72GLM [Quadro FX 350M] using mesa
-10.6.1 and nouveau 1.0.11 on an x86-64.
+        <pre>You don't mention what hardware you have, but there have been *countless* fixes
+since linux 3.10 to almost all generations.
 
-I disabled GLXVBlank as a temporary workaround:
+&quot;failed to idle channel&quot; means &quot;hey, in case you haven't noticed, your
+application hung for some reason&quot;. Eventually it kills the application. The
+other bug was overly generically named -- really it was about a very specific
+error that occurred only with libdrm 2.4.60.
 
-Section &quot;Device&quot;
-        Identifier &quot;system-video&quot;
-        Option &quot;GLXVBlank&quot; &quot;off&quot;
-EndSection</pre>
+Please retest with linux 4.1.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +114,9 @@ EndSection</pre>
     </body>
 </html>
 
---1436110997.f1aec8F11.18689--
+--1436111386.3EAA1d1.21348--
 
---===============1342248229==
+--===============0396357914==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1342248229==--
+--===============0396357914==--
