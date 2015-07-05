@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 27501] MacBook Pro 5, x unable to boot [NV96 + NVAC]
-Date: Sun, 05 Jul 2015 22:42:56 +0000
-Message-ID: <bug-27501-8800-ErAU4uU0Mg@http.bugs.freedesktop.org/>
-References: <bug-27501-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: Will nouveau support for cuda?
+Date: Mon, 6 Jul 2015 01:18:08 +0200 (CEST)
+Message-ID: <1193816416.134815088.1436138288102.JavaMail.root@spooler8-g27.priv.proxad.net>
+References: <SNT148-W561FC4E26191A4FD0E54EED7AF0@phx.gbl>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1029000745=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-27501-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <SNT148-W561FC4E26191A4FD0E54EED7AF0-MsuGFMq8XAE@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,81 +17,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: ZZ <dorazz-25CfU72zatU@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1029000745==
-Content-Type: multipart/alternative; boundary="1436136176.C5EacA675.12887"; charset="UTF-8"
-
-
---1436136176.C5EacA675.12887
-Date: Sun, 5 Jul 2015 22:42:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=27501
-
---- Comment #63 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-For those with a dual card setup (NVAC + NV96), you should follow bug 86537 if
-you want updates on fixing the NV96. Unfortunately there hasn't been much
-progress, apart from finding that changing some register's value makes it work
-(most likely by disabling some things, so it is not a valid fix).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436136176.C5EacA675.12887
-Date: Sun, 5 Jul 2015 22:42:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501#c63">Comment # 63</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MacBook Pro 5,x unable to boot [NV96 + NVAC]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=27501">bug 27501</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>For those with a dual card setup (NVAC + NV96), you should follow <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="show_bug.cgi?id=86537">bug 86537</a> if
-you want updates on fixing the NV96. Unfortunately there hasn't been much
-progress, apart from finding that changing some register's value makes it work
-(most likely by disabling some things, so it is not a valid fix).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436136176.C5EacA675.12887--
-
---===============1029000745==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1029000745==--
+SGVsbG8sCgpOb3V2ZWF1IHdpbGwgc3VwcG9ydCBDdWRhIGFuZCBPcGVuQ0wsIHNvbWVkYXkuIDop
+CkFzIHRvIHNheSB3aGVuLCBJIGRvbid0IGtub3cuIEkgYW0gc3RhcnRpbmcgdG8gd29yayBvbiB0
+cmFuc2xhdGluZyBiZXR3ZWVuIGRpZmZlcmVudCBpbnRlcm1lZGlhdGUgcmVwcmVzZW50YXRpb24g
+KGZyb20gU1BJUi1WIHRvIE5WNTAgSVIpLCBhbmQgd2lsbCBsYXRlciB3b3JrIG9uIGZpbmlzaGlu
+ZyBjb21wdXRlIHN1cHBvcnQgZm9yIFRlc2xhIGNhcmRzIChJIG9ubHkgaGF2ZSBUZXNsYSBjYXJk
+cywgYXBhcnQgZnJvbSBvbmUgRmVybWkpLiBDb21wdXRlIHN1cHBvcnQgZm9yIEZlcm1pIGFuZCBL
+ZXBsZXIgKHlvdXIgY2FyZCkgc2hvdWxkIGJlIGFsbW9zdCBkb25lLiBJdCBsb29rcyBsaWtlIHRo
+ZXJlIGFyZSBubyBjb21waWxlcnMgb3V0IHlldCBkb2luZyBDdWRhIC0+IFNQSVItViwgYnV0IEN1
+ZGEgLT4gTExWTSBJUiAtPiBTUElSLVYgc2hvdWxkIGJlIHBvc3NpYmxlLCB3aXRoIHRoZSBMTFZN
+IElSIC0+IFNQSVItViBzdGlsbCBiZWluZyBkaXNjdXNzZWQvd29ya2VkIG9uIG9uIHRoZSBMTFZN
+IG1haWxpbmcgbGlzdC4gV2hlbiBldmVyeXRoaW5nIHdpbGwgYmUgc29ydGVkIG91dCwgeW91IHNo
+b3VsZCB0aGVuIGJlIGFibGUgdG8gdXNlIEN1ZGEgd2l0aCBOb3V2ZWF1LgoKUGllcnJlCgoKLS0t
+LS0gTWFpbCBvcmlnaW5hbCAtLS0tLQo+IAo+IAo+IEhpIGV2ZXJ5b25lLAo+IEkgaGF2ZSBhIEdU
+WDc4MCBncmFwaGljcyBjYXJkIGFuZCB3YW50IHRvIG1vdmUgdG8gbm91dmVhdSBmb3Igc29tZQo+
+IHJlYXNvbi4KPiBJIG5lZWQgY3VkYSBmb3IgaGVhdnkgdXNlLihCbGVuZGVyLCBldGMuKQo+IFdp
+bGwgbm91dmVhdSBzdXBwb3J0IGZvciBjdWRhPyBJZiB5ZXMsIHdoZW4gd2lsbCBpdCBiZSByZWFs
+ZXNlZD8KPiAKPiBaWgo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
+b3V2ZWF1Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
