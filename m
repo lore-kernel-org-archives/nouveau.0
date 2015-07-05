@@ -1,13 +1,13 @@
-From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [RFC] bios/rammap: Identify DLLoff for >= GF100
-Date: Sun,  5 Jul 2015 18:56:35 +0100
-Message-ID: <1436118995-27105-2-git-send-email-rspliet@eclipso.eu>
-References: <1436118995-27105-1-git-send-email-rspliet@eclipso.eu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91232] Torchlight 1&2 (in Wine): glitchy models when
+ hardware skinning enabled
+Date: Sun, 05 Jul 2015 18:47:11 +0000
+Message-ID: <bug-91232-8800-lVOmC5vxau@http.bugs.freedesktop.org/>
+References: <bug-91232-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1060172310=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1436118995-27105-1-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+In-Reply-To: <bug-91232-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,117 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-LS0tCiAuLi4vZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3JhbWNmZy5oICB8
-ICAxIC0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcmFtbWFwLmMg
-IHwgIDIgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL2dkZHI1LmMg
-ICAgIHwgIDMgKy0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdr
-MTA0LmMgIHwgNDEgKysrKysrKysrKysrKysrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMuYyAgICAgfCAgNCArLS0KIDUgZmlsZXMgY2hhbmdlZCwg
-MzkgaW5zZXJ0aW9ucygrKSwgMTIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3JhbWNmZy5oIGIvZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3JhbWNmZy5oCmluZGV4
-IDNhOWFiZDMuLmRkNDhkYjcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2lu
-Y2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9yYW1jZmcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91
-dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvcmFtY2ZnLmgKQEAgLTc4LDcgKzc4LDYgQEAg
-c3RydWN0IG52Ymlvc19yYW1jZmcgewogCQkJdW5zaWduZWQgcmFtY2ZnXzExXzAxXzA0OjE7CiAJ
-CQl1bnNpZ25lZCByYW1jZmdfMTFfMDFfMDg6MTsKIAkJCXVuc2lnbmVkIHJhbWNmZ18xMV8wMV8x
-MDoxOwotCQkJdW5zaWduZWQgcmFtY2ZnXzExXzAxXzIwOjE7CiAJCQl1bnNpZ25lZCByYW1jZmdf
-MTFfMDFfNDA6MTsKIAkJCXVuc2lnbmVkIHJhbWNmZ18xMV8wMV84MDoxOwogCQkJdW5zaWduZWQg
-cmFtY2ZnXzExXzAyXzAzOjI7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9iaW9zL3JhbW1hcC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvYmlvcy9yYW1tYXAuYwppbmRleCA1ODE1ZjQyLi5hYTkzZjRjIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3JhbW1hcC5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcmFtbWFwLmMKQEAgLTIxOSw3
-ICsyMTksNyBAQCBudmJpb3NfcmFtbWFwU3Aoc3RydWN0IG52a21fYmlvcyAqYmlvcywgdTMyIGRh
-dGEsCiAJCXAtPnJhbWNmZ18xMV8wMV8wNCA9IChudl9ybzA4KGJpb3MsIGRhdGEgKyAweDAxKSAm
-IDB4MDQpID4+IDI7CiAJCXAtPnJhbWNmZ18xMV8wMV8wOCA9IChudl9ybzA4KGJpb3MsIGRhdGEg
-KyAweDAxKSAmIDB4MDgpID4+IDM7CiAJCXAtPnJhbWNmZ18xMV8wMV8xMCA9IChudl9ybzA4KGJp
-b3MsIGRhdGEgKyAweDAxKSAmIDB4MTApID4+IDQ7Ci0JCXAtPnJhbWNmZ18xMV8wMV8yMCA9IChu
-dl9ybzA4KGJpb3MsIGRhdGEgKyAweDAxKSAmIDB4MjApID4+IDU7CisJCXAtPnJhbWNmZ19ETExv
-ZmYgPSAobnZfcm8wOChiaW9zLCBkYXRhICsgMHgwMSkgJiAweDIwKSA+PiA1OwogCQlwLT5yYW1j
-ZmdfMTFfMDFfNDAgPSAobnZfcm8wOChiaW9zLCBkYXRhICsgMHgwMSkgJiAweDQwKSA+PiA2Owog
-CQlwLT5yYW1jZmdfMTFfMDFfODAgPSAobnZfcm8wOChiaW9zLCBkYXRhICsgMHgwMSkgJiAweDgw
-KSA+PiA3OwogCQlwLT5yYW1jZmdfMTFfMDJfMDMgPSAobnZfcm8wOChiaW9zLCBkYXRhICsgMHgw
-MikgJiAweDAzKSA+PiAwOwpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvZmIvZ2RkcjUuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L2ZiL2dkZHI1LmMKaW5kZXggZjZmOWVlZS4uM2E5NzIyNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvZ2RkcjUuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9nZGRyNS5jCkBAIC0zOCwxMSArMzgsMTIgQEAgbnZr
-bV9nZGRyNV9jYWxjKHN0cnVjdCBudmttX3JhbSAqcmFtLCBib29sIG51dHMpCiAJaW50IFdMLCBD
-TCwgV1IsIGF0WzJdLCBkdCwgZHM7CiAJaW50IHJxID0gcmFtLT5mcmVxIDwgMTAwMDAwMDsgLyog
-WFhYICovCiAKKwl4ZCA9ICFyYW0tPm5leHQtPmJpb3MucmFtY2ZnX0RMTG9mZjsKKwogCXN3aXRj
-aCAocmFtLT5uZXh0LT5iaW9zLnJhbWNmZ192ZXIpIHsKIAljYXNlIDB4MTE6CiAJCXBkID0gIHJh
-bS0+bmV4dC0+Ymlvcy5yYW1jZmdfMTFfMDFfODA7CiAJCWxmID0gIHJhbS0+bmV4dC0+Ymlvcy5y
-YW1jZmdfMTFfMDFfNDA7Ci0JCXhkID0gIXJhbS0+bmV4dC0+Ymlvcy5yYW1jZmdfMTFfMDFfMjA7
-CiAJCXZoID0gIHJhbS0+bmV4dC0+Ymlvcy5yYW1jZmdfMTFfMDJfMTA7CiAJCXZyID0gIHJhbS0+
-bmV4dC0+Ymlvcy5yYW1jZmdfMTFfMDJfMDQ7CiAJCXZvID0gIHJhbS0+bmV4dC0+Ymlvcy5yYW1j
-ZmdfMTFfMDY7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRl
-di9mYi9yYW1nazEwNC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIv
-cmFtZ2sxMDQuYwppbmRleCAxZWYxNWMzLi5kMzA5MGRlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1nazEwNC5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWdrMTA0LmMKQEAgLTY3Myw2ICs2NzMsMjUg
-QEAgZ2sxMDRfcmFtX2NhbGNfZ2RkcjUoc3RydWN0IG52a21fZmIgKnBmYiwgdTMyIGZyZXEpCiAg
-KiBERFIzCiAgKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLwogCitzdGF0aWMgdm9pZAorbnZrbV9zZGRy
-M19kbGxfcmVzZXQoc3RydWN0IGdrMTA0X3JhbWZ1YyAqZnVjKQoreworCXJhbV9udWtlKGZ1Yywg
-bXJbMF0pOworCXJhbV9tYXNrKGZ1YywgbXJbMF0sIDB4MTAwLCAweDEwMCk7CisJcmFtX21hc2so
-ZnVjLCBtclswXSwgMHgxMDAsIDB4MDAwKTsKK30KKworc3RhdGljIHZvaWQKK252a21fc2RkcjNf
-ZGxsX2Rpc2FibGUoc3RydWN0IGdrMTA0X3JhbWZ1YyAqZnVjKQoreworCXUzMiBtcjFfb2xkID0g
-cmFtX3JkMzIoZnVjLCBtclsxXSk7CisKKwlpZiAoIShtcjFfb2xkICYgMHgxKSkgeworCQlyYW1f
-bWFzayhmdWMsIG1yWzFdLCAweDEsIDB4MSk7CisJCXJhbV9uc2VjKGZ1YywgMTAwMCk7CisJfQor
-fQorCiBzdGF0aWMgaW50CiBnazEwNF9yYW1fY2FsY19zZGRyMyhzdHJ1Y3QgbnZrbV9mYiAqcGZi
-LCB1MzIgZnJlcSkKIHsKQEAgLTcwMyw2ICs3MjIsMTAgQEAgZ2sxMDRfcmFtX2NhbGNfc2RkcjMo
-c3RydWN0IG52a21fZmIgKnBmYiwgdTMyIGZyZXEpCiAJCXJhbV9tYXNrKGZ1YywgMHgxMGY4MDgs
-IDB4MDQwMDAwMDAsIDB4MDQwMDAwMDApOwogCiAJcmFtX3dyMzIoZnVjLCAweDEwZjMxNCwgMHgw
-MDAwMDAwMSk7IC8qIFBSRUNIQVJHRSAqLworCisJaWYgKG5leHQtPmJpb3MucmFtY2ZnX0RMTG9m
-ZikKKwkJbnZrbV9zZGRyM19kbGxfZGlzYWJsZShmdWMpOworCiAJcmFtX3dyMzIoZnVjLCAweDEw
-ZjIxMCwgMHgwMDAwMDAwMCk7IC8qIFJFRlJFU0hfQVVUTyA9IDAgKi8KIAlyYW1fd3IzMihmdWMs
-IDB4MTBmMzEwLCAweDAwMDAwMDAxKTsgLyogUkVGUkVTSCAqLwogCXJhbV9tYXNrKGZ1YywgMHgx
-MGYyMDAsIDB4ODAwMDAwMDAsIDB4ODAwMDAwMDApOwpAQCAtODgwLDE3ICs5MDMsMjAgQEAgZ2sx
-MDRfcmFtX2NhbGNfc2RkcjMoc3RydWN0IG52a21fZmIgKnBmYiwgdTMyIGZyZXEpCiAJcmFtX3dy
-MzIoZnVjLCAweDEwZjIxMCwgMHg4MDAwMDAwMCk7IC8qIFJFRlJFU0hfQVVUTyA9IDEgKi8KIAly
-YW1fbnNlYyhmdWMsIDEwMDApOwogCi0JcmFtX251a2UoZnVjLCBtclswXSk7Ci0JcmFtX21hc2so
-ZnVjLCBtclswXSwgMHgxMDAsIDB4MTAwKTsKLQlyYW1fbWFzayhmdWMsIG1yWzBdLCAweDEwMCwg
-MHgwMDApOworCWlmICghbmV4dC0+Ymlvcy5yYW1jZmdfRExMb2ZmKSB7CisJCXJhbV9tYXNrKGZ1
-YywgbXJbMV0sIDB4MSwgMHgwKTsKKwkJbnZrbV9zZGRyM19kbGxfcmVzZXQoZnVjKTsKKwl9CiAK
-LQlyYW1fbWFzayhmdWMsIG1yWzJdLCAweGZmZiwgcmFtLT5iYXNlLm1yWzJdKTsKKwlyYW1fbWFz
-ayhmdWMsIG1yWzJdLCAweDAwMDAwZmZmLCByYW0tPmJhc2UubXJbMl0pOworCXJhbV9tYXNrKGZ1
-YywgbXJbMV0sIDB4ZmZmZmZmZmYsIHJhbS0+YmFzZS5tclsxXSk7CiAJcmFtX3dyMzIoZnVjLCBt
-clswXSwgcmFtLT5iYXNlLm1yWzBdKTsKIAlyYW1fbnNlYyhmdWMsIDEwMDApOwogCi0JcmFtX251
-a2UoZnVjLCBtclswXSk7Ci0JcmFtX21hc2soZnVjLCBtclswXSwgMHgxMDAsIDB4MTAwKTsKLQly
-YW1fbWFzayhmdWMsIG1yWzBdLCAweDEwMCwgMHgwMDApOworCWlmICghbmV4dC0+Ymlvcy5yYW1j
-ZmdfRExMb2ZmKSB7CisJCW52a21fc2RkcjNfZGxsX3Jlc2V0KGZ1Yyk7CisJCXJhbV9uc2VjKGZ1
-YywgMTAwMCk7CisJfQogCiAJaWYgKHZjID09IDAgJiYgcmFtX2hhdmUoZnVjLCBncGlvMkUpKSB7
-CiAJCXUzMiB0ZW1wICA9IHJhbV9tYXNrKGZ1YywgZ3BpbzJFLCAweDMwMDAsIGZ1Yy0+cl9mdW5j
-MkVbMF0pOwpAQCAtMTYwMiw2ICsxNjI4LDcgQEAgZ2sxMDRfcmFtX2N0b3Ioc3RydWN0IG52a21f
-b2JqZWN0ICpwYXJlbnQsIHN0cnVjdCBudmttX29iamVjdCAqZW5naW5lLAogCQlicmVhazsKIAlj
-YXNlIE5WX01FTV9UWVBFX0REUjM6CiAJCXJhbS0+ZnVjLnJfbXJbMF0gPSByYW1mdWNfcmVnKDB4
-MTBmMzAwKTsKKwkJcmFtLT5mdWMucl9tclsxXSA9IHJhbWZ1Y19yZWcoMHgxMGYzMDQpOwogCQly
-YW0tPmZ1Yy5yX21yWzJdID0gcmFtZnVjX3JlZygweDEwZjMyMCk7CiAJCWJyZWFrOwogCWRlZmF1
-bHQ6CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9z
-ZGRyMy5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMuYwpp
-bmRleCA3N2M1M2Y5Li44N2E1ZjZlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9mYi9zZGRyMy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2ZiL3NkZHIzLmMKQEAgLTcwLDYgKzcwLDggQEAgbnZrbV9zZGRyM19jYWxjKHN0
-cnVjdCBudmttX3JhbSAqcmFtKQogewogCWludCBDV0wsIENMLCBXUiwgRExMID0gMCwgT0RUID0g
-MDsKIAorCURMTCA9ICFyYW0tPm5leHQtPmJpb3MucmFtY2ZnX0RMTG9mZjsKKwogCXN3aXRjaCAo
-cmFtLT5uZXh0LT5iaW9zLnRpbWluZ192ZXIpIHsKIAljYXNlIDB4MTA6CiAJCWlmIChyYW0tPm5l
-eHQtPmJpb3MudGltaW5nX2hkciA8IDB4MTcpIHsKQEAgLTc5LDcgKzgxLDYgQEAgbnZrbV9zZGRy
-M19jYWxjKHN0cnVjdCBudmttX3JhbSAqcmFtKQogCQlDV0wgPSByYW0tPm5leHQtPmJpb3MudGlt
-aW5nXzEwX0NXTDsKIAkJQ0wgID0gcmFtLT5uZXh0LT5iaW9zLnRpbWluZ18xMF9DTDsKIAkJV1Ig
-ID0gcmFtLT5uZXh0LT5iaW9zLnRpbWluZ18xMF9XUjsKLQkJRExMID0gIXJhbS0+bmV4dC0+Ymlv
-cy5yYW1jZmdfRExMb2ZmOwogCQlPRFQgPSByYW0tPm5leHQtPmJpb3MudGltaW5nXzEwX09EVDsK
-IAkJYnJlYWs7CiAJY2FzZSAweDIwOgpAQCAtODcsNyArODgsNiBAQCBudmttX3NkZHIzX2NhbGMo
-c3RydWN0IG52a21fcmFtICpyYW0pCiAJCUNMICA9IChyYW0tPm5leHQtPmJpb3MudGltaW5nWzFd
-ICYgMHgwMDAwMDAxZikgPj4gMDsKIAkJV1IgID0gKHJhbS0+bmV4dC0+Ymlvcy50aW1pbmdbMl0g
-JiAweDAwN2YwMDAwKSA+PiAxNjsKIAkJLyogWFhYOiBHZXQgdGhlc2UgdmFsdWVzIGZyb20gdGhl
-IFZCSU9TIGluc3RlYWQgKi8KLQkJRExMID0gIShyYW0tPm1yWzFdICYgMHgxKTsKIAkJT0RUID0g
-ICAocmFtLT5tclsxXSAmIDB4MDA0KSA+PiAyIHwKIAkJCShyYW0tPm1yWzFdICYgMHgwNDApID4+
-IDUgfAogCQkgICAgICAgIChyYW0tPm1yWzFdICYgMHgyMDApID4+IDc7Ci0tIAoyLjQuMwoKCgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1h
-aWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1060172310==
+Content-Type: multipart/alternative; boundary="1436122030.ebd5461b0.13538"; charset="UTF-8"
+
+
+--1436122030.ebd5461b0.13538
+Date: Sun, 5 Jul 2015 18:47:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91232
+
+--- Comment #5 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> Created attachment 116960 [details] [review]
+> init unknown values to 0
+>=20
+> As I suspected, getting nouveau to init these to 0 fixes the issue. But I=
+MO
+> the glsl compiler is the one doing something dodgy here...
+
+The patch works and it fixes the issue not just in Torchlight but also in s=
+ome
+other titles like Silent Hunter III, Evil Genius or the Ankh series.
+Some games with similar looking problem still have the the problem, but that
+might be a different issue.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1436122030.ebd5461b0.13538
+Date: Sun, 5 Jul 2015 18:47:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Torchlight 1&amp;2 (in Wine): glitchy models when hardwar=
+e skinning enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91232#c5">Comment=
+ # 5</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Torchlight 1&amp;2 (in Wine): glitchy models when hardwar=
+e skinning enabled"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91232">bug 91232<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
+;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D912=
+32#c4">comment #4</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D116960" name=3D"attach_116960" title=3D"init unknown values to 0">a=
+ttachment 116960</a> <a href=3D"attachment.cgi?id=3D116960&amp;action=3Dedi=
+t" title=3D"init unknown values to 0">[details]</a></span> <a href=3D'page.=
+cgi?id=3Dsplinter.html&amp;bug=3D91232&amp;attachment=3D116960'>[review]</a=
+> [review]
+&gt; init unknown values to 0
+&gt;=20
+&gt; As I suspected, getting nouveau to init these to 0 fixes the issue. Bu=
+t IMO
+&gt; the glsl compiler is the one doing something dodgy here...</span >
+
+The patch works and it fixes the issue not just in Torchlight but also in s=
+ome
+other titles like Silent Hunter III, Evil Genius or the Ankh series.
+Some games with similar looking problem still have the the problem, but that
+might be a different issue.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436122030.ebd5461b0.13538--
+
+--===============1060172310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1060172310==--
