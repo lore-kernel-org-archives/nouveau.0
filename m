@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91233] The system hanged again
-Date: Sun, 05 Jul 2015 15:49:46 +0000
-Message-ID: <bug-91233-8800-ukhiKdRlCk@http.bugs.freedesktop.org/>
-References: <bug-91233-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91232] Torchlight 1&2 (in Wine): glitchy models when
+ hardware skinning enabled
+Date: Sun, 05 Jul 2015 16:16:25 +0000
+Message-ID: <bug-91232-8800-8IOfDrH1iK@http.bugs.freedesktop.org/>
+References: <bug-91232-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0396357914=="
+Content-Type: multipart/mixed; boundary="===============1241999350=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91232-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,40 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0396357914==
-Content-Type: multipart/alternative; boundary="1436111386.3EAA1d1.21348"; charset="UTF-8"
+--===============1241999350==
+Content-Type: multipart/alternative; boundary="1436112985.27447A881.30397"; charset="UTF-8"
 
 
---1436111386.3EAA1d1.21348
-Date: Sun, 5 Jul 2015 15:49:46 +0000
+--1436112985.27447A881.30397
+Date: Sun, 5 Jul 2015 16:16:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91233
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |NEEDINFO
+https://bugs.freedesktop.org/show_bug.cgi?id=91232
 
 --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You don't mention what hardware you have, but there have been *countless* fixes
-since linux 3.10 to almost all generations.
+Reproduced on nvc0 as well. Works with llvmpipe.
 
-"failed to idle channel" means "hey, in case you haven't noticed, your
-application hung for some reason". Eventually it kills the application. The
-other bug was overly generically named -- really it was about a very specific
-error that occurred only with libdrm 2.4.60.
-
-Please retest with linux 4.1.
+Switching to opt=0 makes the flickering purple instead of white. Disabling the
+watchdog makes no difference.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436111386.3EAA1d1.21348
-Date: Sun, 5 Jul 2015 15:49:46 +0000
+--1436112985.27447A881.30397
+Date: Sun, 5 Jul 2015 16:16:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,62 +52,38 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>NEEDINFO
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c1">Comment # 1</a>
+          bz_status_NEW "
+   title="NEW - Torchlight 1&amp;2 (in Wine): glitchy models when hardware skinning enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91232#c1">Comment # 1</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+          bz_status_NEW "
+   title="NEW - Torchlight 1&amp;2 (in Wine): glitchy models when hardware skinning enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91232">bug 91232</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>You don't mention what hardware you have, but there have been *countless* fixes
-since linux 3.10 to almost all generations.
+        <pre>Reproduced on nvc0 as well. Works with llvmpipe.
 
-&quot;failed to idle channel&quot; means &quot;hey, in case you haven't noticed, your
-application hung for some reason&quot;. Eventually it kills the application. The
-other bug was overly generically named -- really it was about a very specific
-error that occurred only with libdrm 2.4.60.
-
-Please retest with linux 4.1.</pre>
+Switching to opt=0 makes the flickering purple instead of white. Disabling the
+watchdog makes no difference.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1436111386.3EAA1d1.21348--
+--1436112985.27447A881.30397--
 
---===============0396357914==
+--===============1241999350==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0396357914==--
+--===============1241999350==--
