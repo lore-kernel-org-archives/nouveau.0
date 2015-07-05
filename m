@@ -1,13 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: video driver development
-Date: Sat, 4 Jul 2015 20:33:00 -0400
-Message-ID: <CAKb7Uvg5CUkES-YiC+Pni4+EshPS-yRgMdduo67JPGJGePbaQQ@mail.gmail.com>
-References: <CAEBTJhyR6GP0fZLpnPumsqE_Db_dLaOuQaXjQ-bwYKotbGhQKg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91229] New: [NVA8] VDPAU only works when debug is on
+Date: Sun, 05 Jul 2015 01:18:02 +0000
+Message-ID: <bug-91229-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0178321593=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAEBTJhyR6GP0fZLpnPumsqE_Db_dLaOuQaXjQ-bwYKotbGhQKg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,27 +14,175 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Jeff Linahan <jeff.linahan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSmVmZiwKCllvdSBzaG91bGQgam9pbiAjbm91dmVhdSBvbiBpcmMuZnJlZW5vZGUubmV0LiBJ
-IGtlZXAgYSBsaXN0IG9mIHZhcmlvdXMKVE9ETyBpdGVtcyBhdCBodHRwczovL3RyZWxsby5jb20v
-Yi9adWRSRGlUTC9ub3V2ZWF1IC4gRmlyc3Qgc3RhcnQgYnkKYnVpbGRpbmcgYSBtZXNhIGZyb20g
-Z2l0IGFuZCBtYWtpbmcgc3VyZSB0aGF0IHlvdSBjYW4gcnVuIGl0LiBJdCB0ZW5kcwp0byBiZSBt
-b3N0IGVmZmVjdGl2ZSB3aGVuIHRoZXJlJ3Mgc29tZSB0aGluZyB0aGF0IGlzIGJyb2tlbiB0aGF0
-IHlvdQpjYW4gZml4LCBhcyB0aGF0IGdpdmVzIHlvdSBhIGNsZWFyIGdvYWwuIEJ1dCBpZiB5b3Ug
-aGF2ZSBubyBzdWNoCnRoaW5nLCBJIGNhbiBjb21lIHVwIHdpdGggc29tZSBnb29kIGl0ZW1zIHRv
-IGRvLgoKQ2hlZXJzLAoKICAtaWxpYQoKCk9uIFNhdCwgSnVsIDQsIDIwMTUgYXQgMTozOSBBTSwg
-SmVmZiBMaW5haGFuIDxqZWZmLmxpbmFoYW5AZ21haWwuY29tPiB3cm90ZToKPiBIaSB0aGVyZSEg
-IEknbSBpbnRlcmVzdGVkIGluIGhlbHBpbmcgZGV2ZWxvcCB2aWRlbyBkcml2ZXJzIGZvciBMaW51
-eC4gIEkKPiByZWNlbnRseSBncmFkdWF0ZWQgZnJvbSBWaWxsYW5vdmEgVW5pdmVyc2l0eSBpbiBj
-b21wdXRlciBzY2llbmNlIGFuZCBsZWQgdGhlCj4gc2VuaW9yIHByb2plY3RzIHRlYW0gdGhhdCBk
-ZXZlbG9wZWQgYSBzaW1wbGUgQysrIERpcmVjdFggMTEgZW5naW5lIGZvciB0aGUKPiBPY3VsdXMg
-UmlmdC4gIFdoZXJlIGRvIEkgc3RhcnQ/Cj4KPiBKZWZmIExpbmFoYW4KPgo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxp
-c3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0178321593==
+Content-Type: multipart/alternative; boundary="1436059081.0f0DEe0.11755"; charset="UTF-8"
+
+
+--1436059081.0f0DEe0.11755
+Date: Sun, 5 Jul 2015 01:18:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91229
+
+            Bug ID: 91229
+           Summary: [NVA8] VDPAU only works when debug is on
+           Product: Mesa
+           Version: 10.5
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: gohabsgo60-FFYn/CNdgSA@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+if i boot with 'nouveau.debug=debug', VDPAU works flawlessly for all supported
+codecs. however, if i boot without it and try to play any video with VDPAU, my
+system slows down to a crawl. if i take too long to stop playback or to kill
+the offending program, i lose control of the system and i am forced to reboot.
+
+i haven't experimented with other kernel parameters yet. any suggestions ?
+
+GeForce 210
+mesa 10.5.7
+kernel 4.0.5
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1436059081.0f0DEe0.11755
+Date: Sun, 5 Jul 2015 01:18:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8] VDPAU only works when debug is on"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91229">91229</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVA8] VDPAU only works when debug is on
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.5
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>gohabsgo60&#64;yahoo.ca
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>if i boot with 'nouveau.debug=debug', VDPAU works flawlessly for all supported
+codecs. however, if i boot without it and try to play any video with VDPAU, my
+system slows down to a crawl. if i take too long to stop playback or to kill
+the offending program, i lose control of the system and i am forced to reboot.
+
+i haven't experimented with other kernel parameters yet. any suggestions ?
+
+GeForce 210
+mesa 10.5.7
+kernel 4.0.5</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436059081.0f0DEe0.11755--
+
+--===============0178321593==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0178321593==--
