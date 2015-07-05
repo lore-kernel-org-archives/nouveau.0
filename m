@@ -1,10 +1,13 @@
-From: Jeff Linahan <jeff.linahan-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: video driver development
-Date: Fri, 3 Jul 2015 22:39:15 -0700
-Message-ID: <CAEBTJhyR6GP0fZLpnPumsqE_Db_dLaOuQaXjQ-bwYKotbGhQKg@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Custom xorg.conf file to enable Optimus support.
+Date: Sat, 4 Jul 2015 20:30:17 -0400
+Message-ID: <CAKb7Uvg88WthgaRWNqBPmytBDfqim-_t2ewwZJnUBJjC=+Axrw@mail.gmail.com>
+References: <CAKp0-ntTpCbDZqRRVAPdUapGOm4ydy_5UzckH_JpHwEgoLypvw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1729853005=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKp0-ntTpCbDZqRRVAPdUapGOm4ydy_5UzckH_JpHwEgoLypvw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,42 +17,48 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alfonso Commer <acommn-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1729853005==
-Content-Type: multipart/alternative; boundary=20cf302d4b40cfacdc051a06172a
-
---20cf302d4b40cfacdc051a06172a
-Content-Type: text/plain; charset=UTF-8
-
-Hi there!  I'm interested in helping develop video drivers for Linux.  I
-recently graduated from Villanova University in computer science and led
-the senior projects team that developed a simple C++ DirectX 11 engine for
-the Oculus Rift.  Where do I start?
-
-Jeff Linahan
-
---20cf302d4b40cfacdc051a06172a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi there!=C2=A0 I&#39;m interested in helping develop vide=
-o drivers for Linux.=C2=A0 I recently graduated from Villanova University i=
-n computer science and led the senior projects team that developed a simple=
- C++ DirectX 11 engine for the Oculus Rift.=C2=A0 Where do I start?<div><br=
-></div><div>Jeff Linahan</div></div>
-
---20cf302d4b40cfacdc051a06172a--
-
---===============1729853005==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1729853005==--
+VW5mb3J0dW5hdGVseSBoYXZpbmcgY29uZmlnIGZpbGVzIHdpdGggRGV2aWNlIHNlY3Rpb25zIG5l
+Z2F0ZXMgdGhlCmF1dG9wcm9iaW5nIHRoYXQgWCBkb2VzLCBzbyB5b3UgZG9uJ3QgZ2V0IHRoZSBz
+ZWNvbmQgR1BVLiBZb3UgY2FuIHVzZQpEUkkzIGZvciB0aGUgb2ZmbG9hZGluZywgd2hpY2ggZG9l
+c24ndCByZXF1aXJlIFggdG8gZG8gYW55dGhpbmcsIGJ1dAppdCBkb2VzIHJlcXVpcmUgeW91IHRv
+IGVuYWJsZSBEUkkzIG9uIHRoZSBpbnRlbCBkcml2ZXIgKE9wdGlvbiAiRFJJIgoiMyIgaWlyYyku
+IFNlZSBodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9PcHRpbXVzLyBmb3Igc29t
+ZQpkZXRhaWxzLgoKICAtaWxpYQoKT24gU2F0LCBKdWwgNCwgMjAxNSBhdCAxOjEyIFBNLCBBbGZv
+bnNvIENvbW1lciA8YWNvbW1uQGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGVsbG8hCj4KPiBJJ3ZlIHNl
+YXJjaGluZyB0aGUgaW50ZXJuZXQgZm9yIGEgY3VzdG9tIHdheSB0byBlbmFibGUgT3B0aW11cyBz
+dXBwb3J0Cj4gKHRocm91Z2ggWFJBTkRSIGFuZCBQUklNRSkgYnV0IHdpdGggbm8gc3VjY2Vzcy4K
+Pgo+IFRoZSBwcm9ibGVtIGlzIGFzIGZvbGxvd3M6Cj4KPiAxLiBJIGhhdmUgdHdvIEdQVSBpbnNp
+ZGUgdGhpcyBjb21wdXRlciAoSW50ZWwgSEQgc2VyaWVzIGFuZCBhIE52aWRpYSBHZWZvcmNlCj4g
+R1RYIDg2ME0pLCB0aGUgY29tcHV0ZXIgaXMgYSBMZW5vdm8gWTUwLTcwLgo+IDIuIEkndmUgd3Jp
+dGVuIHR3byBjdXN0b20geG9yZyBjb25maWd1cmF0aW9uIGZpbGVzICh0aGF0IGFyZSBpbnNpZGUg
+bXkKPiAvZXRjL1gxMS94b3JnLmNvbmYuZC8gY29uZmlndXJhdGlvbiBkaXJlY3RvcnkpIHRvIGVu
+YWJsZS9jaGFuZ2UgY2VydGFpbgo+IG9wdGlvbnMgKFRlYXJGcmVlIGFuZCBBY2NlbE1ldGhvZCBw
+cmltYXJpbHkpLgo+IDMuIFdoZW4gdGhlIHR3byBjb25maWd1cmF0aW9uIGZpbGVzIGFyZSBpbnNp
+ZGUgdGhlIGNvbmZpZ3VyYXRpb24gZGlyZWN0b3J5LAo+IEkgb25seSBnZXQgdGhlIEludGVsIEdQ
+VSBhcyB0aGUgb3V0cHV0IGZvciB0aGUgY29tbWFuZCAieHJhbmRyCj4gLS1saXN0cHJvdmlkZXJz
+IiBhbmQgdGhlcmVmb3JlIG5vdCBhYmxlIHRvIHVzZSB0aGUgUFJJTUUgZmVhdHVyZSBmb3Igc29t
+ZQo+IGFwcGxpY2F0aW9ucyBJIHdhbnQgdG8gYmUgcnVuIHdpdGggdGhlIE52aWRpYSBHUFUgKGFm
+dGVyIGV4ZWN1dGluZyB0aGUKPiBjb21tYW5kICJ4cmFuZHIgLS1zZXRwcm92aWRlcm9mZmxvYWRz
+aW5rIDxwcm92aWRlcj4gPHNpbms+IikuCj4gNC4gV2hlbiB0aGUgdHdvIGNvbmZpZ3VyYXRpb24g
+ZmlsZXMgYXJlIG5vdCBpbnNpZGUgdGhlIGNvbmZpZ3VyYXRpb24KPiBkaXJlY3RvcnksIEkgZ2V0
+IGJvdGggR1BVcyAoSW50ZWwgJiBOdmlkaWEpIGFuZCBjYW4gdXNlIHRoZSBQUklNRSBmZWF0dXJl
+Cj4gYW5kIGV2ZXJ5dGhpbmcgd29ya3MgYXMgZXhwZWN0ZWQsIGJ1dCBub3Qgd2l0aCB0aGUgZGVz
+aXJlZCAiQWNjZWxNZXRob2QiCj4gY2hhbmdlcyBhbmQgdGhlICJUZWFyRnJlZSIgb3B0aW9uIGVu
+YWJsZWQuCj4KPiBTbywgdGhlIHF1ZXN0aW9uIGlzLCBpcyB0aGVyZSBhIHdheSB0byBoYXZlIG15
+IGN1c3RvbSBjb25maWd1cmF0aW9uIGZpbGVzCj4gKHdpdGggdGhlIGRlc2lyZWQgb3B0aW9ucyBl
+bmFibGVkKSBhbmQgaGF2ZSBQUklNRSBmZWF0dXJlIHdvcmtpbmcgYXQgdGhlCj4gc2FtZSB0aW1l
+PyBNYXliZSB0aHJvdWdoIGEgY3VzdG9tIHhvcmcuY29uZiBjb25maWd1cmF0aW9uIGZpbGU/IENv
+dWxkIGFueW9uZQo+IHBvaW50IG1lIGluIHRoZSByaWdodCBkaXJlY3Rpb24/Cj4KPiBUaGFuayB5
+b3UgdmVyeSBtdWNoIGluIGFkdmFuY2UgZm9yIHlvdXIgYXR0ZW50aW9uIGFuZCBpbmZvcm1hdGlv
+biB5b3UgY2FuCj4gZ2l2ZSBtZS4KPgo+IFAuRC4gSSBzZW5kIG15IHR3byBjb25maWd1cmF0aW9u
+IGZpbGVzIGlmIHRoZXkgZW5kIHVwIGJlaW5nIHVzZWZ1bC4KPgo+IF9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
