@@ -1,13 +1,13 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: Will nouveau support for cuda?
-Date: Mon, 6 Jul 2015 01:18:08 +0200 (CEST)
-Message-ID: <1193816416.134815088.1436138288102.JavaMail.root@spooler8-g27.priv.proxad.net>
-References: <SNT148-W561FC4E26191A4FD0E54EED7AF0@phx.gbl>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 71900] [NV40] GPU lockup and segmentation fault of
+ Nouveau-1.0.10 on PowerMac G5 with acceleration
+Date: Mon, 06 Jul 2015 01:47:33 +0000
+Message-ID: <bug-71900-8800-NflqCVBnYs@http.bugs.freedesktop.org/>
+References: <bug-71900-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0986640257=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <SNT148-W561FC4E26191A4FD0E54EED7AF0-MsuGFMq8XAE@public.gmane.org>
+In-Reply-To: <bug-71900-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,29 +17,94 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: ZZ <dorazz-25CfU72zatU@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpOb3V2ZWF1IHdpbGwgc3VwcG9ydCBDdWRhIGFuZCBPcGVuQ0wsIHNvbWVkYXkuIDop
-CkFzIHRvIHNheSB3aGVuLCBJIGRvbid0IGtub3cuIEkgYW0gc3RhcnRpbmcgdG8gd29yayBvbiB0
-cmFuc2xhdGluZyBiZXR3ZWVuIGRpZmZlcmVudCBpbnRlcm1lZGlhdGUgcmVwcmVzZW50YXRpb24g
-KGZyb20gU1BJUi1WIHRvIE5WNTAgSVIpLCBhbmQgd2lsbCBsYXRlciB3b3JrIG9uIGZpbmlzaGlu
-ZyBjb21wdXRlIHN1cHBvcnQgZm9yIFRlc2xhIGNhcmRzIChJIG9ubHkgaGF2ZSBUZXNsYSBjYXJk
-cywgYXBhcnQgZnJvbSBvbmUgRmVybWkpLiBDb21wdXRlIHN1cHBvcnQgZm9yIEZlcm1pIGFuZCBL
-ZXBsZXIgKHlvdXIgY2FyZCkgc2hvdWxkIGJlIGFsbW9zdCBkb25lLiBJdCBsb29rcyBsaWtlIHRo
-ZXJlIGFyZSBubyBjb21waWxlcnMgb3V0IHlldCBkb2luZyBDdWRhIC0+IFNQSVItViwgYnV0IEN1
-ZGEgLT4gTExWTSBJUiAtPiBTUElSLVYgc2hvdWxkIGJlIHBvc3NpYmxlLCB3aXRoIHRoZSBMTFZN
-IElSIC0+IFNQSVItViBzdGlsbCBiZWluZyBkaXNjdXNzZWQvd29ya2VkIG9uIG9uIHRoZSBMTFZN
-IG1haWxpbmcgbGlzdC4gV2hlbiBldmVyeXRoaW5nIHdpbGwgYmUgc29ydGVkIG91dCwgeW91IHNo
-b3VsZCB0aGVuIGJlIGFibGUgdG8gdXNlIEN1ZGEgd2l0aCBOb3V2ZWF1LgoKUGllcnJlCgoKLS0t
-LS0gTWFpbCBvcmlnaW5hbCAtLS0tLQo+IAo+IAo+IEhpIGV2ZXJ5b25lLAo+IEkgaGF2ZSBhIEdU
-WDc4MCBncmFwaGljcyBjYXJkIGFuZCB3YW50IHRvIG1vdmUgdG8gbm91dmVhdSBmb3Igc29tZQo+
-IHJlYXNvbi4KPiBJIG5lZWQgY3VkYSBmb3IgaGVhdnkgdXNlLihCbGVuZGVyLCBldGMuKQo+IFdp
-bGwgbm91dmVhdSBzdXBwb3J0IGZvciBjdWRhPyBJZiB5ZXMsIHdoZW4gd2lsbCBpdCBiZSByZWFs
-ZXNlZD8KPiAKPiBaWgo+IAo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0986640257==
+Content-Type: multipart/alternative; boundary="1436147253.cE46A2.32520"; charset="UTF-8"
+
+
+--1436147253.cE46A2.32520
+Date: Mon, 6 Jul 2015 01:47:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=71900
+
+--- Comment #9 from Brock Wittrock <brockwittrock-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Is there any update on this bug/issue with pagesize issues on 64-bit PowerPC
+and the nouveau driver?  I assume now as this is still marked as open, but
+thought I would ask anyways. I've been able to partly get the driver working by
+using a kernel with 4kb page sizes and MSI interrupts disabled on Debian
+Jessie.
+
+I'll try to download, install, and build the latest nouveau driver to see if
+there are any changes.  
+
+Also, I do see this is marked as a to-do on under DRM on the nouveau website. 
+I can provide any sort of output/logs necessary. Just wanted to try and revive
+this somehow.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436147253.cE46A2.32520
+Date: Mon, 6 Jul 2015 01:47:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV40] GPU lockup and segmentation fault of Nouveau-1.0.10 on PowerMac G5 with acceleration"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71900">bug 71900</a>
+              from <span class="vcard"><a class="email" href="mailto:brockwittrock&#64;gmail.com" title="Brock Wittrock &lt;brockwittrock&#64;gmail.com&gt;"> <span class="fn">Brock Wittrock</span></a>
+</span></b>
+        <pre>Is there any update on this bug/issue with pagesize issues on 64-bit PowerPC
+and the nouveau driver?  I assume now as this is still marked as open, but
+thought I would ask anyways. I've been able to partly get the driver working by
+using a kernel with 4kb page sizes and MSI interrupts disabled on Debian
+Jessie.
+
+I'll try to download, install, and build the latest nouveau driver to see if
+there are any changes.  
+
+Also, I do see this is marked as a to-do on under DRM on the nouveau website. 
+I can provide any sort of output/logs necessary. Just wanted to try and revive
+this somehow.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436147253.cE46A2.32520--
+
+--===============0986640257==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0986640257==--
