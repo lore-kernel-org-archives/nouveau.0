@@ -1,93 +1,88 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [Nouveau] CUDA fixed VA allocations and sparse mappings
-Date: Tue, 7 Jul 2015 11:29:38 -0400
-Message-ID: <CAKb7UviePF2XcmyeKHQ2cv=hy=NZyYcMrWiTpajJxTFE+10LwQ@mail.gmail.com>
-References: <20150707004249.GC27924@achew-linux64.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91231] [NV92] Psychonauts (native) segfaults on
+ start when DRI3 enabled
+Date: Tue, 07 Jul 2015 17:02:37 +0000
+Message-ID: <bug-91231-8800-qUJ1La81iV@http.bugs.freedesktop.org/>
+References: <bug-91231-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20150707004249.GC27924@achew-linux64.nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Andrew Chew <achew@nvidia.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1739146976=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgNiwgMjAxNSBhdCA4OjQyIFBNLCBBbmRyZXcgQ2hldyA8YWNoZXdAbnZpZGlh
-LmNvbT4gd3JvdGU6Cj4gSGVsbG8sCj4KPiBJIGFtIGN1cnJlbnRseSBsb29raW5nIGludG8gd2F5
-cyB0byBzdXBwb3J0IGZpeGVkIHZpcnR1YWwgYWRkcmVzcyBhbGxvY2F0aW9ucwo+IGFuZCBzcGFy
-c2UgbWFwcGluZ3MgaW4gbm91dmVhdSwgYXMgYSBzdGVwIHRvd2FyZHMgc3VwcG9ydGluZyBDVURB
-Lgo+Cj4gQ1VEQSByZXF1aXJlcyB0aGF0IHRoZSBHUFUgdmlydHVhbCBhZGRyZXNzIGZvciBhIGdp
-dmVuIGJ1ZmZlciBtYXRjaCB0aGUKPiBDUFUgdmlydHVhbCBhZGRyZXNzLiAgVGhlcmVmb3JlLCB3
-aGVuIG1hcHBpbmcgYSBDVURBIGJ1ZmZlciwgd2UgaGF2ZSB0byBoYXZlCj4gYSB3YXkgb2Ygc3Bl
-Y2lmeWluZyBhIHBhcnRpY3VsYXIgdmlydHVhbCBhZGRyZXNzIHRvIG1hcCB0byAod2Ugd291bGQg
-YXNrIHRoYXQKPiB0aGUgQ1BVIHZpcnR1YWwgYWRkcmVzcyBiZSB1c2VkKS4gIEN1cnJlbnRseSwg
-YXMgSSB1bmRlcnN0YW5kIGl0LCB0aGUgYWxsb2NhdG9yCj4gaW1wbGVtZW50ZWQgaW4gbnZrbS9j
-b3JlL21tLmMsIHVzZWQgdG8gcHJvdmlzaW9uIHZpcnR1YWwgYWRkcmVzc2VzLCBkb2Vzbid0Cj4g
-YWxsb3cgZm9yIHRoaXMgKGJ1dCBpdCdzIHZlcnkgZWFzeSB0byBtb2RpZnkgdGhlIGFsbG9jYXRv
-ciBzbGlnaHRseSB0byBhbGxvdwo+IGZvciB0aGlzLCB3aGljaCBJIGhhdmUgZG9uZSBsb2NhbGx5
-IGluIG15IGV4cGVyaW1lbnRzKS4KPgo+IEluIGFkZGl0aW9uLCB0aGUgQ1VEQSB1c2UgY2FzZSB0
-eXBpY2FsbHkgaW52b2x2ZXMgYWxsb2NhdGluZyBhIGJpZyBjaHVuayBvZgo+IGFkZHJlc3Mgc3Bh
-Y2UgYWhlYWQgb2YgdGltZSBhcyBhIHdheSB0byByZXNlcnZlIHRoYXQgY2h1bmsgZm9yIGZ1dHVy
-ZSBDVURBCj4gdXNlLiAgSXQgdGhlbiBtYXBzIGluZGl2aWR1YWwgYnVmZmVycyBpbnRvIHRoYXQg
-YWRkcmVzcyBzcGFjZSBhcyBuZWVkZWQuCj4gQ3VycmVudGx5LCB0aGUgdmlydHVhbCBhZGRyZXNz
-IGFsbG9jYXRpb24gaXMgZG9uZSBkdXJpbmcgYnVmZmVyIG1hcHBpbmcsIHNvCj4gaW4gb3JkZXIg
-dG8gc3VwcG9ydCB0aGVzZSBzcGFyc2UgbWFwcGluZ3MsIGl0IHNlZW1zIHRvIG1lIHRoYXQgdGhl
-IHZpcnR1YWwKPiBhZGRyZXNzIGFsbG9jYXRpb24gYW5kIGJ1ZmZlciBtYXBwaW5nIG5lZWQgdG8g
-YmUgZGVjb3VwbGVkIGludG8gc2VwYXJhdGUKPiBvcGVyYXRpb25zLgo+Cj4gTXkgY3VycmVudCBz
-dHJhd21hbiBwcm9wb3NhbCBmb3Igc3VwcG9ydGluZyB0aGlzIGlzIHRvIGludHJvZHVjZSB0d28g
-bmV3IGlvY3Rscwo+IERSTV9JT0NUTF9OT1VWRUFVX0FTX0FMTE9DIGFuZCBEUk1fSU9DVExfTk9V
-VkVBVV9BU19GUkVFLCB0aGF0IGxvb2sgcm91Z2hseQo+IGxpa2UgdGhpczoKPgo+ICNkZWZpbmUg
-Tk9VVkVBVV9BU19BTExPQ19GTEFHU19GSVhFRF9PRkZTRVQgMHgxCj4gc3RydWN0IGRybV9ub3V2
-ZWF1X2FzX2FsbG9jIHsKPiAgICAgICAgIHVpbnQ2NF90IHBhZ2VzOyAgICAgLyogaW4sIHBhZ2Vz
-ICovCj4gICAgICAgICB1aW50MzJfdCBwYWdlX3NpemU7IC8qIGluLCBieXRlcyAqLwo+ICAgICAg
-ICAgdWludDMyX3QgZmxhZ3M7ICAgICAvKiBpbiAqLwo+ICAgICAgICAgdWludDY0X3Qgb2Zmc2V0
-OyAgICAvKiBpbi9vdXQsIGJ5dGUgYWRkcmVzcyAqLwo+IH07Cj4KPiBzdHJ1Y3QgZHJtX25vdXZl
-YXVfYXNfZnJlZSB7Cj4gICAgICAgICB1aW50NjRfdCBvZmZzZXQ7ICAgIC8qIGluLCBieXRlIGFk
-ZHJlc3MgKi8KPiB9Owo+Cj4gVGhlc2UgaW9jdGxzIGp1c3QgY2FsbCBpbnRvIHRoZSBhbGxvY2F0
-b3IgdG8gYWxsb2NhdGUgYSByYW5nZSBvZiBhZGRyZXNzZXMsCj4gcmVzdWx0aW5nIGluIGEgc3Ry
-dWN0IG52a21fdm1hIHRoYXQgdHJhY2tzIHRoYXQgYWxsb2NhdGlvbiAob3IgcmVsZWFzZXMgdGhl
-Cj4gc3RydWN0IG52a21fdm1hIGJhY2sgaW50byB0aGUgdmlydHVhbCBhZGRyZXNzIHBvb2wgaW4g
-dGhlIGNhc2Ugb2YgdGhlIGZyZWUKPiBpb2N0bCkuICBJZiBOT1VWRUFVX0FTX0FMTE9DX0ZMQUdT
-X0ZJWEVEX09GRlNFVCBpcyBzZXQsIG9mZnNldCBzcGVjaWZpZXMgdGhlCj4gcmVxdWVzdGVkIHZp
-cnR1YWwgYWRkcmVzcy4gIE90aGVyd2lzZSwgYW4gYXJiaXRyYXJ5IGFkZHJlc3Mgd2lsbCBiZQo+
-IGFsbG9jYXRlZC4KCldlbGwsIHRoaXMgY2FuJ3QganVzdCBiZSBhbiBhZGRyZXNzIHNwYWNlLiBZ
-b3Ugc3RpbGwgbmVlZCBibydzLCBpZgp0aGlzIGlzIHRvIHdvcmsgd2l0aCBub3V2ZWF1IC0tIGl0
-IGhhcyB0byBrbm93IHdoZW4gdG8gc3dhcCB0aGluZ3MgaW4KYW5kIG91dCwgd2hlbiB0aGV5J3Jl
-IHVzZWQsIGV0Yy4gKGFuZC9vciBtb3ZlIGJldHdlZW4gVlJBTSBhbmQgR0FSVAphbmQgc3lzdGVt
-L3N3YXApLiBJIHN1c3BlY3QgdGhhdCB5b3VyIHRhcmdldCBoZXJlIGFyZSB0aGUgR0syMEEgYW5k
-CkdNMjBCIGNoaXBzIHdoaWNoIGRvbid0IGhhdmUgZGVkaWNhdGVkIFZSQU0sIGJ1dCB0aGUgaW9j
-dGwncyBuZWVkIHRvCndvcmsgZm9yIGV2ZXJ5dGhpbmcuCgpXb3VsZCBpdCBiZSBzdWZmaWNpZW50
-IHRvIGV4dGVuZCBOT1VWRUFVX0dFTV9ORVcgb3IgY3JlYXRlIGEKTk9VVkVBVV9HRU1fTkVXX0ZJ
-WEVEIG9yIHNvbWV0aGluZz8gSU9XLCB3aHkgZG8gaGF2ZSB0byBzZXBhcmF0ZSB0aGUKY29uY2Vw
-dCBvZiBhIEdFTSBvYmplY3QgYW5kIGEgVk0gYWxsb2NhdGlvbj8KCj4KPiBJbiBhZGRpdGlvbiB0
-byB0aGlzLCBhIHdheSB0byBtYXAvdW5tYXAgYnVmZmVycyBpcyBuZWVkZWQuICBPcmRpbmFyaWx5
-LCBvbmUKPiB3b3VsZCBqdXN0IHVzZSBEUk1fSU9DVExfUFJJTUVfRkRfVE9fSEFORExFIHRvIGlt
-cG9ydCBhbmQgbWFwIGEgZG1hYnVmIGludG8KPiBnZW0uICBIb3dldmVyLCB0aGlzIGlvY3RsIHdp
-bGwgdHJ5IHRvIGdyYWIgdGhlIHZpcnR1YWwgYWRkcmVzcyByYW5nZSBmb3IgdGhpcwo+IGJ1ZmZl
-ciwgd2hpY2ggd2lsbCBmYWlsIGluIHRoZSBDVURBIGNhc2Ugc2luY2UgdGhlIHZpcnR1YWwgYWRk
-cmVzcyByYW5nZQo+IGhhcyBiZWVuIHJlc2VydmVkIGFoZWFkIG9mIHRpbWUuICBTbyB3ZSBwZXJo
-YXBzIGludHJvZHVjZSBhIHNldCBvZiBpb2N0bHMKPiB0byBtYXAvdW5tYXAgYnVmZmVycyBvbiB0
-b3Agb2YgYW4gYWxyZWFkeSBleGlzdGluZyB2aXJ0dWFsIGFkZHJlc3MgYWxsb2NhdGlvbi4KCk15
-IHN1Z2dlc3Rpb24gYWJvdmUgaXMgYW4gYWx0ZXJuYXRpdmUgdG8gdGhpcywgcmlnaHQ/IEkgdGhp
-bmsgZG1hYnVmcwp0ZW5kIHRvIGJlIHVzZWQgZm9yIHNoYXJpbmcgYmV0d2VlbiBkZXZpY2VzLiBJ
-IHN1c3BlY3QgdGhlcmUncyBtb3JlCmdvaW5nIG9uIGhlcmUgdGhhdCBJIGRvbid0IHVuZGVyc3Rh
-bmQgdGhvdWdoIC0tIEkgYXNzdW1lIHRoZSBDVURBCnVzZS1jYXNlIGlzIHNpbWlsYXIgdG8gdGhl
-IEhTQSB1c2UtY2FzZSAtLSBiZWluZyBhYmxlIHRvIGJ1aWxkIHVwIGRhdGEKc3RydWN0dXJlcyB0
-aGF0IHBvaW50IHRvIG9uZSBhbm90aGVyIG9uIHRoZSBDUFUgYW5kIHRoZW4gcHJvY2VzcyB0aGVt
-Cm9uIHRoZSBHUFU/IENhbiB5b3UgZGV0YWlsIGEgc3BlY2lmaWMgdXNlLWNhc2UgcGVyaGFwcywg
-aW5jbHVkaW5nIHRoZQppbnRlcmFjdGlvbnMgd2l0aCB0aGUgR1BVIGFuZCBpdHMgYWRkcmVzcyBz
-cGFjZT8KCkrDqXLDtG1lLCBJIGJlbGlldmUgeW91IHdlcmUgZG9pbmcgdGhlIEhTQSBrZXJuZWwg
-aW1wbGVtZW50YXRpb24uClBlcmhhcHMgeW91J2QgaGF2ZSBzb21lIGZlZWRiYWNrIG9uIHRoaXMg
-cHJvcG9zYWw/CgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vZHJpLWRldmVsCg==
+
+--===============1739146976==
+Content-Type: multipart/alternative; boundary="1436288557.54eFd8a2.11218"; charset="UTF-8"
+
+
+--1436288557.54eFd8a2.11218
+Date: Tue, 7 Jul 2015 17:02:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91231
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Marek posted a patch for this at http://patchwork.freedesktop.org/patch/53843/
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436288557.54eFd8a2.11218
+Date: Tue, 7 Jul 2015 17:02:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV92] Psychonauts (native) segfaults on start when DRI3 enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91231#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV92] Psychonauts (native) segfaults on start when DRI3 enabled"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91231">bug 91231</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Marek posted a patch for this at <a href="http://patchwork.freedesktop.org/patch/53843/">http://patchwork.freedesktop.org/patch/53843/</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436288557.54eFd8a2.11218--
+
+--===============1739146976==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1739146976==--
