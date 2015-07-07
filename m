@@ -1,15 +1,12 @@
-From: Andrew Chew <achew-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: CUDA fixed VA allocations and sparse mappings
-Date: Tue, 7 Jul 2015 11:47:10 -0700
-Message-ID: <20150707184710.GA31624@achew-linux64.nvidia.com>
-References: <20150707004249.GC27924@achew-linux64.nvidia.com>
- <CAKb7UviePF2XcmyeKHQ2cv=hy=NZyYcMrWiTpajJxTFE+10LwQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91233] The system hanged again
+Date: Tue, 07 Jul 2015 18:52:33 +0000
+Message-ID: <bug-91233-8800-5eLoATu49m@http.bugs.freedesktop.org/>
+References: <bug-91233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0414703163=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UviePF2XcmyeKHQ2cv=hy=NZyYcMrWiTpajJxTFE+10LwQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,61 +16,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMDcsIDIwMTUgYXQgMTE6Mjk6MzhBTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
-dGU6Cj4gT24gTW9uLCBKdWwgNiwgMjAxNSBhdCA4OjQyIFBNLCBBbmRyZXcgQ2hldyA8YWNoZXdA
-bnZpZGlhLmNvbT4gd3JvdGU6Cj4gPiBUaGVzZSBpb2N0bHMganVzdCBjYWxsIGludG8gdGhlIGFs
-bG9jYXRvciB0byBhbGxvY2F0ZSBhIHJhbmdlIG9mIGFkZHJlc3NlcywKPiA+IHJlc3VsdGluZyBp
-biBhIHN0cnVjdCBudmttX3ZtYSB0aGF0IHRyYWNrcyB0aGF0IGFsbG9jYXRpb24gKG9yIHJlbGVh
-c2VzIHRoZQo+ID4gc3RydWN0IG52a21fdm1hIGJhY2sgaW50byB0aGUgdmlydHVhbCBhZGRyZXNz
-IHBvb2wgaW4gdGhlIGNhc2Ugb2YgdGhlIGZyZWUKPiA+IGlvY3RsKS4gIElmIE5PVVZFQVVfQVNf
-QUxMT0NfRkxBR1NfRklYRURfT0ZGU0VUIGlzIHNldCwgb2Zmc2V0IHNwZWNpZmllcyB0aGUKPiA+
-IHJlcXVlc3RlZCB2aXJ0dWFsIGFkZHJlc3MuICBPdGhlcndpc2UsIGFuIGFyYml0cmFyeSBhZGRy
-ZXNzIHdpbGwgYmUKPiA+IGFsbG9jYXRlZC4KPiAKPiBXZWxsLCB0aGlzIGNhbid0IGp1c3QgYmUg
-YW4gYWRkcmVzcyBzcGFjZS4gWW91IHN0aWxsIG5lZWQgYm8ncywgaWYKPiB0aGlzIGlzIHRvIHdv
-cmsgd2l0aCBub3V2ZWF1IC0tIGl0IGhhcyB0byBrbm93IHdoZW4gdG8gc3dhcCB0aGluZ3MgaW4K
-PiBhbmQgb3V0LCB3aGVuIHRoZXkncmUgdXNlZCwgZXRjLiAoYW5kL29yIG1vdmUgYmV0d2VlbiBW
-UkFNIGFuZCBHQVJUCj4gYW5kIHN5c3RlbS9zd2FwKS4gSSBzdXNwZWN0IHRoYXQgeW91ciB0YXJn
-ZXQgaGVyZSBhcmUgdGhlIEdLMjBBIGFuZAo+IEdNMjBCIGNoaXBzIHdoaWNoIGRvbid0IGhhdmUg
-ZGVkaWNhdGVkIFZSQU0sIGJ1dCB0aGUgaW9jdGwncyBuZWVkIHRvCj4gd29yayBmb3IgZXZlcnl0
-aGluZy4KPiAKPiBXb3VsZCBpdCBiZSBzdWZmaWNpZW50IHRvIGV4dGVuZCBOT1VWRUFVX0dFTV9O
-RVcgb3IgY3JlYXRlIGEKPiBOT1VWRUFVX0dFTV9ORVdfRklYRUQgb3Igc29tZXRoaW5nPyBJT1cs
-IHdoeSBkbyBoYXZlIHRvIHNlcGFyYXRlIHRoZQo+IGNvbmNlcHQgb2YgYSBHRU0gb2JqZWN0IGFu
-ZCBhIFZNIGFsbG9jYXRpb24/CgpZb3UncmUgY29ycmVjdC4gIFRoaXMgaXMgZm9yIGdrMjBhIGFu
-ZCBnbTIwYi4KClRoZSB0aGluZyB0aGVzZSBwcm9wb3NlZCBpb2N0bHMgYXJlIHN1cHBvc2VkIHRv
-IGFjY29tcGxpc2ggaXMgdG8gcmVzZXJ2ZSwKYWhlYWQgb2YgdGltZSwgYSBwb3J0aW9uIG9mIHRo
-ZSBhZGRyZXNzIHNwYWNlLiAgU28gYXQgdGhpcyB0aW1lLCB0aGVyZQpyZWFsbHkgYXJlbid0IGFu
-eSBidWZmZXIgb2JqZWN0cyB5ZXQsIGFuZCB0aGVyZSdzIG5vdGhpbmcgdG8gYmUgbWFwcGVkIHRv
-CnRoZSBHTU1VLiAgVGhhdCBwYXJ0IHdvdWxkIGNvbWUgbGF0ZXIuCgo+ID4gSW4gYWRkaXRpb24g
-dG8gdGhpcywgYSB3YXkgdG8gbWFwL3VubWFwIGJ1ZmZlcnMgaXMgbmVlZGVkLiAgT3JkaW5hcmls
-eSwgb25lCj4gPiB3b3VsZCBqdXN0IHVzZSBEUk1fSU9DVExfUFJJTUVfRkRfVE9fSEFORExFIHRv
-IGltcG9ydCBhbmQgbWFwIGEgZG1hYnVmIGludG8KPiA+IGdlbS4gIEhvd2V2ZXIsIHRoaXMgaW9j
-dGwgd2lsbCB0cnkgdG8gZ3JhYiB0aGUgdmlydHVhbCBhZGRyZXNzIHJhbmdlIGZvciB0aGlzCj4g
-PiBidWZmZXIsIHdoaWNoIHdpbGwgZmFpbCBpbiB0aGUgQ1VEQSBjYXNlIHNpbmNlIHRoZSB2aXJ0
-dWFsIGFkZHJlc3MgcmFuZ2UKPiA+IGhhcyBiZWVuIHJlc2VydmVkIGFoZWFkIG9mIHRpbWUuICBT
-byB3ZSBwZXJoYXBzIGludHJvZHVjZSBhIHNldCBvZiBpb2N0bHMKPiA+IHRvIG1hcC91bm1hcCBi
-dWZmZXJzIG9uIHRvcCBvZiBhbiBhbHJlYWR5IGV4aXN0aW5nIHZpcnR1YWwgYWRkcmVzcyBhbGxv
-Y2F0aW9uLgo+IAo+IE15IHN1Z2dlc3Rpb24gYWJvdmUgaXMgYW4gYWx0ZXJuYXRpdmUgdG8gdGhp
-cywgcmlnaHQ/IEkgdGhpbmsgZG1hYnVmcwo+IHRlbmQgdG8gYmUgdXNlZCBmb3Igc2hhcmluZyBi
-ZXR3ZWVuIGRldmljZXMuIEkgc3VzcGVjdCB0aGVyZSdzIG1vcmUKPiBnb2luZyBvbiBoZXJlIHRo
-YXQgSSBkb24ndCB1bmRlcnN0YW5kIHRob3VnaCAtLSBJIGFzc3VtZSB0aGUgQ1VEQQo+IHVzZS1j
-YXNlIGlzIHNpbWlsYXIgdG8gdGhlIEhTQSB1c2UtY2FzZSAtLSBiZWluZyBhYmxlIHRvIGJ1aWxk
-IHVwIGRhdGEKPiBzdHJ1Y3R1cmVzIHRoYXQgcG9pbnQgdG8gb25lIGFub3RoZXIgb24gdGhlIENQ
-VSBhbmQgdGhlbiBwcm9jZXNzIHRoZW0KPiBvbiB0aGUgR1BVPyBDYW4geW91IGRldGFpbCBhIHNw
-ZWNpZmljIHVzZS1jYXNlIHBlcmhhcHMsIGluY2x1ZGluZyB0aGUKPiBpbnRlcmFjdGlvbnMgd2l0
-aCB0aGUgR1BVIGFuZCBpdHMgYWRkcmVzcyBzcGFjZT8KClRoZSB3aG9sZSBkbWFidWZzIHRoaW5n
-IGlzIGtpbmQgb2YgYSBzaWRlIGlzc3VlLiAgSSdsbCB0YWtlIGEgbG9vayBhdApOT1VWRUFVX0dF
-TV9ORVcsIGJ1dCB0aGF0IGNvdWxkIGJlIGFuIGFsdGVybmF0aXZlIHRvIHRoaXMsIG1heWJlLCBp
-ZgpleHRlbmRlZCAob3Igd2UgbWFrZSBhIG5ldyBOT1VWRUFVX0dFTV9ORVdfRklYRUQsIGFzIHlv
-dSBzdWdnZXN0ZWQpLgpDcnVjaWFsbHksIHRoZSBOT1VWRUFVX0dFTV9ORVdfRklYRUQgb3BlcmF0
-aW9uIHNob3VsZG4ndCByZXN1bHQgaW4gdHJ5aW5nCnRvIGdldCBhIHZpcnR1YWwgYWRkcmVzcyBy
-ZWdpb24gYW5kIHRoZW4gZmFpbGluZyBiZWNhdXNlIGEgcHJldmlvdXMKb3BlcmF0aW9uIChzZWUg
-YWJvdmUpIGhhcyByZXNlcnZlZCBpdCBhbHJlYWR5LgoKVGhlIHVzZSBjYXNlIGlzIGV4YWN0bHkg
-YXMgeW91IGRlc2NyaWJlLiAgVGhlcmUgYXJlIGRhdGEgc3RydWN0dXJlcyBidWlsdAp1cCB0aGF0
-IGNvbnRhaW4gQ1BVIHBvaW50ZXJzLCBhbmQgdGhvc2UgcG9pbnRlcnMgbmVlZCB0byBtYWtlIHNl
-bnNlIHRvCnRoZSBHUFUgYXMgd2VsbC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0414703163==
+Content-Type: multipart/alternative; boundary="1436295153.17DBa1.14186"; charset="UTF-8"
+
+
+--1436295153.17DBa1.14186
+Date: Tue, 7 Jul 2015 18:52:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91233
+
+--- Comment #2 from Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> ---
+I've got a similar situation again.
+
+The error was:
+
+[171009.586992] nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+My hardware:
+GeForce 8400 GS Rev. 3
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436295153.17DBa1.14186
+Date: Tue, 7 Jul 2015 18:52:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+              from <span class="vcard"><a class="email" href="mailto:porton&#64;narod.ru" title="Victor Porton &lt;porton&#64;narod.ru&gt;"> <span class="fn">Victor Porton</span></a>
+</span></b>
+        <pre>I've got a similar situation again.
+
+The error was:
+
+[171009.586992] nouveau E[     DRM] GPU lockup - switching to software fbcon
+
+My hardware:
+GeForce 8400 GS Rev. 3</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436295153.17DBa1.14186--
+
+--===============0414703163==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0414703163==--
