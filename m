@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 1/2] nouveau/compiler: fix trivial compiler
-	warnings
-Date: Wed, 8 Jul 2015 14:38:23 -0400
-Message-ID: <CAKb7UvgWcP4765FZFApRPdUY76B1DpOqZyRxz3K5g-n85qq+1w@mail.gmail.com>
-References: <1436380066-19851-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Wed, 08 Jul 2015 18:40:50 +0000
+Message-ID: <bug-90513-8800-uxioonUaOC@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1479771612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1436380066-19851-1-git-send-email-tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,35 +17,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Q29tcGlsZXIgaXMgd3JvbmcuCgpPbiBXZWQsIEp1bCA4LCAyMDE1IGF0IDI6MjcgUE0sIFRvYmlh
-cyBLbGF1c21hbm4KPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5pLnRobS5kZT4gd3JvdGU6
-Cj4gbm91dmVhdV9jb21waWxlci5jOiBJbiBmdW5jdGlvbiDigJhtYWlu4oCZOgo+IG5vdXZlYXVf
-Y29tcGlsZXIuYzoyMTY6Mjc6IHdhcm5pbmc6IOKAmGNvZGXigJkgbWF5IGJlIHVzZWQgdW5pbml0
-aWFsaXplZCBpbgo+IHRoaXMgZnVuY3Rpb24gWy1XbWF5YmUtdW5pbml0aWFsaXplZF0KPiAgICAg
-ICAgcHJpbnRmKCIlMDh4ICIsIGNvZGVbaSAvIDRdKTsKPiAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICBeCj4gbm91dmVhdV9jb21waWxlci5jOjIxNTo0OiB3YXJuaW5nOiDigJhzaXpl4oCZIG1h
-eSBiZSB1c2VkIHVuaW5pdGlhbGl6ZWQgaW4KPiB0aGlzIGZ1bmN0aW9uIFstV21heWJlLXVuaW5p
-dGlhbGl6ZWRdCj4gICAgIGZvciAoaSA9IDA7IGkgPCBzaXplOyBpICs9IDQpIHsKPgo+IFNpZ25l
-ZC1vZmYtYnk6IFRvYmlhcyBLbGF1c21hbm4gPHRvYmlhcy5qb2hhbm5lcy5rbGF1c21hbm5AbW5p
-LnRobS5kZT4KPiAtLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfY29t
-cGlsZXIuYyB8IDIgKy0KPiAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0
-aW9uKC0pCj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZl
-YXVfY29tcGlsZXIuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2NvbXBp
-bGVyLmMKPiBpbmRleCA4NjYwNDk4Li5jYTEyOGI1IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2NvbXBpbGVyLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbm91dmVhdV9jb21waWxlci5jCj4gQEAgLTE0NCw3ICsxNDQsNyBAQCBt
-YWluKGludCBhcmdjLCBjaGFyICphcmd2W10pCj4gICAgIGNvbnN0IGNoYXIgKmZpbGVuYW1lID0g
-TlVMTDsKPiAgICAgRklMRSAqZjsKPiAgICAgY2hhciB0ZXh0WzY1NTM2XSA9IHswfTsKPiAtICAg
-dW5zaWduZWQgc2l6ZSwgKmNvZGU7Cj4gKyAgIHVuc2lnbmVkIHNpemUgPSAwLCAqY29kZSA9IE5V
-TEw7Cj4KPiAgICAgZm9yIChpID0gMTsgaSA8IGFyZ2M7IGkrKykgewo+ICAgICAgICBpZiAoIXN0
-cmNtcChhcmd2W2ldLCAiLWEiKSkKPiAtLQo+IDIuNC41Cj4KPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQo=
+
+--===============1479771612==
+Content-Type: multipart/alternative; boundary="1436380849.BFDD580.5460"; charset="UTF-8"
+
+
+--1436380849.BFDD580.5460
+Date: Wed, 8 Jul 2015 18:40:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
+
+--- Comment #4 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+(In reply to Karol Herbst from comment #3)
+> does enabling "No Dynamic Lightning" helps with the issue even on very high
+> gpu settings Like Ultra? Its a customize options for the gpu speed.
+
+Oh my, yes it does. 
+I suppose that means the dynamic lighting is responsible for it.
+
+Hmmm... previously[1], dynamic lighting used to crash the game at certain
+locations, but would not create any visual problems. This particular flickering
+started appearing after some change[2] that made the game to NOT crash anymore.
+
+I'm going to ping the game's developers and ask them to look into this
+particular report. Maybe by knowing their engine's internals, they can toss
+some [valuable] insight.
+
+[1] While the game was still in closed beta
+[2] Not sure if a change to the game, to Mesa or both. As far as I can recall,
+probably both.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1436380849.BFDD580.5460
+Date: Wed, 8 Jul 2015 18:40:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
+              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
+</span></b>
+        <pre>(In reply to Karol Herbst from <a href="show_bug.cgi?id=90513#c3">comment #3</a>)
+<span class="quote">&gt; does enabling &quot;No Dynamic Lightning&quot; helps with the issue even on very high
+&gt; gpu settings Like Ultra? Its a customize options for the gpu speed.</span >
+
+Oh my, yes it does. 
+I suppose that means the dynamic lighting is responsible for it.
+
+Hmmm... previously[1], dynamic lighting used to crash the game at certain
+locations, but would not create any visual problems. This particular flickering
+started appearing after some change[2] that made the game to NOT crash anymore.
+
+I'm going to ping the game's developers and ask them to look into this
+particular report. Maybe by knowing their engine's internals, they can toss
+some [valuable] insight.
+
+[1] While the game was still in closed beta
+[2] Not sure if a change to the game, to Mesa or both. As far as I can recall,
+probably both.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436380849.BFDD580.5460--
+
+--===============1479771612==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1479771612==--
