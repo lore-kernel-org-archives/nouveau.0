@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91231] [NV92] Psychonauts (native) segfaults on
- start when DRI3 enabled
-Date: Wed, 08 Jul 2015 04:22:01 +0000
-Message-ID: <bug-91231-8800-UYv793HiKk@http.bugs.freedesktop.org/>
-References: <bug-91231-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] nouveau/ttm: fix tiled system memory with Maxwell
+Date: Wed, 8 Jul 2015 16:13:43 +0900
+Message-ID: <1436339623-27054-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1210514252=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91231-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,124 +15,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1210514252==
-Content-Type: multipart/alternative; boundary="1436329320.dC25b37d2.15225"; charset="UTF-8"
-
-
---1436329320.dC25b37d2.15225
-Date: Wed, 8 Jul 2015 04:22:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91231
-
-B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #7 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Patch committed, marking the bug as fixed.
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=3D6611f65047575054a38ce83e=
-bfe0331e39e1774f
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436329320.dC25b37d2.15225
-Date: Wed, 8 Jul 2015 04:22:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyebro69&=
-#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64;gmail.co=
-m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV92] Psychonauts (native) segfaults on start=
- when DRI3 enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91231">bug 91231<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV92] Psychonauts (native) segfaults on start=
- when DRI3 enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91231#c7">Comment=
- # 7</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV92] Psychonauts (native) segfaults on start=
- when DRI3 enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91231">bug 91231<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
-;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
-</span></b>
-        <pre>Patch committed, marking the bug as fixed.
-<a href=3D"http://cgit.freedesktop.org/mesa/mesa/commit/?id=3D6611f65047575=
-054a38ce83ebfe0331e39e1774f">http://cgit.freedesktop.org/mesa/mesa/commit/?=
-id=3D6611f65047575054a38ce83ebfe0331e39e1774f</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436329320.dC25b37d2.15225--
-
---===============1210514252==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1210514252==--
+QWRkIE1heHdlbGwgdG8gdGhlIHN3aXRjaCBzdGF0ZW1lbnQgdGhhdCBzZXRzIG5vZGUtPm1lbXR5
+cGUsIG90aGVyd2lzZQphbGwgdGlsaW5nIGluZm9ybWF0aW9uIGlzIGlnbm9yZWQgZm9yIGJ1ZmZl
+cnMgaW4gc3lzdGVtIG1lbW9yeS4KCldoaWxlIHdlIGFyZSBhdCBpdCwgbWFrZSB0aGF0IHN3aXRj
+aCBzdGF0ZW1lbnQgZXhwbGljaXRseSBjb21wbGFpbiB0aGUKbmV4dCB0aW1lIHdlIG1lZXQgYSBu
+b24taGFuZGxlZCBjYXJkIGZhbWlseS4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90
+IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMgfCA5
+ICsrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBh
+L2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMgYi9kcm0vbm91dmVhdS9ub3V2ZWF1X3R0bS5jCmlu
+ZGV4IDE4ZjQ0OTcxNTc4OC4uNjliZWMxMDU4MDM5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9u
+b3V2ZWF1X3R0bS5jCisrKyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfdHRtLmMKQEAgLTE3NSwxNSAr
+MTc1LDI0IEBAIG5vdXZlYXVfZ2FydF9tYW5hZ2VyX25ldyhzdHJ1Y3QgdHRtX21lbV90eXBlX21h
+bmFnZXIgKm1hbiwKIAlub2RlLT5wYWdlX3NoaWZ0ID0gMTI7CiAKIAlzd2l0Y2ggKGRybS0+ZGV2
+aWNlLmluZm8uZmFtaWx5KSB7CisJY2FzZSBOVl9ERVZJQ0VfSU5GT19WMF9UTlQ6CisJY2FzZSBO
+Vl9ERVZJQ0VfSU5GT19WMF9DRUxTSVVTOgorCWNhc2UgTlZfREVWSUNFX0lORk9fVjBfS0VMVklO
+OgorCWNhc2UgTlZfREVWSUNFX0lORk9fVjBfUkFOS0lORToKKwljYXNlIE5WX0RFVklDRV9JTkZP
+X1YwX0NVUklFOgorCQlicmVhazsKIAljYXNlIE5WX0RFVklDRV9JTkZPX1YwX1RFU0xBOgogCQlp
+ZiAoZHJtLT5kZXZpY2UuaW5mby5jaGlwc2V0ICE9IDB4NTApCiAJCQlub2RlLT5tZW10eXBlID0g
+KG52Ym8tPnRpbGVfZmxhZ3MgJiAweDdmMDApID4+IDg7CiAJCWJyZWFrOwogCWNhc2UgTlZfREVW
+SUNFX0lORk9fVjBfRkVSTUk6CiAJY2FzZSBOVl9ERVZJQ0VfSU5GT19WMF9LRVBMRVI6CisJY2Fz
+ZSBOVl9ERVZJQ0VfSU5GT19WMF9NQVhXRUxMOgogCQlub2RlLT5tZW10eXBlID0gKG52Ym8tPnRp
+bGVfZmxhZ3MgJiAweGZmMDApID4+IDg7CiAJCWJyZWFrOwogCWRlZmF1bHQ6CisJCU5WX1dBUk4o
+ZHJtLCAiJXM6IHVuaGFuZGxlZCBmYW1pbHkgdHlwZSAleFxuIiwKKwkJCWRybS0+ZGV2aWNlLmlu
+Zm8uZmFtaWx5KTsKIAkJYnJlYWs7CiAJfQogCi0tIAoyLjQuNAoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
