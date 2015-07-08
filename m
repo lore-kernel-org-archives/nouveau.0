@@ -1,17 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 2/2] nv50/ir: fix a compiler warning with
- debug-only code
-Date: Wed, 8 Jul 2015 16:18:23 -0400
-Message-ID: <CAKb7UvgTMgsU4YFX9Bai6iXcyE3y1cYg2S7-k0JRXn=ukR0W9g@mail.gmail.com>
-References: <1436380066-19851-1-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <1436380066-19851-2-git-send-email-tobias.johannes.klausmann@mni.thm.de>
- <CACvgo50rFAxxP8JfG_WvqTkvA74eUzfy9v-KTCSHeMSkCYO-zA@mail.gmail.com>
- <559D7C98.5090102@mni.thm.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Wed, 08 Jul 2015 20:24:49 +0000
+Message-ID: <bug-90513-8800-r98GPKntWW@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1926686739=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <559D7C98.5090102-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,45 +17,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Tobias Klausmann <tobias.johannes.klausmann-AqjdNwhu20eELgA04lAiVw@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBzdXNwZWN0IHRoZSBpc3N1ZSBpcyBhY3R1YWxseSB0aGF0IHVfZGVidWcuaCBpc24ndCBpbmNs
-dWRlZC4gSXQKZGVmaW5lcyBhc3NlcnQgdG8gYmUgZGVidWdfYXNzZXJ0LCB3aGljaCBpbiB0dXJu
-IGlzCgojZGVmaW5lIGRlYnVnX2Fzc2VydChleHByKSAodm9pZCkoMCAmJiAoZXhwcikpCgp3aGlj
-aCBzaG91bGQgY2F1c2UgdGhlIHJlbGV2YW50IHZhciB0byBiZSBzZWVuIGFzIHVzZWQuCgoKT24g
-V2VkLCBKdWwgOCwgMjAxNSBhdCAzOjQwIFBNLCBUb2JpYXMgS2xhdXNtYW5uCjx0b2JpYXMuam9o
-YW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+IHdyb3RlOgo+Cj4KPiBPbiAwOC4wNy4yMDE1IDIx
-OjM0LCBFbWlsIFZlbGlrb3Ygd3JvdGU6Cj4+Cj4+IE9uIDggSnVseSAyMDE1IGF0IDE5OjI3LCBU
-b2JpYXMgS2xhdXNtYW5uCj4+IDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+
-IHdyb3RlOgo+Pj4KPj4+IGNvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAuY3BwOiBJbiBtZW1iZXIg
-ZnVuY3Rpb24KPj4+IOKAmHZvaWQgbnY1MF9pcjo6Q29kZUVtaXR0ZXJOVjUwOjplbWl0TE9BRChj
-b25zdCBudjUwX2lyOjpJbnN0cnVjdGlvbiop4oCZOgo+Pj4gY29kZWdlbi9udjUwX2lyX2VtaXRf
-bnY1MC5jcHA6NjIwOjEyOiB3YXJuaW5nOiB1bnVzZWQgdmFyaWFibGUg4oCYb2Zmc2V04oCZCj4+
-PiAgIFstV3VudXNlZC12YXJpYWJsZV0KPj4+ICAgICAgaW50MzJfdCBvZmZzZXQgPSBpLT5nZXRT
-cmMoMCktPnJlZy5kYXRhLm9mZnNldDsKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBUb2JpYXMgS2xh
-dXNtYW5uIDx0b2JpYXMuam9oYW5uZXMua2xhdXNtYW5uQG1uaS50aG0uZGU+Cj4+PiAtLS0KPj4+
-ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9lbWl0X252NTAu
-Y3BwIHwgNSArKysrLQo+Pj4gICAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAxIGRl
-bGV0aW9uKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9jb2RlZ2VuL252NTBfaXJfZW1pdF9udjUwLmNwcAo+Pj4gYi9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvY29kZWdlbi9udjUwX2lyX2VtaXRfbnY1MC5jcHAKPj4+IGluZGV4IDY3ZWE2ZGYu
-Ljg2YjE2ZjIgMTAwNjQ0Cj4+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvY29k
-ZWdlbi9udjUwX2lyX2VtaXRfbnY1MC5jcHAKPj4+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9jb2RlZ2VuL252NTBfaXJfZW1pdF9udjUwLmNwcAo+Pj4gQEAgLTYxNiw4ICs2MTYs
-MTEgQEAgQ29kZUVtaXR0ZXJOVjUwOjplbWl0TG9hZFN0b3JlU2l6ZUNTKERhdGFUeXBlIHR5KQo+
-Pj4gICB2b2lkCj4+PiAgIENvZGVFbWl0dGVyTlY1MDo6ZW1pdExPQUQoY29uc3QgSW5zdHJ1Y3Rp
-b24gKmkpCj4+PiAgIHsKPj4+IC0gICBEYXRhRmlsZSBzZiA9IGktPnNyYygwKS5nZXRGaWxlKCk7
-Cj4+PiArI2lmZGVmIERFQlVHCj4+PiAgICAgIGludDMyX3Qgb2Zmc2V0ID0gaS0+Z2V0U3JjKDAp
-LT5yZWcuZGF0YS5vZmZzZXQ7Cj4+PiArI2VuZGlmCj4+PiArCj4+Cj4+IGFzc2VydCBpcyAobm9y
-bWFsbHkpIGd1YXJkZWQgYnkgTkRFQlVHLiBNZXNhL2dhbGxpdW0gaGFzIGFuIGluLWhvdXNlCj4+
-IHJlcGxhY2VtZW50LCB3aGljaCAobm90IDEwMCUgc3VyZSkgc2hvdWxkIGJlIGZpbmUgYXMgd2Vs
-bC4KPj4KPj4gLUVtaWwKPgo+IEFzIGZhciBhcyBpIGNhbiBzZWUgaXQgaW4gdV9kZWJ1Zy5oIGFz
-c2VydCAoZGVidWdfYXNzZXJ0KSBpcyBndWFyZGVkIGJ5Cj4gREVCVUcgYXMgdGhlIGFib3ZlIGNo
-YW5nZS4uLgo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1926686739==
+Content-Type: multipart/alternative; boundary="1436387089.aC3dabEA0.24507"; charset="UTF-8"
+
+
+--1436387089.aC3dabEA0.24507
+Date: Wed, 8 Jul 2015 20:24:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
+
+--- Comment #6 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #5)
+> I've made no progress on this bug BTW; perhaps an avenue would be to
+> generate a super-low-resolution trace (i.e. minimum supported by the game...
+> 320x200 or 640x480 or something) so that it plays back faster, and with the
+> minimum number of "features" enabled to make the problem happen.
+
+I'll get on it right now.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1436387089.aC3dabEA0.24507
+Date: Wed, 8 Jul 2015 20:24:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
+              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90513#c5">comment #5</a>)
+<span class="quote">&gt; I've made no progress on this bug BTW; perhaps an avenue would be to
+&gt; generate a super-low-resolution trace (i.e. minimum supported by the game...
+&gt; 320x200 or 640x480 or something) so that it plays back faster, and with the
+&gt; minimum number of &quot;features&quot; enabled to make the problem happen.</span >
+
+I'll get on it right now.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436387089.aC3dabEA0.24507--
+
+--===============1926686739==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1926686739==--
