@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88890] [nve7] Reclocking of core speed fails on
- non-reference ASUS GeForce GTX650
-Date: Wed, 08 Jul 2015 10:50:14 +0000
-Message-ID: <bug-88890-8800-026y5y0HJW@http.bugs.freedesktop.org/>
-References: <bug-88890-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Wed, 08 Jul 2015 12:05:58 +0000
+Message-ID: <bug-90513-8800-4Sw4aPpmAh@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0029866185=="
+Content-Type: multipart/mixed; boundary="===============0741628073=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0029866185==
-Content-Type: multipart/alternative; boundary="1436352614.aA85eAb2.1620"; charset="UTF-8"
+--===============0741628073==
+Content-Type: multipart/alternative; boundary="1436357158.5d55deFa1.22014"; charset="UTF-8"
 
 
---1436352614.aA85eAb2.1620
-Date: Wed, 8 Jul 2015 10:50:14 +0000
+--1436357158.5d55deFa1.22014
+Date: Wed, 8 Jul 2015 12:05:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88890
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
 
---- Comment #2 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-do you get errors like
-
-[10913.271270] nouveau E[     CLK][0000:01:00.0] failed to raise voltage: -22
-[10913.271273] nouveau E[     CLK][0000:01:00.0] error setting pstate 1: -22
-
-after trying?
+--- Comment #3 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+does enabling "No Dynamic Lightning" helps with the issue even on very high gpu
+settings Like Ultra? Its a customize options for the gpu speed.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436352614.aA85eAb2.1620
-Date: Wed, 8 Jul 2015 10:50:14 +0000
+--1436357158.5d55deFa1.22014
+Date: Wed, 8 Jul 2015 12:05:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,34 +55,31 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890#c2">Comment # 2</a>
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890">bug 88890</a>
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
               from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
 </span></b>
-        <pre>do you get errors like
-
-[10913.271270] nouveau E[     CLK][0000:01:00.0] failed to raise voltage: -22
-[10913.271273] nouveau E[     CLK][0000:01:00.0] error setting pstate 1: -22
-
-after trying?</pre>
+        <pre>does enabling &quot;No Dynamic Lightning&quot; helps with the issue even on very high gpu
+settings Like Ultra? Its a customize options for the gpu speed.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1436352614.aA85eAb2.1620--
+--1436357158.5d55deFa1.22014--
 
---===============0029866185==
+--===============0741628073==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0029866185==--
+--===============0741628073==--
