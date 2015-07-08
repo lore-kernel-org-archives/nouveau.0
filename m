@@ -1,14 +1,13 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: RFC: drop glamor from nouveau ddx
-Date: Wed, 8 Jul 2015 09:18:13 +0200
-Message-ID: <559CCEB5.5040305@gmail.com>
-References: <CAKb7UvgFKDgy9nJO7c8bLLPnGNM_ZbyrRrkc_AcNd4-=-7y=qA@mail.gmail.com>
- <CACAvsv5Qc9zfsYyhhCn1_=ZfS3Keb03XyirhUqO8mwEymRQp6Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88890] [nve7] Reclocking of core speed fails on
+ non-reference ASUS GeForce GTX650
+Date: Wed, 08 Jul 2015 10:50:14 +0000
+Message-ID: <bug-88890-8800-026y5y0HJW@http.bugs.freedesktop.org/>
+References: <bug-88890-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0029866185=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACAvsv5Qc9zfsYyhhCn1_=ZfS3Keb03XyirhUqO8mwEymRQp6Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-88890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +17,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDcuMDcuMjAxNSAyMzowNSwgQmVuIFNrZWdncyB3cm90ZToKPiBPbiA4IEp1bHkgMjAxNSBh
-dCAwNjowNiwgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4gQmVu
-LAo+Pgo+PiBMb29rcyBsaWtlIHRoZSByZWFsaXR5IGlzIHRoYXQgZ2xhbW9yIGlzIGp1c3Qgbm90
-IGhvb2tlZCB1cCBwcm9wZXJseQo+PiBpbiB0aGUgbm91dmVhdSBERFguIE1haW5seSBpdCdzIG1p
-c3NpbmcgRFJJMiwgd2hpY2ggaW4gdHVybiBtZWFucyBubwo+PiBjb3JlIEdMIGNvbnRleHRzLCBh
-bmQgcHJvYmFibHkgbG90cyBvZiBvdGhlciBpc3N1ZXMuIFdoaWxlIHRoaXMgY291bGQKPj4gcHJv
-YmFibHkgYmUgZml4ZWQgc29tZWhvdywgSSBkb3VidCB0aGVyZSdzIGFueSBhZHZhbnRhZ2UgdG8g
-dXNpbmcgdGhlCj4+IG5vdXZlYXUgRERYIG92ZXIgc29tZXRoaW5nIGxpa2UgbW9kZXNldHRpbmcg
-bm93YWRheXMuCj4+Cj4+IEhvdyB3b3VsZCB5b3UgZmVlbCBhYm91dCBkcm9wcGluZyBnbGFtb3Ig
-c3VwcG9ydCBmcm9tIHRoZSBub3V2ZWF1IGRkeAo+PiBhbmQgZmFpbGluZyB0byBsb2FkIGZvciBH
-UFVzIHRoYXQgZG9uJ3QgaGF2ZSBFWEEgc3VwcG9ydCAodW5sZXNzCj4+IEFjY2VsTW9kZSA9IG5v
-bmUgaXMgZm9yY2VkIGZvciB0aGVtKS4gVGhhdCB3YXkgaXQnbGwgZmFsbCBiYWNrIHRvCj4+IGxv
-YWRpbmcgbW9kZXNldHRpbmcgd2hpY2ggc2hvdWxkIGJlIHByb3Blcmx5IHNldCB1cCBmb3IgRFJJ
-MiBhbmQgc28KPj4gb24uCj4gSSBoYXZlIG5vIG9iamVjdGlvbnMgdG8gdGhpcy4gIEluIGZhY3Qs
-IGluIEZlZG9yYSBhdCBsZWFzdCAoSSBmbG9hdGVkCj4gdGhlIGlkZWEgaW4gI25vdXZlYXUgYSB3
-aGlsZSBiYWNrIHRvbyksIGluIHRoZSBuZWFyIGZ1dHVyZSBJIHBsYW4gb24KPiBoYXZpbmcgdGhl
-IEREWCBmYWlsIHRvIGxvYWQgb24gYWxsIEdQVXMgd2hlcmUgbW9kZXNldHRpbmcrZ2xhbW9yIGNh
-bgo+IGJlIHVzZWQgKHVubGVzcyBvdmVycmlkZGVuIGJ5IGEgY29uZmlnIG9wdGlvbikuCj4gCgpT
-aG91bGRuJ3QgdGhlIHByaW9yaXR5IGFsd2F5cyBiZSB3aGF0IGlzIHByb3ZlbiB0byB3b3JrLgpO
-VjUwIHdvcmtzIE9LIHdpdGggdGhlIEVYQS4KQmVzaWRlcywgY2FuIGl0IGJlIHNldCAiY29sb3Ig
-dmlicmFuY2UiLCAidmlicmFudCBodWUiIGFuZCBvdGhlciBwcm9wcyB2aWEgIm1vZGVzZXQiPwoK
-V2hlbiBwZW9wbGUgZ2V0IGhpdCBieSBzdW5zdHJva2UsIGEgcmVhbCBzdW1tZXIgaGFzIGJlZ3Vu
-LgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
-dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0029866185==
+Content-Type: multipart/alternative; boundary="1436352614.aA85eAb2.1620"; charset="UTF-8"
+
+
+--1436352614.aA85eAb2.1620
+Date: Wed, 8 Jul 2015 10:50:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88890
+
+--- Comment #2 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+do you get errors like
+
+[10913.271270] nouveau E[     CLK][0000:01:00.0] failed to raise voltage: -22
+[10913.271273] nouveau E[     CLK][0000:01:00.0] error setting pstate 1: -22
+
+after trying?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436352614.aA85eAb2.1620
+Date: Wed, 8 Jul 2015 10:50:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890">bug 88890</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
+</span></b>
+        <pre>do you get errors like
+
+[10913.271270] nouveau E[     CLK][0000:01:00.0] failed to raise voltage: -22
+[10913.271273] nouveau E[     CLK][0000:01:00.0] error setting pstate 1: -22
+
+after trying?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436352614.aA85eAb2.1620--
+
+--===============0029866185==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0029866185==--
