@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88890] [nve7] Reclocking of core speed fails on
- non-reference ASUS GeForce GTX650
-Date: Wed, 08 Jul 2015 12:53:56 +0000
-Message-ID: <bug-88890-8800-DygLYLAnur@http.bugs.freedesktop.org/>
-References: <bug-88890-8800@http.bugs.freedesktop.org/>
+From: Ken Adams <KAdams-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [RFC] NVIDIA hardware reference headers
+Date: Wed, 8 Jul 2015 15:52:21 +0000
+Message-ID: <D1C2BCD4.1102B%kadams@nvidia.com>
+References: <D1B05DA3.10549%kadams@nvidia.com>
+ <D1C14E6F.10EFB%kadams@nvidia.com>
+ <CACAvsv47dbhU9kyqgw53GvMf1woODD1w5D+Da6F4DVmTRbXxqg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1977726685=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CACAvsv47dbhU9kyqgw53GvMf1woODD1w5D+Da6F4DVmTRbXxqg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Content-Language: en-US
+Content-ID: <D325809A431CB64A81B464639BCDA595-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +21,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1977726685==
-Content-Type: multipart/alternative; boundary="1436360036.88ba81.4438"; charset="UTF-8"
-
-
---1436360036.88ba81.4438
-Date: Wed, 8 Jul 2015 12:53:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=88890
-
---- Comment #3 from Koz Ross <koz.ross-fHTHtPhtvzrQT0dZR+AlfA@public.gmane.org> ---
-I get exactly those errors.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436360036.88ba81.4438
-Date: Wed, 8 Jul 2015 12:53:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] Reclocking of core speed fails on non-reference ASUS GeForce GTX650"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88890">bug 88890</a>
-              from <span class="vcard"><a class="email" href="mailto:koz.ross&#64;runbox.com" title="Koz Ross &lt;koz.ross&#64;runbox.com&gt;"> <span class="fn">Koz Ross</span></a>
-</span></b>
-        <pre>I get exactly those errors.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436360036.88ba81.4438--
-
---===============1977726685==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1977726685==--
+CgpPbiA3LzcvMTUsIDU6MTQgUE0sICJCZW4gU2tlZ2dzIiA8c2tlZ2dzYkBnbWFpbC5jb20+IHdy
+b3RlOgoKPk9uIDcgSnVseSAyMDE1IGF0IDIzOjQwLCBLZW4gQWRhbXMgPEtBZGFtc0BudmlkaWEu
+Y29tPiB3cm90ZToKPj4gSGVsbG8gYWdhaW4sCj4+Cj4+IEkndmUgdXBkYXRlZCBteSBub3V2ZWF1
+IGJyYW5jaCB0byBpbmNvcnBvcmF0ZSBzb21lIHN1Z2dlc3RlZCB0d2Vha3MsCj4+ZXRjLgo+PiBB
+bHNvLCB0aGlzIHZlcnNpb24gYnJlYWtzIG91dCBhbGwgdGhlIGNoaXBzIHNlcGFyYXRlbHkuICBT
+ZWVpbmcgaXQKPj4gZXhwcmVzc2VkIHRoaXMgd2F5IHNob3dzIGhvdyBtYW55IGZpbGVzIGl0IGlz
+Li4uIDopICBJJ3ZlIHJlbW92ZWQgdGhlCj4+ZHJmCj4+IG1hY3JvcyBmcm9tIHRoaXMgdmVyc2lv
+biBhcyB3ZWxsLCBhcyB3ZSBjYW4gdHJlYXQgdGhvc2Ugc2VwYXJhdGVseS4KPkhleSBLZW4sCj4K
+PkRlc3BpdGUgdGhlIGZhY3QgaXQncyBhIGxvdCBtb3JlIExvQywgSSBsaWtlIHRoaXMgdmVyc2lv
+biBhIGxvdAo+YmV0dGVyLiAgSXQncyBmYXIgZWFzaWVyIHRvIHNlZSB3aGF0IHlvdSdyZSBsb29r
+aW5nIGF0IGV4YWN0bHkgbm93IDopCgpvaywgd2UnbGwgZ28gd2l0aCB0aGlzIGZsYXZvciB0aGVu
+LgoKPgo+VGhlIG9ubHkgbml0LXBpY2sgSSBoYXZlIGxlZnQgKEkgdGhpbmsuLi4pIGlzIHRoYXQg
+dGhlCj5od3JlZi9jaGlwc2V0L252X2RldmljZV9od3JlZi5oIGlzIGEgYml0IHJlZHVuZGFudCwg
+YW5kIGNvdWxkIGJlCj5od3JlZi9jaGlwc2V0L2RldmljZS5oIDopCgpvaywgaSdsbCBmdXNlIHRo
+ZW0gb3IganVzdCB1c2Ugd2hhdCdzIHRoZXJlLgoKPgo+V2hhdCBhcmUgdGhlIGNoYW5jZXMgdGhh
+dCB0aGUgZXhwb3NlZCByZWdpc3RlcnMgY2FuIGJlIGV4cGFuZGVkIHRvIChhdAo+bGVhc3QpIGNv
+dmVyIHRoZSBzdHVmZiB0aGF0IG5vdXZlYXUgY3VycmVudGx5IHRvdWNoZXM/ICBGb3IgZXhhbXBs
+ZSwKPk5WX1BUSU1FUl9USU1FXzAvMSAoZXRjKSBkb2Vzbid0IHNlZW0gcGFydGljdWxhcmx5IElQ
+LXNlbnNpdGl2ZSBhbmQKPmFyZSBtaXNzaW5nIDspICBudjA0LWc3eCB3b3VsZCBiZSBuaWNlIHRv
+byBhdCBzb21lIHBvaW50IQoKd2Ugd2lsbCBoYXZlIHRvIHBlcmZvcm0gYW4gaW50ZXJuYWwgaXAg
+cmV2aWV3IGZvciBlYWNoIGluc3RhbmNlIChvciBibG9jawpvZiBzYW1lKS4gIGl0J3MgYSBtYXR0
+ZXIgb2YgY3Jvc3NpbmcgdCdzIGFuZCBkb3R0aW5nIGkncy4KCmlmIHNvbWVvbmUgY2FuIGdldCBt
+ZSBhIGJ1bGsgbGlzdCBvZiBhbGwgdGhlIG1hZ2ljICNzIHdlIHdhbnQgdG8gZXhvcmNpc2UKKGkg
+c2F5LCBhbGwgb2YgdGhlbSA6KSB0aGVuIGkgY2FuIGJlZ2luIHRoYXQgYmFsbCBwYXJ0aWN1bGFy
+IGJhbGwgcm9sbGluZy4KCnRoYW5rcyBmb3IgdGFraW5nIGEgbG9vaywgYnR3IDopCi0tLQprZW4K
+Cj4KPlRoYW5rcywKPkJlbi4KPgo+Pgo+PiAKPj5odHRwczovL2dpdGh1Yi5jb20va2ZyYWN0YWwv
+bm91dmVhdS9jb21taXQvZjJlNmM3MzZhMGQ5NDc1YmM2NWY1ZDQxYTlkZjNiCj4+ZjUKPj4gNmEw
+YzgyM2MKPj4KPj4KPj4gLS0tCj4+IGtlbgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
+dXZlYXUK
