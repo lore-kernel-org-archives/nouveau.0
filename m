@@ -1,13 +1,23 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90513] Odd gray and red flicker in The Talos
-	Principle on GK104
-Date: Wed, 08 Jul 2015 20:24:49 +0000
-Message-ID: <bug-90513-8800-r98GPKntWW@http.bugs.freedesktop.org/>
-References: <bug-90513-8800@http.bugs.freedesktop.org/>
+From: Andrew Chew <achew-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: CUDA fixed VA allocations and sparse mappings
+Date: Wed, 8 Jul 2015 14:18:02 -0700
+Message-ID: <20150708211801.GA27080@achew-linux64.nvidia.com>
+References: <CAKb7UviOx-rNJUkwYB4h8XyQ4x8qp3xAbeHOAeW++O+bHFuyKQ@mail.gmail.com>
+ <CAOnawYo=EFk6KhmudKWi3r-z_J4AHjswTrZSfyp_qZfdmQc=tw@mail.gmail.com>
+ <CAKb7UvhOM+65x80HPAcdTsQB4KsPA780cKg8_30vOy5qWFZt4w@mail.gmail.com>
+ <20150708001559.GA30347@achew-linux64.nvidia.com>
+ <CACAvsv5q5yJUmjPgJtxnv1dU--UzD1veePkJzvqjRyNtx=EEbw@mail.gmail.com>
+ <20150708003153.GA30426@achew-linux64.nvidia.com>
+ <CACAvsv5DtA2WsBQkNWnxZMsonbHsvJ-oKA+frVd-btZXfgiAyw@mail.gmail.com>
+ <20150708004735.GA30570@achew-linux64.nvidia.com>
+ <CACAvsv56doVLnMJKCfQyrPj-ijsW7yuAMv53kR0OKxJ0LKM5iQ@mail.gmail.com>
+ <20150708194004.GA8122@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1926686739=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <20150708194004.GA8122-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,83 +30,48 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1926686739==
-Content-Type: multipart/alternative; boundary="1436387089.aC3dabEA0.24507"; charset="UTF-8"
-
-
---1436387089.aC3dabEA0.24507
-Date: Wed, 8 Jul 2015 20:24:49 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90513
-
---- Comment #6 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #5)
-> I've made no progress on this bug BTW; perhaps an avenue would be to
-> generate a super-low-resolution trace (i.e. minimum supported by the game...
-> 320x200 or 640x480 or something) so that it plays back faster, and with the
-> minimum number of "features" enabled to make the problem happen.
-
-I'll get on it right now.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1436387089.aC3dabEA0.24507
-Date: Wed, 8 Jul 2015 20:24:49 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
-              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90513#c5">comment #5</a>)
-<span class="quote">&gt; I've made no progress on this bug BTW; perhaps an avenue would be to
-&gt; generate a super-low-resolution trace (i.e. minimum supported by the game...
-&gt; 320x200 or 640x480 or something) so that it plays back faster, and with the
-&gt; minimum number of &quot;features&quot; enabled to make the problem happen.</span >
-
-I'll get on it right now.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436387089.aC3dabEA0.24507--
-
---===============1926686739==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1926686739==--
+PiA+ID4gQWgsIEkgZ2V0IHdoYXQgeW91J3JlIHNheWluZy4gIFN1cmUsIEkgdGhpbmsgdGhhdCBt
+aWdodCBiZSBva2F5LiAgTm90IHN1cmUKPiA+ID4gaG93IHdlIHdvdWxkIGdldCBhdCB0aGF0IGlu
+Zm9ybWF0aW9uLCB0aG91Z2gsIGFuZCBpdCB3b3VsZCBiZSBob3JyaWJsZSB0bwo+ID4gPiBqdXN0
+IGJha2UgaXQgaW4gc29tZXdoZXJlLiAgSSdtIGxvb2tpbmcgaW50byBob3cgbnZncHUgZHJpdmVy
+IGRvZXMgaXQuLi4KPiA+ID4gbWF5YmUgdGhleSBoYXZlIGdvb2QgcmVhc29ucyB0byBkbyBpdCB0
+aGUgd2F5IHRoZXkgZG8uICBTb3JyeSBpZiBJIGdvCj4gPiA+IHF1aWV0IGZvciBhIGxpdHRsZSBi
+aXQuLi4KPiA+IEFmdGVyIGEgdmVyeSBxdWljayBsb29rLCBpdCBsb29rcyBsaWtlIHRoZSBrZXJu
+ZWwgZGVmaW5lcyBhCj4gPiBQQUdFX09GRlNFVCBtYWNybyB3aGljaCBpcyB0aGUgc3RhcnQgb2Yg
+a2VybmVsIHZpcnR1YWwgYWRkcmVzcyBzcGFjZS4KPiAKPiBZb3UgbmVlZCB0byBiZSBjYXJlZnVs
+bCBoZXJlLCBmaXJzdCB0aGUgaGFyZHdhcmUgbWlnaHQgbm90IGhhdmUgYXMgbWFueSBiaXQKPiBh
+cyB0aGUgQ1BVLiBGb3IgaW5zdGFuY2UgeDg2LTY0IGhhdmUgYSA0OGJpdHMgZm9yIHZpcnR1YWwg
+YWRkcmVzcyBpZSBvbmx5Cj4gNDhiaXRzIG9mIHRoZSBhZGRyZXNzIGlzIG1lYW5pbmcgZnVsbCwg
+b2xkZXIgcmFkZW9uICg8Q0kgaWlyYykgb25seSBoYXZlCj4gNDBiaXRzIGZvciB0aGUgYWRkcmVz
+cyBidXMuIFdpdGggc3VjaCBjb25maWd1cmF0aW9uIHlvdSBjb3VsZCBub3QgbW92ZSBhbGwKPiBw
+cml2YXRlIGtlcm5lbCBhbGxvY2F0aW9uIGluc2lkZSB0aGUga2VybmVsIHpvbmUuCj4gCj4gU2Vj
+b25kIGlzc3VlIGlzIHRoaW5nIGxpa2UgMzJiaXQgcHJvY2VzcyBvbiA2NGJpdCBrZXJuZWwsIGlu
+IHdoaWNoIGNhc2UKPiB5b3UgaGF2ZSB0aGUgdXN1YWwgM0dCIHVzZXJzcGFjZSwgMUdCIGtlcm5l
+bCBzcGFjZSBzcGxpdC4gU28gaW5zdGVhZCBvZgo+IHVzaW5nIFBBR0VfT0ZGU0VUIHlvdSBtaWdo
+dCB3YW50IHRvIHVzZSBUQVNLX1NJWkUgd2hpY2ggaXMgYSBtYWNybyB0aGF0Cj4gd2lsbCBsb29r
+dXAgdGhlIGxpbWl0IHVzaW5nIHRoZSBjdXJyZW50IChwcm9jZXNzIHN0cnVjdCBwb2ludGVyKS4K
+PiAKPiBJIHRoaW5rIGlzc3VlIGZvciBub3V2ZWF1IGlzIHRoYXQga2VybmVsIHNwYWNlIGFscmVh
+ZHkgaGFuZGxlIHNvbWUKPiBhbGxvY2F0aW9uIG9mIHZpcnR1YWwgYWRkcmVzcywgd2hpbGUgZm9y
+IHJhZGVvbiB0aGUgd2hvbGUgdmlydHVhbCBhZGRyZXNzCj4gc3BhY2UgaXMgZnVsbHkgdW5kZXIg
+dGhlIHVzZXJzcGFjZSBjb250cm9sLgo+IAo+IEdpdmVuIHRoaXMsIHlvdSBtaWdodCB3YW50IHRv
+IHVzZSB0cmljayBvbiBib3RoIHNpZGUgKGtlcm5lbCBhbmQgdXNlcgo+IHNwYWNlKS4gRm9yIGlu
+c3RhbmNlIHlvdSBjb3VsZCBtbWFwIGEgcmVnaW9uIHdpdGggUFJPVF9OT05FIHRvIHJlc2VydmUK
+PiBhIHJhbmdlIG9mIHZpcnR1YWwgYWRkcmVzcyBmcm9tIHVzZXJzcGFjZSwgdGhlbiB0ZWxsIHRo
+ZSBkcml2ZXIgYWJvdXQKPiB0aGF0IHJhbmdlIGFuZCBoYXZlIHRoZSBkcml2ZXIgaW5pdGlhbGl6
+ZSB0aGUgR1BVIGFuZCB1c2UgdGhhdCBjaHVuawo+IGZvciBrZXJuZWwgcHJpdmF0ZSBzdHJ1Y3R1
+cmUgYWxsb2NhdGlvbi4KPiAKPiBJc3N1ZSBpcyB0aGF0IGl0IGlzIGtpbmQgb2YgYSBBUEkgdmlv
+bGF0aW9uIGZvciBub3V2ZWF1IGtlcm5lbCBkcml2ZXIuCj4gVGhvdWdodCBpIGFtIG5vdCBmYW1p
+bGlhciBlbm91Z2gsIG1heWJlIHlvdSBjYW4gZG8gaW9jdGwgdG8gbm91dmVhdQo+IGJlZm9yZSBu
+b3V2ZWF1IGluaWFsaXplIGFuZCBhbGxvY2F0ZSB0aGUga2VybmVsIHByaXZhdGUgYnVmZmVyIChn
+ciBhbmQKPiBvdGhlciBzdHVmZikuIElmIHNvIHRoZW4gcHJvYmxlbSBzb2x2ZSBpIGd1ZXNzLiBQ
+cm9jZXNzIHRoYXQgd2FudCB0bwo+IHVzZSBDVURBIHdpbGwgbmVlZCB0byBkbyB0aGUgbW1hcCBk
+YW5jZSBhbmQgZWFybHkgaW9jdGwuCgpJIHRoaW5rIHdlIGNhbiBoYXZlIGEgbm91dmVhdSBpb2N0
+bCB0byByZXBvcnQgdGhlIGZ1bGwgYWRkcmVzcyByYW5nZSB0aGF0CnRoZSBHUFUgc3VwcG9ydHMu
+ICBVc2Vyc3BhY2UgY2FuIHVzZSB0aGlzIGluZm9ybWF0aW9uIHRvIGtub3cgd2hhdCByYW5nZQpp
+dCBjYW4gcmVzZXJ2ZS4gIFRoZSByZXNlcnZhdGlvbiBwYXJ0IHdlIGNhbiBkbyB3aXRoIHRoZSBv
+cmlnaW5hbCBBU19BTExPQwphbmQgQVNfRlJFRSBub3V2ZWF1IGlvY3RscyB0aGF0IEkgb3JpZ2lu
+YWxseSBwcm9wb3NlZCwgYW5kIGluIHRoZSBDVURBIGNhc2UsCnRoaXMgcmVzZXJ2YXRpb24gc2hv
+dWxkIGhhcHBlbiBiZWZvcmUgYW55IGNoYW5uZWwgZm9yIGEgcGFydGljdWxhciBjb250ZXh0Cmdl
+dHMgY3JlYXRlZC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
