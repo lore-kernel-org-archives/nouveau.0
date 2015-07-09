@@ -1,187 +1,214 @@
-From: Oded Gabbay <oded.gabbay@gmail.com>
-Subject: Re: [Nouveau] CUDA fixed VA allocations and sparse mappings
-Date: Thu, 9 Jul 2015 12:26:13 +0300
-Message-ID: <CAFCwf11pEc7vq0aPxdCRypzcbuaJRgWb_55q4ZUQPAvw5zXzHg@mail.gmail.com>
-References: <20150707004249.GC27924@achew-linux64.nvidia.com>
- <CAKb7UviePF2XcmyeKHQ2cv=hy=NZyYcMrWiTpajJxTFE+10LwQ@mail.gmail.com>
- <20150707172744.GA12288@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91284] New: xf86-video-nouveau fails to build with
+	latest xorg
+Date: Thu, 09 Jul 2015 15:30:06 +0000
+Message-ID: <bug-91284-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20150707172744.GA12288@gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Jerome Glisse <j.glisse@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Andrew Chew <achew@nvidia.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0448143149=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgNywgMjAxNSBhdCA4OjI3IFBNLCBKZXJvbWUgR2xpc3NlIDxqLmdsaXNzZUBn
-bWFpbC5jb20+IHdyb3RlOgo+IE9uIFR1ZSwgSnVsIDA3LCAyMDE1IGF0IDExOjI5OjM4QU0gLTA0
-MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBPbiBNb24sIEp1bCA2LCAyMDE1IGF0IDg6NDIgUE0s
-IEFuZHJldyBDaGV3IDxhY2hld0BudmlkaWEuY29tPiB3cm90ZToKPj4gPiBIZWxsbywKPj4gPgo+
-PiA+IEkgYW0gY3VycmVudGx5IGxvb2tpbmcgaW50byB3YXlzIHRvIHN1cHBvcnQgZml4ZWQgdmly
-dHVhbCBhZGRyZXNzIGFsbG9jYXRpb25zCj4+ID4gYW5kIHNwYXJzZSBtYXBwaW5ncyBpbiBub3V2
-ZWF1LCBhcyBhIHN0ZXAgdG93YXJkcyBzdXBwb3J0aW5nIENVREEuCj4+ID4KPj4gPiBDVURBIHJl
-cXVpcmVzIHRoYXQgdGhlIEdQVSB2aXJ0dWFsIGFkZHJlc3MgZm9yIGEgZ2l2ZW4gYnVmZmVyIG1h
-dGNoIHRoZQo+PiA+IENQVSB2aXJ0dWFsIGFkZHJlc3MuICBUaGVyZWZvcmUsIHdoZW4gbWFwcGlu
-ZyBhIENVREEgYnVmZmVyLCB3ZSBoYXZlIHRvIGhhdmUKPj4gPiBhIHdheSBvZiBzcGVjaWZ5aW5n
-IGEgcGFydGljdWxhciB2aXJ0dWFsIGFkZHJlc3MgdG8gbWFwIHRvICh3ZSB3b3VsZCBhc2sgdGhh
-dAo+PiA+IHRoZSBDUFUgdmlydHVhbCBhZGRyZXNzIGJlIHVzZWQpLiAgQ3VycmVudGx5LCBhcyBJ
-IHVuZGVyc3RhbmQgaXQsIHRoZSBhbGxvY2F0b3IKPj4gPiBpbXBsZW1lbnRlZCBpbiBudmttL2Nv
-cmUvbW0uYywgdXNlZCB0byBwcm92aXNpb24gdmlydHVhbCBhZGRyZXNzZXMsIGRvZXNuJ3QKPj4g
-PiBhbGxvdyBmb3IgdGhpcyAoYnV0IGl0J3MgdmVyeSBlYXN5IHRvIG1vZGlmeSB0aGUgYWxsb2Nh
-dG9yIHNsaWdodGx5IHRvIGFsbG93Cj4+ID4gZm9yIHRoaXMsIHdoaWNoIEkgaGF2ZSBkb25lIGxv
-Y2FsbHkgaW4gbXkgZXhwZXJpbWVudHMpLgo+PiA+Cj4+ID4gSW4gYWRkaXRpb24sIHRoZSBDVURB
-IHVzZSBjYXNlIHR5cGljYWxseSBpbnZvbHZlcyBhbGxvY2F0aW5nIGEgYmlnIGNodW5rIG9mCj4+
-ID4gYWRkcmVzcyBzcGFjZSBhaGVhZCBvZiB0aW1lIGFzIGEgd2F5IHRvIHJlc2VydmUgdGhhdCBj
-aHVuayBmb3IgZnV0dXJlIENVREEKPj4gPiB1c2UuICBJdCB0aGVuIG1hcHMgaW5kaXZpZHVhbCBi
-dWZmZXJzIGludG8gdGhhdCBhZGRyZXNzIHNwYWNlIGFzIG5lZWRlZC4KPj4gPiBDdXJyZW50bHks
-IHRoZSB2aXJ0dWFsIGFkZHJlc3MgYWxsb2NhdGlvbiBpcyBkb25lIGR1cmluZyBidWZmZXIgbWFw
-cGluZywgc28KPj4gPiBpbiBvcmRlciB0byBzdXBwb3J0IHRoZXNlIHNwYXJzZSBtYXBwaW5ncywg
-aXQgc2VlbXMgdG8gbWUgdGhhdCB0aGUgdmlydHVhbAo+PiA+IGFkZHJlc3MgYWxsb2NhdGlvbiBh
-bmQgYnVmZmVyIG1hcHBpbmcgbmVlZCB0byBiZSBkZWNvdXBsZWQgaW50byBzZXBhcmF0ZQo+PiA+
-IG9wZXJhdGlvbnMuCj4+ID4KPj4gPiBNeSBjdXJyZW50IHN0cmF3bWFuIHByb3Bvc2FsIGZvciBz
-dXBwb3J0aW5nIHRoaXMgaXMgdG8gaW50cm9kdWNlIHR3byBuZXcgaW9jdGxzCj4+ID4gRFJNX0lP
-Q1RMX05PVVZFQVVfQVNfQUxMT0MgYW5kIERSTV9JT0NUTF9OT1VWRUFVX0FTX0ZSRUUsIHRoYXQg
-bG9vayByb3VnaGx5Cj4+ID4gbGlrZSB0aGlzOgo+PiA+Cj4+ID4gI2RlZmluZSBOT1VWRUFVX0FT
-X0FMTE9DX0ZMQUdTX0ZJWEVEX09GRlNFVCAweDEKPj4gPiBzdHJ1Y3QgZHJtX25vdXZlYXVfYXNf
-YWxsb2Mgewo+PiA+ICAgICAgICAgdWludDY0X3QgcGFnZXM7ICAgICAvKiBpbiwgcGFnZXMgKi8K
-Pj4gPiAgICAgICAgIHVpbnQzMl90IHBhZ2Vfc2l6ZTsgLyogaW4sIGJ5dGVzICovCj4+ID4gICAg
-ICAgICB1aW50MzJfdCBmbGFnczsgICAgIC8qIGluICovCj4+ID4gICAgICAgICB1aW50NjRfdCBv
-ZmZzZXQ7ICAgIC8qIGluL291dCwgYnl0ZSBhZGRyZXNzICovCj4+ID4gfTsKPj4gPgo+PiA+IHN0
-cnVjdCBkcm1fbm91dmVhdV9hc19mcmVlIHsKPj4gPiAgICAgICAgIHVpbnQ2NF90IG9mZnNldDsg
-ICAgLyogaW4sIGJ5dGUgYWRkcmVzcyAqLwo+PiA+IH07Cj4+ID4KPj4gPiBUaGVzZSBpb2N0bHMg
-anVzdCBjYWxsIGludG8gdGhlIGFsbG9jYXRvciB0byBhbGxvY2F0ZSBhIHJhbmdlIG9mIGFkZHJl
-c3NlcywKPj4gPiByZXN1bHRpbmcgaW4gYSBzdHJ1Y3QgbnZrbV92bWEgdGhhdCB0cmFja3MgdGhh
-dCBhbGxvY2F0aW9uIChvciByZWxlYXNlcyB0aGUKPj4gPiBzdHJ1Y3QgbnZrbV92bWEgYmFjayBp
-bnRvIHRoZSB2aXJ0dWFsIGFkZHJlc3MgcG9vbCBpbiB0aGUgY2FzZSBvZiB0aGUgZnJlZQo+PiA+
-IGlvY3RsKS4gIElmIE5PVVZFQVVfQVNfQUxMT0NfRkxBR1NfRklYRURfT0ZGU0VUIGlzIHNldCwg
-b2Zmc2V0IHNwZWNpZmllcyB0aGUKPj4gPiByZXF1ZXN0ZWQgdmlydHVhbCBhZGRyZXNzLiAgT3Ro
-ZXJ3aXNlLCBhbiBhcmJpdHJhcnkgYWRkcmVzcyB3aWxsIGJlCj4+ID4gYWxsb2NhdGVkLgo+Pgo+
-PiBXZWxsLCB0aGlzIGNhbid0IGp1c3QgYmUgYW4gYWRkcmVzcyBzcGFjZS4gWW91IHN0aWxsIG5l
-ZWQgYm8ncywgaWYKPj4gdGhpcyBpcyB0byB3b3JrIHdpdGggbm91dmVhdSAtLSBpdCBoYXMgdG8g
-a25vdyB3aGVuIHRvIHN3YXAgdGhpbmdzIGluCj4+IGFuZCBvdXQsIHdoZW4gdGhleSdyZSB1c2Vk
-LCBldGMuIChhbmQvb3IgbW92ZSBiZXR3ZWVuIFZSQU0gYW5kIEdBUlQKPj4gYW5kIHN5c3RlbS9z
-d2FwKS4gSSBzdXNwZWN0IHRoYXQgeW91ciB0YXJnZXQgaGVyZSBhcmUgdGhlIEdLMjBBIGFuZAo+
-PiBHTTIwQiBjaGlwcyB3aGljaCBkb24ndCBoYXZlIGRlZGljYXRlZCBWUkFNLCBidXQgdGhlIGlv
-Y3RsJ3MgbmVlZCB0bwo+PiB3b3JrIGZvciBldmVyeXRoaW5nLgo+Pgo+PiBXb3VsZCBpdCBiZSBz
-dWZmaWNpZW50IHRvIGV4dGVuZCBOT1VWRUFVX0dFTV9ORVcgb3IgY3JlYXRlIGEKPj4gTk9VVkVB
-VV9HRU1fTkVXX0ZJWEVEIG9yIHNvbWV0aGluZz8gSU9XLCB3aHkgZG8gaGF2ZSB0byBzZXBhcmF0
-ZSB0aGUKPj4gY29uY2VwdCBvZiBhIEdFTSBvYmplY3QgYW5kIGEgVk0gYWxsb2NhdGlvbj8KPgo+
-IFdlbGwgbWF5YmUgc29tZXRoaW5nIGxpa2UgaSBkaWQgZm9yIHJhZGVvbi4gV2l0aCByYWRlb24g
-eW91IGhhdmUgMiBzZXQgb2YKPiBpb2N0bC4gT25lIHRvIGNyZWF0ZS9kZWxldGUgYm8gKEdFTSBz
-dHVmZikgYW5kIG9uZSB0byBhc3NvY2lhdGUgYSB2aXJ0dWFsCj4gYWRkcmVzcyB3aXRoIGEgYm8u
-IEkgd2FudGVkIHRvIGxldCB0aGUgdXNlcnNwYWNlIGRlY2lkZSBvbiB2aXJ0dWFsIGFkZHJlc3MK
-PiBvZiBidWZmZXIgcHJlY2lzZWx5IGZvciB0aGUgc2FtZSByZWFzb24gQ1VEQSBkbyBpdCBpZSB0
-byBhbGxvdyB0byBtYXAgc29tZQo+IGJ1ZmZlciBhdCBzYW1lIGFkZHJlc3MgaW4gR1BVIGFkZHJl
-c3Mgc3BhY2UgYXMgaW4gQ1BVIGFkZHJlc3Mgc3BhY2UuIFNvIGZhcgo+IHdlIG5ldmVyIHJlYWxs
-eSB0b29rIGFkdmFudGFnZSBvZiB0aGF0IG9uIHJhZGVvbiBzaWRlLgo+Cj4gQWxzbyBvbiByYWRl
-b24geW91IGNhbiBtYXAgc2FtZSBibyBhdCBkaWZmZXJlbnQgdmlydHVhbCBhZGRyZXNzIGluIHNh
-bWUKPiBwcm9jZXNzICh5b3Ugd2lsbCBuZWVkIGRpZmZlcmVudCBmaWxlIGRlc2NyaXB0b3IgZm9y
-IGVhY2ggbWFwcGluZyBhbmQgeW91Cj4gY2FuIG9ubHkgc3VibWl0IGNvbW1hbmQgc3RyZWFtIHVz
-aW5nIG1hcHBpbmcgdmFsaWQgZm9yIHRoZSBmaWxlIGRlc2NyaXB0b3IpLgo+IFRob3VnaHQgdGhp
-cyBpcyBtb3N0bHkgdXNlZnVsbCB3aGVuIHNoYXJpbmcgc2FtZSBibyBhY2Nyb3NzIGRpZmZlcmVu
-dAo+IHByb2Nlc3MuCj4KPiBJIHRoaW5rIG15IHJhZGVvbiB2aXJ0dWFsIGFkZHJlc3MgaW9jbHQg
-YXJlIG5pY2UgZGVzaWduIGJ1dCBvdGhlciBtaWdodAo+IGRpc2FncmVlLiBJZiB5b3Ugd2FudCB0
-byBsb29rIGF0IHRoZSBjb2RlIDoKPgo+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25f
-dm0uYwo+ICAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fZ2VtLmMKPgo+IEdyZXAgZm9y
-IF92YSAodmlydHVhbCBhZGRyZXNzIHBlciBibykgb3IgX3ZtICh2aXJ0dWFsIGFkZHJlc3MgbWFu
-YWdlciBwZXIKPiBmaWxlIGRlc2NyaXB0b3IpIGZ1bmN0aW9uIG5hbWUgYW5kIHN0cnVjdHVyZSBu
-YW1lLgo+Cj4gT24gdGhlIGNvbW1hbmQgc3RyZWFtIGFuZCBibyBldmljdGlvbiBzaWRlIGV2ZXJ5
-dGhpbmcgaXMgYXMgdXN1YWwgb24gcmFkZW9uLgo+IFNvIGEgYm8gY2FuIGJlIGV2aWN0ZWQgYnR3
-IDIgY29tbWFuZCBzdHJlYW0gdG8gbWFrZSByb29tIGZvciBhbm90aGVyIG9uZS4KPiBFaXRoZXIg
-aXRzIG1hcHBpbmcgaXMgaW52YWxpZGF0ZWQgb3IgdXBkYXRlZCB0byBwb2ludCB0byBzeXN0ZW0g
-bWVtb3J5LiBTbwo+IG1vc3Qgb2YgdGhlIGxvZ2ljIGZvciBldmVyeXRoaW5nIGVsc2UgcmVtYWlu
-IHRoZSBzYW1lIChqdXN0IG5lZWQgdG8gdXBkYXRlCj4gdGhlIG11bHRpcGxlIHZpcnR1YWwgYWRk
-cmVzcyBzcGFjZSkuCj4KPgo+Pgo+PiA+Cj4+ID4gSW4gYWRkaXRpb24gdG8gdGhpcywgYSB3YXkg
-dG8gbWFwL3VubWFwIGJ1ZmZlcnMgaXMgbmVlZGVkLiAgT3JkaW5hcmlseSwgb25lCj4+ID4gd291
-bGQganVzdCB1c2UgRFJNX0lPQ1RMX1BSSU1FX0ZEX1RPX0hBTkRMRSB0byBpbXBvcnQgYW5kIG1h
-cCBhIGRtYWJ1ZiBpbnRvCj4+ID4gZ2VtLiAgSG93ZXZlciwgdGhpcyBpb2N0bCB3aWxsIHRyeSB0
-byBncmFiIHRoZSB2aXJ0dWFsIGFkZHJlc3MgcmFuZ2UgZm9yIHRoaXMKPj4gPiBidWZmZXIsIHdo
-aWNoIHdpbGwgZmFpbCBpbiB0aGUgQ1VEQSBjYXNlIHNpbmNlIHRoZSB2aXJ0dWFsIGFkZHJlc3Mg
-cmFuZ2UKPj4gPiBoYXMgYmVlbiByZXNlcnZlZCBhaGVhZCBvZiB0aW1lLiAgU28gd2UgcGVyaGFw
-cyBpbnRyb2R1Y2UgYSBzZXQgb2YgaW9jdGxzCj4+ID4gdG8gbWFwL3VubWFwIGJ1ZmZlcnMgb24g
-dG9wIG9mIGFuIGFscmVhZHkgZXhpc3RpbmcgdmlydHVhbCBhZGRyZXNzIGFsbG9jYXRpb24uCj4+
-Cj4+IE15IHN1Z2dlc3Rpb24gYWJvdmUgaXMgYW4gYWx0ZXJuYXRpdmUgdG8gdGhpcywgcmlnaHQ/
-IEkgdGhpbmsgZG1hYnVmcwo+PiB0ZW5kIHRvIGJlIHVzZWQgZm9yIHNoYXJpbmcgYmV0d2VlbiBk
-ZXZpY2VzLiBJIHN1c3BlY3QgdGhlcmUncyBtb3JlCj4+IGdvaW5nIG9uIGhlcmUgdGhhdCBJIGRv
-bid0IHVuZGVyc3RhbmQgdGhvdWdoIC0tIEkgYXNzdW1lIHRoZSBDVURBCj4+IHVzZS1jYXNlIGlz
-IHNpbWlsYXIgdG8gdGhlIEhTQSB1c2UtY2FzZSAtLSBiZWluZyBhYmxlIHRvIGJ1aWxkIHVwIGRh
-dGEKPj4gc3RydWN0dXJlcyB0aGF0IHBvaW50IHRvIG9uZSBhbm90aGVyIG9uIHRoZSBDUFUgYW5k
-IHRoZW4gcHJvY2VzcyB0aGVtCj4+IG9uIHRoZSBHUFU/IENhbiB5b3UgZGV0YWlsIGEgc3BlY2lm
-aWMgdXNlLWNhc2UgcGVyaGFwcywgaW5jbHVkaW5nIHRoZQo+PiBpbnRlcmFjdGlvbnMgd2l0aCB0
-aGUgR1BVIGFuZCBpdHMgYWRkcmVzcyBzcGFjZT8KPgo+IEkgdGhpbmsgeW91IG5haWxlZCBpdCwg
-aXQgaXMgcmVhbGx5IGFib3V0IGhhdmluZyB0aGUgc2FtZSBhZGRyZXNzIHBvaW50aW5nIHRvCj4g
-dGhlIHNhbWUgdGhpbmcgb24gYm90aCB0aGUgR1BVIGFuZCBDUFUuIEJ1dCB0aGlzIGlzIGFsc28g
-dmFsaWQgYW5kIHVzZWZ1bGwgZm9yCj4gVlJBTS4gT3BlbkNMIDIuMCBoYXZlIHZhcmlvdXMgbGV2
-ZWwgb2YgdHJhbnNwYXJlbnQgYWRkcmVzcyBzcGFjZSAocHJvYmFibHkKPiBub3QgdGhlIHRlcm0g
-dXNlIGluIHRoZSBzcGVjKSBhbmQgdGhlIGxvd2VzdCBsZXZlbCB3b3VsZCBuZWVkIHNvbWV0aGlu
-ZyBsaWtlCj4gd2hhdCByYWRlb24gaGF2ZSB0byB3b3JrLiBUaGUgbW9zdCBhZHZhbmNlIGxldmVs
-IG5lZWRzIG1vcmUgcGx1bWJpbmcgaW5zaWRlCj4gY29yZSBrZXJuZWwgbW0gb3IgaW5zaWRlIHRo
-ZSBDUFUgYW5kIEdQVSBoYXJkd2FyZS4KPgo+Cj4+IErDqXLDtG1lLCBJIGJlbGlldmUgeW91IHdl
-cmUgZG9pbmcgdGhlIEhTQSBrZXJuZWwgaW1wbGVtZW50YXRpb24uCj4+IFBlcmhhcHMgeW91J2Qg
-aGF2ZSBzb21lIGZlZWRiYWNrIG9uIHRoaXMgcHJvcG9zYWw/Cj4KPiBObyBpIGRpZCBub3QgZG8g
-dGhlIEhTQSBzdHVmZiwgQU1EIHRlYW0gbGVhZGVkIGJ5IE9kZWQgZGlkIDopCj4KPiBDaGVlcnMs
-Cj4gSsOpcsO0bWUKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2Ry
-aS1kZXZlbAoKSGksClNvIHRoaXMgaXMgdmVyeSBzaW1pbGFyIHRvIEhTQSBhbmQgT3BlbkNMIDIu
-MCByZXF1aXJlbWVudHMuCldlIGhhZCBhbiBlYXN5IGxpZmUgc28gZmFyIGZvciBIU0EsIGJlY2F1
-c2UgYW1ka2ZkIGN1cnJlbnRseSBvbmx5CnN1cHBvcnQgQVBVcywgd2hlcmUgdGhlIHN5c3RlbSBt
-ZW1vcnkgaXMgc2hhcmVkIGJldHdlZW4gdGhlIENQVSBhbmQKR1BVIGNvcmVzLiBJbiB0aGlzIHNj
-ZW5hcmlvLCB3ZSBoYXZlIGEgZGVkaWNhdGVkIEgvVyBtb2R1bGUgY2FsbGVkCklPTU1VdjIsIHdo
-aWNoIHVzZXMgdGhlIENQVSBwYWdlIHRhYmxlcyB0byBwcm92aWRlIGFjY2VzcyBmcm9tIHRoZSBH
-UFUKY29yZSB0byB0aGUgc3lzdGVtIG1lbW9yeS4KClRvIHN1cHBvcnQgZGlzY3JldGUgR1BVcywg
-YW1ka2ZkIG5lZWQgdG8gaW1wbGVtZW50IG9uZSBvZiB0aGUgZm9sbG93aW5nIG1vZGVsczoKCjEu
-IEhhdmUgZGlmZmVyZW50IHZpcnR1YWwgYWRkcmVzcyBzcGFjZXMgZm9yIENQVSBhbmQgR1BVIGJ1
-ZmZlcnMsIGFrYQpPcGVuQ0wgMS4yLiBJbiB0aGlzIG1vZGVsLCB3ZSBwcmVwYXJlIHRoZSBkYXRh
-IG9uIHRoZSBzeXN0ZW0gbWVtb3J5LApjb3B5IHRoZSBkYXRhIHRvIGxvY2FsIG1lbW9yeSwgdGhl
-IEdQVSB3b3JrcyBvbiBpdCwgdGhlbiB3ZSBjb3B5IHRoZQpyZXN1bHRzIGJhY2sgdG8gc3lzdGVt
-IG1lbW9yeS4gV2UgYWN0dWFsbHkgaGF2ZSBhbiBpbXBsZW1lbnRhdGlvbiBvZgp0aGlzIGJ1dCBp
-dCBpcyBub3QgdXBzdHJlYW1lZCB5ZXQgKGxvb2sgYmVsb3cgZm9yIHJlZmVyZW5jZSB0bwppbXBs
-ZW1lbnRhdGlvbikuCgoyLiBVc2UgdGhlIEdQVVZNIGluc2lkZSB0aGUgR1BVIHRvIGFjY2VzcyBz
-eXN0ZW0gbWVtb3J5LiBUaGUKbGltaXRhdGlvbiBoZXJlIGlzIHRoYXQgdGhlIEdQVVZNIHVzZXMg
-NDAtYml0IGFkZHJlc3Nlcywgc28gdGhlCnZpcnR1YWwgYWRkcmVzcyByYW5nZSBtdXN0IGJlIGlu
-IHRoZSBsb3dlciA0MC1iaXQgYWRkcmVzcyByYW5nZSBvZiB0aGUKQ1BVLiBBY2Nlc3Mgc3BlZWQg
-aXMgbGltaXRlZCBieSBQQ0ktZSBiYW5kd2lkdGguIEFub3RoZXIgbGltaXRhdGlvbiBpcwp0aGF0
-IHRoZSBzeXN0ZW0gbWVtb3J5IHBhZ2VzIG11c3QgYmUgcGlubmVkIGFzIHRoZSBHUFUgZG9lc24n
-dCBzdXBwb3J0CnBhZ2UgZmF1bHRzLgoKSSB0aGluayB5b3VyIG1vZGVsIGlzIHRoZSBzYW1lIGFz
-IHRoZSBsYXR0ZXIuIFRoZSBsYXRlc3QgcGxhbm5pbmcKYmVmb3JlIEkgbGVmdCBBTUQgd2FzOgox
-LiBSZXNlcnZlIGEgbGFyZ2UgY2h1bmsgb2YgYWRkcmVzcyBzcGFjZSBpbiB0aGUgbG93ZXIgNDAt
-Yml0IGFkZHJlc3MKc3BhY2Ugb2YgdGhlIHByb2Nlc3MsIHdoZW4gaXQgaXMgY3JlYXRlZC4KMi4g
-V2hlbiBhIGJ1ZmZlciBpcyByZXF1aXJlZCBieSB0aGUgYXBwbGljYXRpb24sIHJlc2VydmUgYSBj
-aHVuayBvdXQKb2YgdGhhdCBhZGRyZXNzIHNwYWNlLCB0aGVuIGNyZWF0ZSBCT3MgYW5kIG1hcCB0
-aGVtIHRvIHRoYXQgYWRkcmVzcwpzcGFjZS4gSSBhZHZpc2UgdG8gdXNlIGEgZml4ZWQgc2l6ZSBC
-TyAoMi80IE1CKSBhbmQgaWYgdGhlIGFwcGxpY2F0aW9uCnJlcXVpcmUgYSBsYXJnZXIgYWxsb2Nh
-dGlvbiwgYWxsb2NhdGUgYSBsaXN0IG9mIEJPcwoKVGhlIG9wZXJhdGlvbiBvZiByZXNlcnZpbmcg
-YWRkcmVzcyBzcGFjZSBhbmQgQk8gY3JlYXRpb24gaXMgb25lIElPQ1RMLAp3aGlsZSB0aGUgbWFw
-cGluZyBvZiB0aGUgQk8gdG8gdGhlIGFkZHJlc3Mgc3BhY2UgaXMgYSBzZWNvbmQgSU9DVEwuClRo
-ZXJlIGFyZSBvZiBjb3Vyc2UgdW5tYXAgYW5kIGZyZWUgSU9DVExzLiBUaGUgc2VwYXJhdGlvbiBp
-cyBkb25lIGZvcgphIGNvdXBsZSBvZiByZWFzb25zOgoKMS4gSWYgdGhlIGFwcGxpY2F0aW9uIGtu
-b3dzIHRoYXQgaXQgd2FudHMgdG8gdXNlIG9ubHkgcGFydCBvZiB0aGUKbWVtb3J5IGFyZWEgaXQg
-YWxsb2NhdGVkLCB0aGVuIHRoZXJlIGlzIG5vIHBvaW50IGluIHBpbm5pbmcgYWxsIHRoZQpCT3Mu
-IFNvLCB0aGUgYXBwbGljYXRpb24gY2FuIG1hcC91bm1hcCBqdXN0IHBhcnQgb2YgdGhlIGFsbG9j
-YXRpb24uCgoyLiBJZiB0aGUgYXBwbGljYXRpb24ga25vd3MgdGhhdCBpdCBoYXMgZmluaXNoZWQg
-dXNpbmcgdGhlIEJPcywgYW5kIGl0CmFsc28ga25vd3MgdGhhdCBpdCB3aWxsIHVzZSB0aGVtIGxh
-dGVyIG9uLCBpdCBjYW4gdW5tYXAgdGhlIEJPcyAodG8KbWFrZSB0aGVtIHVucGlubmVkKSBidXQg
-bm90IGZyZWUgdGhlbSBzbyB0aGUgbWVtb3J5IGlzIHN0aWxsIHJlc2VydmVkCih3aXRoIGl0cyBj
-b250ZW50cyBpbnRhY3QpLgoKRm9yIHJlZmVyZW5jZSB0byB0aGUgZmlyc3QgbW9kZWwsIGxvb2sg
-YXQKaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL35nYWJiYXlvL2xpbnV4L3RyZWUvZHJpdmVy
-cy9ncHUvZHJtL2FtZC9hbWRrZmQva2ZkX2NoYXJkZXYuYz9oPWtmZC0xLjQueAoKU3BlY2lmaWNh
-bGx5LCBhdCBmdW5jdGlvbnM6CgprZmRfaW9jdGxfYWxsb2NfbWVtb3J5X29mX2dwdQprZmRfaW9j
-dGxfZnJlZV9tZW1vcnlfb2ZfZ3B1CmtmZF9pb2N0bF9tYXBfbWVtb3J5X3RvX2dwdQprZmRfaW9j
-dGxfdW5tYXBfbWVtb3J5X2Zyb21fZ3B1CgpZb3UgY2FuIGFsc28gbG9vayBhdCB0aGUgbWF0Y2hp
-bmcgdXNlcnNwYWNlIGNvZGUgYXQ6CgpodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvfmdhYmJh
-eW8vbGliaHNha210L3RyZWUvc3JjL21lbW9yeS5jP2g9bGliaHNha210LTEuNC54CgpIb3BlIHRo
-aXMgaGVscHMuCgpPZGVkCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRl
-dmVsCg==
+
+--===============0448143149==
+Content-Type: multipart/alternative; boundary="1436455807.6b231.1759"; charset="UTF-8"
+
+
+--1436455807.6b231.1759
+Date: Thu, 9 Jul 2015 15:30:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91284
+
+            Bug ID: 91284
+           Summary: xf86-video-nouveau fails to build with latest xorg
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: vrutkovs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+../../src/nv_driver.c: In function 'redisplay_dirty':
+../../src/nv_driver.c:560:2: error: too many arguments to function
+'PixmapSyncDirtyHelper'
+  PixmapSyncDirtyHelper(dirty, &pixregion);
+  ^
+In file included from /usr/include/xorg/gc.h:54:0,
+                 from /usr/include/xorg/dix.h:51,
+                 from /usr/include/xorg/privates.h:151,
+                 from /usr/include/xorg/cursor.h:53,
+                 from /usr/include/xorg/scrnintstr.h:53,
+                 from /usr/include/xorg/xf86str.h:39,
+                 from /usr/include/xorg/xf86.h:44,
+                 from ../../src/nv_include.h:15,
+                 from ../../src/nv_driver.c:26:
+/usr/include/xorg/pixmap.h:131:1: note: declared here
+ PixmapSyncDirtyHelper(PixmapDirtyUpdatePtr dirty);
+ ^
+Makefile:619: recipe for target 'nv_driver.lo' failed
+
+
+See https://bugs.freedesktop.org/show_bug.cgi?id=91276 for similar break in
+radeon driver
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436455807.6b231.1759
+Date: Thu, 9 Jul 2015 15:30:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - xf86-video-nouveau fails to build with latest xorg"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91284">91284</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>xf86-video-nouveau fails to build with latest xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>vrutkovs&#64;redhat.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>../../src/nv_driver.c: In function 'redisplay_dirty':
+../../src/nv_driver.c:560:2: error: too many arguments to function
+'PixmapSyncDirtyHelper'
+  PixmapSyncDirtyHelper(dirty, &amp;pixregion);
+  ^
+In file included from /usr/include/xorg/gc.h:54:0,
+                 from /usr/include/xorg/dix.h:51,
+                 from /usr/include/xorg/privates.h:151,
+                 from /usr/include/xorg/cursor.h:53,
+                 from /usr/include/xorg/scrnintstr.h:53,
+                 from /usr/include/xorg/xf86str.h:39,
+                 from /usr/include/xorg/xf86.h:44,
+                 from ../../src/nv_include.h:15,
+                 from ../../src/nv_driver.c:26:
+/usr/include/xorg/pixmap.h:131:1: note: declared here
+ PixmapSyncDirtyHelper(PixmapDirtyUpdatePtr dirty);
+ ^
+Makefile:619: recipe for target 'nv_driver.lo' failed
+
+
+See <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - xf86-video-ati (git version) fails to build"
+   href="show_bug.cgi?id=91276">https://bugs.freedesktop.org/show_bug.cgi?id=91276</a> for similar break in
+radeon driver</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436455807.6b231.1759--
+
+--===============0448143149==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0448143149==--
