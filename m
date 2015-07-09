@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91051] GT650M and Nouveau - NOUVEAU(0): [drm] failed
  to set drm interface version.
-Date: Thu, 09 Jul 2015 22:17:22 +0000
-Message-ID: <bug-91051-8800-DFRiBpS6Iz@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jul 2015 22:34:51 +0000
+Message-ID: <bug-91051-8800-juxJvY2dK5@http.bugs.freedesktop.org/>
 References: <bug-91051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1752864744=="
+Content-Type: multipart/mixed; boundary="===============2025479463=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,241 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1752864744==
-Content-Type: multipart/alternative; boundary="1436480242.FdF31.27895"; charset="UTF-8"
+--===============2025479463==
+Content-Type: multipart/alternative; boundary="1436481290.dDbd6aC20.908"; charset="UTF-8"
 
 
---1436480242.FdF31.27895
-Date: Thu, 9 Jul 2015 22:17:22 +0000
+--1436481290.dDbd6aC20.908
+Date: Thu, 9 Jul 2015 22:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91051
 
---- Comment #12 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Seems like the short version was too brief, here is a longer one:
+--- Comment #13 from Stuart Axon <stu.axon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+glxgears seems to work, glxspheres showed a black window
 
-Bumblebee likes to disable/pull out the card from under the kernel driver to
-safe power. On the userspace it uses a form of GL/GLX proxy.
 
-If you're using recent kernel/mesa you don't need any part for Bumblebee, as
-the kernel driver will automatically power up/down the device. On the
-userspace, use $DRI_PRIME=1 glxgears to start glxgears with the "other"
-(nvidia) card, or just $glxgears to use the integrated (intel) one.
+glxgears - no prime, works
+$ glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   = Mesa DRI Intel(R) Ivybridge Mobile 
+GL_VERSION    = 3.0 Mesa 10.7.0-devel (git-9565e34 2015-07-04 vivid-oibaf-ppa)
+GL_VENDOR     = Intel Open Source Technology Center
+GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color
+GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture
+GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object
+GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture
+GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters
+GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters
+GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp
+GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture
+GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays
+GL_IBM_texture_mirrored_repeat GL_3DFX_texture_compression_FXT1
+GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_transpose_matrix
+GL_EXT_blend_func_separate GL_EXT_fog_coord GL_EXT_multi_draw_arrays
+GL_EXT_secondary_color GL_EXT_texture_env_add GL_EXT_texture_filter_anisotropic
+GL_EXT_texture_lod_bias GL_INGR_blend_func_separate GL_NV_blend_square
+GL_NV_light_max_exponent GL_NV_texgen_reflection GL_NV_texture_env_combine4
+GL_S3_s3tc GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp
+GL_ARB_texture_compression GL_EXT_framebuffer_object
+GL_EXT_texture_compression_s3tc GL_EXT_texture_env_combine
+GL_EXT_texture_env_dot3 GL_MESA_window_pos GL_NV_packed_depth_stencil
+GL_NV_texture_rectangle GL_ARB_depth_texture GL_ARB_occlusion_query
+GL_ARB_shadow GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar
+GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_window_pos
+GL_EXT_stencil_two_side GL_EXT_texture_cube_map GL_NV_depth_clamp
+GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers
+GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects
+GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers
+GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs
+GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart
+GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel
+GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100
+GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object
+GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate
+GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object
+GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle
+GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_texture_compression_dxt1
+GL_EXT_texture_compression_rgtc GL_EXT_texture_rectangle GL_EXT_texture_sRGB
+GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object
+GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample
+GL_EXT_packed_depth_stencil GL_APPLE_object_purgeable
+GL_ARB_vertex_array_object GL_ATI_separate_stencil GL_EXT_draw_buffers2
+GL_EXT_draw_instanced GL_EXT_gpu_program_parameters GL_EXT_texture_array
+GL_EXT_texture_integer GL_EXT_texture_sRGB_decode GL_EXT_timer_query
+GL_OES_EGL_image GL_AMD_performance_monitor GL_ARB_copy_buffer
+GL_ARB_depth_buffer_float GL_ARB_draw_instanced GL_ARB_half_float_vertex
+GL_ARB_instanced_arrays GL_ARB_map_buffer_range GL_ARB_texture_rg
+GL_ARB_texture_swizzle GL_ARB_vertex_array_bgra GL_EXT_texture_swizzle
+GL_EXT_vertex_array_bgra GL_NV_conditional_render GL_AMD_conservative_depth
+GL_AMD_draw_buffers_blend GL_AMD_seamless_cubemap_per_texture
+GL_ARB_ES2_compatibility GL_ARB_blend_func_extended GL_ARB_debug_output
+GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex
+GL_ARB_explicit_attrib_location GL_ARB_fragment_coord_conventions
+GL_ARB_provoking_vertex GL_ARB_sample_shading GL_ARB_sampler_objects
+GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod
+GL_ARB_texture_cube_map_array GL_ARB_texture_gather GL_ARB_texture_multisample
+GL_ARB_texture_query_lod GL_ARB_texture_rgb10_a2ui GL_ARB_uniform_buffer_object
+GL_ARB_vertex_type_2_10_10_10_rev GL_EXT_provoking_vertex GL_EXT_texture_snorm
+GL_MESA_texture_signed_rgba GL_ARB_get_program_binary GL_ARB_robustness
+GL_ARB_separate_shader_objects GL_ARB_shader_bit_encoding
+GL_ARB_texture_compression_bptc GL_ARB_timer_query GL_ARB_transform_feedback2
+GL_ARB_transform_feedback3 GL_ANGLE_texture_compression_dxt3
+GL_ANGLE_texture_compression_dxt5 GL_ARB_compressed_texture_pixel_storage
+GL_ARB_conservative_depth GL_ARB_internalformat_query
+GL_ARB_map_buffer_alignment GL_ARB_shader_atomic_counters
+GL_ARB_shading_language_420pack GL_ARB_shading_language_packing
+GL_ARB_texture_storage GL_ARB_transform_feedback_instanced
+GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_transform_feedback
+GL_AMD_shader_trinary_minmax GL_ARB_ES3_compatibility
+GL_ARB_clear_buffer_object GL_ARB_copy_image GL_ARB_explicit_uniform_location
+GL_ARB_framebuffer_no_attachments GL_ARB_invalidate_subdata
+GL_ARB_program_interface_query GL_ARB_texture_query_levels
+GL_ARB_texture_storage_multisample GL_ARB_texture_view
+GL_ARB_vertex_attrib_binding GL_KHR_debug GL_ARB_buffer_storage
+GL_ARB_clear_texture GL_ARB_multi_bind GL_ARB_seamless_cubemap_per_texture
+GL_ARB_texture_mirror_clamp_to_edge GL_ARB_vertex_type_10f_11f_11f_rev
+GL_EXT_shader_integer_mix GL_INTEL_performance_query GL_ARB_clip_control
+GL_ARB_conditional_render_inverted GL_ARB_derivative_control
+GL_ARB_pipeline_statistics_query GL_EXT_polygon_offset_clamp
+GL_KHR_context_flush_control 
+VisualID 215, 0xd7
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 1337 requests (1337 known processed) with 0 events remaining.
 
-nouveau.runpm=0 disables the automatic power up/down. You might want to
-experiment if things work without it.
+
+
+glxgears - prime, works
+DRI_PRIME=1 glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   = Gallium 0.4 on NVE7
+GL_VERSION    = 3.0 Mesa 10.7.0-devel (git-9565e34 2015-07-04 vivid-oibaf-ppa)
+GL_VENDOR     = nouveau
+GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color
+GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture
+GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object
+GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture
+GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters
+GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters
+GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp
+GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture
+GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays
+GL_IBM_texture_mirrored_repeat GL_ARB_texture_cube_map GL_ARB_texture_env_add
+GL_ARB_transpose_matrix GL_EXT_blend_func_separate GL_EXT_fog_coord
+GL_EXT_multi_draw_arrays GL_EXT_secondary_color GL_EXT_texture_env_add
+GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias
+GL_INGR_blend_func_separate GL_NV_blend_square GL_NV_light_max_exponent
+GL_NV_texgen_reflection GL_NV_texture_env_combine4 GL_S3_s3tc
+GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp GL_ARB_texture_compression
+GL_EXT_framebuffer_object GL_EXT_texture_compression_s3tc
+GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_MESA_window_pos
+GL_NV_packed_depth_stencil GL_NV_texture_rectangle GL_ARB_depth_texture
+GL_ARB_occlusion_query GL_ARB_shadow GL_ARB_texture_env_combine
+GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3
+GL_ARB_texture_mirrored_repeat GL_ARB_window_pos GL_EXT_stencil_two_side
+GL_EXT_texture_cube_map GL_NV_depth_clamp GL_NV_fog_distance
+GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers
+GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects
+GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers
+GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs
+GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart
+GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel
+GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100
+GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object
+GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate
+GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object
+GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle
+GL_ATI_texture_compression_3dc GL_EXT_packed_float GL_EXT_pixel_buffer_object
+GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc
+GL_EXT_texture_mirror_clamp GL_EXT_texture_rectangle GL_EXT_texture_sRGB
+GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object
+GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample
+GL_EXT_packed_depth_stencil GL_ARB_vertex_array_object GL_ATI_separate_stencil
+GL_ATI_texture_mirror_once GL_EXT_draw_buffers2 GL_EXT_draw_instanced
+GL_EXT_gpu_program_parameters GL_EXT_texture_array
+GL_EXT_texture_compression_latc GL_EXT_texture_integer
+GL_EXT_texture_sRGB_decode GL_EXT_timer_query GL_OES_EGL_image
+GL_AMD_performance_monitor GL_ARB_copy_buffer GL_ARB_depth_buffer_float
+GL_ARB_draw_instanced GL_ARB_half_float_vertex GL_ARB_instanced_arrays
+GL_ARB_map_buffer_range GL_ARB_texture_rg GL_ARB_texture_swizzle
+GL_ARB_vertex_array_bgra GL_EXT_texture_swizzle GL_EXT_vertex_array_bgra
+GL_NV_conditional_render GL_AMD_conservative_depth GL_AMD_draw_buffers_blend
+GL_AMD_seamless_cubemap_per_texture GL_ARB_ES2_compatibility
+GL_ARB_blend_func_extended GL_ARB_debug_output GL_ARB_draw_buffers_blend
+GL_ARB_draw_elements_base_vertex GL_ARB_explicit_attrib_location
+GL_ARB_fragment_coord_conventions GL_ARB_provoking_vertex GL_ARB_sample_shading
+GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod
+GL_ARB_texture_cube_map_array GL_ARB_texture_gather GL_ARB_texture_multisample
+GL_ARB_texture_query_lod GL_ARB_texture_rgb10_a2ui GL_ARB_uniform_buffer_object
+GL_ARB_vertex_type_2_10_10_10_rev GL_EXT_provoking_vertex GL_EXT_texture_snorm
+GL_MESA_texture_signed_rgba GL_NV_texture_barrier GL_ARB_get_program_binary
+GL_ARB_robustness GL_ARB_separate_shader_objects GL_ARB_shader_bit_encoding
+GL_ARB_shader_precision GL_ARB_texture_compression_bptc GL_ARB_timer_query
+GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_NV_vdpau_interop
+GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5
+GL_ARB_base_instance GL_ARB_compressed_texture_pixel_storage
+GL_ARB_conservative_depth GL_ARB_internalformat_query
+GL_ARB_map_buffer_alignment GL_ARB_shading_language_420pack
+GL_ARB_shading_language_packing GL_ARB_texture_storage
+GL_ARB_transform_feedback_instanced GL_EXT_framebuffer_multisample_blit_scaled
+GL_EXT_transform_feedback GL_AMD_shader_trinary_minmax GL_ARB_ES3_compatibility
+GL_ARB_clear_buffer_object GL_ARB_explicit_uniform_location
+GL_ARB_invalidate_subdata GL_ARB_program_interface_query
+GL_ARB_stencil_texturing GL_ARB_texture_query_levels
+GL_ARB_texture_storage_multisample GL_ARB_texture_view
+GL_ARB_vertex_attrib_binding GL_KHR_debug GL_ARB_buffer_storage
+GL_ARB_multi_bind GL_ARB_seamless_cubemap_per_texture
+GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_stencil8
+GL_ARB_vertex_type_10f_11f_11f_rev GL_EXT_shader_integer_mix
+GL_ARB_clip_control GL_ARB_conditional_render_inverted
+GL_ARB_derivative_control GL_ARB_pipeline_statistics_query
+GL_ARB_texture_barrier GL_EXT_polygon_offset_clamp GL_KHR_context_flush_control 
+VisualID 215, 0xd7
+
+
+glxspheres without prime, works:
+
+$ /opt/VirtualGL/bin/glxspheres64 
+Polygons in scene: 62464 (61 spheres * 1024 polys/spheres)
+Visual ID of window: 0xd7
+Context is Direct
+OpenGL Renderer: Mesa DRI Intel(R) Ivybridge Mobile 
+62.931289 frames/sec - 70.231319 Mpixels/sec
+59.957172 frames/sec - 66.912204 Mpixels/sec
+59.935004 frames/sec - 66.887464 Mpixels/sec
+60.527296 frames/sec - 67.548463 Mpixels/sec
+59.995838 frames/sec - 66.955355 Mpixels/sec
+60.004534 frames/sec - 66.965059 Mpixels/sec
+
+
+glxspheres with prime, has black window:
+
+$ DRI_PRIME=1 /opt/VirtualGL/bin/glxspheres64 
+Polygons in scene: 62464 (61 spheres * 1024 polys/spheres)
+Visual ID of window: 0xd7
+Context is Direct
+OpenGL Renderer: Gallium 0.4 on NVE7
+591.549318 frames/sec - 660.169039 Mpixels/sec
+590.910468 frames/sec - 659.456083 Mpixels/sec
+590.470718 frames/sec - 658.965321 Mpixels/sec
+591.435418 frames/sec - 660.041926 Mpixels/sec
+591.123774 frames/sec - 659.694132 Mpixels/sec
+590.733668 frames/sec - 659.258773 Mpixels/sec
+590.989291 frames/sec - 659.544049 Mpixels/sec
+591.200122 frames/sec - 659.779336 Mpixels/sec
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436480242.FdF31.27895
-Date: Thu, 9 Jul 2015 22:17:22 +0000
+--1436481290.dDbd6aC20.908
+Date: Thu, 9 Jul 2015 22:34:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,25 +269,228 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91051">bug 91051</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+              from <span class="vcard"><a class="email" href="mailto:stu.axon&#64;gmail.com" title="Stuart Axon &lt;stu.axon&#64;gmail.com&gt;"> <span class="fn">Stuart Axon</span></a>
 </span></b>
-        <pre>Seems like the short version was too brief, here is a longer one:
+        <pre>glxgears seems to work, glxspheres showed a black window
 
-Bumblebee likes to disable/pull out the card from under the kernel driver to
-safe power. On the userspace it uses a form of GL/GLX proxy.
 
-If you're using recent kernel/mesa you don't need any part for Bumblebee, as
-the kernel driver will automatically power up/down the device. On the
-userspace, use $DRI_PRIME=1 glxgears to start glxgears with the &quot;other&quot;
-(nvidia) card, or just $glxgears to use the integrated (intel) one.
+glxgears - no prime, works
+$ glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   = Mesa DRI Intel(R) Ivybridge Mobile 
+GL_VERSION    = 3.0 Mesa 10.7.0-devel (git-9565e34 2015-07-04 vivid-oibaf-ppa)
+GL_VENDOR     = Intel Open Source Technology Center
+GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color
+GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture
+GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object
+GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture
+GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters
+GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters
+GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp
+GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture
+GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays
+GL_IBM_texture_mirrored_repeat GL_3DFX_texture_compression_FXT1
+GL_ARB_texture_cube_map GL_ARB_texture_env_add GL_ARB_transpose_matrix
+GL_EXT_blend_func_separate GL_EXT_fog_coord GL_EXT_multi_draw_arrays
+GL_EXT_secondary_color GL_EXT_texture_env_add GL_EXT_texture_filter_anisotropic
+GL_EXT_texture_lod_bias GL_INGR_blend_func_separate GL_NV_blend_square
+GL_NV_light_max_exponent GL_NV_texgen_reflection GL_NV_texture_env_combine4
+GL_S3_s3tc GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp
+GL_ARB_texture_compression GL_EXT_framebuffer_object
+GL_EXT_texture_compression_s3tc GL_EXT_texture_env_combine
+GL_EXT_texture_env_dot3 GL_MESA_window_pos GL_NV_packed_depth_stencil
+GL_NV_texture_rectangle GL_ARB_depth_texture GL_ARB_occlusion_query
+GL_ARB_shadow GL_ARB_texture_env_combine GL_ARB_texture_env_crossbar
+GL_ARB_texture_env_dot3 GL_ARB_texture_mirrored_repeat GL_ARB_window_pos
+GL_EXT_stencil_two_side GL_EXT_texture_cube_map GL_NV_depth_clamp
+GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers
+GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects
+GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers
+GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs
+GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart
+GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel
+GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100
+GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object
+GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate
+GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object
+GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle
+GL_EXT_packed_float GL_EXT_pixel_buffer_object GL_EXT_texture_compression_dxt1
+GL_EXT_texture_compression_rgtc GL_EXT_texture_rectangle GL_EXT_texture_sRGB
+GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object
+GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample
+GL_EXT_packed_depth_stencil GL_APPLE_object_purgeable
+GL_ARB_vertex_array_object GL_ATI_separate_stencil GL_EXT_draw_buffers2
+GL_EXT_draw_instanced GL_EXT_gpu_program_parameters GL_EXT_texture_array
+GL_EXT_texture_integer GL_EXT_texture_sRGB_decode GL_EXT_timer_query
+GL_OES_EGL_image GL_AMD_performance_monitor GL_ARB_copy_buffer
+GL_ARB_depth_buffer_float GL_ARB_draw_instanced GL_ARB_half_float_vertex
+GL_ARB_instanced_arrays GL_ARB_map_buffer_range GL_ARB_texture_rg
+GL_ARB_texture_swizzle GL_ARB_vertex_array_bgra GL_EXT_texture_swizzle
+GL_EXT_vertex_array_bgra GL_NV_conditional_render GL_AMD_conservative_depth
+GL_AMD_draw_buffers_blend GL_AMD_seamless_cubemap_per_texture
+GL_ARB_ES2_compatibility GL_ARB_blend_func_extended GL_ARB_debug_output
+GL_ARB_draw_buffers_blend GL_ARB_draw_elements_base_vertex
+GL_ARB_explicit_attrib_location GL_ARB_fragment_coord_conventions
+GL_ARB_provoking_vertex GL_ARB_sample_shading GL_ARB_sampler_objects
+GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod
+GL_ARB_texture_cube_map_array GL_ARB_texture_gather GL_ARB_texture_multisample
+GL_ARB_texture_query_lod GL_ARB_texture_rgb10_a2ui GL_ARB_uniform_buffer_object
+GL_ARB_vertex_type_2_10_10_10_rev GL_EXT_provoking_vertex GL_EXT_texture_snorm
+GL_MESA_texture_signed_rgba GL_ARB_get_program_binary GL_ARB_robustness
+GL_ARB_separate_shader_objects GL_ARB_shader_bit_encoding
+GL_ARB_texture_compression_bptc GL_ARB_timer_query GL_ARB_transform_feedback2
+GL_ARB_transform_feedback3 GL_ANGLE_texture_compression_dxt3
+GL_ANGLE_texture_compression_dxt5 GL_ARB_compressed_texture_pixel_storage
+GL_ARB_conservative_depth GL_ARB_internalformat_query
+GL_ARB_map_buffer_alignment GL_ARB_shader_atomic_counters
+GL_ARB_shading_language_420pack GL_ARB_shading_language_packing
+GL_ARB_texture_storage GL_ARB_transform_feedback_instanced
+GL_EXT_framebuffer_multisample_blit_scaled GL_EXT_transform_feedback
+GL_AMD_shader_trinary_minmax GL_ARB_ES3_compatibility
+GL_ARB_clear_buffer_object GL_ARB_copy_image GL_ARB_explicit_uniform_location
+GL_ARB_framebuffer_no_attachments GL_ARB_invalidate_subdata
+GL_ARB_program_interface_query GL_ARB_texture_query_levels
+GL_ARB_texture_storage_multisample GL_ARB_texture_view
+GL_ARB_vertex_attrib_binding GL_KHR_debug GL_ARB_buffer_storage
+GL_ARB_clear_texture GL_ARB_multi_bind GL_ARB_seamless_cubemap_per_texture
+GL_ARB_texture_mirror_clamp_to_edge GL_ARB_vertex_type_10f_11f_11f_rev
+GL_EXT_shader_integer_mix GL_INTEL_performance_query GL_ARB_clip_control
+GL_ARB_conditional_render_inverted GL_ARB_derivative_control
+GL_ARB_pipeline_statistics_query GL_EXT_polygon_offset_clamp
+GL_KHR_context_flush_control 
+VisualID 215, 0xd7
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server &quot;:0&quot;
+      after 1337 requests (1337 known processed) with 0 events remaining.
 
-nouveau.runpm=0 disables the automatic power up/down. You might want to
-experiment if things work without it.</pre>
+
+
+glxgears - prime, works
+DRI_PRIME=1 glxgears -info
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   = Gallium 0.4 on NVE7
+GL_VERSION    = 3.0 Mesa 10.7.0-devel (git-9565e34 2015-07-04 vivid-oibaf-ppa)
+GL_VENDOR     = nouveau
+GL_EXTENSIONS = GL_ARB_multisample GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color
+GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_copy_texture
+GL_EXT_polygon_offset GL_EXT_subtexture GL_EXT_texture_object
+GL_EXT_vertex_array GL_EXT_compiled_vertex_array GL_EXT_texture
+GL_EXT_texture3D GL_IBM_rasterpos_clip GL_ARB_point_parameters
+GL_EXT_draw_range_elements GL_EXT_packed_pixels GL_EXT_point_parameters
+GL_EXT_rescale_normal GL_EXT_separate_specular_color GL_EXT_texture_edge_clamp
+GL_SGIS_generate_mipmap GL_SGIS_texture_border_clamp GL_SGIS_texture_edge_clamp
+GL_SGIS_texture_lod GL_ARB_framebuffer_sRGB GL_ARB_multitexture
+GL_EXT_framebuffer_sRGB GL_IBM_multimode_draw_arrays
+GL_IBM_texture_mirrored_repeat GL_ARB_texture_cube_map GL_ARB_texture_env_add
+GL_ARB_transpose_matrix GL_EXT_blend_func_separate GL_EXT_fog_coord
+GL_EXT_multi_draw_arrays GL_EXT_secondary_color GL_EXT_texture_env_add
+GL_EXT_texture_filter_anisotropic GL_EXT_texture_lod_bias
+GL_INGR_blend_func_separate GL_NV_blend_square GL_NV_light_max_exponent
+GL_NV_texgen_reflection GL_NV_texture_env_combine4 GL_S3_s3tc
+GL_SUN_multi_draw_arrays GL_ARB_texture_border_clamp GL_ARB_texture_compression
+GL_EXT_framebuffer_object GL_EXT_texture_compression_s3tc
+GL_EXT_texture_env_combine GL_EXT_texture_env_dot3 GL_MESA_window_pos
+GL_NV_packed_depth_stencil GL_NV_texture_rectangle GL_ARB_depth_texture
+GL_ARB_occlusion_query GL_ARB_shadow GL_ARB_texture_env_combine
+GL_ARB_texture_env_crossbar GL_ARB_texture_env_dot3
+GL_ARB_texture_mirrored_repeat GL_ARB_window_pos GL_EXT_stencil_two_side
+GL_EXT_texture_cube_map GL_NV_depth_clamp GL_NV_fog_distance
+GL_APPLE_packed_pixels GL_APPLE_vertex_array_object GL_ARB_draw_buffers
+GL_ARB_fragment_program GL_ARB_fragment_shader GL_ARB_shader_objects
+GL_ARB_vertex_program GL_ARB_vertex_shader GL_ATI_draw_buffers
+GL_ATI_texture_env_combine3 GL_ATI_texture_float GL_EXT_shadow_funcs
+GL_EXT_stencil_wrap GL_MESA_pack_invert GL_NV_primitive_restart
+GL_ARB_depth_clamp GL_ARB_fragment_program_shadow GL_ARB_half_float_pixel
+GL_ARB_occlusion_query2 GL_ARB_point_sprite GL_ARB_shading_language_100
+GL_ARB_sync GL_ARB_texture_non_power_of_two GL_ARB_vertex_buffer_object
+GL_ATI_blend_equation_separate GL_EXT_blend_equation_separate
+GL_OES_read_format GL_ARB_color_buffer_float GL_ARB_pixel_buffer_object
+GL_ARB_texture_compression_rgtc GL_ARB_texture_float GL_ARB_texture_rectangle
+GL_ATI_texture_compression_3dc GL_EXT_packed_float GL_EXT_pixel_buffer_object
+GL_EXT_texture_compression_dxt1 GL_EXT_texture_compression_rgtc
+GL_EXT_texture_mirror_clamp GL_EXT_texture_rectangle GL_EXT_texture_sRGB
+GL_EXT_texture_shared_exponent GL_ARB_framebuffer_object
+GL_EXT_framebuffer_blit GL_EXT_framebuffer_multisample
+GL_EXT_packed_depth_stencil GL_ARB_vertex_array_object GL_ATI_separate_stencil
+GL_ATI_texture_mirror_once GL_EXT_draw_buffers2 GL_EXT_draw_instanced
+GL_EXT_gpu_program_parameters GL_EXT_texture_array
+GL_EXT_texture_compression_latc GL_EXT_texture_integer
+GL_EXT_texture_sRGB_decode GL_EXT_timer_query GL_OES_EGL_image
+GL_AMD_performance_monitor GL_ARB_copy_buffer GL_ARB_depth_buffer_float
+GL_ARB_draw_instanced GL_ARB_half_float_vertex GL_ARB_instanced_arrays
+GL_ARB_map_buffer_range GL_ARB_texture_rg GL_ARB_texture_swizzle
+GL_ARB_vertex_array_bgra GL_EXT_texture_swizzle GL_EXT_vertex_array_bgra
+GL_NV_conditional_render GL_AMD_conservative_depth GL_AMD_draw_buffers_blend
+GL_AMD_seamless_cubemap_per_texture GL_ARB_ES2_compatibility
+GL_ARB_blend_func_extended GL_ARB_debug_output GL_ARB_draw_buffers_blend
+GL_ARB_draw_elements_base_vertex GL_ARB_explicit_attrib_location
+GL_ARB_fragment_coord_conventions GL_ARB_provoking_vertex GL_ARB_sample_shading
+GL_ARB_sampler_objects GL_ARB_seamless_cube_map GL_ARB_shader_texture_lod
+GL_ARB_texture_cube_map_array GL_ARB_texture_gather GL_ARB_texture_multisample
+GL_ARB_texture_query_lod GL_ARB_texture_rgb10_a2ui GL_ARB_uniform_buffer_object
+GL_ARB_vertex_type_2_10_10_10_rev GL_EXT_provoking_vertex GL_EXT_texture_snorm
+GL_MESA_texture_signed_rgba GL_NV_texture_barrier GL_ARB_get_program_binary
+GL_ARB_robustness GL_ARB_separate_shader_objects GL_ARB_shader_bit_encoding
+GL_ARB_shader_precision GL_ARB_texture_compression_bptc GL_ARB_timer_query
+GL_ARB_transform_feedback2 GL_ARB_transform_feedback3 GL_NV_vdpau_interop
+GL_ANGLE_texture_compression_dxt3 GL_ANGLE_texture_compression_dxt5
+GL_ARB_base_instance GL_ARB_compressed_texture_pixel_storage
+GL_ARB_conservative_depth GL_ARB_internalformat_query
+GL_ARB_map_buffer_alignment GL_ARB_shading_language_420pack
+GL_ARB_shading_language_packing GL_ARB_texture_storage
+GL_ARB_transform_feedback_instanced GL_EXT_framebuffer_multisample_blit_scaled
+GL_EXT_transform_feedback GL_AMD_shader_trinary_minmax GL_ARB_ES3_compatibility
+GL_ARB_clear_buffer_object GL_ARB_explicit_uniform_location
+GL_ARB_invalidate_subdata GL_ARB_program_interface_query
+GL_ARB_stencil_texturing GL_ARB_texture_query_levels
+GL_ARB_texture_storage_multisample GL_ARB_texture_view
+GL_ARB_vertex_attrib_binding GL_KHR_debug GL_ARB_buffer_storage
+GL_ARB_multi_bind GL_ARB_seamless_cubemap_per_texture
+GL_ARB_texture_mirror_clamp_to_edge GL_ARB_texture_stencil8
+GL_ARB_vertex_type_10f_11f_11f_rev GL_EXT_shader_integer_mix
+GL_ARB_clip_control GL_ARB_conditional_render_inverted
+GL_ARB_derivative_control GL_ARB_pipeline_statistics_query
+GL_ARB_texture_barrier GL_EXT_polygon_offset_clamp GL_KHR_context_flush_control 
+VisualID 215, 0xd7
+
+
+glxspheres without prime, works:
+
+$ /opt/VirtualGL/bin/glxspheres64 
+Polygons in scene: 62464 (61 spheres * 1024 polys/spheres)
+Visual ID of window: 0xd7
+Context is Direct
+OpenGL Renderer: Mesa DRI Intel(R) Ivybridge Mobile 
+62.931289 frames/sec - 70.231319 Mpixels/sec
+59.957172 frames/sec - 66.912204 Mpixels/sec
+59.935004 frames/sec - 66.887464 Mpixels/sec
+60.527296 frames/sec - 67.548463 Mpixels/sec
+59.995838 frames/sec - 66.955355 Mpixels/sec
+60.004534 frames/sec - 66.965059 Mpixels/sec
+
+
+glxspheres with prime, has black window:
+
+$ DRI_PRIME=1 /opt/VirtualGL/bin/glxspheres64 
+Polygons in scene: 62464 (61 spheres * 1024 polys/spheres)
+Visual ID of window: 0xd7
+Context is Direct
+OpenGL Renderer: Gallium 0.4 on NVE7
+591.549318 frames/sec - 660.169039 Mpixels/sec
+590.910468 frames/sec - 659.456083 Mpixels/sec
+590.470718 frames/sec - 658.965321 Mpixels/sec
+591.435418 frames/sec - 660.041926 Mpixels/sec
+591.123774 frames/sec - 659.694132 Mpixels/sec
+590.733668 frames/sec - 659.258773 Mpixels/sec
+590.989291 frames/sec - 659.544049 Mpixels/sec
+591.200122 frames/sec - 659.779336 Mpixels/sec</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +503,9 @@ experiment if things work without it.</pre>
     </body>
 </html>
 
---1436480242.FdF31.27895--
+--1436481290.dDbd6aC20.908--
 
---===============1752864744==
+--===============2025479463==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +515,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1752864744==--
+--===============2025479463==--
