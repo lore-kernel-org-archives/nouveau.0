@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91051] GT650M and Nouveau - NOUVEAU(0): [drm] failed
  to set drm interface version.
-Date: Thu, 09 Jul 2015 22:46:33 +0000
-Message-ID: <bug-91051-8800-BJ609qRYg7@http.bugs.freedesktop.org/>
+Date: Thu, 09 Jul 2015 22:52:59 +0000
+Message-ID: <bug-91051-8800-MYbgmDBlFE@http.bugs.freedesktop.org/>
 References: <bug-91051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0637714587=="
+Content-Type: multipart/mixed; boundary="===============0234453327=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0637714587==
-Content-Type: multipart/alternative; boundary="1436481993.cCD4b0.5026"; charset="UTF-8"
+--===============0234453327==
+Content-Type: multipart/alternative; boundary="1436482378.83FCf3e81.7239"; charset="UTF-8"
 
 
---1436481993.cCD4b0.5026
-Date: Thu, 9 Jul 2015 22:46:33 +0000
+--1436482378.83FCf3e81.7239
+Date: Thu, 9 Jul 2015 22:52:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91051
 
---- Comment #14 from Stuart Axon <stu.axon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117025
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117025&action=edit
-glxdemo with dri prime looks a bit glitchy
+Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-Just noticed this glitchyness.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117025|text/plain                  |image/png
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1436481993.cCD4b0.5026
-Date: Thu, 9 Jul 2015 22:46:33 +0000
+--1436482378.83FCf3e81.7239
+Date: Thu, 9 Jul 2015 22:52:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,24 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91051">bug 91051</a>
-              from <span class="vcard"><a class="email" href="mailto:stu.axon&#64;gmail.com" title="Stuart Axon &lt;stu.axon&#64;gmail.com&gt;"> <span class="fn">Stuart Axon</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117025" name="attach_117025" title="glxdemo with dri prime looks a bit glitchy">attachment 117025</a> <a href="attachment.cgi?id=117025&amp;action=edit" title="glxdemo with dri prime looks a bit glitchy">[details]</a></span>
-glxdemo with dri prime looks a bit glitchy
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Just noticed this glitchyness.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Attachment #117025 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/png
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -82,9 +86,9 @@ Just noticed this glitchyness.</pre>
     </body>
 </html>
 
---1436481993.cCD4b0.5026--
+--1436482378.83FCf3e81.7239--
 
---===============0637714587==
+--===============0234453327==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -94,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0637714587==--
+--===============0234453327==--
