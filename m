@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91051] GT650M and Nouveau - NOUVEAU(0): [drm] failed
- to set drm interface version.
-Date: Thu, 09 Jul 2015 22:52:59 +0000
-Message-ID: <bug-91051-8800-MYbgmDBlFE@http.bugs.freedesktop.org/>
-References: <bug-91051-8800@http.bugs.freedesktop.org/>
+From: Andrew Chew <achew-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: CUDA fixed VA allocations and sparse mappings
+Date: Thu, 9 Jul 2015 17:31:01 -0700
+Message-ID: <20150710003101.GA7338@achew-linux64.nvidia.com>
+References: <20150707004249.GC27924@achew-linux64.nvidia.com>
+ <CAKb7UviePF2XcmyeKHQ2cv=hy=NZyYcMrWiTpajJxTFE+10LwQ@mail.gmail.com>
+ <20150707172744.GA12288@gmail.com>
+ <CAFCwf11pEc7vq0aPxdCRypzcbuaJRgWb_55q4ZUQPAvw5zXzHg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0234453327=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <CAFCwf11pEc7vq0aPxdCRypzcbuaJRgWb_55q4ZUQPAvw5zXzHg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +21,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0234453327==
-Content-Type: multipart/alternative; boundary="1436482378.83FCf3e81.7239"; charset="UTF-8"
-
-
---1436482378.83FCf3e81.7239
-Date: Thu, 9 Jul 2015 22:52:58 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91051
-
-Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #117025|text/plain                  |image/png
-          mime type|                            |
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1436482378.83FCf3e81.7239
-Date: Thu, 9 Jul 2015 22:52:58 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051">bug 91051</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #117025 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/png
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436482378.83FCf3e81.7239--
-
---===============0234453327==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0234453327==--
+PiAyLiBVc2UgdGhlIEdQVVZNIGluc2lkZSB0aGUgR1BVIHRvIGFjY2VzcyBzeXN0ZW0gbWVtb3J5
+LiBUaGUKPiBsaW1pdGF0aW9uIGhlcmUgaXMgdGhhdCB0aGUgR1BVVk0gdXNlcyA0MC1iaXQgYWRk
+cmVzc2VzLCBzbyB0aGUKPiB2aXJ0dWFsIGFkZHJlc3MgcmFuZ2UgbXVzdCBiZSBpbiB0aGUgbG93
+ZXIgNDAtYml0IGFkZHJlc3MgcmFuZ2Ugb2YgdGhlCj4gQ1BVLiBBY2Nlc3Mgc3BlZWQgaXMgbGlt
+aXRlZCBieSBQQ0ktZSBiYW5kd2lkdGguIEFub3RoZXIgbGltaXRhdGlvbiBpcwo+IHRoYXQgdGhl
+IHN5c3RlbSBtZW1vcnkgcGFnZXMgbXVzdCBiZSBwaW5uZWQgYXMgdGhlIEdQVSBkb2Vzbid0IHN1
+cHBvcnQKPiBwYWdlIGZhdWx0cy4KPiAKPiBUaGUgb3BlcmF0aW9uIG9mIHJlc2VydmluZyBhZGRy
+ZXNzIHNwYWNlIGFuZCBCTyBjcmVhdGlvbiBpcyBvbmUgSU9DVEwsCj4gd2hpbGUgdGhlIG1hcHBp
+bmcgb2YgdGhlIEJPIHRvIHRoZSBhZGRyZXNzIHNwYWNlIGlzIGEgc2Vjb25kIElPQ1RMLgo+IFRo
+ZXJlIGFyZSBvZiBjb3Vyc2UgdW5tYXAgYW5kIGZyZWUgSU9DVExzLiBUaGUgc2VwYXJhdGlvbiBp
+cyBkb25lIGZvcgo+IGEgY291cGxlIG9mIHJlYXNvbnM6Cj4gCj4gMS4gSWYgdGhlIGFwcGxpY2F0
+aW9uIGtub3dzIHRoYXQgaXQgd2FudHMgdG8gdXNlIG9ubHkgcGFydCBvZiB0aGUKPiBtZW1vcnkg
+YXJlYSBpdCBhbGxvY2F0ZWQsIHRoZW4gdGhlcmUgaXMgbm8gcG9pbnQgaW4gcGlubmluZyBhbGwg
+dGhlCj4gQk9zLiBTbywgdGhlIGFwcGxpY2F0aW9uIGNhbiBtYXAvdW5tYXAganVzdCBwYXJ0IG9m
+IHRoZSBhbGxvY2F0aW9uLgo+IAo+IDIuIElmIHRoZSBhcHBsaWNhdGlvbiBrbm93cyB0aGF0IGl0
+IGhhcyBmaW5pc2hlZCB1c2luZyB0aGUgQk9zLCBhbmQgaXQKPiBhbHNvIGtub3dzIHRoYXQgaXQg
+d2lsbCB1c2UgdGhlbSBsYXRlciBvbiwgaXQgY2FuIHVubWFwIHRoZSBCT3MgKHRvCj4gbWFrZSB0
+aGVtIHVucGlubmVkKSBidXQgbm90IGZyZWUgdGhlbSBzbyB0aGUgbWVtb3J5IGlzIHN0aWxsIHJl
+c2VydmVkCj4gKHdpdGggaXRzIGNvbnRlbnRzIGludGFjdCkuCgpZZXMsIHRoYW5rcyBPbGVkLiAg
+SSB0aGluayB0aGlzIGlzIHByZXR0eSBtdWNoIGV4YWN0bHkgaG93IEkgaW1hZ2luZSB0aGluZ3MK
+dG8gd29yay4KCkknbGwgcG9zdCBteSBjb2RlIHNvb24gYW5kIHNlZSB3aGF0IHlvdSBndXlzIHRo
+aW5rLiAgVGhlcmUgd2FzIHNvbWUKbWlzdW5kZXJzdGFuZGluZyBvbiBteSBwYXJ0IG9uIGhvdyBi
+bydzIHdvcmssIHNvIEkgbmVlZCB0byByZXdvcmsgc29tZQpzdHVmZi4KX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
