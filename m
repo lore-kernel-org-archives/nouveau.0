@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
- Block from OpenFirmware Device tree
-Date: Mon, 13 Jul 2015 14:56:02 +0000
-Message-ID: <bug-91319-8800-BQysEcs0Fj@http.bugs.freedesktop.org/>
-References: <bug-91319-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [Mesa-dev] [PATCH] nvc0: fix geometry program
+ revalidation of clipping params
+Date: Mon, 13 Jul 2015 14:05:07 -0400
+Message-ID: <CAKb7Uvj1KLHokGvznQ=722-D3PFx691S4kUBODJG-dSyDvkNyA@mail.gmail.com>
+References: <1436634801-6319-1-git-send-email-imirkin@alum.mit.edu>
+ <CAJd1Ru5fmsDDftu0pkQtfqtzUaoWV8TCRHm=TiXgtmb-jD-wvg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1993976698=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAJd1Ru5fmsDDftu0pkQtfqtzUaoWV8TCRHm=TiXgtmb-jD-wvg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,76 +19,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "10.4 10.5" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1993976698==
-Content-Type: multipart/alternative; boundary="1436799361.E600cfea1.14819"; charset="UTF-8"
-
-
---1436799361.E600cfea1.14819
-Date: Mon, 13 Jul 2015 14:56:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91319
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Aha, looks like the issue is that your VBIOS in OF does not have a PCIR
-section, and the nouveau VBIOS parser has come to expect that. Going to have to
-read more code to work out a proper solution to that.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436799361.E600cfea1.14819
-Date: Mon, 13 Jul 2015 14:56:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319">bug 91319</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Aha, looks like the issue is that your VBIOS in OF does not have a PCIR
-section, and the nouveau VBIOS parser has come to expect that. Going to have to
-read more code to work out a proper solution to that.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436799361.E600cfea1.14819--
-
---===============1993976698==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1993976698==--
+QW55IG9uZSB3aGljaCwgYWZ0ZXIgdXNpbmcgYSBnZW9tZXRyeSBzaGFkZXIsIGVuYWJsZXMgYW4g
+ZXh0cmEgY2xpcApkaXN0YW5jZS4gaS5lLiBub25lLgoKT24gTW9uLCBKdWwgMTMsIDIwMTUgYXQg
+NDoxNiBBTSwgU2FtdWVsIFBpdG9pc2V0CjxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPiB3cm90
+ZToKPiBXaGF0IHBpZ2xpdCB0ZXN0IGRvZXMgdGhpcyBmaXg/Cj4KPiBPbiBTYXQsIEp1bCAxMSwg
+MjAxNSBhdCA3OjEzIFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3Rl
+Ogo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
+Cj4+IENjOiBtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gLS0tCj4+Cj4+IEV2
+ZW4gdGhvdWdoIGluIHByYWN0aWNlIGEgZ2VvbWV0cnkgcHJvZ3JhbSB3aWxsIG5ldmVyIGJlIHVz
+aW5nIFVDUCdzLAo+PiB3ZSBzdGlsbCB3ZXJlIHJldmFsaWRhdGluZyAoYWthIHJlY29tcGlsaW5n
+KSB0aGUgcHJvZ3JhbSB3aGVuIG1vcmUKPj4gY2xpcCBwbGFuZXMgYmVjYW1lIGVuYWJsZWQgKHdo
+aWNoIGFsc28gYXJlIHVzZWQgZm9yIHJlZ3VsYXIgY2xpcAo+PiBkaXN0YW5jZXMpLgo+Pgo+PiBU
+aGlzIHNlZW1zIGxpa2UgaXQgc2hvdWxkIGhhdmUgbGVkIHRvIG1hc3NpdmUgZmFpbCwgYnV0IEkg
+Z3Vlc3MgeW91Cj4+IGRvbid0IGNoYW5nZSB0aGUgbnVtYmVyIG9mIGNsaXAgcGxhbmVzIHdoZW4g
+dXNpbmcgZ2VvbWV0cnkgc2hhZGVycy4KPj4gQnV0IEknbSBnb2luZyB0byBwdXQgdGhpcyB0aHJv
+dWdoIGEgZnVsbCBwaWdsaXQgcnVuIGp1c3QgaW4gY2FzZQo+PiB0aGVyZSdzIHNvbWV0aGluZyBJ
+J20gbWlzc2luZy4KPj4KPj4gIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
+c3RhdGVfdmFsaWRhdGUuYyB8IDIgKy0KPj4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigr
+KSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L252YzAvbnZjMF9zdGF0ZV92YWxpZGF0ZS5jCj4+IGIvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L252YzAvbnZjMF9zdGF0ZV92YWxpZGF0ZS5jCj4+IGluZGV4IDc4NWU1MmUuLjEx
+ZjJiMTAgMTAwNjQ0Cj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
+YzBfc3RhdGVfdmFsaWRhdGUuYwo+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bnZjMC9udmMwX3N0YXRlX3ZhbGlkYXRlLmMKPj4gQEAgLTMzOSw3ICszMzksNyBAQCBudmMwX2No
+ZWNrX3Byb2dyYW1fdWNwcyhzdHJ1Y3QgbnZjMF9jb250ZXh0ICpudmMwLAo+PiAgICAgICAgbnZj
+MF92ZXJ0cHJvZ192YWxpZGF0ZShudmMwKTsKPj4gICAgIGVsc2UKPj4gICAgIGlmIChsaWtlbHko
+dnAgPT0gbnZjMC0+Z210eXByb2cpKQo+PiAtICAgICAgbnZjMF92ZXJ0cHJvZ192YWxpZGF0ZShu
+dmMwKTsKPj4gKyAgICAgIG52YzBfZ210eXByb2dfdmFsaWRhdGUobnZjMCk7Cj4+ICAgICBlbHNl
+Cj4+ICAgICAgICBudmMwX3Rldmxwcm9nX3ZhbGlkYXRlKG52YzApOwo+PiAgfQo+PiAtLQo+PiAy
+LjMuNgo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xwo+PiBtZXNhLWRldiBtYWlsaW5nIGxpc3QKPj4gbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNh
+LWRldgo+Cj4KPgo+Cj4gLS0KPiBCZXN0IHJlZ2FyZHMsCj4gU2FtdWVsIFBpdG9pc2V0LgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
