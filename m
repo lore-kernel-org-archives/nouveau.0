@@ -1,23 +1,13 @@
-From: Andrew Chew <achew-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: CUDA fixed VA allocations and sparse mappings
-Date: Mon, 13 Jul 2015 11:45:12 -0700
-Message-ID: <20150713184512.GA19358@achew-linux64.nvidia.com>
-References: <CAOnawYo=EFk6KhmudKWi3r-z_J4AHjswTrZSfyp_qZfdmQc=tw@mail.gmail.com>
- <CAKb7UvhOM+65x80HPAcdTsQB4KsPA780cKg8_30vOy5qWFZt4w@mail.gmail.com>
- <20150708001559.GA30347@achew-linux64.nvidia.com>
- <CACAvsv5q5yJUmjPgJtxnv1dU--UzD1veePkJzvqjRyNtx=EEbw@mail.gmail.com>
- <20150708003153.GA30426@achew-linux64.nvidia.com>
- <CACAvsv5DtA2WsBQkNWnxZMsonbHsvJ-oKA+frVd-btZXfgiAyw@mail.gmail.com>
- <20150708004735.GA30570@achew-linux64.nvidia.com>
- <CACAvsv56doVLnMJKCfQyrPj-ijsW7yuAMv53kR0OKxJ0LKM5iQ@mail.gmail.com>
- <20150708194004.GA8122@gmail.com>
- <20150708211801.GA27080@achew-linux64.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90513] Odd gray and red flicker in The Talos
+	Principle on GK104
+Date: Mon, 13 Jul 2015 20:27:36 +0000
+Message-ID: <bug-90513-8800-Wemz5OubXv@http.bugs.freedesktop.org/>
+References: <bug-90513-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1276443262=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <20150708211801.GA27080-hKyou4+EtHjTuHN6Nbh//0n48jw8i0AO@public.gmane.org>
+In-Reply-To: <bug-90513-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -30,29 +20,71 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBhcG9sb2dpemUgZm9yIG15IGlnbm9yYW5jZS4gIEluIGRpZ2dpbmcgdGhyb3VnaCBub3V2ZWF1
-LCBJJ3ZlIGJlY29tZQphIGJpdCBjb25mdXNlZCByZWdhcmRpbmcgdGhlIHJlbGF0aW9uc2hpcCBi
-ZXR3ZWVuIHZpcnR1YWwgYWRkcmVzcwphbGxvY2F0aW9ucyBhbmQgbm91dmVhdSBibydzLgoKRnJv
-bSBteSByZWFkaW5nIG9mIHRoZSBjb2RlLCBpdCBzZWVtcyB0aGF0IGEgbm91dmVhdV9ibyByZWFs
-bHkKZW5jYXBzdWxhdGVzIGEgYnVmZmVyICh3aGV0aGVyIGltcG9ydGVkLCBvciBhbGxvY2F0ZWQg
-d2l0aGluIG5vdXZlYXUgbGlrZSwKc2F5LCBwdXNoYnVmZmVycykuICBTbyBJJ20gY29uZnVzZWQg
-YWJvdXQgYW4gZWFybGllciBzdGF0ZW1lbnQgdGhhdCB0bwphbGxvY2F0ZSBhIGNodW5rIG9mIGFk
-ZHJlc3Mgc3BhY2UsIEkgaGF2ZSB0byBjcmVhdGUgYSBub3V2ZWF1X2JvIGZvciBpdC4KCldoYXQg
-SSByZWFsbHkgd2FudCB0byBkbyBpcyByZXNlcnZlIHNvbWUgc3BhY2UgaW4gdGhlIGFkZHJlc3Mg
-YWxsb2NhdG9yCih0aGUgc3R1ZmYgaW4gbnZrbS9zdWJkZXYvbW11L2Jhc2UuYykuICBOb3RlIHRo
-YXQgdGhlcmUgYXJlIG5vIGJ1ZmZlcnMKYXQgdGhpcyB0aW1lLiAgVGhpcyBpcyBqdXN0IGJsb2Nr
-aW5nIG91dCBzb21lIGNodW5rIG9mIHRoZSBhZGRyZXNzIHNwYWNlCnNvIHRoYXQgbm9ybWFsIGFk
-ZHJlc3Mgc3BhY2UgYWxsb2NhdGlvbnMgKGZvciwgc2F5LCBibydzKSBhdm9pZCB0aGlzIHJlZ2lv
-bi4KCkF0IHNvbWUgcG9pbnQgYWZ0ZXIgdGhhdCwgSSdkIGxpa2UgdG8gaW1wb3J0IGEgYnVmZmVy
-LCBhbmQgbWFwIGl0IHRvCmNlcnRhaW4gcmVnaW9ucyBvZiBteSBwcmUtYWxsb2NhdGVkIGFkZHJl
-c3Mgc3BhY2UuICBUaGlzIGlzIHdoeSBJIGNhbid0CmdvIHRocm91Z2ggdGhlIG5vcm1hbCBwYXRo
-IG9mIGltcG9ydGluZyBhIGJ1ZmZlci4uLnRoYXQgcGF0aCBhc3N1bWVzIHRoZXJlCmlzIG5vIGFk
-ZHJlc3MgZm9yIHRoaXMgYnVmZmVyLCBhbmQgdHJpZXMgdG8gYWxsb2NhdGUgb25lLiAgSW4gb3Vy
-IGNhc2UsCndlIGFscmVhZHkgaGF2ZSBhbiBhZGRyZXNzIGluIG1pbmQuICBOYWl2ZWx5LCBhdCB0
-aGlzIHBvaW50LCBJJ2QgbGlrZSB0bwpjcmVhdGUgYSBub3V2ZWF1X2JvIGZvciB0aGlzIGltcG9y
-dGVkIGJ1ZmZlciwgYnV0IG5vdCBoYXZlIGl0IGdvIHRocm91Z2gKdGhlIGFkZHJlc3MgYWxsb2Nh
-dG9yIGFuZCBpbnN0ZWFkIGp1c3QgdGFrZSBhIGZpeGVkIGFkZHJlc3MuCgpDYW4gc29tZW9uZSBj
-bGVhciB1cCBzb21lIG9mIG15IGNvbmZ1c2lvbj8KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============1276443262==
+Content-Type: multipart/alternative; boundary="1436819256.0A7C2E61.8246"; charset="UTF-8"
+
+
+--1436819256.0A7C2E61.8246
+Date: Mon, 13 Jul 2015 20:27:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90513
+
+--- Comment #9 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+yeah I can confirm this.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1436819256.0A7C2E61.8246
+Date: Mon, 13 Jul 2015 20:27:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Odd gray and red flicker in The Talos Principle on GK104"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90513">bug 90513</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
+</span></b>
+        <pre>yeah I can confirm this.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436819256.0A7C2E61.8246--
+
+--===============1276443262==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1276443262==--
