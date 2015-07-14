@@ -1,20 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
- under EXA.
-Date: Tue, 14 Jul 2015 11:26:02 -0400
-Message-ID: <CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q@mail.gmail.com>
-References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
- <CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>
- <CACvgo53NaCJ6r+1LdJEG78Zyi+SBfMu2y1Mkm2HCKUo7Co5zQw@mail.gmail.com>
- <CAKb7Uvj-7AeG8EQ58cZZhF1O7HU=E_VkKO8wi7LpitoNBmCjGg@mail.gmail.com>
- <CACvgo50R5kPGVAwDYTUSCkY-Cfh=HENFDT8OdT=nNKLG85=S9Q@mail.gmail.com>
- <CAKb7UvhuYJxLk1zPQbdTgG_HQcbo0Zt_TnpHf7gD2apk+RYCdA@mail.gmail.com>
- <55A48575.5060100@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
+ W520 causes displays to go crazy
+Date: Tue, 14 Jul 2015 17:00:18 +0000
+Message-ID: <bug-91333-8800-VVD0Q3kRLi@http.bugs.freedesktop.org/>
+References: <bug-91333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2042508552=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55A48575.5060100-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,81 +17,105 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBKdWwgMTMsIDIwMTUgYXQgMTE6NDMgUE0sIE1hcmlvIEtsZWluZXIKPG1hcmlvLmts
-ZWluZXIuZGVAZ21haWwuY29tPiB3cm90ZToKPiBPbiAwNy8wNy8yMDE1IDA5OjUxIFBNLCBJbGlh
-IE1pcmtpbiB3cm90ZToKPj4KPj4gTGFzdGx5LCBmcm9tIHNvbWUgZGlzY3Vzc2lvbnMgd2l0aCBh
-amF4IG9uIElSQywgaXQgYXBwZWFycyB0aGF0IERSSTMKPj4gaXMgaGFsZi1iYWtlZCBhdCBiZXN0
-IHdydCBzeW5jIGJldHdlZW4gc2VydmVyIGFuZCBjbGllbnQuIEkgdGhpbmsgd2UKPj4gc2hvdWxk
-IGp1c3QgZGlzYWJsZSBpdCBieSBkZWZhdWx0IGZvciBub3csIHVudGlsIGlzc3VlcyBhcmUgaXJv
-bmVkCj4+IG91dC4gKFJhdGhlciB0aGFuIHdoYXQgdGhpcyBwYXRjaCBoYXMsIHdoaWNoIGlzIGRl
-ZmF1bHQtb24gZm9yIFhvcmcgPgo+PiBzb21lIHZlcnNpb24uKQo+Cj4KPiBXaGF0IGFyZSB0aGUg
-cmVtYWluaW5nIGtub3duIHRyb3VibGUgc3BvdHMgd3J0LiBzeW5jPyBJdCBzZWVtcyB0byB3b3Jr
-Cj4gcHJldHR5IHdlbGwgYXQgbGVhc3QgZm9yIHNpbmdsZSBncHUgKyB1bnJlZGlyZWN0ZWQgZnVs
-bHNjcmVlbiB3aW5kb3dzICg9PQo+IGttcyBwYWdlIGZsaXBwaW5nIGNhbiBiZSB1c2VkIGZvciBQ
-cmVzZW50cy4gVGhhdCdzIHRoZSB1c2UgY2FzZSBpIHVzdWFsbHkKPiB0ZXN0IHZlcnkgb2JzZXNz
-aXZlbHksIGFzIGl0IG1hdHRlcnMgdmVyeSBtdWNoIGZvciBteSB0eXBlIG9mIGFwcGxpY2F0aW9u
-cywKPiBidXQgb3RoZXIgdGhhbiB0aGF0IGkgb25seSBsaWdodGx5ICJ0ZXN0IiBpdCB2aWEgcmVn
-dWxhciBkZXNrdG9wIHVzZSwgc28KPiBtYXliZSB0aGF0J3Mgd2VyZSBwcm9ibGVtcyByZW1haW4/
-CgpBZGFtIGlzIHRoZSBvbmUgd2hvIGFjdHVhbGx5IHVuZGVyc3RhbmRzIGl0Li4uIEkgd2FzIGp1
-c3QgYXNraW5nCnF1ZXN0aW9ucyBhbmQgdGhlIGFuc3dlciB3YXMgInRoYXQncyBicm9rZW4iLiBB
-IHVzZXIgd2FzIHVzaW5nIERSSTMKd2l0aCBFWEEgKG5vdXZlYXUgRERYKSwgYW5kIHdhcyBzZWVp
-bmcgcmVuZGVyIGZhaWwgaW4gdGhlIGZvcm0gb2YKc3RhbGUgdGhpbmdzIG9uIHRoZSBzY3JlZW4u
-IFRoZSBub3V2ZWF1IEREWCBkb2VzIGEgbG90IG9mICJpbXBsaWNpdCIKc3luYyBzdHVmZi4uLiBp
-dCBqdXN0IGVtaXRzIGNvbW1hbmRzIGludG8gYSBwdXNoYnVmIHdpdGhvdXQga2lja2luZwppdC4g
-SG93ZXZlciB0aGUgbGliZHJtIGNvZGUgaGFzIGNsZXZlcm5lc3MgdG8ga2ljayBvdXQgYW55IHB1
-c2hidWZzIGlmCnlvdSBkbyBhIG5vdXZlYXVfYm9fd2FpdCBhbmQgdGhhdCBibyBoYXMgYmVlbiBy
-ZWZlcmVuY2VkLgoKSE9XRVZFUiBpZiB5b3UgaGF2ZSBhIHBpeG1hcCBhbmQgeW91IHNoYXJlIGl0
-IHVzaW5nIHRoZSBmZCB0aGluZywgYW5kCmFub3RoZXIgcHJvY2VzcyBtYWtlcyBhIChzaGFyZWQp
-IGJvIG91dCBvZiBpdCwgYW5kIHRoZW4gZG9lcyBhCm5vdXZlYXVfYm9fd2FpdCwgdGhhdCBpbiBu
-byB3YXkgd2lsbCBjYXVzZSB0aGUgRERYIHRvIGtpY2sgaXRzCnB1c2hidWYuIEFwcGFyZW50bHkg
-dGhlcmUncyBzb21lIHNvcnQgb2Ygc3luYyB0aGluZyB0aGF0J3Mgc3VwcG9zZWQgdG8KaGFwcGVu
-LCBidXQgdGhhdCdzIGVudGlyZWx5IHVuaW1wbGVtZW50ZWQgZm9yIERSSTMuIFVuZm9ydHVuYXRl
-bHkgSQpjYW4ndCBwcm92aWRlIG1vcmUgZGV0YWlscyB0aGFuIHRoYXQsIGFzIG15IGtub3dsZWRn
-ZSBvZiBYIGludGVybmFscwppcyBxdWl0ZSBsaW1pdGVkLiBTb21lIHNvcnQgb2YgRFJJIGRyYXdh
-YmxlIG9yIEdMWCBkcmF3YWJsZSBvciAuLi4Kc29tZXRoaW5nLgoKSSBoYXZlIG5vIHByb29mIHRo
-YXQgdGhpcyBpcyB0aGUgY2F1c2Ugb2YgdGhlIGlzc3VlIHRoZSB1c2VyIHdhcwpzZWVpbmcsIGlu
-IGZhY3QgaXQncyBqdXN0IGFzIGxpa2VseSB0byBiZSBzb21ldGhpbmcgZWxzZS4gSG93ZXZlciB0
-aGlzCnNlZW1zIGxpa2UgYSBwcmV0dHkgc2lnbmlmaWNhbnQgaXNzdWUgdG8gbWUuCgo+Cj4gV2Ug
-Y2FuIGRpc2FibGUgaXQgYnkgZGVmYXVsdCBvbiBleGEgLSBpbnRlbCBhbmQgYW1kL3JhZGVvbiBk
-cml2ZXJzIGFsc28KPiBkaXNhYmxlIGJ5IGRlZmF1bHQuIEhvd2V2ZXIsIG9uIGdwdXMgPj0gbWF4
-d2VsbCBvbmx5IGdsYW1vciBhY2NlbCBpcwo+IHN1cHBvcnRlZCBhbmQgZ2xhbW9yIG9uIG5vdXZl
-YXUgaXMgZWl0aGVyIGRyaTMvcHJlc2VudCBvciBubyBodyBhY2NlbCBhdCBhbGwKPiBhZmFpY3Mu
-CgpZb3UgcHJvYmFibHkgc2F3IG15IHBhdGNoZXMgdG8ganVzdCByZW1vdmUgZ2xhbW9yIGZyb20g
-bm91dmVhdSA6KSBUaGF0CmludGVncmF0aW9uIGRvZXNuJ3Qgc3VwcG9ydCBEUkkyLCB3aGljaCBp
-biB0dXJuIG1lYW5zIG5vIGNvcmUgY29udGV4dHMKKGR1ZSB0byBsYWNrIG9mIEdMWF9BUkJfY3Jl
-YXRlX2NvbnRleHRfcHJvZmlsZSksIGFuZCBhIHNsZXcgb2Ygb3RoZXIKaXNzdWVzLiBTZWVtZWQg
-ZWFzaWVyIHRvIGp1c3QgdGVsbCBwZW9wbGUgdG8gZ28gdXNlIG1vZGVzZXR0aW5nLCB3aGljaApn
-ZXRzIGFsbCBvZiB0aGVzZSB0aGluZ3MgcmlnaHQoZXIpLgoKPgo+IEJ0dy4gdGhlcmUgYXJlIGFs
-c28gYSBmZXcgcGF0Y2hlcyBtYWRlIGJ5IENocmlzIFdpbHNvbiBmbG9hdGluZyBvbiB0aGUKPiBt
-YWlsaW5nIGxpc3Qgc2luY2UgYXJvdW5kIGphbnVhcnksIHNvbWUgYXJlIHJldmlld2VkIGFuZCB0
-ZXN0ZWQgYnkgbXlzZWxmLAo+IGJ1dCBub3QgaW5jbHVkZWQgaW4geG9yZyBtYXN0ZXIuIE1pZ2h0
-IGJlIGdvb2QgZm9yIHBlb3BsZSB0byBoYXZlIGEgbG9vayBhdAo+IHRoZW0gYW5kIG1heWJlIGdl
-dCB0aGVtIGludG8geG9yZyAxLjE4PwoKSSB3b3VsZCBub3Qgb3Bwb3NlIHRoZSByZXZpZXdpbmcg
-b2YgQ2hyaXMncyBwYXRjaGVzIDspIEhvd2V2ZXIgSSdtIGluCm5vIHBvc2l0aW9uIHRvIGV2YWx1
-YXRlIHRoZW0gbXlzZWxmLgoKPgo+Pgo+PiBPbiBTYXQsIEp1bCA0LCAyMDE1IGF0IDM6MDMgUE0s
-IEVtaWwgVmVsaWtvdiA8ZW1pbC5sLnZlbGlrb3ZAZ21haWwuY29tPgo+PiB3cm90ZToKPj4+Cj4+
-PiBUaGUgRFJJIG9wdGlvbiB3aXRoIHRoZSBpbnRlbCBkZHggY2FuIGJlIHVzZWQgdG8gaW5kaWNh
-dGUgdGhlIGZvbGxvd2luZwo+Pj4gICAtIHdoZXRoZXIgZHJpIGlzIGRpc2FibGVkCj4+PiAgIC0g
-dGhlIGRyaSAidmVyc2lvbiIgLSBkcmkxLCBkcmkyLCBkcmkzCj4+PiAgIC0gdGhlIGRyaSBtb2R1
-bGUgbmFtZSAtIGRvb19kcmkuc28gYmFyX2RyaS5zbwo+Pj4KPj4+IEknbSBub3Qgc3VyZSBob3cg
-ZXhhY3RseSBpdCdzIHN1cHBvc2VkIHRvIHdvcmsvd29ya3MsIGFuZCBJIGJlbGlldmUKPj4+IG1v
-c3Qgb2YgdGhhdCBpcyBkdWUgdG8gbGVnYWN5IHJlYXNvbnMuIEknbSBqdXN0IHNheWluZyBsZXQn
-cyBub3QgZG8KPj4+IHRoZSB3aG9sZSB0aGluZyAtIGp1c3QgdGhlIGRyaSAidmVyc2lvbiIgd291
-bGQgYmUgZ3JlYXQgKGFzIHlvdQo+Pj4gc3VnZ2VzdGVkKS4KPgo+Cj4gSSBjYW4gY2hhbmdlIHRo
-YXQgdG8gYWxsb3cgc2VsZWN0aW9uIGJldHdlZW4gIjIiIGFuZCAiMyIgLSBhdCBsZWFzdCBmb3Ig
-ZXhhLAo+IG9uIGdsYW1vciB0aGUgcGFyYW1ldGVyICIyIiB3b3VsZCBlaXRoZXIgbmVlZCB0byBn
-ZXQgaWdub3JlZCBvciBpdCB3b3VsZAo+IGNvbXBsZXRlbHkgZGlzYWJsZSBodyBhY2NlbGVyYXRp
-b24uIEkgd2VudCBmb3IgY29uc2lzdGVuY3kgd2l0aCB0aGUgYXRpIGRkeAo+IGJlY2F1c2UgaSBm
-b3VuZCB0aGUgaW50ZWwgdmFyaWFudCB0b28gY29uZnVzaW5nLiBJIHRoaW5rIGl0IGNoYW5nZWQg
-bXVsdGlwbGUKPiB0aW1lcyBkdXJpbmcgdGhlIGxhc3QgeWVhci4KCkJsZWFyZ2guIFRoZSBhdGkg
-ZGR4IG9wdGlvbiBuYW1lIGlzIG11Y2ggbmV3ZXIuIEhhcyBpdCBzZWVuIGEgcmVsZWFzZQp5ZXQ/
-IEl0J2QgYmUgcmVhbGx5IG5pY2UgdG8gZ2V0IGFsbCB0aGUgRERYJ3MgdG8ganVzdCBhZ3JlZSBv
-bgpzb21ldGhpbmcsIGluc3RlYWQgb2YgaGF2aW5nIGRpZmZlcmVudC1idXQtc2ltaWxhciBvcHRp
-b25zIHdoaWNoCmNvbmZ1c2UgZXZlcnlvbmUuCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2042508552==
+Content-Type: multipart/alternative; boundary="1436893218.3B8E1bbD1.18417"; charset="UTF-8"
+
+
+--1436893218.3B8E1bbD1.18417
+Date: Tue, 14 Jul 2015 17:00:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91333
+
+--- Comment #9 from Corey Ashford <cjashfor-r/Jw6+rmf7HQT0dZR+AlfA@public.gmane.org> ---
+(In reply to Mark Cave-Ayland from comment #8)
+> Apologies for jumping in on another bug report, however this sounds exactly
+> like the problem I've been struggling with for years on my Lenovo T420s:
+> 
+> https://bugs.freedesktop.org/show_bug.cgi?id=56615
+> 
+> I see the same symptoms in that the kernel "hangs" with an external
+> DisplayPort connected in discrete mode when trying to use the internal LVDS
+> with the external monitor. It seems the message I get in the kernel log is
+> similar too:
+> 
+> nouveau E[   PDISP][0000:01:00.0] chid 1 mthd 0x0080 data 0x00000000
+> 0x00005080 0x0000000
+
+Yeah, it does seem similar.  However, in my case, a single external monitor
+along with the internal LVDS works fine.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436893218.3B8E1bbD1.18417
+Date: Tue, 14 Jul 2015 17:00:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
+              from <span class="vcard"><a class="email" href="mailto:cjashfor&#64;us.ibm.com" title="Corey Ashford &lt;cjashfor&#64;us.ibm.com&gt;"> <span class="fn">Corey Ashford</span></a>
+</span></b>
+        <pre>(In reply to Mark Cave-Ayland from <a href="show_bug.cgi?id=91333#c8">comment #8</a>)
+<span class="quote">&gt; Apologies for jumping in on another bug report, however this sounds exactly
+&gt; like the problem I've been struggling with for years on my Lenovo T420s:
+&gt; 
+&gt; <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] Unable to start X on ThinkPad T420s laptop"
+   href="show_bug.cgi?id=56615">https://bugs.freedesktop.org/show_bug.cgi?id=56615</a>
+&gt; 
+&gt; I see the same symptoms in that the kernel &quot;hangs&quot; with an external
+&gt; DisplayPort connected in discrete mode when trying to use the internal LVDS
+&gt; with the external monitor. It seems the message I get in the kernel log is
+&gt; similar too:
+&gt; 
+&gt; nouveau E[   PDISP][0000:01:00.0] chid 1 mthd 0x0080 data 0x00000000
+&gt; 0x00005080 0x0000000</span >
+
+Yeah, it does seem similar.  However, in my case, a single external monitor
+along with the internal LVDS works fine.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436893218.3B8E1bbD1.18417--
+
+--===============2042508552==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2042508552==--
