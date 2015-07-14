@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
- W520 causes displays to go crazy
-Date: Tue, 14 Jul 2015 17:03:55 +0000
-Message-ID: <bug-91333-8800-TVQLcUj10o@http.bugs.freedesktop.org/>
-References: <bug-91333-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
+ under EXA.
+Date: Tue, 14 Jul 2015 21:00:16 +0200
+Message-ID: <55A55C40.4000207@gmail.com>
+References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>	<CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>	<CACvgo53NaCJ6r+1LdJEG78Zyi+SBfMu2y1Mkm2HCKUo7Co5zQw@mail.gmail.com>	<CAKb7Uvj-7AeG8EQ58cZZhF1O7HU=E_VkKO8wi7LpitoNBmCjGg@mail.gmail.com>	<CACvgo50R5kPGVAwDYTUSCkY-Cfh=HENFDT8OdT=nNKLG85=S9Q@mail.gmail.com>	<CAKb7UvhuYJxLk1zPQbdTgG_HQcbo0Zt_TnpHf7gD2apk+RYCdA@mail.gmail.com>	<55A48575.5060100@gmail.com>
+ <CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0664237473=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,96 +19,108 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0664237473==
-Content-Type: multipart/alternative; boundary="1436893434.358a02.19057"; charset="UTF-8"
-
-
---1436893434.358a02.19057
-Date: Tue, 14 Jul 2015 17:03:54 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91333
-
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A few people who have had these PDISP errors were due to gnome toggling cursor
-state when a CRTC had not been enabled, and nouveau not properly protecting
-against it. There was a (lost) patch that fixed it, unfortunately I don't
-remember where the place was. Ben should be able to come up with that patch
-fairly easily.
-
-However for the user in question, while the PDISP error dumps went away, the
-underlying problems remained. Just a thought.
-
-[As an aside, Corey, with reverse-prime you should also be able to get all 3
-screens up... see http://nouveau.freedesktop.org/wiki/Optimus/ . Of course
-nothing is perfect, this also introduces tons of problem for some people. But
-not others.]
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436893434.358a02.19057
-Date: Tue, 14 Jul 2015 17:03:54 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A few people who have had these PDISP errors were due to gnome toggling cursor
-state when a CRTC had not been enabled, and nouveau not properly protecting
-against it. There was a (lost) patch that fixed it, unfortunately I don't
-remember where the place was. Ben should be able to come up with that patch
-fairly easily.
-
-However for the user in question, while the PDISP error dumps went away, the
-underlying problems remained. Just a thought.
-
-[As an aside, Corey, with reverse-prime you should also be able to get all 3
-screens up... see <a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a> . Of course
-nothing is perfect, this also introduces tons of problem for some people. But
-not others.]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436893434.358a02.19057--
-
---===============0664237473==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0664237473==--
+T24gMDcvMTQvMjAxNSAwNToyNiBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBKdWwg
+MTMsIDIwMTUgYXQgMTE6NDMgUE0sIE1hcmlvIEtsZWluZXIKPiA8bWFyaW8ua2xlaW5lci5kZUBn
+bWFpbC5jb20+IHdyb3RlOgo+PiBPbiAwNy8wNy8yMDE1IDA5OjUxIFBNLCBJbGlhIE1pcmtpbiB3
+cm90ZToKPj4+Cj4+PiBMYXN0bHksIGZyb20gc29tZSBkaXNjdXNzaW9ucyB3aXRoIGFqYXggb24g
+SVJDLCBpdCBhcHBlYXJzIHRoYXQgRFJJMwo+Pj4gaXMgaGFsZi1iYWtlZCBhdCBiZXN0IHdydCBz
+eW5jIGJldHdlZW4gc2VydmVyIGFuZCBjbGllbnQuIEkgdGhpbmsgd2UKPj4+IHNob3VsZCBqdXN0
+IGRpc2FibGUgaXQgYnkgZGVmYXVsdCBmb3Igbm93LCB1bnRpbCBpc3N1ZXMgYXJlIGlyb25lZAo+
+Pj4gb3V0LiAoUmF0aGVyIHRoYW4gd2hhdCB0aGlzIHBhdGNoIGhhcywgd2hpY2ggaXMgZGVmYXVs
+dC1vbiBmb3IgWG9yZyA+Cj4+PiBzb21lIHZlcnNpb24uKQo+Pgo+Pgo+PiBXaGF0IGFyZSB0aGUg
+cmVtYWluaW5nIGtub3duIHRyb3VibGUgc3BvdHMgd3J0LiBzeW5jPyBJdCBzZWVtcyB0byB3b3Jr
+Cj4+IHByZXR0eSB3ZWxsIGF0IGxlYXN0IGZvciBzaW5nbGUgZ3B1ICsgdW5yZWRpcmVjdGVkIGZ1
+bGxzY3JlZW4gd2luZG93cyAoPT0KPj4ga21zIHBhZ2UgZmxpcHBpbmcgY2FuIGJlIHVzZWQgZm9y
+IFByZXNlbnRzLiBUaGF0J3MgdGhlIHVzZSBjYXNlIGkgdXN1YWxseQo+PiB0ZXN0IHZlcnkgb2Jz
+ZXNzaXZlbHksIGFzIGl0IG1hdHRlcnMgdmVyeSBtdWNoIGZvciBteSB0eXBlIG9mIGFwcGxpY2F0
+aW9ucywKPj4gYnV0IG90aGVyIHRoYW4gdGhhdCBpIG9ubHkgbGlnaHRseSAidGVzdCIgaXQgdmlh
+IHJlZ3VsYXIgZGVza3RvcCB1c2UsIHNvCj4+IG1heWJlIHRoYXQncyB3ZXJlIHByb2JsZW1zIHJl
+bWFpbj8KPgo+IEFkYW0gaXMgdGhlIG9uZSB3aG8gYWN0dWFsbHkgdW5kZXJzdGFuZHMgaXQuLi4g
+SSB3YXMganVzdCBhc2tpbmcKPiBxdWVzdGlvbnMgYW5kIHRoZSBhbnN3ZXIgd2FzICJ0aGF0J3Mg
+YnJva2VuIi4gQSB1c2VyIHdhcyB1c2luZyBEUkkzCj4gd2l0aCBFWEEgKG5vdXZlYXUgRERYKSwg
+YW5kIHdhcyBzZWVpbmcgcmVuZGVyIGZhaWwgaW4gdGhlIGZvcm0gb2YKPiBzdGFsZSB0aGluZ3Mg
+b24gdGhlIHNjcmVlbi4gVGhlIG5vdXZlYXUgRERYIGRvZXMgYSBsb3Qgb2YgImltcGxpY2l0Igo+
+IHN5bmMgc3R1ZmYuLi4gaXQganVzdCBlbWl0cyBjb21tYW5kcyBpbnRvIGEgcHVzaGJ1ZiB3aXRo
+b3V0IGtpY2tpbmcKPiBpdC4gSG93ZXZlciB0aGUgbGliZHJtIGNvZGUgaGFzIGNsZXZlcm5lc3Mg
+dG8ga2ljayBvdXQgYW55IHB1c2hidWZzIGlmCj4geW91IGRvIGEgbm91dmVhdV9ib193YWl0IGFu
+ZCB0aGF0IGJvIGhhcyBiZWVuIHJlZmVyZW5jZWQuCj4KPiBIT1dFVkVSIGlmIHlvdSBoYXZlIGEg
+cGl4bWFwIGFuZCB5b3Ugc2hhcmUgaXQgdXNpbmcgdGhlIGZkIHRoaW5nLCBhbmQKPiBhbm90aGVy
+IHByb2Nlc3MgbWFrZXMgYSAoc2hhcmVkKSBibyBvdXQgb2YgaXQsIGFuZCB0aGVuIGRvZXMgYQo+
+IG5vdXZlYXVfYm9fd2FpdCwgdGhhdCBpbiBubyB3YXkgd2lsbCBjYXVzZSB0aGUgRERYIHRvIGtp
+Y2sgaXRzCj4gcHVzaGJ1Zi4gQXBwYXJlbnRseSB0aGVyZSdzIHNvbWUgc29ydCBvZiBzeW5jIHRo
+aW5nIHRoYXQncyBzdXBwb3NlZCB0bwoKQWx0aG91Z2ggdGhlbiBpJ2QgZXhwZWN0IHRoZSBvdGhl
+ciBwcm9jZXNzIHRvIGhhbmcgaW4gbm91dmVhdV9ib193YWl0PyAKVGhlcmUgcHJvYmFibHkgaXNu
+J3QgYSBzcGVjaWZpYyBmZG8gYnVnIGZvciB0aGlzPwoKPiBoYXBwZW4sIGJ1dCB0aGF0J3MgZW50
+aXJlbHkgdW5pbXBsZW1lbnRlZCBmb3IgRFJJMy4gVW5mb3J0dW5hdGVseSBJCj4gY2FuJ3QgcHJv
+dmlkZSBtb3JlIGRldGFpbHMgdGhhbiB0aGF0LCBhcyBteSBrbm93bGVkZ2Ugb2YgWCBpbnRlcm5h
+bHMKPiBpcyBxdWl0ZSBsaW1pdGVkLiBTb21lIHNvcnQgb2YgRFJJIGRyYXdhYmxlIG9yIEdMWCBk
+cmF3YWJsZSBvciAuLi4KPiBzb21ldGhpbmcuCj4KPiBJIGhhdmUgbm8gcHJvb2YgdGhhdCB0aGlz
+IGlzIHRoZSBjYXVzZSBvZiB0aGUgaXNzdWUgdGhlIHVzZXIgd2FzCj4gc2VlaW5nLCBpbiBmYWN0
+IGl0J3MganVzdCBhcyBsaWtlbHkgdG8gYmUgc29tZXRoaW5nIGVsc2UuIEhvd2V2ZXIgdGhpcwo+
+IHNlZW1zIGxpa2UgYSBwcmV0dHkgc2lnbmlmaWNhbnQgaXNzdWUgdG8gbWUuCj4KCk9rLCB0aGFu
+a3MgZm9yIHRoZSBleHBsYW5hdGlvbi4gQnV0IHdvdWxkIHRoaXMgcHJvYmxlbSB0aGVuIGJlIGxp
+bWl0ZWQgCnRvIGV4YSArIG5vdXZlYXU/IGdsYW1vciB1c2VzIG9wZW5nbCBhbmQgdGhlcmVieSBt
+ZXNhJ3MgYW5kIGkgdGhpbmsgbWVzYSAKZ2V0cyBzeW5jIHJpZ2h0IGFmYWlrLCBhdCBsZWFzdCBp
+biB0aGUgZ2x4L2RyaTMgYmFja2VuZC4gRGlkbid0IGxvb2sgYXQgCmVnbCBiYWNrZW5kIHRob3Vn
+aC4gQXQgbGVhc3QgaSBkaWRuJ3Qgc2VlIGFueSBzdWNoIGNvcnJ1cHRpb24/CgpJJ2xsIGNoYW5n
+ZSB0aGUgcGF0Y2ggdG8gZGVmYXVsdCB0byBEUkkgMiB0aGVuIGZvciBleGEsIGFuZCBnbGFtb3Ig
+d2lsbCAKaWdub3JlIHRoZSBEUkkgcGFyYW1ldGVyIGFueXdheSBhbmQgc3RpY2sgdG8gRFJJMy4K
+Cj4+Cj4+IFdlIGNhbiBkaXNhYmxlIGl0IGJ5IGRlZmF1bHQgb24gZXhhIC0gaW50ZWwgYW5kIGFt
+ZC9yYWRlb24gZHJpdmVycyBhbHNvCj4+IGRpc2FibGUgYnkgZGVmYXVsdC4gSG93ZXZlciwgb24g
+Z3B1cyA+PSBtYXh3ZWxsIG9ubHkgZ2xhbW9yIGFjY2VsIGlzCj4+IHN1cHBvcnRlZCBhbmQgZ2xh
+bW9yIG9uIG5vdXZlYXUgaXMgZWl0aGVyIGRyaTMvcHJlc2VudCBvciBubyBodyBhY2NlbCBhdCBh
+bGwKPj4gYWZhaWNzLgo+Cj4gWW91IHByb2JhYmx5IHNhdyBteSBwYXRjaGVzIHRvIGp1c3QgcmVt
+b3ZlIGdsYW1vciBmcm9tIG5vdXZlYXUgOikgVGhhdAo+IGludGVncmF0aW9uIGRvZXNuJ3Qgc3Vw
+cG9ydCBEUkkyLCB3aGljaCBpbiB0dXJuIG1lYW5zIG5vIGNvcmUgY29udGV4dHMKPiAoZHVlIHRv
+IGxhY2sgb2YgR0xYX0FSQl9jcmVhdGVfY29udGV4dF9wcm9maWxlKSwgYW5kIGEgc2xldyBvZiBv
+dGhlcgo+IGlzc3Vlcy4gU2VlbWVkIGVhc2llciB0byBqdXN0IHRlbGwgcGVvcGxlIHRvIGdvIHVz
+ZSBtb2Rlc2V0dGluZywgd2hpY2gKPiBnZXRzIGFsbCBvZiB0aGVzZSB0aGluZ3MgcmlnaHQoZXIp
+Lgo+CgpIbSwgYSB0b3RhbCByZW1vdmFsIHdvdWxkIGF0IGxlYXN0IG1ha2UgbWUgYW5kIG15IHVz
+ZXJzIHJhdGhlciB1bmhhcHB5IAphdG0uLCBhcyB3aXRob3V0IGdsYW1vciBubyBodyBhY2NlbCBh
+dCBhbGwgb24gPj0gbWF4d2VsbC4gbW9kZXNldHRpbmcgCmFuZCBub3V2ZWF1IGFyZSBub3Qgb24g
+cGFyIGZlYXR1cmUtd2lzZSBhdG0uIEUuZy4sIG1vZGVzZXR0aW5nIGFzIG9mIHRoZSAKbmV4dCB4
+b3JnIDEuMTggc2VydmVyIG9ubHkgcHJvdmlkZXMgcGFnZWZsaXBwaW5nIHZpYSBkcmkzL3ByZXNl
+bnQgYW5kIAp3aXRob3V0IHBhZ2VmbGlwcGluZyBpdCBpcyBnYW1lIG92ZXIgZm9yIG1hbnkgb2Yg
+bXkgdXNlIGNhc2VzIG9uIApub3V2ZWF1LWttcy4gQWxzbyBtb2Rlc2V0dGluZyBjdXJyZW50bHkg
+Y29tcGxldGVseSBsYWNrcyBaYXBob2RIZWFkcyAKc3VwcG9ydC4gV2l0aG91dCBaYXBob2RIZWFk
+cyBpIGNhbid0IGhhdmUgYSBwYWdlLWZsaXBwZWQgZnVsbHNjcmVlbiAKd2luZG93IG9uIG9uZSBz
+dWJzZXQgb2Ygb3V0cHV0cyBhbmQgYSByZWd1bGFyIGRlc2t0b3Agb24gYW5vdGhlciBzdWJzZXQs
+IApzb21ldGhpbmcgdGhhdCBpcyBuZWVkZWQgZm9yIG5ldXJvc2NpZW5jZS9tZWRpY2FsL3ZyIGFw
+cGxpY2F0aW9ucy4KClNvIGknZCByYXRoZXIgbGlrZSB0byBwcmVzZXJ2ZSB0aGUgY2hvaWNlIG9m
+IGdsYW1vci4KCldoYXQgbWFrZXMgZ2xhbW9yICsgZHJpMiBkaWZmaWN1bHQgdG8gc3VwcG9ydCBp
+biBub3V2ZWF1IHZzLiBvdGhlciBkcml2ZXJzPwoKPj4KPj4gQnR3LiB0aGVyZSBhcmUgYWxzbyBh
+IGZldyBwYXRjaGVzIG1hZGUgYnkgQ2hyaXMgV2lsc29uIGZsb2F0aW5nIG9uIHRoZQo+PiBtYWls
+aW5nIGxpc3Qgc2luY2UgYXJvdW5kIGphbnVhcnksIHNvbWUgYXJlIHJldmlld2VkIGFuZCB0ZXN0
+ZWQgYnkgbXlzZWxmLAo+PiBidXQgbm90IGluY2x1ZGVkIGluIHhvcmcgbWFzdGVyLiBNaWdodCBi
+ZSBnb29kIGZvciBwZW9wbGUgdG8gaGF2ZSBhIGxvb2sgYXQKPj4gdGhlbSBhbmQgbWF5YmUgZ2V0
+IHRoZW0gaW50byB4b3JnIDEuMTg/Cj4KPiBJIHdvdWxkIG5vdCBvcHBvc2UgdGhlIHJldmlld2lu
+ZyBvZiBDaHJpcydzIHBhdGNoZXMgOykgSG93ZXZlciBJJ20gaW4KPiBubyBwb3NpdGlvbiB0byBl
+dmFsdWF0ZSB0aGVtIG15c2VsZi4KPgo+Pgo+Pj4KPj4+IE9uIFNhdCwgSnVsIDQsIDIwMTUgYXQg
+MzowMyBQTSwgRW1pbCBWZWxpa292IDxlbWlsLmwudmVsaWtvdkBnbWFpbC5jb20+Cj4+PiB3cm90
+ZToKPj4+Pgo+Pj4+IFRoZSBEUkkgb3B0aW9uIHdpdGggdGhlIGludGVsIGRkeCBjYW4gYmUgdXNl
+ZCB0byBpbmRpY2F0ZSB0aGUgZm9sbG93aW5nCj4+Pj4gICAgLSB3aGV0aGVyIGRyaSBpcyBkaXNh
+YmxlZAo+Pj4+ICAgIC0gdGhlIGRyaSAidmVyc2lvbiIgLSBkcmkxLCBkcmkyLCBkcmkzCj4+Pj4g
+ICAgLSB0aGUgZHJpIG1vZHVsZSBuYW1lIC0gZG9vX2RyaS5zbyBiYXJfZHJpLnNvCj4+Pj4KPj4+
+PiBJJ20gbm90IHN1cmUgaG93IGV4YWN0bHkgaXQncyBzdXBwb3NlZCB0byB3b3JrL3dvcmtzLCBh
+bmQgSSBiZWxpZXZlCj4+Pj4gbW9zdCBvZiB0aGF0IGlzIGR1ZSB0byBsZWdhY3kgcmVhc29ucy4g
+SSdtIGp1c3Qgc2F5aW5nIGxldCdzIG5vdCBkbwo+Pj4+IHRoZSB3aG9sZSB0aGluZyAtIGp1c3Qg
+dGhlIGRyaSAidmVyc2lvbiIgd291bGQgYmUgZ3JlYXQgKGFzIHlvdQo+Pj4+IHN1Z2dlc3RlZCku
+Cj4+Cj4+Cj4+IEkgY2FuIGNoYW5nZSB0aGF0IHRvIGFsbG93IHNlbGVjdGlvbiBiZXR3ZWVuICIy
+IiBhbmQgIjMiIC0gYXQgbGVhc3QgZm9yIGV4YSwKPj4gb24gZ2xhbW9yIHRoZSBwYXJhbWV0ZXIg
+IjIiIHdvdWxkIGVpdGhlciBuZWVkIHRvIGdldCBpZ25vcmVkIG9yIGl0IHdvdWxkCj4+IGNvbXBs
+ZXRlbHkgZGlzYWJsZSBodyBhY2NlbGVyYXRpb24uIEkgd2VudCBmb3IgY29uc2lzdGVuY3kgd2l0
+aCB0aGUgYXRpIGRkeAo+PiBiZWNhdXNlIGkgZm91bmQgdGhlIGludGVsIHZhcmlhbnQgdG9vIGNv
+bmZ1c2luZy4gSSB0aGluayBpdCBjaGFuZ2VkIG11bHRpcGxlCj4+IHRpbWVzIGR1cmluZyB0aGUg
+bGFzdCB5ZWFyLgo+Cj4gQmxlYXJnaC4gVGhlIGF0aSBkZHggb3B0aW9uIG5hbWUgaXMgbXVjaCBu
+ZXdlci4gSGFzIGl0IHNlZW4gYSByZWxlYXNlCj4geWV0PyBJdCdkIGJlIHJlYWxseSBuaWNlIHRv
+IGdldCBhbGwgdGhlIEREWCdzIHRvIGp1c3QgYWdyZWUgb24KPiBzb21ldGhpbmcsIGluc3RlYWQg
+b2YgaGF2aW5nIGRpZmZlcmVudC1idXQtc2ltaWxhciBvcHRpb25zIHdoaWNoCj4gY29uZnVzZSBl
+dmVyeW9uZS4KPgoKTm8gcmVsZWFzZSB0YWdnZWQgeWV0LCBzbyBvbmUgY291bGQgc3RpbGwgY2hh
+bmdlIGl0LgoKLW1hcmlvCgo+ICAgIC1pbGlhCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
