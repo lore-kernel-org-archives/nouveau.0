@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Wed, 15 Jul 2015 05:58:47 +0000
-Message-ID: <bug-90435-8800-7rdL37smOd@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
+ W520 causes displays to go crazy
+Date: Wed, 15 Jul 2015 06:32:57 +0000
+Message-ID: <bug-91333-8800-iHZmLrGCoy@http.bugs.freedesktop.org/>
+References: <bug-91333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1400408212=="
+Content-Type: multipart/mixed; boundary="===============1098726138=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1400408212==
-Content-Type: multipart/alternative; boundary="1436939927.2e380E2.30812"; charset="UTF-8"
+--===============1098726138==
+Content-Type: multipart/alternative; boundary="1436941977.c48E1.9737"; charset="UTF-8"
 
 
---1436939927.2e380E2.30812
-Date: Wed, 15 Jul 2015 05:58:47 +0000
+--1436941977.c48E1.9737
+Date: Wed, 15 Jul 2015 06:32:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
+https://bugs.freedesktop.org/show_bug.cgi?id=91333
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Since the issue at hand is interrupt delivery, has anyone tried doing
+--- Comment #14 from Corey Ashford <cjashfor-r/Jw6+rmf7HQT0dZR+AlfA@public.gmane.org> ---
+(In reply to Corey Ashford from comment #12)
+...
+> Tonight I will see if I can use just the integrated video (i915, I guess)
+> for both external displays.
 
-nouveau.config=NvMSI=0
+I tried using just the integrated driver, and it seems to only know about the
+LVDS display.  So that's out.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1436939927.2e380E2.30812
-Date: Wed, 15 Jul 2015 05:58:47 +0000
+--1436941977.c48E1.9737
+Date: Wed, 15 Jul 2015 06:32:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,17 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c16">Comment # 16</a>
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
+              from <span class="vcard"><a class="email" href="mailto:cjashfor&#64;us.ibm.com" title="Corey Ashford &lt;cjashfor&#64;us.ibm.com&gt;"> <span class="fn">Corey Ashford</span></a>
 </span></b>
-        <pre>Since the issue at hand is interrupt delivery, has anyone tried doing
+        <pre>(In reply to Corey Ashford from <a href="show_bug.cgi?id=91333#c12">comment #12</a>)
+...
+<span class="quote">&gt; Tonight I will see if I can use just the integrated video (i915, I guess)
+&gt; for both external displays.</span >
 
-nouveau.config=NvMSI=0</pre>
+I tried using just the integrated driver, and it seems to only know about the
+LVDS display.  So that's out.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +85,9 @@ nouveau.config=NvMSI=0</pre>
     </body>
 </html>
 
---1436939927.2e380E2.30812--
+--1436941977.c48E1.9737--
 
---===============1400408212==
+--===============1098726138==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1400408212==--
+--===============1098726138==--
