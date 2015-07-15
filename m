@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72315] Fedora 19 64-bit X crash
-Date: Wed, 15 Jul 2015 21:43:48 +0000
-Message-ID: <bug-72315-8800-ycscPItpya@http.bugs.freedesktop.org/>
-References: <bug-72315-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91354] New: [Quadro K610M] "xset dpms force on"
+ blinks the screen
+Date: Wed, 15 Jul 2015 23:34:23 +0000
+Message-ID: <bug-91354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0244261381=="
+Content-Type: multipart/mixed; boundary="===============0100635243=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,45 +19,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0244261381==
-Content-Type: multipart/alternative; boundary="1436996628.73FCbCcD2.21996"; charset="UTF-8"
+--===============0100635243==
+Content-Type: multipart/alternative; boundary="1437003263.2AEFB4a1.26242"; charset="UTF-8"
 
 
---1436996628.73FCbCcD2.21996
-Date: Wed, 15 Jul 2015 21:43:48 +0000
+--1437003263.2AEFB4a1.26242
+Date: Wed, 15 Jul 2015 23:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72315
+https://bugs.freedesktop.org/show_bug.cgi?id=91354
 
---- Comment #6 from Richac <cooloutac-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
-I had the same exact issue as Mario above me.  
+            Bug ID: 91354
+           Summary: [Quadro K610M] "xset dpms force on" blinks the screen
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-I was unable to wake my monitor from suspend,  I had set a shutdown -P +120
-timer.  so I just waited for the pc to shutoff,   the pc didn't crash.  Cause i
-could hear the podcast i was listening to in background, and the hdd light was
-blinking at its usual interval and the pc shut off at the time it was supposed
-to. 
+When "xset dpms force on" is executed, the screen blinks: it becomes black for
+a fraction of second (this may be visible on the whole screen or just at the
+bottom part).
 
-But I got repeatedly a couple dozen times:
-
-nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 4 [0x003f8b9000 compiz[2567]]
-nouveau E[  PGRAPH][0000:01:00.0] ROP0 0x80000000 0x80000001
-nouveau E[  PGRAPH][0000:01:00.0] ROP1 0x80000000 0x80000001
-
-and the log also ended with about 150,000 lines of these two errors repeating:
-
-nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 2 [Xorg[1505]] subc 0 mthd 0x001c
-data 0x00001004
-
-nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ACQUIRE
+This is particularly annoying because it is executed by VLC every 30 seconds
+via "xdg-screensaver reset" when playing videos.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1436996628.73FCbCcD2.21996
-Date: Wed, 15 Jul 2015 21:43:48 +0000
+--1437003263.2AEFB4a1.26242
+Date: Wed, 15 Jul 2015 23:34:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,39 +64,95 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [Quadro K610M] &quot;xset dpms force on&quot; blinks the screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91354">91354</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[Quadro K610M] &quot;xset dpms force on&quot; blinks the screen
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>vincent-fdt&#64;vinc17.net
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Fedora 19 64-bit X crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Fedora 19 64-bit X crash"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315">bug 72315</a>
-              from <span class="vcard"><a class="email" href="mailto:cooloutac&#64;yahoo.com" title="Richac &lt;cooloutac&#64;yahoo.com&gt;"> <span class="fn">Richac</span></a>
-</span></b>
-        <pre>I had the same exact issue as Mario above me.  
+        <pre>When &quot;xset dpms force on&quot; is executed, the screen blinks: it becomes black for
+a fraction of second (this may be visible on the whole screen or just at the
+bottom part).
 
-I was unable to wake my monitor from suspend,  I had set a shutdown -P +120
-timer.  so I just waited for the pc to shutoff,   the pc didn't crash.  Cause i
-could hear the podcast i was listening to in background, and the hdd light was
-blinking at its usual interval and the pc shut off at the time it was supposed
-to. 
-
-But I got repeatedly a couple dozen times:
-
-nouveau E[  PGRAPH][0000:01:00.0] TRAP ch 4 [0x003f8b9000 compiz[2567]]
-nouveau E[  PGRAPH][0000:01:00.0] ROP0 0x80000000 0x80000001
-nouveau E[  PGRAPH][0000:01:00.0] ROP1 0x80000000 0x80000001
-
-and the log also ended with about 150,000 lines of these two errors repeating:
-
-nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ch 2 [Xorg[1505]] subc 0 mthd 0x001c
-data 0x00001004
-
-nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ACQUIRE</pre>
+This is particularly annoying because it is executed by VLC every 30 seconds
+via &quot;xdg-screensaver reset&quot; when playing videos.</pre>
         </div>
       </p>
       <hr>
@@ -110,9 +164,9 @@ nouveau E[   PFIFO][0000:01:00.0] PBDMA0: ACQUIRE</pre>
     </body>
 </html>
 
---1436996628.73FCbCcD2.21996--
+--1437003263.2AEFB4a1.26242--
 
---===============0244261381==
+--===============0100635243==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -122,4 +176,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0244261381==--
+--===============0100635243==--
