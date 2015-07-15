@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
- W520 causes displays to go crazy
-Date: Wed, 15 Jul 2015 08:11:07 +0000
-Message-ID: <bug-91333-8800-J5LiNh0hfg@http.bugs.freedesktop.org/>
-References: <bug-91333-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] avoid build fail without COMPOSITE
+Date: Wed, 15 Jul 2015 14:12:26 +0100
+Message-ID: <CACvgo500K-66hEN0OKNioy7s-WaTRM81LvAqQyFmXxN5E1cqhA@mail.gmail.com>
+References: <1436908642-20721-1-git-send-email-imirkin@alum.mit.edu>
+ <CACvgo52=umZCKu-wk7nJovVMb-N7iy8JtSx5LcZpguGhPrPz5g@mail.gmail.com>
+ <CAKb7UvjPT3QE9mBHZr3GcKc_s_FdU53sjHLwaqrn=hOX8xK_eQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1157930456=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjPT3QE9mBHZr3GcKc_s_FdU53sjHLwaqrn=hOX8xK_eQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,104 +19,67 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1157930456==
-Content-Type: multipart/alternative; boundary="1436947867.dd7D41.5525"; charset="UTF-8"
-
-
---1436947867.dd7D41.5525
-Date: Wed, 15 Jul 2015 08:11:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91333
-
---- Comment #15 from Corey Ashford <cjashfor-r/Jw6+rmf7HQT0dZR+AlfA@public.gmane.org> ---
-(In reply to Corey Ashford from comment #13)
-> (In reply to Ben Skeggs from comment #11)
-> > Created attachment 117123 [details] [review] [review]
-> > potential fix for issue
-> > 
-> > Yeah, in both those logs it's definitely the "something is turning on the
-> > cursor without a mode set" issue.
-> > 
-> > Completely untested patch attached.
-> 
-> Ok, I will see if I can build the code with this patch.  Thanks :)
-
-Well, I was able to apply the patch to the kernel and build it, but after I
-installed the new kernel, and rebooted, I wasn't able to get past the luks disk
-decryption.  So I don't know what I did wrong, but in any case that kernel will
-not boot.  I'm sure it's not related to the patch; it's that I don't know how
-to correctly build the kernel.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1436947867.dd7D41.5525
-Date: Wed, 15 Jul 2015 08:11:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
-              from <span class="vcard"><a class="email" href="mailto:cjashfor&#64;us.ibm.com" title="Corey Ashford &lt;cjashfor&#64;us.ibm.com&gt;"> <span class="fn">Corey Ashford</span></a>
-</span></b>
-        <pre>(In reply to Corey Ashford from <a href="show_bug.cgi?id=91333#c13">comment #13</a>)
-<span class="quote">&gt; (In reply to Ben Skeggs from <a href="show_bug.cgi?id=91333#c11">comment #11</a>)
-&gt; &gt; Created <span class=""><a href="attachment.cgi?id=117123" name="attach_117123" title="potential fix for issue">attachment 117123</a> <a href="attachment.cgi?id=117123&amp;action=edit" title="potential fix for issue">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91333&amp;attachment=117123'>[review]</a> [review] [review]
-&gt; &gt; potential fix for issue
-&gt; &gt; 
-&gt; &gt; Yeah, in both those logs it's definitely the &quot;something is turning on the
-&gt; &gt; cursor without a mode set&quot; issue.
-&gt; &gt; 
-&gt; &gt; Completely untested patch attached.
-&gt; 
-&gt; Ok, I will see if I can build the code with this patch.  Thanks :)</span >
-
-Well, I was able to apply the patch to the kernel and build it, but after I
-installed the new kernel, and rebooted, I wasn't able to get past the luks disk
-decryption.  So I don't know what I did wrong, but in any case that kernel will
-not boot.  I'm sure it's not related to the patch; it's that I don't know how
-to correctly build the kernel.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1436947867.dd7D41.5525--
-
---===============1157930456==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1157930456==--
+VXBvbiBjbG9zZXIgbG9vayBpdCBzZWVtIHRoYXQgSSB3YXMgYSBiaXQgb2ZmIC0gdGhlIGF0aS9p
+bnRlbCBkZHggZG9lcwpub3Qgc2V0IG9mZl94L3kgdG8gemVybyB3aGVuIGJ1aWx0IHdpdGhvdXQg
+Y29tcG9zaXRlKi4KCi4uLiBpbiBjb3B5X3JlZ2lvbjIsIHRoZXkgZG8gc28gd2hlbiB3b3JraW5n
+IHdpdGggdmlkZW8gLQpYdkFkYXB0b3JQdHI6OmRkUHV0SW1hZ2UvWEY4NlZpZGVvQWRhcHRvclB0
+cjo6UHV0SW1hZ2UuCgpEb2VzIHRoaXMgbWVhbiB0aGF0IHRoZXkgbmVlZCBhIHNpbWlsYXIgdXBk
+YXRlID8gV2hhdCBhcmUgdGhlIHN5bXB0b21zCm9mIHRoZSBpc3N1ZSA/CgpUaGFua3MKRW1pbAoK
+T24gMTQgSnVseSAyMDE1IGF0IDIzOjUxLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
+ZHU+IHdyb3RlOgo+IFdlbGwsIEkgZG9uJ3QgcHJldGVuZCB0byBrbm93IGFueXRoaW5nIGFib3V0
+IFgsIGJ1dCB0aGlzIGlzIHRoZSBjb21taXQKPiB0aGF0IGFkZGVkIHRoZSBjb2RlIGluIHF1ZXN0
+aW9uOgo+Cj4gY29tbWl0IDI5N2ZkMGQwNzU1YmRhNjk4YmUxZDBiMzBjYzYwYTQxZDc2NzNjMGIK
+PiBBdXRob3I6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+Cj4gRGF0ZTogICBUdWUg
+T2N0IDE2IDE2OjE1OjE2IDIwMTIgKzEwMDAKPgo+ICAgICBub3V2ZWF1L2RyaTI6IGZpeCBwaXht
+YXAvd2luZG93IG9mZnNldCBjYWxjcy4KPgo+ICAgICBUaGlzIHNob3VsZCBmaXggcHJpbWUgcmVu
+ZGVyaW5nIHVuZGVyIGt3aW4sIGFuZCBub3QgYnJlYWsgaXQgdW5kZXIgdGhlCj4gICAgIG90aGVy
+cy4KPgo+ICAgICBTaWduZWQtb2ZmLWJ5OiBEYXZlIEFpcmxpZSA8YWlybGllZEByZWRoYXQuY29t
+Pgo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2RyaTIuYyBiL3NyYy9ub3V2ZWF1X2RyaTIu
+Ywo+IGluZGV4IDcxY2ZmMjYuLjdiZDBiM2EgMTAwNjQ0Cj4gLS0tIGEvc3JjL25vdXZlYXVfZHJp
+Mi5jCj4gKysrIGIvc3JjL25vdXZlYXVfZHJpMi5jCj4gQEAgLTE2NSw5ICsxNjUsOSBAQCBub3V2
+ZWF1X2RyaTJfY29weV9yZWdpb24yKFNjcmVlblB0ciBwU2NyZWVuLAo+IERyYXdhYmxlUHRyIHBE
+cmF3LCBSZWdpb25QdHIgcFJlZ2lvCj4gICAgICAgICAgICAgICAgIHRyYW5zbGF0ZSA9IFRSVUU7
+Cj4KPiAgICAgICAgIGlmICh0cmFuc2xhdGUgJiYgcERyYXctPnR5cGUgPT0gRFJBV0FCTEVfV0lO
+RE9XKSB7Cj4gLSAgICAgICAgICAgICAgIFdpbmRvd1B0ciBwV2luID0gKFdpbmRvd1B0cilwRHJh
+dzsKPiAtICAgICAgICAgICAgICAgb2ZmX3ggPSBwV2luLT5vcmlnaW4ueDsKPiAtICAgICAgICAg
+ICAgICAgb2ZmX3kgPSBwV2luLT5vcmlnaW4ueTsKPiArICAgICAgICAgICAgICAgUGl4bWFwUHRy
+IHBQaXggPSBnZXRfZHJhd2FibGVfcGl4bWFwKHBEcmF3KTsKPiArICAgICAgICAgICAgICAgb2Zm
+X3ggPSBwRHJhdy0+eCAtIHBQaXgtPnNjcmVlbl94Owo+ICsgICAgICAgICAgICAgICBvZmZfeSA9
+IHBEcmF3LT55IC0gcFBpeC0+c2NyZWVuX3k7Cj4gICAgICAgICB9Cj4KPiAgICAgICAgIHBHQyA9
+IEdldFNjcmF0Y2hHQyhwRHJhdy0+ZGVwdGgsIHBTY3JlZW4pOwo+Cj4KPiBOb3cgSSBzb3J0IG9m
+IGFzc3VtZSB0aGF0IHBEcmF3LT54ID09IHBXaW4tPm9yaWdpbi54LiBCdXQuLi4gd2hvIGtub3dz
+Lgo+Cj4gICAtaWxpYQo+Cj4KPiBPbiBUdWUsIEp1bCAxNCwgMjAxNSBhdCA1OjQ2IFBNLCBFbWls
+IFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIDE0IEp1bHkg
+MjAxNSBhdCAyMjoxNywgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToK
+Pj4+IC0tLQo+Pj4gIHNyYy9ub3V2ZWF1X2RyaTIuYyB8IDE1ICsrKysrKysrKystLS0tLQo+Pj4g
+IDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQo+Pj4KPj4+
+IGRpZmYgLS1naXQgYS9zcmMvbm91dmVhdV9kcmkyLmMgYi9zcmMvbm91dmVhdV9kcmkyLmMKPj4+
+IGluZGV4IGYyMmUzMTkuLjQzOTg1NTkgMTAwNjQ0Cj4+PiAtLS0gYS9zcmMvbm91dmVhdV9kcmky
+LmMKPj4+ICsrKyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwo+Pj4gQEAgLTE0Miw2ICsxNDIsNyBAQCBu
+b3V2ZWF1X2RyaTJfY29weV9yZWdpb24yKFNjcmVlblB0ciBwU2NyZWVuLCBEcmF3YWJsZVB0ciBw
+RHJhdywgUmVnaW9uUHRyIHBSZWdpbwo+Pj4gICAgICAgICBOVlB0ciBwTnYgPSBOVlBUUih4Zjg2
+U2NyZWVuVG9TY3JuKHBTY3JlZW4pKTsKPj4+ICAgICAgICAgUmVnaW9uUHRyIHBDb3B5Q2xpcDsK
+Pj4+ICAgICAgICAgR0NQdHIgcEdDOwo+Pj4gKyAgICAgICBQaXhtYXBQdHIgcFBpeDsKPj4+ICAg
+ICAgICAgRHJhd2FibGVQdHIgc3JjX2RyYXcsIGRzdF9kcmF3Owo+Pj4gICAgICAgICBCb29sIHRy
+YW5zbGF0ZSA9IEZBTFNFOwo+Pj4gICAgICAgICBpbnQgb2ZmX3ggPSAwLCBvZmZfeSA9IDA7Cj4+
+PiBAQCAtMTcwLDkgKzE3MSwxMyBAQCBub3V2ZWF1X2RyaTJfY29weV9yZWdpb24yKFNjcmVlblB0
+ciBwU2NyZWVuLCBEcmF3YWJsZVB0ciBwRHJhdywgUmVnaW9uUHRyIHBSZWdpbwo+Pj4gICAgICAg
+ICB9Cj4+Pgo+Pj4gICAgICAgICBpZiAodHJhbnNsYXRlICYmIHBEcmF3LT50eXBlID09IERSQVdB
+QkxFX1dJTkRPVykgewo+Pj4gLSAgICAgICAgICAgICAgIFBpeG1hcFB0ciBwUGl4ID0gZ2V0X2Ry
+YXdhYmxlX3BpeG1hcChwRHJhdyk7Cj4+PiAtICAgICAgICAgICAgICAgb2ZmX3ggPSBwRHJhdy0+
+eCAtIHBQaXgtPnNjcmVlbl94Owo+Pj4gLSAgICAgICAgICAgICAgIG9mZl95ID0gcERyYXctPnkg
+LSBwUGl4LT5zY3JlZW5feTsKPj4+ICsgICAgICAgICAgICAgICBvZmZfeCA9IHBEcmF3LT54Owo+
+Pj4gKyAgICAgICAgICAgICAgIG9mZl95ID0gcERyYXctPnk7Cj4+PiArI2lmZGVmIENPTVBPU0lU
+RQo+Pj4gKyAgICAgICAgICAgICAgIHBQaXggPSBnZXRfZHJhd2FibGVfcGl4bWFwKHBEcmF3KTsK
+Pj4+ICsgICAgICAgICAgICAgICBvZmZfeCAtPSBwUGl4LT5zY3JlZW5feDsKPj4+ICsgICAgICAg
+ICAgICAgICBvZmZfeSAtPSBwUGl4LT5zY3JlZW5feTsKPj4+ICsjZW5kaWYKPj4gSWYgSSB1bmRl
+cnN0YW5kIHRoaW5ncyBjb3JyZWN0bHkgYm90aCBhdGkgYW5kIHRoZSBpbnRlbCBkZHggc2VlbXMg
+c2V0Cj4+IHRoZSBvZmZzZXRzIHRvIHplcm8gd2hlbiBjb21wb3NpdGUgaXMgbWlzc2luZy4KPj4g
+SSBkb3VidCB0aGF0IG1hbnkgcGVvcGxlIGJ1aWxkIHhzZXJ2ZXIgd2l0aG91dCBpdCB0aG91Z2gg
+Oi0pCj4+Cj4+IC1FbWlsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
