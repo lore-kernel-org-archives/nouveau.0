@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH] avoid build fail without COMPOSITE
-Date: Tue, 14 Jul 2015 18:51:21 -0400
-Message-ID: <CAKb7UvjPT3QE9mBHZr3GcKc_s_FdU53sjHLwaqrn=hOX8xK_eQ@mail.gmail.com>
-References: <1436908642-20721-1-git-send-email-imirkin@alum.mit.edu>
- <CACvgo52=umZCKu-wk7nJovVMb-N7iy8JtSx5LcZpguGhPrPz5g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
+ W520 causes displays to go crazy
+Date: Wed, 15 Jul 2015 00:44:56 +0000
+Message-ID: <bug-91333-8800-VjPDFuTNVX@http.bugs.freedesktop.org/>
+References: <bug-91333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1844400954=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo52=umZCKu-wk7nJovVMb-N7iy8JtSx5LcZpguGhPrPz5g-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,58 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2VsbCwgSSBkb24ndCBwcmV0ZW5kIHRvIGtub3cgYW55dGhpbmcgYWJvdXQgWCwgYnV0IHRoaXMg
-aXMgdGhlIGNvbW1pdAp0aGF0IGFkZGVkIHRoZSBjb2RlIGluIHF1ZXN0aW9uOgoKY29tbWl0IDI5
-N2ZkMGQwNzU1YmRhNjk4YmUxZDBiMzBjYzYwYTQxZDc2NzNjMGIKQXV0aG9yOiBEYXZlIEFpcmxp
-ZSA8YWlybGllZEByZWRoYXQuY29tPgpEYXRlOiAgIFR1ZSBPY3QgMTYgMTY6MTU6MTYgMjAxMiAr
-MTAwMAoKICAgIG5vdXZlYXUvZHJpMjogZml4IHBpeG1hcC93aW5kb3cgb2Zmc2V0IGNhbGNzLgoK
-ICAgIFRoaXMgc2hvdWxkIGZpeCBwcmltZSByZW5kZXJpbmcgdW5kZXIga3dpbiwgYW5kIG5vdCBi
-cmVhayBpdCB1bmRlciB0aGUKICAgIG90aGVycy4KCiAgICBTaWduZWQtb2ZmLWJ5OiBEYXZlIEFp
-cmxpZSA8YWlybGllZEByZWRoYXQuY29tPgoKZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2RyaTIu
-YyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwppbmRleCA3MWNmZjI2Li43YmQwYjNhIDEwMDY0NAotLS0g
-YS9zcmMvbm91dmVhdV9kcmkyLmMKKysrIGIvc3JjL25vdXZlYXVfZHJpMi5jCkBAIC0xNjUsOSAr
-MTY1LDkgQEAgbm91dmVhdV9kcmkyX2NvcHlfcmVnaW9uMihTY3JlZW5QdHIgcFNjcmVlbiwKRHJh
-d2FibGVQdHIgcERyYXcsIFJlZ2lvblB0ciBwUmVnaW8KICAgICAgICAgICAgICAgIHRyYW5zbGF0
-ZSA9IFRSVUU7CgogICAgICAgIGlmICh0cmFuc2xhdGUgJiYgcERyYXctPnR5cGUgPT0gRFJBV0FC
-TEVfV0lORE9XKSB7Ci0gICAgICAgICAgICAgICBXaW5kb3dQdHIgcFdpbiA9IChXaW5kb3dQdHIp
-cERyYXc7Ci0gICAgICAgICAgICAgICBvZmZfeCA9IHBXaW4tPm9yaWdpbi54OwotICAgICAgICAg
-ICAgICAgb2ZmX3kgPSBwV2luLT5vcmlnaW4ueTsKKyAgICAgICAgICAgICAgIFBpeG1hcFB0ciBw
-UGl4ID0gZ2V0X2RyYXdhYmxlX3BpeG1hcChwRHJhdyk7CisgICAgICAgICAgICAgICBvZmZfeCA9
-IHBEcmF3LT54IC0gcFBpeC0+c2NyZWVuX3g7CisgICAgICAgICAgICAgICBvZmZfeSA9IHBEcmF3
-LT55IC0gcFBpeC0+c2NyZWVuX3k7CiAgICAgICAgfQoKICAgICAgICBwR0MgPSBHZXRTY3JhdGNo
-R0MocERyYXctPmRlcHRoLCBwU2NyZWVuKTsKCgpOb3cgSSBzb3J0IG9mIGFzc3VtZSB0aGF0IHBE
-cmF3LT54ID09IHBXaW4tPm9yaWdpbi54LiBCdXQuLi4gd2hvIGtub3dzLgoKICAtaWxpYQoKCk9u
-IFR1ZSwgSnVsIDE0LCAyMDE1IGF0IDU6NDYgUE0sIEVtaWwgVmVsaWtvdiA8ZW1pbC5sLnZlbGlr
-b3ZAZ21haWwuY29tPiB3cm90ZToKPiBPbiAxNCBKdWx5IDIwMTUgYXQgMjI6MTcsIElsaWEgTWly
-a2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IC0tLQo+PiAgc3JjL25vdXZlYXVf
-ZHJpMi5jIHwgMTUgKysrKysrKysrKy0tLS0tCj4+ICAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0
-aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2Ry
-aTIuYyBiL3NyYy9ub3V2ZWF1X2RyaTIuYwo+PiBpbmRleCBmMjJlMzE5Li40Mzk4NTU5IDEwMDY0
-NAo+PiAtLS0gYS9zcmMvbm91dmVhdV9kcmkyLmMKPj4gKysrIGIvc3JjL25vdXZlYXVfZHJpMi5j
-Cj4+IEBAIC0xNDIsNiArMTQyLDcgQEAgbm91dmVhdV9kcmkyX2NvcHlfcmVnaW9uMihTY3JlZW5Q
-dHIgcFNjcmVlbiwgRHJhd2FibGVQdHIgcERyYXcsIFJlZ2lvblB0ciBwUmVnaW8KPj4gICAgICAg
-ICBOVlB0ciBwTnYgPSBOVlBUUih4Zjg2U2NyZWVuVG9TY3JuKHBTY3JlZW4pKTsKPj4gICAgICAg
-ICBSZWdpb25QdHIgcENvcHlDbGlwOwo+PiAgICAgICAgIEdDUHRyIHBHQzsKPj4gKyAgICAgICBQ
-aXhtYXBQdHIgcFBpeDsKPj4gICAgICAgICBEcmF3YWJsZVB0ciBzcmNfZHJhdywgZHN0X2RyYXc7
-Cj4+ICAgICAgICAgQm9vbCB0cmFuc2xhdGUgPSBGQUxTRTsKPj4gICAgICAgICBpbnQgb2ZmX3gg
-PSAwLCBvZmZfeSA9IDA7Cj4+IEBAIC0xNzAsOSArMTcxLDEzIEBAIG5vdXZlYXVfZHJpMl9jb3B5
-X3JlZ2lvbjIoU2NyZWVuUHRyIHBTY3JlZW4sIERyYXdhYmxlUHRyIHBEcmF3LCBSZWdpb25QdHIg
-cFJlZ2lvCj4+ICAgICAgICAgfQo+Pgo+PiAgICAgICAgIGlmICh0cmFuc2xhdGUgJiYgcERyYXct
-PnR5cGUgPT0gRFJBV0FCTEVfV0lORE9XKSB7Cj4+IC0gICAgICAgICAgICAgICBQaXhtYXBQdHIg
-cFBpeCA9IGdldF9kcmF3YWJsZV9waXhtYXAocERyYXcpOwo+PiAtICAgICAgICAgICAgICAgb2Zm
-X3ggPSBwRHJhdy0+eCAtIHBQaXgtPnNjcmVlbl94Owo+PiAtICAgICAgICAgICAgICAgb2ZmX3kg
-PSBwRHJhdy0+eSAtIHBQaXgtPnNjcmVlbl95Owo+PiArICAgICAgICAgICAgICAgb2ZmX3ggPSBw
-RHJhdy0+eDsKPj4gKyAgICAgICAgICAgICAgIG9mZl95ID0gcERyYXctPnk7Cj4+ICsjaWZkZWYg
-Q09NUE9TSVRFCj4+ICsgICAgICAgICAgICAgICBwUGl4ID0gZ2V0X2RyYXdhYmxlX3BpeG1hcChw
-RHJhdyk7Cj4+ICsgICAgICAgICAgICAgICBvZmZfeCAtPSBwUGl4LT5zY3JlZW5feDsKPj4gKyAg
-ICAgICAgICAgICAgIG9mZl95IC09IHBQaXgtPnNjcmVlbl95Owo+PiArI2VuZGlmCj4gSWYgSSB1
-bmRlcnN0YW5kIHRoaW5ncyBjb3JyZWN0bHkgYm90aCBhdGkgYW5kIHRoZSBpbnRlbCBkZHggc2Vl
-bXMgc2V0Cj4gdGhlIG9mZnNldHMgdG8gemVybyB3aGVuIGNvbXBvc2l0ZSBpcyBtaXNzaW5nLgo+
-IEkgZG91YnQgdGhhdCBtYW55IHBlb3BsZSBidWlsZCB4c2VydmVyIHdpdGhvdXQgaXQgdGhvdWdo
-IDotKQo+Cj4gLUVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1844400954==
+Content-Type: multipart/alternative; boundary="1436921096.404CA62.7658"; charset="UTF-8"
+
+
+--1436921096.404CA62.7658
+Date: Wed, 15 Jul 2015 00:44:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91333
+
+--- Comment #11 from Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117123
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117123&action=edit
+potential fix for issue
+
+Yeah, in both those logs it's definitely the "something is turning on the
+cursor without a mode set" issue.
+
+Completely untested patch attached.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1436921096.404CA62.7658
+Date: Wed, 15 Jul 2015 00:44:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
+              from <span class="vcard"><a class="email" href="mailto:skeggsb&#64;gmail.com" title="Ben Skeggs &lt;skeggsb&#64;gmail.com&gt;"> <span class="fn">Ben Skeggs</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117123" name="attach_117123" title="potential fix for issue">attachment 117123</a> <a href="attachment.cgi?id=117123&amp;action=edit" title="potential fix for issue">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91333&amp;attachment=117123'>[review]</a>
+potential fix for issue
+
+Yeah, in both those logs it's definitely the &quot;something is turning on the
+cursor without a mode set&quot; issue.
+
+Completely untested patch attached.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1436921096.404CA62.7658--
+
+--===============1844400954==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1844400954==--
