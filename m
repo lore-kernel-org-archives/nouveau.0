@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91333] Connecting second of two monitors to a Lenovo
  W520 causes displays to go crazy
-Date: Wed, 15 Jul 2015 02:00:26 +0000
-Message-ID: <bug-91333-8800-uFTKaFUkNF@http.bugs.freedesktop.org/>
+Date: Wed, 15 Jul 2015 02:00:57 +0000
+Message-ID: <bug-91333-8800-VRRGwzVMer@http.bugs.freedesktop.org/>
 References: <bug-91333-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0604578596=="
+Content-Type: multipart/mixed; boundary="===============1003064191=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91333-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,37 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0604578596==
-Content-Type: multipart/alternative; boundary="1436925625.7dcD0111.30682"; charset="UTF-8"
+--===============1003064191==
+Content-Type: multipart/alternative; boundary="1436925657.bA7Ba51.30890"; charset="UTF-8"
 
 
---1436925625.7dcD0111.30682
-Date: Wed, 15 Jul 2015 02:00:25 +0000
+--1436925657.bA7Ba51.30890
+Date: Wed, 15 Jul 2015 02:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91333
 
---- Comment #12 from Corey Ashford <cjashfor-r/Jw6+rmf7HQT0dZR+AlfA@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #10)
-> [As an aside, Corey, with reverse-prime you should also be able to get all 3
-> screens up... see http://nouveau.freedesktop.org/wiki/Optimus/ . Of course
-> nothing is perfect, this also introduces tons of problem for some people.
-> But not others.]
+--- Comment #13 from Corey Ashford <cjashfor-r/Jw6+rmf7HQT0dZR+AlfA@public.gmane.org> ---
+(In reply to Ben Skeggs from comment #11)
+> Created attachment 117123 [details] [review]
+> potential fix for issue
+> 
+> Yeah, in both those logs it's definitely the "something is turning on the
+> cursor without a mode set" issue.
+> 
+> Completely untested patch attached.
 
-My thought was if I cannot get this "simpler" mode to work without any fancy
-stuff happening, I stand little chance of getting the Optimus stuff working. 
-That said, thanks for the suggestion :)
-
-Tonight I will see if I can use just the integrated video (i915, I guess) for
-both external displays.
+Ok, I will see if I can build the code with this patch.  Thanks :)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1436925625.7dcD0111.30682
-Date: Wed, 15 Jul 2015 02:00:25 +0000
+--1436925657.bA7Ba51.30890
+Date: Wed, 15 Jul 2015 02:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,25 +63,23 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91333#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91333">bug 91333</a>
               from <span class="vcard"><a class="email" href="mailto:cjashfor&#64;us.ibm.com" title="Corey Ashford &lt;cjashfor&#64;us.ibm.com&gt;"> <span class="fn">Corey Ashford</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91333#c10">comment #10</a>)
-<span class="quote">&gt; [As an aside, Corey, with reverse-prime you should also be able to get all 3
-&gt; screens up... see <a href="http://nouveau.freedesktop.org/wiki/Optimus/">http://nouveau.freedesktop.org/wiki/Optimus/</a> . Of course
-&gt; nothing is perfect, this also introduces tons of problem for some people.
-&gt; But not others.]</span >
+        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=91333#c11">comment #11</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=117123" name="attach_117123" title="potential fix for issue">attachment 117123</a> <a href="attachment.cgi?id=117123&amp;action=edit" title="potential fix for issue">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91333&amp;attachment=117123'>[review]</a> [review]
+&gt; potential fix for issue
+&gt; 
+&gt; Yeah, in both those logs it's definitely the &quot;something is turning on the
+&gt; cursor without a mode set&quot; issue.
+&gt; 
+&gt; Completely untested patch attached.</span >
 
-My thought was if I cannot get this &quot;simpler&quot; mode to work without any fancy
-stuff happening, I stand little chance of getting the Optimus stuff working. 
-That said, thanks for the suggestion :)
-
-Tonight I will see if I can use just the integrated video (i915, I guess) for
-both external displays.</pre>
+Ok, I will see if I can build the code with this patch.  Thanks :)</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +91,9 @@ both external displays.</pre>
     </body>
 </html>
 
---1436925625.7dcD0111.30682--
+--1436925657.bA7Ba51.30890--
 
---===============0604578596==
+--===============1003064191==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0604578596==--
+--===============1003064191==--
