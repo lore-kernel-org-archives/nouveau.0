@@ -1,103 +1,112 @@
-From: Alexandre Courbot <gnurou@gmail.com>
-Subject: Re: [Nouveau] CUDA fixed VA allocations and sparse mappings
-Date: Thu, 16 Jul 2015 15:34:01 +0900
-Message-ID: <CAAVeFuJn-Fr7-Y7yYf1JiE63woCFepJ_+_Zspz92h=vvHUXKEA@mail.gmail.com>
-References: <CAOnawYo=EFk6KhmudKWi3r-z_J4AHjswTrZSfyp_qZfdmQc=tw@mail.gmail.com>
- <CAKb7UvhOM+65x80HPAcdTsQB4KsPA780cKg8_30vOy5qWFZt4w@mail.gmail.com>
- <20150708001559.GA30347@achew-linux64.nvidia.com>
- <CACAvsv5q5yJUmjPgJtxnv1dU--UzD1veePkJzvqjRyNtx=EEbw@mail.gmail.com>
- <20150708003153.GA30426@achew-linux64.nvidia.com>
- <CACAvsv5DtA2WsBQkNWnxZMsonbHsvJ-oKA+frVd-btZXfgiAyw@mail.gmail.com>
- <20150708004735.GA30570@achew-linux64.nvidia.com>
- <CACAvsv56doVLnMJKCfQyrPj-ijsW7yuAMv53kR0OKxJ0LKM5iQ@mail.gmail.com>
- <20150708194004.GA8122@gmail.com>
- <20150708211801.GA27080@achew-linux64.nvidia.com>
- <20150713184512.GA19358@achew-linux64.nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Thu, 16 Jul 2015 13:41:36 +0000
+Message-ID: <bug-70354-8800-6S44cAgy4q@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <20150713184512.GA19358@achew-linux64.nvidia.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Andrew Chew <achew@nvidia.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============2052516936=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBKdWwgMTQsIDIwMTUgYXQgMzo0NSBBTSwgQW5kcmV3IENoZXcgPGFjaGV3QG52aWRp
-YS5jb20+IHdyb3RlOgo+IEkgYXBvbG9naXplIGZvciBteSBpZ25vcmFuY2UuICBJbiBkaWdnaW5n
-IHRocm91Z2ggbm91dmVhdSwgSSd2ZSBiZWNvbWUKPiBhIGJpdCBjb25mdXNlZCByZWdhcmRpbmcg
-dGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIHZpcnR1YWwgYWRkcmVzcwo+IGFsbG9jYXRpb25zIGFu
-ZCBub3V2ZWF1IGJvJ3MuCj4KPiBGcm9tIG15IHJlYWRpbmcgb2YgdGhlIGNvZGUsIGl0IHNlZW1z
-IHRoYXQgYSBub3V2ZWF1X2JvIHJlYWxseQo+IGVuY2Fwc3VsYXRlcyBhIGJ1ZmZlciAod2hldGhl
-ciBpbXBvcnRlZCwgb3IgYWxsb2NhdGVkIHdpdGhpbiBub3V2ZWF1IGxpa2UsCj4gc2F5LCBwdXNo
-YnVmZmVycykuICBTbyBJJ20gY29uZnVzZWQgYWJvdXQgYW4gZWFybGllciBzdGF0ZW1lbnQgdGhh
-dCB0bwo+IGFsbG9jYXRlIGEgY2h1bmsgb2YgYWRkcmVzcyBzcGFjZSwgSSBoYXZlIHRvIGNyZWF0
-ZSBhIG5vdXZlYXVfYm8gZm9yIGl0LgoKSXQgaXMgdGhlIGNhc2UgcmlnaHQgbm93IGJlY2F1c2Ug
-dGhlcmUgaXMgbm8gbWVhbiBmb3IgdXNlci1zcGFjZSB0bwptYW5pcHVsYXRlIHRoZSBHUFUgYWRk
-cmVzcyBzcGFjZSB3aXRob3V0IGhhdmluZyBhIG5vdXZlYXVfYm8uIFNvIGJvdGgKYXJlIGNsb3Nl
-bHkgcmVsYXRlZC4gQnV0IGlmIHlvdSBpbXBsZW1lbnQgdGhlIGFkZHJlc3Mgc3BhY2UKcmVzZXJ2
-YXRpb24gaW9jdGwsIGEgbm91dmVhdV9ibyB3aWxsIG5vdCBiZSByZXF1aXJlZCB1bnRpbCB5b3Ug
-d2FudCB0bwpiYWNrIHRoYXQgc3BhY2Ugd2l0aCBhY3R1YWwgbWVtb3J5LgoKPiBXaGF0IEkgcmVh
-bGx5IHdhbnQgdG8gZG8gaXMgcmVzZXJ2ZSBzb21lIHNwYWNlIGluIHRoZSBhZGRyZXNzIGFsbG9j
-YXRvcgo+ICh0aGUgc3R1ZmYgaW4gbnZrbS9zdWJkZXYvbW11L2Jhc2UuYykuICBOb3RlIHRoYXQg
-dGhlcmUgYXJlIG5vIGJ1ZmZlcnMKPiBhdCB0aGlzIHRpbWUuICBUaGlzIGlzIGp1c3QgYmxvY2tp
-bmcgb3V0IHNvbWUgY2h1bmsgb2YgdGhlIGFkZHJlc3Mgc3BhY2UKPiBzbyB0aGF0IG5vcm1hbCBh
-ZGRyZXNzIHNwYWNlIGFsbG9jYXRpb25zIChmb3IsIHNheSwgYm8ncykgYXZvaWQgdGhpcyByZWdp
-b24uCj4KPiBBdCBzb21lIHBvaW50IGFmdGVyIHRoYXQsIEknZCBsaWtlIHRvIGltcG9ydCBhIGJ1
-ZmZlciwgYW5kIG1hcCBpdCB0bwo+IGNlcnRhaW4gcmVnaW9ucyBvZiBteSBwcmUtYWxsb2NhdGVk
-IGFkZHJlc3Mgc3BhY2UuICBUaGlzIGlzIHdoeSBJIGNhbid0Cj4gZ28gdGhyb3VnaCB0aGUgbm9y
-bWFsIHBhdGggb2YgaW1wb3J0aW5nIGEgYnVmZmVyLi4udGhhdCBwYXRoIGFzc3VtZXMgdGhlcmUK
-PiBpcyBubyBhZGRyZXNzIGZvciB0aGlzIGJ1ZmZlciwgYW5kIHRyaWVzIHRvIGFsbG9jYXRlIG9u
-ZS4gIEluIG91ciBjYXNlLAo+IHdlIGFscmVhZHkgaGF2ZSBhbiBhZGRyZXNzIGluIG1pbmQuICBO
-YWl2ZWx5LCBhdCB0aGlzIHBvaW50LCBJJ2QgbGlrZSB0bwo+IGNyZWF0ZSBhIG5vdXZlYXVfYm8g
-Zm9yIHRoaXMgaW1wb3J0ZWQgYnVmZmVyLCBidXQgbm90IGhhdmUgaXQgZ28gdGhyb3VnaAo+IHRo
-ZSBhZGRyZXNzIGFsbG9jYXRvciBhbmQgaW5zdGVhZCBqdXN0IHRha2UgYSBmaXhlZCBhZGRyZXNz
-LgoKSSB0aGluayBvdXIgbWFpbiBpc3N1ZSBpcyB0aGF0IChzb21lb25lIGNvcnJlY3QgbWUgaWYg
-SSBhbSB3cm9uZykKTm91dmVhdSB3aWxsIGF1dG9tYXRpY2FsbHkgY3JlYXRlIGEgR1BVIG1hcHBp
-bmcgd2hlbiBhIGJ1ZmZlciBpcwppbXBvcnRlZCB0aHJvdWdoIFBSSU1FLiBJZiB3ZSBjYW4gKDEp
-IHByZXZlbnQgdGhpcyBmcm9tIGhhcHBlbmluZyAob3IsCmxlc3MgaWRlYWxseSwgcmUtbWFwIHRo
-ZSBpbXBvcnRlZCBidWZmZXIgYWZ0ZXJ3YXJkcyksIGFuZCAoMikgcGVyZm9ybQp0aGUgbWFwcGlu
-ZyBieSBvdXJzZWx2ZXMsIHdlIHNob3VsZCBiZSBnb29kLiBGb3IgdGhlIHNha2Ugb2YKY29tcGxl
-dGVuZXNzLCB3ZSBzaG91bGQgYWxzbyBzb2x2ZSB0aGF0IHNhbWUgaXNzdWUgZm9yIGJ1ZmZlcnMg
-Y3JlYXRlZAp1c2luZyB0aGUgTk9VVkVBVV9HRU1fTkVXIGlvY3RsLgoKSSBhbSBub3Qgc3VyZSBo
-b3cgd2UgY2FuIG1ha2UgKDEpIGhhcHBlbi4gU3VyZWx5IHdlIGNhbm5vdCBjaGFuZ2UgdGhlCnNl
-bWFudGljcyBvZiBEUk1fSU9DVExfUFJJTUVfRkRfVE9fSEFORExFIHdpdGhvdXQgYnJlYWtpbmcg
-dXNlci1zcGFjZS4KQnV0IG1heWJlIHdlIGNhbiBkZWxheSB0aGF0IGF1dG9tYXRpYyBtYXBwaW5n
-LCBhbmQgb25seSBtYWtlIGl0IGhhcHBlbgppZiBubyBtYW51YWwgbWFwcGluZyBoYXMgYmVlbiBw
-ZXJmb3JtZWQgaW4tYmV0d2Vlbj8gVGhpcyB3b3VsZCBsZWF2ZQp1cyBhIHdpbmRvdyByaWdodCBh
-ZnRlciB0aGUgb2JqZWN0IGlzIGltcG9ydGVkIHRvIGRlY2lkZSBpdHMgR1BVCmFkZHJlc3MsIHdo
-aWNoIGlzIHByZWNpc2VseSB3aGF0IHdlIG5lZWQuIEZvciBvYmplY3RzIGNyZWF0ZWQgdXNpbmcK
-Tk9VVkVBVV9HRU1fTkVXLCB0aGluZ3MgbWlnaHQgYmUgYXMgc2ltcGxlIGFzIGFkZGluZyBhICJk
-byBub3QgbWFwCnlldCIgZmxhZy4KClJlZ2FyZGluZyAoMiksIEkga2luZCBvZiBmZWVsIGxpa2Ug
-dGhpcyBpcyByZWxhdGVkIHRvIGFub3RoZXIgaXNzdWUgd2UKd2VyZSBoYXZpbmcgd2l0aCBpbXBv
-cnRlZCBidWZmZXJzOiB0aGF0IHdlIGhhdmUgbm8gd2F5IHRvIHNwZWNpZnkKdGhlaXIgdGlsaW5n
-IG9wdGlvbnMsIGNvbnRyYXJ5IHRvIGJ1ZmZlcnMgY3JlYXRlZCB3aXRoCk5PVVZFQVVfR0VNX05F
-Vy4gSSBoYWQgYSBwcmV0dHkgbGFtZSBhdHRlbXB0IGF0IGZpeGluZyB0aGlzIGxhc3QgcG9pbnQK
-KGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTUtTWF5
-LzA4MzA1Mi5odG1sCiksIGJ1dCBpdCBoYXMgYmVlbiByZWplY3RlZCwgYW5kIHByb2JhYmx5IGZv
-ciB0aGUgYmVzdCBub3cgdGhhdCBJCnRoaW5rIG9mIGl0LgoKVGlsaW5nIGFuZCBvZmZzZXQgaW5z
-aWRlIHRoZSBHUFUgVk0gYXJlIGJvdGggcHJvcGVydGllcyBvZiBhIGJ1ZmZlciwKc28gd2h5IG5v
-dCBoYW5kbGUgdGhlbSBib3RoIHVzaW5nIHRoZSBzYW1lIGlvY3RsPyBXZSBjdXJyZW50bHkgaGF2
-ZQpEUk1fTk9VVkVBVV9HRU1fSU5GTywgd2hpY2ggcmV0dXJucyBhbGwgdGhlc2UgcHJvcGVydGll
-cyB0byB1c2VyLXNwYWNlCihzZWUgc3RydWN0IGRybV9ub3V2ZWF1X2dlbV9pbmZvKS4gSG93IGFi
-b3V0IGludHJvZHVjaW5nCkRSTV9OT1VWRUFVX0dFTV9TRVRfSU5GTyB0aGF0IHdvdWxkIGFsbG93
-IHRvIGNoYW5nZSB0aGVzZSBwcm9wZXJ0aWVzLAppLmUuIHRvIGNoYW5nZSB0aGUgdGlsaW5nIGZs
-YWdzICh3aGljaCB0aGUgdGlsaW5nIGlvY3RsIGF0dGVtcHRlZCB0bwpkbyksIGJ1dCBhbHNvIHRo
-ZSBtYXBwaW5nIGFkZHJlc3MgaWYgaXQgaXMgc3BlY2lmaWVkIGFuZCB2YWxpZD8KClNvIGluIG9y
-ZGVyIHRvIGltcG9ydCBhIGJ1ZmZlciBhdCBhIGZpeGVkIEdQVSBhZGRyZXNzLCBhZnRlciByZXNl
-cnZpbmcKYSBwb3J0aW9uIG9mIHRoZSBHUFUgVk0gZm9yIHRoYXQgcHVycG9zZSwgb25lIHdvdWxk
-OgoKMSkgdXNlIERSTV9JT0NUTF9QUklNRV9GRF9UT19IQU5ETEUgdG8gaW1wb3J0IHRoZSBidWZm
-ZXIKMikgaW52b2tlIERSTV9OT1VWRUFVX0dFTV9TRVRfSU5GTyB0byBtYXAgKG9yIHJlLW1hcCBp
-ZiAxKSBhbHJlYWR5CmNyZWF0ZWQgYSBtYXBwaW5nKSB0aGUgYnVmZmVyIHRvIHRoZSByaWdodCBh
-ZGRyZXNzCgpJIHN1c3BlY3QgdGhpcyBwcm9wb3NhbCBpcyBmdWxsIG9mIGZsYXdzIHRob3VnaCwg
-c28gZmVlbCBmcmVlIHRvIHNob290Cml0IGRvd24uIDopCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============2052516936==
+Content-Type: multipart/alternative; boundary="1437054096.05c86A1.2182"; charset="UTF-8"
+
+
+--1437054096.05c86A1.2182
+Date: Thu, 16 Jul 2015 13:41:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
+
+--- Comment #63 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
+(In reply to Ben Skeggs from comment #62)
+> (In reply to Bozhan Boyadzhiev from comment #61)
+> > Created attachment 116853 [details]
+> > mmiotrace for GK107 ~39MB
+> > 
+> > mmiotrace for GK107
+> 
+> Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and
+> get back to you.  If I get time in the next few days, I'll hack you up a
+> patch.
+
+i've erased the first letter on my keyboard with which begins the domain of my
+webmail to check if i have message from this bug :)))
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1437054096.05c86A1.2182
+Date: Thu, 16 Jul 2015 13:41:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c63">Comment # 63</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan Boyadzhiev</span></a>
+</span></b>
+        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=70354#c62">comment #62</a>)
+<span class="quote">&gt; (In reply to Bozhan Boyadzhiev from <a href="show_bug.cgi?id=70354#c61">comment #61</a>)
+&gt; &gt; Created <span class=""><a href="attachment.cgi?id=116853" name="attach_116853" title="mmiotrace for GK107 ~39MB">attachment 116853</a> <a href="attachment.cgi?id=116853&amp;action=edit" title="mmiotrace for GK107 ~39MB">[details]</a></span>
+&gt; &gt; mmiotrace for GK107 ~39MB
+&gt; &gt; 
+&gt; &gt; mmiotrace for GK107
+&gt; 
+&gt; Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and
+&gt; get back to you.  If I get time in the next few days, I'll hack you up a
+&gt; patch.</span >
+
+i've erased the first letter on my keyboard with which begins the domain of my
+webmail to check if i have message from this bug :)))</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437054096.05c86A1.2182--
+
+--===============2052516936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2052516936==--
