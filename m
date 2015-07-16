@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Thu, 16 Jul 2015 13:41:36 +0000
-Message-ID: <bug-70354-8800-6S44cAgy4q@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90967] [NV92] System freeze using nouveau
+Date: Thu, 16 Jul 2015 16:28:27 +0000
+Message-ID: <bug-90967-8800-oLgCnQuln0@http.bugs.freedesktop.org/>
+References: <bug-90967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2052516936=="
+Content-Type: multipart/mixed; boundary="===============1680770951=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,38 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2052516936==
-Content-Type: multipart/alternative; boundary="1437054096.05c86A1.2182"; charset="UTF-8"
+--===============1680770951==
+Content-Type: multipart/alternative; boundary="1437064107.A5f122.12214"; charset="UTF-8"
 
 
---1437054096.05c86A1.2182
-Date: Thu, 16 Jul 2015 13:41:36 +0000
+--1437064107.A5f122.12214
+Date: Thu, 16 Jul 2015 16:28:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=90967
 
---- Comment #63 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
-(In reply to Ben Skeggs from comment #62)
-> (In reply to Bozhan Boyadzhiev from comment #61)
-> > Created attachment 116853 [details]
-> > mmiotrace for GK107 ~39MB
-> > 
-> > mmiotrace for GK107
-> 
-> Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and
-> get back to you.  If I get time in the next few days, I'll hack you up a
-> patch.
+--- Comment #13 from Sanford Rockowitz <rockowitz-9+fK6rGKj7RBDgjK7y7TUQ@public.gmane.org> ---
+TL;DR: Replacing libdrm 2.4.60 with 2.4.58 appears to solve the problem for me.
 
-i've erased the first letter on my keyboard with which begins the domain of my
-webmail to check if i have message from this bug :)))
+I've seen the same problem intermittently.   Xorg.0.log output is similar to
+that of homer32.  The problem seems to be triggered by trying to navigate away
+from an unresponsive web page.  The problem occurred with the 3.18, 3.19, and
+4.0 kernels.  Dropping back to 3.16 kernel always resulted in a stable system. 
+(3.17 had other more severe problems and was unusable.) 
+
+Since reverting to libdrm2.4.58 7 days ago my Fedora system has been stable,
+first with Fedora kernel 4.0.6-200.fc21.x86_64 and then 4.0.7-200.fc21.x86_64. 
+
+Environment: 
+Fedora 21 64 bit 
+nouveau driver
+GTX660Ti video card
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437054096.05c86A1.2182
-Date: Thu, 16 Jul 2015 13:41:36 +0000
+--1437064107.A5f122.12214
+Date: Thu, 16 Jul 2015 16:28:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,27 +66,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c63">Comment # 63</a>
+   title="NEW - [NV92] System freeze using nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90967#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan Boyadzhiev</span></a>
+   title="NEW - [NV92] System freeze using nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90967">bug 90967</a>
+              from <span class="vcard"><a class="email" href="mailto:rockowitz&#64;minsoft.com" title="Sanford Rockowitz &lt;rockowitz&#64;minsoft.com&gt;"> <span class="fn">Sanford Rockowitz</span></a>
 </span></b>
-        <pre>(In reply to Ben Skeggs from <a href="show_bug.cgi?id=70354#c62">comment #62</a>)
-<span class="quote">&gt; (In reply to Bozhan Boyadzhiev from <a href="show_bug.cgi?id=70354#c61">comment #61</a>)
-&gt; &gt; Created <span class=""><a href="attachment.cgi?id=116853" name="attach_116853" title="mmiotrace for GK107 ~39MB">attachment 116853</a> <a href="attachment.cgi?id=116853&amp;action=edit" title="mmiotrace for GK107 ~39MB">[details]</a></span>
-&gt; &gt; mmiotrace for GK107 ~39MB
-&gt; &gt; 
-&gt; &gt; mmiotrace for GK107
-&gt; 
-&gt; Heh, so much for GK107 not having PGOB... I'll ping NVIDIA on this one and
-&gt; get back to you.  If I get time in the next few days, I'll hack you up a
-&gt; patch.</span >
+        <pre>TL;DR: Replacing libdrm 2.4.60 with 2.4.58 appears to solve the problem for me.
 
-i've erased the first letter on my keyboard with which begins the domain of my
-webmail to check if i have message from this bug :)))</pre>
+I've seen the same problem intermittently.   Xorg.0.log output is similar to
+that of homer32.  The problem seems to be triggered by trying to navigate away
+from an unresponsive web page.  The problem occurred with the 3.18, 3.19, and
+4.0 kernels.  Dropping back to 3.16 kernel always resulted in a stable system. 
+(3.17 had other more severe problems and was unusable.) 
+
+Since reverting to libdrm2.4.58 7 days ago my Fedora system has been stable,
+first with Fedora kernel 4.0.6-200.fc21.x86_64 and then 4.0.7-200.fc21.x86_64. 
+
+Environment: 
+Fedora 21 64 bit 
+nouveau driver
+GTX660Ti video card</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +100,9 @@ webmail to check if i have message from this bug :)))</pre>
     </body>
 </html>
 
---1437054096.05c86A1.2182--
+--1437064107.A5f122.12214--
 
---===============2052516936==
+--===============1680770951==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2052516936==--
+--===============1680770951==--
