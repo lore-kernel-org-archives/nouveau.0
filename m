@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91355] [Quadro K610M] nouveau fills the kernel log
  when a video is played
-Date: Wed, 15 Jul 2015 23:59:23 +0000
-Message-ID: <bug-91355-8800-E2v7J3YVzY@http.bugs.freedesktop.org/>
+Date: Thu, 16 Jul 2015 00:05:08 +0000
+Message-ID: <bug-91355-8800-ehbr1J7AgW@http.bugs.freedesktop.org/>
 References: <bug-91355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0537673952=="
+Content-Type: multipart/mixed; boundary="===============2039133944=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0537673952==
-Content-Type: multipart/alternative; boundary="1437004763.7Bcc06b1.1532"; charset="UTF-8"
+--===============2039133944==
+Content-Type: multipart/alternative; boundary="1437005107.36acaa1.3526"; charset="UTF-8"
 
 
---1437004763.7Bcc06b1.1532
-Date: Wed, 15 Jul 2015 23:59:23 +0000
+--1437005107.36acaa1.3526
+Date: Thu, 16 Jul 2015 00:05:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91355
 
---- Comment #1 from Vincent Lefevre <vincent-fdt-buymaDBGzMOsTnJN9+BGXg@public.gmane.org> ---
-Note: my machine is a Debian/unstable laptop with kernel 3.16.7-ckt11-1.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+v3.16 was released almost a year ago. Does this happen on a more recent kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437004763.7Bcc06b1.1532
-Date: Wed, 15 Jul 2015 23:59:23 +0000
+--1437005107.36acaa1.3526
+Date: Thu, 16 Jul 2015 00:05:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [Quadro K610M] nouveau fills the kernel log when a video is played"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [Quadro K610M] nouveau fills the kernel log when a video is played"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91355">bug 91355</a>
-              from <span class="vcard"><a class="email" href="mailto:vincent-fdt&#64;vinc17.net" title="Vincent Lefevre &lt;vincent-fdt&#64;vinc17.net&gt;"> <span class="fn">Vincent Lefevre</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Note: my machine is a Debian/unstable laptop with kernel 3.16.7-ckt11-1.</pre>
+        <pre>v3.16 was released almost a year ago. Does this happen on a more recent kernel?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1437004763.7Bcc06b1.1532--
+--1437005107.36acaa1.3526--
 
---===============0537673952==
+--===============2039133944==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0537673952==--
+--===============2039133944==--
