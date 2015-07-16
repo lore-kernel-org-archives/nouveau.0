@@ -1,15 +1,13 @@
-From: "samuel.pitoiset" <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Mesa-dev] [PATCH] nvc0: fix geometry program
- revalidation of clipping params
-Date: Thu, 16 Jul 2015 23:49:01 +0200
-Message-ID: <55A826CD.2010305@gmail.com>
-References: <1436634801-6319-1-git-send-email-imirkin@alum.mit.edu>	<CAJd1Ru5fmsDDftu0pkQtfqtzUaoWV8TCRHm=TiXgtmb-jD-wvg@mail.gmail.com>	<CAKb7Uvj1KLHokGvznQ=722-D3PFx691S4kUBODJG-dSyDvkNyA@mail.gmail.com>
- <CAKb7UvgrshmzTjCvd4fJLJyP1BEiU0+3LRqCiUJd==BWy+kE2Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91355] [NV108] Quadro K610M: nouveau fills the
+ kernel log when a video is played
+Date: Thu, 16 Jul 2015 21:52:26 +0000
+Message-ID: <bug-91355-8800-OwLlDlNHZO@http.bugs.freedesktop.org/>
+References: <bug-91355-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0471238292=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgrshmzTjCvd4fJLJyP1BEiU0+3LRqCiUJd==BWy+kE2Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,52 +17,114 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "10.4 10.5" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2VlbXMgcmVhc29uYWJsZS4KClBsZWFzZSwgbGV0IG1lIGtub3cgdGhlIHJlc3VsdCBvZiB0aGUg
-ZnVsbCBwaWdsaXQgcnVuLgpJZiBldmVyeXRoaW5nIGlzIG9rYXksIHRoaXMgcGF0Y2ggaXMgOgoK
-UmV2aWV3ZWQtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4K
-Ck9uIDEzLzA3LzIwMTUgMjA6MDgsIElsaWEgTWlya2luIHdyb3RlOgo+IFRoaXMgd2FzLCBidHcs
-IGludHJvZHVjZWQgaW4gY29tbWl0IDNhOGFlNmFjMjQzYiAobnZjMDogYWRhcHQgdG8gbmV3Cj4g
-Y2xpcCBzdGF0ZSkuIEJhY2sgdGhlbiB0aGVyZSB3YXMgbm8gcmVhbCBnZW9tZXRyeSBzdXBwb3J0
-IHlldC4KPgo+IE9uIE1vbiwgSnVsIDEzLCAyMDE1IGF0IDI6MDUgUE0sIElsaWEgTWlya2luIDxp
-bWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IEFueSBvbmUgd2hpY2gsIGFmdGVyIHVzaW5n
-IGEgZ2VvbWV0cnkgc2hhZGVyLCBlbmFibGVzIGFuIGV4dHJhIGNsaXAKPj4gZGlzdGFuY2UuIGku
-ZS4gbm9uZS4KPj4KPj4gT24gTW9uLCBKdWwgMTMsIDIwMTUgYXQgNDoxNiBBTSwgU2FtdWVsIFBp
-dG9pc2V0Cj4+IDxzYW11ZWwucGl0b2lzZXRAZ21haWwuY29tPiB3cm90ZToKPj4+IFdoYXQgcGln
-bGl0IHRlc3QgZG9lcyB0aGlzIGZpeD8KPj4+Cj4+PiBPbiBTYXQsIEp1bCAxMSwgMjAxNSBhdCA3
-OjEzIFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+Pj4+IFNp
-Z25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPj4+PiBDYzog
-bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+Pj4gLS0tCj4+Pj4KPj4+PiBFdmVu
-IHRob3VnaCBpbiBwcmFjdGljZSBhIGdlb21ldHJ5IHByb2dyYW0gd2lsbCBuZXZlciBiZSB1c2lu
-ZyBVQ1AncywKPj4+PiB3ZSBzdGlsbCB3ZXJlIHJldmFsaWRhdGluZyAoYWthIHJlY29tcGlsaW5n
-KSB0aGUgcHJvZ3JhbSB3aGVuIG1vcmUKPj4+PiBjbGlwIHBsYW5lcyBiZWNhbWUgZW5hYmxlZCAo
-d2hpY2ggYWxzbyBhcmUgdXNlZCBmb3IgcmVndWxhciBjbGlwCj4+Pj4gZGlzdGFuY2VzKS4KPj4+
-Pgo+Pj4+IFRoaXMgc2VlbXMgbGlrZSBpdCBzaG91bGQgaGF2ZSBsZWQgdG8gbWFzc2l2ZSBmYWls
-LCBidXQgSSBndWVzcyB5b3UKPj4+PiBkb24ndCBjaGFuZ2UgdGhlIG51bWJlciBvZiBjbGlwIHBs
-YW5lcyB3aGVuIHVzaW5nIGdlb21ldHJ5IHNoYWRlcnMuCj4+Pj4gQnV0IEknbSBnb2luZyB0byBw
-dXQgdGhpcyB0aHJvdWdoIGEgZnVsbCBwaWdsaXQgcnVuIGp1c3QgaW4gY2FzZQo+Pj4+IHRoZXJl
-J3Mgc29tZXRoaW5nIEknbSBtaXNzaW5nLgo+Pj4+Cj4+Pj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnZjMC9udmMwX3N0YXRlX3ZhbGlkYXRlLmMgfCAyICstCj4+Pj4gICAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPj4+Pgo+Pj4+IGRpZmYgLS1n
-aXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N0YXRlX3ZhbGlkYXRl
-LmMKPj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc3RhdGVfdmFs
-aWRhdGUuYwo+Pj4+IGluZGV4IDc4NWU1MmUuLjExZjJiMTAgMTAwNjQ0Cj4+Pj4gLS0tIGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zdGF0ZV92YWxpZGF0ZS5jCj4+Pj4g
-KysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zdGF0ZV92YWxpZGF0
-ZS5jCj4+Pj4gQEAgLTMzOSw3ICszMzksNyBAQCBudmMwX2NoZWNrX3Byb2dyYW1fdWNwcyhzdHJ1
-Y3QgbnZjMF9jb250ZXh0ICpudmMwLAo+Pj4+ICAgICAgICAgbnZjMF92ZXJ0cHJvZ192YWxpZGF0
-ZShudmMwKTsKPj4+PiAgICAgIGVsc2UKPj4+PiAgICAgIGlmIChsaWtlbHkodnAgPT0gbnZjMC0+
-Z210eXByb2cpKQo+Pj4+IC0gICAgICBudmMwX3ZlcnRwcm9nX3ZhbGlkYXRlKG52YzApOwo+Pj4+
-ICsgICAgICBudmMwX2dtdHlwcm9nX3ZhbGlkYXRlKG52YzApOwo+Pj4+ICAgICAgZWxzZQo+Pj4+
-ICAgICAgICAgbnZjMF90ZXZscHJvZ192YWxpZGF0ZShudmMwKTsKPj4+PiAgIH0KPj4+PiAtLQo+
-Pj4+IDIuMy42Cj4+Pj4KPj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+Pj4+IG1lc2EtZGV2IG1haWxpbmcgbGlzdAo+Pj4+IG1lc2EtZGV2QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwo+Pj4+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9tZXNhLWRldgo+Pj4KPj4+Cj4+Pgo+Pj4gLS0KPj4+IEJlc3QgcmVnYXJkcywK
-Pj4+IFNhbXVlbCBQaXRvaXNldC4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cg==
+
+--===============0471238292==
+Content-Type: multipart/alternative; boundary="1437083546.1fA6B6dA1.18943"; charset="UTF-8"
+
+
+--1437083546.1fA6B6dA1.18943
+Date: Thu, 16 Jul 2015 21:52:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91355
+
+Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |vhann3000+freedesktop@gmail
+                   |                            |.com
+
+--- Comment #4 from Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I tested 4.2-rc2 as described here:
+https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/comments/3
+. It just locks up instead of filling the partition (which has the same effect
+of making the computer unusable :s ).
+
+I am cloning Linus' tree and will test v3.19, v4.0 and v4.1. I'll report with
+my findings. Please let me know if I should test other versions or from
+nouveau's tree or what not.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1437083546.1fA6B6dA1.18943
+Date: Thu, 16 Jul 2015 21:52:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355">bug 91355</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>vhann3000+freedesktop&#64;gmail.com
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355">bug 91355</a>
+              from <span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+</span></b>
+        <pre>I tested 4.2-rc2 as described here:
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/comments/3">https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/comments/3</a>
+. It just locks up instead of filling the partition (which has the same effect
+of making the computer unusable :s ).
+
+I am cloning Linus' tree and will test v3.19, v4.0 and v4.1. I'll report with
+my findings. Please let me know if I should test other versions or from
+nouveau's tree or what not.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437083546.1fA6B6dA1.18943--
+
+--===============0471238292==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0471238292==--
