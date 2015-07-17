@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91373] Nouveau fills kern.log with gigabytes of data
- when molecule screensaver is ran
-Date: Fri, 17 Jul 2015 14:54:34 +0000
-Message-ID: <bug-91373-8800-Vh92pq56yi@http.bugs.freedesktop.org/>
-References: <bug-91373-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Fri, 17 Jul 2015 15:43:33 +0000
+Message-ID: <bug-89558-8800-bfAKnMzvTJ@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1970962533=="
+Content-Type: multipart/mixed; boundary="===============1033347082=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,91 +20,89 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1970962533==
-Content-Type: multipart/alternative; boundary="1437144873.BEddB751.30368"; charset="UTF-8"
+--===============1033347082==
+Content-Type: multipart/alternative; boundary="1437147813.38c753ab3.13876"; charset="UTF-8"
 
 
---1437144873.BEddB751.30368
-Date: Fri, 17 Jul 2015 14:54:33 +0000
+--1437147813.38c753ab3.13876
+Date: Fri, 17 Jul 2015 15:43:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91373
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89558
 
---- Comment #1 from Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Looks much better on v3.19.
+--- Comment #37 from martin <martin98239823-LWAfsSFWpa4@public.gmane.org> ---
+Hi,
+I=C2=B4m having exactly the same issue here on a Dell E5450 with Intel HD55=
+00 and
+Nvidia GeForce 830M. First on Ubuntu, I also tried on Arch with Kernel 4.1.2
+from the Testing Repo --> No change so far. At bootup I still see Nouveau
+errors complaining about an unknown Maxwell chipset.=20
 
-The computer didn't lock up after 3 xscreensaver-command -lock.
+I=C2=B4m not a coder but if there are any logfiles or some terminal command=
+s I can
+try to contribute I=C2=B4m happy to help!
 
-Interestingly though, on the HDMI screen, the first time, the molecule wasn't
-rotating and error messages appeared. This was in dmesg:
+Martin
 
-[  131.177645] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[  131.177651] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-7, recovering...
-[  160.403618] nouveau E[molecule[2408]] failed to idle channel 0xcccc0000
-[molecule[2408]]
-[  175.398186] nouveau E[molecule[2408]] failed to idle channel 0xcccc0000
-[molecule[2408]]
-
-Didn't get any error since, still testing.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437144873.BEddB751.30368
-Date: Fri, 17 Jul 2015 14:54:33 +0000
+--1437147813.38c753ab3.13876
+Date: Fri, 17 Jul 2015 15:43:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is ran"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV118] GM108 not supported by nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89558#c37">Commen=
+t # 37</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is ran"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373">bug 91373</a>
-              from <span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+   title=3D"NEW - [NV118] GM108 not supported by nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89558">bug 89558<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+martin98239823&#64;yahoo.de" title=3D"martin &lt;martin98239823&#64;yahoo.d=
+e&gt;"> <span class=3D"fn">martin</span></a>
 </span></b>
-        <pre>Looks much better on v3.19.
+        <pre>Hi,
+I=C2=B4m having exactly the same issue here on a Dell E5450 with Intel HD55=
+00 and
+Nvidia GeForce 830M. First on Ubuntu, I also tried on Arch with Kernel 4.1.2
+from the Testing Repo --&gt; No change so far. At bootup I still see Nouveau
+errors complaining about an unknown Maxwell chipset.=20
 
-The computer didn't lock up after 3 xscreensaver-command -lock.
+I=C2=B4m not a coder but if there are any logfiles or some terminal command=
+s I can
+try to contribute I=C2=B4m happy to help!
 
-Interestingly though, on the HDMI screen, the first time, the molecule wasn't
-rotating and error messages appeared. This was in dmesg:
-
-[  131.177645] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[  131.177651] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-7, recovering...
-[  160.403618] nouveau E[molecule[2408]] failed to idle channel 0xcccc0000
-[molecule[2408]]
-[  175.398186] nouveau E[molecule[2408]] failed to idle channel 0xcccc0000
-[molecule[2408]]
-
-Didn't get any error since, still testing.</pre>
+Martin</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1437144873.BEddB751.30368--
+--1437147813.38c753ab3.13876--
 
---===============1970962533==
+--===============1033347082==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1970962533==--
+--===============1033347082==--
