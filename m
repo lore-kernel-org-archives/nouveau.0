@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Fri, 17 Jul 2015 23:12:02 +0000
-Message-ID: <bug-89969-8800-mYSGF1JGal@http.bugs.freedesktop.org/>
+Date: Fri, 17 Jul 2015 23:16:50 +0000
+Message-ID: <bug-89969-8800-H10tOytzuX@http.bugs.freedesktop.org/>
 References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0704389025=="
+Content-Type: multipart/mixed; boundary="===============2028142402=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,38 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0704389025==
-Content-Type: multipart/alternative; boundary="1437174722.DD0e2.30784"; charset="UTF-8"
+--===============2028142402==
+Content-Type: multipart/alternative; boundary="1437175010.A88cD3.32242"; charset="UTF-8"
 
 
---1437174722.DD0e2.30784
-Date: Fri, 17 Jul 2015 23:12:02 +0000
+--1437175010.A88cD3.32242
+Date: Fri, 17 Jul 2015 23:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89969
 
-Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #117214|0                           |1
-        is obsolete|                            |
-
---- Comment #9 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117215
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117215&action=edit
-WIP - nouveau: add support for chunk decoding
-
-Actual wip patch.
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Wouldn't it be simpler to just accumulate user buffers and then do all the work
+in end_frame instead? And like Christian said, it'd be easy enough to get st/va
+to do this.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1437174722.DD0e2.30784
-Date: Fri, 17 Jul 2015 23:12:02 +0000
+--1437175010.A88cD3.32242
+Date: Fri, 17 Jul 2015 23:16:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,44 +50,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #117214 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - vaDriverInit fails with gallium/nouveau driver"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117215" name="attach_117215" title="WIP - nouveau: add support for chunk decoding">attachment 117215</a> <a href="attachment.cgi?id=117215&amp;action=edit" title="WIP - nouveau: add support for chunk decoding">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=89969&amp;attachment=117215'>[review]</a>
-WIP - nouveau: add support for chunk decoding
-
-Actual wip patch.</pre>
+        <pre>Wouldn't it be simpler to just accumulate user buffers and then do all the work
+in end_frame instead? And like Christian said, it'd be easy enough to get st/va
+to do this.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +78,9 @@ Actual wip patch.</pre>
     </body>
 </html>
 
---1437174722.DD0e2.30784--
+--1437175010.A88cD3.32242--
 
---===============0704389025==
+--===============2028142402==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0704389025==--
+--===============2028142402==--
