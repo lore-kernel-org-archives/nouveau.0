@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91355] [NV108] Quadro K610M: nouveau fills the
- kernel log when a video is played
-Date: Thu, 16 Jul 2015 21:56:39 +0000
-Message-ID: <bug-91355-8800-3rhugrDTAZ@http.bugs.freedesktop.org/>
-References: <bug-91355-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90967] [NV92] System freeze using nouveau
+Date: Fri, 17 Jul 2015 08:21:03 +0000
+Message-ID: <bug-90967-8800-VBGKnjARFF@http.bugs.freedesktop.org/>
+References: <bug-90967-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1031359676=="
+Content-Type: multipart/mixed; boundary="===============1597206183=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91355-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90967-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,83 +20,106 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1031359676==
-Content-Type: multipart/alternative; boundary="1437083799.685D2.19932"; charset="UTF-8"
+--===============1597206183==
+Content-Type: multipart/alternative; boundary="1437121263.7CFb2.5130"; charset="UTF-8"
 
 
---1437083799.685D2.19932
-Date: Thu, 16 Jul 2015 21:56:39 +0000
+--1437121263.7CFb2.5130
+Date: Fri, 17 Jul 2015 08:21:03 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91355
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90967
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Olivier Diotte from comment #4)
-> I tested 4.2-rc2 as described here:
-> https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/
-> comments/3 . It just locks up instead of filling the partition (which has
-> the same effect of making the computer unusable :s ).
-> 
-> I am cloning Linus' tree and will test v3.19, v4.0 and v4.1. I'll report
-> with my findings. Please let me know if I should test other versions or from
-> nouveau's tree or what not.
+--- Comment #14 from J=C3=A9r=C3=B4me <jerome-lLmxdfRNSPJWj0EZb7rXcA@public.gmane.org> ---
+The problem I describe in the original post happen[s|ned] using 2.4.58 so it
+has to be something different.
 
-Seems like a totally different issue. Don't use the nouveau tree. File your own
-bug, include your own info.
+As I said, it does not occur so often. It has not happened since then.
 
--- 
+Besides, I reinstalled my system recently (still a Jessie) since I changed =
+my
+hard drives. It shouldn't make any difference, but you never know. Maybe I =
+got
+rid of some long-forgotten parameter inherited from a manual change I had m=
+ade
+years ago while fighting with Xorg. I doubt it.
+
+Anyway, I don't mind this bug being closed, I can always reopen it if I wan=
+t to
+bring new material.
+
+Is there any logging I can enable in case it would happen again? Or anythin=
+g I
+should try to record sshing from another machine when X freezes?
+
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437083799.685D2.19932
-Date: Thu, 16 Jul 2015 21:56:39 +0000
+--1437121263.7CFb2.5130
+Date: Fri, 17 Jul 2015 08:21:03 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967#c14">Commen=
+t # 14</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91355">bug 91355</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [NV92] System freeze using nouveau"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90967">bug 90967<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+jerome&#64;jolimont.fr" title=3D"J=C3=A9r=C3=B4me &lt;jerome&#64;jolimont.f=
+r&gt;"> <span class=3D"fn">J=C3=A9r=C3=B4me</span></a>
 </span></b>
-        <pre>(In reply to Olivier Diotte from <a href="show_bug.cgi?id=91355#c4">comment #4</a>)
-<span class="quote">&gt; I tested 4.2-rc2 as described here:
-&gt; <a href="https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/">https://bugs.launchpad.net/ubuntu/+source/linux-lts-vivid/+bug/1474538/</a>
-&gt; comments/3 . It just locks up instead of filling the partition (which has
-&gt; the same effect of making the computer unusable :s ).
-&gt; 
-&gt; I am cloning Linus' tree and will test v3.19, v4.0 and v4.1. I'll report
-&gt; with my findings. Please let me know if I should test other versions or from
-&gt; nouveau's tree or what not.</span >
+        <pre>The problem I describe in the original post happen[s|ned] usin=
+g 2.4.58 so it
+has to be something different.
 
-Seems like a totally different issue. Don't use the nouveau tree. File your own
-bug, include your own info.</pre>
+As I said, it does not occur so often. It has not happened since then.
+
+Besides, I reinstalled my system recently (still a Jessie) since I changed =
+my
+hard drives. It shouldn't make any difference, but you never know. Maybe I =
+got
+rid of some long-forgotten parameter inherited from a manual change I had m=
+ade
+years ago while fighting with Xorg. I doubt it.
+
+Anyway, I don't mind this bug being closed, I can always reopen it if I wan=
+t to
+bring new material.
+
+Is there any logging I can enable in case it would happen again? Or anythin=
+g I
+should try to record sshing from another machine when X freezes?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1437083799.685D2.19932--
+--1437121263.7CFb2.5130--
 
---===============1031359676==
+--===============1597206183==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +129,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1031359676==--
+--===============1597206183==--
