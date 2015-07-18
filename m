@@ -1,16 +1,12 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] avoid build fail without COMPOSITE
-Date: Sat, 18 Jul 2015 15:42:05 +0100
-Message-ID: <CACvgo51dyrGXKtBdGHaqw5QPg3hTML90DaVzothyFa85VPz5qw@mail.gmail.com>
-References: <1436908642-20721-1-git-send-email-imirkin@alum.mit.edu>
- <CACvgo52=umZCKu-wk7nJovVMb-N7iy8JtSx5LcZpguGhPrPz5g@mail.gmail.com>
- <CAKb7UvjPT3QE9mBHZr3GcKc_s_FdU53sjHLwaqrn=hOX8xK_eQ@mail.gmail.com>
- <CACvgo500K-66hEN0OKNioy7s-WaTRM81LvAqQyFmXxN5E1cqhA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
+Date: Sat, 18 Jul 2015 15:40:22 +0000
+Message-ID: <bug-89969-8800-3zPf9edLDk@http.bugs.freedesktop.org/>
+References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1654675056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo500K-66hEN0OKNioy7s-WaTRM81LvAqQyFmXxN5E1cqhA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,23 +16,111 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTUgSnVseSAyMDE1IGF0IDE0OjEyLCBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdt
-YWlsLmNvbT4gd3JvdGU6Cj4gVXBvbiBjbG9zZXIgbG9vayBpdCBzZWVtIHRoYXQgSSB3YXMgYSBi
-aXQgb2ZmIC0gdGhlIGF0aS9pbnRlbCBkZHggZG9lcwo+IG5vdCBzZXQgb2ZmX3gveSB0byB6ZXJv
-IHdoZW4gYnVpbHQgd2l0aG91dCBjb21wb3NpdGUqLgo+Cj4gLi4uIGluIGNvcHlfcmVnaW9uMiwg
-dGhleSBkbyBzbyB3aGVuIHdvcmtpbmcgd2l0aCB2aWRlbyAtCj4gWHZBZGFwdG9yUHRyOjpkZFB1
-dEltYWdlL1hGODZWaWRlb0FkYXB0b3JQdHI6OlB1dEltYWdlLgo+Cj4gRG9lcyB0aGlzIG1lYW4g
-dGhhdCB0aGV5IG5lZWQgYSBzaW1pbGFyIHVwZGF0ZSA/IFdoYXQgYXJlIHRoZSBzeW1wdG9tcwo+
-IG9mIHRoZSBpc3N1ZSA/Cj4KQ2FuIGFueW9uZSBnaXZlIHNvbWUgcm91Z2ggcG9pbnRlcnMgdG8g
-dGhlIGFwcHJvcHJpYXRlIHJlYWRpbmcKbWF0ZXJpYWwgPyBBcyBtZW50aW9uZWQgbmVpdGhlciBh
-dGkgbm9yIHRoZSBpbnRlbCBkZHggZm9sbG93IHRoaXMKYXBwcm9hY2ggc28gSSdtIGEgYml0IHB1
-enpsZWQuIEZyb20gYSBxdWljayB0ZXN0IHRoZXJlIGlzIG5vICJidWlsZApmYWlsIiBpZiB3aGVu
-IENPTVBPU0lURSBpcyBtaXNzaW5nLiBBbSBJIG1pc3Npbmcgc29tZXRoaW5nCm9idmlvdXMvdHJp
-dmlhbCA/CgpUaGFua3MKRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============1654675056==
+Content-Type: multipart/alternative; boundary="1437234022.bA63B2.11145"; charset="UTF-8"
+
+
+--1437234022.bA63B2.11145
+Date: Sat, 18 Jul 2015 15:40:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D89969
+
+--- Comment #11 from Christian K=C3=B6nig <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #10)
+> Wouldn't it be simpler to just accumulate user buffers and then do all the
+> work in end_frame instead? And like Christian said, it'd be easy enough to
+> get st/va to do this.
+
+Accumulating all the user buffers in the state tracker is what I initially
+suggested as well and I wouldn't mind if it goes into this direction in the
+long term.
+
+You would need to add a new type for the bitstream buffer (we currently alr=
+eady
+abuse vertext buffers in the OMX encoder for this).
+
+For the short term your patch looks like it's going into the right directio=
+n.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1437234022.bA63B2.11145
+Date: Sat, 18 Jul 2015 15:40:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969#c11">Commen=
+t # 11</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969">bug 89969<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+deathsimple&#64;vodafone.de" title=3D"Christian K=C3=B6nig &lt;deathsimple&=
+#64;vodafone.de&gt;"> <span class=3D"fn">Christian K=C3=B6nig</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D899=
+69#c10">comment #10</a>)
+<span class=3D"quote">&gt; Wouldn't it be simpler to just accumulate user b=
+uffers and then do all the
+&gt; work in end_frame instead? And like Christian said, it'd be easy enoug=
+h to
+&gt; get st/va to do this.</span >
+
+Accumulating all the user buffers in the state tracker is what I initially
+suggested as well and I wouldn't mind if it goes into this direction in the
+long term.
+
+You would need to add a new type for the bitstream buffer (we currently alr=
+eady
+abuse vertext buffers in the OMX encoder for this).
+
+For the short term your patch looks like it's going into the right directio=
+n.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437234022.bA63B2.11145--
+
+--===============1654675056==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1654675056==--
