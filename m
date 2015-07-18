@@ -1,22 +1,16 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
- under EXA.
-Date: Sat, 18 Jul 2015 21:09:46 +1000
-Message-ID: <CAPM=9ty34G39nceFnarvs0qOoJiyqjcsgXD0FdB4Ye_O1D+EhQ@mail.gmail.com>
-References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
- <CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>
- <CACvgo53NaCJ6r+1LdJEG78Zyi+SBfMu2y1Mkm2HCKUo7Co5zQw@mail.gmail.com>
- <CAKb7Uvj-7AeG8EQ58cZZhF1O7HU=E_VkKO8wi7LpitoNBmCjGg@mail.gmail.com>
- <CACvgo50R5kPGVAwDYTUSCkY-Cfh=HENFDT8OdT=nNKLG85=S9Q@mail.gmail.com>
- <CAKb7UvhuYJxLk1zPQbdTgG_HQcbo0Zt_TnpHf7gD2apk+RYCdA@mail.gmail.com>
- <55A48575.5060100@gmail.com>
- <CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q@mail.gmail.com>
- <55A55C40.4000207@gmail.com>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] avoid build fail without COMPOSITE
+Date: Sat, 18 Jul 2015 15:42:05 +0100
+Message-ID: <CACvgo51dyrGXKtBdGHaqw5QPg3hTML90DaVzothyFa85VPz5qw@mail.gmail.com>
+References: <1436908642-20721-1-git-send-email-imirkin@alum.mit.edu>
+ <CACvgo52=umZCKu-wk7nJovVMb-N7iy8JtSx5LcZpguGhPrPz5g@mail.gmail.com>
+ <CAKb7UvjPT3QE9mBHZr3GcKc_s_FdU53sjHLwaqrn=hOX8xK_eQ@mail.gmail.com>
+ <CACvgo500K-66hEN0OKNioy7s-WaTRM81LvAqQyFmXxN5E1cqhA@mail.gmail.com>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55A55C40.4000207-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <CACvgo500K-66hEN0OKNioy7s-WaTRM81LvAqQyFmXxN5E1cqhA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -26,35 +20,23 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Pj4+Cj4+PiBXZSBjYW4gZGlzYWJsZSBpdCBieSBkZWZhdWx0IG9uIGV4YSAtIGludGVsIGFuZCBh
-bWQvcmFkZW9uIGRyaXZlcnMgYWxzbwo+Pj4gZGlzYWJsZSBieSBkZWZhdWx0LiBIb3dldmVyLCBv
-biBncHVzID49IG1heHdlbGwgb25seSBnbGFtb3IgYWNjZWwgaXMKPj4+IHN1cHBvcnRlZCBhbmQg
-Z2xhbW9yIG9uIG5vdXZlYXUgaXMgZWl0aGVyIGRyaTMvcHJlc2VudCBvciBubyBodyBhY2NlbCBh
-dAo+Pj4gYWxsCj4+PiBhZmFpY3MuCj4+Cj4+Cj4+IFlvdSBwcm9iYWJseSBzYXcgbXkgcGF0Y2hl
-cyB0byBqdXN0IHJlbW92ZSBnbGFtb3IgZnJvbSBub3V2ZWF1IDopIFRoYXQKPj4gaW50ZWdyYXRp
-b24gZG9lc24ndCBzdXBwb3J0IERSSTIsIHdoaWNoIGluIHR1cm4gbWVhbnMgbm8gY29yZSBjb250
-ZXh0cwo+PiAoZHVlIHRvIGxhY2sgb2YgR0xYX0FSQl9jcmVhdGVfY29udGV4dF9wcm9maWxlKSwg
-YW5kIGEgc2xldyBvZiBvdGhlcgo+PiBpc3N1ZXMuIFNlZW1lZCBlYXNpZXIgdG8ganVzdCB0ZWxs
-IHBlb3BsZSB0byBnbyB1c2UgbW9kZXNldHRpbmcsIHdoaWNoCj4+IGdldHMgYWxsIG9mIHRoZXNl
-IHRoaW5ncyByaWdodChlcikuCj4+Cj4KPiBIbSwgYSB0b3RhbCByZW1vdmFsIHdvdWxkIGF0IGxl
-YXN0IG1ha2UgbWUgYW5kIG15IHVzZXJzIHJhdGhlciB1bmhhcHB5IGF0bS4sCj4gYXMgd2l0aG91
-dCBnbGFtb3Igbm8gaHcgYWNjZWwgYXQgYWxsIG9uID49IG1heHdlbGwuIG1vZGVzZXR0aW5nIGFu
-ZCBub3V2ZWF1Cj4gYXJlIG5vdCBvbiBwYXIgZmVhdHVyZS13aXNlIGF0bS4gRS5nLiwgbW9kZXNl
-dHRpbmcgYXMgb2YgdGhlIG5leHQgeG9yZyAxLjE4Cj4gc2VydmVyIG9ubHkgcHJvdmlkZXMgcGFn
-ZWZsaXBwaW5nIHZpYSBkcmkzL3ByZXNlbnQgYW5kIHdpdGhvdXQgcGFnZWZsaXBwaW5nCj4gaXQg
-aXMgZ2FtZSBvdmVyIGZvciBtYW55IG9mIG15IHVzZSBjYXNlcyBvbiBub3V2ZWF1LWttcy4gQWxz
-byBtb2Rlc2V0dGluZwo+IGN1cnJlbnRseSBjb21wbGV0ZWx5IGxhY2tzIFphcGhvZEhlYWRzIHN1
-cHBvcnQuIFdpdGhvdXQgWmFwaG9kSGVhZHMgaSBjYW4ndAo+IGhhdmUgYSBwYWdlLWZsaXBwZWQg
-ZnVsbHNjcmVlbiB3aW5kb3cgb24gb25lIHN1YnNldCBvZiBvdXRwdXRzIGFuZCBhIHJlZ3VsYXIK
-PiBkZXNrdG9wIG9uIGFub3RoZXIgc3Vic2V0LCBzb21ldGhpbmcgdGhhdCBpcyBuZWVkZWQgZm9y
-Cj4gbmV1cm9zY2llbmNlL21lZGljYWwvdnIgYXBwbGljYXRpb25zLgoKU28gd2hhdCB3b3VsZCB5
-b3Ugd2FudCBpbiBtb2Rlc2V0dGluZyB0byBiZSBvbiBwYXI/CgpEUkkyIHBhZ2VmbGlwcGluZz8K
-emFwaG9kIGhlYWRzPwoKYW55dGhpbmcgZWxzZT8gSSB3b3VsZCBsaWtlIGZvciBGMjMgdG8gc2hp
-cCBhIG1vZGVzZXR0aW5nIHdoaWNoIEkgY2FuCnJlcGxhY2UgaW50ZWwvbm91dmVhdS9hdGkgd2l0
-aC4KCkRhdmUuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+T24gMTUgSnVseSAyMDE1IGF0IDE0OjEyLCBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdt
+YWlsLmNvbT4gd3JvdGU6Cj4gVXBvbiBjbG9zZXIgbG9vayBpdCBzZWVtIHRoYXQgSSB3YXMgYSBi
+aXQgb2ZmIC0gdGhlIGF0aS9pbnRlbCBkZHggZG9lcwo+IG5vdCBzZXQgb2ZmX3gveSB0byB6ZXJv
+IHdoZW4gYnVpbHQgd2l0aG91dCBjb21wb3NpdGUqLgo+Cj4gLi4uIGluIGNvcHlfcmVnaW9uMiwg
+dGhleSBkbyBzbyB3aGVuIHdvcmtpbmcgd2l0aCB2aWRlbyAtCj4gWHZBZGFwdG9yUHRyOjpkZFB1
+dEltYWdlL1hGODZWaWRlb0FkYXB0b3JQdHI6OlB1dEltYWdlLgo+Cj4gRG9lcyB0aGlzIG1lYW4g
+dGhhdCB0aGV5IG5lZWQgYSBzaW1pbGFyIHVwZGF0ZSA/IFdoYXQgYXJlIHRoZSBzeW1wdG9tcwo+
+IG9mIHRoZSBpc3N1ZSA/Cj4KQ2FuIGFueW9uZSBnaXZlIHNvbWUgcm91Z2ggcG9pbnRlcnMgdG8g
+dGhlIGFwcHJvcHJpYXRlIHJlYWRpbmcKbWF0ZXJpYWwgPyBBcyBtZW50aW9uZWQgbmVpdGhlciBh
+dGkgbm9yIHRoZSBpbnRlbCBkZHggZm9sbG93IHRoaXMKYXBwcm9hY2ggc28gSSdtIGEgYml0IHB1
+enpsZWQuIEZyb20gYSBxdWljayB0ZXN0IHRoZXJlIGlzIG5vICJidWlsZApmYWlsIiBpZiB3aGVu
+IENPTVBPU0lURSBpcyBtaXNzaW5nLiBBbSBJIG1pc3Npbmcgc29tZXRoaW5nCm9idmlvdXMvdHJp
+dmlhbCA/CgpUaGFua3MKRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
