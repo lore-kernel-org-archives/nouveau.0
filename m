@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Sat, 18 Jul 2015 15:40:22 +0000
-Message-ID: <bug-89969-8800-3zPf9edLDk@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
+ under EXA.
+Date: Sun, 19 Jul 2015 10:34:30 +0200
+Message-ID: <55AB6116.4000004@gmail.com>
+References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>	<CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>	<CACvgo53NaCJ6r+1LdJEG78Zyi+SBfMu2y1Mkm2HCKUo7Co5zQw@mail.gmail.com>	<CAKb7Uvj-7AeG8EQ58cZZhF1O7HU=E_VkKO8wi7LpitoNBmCjGg@mail.gmail.com>	<CACvgo50R5kPGVAwDYTUSCkY-Cfh=HENFDT8OdT=nNKLG85=S9Q@mail.gmail.com>	<CAKb7UvhuYJxLk1zPQbdTgG_HQcbo0Zt_TnpHf7gD2apk+RYCdA@mail.gmail.com>	<55A48575.5060100@gmail.com>	<CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q@mail.gmail.com>	<55A55C40.4000207@gmail.com>
+ <CAPM=9ty34G39nceFnarvs0qOoJiyqjcsgXD0FdB4Ye_O1D+EhQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1654675056=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAPM=9ty34G39nceFnarvs0qOoJiyqjcsgXD0FdB4Ye_O1D+EhQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,111 +19,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1654675056==
-Content-Type: multipart/alternative; boundary="1437234022.bA63B2.11145"; charset="UTF-8"
-
-
---1437234022.bA63B2.11145
-Date: Sat, 18 Jul 2015 15:40:22 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D89969
-
---- Comment #11 from Christian K=C3=B6nig <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #10)
-> Wouldn't it be simpler to just accumulate user buffers and then do all the
-> work in end_frame instead? And like Christian said, it'd be easy enough to
-> get st/va to do this.
-
-Accumulating all the user buffers in the state tracker is what I initially
-suggested as well and I wouldn't mind if it goes into this direction in the
-long term.
-
-You would need to add a new type for the bitstream buffer (we currently alr=
-eady
-abuse vertext buffers in the OMX encoder for this).
-
-For the short term your patch looks like it's going into the right directio=
-n.
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1437234022.bA63B2.11145
-Date: Sat, 18 Jul 2015 15:40:22 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969#c11">Commen=
-t # 11</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - vaDriverInit fails with gallium/nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D89969">bug 89969<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-deathsimple&#64;vodafone.de" title=3D"Christian K=C3=B6nig &lt;deathsimple&=
-#64;vodafone.de&gt;"> <span class=3D"fn">Christian K=C3=B6nig</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D899=
-69#c10">comment #10</a>)
-<span class=3D"quote">&gt; Wouldn't it be simpler to just accumulate user b=
-uffers and then do all the
-&gt; work in end_frame instead? And like Christian said, it'd be easy enoug=
-h to
-&gt; get st/va to do this.</span >
-
-Accumulating all the user buffers in the state tracker is what I initially
-suggested as well and I wouldn't mind if it goes into this direction in the
-long term.
-
-You would need to add a new type for the bitstream buffer (we currently alr=
-eady
-abuse vertext buffers in the OMX encoder for this).
-
-For the short term your patch looks like it's going into the right directio=
-n.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1437234022.bA63B2.11145--
-
---===============1654675056==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1654675056==--
+T24gMDcvMTgvMjAxNSAwMTowOSBQTSwgRGF2ZSBBaXJsaWUgd3JvdGU6Cj4+Pj4KPj4+PiBXZSBj
+YW4gZGlzYWJsZSBpdCBieSBkZWZhdWx0IG9uIGV4YSAtIGludGVsIGFuZCBhbWQvcmFkZW9uIGRy
+aXZlcnMgYWxzbwo+Pj4+IGRpc2FibGUgYnkgZGVmYXVsdC4gSG93ZXZlciwgb24gZ3B1cyA+PSBt
+YXh3ZWxsIG9ubHkgZ2xhbW9yIGFjY2VsIGlzCj4+Pj4gc3VwcG9ydGVkIGFuZCBnbGFtb3Igb24g
+bm91dmVhdSBpcyBlaXRoZXIgZHJpMy9wcmVzZW50IG9yIG5vIGh3IGFjY2VsIGF0Cj4+Pj4gYWxs
+Cj4+Pj4gYWZhaWNzLgo+Pj4KPj4+Cj4+PiBZb3UgcHJvYmFibHkgc2F3IG15IHBhdGNoZXMgdG8g
+anVzdCByZW1vdmUgZ2xhbW9yIGZyb20gbm91dmVhdSA6KSBUaGF0Cj4+PiBpbnRlZ3JhdGlvbiBk
+b2Vzbid0IHN1cHBvcnQgRFJJMiwgd2hpY2ggaW4gdHVybiBtZWFucyBubyBjb3JlIGNvbnRleHRz
+Cj4+PiAoZHVlIHRvIGxhY2sgb2YgR0xYX0FSQl9jcmVhdGVfY29udGV4dF9wcm9maWxlKSwgYW5k
+IGEgc2xldyBvZiBvdGhlcgo+Pj4gaXNzdWVzLiBTZWVtZWQgZWFzaWVyIHRvIGp1c3QgdGVsbCBw
+ZW9wbGUgdG8gZ28gdXNlIG1vZGVzZXR0aW5nLCB3aGljaAo+Pj4gZ2V0cyBhbGwgb2YgdGhlc2Ug
+dGhpbmdzIHJpZ2h0KGVyKS4KPj4+Cj4+Cj4+IEhtLCBhIHRvdGFsIHJlbW92YWwgd291bGQgYXQg
+bGVhc3QgbWFrZSBtZSBhbmQgbXkgdXNlcnMgcmF0aGVyIHVuaGFwcHkgYXRtLiwKPj4gYXMgd2l0
+aG91dCBnbGFtb3Igbm8gaHcgYWNjZWwgYXQgYWxsIG9uID49IG1heHdlbGwuIG1vZGVzZXR0aW5n
+IGFuZCBub3V2ZWF1Cj4+IGFyZSBub3Qgb24gcGFyIGZlYXR1cmUtd2lzZSBhdG0uIEUuZy4sIG1v
+ZGVzZXR0aW5nIGFzIG9mIHRoZSBuZXh0IHhvcmcgMS4xOAo+PiBzZXJ2ZXIgb25seSBwcm92aWRl
+cyBwYWdlZmxpcHBpbmcgdmlhIGRyaTMvcHJlc2VudCBhbmQgd2l0aG91dCBwYWdlZmxpcHBpbmcK
+Pj4gaXQgaXMgZ2FtZSBvdmVyIGZvciBtYW55IG9mIG15IHVzZSBjYXNlcyBvbiBub3V2ZWF1LWtt
+cy4gQWxzbyBtb2Rlc2V0dGluZwo+PiBjdXJyZW50bHkgY29tcGxldGVseSBsYWNrcyBaYXBob2RI
+ZWFkcyBzdXBwb3J0LiBXaXRob3V0IFphcGhvZEhlYWRzIGkgY2FuJ3QKPj4gaGF2ZSBhIHBhZ2Ut
+ZmxpcHBlZCBmdWxsc2NyZWVuIHdpbmRvdyBvbiBvbmUgc3Vic2V0IG9mIG91dHB1dHMgYW5kIGEg
+cmVndWxhcgo+PiBkZXNrdG9wIG9uIGFub3RoZXIgc3Vic2V0LCBzb21ldGhpbmcgdGhhdCBpcyBu
+ZWVkZWQgZm9yCj4+IG5ldXJvc2NpZW5jZS9tZWRpY2FsL3ZyIGFwcGxpY2F0aW9ucy4KPgo+IFNv
+IHdoYXQgd291bGQgeW91IHdhbnQgaW4gbW9kZXNldHRpbmcgdG8gYmUgb24gcGFyPwo+Cj4gRFJJ
+MiBwYWdlZmxpcHBpbmc/CgpQcm9iYWJseSBub3QgbmVlZGVkPyBJIGRlYnVnZ2VkIGFuZCB0ZXN0
+ZWQgdGhlIERSSTMvUHJlc2VudCBwYWdlIApmbGlwcGluZyB3aXRoIG1vZGVzZXR0aW5nIGEgZmV3
+IG1vbnRocyBhZ28uIEhhdmVuJ3QgcmV0ZXN0ZWQgdGhlIG1vc3QgCnJlY2VudCB2ZXJzaW9uIG9m
+IHRoZSBwYXRjaGVzIGluIHgtc2VydmVyIG1hc3RlciwgYnV0IGF0IHRoYXQgdGltZSB0aGV5IApz
+ZWVtZWQgdG8gd29yayBwcmV0dHkgb2suIEknbGwgZ2l2ZSB0aGlzIHNvbWUgbW9yZSB0ZXN0aW5n
+IHNvb24uIEkgYWxzbyAKcmFuIGl0IGFzIG15IGRlc2t0b3AgZm9yIDItMyBkYXlzLCBhZmFpciB3
+aXRob3V0IHNlcmlvdXMgaXNzdWVzLCBidXQgCnRoYXQgd2Fzbid0IHRoZSBraW5kIG9mIG9ic2Vz
+c2l2ZSBzdHJlc3MgdGVzdGluZyBpIGRvIGZvciB0aGUgT3BlbkdMIApmdWxsc2NyZWVuIHBhZ2Vm
+bGlwcGluZyBzdHVmZi4KCkkgZG8gcmVtZW1iZXIgZHBtcyBhY3Rpdml0eSB3YXMgYSBjcmFzaGVy
+IGxhc3QgdGltZSBpIHRlc3RlZC4gTWF5YmUgCnJlc29sdmVkIG5vdz8KCj4gemFwaG9kIGhlYWRz
+Pwo+CgpNb3N0bHkgWmFwaG9kaGVhZHMgd291bGQgYmUgdGhlIHJlYWxseSBpbXBvcnRhbnQgb25l
+IGZvciBtZS4gTGFjayBvZiBpdCAKPSBzaG93IHN0b3BwZXIgZm9yIG1hbnkgb2YgbXkgdXNlcnMg
+YXBwbGljYXRpb25zLiBVc2VycyBvZnRlbiB3YW50IHRvIApzcGxpdCB0aGVpciBncHUgaW50byBh
+dCBsZWFzdCAyIHgtc2NyZWVuczogT25lIGZvciB0aGUgIm9wZXJhdG9yIiB0byAKY29udHJvbCBl
+eHBlcmltZW50YWwgd29yayBzZXNzaW9ucyB2aWEgYSByZWd1bGFyIGRlc2t0b3AgR1VJLCB0aGUg
+b3RoZXIgCmZvciBvbmUgdW5yZWRpcmVjdGVkIGttcy1wYWdlZmxpcHBlZCBmdWxsc2NyZWVuIHdp
+bmRvdyBvbiBvbmUgb3IgCm11bHRpcGxlIGF0dGFjaGVkIFphcGhvZGhlYWRzIG91dHB1dHMgZm9y
+IHRoZSBhY3R1YWwgcHJlc2VudGF0aW9uIG9uIHRoZSAKMm5kIHgtc2NyZWVuLCBlLmcuLCBzaW5n
+bGUgZGlzcGxheSwgb3IgZHVhbCBkaXNwbGF5IGZvciBzdGVyZW9zY29waWMgCnN0dWZmIC0gc3Rl
+cmVvIGdvZ2dsZXMgYW5kIHN1Y2gsIG9yID4gMiBkaXNwbGF5cyBmb3IgbW9yZSBhZHZhbmNlZCBW
+UiAKc3R1ZmYuIFRoZSBwYWdlIGZsaXBwaW5nIGlzIGltcG9ydGFudCBpbiBteSBjYXNlIGJlY2F1
+c2UgcHJlY2lzZSB0aW1pbmcgCmFuZCBwcmVjaXNlIHRpbWVzdGFtcGluZyBpcyBpbXBvcnRhbnQg
+d2hpY2ggd2Ugb25seSBnZXQgd2l0aCBwYWdlIGZsaXBzLCAKYWxzbyB0byBnZXQgb3V0IHBpeGVs
+cyBhcyBiaXQtZXhhY3QgYXMgcG9zc2libGUgd2l0aG91dCBpbnRlcmZlcmVuY2UgCmZyb20gY29t
+cG9zaXRvcnMsIGUuZy4gdGV4dHVyZSBtYXBwaW5nIGFydGlmYWN0cyBldGMuIE9uIERSSTMvUHJl
+c2VudCwgCnBhZ2UgZmxpcHMgYXJlIGFsc28gdGhlIG9ubHkgd2F5IGF0bS4gdG8gZ2V0IHRlYXIt
+ZnJlZSBQcmVzZW50cywgdGhlIHdheSAKaXQgaXMgaW1wbGVtZW50ZWQuCgpNb3JlIHJlZ3VsYXIg
+dXNlcnMgc2VlbSB0byBsaWtlIHRvIGhhdmUgYSBzZXBhcmF0ZSB4LXNjcmVlbiBmb3IgVFYgc2V0
+cyAKYW5kIHVzZSBaYXBob2RIZWFkcyBmb3IgdGhhdC4KClRoZSBjdXJyZW50IG5vdXZlYXUgb3Ig
+cmFkZW9uIGltcGxlbWVudGF0aW9uIHdvdWxkIGJlIGEgZ29vZCByZWZlcmVuY2UgCmZvciBvbmUg
+dGhhdCBzZWVtcyB0byB3b3JrIHdlbGwgd2l0aCBtdWx0aXBsZSBaYXBob2RIZWFkcyBwZXIgeC1z
+Y3JlZW4gKyAKMSBleHRyYSBwYXRjaCBvZiBtaW5lIGFnYWluc3Qgbm91dmVhdSBmbG9hdGluZyBv
+biBub3V2ZWF1LWRldmVsICJbUEFUQ0hdIApUYWtlIHNoaWZ0IGluIGNydGMgcG9zaXRpb25zIGZv
+ciBaYXBob2RIZWFkcyBjb25maWdzIGludG8gYWNjb3VudC4iIFRoYXQgCnBhdGNoIGlzIG5lZWRl
+ZCBmb3Igbm91dmVhdS1kZHgsIG9yIGFueSBnZW5lcmljIGRyaXZlciB0aGF0IGRlYWxzIHdpdGgg
+Cm5vdXZlYXUta21zLiBBZmFpY3MgdGhlIG90aGVyIGttcyBkcml2ZXJzIHJldHVybiBhIAprZW5j
+b2Rlci0+cG9zc2libGVfY3J0Y3MgbWFzayB3aGljaCBhbGxvd3MgYW55IGNydGMgdG8gZ28gd2l0
+aCBhbnkgCmVuY29kZXIsIGJ1dCBub3V2ZWF1LWttcyBnZXRzIHRoYXQgaW5mbyBmcm9tIHRoZSBW
+QklPUyBEQ0IgYW5kIHNvbWV0aW1lcyAKdGhlIG1hc2sgaXMgYSBiaXQgbW9yZSBzcGVjaWFsIGFu
+ZCBuZWVkcyB0aGUgZXh0cmEgdHJlYXRtZW50IGZyb20gdGhhdCAKcGF0Y2gsIG9yIGJhZCB0aGlu
+Z3Mgd2lsbCBoYXBwZW4sIGUuZy4sIG9uIHNvbWUgbnYtNTAgY2FyZHMuCgo+IGFueXRoaW5nIGVs
+c2U/IEkgd291bGQgbGlrZSBmb3IgRjIzIHRvIHNoaXAgYSBtb2Rlc2V0dGluZyB3aGljaCBJIGNh
+bgo+IHJlcGxhY2UgaW50ZWwvbm91dmVhdS9hdGkgd2l0aC4KCk5vdCBhdCB0aGUgbW9tZW50LiBJ
+J2xsIHRoaW5rIGFib3V0IGl0IHNvbWUgbW9yZSBhbmQgZ2l2ZSB0aGUgY3VycmVudCAKbW9kZXNl
+dHRpbmcgZHJpdmVyIGEgYml0IG1vcmUgdGVzdGluZyB0byBzZWUgaWYgc29tZXRoaW5nIHNob3dz
+IHVwLgoKdGhhbmtzLAotbWFyaW8KCj4KPiBEYXZlLgo+Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9ub3V2ZWF1Cg==
