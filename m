@@ -1,13 +1,12 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nv50: adjust min/max lod by base level on G80
-Date: Mon, 20 Jul 2015 16:37:16 +0200
-Message-ID: <55AD079C.3080308@gmail.com>
-References: <1437377218-29891-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91402] linux-4.1 nv108 Invalid ROM contents
+Date: Mon, 20 Jul 2015 14:53:51 +0000
+Message-ID: <bug-91402-8800-ev17d5fQ0F@http.bugs.freedesktop.org/>
+References: <bug-91402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0160690690=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1437377218-29891-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+In-Reply-To: <bug-91402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,79 +16,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UmV2aWV3ZWQtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4K
-Ck9uIDA3LzIwLzIwMTUgMDk6MjYgQU0sIElsaWEgTWlya2luIHdyb3RlOgo+IE1ha2UgdGhlIGFz
-c3VtcHRpb24gdGhhdCB0aGVyZSdzIGEgMToxIFRJQyA8LT4gVFNDIGNvbm5lY3Rpb24sIGFuZAo+
-IGluY3JlYXNlIG1pbi9tYXggbG9kIGJ5IHRoZSByZWxldmFudCB0ZXh0dXJlJ3MgYmFzZSBsZXZl
-bC4gQWxzbyBpZgo+IHRoZXJlJ3Mgbm8gbWlwZmlsdGVyLCB3ZSBoYXZlIHRvIGVuYWJsZSBpdCB3
-aGlsZSBmb3JjaW5nIG1pbi9tYXggbG9kIHRvCj4gdGhlIGJhc2UgbGV2ZWwuCj4KPiBUaGlzIGZp
-eGVzIG1hbnksIGJ1dCBub3QgYWxsLCB0ZXgtbWlwbGV2ZWwtc2VsZWN0aW9uIHRlc3RzIG9uIEc4
-MC4KPgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4K
-PiAtLS0KPgo+IEFsbCB0aGUgdGV4dHVyZUxvZCB0ZXN0cyBmYWlsLiBJZiBJIGFsc28gYWRqdXN0
-IHRoZSBsb2RfYmlhcyBieSB0aGUKPiBmaXJzdF9sZXZlbCwgdGhlbiB0aGUgcmVndWxhciB0ZXN0
-cyBzdGFydCBmYWlsaW5nLgo+Cj4gTm90IHN1cmUgd2hhdCB0aGUgcmlnaHQgbW92ZSBpcyBoZXJl
-Li4uIG5lZWQgdG8gdHJhY2UgdGhlIGJsb2IgdG8gc2VlCj4gd2hhdCBpdCBkb2VzIGhlcmUuCj4K
-PiAgIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGUuYyAgICAgIHwg
-IDEgKwo+ICAgLi4uL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVvYmpfdGV4LmggICAg
-ICAgfCAgMSArCj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RleC5j
-ICAgICAgICB8IDM5ICsrKysrKysrKysrKysrKysrKysrKysKPiAgIDMgZmlsZXMgY2hhbmdlZCwg
-NDEgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9udjUwL252NTBfc3RhdGUuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUw
-L252NTBfc3RhdGUuYwo+IGluZGV4IGQ0ZDQxYWYuLjk4YzRjM2EgMTAwNjQ0Cj4gLS0tIGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZS5jCj4gKysrIGIvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZS5jCj4gQEAgLTQ2NCw2ICs0NjQs
-NyBAQCBudjUwX3NhbXBsZXJfc3RhdGVfY3JlYXRlKHN0cnVjdCBwaXBlX2NvbnRleHQgKnBpcGUs
-Cj4gICAgICBzdHJ1Y3QgbnY1MF90c2NfZW50cnkgKnNvID0gTUFMTE9DX1NUUlVDVChudjUwX3Rz
-Y19lbnRyeSk7Cj4gICAgICBmbG9hdCBmWzJdOwo+ICAgCj4gKyAgIHNvLT5waXBlID0gKmNzbzsK
-PiAgICAgIHNvLT5pZCA9IC0xOwo+ICAgCj4gICAgICBzby0+dHNjWzBdID0gKDB4MDAwMjYwMDAg
-fAo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0
-YXRlb2JqX3RleC5oIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0
-ZW9ial90ZXguaAo+IGluZGV4IDk5NTQ4Y2IuLjlhMTkxNjYgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZW9ial90ZXguaAo+ICsrKyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVvYmpfdGV4LmgKPiBAQCAt
-NSw2ICs1LDcgQEAKPiAgICNpbmNsdWRlICJwaXBlL3Bfc3RhdGUuaCIKPiAgIAo+ICAgc3RydWN0
-IG52NTBfdHNjX2VudHJ5IHsKPiArICAgc3RydWN0IHBpcGVfc2FtcGxlcl9zdGF0ZSBwaXBlOwo+
-ICAgICAgaW50IGlkOwo+ICAgICAgdWludDMyX3QgdHNjWzhdOwo+ICAgfTsKPiBkaWZmIC0tZ2l0
-IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF90ZXguYyBiL3NyYy9nYWxs
-aXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfdGV4LmMKPiBpbmRleCAxN2FlMjdmLi5kNzlj
-ODEzIDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBf
-dGV4LmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RleC5j
-Cj4gQEAgLTM0NCw2ICszNDQsNDUgQEAgbnY1MF92YWxpZGF0ZV90c2Moc3RydWN0IG52NTBfY29u
-dGV4dCAqbnY1MCwgaW50IHMpCj4gICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIChpIDw8IDQp
-IHwgMCk7Cj4gICAgICAgICAgICBjb250aW51ZTsKPiAgICAgICAgIH0KPiArICAgICAgaWYgKG52
-NTAtPmJhc2Uuc2NyZWVuLT5jbGFzc18zZCA9PSBOVjUwXzNEX0NMQVNTKSB7Cj4gKyAgICAgICAg
-IHN0cnVjdCBudjUwX3RpY19lbnRyeSAqdGljID0gbnY1MF90aWNfZW50cnkobnY1MC0+dGV4dHVy
-ZXNbc11baV0pOwo+ICsKPiArICAgICAgICAgLyogV2UgbXVzdCBtYWtlIHN1cmUgdGhhdCB0aGUg
-TUlOX0xPRCBpcyBhdCBsZWFzdCBzZXQgdG8gdGhlIGZpcnN0Cj4gKyAgICAgICAgICAqIGxldmVs
-IGZvciB0aGUgRzgwCj4gKyAgICAgICAgICAqLwo+ICsgICAgICAgICBib29sIG5lZWRfdXBkYXRl
-ID0gZmFsc2U7Cj4gKyAgICAgICAgIGZsb2F0IG1pbl9sb2QgPSBDTEFNUCgKPiArICAgICAgICAg
-ICAgICAgdGljLT5waXBlLnUudGV4LmZpcnN0X2xldmVsICsgdHNjLT5waXBlLm1pbl9sb2QsIDAu
-MGYsIDE1LjBmKTsKPiArICAgICAgICAgZmxvYXQgbWF4X2xvZCA9IENMQU1QKAo+ICsgICAgICAg
-ICAgICAgICB0aWMtPnBpcGUudS50ZXguZmlyc3RfbGV2ZWwgKyB0c2MtPnBpcGUubWF4X2xvZCwg
-MC4wZiwgMTUuMGYpOwo+ICsKPiArICAgICAgICAgaWYgKHRzYy0+cGlwZS5taW5fbWlwX2ZpbHRl
-ciA9PSBQSVBFX1RFWF9NSVBGSUxURVJfTk9ORSkgewo+ICsgICAgICAgICAgICB1aW50MzJfdCBv
-bGRfdHNjMSA9IHRzYy0+dHNjWzFdOwo+ICsgICAgICAgICAgICB0c2MtPnRzY1sxXSAmPSB+TlY1
-MF9UU0NfMV9NSVBGX19NQVNLOwo+ICsgICAgICAgICAgICBpZiAodGljLT5waXBlLnUudGV4LmZp
-cnN0X2xldmVsKSB7Cj4gKyAgICAgICAgICAgICAgIHRzYy0+dHNjWzFdIHw9IE5WNTBfVFNDXzFf
-TUlQRl9ORUFSRVNUOwo+ICsgICAgICAgICAgICAgICBtYXhfbG9kID0gbWluX2xvZCA9IHRpYy0+
-cGlwZS51LnRleC5maXJzdF9sZXZlbDsKPiArICAgICAgICAgICAgfQo+ICsgICAgICAgICAgICBp
-ZiAodHNjLT50c2NbMV0gIT0gb2xkX3RzYzEpCj4gKyAgICAgICAgICAgICAgIG5lZWRfdXBkYXRl
-ID0gdHJ1ZTsKPiArICAgICAgICAgfQo+ICsKPiArICAgICAgICAgdWludDMyX3QgbmV3X3RzYzIg
-PQo+ICsgICAgICAgICAgICAoKChpbnQpKG1heF9sb2QgKiAyNTYuMGYpICYgMHhmZmYpIDw8IDEy
-KSB8Cj4gKyAgICAgICAgICAgICgoaW50KShtaW5fbG9kICogMjU2LjBmKSAmIDB4ZmZmKTsKPiAr
-ICAgICAgICAgaWYgKCh0c2MtPnRzY1syXSAmIDB4ZmZmZmZmKSAhPSBuZXdfdHNjMikgewo+ICsg
-ICAgICAgICAgICB0c2MtPnRzY1syXSAmPSB+MHhmZmZmZmZ1Owo+ICsgICAgICAgICAgICB0c2Mt
-PnRzY1syXSB8PSBuZXdfdHNjMjsKPiArICAgICAgICAgICAgbmVlZF91cGRhdGUgPSB0cnVlOwo+
-ICsgICAgICAgICB9Cj4gKwo+ICsgICAgICAgICBpZiAobmVlZF91cGRhdGUgJiYgdHNjLT5pZCA+
-PSAwKSB7Cj4gKyAgICAgICAgICAgIG52NTBfc2lmY19saW5lYXJfdTgoJm52NTAtPmJhc2UsIG52
-NTAtPnNjcmVlbi0+dHhjLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDY1NTM2
-ICsgdHNjLT5pZCAqIDMyLAo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE5PVVZF
-QVVfQk9fVlJBTSwgMzIsIHRzYy0+dHNjKTsKPiArICAgICAgICAgICAgbmVlZF9mbHVzaCA9IFRS
-VUU7Cj4gKyAgICAgICAgIH0KPiArICAgICAgfQo+ICAgICAgICAgaWYgKHRzYy0+aWQgPCAwKSB7
-Cj4gICAgICAgICAgICB0c2MtPmlkID0gbnY1MF9zY3JlZW5fdHNjX2FsbG9jKG52NTAtPnNjcmVl
-biwgdHNjKTsKPiAgIAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0160690690==
+Content-Type: multipart/alternative; boundary="1437404031.18C3aDbb1.11861"; charset="UTF-8"
+
+
+--1437404031.18C3aDbb1.11861
+Date: Mon, 20 Jul 2015 14:53:51 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91402
+
+vdanjean-GANU6spQydw@public.gmane.org <vdanjean.ml-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           See Also|                            |https://bugs.freedesktop.or
+                   |                            |g/show_bug.cgi?id=89047
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1437404031.18C3aDbb1.11861
+Date: Mon, 20 Jul 2015 14:53:51 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:vdanjean.ml&#64;free.fr" title="vdanjean&#64;free.fr &lt;vdanjean.ml&#64;free.fr&gt;"> <span class="fn">vdanjean&#64;free.fr</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - linux-4.1 nv108 Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">See Also</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=89047
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437404031.18C3aDbb1.11861--
+
+--===============0160690690==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0160690690==--
