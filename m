@@ -1,91 +1,88 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Sun, 19 Jul 2015 10:11:28 +0000
-Message-ID: <bug-90435-8800-zWSt2p5HwN@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50: adjust min/max lod by base level on G80
+Date: Mon, 20 Jul 2015 03:26:58 -0400
+Message-ID: <1437377218-29891-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1047986446=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1047986446==
-Content-Type: multipart/alternative; boundary="1437300688.bE6d101.3599"; charset="UTF-8"
-
-
---1437300688.bE6d101.3599
-Date: Sun, 19 Jul 2015 10:11:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #17 from Christoph Scholz <christoph.scholz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Great. Using kernel parameter nouveau.config=NvMSI=0 did the trick!
-
-Thanks.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1437300688.bE6d101.3599
-Date: Sun, 19 Jul 2015 10:11:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:christoph.scholz&#64;gmail.com" title="Christoph Scholz &lt;christoph.scholz&#64;gmail.com&gt;"> <span class="fn">Christoph Scholz</span></a>
-</span></b>
-        <pre>Great. Using kernel parameter nouveau.config=NvMSI=0 did the trick!
-
-Thanks.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1437300688.bE6d101.3599--
-
---===============1047986446==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1047986446==--
+TWFrZSB0aGUgYXNzdW1wdGlvbiB0aGF0IHRoZXJlJ3MgYSAxOjEgVElDIDwtPiBUU0MgY29ubmVj
+dGlvbiwgYW5kCmluY3JlYXNlIG1pbi9tYXggbG9kIGJ5IHRoZSByZWxldmFudCB0ZXh0dXJlJ3Mg
+YmFzZSBsZXZlbC4gQWxzbyBpZgp0aGVyZSdzIG5vIG1pcGZpbHRlciwgd2UgaGF2ZSB0byBlbmFi
+bGUgaXQgd2hpbGUgZm9yY2luZyBtaW4vbWF4IGxvZCB0bwp0aGUgYmFzZSBsZXZlbC4KClRoaXMg
+Zml4ZXMgbWFueSwgYnV0IG5vdCBhbGwsIHRleC1taXBsZXZlbC1zZWxlY3Rpb24gdGVzdHMgb24g
+RzgwLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgot
+LS0KCkFsbCB0aGUgdGV4dHVyZUxvZCB0ZXN0cyBmYWlsLiBJZiBJIGFsc28gYWRqdXN0IHRoZSBs
+b2RfYmlhcyBieSB0aGUKZmlyc3RfbGV2ZWwsIHRoZW4gdGhlIHJlZ3VsYXIgdGVzdHMgc3RhcnQg
+ZmFpbGluZy4KCk5vdCBzdXJlIHdoYXQgdGhlIHJpZ2h0IG1vdmUgaXMgaGVyZS4uLiBuZWVkIHRv
+IHRyYWNlIHRoZSBibG9iIHRvIHNlZQp3aGF0IGl0IGRvZXMgaGVyZS4KCiBzcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0YXRlLmMgICAgICB8ICAxICsKIC4uLi9kcml2ZXJz
+L25vdXZlYXUvbnY1MC9udjUwX3N0YXRlb2JqX3RleC5oICAgICAgIHwgIDEgKwogc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF90ZXguYyAgICAgICAgfCAzOSArKysrKysrKysr
+KysrKysrKysrKysrCiAzIGZpbGVzIGNoYW5nZWQsIDQxIGluc2VydGlvbnMoKykKCmRpZmYgLS1n
+aXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0YXRlLmMgYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0YXRlLmMKaW5kZXggZDRkNDFhZi4u
+OThjNGMzYSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1
+MF9zdGF0ZS5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3Rh
+dGUuYwpAQCAtNDY0LDYgKzQ2NCw3IEBAIG52NTBfc2FtcGxlcl9zdGF0ZV9jcmVhdGUoc3RydWN0
+IHBpcGVfY29udGV4dCAqcGlwZSwKICAgIHN0cnVjdCBudjUwX3RzY19lbnRyeSAqc28gPSBNQUxM
+T0NfU1RSVUNUKG52NTBfdHNjX2VudHJ5KTsKICAgIGZsb2F0IGZbMl07CiAKKyAgIHNvLT5waXBl
+ID0gKmNzbzsKICAgIHNvLT5pZCA9IC0xOwogCiAgICBzby0+dHNjWzBdID0gKDB4MDAwMjYwMDAg
+fApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0
+ZW9ial90ZXguaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVv
+YmpfdGV4LmgKaW5kZXggOTk1NDhjYi4uOWExOTE2NiAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZW9ial90ZXguaAorKysgYi9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0YXRlb2JqX3RleC5oCkBAIC01LDYgKzUsNyBA
+QAogI2luY2x1ZGUgInBpcGUvcF9zdGF0ZS5oIgogCiBzdHJ1Y3QgbnY1MF90c2NfZW50cnkgewor
+ICAgc3RydWN0IHBpcGVfc2FtcGxlcl9zdGF0ZSBwaXBlOwogICAgaW50IGlkOwogICAgdWludDMy
+X3QgdHNjWzhdOwogfTsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
+djUwL252NTBfdGV4LmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Rl
+eC5jCmluZGV4IDE3YWUyN2YuLmQ3OWM4MTMgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udjUwL252NTBfdGV4LmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L252NTAvbnY1MF90ZXguYwpAQCAtMzQ0LDYgKzM0NCw0NSBAQCBudjUwX3ZhbGlkYXRlX3Rz
+YyhzdHJ1Y3QgbnY1MF9jb250ZXh0ICpudjUwLCBpbnQgcykKICAgICAgICAgIFBVU0hfREFUQSAo
+cHVzaCwgKGkgPDwgNCkgfCAwKTsKICAgICAgICAgIGNvbnRpbnVlOwogICAgICAgfQorICAgICAg
+aWYgKG52NTAtPmJhc2Uuc2NyZWVuLT5jbGFzc18zZCA9PSBOVjUwXzNEX0NMQVNTKSB7CisgICAg
+ICAgICBzdHJ1Y3QgbnY1MF90aWNfZW50cnkgKnRpYyA9IG52NTBfdGljX2VudHJ5KG52NTAtPnRl
+eHR1cmVzW3NdW2ldKTsKKworICAgICAgICAgLyogV2UgbXVzdCBtYWtlIHN1cmUgdGhhdCB0aGUg
+TUlOX0xPRCBpcyBhdCBsZWFzdCBzZXQgdG8gdGhlIGZpcnN0CisgICAgICAgICAgKiBsZXZlbCBm
+b3IgdGhlIEc4MAorICAgICAgICAgICovCisgICAgICAgICBib29sIG5lZWRfdXBkYXRlID0gZmFs
+c2U7CisgICAgICAgICBmbG9hdCBtaW5fbG9kID0gQ0xBTVAoCisgICAgICAgICAgICAgICB0aWMt
+PnBpcGUudS50ZXguZmlyc3RfbGV2ZWwgKyB0c2MtPnBpcGUubWluX2xvZCwgMC4wZiwgMTUuMGYp
+OworICAgICAgICAgZmxvYXQgbWF4X2xvZCA9IENMQU1QKAorICAgICAgICAgICAgICAgdGljLT5w
+aXBlLnUudGV4LmZpcnN0X2xldmVsICsgdHNjLT5waXBlLm1heF9sb2QsIDAuMGYsIDE1LjBmKTsK
+KworICAgICAgICAgaWYgKHRzYy0+cGlwZS5taW5fbWlwX2ZpbHRlciA9PSBQSVBFX1RFWF9NSVBG
+SUxURVJfTk9ORSkgeworICAgICAgICAgICAgdWludDMyX3Qgb2xkX3RzYzEgPSB0c2MtPnRzY1sx
+XTsKKyAgICAgICAgICAgIHRzYy0+dHNjWzFdICY9IH5OVjUwX1RTQ18xX01JUEZfX01BU0s7Cisg
+ICAgICAgICAgICBpZiAodGljLT5waXBlLnUudGV4LmZpcnN0X2xldmVsKSB7CisgICAgICAgICAg
+ICAgICB0c2MtPnRzY1sxXSB8PSBOVjUwX1RTQ18xX01JUEZfTkVBUkVTVDsKKyAgICAgICAgICAg
+ICAgIG1heF9sb2QgPSBtaW5fbG9kID0gdGljLT5waXBlLnUudGV4LmZpcnN0X2xldmVsOworICAg
+ICAgICAgICAgfQorICAgICAgICAgICAgaWYgKHRzYy0+dHNjWzFdICE9IG9sZF90c2MxKQorICAg
+ICAgICAgICAgICAgbmVlZF91cGRhdGUgPSB0cnVlOworICAgICAgICAgfQorCisgICAgICAgICB1
+aW50MzJfdCBuZXdfdHNjMiA9CisgICAgICAgICAgICAoKChpbnQpKG1heF9sb2QgKiAyNTYuMGYp
+ICYgMHhmZmYpIDw8IDEyKSB8CisgICAgICAgICAgICAoKGludCkobWluX2xvZCAqIDI1Ni4wZikg
+JiAweGZmZik7CisgICAgICAgICBpZiAoKHRzYy0+dHNjWzJdICYgMHhmZmZmZmYpICE9IG5ld190
+c2MyKSB7CisgICAgICAgICAgICB0c2MtPnRzY1syXSAmPSB+MHhmZmZmZmZ1OworICAgICAgICAg
+ICAgdHNjLT50c2NbMl0gfD0gbmV3X3RzYzI7CisgICAgICAgICAgICBuZWVkX3VwZGF0ZSA9IHRy
+dWU7CisgICAgICAgICB9CisKKyAgICAgICAgIGlmIChuZWVkX3VwZGF0ZSAmJiB0c2MtPmlkID49
+IDApIHsKKyAgICAgICAgICAgIG52NTBfc2lmY19saW5lYXJfdTgoJm52NTAtPmJhc2UsIG52NTAt
+PnNjcmVlbi0+dHhjLAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA2NTUzNiArIHRz
+Yy0+aWQgKiAzMiwKKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTk9VVkVBVV9CT19W
+UkFNLCAzMiwgdHNjLT50c2MpOworICAgICAgICAgICAgbmVlZF9mbHVzaCA9IFRSVUU7CisgICAg
+ICAgICB9CisgICAgICB9CiAgICAgICBpZiAodHNjLT5pZCA8IDApIHsKICAgICAgICAgIHRzYy0+
+aWQgPSBudjUwX3NjcmVlbl90c2NfYWxsb2MobnY1MC0+c2NyZWVuLCB0c2MpOwogCi0tIAoyLjMu
+NgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1k
+ZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
