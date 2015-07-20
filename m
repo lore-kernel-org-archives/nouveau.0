@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91402] linux-4.1 nv108 Invalid ROM contents
+Subject: [Bug 89047] linux-3.19 nvd9 Invalid rom content
 Date: Mon, 20 Jul 2015 14:53:51 +0000
-Message-ID: <bug-91402-8800-ev17d5fQ0F@http.bugs.freedesktop.org/>
-References: <bug-91402-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-89047-8800-97mNClC8bb@http.bugs.freedesktop.org/>
+References: <bug-89047-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0160690690=="
+Content-Type: multipart/mixed; boundary="===============1288458128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89047-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0160690690==
-Content-Type: multipart/alternative; boundary="1437404031.18C3aDbb1.11861"; charset="UTF-8"
+--===============1288458128==
+Content-Type: multipart/alternative; boundary="1437404031.246d3245.11861"; charset="UTF-8"
 
 
---1437404031.18C3aDbb1.11861
+--1437404031.246d3245.11861
 Date: Mon, 20 Jul 2015 14:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91402
+https://bugs.freedesktop.org/show_bug.cgi?id=89047
 
 vdanjean-GANU6spQydw@public.gmane.org <vdanjean.ml-GANU6spQydw@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=89047
+                   |                            |g/show_bug.cgi?id=91402
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437404031.18C3aDbb1.11861
+--1437404031.246d3245.11861
 Date: Mon, 20 Jul 2015 14:53:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -55,8 +55,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - linux-4.1 nv108 Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
+   title="NEW - linux-3.19 nvd9 Invalid rom content"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89047">bug 89047</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,7 +70,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=89047
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=91402
            </td>
          </tr></table>
       <p>
@@ -84,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1437404031.18C3aDbb1.11861--
+--1437404031.246d3245.11861--
 
---===============0160690690==
+--===============1288458128==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0160690690==--
+--===============1288458128==--
