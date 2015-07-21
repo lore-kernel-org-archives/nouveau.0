@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91411] New: TV hdmi output doesn't fit with desktop,
- minimize button(on windows) are missing, etc[NV50]
-Date: Tue, 21 Jul 2015 11:47:35 +0000
-Message-ID: <bug-91411-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91373] Nouveau fills kern.log with gigabytes of data
+ when molecule screensaver is run
+Date: Tue, 21 Jul 2015 13:53:41 +0000
+Message-ID: <bug-91373-8800-frYmv71Q4d@http.bugs.freedesktop.org/>
+References: <bug-91373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0680634695=="
+Content-Type: multipart/mixed; boundary="===============0470814012=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,57 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0680634695==
-Content-Type: multipart/alternative; boundary="1437479255.455E7FC11.16370"; charset="UTF-8"
+--===============0470814012==
+Content-Type: multipart/alternative; boundary="1437486821.F0431.6026"; charset="UTF-8"
 
 
---1437479255.455E7FC11.16370
-Date: Tue, 21 Jul 2015 11:47:35 +0000
+--1437486821.F0431.6026
+Date: Tue, 21 Jul 2015 13:53:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91411
+https://bugs.freedesktop.org/show_bug.cgi?id=91373
 
-            Bug ID: 91411
-           Summary: TV hdmi output doesn't fit with desktop, minimize
-                    button(on windows) are missing, etc[NV50]
-           Product: xorg
-           Version: unspecified
-          Hardware: All
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: davidlvillegas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #6 from Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+v4.1.0 is no go:
 
-Created attachment 117274
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117274&action=edit
-dmesg output in a .txt file
+Jul 20 12:55:17 dioo-XPS kernel: [ 3734.622246] usb 1-11: USB disconnect,
+device number 24
+Jul 20 18:20:59 dioo-XPS kernel: [23270.087336] nouveau E[  
+PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+Jul 20 18:20:59 dioo-XPS kernel: [23270.087341] nouveau E[  
+PFIFO][0000:01:00.0] PGRAPH engine fault on channel 2, recovering...
+Jul 21 08:05:11 dioo-XPS kernel: [72704.336625] audit: type=1400
+audit(1437480311.763:67): apparmor="STATUS" operation="profile_replace"
+name="/usr/lib/cups/backend/cups-pdf" pid=4404 comm="apparmor_parser"
 
-I observe that desktop image sent by computer trough hdmi connexion is bigger
-than tv screen. I can not reach the hidden piece of desktop with my mouse. The
-fonts has an uncomfortable size, really small. Not only that, but also Terminal
-mode(Ctrl-Alt-F1) shows an uncomfortable size, really small as well.
-
-Close button on windows is shown also small, and the rest of buttons are
-missing. All kind of resolution screen has the same problem. Websites show
-untidy contents.
-
-On the other hand, media player works correctly in full-screen mode.
-
-Thanks a lots for your time.
-
-David
+I'll try v4.0 (since I don't have much to lose by doing so), but I'm guessing
+there won't be much difference.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437479255.455E7FC11.16370
-Date: Tue, 21 Jul 2015 11:47:35 +0000
+--1437486821.F0431.6026
+Date: Tue, 21 Jul 2015 13:53:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,106 +61,33 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411">91411</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>davidlvillegas&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117274" name="attach_117274" title="dmesg output in a .txt file">attachment 117274</a> <a href="attachment.cgi?id=117274&amp;action=edit" title="dmesg output in a .txt file">[details]</a></span>
-dmesg output in a .txt file
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is run"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is run"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373">bug 91373</a>
+              from <span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+</span></b>
+        <pre>v4.1.0 is no go:
 
-I observe that desktop image sent by computer trough hdmi connexion is bigger
-than tv screen. I can not reach the hidden piece of desktop with my mouse. The
-fonts has an uncomfortable size, really small. Not only that, but also Terminal
-mode(Ctrl-Alt-F1) shows an uncomfortable size, really small as well.
+Jul 20 12:55:17 dioo-XPS kernel: [ 3734.622246] usb 1-11: USB disconnect,
+device number 24
+Jul 20 18:20:59 dioo-XPS kernel: [23270.087336] nouveau E[  
+PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+Jul 20 18:20:59 dioo-XPS kernel: [23270.087341] nouveau E[  
+PFIFO][0000:01:00.0] PGRAPH engine fault on channel 2, recovering...
+Jul 21 08:05:11 dioo-XPS kernel: [72704.336625] audit: type=1400
+audit(1437480311.763:67): apparmor=&quot;STATUS&quot; operation=&quot;profile_replace&quot;
+name=&quot;/usr/lib/cups/backend/cups-pdf&quot; pid=4404 comm=&quot;apparmor_parser&quot;
 
-Close button on windows is shown also small, and the rest of buttons are
-missing. All kind of resolution screen has the same problem. Websites show
-untidy contents.
-
-On the other hand, media player works correctly in full-screen mode.
-
-Thanks a lots for your time.
-
-David</pre>
+I'll try v4.0 (since I don't have much to lose by doing so), but I'm guessing
+there won't be much difference.</pre>
         </div>
       </p>
       <hr>
@@ -188,9 +99,9 @@ David</pre>
     </body>
 </html>
 
---1437479255.455E7FC11.16370--
+--1437486821.F0431.6026--
 
---===============0680634695==
+--===============0470814012==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -200,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0680634695==--
+--===============0470814012==--
