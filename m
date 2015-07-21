@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
  Block from OpenFirmware Device tree
-Date: Tue, 21 Jul 2015 01:14:43 +0000
-Message-ID: <bug-91319-8800-PVbTuJrs6W@http.bugs.freedesktop.org/>
+Date: Tue, 21 Jul 2015 01:20:08 +0000
+Message-ID: <bug-91319-8800-8a6ffuv90U@http.bugs.freedesktop.org/>
 References: <bug-91319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1036458624=="
+Content-Type: multipart/mixed; boundary="===============0190559741=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1036458624==
-Content-Type: multipart/alternative; boundary="1437441283.fE7cec11.24035"; charset="UTF-8"
+--===============0190559741==
+Content-Type: multipart/alternative; boundary="1437441608.bFFd1.24863"; charset="UTF-8"
 
 
---1437441283.fE7cec11.24035
-Date: Tue, 21 Jul 2015 01:14:43 +0000
+--1437441608.bFFd1.24863
+Date: Tue, 21 Jul 2015 01:20:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91319
 
---- Comment #4 from Peter Saisanas <psaisanas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117271
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117271&action=edit
-OF Powermac Quadro FX4500 ROM
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Actually that's not from OF, it's from the PROM. And while it has a PCIR
+header, it doesn't contain the various other tables we expect. However the one
+in OF (i.e. the NVDA,BMP thing) does. But it's missing the PCIR header so the
+nouveau vbios reader logic throws it out, and falls back on the PROM one,
+which, in turn, fails.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437441283.fE7cec11.24035
-Date: Tue, 21 Jul 2015 01:14:43 +0000
+--1437441608.bFFd1.24863
+Date: Tue, 21 Jul 2015 01:20:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91319">bug 91319</a>
-              from <span class="vcard"><a class="email" href="mailto:psaisanas&#64;gmail.com" title="Peter Saisanas &lt;psaisanas&#64;gmail.com&gt;"> <span class="fn">Peter Saisanas</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117271" name="attach_117271" title="OF Powermac Quadro FX4500 ROM">attachment 117271</a> <a href="attachment.cgi?id=117271&amp;action=edit" title="OF Powermac Quadro FX4500 ROM">[details]</a></span>
-OF Powermac Quadro FX4500 ROM</pre>
+        <pre>Actually that's not from OF, it's from the PROM. And while it has a PCIR
+header, it doesn't contain the various other tables we expect. However the one
+in OF (i.e. the NVDA,BMP thing) does. But it's missing the PCIR header so the
+nouveau vbios reader logic throws it out, and falls back on the PROM one,
+which, in turn, fails.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +81,9 @@ OF Powermac Quadro FX4500 ROM</pre>
     </body>
 </html>
 
---1437441283.fE7cec11.24035--
+--1437441608.bFFd1.24863--
 
---===============1036458624==
+--===============0190559741==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1036458624==--
+--===============0190559741==--
