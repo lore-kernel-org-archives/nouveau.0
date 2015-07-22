@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91413] INFO: task Xorg:2419 blocked for more than
-	120 seconds.
-Date: Wed, 22 Jul 2015 16:14:29 +0000
-Message-ID: <bug-91413-8800-OlSko8BxCx@http.bugs.freedesktop.org/>
-References: <bug-91413-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90388] [NVE4] PDISP errors on startup
+Date: Wed, 22 Jul 2015 18:27:47 +0000
+Message-ID: <bug-90388-8800-qUD9wfJCu2@http.bugs.freedesktop.org/>
+References: <bug-90388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1924708780=="
+Content-Type: multipart/mixed; boundary="===============2116304913=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91413-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1924708780==
-Content-Type: multipart/alternative; boundary="1437581669.4700a1.2804"; charset="UTF-8"
+--===============2116304913==
+Content-Type: multipart/alternative; boundary="1437589667.D8E21.25178"; charset="UTF-8"
 
 
---1437581669.4700a1.2804
-Date: Wed, 22 Jul 2015 16:14:29 +0000
+--1437589667.D8E21.25178
+Date: Wed, 22 Jul 2015 18:27:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91413
+https://bugs.freedesktop.org/show_bug.cgi?id=90388
 
---- Comment #2 from Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Looks similar to https://bugs.freedesktop.org/show_bug.cgi?id=91355 to my
-outsider's eye.
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You should see if the patch at
+https://bugs.freedesktop.org/show_bug.cgi?id=91333#c11 helps you at all.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437581669.4700a1.2804
-Date: Wed, 22 Jul 2015 16:14:29 +0000
+--1437589667.D8E21.25178
+Date: Wed, 22 Jul 2015 18:27:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,19 +53,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INFO: task Xorg:2419 blocked for more than 120 seconds."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91413#c2">Comment # 2</a>
+   title="NEW - [NVE4] PDISP errors on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - INFO: task Xorg:2419 blocked for more than 120 seconds."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91413">bug 91413</a>
-              from <span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+   title="NEW - [NVE4] PDISP errors on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">bug 90388</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Looks similar to <a class="bz_bug_link 
+        <pre>You should see if the patch at
+<a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV108] Quadro K610M: nouveau fills the kernel log when a video is played"
-   href="show_bug.cgi?id=91355">https://bugs.freedesktop.org/show_bug.cgi?id=91355</a> to my
-outsider's eye.</pre>
+   title="NEW - Connecting second of two monitors to a Lenovo W520 causes displays to go crazy"
+   href="show_bug.cgi?id=91333#c11">https://bugs.freedesktop.org/show_bug.cgi?id=91333#c11</a> helps you at all.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +77,9 @@ outsider's eye.</pre>
     </body>
 </html>
 
---1437581669.4700a1.2804--
+--1437589667.D8E21.25178--
 
---===============1924708780==
+--===============2116304913==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1924708780==--
+--===============2116304913==--
