@@ -1,24 +1,12 @@
-From: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Add Option "DRI3" to allow to disable DRI3
- under EXA.
-Date: Wed, 22 Jul 2015 14:39:16 +1000
-Message-ID: <CAPM=9twESbxOf+r4cy=-B+FNpKQwm8dvgbA9b-6XNbo275KLKw@mail.gmail.com>
-References: <1435635043-3738-1-git-send-email-mario.kleiner.de@gmail.com>
- <CAKb7UvhOcQ1-y2q3_8RZzvLewhsZ3A1OHC=vo3uBSwX3XTR0Eg@mail.gmail.com>
- <CACvgo53NaCJ6r+1LdJEG78Zyi+SBfMu2y1Mkm2HCKUo7Co5zQw@mail.gmail.com>
- <CAKb7Uvj-7AeG8EQ58cZZhF1O7HU=E_VkKO8wi7LpitoNBmCjGg@mail.gmail.com>
- <CACvgo50R5kPGVAwDYTUSCkY-Cfh=HENFDT8OdT=nNKLG85=S9Q@mail.gmail.com>
- <CAKb7UvhuYJxLk1zPQbdTgG_HQcbo0Zt_TnpHf7gD2apk+RYCdA@mail.gmail.com>
- <55A48575.5060100@gmail.com>
- <CAKb7Uvi7pCT-rkFxfpsmw-P0UhF86ZrEdtmJDc3kU+REz7oZ3Q@mail.gmail.com>
- <55A55C40.4000207@gmail.com>
- <CAPM=9ty34G39nceFnarvs0qOoJiyqjcsgXD0FdB4Ye_O1D+EhQ@mail.gmail.com>
- <55AB6116.4000004@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90388] [NVE4] PDISP errors on startup
+Date: Wed, 22 Jul 2015 08:44:20 +0000
+Message-ID: <bug-90388-8800-JTXPfcQpDe@http.bugs.freedesktop.org/>
+References: <bug-90388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1356582839=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55AB6116.4000004-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-90388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -28,87 +16,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkgSnVseSAyMDE1IGF0IDE4OjM0LCBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRl
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gMDcvMTgvMjAxNSAwMTowOSBQTSwgRGF2ZSBBaXJsaWUg
-d3JvdGU6Cj4+Pj4+Cj4+Pj4+Cj4+Pj4+IFdlIGNhbiBkaXNhYmxlIGl0IGJ5IGRlZmF1bHQgb24g
-ZXhhIC0gaW50ZWwgYW5kIGFtZC9yYWRlb24gZHJpdmVycyBhbHNvCj4+Pj4+IGRpc2FibGUgYnkg
-ZGVmYXVsdC4gSG93ZXZlciwgb24gZ3B1cyA+PSBtYXh3ZWxsIG9ubHkgZ2xhbW9yIGFjY2VsIGlz
-Cj4+Pj4+IHN1cHBvcnRlZCBhbmQgZ2xhbW9yIG9uIG5vdXZlYXUgaXMgZWl0aGVyIGRyaTMvcHJl
-c2VudCBvciBubyBodyBhY2NlbAo+Pj4+PiBhdAo+Pj4+PiBhbGwKPj4+Pj4gYWZhaWNzLgo+Pj4+
-Cj4+Pj4KPj4+Pgo+Pj4+IFlvdSBwcm9iYWJseSBzYXcgbXkgcGF0Y2hlcyB0byBqdXN0IHJlbW92
-ZSBnbGFtb3IgZnJvbSBub3V2ZWF1IDopIFRoYXQKPj4+PiBpbnRlZ3JhdGlvbiBkb2Vzbid0IHN1
-cHBvcnQgRFJJMiwgd2hpY2ggaW4gdHVybiBtZWFucyBubyBjb3JlIGNvbnRleHRzCj4+Pj4gKGR1
-ZSB0byBsYWNrIG9mIEdMWF9BUkJfY3JlYXRlX2NvbnRleHRfcHJvZmlsZSksIGFuZCBhIHNsZXcg
-b2Ygb3RoZXIKPj4+PiBpc3N1ZXMuIFNlZW1lZCBlYXNpZXIgdG8ganVzdCB0ZWxsIHBlb3BsZSB0
-byBnbyB1c2UgbW9kZXNldHRpbmcsIHdoaWNoCj4+Pj4gZ2V0cyBhbGwgb2YgdGhlc2UgdGhpbmdz
-IHJpZ2h0KGVyKS4KPj4+Pgo+Pj4KPj4+IEhtLCBhIHRvdGFsIHJlbW92YWwgd291bGQgYXQgbGVh
-c3QgbWFrZSBtZSBhbmQgbXkgdXNlcnMgcmF0aGVyIHVuaGFwcHkKPj4+IGF0bS4sCj4+PiBhcyB3
-aXRob3V0IGdsYW1vciBubyBodyBhY2NlbCBhdCBhbGwgb24gPj0gbWF4d2VsbC4gbW9kZXNldHRp
-bmcgYW5kCj4+PiBub3V2ZWF1Cj4+PiBhcmUgbm90IG9uIHBhciBmZWF0dXJlLXdpc2UgYXRtLiBF
-LmcuLCBtb2Rlc2V0dGluZyBhcyBvZiB0aGUgbmV4dCB4b3JnCj4+PiAxLjE4Cj4+PiBzZXJ2ZXIg
-b25seSBwcm92aWRlcyBwYWdlZmxpcHBpbmcgdmlhIGRyaTMvcHJlc2VudCBhbmQgd2l0aG91dAo+
-Pj4gcGFnZWZsaXBwaW5nCj4+PiBpdCBpcyBnYW1lIG92ZXIgZm9yIG1hbnkgb2YgbXkgdXNlIGNh
-c2VzIG9uIG5vdXZlYXUta21zLiBBbHNvIG1vZGVzZXR0aW5nCj4+PiBjdXJyZW50bHkgY29tcGxl
-dGVseSBsYWNrcyBaYXBob2RIZWFkcyBzdXBwb3J0LiBXaXRob3V0IFphcGhvZEhlYWRzIGkKPj4+
-IGNhbid0Cj4+PiBoYXZlIGEgcGFnZS1mbGlwcGVkIGZ1bGxzY3JlZW4gd2luZG93IG9uIG9uZSBz
-dWJzZXQgb2Ygb3V0cHV0cyBhbmQgYQo+Pj4gcmVndWxhcgo+Pj4gZGVza3RvcCBvbiBhbm90aGVy
-IHN1YnNldCwgc29tZXRoaW5nIHRoYXQgaXMgbmVlZGVkIGZvcgo+Pj4gbmV1cm9zY2llbmNlL21l
-ZGljYWwvdnIgYXBwbGljYXRpb25zLgo+Pgo+Pgo+PiBTbyB3aGF0IHdvdWxkIHlvdSB3YW50IGlu
-IG1vZGVzZXR0aW5nIHRvIGJlIG9uIHBhcj8KPj4KPj4gRFJJMiBwYWdlZmxpcHBpbmc/Cj4KPgo+
-IFByb2JhYmx5IG5vdCBuZWVkZWQ/IEkgZGVidWdnZWQgYW5kIHRlc3RlZCB0aGUgRFJJMy9QcmVz
-ZW50IHBhZ2UgZmxpcHBpbmcKPiB3aXRoIG1vZGVzZXR0aW5nIGEgZmV3IG1vbnRocyBhZ28uIEhh
-dmVuJ3QgcmV0ZXN0ZWQgdGhlIG1vc3QgcmVjZW50IHZlcnNpb24KPiBvZiB0aGUgcGF0Y2hlcyBp
-biB4LXNlcnZlciBtYXN0ZXIsIGJ1dCBhdCB0aGF0IHRpbWUgdGhleSBzZWVtZWQgdG8gd29yawo+
-IHByZXR0eSBvay4gSSdsbCBnaXZlIHRoaXMgc29tZSBtb3JlIHRlc3Rpbmcgc29vbi4gSSBhbHNv
-IHJhbiBpdCBhcyBteQo+IGRlc2t0b3AgZm9yIDItMyBkYXlzLCBhZmFpciB3aXRob3V0IHNlcmlv
-dXMgaXNzdWVzLCBidXQgdGhhdCB3YXNuJ3QgdGhlIGtpbmQKPiBvZiBvYnNlc3NpdmUgc3RyZXNz
-IHRlc3RpbmcgaSBkbyBmb3IgdGhlIE9wZW5HTCBmdWxsc2NyZWVuIHBhZ2VmbGlwcGluZwo+IHN0
-dWZmLgo+Cj4gSSBkbyByZW1lbWJlciBkcG1zIGFjdGl2aXR5IHdhcyBhIGNyYXNoZXIgbGFzdCB0
-aW1lIGkgdGVzdGVkLiBNYXliZSByZXNvbHZlZAo+IG5vdz8KPgo+PiB6YXBob2QgaGVhZHM/Cj4+
-Cj4KPiBNb3N0bHkgWmFwaG9kaGVhZHMgd291bGQgYmUgdGhlIHJlYWxseSBpbXBvcnRhbnQgb25l
-IGZvciBtZS4gTGFjayBvZiBpdCA9Cj4gc2hvdyBzdG9wcGVyIGZvciBtYW55IG9mIG15IHVzZXJz
-IGFwcGxpY2F0aW9ucy4gVXNlcnMgb2Z0ZW4gd2FudCB0byBzcGxpdAo+IHRoZWlyIGdwdSBpbnRv
-IGF0IGxlYXN0IDIgeC1zY3JlZW5zOiBPbmUgZm9yIHRoZSAib3BlcmF0b3IiIHRvIGNvbnRyb2wK
-PiBleHBlcmltZW50YWwgd29yayBzZXNzaW9ucyB2aWEgYSByZWd1bGFyIGRlc2t0b3AgR1VJLCB0
-aGUgb3RoZXIgZm9yIG9uZQo+IHVucmVkaXJlY3RlZCBrbXMtcGFnZWZsaXBwZWQgZnVsbHNjcmVl
-biB3aW5kb3cgb24gb25lIG9yIG11bHRpcGxlIGF0dGFjaGVkCj4gWmFwaG9kaGVhZHMgb3V0cHV0
-cyBmb3IgdGhlIGFjdHVhbCBwcmVzZW50YXRpb24gb24gdGhlIDJuZCB4LXNjcmVlbiwgZS5nLiwK
-PiBzaW5nbGUgZGlzcGxheSwgb3IgZHVhbCBkaXNwbGF5IGZvciBzdGVyZW9zY29waWMgc3R1ZmYg
-LSBzdGVyZW8gZ29nZ2xlcyBhbmQKPiBzdWNoLCBvciA+IDIgZGlzcGxheXMgZm9yIG1vcmUgYWR2
-YW5jZWQgVlIgc3R1ZmYuIFRoZSBwYWdlIGZsaXBwaW5nIGlzCj4gaW1wb3J0YW50IGluIG15IGNh
-c2UgYmVjYXVzZSBwcmVjaXNlIHRpbWluZyBhbmQgcHJlY2lzZSB0aW1lc3RhbXBpbmcgaXMKPiBp
-bXBvcnRhbnQgd2hpY2ggd2Ugb25seSBnZXQgd2l0aCBwYWdlIGZsaXBzLCBhbHNvIHRvIGdldCBv
-dXQgcGl4ZWxzIGFzCj4gYml0LWV4YWN0IGFzIHBvc3NpYmxlIHdpdGhvdXQgaW50ZXJmZXJlbmNl
-IGZyb20gY29tcG9zaXRvcnMsIGUuZy4gdGV4dHVyZQo+IG1hcHBpbmcgYXJ0aWZhY3RzIGV0Yy4g
-T24gRFJJMy9QcmVzZW50LCBwYWdlIGZsaXBzIGFyZSBhbHNvIHRoZSBvbmx5IHdheQo+IGF0bS4g
-dG8gZ2V0IHRlYXItZnJlZSBQcmVzZW50cywgdGhlIHdheSBpdCBpcyBpbXBsZW1lbnRlZC4KPgo+
-IE1vcmUgcmVndWxhciB1c2VycyBzZWVtIHRvIGxpa2UgdG8gaGF2ZSBhIHNlcGFyYXRlIHgtc2Ny
-ZWVuIGZvciBUViBzZXRzIGFuZAo+IHVzZSBaYXBob2RIZWFkcyBmb3IgdGhhdC4KPgo+IFRoZSBj
-dXJyZW50IG5vdXZlYXUgb3IgcmFkZW9uIGltcGxlbWVudGF0aW9uIHdvdWxkIGJlIGEgZ29vZCBy
-ZWZlcmVuY2UgZm9yCj4gb25lIHRoYXQgc2VlbXMgdG8gd29yayB3ZWxsIHdpdGggbXVsdGlwbGUg
-WmFwaG9kSGVhZHMgcGVyIHgtc2NyZWVuICsgMSBleHRyYQo+IHBhdGNoIG9mIG1pbmUgYWdhaW5z
-dCBub3V2ZWF1IGZsb2F0aW5nIG9uIG5vdXZlYXUtZGV2ZWwgIltQQVRDSF0gVGFrZSBzaGlmdAo+
-IGluIGNydGMgcG9zaXRpb25zIGZvciBaYXBob2RIZWFkcyBjb25maWdzIGludG8gYWNjb3VudC4i
-IFRoYXQgcGF0Y2ggaXMKPiBuZWVkZWQgZm9yIG5vdXZlYXUtZGR4LCBvciBhbnkgZ2VuZXJpYyBk
-cml2ZXIgdGhhdCBkZWFscyB3aXRoIG5vdXZlYXUta21zLgo+IEFmYWljcyB0aGUgb3RoZXIga21z
-IGRyaXZlcnMgcmV0dXJuIGEga2VuY29kZXItPnBvc3NpYmxlX2NydGNzIG1hc2sgd2hpY2gKPiBh
-bGxvd3MgYW55IGNydGMgdG8gZ28gd2l0aCBhbnkgZW5jb2RlciwgYnV0IG5vdXZlYXUta21zIGdl
-dHMgdGhhdCBpbmZvIGZyb20KPiB0aGUgVkJJT1MgRENCIGFuZCBzb21ldGltZXMgdGhlIG1hc2sg
-aXMgYSBiaXQgbW9yZSBzcGVjaWFsIGFuZCBuZWVkcyB0aGUKPiBleHRyYSB0cmVhdG1lbnQgZnJv
-bSB0aGF0IHBhdGNoLCBvciBiYWQgdGhpbmdzIHdpbGwgaGFwcGVuLCBlLmcuLCBvbiBzb21lCj4g
-bnYtNTAgY2FyZHMuCj4KPj4gYW55dGhpbmcgZWxzZT8gSSB3b3VsZCBsaWtlIGZvciBGMjMgdG8g
-c2hpcCBhIG1vZGVzZXR0aW5nIHdoaWNoIEkgY2FuCj4+IHJlcGxhY2UgaW50ZWwvbm91dmVhdS9h
-dGkgd2l0aC4KPgo+Cj4gTm90IGF0IHRoZSBtb21lbnQuIEknbGwgdGhpbmsgYWJvdXQgaXQgc29t
-ZSBtb3JlIGFuZCBnaXZlIHRoZSBjdXJyZW50Cj4gbW9kZXNldHRpbmcgZHJpdmVyIGEgYml0IG1v
-cmUgdGVzdGluZyB0byBzZWUgaWYgc29tZXRoaW5nIHNob3dzIHVwLgoKSGkgTWFyaW8sCgpqdXN0
-IHRvIGZvbGxvdyB1cCwgSSBwb3N0ZWQgYSBwYXRjaCB0byB4b3JnLWRldmVsIHRvIGFkZCBaYXBo
-b2Qgc3VwcG9ydAp0byBtb2Rlc2V0dGluZywgaXQgYXQgbGVhc3Qgc3RhcnRzIGhlcmUhCgpDYW4g
-eW91IHRha2UgYSBsb29rIGF0IGl0IGFuZCBsZXQgbWUga25vdyB3aGF0IGVsc2UgaXQgbWlnaHQg
-bmVlZCBkb2luZywKc2luY2UgSSBzZWUgeW91J3ZlIGJlZW4gYWN0aXZlIGluIHRoZSBvdGhlciBk
-cml2ZXJzLgoKRGF2ZS4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1356582839==
+Content-Type: multipart/alternative; boundary="1437554660.a5131.14709"; charset="UTF-8"
+
+
+--1437554660.a5131.14709
+Date: Wed, 22 Jul 2015 08:44:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90388
+
+--- Comment #1 from Leonidas Spyropoulos <artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'd like to add to this that X server crash after 1-2 days running, logs is
+filled with errors but can't catch them as the pc is unresponsive. Only thing
+that works is SysRq commands and hard reset.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1437554660.a5131.14709
+Date: Wed, 22 Jul 2015 08:44:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PDISP errors on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PDISP errors on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">bug 90388</a>
+              from <span class="vcard"><a class="email" href="mailto:artafinde&#64;gmail.com" title="Leonidas Spyropoulos &lt;artafinde&#64;gmail.com&gt;"> <span class="fn">Leonidas Spyropoulos</span></a>
+</span></b>
+        <pre>I'd like to add to this that X server crash after 1-2 days running, logs is
+filled with errors but can't catch them as the pc is unresponsive. Only thing
+that works is SysRq commands and hard reset.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437554660.a5131.14709--
+
+--===============1356582839==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1356582839==--
