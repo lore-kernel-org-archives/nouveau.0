@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90388] [NVE4] PDISP errors on startup
-Date: Wed, 22 Jul 2015 08:44:20 +0000
-Message-ID: <bug-90388-8800-JTXPfcQpDe@http.bugs.freedesktop.org/>
+Date: Wed, 22 Jul 2015 08:46:13 +0000
+Message-ID: <bug-90388-8800-vLl2uR5rRr@http.bugs.freedesktop.org/>
 References: <bug-90388-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1356582839=="
+Content-Type: multipart/mixed; boundary="===============1595969322=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1356582839==
-Content-Type: multipart/alternative; boundary="1437554660.a5131.14709"; charset="UTF-8"
+--===============1595969322==
+Content-Type: multipart/alternative; boundary="1437554773.Cc2FEF2E1.15194"; charset="UTF-8"
 
 
---1437554660.a5131.14709
-Date: Wed, 22 Jul 2015 08:44:20 +0000
+--1437554773.Cc2FEF2E1.15194
+Date: Wed, 22 Jul 2015 08:46:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90388
 
---- Comment #1 from Leonidas Spyropoulos <artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'd like to add to this that X server crash after 1-2 days running, logs is
-filled with errors but can't catch them as the pc is unresponsive. Only thing
-that works is SysRq commands and hard reset.
+Leonidas Spyropoulos <artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+           Severity|normal                      |major
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1437554660.a5131.14709
-Date: Wed, 22 Jul 2015 08:44:20 +0000
+--1437554773.Cc2FEF2E1.15194
+Date: Wed, 22 Jul 2015 08:46:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,23 +50,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] PDISP errors on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:artafinde&#64;gmail.com" title="Leonidas Spyropoulos &lt;artafinde&#64;gmail.com&gt;"> <span class="fn">Leonidas Spyropoulos</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PDISP errors on startup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">bug 90388</a>
-              from <span class="vcard"><a class="email" href="mailto:artafinde&#64;gmail.com" title="Leonidas Spyropoulos &lt;artafinde&#64;gmail.com&gt;"> <span class="fn">Leonidas Spyropoulos</span></a>
-</span></b>
-        <pre>I'd like to add to this that X server crash after 1-2 days running, logs is
-filled with errors but can't catch them as the pc is unresponsive. Only thing
-that works is SysRq commands and hard reset.</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Severity</td>
+           <td>normal
+           </td>
+           <td>major
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +82,9 @@ that works is SysRq commands and hard reset.</pre>
     </body>
 </html>
 
---1437554660.a5131.14709--
+--1437554773.Cc2FEF2E1.15194--
 
---===============1356582839==
+--===============1595969322==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1356582839==--
+--===============1595969322==--
