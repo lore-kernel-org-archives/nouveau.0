@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90435] [NV46] moving 3D objects drawn static
-Date: Thu, 23 Jul 2015 15:19:20 +0000
-Message-ID: <bug-90435-8800-uLSpXjp4uR@http.bugs.freedesktop.org/>
-References: <bug-90435-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH] nouveau: nv46: Change mc subdev oclass from nv44
+	to nv4c
+Date: Thu, 23 Jul 2015 17:20:12 +0200
+Message-ID: <1437664812-5943-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0360867039=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90435-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,75 +16,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0360867039==
-Content-Type: multipart/alternative; boundary="1437664760.6BeaE2.10533"; charset="UTF-8"
-
-
---1437664760.6BeaE2.10533
-Date: Thu, 23 Jul 2015 15:19:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90435
-
---- Comment #19 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
-Created attachment 117321
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117321&action=edit
-[PATCH] nouveau: nv46: Change mc subdev oclass from nv44 to nv4c
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1437664760.6BeaE2.10533
-Date: Thu, 23 Jul 2015 15:19:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV46] moving 3D objects drawn static"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90435">bug 90435</a>
-              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117321" name="attach_117321" title="[PATCH] nouveau: nv46: Change mc subdev oclass from nv44 to nv4c">attachment 117321</a> <a href="attachment.cgi?id=117321&amp;action=edit" title="[PATCH] nouveau: nv46: Change mc subdev oclass from nv44 to nv4c">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=90435&amp;attachment=117321'>[review]</a>
-[PATCH] nouveau: nv46: Change mc subdev oclass from nv44 to nv4c</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1437664760.6BeaE2.10533--
-
---===============0360867039==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0360867039==--
+TVNJIGludGVycnVwdHMgYXBwZWFyIHRvIG5vdCB3b3JrIGZvciBudjQ2IGJhc2VkIGNhcmRzLiBD
+aGFuZ2UgdGhlIG1jCnN1YmRldiBvY2xhc3MgZm9yIHRoZXNlIGNhcmRzIGZyb20gbnY0NCB0byBu
+djRjLCB0aGUgbnY0YyBtYyBjb2RlIGlzCmlkZW50aWNhbCB0byB0aGUgbnY0NCBtYyBjb2RlIGV4
+Y2VwdCB0aGF0IGl0IGRvZXMgbm90IHVzZSBtc2kKKGl0IGRvZXMgbm90IGRlZmluZSBhIG1zaV9y
+ZWFybSBjYWxsYmFjaykuCgpCdWdMaW5rOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3No
+b3dfYnVnLmNnaT9pZD05MDQzNQpTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2Vk
+ZUByZWRoYXQuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rl
+dmljZS9udjQwLmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVs
+ZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9kZXZpY2UvbnY0MC5jIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2
+aWNlL252NDAuYwppbmRleCBjNjMwMTM2Li5iNGFkNzkxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvbnY0MC5jCisrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9udjQwLmMKQEAgLTI2NSw3ICsyNjUsNyBA
+QCBudjQwX2lkZW50aWZ5KHN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlKQogCQlkZXZpY2UtPm9j
+bGFzc1tOVkRFVl9TVUJERVZfQ0xLICAgIF0gPSAmbnY0MF9jbGtfb2NsYXNzOwogCQlkZXZpY2Ut
+Pm9jbGFzc1tOVkRFVl9TVUJERVZfVEhFUk0gIF0gPSAmbnY0MF90aGVybV9vY2xhc3M7CiAJCWRl
+dmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9ERVZJTklUXSA9ICBudjFhX2RldmluaXRfb2NsYXNz
+OwotCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfTUMgICAgIF0gPSAgbnY0NF9tY19vY2xh
+c3M7CisJCWRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29j
+bGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVz
+X29jbGFzczsKIAkJZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0gJm52MDRf
+dGltZXJfb2NsYXNzOwogCQlkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAg
+bnY0Nl9mYl9vY2xhc3M7Ci0tIAoyLjQuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
