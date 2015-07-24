@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91445] Thick black borders around windows with Ubuntu
-Date: Fri, 24 Jul 2015 06:34:29 +0000
-Message-ID: <bug-91445-8800-1JKCrE8aCj@http.bugs.freedesktop.org/>
+Date: Fri, 24 Jul 2015 06:35:21 +0000
+Message-ID: <bug-91445-8800-20XAjQOKlS@http.bugs.freedesktop.org/>
 References: <bug-91445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0612841872=="
+Content-Type: multipart/mixed; boundary="===============1140937557=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0612841872==
-Content-Type: multipart/alternative; boundary="1437719669.C4cDE0.24183"; charset="UTF-8"
+--===============1140937557==
+Content-Type: multipart/alternative; boundary="1437719721.e2450.24402"; charset="UTF-8"
 
 
---1437719669.C4cDE0.24183
-Date: Fri, 24 Jul 2015 06:34:29 +0000
+--1437719721.e2450.24402
+Date: Fri, 24 Jul 2015 06:35:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91445
 
---- Comment #3 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117331
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117331&action=edit
-kernel.log
+--- Comment #4 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117332
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117332&action=edit
+Xorg log
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1437719669.C4cDE0.24183
-Date: Fri, 24 Jul 2015 06:34:29 +0000
+--1437719721.e2450.24402
+Date: Fri, 24 Jul 2015 06:35:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Thick black borders around windows with Ubuntu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Thick black borders around windows with Ubuntu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">bug 91445</a>
               from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117331" name="attach_117331" title="kernel.log">attachment 117331</a> <a href="attachment.cgi?id=117331&amp;action=edit" title="kernel.log">[details]</a></span>
-kernel.log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117332" name="attach_117332" title="Xorg log">attachment 117332</a> <a href="attachment.cgi?id=117332&amp;action=edit" title="Xorg log">[details]</a></span>
+Xorg log</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ kernel.log</pre>
     </body>
 </html>
 
---1437719669.C4cDE0.24183--
+--1437719721.e2450.24402--
 
---===============0612841872==
+--===============1140937557==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0612841872==--
+--===============1140937557==--
