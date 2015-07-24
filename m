@@ -1,16 +1,11 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: nv46: Change mc subdev oclass from
- nv44 to nv4c
-Date: Fri, 24 Jul 2015 12:56:50 +1000
-Message-ID: <CACAvsv4m36PPeFXbOc82--P6yrrfGbF-XTr8nMZ1EhKs6-gk0g@mail.gmail.com>
-References: <1437664812-5943-1-git-send-email-hdegoede@redhat.com>
- <CACAvsv5JivdVt94qkv0FBqH=ero6UkeUpc2KjDNeQLL_DSgGDw@mail.gmail.com>
- <CAKb7UvhRhX6988JfUNkokcnTq+RiHb1p1Y7L3dq78oyT445yng@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91445] New: Thick black borders around windows with
+	Ubuntu
+Date: Fri, 24 Jul 2015 06:28:57 +0000
+Message-ID: <bug-91445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0394180277=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhRhX6988JfUNkokcnTq+RiHb1p1Y7L3dq78oyT445yng-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +15,182 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjQgSnVseSAyMDE1IGF0IDEyOjM5LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5l
-ZHU+IHdyb3RlOgo+IE9uIFRodSwgSnVsIDIzLCAyMDE1IGF0IDEwOjMyIFBNLCBCZW4gU2tlZ2dz
-IDxza2VnZ3NiQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIDI0IEp1bHkgMjAxNSBhdCAwMToyMCwg
-SGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4+PiBNU0kgaW50ZXJy
-dXB0cyBhcHBlYXIgdG8gbm90IHdvcmsgZm9yIG52NDYgYmFzZWQgY2FyZHMuIENoYW5nZSB0aGUg
-bWMKPj4+IHN1YmRldiBvY2xhc3MgZm9yIHRoZXNlIGNhcmRzIGZyb20gbnY0NCB0byBudjRjLCB0
-aGUgbnY0YyBtYyBjb2RlIGlzCj4+PiBpZGVudGljYWwgdG8gdGhlIG52NDQgbWMgY29kZSBleGNl
-cHQgdGhhdCBpdCBkb2VzIG5vdCB1c2UgbXNpCj4+PiAoaXQgZG9lcyBub3QgZGVmaW5lIGEgbXNp
-X3JlYXJtIGNhbGxiYWNrKS4KPj4gSSdtIGZpbmUgd2l0aCB0aGlzLCBidXQgaXQnZCBiZSBuaWNl
-IHRvIGNoZWNrIHRoYXQgdGhlIGJpbmFyeSBkcml2ZXIKPj4gZG9lc24ndC9jYW4ndCB1c2UgTVNJ
-IG9uIHRoZXNlIHRvbyAodGhlcmUgbWlnaHQgYmUgYW4gYWx0ZXJuYXRlIG1ldGhvZAo+PiB3ZSBu
-ZWVkIHRvIHVzZSkuCj4+Cj4+IFdvdWxkIHlvdSBiZSBhYmxlIHRvIGdyYWIgdGhlIGxhdGVzdCBw
-cm9wcmlldGFyeSBkcml2ZXIgdGhhdCB3b3JrcyBvbgo+PiBudjR4LCBhbmQgZG8gYSBtbWlvdHJh
-Y2Ugb2YgaXQ/ICBZb3UgKm1pZ2h0KiBuZWVkIHRvIHVzZSAibW9kcHJvYmUKPj4gbnZpZGlhIE5W
-cmVnX0VuYWJsZU1TST0xIiwgYmVjYXVzZSBhdCBzb21lIHBvaW50IE5WSURJQSBkaWRuJ3QgdXNl
-IGl0Cj4+IGJ5IGRlZmF1bHQgYW55d2hlcmUuCj4KPiBBRkFJSyB0aGUgYmxvYiBuZXZlciB1c2Vk
-IE1TSSBvbiBudjR4LiBQZXJoYXBzIHdlIHNob3VsZCBoYXZlIGp1c3QKPiBsZWZ0IGl0IGFsb25l
-Li4uClRoZXkgaGF2ZSBzdXBwb3J0IGZvciBpdCwgaXQgd2FzIGp1c3QgbmV2ZXIgb24gYnkgZGVm
-YXVsdCAoZm9yIGFueQpjaGlwc2V0KSBkdXJpbmcgdGhlIHN1cHBvcnRlZCBsaWZldGltZSBvZiBu
-djR4LgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0394180277==
+Content-Type: multipart/alternative; boundary="1437719337.cb6fBD0.23297"; charset="UTF-8"
+
+
+--1437719337.cb6fBD0.23297
+Date: Fri, 24 Jul 2015 06:28:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91445
+
+            Bug ID: 91445
+           Summary: Thick black borders around windows with Ubuntu
+           Product: Mesa
+           Version: 10.6
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 117329
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117329&action=edit
+what I see on Ubuntu 15.04
+
+When installing oibaf ppa mesa 10.7.0devel, and also xorg edgers mesa 10.6.x, 
+on all Nvidia GPUs I've checked (GT210, GT560, GT610, GT640),
+
+all windows show a thick black border, having always the same quantized size
+(could be power of 2), instead of window border elements.
+
+Attaching image and boot, kernel and xorg log.
+I am available to provide further log/traces if necessary.
+
+Mauro
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1437719337.cb6fBD0.23297
+Date: Fri, 24 Jul 2015 06:28:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Thick black borders around windows with Ubuntu"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">91445</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Thick black borders around windows with Ubuntu
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.6
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>issor.oruam&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117329" name="attach_117329" title="what I see on Ubuntu 15.04">attachment 117329</a> <a href="attachment.cgi?id=117329&amp;action=edit" title="what I see on Ubuntu 15.04">[details]</a></span>
+what I see on Ubuntu 15.04
+
+When installing oibaf ppa mesa 10.7.0devel, and also xorg edgers mesa 10.6.x, 
+on all Nvidia GPUs I've checked (GT210, GT560, GT610, GT640),
+
+all windows show a thick black border, having always the same quantized size
+(could be power of 2), instead of window border elements.
+
+Attaching image and boot, kernel and xorg log.
+I am available to provide further log/traces if necessary.
+
+Mauro</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437719337.cb6fBD0.23297--
+
+--===============0394180277==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0394180277==--
