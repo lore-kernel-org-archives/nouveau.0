@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91445] Thick black borders around windows with Ubuntu
-Date: Fri, 24 Jul 2015 06:33:32 +0000
-Message-ID: <bug-91445-8800-fwcIf2Umqn@http.bugs.freedesktop.org/>
+Date: Fri, 24 Jul 2015 06:34:29 +0000
+Message-ID: <bug-91445-8800-1JKCrE8aCj@http.bugs.freedesktop.org/>
 References: <bug-91445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1582945907=="
+Content-Type: multipart/mixed; boundary="===============0612841872=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1582945907==
-Content-Type: multipart/alternative; boundary="1437719612.0cf4b1.23975"; charset="UTF-8"
+--===============0612841872==
+Content-Type: multipart/alternative; boundary="1437719669.C4cDE0.24183"; charset="UTF-8"
 
 
---1437719612.0cf4b1.23975
-Date: Fri, 24 Jul 2015 06:33:32 +0000
+--1437719669.C4cDE0.24183
+Date: Fri, 24 Jul 2015 06:34:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91445
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Are you using xf86-video-nouveau from git? That will have enabled DRI3 which is
-known to have issues.
-
-Can you provide your xorg log?
+--- Comment #3 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117331
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117331&action=edit
+kernel.log
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1437719612.0cf4b1.23975
-Date: Fri, 24 Jul 2015 06:33:32 +0000
+--1437719669.C4cDE0.24183
+Date: Fri, 24 Jul 2015 06:34:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Thick black borders around windows with Ubuntu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Thick black borders around windows with Ubuntu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">bug 91445</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
 </span></b>
-        <pre>Are you using xf86-video-nouveau from git? That will have enabled DRI3 which is
-known to have issues.
-
-Can you provide your xorg log?</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117331" name="attach_117331" title="kernel.log">attachment 117331</a> <a href="attachment.cgi?id=117331&amp;action=edit" title="kernel.log">[details]</a></span>
+kernel.log</pre>
         </div>
       </p>
       <hr>
@@ -80,9 +77,9 @@ Can you provide your xorg log?</pre>
     </body>
 </html>
 
---1437719612.0cf4b1.23975--
+--1437719669.C4cDE0.24183--
 
---===============1582945907==
+--===============0612841872==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1582945907==--
+--===============0612841872==--
