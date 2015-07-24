@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91445] Thick black borders around windows with Ubuntu
-Date: Fri, 24 Jul 2015 06:31:39 +0000
-Message-ID: <bug-91445-8800-pVAxQ8Nb6t@http.bugs.freedesktop.org/>
+Date: Fri, 24 Jul 2015 06:33:32 +0000
+Message-ID: <bug-91445-8800-fwcIf2Umqn@http.bugs.freedesktop.org/>
 References: <bug-91445-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0894483517=="
+Content-Type: multipart/mixed; boundary="===============1582945907=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,31 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0894483517==
-Content-Type: multipart/alternative; boundary="1437719498.dB8a07Cd1.23574"; charset="UTF-8"
+--===============1582945907==
+Content-Type: multipart/alternative; boundary="1437719612.0cf4b1.23975"; charset="UTF-8"
 
 
---1437719498.dB8a07Cd1.23574
-Date: Fri, 24 Jul 2015 06:31:38 +0000
+--1437719612.0cf4b1.23975
+Date: Fri, 24 Jul 2015 06:33:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91445
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Are you using xf86-video-nouveau from git? That will have enabled DRI3 which is
+known to have issues.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #117329|text/plain                  |image/png
-          mime type|                            |
+Can you provide your xorg log?
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1437719498.dB8a07Cd1.23574
-Date: Fri, 24 Jul 2015 06:31:38 +0000
+--1437719612.0cf4b1.23975
+Date: Fri, 24 Jul 2015 06:33:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +51,24 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Thick black borders around windows with Ubuntu"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Thick black borders around windows with Ubuntu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">bug 91445</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Are you using xf86-video-nouveau from git? That will have enabled DRI3 which is
+known to have issues.
 
-         <tr>
-           <td style="text-align:right;">Attachment #117329 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/png
-           </td>
-         </tr></table>
-      <p>
+Can you provide your xorg log?</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -85,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1437719498.dB8a07Cd1.23574--
+--1437719612.0cf4b1.23975--
 
---===============0894483517==
+--===============1582945907==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0894483517==--
+--===============1582945907==--
