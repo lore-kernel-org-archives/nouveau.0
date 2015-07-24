@@ -1,17 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Tessellation shaders get MEM_OUT_OF_BOUNDS errors /
-	missing triangles
-Date: Fri, 24 Jul 2015 12:34:09 -0400
-Message-ID: <CAKb7Uvg+QNH95qKbU2RRZWK7Yr1J8--cV8+9ktrVhYtyc1SWTA@mail.gmail.com>
-References: <CAKb7UvixGi2pd8sp-qcOM5-Fuj7U+1Vn7ih4VGS7O06iAFgYeA@mail.gmail.com>
- <CAKb7UvgW=X8zo8DJD-xkKB=+TihRyPhxN7mPPnORybU0oyEQiQ@mail.gmail.com>
- <CAKb7Uvi1Hpve=BZPEUXYsHqb6119qyzqe7omGGDiLHNTYTT0SA@mail.gmail.com>
- <CAKb7Uvi3P7ftXL_ghrPoBvqivHu2GOjTj=ZCLK_zDyPLdme0aw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
+Date: Fri, 24 Jul 2015 20:11:46 +0000
+Message-ID: <bug-89969-8800-4R3AjkTLLH@http.bugs.freedesktop.org/>
+References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0480394332=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi3P7ftXL_ghrPoBvqivHu2GOjTj=ZCLK_zDyPLdme0aw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,112 +16,149 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SW5kZWVkLCB0aGlzIGZpeGVkIHRoZSBvcmlnaW5hbCBpc3N1ZSBvbiB0aGUgR0syMDguIEFkZGl0
-aW9uYWxseSBpdApzZWVtcyBsaWtlIHN0YXJ0aW5nIHdpdGggR0sxMDQgdGhlIG1lY2hhbmlzbSBm
-b3IgaW5kaXJlY3Qgb2Zmc2V0cyBmb3IKQUxEL0FTVCBjaGFuZ2VkIGFuZCBhIEFMMlAgaW5zdHJ1
-Y3Rpb24gbXVzdCBub3cgYmUgdXNlZCB0byBkZXRlcm1pbmUKdGhlICJpbmRpcmVjdCIgb3IgInBo
-eXNpY2FsIiBvZmZzZXQuIE9uY2Ugbm91dmVhdSB3YXMgYWRqdXN0ZWQgdG8gZG8KdGhpcywgYWxs
-IE1FTV9PVVRfT0ZfQk9VTkRTIGVycm9ycyB3aXRoIHRlc3NlbGxhdGlvbiBzaGFkZXJzIGFyZSBn
-b25lLgoKT24gVGh1LCBKdWwgMjMsIDIwMTUgYXQgMjozNiBBTSwgSWxpYSBNaXJraW4gPGltaXJr
-aW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPiBJIHRoaW5rIEkgZmlndXJlZCBvdXQgd2hhdCB3YXMg
-Z29pbmcgb24uIFdpbGwgcmUtY2hlY2sgb24gdGhlIEdLMjA4LAo+IGJ1dCBvbiBhIEdGMTA4IHRo
-ZSByYW5kb20gYmx1ZSBzcGxvdGNoZXMgaW4gVW5pZ2luZSBIZWF2ZW4gYXJlIGdvbmUKPiBub3cu
-IFR1cm5zIG91dCB0aGF0IHdpdGggYW4gaW5zdHJ1Y3Rpb24gbGlrZQo+Cj4gICAgICAgICAvKjAw
-ZDAqLyAgICAgICAgICAgICAgICAgICBBTEQuMTI4IFIwLCBhWzB4NzBdLCBSMDsKPiAgICAvKiAw
-eDdlY2MwMDAwMzgxZmZjMDIgKi8KPgo+IFRoZSBoYXJkd2FyZSB3aWxsIGludGVybmFsbHkgc3Bs
-aXQgaXQgdXAgaW50byByb3VnaGx5Cj4KPiBBTEQgUjAsIGFbMHg3MF0sIFIwCj4gQUxEIFIxLCBh
-WzB4NzRdLCBSMAo+IEFMRCBSMiwgYVsweDc4XSwgUjAKPiBBTEQgUjMsIGFbMHg3Y10sIFIwCj4K
-PiBPZiBjb3Vyc2UgdGhlIGZpcnN0IG9uZSBvZiB0aG9zZSBvdmVyd3JpdGVzIFIwLCB3aGljaCBt
-YWtlcyB0aGUKPiBzdWJzZXF1ZW50IGxvYWRzIGJlIGZ1bGwgb2YgZmFpbC4gQWRkaW5nIGEgaGF6
-YXJkIGluIG91ciBSQSBmb3IgdGhlCj4gaW5kaXJlY3QgYXJndW1lbnQgcmVzb2x2ZXMgdGhlIGlz
-c3VlLgo+Cj4gICAtaWxpYQo+Cj4KPiBPbiBUdWUsIE1heSAyNiwgMjAxNSBhdCA3OjM0IFBNLCBJ
-bGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiBPbmUgYWRkaXRpb25h
-bCBvYnNlcnZhdGlvbiB0aGF0IEkganVzdCBtYWRlIGlzIHRoYXQgb24gR0syMDgsIHRoZSBibG9i
-Cj4+IGFwcGFyZW50bHkgZG9lc24ndCB1c2UgdGhlIHJlc3VsdCBvZiBTMlIgUngsIFNSX0lOVk9D
-QVRJT05fSUQKPj4gd2hvbGVzYWxlIGluIFRDUy4gSXQgZWl0aGVyIHBhc3NlcyBpdCB0aHJvdWdo
-IGEgSTJJLlMzMi5TMzIgUngsIHxSeHwKPj4gKGkuZS4gYWJzb2x1dGUgdmFsdWUpLCBvciBldmVu
-IG1vcmUgcGFyYWRveGljYWxseSwgc2hsIDI7IHNociAyOyB3aGljaAo+PiByZW1vdmVzIHRoZSB0
-b3AgKjIqIGJpdHMsIHJhdGhlciB0aGFuIGp1c3QgdGhlIHRvcCAxLiBIb3dldmVyIEkgc2VlIG5v
-Cj4+IHN1Y2ggYmVoYXZpb3VyIG9uIEdGMTA4Lgo+Pgo+PiBJJ20gZ29pbmcgdG8gdGVzdCBvdXQg
-dG9tb3Jyb3cgd2hldGhlciB0aGlzIGlzIHRoZSBjYXVzZSBvZiBteSBHSzIwOCB3b2VzLgo+Pgo+
-PiBPbiBGcmksIE1heSAyMiwgMjAxNSBhdCA1OjEwIFBNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
-bHVtLm1pdC5lZHU+IHdyb3RlOgo+Pj4gT24gTW9uLCBNYXkgMTgsIDIwMTUgYXQgNDo0OCBQTSwg
-SWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PiB3cm90ZToKPj4+PiBIZWxsbywKPj4+
-Pgo+Pj4+IEkndmUgYmVlbiBkZWJ1Z2dpbmcgYSBmZXcgZGlmZmVyZW50IHRlc3NlbGxhdGlvbiBz
-aGFkZXIgaXNzdWVzIHdpdGgKPj4+PiBub3V2ZWF1LCBidXQgbGV0J3Mgc3RhcnQgc21hbGwuIEkg
-c2VlIHRoaXMgaXNzdWUgb24gbXkgR0syMDggd2l0aCBoaWdoCj4+Pj4gZnJlcXVlbmN5LCBhbmQg
-SSAqdGhpbmsqIEkndmUgc2VlbiBpdCBvbmNlIG9yIHR3aWNlIG9uIG15IEdGMTA4LCBidXQKPj4+
-PiBpdCdzIGV4Y2VlZGluZ2x5IHJhcmUsIGlmIGl0IGRvZXMgaGFwcGVuLiBJIGRvbid0IGhhdmUg
-YSBHSzEweCB0byB0ZXN0Cj4+Pj4gb24sIHVuZm9ydHVuYXRlbHksIGJ1dCBJIGFzc3VtZSBpdCds
-bCBoYXZlIHRoZSBzYW1lIGlzc3VlIGFzIHRoZQo+Pj4+IEdLMjA4Lgo+Pj4+Cj4+Pj4gVGhlIGlz
-c3VlIGlzIHRoaXMgLS0gYSBidW5jaCBvZiB0cmlhbmdsZXMgdGhhdCBzaG91bGQgY29tZSBvdXQg
-b2YgdGhlCj4+Pj4gdGVzc2VsbGF0b3IgZW5kIHVwIGJsYWNrLiBJIGFsc28gc2VlIGEgR1BDMC9U
-UEMxL01QIHRyYXA6Cj4+Pj4gTUVNX09VVF9PRl9CT1VORFMgZXJyb3IgcHJvZHVjZWQgYnkgbm91
-dmVhdSAtLSB0aGlzIGlzIG91dHB1dCBpbgo+Pj4+IHJlc3BvbnNlIHRvIGEgaW50ZXJydXB0IGFu
-ZCBNUCB0cmFwIGdlbmVyYXRlZCBieSB0aGUgaGFyZHdhcmUsIHJlYWQKPj4+PiBvdXQgd2l0aCBu
-dl9yZDMyKHByaXYsIFRQQ19VTklUKGdwYywgdHBjLCAweDY0OCkpOyAoc2VlCj4+Pj4gZ2YxMDBf
-Z3JfdHJhcF9tcCkuIEkgYXNzdW1lIHNvbWUgb2YgdGhlIHRlc3NlbGxhdGlvbiBldmFsdWF0aW9u
-Cj4+Pj4gaW52b2NhdGlvbnMgZ2V0IGtpbGxlZCwgYnV0IEkgaGF2ZSBubyBwcm9vZiBvZiB0aGlz
-Lgo+Pj4+Cj4+Pj4gSSBhbHNvIHNlZSB0aGlzOiBUUkFQIGNoIDUgWzB4MDAzZmFjZjAwMCBzaGFk
-ZXJfcnVubmVyWzE5MDQ0XV0KPj4+Pgo+Pj4+IEkgd291bGQgaW1hZ2luZSB0aGF0J3Mgc29tZSBm
-bG9hdGluZyBwb2ludCBudW1iZXIgZW5kaW5nIHVwIGluIHRoZQo+Pj4+IHJlZ2lzdGVyIGluc3Rl
-YWQgb2YgYW4gYWRkcmVzcywgYnV0IHRoZSBmcDMyIHZhbHVlIG9mIGl0Cj4+Pj4gKDEuMzUxMDc0
-MjE4NzUpIGRvZXMgbm90IHNlZW0gZmFtaWxpYXIuCj4+Pgo+Pj4gQmVuIHBvaW50ZWQgb3V0IHRo
-YXQgdGhlIDB4M2ZhY2YwMDAgaXMgYSBjaGFubmVsIGFkZHJlc3MsIG5vdCBhIHZhbHVlCj4+PiBm
-cm9tIHRoZSBzaGFkZXIuIE9vcHMuIFNvIHRoYXQgdGhlb3J5IGNvbXBsZXRlbHkgZG9lc24ndCBo
-b2xkIHdhdGVyLgo+Pj4gUGVyaGFwcyBzb21lIGJ1ZmZlciBpc24ndCBiaWcgZW5vdWdoPyBUaGlz
-IGVuZHMgdXAgdXNpbmcgOSBvdXRwdXQKPj4+IHZlcnRpY2VzIHBlciBwYXRjaCwgd2l0aCAyIHZl
-YzQncyBlYWNoLiBJJ3ZlIHRyaWVkIHBsYXlpbmcgd2l0aCB0aGUKPj4+IHBlci13YXJwIHN0YWNr
-IHNpemUgdG8gbm8gYXZhaWwsIGJ1dCBJIGRpZG4ndCAqZW50aXJlbHkqIGtub3cgd2hhdCBJCj4+
-PiB3YXMgZG9pbmcgZWl0aGVyIHRob3VnaC4KPj4+Cj4+Pj4KPj4+PiBFdmVuIHdoZW4gYWxsIHRo
-ZSB0cmlhbmdsZXMgc2hvdyB1cCwgSSBzdGlsbCBzZWUgdGhlIGVycm9yIG9uIHRoZQo+Pj4+IEdL
-MjA4LCBzbyBJJ20gbm90IHN1cmUgaWYgdGhleSdyZSB0aGUgc2FtZSBpc3N1ZSBvciBub3QuCj4+
-Pj4KPj4+PiBOb3csIGhlcmUncyB0aGUgZnVuIHBhcnQgLS0gdGhpcyBpcyBjb21wbGV0ZWx5IG5v
-bi1kZXRlcm1pbmlzdGljLgo+Pj4+IFNvbWV0aW1lcyBldmVyeXRoaW5nIHNob3dzIHVwIG9uIHRo
-ZSBHSzIwOCwgb3RoZXIgdGltZXMgSSBzZWUgaG9sZXMsCj4+Pj4gaW4gdmFyeWluZyBsb2NhdGlv
-bnMuIEknbSBmYWlybHkgc3VyZSB0aGF0IHRoZSBhY3R1YWwgc2hhZGVyIGNvZGUgaXMKPj4+PiBj
-b3JyZWN0Li4uIHNvIEknbSBkb2luZyBzb21ldGhpbmcgZnVubnkgd3JvbmcuIChBbmQgeWVhaCwg
-dG9ucyBvZgo+Pj4+IG1pc3NlZCBvcHRpbWl6YXRpb24gb3Bwb3J0dW5pdGllcyBpbiB0aGlzIGNv
-ZGUsIGJ1dCBsZXQncyBub3QgZHdlbGwgb24KPj4+PiB0aGF0LikKPj4+Pgo+Pj4+IFRoaXMgaXMg
-dGhlIHBpZ2xpdCB0ZXN0Ogo+Pj4+Cj4+Pj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL3Bp
-Z2xpdC90cmVlL3Rlc3RzL3NwZWMvYXJiX3Rlc3NlbGxhdGlvbl9zaGFkZXIvZXhlY3V0aW9uL3F1
-YWRzLnNoYWRlcl90ZXN0Cj4+Pj4KPj4+PiBJdCBzaG91bGQgYmUgbm90ZWQgdGhhdCBvdGhlciBw
-aWdsaXQgdGVzdHMgZG9uJ3QgZXhoaWJpdCB0aGlzIGVycm9yLAo+Pj4+IGhvd2V2ZXIgdGhleSBh
-bHNvIHRlbmQgdG8gYmUgc2ltcGxlci4gT25lIGtleSBkaWZmZXJlbmNlIGlzIHRoYXQgdGhleQo+
-Pj4+IGRvbid0IGNoYW5nZSB0aGUgcGF0Y2ggc2l6ZSBpbiBUQ1MuIEknbSBpbmNsdWRpbmcgYSBs
-aW5rIHRvIGEgdGV4dAo+Pj4+IGZpbGUgd2l0aCB0aGUgdGVzc2VsbGF0aW9uIGNvbnRyb2wgYW5k
-IGV2YWx1YXRpb24gc2hhZGVycyAoZGVjb2RlZAo+Pj4+IHdpdGggbnZkaXNhc20gd2hpY2ggeW91
-J3JlIGhvcGVmdWxseSBtb3JlIGZhbWlsaWFyIHdpdGgpLCBhbG9uZyB3aXRoCj4+Pj4gdGhlIHNo
-YWRlciBoZWFkZXJzIHRoYXQgd2UgZ2VuZXJhdGUuCj4+Pj4KPj4+PiBGVFIsIHRoaXMgaXMgaG93
-IEkgZmVlZCB0aGUgcmF3IHNoYWRlciBvcGNvZGUgYnl0ZXMgaW50byBudmRpc2FzbToKPj4+Pgo+
-Pj4+IHBlcmwgLWFuZSAnZm9yZWFjaCAoQEYpIHsgcHJpbnQgcGFjayAiSSIsIGhleCgkXykgfScg
-PiB0dDsgbnZkaXNhc20gLWIgU00zNSB0dAo+Pj4+Cj4+Pj4gKGZvciBzb21lIHJlYXNvbiBpdCBk
-b2Vzbid0IHdhbnQgdG8gcmVhZCBmcm9tIGEgcGlwZSBvciBldmVuIGEgZmQpLgo+Pj4+Cj4+Pj4g
-aHR0cDovL3Blb3BsZS5mcmVlZGVza3RvcC5vcmcvfmltaXJraW4vdGVzc19zaGFkZXJzX3F1YWRz
-LnR4dAo+Pj4+Cj4+Pj4gTXkgc3VzcGljaW9uIGlzIHRoYXQgd2UncmUgZG9pbmcgc29tZXRoaW5n
-IHdyb25nIHdpdGggdGhlIHNjaGVkIGNvZGVzLgo+Pj4+IFdlIGhhdmUgYW4gZWxhYm9yYXRlIGNh
-bGN1bGF0b3IsIGJ1dC4uLiBwZXJoYXBzIG5vdCBlbGFib3JhdGUgZW5vdWdoPwo+Pj4+IFlvdSBj
-YW4gc2VlIGl0IGhlcmU6Cj4+Pj4KPj4+PiBodHRwOi8vY2dpdC5mcmVlZGVza3RvcC5vcmcvbWVz
-YS9tZXNhL3RyZWUvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9l
-bWl0X252YzAuY3BwI24yNTc0Cj4+Pj4KPj4+PiBUaGUgcmVhc29uIEkgdGhpbmsgaXQncyBhbiBl
-cnJvciBpbiBzY2hlZCBjb2RlcyBpcyBkdWUgdG8gdGhlIFRSQVAKPj4+PiBtZW1vcnkgbG9jYXRp
-b24gdGhhdCBJIHNlZSAtLSBjb3VsZCB3ZWxsIGJlIHNvbWUgInN0YWxlIiB2YWx1ZSBpbiB0aGUK
-Pj4+PiByZWdpc3RlciBhbmQgdGhlIHZhbHVlIGZyb20gUzJSIG9yIFZJTEQgZG9lc24ndCBtYWtl
-IGl0IGluIHRoZXJlIGluCj4+Pj4gdGltZSBiZWZvcmUgdGhlIEFMRCByZWFkcyBpdC4KPj4+Pgo+
-Pj4+IElmIHlvdSBzaG91bGQgbGlrZSB0byB0cnkgdGhpcyB5b3Vyc2VsZiwgeW91IGNhbiB1c2UK
-Pj4+PiBodHRwczovL2dpdGh1Yi5jb20vaW1pcmtpbi9tZXNhL2NvbW1pdHMvZ2w0LWludGVncmF0
-aW9uLTIgLiBUaGlzCj4+Pj4gYnJhbmNoIGlzIGdvb2QgZW5vdWdoIHRvIHJ1biBVbmlnaW5lIEhl
-YXZlbiwgYnV0IHN0aWxsIGhhcyBhIGxvdCBvZgo+Pj4+IGtub3duIHNob3J0Y29taW5ncy4gKEJv
-dGggYXQgdGhlIGNvcmUgYW5kIHRoZSBub3V2ZWF1IGxldmVscy4pCj4+Pj4KPj4+PiBBbnkgYWR2
-aWNlIG9yIHN1Z2dlc3Rpb25zIGZvciBkZWJ1Z2dpbmcgdGhpcyB3b3VsZCBiZSBncmVhdGx5Cj4+
-Pj4gYXBwcmVjaWF0ZWQuIEFuZCBsZXQgbWUga25vdyBpZiB5b3UnZCBsaWtlIG1lIHRvIGdlbmVy
-YXRlIGFkZGl0aW9uYWwKPj4+PiBpbmZvIG9uIHRoaXMuIEZvciBleGFtcGxlIEkgY2FuIHN1cHBs
-eSBhIGZ1bGwgY29tbWFuZCB0cmFjZSB0aGF0IGNhbgo+Pj4+IGJlIHBpcGVkIHRvIGRlbW10LCBp
-ZiB0aGF0J3MgaGVscGZ1bC4KPj4+Pgo+Pj4+IFRoYW5rcyBpbiBhZHZhbmNlLAo+Pj4+Cj4+Pj4g
-ICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0480394332==
+Content-Type: multipart/alternative; boundary="1437768706.D3f74b4f2.6025"; charset="UTF-8"
+
+
+--1437768706.D3f74b4f2.6025
+Date: Fri, 24 Jul 2015 20:11:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89969
+
+Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117215|0                           |1
+        is obsolete|                            |
+
+--- Comment #12 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117358
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117358&action=edit
+WIP - nouveau: add support for chunk decoding
+
+I updated patch since I miss understood some parts last time.
+Preserving data while resizing is commented out for testing since the initial
+buffer is big enough for the stream I tried.
+The patch keeps st/vdpau working but st/va still does not work.
+Indeed it shows a green frame. I do not see any shape but I see some pixels
+that let me think it does something.
+
+How can I be sure it is not a problem from st/va ? I assume it works with
+radeon (only radeon for now ? according to src/gallium/targets/va/Makefile.am I
+was expecting intel too)
+For nouveau, maybe it requires to do more work on st/va side.
+I can try to go for the other solution to compare.
+
+Which internal or external unit tests can I use ? Also if you have an idea how
+I can debug this ?
+
+Maybe I can compare what contains the nouveau_bo buffer between one begin/end,
+between vdpau and va ? Not sure if they should contain the exact same thing at
+the time _end is called.
+
+Thx
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1437768706.D3f74b4f2.6025
+Date: Fri, 24 Jul 2015 20:11:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vaDriverInit fails with gallium/nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117215 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vaDriverInit fails with gallium/nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - vaDriverInit fails with gallium/nouveau driver"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
+              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117358" name="attach_117358" title="WIP - nouveau: add support for chunk decoding">attachment 117358</a> <a href="attachment.cgi?id=117358&amp;action=edit" title="WIP - nouveau: add support for chunk decoding">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=89969&amp;attachment=117358'>[review]</a>
+WIP - nouveau: add support for chunk decoding
+
+I updated patch since I miss understood some parts last time.
+Preserving data while resizing is commented out for testing since the initial
+buffer is big enough for the stream I tried.
+The patch keeps st/vdpau working but st/va still does not work.
+Indeed it shows a green frame. I do not see any shape but I see some pixels
+that let me think it does something.
+
+How can I be sure it is not a problem from st/va ? I assume it works with
+radeon (only radeon for now ? according to src/gallium/targets/va/Makefile.am I
+was expecting intel too)
+For nouveau, maybe it requires to do more work on st/va side.
+I can try to go for the other solution to compare.
+
+Which internal or external unit tests can I use ? Also if you have an idea how
+I can debug this ?
+
+Maybe I can compare what contains the nouveau_bo buffer between one begin/end,
+between vdpau and va ? Not sure if they should contain the exact same thing at
+the time _end is called.
+
+Thx</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1437768706.D3f74b4f2.6025--
+
+--===============0480394332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0480394332==--
