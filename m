@@ -1,146 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91445] Thick black borders around windows with Ubuntu
-Date: Fri, 24 Jul 2015 07:25:57 +0000
-Message-ID: <bug-91445-8800-XUU4QNVo08@http.bugs.freedesktop.org/>
-References: <bug-91445-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [Nouveau] [PATCH] nouveau: nv46: Change mc subdev oclass from
+ nv44 to nv4c
+Date: Fri, 24 Jul 2015 11:23:59 +0200
+Message-ID: <55B2042F.9090902@redhat.com>
+References: <1437664812-5943-1-git-send-email-hdegoede@redhat.com>
+ <CACAvsv5JivdVt94qkv0FBqH=ero6UkeUpc2KjDNeQLL_DSgGDw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1219296825=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91445-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CACAvsv5JivdVt94qkv0FBqH=ero6UkeUpc2KjDNeQLL_DSgGDw@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ben Skeggs <skeggsb@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1219296825==
-Content-Type: multipart/alternative; boundary="1437722757.54E3B3DC0.32133"; charset="UTF-8"
-
-
---1437722757.54E3B3DC0.32133
-Date: Fri, 24 Jul 2015 07:25:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91445
-
-Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |NOTOURBUG
-
---- Comment #6 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi,
-
-I've checked with both xorg-edgers and oibaf PPA drivers
-and forcing the stable version of xserver-xorg-video-nouveau is solving the
-black borders problem.
-
-[on Ununtu 15.04]
-sudo apt-get install xserver-xorg-video-nouveau=1:1.0.11-1ubuntu2build1
-
-
-Thanks a lot, these xorg artifacts were bugging me since weeks
-Mauro
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1437722757.54E3B3DC0.32133
-Date: Fri, 24 Jul 2015 07:25:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Thick black borders around windows with Ubuntu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">bug 91445</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>NOTOURBUG
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Thick black borders around windows with Ubuntu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - Thick black borders around windows with Ubuntu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91445">bug 91445</a>
-              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
-</span></b>
-        <pre>Hi,
-
-I've checked with both xorg-edgers and oibaf PPA drivers
-and forcing the stable version of xserver-xorg-video-nouveau is solving the
-black borders problem.
-
-[on Ununtu 15.04]
-sudo apt-get install xserver-xorg-video-nouveau=1:1.0.11-1ubuntu2build1
-
-
-Thanks a lot, these xorg artifacts were bugging me since weeks
-Mauro</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1437722757.54E3B3DC0.32133--
-
---===============1219296825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1219296825==--
+SGksCgpPbiAyNC0wNy0xNSAwNDozMiwgQmVuIFNrZWdncyB3cm90ZToKPiBPbiAyNCBKdWx5IDIw
+MTUgYXQgMDE6MjAsIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+
+PiBNU0kgaW50ZXJydXB0cyBhcHBlYXIgdG8gbm90IHdvcmsgZm9yIG52NDYgYmFzZWQgY2FyZHMu
+IENoYW5nZSB0aGUgbWMKPj4gc3ViZGV2IG9jbGFzcyBmb3IgdGhlc2UgY2FyZHMgZnJvbSBudjQ0
+IHRvIG52NGMsIHRoZSBudjRjIG1jIGNvZGUgaXMKPj4gaWRlbnRpY2FsIHRvIHRoZSBudjQ0IG1j
+IGNvZGUgZXhjZXB0IHRoYXQgaXQgZG9lcyBub3QgdXNlIG1zaQo+PiAoaXQgZG9lcyBub3QgZGVm
+aW5lIGEgbXNpX3JlYXJtIGNhbGxiYWNrKS4KPiBJJ20gZmluZSB3aXRoIHRoaXMsIGJ1dCBpdCdk
+IGJlIG5pY2UgdG8gY2hlY2sgdGhhdCB0aGUgYmluYXJ5IGRyaXZlcgo+IGRvZXNuJ3QvY2FuJ3Qg
+dXNlIE1TSSBvbiB0aGVzZSB0b28gKHRoZXJlIG1pZ2h0IGJlIGFuIGFsdGVybmF0ZSBtZXRob2QK
+PiB3ZSBuZWVkIHRvIHVzZSkuCj4KPiBXb3VsZCB5b3UgYmUgYWJsZSB0byBncmFiIHRoZSBsYXRl
+c3QgcHJvcHJpZXRhcnkgZHJpdmVyIHRoYXQgd29ya3Mgb24KPiBudjR4LCBhbmQgZG8gYSBtbWlv
+dHJhY2Ugb2YgaXQ/ICBZb3UgKm1pZ2h0KiBuZWVkIHRvIHVzZSAibW9kcHJvYmUKPiBudmlkaWEg
+TlZyZWdfRW5hYmxlTVNJPTEiLCBiZWNhdXNlIGF0IHNvbWUgcG9pbnQgTlZJRElBIGRpZG4ndCB1
+c2UgaXQKPiBieSBkZWZhdWx0IGFueXdoZXJlLgoKV2lsbCBkbyBmaXJzdCB0aGluZyBjb21pbmcg
+bW9uZGF5LgoKUmVnYXJkcywKCkhhbnMKCgo+Cj4gVGhhbmtzLAo+IEJlbi4KPgo+PiBCdWdMaW5r
+OiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05MDQzNQo+PiBT
+aWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+PiAtLS0K
+Pj4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvbnY0MC5jIHwg
+MiArLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQo+
+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2
+aWNlL252NDAuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9u
+djQwLmMKPj4gaW5kZXggYzYzMDEzNi4uYjRhZDc5MSAxMDA2NDQKPj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL252NDAuYwo+PiArKysgYi9kcml2ZXJz
+L2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvbnY0MC5jCj4+IEBAIC0yNjUsNyAr
+MjY1LDcgQEAgbnY0MF9pZGVudGlmeShzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSkKPj4gICAg
+ICAgICAgICAgICAgICBkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfQ0xLICAgIF0gPSAmbnY0
+MF9jbGtfb2NsYXNzOwo+PiAgICAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05WREVWX1NV
+QkRFVl9USEVSTSAgXSA9ICZudjQwX3RoZXJtX29jbGFzczsKPj4gICAgICAgICAgICAgICAgICBk
+ZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfREVWSU5JVF0gPSAgbnYxYV9kZXZpbml0X29jbGFz
+czsKPj4gLSAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAg
+XSA9ICBudjQ0X21jX29jbGFzczsKPj4gKyAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05W
+REVWX1NVQkRFVl9NQyAgICAgXSA9ICBudjRjX21jX29jbGFzczsKPj4gICAgICAgICAgICAgICAg
+ICBkZXZpY2UtPm9jbGFzc1tOVkRFVl9TVUJERVZfQlVTICAgIF0gPSAgbnYzMV9idXNfb2NsYXNz
+Owo+PiAgICAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9USU1FUiAg
+XSA9ICZudjA0X3RpbWVyX29jbGFzczsKPj4gICAgICAgICAgICAgICAgICBkZXZpY2UtPm9jbGFz
+c1tOVkRFVl9TVUJERVZfRkIgICAgIF0gPSAgbnY0Nl9mYl9vY2xhc3M7Cj4+IC0tCj4+IDIuNC4z
+Cj4+Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+
+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+
+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBt
+YWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
