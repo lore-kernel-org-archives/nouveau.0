@@ -1,97 +1,99 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Fri, 24 Jul 2015 20:17:14 +0000
-Message-ID: <bug-89969-8800-WA3inePa10@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nvc0: bind a fake tess control program when
+	there isn't one available
+Date: Sun, 26 Jul 2015 00:56:34 -0400
+Message-ID: <1437886594-22835-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431507064=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1431507064==
-Content-Type: multipart/alternative; boundary="1437769034.5eD1c3.6874"; charset="UTF-8"
-
-
---1437769034.5eD1c3.6874
-Date: Fri, 24 Jul 2015 20:17:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89969
-
---- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You can compare what's going on in the two cases by using valgrind-mmt
-(http://nouveau.freedesktop.org/wiki/Valgrind-mmt/) in combination with the
-demmt tool in envytools. However it will be quite tough to tell what's going on
-since the interesting stuff passed around in buffers rather than sending
-commands in the fifo. You should still see the buffers being written though.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1437769034.5eD1c3.6874
-Date: Fri, 24 Jul 2015 20:17:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>You can compare what's going on in the two cases by using valgrind-mmt
-(<a href="http://nouveau.freedesktop.org/wiki/Valgrind-mmt/">http://nouveau.freedesktop.org/wiki/Valgrind-mmt/</a>) in combination with the
-demmt tool in envytools. However it will be quite tough to tell what's going on
-since the interesting stuff passed around in buffers rather than sending
-commands in the fifo. You should still see the buffers being written though.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1437769034.5eD1c3.6874--
-
---===============1431507064==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1431507064==--
+QXBwYXJlbnRseSB0aGlzIGlzIG5lY2Vzc2FyeSBpbiBvcmRlciBmb3IgdGVzcyBmYWN0b3JzIHRv
+IHdvcmsgaW4gYSB0ZXNzCmV2YWwgcHJvZ3JhbSB3aXRob3V0IGEgdGVzcyBjb250cm9sIHByb2dy
+YW0gYm91bmQuIFByb2JhYmx5IGJlY2F1c2UgaXQKdXNlcyB0aGUgZmFrZSBwcm9ncmFtJ3Mgc2hh
+ZGVyIGhlYWRlciB0byB3b3JrIG91dCB0aGUgbnVtYmVyIG9mIHBhdGNoCmNvbnN0YW50cy4KCkZp
+eGVzIHZzLXRlcy10ZXNzaW5uZXItdGVzc291dGVyLWlucHV0cwoKU2lnbmVkLW9mZi1ieTogSWxp
+YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udmMwL252YzBfY29udGV4dC5jICAgICAgfCAgNSArKysrKwogc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9jb250ZXh0LmggICAgICB8ICAzICsrKwogc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMgICAgICB8IDE3ICsrKysr
+KysrKysrKysrKysrCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRl
+cl9zdGF0ZS5jIHwgIDYgKysrKystCiA0IGZpbGVzIGNoYW5nZWQsIDMwIGluc2VydGlvbnMoKyks
+IDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
+bnZjMC9udmMwX2NvbnRleHQuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
+YzBfY29udGV4dC5jCmluZGV4IDg0ZjhkYjYuLjQ2OTcwZGIgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxs
+aXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCisrKyBiL3NyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCkBAIC0xMzIsNiArMTMyLDkgQEAg
+bnZjMF9jb250ZXh0X3VucmVmZXJlbmNlX3Jlc291cmNlcyhzdHJ1Y3QgbnZjMF9jb250ZXh0ICpu
+dmMwKQogICAgICAgcGlwZV9yZXNvdXJjZV9yZWZlcmVuY2UocmVzLCBOVUxMKTsKICAgIH0KICAg
+IHV0aWxfZHluYXJyYXlfZmluaSgmbnZjMC0+Z2xvYmFsX3Jlc2lkZW50cyk7CisKKyAgIGlmIChu
+dmMwLT50Y3BfZW1wdHkpCisgICAgICBudmMwLT5iYXNlLnBpcGUuZGVsZXRlX3Rjc19zdGF0ZSgm
+bnZjMC0+YmFzZS5waXBlLCBudmMwLT50Y3BfZW1wdHkpOwogfQogCiBzdGF0aWMgdm9pZApAQCAt
+MzI2LDYgKzMyOSw4IEBAIG52YzBfY3JlYXRlKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwg
+dm9pZCAqcHJpdikKIAogICAgLyogc2hhZGVyIGJ1aWx0aW4gbGlicmFyeSBpcyBwZXItc2NyZWVu
+LCBidXQgd2UgbmVlZCBhIGNvbnRleHQgZm9yIG0ybWYgKi8KICAgIG52YzBfcHJvZ3JhbV9saWJy
+YXJ5X3VwbG9hZChudmMwKTsKKyAgIG52YzBfcHJvZ3JhbV9pbml0X3RjcF9lbXB0eShudmMwKTsK
+KyAgIG52YzAtPmRpcnR5IHw9IE5WQzBfTkVXX1RDVExQUk9HOwogCiAgICAvKiBhZGQgcGVybWFu
+ZW50bHkgcmVzaWRlbnQgYnVmZmVycyB0byBidWZjdHh0cyAqLwogCmRpZmYgLS1naXQgYS9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX2NvbnRleHQuaCBiL3NyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5oCmluZGV4IGY0NDk5NDIuLmRmMWE4
+OTEgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29u
+dGV4dC5oCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4
+dC5oCkBAIC0xMjgsNiArMTI4LDggQEAgc3RydWN0IG52YzBfY29udGV4dCB7CiAgICBzdHJ1Y3Qg
+bnZjMF9wcm9ncmFtICpmcmFncHJvZzsKICAgIHN0cnVjdCBudmMwX3Byb2dyYW0gKmNvbXBwcm9n
+OwogCisgICBzdHJ1Y3QgbnZjMF9wcm9ncmFtICp0Y3BfZW1wdHk7CisKICAgIHN0cnVjdCBudmMw
+X2NvbnN0YnVmIGNvbnN0YnVmWzZdW05WQzBfTUFYX1BJUEVfQ09OU1RCVUZTXTsKICAgIHVpbnQx
+Nl90IGNvbnN0YnVmX2RpcnR5WzZdOwogICAgdWludDE2X3QgY29uc3RidWZfdmFsaWRbNl07CkBA
+IC0yMjcsNiArMjI5LDcgQEAgdm9pZCBudmMwX3Byb2dyYW1fZGVzdHJveShzdHJ1Y3QgbnZjMF9j
+b250ZXh0ICosIHN0cnVjdCBudmMwX3Byb2dyYW0gKik7CiB2b2lkIG52YzBfcHJvZ3JhbV9saWJy
+YXJ5X3VwbG9hZChzdHJ1Y3QgbnZjMF9jb250ZXh0ICopOwogdWludDMyX3QgbnZjMF9wcm9ncmFt
+X3N5bWJvbF9vZmZzZXQoY29uc3Qgc3RydWN0IG52YzBfcHJvZ3JhbSAqLAogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdWludDMyX3QgbGFiZWwpOwordm9pZCBudmMwX3Byb2dy
+YW1faW5pdF90Y3BfZW1wdHkoc3RydWN0IG52YzBfY29udGV4dCAqKTsKIAogLyogbnZjMF9xdWVy
+eS5jICovCiB2b2lkIG52YzBfaW5pdF9xdWVyeV9mdW5jdGlvbnMoc3RydWN0IG52YzBfY29udGV4
+dCAqKTsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
+cHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFt
+LmMKaW5kZXggNDk0MTgzMS4uZTk5NzVjZSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKQEAgLTIyLDYgKzIyLDggQEAKIAogI2luY2x1ZGUg
+InBpcGUvcF9kZWZpbmVzLmgiCiAKKyNpbmNsdWRlICJ0Z3NpL3Rnc2lfdXJlZy5oIgorCiAjaW5j
+bHVkZSAibnZjMC9udmMwX2NvbnRleHQuaCIKIAogI2luY2x1ZGUgImNvZGVnZW4vbnY1MF9pcl9k
+cml2ZXIuaCIKQEAgLTgwMywzICs4MDUsMTggQEAgbnZjMF9wcm9ncmFtX3N5bWJvbF9vZmZzZXQo
+Y29uc3Qgc3RydWN0IG52YzBfcHJvZ3JhbSAqcHJvZywgdWludDMyX3QgbGFiZWwpCiAgICAgICAg
+ICByZXR1cm4gcHJvZy0+Y29kZV9iYXNlICsgYmFzZSArIHN5bXNbaV0ub2Zmc2V0OwogICAgcmV0
+dXJuIHByb2ctPmNvZGVfYmFzZTsgLyogbm8gc3ltYm9scyBvciBzeW1ib2wgbm90IGZvdW5kICov
+CiB9CisKK3ZvaWQKK252YzBfcHJvZ3JhbV9pbml0X3RjcF9lbXB0eShzdHJ1Y3QgbnZjMF9jb250
+ZXh0ICpudmMwKQoreworICAgc3RydWN0IHVyZWdfcHJvZ3JhbSAqdXJlZzsKKworICAgdXJlZyA9
+IHVyZWdfY3JlYXRlKFRHU0lfUFJPQ0VTU09SX1RFU1NfQ1RSTCk7CisgICBpZiAoIXVyZWcpCisg
+ICAgICByZXR1cm47CisKKyAgIHVyZWdfcHJvcGVydHkodXJlZywgVEdTSV9QUk9QRVJUWV9UQ1Nf
+VkVSVElDRVNfT1VULCAxKTsKKyAgIHVyZWdfRU5EKHVyZWcpOworCisgICBudmMwLT50Y3BfZW1w
+dHkgPSB1cmVnX2NyZWF0ZV9zaGFkZXJfYW5kX2Rlc3Ryb3kodXJlZywgJm52YzAtPmJhc2UucGlw
+ZSk7Cit9CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMw
+X3NoYWRlcl9zdGF0ZS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9z
+aGFkZXJfc3RhdGUuYwppbmRleCA4YWExMjdhLi5lMjE1MTVmIDEwMDY0NAotLS0gYS9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jCisrKyBiL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2hhZGVyX3N0YXRlLmMKQEAgLTE0OCw4
+ICsxNDgsMTIgQEAgbnZjMF90Y3RscHJvZ192YWxpZGF0ZShzdHJ1Y3QgbnZjMF9jb250ZXh0ICpu
+dmMwKQogICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzNEKFNQX0dQUl9BTExPQygyKSksIDEp
+OwogICAgICAgUFVTSF9EQVRBIChwdXNoLCB0cC0+bnVtX2dwcnMpOwogICAgfSBlbHNlIHsKLSAg
+ICAgIEJFR0lOX05WQzAocHVzaCwgTlZDMF8zRChTUF9TRUxFQ1QoMikpLCAxKTsKKyAgICAgIHRw
+ID0gbnZjMC0+dGNwX2VtcHR5OworICAgICAgaWYgKCFudmMwX3Byb2dyYW1fdmFsaWRhdGUobnZj
+MCwgdHApKQorICAgICAgICAgYXNzZXJ0KCEidW5hYmxlIHRvIHZhbGlkYXRlIGVtcHR5IHRjcCIp
+OworICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzNEKFNQX1NFTEVDVCgyKSksIDIpOwogICAg
+ICAgUFVTSF9EQVRBIChwdXNoLCAweDIwKTsKKyAgICAgIFBVU0hfREFUQSAocHVzaCwgdHAtPmNv
+ZGVfYmFzZSk7CiAgICB9CiAgICBudmMwX3Byb2dyYW1fdXBkYXRlX2NvbnRleHRfc3RhdGUobnZj
+MCwgdHAsIDEpOwogfQotLSAKMi4zLjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L21lc2EtZGV2Cg==
