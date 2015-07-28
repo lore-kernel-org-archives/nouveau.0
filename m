@@ -1,122 +1,109 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] vaDriverInit fails with gallium/nouveau driver
-Date: Mon, 27 Jul 2015 17:30:59 +0000
-Message-ID: <bug-89969-8800-82cl36jzpc@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH] nouveau: nv46: Change mc subdev oclass from
+ nv44 to nv4c
+Date: Tue, 28 Jul 2015 17:26:57 +1000
+Message-ID: <CACAvsv5sozDpmNK24Cd1=CW92C074O_4SjnjqeEuviowKs-oYw@mail.gmail.com>
+References: <1437664812-5943-1-git-send-email-hdegoede@redhat.com>
+ <CACAvsv5JivdVt94qkv0FBqH=ero6UkeUpc2KjDNeQLL_DSgGDw@mail.gmail.com>
+ <55B653B7.2030402@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1012849944=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <55B653B7.2030402@redhat.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1012849944==
-Content-Type: multipart/alternative; boundary="1438018260.adf0c8A2.27612"; charset="UTF-8"
-
-
---1438018260.adf0c8A2.27612
-Date: Mon, 27 Jul 2015 17:31:00 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89969
-
---- Comment #14 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117399
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117399&action=edit
-2 valgrind outputs to compare failure case with working reference case
-
-Failure:
-LIBVA_DRIVER_NAME=gallium valgrind --tool=mmt --mmt-trace-nouveau-ioctls
---log-file=va_mesa_bin.log gst-launch-1.0 filesrc
-location=/home/SERILOCAL/j.isorce/Downloads/centaur_2.mpg num-buffers=6 !
-mpegpsdemux ! mpegvideoparse ! vaapideco^C ! tee ! vdieoconvert ! xvimagesink
-
-Success:
-LIBVA_DRIVER_NAME=vdpau valgrind --tool=mmt --mmt-trace-nouveau-ioctls
---log-file=va_over_vdpau_mesa_bin.log gst-launch-1.0 filesrc
-location=/home/SERILOCAL/j.isorce/Downloads/centaur_2.mpg num-buffers=6 !
-mpegpsdemux ! mpegvideoparse ! vaapidecode ! tee ! videoconvert ! xvimagesink
-
-Where should I look at in these 2 logs to compare what contain the nouveau_bo
-buffer between the first st/va being/end frame ? (using demmt -l)
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1438018260.adf0c8A2.27612
-Date: Mon, 27 Jul 2015 17:31:00 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - vaDriverInit fails with gallium/nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117399" name="attach_117399" title="2 valgrind outputs to compare failure case with working reference case">attachment 117399</a> <a href="attachment.cgi?id=117399&amp;action=edit" title="2 valgrind outputs to compare failure case with working reference case">[details]</a></span>
-2 valgrind outputs to compare failure case with working reference case
-
-Failure:
-LIBVA_DRIVER_NAME=gallium valgrind --tool=mmt --mmt-trace-nouveau-ioctls
---log-file=va_mesa_bin.log gst-launch-1.0 filesrc
-location=/home/SERILOCAL/j.isorce/Downloads/centaur_2.mpg num-buffers=6 !
-mpegpsdemux ! mpegvideoparse ! vaapideco^C ! tee ! vdieoconvert ! xvimagesink
-
-Success:
-LIBVA_DRIVER_NAME=vdpau valgrind --tool=mmt --mmt-trace-nouveau-ioctls
---log-file=va_over_vdpau_mesa_bin.log gst-launch-1.0 filesrc
-location=/home/SERILOCAL/j.isorce/Downloads/centaur_2.mpg num-buffers=6 !
-mpegpsdemux ! mpegvideoparse ! vaapidecode ! tee ! videoconvert ! xvimagesink
-
-Where should I look at in these 2 logs to compare what contain the nouveau_bo
-buffer between the first st/va being/end frame ? (using demmt -l)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1438018260.adf0c8A2.27612--
-
---===============1012849944==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1012849944==--
+T24gMjggSnVseSAyMDE1IGF0IDAxOjUyLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQu
+Y29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIDI0LTA3LTE1IDA0OjMyLCBCZW4gU2tlZ2dzIHdyb3Rl
+Ogo+Pgo+PiBPbiAyNCBKdWx5IDIwMTUgYXQgMDE6MjAsIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRl
+QHJlZGhhdC5jb20+IHdyb3RlOgo+Pj4KPj4+IE1TSSBpbnRlcnJ1cHRzIGFwcGVhciB0byBub3Qg
+d29yayBmb3IgbnY0NiBiYXNlZCBjYXJkcy4gQ2hhbmdlIHRoZSBtYwo+Pj4gc3ViZGV2IG9jbGFz
+cyBmb3IgdGhlc2UgY2FyZHMgZnJvbSBudjQ0IHRvIG52NGMsIHRoZSBudjRjIG1jIGNvZGUgaXMK
+Pj4+IGlkZW50aWNhbCB0byB0aGUgbnY0NCBtYyBjb2RlIGV4Y2VwdCB0aGF0IGl0IGRvZXMgbm90
+IHVzZSBtc2kKPj4+IChpdCBkb2VzIG5vdCBkZWZpbmUgYSBtc2lfcmVhcm0gY2FsbGJhY2spLgo+
+Pgo+PiBJJ20gZmluZSB3aXRoIHRoaXMsIGJ1dCBpdCdkIGJlIG5pY2UgdG8gY2hlY2sgdGhhdCB0
+aGUgYmluYXJ5IGRyaXZlcgo+PiBkb2Vzbid0L2Nhbid0IHVzZSBNU0kgb24gdGhlc2UgdG9vICh0
+aGVyZSBtaWdodCBiZSBhbiBhbHRlcm5hdGUgbWV0aG9kCj4+IHdlIG5lZWQgdG8gdXNlKS4KPj4K
+Pj4gV291bGQgeW91IGJlIGFibGUgdG8gZ3JhYiB0aGUgbGF0ZXN0IHByb3ByaWV0YXJ5IGRyaXZl
+ciB0aGF0IHdvcmtzIG9uCj4+IG52NHgsIGFuZCBkbyBhIG1taW90cmFjZSBvZiBpdD8KPgo+Cj4g
+SSd2ZSBncmFiYmVkIDMwNC4xMjUKPgo+PiBZb3UgKm1pZ2h0KiBuZWVkIHRvIHVzZSAibW9kcHJv
+YmUKPj4gbnZpZGlhIE5WcmVnX0VuYWJsZU1TST0xIiwgYmVjYXVzZSBhdCBzb21lIHBvaW50IE5W
+SURJQSBkaWRuJ3QgdXNlIGl0Cj4+IGJ5IGRlZmF1bHQgYW55d2hlcmUuCj4KPgo+IFlvdSdyZSBy
+aWdodCBJIG5lZWRlZCB0byBzcGVjaWZ5IE5WcmVnX0VuYWJsZU1TST0xLCB3aXRoIHRoYXQgc2V0
+Cj4gL3Byb2MvaW50ZXJydXB0cyBzaG93cyB0aGF0IE1TSSBpcyB1c2VkLgo+Cj4gSGVyZSBpcyBh
+biBvZiBydW5uaW5nIGdseGdlYXJzIHdpdGggdGhlIGJpbmFyeSBkcml2ZXIgdXNpbmcgbXNpIGlu
+dGVycnVwdHMKPiBtbWlvdHJhY2U6Cj4KPiBodHRwczovL2ZlZG9yYXBlb3BsZS5vcmcvfmp3cmRl
+Z29lZGUvbnZpZGlhLWJpbi1udjQ2LW1zaS1vbi1nbHhnZWFycy5tbWlvdHJhY2UuZ3oKPgo+IEFG
+QUlLIHRoZXJlIGFyZSBzb21lIG5vdXZlYXUgdG9vbHMgdG8gcGFyc2UgdGhpcyBhIGJpdCwgcmln
+aHQgPyBJJ20gZ29pbmcKPiB0byBjYWxsIGl0IGEgZGF5IGZvciB0b2RheSwgaWYgeW91IGNhbiBn
+aXZlIG1lIHNvbWUgcG9pbnRlcnMgd2hhdCB0byBkbyB3aXRoCj4gdGhlCj4gbW1pb3RyYWNlIHRv
+IGZpbmQgYSBwb3RlbnRpYWwgZml4IGZvciB0aGUgbXNpIGlzc3VlcywgdGhhdCB3b3VsZCBiZQo+
+IGFwcHJlY2lhdGVkLgo+Cj4KPiBCVFcgSSBoYWQgdG8gYnVpbGQgbXkgb3duIGtlcm5lbCB3aXRo
+IG1taW90cmFjZSBlbmFibGVkIGluIEtjb25maWcsIGFzIHRoaXMKPiBpcyBkaXNhYmxlZCBpbiB0
+aGUgRmVkb3JhIGtlcm5lbHMgYnkgZGVmYXVsdC4gRG8geW91IGtub3cgaWYgdGhlcmUgaXMgYSBn
+b29kCj4gcmVhc29uIHRvIGhhdmUgdGhpcyBkaXNhYmxlZCBieSBkZWZhdWx0LCBvciBzaG91bGQg
+SSBhc2sgdGhlIEZlZG9yYQo+IGtlcm5lbCBtYWludGFpbmVycyB0byBlbmFibGUgaXQgYnkgZGVm
+YXVsdCA/ClRoZSAtZGVidWcga2VybmVsIGhhcyBpdCBlbmFibGVkIGFscmVhZHkuICBIb3dldmVy
+LCBpdCdzIGFsc28KcHJvYmxlbWF0aWMgaW4gdGhhdCBpdCBlbmFibGVzIHZhcmlvdXMgbG9ja2Rl
+cCBkZWJ1Z2dpbmcgc3R1ZmYgdGhhdApjYXVzZXMgdGhlIGJpbmFyeSBkcml2ZXIga2VybmVsIG1v
+ZHVsZSB0byBlbmQgdXAgZGVwZW5kaW5nIG9uIEdQTC1vbmx5CnN5bWJvbHMsIHdoaWNoIHlvdSBo
+YXZlIHRvIGhhY2sgYXJvdW5kIGJ5IGNoYW5naW5nIHRoZQpNT0RVTEVfTElDRU5TRSgpIGZvciB0
+aGUgYmluYXJ5IGRyaXZlciB0byAiR1BMIi4uLiBXaGljaCBpcyBjbGVhcmx5IGEKcGFpbiA6KSAg
+U28sIEkgZ3Vlc3MgaWYgeW91IHdhbnQgYSBzbGlnaHRseSBtb3JlIHN0cmFpZ2h0LWZvcndhcmQK
+YXBwcm9hY2gsIGl0J2QgYmUgZ29vZCB0byBlbmFibGUgaW4gdGhlIG5vbi1kZWJ1ZyBrZXJuZWxz
+IHRvby4KCj4KPgo+IFNsaWdodGx5IG9mZnRvcGljOgo+Cj4gSSBkZWNpZGVkIHRvIGJlIGJvbGQg
+YW5kIHRyeSBnbm9tZS1zaGVsbCBvbiB0aGUgbnY0NiB3aXRoIG1zaSBkaXNhYmxlZCwKPiB3aGlj
+aCBzb2ZhciB3YXMgYSBndWFyYW50ZWVkIHdheSB0byBmcmVlemUgdGhlIHN5c3RlbSwgYW5kIGl0
+IG5vdyB3b3Jrcwo+IHNvbWV3aGF0IChsYXRlc3Qga2VybmVsLCBkZHggYW5kIG1lc2EpLiBJIHNl
+ZSBzb21ldGhpbmcgd2hpY2ggc2hvd3MKPiBob3Jpem9udGFsIGxpbmVzIHdoaWNoIGFyZSBzbWFs
+bCBwYXJ0cyBmcm9tIG15IGRlc2t0b3AgYmFja2dyb3VuZCwgYW5kCj4gdGhpbmdzIGNoYW5nZSBz
+aWduaWZpY2FudGx5IHdoZW4gSSBzd2l0Y2ggdG8gdGhlIG92ZXJ2aWV3IG1vZGUuCj4KPiBCdXQg
+b3RoZXIgdGhlbiB0aGF0IHRoZSBkaXNwbGF5IGlzIGNvbXBsZXRlbHkgd3JvbmcsIGl0IGxvb2tz
+IGEgYml0Cj4gbGlrZSBhIGZyYW1lYnVmZmVyIHBpdGNoIHByb2JsZW0sIGJ1dCB0aGVuIGRpZmZl
+cmVudC4gSSB0aGluayBpdAo+IGlzIGxpa2VseSBzb21lIHRpbGluZyBwcm9ibGVtIG9yIHNvbWUg
+c3VjaC4KPgo+IE5vdGUgdGhhdCBtZXRhY2l0eSArIGdseGdlYXJzIHdvcmtzLCB0aGlzIG9ubHkg
+c2hvd3Mgd2l0aAo+IGdub21lLXNoZWxsLCBhbnkgaGludHMgd2hlcmUgdG8gc3RhcnQgbG9va2lu
+ZyB3cnQgZGVidWdnaW5nIHRoaXM/ClRoZXNlIGFyZSB0aGUgbWFpbiBpc3N1ZXMgdGhhdCBJJ2Qg
+bGlrZSB0byBzZWUgcmVzb2x2ZWQgOikKCj4KPiBPciBzaG91bGQgSSBmaXJzdCB0cnkgdG8gcnVu
+IHBpZ2xldCBhbmQgc2VlIGlmIHNvbWUgdGVzdHMgdGhlcmUKPiBwb2ludCBvdXQgdGhlIGN1bHBy
+aXQ/CkkgdGhpbmsgdGhpcyBpcyBhIGdvb2QgcGxhY2UgdG8gc3RhcnQuCgpUaGFua3MsCkJlbi4K
+Cj4KPgo+IFJlZ2FyZHMsCj4KPiBIYW5zCj4KPgo+Cj4+Cj4+IFRoYW5rcywKPj4gQmVuLgo+Pgo+
+Pj4gQnVnTGluazogaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9
+OTA0MzUKPj4+IFNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5j
+b20+Cj4+PiAtLS0KPj4+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2
+aWNlL252NDAuYyB8IDIgKy0KPj4+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAx
+IGRlbGV0aW9uKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2RldmljZS9udjQwLmMKPj4+IGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUv
+bnZrbS9lbmdpbmUvZGV2aWNlL252NDAuYwo+Pj4gaW5kZXggYzYzMDEzNi4uYjRhZDc5MSAxMDA2
+NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9u
+djQwLmMKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rldmlj
+ZS9udjQwLmMKPj4+IEBAIC0yNjUsNyArMjY1LDcgQEAgbnY0MF9pZGVudGlmeShzdHJ1Y3QgbnZr
+bV9kZXZpY2UgKmRldmljZSkKPj4+ICAgICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZE
+RVZfU1VCREVWX0NMSyAgICBdID0gJm52NDBfY2xrX29jbGFzczsKPj4+ICAgICAgICAgICAgICAg
+ICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RIRVJNICBdID0KPj4+ICZudjQwX3RoZXJt
+X29jbGFzczsKPj4+ICAgICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVW
+X0RFVklOSVRdID0KPj4+IG52MWFfZGV2aW5pdF9vY2xhc3M7Cj4+PiAtICAgICAgICAgICAgICAg
+ZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX01DICAgICBdID0gIG52NDRfbWNfb2NsYXNzOwo+
+Pj4gKyAgICAgICAgICAgICAgIGRldmljZS0+b2NsYXNzW05WREVWX1NVQkRFVl9NQyAgICAgXSA9
+ICBudjRjX21jX29jbGFzczsKPj4+ICAgICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZE
+RVZfU1VCREVWX0JVUyAgICBdID0gIG52MzFfYnVzX29jbGFzczsKPj4+ICAgICAgICAgICAgICAg
+ICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVWX1RJTUVSICBdID0KPj4+ICZudjA0X3RpbWVy
+X29jbGFzczsKPj4+ICAgICAgICAgICAgICAgICAgZGV2aWNlLT5vY2xhc3NbTlZERVZfU1VCREVW
+X0ZCICAgICBdID0gIG52NDZfZmJfb2NsYXNzOwo+Pj4gLS0KPj4+IDIuNC4zCj4+Pgo+Pj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+IE5vdXZlYXUg
+bWFpbGluZyBsaXN0Cj4+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4gaHR0cDov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcg
+bGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
