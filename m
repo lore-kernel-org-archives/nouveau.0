@@ -1,15 +1,13 @@
-From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] Add Option "DRI" to allow selection of
- maximum DRI level. (v2)
-Date: Thu, 30 Jul 2015 16:33:49 +0100
-Message-ID: <CACvgo53NooRQwup9rjAFfgF5dnusCLg+hesQOy6DnRjtfzY7tw@mail.gmail.com>
-References: <1438173542-28299-1-git-send-email-mario.kleiner.de@gmail.com>
- <1438173542-28299-2-git-send-email-mario.kleiner.de@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91373] Nouveau fills kern.log with gigabytes of data
+ when molecule screensaver is run
+Date: Thu, 30 Jul 2015 19:41:45 +0000
+Message-ID: <bug-91373-8800-6U0n8BJ6Fz@http.bugs.freedesktop.org/>
+References: <bug-91373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0235410473=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1438173542-28299-2-git-send-email-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,105 +17,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMjkgSnVseSAyMDE1IGF0IDEzOjM5LCBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRl
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4gQWxsb3cgdXNlciB0byBzZWxlY3QgdGhlIG1heGltdW0gbGV2
-ZWwgb2YgRFJJIGltcGxlbWVudGF0aW9uCj4gdG8gdXNlLCBEUkkyIG9yIERSSTMuCj4KPiBleGEg
-YWNjZWwgc3VwcG9ydHMgYm90aCBEUkkyIGFuZCwgaWYgdGhlIGtlcm5lbCBzdXBwb3J0cwo+IHJl
-bmRlcm5vZGVzLCBhbHNvIERSSTMuIEhvd2V2ZXIsIERSSTMgc3RpbGwgc2VlbXMgdG8gaGF2ZQo+
-IHNvbWUgYnVncyBvbiBjdXJyZW50IGltcGxlbWVudGF0aW9ucywgYW5kIGFkZGl0aW9uYWxseSBp
-dAo+IGRvZXNuJ3Qgd29yayB3ZWxsIGF0IGFsbCBmb3IgWC1TZXJ2ZXJzIG9sZGVyIHRoYW4gMS4x
-Ni4zCj4gZHVlIHRvIFgtU2VydmVyIGJ1Z3MuIFRoZXJlZm9yZSB3ZSBkZWZhdWx0IHRvIERSSTIg
-b24gZXhhLAo+IGJ1dCBhbGxvdyB0aGUgdXNlciB0byBlbmFibGUgRFJJMyB3aXRoIHRoaXMgbmV3
-IG9wdGlvbi4KPgo+IG5vdXZlYXUncyBnbGFtb3IgYWNjZWwgYmFja2VuZCBjdXJyZW50bHkgZG9l
-c24ndCB3b3JrIHVuZGVyCj4gRFJJMiBhdCBhbGwsIHNvIHdlIGNvbnRpbnVlIHRvIHVzZSBEUkkz
-IHdoZW5ldmVyIGl0IGlzCj4gc3VwcG9ydGVkIGFuZCBpZ25vcmUgdGhpcyBuZXcgb3B0aW9uIGZv
-ciBub3cuCj4KPiBBbHNvIGFkZCBhIGJpdCBtb3JlIG91dHB1dCBhYm91dCBzdGF0dXMgb2YgUHJl
-c2VudCBhbmQKPiBEUkkzIHRvIGFpZCBkZWJ1Z2dpbmcuCj4KPiBOb3RlOiBUaGlzIHdhcyBvcmln
-aW5hbGx5IG1lYW50IHRvIGJlIGEgYm9vbGVhbiBwYXJhbWV0ZXIsCj4gICAgICAgdG8ganVzdCBz
-ZWxlY3QgYmV0d2VlbiBEUkkzIG9uIGFuZCBvZmYsIGJ1dCBjaGFuZ2VkCj4gICAgICAgaGVyZSB0
-byBhIERSSSBsZXZlbCB0byBtYWtlIGl0IGNvbnNpc3RlbnQgd2l0aCB0aGUKPiAgICAgICBzYW1l
-IG9wdGlvbiBpbiB0aGUgcmVsZWFzZWQgSW50ZWwtZGR4Lgo+Cj4gdjI6IFVzZSBmaXhlZCB1cCBC
-b29sIHJldHVybiB0eXBlIG9mIG5vdXZlYXVfcHJlc2VudF9pbml0KCkuCj4KPiBTaWduZWQtb2Zm
-LWJ5OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPiBDYzogSWxp
-YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1Pgo+IENjOiBFbWlsIFZlbGlrb3YgPGVtaWwu
-bC52ZWxpa292QGdtYWlsLmNvbT4KPiBDYzogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJl
-ZS5mcj4KPiBDYzogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgo+IC0tLQo+ICBtYW4v
-bm91dmVhdS5tYW4gICAgICB8ICA2ICsrKysrKwo+ICBzcmMvbm91dmVhdV9kcmkyLmMgICB8IDEx
-ICsrKysrKysrKystCj4gIHNyYy9ub3V2ZWF1X2dsYW1vci5jIHwgIDIgKy0KPiAgc3JjL252X2Nv
-bnN0LmggICAgICAgfCAgMiArKwo+ICBzcmMvbnZfZHJpdmVyLmMgICAgICB8IDMwICsrKysrKysr
-KysrKysrKysrKysrKysrKysrKystLQo+ICBzcmMvbnZfdHlwZS5oICAgICAgICB8ICAxICsKPiAg
-NiBmaWxlcyBjaGFuZ2VkLCA0OCBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+Cj4gZGlm
-ZiAtLWdpdCBhL21hbi9ub3V2ZWF1Lm1hbiBiL21hbi9ub3V2ZWF1Lm1hbgo+IGluZGV4IDEyOWJi
-N2YuLjNkNWE0MjggMTAwNjQ0Cj4gLS0tIGEvbWFuL25vdXZlYXUubWFuCj4gKysrIGIvbWFuL25v
-dXZlYXUubWFuCj4gQEAgLTEyNSw2ICsxMjUsMTIgQEAgdGhhdCByZWxpZXMgb24gY29ycmVjdCBw
-cmVzZW50YXRpb24gdGltaW5nIGJlaGF2aW91ciBhcyBkZWZpbmVkIGluIHRoYXQKPiAgc3BlY2lm
-aWNhdGlvbi4KPiAgLmJyCj4gIERlZmF1bHQ6IDEuCj4gKy5UUAo+ICsuQkkgIk9wdGlvbiBcKnFE
-UklcKnEgXCpxIiBpbnRlZ2VyIFwqcQo+ICtEZWZpbmUgdGhlIG1heGltdW0gbGV2ZWwgb2YgRFJJ
-IHRvIGVuYWJsZS4gVmFsaWQgdmFsdWVzIGFyZSAyIG9yIDMuCj4gK2V4YSBhY2NlbGVyYXRpb24g
-d2lsbCBob25vciB0aGUgbWF4aW11bSBsZXZlbCBpZiBpdCBpcyBzdXBwb3J0ZWQuCj4gK1VuZGVy
-IGdsYW1vciBhY2NlbGVyYXRpb24gRFJJMyBpcyBhbHdheXMgZW5hYmxlZCBpZiBzdXBwb3J0ZWQs
-Cj4gK2FzIGdsYW1vciBjdXJyZW50bHkgZG9lcyBub3Qgc3VwcG9ydCBEUkkyLiBEZWZhdWx0OiAy
-IG9uIGV4YSwgMyBvbiBnbGFtb3IuCj4gIC5TSCAiU0VFIEFMU08iCj4gIF9feHNlcnZlcm5hbWVf
-XyhfX2FwcG1hbnN1ZmZpeF9fKSwgX194Y29uZmlnZmlsZV9fKF9fZmlsZW1hbnN1ZmZpeF9fKSwg
-WHNlcnZlcihfX2FwcG1hbnN1ZmZpeF9fKSwgWChfX21pc2NtYW5zdWZmaXhfXykKPiAgLlNIIEFV
-VEhPUlMKPiBkaWZmIC0tZ2l0IGEvc3JjL25vdXZlYXVfZHJpMi5jIGIvc3JjL25vdXZlYXVfZHJp
-Mi5jCj4gaW5kZXggY2U2ZjUzZS4uODFlZTliZSAxMDA2NDQKPiAtLS0gYS9zcmMvbm91dmVhdV9k
-cmkyLmMKPiArKysgYi9zcmMvbm91dmVhdV9kcmkyLmMKPiBAQCAtMTEzNCw3ICsxMTM0LDE2IEBA
-IG5vdXZlYXVfZHJpM19zY3JlZW5faW5pdChTY3JlZW5QdHIgc2NyZWVuKQo+ICAgICAgICAgaWYg
-KGJ1ZiAmJiBzdGF0KGJ1ZiwgJnJlbmRlcikgPT0gMCAmJgo+ICAgICAgICAgICAgIG1hc3Rlci5z
-dF9tb2RlID09IHJlbmRlci5zdF9tb2RlKSB7Cj4gICAgICAgICAgICAgICAgIHBOdi0+cmVuZGVy
-X25vZGUgPSBidWY7Cj4gLSAgICAgICAgICAgICAgIHJldHVybiBkcmkzX3NjcmVlbl9pbml0KHNj
-cmVlbiwgJm5vdXZlYXVfZHJpM19zY3JlZW5faW5mbyk7Cj4gKyAgICAgICAgICAgICAgIGlmIChk
-cmkzX3NjcmVlbl9pbml0KHNjcmVlbiwgJm5vdXZlYXVfZHJpM19zY3JlZW5faW5mbykpIHsKPiAr
-ICAgICAgICAgICAgICAgICAgICAgICB4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5G
-TywKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJEUkkzIG9uIEVYQSBlbmFi
-bGVkXG4iKTsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gVFJVRTsKPiArICAgICAg
-ICAgICAgICAgfQo+ICsgICAgICAgICAgICAgICBlbHNlIHsKPiArICAgICAgICAgICAgICAgICAg
-ICAgICB4Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfV0FSTklORywKPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICJEUkkzIG9uIEVYQSBpbml0aWFsaXphdGlvbiBmYWls
-ZWRcbiIpOwo+ICsgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiBGQUxTRTsKPiArICAgICAg
-ICAgICAgICAgfQo+ICAgICAgICAgfSBlbHNlCj4gICAgICAgICAgICAgICAgIGZyZWUoYnVmKTsK
-PiAgI2VuZGlmCj4gZGlmZiAtLWdpdCBhL3NyYy9ub3V2ZWF1X2dsYW1vci5jIGIvc3JjL25vdXZl
-YXVfZ2xhbW9yLmMKPiBpbmRleCBiOGJjYTE3Li5hOGU5MjA2IDEwMDY0NAo+IC0tLSBhL3NyYy9u
-b3V2ZWF1X2dsYW1vci5jCj4gKysrIGIvc3JjL25vdXZlYXVfZ2xhbW9yLmMKPiBAQCAtMjQwLDcg
-KzI0MCw3IEBAIG5vdXZlYXVfZ2xhbW9yX2luaXQoU2NyZWVuUHRyIHNjcmVlbikKPiAgICAgICAg
-IHNjcmVlbi0+U2hhcmVQaXhtYXBCYWNraW5nID0gbm91dmVhdV9nbGFtb3Jfc2hhcmVfcGl4bWFw
-X2JhY2tpbmc7Cj4gICAgICAgICBzY3JlZW4tPlNldFNoYXJlZFBpeG1hcEJhY2tpbmcgPSBub3V2
-ZWF1X2dsYW1vcl9zZXRfc2hhcmVkX3BpeG1hcF9iYWNraW5nOwo+Cj4gLSAgICAgICB4Zjg2RHJ2
-TXNnKHNjcm4tPnNjcm5JbmRleCwgWF9JTkZPLCAiW0dMQU1PUl0gaW5pdGlhbGlzZWRcbiIpOwo+
-ICsgICAgICAgeGY4NkRydk1zZyhzY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywgIltHTEFNT1JdIGlu
-aXRpYWxpc2VkIHdpdGggRFJJM1xuIik7Cj4gICAgICAgICBwTnYtPkZsdXNoID0gbm91dmVhdV9n
-bGFtb3JfZmx1c2g7Cj4gICAgICAgICByZXR1cm4gVFJVRTsKPiAgfQo+IGRpZmYgLS1naXQgYS9z
-cmMvbnZfY29uc3QuaCBiL3NyYy9udl9jb25zdC5oCj4gaW5kZXggZjFiNGU5Yi4uM2YxOGQyMyAx
-MDA2NDQKPiAtLS0gYS9zcmMvbnZfY29uc3QuaAo+ICsrKyBiL3NyYy9udl9jb25zdC5oCj4gQEAg
-LTE4LDYgKzE4LDcgQEAgdHlwZWRlZiBlbnVtIHsKPiAgICAgIE9QVElPTl9TV0FQX0xJTUlULAo+
-ICAgICAgT1BUSU9OX0FTWU5DX0NPUFksCj4gICAgICBPUFRJT05fQUNDRUxNRVRIT0QsCj4gKyAg
-ICBPUFRJT05fRFJJLAo+ICB9IE5WT3B0czsKPgo+Cj4gQEAgLTM0LDYgKzM1LDcgQEAgc3RhdGlj
-IGNvbnN0IE9wdGlvbkluZm9SZWMgTlZPcHRpb25zW10gPSB7Cj4gICAgICB7IE9QVElPTl9TV0FQ
-X0xJTUlULCAgICAgICAiU3dhcExpbWl0IiwgICAgT1BUVl9JTlRFR0VSLCAgIHswfSwgRkFMU0Ug
-fSwKPiAgICAgIHsgT1BUSU9OX0FTWU5DX0NPUFksICAgICAgICJBc3luY1VUU0RGUyIsICBPUFRW
-X0JPT0xFQU4sICAgezB9LCBGQUxTRSB9LAo+ICAgICAgeyBPUFRJT05fQUNDRUxNRVRIT0QsICAg
-ICAgIkFjY2VsTWV0aG9kIiwgIE9QVFZfU1RSSU5HLCAgICB7MH0sIEZBTFNFIH0sCj4gKyAgICB7
-IE9QVElPTl9EUkksICAgICAgICAgICAgICAiRFJJIiwgICAgICAgICAgT1BUVl9JTlRFR0VSLCAg
-IHswfSwgRkFMU0UgfSwKPiAgICAgIHsgLTEsICAgICAgICAgICAgICAgICAgICAgICBOVUxMLCAg
-ICAgICAgICAgT1BUVl9OT05FLCAgICAgIHswfSwgRkFMU0UgfQo+ICB9Owo+Cj4gZGlmZiAtLWdp
-dCBhL3NyYy9udl9kcml2ZXIuYyBiL3NyYy9udl9kcml2ZXIuYwo+IGluZGV4IDQyMThlNGYuLjUx
-NGE4YmMgMTAwNjQ0Cj4gLS0tIGEvc3JjL252X2RyaXZlci5jCj4gKysrIGIvc3JjL252X2RyaXZl
-ci5jCj4gQEAgLTEwOTUsNiArMTA5NSwyNSBAQCBOVlByZUluaXQoU2NybkluZm9QdHIgcFNjcm4s
-IGludCBmbGFncykKPiAgICAgICAgIHBOdi0+Y2VfZW5hYmxlZCA9Cj4gICAgICAgICAgICAgICAg
-IHhmODZSZXR1cm5PcHRWYWxCb29sKHBOdi0+T3B0aW9ucywgT1BUSU9OX0FTWU5DX0NPUFksIEZB
-TFNFKTsKPgo+ICsgICAgICAgLyogRGVmaW5lIG1heGltdW0gYWxsb3dlZCBsZXZlbCBvZiBEUkkg
-aW1wbGVtZW50YXRpb24gdG8gdXNlLgo+ICsgICAgICAgICogV2UgZGVmYXVsdCB0byBEUkkyIG9u
-IEVYQSBmb3Igbm93LCBhcyBEUkkzIHN0aWxsIGhhcyBzb21lCj4gKyAgICAgICAgKiBwcm9ibGVt
-cy4gSG93ZXZlciwgdGhlIG1heF9kcmlfbGV2ZWwgY2FuIGJlIG9ubHkgaG9ub3JlZAo+ICsgICAg
-ICAgICogYnkgRVhBLCBhcyBHTEFNT1Igb25seSBzdXBwb3J0cyBEUkkzIGF0IHRoZSBtb21lbnQu
-Cj4gKyAgICAgICAgKi8KTG9va3MgZ3JlYXQgYWZhaWN0LiBPbiB0aGUgYmlrZXNoZWQgc2lkZTog
-b25lIGNvdWxkIGFkZCBhIG5vdGUgdG8KdXBkYXRlIHRoZSBtYW5wYWdlIGFzIHRoZXNlIGNoYW5n
-ZSwgYnV0IEkgZG91YnQgdGhhdCdsbCBiZSB1c2VmdWwgYW55CnRpbWUgc29vbi4KCi1FbWlsCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0235410473==
+Content-Type: multipart/alternative; boundary="1438285304.bB2F1.21056"; charset="UTF-8"
+
+
+--1438285304.bB2F1.21056
+Date: Thu, 30 Jul 2015 19:41:44 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91373
+
+--- Comment #9 from Olivier Diotte <vhann3000+freedesktop-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+After a week's worth of usage on kernel 3.13.0, I'm confident enough to assert
+that that kernel version is usable.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1438285304.bB2F1.21056
+Date: Thu, 30 Jul 2015 19:41:44 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is run"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau fills kern.log with gigabytes of data when molecule screensaver is run"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91373">bug 91373</a>
+              from <span class="vcard"><a class="email" href="mailto:vhann3000+freedesktop&#64;gmail.com" title="Olivier Diotte &lt;vhann3000+freedesktop&#64;gmail.com&gt;"> <span class="fn">Olivier Diotte</span></a>
+</span></b>
+        <pre>After a week's worth of usage on kernel 3.13.0, I'm confident enough to assert
+that that kernel version is usable.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1438285304.bB2F1.21056--
+
+--===============0235410473==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0235410473==--
