@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91523] [NVE7] driver cannot initialize gpu(failed to
- parse ramcfg data)
-Date: Sat, 01 Aug 2015 20:55:56 +0000
-Message-ID: <bug-91523-8800-wn9Z2aP85T@http.bugs.freedesktop.org/>
-References: <bug-91523-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
+ with nouveau
+Date: Sat, 01 Aug 2015 20:59:17 +0000
+Message-ID: <bug-91526-8800-CjOw9qvCLD@http.bugs.freedesktop.org/>
+References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1698867326=="
+Content-Type: multipart/mixed; boundary="===============2144918612=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1698867326==
-Content-Type: multipart/alternative; boundary="1438462556.36cCa1.31197"; charset="UTF-8"
+--===============2144918612==
+Content-Type: multipart/alternative; boundary="1438462757.DbBaFba00.32295"; charset="UTF-8"
 
 
---1438462556.36cCa1.31197
-Date: Sat, 1 Aug 2015 20:55:56 +0000
+--1438462757.DbBaFba00.32295
+Date: Sat, 1 Aug 2015 20:59:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91523
+https://bugs.freedesktop.org/show_bug.cgi?id=91526
 
---- Comment #2 from Ilia Bozhinov <iliyabo-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org> ---
-Created attachment 117483
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117483&action=edit
-vbios.rom
+--- Comment #4 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+Another note: I did play the game some with these UI issues present and I did
+not notice any other kind of rendering problems whatsoever. It appears to
+affect only the UI and text and absolutely nothing else.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438462556.36cCa1.31197
-Date: Sat, 1 Aug 2015 20:55:56 +0000
+--1438462757.DbBaFba00.32295
+Date: Sat, 1 Aug 2015 20:59:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,30 +56,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523#c2">Comment # 2</a>
+   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] driver cannot initialize gpu(failed to parse ramcfg data)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91523">bug 91523</a>
-              from <span class="vcard"><a class="email" href="mailto:iliyabo&#64;hotmail.com" title="Ilia Bozhinov &lt;iliyabo&#64;hotmail.com&gt;"> <span class="fn">Ilia Bozhinov</span></a>
+   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:gediminas&#64;varciai.lt" title="Gediminas Jakutis &lt;gediminas&#64;varciai.lt&gt;"> <span class="fn">Gediminas Jakutis</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117483" name="attach_117483" title="vbios.rom">attachment 117483</a> <a href="attachment.cgi?id=117483&amp;action=edit" title="vbios.rom">[details]</a></span>
-vbios.rom</pre>
+        <pre>Another note: I did play the game some with these UI issues present and I did
+not notice any other kind of rendering problems whatsoever. It appears to
+affect only the UI and text and absolutely nothing else.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1438462556.36cCa1.31197--
+--1438462757.DbBaFba00.32295--
 
---===============1698867326==
+--===============2144918612==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1698867326==--
+--===============2144918612==--
