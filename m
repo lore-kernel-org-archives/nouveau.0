@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
  with nouveau
-Date: Sat, 01 Aug 2015 19:58:18 +0000
-Message-ID: <bug-91526-8800-ZlcYCad2zh@http.bugs.freedesktop.org/>
+Date: Sat, 01 Aug 2015 20:55:33 +0000
+Message-ID: <bug-91526-8800-ZlHxBlJj3j@http.bugs.freedesktop.org/>
 References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0369109620=="
+Content-Type: multipart/mixed; boundary="===============0037549944=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,83 +21,102 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0369109620==
-Content-Type: multipart/alternative; boundary="1438459098.B2De5aF1.10449"; charset="UTF-8"
+--===============0037549944==
+Content-Type: multipart/alternative; boundary="1438462532.52E870.31054"; charset="UTF-8"
 
 
---1438459098.B2De5aF1.10449
-Date: Sat, 1 Aug 2015 19:58:18 +0000
+--1438462532.52E870.31054
+Date: Sat, 1 Aug 2015 20:55:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91526
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91526
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reproduced on a fermi (GF108), although instead of corruption I just get that
-whole render as black (i.e. your corrupted regions are just all black).
-Disabling optimizations does not seem to have any effect.
+--- Comment #3 from Gediminas Jakutis <gediminas-1NU85dn7e2ownf/OCUKchA@public.gmane.org> ---
+>Out of curiousity, does this happen with st/nine?
 
-Note that there is an outstanding wine bug
-(https://bugs.winehq.org/show_bug.cgi?id=38869) where it uses uninitialized
-values which could cause something like this... I had a patch somewhere that
-worked around it (initializing values to 0,0,0,1) at
-https://bugs.freedesktop.org/attachment.cgi?id=116966 .
+Hard to tell =E2=80=93 with GalliumNine I get a whole different set of high=
+ly varying
+and inconsistent issues =E2=80=93 from trivial negligible ones to it's-nigh=
+-unplayable
+ones. All those while never noticing any of these UI problems at all. So it=
+'s
+hard to tell if the issues are related.
 
-Interesting, I applied the patch and it changed the output, so I suspected it
-was related. However then futzing it caused no change, and going back to the
-unpatched version still produced the changed thing. Not sure what to make of
-it. I wouldn't rule an issue with wine out.
+>I had a patch somewhere that worked around it (initializing values to 0,0,=
+0,1) at https://bugs.freedesktop.org/attachment.cgi?id=3D116966
 
-Out of curiousity, does this happen with st/nine?
+I see no difference in behaviour with this patch whatsoever. Neither "norma=
+lly"
+nor with GalliumNine.
 
--- 
+P.S. As a side-note, the most interestingly looking issue I encountered with
+GalliumNine was when one of the xyz coordinates on *some* objects very
+obviously appeared to be clamped to 0 ;]
+
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438459098.B2De5aF1.10449
-Date: Sat, 1 Aug 2015 19:58:18 +0000
+--1438462532.52E870.31054
+Date: Sat, 1 Aug 2015 20:55:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - World of Warcraft (on Wine) has UI corruption with nouvea=
+u"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91526#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - World of Warcraft (on Wine) has UI corruption with nouvea=
+u"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91526">bug 91526<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+gediminas&#64;varciai.lt" title=3D"Gediminas Jakutis &lt;gediminas&#64;varc=
+iai.lt&gt;"> <span class=3D"fn">Gediminas Jakutis</span></a>
 </span></b>
-        <pre>Reproduced on a fermi (GF108), although instead of corruption I just get that
-whole render as black (i.e. your corrupted regions are just all black).
-Disabling optimizations does not seem to have any effect.
+        <pre><span class=3D"quote">&gt;Out of curiousity, does this happen =
+with st/nine?</span >
 
-Note that there is an outstanding wine bug
-(<a href="https://bugs.winehq.org/show_bug.cgi?id=38869">https://bugs.winehq.org/show_bug.cgi?id=38869</a>) where it uses uninitialized
-values which could cause something like this... I had a patch somewhere that
-worked around it (initializing values to 0,0,0,1) at
-<a href="https://bugs.freedesktop.org/attachment.cgi?id=116966">https://bugs.freedesktop.org/attachment.cgi?id=116966</a> .
+Hard to tell =E2=80=93 with GalliumNine I get a whole different set of high=
+ly varying
+and inconsistent issues =E2=80=93 from trivial negligible ones to it's-nigh=
+-unplayable
+ones. All those while never noticing any of these UI problems at all. So it=
+'s
+hard to tell if the issues are related.
 
-Interesting, I applied the patch and it changed the output, so I suspected it
-was related. However then futzing it caused no change, and going back to the
-unpatched version still produced the changed thing. Not sure what to make of
-it. I wouldn't rule an issue with wine out.
+<span class=3D"quote">&gt;I had a patch somewhere that worked around it (in=
+itializing values to 0,0,0,1) at <a href=3D"https://bugs.freedesktop.org/at=
+tachment.cgi?id=3D116966">https://bugs.freedesktop.org/attachment.cgi?id=3D=
+116966</a></span >
 
-Out of curiousity, does this happen with st/nine?</pre>
+I see no difference in behaviour with this patch whatsoever. Neither &quot;=
+normally&quot;
+nor with GalliumNine.
+
+P.S. As a side-note, the most interestingly looking issue I encountered with
+GalliumNine was when one of the xyz coordinates on *some* objects very
+obviously appeared to be clamped to 0 ;]</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -105,9 +124,9 @@ Out of curiousity, does this happen with st/nine?</pre>
     </body>
 </html>
 
---1438459098.B2De5aF1.10449--
+--1438462532.52E870.31054--
 
---===============0369109620==
+--===============0037549944==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +136,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0369109620==--
+--===============0037549944==--
