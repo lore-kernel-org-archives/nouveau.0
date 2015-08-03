@@ -1,18 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: "enable dri3 support without glamor" causes
- gnome-shell regression on nv4x
-Date: Mon, 3 Aug 2015 14:09:07 -0400
-Message-ID: <CAKb7Uvg5SQvg_T++4mpL2_3EFKO8i4CCfz5MeLxe6P5WKTtPKg@mail.gmail.com>
-References: <55BA23AF.1040308@redhat.com>
- <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ@mail.gmail.com>
- <55BF665A.4020600@redhat.com>
- <CAKb7UviW5e_1nkxXJ_Rud2SGF8=QUbjyr1aKdSG5h=o=_K7AAw@mail.gmail.com>
- <55BFA569.4080302@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Mon, 03 Aug 2015 18:15:10 +0000
+Message-ID: <bug-90871-8800-TfgCST2Fqh@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1466542865=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55BFA569.4080302-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,86 +16,92 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMywgMjAxNSBhdCAxOjMxIFBNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
-ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+Cj4gT24gMDMtMDgtMTUgMTc6MzYsIElsaWEgTWly
-a2luIHdyb3RlOgo+Pgo+PiBPbiBNb24sIEF1ZyAzLCAyMDE1IGF0IDk6MDIgQU0sIEhhbnMgZGUg
-R29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+Pj4KPj4+IEhpLAo+Pj4KPj4+IE9u
-IDMwLTA3LTE1IDE2OjA5LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pgo+Pj4+Cj4+Pj4gRldJVyB0
-aGlzIGlzIGEgZmFpbCBvbiBudjUwKyBhcyB3ZWxsLiBTZWUgZm9yIGV4YW1wbGUKPj4+PiBodHRw
-czovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05MTQ0NQo+Pj4+Cj4+Pj4g
-TXkgc3VzcGljaW9uIGlzIHRoYXQgdGhpcyBpcyBkdWUgdG8gdGhlIGxhY2sgb2YgUFVTSF9LSUNL
-IGluIHRoZSAqRG9uZQo+Pj4+IGV4YSBoYW5kbGVycyAtLSB3b3JrcyBmaW5lIHdpdGggRFJJMiwg
-YnV0IERSSTMgaGFzIG5vIHN5bmNocm9uaXphdGlvbgo+Pj4+IGFuZCBzbyB0aGUgY29tbWFuZHMg
-bmV2ZXIgZ2V0IGZsdXNoZWQgb3V0LiBFYXNpbHkgdmVyaWZpZWQgYnkgc3RpY2tpbmcKPj4+PiBQ
-VVNIX0tJQ0sncyBldmVyeXdoZXJlLgo+Pj4KPj4+Cj4+Pgo+Pj4gSSBkbyBub3QgYmVsaWV2ZSB0
-aGF0IHRoYXQgaXMgdGhlIHByb2JsZW0sIGluIG15IGNhc2UgaXQgY2xlYXJseQo+Pj4gc2VlbXMg
-dG8gYmUgYSBwaXRjaCAvIHN3aXp6bGUgcHJvYmxlbSByYXRoZXIgdGhlbiBhIHN5bmNocm9uaXph
-cmlvbgo+Pj4gcHJvYmxlbSwgaGVyZSBpcyB3aGF0IG15IGRlc2t0b3Agd2l0aCBnbm9tZSBzaGVs
-bCBsb29rcyBsaWtlIHdoZW4KPj4+IHVzaW5nIERSSTI6Cj4+Pgo+Pj4gaHR0cHM6Ly9mZWRvcmFw
-ZW9wbGUub3JnL35qd3JkZWdvZWRlL252NDYtZ25vbWUtc2hlbGwtZ29vZC5qcGcKPj4+Cj4+PiBB
-bmQgdGhpcyBpcyB3aGF0IGl0IGxvb2tzIGxpa2Ugd2hlbiB1c2luZyBEUkkzOgo+Pj4KPj4+IGh0
-dHBzOi8vZmVkb3JhcGVvcGxlLm9yZy9+andyZGVnb2VkZS9udjQ2LWdub21lLXNoZWxsLWJhZC5q
-cGcKPj4+Cj4+PiBUaGUgRFJJMiBzY3JlZW5zaG90IGlzIG1hZGUgd2l0aCBNYXJpbydzIDIgcGF0
-Y2hlcyBvbiB0b3Agb2YKPj4+IGN1cnJlbnQgbWFzdGVyOgo+Pj4KPj4+IGh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE1LUp1bHkvMDIxNzQwLmh0bWwKPj4+
-IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8yMDE1LUp1bHkv
-MDIxNzQxLmh0bWwKPj4+Cj4+PiBBbmQgdGhlbiBhZGRpbmcgT3B0aW9uICJEUkkiICIyIiB0byB4
-b3JnLmNvbmYuCj4+Cj4+Cj4+IEhpcyBwYXRjaGVzIHNob3VsZCBoYXZlIGRlZmF1bHRlZCBpdCB0
-byBEUkkgMiBJIHRoaW5rLCBzbyB0aGlzIGlzCj4+IHVubmVjZXNzYXJ5LiBJbiBmYWN0IHlvdSBz
-aG91bGQgaGF2ZSBoYWQgdG8gc2F5ICJEUkkiICIzIiB0byBnZXQgRFJJMwo+PiB3aXRoIGhpcyBw
-YXRjaGVzLgo+PiAgIC0tCj4+Pgo+Pj4KPj4+IEkndmUgYWxzbyB0cmllZCBkaXNhYmxpbmcgRVhB
-IHVzaW5nIE9wdGlvbiAiQWNjZWxNZXRob2QiICJub25lIiwKPj4+IGJ1dCB0aGF0IHNlZW1zIHRv
-IGFsc28gYXV0b21hdGljYWxseSBkaXNhYmxlIGFsbCBEUkksIGxlYWRpbmcgdG8KPj4+IHNvZnR3
-YXJlIHJlbmRlcmluZy4KPj4+Cj4+PiBJIGRpc2N1c3NlZCB0aGlzIHdpdGggQmVuIHRoaXMgbW9y
-bmluZyBhbmQgaGUgc3VnZ2VzdGVkIHRoYXQgdGhpcwo+Pj4gaXMgbGlrZWx5IGEgTWVzYSBpc3N1
-ZSBzaW5jZSB3aXRoIERSSTMgbWVzYSByYXRoZXIgdGhlbiB0aGUgZGR4Cj4+PiBhbGxvY3MgdGhl
-IHN1cmZhY2VzLiBJJ3ZlIHRyaWVkIGRpc2FibGluZyBzd2l6emxpbmcgaW4gdGhlCj4+PiBtZXNh
-IGNvZGUgYnkgZm9yY2luZyBudjMwX21pcHRyZWVfY3JlYXRlKCkgdG8gYWx3YXlzIHRha2UKPj4+
-IHRoZSBjb2RlIHBhdGggZm9yIGxpbmVhciB0ZXh0dXJlcywgYnV0IHRoYXQgbGVhZHMgdG8gdGhl
-IGV4YWN0Cj4+PiBzYW1lIHJlc3VsdCBhcyBiZWZvcmUgdGhhdCBjaGFuZ2UuCj4+Cj4+Cj4+IEFo
-IHllcy4gVmVyeSBkaWZmZXJlbnQgcHJvYmxlbSBpbmRlZWQuIEkgYWN0dWFsbHkgc3VzcGVjdCBp
-dCBoYXMgdG8gZG8KPj4gd2l0aCBzd2l6emxpbmcuIExvb2sgYXQgdGhlIHdoaXRlIHBhdHRlcm4g
-b2YgdGhlIG1vb24gLS0gaXQncyBhbGwgaW4gYQo+PiBsaW5lLiBUaGF0IG1lYW5zIHRoYXQgaXQg
-ZXhwZWN0ZWQgc29tZSBsb2NhbGl0eSBhbmQgaW5zdGVhZCBpdCBnb3QKPj4gZHJhd24gYWxsIG9u
-IGEgbGluZS4gSWYgaXQgd2VyZSBtZXJlbHkgYSBzdHJpZGUgcHJvYmxlbSwgSSdkIGV4cGVjdCB0
-bwo+PiBzZWUgc3RyaXBzIG9mIHRoZSBtb29uIGJlbG93IGFuZCBvZmZzZXQgZnJvbSBvbmUgYW5v
-dGhlci4KPj4KPj4gU28uLi4gdGFrZSBhIGxvb2sgYXQgbnYzMF9taXB0cmVlX2Zyb21faGFuZGxl
-IC0tIEkgd29uZGVyIGlmIGl0IGNhbgo+PiBub3cgcmVjZWl2ZSBzd2l6emxlZCB0ZXh0dXJlcyB3
-aGVyZSBpdCBjb3VsZG4ndCBiZWZvcmUuCj4KPgo+IE9rLCB0aGF0IGRvZXMgZ28gaW4gdGhlIGRp
-cmVjdGlvbiBJIGFtIGV4cGVjdGluZyB0aGUgcHJvYmxlbSB0byBiZSwKPiBidXQgSSdtIGFmcmFp
-ZCBJJ20gZ29pbmcgdG8gbmVlZCBhIGJpdCBtb3JlIGd1aWRhbmNlLCB3aGF0IGV4YWN0bHkKPiBh
-bSBJIGxvb2tpbmcgZm9yIGluIHRoYXQgZnVuY3Rpb24gLyB3aGljaCAia25vYnMiIHNob3VsZCBJ
-IHRyeSB0bwo+IHZhcnkgLyBwbGF5IHdpdGggdG8gbWF5YmUgZml4IHRoaXMgPwoKVW5mb3J0dW5h
-dGVseSB0aGlzIGlzIHBsYXlpbmcgbmVhciAob3IgcGFzdCkgdGhlIGxpbWl0cyBvZiBteQprbm93
-bGVkZ2UgYXMgd2VsbC4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IERSSTMgcGFzc2VzIHBpeG1h
-cHMgYXJvdW5kCndpdGggZG1hLWJ1ZiwgYWthICJib19mcm9tX2hhbmRsZSIuIERSSTIgdXNlcyBz
-b21lIG90aGVyIG1lY2hhbmlzbQp3aGljaCBpcyBub3QgdGhhdCAoSSB0aGluayBpdCBqdXN0IGNv
-cGllcyBzdHVmZiBhcm91bmQpLgoKTm93IG9uIG52NTArLCBibydzIGhhdmUgInRpbGUgZmxhZ3Mi
-IChhbmQgbWVtdHlwZSBhbmQgcHJvYmFibHkgb3RoZXIKYW5ub3lhbmNlcykuIFRoZSB0aWxlIGZs
-YWdzIGluZGljYXRlIHRoZSBzcGVjaWZpYyB0aWxpbmcgbWVjaGFuaXNtCnVzZWQgb24gdGhhdCBi
-byAoaS5lLiBkbyB5b3UgZG8gMzJ4MzIgdGlsZXM/IDMyeDY0PyBldGMpLiBUYWtlIGEgbG9vawph
-dCB0aGUgbm91dmVhdV9ib19uZXcoKSBjYWxsIGluIG52NTBfbWlwdHJlZS5jIC0tIG5vdGUgaG93
-IGl0IHRha2VzIGEKImJvIGNvbmZpZyIgYXJndW1lbnQuIFRoaXMgYm8gY29uZmlnIGNhbiB0aGVu
-IGxhdGVyIGJlIHJldHJpZXZlZCB1c2luZwpzb21lIG90aGVyIHN5c2NhbGwuCgpIb3dldmVyIG9u
-IG52MzAgdGhlcmUgYXBwZWFycyB0byBub3QgYmUgYW55IHN1Y2ggdGhpbmcuIFRoZQpub3V2ZWF1
-X2JvX25ldyBjYWxsIGp1c3QgcGFzc2VzIGluIE5VTEwgZm9yIGNyZWF0aW5nIHRoZSBibywgd2hp
-Y2gKbWVhbnMgdGhhdCB0aGVyZSdzIG5vIHdheSB0byByZWNvdmVyIHRoZSAiYXJlIHlvdSBzd2l6
-emxlZCIKaW5mb3JtYXRpb24gYWZ0ZXItdGhlLWZhY3QuCgpQcmVzdW1hYmx5IHlvdSBzaG91bGQg
-Y3JlYXRlIGEgIm52MDQiIGJvIGNvbmZpZyBzZWN0aW9uIGluIHRoZSB1bmlvbiwKYW5kIGp1c3Qg
-cGFzcyB0aGUgc2luZ2xlICJzd2l6emxlZCIgYml0IHRocm91Z2guIEknbSBub3Qgc3VyZSB3aGF0
-LCBpZgphbnl0aGluZywgaXMgcmVxdWlyZWQgb24gdGhlIGtlcm5lbCBzaWRlIGZvciB0aGF0LiBJ
-IGRvbid0IHRoaW5rCnRoZXJlJ3MgYW55IG9wdGlvbmFsaXR5IGluIGhvdyB0aGUgc3dpenpsaW5n
-IGlzIGRvbmUgZm9yIHByZS1udjUwLgoKTm90ZSB0aGF0IGluIHRoZSBudjMwX21pcHRyZWUgbG9n
-aWMsIG10LT5zd2l6emxlZCBpbXBsaWVzIHRoYXQKbXQtPnVuaWZvcm1fcGl0Y2ggPSAwLCBidXQg
-dGhlIGxldmVsIHBpdGNoIGlzIHNldCAicHJvcGVybHkiIChhZ2FpbiwKc2VlIG52MzBfbWlwdHJl
-ZV9jcmVhdGUpLgoKSG9wZSB0aGlzIHNoZWRzIHNvbWUgbGlnaHQgYW5kIGRvZXNuJ3QgY2F1c2Ug
-eW91IHRvIGdvIGluIHRoZSB3cm9uZwpkaXJlY3Rpb24gLS0gcGxlYXNlIHRha2UgZXZlcnl0aGlu
-ZyBJIHNheSB3aXRoIGEgZ3JhaW4gb2Ygc2FsdCAtLSBJJ20Kb2Z0ZW4gYSBiaXQgb2ZmIG9uIHNv
-bWUgb2YgdGhlIGRldGFpbHMuCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1466542865==
+Content-Type: multipart/alternative; boundary="1438625710.117706E1.11748"; charset="UTF-8"
+
+
+--1438625710.117706E1.11748
+Date: Mon, 3 Aug 2015 18:15:10 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #19 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Harder to tell, but I think one of two things is happening:
+
+(a) You have the inverse problem. You're getting a linear texture that's being
+interpreted as if it were swizzled.
+(b) Uninitialized video ram which happened to be some (set of) textures in a
+former life.
+
+I'm tending a bit more towards (b) but not 100% sure. I don't know how you
+could end up with linear texture data but think it's swizzled, but I'm also not
+extremely well-versed in nv30 driver specifics.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1438625710.117706E1.11748
+Date: Mon, 3 Aug 2015 18:15:10 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Harder to tell, but I think one of two things is happening:
+
+(a) You have the inverse problem. You're getting a linear texture that's being
+interpreted as if it were swizzled.
+(b) Uninitialized video ram which happened to be some (set of) textures in a
+former life.
+
+I'm tending a bit more towards (b) but not 100% sure. I don't know how you
+could end up with linear texture data but think it's swizzled, but I'm also not
+extremely well-versed in nv30 driver specifics.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1438625710.117706E1.11748--
+
+--===============1466542865==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1466542865==--
