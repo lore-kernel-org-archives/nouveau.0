@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
- PGRAPH and PGR errors
-Date: Mon, 03 Aug 2015 01:10:18 +0000
-Message-ID: <bug-90453-8800-jW59Sw1u6H@http.bugs.freedesktop.org/>
-References: <bug-90453-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
+	TNT2 Pro]
+Date: Mon, 03 Aug 2015 02:13:10 +0000
+Message-ID: <bug-91025-8800-Ll2XaH0pK6@http.bugs.freedesktop.org/>
+References: <bug-91025-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1475285769=="
+Content-Type: multipart/mixed; boundary="===============0040151661=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1475285769==
-Content-Type: multipart/alternative; boundary="1438564218.E6cC552.1113"; charset="UTF-8"
+--===============0040151661==
+Content-Type: multipart/alternative; boundary="1438567990.Ef2AFb2.19522"; charset="UTF-8"
 
 
---1438564218.E6cC552.1113
-Date: Mon, 3 Aug 2015 01:10:18 +0000
+--1438567990.Ef2AFb2.19522
+Date: Mon, 3 Aug 2015 02:13:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90453
+https://bugs.freedesktop.org/show_bug.cgi?id=91025
 
---- Comment #23 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
-Same issue over here, it is a NVE4 too. I will be using the proprietary driver
-from now on until I know better how to help diagnose this.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-[ 7104.402763] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[ 7104.402770] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-7, recovering...
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-...and video freezes forever.
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+These patches are all now upstream (in 4.2-rc5), you should be able to drop the
+nouveau.config=NvBios=bla thing once you update your kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438564218.E6cC552.1113
-Date: Mon, 3 Aug 2015 01:10:18 +0000
+--1438567990.Ef2AFb2.19522
+Date: Mon, 3 Aug 2015 02:13:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,27 +56,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c23">Comment # 23</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
-              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Same issue over here, it is a NVE4 too. I will be using the proprietary driver
-from now on until I know better how to help diagnose this.
-
-[ 7104.402763] nouveau E[   PFIFO][0000:01:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
-[ 7104.402770] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-7, recovering...
-
-...and video freezes forever.</pre>
+        <pre>These patches are all now upstream (in 4.2-rc5), you should be able to drop the
+nouveau.config=NvBios=bla thing once you update your kernel.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +110,9 @@ from now on until I know better how to help diagnose this.
     </body>
 </html>
 
---1438564218.E6cC552.1113--
+--1438567990.Ef2AFb2.19522--
 
---===============1475285769==
+--===============0040151661==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1475285769==--
+--===============0040151661==--
