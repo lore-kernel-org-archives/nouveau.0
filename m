@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Mon, 03 Aug 2015 17:13:25 +0000
-Message-ID: <bug-90871-8800-CdPWTMj1U9@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: "enable dri3 support without glamor" causes
+ gnome-shell regression on nv4x
+Date: Mon, 3 Aug 2015 19:31:21 +0200
+Message-ID: <55BFA569.4080302@redhat.com>
+References: <55BA23AF.1040308@redhat.com>
+ <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ@mail.gmail.com>
+ <55BF665A.4020600@redhat.com>
+ <CAKb7UviW5e_1nkxXJ_Rud2SGF8=QUbjyr1aKdSG5h=o=_K7AAw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2015643637=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UviW5e_1nkxXJ_Rud2SGF8=QUbjyr1aKdSG5h=o=_K7AAw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,82 +21,57 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2015643637==
-Content-Type: multipart/alternative; boundary="1438622004.37aA1.22342"; charset="UTF-8"
-
-
---1438622004.37aA1.22342
-Date: Mon, 3 Aug 2015 17:13:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #18 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-Olivier, can you tell, just by looking at garbled pattern, what the actual
-problem is, the same as Hans de and Ilia do in
-http://lists.freedesktop.org/archives/nouveau/2015-August/021767.html
-"Look at the white pattern of the moon".
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1438622004.37aA1.22342
-Date: Mon, 3 Aug 2015 17:13:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-Olivier, can you tell, just by looking at garbled pattern, what the actual
-problem is, the same as Hans de and Ilia do in
-<a href="http://lists.freedesktop.org/archives/nouveau/2015-August/021767.html">http://lists.freedesktop.org/archives/nouveau/2015-August/021767.html</a>
-&quot;Look at the white pattern of the moon&quot;.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1438622004.37aA1.22342--
-
---===============2015643637==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2015643637==--
+SGksCgpPbiAwMy0wOC0xNSAxNzozNiwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBBdWcg
+MywgMjAxNSBhdCA5OjAyIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3
+cm90ZToKPj4gSGksCj4+Cj4+IE9uIDMwLTA3LTE1IDE2OjA5LCBJbGlhIE1pcmtpbiB3cm90ZToK
+Pj4+Cj4+PiBGV0lXIHRoaXMgaXMgYSBmYWlsIG9uIG52NTArIGFzIHdlbGwuIFNlZSBmb3IgZXhh
+bXBsZQo+Pj4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9OTE0
+NDUKPj4+Cj4+PiBNeSBzdXNwaWNpb24gaXMgdGhhdCB0aGlzIGlzIGR1ZSB0byB0aGUgbGFjayBv
+ZiBQVVNIX0tJQ0sgaW4gdGhlICpEb25lCj4+PiBleGEgaGFuZGxlcnMgLS0gd29ya3MgZmluZSB3
+aXRoIERSSTIsIGJ1dCBEUkkzIGhhcyBubyBzeW5jaHJvbml6YXRpb24KPj4+IGFuZCBzbyB0aGUg
+Y29tbWFuZHMgbmV2ZXIgZ2V0IGZsdXNoZWQgb3V0LiBFYXNpbHkgdmVyaWZpZWQgYnkgc3RpY2tp
+bmcKPj4+IFBVU0hfS0lDSydzIGV2ZXJ5d2hlcmUuCj4+Cj4+Cj4+IEkgZG8gbm90IGJlbGlldmUg
+dGhhdCB0aGF0IGlzIHRoZSBwcm9ibGVtLCBpbiBteSBjYXNlIGl0IGNsZWFybHkKPj4gc2VlbXMg
+dG8gYmUgYSBwaXRjaCAvIHN3aXp6bGUgcHJvYmxlbSByYXRoZXIgdGhlbiBhIHN5bmNocm9uaXph
+cmlvbgo+PiBwcm9ibGVtLCBoZXJlIGlzIHdoYXQgbXkgZGVza3RvcCB3aXRoIGdub21lIHNoZWxs
+IGxvb2tzIGxpa2Ugd2hlbgo+PiB1c2luZyBEUkkyOgo+Pgo+PiBodHRwczovL2ZlZG9yYXBlb3Bs
+ZS5vcmcvfmp3cmRlZ29lZGUvbnY0Ni1nbm9tZS1zaGVsbC1nb29kLmpwZwo+Pgo+PiBBbmQgdGhp
+cyBpcyB3aGF0IGl0IGxvb2tzIGxpa2Ugd2hlbiB1c2luZyBEUkkzOgo+Pgo+PiBodHRwczovL2Zl
+ZG9yYXBlb3BsZS5vcmcvfmp3cmRlZ29lZGUvbnY0Ni1nbm9tZS1zaGVsbC1iYWQuanBnCj4+Cj4+
+IFRoZSBEUkkyIHNjcmVlbnNob3QgaXMgbWFkZSB3aXRoIE1hcmlvJ3MgMiBwYXRjaGVzIG9uIHRv
+cCBvZgo+PiBjdXJyZW50IG1hc3RlcjoKPj4KPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9hcmNoaXZlcy9ub3V2ZWF1LzIwMTUtSnVseS8wMjE3NDAuaHRtbAo+PiBodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUvMjAxNS1KdWx5LzAyMTc0MS5odG1sCj4+
+Cj4+IEFuZCB0aGVuIGFkZGluZyBPcHRpb24gIkRSSSIgIjIiIHRvIHhvcmcuY29uZi4KPgo+IEhp
+cyBwYXRjaGVzIHNob3VsZCBoYXZlIGRlZmF1bHRlZCBpdCB0byBEUkkgMiBJIHRoaW5rLCBzbyB0
+aGlzIGlzCj4gdW5uZWNlc3NhcnkuIEluIGZhY3QgeW91IHNob3VsZCBoYXZlIGhhZCB0byBzYXkg
+IkRSSSIgIjMiIHRvIGdldCBEUkkzCj4gd2l0aCBoaXMgcGF0Y2hlcy4KPiAgIC0tCj4+Cj4+IEkn
+dmUgYWxzbyB0cmllZCBkaXNhYmxpbmcgRVhBIHVzaW5nIE9wdGlvbiAiQWNjZWxNZXRob2QiICJu
+b25lIiwKPj4gYnV0IHRoYXQgc2VlbXMgdG8gYWxzbyBhdXRvbWF0aWNhbGx5IGRpc2FibGUgYWxs
+IERSSSwgbGVhZGluZyB0bwo+PiBzb2Z0d2FyZSByZW5kZXJpbmcuCj4+Cj4+IEkgZGlzY3Vzc2Vk
+IHRoaXMgd2l0aCBCZW4gdGhpcyBtb3JuaW5nIGFuZCBoZSBzdWdnZXN0ZWQgdGhhdCB0aGlzCj4+
+IGlzIGxpa2VseSBhIE1lc2EgaXNzdWUgc2luY2Ugd2l0aCBEUkkzIG1lc2EgcmF0aGVyIHRoZW4g
+dGhlIGRkeAo+PiBhbGxvY3MgdGhlIHN1cmZhY2VzLiBJJ3ZlIHRyaWVkIGRpc2FibGluZyBzd2l6
+emxpbmcgaW4gdGhlCj4+IG1lc2EgY29kZSBieSBmb3JjaW5nIG52MzBfbWlwdHJlZV9jcmVhdGUo
+KSB0byBhbHdheXMgdGFrZQo+PiB0aGUgY29kZSBwYXRoIGZvciBsaW5lYXIgdGV4dHVyZXMsIGJ1
+dCB0aGF0IGxlYWRzIHRvIHRoZSBleGFjdAo+PiBzYW1lIHJlc3VsdCBhcyBiZWZvcmUgdGhhdCBj
+aGFuZ2UuCj4KPiBBaCB5ZXMuIFZlcnkgZGlmZmVyZW50IHByb2JsZW0gaW5kZWVkLiBJIGFjdHVh
+bGx5IHN1c3BlY3QgaXQgaGFzIHRvIGRvCj4gd2l0aCBzd2l6emxpbmcuIExvb2sgYXQgdGhlIHdo
+aXRlIHBhdHRlcm4gb2YgdGhlIG1vb24gLS0gaXQncyBhbGwgaW4gYQo+IGxpbmUuIFRoYXQgbWVh
+bnMgdGhhdCBpdCBleHBlY3RlZCBzb21lIGxvY2FsaXR5IGFuZCBpbnN0ZWFkIGl0IGdvdAo+IGRy
+YXduIGFsbCBvbiBhIGxpbmUuIElmIGl0IHdlcmUgbWVyZWx5IGEgc3RyaWRlIHByb2JsZW0sIEkn
+ZCBleHBlY3QgdG8KPiBzZWUgc3RyaXBzIG9mIHRoZSBtb29uIGJlbG93IGFuZCBvZmZzZXQgZnJv
+bSBvbmUgYW5vdGhlci4KPgo+IFNvLi4uIHRha2UgYSBsb29rIGF0IG52MzBfbWlwdHJlZV9mcm9t
+X2hhbmRsZSAtLSBJIHdvbmRlciBpZiBpdCBjYW4KPiBub3cgcmVjZWl2ZSBzd2l6emxlZCB0ZXh0
+dXJlcyB3aGVyZSBpdCBjb3VsZG4ndCBiZWZvcmUuCgpPaywgdGhhdCBkb2VzIGdvIGluIHRoZSBk
+aXJlY3Rpb24gSSBhbSBleHBlY3RpbmcgdGhlIHByb2JsZW0gdG8gYmUsCmJ1dCBJJ20gYWZyYWlk
+IEknbSBnb2luZyB0byBuZWVkIGEgYml0IG1vcmUgZ3VpZGFuY2UsIHdoYXQgZXhhY3RseQphbSBJ
+IGxvb2tpbmcgZm9yIGluIHRoYXQgZnVuY3Rpb24gLyB3aGljaCAia25vYnMiIHNob3VsZCBJIHRy
+eSB0bwp2YXJ5IC8gcGxheSB3aXRoIHRvIG1heWJlIGZpeCB0aGlzID8KClJlZ2FyZHMsCgpIYW5z
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
