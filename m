@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91535] [NVE7] Chrome can cause a nouveau 'multiple
  instances of buffer' message when overlaying a menu leading to X lockup
-Date: Mon, 03 Aug 2015 00:52:09 +0000
-Message-ID: <bug-91535-8800-PzNyapJ3qN@http.bugs.freedesktop.org/>
+Date: Mon, 03 Aug 2015 01:00:57 +0000
+Message-ID: <bug-91535-8800-MzgfGOtFH7@http.bugs.freedesktop.org/>
 References: <bug-91535-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0492655102=="
+Content-Type: multipart/mixed; boundary="===============1416878006=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91535-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0492655102==
-Content-Type: multipart/alternative; boundary="1438563129.EC7Bf02.27975"; charset="UTF-8"
+--===============1416878006==
+Content-Type: multipart/alternative; boundary="1438563657.7Ace3352.30774"; charset="UTF-8"
 
 
---1438563129.EC7Bf02.27975
-Date: Mon, 3 Aug 2015 00:52:09 +0000
+--1438563657.7Ace3352.30774
+Date: Mon, 3 Aug 2015 01:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91535
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Bryan O'Donoghue <pure.logic-SyKdqv6vbfZdzvEItQ6vdLNAH6kLmebB@public.gmane.org> ---
+Compositor : I've tried on gnome+metacity, fluxbox, lxde and KDE.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|Chrome can cause a nouveau  |[NVE7] Chrome can cause a
-                   |'multiple instances of      |nouveau 'multiple instances
-                   |buffer' message when        |of buffer' message when
-                   |overlaying a menu leading   |overlaying a menu leading
-                   |to X lockup                 |to X lockup
+DRI:
+Looks like DRI2
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you say a bit more about your desktop environment? I've never seen this,
-and I use both chrome and nouveau on a regular basis on a GF108 which is fairly
-similar to kepler, at least wrt how buffers are added to validation lists.
+[     8.723] (--) Depth 24 pixmap format is 32 bpp
+[     8.725] (II) NOUVEAU(0): Opened GPU channel 0
+[     8.728] (II) NOUVEAU(0): [DRI2] Setup complete
+[     8.728] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau
+[     8.728] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau
 
-Are you using a compositor, if so which one, and how is it configured? Is there
-optimus involved, if so are you using DRI2 or DRI3? Are you using GLAMOR + DRI3
-in the nouveau DDX?
+GLAMOR:
+and so therefore not using GLAMOR + DRI3
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438563129.EC7Bf02.27975
-Date: Mon, 3 Aug 2015 00:52:09 +0000
+--1438563657.7Ace3352.30774
+Date: Mon, 3 Aug 2015 01:00:57 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,46 +60,32 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91535">bug 91535</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup
-           </td>
-           <td>[NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91535#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91535#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91535">bug 91535</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:pure.logic&#64;nexus-software.ie" title="Bryan O'Donoghue &lt;pure.logic&#64;nexus-software.ie&gt;"> <span class="fn">Bryan O'Donoghue</span></a>
 </span></b>
-        <pre>Can you say a bit more about your desktop environment? I've never seen this,
-and I use both chrome and nouveau on a regular basis on a GF108 which is fairly
-similar to kepler, at least wrt how buffers are added to validation lists.
+        <pre>Compositor : I've tried on gnome+metacity, fluxbox, lxde and KDE.
 
-Are you using a compositor, if so which one, and how is it configured? Is there
-optimus involved, if so are you using DRI2 or DRI3? Are you using GLAMOR + DRI3
-in the nouveau DDX?</pre>
+DRI:
+Looks like DRI2
+
+[     8.723] (--) Depth 24 pixmap format is 32 bpp
+[     8.725] (II) NOUVEAU(0): Opened GPU channel 0
+[     8.728] (II) NOUVEAU(0): [DRI2] Setup complete
+[     8.728] (II) NOUVEAU(0): [DRI2]   DRI driver: nouveau
+[     8.728] (II) NOUVEAU(0): [DRI2]   VDPAU driver: nouveau
+
+GLAMOR:
+and so therefore not using GLAMOR + DRI3</pre>
         </div>
       </p>
       <hr>
@@ -115,9 +97,9 @@ in the nouveau DDX?</pre>
     </body>
 </html>
 
---1438563129.EC7Bf02.27975--
+--1438563657.7Ace3352.30774--
 
---===============0492655102==
+--===============1416878006==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0492655102==--
+--===============1416878006==--
