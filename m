@@ -1,16 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: "enable dri3 support without glamor" causes
- gnome-shell regression on nv4x
-Date: Mon, 3 Aug 2015 11:36:47 -0400
-Message-ID: <CAKb7UviW5e_1nkxXJ_Rud2SGF8=QUbjyr1aKdSG5h=o=_K7AAw@mail.gmail.com>
-References: <55BA23AF.1040308@redhat.com>
- <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ@mail.gmail.com>
- <55BF665A.4020600@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Mon, 03 Aug 2015 17:06:01 +0000
+Message-ID: <bug-90871-8800-xa0YmcEp4E@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1111358349=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55BF665A.4020600-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,51 +16,77 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMywgMjAxNSBhdCA5OjAyIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
-ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIDMwLTA3LTE1IDE2OjA5LCBJbGlhIE1pcmtp
-biB3cm90ZToKPj4KPj4gRldJVyB0aGlzIGlzIGEgZmFpbCBvbiBudjUwKyBhcyB3ZWxsLiBTZWUg
-Zm9yIGV4YW1wbGUKPj4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9OTE0NDUKPj4KPj4gTXkgc3VzcGljaW9uIGlzIHRoYXQgdGhpcyBpcyBkdWUgdG8gdGhlIGxh
-Y2sgb2YgUFVTSF9LSUNLIGluIHRoZSAqRG9uZQo+PiBleGEgaGFuZGxlcnMgLS0gd29ya3MgZmlu
-ZSB3aXRoIERSSTIsIGJ1dCBEUkkzIGhhcyBubyBzeW5jaHJvbml6YXRpb24KPj4gYW5kIHNvIHRo
-ZSBjb21tYW5kcyBuZXZlciBnZXQgZmx1c2hlZCBvdXQuIEVhc2lseSB2ZXJpZmllZCBieSBzdGlj
-a2luZwo+PiBQVVNIX0tJQ0sncyBldmVyeXdoZXJlLgo+Cj4KPiBJIGRvIG5vdCBiZWxpZXZlIHRo
-YXQgdGhhdCBpcyB0aGUgcHJvYmxlbSwgaW4gbXkgY2FzZSBpdCBjbGVhcmx5Cj4gc2VlbXMgdG8g
-YmUgYSBwaXRjaCAvIHN3aXp6bGUgcHJvYmxlbSByYXRoZXIgdGhlbiBhIHN5bmNocm9uaXphcmlv
-bgo+IHByb2JsZW0sIGhlcmUgaXMgd2hhdCBteSBkZXNrdG9wIHdpdGggZ25vbWUgc2hlbGwgbG9v
-a3MgbGlrZSB3aGVuCj4gdXNpbmcgRFJJMjoKPgo+IGh0dHBzOi8vZmVkb3JhcGVvcGxlLm9yZy9+
-andyZGVnb2VkZS9udjQ2LWdub21lLXNoZWxsLWdvb2QuanBnCj4KPiBBbmQgdGhpcyBpcyB3aGF0
-IGl0IGxvb2tzIGxpa2Ugd2hlbiB1c2luZyBEUkkzOgo+Cj4gaHR0cHM6Ly9mZWRvcmFwZW9wbGUu
-b3JnL35qd3JkZWdvZWRlL252NDYtZ25vbWUtc2hlbGwtYmFkLmpwZwo+Cj4gVGhlIERSSTIgc2Ny
-ZWVuc2hvdCBpcyBtYWRlIHdpdGggTWFyaW8ncyAyIHBhdGNoZXMgb24gdG9wIG9mCj4gY3VycmVu
-dCBtYXN0ZXI6Cj4KPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZl
-YXUvMjAxNS1KdWx5LzAyMTc0MC5odG1sCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9h
-cmNoaXZlcy9ub3V2ZWF1LzIwMTUtSnVseS8wMjE3NDEuaHRtbAo+Cj4gQW5kIHRoZW4gYWRkaW5n
-IE9wdGlvbiAiRFJJIiAiMiIgdG8geG9yZy5jb25mLgoKSGlzIHBhdGNoZXMgc2hvdWxkIGhhdmUg
-ZGVmYXVsdGVkIGl0IHRvIERSSSAyIEkgdGhpbmssIHNvIHRoaXMgaXMKdW5uZWNlc3NhcnkuIElu
-IGZhY3QgeW91IHNob3VsZCBoYXZlIGhhZCB0byBzYXkgIkRSSSIgIjMiIHRvIGdldCBEUkkzCndp
-dGggaGlzIHBhdGNoZXMuCiAtLQo+Cj4gSSd2ZSBhbHNvIHRyaWVkIGRpc2FibGluZyBFWEEgdXNp
-bmcgT3B0aW9uICJBY2NlbE1ldGhvZCIgIm5vbmUiLAo+IGJ1dCB0aGF0IHNlZW1zIHRvIGFsc28g
-YXV0b21hdGljYWxseSBkaXNhYmxlIGFsbCBEUkksIGxlYWRpbmcgdG8KPiBzb2Z0d2FyZSByZW5k
-ZXJpbmcuCj4KPiBJIGRpc2N1c3NlZCB0aGlzIHdpdGggQmVuIHRoaXMgbW9ybmluZyBhbmQgaGUg
-c3VnZ2VzdGVkIHRoYXQgdGhpcwo+IGlzIGxpa2VseSBhIE1lc2EgaXNzdWUgc2luY2Ugd2l0aCBE
-UkkzIG1lc2EgcmF0aGVyIHRoZW4gdGhlIGRkeAo+IGFsbG9jcyB0aGUgc3VyZmFjZXMuIEkndmUg
-dHJpZWQgZGlzYWJsaW5nIHN3aXp6bGluZyBpbiB0aGUKPiBtZXNhIGNvZGUgYnkgZm9yY2luZyBu
-djMwX21pcHRyZWVfY3JlYXRlKCkgdG8gYWx3YXlzIHRha2UKPiB0aGUgY29kZSBwYXRoIGZvciBs
-aW5lYXIgdGV4dHVyZXMsIGJ1dCB0aGF0IGxlYWRzIHRvIHRoZSBleGFjdAo+IHNhbWUgcmVzdWx0
-IGFzIGJlZm9yZSB0aGF0IGNoYW5nZS4KCkFoIHllcy4gVmVyeSBkaWZmZXJlbnQgcHJvYmxlbSBp
-bmRlZWQuIEkgYWN0dWFsbHkgc3VzcGVjdCBpdCBoYXMgdG8gZG8Kd2l0aCBzd2l6emxpbmcuIExv
-b2sgYXQgdGhlIHdoaXRlIHBhdHRlcm4gb2YgdGhlIG1vb24gLS0gaXQncyBhbGwgaW4gYQpsaW5l
-LiBUaGF0IG1lYW5zIHRoYXQgaXQgZXhwZWN0ZWQgc29tZSBsb2NhbGl0eSBhbmQgaW5zdGVhZCBp
-dCBnb3QKZHJhd24gYWxsIG9uIGEgbGluZS4gSWYgaXQgd2VyZSBtZXJlbHkgYSBzdHJpZGUgcHJv
-YmxlbSwgSSdkIGV4cGVjdCB0bwpzZWUgc3RyaXBzIG9mIHRoZSBtb29uIGJlbG93IGFuZCBvZmZz
-ZXQgZnJvbSBvbmUgYW5vdGhlci4KClNvLi4uIHRha2UgYSBsb29rIGF0IG52MzBfbWlwdHJlZV9m
-cm9tX2hhbmRsZSAtLSBJIHdvbmRlciBpZiBpdCBjYW4Kbm93IHJlY2VpdmUgc3dpenpsZWQgdGV4
-dHVyZXMgd2hlcmUgaXQgY291bGRuJ3QgYmVmb3JlLgoKICAtaWxpYQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1111358349==
+Content-Type: multipart/alternative; boundary="1438621561.3347E41.19786"; charset="UTF-8"
+
+
+--1438621561.3347E41.19786
+Date: Mon, 3 Aug 2015 17:06:01 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #16 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117490
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117490&action=edit
+lovelock.png OK - no comps
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1438621561.3347E41.19786
+Date: Mon, 3 Aug 2015 17:06:01 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117490" name="attach_117490" title="lovelock.png OK - no comps">attachment 117490</a> <a href="attachment.cgi?id=117490&amp;action=edit" title="lovelock.png OK - no comps">[details]</a></span>
+lovelock.png OK - no comps</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1438621561.3347E41.19786--
+
+--===============1111358349==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1111358349==--
