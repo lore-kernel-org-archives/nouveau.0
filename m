@@ -1,13 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91025] nouveau fails to run with NV5 [Riva TNT2 /
-	TNT2 Pro]
-Date: Mon, 03 Aug 2015 02:13:10 +0000
-Message-ID: <bug-91025-8800-Ll2XaH0pK6@http.bugs.freedesktop.org/>
-References: <bug-91025-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: "enable dri3 support without glamor" causes
+ gnome-shell regression on nv4x
+Date: Mon, 3 Aug 2015 15:02:18 +0200
+Message-ID: <55BF665A.4020600@redhat.com>
+References: <55BA23AF.1040308@redhat.com>
+ <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0040151661=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91025-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +19,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0040151661==
-Content-Type: multipart/alternative; boundary="1438567990.Ef2AFb2.19522"; charset="UTF-8"
-
-
---1438567990.Ef2AFb2.19522
-Date: Mon, 3 Aug 2015 02:13:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91025
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-These patches are all now upstream (in 4.2-rc5), you should be able to drop the
-nouveau.config=NvBios=bla thing once you update your kernel.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1438567990.Ef2AFb2.19522
-Date: Mon, 3 Aug 2015 02:13:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - nouveau fails to run with NV5 [Riva TNT2 / TNT2 Pro]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91025">bug 91025</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>These patches are all now upstream (in 4.2-rc5), you should be able to drop the
-nouveau.config=NvBios=bla thing once you update your kernel.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1438567990.Ef2AFb2.19522--
-
---===============0040151661==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0040151661==--
+SGksCgpPbiAzMC0wNy0xNSAxNjowOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gRldJVyB0aGlzIGlz
+IGEgZmFpbCBvbiBudjUwKyBhcyB3ZWxsLiBTZWUgZm9yIGV4YW1wbGUKPiBodHRwczovL2J1Z3Mu
+ZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05MTQ0NQo+Cj4gTXkgc3VzcGljaW9uIGlz
+IHRoYXQgdGhpcyBpcyBkdWUgdG8gdGhlIGxhY2sgb2YgUFVTSF9LSUNLIGluIHRoZSAqRG9uZQo+
+IGV4YSBoYW5kbGVycyAtLSB3b3JrcyBmaW5lIHdpdGggRFJJMiwgYnV0IERSSTMgaGFzIG5vIHN5
+bmNocm9uaXphdGlvbgo+IGFuZCBzbyB0aGUgY29tbWFuZHMgbmV2ZXIgZ2V0IGZsdXNoZWQgb3V0
+LiBFYXNpbHkgdmVyaWZpZWQgYnkgc3RpY2tpbmcKPiBQVVNIX0tJQ0sncyBldmVyeXdoZXJlLgoK
+SSBkbyBub3QgYmVsaWV2ZSB0aGF0IHRoYXQgaXMgdGhlIHByb2JsZW0sIGluIG15IGNhc2UgaXQg
+Y2xlYXJseQpzZWVtcyB0byBiZSBhIHBpdGNoIC8gc3dpenpsZSBwcm9ibGVtIHJhdGhlciB0aGVu
+IGEgc3luY2hyb25pemFyaW9uCnByb2JsZW0sIGhlcmUgaXMgd2hhdCBteSBkZXNrdG9wIHdpdGgg
+Z25vbWUgc2hlbGwgbG9va3MgbGlrZSB3aGVuCnVzaW5nIERSSTI6CgpodHRwczovL2ZlZG9yYXBl
+b3BsZS5vcmcvfmp3cmRlZ29lZGUvbnY0Ni1nbm9tZS1zaGVsbC1nb29kLmpwZwoKQW5kIHRoaXMg
+aXMgd2hhdCBpdCBsb29rcyBsaWtlIHdoZW4gdXNpbmcgRFJJMzoKCmh0dHBzOi8vZmVkb3JhcGVv
+cGxlLm9yZy9+andyZGVnb2VkZS9udjQ2LWdub21lLXNoZWxsLWJhZC5qcGcKClRoZSBEUkkyIHNj
+cmVlbnNob3QgaXMgbWFkZSB3aXRoIE1hcmlvJ3MgMiBwYXRjaGVzIG9uIHRvcCBvZgpjdXJyZW50
+IG1hc3RlcjoKCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvbm91dmVhdS8y
+MDE1LUp1bHkvMDIxNzQwLmh0bWwKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNoaXZl
+cy9ub3V2ZWF1LzIwMTUtSnVseS8wMjE3NDEuaHRtbAoKQW5kIHRoZW4gYWRkaW5nIE9wdGlvbiAi
+RFJJIiAiMiIgdG8geG9yZy5jb25mLgoKSSd2ZSBhbHNvIHRyaWVkIGRpc2FibGluZyBFWEEgdXNp
+bmcgT3B0aW9uICJBY2NlbE1ldGhvZCIgIm5vbmUiLApidXQgdGhhdCBzZWVtcyB0byBhbHNvIGF1
+dG9tYXRpY2FsbHkgZGlzYWJsZSBhbGwgRFJJLCBsZWFkaW5nIHRvCnNvZnR3YXJlIHJlbmRlcmlu
+Zy4KCkkgZGlzY3Vzc2VkIHRoaXMgd2l0aCBCZW4gdGhpcyBtb3JuaW5nIGFuZCBoZSBzdWdnZXN0
+ZWQgdGhhdCB0aGlzCmlzIGxpa2VseSBhIE1lc2EgaXNzdWUgc2luY2Ugd2l0aCBEUkkzIG1lc2Eg
+cmF0aGVyIHRoZW4gdGhlIGRkeAphbGxvY3MgdGhlIHN1cmZhY2VzLiBJJ3ZlIHRyaWVkIGRpc2Fi
+bGluZyBzd2l6emxpbmcgaW4gdGhlCm1lc2EgY29kZSBieSBmb3JjaW5nIG52MzBfbWlwdHJlZV9j
+cmVhdGUoKSB0byBhbHdheXMgdGFrZQp0aGUgY29kZSBwYXRoIGZvciBsaW5lYXIgdGV4dHVyZXMs
+IGJ1dCB0aGF0IGxlYWRzIHRvIHRoZSBleGFjdApzYW1lIHJlc3VsdCBhcyBiZWZvcmUgdGhhdCBj
+aGFuZ2UuCgpSZWdhcmRzLAoKSGFucwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
