@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 17:38:13 +0000
-Message-ID: <bug-91557-8800-RYU5djMZs4@http.bugs.freedesktop.org/>
+Date: Tue, 04 Aug 2015 17:39:53 +0000
+Message-ID: <bug-91557-8800-CI7EUg4qhu@http.bugs.freedesktop.org/>
 References: <bug-91557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0554875930=="
+Content-Type: multipart/mixed; boundary="===============1837644724=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0554875930==
-Content-Type: multipart/alternative; boundary="1438709892.ffa4031.16267"; charset="UTF-8"
+--===============1837644724==
+Content-Type: multipart/alternative; boundary="1438709993.133fB61.16924"; charset="UTF-8"
 
 
---1438709892.ffa4031.16267
-Date: Tue, 4 Aug 2015 17:38:12 +0000
+--1438709993.133fB61.16924
+Date: Tue, 4 Aug 2015 17:39:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91557
 
---- Comment #3 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117521
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117521&action=edit
-Xorg log from freeze with default runpm settings
+--- Comment #4 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
+Created attachment 117522
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117522&action=edit
+journalctl output (kernel messages only) from freeze with default runpm
+settings
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438709892.ffa4031.16267
-Date: Tue, 4 Aug 2015 17:38:12 +0000
+--1438709993.133fB61.16924
+Date: Tue, 4 Aug 2015 17:39:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
               from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117521" name="attach_117521" title="Xorg log from freeze with default runpm settings">attachment 117521</a> <a href="attachment.cgi?id=117521&amp;action=edit" title="Xorg log from freeze with default runpm settings">[details]</a></span>
-Xorg log from freeze with default runpm settings</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117522" name="attach_117522" title="journalctl output (kernel messages only) from freeze with default runpm settings">attachment 117522</a> <a href="attachment.cgi?id=117522&amp;action=edit" title="journalctl output (kernel messages only) from freeze with default runpm settings">[details]</a></span>
+journalctl output (kernel messages only) from freeze with default runpm
+settings</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +77,9 @@ Xorg log from freeze with default runpm settings</pre>
     </body>
 </html>
 
---1438709892.ffa4031.16267--
+--1438709993.133fB61.16924--
 
---===============0554875930==
+--===============1837644724==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0554875930==--
+--===============1837644724==--
