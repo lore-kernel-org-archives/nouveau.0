@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 17:53:37 +0000
-Message-ID: <bug-91557-8800-s5Xm0JrlHj@http.bugs.freedesktop.org/>
+Date: Tue, 04 Aug 2015 17:54:24 +0000
+Message-ID: <bug-91557-8800-grcmtzRiQJ@http.bugs.freedesktop.org/>
 References: <bug-91557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1332891668=="
+Content-Type: multipart/mixed; boundary="===============1112234355=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1332891668==
-Content-Type: multipart/alternative; boundary="1438710817.C1BA1.22214"; charset="UTF-8"
+--===============1112234355==
+Content-Type: multipart/alternative; boundary="1438710864.4EBAFDb1.22765"; charset="UTF-8"
 
 
---1438710817.C1BA1.22214
-Date: Tue, 4 Aug 2015 17:53:37 +0000
+--1438710864.4EBAFDb1.22765
+Date: Tue, 4 Aug 2015 17:54:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91557
 
---- Comment #11 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117528
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117528&action=edit
-mmiotrace of nouveau loading with grctx timeout
+--- Comment #12 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
+Created attachment 117529
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117529&action=edit
+dmesg log from nouveau loading with grctx timeout
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438710817.C1BA1.22214
-Date: Tue, 4 Aug 2015 17:53:37 +0000
+--1438710864.4EBAFDb1.22765
+Date: Tue, 4 Aug 2015 17:54:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
               from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117528" name="attach_117528" title="mmiotrace of nouveau loading with grctx timeout">attachment 117528</a> <a href="attachment.cgi?id=117528&amp;action=edit" title="mmiotrace of nouveau loading with grctx timeout">[details]</a></span>
-mmiotrace of nouveau loading with grctx timeout</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117529" name="attach_117529" title="dmesg log from nouveau loading with grctx timeout">attachment 117529</a> <a href="attachment.cgi?id=117529&amp;action=edit" title="dmesg log from nouveau loading with grctx timeout">[details]</a></span>
+dmesg log from nouveau loading with grctx timeout</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ mmiotrace of nouveau loading with grctx timeout</pre>
     </body>
 </html>
 
---1438710817.C1BA1.22214--
+--1438710864.4EBAFDb1.22765--
 
---===============1332891668==
+--===============1112234355==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1332891668==--
+--===============1112234355==--
