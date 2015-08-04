@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 17:36:45 +0000
-Message-ID: <bug-91557-8800-GIF3rX4iUc@http.bugs.freedesktop.org/>
+Date: Tue, 04 Aug 2015 17:37:33 +0000
+Message-ID: <bug-91557-8800-jEHzxd91MY@http.bugs.freedesktop.org/>
 References: <bug-91557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1325217799=="
+Content-Type: multipart/mixed; boundary="===============0806537345=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1325217799==
-Content-Type: multipart/alternative; boundary="1438709805.A72BeBd1.15651"; charset="UTF-8"
+--===============0806537345==
+Content-Type: multipart/alternative; boundary="1438709853.B30b11.16020"; charset="UTF-8"
 
 
---1438709805.A72BeBd1.15651
-Date: Tue, 4 Aug 2015 17:36:45 +0000
+--1438709853.B30b11.16020
+Date: Tue, 4 Aug 2015 17:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91557
 
---- Comment #2 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117520
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117520&action=edit
-netconsole log from freeze *without* runpm=0
+wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117520|netconsole log from freeze  |netconsole log from freeze
+        description|*without* runpm=0           |with default runpm setting
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438709805.A72BeBd1.15651
-Date: Tue, 4 Aug 2015 17:36:45 +0000
+--1438709853.B30b11.16020
+Date: Tue, 4 Aug 2015 17:37:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,22 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
-              from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117520" name="attach_117520" title="netconsole log from freeze *without* runpm=0">attachment 117520</a> <a href="attachment.cgi?id=117520&amp;action=edit" title="netconsole log from freeze *without* runpm=0">[details]</a></span>
-netconsole log from freeze *without* runpm=0</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117520 description</td>
+           <td>netconsole log from freeze *without* runpm=0
+           </td>
+           <td>netconsole log from freeze with default runpm setting
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +83,9 @@ netconsole log from freeze *without* runpm=0</pre>
     </body>
 </html>
 
---1438709805.A72BeBd1.15651--
+--1438709853.B30b11.16020--
 
---===============1325217799==
+--===============0806537345==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1325217799==--
+--===============0806537345==--
