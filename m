@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 19:47:01 +0000
-Message-ID: <bug-91557-8800-O8PhOatSaF@http.bugs.freedesktop.org/>
-References: <bug-91557-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/4] pm: allow zeroed signals to enable sources
+Date: Tue,  4 Aug 2015 23:58:12 +0200
+Message-ID: <1438725495-12790-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1526438019=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,78 +18,26 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1526438019==
-Content-Type: multipart/alternative; boundary="1438717621.1E0e1.29623"; charset="UTF-8"
-
-
---1438717621.1E0e1.29623
-Date: Tue, 4 Aug 2015 19:47:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91557
-
---- Comment #14 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117531
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117531&action=edit
-dmesg log from nvidia-smi with proprietary driver
-
-the corresponding mmiotrace (over 3MiB compressed) is here:
-https://www.dropbox.com/s/14mchinykvfqrg9/nvidia-trace.txt.xz?dl=1
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1438717621.1E0e1.29623
-Date: Tue, 4 Aug 2015 19:47:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
-              from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117531" name="attach_117531" title="dmesg log from nvidia-smi with proprietary driver">attachment 117531</a> <a href="attachment.cgi?id=117531&amp;action=edit" title="dmesg log from nvidia-smi with proprietary driver">[details]</a></span>
-dmesg log from nvidia-smi with proprietary driver
-
-the corresponding mmiotrace (over 3MiB compressed) is here:
-<a href="https://www.dropbox.com/s/14mchinykvfqrg9/nvidia-trace.txt.xz?dl=1">https://www.dropbox.com/s/14mchinykvfqrg9/nvidia-trace.txt.xz?dl=1</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1438717621.1E0e1.29623--
-
---===============1526438019==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1526438019==--
+SGFyZHdhcmUgc2lnbmFscyBpbmRleCAweDAwIGFyZSBkZWZpbmVkIGZvciBzb21lIGRvbWFpbnMg
+YW5kIHRoZXkgaGF2ZQp0byBiZSBhbGxvd2VkIHRvIGVuYWJsZSBzb3VyY2VzIGxpa2UgdGhlIG90
+aGVycy4KClNpZ25lZC1vZmYtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdt
+YWlsLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9iYXNlLmMgfCA0ICsrLS0K
+IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZr
+bS9lbmdpbmUvcG0vYmFzZS5jCmluZGV4IDk0OTkxZDYuLjQ4YzFjZTYgMTAwNjQ0Ci0tLSBhL2Ry
+bS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9wbS9iYXNlLmMKQEAgLTEzNCw3ICsxMzQsNyBAQCBudmttX3BlcmZzcmNfZW5hYmxlKHN0
+cnVjdCBudmttX3BtICpwcG0sIHN0cnVjdCBudmttX3BlcmZjdHIgKmN0cikKIAl1MzIgbWFzaywg
+dmFsdWU7CiAJaW50IGksIGo7CiAKLQlmb3IgKGkgPSAwOyBpIDwgNCAmJiBjdHItPnNpZ25hbFtp
+XTsgaSsrKSB7CisJZm9yIChpID0gMDsgaSA8IDQ7IGkrKykgewogCQlmb3IgKGogPSAwOyBqIDwg
+OCAmJiBjdHItPnNvdXJjZVtpXVtqXTsgaisrKSB7CiAJCQlzaWcgPSBudmttX3BlcmZzaWdfZmlu
+ZChwcG0sIGN0ci0+ZG9tYWluLAogCQkJCQkJY3RyLT5zaWduYWxbaV0sICZkb20pOwpAQCAtMTcw
+LDcgKzE3MCw3IEBAIG52a21fcGVyZnNyY19kaXNhYmxlKHN0cnVjdCBudmttX3BtICpwcG0sIHN0
+cnVjdCBudmttX3BlcmZjdHIgKmN0cikKIAl1MzIgbWFzazsKIAlpbnQgaSwgajsKIAotCWZvciAo
+aSA9IDA7IGkgPCA0ICYmIGN0ci0+c2lnbmFsW2ldOyBpKyspIHsKKwlmb3IgKGkgPSAwOyBpIDwg
+NDsgaSsrKSB7CiAJCWZvciAoaiA9IDA7IGogPCA4ICYmIGN0ci0+c291cmNlW2ldW2pdOyBqKysp
+IHsKIAkJCXNpZyA9IG52a21fcGVyZnNpZ19maW5kKHBwbSwgY3RyLT5kb21haW4sCiAJCQkJCQlj
+dHItPnNpZ25hbFtpXSwgJmRvbSk7Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL25vdXZlYXUK
