@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 17:39:53 +0000
-Message-ID: <bug-91557-8800-CI7EUg4qhu@http.bugs.freedesktop.org/>
+Date: Tue, 04 Aug 2015 17:41:02 +0000
+Message-ID: <bug-91557-8800-lN6VC4Zf8i@http.bugs.freedesktop.org/>
 References: <bug-91557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1837644724=="
+Content-Type: multipart/mixed; boundary="===============1043721676=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1837644724==
-Content-Type: multipart/alternative; boundary="1438709993.133fB61.16924"; charset="UTF-8"
+--===============1043721676==
+Content-Type: multipart/alternative; boundary="1438710061.cabF31.17470"; charset="UTF-8"
 
 
---1438709993.133fB61.16924
-Date: Tue, 4 Aug 2015 17:39:53 +0000
+--1438710061.cabF31.17470
+Date: Tue, 4 Aug 2015 17:41:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91557
 
---- Comment #4 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117522
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117522&action=edit
-journalctl output (kernel messages only) from freeze with default runpm
-settings
+--- Comment #5 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
+(In reply to wolf480 from comment #0)
+> On #nouveau IRC channel I've been told to try the hack-gk106m branch of this
+> repository: http://... , with runpm=0
+I mean http://cgit.freedesktop.org/~darktama/nouveau/log/?h=hack-gk106m
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438709993.133fB61.16924
-Date: Tue, 4 Aug 2015 17:39:53 +0000
+--1438710061.cabF31.17470
+Date: Tue, 4 Aug 2015 17:41:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
               from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117522" name="attach_117522" title="journalctl output (kernel messages only) from freeze with default runpm settings">attachment 117522</a> <a href="attachment.cgi?id=117522&amp;action=edit" title="journalctl output (kernel messages only) from freeze with default runpm settings">[details]</a></span>
-journalctl output (kernel messages only) from freeze with default runpm
-settings</pre>
+        <pre>(In reply to wolf480 from <a href="show_bug.cgi?id=91557#c0">comment #0</a>)
+<span class="quote">&gt; On #nouveau IRC channel I've been told to try the hack-gk106m branch of this
+&gt; repository: http://... , with runpm=0</span >
+I mean <a href="http://cgit.freedesktop.org/~darktama/nouveau/log/?h=hack-gk106m">http://cgit.freedesktop.org/~darktama/nouveau/log/?h=hack-gk106m</a></pre>
         </div>
       </p>
       <hr>
@@ -77,9 +78,9 @@ settings</pre>
     </body>
 </html>
 
---1438709993.133fB61.16924--
+--1438710061.cabF31.17470--
 
---===============1837644724==
+--===============1043721676==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1837644724==--
+--===============1043721676==--
