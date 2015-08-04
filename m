@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91557] [NVE4] freezes: HUB_INIT timed out
-Date: Tue, 04 Aug 2015 17:42:55 +0000
-Message-ID: <bug-91557-8800-xkpuhYmoHk@http.bugs.freedesktop.org/>
+Date: Tue, 04 Aug 2015 17:45:27 +0000
+Message-ID: <bug-91557-8800-p2zyZ9GcXR@http.bugs.freedesktop.org/>
 References: <bug-91557-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1761864083=="
+Content-Type: multipart/mixed; boundary="===============0926710672=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91557-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1761864083==
-Content-Type: multipart/alternative; boundary="1438710175.e6374181.17970"; charset="UTF-8"
+--===============0926710672==
+Content-Type: multipart/alternative; boundary="1438710327.7d2b1.19400"; charset="UTF-8"
 
 
---1438710175.e6374181.17970
-Date: Tue, 4 Aug 2015 17:42:55 +0000
+--1438710327.7d2b1.19400
+Date: Tue, 4 Aug 2015 17:45:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91557
 
---- Comment #6 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
-Created attachment 117523
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117523&action=edit
-mmiotrace of successful nouveau initialization
+--- Comment #7 from wolf480-khu2bkKidpXVItvQsEIGlw@public.gmane.org ---
+Created attachment 117524
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117524&action=edit
+dmesg log from successful nouveau initialization
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438710175.e6374181.17970
-Date: Tue, 4 Aug 2015 17:42:55 +0000
+--1438710327.7d2b1.19400
+Date: Tue, 4 Aug 2015 17:45:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91557#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] freezes: HUB_INIT timed out"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91557">bug 91557</a>
               from <span class="vcard"><a class="email" href="mailto:wolf480&#64;interia.pl" title="wolf480&#64;interia.pl">wolf480&#64;interia.pl</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117523" name="attach_117523" title="mmiotrace of successful nouveau initialization">attachment 117523</a> <a href="attachment.cgi?id=117523&amp;action=edit" title="mmiotrace of successful nouveau initialization">[details]</a></span>
-mmiotrace of successful nouveau initialization</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117524" name="attach_117524" title="dmesg log from successful nouveau initialization">attachment 117524</a> <a href="attachment.cgi?id=117524&amp;action=edit" title="dmesg log from successful nouveau initialization">[details]</a></span>
+dmesg log from successful nouveau initialization</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ mmiotrace of successful nouveau initialization</pre>
     </body>
 </html>
 
---1438710175.e6374181.17970--
+--1438710327.7d2b1.19400--
 
---===============1761864083==
+--===============0926710672==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1761864083==--
+--===============0926710672==--
