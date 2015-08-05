@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 59069] nouveau E[     DRM] fail ttm_validate
-Date: Wed, 05 Aug 2015 13:52:55 +0000
-Message-ID: <bug-59069-8800-S2YCdeKCkR@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 13:57:30 +0000
+Message-ID: <bug-59069-8800-K44uIBu2C7@http.bugs.freedesktop.org/>
 References: <bug-59069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2042184577=="
+Content-Type: multipart/mixed; boundary="===============1912472951=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-59069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2042184577==
-Content-Type: multipart/alternative; boundary="1438782775.F4c6E3.12881"; charset="UTF-8"
+--===============1912472951==
+Content-Type: multipart/alternative; boundary="1438783050.A3a7BA3.15172"; charset="UTF-8"
 
 
---1438782775.F4c6E3.12881
-Date: Wed, 5 Aug 2015 13:52:55 +0000
+--1438783050.A3a7BA3.15172
+Date: Wed, 5 Aug 2015 13:57:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=59069
 
---- Comment #30 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117543
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117543&action=edit
-dmesg kernel log
+--- Comment #31 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117544
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117544&action=edit
+Xorg log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438782775.F4c6E3.12881
-Date: Wed, 5 Aug 2015 13:52:55 +0000
+--1438783050.A3a7BA3.15172
+Date: Wed, 5 Aug 2015 13:57:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED - nouveau E[ DRM] fail ttm_validate"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=59069#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED - nouveau E[ DRM] fail ttm_validate"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=59069">bug 59069</a>
               from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117543" name="attach_117543" title="dmesg kernel log">attachment 117543</a> <a href="attachment.cgi?id=117543&amp;action=edit" title="dmesg kernel log">[details]</a></span>
-dmesg kernel log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117544" name="attach_117544" title="Xorg log">attachment 117544</a> <a href="attachment.cgi?id=117544&amp;action=edit" title="Xorg log">[details]</a></span>
+Xorg log</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ dmesg kernel log</pre>
     </body>
 </html>
 
---1438782775.F4c6E3.12881--
+--1438783050.A3a7BA3.15172--
 
---===============2042184577==
+--===============1912472951==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2042184577==--
+--===============1912472951==--
