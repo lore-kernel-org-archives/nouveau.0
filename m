@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91551] DXTn compressed normal maps produce severe
  artifacts on all NV5x and NVDx chipsets
-Date: Wed, 05 Aug 2015 05:02:28 +0000
-Message-ID: <bug-91551-8800-sC3DEvOyxN@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 05:54:09 +0000
+Message-ID: <bug-91551-8800-etqkhXBiRD@http.bugs.freedesktop.org/>
 References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1595612744=="
+Content-Type: multipart/mixed; boundary="===============0044252896=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1595612744==
-Content-Type: multipart/alternative; boundary="1438750948.3dFD3E1.8866"; charset="UTF-8"
+--===============0044252896==
+Content-Type: multipart/alternative; boundary="1438754049.0AD001.24160"; charset="UTF-8"
 
 
---1438750948.3dFD3E1.8866
-Date: Wed, 5 Aug 2015 05:02:28 +0000
+--1438754049.0AD001.24160
+Date: Wed, 5 Aug 2015 05:54:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,7 +36,7 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #117508|text/plain                  |image/jpeg
+ Attachment #117509|text/plain                  |image/jpeg
           mime type|                            |
 
 -- 
@@ -44,8 +44,8 @@ You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438750948.3dFD3E1.8866
-Date: Wed, 5 Aug 2015 05:02:28 +0000
+--1438754049.0AD001.24160
+Date: Wed, 5 Aug 2015 05:54:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,7 +68,7 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #117508 mime type</td>
+           <td style="text-align:right;">Attachment #117509 mime type</td>
            <td>text/plain
            </td>
            <td>image/jpeg
@@ -86,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1438750948.3dFD3E1.8866--
+--1438754049.0AD001.24160--
 
---===============1595612744==
+--===============0044252896==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1595612744==--
+--===============0044252896==--
