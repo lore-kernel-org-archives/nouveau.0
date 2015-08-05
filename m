@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
  OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Wed, 05 Aug 2015 21:36:22 +0000
-Message-ID: <bug-91570-8800-A4B5VJqwZ3@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 21:37:20 +0000
+Message-ID: <bug-91570-8800-TxmR3S8ypd@http.bugs.freedesktop.org/>
 References: <bug-91570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2127573989=="
+Content-Type: multipart/mixed; boundary="===============0488728859=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2127573989==
-Content-Type: multipart/alternative; boundary="1438810582.c2cC0.4342"; charset="UTF-8"
+--===============0488728859==
+Content-Type: multipart/alternative; boundary="1438810639.B7E00.4687"; charset="UTF-8"
 
 
---1438810582.c2cC0.4342
-Date: Wed, 5 Aug 2015 21:36:21 +0000
+--1438810639.B7E00.4687
+Date: Wed, 5 Aug 2015 21:37:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91570
 
---- Comment #4 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
-Created attachment 117551
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117551&action=edit
-dmesg kernel log
+--- Comment #5 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #3)
+> http://nouveau.freedesktop.org/wiki/Bugs/
+
+Thank you, I attached the kernel log to the bug report
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438810582.c2cC0.4342
-Date: Wed, 5 Aug 2015 21:36:22 +0000
+--1438810639.B7E00.4687
+Date: Wed, 5 Aug 2015 21:37:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,15 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
               from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117551" name="attach_117551" title="dmesg kernel log">attachment 117551</a> <a href="attachment.cgi?id=117551&amp;action=edit" title="dmesg kernel log">[details]</a></span>
-dmesg kernel log</pre>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91570#c3">comment #3</a>)
+<span class="quote">&gt; <a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></span >
+
+Thank you, I attached the kernel log to the bug report</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +81,9 @@ dmesg kernel log</pre>
     </body>
 </html>
 
---1438810582.c2cC0.4342--
+--1438810639.B7E00.4687--
 
---===============2127573989==
+--===============0488728859==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2127573989==--
+--===============0488728859==--
