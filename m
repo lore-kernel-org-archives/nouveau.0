@@ -1,14 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 4/4] pm/gf100: only use PBFB_BROADCAST.PM_UNK100
-	for PBFB signals
-Date: Tue,  4 Aug 2015 23:58:15 +0200
-Message-ID: <1438725495-12790-4-git-send-email-samuel.pitoiset@gmail.com>
-References: <1438725495-12790-1-git-send-email-samuel.pitoiset@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91551] DXTn compressed normal maps produce severe
+ artifacts on all NV5x and NVDx chipsets
+Date: Wed, 05 Aug 2015 04:46:36 +0000
+Message-ID: <bug-91551-8800-d3tzWFTJur@http.bugs.freedesktop.org/>
+References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1317191005=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1438725495-12790-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,99 +20,82 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGlnaCBsZXZlbCBoYXJkd2FyZSBldmVudHMgcmVsYXRlZCB0byBQQkZCIHdpbGwgbW9uaXRvciBh
-bGwgcGFydGl0aW9ucy4KV2hpbGUgd2UgYXJlIGF0IGl0LCBmaXggYml0ZmllbGQgZm9yIHRoaXMg
-bXV4LgoKU2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21h
-aWwuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTAwLmMgfCAyMSArKysr
-KysrKysrLS0tLS0tLS0tLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTAwLmggfCAg
-MiArLQogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMDguYyB8IDI1ICsrKystLS0tLS0t
-LS0tLS0tLS0tLS0tLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTE3LmMgfCAyMSAr
-Ky0tLS0tLS0tLS0tLS0tLS0tLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2drMTA0LmMg
-fCAgNCArKy0tCiA1IGZpbGVzIGNoYW5nZWQsIDE5IGluc2VydGlvbnMoKyksIDU0IGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTAwLmMgYi9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9nZjEwMC5jCmluZGV4IGFiNDYzODkuLjg4N2QyZGYg
-MTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTAwLmMKKysrIGIvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMDAuYwpAQCAtMjQsNiArMjQsMTYgQEAKICNpbmNs
-dWRlICJnZjEwMC5oIgogCiBjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjc3JjCitnZjEwMF9wYmZiX3Nv
-dXJjZXNbXSA9IHsKKwl7IDB4MTBmMTAwLCAoY29uc3Qgc3RydWN0IG52a21fc3BlY211eFtdKSB7
-CisJCQl7IDB4MSwgMCwgInVuazAiIH0sCisJCQl7IDB4M2YsIDQsICJ1bms0IiB9LAorCQkJe30K
-KwkJfSwgInBiZmJfYnJvYWRjYXN0X3BtX3VuazEwMCIgfSwKKwl7fQorfTsKKworY29uc3Qgc3Ry
-dWN0IG52a21fc3BlY3NyYwogZ2YxMDBfcG1mYl9zb3VyY2VzW10gPSB7CiAJeyAweDE0MDAyOCwg
-KGNvbnN0IHN0cnVjdCBudmttX3NwZWNtdXhbXSkgewogCQkJeyAweDNmZmYsIDAsICJ1bmswIiB9
-LApAQCAtNDUsMTcgKzU1LDYgQEAgZ2YxMDBfbDFfc291cmNlc1tdID0gewogfTsKIAogc3RhdGlj
-IGNvbnN0IHN0cnVjdCBudmttX3NwZWNzcmMKLWdmMTAwX3BiZmJfc291cmNlc1tdID0gewotCXsg
-MHgxMGYxMDAsIChjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjbXV4W10pIHsKLQkJCXsgMHgxLCAwLCAi
-dW5rMCIgfSwKLQkJCXsgMHhmLCA0LCAidW5rNCIgfSwKLQkJCXsgMHgzLCA4LCAidW5rOCIgfSwK
-LQkJCXt9Ci0JCX0sICJwYmZiX2Jyb2FkY2FzdF9wbV91bmsxMDAiIH0sCi0Je30KLX07Ci0KLXN0
-YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjc3JjCiBnZjEwMF90ZXhfc291cmNlc1tdID0gewog
-CXsgMHg1MDQyYzAsIChjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjbXV4W10pIHsKIAkJCXsgMHhmLCAw
-LCAic2VsMCIsIHRydWUgfSwKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3Bt
-L2dmMTAwLmggYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9nZjEwMC5oCmluZGV4IGQ3M2Yw
-Y2EuLjNhM2E5MDEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTAw
-LmgKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMDAuaApAQCAtMjYsNyArMjYs
-NyBAQCBpbnQgZ2YxMDBfcG1fZmluaShzdHJ1Y3QgbnZrbV9vYmplY3QgKiwgYm9vbCk7CiAKIGV4
-dGVybiBjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjZG9tIGdmMTAwX3BtX2dwY1tdOwogCitleHRlcm4g
-Y29uc3Qgc3RydWN0IG52a21fc3BlY3NyYyBnZjEwMF9wYmZiX3NvdXJjZXNbXTsKIGV4dGVybiBj
-b25zdCBzdHJ1Y3QgbnZrbV9zcGVjc3JjIGdmMTAwX3BtZmJfc291cmNlc1tdOwotZXh0ZXJuIGNv
-bnN0IHN0cnVjdCBudmttX3NwZWNzcmMgZ2YxMTdfcGJmYl9zb3VyY2VzW107CiAKICNlbmRpZgpk
-aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMDguYyBiL2RybS9ub3V2
-ZWF1L252a20vZW5naW5lL3BtL2dmMTA4LmMKaW5kZXggYTc0YzY4NS4uYTRkODZkMSAxMDA2NDQK
-LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMDguYworKysgYi9kcm0vbm91dmVh
-dS9udmttL2VuZ2luZS9wbS9nZjEwOC5jCkBAIC0yMywyMyArMjMsNiBAQAogICovCiAjaW5jbHVk
-ZSAiZ2YxMDAuaCIKIAotc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3NwZWNzcmMKLWdmMTA4X3Bi
-ZmJfc291cmNlc1tdID0gewotCXsgMHgxMTAxMDAsIChjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjbXV4
-W10pIHsKLQkJCXsgMHgxLCAwLCAidW5rMCIgfSwKLQkJCXsgMHhmLCA0LCAidW5rNCIgfSwKLQkJ
-CXsgMHgzLCA4LCAidW5rOCIgfSwKLQkJCXt9Ci0JCX0sICJwYmZiMF9wbV91bmsxMDAiIH0sCi0J
-eyAweDExMTEwMCwgKGNvbnN0IHN0cnVjdCBudmttX3NwZWNtdXhbXSkgewotCQkJeyAweDEsIDAs
-ICJ1bmswIiB9LAotCQkJeyAweGYsIDQsICJ1bms0IiB9LAotCQkJeyAweDMsIDgsICJ1bms4IiB9
-LAotCQkJe30KLQkJfSwgInBiZmIxX3BtX3VuazEwMCIgfSwKLQl7fQotfTsKLQogc3RhdGljIGNv
-bnN0IHN0cnVjdCBudmttX3NwZWNkb20KIGdmMTA4X3BtX2h1YltdID0gewogCXt9CkBAIC00OCwx
-MCArMzEsMTAgQEAgZ2YxMDhfcG1faHViW10gPSB7CiBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21f
-c3BlY2RvbQogZ2YxMDhfcG1fcGFydFtdID0gewogCXsgMHhlMCwgKGNvbnN0IHN0cnVjdCBudmtt
-X3NwZWNzaWdbXSkgewotCQkJeyAweDE0LCAicGFydDAwX3BiZmJfMDAiLCBnZjEwOF9wYmZiX3Nv
-dXJjZXMgfSwKLQkJCXsgMHgxNSwgInBhcnQwMF9wYmZiXzAxIiwgZ2YxMDhfcGJmYl9zb3VyY2Vz
-IH0sCi0JCQl7IDB4MjAsICJwYXJ0MDBfcGJmYl8wMiIsIGdmMTA4X3BiZmJfc291cmNlcyB9LAot
-CQkJeyAweDIxLCAicGFydDAwX3BiZmJfMDMiLCBnZjEwOF9wYmZiX3NvdXJjZXMgfSwKKwkJCXsg
-MHgxNCwgInBhcnQwMF9wYmZiXzAwIiwgZ2YxMDBfcGJmYl9zb3VyY2VzIH0sCisJCQl7IDB4MTUs
-ICJwYXJ0MDBfcGJmYl8wMSIsIGdmMTAwX3BiZmJfc291cmNlcyB9LAorCQkJeyAweDIwLCAicGFy
-dDAwX3BiZmJfMDIiLCBnZjEwMF9wYmZiX3NvdXJjZXMgfSwKKwkJCXsgMHgyMSwgInBhcnQwMF9w
-YmZiXzAzIiwgZ2YxMDBfcGJmYl9zb3VyY2VzIH0sCiAJCQl7IDB4MDEsICJwYXJ0MDBfcG1mYl8w
-MCIsIGdmMTAwX3BtZmJfc291cmNlcyB9LAogCQkJeyAweDA0LCAicGFydDAwX3BtZmJfMDEiLCBn
-ZjEwMF9wbWZiX3NvdXJjZXMgfSwKIAkJCXsgMHgwNSwgInBhcnQwMF9wbWZiXzAyIiwgZ2YxMDBf
-cG1mYl9zb3VyY2VzfSwKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dm
-MTE3LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9nZjExNy5jCmluZGV4IDAxZDNhNDgu
-LmE3NmM5MjggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2dmMTE3LmMK
-KysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2YxMTcuYwpAQCAtMzksMjMgKzM5LDYg
-QEAgZ2YxMTdfcG1mYl9zb3VyY2VzW10gPSB7CiAJe30KIH07CiAKLWNvbnN0IHN0cnVjdCBudmtt
-X3NwZWNzcmMKLWdmMTE3X3BiZmJfc291cmNlc1tdID0gewotCXsgMHgxMTAxMDAsIChjb25zdCBz
-dHJ1Y3QgbnZrbV9zcGVjbXV4W10pIHsKLQkJCXsgMHgxLCAwLCAidW5rMCIgfSwKLQkJCXsgMHhm
-LCA0LCAidW5rNCIgfSwKLQkJCXsgMHgzLCA4LCAidW5rOCIgfSwKLQkJCXt9Ci0JCX0sICJwYmZi
-MF9wbV91bmsxMDAiIH0sCi0gICAgICAgIHsgMHgxMGYxMDAsIChjb25zdCBzdHJ1Y3QgbnZrbV9z
-cGVjbXV4W10pIHsKLQkJCXsgMHgxLCAwLCAidW5rMCIgfSwKLQkJCXsgMHhmLCA0LCAidW5rNCIg
-fSwKLQkJCXsgMHgzLCA4LCAidW5rOCIgfSwKLQkJCXt9Ci0JCX0sICJwYmZiX2Jyb2FkY2FzdF9w
-bV91bmsxMDAiIH0sCi0Je30KLX07Ci0KIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjZG9t
-CiBnZjExN19wbV9odWJbXSA9IHsKIAl7fQpAQCAtNjQsOCArNDcsOCBAQCBnZjExN19wbV9odWJb
-XSA9IHsKIHN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9zcGVjZG9tCiBnZjExN19wbV9wYXJ0W10g
-PSB7CiAJeyAweGUwLCAoY29uc3Qgc3RydWN0IG52a21fc3BlY3NpZ1tdKSB7Ci0JCQl7IDB4MDAs
-ICJwYXJ0MDBfcGJmYl8wMCIsIGdmMTE3X3BiZmJfc291cmNlcyB9LAotCQkJeyAweDAxLCAicGFy
-dDAwX3BiZmJfMDEiLCBnZjExN19wYmZiX3NvdXJjZXMgfSwKKwkJCXsgMHgwMCwgInBhcnQwMF9w
-YmZiXzAwIiwgZ2YxMDBfcGJmYl9zb3VyY2VzIH0sCisJCQl7IDB4MDEsICJwYXJ0MDBfcGJmYl8w
-MSIsIGdmMTAwX3BiZmJfc291cmNlcyB9LAogCQkJeyAweDEyLCAicGFydDAwX3BtZmJfMDAiLCBn
-ZjExN19wbWZiX3NvdXJjZXMgfSwKIAkJCXsgMHgxNSwgInBhcnQwMF9wbWZiXzAxIiwgZ2YxMTdf
-cG1mYl9zb3VyY2VzIH0sCiAJCQl7IDB4MTYsICJwYXJ0MDBfcG1mYl8wMiIsIGdmMTE3X3BtZmJf
-c291cmNlcyB9LApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2sxMDQu
-YyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3BtL2drMTA0LmMKaW5kZXggNTA2N2Y3Mi4uYTIz
-NmRiOSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvcG0vZ2sxMDQuYworKysg
-Yi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9wbS9nazEwNC5jCkBAIC0xNDUsOCArMTQ1LDggQEAg
-Z2sxMDRfcG1fZ3BjW10gPSB7CiBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fc3BlY2RvbQogZ2sx
-MDRfcG1fcGFydFtdID0gewogCXsgMHg2MCwgKGNvbnN0IHN0cnVjdCBudmttX3NwZWNzaWdbXSkg
-ewotCQkJeyAweDAwLCAicGFydDAwX3BiZmJfMDAiLCBnZjExN19wYmZiX3NvdXJjZXMgfSwKLQkJ
-CXsgMHgwMSwgInBhcnQwMF9wYmZiXzAxIiwgZ2YxMTdfcGJmYl9zb3VyY2VzIH0sCisJCQl7IDB4
-MDAsICJwYXJ0MDBfcGJmYl8wMCIsIGdmMTAwX3BiZmJfc291cmNlcyB9LAorCQkJeyAweDAxLCAi
-cGFydDAwX3BiZmJfMDEiLCBnZjEwMF9wYmZiX3NvdXJjZXMgfSwKIAkJCXsgMHgwYywgInBhcnQw
-MF9wbWZiXzAwIiwgZ2sxMDRfcG1mYl9zb3VyY2VzIH0sCiAJCQl7IDB4MGQsICJwYXJ0MDBfcG1m
-Yl8wMSIsIGdrMTA0X3BtZmJfc291cmNlcyB9LAogCQkJeyAweDBlLCAicGFydDAwX3BtZmJfMDIi
-LCBnazEwNF9wbWZiX3NvdXJjZXMgfSwKLS0gCjIuNC42CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vbm91dmVhdQo=
+
+--===============1317191005==
+Content-Type: multipart/alternative; boundary="1438749996.3d8801.4713"; charset="UTF-8"
+
+
+--1438749996.3d8801.4713
+Date: Wed, 5 Aug 2015 04:46:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91551
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please see if this isn't an instance of the issue in bug 90887. If possible,
+make an apitrace so that I can reproduce this without working out how to
+operate your software. If not, please explain how I can reproduce this myself.
+FTR, I highly doubt that DXT compression has anything to do with it, but...
+stranger things have happened.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1438749996.3d8801.4713
+Date: Wed, 5 Aug 2015 04:46:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Please see if this isn't an instance of the issue in <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="show_bug.cgi?id=90887">bug 90887</a>. If possible,
+make an apitrace so that I can reproduce this without working out how to
+operate your software. If not, please explain how I can reproduce this myself.
+FTR, I highly doubt that DXT compression has anything to do with it, but...
+stranger things have happened.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1438749996.3d8801.4713--
+
+--===============1317191005==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1317191005==--
