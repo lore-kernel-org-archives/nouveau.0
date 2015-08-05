@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
  OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Wed, 05 Aug 2015 21:57:11 +0000
-Message-ID: <bug-91570-8800-qviLhCz6z9@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 22:47:30 +0000
+Message-ID: <bug-91570-8800-bW2Xr9A3tB@http.bugs.freedesktop.org/>
 References: <bug-91570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0607329213=="
+Content-Type: multipart/mixed; boundary="===============0965530572=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0607329213==
-Content-Type: multipart/alternative; boundary="1438811830.888d1.10281"; charset="UTF-8"
+--===============0965530572==
+Content-Type: multipart/alternative; boundary="1438814850.4FC184F70.22559"; charset="UTF-8"
 
 
---1438811830.888d1.10281
-Date: Wed, 5 Aug 2015 21:57:10 +0000
+--1438814850.4FC184F70.22559
+Date: Wed, 5 Aug 2015 22:47:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91570
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you get debug symbols to make that backtrace a bit more interesting? Some
-distros package them separately.
+--- Comment #10 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
+I'll have to recompile the packages with debug symbols, but I can do it if it's
+necessary
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438811830.888d1.10281
-Date: Wed, 5 Aug 2015 21:57:10 +0000
+--1438814850.4FC184F70.22559
+Date: Wed, 5 Aug 2015 22:47:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
 </span></b>
-        <pre>Can you get debug symbols to make that backtrace a bit more interesting? Some
-distros package them separately.</pre>
+        <pre>I'll have to recompile the packages with debug symbols, but I can do it if it's
+necessary</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ distros package them separately.</pre>
     </body>
 </html>
 
---1438811830.888d1.10281--
+--1438814850.4FC184F70.22559--
 
---===============0607329213==
+--===============0965530572==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0607329213==--
+--===============0965530572==--
