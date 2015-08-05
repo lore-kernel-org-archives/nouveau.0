@@ -1,101 +1,129 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91551] DXTn compressed normal maps produce severe
- artifacts on all NV5x and NVDx chipsets
-Date: Wed, 05 Aug 2015 05:54:09 +0000
-Message-ID: <bug-91551-8800-etqkhXBiRD@http.bugs.freedesktop.org/>
-References: <bug-91551-8800@http.bugs.freedesktop.org/>
+From: =?UTF-8?q?Konsta=20H=C3=B6ltt=C3=A4?= <kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [RFC PATCH 0/5] More explicit pushbuf error handling
+Date: Wed, 5 Aug 2015 14:27:48 +0300
+Message-ID: <1438774073-13870-1-git-send-email-kholtta@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0044252896=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+Hi there,
 
---===============0044252896==
-Content-Type: multipart/alternative; boundary="1438754049.0AD001.24160"; charset="UTF-8"
+These patches work as a starting point for more explicit error mechanis=
+ms and
+better robustness. At the moment, when a job hangs or faults, it seems =
+that
+nouveau doesn't quite know how to handle the situation and often result=
+s in a
+hang. Some of these situations would require either completely resettin=
+g the
+gpu, or a more complex path for only recovering the faulted channel.
 
+To start, I worked on support for letting userspace know what exactly h=
+appened.
+Proper recovery would come later. The "error notifier" in the first pat=
+ch is a
+simple shared buffer between kernel and userspace. Its error codes matc=
+h
+nvgpu's. Alternatively, the status could be queried with an ioctl, but =
+that
+would be considerably more heavyweight. I'd like to know if the event m=
+echanism
+is meant for these kinds of events at all (engines notify errors upward=
+s to the
+drm layer). Another alternative would probably be to register the same =
+buffer
+to all necessary engines separately in method calls? Or register it to =
+just one
+(e.g., fifo) and get that engine somehow when errors happen in others? =
+Please
+comment on this; I wrote this before understanding the mthd mechanism.
 
---1438754049.0AD001.24160
-Date: Wed, 5 Aug 2015 05:54:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Additionally, priority and timeout management for separate channels in =
+flight
+is added in two patches. Neither is exactly what the name says, but the=
+ effect
+should be the same, and this is what nvgpu does currently. Those two pa=
+tches
+call the fifo channel object's methods directly from userspace, so a ha=
+ck is
+added in the nvif path to accept that. The objects are NEW'd from kerne=
+l space,
+so calling from userspace isn't allowed, as it appears. How should this=
+ be
+handled?
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91551
+Also, since nouveau often hangs on errors, the userspace hangs too (wai=
+ting on
+a fence). The final patch attempts to fix this in a couple of specific =
+error
+paths to forcibly update all fences to be finished. I'd like to hear ho=
+w that
+would be handled properly - consider the patch just a proof-of-concept =
+and
+sample of what would be necessary, supporting this question of mine aga=
+in.
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+I don't expect the patches to be accepted as-is - as a newbie, I'd appr=
+eciate
+any high-level comments on if I've understood anything, especially the =
+event
+and nvif/method mechanisms (I use the latter from userspace with a hack
+constructed from the perfmon branch seen here earlier into nvidia's int=
+ernal
+libdrm-equivalent). The fence-forcing thing is something that is necess=
+ary with
+the error notifiers (at least with our userspace that waits really long=
+ or
+infinitely on fences). I'm working specifically on Tegra and don't know=
+ much
+about the desktop's userspace details, so I may be biased in some areas=
+=2E
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #117509|text/plain                  |image/jpeg
-          mime type|                            |
+I'd be happy to write sample tests on e.g. libdrm for the new methods o=
+nce the
+kernel patches would get to a good shape, if that's required for accept=
+ing new
+features. I tested these to work as a proof-of-concept on Jetson TK1, a=
+nd the
+code is adapted from the latest nvgpu.
 
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
+The patches can also be found in http://github.com/sooda/nouveau and ar=
+e based
+on a version of gnurou/staging.
 
---1438754049.0AD001.24160
-Date: Wed, 5 Aug 2015 05:54:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+Thanks!
+Konsta (sooda in IRC)
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+Konsta H=C3=B6ltt=C3=A4 (5):
+  notify channel errors to userspace
+  HACK don't verify route =3D=3D owner in nvkm ioctl
+  gk104: channel priority/timeslice support
+  channel timeout using repeated sched timeouts
+  force fences updated in error conditions
 
-         <tr>
-           <td style="text-align:right;">Attachment #117509 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
+ drm/nouveau/include/nvif/class.h       |  20 +++++
+ drm/nouveau/include/nvif/event.h       |  12 +++
+ drm/nouveau/include/nvkm/engine/fifo.h |   5 +-
+ drm/nouveau/nouveau_chan.c             |  54 ++++++++++++
+ drm/nouveau/nouveau_chan.h             |   5 ++
+ drm/nouveau/nouveau_drm.c              |   1 +
+ drm/nouveau/nouveau_fence.c            |  13 +--
+ drm/nouveau/nouveau_gem.c              |  50 +++++++++++
+ drm/nouveau/nouveau_gem.h              |   2 +
+ drm/nouveau/nvkm/core/ioctl.c          |   5 +-
+ drm/nouveau/nvkm/engine/fifo/base.c    |  57 ++++++++++++-
+ drm/nouveau/nvkm/engine/fifo/gf100.c   |   2 +-
+ drm/nouveau/nvkm/engine/fifo/gk104.c   | 150 +++++++++++++++++++++++++=
+++++++--
+ drm/nouveau/nvkm/engine/fifo/nv04.c    |   2 +-
+ drm/nouveau/nvkm/engine/gr/gf100.c     |   4 +
+ drm/nouveau/uapi/drm/nouveau_drm.h     |  12 +++
+ 16 files changed, 374 insertions(+), 20 deletions(-)
 
---1438754049.0AD001.24160--
-
---===============0044252896==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0044252896==--
+--=20
+2.1.4
