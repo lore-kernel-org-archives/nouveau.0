@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91551] DXTn compressed normal maps produce severe
  artifacts on all NV5x and NVDx chipsets
-Date: Wed, 05 Aug 2015 04:46:36 +0000
-Message-ID: <bug-91551-8800-d3tzWFTJur@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 05:02:28 +0000
+Message-ID: <bug-91551-8800-sC3DEvOyxN@http.bugs.freedesktop.org/>
 References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1317191005=="
+Content-Type: multipart/mixed; boundary="===============1595612744=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1317191005==
-Content-Type: multipart/alternative; boundary="1438749996.3d8801.4713"; charset="UTF-8"
+--===============1595612744==
+Content-Type: multipart/alternative; boundary="1438750948.3dFD3E1.8866"; charset="UTF-8"
 
 
---1438749996.3d8801.4713
-Date: Wed, 5 Aug 2015 04:46:36 +0000
+--1438750948.3dFD3E1.8866
+Date: Wed, 5 Aug 2015 05:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please see if this isn't an instance of the issue in bug 90887. If possible,
-make an apitrace so that I can reproduce this without working out how to
-operate your software. If not, please explain how I can reproduce this myself.
-FTR, I highly doubt that DXT compression has anything to do with it, but...
-stranger things have happened.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117508|text/plain                  |image/jpeg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438749996.3d8801.4713
-Date: Wed, 5 Aug 2015 04:46:36 +0000
+--1438750948.3dFD3E1.8866
+Date: Wed, 5 Aug 2015 05:02:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please see if this isn't an instance of the issue in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="show_bug.cgi?id=90887">bug 90887</a>. If possible,
-make an apitrace so that I can reproduce this without working out how to
-operate your software. If not, please explain how I can reproduce this myself.
-FTR, I highly doubt that DXT compression has anything to do with it, but...
-stranger things have happened.</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117508 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/jpeg
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +86,9 @@ stranger things have happened.</pre>
     </body>
 </html>
 
---1438749996.3d8801.4713--
+--1438750948.3dFD3E1.8866--
 
---===============1317191005==
+--===============1595612744==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1317191005==--
+--===============1595612744==--
