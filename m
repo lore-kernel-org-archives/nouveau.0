@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
  OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Wed, 05 Aug 2015 21:21:06 +0000
-Message-ID: <bug-91570-8800-yavPXAJqDy@http.bugs.freedesktop.org/>
+Date: Wed, 05 Aug 2015 21:25:19 +0000
+Message-ID: <bug-91570-8800-83QglfbXBa@http.bugs.freedesktop.org/>
 References: <bug-91570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1790575593=="
+Content-Type: multipart/mixed; boundary="===============1538150567=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1790575593==
-Content-Type: multipart/alternative; boundary="1438809666.BBaA170.30947"; charset="UTF-8"
+--===============1538150567==
+Content-Type: multipart/alternative; boundary="1438809919.1DaBeAdd1.32476"; charset="UTF-8"
 
 
---1438809666.BBaA170.30947
-Date: Wed, 5 Aug 2015 21:21:06 +0000
+--1438809919.1DaBeAdd1.32476
+Date: Wed, 5 Aug 2015 21:25:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91570
 
---- Comment #2 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> Please supply information.
-
-Which kind of information?
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+http://nouveau.freedesktop.org/wiki/Bugs/
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438809666.BBaA170.30947
-Date: Wed, 5 Aug 2015 21:21:06 +0000
+--1438809919.1DaBeAdd1.32476
+Date: Wed, 5 Aug 2015 21:25:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,17 +55,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91570#c1">comment #1</a>)
-<span class="quote">&gt; Please supply information.</span >
-
-Which kind of information?</pre>
+        <pre><a href="http://nouveau.freedesktop.org/wiki/Bugs/">http://nouveau.freedesktop.org/wiki/Bugs/</a></pre>
         </div>
       </p>
       <hr>
@@ -81,9 +75,9 @@ Which kind of information?</pre>
     </body>
 </html>
 
---1438809666.BBaA170.30947--
+--1438809919.1DaBeAdd1.32476--
 
---===============1790575593==
+--===============1538150567==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1790575593==--
+--===============1538150567==--
