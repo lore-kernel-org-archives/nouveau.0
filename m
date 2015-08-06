@@ -1,15 +1,13 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Take shift in crtc positions for ZaphodHeads
- configs into account.
-Date: Thu, 06 Aug 2015 20:44:37 +0200
-Message-ID: <55C3AB15.50807@gmail.com>
-References: <1435451629-17959-1-git-send-email-mario.kleiner.de@gmail.com>
- <CAKb7UvgWqo7HH+-fuO+FTSqrusotFcMoCG6Juc2J5ObM9QRpYQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91411] TV hdmi output doesn't fit with desktop,
+ minimize button(on windows) are missing, etc[NV50]
+Date: Thu, 06 Aug 2015 19:39:33 +0000
+Message-ID: <bug-91411-8800-qJBSU6iqSp@http.bugs.freedesktop.org/>
+References: <bug-91411-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1541780058=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgWqo7HH+-fuO+FTSqrusotFcMoCG6Juc2J5ObM9QRpYQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,182 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDgvMDYvMjAxNSAwNzozNCBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gSSBkb24ndCB1bmRl
-cnN0YW5kIHRoaXMgcGF0Y2ggKHdoYXQgYXJlIGFsbCB0aGVzZSBtYXNrcz8gaG93IGFyZSB0aGV5
-Cj4gdXNlZD8pLCBhbmQgZG9uJ3Qgd2FudCB0byBpbnZlc3QgdGhlIHRpbWUgcmVxdWlyZWQgdG8g
-ZG8gc28uCj4KCkkgY2FuJ3QgYmxhbWUgeW91IGZvciB0aGF0IDopLiBUaGUgY29uZnVzZWQgY29t
-bWl0IG1lc3NhZ2UgcmVmbGVjdHMgbXkgCmNvbmZ1c2lvbiB3aGVuIGkgd2FzIHRyeWluZyB0byBm
-aWd1cmUgb3V0IGhvdyB0aGlzIChkaWRuJ3QpIHdvcmsgb24gc29tZSAKZmV3IE5WaWRpYSBjYXJk
-cywgd2hpbGUgd29ya2luZyBvbiBtb3N0IG9mIHRoZW0gOykgLSBUb29rIG1lIHRocmVlIApzZXBh
-cmF0ZSBhdHRlbXB0cyB0byBmaW5kIG91dCB0aGUgd2h5LCBiZWNhdXNlIHRoZSBlcnJvciBtZXNz
-YWdlcyBmcm9tIApzZXJ2ZXIgYW5kIGtlcm5lbCBzZW5kIHlvdSBpbiBhbGwga2luZHMgb2YgcmFu
-ZG9tIGRpcmVjdGlvbnMgb2Ygd2hhdCB0aGUgCmNhdXNlIG9mIHRoZSBmYWlsdXJlIGNvdWxkIGJl
-LgoKQW55d2F5LiBUaGUga2VuY29kZXItPnBvc3NpYmxlX2NydGNzIG1hc2sgZW5jb2RlcyB3aGlj
-aCBoYXJkd2FyZSBjcnRjcyAKY2FuIGdvIHdpdGggdGhlIGdpdmVuIGtlbmNvZGVyLiBpJ3RoIGJp
-dCBzZXQgPT0gaSd0aCBjcnRjIHVzYWJsZSBmb3IgCnRoYXQgZW5jb2Rlci4gVGhlIG1hc2sgY29t
-ZXMgZnJvbSBub3V2ZWF1LWttcyB3aGljaCBnZXRzIGl0IGZyb20gdGhlIApWQklPUyBEQ0IgdGFi
-bGUuIE1vc3QgY2FyZHMgc2VlbSB0byBqdXN0IGhhdmUgMSBiaXRzIGV2ZXJ5d2hlcmUsIHNvIGFu
-eSAKY3J0YyBjYW4gZ28gd2l0aCBhbnkgZW5jb2Rlci4gU29tZSBjYXJkcyBsaWtlIHRoZSBvbmUg
-aW4gbXkgTGFwdG9wIGhhdmUgCmhhcmQtd2lyZWQgZW5jb2Rlci0+Y3J0Yywgc28gdGhlcmUgY2Fu
-IGJlIDAgYml0cy4KCkR1cmluZyBjcnRjIGVudW1lcmF0aW9uIHdoZW4gaW5pdGlhbGl6aW5nIGFu
-IFgtU2NyZWVuLCB0aGUgZHJpdmVyIGZpbGxzIAp0aGUgeC1zY3JlZW5zIHhmODZDcnRjQ29uZmln
-UHRyIGNvbmZpZyA9IFhGODZfQ1JUQ19DT05GSUdfUFRSKHNjcm4pOyAKY3J0YyBjb25maWcgYXJy
-YXkgd2l0aCBlbnVtZXJhdGVkIGNydGMncyB3aGljaCBpdCBnZXRzIGZyb20gdGhlIGtlcm5lbCwg
-CmFsd2F5cyBzdGFydGluZyBhdCBzbG90IDAgb2YgdGhlIGNvbmZpZy0+Y3J0Y1tdIGFycmF5IGZv
-ciBlYWNoIHgtc2NyZWVuLiAKT24gYSBzaW5nbGUteC1zY3JlZW4gc2V0dXAsIHRoaXMgbWVhbnMg
-dGhhdCBncHUgaGFyZHdhcmUgY3J0YyBpIGVuZHMgaW4gCmNvbmZpZy0+Y3J0Y1tpXSwgc28gY29u
-ZmlnLT5jcnRjW2ldIGNvcnJlc3BvbmRzIHRvIGJpdCBpIGluIHRoZSAKcG9zc2libGVfY3J0Y3Mg
-Yml0bWFzay4KClNvbWUgc2V0dXAgY29kZSBpbnNpZGUgdGhlIHNlcnZlciBhc3N1bWVzIHRoYXQg
-dGhpcyAxLTEgY29ycmVzcG9uZGVuY2UgCmJldHdlZW4gYml0cyBpbiBwb3NzaWJsZV9jcnRjcyBh
-bmQgY29uZmlnLT5jcnRjIHNsb3RzIGlzIGFsd2F5cyB0cnVlLgoKT24gYSBaYXBob2RIZWFkcyBz
-ZXR1cCB0aGlzIGlzbid0IHRoZSBjYXNlLCBlLmcuLCBpZiB5b3UgaGF2ZSBhIApkdWFsLWhlYWQg
-c2V0dXAgYW5kIGFzc2lnbiBvbmUgb3V0cHV0IGFuZCBjcnRjIHRvIHgtc2NyZWVuIDAgYW5kIHRo
-ZSAKb3RoZXIgb3V0cHV0IGFuZCBjcnRjIHRvIHgtc2NyZWVuIDEsIHRoZW4gY3J0YyAwIHdpbGwg
-ZW5kIGluIApjb25maWctPmNydGNbMF0gb2YgeC1zY3JlZW4gMCwgYW5kIGNydGMgMSB3aWxsIGVu
-ZCBpbiBjb25maWctPmNydGNbMF0gb2YgCngtc2NyZWVuIDEsIGFzIGZpbGxpbmcgb2YgdGhlIGNv
-bmZpZy0+Y3J0Y1tdIGFycmF5cyBoYXBwZW5zIHNlcGFyYXRlbHkgCmZvciBlYWNoIHgtc2NyZWVu
-LCBhbHdheXMgc3RhcnRpbmcgYXQgc2xvdCAwLgoKU28gbm93IHlvdSdkIGhhdmUgaHcgY3J0YyAx
-LCB3aGljaCBjb3JyZXNwb25kcyB0byBiaXQgMSBpbiAKa2VuY29kZXItPnBvc3NpYmxlX2NydGNz
-IGVuZGluZyBpbiBzbG90IDAgb2YgeC1zY3JlZW4gMSwgaW5zdGVhZCBvZiBzbG90IAoxIGFzIHdv
-dWxkIGJlIHRoZSBjYXNlIG9uIGEgbm9uLVphcGhvZCBzZXR1cC4KCkR1cmluZyBpbml0LCBub3V2
-ZWF1IGNhbGxzIHRoZSB4LXNlcnZlciBmdW5jdGlvbiAKeGY4NkluaXRpYWxDb25maWd1cmF0aW9u
-KHBTY3JuLCBUUlVFKSwgd2hpY2ggY2FsbHMgeGY4NlBpY2tDcnRjcygpLCAKd2hpY2ggaGFzIHRo
-aXMgdmFsaWRhdGlvbi9tYXRjaGluZyBjb2RlIChody94ZnJlZTg2L21vZGVzL3hmODZDcnRjLmMp
-CgogICAgIC8qCiAgICAgICogU2VsZWN0IGEgY3J0YyBmb3IgdGhpcyBvdXRwdXQgYW5kCiAgICAg
-ICogdGhlbiBhdHRlbXB0IHRvIGNvbmZpZ3VyZSB0aGUgcmVtYWluaW5nCiAgICAgICogb3V0cHV0
-cwogICAgICAqLwogICAgIGZvciAoYyA9IDA7IGMgPCBjb25maWctPm51bV9jcnRjOyBjKyspIHsK
-ICAgICAgICAgaWYgKChvdXRwdXQtPnBvc3NpYmxlX2NydGNzICYgKDEgPDwgYykpID09IDApCiAg
-ICAgICAgICAgICBjb250aW51ZTsKCiAgICAgICAgIGNydGMgPSBjb25maWctPmNydGNbY107Cgot
-PiBJdCBhc3N1bWVzIGJpdCBjID09IHNsb3QgYyBpbiBjb25maWctPmNydGNbY10sIHRoZXJlZm9y
-ZSBpdCBmYWlscyB0byAKZmluZCBhIHByb3BlciBzZXR1cCBpZiB0aGF0IGNvcnJlc3BvbmRlbmNl
-IGlzIGJyb2tlbiBvbiBhIFphcGhvZEhlYWRzIApzZXR1cC4gSXQgbWF0Y2hlcyB0aGUgd3Jvbmcg
-Yml0IHBvc2l0aW9uIGluIHRoZSBwb3NzaWJsZV9jcnRjIG1hc2suIElmIAp5b3UgZ2V0IGx1Y2t5
-IChvbiBtYW55IE52aWRpYSBjYXJkcykgYW5kIHRoZSB3cm9uZyBiaXQgcG9zaXRpb24gaGFzIGEg
-MSAKYml0LCB0aGVuIGl0IHdvcmtzIGJ5IGFjY2lkZW50LiBJZiB5b3UgZ2V0IHVubHVja3kgbGlr
-ZSBvbiBteSBsYXB0b3B0IGl0IApiYWlscyBvdXQsIGFib3J0aW5nIHRoZSBzZXJ2ZXIgd2l0aCB0
-aGUgbW9zdCBjb25mdXNpbmcvbWlzbGVhZGluZyAKc2VxdWVuY2Ugb2YgZXJyb3IgbWVzc2FnZXMg
-aW4geG9yZy5sb2cgYW5kIGRtZXNnIHlvdSBjb3VsZCBpbWFnaW5lLgoKU28gdGhlIHBhdGNoIHRy
-aWVzIHRvIGJpdC1zaGlmdCB0aGUgb3V0cHV0LT5wb3NzaWJsZV9jcnRjcyBtYXNrIHdoZW4gCmFz
-c2lnbmluZyBmcm9tIHRoZSBrZXJuZWxzIGtlbmNvZGVyLT5wb3NzaWJsZV9jcnRjcywgdG8gcmVz
-dG9yZSB0aGUgMS0xIApjb3JyZXNwb25kZW5jZSBiZXR3ZWVuIGh3IGNydGNzIGFuZCBzbG90cyBp
-biBwU2Nybi0+Y29uZmlnLT5jcnRjW10gdG8gCm1ha2UgdGhlIHNlcnZlcnMgbWF0Y2hpbmcgY29k
-ZSBoYXBweS4KClRoZSBjcnRjc2hpZnQgaXMgdGhlIHNoaWZ0IHRvIGFwcGx5IHRvIGRvIHRoaXMu
-IHBOVkVudC0+YXNzaWduZWRfY3J0Y3MgCmlzIGEgYml0IG1hc2sgd2hpY2ggbWFya3MgYWxyZWFk
-eSBpbiB1c2UgaHcgY3J0Y3MuIFNlYXJjaGluZyBmb3IgdGhlIApmaXJzdCAwIGJpdCBpbiB0aGF0
-IG1hc2sgdmlhIHRoYXQgZmZzKCkgc3RhdGVtZW50IGdpdmVzIHlvdSB0aGUgaW5kZXggb2YgCnRo
-ZSBmaXJzdCBmcmVlIGh3IGNydGMsIHRoZSBvbmUgd2hpY2ggd2lsbCBlbmQgdXAgaW4gdGhlIApw
-U2Nybi0+Y29uZmlnLT5jcnRjWzBdIHNsb3QgZm9yIHRoZSB0by1iZS1zZXR1cCB4LXNjcmVlbiwg
-b3IgaW93LiBob3cgCm1hbnkgYml0cyB5b3UgbmVlZCB0byBzaGlmdCB0aGUgb3V0cHV0LT5wb3Nz
-aWJsZV9jcnRjcyBiaXRtYXNrIHRvIApyZXN0b3JlIGEgMS0xIGNvcnJlc3BvbmRlbmNlIGZyb20g
-dGhlIHBlcnNwZWN0aXZlIG9mIHRoZSBzZXJ2ZXIuCgpPbiBhIHNpbmdsZSB4LXNjcmVlbiBzZXR1
-cCwgdGhhdCBmZnMoKSBzdGF0bWVudCBhbHdheXMgZ2l2ZXMgeW91IGEgCmNydGNzaGlmdCBvZiAw
-IGFzIHBOVkVudC0+YXNzaWduZWRfY3J0Y3MgaXMgYWxsIHplcm8gYXQgc2VydmVyIApzdGFydHVw
-L3JlZ2VuLCBhbmQgdGhhdCByb3V0aW5lIGlzIGNhbGxlZCBvbmx5IG9uZSBmb3IgYSBncHUsIHNv
-IHRoZSAKcGF0Y2ggdHVybnMgaW50byBhIG5vLW9wIGZvciB0aGUgcmVndWxhciBjYXNlLgoKPiBI
-b3dldmVyIE1hcmlvIGlzIHByb2JhYmx5IHRoZSBzb2xlIHNlcmlvdXMgdXNlciBvZiBaYXBob2RI
-ZWFkcywgYW5kIGlmCj4gaXQgZml4ZXMgaXNzdWVzIGZvciBoaW0sIHByb2JhYmx5IGZpeGVzIGlz
-c3VlcyBmb3Igb3RoZXJzIHdobyB0cnkgYW5kCj4gZ2l2ZSB1cCB3aXRoIFphcGhvZEhlYWRzLiBB
-bnkgb2JqZWN0aW9ucyBpZiBJIGp1c3QgcHVzaCB0aGlzIG91dD8KCkFsZXggRGV1Y2hlciBqdXN0
-IHJldmlld2VkIGFuZCByLWInZCB0aGUgc2FtZSBwYXRjaCBmb3IgCnhmODYtdmlkZW8tbW9kZXNl
-dHRpbmcncyBaYXBob2RIZWFkcyBpbXBsZW1lbnRhdGlvbiAob24geG9yZy1kZXZlbCksIHNvIAph
-c3N1bWluZyBoZSBmb2xsb3dlZCBteSBjb252b2x1dGVkIGNvbW1pdCBtZXNzYWdlLCB0aGF0IGNv
-dWxkIGNvdW50IGFzIGEgCnZvdGUgZm9yIHRoZSBjb3JyZWN0bmVzcyBvZiB0aGlzIG9uZS4KCkF0
-bS4gb25seSBub3V2ZWF1IGFuZCBtb2Rlc2V0dGluZyBuZWVkIHRoZSBwYXRjaC4gaW50ZWwgYW5k
-IApyYWRlb24vYW1kZ3B1IGFuZCBvdGhlciBkZHgnZW4gZG9uJ3QgbmVlZCBpdCBiZWNhdXNlIHRo
-ZWlyIGttcyBkcml2ZXJzIAphbHdheXMgcmVwb3J0IGEga2VuY29kZXItPnBvc3NpYmxlX2NydGNz
-IGJpdG1hc2sgd2l0aCBhcyBtYW55IDEgYml0cyBhcyAKdGhlcmUgYXJlIGh3IGNydGNzIC0gYW55
-IGVuY29kZXIgc2VlbXMgdG8gZ28gd2l0aCBhbnkgY3J0Yy4gbm91dmVhdS1rbXMgCnNlZW1zIHRv
-IGJlIHRoZSBvbmx5IG9uZSB0aGF0IGRvZXMgc29tZXRoaW5nIGNsZXZlciB3aXRoIHRoYXQgYml0
-bWFzaywgCnNvIG5lZWRzIGEgYml0IG9mIHNwZWNpYWwgdHJlYXRtZW50LgoKPgo+IE9uIFNhdCwg
-SnVuIDI3LCAyMDE1IGF0IDg6MzMgUE0sIE1hcmlvIEtsZWluZXIKPiA8bWFyaW8ua2xlaW5lci5k
-ZUBnbWFpbC5jb20+IHdyb3RlOgo+PiBJbiBtdWx0aS14LXNjcmVlbiBaYXBob2RIZWFkcyBjb25m
-aWd1cmF0aW9ucywgdGhlcmUgaXNuJ3QgYQo+PiBvbmUtdG8tb25lIG1hcHBpbmcgb2Yga2VybmVs
-IHByb3ZpZGVkIGRybW1vZGUgY3J0YyBpbmRleAo+PiB0byB0aGUgaW5kZXggb2YgdGhlIGNvcnJl
-c3BvbmRpbmcgeGY4NkNydGMgaW5zaWRlIHRoZQo+PiB4Zjg2Q3J0Y0NvbmZpZyBjcnRjIGFycmF5
-IGFueW1vcmUsIGllLiBmb3Iga2VybmVsIHByb3ZpZGVkCj4+IGRybW1vZGUtPm1vZGVfcmVzLT5j
-cnRjc1tpXSwgdGhlIGkndGggY3J0YyB3b24ndCBjb3JyZXNwb25kCj4+IHRvIHRoZSB4Zjg2Q3J0
-YyBpbiB0aGUgaSd0aCBzbG90IG9mIHRoZSB4LXNjcmVlbnMgeGY4NkNydGNDb25maWcKPj4gYW55
-bW9yZSwgb25jZSBaYXBob2RIZWFkcyBoYXMgb25seSBzZWxlY3RlZCBhIHN1YnNldCBvZiBhbGwg
-Y3J0Y3MKPj4gb2YgYSBncmFwaGljcyBjYXJkIGZvciBhIGdpdmVuIHgtc2NyZWVuLCBpbnN0ZWFk
-IG9mIGFsbCBjcnRjcy4KPj4KPj4gVGhpcyBicmVha3MgdGhlIG1hcHBpbmcgb2YgYml0IHBvc2l0
-aW9ucyBpbiB0aGUgYml0IG1hc2tzIHJldHVybmVkCj4+IGluIGtlbmNvZGVyLT5wb3NzaWJsZV9j
-cnRjcyBhbmQga2VuY29kZXItPnBvc3NpYmxlX2Nsb25lcy4gQSAxIGJpdAo+PiBpbiBwb3NpdGlv
-biBpIG9mIHRob3NlIG1hc2tzIGFsbG93cyB1c2Ugb2YgdGhlIGtlcm5lbHMgaSd0aCBjcnRjIGZv
-cgo+PiB0aGUgZ2l2ZW4ga2VuY29kZXIuIFRoZSBYLVNlcnZlcnMgZGl4IGNvZGUgY2hlY2tzIHRo
-b3NlIGJpdCBtYXNrcwo+PiBmb3IgdmFsaWQgeGY4Nk91dHB1dCAtPiB4Zjg2Q3J0YyBhc3NpZ25t
-ZW50cywgYXNzdW1pbmcgdGhhdCB0aGUgaSd0aAo+PiBzbG90IHhmODZDcnRjQ29uZmlnUHRyIGNv
-bmZpZy0+Y3J0Y1tpXSBjb3JyZXNwb25kcyB0byBiaXQgaSBpbiB0aGUKPj4geGY4Nk91dHB1dC0+
-cG9zc2liZV9jcnRjcyBiaXRtYXNrLCBhbmQgYmFpbHMgaWYgdGhlIGJpdG1hc2sgZG9lc24ndAo+
-PiBhbGxvdyB0aGUgc3BlY2lmaWVkIGFzc2lnbm1lbnQgb2YgY3J0YyB0byBvdXRwdXQuIElmIFph
-cGhvZEhlYWRzCj4+IGJyZWFrcyB0aGUgYXNzdW1wdGlvbiBvZiBiaXQgaSA8LT4gY3J0YyBzbG90
-IGkgdGhpcyBlbmRzIGluIGZhaWx1cmUuCj4+Cj4+IFRha2UgdGhpcyBzaGlmdCBvZiBjcnRjIGlu
-ZGV4IHBvc2l0aW9ucyB3cnQuIGVuY29kZXIgYml0bWFzayBiaXQKPj4gcG9zaXRpb25zIGludG8g
-YWNjb3VudCBieSBiaXQtc2hpZnRpbmcgcG9zaXRpb25zIGFjY29yZGluZ2x5IHdoZW4KPj4gYXNz
-aWduaW5nIGVuY29kZXItPnBvc3NpYmxlX2NydGNzIHRvIG91dHB1dC0+cG9zc2libGVfY3J0Y3Ms
-IHNvCj4+IHRoZSBwcm9wZXIgaW5kaWNlcyBtYXRjaCB1cCBhZ2FpbiBmb3IgdmFsaWRhdGlvbiBi
-eSB0aGUgZGl4Lgo+Pgo+PiBUaGlzIHByb2JsZW0gd2Fzbid0IGFwcGFyZW50IGxhc3QgeWVhciB3
-aGVuIHRlc3RpbmcgdGhlIFphcGhvZEhlYWRzCj4+IHN1cHBvcnQgb24gc29tZSBLZXBsZXIgY2Fy
-ZHMsIGFzIGFwcGFyZW50bHkgdGhlIGVuY29kZXItPnBvc3NpYmxlX2NydGNzCj4+IGJpdG1hc2tz
-IHJldHVybmVkIGZvciB0aG9zZSBjYXJkcyBieSB0aGUga2VybmVsIGp1c3QgaGFkIGFsbCA0Cj4+
-IGxzYiBiaXRzIHNldCBmb3IgYWxsIHRlc3RlZCBlbmNvZGVycy9vdXRwdXQsIHNvIGVhY2ggb2Yg
-dGhlIGNhcmRzIDQKPj4gY3J0Y3MgY291bGQgZ28gd2l0aCBlYWNoIG91dHB1dCBhbmQgdGhpbmdz
-IHdvcmtlZCBieSBjaGFuY2UuCj4+Cj4+IFRoZSBjdXJyZW50IGNvZGUgYnJlYWtzLCBlLmcuLCBv
-biAyMDEwIE1hY0Jvb2tQcm8gd2l0aCBudjUwLCB3aGVyZQo+PiBvbmUgY3J0YyBpcyBoYXJkd2ly
-ZWQgdG8gdGhlIGludGVybmFsIGx2ZHMgcGFuZWwsIGFuZCBvbmUgY3J0Ywo+PiBpcyBoYXJkd2ly
-ZWQgdG8gdGhlIGV4dGVybmFsIERQIGNvbm5lY3RvciwgcmVzdWx0aW5nIGluIGEgZmFpbHVyZQo+
-PiB3aGVyZSBkdWFsLWRpc3BsYXkgb24gc2luZ2xlLXgtc2NyZWVuIHdvcmtzIGZpbmUsIGJ1dCBh
-c3NpZ25pbmcKPj4gZWFjaCBvdXRwdXQgdG8gYSBzZXBhcmF0ZSB4LXNjcmVlbiB2aWEgWmFwaG9k
-SGVhZHMgZmFpbHMgZHVlIHRvCj4+IHRoZSBtaXNtYXRjaGVkIGVuY29kZXItPnBvc3NpYmxlX2Ny
-dGNzIGJpdG1hc2tzLgo+Pgo+PiBUaGlzIHBhdGNoIGZpeGVzIHRoZSBwcm9ibGVtLgo+Pgo+PiBT
-aWduZWQtb2ZmLWJ5OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4K
-Pj4gLS0tCj4+ICAgc3JjL2RybW1vZGVfZGlzcGxheS5jIHwgMTAgKysrKysrLS0tLQo+PiAgIDEg
-ZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYg
-LS1naXQgYS9zcmMvZHJtbW9kZV9kaXNwbGF5LmMgYi9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKPj4g
-aW5kZXggYzMwY2IzYS4uMzY3OTQ4MiAxMDA2NDQKPj4gLS0tIGEvc3JjL2RybW1vZGVfZGlzcGxh
-eS5jCj4+ICsrKyBiL3NyYy9kcm1tb2RlX2Rpc3BsYXkuYwo+PiBAQCAtMTIxNCw3ICsxMjE0LDcg
-QEAgZHJtbW9kZV96YXBob2RfbWF0Y2goU2NybkluZm9QdHIgcFNjcm4sIGNvbnN0IGNoYXIgKnMs
-IGNoYXIgKm91dHB1dF9uYW1lKQo+PiAgIH0KPj4KPj4gICBzdGF0aWMgdW5zaWduZWQgaW50Cj4+
-IC1kcm1tb2RlX291dHB1dF9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBkcm1tb2RlX3B0ciBkcm1t
-b2RlLCBpbnQgbnVtKQo+PiArZHJtbW9kZV9vdXRwdXRfaW5pdChTY3JuSW5mb1B0ciBwU2Nybiwg
-ZHJtbW9kZV9wdHIgZHJtbW9kZSwgaW50IG51bSwgaW50IGNydGNzaGlmdCkKPj4gICB7Cj4+ICAg
-ICAgICAgIE5WUHRyIHBOdiA9IE5WUFRSKHBTY3JuKTsKPj4gICAgICAgICAgeGY4Nk91dHB1dFB0
-ciBvdXRwdXQ7Cj4+IEBAIC0xMjk2LDggKzEyOTYsOCBAQCBkcm1tb2RlX291dHB1dF9pbml0KFNj
-cm5JbmZvUHRyIHBTY3JuLCBkcm1tb2RlX3B0ciBkcm1tb2RlLCBpbnQgbnVtKQo+PiAgICAgICAg
-ICBvdXRwdXQtPnN1YnBpeGVsX29yZGVyID0gc3VicGl4ZWxfY29udl90YWJsZVtrb3V0cHV0LT5z
-dWJwaXhlbF07Cj4+ICAgICAgICAgIG91dHB1dC0+ZHJpdmVyX3ByaXZhdGUgPSBkcm1tb2RlX291
-dHB1dDsKPj4KPj4gLSAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBv
-c3NpYmxlX2NydGNzOwo+PiAtICAgICAgIG91dHB1dC0+cG9zc2libGVfY2xvbmVzID0ga2VuY29k
-ZXItPnBvc3NpYmxlX2Nsb25lczsKPj4gKyAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0g
-a2VuY29kZXItPnBvc3NpYmxlX2NydGNzID4+IGNydGNzaGlmdDsKPj4gKyAgICAgICBvdXRwdXQt
-PnBvc3NpYmxlX2Nsb25lcyA9IGtlbmNvZGVyLT5wb3NzaWJsZV9jbG9uZXMgPj4gY3J0Y3NoaWZ0
-Owo+Pgo+PiAgICAgICAgICBvdXRwdXQtPmludGVybGFjZUFsbG93ZWQgPSB0cnVlOwo+PiAgICAg
-ICAgICBvdXRwdXQtPmRvdWJsZVNjYW5BbGxvd2VkID0gdHJ1ZTsKPj4gQEAgLTE0MjEsNiArMTQy
-MSw3IEBAIEJvb2wgZHJtbW9kZV9wcmVfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgaW50IGZkLCBp
-bnQgY3BwKQo+PiAgICAgICAgICBOVkVudFB0ciBwTlZFbnQgPSBOVkVudFByaXYocFNjcm4pOwo+
-PiAgICAgICAgICBpbnQgaTsKPj4gICAgICAgICAgdW5zaWduZWQgaW50IGNydGNzX25lZWRlZCA9
-IDA7Cj4+ICsgICAgICAgaW50IGNydGNzaGlmdDsKPj4KPj4gICAgICAgICAgZHJtbW9kZSA9IHhu
-ZmFsbG9jKHNpemVvZiAqZHJtbW9kZSk7Cj4+ICAgICAgICAgIGRybW1vZGUtPmZkID0gZmQ7Cj4+
-IEBAIC0xNDQ0LDggKzE0NDUsOSBAQCBCb29sIGRybW1vZGVfcHJlX2luaXQoU2NybkluZm9QdHIg
-cFNjcm4sIGludCBmZCwgaW50IGNwcCkKPj4gICAgICAgICAgfQo+Pgo+PiAgICAgICAgICB4Zjg2
-RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywgIkluaXRpYWxpemluZyBvdXRwdXRzIC4u
-LlxuIik7Cj4+ICsgICAgICAgY3J0Y3NoaWZ0ID0gZmZzKHBOVkVudC0+YXNzaWduZWRfY3J0Y3Mg
-XiAweGZmZmZmZmZmKSAtIDE7Cj4KPiBNYXJpbywgYW55IG9iamVjdGlvbnMgaWYgSSB0b3VjaCB0
-aGlzIHVwIGFzCj4KPiB+cE5WRW5jLT5hc3NpZ25lZF9jcnRjcz8gWE9SIHdpdGggfjAgaXMgbm90
-IGEgcGF0dGVybiBJJ3ZlIHNlZW4gYSBsb3QuCj4KClN1cmUsIGZpeCBpdCB1cCwgYml0LXdpc2Ug
-bm90IGlzIG11Y2ggc2ltcGxlci4gVGhhbmtzIQotbWFyaW8KCgo+PiAgICAgICAgICBmb3IgKGkg
-PSAwOyBpIDwgZHJtbW9kZS0+bW9kZV9yZXMtPmNvdW50X2Nvbm5lY3RvcnM7IGkrKykKPj4gLSAg
-ICAgICAgICAgICAgIGNydGNzX25lZWRlZCArPSBkcm1tb2RlX291dHB1dF9pbml0KHBTY3JuLCBk
-cm1tb2RlLCBpKTsKPj4gKyAgICAgICAgICAgICAgIGNydGNzX25lZWRlZCArPSBkcm1tb2RlX291
-dHB1dF9pbml0KHBTY3JuLCBkcm1tb2RlLCBpLCBjcnRjc2hpZnQpOwo+Pgo+PiAgICAgICAgICB4
-Zjg2RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywKPj4gICAgICAgICAgICAgICAgICAg
-ICAiJWQgY3J0Y3MgbmVlZGVkIGZvciBzY3JlZW4uXG4iLCBjcnRjc19uZWVkZWQpOwo+PiAtLQo+
-PiAxLjkuMQo+Pgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwo+PiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1541780058==
+Content-Type: multipart/alternative; boundary="1438889973.272d604c1.3974"; charset="UTF-8"
+
+
+--1438889973.272d604c1.3974
+Date: Thu, 6 Aug 2015 19:39:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91411
+
+--- Comment #1 from David <davidlvillegas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi again!
+
+I don't know if this can help in someway. I also observe that image sent by
+computer to tv screen is bigger because I see in Configuration Settings that
+the screen recognize is 72 inches, however, my tv screen is 44 inches.
+
+I'm running Trisquel, but I have tried difference distributions(Ubuntu,
+gnewSense) and I have the same problem.
+
+I have only tried all this things in gnome-fallback, gnome-shell (and Unity).
+In each case, the screen is overscanned. But only in gnome-fallback, piece of
+desktop is missed, I can't reach into that hidden space.
+
+Lastly, I have been using a monitor, instead of LG tv, and there isn't any
+problem there, everything works pretty fine.
+
+Let me know if you need more information.
+
+Thanks a lot for your time.
+
+David
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1438889973.272d604c1.3974
+Date: Thu, 6 Aug 2015 19:39:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411">bug 91411</a>
+              from <span class="vcard"><a class="email" href="mailto:davidlvillegas&#64;gmail.com" title="David &lt;davidlvillegas&#64;gmail.com&gt;"> <span class="fn">David</span></a>
+</span></b>
+        <pre>Hi again!
+
+I don't know if this can help in someway. I also observe that image sent by
+computer to tv screen is bigger because I see in Configuration Settings that
+the screen recognize is 72 inches, however, my tv screen is 44 inches.
+
+I'm running Trisquel, but I have tried difference distributions(Ubuntu,
+gnewSense) and I have the same problem.
+
+I have only tried all this things in gnome-fallback, gnome-shell (and Unity).
+In each case, the screen is overscanned. But only in gnome-fallback, piece of
+desktop is missed, I can't reach into that hidden space.
+
+Lastly, I have been using a monitor, instead of LG tv, and there isn't any
+problem there, everything works pretty fine.
+
+Let me know if you need more information.
+
+Thanks a lot for your time.
+
+David</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1438889973.272d604c1.3974--
+
+--===============1541780058==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1541780058==--
