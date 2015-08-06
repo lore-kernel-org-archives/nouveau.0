@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91411] TV hdmi output doesn't fit with desktop,
  minimize button(on windows) are missing, etc[NV50]
-Date: Thu, 06 Aug 2015 19:39:33 +0000
-Message-ID: <bug-91411-8800-qJBSU6iqSp@http.bugs.freedesktop.org/>
+Date: Thu, 06 Aug 2015 19:46:25 +0000
+Message-ID: <bug-91411-8800-umM9yYrRbK@http.bugs.freedesktop.org/>
 References: <bug-91411-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1541780058=="
+Content-Type: multipart/mixed; boundary="===============1637578521=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,46 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1541780058==
-Content-Type: multipart/alternative; boundary="1438889973.272d604c1.3974"; charset="UTF-8"
+--===============1637578521==
+Content-Type: multipart/alternative; boundary="1438890385.51A7A1.7823"; charset="UTF-8"
 
 
---1438889973.272d604c1.3974
-Date: Thu, 6 Aug 2015 19:39:33 +0000
+--1438890385.51A7A1.7823
+Date: Thu, 6 Aug 2015 19:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91411
 
---- Comment #1 from David <davidlvillegas-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi again!
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This is known as overscan. TVs do it by default. Computer monitors don't.
 
-I don't know if this can help in someway. I also observe that image sent by
-computer to tv screen is bigger because I see in Configuration Settings that
-the screen recognize is 72 inches, however, my tv screen is 44 inches.
-
-I'm running Trisquel, but I have tried difference distributions(Ubuntu,
-gnewSense) and I have the same problem.
-
-I have only tried all this things in gnome-fallback, gnome-shell (and Unity).
-In each case, the screen is overscanned. But only in gnome-fallback, piece of
-desktop is missed, I can't reach into that hidden space.
-
-Lastly, I have been using a monitor, instead of LG tv, and there isn't any
-problem there, everything works pretty fine.
-
-Let me know if you need more information.
-
-Thanks a lot for your time.
-
-David
+(a) look for an overscan-related setting on your TV
+(b) look for underscan-related xrandr properties (xrandr --props). You can futz
+with these to compensate for your TV's overscanning.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1438889973.272d604c1.3974
-Date: Thu, 6 Aug 2015 19:39:33 +0000
+--1438890385.51A7A1.7823
+Date: Thu, 6 Aug 2015 19:46:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,34 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91411">bug 91411</a>
-              from <span class="vcard"><a class="email" href="mailto:davidlvillegas&#64;gmail.com" title="David &lt;davidlvillegas&#64;gmail.com&gt;"> <span class="fn">David</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi again!
+        <pre>This is known as overscan. TVs do it by default. Computer monitors don't.
 
-I don't know if this can help in someway. I also observe that image sent by
-computer to tv screen is bigger because I see in Configuration Settings that
-the screen recognize is 72 inches, however, my tv screen is 44 inches.
-
-I'm running Trisquel, but I have tried difference distributions(Ubuntu,
-gnewSense) and I have the same problem.
-
-I have only tried all this things in gnome-fallback, gnome-shell (and Unity).
-In each case, the screen is overscanned. But only in gnome-fallback, piece of
-desktop is missed, I can't reach into that hidden space.
-
-Lastly, I have been using a monitor, instead of LG tv, and there isn't any
-problem there, everything works pretty fine.
-
-Let me know if you need more information.
-
-Thanks a lot for your time.
-
-David</pre>
+(a) look for an overscan-related setting on your TV
+(b) look for underscan-related xrandr properties (xrandr --props). You can futz
+with these to compensate for your TV's overscanning.</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +81,9 @@ David</pre>
     </body>
 </html>
 
---1438889973.272d604c1.3974--
+--1438890385.51A7A1.7823--
 
---===============1541780058==
+--===============1637578521==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1541780058==--
+--===============1637578521==--
