@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91411] TV hdmi output doesn't fit with desktop,
- minimize button(on windows) are missing, etc[NV50]
-Date: Thu, 06 Aug 2015 19:46:25 +0000
-Message-ID: <bug-91411-8800-umM9yYrRbK@http.bugs.freedesktop.org/>
-References: <bug-91411-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
+ OpenGL applications with GeForce4 MX 440 / AGP 8X
+Date: Thu, 06 Aug 2015 20:27:15 +0000
+Message-ID: <bug-91570-8800-3IkRNGIwOh@http.bugs.freedesktop.org/>
+References: <bug-91570-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1637578521=="
+Content-Type: multipart/mixed; boundary="===============1473694833=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91411-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1637578521==
-Content-Type: multipart/alternative; boundary="1438890385.51A7A1.7823"; charset="UTF-8"
+--===============1473694833==
+Content-Type: multipart/alternative; boundary="1438892834.5E2Ac0.29582"; charset="UTF-8"
 
 
---1438890385.51A7A1.7823
-Date: Thu, 6 Aug 2015 19:46:25 +0000
+--1438892834.5E2Ac0.29582
+Date: Thu, 6 Aug 2015 20:27:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91411
+https://bugs.freedesktop.org/show_bug.cgi?id=91570
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This is known as overscan. TVs do it by default. Computer monitors don't.
+--- Comment #17 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #16)
+> Created attachment 117570 [details] [review]
+> initial patch
+> 
+> This patch should help you get going. Not sure if it's the right thing
+> though.
 
-(a) look for an overscan-related setting on your TV
-(b) look for underscan-related xrandr properties (xrandr --props). You can futz
-with these to compensate for your TV's overscanning.
+Alright, this works. Thank you very much.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438890385.51A7A1.7823
-Date: Thu, 6 Aug 2015 19:46:25 +0000
+--1438892834.5E2Ac0.29582
+Date: Thu, 6 Aug 2015 20:27:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,33 +61,37 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411#c2">Comment # 2</a>
+   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - TV hdmi output doesn't fit with desktop, minimize button(on windows) are missing, etc[NV50]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91411">bug 91411</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
+              from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
 </span></b>
-        <pre>This is known as overscan. TVs do it by default. Computer monitors don't.
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91570#c16">comment #16</a>)
+<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=117570" name="attach_117570" title="initial patch">attachment 117570</a> <a href="attachment.cgi?id=117570&amp;action=edit" title="initial patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91570&amp;attachment=117570'>[review]</a> [review]
+&gt; initial patch
+&gt; 
+&gt; This patch should help you get going. Not sure if it's the right thing
+&gt; though.</span >
 
-(a) look for an overscan-related setting on your TV
-(b) look for underscan-related xrandr properties (xrandr --props). You can futz
-with these to compensate for your TV's overscanning.</pre>
+Alright, this works. Thank you very much.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1438890385.51A7A1.7823--
+--1438892834.5E2Ac0.29582--
 
---===============1637578521==
+--===============1473694833==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1637578521==--
+--===============1473694833==--
