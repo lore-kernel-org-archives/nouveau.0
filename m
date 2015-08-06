@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
- OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Thu, 06 Aug 2015 16:03:11 +0000
-Message-ID: <bug-91570-8800-zqiQbvSUpt@http.bugs.freedesktop.org/>
-References: <bug-91570-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] Take shift in crtc positions for ZaphodHeads
+ configs into account.
+Date: Thu, 6 Aug 2015 13:34:35 -0400
+Message-ID: <CAKb7UvgWqo7HH+-fuO+FTSqrusotFcMoCG6Juc2J5ObM9QRpYQ@mail.gmail.com>
+References: <1435451629-17959-1-git-send-email-mario.kleiner.de@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1796574046=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1435451629-17959-1-git-send-email-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +18,98 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1796574046==
-Content-Type: multipart/alternative; boundary="1438876990.ddD61.15229"; charset="UTF-8"
-
-
---1438876990.ddD61.15229
-Date: Thu, 6 Aug 2015 16:03:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91570
-
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you do "p tnl->_WindowMap" and "p ctx->DrawBuffer" in gdb?
-
-I suspect this is due to commit 29e6c7dbc5bacf4f2b741333ac56469a00164e65, which
-added the code, but I don't see why it would be bad... maybe there's no
-DrawBuffer bound?
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1438876990.ddD61.15229
-Date: Thu, 6 Aug 2015 16:03:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Can you do &quot;p tnl-&gt;_WindowMap&quot; and &quot;p ctx-&gt;DrawBuffer&quot; in gdb?
-
-I suspect this is due to commit 29e6c7dbc5bacf4f2b741333ac56469a00164e65, which
-added the code, but I don't see why it would be bad... maybe there's no
-DrawBuffer bound?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1438876990.ddD61.15229--
-
---===============1796574046==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1796574046==--
+SSBkb24ndCB1bmRlcnN0YW5kIHRoaXMgcGF0Y2ggKHdoYXQgYXJlIGFsbCB0aGVzZSBtYXNrcz8g
+aG93IGFyZSB0aGV5CnVzZWQ/KSwgYW5kIGRvbid0IHdhbnQgdG8gaW52ZXN0IHRoZSB0aW1lIHJl
+cXVpcmVkIHRvIGRvIHNvLgoKSG93ZXZlciBNYXJpbyBpcyBwcm9iYWJseSB0aGUgc29sZSBzZXJp
+b3VzIHVzZXIgb2YgWmFwaG9kSGVhZHMsIGFuZCBpZgppdCBmaXhlcyBpc3N1ZXMgZm9yIGhpbSwg
+cHJvYmFibHkgZml4ZXMgaXNzdWVzIGZvciBvdGhlcnMgd2hvIHRyeSBhbmQKZ2l2ZSB1cCB3aXRo
+IFphcGhvZEhlYWRzLiBBbnkgb2JqZWN0aW9ucyBpZiBJIGp1c3QgcHVzaCB0aGlzIG91dD8KCk9u
+IFNhdCwgSnVuIDI3LCAyMDE1IGF0IDg6MzMgUE0sIE1hcmlvIEtsZWluZXIKPG1hcmlvLmtsZWlu
+ZXIuZGVAZ21haWwuY29tPiB3cm90ZToKPiBJbiBtdWx0aS14LXNjcmVlbiBaYXBob2RIZWFkcyBj
+b25maWd1cmF0aW9ucywgdGhlcmUgaXNuJ3QgYQo+IG9uZS10by1vbmUgbWFwcGluZyBvZiBrZXJu
+ZWwgcHJvdmlkZWQgZHJtbW9kZSBjcnRjIGluZGV4Cj4gdG8gdGhlIGluZGV4IG9mIHRoZSBjb3Jy
+ZXNwb25kaW5nIHhmODZDcnRjIGluc2lkZSB0aGUKPiB4Zjg2Q3J0Y0NvbmZpZyBjcnRjIGFycmF5
+IGFueW1vcmUsIGllLiBmb3Iga2VybmVsIHByb3ZpZGVkCj4gZHJtbW9kZS0+bW9kZV9yZXMtPmNy
+dGNzW2ldLCB0aGUgaSd0aCBjcnRjIHdvbid0IGNvcnJlc3BvbmQKPiB0byB0aGUgeGY4NkNydGMg
+aW4gdGhlIGkndGggc2xvdCBvZiB0aGUgeC1zY3JlZW5zIHhmODZDcnRjQ29uZmlnCj4gYW55bW9y
+ZSwgb25jZSBaYXBob2RIZWFkcyBoYXMgb25seSBzZWxlY3RlZCBhIHN1YnNldCBvZiBhbGwgY3J0
+Y3MKPiBvZiBhIGdyYXBoaWNzIGNhcmQgZm9yIGEgZ2l2ZW4geC1zY3JlZW4sIGluc3RlYWQgb2Yg
+YWxsIGNydGNzLgo+Cj4gVGhpcyBicmVha3MgdGhlIG1hcHBpbmcgb2YgYml0IHBvc2l0aW9ucyBp
+biB0aGUgYml0IG1hc2tzIHJldHVybmVkCj4gaW4ga2VuY29kZXItPnBvc3NpYmxlX2NydGNzIGFu
+ZCBrZW5jb2Rlci0+cG9zc2libGVfY2xvbmVzLiBBIDEgYml0Cj4gaW4gcG9zaXRpb24gaSBvZiB0
+aG9zZSBtYXNrcyBhbGxvd3MgdXNlIG9mIHRoZSBrZXJuZWxzIGkndGggY3J0YyBmb3IKPiB0aGUg
+Z2l2ZW4ga2VuY29kZXIuIFRoZSBYLVNlcnZlcnMgZGl4IGNvZGUgY2hlY2tzIHRob3NlIGJpdCBt
+YXNrcwo+IGZvciB2YWxpZCB4Zjg2T3V0cHV0IC0+IHhmODZDcnRjIGFzc2lnbm1lbnRzLCBhc3N1
+bWluZyB0aGF0IHRoZSBpJ3RoCj4gc2xvdCB4Zjg2Q3J0Y0NvbmZpZ1B0ciBjb25maWctPmNydGNb
+aV0gY29ycmVzcG9uZHMgdG8gYml0IGkgaW4gdGhlCj4geGY4Nk91dHB1dC0+cG9zc2liZV9jcnRj
+cyBiaXRtYXNrLCBhbmQgYmFpbHMgaWYgdGhlIGJpdG1hc2sgZG9lc24ndAo+IGFsbG93IHRoZSBz
+cGVjaWZpZWQgYXNzaWdubWVudCBvZiBjcnRjIHRvIG91dHB1dC4gSWYgWmFwaG9kSGVhZHMKPiBi
+cmVha3MgdGhlIGFzc3VtcHRpb24gb2YgYml0IGkgPC0+IGNydGMgc2xvdCBpIHRoaXMgZW5kcyBp
+biBmYWlsdXJlLgo+Cj4gVGFrZSB0aGlzIHNoaWZ0IG9mIGNydGMgaW5kZXggcG9zaXRpb25zIHdy
+dC4gZW5jb2RlciBiaXRtYXNrIGJpdAo+IHBvc2l0aW9ucyBpbnRvIGFjY291bnQgYnkgYml0LXNo
+aWZ0aW5nIHBvc2l0aW9ucyBhY2NvcmRpbmdseSB3aGVuCj4gYXNzaWduaW5nIGVuY29kZXItPnBv
+c3NpYmxlX2NydGNzIHRvIG91dHB1dC0+cG9zc2libGVfY3J0Y3MsIHNvCj4gdGhlIHByb3BlciBp
+bmRpY2VzIG1hdGNoIHVwIGFnYWluIGZvciB2YWxpZGF0aW9uIGJ5IHRoZSBkaXguCj4KPiBUaGlz
+IHByb2JsZW0gd2Fzbid0IGFwcGFyZW50IGxhc3QgeWVhciB3aGVuIHRlc3RpbmcgdGhlIFphcGhv
+ZEhlYWRzCj4gc3VwcG9ydCBvbiBzb21lIEtlcGxlciBjYXJkcywgYXMgYXBwYXJlbnRseSB0aGUg
+ZW5jb2Rlci0+cG9zc2libGVfY3J0Y3MKPiBiaXRtYXNrcyByZXR1cm5lZCBmb3IgdGhvc2UgY2Fy
+ZHMgYnkgdGhlIGtlcm5lbCBqdXN0IGhhZCBhbGwgNAo+IGxzYiBiaXRzIHNldCBmb3IgYWxsIHRl
+c3RlZCBlbmNvZGVycy9vdXRwdXQsIHNvIGVhY2ggb2YgdGhlIGNhcmRzIDQKPiBjcnRjcyBjb3Vs
+ZCBnbyB3aXRoIGVhY2ggb3V0cHV0IGFuZCB0aGluZ3Mgd29ya2VkIGJ5IGNoYW5jZS4KPgo+IFRo
+ZSBjdXJyZW50IGNvZGUgYnJlYWtzLCBlLmcuLCBvbiAyMDEwIE1hY0Jvb2tQcm8gd2l0aCBudjUw
+LCB3aGVyZQo+IG9uZSBjcnRjIGlzIGhhcmR3aXJlZCB0byB0aGUgaW50ZXJuYWwgbHZkcyBwYW5l
+bCwgYW5kIG9uZSBjcnRjCj4gaXMgaGFyZHdpcmVkIHRvIHRoZSBleHRlcm5hbCBEUCBjb25uZWN0
+b3IsIHJlc3VsdGluZyBpbiBhIGZhaWx1cmUKPiB3aGVyZSBkdWFsLWRpc3BsYXkgb24gc2luZ2xl
+LXgtc2NyZWVuIHdvcmtzIGZpbmUsIGJ1dCBhc3NpZ25pbmcKPiBlYWNoIG91dHB1dCB0byBhIHNl
+cGFyYXRlIHgtc2NyZWVuIHZpYSBaYXBob2RIZWFkcyBmYWlscyBkdWUgdG8KPiB0aGUgbWlzbWF0
+Y2hlZCBlbmNvZGVyLT5wb3NzaWJsZV9jcnRjcyBiaXRtYXNrcy4KPgo+IFRoaXMgcGF0Y2ggZml4
+ZXMgdGhlIHByb2JsZW0uCj4KPiBTaWduZWQtb2ZmLWJ5OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5r
+bGVpbmVyLmRlQGdtYWlsLmNvbT4KPiAtLS0KPiAgc3JjL2RybW1vZGVfZGlzcGxheS5jIHwgMTAg
+KysrKysrLS0tLQo+ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9u
+cygtKQo+Cj4gZGlmZiAtLWdpdCBhL3NyYy9kcm1tb2RlX2Rpc3BsYXkuYyBiL3NyYy9kcm1tb2Rl
+X2Rpc3BsYXkuYwo+IGluZGV4IGMzMGNiM2EuLjM2Nzk0ODIgMTAwNjQ0Cj4gLS0tIGEvc3JjL2Ry
+bW1vZGVfZGlzcGxheS5jCj4gKysrIGIvc3JjL2RybW1vZGVfZGlzcGxheS5jCj4gQEAgLTEyMTQs
+NyArMTIxNCw3IEBAIGRybW1vZGVfemFwaG9kX21hdGNoKFNjcm5JbmZvUHRyIHBTY3JuLCBjb25z
+dCBjaGFyICpzLCBjaGFyICpvdXRwdXRfbmFtZSkKPiAgfQo+Cj4gIHN0YXRpYyB1bnNpZ25lZCBp
+bnQKPiAtZHJtbW9kZV9vdXRwdXRfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgZHJtbW9kZV9wdHIg
+ZHJtbW9kZSwgaW50IG51bSkKPiArZHJtbW9kZV9vdXRwdXRfaW5pdChTY3JuSW5mb1B0ciBwU2Ny
+biwgZHJtbW9kZV9wdHIgZHJtbW9kZSwgaW50IG51bSwgaW50IGNydGNzaGlmdCkKPiAgewo+ICAg
+ICAgICAgTlZQdHIgcE52ID0gTlZQVFIocFNjcm4pOwo+ICAgICAgICAgeGY4Nk91dHB1dFB0ciBv
+dXRwdXQ7Cj4gQEAgLTEyOTYsOCArMTI5Niw4IEBAIGRybW1vZGVfb3V0cHV0X2luaXQoU2Nybklu
+Zm9QdHIgcFNjcm4sIGRybW1vZGVfcHRyIGRybW1vZGUsIGludCBudW0pCj4gICAgICAgICBvdXRw
+dXQtPnN1YnBpeGVsX29yZGVyID0gc3VicGl4ZWxfY29udl90YWJsZVtrb3V0cHV0LT5zdWJwaXhl
+bF07Cj4gICAgICAgICBvdXRwdXQtPmRyaXZlcl9wcml2YXRlID0gZHJtbW9kZV9vdXRwdXQ7Cj4K
+PiAtICAgICAgIG91dHB1dC0+cG9zc2libGVfY3J0Y3MgPSBrZW5jb2Rlci0+cG9zc2libGVfY3J0
+Y3M7Cj4gLSAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2Nsb25lcyA9IGtlbmNvZGVyLT5wb3NzaWJs
+ZV9jbG9uZXM7Cj4gKyAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBv
+c3NpYmxlX2NydGNzID4+IGNydGNzaGlmdDsKPiArICAgICAgIG91dHB1dC0+cG9zc2libGVfY2xv
+bmVzID0ga2VuY29kZXItPnBvc3NpYmxlX2Nsb25lcyA+PiBjcnRjc2hpZnQ7Cj4KPiAgICAgICAg
+IG91dHB1dC0+aW50ZXJsYWNlQWxsb3dlZCA9IHRydWU7Cj4gICAgICAgICBvdXRwdXQtPmRvdWJs
+ZVNjYW5BbGxvd2VkID0gdHJ1ZTsKPiBAQCAtMTQyMSw2ICsxNDIxLDcgQEAgQm9vbCBkcm1tb2Rl
+X3ByZV9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBpbnQgZmQsIGludCBjcHApCj4gICAgICAgICBO
+VkVudFB0ciBwTlZFbnQgPSBOVkVudFByaXYocFNjcm4pOwo+ICAgICAgICAgaW50IGk7Cj4gICAg
+ICAgICB1bnNpZ25lZCBpbnQgY3J0Y3NfbmVlZGVkID0gMDsKPiArICAgICAgIGludCBjcnRjc2hp
+ZnQ7Cj4KPiAgICAgICAgIGRybW1vZGUgPSB4bmZhbGxvYyhzaXplb2YgKmRybW1vZGUpOwo+ICAg
+ICAgICAgZHJtbW9kZS0+ZmQgPSBmZDsKPiBAQCAtMTQ0NCw4ICsxNDQ1LDkgQEAgQm9vbCBkcm1t
+b2RlX3ByZV9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBpbnQgZmQsIGludCBjcHApCj4gICAgICAg
+ICB9Cj4KPiAgICAgICAgIHhmODZEcnZNc2cocFNjcm4tPnNjcm5JbmRleCwgWF9JTkZPLCAiSW5p
+dGlhbGl6aW5nIG91dHB1dHMgLi4uXG4iKTsKPiArICAgICAgIGNydGNzaGlmdCA9IGZmcyhwTlZF
+bnQtPmFzc2lnbmVkX2NydGNzIF4gMHhmZmZmZmZmZikgLSAxOwoKTWFyaW8sIGFueSBvYmplY3Rp
+b25zIGlmIEkgdG91Y2ggdGhpcyB1cCBhcwoKfnBOVkVuYy0+YXNzaWduZWRfY3J0Y3M/IFhPUiB3
+aXRoIH4wIGlzIG5vdCBhIHBhdHRlcm4gSSd2ZSBzZWVuIGEgbG90LgoKPiAgICAgICAgIGZvciAo
+aSA9IDA7IGkgPCBkcm1tb2RlLT5tb2RlX3Jlcy0+Y291bnRfY29ubmVjdG9yczsgaSsrKQo+IC0g
+ICAgICAgICAgICAgICBjcnRjc19uZWVkZWQgKz0gZHJtbW9kZV9vdXRwdXRfaW5pdChwU2Nybiwg
+ZHJtbW9kZSwgaSk7Cj4gKyAgICAgICAgICAgICAgIGNydGNzX25lZWRlZCArPSBkcm1tb2RlX291
+dHB1dF9pbml0KHBTY3JuLCBkcm1tb2RlLCBpLCBjcnRjc2hpZnQpOwo+Cj4gICAgICAgICB4Zjg2
+RHJ2TXNnKHBTY3JuLT5zY3JuSW5kZXgsIFhfSU5GTywKPiAgICAgICAgICAgICAgICAgICAgIiVk
+IGNydGNzIG5lZWRlZCBmb3Igc2NyZWVuLlxuIiwgY3J0Y3NfbmVlZGVkKTsKPiAtLQo+IDEuOS4x
+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+IE5v
+dXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRw
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcg
+bGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
