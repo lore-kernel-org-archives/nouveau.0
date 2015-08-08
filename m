@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
- OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Thu, 06 Aug 2015 20:27:15 +0000
-Message-ID: <bug-91570-8800-3IkRNGIwOh@http.bugs.freedesktop.org/>
-References: <bug-91570-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91551] DXTn compressed normal maps produce severe
+ artifacts on all NV5x and NVDx chipsets
+Date: Sat, 08 Aug 2015 13:29:08 +0000
+Message-ID: <bug-91551-8800-W7ZW48gRtr@http.bugs.freedesktop.org/>
+References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1473694833=="
+Content-Type: multipart/mixed; boundary="===============0722253296=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1473694833==
-Content-Type: multipart/alternative; boundary="1438892834.5E2Ac0.29582"; charset="UTF-8"
+--===============0722253296==
+Content-Type: multipart/alternative; boundary="1439040550.4f7B50.28984"; charset="UTF-8"
 
 
---1438892834.5E2Ac0.29582
-Date: Thu, 6 Aug 2015 20:27:14 +0000
+--1439040550.4f7B50.28984
+Date: Sat, 8 Aug 2015 13:29:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91570
+https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #17 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #16)
-> Created attachment 117570 [details] [review]
-> initial patch
-> 
-> This patch should help you get going. Not sure if it's the right thing
-> though.
+--- Comment #7 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi,
 
-Alright, this works. Thank you very much.
+I've uploaded apitrace at the following shared link:
+
+http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z
+
+I can see the heartstone artifacts on my Nvidia GT210, but I'm not able to
+check if the problem is the same
+
+I will test again Freespace2 with Star Wars Original Trilogy mod, when the
+patch for https://bugs.freedesktop.org/show_bug.cgi?id=90887 will be applied to
+mesa git,
+
+and report back. Thanks
+
+Mauro
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1438892834.5E2Ac0.29582
-Date: Thu, 6 Aug 2015 20:27:14 +0000
+--1439040550.4f7B50.28984
+Date: Sat, 8 Aug 2015 13:29:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,22 +69,33 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c17">Comment # 17</a>
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91570#c16">comment #16</a>)
-<span class="quote">&gt; Created <span class=""><a href="attachment.cgi?id=117570" name="attach_117570" title="initial patch">attachment 117570</a> <a href="attachment.cgi?id=117570&amp;action=edit" title="initial patch">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=91570&amp;attachment=117570'>[review]</a> [review]
-&gt; initial patch
-&gt; 
-&gt; This patch should help you get going. Not sure if it's the right thing
-&gt; though.</span >
+        <pre>Hi,
 
-Alright, this works. Thank you very much.</pre>
+I've uploaded apitrace at the following shared link:
+
+<a href="http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z">http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z</a>
+
+I can see the heartstone artifacts on my Nvidia GT210, but I'm not able to
+check if the problem is the same
+
+I will test again Freespace2 with Star Wars Original Trilogy mod, when the
+patch for <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="show_bug.cgi?id=90887">https://bugs.freedesktop.org/show_bug.cgi?id=90887</a> will be applied to
+mesa git,
+
+and report back. Thanks
+
+Mauro</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +108,9 @@ Alright, this works. Thank you very much.</pre>
     </body>
 </html>
 
---1438892834.5E2Ac0.29582--
+--1439040550.4f7B50.28984--
 
---===============1473694833==
+--===============0722253296==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1473694833==--
+--===============0722253296==--
