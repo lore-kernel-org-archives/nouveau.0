@@ -1,123 +1,55 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91551] DXTn compressed normal maps produce severe
- artifacts on all NV5x and NVDx chipsets
-Date: Sat, 08 Aug 2015 13:29:08 +0000
-Message-ID: <bug-91551-8800-W7ZW48gRtr@http.bugs.freedesktop.org/>
-References: <bug-91551-8800@http.bugs.freedesktop.org/>
+From: Hauke Mehrtens <hauke@hauke-m.de>
+Subject: [PATCH 2/2] drm/nouveau: increase max pixel clock to 225 MHZ for HDMI
+Date: Sat,  8 Aug 2015 19:01:15 +0200
+Message-ID: <1439053275-3323-3-git-send-email-hauke@hauke-m.de>
+References: <1439053275-3323-1-git-send-email-hauke@hauke-m.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0722253296=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1439053275-3323-1-git-send-email-hauke@hauke-m.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: Hauke Mehrtens <hauke@hauke-m.de>, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0722253296==
-Content-Type: multipart/alternative; boundary="1439040550.4f7B50.28984"; charset="UTF-8"
-
-
---1439040550.4f7B50.28984
-Date: Sat, 8 Aug 2015 13:29:10 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91551
-
---- Comment #7 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi,
-
-I've uploaded apitrace at the following shared link:
-
-http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z
-
-I can see the heartstone artifacts on my Nvidia GT210, but I'm not able to
-check if the problem is the same
-
-I will test again Freespace2 with Star Wars Original Trilogy mod, when the
-patch for https://bugs.freedesktop.org/show_bug.cgi?id=90887 will be applied to
-mesa git,
-
-and report back. Thanks
-
-Mauro
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1439040550.4f7B50.28984
-Date: Sat, 8 Aug 2015 13:29:10 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
-              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
-</span></b>
-        <pre>Hi,
-
-I've uploaded apitrace at the following shared link:
-
-<a href="http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z">http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z</a>
-
-I can see the heartstone artifacts on my Nvidia GT210, but I'm not able to
-check if the problem is the same
-
-I will test again Freespace2 with Star Wars Original Trilogy mod, when the
-patch for <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="show_bug.cgi?id=90887">https://bugs.freedesktop.org/show_bug.cgi?id=90887</a> will be applied to
-mesa git,
-
-and report back. Thanks
-
-Mauro</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439040550.4f7B50.28984--
-
---===============0722253296==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0722253296==--
+VGhlIE52aWRpYSBibG9iIGFsbG93cyBhIHBpeGVsIGNsb2NrIHVwIHRvIDIyNSBNSHogaW4gdmVy
+c2lvbiAzNDYuNTksCmJ1dCBvbmx5IGFsbG93ZWQgMTY1TUh6IGluIHZlcnNpb24gMjk1IGZvciBI
+RE1JIGNvbm5lY3Rpb25zLiBUaGlzIHdhcwp0ZXN0ZWQgd2l0aCBhIEdGMTE0IChOdmlkaWEgR1RY
+IDU2MCBUSSkgYW5kIGEgSERNSSBtb25pdG9yIHdoaWNoIHVzZWQKMjI1IE1IeiBwaXhlbCBjbG9j
+ayBhbmQgYSBzaWduYWwgbGluayBEVkkgbW9uaXRvciB3aXRoIGEgcGl4ZWwgY2xvY2sgb2YKbGVz
+cyB0aGFuIDE2NSBNSHouIFRoaXMgc2hvdWxkIGFsc28gYmUgdGVzdGVkIHdpdGggc29tZSBvdGhl
+ciBkZXZpY2UsCmJ1dCBJIG9ubHkgaGF2ZSB0aGlzIG9uZSBncmFwaGljcyBjYXJkLgoKVGhlIEhE
+TUkgc3RhbmRhcmQgPD0gMS4yIGFsbG93ZWQgYSBtYXhpbWFsIHBpeGVsIGNsb2NrIG9mIDE2NSBN
+SHogYW5kCnRoZSBIRE1JIHN0YW5kYXJkID49IDEuMyBhbGxvd3MgYSBtYXhpbWFsIHBpeGVsIGNs
+b2NrIG9mIDM0MCBNSHouIE9uZQpEVkkgbGluayBvbmx5IGFsbG93cyBhIG1heGltdW0gY2xvY2sg
+b2YgMTY1IE1Ieiwgc28gdGhpcyBzaG91bGQgb25seSBiZQpjaGFuZ2VkIGZvciBIRE1JLgoKTXkg
+YXNzdW1wdGlvbiBpcyB0aGF0IGFsbCBOdmlkaWEgY2FyZHMgd2l0aCBIRE1JIHN1cHBvcnQgYSBQ
+aXhlbCBjbG9jawpvZiAyMjUgTUh6LCBidXQgSSBoYXZlbid0IHRlc3RlZCB0aGlzCgpTaWduZWQt
+b2ZmLWJ5OiBIYXVrZSBNZWhydGVucyA8aGF1a2VAaGF1a2UtbS5kZT4KLS0tCiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Nvbm5lY3Rvci5jIHwgNiArKysrLS0KIDEgZmlsZSBjaGFu
+Z2VkLCA0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYyBiL2RyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKaW5kZXggMzE2MjA0MC4uOTE5MTU0NWIgMTAwNjQ0
+Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMKKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25uZWN0b3IuYwpAQCAtODE1LDggKzgx
+NSwxMCBAQCBnZXRfdG1kc19saW5rX2JhbmR3aWR0aChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29u
+bmVjdG9yKQogCXN0cnVjdCBub3V2ZWF1X2RybSAqZHJtID0gbm91dmVhdV9kcm0oY29ubmVjdG9y
+LT5kZXYpOwogCXN0cnVjdCBkY2Jfb3V0cHV0ICpkY2IgPSBudl9jb25uZWN0b3ItPmRldGVjdGVk
+X2VuY29kZXItPmRjYjsKIAotCWlmIChkY2ItPmxvY2F0aW9uICE9IERDQl9MT0NfT05fQ0hJUCB8
+fAotCSAgICBkcm0tPmRldmljZS5pbmZvLmNoaXBzZXQgPj0gMHg0NikKKwlpZiAoZHJtX2RldGVj
+dF9oZG1pX21vbml0b3IobnZfY29ubmVjdG9yLT5lZGlkKSkKKwkJcmV0dXJuIDIyNTAwMDsKKwll
+bHNlIGlmIChkY2ItPmxvY2F0aW9uICE9IERDQl9MT0NfT05fQ0hJUCB8fAorCQkgZHJtLT5kZXZp
+Y2UuaW5mby5jaGlwc2V0ID49IDB4NDYpCiAJCXJldHVybiAxNjUwMDA7CiAJZWxzZSBpZiAoZHJt
+LT5kZXZpY2UuaW5mby5jaGlwc2V0ID49IDB4NDApCiAJCXJldHVybiAxNTUwMDA7Ci0tIAoyLjEu
+NAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRl
+dmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
