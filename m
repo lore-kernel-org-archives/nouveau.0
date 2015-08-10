@@ -1,19 +1,10 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: "enable dri3 support without glamor" causes
- gnome-shell regression on nv4x
-Date: Mon, 10 Aug 2015 14:47:22 +0200
-Message-ID: <55C89D5A.9060803@redhat.com>
-References: <55BA23AF.1040308@redhat.com>
- <CAKb7Uvh97tFMq5c=sW4GD7pciFNiriM8TwgZ3KKu5vYiyhfzpQ@mail.gmail.com>
- <55BF665A.4020600@redhat.com>
- <CAKb7UviW5e_1nkxXJ_Rud2SGF8=QUbjyr1aKdSG5h=o=_K7AAw@mail.gmail.com>
- <55BFA569.4080302@redhat.com>
- <CAKb7Uvg5SQvg_T++4mpL2_3EFKO8i4CCfz5MeLxe6P5WKTtPKg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91598] New: Broken Rendering of Plasma 5 Desktop
+Date: Mon, 10 Aug 2015 14:11:05 +0000
+Message-ID: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1185029874=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvg5SQvg_T++4mpL2_3EFKO8i4CCfz5MeLxe6P5WKTtPKg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,175 +14,723 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Maarten Lankhorst <maarten.lankhorst-GeWIH/nMZzLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwMy0wOC0xNSAyMDowOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gTW9uLCBBdWcg
-MywgMjAxNSBhdCAxOjMxIFBNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3
-cm90ZToKPj4gSGksCj4+Cj4+Cj4+IE9uIDAzLTA4LTE1IDE3OjM2LCBJbGlhIE1pcmtpbiB3cm90
-ZToKPj4+Cj4+PiBPbiBNb24sIEF1ZyAzLCAyMDE1IGF0IDk6MDIgQU0sIEhhbnMgZGUgR29lZGUg
-PGhkZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4gSGksCj4+Pj4KPj4+PiBPbiAz
-MC0wNy0xNSAxNjowOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4+Cj4+Pj4+Cj4+Pj4+IEZXSVcg
-dGhpcyBpcyBhIGZhaWwgb24gbnY1MCsgYXMgd2VsbC4gU2VlIGZvciBleGFtcGxlCj4+Pj4+IGh0
-dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTkxNDQ1Cj4+Pj4+Cj4+
-Pj4+IE15IHN1c3BpY2lvbiBpcyB0aGF0IHRoaXMgaXMgZHVlIHRvIHRoZSBsYWNrIG9mIFBVU0hf
-S0lDSyBpbiB0aGUgKkRvbmUKPj4+Pj4gZXhhIGhhbmRsZXJzIC0tIHdvcmtzIGZpbmUgd2l0aCBE
-UkkyLCBidXQgRFJJMyBoYXMgbm8gc3luY2hyb25pemF0aW9uCj4+Pj4+IGFuZCBzbyB0aGUgY29t
-bWFuZHMgbmV2ZXIgZ2V0IGZsdXNoZWQgb3V0LiBFYXNpbHkgdmVyaWZpZWQgYnkgc3RpY2tpbmcK
-Pj4+Pj4gUFVTSF9LSUNLJ3MgZXZlcnl3aGVyZS4KPj4+Pgo+Pj4+Cj4+Pj4KPj4+PiBJIGRvIG5v
-dCBiZWxpZXZlIHRoYXQgdGhhdCBpcyB0aGUgcHJvYmxlbSwgaW4gbXkgY2FzZSBpdCBjbGVhcmx5
-Cj4+Pj4gc2VlbXMgdG8gYmUgYSBwaXRjaCAvIHN3aXp6bGUgcHJvYmxlbSByYXRoZXIgdGhlbiBh
-IHN5bmNocm9uaXphcmlvbgo+Pj4+IHByb2JsZW0sIGhlcmUgaXMgd2hhdCBteSBkZXNrdG9wIHdp
-dGggZ25vbWUgc2hlbGwgbG9va3MgbGlrZSB3aGVuCj4+Pj4gdXNpbmcgRFJJMjoKPj4+Pgo+Pj4+
-IGh0dHBzOi8vZmVkb3JhcGVvcGxlLm9yZy9+andyZGVnb2VkZS9udjQ2LWdub21lLXNoZWxsLWdv
-b2QuanBnCj4+Pj4KPj4+PiBBbmQgdGhpcyBpcyB3aGF0IGl0IGxvb2tzIGxpa2Ugd2hlbiB1c2lu
-ZyBEUkkzOgo+Pj4+Cj4+Pj4gaHR0cHM6Ly9mZWRvcmFwZW9wbGUub3JnL35qd3JkZWdvZWRlL252
-NDYtZ25vbWUtc2hlbGwtYmFkLmpwZwo+Pj4+Cj4+Pj4gVGhlIERSSTIgc2NyZWVuc2hvdCBpcyBt
-YWRlIHdpdGggTWFyaW8ncyAyIHBhdGNoZXMgb24gdG9wIG9mCj4+Pj4gY3VycmVudCBtYXN0ZXI6
-Cj4+Pj4KPj4+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL25vdXZlYXUv
-MjAxNS1KdWx5LzAyMTc0MC5odG1sCj4+Pj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9h
-cmNoaXZlcy9ub3V2ZWF1LzIwMTUtSnVseS8wMjE3NDEuaHRtbAo+Pj4+Cj4+Pj4gQW5kIHRoZW4g
-YWRkaW5nIE9wdGlvbiAiRFJJIiAiMiIgdG8geG9yZy5jb25mLgo+Pj4KPj4+Cj4+PiBIaXMgcGF0
-Y2hlcyBzaG91bGQgaGF2ZSBkZWZhdWx0ZWQgaXQgdG8gRFJJIDIgSSB0aGluaywgc28gdGhpcyBp
-cwo+Pj4gdW5uZWNlc3NhcnkuIEluIGZhY3QgeW91IHNob3VsZCBoYXZlIGhhZCB0byBzYXkgIkRS
-SSIgIjMiIHRvIGdldCBEUkkzCj4+PiB3aXRoIGhpcyBwYXRjaGVzLgo+Pj4gICAgLS0KPj4+Pgo+
-Pj4+Cj4+Pj4gSSd2ZSBhbHNvIHRyaWVkIGRpc2FibGluZyBFWEEgdXNpbmcgT3B0aW9uICJBY2Nl
-bE1ldGhvZCIgIm5vbmUiLAo+Pj4+IGJ1dCB0aGF0IHNlZW1zIHRvIGFsc28gYXV0b21hdGljYWxs
-eSBkaXNhYmxlIGFsbCBEUkksIGxlYWRpbmcgdG8KPj4+PiBzb2Z0d2FyZSByZW5kZXJpbmcuCj4+
-Pj4KPj4+PiBJIGRpc2N1c3NlZCB0aGlzIHdpdGggQmVuIHRoaXMgbW9ybmluZyBhbmQgaGUgc3Vn
-Z2VzdGVkIHRoYXQgdGhpcwo+Pj4+IGlzIGxpa2VseSBhIE1lc2EgaXNzdWUgc2luY2Ugd2l0aCBE
-UkkzIG1lc2EgcmF0aGVyIHRoZW4gdGhlIGRkeAo+Pj4+IGFsbG9jcyB0aGUgc3VyZmFjZXMuIEkn
-dmUgdHJpZWQgZGlzYWJsaW5nIHN3aXp6bGluZyBpbiB0aGUKPj4+PiBtZXNhIGNvZGUgYnkgZm9y
-Y2luZyBudjMwX21pcHRyZWVfY3JlYXRlKCkgdG8gYWx3YXlzIHRha2UKPj4+PiB0aGUgY29kZSBw
-YXRoIGZvciBsaW5lYXIgdGV4dHVyZXMsIGJ1dCB0aGF0IGxlYWRzIHRvIHRoZSBleGFjdAo+Pj4+
-IHNhbWUgcmVzdWx0IGFzIGJlZm9yZSB0aGF0IGNoYW5nZS4KPj4+Cj4+Pgo+Pj4gQWggeWVzLiBW
-ZXJ5IGRpZmZlcmVudCBwcm9ibGVtIGluZGVlZC4gSSBhY3R1YWxseSBzdXNwZWN0IGl0IGhhcyB0
-byBkbwo+Pj4gd2l0aCBzd2l6emxpbmcuIExvb2sgYXQgdGhlIHdoaXRlIHBhdHRlcm4gb2YgdGhl
-IG1vb24gLS0gaXQncyBhbGwgaW4gYQo+Pj4gbGluZS4gVGhhdCBtZWFucyB0aGF0IGl0IGV4cGVj
-dGVkIHNvbWUgbG9jYWxpdHkgYW5kIGluc3RlYWQgaXQgZ290Cj4+PiBkcmF3biBhbGwgb24gYSBs
-aW5lLiBJZiBpdCB3ZXJlIG1lcmVseSBhIHN0cmlkZSBwcm9ibGVtLCBJJ2QgZXhwZWN0IHRvCj4+
-PiBzZWUgc3RyaXBzIG9mIHRoZSBtb29uIGJlbG93IGFuZCBvZmZzZXQgZnJvbSBvbmUgYW5vdGhl
-ci4KPj4+Cj4+PiBTby4uLiB0YWtlIGEgbG9vayBhdCBudjMwX21pcHRyZWVfZnJvbV9oYW5kbGUg
-LS0gSSB3b25kZXIgaWYgaXQgY2FuCj4+PiBub3cgcmVjZWl2ZSBzd2l6emxlZCB0ZXh0dXJlcyB3
-aGVyZSBpdCBjb3VsZG4ndCBiZWZvcmUuCj4+Cj4+Cj4+IE9rLCB0aGF0IGRvZXMgZ28gaW4gdGhl
-IGRpcmVjdGlvbiBJIGFtIGV4cGVjdGluZyB0aGUgcHJvYmxlbSB0byBiZSwKPj4gYnV0IEknbSBh
-ZnJhaWQgSSdtIGdvaW5nIHRvIG5lZWQgYSBiaXQgbW9yZSBndWlkYW5jZSwgd2hhdCBleGFjdGx5
-Cj4+IGFtIEkgbG9va2luZyBmb3IgaW4gdGhhdCBmdW5jdGlvbiAvIHdoaWNoICJrbm9icyIgc2hv
-dWxkIEkgdHJ5IHRvCj4+IHZhcnkgLyBwbGF5IHdpdGggdG8gbWF5YmUgZml4IHRoaXMgPwo+Cj4g
-VW5mb3J0dW5hdGVseSB0aGlzIGlzIHBsYXlpbmcgbmVhciAob3IgcGFzdCkgdGhlIGxpbWl0cyBv
-ZiBteQo+IGtub3dsZWRnZSBhcyB3ZWxsLiBNeSB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgRFJJMyBw
-YXNzZXMgcGl4bWFwcyBhcm91bmQKPiB3aXRoIGRtYS1idWYsIGFrYSAiYm9fZnJvbV9oYW5kbGUi
-LiBEUkkyIHVzZXMgc29tZSBvdGhlciBtZWNoYW5pc20KPiB3aGljaCBpcyBub3QgdGhhdCAoSSB0
-aGluayBpdCBqdXN0IGNvcGllcyBzdHVmZiBhcm91bmQpLgo+Cj4gTm93IG9uIG52NTArLCBibydz
-IGhhdmUgInRpbGUgZmxhZ3MiIChhbmQgbWVtdHlwZSBhbmQgcHJvYmFibHkgb3RoZXIKPiBhbm5v
-eWFuY2VzKS4gVGhlIHRpbGUgZmxhZ3MgaW5kaWNhdGUgdGhlIHNwZWNpZmljIHRpbGluZyBtZWNo
-YW5pc20KPiB1c2VkIG9uIHRoYXQgYm8gKGkuZS4gZG8geW91IGRvIDMyeDMyIHRpbGVzPyAzMng2
-ND8gZXRjKS4gVGFrZSBhIGxvb2sKPiBhdCB0aGUgbm91dmVhdV9ib19uZXcoKSBjYWxsIGluIG52
-NTBfbWlwdHJlZS5jIC0tIG5vdGUgaG93IGl0IHRha2VzIGEKPiAiYm8gY29uZmlnIiBhcmd1bWVu
-dC4gVGhpcyBibyBjb25maWcgY2FuIHRoZW4gbGF0ZXIgYmUgcmV0cmlldmVkIHVzaW5nCj4gc29t
-ZSBvdGhlciBzeXNjYWxsLgo+Cj4gSG93ZXZlciBvbiBudjMwIHRoZXJlIGFwcGVhcnMgdG8gbm90
-IGJlIGFueSBzdWNoIHRoaW5nLiBUaGUKPiBub3V2ZWF1X2JvX25ldyBjYWxsIGp1c3QgcGFzc2Vz
-IGluIE5VTEwgZm9yIGNyZWF0aW5nIHRoZSBibywgd2hpY2gKPiBtZWFucyB0aGF0IHRoZXJlJ3Mg
-bm8gd2F5IHRvIHJlY292ZXIgdGhlICJhcmUgeW91IHN3aXp6bGVkIgo+IGluZm9ybWF0aW9uIGFm
-dGVyLXRoZS1mYWN0Lgo+Cj4gUHJlc3VtYWJseSB5b3Ugc2hvdWxkIGNyZWF0ZSBhICJudjA0IiBi
-byBjb25maWcgc2VjdGlvbiBpbiB0aGUgdW5pb24sCgpUaGF0IGFscmVhZHkgZXhpc3RzLCBhbmQg
-aW5kZWVkIGdldHMgc2V0IGJ5IHRoZSBub3V2ZWF1X2FsbG9jYXRlX3N1cmZhY2UKZnVuY3Rpb24g
-ZnJvbSBzcmMvbnZfYWNjZWxfY29tbW9uLmMgZnJvbSB0aGUgZGR4LAoKPiBhbmQganVzdCBwYXNz
-IHRoZSBzaW5nbGUgInN3aXp6bGVkIiBiaXQgdGhyb3VnaC4gSSdtIG5vdCBzdXJlIHdoYXQsIGlm
-Cj4gYW55dGhpbmcsIGlzIHJlcXVpcmVkIG9uIHRoZSBrZXJuZWwgc2lkZSBmb3IgdGhhdC4gSSBk
-b24ndCB0aGluawo+IHRoZXJlJ3MgYW55IG9wdGlvbmFsaXR5IGluIGhvdyB0aGUgc3dpenpsaW5n
-IGlzIGRvbmUgZm9yIHByZS1udjUwLgo+Cj4gTm90ZSB0aGF0IGluIHRoZSBudjMwX21pcHRyZWUg
-bG9naWMsIG10LT5zd2l6emxlZCBpbXBsaWVzIHRoYXQKPiBtdC0+dW5pZm9ybV9waXRjaCA9IDAs
-IGJ1dCB0aGUgbGV2ZWwgcGl0Y2ggaXMgc2V0ICJwcm9wZXJseSIgKGFnYWluLAo+IHNlZSBudjMw
-X21pcHRyZWVfY3JlYXRlKS4KPgo+IEhvcGUgdGhpcyBzaGVkcyBzb21lIGxpZ2h0IGFuZCBkb2Vz
-bid0IGNhdXNlIHlvdSB0byBnbyBpbiB0aGUgd3JvbmcKPiBkaXJlY3Rpb24gLS0gcGxlYXNlIHRh
-a2UgZXZlcnl0aGluZyBJIHNheSB3aXRoIGEgZ3JhaW4gb2Ygc2FsdCAtLSBJJ20KPiBvZnRlbiBh
-IGJpdCBvZmYgb24gc29tZSBvZiB0aGUgZGV0YWlscy4KClRoYW5rcyB0aGlzIHdhcyBoZWxwZnVs
-LCBJIGRvIGZlZWwgd2UgYXJlIGdldHRpbmcgc29tZXdoZXJlLCBidXQgSSBkbwpuZWVkIGEgYml0
-IG1vcmUgaGVscC4KCkkndmUgYWRkZWQgc29tZSBkZWJ1ZyBwcmludGYncyB0byBudjMwX21pcHRy
-ZWUuYywgbnYzMF9taXB0cmVlX2NyZWF0ZQphbmQgbnYzMF9taXB0cmVlX2Zyb21faGFuZGxlLCB3
-aGVyZSB0aGUgbGF0dGVyIGlzIG9ubHkgdXNlZCB3aGVuIHVzaW5nCmRyaTIgKGUuZy4gaW4gdGhl
-IHdvcmtpbmcgY2FzZSkuCgpEb2luZyBhIGRpZmYgYmV0d2VlbiBhIGxvZyBvZiBzdGFydGluZyBn
-bm9tZS1zaGVsbCB3aXRoIGRyaSB2cyBkcmkzCnJlc3VsdHMgaW4gdGhpczoKCi0tLSBtZXNhLmxv
-Zy5kcmkyICAgICAgIDIwMTUtMDgtMTAgMTQ6MTg6MDMuMTgyNzEyMDIyICswMjAwCisrKyBtZXNh
-LmxvZy5kcmkzICAgICAgIDIwMTUtMDgtMTAgMTQ6MTg6MzMuMjMzMzM2MzM4ICswMjAwCkBAIC0x
-LDggKzEsOCBAQAogIG52MzBfbWlwdHJlZV9jcmVhdGUgNTEyeDMyIHVuaWZvcm1fcGl0Y2ggMCB1
-c2FnZSAwIGZsYWdzIDAKLW52MzBfbWlwdHJlZV9mcm9tX2hhbmRsZSAxeDEgdW5pZm9ybV9waXRj
-aCAxMDI0IHVzYWdlIDAgZmxhZ3MgMAorbnYzMF9taXB0cmVlX2NyZWF0ZSAxeDEgdW5pZm9ybV9w
-aXRjaCAwIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMXgxIHVuaWZvcm1f
-cGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDUxMngzMiB1bmlm
-b3JtX3BpdGNoIDAgdXNhZ2UgMCBmbGFncyAwCi1udjMwX21pcHRyZWVfZnJvbV9oYW5kbGUgMXgx
-IHVuaWZvcm1fcGl0Y2ggMTAyNCB1c2FnZSAwIGZsYWdzIDAKK252MzBfbWlwdHJlZV9jcmVhdGUg
-MXgxIHVuaWZvcm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRl
-IDF4MSB1bmlmb3JtX3BpdGNoIDAgdXNhZ2UgMCBmbGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0
-ZSAxeDEgdW5pZm9ybV9waXRjaCAwIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVh
-dGUgMXgxIHVuaWZvcm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKQEAgLTEyLDYgKzEyLDcgQEAK
-ICBudjMwX21pcHRyZWVfY3JlYXRlIDI1NngyNTYgdW5pZm9ybV9waXRjaCAwIHVzYWdlIDAgZmxh
-Z3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgNTEyeDUxMiB1bmlmb3JtX3BpdGNoIDAgdXNhZ2Ug
-MCBmbGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSA0OHg0OCB1bmlmb3JtX3BpdGNoIDE5MiB1
-c2FnZSAwIGZsYWdzIDAKK252MzBfbWlwdHJlZV9jcmVhdGUgMTZ4MTYgdW5pZm9ybV9waXRjaCAw
-IHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMjR4MjQgdW5pZm9ybV9waXRj
-aCAxMjggdXNhZ2UgMCBmbGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSAyNHgyNCB1bmlmb3Jt
-X3BpdGNoIDEyOCB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDI0eDI0IHVu
-aWZvcm1fcGl0Y2ggMTI4IHVzYWdlIDAgZmxhZ3MgMApAQCAtMjAsMjkgKzIxLDI0IEBACiAgbnYz
-MF9taXB0cmVlX2NyZWF0ZSAyNHgyNCB1bmlmb3JtX3BpdGNoIDEyOCB1c2FnZSAwIGZsYWdzIDAK
-ICBudjMwX21pcHRyZWVfY3JlYXRlIDI0eDI0IHVuaWZvcm1fcGl0Y2ggMTI4IHVzYWdlIDAgZmxh
-Z3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMjR4MjQgdW5pZm9ybV9waXRjaCAxMjggdXNhZ2Ug
-MCBmbGFncyAwCi1udjMwX21pcHRyZWVfY3JlYXRlIDE2eDE2IHVuaWZvcm1fcGl0Y2ggMCB1c2Fn
-ZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDI0eDI0IHVuaWZvcm1fcGl0Y2ggMTI4
-IHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMTZ4MTYgdW5pZm9ybV9waXRj
-aCAwIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMTkyMHgxMjAwIHVuaWZv
-cm1fcGl0Y2ggNzY4MCB1c2FnZSAwIGZsYWdzIDAKK252MzBfbWlwdHJlZV9jcmVhdGUgMjR4MjQg
-dW5pZm9ybV9waXRjaCAxMjggdXNhZ2UgMCBmbGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSA0
-OHg0OCB1bmlmb3JtX3BpdGNoIDE5MiB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3Jl
-YXRlIDE2eDE2IHVuaWZvcm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKLW52MzBfbWlwdHJlZV9j
-cmVhdGUgMjR4MjQgdW5pZm9ybV9waXRjaCAxMjggdXNhZ2UgMCBmbGFncyAwCi1udjMwX21pcHRy
-ZWVfY3JlYXRlIDE4eDE4IHVuaWZvcm1fcGl0Y2ggNjQgdXNhZ2UgMCBmbGFncyAwCi1udjMwX21p
-cHRyZWVfZnJvbV9oYW5kbGUgMTkyMHgxMDgwIHVuaWZvcm1fcGl0Y2ggODE5MiB1c2FnZSAwIGZs
-YWdzIDAKK252MzBfbWlwdHJlZV9jcmVhdGUgMTkyMHgxMDgwIHVuaWZvcm1fcGl0Y2ggNzY4MCB1
-c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDE5MjB4MTA4MCB1bmlmb3JtX3Bp
-dGNoIDc2ODAgdXNhZ2UgMCBmbGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSAyNTZ4MjU2IHVu
-aWZvcm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDI1Nngy
-NTYgdW5pZm9ybV9waXRjaCAwIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUg
-MXgxIHVuaWZvcm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKLW52MzBfbWlwdHJlZV9mcm9tX2hh
-bmRsZSAxOTIweDEwODAgdW5pZm9ybV9waXRjaCA4MTkyIHVzYWdlIDAgZmxhZ3MgMAorbnYzMF9t
-aXB0cmVlX2NyZWF0ZSAxOHgxOCB1bmlmb3JtX3BpdGNoIDY0IHVzYWdlIDAgZmxhZ3MgMAorbnYz
-MF9taXB0cmVlX2NyZWF0ZSAxOTIweDEwODAgdW5pZm9ybV9waXRjaCA3NjgwIHVzYWdlIDAgZmxh
-Z3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgNDh4NDggdW5pZm9ybV9waXRjaCAxOTIgdXNhZ2Ug
-MCBmbGFncyAwCi1udjMwX21pcHRyZWVfZnJvbV9oYW5kbGUgMTkyMHgxMDgwIHVuaWZvcm1fcGl0
-Y2ggODE5MiB1c2FnZSAwIGZsYWdzIDAKICBudjMwX21pcHRyZWVfY3JlYXRlIDE2eDE2IHVuaWZv
-cm1fcGl0Y2ggMCB1c2FnZSAwIGZsYWdzIDAKLW52MzBfbWlwdHJlZV9mcm9tX2hhbmRsZSAxOTIw
-eDEwODAgdW5pZm9ybV9waXRjaCA4MTkyIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9j
-cmVhdGUgMTkyMHgxMDgwIHVuaWZvcm1fcGl0Y2ggNzY4MCB1c2FnZSAwIGZsYWdzIDAKICBudjMw
-X21pcHRyZWVfY3JlYXRlIDE5MjB4MTA4MCB1bmlmb3JtX3BpdGNoIDc2ODAgdXNhZ2UgMCBmbGFn
-cyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSAxeDEgdW5pZm9ybV9waXRjaCAwIHVzYWdlIDAgZmxh
-Z3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgNng4IHVuaWZvcm1fcGl0Y2ggNjQgdXNhZ2UgMCBm
-bGFncyAwCiAgbnYzMF9taXB0cmVlX2NyZWF0ZSA2eDggdW5pZm9ybV9waXRjaCA2NCB1c2FnZSAw
-IGZsYWdzIDAKLW52MzBfbWlwdHJlZV9mcm9tX2hhbmRsZSAxOTIweDEwODAgdW5pZm9ybV9waXRj
-aCA4MTkyIHVzYWdlIDAgZmxhZ3MgMAogIG52MzBfbWlwdHJlZV9jcmVhdGUgMjR4MjQgdW5pZm9y
-bV9waXRjaCAxMjggdXNhZ2UgMCBmbGFncyAwCi1udjMwX21pcHRyZWVfZnJvbV9oYW5kbGUgMTky
-MHgxMDgwIHVuaWZvcm1fcGl0Y2ggODE5MiB1c2FnZSAwIGZsYWdzIDAKCkkndmUgYWxzbyBhZGRl
-ZCBsb2dnaW5nIG9mIHRoZSBzdXJmYWNlIGNyZWF0aW9uIGluIHRoZSBkZHgsIGhlcmUKaXMgb25l
-IHN1Y2ggbG9nIGxpbmU6CgogIFN1cmZhY2UgYWxsb2MgMTkyMHgxMDgwQDMyIHBpdGNoIDgxOTIs
-IGNmZy5udjA0LnN1cmZfcGl0Y2ggODE5MiAuc3VyZl9mbGFncyAyCgpXaGF0IHN0YW5kcyBvdXQg
-dG8gbWUgaXM6CgoxKSBJbiB0aGUgZHJpMyBjYXNlIHRoZXJlIGFyZSBubyBudjMwX21pcHRyZWVf
-ZnJvbV9oYW5kbGUgY2FsbHMsIHRoZXNlIGFyZQogIHJlcGxhY2VkIGJ5IG52MzBfbWlwdHJlZV9j
-cmVhdGUgY2FsbHMKCjIpIFRoZXNlIHJlcGxhY2VtZW50IGNhbGxzIHVzZSBhIGRpZmZlcmVudCBw
-aXRjaCBmb3IgdGhlIDE5MjB4Li4uIHN1cmZhY2VzLAo4MTkyIHZzIDc2ODAKCjMpIFRoZSBzdXJm
-YWNlIGNyZWF0aW9uIGluIHRoZSBkZHggcGFzc2VzIGluIGNmZy5udjA0LnN1cmZfLi4uIHdoZW4g
-Y2FsbGluZwpub3V2ZWF1X2JvX25ldywgd2hlcmUgYXMgbnYzMF9taXB0cmVlX2NyZWF0ZSBwYXNz
-ZXMgaW4gTlVMTAoKNCkgbnYzMF9taXB0cmVlX2Zyb21faGFuZGxlIGFsd2F5cyBzZXRzIHVuaWZv
-cm1fcGl0Y2ggaW4gdGhlIG52MzBfbWlwdHJlZSwgaW93Cml0IGFsd2F5cyBhc3N1bWVzIG5vbi1z
-d2l6emxlZCA/CgpUaGUgdGhpbmcgSSB3b3VsZCBsaWtlIHRvIGludmVzdGlnYXRlIGZpcnN0IGlz
-IDIpLCBpdCBzZWVtcyB0byBtZSB0aGF0Cm52MzBfbWlwdHJlZV9jcmVhdGUgc2hvdWxkIG5vdCBi
-ZSBkb2luZyBwaXRjaCBhbGlnbm1lbnQgaXRzZWxmLCBzbyBpZiB3ZQp3YW50IHRvIGhhdmUgdGhl
-IHNhbWUgcGl0Y2ggZm9yIHRoZXNlIHN1cmZhY2VzIGFzIGluIHRoZSBkcmkyIGNhc2UsIHdlCm5l
-ZWQgdG8gZml4IHRoaXMgaW4gdGhlIGNhbGxlci4gV2hpY2ggbGVhZHMgdG8gdGhlIHF1ZXN0aW9u
-IHdoZXJlIGlzCnRoaXMgY29kZSBiZWluZyBjYWxsZWQgZnJvbSBpbiB0aGUgZHJpMyBjYXNlLiBB
-bmQgdGhpcyBpcyB3aGVyZSBJJ20Kc3R1Y2sgYW5kIGNvdWxkIHVzZSB5b3VyIG9yIEJlbmphbWlu
-J3MgaW5wdXQuIFNvIGRvIHlvdSBrbm93IHdoZXJlIHRoZQpjYWxsZXIgaXMgYW5kL29yIGhvdyB0
-byBmaWd1cmUgb3V0IHdoZXJlIHRoZSBjYWxsZXIgaXM/CgpSZWdhcmRzLAoKSGFucwoKCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
-bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1185029874==
+Content-Type: multipart/alternative; boundary="1439215865.B4FEff1.905"; charset="UTF-8"
+
+
+--1439215865.B4FEff1.905
+Date: Mon, 10 Aug 2015 14:11:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91598
+
+            Bug ID: 91598
+           Summary: Broken Rendering of Plasma 5 Desktop
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: cordlandwehr-RoXCvvDuEio@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+After starting my KDE Plasma 5 session everything is rendered find. Yet
+(always) after some minutes the rendering of window decorations, task bar, and
+popup menus starts to break, resulting after more and more increasing rendering
+problems in an unusable desktop. When this happens, I get the following output
+from dmesg:
+
+[174123.172309] nouveau E[plasmashell[14050]] fail set_domain
+[174123.172314] nouveau E[plasmashell[14050]] validating bo list
+[174123.172323] nouveau E[plasmashell[14050]] validate: -22
+[174123.223066] nouveau E[plasmashell[14050]] fail set_domain
+[174123.223070] nouveau E[plasmashell[14050]] validating bo list
+[174123.223073] nouveau E[plasmashell[14050]] validate: -22
+[174123.470096] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174123.494669] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174123.533285] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174698.707920] nouveau E[plasmashell[14050]] fail set_domain
+[174698.707925] nouveau E[plasmashell[14050]] validating bo list
+[174698.707930] nouveau E[plasmashell[14050]] validate: -22
+[174698.741993] nouveau E[plasmashell[14050]] fail set_domain
+[174698.741997] nouveau E[plasmashell[14050]] validating bo list
+[174698.742000] nouveau E[plasmashell[14050]] validate: -22
+[174886.478007] nouveau E[plasmashell[14050]] fail set_domain
+[174886.478013] nouveau E[plasmashell[14050]] validating bo list
+[174886.478017] nouveau E[plasmashell[14050]] validate: -22
+[174886.539196] nouveau E[plasmashell[14050]] fail set_domain
+[174886.539201] nouveau E[plasmashell[14050]] validating bo list
+[174886.539204] nouveau E[plasmashell[14050]] validate: -22
+[175871.854466] nouveau E[plasmashell[14050]] fail set_domain
+[175871.854471] nouveau E[plasmashell[14050]] validating bo list
+[175871.854474] nouveau E[plasmashell[14050]] validate: -22
+[175871.861983] nouveau E[plasmashell[14050]] fail set_domain
+[175871.861986] nouveau E[plasmashell[14050]] validating bo list
+[175871.861989] nouveau E[plasmashell[14050]] validate: -22
+[176051.392480] nouveau E[plasmashell[14050]] fail set_domain
+[176051.392485] nouveau E[plasmashell[14050]] validating bo list
+[176051.392489] nouveau E[plasmashell[14050]] validate: -22
+[176051.401093] nouveau E[plasmashell[14050]] fail set_domain
+[176051.401097] nouveau E[plasmashell[14050]] validating bo list
+[176051.401101] nouveau E[plasmashell[14050]] validate: -22
+[176501.393171] Bluetooth: hci0 SCO packet for unknown connection handle 65
+[178171.569952] nouveau E[plasmashell[14050]] fail set_domain
+[178171.569957] nouveau E[plasmashell[14050]] validating bo list
+[178171.569966] nouveau E[plasmashell[14050]] validate: -22
+[178171.609919] nouveau E[plasmashell[14050]] fail set_domain
+[178171.609923] nouveau E[plasmashell[14050]] validating bo list
+[178171.609927] nouveau E[plasmashell[14050]] validate: -22
+[178175.258415] nouveau E[plasmashell[14050]] fail set_domain
+[178175.258420] nouveau E[plasmashell[14050]] validating bo list
+[178175.258426] nouveau E[plasmashell[14050]] validate: -22
+[178175.291774] nouveau E[plasmashell[14050]] fail set_domain
+[178175.291779] nouveau E[plasmashell[14050]] validating bo list
+[178175.291783] nouveau E[plasmashell[14050]] validate: -22
+[178175.334549] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.364627] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.381225] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.398852] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.417469] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.435567] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.446271] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.464304] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.479161] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.497165] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.510454] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.525236] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.542153] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.560279] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.578040] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.595687] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.614809] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.623654] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.649339] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.667052] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.684679] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.702680] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.721299] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.727035] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.757182] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.773778] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.791302] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.808715] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.826256] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.843415] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.861655] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.879201] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.890960] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.915536] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.933341] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.950958] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.968921] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.986589] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.004259] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.021866] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.039519] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.057690] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.074873] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.091910] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.109110] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.126573] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.144338] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.162028] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.179986] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.198234] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.215892] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.234212] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.251848] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.269469] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.287200] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.305140] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.322810] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.340830] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.342202] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.358525] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.376099] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.393390] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.411557] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.429376] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.510516] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.552477] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.570241] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.587937] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.605304] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.623239] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.640743] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.659310] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.676174] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.694362] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.711778] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.729810] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.748654] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.766682] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b200
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.776887] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.802184] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.115408] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.129659] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.145847] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.163532] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.182036] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.200775] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.220932] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.232131] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.345929] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.348630] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.948501] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178178.951166] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+
+I am using an up-to-date Debian Testing system with:
+libdrm-nouveau2: version 2.4.62-1
+xserver-xorg-video-nouveau: version 1:1.0.11-1+b1
+
+Please tell me which further information are required.
+
+Cheers,
+Andreas
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439215865.B4FEff1.905
+Date: Mon, 10 Aug 2015 14:11:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">91598</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Broken Rendering of Plasma 5 Desktop
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>cordlandwehr&#64;kde.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>After starting my KDE Plasma 5 session everything is rendered find. Yet
+(always) after some minutes the rendering of window decorations, task bar, and
+popup menus starts to break, resulting after more and more increasing rendering
+problems in an unusable desktop. When this happens, I get the following output
+from dmesg:
+
+[174123.172309] nouveau E[plasmashell[14050]] fail set_domain
+[174123.172314] nouveau E[plasmashell[14050]] validating bo list
+[174123.172323] nouveau E[plasmashell[14050]] validate: -22
+[174123.223066] nouveau E[plasmashell[14050]] fail set_domain
+[174123.223070] nouveau E[plasmashell[14050]] validating bo list
+[174123.223073] nouveau E[plasmashell[14050]] validate: -22
+[174123.470096] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174123.494669] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174123.533285] nouveau E[     PFB][0000:02:00.0] trapped read at 0x3d00718400
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PT_NOT_PRESENT
+[174698.707920] nouveau E[plasmashell[14050]] fail set_domain
+[174698.707925] nouveau E[plasmashell[14050]] validating bo list
+[174698.707930] nouveau E[plasmashell[14050]] validate: -22
+[174698.741993] nouveau E[plasmashell[14050]] fail set_domain
+[174698.741997] nouveau E[plasmashell[14050]] validating bo list
+[174698.742000] nouveau E[plasmashell[14050]] validate: -22
+[174886.478007] nouveau E[plasmashell[14050]] fail set_domain
+[174886.478013] nouveau E[plasmashell[14050]] validating bo list
+[174886.478017] nouveau E[plasmashell[14050]] validate: -22
+[174886.539196] nouveau E[plasmashell[14050]] fail set_domain
+[174886.539201] nouveau E[plasmashell[14050]] validating bo list
+[174886.539204] nouveau E[plasmashell[14050]] validate: -22
+[175871.854466] nouveau E[plasmashell[14050]] fail set_domain
+[175871.854471] nouveau E[plasmashell[14050]] validating bo list
+[175871.854474] nouveau E[plasmashell[14050]] validate: -22
+[175871.861983] nouveau E[plasmashell[14050]] fail set_domain
+[175871.861986] nouveau E[plasmashell[14050]] validating bo list
+[175871.861989] nouveau E[plasmashell[14050]] validate: -22
+[176051.392480] nouveau E[plasmashell[14050]] fail set_domain
+[176051.392485] nouveau E[plasmashell[14050]] validating bo list
+[176051.392489] nouveau E[plasmashell[14050]] validate: -22
+[176051.401093] nouveau E[plasmashell[14050]] fail set_domain
+[176051.401097] nouveau E[plasmashell[14050]] validating bo list
+[176051.401101] nouveau E[plasmashell[14050]] validate: -22
+[176501.393171] Bluetooth: hci0 SCO packet for unknown connection handle 65
+[178171.569952] nouveau E[plasmashell[14050]] fail set_domain
+[178171.569957] nouveau E[plasmashell[14050]] validating bo list
+[178171.569966] nouveau E[plasmashell[14050]] validate: -22
+[178171.609919] nouveau E[plasmashell[14050]] fail set_domain
+[178171.609923] nouveau E[plasmashell[14050]] validating bo list
+[178171.609927] nouveau E[plasmashell[14050]] validate: -22
+[178175.258415] nouveau E[plasmashell[14050]] fail set_domain
+[178175.258420] nouveau E[plasmashell[14050]] validating bo list
+[178175.258426] nouveau E[plasmashell[14050]] validate: -22
+[178175.291774] nouveau E[plasmashell[14050]] fail set_domain
+[178175.291779] nouveau E[plasmashell[14050]] validating bo list
+[178175.291783] nouveau E[plasmashell[14050]] validate: -22
+[178175.334549] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.364627] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.381225] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.398852] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.417469] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.435567] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.446271] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.464304] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.479161] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.497165] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.510454] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.525236] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.542153] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.560279] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.578040] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.595687] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.614809] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000f64f [kwin_x11[14044]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.623654] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.649339] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.667052] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.684679] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.702680] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.721299] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.727035] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.757182] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.773778] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.791302] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.808715] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.826256] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.843415] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.861655] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.879201] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.890960] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178175.915536] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.933341] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.950958] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.968921] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178175.986589] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.004259] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.021866] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.039519] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.057690] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.074873] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.091910] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.109110] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.126573] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.144338] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.162028] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.179986] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.198234] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.215892] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.234212] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.251848] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.269469] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.287200] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.305140] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.322810] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.340830] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.342202] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.358525] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.376099] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.393390] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.411557] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.429376] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.510516] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.552477] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.570241] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.587937] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.605304] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.623239] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.640743] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.659310] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b100
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.676174] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.694362] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.711778] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.729810] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178176.748654] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.766682] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b200
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.776887] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178176.802184] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.115408] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.129659] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.145847] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.163532] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.182036] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178177.200775] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.220932] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.232131] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.345929] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.348630] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000f4d2 [plasmashell[14050]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[178177.948501] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+[178178.951166] nouveau E[     PFB][0000:02:00.0] trapped read at 0x002037b000
+on channel 0x0000fb33 [Xorg[13899]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+
+I am using an up-to-date Debian Testing system with:
+libdrm-nouveau2: version 2.4.62-1
+xserver-xorg-video-nouveau: version 1:1.0.11-1+b1
+
+Please tell me which further information are required.
+
+Cheers,
+Andreas</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439215865.B4FEff1.905--
+
+--===============1185029874==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1185029874==--
