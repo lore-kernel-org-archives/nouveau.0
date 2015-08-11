@@ -1,19 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Odd text behavior on Websites and others
-Date: Tue, 11 Aug 2015 18:11:12 -0400
-Message-ID: <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
-References: <1439281240.4493.2.camel@gmail.com>
- <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
- <1439304438.6366.4.camel@gmail.com>
- <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
- <1439307504.6366.6.camel@gmail.com>
- <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
- <1439330630.10427.0.camel@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
+Date: Tue, 11 Aug 2015 23:40:39 +0000
+Message-ID: <bug-91598-8800-M447O3FIhD@http.bugs.freedesktop.org/>
+References: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1807545936=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1439330630.10427.0.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,72 +16,186 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Rudolf_K=C3=BCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QWRkIGEgZmlsZSB0byAvZXRjL1gxMS94b3JnLmNvbmYuZCwgbmFtZWQgYW55dGhpbmcteW91LXdh
-bnQuY29uZiwgd2hpY2ggY29udGFpbnMKClNlY3Rpb24gIkRldmljZSIKICBEcml2ZXIgIm1vZGVz
-ZXR0aW5nIgpFbmRTZWN0aW9uCgpIb3BlZnVsbHkgdGhhdCBzaG91bGQgZG8gaXQuCgpPbiBUdWUs
-IEF1ZyAxMSwgMjAxNSBhdCA2OjAzIFBNLCBSdWRvbGYgS8O8bnpsaSA8cnVkb2xmLmt1bnpsaUBn
-bWFpbC5jb20+IHdyb3RlOgo+IEkgZG9uJ3QgaGF2ZSBhIGZpbGUgL2V0Yy9YMTEveG9yZy5jb25m
-IGJ1dCBhIGZvbGRlcgo+IC9ldGMvWDExL3hvcmcuY29uZi5kCj4KPiBbcnVkb2xmQG1lcGhpc3Rv
-IHhvcmcuY29uZi5kXSQgbHMgLWxhIC9ldGMvWDExL3hvcmcuY29uZi5kCj4gdG90YWwgMTIKPiBk
-cnd4ci14ci14LiAyIHJvb3Qgcm9vdCA0MDk2IEF1ZyAgNCAwODoyNSAuCj4gZHJ3eHIteHIteC4g
-NiByb290IHJvb3QgNDA5NiBNYXkgMjcgMTE6NDAgLi4KPiAtcnctci0tci0tLiAxIHJvb3Qgcm9v
-dCAgMjY1IEFwciAyMSAxNzowNiAwMC1rZXlib2FyZC5jb25mCj4KPiBUaGVuIGEgZm9sZGVyIC91
-c3Ivc2hhcmUvWDExL3hvcmcuY29uZi5kIHdpdGggc2VydmVyYWwgY29uZmlnIGZpbGVzIGJ1dAo+
-IEkgZG9uJ3Qgc2VlIHdoaWNoIG9uZSB0byBiZSBlZGl0ZWQuLi4KPgo+IFtydWRvbGZAbWVwaGlz
-dG8geG9yZy5jb25mLmRdJCBscyAtbGEgL3Vzci9zaGFyZS9YMTEveG9yZy5jb25mLmQKPiB0b3Rh
-bCAzMgo+IGRyd3hyLXhyLXguIDIgcm9vdCByb290IDQwOTYgSnVsIDMxIDE4OjMzIC4KPiBkcnd4
-ci14ci14LiA3IHJvb3Qgcm9vdCA0MDk2IE1heSAyNyAxMTo0MCAuLgo+IC1ydy1yLS1yLS0uIDEg
-cm9vdCByb290IDEwOTkgSnVsIDE1IDEwOjIwIDEwLWV2ZGV2LmNvbmYKPiAtcnctci0tci0tLiAx
-IHJvb3Qgcm9vdCAxMzUwIEp1bCAxNSAxMDoyMCAxMC1xdWlya3MuY29uZgo+IC1ydy1yLS1yLS0u
-IDEgcm9vdCByb290IDI4MjcgTWF5ICAxIDA4OjIzIDUwLXN5bmFwdGljcy5jb25mCj4gLXJ3LXIt
-LXItLS4gMSByb290IHJvb3QgIDExNSBNYXkgMTUgMTQ6NDkgNTAtdm1tb3VzZS5jb25mCj4gLXJ3
-LXItLXItLS4gMSByb290IHJvb3QgMTM4NSBNYXIgMjAgMDA6MzEgNTAtd2Fjb20uY29uZgo+IC1y
-dy1yLS1yLS0uIDEgcm9vdCByb290ICA3ODkgSnVsIDEzIDAwOjU0IDkwLWxpYmlucHV0LmNvbmYK
-Pgo+IEFueSBvdGhlciBwbGFjZSB0byBsb29rIGZvci4gZmluZCBkaWRuJ3QgaGVscC4uLgo+Cj4g
-SSBndWVzcyBJJ2xsIGhhdmUgdG8gcnVuICJ4IGNvbmZpZyIgYXMgcm9vdCB0byBnZXQgYSB4b3Jn
-LmNvbmYgd2hpY2ggSQo+IGNhbiBlZGl0IGxhdGVyLi4uCj4KPiAtLQo+IFJ1ZG9sZiBLw7xuemxp
-IDxydWRvbGYua3VuemxpQGdtYWlsLmNvbT4KPiBPbiBUdWUsIDIwMTUtMDgtMTEgYXQgMTE6NDIg
-LTA0MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBObywgeW91IHByb2JhYmx5IHdhbnQgc29tZXRo
-aW5nIGluIC9ldGMvWDExLi4uIGEgbG90IG9mIHRoZSB0aW1lIGl0J3MKPj4gc3BsaXQgdXAgaW50
-byBhIGJ1bmNoIG9mIHNlcGFyYXRlIGZpbGVzIGluIGxpa2UgL2V0Yy9YMTEveG9yZy5jb25mLmQK
-Pj4gb3Igc29tZXRoaW5nLiBZb3Ugc2hvdWxkIGNvbnN1bHQgeW91ciBkaXN0cm8gZG9jdW1lbnRh
-dGlvbiBmb3IgaG93IHRvCj4+IG1ha2UgaXQgaGFwcGVuLgo+Pgo+PiBPbiBUdWUsIEF1ZyAxMSwg
-MjAxNSBhdCAxMTozOCBBTSwgUnVkb2xmIEvDvG56bGkgPAo+PiBydWRvbGYua3VuemxpQGdtYWls
-LmNvbT4gd3JvdGU6Cj4+ID4gVGhhbmtzIC0gdGhlIG9ubHkgeG9yZy5jb25mIEkgZm91bmQgaXMg
-LQo+PiA+ICAvdXNyL3NoYXJlL2FicnQvY29uZi5kL3BsdWdpbnMveG9yZy5jb25mCj4+ID4gSXMg
-dGhpcyB0aGUgZmlsZSB0byBiZSBlZGl0ZWQ/Cj4+ID4KPj4gPiAtLQo+PiA+IFJ1ZG9sZiBLw7xu
-emxpIDxydWRvbGYua3VuemxpQGdtYWlsLmNvbT4KPj4gPiBPbiBUdWUsIDIwMTUtMDgtMTEgYXQg
-MTA6NTYgLTA0MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiA+ID4gT24gVHVlLCBBdWcgMTEsIDIw
-MTUgYXQgMTA6NDcgQU0sIFJ1ZG9sZiBLw7xuemxpIDwKPj4gPiA+IHJ1ZG9sZi5rdW56bGlAZ21h
-aWwuY29tPiB3cm90ZToKPj4gPiA+ID4gPiBHZUZvcmNlIEdUWCA3NDUgaXMgYSBOVklESUEgY2Fy
-ZCBpbiB0aGUgTlYxMTcgKEdNMTA3KQo+PiA+ID4gPiA+IEZhbWlseS4uLgo+PiA+ID4gPiBUaGUg
-dXBkYXRlIHdhcyBtYWRlIHVzaW5nIERORiAoWXVtKSBpbiBteSBkYWlseSB1cGRhdGUKPj4gPiA+
-ID4gcHJvY2VkdXJlCj4+ID4gPiA+IHVzaW5nCj4+ID4gPiA+IHRoZSBGZWRvcmEgMjIgVXBkYXRl
-IHJlcG9zaXRvcnkuCj4+ID4gPiA+IEkgYW0gbm90IGZhbWlsaWFyIHdpdGggZGV0YWlscyBJIGp1
-c3QgY2FuIHJlcG9ydCB3aGF0IGhhcHBlbnMKPj4gPiA+ID4gcmlnaHQKPj4gPiA+ID4gbm93Li4u
-Cj4+ID4gPgo+PiA+ID4gT0ssIHRoZXJlJ3Mgbm8gRVhBIHN1cHBvcnQgZm9yIG1heHdlbGwsIHNv
-IHlvdSdyZSB1c2luZyBnbGFtb3IuCj4+ID4gPiBCZWZvcmUKPj4gPiA+IGtlcm5lbCA0LjEsIHVu
-bGVzcyB5b3UgaGFkIGV4dHJhY3RlZCB5b3VyIG93biBjdHhzdyBmaXJtd2FyZSwgeW91Cj4+ID4g
-PiBkaWRuJ3QgaGF2ZSBhY2NlbGVyYXRpb24gYXQgYWxsLCB0aGF0IHdhcyBsaWtlbHkgdGhlIGNo
-YW5nZSB0aGF0Cj4+ID4gPiB0cmlnZ2VyZWQgdGhlIGlzc3VlLgo+PiA+ID4KPj4gPiA+IFRoZSBn
-bGFtb3IgaW50ZWdyYXRpb24gaW4gbm91dmVhdSBpcywgc2FkbHksIGJyb2tlbi4gQnV0IGl0J3MK
-Pj4gPiA+IHVuY2xlYXIKPj4gPiA+IHdoZXRoZXIgdGhhdCdzIHRoZSBjYXVzZSBvZiB5b3VyIGlz
-c3VlLiBZb3UgY2FuIGVpdGhlciBhZGQKPj4gPiA+Cj4+ID4gPiBPcHRpb24gIk5vQWNjZWwiICJ0
-cnVlIgo+PiA+ID4KPj4gPiA+IHRvIHRoZSBkZXZpY2Ugc2VjdGlvbiBpbiB5b3VyIHhvcmcuY29u
-Ziwgd2hpY2ggd2lsbCBkaXNhYmxlIDJkCj4+ID4gPiBhY2NlbGVyYXRpb24gYW5kIGJyaW5nIHlv
-dSBiYWNrIHRvIHRoZSBzYW1lIHN0YXRlIHlvdSB3ZXJlIGluCj4+ID4gPiBiZWZvcmUsCj4+ID4g
-PiBvciB5b3UgY2FuIGFkZAo+PiA+ID4KPj4gPiA+IERyaXZlciAibW9kZXNldHRpbmciCj4+ID4g
-Pgo+PiA+ID4gKG9yIHVuaW5zdGFsbCB4Zjg2LXZpZGVvLW5vdXZlYXUpIHdoaWNoIHdpbGwgdXNl
-IHRoZSBtb2Rlc2V0dGluZwo+PiA+ID4gZHJpdmVyIHdoaWNoIGhhcyBhIG5vbi1icm9rZW4gZ2xh
-bW9yIGludGVncmF0aW9uLiBZb3UgbWF5IHN0aWxsCj4+ID4gPiBnZXQKPj4gPiA+IHRoZSBzYW1l
-IGlzc3VlcyB0aG91Z2gsIGFzIHRoZXkgY291bGQganVzdCBiZSBnZW5lcmljCj4+ID4gPiBtZXNh
-LXN1Y2tzLW9uLW1heHdlbGwgaXNzdWVzIChJIGRvbid0IGhhdmUgYSBNYXh3ZWxsIEdQVSwgbm8g
-b25lCj4+ID4gPiBlbHNlCj4+ID4gPiBoYXMgYmVlbiBpbnRlcmVzdGVkIGluIGRlYnVnZ2luZy9m
-aXhpbmcgaXNzdWVzKS4KPj4gPiA+Cj4+ID4gPiAgIC1pbGlhCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1807545936==
+Content-Type: multipart/alternative; boundary="1439336439.2bBcbbA1.9331"; charset="UTF-8"
+
+
+--1439336439.2bBcbbA1.9331
+Date: Tue, 11 Aug 2015 23:40:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91598
+
+--- Comment #3 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Just wanted to add that I likewise am seeing the same issue.  As Andreas said
+the problems increase as time goes on.  I do notice the corruption of menus and
+such seems to be cumulative.  Eventually after many days in my experience
+sometimes the problem can cause a full crash.  It makes no difference for me
+whether or not compositing is on or off.
+
+Here is a portion of the dmesg output:
+
+[48838.708929] nouveau E[plasmashell[1827]] fail set_domain
+[48838.708936] nouveau E[plasmashell[1827]] validating bo list
+[48838.708959] nouveau E[plasmashell[1827]] validate: -22
+[48838.757948] nouveau E[plasmashell[1827]] fail set_domain
+[48838.757956] nouveau E[plasmashell[1827]] validating bo list
+[48838.757964] nouveau E[plasmashell[1827]] validate: -22
+[48839.000699] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[48839.054871] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[48839.690129] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000fb33 [X[1641]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+
+----------------
+
+Hardware info:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G84GL [Quadro FX 570]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: NVIDIA Corporation G84GL [Quadro FX 570]
+        Flags: bus master, fast devsel, latency 0, IRQ 28
+        Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+        I/O ports at dc80 [size=128]
+        Expansion ROM at fde00000 [disabled] [size=128K]
+        Capabilities: [60] Power Management version 2
+        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [78] Express Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting <?>
+        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
+<?>
+        Kernel driver in use: nouveau
+
+---------
+
+Software info:
+
+x11-drivers/xf86-video-nouveau-1.0.11
+media-libs/mesa-10.6.3
+x11-apps/mesa-progs-8.2.0
+kde-plasma/plasma-desktop-9999 (pulled from master 12:29:55 PM 08/09/2015) 
+
+Linux gentoo 4.1.4-gentoo #1 SMP Tue Aug 4 15:36:28 EDT 2015 x86_64 Intel(R)
+Core(TM)2 Quad CPU Q6600 @ 2.40GHz GenuineIntel GNU/Linux
+
+---------
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439336439.2bBcbbA1.9331
+Date: Tue, 11 Aug 2015 23:40:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
+              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
+</span></b>
+        <pre>Just wanted to add that I likewise am seeing the same issue.  As Andreas said
+the problems increase as time goes on.  I do notice the corruption of menus and
+such seems to be cumulative.  Eventually after many days in my experience
+sometimes the problem can cause a full crash.  It makes no difference for me
+whether or not compositing is on or off.
+
+Here is a portion of the dmesg output:
+
+[48838.708929] nouveau E[plasmashell[1827]] fail set_domain
+[48838.708936] nouveau E[plasmashell[1827]] validating bo list
+[48838.708959] nouveau E[plasmashell[1827]] validate: -22
+[48838.757948] nouveau E[plasmashell[1827]] fail set_domain
+[48838.757956] nouveau E[plasmashell[1827]] validating bo list
+[48838.757964] nouveau E[plasmashell[1827]] validate: -22
+[48839.000699] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[48839.054871] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
+PAGE_NOT_PRESENT
+[48839.690129] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
+on channel 0x0000fb33 [X[1641]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+
+----------------
+
+Hardware info:
+
+01:00.0 VGA compatible controller: NVIDIA Corporation G84GL [Quadro FX 570]
+(rev a1) (prog-if 00 [VGA controller])
+        Subsystem: NVIDIA Corporation G84GL [Quadro FX 570]
+        Flags: bus master, fast devsel, latency 0, IRQ 28
+        Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at d0000000 (64-bit, prefetchable) [size=256M]
+        Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
+        I/O ports at dc80 [size=128]
+        Expansion ROM at fde00000 [disabled] [size=128K]
+        Capabilities: [60] Power Management version 2
+        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+        Capabilities: [78] Express Endpoint, MSI 00
+        Capabilities: [100] Virtual Channel
+        Capabilities: [128] Power Budgeting &lt;?&gt;
+        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
+&lt;?&gt;
+        Kernel driver in use: nouveau
+
+---------
+
+Software info:
+
+x11-drivers/xf86-video-nouveau-1.0.11
+media-libs/mesa-10.6.3
+x11-apps/mesa-progs-8.2.0
+kde-plasma/plasma-desktop-9999 (pulled from master 12:29:55 PM 08/09/2015) 
+
+Linux gentoo 4.1.4-gentoo #1 SMP Tue Aug 4 15:36:28 EDT 2015 x86_64 Intel(R)
+Core(TM)2 Quad CPU Q6600 &#64; 2.40GHz GenuineIntel GNU/Linux
+
+---------</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439336439.2bBcbbA1.9331--
+
+--===============1807545936==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1807545936==--
