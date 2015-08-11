@@ -1,13 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Odd text behavior on Websites and others
-Date: Tue, 11 Aug 2015 09:45:54 -0400
-Message-ID: <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
-References: <1439281240.4493.2.camel@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
+Date: Tue, 11 Aug 2015 13:48:29 +0000
+Message-ID: <bug-91598-8800-wBsWhWDKkw@http.bugs.freedesktop.org/>
+References: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0111826854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1439281240.4493.2.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,33 +16,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?Q?Rudolf_K=C3=BCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hhdCBpcyBhIEdUWCA3NDU/IChJJ20gbG9va2luZyBmb3IgYSBHS3h4eCBvciBHTXh4eCBtb2Rl
-bC4pIEFyZSB5b3UKdXNpbmcgZ2xhbW9yPyBXaGF0IGJpdCBvZiAibm91dmVhdSIgZGlkIHlvdSB1
-cGRhdGU/IFRoZXJlIGlzbid0IGEKc2luZ2xlIG5vdXZlYXUgZHJpdmVyLi4uIChvciBhbnkgb3Ro
-ZXIgR1BVKSwgaXQncyBsb3RzIG9mIGRpZmZlcmVudApiaXRzIGFuZCBwaWVjZXMuIGtlcm5lbCwg
-bGliZHJtLCB4Zjg2LXZpZGVvLW5vdXZlYXUsIG1lc2EuCgpPbiBUdWUsIEF1ZyAxMSwgMjAxNSBh
-dCA0OjIwIEFNLCBSdWRvbGYgS8O8bnpsaSA8cnVkb2xmLmt1bnpsaUBnbWFpbC5jb20+IHdyb3Rl
-Ogo+IE9ubGluZSwganVzdCBub3cgbm90aWNlZCBzb21lIHdlYnNpdGVzIGFyZSBjb21pbmcgdXAg
-b2ssIGJ1dCB0aGVuCj4gY2hhcmFjdGVycyByYXBpZGx5IGJlZ2luIHRvIGRpc2FwcGVhciBvciBn
-ZXQgcmVwbGFjZWQgYnkgd3JvbmcKPiBjaGFyYWN0ZXJzLgo+Cj4gSWYgSSBjbGljayBvbiBhbnkg
-d29yZHMgaW4gdGhpcyBwb3N0IHNldmVyYWwgdGltZXMsIHRoZSBtaXNzaW5nCj4gY2hhcmFjdGVy
-cyAiS3IiIGludGVybWl0dGVudGx5IGFwcGVhciBpbiB0aGUgZXhhbXBsZSBhYm92ZSBhbmQKPiBk
-aXNhcHBlYXIKPiAgaW4gdGhpcyBzZW50ZW5jZS4gQWxzbyBqdXN0IG5vdGljZWQgdGhhdCBzYW1l
-IGJlaGF2aW9yIG9jY3VycyB3aGVuIEkKPiBtb3ZlIHRoZSBtb3VzZSBpbiBhbmQgb3V0IG9mIHRo
-ZSB0ZXh0IHBhbmUuIFZlcnkgb2RkLgo+Cj4gU29tZSBtZW51cyBpbiBhcHBsaWNhdGlvbnMgKEV2
-b2x1dGlvbiwgTGlicmVPZmZpYywgZXRjLikgYXJlIGNvcnJ1cHRlZAo+IHRvbywKPgo+IFN5c3Rl
-bSB3YXMgd29ya2luZyBiZWZvcmUgdGhlIHVwZGF0ZWQgbm91dmVhdSBkcml2ZXIuCj4KPiBTeXN0
-ZW06IExpbnV4IG1lcGhpc3RvIDQuMS4zLTIwMS5mYzIyLmk2ODYgIzEgU01QIFdlZCBKdWwgMjkg
-MjA6NTM6NTIKPiBVVEMgMjAxNSBpNjg2IGk2ODYgaTM4NiBHTlUvTGludXgKPgo+IEdyYXBoaWMg
-Q2FyZDogR2VGb3JjZSBHVFggNzQ1Cj4KPiBOb3V2ZWF1IERyaXZlcjogeG9yZy14MTEtZHJ2LW5v
-dXZlYXUtMS4wLjExLTIuZmMyMi5pNjg2Cj4KPiAtLQo+IFJ1ZG9sZiBLw7xuemxpIDxydWRvbGYu
-a3VuemxpQGdtYWlsLmNvbT4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-bm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpO
-b3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0111826854==
+Content-Type: multipart/alternative; boundary="1439300909.Ba8ed1.31984"; charset="UTF-8"
+
+
+--1439300909.Ba8ed1.31984
+Date: Tue, 11 Aug 2015 13:48:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91598
+
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You appear to run out of vram (fail to set_domain), and then mesa does not
+handle that failure particularly gracefully.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439300909.Ba8ed1.31984
+Date: Tue, 11 Aug 2015 13:48:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>You appear to run out of vram (fail to set_domain), and then mesa does not
+handle that failure particularly gracefully.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439300909.Ba8ed1.31984--
+
+--===============0111826854==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0111826854==--
