@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90388] [NVE4] PDISP errors on startup
-Date: Tue, 11 Aug 2015 08:12:20 +0000
-Message-ID: <bug-90388-8800-Ffdhow1xhK@http.bugs.freedesktop.org/>
-References: <bug-90388-8800@http.bugs.freedesktop.org/>
+From: Rudolf =?ISO-8859-1?Q?K=FCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Odd text behavior on Websites and others
+Date: Tue, 11 Aug 2015 10:20:40 +0200
+Message-ID: <1439281240.4493.2.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1180281978=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90388-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,106 +18,20 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1180281978==
-Content-Type: multipart/alternative; boundary="1439280739.CD57fB071.32735"; charset="UTF-8"
-
-
---1439280739.CD57fB071.32735
-Date: Tue, 11 Aug 2015 08:12:19 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90388
-
-Leonidas Spyropoulos <artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #4 from Leonidas Spyropoulos <artafinde-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The patch proposed from Ilia works fine. I see this is released with 4.1.5 I'll
-consider this resolved.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439280739.CD57fB071.32735
-Date: Tue, 11 Aug 2015 08:12:19 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:artafinde&#64;gmail.com" title="Leonidas Spyropoulos &lt;artafinde&#64;gmail.com&gt;"> <span class="fn">Leonidas Spyropoulos</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] PDISP errors on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">bug 90388</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] PDISP errors on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] PDISP errors on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90388">bug 90388</a>
-              from <span class="vcard"><a class="email" href="mailto:artafinde&#64;gmail.com" title="Leonidas Spyropoulos &lt;artafinde&#64;gmail.com&gt;"> <span class="fn">Leonidas Spyropoulos</span></a>
-</span></b>
-        <pre>The patch proposed from Ilia works fine. I see this is released with 4.1.5 I'll
-consider this resolved.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439280739.CD57fB071.32735--
-
---===============1180281978==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1180281978==--
+T25saW5lLCBqdXN0IG5vdyBub3RpY2VkIHNvbWUgd2Vic2l0ZXMgYXJlIGNvbWluZyB1cCBvaywg
+YnV0IHRoZW4KY2hhcmFjdGVycyByYXBpZGx5IGJlZ2luIHRvIGRpc2FwcGVhciBvciBnZXQgcmVw
+bGFjZWQgYnkgd3JvbmcgCmNoYXJhY3RlcnMuCgpJZiBJIGNsaWNrIG9uIGFueSB3b3JkcyBpbiB0
+aGlzIHBvc3Qgc2V2ZXJhbCB0aW1lcywgdGhlIG1pc3NpbmcgCmNoYXJhY3RlcnMgIktyIiBpbnRl
+cm1pdHRlbnRseSBhcHBlYXIgaW4gdGhlIGV4YW1wbGUgYWJvdmUgYW5kCmRpc2FwcGVhcgogaW4g
+dGhpcyBzZW50ZW5jZS4gQWxzbyBqdXN0IG5vdGljZWQgdGhhdCBzYW1lIGJlaGF2aW9yIG9jY3Vy
+cyB3aGVuIEkgCm1vdmUgdGhlIG1vdXNlIGluIGFuZCBvdXQgb2YgdGhlIHRleHQgcGFuZS4gVmVy
+eSBvZGQuCgpTb21lIG1lbnVzIGluIGFwcGxpY2F0aW9ucyAoRXZvbHV0aW9uLCBMaWJyZU9mZmlj
+LCBldGMuKSBhcmUgY29ycnVwdGVkCnRvbywgCgpTeXN0ZW0gd2FzIHdvcmtpbmcgYmVmb3JlIHRo
+ZSB1cGRhdGVkIG5vdXZlYXUgZHJpdmVyLgoKU3lzdGVtOiBMaW51eCBtZXBoaXN0byA0LjEuMy0y
+MDEuZmMyMi5pNjg2ICMxIFNNUCBXZWQgSnVsIDI5IDIwOjUzOjUyClVUQyAyMDE1IGk2ODYgaTY4
+NiBpMzg2IEdOVS9MaW51eAoKR3JhcGhpYyBDYXJkOiBHZUZvcmNlIEdUWCA3NDUKCk5vdXZlYXUg
+RHJpdmVyOiB4b3JnLXgxMS1kcnYtbm91dmVhdS0xLjAuMTEtMi5mYzIyLmk2ODYKCi0tIApSdWRv
+bGYgS8O8bnpsaSA8cnVkb2xmLmt1bnpsaUBnbWFpbC5jb20+Cl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
