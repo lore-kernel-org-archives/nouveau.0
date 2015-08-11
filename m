@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Tue, 11 Aug 2015 13:48:29 +0000
-Message-ID: <bug-91598-8800-wBsWhWDKkw@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Odd text behavior on Websites and others
+Date: Tue, 11 Aug 2015 10:56:17 -0400
+Message-ID: <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
+References: <1439281240.4493.2.camel@gmail.com>
+ <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
+ <1439304438.6366.4.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0111826854=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1439304438.6366.4.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,74 +19,31 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: =?UTF-8?Q?Rudolf_K=C3=BCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0111826854==
-Content-Type: multipart/alternative; boundary="1439300909.Ba8ed1.31984"; charset="UTF-8"
-
-
---1439300909.Ba8ed1.31984
-Date: Tue, 11 Aug 2015 13:48:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You appear to run out of vram (fail to set_domain), and then mesa does not
-handle that failure particularly gracefully.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439300909.Ba8ed1.31984
-Date: Tue, 11 Aug 2015 13:48:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>You appear to run out of vram (fail to set_domain), and then mesa does not
-handle that failure particularly gracefully.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439300909.Ba8ed1.31984--
-
---===============0111826854==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0111826854==--
+T24gVHVlLCBBdWcgMTEsIDIwMTUgYXQgMTA6NDcgQU0sIFJ1ZG9sZiBLw7xuemxpIDxydWRvbGYu
+a3VuemxpQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IEdlRm9yY2UgR1RYIDc0NSBpcyBhIE5WSURJQSBj
+YXJkIGluIHRoZSBOVjExNyAoR00xMDcpIEZhbWlseS4uLgo+IFRoZSB1cGRhdGUgd2FzIG1hZGUg
+dXNpbmcgRE5GIChZdW0pIGluIG15IGRhaWx5IHVwZGF0ZSBwcm9jZWR1cmUgdXNpbmcKPiB0aGUg
+RmVkb3JhIDIyIFVwZGF0ZSByZXBvc2l0b3J5Lgo+IEkgYW0gbm90IGZhbWlsaWFyIHdpdGggZGV0
+YWlscyBJIGp1c3QgY2FuIHJlcG9ydCB3aGF0IGhhcHBlbnMgcmlnaHQKPiBub3cuLi4KCk9LLCB0
+aGVyZSdzIG5vIEVYQSBzdXBwb3J0IGZvciBtYXh3ZWxsLCBzbyB5b3UncmUgdXNpbmcgZ2xhbW9y
+LiBCZWZvcmUKa2VybmVsIDQuMSwgdW5sZXNzIHlvdSBoYWQgZXh0cmFjdGVkIHlvdXIgb3duIGN0
+eHN3IGZpcm13YXJlLCB5b3UKZGlkbid0IGhhdmUgYWNjZWxlcmF0aW9uIGF0IGFsbCwgdGhhdCB3
+YXMgbGlrZWx5IHRoZSBjaGFuZ2UgdGhhdAp0cmlnZ2VyZWQgdGhlIGlzc3VlLgoKVGhlIGdsYW1v
+ciBpbnRlZ3JhdGlvbiBpbiBub3V2ZWF1IGlzLCBzYWRseSwgYnJva2VuLiBCdXQgaXQncyB1bmNs
+ZWFyCndoZXRoZXIgdGhhdCdzIHRoZSBjYXVzZSBvZiB5b3VyIGlzc3VlLiBZb3UgY2FuIGVpdGhl
+ciBhZGQKCk9wdGlvbiAiTm9BY2NlbCIgInRydWUiCgp0byB0aGUgZGV2aWNlIHNlY3Rpb24gaW4g
+eW91ciB4b3JnLmNvbmYsIHdoaWNoIHdpbGwgZGlzYWJsZSAyZAphY2NlbGVyYXRpb24gYW5kIGJy
+aW5nIHlvdSBiYWNrIHRvIHRoZSBzYW1lIHN0YXRlIHlvdSB3ZXJlIGluIGJlZm9yZSwKb3IgeW91
+IGNhbiBhZGQKCkRyaXZlciAibW9kZXNldHRpbmciCgoob3IgdW5pbnN0YWxsIHhmODYtdmlkZW8t
+bm91dmVhdSkgd2hpY2ggd2lsbCB1c2UgdGhlIG1vZGVzZXR0aW5nCmRyaXZlciB3aGljaCBoYXMg
+YSBub24tYnJva2VuIGdsYW1vciBpbnRlZ3JhdGlvbi4gWW91IG1heSBzdGlsbCBnZXQKdGhlIHNh
+bWUgaXNzdWVzIHRob3VnaCwgYXMgdGhleSBjb3VsZCBqdXN0IGJlIGdlbmVyaWMKbWVzYS1zdWNr
+cy1vbi1tYXh3ZWxsIGlzc3VlcyAoSSBkb24ndCBoYXZlIGEgTWF4d2VsbCBHUFUsIG5vIG9uZSBl
+bHNlCmhhcyBiZWVuIGludGVyZXN0ZWQgaW4gZGVidWdnaW5nL2ZpeGluZyBpc3N1ZXMpLgoKICAt
+aWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
