@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Mon, 10 Aug 2015 14:52:09 +0000
-Message-ID: <bug-91598-8800-9HoeunLGq1@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [REGRESSION] nouveau: Crash in
+	gk104_fifo_intr_runlist()
+Date: Tue, 11 Aug 2015 13:28:46 +0900
+Message-ID: <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA@mail.gmail.com>
+References: <20150809170634.GA2712@zyxyz>
+ <CAKb7Uviet+Bg_KBnaOHGm7b-0vppu6pLDkE-UcoaCcdZ7fEaUg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1872627436=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uviet+Bg_KBnaOHGm7b-0vppu6pLDkE-UcoaCcdZ7fEaUg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,85 +19,34 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1872627436==
-Content-Type: multipart/alternative; boundary="1439218329.dfC0c0EA1.22482"; charset="UTF-8"
-
-
---1439218329.dfC0c0EA1.22482
-Date: Mon, 10 Aug 2015 14:52:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
-
---- Comment #1 from Andreas Cord-Landwehr <cordlandwehr-RoXCvvDuEio@public.gmane.org> ---
-Created attachment 117614
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117614&action=edit
-full dmesg output
-
-The important times in this log:
-532.749724: a popup window of shell task bar froze (together with the whole
-plasma shell)
-840.680904: the first graphics corruption appeared in a popup menu
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439218329.dfC0c0EA1.22482
-Date: Mon, 10 Aug 2015 14:52:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:cordlandwehr&#64;kde.org" title="Andreas Cord-Landwehr &lt;cordlandwehr&#64;kde.org&gt;"> <span class="fn">Andreas Cord-Landwehr</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117614" name="attach_117614" title="full dmesg output">attachment 117614</a> <a href="attachment.cgi?id=117614&amp;action=edit" title="full dmesg output">[details]</a></span>
-full dmesg output
-
-The important times in this log:
-532.749724: a popup window of shell task bar froze (together with the whole
-plasma shell)
-840.680904: the first graphics corruption appeared in a popup menu</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439218329.dfC0c0EA1.22482--
-
---===============1872627436==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1872627436==--
+SW5kZWVkLCBhbmQgSSBhbSBhY3R1YWxseSBzdXJwcmlzZWQgdG8gc2VlIG9uZSBoZXJlLiBJIHdp
+bGwKZG91YmxlLWNoZWNrIHRoYXQgcGF0Y2guCgpFcmljLCB3b3VsZCB5b3UgYmUgYWJsZSB0byBn
+aXZlIGFuIGVzdGltYXRlIG9mIHRoZSByZXBybyByYXRlIGZvciB0aGlzCmlzc3VlPyBNb3JlIHRl
+c3Rpbmcgd2l0aCBhbmQgd2l0aG91dCB0aGUgcGF0Y2ggd291bGQgYmUgd2VsY29tZSwgaXQnZApi
+ZSBnb29kIHRvIGtub3cgd2hldGhlciBpdCBpcyBhY3R1YWxseSB0aGUgY3VscHJpdCBvciBub3Qu
+CgpPbiBNb24sIEF1ZyAxMCwgMjAxNSBhdCAyOjI4IEFNLCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBh
+bHVtLm1pdC5lZHU+IHdyb3RlOgo+IEFsZXhhbmRyZSwgY291bGQgeW91IHRha2UgYSBsb29rPyAw
+eGJhZCogZ2VuZXJhbGx5IGNvbWVzIGZyb20gYmFkIG1taW8KPiByZWFkcy4KPgo+IE9uIEF1ZyA5
+LCAyMDE1IDE6MDggUE0sICJFcmljIEJpZ2dlcnMiIDxlYmlnZ2VyczNAZ21haWwuY29tPiB3cm90
+ZToKPj4KPj4gSGksCj4+Cj4+IEkgYW0gdGVzdGluZyBMaW51eCB2NC4yLXJjNSBhbmQgSSBhbSBz
+cG9yYWRpY2FsbHkgZ2V0dGluZyBjcmFzaGVzIHNob3J0bHkKPj4gYWZ0ZXIKPj4gc3RhcnR1cCBp
+biBnazEwNF9maWZvX2ludHJfcnVubGlzdCgpLiAgV2hhdCBJJ3ZlIGZvdW5kIGlzIHRoYXQgdGhl
+ICdtYXNrJwo+PiB2YWx1ZQo+PiByZWFkIGZyb20gb2Zmc2V0IDB4MmEwMCBjb21lcyBiYWNrIGFz
+ICcweGJhZDBkYTAwJy4gIFRoaXMgY2F1c2VzIHRoZQo+PiAnZW5nbicKPj4gdmFyaWFibGUgdG8g
+YmUgYXNzaWduZWQgdGhlIHZhbHVlIDksIHdoaWNoIGlzIGludmFsaWQ7IHRoZW4gd2FrZV91cCgp
+IGlzCj4+IGNhbGxlZAo+PiBvbiBhbiB1bmluaXRpYWxpemVkIHdhaXRxdWV1ZSB3aGljaCBjYXVz
+ZXMgdGhlIGNyYXNoLgo+Pgo+PiBSZXZlcnRpbmcgY29tbWl0IDFhZGRjMTI2NDg1MjFkICgiZHJt
+L25vdXZlYXUvZmlmby9nazEwNDoga2ljayBjaGFubmVscwo+PiB3aGVuCj4+IGRlYWN0aXZhdGlu
+ZyB0aGVtIikgc2VlbWVkIHRvIG1ha2UgdGhlIHByb2JsZW0gZ28gYXdheSwgYWx0aG91Z2ggSSBj
+YW4ndAo+PiBiZSAxMDAlCj4+IHN1cmUgYmVjYXVzZSB0aGUgcHJvYmxlbSBpcyBzcG9yYWRpYy4K
+Pj4KPj4gQXR0YWNoZWQgYW4gZXhhbXBsZSBvZiB0aGUga2VybmVsIGxvZyB1cCB0byB0aGUgY3Jh
+c2guCj4+Cj4+IEVyaWMKPj4KPj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18KPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKPj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUKPj4KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
