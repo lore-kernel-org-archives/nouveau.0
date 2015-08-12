@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Tue, 11 Aug 2015 23:40:39 +0000
-Message-ID: <bug-91598-8800-M447O3FIhD@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [REGRESSION] nouveau: Crash in
+	gk104_fifo_intr_runlist()
+Date: Tue, 11 Aug 2015 20:01:42 -0500
+Message-ID: <CAPWJ_tKisH541xkEU6PV8GdxOOCvByh9FsmV2VtxjcqLwOtTXQ@mail.gmail.com>
+References: <20150809170634.GA2712@zyxyz>
+ <CAKb7Uviet+Bg_KBnaOHGm7b-0vppu6pLDkE-UcoaCcdZ7fEaUg@mail.gmail.com>
+ <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1807545936=="
+Content-Type: multipart/mixed; boundary="===============1320164250=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,179 +19,152 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+--===============1320164250==
+Content-Type: multipart/alternative; boundary=001a113472520e2119051d12c397
 
---===============1807545936==
-Content-Type: multipart/alternative; boundary="1439336439.2bBcbbA1.9331"; charset="UTF-8"
+--001a113472520e2119051d12c397
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
 
---1439336439.2bBcbbA1.9331
-Date: Tue, 11 Aug 2015 23:40:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+I think I've done about 10 reboots with the commit reverted and I never
+experienced the crash.  But with 4.2.0-rc6 I get the crash on about every
+other reboot.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
+Probably relevant: the computer on which the crash occurs has two GPUs (one
+Intel and one Nvidia).  The Intel one is actually being used, whereas I
+presume the Nvidia one is being automatically disabled shortly after boot,
+perhaps when the crash occurs...
 
---- Comment #3 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Just wanted to add that I likewise am seeing the same issue.  As Andreas said
-the problems increase as time goes on.  I do notice the corruption of menus and
-such seems to be cumulative.  Eventually after many days in my experience
-sometimes the problem can cause a full crash.  It makes no difference for me
-whether or not compositing is on or off.
+Eric
 
-Here is a portion of the dmesg output:
+On Mon, Aug 10, 2015 at 11:28 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+wrote:
 
-[48838.708929] nouveau E[plasmashell[1827]] fail set_domain
-[48838.708936] nouveau E[plasmashell[1827]] validating bo list
-[48838.708959] nouveau E[plasmashell[1827]] validate: -22
-[48838.757948] nouveau E[plasmashell[1827]] fail set_domain
-[48838.757956] nouveau E[plasmashell[1827]] validating bo list
-[48838.757964] nouveau E[plasmashell[1827]] validate: -22
-[48839.000699] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
-PAGE_NOT_PRESENT
-[48839.054871] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
-PAGE_NOT_PRESENT
-[48839.690129] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000fb33 [X[1641]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
+> Indeed, and I am actually surprised to see one here. I will
+> double-check that patch.
+>
+> Eric, would you be able to give an estimate of the repro rate for this
+> issue? More testing with and without the patch would be welcome, it'd
+> be good to know whether it is actually the culprit or not.
+>
+> On Mon, Aug 10, 2015 at 2:28 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
+> > Alexandre, could you take a look? 0xbad* generally comes from bad mmio
+> > reads.
+> >
+> > On Aug 9, 2015 1:08 PM, "Eric Biggers" <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> >>
+> >> Hi,
+> >>
+> >> I am testing Linux v4.2-rc5 and I am sporadically getting crashes
+> shortly
+> >> after
+> >> startup in gk104_fifo_intr_runlist().  What I've found is that the
+> 'mask'
+> >> value
+> >> read from offset 0x2a00 comes back as '0xbad0da00'.  This causes the
+> >> 'engn'
+> >> variable to be assigned the value 9, which is invalid; then wake_up() is
+> >> called
+> >> on an uninitialized waitqueue which causes the crash.
+> >>
+> >> Reverting commit 1addc12648521d ("drm/nouveau/fifo/gk104: kick channels
+> >> when
+> >> deactivating them") seemed to make the problem go away, although I can't
+> >> be 100%
+> >> sure because the problem is sporadic.
+> >>
+> >> Attached an example of the kernel log up to the crash.
+> >>
+> >> Eric
+> >>
+> >> _______________________________________________
+> >> Nouveau mailing list
+> >> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> >> http://lists.freedesktop.org/mailman/listinfo/nouveau
+> >>
+> >
+>
 
-----------------
+--001a113472520e2119051d12c397
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hardware info:
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>I think I&#39;ve done abou=
+t 10 reboots with the commit reverted and I never experienced the crash.=C2=
+=A0 But with 4.2.0-rc6 I get the crash on about every other reboot.<br><br>=
+</div>Probably relevant: the computer on which the crash occurs has two GPU=
+s (one Intel and one Nvidia).=C2=A0 The Intel one is actually being used, w=
+hereas I presume the Nvidia one is being automatically disabled shortly aft=
+er boot, perhaps when the crash occurs...<br><br></div>Eric<br></div><div c=
+lass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Aug 10, 2015 at=
+ 11:28 PM, Alexandre Courbot <span dir=3D"ltr">&lt;<a href=3D"mailto:gnurou=
+@gmail.com" target=3D"_blank">gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;</span> wrote:<br><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">Indeed, and I am actually surprised to see one =
+here. I will<br>
+double-check that patch.<br>
+<br>
+Eric, would you be able to give an estimate of the repro rate for this<br>
+issue? More testing with and without the patch would be welcome, it&#39;d<b=
+r>
+be good to know whether it is actually the culprit or not.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On Mon, Aug 10, 2015 at 2:28 AM, Ilia Mirkin &lt;<a href=3D"mailto:imirkin@=
+alum.mit.edu">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt; wrote:<br>
+&gt; Alexandre, could you take a look? 0xbad* generally comes from bad mmio=
+<br>
+&gt; reads.<br>
+&gt;<br>
+&gt; On Aug 9, 2015 1:08 PM, &quot;Eric Biggers&quot; &lt;<a href=3D"mailto=
+:ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; Hi,<br>
+&gt;&gt;<br>
+&gt;&gt; I am testing Linux v4.2-rc5 and I am sporadically getting crashes =
+shortly<br>
+&gt;&gt; after<br>
+&gt;&gt; startup in gk104_fifo_intr_runlist().=C2=A0 What I&#39;ve found is=
+ that the &#39;mask&#39;<br>
+&gt;&gt; value<br>
+&gt;&gt; read from offset 0x2a00 comes back as &#39;0xbad0da00&#39;.=C2=A0 =
+This causes the<br>
+&gt;&gt; &#39;engn&#39;<br>
+&gt;&gt; variable to be assigned the value 9, which is invalid; then wake_u=
+p() is<br>
+&gt;&gt; called<br>
+&gt;&gt; on an uninitialized waitqueue which causes the crash.<br>
+&gt;&gt;<br>
+&gt;&gt; Reverting commit 1addc12648521d (&quot;drm/nouveau/fifo/gk104: kic=
+k channels<br>
+&gt;&gt; when<br>
+&gt;&gt; deactivating them&quot;) seemed to make the problem go away, altho=
+ugh I can&#39;t<br>
+&gt;&gt; be 100%<br>
+&gt;&gt; sure because the problem is sporadic.<br>
+&gt;&gt;<br>
+&gt;&gt; Attached an example of the kernel log up to the crash.<br>
+&gt;&gt;<br>
+&gt;&gt; Eric<br>
+&gt;&gt;<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; Nouveau mailing list<br>
+&gt;&gt; <a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32mzQB+pC5nmwQ@public.gmane.org=
+edesktop.org</a><br>
+&gt;&gt; <a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" =
+rel=3D"noreferrer" target=3D"_blank">http://lists.freedesktop.org/mailman/l=
+istinfo/nouveau</a><br>
+&gt;&gt;<br>
+&gt;<br>
+</div></div></blockquote></div><br></div>
 
-01:00.0 VGA compatible controller: NVIDIA Corporation G84GL [Quadro FX 570]
-(rev a1) (prog-if 00 [VGA controller])
-        Subsystem: NVIDIA Corporation G84GL [Quadro FX 570]
-        Flags: bus master, fast devsel, latency 0, IRQ 28
-        Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (64-bit, prefetchable) [size=256M]
-        Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
-        I/O ports at dc80 [size=128]
-        Expansion ROM at fde00000 [disabled] [size=128K]
-        Capabilities: [60] Power Management version 2
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting <?>
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-<?>
-        Kernel driver in use: nouveau
+--001a113472520e2119051d12c397--
 
----------
-
-Software info:
-
-x11-drivers/xf86-video-nouveau-1.0.11
-media-libs/mesa-10.6.3
-x11-apps/mesa-progs-8.2.0
-kde-plasma/plasma-desktop-9999 (pulled from master 12:29:55 PM 08/09/2015) 
-
-Linux gentoo 4.1.4-gentoo #1 SMP Tue Aug 4 15:36:28 EDT 2015 x86_64 Intel(R)
-Core(TM)2 Quad CPU Q6600 @ 2.40GHz GenuineIntel GNU/Linux
-
----------
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439336439.2bBcbbA1.9331
-Date: Tue, 11 Aug 2015 23:40:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
-</span></b>
-        <pre>Just wanted to add that I likewise am seeing the same issue.  As Andreas said
-the problems increase as time goes on.  I do notice the corruption of menus and
-such seems to be cumulative.  Eventually after many days in my experience
-sometimes the problem can cause a full crash.  It makes no difference for me
-whether or not compositing is on or off.
-
-Here is a portion of the dmesg output:
-
-[48838.708929] nouveau E[plasmashell[1827]] fail set_domain
-[48838.708936] nouveau E[plasmashell[1827]] validating bo list
-[48838.708959] nouveau E[plasmashell[1827]] validate: -22
-[48838.757948] nouveau E[plasmashell[1827]] fail set_domain
-[48838.757956] nouveau E[plasmashell[1827]] validating bo list
-[48838.757964] nouveau E[plasmashell[1827]] validate: -22
-[48839.000699] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
-PAGE_NOT_PRESENT
-[48839.054871] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000f64f [plasmashell[1827]] PGRAPH/TEXTURE/00 reason:
-PAGE_NOT_PRESENT
-[48839.690129] nouveau E[     PFB][0000:01:00.0] trapped read at 0x0020529000
-on channel 0x0000fb33 [X[1641]] PGRAPH/TEXTURE/00 reason: PAGE_NOT_PRESENT
-
-----------------
-
-Hardware info:
-
-01:00.0 VGA compatible controller: NVIDIA Corporation G84GL [Quadro FX 570]
-(rev a1) (prog-if 00 [VGA controller])
-        Subsystem: NVIDIA Corporation G84GL [Quadro FX 570]
-        Flags: bus master, fast devsel, latency 0, IRQ 28
-        Memory at fc000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (64-bit, prefetchable) [size=256M]
-        Memory at fa000000 (64-bit, non-prefetchable) [size=32M]
-        I/O ports at dc80 [size=128]
-        Expansion ROM at fde00000 [disabled] [size=128K]
-        Capabilities: [60] Power Management version 2
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting &lt;?&gt;
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-&lt;?&gt;
-        Kernel driver in use: nouveau
-
----------
-
-Software info:
-
-x11-drivers/xf86-video-nouveau-1.0.11
-media-libs/mesa-10.6.3
-x11-apps/mesa-progs-8.2.0
-kde-plasma/plasma-desktop-9999 (pulled from master 12:29:55 PM 08/09/2015) 
-
-Linux gentoo 4.1.4-gentoo #1 SMP Tue Aug 4 15:36:28 EDT 2015 x86_64 Intel(R)
-Core(TM)2 Quad CPU Q6600 &#64; 2.40GHz GenuineIntel GNU/Linux
-
----------</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439336439.2bBcbbA1.9331--
-
---===============1807545936==
+--===============1320164250==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -198,4 +174,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1807545936==--
+--===============1320164250==--
