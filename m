@@ -1,12 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Wed, 12 Aug 2015 21:16:51 +0000
-Message-ID: <bug-91598-8800-Yqd8YZqTyF@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Rudolf =?ISO-8859-1?Q?K=FCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Odd text behavior on Websites and others
+Date: Wed, 12 Aug 2015 23:53:59 +0200
+Message-ID: <1439416439.4565.2.camel@gmail.com>
+References: <1439281240.4493.2.camel@gmail.com>
+ <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
+ <1439304438.6366.4.camel@gmail.com>
+ <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
+ <1439307504.6366.6.camel@gmail.com>
+ <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
+ <1439330630.10427.0.camel@gmail.com>
+ <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
+ <1439361010.2866.2.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2120450404=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1439361010.2866.2.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,94 +25,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2120450404==
-Content-Type: multipart/alternative; boundary="1439414210.B43cC2.31846"; charset="UTF-8"
-
-
---1439414210.B43cC2.31846
-Date: Wed, 12 Aug 2015 21:16:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
-
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Andreas Cord-Landwehr from comment #6)
-> Same for me, I can reproduce this easily with having only some simple
-> applications running in the background.
-> The fastest way to reproduce this for me is to open a lot of dialogs in the
-> plasmashell (start menu & previews of applications you get when hovering
-> over the task bar with currently running applications).
-
-Well, I was bitter about having to install qt for qapitrace, I'm *definitely*
-not installing KDE/plasmashell/whatever.
-
-If you guys can come up with an apitrace that reproduces the hangs when
-replayed, that will help the investigation.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439414210.B43cC2.31846
-Date: Wed, 12 Aug 2015 21:16:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Andreas Cord-Landwehr from <a href="show_bug.cgi?id=91598#c6">comment #6</a>)
-<span class="quote">&gt; Same for me, I can reproduce this easily with having only some simple
-&gt; applications running in the background.
-&gt; The fastest way to reproduce this for me is to open a lot of dialogs in the
-&gt; plasmashell (start menu &amp; previews of applications you get when hovering
-&gt; over the task bar with currently running applications).</span >
-
-Well, I was bitter about having to install qt for qapitrace, I'm *definitely*
-not installing KDE/plasmashell/whatever.
-
-If you guys can come up with an apitrace that reproduces the hangs when
-replayed, that will help the investigation.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439414210.B43cC2.31846--
-
---===============2120450404==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2120450404==--
+SnVzdCBhIHByZWNpc2lvbi4gSXQgc2VlbXMgdGhhdCB0aGUgcGFzc3dvcmQgaXMgYWNjZXB0ZWQg
+YW5kIHRoZSBzY3JlZW4KdHVybiB0byAiYmxhY2siIGZvciBhIHNlY29uZC4gQWZ0ZXIgdGhlbiBp
+dCByZXR1cm5zIHRvIHRoZSBsb2dpbgpzY3JlZW4uIEl0IGRvZXNuJ3QgZ2l2ZSBhIG1lc3NhZ2Ug
+YXMgZm9yIGEgd3JvbmcgcGFzc3dvcmQuClNvcnJ5LCBJIGRpZG4ndCBnaXZlIGEgY29tcHJlaGVu
+c2libGUgZGVzY3JpcHRpb24uCgotLSAKUnVkb2xmIEvDvG56bGkgPHJ1ZG9sZi5rdW56bGlAZ21h
+aWwuY29tPgpPbiBXZWQsIDIwMTUtMDgtMTIgYXQgMDg6MzAgKzAyMDAsIFJ1ZG9sZiBLw7xuemxp
+IHdyb3RlOgo+IEkgZGlkIGFzIHlvdSBwcm9wb3NlZC4gVW5mb3J0dW5hdGVseSBteSBwYXNzd29y
+ZCB3YXNuJ3QgYWNjZXB0ZWQgbm8KPiBtb3JlLiBJIHRyaWVkIHRoZSBvdGhlciBvcHRpb24gd2l0
+aCBPcHRpb24gIk5vQWNjZWwiICJ0cnVlIiB3aXRoIHRoZQo+IHZlcnkgc2FtZSByZXN1bHQuCj4g
+SXQgc2VlbXMgdGhhdCB0aGVzZSBtb2RpZmljYXRpb25zIHdpbGwgaW50ZXJmZXJlIHNvbWUgb3Ro
+ZXIgc3R1ZmYuLi4KPiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
