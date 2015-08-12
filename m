@@ -1,94 +1,48 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [REGRESSION] nouveau: Crash in
-	gk104_fifo_intr_runlist()
-Date: Wed, 12 Aug 2015 13:19:48 +0900
-Message-ID: <CAAVeFu+C1rx3pGt6UuRi8JvLx5qNUbjBnPVOzJnaTz+jQREHSg@mail.gmail.com>
-References: <20150809170634.GA2712@zyxyz>
- <CAKb7Uviet+Bg_KBnaOHGm7b-0vppu6pLDkE-UcoaCcdZ7fEaUg@mail.gmail.com>
- <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA@mail.gmail.com>
- <CAPWJ_tKisH541xkEU6PV8GdxOOCvByh9FsmV2VtxjcqLwOtTXQ@mail.gmail.com>
- <CAAVeFu+FAzvz-W6aoV-wrfG2PQaZ7ms_jnDEmpnCg+47+4E1fA@mail.gmail.com>
- <CAAVeFuL5SYMcVc9gH9-OdCuGcKOeWwDUAhLzHKCiMbVPU6rB8Q@mail.gmail.com>
- <CAKb7UvibPn5gdFzqZ=+SCS1hyQJAqfxLZtYEMu6Sw6uofW4AtQ@mail.gmail.com>
+From: Afzal Mohammed <afzal.mohd.ma@gmail.com>
+Subject: Re: [PATCH] Revert "drm/nouveau/fifo/gk104: kick channels when
+ deactivating them"
+Date: Wed, 12 Aug 2015 11:30:52 +0530
+Message-ID: <20150812060052.GA4242@afzalpc>
+References: <1439353058-10001-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvibPn5gdFzqZ=+SCS1hyQJAqfxLZtYEMu6Sw6uofW4AtQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Content-Type: text/plain; charset=us-ascii
+Return-path: <linux-kernel-owner@vger.kernel.org>
+Content-Disposition: inline
+In-Reply-To: <1439353058-10001-1-git-send-email-acourbot@nvidia.com>
+Sender: linux-kernel-owner@vger.kernel.org
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Eric Biggers <ebiggers3@gmail.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, gnurou@gmail.com
 List-Id: nouveau.vger.kernel.org
 
-UmlnaHQsIHRoYXQgMHhiYWQwZGEwMCBpcyBpbmRpY2F0aXZlIG9mIHNvbWV0aGluZyBiZWluZyBv
-ZmZsaW5lIHRoYXQKc2hvdWxkIG5vdCBiZSBhdCB0aGF0IHRpbWUuIEkgaGF2ZSBzZW50IHRoZSBy
-ZXZlcnQgcGF0Y2guIFRoYW5rcyBFcmljCmZvciByZXBvcnRpbmcgdGhpcyEKCk9uIFdlZCwgQXVn
-IDEyLCAyMDE1IGF0IDE6MDAgUE0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4g
-d3JvdGU6Cj4gSSdtIGd1ZXNzaW5nIHRoYXQgb3B0aW11cyBpcyB0aGUgb3BlcmF0aXZlIGRpZmZl
-cmVuY2UsIG5vdCB0aGUKPiBzcGVjaWZpYyBjaGlwLiBCYXNpY2FsbHkgc29tZXRoaW5nIHRoYXQg
-Y2FuIGJlIHB1dCB0byBzbGVlcCB2aWEKPiBBQ1BJLi4uCj4KPiBPbiBUdWUsIEF1ZyAxMSwgMjAx
-NSBhdCAxMTo1MyBQTSwgQWxleGFuZHJlIENvdXJib3QgPGdudXJvdUBnbWFpbC5jb20+IHdyb3Rl
-Ogo+PiBTZW5kaW5nIHRoZSByZXZlcnQgcGF0Y2ggdG8gRGF2ZSBhZnRlciByZWNlaXZpbmcgaGlz
-IGdyZWVuIGxpZ2h0IGZvcgo+PiB0aGlzLCBhbmQgd2lsbCBpbnZlc3RpZ2F0ZSB0aGUgaXNzdWUg
-b24gbXkgc2lkZS4gSSBzaG91bGQgYmUgYWJsZSB0byBmaW5kIGEKPj4gZ2sxMDcgc29tZXdoZXJl
-Li4uCj4+Cj4+IE9uIFdlZCwgQXVnIDEyLCAyMDE1IGF0IDEyOjM1IFBNLCBBbGV4YW5kcmUgQ291
-cmJvdCA8Z251cm91QGdtYWlsLmNvbT4gd3JvdGU6Cj4+PiBNbW0gaW4gdGhhdCBjYXNlIGl0IGlz
-IHByb2JhYmx5IGJlc3QgdG8gcmV2ZXJ0IHRoYXQgY29tbWl0IGZvciB0aGUKPj4+IHRpbWUgYmVp
-bmcuIEl0IHdhcyB0YXJnZXRpbmcgR00yMEIgKGFuZCBtYXliZSBvdGhlciBNYXh3ZWxscyB0b28p
-IHNvCj4+PiByZXZlcnRpbmcgaXQgc2hvdWxkIG5vdCBodXJ0IGFueW9uZSBhdCB0aGUgbW9tZW50
-LiBJIHRoaW5rIEJlbiBpcyBvbgo+Pj4gaG9saWRheXMgZm9yIG5vdywgaXMgdGhlcmUgYW55b25l
-IGVsc2Ugd2hvIGNhbiBzZW5kIGEgcHVsbCByZXF1ZXN0IHRvCj4+PiBEYXZlIEFpcmxpZSBmb3Ig
-dGhpcz8gV2UgZG9uJ3Qgd2FudCA0LjIgdG8gc2hpcCB3aXRoIGEgY3Jhc2ggZXZlcnkKPj4+IG90
-aGVyIHJlYm9vdC4uLgo+Pj4KPj4+IE9uIFdlZCwgQXVnIDEyLCAyMDE1IGF0IDEwOjAxIEFNLCBF
-cmljIEJpZ2dlcnMgPGViaWdnZXJzM0BnbWFpbC5jb20+IHdyb3RlOgo+Pj4+IEhpLAo+Pj4+Cj4+
-Pj4gSSB0aGluayBJJ3ZlIGRvbmUgYWJvdXQgMTAgcmVib290cyB3aXRoIHRoZSBjb21taXQgcmV2
-ZXJ0ZWQgYW5kIEkgbmV2ZXIKPj4+PiBleHBlcmllbmNlZCB0aGUgY3Jhc2guICBCdXQgd2l0aCA0
-LjIuMC1yYzYgSSBnZXQgdGhlIGNyYXNoIG9uIGFib3V0IGV2ZXJ5Cj4+Pj4gb3RoZXIgcmVib290
-Lgo+Pj4+Cj4+Pj4gUHJvYmFibHkgcmVsZXZhbnQ6IHRoZSBjb21wdXRlciBvbiB3aGljaCB0aGUg
-Y3Jhc2ggb2NjdXJzIGhhcyB0d28gR1BVcyAob25lCj4+Pj4gSW50ZWwgYW5kIG9uZSBOdmlkaWEp
-LiAgVGhlIEludGVsIG9uZSBpcyBhY3R1YWxseSBiZWluZyB1c2VkLCB3aGVyZWFzIEkKPj4+PiBw
-cmVzdW1lIHRoZSBOdmlkaWEgb25lIGlzIGJlaW5nIGF1dG9tYXRpY2FsbHkgZGlzYWJsZWQgc2hv
-cnRseSBhZnRlciBib290LAo+Pj4+IHBlcmhhcHMgd2hlbiB0aGUgY3Jhc2ggb2NjdXJzLi4uCj4+
-Pj4KPj4+PiBFcmljCj4+Pj4KPj4+PiBPbiBNb24sIEF1ZyAxMCwgMjAxNSBhdCAxMToyOCBQTSwg
-QWxleGFuZHJlIENvdXJib3QgPGdudXJvdUBnbWFpbC5jb20+Cj4+Pj4gd3JvdGU6Cj4+Pj4+Cj4+
-Pj4+IEluZGVlZCwgYW5kIEkgYW0gYWN0dWFsbHkgc3VycHJpc2VkIHRvIHNlZSBvbmUgaGVyZS4g
-SSB3aWxsCj4+Pj4+IGRvdWJsZS1jaGVjayB0aGF0IHBhdGNoLgo+Pj4+Pgo+Pj4+PiBFcmljLCB3
-b3VsZCB5b3UgYmUgYWJsZSB0byBnaXZlIGFuIGVzdGltYXRlIG9mIHRoZSByZXBybyByYXRlIGZv
-ciB0aGlzCj4+Pj4+IGlzc3VlPyBNb3JlIHRlc3Rpbmcgd2l0aCBhbmQgd2l0aG91dCB0aGUgcGF0
-Y2ggd291bGQgYmUgd2VsY29tZSwgaXQnZAo+Pj4+PiBiZSBnb29kIHRvIGtub3cgd2hldGhlciBp
-dCBpcyBhY3R1YWxseSB0aGUgY3VscHJpdCBvciBub3QuCj4+Pj4+Cj4+Pj4+IE9uIE1vbiwgQXVn
-IDEwLCAyMDE1IGF0IDI6MjggQU0sIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4g
-d3JvdGU6Cj4+Pj4+ID4gQWxleGFuZHJlLCBjb3VsZCB5b3UgdGFrZSBhIGxvb2s/IDB4YmFkKiBn
-ZW5lcmFsbHkgY29tZXMgZnJvbSBiYWQgbW1pbwo+Pj4+PiA+IHJlYWRzLgo+Pj4+PiA+Cj4+Pj4+
-ID4gT24gQXVnIDksIDIwMTUgMTowOCBQTSwgIkVyaWMgQmlnZ2VycyIgPGViaWdnZXJzM0BnbWFp
-bC5jb20+IHdyb3RlOgo+Pj4+PiA+Pgo+Pj4+PiA+PiBIaSwKPj4+Pj4gPj4KPj4+Pj4gPj4gSSBh
-bSB0ZXN0aW5nIExpbnV4IHY0LjItcmM1IGFuZCBJIGFtIHNwb3JhZGljYWxseSBnZXR0aW5nIGNy
-YXNoZXMKPj4+Pj4gPj4gc2hvcnRseQo+Pj4+PiA+PiBhZnRlcgo+Pj4+PiA+PiBzdGFydHVwIGlu
-IGdrMTA0X2ZpZm9faW50cl9ydW5saXN0KCkuICBXaGF0IEkndmUgZm91bmQgaXMgdGhhdCB0aGUK
-Pj4+Pj4gPj4gJ21hc2snCj4+Pj4+ID4+IHZhbHVlCj4+Pj4+ID4+IHJlYWQgZnJvbSBvZmZzZXQg
-MHgyYTAwIGNvbWVzIGJhY2sgYXMgJzB4YmFkMGRhMDAnLiAgVGhpcyBjYXVzZXMgdGhlCj4+Pj4+
-ID4+ICdlbmduJwo+Pj4+PiA+PiB2YXJpYWJsZSB0byBiZSBhc3NpZ25lZCB0aGUgdmFsdWUgOSwg
-d2hpY2ggaXMgaW52YWxpZDsgdGhlbiB3YWtlX3VwKCkKPj4+Pj4gPj4gaXMKPj4+Pj4gPj4gY2Fs
-bGVkCj4+Pj4+ID4+IG9uIGFuIHVuaW5pdGlhbGl6ZWQgd2FpdHF1ZXVlIHdoaWNoIGNhdXNlcyB0
-aGUgY3Jhc2guCj4+Pj4+ID4+Cj4+Pj4+ID4+IFJldmVydGluZyBjb21taXQgMWFkZGMxMjY0ODUy
-MWQgKCJkcm0vbm91dmVhdS9maWZvL2drMTA0OiBraWNrIGNoYW5uZWxzCj4+Pj4+ID4+IHdoZW4K
-Pj4+Pj4gPj4gZGVhY3RpdmF0aW5nIHRoZW0iKSBzZWVtZWQgdG8gbWFrZSB0aGUgcHJvYmxlbSBn
-byBhd2F5LCBhbHRob3VnaCBJCj4+Pj4+ID4+IGNhbid0Cj4+Pj4+ID4+IGJlIDEwMCUKPj4+Pj4g
-Pj4gc3VyZSBiZWNhdXNlIHRoZSBwcm9ibGVtIGlzIHNwb3JhZGljLgo+Pj4+PiA+Pgo+Pj4+PiA+
-PiBBdHRhY2hlZCBhbiBleGFtcGxlIG9mIHRoZSBrZXJuZWwgbG9nIHVwIHRvIHRoZSBjcmFzaC4K
-Pj4+Pj4gPj4KPj4+Pj4gPj4gRXJpYwo+Pj4+PiA+Pgo+Pj4+PiA+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+PiA+PiBOb3V2ZWF1IG1haWxpbmcg
-bGlzdAo+Pj4+PiA+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+Pj4+PiA+PiBodHRw
-Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Pj4+PiA+
-Pgo+Pj4+PiA+Cj4+Pj4KPj4+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+Hi,
+
+On Wed, Aug 12, 2015 at 01:17:38PM +0900, Alexandre Courbot wrote:
+> This reverts commit 1addc1264852
+> 
+> This commit seems to cause crashes in gk104_fifo_intr_runlist() by
+> returning 0xbad0da00 when register 0x2a00 is read. Since this commit was
+> intended for GM20B which is not completely supported yet, let's revert
+> it for the time being.
+> 
+> Reported-by: Eric Biggers <ebiggers3@gmail.com>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+> David, it would be great if this could be merged for 4.2 since lots of
+> users could potentially experience this issue. Thanks!
+
+Tested-by: Afzal Mohammed <afzal.mohd.ma@gmail.com>
+
+Please help $subject reach mainline for 4.2, w/o this revert, the
+system here hangs most (>90%) of the time at boot time.
+
+As an aside, yesterday after a marathon git bisect, came to the same
+solution (though I don't understand what that change means). Was
+about to report it and saw this one. Thanks Alexandre.
+
+W/o the revert, in the rare case where it boots, below is observed in
+addition to as compared to w/ revert,
+
+[    9.826010] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT at 0x122130 [ !ENGINE ]
+
+Regards
+Afzal
