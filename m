@@ -1,15 +1,12 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH v2 00/22] Enable gpu switching on
- the MacBook Pro
-Date: Wed, 12 Aug 2015 16:16:25 +0200
-Message-ID: <20150812141625.GZ17734@phenom.ffwll.local>
-References: <cover.1439288957.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
+Date: Wed, 12 Aug 2015 19:49:06 +0000
+Message-ID: <bug-91598-8800-c5MxzGH5hs@http.bugs.freedesktop.org/>
+References: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1768019594=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <cover.1439288957.git.lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,127 +16,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>, Bruno Bierbaumer <bruno-ZtrTft/FFJqFX2APIN6yfw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Paul Hordiienko <pvt.gord-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Matthew Garrett <mjg59-JW9irJGTvgXQT0dZR+AlfA@public.gmane.org>, William Brown <william-n62phY/1UFdqFZ3NbRY2NA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBBdWcgMTEsIDIwMTUgYXQgMTI6Mjk6MTdQTSArMDIwMCwgTHVrYXMgV3VubmVyIHdy
-b3RlOgo+IFRoaXMgaXMgYSBmb2xsb3ctdXAgdG8gdGhlIHYxIHBvc3RlZCBpbiBBcHJpbDoKPiBo
-dHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE1LUFwcmls
-LzA4MTUxNS5odG1sCj4gCj4gCj4gUGF0Y2hlcyAxIC0gMTcgZW5hYmxlIEdQVSBzd2l0Y2hpbmcg
-b24gdGhlIHByZS1yZXRpbmEgTWFjQm9vayBQcm8uCj4gVGhlc2Ugd2VyZSB0ZXN0ZWQgc3VjY2Vz
-c2Z1bGx5IGJ5IG11bHRpcGxlIHBlb3BsZSBhbmQgc29sdmUgdHdvCj4gdGlja2V0cyBpbiBCdWd6
-aWxsYToKPiBodHRwczovL2J1Z3ppbGxhLmtlcm5lbC5vcmcvc2hvd19idWcuY2dpP2lkPTg4ODYx
-Cj4gaHR0cHM6Ly9idWdzLmZyZWVkZXNrdG9wLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NjExMTUKPiAK
-PiBQYXRjaGVzIDE4IC0gMjIgYXJlIGEgcHJldmlldyBvZiBob3cgd2UncmUgdGFja2xpbmcgcmV0
-aW5hIHN1cHBvcnQuCj4gVGhvc2UgYXJlIG1hcmtlZCBleHBlcmltZW50YWwgYW5kIGFyZSBOT1Qg
-cmVhZHkgdG8gYmUgbWVyZ2VkIHlldC4KPiBGZWVkYmFjayBvbiB0aGVtIGlzIHdlbGNvbWUuCj4g
-Cj4gVGhlIHBhdGNoZXMgYXJlIGJhc2VkIG9uIGRybS1uZXh0Lgo+IAo+IFRoZXkgd2VyZSB0ZXN0
-ZWQgb24gdGhlIGZvbGxvd2luZyBoYXJkd2FyZSAodGhhbmtzIGEgbG90IGV2ZXJ5b25lISk6Cj4g
-VGVzdGVkLWJ5OiBQYXVsIEhvcmRpaWVua28gPHB2dC5nb3JkQGdtYWlsLmNvbT4KPiAgICAgW01C
-UCAgNiwyIDIwMTAgIGludGVsIElMSyArIG52aWRpYSBHVDIxNiAgcHJlLXJldGluYV0KPiBUZXN0
-ZWQtYnk6IFdpbGxpYW0gQnJvd24gPHdpbGxpYW1AYmxhY2toYXRzLm5ldC5hdT4KPiAgICAgW01C
-UCAgOCwyIDIwMTEgIGludGVsIFNOQiArIGFtZCB0dXJrcyAgICAgcHJlLXJldGluYV0KPiBUZXN0
-ZWQtYnk6IEx1a2FzIFd1bm5lciA8bHVrYXNAd3VubmVyLmRlPgo+ICAgICBbTUJQICA5LDEgMjAx
-MiAgaW50ZWwgSVZCICsgbnZpZGlhIEdLMTA3ICBwcmUtcmV0aW5hXQo+IFRlc3RlZC1ieTogQnJ1
-bm8gQmllcmJhdW1lciA8YnJ1bm9AYmllcmJhdW1lci5uZXQ+Cj4gICAgIFtNQlAgMTEsMyAyMDEz
-ICBpbnRlbCBIU1cgKyBudmlkaWEgR0sxMDcgIHJldGluYSAtLSB3b3JrIGluIHByb2dyZXNzXQo+
-IAo+IAo+IFdoYXQncyBuZXc6Cj4gCj4gKiBCeSBkZWZhdWx0IHRoZSBNQlAgYm9vdHMgd2l0aCB0
-aGUgZGlzcGxheSBzd2l0Y2hlZCB0byB0aGUgZGlzY3JldGUgR1BVCj4gICBidXQgaXQgY2FuIGJl
-IGZvcmNlZCB0byB0aGUgaW50ZWdyYXRlZCBHUFUgd2l0aCBhbiBFRkkgYm9vdCB2YXJpYWJsZS4K
-PiAgIEhlcmUncyBhIGhhbmR5IHRvb2wgZm9yIHRoYXQ6IGh0dHBzOi8vZ2l0aHViLmNvbS8weGJi
-L2dwdS1zd2l0Y2gKPiAgIHYxIGRpZG4ndCB3b3JrIGluIHRoaXMgY29uZmlndXJhdGlvbiwgdjIg
-ZG9lcy4KPiAKPiAqIFJlcHJvYmluZyBpZiB0aGUgaW5hY3RpdmUgR1BVIGluaXRpYWxpemVzIGJl
-Zm9yZSB0aGUgYXBwbGUtZ211eCBtb2R1bGU6Cj4gICB2MSB1c2VkIE1hdHRoZXcgR2FycmV0dCdz
-IGFwcHJvYWNoIG9mIGFkZGluZyBhIGRyaXZlciBjYWxsYmFjay4KPiAgIHYyIHNpbXBseSBnZW5l
-cmF0ZXMgYSBob3RwbHVnIGV2ZW50IGluc3RlYWQuIG5vdXZlYXUgcG9sbHMgaXRzIG91dHB1dHMK
-PiAgIGV2ZXJ5IDEwIHNlY29uZHMgc28gd2Ugd2FudCBpdCB0byBwb2xsIGltbWVkaWF0ZWx5IG9u
-Y2UgYXBwbGUtZ211eAo+ICAgcmVnaXN0ZXJzLiBUaGF0IGlzIGFjaGlldmVkIGJ5IHRoZSBob3Rw
-bHVnIGV2ZW50LiBUaGUgaTkxNSBkcml2ZXIgaXMKPiAgIGNoYW5nZWQgdG8gYmVoYXZlIGlkZW50
-aWNhbGx5IHRvIG5vdXZlYXUuIChSaWdodCBub3cgaXQgZGVsZXRlcyBMVkRTCj4gICBhbmQgZURQ
-IGNvbm5lY3RvcnMgZnJvbSB0aGUgbW9kZSBjb25maWd1cmF0aW9uIGlmIHRoZXkgY2FuJ3QgYmUg
-cHJvYmVkLAo+ICAgZGVlbWluZyB0aGVtIHRvIGJlIGdob3N0cy4pCgpJIHRob3VnaHQgLUVERUZF
-UlJFRFBST0JFIGlzIHdoYXQgd2Ugc2hvdWxkIGJlIHVzaW5nIGlmIGRyaXZlcnMgZG9uJ3QgZ2V0
-CmxvYWRlZCBpbiB0aGUgcmlnaHQgb3JkZXI/IEhhbmQtcm9sbGluZyBkZXBlbmN5IGF2b2lkYW5j
-ZSBzdHVmZiBpcyBpbW8gYQpob3JyaWJsZSBpZGVhLgoKPiAqIEZyYW1lYnVmZmVyIHJlY3JlYXRp
-b24gaWYgdGhlIGluYWN0aXZlIEdQVSBpbml0aWFsaXplcyBiZWZvcmUgdGhlCj4gICBhcHBsZS1n
-bXV4IG1vZHVsZSAoaS5lLiBkaXNjYXJkaW5nIHRoZSBkZWZhdWx0IDEwMjR4NzY4IGZiIGFuZCBy
-ZXBsYWNpbmcKPiAgIHdpdGggYSBuZXcgb25lIHdpdGggdGhlIGFjdHVhbCBwYW5lbCByZXNvbHV0
-aW9uKTogdjEgb25seSBzdXBwb3J0ZWQgdGhpcwo+ICAgZm9yIGk5MTUsIHYyIGhhcyBhIGdlbmVy
-aWMgc29sdXRpb24gd2hpY2ggd29ya3Mgd2l0aCBub3V2ZWF1IGFuZCByYWRlb24KPiAgIGFzIHdl
-bGwuIChOZWNlc3NhcnkgaWYgdGhlIGRpc2NyZXRlIEdQVSBpcyBmb3JjZWQgdG8gYmUgdGhlIGlu
-YWN0aXZlIG9uZQo+ICAgb24gYm9vdCB2aWEgdGhlIEVGSSB2YXJpYWJsZS4pCgpXb3VsZCBjb21w
-bGV0ZWx5IHJlbW92ZSB0aGUgbmVlZCBmb3IgdGhpcyA7LSkKCj4gKiBHZW5lcmFsbHkgbG90cyBv
-ZiByb3VnaCBlZGdlcyB3ZXJlIHNtb290aGVkIHRvIGhvcGVmdWxseSBtYWtlIHRoZQo+ICAgcGF0
-Y2hlcyBtb3JlIHN1aXRhYmxlIGZvciBtZXJnaW5nLiBFLmcuIHRoZXJlJ3MgYSBidWcgaW4gaTkx
-NSB3aGVyZQo+ICAgdGhlIFNTQyBzdGF0dXMgc2V0IGJ5IEJJT1MgaXMgcHJlc2VydmVkIHRvbyBs
-YXRlIGFuZCB2MSBvbmx5IGNvbnRhaW5lZAo+ICAgYSB3b3JrYXJvdW5kLCB3aGVyZWFzIHYyIGNv
-bnRhaW5zIGEgcHJvcGVyIGZpeCBpbiBhIHNlcGFyYXRlIGNvbW1pdC4KPiAKPiAKPiBUaGUgbG9u
-ZyBqb3VybmV5IHRvd2FyZHMgcmV0aW5hIHN1cHBvcnQ6Cj4gCj4gVGhlIHBpeGVsIGNsb2NrIHJl
-cXVpcmVkIGZvciByZXRpbmEgcmVzb2x1dGlvbiBpcyBub3Qgc3VwcG9ydGVkIGJ5IExWRFMKPiAo
-d2hpY2ggd2FzIHVzZWQgb24gcHJlLXJldGluYXMpLCBuZWNlc3NpdGF0aW5nIGVEUCBpbnN0ZWFk
-LiBQcm9ibGVtIGlzLAo+IHRoZSBnbXV4IHJlZ2lzdGVyIHdoaWNoIHN3aXRjaGVzIHRoZSBEREMg
-bGluZXMgb24gcHJlLXJldGluYXMgZG9lc24ndAo+IHN3aXRjaCB0aGUgQVVYIGNoYW5uZWwgb24g
-cmV0aW5hcy4gRGlzYXNzZW1ibGluZyB0aGUgT1MgWCBkcml2ZXIgcmV2ZWFsZWQKPiB0aGF0IHRo
-ZSBnbXV4IGluIHJldGluYSBNQlBzIGdhaW5lZCBhbiBhZGRpdGlvbmFsIHJlZ2lzdGVyIDB4N2Yg
-d2hpY2ggZ2V0cwo+IHdyaXR0ZW4gdG8gd2hlbiBzZXR0aW5nIHVwIHRoZSBlRFAgY29uZmlndXJh
-dGlvbi4gVGhlcmUgd2FzIHNvbWUgaG9wZSB0aGF0Cj4gdGhpcyBtaWdodCBzd2l0Y2ggdGhlIEFV
-WCBjaGFubmVsLiBBbGFzLCB3ZSB0cmllZCB3cml0aW5nIHZhcmlvdXMgdmFsdWVzCj4gdG8gdGhh
-dCByZWdpc3RlciBidXQgd2VyZSB1bmFibGUgdG8gZ2V0IHRoZSBpbmFjdGl2ZSBHUFUgdG8gdGFs
-ayB0byB0aGUKPiBwYW5lbC4gVGhlIHB1cnBvc2Ugb2YgcmVnaXN0ZXIgMHg3ZiByZW1haW5zIGEg
-bXlzdGVyeS4KPiAKPiBUZWFyZG93bnMgb2YgdGhlIGZpcnN0IGdlbmVyYXRpb24gcmV0aW5hIE1C
-UCBuYW1lIHRoZSBOWFAgQ0JUTDA2MTQyIGFuZAo+IFRJIEhEM1NTMjEyIGFzIG11bHRpcGxleGVy
-cyBhbmQgYWNjb3JkaW5nIHRvIHRoZSBkYXRhIHNoZWV0cyBJJ3ZlIGZvdW5kLAo+IG5laXRoZXIg
-c3VwcG9ydHMgc3dpdGNoaW5nIHRoZSBBVVggY2hhbm5lbCBzZXBhcmF0ZWx5IGZyb20gdGhlIG1h
-aW4gbGluay4KPiAKPiBNYXR0aGV3IEdhcnJldHQgaGFkIHRoZSBpZGVhIG9mIGhhdmluZyB0aGUg
-YWN0aXZlIEdQVSBzdGFzaCB0aGUgRURJRCBhbmQKPiB0aGUgZmlyc3QgOCBieXRlcyBvZiB0aGUg
-RFBDRCAocmVjZWl2ZXIgY2FwYWJpbGl0aWVzKSBhbmQgbGV0dGluZyB0aGUKPiBpbmFjdGl2ZSBH
-UFUgcmV0cmlldmUgdGhhdCBkYXRhLiBJIHJlYmFzZWQgYW5kIHJld3JvdGUgaGlzIHBhdGNoZXMg
-YW5kCj4gZ290IGV2ZXJ5dGhpbmcgd29ya2luZywgb25seSB0byBkaXNjb3ZlciB0aGF0IHRoZSBk
-cml2ZXJzIGFyZSB1bmhhcHB5Cj4gd2l0aCBqdXN0IDggYnl0ZXMgb2YgRFBDRC4gVGhleSBuZWVk
-IGZ1bGwgYWNjZXNzIHRvIHRoZSBEUENEIHRvIHNldCB1cAo+IHRoZWlyIG91dHB1dHMuIFdlIGNv
-dWxkIHN0YXNoIHRoZSBlbnRpcmUgRFBDRCBidXQgc29tZSBwYXJ0cyBvZiBpdCBhcmUKPiBtdXRh
-YmxlIHNvIHRoZSBzdGFzaGVkIGRhdGEgbWF5IGJlY29tZSBzdGFsZSB3aGVuIHRoZSBhY3RpdmUg
-R1BVIHBlcmZvcm1zCj4gd3JpdGVzIHRvIHRoZSBEUENELgo+IAo+IFNvIEkgaGFkIHRoZSBpZGVh
-IG9mIHVzaW5nIHRoZSBhY3RpdmUgR1BVIGFzIGEgcHJveHkgdG8gdGFsayB0byB0aGUgcGFuZWws
-Cj4gdGh1cyBlbXVsYXRpbmcgc3dpdGNoaW5nIG9mIHRoZSBBVVggY2hhbm5lbCBpbiBzb2Z0d2Fy
-ZS4gV2UgY2FuIGxldmVyYWdlCj4gdGhlIHN0cnVjdCBkcm1fZHBfYXV4IGFuZCBpMmNfYWRhcHRl
-ciAoZm9yIEREQykgdG8gYWNoaWV2ZSB0aGlzLCBzd2FwcGluZwo+IHRoZSBpbmFjdGl2ZSBHUFUn
-cyBzdHJ1Y3RzIHdpdGggdGhvc2Ugb2YgdGhlIGFjdGl2ZSBHUFUgb24gdGhlIGZseS4KPiBUaGF0
-IGFwcHJvYWNoIGlzIGltcGxlbWVudGVkIGluIHBhdGNoZXMgMTggLSAyMiBidXQgdGhlcmUgYXJl
-IHN0aWxsIHNvbWUKPiBkcml2ZXIgaXNzdWVzIHRoYXQgSSdtIGRlYnVnZ2luZy4gVGhlIGN1cnJl
-bnQgc3RhdHVzIGFzIHBlciB0aGUgbGF0ZXN0Cj4gbG9ncyBCcnVubyBzZW50IG1lIGlzIHRoYXQg
-aTkxNSByZWplY3RzIHRoZSBtb2RlIHJldHJpZXZlZCB2aWEgcHJveHlpbmcKPiB3aXRoIENMT0NL
-X0hJR0ggYW5kIG5vdXZlYXUgYWJvcnRzIGxpbmsgdHJhaW5pbmcgaGFsZndheSB0aHJvdWdoLgo+
-IEJvdHRvbSBsaW5lIGlzIHRoYXQgaXQncyBub3QgeWV0IHdvcmtpbmcgYnV0IHdlJ3JlIGdldHRp
-bmcgY2xvc2VyLgo+IAo+IEFzIGEgc2lkZSBlZmZlY3QsIHRoZSBwcmUtcmV0aW5hcyBnYWluIGEg
-c2Vjb25kIHdheSB0byBpbml0aWFsaXplIHRoZWlyCj4gb3V0cHV0czogVGhleSBjYW4gZWl0aGVy
-IHVzZSBnbXV4IHRvIHN3aXRjaCB0aGUgRERDIGxpbmVzLCBvciB1c2UgdGhlCj4gYWN0aXZlIEdQ
-VSBhcyBhIHByb3h5IGZvciB0aGUgRERDIGNvbW11bmljYXRpb24uIFdoaWNoIG1ldGhvZCBnZXRz
-IHVzZWQKPiBkZXBlbmRzIG9uIHRoZSBvcmRlciBpbiB3aGljaCB0aGUgZHJpdmVycyBpbml0aWFs
-aXplLCB0aGUgaW5hY3RpdmUgR1BVCj4gd2lsbCBoYXBwaWx5IHVzZSB3aGF0ZXZlciBpcyBhdmFp
-bGFibGUgYW5kIGl0IGF1dG9tYXRpY2FsbHkgcmVjZWl2ZXMKPiBhIGhvdHBsdWcgZXZlbnQgb25j
-ZSBlaXRoZXIgbWV0aG9kIGJlY29tZXMgcmVhZHkgZm9yIHVzZS4KPiAKPiBCdXQsIG9uY2UgYWdh
-aW4sIHRoZSBwYXRjaGVzIGltcGxlbWVudGluZyBwcm94eWluZyAocGF0Y2hlcyAxOCAtIDIyKQo+
-IGFyZSBzdGlsbCBpbiBhIHN0YXRlIG9mIGZsdXggYW5kIG5vdCByZWFkeSBmb3IgcHJpbWUgdGlt
-ZSwgdW5saWtlIHRoZQo+IHByaW9yIG9uZXMgd2hpY2ggc2VlbSBzdGFibGUuIEZvbGtzIGFyZSBo
-ZXJlYnkgaW52aXRlZCB0byBwb2tlIGhvbGVzCj4gaW50byB0aGVtIGFuZCBJJ20gbG9va2luZyBm
-b3J3YXJkIHRvIHlvdXIgZmVlZGJhY2suCgpZb3UgY2FuJ3Qgc2hhcmUgdGhlIGRwIGF1eCBsaWtl
-IHRoYXQuIEl0J3MgdHJ1ZSB0aGF0IHdlIG5lZWQgYSBiaXQgbW9yZQpkYXRhICh0aGVyZSdzIGEg
-ZmV3IGVEUCByZWxhdGVkIGZlYXR1cmUgYmxvY3NrIHdlIG5lZWQpLCBidXQgc2hhcmluZyB0aGUK
-YXV4IGNoYW5uZWwgZW50aXJlbHkgaXMgbm8tZ28uIElmIHlvdSBkbyB5b3UgZ2V0IGRyaXZlcnMg
-dHJ5aW5nIHRvIGxpbmsKdHJhaW4gYW5kIGF0IGJlc3QgdGhpcyBmYWlscyBhbmQgYXQgd29yc3Qg
-eW91J2xsIHVwc2V0IHRoZSBjb25maWd1cmF0aW9uCm9mIHRoZSBvdGhlciBkcml2ZXIgYW5kIHBp
-c3Mgb2YgdGhlIHBhbmVsIGVub3VnaCB0byBuZWVkIGEgaGFyZCByZXNldAp1bnRpbCBpdCB3b3Jr
-cyBhZ2Fpbi4KCkkgdGhpbmsganVzdCByZWFkaW5nIGVkaWQgYW5kIHRoZSByZWxldmFudCBkcCBh
-dXggZGF0YSBpbiBhcHBsZS1nbXV4IG9yCnNvbWV3aGVyZSBsaWtlIHRoYXQgYW5kIHN0YWxsaW5n
-IGRyaXZlciBsb2FkIHVudGlsIHRoYXQncyByZWFkeSBpcyB0aGUKb25seSBjbGVhbiBvcHRpb24u
-IEFuZCBvZiBjb3Vyc2Ugd2UgbXVzdCBlbnN1cmUgdGhhdCBpbmFjdGl2ZSBkcml2ZXJzCmRvbid0
-IHRyeSB0byB1c2UgdGhlIGVwZCBsaW5rIGF0IGFsbCBzaW5jZSB0aGF0IHdpbGwgcGlzcyBvZmYg
-dGhlIHBhbmVsLgoKSSB0aGluayB0aGUgcmVhbCB0cmlja3kgYml0IGhlcmUgd2l0aCB2Z2Fzd2l0
-Y2hlcm9vIGlzIGxvY2tpbmcsIEkgbmVlZCB0bwp0YWtlIGEgc2VwYXJhdGUgbG9jayBhdCB0aGUg
-cGF0Y2hlcyBmb3IgdGhhdC4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpTb2Z0d2FyZSBFbmdp
-bmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1768019594==
+Content-Type: multipart/alternative; boundary="1439408946.1aE67C21.22691"; charset="UTF-8"
+
+
+--1439408946.1aE67C21.22691
+Date: Wed, 12 Aug 2015 19:49:06 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91598
+
+--- Comment #4 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+@Ilia Mirkin, I don't know about Andreas but for myself I know this happens
+with basic desktop use.  I am not running any games or heavily graphic
+intensive programs.  Simply Firefox with Kate and Dolphin on a 1080p display. 
+Isn't the kernel supposed to assist in handling a condition where Vram is being
+starved, etc?  It would seem to me that it's still a bug somewhere as this
+should be handled far better.  Especially since this is from basic desktop use
+only.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439408946.1aE67C21.22691
+Date: Wed, 12 Aug 2015 19:49:06 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
+              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
+</span></b>
+        <pre>&#64;Ilia Mirkin, I don't know about Andreas but for myself I know this happens
+with basic desktop use.  I am not running any games or heavily graphic
+intensive programs.  Simply Firefox with Kate and Dolphin on a 1080p display. 
+Isn't the kernel supposed to assist in handling a condition where Vram is being
+starved, etc?  It would seem to me that it's still a bug somewhere as this
+should be handled far better.  Especially since this is from basic desktop use
+only.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439408946.1aE67C21.22691--
+
+--===============1768019594==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1768019594==--
