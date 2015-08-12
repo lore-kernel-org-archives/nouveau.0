@@ -1,48 +1,107 @@
-From: Afzal Mohammed <afzal.mohd.ma@gmail.com>
-Subject: Re: [PATCH] Revert "drm/nouveau/fifo/gk104: kick channels when
- deactivating them"
-Date: Wed, 12 Aug 2015 11:30:52 +0530
-Message-ID: <20150812060052.GA4242@afzalpc>
-References: <1439353058-10001-1-git-send-email-acourbot@nvidia.com>
+From: Rudolf =?ISO-8859-1?Q?K=FCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Odd text behavior on Websites and others
+Date: Wed, 12 Aug 2015 08:30:10 +0200
+Message-ID: <1439361010.2866.2.camel@gmail.com>
+References: <1439281240.4493.2.camel@gmail.com>
+ <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
+ <1439304438.6366.4.camel@gmail.com>
+ <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
+ <1439307504.6366.6.camel@gmail.com>
+ <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
+ <1439330630.10427.0.camel@gmail.com>
+ <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-In-Reply-To: <1439353058-10001-1-git-send-email-acourbot@nvidia.com>
-Sender: linux-kernel-owner@vger.kernel.org
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: David Airlie <airlied@linux.ie>, Ben Skeggs <bskeggs@redhat.com>, Eric Biggers <ebiggers3@gmail.com>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, gnurou@gmail.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hi,
-
-On Wed, Aug 12, 2015 at 01:17:38PM +0900, Alexandre Courbot wrote:
-> This reverts commit 1addc1264852
-> 
-> This commit seems to cause crashes in gk104_fifo_intr_runlist() by
-> returning 0xbad0da00 when register 0x2a00 is read. Since this commit was
-> intended for GM20B which is not completely supported yet, let's revert
-> it for the time being.
-> 
-> Reported-by: Eric Biggers <ebiggers3@gmail.com>
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
-> David, it would be great if this could be merged for 4.2 since lots of
-> users could potentially experience this issue. Thanks!
-
-Tested-by: Afzal Mohammed <afzal.mohd.ma@gmail.com>
-
-Please help $subject reach mainline for 4.2, w/o this revert, the
-system here hangs most (>90%) of the time at boot time.
-
-As an aside, yesterday after a marathon git bisect, came to the same
-solution (though I don't understand what that change means). Was
-about to report it and saw this one. Thanks Alexandre.
-
-W/o the revert, in the rare case where it boots, below is observed in
-addition to as compared to w/ revert,
-
-[    9.826010] nouveau E[    PBUS][0000:01:00.0] MMIO read of 0x00000000 FAULT at 0x122130 [ !ENGINE ]
-
-Regards
-Afzal
+SSBkaWQgYXMgeW91IHByb3Bvc2VkLiBVbmZvcnR1bmF0ZWx5IG15IHBhc3N3b3JkIHdhc24ndCBh
+Y2NlcHRlZCBubwptb3JlLiBJIHRyaWVkIHRoZSBvdGhlciBvcHRpb24gd2l0aCBPcHRpb24gIk5v
+QWNjZWwiICJ0cnVlIiB3aXRoIHRoZQp2ZXJ5IHNhbWUgcmVzdWx0LgpJdCBzZWVtcyB0aGF0IHRo
+ZXNlIG1vZGlmaWNhdGlvbnMgd2lsbCBpbnRlcmZlcmUgc29tZSBvdGhlciBzdHVmZi4uLgoKLS0g
+ClJ1ZG9sZiBLw7xuemxpIDxydWRvbGYua3VuemxpQGdtYWlsLmNvbT4KT24gVHVlLCAyMDE1LTA4
+LTExIGF0IDE4OjExIC0wNDAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBBZGQgYSBmaWxlIHRvIC9l
+dGMvWDExL3hvcmcuY29uZi5kLCBuYW1lZCBhbnl0aGluZy15b3Utd2FudC5jb25mLCAKPiB3aGlj
+aCBjb250YWlucwo+IAo+IFNlY3Rpb24gIkRldmljZSIKPiAgIERyaXZlciAibW9kZXNldHRpbmci
+Cj4gRW5kU2VjdGlvbgo+IAo+IEhvcGVmdWxseSB0aGF0IHNob3VsZCBkbyBpdC4KPiAKPiBPbiBU
+dWUsIEF1ZyAxMSwgMjAxNSBhdCA2OjAzIFBNLCBSdWRvbGYgS8O8bnpsaSA8Cj4gcnVkb2xmLmt1
+bnpsaUBnbWFpbC5jb20+IHdyb3RlOgo+ID4gSSBkb24ndCBoYXZlIGEgZmlsZSAvZXRjL1gxMS94
+b3JnLmNvbmYgYnV0IGEgZm9sZGVyCj4gPiAvZXRjL1gxMS94b3JnLmNvbmYuZAo+ID4gCj4gPiBb
+cnVkb2xmQG1lcGhpc3RvIHhvcmcuY29uZi5kXSQgbHMgLWxhIC9ldGMvWDExL3hvcmcuY29uZi5k
+Cj4gPiB0b3RhbCAxMgo+ID4gZHJ3eHIteHIteC4gMiByb290IHJvb3QgNDA5NiBBdWcgIDQgMDg6
+MjUgLgo+ID4gZHJ3eHIteHIteC4gNiByb290IHJvb3QgNDA5NiBNYXkgMjcgMTE6NDAgLi4KPiA+
+IC1ydy1yLS1yLS0uIDEgcm9vdCByb290ICAyNjUgQXByIDIxIDE3OjA2IDAwLWtleWJvYXJkLmNv
+bmYKPiA+IAo+ID4gVGhlbiBhIGZvbGRlciAvdXNyL3NoYXJlL1gxMS94b3JnLmNvbmYuZCB3aXRo
+IHNlcnZlcmFsIGNvbmZpZyBmaWxlcyAKPiA+IGJ1dAo+ID4gSSBkb24ndCBzZWUgd2hpY2ggb25l
+IHRvIGJlIGVkaXRlZC4uLgo+ID4gCj4gPiBbcnVkb2xmQG1lcGhpc3RvIHhvcmcuY29uZi5kXSQg
+bHMgLWxhIC91c3Ivc2hhcmUvWDExL3hvcmcuY29uZi5kCj4gPiB0b3RhbCAzMgo+ID4gZHJ3eHIt
+eHIteC4gMiByb290IHJvb3QgNDA5NiBKdWwgMzEgMTg6MzMgLgo+ID4gZHJ3eHIteHIteC4gNyBy
+b290IHJvb3QgNDA5NiBNYXkgMjcgMTE6NDAgLi4KPiA+IC1ydy1yLS1yLS0uIDEgcm9vdCByb290
+IDEwOTkgSnVsIDE1IDEwOjIwIDEwLWV2ZGV2LmNvbmYKPiA+IC1ydy1yLS1yLS0uIDEgcm9vdCBy
+b290IDEzNTAgSnVsIDE1IDEwOjIwIDEwLXF1aXJrcy5jb25mCj4gPiAtcnctci0tci0tLiAxIHJv
+b3Qgcm9vdCAyODI3IE1heSAgMSAwODoyMyA1MC1zeW5hcHRpY3MuY29uZgo+ID4gLXJ3LXItLXIt
+LS4gMSByb290IHJvb3QgIDExNSBNYXkgMTUgMTQ6NDkgNTAtdm1tb3VzZS5jb25mCj4gPiAtcnct
+ci0tci0tLiAxIHJvb3Qgcm9vdCAxMzg1IE1hciAyMCAwMDozMSA1MC13YWNvbS5jb25mCj4gPiAt
+cnctci0tci0tLiAxIHJvb3Qgcm9vdCAgNzg5IEp1bCAxMyAwMDo1NCA5MC1saWJpbnB1dC5jb25m
+Cj4gPiAKPiA+IEFueSBvdGhlciBwbGFjZSB0byBsb29rIGZvci4gZmluZCBkaWRuJ3QgaGVscC4u
+Lgo+ID4gCj4gPiBJIGd1ZXNzIEknbGwgaGF2ZSB0byBydW4gInggY29uZmlnIiBhcyByb290IHRv
+IGdldCBhIHhvcmcuY29uZiAKPiA+IHdoaWNoIEkKPiA+IGNhbiBlZGl0IGxhdGVyLi4uCj4gPiAK
+PiA+IC0tCj4gPiBSdWRvbGYgS8O8bnpsaSA8cnVkb2xmLmt1bnpsaUBnbWFpbC5jb20+Cj4gPiBP
+biBUdWUsIDIwMTUtMDgtMTEgYXQgMTE6NDIgLTA0MDAsIElsaWEgTWlya2luIHdyb3RlOgo+ID4g
+PiBObywgeW91IHByb2JhYmx5IHdhbnQgc29tZXRoaW5nIGluIC9ldGMvWDExLi4uIGEgbG90IG9m
+IHRoZSB0aW1lIAo+ID4gPiBpdCdzCj4gPiA+IHNwbGl0IHVwIGludG8gYSBidW5jaCBvZiBzZXBh
+cmF0ZSBmaWxlcyBpbiBsaWtlIAo+ID4gPiAvZXRjL1gxMS94b3JnLmNvbmYuZAo+ID4gPiBvciBz
+b21ldGhpbmcuIFlvdSBzaG91bGQgY29uc3VsdCB5b3VyIGRpc3RybyBkb2N1bWVudGF0aW9uIGZv
+ciAKPiA+ID4gaG93IHRvCj4gPiA+IG1ha2UgaXQgaGFwcGVuLgo+ID4gPiAKPiA+ID4gT24gVHVl
+LCBBdWcgMTEsIDIwMTUgYXQgMTE6MzggQU0sIFJ1ZG9sZiBLw7xuemxpIDwKPiA+ID4gcnVkb2xm
+Lmt1bnpsaUBnbWFpbC5jb20+IHdyb3RlOgo+ID4gPiA+IFRoYW5rcyAtIHRoZSBvbmx5IHhvcmcu
+Y29uZiBJIGZvdW5kIGlzIC0KPiA+ID4gPiAgL3Vzci9zaGFyZS9hYnJ0L2NvbmYuZC9wbHVnaW5z
+L3hvcmcuY29uZgo+ID4gPiA+IElzIHRoaXMgdGhlIGZpbGUgdG8gYmUgZWRpdGVkPwo+ID4gPiA+
+IAo+ID4gPiA+IC0tCj4gPiA+ID4gUnVkb2xmIEvDvG56bGkgPHJ1ZG9sZi5rdW56bGlAZ21haWwu
+Y29tPgo+ID4gPiA+IE9uIFR1ZSwgMjAxNS0wOC0xMSBhdCAxMDo1NiAtMDQwMCwgSWxpYSBNaXJr
+aW4gd3JvdGU6Cj4gPiA+ID4gPiBPbiBUdWUsIEF1ZyAxMSwgMjAxNSBhdCAxMDo0NyBBTSwgUnVk
+b2xmIEvDvG56bGkgPAo+ID4gPiA+ID4gcnVkb2xmLmt1bnpsaUBnbWFpbC5jb20+IHdyb3RlOgo+
+ID4gPiA+ID4gPiA+IEdlRm9yY2UgR1RYIDc0NSBpcyBhIE5WSURJQSBjYXJkIGluIHRoZSBOVjEx
+NyAoR00xMDcpCj4gPiA+ID4gPiA+ID4gRmFtaWx5Li4uCj4gPiA+ID4gPiA+IFRoZSB1cGRhdGUg
+d2FzIG1hZGUgdXNpbmcgRE5GIChZdW0pIGluIG15IGRhaWx5IHVwZGF0ZQo+ID4gPiA+ID4gPiBw
+cm9jZWR1cmUKPiA+ID4gPiA+ID4gdXNpbmcKPiA+ID4gPiA+ID4gdGhlIEZlZG9yYSAyMiBVcGRh
+dGUgcmVwb3NpdG9yeS4KPiA+ID4gPiA+ID4gSSBhbSBub3QgZmFtaWxpYXIgd2l0aCBkZXRhaWxz
+IEkganVzdCBjYW4gcmVwb3J0IHdoYXQgCj4gPiA+ID4gPiA+IGhhcHBlbnMKPiA+ID4gPiA+ID4g
+cmlnaHQKPiA+ID4gPiA+ID4gbm93Li4uCj4gPiA+ID4gPiAKPiA+ID4gPiA+IE9LLCB0aGVyZSdz
+IG5vIEVYQSBzdXBwb3J0IGZvciBtYXh3ZWxsLCBzbyB5b3UncmUgdXNpbmcgCj4gPiA+ID4gPiBn
+bGFtb3IuCj4gPiA+ID4gPiBCZWZvcmUKPiA+ID4gPiA+IGtlcm5lbCA0LjEsIHVubGVzcyB5b3Ug
+aGFkIGV4dHJhY3RlZCB5b3VyIG93biBjdHhzdyBmaXJtd2FyZSwgCj4gPiA+ID4gPiB5b3UKPiA+
+ID4gPiA+IGRpZG4ndCBoYXZlIGFjY2VsZXJhdGlvbiBhdCBhbGwsIHRoYXQgd2FzIGxpa2VseSB0
+aGUgY2hhbmdlIAo+ID4gPiA+ID4gdGhhdAo+ID4gPiA+ID4gdHJpZ2dlcmVkIHRoZSBpc3N1ZS4K
+PiA+ID4gPiA+IAo+ID4gPiA+ID4gVGhlIGdsYW1vciBpbnRlZ3JhdGlvbiBpbiBub3V2ZWF1IGlz
+LCBzYWRseSwgYnJva2VuLiBCdXQgaXQncwo+ID4gPiA+ID4gdW5jbGVhcgo+ID4gPiA+ID4gd2hl
+dGhlciB0aGF0J3MgdGhlIGNhdXNlIG9mIHlvdXIgaXNzdWUuIFlvdSBjYW4gZWl0aGVyIGFkZAo+
+ID4gPiA+ID4gCj4gPiA+ID4gPiBPcHRpb24gIk5vQWNjZWwiICJ0cnVlIgo+ID4gPiA+ID4gCj4g
+PiA+ID4gPiB0byB0aGUgZGV2aWNlIHNlY3Rpb24gaW4geW91ciB4b3JnLmNvbmYsIHdoaWNoIHdp
+bGwgZGlzYWJsZSAKPiA+ID4gPiA+IDJkCj4gPiA+ID4gPiBhY2NlbGVyYXRpb24gYW5kIGJyaW5n
+IHlvdSBiYWNrIHRvIHRoZSBzYW1lIHN0YXRlIHlvdSB3ZXJlIGluCj4gPiA+ID4gPiBiZWZvcmUs
+Cj4gPiA+ID4gPiBvciB5b3UgY2FuIGFkZAo+ID4gPiA+ID4gCj4gPiA+ID4gPiBEcml2ZXIgIm1v
+ZGVzZXR0aW5nIgo+ID4gPiA+ID4gCj4gPiA+ID4gPiAob3IgdW5pbnN0YWxsIHhmODYtdmlkZW8t
+bm91dmVhdSkgd2hpY2ggd2lsbCB1c2UgdGhlIAo+ID4gPiA+ID4gbW9kZXNldHRpbmcKPiA+ID4g
+PiA+IGRyaXZlciB3aGljaCBoYXMgYSBub24tYnJva2VuIGdsYW1vciBpbnRlZ3JhdGlvbi4gWW91
+IG1heSAKPiA+ID4gPiA+IHN0aWxsCj4gPiA+ID4gPiBnZXQKPiA+ID4gPiA+IHRoZSBzYW1lIGlz
+c3VlcyB0aG91Z2gsIGFzIHRoZXkgY291bGQganVzdCBiZSBnZW5lcmljCj4gPiA+ID4gPiBtZXNh
+LXN1Y2tzLW9uLW1heHdlbGwgaXNzdWVzIChJIGRvbid0IGhhdmUgYSBNYXh3ZWxsIEdQVSwgbm8g
+Cj4gPiA+ID4gPiBvbmUKPiA+ID4gPiA+IGVsc2UKPiA+ID4gPiA+IGhhcyBiZWVuIGludGVyZXN0
+ZWQgaW4gZGVidWdnaW5nL2ZpeGluZyBpc3N1ZXMpLgo+ID4gPiA+ID4gCj4gPiA+ID4gPiAgIC1p
+bGlhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
