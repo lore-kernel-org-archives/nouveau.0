@@ -1,15 +1,17 @@
-From: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [REGRESSION] nouveau: Crash in
 	gk104_fifo_intr_runlist()
-Date: Tue, 11 Aug 2015 20:01:42 -0500
-Message-ID: <CAPWJ_tKisH541xkEU6PV8GdxOOCvByh9FsmV2VtxjcqLwOtTXQ@mail.gmail.com>
+Date: Wed, 12 Aug 2015 12:35:03 +0900
+Message-ID: <CAAVeFu+FAzvz-W6aoV-wrfG2PQaZ7ms_jnDEmpnCg+47+4E1fA@mail.gmail.com>
 References: <20150809170634.GA2712@zyxyz>
  <CAKb7Uviet+Bg_KBnaOHGm7b-0vppu6pLDkE-UcoaCcdZ7fEaUg@mail.gmail.com>
  <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA@mail.gmail.com>
+ <CAPWJ_tKisH541xkEU6PV8GdxOOCvByh9FsmV2VtxjcqLwOtTXQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1320164250=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAVeFuLkJ9daa=G6EWA+jf4v_cfvBHgqF5hP4L-v139vOubNkA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAPWJ_tKisH541xkEU6PV8GdxOOCvByh9FsmV2VtxjcqLwOtTXQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,159 +21,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Eric Biggers <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1320164250==
-Content-Type: multipart/alternative; boundary=001a113472520e2119051d12c397
-
---001a113472520e2119051d12c397
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-I think I've done about 10 reboots with the commit reverted and I never
-experienced the crash.  But with 4.2.0-rc6 I get the crash on about every
-other reboot.
-
-Probably relevant: the computer on which the crash occurs has two GPUs (one
-Intel and one Nvidia).  The Intel one is actually being used, whereas I
-presume the Nvidia one is being automatically disabled shortly after boot,
-perhaps when the crash occurs...
-
-Eric
-
-On Mon, Aug 10, 2015 at 11:28 PM, Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-wrote:
-
-> Indeed, and I am actually surprised to see one here. I will
-> double-check that patch.
->
-> Eric, would you be able to give an estimate of the repro rate for this
-> issue? More testing with and without the patch would be welcome, it'd
-> be good to know whether it is actually the culprit or not.
->
-> On Mon, Aug 10, 2015 at 2:28 AM, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> wrote:
-> > Alexandre, could you take a look? 0xbad* generally comes from bad mmio
-> > reads.
-> >
-> > On Aug 9, 2015 1:08 PM, "Eric Biggers" <ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
-> >>
-> >> Hi,
-> >>
-> >> I am testing Linux v4.2-rc5 and I am sporadically getting crashes
-> shortly
-> >> after
-> >> startup in gk104_fifo_intr_runlist().  What I've found is that the
-> 'mask'
-> >> value
-> >> read from offset 0x2a00 comes back as '0xbad0da00'.  This causes the
-> >> 'engn'
-> >> variable to be assigned the value 9, which is invalid; then wake_up() is
-> >> called
-> >> on an uninitialized waitqueue which causes the crash.
-> >>
-> >> Reverting commit 1addc12648521d ("drm/nouveau/fifo/gk104: kick channels
-> >> when
-> >> deactivating them") seemed to make the problem go away, although I can't
-> >> be 100%
-> >> sure because the problem is sporadic.
-> >>
-> >> Attached an example of the kernel log up to the crash.
-> >>
-> >> Eric
-> >>
-> >> _______________________________________________
-> >> Nouveau mailing list
-> >> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> >> http://lists.freedesktop.org/mailman/listinfo/nouveau
-> >>
-> >
->
-
---001a113472520e2119051d12c397
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>I think I&#39;ve done abou=
-t 10 reboots with the commit reverted and I never experienced the crash.=C2=
-=A0 But with 4.2.0-rc6 I get the crash on about every other reboot.<br><br>=
-</div>Probably relevant: the computer on which the crash occurs has two GPU=
-s (one Intel and one Nvidia).=C2=A0 The Intel one is actually being used, w=
-hereas I presume the Nvidia one is being automatically disabled shortly aft=
-er boot, perhaps when the crash occurs...<br><br></div>Eric<br></div><div c=
-lass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Aug 10, 2015 at=
- 11:28 PM, Alexandre Courbot <span dir=3D"ltr">&lt;<a href=3D"mailto:gnurou=
-@gmail.com" target=3D"_blank">gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">Indeed, and I am actually surprised to see one =
-here. I will<br>
-double-check that patch.<br>
-<br>
-Eric, would you be able to give an estimate of the repro rate for this<br>
-issue? More testing with and without the patch would be welcome, it&#39;d<b=
-r>
-be good to know whether it is actually the culprit or not.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Mon, Aug 10, 2015 at 2:28 AM, Ilia Mirkin &lt;<a href=3D"mailto:imirkin@=
-alum.mit.edu">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt; wrote:<br>
-&gt; Alexandre, could you take a look? 0xbad* generally comes from bad mmio=
-<br>
-&gt; reads.<br>
-&gt;<br>
-&gt; On Aug 9, 2015 1:08 PM, &quot;Eric Biggers&quot; &lt;<a href=3D"mailto=
-:ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">ebiggers3-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; I am testing Linux v4.2-rc5 and I am sporadically getting crashes =
-shortly<br>
-&gt;&gt; after<br>
-&gt;&gt; startup in gk104_fifo_intr_runlist().=C2=A0 What I&#39;ve found is=
- that the &#39;mask&#39;<br>
-&gt;&gt; value<br>
-&gt;&gt; read from offset 0x2a00 comes back as &#39;0xbad0da00&#39;.=C2=A0 =
-This causes the<br>
-&gt;&gt; &#39;engn&#39;<br>
-&gt;&gt; variable to be assigned the value 9, which is invalid; then wake_u=
-p() is<br>
-&gt;&gt; called<br>
-&gt;&gt; on an uninitialized waitqueue which causes the crash.<br>
-&gt;&gt;<br>
-&gt;&gt; Reverting commit 1addc12648521d (&quot;drm/nouveau/fifo/gk104: kic=
-k channels<br>
-&gt;&gt; when<br>
-&gt;&gt; deactivating them&quot;) seemed to make the problem go away, altho=
-ugh I can&#39;t<br>
-&gt;&gt; be 100%<br>
-&gt;&gt; sure because the problem is sporadic.<br>
-&gt;&gt;<br>
-&gt;&gt; Attached an example of the kernel log up to the crash.<br>
-&gt;&gt;<br>
-&gt;&gt; Eric<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; Nouveau mailing list<br>
-&gt;&gt; <a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau-PD4FTy7X32mzQB+pC5nmwQ@public.gmane.org=
-edesktop.org</a><br>
-&gt;&gt; <a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" =
-rel=3D"noreferrer" target=3D"_blank">http://lists.freedesktop.org/mailman/l=
-istinfo/nouveau</a><br>
-&gt;&gt;<br>
-&gt;<br>
-</div></div></blockquote></div><br></div>
-
---001a113472520e2119051d12c397--
-
---===============1320164250==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1320164250==--
+TW1tIGluIHRoYXQgY2FzZSBpdCBpcyBwcm9iYWJseSBiZXN0IHRvIHJldmVydCB0aGF0IGNvbW1p
+dCBmb3IgdGhlCnRpbWUgYmVpbmcuIEl0IHdhcyB0YXJnZXRpbmcgR00yMEIgKGFuZCBtYXliZSBv
+dGhlciBNYXh3ZWxscyB0b28pIHNvCnJldmVydGluZyBpdCBzaG91bGQgbm90IGh1cnQgYW55b25l
+IGF0IHRoZSBtb21lbnQuIEkgdGhpbmsgQmVuIGlzIG9uCmhvbGlkYXlzIGZvciBub3csIGlzIHRo
+ZXJlIGFueW9uZSBlbHNlIHdobyBjYW4gc2VuZCBhIHB1bGwgcmVxdWVzdCB0bwpEYXZlIEFpcmxp
+ZSBmb3IgdGhpcz8gV2UgZG9uJ3Qgd2FudCA0LjIgdG8gc2hpcCB3aXRoIGEgY3Jhc2ggZXZlcnkK
+b3RoZXIgcmVib290Li4uCgpPbiBXZWQsIEF1ZyAxMiwgMjAxNSBhdCAxMDowMSBBTSwgRXJpYyBC
+aWdnZXJzIDxlYmlnZ2VyczNAZ21haWwuY29tPiB3cm90ZToKPiBIaSwKPgo+IEkgdGhpbmsgSSd2
+ZSBkb25lIGFib3V0IDEwIHJlYm9vdHMgd2l0aCB0aGUgY29tbWl0IHJldmVydGVkIGFuZCBJIG5l
+dmVyCj4gZXhwZXJpZW5jZWQgdGhlIGNyYXNoLiAgQnV0IHdpdGggNC4yLjAtcmM2IEkgZ2V0IHRo
+ZSBjcmFzaCBvbiBhYm91dCBldmVyeQo+IG90aGVyIHJlYm9vdC4KPgo+IFByb2JhYmx5IHJlbGV2
+YW50OiB0aGUgY29tcHV0ZXIgb24gd2hpY2ggdGhlIGNyYXNoIG9jY3VycyBoYXMgdHdvIEdQVXMg
+KG9uZQo+IEludGVsIGFuZCBvbmUgTnZpZGlhKS4gIFRoZSBJbnRlbCBvbmUgaXMgYWN0dWFsbHkg
+YmVpbmcgdXNlZCwgd2hlcmVhcyBJCj4gcHJlc3VtZSB0aGUgTnZpZGlhIG9uZSBpcyBiZWluZyBh
+dXRvbWF0aWNhbGx5IGRpc2FibGVkIHNob3J0bHkgYWZ0ZXIgYm9vdCwKPiBwZXJoYXBzIHdoZW4g
+dGhlIGNyYXNoIG9jY3Vycy4uLgo+Cj4gRXJpYwo+Cj4gT24gTW9uLCBBdWcgMTAsIDIwMTUgYXQg
+MTE6MjggUE0sIEFsZXhhbmRyZSBDb3VyYm90IDxnbnVyb3VAZ21haWwuY29tPgo+IHdyb3RlOgo+
+Pgo+PiBJbmRlZWQsIGFuZCBJIGFtIGFjdHVhbGx5IHN1cnByaXNlZCB0byBzZWUgb25lIGhlcmUu
+IEkgd2lsbAo+PiBkb3VibGUtY2hlY2sgdGhhdCBwYXRjaC4KPj4KPj4gRXJpYywgd291bGQgeW91
+IGJlIGFibGUgdG8gZ2l2ZSBhbiBlc3RpbWF0ZSBvZiB0aGUgcmVwcm8gcmF0ZSBmb3IgdGhpcwo+
+PiBpc3N1ZT8gTW9yZSB0ZXN0aW5nIHdpdGggYW5kIHdpdGhvdXQgdGhlIHBhdGNoIHdvdWxkIGJl
+IHdlbGNvbWUsIGl0J2QKPj4gYmUgZ29vZCB0byBrbm93IHdoZXRoZXIgaXQgaXMgYWN0dWFsbHkg
+dGhlIGN1bHByaXQgb3Igbm90Lgo+Pgo+PiBPbiBNb24sIEF1ZyAxMCwgMjAxNSBhdCAyOjI4IEFN
+LCBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+PiA+IEFsZXhhbmRy
+ZSwgY291bGQgeW91IHRha2UgYSBsb29rPyAweGJhZCogZ2VuZXJhbGx5IGNvbWVzIGZyb20gYmFk
+IG1taW8KPj4gPiByZWFkcy4KPj4gPgo+PiA+IE9uIEF1ZyA5LCAyMDE1IDE6MDggUE0sICJFcmlj
+IEJpZ2dlcnMiIDxlYmlnZ2VyczNAZ21haWwuY29tPiB3cm90ZToKPj4gPj4KPj4gPj4gSGksCj4+
+ID4+Cj4+ID4+IEkgYW0gdGVzdGluZyBMaW51eCB2NC4yLXJjNSBhbmQgSSBhbSBzcG9yYWRpY2Fs
+bHkgZ2V0dGluZyBjcmFzaGVzCj4+ID4+IHNob3J0bHkKPj4gPj4gYWZ0ZXIKPj4gPj4gc3RhcnR1
+cCBpbiBnazEwNF9maWZvX2ludHJfcnVubGlzdCgpLiAgV2hhdCBJJ3ZlIGZvdW5kIGlzIHRoYXQg
+dGhlCj4+ID4+ICdtYXNrJwo+PiA+PiB2YWx1ZQo+PiA+PiByZWFkIGZyb20gb2Zmc2V0IDB4MmEw
+MCBjb21lcyBiYWNrIGFzICcweGJhZDBkYTAwJy4gIFRoaXMgY2F1c2VzIHRoZQo+PiA+PiAnZW5n
+bicKPj4gPj4gdmFyaWFibGUgdG8gYmUgYXNzaWduZWQgdGhlIHZhbHVlIDksIHdoaWNoIGlzIGlu
+dmFsaWQ7IHRoZW4gd2FrZV91cCgpCj4+ID4+IGlzCj4+ID4+IGNhbGxlZAo+PiA+PiBvbiBhbiB1
+bmluaXRpYWxpemVkIHdhaXRxdWV1ZSB3aGljaCBjYXVzZXMgdGhlIGNyYXNoLgo+PiA+Pgo+PiA+
+PiBSZXZlcnRpbmcgY29tbWl0IDFhZGRjMTI2NDg1MjFkICgiZHJtL25vdXZlYXUvZmlmby9nazEw
+NDoga2ljayBjaGFubmVscwo+PiA+PiB3aGVuCj4+ID4+IGRlYWN0aXZhdGluZyB0aGVtIikgc2Vl
+bWVkIHRvIG1ha2UgdGhlIHByb2JsZW0gZ28gYXdheSwgYWx0aG91Z2ggSQo+PiA+PiBjYW4ndAo+
+PiA+PiBiZSAxMDAlCj4+ID4+IHN1cmUgYmVjYXVzZSB0aGUgcHJvYmxlbSBpcyBzcG9yYWRpYy4K
+Pj4gPj4KPj4gPj4gQXR0YWNoZWQgYW4gZXhhbXBsZSBvZiB0aGUga2VybmVsIGxvZyB1cCB0byB0
+aGUgY3Jhc2guCj4+ID4+Cj4+ID4+IEVyaWMKPj4gPj4KPj4gPj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gPj4gTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Pj4gPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gPj4gaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKPj4gPj4KPj4gPgo+Cj4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
+aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
