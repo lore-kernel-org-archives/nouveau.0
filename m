@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Wed, 12 Aug 2015 19:49:06 +0000
-Message-ID: <bug-91598-8800-c5MxzGH5hs@http.bugs.freedesktop.org/>
+Date: Wed, 12 Aug 2015 20:18:34 +0000
+Message-ID: <bug-91598-8800-ZXccBIFXz5@http.bugs.freedesktop.org/>
 References: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1768019594=="
+Content-Type: multipart/mixed; boundary="===============0151642003=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,32 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1768019594==
-Content-Type: multipart/alternative; boundary="1439408946.1aE67C21.22691"; charset="UTF-8"
+--===============0151642003==
+Content-Type: multipart/alternative; boundary="1439410714.4ECD72.3487"; charset="UTF-8"
 
 
---1439408946.1aE67C21.22691
-Date: Wed, 12 Aug 2015 19:49:06 +0000
+--1439410714.4ECD72.3487
+Date: Wed, 12 Aug 2015 20:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91598
 
---- Comment #4 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-@Ilia Mirkin, I don't know about Andreas but for myself I know this happens
-with basic desktop use.  I am not running any games or heavily graphic
-intensive programs.  Simply Firefox with Kate and Dolphin on a 1080p display. 
-Isn't the kernel supposed to assist in handling a condition where Vram is being
-starved, etc?  It would seem to me that it's still a bug somewhere as this
-should be handled far better.  Especially since this is from basic desktop use
-only.
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to David March from comment #4)
+> It would seem to me that it's still a bug
+> somewhere as this should be handled far better.
+
+Fully agreed. Merely explaining what the various messages mean. And also
+mentioning that it's a known weakness in the nouveau user-space 3d driver,
+which in turn confuses the hardware greatly in a way that causes it to lock up
+completely.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1439408946.1aE67C21.22691
-Date: Wed, 12 Aug 2015 19:49:06 +0000
+--1439410714.4ECD72.3487
+Date: Wed, 12 Aug 2015 20:18:34 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +60,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Broken Rendering of Plasma 5 Desktop"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>&#64;Ilia Mirkin, I don't know about Andreas but for myself I know this happens
-with basic desktop use.  I am not running any games or heavily graphic
-intensive programs.  Simply Firefox with Kate and Dolphin on a 1080p display. 
-Isn't the kernel supposed to assist in handling a condition where Vram is being
-starved, etc?  It would seem to me that it's still a bug somewhere as this
-should be handled far better.  Especially since this is from basic desktop use
-only.</pre>
+        <pre>(In reply to David March from <a href="show_bug.cgi?id=91598#c4">comment #4</a>)
+<span class="quote">&gt; It would seem to me that it's still a bug
+&gt; somewhere as this should be handled far better.</span >
+
+Fully agreed. Merely explaining what the various messages mean. And also
+mentioning that it's a known weakness in the nouveau user-space 3d driver,
+which in turn confuses the hardware greatly in a way that causes it to lock up
+completely.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +86,9 @@ only.</pre>
     </body>
 </html>
 
---1439408946.1aE67C21.22691--
+--1439410714.4ECD72.3487--
 
---===============1768019594==
+--===============0151642003==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1768019594==--
+--===============0151642003==--
