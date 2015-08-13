@@ -1,12 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Thu, 13 Aug 2015 13:55:56 +0000
-Message-ID: <bug-90871-8800-ME1XznPhZa@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Rudolf =?ISO-8859-1?Q?K=FCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Odd text behavior on Websites and others
+Date: Thu, 13 Aug 2015 16:34:33 +0200
+Message-ID: <1439476473.5916.0.camel@gmail.com>
+References: <1439281240.4493.2.camel@gmail.com>
+ <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
+ <1439304438.6366.4.camel@gmail.com>
+ <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
+ <1439307504.6366.6.camel@gmail.com>
+ <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
+ <1439330630.10427.0.camel@gmail.com>
+ <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
+ <55CC9C93.1020709@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1431182699=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <55CC9C93.1020709-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,84 +25,38 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1431182699==
-Content-Type: multipart/alternative; boundary="1439474156.6e5DF46d1.1847"; charset="UTF-8"
-
-
---1439474156.6e5DF46d1.1847
-Date: Thu, 13 Aug 2015 13:55:56 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90871
-
---- Comment #21 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Test GLX compositing & tfp-test:
-http://goo.gl/Gm4ffO
-vids/discoth=C3=A8que.webm
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1439474156.6e5DF46d1.1847
-Date: Thu, 13 Aug 2015 13:55:56 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90871#c21">Commen=
-t # 21</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90871">bug 90871<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
-l.com&gt;"> <span class=3D"fn">poma</span></a>
-</span></b>
-        <pre>Test GLX compositing &amp; tfp-test:
-<a href=3D"http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
-vids/discoth=C3=A8que.webm</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439474156.6e5DF46d1.1847--
-
---===============1431182699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1431182699==--
+VGhhbmsgeW91IHZlcnkgbXVjaC4KSSBzd2l0Y2hlZCB0byB0aGUgYXBwcm9wcmlhdGUgTlZJRElB
+IGRyaXZlciBhbmQgdGhlIHN5c3RlbSB3b3JrcyBmaW5lCndpdGggaXQuCgotLSAKUnVkb2xmIEvD
+vG56bGkgPHJ1ZG9sZi5rdW56bGlAZ21haWwuY29tPgpPbiBUaHUsIDIwMTUtMDgtMTMgYXQgMTU6
+MzMgKzAyMDAsIHBvbWEgd3JvdGU6Cj4gT24gMTIuMDguMjAxNSAwMDoxMSwgSWxpYSBNaXJraW4g
+d3JvdGU6Cj4gPiBBZGQgYSBmaWxlIHRvIC9ldGMvWDExL3hvcmcuY29uZi5kLCBuYW1lZCBhbnl0
+aGluZy15b3Utd2FudC5jb25mLCAKPiA+IHdoaWNoIGNvbnRhaW5zCj4gPiAKPiA+IFNlY3Rpb24g
+IkRldmljZSIKPiA+ICAgRHJpdmVyICJtb2Rlc2V0dGluZyIKPiA+IEVuZFNlY3Rpb24KPiA+IAo+
+ID4gSG9wZWZ1bGx5IHRoYXQgc2hvdWxkIGRvIGl0Lgo+ID4gCj4gCj4gCj4gL3Zhci9sb2cvWG9y
+Zy4wLmxvZyAKPiAuLi4KPiBbICA0MjIzLjg5Ml0gKD09KSBVc2luZyBjb25maWcgZGlyZWN0b3J5
+OiAiL2V0Yy9YMTEveG9yZy5jb25mLmQiCj4gWyAgNDIyMy44OTJdICg9PSkgVXNpbmcgc3lzdGVt
+IGNvbmZpZyBkaXJlY3RvcnkgCj4gIi91c3Ivc2hhcmUvWDExL3hvcmcuY29uZi5kIgo+IFsgIDQy
+MjMuODkyXSBQYXJzZSBlcnJvciBvbiBsaW5lIDQgb2Ygc2VjdGlvbiBEZXZpY2UgaW4gZmlsZSAK
+PiAvZXRjL1gxMS94b3JnLmNvbmYuZC8wMC1tb2Rlc2V0dGluZy5jb25mCj4gCVRoaXMgc2VjdGlv
+biBtdXN0IGhhdmUgYW4gSWRlbnRpZmllciBsaW5lLgo+IFsgIDQyMjMuODkyXSAoRUUpIFByb2Js
+ZW0gcGFyc2luZyB0aGUgY29uZmlnIGZpbGUKPiBbICA0MjIzLjg5Ml0gKEVFKSBFcnJvciBwYXJz
+aW5nIHRoZSBjb25maWcgZmlsZQo+IFsgIDQyMjMuODkyXSAoRUUpIAo+IEZhdGFsIHNlcnZlciBl
+cnJvcjoKPiBbICA0MjIzLjg5Ml0gKEVFKSBubyBzY3JlZW5zIGZvdW5kKEVFKSAKPiBbICA0MjIz
+Ljg5Ml0gKEVFKSAKPiAuLi4KPiBbICA0MjIzLjg5Ml0gKEVFKSAKPiBbICA0MjIzLjg5Ml0gKEVF
+KSBTZXJ2ZXIgdGVybWluYXRlZCB3aXRoIGVycm9yICgxKS4gQ2xvc2luZyBsb2cgZmlsZS4KPiAK
+PiAKPiBtYW4gNSB4b3JnLmNvbmYKPiAuLi4KPiBERVZJQ0UgU0VDVElPTgo+IC4uLgo+IERldmlj
+ZSBzZWN0aW9ucyBoYXZlIHRoZSBmb2xsb3dpbmcgZm9ybWF0Ogo+IAo+ICAgICBTZWN0aW9uICJE
+ZXZpY2UiCj4gICAgICAgICBJZGVudGlmaWVyICJuYW1lIgo+ICAgICAgICAgRHJpdmVyICAgICAi
+ZHJpdmVyIgo+ICAgICAgICAgZW50cmllcwo+ICAgICAgICAgLi4uCj4gICAgIEVuZFNlY3Rpb24K
+PiAKPiBUaGUgKklkZW50aWZpZXIqICphbmQqICpEcml2ZXIqIGVudHJpZXMgYXJlICpyZXF1aXJl
+ZCogaW4gYWxsIERldmljZSAKPiBzZWN0aW9ucy4KPiBBbGwgb3RoZXIgZW50cmllcyBhcmUgb3B0
+aW9uYWwuCj4gCj4gZS5nLgo+IAo+IC9ldGMvWDExL3hvcmcuY29uZi5kLzAwLW1vZGVzZXR0aW5n
+LmNvbmYKPiBTZWN0aW9uICJEZXZpY2UiCj4gICAgIElkZW50aWZpZXIgInZpZGVvMCIKPiAgICAg
+RHJpdmVyICAgICAibW9kZXNldHRpbmciCj4gRW5kU2VjdGlvbgo+IAo+IApfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
+b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
