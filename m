@@ -1,12 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
-Date: Thu, 13 Aug 2015 09:32:07 +0000
-Message-ID: <bug-82714-8800-7w3qZACsM8@http.bugs.freedesktop.org/>
-References: <bug-82714-8800@http.bugs.freedesktop.org/>
+From: Rudolf =?ISO-8859-1?Q?K=FCnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: Odd text behavior on Websites and others
+Date: Thu, 13 Aug 2015 11:32:18 +0200
+Message-ID: <1439458338.3045.2.camel@gmail.com>
+References: <1439281240.4493.2.camel@gmail.com>
+ <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
+ <1439304438.6366.4.camel@gmail.com>
+ <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
+ <1439307504.6366.6.camel@gmail.com>
+ <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
+ <1439330630.10427.0.camel@gmail.com>
+ <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
+ <1439361010.2866.2.camel@gmail.com> <1439416439.4565.2.camel@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1456756140=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1439416439.4565.2.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,86 +25,20 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1456756140==
-Content-Type: multipart/alternative; boundary="1439458327.117DA2.17584"; charset="UTF-8"
-
-
---1439458327.117DA2.17584
-Date: Thu, 13 Aug 2015 09:32:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=82714
-
---- Comment #19 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-I had completely forgotten I had the same card... So, tried again with 4.1.5
-and with config=NvForcePost=1, and I get the same evo_wait bug "Unable to
-handle kernel paging request" that you had at some point, even if the card is
-the primary GPU. Removing config=NvForcePost=1, and the bug disappears.
-
-I'll try to do some testing with this configuration (single GPU +
-config=NvForcePost=1), see if I can find something, before putting the G84 back
-as a secondary GPU.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439458327.117DA2.17584
-Date: Thu, 13 Aug 2015 09:32:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [G84] nouveau fails to properly initialize GPU"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>I had completely forgotten I had the same card... So, tried again with 4.1.5
-and with config=NvForcePost=1, and I get the same evo_wait bug &quot;Unable to
-handle kernel paging request&quot; that you had at some point, even if the card is
-the primary GPU. Removing config=NvForcePost=1, and the bug disappears.
-
-I'll try to do some testing with this configuration (single GPU +
-config=NvForcePost=1), see if I can find something, before putting the G84 back
-as a secondary GPU.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439458327.117DA2.17584--
-
---===============1456756140==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1456756140==--
+SSBkb24ndCB0aGluayB0aGVyZSB3aWxsIGJlIGEgZmFzdCBmaXggb2YgdGhlIHByb2JsZW0uCkkg
+ZGlkIGluc3RhbGwgdGhlIE5WSURJQSBkcml2ZXIuIFRoZSBwcm9ibGVtIGRpc2FwcGVhcmVkLgpJ
+J2QgbG92ZWQgdG8gc3RheSB3aXRoIHRoZSBub3V2ZWF1IGRyaXZlciBhbnl3YXkhClRoYW5rcyBm
+b3IgeW91ciBlZmZvcnQuCgotLSAKUnVkb2xmIEvDvG56bGkgPHJ1ZG9sZi5rdW56bGlAZ21haWwu
+Y29tPgpPbiBXZWQsIDIwMTUtMDgtMTIgYXQgMjM6NTMgKzAyMDAsIFJ1ZG9sZiBLw7xuemxpIHdy
+b3RlOgo+IEp1c3QgYSBwcmVjaXNpb24uIEl0IHNlZW1zIHRoYXQgdGhlIHBhc3N3b3JkIGlzIGFj
+Y2VwdGVkIGFuZCB0aGUgCj4gc2NyZWVuCj4gdHVybiB0byAiYmxhY2siIGZvciBhIHNlY29uZC4g
+QWZ0ZXIgdGhlbiBpdCByZXR1cm5zIHRvIHRoZSBsb2dpbgo+IHNjcmVlbi4gSXQgZG9lc24ndCBn
+aXZlIGEgbWVzc2FnZSBhcyBmb3IgYSB3cm9uZyBwYXNzd29yZC4KPiBTb3JyeSwgSSBkaWRuJ3Qg
+Z2l2ZSBhIGNvbXByZWhlbnNpYmxlIGRlc2NyaXB0aW9uLgo+IApfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
