@@ -1,16 +1,12 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Re: [Intel-gfx] [PATCH v2 00/22] Enable gpu switching on
-	the MacBook Pro
-Date: Thu, 13 Aug 2015 08:50:47 +0200
-Message-ID: <CAKMK7uEEoLoDce=TH7LGMjD8XAob3a-VCVsisXWKz5t3K=RxkQ@mail.gmail.com>
-References: <cover.1439288957.git.lukas@wunner.de>
- <20150812141625.GZ17734@phenom.ffwll.local>
- <20150812233711.GA6002@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82714] [G84] nouveau fails to properly initialize GPU
+Date: Thu, 13 Aug 2015 09:32:07 +0000
+Message-ID: <bug-82714-8800-7w3qZACsM8@http.bugs.freedesktop.org/>
+References: <bug-82714-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1456756140=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20150812233711.GA6002-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-82714-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,114 +16,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: Andreas Heider <andreas-nJONrVjOgt4@public.gmane.org>, Bruno Bierbaumer <bruno-ZtrTft/FFJqFX2APIN6yfw@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, dri-devel <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Paul Hordiienko <pvt.gord-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Matthew Garrett <mjg59-JW9irJGTvgXQT0dZR+AlfA@public.gmane.org>, William Brown <william-n62phY/1UFdqFZ3NbRY2NA@public.gmane.org>, Dave Airlie <airlied-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBBdWcgMTMsIDIwMTUgYXQgMTozNyBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IEhpIERhbmllbCwKPgo+IE9uIFdlZCwgQXVnIDEyLCAyMDE1IGF0IDA0
-OjE2OjI1UE0gKzAyMDAsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4+ID4gKiBSZXByb2JpbmcgaWYg
-dGhlIGluYWN0aXZlIEdQVSBpbml0aWFsaXplcyBiZWZvcmUgdGhlIGFwcGxlLWdtdXggbW9kdWxl
-Ogo+PiA+ICAgdjEgdXNlZCBNYXR0aGV3IEdhcnJldHQncyBhcHByb2FjaCBvZiBhZGRpbmcgYSBk
-cml2ZXIgY2FsbGJhY2suCj4+ID4gICB2MiBzaW1wbHkgZ2VuZXJhdGVzIGEgaG90cGx1ZyBldmVu
-dCBpbnN0ZWFkLiBub3V2ZWF1IHBvbGxzIGl0cyBvdXRwdXRzCj4+ID4gICBldmVyeSAxMCBzZWNv
-bmRzIHNvIHdlIHdhbnQgaXQgdG8gcG9sbCBpbW1lZGlhdGVseSBvbmNlIGFwcGxlLWdtdXgKPj4g
-PiAgIHJlZ2lzdGVycy4gVGhhdCBpcyBhY2hpZXZlZCBieSB0aGUgaG90cGx1ZyBldmVudC4gVGhl
-IGk5MTUgZHJpdmVyIGlzCj4+ID4gICBjaGFuZ2VkIHRvIGJlaGF2ZSBpZGVudGljYWxseSB0byBu
-b3V2ZWF1LiAoUmlnaHQgbm93IGl0IGRlbGV0ZXMgTFZEUwo+PiA+ICAgYW5kIGVEUCBjb25uZWN0
-b3JzIGZyb20gdGhlIG1vZGUgY29uZmlndXJhdGlvbiBpZiB0aGV5IGNhbid0IGJlIHByb2JlZCwK
-Pj4gPiAgIGRlZW1pbmcgdGhlbSB0byBiZSBnaG9zdHMuKQo+Pgo+PiBJIHRob3VnaHQgLUVERUZF
-UlJFRFBST0JFIGlzIHdoYXQgd2Ugc2hvdWxkIGJlIHVzaW5nIGlmIGRyaXZlcnMgZG9uJ3QgZ2V0
-Cj4+IGxvYWRlZCBpbiB0aGUgcmlnaHQgb3JkZXI/IEhhbmQtcm9sbGluZyBkZXBlbmN5IGF2b2lk
-YW5jZSBzdHVmZiBpcyBpbW8gYQo+PiBob3JyaWJsZSBpZGVhLgo+IFsuLi5dCj4+IEkgdGhpbmsg
-anVzdCByZWFkaW5nIGVkaWQgYW5kIHRoZSByZWxldmFudCBkcCBhdXggZGF0YSBpbiBhcHBsZS1n
-bXV4IG9yCj4+IHNvbWV3aGVyZSBsaWtlIHRoYXQgYW5kIHN0YWxsaW5nIGRyaXZlciBsb2FkIHVu
-dGlsIHRoYXQncyByZWFkeSBpcyB0aGUKPj4gb25seSBjbGVhbiBvcHRpb24uCj4KPiBJJ20gYWZy
-YWlkIHdlIGNhbid0IHN0YWxsIGluaXRpYWxpemF0aW9uIG9mIGEgZHJpdmVyIGxpa2UgdGhhdCBi
-ZWNhdXNlCj4gZXZlbiB0aG91Z2ggdGhlIEdQVSBtYXkgbm90IGJlIHN3aXRjaGVkIHRvIHRoZSBw
-YW5lbCwgaXQgbWF5IHN0aWxsIGhhdmUKPiBhbiBleHRlcm5hbCBtb25pdG9yIGF0dGFjaGVkLgo+
-Cj4gQWxsIE1hY0Jvb2sgUHJvcyBoYXZlIGV4dGVybmFsIERQIGFuZC9vciBIRE1JIHBvcnRzIGFu
-ZCB0aGVzZSBhcmUKPiBlaXRoZXIgc29sZGVyZWQgdG8gdGhlIGRpc2NyZXRlIEdQVSAobW9kZWwg
-eWVhciAyMDExIGFuZCBvbndhcmRzKQo+IG9yIHN3aXRjaGFibGUgYmV0d2VlbiB0aGUgZGlzY3Jl
-dGUgYW5kIGludGVncmF0ZWQgR1BVICh1bnRpbCAyMDEwOwo+IEkgdGhpbmsgdGhleSBhcmUgZXZl
-biBzd2l0Y2hhYmxlIHNlcGFyYXRlbHkgZnJvbSB0aGUgcGFuZWwpLgo+Cj4gU28gYmFzaWNhbGx5
-IHdlJ2QgaGF2ZSB0byBpbml0aWFsaXplIHRoZSBkcml2ZXIgbm9ybWFsbHksIGFuZCBpZgo+IGlu
-dGVsX2x2ZHNfaW5pdCgpIG9yIGludGVsX2VkcF9pbml0X2Nvbm5lY3RvcigpIGZhaWwgd2UnZCBo
-YXZlIHRvCj4gc29tZWhvdyBwYXNzIHRoYXQgdXAgdGhlIGNhbGwgY2hhaW4gc28gdGhhdCBpOTE1
-X3BjaV9wcm9iZSgpIGNhbgo+IHJldHVybiAtRVBST0JFX0RFRkVSLiBBbmQgd2hlbmV2ZXIgd2Un
-cmUgYXNrZWQgdG8gcmVwcm9iZSB3ZSdkCj4gcmVwZWF0IGluaXRpYWxpemF0aW9uIG9mIHRoZSBM
-VkRTIG9yIGVEUCBjb25uZWN0b3IuCj4KPiBJJ20gd29uZGVyaW5nIHdoYXQgdGhlIGJlbmVmaXQg
-aXMgY29tcGFyZWQgdG8ganVzdCBrZWVwaW5nIHRoZQo+IGNvbm5lY3RvciBpbiB0aGUgbW9kZSBj
-b25maWd1cmF0aW9uLCBidXQgd2l0aCBzdGF0dXMgZGlzY29ubmVjdGVkLAo+IGFuZCByZXByb2Jp
-bmcgaXQgd2hlbiB0aGUgLT5vdXRwdXRfcG9sbF9jaGFuZ2VkIGNhbGxiYWNrIGdldHMgaW52b2tl
-ZD8KPiBCZWNhdXNlIHRoYXQncyB3aGF0IG5vdXZlYXUgYWxyZWFkeSBkb2VzLCBhbmQgd2hhdCBJ
-J3ZlIGNoYW5nZWQgaTkxNQo+IHRvIGRvIHdpdGggcGF0Y2ggMTMuCj4KPiB2Z2Ffc3dpdGNoZXJv
-byBjYWxscyBkcm1fa21zX2hlbHBlcl9ob3RwbHVnX2V2ZW50KCkgd2hlbiB0aGUgaGFuZGxlcgo+
-IHJlZ2lzdGVycyAocGF0Y2ggMTEpLCB3aGljaCB3aWxsIGludm9rZSAtPm91dHB1dF9wb2xsX2No
-YW5nZWQuCj4gU28gd2UncmUgdGFsa2luZyBhYm91dCB0aGUgT2ZmaWNpYWwgRFJNIENhbGxiYWNr
-IFt0bV0gdG8gcHJvYmUKPiBvdXRwdXRzLCBub3QgImhhbmQtcm9sbGluZyBkZXBlbmN5IGF2b2lk
-YW5jZSIuIDotKQoKT2ggSSBkaWRuJ3Qgc3BvdCB0aGF0IG9uZS4gVGhpcyBraW5kIG9mIGxheWVy
-aW5nIGludmVyc2lvbnMgZ2VuZXJhbGx5CmxlYWRzIHRvIGRlYWRsb2NrcyBhbmQgZnVuIHN0dWZm
-LiBBbHNvIHJlcHJvYmluZyBsdmRzL2VkcCBpcyBqdXN0IGEKc2lkZS1lZmZlY3Qgd2hlbiB5b3Ug
-aGF2ZSBmYmRldiBlbXVsYXRpb24gZW5hYmxlZC4gSWYgd2UgZ28gd2l0aCB0aGlzCnJlLXByb2Jp
-bmcgYXBwcm9hY2ggdGhlbiB3ZSBkZWZpbml0ZWx5IG5lZWQgYSBuZXcgaG9vayBpbgp2Z2Etc3dp
-dGNoZXJvbywgYW5kIGV2ZW4gdGhlbiB0aGVyZSdzIHN0aWxsIHRoZSBsb2NraW5nIHByb2JsZW0u
-Cgo+PiA+ICogRnJhbWVidWZmZXIgcmVjcmVhdGlvbiBpZiB0aGUgaW5hY3RpdmUgR1BVIGluaXRp
-YWxpemVzIGJlZm9yZSB0aGUKPj4gPiAgIGFwcGxlLWdtdXggbW9kdWxlIChpLmUuIGRpc2NhcmRp
-bmcgdGhlIGRlZmF1bHQgMTAyNHg3NjggZmIgYW5kIHJlcGxhY2luZwo+PiA+ICAgd2l0aCBhIG5l
-dyBvbmUgd2l0aCB0aGUgYWN0dWFsIHBhbmVsIHJlc29sdXRpb24pOiB2MSBvbmx5IHN1cHBvcnRl
-ZCB0aGlzCj4+ID4gICBmb3IgaTkxNSwgdjIgaGFzIGEgZ2VuZXJpYyBzb2x1dGlvbiB3aGljaCB3
-b3JrcyB3aXRoIG5vdXZlYXUgYW5kIHJhZGVvbgo+PiA+ICAgYXMgd2VsbC4gKE5lY2Vzc2FyeSBp
-ZiB0aGUgZGlzY3JldGUgR1BVIGlzIGZvcmNlZCB0byBiZSB0aGUgaW5hY3RpdmUgb25lCj4+ID4g
-ICBvbiBib290IHZpYSB0aGUgRUZJIHZhcmlhYmxlLikKPj4KPj4gV291bGQgY29tcGxldGVseSBy
-ZW1vdmUgdGhlIG5lZWQgZm9yIHRoaXMgOy0pCj4KPiBVbmZvcnR1bmF0ZWx5IG5vdDogV2UnZCBz
-dGlsbCBoYXZlIHRvIGluaXRpYWxpemUgdGhlIGRyaXZlciB0byBiZSBhYmxlCj4gdG8gZHJpdmUg
-ZXh0ZXJuYWwgZGlzcGxheXMuIElmIHRoZXJlIGFyZSBpbml0aWFsbHkgbm8gY29ubmVjdG9ycyB3
-aXRoCj4gbW9kZXMsIHdlJ2xsIG9uY2UgYWdhaW4gZW5kIHVwIHdpdGggdGhlIDEwMjR4NzY4IGZi
-LgoKRURFRkVSUkVEUFJPQkUgaXNuJ3Qgc29tZXRoaW5nIHRoYXQgZ2V0cyByZXR1cm5lZCB0byB1
-c2Vyc3BhY2UsIGl0J3MKanVzdCBpbnRlcm5hbCBoYW5kbGluZyBzbyB0aGF0IHRoZSBrZXJuZWwg
-a25vd3MgdGhlcmUncyBhIGRlcGVuY3kKaXNzdWUgYW5kIGl0IG5lZWRzIHRvIHJldHJ5IHByb2Jp
-bmcgb25jZSBvdGhlciBkcml2ZXJzIGhhdmUgZmluaXNoZWQKbG9hZGluZy4gSXQgaXMgdGhlIGdl
-bmVyaWMgbWVhbnMgbGludXggaGFzIHRvIGhhbmRsZSBjcm9zcy1kcml2ZXIKZGVwZW5jaWVzIHdo
-aWNoIGFyZW4ndCByZWZsZWN0ZWQgaW4gdGhlIGJ1cyBoaWVyYXJjaHkuCgpJLmUuIGl0J3MganVz
-dCBzb21ldGhpbmcgdG8gbWFrZSBzdXJlIHRoYXQgYXBwbGUtZ211eCBpcyBmdWxseSBsb2FkZWQK
-YmVmb3JlIGk5MTUvbm91dmVhdS4gVGhlIGRyaXZlciBfd2lsbF8gYmUgaW5pdGlhbGl6ZWQgZXZl
-bnR1YWxseS4KCj4+IFlvdSBjYW4ndCBzaGFyZSB0aGUgZHAgYXV4IGxpa2UgdGhhdC4gSXQncyB0
-cnVlIHRoYXQgd2UgbmVlZCBhIGJpdCBtb3JlCj4+IGRhdGEgKHRoZXJlJ3MgYSBmZXcgZURQIHJl
-bGF0ZWQgZmVhdHVyZSBibG9jc2sgd2UgbmVlZCksIGJ1dCBzaGFyaW5nIHRoZQo+PiBhdXggY2hh
-bm5lbCBlbnRpcmVseSBpcyBuby1nby4gSWYgeW91IGRvIHlvdSBnZXQgZHJpdmVycyB0cnlpbmcg
-dG8gbGluawo+PiB0cmFpbiBhbmQgYXQgYmVzdCB0aGlzIGZhaWxzIGFuZCBhdCB3b3JzdCB5b3Un
-bGwgdXBzZXQgdGhlIGNvbmZpZ3VyYXRpb24KPj4gb2YgdGhlIG90aGVyIGRyaXZlciBhbmQgcGlz
-cyBvZiB0aGUgcGFuZWwgZW5vdWdoIHRvIG5lZWQgYSBoYXJkIHJlc2V0Cj4+IHVudGlsIGl0IHdv
-cmtzIGFnYWluLgo+Cj4gWWVzLCBzbyBmYXIgcHJveHlpbmcgb2YgdGhlIEFVWCBjaGFubmVsIGlz
-IHJlYWQtb25seS4gSW4gdGhvc2UgY2FzZXMKPiB3aGVuIHdyaXRpbmcgaXMgbmVjZXNzYXJ5IGZv
-ciBzZXR0aW5nIHVwIHRoZSBvdXRwdXQsIEknbSBhZGRpbmcgY29kZQo+IHRvIGNoZWNrIGlmIHRo
-ZSBjdXJyZW50IGNvbnRlbnQgb2YgdGhlIERQQ0QgaXMgaWRlbnRpY2FsIHRvIHdoYXQncwo+IGJl
-aW5nIHdyaXR0ZW4gYW5kIGlmIHNvLCBza2lwIHRoZSB3cml0ZS4gV2UnbGwgc2VlIGlmIHRoaXMg
-c3RhdGVneSBpcwo+IHN1ZmZpY2llbnQgZm9yIHRoZSBkcml2ZXJzIHRvIHNldCB1cCB0aGVpciBv
-dXRwdXRzLgoKWW91IG5lZWQgdG8gYmxvY2sgYW55dGhpbmcgdGhhdCB3b3VsZCB3cml0ZSBfbXVj
-aF8gZWFybGllci4gQnkgdGhlCnRpbWUgd2UncmUgZG9pbmcgbGluay10cmFpbmluZyBpdCdzIHdh
-eSB0b28gbGF0ZS4KCj4+IEkgdGhpbmsgdGhlIHJlYWwgdHJpY2t5IGJpdCBoZXJlIHdpdGggdmdh
-c3dpdGNoZXJvbyBpcyBsb2NraW5nLCBJIG5lZWQgdG8KPj4gdGFrZSBhIHNlcGFyYXRlIGxvY2sg
-YXQgdGhlIHBhdGNoZXMgZm9yIHRoYXQuCj4KPiBMb2NraW5nIHdoZW4gc3dpdGNoaW5nIG9ubHkg
-dGhlIEREQyBsaW5lcyBpcyBmYWNpbGl0YXRlZCBieSB0aGUgZGRjX2xvY2sKPiBhdHRyaWJ1dGUg
-b2Ygc3RydWN0IHZnYXNyX3ByaXYuIFRoaXMgaXMgYWxsIGxvY2FsIHRvIHZnYV9zd2l0Y2hlcm9v
-LmMKPiBhbmQgY29udGFpbmVkIGluIHBhdGNoZXMgNSBhbmQgNi4KPgo+IExvY2tpbmcgd2hlbiBw
-cm94eWluZyB0aGUgQVVYIGNoYW5uZWwgaXMgZmFjaWxpdGF0ZWQgYnkgdGhlIGh3X211dGV4Cj4g
-YXR0cmlidXRlIG9mIHN0cnVjdCBkcm1fZHBfYXV4LiBub3V2ZWF1IGhhcyBpdHMgb3duIGxvY2tp
-bmcgbWVjaGFuaXNtCj4gY29udGFpbmVkIGluIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2kyYy9wYWQqLmMuIFRodXMsCj4gd2hlbiBwcm94eWluZyB2aWEgbm91dmVhdSwgdGhl
-cmUgYXJlIHR3byBsb2NraW5nIG1lY2hhbmlzbXMgYXQgd29yawo+IChkcm1fZHBfYXV4IGh3X211
-dGV4IGFzIG91dGVyIGxvY2sgKyBwYWQgYXMgaW5uZXIgbG9jaykuIFRoaXMgaXMKPiBub3RoaW5n
-IGludHJvZHVjZWQgYnkgdGhpcyBwYXRjaCBzZXQsIGFsbCBleGlzdGluZyBjb2RlLgo+Cj4gTG9j
-a2luZyBvZiBhY2Nlc3MgdG8gdGhlIHN0cnVjdCB2Z2Fzcl9wcml2IGlzIGZhY2lsaXRhdGVkIGJ5
-IHRoZQo+IHZnYXNyX211dGV4IGluIHZnYV9zd2l0Y2hlcm9vLmMuIEFsc28gZXhpc3RpbmcgY29k
-ZS4KCk1ha2luZyBzdXJlIGV2ZXJ5dGhpbmcgaXMgcHJvdGVjdGVkIGlzIHRoZSBlYXN5IHBhcnQg
-b2YgbG9ja2luZwpyZXZpZXcuIE1ha2luZyBzdXJlIHlvdSBjYW4ndCBkZWFkbG9jayBpcyB0aGUg
-aGFyZCBwYXJ0LCBhbmQgdGhlCm11dGV4X3RyeWxvY2sgZ2FtZSBsb29rcyBsaWtlIHRoYXQncyBh
-IHByb2JsZW0gbm90IGhhbmRsZWQgY29ycmVjdGx5LgotRGFuaWVsCi0tIApEYW5pZWwgVmV0dGVy
-ClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgorNDEgKDApIDc5IDM2NSA1NyA0
-OCAtIGh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============1456756140==
+Content-Type: multipart/alternative; boundary="1439458327.117DA2.17584"; charset="UTF-8"
+
+
+--1439458327.117DA2.17584
+Date: Thu, 13 Aug 2015 09:32:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82714
+
+--- Comment #19 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I had completely forgotten I had the same card... So, tried again with 4.1.5
+and with config=NvForcePost=1, and I get the same evo_wait bug "Unable to
+handle kernel paging request" that you had at some point, even if the card is
+the primary GPU. Removing config=NvForcePost=1, and the bug disappears.
+
+I'll try to do some testing with this configuration (single GPU +
+config=NvForcePost=1), see if I can find something, before putting the G84 back
+as a secondary GPU.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439458327.117DA2.17584
+Date: Thu, 13 Aug 2015 09:32:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [G84] nouveau fails to properly initialize GPU"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82714">bug 82714</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>I had completely forgotten I had the same card... So, tried again with 4.1.5
+and with config=NvForcePost=1, and I get the same evo_wait bug &quot;Unable to
+handle kernel paging request&quot; that you had at some point, even if the card is
+the primary GPU. Removing config=NvForcePost=1, and the bug disappears.
+
+I'll try to do some testing with this configuration (single GPU +
+config=NvForcePost=1), see if I can find something, before putting the G84 back
+as a secondary GPU.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439458327.117DA2.17584--
+
+--===============1456756140==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1456756140==--
