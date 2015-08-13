@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91627] KMS failed on DisplayPort with 750 Ti
-Date: Thu, 13 Aug 2015 16:56:50 +0000
-Message-ID: <bug-91627-8800-qVFC6V9AdA@http.bugs.freedesktop.org/>
+Date: Thu, 13 Aug 2015 16:57:29 +0000
+Message-ID: <bug-91627-8800-9dt51iT6cJ@http.bugs.freedesktop.org/>
 References: <bug-91627-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2140560895=="
+Content-Type: multipart/mixed; boundary="===============0703016346=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,28 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2140560895==
-Content-Type: multipart/alternative; boundary="1439485010.c65667Dd1.15738"; charset="UTF-8"
+--===============0703016346==
+Content-Type: multipart/alternative; boundary="1439485049.aFC5132b1.16015"; charset="UTF-8"
 
 
---1439485010.c65667Dd1.15738
-Date: Thu, 13 Aug 2015 16:56:50 +0000
+--1439485049.aFC5132b1.16015
+Date: Thu, 13 Aug 2015 16:57:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91627
 
---- Comment #1 from Tom Yan <tom.ty89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117668
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117668&action=edit
-debug log with DP connected
+--- Comment #2 from Tom Yan <tom.ty89-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117669
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117669&action=edit
+debug log with dvi/hdmi connected
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1439485010.c65667Dd1.15738
-Date: Thu, 13 Aug 2015 16:56:50 +0000
+--1439485049.aFC5132b1.16015
+Date: Thu, 13 Aug 2015 16:57:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - KMS failed on DisplayPort with 750 Ti"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91627#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91627#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - KMS failed on DisplayPort with 750 Ti"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91627">bug 91627</a>
               from <span class="vcard"><a class="email" href="mailto:tom.ty89&#64;gmail.com" title="Tom Yan &lt;tom.ty89&#64;gmail.com&gt;"> <span class="fn">Tom Yan</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117668" name="attach_117668" title="debug log with DP connected">attachment 117668</a> <a href="attachment.cgi?id=117668&amp;action=edit" title="debug log with DP connected">[details]</a></span>
-debug log with DP connected</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117669" name="attach_117669" title="debug log with dvi/hdmi connected">attachment 117669</a> <a href="attachment.cgi?id=117669&amp;action=edit" title="debug log with dvi/hdmi connected">[details]</a></span>
+debug log with dvi/hdmi connected</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ debug log with DP connected</pre>
     </body>
 </html>
 
---1439485010.c65667Dd1.15738--
+--1439485049.aFC5132b1.16015--
 
---===============2140560895==
+--===============0703016346==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2140560895==--
+--===============0703016346==--
