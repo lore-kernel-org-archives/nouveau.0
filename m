@@ -1,12 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Thu, 13 Aug 2015 13:36:40 +0000
-Message-ID: <bug-90871-8800-y63i3J2uNo@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH mesa] nv30: Fix creation of scanout buffers
+Date: Thu, 13 Aug 2015 15:40:38 +0200
+Message-ID: <55CC9E56.5090903@gmail.com>
+References: <1439382297-5647-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1966435430=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1439382297-5647-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,74 +17,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1966435430==
-Content-Type: multipart/alternative; boundary="1439473000.87e21.26228"; charset="UTF-8"
-
-
---1439473000.87e21.26228
-Date: Thu, 13 Aug 2015 13:36:40 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #20 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks for the explanation.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1439473000.87e21.26228
-Date: Thu, 13 Aug 2015 13:36:40 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c20">Comment # 20</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>Thanks for the explanation.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439473000.87e21.26228--
-
---===============1966435430==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1966435430==--
+T24gMTIuMDguMjAxNSAxNDoyNCwgSGFucyBkZSBHb2VkZSB3cm90ZToKPiBTY2Fub3V0IGJ1ZmZl
+cnMgb24gbnYzMCBtdXN0IGFsd2F5cyBiZSBub24tc3dpenpsZWQgYW5kIGhhdmUgc3BlY2lhbAo+
+IHdpZHRoIGFsaWdubWVudCBjb25zdHJhaW50cy4KPiAKPiBUaGVzZSBjb25zdHJhaW5zIGhhdmUg
+YmVlbiB0YWtlbiBmcm9tIHRoZSB4Zjg2LXZpZGVvLW5vdXZlYXUKPiBzcmMvbnZfYWNjZWxfY29t
+bW9uLmM6IG5vdXZlYXVfYWxsb2NhdGVfc3VyZmFjZSgpIGZ1bmN0aW9uLgo+IAo+IG5vdXZlYXVf
+YWxsb2NhdGVfc3VyZmFjZSgpIGFwcGxpZXMgdGhlc2Ugd2lkdGggY29uc3RyYWludHMgb25seSB3
+aGVuIGEKPiB0aWxlZCBhdHRyaWJ1dGUgaXMgc2V0LCB3aGljaCBpdCBzZXRzIGZvciBhbGwgc3Vy
+ZmFjZXMgYWxsb2NhdGVkIHZpYQo+IGRyaSwgYW5kIHRoaXMgInRpbGluZyIgaXMgbm90IHRoZSBz
+YW1lIGFzIHN3aXp6bGluZywgc2Nhbm91dCBzdXJmYWNlcwo+IG11c3QgYmUgbGluZWFyIC8gaGF2
+ZSBhIHVuaWZvcm1fcGl0Y2ggb3Igb25seSBjb21wbGV0ZSBnYXJiYWdlIGlzIHNob3duLgo+IAo+
+IFRoaXMgY29tbWl0IGZpeGVzIGRyaTMgb24gbnYzMCBzaG93aW5nIGEgZ2FyYmxlZCBkaXNwbGF5
+LCB3aXRoIGRyaTMgdGhlCj4gc2Nhbm91dCBidWZmZXJzIGFyZSBhbGxvY2F0ZWQgYnkgbWVzYSwg
+cmF0aGVyIHRoZW4gYnkgdGhlIGRkeCwgYW5kIHRoZQo+IHdyb25nIHN0cmlkZSBvZiB0aGVzZSBi
+dWZmZXJzIHdhcyBjYXVzaW5nIHRoZSBnYXJibGVkIGRpc3BsYXkuCj4gCj4gU2lnbmVkLW9mZi1i
+eTogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPiAtLS0KPiAgc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMgfCAxMCArKysrKysrKysrCj4g
+IDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfbWlwdHJlZS5jIGIvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKPiBpbmRleCBjNzViNGI5Li4yMjc2
+MzQ3IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBf
+bWlwdHJlZS5jCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9t
+aXB0cmVlLmMKPiBAQCAtMjgsNiArMjgsNyBAQAo+ICAjaW5jbHVkZSAidXRpbC91X3N1cmZhY2Uu
+aCIKPiAgCj4gICNpbmNsdWRlICJudl9tMm1mLnhtbC5oIgo+ICsjaW5jbHVkZSAibnZfb2JqZWN0
+LnhtbC5oIgo+ICAjaW5jbHVkZSAibnYzMC9udjMwX3NjcmVlbi5oIgo+ICAjaW5jbHVkZSAibnYz
+MC9udjMwX2NvbnRleHQuaCIKPiAgI2luY2x1ZGUgIm52MzAvbnYzMF9yZXNvdXJjZS5oIgo+IEBA
+IC0zNjIsNiArMzYzLDcgQEAgbnYzMF9taXB0cmVlX2NyZWF0ZShzdHJ1Y3QgcGlwZV9zY3JlZW4g
+KnBzY3JlZW4sCj4gICAgIGJsb2Nrc3ogPSB1dGlsX2Zvcm1hdF9nZXRfYmxvY2tzaXplKHB0LT5m
+b3JtYXQpOwo+ICAKPiAgICAgaWYgKChwdC0+dGFyZ2V0ID09IFBJUEVfVEVYVFVSRV9SRUNUKSB8
+fAo+ICsgICAgICAgKHB0LT5iaW5kICYgUElQRV9CSU5EX1NDQU5PVVQpIHx8Cj4gICAgICAgICAh
+dXRpbF9pc19wb3dlcl9vZl90d28ocHQtPndpZHRoMCkgfHwKPiAgICAgICAgICF1dGlsX2lzX3Bv
+d2VyX29mX3R3byhwdC0+aGVpZ2h0MCkgfHwKPiAgICAgICAgICF1dGlsX2lzX3Bvd2VyX29mX3R3
+byhwdC0+ZGVwdGgwKSB8fAo+IEBAIC0zNjksNiArMzcxLDE0IEBAIG52MzBfbWlwdHJlZV9jcmVh
+dGUoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLAo+ICAgICAgICAgdXRpbF9mb3JtYXRfaXNf
+ZmxvYXQocHQtPmZvcm1hdCkgfHwgbXQtPm1zX21vZGUpIHsKPiAgICAgICAgbXQtPnVuaWZvcm1f
+cGl0Y2ggPSB1dGlsX2Zvcm1hdF9nZXRfbmJsb2Nrc3gocHQtPmZvcm1hdCwgdykgKiBibG9ja3N6
+Owo+ICAgICAgICBtdC0+dW5pZm9ybV9waXRjaCA9IGFsaWduKG10LT51bmlmb3JtX3BpdGNoLCA2
+NCk7Cj4gKyAgICAgIGlmIChwdC0+YmluZCAmIFBJUEVfQklORF9TQ0FOT1VUKSB7Cj4gKyAgICAg
+ICAgIHN0cnVjdCBudjMwX3NjcmVlbiAqc2NyZWVuID0gbnYzMF9zY3JlZW4ocHNjcmVlbik7Cj4g
+KyAgICAgICAgIGludCBwaXRjaF9hbGlnbiA9IE1BWDIoCj4gKyAgICAgICAgICAgICAgIHNjcmVl
+bi0+ZW5nM2QtPm9jbGFzcyA+PSBOVjQwXzNEX0NMQVNTID8gMTAyNCA6IDI1NiwKPiArICAgICAg
+ICAgICAgICAgLyogcm91bmRfZG93bl9wb3cyKG10LT51bmlmb3JtX3BpdGNoIC8gNCkgKi8KPiAr
+ICAgICAgICAgICAgICAgMSA8PCAodXRpbF9sYXN0X2JpdChtdC0+dW5pZm9ybV9waXRjaCAvIDQp
+IC0gMSkpOwo+ICsgICAgICAgICBtdC0+dW5pZm9ybV9waXRjaCA9IGFsaWduKG10LT51bmlmb3Jt
+X3BpdGNoLCBwaXRjaF9hbGlnbik7Cj4gKyAgICAgIH0KPiAgICAgfQo+ICAKPiAgICAgaWYgKCFt
+dC0+dW5pZm9ybV9waXRjaCkKPiAKCgpJIHBhdGNoZWQgbWVzYSAxMC42LjQgd2l0aCBpdCwgZGlk
+IG5vdCBoZWxwIHRvIHNvbHZlCmh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcu
+Y2dpP2lkPTkwODcxCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
