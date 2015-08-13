@@ -1,20 +1,12 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Odd text behavior on Websites and others
-Date: Thu, 13 Aug 2015 15:33:07 +0200
-Message-ID: <55CC9C93.1020709@gmail.com>
-References: <1439281240.4493.2.camel@gmail.com>
- <CAKb7UviYDQn_MSET+y60_NC5UYp1+OPUxkZeP8vvz+cBLtvm1Q@mail.gmail.com>
- <1439304438.6366.4.camel@gmail.com>
- <CAKb7UviRDg0OPzCZxB2GR67OV70Sc5zubENYSGRyKiH0fFrzdA@mail.gmail.com>
- <1439307504.6366.6.camel@gmail.com>
- <CAKb7UviqvY97VCHHnzEOHHHYxWoXnHa+f5VcHKwx90HHJ4e0nw@mail.gmail.com>
- <1439330630.10427.0.camel@gmail.com>
- <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Thu, 13 Aug 2015 13:36:40 +0000
+Message-ID: <bug-90871-8800-y63i3J2uNo@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1966435430=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhMUKXR42ujqZhG6ENsyq6NXBN=vR9wfvzaMp_-nG=bfw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,32 +16,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, =?UTF-8?Q?Rudolf_K=c3=bcnzli?= <rudolf.kunzli-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTIuMDguMjAxNSAwMDoxMSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gQWRkIGEgZmlsZSB0byAv
-ZXRjL1gxMS94b3JnLmNvbmYuZCwgbmFtZWQgYW55dGhpbmcteW91LXdhbnQuY29uZiwgd2hpY2gg
-Y29udGFpbnMKPiAKPiBTZWN0aW9uICJEZXZpY2UiCj4gICBEcml2ZXIgIm1vZGVzZXR0aW5nIgo+
-IEVuZFNlY3Rpb24KPiAKPiBIb3BlZnVsbHkgdGhhdCBzaG91bGQgZG8gaXQuCj4gCgoKL3Zhci9s
-b2cvWG9yZy4wLmxvZyAKLi4uClsgIDQyMjMuODkyXSAoPT0pIFVzaW5nIGNvbmZpZyBkaXJlY3Rv
-cnk6ICIvZXRjL1gxMS94b3JnLmNvbmYuZCIKWyAgNDIyMy44OTJdICg9PSkgVXNpbmcgc3lzdGVt
-IGNvbmZpZyBkaXJlY3RvcnkgIi91c3Ivc2hhcmUvWDExL3hvcmcuY29uZi5kIgpbICA0MjIzLjg5
-Ml0gUGFyc2UgZXJyb3Igb24gbGluZSA0IG9mIHNlY3Rpb24gRGV2aWNlIGluIGZpbGUgL2V0Yy9Y
-MTEveG9yZy5jb25mLmQvMDAtbW9kZXNldHRpbmcuY29uZgoJVGhpcyBzZWN0aW9uIG11c3QgaGF2
-ZSBhbiBJZGVudGlmaWVyIGxpbmUuClsgIDQyMjMuODkyXSAoRUUpIFByb2JsZW0gcGFyc2luZyB0
-aGUgY29uZmlnIGZpbGUKWyAgNDIyMy44OTJdIChFRSkgRXJyb3IgcGFyc2luZyB0aGUgY29uZmln
-IGZpbGUKWyAgNDIyMy44OTJdIChFRSkgCkZhdGFsIHNlcnZlciBlcnJvcjoKWyAgNDIyMy44OTJd
-IChFRSkgbm8gc2NyZWVucyBmb3VuZChFRSkgClsgIDQyMjMuODkyXSAoRUUpIAouLi4KWyAgNDIy
-My44OTJdIChFRSkgClsgIDQyMjMuODkyXSAoRUUpIFNlcnZlciB0ZXJtaW5hdGVkIHdpdGggZXJy
-b3IgKDEpLiBDbG9zaW5nIGxvZyBmaWxlLgoKCm1hbiA1IHhvcmcuY29uZgouLi4KREVWSUNFIFNF
-Q1RJT04KLi4uCkRldmljZSBzZWN0aW9ucyBoYXZlIHRoZSBmb2xsb3dpbmcgZm9ybWF0OgoKICAg
-IFNlY3Rpb24gIkRldmljZSIKICAgICAgICBJZGVudGlmaWVyICJuYW1lIgogICAgICAgIERyaXZl
-ciAgICAgImRyaXZlciIKICAgICAgICBlbnRyaWVzCiAgICAgICAgLi4uCiAgICBFbmRTZWN0aW9u
-CgpUaGUgKklkZW50aWZpZXIqICphbmQqICpEcml2ZXIqIGVudHJpZXMgYXJlICpyZXF1aXJlZCog
-aW4gYWxsIERldmljZSBzZWN0aW9ucy4KQWxsIG90aGVyIGVudHJpZXMgYXJlIG9wdGlvbmFsLgoK
-ZS5nLgoKL2V0Yy9YMTEveG9yZy5jb25mLmQvMDAtbW9kZXNldHRpbmcuY29uZgpTZWN0aW9uICJE
-ZXZpY2UiCiAgICBJZGVudGlmaWVyICJ2aWRlbzAiCiAgICBEcml2ZXIgICAgICJtb2Rlc2V0dGlu
-ZyIKRW5kU2VjdGlvbgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1966435430==
+Content-Type: multipart/alternative; boundary="1439473000.87e21.26228"; charset="UTF-8"
+
+
+--1439473000.87e21.26228
+Date: Thu, 13 Aug 2015 13:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #20 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the explanation.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1439473000.87e21.26228
+Date: Thu, 13 Aug 2015 13:36:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>Thanks for the explanation.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439473000.87e21.26228--
+
+--===============1966435430==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1966435430==--
