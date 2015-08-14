@@ -1,98 +1,50 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91627] [NV117] KMS failed on DisplayPort with 750 Ti
-Date: Thu, 13 Aug 2015 17:02:06 +0000
-Message-ID: <bug-91627-8800-to6jOiKpZw@http.bugs.freedesktop.org/>
-References: <bug-91627-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou@gmail.com>
+Subject: Re: [PATCH] Revert "drm/nouveau/fifo/gk104: kick channels when
+ deactivating them"
+Date: Fri, 14 Aug 2015 12:49:17 +0900
+Message-ID: <CAAVeFu+mjG6yHY5+_bLaoRxSf7B668_r92ZPfd-z0jOLF9AHSg@mail.gmail.com>
+References: <1439353058-10001-1-git-send-email-acourbot@nvidia.com>
+ <20150812060052.GA4242@afzalpc>
+ <CAAVeFuK7Hk4TN3bPECFP2WVamKHj6xfO5cejLU_xeDts-DxVBg@mail.gmail.com>
+ <20150812073727.GA5630@afzalpc>
+ <CAAVeFuLNpvLHeWiucULJ=AEz0moX3PLvVpnYMyvkYhbL+FuSZg@mail.gmail.com>
+ <20150812095907.GA3030@afzalpc>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0004393693=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <20150812095907.GA3030@afzalpc>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Afzal Mohammed <afzal.mohd.ma@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Eric Biggers <ebiggers3@gmail.com>, Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0004393693==
-Content-Type: multipart/alternative; boundary="1439485326.f83C1632.17756"; charset="UTF-8"
-
-
---1439485326.f83C1632.17756
-Date: Thu, 13 Aug 2015 17:02:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91627
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|KMS failed on DisplayPort   |[NV117] KMS failed on
-                   |with 750 Ti                 |DisplayPort with 750 Ti
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439485326.f83C1632.17756
-Date: Thu, 13 Aug 2015 17:02:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] KMS failed on DisplayPort with 750 Ti"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91627">bug 91627</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>KMS failed on DisplayPort with 750 Ti
-           </td>
-           <td>[NV117] KMS failed on DisplayPort with 750 Ti
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439485326.f83C1632.17756--
-
---===============0004393693==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0004393693==--
+T24gV2VkLCBBdWcgMTIsIDIwMTUgYXQgNjo1OSBQTSwgQWZ6YWwgTW9oYW1tZWQgPGFmemFsLm1v
+aGQubWFAZ21haWwuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIFdlZCwgQXVnIDEyLCAyMDE1IGF0
+IDA0OjQwOjU3UE0gKzA5MDAsIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+Cj4+IEdyZWF0LCB0
+aGFua3MuIEFyZSB5b3UgYWxzbyBvbiBhbiBvcHRpbXVzIGNvbmZpZ3VyYXRpb24gd2l0aCB0aGUK
+Pj4gTlZJRElBIGNhcmQgYmVpbmcgdGhlIHNlY29uZGFyeSBHUFU/Cj4KPiBTcGVjIHNheXMgZ3Jh
+cGhpYyBwcm9jZXNzb3IgaXMgTlZJRElBIEdlRm9yY2UgTlYxNFAtR1YyIEdUNDBNLCBzeXN0ZW0K
+PiBpcyBMZW5vdm8gRTQzMSBsYXB0b3AuCj4KPiBJIGFtIGEgc3RyYW5nZXIgaGVyZSwgc3RhcnRl
+ZCBLZXJuZWwgam91cm5leSB0b3dhcmRzIG5vcnRoIGFuZCByZWFjaGVkCj4gc291dGggc2luY2Ug
+dGhlIHN5c3RlbSB3YXNuJ3QgYm9vdGluZyA6KSwgZG9uJ3Qga25vdyBob3cgdG8gZmluZCBpdCBp
+cwo+IGFuIG9wdGltdXMgY29uZmlndXJhdGlvbiwgaWYgYWJvdmUgZGV0YWlscyBhcmVuJ3QgZW5v
+dWdoLCBsZXQgbWUga25vdwo+IGhvdyB0byBmaW5kIG91dC4KClRoYW5rcyBmb3IgdGhlIGRldGFp
+bHMhCgpBbiBvcHRpbXVzIGNvbmZpZ3VyYXRpb24gbWVhbnMgdGhhdCBkaXNwbGF5IGFuZCBiYXNp
+YyBhY2NlbGVyYXRpb24gaXMKcHJvdmlkZWQgYnkgYW4gaW50ZWdyYXRlZCBJbnRlbCBncmFwaGlj
+cywgYW5kIHRoZSBOVklESUEgR1BVIGNhbiBiZQpzd2l0Y2hlZCBvbi9vZmYgZHluYW1pY2FsbHkg
+dG8gcHJvdmlkZSBtb3JlIHBvd2VyIHdoZW4gbmVlZGVkLgoKQWNjb3JkaW5nIHRvIHlvdXIgbGFw
+dG9wIHJlZmVyZW5jZSwgdGhpcyBzZWVtcyB0byBiZSB0aGUga2luZCBvZgpjb25maWd1cmF0aW9u
+IHlvdSBoYXZlLiBJdCBpcyByZWxldmFudCBiZWNhdXNlIHRoaXMgaXNzdWUgc2VlbXMgdG8KaGFw
+cGVuIHdoZW4gdGhlIE5WSURJQSBHUFUgaXMgc3dpdGNoZWQgb2ZmIGR1cmluZyBib290LgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFp
+bGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
