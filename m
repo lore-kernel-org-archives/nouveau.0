@@ -1,104 +1,87 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH v2] nvc0: bind a fake tess control program when
-	there isn't one available
-Date: Sat, 15 Aug 2015 11:14:04 -0400
-Message-ID: <1439651644-2132-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90976] GM204 (NV124) black screen on modesetting
+Date: Sat, 15 Aug 2015 16:11:16 +0000
+Message-ID: <bug-90976-8800-YCWHoUO5kG@http.bugs.freedesktop.org/>
+References: <bug-90976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============0878834779=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXBwYXJlbnRseSB0aGlzIGlzIG5lY2Vzc2FyeSBpbiBvcmRlciBmb3IgdGVzcyBmYWN0b3JzIHRv
-IHdvcmsgaW4gYSB0ZXNzCmV2YWwgcHJvZ3JhbSB3aXRob3V0IGEgdGVzcyBjb250cm9sIHByb2dy
-YW0gYm91bmQuIFByb2JhYmx5IGJlY2F1c2UgaXQKdXNlcyB0aGUgZmFrZSBwcm9ncmFtJ3Mgc2hh
-ZGVyIGhlYWRlciB0byB3b3JrIG91dCB0aGUgbnVtYmVyIG9mIHBhdGNoCmNvbnN0YW50cy4KCkZp
-eGVzIHZzLXRlcy10ZXNzaW5uZXItdGVzc291dGVyLWlucHV0cwoKU2lnbmVkLW9mZi1ieTogSWxp
-YSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KCnYxIC0+IHYyOiBpbXByb3ZlIHNv
-bWUgb2YgdGhlIGVycm9yIGhhbmRsaW5nCgogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252
-YzAvbnZjMF9jb250ZXh0LmMgICAgICB8ICA4ICsrKysrKysrCiBzcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnZjMC9udmMwX2NvbnRleHQuaCAgICAgIHwgIDMgKysrCiBzcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Byb2dyYW0uYyAgICAgIHwgMTcgKysrKysrKysrKysr
-KysrKysKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2hhZGVyX3N0YXRl
-LmMgfCAgNyArKysrKystCiA0IGZpbGVzIGNoYW5nZWQsIDM0IGluc2VydGlvbnMoKyksIDEgZGVs
-ZXRpb24oLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9u
-dmMwX2NvbnRleHQuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29u
-dGV4dC5jCmluZGV4IDg0ZjhkYjYuLjAxMDgwZDAgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCkBAIC0xMzIsNiArMTMyLDkgQEAgbnZjMF9j
-b250ZXh0X3VucmVmZXJlbmNlX3Jlc291cmNlcyhzdHJ1Y3QgbnZjMF9jb250ZXh0ICpudmMwKQog
-ICAgICAgcGlwZV9yZXNvdXJjZV9yZWZlcmVuY2UocmVzLCBOVUxMKTsKICAgIH0KICAgIHV0aWxf
-ZHluYXJyYXlfZmluaSgmbnZjMC0+Z2xvYmFsX3Jlc2lkZW50cyk7CisKKyAgIGlmIChudmMwLT50
-Y3BfZW1wdHkpCisgICAgICBudmMwLT5iYXNlLnBpcGUuZGVsZXRlX3Rjc19zdGF0ZSgmbnZjMC0+
-YmFzZS5waXBlLCBudmMwLT50Y3BfZW1wdHkpOwogfQogCiBzdGF0aWMgdm9pZApAQCAtMzI2LDYg
-KzMyOSwxMSBAQCBudmMwX2NyZWF0ZShzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sIHZvaWQg
-KnByaXYpCiAKICAgIC8qIHNoYWRlciBidWlsdGluIGxpYnJhcnkgaXMgcGVyLXNjcmVlbiwgYnV0
-IHdlIG5lZWQgYSBjb250ZXh0IGZvciBtMm1mICovCiAgICBudmMwX3Byb2dyYW1fbGlicmFyeV91
-cGxvYWQobnZjMCk7CisgICBudmMwX3Byb2dyYW1faW5pdF90Y3BfZW1wdHkobnZjMCk7CisgICBp
-ZiAoIW52YzAtPnRjcF9lbXB0eSkKKyAgICAgIGdvdG8gb3V0X2VycjsKKyAgIC8qIHNldCB0aGUg
-ZW1wdHkgdGN0bCBwcm9nIG9uIG5leHQgZHJhdyBpbiBjYXNlIG9uZSBpcyBuZXZlciBzZXQgKi8K
-KyAgIG52YzAtPmRpcnR5IHw9IE5WQzBfTkVXX1RDVExQUk9HOwogCiAgICAvKiBhZGQgcGVybWFu
-ZW50bHkgcmVzaWRlbnQgYnVmZmVycyB0byBidWZjdHh0cyAqLwogCmRpZmYgLS1naXQgYS9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX2NvbnRleHQuaCBiL3NyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5oCmluZGV4IGY0NDk5NDIuLmRmMWE4
-OTEgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29u
-dGV4dC5oCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4
-dC5oCkBAIC0xMjgsNiArMTI4LDggQEAgc3RydWN0IG52YzBfY29udGV4dCB7CiAgICBzdHJ1Y3Qg
-bnZjMF9wcm9ncmFtICpmcmFncHJvZzsKICAgIHN0cnVjdCBudmMwX3Byb2dyYW0gKmNvbXBwcm9n
-OwogCisgICBzdHJ1Y3QgbnZjMF9wcm9ncmFtICp0Y3BfZW1wdHk7CisKICAgIHN0cnVjdCBudmMw
-X2NvbnN0YnVmIGNvbnN0YnVmWzZdW05WQzBfTUFYX1BJUEVfQ09OU1RCVUZTXTsKICAgIHVpbnQx
-Nl90IGNvbnN0YnVmX2RpcnR5WzZdOwogICAgdWludDE2X3QgY29uc3RidWZfdmFsaWRbNl07CkBA
-IC0yMjcsNiArMjI5LDcgQEAgdm9pZCBudmMwX3Byb2dyYW1fZGVzdHJveShzdHJ1Y3QgbnZjMF9j
-b250ZXh0ICosIHN0cnVjdCBudmMwX3Byb2dyYW0gKik7CiB2b2lkIG52YzBfcHJvZ3JhbV9saWJy
-YXJ5X3VwbG9hZChzdHJ1Y3QgbnZjMF9jb250ZXh0ICopOwogdWludDMyX3QgbnZjMF9wcm9ncmFt
-X3N5bWJvbF9vZmZzZXQoY29uc3Qgc3RydWN0IG52YzBfcHJvZ3JhbSAqLAogICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgdWludDMyX3QgbGFiZWwpOwordm9pZCBudmMwX3Byb2dy
-YW1faW5pdF90Y3BfZW1wdHkoc3RydWN0IG52YzBfY29udGV4dCAqKTsKIAogLyogbnZjMF9xdWVy
-eS5jICovCiB2b2lkIG52YzBfaW5pdF9xdWVyeV9mdW5jdGlvbnMoc3RydWN0IG52YzBfY29udGV4
-dCAqKTsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
-cHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFt
-LmMKaW5kZXggNDk0MTgzMS4uZTk5NzVjZSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L252YzAvbnZjMF9wcm9ncmFtLmMKQEAgLTIyLDYgKzIyLDggQEAKIAogI2luY2x1ZGUg
-InBpcGUvcF9kZWZpbmVzLmgiCiAKKyNpbmNsdWRlICJ0Z3NpL3Rnc2lfdXJlZy5oIgorCiAjaW5j
-bHVkZSAibnZjMC9udmMwX2NvbnRleHQuaCIKIAogI2luY2x1ZGUgImNvZGVnZW4vbnY1MF9pcl9k
-cml2ZXIuaCIKQEAgLTgwMywzICs4MDUsMTggQEAgbnZjMF9wcm9ncmFtX3N5bWJvbF9vZmZzZXQo
-Y29uc3Qgc3RydWN0IG52YzBfcHJvZ3JhbSAqcHJvZywgdWludDMyX3QgbGFiZWwpCiAgICAgICAg
-ICByZXR1cm4gcHJvZy0+Y29kZV9iYXNlICsgYmFzZSArIHN5bXNbaV0ub2Zmc2V0OwogICAgcmV0
-dXJuIHByb2ctPmNvZGVfYmFzZTsgLyogbm8gc3ltYm9scyBvciBzeW1ib2wgbm90IGZvdW5kICov
-CiB9CisKK3ZvaWQKK252YzBfcHJvZ3JhbV9pbml0X3RjcF9lbXB0eShzdHJ1Y3QgbnZjMF9jb250
-ZXh0ICpudmMwKQoreworICAgc3RydWN0IHVyZWdfcHJvZ3JhbSAqdXJlZzsKKworICAgdXJlZyA9
-IHVyZWdfY3JlYXRlKFRHU0lfUFJPQ0VTU09SX1RFU1NfQ1RSTCk7CisgICBpZiAoIXVyZWcpCisg
-ICAgICByZXR1cm47CisKKyAgIHVyZWdfcHJvcGVydHkodXJlZywgVEdTSV9QUk9QRVJUWV9UQ1Nf
-VkVSVElDRVNfT1VULCAxKTsKKyAgIHVyZWdfRU5EKHVyZWcpOworCisgICBudmMwLT50Y3BfZW1w
-dHkgPSB1cmVnX2NyZWF0ZV9zaGFkZXJfYW5kX2Rlc3Ryb3kodXJlZywgJm52YzAtPmJhc2UucGlw
-ZSk7Cit9CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMw
-X3NoYWRlcl9zdGF0ZS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9z
-aGFkZXJfc3RhdGUuYwppbmRleCA4YWExMjdhLi44ZjhhYzJkIDEwMDY0NAotLS0gYS9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NoYWRlcl9zdGF0ZS5jCisrKyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2hhZGVyX3N0YXRlLmMKQEAgLTE0OCw4
-ICsxNDgsMTMgQEAgbnZjMF90Y3RscHJvZ192YWxpZGF0ZShzdHJ1Y3QgbnZjMF9jb250ZXh0ICpu
-dmMwKQogICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzNEKFNQX0dQUl9BTExPQygyKSksIDEp
-OwogICAgICAgUFVTSF9EQVRBIChwdXNoLCB0cC0+bnVtX2dwcnMpOwogICAgfSBlbHNlIHsKLSAg
-ICAgIEJFR0lOX05WQzAocHVzaCwgTlZDMF8zRChTUF9TRUxFQ1QoMikpLCAxKTsKKyAgICAgIHRw
-ID0gbnZjMC0+dGNwX2VtcHR5OworICAgICAgLyogbm90IGEgd2hvbGUgbG90IHdlIGNhbiBkbyB0
-byBoYW5kbGUgdGhpcyBmYWlsdXJlICovCisgICAgICBpZiAoIW52YzBfcHJvZ3JhbV92YWxpZGF0
-ZShudmMwLCB0cCkpCisgICAgICAgICBhc3NlcnQoISJ1bmFibGUgdG8gdmFsaWRhdGUgZW1wdHkg
-dGNwIik7CisgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoU1BfU0VMRUNUKDIpKSwgMik7
-CiAgICAgICBQVVNIX0RBVEEgKHB1c2gsIDB4MjApOworICAgICAgUFVTSF9EQVRBIChwdXNoLCB0
-cC0+Y29kZV9iYXNlKTsKICAgIH0KICAgIG52YzBfcHJvZ3JhbV91cGRhdGVfY29udGV4dF9zdGF0
-ZShudmMwLCB0cCwgMSk7CiB9Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vbWVzYS1kZXYK
+
+--===============0878834779==
+Content-Type: multipart/alternative; boundary="1439655076.11A8De621.1021"; charset="UTF-8"
+
+
+--1439655076.11A8De621.1021
+Date: Sat, 15 Aug 2015 16:11:16 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90976
+
+--- Comment #1 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Any news ? What should I test ?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439655076.11A8De621.1021
+Date: Sat, 15 Aug 2015 16:11:16 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GM204 (NV124) black screen on modesetting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GM204 (NV124) black screen on modesetting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">bug 90976</a>
+              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
+</span></b>
+        <pre>Any news ? What should I test ?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439655076.11A8De621.1021--
+
+--===============0878834779==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0878834779==--
