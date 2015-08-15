@@ -1,17 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: Fermi+ shader header docs
-Date: Fri, 14 Aug 2015 15:48:59 -0400
-Message-ID: <CAKb7UvhgfUGypPTL6yxcqGtdHB3PP2v0d3spSDvxqsAUj5ot3g@mail.gmail.com>
-References: <CAKb7Uvj=oisrfyGoehZFLtzWD38Nx_j435K2uZ9O5S8RXFayBw@mail.gmail.com>
- <20150521140516.GA8516@morell.nvidia.com>
- <CAKb7UvgQRqh_8gBWmRJska-O-wR=+R8eaf9815FBv-Z0erjQ9A@mail.gmail.com>
- <CAKb7Uvik6eNQtAyAR7oRZm50z15Z1S2onWkuNH-bHbWJt5Wkkw@mail.gmail.com>
- <CAKb7UviyZGJtxQXpbWqY1Hf4rzBW3oC2p9Yif_52L+7SqNpjkA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
+Date: Sat, 15 Aug 2015 00:23:42 +0000
+Message-ID: <bug-91598-8800-Qx3TpG7TIR@http.bugs.freedesktop.org/>
+References: <bug-91598-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1011717027=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UviyZGJtxQXpbWqY1Hf4rzBW3oC2p9Yif_52L+7SqNpjkA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,125 +16,98 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QW5kIGFzIEkndmUganVzdCBzdGFydGVkIGxvb2tpbmcgYXQgR00xMDcgdHJhY2VzIHRvIGZpeCB1
-cAp0ZXNzZWxsYXRpb24gc2hhZGVyIGF0dHJpYnV0ZSBhZGRyZXNzIGNhbGN1bGF0aW9ucywgSSBu
-b3RpY2VkIHRoZQpmb2xsb3dpbmcgdW5rbm93biBiaXRzIGluIENvbW1vbldvcmQzIG9mIFRDUCBz
-aGFkZXJzOgoKUEI6IDB4MDAwMDAwMjEgICBHTTEwN18zRC5TUFsweDJdLlNFTEVDVCA9IHsgRU5B
-QkxFIHwgUFJPR1JBTSA9IFRDUCB9ClBCOiAweDAwMDAwODMwICAgR00xMDdfM0QuU1BbMHgyXS5T
-VEFSVF9JRCA9IDB4ODMwCkhFQURFUjoKMHgwNDIxMDg2MSAgIDAgPSB7IFNQSCA9IFZURyB8IFZF
-UlNJT04gPSAzIHwgS0lORCA9IFRDUCB8IEdNRU1fU1RPUkUgfCBTQVNTX1ZFUlMKMHgwNjAwMDAw
-MCAgIDEgPSB7IExNRU1fUE9TX0FMTE9DID0gMCB8IFBBVENIX0FUVFJJQlVURVMgPSA2IH0KMHgw
-MzAwMDAwMCAgIDIgPSB7IExNRU1fTkVHX0FMTE9DID0gMCB8IFRIUkVBRFNfUEVSX1BSSU0gPSAz
-IH0KMHg2MDAwMDAwMCAgIDMgPSB7IFdBUlBfQ1NUQUNLX1NJWkUgPSAwIHwgMHg2MDAwMDAwMCB9
-CjB4ZmYwMDAwMDAgICA0ID0geyBNSU5fT1VUX1JFQURfU0xPVCA9IDAgfCBNQVhfT1VUX1JFQURf
-U0xPVCA9IDB4ZmYgfQoweGYwMDAwMDAwICAgQVRUUl9FTl8wID0gMHhmMDAwMDAwMAoweDAwMDAw
-MDAwICAgQVRUUl9FTl8xID0gMAoweDAwMDAwMDAwICAgQVRUUl9FTl8yID0gMAoweDAwMDAwMDAw
-ICAgQVRUUl9FTl8zID0gMAoweDAwMDAwMDAwICAgQVRUUl9FTl80ID0gMAoweDAwMDAwMDAwICAg
-QVRUUl9FTl81ID0geyAwIH0KMHgwMDAwMDAwMCAgIDExID0gMAoweDAwMDAwMDAwICAgMTIgPSAw
-CjB4MDAwMGYwMDAgICBFWFBPUlRfRU5fMCA9IHsgSFBPUyA9IDB4ZiB9CjB4MDAwMDAwMDAgICBF
-WFBPUlRfRU5fMSA9IDAKMHgwMDAwMDAwMCAgIEVYUE9SVF9FTl8yID0gMAoweDAwMDAwMDAwICAg
-RVhQT1JUX0VOXzMgPSAwCjB4MDAwMDAwMDAgICBFWFBPUlRfRU5fNCA9IDAKMHgwMDAwMDAwMCAg
-IEVYUE9SVF9FTl81ID0geyBDTElQX0RJU1RBTkNFID0gMCB8IFVOSzEyID0gMCB9CjB4MDAwMDAw
-MDAgICAxOSA9IDAKCkFueXRoaW5nIHRoYXQgd2UgbmVlZCB0byBhbHNvIGJlIHNldHRpbmc/Cgog
-IC1pbGlhCgpPbiBNb24sIEp1biAyMiwgMjAxNSBhdCA5OjEwIFBNLCBJbGlhIE1pcmtpbiA8aW1p
-cmtpbkBhbHVtLm1pdC5lZHU+IHdyb3RlOgo+IEFuZCBhbiBhZGRpdGlvbmFsIHF1ZXN0aW9uOiBJ
-IGhhdmUgYSB0cmFjZSBoZXJlIHdoZXJlIGEgcmVzZXJ2ZWQgYml0Cj4gZnJvbSBDb21tb25Xb3Jk
-MCBpcyBzZXQuIElzIHRoYXQganVzdCByYW5kb20gdmFsdWVzIHRoYXQgYXJlbid0Cj4gY2xlYXJl
-ZCBieSB0aGUgZHJpdmVyLCBvciBkb2VzIGl0IGhhdmUgc29tZSBzaWduaWZpY2FuY2U/IEhlcmUg
-aXMgdGhlCj4gZnVsbCBzaGFkZXI6Cj4KPiBIRUFERVI6Cj4gMHgwNjA0MDQ2MSAgIDAgPSB7IFNQ
-SCA9IFZURyB8IFZFUlNJT04gPSAzIHwgS0lORCA9IFZQX0IgfAo+IFNBU1NfVkVSU0lPTiA9IDIg
-fCBMRFNUX0VOQUJMRSB8IFNPX01BU0sgPSAwIHwgMHgyMDAwMDAwIH0KPiAweDAwMDAwMDAwICAg
-MSA9IHsgTE1FTV9QT1NfQUxMT0MgPSAwIHwgUEFUQ0hfQVRUUklCVVRFUyA9IDAgfQo+IDB4MDAw
-MDAwMDAgICAyID0geyBMTUVNX05FR19BTExPQyA9IDAgfCBUSFJFQURTX1BFUl9QUklNID0gMCB9
-Cj4gMHgwMDAwMDAwMCAgIDMgPSB7IFdBUlBfQ1NUQUNLX1NJWkUgPSAwIHwgT1VUUFVUX1BSSU0g
-PSAwIH0KPiAweDAwMDAwMDAwICAgNCA9IHsgTUFYX09VVFBVVF9WRVJUUyA9IDAgfCBNSU5fT1VU
-X1JFQURfU0xPVCA9IDAgfAo+IE1BWF9PVVRfUkVBRF9TTE9UID0gMCB9Cj4gMHgwMDAwMDAwMCAg
-IEFUVFJfRU5fMCA9IDAKPiAweDAwMDAwMDAwICAgQVRUUl9FTl8xID0gMAo+IDB4MDAwMDAwMDAg
-ICBBVFRSX0VOXzIgPSAwCj4gMHgwMDAwMDAwMCAgIEFUVFJfRU5fMyA9IDAKPiAweDAwMDAwMDAw
-ICAgQVRUUl9FTl80ID0gMAo+IDB4MDAwMDAwMDAgICBBVFRSX0VOXzUgPSB7IDAgfQo+IDB4MDAw
-MDAwMDAgICAxMSA9IDAKPiAweDAwMDAwMDAwICAgMTIgPSAwCj4gMHgwMDAxZjAwMCAgIEVYUE9S
-VF9FTl8wID0geyBIUE9TID0gMHhmIHwgMHgxMDAwMCB9Cj4gMHgwMDAwMDAwMCAgIEVYUE9SVF9F
-Tl8xID0gMAo+IDB4MDAwMDAwMDAgICBFWFBPUlRfRU5fMiA9IDAKPiAweDAwMDAwMDAwICAgRVhQ
-T1JUX0VOXzMgPSAwCj4gMHgwMDAwMDAwMCAgIEVYUE9SVF9FTl80ID0gMAo+IDB4MDAwMDAwMDAg
-ICBFWFBPUlRfRU5fNSA9IHsgQ0xJUF9ESVNUQU5DRSA9IDAgfCBVTksxMiA9IDAgfQo+IDB4MDAw
-MDAwMDAgICAxOSA9IDAKPiBDT0RFOgo+IDAwMDAwMDAwOiBhMDEwODhiMCAwOGJjYjgxMCAgICAg
-c2NoZWQgMHgyYyAweDIyIDB4NCAweDI4IDB4NCAweDJlIDB4MmYKPiAwMDAwMDAwODogMGIxZmZj
-MWUgNWI2MDFjMDcgICAgIHNldCAkcDAgMHgxIGdlIHUzMiAweDAgYzBbMHgzODU4XQo+IDAwMDAw
-MDEwOiAxMDAwMDAzYyAxMjAwMDAwMCAgICAgJHAwIGJyYSAweDM4Cj4gMDAwMDAwMTg6IDBhMWMw
-MDAyIDY0YzAzYzA3ICAgICBtb3YgYjMyICRyMCBjMFsweDM4NTBdCj4gMDAwMDAwMjA6IDBhOWMw
-MDA2IDY0YzAzYzA3ICAgICBtb3YgYjMyICRyMSBjMFsweDM4NTRdCj4gMDAwMDAwMjg6IDAwMWMw
-MDAwIGNjODAwMDAwICAgICBsZCBiMzIgJHIwIGNnIGdbJHIwZF0KPiAwMDAwMDAzMDogMDQxYzAw
-M2MgMTIwMDAwMDAgICAgIGJyYSAweDQwCj4KPiAwMDAwMDAzODogN2Y5YzAwMDIgZTRjMDNjMDAg
-IEMgIG1vdiBiMzIgJHIwIDB4MAo+Cj4gMDAwMDAwNDA6IDljMTA4MDEwIDA5MGM4YzEwICBDICBz
-Y2hlZCAweDQgMHgyMCAweDQgMHgyNyAweDQgMHgyMyAweDQzCj4gMDAwMDAwNDg6IDAwMWMyODAy
-IGU1YzAwMDAwICAgICBjdnQgcm4gZjMyICRyMCB1MzIgJHIwCj4gMDAwMDAwNTA6IDM0MWMwMDA2
-IDY0YzAzYzAwICAgICBtb3YgYjMyICRyMSBjMFsweDFhMF0KPiAwMDAwMDA1ODogMzQ5YzAwMGEg
-NjRjMDNjMDAgICAgIG1vdiBiMzIgJHIyIGMwWzB4MWE0XQo+IDAwMDAwMDYwOiAzNTFjMDAwZSA2
-NGMwM2MwMCAgICAgbW92IGIzMiAkcjMgYzBbMHgxYThdCj4gMDAwMDAwNjg6IDM1OWMwMDEyIDY0
-YzAzYzAwICAgICBtb3YgYjMyICRyNCBjMFsweDFhY10KPiAwMDAwMDA3MDogMzgxZmZjMDYgN2Yw
-M2ZjMDAgICAgIHN0IGIzMiBhWzB4NzBdICRyMSAweDAgMHgwCj4gMDAwMDAwNzg6IDNhMWZmYzBh
-IDdmMDNmYzAwICAgICBzdCBiMzIgYVsweDc0XSAkcjIgMHgwIDB4MAo+IDAwMDAwMDgwOiAzYzEx
-MGQwYyAwODAwMDAwMSAgICAgc2NoZWQgMHg0MyAweDQzIDB4NCAweDRmIDB4MCAweDAgMHgwCj4g
-MDAwMDAwODg6IDNjMWZmYzBlIDdmMDNmYzAwICAgICBzdCBiMzIgYVsweDc4XSAkcjMgMHgwIDB4
-MAo+IDAwMDAwMDkwOiAzZTFmZmMxMiA3ZjAzZmMwMCAgICAgc3QgYjMyIGFbMHg3Y10gJHI0IDB4
-MCAweDAKPiAwMDAwMDA5ODogNDAxZmZjMDIgN2YwM2ZjMDAgICAgIHN0IGIzMiBhWzB4ODBdICRy
-MCAweDAgMHgwCj4gMDAwMDAwYTA6IDAwMWMwMDNjIDE4MDAwMDAwICAgICBleGl0Cj4KPiAwMDAw
-MDBhODogZmMxYzAwM2MgMTIwMDdmZmYgIEMgIGJyYSAweGE4Cj4gMDAwMDAwYjA6IDAwMWMzYzAy
-IDg1ODAwMDAwICAgICBub3AKPiAwMDAwMDBiODogMDAxYzNjMDIgODU4MDAwMDAgICAgIG5vcAo+
-Cj4gT24gU2F0LCBNYXkgMjMsIDIwMTUgYXQgNTozNSBQTSwgSWxpYSBNaXJraW4gPGltaXJraW5A
-YWx1bS5taXQuZWR1PiB3cm90ZToKPj4gT24gVGh1LCBNYXkgMjEsIDIwMTUgYXQgMTE6MzIgQU0s
-IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+PiBPbiBUaHUsIE1h
-eSAyMSwgMjAxNSBhdCAxMDowNSBBTSwgUm9iZXJ0IE1vcmVsbCA8cm1vcmVsbEBudmlkaWEuY29t
-PiB3cm90ZToKPj4+PiBIaSBJbGlhLAo+Pj4+Cj4+Pj4gT24gU2F0LCBNYXkgMDIsIDIwMTUgYXQg
-MTI6MzQ6MjFQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4+IEhpLAo+Pj4+Pgo+Pj4+
-PiBBcyBJJ20gbG9va2luZyB0byBhZGQgc29tZSBzdXBwb3J0IHRvIG5vdXZlYXUgZm9yIGZlYXR1
-cmVzIGxpa2UgYXRvbWljCj4+Pj4+IGNvdW50ZXJzIGFuZCBpbWFnZXMsIEknbSBydW5uaW5nIGlu
-dG8gc29tZSBjb25mdXNpb24gYWJvdXQgd2hhdCB0aGUKPj4+Pj4gZmlyc3Qgd29yZCBvZiB0aGUg
-c2hhZGVyIGhlYWRlciBtZWFucy4gSGVyZSBpcyB0aGUgZGVmaW5pdGlvbiBhcyB3ZQo+Pj4+PiBo
-YXZlIGl0IHRvZGF5Ogo+Pj4+Cj4+Pj4gWy4uLl0KPj4+Pgo+Pj4+PiBIb3dldmVyIEkga25vdyB0
-aGF0IHRoZXNlIGFyZSBzb21ld2hhdCB3cm9uZy4gSSd2ZSBzZWVuIHNoYWRlcnMgdGhhdAo+Pj4+
-PiB1c2UgZ21lbSBhY2Nlc3NlcyAoaS5lLiBtb3YgcjAsIFtyMF0pIHRoYXQganVzdCBoYXZlIHRo
-ZSBMTUVNIGVuYWJsZQo+Pj4+PiBiaXQgc2V0IChhbmQgdGhleSB1c2Ugbm8gbG1lbSkuIEFuZCBJ
-J3ZlIHNlZW4gYWRkaXRpb25hbCBiaXRzIHNldCwgZXNwCj4+Pj4+IHJlbGF0aW5nIHRvIGltYWdl
-cywgYnV0IEkgaGF2ZW4ndCBzcGVudCBlbm91Z2ggdGltZSBsb29raW5nIGF0IGFsbCB0aGUKPj4+
-Pj4gdmFyaWF0aW9ucyB0byBtYWtlIHNlbnNlIG9mIGl0IHlldC4gRm9yIGV4YW1wbGUsIEkgdGhp
-bmsgdGhhdCBGZXJtaQo+Pj4+PiBhbmQgS2VwbGVyKyBoYXZlIGRpZmZlcmVudCBtZWFuaW5ncyBm
-b3Igc29tZSBvZiB0aGUgYml0cy4KPj4+Pgo+Pj4+IFRob3NlIGxvb2sgcHJldHR5IGNsb3NlIDop
-Cj4+Pj4KPj4+Pj4gSSB3YXMgaG9waW5nIHlvdSBjb3VsZCBqdXN0IHJlbGVhc2UgdGhlIGRvY3Mg
-Zm9yIHRoZSBzaGFkZXIgaGVhZGVycywKPj4+Pj4gb3IgYXQgbGVhc3QgdGhlIGZpcnN0IHdvcmQg
-b2YgdGhlIHNoYWRlciBoZWFkZXIuCj4+Pj4KPj4+PiBXZSd2ZSBwb3N0ZWQgdGhlIHNwZWNpZmlj
-YXRpb24gZm9yIHRoZSBmdWxsIFNoYWRlciBQcm9ncmFtIEhlYWRlciB0byBvdXIKPj4+PiBHUFUg
-ZG9jdW1lbnRhdGlvbiBzaXRlIGhlcmU6Cj4+Pj4KPj4+PiBmdHA6Ly9kb3dubG9hZC5udmlkaWEu
-Y29tL29wZW4tZ3B1LWRvYy9TaGFkZXItUHJvZ3JhbS1IZWFkZXIvMS9TaGFkZXItUHJvZ3JhbS1I
-ZWFkZXIuaHRtbAo+Pj4+Cj4+Pj4gSSBob3BlIGl0IGhlbHBzIGNsZWFyIHRoaW5ncyB1cC4KPj4+
-Cj4+PiBZZXAsIGp1c3QgYSBmZXcgZm9sbG93LXVwIHF1ZXN0aW9uczoKPj4+Cj4+PiAtIFNQSCBU
-eXBlIDEgYW5kIHR5cGUgMiBhcHBlYXIgdG8gYmUgZmxpcHBlZCB3cnQgdGhlIHRhYmxlcyAtLSAi
-V2hlbgo+Pj4gUFMgaXMgdXNlZCwgZmllbGQgU3BoVHlwZSBpbiBDb21tb25Xb3JkMCBtdXN0IGJl
-IHNldCB0byAxOyBzaW1pbGFybHksCj4+PiB3aGVuIFZURyBpcyB1c2VkLCBTcGhUeXBlIGluIENv
-bW1vbldvcmQwIG11c3QgYmUgc2V0IHRvIDIuIiBCdXQgdGhlCj4+PiAiVGFibGUgMS4gU1BIIFR5
-cGUgMSBEZWZpbml0aW9uIiBpcyBjbGVhcmx5IG1lYW50IGZvciBWVEcgYW5kIHRhYmxlIDIKPj4+
-IGlzIGNsZWFybHkgbWVhbnQgZm9yIFBTLi4uCj4+PiAtIFlvdSBza2lwIG92ZXIgU2Fzc1ZlcnNp
-b24gLS0gd2hhdCBpcyB0aGF0Pwo+Pj4gLSBZb3UgaGF2ZSBhIGZ1bm55IG5vdGUgaW4gdGhlcmUg
-LS0gIlRyaWFuZ2xlcyBnZW5lcmF0ZWQgYnkgdGhlCj4+PiBnZW9tZXRyeSBzaGFkZXIgYWx3YXlz
-IGhhdmUgYWxsIHRoZWlyIGVkZ2UgZmxhZ3Mgc2V0IHRvIFRSVUUiIC0tIHRoYXQKPj4+IGlzIHRo
-ZSAqb25seSogcmVmZXJlbmNlIHRvIGVkZ2UgZmxhZ3MgaW4gdGhlIHdob2xlIGRvY3VtZW50LiBS
-aWdodCBub3cKPj4+IHdlIGRvIHNvbWUgY3JhenkgdGhpbmcgdG8gZ2V0IGVkZ2UgZmxhZ3Mgcmln
-aHQgb24gZmVybWkrIChhbmQgSSB0aGluawo+Pj4gd2UganVzdCBnZXQgdGhlbSB3cm9uZyBvbiB0
-ZXNsYSkuIElzIHRoZXJlIGEgd2F5IHRvIGVtaXQgZWRnZSBmbGFncwo+Pj4gZnJvbSB2ZXJ0ZXgg
-c2hhZGVyPwo+Pj4gLSBUbyBiZSBjbGVhcjogRG9lc0xvYWRPclN0b3JlIC0tICphbnkqIGxvYWQv
-c3RvcmU/IEV2ZW4gTERDPyBBTEQ/Cj4+Cj4+IE9oLCBhbmQgb25lIG1vcmUgbGl0dGxlIGNvcnJl
-Y3Rpb246Cj4+Cj4+ICIiIgo+PiBUaGUgU1BIIGZpZWxkIE91dHB1dFRvcG9sb2d5IHNldHMgdGhl
-IHByaW1pdGl2ZSB0b3BvbG9neSBvZiB0aGUKPj4gdmVydGljZXMgdGhhdCBhcmUgb3V0cHV0IGZy
-b20gdGhlIHBpcGUgc3RhZ2UuIFRoaXMgZmllbGQgaXMgb25seSB1c2VkCj4+IHdpdGggZ2VvbWV0
-cnkgc2hhZGVycywgd2hlcmUgdGhlIHZhbHVlIG11c3QgYmUgZ3JlYXRlciB0aGFuIHplcm8gYW5k
-Cj4+IGhhcyBhIG1heGltdW0gb2YgMTAyNC4gVGhlIGFsbG93ZWQgdmFsdWVzIGFyZTogLi4uIFt0
-aGUgY29ycmVjdCB2YWx1ZXMKPj4gZm9yIE91dHB1dFRvcG9sb2d5XQo+PiAiIiIKPj4KPj4gVGhl
-IDEwMjQgdGhpbmcgc2VlbXMgbGlrZSBpdCBwcm9iYWJseSBhcHBsaWVzIHRvIE1heE91dHB1dFZl
-cnRleENvdW50Cj4+IGluIENvbW1vbldvcmQ0Lgo+Pgo+PiAgIC1pbGlhCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1011717027==
+Content-Type: multipart/alternative; boundary="1439598222.CCac1.28667"; charset="UTF-8"
+
+
+--1439598222.CCac1.28667
+Date: Sat, 15 Aug 2015 00:23:42 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91598
+
+--- Comment #8 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+@Ilia Mirkin, thanks  I will try to get an apitrace tonight or tomorrow.  Do
+you need the whole session from start to finish or just from where it starts
+messing up?  
+
+Also it seems sometimes closing most applications (but not plasmashell) causes
+the graphics to start rendering properly again for me.  I notice when it
+happens it seems to occur when system memory is all filled up with
+cache/buffers (but nowhere near filling up with application memory as I have
+8GB and 16GB swap).  Closing applications frees up memory again.  I question
+whether it could relate also to how the kernel is handling things when vRAM is
+exhausted along with most memory used for cache?  I will also try to test some
+earlier kernel versions to see if there is a difference in behavior.  I am
+fairly sure once not too long I was not having graphics issues even with Plasma
+5 (plasmashell) and compositing on.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1439598222.CCac1.28667
+Date: Sat, 15 Aug 2015 00:23:42 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Broken Rendering of Plasma 5 Desktop"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
+              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
+</span></b>
+        <pre>&#64;Ilia Mirkin, thanks  I will try to get an apitrace tonight or tomorrow.  Do
+you need the whole session from start to finish or just from where it starts
+messing up?  
+
+Also it seems sometimes closing most applications (but not plasmashell) causes
+the graphics to start rendering properly again for me.  I notice when it
+happens it seems to occur when system memory is all filled up with
+cache/buffers (but nowhere near filling up with application memory as I have
+8GB and 16GB swap).  Closing applications frees up memory again.  I question
+whether it could relate also to how the kernel is handling things when vRAM is
+exhausted along with most memory used for cache?  I will also try to test some
+earlier kernel versions to see if there is a difference in behavior.  I am
+fairly sure once not too long I was not having graphics issues even with Plasma
+5 (plasmashell) and compositing on.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439598222.CCac1.28667--
+
+--===============1011717027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1011717027==--
