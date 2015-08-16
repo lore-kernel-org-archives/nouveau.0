@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
- OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Sat, 15 Aug 2015 23:09:06 +0000
-Message-ID: <bug-91570-8800-KuSquz5Pkm@http.bugs.freedesktop.org/>
-References: <bug-91570-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50,
+	nvc0: take level into account when doing eng2d multi-layer blits
+Date: Sat, 15 Aug 2015 22:08:01 -0400
+Message-ID: <1439690881-2280-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2102300092=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,113 +16,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2102300092==
-Content-Type: multipart/alternative; boundary="1439680146.3bD5C61.20250"; charset="UTF-8"
-
-
---1439680146.3bD5C61.20250
-Date: Sat, 15 Aug 2015 23:09:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91570
-
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I pushed an alternate version of the patch which just avoids the call to
-tnl_wakeup entirely, it shouldn't be necessary. The patch should be
-cherry-picked into the next 10.6.x release.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1439680146.3bD5C61.20250
-Date: Sat, 15 Aug 2015 23:09:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I pushed an alternate version of the patch which just avoids the call to
-tnl_wakeup entirely, it shouldn't be necessary. The patch should be
-cherry-picked into the next 10.6.x release.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439680146.3bD5C61.20250--
-
---===============2102300092==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2102300092==--
+VGhpcyBmaXhlcyBhcmJfZ2V0X3RleHR1cmVfc3ViX2ltYWdlLWdldCwgYW5kIGFueSBzaXR1YXRp
+b24gd2hlcmUgdGhlIDJkCmVuZ2luZSB3YXMgYmVpbmcgdXNlZCBmb3IgbXVsdGktbGF5ZXIgYmxp
+dHMgdG8gYSBub24tMCBsZXZlbC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2lu
+QGFsdW0ubWl0LmVkdT4KQ2M6ICIxMC42IiA8bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5j
+IHwgMTQgKysrKysrKysrKy0tLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
+YzBfc3VyZmFjZS5jIHwgMTQgKysrKysrKysrKy0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMjAgaW5z
+ZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N1cmZhY2UuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCmluZGV4IGIxYWUwMTYuLjc3ZGY1ZmYgMTAwNjQ0Ci0t
+LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCisrKyBi
+L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCkBAIC0xMzg3
+LDE4ICsxMzg3LDI0IEBAIG52NTBfYmxpdF9lbmcyZChzdHJ1Y3QgbnY1MF9jb250ZXh0ICpudjUw
+LCBjb25zdCBzdHJ1Y3QgcGlwZV9ibGl0X2luZm8gKmluZm8pCiAgICAgICAgICAgICBQVVNIX0RB
+VEEgKHB1c2gsIGluZm8tPmRzdC5ib3gueiArIGkpOwogICAgICAgICAgfSBlbHNlIHsKICAgICAg
+ICAgICAgIGNvbnN0IHVuc2lnbmVkIHogPSBpbmZvLT5kc3QuYm94LnogKyBpOworICAgICAgICAg
+ICAgY29uc3QgdWludDY0X3QgYWRkcmVzcyA9IGRzdC0+YmFzZS5hZGRyZXNzICsKKyAgICAgICAg
+ICAgICAgIGRzdC0+bGV2ZWxbaW5mby0+ZHN0LmxldmVsXS5vZmZzZXQgKworICAgICAgICAgICAg
+ICAgeiAqIGRzdC0+bGF5ZXJfc3RyaWRlOwogICAgICAgICAgICAgQkVHSU5fTlYwNChwdXNoLCBO
+VjUwXzJEKERTVF9BRERSRVNTX0hJR0gpLCAyKTsKLSAgICAgICAgICAgIFBVU0hfREFUQWgocHVz
+aCwgZHN0LT5iYXNlLmFkZHJlc3MgKyB6ICogZHN0LT5sYXllcl9zdHJpZGUpOwotICAgICAgICAg
+ICAgUFVTSF9EQVRBIChwdXNoLCBkc3QtPmJhc2UuYWRkcmVzcyArIHogKiBkc3QtPmxheWVyX3N0
+cmlkZSk7CisgICAgICAgICAgICBQVVNIX0RBVEFoKHB1c2gsIGFkZHJlc3MpOworICAgICAgICAg
+ICAgUFVTSF9EQVRBIChwdXNoLCBhZGRyZXNzKTsKICAgICAgICAgIH0KICAgICAgICAgIGlmIChz
+cmMtPmxheW91dF8zZCkgewogICAgICAgICAgICAgLyogbm90IHBvc3NpYmxlIGJlY2F1c2Ugb2Yg
+ZGVwdGggdGlsaW5nICovCiAgICAgICAgICAgICBhc3NlcnQoMCk7CiAgICAgICAgICB9IGVsc2Ug
+ewogICAgICAgICAgICAgY29uc3QgdW5zaWduZWQgeiA9IGluZm8tPnNyYy5ib3gueiArIGk7Cisg
+ICAgICAgICAgICBjb25zdCB1aW50NjRfdCBhZGRyZXNzID0gc3JjLT5iYXNlLmFkZHJlc3MgKwor
+ICAgICAgICAgICAgICAgc3JjLT5sZXZlbFtpbmZvLT5zcmMubGV2ZWxdLm9mZnNldCArCisgICAg
+ICAgICAgICAgICB6ICogc3JjLT5sYXllcl9zdHJpZGU7CiAgICAgICAgICAgICBCRUdJTl9OVjA0
+KHB1c2gsIE5WNTBfMkQoU1JDX0FERFJFU1NfSElHSCksIDIpOwotICAgICAgICAgICAgUFVTSF9E
+QVRBaChwdXNoLCBzcmMtPmJhc2UuYWRkcmVzcyArIHogKiBzcmMtPmxheWVyX3N0cmlkZSk7Ci0g
+ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHNyYy0+YmFzZS5hZGRyZXNzICsgeiAqIHNyYy0+
+bGF5ZXJfc3RyaWRlKTsKKyAgICAgICAgICAgIFBVU0hfREFUQWgocHVzaCwgYWRkcmVzcyk7Cisg
+ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGFkZHJlc3MpOwogICAgICAgICAgfQogICAgICAg
+ICAgQkVHSU5fTlYwNChwdXNoLCBOVjUwXzJEKEJMSVRfU1JDX1lfSU5UKSwgMSk7IC8qIHRyaWdn
+ZXIgKi8KICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgc3JjeSA+PiAzMik7CmRpZmYgLS1naXQg
+YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N1cmZhY2UuYyBiL3NyYy9n
+YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc3VyZmFjZS5jCmluZGV4IDUxYTZmOTMu
+LjEzNmE2OGMgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
+YzBfc3VyZmFjZS5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
+c3VyZmFjZS5jCkBAIC0xMzM2LDE4ICsxMzM2LDI0IEBAIG52YzBfYmxpdF9lbmcyZChzdHJ1Y3Qg
+bnZjMF9jb250ZXh0ICpudmMwLCBjb25zdCBzdHJ1Y3QgcGlwZV9ibGl0X2luZm8gKmluZm8pCiAg
+ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGluZm8tPmRzdC5ib3gueiArIGkpOwogICAgICAg
+ICAgfSBlbHNlIHsKICAgICAgICAgICAgIGNvbnN0IHVuc2lnbmVkIHogPSBpbmZvLT5kc3QuYm94
+LnogKyBpOworICAgICAgICAgICAgY29uc3QgdWludDY0X3QgYWRkcmVzcyA9IGRzdC0+YmFzZS5h
+ZGRyZXNzICsKKyAgICAgICAgICAgICAgIGRzdC0+bGV2ZWxbaW5mby0+ZHN0LmxldmVsXS5vZmZz
+ZXQgKworICAgICAgICAgICAgICAgeiAqIGRzdC0+bGF5ZXJfc3RyaWRlOwogICAgICAgICAgICAg
+QkVHSU5fTlZDMChwdXNoLCBOVkMwXzJEKERTVF9BRERSRVNTX0hJR0gpLCAyKTsKLSAgICAgICAg
+ICAgIFBVU0hfREFUQWgocHVzaCwgZHN0LT5iYXNlLmFkZHJlc3MgKyB6ICogZHN0LT5sYXllcl9z
+dHJpZGUpOwotICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCBkc3QtPmJhc2UuYWRkcmVzcyAr
+IHogKiBkc3QtPmxheWVyX3N0cmlkZSk7CisgICAgICAgICAgICBQVVNIX0RBVEFoKHB1c2gsIGFk
+ZHJlc3MpOworICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCBhZGRyZXNzKTsKICAgICAgICAg
+IH0KICAgICAgICAgIGlmIChzcmMtPmxheW91dF8zZCkgewogICAgICAgICAgICAgLyogbm90IHBv
+c3NpYmxlIGJlY2F1c2Ugb2YgZGVwdGggdGlsaW5nICovCiAgICAgICAgICAgICBhc3NlcnQoMCk7
+CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgY29uc3QgdW5zaWduZWQgeiA9IGluZm8t
+PnNyYy5ib3gueiArIGk7CisgICAgICAgICAgICBjb25zdCB1aW50NjRfdCBhZGRyZXNzID0gc3Jj
+LT5iYXNlLmFkZHJlc3MgKworICAgICAgICAgICAgICAgc3JjLT5sZXZlbFtpbmZvLT5zcmMubGV2
+ZWxdLm9mZnNldCArCisgICAgICAgICAgICAgICB6ICogc3JjLT5sYXllcl9zdHJpZGU7CiAgICAg
+ICAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfMkQoU1JDX0FERFJFU1NfSElHSCksIDIpOwot
+ICAgICAgICAgICAgUFVTSF9EQVRBaChwdXNoLCBzcmMtPmJhc2UuYWRkcmVzcyArIHogKiBzcmMt
+PmxheWVyX3N0cmlkZSk7Ci0gICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHNyYy0+YmFzZS5h
+ZGRyZXNzICsgeiAqIHNyYy0+bGF5ZXJfc3RyaWRlKTsKKyAgICAgICAgICAgIFBVU0hfREFUQWgo
+cHVzaCwgYWRkcmVzcyk7CisgICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGFkZHJlc3MpOwog
+ICAgICAgICAgfQogICAgICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzJEKEJMSVRfU1JDX1lf
+SU5UKSwgMSk7IC8qIHRyaWdnZXIgKi8KICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgc3JjeSA+
+PiAzMik7Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
