@@ -1,141 +1,133 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Sun, 16 Aug 2015 08:35:21 +0000
-Message-ID: <bug-90871-8800-MkYk8o1kwq@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [Intel-gfx] [PATCH v2 00/22] Enable gpu switching on the MacBook
+ Pro
+Date: Sun, 16 Aug 2015 21:10:23 +0200
+Message-ID: <20150816191023.GA6621@wunner.de>
+References: <cover.1439288957.git.lukas@wunner.de>
+ <20150812141625.GZ17734@phenom.ffwll.local>
+ <20150812233711.GA6002@wunner.de>
+ <CAKMK7uEEoLoDce=TH7LGMjD8XAob3a-VCVsisXWKz5t3K=RxkQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0343455833=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uEEoLoDce=TH7LGMjD8XAob3a-VCVsisXWKz5t3K=RxkQ@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Daniel Vetter <daniel@ffwll.ch>
+Cc: Seth Forshee <seth.forshee@canonical.com>, Andreas Heider <andreas@meetr.de>, Bruno Bierbaumer <bruno@bierbaumer.net>, Nouveau Dev <nouveau@lists.freedesktop.org>, intel-gfx <intel-gfx@lists.freedesktop.org>, dri-devel <dri-devel@lists.freedesktop.org>, Paul Hordiienko <pvt.gord@gmail.com>, Matthew Garrett <mjg59@coreos.com>, William Brown <william@blackhats.net.au>, Dave Airlie <airlied@redhat.com>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0343455833==
-Content-Type: multipart/alternative; boundary="1439714120.354247f1.24558"; charset="UTF-8"
-
-
---1439714120.354247f1.24558
-Date: Sun, 16 Aug 2015 08:35:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #25 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Hans de Goede from comment #24)
-> Hi,
-> 
-> (In reply to poma from comment #23)
-> > Hans, do you test exclusively GNOME environment?
-> 
-> No to reproduce I did "dnf groupinstall "XFCE Desktop", then startxfce4, and
-> ensured it was in composting mode, all of this on a fully up2date F-22. I
-> did not see the problem you are seeing while doing this on a nv43 card.
-> 
-> Regards,
-> 
-> Hans
-
-
-Here you can find the source rpm of the Xfce's window manager with GLX support:
-http://goo.gl/Gm4ffO
-source/xfwm4-4.12.3-11.2.glx.git20150615.fc22.src.rpm
-
-Besides it is an integral part of the test compilation:
-http://goo.gl/Gm4ffO
-iso/Twenty-Two-Xfce-Live-*.iso
-
-
-Ref.
-compositor: Add support for GLX
-http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1439714120.354247f1.24558
-Date: Sun, 16 Aug 2015 08:35:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c25">Comment # 25</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>(In reply to Hans de Goede from <a href="show_bug.cgi?id=90871#c24">comment #24</a>)
-<span class="quote">&gt; Hi,
-&gt; 
-&gt; (In reply to poma from <a href="show_bug.cgi?id=90871#c23">comment #23</a>)
-&gt; &gt; Hans, do you test exclusively GNOME environment?
-&gt; 
-&gt; No to reproduce I did &quot;dnf groupinstall &quot;XFCE Desktop&quot;, then startxfce4, and
-&gt; ensured it was in composting mode, all of this on a fully up2date F-22. I
-&gt; did not see the problem you are seeing while doing this on a nv43 card.
-&gt; 
-&gt; Regards,
-&gt; 
-&gt; Hans</span >
-
-
-Here you can find the source rpm of the Xfce's window manager with GLX support:
-<a href="http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
-source/xfwm4-4.12.3-11.2.glx.git20150615.fc22.src.rpm
-
-Besides it is an integral part of the test compilation:
-<a href="http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
-iso/Twenty-Two-Xfce-Live-*.iso
-
-
-Ref.
-compositor: Add support for GLX
-<a href="http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea">http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439714120.354247f1.24558--
-
---===============0343455833==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0343455833==--
+SGkgRGFuaWVsLAoKT24gV2VkLCBBdWcgMTIsIDIwMTUgYXQgMTE6MTA6NTlQTSArMDIwMCwgRGFu
+aWVsIFZldHRlciB3cm90ZToKPiBZZXMganVzdCBzcXVhc2ggYW5kIG1lbnRpb24gdGhhdCB0aGUg
+cGF0Y2ggaXMgYmFzZWQgb24gd29yayBmcm9tCj4gJGxpc3Rfb2Zfb3RoZXJfYXV0aG9ycywgcGx1
+cyBjYyB0aGVtLiBUaGVyZSdzIG5vdCBtdWNoIHBvaW50IGluCj4gYWNrbm93bGVkZ2luZyB3aGVu
+IHBlb3BsZSB3cml0ZSBicm9rZW4gcGF0Y2hlcyA7LSkKCkFzIHlvdSByZXF1ZXN0ZWQgSSd2ZSBz
+cXVhc2hlZCB0aGUgZmlyc3QgNyBwYXRjaGVzIGFuZCBJJ2xsIHBvc3QKdGhlIHJlc3VsdGluZyAz
+IHJlcGxhY2VtZW50IHBhdGNoZXMgdG8gZHJpLWRldmVsIGltbWVkaWF0ZWx5IGFmdGVyCnNlbmRp
+bmcgdGhpcyBlLW1haWwuCgpJJ3ZlIGFsc28gb3ZlcmhhdWxlZCBsb2NraW5nLgoKVGhlc2UgMyBw
+YXRjaGVzIGxheSB0aGUgZ3JvdW5kd29yayBmb3IgRERDIHN3aXRjaGluZyB3aXRoIGdtdXguClRo
+ZSBzdWJzZXF1ZW50IHBhdGNoZXMgaW4gdGhlIHNlcmllcyBtb3N0bHkgY29uY2VybiByZXByb2Jp
+bmcKYW5kIHRob3VnaCBJJ3ZlIG1hZGUgbG9ja2luZy1yZWxhdGVkIGNoYW5nZXMgdG8gdGhlc2Ug
+YXMgd2VsbCwKSSBkb24ndCB3YW50IHRvIHNwYW0gdGhlIGxpc3Qgd2l0aCB0aGVtIGFnYWluIHVu
+dGlsIHdlIGhhdmUKcmVhY2hlZCBjb25zZW5zdXMgaG93IHJlcHJvYmluZyBzaG91bGQgYmUgaW1w
+bGVtZW50ZWQ6CgoKT24gVGh1LCBBdWcgMTMsIDIwMTUgYXQgMDg6NTA6NDdBTSArMDIwMCwgRGFu
+aWVsIFZldHRlciB3cm90ZToKPiBFREVGRVJSRURQUk9CRSBpc24ndCBzb21ldGhpbmcgdGhhdCBn
+ZXRzIHJldHVybmVkIHRvIHVzZXJzcGFjZSwgaXQncwo+IGp1c3QgaW50ZXJuYWwgaGFuZGxpbmcg
+c28gdGhhdCB0aGUga2VybmVsIGtub3dzIHRoZXJlJ3MgYSBkZXBlbmN5Cj4gaXNzdWUgYW5kIGl0
+IG5lZWRzIHRvIHJldHJ5IHByb2Jpbmcgb25jZSBvdGhlciBkcml2ZXJzIGhhdmUgZmluaXNoZWQK
+PiBsb2FkaW5nLiBJdCBpcyB0aGUgZ2VuZXJpYyBtZWFucyBsaW51eCBoYXMgdG8gaGFuZGxlIGNy
+b3NzLWRyaXZlcgo+IGRlcGVuY2llcyB3aGljaCBhcmVuJ3QgcmVmbGVjdGVkIGluIHRoZSBidXMg
+aGllcmFyY2h5Lgo+IAo+IEkuZS4gaXQncyBqdXN0IHNvbWV0aGluZyB0byBtYWtlIHN1cmUgdGhh
+dCBhcHBsZS1nbXV4IGlzIGZ1bGx5IGxvYWRlZAo+IGJlZm9yZSBpOTE1L25vdXZlYXUuIFRoZSBk
+cml2ZXIgX3dpbGxfIGJlIGluaXRpYWxpemVkIGV2ZW50dWFsbHkuCgpBaGEsIHNvIHlvdSB3YW50
+IHRvIHN0YWxsIGluaXRpYWxpemF0aW9uIG9mIGk5MTUvbm91dmVhdS9yYWRlb24KKmNvbXBsZXRl
+bHkqIHVudGlsIGFwcGxlLWdtdXggaXMgbG9hZGVkLgoKU28gaG93IGRvIHlvdSBkZXRlcm1pbmUg
+aWYgaW5pdGlhbGl6YXRpb24gc2hvdWxkIGJlIHN0YWxsZWQ/CllvdSB3b3VsZCBoYXZlIHRvIGhh
+cmRjb2RlIERNSXMgZm9yIGFsbCBNYWNCb29rIFBybyBtb2RlbHMuCkkganVzdCBjb3VudGVkIGl0
+LCB0aGVyZSBhcmUgNSBETUlzIHdoaWNoIHJlcXVpcmUgYXBwbGUtZ211eCwKMiBETUlzIHdoaWNo
+IHJlcXVpcmUgbm91dmVhdSBhbmQgMSBETUkgd2hpY2ggcmVxdWlyZXMgcmFkZW9uCih0aGV5IHJl
+cXVpcmUgbm91dmVhdS9yYWRlb24gZm9yIHByb3h5aW5nLCBhcHBsZS1nbXV4IHdvbid0CmhlbHAg
+dGhlc2UgbW9kZWxzKS4gQW5kIGV2ZXJ5IHllYXIgeW91IHdvdWxkIGhhdmUgdG8gYWRkIGFub3Ro
+ZXIKRE1JIGZvciB0aGUgbGF0ZXN0IE1hY0Jvb2sgUHJvIG1vZGVsLiBQZW9wbGUgdXNpbmcgdGhl
+IGxhdGVzdAptb2RlbCB3aXRoIGFuIG9sZGVyIGtlcm5lbCB3b24ndCBiZSBhYmxlIHRvIHVzZSBz
+d2l0Y2hpbmcgYW5kCm1heSBvcGVuIHN1cHBvcnQgdGlja2V0cy4KCkFuZCBpZiB0aGUgbW9kdWxl
+IHJlcXVpcmVkIGZvciBpbml0aWFsaXphdGlvbiBpcyBub3QgaW5zdGFsbGVkCm9yIGhhcyBhIGRp
+ZmZlcmVudCB2ZXJzaW9uIHRoYW4gdGhlIGtlcm5lbCwgaTkxNSB3b24ndCBpbml0aWFsaXplCmF0
+IGFsbCwgd2hpY2ggd2lsbCBiZSBhbm90aGVyIHNvdXJjZSBmb3Igc3VwcG9ydCBjYXNlcyB0aGF0
+IHlvdSdsbApoYXZlIHRvIGRlYWwgd2l0aC4KCkkgdGhpbmsgdGhpcyBkb2Vzbid0IHNjYWxlIGFu
+ZCBpdCBzaG93cyB0aGF0IGl0J3MgdGhlIHdyb25nCmFwcHJvYWNoLgoKdmdhX3N3aXRjaGVyb28g
+Kmtub3dzKiB3aGVuIHRoZSBoYW5kbGVyIHJlZ2lzdGVycywgb3IgdGhlIGRyaXZlcgp0byBwcm94
+eSBBVVgsIGFuZCBpdCBjYW4gKm5vdGlmeSogdGhlIGluYWN0aXZlIEdQVSdzIGRyaXZlci4KTm8g
+bmVlZCB0byBoYXJkY29kZSBETUlzLCBrZWVwIGl0IHNpbXBsZS4KCkFuZCB0aGVyZSAqaXMqIGFs
+cmVhZHkgYSBjYWxsYmFjayB0byBub3RpZnkgZHJpdmVycyB0aGF0IHRoZXkKc2hvdWxkIHJlcHJv
+YmUgdGhlaXIgb3V0cHV0czoKCiAqIHN0cnVjdCBkcm1fbW9kZV9jb25maWdfZnVuY3MgLSBiYXNp
+YyBkcml2ZXIgcHJvdmlkZWQgbW9kZSBzZXR0aW5nIGZ1bmN0aW9ucwogKiBAb3V0cHV0X3BvbGxf
+Y2hhbmdlZDogZnVuY3Rpb24gdG8gaGFuZGxlIG91dHB1dCBjb25maWd1cmF0aW9uIGNoYW5nZXMK
+Cgo+IE9uIFRodSwgQXVnIDEzLCAyMDE1IGF0IDE6MzcgQU0sIEx1a2FzIFd1bm5lciA8bHVrYXNA
+d3VubmVyLmRlPiB3cm90ZToKPiA+IHZnYV9zd2l0Y2hlcm9vIGNhbGxzIGRybV9rbXNfaGVscGVy
+X2hvdHBsdWdfZXZlbnQoKSB3aGVuIHRoZSBoYW5kbGVyCj4gPiByZWdpc3RlcnMgKHBhdGNoIDEx
+KSwgd2hpY2ggd2lsbCBpbnZva2UgLT5vdXRwdXRfcG9sbF9jaGFuZ2VkLgo+IAo+IE9oIEkgZGlk
+bid0IHNwb3QgdGhhdCBvbmUuIFRoaXMga2luZCBvZiBsYXllcmluZyBpbnZlcnNpb25zIGdlbmVy
+YWxseQo+IGxlYWRzIHRvIGRlYWRsb2NrcyBhbmQgZnVuIHN0dWZmLgoKUGxlYXNlIGVsYWJvcmF0
+ZSB3aHkgeW91IHRoaW5rIGl0J3MgYSBsYXllcmluZyBpbnZlcnNpb24gdG8gY2FsbApkcm1fa21z
+X2hlbHBlcl9ob3RwbHVnX2V2ZW50KCkgZnJvbSB2Z2Ffc3dpdGNoZXJvby4KCgo+IEFsc28gcmVw
+cm9iaW5nIGx2ZHMvZWRwIGlzIGp1c3QgYQo+IHNpZGUtZWZmZWN0IHdoZW4geW91IGhhdmUgZmJk
+ZXYgZW11bGF0aW9uIGVuYWJsZWQuCgpObywgZXZlbiB0aG91Z2ggLT5vdXRwdXRfcG9sbF9jaGFu
+Z2VkIGlzIG1vc3QgY29tbW9ubHkgdXNlZCB0bwp1cGRhdGUgdGhlIGZiY29uIG91dHB1dCBjb25m
+aWd1cmF0aW9uLCBpdCBnZXRzIGNhbGxlZCBldmVuIGlmCmZiZGV2IGVtdWxhdGlvbiBpcyBkaXNh
+YmxlZCwgYW5kIEkndmUgY2hhbmdlZCBpOTE1J3MgY2FsbGJhY2sKaW4gcGF0Y2ggMTMgc28gdGhh
+dCB0aGUgTFZEUy9lRFAgY29ubmVjdG9ycyBhcmUgcmVwcm9iZWQgZXZlbgppZiBDT05GSUdfRFJN
+X0k5MTVfRkJERVYgaXMgbm90IHNldC4KCgo+IElmIHdlIGdvIHdpdGggdGhpcyByZS1wcm9iaW5n
+IGFwcHJvYWNoIHRoZW4gd2UgZGVmaW5pdGVseQo+IG5lZWQgYSBuZXcgaG9vayBpbiB2Z2Etc3dp
+dGNoZXJvbwoKV2h5PyBGcm9tIG15IHBvaW50IG9mIHZpZXcsIGRybV9rbXNfaGVscGVyX2hvdHBs
+dWdfZXZlbnQoKQphbHJlYWR5IGRvZXMgdGhlIGpvYi4gVGhlIG9ubHkgcHJvYmxlbSBpcyB0aGF0
+IGk5MTUgcmVtb3ZlcwpMVkRTIGFuZCBlRFAgY29ubmVjdG9ycyBmcm9tIHRoZSBtb2RlIGNvbmZp
+Z3VyYXRpb24gaWYgdGhleQpjYW4ndCBiZSBwcm9iZWQuIEJ5IGNvbnRyYXN0LCBub3V2ZWF1IChh
+bmQgSSB0aGluayByYWRlb24pCndpbGwganVzdCBrZWVwIHRoZW0sIGJ1dCB3aXRoIHN0YXR1cyBk
+aXNjb25uZWN0ZWQuIEkgY2hhbmdlZAppOTE1IHdpdGggcGF0Y2ggMTMgdG8gYmVoYXZlIGlkZW50
+aWNhbGx5IHRvIG5vdXZlYXUvcmFkZW9uLgooU29ycnksIEkndmUgd3JpdHRlbiB0aGlzIGJlZm9y
+ZSBidXQgSSBmZWVsIGxpa2UgSSBuZWVkIHRvCm92ZXJjb21tdW5pY2F0ZSBpbiB0aGlzIG1lZGl1
+bS4pCgpUaGUgcXVlc3Rpb24gaXMsIGRvIHlvdSBjb25zaWRlciBpdCBoYXJtZnVsIHRvIGtlZXAg
+YSBtb2RlbGVzcwpMVkRTIG9yIGVEUCBjb25uZWN0b3IgaW4gdGhlIG1vZGUgY29uZmlndXJhdGlv
+biAod2l0aCBzdGF0dXMKZGlzY29ubmVjdGVkKT8gT24gdGhlIE1hY0Jvb2tzIGl0IHdvcmtzIGZp
+bmUgYnV0IEkgaGF2ZSBubyBpZGVhCmlmIGl0IGNhdXNlcyBpc3N1ZXMgb24gb3RoZXIgcGxhdGZv
+cm1zLgoKSWYgeW91IGFic29sdXRlbHkgcG9zaXRpdmVseSBiZWxpZXZlIHRoYXQgdGhpcyBjYXVz
+ZXMgaXNzdWVzCmFuZCBkb24ndCB3YW50IHRvIGNoYW5nZSBpOTE1J3MgYmVoYXZpb3VyLCB0aGVu
+IHllcyBpbmRlZWQgd2UKbWF5IG5lZWQgYSBzZXBhcmF0ZSB2Z2Ffc3dpdGNoZXJvbyBjYWxsYmFj
+ay4KCgo+IGFuZCBldmVuIHRoZW4gdGhlcmUncyBzdGlsbCB0aGUgbG9ja2luZyBwcm9ibGVtLgoK
+VGhlIG9ubHkgbG9jayBoZWxkIHdoZW4gY2FsbGluZyBkcm1fa21zX2hlbHBlcl9ob3RwbHVnX2V2
+ZW50KCkKZnJvbSB2Z2Ffc3dpdGNoZXJvbyBpcyB2Z2Fzcl9tdXRleC4gV2hlbiBjYW4gdGhpcyBk
+ZWFkbG9jaz8KV2hlbmV2ZXIgd2UgY2FsbCBhIHZnYV9zd2l0Y2hlcm9vIGZ1bmN0aW9uIGZyb20g
+dGhlIGRyaXZlcgp1cG9uIHByb2Jpbmcgb3V0cHV0cywgc3BlY2lmaWNhbGx5OgoKLSB2Z2Ffc3dp
+dGNoZXJvb19jbGllbnRfZmJfc2V0KCkKICBnZXRzIGNhbGxlZCBpZiB0aGUgZmIgaXMgcmVjcmVh
+dGVkIG9uIHJlcHJvYmUKLSB2Z2Ffc3dpdGNoZXJvb19sb2NrX2RkYygpIC8gX3VubG9ja19kZGMo
+KQogIGdldCBjYWxsZWQgd2hlbiBwcm9iaW5nIEREQyBhbmQgcmV0cmlldmluZyB0aGUgRURJRAot
+IHZnYV9zd2l0Y2hlcm9vX3NldF9kZGMoKSAvIF9nZXRfZGRjKCkgLyBfc2V0X2F1eCgpIC8gZ2V0
+X2F1eCgpCiAgZ2V0IGNhbGxlZCBmb3IgcHJveHlpbmcKClNvIHdlIGNhbid0IGxvY2sgdmdhc3Jf
+bXV0ZXggaW4gdGhvc2UgZnVuY3Rpb25zLgoKSW4gdGhlIGNhc2Ugb2YgX2xvY2tfZGRjKCkgLyBf
+dW5sb2NrX2RkYygpIHdoYXQgd2UncmUgYWN0dWFsbHkKcHJvdGVjdGluZyBhZ2FpbnN0IGlzIHRo
+ZSBzdWRkZW4gZGVyZWdpc3RyYXRpb24gb2YgdGhlIGhhbmRsZXIKd2hpbGUgd2UndmUgc3dpdGNo
+ZWQgRERDIGxpbmVzLiBXZSBjYW4gc29sdmUgdGhhdCBieSBncmFiYmluZwp2Z2Fzcl9wcml2LmRk
+Y19sb2NrIGluIHZnYV9zd2l0Y2hlcm9vX3VucmVnaXN0ZXJfaGFuZGxlcigpIHRvCmJsb2NrIGRl
+cmVnaXN0cmF0aW9uIHVudGlsIHdlJ3ZlIHN3aXRjaGVkIGJhY2suIFRoaXMgaXMgd2hhdApJJ3Zl
+IGRvbmUgaW4gdjIuMSAodGhlIDMgcGF0Y2hlcyBhY2NvbXBhbnlpbmcgdGhpcyBlLW1haWwpLgoK
+SW4gdGhlIGNhc2Ugb2YgX2ZiX3NldCgpIGFuZCB0aGUgcHJveHlpbmcgZnVuY3Rpb25zLCB3ZSBn
+cmFiCnZnYXNyX211dGV4IGJlY2F1c2Ugd2UgaXRlcmF0ZSBvdmVyIHRoZSBjbGllbnQgbGlzdCBh
+bmQgY2hhbmdlCm9yIHJldHJpZXZlIGNsaWVudCBhdHRyaWJ1dGVzLiBXaGF0IHdlJ3JlIGFjdHVh
+bGx5IHByb3RlY3RpbmcKYWdhaW5zdCBpcyB0aGUgc3VkZGVuIGRlcmVnaXN0cmF0aW9uIG9mIGEg
+Y2xpZW50IHdoaWxlIHdlJ3JlCndvcmtpbmcgb24gdGhlIGNsaWVudCBsaXN0LiBXZSBjYW4gc29s
+dmUgdGhhdCBieSBpbnRyb2R1Y2luZwphIG5ldyBsb2NrIHdoaWNoIGlzIGdyYWJiZWQgaW4gdmdh
+X3N3aXRjaGVyb29fdW5yZWdpc3Rlcl9jbGllbnQoKSwKaW4gX2ZiX3NldCgpIGFuZCBpbiB0aGUg
+cHJveHlpbmcgZnVuY3Rpb25zLgoKCkJlc3QgcmVnYXJkcywKCkx1a2FzCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QK
+ZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
