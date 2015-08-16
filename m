@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50,
-	nvc0: take level into account when doing eng2d multi-layer blits
-Date: Sat, 15 Aug 2015 22:08:01 -0400
-Message-ID: <1439690881-2280-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Sun, 16 Aug 2015 08:35:21 +0000
+Message-ID: <bug-90871-8800-MkYk8o1kwq@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0343455833=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,76 +16,126 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: "10.6" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBmaXhlcyBhcmJfZ2V0X3RleHR1cmVfc3ViX2ltYWdlLWdldCwgYW5kIGFueSBzaXR1YXRp
-b24gd2hlcmUgdGhlIDJkCmVuZ2luZSB3YXMgYmVpbmcgdXNlZCBmb3IgbXVsdGktbGF5ZXIgYmxp
-dHMgdG8gYSBub24tMCBsZXZlbC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2lu
-QGFsdW0ubWl0LmVkdT4KQ2M6ICIxMC42IiA8bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5j
-IHwgMTQgKysrKysrKysrKy0tLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc3VyZmFjZS5jIHwgMTQgKysrKysrKysrKy0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgMjAgaW5z
-ZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N1cmZhY2UuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCmluZGV4IGIxYWUwMTYuLjc3ZGY1ZmYgMTAwNjQ0Ci0t
-LSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCisrKyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3VyZmFjZS5jCkBAIC0xMzg3
-LDE4ICsxMzg3LDI0IEBAIG52NTBfYmxpdF9lbmcyZChzdHJ1Y3QgbnY1MF9jb250ZXh0ICpudjUw
-LCBjb25zdCBzdHJ1Y3QgcGlwZV9ibGl0X2luZm8gKmluZm8pCiAgICAgICAgICAgICBQVVNIX0RB
-VEEgKHB1c2gsIGluZm8tPmRzdC5ib3gueiArIGkpOwogICAgICAgICAgfSBlbHNlIHsKICAgICAg
-ICAgICAgIGNvbnN0IHVuc2lnbmVkIHogPSBpbmZvLT5kc3QuYm94LnogKyBpOworICAgICAgICAg
-ICAgY29uc3QgdWludDY0X3QgYWRkcmVzcyA9IGRzdC0+YmFzZS5hZGRyZXNzICsKKyAgICAgICAg
-ICAgICAgIGRzdC0+bGV2ZWxbaW5mby0+ZHN0LmxldmVsXS5vZmZzZXQgKworICAgICAgICAgICAg
-ICAgeiAqIGRzdC0+bGF5ZXJfc3RyaWRlOwogICAgICAgICAgICAgQkVHSU5fTlYwNChwdXNoLCBO
-VjUwXzJEKERTVF9BRERSRVNTX0hJR0gpLCAyKTsKLSAgICAgICAgICAgIFBVU0hfREFUQWgocHVz
-aCwgZHN0LT5iYXNlLmFkZHJlc3MgKyB6ICogZHN0LT5sYXllcl9zdHJpZGUpOwotICAgICAgICAg
-ICAgUFVTSF9EQVRBIChwdXNoLCBkc3QtPmJhc2UuYWRkcmVzcyArIHogKiBkc3QtPmxheWVyX3N0
-cmlkZSk7CisgICAgICAgICAgICBQVVNIX0RBVEFoKHB1c2gsIGFkZHJlc3MpOworICAgICAgICAg
-ICAgUFVTSF9EQVRBIChwdXNoLCBhZGRyZXNzKTsKICAgICAgICAgIH0KICAgICAgICAgIGlmIChz
-cmMtPmxheW91dF8zZCkgewogICAgICAgICAgICAgLyogbm90IHBvc3NpYmxlIGJlY2F1c2Ugb2Yg
-ZGVwdGggdGlsaW5nICovCiAgICAgICAgICAgICBhc3NlcnQoMCk7CiAgICAgICAgICB9IGVsc2Ug
-ewogICAgICAgICAgICAgY29uc3QgdW5zaWduZWQgeiA9IGluZm8tPnNyYy5ib3gueiArIGk7Cisg
-ICAgICAgICAgICBjb25zdCB1aW50NjRfdCBhZGRyZXNzID0gc3JjLT5iYXNlLmFkZHJlc3MgKwor
-ICAgICAgICAgICAgICAgc3JjLT5sZXZlbFtpbmZvLT5zcmMubGV2ZWxdLm9mZnNldCArCisgICAg
-ICAgICAgICAgICB6ICogc3JjLT5sYXllcl9zdHJpZGU7CiAgICAgICAgICAgICBCRUdJTl9OVjA0
-KHB1c2gsIE5WNTBfMkQoU1JDX0FERFJFU1NfSElHSCksIDIpOwotICAgICAgICAgICAgUFVTSF9E
-QVRBaChwdXNoLCBzcmMtPmJhc2UuYWRkcmVzcyArIHogKiBzcmMtPmxheWVyX3N0cmlkZSk7Ci0g
-ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHNyYy0+YmFzZS5hZGRyZXNzICsgeiAqIHNyYy0+
-bGF5ZXJfc3RyaWRlKTsKKyAgICAgICAgICAgIFBVU0hfREFUQWgocHVzaCwgYWRkcmVzcyk7Cisg
-ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGFkZHJlc3MpOwogICAgICAgICAgfQogICAgICAg
-ICAgQkVHSU5fTlYwNChwdXNoLCBOVjUwXzJEKEJMSVRfU1JDX1lfSU5UKSwgMSk7IC8qIHRyaWdn
-ZXIgKi8KICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgc3JjeSA+PiAzMik7CmRpZmYgLS1naXQg
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3N1cmZhY2UuYyBiL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc3VyZmFjZS5jCmluZGV4IDUxYTZmOTMu
-LjEzNmE2OGMgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252
-YzBfc3VyZmFjZS5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBf
-c3VyZmFjZS5jCkBAIC0xMzM2LDE4ICsxMzM2LDI0IEBAIG52YzBfYmxpdF9lbmcyZChzdHJ1Y3Qg
-bnZjMF9jb250ZXh0ICpudmMwLCBjb25zdCBzdHJ1Y3QgcGlwZV9ibGl0X2luZm8gKmluZm8pCiAg
-ICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGluZm8tPmRzdC5ib3gueiArIGkpOwogICAgICAg
-ICAgfSBlbHNlIHsKICAgICAgICAgICAgIGNvbnN0IHVuc2lnbmVkIHogPSBpbmZvLT5kc3QuYm94
-LnogKyBpOworICAgICAgICAgICAgY29uc3QgdWludDY0X3QgYWRkcmVzcyA9IGRzdC0+YmFzZS5h
-ZGRyZXNzICsKKyAgICAgICAgICAgICAgIGRzdC0+bGV2ZWxbaW5mby0+ZHN0LmxldmVsXS5vZmZz
-ZXQgKworICAgICAgICAgICAgICAgeiAqIGRzdC0+bGF5ZXJfc3RyaWRlOwogICAgICAgICAgICAg
-QkVHSU5fTlZDMChwdXNoLCBOVkMwXzJEKERTVF9BRERSRVNTX0hJR0gpLCAyKTsKLSAgICAgICAg
-ICAgIFBVU0hfREFUQWgocHVzaCwgZHN0LT5iYXNlLmFkZHJlc3MgKyB6ICogZHN0LT5sYXllcl9z
-dHJpZGUpOwotICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCBkc3QtPmJhc2UuYWRkcmVzcyAr
-IHogKiBkc3QtPmxheWVyX3N0cmlkZSk7CisgICAgICAgICAgICBQVVNIX0RBVEFoKHB1c2gsIGFk
-ZHJlc3MpOworICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCBhZGRyZXNzKTsKICAgICAgICAg
-IH0KICAgICAgICAgIGlmIChzcmMtPmxheW91dF8zZCkgewogICAgICAgICAgICAgLyogbm90IHBv
-c3NpYmxlIGJlY2F1c2Ugb2YgZGVwdGggdGlsaW5nICovCiAgICAgICAgICAgICBhc3NlcnQoMCk7
-CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgY29uc3QgdW5zaWduZWQgeiA9IGluZm8t
-PnNyYy5ib3gueiArIGk7CisgICAgICAgICAgICBjb25zdCB1aW50NjRfdCBhZGRyZXNzID0gc3Jj
-LT5iYXNlLmFkZHJlc3MgKworICAgICAgICAgICAgICAgc3JjLT5sZXZlbFtpbmZvLT5zcmMubGV2
-ZWxdLm9mZnNldCArCisgICAgICAgICAgICAgICB6ICogc3JjLT5sYXllcl9zdHJpZGU7CiAgICAg
-ICAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfMkQoU1JDX0FERFJFU1NfSElHSCksIDIpOwot
-ICAgICAgICAgICAgUFVTSF9EQVRBaChwdXNoLCBzcmMtPmJhc2UuYWRkcmVzcyArIHogKiBzcmMt
-PmxheWVyX3N0cmlkZSk7Ci0gICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIHNyYy0+YmFzZS5h
-ZGRyZXNzICsgeiAqIHNyYy0+bGF5ZXJfc3RyaWRlKTsKKyAgICAgICAgICAgIFBVU0hfREFUQWgo
-cHVzaCwgYWRkcmVzcyk7CisgICAgICAgICAgICBQVVNIX0RBVEEgKHB1c2gsIGFkZHJlc3MpOwog
-ICAgICAgICAgfQogICAgICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzJEKEJMSVRfU1JDX1lf
-SU5UKSwgMSk7IC8qIHRyaWdnZXIgKi8KICAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgc3JjeSA+
-PiAzMik7Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0343455833==
+Content-Type: multipart/alternative; boundary="1439714120.354247f1.24558"; charset="UTF-8"
+
+
+--1439714120.354247f1.24558
+Date: Sun, 16 Aug 2015 08:35:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #25 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Hans de Goede from comment #24)
+> Hi,
+> 
+> (In reply to poma from comment #23)
+> > Hans, do you test exclusively GNOME environment?
+> 
+> No to reproduce I did "dnf groupinstall "XFCE Desktop", then startxfce4, and
+> ensured it was in composting mode, all of this on a fully up2date F-22. I
+> did not see the problem you are seeing while doing this on a nv43 card.
+> 
+> Regards,
+> 
+> Hans
+
+
+Here you can find the source rpm of the Xfce's window manager with GLX support:
+http://goo.gl/Gm4ffO
+source/xfwm4-4.12.3-11.2.glx.git20150615.fc22.src.rpm
+
+Besides it is an integral part of the test compilation:
+http://goo.gl/Gm4ffO
+iso/Twenty-Two-Xfce-Live-*.iso
+
+
+Ref.
+compositor: Add support for GLX
+http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1439714120.354247f1.24558
+Date: Sun, 16 Aug 2015 08:35:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>(In reply to Hans de Goede from <a href="show_bug.cgi?id=90871#c24">comment #24</a>)
+<span class="quote">&gt; Hi,
+&gt; 
+&gt; (In reply to poma from <a href="show_bug.cgi?id=90871#c23">comment #23</a>)
+&gt; &gt; Hans, do you test exclusively GNOME environment?
+&gt; 
+&gt; No to reproduce I did &quot;dnf groupinstall &quot;XFCE Desktop&quot;, then startxfce4, and
+&gt; ensured it was in composting mode, all of this on a fully up2date F-22. I
+&gt; did not see the problem you are seeing while doing this on a nv43 card.
+&gt; 
+&gt; Regards,
+&gt; 
+&gt; Hans</span >
+
+
+Here you can find the source rpm of the Xfce's window manager with GLX support:
+<a href="http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
+source/xfwm4-4.12.3-11.2.glx.git20150615.fc22.src.rpm
+
+Besides it is an integral part of the test compilation:
+<a href="http://goo.gl/Gm4ffO">http://goo.gl/Gm4ffO</a>
+iso/Twenty-Two-Xfce-Live-*.iso
+
+
+Ref.
+compositor: Add support for GLX
+<a href="http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea">http://git.xfce.org/xfce/xfwm4/commit/?id=fee08ea</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1439714120.354247f1.24558--
+
+--===============0343455833==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0343455833==--
