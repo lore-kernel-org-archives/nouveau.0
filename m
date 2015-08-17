@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91125] [NVE7] Nouveau read fault, locking up the gpu
-Date: Mon, 17 Aug 2015 23:11:34 +0000
-Message-ID: <bug-91125-8800-ftzJyVvCsK@http.bugs.freedesktop.org/>
+Date: Mon, 17 Aug 2015 23:18:19 +0000
+Message-ID: <bug-91125-8800-t0WKhvjCD4@http.bugs.freedesktop.org/>
 References: <bug-91125-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1919155386=="
+Content-Type: multipart/mixed; boundary="===============1804538638=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91125-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,59 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1919155386==
-Content-Type: multipart/alternative; boundary="1439853093.0Aac72.16353"; charset="UTF-8"
+--===============1804538638==
+Content-Type: multipart/alternative; boundary="1439853499.F3c2a842.18912"; charset="UTF-8"
 
 
---1439853093.0Aac72.16353
-Date: Mon, 17 Aug 2015 23:11:33 +0000
+--1439853499.F3c2a842.18912
+Date: Mon, 17 Aug 2015 23:18:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91125
 
---- Comment #2 from Jonathan Ryshpan <jonrysh-yBeKhBN/0LDR7s880joybQ@public.gmane.org> ---
-I hit this bug frequently, usually after some minor user action like closing a
-window.  When it happens the screen freezes except for the cursor; when I look
-at a console via ctrl/f2 and wait for a while (about 2 minutes) I see messages
-like:
-[20235.667444] nouveau E[plasmashell][16831] fail set_domain
-[20235.667782] nouveau E[plasmashell][16831] validating bo list
-[20235.668235] nouveau E[plasmachell][16831] valicate: -22
+Jonathan Ryshpan <jonrysh-yBeKhBN/0LDR7s880joybQ@public.gmane.org> changed:
 
-As soon as these messages appear, the desktop becomes mostly usable, but often
-strange; the icons become weird and some system messages are corrupted.  In a
-following comment (after I get the desktop back), I will attach a snapshot of
-the weird desktop and today's journal file.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |jonrysh-yBeKhBN/0LDR7s880joybQ@public.gmane.org
 
-The system is difficult to use with this bug.
-
-System is
-  Amd-64 4-processor hardware
-  Nvidia 9500GT Graphics Card
-  Fedora-22 with all updates
-  KDE Frameworks 5.12.0
-
-Xorg -version
-X.Org X Server 1.17.2
-Release Date: 2015-06-16
-X Protocol Version 11, Revision 0
-Build Operating System:  4.0.4-202.fc21.x86_64 
-Current Operating System: Linux amito 4.1.4-200.fc22.x86_64 #1 SMP Tue Aug 4
-03:22:33 UTC 2015 x86_64
-Kernel command line: BOOT_IMAGE=/vmlinuz-4.1.4-200.fc22.x86_64
-root=/dev/mapper/fedora00-root ro rd.lvm.lv=fedora00/swap
-rd.lvm.lv=fedora00/root rhgb quiet LANG=en_US.UTF-8
-Build Date: 15 July 2015  08:16:41AM
-Build ID: xorg-x11-server 1.17.2-2.fc22 
-Current version of pixman: 0.32.6
+--- Comment #3 from Jonathan Ryshpan <jonrysh-yBeKhBN/0LDR7s880joybQ@public.gmane.org> ---
+Created attachment 117741
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117741&action=edit
+System Journal for 2015-08-17
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1439853093.0Aac72.16353
-Date: Mon, 17 Aug 2015 23:11:33 +0000
+--1439853499.F3c2a842.18912
+Date: Mon, 17 Aug 2015 23:18:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,53 +55,42 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:jonrysh&#64;pacbell.net" title="Jonathan Ryshpan &lt;jonrysh&#64;pacbell.net&gt;"> <span class="fn">Jonathan Ryshpan</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125">bug 91125</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>jonrysh&#64;pacbell.net
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91125">bug 91125</a>
               from <span class="vcard"><a class="email" href="mailto:jonrysh&#64;pacbell.net" title="Jonathan Ryshpan &lt;jonrysh&#64;pacbell.net&gt;"> <span class="fn">Jonathan Ryshpan</span></a>
 </span></b>
-        <pre>I hit this bug frequently, usually after some minor user action like closing a
-window.  When it happens the screen freezes except for the cursor; when I look
-at a console via ctrl/f2 and wait for a while (about 2 minutes) I see messages
-like:
-[20235.667444] nouveau E[plasmashell][16831] fail set_domain
-[20235.667782] nouveau E[plasmashell][16831] validating bo list
-[20235.668235] nouveau E[plasmachell][16831] valicate: -22
-
-As soon as these messages appear, the desktop becomes mostly usable, but often
-strange; the icons become weird and some system messages are corrupted.  In a
-following comment (after I get the desktop back), I will attach a snapshot of
-the weird desktop and today's journal file.
-
-The system is difficult to use with this bug.
-
-System is
-  Amd-64 4-processor hardware
-  Nvidia 9500GT Graphics Card
-  Fedora-22 with all updates
-  KDE Frameworks 5.12.0
-
-Xorg -version
-X.Org X Server 1.17.2
-Release Date: 2015-06-16
-X Protocol Version 11, Revision 0
-Build Operating System:  4.0.4-202.fc21.x86_64 
-Current Operating System: Linux amito 4.1.4-200.fc22.x86_64 #1 SMP Tue Aug 4
-03:22:33 UTC 2015 x86_64
-Kernel command line: BOOT_IMAGE=/vmlinuz-4.1.4-200.fc22.x86_64
-root=/dev/mapper/fedora00-root ro rd.lvm.lv=fedora00/swap
-rd.lvm.lv=fedora00/root rhgb quiet LANG=en_US.UTF-8
-Build Date: 15 July 2015  08:16:41AM
-Build ID: xorg-x11-server 1.17.2-2.fc22 
-Current version of pixman: 0.32.6</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117741" name="attach_117741" title="System Journal for 2015-08-17">attachment 117741</a> <a href="attachment.cgi?id=117741&amp;action=edit" title="System Journal for 2015-08-17">[details]</a></span>
+System Journal for 2015-08-17</pre>
         </div>
       </p>
       <hr>
@@ -138,9 +102,9 @@ Current version of pixman: 0.32.6</pre>
     </body>
 </html>
 
---1439853093.0Aac72.16353--
+--1439853499.F3c2a842.18912--
 
---===============1919155386==
+--===============1804538638==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -150,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1919155386==--
+--===============1804538638==--
