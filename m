@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91125] [NVE7] Nouveau read fault, locking up the gpu
-Date: Mon, 17 Aug 2015 23:23:25 +0000
-Message-ID: <bug-91125-8800-QkXI0GYiNG@http.bugs.freedesktop.org/>
-References: <bug-91125-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] fb/sddr3: add WR/CWL values seen on a GK208
+Date: Mon, 17 Aug 2015 19:37:34 -0400
+Message-ID: <1439854654-19852-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1838584175=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91125-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,81 +15,30 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1838584175==
-Content-Type: multipart/alternative; boundary="1439853805.E2Bfad2.20790"; charset="UTF-8"
-
-
---1439853805.E2Bfad2.20790
-Date: Mon, 17 Aug 2015 23:23:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91125
-
---- Comment #5 from Jonathan Ryshpan <jonrysh-yBeKhBN/0LDR7s880joybQ@public.gmane.org> ---
-Created attachment 117743
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117743&action=edit
-Corrupt desktop
-
-This is the same part of my desktop when displayed when the graphics system is
-in its "weird" state"
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439853805.E2Bfad2.20790
-Date: Mon, 17 Aug 2015 23:23:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91125">bug 91125</a>
-              from <span class="vcard"><a class="email" href="mailto:jonrysh&#64;pacbell.net" title="Jonathan Ryshpan &lt;jonrysh&#64;pacbell.net&gt;"> <span class="fn">Jonathan Ryshpan</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117743" name="attach_117743" title="Corrupt desktop">attachment 117743</a> <a href="attachment.cgi?id=117743&amp;action=edit" title="Corrupt desktop">[details]</a></span>
-Corrupt desktop
-
-This is the same part of my desktop when displayed when the graphics system is
-in its &quot;weird&quot; state&quot;</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439853805.E2Bfad2.20790--
-
---===============1838584175==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KClNl
+ZW4gb24gbXkgR0syMDguIFRyYWNlIGF2YWlsYWJsZSBhdAoKaHR0cDovL3Blb3BsZS5mcmVlZGVz
+a3RvcC5vcmcvfmltaXJraW4vdHJhY2VzL2drMjA4L2drMjA4LW1taW90cmFjZS5sb2cueHoKClRo
+YW5rcyB0byBSb3kgZm9yIGhpcyBhc3Npc3RhbmNlIG9uIGZpbmRpbmcgdGhlIHBhcmFtZXRlcnMu
+IEkgdGVzdGVkCnRoaXMgb24gdG9wIG9mIGhpcyBwYXRjaCAiYmlvcy9yYW1tYXA6IElkZW50aWZ5
+IERMTG9mZiBmb3IgPj0KR0YxMDAiLiBbQnV0IG5vdCAxMDAlIHN1cmUgaWYgaXQgd2FzIG5lY2Vz
+c2FyeS5dCgogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvc2RkcjMuYyB8IDQgKystLQogMSBm
+aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
+YS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5jIGIvZHJtL25vdXZlYXUvbnZrbS9z
+dWJkZXYvZmIvc2RkcjMuYwppbmRleCAwMzdkZWViLi4yNDEwMzgzIDEwMDY0NAotLS0gYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9mYi9zZGRyMy5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2ZiL3NkZHIzLmMKQEAgLTUzLDcgKzUzLDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCByYW14
+bGF0CiByYW1kZHIzX3dyW10gPSB7CiAJeyA1LCAxIH0sIHsgNiwgMiB9LCB7IDcsIDMgfSwgeyA4
+LCA0IH0sIHsgMTAsIDUgfSwgeyAxMiwgNiB9LAogCS8qIHRoZSBiZWxvdyBhcmUgbWVudGlvbmVk
+IGluIHNvbWUsIGJ1dCBub3QgYWxsLCBkZHIzIGRvY3MgKi8KLQl7IDE0LCA3IH0sIHsgMTYsIDAg
+fSwKKwl7IDE0LCA3IH0sIHsgMTUsIDcgfSwgeyAxNiwgMCB9LAogCXsgLTEgfQogfTsKIApAQCAt
+NjEsNyArNjEsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IHJhbXhsYXQKIHJhbWRkcjNfY3dsW10g
+PSB7CiAJeyA1LCAwIH0sIHsgNiwgMSB9LCB7IDcsIDIgfSwgeyA4LCAzIH0sCiAJLyogdGhlIGJl
+bG93IGFyZSBtZW50aW9uZWQgaW4gc29tZSwgYnV0IG5vdCBhbGwsIGRkcjMgZG9jcyAqLwotCXsg
+OSwgNCB9LAorCXsgOSwgNCB9LCB7IDEwLCA1IH0sCiAJeyAtMSB9CiB9OwogCi0tIAoyLjQuNgoK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1838584175==--
