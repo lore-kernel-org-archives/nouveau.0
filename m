@@ -1,94 +1,84 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Tue, 18 Aug 2015 16:02:43 +0000
-Message-ID: <bug-91598-8800-9AtTeJ2zMV@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH 1/2] nvc0/ir: detect AND/SHR pairs and convert
+	into EXTBF
+Date: Tue, 18 Aug 2015 21:49:51 -0400
+Message-ID: <1439948992-17738-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0039502913=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0039502913==
-Content-Type: multipart/alternative; boundary="1439913763.D20f41.28818"; charset="UTF-8"
-
-
---1439913763.D20f41.28818
-Date: Tue, 18 Aug 2015 16:02:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
-
---- Comment #12 from David March <davidmarch007-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Probably the same bug responsible:
-https://bugs.freedesktop.org/show_bug.cgi?id=91125 includes screenshots of
-corruption from another user.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1439913763.D20f41.28818
-Date: Tue, 18 Aug 2015 16:02:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c12">Comment # 12</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:davidmarch007&#64;gmail.com" title="David March &lt;davidmarch007&#64;gmail.com&gt;"> <span class="fn">David March</span></a>
-</span></b>
-        <pre>Probably the same bug responsible:
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] Nouveau read fault, locking up the gpu"
-   href="show_bug.cgi?id=91125">https://bugs.freedesktop.org/show_bug.cgi?id=91125</a> includes screenshots of
-corruption from another user.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1439913763.D20f41.28818--
-
---===============0039502913==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0039502913==--
+U29tZSBzaGFkZXJzIGFwcGVhciB0byBleHRyYWN0IGJpdHMgdXNpbmcgc2hpZnQvYW5kIGNvbWJv
+cy4gRGV0ZWN0Cihzb21lKSBvZiB0aG9zZSBhbmQgY29udmVydCB0byBFWFRCRiBpbnN0ZWFkLgoK
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIC4u
+Li9kcml2ZXJzL25vdXZlYXUvY29kZWdlbi9udjUwX2lyX3BlZXBob2xlLmNwcCAgIHwgNjYgKysr
+KysrKysrKysrKysrLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDQ2IGluc2VydGlvbnMoKyksIDIw
+IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9j
+b2RlZ2VuL252NTBfaXJfcGVlcGhvbGUuY3BwIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L2NvZGVnZW4vbnY1MF9pcl9wZWVwaG9sZS5jcHAKaW5kZXggMzg0MWMzMy4uYjBlNzRmMCAxMDA2
+NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9pcl9wZWVw
+aG9sZS5jcHAKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L2NvZGVnZW4vbnY1MF9p
+cl9wZWVwaG9sZS5jcHAKQEAgLTEwMjMsMjcgKzEwMjMsNTMgQEAgQ29uc3RhbnRGb2xkaW5nOjpv
+cG5kKEluc3RydWN0aW9uICppLCBJbW1lZGlhdGVWYWx1ZSAmaW1tMCwgaW50IHMpCiAKICAgIGNh
+c2UgT1BfQU5EOgogICAgewotICAgICAgQ21wSW5zdHJ1Y3Rpb24gKmNtcCA9IGktPmdldFNyYyh0
+KS0+Z2V0SW5zbigpLT5hc0NtcCgpOwotICAgICAgaWYgKCFjbXAgfHwgY21wLT5vcCA9PSBPUF9T
+TENUIHx8IGNtcC0+Z2V0RGVmKDApLT5yZWZDb3VudCgpID4gMSkKLSAgICAgICAgIHJldHVybjsK
+LSAgICAgIGlmICghcHJvZy0+Z2V0VGFyZ2V0KCktPmlzT3BTdXBwb3J0ZWQoY21wLT5vcCwgVFlQ
+RV9GMzIpKQotICAgICAgICAgcmV0dXJuOwotICAgICAgaWYgKGltbTAucmVnLmRhdGEuZjMyICE9
+IDEuMCkKLSAgICAgICAgIHJldHVybjsKLSAgICAgIGlmIChpLT5nZXRTcmModCktPmdldEluc24o
+KS0+ZFR5cGUgIT0gVFlQRV9VMzIpCi0gICAgICAgICByZXR1cm47CisgICAgICBJbnN0cnVjdGlv
+biAqc3JjID0gaS0+Z2V0U3JjKHQpLT5nZXRJbnNuKCk7CisgICAgICBJbW1lZGlhdGVWYWx1ZSBp
+bW0xOworICAgICAgaWYgKGltbTAucmVnLmRhdGEudTMyID09IDApIHsKKyAgICAgICAgIGktPm9w
+ID0gT1BfTU9WOworICAgICAgICAgaS0+c2V0U3JjKDAsIG5ld19JbW1lZGlhdGVWYWx1ZShwcm9n
+LCAwdSkpOworICAgICAgICAgaS0+c3JjKDApLm1vZCA9IE1vZGlmaWVyKDApOworICAgICAgICAg
+aS0+c2V0U3JjKDEsIE5VTEwpOworICAgICAgfSBlbHNlIGlmIChpbW0wLnJlZy5kYXRhLnUzMiA9
+PSB+MFUpIHsKKyAgICAgICAgIGktPm9wID0gaS0+c3JjKHQpLm1vZC5nZXRPcCgpOworICAgICAg
+ICAgaWYgKHQpIHsKKyAgICAgICAgICAgIGktPnNldFNyYygwLCBpLT5nZXRTcmModCkpOworICAg
+ICAgICAgICAgaS0+c3JjKDApLm1vZCA9IGktPnNyYyh0KS5tb2Q7CisgICAgICAgICB9CisgICAg
+ICAgICBpLT5zZXRTcmMoMSwgTlVMTCk7CisgICAgICB9IGVsc2UgaWYgKHNyYy0+YXNDbXAoKSkg
+eworICAgICAgICAgQ21wSW5zdHJ1Y3Rpb24gKmNtcCA9IHNyYy0+YXNDbXAoKTsKKyAgICAgICAg
+IGlmICghY21wIHx8IGNtcC0+b3AgPT0gT1BfU0xDVCB8fCBjbXAtPmdldERlZigwKS0+cmVmQ291
+bnQoKSA+IDEpCisgICAgICAgICAgICByZXR1cm47CisgICAgICAgICBpZiAoIXByb2ctPmdldFRh
+cmdldCgpLT5pc09wU3VwcG9ydGVkKGNtcC0+b3AsIFRZUEVfRjMyKSkKKyAgICAgICAgICAgIHJl
+dHVybjsKKyAgICAgICAgIGlmIChpbW0wLnJlZy5kYXRhLmYzMiAhPSAxLjApCisgICAgICAgICAg
+ICByZXR1cm47CisgICAgICAgICBpZiAoY21wLT5kVHlwZSAhPSBUWVBFX1UzMikKKyAgICAgICAg
+ICAgIHJldHVybjsKIAotICAgICAgaS0+Z2V0U3JjKHQpLT5nZXRJbnNuKCktPmRUeXBlID0gVFlQ
+RV9GMzI7Ci0gICAgICBpZiAoaS0+c3JjKHQpLm1vZCAhPSBNb2RpZmllcigwKSkgewotICAgICAg
+ICAgYXNzZXJ0KGktPnNyYyh0KS5tb2QgPT0gTW9kaWZpZXIoTlY1MF9JUl9NT0RfTk9UKSk7Ci0g
+ICAgICAgICBpLT5zcmModCkubW9kID0gTW9kaWZpZXIoMCk7Ci0gICAgICAgICBjbXAtPnNldENv
+bmQgPSBpbnZlcnNlQ29uZENvZGUoY21wLT5zZXRDb25kKTsKLSAgICAgIH0KLSAgICAgIGktPm9w
+ID0gT1BfTU9WOwotICAgICAgaS0+c2V0U3JjKHMsIE5VTEwpOwotICAgICAgaWYgKHQpIHsKLSAg
+ICAgICAgIGktPnNldFNyYygwLCBpLT5nZXRTcmModCkpOwotICAgICAgICAgaS0+c2V0U3JjKHQs
+IE5VTEwpOworICAgICAgICAgY21wLT5kVHlwZSA9IFRZUEVfRjMyOworICAgICAgICAgaWYgKGkt
+PnNyYyh0KS5tb2QgIT0gTW9kaWZpZXIoMCkpIHsKKyAgICAgICAgICAgIGFzc2VydChpLT5zcmMo
+dCkubW9kID09IE1vZGlmaWVyKE5WNTBfSVJfTU9EX05PVCkpOworICAgICAgICAgICAgaS0+c3Jj
+KHQpLm1vZCA9IE1vZGlmaWVyKDApOworICAgICAgICAgICAgY21wLT5zZXRDb25kID0gaW52ZXJz
+ZUNvbmRDb2RlKGNtcC0+c2V0Q29uZCk7CisgICAgICAgICB9CisgICAgICAgICBpLT5vcCA9IE9Q
+X01PVjsKKyAgICAgICAgIGktPnNldFNyYyhzLCBOVUxMKTsKKyAgICAgICAgIGlmICh0KSB7Cisg
+ICAgICAgICAgICBpLT5zZXRTcmMoMCwgaS0+Z2V0U3JjKHQpKTsKKyAgICAgICAgICAgIGktPnNl
+dFNyYyh0LCBOVUxMKTsKKyAgICAgICAgIH0KKyAgICAgIH0gZWxzZSBpZiAocHJvZy0+Z2V0VGFy
+Z2V0KCktPmlzT3BTdXBwb3J0ZWQoT1BfRVhUQkYsIFRZUEVfVTMyKSAmJgorICAgICAgICAgICAg
+ICAgICBzcmMtPm9wID09IE9QX1NIUiAmJgorICAgICAgICAgICAgICAgICBzcmMtPnNyYygxKS5n
+ZXRJbW1lZGlhdGUoaW1tMSkgJiYKKyAgICAgICAgICAgICAgICAgaS0+c3JjKHQpLm1vZCA9PSBN
+b2RpZmllcigwKSAmJgorICAgICAgICAgICAgICAgICB1dGlsX2lzX3Bvd2VyX29mX3R3byhpbW0w
+LnJlZy5kYXRhLnUzMiArIDEpKSB7CisgICAgICAgICAvLyBsb3cgYnl0ZSA9IG9mZnNldCwgaGln
+aCBieXRlID0gd2lkdGgKKyAgICAgICAgIHVpbnQzMl90IGV4dCA9ICh1dGlsX2xhc3RfYml0KGlt
+bTAucmVnLmRhdGEudTMyKSA8PCA4KSB8IGltbTEucmVnLmRhdGEudTMyOworICAgICAgICAgaS0+
+b3AgPSBPUF9FWFRCRjsKKyAgICAgICAgIGktPnNldFNyYygwLCBzcmMtPmdldFNyYygwKSk7Cisg
+ICAgICAgICBpLT5zZXRTcmMoMSwgbmV3X0ltbWVkaWF0ZVZhbHVlKHByb2csIGV4dCkpOwogICAg
+ICAgfQogICAgfQogICAgICAgYnJlYWs7Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2EtZGV2
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbWVzYS1kZXYK
