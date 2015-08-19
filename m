@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91570] Upgrading mesa to 10.6 causes segfault in
- OpenGL applications with GeForce4 MX 440 / AGP 8X
-Date: Wed, 19 Aug 2015 10:32:51 +0000
-Message-ID: <bug-91570-8800-GUb0uNqyJ3@http.bugs.freedesktop.org/>
-References: <bug-91570-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Wed, 19 Aug 2015 18:37:22 +0000
+Message-ID: <bug-90871-8800-2Wll6ClKJx@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2006554918=="
+Content-Type: multipart/mixed; boundary="===============0346560823=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91570-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2006554918==
-Content-Type: multipart/alternative; boundary="1439980371.AeD4fCF0.10299"; charset="UTF-8"
+--===============0346560823==
+Content-Type: multipart/alternative; boundary="1440009441.e5EC21dc0.14163"; charset="UTF-8"
 
 
---1439980371.AeD4fCF0.10299
-Date: Wed, 19 Aug 2015 10:32:51 +0000
+--1440009441.e5EC21dc0.14163
+Date: Wed, 19 Aug 2015 18:37:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91570
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
---- Comment #19 from omelette <omelette-kcyQbWKpldg@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #18)
-> I pushed an alternate version of the patch which just avoids the call to
-> tnl_wakeup entirely, it shouldn't be necessary. The patch should be
-> cherry-picked into the next 10.6.x release.
-
-Great, thank you again for patching this.
+--- Comment #30 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
+You'd need xfwm4 from git master (with opengl support) to reproduce or simply
+use the simple reproducer I attached to this bug some time ago (attachment
+116536)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1439980371.AeD4fCF0.10299
-Date: Wed, 19 Aug 2015 10:32:51 +0000
+--1440009441.e5EC21dc0.14163
+Date: Wed, 19 Aug 2015 18:37:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,21 +54,18 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570#c19">Comment # 19</a>
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c30">Comment # 30</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Upgrading mesa to 10.6 causes segfault in OpenGL applications with GeForce4 MX 440 / AGP 8X"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91570">bug 91570</a>
-              from <span class="vcard"><a class="email" href="mailto:omelette&#64;cock.li" title="omelette &lt;omelette&#64;cock.li&gt;"> <span class="fn">omelette</span></a>
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91570#c18">comment #18</a>)
-<span class="quote">&gt; I pushed an alternate version of the patch which just avoids the call to
-&gt; tnl_wakeup entirely, it shouldn't be necessary. The patch should be
-&gt; cherry-picked into the next 10.6.x release.</span >
-
-Great, thank you again for patching this.</pre>
+        <pre>You'd need xfwm4 from git master (with opengl support) to reproduce or simply
+use the simple reproducer I attached to this bug some time ago (<span class=""><a href="attachment.cgi?id=116536" name="attach_116536" title="test program">attachment
+116536</a> <a href="attachment.cgi?id=116536&amp;action=edit" title="test program">[details]</a></span>)</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +78,9 @@ Great, thank you again for patching this.</pre>
     </body>
 </html>
 
---1439980371.AeD4fCF0.10299--
+--1440009441.e5EC21dc0.14163--
 
---===============2006554918==
+--===============0346560823==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2006554918==--
+--===============0346560823==--
