@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Wed, 19 Aug 2015 18:37:22 +0000
-Message-ID: <bug-90871-8800-2Wll6ClKJx@http.bugs.freedesktop.org/>
+Date: Thu, 20 Aug 2015 09:57:20 +0000
+Message-ID: <bug-90871-8800-OnSEocvED8@http.bugs.freedesktop.org/>
 References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0346560823=="
+Content-Type: multipart/mixed; boundary="===============0394305221=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0346560823==
-Content-Type: multipart/alternative; boundary="1440009441.e5EC21dc0.14163"; charset="UTF-8"
+--===============0394305221==
+Content-Type: multipart/alternative; boundary="1440064640.EEDA1.18648"; charset="UTF-8"
 
 
---1440009441.e5EC21dc0.14163
-Date: Wed, 19 Aug 2015 18:37:21 +0000
+--1440064640.EEDA1.18648
+Date: Thu, 20 Aug 2015 09:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
---- Comment #30 from Olivier Fourdan <fourdan-eaOCjQ5FDoY@public.gmane.org> ---
-You'd need xfwm4 from git master (with opengl support) to reproduce or simply
-use the simple reproducer I attached to this bug some time ago (attachment
-116536)
+--- Comment #31 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Repetitio est mater sapientiae.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440009441.e5EC21dc0.14163
-Date: Wed, 19 Aug 2015 18:37:21 +0000
+--1440064640.EEDA1.18648
+Date: Thu, 20 Aug 2015 09:57:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c30">Comment # 30</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c31">Comment # 31</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV30: Xfwm4 use_compositing - garbled display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:fourdan&#64;xfce.org" title="Olivier Fourdan &lt;fourdan&#64;xfce.org&gt;"> <span class="fn">Olivier Fourdan</span></a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>You'd need xfwm4 from git master (with opengl support) to reproduce or simply
-use the simple reproducer I attached to this bug some time ago (<span class=""><a href="attachment.cgi?id=116536" name="attach_116536" title="test program">attachment
-116536</a> <a href="attachment.cgi?id=116536&amp;action=edit" title="test program">[details]</a></span>)</pre>
+        <pre>Repetitio est mater sapientiae.</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +74,9 @@ use the simple reproducer I attached to this bug some time ago (<span class=""><
     </body>
 </html>
 
---1440009441.e5EC21dc0.14163--
+--1440064640.EEDA1.18648--
 
---===============0346560823==
+--===============0394305221==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0346560823==--
+--===============0394305221==--
