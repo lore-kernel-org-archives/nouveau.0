@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91705] [NVE7] GPU crash (read fault) on boot w/
  DMI+HDMI outputs
-Date: Thu, 20 Aug 2015 18:39:39 +0000
-Message-ID: <bug-91705-8800-1YoiU1EhUb@http.bugs.freedesktop.org/>
+Date: Thu, 20 Aug 2015 18:47:04 +0000
+Message-ID: <bug-91705-8800-vm7xPcQzt7@http.bugs.freedesktop.org/>
 References: <bug-91705-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138980342=="
+Content-Type: multipart/mixed; boundary="===============1928706962=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91705-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0138980342==
-Content-Type: multipart/alternative; boundary="1440095979.630dB471.4866"; charset="UTF-8"
+--===============1928706962==
+Content-Type: multipart/alternative; boundary="1440096424.8D511.7723"; charset="UTF-8"
 
 
---1440095979.630dB471.4866
-Date: Thu, 20 Aug 2015 18:39:39 +0000
+--1440096424.8D511.7723
+Date: Thu, 20 Aug 2015 18:47:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91705
 
---- Comment #5 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> ---
-N.B. I have been unable to figure out whether or not any of the software
-involved is actually the newest available whatever.  I'm happy to test newer
-software, compiling it myself if necessary -- but I will need you to tell me
-exactly what is out of date and where the newer version can be found, because
-the various webpages that purport to explain this all contradict each other :-(
+--- Comment #6 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> ---
+If there is one monitor connected to the HDMI port, and nothing connected to
+DVI or VGA, the computer boots successfully.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440095979.630dB471.4866
-Date: Thu, 20 Aug 2015 18:39:39 +0000
+--1440096424.8D511.7723
+Date: Thu, 20 Aug 2015 18:47:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,18 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] GPU crash (read fault) on boot w/ DMI+HDMI outputs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91705#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91705#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] GPU crash (read fault) on boot w/ DMI+HDMI outputs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91705">bug 91705</a>
               from <span class="vcard"><a class="email" href="mailto:zackw&#64;panix.com" title="Zack Weinberg &lt;zackw&#64;panix.com&gt;"> <span class="fn">Zack Weinberg</span></a>
 </span></b>
-        <pre>N.B. I have been unable to figure out whether or not any of the software
-involved is actually the newest available whatever.  I'm happy to test newer
-software, compiling it myself if necessary -- but I will need you to tell me
-exactly what is out of date and where the newer version can be found, because
-the various webpages that purport to explain this all contradict each other :-(</pre>
+        <pre>If there is one monitor connected to the HDMI port, and nothing connected to
+DVI or VGA, the computer boots successfully.</pre>
         </div>
       </p>
       <hr>
@@ -81,9 +75,9 @@ the various webpages that purport to explain this all contradict each other :-(<
     </body>
 </html>
 
---1440095979.630dB471.4866--
+--1440096424.8D511.7723--
 
---===============0138980342==
+--===============1928706962==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0138980342==--
+--===============1928706962==--
