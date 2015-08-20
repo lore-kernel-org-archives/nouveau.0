@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91705] [NVE7] GPU crash (read fault) on boot w/
  DMI+HDMI outputs
-Date: Thu, 20 Aug 2015 18:36:11 +0000
-Message-ID: <bug-91705-8800-0mn2t6y2S2@http.bugs.freedesktop.org/>
+Date: Thu, 20 Aug 2015 18:36:33 +0000
+Message-ID: <bug-91705-8800-Vp6qbupkn1@http.bugs.freedesktop.org/>
 References: <bug-91705-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1668407368=="
+Content-Type: multipart/mixed; boundary="===============1066760706=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91705-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1668407368==
-Content-Type: multipart/alternative; boundary="1440095771.bF61ed765.3290"; charset="UTF-8"
+--===============1066760706==
+Content-Type: multipart/alternative; boundary="1440095792.E42c7.3290"; charset="UTF-8"
 
 
---1440095771.bF61ed765.3290
-Date: Thu, 20 Aug 2015 18:36:11 +0000
+--1440095792.E42c7.3290
+Date: Thu, 20 Aug 2015 18:36:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91705
 
---- Comment #3 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117823
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117823&action=edit
-xorg.log (crash)
+--- Comment #4 from Zack Weinberg <zackw-VmQCmMdMyN0AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117824
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117824&action=edit
+xorg.log (no crash)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440095771.bF61ed765.3290
-Date: Thu, 20 Aug 2015 18:36:11 +0000
+--1440095792.E42c7.3290
+Date: Thu, 20 Aug 2015 18:36:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] GPU crash (read fault) on boot w/ DMI+HDMI outputs"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91705#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91705#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] GPU crash (read fault) on boot w/ DMI+HDMI outputs"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91705">bug 91705</a>
               from <span class="vcard"><a class="email" href="mailto:zackw&#64;panix.com" title="Zack Weinberg &lt;zackw&#64;panix.com&gt;"> <span class="fn">Zack Weinberg</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117823" name="attach_117823" title="xorg.log (crash)">attachment 117823</a> <a href="attachment.cgi?id=117823&amp;action=edit" title="xorg.log (crash)">[details]</a></span>
-xorg.log (crash)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117824" name="attach_117824" title="xorg.log (no crash)">attachment 117824</a> <a href="attachment.cgi?id=117824&amp;action=edit" title="xorg.log (no crash)">[details]</a></span>
+xorg.log (no crash)</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ xorg.log (crash)</pre>
     </body>
 </html>
 
---1440095771.bF61ed765.3290--
+--1440095792.E42c7.3290--
 
---===============1668407368==
+--===============1066760706==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1668407368==--
+--===============1066760706==--
