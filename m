@@ -1,89 +1,86 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Thu, 20 Aug 2015 09:57:20 +0000
-Message-ID: <bug-90871-8800-OnSEocvED8@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Eric Anholt <eric@anholt.net>
+Subject: Re: [PATCH 1/2] nvc0/ir: detect AND/SHR pairs and
+	convert into EXTBF
+Date: Thu, 20 Aug 2015 09:13:49 -0700
+Message-ID: <87bne2uede.fsf@eliezer.anholt.net>
+References: <1439948992-17738-1-git-send-email-imirkin@alum.mit.edu>
+ <CAEdQ38EXBDX8On9822t7brPvr-wcYr0MADnyGpQGbfU7Tce03w@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0394305221=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: multipart/mixed; boundary="===============2139617575=="
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAEdQ38EXBDX8On9822t7brPvr-wcYr0MADnyGpQGbfU7Tce03w@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Matt Turner <mattst88@gmail.com>, Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, nouveau@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
+--===============2139617575==
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha512; protocol="application/pgp-signature"
 
---===============0394305221==
-Content-Type: multipart/alternative; boundary="1440064640.EEDA1.18648"; charset="UTF-8"
+--=-=-=
+Content-Type: text/plain
 
+Matt Turner <mattst88@gmail.com> writes:
 
---1440064640.EEDA1.18648
-Date: Thu, 20 Aug 2015 09:57:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+> On Tue, Aug 18, 2015 at 6:49 PM, Ilia Mirkin <imirkin@alum.mit.edu> wrote:
+>> Some shaders appear to extract bits using shift/and combos. Detect
+>> (some) of those and convert to EXTBF instead.
+>
+> What is EXTBF? Extract byte to float?
+>
+> I ask because Unigine Heaven has shaders that pack 3x byte-integers
+> into one component of a vec4 and extracts them with shifts/ands and
+> converts them to floats, and i965 could do the extraction and
+> conversion in a single instruction. I'm curious if this is the same
+> thing you're optimizing.
+>
+> I thought about adding an extract_byte(src, byte_num) operation, but
+> i965's copy propagation caused me some headache and I shelved it.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
+I could use this one, as int, uint, and unorm unpacks.  Right now for
+int/uint I'm recognizing the pattern in vc4_program.c (in a branch).
+I'd be interested in writing the NIR bits if others are interested in
+having this.
 
---- Comment #31 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Repetitio est mater sapientiae.
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
---1440064640.EEDA1.18648
-Date: Thu, 20 Aug 2015 09:57:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+iQIcBAEBCgAGBQJV1fy+AAoJELXWKTbR/J7oI9YP/1dOtnVwD4oiA28Xj8/rL3gE
+QevxvaJrXKUU/4WhTPxtnMXdPTpOXl4hHVoTcd9UUYI+puD5MnArOp3uK1cQVefF
+xxiDdqbhE+Ivfc1CVMtzc7kmh+Zl9CbqlhDwfBK4HeeYWnO40Qt5iH2+2QNXmuNq
+Cz0fbvad6V9I/bdNzm92DkvVWJvdWGd9qHeJLbbeY98+xhqVLsxdDs7NUNogqaU+
+vjheBeDkcdIgJTN1aNSqt75Sq9c+hIFa7m1FNsFsulTK/XHNVgD2MZqIxGAxqNYb
+3+xb8c/3DlII5DNpBxPXZjtoUssushf2oc+dqnGzfxKWGgnDv6gPHErMkWlWRQiu
+4sOzwQPSExG0E54Ms1Nwcfy6CkL5zhmUlNXcLUf0XTNxaP0eAlbboqVEXmBKsr4O
+HV2ktZC9d9/IRWYDZVoQ33p8fCNSLoZYnMiVrwTfwKcRRw5dIRZPbtJXKl8klUNG
+rxTQObMSNyyxEdzayG5dl8M0SSrtwXoL+Gl8G8ger8tiaPFCVdrCP2GYw2Jq0Rl0
+i1IEmSQXypfQGB+8Uuib/3KEaqliLX5dCZ4xAvKTauq69cv2fgSBa96IsCzeAI08
+roFqGfpe1Dv11vG2d2+ckJ9z2NHKTy3iO0jxp58GZWaHolNJtMnM1Nz3DknJy2Jj
+hLFZNuNPhrcGvzF1B7NI
+=sgiB
+-----END PGP SIGNATURE-----
+--=-=-=--
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c31">Comment # 31</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>Repetitio est mater sapientiae.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1440064640.EEDA1.18648--
-
---===============0394305221==
+--===============2139617575==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
 Content-Disposition: inline
 
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYg
+bWFpbGluZyBsaXN0Cm1lc2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
 
---===============0394305221==--
+--===============2139617575==--
