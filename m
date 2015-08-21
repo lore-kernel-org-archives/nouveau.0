@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91627] [NV117] KMS failed on DisplayPort with 750 Ti
-Date: Fri, 21 Aug 2015 21:39:36 +0000
-Message-ID: <bug-91627-8800-TPTbFkBxtz@http.bugs.freedesktop.org/>
-References: <bug-91627-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Fri, 21 Aug 2015 21:53:14 +0000
+Message-ID: <bug-90887-8800-loNfi2mAT9@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1583192156=="
+Content-Type: multipart/mixed; boundary="===============1279461316=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91627-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,30 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1583192156==
-Content-Type: multipart/alternative; boundary="1440193176.72c6C2.13166"; charset="UTF-8"
+--===============1279461316==
+Content-Type: multipart/alternative; boundary="1440193994.66c3DAB2.17416"; charset="UTF-8"
 
 
---1440193176.72c6C2.13166
-Date: Fri, 21 Aug 2015 21:39:36 +0000
+--1440193994.66c3DAB2.17416
+Date: Fri, 21 Aug 2015 21:53:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91627
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-There are some fixes for a K620 (GM107) board here:
+--- Comment #32 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #31)
+> Really if I could understand wtf the needNewElseBlock logic was trying to
+> do, and could construct a test shader to hit this in *regular* scenarios,
+> not just the lowered output of TXL, that would make me a lot more
+> comfortable with any approach that we pick.
 
-http://cgit.freedesktop.org/~darktama/nouveau/log/?id=9ce7d1009c64045a0875640b4cb4ae55e0c7aa87
-
-You can try applying them to your kernel and see if the situation improves.
+Looking at the TGSI->IR translation I'd guess that needNewElseBlock is trying
+to detect the edge from the 'bare' unconditional jump in an if without else,
+seemingly because adding the new moves is not allowed (though I'm not sure
+why). At least it seems to be the only construct creating a graph satisfying
+the condition, AFAICT.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440193176.72c6C2.13166
-Date: Fri, 21 Aug 2015 21:39:36 +0000
+--1440193994.66c3DAB2.17416
+Date: Fri, 21 Aug 2015 21:53:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,33 +63,40 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV117] KMS failed on DisplayPort with 750 Ti"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91627#c3">Comment # 3</a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV117] KMS failed on DisplayPort with 750 Ti"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91627">bug 91627</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
 </span></b>
-        <pre>There are some fixes for a K620 (GM107) board here:
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90887#c31">comment #31</a>)
+<span class="quote">&gt; Really if I could understand wtf the needNewElseBlock logic was trying to
+&gt; do, and could construct a test shader to hit this in *regular* scenarios,
+&gt; not just the lowered output of TXL, that would make me a lot more
+&gt; comfortable with any approach that we pick.</span >
 
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/log/?id=9ce7d1009c64045a0875640b4cb4ae55e0c7aa87">http://cgit.freedesktop.org/~darktama/nouveau/log/?id=9ce7d1009c64045a0875640b4cb4ae55e0c7aa87</a>
-
-You can try applying them to your kernel and see if the situation improves.</pre>
+Looking at the TGSI-&gt;IR translation I'd guess that needNewElseBlock is trying
+to detect the edge from the 'bare' unconditional jump in an if without else,
+seemingly because adding the new moves is not allowed (though I'm not sure
+why). At least it seems to be the only construct creating a graph satisfying
+the condition, AFAICT.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1440193176.72c6C2.13166--
+--1440193994.66c3DAB2.17416--
 
---===============1583192156==
+--===============1279461316==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1583192156==--
+--===============1279461316==--
