@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Fri, 21 Aug 2015 11:28:38 +0000
-Message-ID: <bug-90871-8800-uiBgEJEcw7@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90887] PhiMovesPass in register allocator broken
+Date: Fri, 21 Aug 2015 20:34:46 +0000
+Message-ID: <bug-90887-8800-Mdfe9WdShR@http.bugs.freedesktop.org/>
+References: <bug-90887-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1273007011=="
+Content-Type: multipart/mixed; boundary="===============1168861230=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,41 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1273007011==
-Content-Type: multipart/alternative; boundary="1440156518.0DD48D4c1.835"; charset="UTF-8"
+--===============1168861230==
+Content-Type: multipart/alternative; boundary="1440189286.7C7AbF72.31313"; charset="UTF-8"
 
 
---1440156518.0DD48D4c1.835
-Date: Fri, 21 Aug 2015 11:28:38 +0000
+--1440189286.7C7AbF72.31313
+Date: Fri, 21 Aug 2015 20:34:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
+https://bugs.freedesktop.org/show_bug.cgi?id=90887
 
---- Comment #32 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
-Hi,
+--- Comment #30 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #29)
+> Hmmmm... maybe it was one of my local patches? I'll try to figure out what
+> went wrong later tonight.
+> 
+> I added logic to be clever about edge types... when splitting an edge, the
+> type should remain except a forward edge becomes a cross edge. (You can do
+> it out on paper...) Perhaps that upset things? It doesn't seem like codegen
+> is using those terms in the usual MST meanings :(
 
-(In reply to Olivier Fourdan from comment #30)
-> You'd need xfwm4 from git master (with opengl support) to reproduce or
-> simply use the simple reproducer I attached to this bug some time ago
-> (attachment 116536 [details])
-
-Ok, I just tried with that reproducer, but that also does not reproduce.
-
-I've ordered a quadro nvs280, which is about the only nv3x card with a pci-e
-interface available. When that arrives I'll try again.
-
-Regards,
-
-Hans
+I did take a look at the edge classification. Cannot say I fully understand the
+implications yet, but I'm wondering whether the logic in Graph::classifyDFS is
+correct. Shouldn't the condition for FORWARD edge whenn looping over incoming
+edges (the second loop) be reversed?
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440156518.0DD48D4c1.835
-Date: Fri, 21 Aug 2015 11:28:38 +0000
+--1440189286.7C7AbF72.31313
+Date: Fri, 21 Aug 2015 20:34:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,29 +65,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c32">Comment # 32</a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c30">Comment # 30</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
+              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
 </span></b>
-        <pre>Hi,
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90887#c29">comment #29</a>)
+<span class="quote">&gt; Hmmmm... maybe it was one of my local patches? I'll try to figure out what
+&gt; went wrong later tonight.
+&gt; 
+&gt; I added logic to be clever about edge types... when splitting an edge, the
+&gt; type should remain except a forward edge becomes a cross edge. (You can do
+&gt; it out on paper...) Perhaps that upset things? It doesn't seem like codegen
+&gt; is using those terms in the usual MST meanings :(</span >
 
-(In reply to Olivier Fourdan from <a href="show_bug.cgi?id=90871#c30">comment #30</a>)
-<span class="quote">&gt; You'd need xfwm4 from git master (with opengl support) to reproduce or
-&gt; simply use the simple reproducer I attached to this bug some time ago
-&gt; (<span class=""><a href="attachment.cgi?id=116536" name="attach_116536" title="test program">attachment 116536</a> <a href="attachment.cgi?id=116536&amp;action=edit" title="test program">[details]</a></span>)</span >
-
-Ok, I just tried with that reproducer, but that also does not reproduce.
-
-I've ordered a quadro nvs280, which is about the only nv3x card with a pci-e
-interface available. When that arrives I'll try again.
-
-Regards,
-
-Hans</pre>
+I did take a look at the edge classification. Cannot say I fully understand the
+implications yet, but I'm wondering whether the logic in Graph::classifyDFS is
+correct. Shouldn't the condition for FORWARD edge whenn looping over incoming
+edges (the second loop) be reversed?</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +98,9 @@ Hans</pre>
     </body>
 </html>
 
---1440156518.0DD48D4c1.835--
+--1440189286.7C7AbF72.31313--
 
---===============1273007011==
+--===============1168861230==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +110,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1273007011==--
+--===============1168861230==--
