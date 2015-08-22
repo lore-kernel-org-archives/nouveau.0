@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:06:55 +0000
-Message-ID: <bug-91722-8800-DLt5S7Lob5@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 02:20:59 +0000
+Message-ID: <bug-91722-8800-sn5PCRvhDh@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1015208872=="
+Content-Type: multipart/mixed; boundary="===============1168307625=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,33 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1015208872==
-Content-Type: multipart/alternative; boundary="1440209215.3b3f5F80.7373"; charset="UTF-8"
+--===============1168307625==
+Content-Type: multipart/alternative; boundary="1440210059.fEaDdcA0.11035"; charset="UTF-8"
 
 
---1440209215.3b3f5F80.7373
-Date: Sat, 22 Aug 2015 02:06:55 +0000
+--1440210059.fEaDdcA0.11035
+Date: Sat, 22 Aug 2015 02:20:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to kyle.devir from comment #0)
-> I have an Nvidia GeForce GTX 880M, which nouveau does not play with nicely.
-
-Please try the following patch:
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=hack-gk106m&id=64b75967fe13499f12876ec10a31d9141e828714
-
-Make sure to use nouveau.runpm=0
+--- Comment #4 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
+My mmiotrace.log.xz is 5.6 MiB... I will have to split it, I guess, because I
+have already compressed it with "xz -9".
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440209215.3b3f5F80.7373
-Date: Sat, 22 Aug 2015 02:06:55 +0000
+--1440210059.fEaDdcA0.11035
+Date: Sat, 22 Aug 2015 02:20:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,20 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
 </span></b>
-        <pre>(In reply to kyle.devir from <a href="show_bug.cgi?id=91722#c0">comment #0</a>)
-<span class="quote">&gt; I have an Nvidia GeForce GTX 880M, which nouveau does not play with nicely.</span >
-
-Please try the following patch:
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=hack-gk106m&amp;id=64b75967fe13499f12876ec10a31d9141e828714">http://cgit.freedesktop.org/~darktama/nouveau/commit/?h=hack-gk106m&amp;id=64b75967fe13499f12876ec10a31d9141e828714</a>
-
-Make sure to use nouveau.runpm=0</pre>
+        <pre>My mmiotrace.log.xz is 5.6 MiB... I will have to split it, I guess, because I
+have already compressed it with &quot;xz -9&quot;.</pre>
         </div>
       </p>
       <hr>
@@ -87,9 +77,9 @@ Make sure to use nouveau.runpm=0</pre>
     </body>
 </html>
 
---1440209215.3b3f5F80.7373--
+--1440210059.fEaDdcA0.11035--
 
---===============1015208872==
+--===============1168307625==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1015208872==--
+--===============1168307625==--
