@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:23:06 +0000
-Message-ID: <bug-91722-8800-ckuHwVy9VF@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 02:23:50 +0000
+Message-ID: <bug-91722-8800-vN3wMPxmvx@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0589925345=="
+Content-Type: multipart/mixed; boundary="===============0705847131=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0589925345==
-Content-Type: multipart/alternative; boundary="1440210186.8c7c4f1a0.11387"; charset="UTF-8"
+--===============0705847131==
+Content-Type: multipart/alternative; boundary="1440210230.CBc6b50.11507"; charset="UTF-8"
 
 
---1440210186.8c7c4f1a0.11387
-Date: Sat, 22 Aug 2015 02:23:06 +0000
+--1440210230.CBc6b50.11507
+Date: Sat, 22 Aug 2015 02:23:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
---- Comment #6 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 117852
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117852&action=edit
-mmiotrace.log.xz-part-ab
+--- Comment #7 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 117853
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117853&action=edit
+mmiotrace.log.xz-part-ac
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440210186.8c7c4f1a0.11387
-Date: Sat, 22 Aug 2015 02:23:06 +0000
+--1440210230.CBc6b50.11507
+Date: Sat, 22 Aug 2015 02:23:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,15 +57,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
               from <span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117852" name="attach_117852" title="mmiotrace.log.xz-part-ab">attachment 117852</a> <a href="attachment.cgi?id=117852&amp;action=edit" title="mmiotrace.log.xz-part-ab">[details]</a></span>
-mmiotrace.log.xz-part-ab</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117853" name="attach_117853" title="mmiotrace.log.xz-part-ac">attachment 117853</a> <a href="attachment.cgi?id=117853&amp;action=edit" title="mmiotrace.log.xz-part-ac">[details]</a></span>
+mmiotrace.log.xz-part-ac</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +78,9 @@ mmiotrace.log.xz-part-ab</pre>
     </body>
 </html>
 
---1440210186.8c7c4f1a0.11387--
+--1440210230.CBc6b50.11507--
 
---===============0589925345==
+--===============0705847131==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0589925345==--
+--===============0705847131==--
