@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:50:24 +0000
-Message-ID: <bug-91722-8800-MFcWYddeHR@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 02:51:08 +0000
+Message-ID: <bug-91722-8800-xOkpCTP3J4@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0386507754=="
+Content-Type: multipart/mixed; boundary="===============0457423697=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0386507754==
-Content-Type: multipart/alternative; boundary="1440211824.16Ba0.16456"; charset="UTF-8"
+--===============0457423697==
+Content-Type: multipart/alternative; boundary="1440211868.4fF6F4cd0.16632"; charset="UTF-8"
 
 
---1440211824.16Ba0.16456
-Date: Sat, 22 Aug 2015 02:50:24 +0000
+--1440211868.4fF6F4cd0.16632
+Date: Sat, 22 Aug 2015 02:51:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,18 +36,16 @@ kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #117849|dmesg.log                   |nouveau-dmesg.log
+ Attachment #117849|nouveau-dmesg.log           |dmesg.log
            filename|                            |
- Attachment #117849|dmesg.log                   |dmesg.log from nouveau
-        description|                            |
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440211824.16Ba0.16456
-Date: Sat, 22 Aug 2015 02:50:24 +0000
+--1440211868.4fF6F4cd0.16632
+Date: Sat, 22 Aug 2015 02:51:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,17 +69,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Attachment #117849 filename</td>
-           <td>dmesg.log
-           </td>
            <td>nouveau-dmesg.log
            </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #117849 description</td>
            <td>dmesg.log
-           </td>
-           <td>dmesg.log from nouveau
            </td>
          </tr></table>
       <p>
@@ -96,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440211824.16Ba0.16456--
+--1440211868.4fF6F4cd0.16632--
 
---===============0386507754==
+--===============0457423697==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0386507754==--
+--===============0457423697==--
