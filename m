@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:24:38 +0000
-Message-ID: <bug-91722-8800-p7yLclYDYN@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 02:50:24 +0000
+Message-ID: <bug-91722-8800-MFcWYddeHR@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2046946393=="
+Content-Type: multipart/mixed; boundary="===============0386507754=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2046946393==
-Content-Type: multipart/alternative; boundary="1440210277.E5c5dd0.11685"; charset="UTF-8"
+--===============0386507754==
+Content-Type: multipart/alternative; boundary="1440211824.16Ba0.16456"; charset="UTF-8"
 
 
---1440210277.E5c5dd0.11685
-Date: Sat, 22 Aug 2015 02:24:37 +0000
+--1440211824.16Ba0.16456
+Date: Sat, 22 Aug 2015 02:50:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
---- Comment #8 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
-Thanks Ilia. I will test it out, and get back to you.
+kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117849|dmesg.log                   |nouveau-dmesg.log
+           filename|                            |
+ Attachment #117849|dmesg.log                   |dmesg.log from nouveau
+        description|                            |
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440210277.E5c5dd0.11685
-Date: Sat, 22 Aug 2015 02:24:37 +0000
+--1440211824.16Ba0.16456
+Date: Sat, 22 Aug 2015 02:50:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -49,21 +55,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
-              from <span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
-</span></b>
-        <pre>Thanks Ilia. I will test it out, and get back to you.</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117849 filename</td>
+           <td>dmesg.log
+           </td>
+           <td>nouveau-dmesg.log
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117849 description</td>
+           <td>dmesg.log
+           </td>
+           <td>dmesg.log from nouveau
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -75,9 +96,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440210277.E5c5dd0.11685--
+--1440211824.16Ba0.16456--
 
---===============2046946393==
+--===============0386507754==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2046946393==--
+--===============0386507754==--
