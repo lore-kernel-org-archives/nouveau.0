@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:52:25 +0000
-Message-ID: <bug-91722-8800-eMZWPVqYsi@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 03:13:05 +0000
+Message-ID: <bug-91722-8800-1IBbHHW25y@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1954336205=="
+Content-Type: multipart/mixed; boundary="===============0799377374=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1954336205==
-Content-Type: multipart/alternative; boundary="1440211946.557bc80d0.16844"; charset="UTF-8"
+--===============0799377374==
+Content-Type: multipart/alternative; boundary="1440213186.b512c0.21960"; charset="UTF-8"
 
 
---1440211946.557bc80d0.16844
-Date: Sat, 22 Aug 2015 02:52:26 +0000
+--1440213186.b512c0.21960
+Date: Sat, 22 Aug 2015 03:13:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
-kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
+--- Comment #9 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
+Created attachment 117854
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117854&action=edit
+dmesg.txt with nouveau patch
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #117853|mmiotrace.log.xz-part-ac    |mmiotrace.log.xz-part-ac
-        description|                            |from nvidia driver
+The patch did nothing except turn off the screen, for some reason. With some
+careful typing, I saved the dmesg output.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440211946.557bc80d0.16844
-Date: Sat, 22 Aug 2015 02:52:26 +0000
+--1440213186.b512c0.21960
+Date: Sat, 22 Aug 2015 03:13:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +54,25 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+              from <span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117854" name="attach_117854" title="dmesg.txt with nouveau patch">attachment 117854</a> <a href="attachment.cgi?id=117854&amp;action=edit" title="dmesg.txt with nouveau patch">[details]</a></span>
+dmesg.txt with nouveau patch
 
-         <tr>
-           <td style="text-align:right;">Attachment #117853 description</td>
-           <td>mmiotrace.log.xz-part-ac
-           </td>
-           <td>mmiotrace.log.xz-part-ac from nvidia driver
-           </td>
-         </tr></table>
-      <p>
+The patch did nothing except turn off the screen, for some reason. With some
+careful typing, I saved the dmesg output.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +84,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440211946.557bc80d0.16844--
+--1440213186.b512c0.21960--
 
---===============1954336205==
+--===============0799377374==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +96,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1954336205==--
+--===============0799377374==--
