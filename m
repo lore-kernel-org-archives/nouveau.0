@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 02:52:02 +0000
-Message-ID: <bug-91722-8800-1oKwQfUOKQ@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 02:52:25 +0000
+Message-ID: <bug-91722-8800-eMZWPVqYsi@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1073731665=="
+Content-Type: multipart/mixed; boundary="===============1954336205=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1073731665==
-Content-Type: multipart/alternative; boundary="1440211922.f4472.16712"; charset="UTF-8"
+--===============1954336205==
+Content-Type: multipart/alternative; boundary="1440211946.557bc80d0.16844"; charset="UTF-8"
 
 
---1440211922.f4472.16712
-Date: Sat, 22 Aug 2015 02:52:02 +0000
+--1440211946.557bc80d0.16844
+Date: Sat, 22 Aug 2015 02:52:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,7 +36,7 @@ kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #117852|mmiotrace.log.xz-part-ab    |mmiotrace.log.xz-part-ab
+ Attachment #117853|mmiotrace.log.xz-part-ac    |mmiotrace.log.xz-part-ac
         description|                            |from nvidia driver
 
 -- 
@@ -44,8 +44,8 @@ You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440211922.f4472.16712
-Date: Sat, 22 Aug 2015 02:52:02 +0000
+--1440211946.557bc80d0.16844
+Date: Sat, 22 Aug 2015 02:52:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +68,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #117852 description</td>
-           <td>mmiotrace.log.xz-part-ab
+           <td style="text-align:right;">Attachment #117853 description</td>
+           <td>mmiotrace.log.xz-part-ac
            </td>
-           <td>mmiotrace.log.xz-part-ab from nvidia driver
+           <td>mmiotrace.log.xz-part-ac from nvidia driver
            </td>
          </tr></table>
       <p>
@@ -86,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440211922.f4472.16712--
+--1440211946.557bc80d0.16844--
 
---===============1073731665==
+--===============1954336205==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1073731665==--
+--===============1954336205==--
