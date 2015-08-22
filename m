@@ -1,12 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Fri, 21 Aug 2015 22:24:01 +0000
-Message-ID: <bug-90887-8800-mUzOuEYHlz@http.bugs.freedesktop.org/>
-References: <bug-90887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91722] New: [NVE4] PGRAPH - grctx template channel
+ unload timeout, failed to construct context, init failed, -16
+Date: Sat, 22 Aug 2015 01:52:42 +0000
+Message-ID: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1757435515=="
+Content-Type: multipart/mixed; boundary="===============2090870058=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +19,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1757435515==
-Content-Type: multipart/alternative; boundary="1440195841.C8e8803E2.25077"; charset="UTF-8"
+--===============2090870058==
+Content-Type: multipart/alternative; boundary="1440208362.2fa10.5171"; charset="UTF-8"
 
 
---1440195841.C8e8803E2.25077
-Date: Fri, 21 Aug 2015 22:24:01 +0000
+--1440208362.2fa10.5171
+Date: Sat, 22 Aug 2015 01:52:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90887
+https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
---- Comment #34 from jr <j-r-BGeptl67XyCzQB+pC5nmwQ@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #33)
-> (In reply to jr from comment #32)
-> > (In reply to Ilia Mirkin from comment #31)
-> > > Really if I could understand wtf the needNewElseBlock logic was trying to
-> > > do, and could construct a test shader to hit this in *regular* scenarios,
-> > > not just the lowered output of TXL, that would make me a lot more
-> > > comfortable with any approach that we pick.
-> > 
-> > Looking at the TGSI->IR translation I'd guess that needNewElseBlock is
-> > trying to detect the edge from the 'bare' unconditional jump in an if
-> > without else, seemingly because adding the new moves is not allowed (though
-> > I'm not sure why). At least it seems to be the only construct creating a
-> > graph satisfying the condition, AFAICT.
-> 
-> Well, in general you can't add work if you have a critical edge -- if an
-> block has multiple outgoing edges, then you can't put the work into that
-> block. If a block has multiple incoming edges, then you can't leave the work
-> in that block, so you have to create a separate block to put work that you
-> want done on that specific block transition.
-> 
-> However here it's looking for something much more specific.
+            Bug ID: 91722
+           Summary: [NVE4] PGRAPH - grctx template channel unload timeout,
+                    failed to construct context, init failed, -16
+           Product: Mesa
+           Version: 10.6
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-Ok, that makes sense. It might be that the original author wasn't thinking
-about the problem in this terms and just wanted to fix the single problematic
-case at hand, i.e. if without else. Then splitting any critical edge would be
-the right solution, though in practice I don't think it'd trigger more often.
+I have an Nvidia GeForce GTX 880M, which nouveau does not play with nicely. I
+have installed nouveau-fw, so the proprietary firmware is available.
+
+When I boot my laptop, I get these errors:
+
+nouveau E[  PGRAPH][0000:01:00.0] grctx template channel unload timeout
+nouveau E[  PGRAPH][0000:01:00.0] failed to construct context
+nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
+
+Operating system: Chakra OS (64-bit)
+
+Relevant packages:
+ - linux-ck 4.1.6
+ - libdrm 2.4.64
+ - mesa 10.6.4
+ - mesa-vdpau 10.6.4
+ - opencl-mesa 10.6.4
+ - libva-mesa-driver 10.6.4
+ - xf86-video-nouveau 1.0.11
+ - nouveau-fw 340.32
+
+I will also post my dmesg.log, Xorg.0.log and mmiotrace.log.xz.
+
+Many thanks in advance. :)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440195841.C8e8803E2.25077
-Date: Fri, 21 Aug 2015 22:24:01 +0000
+--1440208362.2fa10.5171
+Date: Sat, 22 Aug 2015 01:52:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,45 +84,113 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">91722</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>10.6
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>kyle.devir&#64;mykolab.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887#c34">Comment # 34</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90887">bug 90887</a>
-              from <span class="vcard"><a class="email" href="mailto:j-r&#64;online.de" title="jr &lt;j-r&#64;online.de&gt;"> <span class="fn">jr</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90887#c33">comment #33</a>)
-<span class="quote">&gt; (In reply to jr from <a href="show_bug.cgi?id=90887#c32">comment #32</a>)
-&gt; &gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90887#c31">comment #31</a>)
-&gt; &gt; &gt; Really if I could understand wtf the needNewElseBlock logic was trying to
-&gt; &gt; &gt; do, and could construct a test shader to hit this in *regular* scenarios,
-&gt; &gt; &gt; not just the lowered output of TXL, that would make me a lot more
-&gt; &gt; &gt; comfortable with any approach that we pick.
-&gt; &gt; 
-&gt; &gt; Looking at the TGSI-&gt;IR translation I'd guess that needNewElseBlock is
-&gt; &gt; trying to detect the edge from the 'bare' unconditional jump in an if
-&gt; &gt; without else, seemingly because adding the new moves is not allowed (though
-&gt; &gt; I'm not sure why). At least it seems to be the only construct creating a
-&gt; &gt; graph satisfying the condition, AFAICT.
-&gt; 
-&gt; Well, in general you can't add work if you have a critical edge -- if an
-&gt; block has multiple outgoing edges, then you can't put the work into that
-&gt; block. If a block has multiple incoming edges, then you can't leave the work
-&gt; in that block, so you have to create a separate block to put work that you
-&gt; want done on that specific block transition.
-&gt; 
-&gt; However here it's looking for something much more specific.</span >
+        <pre>I have an Nvidia GeForce GTX 880M, which nouveau does not play with nicely. I
+have installed nouveau-fw, so the proprietary firmware is available.
 
-Ok, that makes sense. It might be that the original author wasn't thinking
-about the problem in this terms and just wanted to fix the single problematic
-case at hand, i.e. if without else. Then splitting any critical edge would be
-the right solution, though in practice I don't think it'd trigger more often.</pre>
+When I boot my laptop, I get these errors:
+
+nouveau E[  PGRAPH][0000:01:00.0] grctx template channel unload timeout
+nouveau E[  PGRAPH][0000:01:00.0] failed to construct context
+nouveau E[  PGRAPH][0000:01:00.0] init failed, -16
+
+Operating system: Chakra OS (64-bit)
+
+Relevant packages:
+ - linux-ck 4.1.6
+ - libdrm 2.4.64
+ - mesa 10.6.4
+ - mesa-vdpau 10.6.4
+ - opencl-mesa 10.6.4
+ - libva-mesa-driver 10.6.4
+ - xf86-video-nouveau 1.0.11
+ - nouveau-fw 340.32
+
+I will also post my dmesg.log, Xorg.0.log and mmiotrace.log.xz.
+
+Many thanks in advance. :)</pre>
         </div>
       </p>
       <hr>
@@ -124,9 +203,9 @@ the right solution, though in practice I don't think it'd trigger more often.</p
     </body>
 </html>
 
---1440195841.C8e8803E2.25077--
+--1440208362.2fa10.5171--
 
---===============1757435515==
+--===============2090870058==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +215,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1757435515==--
+--===============2090870058==--
