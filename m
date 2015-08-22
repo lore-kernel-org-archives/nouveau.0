@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Sat, 22 Aug 2015 04:51:32 +0000
-Message-ID: <bug-91722-8800-Bc9wqORSw1@http.bugs.freedesktop.org/>
+Date: Sat, 22 Aug 2015 04:51:25 +0000
+Message-ID: <bug-91722-8800-vmnICBTNyB@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1046744401=="
+Content-Type: multipart/mixed; boundary="===============0933008995=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1046744401==
-Content-Type: multipart/alternative; boundary="1440219092.bCD51.14063"; charset="UTF-8"
+--===============0933008995==
+Content-Type: multipart/alternative; boundary="1440219085.C0eB010.14063"; charset="UTF-8"
 
 
---1440219092.bCD51.14063
-Date: Sat, 22 Aug 2015 04:51:32 +0000
+--1440219085.C0eB010.14063
+Date: Sat, 22 Aug 2015 04:51:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,16 +36,16 @@ kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #117854|dmesg.txt with nouveau      |dmesg.txt with c800 nouveau
-        description|patch                       |patch
+ Attachment #117849|dmesg.log without nouveau   |dmesg.log without c800
+        description|patch                       |nouveau patch
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440219092.bCD51.14063
-Date: Sat, 22 Aug 2015 04:51:32 +0000
+--1440219085.C0eB010.14063
+Date: Sat, 22 Aug 2015 04:51:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +68,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #117854 description</td>
-           <td>dmesg.txt with nouveau patch
+           <td style="text-align:right;">Attachment #117849 description</td>
+           <td>dmesg.log without nouveau patch
            </td>
-           <td>dmesg.txt with c800 nouveau patch
+           <td>dmesg.log without c800 nouveau patch
            </td>
          </tr></table>
       <p>
@@ -86,9 +86,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440219092.bCD51.14063--
+--1440219085.C0eB010.14063--
 
---===============1046744401==
+--===============0933008995==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1046744401==--
+--===============0933008995==--
