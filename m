@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91738] xf86-video-nouveau 1.0.11 will not allow X to
 	start
-Date: Sun, 23 Aug 2015 19:00:53 +0000
-Message-ID: <bug-91738-8800-xyxLnGL2nY@http.bugs.freedesktop.org/>
+Date: Sun, 23 Aug 2015 19:01:12 +0000
+Message-ID: <bug-91738-8800-AAYLCGQ1Zi@http.bugs.freedesktop.org/>
 References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0164881252=="
+Content-Type: multipart/mixed; boundary="===============1384481266=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0164881252==
-Content-Type: multipart/alternative; boundary="1440356453.aB163.10381"; charset="UTF-8"
+--===============1384481266==
+Content-Type: multipart/alternative; boundary="1440356472.AaFcF5.10381"; charset="UTF-8"
 
 
---1440356453.aB163.10381
-Date: Sun, 23 Aug 2015 19:00:53 +0000
+--1440356472.AaFcF5.10381
+Date: Sun, 23 Aug 2015 19:01:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91738
 
---- Comment #1 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117882
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117882&action=edit
-Xorg log
+--- Comment #2 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117883
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117883&action=edit
+dmesg_after_startx
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440356453.aB163.10381
-Date: Sun, 23 Aug 2015 19:00:53 +0000
+--1440356472.AaFcF5.10381
+Date: Sun, 23 Aug 2015 19:01:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - xf86-video-nouveau 1.0.11 will not allow X to start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - xf86-video-nouveau 1.0.11 will not allow X to start"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
               from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117882" name="attach_117882" title="Xorg log">attachment 117882</a> <a href="attachment.cgi?id=117882&amp;action=edit" title="Xorg log">[details]</a></span>
-Xorg log</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117883" name="attach_117883" title="dmesg_after_startx">attachment 117883</a> <a href="attachment.cgi?id=117883&amp;action=edit" title="dmesg_after_startx">[details]</a></span>
+dmesg_after_startx</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Xorg log</pre>
     </body>
 </html>
 
---1440356453.aB163.10381--
+--1440356472.AaFcF5.10381--
 
---===============0164881252==
+--===============1384481266==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0164881252==--
+--===============1384481266==--
