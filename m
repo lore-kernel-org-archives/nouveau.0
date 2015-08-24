@@ -1,127 +1,85 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91632] Assert in nouveau_pushbuf_data
-Date: Mon, 24 Aug 2015 13:55:18 +0000
-Message-ID: <bug-91632-8800-FuFfCfgF9j@http.bugs.freedesktop.org/>
-References: <bug-91632-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50: avoid using inline vertex data submit when
+	gl_VertexID is used
+Date: Mon, 24 Aug 2015 11:51:53 -0400
+Message-ID: <1440431513-29568-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1797299391=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, "11.0" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1797299391==
-Content-Type: multipart/alternative; boundary="1440424518.d2cF4f1.7457"; charset="UTF-8"
-
-
---1440424518.d2cF4f1.7457
-Date: Mon, 24 Aug 2015 13:55:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91632
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Allan Sandfeld from comment #2)
-> The original qtwebengine bug is at
-> https://bugreports.qt.io/browse/QTBUG-41242
-> 
-> One interesting thing I discovered was that using the EGL/GLES mode instead
-> of GLX/GL solved the issue. I assume at your level it shouldn't be that
-> different. So it could be a difference in how EGL vs GLX acts.
-
-The issue was happening for me with Unigine Heaven run with DRI3 + DRI_PRIME=1.
-Then I started running it with vblank_mode=0 and all my problems disappeared. I
-haven't checked whether removing vblank_mode=0 would cause the issues to
-reappear. I was happy to blame it on the DRI3 boogeyman and moved on (I tend
-not to have a good grasp on these types of issues in the first place...
-normally I wouldn't touch DRI3 but it really makes nouveau dev quite a bit
-easier with a primary non-nvidia adapter since I can load/unload nouveau/nvidia
-at will and still have things display on my regular screen).
-
-Not sure how vsync would cause the problems, but I was getting actual shader
-traps reported in dmesg. Do you (or whoever is having the issue) have that as
-well?
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1440424518.d2cF4f1.7457
-Date: Mon, 24 Aug 2015 13:55:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Assert in nouveau_pushbuf_data"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91632#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Assert in nouveau_pushbuf_data"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91632">bug 91632</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Allan Sandfeld from <a href="show_bug.cgi?id=91632#c2">comment #2</a>)
-<span class="quote">&gt; The original qtwebengine bug is at
-&gt; <a href="https://bugreports.qt.io/browse/QTBUG-41242">https://bugreports.qt.io/browse/QTBUG-41242</a>
-&gt; 
-&gt; One interesting thing I discovered was that using the EGL/GLES mode instead
-&gt; of GLX/GL solved the issue. I assume at your level it shouldn't be that
-&gt; different. So it could be a difference in how EGL vs GLX acts.</span >
-
-The issue was happening for me with Unigine Heaven run with DRI3 + DRI_PRIME=1.
-Then I started running it with vblank_mode=0 and all my problems disappeared. I
-haven't checked whether removing vblank_mode=0 would cause the issues to
-reappear. I was happy to blame it on the DRI3 boogeyman and moved on (I tend
-not to have a good grasp on these types of issues in the first place...
-normally I wouldn't touch DRI3 but it really makes nouveau dev quite a bit
-easier with a primary non-nvidia adapter since I can load/unload nouveau/nvidia
-at will and still have things display on my regular screen).
-
-Not sure how vsync would cause the problems, but I was getting actual shader
-traps reported in dmesg. Do you (or whoever is having the issue) have that as
-well?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1440424518.d2cF4f1.7457--
-
---===============1797299391==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1797299391==--
+VGhlIGhhcmR3YXJlIG9ubHkgZ2VuZXJhdGVzIHZlcnRleGlkIHdoZW4gdmVydGljZXMgY29tZSBm
+cm9tIGEgVkJPLiBUaGlzCmZpeGVzOgoKICB2ZXJ0ZXhpZC1kcmF3ZWxlbWVudHMKICB2ZXJ0ZXhp
+ZC1kcmF3YXJyYXlzCgpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1p
+dC5lZHU+CkNjOiAiMTEuMCIgPG1lc2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KLS0t
+CiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uYyAgICAgICAg
+fCAxICsKIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5oICAg
+ICAgICB8IDEgKwogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZV92
+YWxpZGF0ZS5jIHwgMyArKy0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBf
+dmJvLmMgICAgICAgICAgICB8IDggKysrKysrKysKIDQgZmlsZXMgY2hhbmdlZCwgMTIgaW5zZXJ0
+aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L252NTAvbnY1MF9wcm9ncmFtLmMKaW5kZXggMDJkYzM2Ny4uZWZmNDQ3NyAxMDA2NDQKLS0tIGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMKKysrIGIvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMKQEAgLTY2LDYgKzY2
+LDcgQEAgbnY1MF92ZXJ0cHJvZ19hc3NpZ25fc2xvdHMoc3RydWN0IG52NTBfaXJfcHJvZ19pbmZv
+ICppbmZvKQogICAgICAgY2FzZSBUR1NJX1NFTUFOVElDX1ZFUlRFWElEOgogICAgICAgICAgcHJv
+Zy0+dnAuYXR0cnNbMl0gfD0gTlY1MF8zRF9WUF9HUF9CVUlMVElOX0FUVFJfRU5fVkVSVEVYX0lE
+OwogICAgICAgICAgcHJvZy0+dnAuYXR0cnNbMl0gfD0gTlY1MF8zRF9WUF9HUF9CVUlMVElOX0FU
+VFJfRU5fVkVSVEVYX0lEX0RSQVdfQVJSQVlTX0FERF9TVEFSVDsKKyAgICAgICAgIHByb2ctPnZw
+LnZlcnRleGlkID0gMTsKICAgICAgICAgIGNvbnRpbnVlOwogICAgICAgZGVmYXVsdDoKICAgICAg
+ICAgIGJyZWFrOwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAv
+bnY1MF9wcm9ncmFtLmggYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3By
+b2dyYW0uaAppbmRleCA1ZDNmZjU2Li5mNGU4ZTk0IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uaAorKysgYi9zcmMvZ2FsbGl1bS9kcml2
+ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uaApAQCAtNzYsNiArNzYsNyBAQCBzdHJ1Y3Qg
+bnY1MF9wcm9ncmFtIHsKICAgICAgIHVieXRlIHBzaXo7ICAgICAgICAvKiBvdXRwdXQgc2xvdCBv
+ZiBwb2ludCBzaXplICovCiAgICAgICB1Ynl0ZSBiZmNbMl07ICAgICAgLyogaW5kaWNlcyBpbnRv
+IHZhcnlpbmcgZm9yIEZGQyAoRlApIG9yIEJGQyAoVlApICovCiAgICAgICB1Ynl0ZSBlZGdlZmxh
+ZzsKKyAgICAgIHVieXRlIHZlcnRleGlkOwogICAgICAgdWJ5dGUgY2xwZFsyXTsgICAgIC8qIG91
+dHB1dCBzbG90IG9mIGNsaXAgZGlzdGFuY2VbaV0ncyAxc3QgY29tcG9uZW50ICovCiAgICAgICB1
+Ynl0ZSBjbHBkX25yOwogICAgfSB2cDsKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udjUwL252NTBfc3RhdGVfdmFsaWRhdGUuYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udjUwL252NTBfc3RhdGVfdmFsaWRhdGUuYwppbmRleCBiMzA0YTE3Li42NmRjZjQz
+IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3N0YXRl
+X3ZhbGlkYXRlLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9z
+dGF0ZV92YWxpZGF0ZS5jCkBAIC01MDMsNyArNTAzLDggQEAgc3RhdGljIHN0cnVjdCBzdGF0ZV92
+YWxpZGF0ZSB7CiAgICAgeyBudjUwX3ZhbGlkYXRlX3NhbXBsZXJzLCAgICAgIE5WNTBfTkVXX1NB
+TVBMRVJTIH0sCiAgICAgeyBudjUwX3N0cmVhbV9vdXRwdXRfdmFsaWRhdGUsIE5WNTBfTkVXX1NU
+Uk1PVVQgfAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOVjUwX05FV19WRVJU
+UFJPRyB8IE5WNTBfTkVXX0dNVFlQUk9HIH0sCi0gICAgeyBudjUwX3ZlcnRleF9hcnJheXNfdmFs
+aWRhdGUsIE5WNTBfTkVXX1ZFUlRFWCB8IE5WNTBfTkVXX0FSUkFZUyB9LAorICAgIHsgbnY1MF92
+ZXJ0ZXhfYXJyYXlzX3ZhbGlkYXRlLCBOVjUwX05FV19WRVJURVggfCBOVjUwX05FV19BUlJBWVMg
+fAorICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOVjUwX05FV19WRVJUUFJPRyB9
+LAogICAgIHsgbnY1MF92YWxpZGF0ZV9taW5fc2FtcGxlcywgICBOVjUwX05FV19NSU5fU0FNUExF
+UyB9LAogfTsKICNkZWZpbmUgdmFsaWRhdGVfbGlzdF9sZW4gKHNpemVvZih2YWxpZGF0ZV9saXN0
+KSAvIHNpemVvZih2YWxpZGF0ZV9saXN0WzBdKSkKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9udjUwL252NTBfdmJvLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvbnY1MC9udjUwX3Ziby5jCmluZGV4IDYwMGI5NzMuLmZiNDMwNWYgMTAwNjQ0Ci0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfdmJvLmMKKysrIGIvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF92Ym8uYwpAQCAtMzAxLDYgKzMwMSwxNCBAQCBu
+djUwX3ZlcnRleF9hcnJheXNfdmFsaWRhdGUoc3RydWN0IG52NTBfY29udGV4dCAqbnY1MCkKICAg
+IHVuc2lnbmVkIGk7CiAgICBjb25zdCB1bnNpZ25lZCBuID0gTUFYMih2ZXJ0ZXgtPm51bV9lbGVt
+ZW50cywgbnY1MC0+c3RhdGUubnVtX3Z0eGVsdHMpOwogCisgICAvKiBBIHZlcnRleGlkIGlzIG5v
+dCBnZW5lcmF0ZWQgZm9yIGlubGluZSBkYXRhIHVwbG9hZHMuIEhhdmUgdG8gdXNlIGEKKyAgICAq
+IFZCTy4gVGhpcyBjaGVjayBtdXN0IGNvbWUgYWZ0ZXIgdGhlIHZlcnRwcm9nIGhhcyBiZWVuIHZh
+bGlkYXRlZCwKKyAgICAqIG90aGVyd2lzZSB2ZXJ0ZXhpZCBtYXkgYmUgdW5zZXQuCisgICAgKi8K
+KyAgIGFzc2VydChudjUwLT52ZXJ0cHJvZy0+dHJhbnNsYXRlZCk7CisgICBpZiAobnY1MC0+dmVy
+dHByb2ctPnZwLnZlcnRleGlkKQorICAgICAgbnY1MC0+dmJvX3B1c2hfaGludCA9IDA7CisKICAg
+IGlmICh1bmxpa2VseSh2ZXJ0ZXgtPm5lZWRfY29udmVyc2lvbikpCiAgICAgICBudjUwLT52Ym9f
+ZmlmbyA9IH4wOwogICAgZWxzZQotLSAKMi40LjYKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcgbGlzdAptZXNhLWRldkBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL21lc2EtZGV2Cg==
