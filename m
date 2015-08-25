@@ -1,16 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Mesa-dev] [PATCH] nv50: avoid using inline vertex
- data submit when gl_VertexID is used
-Date: Mon, 24 Aug 2015 22:12:41 +0200
-Message-ID: <55DB7AB9.5080600@gmail.com>
-References: <1440431513-29568-1-git-send-email-imirkin@alum.mit.edu>
- <55DB7974.5090403@gmail.com>
- <CAKb7Uvi-29ZZxo57Y1iWxf3A0U98EN4EroGvQ55L4PBqRXPF8w@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91738] [NV117] xf86-video-nouveau 1.0.11 will not
+ allow X to start
+Date: Tue, 25 Aug 2015 02:49:10 +0000
+Message-ID: <bug-91738-8800-UewE5PImBg@http.bugs.freedesktop.org/>
+References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2002580454=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvi-29ZZxo57Y1iWxf3A0U98EN4EroGvQ55L4PBqRXPF8w-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,93 +17,143 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwOC8yNC8yMDE1IDEwOjAyIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBFZGdlIGZsYWcg
-c3R1ZmYgaXMgYW5ub3lpbmcuIFByZXR0eSBzdXJlIG9ubHkgYmxlbmRlciB1c2VzIGl0LiBzaGFk
-ZQo+IG1vZGVsID0gZmxhdCBzaG91bGQgZ2V0IGZpeGVkIG9uIG52NTAgYmVmb3JlIGVkZ2UgZmxh
-Z3MsIHNpbmNlIGJsZW5kZXIKPiB1c2VzIHRoYXQgdG9vLCBhbmQgaXQncyBwcm9kdWNlcyBtdWNo
-IHdvcnNlIHZpc3VhbCBhcnRpZmFjdHMuCgpObyBydXNoIGZvciB0aGlzIG9uZSB0aG91Z2guCgo+
-Cj4gSSdtIGhhdmluZyBzZWNvbmQgdGhvdWdodHMgYWJvdXQgdGhpcyBwYXRjaC4gSSB0aGluayBJ
-J20gZ29pbmcgdG8gZ28KPiBiYWNrIHRvIG15IHByZXZpb3VzIGFwcHJvYWNoIG9mIGp1c3QgY2Fs
-bGluZwo+IG52NTBfdmVydGV4X2FycmF5c192YWxpZGF0ZSB3aGVuIHZib19maWZvICYmIHZlcnRl
-eGlkLiBJIHN1c3BlY3QgdGhhdAo+IHZlcnRleGlkIHVzYWdlIHdpdGggc21hbGwgZHJhd3MgZnJv
-bSBjbGllbnQgYnVmZmVycyBpcyBuZXh0IHRvCj4gaW5leGlzdGVudCwgbm8gbmVlZCB0byByZS1l
-bWl0IHRoaXMgc3R1ZmYgc28gb2Z0ZW4uCgpHb29kLCBJJ2QgYmUgaGFwcHkgdG8gaGF2ZSBhIGxv
-b2sgYXQgdGhpcyBzZWNvbmQgYXBwcm9hY2guCgo+Cj4gT24gTW9uLCBBdWcgMjQsIDIwMTUgYXQg
-NDowNyBQTSwgU2FtdWVsIFBpdG9pc2V0Cj4gPHNhbXVlbC5waXRvaXNldEBnbWFpbC5jb20+IHdy
-b3RlOgo+PiBSZXZpZXdlZC1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21h
-aWwuY29tPgo+Pgo+PiBUaGlzIGZpeCBpcyBzaW1wbGVyIHRoYW4gSSB3YXMgZXhwZWN0ZWQuIFdo
-YXQgYWJvdXQgdGhlIGVkZ2UgZmxhZyBzdHVmZiBub3c/Cj4+IDopCj4+Cj4+Cj4+IE9uIDA4LzI0
-LzIwMTUgMDU6NTEgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Pj4gVGhlIGhhcmR3YXJlIG9ubHkg
-Z2VuZXJhdGVzIHZlcnRleGlkIHdoZW4gdmVydGljZXMgY29tZSBmcm9tIGEgVkJPLiBUaGlzCj4+
-PiBmaXhlczoKPj4+Cj4+PiAgICAgdmVydGV4aWQtZHJhd2VsZW1lbnRzCj4+PiAgICAgdmVydGV4
-aWQtZHJhd2FycmF5cwo+Pj4KPj4+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2lu
-QGFsdW0ubWl0LmVkdT4KPj4+IENjOiAiMTEuMCIgPG1lc2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZz4KPj4+IC0tLQo+Pj4gICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAv
-bnY1MF9wcm9ncmFtLmMgICAgICAgIHwgMSArCj4+PiAgICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uaCAgICAgICAgfCAxICsKPj4+ICAgIHNyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVfdmFsaWRhdGUuYyB8IDMgKystCj4+PiAg
-ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Ziby5jICAgICAgICAgICAg
-fCA4ICsrKysrKysrCj4+PiAgICA0IGZpbGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKyksIDEg
-ZGVsZXRpb24oLSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMKPj4+IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252NTAvbnY1MF9wcm9ncmFtLmMKPj4+IGluZGV4IDAyZGMzNjcuLmVmZjQ0NzcgMTAwNjQ0Cj4+
-PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uYwo+
-Pj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9wcm9ncmFtLmMK
-Pj4+IEBAIC02Niw2ICs2Niw3IEBAIG52NTBfdmVydHByb2dfYXNzaWduX3Nsb3RzKHN0cnVjdCBu
-djUwX2lyX3Byb2dfaW5mbwo+Pj4gKmluZm8pCj4+PiAgICAgICAgICBjYXNlIFRHU0lfU0VNQU5U
-SUNfVkVSVEVYSUQ6Cj4+PiAgICAgICAgICAgICBwcm9nLT52cC5hdHRyc1syXSB8PSBOVjUwXzNE
-X1ZQX0dQX0JVSUxUSU5fQVRUUl9FTl9WRVJURVhfSUQ7Cj4+PiAgICAgICAgICAgICBwcm9nLT52
-cC5hdHRyc1syXSB8PQo+Pj4gTlY1MF8zRF9WUF9HUF9CVUlMVElOX0FUVFJfRU5fVkVSVEVYX0lE
-X0RSQVdfQVJSQVlTX0FERF9TVEFSVDsKPj4+ICsgICAgICAgICBwcm9nLT52cC52ZXJ0ZXhpZCA9
-IDE7Cj4+PiAgICAgICAgICAgICBjb250aW51ZTsKPj4+ICAgICAgICAgIGRlZmF1bHQ6Cj4+PiAg
-ICAgICAgICAgICBicmVhazsKPj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnY1MC9udjUwX3Byb2dyYW0uaAo+Pj4gYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnY1MC9udjUwX3Byb2dyYW0uaAo+Pj4gaW5kZXggNWQzZmY1Ni4uZjRlOGU5NCAxMDA2NDQK
-Pj4+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfcHJvZ3JhbS5o
-Cj4+PiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Byb2dyYW0u
-aAo+Pj4gQEAgLTc2LDYgKzc2LDcgQEAgc3RydWN0IG52NTBfcHJvZ3JhbSB7Cj4+PiAgICAgICAg
-ICB1Ynl0ZSBwc2l6OyAgICAgICAgLyogb3V0cHV0IHNsb3Qgb2YgcG9pbnQgc2l6ZSAqLwo+Pj4g
-ICAgICAgICAgdWJ5dGUgYmZjWzJdOyAgICAgIC8qIGluZGljZXMgaW50byB2YXJ5aW5nIGZvciBG
-RkMgKEZQKSBvciBCRkMKPj4+IChWUCkgKi8KPj4+ICAgICAgICAgIHVieXRlIGVkZ2VmbGFnOwo+
-Pj4gKyAgICAgIHVieXRlIHZlcnRleGlkOwo+Pj4gICAgICAgICAgdWJ5dGUgY2xwZFsyXTsgICAg
-IC8qIG91dHB1dCBzbG90IG9mIGNsaXAgZGlzdGFuY2VbaV0ncyAxc3QKPj4+IGNvbXBvbmVudCAq
-Lwo+Pj4gICAgICAgICAgdWJ5dGUgY2xwZF9ucjsKPj4+ICAgICAgIH0gdnA7Cj4+PiBkaWZmIC0t
-Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZV92YWxpZGF0
-ZS5jCj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVfdmFs
-aWRhdGUuYwo+Pj4gaW5kZXggYjMwNGExNy4uNjZkY2Y0MyAxMDA2NDQKPj4+IC0tLSBhL3NyYy9n
-YWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc3RhdGVfdmFsaWRhdGUuYwo+Pj4gKysr
-IGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zdGF0ZV92YWxpZGF0ZS5j
-Cj4+PiBAQCAtNTAzLDcgKzUwMyw4IEBAIHN0YXRpYyBzdHJ1Y3Qgc3RhdGVfdmFsaWRhdGUgewo+
-Pj4gICAgICAgIHsgbnY1MF92YWxpZGF0ZV9zYW1wbGVycywgICAgICBOVjUwX05FV19TQU1QTEVS
-UyB9LAo+Pj4gICAgICAgIHsgbnY1MF9zdHJlYW1fb3V0cHV0X3ZhbGlkYXRlLCBOVjUwX05FV19T
-VFJNT1VUIHwKPj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTlY1MF9O
-RVdfVkVSVFBST0cgfCBOVjUwX05FV19HTVRZUFJPRwo+Pj4gfSwKPj4+IC0gICAgeyBudjUwX3Zl
-cnRleF9hcnJheXNfdmFsaWRhdGUsIE5WNTBfTkVXX1ZFUlRFWCB8IE5WNTBfTkVXX0FSUkFZUyB9
-LAo+Pj4gKyAgICB7IG52NTBfdmVydGV4X2FycmF5c192YWxpZGF0ZSwgTlY1MF9ORVdfVkVSVEVY
-IHwgTlY1MF9ORVdfQVJSQVlTIHwKPj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIE5WNTBfTkVXX1ZFUlRQUk9HIH0sCj4+PiAgICAgICAgeyBudjUwX3ZhbGlkYXRlX21pbl9z
-YW1wbGVzLCAgIE5WNTBfTkVXX01JTl9TQU1QTEVTIH0sCj4+PiAgICB9Owo+Pj4gICAgI2RlZmlu
-ZSB2YWxpZGF0ZV9saXN0X2xlbiAoc2l6ZW9mKHZhbGlkYXRlX2xpc3QpIC8KPj4+IHNpemVvZih2
-YWxpZGF0ZV9saXN0WzBdKSkKPj4+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnY1MC9udjUwX3Ziby5jCj4+PiBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-djUwL252NTBfdmJvLmMKPj4+IGluZGV4IDYwMGI5NzMuLmZiNDMwNWYgMTAwNjQ0Cj4+PiAtLS0g
-YS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Ziby5jCj4+PiArKysgYi9z
-cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3Ziby5jCj4+PiBAQCAtMzAxLDYg
-KzMwMSwxNCBAQCBudjUwX3ZlcnRleF9hcnJheXNfdmFsaWRhdGUoc3RydWN0IG52NTBfY29udGV4
-dAo+Pj4gKm52NTApCj4+PiAgICAgICB1bnNpZ25lZCBpOwo+Pj4gICAgICAgY29uc3QgdW5zaWdu
-ZWQgbiA9IE1BWDIodmVydGV4LT5udW1fZWxlbWVudHMsCj4+PiBudjUwLT5zdGF0ZS5udW1fdnR4
-ZWx0cyk7Cj4+PiAgICArICAgLyogQSB2ZXJ0ZXhpZCBpcyBub3QgZ2VuZXJhdGVkIGZvciBpbmxp
-bmUgZGF0YSB1cGxvYWRzLiBIYXZlIHRvIHVzZQo+Pj4gYQo+Pj4gKyAgICAqIFZCTy4gVGhpcyBj
-aGVjayBtdXN0IGNvbWUgYWZ0ZXIgdGhlIHZlcnRwcm9nIGhhcyBiZWVuIHZhbGlkYXRlZCwKPj4+
-ICsgICAgKiBvdGhlcndpc2UgdmVydGV4aWQgbWF5IGJlIHVuc2V0Lgo+Pj4gKyAgICAqLwo+Pj4g
-KyAgIGFzc2VydChudjUwLT52ZXJ0cHJvZy0+dHJhbnNsYXRlZCk7Cj4+PiArICAgaWYgKG52NTAt
-PnZlcnRwcm9nLT52cC52ZXJ0ZXhpZCkKPj4+ICsgICAgICBudjUwLT52Ym9fcHVzaF9oaW50ID0g
-MDsKPj4+ICsKPj4+ICAgICAgIGlmICh1bmxpa2VseSh2ZXJ0ZXgtPm5lZWRfY29udmVyc2lvbikp
-Cj4+PiAgICAgICAgICBudjUwLT52Ym9fZmlmbyA9IH4wOwo+Pj4gICAgICAgZWxzZQo+PgoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2002580454==
+Content-Type: multipart/alternative; boundary="1440470949.8830a1.17037"; charset="UTF-8"
+
+
+--1440470949.8830a1.17037
+Date: Tue, 25 Aug 2015 02:49:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91738
+
+ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #6 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
+Upgrading xf86-video-intel did the trick! Thank you Ilia. Although on my first
+reboot X would not start. It was a hard lockup (I was unable to get to another
+tty).
+
+After forcing a reboot with the power button, I was able to start X on the next
+boot. I don't know if there is a relevant bug somewhere, but I will provide the
+necessary logs in case someone can make sense of them.
+
+Thank you!
+
+
+dmesg:
+http://sprunge.us/ZSeG
+
+Xorg.0.log.old:
+http://sprunge.us/aGQM
+
+Xorg.0.log:
+http://sprunge.us/GEZK
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1440470949.8830a1.17037
+Date: Tue, 25 Aug 2015 02:49:09 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
+              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+</span></b>
+        <pre>Upgrading xf86-video-intel did the trick! Thank you Ilia. Although on my first
+reboot X would not start. It was a hard lockup (I was unable to get to another
+tty).
+
+After forcing a reboot with the power button, I was able to start X on the next
+boot. I don't know if there is a relevant bug somewhere, but I will provide the
+necessary logs in case someone can make sense of them.
+
+Thank you!
+
+
+dmesg:
+<a href="http://sprunge.us/ZSeG">http://sprunge.us/ZSeG</a>
+
+Xorg.0.log.old:
+<a href="http://sprunge.us/aGQM">http://sprunge.us/aGQM</a>
+
+Xorg.0.log:
+<a href="http://sprunge.us/GEZK">http://sprunge.us/GEZK</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1440470949.8830a1.17037--
+
+--===============2002580454==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2002580454==--
