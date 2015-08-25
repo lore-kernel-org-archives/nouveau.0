@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91738] [NV117] NULL deref in
  nvkm_i2c_try_acquire_pad, kernel 4.1
-Date: Tue, 25 Aug 2015 03:31:43 +0000
-Message-ID: <bug-91738-8800-H6hcnZ8KIg@http.bugs.freedesktop.org/>
+Date: Tue, 25 Aug 2015 03:33:51 +0000
+Message-ID: <bug-91738-8800-h3AErlMNIc@http.bugs.freedesktop.org/>
 References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1271534147=="
+Content-Type: multipart/mixed; boundary="===============0524045967=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1271534147==
-Content-Type: multipart/alternative; boundary="1440473503.0fdbE4E1.22580"; charset="UTF-8"
+--===============0524045967==
+Content-Type: multipart/alternative; boundary="1440473631.Bee52.22725"; charset="UTF-8"
 
 
---1440473503.0fdbE4E1.22580
-Date: Tue, 25 Aug 2015 03:31:43 +0000
+--1440473631.Bee52.22725
+Date: Tue, 25 Aug 2015 03:33:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91738
 
---- Comment #12 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Sorry, trying to do this from my phone, since the computer will not stay on for
-more than a few minutes.
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Add nouveau.modeset=0 to your kernel cmdline, that should prevent nouveau from
+loading. I believe that xcmddc is killing of CPU's one-by-one as nouveau is
+mishandling something it's asking for.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440473503.0fdbE4E1.22580
-Date: Tue, 25 Aug 2015 03:31:43 +0000
+--1440473631.Bee52.22725
+Date: Tue, 25 Aug 2015 03:33:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_UNCONFIRMED "
    title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_UNCONFIRMED "
    title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
-              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Sorry, trying to do this from my phone, since the computer will not stay on for
-more than a few minutes.</pre>
+        <pre>Add nouveau.modeset=0 to your kernel cmdline, that should prevent nouveau from
+loading. I believe that xcmddc is killing of CPU's one-by-one as nouveau is
+mishandling something it's asking for.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +77,9 @@ more than a few minutes.</pre>
     </body>
 </html>
 
---1440473503.0fdbE4E1.22580--
+--1440473631.Bee52.22725--
 
---===============1271534147==
+--===============0524045967==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1271534147==--
+--===============0524045967==--
