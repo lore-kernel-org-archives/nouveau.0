@@ -1,88 +1,56 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91738] [NV117] NULL deref in
- nvkm_i2c_try_acquire_pad, kernel 4.1
-Date: Tue, 25 Aug 2015 04:38:46 +0000
-Message-ID: <bug-91738-8800-Lw6cF0Yh8R@http.bugs.freedesktop.org/>
-References: <bug-91738-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [Nouveau] [PATCH 0/2] drm/nouveau: add support for 2560x1440@56
+ over HDMI
+Date: Tue, 25 Aug 2015 15:09:50 +1000
+Message-ID: <CACAvsv6cU7t317dM-HQzoHcbg--BmyX9HsGzkzQHv705BCyDFA@mail.gmail.com>
+References: <1439053275-3323-1-git-send-email-hauke@hauke-m.de>
+ <55D22217.4010106@hauke-m.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1955562968=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <55D22217.4010106@hauke-m.de>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Hauke Mehrtens <hauke@hauke-m.de>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1955562968==
-Content-Type: multipart/alternative; boundary="1440477525.3CD51.30011"; charset="UTF-8"
-
-
---1440477525.3CD51.30011
-Date: Tue, 25 Aug 2015 04:38:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91738
-
---- Comment #15 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Thank you, I was able to get it attached.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1440477525.3CD51.30011
-Date: Tue, 25 Aug 2015 04:38:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
-              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
-</span></b>
-        <pre>Thank you, I was able to get it attached.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1440477525.3CD51.30011--
-
---===============1955562968==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1955562968==--
+T24gMTggQXVndXN0IDIwMTUgYXQgMDQ6MDQsIEhhdWtlIE1laHJ0ZW5zIDxoYXVrZUBoYXVrZS1t
+LmRlPiB3cm90ZToKPiBPbiAwOC8wOC8yMDE1IDA3OjAxIFBNLCBIYXVrZSBNZWhydGVucyB3cm90
+ZToKPj4gVGhlc2UgcGF0Y2hlcyBhcmUgYWRkaW5nIHN1cHBvcnQgZm9yIG91dHB1dHRpbmcgMjU2
+MHgxNDQwQDU2IG92ZXIgSERNSS4KPj4gVGhpcyBuZWVkcyBhIHBpeGVsIGNsb2NrIG9mIDIyNSBN
+SHogd2hpY2ggd2FzIG5vdCBzdXBwb3J0ZWQgYmVmb3JlLgo+Pgo+PiBUaGlzIHdhcyB0ZXN0ZWQg
+aW4gYSBkdWFsIG1vbml0b3Igc2V0dXAgd2l0aCBhIEdGMTE0IChHVFggNTYwIFRJKSBhbmQKPj4g
+b25lIEhETUkgbW9uaXRvciBydW5uaW5nIHdpdGggMjU2MHgxNDQwQDU2IGFuZCBvbmUgRFZJIG1v
+bml0b3IgcnVubmluZwo+PiB3aXRoIDE5MjB4MTIwMEA2MC4gVGhpcyBzdGlsbCBuZWVkcyB0ZXN0
+aW5nIG9uIG90aGVyIGdyYXBoaWNzIGNhcmRzIGFuZAo+PiB3aXRoIGR1YWwgbGluayBEVkkuCk91
+dCBvZiBjdXJpb3NpdHksIHdoYXQgbW9kZSBkb2VzIHRoZSBWQklPUyBzZWxlY3QgdG8gZGlzcGxh
+eSB0aGUKc3lzdGVtJ3MgYm9vdCBtZXNzYWdlcz8KCkJlbi4KCj4+Cj4+IFRoZXJlIGlzIG5vIE1h
+aW50YWluZXJzIGVudHJ5IGZvciBub3V2ZWF1Lgo+Pgo+PiBIYXVrZSBNZWhydGVucyAoMik6Cj4+
+ICAgZHJtL25vdXZlYXU6IGFjdGl2YXRlIGR1YWwgbGluayBUTURTIGxpbmtzIG9ubHkgd2hlbiBw
+b3NzaWJsZQo+PiAgIGRybS9ub3V2ZWF1OiBpbmNyZWFzZSBtYXggcGl4ZWwgY2xvY2sgdG8gMjI1
+IE1IWiBmb3IgSERNSQo+Pgo+PiAgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9jb25u
+ZWN0b3IuYyAgICAgIHwgNiArKysrLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252NTBf
+ZGlzcGxheS5jICAgICAgICAgICB8IDggKysrKy0tLS0KPj4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2
+ZWF1L252a20vZW5naW5lL2Rpc3AvZ2YxMTAuYyB8IDIgKy0KPj4gIGRyaXZlcnMvZ3B1L2RybS9u
+b3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jICB8IDIgKy0KPj4gIDQgZmlsZXMgY2hhbmdl
+ZCwgMTAgaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKPj4KPgo+Cj4gSGkgQmVuLAo+Cj4g
+U29tZSBwZW9wbGUgaW4gdGhlIElSQyBzdWdnZXN0ZWQgeW91IHNob3VsZCBsb29rIGF0IHRoZXNl
+IHBhdGNoZXMuCj4KPiBUaGVyZSBhcmUgc3RpbGwgc29tZSBwYXJ0cyBpbiB0aGUgY29kZSB3aXRo
+IHNvbWV0aGluZyBsaWtlICJpZgo+IChwaXhlbF9sb2NrID4gMTY1TUh6KSIsIEkgaGF2ZW4ndCBj
+aGFuZ2VkIHRoYXQgYmVjYXVzZSB0aGF0IGRpZCBub3QKPiBhZmZlY3RlZCBtZSBhbmQgSSBkbyBu
+b3Qga25vdyBpbiB3aGljaCBzaXR1YXRpb25zIHRoaXMgZ2V0cyBjYWxsZWQuCj4KPiBIYXVrZQo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVh
+dSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxp
+c3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
