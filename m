@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91738] [NV117] xf86-video-nouveau 1.0.11 will not
- allow X to start
-Date: Tue, 25 Aug 2015 03:03:27 +0000
-Message-ID: <bug-91738-8800-1srTQG8GZk@http.bugs.freedesktop.org/>
+Subject: [Bug 91738] [NV117] NULL deref in
+ nvkm_i2c_try_acquire_pad, kernel 4.1
+Date: Tue, 25 Aug 2015 03:08:43 +0000
+Message-ID: <bug-91738-8800-xqwIL5ah9T@http.bugs.freedesktop.org/>
 References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1619971253=="
+Content-Type: multipart/mixed; boundary="===============1492598562=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,36 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1619971253==
-Content-Type: multipart/alternative; boundary="1440471807.4Ec7c1.18748"; charset="UTF-8"
+--===============1492598562==
+Content-Type: multipart/alternative; boundary="1440472122.3Bb73fDb2.19285"; charset="UTF-8"
 
 
---1440471807.4Ec7c1.18748
-Date: Tue, 25 Aug 2015 03:03:27 +0000
+--1440472122.3Bb73fDb2.19285
+Date: Tue, 25 Aug 2015 03:08:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91738
 
-ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |UNCONFIRMED
-         Resolution|FIXED                       |---
-     Ever confirmed|1                           |0
+            Summary|[NV117] xf86-video-nouveau  |[NV117] NULL deref in
+                   |1.0.11 will not allow X to  |nvkm_i2c_try_acquire_pad,
+                   |start                       |kernel 4.1
 
---- Comment #8 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Hi Ilia, I appreciate your help. This directory is empty: /sys/kernel/debug/
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Make sure that debugfs is mounted. e.g.
 
-Is there anywhere else I can look?
+mount -t debugfs debugfs /sys/kernel/debug
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440471807.4Ec7c1.18748
-Date: Tue, 25 Aug 2015 03:03:27 +0000
+--1440472122.3Bb73fDb2.19285
+Date: Tue, 25 Aug 2015 03:08:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,11 +58,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
           bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -73,44 +73,27 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>RESOLVED
+           <td style="text-align:right;">Summary</td>
+           <td>[NV117] xf86-video-nouveau 1.0.11 will not allow X to start
            </td>
-           <td>UNCONFIRMED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>FIXED
-           </td>
-           <td>---
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Ever confirmed</td>
-           <td>1
-           </td>
-           <td>
-               &nbsp;
+           <td>[NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c8">Comment # 8</a>
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] xf86-video-nouveau 1.0.11 will not allow X to start"
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
-              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi Ilia, I appreciate your help. This directory is empty: /sys/kernel/debug/
+        <pre>Make sure that debugfs is mounted. e.g.
 
-Is there anywhere else I can look?</pre>
+mount -t debugfs debugfs /sys/kernel/debug</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +105,9 @@ Is there anywhere else I can look?</pre>
     </body>
 </html>
 
---1440471807.4Ec7c1.18748--
+--1440472122.3Bb73fDb2.19285--
 
---===============1619971253==
+--===============1492598562==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1619971253==--
+--===============1492598562==--
