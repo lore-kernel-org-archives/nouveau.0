@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89969] nouveau: add support for chunk decoding in
  order to support vaapi (st/va)
-Date: Wed, 26 Aug 2015 17:49:15 +0000
-Message-ID: <bug-89969-8800-0jQs3gsjlO@http.bugs.freedesktop.org/>
+Date: Wed, 26 Aug 2015 17:49:27 +0000
+Message-ID: <bug-89969-8800-zBp5wXPHtL@http.bugs.freedesktop.org/>
 References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0293702693=="
+Content-Type: multipart/mixed; boundary="===============0850739518=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0293702693==
-Content-Type: multipart/alternative; boundary="1440611355.2EAA15.7999"; charset="UTF-8"
+--===============0850739518==
+Content-Type: multipart/alternative; boundary="1440611367.5bfc364.8162"; charset="UTF-8"
 
 
---1440611355.2EAA15.7999
-Date: Wed, 26 Aug 2015 17:49:15 +0000
+--1440611367.5bfc364.8162
+Date: Wed, 26 Aug 2015 17:49:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89969
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please post patches to list so that they may be reviewed.
+--- Comment #22 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 117931
+  --> https://bugs.freedesktop.org/attachment.cgi?id=117931&action=edit
+[PATCH 3/8] nouveau: split nvc0_decoder_bsp in begin/next/end
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1440611355.2EAA15.7999
-Date: Wed, 26 Aug 2015 17:49:15 +0000
+--1440611367.5bfc364.8162
+Date: Wed, 26 Aug 2015 17:49:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,14 +57,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
 </span></b>
-        <pre>Please post patches to list so that they may be reviewed.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=117931" name="attach_117931" title="[PATCH 3/8] nouveau: split nvc0_decoder_bsp in begin/next/end">attachment 117931</a> <a href="attachment.cgi?id=117931&amp;action=edit" title="[PATCH 3/8] nouveau: split nvc0_decoder_bsp in begin/next/end">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=89969&amp;attachment=117931'>[review]</a>
+[PATCH 3/8] nouveau: split nvc0_decoder_bsp in begin/next/end</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +78,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440611355.2EAA15.7999--
+--1440611367.5bfc364.8162--
 
---===============0293702693==
+--===============0850739518==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0293702693==--
+--===============0850739518==--
