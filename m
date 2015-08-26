@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] nouveau: add support for chunk decoding in
- order to support vaapi (st/va)
-Date: Wed, 26 Aug 2015 17:58:45 +0000
-Message-ID: <bug-89969-8800-q4vc26AX78@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] core: remove unused variables detected by Clang
+Date: Wed, 26 Aug 2015 22:32:49 +0200
+Message-ID: <1440621169-3036-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1681433555=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +18,39 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1681433555==
-Content-Type: multipart/alternative; boundary="1440611925.aDeAaB4.10608"; charset="UTF-8"
-
-
---1440611925.aDeAaB4.10608
-Date: Wed, 26 Aug 2015 17:58:45 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89969
-
---- Comment #29 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 117939
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117939&action=edit
-Contains files generated with git send-email
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1440611925.aDeAaB4.10608
-Date: Wed, 26 Aug 2015 17:58:45 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c29">Comment # 29</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117939" name="attach_117939" title="Contains files generated with git send-email">attachment 117939</a> <a href="attachment.cgi?id=117939&amp;action=edit" title="Contains files generated with git send-email">[details]</a></span>
-Contains files generated with git send-email</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1440611925.aDeAaB4.10608--
-
---===============1681433555==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1681433555==--
+VGhlc2UgdmFyaWFibGVzIGhhdmUgYmVlbiBsZWZ0IHNpbmNlIHRoZSByZWNlbnQgYmlnIG1lcmdl
+LgoKU2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21haWwu
+Y29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCA0IC0tLS0K
+IGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RtYS9iYXNlLmMgICAgfCA1IC0tLS0tCiBkcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9zdy9iYXNlLmMgICAgIHwgNSAtLS0tLQogMyBmaWxlcyBjaGFuZ2Vk
+LCAxNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
+ZXZpY2UvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYwppbmRl
+eCA5NTJhNTA4Li5hMzJhYzk5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
+ZXZpY2UvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMK
+QEAgLTIyOTEsMTAgKzIyOTEsNiBAQCBudmttX2RldmljZV9kZWwoc3RydWN0IG52a21fZGV2aWNl
+ICoqcGRldmljZSkKIAl9CiB9CiAKLXN0YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9lbmdpbmVfZnVu
+YwotbnZrbV9kZXZpY2VfZnVuYyA9IHsKLX07Ci0KIGludAogbnZrbV9kZXZpY2VfY3Rvcihjb25z
+dCBzdHJ1Y3QgbnZrbV9kZXZpY2VfZnVuYyAqZnVuYywKIAkJIGNvbnN0IHN0cnVjdCBudmttX2Rl
+dmljZV9xdWlyayAqcXVpcmssCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9k
+bWEvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZG1hL2Jhc2UuYwppbmRleCBjMTk1
+N2NlLi45NzY5ZmMwIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kbWEvYmFz
+ZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RtYS9iYXNlLmMKQEAgLTk3LDExICs5
+Nyw2IEBAIG52a21fZG1hX29jbGFzc19maWZvX25ldyhjb25zdCBzdHJ1Y3QgbnZrbV9vY2xhc3Mg
+Km9jbGFzcywgdm9pZCAqZGF0YSwgdTMyIHNpemUsCiB9CiAKIHN0YXRpYyBjb25zdCBzdHJ1Y3Qg
+bnZrbV9zY2xhc3MKLW52a21fZG1hX29jbGFzc19maWZvID0gewotCS5jdG9yID0gbnZrbV9kbWFf
+b2NsYXNzX2ZpZm9fbmV3LAotfTsKLQotc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3NjbGFzcwog
+bnZrbV9kbWFfc2NsYXNzW10gPSB7CiAJeyAwLCAwLCBOVl9ETUFfRlJPTV9NRU1PUlksIE5VTEws
+IG52a21fZG1hX29jbGFzc19maWZvX25ldyB9LAogCXsgMCwgMCwgTlZfRE1BX1RPX01FTU9SWSwg
+TlVMTCwgbnZrbV9kbWFfb2NsYXNzX2ZpZm9fbmV3IH0sCmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
+dS9udmttL2VuZ2luZS9zdy9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9zdy9iYXNl
+LmMKaW5kZXggZDQ2ZjIyOS4uNTNjMWY3ZSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9l
+bmdpbmUvc3cvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL3N3L2Jhc2UuYwpA
+QCAtNTUsMTEgKzU1LDYgQEAgbnZrbV9zd19vY2xhc3NfbmV3KGNvbnN0IHN0cnVjdCBudmttX29j
+bGFzcyAqb2NsYXNzLCB2b2lkICpkYXRhLCB1MzIgc2l6ZSwKIAlyZXR1cm4gc2NsYXNzLT5jdG9y
+KGNoYW4sIG9jbGFzcywgZGF0YSwgc2l6ZSwgcG9iamVjdCk7CiB9CiAKLXN0YXRpYyBjb25zdCBz
+dHJ1Y3QgbnZrbV9zY2xhc3MKLW52a21fc3dfb2NsYXNzID0gewotCS5jdG9yID0gbnZrbV9zd19v
+Y2xhc3NfbmV3LAotfTsKLQogc3RhdGljIGludAogbnZrbV9zd19vY2xhc3NfZ2V0KHN0cnVjdCBu
+dmttX29jbGFzcyAqb2NsYXNzLCBpbnQgaW5kZXgpCiB7Ci0tIAoyLjUuMAoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
