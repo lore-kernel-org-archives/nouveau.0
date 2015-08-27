@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91779] MacBookPro3,
- 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
 Date: Thu, 27 Aug 2015 20:09:38 +0000
-Message-ID: <bug-91779-8800-tuY7S0WTA3@http.bugs.freedesktop.org/>
-References: <bug-91779-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-90626-8800-MGzUiKYiZn@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1450211399=="
+Content-Type: multipart/mixed; boundary="===============0162932838=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1450211399==
-Content-Type: multipart/alternative; boundary="1440706177.aEf86b7A1.7593"; charset="UTF-8"
+--===============0162932838==
+Content-Type: multipart/alternative; boundary="1440706178.A47F10.7593"; charset="UTF-8"
 
 
---1440706177.aEf86b7A1.7593
-Date: Thu, 27 Aug 2015 20:09:37 +0000
+--1440706178.A47F10.7593
+Date: Thu, 27 Aug 2015 20:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91779
+https://bugs.freedesktop.org/show_bug.cgi?id=90626
 
 Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=89047,
-                   |                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=90626
+                   |                            |g/show_bug.cgi?id=91779
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440706177.aEf86b7A1.7593
-Date: Thu, 27 Aug 2015 20:09:37 +0000
+--1440706178.A47F10.7593
+Date: Thu, 27 Aug 2015 20:09:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -73,7 +71,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=89047, https://bugs.freedesktop.org/show_bug.cgi?id=90626
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=91779
            </td>
          </tr></table>
       <p>
@@ -87,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1440706177.aEf86b7A1.7593--
+--1440706178.A47F10.7593--
 
---===============1450211399==
+--===============0162932838==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1450211399==--
+--===============0162932838==--
