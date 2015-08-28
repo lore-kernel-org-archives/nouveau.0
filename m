@@ -1,91 +1,77 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91779] MacBookPro3,
- 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
-Date: Thu, 27 Aug 2015 20:15:24 +0000
-Message-ID: <bug-91779-8800-D169ijN8M3@http.bugs.freedesktop.org/>
-References: <bug-91779-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede@redhat.com>
+Subject: nv3x libreoffice impress opengl animations not working
+Date: Fri, 28 Aug 2015 10:54:01 +0200
+Message-ID: <55E021A9.7070700@redhat.com>
+References: <55DF0C1C.3070303@redhat.com>
+ <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
+ <55DF4F19.8030708@redhat.com>
+ <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
+ <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0981469832=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>, Alex Deucher <alexdeucher@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0981469832==
-Content-Type: multipart/alternative; boundary="1440706524.AF6FE1.10085"; charset="UTF-8"
-
-
---1440706524.AF6FE1.10085
-Date: Thu, 27 Aug 2015 20:15:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91779
-
---- Comment #1 from Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
-Created attachment 117950
-  --> https://bugs.freedesktop.org/attachment.cgi?id=117950&action=edit
-dmesg output after loading nouveau
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1440706524.AF6FE1.10085
-Date: Thu, 27 Aug 2015 20:15:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
-              from <span class="vcard"><a class="email" href="mailto:jeremyhu&#64;freedesktop.org" title="Jeremy Huddleston &lt;jeremyhu&#64;freedesktop.org&gt;"> <span class="fn">Jeremy Huddleston</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=117950" name="attach_117950" title="dmesg output after loading nouveau">attachment 117950</a> <a href="attachment.cgi?id=117950&amp;action=edit" title="dmesg output after loading nouveau">[details]</a></span>
-dmesg output after loading nouveau</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1440706524.AF6FE1.10085--
-
---===============0981469832==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0981469832==--
+SGksCgpPbiAyNy0wOC0xNSAyMDoxOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVGh1LCBBdWcg
+MjcsIDIwMTUgYXQgMTo1OSBQTSwgQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5jb20+
+IHdyb3RlOgoKPHNuaXA+Cgo+Pj4+PiAyKSBTaW5jZSB0aGUgZ2xyZXRyYWNlIGRvZXMgd29yayBv
+dXRzaWRlIG9mIGxpYnJlb2ZmaWNlIGltcHJlc3MsIEkgdGhpbmsKPj4+Pj4gaXQgbWF5IGhhdmUg
+c29tZXRoaW5nIHRvIGRvIHdpdGggdGhlIHZpc3VhbCBjaG9zZW4gYnkgbGlicmVvZmZpY2UKPj4+
+Pj4gaW1wcmVzcywKPj4+Pj4gaXMgdGhlcmUgYW4gZWFzeSB3YXkgdG8gZmluZCBvdXQgd2hhdCB2
+aXN1YWwgbG8gaXMgY2hvb3Npbmc/Cj4+Pj4KPj4+Pgo+Pj4+IE5vLCBpdCdzIG5vdCBiZWNhdXNl
+IG9mIHRoZSB2aXN1YWwuIEl0IHNlZW1zIHRvIG1lIHRoYXQgbGlicmVvZmZpY2UKPj4+PiBjaGFu
+Z2VkIHRoZSBiZWhhdmlvciBvZiBtYWxsb2MgYW5kIGNhbGxvYy4KPj4+Cj4+Pgo+Pj4gSSdtIHBy
+ZXR0eSBzdXJlIHRoYXQgdGhpcyBpcyBub3QgbGlicmVvZmZpY2UgY2hhbmdpbmcgbWFsbG9jIC8g
+Y2FsbG9jLAo+Pj4gaXQgbGlua3Mgbm9ybWFsbHkgdG8gbGliYywgYW5kIHRoZSBzYW1lIHNsaWRl
+IHRyYW5zaXRpb24gd29ya3MgZmluZQo+Pj4gd2l0aCBhbiBudjg0IGNhcmQgd2hpY2ggYWxzbyBo
+YXMgYSBnYWxsaXVtIGJhc2VkIG1lc2EgZHJpdmVyLgo+Pj4KPj4+IEkgcmVhbGx5IGJlbGlldmUg
+dGhpcyBpcyBkdWUgdG8gbGlicmVvZmZpY2UgZG9pbmcgc29tZXRoaW5nIG9wZW5nbAo+Pj4gcmVs
+YXRlZCBkaWZmZXJlbnRseSB0aGVuIGdscmV0cmFjZSwgYmUgaXQgdGhlIHZpc3VhbCBvciBzb21l
+dGhpbmcgZWxzZQo+Pj4gYmFjayBidWZmZXIgcmVsYXRlZCAuLi4KPj4+Cj4+Cj4+IERvZXMgbGli
+cmVvZmZpY2UgdXNlIGxsdm0/ICBJIGhhdmUgdmFndWUgcmVjb2xsZWN0aW9ucyBvZiB0aGVyZSBi
+ZWluZwo+PiBpc3N1ZXMgd2l0aCBsbHZtIGFuZCBsaWJyZW9mZmljZSBpbiB0aGUgcGFzdCBiZWNh
+dXNlIHJhZGVvbnNpIHVzZXMKPj4gbGx2bSBhcyB3ZWxsLgo+Cj4gRldJVyB0aGUgbnYzMCBnYWxs
+aXVtIGRyaXZlciB3aWxsIG9ubHkgdXNlIGxsdm0gYXMgcGFydCBvZiAnZHJhdycgd2hlbgo+IGZh
+bGxpbmcgYmFjayB0byB0aGUgc3d0bmwgcGF0aC4gVGhpcyBzaG91bGQgYmUgZXh0cmVtZWx5IHJh
+cmUuIEJ1dAo+IGVhc3kgZW5vdWdoIHRvIGJ1aWxkIG1lc2Egd2l0aCAtLWRpc2FibGUtZ2FsbGl1
+bS1sbHZtIHRvIGRvdWJsZS1jaGVjawo+IChvciB3aGF0IHdhcyB0aGUgZW52IHZhcj8gRFJBV19V
+U0VfTExWTT0wIG9yIHNvbWV0aGluZyBhbG9uZyB0aG9zZQo+IGxpbmVzKS4KCkkndmUgdHJpZWQg
+YnVpbGRpbmcgd2l0aCAtLWRpc2FibGUtZ2FsbGl1bS1sbHZtLCB0aGlzIGRvZXMgbm90IGhlbHAs
+CnRoaXMgaXMgbm90IHJlYWxseSBzdXJwcmlzaW5nIHNpbmNlIG9uIEZlZG9yYSBib3RoIGxpYnJl
+b2ZmaWNlIGFuZAptZXNhIHVzZSB0aGUgc3lzdGVtIGxsdm0sIHNvIHRoZXJlIHNob3VsZCBiZSBu
+byBwcm9ibGVtcyB3aXRoIHRoZW0KZXhwZWN0aW5nIGRpZmZlcmVudCBsbHZtIHZlcnNpb25zLgoK
+SSd2ZSBkb25lIHNvbWUgZnVydGhlciBkZWJ1Z2dpbmcgYWRkaW5nIHNvbWUgZGVidWcgcHJpbnRm
+LXMgdG8gdGhlCnRleHR1cmUgY3JlYXRpb24gcGF0aHMgZm9yIG52M3gsIHRoaXMgYml0IGlzIGlu
+dGVyZXN0aW5nLCBnbHJldHJhY2UKZG9lczoKCm52MzBfbWlwdHJlZV9mcm9tX2hhbmRsZSAxMzUw
+eDg2MyB1bmlmb3JtX3BpdGNoIDYxNDQgdXNhZ2UgMCBmbGFncyAwCm52MzBfbWlwdHJlZV9jcmVh
+dGUgMTM1MHg4NjMgdW5pZm9ybV9waXRjaCA1NDQwIHVzYWdlIDAgZmxhZ3MgMCBiaW5kIDEgdGFy
+Z2V0IDIKClNvIGl0IGdldHMgYSB0ZXh0dXJlIGZyb20gYSBoYW5kbGUsIHdoaWNoIEkgYmVsaWV2
+ZSBpcyB0aGUgY2hpbGQtd2luZG93CmluIHdoaWNoIHRoZSBhbmltYXRpb24gd2lsbCBiZSBzaG93
+biwgYW5kIHRoZW4gY3JlYXRlIGFub3RoZXIgdGV4dHVyZQp3aXRoIHRoZSBzYW1lIGRpbWVuc2lv
+bnMgdG8gc2VydmUgYXMgYmFjayBidWZmZXIgSSBwcmVzdW1lLgoKb29pbXByZXNzIGhvd2V2ZXIg
+ZG9lcyB0aGlzOgoKbnYzMF9taXB0cmVlX2Zyb21faGFuZGxlIDEzNTB4ODYzIHVuaWZvcm1fcGl0
+Y2ggNjE0NCB1c2FnZSAwIGZsYWdzIDAKbnYzMF9taXB0cmVlX2NyZWF0ZSAyNzAweDE3MjYgdW5p
+Zm9ybV9waXRjaCAxMDgxNiB1c2FnZSAwIGZsYWdzIDAgYmluZCBhIHRhcmdldCAyCm52MzBfbWlw
+dHJlZV9jcmVhdGUgMjcwMHgxNzI2IHVuaWZvcm1fcGl0Y2ggMTA4MTYgdXNhZ2UgMCBmbGFncyAw
+IGJpbmQgMSB0YXJnZXQgMgoKTm90aWNlIGhvdyBpdCBpcyBjcmVhdGluZyAyIChiYWNrPykgYnVm
+ZmVycyBhbmQgdGhleSBhcmUgdHdpY2UgdGhlIHNpemUgb2YKdGhlICJzaGVldCIgYXJlYSBvZiBp
+bXByZXNzIHRvIHdoaWNoIHRoZSBhbmltYXRpb24gZ2V0cyByZW5kZXJlZC4KCkkgYmVsaWV2ZSB0
+aGlzIGlzIGEgY2x1ZSB0byB0aGUgcm9vdCBjYXVzZSBvZiB0aGUgcHJvYmxlbSwgYnV0IGFmdGVy
+IHRoaXMKSSdtIHNvcnRhIHN0dWNrLiBBbnlvbmUgZ290IGFueSBoaW50cyBvbiBob3cgdG8gZGVi
+dWcgdGhpcyBmdXJ0aGVyIC8gd2hlcmUKdG8gbG9vayA/CgpUaGFua3MgJiBSZWdhcmRzLAoKSGFu
+cwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRl
+diBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
