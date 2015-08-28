@@ -1,19 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: nv3x libreoffice impress opengl animations not working
-Date: Fri, 28 Aug 2015 13:04:39 +0200
-Message-ID: <55E04047.1060603@redhat.com>
-References: <55DF0C1C.3070303@redhat.com>
- <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
- <55DF4F19.8030708@redhat.com>
- <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
- <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
- <55E021A9.7070700@redhat.com>
- <CAAxE2A5EDWp9n_xmpMy8zF81yPgM1R409qNEWxek5N96RE05Bg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91779] Pure EFI: MacBookPro3,
+ 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+Date: Fri, 28 Aug 2015 18:25:48 +0000
+Message-ID: <bug-91779-8800-wlpCHDUihb@http.bugs.freedesktop.org/>
+References: <bug-91779-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0816501380=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAAxE2A5EDWp9n_xmpMy8zF81yPgM1R409qNEWxek5N96RE05Bg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,70 +17,107 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAyOC0wOC0xNSAxMzowMSwgTWFyZWsgT2zFocOhayB3cm90ZToKPiBZb3VyIGZpcnN0
-IHF1ZXN0aW9uIHdhcyBhYm91dCBzaGFkZXIgdHJhbnNsYXRpb24sIGJ1dCBub3cgeW91J3JlCj4g
-dGFsa2luZyBhYm91dCB0ZXh0dXJlIGFsbG9jYXRpb25zLCB3aGljaCBhcmUgY29tcGxldGVseSB1
-bnJlbGF0ZWQuCj4gTGlrZSBJIHNhaWQsIHZpc3VhbHMgYW5kIHRleHR1cmVzIGhhdmUgTk9USElO
-RyB0byBkbyB3aXRoIHNoYWRlcgo+IGNvbXBpbGF0aW9ucy4KCk15IGZpcnN0IG1haWwgaW4gdGhp
-cyB0aHJlYWQgaGFkIDIgcXVlc3Rpb25zLCAxIGhhcyBiZWVuIGFuc3dlcmVkCnRoZSBvdGhlciBu
-b3QuIE5vdGUgSSd2ZSB1cGRhdGVkIHRoZSBzdWJqZWN0IHRvIHJlZmxlY3QgdGhpcy4KClJlZ2Fy
-ZHMsCgpIYW5zCgoKPgo+IE1hcmVrCj4KPiBPbiBGcmksIEF1ZyAyOCwgMjAxNSBhdCAxMDo1NCBB
-TSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4+IEhpLAo+Pgo+
-PiBPbiAyNy0wOC0xNSAyMDoxOSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pgo+Pj4gT24gVGh1LCBB
-dWcgMjcsIDIwMTUgYXQgMTo1OSBQTSwgQWxleCBEZXVjaGVyIDxhbGV4ZGV1Y2hlckBnbWFpbC5j
-b20+Cj4+PiB3cm90ZToKPj4KPj4KPj4gPHNuaXA+Cj4+Cj4+Pj4+Pj4gMikgU2luY2UgdGhlIGds
-cmV0cmFjZSBkb2VzIHdvcmsgb3V0c2lkZSBvZiBsaWJyZW9mZmljZSBpbXByZXNzLCBJCj4+Pj4+
-Pj4gdGhpbmsKPj4+Pj4+PiBpdCBtYXkgaGF2ZSBzb21ldGhpbmcgdG8gZG8gd2l0aCB0aGUgdmlz
-dWFsIGNob3NlbiBieSBsaWJyZW9mZmljZQo+Pj4+Pj4+IGltcHJlc3MsCj4+Pj4+Pj4gaXMgdGhl
-cmUgYW4gZWFzeSB3YXkgdG8gZmluZCBvdXQgd2hhdCB2aXN1YWwgbG8gaXMgY2hvb3Npbmc/Cj4+
-Pj4+Pgo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+PiBObywgaXQncyBub3QgYmVjYXVzZSBvZiB0aGUgdmlz
-dWFsLiBJdCBzZWVtcyB0byBtZSB0aGF0IGxpYnJlb2ZmaWNlCj4+Pj4+PiBjaGFuZ2VkIHRoZSBi
-ZWhhdmlvciBvZiBtYWxsb2MgYW5kIGNhbGxvYy4KPj4+Pj4KPj4+Pj4KPj4+Pj4KPj4+Pj4gSSdt
-IHByZXR0eSBzdXJlIHRoYXQgdGhpcyBpcyBub3QgbGlicmVvZmZpY2UgY2hhbmdpbmcgbWFsbG9j
-IC8gY2FsbG9jLAo+Pj4+PiBpdCBsaW5rcyBub3JtYWxseSB0byBsaWJjLCBhbmQgdGhlIHNhbWUg
-c2xpZGUgdHJhbnNpdGlvbiB3b3JrcyBmaW5lCj4+Pj4+IHdpdGggYW4gbnY4NCBjYXJkIHdoaWNo
-IGFsc28gaGFzIGEgZ2FsbGl1bSBiYXNlZCBtZXNhIGRyaXZlci4KPj4+Pj4KPj4+Pj4gSSByZWFs
-bHkgYmVsaWV2ZSB0aGlzIGlzIGR1ZSB0byBsaWJyZW9mZmljZSBkb2luZyBzb21ldGhpbmcgb3Bl
-bmdsCj4+Pj4+IHJlbGF0ZWQgZGlmZmVyZW50bHkgdGhlbiBnbHJldHJhY2UsIGJlIGl0IHRoZSB2
-aXN1YWwgb3Igc29tZXRoaW5nIGVsc2UKPj4+Pj4gYmFjayBidWZmZXIgcmVsYXRlZCAuLi4KPj4+
-Pj4KPj4+Pgo+Pj4+IERvZXMgbGlicmVvZmZpY2UgdXNlIGxsdm0/ICBJIGhhdmUgdmFndWUgcmVj
-b2xsZWN0aW9ucyBvZiB0aGVyZSBiZWluZwo+Pj4+IGlzc3VlcyB3aXRoIGxsdm0gYW5kIGxpYnJl
-b2ZmaWNlIGluIHRoZSBwYXN0IGJlY2F1c2UgcmFkZW9uc2kgdXNlcwo+Pj4+IGxsdm0gYXMgd2Vs
-bC4KPj4+Cj4+Pgo+Pj4gRldJVyB0aGUgbnYzMCBnYWxsaXVtIGRyaXZlciB3aWxsIG9ubHkgdXNl
-IGxsdm0gYXMgcGFydCBvZiAnZHJhdycgd2hlbgo+Pj4gZmFsbGluZyBiYWNrIHRvIHRoZSBzd3Ru
-bCBwYXRoLiBUaGlzIHNob3VsZCBiZSBleHRyZW1lbHkgcmFyZS4gQnV0Cj4+PiBlYXN5IGVub3Vn
-aCB0byBidWlsZCBtZXNhIHdpdGggLS1kaXNhYmxlLWdhbGxpdW0tbGx2bSB0byBkb3VibGUtY2hl
-Y2sKPj4+IChvciB3aGF0IHdhcyB0aGUgZW52IHZhcj8gRFJBV19VU0VfTExWTT0wIG9yIHNvbWV0
-aGluZyBhbG9uZyB0aG9zZQo+Pj4gbGluZXMpLgo+Pgo+Pgo+PiBJJ3ZlIHRyaWVkIGJ1aWxkaW5n
-IHdpdGggLS1kaXNhYmxlLWdhbGxpdW0tbGx2bSwgdGhpcyBkb2VzIG5vdCBoZWxwLAo+PiB0aGlz
-IGlzIG5vdCByZWFsbHkgc3VycHJpc2luZyBzaW5jZSBvbiBGZWRvcmEgYm90aCBsaWJyZW9mZmlj
-ZSBhbmQKPj4gbWVzYSB1c2UgdGhlIHN5c3RlbSBsbHZtLCBzbyB0aGVyZSBzaG91bGQgYmUgbm8g
-cHJvYmxlbXMgd2l0aCB0aGVtCj4+IGV4cGVjdGluZyBkaWZmZXJlbnQgbGx2bSB2ZXJzaW9ucy4K
-Pj4KPj4gSSd2ZSBkb25lIHNvbWUgZnVydGhlciBkZWJ1Z2dpbmcgYWRkaW5nIHNvbWUgZGVidWcg
-cHJpbnRmLXMgdG8gdGhlCj4+IHRleHR1cmUgY3JlYXRpb24gcGF0aHMgZm9yIG52M3gsIHRoaXMg
-Yml0IGlzIGludGVyZXN0aW5nLCBnbHJldHJhY2UKPj4gZG9lczoKPj4KPj4gbnYzMF9taXB0cmVl
-X2Zyb21faGFuZGxlIDEzNTB4ODYzIHVuaWZvcm1fcGl0Y2ggNjE0NCB1c2FnZSAwIGZsYWdzIDAK
-Pj4gbnYzMF9taXB0cmVlX2NyZWF0ZSAxMzUweDg2MyB1bmlmb3JtX3BpdGNoIDU0NDAgdXNhZ2Ug
-MCBmbGFncyAwIGJpbmQgMQo+PiB0YXJnZXQgMgo+Pgo+PiBTbyBpdCBnZXRzIGEgdGV4dHVyZSBm
-cm9tIGEgaGFuZGxlLCB3aGljaCBJIGJlbGlldmUgaXMgdGhlIGNoaWxkLXdpbmRvdwo+PiBpbiB3
-aGljaCB0aGUgYW5pbWF0aW9uIHdpbGwgYmUgc2hvd24sIGFuZCB0aGVuIGNyZWF0ZSBhbm90aGVy
-IHRleHR1cmUKPj4gd2l0aCB0aGUgc2FtZSBkaW1lbnNpb25zIHRvIHNlcnZlIGFzIGJhY2sgYnVm
-ZmVyIEkgcHJlc3VtZS4KPj4KPj4gb29pbXByZXNzIGhvd2V2ZXIgZG9lcyB0aGlzOgo+Pgo+PiBu
-djMwX21pcHRyZWVfZnJvbV9oYW5kbGUgMTM1MHg4NjMgdW5pZm9ybV9waXRjaCA2MTQ0IHVzYWdl
-IDAgZmxhZ3MgMAo+PiBudjMwX21pcHRyZWVfY3JlYXRlIDI3MDB4MTcyNiB1bmlmb3JtX3BpdGNo
-IDEwODE2IHVzYWdlIDAgZmxhZ3MgMCBiaW5kIGEKPj4gdGFyZ2V0IDIKPj4gbnYzMF9taXB0cmVl
-X2NyZWF0ZSAyNzAweDE3MjYgdW5pZm9ybV9waXRjaCAxMDgxNiB1c2FnZSAwIGZsYWdzIDAgYmlu
-ZCAxCj4+IHRhcmdldCAyCj4+Cj4+IE5vdGljZSBob3cgaXQgaXMgY3JlYXRpbmcgMiAoYmFjaz8p
-IGJ1ZmZlcnMgYW5kIHRoZXkgYXJlIHR3aWNlIHRoZSBzaXplIG9mCj4+IHRoZSAic2hlZXQiIGFy
-ZWEgb2YgaW1wcmVzcyB0byB3aGljaCB0aGUgYW5pbWF0aW9uIGdldHMgcmVuZGVyZWQuCj4+Cj4+
-IEkgYmVsaWV2ZSB0aGlzIGlzIGEgY2x1ZSB0byB0aGUgcm9vdCBjYXVzZSBvZiB0aGUgcHJvYmxl
-bSwgYnV0IGFmdGVyIHRoaXMKPj4gSSdtIHNvcnRhIHN0dWNrLiBBbnlvbmUgZ290IGFueSBoaW50
-cyBvbiBob3cgdG8gZGVidWcgdGhpcyBmdXJ0aGVyIC8gd2hlcmUKPj4gdG8gbG9vayA/Cj4+Cj4+
-IFRoYW5rcyAmIFJlZ2FyZHMsCj4+Cj4+IEhhbnMKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+
+--===============0816501380==
+Content-Type: multipart/alternative; boundary="1440786348.b3aC1.29177"; charset="UTF-8"
+
+
+--1440786348.b3aC1.29177
+Date: Fri, 28 Aug 2015 18:25:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91779
+
+Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|MacBookPro3,1 (NV84) fails  |Pure EFI: MacBookPro3,1
+                   |to load nouveau on linux    |(NV84) fails to load
+                   |4.1 -- Invalid ROM contents |nouveau on linux 4.1 --
+                   |                            |Invalid ROM contents
+
+--- Comment #2 from Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
+Sigh, most likely my fault for booting with pure EFI.  Unfortunately, I made
+the system unbootable when trying to install GRUB i386-pc for BIOS emulation
+mode, but is there a ticket tracking getting a way to have nouveau work through
+pure EFI that this can be duped to?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1440786348.b3aC1.29177
+Date: Fri, 28 Aug 2015 18:25:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:jeremyhu&#64;freedesktop.org" title="Jeremy Huddleston &lt;jeremyhu&#64;freedesktop.org&gt;"> <span class="fn">Jeremy Huddleston</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+           </td>
+           <td>Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+              from <span class="vcard"><a class="email" href="mailto:jeremyhu&#64;freedesktop.org" title="Jeremy Huddleston &lt;jeremyhu&#64;freedesktop.org&gt;"> <span class="fn">Jeremy Huddleston</span></a>
+</span></b>
+        <pre>Sigh, most likely my fault for booting with pure EFI.  Unfortunately, I made
+the system unbootable when trying to install GRUB i386-pc for BIOS emulation
+mode, but is there a ticket tracking getting a way to have nouveau work through
+pure EFI that this can be duped to?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1440786348.b3aC1.29177--
+
+--===============0816501380==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0816501380==--
