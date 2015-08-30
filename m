@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91804] New: nouveau kernel drive should not steal fb
- until after getting vbios
-Date: Sun, 30 Aug 2015 06:26:02 +0000
-Message-ID: <bug-91804-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91779] Pure EFI: MacBookPro3,
+ 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+Date: Sun, 30 Aug 2015 06:31:52 +0000
+Message-ID: <bug-91779-8800-70wZrSn4y7@http.bugs.freedesktop.org/>
+References: <bug-91779-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0485505801=="
+Content-Type: multipart/mixed; boundary="===============0832093182=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,46 +21,25 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0485505801==
-Content-Type: multipart/alternative; boundary="1440915962.8D3EA1.12176"; charset="UTF-8"
+--===============0832093182==
+Content-Type: multipart/alternative; boundary="1440916312.Bb66C71.13805"; charset="UTF-8"
 
 
---1440915962.8D3EA1.12176
-Date: Sun, 30 Aug 2015 06:26:02 +0000
+--1440916312.Bb66C71.13805
+Date: Sun, 30 Aug 2015 06:31:52 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91804
+https://bugs.freedesktop.org/show_bug.cgi?id=91779
 
-            Bug ID: 91804
-           Summary: nouveau kernel drive should not steal fb until after
-                    getting vbios
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #7 from Jeremy Huddleston <jeremyhu-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> ---
+> I'd file a new one
 
-Forked from bug #91779.
+OK.  Forked off to bug #91804 then.  I was just thinking that getting this
+configuration to work might just not be supported, but if you want to keep
+heading down this path, I'm definitely game.
 
-In some configurations, the fb will transition to nouveaufb, but then it will
-fail to initialize.  In such cases, it is not possible to then transition back
-to the previous fb driver.  Various forums suggest that users use nomodeset as
-a workaround for this issue, which works because nouveaufb will error out
-before stealing fb if KMS is disabled.
-
-I suggest that the check for valid vbios be moved before fb is transitioned
-away from the previous driver to allow for a more graceful fallback in
-instances like this.
-
-Here is the kernel logging that results from 'sudo modprobe nouveau
-debug=VBIOS=debug' on such a configuration:
+In this configuration, 'sudo modprobe nouveau debug=VBIOS=debug' results in:
 
 Aug 29 23:19:45 wedge kernel: [  294.071101] [drm] Initialized drm 1.1.0
 20060810
@@ -109,16 +90,19 @@ create 0x80000080, -22
 Aug 29 23:19:46 wedge kernel: [  294.197627] nouveau: probe of 0000:01:00.0
 failed with error -22
 
-The above was with Ubuntu 14.04.3 (Linux wedge 3.13.0-62-generic #102-Ubuntu
-SMP Tue Aug 11 14:29:36 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux) but I also see
-the same issue with Ubuntu 15.10 20150826 snapshot (linux 4.1 based).
+Note that this was done with a slightly older kernel than originally reported
+with, 3.13.0-62-generic from recent Ubuntu 14.04.3.
+
+> /sys/kernel/debug/dri/0/vbios.rom
+
+Excellent, thanks.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1440915962.8D3EA1.12176
-Date: Sun, 30 Aug 2015 06:26:02 +0000
+--1440916312.Bb66C71.13805
+Date: Sun, 30 Aug 2015 06:31:52 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -126,106 +110,29 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau kernel drive should not steal fb until after getting vbios"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91804">91804</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>nouveau kernel drive should not steal fb until after getting vbios
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>jeremyhu&#64;freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Forked from <a class="bz_bug_link 
+            <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="show_bug.cgi?id=91779">bug #91779</a>.
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+              from <span class="vcard"><a class="email" href="mailto:jeremyhu&#64;freedesktop.org" title="Jeremy Huddleston &lt;jeremyhu&#64;freedesktop.org&gt;"> <span class="fn">Jeremy Huddleston</span></a>
+</span></b>
+        <pre><span class="quote">&gt; I'd file a new one</span >
 
-In some configurations, the fb will transition to nouveaufb, but then it will
-fail to initialize.  In such cases, it is not possible to then transition back
-to the previous fb driver.  Various forums suggest that users use nomodeset as
-a workaround for this issue, which works because nouveaufb will error out
-before stealing fb if KMS is disabled.
+OK.  Forked off to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau kernel drive should not steal fb until after getting vbios"
+   href="show_bug.cgi?id=91804">bug #91804</a> then.  I was just thinking that getting this
+configuration to work might just not be supported, but if you want to keep
+heading down this path, I'm definitely game.
 
-I suggest that the check for valid vbios be moved before fb is transitioned
-away from the previous driver to allow for a more graceful fallback in
-instances like this.
-
-Here is the kernel logging that results from 'sudo modprobe nouveau
-debug=VBIOS=debug' on such a configuration:
+In this configuration, 'sudo modprobe nouveau debug=VBIOS=debug' results in:
 
 Aug 29 23:19:45 wedge kernel: [  294.071101] [drm] Initialized drm 1.1.0
 20060810
@@ -276,9 +183,12 @@ create 0x80000080, -22
 Aug 29 23:19:46 wedge kernel: [  294.197627] nouveau: probe of 0000:01:00.0
 failed with error -22
 
-The above was with Ubuntu 14.04.3 (Linux wedge 3.13.0-62-generic #102-Ubuntu
-SMP Tue Aug 11 14:29:36 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux) but I also see
-the same issue with Ubuntu 15.10 20150826 snapshot (linux 4.1 based).</pre>
+Note that this was done with a slightly older kernel than originally reported
+with, 3.13.0-62-generic from recent Ubuntu 14.04.3.
+
+<span class="quote">&gt; /sys/kernel/debug/dri/0/vbios.rom</span >
+
+Excellent, thanks.</pre>
         </div>
       </p>
       <hr>
@@ -290,9 +200,9 @@ the same issue with Ubuntu 15.10 20150826 snapshot (linux 4.1 based).</pre>
     </body>
 </html>
 
---1440915962.8D3EA1.12176--
+--1440916312.Bb66C71.13805--
 
---===============0485505801==
+--===============0832093182==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -302,4 +212,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0485505801==--
+--===============0832093182==--
