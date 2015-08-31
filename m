@@ -1,20 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nv3x libreoffice impress opengl animations not working
-Date: Mon, 31 Aug 2015 12:30:00 -0400
-Message-ID: <CAKb7UvihbT+Uf2h2wA=iLkhuYjmRWM6h+=sk-vagkL4mt7-5xg@mail.gmail.com>
-References: <55DF0C1C.3070303@redhat.com>
- <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
- <55DF4F19.8030708@redhat.com>
- <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
- <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
- <55E021A9.7070700@redhat.com>
- <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q@mail.gmail.com>
- <55E44F79.8000800@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90453] [NVE4] Desktop freezes & PDISP, PFIFO,
+ PGRAPH and PGR errors
+Date: Mon, 31 Aug 2015 16:55:00 +0000
+Message-ID: <bug-90453-8800-1ewV9lX0bQ@http.bugs.freedesktop.org/>
+References: <bug-90453-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0158424074=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55E44F79.8000800-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90453-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -24,111 +17,107 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBBdWcgMzEsIDIwMTUgYXQgODo1OCBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVA
-cmVkaGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPgo+IE9uIDI4LTA4LTE1IDExOjAyLCBJbGlhIE1p
-cmtpbiB3cm90ZToKPj4KPj4gT24gRnJpLCBBdWcgMjgsIDIwMTUgYXQgNDo1NCBBTSwgSGFucyBk
-ZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPj4gd3JvdGU6Cj4+Pgo+Pj4gSGksCj4+Pgo+
-Pj4gT24gMjctMDgtMTUgMjA6MTksIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Cj4+Pj4KPj4+PiBP
-biBUaHUsIEF1ZyAyNywgMjAxNSBhdCAxOjU5IFBNLCBBbGV4IERldWNoZXIgPGFsZXhkZXVjaGVy
-QGdtYWlsLmNvbT4KPj4+PiB3cm90ZToKPj4+Cj4+Pgo+Pj4KPj4+IDxzbmlwPgo+Pj4KPj4+Pj4+
-Pj4gMikgU2luY2UgdGhlIGdscmV0cmFjZSBkb2VzIHdvcmsgb3V0c2lkZSBvZiBsaWJyZW9mZmlj
-ZSBpbXByZXNzLCBJCj4+Pj4+Pj4+IHRoaW5rCj4+Pj4+Pj4+IGl0IG1heSBoYXZlIHNvbWV0aGlu
-ZyB0byBkbyB3aXRoIHRoZSB2aXN1YWwgY2hvc2VuIGJ5IGxpYnJlb2ZmaWNlCj4+Pj4+Pj4+IGlt
-cHJlc3MsCj4+Pj4+Pj4+IGlzIHRoZXJlIGFuIGVhc3kgd2F5IHRvIGZpbmQgb3V0IHdoYXQgdmlz
-dWFsIGxvIGlzIGNob29zaW5nPwo+Pj4+Pj4+Cj4+Pj4+Pj4KPj4+Pj4+Pgo+Pj4+Pj4+Cj4+Pj4+
-Pj4gTm8sIGl0J3Mgbm90IGJlY2F1c2Ugb2YgdGhlIHZpc3VhbC4gSXQgc2VlbXMgdG8gbWUgdGhh
-dCBsaWJyZW9mZmljZQo+Pj4+Pj4+IGNoYW5nZWQgdGhlIGJlaGF2aW9yIG9mIG1hbGxvYyBhbmQg
-Y2FsbG9jLgo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+Pgo+Pj4+Pj4KPj4+Pj4+IEknbSBwcmV0dHkgc3Vy
-ZSB0aGF0IHRoaXMgaXMgbm90IGxpYnJlb2ZmaWNlIGNoYW5naW5nIG1hbGxvYyAvIGNhbGxvYywK
-Pj4+Pj4+IGl0IGxpbmtzIG5vcm1hbGx5IHRvIGxpYmMsIGFuZCB0aGUgc2FtZSBzbGlkZSB0cmFu
-c2l0aW9uIHdvcmtzIGZpbmUKPj4+Pj4+IHdpdGggYW4gbnY4NCBjYXJkIHdoaWNoIGFsc28gaGFz
-IGEgZ2FsbGl1bSBiYXNlZCBtZXNhIGRyaXZlci4KPj4+Pj4+Cj4+Pj4+PiBJIHJlYWxseSBiZWxp
-ZXZlIHRoaXMgaXMgZHVlIHRvIGxpYnJlb2ZmaWNlIGRvaW5nIHNvbWV0aGluZyBvcGVuZ2wKPj4+
-Pj4+IHJlbGF0ZWQgZGlmZmVyZW50bHkgdGhlbiBnbHJldHJhY2UsIGJlIGl0IHRoZSB2aXN1YWwg
-b3Igc29tZXRoaW5nIGVsc2UKPj4+Pj4+IGJhY2sgYnVmZmVyIHJlbGF0ZWQgLi4uCj4+Pj4+Pgo+
-Pj4+Pgo+Pj4+PiBEb2VzIGxpYnJlb2ZmaWNlIHVzZSBsbHZtPyAgSSBoYXZlIHZhZ3VlIHJlY29s
-bGVjdGlvbnMgb2YgdGhlcmUgYmVpbmcKPj4+Pj4gaXNzdWVzIHdpdGggbGx2bSBhbmQgbGlicmVv
-ZmZpY2UgaW4gdGhlIHBhc3QgYmVjYXVzZSByYWRlb25zaSB1c2VzCj4+Pj4+IGxsdm0gYXMgd2Vs
-bC4KPj4+Pgo+Pj4+Cj4+Pj4KPj4+PiBGV0lXIHRoZSBudjMwIGdhbGxpdW0gZHJpdmVyIHdpbGwg
-b25seSB1c2UgbGx2bSBhcyBwYXJ0IG9mICdkcmF3JyB3aGVuCj4+Pj4gZmFsbGluZyBiYWNrIHRv
-IHRoZSBzd3RubCBwYXRoLiBUaGlzIHNob3VsZCBiZSBleHRyZW1lbHkgcmFyZS4gQnV0Cj4+Pj4g
-ZWFzeSBlbm91Z2ggdG8gYnVpbGQgbWVzYSB3aXRoIC0tZGlzYWJsZS1nYWxsaXVtLWxsdm0gdG8g
-ZG91YmxlLWNoZWNrCj4+Pj4gKG9yIHdoYXQgd2FzIHRoZSBlbnYgdmFyPyBEUkFXX1VTRV9MTFZN
-PTAgb3Igc29tZXRoaW5nIGFsb25nIHRob3NlCj4+Pj4gbGluZXMpLgo+Pj4KPj4+Cj4+Pgo+Pj4g
-SSd2ZSB0cmllZCBidWlsZGluZyB3aXRoIC0tZGlzYWJsZS1nYWxsaXVtLWxsdm0sIHRoaXMgZG9l
-cyBub3QgaGVscCwKPj4+IHRoaXMgaXMgbm90IHJlYWxseSBzdXJwcmlzaW5nIHNpbmNlIG9uIEZl
-ZG9yYSBib3RoIGxpYnJlb2ZmaWNlIGFuZAo+Pj4gbWVzYSB1c2UgdGhlIHN5c3RlbSBsbHZtLCBz
-byB0aGVyZSBzaG91bGQgYmUgbm8gcHJvYmxlbXMgd2l0aCB0aGVtCj4+PiBleHBlY3RpbmcgZGlm
-ZmVyZW50IGxsdm0gdmVyc2lvbnMuCj4+Pgo+Pj4gSSd2ZSBkb25lIHNvbWUgZnVydGhlciBkZWJ1
-Z2dpbmcgYWRkaW5nIHNvbWUgZGVidWcgcHJpbnRmLXMgdG8gdGhlCj4+PiB0ZXh0dXJlIGNyZWF0
-aW9uIHBhdGhzIGZvciBudjN4LCB0aGlzIGJpdCBpcyBpbnRlcmVzdGluZywgZ2xyZXRyYWNlCj4+
-PiBkb2VzOgo+Pj4KPj4+IG52MzBfbWlwdHJlZV9mcm9tX2hhbmRsZSAxMzUweDg2MyB1bmlmb3Jt
-X3BpdGNoIDYxNDQgdXNhZ2UgMCBmbGFncyAwCj4+PiBudjMwX21pcHRyZWVfY3JlYXRlIDEzNTB4
-ODYzIHVuaWZvcm1fcGl0Y2ggNTQ0MCB1c2FnZSAwIGZsYWdzIDAgYmluZCAxCj4+PiB0YXJnZXQg
-Mgo+Pj4KPj4+IFNvIGl0IGdldHMgYSB0ZXh0dXJlIGZyb20gYSBoYW5kbGUsIHdoaWNoIEkgYmVs
-aWV2ZSBpcyB0aGUgY2hpbGQtd2luZG93Cj4+PiBpbiB3aGljaCB0aGUgYW5pbWF0aW9uIHdpbGwg
-YmUgc2hvd24sIGFuZCB0aGVuIGNyZWF0ZSBhbm90aGVyIHRleHR1cmUKPj4+IHdpdGggdGhlIHNh
-bWUgZGltZW5zaW9ucyB0byBzZXJ2ZSBhcyBiYWNrIGJ1ZmZlciBJIHByZXN1bWUuCj4+Pgo+Pj4g
-b29pbXByZXNzIGhvd2V2ZXIgZG9lcyB0aGlzOgo+Pj4KPj4+IG52MzBfbWlwdHJlZV9mcm9tX2hh
-bmRsZSAxMzUweDg2MyB1bmlmb3JtX3BpdGNoIDYxNDQgdXNhZ2UgMCBmbGFncyAwCj4+PiBudjMw
-X21pcHRyZWVfY3JlYXRlIDI3MDB4MTcyNiB1bmlmb3JtX3BpdGNoIDEwODE2IHVzYWdlIDAgZmxh
-Z3MgMCBiaW5kIGEKPj4+IHRhcmdldCAyCj4+PiBudjMwX21pcHRyZWVfY3JlYXRlIDI3MDB4MTcy
-NiB1bmlmb3JtX3BpdGNoIDEwODE2IHVzYWdlIDAgZmxhZ3MgMCBiaW5kIDEKPj4+IHRhcmdldCAy
-Cj4+Pgo+Pj4gTm90aWNlIGhvdyBpdCBpcyBjcmVhdGluZyAyIChiYWNrPykgYnVmZmVycyBhbmQg
-dGhleSBhcmUgdHdpY2UgdGhlIHNpemUKPj4+IG9mCj4+PiB0aGUgInNoZWV0IiBhcmVhIG9mIGlt
-cHJlc3MgdG8gd2hpY2ggdGhlIGFuaW1hdGlvbiBnZXRzIHJlbmRlcmVkLgo+Pgo+Pgo+PiBiaW5k
-IGEgPSBydC9zYW1wbGVyIHZpZXcsIGJpbmQgMSA9IGRlcHRoL3N0ZW5jaWwuIEhvd2V2ZXIgbnYz
-eCBkb2Vzbid0Cj4+IGRvIE5QT1QgdGV4dHVyZXMuLi4gc28gdGhvc2Ugc2l6ZXMgYXJlIGEgYml0
-IG9kZC4gUGVyaGFwcyB0aGVyZSdzIHNvbWUKPj4gbG9naWMgdGhhdCBhdHRlbXB0cyB0byByb3Vu
-ZC11cC10by1uZWFyZXN0LVBPVCBzaXplLCBidXQgaW5zdGVhZAo+PiBtdWx0aXBsaWVzIHdpZHRo
-IGJ5IDI/Cj4KPgo+IE9rLCBzb21lIGRlYnVnZ2luZyAvIHBva2luZyBhdCB0aGluZyBmdXJ0aGVy
-IEkgbm93IGtub3cgd2hlcmUgdGhlIG11bHRpcGx5Cj4gYnkgMiBjb21lcyBmcm9tLCB0aGUgcGlw
-ZV9yZXNvdXJjZSAqdG1wbCBwYXNzZWQgaW50byBudjMwX21pcHRyZWVfY3JlYXRlCj4gaGFzIHRl
-bXBsLT5ucl9zYW1wbGVzID0gNCwgYW5kIG52MzBfbWlwdHJlZV9jcmVhdGUgaGFzOgo+Cj4gICAg
-c3dpdGNoICh0bXBsLT5ucl9zYW1wbGVzKSB7Cj4gICAgY2FzZSA0Ogo+ICAgICAgIG10LT5tc19t
-b2RlID0gMHgwMDAwNDAwMDsKPiAgICAgICBtdC0+bXNfeCA9IDE7Cj4gICAgICAgbXQtPm1zX3kg
-PSAxOwo+ICAgICAgIGJyZWFrOwo+ICAgIGNhc2UgMjoKPiAgICAgICBtdC0+bXNfbW9kZSA9IDB4
-MDAwMDMwMDA7Cj4gICAgICAgbXQtPm1zX3ggPSAxOwo+ICAgICAgIG10LT5tc195ID0gMDsKPiAg
-ICAgICBicmVhazsKPiAgICBkZWZhdWx0Ogo+ICAgICAgIG10LT5tc19tb2RlID0gMHgwMDAwMDAw
-MDsKPiAgICAgICBtdC0+bXNfeCA9IDA7Cj4gICAgICAgbXQtPm1zX3kgPSAwOwo+ICAgICAgIGJy
-ZWFrOwo+ICAgIH0KPgo+IFNvIGl0IHNlZW1zIHRoYXQgZ2xyZXRyYWNlIGlzIGRvaW5nIGEgbm9y
-bWFsIHJlbmRlcmluZyB3aGljaCB3b3JrcywKPiB3aGVyZSBhcyBvb2ltcHJlc3MgaXMgZG9pbmcg
-YSA0IHdheSBtc2FhIHJlbmRlcmluZyB3aGljaCBkb2VzIG5vdCB3b3JrLgo+Cj4gSW50ZXJlc3Rp
-bmdseSBlbm91Z2ggbnYzMF9zY3JlZW5fZ2V0X3BhcmFtIHJldHVybnMgMCBmb3IKPiBQSVBFX0NB
-UF9URVhUVVJFX01VTFRJU0FNUExFIGFuZCBmb3IgUElQRV9DQVBfU0FNUExFUl9WSUVXX1RBUkdF
-VAo+Cj4gQW5kIHRoaXMgaGFjazoKPgo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udjMwL252MzBfc2NyZWVuLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bnYzMC9udjMwX3NjcmVlbi5jCj4gQEAgLTMxOSw3ICszMTksNyBAQCBudjMwX3NjcmVlbl9pc19m
-b3JtYXRfc3VwcG9ydGVkKHN0cnVjdCBwaXBlX3NjcmVlbgo+ICpwc2NyZWVuLAo+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVkIHNhbXBsZV9jb3VudCwKPiAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25lZCBiaW5kaW5ncykKPiAgewo+IC0gICBp
-ZiAoc2FtcGxlX2NvdW50ID4gNCkKPiArICAgaWYgKHNhbXBsZV9jb3VudCA+IDApCj4gICAgICAg
-IHJldHVybiBmYWxzZTsKPiAgICAgaWYgKCEoMHgwMDAwMDAxNyAmICgxIDw8IHNhbXBsZV9jb3Vu
-dCkpKQo+ICAgICAgICByZXR1cm4gZmFsc2U7Cj4KPiBGaXhlcyB0aGUgc2xpZGUgYW5pbWF0aW9u
-IG1pc3JlbmRlcmluZyAoYW5kIHNvbWV0aW1lcyBjcmFzaGluZykKPiBpbiBsaWJyZW9mZmljZSBp
-bXByZXNzLgo+Cj4gQXMgc2FpZCBJIHRoaW5rIHRoaXMgaXMgYSBoYWNrLCBJIGN1cnJlbnRseSBk
-byBub3QgdW5kZXJzdGFuZCB0aGluZ3MKPiBnb29kIGVub3VnaCB0byBjb21lIHVwIHdpdGggYSBi
-ZXR0ZXIgZml4Lgo+Cj4gSGludHMgaG93IHRvIGZ1cnRoZXIgaW52ZXN0aWdhdGUgdGhpcyBhcmUg
-YXBwcmVjaWF0ZWQuCgpOb3Qgc3VycHJpc2luZyB0aGF0IG1zIGdldHMgc29tZWhvdyBtZXNzZWQg
-dXAuClBJUEVfQ0FQX1RFWFRVUkVfTVVMVElTQU1QTEUgPT0gQVJCX3RleHR1cmVfbXVsdGlzYW1w
-bGUsIGFrYSBhbGxvd2luZwp0aGUgZXhpc3RlbmNlIG9mIE1TIHRleHR1cmVzIChhcyBvcHBvc2Vk
-IHRvIGp1c3QgcmVuZGVyYnVmZmVycykgYXMKd2VsbCBhcyBzYW1wbGluZyBmcm9tIHRob3NlIHRl
-eHR1cmVzLiBudjMwIGRvZXMgbm90IHN1cHBvcnQgdGhlCmxhdHRlci4gVGhlICJvdGhlciIgd2F5
-IHRvIGRvIE1TIGlzIHRvIGNyZWF0ZSBhIE1TIHZpc3VhbC4gWW91IGNhbiBydW4KZ2xyZXRyYWNl
-IC0tc2FtcGxlcz00IHRvIGdldCB0aGUgc2FtZSBlZmZlY3QuCgpPZiBjb3Vyc2UgSSBkb24ndCBy
-ZWFsbHkgc2VlIGhvdyBNUyBjYW4gd29yayBhdCBhbGwgd2l0aCBudjMwIHNpbmNlIGl0CmRvZXNu
-J3Qgc3VwcG9ydCBhIHJlc29sdmUgc3RlcDoKCiAgIGlmIChpbmZvLnNyYy5yZXNvdXJjZS0+bnJf
-c2FtcGxlcyA+IDEgJiYKICAgICAgIGluZm8uZHN0LnJlc291cmNlLT5ucl9zYW1wbGVzIDw9IDEg
-JiYKICAgICAgICF1dGlsX2Zvcm1hdF9pc19kZXB0aF9vcl9zdGVuY2lsKGluZm8uc3JjLnJlc291
-cmNlLT5mb3JtYXQpICYmCiAgICAgICAhdXRpbF9mb3JtYXRfaXNfcHVyZV9pbnRlZ2VyKGluZm8u
-c3JjLnJlc291cmNlLT5mb3JtYXQpKSB7CiAgICAgIGRlYnVnX3ByaW50ZigibnYzMDogY29sb3Ig
-cmVzb2x2ZSB1bmltcGxlbWVudGVkXG4iKTsKICAgICAgcmV0dXJuOwogICB9CgpQZXJoYXBzIHRo
-ZXJlJ3MgKHN1cHBvc2VkIHRvIGJlKSBzb21lIG1hZ2ljIHdpdGggdGhlIE1TQUEgdmlzdWFsPyBE
-bwp5b3Ugc2VlIHRoYXQgcHJpbnQgaGFwcGVuaW5nPwoKICAtaWxpYQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0158424074==
+Content-Type: multipart/alternative; boundary="1441040100.5D163.11503"; charset="UTF-8"
+
+
+--1441040100.5D163.11503
+Date: Mon, 31 Aug 2015 16:55:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90453
+
+--- Comment #25 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi 
+I also have this bug (screen freeze and mouse still usable) on a my system
+using a nvidia 660ti [NVE4]:
+dmesg gives
+[  112.780941] nouveau E[   PFIFO][0000:03:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+[  112.780947] nouveau E[   PFIFO][0000:03:00.0] PGRAPH engine fault on channel
+8, recovering...
+
+or 
+
+[  294.274092] nouveau E[   PFIFO][0000:03:00.0] write fault at 0x000a002000
+[PTE] from GR/GPC0/PROP_0 on channel 0x007f6ab000 [systemd-logind[426]]
+[  294.274103] nouveau E[   PFIFO][0000:03:00.0] PGRAPH engine fault on channel
+5, recovering...
+
+I might be the same bug as I reported earlier
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1441040100.5D163.11503
+Date: Mon, 31 Aug 2015 16:55:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453#c25">Comment # 25</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] Desktop freezes &amp; PDISP, PFIFO, PGRAPH and PGR errors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90453">bug 90453</a>
+              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+</span></b>
+        <pre>Hi 
+I also have this bug (screen freeze and mouse still usable) on a my system
+using a nvidia 660ti [NVE4]:
+dmesg gives
+[  112.780941] nouveau E[   PFIFO][0000:03:00.0] SCHED_ERROR [ CTXSW_TIMEOUT ]
+[  112.780947] nouveau E[   PFIFO][0000:03:00.0] PGRAPH engine fault on channel
+8, recovering...
+
+or 
+
+[  294.274092] nouveau E[   PFIFO][0000:03:00.0] write fault at 0x000a002000
+[PTE] from GR/GPC0/PROP_0 on channel 0x007f6ab000 [systemd-logind[426]]
+[  294.274103] nouveau E[   PFIFO][0000:03:00.0] PGRAPH engine fault on channel
+5, recovering...
+
+I might be the same bug as I reported earlier
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] read fault error, bisected"
+   href="show_bug.cgi?id=90276">https://bugs.freedesktop.org/show_bug.cgi?id=90276</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441040100.5D163.11503--
+
+--===============0158424074==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0158424074==--
