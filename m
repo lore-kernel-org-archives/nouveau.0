@@ -1,65 +1,113 @@
-From: =?UTF-8?q?Konsta=20H=C3=B6ltt=C3=A4?= <kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [RFC PATCH v2 2/5] don't verify route == owner in nvkm ioctl
-Date: Mon, 31 Aug 2015 14:38:32 +0300
-Message-ID: <1441021115-28537-3-git-send-email-kholtta@nvidia.com>
-References: <1441021115-28537-1-git-send-email-kholtta@nvidia.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: nv3x libreoffice impress opengl animations not working
+Date: Mon, 31 Aug 2015 14:58:33 +0200
+Message-ID: <55E44F79.8000800@redhat.com>
+References: <55DF0C1C.3070303@redhat.com>
+ <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
+ <55DF4F19.8030708@redhat.com>
+ <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
+ <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
+ <55E021A9.7070700@redhat.com>
+ <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1441021115-28537-1-git-send-email-kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-HACK: Some objects we need to access from userspace are first created i=
-n
-kernel, and thus owned by the kernel layer. Bypass a safety mechanism
-that allows to only use userspace-created objects and create new ones
-(for userspace). The objects do not span across processes but are still
-owned by the same client.
-
-This will need to be fixed in some proper way. Will these objects be
-managed by userspace at some point?
-
-Signed-off-by: Konsta H=C3=B6ltt=C3=A4 <kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drm/nouveau/nvkm/core/ioctl.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drm/nouveau/nvkm/core/ioctl.c b/drm/nouveau/nvkm/core/ioct=
-l.c
-index 4459ff5..30164c7 100644
---- a/drm/nouveau/nvkm/core/ioctl.c
-+++ b/drm/nouveau/nvkm/core/ioctl.c
-@@ -474,18 +474,23 @@ nvkm_ioctl_path(struct nvkm_handle *parent, u32 t=
-ype, u32 nr, u32 *path,
- 			nv_debug(object, "handle 0x%08x not found\n", path[nr]);
- 			return -ENOENT;
- 		}
- 		nvkm_namedb_put(handle);
- 		parent =3D handle;
- 	}
-=20
- 	if (owner !=3D NVIF_IOCTL_V0_OWNER_ANY && owner !=3D handle->route) {
--		nv_ioctl(object, "object route !=3D owner\n");
--		return -EACCES;
-+		nv_ioctl(object, "object route !=3D owner: route =3D 0x%x, owner =3D=
- 0x$%x\n",
-+				handle->route, owner);
-+		/* return -EACCES; */
-+
-+		/* continue anyway - this is required for calling objects
-+		 * created in the kernel for this client from userspace, such
-+		 * as the channel fifo object or its gr obj. */
- 	}
- 	*route =3D handle->route;
- 	*token =3D handle->token;
-=20
- 	if (ret =3D -EINVAL, type < ARRAY_SIZE(nvkm_ioctl_v0)) {
- 		if (nvkm_ioctl_v0[type].version =3D=3D 0)
- 			ret =3D nvkm_ioctl_v0[type].func(handle, data, size);
- 	}
---=20
-2.1.4
+SGksCgpPbiAyOC0wOC0xNSAxMTowMiwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gRnJpLCBBdWcg
+MjgsIDIwMTUgYXQgNDo1NCBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4g
+d3JvdGU6Cj4+IEhpLAo+Pgo+PiBPbiAyNy0wOC0xNSAyMDoxOSwgSWxpYSBNaXJraW4gd3JvdGU6
+Cj4+Pgo+Pj4gT24gVGh1LCBBdWcgMjcsIDIwMTUgYXQgMTo1OSBQTSwgQWxleCBEZXVjaGVyIDxh
+bGV4ZGV1Y2hlckBnbWFpbC5jb20+Cj4+PiB3cm90ZToKPj4KPj4KPj4gPHNuaXA+Cj4+Cj4+Pj4+
+Pj4gMikgU2luY2UgdGhlIGdscmV0cmFjZSBkb2VzIHdvcmsgb3V0c2lkZSBvZiBsaWJyZW9mZmlj
+ZSBpbXByZXNzLCBJCj4+Pj4+Pj4gdGhpbmsKPj4+Pj4+PiBpdCBtYXkgaGF2ZSBzb21ldGhpbmcg
+dG8gZG8gd2l0aCB0aGUgdmlzdWFsIGNob3NlbiBieSBsaWJyZW9mZmljZQo+Pj4+Pj4+IGltcHJl
+c3MsCj4+Pj4+Pj4gaXMgdGhlcmUgYW4gZWFzeSB3YXkgdG8gZmluZCBvdXQgd2hhdCB2aXN1YWwg
+bG8gaXMgY2hvb3Npbmc/Cj4+Pj4+Pgo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+PiBObywgaXQncyBub3Qg
+YmVjYXVzZSBvZiB0aGUgdmlzdWFsLiBJdCBzZWVtcyB0byBtZSB0aGF0IGxpYnJlb2ZmaWNlCj4+
+Pj4+PiBjaGFuZ2VkIHRoZSBiZWhhdmlvciBvZiBtYWxsb2MgYW5kIGNhbGxvYy4KPj4+Pj4KPj4+
+Pj4KPj4+Pj4KPj4+Pj4gSSdtIHByZXR0eSBzdXJlIHRoYXQgdGhpcyBpcyBub3QgbGlicmVvZmZp
+Y2UgY2hhbmdpbmcgbWFsbG9jIC8gY2FsbG9jLAo+Pj4+PiBpdCBsaW5rcyBub3JtYWxseSB0byBs
+aWJjLCBhbmQgdGhlIHNhbWUgc2xpZGUgdHJhbnNpdGlvbiB3b3JrcyBmaW5lCj4+Pj4+IHdpdGgg
+YW4gbnY4NCBjYXJkIHdoaWNoIGFsc28gaGFzIGEgZ2FsbGl1bSBiYXNlZCBtZXNhIGRyaXZlci4K
+Pj4+Pj4KPj4+Pj4gSSByZWFsbHkgYmVsaWV2ZSB0aGlzIGlzIGR1ZSB0byBsaWJyZW9mZmljZSBk
+b2luZyBzb21ldGhpbmcgb3BlbmdsCj4+Pj4+IHJlbGF0ZWQgZGlmZmVyZW50bHkgdGhlbiBnbHJl
+dHJhY2UsIGJlIGl0IHRoZSB2aXN1YWwgb3Igc29tZXRoaW5nIGVsc2UKPj4+Pj4gYmFjayBidWZm
+ZXIgcmVsYXRlZCAuLi4KPj4+Pj4KPj4+Pgo+Pj4+IERvZXMgbGlicmVvZmZpY2UgdXNlIGxsdm0/
+ICBJIGhhdmUgdmFndWUgcmVjb2xsZWN0aW9ucyBvZiB0aGVyZSBiZWluZwo+Pj4+IGlzc3VlcyB3
+aXRoIGxsdm0gYW5kIGxpYnJlb2ZmaWNlIGluIHRoZSBwYXN0IGJlY2F1c2UgcmFkZW9uc2kgdXNl
+cwo+Pj4+IGxsdm0gYXMgd2VsbC4KPj4+Cj4+Pgo+Pj4gRldJVyB0aGUgbnYzMCBnYWxsaXVtIGRy
+aXZlciB3aWxsIG9ubHkgdXNlIGxsdm0gYXMgcGFydCBvZiAnZHJhdycgd2hlbgo+Pj4gZmFsbGlu
+ZyBiYWNrIHRvIHRoZSBzd3RubCBwYXRoLiBUaGlzIHNob3VsZCBiZSBleHRyZW1lbHkgcmFyZS4g
+QnV0Cj4+PiBlYXN5IGVub3VnaCB0byBidWlsZCBtZXNhIHdpdGggLS1kaXNhYmxlLWdhbGxpdW0t
+bGx2bSB0byBkb3VibGUtY2hlY2sKPj4+IChvciB3aGF0IHdhcyB0aGUgZW52IHZhcj8gRFJBV19V
+U0VfTExWTT0wIG9yIHNvbWV0aGluZyBhbG9uZyB0aG9zZQo+Pj4gbGluZXMpLgo+Pgo+Pgo+PiBJ
+J3ZlIHRyaWVkIGJ1aWxkaW5nIHdpdGggLS1kaXNhYmxlLWdhbGxpdW0tbGx2bSwgdGhpcyBkb2Vz
+IG5vdCBoZWxwLAo+PiB0aGlzIGlzIG5vdCByZWFsbHkgc3VycHJpc2luZyBzaW5jZSBvbiBGZWRv
+cmEgYm90aCBsaWJyZW9mZmljZSBhbmQKPj4gbWVzYSB1c2UgdGhlIHN5c3RlbSBsbHZtLCBzbyB0
+aGVyZSBzaG91bGQgYmUgbm8gcHJvYmxlbXMgd2l0aCB0aGVtCj4+IGV4cGVjdGluZyBkaWZmZXJl
+bnQgbGx2bSB2ZXJzaW9ucy4KPj4KPj4gSSd2ZSBkb25lIHNvbWUgZnVydGhlciBkZWJ1Z2dpbmcg
+YWRkaW5nIHNvbWUgZGVidWcgcHJpbnRmLXMgdG8gdGhlCj4+IHRleHR1cmUgY3JlYXRpb24gcGF0
+aHMgZm9yIG52M3gsIHRoaXMgYml0IGlzIGludGVyZXN0aW5nLCBnbHJldHJhY2UKPj4gZG9lczoK
+Pj4KPj4gbnYzMF9taXB0cmVlX2Zyb21faGFuZGxlIDEzNTB4ODYzIHVuaWZvcm1fcGl0Y2ggNjE0
+NCB1c2FnZSAwIGZsYWdzIDAKPj4gbnYzMF9taXB0cmVlX2NyZWF0ZSAxMzUweDg2MyB1bmlmb3Jt
+X3BpdGNoIDU0NDAgdXNhZ2UgMCBmbGFncyAwIGJpbmQgMQo+PiB0YXJnZXQgMgo+Pgo+PiBTbyBp
+dCBnZXRzIGEgdGV4dHVyZSBmcm9tIGEgaGFuZGxlLCB3aGljaCBJIGJlbGlldmUgaXMgdGhlIGNo
+aWxkLXdpbmRvdwo+PiBpbiB3aGljaCB0aGUgYW5pbWF0aW9uIHdpbGwgYmUgc2hvd24sIGFuZCB0
+aGVuIGNyZWF0ZSBhbm90aGVyIHRleHR1cmUKPj4gd2l0aCB0aGUgc2FtZSBkaW1lbnNpb25zIHRv
+IHNlcnZlIGFzIGJhY2sgYnVmZmVyIEkgcHJlc3VtZS4KPj4KPj4gb29pbXByZXNzIGhvd2V2ZXIg
+ZG9lcyB0aGlzOgo+Pgo+PiBudjMwX21pcHRyZWVfZnJvbV9oYW5kbGUgMTM1MHg4NjMgdW5pZm9y
+bV9waXRjaCA2MTQ0IHVzYWdlIDAgZmxhZ3MgMAo+PiBudjMwX21pcHRyZWVfY3JlYXRlIDI3MDB4
+MTcyNiB1bmlmb3JtX3BpdGNoIDEwODE2IHVzYWdlIDAgZmxhZ3MgMCBiaW5kIGEKPj4gdGFyZ2V0
+IDIKPj4gbnYzMF9taXB0cmVlX2NyZWF0ZSAyNzAweDE3MjYgdW5pZm9ybV9waXRjaCAxMDgxNiB1
+c2FnZSAwIGZsYWdzIDAgYmluZCAxCj4+IHRhcmdldCAyCj4+Cj4+IE5vdGljZSBob3cgaXQgaXMg
+Y3JlYXRpbmcgMiAoYmFjaz8pIGJ1ZmZlcnMgYW5kIHRoZXkgYXJlIHR3aWNlIHRoZSBzaXplIG9m
+Cj4+IHRoZSAic2hlZXQiIGFyZWEgb2YgaW1wcmVzcyB0byB3aGljaCB0aGUgYW5pbWF0aW9uIGdl
+dHMgcmVuZGVyZWQuCj4KPiBiaW5kIGEgPSBydC9zYW1wbGVyIHZpZXcsIGJpbmQgMSA9IGRlcHRo
+L3N0ZW5jaWwuIEhvd2V2ZXIgbnYzeCBkb2Vzbid0Cj4gZG8gTlBPVCB0ZXh0dXJlcy4uLiBzbyB0
+aG9zZSBzaXplcyBhcmUgYSBiaXQgb2RkLiBQZXJoYXBzIHRoZXJlJ3Mgc29tZQo+IGxvZ2ljIHRo
+YXQgYXR0ZW1wdHMgdG8gcm91bmQtdXAtdG8tbmVhcmVzdC1QT1Qgc2l6ZSwgYnV0IGluc3RlYWQK
+PiBtdWx0aXBsaWVzIHdpZHRoIGJ5IDI/CgpPaywgc29tZSBkZWJ1Z2dpbmcgLyBwb2tpbmcgYXQg
+dGhpbmcgZnVydGhlciBJIG5vdyBrbm93IHdoZXJlIHRoZSBtdWx0aXBseQpieSAyIGNvbWVzIGZy
+b20sIHRoZSBwaXBlX3Jlc291cmNlICp0bXBsIHBhc3NlZCBpbnRvIG52MzBfbWlwdHJlZV9jcmVh
+dGUKaGFzIHRlbXBsLT5ucl9zYW1wbGVzID0gNCwgYW5kIG52MzBfbWlwdHJlZV9jcmVhdGUgaGFz
+OgoKICAgIHN3aXRjaCAodG1wbC0+bnJfc2FtcGxlcykgewogICAgY2FzZSA0OgogICAgICAgbXQt
+Pm1zX21vZGUgPSAweDAwMDA0MDAwOwogICAgICAgbXQtPm1zX3ggPSAxOwogICAgICAgbXQtPm1z
+X3kgPSAxOwogICAgICAgYnJlYWs7CiAgICBjYXNlIDI6CiAgICAgICBtdC0+bXNfbW9kZSA9IDB4
+MDAwMDMwMDA7CiAgICAgICBtdC0+bXNfeCA9IDE7CiAgICAgICBtdC0+bXNfeSA9IDA7CiAgICAg
+ICBicmVhazsKICAgIGRlZmF1bHQ6CiAgICAgICBtdC0+bXNfbW9kZSA9IDB4MDAwMDAwMDA7CiAg
+ICAgICBtdC0+bXNfeCA9IDA7CiAgICAgICBtdC0+bXNfeSA9IDA7CiAgICAgICBicmVhazsKICAg
+IH0KClNvIGl0IHNlZW1zIHRoYXQgZ2xyZXRyYWNlIGlzIGRvaW5nIGEgbm9ybWFsIHJlbmRlcmlu
+ZyB3aGljaCB3b3JrcywKd2hlcmUgYXMgb29pbXByZXNzIGlzIGRvaW5nIGEgNCB3YXkgbXNhYSBy
+ZW5kZXJpbmcgd2hpY2ggZG9lcyBub3Qgd29yay4KCkludGVyZXN0aW5nbHkgZW5vdWdoIG52MzBf
+c2NyZWVuX2dldF9wYXJhbSByZXR1cm5zIDAgZm9yClBJUEVfQ0FQX1RFWFRVUkVfTVVMVElTQU1Q
+TEUgYW5kIGZvciBQSVBFX0NBUF9TQU1QTEVSX1ZJRVdfVEFSR0VUCgpBbmQgdGhpcyBoYWNrOgoK
+LS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYworKysg
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jCkBAIC0zMTks
+NyArMzE5LDcgQEAgbnYzMF9zY3JlZW5faXNfZm9ybWF0X3N1cHBvcnRlZChzdHJ1Y3QgcGlwZV9z
+Y3JlZW4gKnBzY3JlZW4sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25l
+ZCBzYW1wbGVfY291bnQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1bnNpZ25l
+ZCBiaW5kaW5ncykKICB7Ci0gICBpZiAoc2FtcGxlX2NvdW50ID4gNCkKKyAgIGlmIChzYW1wbGVf
+Y291bnQgPiAwKQogICAgICAgIHJldHVybiBmYWxzZTsKICAgICBpZiAoISgweDAwMDAwMDE3ICYg
+KDEgPDwgc2FtcGxlX2NvdW50KSkpCiAgICAgICAgcmV0dXJuIGZhbHNlOwoKRml4ZXMgdGhlIHNs
+aWRlIGFuaW1hdGlvbiBtaXNyZW5kZXJpbmcgKGFuZCBzb21ldGltZXMgY3Jhc2hpbmcpCmluIGxp
+YnJlb2ZmaWNlIGltcHJlc3MuCgpBcyBzYWlkIEkgdGhpbmsgdGhpcyBpcyBhIGhhY2ssIEkgY3Vy
+cmVudGx5IGRvIG5vdCB1bmRlcnN0YW5kIHRoaW5ncwpnb29kIGVub3VnaCB0byBjb21lIHVwIHdp
+dGggYSBiZXR0ZXIgZml4LgoKSGludHMgaG93IHRvIGZ1cnRoZXIgaW52ZXN0aWdhdGUgdGhpcyBh
+cmUgYXBwcmVjaWF0ZWQuCgpSZWdhcmRzLAoKSGFucwpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
