@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] gr/nv04: fix big endian setting on gr context
-Date: Mon, 31 Aug 2015 22:50:28 -0400
-Message-ID: <1441075828-14544-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90932] gm107 font glitches with kernel 4.1rc
+Date: Tue, 01 Sep 2015 11:45:15 +0000
+Message-ID: <bug-90932-8800-TcZ6WKISMC@http.bugs.freedesktop.org/>
+References: <bug-90932-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2133090762=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90932-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,24 +19,69 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QnJva2VuIHNpbmNlICJncjogY29udmVydCB1c2VyIGNsYXNzZXMgdG8gbmV3LXN0eWxlIG52a21f
-b2JqZWN0IgoKVGVzdGVkIG9uIGEgUFBDNjQgRzUgKyBOVjM0CgpTaWduZWQtb2ZmLWJ5OiBJbGlh
-IE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9lbmdp
-bmUvZ3IvbnYwNC5jIHwgNiArKystLS0KIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyks
-IDMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3Iv
-bnYwNC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZ3IvbnYwNC5jCmluZGV4IDQyNmJhMDAu
-Ljg1YzViN2YgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2dyL252MDQuYwor
-KysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9nci9udjA0LmMKQEAgLTEwNDgsMTEgKzEwNDgs
-MTEgQEAgbnYwNF9ncl9vYmplY3RfYmluZChzdHJ1Y3QgbnZrbV9vYmplY3QgKm9iamVjdCwgc3Ry
-dWN0IG52a21fZ3B1b2JqICpwYXJlbnQsCiAJaWYgKHJldCA9PSAwKSB7CiAJCW52a21fa21hcCgq
-cGdwdW9iaik7CiAJCW52a21fd28zMigqcGdwdW9iaiwgMHgwMCwgb2JqZWN0LT5vY2xhc3MpOwot
-CQludmttX3dvMzIoKnBncHVvYmosIDB4MDQsIDB4MDAwMDAwMDApOwotCQludmttX3dvMzIoKnBn
-cHVvYmosIDB4MDgsIDB4MDAwMDAwMDApOwogI2lmZGVmIF9fQklHX0VORElBTgotCQludmttX21v
-MzIoKnBncHVvYmosIDB4MDgsIDB4MDAwODAwMDAsIDB4MDAwODAwMDApOworCQludmttX21vMzIo
-KnBncHVvYmosIDB4MDAsIDB4MDAwODAwMDAsIDB4MDAwODAwMDApOwogI2VuZGlmCisJCW52a21f
-d28zMigqcGdwdW9iaiwgMHgwNCwgMHgwMDAwMDAwMCk7CisJCW52a21fd28zMigqcGdwdW9iaiwg
-MHgwOCwgMHgwMDAwMDAwMCk7CiAJCW52a21fd28zMigqcGdwdW9iaiwgMHgwYywgMHgwMDAwMDAw
-MCk7CiAJCW52a21fZG9uZSgqcGdwdW9iaik7CiAJfQotLSAKMi40LjYKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============2133090762==
+Content-Type: multipart/alternative; boundary="1441107915.DD2B1.4768"; charset="UTF-8"
+
+
+--1441107915.DD2B1.4768
+Date: Tue, 1 Sep 2015 11:45:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90932
+
+--- Comment #17 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
+Still present on 4.2. Are there any plans on how to proceed?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1441107915.DD2B1.4768
+Date: Tue, 1 Sep 2015 11:45:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932#c17">Comment # 17</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - gm107 font glitches with kernel 4.1rc"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90932">bug 90932</a>
+              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
+</span></b>
+        <pre>Still present on 4.2. Are there any plans on how to proceed?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441107915.DD2B1.4768--
+
+--===============2133090762==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============2133090762==--
