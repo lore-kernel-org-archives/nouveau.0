@@ -1,13 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86537] [NV96] Unable to handle page request from
- nv50_crtc_(prepare, disable) on dual Nvidia setup
-Date: Wed, 02 Sep 2015 01:16:39 +0000
-Message-ID: <bug-86537-8800-e75sVSEEkg@http.bugs.freedesktop.org/>
-References: <bug-86537-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: nv3x libreoffice impress opengl animations not working
+Date: Wed, 2 Sep 2015 11:48:15 +0200
+Message-ID: <55E6C5DF.6010100@redhat.com>
+References: <55DF0C1C.3070303@redhat.com>
+ <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
+ <55DF4F19.8030708@redhat.com>
+ <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
+ <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
+ <55E021A9.7070700@redhat.com>
+ <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q@mail.gmail.com>
+ <55E44F79.8000800@redhat.com>
+ <CAKb7UvihbT+Uf2h2wA=iLkhuYjmRWM6h+=sk-vagkL4mt7-5xg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1315772980=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvihbT+Uf2h2wA=iLkhuYjmRWM6h+=sk-vagkL4mt7-5xg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,111 +25,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1315772980==
-Content-Type: multipart/alternative; boundary="1441156599.D763b21.22247"; charset="UTF-8"
-
-
---1441156599.D763b21.22247
-Date: Wed, 2 Sep 2015 01:16:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86537
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #118038|0                           |1
-        is obsolete|                            |
-
---- Comment #10 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 118042
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118042&action=edit
-Enable EXT_TAG if hardware allows it
-
-Apparently enabling EXT_TAG, as the hardware supports it, is enough to fix the
-bug. So apparently, bits 5 and 6 can only be enabled if EXT_TAG is also
-enabled?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1441156599.D763b21.22247
-Date: Wed, 2 Sep 2015 01:16:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #118038 is obsolete</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118042" name="attach_118042" title="Enable EXT_TAG if hardware allows it">attachment 118042</a> <a href="attachment.cgi?id=118042&amp;action=edit" title="Enable EXT_TAG if hardware allows it">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=86537&amp;attachment=118042'>[review]</a>
-Enable EXT_TAG if hardware allows it
-
-Apparently enabling EXT_TAG, as the hardware supports it, is enough to fix the
-bug. So apparently, bits 5 and 6 can only be enabled if EXT_TAG is also
-enabled?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441156599.D763b21.22247--
-
---===============1315772980==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1315772980==--
+SGkgSWxpYQoKT24gMzEtMDgtMTUgMTg6MzAsIElsaWEgTWlya2luIHdyb3RlOgo+IE9uIE1vbiwg
+QXVnIDMxLCAyMDE1IGF0IDg6NTggQU0sIEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5j
+b20+IHdyb3RlOgoKPHNuaXA+Cgo+PiBJbnRlcmVzdGluZ2x5IGVub3VnaCBudjMwX3NjcmVlbl9n
+ZXRfcGFyYW0gcmV0dXJucyAwIGZvcgo+PiBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFIGFu
+ZCBmb3IgUElQRV9DQVBfU0FNUExFUl9WSUVXX1RBUkdFVAo+Pgo+PiBBbmQgdGhpcyBoYWNrOgo+
+Pgo+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5j
+Cj4+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMK
+Pj4gQEAgLTMxOSw3ICszMTksNyBAQCBudjMwX3NjcmVlbl9pc19mb3JtYXRfc3VwcG9ydGVkKHN0
+cnVjdCBwaXBlX3NjcmVlbgo+PiAqcHNjcmVlbiwKPj4gICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHVuc2lnbmVkIHNhbXBsZV9jb3VudCwKPj4gICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIHVuc2lnbmVkIGJpbmRpbmdzKQo+PiAgIHsKPj4gLSAgIGlmIChzYW1wbGVf
+Y291bnQgPiA0KQo+PiArICAgaWYgKHNhbXBsZV9jb3VudCA+IDApCj4+ICAgICAgICAgcmV0dXJu
+IGZhbHNlOwo+PiAgICAgIGlmICghKDB4MDAwMDAwMTcgJiAoMSA8PCBzYW1wbGVfY291bnQpKSkK
+Pj4gICAgICAgICByZXR1cm4gZmFsc2U7Cj4+Cj4+IEZpeGVzIHRoZSBzbGlkZSBhbmltYXRpb24g
+bWlzcmVuZGVyaW5nIChhbmQgc29tZXRpbWVzIGNyYXNoaW5nKQo+PiBpbiBsaWJyZW9mZmljZSBp
+bXByZXNzLgo+Pgo+PiBBcyBzYWlkIEkgdGhpbmsgdGhpcyBpcyBhIGhhY2ssIEkgY3VycmVudGx5
+IGRvIG5vdCB1bmRlcnN0YW5kIHRoaW5ncwo+PiBnb29kIGVub3VnaCB0byBjb21lIHVwIHdpdGgg
+YSBiZXR0ZXIgZml4Lgo+Pgo+PiBIaW50cyBob3cgdG8gZnVydGhlciBpbnZlc3RpZ2F0ZSB0aGlz
+IGFyZSBhcHByZWNpYXRlZC4KPgo+IE5vdCBzdXJwcmlzaW5nIHRoYXQgbXMgZ2V0cyBzb21laG93
+IG1lc3NlZCB1cC4KPiBQSVBFX0NBUF9URVhUVVJFX01VTFRJU0FNUExFID09IEFSQl90ZXh0dXJl
+X211bHRpc2FtcGxlLCBha2EgYWxsb3dpbmcKPiB0aGUgZXhpc3RlbmNlIG9mIE1TIHRleHR1cmVz
+IChhcyBvcHBvc2VkIHRvIGp1c3QgcmVuZGVyYnVmZmVycykgYXMKPiB3ZWxsIGFzIHNhbXBsaW5n
+IGZyb20gdGhvc2UgdGV4dHVyZXMuIG52MzAgZG9lcyBub3Qgc3VwcG9ydCB0aGUKPiBsYXR0ZXIu
+IFRoZSAib3RoZXIiIHdheSB0byBkbyBNUyBpcyB0byBjcmVhdGUgYSBNUyB2aXN1YWwuIFlvdSBj
+YW4gcnVuCj4gZ2xyZXRyYWNlIC0tc2FtcGxlcz00IHRvIGdldCB0aGUgc2FtZSBlZmZlY3QuCj4K
+PiBPZiBjb3Vyc2UgSSBkb24ndCByZWFsbHkgc2VlIGhvdyBNUyBjYW4gd29yayBhdCBhbGwgd2l0
+aCBudjMwIHNpbmNlIGl0Cj4gZG9lc24ndCBzdXBwb3J0IGEgcmVzb2x2ZSBzdGVwOgo+Cj4gICAg
+IGlmIChpbmZvLnNyYy5yZXNvdXJjZS0+bnJfc2FtcGxlcyA+IDEgJiYKPiAgICAgICAgIGluZm8u
+ZHN0LnJlc291cmNlLT5ucl9zYW1wbGVzIDw9IDEgJiYKPiAgICAgICAgICF1dGlsX2Zvcm1hdF9p
+c19kZXB0aF9vcl9zdGVuY2lsKGluZm8uc3JjLnJlc291cmNlLT5mb3JtYXQpICYmCj4gICAgICAg
+ICAhdXRpbF9mb3JtYXRfaXNfcHVyZV9pbnRlZ2VyKGluZm8uc3JjLnJlc291cmNlLT5mb3JtYXQp
+KSB7Cj4gICAgICAgIGRlYnVnX3ByaW50ZigibnYzMDogY29sb3IgcmVzb2x2ZSB1bmltcGxlbWVu
+dGVkXG4iKTsKPiAgICAgICAgcmV0dXJuOwo+ICAgICB9Cj4KPiBQZXJoYXBzIHRoZXJlJ3MgKHN1
+cHBvc2VkIHRvIGJlKSBzb21lIG1hZ2ljIHdpdGggdGhlIE1TQUEgdmlzdWFsPyBEbwo+IHlvdSBz
+ZWUgdGhhdCBwcmludCBoYXBwZW5pbmc/CgpZZXMgSSBzZWUgdGhhdCBwcmludCBoYXBwZW5pbmcg
+YW5kIHRoYXQgZXhwbGFpbnMgdGhlIG1pc3JlbmRlcmluZyBJJ20Kc2VlaW5nIHByZXR0eSB3ZWxs
+LCBpdCBpcyBub3QgbWlzcmVuZGVyaW5nIGF0IGFsbCwgaXQgaXMganVzdCByYW5kb20KZGF0YSBm
+cm9tIHRoZSB2aWRlbyBtZW0uCgpJJ3ZlIGhhZCBhIHF1aWNrIHRhbGsgYWJvdXQgdGhpcyB3aXRo
+IEJlbiwgaGUgc3VnZ2VzdGVkIHVzaW5nCnRoZSBTQ0FMRURfSU1BR0VfRlJPTV9NRU1PUlkgb2Jq
+ZWN0IGNsYXNzLCBhcyB0aGF0IGlzIHdoYXQgdGhlIGJsb2IKaXMgZG9pbmcuCgpJJ3ZlIGRvbmUg
+c29tZSBkaWdnaW5nIHRocm91Z2ggdGhlIGNvZGUgYW5kIHRoaXMgdHJhbnNsYXRlcyB0byB0aGUK
+InNmaW0iIG9iamVjdCBpbiB0aGUgZ2FsbGl1bSBudjMwIGNvZGUuIEkgd2FzIHdvbmRlcmluZyBp
+ZiBJIGNhbm5vdApqdXN0IHNpbXBsZSBjYWxsIG52MzBfdHJhbnNmZXJfcmVjdCB3aXRoIHRoZSBy
+aWdodCBwYXJhbWV0ZXJzIGFuZApsZXQgaXQgc29ydCB0aGUgYmxpdCBvdXQgPwoKUmVnYXJkcywK
+CkhhbnMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
+dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
+c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
