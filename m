@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 86537] [NV96] Unable to handle page request from
  nv50_crtc_(prepare, disable) on dual Nvidia setup
-Date: Tue, 01 Sep 2015 21:50:36 +0000
-Message-ID: <bug-86537-8800-87ioEmoQOu@http.bugs.freedesktop.org/>
+Date: Wed, 02 Sep 2015 01:16:39 +0000
+Message-ID: <bug-86537-8800-e75sVSEEkg@http.bugs.freedesktop.org/>
 References: <bug-86537-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0651169049=="
+Content-Type: multipart/mixed; boundary="===============1315772980=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-86537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0651169049==
-Content-Type: multipart/alternative; boundary="1441144235.FF7d1.13633"; charset="UTF-8"
+--===============1315772980==
+Content-Type: multipart/alternative; boundary="1441156599.D763b21.22247"; charset="UTF-8"
 
 
---1441144235.FF7d1.13633
-Date: Tue, 1 Sep 2015 21:50:35 +0000
+--1441156599.D763b21.22247
+Date: Wed, 2 Sep 2015 01:16:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=86537
 
---- Comment #9 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Created attachment 118038
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118038&action=edit
-Disable bits 5 and 6 of 0x8841c
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
 
-The extremely hacky attached patch gets the laptop into a working state: being
-able to load Nouveau and X properly, switch between cards, and power down/up
-the inactive card.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #118038|0                           |1
+        is obsolete|                            |
+
+--- Comment #10 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+Created attachment 118042
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118042&action=edit
+Enable EXT_TAG if hardware allows it
+
+Apparently enabling EXT_TAG, as the hardware supports it, is enough to fix the
+bug. So apparently, bits 5 and 6 can only be enabled if EXT_TAG is also
+enabled?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1441144235.FF7d1.13633
-Date: Tue, 1 Sep 2015 21:50:35 +0000
+--1441156599.D763b21.22247
+Date: Wed, 2 Sep 2015 01:16:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,25 +61,46 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #118038 is obsolete</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_REOPENED "
    title="REOPENED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
               from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118038" name="attach_118038" title="Disable bits 5 and 6 of 0x8841c">attachment 118038</a> <a href="attachment.cgi?id=118038&amp;action=edit" title="Disable bits 5 and 6 of 0x8841c">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=86537&amp;attachment=118038'>[review]</a>
-Disable bits 5 and 6 of 0x8841c
+        <pre>Created <span class=""><a href="attachment.cgi?id=118042" name="attach_118042" title="Enable EXT_TAG if hardware allows it">attachment 118042</a> <a href="attachment.cgi?id=118042&amp;action=edit" title="Enable EXT_TAG if hardware allows it">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=86537&amp;attachment=118042'>[review]</a>
+Enable EXT_TAG if hardware allows it
 
-The extremely hacky attached patch gets the laptop into a working state: being
-able to load Nouveau and X properly, switch between cards, and power down/up
-the inactive card.</pre>
+Apparently enabling EXT_TAG, as the hardware supports it, is enough to fix the
+bug. So apparently, bits 5 and 6 can only be enabled if EXT_TAG is also
+enabled?</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +112,9 @@ the inactive card.</pre>
     </body>
 </html>
 
---1441144235.FF7d1.13633--
+--1441156599.D763b21.22247--
 
---===============0651169049==
+--===============1315772980==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +124,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0651169049==--
+--===============1315772980==--
