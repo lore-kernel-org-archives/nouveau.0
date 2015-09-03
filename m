@@ -1,94 +1,47 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH v2 3/4] ltc/gf100: add flush/invalidate functions
-Date: Thu, 3 Sep 2015 17:48:15 +0900
-Message-ID: <1441270096-5047-4-git-send-email-acourbot@nvidia.com>
-References: <1441270096-5047-1-git-send-email-acourbot@nvidia.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [Nouveau] [RFC PATCH v2 1/5] notify channel errors to userspace
+Date: Thu, 3 Sep 2015 18:01:11 +0900
+Message-ID: <CAAVeFuKcZcw9xv2ak0K3b_pAkoN0+dpwDyK12qmyW9o6fEO5mg@mail.gmail.com>
+References: <1441021115-28537-1-git-send-email-kholtta@nvidia.com> <1441021115-28537-2-git-send-email-kholtta@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1441270096-5047-1-git-send-email-acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <1441021115-28537-2-git-send-email-kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: =?UTF-8?B?S29uc3RhIEjDtmx0dMOk?= <kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-QWxsb3cgY2xpZW50cyB0byBtYW51YWxseSBmbHVzaCBhbmQgaW52YWxpZGF0ZSBMMi4gVGhpcyB3
-aWxsIGJlIHVzZWZ1bApmb3IgVGVncmEgc3lzdGVtcyBmb3Igd2hpY2ggd2Ugd2FudCB0byB3cml0
-ZSBpbnN0bWVtIHVzaW5nIHRoZSBDUFUuCgpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmUgQ291cmJv
-dCA8YWNvdXJib3RAbnZpZGlhLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3Vi
-ZGV2L2x0Yy5oIHwgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dmMTAwLmMgICB8
-IDMyICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrCiBkcm0vbm91dmVhdS9udmttL3N1
-YmRldi9sdGMvZ2sxMDQuYyAgIHwgIDIgKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9n
-bTEwNy5jICAgfCAgMiArKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL3ByaXYuaCAgICB8
-ICAyICsrCiA1IGZpbGVzIGNoYW5nZWQsIDM5IGluc2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9k
-cm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2x0Yy5oIGIvZHJtL25vdXZlYXUvaW5jbHVk
-ZS9udmttL3N1YmRldi9sdGMuaAppbmRleCA1NDY0ZmNmNDgyZjEuLjNkNGRiYmY5YWFiMyAxMDA2
-NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9sdGMuaAorKysgYi9kcm0v
-bm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2x0Yy5oCkBAIC0zNSw1ICszNSw2IEBAIHZvaWQg
-bnZrbV9sdGNfZmx1c2goc3RydWN0IG52a21fbHRjICopOwogCiBpbnQgZ2YxMDBfbHRjX25ldyhz
-dHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9sdGMgKiopOwogaW50IGdrMTA0
-X2x0Y19uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fbHRjICoqKTsK
-K2ludCBnazIwYV9sdGNfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmtt
-X2x0YyAqKik7CiBpbnQgZ20xMDdfbHRjX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBz
-dHJ1Y3QgbnZrbV9sdGMgKiopOwogI2VuZGlmCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9sdGMvZ2YxMDAuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2x0Yy9nZjEwMC5j
-CmluZGV4IDQ1YWM3NjViNzUzZS4uZmIwZGU4M2RhMTNjIDEwMDY0NAotLS0gYS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9sdGMvZ2YxMDAuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9s
-dGMvZ2YxMDAuYwpAQCAtMTIyLDYgKzEyMiwzNiBAQCBnZjEwMF9sdGNfaW50cihzdHJ1Y3QgbnZr
-bV9sdGMgKmx0YykKIAl9CiB9CiAKK3ZvaWQKK2dmMTAwX2x0Y19pbnZhbGlkYXRlKHN0cnVjdCBu
-dmttX2x0YyAqbHRjKQoreworCXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gbHRjLT5zdWJk
-ZXYuZGV2aWNlOworCXM2NCB0YWtlbjsKKworCW52a21fd3IzMihkZXZpY2UsIDB4NzAwMDQsIDB4
-MDAwMDAwMDEpOworCXRha2VuID0gbnZrbV93YWl0X21zZWMoZGV2aWNlLCAyLCAweDcwMDA0LCAw
-eDAwMDAwMDAzLCAweDAwMDAwMDAwKTsKKwlpZiAodGFrZW4gPCAwKQorCQludmttX3dhcm4oJmx0
-Yy0+c3ViZGV2LCAiTFRDIGludmFsaWRhdGUgdGltZW91dFxuIik7CisKKwlpZiAodGFrZW4gPiAw
-KQorCQludmttX2RlYnVnKCZsdGMtPnN1YmRldiwgIkxUQyBpbnZhbGlkYXRlIHRvb2sgJWxsZCBu
-c1xuIiwgdGFrZW4pOworfQorCit2b2lkCitnZjEwMF9sdGNfZmx1c2goc3RydWN0IG52a21fbHRj
-ICpsdGMpCit7CisJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBsdGMtPnN1YmRldi5kZXZp
-Y2U7CisJczY0IHRha2VuOworCisJbnZrbV93cjMyKGRldmljZSwgMHg3MDAxMCwgMHgwMDAwMDAw
-MSk7CisJdGFrZW4gPSBudmttX3dhaXRfbXNlYyhkZXZpY2UsIDIsIDB4NzAwMTAsIDB4MDAwMDAw
-MDMsIDB4MDAwMDAwMDApOworCWlmICh0YWtlbiA8IDApCisJCW52a21fd2FybigmbHRjLT5zdWJk
-ZXYsICJMVEMgZmx1c2ggdGltZW91dFxuIik7CisKKwlpZiAodGFrZW4gPiAwKQorCQludmttX2Rl
-YnVnKCZsdGMtPnN1YmRldiwgIkxUQyBmbHVzaCB0b29rICVsbGQgbnNcbiIsIHRha2VuKTsKK30K
-KwogLyogVE9ETzogRmlndXJlIG91dCB0YWcgbWVtb3J5IGRldGFpbHMgYW5kIGRyb3AgdGhlIG92
-ZXItY2F1dGlvdXMgYWxsb2NhdGlvbi4KICAqLwogaW50CkBAIC0yMTUsNiArMjQ1LDggQEAgZ2Yx
-MDBfbHRjID0gewogCS56YmMgPSAxNiwKIAkuemJjX2NsZWFyX2NvbG9yID0gZ2YxMDBfbHRjX3pi
-Y19jbGVhcl9jb2xvciwKIAkuemJjX2NsZWFyX2RlcHRoID0gZ2YxMDBfbHRjX3piY19jbGVhcl9k
-ZXB0aCwKKwkuaW52YWxpZGF0ZSA9IGdmMTAwX2x0Y19pbnZhbGlkYXRlLAorCS5mbHVzaCA9IGdm
-MTAwX2x0Y19mbHVzaCwKIH07CiAKIGludApkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9z
-dWJkZXYvbHRjL2drMTA0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9sdGMvZ2sxMDQuYwpp
-bmRleCA4MzllNmI0YzU5N2IuLmI0ZjZlMDAzNGQ1OCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
-bnZrbS9zdWJkZXYvbHRjL2drMTA0LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRj
-L2drMTA0LmMKQEAgLTQ1LDYgKzQ1LDggQEAgZ2sxMDRfbHRjID0gewogCS56YmMgPSAxNiwKIAku
-emJjX2NsZWFyX2NvbG9yID0gZ2YxMDBfbHRjX3piY19jbGVhcl9jb2xvciwKIAkuemJjX2NsZWFy
-X2RlcHRoID0gZ2YxMDBfbHRjX3piY19jbGVhcl9kZXB0aCwKKwkuaW52YWxpZGF0ZSA9IGdmMTAw
-X2x0Y19pbnZhbGlkYXRlLAorCS5mbHVzaCA9IGdmMTAwX2x0Y19mbHVzaCwKIH07CiAKIGludApk
-aWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dtMTA3LmMgYi9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9sdGMvZ20xMDcuYwppbmRleCAzODkzMzFiYjYzYmEuLjMwNDNiYmZk
-NzM4NCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dtMTA3LmMKKysr
-IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL2dtMTA3LmMKQEAgLTEzOCw2ICsxMzgsOCBA
-QCBnbTEwN19sdGMgPSB7CiAJLnpiYyA9IDE2LAogCS56YmNfY2xlYXJfY29sb3IgPSBnbTEwN19s
-dGNfemJjX2NsZWFyX2NvbG9yLAogCS56YmNfY2xlYXJfZGVwdGggPSBnbTEwN19sdGNfemJjX2Ns
-ZWFyX2RlcHRoLAorCS5pbnZhbGlkYXRlID0gZ2YxMDBfbHRjX2ludmFsaWRhdGUsCisJLmZsdXNo
-ID0gZ2YxMDBfbHRjX2ZsdXNoLAogfTsKIAogaW50CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9u
-dmttL3N1YmRldi9sdGMvcHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvbHRjL3ByaXYu
-aAppbmRleCA2ZjY2YmQwM2Y4MjkuLjRlMzc1NWI4Mjc2OSAxMDA2NDQKLS0tIGEvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvbHRjL3ByaXYuaAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9s
-dGMvcHJpdi5oCkBAIC0yOSw0ICsyOSw2IEBAIHZvaWQgZ2YxMDBfbHRjX2NiY19jbGVhcihzdHJ1
-Y3QgbnZrbV9sdGMgKiwgdTMyLCB1MzIpOwogdm9pZCBnZjEwMF9sdGNfY2JjX3dhaXQoc3RydWN0
-IG52a21fbHRjICopOwogdm9pZCBnZjEwMF9sdGNfemJjX2NsZWFyX2NvbG9yKHN0cnVjdCBudmtt
-X2x0YyAqLCBpbnQsIGNvbnN0IHUzMls0XSk7CiB2b2lkIGdmMTAwX2x0Y196YmNfY2xlYXJfZGVw
-dGgoc3RydWN0IG52a21fbHRjICosIGludCwgY29uc3QgdTMyKTsKK3ZvaWQgZ2YxMDBfbHRjX2lu
-dmFsaWRhdGUoc3RydWN0IG52a21fbHRjICopOwordm9pZCBnZjEwMF9sdGNfZmx1c2goc3RydWN0
-IG52a21fbHRjICopOwogI2VuZGlmCi0tIAoyLjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+On Mon, Aug 31, 2015 at 8:38 PM, Konsta H=C3=B6ltt=C3=A4 <kholtta@nvidi=
+a.com> wrote:
+> Let userspace know about some specific types of errors via a shared
+> buffer registered with a new ioctl, NOUVEAU_GEM_SET_ERROR_NOTIFIER.
+> Once set, the notifier buffer is used until the channel is destroyed.
+> The exceptional per-channel error conditions are signaled upwards fro=
+m
+> the nvkm layer via the event/notify mechanism and written to the buff=
+er
+> which holds the latest error occurred, readable from userspace.
+>
+> Some error situations render a channel completely stuck, which may
+> require even discarding and reinitializing it or the gpu completely.
+> Once a specific type of error happens, no others are expected until
+> recovery. Passing the error to userspace in a shared buffer enables t=
+he
+> graphics driver to periodically check in a light-weight way if anythi=
+ng
+> went wrong (typically, after a submit); e.g., the GL robustness
+> extension requires to detect that the context has dead.
+>
+> The notifier currently signals idle timeout, sw notify, mmu fault and
+> illegal pbdma error conditions.
+
+Hi Konsta,
+
+Before this series can be considered for upstream, I suppose it will
+need to be ported to the latest codebase.
+
+This will likely require a rewrite due to the heavy changes that
+occured, but hopefully it will also allow you to address some of the
+hacks more cleanly.
