@@ -1,13 +1,12 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH mesa 2/4] nv30: Implement color resolve for msaa
-Date: Thu,  3 Sep 2015 13:25:07 +0200
-Message-ID: <1441279509-7147-3-git-send-email-hdegoede@redhat.com>
-References: <1441279509-7147-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Thu, 03 Sep 2015 11:39:26 +0000
+Message-ID: <bug-90871-8800-DFjfMBlq30@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0331887225=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1441279509-7147-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,58 +16,114 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Tm90ZSB0aGlzIGlzIG5vdCBpZGVhbC4gU2luY2UgdGhlIHNpZm0gY2FuIG9ubHkgZG8gc291cmNl
-IHNpemVzIHVwdG8KMTAyNHgxMDI0IHdlIGVuZCB1cCB1c2luZyB0aGUgYmxpdHRlciBvbiBudjR4
-LCB3aGljaCBpcyBub3QgdGhhdCBmYXN0LgoKQW5kIG9uIG52M3ggd2UgZW5kIHVwIHVzaW5nIHRo
-ZSBjcHUgd2hpY2ggaXMgcmVhbGx5IHNsb3cuCgpTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRl
-IDxoZGVnb2VkZUByZWRoYXQuY29tPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-djMwL252MzBfbWlwdHJlZS5jICB8IDE5ICsrKysrKysrLS0tLS0tLS0tLS0KIHNyYy9nYWxsaXVt
-L2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfcmVzb3VyY2UuaCB8ICAzIC0tLQogMiBmaWxlcyBj
-aGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfbWlwdHJlZS5jIGIvc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKaW5kZXggMjI3NjM0Ny4uNzZi
-YjhiOCAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9t
-aXB0cmVlLmMKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0
-cmVlLmMKQEAgLTE0NSwyMSArMTQ1LDE4IEBAIG52MzBfcmVzb3VyY2VfY29weV9yZWdpb24oc3Ry
-dWN0IHBpcGVfY29udGV4dCAqcGlwZSwKICAgIG52MzBfdHJhbnNmZXJfcmVjdChudjMwLCBORUFS
-RVNULCAmc3JjLCAmZHN0KTsKIH0KIAotdm9pZAotbnYzMF9yZXNvdXJjZV9yZXNvbHZlKHN0cnVj
-dCBwaXBlX2NvbnRleHQgKnBpcGUsCi0gICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0
-IHBpcGVfcmVzb2x2ZV9pbmZvICppbmZvKQorc3RhdGljIHZvaWQKK252MzBfcmVzb3VyY2VfcmVz
-b2x2ZShzdHJ1Y3QgbnYzMF9jb250ZXh0ICpudjMwLAorICAgICAgICAgICAgICAgICAgICAgIGNv
-bnN0IHN0cnVjdCBwaXBlX2JsaXRfaW5mbyAqaW5mbykKIHsKLSNpZiAwCi0gICBzdHJ1Y3QgbnYz
-MF9jb250ZXh0ICpudjMwID0gbnYzMF9jb250ZXh0KHBpcGUpOwogICAgc3RydWN0IG52MzBfcmVj
-dCBzcmMsIGRzdDsKIAotICAgZGVmaW5lX3JlY3QoaW5mby0+c3JjLnJlcywgMCwgMCwgaW5mby0+
-c3JjLngwLCBpbmZvLT5zcmMueTAsCi0gICAgICAgICAgICAgICBpbmZvLT5zcmMueDEgLSBpbmZv
-LT5zcmMueDAsIGluZm8tPnNyYy55MSAtIGluZm8tPnNyYy55MCwgJnNyYyk7Ci0gICBkZWZpbmVf
-cmVjdChpbmZvLT5kc3QucmVzLCBpbmZvLT5kc3QubGV2ZWwsIDAsIGluZm8tPmRzdC54MCwgaW5m
-by0+ZHN0LnkwLAotICAgICAgICAgICAgICAgaW5mby0+ZHN0LngxIC0gaW5mby0+ZHN0LngwLCBp
-bmZvLT5kc3QueTEgLSBpbmZvLT5kc3QueTAsICZkc3QpOworICAgZGVmaW5lX3JlY3QoaW5mby0+
-c3JjLnJlc291cmNlLCAwLCBpbmZvLT5zcmMuYm94LnosIGluZm8tPnNyYy5ib3gueCwKKyAgICAg
-IGluZm8tPnNyYy5ib3gueSwgaW5mby0+c3JjLmJveC53aWR0aCwgaW5mby0+c3JjLmJveC5oZWln
-aHQsICZzcmMpOworICAgZGVmaW5lX3JlY3QoaW5mby0+ZHN0LnJlc291cmNlLCAwLCBpbmZvLT5k
-c3QuYm94LnosIGluZm8tPmRzdC5ib3gueCwKKyAgICAgIGluZm8tPmRzdC5ib3gueSwgaW5mby0+
-ZHN0LmJveC53aWR0aCwgaW5mby0+ZHN0LmJveC5oZWlnaHQsICZkc3QpOwogCiAgICBudjMwX3Ry
-YW5zZmVyX3JlY3QobnYzMCwgQklMSU5FQVIsICZzcmMsICZkc3QpOwotI2VuZGlmCiB9CiAKIHZv
-aWQKQEAgLTE3Myw3ICsxNzAsNyBAQCBudjMwX2JsaXQoc3RydWN0IHBpcGVfY29udGV4dCAqcGlw
-ZSwKICAgICAgICBpbmZvLmRzdC5yZXNvdXJjZS0+bnJfc2FtcGxlcyA8PSAxICYmCiAgICAgICAg
-IXV0aWxfZm9ybWF0X2lzX2RlcHRoX29yX3N0ZW5jaWwoaW5mby5zcmMucmVzb3VyY2UtPmZvcm1h
-dCkgJiYKICAgICAgICAhdXRpbF9mb3JtYXRfaXNfcHVyZV9pbnRlZ2VyKGluZm8uc3JjLnJlc291
-cmNlLT5mb3JtYXQpKSB7Ci0gICAgICBkZWJ1Z19wcmludGYoIm52MzA6IGNvbG9yIHJlc29sdmUg
-dW5pbXBsZW1lbnRlZFxuIik7CisgICAgICBudjMwX3Jlc291cmNlX3Jlc29sdmUobnYzMCwgYmxp
-dF9pbmZvKTsKICAgICAgIHJldHVybjsKICAgIH0KIApkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9yZXNvdXJjZS5oIGIvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252MzAvbnYzMF9yZXNvdXJjZS5oCmluZGV4IDhkYWM3NzkuLjIwZDg2YjYgMTAw
-NjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfcmVzb3VyY2Uu
-aAorKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3Jlc291cmNlLmgK
-QEAgLTY2LDkgKzY2LDYgQEAgbnYzMF9yZXNvdXJjZV9jb3B5X3JlZ2lvbihzdHJ1Y3QgcGlwZV9j
-b250ZXh0ICpwaXBlLAogICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBzdHJ1Y3QgcGlw
-ZV9ib3ggKnNyY19ib3gpOwogCiB2b2lkCi1udjMwX3Jlc291cmNlX3Jlc29sdmUoc3RydWN0IHBp
-cGVfY29udGV4dCAqLCBjb25zdCBzdHJ1Y3QgcGlwZV9yZXNvbHZlX2luZm8gKik7Ci0KLXZvaWQK
-IG52MzBfYmxpdChzdHJ1Y3QgcGlwZV9jb250ZXh0ICpwaXBlLAogICAgICAgICAgIGNvbnN0IHN0
-cnVjdCBwaXBlX2JsaXRfaW5mbyAqYmxpdF9pbmZvKTsKIAotLSAKMi40LjMKCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0
-Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0331887225==
+Content-Type: multipart/alternative; boundary="1441280366.F7efEBCa1.25722"; charset="UTF-8"
+
+
+--1441280366.F7efEBCa1.25722
+Date: Thu, 3 Sep 2015 11:39:26 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #34 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+Hi,
+
+(In reply to Hans de Goede from comment #32)
+> Hi,
+> 
+> (In reply to Olivier Fourdan from comment #30)
+> > You'd need xfwm4 from git master (with opengl support) to reproduce or
+> > simply use the simple reproducer I attached to this bug some time ago
+> > (attachment 116536 [details])
+> 
+> Ok, I just tried with that reproducer, but that also does not reproduce.
+> 
+> I've ordered a quadro nvs280, which is about the only nv3x card with a pci-e
+> interface available. When that arrives I'll try again.
+
+Ok' I've received this card now, and I can reproduce the problem. I'll
+investigate and try to fix this next week.
+
+Regards,
+
+Hans
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1441280366.F7efEBCa1.25722
+Date: Thu, 3 Sep 2015 11:39:26 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c34">Comment # 34</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
+</span></b>
+        <pre>Hi,
+
+(In reply to Hans de Goede from <a href="show_bug.cgi?id=90871#c32">comment #32</a>)
+<span class="quote">&gt; Hi,
+&gt; 
+&gt; (In reply to Olivier Fourdan from <a href="show_bug.cgi?id=90871#c30">comment #30</a>)
+&gt; &gt; You'd need xfwm4 from git master (with opengl support) to reproduce or
+&gt; &gt; simply use the simple reproducer I attached to this bug some time ago
+&gt; &gt; (<span class=""><a href="attachment.cgi?id=116536" name="attach_116536" title="test program">attachment 116536</a> <a href="attachment.cgi?id=116536&amp;action=edit" title="test program">[details]</a></span>)
+&gt; 
+&gt; Ok, I just tried with that reproducer, but that also does not reproduce.
+&gt; 
+&gt; I've ordered a quadro nvs280, which is about the only nv3x card with a pci-e
+&gt; interface available. When that arrives I'll try again.</span >
+
+Ok' I've received this card now, and I can reproduce the problem. I'll
+investigate and try to fix this next week.
+
+Regards,
+
+Hans</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441280366.F7efEBCa1.25722--
+
+--===============0331887225==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0331887225==--
