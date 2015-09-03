@@ -1,24 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nv3x libreoffice impress opengl animations not working
-Date: Thu, 3 Sep 2015 13:36:54 -0400
-Message-ID: <CAKb7Uvi8dHzUuhg=jzQnC+mQb+ORE0X-O-9kohqzguZAA+c_bQ@mail.gmail.com>
-References: <55DF0C1C.3070303@redhat.com>
- <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
- <55DF4F19.8030708@redhat.com>
- <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
- <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
- <55E021A9.7070700@redhat.com>
- <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q@mail.gmail.com>
- <55E44F79.8000800@redhat.com>
- <CAKb7UvihbT+Uf2h2wA=iLkhuYjmRWM6h+=sk-vagkL4mt7-5xg@mail.gmail.com>
- <55E6C5DF.6010100@redhat.com>
- <CAKb7UvhzO9wv38s26b6gH27LqxJDk3Ezh+2v0CQNEXZ5FE7+=Q@mail.gmail.com>
- <55E82A52.5040705@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 88272] [NVAC] Flickering screen on 1920x1080 monitor
+ with 9400M in MacbookPro 5, 5
+Date: Thu, 03 Sep 2015 23:24:53 +0000
+Message-ID: <bug-88272-8800-2RCVIjxRsl@http.bugs.freedesktop.org/>
+References: <bug-88272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1015912152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55E82A52.5040705-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-88272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -28,77 +17,104 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVGh1LCBTZXAgMywgMjAxNSBhdCA3OjA5IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
-ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIDAyLTA5LTE1IDE2OjQ0LCBJbGlhIE1pcmtp
-biB3cm90ZToKPj4KPj4gT24gV2VkLCBTZXAgMiwgMjAxNSBhdCA1OjQ4IEFNLCBIYW5zIGRlIEdv
-ZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3cm90ZToKPj4+Cj4+PiBIaSBJbGlhCj4KPgo+IDxz
-bmlwPgo+Cj4+Pj4gT2YgY291cnNlIEkgZG9uJ3QgcmVhbGx5IHNlZSBob3cgTVMgY2FuIHdvcmsg
-YXQgYWxsIHdpdGggbnYzMCBzaW5jZSBpdAo+Pj4+IGRvZXNuJ3Qgc3VwcG9ydCBhIHJlc29sdmUg
-c3RlcDoKPj4+Pgo+Pj4+ICAgICAgaWYgKGluZm8uc3JjLnJlc291cmNlLT5ucl9zYW1wbGVzID4g
-MSAmJgo+Pj4+ICAgICAgICAgIGluZm8uZHN0LnJlc291cmNlLT5ucl9zYW1wbGVzIDw9IDEgJiYK
-Pj4+PiAgICAgICAgICAhdXRpbF9mb3JtYXRfaXNfZGVwdGhfb3Jfc3RlbmNpbChpbmZvLnNyYy5y
-ZXNvdXJjZS0+Zm9ybWF0KSAmJgo+Pj4+ICAgICAgICAgICF1dGlsX2Zvcm1hdF9pc19wdXJlX2lu
-dGVnZXIoaW5mby5zcmMucmVzb3VyY2UtPmZvcm1hdCkpIHsKPj4+PiAgICAgICAgIGRlYnVnX3By
-aW50ZigibnYzMDogY29sb3IgcmVzb2x2ZSB1bmltcGxlbWVudGVkXG4iKTsKPj4+PiAgICAgICAg
-IHJldHVybjsKPj4+PiAgICAgIH0KPj4+Pgo+Pj4+IFBlcmhhcHMgdGhlcmUncyAoc3VwcG9zZWQg
-dG8gYmUpIHNvbWUgbWFnaWMgd2l0aCB0aGUgTVNBQSB2aXN1YWw/IERvCj4+Pj4geW91IHNlZSB0
-aGF0IHByaW50IGhhcHBlbmluZz8KPj4+Cj4+Pgo+Pj4KPj4+IFllcyBJIHNlZSB0aGF0IHByaW50
-IGhhcHBlbmluZyBhbmQgdGhhdCBleHBsYWlucyB0aGUgbWlzcmVuZGVyaW5nIEknbQo+Pj4gc2Vl
-aW5nIHByZXR0eSB3ZWxsLCBpdCBpcyBub3QgbWlzcmVuZGVyaW5nIGF0IGFsbCwgaXQgaXMganVz
-dCByYW5kb20KPj4+IGRhdGEgZnJvbSB0aGUgdmlkZW8gbWVtLgo+Pj4KPj4+IEkndmUgaGFkIGEg
-cXVpY2sgdGFsayBhYm91dCB0aGlzIHdpdGggQmVuLCBoZSBzdWdnZXN0ZWQgdXNpbmcKPj4+IHRo
-ZSBTQ0FMRURfSU1BR0VfRlJPTV9NRU1PUlkgb2JqZWN0IGNsYXNzLCBhcyB0aGF0IGlzIHdoYXQg
-dGhlIGJsb2IKPj4+IGlzIGRvaW5nLgo+Pj4KPj4+IEkndmUgZG9uZSBzb21lIGRpZ2dpbmcgdGhy
-b3VnaCB0aGUgY29kZSBhbmQgdGhpcyB0cmFuc2xhdGVzIHRvIHRoZQo+Pj4gInNmaW0iIG9iamVj
-dCBpbiB0aGUgZ2FsbGl1bSBudjMwIGNvZGUuIEkgd2FzIHdvbmRlcmluZyBpZiBJIGNhbm5vdAo+
-Pj4ganVzdCBzaW1wbGUgY2FsbCBudjMwX3RyYW5zZmVyX3JlY3Qgd2l0aCB0aGUgcmlnaHQgcGFy
-YW1ldGVycyBhbmQKPj4+IGxldCBpdCBzb3J0IHRoZSBibGl0IG91dCA/Cj4+Cj4+Cj4+IFRoYXQg
-c2VlbXMgZmluZSB0byBtZS4gQlRXLCBpdCdzIHNpZm0gPT0gc2NhbGVkIGltYWdlIGZyb20gbWVt
-b3J5LCBub3QKPj4gc2ZpbS4gWW91J2xsIGVpdGhlciBoYXZlIHRvIGZ1ZGdlIHRoZSB3aWR0aC9o
-ZWlnaHQsIG9yIHRlYWNoIHRoZQo+PiB0cmFuc2ZlciBtZXRob2RzIHRvIGxvb2sgYXQgbXQtPm1z
-X3gveSAoYW5kIG1ha2Ugc3VyZSB0byB0cmVhdCBpdCBhcyBhCj4+IHNjYWxlZCB4ZmVyIGlmIHRo
-ZSBucl9zYW1wbGVzIGRvbid0IGxpbmUgdXApLgo+Cj4KPiBPaywgSSd2ZSBnb3R0ZW4gdGhpcyB0
-byB3b3JrLCB5ZWFoIDopIEknbGwgc2VuZCBvdXQgcGF0Y2hlcyBmb3IgdGhpcwo+IHNob3J0bHku
-Cj4KPiBCdXQgZXZlbiB3aXRoIHRoaXMgZml4ZWQsIHRoZXJlIHN0aWxsIGFyZSBwcm9ibGVtcyB3
-aXRoIG1zYWE6Cj4KPiAxKSBPbiBudjN4ICh2cyBudjR4KSB3ZSBlbmQgdXAgdXNpbmcgdGhlIGNw
-dSBmb3IgdGhlIGJsaXQsIHRoaXMgaXMKPiBubyBnb29kIHNvIEkndmUgYWRkZWQgYSBwYXRjaCB0
-byBteSBwYXRjaC1zZXQgdG8gZGlzYWJsZSBtc2FhCj4gdmlzdWFscyBvbiBudjN4Cj4KPiAyKSBP
-biBudjR4IHRoaW5ncyBtb3N0bHkgd29yaywgYnV0IHNvbWV0aW1lcyAvIGFmdGVyIGEgd2hpbGUK
-PiB0aGUgZ3B1IGxvY2tzIHVwLiBBdHRhY2hpbmcgZ2RiIHRvIGltcHJlc3Mgc2hvd3MgaXQgaXMg
-aGFuZ2luZyB3YWl0aW5nCj4gZm9yIGEgZmVuY2Ugd2hpY2ggbmV2ZXIgY29tZXMuCj4KPiBLaWxs
-aW5nIG9vaW1wcmVzcyBhdCB0aGlzIHBvaW50IHdvcmtzIGV4YWN0bHkgb25jZSwgdHJ5aW5nIHRv
-IGRvIGFueQo+IDNkIG9wZXJhdGlvbnMgYWZ0ZXIga2lsbGluZyBpbXByZXNzIHdpbGwgbG9ja3Vw
-IHRoZSBlbnRpcmUgc3lzdGVtLgo+Cj4gV2hlbiBJIGtpbGwgaW1wcmVzcyBhdCB0aGlzIHBvaW50
-IGl0IHByaW50cyBhIGxvdCBvZiBtZXNzYWdlcwo+IGxpa2UgdGhlc2UgdG8gc3Rkb3V0Ogo+Cj4g
-bm91dmVhdTogICAgICAgIDB4NDUwNzAwMDAKPiBub3V2ZWF1OiAgICAgICAgMHgwMDAwMDAwMAo+
-IG5vdXZlYXU6ICAgICAgICAweDAwMDRmOTAwCj4gbm91dmVhdTogICAgICAgIDB4MDQzODA3ODAK
-PiBub3V2ZWF1OiAgICAgICAgMHgwMDBjZjU4MAo+IG5vdXZlYXU6ICAgICAgICAweDAwMDAwMDAw
-Cj4gbm91dmVhdTogICAgICAgIDB4NDUwNzAwMDAKPiBub3V2ZWF1OiAgICAgICAgMHgwMDAwMDAw
-MAo+IG5vdXZlYXU6ICAgICAgICAweDAwMDRmOTAwCj4gbm91dmVhdTogICAgICAgIDB4MDQzODAw
-MDAKPiBub3V2ZWF1OiAgICAgICAgMHgwMDA0ZjgwOAo+IG5vdXZlYXU6ICAgICAgICAweDAwMDAw
-MDAwCj4gbm91dmVhdTogICAgICAgIDB4MDAwOGZkNmMKPiBub3V2ZWF1OiAgICAgICAgMHgwMDAw
-MDAwMAo+IG5vdXZlYXU6ICAgICAgICAweDAwMDAwMGE5Cj4gbm91dmVhdTogICAgICAgIDB4MDAw
-MjAwMDAKPiBub3V2ZWF1OiAgICAgICAgMHgwMDAwMDAwMAo+Cj4gSSd2ZSBub3QgeWV0IHNlZW4g
-dGhlIGJlZ2lubmluZyBvZiB0aGlzIGxpc3Qgc2luY2UgbXkgc2Nyb2xsLWJhY2sKPiBidWZmZXIg
-aXMgbm90IGxhcmdlIGVub3VnaCwgSSBndWVzcyBJIG5lZWQgdG8gcmVwcm9kdWNlIHRoaXMgYW5k
-Cj4gcmVkaXJlY3QgdGhlIG91dHB1dCB0byBhIGZpbGUgdG8gZ2V0IGFsbCBtZXNzYWdlcy4KPgo+
-IFNvIGFueSBoaW50cyBvbiBob3cgdG8gZGVidWcgdGhpcyA/ICBDb3VsZCB0aGlzIGhhdmUgc29t
-ZXRoaW5nCj4gdG8gZG8gd2l0aCB0aGUgZGVzdGluYXRpb24gYnVmZmVyIGZvciB0aGUgbXNhYSBy
-ZW5kZXJpbmcKPiAoc28gdGhlIGJ1ZmZlciB3aGljaCBoYXMgdGhlIGltYWdlIHJlbmRlcmVkIGF0
-IHR3aWNlIHRoZQo+IGRlc2lyZWQgcmVzb2x1dGlvbikgbm90IGhhdmluZyBlbm91Z2ggcGFkZGlu
-ZyBvbiBpdHMgcGl0Y2ggPwoKVGhvc2UgbWVzc2FnZXMgZ2V0IHByaW50ZWQgYnkgbGliZHJtIHdo
-ZW4gdGhlIGtlcm5lbCByZWplY3RzCnNvbWV0aGluZy4gWW91IHNob3VsZCBhbHNvIHNlZSB3aGF0
-IHRoZSBrZXJuZWwgaXMgcmVqZWN0aW5nIGFuZCB3aHkgaW4KZG1lc2cuLi4gdGhpcyBzaG91bGQg
-YmUgaW5zdHJ1Y3Rpb25hbC4gQ291bGQgZWFzaWx5IGJlIHRoYXQgc29tZQptdC0+bXNfeC95IHNo
-aWZ0cyBhcmUgbWlzc2luZy4gTWlnaHQgd2FudCB0byBtYWtlIHNvbWUgdHJhY2VzIG9mIHRoZQpi
-bG9iIGRyaXZlcnMgcnVubmluZyBzb21lIG9mIHRoZSBtb3JlIGJhc2ljIHBpZ2xpdCB0ZXN0cyB3
-aXRoIE1TIGFuZApzZWVpbmcgd2hhdCB0aGV5IGRvLiBbSSBhc3N1bWUgeW91J3JlIGZhbWlsaWFy
-IHdpdGggdmFsZ3JpbmQtbW10ICsKZGVtbXQuIElmIG5vdCwgaHR0cDovL25vdXZlYXUuZnJlZWRl
-c2t0b3Aub3JnL3dpa2kvVmFsZ3JpbmQtbW10LyBdCgogIC1pbGlhCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1015912152==
+Content-Type: multipart/alternative; boundary="1441322693.E0B188D2.14954"; charset="UTF-8"
+
+
+--1441322693.E0B188D2.14954
+Date: Thu, 3 Sep 2015 23:24:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=88272
+
+--- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+I managed to solve the other bug (notice how quick it was... --"), so back to
+this one. :)
+
+There was a regression that happened between 4.2 and current HEAD, so I'm
+tracking it down but I should have it by tomorrow. Otherwise, running 4.2 or
+3.19, I experience something else than what I reported in my last comment.
+
+Using a mDP -> HDMI (I'm not sure whether this one is active or not; I have
+both, so I could try both):
+- Desktop displays fine, even while running glxgears on levels 05 to 0f;
+- Weird display on level 03 but I guess some clock is just too low, as even the
+blob uses at least level 05 or even 0e;
+- LVDS screen starts flickering after turning off the external screen using
+`xrandr --output DP-2 --off`.
+
+Using a mDP -> VGA:
+- Screen receives a signal but stays blank.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1441322693.E0B188D2.14954
+Date: Thu, 3 Sep 2015 23:24:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - [NVAC] Flickering screen on 1920x1080 monitor with 9400M in MacbookPro 5,5"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88272">bug 88272</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>I managed to solve the other bug (notice how quick it was... --&quot;), so back to
+this one. :)
+
+There was a regression that happened between 4.2 and current HEAD, so I'm
+tracking it down but I should have it by tomorrow. Otherwise, running 4.2 or
+3.19, I experience something else than what I reported in my last comment.
+
+Using a mDP -&gt; HDMI (I'm not sure whether this one is active or not; I have
+both, so I could try both):
+- Desktop displays fine, even while running glxgears on levels 05 to 0f;
+- Weird display on level 03 but I guess some clock is just too low, as even the
+blob uses at least level 05 or even 0e;
+- LVDS screen starts flickering after turning off the external screen using
+`xrandr --output DP-2 --off`.
+
+Using a mDP -&gt; VGA:
+- Screen receives a signal but stays blank.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441322693.E0B188D2.14954--
+
+--===============1015912152==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1015912152==--
