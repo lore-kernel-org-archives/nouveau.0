@@ -1,47 +1,91 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [Nouveau] [RFC PATCH v2 1/5] notify channel errors to userspace
-Date: Thu, 3 Sep 2015 18:01:11 +0900
-Message-ID: <CAAVeFuKcZcw9xv2ak0K3b_pAkoN0+dpwDyK12qmyW9o6fEO5mg@mail.gmail.com>
-References: <1441021115-28537-1-git-send-email-kholtta@nvidia.com> <1441021115-28537-2-git-send-email-kholtta@nvidia.com>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: nv3x libreoffice impress opengl animations not working
+Date: Thu, 3 Sep 2015 13:09:06 +0200
+Message-ID: <55E82A52.5040705@redhat.com>
+References: <55DF0C1C.3070303@redhat.com>
+ <CAAxE2A5GenNVbaFo9cV=U_FOkavpo=o5dHHQkqeBZpG0bqhggQ@mail.gmail.com>
+ <55DF4F19.8030708@redhat.com>
+ <CADnq5_Mrqni4y1-Uif2MWYJYUDWP3gEG7AdHfvc3kkgRyfScgQ@mail.gmail.com>
+ <CAKb7Uvg3WVzivjrvsMg2afQPvF4+4SK8AkqBa-5q0G2eRyfhVQ@mail.gmail.com>
+ <55E021A9.7070700@redhat.com>
+ <CAKb7UvjGWMSDc2fpHpXWw9F7uQabmh1trUQJSbG9JVQBKPSm4Q@mail.gmail.com>
+ <55E44F79.8000800@redhat.com>
+ <CAKb7UvihbT+Uf2h2wA=iLkhuYjmRWM6h+=sk-vagkL4mt7-5xg@mail.gmail.com>
+ <55E6C5DF.6010100@redhat.com>
+ <CAKb7UvhzO9wv38s26b6gH27LqxJDk3Ezh+2v0CQNEXZ5FE7+=Q@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1441021115-28537-2-git-send-email-kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: =?UTF-8?B?S29uc3RhIEjDtmx0dMOk?= <kholtta-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CAKb7UvhzO9wv38s26b6gH27LqxJDk3Ezh+2v0CQNEXZ5FE7+=Q@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-On Mon, Aug 31, 2015 at 8:38 PM, Konsta H=C3=B6ltt=C3=A4 <kholtta@nvidi=
-a.com> wrote:
-> Let userspace know about some specific types of errors via a shared
-> buffer registered with a new ioctl, NOUVEAU_GEM_SET_ERROR_NOTIFIER.
-> Once set, the notifier buffer is used until the channel is destroyed.
-> The exceptional per-channel error conditions are signaled upwards fro=
-m
-> the nvkm layer via the event/notify mechanism and written to the buff=
-er
-> which holds the latest error occurred, readable from userspace.
->
-> Some error situations render a channel completely stuck, which may
-> require even discarding and reinitializing it or the gpu completely.
-> Once a specific type of error happens, no others are expected until
-> recovery. Passing the error to userspace in a shared buffer enables t=
-he
-> graphics driver to periodically check in a light-weight way if anythi=
-ng
-> went wrong (typically, after a submit); e.g., the GL robustness
-> extension requires to detect that the context has dead.
->
-> The notifier currently signals idle timeout, sw notify, mmu fault and
-> illegal pbdma error conditions.
-
-Hi Konsta,
-
-Before this series can be considered for upstream, I suppose it will
-need to be ported to the latest codebase.
-
-This will likely require a rewrite due to the heavy changes that
-occured, but hopefully it will also allow you to address some of the
-hacks more cleanly.
+SGksCgpPbiAwMi0wOS0xNSAxNjo0NCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gV2VkLCBTZXAg
+MiwgMjAxNSBhdCA1OjQ4IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3
+cm90ZToKPj4gSGkgSWxpYQoKPHNuaXA+Cgo+Pj4gT2YgY291cnNlIEkgZG9uJ3QgcmVhbGx5IHNl
+ZSBob3cgTVMgY2FuIHdvcmsgYXQgYWxsIHdpdGggbnYzMCBzaW5jZSBpdAo+Pj4gZG9lc24ndCBz
+dXBwb3J0IGEgcmVzb2x2ZSBzdGVwOgo+Pj4KPj4+ICAgICAgaWYgKGluZm8uc3JjLnJlc291cmNl
+LT5ucl9zYW1wbGVzID4gMSAmJgo+Pj4gICAgICAgICAgaW5mby5kc3QucmVzb3VyY2UtPm5yX3Nh
+bXBsZXMgPD0gMSAmJgo+Pj4gICAgICAgICAgIXV0aWxfZm9ybWF0X2lzX2RlcHRoX29yX3N0ZW5j
+aWwoaW5mby5zcmMucmVzb3VyY2UtPmZvcm1hdCkgJiYKPj4+ICAgICAgICAgICF1dGlsX2Zvcm1h
+dF9pc19wdXJlX2ludGVnZXIoaW5mby5zcmMucmVzb3VyY2UtPmZvcm1hdCkpIHsKPj4+ICAgICAg
+ICAgZGVidWdfcHJpbnRmKCJudjMwOiBjb2xvciByZXNvbHZlIHVuaW1wbGVtZW50ZWRcbiIpOwo+
+Pj4gICAgICAgICByZXR1cm47Cj4+PiAgICAgIH0KPj4+Cj4+PiBQZXJoYXBzIHRoZXJlJ3MgKHN1
+cHBvc2VkIHRvIGJlKSBzb21lIG1hZ2ljIHdpdGggdGhlIE1TQUEgdmlzdWFsPyBEbwo+Pj4geW91
+IHNlZSB0aGF0IHByaW50IGhhcHBlbmluZz8KPj4KPj4KPj4gWWVzIEkgc2VlIHRoYXQgcHJpbnQg
+aGFwcGVuaW5nIGFuZCB0aGF0IGV4cGxhaW5zIHRoZSBtaXNyZW5kZXJpbmcgSSdtCj4+IHNlZWlu
+ZyBwcmV0dHkgd2VsbCwgaXQgaXMgbm90IG1pc3JlbmRlcmluZyBhdCBhbGwsIGl0IGlzIGp1c3Qg
+cmFuZG9tCj4+IGRhdGEgZnJvbSB0aGUgdmlkZW8gbWVtLgo+Pgo+PiBJJ3ZlIGhhZCBhIHF1aWNr
+IHRhbGsgYWJvdXQgdGhpcyB3aXRoIEJlbiwgaGUgc3VnZ2VzdGVkIHVzaW5nCj4+IHRoZSBTQ0FM
+RURfSU1BR0VfRlJPTV9NRU1PUlkgb2JqZWN0IGNsYXNzLCBhcyB0aGF0IGlzIHdoYXQgdGhlIGJs
+b2IKPj4gaXMgZG9pbmcuCj4+Cj4+IEkndmUgZG9uZSBzb21lIGRpZ2dpbmcgdGhyb3VnaCB0aGUg
+Y29kZSBhbmQgdGhpcyB0cmFuc2xhdGVzIHRvIHRoZQo+PiAic2ZpbSIgb2JqZWN0IGluIHRoZSBn
+YWxsaXVtIG52MzAgY29kZS4gSSB3YXMgd29uZGVyaW5nIGlmIEkgY2Fubm90Cj4+IGp1c3Qgc2lt
+cGxlIGNhbGwgbnYzMF90cmFuc2Zlcl9yZWN0IHdpdGggdGhlIHJpZ2h0IHBhcmFtZXRlcnMgYW5k
+Cj4+IGxldCBpdCBzb3J0IHRoZSBibGl0IG91dCA/Cj4KPiBUaGF0IHNlZW1zIGZpbmUgdG8gbWUu
+IEJUVywgaXQncyBzaWZtID09IHNjYWxlZCBpbWFnZSBmcm9tIG1lbW9yeSwgbm90Cj4gc2ZpbS4g
+WW91J2xsIGVpdGhlciBoYXZlIHRvIGZ1ZGdlIHRoZSB3aWR0aC9oZWlnaHQsIG9yIHRlYWNoIHRo
+ZQo+IHRyYW5zZmVyIG1ldGhvZHMgdG8gbG9vayBhdCBtdC0+bXNfeC95IChhbmQgbWFrZSBzdXJl
+IHRvIHRyZWF0IGl0IGFzIGEKPiBzY2FsZWQgeGZlciBpZiB0aGUgbnJfc2FtcGxlcyBkb24ndCBs
+aW5lIHVwKS4KCk9rLCBJJ3ZlIGdvdHRlbiB0aGlzIHRvIHdvcmssIHllYWggOikgSSdsbCBzZW5k
+IG91dCBwYXRjaGVzIGZvciB0aGlzCnNob3J0bHkuCgpCdXQgZXZlbiB3aXRoIHRoaXMgZml4ZWQs
+IHRoZXJlIHN0aWxsIGFyZSBwcm9ibGVtcyB3aXRoIG1zYWE6CgoxKSBPbiBudjN4ICh2cyBudjR4
+KSB3ZSBlbmQgdXAgdXNpbmcgdGhlIGNwdSBmb3IgdGhlIGJsaXQsIHRoaXMgaXMKbm8gZ29vZCBz
+byBJJ3ZlIGFkZGVkIGEgcGF0Y2ggdG8gbXkgcGF0Y2gtc2V0IHRvIGRpc2FibGUgbXNhYQp2aXN1
+YWxzIG9uIG52M3gKCjIpIE9uIG52NHggdGhpbmdzIG1vc3RseSB3b3JrLCBidXQgc29tZXRpbWVz
+IC8gYWZ0ZXIgYSB3aGlsZQp0aGUgZ3B1IGxvY2tzIHVwLiBBdHRhY2hpbmcgZ2RiIHRvIGltcHJl
+c3Mgc2hvd3MgaXQgaXMgaGFuZ2luZyB3YWl0aW5nCmZvciBhIGZlbmNlIHdoaWNoIG5ldmVyIGNv
+bWVzLgoKS2lsbGluZyBvb2ltcHJlc3MgYXQgdGhpcyBwb2ludCB3b3JrcyBleGFjdGx5IG9uY2Us
+IHRyeWluZyB0byBkbyBhbnkKM2Qgb3BlcmF0aW9ucyBhZnRlciBraWxsaW5nIGltcHJlc3Mgd2ls
+bCBsb2NrdXAgdGhlIGVudGlyZSBzeXN0ZW0uCgpXaGVuIEkga2lsbCBpbXByZXNzIGF0IHRoaXMg
+cG9pbnQgaXQgcHJpbnRzIGEgbG90IG9mIG1lc3NhZ2VzCmxpa2UgdGhlc2UgdG8gc3Rkb3V0OgoK
+bm91dmVhdTogICAgICAgIDB4NDUwNzAwMDAKbm91dmVhdTogICAgICAgIDB4MDAwMDAwMDAKbm91
+dmVhdTogICAgICAgIDB4MDAwNGY5MDAKbm91dmVhdTogICAgICAgIDB4MDQzODA3ODAKbm91dmVh
+dTogICAgICAgIDB4MDAwY2Y1ODAKbm91dmVhdTogICAgICAgIDB4MDAwMDAwMDAKbm91dmVhdTog
+ICAgICAgIDB4NDUwNzAwMDAKbm91dmVhdTogICAgICAgIDB4MDAwMDAwMDAKbm91dmVhdTogICAg
+ICAgIDB4MDAwNGY5MDAKbm91dmVhdTogICAgICAgIDB4MDQzODAwMDAKbm91dmVhdTogICAgICAg
+IDB4MDAwNGY4MDgKbm91dmVhdTogICAgICAgIDB4MDAwMDAwMDAKbm91dmVhdTogICAgICAgIDB4
+MDAwOGZkNmMKbm91dmVhdTogICAgICAgIDB4MDAwMDAwMDAKbm91dmVhdTogICAgICAgIDB4MDAw
+MDAwYTkKbm91dmVhdTogICAgICAgIDB4MDAwMjAwMDAKbm91dmVhdTogICAgICAgIDB4MDAwMDAw
+MDAKCkkndmUgbm90IHlldCBzZWVuIHRoZSBiZWdpbm5pbmcgb2YgdGhpcyBsaXN0IHNpbmNlIG15
+IHNjcm9sbC1iYWNrCmJ1ZmZlciBpcyBub3QgbGFyZ2UgZW5vdWdoLCBJIGd1ZXNzIEkgbmVlZCB0
+byByZXByb2R1Y2UgdGhpcyBhbmQKcmVkaXJlY3QgdGhlIG91dHB1dCB0byBhIGZpbGUgdG8gZ2V0
+IGFsbCBtZXNzYWdlcy4KClNvIGFueSBoaW50cyBvbiBob3cgdG8gZGVidWcgdGhpcyA/ICBDb3Vs
+ZCB0aGlzIGhhdmUgc29tZXRoaW5nCnRvIGRvIHdpdGggdGhlIGRlc3RpbmF0aW9uIGJ1ZmZlciBm
+b3IgdGhlIG1zYWEgcmVuZGVyaW5nCihzbyB0aGUgYnVmZmVyIHdoaWNoIGhhcyB0aGUgaW1hZ2Ug
+cmVuZGVyZWQgYXQgdHdpY2UgdGhlCmRlc2lyZWQgcmVzb2x1dGlvbikgbm90IGhhdmluZyBlbm91
+Z2ggcGFkZGluZyBvbiBpdHMgcGl0Y2ggPwoKVGhhbmtzICYgUmVnYXJkcywKCkhhbnMKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
+IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
+dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
