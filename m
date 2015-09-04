@@ -1,13 +1,17 @@
 From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: nvs280 / nv34 card only does 1680x1050,
-	not 1920x1080 ?
-Date: Fri, 4 Sep 2015 10:56:15 -0400
-Message-ID: <CAKb7UvjOcOV0dmHbeBEuOHsYSfvscvwqi0XWd-V6=AKD1QLaUw@mail.gmail.com>
-References: <55E99600.9050207@redhat.com>
+Subject: Re: [PATCH mesa 3/4] nv30: Do not export msaa capabable
+ visuals on nv3x
+Date: Fri, 4 Sep 2015 13:09:51 -0400
+Message-ID: <CAKb7UvhAvg46y=XV_7kG7roxmZdG8rZT+Pvkv7k+hWSHaiYOkg@mail.gmail.com>
+References: <1441279509-7147-1-git-send-email-hdegoede@redhat.com>
+ <1441279509-7147-4-git-send-email-hdegoede@redhat.com>
+ <CAKb7UvjSMb_c8yYwERbmN0Gkk9DkcmtetRAakZXg16PRtwt7KQ@mail.gmail.com>
+ <55E99847.70707@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1171806042=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55E99600.9050207-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <55E99847.70707-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,89 +22,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============1171806042==
-Content-Type: multipart/alternative; boundary=047d7b2e10d1f9b70f051eed1972
-
---047d7b2e10d1f9b70f051eed1972
-Content-Type: text/plain; charset=UTF-8
-
-Tmds is limited to 135mhz on nv3x. If you use analog, you can get full
-resolution.
-On Sep 4, 2015 9:00 AM, "Hans de Goede" <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
-
-> Hi All,
->
-> I've recently acquired a nvs280 card, which is a nv34
-> gpu based card with a pci-e bridge on the card, this
-> way I can test nv3x problems without needing an agp
-> motherboard.
->
-> One thing which stands out with this card is that
-> it drivers my dvi lcd monitor at 1680x1050 instead of its
-> native 1920x1080.
->
-> Is this due to a known limitation on the display pipeline
-> of these cards / nv34 gpu-s. Or is this more likely a bug
-> somewhere ?
->
-> Regards,
->
-> Hans
-> _______________________________________________
-> Nouveau mailing list
-> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/nouveau
->
-
---047d7b2e10d1f9b70f051eed1972
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Tmds is limited to 135mhz on nv3x. If you use analog, you ca=
-n get full resolution.</p>
-<div class=3D"gmail_quote">On Sep 4, 2015 9:00 AM, &quot;Hans de Goede&quot=
-; &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wr=
-ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi All,<br>
-<br>
-I&#39;ve recently acquired a nvs280 card, which is a nv34<br>
-gpu based card with a pci-e bridge on the card, this<br>
-way I can test nv3x problems without needing an agp<br>
-motherboard.<br>
-<br>
-One thing which stands out with this card is that<br>
-it drivers my dvi lcd monitor at 1680x1050 instead of its<br>
-native 1920x1080.<br>
-<br>
-Is this due to a known limitation on the display pipeline<br>
-of these cards / nv34 gpu-s. Or is this more likely a bug<br>
-somewhere ?<br>
-<br>
-Regards,<br>
-<br>
-Hans<br>
-_______________________________________________<br>
-Nouveau mailing list<br>
-<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
-lists.freedesktop.org</a><br>
-<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"no=
-referrer" target=3D"_blank">http://lists.freedesktop.org/mailman/listinfo/n=
-ouveau</a><br>
-</blockquote></div>
-
---047d7b2e10d1f9b70f051eed1972--
-
---===============1171806042==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1171806042==--
+T24gRnJpLCBTZXAgNCwgMjAxNSBhdCA5OjEwIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
+ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+IE9uIDAzLTA5LTE1IDE5OjMyLCBJbGlhIE1pcmtp
+biB3cm90ZToKPj4KPj4gT24gVGh1LCBTZXAgMywgMjAxNSBhdCA3OjI1IEFNLCBIYW5zIGRlIEdv
+ZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3cm90ZToKPj4+Cj4+PiBPbiBudjN4IHdlIHdpbGwg
+bGlrZWx5IGVuZCB1cCB1c2luZyB0aGUgY3B1IHRvIGRvIGNvbG9yIHJlc29sdmluZyBmb3IKPj4+
+IG1zYWEKPj4+IGJsaXRzLiBEaXNhYmxlIG1zYWEgb24gdGhlc2UgY2FyZHMgc28gdGhhdCB3ZSBk
+byBub3QgZW5kIHVwIHVzaW5nIHRoZQo+Pj4gY3B1Lgo+Pgo+Pgo+PiBBY3R1YWxseSB0aGUgQ1BV
+IGZhbGxiYWNrIHdvbid0IGRvIHNjYWxlZCwgc28gaXQncyBzdHVjayB3aXRoIFNJRk0gb3IKPj4g
+YXNzZXJ0KGZhbHNlKS4gV2hpY2ggaXNuJ3QgZ3JlYXQsIGJ1dC4uLiBpdCdzIHdoYXQgdGhlIEhX
+IGRvZXMuCj4KPgo+IE9rLgo+Cj4+IEkgZG9uJ3Qgc2VlIGEgcmVhc29uIHRvIHNodXQgdGhhdCBv
+ZmYuIEknZCByYXRoZXIgZGlzYWxsb3cgYWxsb2NhdGluZyBNUwo+PiBzdXJmYWNlcyB0aGF0IFNJ
+Rk0gd29uJ3QgbGF0ZXIgYmUgYWJsZSB0byByZXNvbHZlIG9uIG52M3guCj4KPgo+IEhtbSwgbXkg
+Zmlyc3QgaHVuY2ggd2hlbiByZWFkaW5nIHRoaXMgd2FzOiAidGhhdCBpcyBub3QgZ29pbmcgdG8g
+d29yaywKPiBhcHBzIHBpY2sgYSB2aXN1YWwgYW5kIHRoZW4gYWxsb2Mgc3VyZmFjZXMgZm9yIHRo
+YXQgdmlzdWFsIGFuZCBvbmx5Cj4gdGhhdCB2aXN1YWwsIHRoZXkgd2lsbCBub3QgZmFsbCBiYWNr
+IHRvIGFub3RoZXIgdmlzdWFsIGlmIHRoZSBhbGxvYwo+IGZhaWxzLiIKPgo+IFN0aWxsIEkndmUg
+Z2l2ZW4gdGhpcyBhIHRyeSwgcmVzdWx0aW5nIGluIHRoaXM6Cj4KPiBkaWZmIC0tZ2l0IGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKPiBiL3NyYy9nYWxs
+aXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfbWlwdHJlZS5jCj4gaW5kZXggNzZiYjhiOC4u
+MTcyZmZjMSAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9u
+djMwX21pcHRyZWUuYwo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252
+MzBfbWlwdHJlZS5jCj4gQEAgLTMyNSw2ICszMjUsNyBAQCBudjMwX21pcHRyZWVfY3JlYXRlKHN0
+cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKPiAgICAgICAgICAgICAgICAgICAgICBjb25zdCBz
+dHJ1Y3QgcGlwZV9yZXNvdXJjZSAqdG1wbCkKPiAgewo+ICAgICBzdHJ1Y3Qgbm91dmVhdV9kZXZp
+Y2UgKmRldiA9IG5vdXZlYXVfc2NyZWVuKHBzY3JlZW4pLT5kZXZpY2U7Cj4gKyAgIHN0cnVjdCBu
+djMwX3NjcmVlbiAqc2NyZWVuID0gbnYzMF9zY3JlZW4ocHNjcmVlbik7Cj4gICAgIHN0cnVjdCBu
+djMwX21pcHRyZWUgKm10ID0gQ0FMTE9DX1NUUlVDVChudjMwX21pcHRyZWUpOwo+ICAgICBzdHJ1
+Y3QgcGlwZV9yZXNvdXJjZSAqcHQgPSAmbXQtPmJhc2UuYmFzZTsKPiAgICAgdW5zaWduZWQgYmxv
+Y2tzeiwgc2l6ZTsKPiBAQCAtMzU2LDYgKzM1NywxNSBAQCBudjMwX21pcHRyZWVfY3JlYXRlKHN0
+cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKPgo+ICAgICB3ID0gcHQtPndpZHRoMCA8PCBtdC0+
+bXNfeDsKPiAgICAgaCA9IHB0LT5oZWlnaHQwIDw8IG10LT5tc195Owo+ICsKPiArICAgLyogT24g
+bnYzeCBtcyByZXF1aXJlcyBzaWZtLCBtYWtlIHN1cmUgd2UgbWVldCB0aGUgc2lmbSBjb25zdHJh
+aW50cyAqLwo+ICsgICBpZiAoc2NyZWVuLT5lbmczZC0+b2NsYXNzIDwgTlY0MF8zRF9DTEFTUyAm
+JiB0bXBsLT5ucl9zYW1wbGVzID4gMCAmJgo+ICsgICAgICAgKCh3IHwgaCkgPiAxMDI0IHx8IHcg
+PCAyIHx8IGggPCAyKSkgewo+ICsgICAgICBkZWJ1Z19wcmludGYoInJlZnVzaW5nIHRvIGNyZWF0
+ZSBtcyBidWZmZXIgd2l0aCBhIHNpemUgb2YgJWR4JWRcbiIsCj4gdywgaCk7Cj4gKyAgICAgIEZS
+RUUobXQpOwo+ICsgICAgICByZXR1cm4gTlVMTDsKPiArICAgfQo+ICsKPiAgICAgZCA9IChwdC0+
+dGFyZ2V0ID09IFBJUEVfVEVYVFVSRV8zRCkgPyBwdC0+ZGVwdGgwIDogMTsKPiAgICAgYmxvY2tz
+eiA9IHV0aWxfZm9ybWF0X2dldF9ibG9ja3NpemUocHQtPmZvcm1hdCk7Cj4KPgo+IEJ1dCBhcyBJ
+IGd1ZXNzZWQgYWxyZWFkeSB0aGlzIGRvZXMgbm90IG1ha2UgaW1wcmVzcyBoYXBweSwgaXQgc3Rp
+bGwgdHJpZXMKPiB0byB1c2UgYSBtcyB2aXN1YWxzLCBhbmQgdGhlbiBob2JibGVzIGFsb25nIHNo
+b3dpbmcgYW4gdW5pbml0aWFsaXplZAo+IGZyb250YnVmZmVyLCBhcyBpdCB3YXMgZG9pbmcgYmVm
+b3JlIHRoZSBwYXRjaCB0byBpbXBsZW1lbnQgY29sb3IKPiByZXNvbHZlLgo+Cj4gSSd2ZSBjaGVj
+a2VkIGFuZCB0aGUgZGVidWcgcHJpbnRmIEkgYWRkZWQgd29ya3MsIHNvIGVpdGhlciBJJ20gZG9p
+bmcgdGhpcwo+IGF0IHRoZSB3cm9uZyBwbGFjZSwgb3IgdGhpcyBpcyBqdXN0IG5vdCBhIGdvb2Qg
+aWRlYS4KPgo+IEJUVyB0aGVyZSBhcmUgbW9yZSBhcmd1bWVudHMgdG8gZGlzYWJsZSBtc2FhIG9u
+IG52M3g6Cj4KPiAxKSBudjN4IGlzIHNsb3cgZW5vdWdoIHdpdGhvdXQgaXQKPiAyKSBudjN4IGNh
+cmRzIHR5cGljYWxseSBvbmx5IGhhdmUgNjRNIG9mIG1lbW9yeSBhbmQgbXNhYQo+IHRha2VzIGEg
+c2lnbmlmaWNhbnQgYW1vdW50IG9mIGV4dHJhIG1lbW9yeS4KCldlbGwsIEkgZG9uJ3QgdGhpbmsg
+YW55b25lJ3MgZXhwZWN0aW5nIGl0IHRvIGRvIDRLIHJlc29sdXRpb24gYXQgMzJ4Cm1zYWEuLi4g
+VGhlIGZhY3QgdGhhdCBpdCdsbCBkaWUgZXZlbiB3aXRoIDY0MHg0ODAgaXMgYSBiaXQgdW5mb3J0
+dW5hdGUKdGhvdWdoLiBNU0FBIGRvZXNuJ3QgdGFrZSBhICJzaWduaWZpY2FudCIgYW1vdW50IG9m
+IGV4dHJhIG1lbW9yeSwganVzdAoyeCBvciA0eCBmb3IgdGhlIFJCLiBUZXh0dXJlcy9ldmVyeXRo
+aW5nIGVsc2UgYXJlIHVuYWZmZWN0ZWQuIFJlYWxseQp3ZSBzaG91bGQgYmUgdXNpbmcgc2lmbSBm
+b3IgdGhlIHdob2xlIHRoaW5nIGlycmVzcGVjdGl2ZSBvZiB0aGUgc2l6ZQphbmQganVzdCB0aWxp
+bmcuIFRoYXQnbGwgaW50cm9kdWNlIHNlYW1zIGlmIHdlJ3JlIG5vdCBjYXJlZnVsIGFib3V0Cml0
+LCBidXQgaXQgc2hvdWxkIGJlIGZpbmUgZm9yIGEgcmVzb2x2ZSwgc2luY2UgaXQncyB2ZXJ5IGRp
+cmVjdCBwaXhlbAptYXBwaW5ncyAoaS5lLiAyOjEgb3IgNDoxLCBubyAyLjU6MSB0eXBlIG9mIHRo
+aW5nKS4gVW5sZXNzIGl0IHVzZXMKc3Vycm91bmRpbmcgc2FtcGxlcywgdGhlbiB0aGVyZSBtaWdo
+dCBiZSB2ZXJ5IG1pbm9yIHNlYW1zLi4uIG5vdCBzdXJlLgoKU2hvdWxkIGJlIGVhc3kgdG8gcmln
+IHVwIHNpZm0gdG8gaWdub3JlIHRoZSB3L2ggcmVzdHJpY3Rpb25zIGZvciBNUwp0ZXh0dXJlcywg
+YW5kIGp1c3QgZG8gaXQgaW4gMTAyNHgxMDI0IGJsb2Nrcy4gV2hhdCBkbyB5b3UgdGhpbms/IFlv
+dQpzaG91bGQgYWxzbyBkb3VibGUtY2hlY2sgd2hldGhlciB0aGUgMTAyNCByZXN0cmljdGlvbiBp
+cyByZWFsLCBhbmQKd2hhdCBpdCdzIGFjdHVhbGx5IHJlc3RyaWN0aW5nPyBbTm90ZSB0aGF0IE1T
+IG1pcHRyZWVzIGFyZSBhbGxvY2F0ZWQKbGluZWFyLCBub3Qgc3dpenpsZWQuIE5vdCBzdXJlIHdo
+eS4uLiBwcm9iYWJseSBub3QgYSBiYWQgdGhpbmcgc2luY2UKc2lmbSBvbmx5IGRlYWxzIHdpdGgg
+bGluZWFyIHNvdXJjZXMuXQoKICAtaWxpYQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
