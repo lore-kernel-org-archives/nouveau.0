@@ -1,16 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH mesa 4/4] nv30: Disable msaa on nv4x because
- it causes gpu lockups
-Date: Fri, 4 Sep 2015 15:14:03 +0200
-Message-ID: <55E9991B.7080702@redhat.com>
-References: <1441279509-7147-1-git-send-email-hdegoede@redhat.com>
- <1441279509-7147-5-git-send-email-hdegoede@redhat.com>
- <CAKb7Uvhh3rcLa2f4vMi19=SagnKtQhh+wzJYrZALA2EF5o8V2Q@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: nvs280 / nv34 card only does 1680x1050,
+	not 1920x1080 ?
+Date: Fri, 4 Sep 2015 10:56:15 -0400
+Message-ID: <CAKb7UvjOcOV0dmHbeBEuOHsYSfvscvwqi0XWd-V6=AKD1QLaUw@mail.gmail.com>
+References: <55E99600.9050207@redhat.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1171806042=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvhh3rcLa2f4vMi19=SagnKtQhh+wzJYrZALA2EF5o8V2Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <55E99600.9050207-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +17,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwMy0wOS0xNSAxOTozMywgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gVGh1LCBTZXAg
-MywgMjAxNSBhdCA3OjI1IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3
-cm90ZToKPj4gT24gbnY0eCB3aXRoIGEgbXNhYSB2aXN1YWwgYWZ0ZXIgYSB3aGlsZSB0aGUgZ3B1
-IGxvY2tzIHVwLCBhdHRhY2ggZ2RiIHRvCj4+IGltcHJlc3Mgc2hvd3MgaXQgaXMgaGFuZ2luZyB3
-YWl0aW5nIGZvciBhIGZlbmNlIHdoaWNoIG5ldmVyIGNvbWVzLgo+Pgo+PiBLaWxsaW5nIG9vaW1w
-cmVzcyBhdCB0aGlzIHBvaW50IHdvcmtzIGV4YWN0bHkgb25jZSwgdHJ5aW5nIHRvIGRvIGFueQo+
-PiAzZCBvcGVyYXRpb25zIGFmdGVyIGtpbGxpbmcgaW1wcmVzcyB3aWxsIGxvY2t1cCB0aGUgZW50
-aXJlIHN5c3RlbS4KPj4KPj4gVGhpcyBuZWVkcyBmdXJ0aGVyIGludmVzdGlnYXRpb24sIGJ1dCBm
-b3Igbm93IGRpc2FibGUgbXNhYSBiZWNhdXNlIG5vCj4+IG1zYWEgaXMgYmV0dGVyIHRoZW4gY3Jh
-c2hpbmcgdGhlIHN5c3RlbS4KPgo+IFRoYXQncyBhbiBhcmd1bWVudCBJJ20gd2lsbGluZyB0byBs
-aXZlIHdpdGggLS0gY2FuIHlvdSBnZW5lcmF0ZSBzdWNoIGEKPiBwYXRjaCB3aXRob3V0IHlvdXIg
-cHJldmlvdXMgcGF0Y2g/Cj4KPiBIb3dldmVyIGlmIHdlIGRvIHRoaXMsIHRoaXMgaXMgYmFzaWNh
-bGx5IHNheWluZyB0aGF0IE1TQUEgd2lsbCBuZXZlcgo+IHdvcmsgb24gbnYzeC9udjR4LCBzaW5j
-ZSBpdCdzIHVubGlrZWx5IHRoYXQgYW55b25lIHdpbGwgbG9vayBmdXJ0aGVyCj4gaW50byBpdC4g
-SXQnZCBiZSBuaWNlIHRvIHB1dCBhIGxpdHRsZSBlZmZvcnQgaW4gZmlyc3QgdG8gbWFrZSBzdXJl
-Cj4gdGhlcmUgaXNuJ3Qgc29tZXRoaW5nIHNpbXBsZSB3ZSBjYW4gZml4LgoKTXkgcGxhbiB3YXMg
-Zm9yIG1lIHRvIGNvbW1pdCB0byBhdCBsZWFzdCB0YWtpbmcgYSBzZXJpb3VzIGF0dGVtcHQKYXQg
-Zml4aW5nIHRoaXMsIHNlZSBteSBtYWlsIGluIHRoZSAibnYzeCBsaWJyZW9mZmljZSBpbXByZXNz
-IG9wZW5nbAphbmltYXRpb25zIG5vdCB3b3JraW5nIiB0aHJlYWQuCgpJbiB0aGUgbWVhbiB0aW1l
-IEkgdGhpbmsgaXQgd291bGQgYmUgZ29vZCB0byBoYXZlIGEgcGF0Y2ggc3VjaCBhcyB0aGlzCm9u
-ZSB1cHN0cmVhbSwgc28gdGhhdCB0aGluZ3Mgd2lsbCBqdXN0IHdvcmsgZm9yIG52MzAgZmFtaWx5
-IHVzZXJzIGFuZAp3ZSBjYW4gYWxzbyBDYyBzdWNoIGEgcGF0Y2ggdG8KIjEwLjYgMTEuMCIgPG1l
-c2Etc3RhYmxlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4KCldoZXJlIGFzIHRoZSBmaXggbWF5IG5v
-dCBiZSBzdWl0YWJsZSBmb3Igc3RhYmxlLgoKUmVnYXJkcywKCkhhbnMKCgoKPgo+Pgo+PiBTaWdu
-ZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+PiAtLS0KPj4g
-ICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jIHwgMyArKy0K
-Pj4gICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCj4+Cj4+
-IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVl
-bi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYwo+PiBp
-bmRleCA2OWFjYzM4Li41NzI2MmI4IDEwMDY0NAo+PiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jCj4+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
-bm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMKPj4gQEAgLTMyMSw3ICszMjEsOCBAQCBudjMwX3Nj
-cmVlbl9pc19mb3JtYXRfc3VwcG9ydGVkKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwKPj4g
-ICB7Cj4+ICAgICAgc3RydWN0IG52MzBfc2NyZWVuICpzY3JlZW4gPSBudjMwX3NjcmVlbihwc2Ny
-ZWVuKTsKPj4KPj4gLSAgIGlmIChzY3JlZW4tPmVuZzNkLT5vY2xhc3MgPj0gTlY0MF8zRF9DTEFT
-Uykgewo+PiArICAgLyogTVNBQSB2aXN1YWxzIHdvcmsgc29td2hhdCBvbiBudjR4LCBidXQgY2F1
-c2UgZ3B1IGxvY2t1cHMgKi8KPj4gKyAgIGlmICgwICYmIHNjcmVlbi0+ZW5nM2QtPm9jbGFzcyA+
-PSBOVjQwXzNEX0NMQVNTKSB7Cj4+ICAgICAgICAgaWYgKHNhbXBsZV9jb3VudCA+IDQpCj4+ICAg
-ICAgICAgICAgcmV0dXJuIGZhbHNlOwo+PiAgICAgIH0gZWxzZSB7Cj4+IC0tCj4+IDIuNC4zCj4+
-Cj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+IE5v
-dXZlYXUgbWFpbGluZyBsaXN0Cj4+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+--===============1171806042==
+Content-Type: multipart/alternative; boundary=047d7b2e10d1f9b70f051eed1972
+
+--047d7b2e10d1f9b70f051eed1972
+Content-Type: text/plain; charset=UTF-8
+
+Tmds is limited to 135mhz on nv3x. If you use analog, you can get full
+resolution.
+On Sep 4, 2015 9:00 AM, "Hans de Goede" <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org> wrote:
+
+> Hi All,
+>
+> I've recently acquired a nvs280 card, which is a nv34
+> gpu based card with a pci-e bridge on the card, this
+> way I can test nv3x problems without needing an agp
+> motherboard.
+>
+> One thing which stands out with this card is that
+> it drivers my dvi lcd monitor at 1680x1050 instead of its
+> native 1920x1080.
+>
+> Is this due to a known limitation on the display pipeline
+> of these cards / nv34 gpu-s. Or is this more likely a bug
+> somewhere ?
+>
+> Regards,
+>
+> Hans
+> _______________________________________________
+> Nouveau mailing list
+> Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> http://lists.freedesktop.org/mailman/listinfo/nouveau
+>
+
+--047d7b2e10d1f9b70f051eed1972
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Tmds is limited to 135mhz on nv3x. If you use analog, you ca=
+n get full resolution.</p>
+<div class=3D"gmail_quote">On Sep 4, 2015 9:00 AM, &quot;Hans de Goede&quot=
+; &lt;<a href=3D"mailto:hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org">hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org</a>&gt; wr=
+ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi All,<br>
+<br>
+I&#39;ve recently acquired a nvs280 card, which is a nv34<br>
+gpu based card with a pci-e bridge on the card, this<br>
+way I can test nv3x problems without needing an agp<br>
+motherboard.<br>
+<br>
+One thing which stands out with this card is that<br>
+it drivers my dvi lcd monitor at 1680x1050 instead of its<br>
+native 1920x1080.<br>
+<br>
+Is this due to a known limitation on the display pipeline<br>
+of these cards / nv34 gpu-s. Or is this more likely a bug<br>
+somewhere ?<br>
+<br>
+Regards,<br>
+<br>
+Hans<br>
+_______________________________________________<br>
+Nouveau mailing list<br>
+<a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" target=3D"_blank">Nouveau@=
+lists.freedesktop.org</a><br>
+<a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouveau" rel=3D"no=
+referrer" target=3D"_blank">http://lists.freedesktop.org/mailman/listinfo/n=
+ouveau</a><br>
+</blockquote></div>
+
+--047d7b2e10d1f9b70f051eed1972--
+
+--===============1171806042==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1171806042==--
