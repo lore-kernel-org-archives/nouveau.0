@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
-	colors
-Date: Sun, 06 Sep 2015 21:56:25 +0000
-Message-ID: <bug-91895-8800-S2MCU9oJKG@http.bugs.freedesktop.org/>
-References: <bug-91895-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90276] [NVE4] read fault error, bisected
+Date: Sun, 06 Sep 2015 22:35:09 +0000
+Message-ID: <bug-90276-8800-so2LQkVcPa@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1682448772=="
+Content-Type: multipart/mixed; boundary="===============0677870727=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1682448772==
-Content-Type: multipart/alternative; boundary="1441576585.1B2ACB50.25859"; charset="UTF-8"
+--===============0677870727==
+Content-Type: multipart/alternative; boundary="1441578908.0ca751.3530"; charset="UTF-8"
 
 
---1441576585.1B2ACB50.25859
-Date: Sun, 6 Sep 2015 21:56:25 +0000
+--1441578908.0ca751.3530
+Date: Sun, 6 Sep 2015 22:35:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91895
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #9 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Yes, this fixes gun rendering.
+--- Comment #17 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Reversing 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 solves the problem.
+
+Howerever c39f472e9f14e49a9bc091977ced0ec45fc00c57 changes some names so I
+don't know what to for recent kernels.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441576585.1B2ACB50.25859
-Date: Sun, 6 Sep 2015 21:56:25 +0000
+--1441578908.0ca751.3530
+Date: Sun, 6 Sep 2015 22:35:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,30 +55,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c9">Comment # 9</a>
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c17">Comment # 17</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
 </span></b>
-        <pre>Yes, this fixes gun rendering.</pre>
+        <pre>Reversing 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 solves the problem.
+
+Howerever c39f472e9f14e49a9bc091977ced0ec45fc00c57 changes some names so I
+don't know what to for recent kernels.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1441576585.1B2ACB50.25859--
+--1441578908.0ca751.3530--
 
---===============1682448772==
+--===============0677870727==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1682448772==--
+--===============0677870727==--
