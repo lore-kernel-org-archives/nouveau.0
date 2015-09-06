@@ -1,12 +1,13 @@
-From: Marcin =?utf-8?Q?=C5=9Alusarz?= <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: oops in reservation_object_wait_timeout_rcu
-Date: Sun, 6 Sep 2015 16:26:47 +0200
-Message-ID: <20150906142647.GA11923@marcin-Inspiron-7720>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91551] DXTn compressed normal maps produce severe
+ artifacts on all NV5x and NVDx chipsets
+Date: Sun, 06 Sep 2015 14:32:27 +0000
+Message-ID: <bug-91551-8800-If3Ce0vHjF@http.bugs.freedesktop.org/>
+References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1160004128=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
+In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,63 +17,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-IEJVRzogdW5hYmxlIHRvIGhhbmRsZSBrZXJuZWwgcGFnaW5nIHJlcXVlc3QgYXQgZmZmZmM5MDAw
-MzE2MTAxOAogSVA6IFs8ZmZmZmZmZmY4MTU3ZDEyYz5dIHJlc2VydmF0aW9uX29iamVjdF93YWl0
-X3RpbWVvdXRfcmN1KzB4MzVjLzB4NTgwCiBQR0QgMTNhODlhMDY3IFBVRCAxM2E4OWIwNjcgUE1E
-IDEzNjczNTA2NyBQVEUgMAogT29wczogMDAwMCBbIzFdIFBSRUVNUFQgU01QIAogTW9kdWxlcyBs
-aW5rZWQgaW46IGN0ciBjY20gcmZjb21tIGJuZXAgYXJjNCBpd2xkdm0gbWFjODAyMTEgYmluZm10
-X21pc2MgaXdsd2lmaSBjZmc4MDIxMSBydHN4X3VzYiB1dmN2aWRlbyBidHVzYiBidGJjbSBidGlu
-dGVsIGJsdWV0b290aCB2aWRlb2J1ZjJfdm1hbGxvYyB2aWRlb2J1ZjJfbWVtb3BzIHZpZGVvYnVm
-Ml9jb3JlIHY0bDJfY29tbW9uIHNuZF9oZGFfY29kZWNfaGRtaSB2aWRlb2RldiBzbmRfaGRhX2Nv
-ZGVjX2lkdCBzbmRfaGRhX2NvZGVjX2dlbmVyaWMgZGVsbF93bWkgc25kX2hkYV9pbnRlbCBzcGFy
-c2Vfa2V5bWFwIGRlbGxfbGFwdG9wIGRjZGJhcyBzbmRfaGRhX2NvbnRyb2xsZXIgc25kX2hkYV9j
-b2RlYyB4ODZfcGtnX3RlbXBfdGhlcm1hbCBjb3JldGVtcCBzbmRfaHdkZXAgc25kX3BjbSBzbmRf
-aGRhX2NvcmUgbWljcm9jb2RlIHNuZF9zZXFfbWlkaSBzbmRfc2VxX21pZGlfZXZlbnQgc2VyaW9f
-cmF3IHNuZF9yYXdtaWRpIHNuZF9zZXEgc25kX3RpbWVyIHNuZF9zZXFfZGV2aWNlIHNuZCBscGNf
-aWNoIHNvdW5kY29yZSBwYXJwb3J0X3BjIHBwZGV2IGxwIHBhcnBvcnQgaGlkX2dlbmVyaWMgbm91
-dmVhdSBteG1fd21pIHR0bSBpOTE1IHBzbW91c2UgaTJjX2FsZ29fYml0IGRybV9rbXNfaGVscGVy
-IGFoY2kgbGliYWhjaSB1c2JoaWQgZHJtIGhpZCB3bWkgdmlkZW8KIENQVTogMSBQSUQ6IDkyMCBD
-b21tOiBYb3JnIE5vdCB0YWludGVkIDQuMS4yKyAjNTcKIEhhcmR3YXJlIG5hbWU6IERlbGwgSW5j
-LiAgICAgICAgICBJbnNwaXJvbiA3NzIwLzA0TTNZTSwgQklPUyBBMDcgMDgvMTYvMjAxMgogdGFz
-azogZmZmZjg4MDEzNmRlYzJjMCB0aTogZmZmZjg4MDEzNmRlNDAwMCB0YXNrLnRpOiBmZmZmODgw
-MTM2ZGU0MDAwCiBSSVA6IDAwMTA6WzxmZmZmZmZmZjgxNTdkMTJjPl0gIFs8ZmZmZmZmZmY4MTU3
-ZDEyYz5dIHJlc2VydmF0aW9uX29iamVjdF93YWl0X3RpbWVvdXRfcmN1KzB4MzVjLzB4NTgwCiBS
-U1A6IDAwMTg6ZmZmZjg4MDEzNmRlN2M3OCAgRUZMQUdTOiAwMDAxMDI0NgogUkFYOiBmZmZmYzkw
-MDAzMTYxMDAwIFJCWDogZmZmZjg4MDBhYjEyM2IwMCBSQ1g6IDAwMDAwMDAwYWIxMjMyMDAKIFJE
-WDogMDAwMDAwMDBhYjEyMzIwMCBSU0k6IDAwMDAwMDAwMDAwMDAwMDAgUkRJOiBmZmZmZmZmZjgx
-YzViZTAwCiBSQlA6IGZmZmY4ODAxMzZkZTdjZDggUjA4OiAwMDAwMDAwMDAwMDAwMDAwIFIwOTog
-MDAwMDAwMDAwMDAwMDAwMAogUjEwOiAwMDAwMDAwMDAwMDAwMDAwIFIxMTogZmZmZjg4MDEzNmRl
-N2Q4MCBSMTI6IDAwMDAwMDAwMDAwMDAwMDAKIFIxMzogMDAwMDAwMDAwMDAwMWQ0YyBSMTQ6IDAw
-MDAwMDAwMDAwMGMzMjYgUjE1OiBmZmZmODgwMDMyOTBhMWI4CiBGUzogIDAwMDA3ZjI5YTcyMzc5
-ODAoMDAwMCkgR1M6ZmZmZjg4MDEzZjI0MDAwMCgwMDAwKSBrbmxHUzowMDAwMDAwMDAwMDAwMDAw
-CiBDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCiBDUjI6
-IGZmZmZjOTAwMDMxNjEwMTggQ1IzOiAwMDAwMDAwMDMyY2Y4MDAwIENSNDogMDAwMDAwMDAwMDE0
-MDdlMAogU3RhY2s6CiAgZmZmZmZmZmY4MTU3Y2U3MCBmZmZmODgwMDMzNmE4ODk4IDAwMDAwMDAx
-MzZkZTdjYTggZmZmZjg4MDAzMjkwYTI1MAogIGZmZmY4ODAwNDcxMWNlNDAgMDAwMDAwMDIwMTkw
-YTNmMCBmZmZmODgwMTM2ZGU3Y2Q4IDAwMDAwMDAwZmZmZmZmZjAKICAwMDAwMDAwMDAwMDAwMDAw
-IGZmZmY4ODAwMzI5MGEwMDAgZmZmZjg4MDAzMjkwYTNmMCAwMDAwMDAwMDAwMDAwMDgyCiBDYWxs
-IFRyYWNlOgogIFs8ZmZmZmZmZmY4MTU3Y2U3MD5dID8gcmVzZXJ2YXRpb25fb2JqZWN0X3dhaXRf
-dGltZW91dF9yY3UrMHhhMC8weDU4MAogIFs8ZmZmZmZmZmZhMDM0OWQ5ZD5dIG5vdXZlYXVfZ2Vt
-X2lvY3RsX2NwdV9wcmVwKzB4NmQvMHgxOTAgW25vdXZlYXVdCiAgWzxmZmZmZmZmZjgxMjA4N2Ri
-Pl0gPyBtaWdodF9mYXVsdCsweDhiLzB4YTAKICBbPGZmZmZmZmZmYTAwM2VkMjU+XSBkcm1faW9j
-dGwrMHgxYTUvMHg2YjAgW2RybV0KICBbPGZmZmZmZmZmODExMGQ2NWQ+XSA/IHRyYWNlX2hhcmRp
-cnFzX29uKzB4ZC8weDEwCiAgWzxmZmZmZmZmZjgxNzlmNDMyPl0gPyBfcmF3X3NwaW5fdW5sb2Nr
-X2lycXJlc3RvcmUrMHg0Mi8weDgwCiAgWzxmZmZmZmZmZmEwMzNmYjkyPl0gbm91dmVhdV9kcm1f
-aW9jdGwrMHg3Mi8weGQwIFtub3V2ZWF1XQogIFs8ZmZmZmZmZmY4MTI1Y2FiOD5dIGRvX3Zmc19p
-b2N0bCsweDMwOC8weDU0MAogIFs8ZmZmZmZmZmY4MTI2OGMwNT5dID8gX19mZ2V0KzB4NS8weDIx
-MAogIFs8ZmZmZmZmZmY4MTI2OGU3YT5dID8gX19mZ2V0X2xpZ2h0KzB4MmEvMHhhMAogIFs8ZmZm
-ZmZmZmY4MTI1Y2Q3MT5dIFN5U19pb2N0bCsweDgxLzB4YTAKICBbPGZmZmZmZmZmODE3OWZkOWI+
-XSBzeXN0ZW1fY2FsbF9mYXN0cGF0aCsweDE2LzB4NzMKIENvZGU6IGQ1IGExIDgxIGJlIGM3IDAz
-IDAwIDAwIDQ4IGM3IGM3IDI1IGQwIGExIDgxIGM2IDA1IGQwIDY2IDdhIDAwIDAxIGU4IDM0IGVi
-IGI4IGZmIGU5IGY1IGZkIGZmIGZmIDBmIDFmIDgwIDAwIDAwIDAwIDAwIDQ4IDhiIDQzIDA4IDw0
-OD4gOGIgNDAgMTggNDggODUgYzAgMGYgODQgYzcgZmQgZmYgZmYgNDggODkgZGYgZmYgZDAgODQg
-YzAgMGYgCiBSSVAgIFs8ZmZmZmZmZmY4MTU3ZDEyYz5dIHJlc2VydmF0aW9uX29iamVjdF93YWl0
-X3RpbWVvdXRfcmN1KzB4MzVjLzB4NTgwCiAgUlNQIDxmZmZmODgwMTM2ZGU3Yzc4PgogQ1IyOiBm
-ZmZmYzkwMDAzMTYxMDE4CiAtLS1bIGVuZCB0cmFjZSBjNGU5ZmY2YTAyODExNjdhIF0tLS0KCgpI
-YXBwZW5lZCBvbmNlLCB3aGlsZSBJIHdhcyAidGVzdGluZyIgUG9ydGFsLgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1160004128==
+Content-Type: multipart/alternative; boundary="1441549947.D87640.13372"; charset="UTF-8"
+
+
+--1441549947.D87640.13372
+Date: Sun, 6 Sep 2015 14:32:27 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91551
+
+--- Comment #8 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi,
+
+I tried to apply the two patches proposed by jr, in
+https://bugs.freedesktop.org/show_bug.cgi?id=90887 thread,
+
+built patched nouveau_dri.so i386 target and checked about the artifacts on
+FS2open mod.
+
+In my use case the artifacts are still there.
+
+I'll check again with next proposed patches, I only need to playback the
+apitrace on specific HW
+
+Mauro
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1441549947.D87640.13372
+Date: Sun, 6 Sep 2015 14:32:27 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
+</span></b>
+        <pre>Hi,
+
+I tried to apply the two patches proposed by jr, in
+<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - PhiMovesPass in register allocator broken"
+   href="show_bug.cgi?id=90887">https://bugs.freedesktop.org/show_bug.cgi?id=90887</a> thread,
+
+built patched nouveau_dri.so i386 target and checked about the artifacts on
+FS2open mod.
+
+In my use case the artifacts are still there.
+
+I'll check again with next proposed patches, I only need to playback the
+apitrace on specific HW
+
+Mauro</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441549947.D87640.13372--
+
+--===============1160004128==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1160004128==--
