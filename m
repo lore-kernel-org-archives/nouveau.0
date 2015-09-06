@@ -1,91 +1,57 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Sun, 06 Sep 2015 23:28:35 +0000
-Message-ID: <bug-90276-8800-0aPV0Yd0OI@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow@free.fr>
+Subject: [PATCH] pci: Handle 5-bit and 8-bit tag field
+Date: Sun,  6 Sep 2015 13:10:29 +0200
+Message-ID: <1441537829-6897-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0038565527=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: nouveau@lists.freedesktop.org
+Cc: bskeggs@redhat.com, dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0038565527==
-Content-Type: multipart/alternative; boundary="1441582115.3E6e6Ea1.17430"; charset="UTF-8"
-
-
---1441582115.3E6e6Ea1.17430
-Date: Sun, 6 Sep 2015 23:28:35 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
-
---- Comment #19 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Ok there are still crashes but they tend to happen less easier/fast.
-Applications that once produced a reproducible instant crashes, now crashes
-with same errors after ~30min or more. (also works on more recent kernels)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1441582115.3E6e6Ea1.17430
-Date: Sun, 6 Sep 2015 23:28:35 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c19">Comment # 19</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
-</span></b>
-        <pre>Ok there are still crashes but they tend to happen less easier/fast.
-Applications that once produced a reproducible instant crashes, now crashes
-with same errors after ~30min or more. (also works on more recent kernels)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441582115.3E6e6Ea1.17430--
-
---===============0038565527==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0038565527==--
+SWYgdGhlIGhhcmR3YXJlIHN1cHBvcnRzIGV4dGVuZGVkIHRhZyBmaWVsZCAoOC1iaXQgb25lcyks
+IHRoZW4gZW5hYmxlZCBpdC4gVGhpcwppcyB1c3VhbGx5IGRvbmUgYnkgdGhlIFZCSU9TLCBidXQg
+bm90IG9uIHNvbWUgTUJQcyAoc2VlIGZkbyM4NjUzNykuCkluIGNhc2UgZXh0ZW5kZWQgdGFnIGZp
+ZWxkIGlzIG5vdCBzdXBwb3J0ZWQsIDUtYml0IHRhZyBmaWVsZCBpcyB1c2VkIHdoaWNoCmxpbWl0
+cyB0aGUgcG9zc2libGUgdmFsdWVzIHRvIDMyLiBBcHBhcmVudGx5IGJpdHMgNzowIG9mIDB4ODg0
+MWMgc3RvcmVzIHNvbWUKbnVtYmVyIG9mIG91dHN0YW5kaW5nIHJlcXVlc3RzLCBzbyBjYXAgaXQg
+dG8gMzIgaWYgZXh0ZW5kZWQgdGFnIGlzIHVuc3VwcG9ydGVkLgoKRml4ZXM6IGZkbyM4NjUzNwpT
+aWduZWQtb2ZmLWJ5OiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+Ci0tLQog
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyB8IDI1ICsrKysrKysrKysrKysrKysr
+KysrKysrKysKIDEgZmlsZSBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L3BjaS9iYXNlLmMKaW5kZXggZDFjMTQ4ZS4uNzA2MzFiMyAxMDA2NDQKLS0tIGEvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRl
+di9wY2kvYmFzZS5jCkBAIC00Niw2ICs0NiwxNCBAQCBudmttX3BjaV93cjMyKHN0cnVjdCBudmtt
+X3BjaSAqcGNpLCB1MTYgYWRkciwgdTMyIGRhdGEpCiAJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRk
+ciwgZGF0YSk7CiB9CiAKK3UzMgorbnZrbV9wY2lfbWFzayhzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwg
+dTE2IGFkZHIsIHUzMiBtYXNrLCB1MzIgYWRkKQoreworCXUzMiBkYXRhID0gcGNpLT5mdW5jLT5y
+ZDMyKHBjaSwgYWRkcik7CisJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRkciwgKGRhdGEgJiB+bWFz
+aykgfCBhZGQpOworCXJldHVybiBkYXRhOworfQorCiB2b2lkCiBudmttX3BjaV9yb21fc2hhZG93
+KHN0cnVjdCBudmttX3BjaSAqcGNpLCBib29sIHNoYWRvdykKIHsKQEAgLTExNSw2ICsxMjMsMjMg
+QEAgbnZrbV9wY2lfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIAlpZiAocmV0KQog
+CQlyZXR1cm4gcmV0OwogCisJaWYgKHBjaV9pc19wY2llKHBkZXYpKSB7CisJCS8qIFRhZyBmaWVs
+ZCBpcyA4LWJpdCBsb25nLCByZWdhcmRsZXNzIG9mIEVYVF9UQUcuCisJCSAqIEhvd2V2ZXIsIGlm
+IEVYVF9UQUcgaXMgZGlzYWJsZWQsIG9ubHkgdGhlIGxvd2VyIDUgYml0cyBvZiB0aGUgdGFnCisJ
+CSAqIGZpZWxkIHNob3VsZCBiZSB1c2VkLCBsaW1pdGluZyB0aGUgbnVtYmVyIG9mIHJlcXVlc3Qg
+dG8gMzIuCisJCSAqCisJCSAqIEFwcGFyZW50bHksIDB4MDQxYyBzdG9yZXMgc29tZSBsaW1pdCBv
+biB0aGUgbnVtYmVyIG9mIHJlcXVlc3RzCisJCSAqIHBvc3NpYmxlLCBzbyBpZiBFWFRfVEFHIGlz
+IGRpc2FibGVkLCBsaW1pdCB0aGF0IHJlcXVlc3RzIG51bWJlciB0bworCQkgKiAzMgorCQkgKgor
+CQkgKiBGaXhlcyBmZG8jODY1MzcKKwkJICovCisJCWlmIChudmttX3BjaV9yZDMyKHBjaSwgMHgw
+MDdjKSAmIDB4MDAwMDAwMjApCisJCQludmttX3BjaV9tYXNrKHBjaSwgMHgwMDgwLCAweDAwMDAw
+MDAwLCAweDAwMDAwMTAwKTsKKwkJZWxzZQorCQkJbnZrbV9wY2lfbWFzayhwY2ksIDB4MDQxYywg
+MHgwMDAwMDA2MCwgMHgwMDAwMDAwMCk7CisJfQorCiAJcGNpLT5pcnEgPSBwZGV2LT5pcnE7CiAJ
+cmV0dXJuIHJldDsKIH0KLS0gCjIuNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZlbEBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2RyaS1kZXZlbAo=
