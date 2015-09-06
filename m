@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
 	colors
-Date: Sun, 06 Sep 2015 17:21:25 +0000
-Message-ID: <bug-91895-8800-eA3ePksIKO@http.bugs.freedesktop.org/>
+Date: Sun, 06 Sep 2015 17:28:24 +0000
+Message-ID: <bug-91895-8800-NNhf4AZQH4@http.bugs.freedesktop.org/>
 References: <bug-91895-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1128828348=="
+Content-Type: multipart/mixed; boundary="===============1872668441=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1128828348==
-Content-Type: multipart/alternative; boundary="1441560085.72ff1.22817"; charset="UTF-8"
+--===============1872668441==
+Content-Type: multipart/alternative; boundary="1441560504.6b410d1.24353"; charset="UTF-8"
 
 
---1441560085.72ff1.22817
-Date: Sun, 6 Sep 2015 17:21:25 +0000
+--1441560504.6b410d1.24353
+Date: Sun, 6 Sep 2015 17:28:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91895
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-GlennK reproduced the same issue on r600, so it's most likely a st/mesa bug.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #2)
+> GlennK reproduced the same issue on r600, so it's most likely a st/mesa bug.
+
+Errr... two issues. One is the lighting issue, which also happens on r600.
+Another is the blacked out bits, which is nouveau-specific.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441560085.72ff1.22817
-Date: Sun, 6 Sep 2015 17:21:25 +0000
+--1441560504.6b410d1.24353
+Date: Sun, 6 Sep 2015 17:28:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,14 +59,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>GlennK reproduced the same issue on r600, so it's most likely a st/mesa bug.</pre>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91895#c2">comment #2</a>)
+<span class="quote">&gt; GlennK reproduced the same issue on r600, so it's most likely a st/mesa bug.</span >
+
+Errr... two issues. One is the lighting issue, which also happens on r600.
+Another is the blacked out bits, which is nouveau-specific.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1441560085.72ff1.22817--
+--1441560504.6b410d1.24353--
 
---===============1128828348==
+--===============1872668441==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1128828348==--
+--===============1872668441==--
