@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91551] DXTn compressed normal maps produce severe
- artifacts on all NV5x and NVDx chipsets
-Date: Sun, 06 Sep 2015 14:32:27 +0000
-Message-ID: <bug-91551-8800-If3Ce0vHjF@http.bugs.freedesktop.org/>
-References: <bug-91551-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91895] New: [nve7] Shadow Warrior: black gun &
+	messed up colors
+Date: Sun, 06 Sep 2015 16:09:31 +0000
+Message-ID: <bug-91895-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1160004128=="
+Content-Type: multipart/mixed; boundary="===============0879025419=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +19,49 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1160004128==
-Content-Type: multipart/alternative; boundary="1441549947.D87640.13372"; charset="UTF-8"
+--===============0879025419==
+Content-Type: multipart/alternative; boundary="1441555771.328CEB0.5306"; charset="UTF-8"
 
 
---1441549947.D87640.13372
-Date: Sun, 6 Sep 2015 14:32:27 +0000
+--1441555771.328CEB0.5306
+Date: Sun, 6 Sep 2015 16:09:31 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91551
+https://bugs.freedesktop.org/show_bug.cgi?id=91895
 
---- Comment #8 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi,
+            Bug ID: 91895
+           Summary: [nve7] Shadow Warrior: black gun & messed up colors
+           Product: Mesa
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-I tried to apply the two patches proposed by jr, in
-https://bugs.freedesktop.org/show_bug.cgi?id=90887 thread,
+Created attachment 118102
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118102&action=edit
+Shadow Warrior on Nouveau
 
-built patched nouveau_dri.so i386 target and checked about the artifacts on
-FS2open mod.
+Screenshots comparing intel and nouveau attached.
+Apitrace:
+http://people.freedesktop.org/~mslusarz/ShadowWarrior.bin.x86.trace.xz (174MB)
 
-In my use case the artifacts are still there.
-
-I'll check again with next proposed patches, I only need to playback the
-apitrace on specific HW
-
-Mauro
+This is on mesa-git (3c6c4d4f298ec81fe57992790a68aaab2e573519) with the patch
+from bug#91890.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441549947.D87640.13372
-Date: Sun, 6 Sep 2015 14:32:27 +0000
+--1441555771.328CEB0.5306
+Date: Sun, 6 Sep 2015 16:09:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,36 +69,101 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">91895</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>[nve7] Shadow Warrior: black gun &amp; messed up colors
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>marcin.slusarz&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+        <pre>Created <span class=""><a href="attachment.cgi?id=118102" name="attach_118102" title="Shadow Warrior on Nouveau">attachment 118102</a> <a href="attachment.cgi?id=118102&amp;action=edit" title="Shadow Warrior on Nouveau">[details]</a></span>
+Shadow Warrior on Nouveau
+
+Screenshots comparing intel and nouveau attached.
+Apitrace:
+<a href="http://people.freedesktop.org/~mslusarz/ShadowWarrior.bin.x86.trace.xz">http://people.freedesktop.org/~mslusarz/ShadowWarrior.bin.x86.trace.xz</a> (174MB)
+
+This is on mesa-git (3c6c4d4f298ec81fe57992790a68aaab2e573519) with the patch
+from <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
-              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
-</span></b>
-        <pre>Hi,
-
-I tried to apply the two patches proposed by jr, in
-<a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - PhiMovesPass in register allocator broken"
-   href="show_bug.cgi?id=90887">https://bugs.freedesktop.org/show_bug.cgi?id=90887</a> thread,
-
-built patched nouveau_dri.so i386 target and checked about the artifacts on
-FS2open mod.
-
-In my use case the artifacts are still there.
-
-I'll check again with next proposed patches, I only need to playback the
-apitrace on specific HW
-
-Mauro</pre>
+   title="NEW - [nve7] witcher2: blurry image &amp; DATA_ERRORs (class 0xa097 mthd 0x2380/0x238c)"
+   href="show_bug.cgi?id=91890">bug#91890</a>.</pre>
         </div>
       </p>
       <hr>
@@ -104,9 +176,9 @@ Mauro</pre>
     </body>
 </html>
 
---1441549947.D87640.13372--
+--1441555771.328CEB0.5306--
 
---===============1160004128==
+--===============0879025419==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -116,4 +188,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1160004128==--
+--===============0879025419==--
