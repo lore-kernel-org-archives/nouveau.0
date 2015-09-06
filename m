@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91890] [nve7] witcher2: blurry image & DATA_ERRORs
- (class 0xa097 mthd 0x2380/0x238c)
-Date: Sun, 06 Sep 2015 11:04:44 +0000
-Message-ID: <bug-91890-8800-cEr8qA527o@http.bugs.freedesktop.org/>
-References: <bug-91890-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <dev-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
+Subject: [PATCH] pci: Handle 5-bit and 8-bit tag field
+Date: Sun,  6 Sep 2015 13:29:18 +0200
+Message-ID: <1441538958-15119-1-git-send-email-dev@pmoreau.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1127575560=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91890-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,75 +16,42 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1127575560==
-Content-Type: multipart/alternative; boundary="1441537484.D2ACc00.31734"; charset="UTF-8"
-
-
---1441537484.D2ACc00.31734
-Date: Sun, 6 Sep 2015 11:04:44 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91890
-
---- Comment #5 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-This patch resolves both blurriness and DATA_ERRORs. 
-Thanks!
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1441537484.D2ACc00.31734
-Date: Sun, 6 Sep 2015 11:04:44 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] witcher2: blurry image &amp; DATA_ERRORs (class 0xa097 mthd 0x2380/0x238c)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91890#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] witcher2: blurry image &amp; DATA_ERRORs (class 0xa097 mthd 0x2380/0x238c)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91890">bug 91890</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span></b>
-        <pre>This patch resolves both blurriness and DATA_ERRORs. 
-Thanks!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441537484.D2ACc00.31734--
-
---===============1127575560==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1127575560==--
+SWYgdGhlIGhhcmR3YXJlIHN1cHBvcnRzIGV4dGVuZGVkIHRhZyBmaWVsZCAoOC1iaXQgb25lcyks
+IHRoZW4gZW5hYmxlZCBpdC4gVGhpcwppcyB1c3VhbGx5IGRvbmUgYnkgdGhlIFZCSU9TLCBidXQg
+bm90IG9uIHNvbWUgTUJQcyAoc2VlIGZkbyM4NjUzNykuCkluIGNhc2UgZXh0ZW5kZWQgdGFnIGZp
+ZWxkIGlzIG5vdCBzdXBwb3J0ZWQsIDUtYml0IHRhZyBmaWVsZCBpcyB1c2VkIHdoaWNoCmxpbWl0
+cyB0aGUgcG9zc2libGUgdmFsdWVzIHRvIDMyLiBBcHBhcmVudGx5IGJpdHMgNzowIG9mIDB4ODg0
+MWMgc3RvcmVzIHNvbWUKbnVtYmVyIG9mIG91dHN0YW5kaW5nIHJlcXVlc3RzLCBzbyBjYXAgaXQg
+dG8gMzIgaWYgZXh0ZW5kZWQgdGFnIGlzIHVuc3VwcG9ydGVkLgoKRml4ZXM6IGZkbyM4NjUzNwpT
+aWduZWQtb2ZmLWJ5OiBQaWVycmUgTW9yZWF1IDxkZXZAcG1vcmVhdS5vcmc+Ci0tLQogZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyB8IDI1ICsrKysrKysrKysrKysrKysrKysrKysr
+KysKIDEgZmlsZSBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Bj
+aS9iYXNlLmMKaW5kZXggZDFjMTQ4ZS4uNzA2MzFiMyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvcGNpL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kv
+YmFzZS5jCkBAIC00Niw2ICs0NiwxNCBAQCBudmttX3BjaV93cjMyKHN0cnVjdCBudmttX3BjaSAq
+cGNpLCB1MTYgYWRkciwgdTMyIGRhdGEpCiAJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRkciwgZGF0
+YSk7CiB9CiAKK3UzMgorbnZrbV9wY2lfbWFzayhzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwgdTE2IGFk
+ZHIsIHUzMiBtYXNrLCB1MzIgYWRkKQoreworCXUzMiBkYXRhID0gcGNpLT5mdW5jLT5yZDMyKHBj
+aSwgYWRkcik7CisJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRkciwgKGRhdGEgJiB+bWFzaykgfCBh
+ZGQpOworCXJldHVybiBkYXRhOworfQorCiB2b2lkCiBudmttX3BjaV9yb21fc2hhZG93KHN0cnVj
+dCBudmttX3BjaSAqcGNpLCBib29sIHNoYWRvdykKIHsKQEAgLTExNSw2ICsxMjMsMjMgQEAgbnZr
+bV9wY2lfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKnN1YmRldikKIAlpZiAocmV0KQogCQlyZXR1
+cm4gcmV0OwogCisJaWYgKHBjaV9pc19wY2llKHBkZXYpKSB7CisJCS8qIFRhZyBmaWVsZCBpcyA4
+LWJpdCBsb25nLCByZWdhcmRsZXNzIG9mIEVYVF9UQUcuCisJCSAqIEhvd2V2ZXIsIGlmIEVYVF9U
+QUcgaXMgZGlzYWJsZWQsIG9ubHkgdGhlIGxvd2VyIDUgYml0cyBvZiB0aGUgdGFnCisJCSAqIGZp
+ZWxkIHNob3VsZCBiZSB1c2VkLCBsaW1pdGluZyB0aGUgbnVtYmVyIG9mIHJlcXVlc3QgdG8gMzIu
+CisJCSAqCisJCSAqIEFwcGFyZW50bHksIDB4MDQxYyBzdG9yZXMgc29tZSBsaW1pdCBvbiB0aGUg
+bnVtYmVyIG9mIHJlcXVlc3RzCisJCSAqIHBvc3NpYmxlLCBzbyBpZiBFWFRfVEFHIGlzIGRpc2Fi
+bGVkLCBsaW1pdCB0aGF0IHJlcXVlc3RzIG51bWJlciB0bworCQkgKiAzMgorCQkgKgorCQkgKiBG
+aXhlcyBmZG8jODY1MzcKKwkJICovCisJCWlmIChudmttX3BjaV9yZDMyKHBjaSwgMHgwMDdjKSAm
+IDB4MDAwMDAwMjApCisJCQludmttX3BjaV9tYXNrKHBjaSwgMHgwMDgwLCAweDAwMDAwMDAwLCAw
+eDAwMDAwMTAwKTsKKwkJZWxzZQorCQkJbnZrbV9wY2lfbWFzayhwY2ksIDB4MDQxYywgMHgwMDAw
+MDA2MCwgMHgwMDAwMDAwMCk7CisJfQorCiAJcGNpLT5pcnEgPSBwZGV2LT5pcnE7CiAJcmV0dXJu
+IHJldDsKIH0KLS0gCjIuNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
+dQo=
