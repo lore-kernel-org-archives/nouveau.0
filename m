@@ -1,79 +1,124 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: [PATCH mesa 3/3] nv30: Disable msaa for now because
-	it causes lockups
-Date: Mon, 7 Sep 2015 16:00:12 -0400
-Message-ID: <CAKb7UvghqjAb9MhJRo+LPX5-sE2x=Wj0kZMLeBGMJQgKMdHyTA@mail.gmail.com>
-References: <1441655450-9336-1-git-send-email-hdegoede@redhat.com>
- <1441655450-9336-3-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 31139] MBP5,x displays not turned on on resume
+Date: Mon, 07 Sep 2015 21:29:20 +0000
+Message-ID: <bug-31139-8800-5NFID8q33s@http.bugs.freedesktop.org/>
+References: <bug-31139-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <1441655450-9336-3-git-send-email-hdegoede@redhat.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Hans de Goede <hdegoede@redhat.com>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1145367610=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-31139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBTZXAgNywgMjAxNSBhdCAzOjUwIFBNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
-ZWRoYXQuY29tPiB3cm90ZToKPiBtc2FhIHVzZSBvbiBudjMwIG1heSB0cmlnZ2VyIGEgKG1lc2E/
-KSBidWcgd2hlcmUgZG1lc2cgc2F5czoKPiAgWyAxMTk3Ljg1MDY0Ml0gbm91dmVhdSBFW3NvZmZp
-Y2UuYmluWzM3ODVdXSBmYWlsIHR0bV92YWxpZGF0ZQo+ICBbIDExOTcuODUwNjQ4XSBub3V2ZWF1
-IEVbc29mZmljZS5iaW5bMzc4NV1dIHZhbGlkYXRpbmcgYm8gbGlzdAo+ICBbIDExOTcuODUwNjU0
-XSBub3V2ZWF1IEVbc29mZmljZS5iaW5bMzc4NV1dIHZhbGlkYXRlOiAtMTIKPiAgWyAxMjAxLjc2
-Njk1NV0gbm91dmVhdSBFW3NvZmZpY2UuYmluWzM3ODVdXSBmYWlsIHR0bV92YWxpZGF0ZQo+ICBb
-IDEyMDEuNzY2OTYxXSBub3V2ZWF1IEVbc29mZmljZS5iaW5bMzc4NV1dIHZhbGlkYXRpbmcgYm8g
-bGlzdAo+ICBbIDEyMDEuNzY2OTY4XSBub3V2ZWF1IEVbc29mZmljZS5iaW5bMzc4NV1dIHZhbGlk
-YXRlOiAtMTIKPgo+IEFmdGVyIHdoaWNoIHRoZSBwcm9ncmFtIHVzaW5nIHRoZSBtc2FhIHZpc3Vh
-bCBmcmVlemVzLCBhbmQgZXZlbnR1YWxseQo+IHRoZSBlbnRpcmUgc3lzdGVtIGZyZWV6ZXMuIERp
-c2FibGUgbXNhYSB1bnRpbCB0aGlzIGlzIGZpeGVkLgo+Cj4gVGhpcyBoYXBwZW5zIG9uIGJvdGgg
-bnYzeCBhbmQgbnY0eCBjYXJkcy4KClVnaC4gVGhpcyBpcyBha2EgInlvdSByYW4gb3V0IG9mIHZy
-YW0sIGdvb2RieWUiLiBXZSBkb24ndCByZWFsbHkKaGFuZGxlIHRoYXQgY2FzZSBleHRyZW1lbHkg
-d2VsbC4gSSBmZWVsIHJlYWxseSBiYWQgZG9pbmcgdGhpcyA6KCBUaGUKaXNzdWUgaXMgYW5hY2hy
-b25pc3RpYyBhcHBsaWNhdGlvbnMgbGlrZSBzb2ZmaWNlIHRoYXQgZG9uJ3Qga2VlcCB3aXRoCnRo
-ZSBsaW1pdGF0aW9ucyBvZiBHUFVzIG9mIHRoZSBkYXlzIG9mIHlvcmUuIFNvIHdlIGVuZCB1cCBw
-ZW5hbGl6aW5nCnBlb3BsZSB3aG8gZG8gdXNlIGFwcGxpY2F0aW9ucyBvZiB0aGUgZGF5LgoKQnV0
-IHRoZSBwcmFjdGljYWwgaXNzdWUgaXMgdGhhdCBwZW9wbGUgZG8gdXBncmFkZSwgYW5kIHBlb3Bs
-ZSBkbyBydW4KdGhlc2UgYXBwbGljYXRpb25zLCBhbmQgc28gaXQgbWFrZXMgc2Vuc2UgdG8ga2Vl
-cCBpdCBvZmYgYnkgZGVmYXVsdC4KQ291bGQgSSBjb252aW5jZSB5b3UgdG8gdXNlIGRlYnVnX2dl
-dF9pbnRfb3B0aW9uIChvciBzb21ldGhpbmcgYWxvbmcKdGhvc2UgbGluZXMsIGZvcmdldCB0aGUg
-ZnVuY3Rpb24gbmFtZSkgdG8gc3RpbGwgYWxsb3cgYW4gZW52IHZhcgpvdmVycmlkZT8gTGlrZSBO
-VjMwX01BWF9NU0FBIG9yIHNvbWV0aGluZyAoYW5kIGNsYW1wIGl0IHRvIDQgc28gcGVvcGxlCmRv
-bid0IGdldCBpZGVhcykuCgo+Cj4gU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGRlZ29l
-ZGVAcmVkaGF0LmNvbT4KPiAtLS0KPiAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAv
-bnYzMF9zY3JlZW4uYyB8IDE3ICsrKysrKysrKysrKysrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCAx
-NyBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252MzAvbnYzMF9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMw
-L252MzBfc2NyZWVuLmMKPiBpbmRleCA3YWFkMjZiLi43YTE2ZTcyIDEwMDY0NAo+IC0tLSBhL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMKPiArKysgYi9zcmMv
-Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jCj4gQEAgLTMxOSw4ICsz
-MTksMjUgQEAgbnYzMF9zY3JlZW5faXNfZm9ybWF0X3N1cHBvcnRlZChzdHJ1Y3QgcGlwZV9zY3Jl
-ZW4gKnBzY3JlZW4sCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdW5zaWduZWQg
-c2FtcGxlX2NvdW50LAo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHVuc2lnbmVk
-IGJpbmRpbmdzKQo+ICB7Cj4gKyAgIC8qCj4gKyAgICAqIG1zYWEgdXNlIG9uIG52MzAgbWF5IHRy
-aWdnZXIgYSAobWVzYT8pIGJ1ZyB3aGVyZSBkbWVzZyBzYXlzOgo+ICsgICAgKiBbIDExOTcuODUw
-NjQyXSBub3V2ZWF1IEVbc29mZmljZS5iaW5bMzc4NV1dIGZhaWwgdHRtX3ZhbGlkYXRlCj4gKyAg
-ICAqIFsgMTE5Ny44NTA2NDhdIG5vdXZlYXUgRVtzb2ZmaWNlLmJpblszNzg1XV0gdmFsaWRhdGlu
-ZyBibyBsaXN0Cj4gKyAgICAqIFsgMTE5Ny44NTA2NTRdIG5vdXZlYXUgRVtzb2ZmaWNlLmJpblsz
-Nzg1XV0gdmFsaWRhdGU6IC0xMgo+ICsgICAgKiBbIDEyMDEuNzY2OTU1XSBub3V2ZWF1IEVbc29m
-ZmljZS5iaW5bMzc4NV1dIGZhaWwgdHRtX3ZhbGlkYXRlCj4gKyAgICAqIFsgMTIwMS43NjY5NjFd
-IG5vdXZlYXUgRVtzb2ZmaWNlLmJpblszNzg1XV0gdmFsaWRhdGluZyBibyBsaXN0Cj4gKyAgICAq
-IFsgMTIwMS43NjY5NjhdIG5vdXZlYXUgRVtzb2ZmaWNlLmJpblszNzg1XV0gdmFsaWRhdGU6IC0x
-Mgo+ICsgICAgKgo+ICsgICAgKiBBZnRlciB3aGljaCB0aGUgcHJvZ3JhbSB1c2luZyB0aGUgbXNh
-YSB2aXN1YWwgZnJlZXplcywgYW5kIGV2ZW50dWFsbHkKPiArICAgICogdGhlIGVudGlyZSBzeXN0
-ZW0gZnJlZXplcy4gRGlzYWJsZSBtc2FhIHVudGlsIHRoaXMgaXMgZml4ZWQuCj4gKyAgICAqLwo+
-ICsjaWYgMQo+ICsgICBpZiAoc2FtcGxlX2NvdW50ID4gMCkKPiArI2Vsc2UKPiAgICAgaWYgKHNh
-bXBsZV9jb3VudCA+IDQpCj4gKyNlbmRpZgo+ICAgICAgICByZXR1cm4gZmFsc2U7Cj4gKwo+ICAg
-ICBpZiAoISgweDAwMDAwMDE3ICYgKDEgPDwgc2FtcGxlX2NvdW50KSkpCj4gICAgICAgIHJldHVy
-biBmYWxzZTsKPgo+IC0tCj4gMi40LjMKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9tZXNhLWRldgo=
+
+--===============1145367610==
+Content-Type: multipart/alternative; boundary="1441661360.e2B7dFBC5.26665"; charset="UTF-8"
+
+
+--1441661360.e2B7dFBC5.26665
+Date: Mon, 7 Sep 2015 21:29:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=31139
+
+Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #8 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
+A friend tested on his MacBook Pro (Mid 2010) with an MCP89, running Linux
+4.1.6 and it worked. Closing as fixed.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1441661360.e2B7dFBC5.26665
+Date: Mon, 7 Sep 2015 21:29:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139">bug 31139</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139">bug 31139</a>
+              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+</span></b>
+        <pre>A friend tested on his MacBook Pro (Mid 2010) with an MCP89, running Linux
+4.1.6 and it worked. Closing as fixed.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441661360.e2B7dFBC5.26665--
+
+--===============1145367610==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1145367610==--
