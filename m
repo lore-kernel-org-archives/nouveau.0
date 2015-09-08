@@ -1,12 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 31139] MBP5,x displays not turned on on resume
-Date: Mon, 07 Sep 2015 21:29:20 +0000
-Message-ID: <bug-31139-8800-5NFID8q33s@http.bugs.freedesktop.org/>
-References: <bug-31139-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH mesa 2/3] nv30: Fix color resolving for nv3x
+	cards
+Date: Tue, 8 Sep 2015 09:53:16 +0200
+Message-ID: <55EE93EC.1090100@redhat.com>
+References: <1441655450-9336-1-git-send-email-hdegoede@redhat.com>
+ <1441655450-9336-2-git-send-email-hdegoede@redhat.com>
+ <CAKb7Uvhk56knb4ovaSrMDrOXKQq4ODJm3n1xhwQ+q=2jiNGbvA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1145367610=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-31139-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7Uvhk56knb4ovaSrMDrOXKQq4ODJm3n1xhwQ+q=2jiNGbvA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,109 +20,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1145367610==
-Content-Type: multipart/alternative; boundary="1441661360.e2B7dFBC5.26665"; charset="UTF-8"
-
-
---1441661360.e2B7dFBC5.26665
-Date: Mon, 7 Sep 2015 21:29:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=31139
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #8 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-A friend tested on his MacBook Pro (Mid 2010) with an MCP89, running Linux
-4.1.6 and it worked. Closing as fixed.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1441661360.e2B7dFBC5.26665
-Date: Mon, 7 Sep 2015 21:29:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139">bug 31139</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - MBP5,x displays not turned on on resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=31139">bug 31139</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>A friend tested on his MacBook Pro (Mid 2010) with an MCP89, running Linux
-4.1.6 and it worked. Closing as fixed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441661360.e2B7dFBC5.26665--
-
---===============1145367610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1145367610==--
+SGksCgpPbiAwNy0wOS0xNSAyMTo1NSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gTWF5IEkgYXNrIHdo
+eSB5b3UncmUgZG9pbmcgNTEyeDUxMiBpbnN0ZWFkIG9mIDEwMjR4MTAyND8gVGhlc2UgYXJlCj4g
+YWxyZWFkeSBzY2FsZWQgdXAgY29vcmRpbmF0ZXMsIHNvIDEwMjR4MTAyNCBzaG91bGQgd29yayBu
+bz8gT3IgaXMgaXQKPiBiZWNhdXNlIG9mIHRoZSBzZWFtcyBvbiB0aGUgZWRnZXM/IERvIHRob3Nl
+IG5vdCBhbHNvIGFwcGVhciB3aXRoCj4gNTEyeDUxMiBvciBkb2VzIGl0IHNhbXBsZSBvdXRzaWRl
+IG9mIHRoZSBib3g/CgpUaGlzIGlzIG15IGJhZCBiZWNhdXNlIG9mIHRoZSBidWcgZml4ZWQgYnkg
+cGF0Y2ggMS8zIEkgaGFkIDUxMng1MTIgaW4gdGhlcmUKZm9yIGEgd2hpbGUsIEkndmUgbW92ZWQg
+YmFjayBhbmQgZm9ydGggYmV0d2VlbiA1MTIgYW5kIDEwMjQgYSBjb3VwbGUgb2YgdGltZXMuCgpJ
+J3ZlIGFsc28gdHJpZWQgMjA0OCBidXQgdGhlIGhhcmR3YXJlIGRvZXMgbm90IGxpa2UgdGhhdC4K
+Ckkgd2lsbCByZXRlc3Qgd2l0aCAxMDI0IGFuZCBzdWJtaXQgYSBmaXhlZCB2ZXJzaW9uLgoKSSd2
+ZSBub3Qgbm90aWNlZCBhbnkgc2VhbXMgb24gdGhlIGVkZ2VzLCBldmVuIHRob3VnaCBJJ3ZlIGJl
+ZW4gYWN0aXZlbHkgbG9va2luZwpmb3IgdGhlbS4KCj4gU2VwYXJhdGVseSwgd2h5IG5vdCB1c2Ug
+dGhpcyBhcHByb2FjaCBvbiBudjQwIGFzIHdlbGw/IEkgY2FuJ3QgaW1hZ2luZQo+IHRoZSBibGl0
+dGVyIHdvdWxkIGJlIGZhc3Rlci4uLiBkb2VzIHRoaXMgcmVzdWx0IGluIGxvd2VyIHF1YWxpdHk/
+CgpJJ3ZlIHRoZSBmZWVsaW5nIHRoZSBzaWZtIGJpbGluZWFyIGZpbHRlcmluZyBpcyBtb3JlICJi
+bHVycnkiIHRoZW4gdGhlCmJsaXR0ZXIgb25lLiBJIHdpbGwgZG8gc29tZSBtb3JlIG9iamVjdGl2
+ZSAoYWhlbSkgdGVzdHMgb24gbnY0eCBhbmQgZ2V0CmJhY2sgdG8geW91IG9uIHRoaXMuCgpSZWdh
+cmRzLAoKSGFucwoKCj4KPiBPbiBNb24sIFNlcCA3LCAyMDE1IGF0IDM6NTAgUE0sIEhhbnMgZGUg
+R29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+PiBXZSBkbyBub3QgaGF2ZSBhIGdl
+bmVyaWMgYmxpdHRlciBvbiBudjN4IGNhcmRzLCBzbyB3ZSBtdXN0IHVzZSB0aGUKPj4gc2lmbSBv
+YmplY3QgZm9yIGNvbG9yIHJlc29sdmluZy4KPj4KPj4gVGhpcyBjb21taXQgZGl2aWRlcyB0aGUg
+c291cmNlcyBhbmQgZGVzdCBzdXJmYWNlcyBpbiB0byB0aWxlcyB3aGljaAo+PiBtYXRjaCB0aGUg
+Y29uc3RyYWludHMgb2YgdGhlIHNpZm0gb2JqZWN0LCBzbyB0aGF0IGNvbG9yIHJlc29sdmluZwo+
+PiB3aWxsIHdvcmsgcHJvcGVybHkgb24gbnYzeCBjYXJkcy4KPj4KPj4gU2lnbmVkLW9mZi1ieTog
+SGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4KPj4gLS0tCj4+ICAgc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMgfCA1NSArKysrKysrKysrKysr
+KysrKysrKysrKystCj4+ICAgMSBmaWxlIGNoYW5nZWQsIDU0IGluc2VydGlvbnMoKyksIDEgZGVs
+ZXRpb24oLSkKPj4KPj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
+djMwL252MzBfbWlwdHJlZS5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYz
+MF9taXB0cmVlLmMKPj4gaW5kZXggNzZiYjhiOC4uYzI0MDAzMCAxMDA2NDQKPj4gLS0tIGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKPj4gKysrIGIvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKPj4gQEAgLTE0OSw2
+ICsxNDksNTYgQEAgc3RhdGljIHZvaWQKPj4gICBudjMwX3Jlc291cmNlX3Jlc29sdmUoc3RydWN0
+IG52MzBfY29udGV4dCAqbnYzMCwKPj4gICAgICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3Ry
+dWN0IHBpcGVfYmxpdF9pbmZvICppbmZvKQo+PiAgIHsKPj4gKyAgIHN0cnVjdCBudjMwX21pcHRy
+ZWUgKnNyY19tdCA9IG52MzBfbWlwdHJlZShpbmZvLT5zcmMucmVzb3VyY2UpOwo+PiArICAgc3Ry
+dWN0IG52MzBfcmVjdCBzcmMsIGRzdDsKPj4gKyAgIHVuc2lnbmVkIHgsIHgwLCB4MSwgeSwgeTEs
+IHcsIGg7Cj4+ICsKPj4gKyAgIGRlZmluZV9yZWN0KGluZm8tPnNyYy5yZXNvdXJjZSwgMCwgaW5m
+by0+c3JjLmJveC56LCBpbmZvLT5zcmMuYm94LngsCj4+ICsgICAgICBpbmZvLT5zcmMuYm94Lnks
+IGluZm8tPnNyYy5ib3gud2lkdGgsIGluZm8tPnNyYy5ib3guaGVpZ2h0LCAmc3JjKTsKPj4gKyAg
+IGRlZmluZV9yZWN0KGluZm8tPmRzdC5yZXNvdXJjZSwgMCwgaW5mby0+ZHN0LmJveC56LCBpbmZv
+LT5kc3QuYm94LngsCj4+ICsgICAgICBpbmZvLT5kc3QuYm94LnksIGluZm8tPmRzdC5ib3gud2lk
+dGgsIGluZm8tPmRzdC5ib3guaGVpZ2h0LCAmZHN0KTsKPj4gKwo+PiArICAgeDAgPSBzcmMueDA7
+Cj4+ICsgICB4MSA9IHNyYy54MTsKPj4gKyAgIHkxID0gc3JjLnkxOwo+PiArCj4+ICsgICAvKiBP
+biBudjN4IHdlIG11c3QgdXNlIHNpZm0gd2hpY2ggaXMgcmVzdHJpY3RlZCB0byA1MTJ4NTEyIHRp
+bGVzICovCj4+ICsgICBmb3IgKHkgPSBzcmMueTA7IHkgPCB5MTsgeSArPSBoKSB7Cj4+ICsgICAg
+ICBoID0geTEgLSB5Owo+PiArICAgICAgaWYgKGggPiA1MTIpCj4+ICsgICAgICAgICBoID0gNTEy
+Owo+PiArCj4+ICsgICAgICBzcmMueTAgPSAwOwo+PiArICAgICAgc3JjLnkxID0gaDsKPj4gKyAg
+ICAgIHNyYy5oID0gaDsKPj4gKwo+PiArICAgICAgZHN0LnkxID0gZHN0LnkwICsgKGggPj4gc3Jj
+X210LT5tc195KTsKPj4gKyAgICAgIGRzdC5oID0gaCA+PiBzcmNfbXQtPm1zX3k7Cj4+ICsKPj4g
+KyAgICAgIGZvciAoeCA9IHgwOyB4IDwgeDE7IHggKz0gdykgewo+PiArICAgICAgICAgdyA9IHgx
+IC0geDsKPj4gKyAgICAgICAgIGlmICh3ID4gNTEyKQo+PiArICAgICAgICAgICAgdyA9IDUxMjsK
+Pj4gKwo+PiArICAgICAgICAgc3JjLm9mZnNldCA9IHkgKiBzcmMucGl0Y2ggKyB4ICogc3JjLmNw
+cDsKPj4gKyAgICAgICAgIHNyYy54MCA9IDA7Cj4+ICsgICAgICAgICBzcmMueDEgPSB3Owo+PiAr
+ICAgICAgICAgc3JjLncgPSB3Owo+PiArCj4+ICsgICAgICAgICBkc3Qub2Zmc2V0ID0gKHkgPj4g
+c3JjX210LT5tc195KSAqIGRzdC5waXRjaCArCj4+ICsgICAgICAgICAgICAgICAgICAgICAgKHgg
+Pj4gc3JjX210LT5tc194KSAqIGRzdC5jcHA7Cj4+ICsgICAgICAgICBkc3QueDEgPSBkc3QueDAg
+KyAodyA+PiBzcmNfbXQtPm1zX3gpOwo+PiArICAgICAgICAgZHN0LncgPSB3ID4+IHNyY19tdC0+
+bXNfeDsKPj4gKwo+PiArICAgICAgICAgbnYzMF90cmFuc2Zlcl9yZWN0KG52MzAsIEJJTElORUFS
+LCAmc3JjLCAmZHN0KTsKPj4gKyAgICAgIH0KPj4gKyAgIH0KPj4gK30KPj4gKwo+PiArc3RhdGlj
+IHZvaWQKPj4gK252NDBfcmVzb3VyY2VfcmVzb2x2ZShzdHJ1Y3QgbnYzMF9jb250ZXh0ICpudjMw
+LAo+PiArICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBwaXBlX2JsaXRfaW5mbyAq
+aW5mbykKPj4gK3sKPj4gICAgICBzdHJ1Y3QgbnYzMF9yZWN0IHNyYywgZHN0Owo+Pgo+PiAgICAg
+IGRlZmluZV9yZWN0KGluZm8tPnNyYy5yZXNvdXJjZSwgMCwgaW5mby0+c3JjLmJveC56LCBpbmZv
+LT5zcmMuYm94LngsCj4+IEBAIC0xNzAsNyArMjIwLDEwIEBAIG52MzBfYmxpdChzdHJ1Y3QgcGlw
+ZV9jb250ZXh0ICpwaXBlLAo+PiAgICAgICAgICBpbmZvLmRzdC5yZXNvdXJjZS0+bnJfc2FtcGxl
+cyA8PSAxICYmCj4+ICAgICAgICAgICF1dGlsX2Zvcm1hdF9pc19kZXB0aF9vcl9zdGVuY2lsKGlu
+Zm8uc3JjLnJlc291cmNlLT5mb3JtYXQpICYmCj4+ICAgICAgICAgICF1dGlsX2Zvcm1hdF9pc19w
+dXJlX2ludGVnZXIoaW5mby5zcmMucmVzb3VyY2UtPmZvcm1hdCkpIHsKPj4gLSAgICAgIG52MzBf
+cmVzb3VyY2VfcmVzb2x2ZShudjMwLCBibGl0X2luZm8pOwo+PiArICAgICAgaWYgKG52MzAtPnNj
+cmVlbi0+ZW5nM2QtPm9jbGFzcyA+PSBOVjQwXzNEX0NMQVNTKQo+PiArICAgICAgICAgbnY0MF9y
+ZXNvdXJjZV9yZXNvbHZlKG52MzAsIGJsaXRfaW5mbyk7Cj4+ICsgICAgICBlbHNlCj4+ICsgICAg
+ICAgICBudjMwX3Jlc291cmNlX3Jlc29sdmUobnYzMCwgYmxpdF9pbmZvKTsKPj4gICAgICAgICBy
+ZXR1cm47Cj4+ICAgICAgfQo+Pgo+PiAtLQo+PiAyLjQuMwo+PgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vbm91dmVhdQo=
