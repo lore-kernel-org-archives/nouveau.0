@@ -1,51 +1,116 @@
-From: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 2/2] [RFC] nouveau: arm: Add MODULE_FIRMWARE for gm20b
-Date: Tue,  8 Sep 2015 12:18:47 +0200
-Message-ID: <1441707527-9890-2-git-send-email-kwizart@gmail.com>
-References: <1441707527-9890-1-git-send-email-kwizart@gmail.com>
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-In-Reply-To: <1441707527-9890-1-git-send-email-kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
+	colors
+Date: Tue, 08 Sep 2015 21:52:05 +0000
+Message-ID: <bug-91895-8800-5SgM7rpeC7@http.bugs.freedesktop.org/>
+References: <bug-91895-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1523146800=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This patch is needed by initramfs tools to detect
-the required firmware files for the module.
 
-This patch tests for NOUVEAU_PLATFORM_DRIVER and
-TEGRA_210_SOC for the firmwares related to
-the Tegra X1 generation.
+--===============1523146800==
+Content-Type: multipart/alternative; boundary="1441749125.dfC52.14440"; charset="UTF-8"
 
-RFC tag is because the firmwares are still not
-merged into linux-firmware repository
 
-Signed-off-by: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+--1441749125.dfC52.14440
+Date: Tue, 8 Sep 2015 21:52:05 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 862c225..36a3bc3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1122,3 +1122,17 @@ MODULE_FIRMWARE("nvidia/gk20a/sw_ctx.bin");
- MODULE_FIRMWARE("nvidia/gk20a/sw_method_init.bin");
- MODULE_FIRMWARE("nvidia/gk20a/sw_nonctx.bin");
- #endif
-+#if defined(CONFIG_NOUVEAU_PLATFORM_DRIVER) && IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
-+MODULE_FIRMWARE("nvidia/gm20b/fecs_data.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/fecs_inst.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/gpccs_data.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/gpccs_inst.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/sw_bundle_init.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/sw_ctx.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/sw_method_init.bin");
-+MODULE_FIRMWARE("nvidia/gm20b/sw_nonctx.bin");
-+MODULE_FIRMWARE("nouveau/nv12b_acr_ucode");
-+MODULE_FIRMWARE("nouveau/nv12b_fecs_bl");
-+MODULE_FIRMWARE("nouveau/nv12b_fecs_sig");
-+MODULE_FIRMWARE("nouveau/nv12b_pmu_bl");
-+#endif
+https://bugs.freedesktop.org/show_bug.cgi?id=91895
+
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+This trace can't be used on i965:
+
+62714 @0 glLinkProgram(program = 4038)
+62714: warning: error: Uniform block MaterialCB too big (32768/16384)
+
+Their UBO size is too small I guess.
+
+GL_MAX_UNIFORM_BLOCK_SIZE = 16384
+
+vs
+
+GL_MAX_UNIFORM_BLOCK_SIZE = 65536
+
+Although I bet that's a mistake...
+
 -- 
-2.4.3
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1441749125.dfC52.14440
+Date: Tue, 8 Sep 2015 21:52:05 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>This trace can't be used on i965:
+
+62714 &#64;0 glLinkProgram(program = 4038)
+62714: warning: error: Uniform block MaterialCB too big (32768/16384)
+
+Their UBO size is too small I guess.
+
+GL_MAX_UNIFORM_BLOCK_SIZE = 16384
+
+vs
+
+GL_MAX_UNIFORM_BLOCK_SIZE = 65536
+
+Although I bet that's a mistake...</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441749125.dfC52.14440--
+
+--===============1523146800==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1523146800==--
