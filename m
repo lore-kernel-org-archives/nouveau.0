@@ -1,71 +1,43 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH mesa 3/3] nv30: Disable msaa for now because
- it causes lockups
-Date: Tue, 8 Sep 2015 18:48:28 +1000
-Message-ID: <CACAvsv7cC5k4cc+fwWu3mmWFvsZ6e734gVQoRWpsSFjNi1BiSQ@mail.gmail.com>
-References: <1441655450-9336-1-git-send-email-hdegoede@redhat.com>
- <1441655450-9336-3-git-send-email-hdegoede@redhat.com>
- <CAKb7UvghqjAb9MhJRo+LPX5-sE2x=Wj0kZMLeBGMJQgKMdHyTA@mail.gmail.com>
- <55EE95A6.5040307@redhat.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55EE95A6.5040307-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+From: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH 1/2] nouveau: arm: Add MODULE_FIRMWARE for gk20a
+Date: Tue,  8 Sep 2015 12:18:46 +0200
+Message-ID: <1441707527-9890-1-git-send-email-kwizart@gmail.com>
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gOCBTZXB0ZW1iZXIgMjAxNSBhdCAxODowMCwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVk
-aGF0LmNvbT4gd3JvdGU6Cj4gSGksCj4KPiBPbiAwNy0wOS0xNSAyMjowMCwgSWxpYSBNaXJraW4g
-d3JvdGU6Cj4+Cj4+IE9uIE1vbiwgU2VwIDcsIDIwMTUgYXQgMzo1MCBQTSwgSGFucyBkZSBHb2Vk
-ZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6Cj4+Pgo+Pj4gbXNhYSB1c2Ugb24gbnYzMCBt
-YXkgdHJpZ2dlciBhIChtZXNhPykgYnVnIHdoZXJlIGRtZXNnIHNheXM6Cj4+PiAgIFsgMTE5Ny44
-NTA2NDJdIG5vdXZlYXUgRVtzb2ZmaWNlLmJpblszNzg1XV0gZmFpbCB0dG1fdmFsaWRhdGUKPj4+
-ICAgWyAxMTk3Ljg1MDY0OF0gbm91dmVhdSBFW3NvZmZpY2UuYmluWzM3ODVdXSB2YWxpZGF0aW5n
-IGJvIGxpc3QKPj4+ICAgWyAxMTk3Ljg1MDY1NF0gbm91dmVhdSBFW3NvZmZpY2UuYmluWzM3ODVd
-XSB2YWxpZGF0ZTogLTEyCj4+PiAgIFsgMTIwMS43NjY5NTVdIG5vdXZlYXUgRVtzb2ZmaWNlLmJp
-blszNzg1XV0gZmFpbCB0dG1fdmFsaWRhdGUKPj4+ICAgWyAxMjAxLjc2Njk2MV0gbm91dmVhdSBF
-W3NvZmZpY2UuYmluWzM3ODVdXSB2YWxpZGF0aW5nIGJvIGxpc3QKPj4+ICAgWyAxMjAxLjc2Njk2
-OF0gbm91dmVhdSBFW3NvZmZpY2UuYmluWzM3ODVdXSB2YWxpZGF0ZTogLTEyCj4+Pgo+Pj4gQWZ0
-ZXIgd2hpY2ggdGhlIHByb2dyYW0gdXNpbmcgdGhlIG1zYWEgdmlzdWFsIGZyZWV6ZXMsIGFuZCBl
-dmVudHVhbGx5Cj4+PiB0aGUgZW50aXJlIHN5c3RlbSBmcmVlemVzLiBEaXNhYmxlIG1zYWEgdW50
-aWwgdGhpcyBpcyBmaXhlZC4KPj4+Cj4+PiBUaGlzIGhhcHBlbnMgb24gYm90aCBudjN4IGFuZCBu
-djR4IGNhcmRzLgo+Pgo+Pgo+PiBVZ2guIFRoaXMgaXMgYWthICJ5b3UgcmFuIG91dCBvZiB2cmFt
-LCBnb29kYnllIi4KPgo+Cj4gQWggcmlnaHQgMTIgPT0gRU5PTUVNLiBUaGlzIGFsc28gZXhwbGFp
-bnMgd2h5IEkgY2FuIHJlcHJvZHVjZSB0aGlzIG11Y2gKPiBlYXNpZXIgb24gYSA2NCBNQiBudjM0
-IGNhcmQgdGhlbiBvbiBteSBudjQ2IGNhcmQgd2hpY2ggaGFzIG1vcmUgUkFNLgpJIHdvbmRlciBp
-ZiB3ZSBjYW4gInNvbHZlIiB0aGlzIG9uZSBieSBmbHVzaGluZyBtb3JlIG9mdGVuIGV0YyBpbiB0
-aGUKM0QgZHJpdmVyLCBpdCdzIHJlYWxseSBoYXJkIHRvIHNheSB3aXRob3V0IGtub3dpbmcgdGhl
-IChzZXQgb2YpCm9wZXJhdGlvbihzKSB0aGF0IHRoZSBrZXJuZWwgaXMgcmVqZWN0aW5nIHRob3Vn
-aC4uLgoKPgo+PiBXZSBkb24ndCByZWFsbHkKPj4gaGFuZGxlIHRoYXQgY2FzZSBleHRyZW1lbHkg
-d2VsbC4gSSBmZWVsIHJlYWxseSBiYWQgZG9pbmcgdGhpcyA6KCBUaGUKPj4gaXNzdWUgaXMgYW5h
-Y2hyb25pc3RpYyBhcHBsaWNhdGlvbnMgbGlrZSBzb2ZmaWNlIHRoYXQgZG9uJ3Qga2VlcCB3aXRo
-Cj4+IHRoZSBsaW1pdGF0aW9ucyBvZiBHUFVzIG9mIHRoZSBkYXlzIG9mIHlvcmUuIFNvIHdlIGVu
-ZCB1cCBwZW5hbGl6aW5nCj4+IHBlb3BsZSB3aG8gZG8gdXNlIGFwcGxpY2F0aW9ucyBvZiB0aGUg
-ZGF5Lgo+Pgo+PiBCdXQgdGhlIHByYWN0aWNhbCBpc3N1ZSBpcyB0aGF0IHBlb3BsZSBkbyB1cGdy
-YWRlLCBhbmQgcGVvcGxlIGRvIHJ1bgo+PiB0aGVzZSBhcHBsaWNhdGlvbnMsIGFuZCBzbyBpdCBt
-YWtlcyBzZW5zZSB0byBrZWVwIGl0IG9mZiBieSBkZWZhdWx0Lgo+PiBDb3VsZCBJIGNvbnZpbmNl
-IHlvdSB0byB1c2UgZGVidWdfZ2V0X2ludF9vcHRpb24gKG9yIHNvbWV0aGluZyBhbG9uZwo+PiB0
-aG9zZSBsaW5lcywgZm9yZ2V0IHRoZSBmdW5jdGlvbiBuYW1lKSB0byBzdGlsbCBhbGxvdyBhbiBl
-bnYgdmFyCj4+IG92ZXJyaWRlPyBMaWtlIE5WMzBfTUFYX01TQUEgb3Igc29tZXRoaW5nIChhbmQg
-Y2xhbXAgaXQgdG8gNCBzbyBwZW9wbGUKPj4gZG9uJ3QgZ2V0IGlkZWFzKS4KPgo+Cj4gVXNpbmcg
-ZGVidWdfZ2V0X2ludF9vcHRpb24gYW5kIGRlZmF1bHRpbmcgaXQgdG8gMCBzb3VuZHMgbGlrZSBh
-IGdvb2QKPiBpZGVhLCBJJ2xsIGRvIGEgdjIgdXNpbmcgdGhpcywgYW5kIEknbGwgdXBkYXRlIHRo
-ZSBjb21tZW50IC8gY29tbWl0Cj4gbWVzc2FnZSB0byByZWZsZWN0IHRoYXQgdGhpcyBpcyBjYXVz
-ZWQgYnkgdGhlIGFwcGxpY2F0aW9ucyBjYXVzaW5nCj4gdXMgdG8gZ28gb29tLgo+Cj4gUmVnYXJk
-cywKPgo+IEhhbnMKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCj4gTm91dmVhdSBtYWlsaW5nIGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2
-ZWF1Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
-YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+This patch is needed by initramfs tools to detect
+the required firmware files for the module.
+
+This patch tests for NOUVEAU_PLATFORM_DRIVER and either
+TEGRA_124_SOC or TEGRA_132_SOC for the firmwares related to
+the Tegra K1 generation.
+
+Signed-off-by: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index ccefb64..862c225 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1111,3 +1111,14 @@ MODULE_DEVICE_TABLE(pci, nouveau_drm_pci_table);
+ MODULE_AUTHOR(DRIVER_AUTHOR);
+ MODULE_DESCRIPTION(DRIVER_DESC);
+ MODULE_LICENSE("GPL and additional rights");
++#if defined(CONFIG_NOUVEAU_PLATFORM_DRIVER) && \
++  (IS_ENABLED(CONFIG_ARCH_TEGRA_124_SOC) || IS_ENABLED(CONFIG_ARCH_TEGRA_132_SOC))
++MODULE_FIRMWARE("nvidia/gk20a/fecs_data.bin");
++MODULE_FIRMWARE("nvidia/gk20a/fecs_inst.bin");
++MODULE_FIRMWARE("nvidia/gk20a/gpccs_data.bin");
++MODULE_FIRMWARE("nvidia/gk20a/gpccs_inst.bin");
++MODULE_FIRMWARE("nvidia/gk20a/sw_bundle_init.bin");
++MODULE_FIRMWARE("nvidia/gk20a/sw_ctx.bin");
++MODULE_FIRMWARE("nvidia/gk20a/sw_method_init.bin");
++MODULE_FIRMWARE("nvidia/gk20a/sw_nonctx.bin");
++#endif
+-- 
+2.4.3
