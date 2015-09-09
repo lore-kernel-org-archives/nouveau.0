@@ -1,12 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: [PATCH 1/4] bios/volt: add support for pwm-based volt
-	management
-Date: Wed,  9 Sep 2015 04:05:50 +0300
-Message-ID: <1441760753-13482-1-git-send-email-martin.peres@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
+	colors
+Date: Wed, 09 Sep 2015 06:46:37 +0000
+Message-ID: <bug-91895-8800-AnkDHedytx@http.bugs.freedesktop.org/>
+References: <bug-91895-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1727540365=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +20,73 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogTWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4KLS0tCiBk
-cm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3Mvdm9sdC5oIHwgMTUgKysrKysrKysr
-KysrKystCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYyAgICAgICAgIHwgMTcg
-KysrKysrKysrKysrKysrLS0KIDIgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKSwgMyBk
-ZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2
-L2Jpb3Mvdm9sdC5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3ZvbHQu
-aAppbmRleCBlYjJkZTRiLi5iMGRmNjEwIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRl
-L252a20vc3ViZGV2L2Jpb3Mvdm9sdC5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
-dWJkZXYvYmlvcy92b2x0LmgKQEAgLTEsMTEgKzEsMjQgQEAKICNpZm5kZWYgX19OVkJJT1NfVk9M
-VF9IX18KICNkZWZpbmUgX19OVkJJT1NfVk9MVF9IX18KKworZW51bSBudmJpb3Nfdm9sdF90eXBl
-IHsKKwlOVkJJT1NfVk9MVF9HUElPID0gMCwKKwlOVkJJT1NfVk9MVF9QV00sCit9OworCiBzdHJ1
-Y3QgbnZiaW9zX3ZvbHQgewotCXU4ICB2aWRtYXNrOworCWVudW0gbnZiaW9zX3ZvbHRfdHlwZSB0
-eXBlOwogCXUzMiBtaW47CiAJdTMyIG1heDsKIAl1MzIgYmFzZTsKKworCS8qIEdQSU8gbW9kZSAq
-LworCXU4ICB2aWRtYXNrOwogCXMxNiBzdGVwOworCisJLyogUFdNIG1vZGUgKi8KKwl1MzIgcHdt
-X2ZyZXE7CisJdTMyIHB3bV9yYW5nZTsKIH07CiAKIHUxNiBudmJpb3Nfdm9sdF90YWJsZShzdHJ1
-Y3QgbnZrbV9iaW9zICosIHU4ICp2ZXIsIHU4ICpoZHIsIHU4ICpjbnQsIHU4ICpsZW4pOwpkaWZm
-IC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy92b2x0LmMgYi9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYwppbmRleCA2MTU4MDRjLi42ZTBhMzM2IDEwMDY0NAot
-LS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYworKysgYi9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9iaW9zL3ZvbHQuYwpAQCAtNzMsMTUgKzczLDE5IEBAIG52Ymlvc192b2x0
-X3BhcnNlKHN0cnVjdCBudmttX2Jpb3MgKmJpb3MsIHU4ICp2ZXIsIHU4ICpoZHIsIHU4ICpjbnQs
-IHU4ICpsZW4sCiAJbWVtc2V0KGluZm8sIDB4MDAsIHNpemVvZigqaW5mbykpOwogCXN3aXRjaCAo
-ISF2b2x0ICogKnZlcikgewogCWNhc2UgMHgxMjoKKwkJaW5mby0+dHlwZSAgICA9IE5WQklPU19W
-T0xUX0dQSU87CiAJCWluZm8tPnZpZG1hc2sgPSBudmJpb3NfcmQwOChiaW9zLCB2b2x0ICsgMHgw
-NCk7CiAJCWJyZWFrOwogCWNhc2UgMHgyMDoKKwkJaW5mby0+dHlwZSAgICA9IE5WQklPU19WT0xU
-X0dQSU87CiAJCWluZm8tPnZpZG1hc2sgPSBudmJpb3NfcmQwOChiaW9zLCB2b2x0ICsgMHgwNSk7
-CiAJCWJyZWFrOwogCWNhc2UgMHgzMDoKKwkJaW5mby0+dHlwZSAgICA9IE5WQklPU19WT0xUX0dQ
-SU87CiAJCWluZm8tPnZpZG1hc2sgPSBudmJpb3NfcmQwOChiaW9zLCB2b2x0ICsgMHgwNCk7CiAJ
-CWJyZWFrOwogCWNhc2UgMHg0MDoKKwkJaW5mby0+dHlwZSAgICA9IE5WQklPU19WT0xUX0dQSU87
-CiAJCWluZm8tPmJhc2UgICAgPSBudmJpb3NfcmQzMihiaW9zLCB2b2x0ICsgMHgwNCk7CiAJCWlu
-Zm8tPnN0ZXAgICAgPSBudmJpb3NfcmQxNihiaW9zLCB2b2x0ICsgMHgwOCk7CiAJCWluZm8tPnZp
-ZG1hc2sgPSBudmJpb3NfcmQwOChiaW9zLCB2b2x0ICsgMHgwYik7CkBAIC05MCwxMSArOTQsMjAg
-QEAgbnZiaW9zX3ZvbHRfcGFyc2Uoc3RydWN0IG52a21fYmlvcyAqYmlvcywgdTggKnZlciwgdTgg
-KmhkciwgdTggKmNudCwgdTggKmxlbiwKIAkJaW5mby0+bWF4ICAgICA9IGluZm8tPmJhc2U7CiAJ
-CWJyZWFrOwogCWNhc2UgMHg1MDoKLQkJaW5mby0+dmlkbWFzayA9IG52Ymlvc19yZDA4KGJpb3Ms
-IHZvbHQgKyAweDA2KTsKIAkJaW5mby0+bWluICAgICA9IG52Ymlvc19yZDMyKGJpb3MsIHZvbHQg
-KyAweDBhKTsKIAkJaW5mby0+bWF4ICAgICA9IG52Ymlvc19yZDMyKGJpb3MsIHZvbHQgKyAweDBl
-KTsKIAkJaW5mby0+YmFzZSAgICA9IG52Ymlvc19yZDMyKGJpb3MsIHZvbHQgKyAweDEyKSAmIDB4
-MDBmZmZmZmY7Ci0JCWluZm8tPnN0ZXAgICAgPSBudmJpb3NfcmQxNihiaW9zLCB2b2x0ICsgMHgx
-Nik7CisKKwkJLyogb2Zmc2V0IDQgc2VlbXMgdG8gYmUgYSBmbGFnIGJ5dGUgKi8KKwkJaWYgKG52
-Ymlvc19yZDMyKGJpb3MsIHZvbHQgKyAweDQpICYgMSkgeworCQkJaW5mby0+dHlwZSAgICAgID0g
-TlZCSU9TX1ZPTFRfUFdNOworCQkJaW5mby0+cHdtX2ZyZXEgID0gbnZiaW9zX3JkMzIoYmlvcywg
-dm9sdCArIDB4NSkgLyAxMDAwOworCQkJaW5mby0+cHdtX3JhbmdlID0gbnZiaW9zX3JkMzIoYmlv
-cywgdm9sdCArIDB4MTYpOworCQl9IGVsc2UgeworCQkJaW5mby0+dHlwZSAgICAgID0gTlZCSU9T
-X1ZPTFRfR1BJTzsKKwkJCWluZm8tPnZpZG1hc2sgICA9IG52Ymlvc19yZDA4KGJpb3MsIHZvbHQg
-KyAweDA2KTsKKwkJCWluZm8tPnN0ZXAgICAgICA9IG52Ymlvc19yZDE2KGJpb3MsIHZvbHQgKyAw
-eDE2KTsKKwkJfQogCQlicmVhazsKIAl9CiAJcmV0dXJuIHZvbHQ7Ci0tIAoyLjUuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1727540365==
+Content-Type: multipart/alternative; boundary="1441781197.656Bcc1.3223"; charset="UTF-8"
+
+
+--1441781197.656Bcc1.3223
+Date: Wed, 9 Sep 2015 06:46:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91895
+
+--- Comment #11 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The game behaves exactly the same WRT lighting under Intel driver. I can upload
+a trace if you want.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1441781197.656Bcc1.3223
+Date: Wed, 9 Sep 2015 06:46:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
+              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+</span></b>
+        <pre>The game behaves exactly the same WRT lighting under Intel driver. I can upload
+a trace if you want.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441781197.656Bcc1.3223--
+
+--===============1727540365==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1727540365==--
