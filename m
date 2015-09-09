@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
-	colors
-Date: Tue, 08 Sep 2015 21:52:05 +0000
-Message-ID: <bug-91895-8800-5SgM7rpeC7@http.bugs.freedesktop.org/>
-References: <bug-91895-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: [PATCH 2/4] volt: add support for non-vid-based voltage
+	controllers
+Date: Wed,  9 Sep 2015 04:05:51 +0300
+Message-ID: <1441760753-13482-2-git-send-email-martin.peres@free.fr>
+References: <1441760753-13482-1-git-send-email-martin.peres@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1523146800=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1441760753-13482-1-git-send-email-martin.peres-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,97 +21,37 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1523146800==
-Content-Type: multipart/alternative; boundary="1441749125.dfC52.14440"; charset="UTF-8"
-
-
---1441749125.dfC52.14440
-Date: Tue, 8 Sep 2015 21:52:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91895
-
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-This trace can't be used on i965:
-
-62714 @0 glLinkProgram(program = 4038)
-62714: warning: error: Uniform block MaterialCB too big (32768/16384)
-
-Their UBO size is too small I guess.
-
-GL_MAX_UNIFORM_BLOCK_SIZE = 16384
-
-vs
-
-GL_MAX_UNIFORM_BLOCK_SIZE = 65536
-
-Although I bet that's a mistake...
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1441749125.dfC52.14440
-Date: Tue, 8 Sep 2015 21:52:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>This trace can't be used on i965:
-
-62714 &#64;0 glLinkProgram(program = 4038)
-62714: warning: error: Uniform block MaterialCB too big (32768/16384)
-
-Their UBO size is too small I guess.
-
-GL_MAX_UNIFORM_BLOCK_SIZE = 16384
-
-vs
-
-GL_MAX_UNIFORM_BLOCK_SIZE = 65536
-
-Although I bet that's a mistake...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441749125.dfC52.14440--
-
---===============1523146800==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1523146800==--
+VGhpcyBwYXRjaCBpcyBub3QgaWRlYWwgYnV0IGl0IGRlZmluaXRlbHkgYmVhdHMgYSByZXdyaXRl
+IG9mIHRoZSBjdXJyZW50CmludGVyZmFjZSBhbmQgaXMgdmVyeSBzZWxmLWNvbnRhaW5lZC4KClNp
+Z25lZC1vZmYtYnk6IE1hcnRpbiBQZXJlcyA8bWFydGluLnBlcmVzQGZyZWUuZnI+Ci0tLQogZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMgfCAxMSArKysrKysrKysrLQogZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvdm9sdC9wcml2LmggfCAgMiArKwogMiBmaWxlcyBjaGFuZ2VkLCAx
+MiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUv
+bnZrbS9zdWJkZXYvdm9sdC9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jh
+c2UuYwppbmRleCA0NzUyZGJkLi41MGI1NjQ5IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi92b2x0L2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi92b2x0L2Jh
+c2UuYwpAQCAtMzAsNyArMzAsMTIgQEAKIGludAogbnZrbV92b2x0X2dldChzdHJ1Y3QgbnZrbV92
+b2x0ICp2b2x0KQogewotCWludCByZXQgPSB2b2x0LT5mdW5jLT52aWRfZ2V0KHZvbHQpLCBpOwor
+CWludCByZXQsIGk7CisKKwlpZiAodm9sdC0+ZnVuYy0+dm9sdF9nZXQpCisJCXJldHVybiB2b2x0
+LT5mdW5jLT52b2x0X2dldCh2b2x0KTsKKworCXJldCA9IHZvbHQtPmZ1bmMtPnZpZF9nZXQodm9s
+dCk7CiAJaWYgKHJldCA+PSAwKSB7CiAJCWZvciAoaSA9IDA7IGkgPCB2b2x0LT52aWRfbnI7IGkr
+KykgewogCQkJaWYgKHZvbHQtPnZpZFtpXS52aWQgPT0gcmV0KQpAQCAtNDYsNiArNTEsMTAgQEAg
+bnZrbV92b2x0X3NldChzdHJ1Y3QgbnZrbV92b2x0ICp2b2x0LCB1MzIgdXYpCiB7CiAJc3RydWN0
+IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmdm9sdC0+c3ViZGV2OwogCWludCBpLCByZXQgPSAtRUlO
+VkFMOworCisJaWYgKHZvbHQtPmZ1bmMtPnZvbHRfc2V0KQorCQlyZXR1cm4gdm9sdC0+ZnVuYy0+
+dm9sdF9zZXQodm9sdCwgdXYpOworCiAJZm9yIChpID0gMDsgaSA8IHZvbHQtPnZpZF9ucjsgaSsr
+KSB7CiAJCWlmICh2b2x0LT52aWRbaV0udXYgPT0gdXYpIHsKIAkJCXJldCA9IHZvbHQtPmZ1bmMt
+PnZpZF9zZXQodm9sdCwgdm9sdC0+dmlkW2ldLnZpZCk7CmRpZmYgLS1naXQgYS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi92b2x0L3ByaXYuaCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQv
+cHJpdi5oCmluZGV4IDM5NGYzN2MuLmNkYjNkOWYgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L3ZvbHQvcHJpdi5oCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQv
+cHJpdi5oCkBAIC05LDYgKzksOCBAQCBpbnQgbnZrbV92b2x0X25ld18oY29uc3Qgc3RydWN0IG52
+a21fdm9sdF9mdW5jICosIHN0cnVjdCBudmttX2RldmljZSAqLAogCQkgICBpbnQgaW5kZXgsIHN0
+cnVjdCBudmttX3ZvbHQgKiopOwogCiBzdHJ1Y3QgbnZrbV92b2x0X2Z1bmMgeworCWludCAoKnZv
+bHRfZ2V0KShzdHJ1Y3QgbnZrbV92b2x0ICopOworCWludCAoKnZvbHRfc2V0KShzdHJ1Y3QgbnZr
+bV92b2x0ICosIHUzMiB1dik7CiAJaW50ICgqdmlkX2dldCkoc3RydWN0IG52a21fdm9sdCAqKTsK
+IAlpbnQgKCp2aWRfc2V0KShzdHJ1Y3QgbnZrbV92b2x0ICosIHU4IHZpZCk7CiAJaW50ICgqc2V0
+X2lkKShzdHJ1Y3QgbnZrbV92b2x0ICosIHU4IGlkLCBpbnQgY29uZGl0aW9uKTsKLS0gCjIuNS4x
+CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
