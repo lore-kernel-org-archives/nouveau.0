@@ -1,91 +1,72 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Wed, 09 Sep 2015 15:11:33 +0000
-Message-ID: <bug-90276-8800-smaAOxuQ1Y@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: Re: [PATCH mesa v2 1/2] nv30: Fix color resolving for
+	nv3x cards
+Date: Wed, 9 Sep 2015 12:14:42 -0400
+Message-ID: <CAKb7UvjqGrj7iXVEZwdfEK6cQfOe1NPiN9epjBSbRuEpvB7_Nw@mail.gmail.com>
+References: <1441806729-9016-1-git-send-email-hdegoede@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0924367907=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1441806729-9016-1-git-send-email-hdegoede@redhat.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0924367907==
-Content-Type: multipart/alternative; boundary="1441811493.115c1.10794"; charset="UTF-8"
-
-
---1441811493.115c1.10794
-Date: Wed, 9 Sep 2015 15:11:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
-
---- Comment #21 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Well freezes also happen on versions before that particular patch. They are
-less common and I have not found a way to make them reproducible (similar to
-reverting that patch on recent kernel).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1441811493.115c1.10794
-Date: Wed, 9 Sep 2015 15:11:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c21">Comment # 21</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
-</span></b>
-        <pre>Well freezes also happen on versions before that particular patch. They are
-less common and I have not found a way to make them reproducible (similar to
-reverting that patch on recent kernel).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441811493.115c1.10794--
-
---===============0924367907==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0924367907==--
+T24gV2VkLCBTZXAgOSwgMjAxNSBhdCA5OjUyIEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
+ZWRoYXQuY29tPiB3cm90ZToKPiBXZSBkbyBub3QgaGF2ZSBhIGdlbmVyaWMgYmxpdHRlciBvbiBu
+djN4IGNhcmRzLCBzbyB3ZSBtdXN0IHVzZSB0aGUKPiBzaWZtIG9iamVjdCBmb3IgY29sb3IgcmVz
+b2x2aW5nLgo+Cj4gVGhpcyBjb21taXQgZGl2aWRlcyB0aGUgc291cmNlcyBhbmQgZGVzdCBzdXJm
+YWNlcyBpbiB0byB0aWxlcyB3aGljaAo+IG1hdGNoIHRoZSBjb25zdHJhaW50cyBvZiB0aGUgc2lm
+bSBvYmplY3QsIHNvIHRoYXQgY29sb3IgcmVzb2x2aW5nCj4gd2lsbCB3b3JrIHByb3Blcmx5IG9u
+IG52M3ggY2FyZHMuCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
+ZWRoYXQuY29tPgo+IC0tLQo+IENoYW5nZXMgaW4gdjI6Cj4gLVVzZSAxMDI0eDEwMjQgYmxvY2tz
+Cj4gLVVzZSB0aGUgc2lmbSBvbiBib3RoIG52M3ggYW5kIG52NHggY2FyZHMgaW5zdGVhZCBvZiBv
+bmx5IG9uIG52M3ggY2FyZHMKClRoYW5rcywgcHVzaGVkLgoKPiAtLS0KPiAgc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMgfCAzOCArKysrKysrKysrKysrKysr
+KysrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAzNyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
+KC0pCj4KPiBkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYz
+MF9taXB0cmVlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX21pcHRy
+ZWUuYwo+IGluZGV4IDc2YmI4YjguLjczNWM3MTggMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0v
+ZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9taXB0cmVlLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX21pcHRyZWUuYwo+IEBAIC0xNDksMTQgKzE0OSw1MCBA
+QCBzdGF0aWMgdm9pZAo+ICBudjMwX3Jlc291cmNlX3Jlc29sdmUoc3RydWN0IG52MzBfY29udGV4
+dCAqbnYzMCwKPiAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBwaXBlX2JsaXRf
+aW5mbyAqaW5mbykKPiAgewo+ICsgICBzdHJ1Y3QgbnYzMF9taXB0cmVlICpzcmNfbXQgPSBudjMw
+X21pcHRyZWUoaW5mby0+c3JjLnJlc291cmNlKTsKPiAgICAgc3RydWN0IG52MzBfcmVjdCBzcmMs
+IGRzdDsKPiArICAgdW5zaWduZWQgeCwgeDAsIHgxLCB5LCB5MSwgdywgaDsKPgo+ICAgICBkZWZp
+bmVfcmVjdChpbmZvLT5zcmMucmVzb3VyY2UsIDAsIGluZm8tPnNyYy5ib3gueiwgaW5mby0+c3Jj
+LmJveC54LAo+ICAgICAgICBpbmZvLT5zcmMuYm94LnksIGluZm8tPnNyYy5ib3gud2lkdGgsIGlu
+Zm8tPnNyYy5ib3guaGVpZ2h0LCAmc3JjKTsKPiAgICAgZGVmaW5lX3JlY3QoaW5mby0+ZHN0LnJl
+c291cmNlLCAwLCBpbmZvLT5kc3QuYm94LnosIGluZm8tPmRzdC5ib3gueCwKPiAgICAgICAgaW5m
+by0+ZHN0LmJveC55LCBpbmZvLT5kc3QuYm94LndpZHRoLCBpbmZvLT5kc3QuYm94LmhlaWdodCwg
+JmRzdCk7Cj4KPiAtICAgbnYzMF90cmFuc2Zlcl9yZWN0KG52MzAsIEJJTElORUFSLCAmc3JjLCAm
+ZHN0KTsKPiArICAgeDAgPSBzcmMueDA7Cj4gKyAgIHgxID0gc3JjLngxOwo+ICsgICB5MSA9IHNy
+Yy55MTsKPiArCj4gKyAgIC8qIE9uIG52M3ggd2UgbXVzdCB1c2Ugc2lmbSB3aGljaCBpcyByZXN0
+cmljdGVkIHRvIDEwMjR4MTAyNCB0aWxlcyAqLwo+ICsgICBmb3IgKHkgPSBzcmMueTA7IHkgPCB5
+MTsgeSArPSBoKSB7Cj4gKyAgICAgIGggPSB5MSAtIHk7Cj4gKyAgICAgIGlmIChoID4gMTAyNCkK
+PiArICAgICAgICAgaCA9IDEwMjQ7Cj4gKwo+ICsgICAgICBzcmMueTAgPSAwOwo+ICsgICAgICBz
+cmMueTEgPSBoOwo+ICsgICAgICBzcmMuaCA9IGg7Cj4gKwo+ICsgICAgICBkc3QueTEgPSBkc3Qu
+eTAgKyAoaCA+PiBzcmNfbXQtPm1zX3kpOwo+ICsgICAgICBkc3QuaCA9IGggPj4gc3JjX210LT5t
+c195Owo+ICsKPiArICAgICAgZm9yICh4ID0geDA7IHggPCB4MTsgeCArPSB3KSB7Cj4gKyAgICAg
+ICAgIHcgPSB4MSAtIHg7Cj4gKyAgICAgICAgIGlmICh3ID4gMTAyNCkKPiArICAgICAgICAgICAg
+dyA9IDEwMjQ7Cj4gKwo+ICsgICAgICAgICBzcmMub2Zmc2V0ID0geSAqIHNyYy5waXRjaCArIHgg
+KiBzcmMuY3BwOwo+ICsgICAgICAgICBzcmMueDAgPSAwOwo+ICsgICAgICAgICBzcmMueDEgPSB3
+Owo+ICsgICAgICAgICBzcmMudyA9IHc7Cj4gKwo+ICsgICAgICAgICBkc3Qub2Zmc2V0ID0gKHkg
+Pj4gc3JjX210LT5tc195KSAqIGRzdC5waXRjaCArCj4gKyAgICAgICAgICAgICAgICAgICAgICAo
+eCA+PiBzcmNfbXQtPm1zX3gpICogZHN0LmNwcDsKPiArICAgICAgICAgZHN0LngxID0gZHN0Lngw
+ICsgKHcgPj4gc3JjX210LT5tc194KTsKPiArICAgICAgICAgZHN0LncgPSB3ID4+IHNyY19tdC0+
+bXNfeDsKPiArCj4gKyAgICAgICAgIG52MzBfdHJhbnNmZXJfcmVjdChudjMwLCBCSUxJTkVBUiwg
+JnNyYywgJmRzdCk7Cj4gKyAgICAgIH0KPiArICAgfQo+ICB9Cj4KPiAgdm9pZAo+IC0tCj4gMi40
+LjMKPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNh
+LWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
