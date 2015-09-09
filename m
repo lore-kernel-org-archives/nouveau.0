@@ -1,13 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 38074] [NV96] Dual head doesn't work for some
- combination of DVI connected monitors (second screen still off)
-Date: Wed, 09 Sep 2015 12:09:02 +0000
-Message-ID: <bug-38074-8800-Z6Xy97zgpq@http.bugs.freedesktop.org/>
-References: <bug-38074-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH mesa 2/3] nv30: Fix color resolving for nv3x
+ cards
+Date: Wed, 9 Sep 2015 15:42:50 +0200
+Message-ID: <55F0375A.5040608@redhat.com>
+References: <1441655450-9336-1-git-send-email-hdegoede@redhat.com>
+ <1441655450-9336-2-git-send-email-hdegoede@redhat.com>
+ <CAKb7Uvhk56knb4ovaSrMDrOXKQq4ODJm3n1xhwQ+q=2jiNGbvA@mail.gmail.com>
+ <55EE93EC.1090100@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1075037331=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <55EE93EC.1090100-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +21,32 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1075037331==
-Content-Type: multipart/alternative; boundary="1441800542.f7A2eE3.8516"; charset="UTF-8"
-
-
---1441800542.f7A2eE3.8516
-Date: Wed, 9 Sep 2015 12:09:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=38074
-
---- Comment #31 from Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> ---
-Problem still exists in Fedora 22.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1441800542.f7A2eE3.8516
-Date: Wed, 9 Sep 2015 12:09:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c31">Comment # 31</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
-              from <span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
-</span></b>
-        <pre>Problem still exists in Fedora 22.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1441800542.f7A2eE3.8516--
-
---===============1075037331==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1075037331==--
+SGksCgpPbiAwOC0wOS0xNSAwOTo1MywgSGFucyBkZSBHb2VkZSB3cm90ZToKPiBIaSwKPgo+IE9u
+IDA3LTA5LTE1IDIxOjU1LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4gTWF5IEkgYXNrIHdoeSB5b3Un
+cmUgZG9pbmcgNTEyeDUxMiBpbnN0ZWFkIG9mIDEwMjR4MTAyND8gVGhlc2UgYXJlCj4+IGFscmVh
+ZHkgc2NhbGVkIHVwIGNvb3JkaW5hdGVzLCBzbyAxMDI0eDEwMjQgc2hvdWxkIHdvcmsgbm8/IE9y
+IGlzIGl0Cj4+IGJlY2F1c2Ugb2YgdGhlIHNlYW1zIG9uIHRoZSBlZGdlcz8gRG8gdGhvc2Ugbm90
+IGFsc28gYXBwZWFyIHdpdGgKPj4gNTEyeDUxMiBvciBkb2VzIGl0IHNhbXBsZSBvdXRzaWRlIG9m
+IHRoZSBib3g/Cj4KPiBUaGlzIGlzIG15IGJhZCBiZWNhdXNlIG9mIHRoZSBidWcgZml4ZWQgYnkg
+cGF0Y2ggMS8zIEkgaGFkIDUxMng1MTIgaW4gdGhlcmUKPiBmb3IgYSB3aGlsZSwgSSd2ZSBtb3Zl
+ZCBiYWNrIGFuZCBmb3J0aCBiZXR3ZWVuIDUxMiBhbmQgMTAyNCBhIGNvdXBsZSBvZiB0aW1lcy4K
+Pgo+IEkndmUgYWxzbyB0cmllZCAyMDQ4IGJ1dCB0aGUgaGFyZHdhcmUgZG9lcyBub3QgbGlrZSB0
+aGF0Lgo+Cj4gSSB3aWxsIHJldGVzdCB3aXRoIDEwMjQgYW5kIHN1Ym1pdCBhIGZpeGVkIHZlcnNp
+b24uCj4KPiBJJ3ZlIG5vdCBub3RpY2VkIGFueSBzZWFtcyBvbiB0aGUgZWRnZXMsIGV2ZW4gdGhv
+dWdoIEkndmUgYmVlbiBhY3RpdmVseSBsb29raW5nCj4gZm9yIHRoZW0uCj4KPj4gU2VwYXJhdGVs
+eSwgd2h5IG5vdCB1c2UgdGhpcyBhcHByb2FjaCBvbiBudjQwIGFzIHdlbGw/IEkgY2FuJ3QgaW1h
+Z2luZQo+PiB0aGUgYmxpdHRlciB3b3VsZCBiZSBmYXN0ZXIuLi4gZG9lcyB0aGlzIHJlc3VsdCBp
+biBsb3dlciBxdWFsaXR5Pwo+Cj4gSSd2ZSB0aGUgZmVlbGluZyB0aGUgc2lmbSBiaWxpbmVhciBm
+aWx0ZXJpbmcgaXMgbW9yZSAiYmx1cnJ5IiB0aGVuIHRoZQo+IGJsaXR0ZXIgb25lLiBJIHdpbGwg
+ZG8gc29tZSBtb3JlIG9iamVjdGl2ZSAoYWhlbSkgdGVzdHMgb24gbnY0eCBhbmQgZ2V0Cj4gYmFj
+ayB0byB5b3Ugb24gdGhpcy4KCk9rIEkndmUgcnVuIHNvbWUgdGVzdHMgY29tcGFyaW5nIHRoZSBy
+ZW5kZXJpbmcgYmV0d2VlbiB1c2luZyB0aGUgYmxpdHRlcgphbmQgdGhlIHNpZm0gYW5kIHRoZSBy
+ZXN1bHRzIHNlZW0gaWRlbnRpY2FsLCBzbyBvbmUgdjIgdXNpbmcgMTAyNHgxMDI0CmJsb2NrcyBh
+bmQgZG9pbmcgc28gb24gYWxsIG52M3gvbnY0eCBjYXJkcyBjb21pbmcgdXAuCgpSZWdhcmRzLAoK
+SGFucwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
