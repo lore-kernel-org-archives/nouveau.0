@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91895] [nve7] Shadow Warrior: black gun
-Date: Wed, 09 Sep 2015 18:28:22 +0000
-Message-ID: <bug-91895-8800-pm6Z60Z2Wi@http.bugs.freedesktop.org/>
-References: <bug-91895-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
+ with nouveau
+Date: Wed, 09 Sep 2015 22:33:54 +0000
+Message-ID: <bug-91526-8800-ABlwhye8Gh@http.bugs.freedesktop.org/>
+References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2020708836=="
+Content-Type: multipart/mixed; boundary="===============1755179167=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,41 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2020708836==
-Content-Type: multipart/alternative; boundary="1441823302.fE1aDF3.19035"; charset="UTF-8"
+--===============1755179167==
+Content-Type: multipart/alternative; boundary="1441838034.7ad10BD71.17080"; charset="UTF-8"
 
 
---1441823302.fE1aDF3.19035
-Date: Wed, 9 Sep 2015 18:28:22 +0000
+--1441838034.7ad10BD71.17080
+Date: Wed, 9 Sep 2015 22:33:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91895
+https://bugs.freedesktop.org/show_bug.cgi?id=91526
 
-Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Gediminas Jakutis from comment #4)
+> Another note: I did play the game some with these UI issues present and I
+> did not notice any other kind of rendering problems whatsoever. It appears
+> to affect only the UI and text and absolutely nothing else.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[nve7] Shadow Warrior:      |[nve7] Shadow Warrior:
-                   |black gun & messed up       |black gun
-                   |colors                      |
+I tracked down these issues to *something* to do with BGRA4 transfers.
+Commenting out the two BGRA4 formats in nv50_format.c "fixes" it for me.
+However no RGBA4-related tests appear to fail, teximage-colors is all happy,
+etc. So there's something more subtle may be going on.
+
+Since this isn't show-stopping for the game, I think I'll keep looking into
+this without pushing out any shotgun fixes.
+
+Should also double-check on a tesla to see if perhaps fermi+ have shed support
+for that format. But my guess is something in the blitter.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441823302.fE1aDF3.19035
-Date: Wed, 9 Sep 2015 18:28:22 +0000
+--1441838034.7ad10BD71.17080
+Date: Wed, 9 Sep 2015 22:33:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,28 +63,35 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nve7] Shadow Warrior: black gun"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[nve7] Shadow Warrior: black gun &amp; messed up colors
-           </td>
-           <td>[nve7] Shadow Warrior: black gun
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Gediminas Jakutis from <a href="show_bug.cgi?id=91526#c4">comment #4</a>)
+<span class="quote">&gt; Another note: I did play the game some with these UI issues present and I
+&gt; did not notice any other kind of rendering problems whatsoever. It appears
+&gt; to affect only the UI and text and absolutely nothing else.</span >
+
+I tracked down these issues to *something* to do with BGRA4 transfers.
+Commenting out the two BGRA4 formats in nv50_format.c &quot;fixes&quot; it for me.
+However no RGBA4-related tests appear to fail, teximage-colors is all happy,
+etc. So there's something more subtle may be going on.
+
+Since this isn't show-stopping for the game, I think I'll keep looking into
+this without pushing out any shotgun fixes.
+
+Should also double-check on a tesla to see if perhaps fermi+ have shed support
+for that format. But my guess is something in the blitter.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -86,9 +103,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1441823302.fE1aDF3.19035--
+--1441838034.7ad10BD71.17080--
 
---===============2020708836==
+--===============1755179167==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2020708836==--
+--===============1755179167==--
