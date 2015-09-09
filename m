@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91895] [nve7] Shadow Warrior: black gun & messed up
 	colors
-Date: Wed, 09 Sep 2015 06:46:37 +0000
-Message-ID: <bug-91895-8800-AnkDHedytx@http.bugs.freedesktop.org/>
+Date: Wed, 09 Sep 2015 06:49:59 +0000
+Message-ID: <bug-91895-8800-uQNROF80IS@http.bugs.freedesktop.org/>
 References: <bug-91895-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1727540365=="
+Content-Type: multipart/mixed; boundary="===============1306931547=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91895-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1727540365==
-Content-Type: multipart/alternative; boundary="1441781197.656Bcc1.3223"; charset="UTF-8"
+--===============1306931547==
+Content-Type: multipart/alternative; boundary="1441781399.3be72.3928"; charset="UTF-8"
 
 
---1441781197.656Bcc1.3223
-Date: Wed, 9 Sep 2015 06:46:37 +0000
+--1441781399.3be72.3928
+Date: Wed, 9 Sep 2015 06:49:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91895
 
---- Comment #11 from Marcin Slusarz <marcin.slusarz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-The game behaves exactly the same WRT lighting under Intel driver. I can upload
-a trace if you want.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Marcin Slusarz from comment #11)
+> The game behaves exactly the same WRT lighting under Intel driver. I can
+> upload a trace if you want.
+
+No, that's fine. The game probably doesn't check for UBO sizes and just assumes
+it'll work. I hacked it to expose a 64K buffer and it was fine. Ken sent a
+patch to list which does this for real.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441781197.656Bcc1.3223
-Date: Wed, 9 Sep 2015 06:46:37 +0000
+--1441781399.3be72.3928
+Date: Wed, 9 Sep 2015 06:49:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +61,20 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c11">Comment # 11</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91895#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [nve7] Shadow Warrior: black gun &amp; messed up colors"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91895">bug 91895</a>
-              from <span class="vcard"><a class="email" href="mailto:marcin.slusarz&#64;gmail.com" title="Marcin Slusarz &lt;marcin.slusarz&#64;gmail.com&gt;"> <span class="fn">Marcin Slusarz</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>The game behaves exactly the same WRT lighting under Intel driver. I can upload
-a trace if you want.</pre>
+        <pre>(In reply to Marcin Slusarz from <a href="show_bug.cgi?id=91895#c11">comment #11</a>)
+<span class="quote">&gt; The game behaves exactly the same WRT lighting under Intel driver. I can
+&gt; upload a trace if you want.</span >
+
+No, that's fine. The game probably doesn't check for UBO sizes and just assumes
+it'll work. I hacked it to expose a 64K buffer and it was fine. Ken sent a
+patch to list which does this for real.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +87,9 @@ a trace if you want.</pre>
     </body>
 </html>
 
---1441781197.656Bcc1.3223--
+--1441781399.3be72.3928--
 
---===============1727540365==
+--===============1306931547==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1727540365==--
+--===============1306931547==--
