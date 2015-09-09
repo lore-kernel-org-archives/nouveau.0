@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Wed, 09 Sep 2015 10:46:44 +0000
-Message-ID: <bug-90276-8800-oNHdEkVcmj@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 38074] [NV96] Dual head doesn't work for some
+ combination of DVI connected monitors (second screen still off)
+Date: Wed, 09 Sep 2015 12:09:02 +0000
+Message-ID: <bug-38074-8800-Z6Xy97zgpq@http.bugs.freedesktop.org/>
+References: <bug-38074-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0597541228=="
+Content-Type: multipart/mixed; boundary="===============1075037331=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-38074-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0597541228==
-Content-Type: multipart/alternative; boundary="1441795604.E7e4e8bb2.10628"; charset="UTF-8"
+--===============1075037331==
+Content-Type: multipart/alternative; boundary="1441800542.f7A2eE3.8516"; charset="UTF-8"
 
 
---1441795604.E7e4e8bb2.10628
-Date: Wed, 9 Sep 2015 10:46:44 +0000
+--1441800542.f7A2eE3.8516
+Date: Wed, 9 Sep 2015 12:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
+https://bugs.freedesktop.org/show_bug.cgi?id=38074
 
---- Comment #20 from Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Arthur Heymans from comment #17)
-> Reversing 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 solves the problem.
-> 
-> Howerever c39f472e9f14e49a9bc091977ced0ec45fc00c57 changes some names so I
-> don't know what to for recent kernels.
-
-One possible issue (albeit unlikely) is that due to u32 maths the extra
-multiplication (combined with << 8) is causing an overflow. Fwiw latest
-upstream is explicitly using u64 typed variables.
+--- Comment #31 from Harald Linden <harald.linden-5DDqXab0xuWsTnJN9+BGXg@public.gmane.org> ---
+Problem still exists in Fedora 22.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1441795604.E7e4e8bb2.10628
-Date: Wed, 9 Sep 2015 10:46:44 +0000
+--1441800542.f7A2eE3.8516
+Date: Wed, 9 Sep 2015 12:09:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,24 +52,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c20">Comment # 20</a>
+          bz_status_REOPENED "
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074#c31">Comment # 31</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:emil.l.velikov&#64;gmail.com" title="Emil Velikov &lt;emil.l.velikov&#64;gmail.com&gt;"> <span class="fn">Emil Velikov</span></a>
+          bz_status_REOPENED "
+   title="REOPENED - [NV96] Dual head doesn't work for some combination of DVI connected monitors (second screen still off)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=38074">bug 38074</a>
+              from <span class="vcard"><a class="email" href="mailto:harald.linden&#64;thelow.net" title="Harald Linden &lt;harald.linden&#64;thelow.net&gt;"> <span class="fn">Harald Linden</span></a>
 </span></b>
-        <pre>(In reply to Arthur Heymans from <a href="show_bug.cgi?id=90276#c17">comment #17</a>)
-<span class="quote">&gt; Reversing 3d9e3921f4d77bcaeea913c48b894d1208f0cb06 solves the problem.
-&gt; 
-&gt; Howerever c39f472e9f14e49a9bc091977ced0ec45fc00c57 changes some names so I
-&gt; don't know what to for recent kernels.</span >
-
-One possible issue (albeit unlikely) is that due to u32 maths the extra
-multiplication (combined with &lt;&lt; 8) is causing an overflow. Fwiw latest
-upstream is explicitly using u64 typed variables.</pre>
+        <pre>Problem still exists in Fedora 22.</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +73,9 @@ upstream is explicitly using u64 typed variables.</pre>
     </body>
 </html>
 
---1441795604.E7e4e8bb2.10628--
+--1441800542.f7A2eE3.8516--
 
---===============0597541228==
+--===============1075037331==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0597541228==--
+--===============1075037331==--
