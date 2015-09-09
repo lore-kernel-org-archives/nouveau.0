@@ -1,11 +1,12 @@
-From: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH 1/2] nouveau: arm: Add MODULE_FIRMWARE for gk20a
-Date: Wed,  9 Sep 2015 16:04:51 +0200
-Message-ID: <1441807492-12125-1-git-send-email-kwizart@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90276] [NVE4] read fault error, bisected
+Date: Wed, 09 Sep 2015 15:11:33 +0000
+Message-ID: <bug-90276-8800-smaAOxuQ1Y@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0924367907=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,32 +16,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBwYXRjaCBpcyBuZWVkZWQgYnkgaW5pdHJhbWZzIHRvb2xzIHRvIGRldGVjdAp0aGUgcmVx
-dWlyZWQgZmlybXdhcmUgZmlsZXMgZm9yIHRoZSBtb2R1bGUuCgpUaGlzIHBhdGNoIHRlc3RzIGZv
-ciBOT1VWRUFVX1BMQVRGT1JNX0RSSVZFUiBhbmQgZWl0aGVyClRFR1JBXzEyNF9TT0Mgb3IgVEVH
-UkFfMTMyX1NPQyBmb3IgdGhlIGZpcm13YXJlcyByZWxhdGVkIHRvCnRoZSBUZWdyYSBLMSBnZW5l
-cmF0aW9uLgoKU2lnbmVkLW9mZi1ieTogTmljb2xhcyBDaGF1dmV0IDxrd2l6YXJ0QGdtYWlsLmNv
-bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jIHwgMTEgKysrKysr
-KysrKysKIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZHJtLmMKaW5kZXggY2NlZmI2NC4uODYyYzIyNSAxMDA2NDQKLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-bm91dmVhdS9ub3V2ZWF1X2RybS5jCkBAIC0xMTExLDMgKzExMTEsMTQgQEAgTU9EVUxFX0RFVklD
-RV9UQUJMRShwY2ksIG5vdXZlYXVfZHJtX3BjaV90YWJsZSk7CiBNT0RVTEVfQVVUSE9SKERSSVZF
-Ul9BVVRIT1IpOwogTU9EVUxFX0RFU0NSSVBUSU9OKERSSVZFUl9ERVNDKTsKIE1PRFVMRV9MSUNF
-TlNFKCJHUEwgYW5kIGFkZGl0aW9uYWwgcmlnaHRzIik7CisjaWYgZGVmaW5lZChDT05GSUdfTk9V
-VkVBVV9QTEFURk9STV9EUklWRVIpICYmIFwKKyAgKElTX0VOQUJMRUQoQ09ORklHX0FSQ0hfVEVH
-UkFfMTI0X1NPQykgfHwgSVNfRU5BQkxFRChDT05GSUdfQVJDSF9URUdSQV8xMzJfU09DKSkKK01P
-RFVMRV9GSVJNV0FSRSgibnZpZGlhL2drMjBhL2ZlY3NfZGF0YS5iaW4iKTsKK01PRFVMRV9GSVJN
-V0FSRSgibnZpZGlhL2drMjBhL2ZlY3NfaW5zdC5iaW4iKTsKK01PRFVMRV9GSVJNV0FSRSgibnZp
-ZGlhL2drMjBhL2dwY2NzX2RhdGEuYmluIik7CitNT0RVTEVfRklSTVdBUkUoIm52aWRpYS9nazIw
-YS9ncGNjc19pbnN0LmJpbiIpOworTU9EVUxFX0ZJUk1XQVJFKCJudmlkaWEvZ2syMGEvc3dfYnVu
-ZGxlX2luaXQuYmluIik7CitNT0RVTEVfRklSTVdBUkUoIm52aWRpYS9nazIwYS9zd19jdHguYmlu
-Iik7CitNT0RVTEVfRklSTVdBUkUoIm52aWRpYS9nazIwYS9zd19tZXRob2RfaW5pdC5iaW4iKTsK
-K01PRFVMRV9GSVJNV0FSRSgibnZpZGlhL2drMjBhL3N3X25vbmN0eC5iaW4iKTsKKyNlbmRpZgot
-LSAKMi40LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0924367907==
+Content-Type: multipart/alternative; boundary="1441811493.115c1.10794"; charset="UTF-8"
+
+
+--1441811493.115c1.10794
+Date: Wed, 9 Sep 2015 15:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
+
+--- Comment #21 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Well freezes also happen on versions before that particular patch. They are
+less common and I have not found a way to make them reproducible (similar to
+reverting that patch on recent kernel).
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1441811493.115c1.10794
+Date: Wed, 9 Sep 2015 15:11:33 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c21">Comment # 21</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+</span></b>
+        <pre>Well freezes also happen on versions before that particular patch. They are
+less common and I have not found a way to make them reproducible (similar to
+reverting that patch on recent kernel).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1441811493.115c1.10794--
+
+--===============0924367907==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0924367907==--
