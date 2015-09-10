@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90887] PhiMovesPass in register allocator broken
-Date: Thu, 10 Sep 2015 07:17:26 +0000
-Message-ID: <bug-90887-8800-M4ZYUXOurI@http.bugs.freedesktop.org/>
-References: <bug-90887-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91551] DXTn compressed normal maps produce severe
+ artifacts on all NV5x and NVDx chipsets
+Date: Thu, 10 Sep 2015 08:37:26 +0000
+Message-ID: <bug-91551-8800-9nKaogkv7n@http.bugs.freedesktop.org/>
+References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1226129168=="
+Content-Type: multipart/mixed; boundary="===============0540552085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90887-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,94 +21,100 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1226129168==
-Content-Type: multipart/alternative; boundary="1441869447.6bFf0B3.861"; charset="UTF-8"
+--===============0540552085==
+Content-Type: multipart/alternative; boundary="1441874245.5B8fF1.21040"; charset="UTF-8"
 
 
---1441869447.6bFf0B3.861
-Date: Thu, 10 Sep 2015 07:17:27 +0000
+--1441874245.5B8fF1.21040
+Date: Thu, 10 Sep 2015 08:37:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90887
+https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #39 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I pushed the following after some light testing:
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+As I suspected, nothing to do with compressed textures. Should be at least
+partially fixed by
 
-commit a072ef8748a65d286e9b542bb9ea6e020fdcc7f8
+commit ce28ca713364dbe83cb3c371ca034bc2c2947616
 Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Thu Sep 10 01:54:30 2015 -0400
+Date:   Thu Sep 10 03:55:06 2015 -0400
 
-    nv50/ir: make edge splitting fix up phi node sources
+    nv50/ir: fix emission of 8-byte wide interp instruction
 
-But it's not the final word on this stuff... as B=C3=A9la mentioned in comm=
-ent 13,
-some games aren't completely fixed by this. I have some Hearthstone traces
-(from bug #75776) which still have minor visual artifacts. Further, they are
-fixed by splitting more edges. [I made the condition only look at
-p->cfg.outgoingCount() > 1, which includes a whole lot more than critical
-edges. This is clearly wrong, but... gives some ideas.]
+    This can come up if the target register number is > 63, which is fairly
+    rare.
 
---=20
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=91551
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+    Cc: "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+
+It still doesn't seem to render quite the same as nvc0 and llvmpipe. The
+lighting on the back of the spinning models is much brighter. Not sure why...
+those shaders are ENORMOUS by the way.
+
+I thought it might be due to glShadeModel(GL_FLAT) at first, which isn't
+properly handled, but that's not it -- it only ever calls
+glShadeModel(GL_SMOOTH) in the trace.
+
+-- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441869447.6bFf0B3.861
-Date: Thu, 10 Sep 2015 07:17:27 +0000
+--1441874245.5B8fF1.21040
+Date: Thu, 10 Sep 2015 08:37:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - PhiMovesPass in register allocator broken"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887#c39">Commen=
-t # 39</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - PhiMovesPass in register allocator broken"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90887">bug 90887<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I pushed the following after some light testing:
+        <pre>As I suspected, nothing to do with compressed textures. Should be at least
+partially fixed by
 
-commit a072ef8748a65d286e9b542bb9ea6e020fdcc7f8
-Author: Ilia Mirkin &lt;<a href=3D"mailto:imirkin&#64;alum.mit.edu">imirkin=
-&#64;alum.mit.edu</a>&gt;
-Date:   Thu Sep 10 01:54:30 2015 -0400
+commit ce28ca713364dbe83cb3c371ca034bc2c2947616
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Thu Sep 10 03:55:06 2015 -0400
 
-    nv50/ir: make edge splitting fix up phi node sources
+    nv50/ir: fix emission of 8-byte wide interp instruction
 
-But it's not the final word on this stuff... as B=C3=A9la mentioned in <a h=
-ref=3D"show_bug.cgi?id=3D90887#c13">comment 13</a>,
-some games aren't completely fixed by this. I have some Hearthstone traces
-(from <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED DUPLICATE - [NV50 gallium] Hearthstone displays corrup=
-ted buffers"
-   href=3D"show_bug.cgi?id=3D75776">bug #75776</a>) which still have minor =
-visual artifacts. Further, they are
-fixed by splitting more edges. [I made the condition only look at
-p-&gt;cfg.outgoingCount() &gt; 1, which includes a whole lot more than crit=
-ical
-edges. This is clearly wrong, but... gives some ideas.]</pre>
+    This can come up if the target register number is &gt; 63, which is fairly
+    rare.
+
+    Bugzilla: <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="show_bug.cgi?id=91551">https://bugs.freedesktop.org/show_bug.cgi?id=91551</a>
+    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+    Cc: &quot;11.0&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
+
+It still doesn't seem to render quite the same as nvc0 and llvmpipe. The
+lighting on the back of the spinning models is much brighter. Not sure why...
+those shaders are ENORMOUS by the way.
+
+I thought it might be due to glShadeModel(GL_FLAT) at first, which isn't
+properly handled, but that's not it -- it only ever calls
+glShadeModel(GL_SMOOTH) in the trace.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -115,9 +122,9 @@ edges. This is clearly wrong, but... gives some ideas.]</pre>
     </body>
 </html>
 
---1441869447.6bFf0B3.861--
+--1441874245.5B8fF1.21040--
 
---===============1226129168==
+--===============0540552085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1226129168==--
+--===============0540552085==--
