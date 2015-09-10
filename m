@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91526] World of Warcraft (on Wine) has UI corruption
  with nouveau
-Date: Wed, 09 Sep 2015 22:33:54 +0000
-Message-ID: <bug-91526-8800-ABlwhye8Gh@http.bugs.freedesktop.org/>
+Date: Thu, 10 Sep 2015 01:58:46 +0000
+Message-ID: <bug-91526-8800-ohTQdxFCcQ@http.bugs.freedesktop.org/>
 References: <bug-91526-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1755179167=="
+Content-Type: multipart/mixed; boundary="===============1524988308=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91526-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,41 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1755179167==
-Content-Type: multipart/alternative; boundary="1441838034.7ad10BD71.17080"; charset="UTF-8"
+--===============1524988308==
+Content-Type: multipart/alternative; boundary="1441850326.dc301.1884"; charset="UTF-8"
 
 
---1441838034.7ad10BD71.17080
-Date: Wed, 9 Sep 2015 22:33:54 +0000
+--1441850326.dc301.1884
+Date: Thu, 10 Sep 2015 01:58:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91526
 
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Gediminas Jakutis from comment #4)
-> Another note: I did play the game some with these UI issues present and I
-> did not notice any other kind of rendering problems whatsoever. It appears
-> to affect only the UI and text and absolutely nothing else.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I tracked down these issues to *something* to do with BGRA4 transfers.
-Commenting out the two BGRA4 formats in nv50_format.c "fixes" it for me.
-However no RGBA4-related tests appear to fail, teximage-colors is all happy,
-etc. So there's something more subtle may be going on.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-Since this isn't show-stopping for the game, I think I'll keep looking into
-this without pushing out any shotgun fixes.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Actually I ended up just pushing something that removes it on Fermi and newer.
+I tried to get the blob to use that format, but couldn't. This leads me to
+believe that for whatever reason it is no longer supported. Or... something. I
+double-checked that it still works on tesla though.
 
-Should also double-check on a tesla to see if perhaps fermi+ have shed support
-for that format. But my guess is something in the blitter.
+commit 342e68dc60eebb20ac1be9f47800ee9e604354f0
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Wed Sep 9 21:50:03 2015 -0400
+
+    nvc0: remove BGRA4 format support
+
+    Something is wrong with the support somewhere. I couldn't get the blob
+    driver to use it either, although it happily used RGB5_A1.
+    teximage-colors works, but WoW seems to fail in the menus for drawing
+    text.
+
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=91526
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+    Cc: "10.6 11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441838034.7ad10BD71.17080
-Date: Wed, 9 Sep 2015 22:33:54 +0000
+--1441850326.dc301.1884
+Date: Thu, 10 Sep 2015 01:58:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,34 +74,69 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c5">Comment # 5</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91526#c6">Comment # 6</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - World of Warcraft (on Wine) has UI corruption with nouveau"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - World of Warcraft (on Wine) has UI corruption with nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91526">bug 91526</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Gediminas Jakutis from <a href="show_bug.cgi?id=91526#c4">comment #4</a>)
-<span class="quote">&gt; Another note: I did play the game some with these UI issues present and I
-&gt; did not notice any other kind of rendering problems whatsoever. It appears
-&gt; to affect only the UI and text and absolutely nothing else.</span >
+        <pre>Actually I ended up just pushing something that removes it on Fermi and newer.
+I tried to get the blob to use that format, but couldn't. This leads me to
+believe that for whatever reason it is no longer supported. Or... something. I
+double-checked that it still works on tesla though.
 
-I tracked down these issues to *something* to do with BGRA4 transfers.
-Commenting out the two BGRA4 formats in nv50_format.c &quot;fixes&quot; it for me.
-However no RGBA4-related tests appear to fail, teximage-colors is all happy,
-etc. So there's something more subtle may be going on.
+commit 342e68dc60eebb20ac1be9f47800ee9e604354f0
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Wed Sep 9 21:50:03 2015 -0400
 
-Since this isn't show-stopping for the game, I think I'll keep looking into
-this without pushing out any shotgun fixes.
+    nvc0: remove BGRA4 format support
 
-Should also double-check on a tesla to see if perhaps fermi+ have shed support
-for that format. But my guess is something in the blitter.</pre>
+    Something is wrong with the support somewhere. I couldn't get the blob
+    driver to use it either, although it happily used RGB5_A1.
+    teximage-colors works, but WoW seems to fail in the menus for drawing
+    text.
+
+    Bugzilla: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - World of Warcraft (on Wine) has UI corruption with nouveau"
+   href="show_bug.cgi?id=91526">https://bugs.freedesktop.org/show_bug.cgi?id=91526</a>
+    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+    Cc: &quot;10.6 11.0&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +149,9 @@ for that format. But my guess is something in the blitter.</pre>
     </body>
 </html>
 
---1441838034.7ad10BD71.17080--
+--1441850326.dc301.1884--
 
---===============1755179167==
+--===============1524988308==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1755179167==--
+--===============1524988308==--
