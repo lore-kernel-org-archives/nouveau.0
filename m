@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91551] DXTn compressed normal maps produce severe
  artifacts on all NV5x and NVDx chipsets
-Date: Thu, 10 Sep 2015 08:51:43 +0000
-Message-ID: <bug-91551-8800-OaDZRtNZYE@http.bugs.freedesktop.org/>
+Date: Thu, 10 Sep 2015 09:05:29 +0000
+Message-ID: <bug-91551-8800-GHIzB1zhdK@http.bugs.freedesktop.org/>
 References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1871804903=="
+Content-Type: multipart/mixed; boundary="===============0459156371=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,42 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1871804903==
-Content-Type: multipart/alternative; boundary="1441875103.cF85281.27210"; charset="UTF-8"
+--===============0459156371==
+Content-Type: multipart/alternative; boundary="1441875928.35FF1.686"; charset="UTF-8"
 
 
---1441875103.cF85281.27210
-Date: Thu, 10 Sep 2015 08:51:43 +0000
+--1441875928.35FF1.686
+Date: Thu, 10 Sep 2015 09:05:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Ah, I suspect the remaining issues are due to the fact that we're encoding
-things like
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-119: mad f32 $r75 $r4 2.000000 $r75 (8)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-as
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Actually this particular instance of the issue had an easy fix -- we were
+manually "breaking" it. Oops!
 
-e000092d 04000003     add sat f32 $r11 (mul $r4 0x40000000) $r11
+commit 74b86b971f3bf9b0482341b07c1cbc2e520fb1d0
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Thu Sep 10 05:02:26 2015 -0400
 
-Which... might not be *exactly* the same thing. Unfortunately there *is* no
-encoding for that instruction, the nv50 emitter isn't smart enough not to emit
-it. Shaders with > 64 regs are sufficiently rare :(
+    nv50/ir: don't fold immediate into mad if registers are too high
 
-I guess we need to add a post-RA fixup to load these immediates for
-non-encodable instructions. Of course the question is *where* to load it...
-ugh. Could try to reserve a special register at RA time for it...
+    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=91551
+    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+    Cc: "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+
+Now the spinning model looks exactly as it did on nvc0.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441875103.cF85281.27210
-Date: Thu, 10 Sep 2015 08:51:43 +0000
+--1441875928.35FF1.686
+Date: Thu, 10 Sep 2015 09:05:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,35 +69,64 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c10">Comment # 10</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c11">Comment # 11</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Ah, I suspect the remaining issues are due to the fact that we're encoding
-things like
+        <pre>Actually this particular instance of the issue had an easy fix -- we were
+manually &quot;breaking&quot; it. Oops!
 
-119: mad f32 $r75 $r4 2.000000 $r75 (8)
+commit 74b86b971f3bf9b0482341b07c1cbc2e520fb1d0
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Thu Sep 10 05:02:26 2015 -0400
 
-as
+    nv50/ir: don't fold immediate into mad if registers are too high
 
-e000092d 04000003     add sat f32 $r11 (mul $r4 0x40000000) $r11
+    Bugzilla: <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="show_bug.cgi?id=91551">https://bugs.freedesktop.org/show_bug.cgi?id=91551</a>
+    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+    Cc: &quot;11.0&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
 
-Which... might not be *exactly* the same thing. Unfortunately there *is* no
-encoding for that instruction, the nv50 emitter isn't smart enough not to emit
-it. Shaders with &gt; 64 regs are sufficiently rare :(
-
-I guess we need to add a post-RA fixup to load these immediates for
-non-encodable instructions. Of course the question is *where* to load it...
-ugh. Could try to reserve a special register at RA time for it...</pre>
+Now the spinning model looks exactly as it did on nvc0.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +139,9 @@ ugh. Could try to reserve a special register at RA time for it...</pre>
     </body>
 </html>
 
---1441875103.cF85281.27210--
+--1441875928.35FF1.686--
 
---===============1871804903==
+--===============0459156371==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +151,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1871804903==--
+--===============0459156371==--
