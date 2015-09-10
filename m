@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91551] DXTn compressed normal maps produce severe
  artifacts on all NV5x and NVDx chipsets
-Date: Thu, 10 Sep 2015 08:37:26 +0000
-Message-ID: <bug-91551-8800-9nKaogkv7n@http.bugs.freedesktop.org/>
+Date: Thu, 10 Sep 2015 08:51:43 +0000
+Message-ID: <bug-91551-8800-OaDZRtNZYE@http.bugs.freedesktop.org/>
 References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0540552085=="
+Content-Type: multipart/mixed; boundary="===============1871804903=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,49 +21,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0540552085==
-Content-Type: multipart/alternative; boundary="1441874245.5B8fF1.21040"; charset="UTF-8"
+--===============1871804903==
+Content-Type: multipart/alternative; boundary="1441875103.cF85281.27210"; charset="UTF-8"
 
 
---1441874245.5B8fF1.21040
-Date: Thu, 10 Sep 2015 08:37:25 +0000
+--1441875103.cF85281.27210
+Date: Thu, 10 Sep 2015 08:51:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-As I suspected, nothing to do with compressed textures. Should be at least
-partially fixed by
+--- Comment #10 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Ah, I suspect the remaining issues are due to the fact that we're encoding
+things like
 
-commit ce28ca713364dbe83cb3c371ca034bc2c2947616
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Thu Sep 10 03:55:06 2015 -0400
+119: mad f32 $r75 $r4 2.000000 $r75 (8)
 
-    nv50/ir: fix emission of 8-byte wide interp instruction
+as
 
-    This can come up if the target register number is > 63, which is fairly
-    rare.
+e000092d 04000003     add sat f32 $r11 (mul $r4 0x40000000) $r11
 
-    Bugzilla: https://bugs.freedesktop.org/show_bug.cgi?id=91551
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-    Cc: "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Which... might not be *exactly* the same thing. Unfortunately there *is* no
+encoding for that instruction, the nv50 emitter isn't smart enough not to emit
+it. Shaders with > 64 regs are sufficiently rare :(
 
-It still doesn't seem to render quite the same as nvc0 and llvmpipe. The
-lighting on the back of the spinning models is much brighter. Not sure why...
-those shaders are ENORMOUS by the way.
-
-I thought it might be due to glShadeModel(GL_FLAT) at first, which isn't
-properly handled, but that's not it -- it only ever calls
-glShadeModel(GL_SMOOTH) in the trace.
+I guess we need to add a post-RA fixup to load these immediates for
+non-encodable instructions. Of course the question is *where* to load it...
+ugh. Could try to reserve a special register at RA time for it...
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441874245.5B8fF1.21040
-Date: Thu, 10 Sep 2015 08:37:25 +0000
+--1441875103.cF85281.27210
+Date: Thu, 10 Sep 2015 08:51:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,39 +70,29 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>As I suspected, nothing to do with compressed textures. Should be at least
-partially fixed by
+        <pre>Ah, I suspect the remaining issues are due to the fact that we're encoding
+things like
 
-commit ce28ca713364dbe83cb3c371ca034bc2c2947616
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Thu Sep 10 03:55:06 2015 -0400
+119: mad f32 $r75 $r4 2.000000 $r75 (8)
 
-    nv50/ir: fix emission of 8-byte wide interp instruction
+as
 
-    This can come up if the target register number is &gt; 63, which is fairly
-    rare.
+e000092d 04000003     add sat f32 $r11 (mul $r4 0x40000000) $r11
 
-    Bugzilla: <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="show_bug.cgi?id=91551">https://bugs.freedesktop.org/show_bug.cgi?id=91551</a>
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-    Cc: &quot;11.0&quot; &lt;<a href="mailto:mesa-stable&#64;lists.freedesktop.org">mesa-stable&#64;lists.freedesktop.org</a>&gt;
+Which... might not be *exactly* the same thing. Unfortunately there *is* no
+encoding for that instruction, the nv50 emitter isn't smart enough not to emit
+it. Shaders with &gt; 64 regs are sufficiently rare :(
 
-It still doesn't seem to render quite the same as nvc0 and llvmpipe. The
-lighting on the back of the spinning models is much brighter. Not sure why...
-those shaders are ENORMOUS by the way.
-
-I thought it might be due to glShadeModel(GL_FLAT) at first, which isn't
-properly handled, but that's not it -- it only ever calls
-glShadeModel(GL_SMOOTH) in the trace.</pre>
+I guess we need to add a post-RA fixup to load these immediates for
+non-encodable instructions. Of course the question is *where* to load it...
+ugh. Could try to reserve a special register at RA time for it...</pre>
         </div>
       </p>
       <hr>
@@ -122,9 +105,9 @@ glShadeModel(GL_SMOOTH) in the trace.</pre>
     </body>
 </html>
 
---1441874245.5B8fF1.21040--
+--1441875103.cF85281.27210--
 
---===============0540552085==
+--===============1871804903==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -134,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0540552085==--
+--===============1871804903==--
