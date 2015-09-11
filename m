@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91551] DXTn compressed normal maps produce severe
  artifacts on all NV5x and NVDx chipsets
-Date: Thu, 10 Sep 2015 20:10:10 +0000
-Message-ID: <bug-91551-8800-dycZquRqgx@http.bugs.freedesktop.org/>
+Date: Fri, 11 Sep 2015 01:09:25 +0000
+Message-ID: <bug-91551-8800-k2mUzDuH0d@http.bugs.freedesktop.org/>
 References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0155143780=="
+Content-Type: multipart/mixed; boundary="===============1420564931=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0155143780==
-Content-Type: multipart/alternative; boundary="1441915810.D3BE4fDf0.2851"; charset="UTF-8"
+--===============1420564931==
+Content-Type: multipart/alternative; boundary="1441933764.eD237FB1.25564"; charset="UTF-8"
 
 
---1441915810.D3BE4fDf0.2851
-Date: Thu, 10 Sep 2015 20:10:10 +0000
+--1441933764.eD237FB1.25564
+Date: Fri, 11 Sep 2015 01:09:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
---- Comment #12 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, 
+--- Comment #13 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Mauro Rossi from comment #12)
+> Hi, 
+> 
+> Checked on 8500GT (NV86), I confirm the models are correctly rendered.
+> 
+> Thank you very much, also on behalf of the SW Original Trilogy mod GNU/Linux
+> community.
+> 
+> Mauro
 
-Checked on 8500GT (NV86), I confirm the models are correctly rendered.
-
-Thank you very much, also on behalf of the SW Original Trilogy mod GNU/Linux
-community.
-
-Mauro
+By the way, out of your original card list, if there remain issues with nv30
+driver (GeForce 7025) or nvc0 (GeForce 610), please file them separately and
+include traces.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1441915810.D3BE4fDf0.2851
-Date: Thu, 10 Sep 2015 20:10:10 +0000
+--1441933764.eD237FB1.25564
+Date: Fri, 11 Sep 2015 01:09:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,21 +67,26 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
-              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi, 
+        <pre>(In reply to Mauro Rossi from <a href="show_bug.cgi?id=91551#c12">comment #12</a>)
+<span class="quote">&gt; Hi, 
+&gt; 
+&gt; Checked on 8500GT (NV86), I confirm the models are correctly rendered.
+&gt; 
+&gt; Thank you very much, also on behalf of the SW Original Trilogy mod GNU/Linux
+&gt; community.
+&gt; 
+&gt; Mauro</span >
 
-Checked on 8500GT (NV86), I confirm the models are correctly rendered.
-
-Thank you very much, also on behalf of the SW Original Trilogy mod GNU/Linux
-community.
-
-Mauro</pre>
+By the way, out of your original card list, if there remain issues with nv30
+driver (GeForce 7025) or nvc0 (GeForce 610), please file them separately and
+include traces.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +99,9 @@ Mauro</pre>
     </body>
 </html>
 
---1441915810.D3BE4fDf0.2851--
+--1441933764.eD237FB1.25564--
 
---===============0155143780==
+--===============1420564931==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0155143780==--
+--===============1420564931==--
