@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91306] Axis Game Factory v3.0 (native) renders black
-	ground
-Date: Fri, 11 Sep 2015 23:21:24 +0000
-Message-ID: <bug-91306-8800-G3fUUXS9L6@http.bugs.freedesktop.org/>
-References: <bug-91306-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89775] Grpahics card G72 [GeForce 7200 GS / 7300 SE]
+ 3d does not work
+Date: Fri, 11 Sep 2015 23:24:08 +0000
+Message-ID: <bug-89775-8800-ipWAUV8Zvd@http.bugs.freedesktop.org/>
+References: <bug-89775-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0671049157=="
+Content-Type: multipart/mixed; boundary="===============0060229320=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89775-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0671049157==
-Content-Type: multipart/alternative; boundary="1442013684.dbeF3C1.16700"; charset="UTF-8"
+--===============0060229320==
+Content-Type: multipart/alternative; boundary="1442013848.cF4D6fBC1.17876"; charset="UTF-8"
 
 
---1442013684.dbeF3C1.16700
-Date: Fri, 11 Sep 2015 23:21:24 +0000
+--1442013848.cF4D6fBC1.17876
+Date: Fri, 11 Sep 2015 23:24:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91306
+https://bugs.freedesktop.org/show_bug.cgi?id=89775
 
 --- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Reproduced with GT215. However GF108 shows different artifacts (some white dots
-in the background).
+Try booting with nouveau.config=NvMSI=0 -- NV46's are reported to have
+unspecified issues with MSI-style interrupt processing. We've disabled MSI on
+newer kernels for them.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442013684.dbeF3C1.16700
-Date: Fri, 11 Sep 2015 23:21:24 +0000
+--1442013848.cF4D6fBC1.17876
+Date: Fri, 11 Sep 2015 23:24:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +56,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Axis Game Factory v3.0 (native) renders black ground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91306#c1">Comment # 1</a>
+   title="NEW - Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89775#c1">Comment # 1</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Axis Game Factory v3.0 (native) renders black ground"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91306">bug 91306</a>
+   title="NEW - Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does not work"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89775">bug 89775</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Reproduced with GT215. However GF108 shows different artifacts (some white dots
-in the background).</pre>
+        <pre>Try booting with nouveau.config=NvMSI=0 -- NV46's are reported to have
+unspecified issues with MSI-style interrupt processing. We've disabled MSI on
+newer kernels for them.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +79,9 @@ in the background).</pre>
     </body>
 </html>
 
---1442013684.dbeF3C1.16700--
+--1442013848.cF4D6fBC1.17876--
 
---===============0671049157==
+--===============0060229320==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0671049157==--
+--===============0060229320==--
