@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91972] [NVE7] xorg/nouveau crashes when running
+Subject: [Bug 91972] [NVE4] xorg/nouveau crashes when running
  wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
-Date: Fri, 11 Sep 2015 23:31:04 +0000
-Message-ID: <bug-91972-8800-4ZkhwP3j9X@http.bugs.freedesktop.org/>
+Date: Fri, 11 Sep 2015 23:31:32 +0000
+Message-ID: <bug-91972-8800-06Wk27LBnS@http.bugs.freedesktop.org/>
 References: <bug-91972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0923983251=="
+Content-Type: multipart/mixed; boundary="===============0267885110=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0923983251==
-Content-Type: multipart/alternative; boundary="1442014264.0d72b8152.20782"; charset="UTF-8"
+--===============0267885110==
+Content-Type: multipart/alternative; boundary="1442014292.D13Cf75.20782"; charset="UTF-8"
 
 
---1442014264.0d72b8152.20782
-Date: Fri, 11 Sep 2015 23:31:04 +0000
+--1442014292.D13Cf75.20782
+Date: Fri, 11 Sep 2015 23:31:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91972
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Can you also include the output of 'xrandr -q'? That should give me an idea of
-where the various outputs are located. Not sure if it'll be important to the
-bug, but easy information to collect.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|[NVE7] xorg/nouveau crashes |[NVE4] xorg/nouveau crashes
+                   |when running wine's unit    |when running wine's unit
+                   |tests under valgrind: EXA:  |tests under valgrind: EXA:
+                   |malloc failed for size      |malloc failed for size
+                   |-262140 bytes               |-262140 bytes
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1442014264.0d72b8152.20782
-Date: Fri, 11 Sep 2015 23:31:04 +0000
+--1442014292.D13Cf75.20782
+Date: Fri, 11 Sep 2015 23:31:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,23 +55,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
+   title="NEW - [NVE4] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91972">bug 91972</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Can you also include the output of 'xrandr -q'? That should give me an idea of
-where the various outputs are located. Not sure if it'll be important to the
-bug, but easy information to collect.</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>[NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
+           </td>
+           <td>[NVE4] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -77,9 +87,9 @@ bug, but easy information to collect.</pre>
     </body>
 </html>
 
---1442014264.0d72b8152.20782--
+--1442014292.D13Cf75.20782--
 
---===============0923983251==
+--===============0267885110==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0923983251==--
+--===============0267885110==--
