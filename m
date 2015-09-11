@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 57326] [NVCE] gpu lockup when using hardware
  acceleration in AndroVM
-Date: Fri, 11 Sep 2015 23:41:19 +0000
-Message-ID: <bug-57326-8800-Flr5MewKSx@http.bugs.freedesktop.org/>
+Date: Fri, 11 Sep 2015 23:51:19 +0000
+Message-ID: <bug-57326-8800-vgKcoyNIDd@http.bugs.freedesktop.org/>
 References: <bug-57326-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0566325024=="
+Content-Type: multipart/mixed; boundary="===============1090099139=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-57326-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0566325024==
-Content-Type: multipart/alternative; boundary="1442014879.f5150.25372"; charset="UTF-8"
+--===============1090099139==
+Content-Type: multipart/alternative; boundary="1442015479.BB0b6fD80.29978"; charset="UTF-8"
 
 
---1442014879.f5150.25372
-Date: Fri, 11 Sep 2015 23:41:19 +0000
+--1442015479.BB0b6fD80.29978
+Date: Fri, 11 Sep 2015 23:51:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=57326
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with a more recent kernel (4.0+)?
+--- Comment #7 from thepouar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+No clue as I'm using a Radeon now
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1442014879.f5150.25372
-Date: Fri, 11 Sep 2015 23:41:19 +0000
+--1442015479.BB0b6fD80.29978
+Date: Fri, 11 Sep 2015 23:51:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326#c6">Comment # 6</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:thepouar&#64;gmail.com" title="thepouar&#64;gmail.com">thepouar&#64;gmail.com</a>
 </span></b>
-        <pre>Does this still happen with a more recent kernel (4.0+)?</pre>
+        <pre>No clue as I'm using a Radeon now</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1442014879.f5150.25372--
+--1442015479.BB0b6fD80.29978--
 
---===============0566325024==
+--===============1090099139==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0566325024==--
+--===============1090099139==--
