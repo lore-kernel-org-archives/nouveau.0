@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91972] New: xorg/nouveau crashes when running wine's
- unit tests under valgrind: EXA: malloc failed for size -262140 bytes
-Date: Fri, 11 Sep 2015 06:17:05 +0000
-Message-ID: <bug-91972-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91972] [NVE7] xorg/nouveau crashes when running
+ wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
+Date: Fri, 11 Sep 2015 06:31:02 +0000
+Message-ID: <bug-91972-8800-nfWJwvYKm4@http.bugs.freedesktop.org/>
+References: <bug-91972-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0596821050=="
+Content-Type: multipart/mixed; boundary="===============0757520712=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,65 +21,52 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0596821050==
-Content-Type: multipart/alternative; boundary="1441952225.2aFaB31.23121"; charset="UTF-8"
+--===============0757520712==
+Content-Type: multipart/alternative; boundary="1441953062.6b0352.28471"; charset="UTF-8"
 
 
---1441952225.2aFaB31.23121
-Date: Fri, 11 Sep 2015 06:17:05 +0000
+--1441953062.6b0352.28471
+Date: Fri, 11 Sep 2015 06:31:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91972
 
-            Bug ID: 91972
-           Summary: xorg/nouveau crashes when running wine's unit tests
-                    under valgrind: EXA: malloc failed for size -262140
-                    bytes
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: austinenglish-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 118205
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118205&action=edit
-xorg.log
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|xorg/nouveau crashes when   |[NVE7] xorg/nouveau crashes
+                   |running wine's unit tests   |when running wine's unit
+                   |under valgrind: EXA: malloc |tests under valgrind: EXA:
+                   |failed for size -262140     |malloc failed for size
+                   |bytes                       |-262140 bytes
 
-Originally reported here:
-https://bugzilla.redhat.com/show_bug.cgi?id=1248314
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Wow, very uncommon configuration... nouveau as main and intel as "GPU". Are you
+doing any actual offloading (of either outputs or rendering)?
 
-bug only occurred sometimes, but running the tests under valgrind triggers this
-bug 100% of the time for me.
+exa/exa_migration_mixed.c:                FatalError("EXA: malloc failed for
+size %d bytes\n",
 
-Running wine's dlls/user32/tests/win.c tests under valgrind causes the X client
-to fail, killing the user session.
+pExaPixmap->sys_pitch * pPixmap->drawable.height
 
-[austin@localhost ~]$ dnf list installed | grep xorg | grep -e nouveau -e
-server
-xorg-x11-drv-nouveau.x86_64            1:1.0.11-2.fc22                  
-@System
-xorg-x11-server-Xorg.x86_64            1.17.2-2.fc22                    
-@System
-xorg-x11-server-Xwayland.x86_64        1.17.2-2.fc22                    
-@System
-xorg-x11-server-common.x86_64          1.17.2-2.fc22                    
-@System
-xorg-x11-server-utils.x86_64           7.7-15.fc22                      
-@System
+exa/exa_priv.h:    int sys_pitch;              /**< pitch of pixmap in system
+memory */
+include/pixmapstr.h:    unsigned short height;
+
+I guess sys_pitch is somehow negative then.
+
+Can you "bisect" the test, i.e. figure out which bit of it triggers the issue?
+And perhaps modify that print to show what the individual values in that
+multiplication are?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1441952225.2aFaB31.23121
-Date: Fri, 11 Sep 2015 06:17:05 +0000
+--1441953062.6b0352.28471
+Date: Fri, 11 Sep 2015 06:31:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -85,116 +74,56 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972">91972</a>
-          </td>
-        </tr>
+   title="NEW - [NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972">bug 91972</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>austinenglish&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
+           </td>
+           <td>[NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118205" name="attach_118205" title="xorg.log">attachment 118205</a> <a href="attachment.cgi?id=118205&amp;action=edit" title="xorg.log">[details]</a></span>
-xorg.log
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972">bug 91972</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Wow, very uncommon configuration... nouveau as main and intel as &quot;GPU&quot;. Are you
+doing any actual offloading (of either outputs or rendering)?
 
-Originally reported here:
-<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1248314">https://bugzilla.redhat.com/show_bug.cgi?id=1248314</a>
+exa/exa_migration_mixed.c:                FatalError(&quot;EXA: malloc failed for
+size %d bytes\n&quot;,
 
-bug only occurred sometimes, but running the tests under valgrind triggers this
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Language filtering not working"
-   href="show_bug.cgi?id=100">bug 100</a>% of the time for me.
+pExaPixmap-&gt;sys_pitch * pPixmap-&gt;drawable.height
 
-Running wine's dlls/user32/tests/win.c tests under valgrind causes the X client
-to fail, killing the user session.
+exa/exa_priv.h:    int sys_pitch;              /**&lt; pitch of pixmap in system
+memory */
+include/pixmapstr.h:    unsigned short height;
 
-[austin&#64;localhost ~]$ dnf list installed | grep xorg | grep -e nouveau -e
-server
-xorg-x11-drv-nouveau.x86_64            1:1.0.11-2.fc22                  
-&#64;System
-xorg-x11-server-Xorg.x86_64            1.17.2-2.fc22                    
-&#64;System
-xorg-x11-server-Xwayland.x86_64        1.17.2-2.fc22                    
-&#64;System
-xorg-x11-server-common.x86_64          1.17.2-2.fc22                    
-&#64;System
-xorg-x11-server-utils.x86_64           7.7-15.fc22                      
-&#64;System</pre>
+I guess sys_pitch is somehow negative then.
+
+Can you &quot;bisect&quot; the test, i.e. figure out which bit of it triggers the issue?
+And perhaps modify that print to show what the individual values in that
+multiplication are?</pre>
         </div>
       </p>
       <hr>
@@ -206,9 +135,9 @@ xorg-x11-server-utils.x86_64           7.7-15.fc22
     </body>
 </html>
 
---1441952225.2aFaB31.23121--
+--1441953062.6b0352.28471--
 
---===============0596821050==
+--===============0757520712==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -218,4 +147,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0596821050==--
+--===============0757520712==--
