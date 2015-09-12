@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91986] New: Artifacts in models rendering with
- GeForce 6150 (NV4x chipsets)
-Date: Sat, 12 Sep 2015 15:47:30 +0000
-Message-ID: <bug-91986-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91986] Artifacts in models rendering with GeForce
+ 6150 (NV4x chipsets)
+Date: Sat, 12 Sep 2015 15:50:39 +0000
+Message-ID: <bug-91986-8800-c4ZGnDAnH3@http.bugs.freedesktop.org/>
+References: <bug-91986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1119056751=="
+Content-Type: multipart/mixed; boundary="===============2138589226=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91986-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,68 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1119056751==
-Content-Type: multipart/alternative; boundary="1442072850.114d2e00.7220"; charset="UTF-8"
+--===============2138589226==
+Content-Type: multipart/alternative; boundary="1442073038.0FA04C70.8542"; charset="UTF-8"
 
 
---1442072850.114d2e00.7220
-Date: Sat, 12 Sep 2015 15:47:30 +0000
+--1442073038.0FA04C70.8542
+Date: Sat, 12 Sep 2015 15:50:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91986
 
-            Bug ID: 91986
-           Summary: Artifacts in models rendering with GeForce 6150 (NV4x
-                    chipsets)
-           Product: Mesa
-           Version: git
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: major
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 118224
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118224&action=edit
-X-Wing model artifacts visible on with mesa 11.1git
-
-X-Wing model and other models in FreeSpace2 with StarWars Original Trilogy mod
-shows rendering artifacts.
-
-Filing a separate bug from https://bugs.freedesktop.org/show_bug.cgi?id=91551
-as requested for NV4C chipset,
-also because the artifacts are different.
-
-Here I see big black poligons filling the screen, like vertexes of the model
-invading the whole screen. 
-
-NOTE: using mesa 10.6 the artifacts are not covering the entire GUI,
-but I see some kind of vertex/surfaces problem, but the shaders maps are fine
-but the vertexes/surfaces are completely distorted.
-
-Here is the link of the old trace that is able to produce the artifacs
-described in the different mesa versions. (X-Wing is the model visible before
-the Tie pilot)
-
-http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z
-
-Attached pictures of the artifact for 11.1git and 10.6
-
-Attached dmesg that show some nouveau errors, but most probably unrelated to
-the bug.
+--- Comment #1 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 118225
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118225&action=edit
+X-Wing model artifacts visible on with mesa 10.6.5
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442072850.114d2e00.7220
-Date: Sat, 12 Sep 2015 15:47:30 +0000
+--1442073038.0FA04C70.8542
+Date: Sat, 12 Sep 2015 15:50:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -88,119 +51,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Artifacts in models rendering with GeForce 6150 (NV4x chipsets)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91986">91986</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Artifacts in models rendering with GeForce 6150 (NV4x chipsets)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>major
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>issor.oruam&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118224" name="attach_118224" title="X-Wing model artifacts visible on with mesa 11.1git">attachment 118224</a> <a href="attachment.cgi?id=118224&amp;action=edit" title="X-Wing model artifacts visible on with mesa 11.1git">[details]</a></span>
-X-Wing model artifacts visible on with mesa 11.1git
-
-X-Wing model and other models in FreeSpace2 with StarWars Original Trilogy mod
-shows rendering artifacts.
-
-Filing a separate bug from <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
-   href="show_bug.cgi?id=91551">https://bugs.freedesktop.org/show_bug.cgi?id=91551</a>
-as requested for NV4C chipset,
-also because the artifacts are different.
-
-Here I see big black poligons filling the screen, like vertexes of the model
-invading the whole screen. 
-
-NOTE: using mesa 10.6 the artifacts are not covering the entire GUI,
-but I see some kind of vertex/surfaces problem, but the shaders maps are fine
-but the vertexes/surfaces are completely distorted.
-
-Here is the link of the old trace that is able to produce the artifacs
-described in the different mesa versions. (X-Wing is the model visible before
-the Tie pilot)
-
-<a href="http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z">http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z</a>
-
-Attached pictures of the artifact for 11.1git and 10.6
-
-Attached dmesg that show some nouveau errors, but most probably unrelated to
-the bug.</pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Artifacts in models rendering with GeForce 6150 (NV4x chipsets)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91986#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Artifacts in models rendering with GeForce 6150 (NV4x chipsets)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91986">bug 91986</a>
+              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118225" name="attach_118225" title="X-Wing model artifacts visible on with mesa 10.6.5">attachment 118225</a> <a href="attachment.cgi?id=118225&amp;action=edit" title="X-Wing model artifacts visible on with mesa 10.6.5">[details]</a></span>
+X-Wing model artifacts visible on with mesa 10.6.5</pre>
         </div>
       </p>
       <hr>
@@ -213,9 +78,9 @@ the bug.</pre>
     </body>
 </html>
 
---1442072850.114d2e00.7220--
+--1442073038.0FA04C70.8542--
 
---===============1119056751==
+--===============2138589226==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -225,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1119056751==--
+--===============2138589226==--
