@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82527] xset dpms force {off, standby,
- suspend} returns after ~20 seconds (GeForce 8400 GS)
-Date: Sat, 12 Sep 2015 15:24:13 +0000
-Message-ID: <bug-82527-8800-0WtG71bgLc@http.bugs.freedesktop.org/>
-References: <bug-82527-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91986] New: Artifacts in models rendering with
+ GeForce 6150 (NV4x chipsets)
+Date: Sat, 12 Sep 2015 15:47:30 +0000
+Message-ID: <bug-91986-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1167160135=="
+Content-Type: multipart/mixed; boundary="===============1119056751=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82527-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,41 +19,68 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1167160135==
-Content-Type: multipart/alternative; boundary="1442071452.f74B52.30155"; charset="UTF-8"
+--===============1119056751==
+Content-Type: multipart/alternative; boundary="1442072850.114d2e00.7220"; charset="UTF-8"
 
 
---1442071452.f74B52.30155
-Date: Sat, 12 Sep 2015 15:24:12 +0000
+--1442072850.114d2e00.7220
+Date: Sat, 12 Sep 2015 15:47:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82527
+https://bugs.freedesktop.org/show_bug.cgi?id=91986
 
---- Comment #14 from Jimmie Mayfield <mayfield+bugzilla-IFvXyFRXtTIgsBAKwltoeQ@public.gmane.org> ---
-For what it's worth, I see similar behavior with the Nouveau driver on OpenSUSE
-13.2 (kernel 3.16.7-24, xf86-video-nouveau-1.0.11-1.3)
+            Bug ID: 91986
+           Summary: Artifacts in models rendering with GeForce 6150 (NV4x
+                    chipsets)
+           Product: Mesa
+           Version: git
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 
-My office machine has two displays connected to a GTS450.  Both displays go
-into standby mode.  After a short delay -- I haven't measured by hand but the
-aforementioned 20-second value sounds about right -- the secondary display
-comes out of standby.  Near as I can tell, this behavior only affects the
-secondary display.  I can also confirm that the behavior did not occur when
-using the proprietary nVidia drivers.
+Created attachment 118224
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118224&action=edit
+X-Wing model artifacts visible on with mesa 11.1git
 
-Another data point that may be useful when diagnosing the problem: I'm also
-using the nVidia card for audio.  I'm away from the office for a few days but
-I'm reasonably confident that both displays are connected via DVI and that my
-speakers are connected to the secondary display's audio line-out jack.  Is it
-possible that the secondary display's inability to remain in standby mode is
-somehow audio-related?
+X-Wing model and other models in FreeSpace2 with StarWars Original Trilogy mod
+shows rendering artifacts.
+
+Filing a separate bug from https://bugs.freedesktop.org/show_bug.cgi?id=91551
+as requested for NV4C chipset,
+also because the artifacts are different.
+
+Here I see big black poligons filling the screen, like vertexes of the model
+invading the whole screen. 
+
+NOTE: using mesa 10.6 the artifacts are not covering the entire GUI,
+but I see some kind of vertex/surfaces problem, but the shaders maps are fine
+but the vertexes/surfaces are completely distorted.
+
+Here is the link of the old trace that is able to produce the artifacs
+described in the different mesa versions. (X-Wing is the model visible before
+the Tie pilot)
+
+http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z
+
+Attached pictures of the artifact for 11.1git and 10.6
+
+Attached dmesg that show some nouveau errors, but most probably unrelated to
+the bug.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442071452.f74B52.30155
-Date: Sat, 12 Sep 2015 15:24:12 +0000
+--1442072850.114d2e00.7220
+Date: Sat, 12 Sep 2015 15:47:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,49 +88,134 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Artifacts in models rendering with GeForce 6150 (NV4x chipsets)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91986">91986</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Artifacts in models rendering with GeForce 6150 (NV4x chipsets)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>issor.oruam&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - xset dpms force {off,standby,suspend} returns after ~20 seconds (GeForce 8400 GS)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82527">bug 82527</a>
-              from <span class="vcard"><a class="email" href="mailto:mayfield+bugzilla&#64;sackheads.org" title="Jimmie Mayfield &lt;mayfield+bugzilla&#64;sackheads.org&gt;"> <span class="fn">Jimmie Mayfield</span></a>
-</span></b>
-        <pre>For what it's worth, I see similar behavior with the Nouveau driver on OpenSUSE
-13.2 (kernel 3.16.7-24, xf86-video-nouveau-1.0.11-1.3)
+        <pre>Created <span class=""><a href="attachment.cgi?id=118224" name="attach_118224" title="X-Wing model artifacts visible on with mesa 11.1git">attachment 118224</a> <a href="attachment.cgi?id=118224&amp;action=edit" title="X-Wing model artifacts visible on with mesa 11.1git">[details]</a></span>
+X-Wing model artifacts visible on with mesa 11.1git
 
-My office machine has two displays connected to a GTS450.  Both displays go
-into standby mode.  After a short delay -- I haven't measured by hand but the
-aforementioned 20-second value sounds about right -- the secondary display
-comes out of standby.  Near as I can tell, this behavior only affects the
-secondary display.  I can also confirm that the behavior did not occur when
-using the proprietary nVidia drivers.
+X-Wing model and other models in FreeSpace2 with StarWars Original Trilogy mod
+shows rendering artifacts.
 
-Another data point that may be useful when diagnosing the problem: I'm also
-using the nVidia card for audio.  I'm away from the office for a few days but
-I'm reasonably confident that both displays are connected via DVI and that my
-speakers are connected to the secondary display's audio line-out jack.  Is it
-possible that the secondary display's inability to remain in standby mode is
-somehow audio-related?</pre>
+Filing a separate bug from <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="show_bug.cgi?id=91551">https://bugs.freedesktop.org/show_bug.cgi?id=91551</a>
+as requested for NV4C chipset,
+also because the artifacts are different.
+
+Here I see big black poligons filling the screen, like vertexes of the model
+invading the whole screen. 
+
+NOTE: using mesa 10.6 the artifacts are not covering the entire GUI,
+but I see some kind of vertex/surfaces problem, but the shaders maps are fine
+but the vertexes/surfaces are completely distorted.
+
+Here is the link of the old trace that is able to produce the artifacs
+described in the different mesa versions. (X-Wing is the model visible before
+the Tie pilot)
+
+<a href="http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z">http://www.mediafire.com/download/949r35rra31rpte/Tie_pilot_Nvidia_GT210_fs2_open_3.7.2.trace.7z</a>
+
+Attached pictures of the artifact for 11.1git and 10.6
+
+Attached dmesg that show some nouveau errors, but most probably unrelated to
+the bug.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442071452.f74B52.30155--
+--1442072850.114d2e00.7220--
 
---===============1167160135==
+--===============1119056751==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +225,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1167160135==--
+--===============1119056751==--
