@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 57326] [NVCE] gpu lockup when using hardware
- acceleration in AndroVM
-Date: Fri, 11 Sep 2015 23:52:47 +0000
-Message-ID: <bug-57326-8800-oUpFIk8Wra@http.bugs.freedesktop.org/>
-References: <bug-57326-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91551] DXTn compressed normal maps produce severe
+ artifacts on all NV5x and NVDx chipsets
+Date: Sat, 12 Sep 2015 15:10:56 +0000
+Message-ID: <bug-91551-8800-ugvmiN0V06@http.bugs.freedesktop.org/>
+References: <bug-91551-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0756777987=="
+Content-Type: multipart/mixed; boundary="===============0313159230=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-57326-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91551-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0756777987==
-Content-Type: multipart/alternative; boundary="1442015566.2BB0E5e30.30666"; charset="UTF-8"
+--===============0313159230==
+Content-Type: multipart/alternative; boundary="1442070655.adEADc30.24379"; charset="UTF-8"
 
 
---1442015566.2BB0E5e30.30666
-Date: Fri, 11 Sep 2015 23:52:46 +0000
+--1442070655.adEADc30.24379
+Date: Sat, 12 Sep 2015 15:10:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=57326
+https://bugs.freedesktop.org/show_bug.cgi?id=91551
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #14 from Mauro Rossi <issor.oruam-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi Ilia,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
+nvc0 is not affected, 
+while I have seen a different problem on integrated GeForce 6150 (NV4C chipset)
 
---- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OK, resolving as invalid then, since you're no longer able to test.
+Submitting new bug with logs and traces separately.
+Thanks
+
+Mauro
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442015566.2BB0E5e30.30666
-Date: Fri, 11 Sep 2015 23:52:46 +0000
+--1442070655.adEADc30.24379
+Date: Sat, 12 Sep 2015 15:10:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,62 +57,43 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326#c8">Comment # 8</a>
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - [NVCE] gpu lockup when using hardware acceleration in AndroVM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=57326">bug 57326</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="RESOLVED FIXED - DXTn compressed normal maps produce severe artifacts on all NV5x and NVDx chipsets"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91551">bug 91551</a>
+              from <span class="vcard"><a class="email" href="mailto:issor.oruam&#64;gmail.com" title="Mauro Rossi &lt;issor.oruam&#64;gmail.com&gt;"> <span class="fn">Mauro Rossi</span></a>
 </span></b>
-        <pre>OK, resolving as invalid then, since you're no longer able to test.</pre>
+        <pre>Hi Ilia,
+
+nvc0 is not affected, 
+while I have seen a different problem on integrated GeForce 6150 (NV4C chipset)
+
+Submitting new bug with logs and traces separately.
+Thanks
+
+Mauro</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442015566.2BB0E5e30.30666--
+--1442070655.adEADc30.24379--
 
---===============0756777987==
+--===============0313159230==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0756777987==--
+--===============0313159230==--
