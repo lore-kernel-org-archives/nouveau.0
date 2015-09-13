@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91992] [NV4C] computer hangs after few minutes of use
-Date: Sun, 13 Sep 2015 14:53:17 +0000
-Message-ID: <bug-91992-8800-nLfEO0aeLI@http.bugs.freedesktop.org/>
+Date: Sun, 13 Sep 2015 15:09:08 +0000
+Message-ID: <bug-91992-8800-AAud7OPwNM@http.bugs.freedesktop.org/>
 References: <bug-91992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1591959846=="
+Content-Type: multipart/mixed; boundary="===============1919714085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,29 +20,37 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1591959846==
-Content-Type: multipart/alternative; boundary="1442155997.73c1600.6214"; charset="UTF-8"
+--===============1919714085==
+Content-Type: multipart/alternative; boundary="1442156948.e8e81B1.12991"; charset="UTF-8"
 
 
---1442155997.73c1600.6214
-Date: Sun, 13 Sep 2015 14:53:17 +0000
+--1442156948.e8e81B1.12991
+Date: Sun, 13 Sep 2015 15:09:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91992
 
---- Comment #2 from Laurent Riffard <laurent.riffard+freedesktop-GANU6spQydw@public.gmane.org> ---
-Created attachment 118240
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118240&action=edit
-vbios.rom
+--- Comment #3 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
+Hi,
+
+What desktop environment are you using ?
+
+I've a feeling this may be caused by us running out of video-mem. Can you see
+if you can change the amount of memory assigned to the gpu in the BIOS, and if
+making that larger helps ?
+
+Regards,
+
+Hans
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442155997.73c1600.6214
-Date: Sun, 13 Sep 2015 14:53:17 +0000
+--1442156948.e8e81B1.12991
+Date: Sun, 13 Sep 2015 15:09:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +64,24 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV4C] computer hangs after few minutes of use"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91992#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91992#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV4C] computer hangs after few minutes of use"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91992">bug 91992</a>
-              from <span class="vcard"><a class="email" href="mailto:laurent.riffard+freedesktop&#64;free.fr" title="Laurent Riffard &lt;laurent.riffard+freedesktop&#64;free.fr&gt;"> <span class="fn">Laurent Riffard</span></a>
+              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118240" name="attach_118240" title="vbios.rom">attachment 118240</a> <a href="attachment.cgi?id=118240&amp;action=edit" title="vbios.rom">[details]</a></span>
-vbios.rom</pre>
+        <pre>Hi,
+
+What desktop environment are you using ?
+
+I've a feeling this may be caused by us running out of video-mem. Can you see
+if you can change the amount of memory assigned to the gpu in the BIOS, and if
+making that larger helps ?
+
+Regards,
+
+Hans</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +94,9 @@ vbios.rom</pre>
     </body>
 </html>
 
---1442155997.73c1600.6214--
+--1442156948.e8e81B1.12991--
 
---===============1591959846==
+--===============1919714085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +106,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1591959846==--
+--===============1919714085==--
