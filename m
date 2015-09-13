@@ -1,162 +1,215 @@
-From: Ondrej Zary <linux@rainbow-software.org>
-Subject: AGP cards in PCI mode (fake slots like AGPro, AGP Express, AGI, AGX, XGP)
-Date: Sun, 13 Sep 2015 20:57:30 +0200
-Message-ID: <201509132057.30674.linux@rainbow-software.org>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: AGP cards in PCI mode (fake slots like AGPro,
+ AGP Express, AGI, AGX, XGP)
+Date: Sun, 13 Sep 2015 15:12:25 -0400
+Message-ID: <CAKb7UvjyEzWbCAcResVTyqVg=o25c6=42xDAQQ2GgDTJ=_bH3g@mail.gmail.com>
+References: <201509132057.30674.linux@rainbow-software.org>
 Mime-Version: 1.0
-Content-Type: Text/Plain;
-  charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Return-path: <linux-kernel-owner@vger.kernel.org>
-Content-Disposition: inline
-Sender: linux-kernel-owner@vger.kernel.org
-To: nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Kernel development list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <201509132057.30674.linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Kernel development list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-Hello,
-I have a PC Chips A31G board with AGPro slot and found that nouveau does not
-work properly with it. Console works but reverts to software mode, X11 hangs
-with mouse cursor only.
-
-The slot is physically AGP 1.5V but is wired to PCI bus as the chipset (SiS
-761) does not support AGP cards. To further complicate things, the chipset has
-AGP capability - but only for the integrated video. You can see that in the
-lspci output below - the AGP card is on bus 0 and SiS card on bus 1 (AGP bus
-behind the AGP bridge). The SiS card is not used (can be disabled in BIOS but
-it does not improve things - as the AGP capability of the host bridge remains
-active).
-
-As seen in dmesg below, kernel tries to set AGP 8x mode for all AGP devices,
-including the AGP 4x TNT2 card which is not even connected to the AGP bridge.
-
-Setting nouveau.agpmode=0 makes it work but how can we make this case work
-automatically?
-
-Radeon driver does some "ring test" and if it fails, it disables AGP mode and
-retries. That seems to work a bit (with R7000 but not with R7200).
-
-But I think that we shouldn't even touch the AGP registers of other devices
-in this case as it might break the integrated video.
-But how can we know that the card is connected to the AGP bus? There does not
-seem to be a reliable way...
-
-dmesg:
-[   22.015411] nouveau  [  DEVICE][0000:00:05.0] BOOT0  : 0x20154000
-[   22.015473] nouveau  [  DEVICE][0000:00:05.0] Chipset: NV05 (NV05)
-[   22.015527] nouveau  [  DEVICE][0000:00:05.0] Family : NV04
-[   22.041131] nouveau  [   VBIOS][0000:00:05.0] using image from PRAMIN
-[   22.041194] nouveau  [   VBIOS][0000:00:05.0] BMP version 5.6
-[   22.041382] nouveau  [   VBIOS][0000:00:05.0] version 02.05.20.02.00
-[   22.041561] nouveau W[   VBIOS][0000:00:05.0] DCB table not found
-[   22.041867] nouveau W[   VBIOS][0000:00:05.0] DCB table not found
-[   22.042079] nouveau W[   VBIOS][0000:00:05.0] DCB table not found
-[   22.042133] nouveau W[   VBIOS][0000:00:05.0] DCB table not found
-[   22.042245] nouveau W[  PTIMER][0000:00:05.0] unknown input clock freq
-[   22.042306] nouveau  [     PFB][0000:00:05.0] RAM type: SDRAM
-[   22.042360] nouveau  [     PFB][0000:00:05.0] RAM size: 32 MiB
-[   22.042413] nouveau  [     PFB][0000:00:05.0]    ZCOMP: 0 tags
-[   22.047063] nouveau  [     CLK][0000:00:05.0] --:
-[   22.047137] nouveau W[   VBIOS][0000:00:05.0] DCB table not found
-[   22.047220] agpgart-amd64 0000:00:00.0: AGP 3.0 bridge
-[   22.047281] agpgart: systemd-udevd tried to set rate=x12. Setting to AGP3 x8 mode.
-[   22.047348] agpgart-amd64 0000:00:00.0: putting AGP V3 device into 8x mode
-[   22.047425] nouveau 0000:00:05.0: putting AGP V3 device into 8x mode
-[   22.047503] pci 0000:01:00.0: putting AGP V3 device into 8x mode
-[   22.047632] [TTM] Zone  kernel: Available graphics memory: 239112 kiB
-[   22.047685] [TTM] Initializing pool allocator
-[   22.047744] [TTM] Initializing DMA pool allocator
-[   22.047814] nouveau  [     DRM] VRAM: 31 MiB
-[   22.047865] nouveau  [     DRM] GART: 64 MiB
-[   22.047918] nouveau  [     DRM] BMP version 5.6
-[   22.047971] nouveau W[     DRM] No DCB data found in VBIOS
-[   22.051250] nouveau  [     DRM] Saving VGA fonts
-[   22.099912] nouveau W[     DRM] No DCB data found in VBIOS
-[   22.101006] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-[   22.101061] [drm] Driver supports precise vblank timestamp query.
-[   22.102645] nouveau  [     DRM] MM: using M2MF for buffer copies
-[   22.133344] nouveau  [     DRM] allocated 1280x1024 fb: 0x4000, bo db2d6c00
-[   22.133545] fbcon: nouveaufb (fb0) is primary device
-[   22.369387] nouveau E[     DRM] GPU lockup - switching to software fbcon
-[   22.378443] Console: switching to colour frame buffer device 160x64
-[   22.395704] nouveau 0000:00:05.0: fb0: nouveaufb frame buffer device
-[   22.395808] nouveau 0000:00:05.0: registered panic notifier
-[   22.396783] [drm] Initialized nouveau 1.2.2 20120801 for 0000:00:05.0 on minor 0
-
-lspci -vvnn:
-00:00.0 Host bridge [0600]: Silicon Integrated Systems [SiS] 761/M761 Host [1039:0761] (rev 01)
-        Subsystem: Elitegroup Computer Systems Device [1019:0131]
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- <MAbort+ >SERR- <PERR- INTx-
-        Latency: 32
-        Region 0: Memory at f0000000 (32-bit, non-prefetchable) [size=64M]
-        Capabilities: [a0] AGP version 3.0
-                Status: RQ=32 Iso- ArqSz=2 Cal=3 SBA+ ITACoh- GART64- HTrans- 64bit- FW- AGP3+ Rate=x4,x8
-                Command: RQ=1 ArqSz=0 Cal=0 SBA+ AGP+ GART64- 64bit- FW- Rate=x8
-        Capabilities: [d0] HyperTransport: Slave or Primary Interface
-                Command: BaseUnitID=0 UnitCnt=17 MastHost- DefDir- DUL-
-                Link Control 0: CFlE- CST- CFE- <LkFail- Init+ EOC- TXO- <CRCErr=0 IsocEn- LSEn- ExtCTL- 64b-
-                Link Config 0: MLWI=16bit DwFcIn- MLWO=16bit DwFcOut- LWI=16bit DwFcInEn- LWO=16bit DwFcOutEn-
-                Link Control 1: CFlE- CST- CFE- <LkFail+ Init- EOC+ TXO+ <CRCErr=0 IsocEn- LSEn- ExtCTL- 64b-
-                Link Config 1: MLWI=N/C DwFcIn- MLWO=N/C DwFcOut- LWI=N/C DwFcInEn- LWO=N/C DwFcOutEn-
-                Revision ID: 1.05
-                Link Frequency 0: 800MHz
-                Link Error 0: <Prot- <Ovfl- <EOC- CTLTm-
-                Link Frequency Capability 0: 200MHz+ 300MHz- 400MHz+ 500MHz- 600MHz- 800MHz+ 1.0GHz+ 1.2GHz- 1.4GHz- 1.6GHz- Vend-
-                Feature Capability: IsocFC- LDTSTOP+ CRCTM- ECTLT- 64bA+ UIDRD-
-                Link Frequency 1: 200MHz
-                Link Error 1: <Prot- <Ovfl- <EOC- CTLTm-
-                Link Frequency Capability 1: 200MHz- 300MHz- 400MHz- 500MHz- 600MHz- 800MHz- 1.0GHz- 1.2GHz- 1.4GHz- 1.6GHz- Vend-
-                Error Handling: PFlE- OFlE- PFE- OFE- EOCFE- RFE- CRCFE- SERRFE- CF- RE- PNFE- ONFE- EOCNFE- RNFE- CRCNFE- SERRNFE-
-                Prefetchable memory behind bridge Upper: 00-00
-                Bus Number: 00
-        Capabilities: [f0] HyperTransport: Interrupt Discovery and Configuration
-        Capabilities: [5c] HyperTransport: Revision ID: 1.05
-        Kernel driver in use: agpgart-amd64
-
-00:01.0 PCI bridge [0604]: Silicon Integrated Systems [SiS] AGP Port (virtual PCI-to-PCI bridge) [1039:0002] (prog-if 00 [Normal decode])
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR+ FastB2B- DisINTx-
-        Status: Cap+ 66MHz+ UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
-        Latency: 64
-        Bus: primary=00, secondary=01, subordinate=01, sec-latency=64
-        I/O behind bridge: 0000e000-0000efff
-        Memory behind bridge: feb00000-febfffff
-        Prefetchable memory behind bridge: d8000000-dfffffff
-        Secondary status: 66MHz+ FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- <MAbort- <SERR- <PERR-
-        BridgeCtl: Parity- SERR+ NoISA- VGA- MAbort- >Reset- FastB2B-
-                PriDiscTmr- SecDiscTmr- DiscTmrStat- DiscTmrSERREn-
-        Capabilities: [a4] HyperTransport: UnitID Clumping
-...
-00:05.0 VGA compatible controller [0300]: NVIDIA Corporation NV5 [Riva TNT2 Model 64 / Model 64 Pro] [10de:002d] (rev 15) (prog-if 00 [VGA controller])
-        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz+ UDF- FastB2B+ ParErr- DEVSEL=medium >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
-        Latency: 64 (1250ns min, 250ns max)
-        Interrupt: pin A routed to IRQ 16
-        Region 0: Memory at fd000000 (32-bit, non-prefetchable) [size=16M]
-        Region 1: Memory at d6000000 (32-bit, prefetchable) [size=32M]
-        Expansion ROM at feae0000 [disabled] [size=64K]
-        Capabilities: [60] Power Management version 1
-                Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-        Capabilities: [44] AGP version 2.0
-                Status: RQ=32 Iso- ArqSz=0 Cal=0 SBA- ITACoh- GART64- HTrans- 64bit- FW- AGP3- Rate=x1,x2,x4
-                Command: RQ=32 ArqSz=0 Cal=0 SBA- AGP+ GART64- 64bit- FW- Rate=x2
-        Kernel driver in use: nouveau
-...
-01:00.0 VGA compatible controller [0300]: Silicon Integrated Systems [SiS] 661/741/760 PCI/AGP or 662/761Gx PCIE VGA Display Adapter [1039:6330] (rev 03) (prog-if 00 [VGA controller])
-        Subsystem: Silicon Integrated Systems [SiS] [M]661xX/[M]741[GX]/[M]760 PCI/AGP VGA Adapter [1039:6330]
-        Control: I/O- Mem- BusMaster- SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
-        Status: Cap+ 66MHz+ UDF- FastB2B- ParErr- DEVSEL=medium >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
-        Interrupt: pin A routed to IRQ 10
-        BIST result: 00
-        Region 0: Memory at d8000000 (32-bit, prefetchable) [disabled] [size=128M]
-        Region 1: Memory at febe0000 (32-bit, non-prefetchable) [disabled] [size=128K]
-        Region 2: I/O ports at e800 [disabled] [size=128]
-        Capabilities: [40] Power Management version 2
-                Flags: PMEClk- DSI- D1+ D2+ AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
-                Status: D0 NoSoftRst- PME-Enable- DSel=0 DScale=0 PME-
-        Capabilities: [50] AGP version 3.0
-                Status: RQ=256 Iso- ArqSz=0 Cal=0 SBA+ ITACoh- GART64- HTrans- 64bit- FW- AGP3+ Rate=x4,x8
-                Command: RQ=32 ArqSz=2 Cal=0 SBA+ AGP+ GART64- 64bit- FW- Rate=x8
-
--- 
-Ondrej Zary
+T24gU3VuLCBTZXAgMTMsIDIwMTUgYXQgMjo1NyBQTSwgT25kcmVqIFphcnkgPGxpbnV4QHJhaW5i
+b3ctc29mdHdhcmUub3JnPiB3cm90ZToKPiBIZWxsbywKPiBJIGhhdmUgYSBQQyBDaGlwcyBBMzFH
+IGJvYXJkIHdpdGggQUdQcm8gc2xvdCBhbmQgZm91bmQgdGhhdCBub3V2ZWF1IGRvZXMgbm90Cj4g
+d29yayBwcm9wZXJseSB3aXRoIGl0LiBDb25zb2xlIHdvcmtzIGJ1dCByZXZlcnRzIHRvIHNvZnR3
+YXJlIG1vZGUsIFgxMSBoYW5ncwo+IHdpdGggbW91c2UgY3Vyc29yIG9ubHkuCj4KPiBUaGUgc2xv
+dCBpcyBwaHlzaWNhbGx5IEFHUCAxLjVWIGJ1dCBpcyB3aXJlZCB0byBQQ0kgYnVzIGFzIHRoZSBj
+aGlwc2V0IChTaVMKPiA3NjEpIGRvZXMgbm90IHN1cHBvcnQgQUdQIGNhcmRzLiBUbyBmdXJ0aGVy
+IGNvbXBsaWNhdGUgdGhpbmdzLCB0aGUgY2hpcHNldCBoYXMKPiBBR1AgY2FwYWJpbGl0eSAtIGJ1
+dCBvbmx5IGZvciB0aGUgaW50ZWdyYXRlZCB2aWRlby4gWW91IGNhbiBzZWUgdGhhdCBpbiB0aGUK
+PiBsc3BjaSBvdXRwdXQgYmVsb3cgLSB0aGUgQUdQIGNhcmQgaXMgb24gYnVzIDAgYW5kIFNpUyBj
+YXJkIG9uIGJ1cyAxIChBR1AgYnVzCj4gYmVoaW5kIHRoZSBBR1AgYnJpZGdlKS4gVGhlIFNpUyBj
+YXJkIGlzIG5vdCB1c2VkIChjYW4gYmUgZGlzYWJsZWQgaW4gQklPUyBidXQKPiBpdCBkb2VzIG5v
+dCBpbXByb3ZlIHRoaW5ncyAtIGFzIHRoZSBBR1AgY2FwYWJpbGl0eSBvZiB0aGUgaG9zdCBicmlk
+Z2UgcmVtYWlucwo+IGFjdGl2ZSkuCgpJIGJlbGlldmUgd2UgY2FuIGhhbmRsZSBpdCB3aXRoIGEg
+YmxhY2tsaXN0LiBJZiB0aGUgY2hpcHNldCBqdXN0CmRvZXNuJ3Qgc3VwcG9ydCBBR1AgYXQgYWxs
+LCB3ZSBzaG91bGQganVzdCBzZXQgYWdwbW9kZT0wIGlycmVzcGVjdGl2ZQpvZiB0aGUgY2FyZCBw
+bHVnZ2VkIGluLCByaWdodD8KClNob3VsZG4ndCB0aGUgYWdwZ2FydCBrbm93IGFib3V0IHRoaXMg
+YW5kIG5vdCBldmVuIGFsbG93IGFueSBzZXR0aW5nCmF0IGFsbD8gVGhpcyBpcyB3aGVyZSB3ZSBn
+ZXQgdGhlIGlkZWEgdG8gc2V0IDh4IEFHUCBmcm9tLiBTZWUKZHJpdmVycy9ncHUvZHJtL25vdXZl
+YXUvbnZrbS9zdWJkZXYvcGNpL2FncC5jIGZvciBkZXRhaWxzLgoKVGhlIGFsdGVybmF0aXZlIGlz
+IHRvIGFkZCB0byBudmttX2RldmljZV9hZ3BfcXVpcmtzLCBhbmQganVzdCBhZGQKc29tZXRoaW5n
+IHRoYXQgbWF0Y2hlcyBqdXN0IHRoZSBob3N0IGJyaWRnZSB2ZW5kb3IvZGV2aWNlLCBpZ25vcmlu
+Zwp0aGUgY2hpcC4KCj4KPiBBcyBzZWVuIGluIGRtZXNnIGJlbG93LCBrZXJuZWwgdHJpZXMgdG8g
+c2V0IEFHUCA4eCBtb2RlIGZvciBhbGwgQUdQIGRldmljZXMsCj4gaW5jbHVkaW5nIHRoZSBBR1Ag
+NHggVE5UMiBjYXJkIHdoaWNoIGlzIG5vdCBldmVuIGNvbm5lY3RlZCB0byB0aGUgQUdQIGJyaWRn
+ZS4KPgo+IFNldHRpbmcgbm91dmVhdS5hZ3Btb2RlPTAgbWFrZXMgaXQgd29yayBidXQgaG93IGNh
+biB3ZSBtYWtlIHRoaXMgY2FzZSB3b3JrCj4gYXV0b21hdGljYWxseT8KPgo+IFJhZGVvbiBkcml2
+ZXIgZG9lcyBzb21lICJyaW5nIHRlc3QiIGFuZCBpZiBpdCBmYWlscywgaXQgZGlzYWJsZXMgQUdQ
+IG1vZGUgYW5kCj4gcmV0cmllcy4gVGhhdCBzZWVtcyB0byB3b3JrIGEgYml0ICh3aXRoIFI3MDAw
+IGJ1dCBub3Qgd2l0aCBSNzIwMCkuCj4KPiBCdXQgSSB0aGluayB0aGF0IHdlIHNob3VsZG4ndCBl
+dmVuIHRvdWNoIHRoZSBBR1AgcmVnaXN0ZXJzIG9mIG90aGVyIGRldmljZXMKPiBpbiB0aGlzIGNh
+c2UgYXMgaXQgbWlnaHQgYnJlYWsgdGhlIGludGVncmF0ZWQgdmlkZW8uCj4gQnV0IGhvdyBjYW4g
+d2Uga25vdyB0aGF0IHRoZSBjYXJkIGlzIGNvbm5lY3RlZCB0byB0aGUgQUdQIGJ1cz8gVGhlcmUg
+ZG9lcyBub3QKPiBzZWVtIHRvIGJlIGEgcmVsaWFibGUgd2F5Li4uCj4KPiBkbWVzZzoKPiBbICAg
+MjIuMDE1NDExXSBub3V2ZWF1ICBbICBERVZJQ0VdWzAwMDA6MDA6MDUuMF0gQk9PVDAgIDogMHgy
+MDE1NDAwMAo+IFsgICAyMi4wMTU0NzNdIG5vdXZlYXUgIFsgIERFVklDRV1bMDAwMDowMDowNS4w
+XSBDaGlwc2V0OiBOVjA1IChOVjA1KQo+IFsgICAyMi4wMTU1MjddIG5vdXZlYXUgIFsgIERFVklD
+RV1bMDAwMDowMDowNS4wXSBGYW1pbHkgOiBOVjA0Cj4gWyAgIDIyLjA0MTEzMV0gbm91dmVhdSAg
+WyAgIFZCSU9TXVswMDAwOjAwOjA1LjBdIHVzaW5nIGltYWdlIGZyb20gUFJBTUlOCj4gWyAgIDIy
+LjA0MTE5NF0gbm91dmVhdSAgWyAgIFZCSU9TXVswMDAwOjAwOjA1LjBdIEJNUCB2ZXJzaW9uIDUu
+Ngo+IFsgICAyMi4wNDEzODJdIG5vdXZlYXUgIFsgICBWQklPU11bMDAwMDowMDowNS4wXSB2ZXJz
+aW9uIDAyLjA1LjIwLjAyLjAwCj4gWyAgIDIyLjA0MTU2MV0gbm91dmVhdSBXWyAgIFZCSU9TXVsw
+MDAwOjAwOjA1LjBdIERDQiB0YWJsZSBub3QgZm91bmQKPiBbICAgMjIuMDQxODY3XSBub3V2ZWF1
+IFdbICAgVkJJT1NdWzAwMDA6MDA6MDUuMF0gRENCIHRhYmxlIG5vdCBmb3VuZAo+IFsgICAyMi4w
+NDIwNzldIG5vdXZlYXUgV1sgICBWQklPU11bMDAwMDowMDowNS4wXSBEQ0IgdGFibGUgbm90IGZv
+dW5kCj4gWyAgIDIyLjA0MjEzM10gbm91dmVhdSBXWyAgIFZCSU9TXVswMDAwOjAwOjA1LjBdIERD
+QiB0YWJsZSBub3QgZm91bmQKPiBbICAgMjIuMDQyMjQ1XSBub3V2ZWF1IFdbICBQVElNRVJdWzAw
+MDA6MDA6MDUuMF0gdW5rbm93biBpbnB1dCBjbG9jayBmcmVxCj4gWyAgIDIyLjA0MjMwNl0gbm91
+dmVhdSAgWyAgICAgUEZCXVswMDAwOjAwOjA1LjBdIFJBTSB0eXBlOiBTRFJBTQo+IFsgICAyMi4w
+NDIzNjBdIG5vdXZlYXUgIFsgICAgIFBGQl1bMDAwMDowMDowNS4wXSBSQU0gc2l6ZTogMzIgTWlC
+Cj4gWyAgIDIyLjA0MjQxM10gbm91dmVhdSAgWyAgICAgUEZCXVswMDAwOjAwOjA1LjBdICAgIFpD
+T01QOiAwIHRhZ3MKPiBbICAgMjIuMDQ3MDYzXSBub3V2ZWF1ICBbICAgICBDTEtdWzAwMDA6MDA6
+MDUuMF0gLS06Cj4gWyAgIDIyLjA0NzEzN10gbm91dmVhdSBXWyAgIFZCSU9TXVswMDAwOjAwOjA1
+LjBdIERDQiB0YWJsZSBub3QgZm91bmQKPiBbICAgMjIuMDQ3MjIwXSBhZ3BnYXJ0LWFtZDY0IDAw
+MDA6MDA6MDAuMDogQUdQIDMuMCBicmlkZ2UKPiBbICAgMjIuMDQ3MjgxXSBhZ3BnYXJ0OiBzeXN0
+ZW1kLXVkZXZkIHRyaWVkIHRvIHNldCByYXRlPXgxMi4gU2V0dGluZyB0byBBR1AzIHg4IG1vZGUu
+Cj4gWyAgIDIyLjA0NzM0OF0gYWdwZ2FydC1hbWQ2NCAwMDAwOjAwOjAwLjA6IHB1dHRpbmcgQUdQ
+IFYzIGRldmljZSBpbnRvIDh4IG1vZGUKPiBbICAgMjIuMDQ3NDI1XSBub3V2ZWF1IDAwMDA6MDA6
+MDUuMDogcHV0dGluZyBBR1AgVjMgZGV2aWNlIGludG8gOHggbW9kZQo+IFsgICAyMi4wNDc1MDNd
+IHBjaSAwMDAwOjAxOjAwLjA6IHB1dHRpbmcgQUdQIFYzIGRldmljZSBpbnRvIDh4IG1vZGUKPiBb
+ICAgMjIuMDQ3NjMyXSBbVFRNXSBab25lICBrZXJuZWw6IEF2YWlsYWJsZSBncmFwaGljcyBtZW1v
+cnk6IDIzOTExMiBraUIKPiBbICAgMjIuMDQ3Njg1XSBbVFRNXSBJbml0aWFsaXppbmcgcG9vbCBh
+bGxvY2F0b3IKPiBbICAgMjIuMDQ3NzQ0XSBbVFRNXSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxs
+b2NhdG9yCj4gWyAgIDIyLjA0NzgxNF0gbm91dmVhdSAgWyAgICAgRFJNXSBWUkFNOiAzMSBNaUIK
+PiBbICAgMjIuMDQ3ODY1XSBub3V2ZWF1ICBbICAgICBEUk1dIEdBUlQ6IDY0IE1pQgo+IFsgICAy
+Mi4wNDc5MThdIG5vdXZlYXUgIFsgICAgIERSTV0gQk1QIHZlcnNpb24gNS42Cj4gWyAgIDIyLjA0
+Nzk3MV0gbm91dmVhdSBXWyAgICAgRFJNXSBObyBEQ0IgZGF0YSBmb3VuZCBpbiBWQklPUwo+IFsg
+ICAyMi4wNTEyNTBdIG5vdXZlYXUgIFsgICAgIERSTV0gU2F2aW5nIFZHQSBmb250cwo+IFsgICAy
+Mi4wOTk5MTJdIG5vdXZlYXUgV1sgICAgIERSTV0gTm8gRENCIGRhdGEgZm91bmQgaW4gVkJJT1MK
+PiBbICAgMjIuMTAxMDA2XSBbZHJtXSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcg
+UmV2IDIgKDIxLjEwLjIwMTMpLgo+IFsgICAyMi4xMDEwNjFdIFtkcm1dIERyaXZlciBzdXBwb3J0
+cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuCj4gWyAgIDIyLjEwMjY0NV0gbm91dmVh
+dSAgWyAgICAgRFJNXSBNTTogdXNpbmcgTTJNRiBmb3IgYnVmZmVyIGNvcGllcwo+IFsgICAyMi4x
+MzMzNDRdIG5vdXZlYXUgIFsgICAgIERSTV0gYWxsb2NhdGVkIDEyODB4MTAyNCBmYjogMHg0MDAw
+LCBibyBkYjJkNmMwMAo+IFsgICAyMi4xMzM1NDVdIGZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMg
+cHJpbWFyeSBkZXZpY2UKPiBbICAgMjIuMzY5Mzg3XSBub3V2ZWF1IEVbICAgICBEUk1dIEdQVSBs
+b2NrdXAgLSBzd2l0Y2hpbmcgdG8gc29mdHdhcmUgZmJjb24KPiBbICAgMjIuMzc4NDQzXSBDb25z
+b2xlOiBzd2l0Y2hpbmcgdG8gY29sb3VyIGZyYW1lIGJ1ZmZlciBkZXZpY2UgMTYweDY0Cj4gWyAg
+IDIyLjM5NTcwNF0gbm91dmVhdSAwMDAwOjAwOjA1LjA6IGZiMDogbm91dmVhdWZiIGZyYW1lIGJ1
+ZmZlciBkZXZpY2UKPiBbICAgMjIuMzk1ODA4XSBub3V2ZWF1IDAwMDA6MDA6MDUuMDogcmVnaXN0
+ZXJlZCBwYW5pYyBub3RpZmllcgo+IFsgICAyMi4zOTY3ODNdIFtkcm1dIEluaXRpYWxpemVkIG5v
+dXZlYXUgMS4yLjIgMjAxMjA4MDEgZm9yIDAwMDA6MDA6MDUuMCBvbiBtaW5vciAwCj4KPiBsc3Bj
+aSAtdnZubjoKPiAwMDowMC4wIEhvc3QgYnJpZGdlIFswNjAwXTogU2lsaWNvbiBJbnRlZ3JhdGVk
+IFN5c3RlbXMgW1NpU10gNzYxL003NjEgSG9zdCBbMTAzOTowNzYxXSAocmV2IDAxKQo+ICAgICAg
+ICAgU3Vic3lzdGVtOiBFbGl0ZWdyb3VwIENvbXB1dGVyIFN5c3RlbXMgRGV2aWNlIFsxMDE5OjAx
+MzFdCj4gICAgICAgICBDb250cm9sOiBJL08rIE1lbSsgQnVzTWFzdGVyKyBTcGVjQ3ljbGUtIE1l
+bVdJTlYtIFZHQVNub29wLSBQYXJFcnItIFN0ZXBwaW5nLSBTRVJSLSBGYXN0QjJCLSBEaXNJTlR4
+LQo+ICAgICAgICAgU3RhdHVzOiBDYXArIDY2TUh6LSBVREYtIEZhc3RCMkItIFBhckVyci0gREVW
+U0VMPW1lZGl1bSA+VEFib3J0LSA8VEFib3J0LSA8TUFib3J0KyA+U0VSUi0gPFBFUlItIElOVHgt
+Cj4gICAgICAgICBMYXRlbmN5OiAzMgo+ICAgICAgICAgUmVnaW9uIDA6IE1lbW9yeSBhdCBmMDAw
+MDAwMCAoMzItYml0LCBub24tcHJlZmV0Y2hhYmxlKSBbc2l6ZT02NE1dCj4gICAgICAgICBDYXBh
+YmlsaXRpZXM6IFthMF0gQUdQIHZlcnNpb24gMy4wCj4gICAgICAgICAgICAgICAgIFN0YXR1czog
+UlE9MzIgSXNvLSBBcnFTej0yIENhbD0zIFNCQSsgSVRBQ29oLSBHQVJUNjQtIEhUcmFucy0gNjRi
+aXQtIEZXLSBBR1AzKyBSYXRlPXg0LHg4Cj4gICAgICAgICAgICAgICAgIENvbW1hbmQ6IFJRPTEg
+QXJxU3o9MCBDYWw9MCBTQkErIEFHUCsgR0FSVDY0LSA2NGJpdC0gRlctIFJhdGU9eDgKPiAgICAg
+ICAgIENhcGFiaWxpdGllczogW2QwXSBIeXBlclRyYW5zcG9ydDogU2xhdmUgb3IgUHJpbWFyeSBJ
+bnRlcmZhY2UKPiAgICAgICAgICAgICAgICAgQ29tbWFuZDogQmFzZVVuaXRJRD0wIFVuaXRDbnQ9
+MTcgTWFzdEhvc3QtIERlZkRpci0gRFVMLQo+ICAgICAgICAgICAgICAgICBMaW5rIENvbnRyb2wg
+MDogQ0ZsRS0gQ1NULSBDRkUtIDxMa0ZhaWwtIEluaXQrIEVPQy0gVFhPLSA8Q1JDRXJyPTAgSXNv
+Y0VuLSBMU0VuLSBFeHRDVEwtIDY0Yi0KPiAgICAgICAgICAgICAgICAgTGluayBDb25maWcgMDog
+TUxXST0xNmJpdCBEd0ZjSW4tIE1MV089MTZiaXQgRHdGY091dC0gTFdJPTE2Yml0IER3RmNJbkVu
+LSBMV089MTZiaXQgRHdGY091dEVuLQo+ICAgICAgICAgICAgICAgICBMaW5rIENvbnRyb2wgMTog
+Q0ZsRS0gQ1NULSBDRkUtIDxMa0ZhaWwrIEluaXQtIEVPQysgVFhPKyA8Q1JDRXJyPTAgSXNvY0Vu
+LSBMU0VuLSBFeHRDVEwtIDY0Yi0KPiAgICAgICAgICAgICAgICAgTGluayBDb25maWcgMTogTUxX
+ST1OL0MgRHdGY0luLSBNTFdPPU4vQyBEd0ZjT3V0LSBMV0k9Ti9DIER3RmNJbkVuLSBMV089Ti9D
+IER3RmNPdXRFbi0KPiAgICAgICAgICAgICAgICAgUmV2aXNpb24gSUQ6IDEuMDUKPiAgICAgICAg
+ICAgICAgICAgTGluayBGcmVxdWVuY3kgMDogODAwTUh6Cj4gICAgICAgICAgICAgICAgIExpbmsg
+RXJyb3IgMDogPFByb3QtIDxPdmZsLSA8RU9DLSBDVExUbS0KPiAgICAgICAgICAgICAgICAgTGlu
+ayBGcmVxdWVuY3kgQ2FwYWJpbGl0eSAwOiAyMDBNSHorIDMwME1Iei0gNDAwTUh6KyA1MDBNSHot
+IDYwME1Iei0gODAwTUh6KyAxLjBHSHorIDEuMkdIei0gMS40R0h6LSAxLjZHSHotIFZlbmQtCj4g
+ICAgICAgICAgICAgICAgIEZlYXR1cmUgQ2FwYWJpbGl0eTogSXNvY0ZDLSBMRFRTVE9QKyBDUkNU
+TS0gRUNUTFQtIDY0YkErIFVJRFJELQo+ICAgICAgICAgICAgICAgICBMaW5rIEZyZXF1ZW5jeSAx
+OiAyMDBNSHoKPiAgICAgICAgICAgICAgICAgTGluayBFcnJvciAxOiA8UHJvdC0gPE92ZmwtIDxF
+T0MtIENUTFRtLQo+ICAgICAgICAgICAgICAgICBMaW5rIEZyZXF1ZW5jeSBDYXBhYmlsaXR5IDE6
+IDIwME1Iei0gMzAwTUh6LSA0MDBNSHotIDUwME1Iei0gNjAwTUh6LSA4MDBNSHotIDEuMEdIei0g
+MS4yR0h6LSAxLjRHSHotIDEuNkdIei0gVmVuZC0KPiAgICAgICAgICAgICAgICAgRXJyb3IgSGFu
+ZGxpbmc6IFBGbEUtIE9GbEUtIFBGRS0gT0ZFLSBFT0NGRS0gUkZFLSBDUkNGRS0gU0VSUkZFLSBD
+Ri0gUkUtIFBORkUtIE9ORkUtIEVPQ05GRS0gUk5GRS0gQ1JDTkZFLSBTRVJSTkZFLQo+ICAgICAg
+ICAgICAgICAgICBQcmVmZXRjaGFibGUgbWVtb3J5IGJlaGluZCBicmlkZ2UgVXBwZXI6IDAwLTAw
+Cj4gICAgICAgICAgICAgICAgIEJ1cyBOdW1iZXI6IDAwCj4gICAgICAgICBDYXBhYmlsaXRpZXM6
+IFtmMF0gSHlwZXJUcmFuc3BvcnQ6IEludGVycnVwdCBEaXNjb3ZlcnkgYW5kIENvbmZpZ3VyYXRp
+b24KPiAgICAgICAgIENhcGFiaWxpdGllczogWzVjXSBIeXBlclRyYW5zcG9ydDogUmV2aXNpb24g
+SUQ6IDEuMDUKPiAgICAgICAgIEtlcm5lbCBkcml2ZXIgaW4gdXNlOiBhZ3BnYXJ0LWFtZDY0Cj4K
+PiAwMDowMS4wIFBDSSBicmlkZ2UgWzA2MDRdOiBTaWxpY29uIEludGVncmF0ZWQgU3lzdGVtcyBb
+U2lTXSBBR1AgUG9ydCAodmlydHVhbCBQQ0ktdG8tUENJIGJyaWRnZSkgWzEwMzk6MDAwMl0gKHBy
+b2ctaWYgMDAgW05vcm1hbCBkZWNvZGVdKQo+ICAgICAgICAgQ29udHJvbDogSS9PKyBNZW0rIEJ1
+c01hc3RlcisgU3BlY0N5Y2xlLSBNZW1XSU5WLSBWR0FTbm9vcC0gUGFyRXJyLSBTdGVwcGluZy0g
+U0VSUisgRmFzdEIyQi0gRGlzSU5UeC0KPiAgICAgICAgIFN0YXR1czogQ2FwKyA2Nk1IeisgVURG
+LSBGYXN0QjJCLSBQYXJFcnItIERFVlNFTD1tZWRpdW0gPlRBYm9ydC0gPFRBYm9ydC0gPE1BYm9y
+dC0gPlNFUlItIDxQRVJSLSBJTlR4LQo+ICAgICAgICAgTGF0ZW5jeTogNjQKPiAgICAgICAgIEJ1
+czogcHJpbWFyeT0wMCwgc2Vjb25kYXJ5PTAxLCBzdWJvcmRpbmF0ZT0wMSwgc2VjLWxhdGVuY3k9
+NjQKPiAgICAgICAgIEkvTyBiZWhpbmQgYnJpZGdlOiAwMDAwZTAwMC0wMDAwZWZmZgo+ICAgICAg
+ICAgTWVtb3J5IGJlaGluZCBicmlkZ2U6IGZlYjAwMDAwLWZlYmZmZmZmCj4gICAgICAgICBQcmVm
+ZXRjaGFibGUgbWVtb3J5IGJlaGluZCBicmlkZ2U6IGQ4MDAwMDAwLWRmZmZmZmZmCj4gICAgICAg
+ICBTZWNvbmRhcnkgc3RhdHVzOiA2Nk1IeisgRmFzdEIyQi0gUGFyRXJyLSBERVZTRUw9bWVkaXVt
+ID5UQWJvcnQtIDxUQWJvcnQtIDxNQWJvcnQtIDxTRVJSLSA8UEVSUi0KPiAgICAgICAgIEJyaWRn
+ZUN0bDogUGFyaXR5LSBTRVJSKyBOb0lTQS0gVkdBLSBNQWJvcnQtID5SZXNldC0gRmFzdEIyQi0K
+PiAgICAgICAgICAgICAgICAgUHJpRGlzY1Rtci0gU2VjRGlzY1Rtci0gRGlzY1RtclN0YXQtIERp
+c2NUbXJTRVJSRW4tCj4gICAgICAgICBDYXBhYmlsaXRpZXM6IFthNF0gSHlwZXJUcmFuc3BvcnQ6
+IFVuaXRJRCBDbHVtcGluZwo+IC4uLgo+IDAwOjA1LjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxl
+ciBbMDMwMF06IE5WSURJQSBDb3Jwb3JhdGlvbiBOVjUgW1JpdmEgVE5UMiBNb2RlbCA2NCAvIE1v
+ZGVsIDY0IFByb10gWzEwZGU6MDAyZF0gKHJldiAxNSkgKHByb2ctaWYgMDAgW1ZHQSBjb250cm9s
+bGVyXSkKPiAgICAgICAgIENvbnRyb2w6IEkvTysgTWVtKyBCdXNNYXN0ZXIrIFNwZWNDeWNsZS0g
+TWVtV0lOVi0gVkdBU25vb3AtIFBhckVyci0gU3RlcHBpbmctIFNFUlItIEZhc3RCMkItIERpc0lO
+VHgtCj4gICAgICAgICBTdGF0dXM6IENhcCsgNjZNSHorIFVERi0gRmFzdEIyQisgUGFyRXJyLSBE
+RVZTRUw9bWVkaXVtID5UQWJvcnQtIDxUQWJvcnQtIDxNQWJvcnQtID5TRVJSLSA8UEVSUi0gSU5U
+eC0KPiAgICAgICAgIExhdGVuY3k6IDY0ICgxMjUwbnMgbWluLCAyNTBucyBtYXgpCj4gICAgICAg
+ICBJbnRlcnJ1cHQ6IHBpbiBBIHJvdXRlZCB0byBJUlEgMTYKPiAgICAgICAgIFJlZ2lvbiAwOiBN
+ZW1vcnkgYXQgZmQwMDAwMDAgKDMyLWJpdCwgbm9uLXByZWZldGNoYWJsZSkgW3NpemU9MTZNXQo+
+ICAgICAgICAgUmVnaW9uIDE6IE1lbW9yeSBhdCBkNjAwMDAwMCAoMzItYml0LCBwcmVmZXRjaGFi
+bGUpIFtzaXplPTMyTV0KPiAgICAgICAgIEV4cGFuc2lvbiBST00gYXQgZmVhZTAwMDAgW2Rpc2Fi
+bGVkXSBbc2l6ZT02NEtdCj4gICAgICAgICBDYXBhYmlsaXRpZXM6IFs2MF0gUG93ZXIgTWFuYWdl
+bWVudCB2ZXJzaW9uIDEKPiAgICAgICAgICAgICAgICAgRmxhZ3M6IFBNRUNsay0gRFNJLSBEMS0g
+RDItIEF1eEN1cnJlbnQ9MG1BIFBNRShEMC0sRDEtLEQyLSxEM2hvdC0sRDNjb2xkLSkKPiAgICAg
+ICAgICAgICAgICAgU3RhdHVzOiBEMCBOb1NvZnRSc3QtIFBNRS1FbmFibGUtIERTZWw9MCBEU2Nh
+bGU9MCBQTUUtCj4gICAgICAgICBDYXBhYmlsaXRpZXM6IFs0NF0gQUdQIHZlcnNpb24gMi4wCj4g
+ICAgICAgICAgICAgICAgIFN0YXR1czogUlE9MzIgSXNvLSBBcnFTej0wIENhbD0wIFNCQS0gSVRB
+Q29oLSBHQVJUNjQtIEhUcmFucy0gNjRiaXQtIEZXLSBBR1AzLSBSYXRlPXgxLHgyLHg0Cj4gICAg
+ICAgICAgICAgICAgIENvbW1hbmQ6IFJRPTMyIEFycVN6PTAgQ2FsPTAgU0JBLSBBR1ArIEdBUlQ2
+NC0gNjRiaXQtIEZXLSBSYXRlPXgyCj4gICAgICAgICBLZXJuZWwgZHJpdmVyIGluIHVzZTogbm91
+dmVhdQo+IC4uLgo+IDAxOjAwLjAgVkdBIGNvbXBhdGlibGUgY29udHJvbGxlciBbMDMwMF06IFNp
+bGljb24gSW50ZWdyYXRlZCBTeXN0ZW1zIFtTaVNdIDY2MS83NDEvNzYwIFBDSS9BR1Agb3IgNjYy
+Lzc2MUd4IFBDSUUgVkdBIERpc3BsYXkgQWRhcHRlciBbMTAzOTo2MzMwXSAocmV2IDAzKSAocHJv
+Zy1pZiAwMCBbVkdBIGNvbnRyb2xsZXJdKQo+ICAgICAgICAgU3Vic3lzdGVtOiBTaWxpY29uIElu
+dGVncmF0ZWQgU3lzdGVtcyBbU2lTXSBbTV02NjF4WC9bTV03NDFbR1hdL1tNXTc2MCBQQ0kvQUdQ
+IFZHQSBBZGFwdGVyIFsxMDM5OjYzMzBdCj4gICAgICAgICBDb250cm9sOiBJL08tIE1lbS0gQnVz
+TWFzdGVyLSBTcGVjQ3ljbGUtIE1lbVdJTlYtIFZHQVNub29wLSBQYXJFcnItIFN0ZXBwaW5nLSBT
+RVJSLSBGYXN0QjJCLSBEaXNJTlR4LQo+ICAgICAgICAgU3RhdHVzOiBDYXArIDY2TUh6KyBVREYt
+IEZhc3RCMkItIFBhckVyci0gREVWU0VMPW1lZGl1bSA+VEFib3J0LSA8VEFib3J0LSA8TUFib3J0
+LSA+U0VSUi0gPFBFUlItIElOVHgtCj4gICAgICAgICBJbnRlcnJ1cHQ6IHBpbiBBIHJvdXRlZCB0
+byBJUlEgMTAKPiAgICAgICAgIEJJU1QgcmVzdWx0OiAwMAo+ICAgICAgICAgUmVnaW9uIDA6IE1l
+bW9yeSBhdCBkODAwMDAwMCAoMzItYml0LCBwcmVmZXRjaGFibGUpIFtkaXNhYmxlZF0gW3NpemU9
+MTI4TV0KPiAgICAgICAgIFJlZ2lvbiAxOiBNZW1vcnkgYXQgZmViZTAwMDAgKDMyLWJpdCwgbm9u
+LXByZWZldGNoYWJsZSkgW2Rpc2FibGVkXSBbc2l6ZT0xMjhLXQo+ICAgICAgICAgUmVnaW9uIDI6
+IEkvTyBwb3J0cyBhdCBlODAwIFtkaXNhYmxlZF0gW3NpemU9MTI4XQo+ICAgICAgICAgQ2FwYWJp
+bGl0aWVzOiBbNDBdIFBvd2VyIE1hbmFnZW1lbnQgdmVyc2lvbiAyCj4gICAgICAgICAgICAgICAg
+IEZsYWdzOiBQTUVDbGstIERTSS0gRDErIEQyKyBBdXhDdXJyZW50PTBtQSBQTUUoRDAtLEQxLSxE
+Mi0sRDNob3QtLEQzY29sZC0pCj4gICAgICAgICAgICAgICAgIFN0YXR1czogRDAgTm9Tb2Z0UnN0
+LSBQTUUtRW5hYmxlLSBEU2VsPTAgRFNjYWxlPTAgUE1FLQo+ICAgICAgICAgQ2FwYWJpbGl0aWVz
+OiBbNTBdIEFHUCB2ZXJzaW9uIDMuMAo+ICAgICAgICAgICAgICAgICBTdGF0dXM6IFJRPTI1NiBJ
+c28tIEFycVN6PTAgQ2FsPTAgU0JBKyBJVEFDb2gtIEdBUlQ2NC0gSFRyYW5zLSA2NGJpdC0gRlct
+IEFHUDMrIFJhdGU9eDQseDgKPiAgICAgICAgICAgICAgICAgQ29tbWFuZDogUlE9MzIgQXJxU3o9
+MiBDYWw9MCBTQkErIEFHUCsgR0FSVDY0LSA2NGJpdC0gRlctIFJhdGU9eDgKPgo+IC0tCj4gT25k
+cmVqIFphcnkKPiAtLQo+IFRvIHVuc3Vic2NyaWJlIGZyb20gdGhpcyBsaXN0OiBzZW5kIHRoZSBs
+aW5lICJ1bnN1YnNjcmliZSBsaW51eC1rZXJuZWwiIGluCj4gdGhlIGJvZHkgb2YgYSBtZXNzYWdl
+IHRvIG1ham9yZG9tb0B2Z2VyLmtlcm5lbC5vcmcKPiBNb3JlIG1ham9yZG9tbyBpbmZvIGF0ICBo
+dHRwOi8vdmdlci5rZXJuZWwub3JnL21ham9yZG9tby1pbmZvLmh0bWwKPiBQbGVhc2UgcmVhZCB0
+aGUgRkFRIGF0ICBodHRwOi8vd3d3LnR1eC5vcmcvbGttbC8KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
