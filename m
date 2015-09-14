@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91972] [NVE4] xorg/nouveau crashes when running
- wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes
-Date: Mon, 14 Sep 2015 03:42:10 +0000
-Message-ID: <bug-91972-8800-RkGpahP4rt@http.bugs.freedesktop.org/>
-References: <bug-91972-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91992] [NV4C] computer hangs after few minutes of use
+Date: Mon, 14 Sep 2015 17:31:39 +0000
+Message-ID: <bug-91992-8800-wuDtMh6EHE@http.bugs.freedesktop.org/>
+References: <bug-91992-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1876506235=="
+Content-Type: multipart/mixed; boundary="===============0215389891=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91972-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,103 +20,93 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1876506235==
-Content-Type: multipart/alternative; boundary="1442202130.46b51.28011"; charset="UTF-8"
+--===============0215389891==
+Content-Type: multipart/alternative; boundary="1442251899.B377aD5a0.720"; charset="UTF-8"
 
 
---1442202130.46b51.28011
-Date: Mon, 14 Sep 2015 03:42:10 +0000
+--1442251899.B377aD5a0.720
+Date: Mon, 14 Sep 2015 17:31:39 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91972
+https://bugs.freedesktop.org/show_bug.cgi?id=3D91992
 
---- Comment #4 from Austin English <austinenglish-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #3)
-> Can you also include the output of 'xrandr -q'? That should give me an idea
-> of where the various outputs are located. Not sure if it'll be important to
-> the bug, but easy information to collect.
+--- Comment #4 from Laurent Riffard <laurent.riffard+freedesktop-GANU6spQydw@public.gmane.org> -=
+--
+Hi,
 
-Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
-DVI-I-1 disconnected (normal left inverted right x axis y axis)
-DVI-D-1 connected 1920x1200+0+0 (normal left inverted right x axis y axis)
-518mm x 324mm
-   1920x1200     59.95*+
-   1600x1200     60.00  
-   1280x1024     75.02    60.02  
-   1152x864      75.00  
-   1024x768      75.08    60.00  
-   800x600       75.00    60.32  
-   640x480       75.00    60.00  
-   720x400       70.08  
-HDMI-2 disconnected (normal left inverted right x axis y axis)
-DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI1 disconnected (normal left inverted right x axis y axis)
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)
+I=E2=80=99m using Xfce or Cinnamon.
 
--- 
+As you suggested, I increased the amount of RAM assigned to the video card,
+from 32 Gb to 64 Gb, and I didn=E2=80=99t encounter any new problem.
+
+Shouldn=E2=80=99t this short-memory condition be nicely handled by the driv=
+er ?
+
+Regards,
+Laurent
+
+--=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442202130.46b51.28011
-Date: Mon, 14 Sep 2015 03:42:10 +0000
+--1442251899.B377aD5a0.720
+Date: Mon, 14 Sep 2015 17:31:39 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE4] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NV4C] computer hangs after few minutes of use"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992#c4">Comment=
+ # 4</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE4] xorg/nouveau crashes when running wine's unit tests under valgrind: EXA: malloc failed for size -262140 bytes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91972">bug 91972</a>
-              from <span class="vcard"><a class="email" href="mailto:austinenglish&#64;gmail.com" title="Austin English &lt;austinenglish&#64;gmail.com&gt;"> <span class="fn">Austin English</span></a>
+   title=3D"NEW - [NV4C] computer hangs after few minutes of use"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992">bug 91992<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+laurent.riffard+freedesktop&#64;free.fr" title=3D"Laurent Riffard &lt;laure=
+nt.riffard+freedesktop&#64;free.fr&gt;"> <span class=3D"fn">Laurent Riffard=
+</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91972#c3">comment #3</a>)
-<span class="quote">&gt; Can you also include the output of 'xrandr -q'? That should give me an idea
-&gt; of where the various outputs are located. Not sure if it'll be important to
-&gt; the bug, but easy information to collect.</span >
+        <pre>Hi,
 
-Screen 0: minimum 320 x 200, current 1920 x 1200, maximum 8192 x 8192
-DVI-I-1 disconnected (normal left inverted right x axis y axis)
-DVI-D-1 connected 1920x1200+0+0 (normal left inverted right x axis y axis)
-518mm x 324mm
-   1920x1200     59.95*+
-   1600x1200     60.00  
-   1280x1024     75.02    60.02  
-   1152x864      75.00  
-   1024x768      75.08    60.00  
-   800x600       75.00    60.32  
-   640x480       75.00    60.00  
-   720x400       70.08  
-HDMI-2 disconnected (normal left inverted right x axis y axis)
-DP-1 disconnected (normal left inverted right x axis y axis)
-HDMI1 disconnected (normal left inverted right x axis y axis)
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)</pre>
+I=E2=80=99m using Xfce or Cinnamon.
+
+As you suggested, I increased the amount of RAM assigned to the video card,
+from 32 Gb to 64 Gb, and I didn=E2=80=99t encounter any new problem.
+
+Shouldn=E2=80=99t this short-memory condition be nicely handled by the driv=
+er ?
+
+Regards,
+Laurent</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442202130.46b51.28011--
+--1442251899.B377aD5a0.720--
 
---===============1876506235==
+--===============0215389891==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +116,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1876506235==--
+--===============0215389891==--
