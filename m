@@ -1,193 +1,54 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92013] New: [NVA0] 4.3-rc1 fan set to full speed
- after resume from suspend
-Date: Tue, 15 Sep 2015 21:57:16 +0000
-Message-ID: <bug-92013-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nv50,
+	nvc0: fix max texture buffer size to 128M elements
+Date: Tue, 15 Sep 2015 19:39:25 -0400
+Message-ID: <1442360365-17142-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1619066795=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org, "10.6 11.0" <mesa-stable@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1619066795==
-Content-Type: multipart/alternative; boundary="1442354236.632D1.17196"; charset="UTF-8"
-
-
---1442354236.632D1.17196
-Date: Tue, 15 Sep 2015 21:57:16 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92013
-
-            Bug ID: 92013
-           Summary: [NVA0] 4.3-rc1 fan set to full speed after resume from
-                    suspend
-           Product: xorg
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: boohbah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 118294
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118294&action=edit
-lspci -vv
-
-The fan on my GeForce GTX 275 turns on to full speed after resuming from
-suspend.
-This started with Linux 4.3-rc1, and does not happen in 4.2-rc8.
-I am running Arch Linux and compiling my kernel from git, with mesa 10.6.7 and
-xf86-video-nouveau 1.0.11.
-I have attached lspci output for my card.
-I did a git bisect and came up with this:
-first bad commit: [2aa5eac5163fedf09f2d61992cb5ea4d75bec9db] drm/nouveau/i2c:
-transition pad/ports away from being based on nvkm_object
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1442354236.632D1.17196
-Date: Tue, 15 Sep 2015 21:57:16 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013">92013</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVA0] 4.3-rc1 fan set to full speed after resume from suspend
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>boohbah&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118294" name="attach_118294" title="lspci -vv">attachment 118294</a> <a href="attachment.cgi?id=118294&amp;action=edit" title="lspci -vv">[details]</a></span>
-lspci -vv
-
-The fan on my GeForce GTX 275 turns on to full speed after resuming from
-suspend.
-This started with Linux 4.3-rc1, and does not happen in 4.2-rc8.
-I am running Arch Linux and compiling my kernel from git, with mesa 10.6.7 and
-xf86-video-nouveau 1.0.11.
-I have attached lspci output for my card.
-I did a git bisect and came up with this:
-first bad commit: [2aa5eac5163fedf09f2d61992cb5ea4d75bec9db] drm/nouveau/i2c:
-transition pad/ports away from being based on nvkm_object</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442354236.632D1.17196--
-
---===============1619066795==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1619066795==--
+VGhpcyBpcyB3aGF0IHRoZSBoYXJkd2FyZSBzdXBwb3J0cywgdGhlcmUgbmV2ZXIgd2FzIGFueSBz
+b3J0IG9mIDY0SwpsaW1pdC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFs
+dW0ubWl0LmVkdT4KQ2M6ICIxMC42IDExLjAiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmc+Ci0tLQoKTmVlZCB0byBkb3VibGUtY2hlY2sgdGhpcyBvbmUgb24gbnY1MCwgYnV0IG9u
+bGluZSBzb3VyY2VzIHN1Z2dlc3QgdGhhdAppdCdzIGEgMTI4TSBlbGVtZW50IGxpbWl0IHRoZXJl
+IGFzIHdlbGwuCgogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4u
+YyB8IDIgKy0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMg
+fCAyICstCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVl
+bi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYwppbmRl
+eCA5MDY4YWUxLi5jM2JiYzgzIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvbnY1MC9udjUwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
+djUwL252NTBfc2NyZWVuLmMKQEAgLTEwMCw3ICsxMDAsNyBAQCBudjUwX3NjcmVlbl9nZXRfcGFy
+YW0oc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLCBlbnVtIHBpcGVfY2FwIHBhcmFtKQogICAg
+Y2FzZSBQSVBFX0NBUF9NQVhfVEVYRUxfT0ZGU0VUOgogICAgICAgcmV0dXJuIDc7CiAgICBjYXNl
+IFBJUEVfQ0FQX01BWF9URVhUVVJFX0JVRkZFUl9TSVpFOgotICAgICAgcmV0dXJuIDY1NTM2Owor
+ICAgICAgcmV0dXJuIDEyOCAqIDEwMjQgKiAxMDI0OwogICAgY2FzZSBQSVBFX0NBUF9HTFNMX0ZF
+QVRVUkVfTEVWRUw6CiAgICAgICByZXR1cm4gMzMwOwogICAgY2FzZSBQSVBFX0NBUF9NQVhfUkVO
+REVSX1RBUkdFVFM6CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
+MC9udmMwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9z
+Y3JlZW4uYwppbmRleCBlYWQ0M2Y4Li4xOTA5YjkxIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKQEAgLTg3LDcgKzg3LDcgQEAgbnZjMF9zY3Jl
+ZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBlX2NhcCBw
+YXJhbSkKICAgIGNhc2UgUElQRV9DQVBfTUFYX1RFWFRVUkVfR0FUSEVSX09GRlNFVDoKICAgICAg
+IHJldHVybiAzMTsKICAgIGNhc2UgUElQRV9DQVBfTUFYX1RFWFRVUkVfQlVGRkVSX1NJWkU6Ci0g
+ICAgICByZXR1cm4gNjU1MzY7CisgICAgICByZXR1cm4gMTI4ICogMTAyNCAqIDEwMjQ7CiAgICBj
+YXNlIFBJUEVfQ0FQX0dMU0xfRkVBVFVSRV9MRVZFTDoKICAgICAgIHJldHVybiA0MTA7CiAgICBj
+YXNlIFBJUEVfQ0FQX01BWF9SRU5ERVJfVEFSR0VUUzoKLS0gCjIuNC42CgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QK
+bWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
