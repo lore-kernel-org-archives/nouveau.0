@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92010] New: Nvidia nouveau driver hangs system when
- using X-Window system
-Date: Tue, 15 Sep 2015 07:57:52 +0000
-Message-ID: <bug-92010-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Tue, 15 Sep 2015 11:33:29 +0000
+Message-ID: <bug-90871-8800-vDyxzSz9AF@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1533106017=="
+Content-Type: multipart/mixed; boundary="===============1656854349=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,54 +20,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1533106017==
-Content-Type: multipart/alternative; boundary="1442303873.7AAdded1.28409"; charset="UTF-8"
+--===============1656854349==
+Content-Type: multipart/alternative; boundary="1442316808.b6A741.950"; charset="UTF-8"
 
 
---1442303873.7AAdded1.28409
-Date: Tue, 15 Sep 2015 07:57:53 +0000
+--1442316808.b6A741.950
+Date: Tue, 15 Sep 2015 11:33:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92010
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-            Bug ID: 92010
-           Summary: Nvidia nouveau driver hangs system when using X-Window
-                    system
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: mignov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+--- Comment #36 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-Created attachment 118282
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118282&action=edit
-Kernel log
+ACPI power states test:
+- Suspend to RAM aka S3
+- Suspend to Disk aka S4
 
-Nvidia nouveau driver hangs the system when using X-Windows system on HP
-EliteBook 8540w.
+Xfwm4 flavours:
+- "vulgaris" - built w/ --disable-epoxy --disable-xpresent
+- "xpresent" - built w/ --disable-epoxy
+- "glx"
 
-Device:
-01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M]
-(rev a2)
 
-Reproducible:
-Hard
+          ACPI:  S3    S4
+Xfwm:
+vulgaris          +     -
+xpresent          +     -
+glx               +     +
 
-Michal
+
+
+Conclusion:
+- S3 RESUME, no problemos
+- S4 RESUME(THAW), for "vulgaris" and "xpresent",
+  HW reset or Magic SysRq key sequence required.
+  Not only display is garbled, but literally nothing you can do with it.
+  BTW it does not matter whether compositing is on or off.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442303873.7AAdded1.28409
-Date: Tue, 15 Sep 2015 07:57:53 +0000
+--1442316808.b6A741.950
+Date: Tue, 15 Sep 2015 11:33:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,117 +72,59 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nvidia nouveau driver hangs system when using X-Window system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92010">92010</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Nvidia nouveau driver hangs system when using X-Window system
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>mignov&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118282" name="attach_118282" title="Kernel log">attachment 118282</a> <a href="attachment.cgi?id=118282&amp;action=edit" title="Kernel log">[details]</a></span>
-Kernel log
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c36">Comment # 36</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+ACPI power states test:
+- Suspend to RAM aka S3
+- Suspend to Disk aka S4
 
-Nvidia nouveau driver hangs the system when using X-Windows system on HP
-EliteBook 8540w.
+Xfwm4 flavours:
+- &quot;vulgaris&quot; - built w/ --disable-epoxy --disable-xpresent
+- &quot;xpresent&quot; - built w/ --disable-epoxy
+- &quot;glx&quot;
 
-Device:
-01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M]
-(rev a2)
 
-Reproducible:
-Hard
+          ACPI:  S3    S4
+Xfwm:
+vulgaris          +     -
+xpresent          +     -
+glx               +     +
 
-Michal</pre>
+
+
+Conclusion:
+- S3 RESUME, no problemos
+- S4 RESUME(THAW), for &quot;vulgaris&quot; and &quot;xpresent&quot;,
+  HW reset or Magic SysRq key sequence required.
+  Not only display is garbled, but literally nothing you can do with it.
+  BTW it does not matter whether compositing is on or off.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442303873.7AAdded1.28409--
+--1442316808.b6A741.950--
 
---===============1533106017==
+--===============1656854349==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -194,4 +134,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1533106017==--
+--===============1656854349==--
