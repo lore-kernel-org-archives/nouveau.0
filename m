@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92032] NV30: WARNING: CPU: 0 PID: 290 at
- lib/dma-debug.c:1205 check_sync+0x169/0x6e0()
-Date: Fri, 18 Sep 2015 06:29:50 +0000
-Message-ID: <bug-92032-8800-dlERM7wTTj@http.bugs.freedesktop.org/>
-References: <bug-92032-8800@http.bugs.freedesktop.org/>
+From: Dylan Taft <dylanetaft-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: pstate for NVS140
+Date: Tue, 15 Sep 2015 01:39:16 -0400
+Message-ID: <CAKz1w-mcvQpqKWwmdAe4GgTgu0i3Jg6iC3VENUEMDh0EfJxX6A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1740322209=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92032-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,85 +18,34 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1740322209==
-Content-Type: multipart/alternative; boundary="1442557790.3f2d1.27713"; charset="UTF-8"
-
-
---1442557790.3f2d1.27713
-Date: Fri, 18 Sep 2015 06:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92032
-
---- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> Is this AGP, PCI, or PCIe?
-
--- AGP info --
-Status:     Enabled
-Rate:         8X
-AGP rates:     4X 8X 
-Fast Writes:     Enabled
-SBA:         Enabled
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1442557790.3f2d1.27713
-Date: Fri, 18 Sep 2015 06:29:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032">bug 92032</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92032#c1">comment #1</a>)
-<span class="quote">&gt; Is this AGP, PCI, or PCIe?</span >
-
--- AGP info --
-Status:     Enabled
-Rate:         8X
-AGP rates:     4X 8X 
-Fast Writes:     Enabled
-SBA:         Enabled</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442557790.3f2d1.27713--
-
---===============1740322209==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1740322209==--
+SSdtIHRyeWluZyBvdXQgdGhlIDQuMyBSQyBrZXJuZWwsIG1ham9yIGltcHJvdmVtZW50cyB3aXRo
+IE5vdXZlYXUgb24KbXkgb2xkIFQ2MSBsYXB0b3Agd2l0aCBhbiBOVlMxNDAgR1BVLiAgU3RhYmls
+aXR5IGFuZCBwZXJmb3JtYW5jZSBib3RoCnNlZW0gbWFzc2l2ZWx5IGluY3JlYXNlZC4gIFRoZXJl
+IGFyZSBzdGlsbCBzb21lIHN0YWJpbGl0eSBpc3N1ZXMgd2l0aAozRCBnYW1lcyBhbmQgc3dpdGNo
+aW5nIHJlc29sdXRpb25zIG9uIHRoZSBmbHkuICAyRCBwZXJmb3JtYW5jZSBraWNrcwp0aGUgcGFu
+dHMgb2ZmIHRoZSBiaW5hcnkgZHJpdmVyLCAzRCBwZXJmb3JtYW5jZSBzZWVtcyB0byBiZSBjYXRj
+aGluZwp1cC4KCkkgbm90aWNlZCBhIG1vZHVsZSBzZXR0aW5nIGZvciBwc3RhdGUgZm9yIGNsb2Nr
+aW5nIHVwIGFuZCBkb3duIHRoZQpHUFUsIGJ1dCBpdCdzICJ1bmltcGxlbWVudGVkIi4KCkR1ZyBp
+bnRvIHRoZSBrZXJuZWwgc291cmNlIGFuZCBzYXcgdGhhdCBteSBHUFUgaXMgY29uc2lkZXJlZCBn
+ODYgZnJvbQp3aGF0IEkgY2FuIHRlbGwuICBJdCBjYWxscyB0aGUgZzg0X2Nsa19uZXcgZnVuY3Rp
+b24sIHdoaWNoIGNhbGxzIHRoZQp0aGUgbnY1MF9jbGtfbmV3XyBjb2RlLiAgSXQgbG9va3MgdmVy
+eSBtdWNoIGltcGxlbWVudGVkLgoKVGhlcmUncyBhIGNoZWNrIGluIGc4NF9jbGtfbmV3LCBjaGVj
+a3MgaWYgdGhlIEdQVSBjaGlwc2V0IGlzIDB4YTAuCgpBbnl3YXksIGlmIEkganVzdCBwYXNzIGlu
+IHRydWUgZm9yIHRoZSBhbGxvd19yZWNsb2NrIHBhcmFtLCBpdCBkb2VzCndvcmssIGl0IGxvb2tz
+IGxpa2UgYSBsb3Qgb2YgY2hpcHNldHMganVzdCBzaGFyZSB0aGUgTlY1MCBiYXNlIGNvZGU/ClRo
+ZSBjbG9jayByYXRlcyBhbmQgc3VjaCBhcHBlYXIgdG8gYmUgcHVsbGVkIGZyb20gR1BVIHJlZ2lz
+dGVycyBvcgpzb21ldGhpbmcuCgpjYXQgcHN0YXRlCjIwOiBjb3JlIDE2OSBNSHogc2hhZGVyIDMz
+OCBNSHogbWVtb3J5IDEwMCBNSHoKMjE6IGNvcmUgMjc1IE1IeiBzaGFkZXIgNTUwIE1IeiBtZW1v
+cnkgMzAxIE1IegoyMjogY29yZSA0MDAgTUh6IHNoYWRlciA4MDAgTUh6IG1lbW9yeSA2MDAgTUh6
+IEFDIERDICoKQUM6IGNvcmUgNDAwIE1IeiBzaGFkZXIgODAwIE1IeiBtZW1vcnkgMzAyIE1IegoK
+SXQgbmV0cyBhbiBleHRyYSA2MC03MGZwcyBpbiBnbHhnZWFycywgYW5kIGEgaGFuZGZ1bCBvZiBG
+UFMgaW4gZ2FtZXMuClN0YWJpbGl0eSB3aXNlIGl0IHdvcmtzIGJlc3QgbWFraW5nIGFkanVzdG1l
+bnRzIGZyb20gYSB2aXJ0dWFsIGNvbnNvbGUKd2hpbGUgbm8gZ3JhcGhpY2FsbHkgaW50ZW5zZSBh
+cHBzIGFyZSBydW5uaW5nIGluIFgsIGlkZWFsbHkgZXZlbgpiZWZvcmUgWCBzdGFydHMsIGl0IGNh
+biBnZXQgdW5zdGFibGUgZHVyaW5nIGNoYW5nZS4KCkkgZ3Vlc3MgbG9uZyBzdG9yeSBzaG9ydCwg
+aXMgdGhlcmUgYW55dGhpbmcgSSBjYW4gZG8gaW4gcmVnYXJkcyB0bwp0ZXN0aW5nIHRvIGhlbHAg
+Z2V0IGl0IGVuYWJsZWQgdXBzdHJlYW0gZm9yIE5WUzE0MD8KCkNvb2wgc3R1ZmYuICBUaGFua3Mg
+Zm9yIGFsbCB0aGUgd29yayBvbiB0aGUgTm91dmVhdSBkcml2ZXIuICBUaGUgNC4zCmRyaXZlciBp
+cyBwcmV0dHkgZ3JlYXQhCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
