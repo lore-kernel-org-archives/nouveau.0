@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91992] [NV4C] computer hangs after few minutes of use
-Date: Tue, 15 Sep 2015 04:18:31 +0000
-Message-ID: <bug-91992-8800-9jhB14xYU1@http.bugs.freedesktop.org/>
-References: <bug-91992-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nv50,
+	nvc0: unlock tic and update address when invalidating resource
+Date: Tue, 15 Sep 2015 01:40:08 -0400
+Message-ID: <1442295608-18233-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1892486687=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91992-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,172 +16,55 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1892486687==
-Content-Type: multipart/alternative; boundary="1442290710.Bf6C011.17069"; charset="UTF-8"
-
-
---1442290710.Bf6C011.17069
-Date: Tue, 15 Sep 2015 04:18:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91992
-
-Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
-Hi,
-
-(In reply to Laurent Riffard from comment #4)
-> Hi,
->=20
-> I=E2=80=99m using Xfce or Cinnamon.
->=20
-> As you suggested, I increased the amount of RAM assigned to the video car=
-d,
-> from 32 Gb to 64 Gb, and I didn=E2=80=99t encounter any new problem.
-
-I assume you mean MB not GB ? Yes 32MB is a very low setting, so this expla=
-ins
-the original problem quite nicely.
-
-> Shouldn=E2=80=99t this short-memory condition be nicely handled by the dr=
-iver ?
-
-In an ideal world it would at least be handled better then crashing, but our
-oom handling currently is rather poor (as you've noticed) . Fixing this
-unfortunately is quite difficult and currently no one is working on this.
-
-Since changing the setting in the BIOS fixes things, I'm closing this bug.
-
-Regards,
-
-Hans
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1442290710.Bf6C011.17069
-Date: Tue, 15 Sep 2015 04:18:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:jwrdegoed=
-e&#64;fedoraproject.org" title=3D"Hans de Goede &lt;jwrdegoede&#64;fedorapr=
-oject.org&gt;"> <span class=3D"fn">Hans de Goede</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV4C] computer hangs after few minutes of use"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992">bug 91992<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV4C] computer hangs after few minutes of use"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NV4C] computer hangs after few minutes of use"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91992">bug 91992<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-jwrdegoede&#64;fedoraproject.org" title=3D"Hans de Goede &lt;jwrdegoede&#64=
-;fedoraproject.org&gt;"> <span class=3D"fn">Hans de Goede</span></a>
-</span></b>
-        <pre>Hi,
-
-(In reply to Laurent Riffard from <a href=3D"show_bug.cgi?id=3D91992#c4">co=
-mment #4</a>)
-<span class=3D"quote">&gt; Hi,
-&gt;=20
-&gt; I=E2=80=99m using Xfce or Cinnamon.
-&gt;=20
-&gt; As you suggested, I increased the amount of RAM assigned to the video =
-card,
-&gt; from 32 Gb to 64 Gb, and I didn=E2=80=99t encounter any new problem.</=
-span >
-
-I assume you mean MB not GB ? Yes 32MB is a very low setting, so this expla=
-ins
-the original problem quite nicely.
-
-<span class=3D"quote">&gt; Shouldn=E2=80=99t this short-memory condition be=
- nicely handled by the driver ?</span >
-
-In an ideal world it would at least be handled better then crashing, but our
-oom handling currently is rather poor (as you've noticed) . Fixing this
-unfortunately is quite difficult and currently no one is working on this.
-
-Since changing the setting in the BIOS fixes things, I'm closing this bug.
-
-Regards,
-
-Hans</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442290710.Bf6C011.17069--
-
---===============1892486687==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1892486687==--
+V2hlbiB1cGRhdGluZyB0ZXh0dXJlIGJ1ZmZlcnMsIHdlIG1pZ2h0IGVuZCB1cCByZXBsYWNpbmcg
+dGhlIHdob2xlCmJ1ZmZlci4gV2hlbiB0aGUgcmVzb3VyY2UgaXMgaW52YWxpZGF0ZWQsIHdlIG5l
+dmVyIGFjdHVhbGx5IHJlY3JlYXRlIHRoZQpzYW1wbGVyIHZpZXcsIHNvIHdlIGhhdmUgdG8gbWFr
+ZSBzdXJlIHRoYXQgaXQgZ2V0cyByZXVwbG9hZGVkLCBhbmQgdGhhdAppdCBnZXRzIHRoZSBwcm9w
+ZXIgbmV3IGFkZHJlc3MuCgpUaGlzIGZpeGVzIGFyYl9kaXJlY3Rfc3RhdGVfYWNjZXNzLXRleHR1
+cmUtYnVmZmVyLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1PgpDYzogIjExLjAiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ci0tLQog
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9jb250ZXh0LmMgfCA2ICsrKysr
+Kwogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9jb250ZXh0LmMgfCA2ICsr
+KysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvc3Jj
+L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9jb250ZXh0LmMgYi9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2NvbnRleHQuYwppbmRleCA0MTA4ZjQ4Li5mYWRi
+ODEyIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2Nv
+bnRleHQuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2NvbnRl
+eHQuYwpAQCAtMjEyLDggKzIxMiwxNCBAQCBudjUwX2ludmFsaWRhdGVfcmVzb3VyY2Vfc3RvcmFn
+ZShzdHJ1Y3Qgbm91dmVhdV9jb250ZXh0ICpjdHgsCiAgICAgICBmb3IgKGkgPSAwOyBpIDwgbnY1
+MC0+bnVtX3RleHR1cmVzW3NdOyArK2kpIHsKICAgICAgICAgIGlmIChudjUwLT50ZXh0dXJlc1tz
+XVtpXSAmJgogICAgICAgICAgICAgIG52NTAtPnRleHR1cmVzW3NdW2ldLT50ZXh0dXJlID09IHJl
+cykgeworICAgICAgICAgICAgc3RydWN0IG52NTBfdGljX2VudHJ5ICp0aWMgPSBudjUwX3RpY19l
+bnRyeShudjUwLT50ZXh0dXJlc1tzXVtpXSk7CiAgICAgICAgICAgICBudjUwLT5kaXJ0eSB8PSBO
+VjUwX05FV19URVhUVVJFUzsKICAgICAgICAgICAgIG5vdXZlYXVfYnVmY3R4X3Jlc2V0KG52NTAt
+PmJ1ZmN0eF8zZCwgTlY1MF9CSU5EX1RFWFRVUkVTKTsKKyAgICAgICAgICAgIG52NTBfc2NyZWVu
+X3RpY191bmxvY2sobnY1MC0+c2NyZWVuLCB0aWMpOworICAgICAgICAgICAgdGljLT5pZCA9IC0x
+OworICAgICAgICAgICAgdGljLT50aWNbMV0gPSBudjA0X3Jlc291cmNlKHJlcyktPmFkZHJlc3M7
+CisgICAgICAgICAgICB0aWMtPnRpY1syXSAmPSAweGZmZmZmZjAwOworICAgICAgICAgICAgdGlj
+LT50aWNbMl0gfD0gbnYwNF9yZXNvdXJjZShyZXMpLT5hZGRyZXNzID4+IDMyOwogICAgICAgICAg
+ICAgaWYgKCEtLXJlZikKICAgICAgICAgICAgICAgIHJldHVybiByZWY7CiAgICAgICAgICB9CmRp
+ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX2NvbnRleHQu
+YyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCmluZGV4
+IGY3NjA0ZjEuLmU2ZDI3MDAgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9udmMwL252YzBfY29udGV4dC5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
+dmMwL252YzBfY29udGV4dC5jCkBAIC0yMjksOSArMjI5LDE1IEBAIG52YzBfaW52YWxpZGF0ZV9y
+ZXNvdXJjZV9zdG9yYWdlKHN0cnVjdCBub3V2ZWF1X2NvbnRleHQgKmN0eCwKICAgICAgIGZvciAo
+aSA9IDA7IGkgPCBudmMwLT5udW1fdGV4dHVyZXNbc107ICsraSkgewogICAgICAgICAgaWYgKG52
+YzAtPnRleHR1cmVzW3NdW2ldICYmCiAgICAgICAgICAgICAgbnZjMC0+dGV4dHVyZXNbc11baV0t
+PnRleHR1cmUgPT0gcmVzKSB7CisgICAgICAgICAgICBzdHJ1Y3QgbnY1MF90aWNfZW50cnkgKnRp
+YyA9IG52NTBfdGljX2VudHJ5KG52YzAtPnRleHR1cmVzW3NdW2ldKTsKICAgICAgICAgICAgIG52
+YzAtPnRleHR1cmVzX2RpcnR5W3NdIHw9IDEgPDwgaTsKICAgICAgICAgICAgIG52YzAtPmRpcnR5
+IHw9IE5WQzBfTkVXX1RFWFRVUkVTOwogICAgICAgICAgICAgbm91dmVhdV9idWZjdHhfcmVzZXQo
+bnZjMC0+YnVmY3R4XzNkLCBOVkMwX0JJTkRfVEVYKHMsIGkpKTsKKyAgICAgICAgICAgIG52YzBf
+c2NyZWVuX3RpY191bmxvY2sobnZjMC0+c2NyZWVuLCB0aWMpOworICAgICAgICAgICAgdGljLT5p
+ZCA9IC0xOworICAgICAgICAgICAgdGljLT50aWNbMV0gPSBudjA0X3Jlc291cmNlKHJlcyktPmFk
+ZHJlc3M7CisgICAgICAgICAgICB0aWMtPnRpY1syXSAmPSAweGZmZmZmZjAwOworICAgICAgICAg
+ICAgdGljLT50aWNbMl0gfD0gbnYwNF9yZXNvdXJjZShyZXMpLT5hZGRyZXNzID4+IDMyOwogICAg
+ICAgICAgICAgaWYgKCEtLXJlZikKICAgICAgICAgICAgICAgIHJldHVybiByZWY7CiAgICAgICAg
+ICB9Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
