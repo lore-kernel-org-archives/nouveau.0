@@ -1,11 +1,10 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50,
-	nvc0: unlock tic and update address when invalidating resource
-Date: Tue, 15 Sep 2015 01:40:08 -0400
-Message-ID: <1442295608-18233-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92010] New: Nvidia nouveau driver hangs system when
+ using X-Window system
+Date: Tue, 15 Sep 2015 07:57:52 +0000
+Message-ID: <bug-92010-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1533106017=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,55 +15,183 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, "11.0" <mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hlbiB1cGRhdGluZyB0ZXh0dXJlIGJ1ZmZlcnMsIHdlIG1pZ2h0IGVuZCB1cCByZXBsYWNpbmcg
-dGhlIHdob2xlCmJ1ZmZlci4gV2hlbiB0aGUgcmVzb3VyY2UgaXMgaW52YWxpZGF0ZWQsIHdlIG5l
-dmVyIGFjdHVhbGx5IHJlY3JlYXRlIHRoZQpzYW1wbGVyIHZpZXcsIHNvIHdlIGhhdmUgdG8gbWFr
-ZSBzdXJlIHRoYXQgaXQgZ2V0cyByZXVwbG9hZGVkLCBhbmQgdGhhdAppdCBnZXRzIHRoZSBwcm9w
-ZXIgbmV3IGFkZHJlc3MuCgpUaGlzIGZpeGVzIGFyYl9kaXJlY3Rfc3RhdGVfYWNjZXNzLXRleHR1
-cmUtYnVmZmVyLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PgpDYzogIjExLjAiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+Ci0tLQog
-c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9jb250ZXh0LmMgfCA2ICsrKysr
-Kwogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9jb250ZXh0LmMgfCA2ICsr
-KysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvc3Jj
-L2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9jb250ZXh0LmMgYi9zcmMvZ2FsbGl1
-bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2NvbnRleHQuYwppbmRleCA0MTA4ZjQ4Li5mYWRi
-ODEyIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2Nv
-bnRleHQuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX2NvbnRl
-eHQuYwpAQCAtMjEyLDggKzIxMiwxNCBAQCBudjUwX2ludmFsaWRhdGVfcmVzb3VyY2Vfc3RvcmFn
-ZShzdHJ1Y3Qgbm91dmVhdV9jb250ZXh0ICpjdHgsCiAgICAgICBmb3IgKGkgPSAwOyBpIDwgbnY1
-MC0+bnVtX3RleHR1cmVzW3NdOyArK2kpIHsKICAgICAgICAgIGlmIChudjUwLT50ZXh0dXJlc1tz
-XVtpXSAmJgogICAgICAgICAgICAgIG52NTAtPnRleHR1cmVzW3NdW2ldLT50ZXh0dXJlID09IHJl
-cykgeworICAgICAgICAgICAgc3RydWN0IG52NTBfdGljX2VudHJ5ICp0aWMgPSBudjUwX3RpY19l
-bnRyeShudjUwLT50ZXh0dXJlc1tzXVtpXSk7CiAgICAgICAgICAgICBudjUwLT5kaXJ0eSB8PSBO
-VjUwX05FV19URVhUVVJFUzsKICAgICAgICAgICAgIG5vdXZlYXVfYnVmY3R4X3Jlc2V0KG52NTAt
-PmJ1ZmN0eF8zZCwgTlY1MF9CSU5EX1RFWFRVUkVTKTsKKyAgICAgICAgICAgIG52NTBfc2NyZWVu
-X3RpY191bmxvY2sobnY1MC0+c2NyZWVuLCB0aWMpOworICAgICAgICAgICAgdGljLT5pZCA9IC0x
-OworICAgICAgICAgICAgdGljLT50aWNbMV0gPSBudjA0X3Jlc291cmNlKHJlcyktPmFkZHJlc3M7
-CisgICAgICAgICAgICB0aWMtPnRpY1syXSAmPSAweGZmZmZmZjAwOworICAgICAgICAgICAgdGlj
-LT50aWNbMl0gfD0gbnYwNF9yZXNvdXJjZShyZXMpLT5hZGRyZXNzID4+IDMyOwogICAgICAgICAg
-ICAgaWYgKCEtLXJlZikKICAgICAgICAgICAgICAgIHJldHVybiByZWY7CiAgICAgICAgICB9CmRp
-ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX2NvbnRleHQu
-YyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfY29udGV4dC5jCmluZGV4
-IGY3NjA0ZjEuLmU2ZDI3MDAgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfY29udGV4dC5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-dmMwL252YzBfY29udGV4dC5jCkBAIC0yMjksOSArMjI5LDE1IEBAIG52YzBfaW52YWxpZGF0ZV9y
-ZXNvdXJjZV9zdG9yYWdlKHN0cnVjdCBub3V2ZWF1X2NvbnRleHQgKmN0eCwKICAgICAgIGZvciAo
-aSA9IDA7IGkgPCBudmMwLT5udW1fdGV4dHVyZXNbc107ICsraSkgewogICAgICAgICAgaWYgKG52
-YzAtPnRleHR1cmVzW3NdW2ldICYmCiAgICAgICAgICAgICAgbnZjMC0+dGV4dHVyZXNbc11baV0t
-PnRleHR1cmUgPT0gcmVzKSB7CisgICAgICAgICAgICBzdHJ1Y3QgbnY1MF90aWNfZW50cnkgKnRp
-YyA9IG52NTBfdGljX2VudHJ5KG52YzAtPnRleHR1cmVzW3NdW2ldKTsKICAgICAgICAgICAgIG52
-YzAtPnRleHR1cmVzX2RpcnR5W3NdIHw9IDEgPDwgaTsKICAgICAgICAgICAgIG52YzAtPmRpcnR5
-IHw9IE5WQzBfTkVXX1RFWFRVUkVTOwogICAgICAgICAgICAgbm91dmVhdV9idWZjdHhfcmVzZXQo
-bnZjMC0+YnVmY3R4XzNkLCBOVkMwX0JJTkRfVEVYKHMsIGkpKTsKKyAgICAgICAgICAgIG52YzBf
-c2NyZWVuX3RpY191bmxvY2sobnZjMC0+c2NyZWVuLCB0aWMpOworICAgICAgICAgICAgdGljLT5p
-ZCA9IC0xOworICAgICAgICAgICAgdGljLT50aWNbMV0gPSBudjA0X3Jlc291cmNlKHJlcyktPmFk
-ZHJlc3M7CisgICAgICAgICAgICB0aWMtPnRpY1syXSAmPSAweGZmZmZmZjAwOworICAgICAgICAg
-ICAgdGljLT50aWNbMl0gfD0gbnYwNF9yZXNvdXJjZShyZXMpLT5hZGRyZXNzID4+IDMyOwogICAg
-ICAgICAgICAgaWYgKCEtLXJlZikKICAgICAgICAgICAgICAgIHJldHVybiByZWY7CiAgICAgICAg
-ICB9Ci0tIAoyLjQuNgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1533106017==
+Content-Type: multipart/alternative; boundary="1442303873.7AAdded1.28409"; charset="UTF-8"
+
+
+--1442303873.7AAdded1.28409
+Date: Tue, 15 Sep 2015 07:57:53 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92010
+
+            Bug ID: 92010
+           Summary: Nvidia nouveau driver hangs system when using X-Window
+                    system
+           Product: xorg
+           Version: unspecified
+          Hardware: Other
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mignov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 118282
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118282&action=edit
+Kernel log
+
+Nvidia nouveau driver hangs the system when using X-Windows system on HP
+EliteBook 8540w.
+
+Device:
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M]
+(rev a2)
+
+Reproducible:
+Hard
+
+Michal
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1442303873.7AAdded1.28409
+Date: Tue, 15 Sep 2015 07:57:53 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nvidia nouveau driver hangs system when using X-Window system"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92010">92010</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Nvidia nouveau driver hangs system when using X-Window system
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mignov&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118282" name="attach_118282" title="Kernel log">attachment 118282</a> <a href="attachment.cgi?id=118282&amp;action=edit" title="Kernel log">[details]</a></span>
+Kernel log
+
+Nvidia nouveau driver hangs the system when using X-Windows system on HP
+EliteBook 8540w.
+
+Device:
+01:00.0 VGA compatible controller: NVIDIA Corporation GT216GLM [Quadro FX 880M]
+(rev a2)
+
+Reproducible:
+Hard
+
+Michal</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1442303873.7AAdded1.28409--
+
+--===============1533106017==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1533106017==--
