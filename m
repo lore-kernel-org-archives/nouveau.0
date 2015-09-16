@@ -1,54 +1,96 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nv50,
-	nvc0: fix max texture buffer size to 128M elements
-Date: Tue, 15 Sep 2015 19:39:25 -0400
-Message-ID: <1442360365-17142-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92013] [NVA0] 4.3-rc1 fan set to full speed after
+ resume from suspend
+Date: Wed, 16 Sep 2015 07:06:52 +0000
+Message-ID: <bug-92013-8800-BiXHGjj1F2@http.bugs.freedesktop.org/>
+References: <bug-92013-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, "10.6 11.0" <mesa-stable@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1506569922=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhpcyBpcyB3aGF0IHRoZSBoYXJkd2FyZSBzdXBwb3J0cywgdGhlcmUgbmV2ZXIgd2FzIGFueSBz
-b3J0IG9mIDY0SwpsaW1pdC4KClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFs
-dW0ubWl0LmVkdT4KQ2M6ICIxMC42IDExLjAiIDxtZXNhLXN0YWJsZUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmc+Ci0tLQoKTmVlZCB0byBkb3VibGUtY2hlY2sgdGhpcyBvbmUgb24gbnY1MCwgYnV0IG9u
-bGluZSBzb3VyY2VzIHN1Z2dlc3QgdGhhdAppdCdzIGEgMTI4TSBlbGVtZW50IGxpbWl0IHRoZXJl
-IGFzIHdlbGwuCgogc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4u
-YyB8IDIgKy0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMg
-fCAyICstCiAyIGZpbGVzIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVl
-bi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYwppbmRl
-eCA5MDY4YWUxLi5jM2JiYzgzIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
-YXUvbnY1MC9udjUwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-djUwL252NTBfc2NyZWVuLmMKQEAgLTEwMCw3ICsxMDAsNyBAQCBudjUwX3NjcmVlbl9nZXRfcGFy
-YW0oc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLCBlbnVtIHBpcGVfY2FwIHBhcmFtKQogICAg
-Y2FzZSBQSVBFX0NBUF9NQVhfVEVYRUxfT0ZGU0VUOgogICAgICAgcmV0dXJuIDc7CiAgICBjYXNl
-IFBJUEVfQ0FQX01BWF9URVhUVVJFX0JVRkZFUl9TSVpFOgotICAgICAgcmV0dXJuIDY1NTM2Owor
-ICAgICAgcmV0dXJuIDEyOCAqIDEwMjQgKiAxMDI0OwogICAgY2FzZSBQSVBFX0NBUF9HTFNMX0ZF
-QVRVUkVfTEVWRUw6CiAgICAgICByZXR1cm4gMzMwOwogICAgY2FzZSBQSVBFX0NBUF9NQVhfUkVO
-REVSX1RBUkdFVFM6CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
-MC9udmMwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9z
-Y3JlZW4uYwppbmRleCBlYWQ0M2Y4Li4xOTA5YjkxIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
-cnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKQEAgLTg3LDcgKzg3LDcgQEAgbnZjMF9zY3Jl
-ZW5fZ2V0X3BhcmFtKHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgZW51bSBwaXBlX2NhcCBw
-YXJhbSkKICAgIGNhc2UgUElQRV9DQVBfTUFYX1RFWFRVUkVfR0FUSEVSX09GRlNFVDoKICAgICAg
-IHJldHVybiAzMTsKICAgIGNhc2UgUElQRV9DQVBfTUFYX1RFWFRVUkVfQlVGRkVSX1NJWkU6Ci0g
-ICAgICByZXR1cm4gNjU1MzY7CisgICAgICByZXR1cm4gMTI4ICogMTAyNCAqIDEwMjQ7CiAgICBj
-YXNlIFBJUEVfQ0FQX0dMU0xfRkVBVFVSRV9MRVZFTDoKICAgICAgIHJldHVybiA0MTA7CiAgICBj
-YXNlIFBJUEVfQ0FQX01BWF9SRU5ERVJfVEFSR0VUUzoKLS0gCjIuNC42CgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QK
-bWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5v
-cmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
+
+--===============1506569922==
+Content-Type: multipart/alternative; boundary="1442387212.0c2Dc42.17611"; charset="UTF-8"
+
+
+--1442387212.0c2Dc42.17611
+Date: Wed, 16 Sep 2015 07:06:52 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92013
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Wow that's a monster commit. Which also happens to change the semantics of a
+*whole lot* of stuff. Unfortunately this will have to wait for Ben to take a
+look. In the meanwhile, would you mind posting a dmesg when the kernel is
+booted with nouveau.debug=debug from both right before and at this commit?
+Should hopefully show what's going wrong.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1442387212.0c2Dc42.17611
+Date: Wed, 16 Sep 2015 07:06:52 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013">bug 92013</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Wow that's a monster commit. Which also happens to change the semantics of a
+*whole lot* of stuff. Unfortunately this will have to wait for Ben to take a
+look. In the meanwhile, would you mind posting a dmesg when the kernel is
+booted with nouveau.debug=debug from both right before and at this commit?
+Should hopefully show what's going wrong.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1442387212.0c2Dc42.17611--
+
+--===============1506569922==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1506569922==--
