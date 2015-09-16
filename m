@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91310] witcher 2 glitches a lot
-Date: Wed, 16 Sep 2015 13:00:27 +0000
-Message-ID: <bug-91310-8800-4rrnr0yvxM@http.bugs.freedesktop.org/>
-References: <bug-91310-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
+	needed
+Date: Wed, 16 Sep 2015 14:25:11 +0000
+Message-ID: <bug-71357-8800-1CSZMVbDK1@http.bugs.freedesktop.org/>
+References: <bug-71357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1810422594=="
+Content-Type: multipart/mixed; boundary="===============0086937947=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1810422594==
-Content-Type: multipart/alternative; boundary="1442408427.3A6aC86E0.1079"; charset="UTF-8"
+--===============0086937947==
+Content-Type: multipart/alternative; boundary="1442413511.18f1B0.30639"; charset="UTF-8"
 
 
---1442408427.3A6aC86E0.1079
-Date: Wed, 16 Sep 2015 13:00:27 +0000
+--1442413511.18f1B0.30639
+Date: Wed, 16 Sep 2015 14:25:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91310
+https://bugs.freedesktop.org/show_bug.cgi?id=71357
 
---- Comment #3 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-seems like the issue gets worse the lower the core clock is, for reasons I
-don't understand
+--- Comment #10 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Hi,
+
+i did what you've suggested and used 4.3.0-040300rc1-generic #201509160642 SMP
+build from ubuntu mainline ppa.
+And i am really happy - did S3 twice and all works fine, its waking up and
+works - i can even do S3 twice, resume and it works. Even KernelModeSetting on
+console does work flawlessly now where 3.13 did work and 3.16 did not with my
+external monitors, thumbs up - seems fixed with 4.3-rc1.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442408427.3A6aC86E0.1079
-Date: Wed, 16 Sep 2015 13:00:27 +0000
+--1442413511.18f1B0.30639
+Date: Wed, 16 Sep 2015 14:25:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,31 +60,36 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - witcher 2 glitches a lot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91310#c3">Comment # 3</a>
+   title="NEW - [NVC1] After S3 resume X is broken and reboot needed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - witcher 2 glitches a lot"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91310">bug 91310</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
+   title="NEW - [NVC1] After S3 resume X is broken and reboot needed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
+              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
 </span></b>
-        <pre>seems like the issue gets worse the lower the core clock is, for reasons I
-don't understand</pre>
+        <pre>Hi,
+
+i did what you've suggested and used 4.3.0-040300rc1-generic #201509160642 SMP
+build from ubuntu mainline ppa.
+And i am really happy - did S3 twice and all works fine, its waking up and
+works - i can even do S3 twice, resume and it works. Even KernelModeSetting on
+console does work flawlessly now where 3.13 did work and 3.16 did not with my
+external monitors, thumbs up - seems fixed with 4.3-rc1.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442408427.3A6aC86E0.1079--
+--1442413511.18f1B0.30639--
 
---===============1810422594==
+--===============0086937947==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1810422594==--
+--===============0086937947==--
