@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89969] nouveau: add support for chunk decoding in
  order to support vaapi (st/va)
-Date: Wed, 16 Sep 2015 12:29:11 +0000
-Message-ID: <bug-89969-8800-dqoVdzeqEw@http.bugs.freedesktop.org/>
+Date: Wed, 16 Sep 2015 12:29:21 +0000
+Message-ID: <bug-89969-8800-9zoW0Q2jc3@http.bugs.freedesktop.org/>
 References: <bug-89969-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0450618487=="
+Content-Type: multipart/mixed; boundary="===============1596667014=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0450618487==
-Content-Type: multipart/alternative; boundary="1442406551.d1bE63C44.23233"; charset="UTF-8"
+--===============1596667014==
+Content-Type: multipart/alternative; boundary="1442406561.bF4cA49.23233"; charset="UTF-8"
 
 
---1442406551.d1bE63C44.23233
-Date: Wed, 16 Sep 2015 12:29:11 +0000
+--1442406561.bF4cA49.23233
+Date: Wed, 16 Sep 2015 12:29:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,7 +36,7 @@ Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #117929|0                           |1
+ Attachment #117939|0                           |1
         is obsolete|                            |
 
 -- 
@@ -44,8 +44,8 @@ You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442406551.d1bE63C44.23233
-Date: Wed, 16 Sep 2015 12:29:11 +0000
+--1442406561.bF4cA49.23233
+Date: Wed, 16 Sep 2015 12:29:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,7 +68,7 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #117929 is obsolete</td>
+           <td style="text-align:right;">Attachment #117939 is obsolete</td>
            <td>
                &nbsp;
            </td>
@@ -87,9 +87,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1442406551.d1bE63C44.23233--
+--1442406561.bF4cA49.23233--
 
---===============0450618487==
+--===============1596667014==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0450618487==--
+--===============1596667014==--
