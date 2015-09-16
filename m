@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
-	needed
-Date: Wed, 16 Sep 2015 14:25:11 +0000
-Message-ID: <bug-71357-8800-1CSZMVbDK1@http.bugs.freedesktop.org/>
-References: <bug-71357-8800@http.bugs.freedesktop.org/>
+From: Fredy Neeser <nfd-OA+xvbQnYDHMbYB6QlFGEg@public.gmane.org>
+Subject: External monitor remains black - nouveau reports "link
+	training failed"
+Date: Wed, 16 Sep 2015 19:14:17 +0200
+Message-ID: <OFB9182E85.ED6A18F1-ONC1257EC1.0035B2DB-C1257EC2.005EB10B@ch.ibm.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0086937947=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,83 +19,25 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0086937947==
-Content-Type: multipart/alternative; boundary="1442413511.18f1B0.30639"; charset="UTF-8"
-
-
---1442413511.18f1B0.30639
-Date: Wed, 16 Sep 2015 14:25:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=71357
-
---- Comment #10 from Torsten Krah <krah.tm-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi,
-
-i did what you've suggested and used 4.3.0-040300rc1-generic #201509160642 SMP
-build from ubuntu mainline ppa.
-And i am really happy - did S3 twice and all works fine, its waking up and
-works - i can even do S3 twice, resume and it works. Even KernelModeSetting on
-console does work flawlessly now where 3.13 did work and 3.16 did not with my
-external monitors, thumbs up - seems fixed with 4.3-rc1.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1442413511.18f1B0.30639
-Date: Wed, 16 Sep 2015 14:25:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
-              from <span class="vcard"><a class="email" href="mailto:krah.tm&#64;gmail.com" title="Torsten Krah &lt;krah.tm&#64;gmail.com&gt;"> <span class="fn">Torsten Krah</span></a>
-</span></b>
-        <pre>Hi,
-
-i did what you've suggested and used 4.3.0-040300rc1-generic #201509160642 SMP
-build from ubuntu mainline ppa.
-And i am really happy - did S3 twice and all works fine, its waking up and
-works - i can even do S3 twice, resume and it works. Even KernelModeSetting on
-console does work flawlessly now where 3.13 did work and 3.16 did not with my
-external monitors, thumbs up - seems fixed with 4.3-rc1.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442413511.18f1B0.30639--
-
---===============0086937947==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0086937947==--
+CkhlbGxvIGxpc3QsCgpJIGhhZCBhIHdvcmtpbmcgZHVhbC1tb25pdG9yIHNldHVwIHdpdGggS0RF
+IFBsYXNtYSA1IG9uIGEgTGVub3ZvIFc1MzAKIk9wdGltdXMiIGxhcHRvcCAoaHlicmlkIGdyYXBo
+aWNzLCBub3V2ZWF1ICsgaTkxNSBkcml2ZXJzKSwgYnV0IGl0IHNlZW1zIHRvCmZhbGwgYXBhcnQg
+d2l0aCByZWNlbnQga2VybmVscywgaS5lLiwgdGhlIGV4dGVybmFsIG1vbml0b3IgKGNvbm5lY3Rl
+ZCB0bwp0aGUgbGFwdG9wJ3MgZG9ja2luZyBzdGF0aW9uIHZpYSBEaXNwbGF5UG9ydCkgbm8gbG9u
+Z2VyIHdvcmtzLgoKTXkgc2V0dXAgc3RpbGwgd29ya3MgZmluZSB3aXRoIGtlcm5lbHMgdXAgdG8g
+YW5kIGluY2x1ZGluZwo0LjEuMy0yMDEuZmMyMi54ODZfNjQsIGJ1dCAgd2l0aCBrZXJuZWwgIDQu
+MS42LTIwMC5mYzIyICAoYXMgd2VsbCBhcwphbm90aGVyIHVwZGF0ZSBvbiB0b3Agb2YgNC4xLjYp
+LCB0aGUgZXh0ZXJuYWwgbW9uaXRvciByZW1haW5zIGJsYWNrLCBhbmQKdGhlIGpvdXJuYWwgc2hv
+d3Mgc2V2ZXJhbCBsaW5lcwoKICAgIGtlcm5lbDogbm91dmVhdSBFWyAgIFBESVNQXVswMDAwOjAx
+OjAwLjBdWzB4MDAwMDAwMDZdIDA2OjAwMDY6MGY0ODoKbGluayB0cmFpbmluZyBmYWlsZWQKCm5v
+dCBwcmVzZW50IHdpdGggcHJldmlvdXMga2VybmVscyAtLSBzZWUgYWxzbwoKICBodHRwczovL2J1
+Z3ppbGxhLnJlZGhhdC5jb20vc2hvd19idWcuY2dpP2lkPTEyNjAwNTMKICBCdWcgMTI2MDA1MyAt
+IEV4dGVybmFsIG1vbml0b3IgcmVtYWlucyBibGFjayB3aXRoIGtlcm5lbAo0LjEuNi0yMDAuZmMy
+Mi54ODZfNjQgLSBub3V2ZWF1IHJlcG9ydHMgImxpbmsgdHJhaW5pbmcgZmFpbGVkIgoKCkNvdWxk
+IHRoaXMgYmUgcmVsYXRlZCB0byBzb21lIGNoYW5nZXMgaW4gcG93ZXJpbmcgZG93biB0aGUgRFBz
+ICh3aGljaApyZXF1aXJlcyBsaW5rIHRyYWluaW5nIHRvIHJlc3VtZSk/CgpBbnkgaWRlYXMgZm9y
+IGRlYnVnZ2luZyAvIG5hcnJvd2luZyBkb3duIHRoZSBpc3N1ZSBhcmUgbXVjaCBhcHByZWNpYXRl
+ZCAhCgpGcmVkeSBOZWVzZXIKSUJNIFp1cmljaCBSZXNlYXJjaCBMYWJvcmF0b3J5ClN3aXR6ZXJs
+YW5kCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
