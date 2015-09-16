@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89969] nouveau: add support for chunk decoding in
- order to support vaapi (st/va)
-Date: Wed, 16 Sep 2015 12:32:49 +0000
-Message-ID: <bug-89969-8800-1QvIBjUoID@http.bugs.freedesktop.org/>
-References: <bug-89969-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91310] witcher 2 glitches a lot
+Date: Wed, 16 Sep 2015 13:00:27 +0000
+Message-ID: <bug-91310-8800-4rrnr0yvxM@http.bugs.freedesktop.org/>
+References: <bug-91310-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1882541372=="
+Content-Type: multipart/mixed; boundary="===============1810422594=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89969-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91310-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +20,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1882541372==
-Content-Type: multipart/alternative; boundary="1442406769.ff8fAa4.25022"; charset="UTF-8"
+--===============1810422594==
+Content-Type: multipart/alternative; boundary="1442408427.3A6aC86E0.1079"; charset="UTF-8"
 
 
---1442406769.ff8fAa4.25022
-Date: Wed, 16 Sep 2015 12:32:49 +0000
+--1442408427.3A6aC86E0.1079
+Date: Wed, 16 Sep 2015 13:00:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89969
+https://bugs.freedesktop.org/show_bug.cgi?id=91310
 
---- Comment #30 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Patches have been sent to mailing list for review.
-
-vc1, mpeg12, mpeg4 are working but not h264 (visible but lot of blockiness)
-
-Need someone to try existing st/va with a radeon card and using:
-LIBVA_DRIVER_NAME=gallium mpv --hwdec=vaapi anyH264Video.mp4
+--- Comment #3 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
+seems like the issue gets worse the lower the core clock is, for reasons I
+don't understand
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442406769.ff8fAa4.25022
-Date: Wed, 16 Sep 2015 12:32:49 +0000
+--1442408427.3A6aC86E0.1079
+Date: Wed, 16 Sep 2015 13:00:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,20 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969#c30">Comment # 30</a>
+   title="NEW - witcher 2 glitches a lot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91310#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau: add support for chunk decoding in order to support vaapi (st/va)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89969">bug 89969</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+   title="NEW - witcher 2 glitches a lot"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91310">bug 91310</a>
+              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
 </span></b>
-        <pre>Patches have been sent to mailing list for review.
-
-vc1, mpeg12, mpeg4 are working but not h264 (visible but lot of blockiness)
-
-Need someone to try existing st/va with a radeon card and using:
-LIBVA_DRIVER_NAME=gallium mpv --hwdec=vaapi anyH264Video.mp4</pre>
+        <pre>seems like the issue gets worse the lower the core clock is, for reasons I
+don't understand</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +76,9 @@ LIBVA_DRIVER_NAME=gallium mpv --hwdec=vaapi anyH264Video.mp4</pre>
     </body>
 </html>
 
---1442406769.ff8fAa4.25022--
+--1442408427.3A6aC86E0.1079--
 
---===============1882541372==
+--===============1810422594==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1882541372==--
+--===============1810422594==--
