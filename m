@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92032] NV30: WARNING: CPU: 0 PID: 290 at
- lib/dma-debug.c:1205 check_sync+0x169/0x6e0()
-Date: Fri, 18 Sep 2015 09:29:27 +0000
-Message-ID: <bug-92032-8800-ANYDbmVHxs@http.bugs.freedesktop.org/>
-References: <bug-92032-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] display: allow up to 16k width/height for
+	fermi+
+Date: Fri, 18 Sep 2015 23:41:41 +1000
+Message-ID: <CACAvsv7WdCM5xJDL2+pvBBkRb17npA4ddrhtgsS-+Zb4qtRBoA@mail.gmail.com>
+References: <1442543480-18067-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0608072753=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92032-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1442543480-18067-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,81 +18,39 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0608072753==
-Content-Type: multipart/alternative; boundary="1442568567.DfD01.32258"; charset="UTF-8"
-
-
---1442568567.DfD01.32258
-Date: Fri, 18 Sep 2015 09:29:27 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92032
-
---- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-BTW it is the same device:
-"NV30: Xfwm4 use_compositing - garbled display"
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1442568567.DfD01.32258
-Date: Fri, 18 Sep 2015 09:29:27 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032">bug 92032</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-BTW it is the same device:
-&quot;NV30: Xfwm4 use_compositing - garbled display&quot;
-<a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
-   href="show_bug.cgi?id=90871">https://bugs.freedesktop.org/show_bug.cgi?id=90871</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442568567.DfD01.32258--
-
---===============0608072753==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0608072753==--
+T24gMTggU2VwdGVtYmVyIDIwMTUgYXQgMTI6MzEsIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
+bWl0LmVkdT4gd3JvdGU6Cj4gU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1
+bS5taXQuZWR1Pgo+IC0tLQo+Cj4gbXJudWtlIG9uIElSQyByZXBvcnRlZCB0aGF0IDN4IDRLIG1v
+bml0b3JzICgxMTUyMCB3aWR0aCB0b3RhbCkgZ290Cj4gcmVqZWN0ZWQgZm9yIHNvbWUgcmVhc29u
+LiBJJ20gZ3Vlc3NpbmcgaXQncyB0aGlzIHNpbmNlIGEgc2luZ2xlIGdpYW50Cj4gRkIgaGFzIHRv
+IGJlIHVzZWQuCj4KPiBOb3Qgc3VyZSBpZiB0aGUgaGFyZHdhcmUgd2lsbCBhY3R1YWxseSBzdXBw
+b3J0IGl0LCBidXQuLi4gd2hvIGtub3dzLgpBZnRlciBsb29raW5nIGF0IHRoZSBFVk8gaGVhZGVy
+cywgSSBiZWxpZXZlIHRoaXMgc2hvdWxkIGJlIGZpbmUuICBEaWQKdGhlIHBhdGNoIGdldCB0ZXN0
+ZWQgdG8gY29uZmlybT8KCkknZCBhbHNvIG1ha2UgdGhlIHN1YmplY3QgImttcyIgcmF0aGVyIHRo
+YW4gImRpc3BsYXkiLgoKQmVuLgoKPgo+ICBkcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyB8
+IDYgKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24o
+LSkKPgo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RybS9u
+b3V2ZWF1L25vdXZlYXVfZGlzcGxheS5jCj4gaW5kZXggOGQwZTYwZC4uZDNkNjQzOCAxMDA2NDQK
+PiAtLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwo+ICsrKyBiL2RybS9ub3V2ZWF1
+L25vdXZlYXVfZGlzcGxheS5jCj4gQEAgLTQ2OSw5ICs0NjksMTMgQEAgbm91dmVhdV9kaXNwbGF5
+X2NyZWF0ZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ICAgICAgICAgaWYgKGRybS0+ZGV2aWNl
+LmluZm8uZmFtaWx5IDwgTlZfREVWSUNFX0lORk9fVjBfVEVTTEEpIHsKPiAgICAgICAgICAgICAg
+ICAgZGV2LT5tb2RlX2NvbmZpZy5tYXhfd2lkdGggPSA0MDk2Owo+ICAgICAgICAgICAgICAgICBk
+ZXYtPm1vZGVfY29uZmlnLm1heF9oZWlnaHQgPSA0MDk2Owo+IC0gICAgICAgfSBlbHNlIHsKPiAr
+ICAgICAgIH0gZWxzZQo+ICsgICAgICAgaWYgKGRybS0+ZGV2aWNlLmluZm8uZmFtaWx5IDwgTlZf
+REVWSUNFX0lORk9fVjBfRkVSTUkpIHsKPiAgICAgICAgICAgICAgICAgZGV2LT5tb2RlX2NvbmZp
+Zy5tYXhfd2lkdGggPSA4MTkyOwo+ICAgICAgICAgICAgICAgICBkZXYtPm1vZGVfY29uZmlnLm1h
+eF9oZWlnaHQgPSA4MTkyOwo+ICsgICAgICAgfSBlbHNlIHsKPiArICAgICAgICAgICAgICAgZGV2
+LT5tb2RlX2NvbmZpZy5tYXhfd2lkdGggPSAxNjM4NDsKPiArICAgICAgICAgICAgICAgZGV2LT5t
+b2RlX2NvbmZpZy5tYXhfaGVpZ2h0ID0gMTYzODQ7Cj4gICAgICAgICB9Cj4KPiAgICAgICAgIGRl
+di0+bW9kZV9jb25maWcucHJlZmVycmVkX2RlcHRoID0gMjQ7Cj4gLS0KPiAyLjQuNgo+Cj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
