@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92013] [NVA0] 4.3-rc1 fan set to full speed after
  resume from suspend
-Date: Fri, 18 Sep 2015 03:07:41 +0000
-Message-ID: <bug-92013-8800-8MQDzQLe6E@http.bugs.freedesktop.org/>
+Date: Fri, 18 Sep 2015 03:08:30 +0000
+Message-ID: <bug-92013-8800-u6qFpIulOQ@http.bugs.freedesktop.org/>
 References: <bug-92013-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0863695059=="
+Content-Type: multipart/mixed; boundary="===============0381728373=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0863695059==
-Content-Type: multipart/alternative; boundary="1442545661.eAdA321.18265"; charset="UTF-8"
+--===============0381728373==
+Content-Type: multipart/alternative; boundary="1442545710.F75f1.18443"; charset="UTF-8"
 
 
---1442545661.eAdA321.18265
-Date: Fri, 18 Sep 2015 03:07:41 +0000
+--1442545710.F75f1.18443
+Date: Fri, 18 Sep 2015 03:08:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92013
 
---- Comment #2 from Matt Henry <boohbah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 118338
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118338&action=edit
-4.2.0-rc8-gd36a99d.dmesg
+--- Comment #3 from Matt Henry <boohbah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 118339
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118339&action=edit
+4.2.0-rc8-g2aa5eac.dmesg
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1442545661.eAdA321.18265
-Date: Fri, 18 Sep 2015 03:07:41 +0000
+--1442545710.F75f1.18443
+Date: Fri, 18 Sep 2015 03:08:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92013">bug 92013</a>
               from <span class="vcard"><a class="email" href="mailto:boohbah&#64;gmail.com" title="Matt Henry &lt;boohbah&#64;gmail.com&gt;"> <span class="fn">Matt Henry</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118338" name="attach_118338" title="4.2.0-rc8-gd36a99d.dmesg">attachment 118338</a> <a href="attachment.cgi?id=118338&amp;action=edit" title="4.2.0-rc8-gd36a99d.dmesg">[details]</a></span>
-4.2.0-rc8-gd36a99d.dmesg</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118339" name="attach_118339" title="4.2.0-rc8-g2aa5eac.dmesg">attachment 118339</a> <a href="attachment.cgi?id=118339&amp;action=edit" title="4.2.0-rc8-g2aa5eac.dmesg">[details]</a></span>
+4.2.0-rc8-g2aa5eac.dmesg</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1442545661.eAdA321.18265--
+--1442545710.F75f1.18443--
 
---===============0863695059==
+--===============0381728373==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0863695059==--
+--===============0381728373==--
