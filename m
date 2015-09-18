@@ -1,16 +1,12 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: nvs280 / nv34 card only does 1680x1050,
-	not 1920x1080 ?
-Date: Fri, 18 Sep 2015 11:16:56 +0200
-Message-ID: <55FBD688.1060205@gmail.com>
-References: <55E99600.9050207@redhat.com>
- <CAKb7UvjOcOV0dmHbeBEuOHsYSfvscvwqi0XWd-V6=AKD1QLaUw@mail.gmail.com>
- <55E9D799.2060203@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Fri, 18 Sep 2015 09:24:24 +0000
+Message-ID: <bug-90871-8800-8CisF6q3Ou@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1181327130=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55E9D799.2060203-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +16,84 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDQuMDkuMjAxNSAxOTo0MCwgcG9tYSB3cm90ZToKPiBPbiAwNC4wOS4yMDE1IDE2OjU2LCBJ
-bGlhIE1pcmtpbiB3cm90ZToKPj4gVG1kcyBpcyBsaW1pdGVkIHRvIDEzNW1oeiBvbiBudjN4LiBJ
-ZiB5b3UgdXNlIGFuYWxvZywgeW91IGNhbiBnZXQgZnVsbAo+PiByZXNvbHV0aW9uLgo+PiBPbiBT
-ZXAgNCwgMjAxNSA5OjAwIEFNLCAiSGFucyBkZSBHb2VkZSIgPGhkZWdvZWRlQHJlZGhhdC5jb20+
-IHdyb3RlOgo+Pgo+Pj4gSGkgQWxsLAo+Pj4KPj4+IEkndmUgcmVjZW50bHkgYWNxdWlyZWQgYSBu
-dnMyODAgY2FyZCwgd2hpY2ggaXMgYSBudjM0Cj4+PiBncHUgYmFzZWQgY2FyZCB3aXRoIGEgcGNp
-LWUgYnJpZGdlIG9uIHRoZSBjYXJkLCB0aGlzCj4+PiB3YXkgSSBjYW4gdGVzdCBudjN4IHByb2Js
-ZW1zIHdpdGhvdXQgbmVlZGluZyBhbiBhZ3AKPj4+IG1vdGhlcmJvYXJkLgo+Pj4KPj4+IE9uZSB0
-aGluZyB3aGljaCBzdGFuZHMgb3V0IHdpdGggdGhpcyBjYXJkIGlzIHRoYXQKPj4+IGl0IGRyaXZl
-cnMgbXkgZHZpIGxjZCBtb25pdG9yIGF0IDE2ODB4MTA1MCBpbnN0ZWFkIG9mIGl0cwo+Pj4gbmF0
-aXZlIDE5MjB4MTA4MC4KPj4+Cj4+PiBJcyB0aGlzIGR1ZSB0byBhIGtub3duIGxpbWl0YXRpb24g
-b24gdGhlIGRpc3BsYXkgcGlwZWxpbmUKPj4+IG9mIHRoZXNlIGNhcmRzIC8gbnYzNCBncHUtcy4g
-T3IgaXMgdGhpcyBtb3JlIGxpa2VseSBhIGJ1Zwo+Pj4gc29tZXdoZXJlID8KPj4+Cj4+PiBSZWdh
-cmRzLAo+Pj4KPj4+IEhhbnMKPj4+Cj4gCj4gbWFuIDEgY3Z0Cj4gIkNyZWF0ZSBhIG1vZGUgd2l0
-aCByZWR1Y2VkIGJsYW5raW5nLiAuLi4iCj4gCj4gRW5vdWdoIHRvIGZpdCwKPiBHZUZvcmNlIEZY
-IDUyMDAg4oiSRFZJ4oiSIExDRCBGdWxsSEQKPiAKPiB4cmFuZHIgLS1uZXdtb2RlICIxOTIweDEw
-ODBSIiAxMzguNTAgMTkyMCAxOTY4IDIwMDAgMjA4MCAxMDgwIDEwODMgMTA4OCAxMTExICtoc3lu
-YyAtdnN5bmMKPiB4cmFuZHIgLS1hZGRtb2RlIDxvdXRwdXQgbmFtZT4gMTkyMHgxMDgwUgo+IHhy
-YW5kciAtLW91dHB1dCA8b3V0cHV0IG5hbWU+IC0tbW9kZSAxOTIweDEwODBSCj4gCj4gCj4gCgpW
-aWEgeG9yZyBjb25mOgoKL2V0Yy9YMTEveG9yZy5jb25mLmQvMDAtRnVsbEhELmNvbmYKU2VjdGlv
-biAiTW9uaXRvciIKICAgIElkZW50aWZpZXIgICJMQ0QgRnVsbEhEIgogICAgTW9kZWxpbmUgICAg
-IjE5MjB4MTA4MFIiIDEzOC41MCAxOTIwIDE5NjggMjAwMCAyMDgwIDEwODAgMTA4MyAxMDg4IDEx
-MTEgK0hTeW5jIC1WU3luYwojICAgTW9kZWxpbmUgICAgLi4uCiAgICBPcHRpb24gICAgICAiUHJl
-ZmVycmVkTW9kZSIgIjE5MjB4MTA4MFIiCkVuZFNlY3Rpb24KClNlY3Rpb24gIkRldmljZSIKICAg
-IElkZW50aWZpZXIgICJDaGlwc2V0IE5WMzQiCiAgICBPcHRpb24gICAgICAiTW9uaXRvci08b3V0
-cHV0IG5hbWU+IiAiTENEIEZ1bGxIRCIKRW5kU2VjdGlvbgoKCm1hbiA1IHhvcmcuY29uZgoKCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
-bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1181327130==
+Content-Type: multipart/alternative; boundary="1442568264.F168b11.31217"; charset="UTF-8"
+
+
+--1442568264.F168b11.31217
+Date: Fri, 18 Sep 2015 09:24:24 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
+
+--- Comment #37 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+dmesg - S4 RESUME(THAW) - Xfwm4 "xpresent" - when compositing turned on:
+
+nouveau E[  PGRAPH][0000:01:00.0]  (unknown bits 0x00000080) nsource: nstatus:
+nouveau E[  PGRAPH][0000:01:00.0] ch 1 [Xorg[493]] subc 0 class 0x0039 mthd
+0x0100 data 0x00000000
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1442568264.F168b11.31217
+Date: Fri, 18 Sep 2015 09:24:24 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c37">Comment # 37</a>
+              on <a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>
+dmesg - S4 RESUME(THAW) - Xfwm4 &quot;xpresent&quot; - when compositing turned on:
+
+nouveau E[  PGRAPH][0000:01:00.0]  (unknown bits 0x00000080) nsource: nstatus:
+nouveau E[  PGRAPH][0000:01:00.0] ch 1 [Xorg[493]] subc 0 class 0x0039 mthd
+0x0100 data 0x00000000</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1442568264.F168b11.31217--
+
+--===============1181327130==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1181327130==--
