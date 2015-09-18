@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Fri, 18 Sep 2015 09:24:24 +0000
-Message-ID: <bug-90871-8800-8CisF6q3Ou@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92032] NV30: WARNING: CPU: 0 PID: 290 at
+ lib/dma-debug.c:1205 check_sync+0x169/0x6e0()
+Date: Fri, 18 Sep 2015 09:29:27 +0000
+Message-ID: <bug-92032-8800-ANYDbmVHxs@http.bugs.freedesktop.org/>
+References: <bug-92032-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1181327130=="
+Content-Type: multipart/mixed; boundary="===============0608072753=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92032-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1181327130==
-Content-Type: multipart/alternative; boundary="1442568264.F168b11.31217"; charset="UTF-8"
+--===============0608072753==
+Content-Type: multipart/alternative; boundary="1442568567.DfD01.32258"; charset="UTF-8"
 
 
---1442568264.F168b11.31217
-Date: Fri, 18 Sep 2015 09:24:24 +0000
+--1442568567.DfD01.32258
+Date: Fri, 18 Sep 2015 09:29:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
+https://bugs.freedesktop.org/show_bug.cgi?id=92032
+
+--- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+
+BTW it is the same device:
+"NV30: Xfwm4 use_compositing - garbled display"
 https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #37 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-dmesg - S4 RESUME(THAW) - Xfwm4 "xpresent" - when compositing turned on:
-
-nouveau E[  PGRAPH][0000:01:00.0]  (unknown bits 0x00000080) nsource: nstatus:
-nouveau E[  PGRAPH][0000:01:00.0] ch 1 [Xorg[493]] subc 0 class 0x0039 mthd
-0x0100 data 0x00000000
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442568264.F168b11.31217
-Date: Fri, 18 Sep 2015 09:24:24 +0000
+--1442568567.DfD01.32258
+Date: Fri, 18 Sep 2015 09:29:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,36 +55,36 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c37">Comment # 37</a>
+          bz_status_NEW "
+   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+          bz_status_NEW "
+   title="NEW - NV30: WARNING: CPU: 0 PID: 290 at lib/dma-debug.c:1205 check_sync+0x169/0x6e0()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92032">bug 92032</a>
               from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
         <pre>
-dmesg - S4 RESUME(THAW) - Xfwm4 &quot;xpresent&quot; - when compositing turned on:
-
-nouveau E[  PGRAPH][0000:01:00.0]  (unknown bits 0x00000080) nsource: nstatus:
-nouveau E[  PGRAPH][0000:01:00.0] ch 1 [Xorg[493]] subc 0 class 0x0039 mthd
-0x0100 data 0x00000000</pre>
+BTW it is the same device:
+&quot;NV30: Xfwm4 use_compositing - garbled display&quot;
+<a class="bz_bug_link 
+          bz_status_ASSIGNED "
+   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
+   href="show_bug.cgi?id=90871">https://bugs.freedesktop.org/show_bug.cgi?id=90871</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442568264.F168b11.31217--
+--1442568567.DfD01.32258--
 
---===============1181327130==
+--===============0608072753==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1181327130==--
+--===============0608072753==--
