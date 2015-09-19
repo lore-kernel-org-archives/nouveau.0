@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91738] [NV117] NULL deref in
- nvkm_i2c_try_acquire_pad, kernel 4.1
-Date: Sat, 19 Sep 2015 01:26:13 +0000
-Message-ID: <bug-91738-8800-x32irJBxwI@http.bugs.freedesktop.org/>
-References: <bug-91738-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: PWM-based voltage management input clock
+Date: Sat, 19 Sep 2015 19:21:04 +0300
+Message-ID: <55FD8B70.6010704@free.fr>
+References: <55FC7081.7050007@free.fr>
+ <20150918203051.GA23395@prokofiev.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1224023854=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20150918203051.GA23395-FqhoBIChHNk6p33qAC56yVaTQe2KTcn/@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,72 +18,16 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1224023854==
-Content-Type: multipart/alternative; boundary="1442625973.606C0C1.20513"; charset="UTF-8"
-
-
---1442625973.606C0C1.20513
-Date: Sat, 19 Sep 2015 01:26:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91738
-
---- Comment #16 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Ilia, should I change the status of this bug?
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1442625973.606C0C1.20513
-Date: Sat, 19 Sep 2015 01:26:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
-              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
-</span></b>
-        <pre>Ilia, should I change the status of this bug?</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1442625973.606C0C1.20513--
-
---===============1224023854==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1224023854==--
+T24gMTgvMDkvMTUgMjM6MzAsIEFuZHkgUml0Z2VyIHdyb3RlOgo+IFRoYW5rcywgTWFydGluLiAg
+SSdsbCB0cnkgdG8gZm9sbG93IHVwIG9uIHRoaXMgbmV4dCB3ZWVrIGFuZCBnZXQgeW91IGFuIGFu
+c3dlci4gIFdoYXQgR1BVcyBoYXZlIHlvdSBvYnNlcnZlZCB0aGlzIG9uPwo+ClRoYW5rcyBBbmR5
+LAoKQXMgZmFyIGFzIEkgY2FuIHRlbGwsIGl0IGlzIHRoZSBjYXNlIGZvciBhbGwgR1BVcyB1c2lu
+ZyB0aGUgUFdNLWJhc2VkIAp2b2x0YWdlIG1hbmFnZW1lbnQuIFRvIGJlIG1vcmUgc3BlY2lmaWMs
+IHdlIGhhdmUgc2VlbiB0aGlzIGJlaGF2aW91ciBvbiAKYSBHSzEwNiAobW9iaWxlKSwgYSBHTTEx
+NyBhbmQgYSBHTTIwNC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
