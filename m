@@ -1,14 +1,13 @@
-From: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: PWM-based voltage management input clock
-Date: Fri, 18 Sep 2015 13:30:51 -0700
-Message-ID: <20150918203051.GA23395@prokofiev.nvidia.com>
-References: <55FC7081.7050007@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91738] [NV117] NULL deref in
+ nvkm_i2c_try_acquire_pad, kernel 4.1
+Date: Sat, 19 Sep 2015 01:26:13 +0000
+Message-ID: <bug-91738-8800-x32irJBxwI@http.bugs.freedesktop.org/>
+References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1224023854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <55FC7081.7050007-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,27 +17,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhhbmtzLCBNYXJ0aW4uICBJJ2xsIHRyeSB0byBmb2xsb3cgdXAgb24gdGhpcyBuZXh0IHdlZWsg
-YW5kIGdldCB5b3UgYW4gYW5zd2VyLiAgV2hhdCBHUFVzIGhhdmUgeW91IG9ic2VydmVkIHRoaXMg
-b24/CgoKT24gRnJpLCBTZXAgMTgsIDIwMTUgYXQgMTE6MTM6NTNQTSArMDMwMCwgTWFydGluIFBl
-cmVzIHdyb3RlOgo+IEhlbGxvLAo+IAo+IFdlIHJlY2VudGx5IHJldmVyc2UgZW5naW5lZXJlZCBQ
-V00tYmFzZWQgdm9sdGFnZSBtYW5hZ2VtZW50IGJ1dCBmb3VuZCBhbgo+IG9kaXR5IGluIHRoZSBp
-bnB1dCBjbG9jayBmcmVxdWVuY3kgZm9yIHRoZSBQV00gY29udHJvbGxlci4gSXQgc2VlbXMgbGlr
-ZSBSTQo+IGlzIGFzc3VtaW5nIGFuIGlucHV0IGNsb2NrIG9mIDI3LjY0OCBNSHogaW5zdGVhZCBv
-ZiB0aGUgYWN0dWFsIDI3TUh6IGNyeXN0YWwKPiBmb3VuZCBvbiB0aGUgYm9hcmQuCj4gCj4gSSB0
-aHVzIGhhdmUgdGhlIGZvbGxvd2luZyBxdWVzdGlvbnM6Cj4gIC0gSXMgaXQgYSBmaXhlZCB2YWx1
-ZSBoYXJkY29kZWQgaW4gUk0/IChDdXJyZW50IHdheSBpdCBpcyBkb25lIGluIE5vdXZlYXUpCj4g
-IC0gU2hvdWxkIHdlIHVzZSBjcnlzdGFsX01IeiAqIDEuMDI0Pwo+IAo+IEkgY291bGQgc3BlbmQg
-c29tZSB0aW1lIGhvb2tpbmcgdXAgbXkgb3NjaWxvc2NvcGUgdG8gdGhlIFZSIHRvIGNoZWNrIGlm
-IGl0Cj4gaXMgYSBicmluZ3VwIGlzc3VlIGJ1dCBpdCB3b3VsZCBub3QgaGVscCBOb3V2ZWF1IG11
-Y2ggYXMgd2UgbmVlZCB0bwo+IHJlcHJvZHVjZSB0aGUgYmVoYXZpb3VyIG9mIFJNIGFueXdheSBz
-aW5jZSB0aGlzIGlzIHRoZSBvbmx5IHZhbGlkYXRlZAo+IGNvbmZpZ3VyYXRpb24uCj4gCj4gVGhh
-bmtzIGluIGFkdmFuY2UsCj4gTWFydGluCj4gCj4gUFM6IFRoZSByZWdpc3RlcnMgZm9yIHRoaXMg
-UFdNIGNvbnRyb2xsZXIgYXJlIDB4MjAzNDAgYW5kIDB4MjAzNDQuCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1224023854==
+Content-Type: multipart/alternative; boundary="1442625973.606C0C1.20513"; charset="UTF-8"
+
+
+--1442625973.606C0C1.20513
+Date: Sat, 19 Sep 2015 01:26:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91738
+
+--- Comment #16 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
+Ilia, should I change the status of this bug?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1442625973.606C0C1.20513
+Date: Sat, 19 Sep 2015 01:26:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
+              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+</span></b>
+        <pre>Ilia, should I change the status of this bug?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1442625973.606C0C1.20513--
+
+--===============1224023854==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1224023854==--
