@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Wed, 23 Sep 2015 16:07:10 +0000
-Message-ID: <bug-92077-8800-KAJW08k4Hy@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH] ibus/gf100: increase wait timeout to avoid read
+	faults
+Date: Wed, 23 Sep 2015 22:25:54 +0200
+Message-ID: <1443039954-9419-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1251347896=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,109 +19,113 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1251347896==
-Content-Type: multipart/alternative; boundary="1443024429.4beEe00.16363"; charset="UTF-8"
-
-
---1443024429.4beEe00.16363
-Date: Wed, 23 Sep 2015 16:07:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92077
-
---- Comment #6 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
-Information on graphics card from lspci -v:
-
-02:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 640
-Rev. 2] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: ASUSTeK Computer Inc. GK208 [GeForce GT 640 Rev. 2]
-        Flags: bus master, fast devsel, latency 0, IRQ 27
-        Memory at df000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (64-bit, prefetchable) [size=128M]
-        Memory at dc000000 (64-bit, prefetchable) [size=32M]
-        I/O ports at ec00 [size=128]
-        Expansion ROM at def80000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Legacy Endpoint, MSI 00
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting <?>
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-<?>
-        Capabilities: [900] #19
-        Kernel driver in use: nouveau
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1443024429.4beEe00.16363
-Date: Wed, 23 Sep 2015 16:07:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
-              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
-</span></b>
-        <pre>Information on graphics card from lspci -v:
-
-02:00.0 VGA compatible controller: NVIDIA Corporation GK208 [GeForce GT 640
-Rev. 2] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: ASUSTeK Computer Inc. GK208 [GeForce GT 640 Rev. 2]
-        Flags: bus master, fast devsel, latency 0, IRQ 27
-        Memory at df000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at d0000000 (64-bit, prefetchable) [size=128M]
-        Memory at dc000000 (64-bit, prefetchable) [size=32M]
-        I/O ports at ec00 [size=128]
-        Expansion ROM at def80000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Legacy Endpoint, MSI 00
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting &lt;?&gt;
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-&lt;?&gt;
-        Capabilities: [900] #19
-        Kernel driver in use: nouveau</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443024429.4beEe00.16363--
-
---===============1251347896==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1251347896==--
+SW5jcmVhc2UgY2xvY2sgdGltZW91dCBvZiBzb21lIHVua25vd24gZW5naW5lcyBpbiBvcmRlciB0
+byBhdm9pZCBmYWlsdXJlCmF0IGhpZ2ggZ3BjY2xrIHJhdGUuCgpUaGlzIGZpeGVzIElCVVMgcmVh
+ZCBmYXVsdHMgb24gbXkgR0YxMTkgd2hlbiByZWNsb2NraW5nIGlzIG1hbnVhbGx5CmVuYWJsZWQu
+IE5vdGUgdGhhdCBtZW1vcnkgcmVjbG9ja2luZyBpcyBjb21wbGV0ZWx5IGJyb2tlbiBhbmQgTnZN
+ZW1FeGVjCmhhcyB0byBiZSBkaXNhYmxlZCB0byBhbGxvdyBjb3JlIGNsb2NrIHJlY2xvY2tpbmcg
+b25seS4KClNpZ25lZC1vZmYtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdt
+YWlsLmNvbT4KLS0tCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2lidXMuaCB8ICAx
+ICsKIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgIHwgIDQgKy0tCiBkcm0v
+bm91dmVhdS9udmttL3N1YmRldi9pYnVzL0tidWlsZCAgICB8ICAxICsKIGRybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2lidXMvZ2YxMDAuYyAgIHwgMTcgKysrKysrKysrKy0tCiBkcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9pYnVzL2dmMTE3LmMgICB8IDUxICsrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvcHJpdi5oICAgIHwgIDcgKysr
+KysKIDYgZmlsZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTE3LmMKIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL3ByaXYuaAoKZGlm
+ZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvaWJ1cy5oIGIvZHJtL25v
+dXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pYnVzLmgKaW5kZXggOWQ1MTJjZC4uYzRkY2QyNiAx
+MDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pYnVzLmgKKysrIGIv
+ZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pYnVzLmgKQEAgLTMsNiArMyw3IEBACiAj
+aW5jbHVkZSA8Y29yZS9zdWJkZXYuaD4KIAogaW50IGdmMTAwX2lidXNfbmV3KHN0cnVjdCBudmtt
+X2RldmljZSAqLCBpbnQsIHN0cnVjdCBudmttX3N1YmRldiAqKik7CitpbnQgZ2YxMTdfaWJ1c19u
+ZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fc3ViZGV2ICoqKTsKIGlu
+dCBnazEwNF9pYnVzX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9z
+dWJkZXYgKiopOwogaW50IGdrMjBhX2lidXNfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBpbnQs
+IHN0cnVjdCBudmttX3N1YmRldiAqKik7CiAjZW5kaWYKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZp
+Y2UvYmFzZS5jCmluZGV4IDk1MmE1MDguLjgzMzgzYmMgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
+ZGV2aWNlL2Jhc2UuYwpAQCAtMTU5NSw3ICsxNTk1LDcgQEAgbnZkN19jaGlwc2V0ID0gewogCS5m
+dXNlID0gZ2YxMDBfZnVzZV9uZXcsCiAJLmdwaW8gPSBnZjExOV9ncGlvX25ldywKIAkuaTJjID0g
+Z2YxMTdfaTJjX25ldywKLQkuaWJ1cyA9IGdmMTAwX2lidXNfbmV3LAorCS5pYnVzID0gZ2YxMTdf
+aWJ1c19uZXcsCiAJLmltZW0gPSBudjUwX2luc3RtZW1fbmV3LAogCS5sdGMgPSBnZjEwMF9sdGNf
+bmV3LAogCS5tYyA9IGdmMTAwX21jX25ldywKQEAgLTE2MjgsNyArMTYyOCw3IEBAIG52ZDlfY2hp
+cHNldCA9IHsKIAkuZnVzZSA9IGdmMTAwX2Z1c2VfbmV3LAogCS5ncGlvID0gZ2YxMTlfZ3Bpb19u
+ZXcsCiAJLmkyYyA9IGdmMTE5X2kyY19uZXcsCi0JLmlidXMgPSBnZjEwMF9pYnVzX25ldywKKwku
+aWJ1cyA9IGdmMTE3X2lidXNfbmV3LAogCS5pbWVtID0gbnY1MF9pbnN0bWVtX25ldywKIAkubHRj
+ID0gZ2YxMDBfbHRjX25ldywKIAkubWMgPSBnZjEwMF9tY19uZXcsCmRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9pYnVzL0tidWlsZCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvS2J1aWxkCmluZGV4IGEwYjEyZDIuLmRlODg4ZmEgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2lidXMvS2J1aWxkCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvS2J1aWxkCkBAIC0xLDMgKzEsNCBAQAogbnZrbS15ICs9IG52a20vc3ViZGV2L2lidXMv
+Z2YxMDAubworbnZrbS15ICs9IG52a20vc3ViZGV2L2lidXMvZ2YxMTcubwogbnZrbS15ICs9IG52
+a20vc3ViZGV2L2lidXMvZ2sxMDQubwogbnZrbS15ICs9IG52a20vc3ViZGV2L2lidXMvZ2syMGEu
+bwpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9nZjEwMC5jIGIvZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9nZjEwMC5jCmluZGV4IDM3YTA0OTYuLjM4MjcyMGYg
+MTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMDAuYworKysgYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTAwLmMKQEAgLTIxLDcgKzIxLDcgQEAKICAq
+CiAgKiBBdXRob3JzOiBCZW4gU2tlZ2dzCiAgKi8KLSNpbmNsdWRlIDxzdWJkZXYvaWJ1cy5oPgor
+I2luY2x1ZGUgInByaXYuaCIKIAogc3RhdGljIHZvaWQKIGdmMTAwX2lidXNfaW50cl9odWIoc3Ry
+dWN0IG52a21fc3ViZGV2ICppYnVzLCBpbnQgaSkKQEAgLTU2LDcgKzU2LDcgQEAgZ2YxMDBfaWJ1
+c19pbnRyX2dwYyhzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXMsIGludCBpKQogCW52a21fbWFzayhk
+ZXZpY2UsIDB4MTI4MTI4ICsgKGkgKiAweDA0MDApLCAweDAwMDAwMjAwLCAweDAwMDAwMDAwKTsK
+IH0KIAotc3RhdGljIHZvaWQKK3ZvaWQKIGdmMTAwX2lidXNfaW50cihzdHJ1Y3QgbnZrbV9zdWJk
+ZXYgKmlidXMpCiB7CiAJc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UgPSBpYnVzLT5kZXZpY2U7
+CkBAIC05Miw4ICs5MiwyMSBAQCBnZjEwMF9pYnVzX2ludHIoc3RydWN0IG52a21fc3ViZGV2ICpp
+YnVzKQogCX0KIH0KIAorc3RhdGljIGludAorZ2YxMDBfaWJ1c19pbml0KHN0cnVjdCBudmttX3N1
+YmRldiAqaWJ1cykKK3sKKwlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGlidXMtPmRldmlj
+ZTsKKwludmttX21hc2soZGV2aWNlLCAweDEyMjMxMCwgMHgwMDAzZmZmZiwgMHgwMDAwMDgwMCk7
+CisJbnZrbV9tYXNrKGRldmljZSwgMHgxMjIzMmMsIDB4MDAwM2ZmZmYsIDB4MDAxMDAwNjQpOwor
+CW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzMwLCAweDAwMDNmZmZmLCAweDAwMTAwMDY0KTsKKwlu
+dmttX21hc2soZGV2aWNlLCAweDEyMjMzNCwgMHgwMDAzZmZmZiwgMHgwMDEwMDA2NCk7CisJbnZr
+bV9tYXNrKGRldmljZSwgMHgxMjIzNDgsIDB4MDAwM2ZmZmYsIDB4MDAwMDAxMDApOworCXJldHVy
+biAwOworfQorCiBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fc3ViZGV2X2Z1bmMKIGdmMTAwX2li
+dXMgPSB7CisJLmluaXQgPSBnZjEwMF9pYnVzX2luaXQsCiAJLmludHIgPSBnZjEwMF9pYnVzX2lu
+dHIsCiB9OwogCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTE3
+LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTE3LmMKbmV3IGZpbGUgbW9kZSAx
+MDA2NDQKaW5kZXggMDAwMDAwMC4uZjY5ZjI2MwotLS0gL2Rldi9udWxsCisrKyBiL2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMTcuYwpAQCAtMCwwICsxLDUxIEBACisvKgorICogQ29w
+eXJpZ2h0IDIwMTUgU2FtdWVsIFBpdG9zaWV0CisgKgorICogUGVybWlzc2lvbiBpcyBoZXJlYnkg
+Z3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEKKyAqIGNv
+cHkgb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0
+aGUgIlNvZnR3YXJlIiksCisgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3Ry
+aWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCisgKiB0aGUgcmlnaHRzIHRvIHVz
+ZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwK
+KyAqIGFuZC9vciBzZWxsIGNvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVy
+c29ucyB0byB3aG9tIHRoZQorICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJq
+ZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKKyAqCisgKiBUaGUgYWJvdmUgY29weXJp
+Z2h0IG5vdGljZSBhbmQgdGhpcyBwZXJtaXNzaW9uIG5vdGljZSBzaGFsbCBiZSBpbmNsdWRlZCBp
+bgorICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUu
+CisgKgorICogVEhFIFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFO
+VFkgT0YgQU5ZIEtJTkQsIEVYUFJFU1MgT1IKKyAqIElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9U
+IExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLAorICogRklUTkVT
+UyBGT1IgQSBQQVJUSUNVTEFSIFBVUlBPU0UgQU5EIE5PTklORlJJTkdFTUVOVC4gIElOIE5PIEVW
+RU5UIFNIQUxMCisgKiBUSEUgQ09QWVJJR0hUIEhPTERFUihTKSBPUiBBVVRIT1IoUykgQkUgTElB
+QkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IKKyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhF
+UiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1QsIFRPUlQgT1IgT1RIRVJXSVNFLAorICogQVJJU0lO
+RyBGUk9NLCBPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUg
+VVNFIE9SCisgKiBPVEhFUiBERUFMSU5HUyBJTiBUSEUgU09GVFdBUkUuCisgKgorICogQXV0aG9y
+czogU2FtdWVsIFBpdG9pc2V0CisgKi8KKyNpbmNsdWRlICJwcml2LmgiCisKK3N0YXRpYyBpbnQK
+K2dmMTE3X2lidXNfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXMpCit7CisJc3RydWN0IG52
+a21fZGV2aWNlICpkZXZpY2UgPSBpYnVzLT5kZXZpY2U7CisJbnZrbV9tYXNrKGRldmljZSwgMHgx
+MjIzMTAsIDB4MDAwM2ZmZmYsIDB4MDAwMDA4MDApOworCW52a21fbWFzayhkZXZpY2UsIDB4MTIy
+MzQ4LCAweDAwMDNmZmZmLCAweDAwMDAwMTAwKTsKKwludmttX21hc2soZGV2aWNlLCAweDEyMjNi
+MCwgMHgwMDAzZmZmZiwgMHgwMDAwMGZmZik7CisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyBjb25z
+dCBzdHJ1Y3QgbnZrbV9zdWJkZXZfZnVuYworZ2YxMTdfaWJ1cyA9IHsKKwkuaW5pdCA9IGdmMTE3
+X2lidXNfaW5pdCwKKwkuaW50ciA9IGdmMTAwX2lidXNfaW50ciwKK307CisKK2ludAorZ2YxMTdf
+aWJ1c19uZXcoc3RydWN0IG52a21fZGV2aWNlICpkZXZpY2UsIGludCBpbmRleCwKKwkgICAgICAg
+c3RydWN0IG52a21fc3ViZGV2ICoqcGlidXMpCit7CisJc3RydWN0IG52a21fc3ViZGV2ICppYnVz
+OworCWlmICghKGlidXMgPSAqcGlidXMgPSBremFsbG9jKHNpemVvZigqaWJ1cyksIEdGUF9LRVJO
+RUwpKSkKKwkJcmV0dXJuIC1FTk9NRU07CisJbnZrbV9zdWJkZXZfY3RvcigmZ2YxMTdfaWJ1cywg
+ZGV2aWNlLCBpbmRleCwgMCwgaWJ1cyk7CisJcmV0dXJuIDA7Cit9CmRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9pYnVzL3ByaXYuaCBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvcHJpdi5oCm5ldyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLjQ4ZTFiNjMK
+LS0tIC9kZXYvbnVsbAorKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL3ByaXYuaApA
+QCAtMCwwICsxLDcgQEAKKyNpZm5kZWYgX19OVktNX0lCVVNfUFJJVl9IX18KKyNkZWZpbmUgX19O
+VktNX0lCVVNfUFJJVl9IX18KKworI2luY2x1ZGUgPHN1YmRldi9pYnVzLmg+CisKK3ZvaWQgZ2Yx
+MDBfaWJ1c19pbnRyKHN0cnVjdCBudmttX3N1YmRldiAqKTsKKyNlbmRpZgotLSAKMi41LjMKCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFp
+bGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
