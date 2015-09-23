@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Wed, 23 Sep 2015 04:37:55 +0000
-Message-ID: <bug-92077-8800-K5djIYCNl0@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69349] Random image corruptions
+Date: Wed, 23 Sep 2015 06:57:05 +0000
+Message-ID: <bug-69349-8800-vwfnrnK4oS@http.bugs.freedesktop.org/>
+References: <bug-69349-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1177521939=="
+Content-Type: multipart/mixed; boundary="===============0891764692=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69349-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,51 +20,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1177521939==
-Content-Type: multipart/alternative; boundary="1442983075.f0eF0.19227"; charset="UTF-8"
+--===============0891764692==
+Content-Type: multipart/alternative; boundary="1442991425.bbD4AbAa2.17987"; charset="UTF-8"
 
 
---1442983075.f0eF0.19227
-Date: Wed, 23 Sep 2015 04:37:55 +0000
+--1442991425.bbD4AbAa2.17987
+Date: Wed, 23 Sep 2015 06:57:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92077
+https://bugs.freedesktop.org/show_bug.cgi?id=69349
 
---- Comment #4 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
-I generated a new apitrace without too much private content. It was about 155
-MB, so I zipped it down to 77 MB. Because I couldn't attach that to this
-report, I uploaded it to a free service, here's the link. Maybe it works.
-http://www.uploadmb.com/dw.php?id=1442982871
+Paul Menzel <paulepanter-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> changed:
 
-The apitrace was generated with the versions mentioned in the bug's
-Description.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|Random image corruptions    |Random image corruptions
+                   |(in Debian Wheezy with      |
+                   |Linux 3.2)                  |
 
-I noticed that there is a newer mesa, so I will test (later) whether the
-apitrace still results in the graphics freeze.
+--- Comment #8 from Paul Menzel <paulepanter-Rn4VEauK+AKRv+LV9MX5uipxlwaOVQ5f@public.gmane.org> ---
+I installed Linux 4.2-1~exp1 (linux-image-4.2.0-trunk-686-pae) and, today, the
+issue happened after using the system for 20 minutes without any suspend/resume
+cycle in between.
 
-The dmesg output related to this graphics freeze captured in the new trace is
-the following:
+    $ uname -a
+    Linux gm-debian 4.2.0-trunk-686-pae #1 SMP Debian 4.2-1~exp1 (2015-08-31)
+i686 GNU/Linux
 
-Sep 22 23:49:39 localhost kernel: nouveau E[   PFIFO][0000:02:00.0] read fault
-at 0x000310e000 [PTE] from GR/GPC0/T1_1 on channel 0x003facd000
-[plasmashell[2933]]                                                             
-Sep 22 23:49:39 localhost kernel: nouveau E[   PFIFO][0000:02:00.0] PGR engine
-fault on channel 5, recovering...
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0] TRAP ch 5
-[0x003facd000 plasmashell[2933]]
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0]
-GPC0/TPC0/TEX: 0x80000049
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0]
-GPC0/TPC1/TEX: 0x80000049
+No messages were logged.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1442983075.f0eF0.19227
-Date: Wed, 23 Sep 2015 04:37:55 +0000
+--1442991425.bbD4AbAa2.17987
+Date: Wed, 23 Sep 2015 06:57:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,59 +63,62 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:paulepanter&#64;users.sourceforge.net" title="Paul Menzel &lt;paulepanter&#64;users.sourceforge.net&gt;"> <span class="fn">Paul Menzel</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Random image corruptions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69349">bug 69349</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>Random image corruptions (in Debian Wheezy with Linux 3.2)
+           </td>
+           <td>Random image corruptions
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c4">Comment # 4</a>
+   title="NEW - Random image corruptions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69349#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
-              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
+   title="NEW - Random image corruptions"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69349">bug 69349</a>
+              from <span class="vcard"><a class="email" href="mailto:paulepanter&#64;users.sourceforge.net" title="Paul Menzel &lt;paulepanter&#64;users.sourceforge.net&gt;"> <span class="fn">Paul Menzel</span></a>
 </span></b>
-        <pre>I generated a new apitrace without too much private content. It was about 155
-MB, so I zipped it down to 77 MB. Because I couldn't attach that to this
-report, I uploaded it to a free service, here's the link. Maybe it works.
-<a href="http://www.uploadmb.com/dw.php?id=1442982871">http://www.uploadmb.com/dw.php?id=1442982871</a>
+        <pre>I installed Linux 4.2-1~exp1 (linux-image-4.2.0-trunk-686-pae) and, today, the
+issue happened after using the system for 20 minutes without any suspend/resume
+cycle in between.
 
-The apitrace was generated with the versions mentioned in the bug's
-Description.
+    $ uname -a
+    Linux gm-debian 4.2.0-trunk-686-pae #1 SMP Debian 4.2-1~exp1 (2015-08-31)
+i686 GNU/Linux
 
-I noticed that there is a newer mesa, so I will test (later) whether the
-apitrace still results in the graphics freeze.
-
-The dmesg output related to this graphics freeze captured in the new trace is
-the following:
-
-Sep 22 23:49:39 localhost kernel: nouveau E[   PFIFO][0000:02:00.0] read fault
-at 0x000310e000 [PTE] from GR/GPC0/T1_1 on channel 0x003facd000
-[plasmashell[2933]]                                                             
-Sep 22 23:49:39 localhost kernel: nouveau E[   PFIFO][0000:02:00.0] PGR engine
-fault on channel 5, recovering...
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0] TRAP ch 5
-[0x003facd000 plasmashell[2933]]
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0]
-GPC0/TPC0/TEX: 0x80000049
-Sep 22 23:49:39 localhost kernel: nouveau E[     PGR][0000:02:00.0]
-GPC0/TPC1/TEX: 0x80000049</pre>
+No messages were logged.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1442983075.f0eF0.19227--
+--1442991425.bbD4AbAa2.17987--
 
---===============1177521939==
+--===============0891764692==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1177521939==--
+--===============0891764692==--
