@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81690] nouveau GPU locks up under memory pressure
-Date: Wed, 23 Sep 2015 21:39:11 +0000
-Message-ID: <bug-81690-8800-aYYDcVk90S@http.bugs.freedesktop.org/>
-References: <bug-81690-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v2] ibus/gf100: increase wait timeout to avoid
+ read faults
+Date: Thu, 24 Sep 2015 00:50:12 +0300
+Message-ID: <56031E94.9030609@free.fr>
+References: <1443039954-9419-1-git-send-email-samuel.pitoiset@gmail.com>
+ <1443042080-10683-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0321110288=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81690-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1443042080-10683-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,446 +19,128 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0321110288==
-Content-Type: multipart/alternative; boundary="1443044351.3F5D17e83.11431"; charset="UTF-8"
-
-
---1443044351.3F5D17e83.11431
-Date: Wed, 23 Sep 2015 21:39:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81690
-
---- Comment #6 from Ian Kumlien <ian.kumlien-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I don't know if this is really related but... 
-
-I'm seeing this:
-[40181.763458] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x000a575000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f921000 [chrome[6026]]
-[40181.763462] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-10, recovering...
-[40182.417849] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.701542] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.985634] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.270485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.554109] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.841470] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.128689] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.415447] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.701808] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.986853] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.272766] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.558682] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.843290] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.128950] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.415131] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.700506] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.986265] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.271499] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.556816] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.842722] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.133485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.418877] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.705268] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.990129] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.275092] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.560675] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.846162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.131173] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.414957] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.698904] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.982435] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.266176] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.549908] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.833565] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.117459] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.401711] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.685162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.969316] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.256315] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.541295] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.828543] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.113320] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.398205] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.685591] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.969929] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.254368] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.537985] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.821983] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.105431] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.389035] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.672610] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.957269] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.263701] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.548514] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.831412] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.114322] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.397061] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.680167] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.964247] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.248475] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.532005] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.818370] nouveau E[chrome[6026]] nv50cal_space: -16
-[40214.814500] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[40215.097878] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[178161.256855] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0009399000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f923000
-[chrome[29152]]
-[178161.256859] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 10, recovering...
-
-I get big blocky dark squares rendering specifically in the corners and, in
-this case, a youtube video flickering.
-
-After killing chrome and starting it again:
-[178192.982581] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
-[178207.974336] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
----
-
-I have been seeing this a lot and it usually leads to a complete X deadlock...
-
-This is on a single socket AMD machine: I don't know if this is really related
-but... 
-
-I'm seeing this:
-[40181.763458] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x000a575000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f921000 [chrome[6026]]
-[40181.763462] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-10, recovering...
-[40182.417849] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.701542] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.985634] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.270485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.554109] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.841470] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.128689] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.415447] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.701808] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.986853] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.272766] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.558682] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.843290] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.128950] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.415131] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.700506] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.986265] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.271499] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.556816] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.842722] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.133485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.418877] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.705268] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.990129] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.275092] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.560675] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.846162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.131173] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.414957] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.698904] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.982435] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.266176] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.549908] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.833565] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.117459] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.401711] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.685162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.969316] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.256315] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.541295] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.828543] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.113320] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.398205] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.685591] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.969929] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.254368] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.537985] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.821983] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.105431] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.389035] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.672610] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.957269] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.263701] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.548514] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.831412] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.114322] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.397061] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.680167] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.964247] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.248475] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.532005] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.818370] nouveau E[chrome[6026]] nv50cal_space: -16
-[40214.814500] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[40215.097878] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[178161.256855] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0009399000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f923000
-[chrome[29152]]
-[178161.256859] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 10, recovering...
-
-I get big blocky dark squares rendering specifically in the corners and, in
-this case, a youtube video flickering.
-
-After killing chrome and starting it again:
-[178192.982581] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
-[178207.974336] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
----
-
-I have been seeing this a lot and it usually leads to a complete X deadlock...
-
-This is on a single socket AMD machine: AMD FX(tm)-8350 Eight-Core Processor
-With 32GB of ECC memory (no ecc errors detected)
-
-This would mean that it's been reproduced on a non NUMA system with only video
-playing....
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443044351.3F5D17e83.11431
-Date: Wed, 23 Sep 2015 21:39:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau GPU locks up under memory pressure"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau GPU locks up under memory pressure"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81690">bug 81690</a>
-              from <span class="vcard"><a class="email" href="mailto:ian.kumlien&#64;gmail.com" title="Ian Kumlien &lt;ian.kumlien&#64;gmail.com&gt;"> <span class="fn">Ian Kumlien</span></a>
-</span></b>
-        <pre>I don't know if this is really related but... 
-
-I'm seeing this:
-[40181.763458] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x000a575000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f921000 [chrome[6026]]
-[40181.763462] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-10, recovering...
-[40182.417849] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.701542] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.985634] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.270485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.554109] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.841470] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.128689] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.415447] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.701808] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.986853] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.272766] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.558682] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.843290] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.128950] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.415131] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.700506] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.986265] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.271499] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.556816] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.842722] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.133485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.418877] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.705268] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.990129] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.275092] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.560675] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.846162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.131173] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.414957] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.698904] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.982435] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.266176] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.549908] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.833565] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.117459] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.401711] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.685162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.969316] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.256315] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.541295] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.828543] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.113320] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.398205] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.685591] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.969929] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.254368] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.537985] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.821983] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.105431] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.389035] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.672610] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.957269] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.263701] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.548514] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.831412] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.114322] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.397061] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.680167] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.964247] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.248475] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.532005] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.818370] nouveau E[chrome[6026]] nv50cal_space: -16
-[40214.814500] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[40215.097878] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[178161.256855] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0009399000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f923000
-[chrome[29152]]
-[178161.256859] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 10, recovering...
-
-I get big blocky dark squares rendering specifically in the corners and, in
-this case, a youtube video flickering.
-
-After killing chrome and starting it again:
-[178192.982581] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
-[178207.974336] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
----
-
-I have been seeing this a lot and it usually leads to a complete X deadlock...
-
-This is on a single socket AMD machine: I don't know if this is really related
-but... 
-
-I'm seeing this:
-[40181.763458] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x000a575000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f921000 [chrome[6026]]
-[40181.763462] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel
-10, recovering...
-[40182.417849] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.701542] nouveau E[chrome[6026]] nv50cal_space: -16
-[40182.985634] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.270485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.554109] nouveau E[chrome[6026]] nv50cal_space: -16
-[40183.841470] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.128689] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.415447] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.701808] nouveau E[chrome[6026]] nv50cal_space: -16
-[40184.986853] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.272766] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.558682] nouveau E[chrome[6026]] nv50cal_space: -16
-[40185.843290] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.128950] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.415131] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.700506] nouveau E[chrome[6026]] nv50cal_space: -16
-[40186.986265] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.271499] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.556816] nouveau E[chrome[6026]] nv50cal_space: -16
-[40187.842722] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.133485] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.418877] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.705268] nouveau E[chrome[6026]] nv50cal_space: -16
-[40188.990129] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.275092] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.560675] nouveau E[chrome[6026]] nv50cal_space: -16
-[40189.846162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.131173] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.414957] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.698904] nouveau E[chrome[6026]] nv50cal_space: -16
-[40190.982435] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.266176] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.549908] nouveau E[chrome[6026]] nv50cal_space: -16
-[40191.833565] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.117459] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.401711] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.685162] nouveau E[chrome[6026]] nv50cal_space: -16
-[40192.969316] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.256315] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.541295] nouveau E[chrome[6026]] nv50cal_space: -16
-[40193.828543] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.113320] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.398205] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.685591] nouveau E[chrome[6026]] nv50cal_space: -16
-[40194.969929] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.254368] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.537985] nouveau E[chrome[6026]] nv50cal_space: -16
-[40195.821983] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.105431] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.389035] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.672610] nouveau E[chrome[6026]] nv50cal_space: -16
-[40196.957269] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.263701] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.548514] nouveau E[chrome[6026]] nv50cal_space: -16
-[40197.831412] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.114322] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.397061] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.680167] nouveau E[chrome[6026]] nv50cal_space: -16
-[40198.964247] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.248475] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.532005] nouveau E[chrome[6026]] nv50cal_space: -16
-[40199.818370] nouveau E[chrome[6026]] nv50cal_space: -16
-[40214.814500] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[40215.097878] nouveau E[chrome[6026]] failed to idle channel 0xcccc0000
-[chrome[6026]]
-[178161.256855] nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0009399000
-[PAGE_NOT_PRESENT] from PGRAPH/GPC0/PROP on channel 0x007f923000
-[chrome[29152]]
-[178161.256859] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
-channel 10, recovering...
-
-I get big blocky dark squares rendering specifically in the corners and, in
-this case, a youtube video flickering.
-
-After killing chrome and starting it again:
-[178192.982581] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
-[178207.974336] nouveau E[chrome[29152]] failed to idle channel 0xcccc0000
-[chrome[29152]]
----
-
-I have been seeing this a lot and it usually leads to a complete X deadlock...
-
-This is on a single socket AMD machine: AMD FX(tm)-8350 Eight-Core Processor
-With 32GB of ECC memory (no ecc errors detected)
-
-This would mean that it's been reproduced on a non NUMA system with only video
-playing....</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443044351.3F5D17e83.11431--
-
---===============0321110288==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0321110288==--
+T24gMjQvMDkvMTUgMDA6MDEsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPiBJbmNyZWFzZSBjbG9j
+ayB0aW1lb3V0IG9mIHNvbWUgdW5rbm93biBlbmdpbmVzIGluIG9yZGVyIHRvIGF2b2lkIGZhaWx1
+cmUKPiBhdCBoaWdoIGdwY2NsayByYXRlLgo+Cj4gVGhpcyBmaXhlcyBJQlVTIHJlYWQgZmF1bHRz
+IG9uIG15IEdGMTE5IHdoZW4gcmVjbG9ja2luZyBpcyBtYW51YWxseQo+IGVuYWJsZWQuIE5vdGUg
+dGhhdCBtZW1vcnkgcmVjbG9ja2luZyBpcyBjb21wbGV0ZWx5IGJyb2tlbiBhbmQgTnZNZW1FeGVj
+Cj4gaGFzIHRvIGJlIGRpc2FibGVkIHRvIGFsbG93IGNvcmUgY2xvY2sgcmVjbG9ja2luZyBvbmx5
+Lgo+Cj4gU2lnbmVkLW9mZi1ieTogU2FtdWVsIFBpdG9pc2V0IDxzYW11ZWwucGl0b2lzZXRAZ21h
+aWwuY29tPgo+IC0tLQo+IFYyOiBpbmNyZWFzZSBtYXNrIGZvciB0aGUgZ2YxMDAgY2FzZQo+Cj4g
+ICBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2lidXMuaCB8ICAxICsKPiAgIGRybS9u
+b3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgIHwgIDQgKy0tCj4gICBkcm0vbm91dmVh
+dS9udmttL3N1YmRldi9pYnVzL0tidWlsZCAgICB8ICAxICsKPiAgIGRybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2lidXMvZ2YxMDAuYyAgIHwgMTcgKysrKysrKysrKy0tCj4gICBkcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9pYnVzL2dmMTE3LmMgICB8IDUxICsrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysKPiAgIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvcHJpdi5oICAgIHwgIDcg
+KysrKysKPiAgIDYgZmlsZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
+LSkKPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dm
+MTE3LmMKPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVz
+L3ByaXYuaAo+Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYv
+aWJ1cy5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pYnVzLmgKPiBpbmRleCA5
+ZDUxMmNkLi5jNGRjZDI2IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvaWJ1cy5oCj4gKysrIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9pYnVz
+LmgKPiBAQCAtMyw2ICszLDcgQEAKPiAgICNpbmNsdWRlIDxjb3JlL3N1YmRldi5oPgo+ICAgCj4g
+ICBpbnQgZ2YxMDBfaWJ1c19uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52
+a21fc3ViZGV2ICoqKTsKPiAraW50IGdmMTE3X2lidXNfbmV3KHN0cnVjdCBudmttX2RldmljZSAq
+LCBpbnQsIHN0cnVjdCBudmttX3N1YmRldiAqKik7Cj4gICBpbnQgZ2sxMDRfaWJ1c19uZXcoc3Ry
+dWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fc3ViZGV2ICoqKTsKPiAgIGludCBn
+azIwYV9pYnVzX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9zdWJk
+ZXYgKiopOwo+ICAgI2VuZGlmCj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2RldmljZS9iYXNlLmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCj4g
+aW5kZXggOTUyYTUwOC4uODMzODNiYyAxMDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvYmFzZS5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNl
+L2Jhc2UuYwo+IEBAIC0xNTk1LDcgKzE1OTUsNyBAQCBudmQ3X2NoaXBzZXQgPSB7Cj4gICAJLmZ1
+c2UgPSBnZjEwMF9mdXNlX25ldywKPiAgIAkuZ3BpbyA9IGdmMTE5X2dwaW9fbmV3LAo+ICAgCS5p
+MmMgPSBnZjExN19pMmNfbmV3LAo+IC0JLmlidXMgPSBnZjEwMF9pYnVzX25ldywKPiArCS5pYnVz
+ID0gZ2YxMTdfaWJ1c19uZXcsCj4gICAJLmltZW0gPSBudjUwX2luc3RtZW1fbmV3LAo+ICAgCS5s
+dGMgPSBnZjEwMF9sdGNfbmV3LAo+ICAgCS5tYyA9IGdmMTAwX21jX25ldywKPiBAQCAtMTYyOCw3
+ICsxNjI4LDcgQEAgbnZkOV9jaGlwc2V0ID0gewo+ICAgCS5mdXNlID0gZ2YxMDBfZnVzZV9uZXcs
+Cj4gICAJLmdwaW8gPSBnZjExOV9ncGlvX25ldywKPiAgIAkuaTJjID0gZ2YxMTlfaTJjX25ldywK
+PiAtCS5pYnVzID0gZ2YxMDBfaWJ1c19uZXcsCj4gKwkuaWJ1cyA9IGdmMTE3X2lidXNfbmV3LAo+
+ICAgCS5pbWVtID0gbnY1MF9pbnN0bWVtX25ldywKPiAgIAkubHRjID0gZ2YxMDBfbHRjX25ldywK
+PiAgIAkubWMgPSBnZjEwMF9tY19uZXcsCj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2lidXMvS2J1aWxkIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9LYnVpbGQK
+PiBpbmRleCBhMGIxMmQyLi5kZTg4OGZhIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20v
+c3ViZGV2L2lidXMvS2J1aWxkCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9L
+YnVpbGQKPiBAQCAtMSwzICsxLDQgQEAKPiAgIG52a20teSArPSBudmttL3N1YmRldi9pYnVzL2dm
+MTAwLm8KPiArbnZrbS15ICs9IG52a20vc3ViZGV2L2lidXMvZ2YxMTcubwo+ICAgbnZrbS15ICs9
+IG52a20vc3ViZGV2L2lidXMvZ2sxMDQubwo+ICAgbnZrbS15ICs9IG52a20vc3ViZGV2L2lidXMv
+Z2syMGEubwo+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTAw
+LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTAwLmMKPiBpbmRleCAzN2EwNDk2
+Li42YzYxZDU0IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2Yx
+MDAuYwo+ICsrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMDAuYwo+IEBAIC0y
+MSw3ICsyMSw3IEBACj4gICAgKgo+ICAgICogQXV0aG9yczogQmVuIFNrZWdncwo+ICAgICovCj4g
+LSNpbmNsdWRlIDxzdWJkZXYvaWJ1cy5oPgo+ICsjaW5jbHVkZSAicHJpdi5oIgo+ICAgCj4gICBz
+dGF0aWMgdm9pZAo+ICAgZ2YxMDBfaWJ1c19pbnRyX2h1YihzdHJ1Y3QgbnZrbV9zdWJkZXYgKmli
+dXMsIGludCBpKQo+IEBAIC01Niw3ICs1Niw3IEBAIGdmMTAwX2lidXNfaW50cl9ncGMoc3RydWN0
+IG52a21fc3ViZGV2ICppYnVzLCBpbnQgaSkKPiAgIAludmttX21hc2soZGV2aWNlLCAweDEyODEy
+OCArIChpICogMHgwNDAwKSwgMHgwMDAwMDIwMCwgMHgwMDAwMDAwMCk7Cj4gICB9Cj4gICAKPiAt
+c3RhdGljIHZvaWQKPiArdm9pZAo+ICAgZ2YxMDBfaWJ1c19pbnRyKHN0cnVjdCBudmttX3N1YmRl
+diAqaWJ1cykKPiAgIHsKPiAgIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IGlidXMtPmRl
+dmljZTsKPiBAQCAtOTIsOCArOTIsMjEgQEAgZ2YxMDBfaWJ1c19pbnRyKHN0cnVjdCBudmttX3N1
+YmRldiAqaWJ1cykKPiAgIAl9Cj4gICB9Cj4gICAKPiArc3RhdGljIGludAo+ICtnZjEwMF9pYnVz
+X2luaXQoc3RydWN0IG52a21fc3ViZGV2ICppYnVzKQo+ICt7Cj4gKwlzdHJ1Y3QgbnZrbV9kZXZp
+Y2UgKmRldmljZSA9IGlidXMtPmRldmljZTsKPiArCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzEw
+LCAweDAwMDNmZmZmLCAweDAwMDAwODAwKTsKPiArCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzJj
+LCAweDAwNzNmZmZmLCAweDAwMTAwMDY0KTsKPiArCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzMw
+LCAweDAwNzNmZmZmLCAweDAwMTAwMDY0KTsKPiArCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzM0
+LCAweDAwNzNmZmZmLCAweDAwMTAwMDY0KTsKPiArCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzQ4
+LCAweDAwMDNmZmZmLCAweDAwMDAwMTAwKTsKPiArCXJldHVybiAwOwo+ICt9CgojIG52YXBlZWsg
+LWMxIDB4MTIyMzMwCjAwMTIyMzMwOiBmZjczZmZmZgpzdGFydHgKIyBudmFwZWVrIC1jMSAweDEy
+MjMzMAowMDEyMjMzMDogMDAxMDAwNjQKClNlZW1zIGxpa2UgdGhlIGJsb2IgaXMgbm90IG1hc2tp
+bmcgYW55dGhpbmcuIENhbiB5b3UgZ2V0IHJpZCBvZiB0aGUgCm1hc2tzIGFmdGVyIHlvdSBjaGVj
+ayB0aGF0IG9uIGFsbCB0aGUgZG9tYWlucz8KCj4gKwo+ICAgc3RhdGljIGNvbnN0IHN0cnVjdCBu
+dmttX3N1YmRldl9mdW5jCj4gICBnZjEwMF9pYnVzID0gewo+ICsJLmluaXQgPSBnZjEwMF9pYnVz
+X2luaXQsCj4gICAJLmludHIgPSBnZjEwMF9pYnVzX2ludHIsCj4gICB9Owo+ICAgCj4gZGlmZiAt
+LWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMTcuYyBiL2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2lidXMvZ2YxMTcuYwo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gaW5kZXgg
+MDAwMDAwMC4uZjY5ZjI2Mwo+IC0tLSAvZGV2L251bGwKPiArKysgYi9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9pYnVzL2dmMTE3LmMKPiBAQCAtMCwwICsxLDUxIEBACj4gKy8qCj4gKyAqIENvcHly
+aWdodCAyMDE1IFNhbXVlbCBQaXRvc2lldAo+ICsgKgo+ICsgKiBQZXJtaXNzaW9uIGlzIGhlcmVi
+eSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQo+ICsg
+KiBjb3B5IG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxl
+cyAodGhlICJTb2Z0d2FyZSIpLAo+ICsgKiB0byBkZWFsIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0
+IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uCj4gKyAqIHRoZSByaWdo
+dHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJs
+aWNlbnNlLAo+ICsgKiBhbmQvb3Igc2VsbCBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8g
+cGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUKPiArICogU29mdHdhcmUgaXMgZnVybmlzaGVkIHRv
+IGRvIHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKPiArICoKPiArICog
+VGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hh
+bGwgYmUgaW5jbHVkZWQgaW4KPiArICogYWxsIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9u
+cyBvZiB0aGUgU29mdHdhcmUuCj4gKyAqCj4gKyAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAi
+QVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCj4gKyAqIElN
+UExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVS
+Q0hBTlRBQklMSVRZLAo+ICsgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQg
+Tk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKPiArICogVEhFIENPUFlSSUdIVCBI
+T0xERVIoUykgT1IgQVVUSE9SKFMpIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1BR0VTIE9S
+Cj4gKyAqIE9USEVSIExJQUJJTElUWSwgV0hFVEhFUiBJTiBBTiBBQ1RJT04gT0YgQ09OVFJBQ1Qs
+IFRPUlQgT1IgT1RIRVJXSVNFLAo+ICsgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJTiBDT05O
+RUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKPiArICogT1RIRVIgREVBTElO
+R1MgSU4gVEhFIFNPRlRXQVJFLgo+ICsgKgo+ICsgKiBBdXRob3JzOiBTYW11ZWwgUGl0b2lzZXQK
+PiArICovCj4gKyNpbmNsdWRlICJwcml2LmgiCj4gKwo+ICtzdGF0aWMgaW50Cj4gK2dmMTE3X2li
+dXNfaW5pdChzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXMpCj4gK3sKPiArCXN0cnVjdCBudmttX2Rl
+dmljZSAqZGV2aWNlID0gaWJ1cy0+ZGV2aWNlOwo+ICsJbnZrbV9tYXNrKGRldmljZSwgMHgxMjIz
+MTAsIDB4MDAwM2ZmZmYsIDB4MDAwMDA4MDApOwo+ICsJbnZrbV9tYXNrKGRldmljZSwgMHgxMjIz
+NDgsIDB4MDAwM2ZmZmYsIDB4MDAwMDAxMDApOwo+ICsJbnZrbV9tYXNrKGRldmljZSwgMHgxMjIz
+YjAsIDB4MDAwM2ZmZmYsIDB4MDAwMDBmZmYpOwo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCj4gK3N0
+YXRpYyBjb25zdCBzdHJ1Y3QgbnZrbV9zdWJkZXZfZnVuYwo+ICtnZjExN19pYnVzID0gewo+ICsJ
+LmluaXQgPSBnZjExN19pYnVzX2luaXQsCj4gKwkuaW50ciA9IGdmMTAwX2lidXNfaW50ciwKPiAr
+fTsKPiArCj4gK2ludAo+ICtnZjExN19pYnVzX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
+ZSwgaW50IGluZGV4LAo+ICsJICAgICAgIHN0cnVjdCBudmttX3N1YmRldiAqKnBpYnVzKQo+ICt7
+Cj4gKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXM7Cj4gKwlpZiAoIShpYnVzID0gKnBpYnVzID0g
+a3phbGxvYyhzaXplb2YoKmlidXMpLCBHRlBfS0VSTkVMKSkpCj4gKwkJcmV0dXJuIC1FTk9NRU07
+Cj4gKwludmttX3N1YmRldl9jdG9yKCZnZjExN19pYnVzLCBkZXZpY2UsIGluZGV4LCAwLCBpYnVz
+KTsKPiArCXJldHVybiAwOwo+ICt9Cj4gZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3Vi
+ZGV2L2lidXMvcHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9wcml2LmgKPiBu
+ZXcgZmlsZSBtb2RlIDEwMDY0NAo+IGluZGV4IDAwMDAwMDAuLjQ4ZTFiNjMKPiAtLS0gL2Rldi9u
+dWxsCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9wcml2LmgKPiBAQCAtMCww
+ICsxLDcgQEAKPiArI2lmbmRlZiBfX05WS01fSUJVU19QUklWX0hfXwo+ICsjZGVmaW5lIF9fTlZL
+TV9JQlVTX1BSSVZfSF9fCj4gKwo+ICsjaW5jbHVkZSA8c3ViZGV2L2lidXMuaD4KPiArCj4gK3Zv
+aWQgZ2YxMDBfaWJ1c19pbnRyKHN0cnVjdCBudmttX3N1YmRldiAqKTsKPiArI2VuZGlmCgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
