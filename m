@@ -1,21 +1,13 @@
-From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
-Subject: Shared scaffolding to unit-test kernel code in userspace
- (was Re: [Intel-gfx] [PATCH] drm/i915: Add link training test)
-Date: Wed, 23 Sep 2015 11:38:17 +0200
-Message-ID: <20150923093817.GG3383@phenom.ffwll.local>
-References: <1441980706-9241-1-git-send-email-ander.conselvan.de.oliveira@intel.com>
- <1442231511-24258-1-git-send-email-ander.conselvan.de.oliveira@intel.com>
- <20150914131149.GE3383@phenom.ffwll.local>
- <1442237891.2755.24.camel@gmail.com>
- <1442322533.2595.11.camel@gmail.com>
- <20150923082408.GN3383@phenom.ffwll.local>
- <1442999931.2745.21.camel@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92072] Wine breakage since d082c5324 (st/mesa: don't
+ call st_validate_state in BlitFramebuffer)
+Date: Wed, 23 Sep 2015 10:28:41 +0000
+Message-ID: <bug-92072-8800-vVQ6w20B3g@http.bugs.freedesktop.org/>
+References: <bug-92072-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0541436770=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1442999931.2745.21.camel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-92072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,109 +17,130 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ander Conselvan De Oliveira <conselvan2-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx <intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Shuah Khan <shuahkh-JPH+aEBZ4P+UEJcrhfAQsw@public.gmane.org>, Linux Kernel Mailing List <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Greg KH <gregkh-hQyY1W1yCW8ekmWlsbkhG0B+6BGkLq7r@public.gmane.org>, Thomas Wood <thomas.wood-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBTZXAgMjMsIDIwMTUgYXQgMTE6MTggQU0sIEFuZGVyIENvbnNlbHZhbiBEZSBPbGl2
-ZWlyYSA8Y29uc2VsdmFuMkBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIFdlZCwgMjAxNS0wOS0yMyBh
-dCAxMDoyNCArMDIwMCwgRGFuaWVsIFZldHRlciB3cm90ZToKPj4gT24gVHVlLCBTZXAgMTUsIDIw
-MTUgYXQgMDQ6MDg6NTNQTSArMDMwMCwgQW5kZXIgQ29uc2VsdmFuIERlIE9saXZlaXJhIHdyb3Rl
-Ogo+PiA+IE9uIE1vbiwgMjAxNS0wOS0xNCBhdCAxNjozOCArMDMwMCwgQW5kZXIgQ29uc2VsdmFu
-IERlIE9saXZlaXJhIHdyb3RlOgo+PiA+ID4gT24gTW9uLCAyMDE1LTA5LTE0IGF0IDE1OjExICsw
-MjAwLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+PiA+ID4gPiBPbiBNb24sIFNlcCAxNCwgMjAxNSBh
-dCAwMjo1MTo1MVBNICswMzAwLCBBbmRlciBDb25zZWx2YW4gZGUgT2xpdmVpcmEgd3JvdGU6Cj4+
-ID4gPiA+ID4gLS0tCj4+ID4gPiA+ID4KPj4gPiA+ID4gPiBPbiBGcmksIDIwMTUtMDktMTEgYXQg
-MTc6MTEgKzAzMDAsIEFuZGVyIENvbnNlbHZhbiBkZSBPbGl2ZWlyYSB3cm90ZToKPj4gPiA+ID4g
-PiA+IE9uIFdlZCwgMjAxNS0wOS0wOSBhdCAxMTozMyArMDEwMCwgVGhvbWFzIFdvb2Qgd3JvdGU6
-Cj4+ID4gPiA+ID4gPiA+IE9uIDggU2VwdGVtYmVyIDIwMTUgYXQgMTM6MjgsIEFuZGVyIENvbnNl
-bHZhbiBkZSBPbGl2ZWlyYQo+PiA+ID4gPiA+ID4gPiA8YW5kZXIuY29uc2VsdmFuLmRlLm9saXZl
-aXJhQGludGVsLmNvbT4gd3JvdGU6Cj4+ID4gPiA+ID4gPiA+ID4KPj4gPiA+ID4gPiA+Cj4+ID4g
-PiA+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL2xpbmstdHJhaW5pbmctdGVzdC9NYWtlZmlsZSBiL2xp
-bmstdHJhaW5pbmctdGVzdC9NYWtlZmlsZQo+PiA+ID4gPiA+ID4gPgo+PiA+ID4gPiA+ID4gPiBJ
-ZiB0aGlzIGlzIG1lYW50IHRvIGJlIHBhcnQgb2YgdGhlIHRlc3Qgc3VpdGUsIHRoZW4gaXQgbmVl
-ZHMgdG8gYmUgaW4KPj4gPiA+ID4gPiA+ID4gdGhlIHRlc3RzIGRpcmVjdG9yeSBhbmQgdXNlIHRo
-ZSBpZ3QgdGVzdCBpbmZyYXN0cnVjdHVyZS4gT3RoZXJ3aXNlIGl0Cj4+ID4gPiA+ID4gPiA+IHNo
-b3VsZCBiZSBwbGFjZWQgaW4gdG9vbHMgb3IgdG9vbHMvbGluay10cmFpbmluZy10ZXN0Lgo+PiA+
-ID4gPiA+ID4KPj4gPiA+ID4gPiA+IEkgbWFkZSB0aGUgdGVzdCB1c2UgdGhlIGlndCBpbmZyYXN0
-cnVjdHVyZSwgYnV0IEknbSBub3Qgc3VyZSBpZiB0aGlzIGlzCj4+ID4gPiA+ID4gPiBhIGdvb2Qg
-Zml0IGZvciBpdC4gVGhlIGRlcGVuZGVuY3kgb24gdGhlIGtlcm5lbCBpcyBvbiBidWlsZCB0aW1l
-LCBidXQKPj4gPiA+ID4gPiA+IG9uY2UgY29tcGlsZWQgdGhpcyBjYW4gYmUgcnVuIG9uIGFueSBt
-YWNoaW5lLiBUaGlzIGNhbiBhbHNvIGludHJvZHVjZQo+PiA+ID4gPiA+ID4gYnVpbGQgZmFpbHVy
-ZXMgaWYgdGhlIHRlc3QgaXMgbm90IGtlcHQgaW4gc3luYyB3aXRoIHRoZSBkcml2ZXIgc291cmNl
-Lgo+PiA+ID4gPiA+ID4gSWRlYWxseSB0aGF0IGEgZmFpbHVyZSB0byBidWlsZCB0aGlzIHdvdWxk
-IGJlIHJlcG9ydGVkIGFzIHRoZSB0ZXN0Cj4+ID4gPiA+ID4gPiBmYWlsaW5nLCBidXQgSSBoYXZl
-IG5vIGlkZWEgb2YgaG93IHRvIGFjaGlldmUgdGhhdC4KPj4gPiA+ID4gPgo+PiA+ID4gPiA+IEFs
-dGVybmF0aXZlbHksIHRoaXMgY291bGQgYmUgaW4gdGhlIGtlcm5lbCBzb3VyY2UgdHJlZSBkaXJl
-Y3RseS4gVGhpcwo+PiA+ID4gPiA+IHBhdGNoIGFkZHMgYSB0ZXN0IHN1YmRpciB0byB0aGUgaTkx
-NSBzb3VyY2UgZGlyLCBjb250YWluaW5nIHRoZSBsaW5rCj4+ID4gPiA+ID4gdHJhaW5pbmcgdGVz
-dC4gVGhlIHRlc3QgaXMgY29tcGlsZWQgYXMgcGFydCBvZiB0aGUgbm9ybWFsIGJ1aWxkIHVzaW5n
-Cj4+ID4gPiA+ID4gdGhlIGV4dHJhLXkgdmFyaWFibGUgc28gdGhhdCBpdCBkb2Vzbid0IGdldCBs
-aW5rZWQgdG8gdGhlIGZpbmFsIGtlcm5lbC4KPj4gPiA+ID4gPgo+PiA+ID4gPiA+IFdoZW4gbWFr
-ZSBpcyBydW4gZnJvbSB0aGUgdGVzdHMgZGlyZWN0b3J5LCBhIHRoaW4gd3JhcHBlciBhcm91bmQg
-dGhlCj4+ID4gPiA+ID4gdGVzdHMgaXMgYnVpbHQgYW5kIGxpbmtlZCB0byB0aGUgb2JqZWN0IGZp
-bGUgY29tcGlsZWQgYXMgcGFydCBvZiB0aGUKPj4gPiA+ID4gPiBrZXJuZWwgYnVpbGQuIFJ1bm5p
-bmcgbWFrZSBydW5fdGVzdHMgZnJvbSB0aGUgdGVzdCBkaXIgcnVucyB0aGUgdGVzdAo+PiA+ID4g
-PiA+IGFuZCByZXBvcnRzIHN1Y2Nlc3Mgb3IgZmFpbHVyZS4KPj4gPiA+ID4gPgo+PiA+ID4gPiA+
-IEFueSB0aG91Z2h0cz8KPj4gPiA+ID4KPj4gPiA+ID4gSSB0aGluayB0aGVyZSdzIHNvbWUgcHJl
-Y2VkZW5jZSBpbiBvdGhlciBzdWJzeXN0ZW1zIHRvIGludGVncmF0ZSB1bml0Cj4+ID4gPiA+IHRl
-c3RzIGRpcmVjdGx5IGluIHRoZSBrZXJuZWwsIGUuZy4gbG9ja2luZyBzZWxmdGVzdCBvciBzaW1p
-bGFyIHRoaW5ncy4KPj4gPiA+ID4gVXN1YWwgYXBwcm9hY2ggaXMgdG8gZWl0aGVyIGhhdmUgYSBz
-cGVjaWFsIG1vZHVsZSAoYnV0IHRoYXQgb2Z0ZW4gbWVhbnMKPj4gPiA+ID4gcGlsZXMgb2YgRVhQ
-T1JUX1NZTUJPTCBvbmx5IGZvciB0aGF0IHNlbGZ0ZXN0IG1vZHVsZSkuIE9yIGp1c3QgYSB5L24K
-Pj4gPiA+ID4gS2NvbmZpZyBvcHRpb24gd2hpY2ggZW5hYmxlcyB0aGF0IGNvZGUgYW5kIHJ1bnMg
-YWxsIHRoZSBzZWxmL3VuaXQgdGVzdHMKPj4gPiA+ID4gd2hlbiB0aGUgbW9kdWxlIGxvYWRzLgo+
-PiA+ID4gPgo+PiA+ID4gPiBJJ2QgZ28gd2l0aCB0aGF0IGFwcHJvYWNoIHNpbmNlIGl0J3Mgc2lt
-cGxlci4gQW5kIHdlJ2Qgb25seSBuZWVkIHRvIHRlbGwKPj4gPiA+ID4gUUEgdG8gZW5hYmxlIHRo
-YXQgS2NvbmZpZyBvcHRpb24gZm9yIG1vcmUgdGVzdGluZy4KPj4gPiA+Cj4+ID4gPiBJJ2xsIGhh
-dmUgYSBsb29rIGludG8gdGhhdCBLY29uZmlnIGFwcHJvYWNoLCBidXQgdGhlcmUncyBhIGNvdXBs
-ZSBvZiB0aGluZ3MKPj4gPiA+IEkgbGlrZSBhYm91dCBoYXZpbmcgdGhlIHVuaXQgdGVzdCBhcyB1
-c2VyIHNwYWNlIGJpbmFyaWVzOgo+PiA+ID4KPj4gPiA+ICAgLSB0aGVyZSdzIG5vIG5lZWQgdG8g
-Ym9vdCB0aGUgbmV3bHkgY29tcGlsZWQga2VybmVsLCBzbyBkb2luZyBhIHRlc3QgcnVuCj4+ID4g
-PiAgICAgaXMgc3VwZXIgZmFzdDsKPj4gPiA+ICAgLSB0aGUgYmluYXJpZXMgY2FuIGJlIGRlYnVn
-Z2VkIHdpdGggZ2RiIGp1c3QgbGlrZSBvdGhlciB1c2VyIHNwYWNlIHN0dWZmLgo+PiA+Cj4+ID4g
-SSBpbXBsZW1lbnRlZCB0aGUgdGVzdCB1c2luZyB0aGUgS2NvbmZpZyBhcHByb2FjaCwgYW5kIGl0
-IHNlZW1zIHRvIHdvcmsgd2VsbAo+PiA+IHdpdGhvdXQgaW1wYWN0aW5nIHRoZSBwb2ludHMgYWJv
-dmUuIEkgYWRkZWQgdGhlIGNhbGwgdG8gcnVuIHRoZSB0ZXN0IGFzIHRoZQo+PiA+IGZpcnN0IHRo
-aW5nIGluIGk5MTVfaW5pdCgpLCBhbmQgd2l0aCB0aGUgZHJpdmVyIGNvbXBpbGVkIGJ1aWx0LWlu
-LCBydW5uaW5nCj4+ID4gdGhlIGtlcm5lbCB1bmRlciBxZW11IHdpbGwgcnVuIHRoZSB0ZXN0cy4g
-QW5kIHFlbXUgY2FuIGFsc28gcHJvdmlkZSBhIGdkYgo+PiA+IHJlbW90ZSB0YXJnZXQuCj4+ID4K
-Pj4gPiBPbmUgdGhpbmcgbWlnaHQgYmUgYSBwcm9ibGVtIHRob3VnaC4gV2l0aCB0aGUgcHJldmlv
-dXMgYXBwcm9hY2gsIHRoZQo+PiA+IGZ1bmN0aW9ucyBvdmVycmlkZW4gYnkgdGhlIHRlc3Qgd2hl
-cmUgc2ltcGx5IHJlaW1wbGVtZW50ZWQgaW4gdGhlIG5ldyBiaW5hcnkuCj4+ID4gQnV0IG5vdyB0
-aGUgdGVzdCBpcyBsaW5rZWQgdG8gdGhlIGVudGlyZSBkcml2ZXIsIHNvIHRoYXQncyBub3QgcG9z
-c2libGUuIFRvCj4+ID4gd29yayBhcm91bmQgdGhhdCwgSSBoYWQgdG8gYWRkIGZ1bmN0aW9uIHBv
-aW50ZXJzIHRvIGFsbCB0aGUgZnVuY3Rpb25zIGNhbGxlZAo+PiA+IGJ5IHRoZSBsaW5rIHRyYWlu
-aW5nIHN0YXRlIG1hY2hpbmUgdG8gaW50ZWxfZHAuIEkgZG9uJ3QgdGhpbmsgdGhhdCBtZXRob2QK
-Pj4gPiBzY2FsZXMgd2VsbC4KPj4gPgo+PiA+IEknbGwgc2VuZCB1cGRhdGUgcGF0Y2hlcyBmb3Ig
-cmVmZXJlbmNlIGFzIHJlcGxpZXMgdG8gdGhpcyBtYWlsLgo+Pgo+PiBJIGhhZCBhIGZldyBkaXNj
-dXNzaW9ucyBhYm91dCB0aGlzIGF0IFhEQyBhbmQgSSBrbm93IHRoaW5rIGRvaW5nIHRoaXMgaXMK
-Pj4gdXNlcnNwYWNlIGlzIGJldHRlcjoKPj4gLSBGYXN0ZXIgdG8gcnVuIHRlc3RzIChzaW5jZSBu
-byBtb2R1bGUgcmVsb2FkaW5nIHJlcXVpcmVkKS4KPj4gLSBOb3V2ZWF1IGlzIGRldmVsb3BlZCBp
-biB1c2Vyc3BhY2UgYW5kIHdvdWxkIGxpa2UgdG8gcmV1c2Ugc2hhcmVkIGxpbmsKPj4gICB0cmFp
-bmluZyBjb2RlIHRvbyBpZiBwb3NzaWJsZSBmcm9tIHRoZSBkcCBoZWxwZXJzLgo+Pgo+PiBTbyBJ
-J20gbGVhbmluZyB0b3dhcmRzIHNjYWZmb2xkaW5nIGluIHVzZXJzcGFjZSBub3cuIE1pZ2h0IGJl
-IGdvb2QgdG8KPj4gY2hlY2sgb3V0IGhvdyB0aGUgbm91dmVhdSB1c2Vyc3BhY2UgcnVudGltZSB3
-b3JrcyBqdXN0IHRvIHN0ZWFsIGEgZmV3Cj4+IHRyaWNrcy4KPgo+IEkgY2hhdHRlZCB3aXRoIE1h
-cnRpbiBQZXJlcyBhYm91dCB0aGlzIGFuZCBoYWQgYSBsb29rIGF0IHRoZSBjb2RlLiBUaGVyZSBh
-cmUgYSBmZXcgaW50ZXJlc3RpbmcKPiB0cmlja3MgaW4gTm91dmVhdSBpbmRlZWQuIFRoZXkgaGF2
-ZSB1c2VyIHNwYWNlIGltcGxlbWVudGF0aW9uIGZvciBzb21lIGtlcm5lbCBpbnRlcm5hbHMgc3Vj
-aCBhcwo+IG11dGV4ZXMsIGlvcmVtYXAgb24gdG9wIG9mIGxpYnBjaWFjY2VzcywgZXRjLiBhbmQg
-YW4gZXh0ZW5zaXZlIHNldCBvZiBzdHVicy4KPgo+IFRoZSBvbmUgdGhpbmcgdGhhdCB3b3VsZG4n
-dCBiZSBlYXN5IHRvIHRha2UgYWR2YW50YWdlIG9mIGlzIHRoZSBidWlsZCBpbnRlZ3JhdGlvbi4g
-VGhlaXIgdXBzdHJlYW0KPiByZXBvc2l0b3J5IGlzIG5vdCBhY3R1YWxseSBhIGtlcm5lbCB0cmVl
-LiBJdCBjb250YWlucyB0aGVpciBkcm0gY29kZSwgdGhlIHNhbWUgdGhhdCBlbmRzIHVwIGluIHRo
-ZQo+IGtlcm5lbCBwbHVzIGFsbCB0aGUgdXNlciBzcGFjZSBzdHVmZi4gVGhlcmUncyBhIHNjcmlw
-dCB0aGF0IGNvbnZlcnRzIHRoZSBjb21taXRzIGZyb20gdGhhdAo+IHJlcG9zaXRvcnkgZm9yIGlu
-Y2x1c2lvbiBpbiB0aGUga2VybmVsIHRyZWUuCgpDb3VsZCB3ZSBwZXJoYXBzIG1vdmUgYXQgbGVh
-c3Qgc29tZSBvZiB0aGUgc2NhZmZmb2xkaW5nIGZvciBrZXJuZWwKZnVuY3Rpb25zIHRvIHVwc3Ry
-ZWFtPyBJIGd1ZXNzIG5vdXZlYXUgaGFzIHNvbWUgbWVhbnMgdG8gcHVsbCBjaGFuZ2VzIGZyb20K
-dXBzdHJlYW0gdG9vLCBzbyBtYXliZSB3ZSBjb3VsZCBwdXNoIHRoYXQgc29tZSBwbGFjZSBuaWNl
-LiBBbmQgSSdtIHByZXR0eQpzdXJlIHdlJ3JlIG5vdCB0aGUgb25seSBvbmVzIHRoaW5raW5nIGFi
-b3V0IHVuaXQtdGVzdGluZyBzcGVjaWZpYwprZXJuZWxjb2RlIGluIGEgdXNlcnNwYWNlIGVudmly
-b25tZW50LgoKQWRkaW5nIG5vdmVhdSBhbmQga3NlbGZ0ZXN0IGZvbGtzLgotRGFuaWVsCi0tIApE
-YW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbgorNDEgKDAp
-IDc5IDM2NSA1NyA0OCAtIGh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0541436770==
+Content-Type: multipart/alternative; boundary="1443004121.23cdC42B1.16737"; charset="UTF-8"
+
+
+--1443004121.23cdC42B1.16737
+Date: Wed, 23 Sep 2015 10:28:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92072
+
+Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Mesa core                   |Drivers/DRI/nouveau
+           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+         QA Contact|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |org                         |rg
+
+--- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> FYI Marek has a fix: http://patchwork.freedesktop.org/patch/60146/
+> 
+> I tested it with this trace, and it seems to fix it.
+
+Yes, just tested it - works fine for both UT and 3Dmark2000! Thanks, Marek!
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1443004121.23cdC42B1.16737
+Date: Wed, 23 Sep 2015 10:28:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072">bug 92072</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Mesa core
+           </td>
+           <td>Drivers/DRI/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>mesa-dev&#64;lists.freedesktop.org
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072">bug 92072</a>
+              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92072#c4">comment #4</a>)
+<span class="quote">&gt; FYI Marek has a fix: <a href="http://patchwork.freedesktop.org/patch/60146/">http://patchwork.freedesktop.org/patch/60146/</a>
+&gt; 
+&gt; I tested it with this trace, and it seems to fix it.</span >
+
+Yes, just tested it - works fine for both UT and 3Dmark2000! Thanks, Marek!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443004121.23cdC42B1.16737--
+
+--===============0541436770==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0541436770==--
