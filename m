@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92072] Wine breakage since d082c5324 (st/mesa: don't
- call st_validate_state in BlitFramebuffer)
-Date: Wed, 23 Sep 2015 10:28:41 +0000
-Message-ID: <bug-92072-8800-vVQ6w20B3g@http.bugs.freedesktop.org/>
-References: <bug-92072-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
+ timeout, failed to construct context, init failed, -16
+Date: Wed, 23 Sep 2015 15:20:48 +0000
+Message-ID: <bug-91722-8800-TXtsDTE9N6@http.bugs.freedesktop.org/>
+References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0541436770=="
+Content-Type: multipart/mixed; boundary="===============0777722045=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0541436770==
-Content-Type: multipart/alternative; boundary="1443004121.23cdC42B1.16737"; charset="UTF-8"
+--===============0777722045==
+Content-Type: multipart/alternative; boundary="1443021648.65D57af0.27969"; charset="UTF-8"
 
 
---1443004121.23cdC42B1.16737
-Date: Wed, 23 Sep 2015 10:28:41 +0000
+--1443021648.65D57af0.27969
+Date: Wed, 23 Sep 2015 15:20:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92072
+https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
-Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> changed:
+--- Comment #11 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+We have a downstream reporter with what looks like much the same issue:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Mesa core                   |Drivers/DRI/nouveau
-           Assignee|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |org                         |rg
-         QA Contact|mesa-dev-PD4FTy7X32lNgt0PjOBp9/rsn8yoX9R0@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |org                         |rg
+https://bugzilla.redhat.com/show_bug.cgi?id=1264872
 
---- Comment #5 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #4)
-> FYI Marek has a fix: http://patchwork.freedesktop.org/patch/60146/
-> 
-> I tested it with this trace, and it seems to fix it.
+Sep 23 20:06:31 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:33 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:35 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:37 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] grctx
+template channel unload timeout
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0]
+failed to construct context
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] init
+failed, -16
+Sep 23 20:06:39 w50.localdomain gnome-session[1428]: nvc0_screen_create:716 -
+Error allocating PGRAPH context for M2MF: -16
 
-Yes, just tested it - works fine for both UT and 3Dmark2000! Thanks, Marek!
+Adapter there is:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK106GLM [Quadro
+K2100M] [10de:11fc] (rev a1)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1443004121.23cdC42B1.16737
-Date: Wed, 23 Sep 2015 10:28:41 +0000
+--1443021648.65D57af0.27969
+Date: Wed, 23 Sep 2015 15:20:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,61 +73,44 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072">bug 92072</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Mesa core
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>mesa-dev&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072#c5">Comment # 5</a>
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Wine breakage since d082c5324 (st/mesa: don't call st_validate_state in BlitFramebuffer)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92072">bug 92072</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
+              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92072#c4">comment #4</a>)
-<span class="quote">&gt; FYI Marek has a fix: <a href="http://patchwork.freedesktop.org/patch/60146/">http://patchwork.freedesktop.org/patch/60146/</a>
-&gt; 
-&gt; I tested it with this trace, and it seems to fix it.</span >
+        <pre>We have a downstream reporter with what looks like much the same issue:
 
-Yes, just tested it - works fine for both UT and 3Dmark2000! Thanks, Marek!</pre>
+<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1264872">https://bugzilla.redhat.com/show_bug.cgi?id=1264872</a>
+
+Sep 23 20:06:31 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:33 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:35 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:37 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] wait
+for idle timeout (en: 1, ctxsw: 0, busy: 1)
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] grctx
+template channel unload timeout
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0]
+failed to construct context
+Sep 23 20:06:39 w50.localdomain kernel: nouveau E[  PGRAPH][0000:01:00.0] init
+failed, -16
+Sep 23 20:06:39 w50.localdomain gnome-session[1428]: nvc0_screen_create:716 -
+Error allocating PGRAPH context for M2MF: -16
+
+Adapter there is:
+
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK106GLM [Quadro
+K2100M] [10de:11fc] (rev a1)</pre>
         </div>
       </p>
       <hr>
@@ -131,9 +123,9 @@ Yes, just tested it - works fine for both UT and 3Dmark2000! Thanks, Marek!</pre
     </body>
 </html>
 
---1443004121.23cdC42B1.16737--
+--1443021648.65D57af0.27969--
 
---===============0541436770==
+--===============0777722045==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -143,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0541436770==--
+--===============0777722045==--
