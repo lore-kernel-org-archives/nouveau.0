@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
- timeout, failed to construct context, init failed, -16
-Date: Wed, 23 Sep 2015 15:51:37 +0000
-Message-ID: <bug-91722-8800-7ZFpDNvKf3@http.bugs.freedesktop.org/>
-References: <bug-91722-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Wed, 23 Sep 2015 15:59:36 +0000
+Message-ID: <bug-92077-8800-YdJrxnTXT1@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0176860073=="
+Content-Type: multipart/mixed; boundary="===============1025004150=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,37 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0176860073==
-Content-Type: multipart/alternative; boundary="1443023497.53fd40.9215"; charset="UTF-8"
+--===============1025004150==
+Content-Type: multipart/alternative; boundary="1443023976.cedAaAB0.12902"; charset="UTF-8"
 
 
---1443023497.53fd40.9215
-Date: Wed, 23 Sep 2015 15:51:37 +0000
+--1443023976.cedAaAB0.12902
+Date: Wed, 23 Sep 2015 15:59:36 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91722
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Ben pushed an improved version of that c800 patch into 4.3-rc --
+--- Comment #5 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
+I upgraded the system to the following versions, and the bug is still present.
 
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&id=205877f9156daebb975fb46205488da6fdf5b3f5
-
-and enabled it by default on the Tecra W50:
-
-http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&id=778613e583994d947960a7f177226d0e7b5ef124
-
-If you have different hw, you can try it out by booting with
-
-nouveau.config=War00C800_0=1
+x11-drivers/xf86-video-nouveau-1.0.11
+x11-base/xorg-server-1.17.2-r1
+media-libs/mesa-11.0.0
+x11-libs/libdrm-2.4.65
+x11-base/xorg-drivers-1.17
+Kernel: 4.0.5 (self-compiled)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1443023497.53fd40.9215
-Date: Wed, 23 Sep 2015 15:51:37 +0000
+--1443023976.cedAaAB0.12902
+Date: Wed, 23 Sep 2015 15:59:36 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,25 +61,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c12">Comment # 12</a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
+              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
 </span></b>
-        <pre>Ben pushed an improved version of that c800 patch into 4.3-rc --
+        <pre>I upgraded the system to the following versions, and the bug is still present.
 
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&amp;id=205877f9156daebb975fb46205488da6fdf5b3f5">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&amp;id=205877f9156daebb975fb46205488da6fdf5b3f5</a>
-
-and enabled it by default on the Tecra W50:
-
-<a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&amp;id=778613e583994d947960a7f177226d0e7b5ef124">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.3&amp;id=778613e583994d947960a7f177226d0e7b5ef124</a>
-
-If you have different hw, you can try it out by booting with
-
-nouveau.config=War00C800_0=1</pre>
+x11-drivers/xf86-video-nouveau-1.0.11
+x11-base/xorg-server-1.17.2-r1
+media-libs/mesa-11.0.0
+x11-libs/libdrm-2.4.65
+x11-base/xorg-drivers-1.17
+Kernel: 4.0.5 (self-compiled)</pre>
         </div>
       </p>
       <hr>
@@ -95,9 +89,9 @@ nouveau.config=War00C800_0=1</pre>
     </body>
 </html>
 
---1443023497.53fd40.9215--
+--1443023976.cedAaAB0.12902--
 
---===============0176860073==
+--===============1025004150==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0176860073==--
+--===============1025004150==--
