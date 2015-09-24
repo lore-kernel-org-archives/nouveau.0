@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 37681] Tearing with composite extension
-Date: Thu, 24 Sep 2015 04:23:41 +0000
-Message-ID: <bug-37681-8800-Z5IoMb7R1K@http.bugs.freedesktop.org/>
-References: <bug-37681-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [PATCH v3] ibus/gf100: increase wait timeout to avoid
+	read faults
+Date: Thu, 24 Sep 2015 20:26:15 +0200
+Message-ID: <1443119175-2154-1-git-send-email-samuel.pitoiset@gmail.com>
+References: <1443039954-9419-1-git-send-email-samuel.pitoiset@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1106623878=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-37681-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1443039954-9419-1-git-send-email-samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,69 +21,114 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1106623878==
-Content-Type: multipart/alternative; boundary="1443068621.1D1dC3.493"; charset="UTF-8"
-
-
---1443068621.1D1dC3.493
-Date: Thu, 24 Sep 2015 04:23:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=37681
-
---- Comment #6 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
-Seems like tearing gone with Full Repaints VSync mode in KWin.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443068621.1D1dC3.493
-Date: Thu, 24 Sep 2015 04:23:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Tearing with composite extension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Tearing with composite extension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=37681">bug 37681</a>
-              from <span class="vcard"><a class="email" href="mailto:russianneuromancer&#64;ya.ru" title="russianneuromancer&#64;ya.ru">russianneuromancer&#64;ya.ru</a>
-</span></b>
-        <pre>Seems like tearing gone with Full Repaints VSync mode in KWin.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443068621.1D1dC3.493--
-
---===============1106623878==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1106623878==--
+SW5jcmVhc2UgY2xvY2sgdGltZW91dCBvZiBzb21lIHVua25vd24gZW5naW5lcyBpbiBvcmRlciB0
+byBhdm9pZCBmYWlsdXJlCmF0IGhpZ2ggZ3BjY2xrIHJhdGUuCgpUaGlzIGZpeGVzIElCVVMgcmVh
+ZCBmYXVsdHMgb24gbXkgR0YxMTkgd2hlbiByZWNsb2NraW5nIGlzIG1hbnVhbGx5CmVuYWJsZWQu
+IE5vdGUgdGhhdCBtZW1vcnkgcmVjbG9ja2luZyBpcyBjb21wbGV0ZWx5IGJyb2tlbiBhbmQgTnZN
+ZW1FeGVjCmhhcyB0byBiZSBkaXNhYmxlZCB0byBhbGxvdyBjb3JlIGNsb2NrIHJlY2xvY2tpbmcg
+b25seS4KClNpZ25lZC1vZmYtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdt
+YWlsLmNvbT4KLS0tClYzOiBjaGFuZ2VkIHNvbWUgbnZrbV9tYXNrKCkgdG8gbnZrbV93cjMyKCkg
+Zm9yIGdmMTAwIChhcyB0aGUgYmxvYiBkb2VzKQoKIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9z
+dWJkZXYvaWJ1cy5oIHwgIDEgKwogZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2Uu
+YyAgfCAgNCArLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvS2J1aWxkICAgIHwgIDEg
+KwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9nZjEwMC5jICAgfCAxNyArKysrKysrKysr
+LS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMTcuYyAgIHwgNTEgKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9w
+cml2LmggICAgfCAgNyArKysrKwogNiBmaWxlcyBjaGFuZ2VkLCA3NyBpbnNlcnRpb25zKCspLCA0
+IGRlbGV0aW9ucygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvZ2YxMTcuYwogY3JlYXRlIG1vZGUgMTAwNjQ0IGRybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvcHJpdi5oCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRl
+di9pYnVzLmggYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2lidXMuaAppbmRleCA5
+ZDUxMmNkLi5jNGRjZDI2IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3Vi
+ZGV2L2lidXMuaAorKysgYi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2lidXMuaApA
+QCAtMyw2ICszLDcgQEAKICNpbmNsdWRlIDxjb3JlL3N1YmRldi5oPgogCiBpbnQgZ2YxMDBfaWJ1
+c19uZXcoc3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fc3ViZGV2ICoqKTsK
+K2ludCBnZjExN19pYnVzX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZr
+bV9zdWJkZXYgKiopOwogaW50IGdrMTA0X2lidXNfbmV3KHN0cnVjdCBudmttX2RldmljZSAqLCBp
+bnQsIHN0cnVjdCBudmttX3N1YmRldiAqKik7CiBpbnQgZ2syMGFfaWJ1c19uZXcoc3RydWN0IG52
+a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fc3ViZGV2ICoqKTsKICNlbmRpZgpkaWZmIC0t
+Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyBiL2RybS9ub3V2ZWF1
+L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKaW5kZXggOTUyYTUwOC4uODMzODNiYyAxMDA2NDQK
+LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYworKysgYi9kcm0vbm91
+dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCkBAIC0xNTk1LDcgKzE1OTUsNyBAQCBudmQ3
+X2NoaXBzZXQgPSB7CiAJLmZ1c2UgPSBnZjEwMF9mdXNlX25ldywKIAkuZ3BpbyA9IGdmMTE5X2dw
+aW9fbmV3LAogCS5pMmMgPSBnZjExN19pMmNfbmV3LAotCS5pYnVzID0gZ2YxMDBfaWJ1c19uZXcs
+CisJLmlidXMgPSBnZjExN19pYnVzX25ldywKIAkuaW1lbSA9IG52NTBfaW5zdG1lbV9uZXcsCiAJ
+Lmx0YyA9IGdmMTAwX2x0Y19uZXcsCiAJLm1jID0gZ2YxMDBfbWNfbmV3LApAQCAtMTYyOCw3ICsx
+NjI4LDcgQEAgbnZkOV9jaGlwc2V0ID0gewogCS5mdXNlID0gZ2YxMDBfZnVzZV9uZXcsCiAJLmdw
+aW8gPSBnZjExOV9ncGlvX25ldywKIAkuaTJjID0gZ2YxMTlfaTJjX25ldywKLQkuaWJ1cyA9IGdm
+MTAwX2lidXNfbmV3LAorCS5pYnVzID0gZ2YxMTdfaWJ1c19uZXcsCiAJLmltZW0gPSBudjUwX2lu
+c3RtZW1fbmV3LAogCS5sdGMgPSBnZjEwMF9sdGNfbmV3LAogCS5tYyA9IGdmMTAwX21jX25ldywK
+ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvS2J1aWxkIGIvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9LYnVpbGQKaW5kZXggYTBiMTJkMi4uZGU4ODhmYSAxMDA2
+NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9LYnVpbGQKKysrIGIvZHJtL25v
+dXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9LYnVpbGQKQEAgLTEsMyArMSw0IEBACiBudmttLXkgKz0g
+bnZrbS9zdWJkZXYvaWJ1cy9nZjEwMC5vCitudmttLXkgKz0gbnZrbS9zdWJkZXYvaWJ1cy9nZjEx
+Ny5vCiBudmttLXkgKz0gbnZrbS9zdWJkZXYvaWJ1cy9nazEwNC5vCiBudmttLXkgKz0gbnZrbS9z
+dWJkZXYvaWJ1cy9nazIwYS5vCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9p
+YnVzL2dmMTAwLmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pYnVzL2dmMTAwLmMKaW5kZXgg
+MzdhMDQ5Ni4uNzJkNjMzMCAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1
+cy9nZjEwMC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMDAuYwpAQCAt
+MjEsNyArMjEsNyBAQAogICoKICAqIEF1dGhvcnM6IEJlbiBTa2VnZ3MKICAqLwotI2luY2x1ZGUg
+PHN1YmRldi9pYnVzLmg+CisjaW5jbHVkZSAicHJpdi5oIgogCiBzdGF0aWMgdm9pZAogZ2YxMDBf
+aWJ1c19pbnRyX2h1YihzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXMsIGludCBpKQpAQCAtNTYsNyAr
+NTYsNyBAQCBnZjEwMF9pYnVzX2ludHJfZ3BjKHN0cnVjdCBudmttX3N1YmRldiAqaWJ1cywgaW50
+IGkpCiAJbnZrbV9tYXNrKGRldmljZSwgMHgxMjgxMjggKyAoaSAqIDB4MDQwMCksIDB4MDAwMDAy
+MDAsIDB4MDAwMDAwMDApOwogfQogCi1zdGF0aWMgdm9pZAordm9pZAogZ2YxMDBfaWJ1c19pbnRy
+KHN0cnVjdCBudmttX3N1YmRldiAqaWJ1cykKIHsKIAlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmlj
+ZSA9IGlidXMtPmRldmljZTsKQEAgLTkyLDggKzkyLDIxIEBAIGdmMTAwX2lidXNfaW50cihzdHJ1
+Y3QgbnZrbV9zdWJkZXYgKmlidXMpCiAJfQogfQogCitzdGF0aWMgaW50CitnZjEwMF9pYnVzX2lu
+aXQoc3RydWN0IG52a21fc3ViZGV2ICppYnVzKQoreworCXN0cnVjdCBudmttX2RldmljZSAqZGV2
+aWNlID0gaWJ1cy0+ZGV2aWNlOworCW52a21fbWFzayhkZXZpY2UsIDB4MTIyMzEwLCAweDAwMDNm
+ZmZmLCAweDAwMDAwODAwKTsKKwludmttX3dyMzIoZGV2aWNlLCAweDEyMjMyYywgMHgwMDEwMDA2
+NCk7CisJbnZrbV93cjMyKGRldmljZSwgMHgxMjIzMzAsIDB4MDAxMDAwNjQpOworCW52a21fd3Iz
+MihkZXZpY2UsIDB4MTIyMzM0LCAweDAwMTAwMDY0KTsKKwludmttX21hc2soZGV2aWNlLCAweDEy
+MjM0OCwgMHgwMDAzZmZmZiwgMHgwMDAwMDEwMCk7CisJcmV0dXJuIDA7Cit9CisKIHN0YXRpYyBj
+b25zdCBzdHJ1Y3QgbnZrbV9zdWJkZXZfZnVuYwogZ2YxMDBfaWJ1cyA9IHsKKwkuaW5pdCA9IGdm
+MTAwX2lidXNfaW5pdCwKIAkuaW50ciA9IGdmMTAwX2lidXNfaW50ciwKIH07CiAKZGlmZiAtLWdp
+dCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvZ2YxMTcuYyBiL2RybS9ub3V2ZWF1L252
+a20vc3ViZGV2L2lidXMvZ2YxMTcuYwpuZXcgZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAw
+Li5mNjlmMjYzCi0tLSAvZGV2L251bGwKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1
+cy9nZjExNy5jCkBAIC0wLDAgKzEsNTEgQEAKKy8qCisgKiBDb3B5cmlnaHQgMjAxNSBTYW11ZWwg
+UGl0b3NpZXQKKyAqCisgKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNo
+YXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYQorICogY29weSBvZiB0aGlzIHNvZnR3YXJl
+IGFuZCBhc3NvY2lhdGVkIGRvY3VtZW50YXRpb24gZmlsZXMgKHRoZSAiU29mdHdhcmUiKSwKKyAq
+IHRvIGRlYWwgaW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rpb24sIGluY2x1ZGluZyB3
+aXRob3V0IGxpbWl0YXRpb24KKyAqIHRoZSByaWdodHMgdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1l
+cmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLAorICogYW5kL29yIHNlbGwgY29w
+aWVzIG9mIHRoZSBTb2Z0d2FyZSwgYW5kIHRvIHBlcm1pdCBwZXJzb25zIHRvIHdob20gdGhlCisg
+KiBTb2Z0d2FyZSBpcyBmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3QgdG8gdGhlIGZvbGxvd2lu
+ZyBjb25kaXRpb25zOgorICoKKyAqIFRoZSBhYm92ZSBjb3B5cmlnaHQgbm90aWNlIGFuZCB0aGlz
+IHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluCisgKiBhbGwgY29waWVzIG9y
+IHN1YnN0YW50aWFsIHBvcnRpb25zIG9mIHRoZSBTb2Z0d2FyZS4KKyAqCisgKiBUSEUgU09GVFdB
+UkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwgRVhQ
+UkVTUyBPUgorICogSU1QTElFRCwgSU5DTFVESU5HIEJVVCBOT1QgTElNSVRFRCBUTyBUSEUgV0FS
+UkFOVElFUyBPRiBNRVJDSEFOVEFCSUxJVFksCisgKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIg
+UFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiAgSU4gTk8gRVZFTlQgU0hBTEwKKyAqIFRIRSBD
+T1BZUklHSFQgSE9MREVSKFMpIE9SIEFVVEhPUihTKSBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwg
+REFNQUdFUyBPUgorICogT1RIRVIgTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBD
+T05UUkFDVCwgVE9SVCBPUiBPVEhFUldJU0UsCisgKiBBUklTSU5HIEZST00sIE9VVCBPRiBPUiBJ
+TiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0UgT1IKKyAqIE9USEVSIERF
+QUxJTkdTIElOIFRIRSBTT0ZUV0FSRS4KKyAqCisgKiBBdXRob3JzOiBTYW11ZWwgUGl0b2lzZXQK
+KyAqLworI2luY2x1ZGUgInByaXYuaCIKKworc3RhdGljIGludAorZ2YxMTdfaWJ1c19pbml0KHN0
+cnVjdCBudmttX3N1YmRldiAqaWJ1cykKK3sKKwlzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9
+IGlidXMtPmRldmljZTsKKwludmttX21hc2soZGV2aWNlLCAweDEyMjMxMCwgMHgwMDAzZmZmZiwg
+MHgwMDAwMDgwMCk7CisJbnZrbV9tYXNrKGRldmljZSwgMHgxMjIzNDgsIDB4MDAwM2ZmZmYsIDB4
+MDAwMDAxMDApOworCW52a21fbWFzayhkZXZpY2UsIDB4MTIyM2IwLCAweDAwMDNmZmZmLCAweDAw
+MDAwZmZmKTsKKwlyZXR1cm4gMDsKK30KKworc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3N1YmRl
+dl9mdW5jCitnZjExN19pYnVzID0geworCS5pbml0ID0gZ2YxMTdfaWJ1c19pbml0LAorCS5pbnRy
+ID0gZ2YxMDBfaWJ1c19pbnRyLAorfTsKKworaW50CitnZjExN19pYnVzX25ldyhzdHJ1Y3QgbnZr
+bV9kZXZpY2UgKmRldmljZSwgaW50IGluZGV4LAorCSAgICAgICBzdHJ1Y3QgbnZrbV9zdWJkZXYg
+KipwaWJ1cykKK3sKKwlzdHJ1Y3QgbnZrbV9zdWJkZXYgKmlidXM7CisJaWYgKCEoaWJ1cyA9ICpw
+aWJ1cyA9IGt6YWxsb2Moc2l6ZW9mKCppYnVzKSwgR0ZQX0tFUk5FTCkpKQorCQlyZXR1cm4gLUVO
+T01FTTsKKwludmttX3N1YmRldl9jdG9yKCZnZjExN19pYnVzLCBkZXZpY2UsIGluZGV4LCAwLCBp
+YnVzKTsKKwlyZXR1cm4gMDsKK30KZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L2lidXMvcHJpdi5oIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaWJ1cy9wcml2LmgKbmV3IGZp
+bGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uNDhlMWI2MwotLS0gL2Rldi9udWxsCisrKyBi
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2lidXMvcHJpdi5oCkBAIC0wLDAgKzEsNyBAQAorI2lm
+bmRlZiBfX05WS01fSUJVU19QUklWX0hfXworI2RlZmluZSBfX05WS01fSUJVU19QUklWX0hfXwor
+CisjaW5jbHVkZSA8c3ViZGV2L2lidXMuaD4KKwordm9pZCBnZjEwMF9pYnVzX2ludHIoc3RydWN0
+IG52a21fc3ViZGV2ICopOworI2VuZGlmCi0tIAoyLjUuMwoKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
