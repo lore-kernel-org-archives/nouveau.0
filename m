@@ -1,16 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH 2/2] clk/gf100: allow users to enable
-	reclocking
-Date: Thu, 24 Sep 2015 00:37:56 +0200
-Message-ID: <560329C4.50102@gmail.com>
-References: <1443043254-12382-1-git-send-email-samuel.pitoiset@gmail.com>
- <1443043254-12382-2-git-send-email-samuel.pitoiset@gmail.com>
- <56032118.1000808@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
+ timeout, failed to construct context, init failed, -16
+Date: Thu, 24 Sep 2015 03:33:19 +0000
+Message-ID: <bug-91722-8800-V9tYwemMJR@http.bugs.freedesktop.org/>
+References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1747421367=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56032118.1000808-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAwOS8yNC8yMDE1IDEyOjAwIEFNLCBNYXJ0aW4gUGVyZXMgd3JvdGU6Cj4gT24gMjQvMDkv
-MTUgMDA6MjAsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4gT25seSB0aGUgY29yZSBjbG9jayBp
-cyBjdXJyZW50bHkgc3VwcG9ydGVkLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5OiBTYW11ZWwgUGl0b2lz
-ZXQgPHNhbXVlbC5waXRvaXNldEBnbWFpbC5jb20+Cj4+IC0tLQo+PiAgIGRybS9ub3V2ZWF1L252
-a20vc3ViZGV2L2Nsay9nZjEwMC5jIHwgMiArLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2Vy
-dGlvbigrKSwgMSBkZWxldGlvbigtKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvY2xrL2dmMTAwLmMgCj4+IGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2dm
-MTAwLmMKPj4gaW5kZXggYTUyYjdlNy4uODA3MzA1YSAxMDA2NDQKPj4gLS0tIGEvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvY2xrL2dmMTAwLmMKPj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJk
-ZXYvY2xrL2dmMTAwLmMKPj4gQEAgLTQ2Miw1ICs0NjIsNSBAQCBnZjEwMF9jbGtfbmV3KHN0cnVj
-dCBudmttX2RldmljZSAqZGV2aWNlLCBpbnQgCj4+IGluZGV4LCBzdHJ1Y3QgbnZrbV9jbGsgKipw
-Y2xrKQo+PiAgICAgICAgICAgcmV0dXJuIC1FTk9NRU07Cj4+ICAgICAgICpwY2xrID0gJmNsay0+
-YmFzZTsKPj4gICAtICAgIHJldHVybiBudmttX2Nsa19jdG9yKCZnZjEwMF9jbGssIGRldmljZSwg
-aW5kZXgsIGZhbHNlLCAKPj4gJmNsay0+YmFzZSk7Cj4+ICsgICAgcmV0dXJuIG52a21fY2xrX2N0
-b3IoJmdmMTAwX2NsaywgZGV2aWNlLCBpbmRleCwgdHJ1ZSwgJmNsay0+YmFzZSk7Cj4+ICAgfQo+
-IFdoYXQgY2hhbmdlZCB0aGF0IHN1ZGRlbmx5IG1hZGUgcmVjbG9ja2luZyBPSz8gWW91IHJlYWxs
-eSBuZWVkIHRvIAo+IHByb3ZlIGl0IGlzIGFuZCBhIGZldyBob3VycyBvZiB0ZXN0aW5nIGFyZSBu
-b3QgZW5vdWdoIDspCj4KPiBNYWtlIHN1cmUgdGhhdCB0aGUgY2xvY2sgdHJlZSBpcyBwYXJzZWQg
-Y29ycmVjdGx5LCB0aGVuIHByb2dyYW1tZWQgCj4gY29ycmVjdGx5LiBNYWtlIHN1cmUgdGhhdCBy
-ZWNsb2NraW5nIHdoaWxlIHRoZSBjYXJkIGlzIGJlaW5nIHVzZWQgaXMgCj4gYWxzbyBraW5kIG9m
-IHN0YWJsZSwgYXQgbGVhc3Qgb24geW91ciBjYXJkLgo+Cj4gQWZ0ZXIgdGhhdCwgeW91IG1heSBl
-bmFibGUgaXQgYW5kIHRlc3Qgb24gbW9yZSBGZXJtaXMuIFVudGlsIHRoZW4sIAo+IHRoaXMgcGF0
-Y2ggaXMgcHJlbWF0dXJlLCBhdCBiZXN0LgoKWWVhaCwgdGhpcyBpcyBwcm9iYWJseSBhIGtpbmQg
-b2YgZXhwZXJpbWVudGFsIGZlYXR1cmUgZm9yIG5vdywgYnV0IGV2ZW4gCmlmIEkgZGlkbid0IGNo
-ZWNrIGEgbG90LCBpdCBzZWVtcyB0byBiZSBzdGFibGUgKHdpdGggaGVhdmVuIGF0IGxlYXN0KS4K
-CkFueXdheXMsIEknbGwgZG8gbW9yZSBjaGVja3MgdG8gcHJvdmUgdGhhdCBpcyBnb2luZyB0byB3
-b3JrIGFzIGV4cGVjdGVkLgoKVGhhbmtzIGZvciB5b3VyIGZlZWRiYWNrcyBNYXJ0aW4uCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1747421367==
+Content-Type: multipart/alternative; boundary="1443065599.3c8f0.10538"; charset="UTF-8"
+
+
+--1443065599.3c8f0.10538
+Date: Thu, 24 Sep 2015 03:33:19 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91722
+
+kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #117849|dmesg.log without c800      |dmesg.log without patches
+        description|nouveau patch               |
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1443065599.3c8f0.10538
+Date: Thu, 24 Sep 2015 03:33:19 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #117849 description</td>
+           <td>dmesg.log without c800 nouveau patch
+           </td>
+           <td>dmesg.log without patches
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443065599.3c8f0.10538--
+
+--===============1747421367==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1747421367==--
