@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
  timeout, failed to construct context, init failed, -16
-Date: Thu, 24 Sep 2015 04:00:27 +0000
-Message-ID: <bug-91722-8800-zrW6GGs4pU@http.bugs.freedesktop.org/>
+Date: Thu, 24 Sep 2015 04:01:54 +0000
+Message-ID: <bug-91722-8800-XloS1L2r5X@http.bugs.freedesktop.org/>
 References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0574660592=="
+Content-Type: multipart/mixed; boundary="===============0778830467=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0574660592==
-Content-Type: multipart/alternative; boundary="1443067227.7C2CDEaF0.22302"; charset="UTF-8"
+--===============0778830467==
+Content-Type: multipart/alternative; boundary="1443067313.12C6f2eC0.22853"; charset="UTF-8"
 
 
---1443067227.7C2CDEaF0.22302
-Date: Thu, 24 Sep 2015 04:00:27 +0000
+--1443067313.12C6f2eC0.22853
+Date: Thu, 24 Sep 2015 04:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
---- Comment #15 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
-Created attachment 118419
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118419&action=edit
-dmesg.log with 205877f9156daebb975fb46205488da6fdf5b3f5 patch
+--- Comment #16 from kyle.devir-U10LOJoAJ6dBDgjK7y7TUQ@public.gmane.org ---
+(In reply to Ilia Mirkin from comment #14)
+> afaik plasmashell has its own independent problems with nouveau, so not a
+> great thing to start testing with :)
 
-Here is my dmesg.log from use of the updated patch.
+That was a shockingly fast reply! Thanks, Ilia. :)
 
-I used nouveau.config=War00C800_0=1 and nouveau.runpm=0 as my kernel options.
-My software versions are still the same.
+So... shall I continue testing with Weston and Xwayland, then? What issues does
+plasmashell have with Nouveau? Where should I start looking?
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1443067227.7C2CDEaF0.22302
-Date: Thu, 24 Sep 2015 04:00:27 +0000
+--1443067313.12C6f2eC0.22853
+Date: Thu, 24 Sep 2015 04:01:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,20 +62,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
               from <span class="vcard"><a class="email" href="mailto:kyle.devir&#64;mykolab.com" title="kyle.devir&#64;mykolab.com">kyle.devir&#64;mykolab.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118419" name="attach_118419" title="dmesg.log with 205877f9156daebb975fb46205488da6fdf5b3f5 patch">attachment 118419</a> <a href="attachment.cgi?id=118419&amp;action=edit" title="dmesg.log with 205877f9156daebb975fb46205488da6fdf5b3f5 patch">[details]</a></span>
-dmesg.log with 205877f9156daebb975fb46205488da6fdf5b3f5 patch
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91722#c14">comment #14</a>)
+<span class="quote">&gt; afaik plasmashell has its own independent problems with nouveau, so not a
+&gt; great thing to start testing with :)</span >
 
-Here is my dmesg.log from use of the updated patch.
+That was a shockingly fast reply! Thanks, Ilia. :)
 
-I used nouveau.config=War00C800_0=1 and nouveau.runpm=0 as my kernel options.
-My software versions are still the same.</pre>
+So... shall I continue testing with Weston and Xwayland, then? What issues does
+plasmashell have with Nouveau? Where should I start looking?</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +89,9 @@ My software versions are still the same.</pre>
     </body>
 </html>
 
---1443067227.7C2CDEaF0.22302--
+--1443067313.12C6f2eC0.22853--
 
---===============0574660592==
+--===============0778830467==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0574660592==--
+--===============0778830467==--
