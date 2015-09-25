@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92072] Wine breakage since d082c5324 (st/mesa: don't
- call st_validate_state in BlitFramebuffer)
-Date: Thu, 24 Sep 2015 18:28:57 +0000
-Message-ID: <bug-92072-8800-wioLRAK5aQ@http.bugs.freedesktop.org/>
-References: <bug-92072-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91722] [NVE4] PGRAPH - grctx template channel unload
+ timeout, failed to construct context, init failed, -16
+Date: Fri, 25 Sep 2015 02:03:06 +0000
+Message-ID: <bug-91722-8800-bsQVBjPkAO@http.bugs.freedesktop.org/>
+References: <bug-91722-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1978571715=="
+Content-Type: multipart/mixed; boundary="===============0416206305=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91722-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,55 +21,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1978571715==
-Content-Type: multipart/alternative; boundary="1443119336.eCaE4C8A1.11773"; charset="UTF-8"
+--===============0416206305==
+Content-Type: multipart/alternative; boundary="1443146586.dE1e0.13950"; charset="UTF-8"
 
 
---1443119336.eCaE4C8A1.11773
-Date: Thu, 24 Sep 2015 18:28:56 +0000
+--1443146586.dE1e0.13950
+Date: Fri, 25 Sep 2015 02:03:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92072
+https://bugs.freedesktop.org/show_bug.cgi?id=91722
 
-Marek Ol=C5=A1=C3=A1k <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Steve <stevewilliams-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+                 CC|                            |stevewilliams-CkBdp7X+a1rUw41kMdicEg@public.gmane.org
+                   |                            |net
 
---- Comment #6 from Marek Ol=C5=A1=C3=A1k <maraeo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fixed by f3a081953393c7d40bd8df9ec22a2551d01098f5. Closing.
+--- Comment #19 from Steve <stevewilliams-CkBdp7X+a1oIQCUVoCVjmQ@public.gmane.org> ---
+Created attachment 118437
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118437&action=edit
+journal log -b-1 failed boot
 
---=20
+I am the user Adam Williamson is referring to above with the Toshiba w50
+Trying Fedora 23 beta with all installed updates.
+
+I tried with kernel options:
+
+noveau.config=War00c800_0=1
+
+and:
+
+noveau.config=War00c800_0=1 nouveau.runpm=0
+
+It still fails to boot.
+
+-- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1443119336.eCaE4C8A1.11773
-Date: Thu, 24 Sep 2015 18:28:56 +0000
+--1443146586.dE1e0.13950
+Date: Fri, 25 Sep 2015 02:03:06 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:maraeo&#6=
-4;gmail.com" title=3D"Marek Ol=C5=A1=C3=A1k &lt;maraeo&#64;gmail.com&gt;"> =
-<span class=3D"fn">Marek Ol=C5=A1=C3=A1k</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:stevewilliams&#64;internode.on.net" title="Steve &lt;stevewilliams&#64;internode.on.net&gt;"> <span class="fn">Steve</span></a>
 </span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Wine breakage since d082c5324 (st/mesa: don't =
-call st_validate_state in BlitFramebuffer)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92072">bug 92072<=
-/a>
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
           <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+             <table border="1" cellspacing="0" cellpadding="8">
           <tr>
             <th>What</th>
             <th>Removed</th>
@@ -77,45 +86,45 @@ call st_validate_state in BlitFramebuffer)"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>stevewilliams&#64;internode.on.net
            </td>
          </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Wine breakage since d082c5324 (st/mesa: don't =
-call st_validate_state in BlitFramebuffer)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92072#c6">Comment=
- # 6</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - Wine breakage since d082c5324 (st/mesa: don't =
-call st_validate_state in BlitFramebuffer)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92072">bug 92072<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-maraeo&#64;gmail.com" title=3D"Marek Ol=C5=A1=C3=A1k &lt;maraeo&#64;gmail.c=
-om&gt;"> <span class=3D"fn">Marek Ol=C5=A1=C3=A1k</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722#c19">Comment # 19</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE4] PGRAPH - grctx template channel unload timeout, failed to construct context, init failed, -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91722">bug 91722</a>
+              from <span class="vcard"><a class="email" href="mailto:stevewilliams&#64;internode.on.net" title="Steve &lt;stevewilliams&#64;internode.on.net&gt;"> <span class="fn">Steve</span></a>
 </span></b>
-        <pre>Fixed by f3a081953393c7d40bd8df9ec22a2551d01098f5. Closing.</p=
-re>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118437" name="attach_118437" title="journal log -b-1 failed boot">attachment 118437</a> <a href="attachment.cgi?id=118437&amp;action=edit" title="journal log -b-1 failed boot">[details]</a></span>
+journal log -b-1 failed boot
+
+I am the user Adam Williamson is referring to above with the Toshiba w50
+Trying Fedora 23 beta with all installed updates.
+
+I tried with kernel options:
+
+noveau.config=War00c800_0=1
+
+and:
+
+noveau.config=War00c800_0=1 nouveau.runpm=0
+
+It still fails to boot.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -123,9 +132,9 @@ re>
     </body>
 </html>
 
---1443119336.eCaE4C8A1.11773--
+--1443146586.dE1e0.13950--
 
---===============1978571715==
+--===============0416206305==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +144,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1978571715==--
+--===============0416206305==--
