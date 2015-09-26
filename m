@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92126] [NVE4] GTX 760 Auto fan speed stays at 10%
- until temp hits 90C
-Date: Sat, 26 Sep 2015 03:01:26 +0000
-Message-ID: <bug-92126-8800-vly8pOa2yR@http.bugs.freedesktop.org/>
-References: <bug-92126-8800@http.bugs.freedesktop.org/>
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: [PATCH v3] pci: Handle 5-bit and 8-bit tag field
+Date: Sat, 26 Sep 2015 10:42:54 +0200 (CEST)
+Message-ID: <898271408.174977818.1443256974472.JavaMail.root@spooler8-g27.priv.proxad.net>
+References: <1442435210-21276-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0383278381=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92126-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1442435210-21276-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +17,64 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0383278381==
-Content-Type: multipart/alternative; boundary="1443236486.541732C1.3180"; charset="UTF-8"
-
-
---1443236486.541732C1.3180
-Date: Sat, 26 Sep 2015 03:01:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92126
-
---- Comment #1 from daemon32 <lnf.purple-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 118455
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118455&action=edit
-PNY GTX 760 vbios
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443236486.541732C1.3180
-Date: Sat, 26 Sep 2015 03:01:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] GTX 760 Auto fan speed stays at 10% until temp hits 90C"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92126">bug 92126</a>
-              from <span class="vcard"><a class="email" href="mailto:lnf.purple&#64;gmail.com" title="daemon32 &lt;lnf.purple&#64;gmail.com&gt;"> <span class="fn">daemon32</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118455" name="attach_118455" title="PNY GTX 760 vbios">attachment 118455</a> <a href="attachment.cgi?id=118455&amp;action=edit" title="PNY GTX 760 vbios">[details]</a></span>
-PNY GTX 760 vbios</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443236486.541732C1.3180--
-
---===============0383278381==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+CgotLS0tLSBNYWlsIG9yaWdpbmFsIC0tLS0tCj4gSWYgdGhlIGhhcmR3YXJlIHN1cHBvcnRzIGV4
+dGVuZGVkIHRhZyBmaWVsZCAoOC1iaXQgb25lcyksIHRoZW4KPiBlbmFibGVkIGl0LiBUaGlzCj4g
+aXMgdXN1YWxseSBkb25lIGJ5IHRoZSBWQklPUywgYnV0IG5vdCBvbiBzb21lIE1CUHMgKHNlZSBm
+ZG8jODY1MzcpLgo+IEluIGNhc2UgZXh0ZW5kZWQgdGFnIGZpZWxkIGlzIG5vdCBzdXBwb3J0ZWQs
+IDUtYml0IHRhZyBmaWVsZCBpcyB1c2VkCj4gd2hpY2gKPiBsaW1pdHMgdGhlIHBvc3NpYmxlIHZh
+bHVlcyB0byAzMi4gQXBwYXJlbnRseSBiaXRzIDc6MCBvZiAweDg4NDFjCj4gc3RvcmVzIHNvbWUK
+PiBudW1iZXIgb2Ygb3V0c3RhbmRpbmcgcmVxdWVzdHMsIHNvIGNhcCBpdCB0byAzMiBpZiBleHRl
+bmRlZCB0YWcgaXMKPiB1bnN1cHBvcnRlZC4KPiAKPiBGaXhlczogZmRvIzg2NTM3Cj4gCj4gdjI6
+IFJlc3RyaWN0IGNoYW5nZXMgdG8gY2hpcHNldHMgPj0gMHg4NAo+IHYzOgo+ICAgKiBBZGQgbnZr
+bV9wY2lfbWFzayB0byBwY2kuaAo+ICAgKiBNYXNrIGJpdCA4IGJlZm9yZSBzZXR0aW5nIGl0Cj4g
+Cj4gU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgoK
+VGVzdGVkLWJ5OiBLYXJvbCBIZXJic3QgPGZyZWVkZXNrdG9wQGthcm9saGVyYnN0LmRlPgoKPiAt
+LS0KPiAgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaCB8ICAxICsKPiAgZHJt
+L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyAgICB8IDI1ICsrKysrKysrKysrKysrKysr
+KysrKysrKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAt
+LWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiBiL2RybS9ub3V2
+ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiBpbmRleCA1YjNjMDU0Li43NzRjYTY2IDEw
+MDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiArKysg
+Yi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oCj4gQEAgLTI0LDYgKzI0LDcg
+QEAgc3RydWN0IG52a21fcGNpIHsKPiAgdTMyIG52a21fcGNpX3JkMzIoc3RydWN0IG52a21fcGNp
+ICosIHUxNiBhZGRyKTsKPiAgdm9pZCBudmttX3BjaV93cjA4KHN0cnVjdCBudmttX3BjaSAqLCB1
+MTYgYWRkciwgdTggZGF0YSk7Cj4gIHZvaWQgbnZrbV9wY2lfd3IzMihzdHJ1Y3QgbnZrbV9wY2kg
+KiwgdTE2IGFkZHIsIHUzMiBkYXRhKTsKPiArdTMyIG52a21fcGNpX21hc2soc3RydWN0IG52a21f
+cGNpICosIHUxNiBhZGRyLCB1MzIgbWFzaywgdTMyIGFkZCk7Cj4gIHZvaWQgbnZrbV9wY2lfcm9t
+X3NoYWRvdyhzdHJ1Y3QgbnZrbV9wY2kgKiwgYm9vbCBzaGFkb3cpOwo+ICAKPiAgaW50IG52MDRf
+cGNpX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwo+
+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gYi9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gaW5kZXggZDFjMTQ4ZS4uY2IyODM1YiAx
+MDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gKysrIGIv
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYwo+IEBAIC00Niw2ICs0NiwxNCBAQCBu
+dmttX3BjaV93cjMyKHN0cnVjdCBudmttX3BjaSAqcGNpLCB1MTYgYWRkciwgdTMyCj4gZGF0YSkK
+PiAgCXBjaS0+ZnVuYy0+d3IzMihwY2ksIGFkZHIsIGRhdGEpOwo+ICB9Cj4gIAo+ICt1MzIKPiAr
+bnZrbV9wY2lfbWFzayhzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwgdTE2IGFkZHIsIHUzMiBtYXNrLCB1
+MzIgYWRkKQo+ICt7Cj4gKwl1MzIgZGF0YSA9IHBjaS0+ZnVuYy0+cmQzMihwY2ksIGFkZHIpOwo+
+ICsJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRkciwgKGRhdGEgJiB+bWFzaykgfCBhZGQpOwo+ICsJ
+cmV0dXJuIGRhdGE7Cj4gK30KPiArCj4gIHZvaWQKPiAgbnZrbV9wY2lfcm9tX3NoYWRvdyhzdHJ1
+Y3QgbnZrbV9wY2kgKnBjaSwgYm9vbCBzaGFkb3cpCj4gIHsKPiBAQCAtMTE1LDYgKzEyMywyMyBA
+QCBudmttX3BjaV9pbml0KHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2KQo+ICAJaWYgKHJldCkK
+PiAgCQlyZXR1cm4gcmV0Owo+ICAKPiArCWlmIChwY2lfaXNfcGNpZShwZGV2KSAmJiBzdWJkZXYt
+PmRldmljZS0+Y2hpcHNldCA+PSAweDg0KSB7Cj4gKwkJLyogVGFnIGZpZWxkIGlzIDgtYml0IGxv
+bmcsIHJlZ2FyZGxlc3Mgb2YgRVhUX1RBRy4KPiArCQkgKiBIb3dldmVyLCBpZiBFWFRfVEFHIGlz
+IGRpc2FibGVkLCBvbmx5IHRoZSBsb3dlciA1IGJpdHMgb2YgdGhlCj4gdGFnCj4gKwkJICogZmll
+bGQgc2hvdWxkIGJlIHVzZWQsIGxpbWl0aW5nIHRoZSBudW1iZXIgb2YgcmVxdWVzdCB0byAzMi4K
+PiArCQkgKgo+ICsJCSAqIEFwcGFyZW50bHksIDB4MDQxYyBzdG9yZXMgc29tZSBsaW1pdCBvbiB0
+aGUgbnVtYmVyIG9mIHJlcXVlc3RzCj4gKwkJICogcG9zc2libGUsIHNvIGlmIEVYVF9UQUcgaXMg
+ZGlzYWJsZWQsIGxpbWl0IHRoYXQgcmVxdWVzdHMgbnVtYmVyCj4gdG8KPiArCQkgKiAzMgo+ICsJ
+CSAqCj4gKwkJICogRml4ZXMgZmRvIzg2NTM3Cj4gKwkJICovCj4gKwkJaWYgKG52a21fcGNpX3Jk
+MzIocGNpLCAweDAwN2MpICYgMHgwMDAwMDAyMCkKPiArCQkJbnZrbV9wY2lfbWFzayhwY2ksIDB4
+MDA4MCwgMHgwMDAwMDEwMCwgMHgwMDAwMDEwMCk7Cj4gKwkJZWxzZQo+ICsJCQludmttX3BjaV9t
+YXNrKHBjaSwgMHgwNDFjLCAweDAwMDAwMDYwLCAweDAwMDAwMDAwKTsKPiArCX0KPiArCj4gIAlw
+Y2ktPmlycSA9IHBkZXYtPmlycTsKPiAgCXJldHVybiByZXQ7Cj4gIH0KPiAtLQo+IDIuNS4yCj4g
+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmkt
+ZGV2ZWwgbWFpbGluZyBsaXN0Cj4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0
+dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKPiAK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0383278381==--
