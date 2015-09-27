@@ -1,13 +1,11 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [PATCH v3] pci: Handle 5-bit and 8-bit tag field
-Date: Sat, 26 Sep 2015 10:42:54 +0200 (CEST)
-Message-ID: <898271408.174977818.1443256974472.JavaMail.root@spooler8-g27.priv.proxad.net>
-References: <1442435210-21276-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92136] New: WebGL Conformance
+ conformance/textures/texture-size-limit.html -> system freeze
+Date: Sun, 27 Sep 2015 06:54:13 +0000
+Message-ID: <bug-92136-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1197200208=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1442435210-21276-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,64 +15,189 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org
-Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgotLS0tLSBNYWlsIG9yaWdpbmFsIC0tLS0tCj4gSWYgdGhlIGhhcmR3YXJlIHN1cHBvcnRzIGV4
-dGVuZGVkIHRhZyBmaWVsZCAoOC1iaXQgb25lcyksIHRoZW4KPiBlbmFibGVkIGl0LiBUaGlzCj4g
-aXMgdXN1YWxseSBkb25lIGJ5IHRoZSBWQklPUywgYnV0IG5vdCBvbiBzb21lIE1CUHMgKHNlZSBm
-ZG8jODY1MzcpLgo+IEluIGNhc2UgZXh0ZW5kZWQgdGFnIGZpZWxkIGlzIG5vdCBzdXBwb3J0ZWQs
-IDUtYml0IHRhZyBmaWVsZCBpcyB1c2VkCj4gd2hpY2gKPiBsaW1pdHMgdGhlIHBvc3NpYmxlIHZh
-bHVlcyB0byAzMi4gQXBwYXJlbnRseSBiaXRzIDc6MCBvZiAweDg4NDFjCj4gc3RvcmVzIHNvbWUK
-PiBudW1iZXIgb2Ygb3V0c3RhbmRpbmcgcmVxdWVzdHMsIHNvIGNhcCBpdCB0byAzMiBpZiBleHRl
-bmRlZCB0YWcgaXMKPiB1bnN1cHBvcnRlZC4KPiAKPiBGaXhlczogZmRvIzg2NTM3Cj4gCj4gdjI6
-IFJlc3RyaWN0IGNoYW5nZXMgdG8gY2hpcHNldHMgPj0gMHg4NAo+IHYzOgo+ICAgKiBBZGQgbnZr
-bV9wY2lfbWFzayB0byBwY2kuaAo+ICAgKiBNYXNrIGJpdCA4IGJlZm9yZSBzZXR0aW5nIGl0Cj4g
-Cj4gU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPgoK
-VGVzdGVkLWJ5OiBLYXJvbCBIZXJic3QgPGZyZWVkZXNrdG9wQGthcm9saGVyYnN0LmRlPgoKPiAt
-LS0KPiAgZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaCB8ICAxICsKPiAgZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyAgICB8IDI1ICsrKysrKysrKysrKysrKysr
-KysrKysrKysKPiAgMiBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAt
-LWdpdCBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiBiL2RybS9ub3V2
-ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiBpbmRleCA1YjNjMDU0Li43NzRjYTY2IDEw
-MDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKPiArKysg
-Yi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oCj4gQEAgLTI0LDYgKzI0LDcg
-QEAgc3RydWN0IG52a21fcGNpIHsKPiAgdTMyIG52a21fcGNpX3JkMzIoc3RydWN0IG52a21fcGNp
-ICosIHUxNiBhZGRyKTsKPiAgdm9pZCBudmttX3BjaV93cjA4KHN0cnVjdCBudmttX3BjaSAqLCB1
-MTYgYWRkciwgdTggZGF0YSk7Cj4gIHZvaWQgbnZrbV9wY2lfd3IzMihzdHJ1Y3QgbnZrbV9wY2kg
-KiwgdTE2IGFkZHIsIHUzMiBkYXRhKTsKPiArdTMyIG52a21fcGNpX21hc2soc3RydWN0IG52a21f
-cGNpICosIHUxNiBhZGRyLCB1MzIgbWFzaywgdTMyIGFkZCk7Cj4gIHZvaWQgbnZrbV9wY2lfcm9t
-X3NoYWRvdyhzdHJ1Y3QgbnZrbV9wY2kgKiwgYm9vbCBzaGFkb3cpOwo+ICAKPiAgaW50IG52MDRf
-cGNpX25ldyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwo+
-IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gYi9kcm0v
-bm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gaW5kZXggZDFjMTQ4ZS4uY2IyODM1YiAx
-MDA2NDQKPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jCj4gKysrIGIv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYwo+IEBAIC00Niw2ICs0NiwxNCBAQCBu
-dmttX3BjaV93cjMyKHN0cnVjdCBudmttX3BjaSAqcGNpLCB1MTYgYWRkciwgdTMyCj4gZGF0YSkK
-PiAgCXBjaS0+ZnVuYy0+d3IzMihwY2ksIGFkZHIsIGRhdGEpOwo+ICB9Cj4gIAo+ICt1MzIKPiAr
-bnZrbV9wY2lfbWFzayhzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwgdTE2IGFkZHIsIHUzMiBtYXNrLCB1
-MzIgYWRkKQo+ICt7Cj4gKwl1MzIgZGF0YSA9IHBjaS0+ZnVuYy0+cmQzMihwY2ksIGFkZHIpOwo+
-ICsJcGNpLT5mdW5jLT53cjMyKHBjaSwgYWRkciwgKGRhdGEgJiB+bWFzaykgfCBhZGQpOwo+ICsJ
-cmV0dXJuIGRhdGE7Cj4gK30KPiArCj4gIHZvaWQKPiAgbnZrbV9wY2lfcm9tX3NoYWRvdyhzdHJ1
-Y3QgbnZrbV9wY2kgKnBjaSwgYm9vbCBzaGFkb3cpCj4gIHsKPiBAQCAtMTE1LDYgKzEyMywyMyBA
-QCBudmttX3BjaV9pbml0KHN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2KQo+ICAJaWYgKHJldCkK
-PiAgCQlyZXR1cm4gcmV0Owo+ICAKPiArCWlmIChwY2lfaXNfcGNpZShwZGV2KSAmJiBzdWJkZXYt
-PmRldmljZS0+Y2hpcHNldCA+PSAweDg0KSB7Cj4gKwkJLyogVGFnIGZpZWxkIGlzIDgtYml0IGxv
-bmcsIHJlZ2FyZGxlc3Mgb2YgRVhUX1RBRy4KPiArCQkgKiBIb3dldmVyLCBpZiBFWFRfVEFHIGlz
-IGRpc2FibGVkLCBvbmx5IHRoZSBsb3dlciA1IGJpdHMgb2YgdGhlCj4gdGFnCj4gKwkJICogZmll
-bGQgc2hvdWxkIGJlIHVzZWQsIGxpbWl0aW5nIHRoZSBudW1iZXIgb2YgcmVxdWVzdCB0byAzMi4K
-PiArCQkgKgo+ICsJCSAqIEFwcGFyZW50bHksIDB4MDQxYyBzdG9yZXMgc29tZSBsaW1pdCBvbiB0
-aGUgbnVtYmVyIG9mIHJlcXVlc3RzCj4gKwkJICogcG9zc2libGUsIHNvIGlmIEVYVF9UQUcgaXMg
-ZGlzYWJsZWQsIGxpbWl0IHRoYXQgcmVxdWVzdHMgbnVtYmVyCj4gdG8KPiArCQkgKiAzMgo+ICsJ
-CSAqCj4gKwkJICogRml4ZXMgZmRvIzg2NTM3Cj4gKwkJICovCj4gKwkJaWYgKG52a21fcGNpX3Jk
-MzIocGNpLCAweDAwN2MpICYgMHgwMDAwMDAyMCkKPiArCQkJbnZrbV9wY2lfbWFzayhwY2ksIDB4
-MDA4MCwgMHgwMDAwMDEwMCwgMHgwMDAwMDEwMCk7Cj4gKwkJZWxzZQo+ICsJCQludmttX3BjaV9t
-YXNrKHBjaSwgMHgwNDFjLCAweDAwMDAwMDYwLCAweDAwMDAwMDAwKTsKPiArCX0KPiArCj4gIAlw
-Y2ktPmlycSA9IHBkZXYtPmlycTsKPiAgCXJldHVybiByZXQ7Cj4gIH0KPiAtLQo+IDIuNS4yCj4g
-Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBkcmkt
-ZGV2ZWwgbWFpbGluZyBsaXN0Cj4gZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwKPiAK
+
+--===============1197200208==
+Content-Type: multipart/alternative; boundary="1443336853.Ac1bb0.26823"; charset="UTF-8"
+
+
+--1443336853.Ac1bb0.26823
+Date: Sun, 27 Sep 2015 06:54:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92136
+
+            Bug ID: 92136
+           Summary: WebGL Conformance
+                    conformance/textures/texture-size-limit.html -> system
+                    freeze
+           Product: Mesa
+           Version: unspecified
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: lukebenes-PkbjNfxxIARBDgjK7y7TUQ@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+In Google Chrome, navigate to:
+
+https://www.khronos.org/registry/webgl/conformance-suites/1.0.2/conformance/textures/texture-size-limit.html
+
+On my on my GTX 650, this causes the desktop to lock-up with the Nouveau
+drivers, but passes with the Nvidia proprietary driver. 
+
+dmesg failure output:
+[ 4183.336016] nouveau W[     DRM] skipped size 80010000
+...
+[ 4183.589907] nouveau W[     DRM] skipped size 80010000
+[ 4183.740567] nouveau E[   PFIFO][0000:03:00.0] write fault at 0x002cfcb000
+[PDE] from CE2/GR_CE on channel 0x007f61d000 [unknown]
+
+Tested on Ubuntu 14.04 with default mesa and Ubuntu 15.10 with edgers(Mesa
+11.0)
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1443336853.Ac1bb0.26823
+Date: Sun, 27 Sep 2015 06:54:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - WebGL Conformance conformance/textures/texture-size-limit.html -&gt; system freeze"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92136">92136</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>WebGL Conformance conformance/textures/texture-size-limit.html -&gt; system freeze
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>lukebenes&#64;hotmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>In Google Chrome, navigate to:
+
+<a href="https://www.khronos.org/registry/webgl/conformance-suites/1.0.2/conformance/textures/texture-size-limit.html">https://www.khronos.org/registry/webgl/conformance-suites/1.0.2/conformance/textures/texture-size-limit.html</a>
+
+On my on my GTX 650, this causes the desktop to lock-up with the Nouveau
+drivers, but passes with the Nvidia proprietary driver. 
+
+dmesg failure output:
+[ 4183.336016] nouveau W[     DRM] skipped size 80010000
+...
+[ 4183.589907] nouveau W[     DRM] skipped size 80010000
+[ 4183.740567] nouveau E[   PFIFO][0000:03:00.0] write fault at 0x002cfcb000
+[PDE] from CE2/GR_CE on channel 0x007f61d000 [unknown]
+
+Tested on Ubuntu 14.04 with default mesa and Ubuntu 15.10 with edgers(Mesa
+11.0)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443336853.Ac1bb0.26823--
+
+--===============1197200208==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1197200208==--
