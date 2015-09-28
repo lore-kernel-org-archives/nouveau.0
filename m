@@ -1,45 +1,106 @@
-From: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [PATCH v2] nouveau: arm: Add MODULE_FIRMWARE for gk20a
-Date: Mon, 28 Sep 2015 17:08:13 +0200
-Message-ID: <1443452893-18246-1-git-send-email-kwizart@gmail.com>
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
-To: gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91535] [NVE7] Chrome can cause a nouveau 'multiple
+ instances of buffer' message when overlaying a menu leading to X lockup
+Date: Mon, 28 Sep 2015 21:41:41 +0000
+Message-ID: <bug-91535-8800-VqJt6dNHBX@http.bugs.freedesktop.org/>
+References: <bug-91535-8800@http.bugs.freedesktop.org/>
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1231253205=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91535-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This patch is needed by initramfs tools to detect
-the required firmware files for the module.
 
-This patch tests for either TEGRA_124_SOC or TEGRA_132_SOC
-for the firmwares related to the Tegra K1 generation.
+--===============1231253205==
+Content-Type: multipart/alternative; boundary="1443476501.E13a3.6415"; charset="UTF-8"
 
-v2: move the MODULE_FIRMWARE to the nvidia_platform.c file.
- This will avoid to test for NOUVEAU_PLATFORM_DRIVER
 
-Signed-off-by: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
----
- drivers/gpu/drm/nouveau/nouveau_platform.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+--1443476501.E13a3.6415
+Date: Mon, 28 Sep 2015 21:41:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_platform.c b/drivers/gpu/drm/nouveau/nouveau_platform.c
-index 3eb6654..9013141 100644
---- a/drivers/gpu/drm/nouveau/nouveau_platform.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_platform.c
-@@ -65,3 +65,14 @@ struct platform_driver nouveau_platform_driver = {
- 	.probe = nouveau_platform_probe,
- 	.remove = nouveau_platform_remove,
- };
-+
-+#if IS_ENABLED(CONFIG_ARCH_TEGRA_124_SOC) || IS_ENABLED(CONFIG_ARCH_TEGRA_132_SOC)
-+MODULE_FIRMWARE("nvidia/gk20a/fecs_data.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/fecs_inst.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/gpccs_data.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/gpccs_inst.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/sw_bundle_init.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/sw_ctx.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/sw_method_init.bin");
-+MODULE_FIRMWARE("nvidia/gk20a/sw_nonctx.bin");
-+#endif
+https://bugs.freedesktop.org/show_bug.cgi?id=91535
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I've recently pushed some patches which solved this issue in Witcher 2. They
+should end up in Mesa 11.0.2 when that is released, but are already at mesa
+HEAD:
+
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=d4e650b07bc80075f0d088e7d85df9efa45e11bd
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=3a6b9a7830c3df14ffcfbbf57c82ea08bd59ef04
+http://cgit.freedesktop.org/mesa/mesa/commit/?id=1d8cba9b51b7a6e7dbf3f0d3f53b5c232fd0b5b2
+
+I have no idea if these will help with the issues you guys see with Chrome,
+but... they might!
+
 -- 
-2.4.3
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1443476501.E13a3.6415
+Date: Mon, 28 Sep 2015 21:41:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91535#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Chrome can cause a nouveau 'multiple instances of buffer' message when overlaying a menu leading to X lockup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91535">bug 91535</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I've recently pushed some patches which solved this issue in Witcher 2. They
+should end up in Mesa 11.0.2 when that is released, but are already at mesa
+HEAD:
+
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=d4e650b07bc80075f0d088e7d85df9efa45e11bd">http://cgit.freedesktop.org/mesa/mesa/commit/?id=d4e650b07bc80075f0d088e7d85df9efa45e11bd</a>
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=3a6b9a7830c3df14ffcfbbf57c82ea08bd59ef04">http://cgit.freedesktop.org/mesa/mesa/commit/?id=3a6b9a7830c3df14ffcfbbf57c82ea08bd59ef04</a>
+<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=1d8cba9b51b7a6e7dbf3f0d3f53b5c232fd0b5b2">http://cgit.freedesktop.org/mesa/mesa/commit/?id=1d8cba9b51b7a6e7dbf3f0d3f53b5c232fd0b5b2</a>
+
+I have no idea if these will help with the issues you guys see with Chrome,
+but... they might!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443476501.E13a3.6415--
+
+--===============1231253205==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1231253205==--
