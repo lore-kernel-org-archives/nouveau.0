@@ -1,14 +1,13 @@
-From: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
-Subject: [PATCH 3/9] fb/ramgt215: Change FBVDD/Q when BIOS asks
-	for it
-Date: Wed, 30 Sep 2015 00:23:46 +0100
-Message-ID: <1443569032-13817-4-git-send-email-rspliet@eclipso.eu>
-References: <1443569032-13817-1-git-send-email-rspliet@eclipso.eu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92013] [NVA0] 4.3-rc1 fan set to full speed after
+ resume from suspend
+Date: Tue, 29 Sep 2015 23:28:38 +0000
+Message-ID: <bug-92013-8800-CXWAQ88eFl@http.bugs.freedesktop.org/>
+References: <bug-92013-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0437079414=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1443569032-13817-1-git-send-email-rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+In-Reply-To: <bug-92013-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,62 +17,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogUm95IFNwbGlldCA8cnNwbGlldEBlY2xpcHNvLmV1PgotLS0KIC4uLi9n
-cHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9iaW9zL3JhbWNmZy5oICB8ICAxICsK
-IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3MvcmFtbWFwLmMgICAgICB8
-ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWd0MjE1LmMg
-ICAgICB8IDE4ICsrKysrKysrKysrKysrKysrKwogMyBmaWxlcyBjaGFuZ2VkLCAyMCBpbnNlcnRp
-b25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL3JhbWNmZy5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9u
-dmttL3N1YmRldi9iaW9zL3JhbWNmZy5oCmluZGV4IGRkNDhkYjcuLmRjYTZjMDYgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9yYW1j
-ZmcuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jp
-b3MvcmFtY2ZnLmgKQEAgLTM5LDYgKzM5LDcgQEAgc3RydWN0IG52Ymlvc19yYW1jZmcgewogCXVu
-c2lnbmVkIHJhbWNmZ190aW1pbmc7CiAJdW5zaWduZWQgcmFtY2ZnX0RMTG9mZjsKIAl1bnNpZ25l
-ZCByYW1jZmdfUk9OOworCXVuc2lnbmVkIHJhbWNmZ19GQlZERFE7CiAJdW5pb24gewogCQlzdHJ1
-Y3QgewogCQkJdW5zaWduZWQgcmFtY2ZnXzAwXzAzXzAxOjE7CmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3JhbW1hcC5jIGIvZHJpdmVycy9ncHUv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9yYW1tYXAuYwppbmRleCAzYmJiMWE3Li43NGE0
-YWI1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9z
-L3JhbW1hcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mv
-cmFtbWFwLmMKQEAgLTIwNSw2ICsyMDUsNyBAQCBudmJpb3NfcmFtbWFwU3Aoc3RydWN0IG52a21f
-YmlvcyAqYmlvcywgdTMyIGRhdGEsCiAJCXAtPnJhbWNmZ19ETExvZmYgICA9IChudmJpb3NfcmQw
-OChiaW9zLCBkYXRhICsgMHgwMikgJiAweDQwKSA+PiA2OwogCQlwLT5yYW1jZmdfMTBfMDNfMGYg
-PSAobnZiaW9zX3JkMDgoYmlvcywgZGF0YSArIDB4MDMpICYgMHgwZikgPj4gMDsKIAkJcC0+cmFt
-Y2ZnXzEwXzA0XzAxID0gKG52Ymlvc19yZDA4KGJpb3MsIGRhdGEgKyAweDA0KSAmIDB4MDEpID4+
-IDA7CisJCXAtPnJhbWNmZ19GQlZERFEgICA9IChudmJpb3NfcmQwOChiaW9zLCBkYXRhICsgMHgw
-NCkgJiAweDA4KSA+PiAzOwogCQlwLT5yYW1jZmdfMTBfMDUgICAgPSAobnZiaW9zX3JkMDgoYmlv
-cywgZGF0YSArIDB4MDUpICYgMHhmZikgPj4gMDsKIAkJcC0+cmFtY2ZnXzEwXzA2ICAgID0gKG52
-Ymlvc19yZDA4KGJpb3MsIGRhdGEgKyAweDA2KSAmIDB4ZmYpID4+IDA7CiAJCXAtPnJhbWNmZ18x
-MF8wNyAgICA9IChudmJpb3NfcmQwOChiaW9zLCBkYXRhICsgMHgwNykgJiAweGZmKSA+PiAwOwpk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvZmIvcmFtZ3Qy
-MTUuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbWd0MjE1LmMK
-aW5kZXggMGMyOGYzOC4uY2I3NWRlMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvZmIvcmFtZ3QyMTUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
-dS9udmttL3N1YmRldi9mYi9yYW1ndDIxNS5jCkBAIC00OTgsNiArNDk4LDcgQEAgZ3QyMTVfcmFt
-X2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNlLCB1MzIgZnJlcSkKIAlzdHJ1Y3QgbnZrbV9kZXZp
-Y2UgKmRldmljZSA9IHN1YmRldi0+ZGV2aWNlOwogCXN0cnVjdCBudmttX2Jpb3MgKmJpb3MgPSBk
-ZXZpY2UtPmJpb3M7CiAJc3RydWN0IGd0MjE1X2Nsa19pbmZvIG1jbGs7CisJc3RydWN0IG52a21f
-Z3BpbyAqZ3BpbyA9IGRldmljZS0+Z3BpbzsKIAlzdHJ1Y3QgbnZrbV9yYW1fZGF0YSAqbmV4dDsK
-IAl1OCAgdmVyLCBoZHIsIGNudCwgbGVuLCBzdHJhcDsKIAl1MzIgZGF0YTsKQEAgLTY1Niw2ICs2
-NTcsMjMgQEAgZ3QyMTVfcmFtX2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNlLCB1MzIgZnJlcSkK
-IAlpZiAoZGV2aWNlLT5jaGlwc2V0ID09IDB4YTMgJiYgZnJlcSA8PSA1MDAwMDApCiAJCXJhbV9t
-YXNrKGZ1YywgMHgxMDA3MDAsIDB4MDAwMDAwMDYsIDB4MDAwMDAwMDYpOwogCisJLyogQWx0ZXIg
-RkJWREQvUSwgYXBwYXJlbnRseSBtdXN0IGJlIGRvbmUgd2l0aCBQTEwgZGlzYWJsZWQsIHRodXMK
-KwkgKiBzZXQgaXQgdG8gYnlwYXNzICovCisJaWYgKG52a21fZ3Bpb19nZXQoZ3BpbywgMCwgMHgx
-OCwgRENCX0dQSU9fVU5VU0VEKSA9PSAKKwkJCW5leHQtPmJpb3MucmFtY2ZnX0ZCVkREUSkgewor
-CQlkYXRhID0gcmFtX3JkMzIoZnVjLCAweDAwNDAwMCkgJiAweDk7CisKKwkJaWYgKGRhdGEgPT0g
-MHgxKQorCQkJcmFtX21hc2soZnVjLCAweDAwNDAwMCwgMHg4LCAweDgpOworCQlpZiAoZGF0YSAm
-IDB4MSkKKwkJCXJhbV9tYXNrKGZ1YywgMHgwMDQwMDAsIDB4MSwgMHgwKTsKKworCQlndDIxNV9y
-YW1fZ3BpbyhmdWMsIDB4MTgsICFuZXh0LT5iaW9zLnJhbWNmZ19GQlZERFEpOworCisJCWlmIChk
-YXRhICYgMHgxKQorCQkJcmFtX21hc2soZnVjLCAweDAwNDAwMCwgMHgxLCAweDEpOworCX0KKwog
-CS8qIEZpZGRsZSB3aXRoIGNsb2NrcyAqLwogCS8qIFRoZXJlJ3MgNCBzY2VuYXJpbydzCiAJICog
-cGxsLT5wbGw6IGZpcnN0IHN3aXRjaCB0byBhIDMyNE1IeiBjbG9jaywgc2V0IHVwIG5ldyBQTEws
-IHN3aXRjaAotLSAKMi40LjMKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZl
-YXUK
+
+--===============0437079414==
+Content-Type: multipart/alternative; boundary="1443569318.Ebab4e21.8447"; charset="UTF-8"
+
+
+--1443569318.Ebab4e21.8447
+Date: Tue, 29 Sep 2015 23:28:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92013
+
+--- Comment #5 from Matt Henry <boohbah-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I tested the patch and I can confirm that it resolves the issue.
+Thank you.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1443569318.Ebab4e21.8447
+Date: Tue, 29 Sep 2015 23:28:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA0] 4.3-rc1 fan set to full speed after resume from suspend"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92013">bug 92013</a>
+              from <span class="vcard"><a class="email" href="mailto:boohbah&#64;gmail.com" title="Matt Henry &lt;boohbah&#64;gmail.com&gt;"> <span class="fn">Matt Henry</span></a>
+</span></b>
+        <pre>I tested the patch and I can confirm that it resolves the issue.
+Thank you.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443569318.Ebab4e21.8447--
+
+--===============0437079414==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0437079414==--
