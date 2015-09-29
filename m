@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92178] nouveau framebuffer fails to initialize
- properly on GeForce 2 Go (NV11M)
-Date: Tue, 29 Sep 2015 09:34:27 +0000
-Message-ID: <bug-92178-8800-KgoVuPcgeV@http.bugs.freedesktop.org/>
-References: <bug-92178-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92171] [NVE7] Reboot causes nouveau
+	corruption/ghosting
+Date: Tue, 29 Sep 2015 11:22:20 +0000
+Message-ID: <bug-92171-8800-waIyuHWNzH@http.bugs.freedesktop.org/>
+References: <bug-92171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1802648408=="
+Content-Type: multipart/mixed; boundary="===============0596533014=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92178-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1802648408==
-Content-Type: multipart/alternative; boundary="1443519267.eA0e1Bf1.668"; charset="UTF-8"
+--===============0596533014==
+Content-Type: multipart/alternative; boundary="1443525739.f3ddFf4a1.23896"; charset="UTF-8"
 
 
---1443519267.eA0e1Bf1.668
-Date: Tue, 29 Sep 2015 09:34:27 +0000
+--1443525739.f3ddFf4a1.23896
+Date: Tue, 29 Sep 2015 11:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92178
+https://bugs.freedesktop.org/show_bug.cgi?id=92171
 
---- Comment #1 from Sernin van de Krol <serninpc-TWgYT7lc6Xzk1uMJSBkQmQ@public.gmane.org> ---
-Created attachment 118514
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118514&action=edit
-vbios.rom with nouveau loaded
+--- Comment #7 from Bryan O'Donoghue <pure.logic-SyKdqv6vbfZdzvEItQ6vdLNAH6kLmebB@public.gmane.org> ---
+Just to confirm.
+
+1. First boot is normal
+2. Issue a reboot
+3. Get corrupted screen
+4. Need to completely allow power to drain (so presumably there is some warm
+boot foolery going on here with the BIOS when I just do a power down)
+
+Requested dmesg attached.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443519267.eA0e1Bf1.668
-Date: Tue, 29 Sep 2015 09:34:27 +0000
+--1443525739.f3ddFf4a1.23896
+Date: Tue, 29 Sep 2015 11:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,16 +61,23 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau framebuffer fails to initialize properly on GeForce 2 Go (NV11M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92178#c1">Comment # 1</a>
+   title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92171#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau framebuffer fails to initialize properly on GeForce 2 Go (NV11M)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92178">bug 92178</a>
-              from <span class="vcard"><a class="email" href="mailto:serninpc&#64;paneidos.net" title="Sernin van de Krol &lt;serninpc&#64;paneidos.net&gt;"> <span class="fn">Sernin van de Krol</span></a>
+   title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92171">bug 92171</a>
+              from <span class="vcard"><a class="email" href="mailto:pure.logic&#64;nexus-software.ie" title="Bryan O'Donoghue &lt;pure.logic&#64;nexus-software.ie&gt;"> <span class="fn">Bryan O'Donoghue</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118514" name="attach_118514" title="vbios.rom with nouveau loaded">attachment 118514</a> <a href="attachment.cgi?id=118514&amp;action=edit" title="vbios.rom with nouveau loaded">[details]</a></span>
-vbios.rom with nouveau loaded</pre>
+        <pre>Just to confirm.
+
+1. First boot is normal
+2. Issue a reboot
+3. Get corrupted screen
+4. Need to completely allow power to drain (so presumably there is some warm
+boot foolery going on here with the BIOS when I just do a power down)
+
+Requested dmesg attached.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +89,9 @@ vbios.rom with nouveau loaded</pre>
     </body>
 </html>
 
---1443519267.eA0e1Bf1.668--
+--1443525739.f3ddFf4a1.23896--
 
---===============1802648408==
+--===============0596533014==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1802648408==--
+--===============0596533014==--
