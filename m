@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92171] [NVE7] Reboot causes nouveau
 	corruption/ghosting
-Date: Tue, 29 Sep 2015 06:43:22 +0000
-Message-ID: <bug-92171-8800-0rPIaJAain@http.bugs.freedesktop.org/>
+Date: Tue, 29 Sep 2015 06:44:10 +0000
+Message-ID: <bug-92171-8800-F2PWZElDwI@http.bugs.freedesktop.org/>
 References: <bug-92171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2010972005=="
+Content-Type: multipart/mixed; boundary="===============1628919474=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2010972005==
-Content-Type: multipart/alternative; boundary="1443509002.c5Fc11.18456"; charset="UTF-8"
+--===============1628919474==
+Content-Type: multipart/alternative; boundary="1443509050.dFee5BfE1.18630"; charset="UTF-8"
 
 
---1443509002.c5Fc11.18456
-Date: Tue, 29 Sep 2015 06:43:22 +0000
+--1443509050.dFee5BfE1.18630
+Date: Tue, 29 Sep 2015 06:44:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92171
 
---- Comment #4 from Bryan O'Donoghue <pure.logic-SyKdqv6vbfZdzvEItQ6vdLNAH6kLmebB@public.gmane.org> ---
-Yes, that's a non-optimus setup.
-
-I'll get you that capture. Right now I have this weird artifact on my primary
-laptop screen that won't go away after booting the system a number of times @
-the 4.3.0-rcX kernel - I'm assuming the system isn't actually resetting the
-nvidia when I power down (some sort of warm boot) - so I've disconnected the
-power and I'm letting the battery run flat.
-
-I'm attaching a picture of the artifact that persisting through resets (note
-it's still there even after leaving the system powered off overnight)
+--- Comment #5 from Bryan O'Donoghue <pure.logic-SyKdqv6vbfZdzvEItQ6vdLNAH6kLmebB@public.gmane.org> ---
+Created attachment 118512
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118512&action=edit
+artifact-on-primary-screen
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443509002.c5Fc11.18456
-Date: Tue, 29 Sep 2015 06:43:22 +0000
+--1443509050.dFee5BfE1.18630
+Date: Tue, 29 Sep 2015 06:44:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,23 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92171#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92171#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92171">bug 92171</a>
               from <span class="vcard"><a class="email" href="mailto:pure.logic&#64;nexus-software.ie" title="Bryan O'Donoghue &lt;pure.logic&#64;nexus-software.ie&gt;"> <span class="fn">Bryan O'Donoghue</span></a>
 </span></b>
-        <pre>Yes, that's a non-optimus setup.
-
-I'll get you that capture. Right now I have this weird artifact on my primary
-laptop screen that won't go away after booting the system a number of times &#64;
-the 4.3.0-rcX kernel - I'm assuming the system isn't actually resetting the
-nvidia when I power down (some sort of warm boot) - so I've disconnected the
-power and I'm letting the battery run flat.
-
-I'm attaching a picture of the artifact that persisting through resets (note
-it's still there even after leaving the system powered off overnight)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118512" name="attach_118512" title="artifact-on-primary-screen">attachment 118512</a> <a href="attachment.cgi?id=118512&amp;action=edit" title="artifact-on-primary-screen">[details]</a></span>
+artifact-on-primary-screen</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +76,9 @@ it's still there even after leaving the system powered off overnight)</pre>
     </body>
 </html>
 
---1443509002.c5Fc11.18456--
+--1443509050.dFee5BfE1.18630--
 
---===============2010972005==
+--===============1628919474==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2010972005==--
+--===============1628919474==--
