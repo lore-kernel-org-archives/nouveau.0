@@ -1,87 +1,79 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Tue, 29 Sep 2015 17:29:38 +0000
-Message-ID: <bug-89558-8800-rkOHmlNRQb@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb@gmail.com>
+Subject: Re: [PATCH v3] pci: Handle 5-bit and 8-bit tag field
+Date: Wed, 30 Sep 2015 07:01:06 +1000
+Message-ID: <560AFC12.5050800@gmail.com>
+References: <1442435210-21276-1-git-send-email-pierre.morrow@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0595793865=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <1442435210-21276-1-git-send-email-pierre.morrow@free.fr>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Pierre Moreau <pierre.morrow@free.fr>, nouveau@lists.freedesktop.org, bskeggs@redhat.com
+Cc: dri-devel@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0595793865==
-Content-Type: multipart/alternative; boundary="1443547778.456eC4.27680"; charset="UTF-8"
-
-
---1443547778.456eC4.27680
-Date: Tue, 29 Sep 2015 17:29:38 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #39 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-http://cgit.freedesktop.org/~darktama/nouveau/tree/drm/nouveau/nvkm/engine/device/base.c#n2461
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443547778.456eC4.27680
-Date: Tue, 29 Sep 2015 17:29:38 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c39">Comment # 39</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre><a href="http://cgit.freedesktop.org/~darktama/nouveau/tree/drm/nouveau/nvkm/engine/device/base.c#n2461">http://cgit.freedesktop.org/~darktama/nouveau/tree/drm/nouveau/nvkm/engine/device/base.c#n2461</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443547778.456eC4.27680--
-
---===============0595793865==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0595793865==--
+T24gMDkvMTcvMjAxNSAwNjoyNiBBTSwgUGllcnJlIE1vcmVhdSB3cm90ZToKPiBJZiB0aGUgaGFy
+ZHdhcmUgc3VwcG9ydHMgZXh0ZW5kZWQgdGFnIGZpZWxkICg4LWJpdCBvbmVzKSwgdGhlbgo+IGVu
+YWJsZWQgaXQuIFRoaXMgaXMgdXN1YWxseSBkb25lIGJ5IHRoZSBWQklPUywgYnV0IG5vdCBvbiBz
+b21lIE1CUHMKPiAoc2VlIGZkbyM4NjUzNykuIEluIGNhc2UgZXh0ZW5kZWQgdGFnIGZpZWxkIGlz
+IG5vdCBzdXBwb3J0ZWQsIDUtYml0Cj4gdGFnIGZpZWxkIGlzIHVzZWQgd2hpY2ggbGltaXRzIHRo
+ZSBwb3NzaWJsZSB2YWx1ZXMgdG8gMzIuCj4gQXBwYXJlbnRseSBiaXRzIDc6MCBvZiAweDg4NDFj
+IHN0b3JlcyBzb21lIG51bWJlciBvZiBvdXRzdGFuZGluZwo+IHJlcXVlc3RzLCBzbyBjYXAgaXQg
+dG8gMzIgaWYgZXh0ZW5kZWQgdGFnIGlzIHVuc3VwcG9ydGVkLgo+IAo+IEZpeGVzOiBmZG8jODY1
+MzcKPiAKPiB2MjogUmVzdHJpY3QgY2hhbmdlcyB0byBjaGlwc2V0cyA+PSAweDg0IHYzOiAqIEFk
+ZCBudmttX3BjaV9tYXNrIHRvCj4gcGNpLmggKiBNYXNrIGJpdCA4IGJlZm9yZSBzZXR0aW5nIGl0
+Cj4gCj4gU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZy
+PiAtLS0gCj4gZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaCB8ICAxICsgCj4g
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyAgICB8IDI1Cj4gKysrKysrKysrKysr
+KysrKysrKysrKysrKyAyIGZpbGVzIGNoYW5nZWQsIDI2IGluc2VydGlvbnMoKykKPiAKPiBkaWZm
+IC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaAo+IGIvZHJtL25v
+dXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaCBpbmRleCA1YjNjMDU0Li43NzRjYTY2Cj4g
+MTAwNjQ0IC0tLSBhL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmggKysrCj4g
+Yi9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BjaS5oIEBAIC0yNCw2ICsyNCw3IEBA
+IHN0cnVjdAo+IG52a21fcGNpIHsgdTMyIG52a21fcGNpX3JkMzIoc3RydWN0IG52a21fcGNpICos
+IHUxNiBhZGRyKTsgdm9pZAo+IG52a21fcGNpX3dyMDgoc3RydWN0IG52a21fcGNpICosIHUxNiBh
+ZGRyLCB1OCBkYXRhKTsgdm9pZAo+IG52a21fcGNpX3dyMzIoc3RydWN0IG52a21fcGNpICosIHUx
+NiBhZGRyLCB1MzIgZGF0YSk7ICt1MzIKPiBudmttX3BjaV9tYXNrKHN0cnVjdCBudmttX3BjaSAq
+LCB1MTYgYWRkciwgdTMyIG1hc2ssIHUzMiBhZGQpOyB2b2lkCj4gbnZrbV9wY2lfcm9tX3NoYWRv
+dyhzdHJ1Y3QgbnZrbV9wY2kgKiwgYm9vbCBzaGFkb3cpOwo+IAo+IGludCBudjA0X3BjaV9uZXco
+c3RydWN0IG52a21fZGV2aWNlICosIGludCwgc3RydWN0IG52a21fcGNpICoqKTsgCj4gZGlmZiAt
+LWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9iYXNlLmMKPiBiL2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L3BjaS9iYXNlLmMgaW5kZXggZDFjMTQ4ZS4uY2IyODM1YiAxMDA2NDQgCj4g
+LS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyArKysKPiBiL2RybS9ub3V2
+ZWF1L252a20vc3ViZGV2L3BjaS9iYXNlLmMgQEAgLTQ2LDYgKzQ2LDE0IEBACj4gbnZrbV9wY2lf
+d3IzMihzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwgdTE2IGFkZHIsIHUzMiBkYXRhKSAKPiBwY2ktPmZ1
+bmMtPndyMzIocGNpLCBhZGRyLCBkYXRhKTsgfQo+IAo+ICt1MzIgK252a21fcGNpX21hc2soc3Ry
+dWN0IG52a21fcGNpICpwY2ksIHUxNiBhZGRyLCB1MzIgbWFzaywgdTMyCj4gYWRkKSAreyArCXUz
+MiBkYXRhID0gcGNpLT5mdW5jLT5yZDMyKHBjaSwgYWRkcik7ICsKPiBwY2ktPmZ1bmMtPndyMzIo
+cGNpLCBhZGRyLCAoZGF0YSAmIH5tYXNrKSB8IGFkZCk7ICsJcmV0dXJuIGRhdGE7IAo+ICt9ICsg
+dm9pZCBudmttX3BjaV9yb21fc2hhZG93KHN0cnVjdCBudmttX3BjaSAqcGNpLCBib29sIHNoYWRv
+dykgeyAKPiBAQCAtMTE1LDYgKzEyMywyMyBAQCBudmttX3BjaV9pbml0KHN0cnVjdCBudmttX3N1
+YmRldiAqc3ViZGV2KSBpZgo+IChyZXQpIHJldHVybiByZXQ7Cj4gCj4gKwlpZiAocGNpX2lzX3Bj
+aWUocGRldikgJiYgc3ViZGV2LT5kZXZpY2UtPmNoaXBzZXQgPj0gMHg4NCkgeyArCQkvKgo+IFRh
+ZyBmaWVsZCBpcyA4LWJpdCBsb25nLCByZWdhcmRsZXNzIG9mIEVYVF9UQUcuICsJCSAqIEhvd2V2
+ZXIsIGlmCj4gRVhUX1RBRyBpcyBkaXNhYmxlZCwgb25seSB0aGUgbG93ZXIgNSBiaXRzIG9mIHRo
+ZSB0YWcgKwkJICogZmllbGQKPiBzaG91bGQgYmUgdXNlZCwgbGltaXRpbmcgdGhlIG51bWJlciBv
+ZiByZXF1ZXN0IHRvIDMyLiArCQkgKiArCQkgKgo+IEFwcGFyZW50bHksIDB4MDQxYyBzdG9yZXMg
+c29tZSBsaW1pdCBvbiB0aGUgbnVtYmVyIG9mIHJlcXVlc3RzICsKPiAqIHBvc3NpYmxlLCBzbyBp
+ZiBFWFRfVEFHIGlzIGRpc2FibGVkLCBsaW1pdCB0aGF0IHJlcXVlc3RzIG51bWJlcgo+IHRvICsJ
+CSAqIDMyICsJCSAqICsJCSAqIEZpeGVzIGZkbyM4NjUzNyArCQkgKi8gKwkJaWYKPiAobnZrbV9w
+Y2lfcmQzMihwY2ksIDB4MDA3YykgJiAweDAwMDAwMDIwKSArCQkJbnZrbV9wY2lfbWFzayhwY2ks
+Cj4gMHgwMDgwLCAweDAwMDAwMTAwLCAweDAwMDAwMTAwKTsgKwkJZWxzZSArCQkJbnZrbV9wY2lf
+bWFzayhwY2ksCj4gMHgwNDFjLCAweDAwMDAwMDYwLCAweDAwMDAwMDAwKTsgKwl9ClBsZWFzZSBp
+bnRyb2R1Y2UgYSAuaW5pdCgpIHRvIG52a21fcGNpX2Z1bmMoKSwgYW5kIGltcGxlbWVudCBhIGc4
+NC5jCnRoYXQgaGFuZGxlcyB0aGlzIChnZjEwMC5jIGNhbiB1c2UgZzg0X3BjaV9pbml0KCkgZnJv
+bSB0aGVyZSkuCgpUaGUgY2hlY2sgZm9yIFBDSS1FIGlzIHJlZHVuZGFudCB0b28sIGFsbCB0aGVz
+ZSBib2FyZHMgYXJlIFBDSS1FLgoKT3RoZXIgdGhhbiB0aGUgYWJvdmUgbml0LXBpY2tpbmcsIGxv
+b2tzIGZpbmUuCgpUaGFua3MsCkJlbi4KCj4gKyBwY2ktPmlycSA9IHBkZXYtPmlycTsgcmV0dXJu
+IHJldDsgfQo+IAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
