@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92171] [NVE7] Reboot causes nouveau
 	corruption/ghosting
-Date: Tue, 29 Sep 2015 06:46:36 +0000
-Message-ID: <bug-92171-8800-J9QvKw8RFY@http.bugs.freedesktop.org/>
+Date: Tue, 29 Sep 2015 07:10:20 +0000
+Message-ID: <bug-92171-8800-G1r82vwN6I@http.bugs.freedesktop.org/>
 References: <bug-92171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0920282813=="
+Content-Type: multipart/mixed; boundary="===============0814309583=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,30 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0920282813==
-Content-Type: multipart/alternative; boundary="1443509196.d6FF652.18985"; charset="UTF-8"
+--===============0814309583==
+Content-Type: multipart/alternative; boundary="1443510620.14f641a2.23943"; charset="UTF-8"
 
 
---1443509196.d6FF652.18985
-Date: Tue, 29 Sep 2015 06:46:36 +0000
+--1443510620.14f641a2.23943
+Date: Tue, 29 Sep 2015 07:10:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92171
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #118512|text/plain                  |image/jpeg
-          mime type|                            |
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Also useful to know if the issue happens with 4.2. The nouveau driver got
+basically rewritten in 4.3, a regression easily could have crept in.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443509196.d6FF652.18985
-Date: Tue, 29 Sep 2015 06:46:36 +0000
+--1443510620.14f641a2.23943
+Date: Tue, 29 Sep 2015 07:10:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,28 +49,22 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92171#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE7] Reboot causes nouveau corruption/ghosting"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92171">bug 92171</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Attachment #118512 mime type</td>
-           <td>text/plain
-           </td>
-           <td>image/jpeg
-           </td>
-         </tr></table>
-      <p>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>Also useful to know if the issue happens with 4.2. The nouveau driver got
+basically rewritten in 4.3, a regression easily could have crept in.</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -84,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1443509196.d6FF652.18985--
+--1443510620.14f641a2.23943--
 
---===============0920282813==
+--===============0814309583==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0920282813==--
+--===============0814309583==--
