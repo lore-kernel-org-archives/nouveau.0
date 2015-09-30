@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92192] nouveau does not detect monitor native
-	resolution
-Date: Wed, 30 Sep 2015 10:44:24 +0000
-Message-ID: <bug-92192-8800-L5qk026uwZ@http.bugs.freedesktop.org/>
+ resolution (Geforce GT240 / GT215)
+Date: Wed, 30 Sep 2015 10:45:19 +0000
+Message-ID: <bug-92192-8800-y85lEpuwv6@http.bugs.freedesktop.org/>
 References: <bug-92192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0330854411=="
+Content-Type: multipart/mixed; boundary="===============0057678973=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0330854411==
-Content-Type: multipart/alternative; boundary="1443609864.e1CAEA1.19081"; charset="UTF-8"
+--===============0057678973==
+Content-Type: multipart/alternative; boundary="1443609918.bD0A11.19533"; charset="UTF-8"
 
 
---1443609864.e1CAEA1.19081
-Date: Wed, 30 Sep 2015 10:44:24 +0000
+--1443609918.bD0A11.19533
+Date: Wed, 30 Sep 2015 10:45:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92192
 
---- Comment #2 from Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 118536
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118536&action=edit
-vbios.rom
+Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+            Summary|nouveau does not detect     |nouveau does not detect
+                   |monitor native resolution   |monitor native resolution
+                   |                            |(Geforce GT240 / GT215)
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443609864.e1CAEA1.19081
-Date: Wed, 30 Sep 2015 10:44:24 +0000
+--1443609918.bD0A11.19533
+Date: Wed, 30 Sep 2015 10:45:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,22 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:germano.massullo&#64;gmail.com" title="Germano Massullo &lt;germano.massullo&#64;gmail.com&gt;"> <span class="fn">Germano Massullo</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau does not detect monitor native resolution"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92192#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau does not detect monitor native resolution"
+   title="NEW - nouveau does not detect monitor native resolution (Geforce GT240 / GT215)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92192">bug 92192</a>
-              from <span class="vcard"><a class="email" href="mailto:germano.massullo&#64;gmail.com" title="Germano Massullo &lt;germano.massullo&#64;gmail.com&gt;"> <span class="fn">Germano Massullo</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118536" name="attach_118536" title="vbios.rom">attachment 118536</a> <a href="attachment.cgi?id=118536&amp;action=edit" title="vbios.rom">[details]</a></span>
-vbios.rom</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Summary</td>
+           <td>nouveau does not detect monitor native resolution
+           </td>
+           <td>nouveau does not detect monitor native resolution (Geforce GT240 / GT215)
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -76,9 +85,9 @@ vbios.rom</pre>
     </body>
 </html>
 
---1443609864.e1CAEA1.19081--
+--1443609918.bD0A11.19533--
 
---===============0330854411==
+--===============0057678973==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0330854411==--
+--===============0057678973==--
