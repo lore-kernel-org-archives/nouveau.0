@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Wed, 30 Sep 2015 19:18:41 +0000
-Message-ID: <bug-89558-8800-x3iDJt0ADY@http.bugs.freedesktop.org/>
+Date: Wed, 30 Sep 2015 19:55:23 +0000
+Message-ID: <bug-89558-8800-v64O40FHQT@http.bugs.freedesktop.org/>
 References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1928431868=="
+Content-Type: multipart/mixed; boundary="===============1440374196=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,37 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1928431868==
-Content-Type: multipart/alternative; boundary="1443640721.7f0E7F4.1187"; charset="UTF-8"
+--===============1440374196==
+Content-Type: multipart/alternative; boundary="1443642923.ba604.22045"; charset="UTF-8"
 
 
---1443640721.7f0E7F4.1187
-Date: Wed, 30 Sep 2015 19:18:41 +0000
+--1443642923.ba604.22045
+Date: Wed, 30 Sep 2015 19:55:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89558
 
---- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Andrei Borzenkov from comment #40)
-> /dev/dri nodes are correctly created for a second card. Unfortunately
-> attempt to actually run something on secondary GPU results in
-> 
-> [   184.755] (II) [drm] nouveau interface version: 1.3.0
-> [   184.755] (EE) Unknown chipset: NV118
+--- Comment #42 from Andrei Borzenkov <arvidjaar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #41)
+> Use the modesetting driver.
 
-The nouveau DDX won't do anything useful for maxwell. Use the modesetting
-driver. Do note that there are known problems with GLAMOR.
-
-But chances are there are no outputs on the GM108 anyways, so that won't be an
-issue.
+Does not work - I do not get any output (but as said, I have quite dated Xorg).
+Anyway, the whole point of Optimus systems is to use discrete GPU for hardware
+acceleration; using generic driver seems to defeat it ...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443640721.7f0E7F4.1187
-Date: Wed, 30 Sep 2015 19:18:41 +0000
+--1443642923.ba604.22045
+Date: Wed, 30 Sep 2015 19:55:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -64,25 +58,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c41">Comment # 41</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c42">Comment # 42</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV118] GM108 not supported by nouveau"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:arvidjaar&#64;gmail.com" title="Andrei Borzenkov &lt;arvidjaar&#64;gmail.com&gt;"> <span class="fn">Andrei Borzenkov</span></a>
 </span></b>
-        <pre>(In reply to Andrei Borzenkov from <a href="show_bug.cgi?id=89558#c40">comment #40</a>)
-<span class="quote">&gt; /dev/dri nodes are correctly created for a second card. Unfortunately
-&gt; attempt to actually run something on secondary GPU results in
-&gt; 
-&gt; [   184.755] (II) [drm] nouveau interface version: 1.3.0
-&gt; [   184.755] (EE) Unknown chipset: NV118</span >
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89558#c41">comment #41</a>)
+<span class="quote">&gt; Use the modesetting driver.</span >
 
-The nouveau DDX won't do anything useful for maxwell. Use the modesetting
-driver. Do note that there are known problems with GLAMOR.
-
-But chances are there are no outputs on the GM108 anyways, so that won't be an
-issue.</pre>
+Does not work - I do not get any output (but as said, I have quite dated Xorg).
+Anyway, the whole point of Optimus systems is to use discrete GPU for hardware
+acceleration; using generic driver seems to defeat it ...</pre>
         </div>
       </p>
       <hr>
@@ -94,9 +82,9 @@ issue.</pre>
     </body>
 </html>
 
---1443640721.7f0E7F4.1187--
+--1443642923.ba604.22045--
 
---===============1928431868==
+--===============1440374196==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +94,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1928431868==--
+--===============1440374196==--
