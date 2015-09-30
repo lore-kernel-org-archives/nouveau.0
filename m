@@ -1,11 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Documentation request for MP warp error 0x10
-Date: Wed, 30 Sep 2015 15:14:47 -0400
-Message-ID: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
+Date: Wed, 30 Sep 2015 19:18:41 +0000
+Message-ID: <bug-89558-8800-x3iDJt0ADY@http.bugs.freedesktop.org/>
+References: <bug-89558-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1928431868=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,37 +16,94 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpJJ3ZlIHJlY2VudGx5IGNvbWUgYWNyb3NzIGFuIGVycm9yIHJlcG9ydGVkIGJ5IHRo
-ZSBHUFUgYW5kIHdvdWxkIGxpa2UKdG8ga25vdyB3aGF0IGl0IG1lYW5zIGFuZCBlc3BlY2lhbGx5
-IHdoYXQgY2F1c2VzIGl0IHRvIGJlIHRyaWdnZXJlZC4KQW55IGluZm9ybWF0aW9uIHdvdWxkIGJl
-IHZlcnkgdXNlZnVsOgoKSSdtIHNlZWluZyBNUCB3YXJwIGVycm9yIDB4MTAgKGFwcGVhcnMgaW4g
-TVAgcmVnaXN0ZXIgMHg0OCkuIFRoaXMgaXMKd2hhdCB3ZSBjdXJyZW50bHkgaGF2ZSBpbiBub3V2
-ZWF1OgoKPHJlZzMyIG9mZnNldD0iMHgwNDgiIG5hbWU9IlRSQVBfV0FSUF9FUlJPUiI+IDwhLS0g
-Y3R4LXN3aXRjaGVkIC0tPgo8Yml0ZmllbGQgaGlnaD0iMTUiIGxvdz0iMCIgbmFtZT0iSUQiPgo8
-dmFsdWUgdmFsdWU9IjEiIG5hbWU9IlNUQUNLX01JU01BVENIIi8+Cjx2YWx1ZSB2YWx1ZT0iNSIg
-bmFtZT0iTUlTQUxJR05FRF9QQyIvPgo8dmFsdWUgdmFsdWU9IjgiIG5hbWU9Ik1JU0FMSUdORURf
-R1BSIi8+Cjx2YWx1ZSB2YWx1ZT0iOSIgbmFtZT0iSU5WQUxJRF9PUENPREUiLz4KPHZhbHVlIHZh
-bHVlPSIxMyIgbmFtZT0iR1BSX09VVF9PRl9CT1VORFMiLz4KPHZhbHVlIHZhbHVlPSIxNCIgbmFt
-ZT0iTUVNX09VVF9PRl9CT1VORFMiLz4KPHZhbHVlIHZhbHVlPSIxNyIgbmFtZT0iSU5WQUxJRF9Q
-QVJBTSIvPgo8L2JpdGZpZWxkPgo8L3JlZzMyPgoKW0FkZGl0aW9uYWxseSBpdCBzZWVtcyBsaWtl
-IDE1ID0gVU5BTElHTkVEX01FTV9BQ0NFU1NdCgpJdCBzZWVtcyB0byBoYXBwZW4gd2hlbmV2ZXIg
-SSB0cnkgdG8gYWNjZXNzIGdsb2JhbCBtZW1vcnkgb24ga2VwbGVyCihwb3RlbnRpYWxseSBvbmx5
-IGF0b21pY3MsIG5vdCBzdXJlIGF0IHRoaXMgcG9pbnQpLiBLbm93aW5nIHByZWNpc2VseQp3aGF0
-IGNhdXNlcyB0aGUgZXJyb3IgdG8gZ2V0IHRyaWdnZXJlZCAoYW5kIGVzcCB3aGF0IHdlIG5lZWQg
-dG8gZG8gaW4Kb3JkZXIgbm90IHRvIHRyaWdnZXIgaXQpIHdvdWxkIGJlIG1vc3QgdXNlZnVsLgoK
-Rm9yIHJlZmVyZW5jZSwgbXkgc2hhZGVyIGxvb2tzIHNvbWV0aGluZyBsaWtlIHRoaXMgKGZvciBT
-TTM1KToKCiAgICAgICAgLyowMDE4Ki8gICAgICAgICAgICAgICAgICAgTERDLjY0IFIwLCBjWzB4
-Zl1bMHgxYzBdOwogIC8qIDB4N2NhODA3ODBlMDFmZmMwMiAqLwogICAgICAgIC8qMDAyMCovICAg
-ICAgICAgICAgICAgICAgIEFUT00uRS5BREQgUjIsIFtSMF0sIFIyOwogIC8qIDB4NjgwODAwMDAw
-MTFjMDAwYSAqLwogICAgICAgIC8qMDAyOCovICAgICAgICAgICAgICAgICAgIExELkUuQ0cgUjAs
-IFtSMF07CiAgLyogMHhjYzgwMDAwMDAwMWMwMDAwICovCgpJIGtub3cgdGhhdCB0aGUgcHJvcHJp
-ZXRhcnkgZHJpdmVycyBhcmUgYSBsb3QgbW9yZSBzb3BoaXN0aWNhdGVkIGFuZApvbmx5IGRvIHRo
-ZSBhdG9taWMgYWRkIGZyb20gYSBzaW5nbGUgbGFuZSwgYnV0IEkgd2FzIGFzc3VtaW5nIHRoYXQg
-d2FzCm5vdCByZXF1aXJlZC4KClRoYW5rcywKCiAgLWlsaWEKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1928431868==
+Content-Type: multipart/alternative; boundary="1443640721.7f0E7F4.1187"; charset="UTF-8"
+
+
+--1443640721.7f0E7F4.1187
+Date: Wed, 30 Sep 2015 19:18:41 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89558
+
+--- Comment #41 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Andrei Borzenkov from comment #40)
+> /dev/dri nodes are correctly created for a second card. Unfortunately
+> attempt to actually run something on secondary GPU results in
+> 
+> [   184.755] (II) [drm] nouveau interface version: 1.3.0
+> [   184.755] (EE) Unknown chipset: NV118
+
+The nouveau DDX won't do anything useful for maxwell. Use the modesetting
+driver. Do note that there are known problems with GLAMOR.
+
+But chances are there are no outputs on the GM108 anyways, so that won't be an
+issue.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1443640721.7f0E7F4.1187
+Date: Wed, 30 Sep 2015 19:18:41 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c41">Comment # 41</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV118] GM108 not supported by nouveau"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Andrei Borzenkov from <a href="show_bug.cgi?id=89558#c40">comment #40</a>)
+<span class="quote">&gt; /dev/dri nodes are correctly created for a second card. Unfortunately
+&gt; attempt to actually run something on secondary GPU results in
+&gt; 
+&gt; [   184.755] (II) [drm] nouveau interface version: 1.3.0
+&gt; [   184.755] (EE) Unknown chipset: NV118</span >
+
+The nouveau DDX won't do anything useful for maxwell. Use the modesetting
+driver. Do note that there are known problems with GLAMOR.
+
+But chances are there are no outputs on the GM108 anyways, so that won't be an
+issue.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443640721.7f0E7F4.1187--
+
+--===============1928431868==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1928431868==--
