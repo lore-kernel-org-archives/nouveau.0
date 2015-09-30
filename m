@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Wed, 30 Sep 2015 20:00:36 +0000
-Message-ID: <bug-89558-8800-EZTNOJUwJE@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: "Roy Spliet" <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
+Subject: Re: [PATCH 7/9] fb/ramnv50: Script changes for G94 and up
+Date: Wed, 30 Sep 2015 22:09:44 +0200
+Message-ID: <16df958ed626219ba41113cf05fa02bb@mail.eclipso.de>
+References: <1443569032-13817-1-git-send-email-rspliet@eclipso.eu>
+ <1443569032-13817-8-git-send-email-rspliet@eclipso.eu>
+ <560B517E.6010806@gmail.com>
+Reply-To: Roy Spliet <rspliet-pPYjZ15w/Xhulxpn9UvDqw@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1499335957=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <560B517E.6010806-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Content-Disposition: inline
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,110 +21,106 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1499335957==
-Content-Type: multipart/alternative; boundary="1443643236.eeB6A64.24846"; charset="UTF-8"
-
-
---1443643236.eeB6A64.24846
-Date: Wed, 30 Sep 2015 20:00:36 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #43 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Andrei Borzenkov from comment #42)
-> (In reply to Ilia Mirkin from comment #41)
-> > Use the modesetting driver.
-> 
-> Does not work - I do not get any output (but as said, I have quite dated
-> Xorg). Anyway, the whole point of Optimus systems is to use discrete GPU for
-> hardware acceleration; using generic driver seems to defeat it ...
-
-How so?
-
-With a modern Xorg you should be able to do 3 things:
-
-(a) use modesetting + glamor on any hardware with libGL support to get X
-operation acceleration [which is not something you care about since you're not
-going to use the GM108 as a primary]
-(b) use xrandr-based gpu offloading to get DRI2 offloading with DRI_PRIME=1
-(c) use DRI3-based offloading with DRI_PRIME=1 assuming your intel ddx has that
-enabled
-
-Note how nowhere in there is there any mention of a nouveau ddx.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443643236.eeB6A64.24846
-Date: Wed, 30 Sep 2015 20:00:36 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c43">Comment # 43</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Andrei Borzenkov from <a href="show_bug.cgi?id=89558#c42">comment #42</a>)
-<span class="quote">&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=89558#c41">comment #41</a>)
-&gt; &gt; Use the modesetting driver.
-&gt; 
-&gt; Does not work - I do not get any output (but as said, I have quite dated
-&gt; Xorg). Anyway, the whole point of Optimus systems is to use discrete GPU for
-&gt; hardware acceleration; using generic driver seems to defeat it ...</span >
-
-How so?
-
-With a modern Xorg you should be able to do 3 things:
-
-(a) use modesetting + glamor on any hardware with libGL support to get X
-operation acceleration [which is not something you care about since you're not
-going to use the GM108 as a primary]
-(b) use xrandr-based gpu offloading to get DRI2 offloading with DRI_PRIME=1
-(c) use DRI3-based offloading with DRI_PRIME=1 assuming your intel ddx has that
-enabled
-
-Note how nowhere in there is there any mention of a nouveau ddx.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443643236.eeB6A64.24846--
-
---===============1499335957==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1499335957==--
+SGV5IEJlbiwKCgotLS0gb3JpZ2luYWwgbWVzc2FnZSAtLS0KRnJvbTogQmVuIFNrZWdncyA8c2tl
+Z2dzYkBnbWFpbC5jb20+CkRhdGU6IDA1OjA1OjM0IDMwLTA5LTIwMTUKVG86IFJveSBTcGxpZXQg
+PHJzcGxpZXRAZWNsaXBzby5ldT4sICBOb3V2ZWF1IE1haWxpbmdsaXN0IDxub3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZz4KU3ViamVjdDogUmU6IFtQQVRDSCA3LzldIGZiL3JhbW52NTA6IFNj
+cmlwdCBjaGFuZ2VzIGZvciBHOTQgYW5kIHVwCgo+IC0tLS0tQkVHSU4gUEdQIFNJR05FRCBNRVNT
+QUdFLS0tLS0KPiBIYXNoOiBTSEEyNTYKPiAKPiBPbiAwOS8zMC8yMDE1IDA5OjIzIEFNLCBSb3kg
+U3BsaWV0IHdyb3RlOgo+ID4gMTAwNTNjIGlzIG5vdCBldmVuIHJlYWQgb24gc29tZSBjYXJkcywg
+YW5kIEkgaGF2ZSBubyBpZGVhIGV4YWN0bHkKPiA+IHdoYXQgdGhlIGNyaXRlcmlhIGFyZS4gTGlr
+ZWx5IE5WSURJQSBwcmUtc2NhbnMgdGhlIFZCSU9TIGFuZCBpbgo+ID4gdGhlaXIgZHJpdmVyIGRp
+c2FibGVzIGFsbCBmZWF0dXJlcyB0aGF0IGFyZSBuZXZlciB1c2VkLiBUaGUKPiA+IHByYWN0aWNh
+bCBlZmZlY3Qgc2hvdWxkIGJlIHRoZSBzYW1lIGFzIHRoaXMgaW1wbGVtZW50YXRpb24gdGhvdWdo
+Lgo+IEkgaGF2ZW4ndCBmdWxseSByZXZpZXdlZCB0aGUgc2VyaWVzIHByb3Blcmx5IHlldCwgYnV0
+IHdhbnRlZCB0byBwdXQgbXkKPiB0d28gY2VudHMgd29ydGggaW4gaGVyZS4KPiAKPiBJZiB0aGlz
+IHdvcmtzIGxpa2UgaXQgZG9lcyBvbiBLZXBsZXIsIHlvdSdyZSBnb2luZyB0byBnZXQgYml0dGVu
+IGhlcmUKPiBpZiB5b3UgZG9uJ3QgZG8gdGhpcyBjb3JyZWN0bHkuCj4gW3NuaXBdCj4gRGVwZW5k
+aW5nIG9uIHdoYXQgREVWSU5JVCBkaWQsIHRoaXMgY2FuIGxlYXZlIHNvbWV0aGluZyBlaXRoZXIg
+ZW5hYmxlZAo+IG9yIGRpc2FibGVkLCB5b3UgZG9uJ3Qga25vdyB3aGljaCwgeW91J3JlIGp1c3Qg
+c3VwcG9zZWQgdG8ganVzdCBub3QKPiB0b3VjaCBpdC4KClllcywgdGhpcyBpcyBwcmVjaXNlbHkg
+d2hhdCBJIGhhdmUgb2JzZXJ2ZWQsIGJ1dCB0aGFua3MgZm9yIHJlc3RhdGluZy4KSSByZWFsaXNl
+IEkgaGF2ZSBiZWVuIGxpdmluZyBvbiB0aGUgZWRnZSBieSBpZ25vcmluZyB0aGlzIGZvciBub3cu
+ClF1aXRlIGhvbmVzdGx5IHRob3VnaCwgSSBoYXZlbid0IGNvbWUgYWNyb3NzIGFuIGV4YW1wbGUg
+d2hlcmUgdGhpcyB3b3VsZApiZWNvbWUgYSBwcm9ibGVtICp5ZXQqLiBJIHJlY2tvbiB0aGlzIGlz
+IHNvbWV0aGluZyB5b3UgY291bGQgZXhwZWN0CmEgZm9sbG93LXVwIHBhdGNoIGZvciBvbmNlIEkg
+aGF2ZSB0aW1lIGZvciBpdC4KCj4gCj4gSSB0cmllZCB0byBpZ25vcmUgdGhpcyBvbiBLZXBsZXIg
+aW5pdGlhbGx5LCBidXQgZXZlbnR1YWxseSBnb3QgYml0dGVuCj4gYnkgaXQgYW5kIGhhZCB0byBp
+bXBsZW1lbnQgaXQgcHJvcGVybHkgKGdrMTA0X3JhbV9jdG9yX2RhdGEoKSBoYW5kbGVzCj4gdGhp
+cyBmb3IgdGhlIG1vc3QgcGFydCkuCj4gCj4gSSdkICpzdHJvbmdseSogcmVjb21tZW5kIHlvdSB2
+ZXJpZnkgaWYgdGhlIGJlaGF2aW91ciBpcyB0aGUgc2FtZSBvbgo+IHRoZXNlIGJvYXJkcywgYW5k
+IGltcGxlbWVudCBpdCBpZiBpdCBpcy4KCkFncmVlZCwgYnV0IGdpdmVuIEkgYW0gcHJvYmFibHkg
+cnVubmluZyBvdXQgb2YgdGltZSBxdWl0ZSBzb29uLCBJIGRvCnJlY29tbWVuZCB0YWtpbmcgdGhl
+IGN1cnJlbnQgd29yayB1cHN0cmVhbSBhcyBpcyBvciBzdWdnZXN0IG1pbm9yCmZpeGVzLCBhbmQg
+bm90IGZpcnN0IHdhaXQgZm9yIHRoaXMgcHJvcG9zZWQgY2hhbmdlLiBUaGF0J3MgcHVyZWx5CmZy
+b20gYSBwcmFjdGljYWwgc3RhbmNlOiB3aGF0IEkgcHVzaGVkIHRvIHRoZSBNTCBhcmUgaW1wcm92
+ZW1lbnRzLgpTb21lIHBlb3BsZSBiZW5lZml0IGZyb20gaXQgYW5kIGl0J2QgYmUgYSBzaGFtZSB0
+byBsZXQgdGhhdCBiaXQtcm90LgoKUm95LgoKPiAKPiBCZW4uCj4gCj4gPiAKPiA+IFNpZ25lZC1v
+ZmYtYnk6IFJveSBTcGxpZXQgPHJzcGxpZXRAZWNsaXBzby5ldT4gVGVzdGVkLWJ5OiBQaWVycmUK
+PiAKPiA+IE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVlLmZyPiAtLS0gCj4gPiBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1udjUwLmMgfCAzNgo+ID4gKysrKysrKysr
+KysrKysrKysrKystLS0tIDEgZmlsZSBjaGFuZ2VkLCAzMCBpbnNlcnRpb25zKCspLCA2Cj4gPiBk
+ZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2ZiL3JhbW52NTAuYwo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9u
+dmttL3N1YmRldi9mYi9yYW1udjUwLmMgaW5kZXgKPiA+IDFjNmFlNmIuLjY1MWI3NGEgMTAwNjQ0
+IC0tLQo+ID4gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9mYi9yYW1udjUw
+LmMgKysrCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2ZiL3JhbW52
+NTAuYyBAQCAtMzAyLDYgKzMwMiw5Cj4gCj4gPiBAQCBudjUwX3JhbV9jYWxjKHN0cnVjdCBudmtt
+X3JhbSAqYmFzZSwgdTMyIGZyZXEpIHJldHVybiByZXQ7IH0KPiA+IAo+ID4gKwlpZiAoc3ViZGV2
+LT5kZXZpY2UtPmNoaXBzZXQgPD0gMHg5NiAmJgo+ID4gIW5leHQtPmJpb3MucmFtY2ZnXzAwXzAz
+XzAyKSArCQlyYW1fbWFzayhod3NxLCAweDEwMDcxMCwKPiA+IDB4MDAwMDAyMDAsIDB4MDAwMDAw
+MDApOyArIC8qIEFsd2F5cyBkaXNhYmxlIHRoaXMgYml0IGR1cmluZwo+ID4gcmVjbG9jayAqLyBy
+YW1fbWFzayhod3NxLCAweDEwMDIwMCwgMHgwMDAwMDgwMCwgMHgwMDAwMDAwMCk7Cj4gPiAKPiA+
+IEBAIC0zNTMsOCArMzU2LDExIEBAIG52NTBfcmFtX2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNl
+LCB1MzIKPiA+IGZyZXEpIG5leHQtPmJpb3MucmFtbWFwXzAwXzE2XzQwIDw8IDE0KTsgcmFtX21h
+c2soaHdzcSwgMHgwMDQwMGMsCj4gCj4gPiAweDAwMDBmZmZmLCAoTjEgPDwgOCkgfCBNMSk7IHJh
+bV9tYXNrKGh3c3EsIDB4MDA0MDA4LCAweDkxZmYwMDAwLAo+IAo+ID4gcjAwNDAwOCk7IC0JaWYg
+KHN1YmRldi0+ZGV2aWNlLT5jaGlwc2V0ID49IDB4OTYpICsgKwkvKiBYWFg6Cj4gR0REUjMKPiA+
+IG9ubHk/ICovICsJaWYgKHN1YmRldi0+ZGV2aWNlLT5jaGlwc2V0ID49IDB4OTIpIHJhbV93cjMy
+KGh3c3EsCj4gCj4gPiAweDEwMGRhMCwgcjEwMGRhMCk7ICsgbnY1MF9yYW1fZ3Bpbyhod3NxLCAw
+eDE4LAo+ID4gIW5leHQtPmJpb3MucmFtY2ZnX0ZCVkREUSk7IHJhbV9uc2VjKGh3c3EsIDY0MDAw
+KTsgLypYWFgqLyAKPiA+IHJhbV9uc2VjKGh3c3EsIDMyMDAwKTsgLypYWFgqLyBAQCAtMzk3LDE5
+ICs0MDMsMzMgQEAKPiA+IG52NTBfcmFtX2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNlLCB1MzIg
+ZnJlcSkgcmFtX21hc2soaHdzcSwKPiA+IDB4MTAwMjAwLCAweDAwMDAxMDAwLCAhbmV4dC0+Ymlv
+cy5yYW1jZmdfMDBfMDRfMDIgPDwgMTIpOwo+ID4gCj4gPiAvKiBYWFg6IEEgbG90IG9mIHRoaXMg
+Y291bGQgYmUgImNoaXBzZXQiLyJyYW0gdHlwZSIKPiBzcGVjaWZpYyBzdHVmZgo+ID4gKi8gLQl1
+bms3MTAgID0gcmFtX3JkMzIoaHdzcSwgMHgxMDA3MTApICYgfjB4MDAwMDAxMDE7ICsJdW5rNzEw
+Cj4gID0KPiA+IHJhbV9yZDMyKGh3c3EsIDB4MTAwNzEwKSAmIH4weDAwMDAwMTAwOyB1bms3MTQg
+ID0gcmFtX3JkMzIoaHdzcSwKPiAKPiA+IDB4MTAwNzE0KSAmIH4weGYwMDAwMDIwOyB1bms3MTgg
+ID0gcmFtX3JkMzIoaHdzcSwgMHgxMDA3MTgpICYKPiAKPiA+IH4weDAwMDAwMTAwOyB1bms3MWMg
+ID0gcmFtX3JkMzIoaHdzcSwgMHgxMDA3MWMpICYgfjB4MDAwMDAxMDA7ICsKPiBpZgo+ID4gKHN1
+YmRldi0+ZGV2aWNlLT5jaGlwc2V0IDw9IDB4OTYpIHsgKwkJdW5rNzEwICY9IH4weDAwMDAwMDZl
+Owo+ICsKPiA+IHVuazcxNCAmPSB+MHgwMDAwMDEwMDsgKyArCQlpZiAoIW5leHQtPmJpb3MucmFt
+Y2ZnXzAwXzAzXzA4KQo+ICsKPiA+IHVuazcxMCB8PSAweDAwMDAwMDYwOyArCQlpZiAoIW5leHQt
+PmJpb3MucmFtY2ZnX0ZCVkREUSkgKwkJCXVuazcxNAo+IAo+ID4gfD0gMHgwMDAwMDEwMDsgKwkJ
+aWYgKCBuZXh0LT5iaW9zLnJhbWNmZ18wMF8wNF8wNCkgKwkJCXVuazcxMCB8PQo+IAo+ID4gMHgw
+MDAwMDAwZTsgKwl9IGVsc2UgeyArCQl1bms3MTAgJj0gfjB4MDAwMDAwMDE7ICsgKwkJaWYKPiA+
+ICghbmV4dC0+Ymlvcy5yYW1jZmdfMDBfMDNfMDgpICsJCQl1bms3MTAgfD0gMHgwMDAwMDAwMTsg
+Kwl9Cj4gPiAKPiA+IGlmICggbmV4dC0+Ymlvcy5yYW1jZmdfMDBfMDNfMDEpIHVuazcxYyB8PSAw
+eDAwMDAwMTAwOyBpZiAoCj4gPiBuZXh0LT5iaW9zLnJhbWNmZ18wMF8wM18wMikgdW5rNzEwIHw9
+IDB4MDAwMDAxMDA7IC0JaWYKPiA+ICghbmV4dC0+Ymlvcy5yYW1jZmdfMDBfMDNfMDgpIHsgLQkJ
+dW5rNzEwIHw9IDB4MTsgLQkJdW5rNzE0IHw9Cj4gPiAweDIwOyAtCX0gKwlpZiAoIW5leHQtPmJp
+b3MucmFtY2ZnXzAwXzAzXzA4KSArCQl1bms3MTQgfD0KPiA+IDB4MDAwMDAwMjA7IGlmICggbmV4
+dC0+Ymlvcy5yYW1jZmdfMDBfMDRfMDQpIHVuazcxNCB8PSAweDcwMDAwMDAwOwo+IAo+ID4gaWYg
+KCBuZXh0LT5iaW9zLnJhbWNmZ18wMF8wNF8yMCkgQEAgLTQyMCw2ICs0NDAsOCBAQAo+ID4gbnY1
+MF9yYW1fY2FsYyhzdHJ1Y3QgbnZrbV9yYW0gKmJhc2UsIHUzMiBmcmVxKSByYW1fbWFzayhod3Nx
+LAo+ID4gMHgxMDA3MTgsIDB4ZmZmZmZmZmYsIHVuazcxOCk7IHJhbV9tYXNrKGh3c3EsIDB4MTAw
+NzEwLCAweGZmZmZmZmZmLAo+IAo+ID4gdW5rNzEwKTsKPiA+IAo+ID4gKwkvKiBYWFg6IEc5NCBk
+b2VzIG5vdCBldmVuIHRlc3QgdGhlc2UgcmVncyBpbiB0cmFjZS4gSGFybWxlc3Mgd2UKPiA+IGRv
+IGl0LCArIAkgKiBidXQgd2h5IGlzIGl0IG9taXR0ZWQ/ICovIGlmCj4gPiAobmV4dC0+Ymlvcy5y
+YW1tYXBfMDBfMTZfMjApIHsgcmFtX3dyMzIoaHdzcSwgMHgxMDA1YTAsCj4gPiBuZXh0LT5iaW9z
+LnJhbWNmZ18wMF8wNyA8PCAxNiB8IG5leHQtPmJpb3MucmFtY2ZnXzAwXzA2Cj4gPDwgOCB8IEBA
+Cj4gPiAtNDUwLDYgKzQ3Miw4IEBAIG52NTBfcmFtX2NhbGMoc3RydWN0IG52a21fcmFtICpiYXNl
+LCB1MzIgZnJlcSkgCj4gPiByYW1fbWFzayhod3NxLCAweDAwNDAwOCwgMHgwMDAwNDAwMCwgMHgw
+MDAwMDAwMCk7IGlmCj4gPiAobmV4dC0+Ymlvcy5yYW1jZmdfMDBfMDNfMDIpIHJhbV9tYXNrKGh3
+c3EsIDB4MTAwMjFjLCAweDAwMDEwMDAwLAo+IAo+ID4gMHgwMDAxMDAwMCk7ICsJaWYgKHN1YmRl
+di0+ZGV2aWNlLT5jaGlwc2V0IDw9IDB4OTYgJiYKPiAKPiA+IG5leHQtPmJpb3MucmFtY2ZnXzAw
+XzAzXzAyKSArCQlyYW1fbWFzayhod3NxLCAweDEwMDcxMCwgMHgwMDAwMDIwMCwKPiAKPiA+IDB4
+MDAwMDAyMDApOwo+ID4gCj4gPiByZXR1cm4gMDsgfQo+ID4gCj4gCgoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
