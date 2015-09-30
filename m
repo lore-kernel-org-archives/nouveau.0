@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92192] nouveau does not detect monitor native
- resolution (Geforce GT240 / GT215)
-Date: Wed, 30 Sep 2015 10:52:57 +0000
-Message-ID: <bug-92192-8800-B829RMtYyT@http.bugs.freedesktop.org/>
-References: <bug-92192-8800@http.bugs.freedesktop.org/>
+From: Ondrej Zary <linux-ZCIryABCsrmttCpgsWEBFmD2FQJk+8+b@public.gmane.org>
+Subject: [PATCH] [resend] nouveau: Disable AGP for SiS 761
+Date: Wed, 30 Sep 2015 13:48:21 +0200
+Message-ID: <1443613701-30581-1-git-send-email-linux@rainbow-software.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0873654297=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,73 +16,41 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Kernel development list <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0873654297==
-Content-Type: multipart/alternative; boundary="1443610377.E8bbDa1.23687"; charset="UTF-8"
-
-
---1443610377.E8bbDa1.23687
-Date: Wed, 30 Sep 2015 10:52:57 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92192
-
---- Comment #3 from Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I could not reboot with log_buf_len=1M kernel flag, but let me know if you
-think it is needed to get a better dmesg log.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443610377.E8bbDa1.23687
-Date: Wed, 30 Sep 2015 10:52:57 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau does not detect monitor native resolution (Geforce GT240 / GT215)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92192#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau does not detect monitor native resolution (Geforce GT240 / GT215)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92192">bug 92192</a>
-              from <span class="vcard"><a class="email" href="mailto:germano.massullo&#64;gmail.com" title="Germano Massullo &lt;germano.massullo&#64;gmail.com&gt;"> <span class="fn">Germano Massullo</span></a>
-</span></b>
-        <pre>I could not reboot with log_buf_len=1M kernel flag, but let me know if you
-think it is needed to get a better dmesg log.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443610377.E8bbDa1.23687--
-
---===============0873654297==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0873654297==--
+U2lTIDc2MSBjaGlwc2V0IGRvZXMgbm90IHN1cHBvcnQgQUdQIGNhcmRzIGJ1dCBoYXMgQUdQIGNh
+cGFiaWxpdHkgKGZvcgp0aGUgb25ib2FyZCB2aWRlbykuIEF0IGxlYXN0IFBDIENoaXBzIEEzMUcg
+Ym9hcmQgdXNpbmcgdGhpcyBjaGlwc2V0IGhhcwphbiBBR1AtbGlrZSBBR1BybyBzbG90IHRoYXQn
+cyB3aXJlZCB0byB0aGUgUENJIGJ1cy4gRW5hYmxpbmcgQUdQIHdpbGwKZmFpbCAoR1BVIGxvY2t1
+cCBhbmQgc29mdHdhcmUgZmJjb24sIFgxMSBoYW5ncykuCgpBZGQgc3VwcG9ydCBmb3IgbWF0Y2hp
+bmcganVzdCB0aGUgaG9zdCBicmlkZ2UgaW4gbnZrbV9kZXZpY2VfYWdwX3F1aXJrcwphbmQgYWRk
+IGVudHJ5IGZvciBTaVMgNzYxIHdpdGggbW9kZSAwIChBR1AgZGlzYWJsZWQpLgoKU2lnbmVkLW9m
+Zi1ieTogT25kcmVqIFphcnkgPGxpbnV4QHJhaW5ib3ctc29mdHdhcmUub3JnPgotLS0KIGRyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9hZ3AuYyB8ICAgIDggKysrKysrLS0K
+IDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2FncC5jIGIvZHJp
+dmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2FncC5jCmluZGV4IDgxNGNiNTEu
+LjM4NWE5MGYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vc3ViZGV2
+L3BjaS9hZ3AuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kv
+YWdwLmMKQEAgLTM1LDYgKzM1LDggQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9h
+Z3BfcXVpcmsKIG52a21fZGV2aWNlX2FncF9xdWlya3NbXSA9IHsKIAkvKiBWSUEgQXBvbGxvIFBS
+TzEzM3ggLyBHZUZvcmNlIEZYIDU2MDAgVWx0cmEgLSBmZG8jMjAzNDEgKi8KIAl7IFBDSV9WRU5E
+T1JfSURfVklBLCAweDA2OTEsIFBDSV9WRU5ET1JfSURfTlZJRElBLCAweDAzMTEsIDIgfSwKKwkv
+KiBTaVMgNzYxIGRvZXMgbm90IHN1cHBvcnQgQUdQIGNhcmRzLCB1c2UgUENJIG1vZGUgKi8KKwl7
+IFBDSV9WRU5ET1JfSURfU0ksIDB4MDc2MSwgUENJX0FOWV9JRCwgUENJX0FOWV9JRCwgMCB9LAog
+CXt9LAogfTsKIApAQCAtMTM3LDggKzEzOSwxMCBAQCBudmttX2FncF9jdG9yKHN0cnVjdCBudmtt
+X3BjaSAqcGNpKQogCXdoaWxlIChxdWlyay0+aG9zdGJyaWRnZV92ZW5kb3IpIHsKIAkJaWYgKGlu
+Zm8uZGV2aWNlLT52ZW5kb3IgPT0gcXVpcmstPmhvc3RicmlkZ2VfdmVuZG9yICYmCiAJCSAgICBp
+bmZvLmRldmljZS0+ZGV2aWNlID09IHF1aXJrLT5ob3N0YnJpZGdlX2RldmljZSAmJgotCQkgICAg
+cGNpLT5wZGV2LT52ZW5kb3IgPT0gcXVpcmstPmNoaXBfdmVuZG9yICYmCi0JCSAgICBwY2ktPnBk
+ZXYtPmRldmljZSA9PSBxdWlyay0+Y2hpcF9kZXZpY2UpIHsKKwkJICAgIChxdWlyay0+Y2hpcF92
+ZW5kb3IgPT0gKHUxNilQQ0lfQU5ZX0lEIHx8CisJCSAgICBwY2ktPnBkZXYtPnZlbmRvciA9PSBx
+dWlyay0+Y2hpcF92ZW5kb3IpICYmCisJCSAgICAocXVpcmstPmNoaXBfZGV2aWNlID09ICh1MTYp
+UENJX0FOWV9JRCB8fAorCQkgICAgcGNpLT5wZGV2LT5kZXZpY2UgPT0gcXVpcmstPmNoaXBfZGV2
+aWNlKSkgewogCQkJbnZrbV9pbmZvKHN1YmRldiwgImZvcmNpbmcgZGVmYXVsdCBhZ3AgbW9kZSB0
+byAlZFgsICIKIAkJCQkJICAidXNlIE52QUdQPTxtb2RlPiB0byBvdmVycmlkZVxuIiwKIAkJCQkg
+IHF1aXJrLT5tb2RlKTsKLS0gCk9uZHJlaiBaYXJ5CgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vbm91dmVhdQo=
