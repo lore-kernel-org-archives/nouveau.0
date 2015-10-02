@@ -1,17 +1,13 @@
-From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] bios: fix OF loading
-Date: Fri, 2 Oct 2015 09:39:57 +0200
-Message-ID: <560E34CD.4010806@redhat.com>
-References: <1443757281-20834-1-git-send-email-imirkin@alum.mit.edu>
- <560E2FDE.6080808@redhat.com>
- <CAKb7Uvisw2kHN=Nsi797W5QfsvqAOib0Y_3Q6O=HXdMAm1rNew@mail.gmail.com>
- <560E33BB.8030706@redhat.com>
- <CAKb7Uvjskt7TR+_7ff9tM2z6hTe8aiNyMZHGRNQFNKvgKhPKkQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
+ Block from OpenFirmware Device tree
+Date: Fri, 02 Oct 2015 07:44:12 +0000
+Message-ID: <bug-91319-8800-5fS4HBNvs8@http.bugs.freedesktop.org/>
+References: <bug-91319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1201089453=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7Uvjskt7TR+_7ff9tM2z6hTe8aiNyMZHGRNQFNKvgKhPKkQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,40 +17,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwMi0xMC0xNSAwOTozOCwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gT24gRnJpLCBPY3Qg
-MiwgMjAxNSBhdCAzOjM1IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPiB3
-cm90ZToKPj4gSGksCj4+Cj4+IE9uIDAyLTEwLTE1IDA5OjI2LCBJbGlhIE1pcmtpbiB3cm90ZToK
-Pj4+Cj4+PiBPbiBGcmksIE9jdCAyLCAyMDE1IGF0IDM6MTggQU0sIEhhbnMgZGUgR29lZGUgPGhk
-ZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+Pj4+Cj4+Pj4gSGksCj4+Pj4KPj4+PiBPbiAwMi0x
-MC0xNSAwNTo0MSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4+Pj4KPj4+PiA8bm90aGluZz4KPj4+Pgo+
-Pj4+IEFzIHNvbWVvbmUgd2hvIGhhcyByZWNlbnRseSBzdGFydGVkIGZvbGxvd2luZyBub3V2ZWF1
-IEkgbXVzdCBzYXkgdGhhdAo+Pj4+IGl0IHdvdWxkIGdyZWF0bHkgaGVscCBtZSAoYW5kIGxpa2Vs
-eSBvdGhlcnMpIGlmIHBhdGNoZXMgbGlrZXMgdGhpcyB3b3VsZAo+Pj4+IGNvbWUgd2l0aCBhIHNv
-bWV3aGF0IG1vcmUgZGVzY3JpcHRpdmUgY29tbWl0IG1lc3NhZ2UuCj4+Pgo+Pj4KPj4+IER1bHkg
-bm90ZWQuIEkgbm9ybWFsbHkgdHJ5IHRvIHNheSBhIGJpdCwgYnV0IGhhdmUgZ290dGVuIGxhenkg
-b2YgbGF0ZS4KPj4+IEJlbidzIHByZXR0eSB0ZXJzZSB0b28gOikgSG93IGFib3V0IHNvbWV0aGlu
-ZyBsaWtlCj4+Pgo+Pj4gIiIiCj4+PiBDdXJyZW50bHkgT0YgYmlvcyBsb2FkIGZhaWxzIGZvciBh
-IGZldyByZWFzb25zOgo+Pj4gICAgLSBjaGVja3N1bSBmYWlsdXJlCj4+PiAgICAtIGJpb3Mgc2l6
-ZSB0b28gc21hbGwKPj4+ICAgIC0gbm8gUENJUiBoZWFkZXIKPj4+ICAgIC0gYmlvcyBsZW5ndGgg
-bm90IGEgbXVsdGlwbGUgb2YgNAo+Pj4KPj4+IEluIHRoaXMgY2hhbmdlLCB3ZSByZXNvbHZlIGFs
-bCBvZiB0aGUgYWJvdmUgYnkgaWdub3JpbmcgYW55IGNoZWNrc3VtCj4+PiBmYWlsdXJlcywgYW5k
-IGZha2luZyB0aGUgUENJUiBkYXRhIHdoZW4gbG9hZGluZyBmcm9tIE9GLgo+Pj4gIiIiCj4+Cj4+
-Cj4+IE11Y2ggYmV0dGVyLCBJIG11c3Qgc2F5IHRoYXQgbm93IHRoYXQgeW91IHNwZWxsIGl0IG91
-dCB0aGF0IHRoZQo+PiBpZ25vcmluZyBvZiB0aGUgY2hlY2tzdW0gc29ydCBvZiB3b3JyaWVzIG1l
-LCBidXQgSSBndWVzcyB0aGUKPj4gY2hlY2tzdW0gaXMgcGFydCBvZiB0aGUgbWlzc2luZyBQQ0lS
-IGhlYWRlciA/Cj4KPiBOb3BlLCB0aGUgdHdvIHRoaW5ncyBhcmUgdW5yZWxhdGVkLiBUaGUgUENJ
-UiBzZWN0aW9uIGlzIG5vcm1hbGx5Cj4gZW1iZWRkZWQgaW4gdGhlIHZiaW9zIGFuZCB0ZWxscyB5
-b3UgaG93IGxvbmcgdGhlIHZiaW9zIGlzLCBhbmQgYWxsb3dzCj4geW91IHRvIGhhdmUgbXVsdGlw
-bGUgZWxlbWVudHMgYXBwZW5kZWQgYXQgdGhlIGVuZCAod2hpY2ggbm91dmVhdSBoYXMKPiByZWNl
-bnRseSBhY3F1aXJlZCBzb21lIHN1cHBvcnQgZm9yKS4gVGhlIGNoZWNrc3VtIGZhaWx1cmVzIGp1
-c3QKPiBoYXBwZW4sCgo+ICJwcmV0dHkgc3VyZSB0aGF0IHRoZSBPRi1zb3VyY2VkIHZiaW9zZXMg
-anVzdCBkb24ndCBoYXZlIGEKPiAgY2hlY2tzdW0gYnl0ZSBhdCBhbGwuIgoKWW91IG1heSB3YW50
-IHRvIGFkZCBzb21ldGhpbmcgYWxvbmcgdGhvc2UgbGluZXMgdG8gdGhlIGNvbW1pdCBtZXNzYWdl
-CnRvby4uLgoKUmVnYXJkcywKCkhhbnMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============1201089453==
+Content-Type: multipart/alternative; boundary="1443771851.2C25e72F1.14602"; charset="UTF-8"
+
+
+--1443771851.2C25e72F1.14602
+Date: Fri, 2 Oct 2015 07:44:11 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91319
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You can try this patch, in Ben's tree which is ~4.3-rcN :
+
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786
+
+This worked for me, but could use more testing.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1443771851.2C25e72F1.14602
+Date: Fri, 2 Oct 2015 07:44:11 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319">bug 91319</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>You can try this patch, in Ben's tree which is ~4.3-rcN :
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786</a>
+
+This worked for me, but could use more testing.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443771851.2C25e72F1.14602--
+
+--===============1201089453==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1201089453==--
