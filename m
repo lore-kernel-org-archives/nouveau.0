@@ -1,13 +1,18 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
- Block from OpenFirmware Device tree
-Date: Fri, 02 Oct 2015 07:44:12 +0000
-Message-ID: <bug-91319-8800-5fS4HBNvs8@http.bugs.freedesktop.org/>
-References: <bug-91319-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: [PATCH] bios: fix OF loading
+Date: Fri, 2 Oct 2015 14:26:16 -0400
+Message-ID: <CAKb7UvjvHh8_s=pCvha+wsQ8HtGYJmY3q5L2kqpdkmdN_NYFUw@mail.gmail.com>
+References: <1443757281-20834-1-git-send-email-imirkin@alum.mit.edu>
+ <560E2FDE.6080808@redhat.com>
+ <CAKb7Uvisw2kHN=Nsi797W5QfsvqAOib0Y_3Q6O=HXdMAm1rNew@mail.gmail.com>
+ <560E33BB.8030706@redhat.com>
+ <CAKb7Uvjskt7TR+_7ff9tM2z6hTe8aiNyMZHGRNQFNKvgKhPKkQ@mail.gmail.com>
+ <560E34CD.4010806@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1201089453=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <560E34CD.4010806-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,80 +22,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1201089453==
-Content-Type: multipart/alternative; boundary="1443771851.2C25e72F1.14602"; charset="UTF-8"
-
-
---1443771851.2C25e72F1.14602
-Date: Fri, 2 Oct 2015 07:44:11 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91319
-
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-You can try this patch, in Ben's tree which is ~4.3-rcN :
-
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786
-
-This worked for me, but could use more testing.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443771851.2C25e72F1.14602
-Date: Fri, 2 Oct 2015 07:44:11 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319">bug 91319</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>You can try this patch, in Ben's tree which is ~4.3-rcN :
-
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=5b5cc342d3154120f9bb5ca7839ab556e728c786</a>
-
-This worked for me, but could use more testing.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443771851.2C25e72F1.14602--
-
---===============1201089453==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1201089453==--
+T24gRnJpLCBPY3QgMiwgMjAxNSBhdCAzOjM5IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUBy
+ZWRoYXQuY29tPiB3cm90ZToKPiBIaSwKPgo+Cj4gT24gMDItMTAtMTUgMDk6MzgsIElsaWEgTWly
+a2luIHdyb3RlOgo+Pgo+PiBPbiBGcmksIE9jdCAyLCAyMDE1IGF0IDM6MzUgQU0sIEhhbnMgZGUg
+R29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+IHdyb3RlOgo+Pj4KPj4+IEhpLAo+Pj4KPj4+IE9u
+IDAyLTEwLTE1IDA5OjI2LCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pgo+Pj4+Cj4+Pj4gT24gRnJp
+LCBPY3QgMiwgMjAxNSBhdCAzOjE4IEFNLCBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQu
+Y29tPgo+Pj4+IHdyb3RlOgo+Pj4+Pgo+Pj4+Pgo+Pj4+PiBIaSwKPj4+Pj4KPj4+Pj4gT24gMDIt
+MTAtMTUgMDU6NDEsIElsaWEgTWlya2luIHdyb3RlOgo+Pj4+Pgo+Pj4+PiA8bm90aGluZz4KPj4+
+Pj4KPj4+Pj4gQXMgc29tZW9uZSB3aG8gaGFzIHJlY2VudGx5IHN0YXJ0ZWQgZm9sbG93aW5nIG5v
+dXZlYXUgSSBtdXN0IHNheSB0aGF0Cj4+Pj4+IGl0IHdvdWxkIGdyZWF0bHkgaGVscCBtZSAoYW5k
+IGxpa2VseSBvdGhlcnMpIGlmIHBhdGNoZXMgbGlrZXMgdGhpcwo+Pj4+PiB3b3VsZAo+Pj4+PiBj
+b21lIHdpdGggYSBzb21ld2hhdCBtb3JlIGRlc2NyaXB0aXZlIGNvbW1pdCBtZXNzYWdlLgo+Pj4+
+Cj4+Pj4KPj4+Pgo+Pj4+IER1bHkgbm90ZWQuIEkgbm9ybWFsbHkgdHJ5IHRvIHNheSBhIGJpdCwg
+YnV0IGhhdmUgZ290dGVuIGxhenkgb2YgbGF0ZS4KPj4+PiBCZW4ncyBwcmV0dHkgdGVyc2UgdG9v
+IDopIEhvdyBhYm91dCBzb21ldGhpbmcgbGlrZQo+Pj4+Cj4+Pj4gIiIiCj4+Pj4gQ3VycmVudGx5
+IE9GIGJpb3MgbG9hZCBmYWlscyBmb3IgYSBmZXcgcmVhc29uczoKPj4+PiAgICAtIGNoZWNrc3Vt
+IGZhaWx1cmUKPj4+PiAgICAtIGJpb3Mgc2l6ZSB0b28gc21hbGwKPj4+PiAgICAtIG5vIFBDSVIg
+aGVhZGVyCj4+Pj4gICAgLSBiaW9zIGxlbmd0aCBub3QgYSBtdWx0aXBsZSBvZiA0Cj4+Pj4KPj4+
+PiBJbiB0aGlzIGNoYW5nZSwgd2UgcmVzb2x2ZSBhbGwgb2YgdGhlIGFib3ZlIGJ5IGlnbm9yaW5n
+IGFueSBjaGVja3N1bQo+Pj4+IGZhaWx1cmVzLCBhbmQgZmFraW5nIHRoZSBQQ0lSIGRhdGEgd2hl
+biBsb2FkaW5nIGZyb20gT0YuCj4+Pj4gIiIiCj4+Pgo+Pj4KPj4+Cj4+PiBNdWNoIGJldHRlciwg
+SSBtdXN0IHNheSB0aGF0IG5vdyB0aGF0IHlvdSBzcGVsbCBpdCBvdXQgdGhhdCB0aGUKPj4+IGln
+bm9yaW5nIG9mIHRoZSBjaGVja3N1bSBzb3J0IG9mIHdvcnJpZXMgbWUsIGJ1dCBJIGd1ZXNzIHRo
+ZQo+Pj4gY2hlY2tzdW0gaXMgcGFydCBvZiB0aGUgbWlzc2luZyBQQ0lSIGhlYWRlciA/Cj4+Cj4+
+Cj4+IE5vcGUsIHRoZSB0d28gdGhpbmdzIGFyZSB1bnJlbGF0ZWQuIFRoZSBQQ0lSIHNlY3Rpb24g
+aXMgbm9ybWFsbHkKPj4gZW1iZWRkZWQgaW4gdGhlIHZiaW9zIGFuZCB0ZWxscyB5b3UgaG93IGxv
+bmcgdGhlIHZiaW9zIGlzLCBhbmQgYWxsb3dzCj4+IHlvdSB0byBoYXZlIG11bHRpcGxlIGVsZW1l
+bnRzIGFwcGVuZGVkIGF0IHRoZSBlbmQgKHdoaWNoIG5vdXZlYXUgaGFzCj4+IHJlY2VudGx5IGFj
+cXVpcmVkIHNvbWUgc3VwcG9ydCBmb3IpLiBUaGUgY2hlY2tzdW0gZmFpbHVyZXMganVzdAo+PiBo
+YXBwZW4sCj4KPgo+PiAicHJldHR5IHN1cmUgdGhhdCB0aGUgT0Ytc291cmNlZCB2Ymlvc2VzIGp1
+c3QgZG9uJ3QgaGF2ZSBhCj4+ICBjaGVja3N1bSBieXRlIGF0IGFsbC4iCj4KPgo+IFlvdSBtYXkg
+d2FudCB0byBhZGQgc29tZXRoaW5nIGFsb25nIHRob3NlIGxpbmVzIHRvIHRoZSBjb21taXQgbWVz
+c2FnZQo+IHRvby4uLgoKQmVuLCBJIHNlZSB5b3UgYWxyZWFkeSBjb21taXR0ZWQgbXkgY2hhbmdl
+IHRvIHlvdXIgdHJlZSwgY291bGQgeW91CmFtZW5kIHRoZSBjb21taXQgbWVzc2FnZSB0byByZWFk
+IHNvbWV0aGluZyBsaWtlCgoiIiIKQ3VycmVudGx5IE9GIGJpb3MgbG9hZCBmYWlscyBmb3IgYSBm
+ZXcgcmVhc29uczoKIC0gY2hlY2tzdW0gZmFpbHVyZQogLSBiaW9zIHNpemUgdG9vIHNtYWxsCiAt
+IG5vIFBDSVIgaGVhZGVyCiAtIGJpb3MgbGVuZ3RoIG5vdCBhIG11bHRpcGxlIG9mIDQKCkluIHRo
+aXMgY2hhbmdlLCB3ZSByZXNvbHZlIGFsbCBvZiB0aGUgYWJvdmUgYnkgaWdub3JpbmcgYW55IGNo
+ZWNrc3VtCmZhaWx1cmVzIChzaW5jZSBPRiBWQklPUyB0ZW5kcyBub3QgdG8gaGF2ZSBhIGNoZWNr
+c3VtKSwgYW5kIGZha2luZyB0aGUKUENJUiBkYXRhIHdoZW4gbG9hZGluZyBmcm9tIE9GLgoiIiIK
+CkkgdGhpbmsgSGFucyBoYXMgYSB2ZXJ5IHZhbGlkIHBvaW50IGFib3V0IHRoZSB0ZXJzZW5lc3Mg
+b2Ygbm91dmVhdQpjb21taXQgbWVzc2FnZXMuLi4gSSdtIG9mdGVuIGEgYml0IGFubm95ZWQgYXQg
+dGhlIHRlcnNlbmVzcyBvZiB5b3Vycwplc3AgZm9yIGxhcmdlciBjaGFuZ2VzLCBidXQgYXBwYXJl
+bnRseSBJIGdvIGFuZCBkbyB0aGUgc2FtZSB0aGluZwpteXNlbGYgOikKClRoYW5rcywKCiAgLWls
+aWEKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
