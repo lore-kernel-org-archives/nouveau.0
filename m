@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89558] [NV118] GM108 not supported by nouveau
-Date: Thu, 01 Oct 2015 18:49:49 +0000
-Message-ID: <bug-89558-8800-FzXEumk5RO@http.bugs.freedesktop.org/>
-References: <bug-89558-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] bios: fix OF loading
+Date: Thu,  1 Oct 2015 23:41:21 -0400
+Message-ID: <1443757281-20834-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0745827745=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89558-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,135 +15,79 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0745827745==
-Content-Type: multipart/alternative; boundary="1443725390.5C140c7a3.21982"; charset="UTF-8"
-
-
---1443725390.5C140c7a3.21982
-Date: Thu, 1 Oct 2015 18:49:50 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=89558
-
---- Comment #44 from SMF <smf.linux-XZoyATsUNX5Wk0Htik3J/w@public.gmane.org> ---
-Created attachment 118577
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118577&action=edit
-Patch to enable partiial initialisation of Nouveau on Linux 4.3-rc3
-
-If this is of any use to anyone the attached patch allows me to get the
-following initialisation on Linux 4.3-rc3.
-
-[    2.961084] nouveau 0000:03:00.0: NVIDIA GM108 (118010a2)
-[    3.178080] nouveau 0000:03:00.0: bios: version 82.08.13.00.1c
-[    3.262110] nouveau 0000:03:00.0: fb: 4096 MiB DDR3
-[    3.262127] nouveau 0000:03:00.0: priv: HUB0: 6013d4 0000573f (1e408200)
-[    3.262173] nouveau 0000:03:00.0: priv: HUB0: 10ecc0 ffffffff (1d40822c)
-[    3.297714] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
-[    3.297716] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
-[    3.297718] nouveau 0000:03:00.0: DRM: Pointer to TMDS table invalid
-[    3.297719] nouveau 0000:03:00.0: DRM: DCB version 4.0
-[    3.297721] nouveau 0000:03:00.0: DRM: Pointer to flat panel table invalid
-[    3.442864] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
-[    3.442875] [drm] Initialized nouveau 1.3.0 20120801 for 0000:03:00.0 on
-minor 1
-[    8.443777] nouveau 0000:03:00.0: DRM: evicting buffers...
-[    8.443783] nouveau 0000:03:00.0: DRM: waiting for kernel channels to go
-idle...
-[    8.443809] nouveau 0000:03:00.0: DRM: suspending client object trees...
-[    8.445664] nouveau 0000:03:00.0: DRM: suspending kernel object tree...
-[   21.947649] nouveau 0000:03:00.0: DRM: resuming kernel object tree...
-[   22.031416] nouveau 0000:03:00.0: priv: HUB0: 6013d4 ffffffff (1a40822c)
-[   22.072390] nouveau 0000:03:00.0: DRM: resuming client object trees...
-[   27.371262] nouveau 0000:03:00.0: DRM: evicting buffers...
-[   27.371269] nouveau 0000:03:00.0: DRM: waiting for kernel channels to go
-idle...
-[   27.371296] nouveau 0000:03:00.0: DRM: suspending client object trees...
-[   27.373164] nouveau 0000:03:00.0: DRM: suspending kernel object tree...
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1443725390.5C140c7a3.21982
-Date: Thu, 1 Oct 2015 18:49:50 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558#c44">Comment # 44</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV118] GM108 not supported by nouveau"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89558">bug 89558</a>
-              from <span class="vcard"><a class="email" href="mailto:smf.linux&#64;ntlworld.com" title="SMF &lt;smf.linux&#64;ntlworld.com&gt;"> <span class="fn">SMF</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118577" name="attach_118577" title="Patch to enable partiial initialisation of Nouveau on Linux 4.3-rc3">attachment 118577</a> <a href="attachment.cgi?id=118577&amp;action=edit" title="Patch to enable partiial initialisation of Nouveau on Linux 4.3-rc3">[details]</a></span>
-Patch to enable partiial initialisation of Nouveau on Linux 4.3-rc3
-
-If this is of any use to anyone the attached patch allows me to get the
-following initialisation on Linux 4.3-rc3.
-
-[    2.961084] nouveau 0000:03:00.0: NVIDIA GM108 (118010a2)
-[    3.178080] nouveau 0000:03:00.0: bios: version 82.08.13.00.1c
-[    3.262110] nouveau 0000:03:00.0: fb: 4096 MiB DDR3
-[    3.262127] nouveau 0000:03:00.0: priv: HUB0: 6013d4 0000573f (1e408200)
-[    3.262173] nouveau 0000:03:00.0: priv: HUB0: 10ecc0 ffffffff (1d40822c)
-[    3.297714] nouveau 0000:03:00.0: DRM: VRAM: 4096 MiB
-[    3.297716] nouveau 0000:03:00.0: DRM: GART: 1048576 MiB
-[    3.297718] nouveau 0000:03:00.0: DRM: Pointer to TMDS table invalid
-[    3.297719] nouveau 0000:03:00.0: DRM: DCB version 4.0
-[    3.297721] nouveau 0000:03:00.0: DRM: Pointer to flat panel table invalid
-[    3.442864] nouveau 0000:03:00.0: DRM: MM: using COPY for buffer copies
-[    3.442875] [drm] Initialized nouveau 1.3.0 20120801 for 0000:03:00.0 on
-minor 1
-[    8.443777] nouveau 0000:03:00.0: DRM: evicting buffers...
-[    8.443783] nouveau 0000:03:00.0: DRM: waiting for kernel channels to go
-idle...
-[    8.443809] nouveau 0000:03:00.0: DRM: suspending client object trees...
-[    8.445664] nouveau 0000:03:00.0: DRM: suspending kernel object tree...
-[   21.947649] nouveau 0000:03:00.0: DRM: resuming kernel object tree...
-[   22.031416] nouveau 0000:03:00.0: priv: HUB0: 6013d4 ffffffff (1a40822c)
-[   22.072390] nouveau 0000:03:00.0: DRM: resuming client object trees...
-[   27.371262] nouveau 0000:03:00.0: DRM: evicting buffers...
-[   27.371269] nouveau 0000:03:00.0: DRM: waiting for kernel channels to go
-idle...
-[   27.371296] nouveau 0000:03:00.0: DRM: suspending client object trees...
-[   27.373164] nouveau 0000:03:00.0: DRM: suspending kernel object tree...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1443725390.5C140c7a3.21982--
-
---===============0745827745==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0745827745==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KClRl
+c3RlZCBvbiBhIFBvd2VyTWFjNywzIHdpdGggYSBOVjM0IEFHUCBhZGFwdGVyLgoKIGRybS9ub3V2
+ZWF1L252a20vc3ViZGV2L2Jpb3MvcHJpdi5oICAgICB8ICAzICsrKwogZHJtL25vdXZlYXUvbnZr
+bS9zdWJkZXYvYmlvcy9zaGFkb3cuYyAgIHwgMjcgKysrKysrKysrKysrKysrKysrLS0tLS0tLS0t
+CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3NoYWRvd29mLmMgfCAxOCArKysrKysrKysr
+KysrKysrLS0KIDMgZmlsZXMgY2hhbmdlZCwgMzcgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25z
+KC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9wcml2LmggYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ByaXYuaAppbmRleCBlMGVjMmE2Li4yMTI4MDBl
+IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ByaXYuaAorKysgYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3ByaXYuaApAQCAtOCw3ICs4LDEwIEBAIHN0cnVj
+dCBudmJpb3Nfc291cmNlIHsKIAl2b2lkICooKmluaXQpKHN0cnVjdCBudmttX2Jpb3MgKiwgY29u
+c3QgY2hhciAqKTsKIAl2b2lkICAoKmZpbmkpKHZvaWQgKik7CiAJdTMyICAgKCpyZWFkKSh2b2lk
+ICosIHUzMiBvZmZzZXQsIHUzMiBsZW5ndGgsIHN0cnVjdCBudmttX2Jpb3MgKik7CisJdTMyICAg
+KCpzaXplKSh2b2lkICopOwogCWJvb2wgcnc7CisJYm9vbCBpZ25vcmVfY2hlY2tzdW07CisJYm9v
+bCBub19wY2lyOwogfTsKIAogaW50IG52Ymlvc19leHRlbmQoc3RydWN0IG52a21fYmlvcyAqLCB1
+MzIgbGVuZ3RoKTsKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvc2hh
+ZG93LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3NoYWRvdy5jCmluZGV4IDc5MmYw
+MTcuLmIyNTU3ZTggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvc2hh
+ZG93LmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3cuYwpAQCAtNDUs
+NyArNDUsNyBAQCBzaGFkb3dfZmV0Y2goc3RydWN0IG52a21fYmlvcyAqYmlvcywgc3RydWN0IHNo
+YWRvdyAqbXRoZCwgdTMyIHVwdG8pCiAJCXUzMiByZWFkID0gbXRoZC0+ZnVuYy0+cmVhZChkYXRh
+LCBzdGFydCwgbGltaXQgLSBzdGFydCwgYmlvcyk7CiAJCWJpb3MtPnNpemUgPSBzdGFydCArIHJl
+YWQ7CiAJfQotCXJldHVybiBiaW9zLT5zaXplID49IGxpbWl0OworCXJldHVybiBiaW9zLT5zaXpl
+ID49IHVwdG87CiB9CiAKIHN0YXRpYyBpbnQKQEAgLTU1LDE0ICs1NSwyMiBAQCBzaGFkb3dfaW1h
+Z2Uoc3RydWN0IG52a21fYmlvcyAqYmlvcywgaW50IGlkeCwgdTMyIG9mZnNldCwgc3RydWN0IHNo
+YWRvdyAqbXRoZCkKIAlzdHJ1Y3QgbnZiaW9zX2ltYWdlIGltYWdlOwogCWludCBzY29yZSA9IDE7
+CiAKLQlpZiAoIXNoYWRvd19mZXRjaChiaW9zLCBtdGhkLCBvZmZzZXQgKyAweDEwMDApKSB7Ci0J
+CW52a21fZGVidWcoc3ViZGV2LCAiJTA4eDogaGVhZGVyIGZldGNoIGZhaWxlZFxuIiwgb2Zmc2V0
+KTsKLQkJcmV0dXJuIDA7Ci0JfQorCWlmIChtdGhkLT5mdW5jLT5ub19wY2lyKSB7CisJCWltYWdl
+LmJhc2UgPSAwOworCQlpbWFnZS50eXBlID0gMDsKKwkJaW1hZ2Uuc2l6ZSA9IG10aGQtPmZ1bmMt
+PnNpemUobXRoZC0+ZGF0YSk7CisJCWltYWdlLmxhc3QgPSAxOworCX0gZWxzZSB7CisJCWlmICgh
+c2hhZG93X2ZldGNoKGJpb3MsIG10aGQsIG9mZnNldCArIDB4MTAwMCkpIHsKKwkJCW52a21fZGVi
+dWcoc3ViZGV2LCAiJTA4eDogaGVhZGVyIGZldGNoIGZhaWxlZFxuIiwKKwkJCQkgICBvZmZzZXQp
+OworCQkJcmV0dXJuIDA7CisJCX0KIAotCWlmICghbnZiaW9zX2ltYWdlKGJpb3MsIGlkeCwgJmlt
+YWdlKSkgewotCQludmttX2RlYnVnKHN1YmRldiwgImltYWdlICVkIGludmFsaWRcbiIsIGlkeCk7
+Ci0JCXJldHVybiAwOworCQlpZiAoIW52Ymlvc19pbWFnZShiaW9zLCBpZHgsICZpbWFnZSkpIHsK
+KwkJCW52a21fZGVidWcoc3ViZGV2LCAiaW1hZ2UgJWQgaW52YWxpZFxuIiwgaWR4KTsKKwkJCXJl
+dHVybiAwOworCQl9CiAJfQogCW52a21fZGVidWcoc3ViZGV2LCAiJTA4eDogdHlwZSAlMDJ4LCAl
+ZCBieXRlc1xuIiwKIAkJICAgaW1hZ2UuYmFzZSwgaW1hZ2UudHlwZSwgaW1hZ2Uuc2l6ZSk7CkBA
+IC03NCw3ICs4Miw4IEBAIHNoYWRvd19pbWFnZShzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBpbnQg
+aWR4LCB1MzIgb2Zmc2V0LCBzdHJ1Y3Qgc2hhZG93ICptdGhkKQogCiAJc3dpdGNoIChpbWFnZS50
+eXBlKSB7CiAJY2FzZSAweDAwOgotCQlpZiAobnZiaW9zX2NoZWNrc3VtKCZiaW9zLT5kYXRhW2lt
+YWdlLmJhc2VdLCBpbWFnZS5zaXplKSkgeworCQlpZiAoIW10aGQtPmZ1bmMtPmlnbm9yZV9jaGVj
+a3N1bSAmJgorCQkgICAgbnZiaW9zX2NoZWNrc3VtKCZiaW9zLT5kYXRhW2ltYWdlLmJhc2VdLCBp
+bWFnZS5zaXplKSkgewogCQkJbnZrbV9kZWJ1ZyhzdWJkZXYsICIlMDh4OiBjaGVja3N1bSBmYWls
+ZWRcbiIsCiAJCQkJICAgaW1hZ2UuYmFzZSk7CiAJCQlpZiAobXRoZC0+ZnVuYy0+cncpCmRpZmYg
+LS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9iaW9zL3NoYWRvd29mLmMgYi9kcm0vbm91
+dmVhdS9udmttL3N1YmRldi9iaW9zL3NoYWRvd29mLmMKaW5kZXggMjlhMzdmMC4uNGEyMDU4NCAx
+MDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvYmlvcy9zaGFkb3dvZi5jCisrKyBi
+L2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Jpb3Mvc2hhZG93b2YuYwpAQCAtMjIsNiArMjIsNyBA
+QAogICovCiAjaW5jbHVkZSAicHJpdi5oIgogCisjaW5jbHVkZSA8Y29yZS9wY2kuaD4KIAogI2lm
+IGRlZmluZWQoX19wb3dlcnBjX18pCiBzdHJ1Y3QgcHJpdiB7CkBAIC0zMywxNyArMzQsMjcgQEAg
+c3RhdGljIHUzMgogb2ZfcmVhZCh2b2lkICpkYXRhLCB1MzIgb2Zmc2V0LCB1MzIgbGVuZ3RoLCBz
+dHJ1Y3QgbnZrbV9iaW9zICpiaW9zKQogewogCXN0cnVjdCBwcml2ICpwcml2ID0gZGF0YTsKLQlp
+ZiAob2Zmc2V0ICsgbGVuZ3RoIDw9IHByaXYtPnNpemUpIHsKKwlpZiAob2Zmc2V0IDwgcHJpdi0+
+c2l6ZSkgeworCQlsZW5ndGggPSBtaW5fdCh1MzIsIGxlbmd0aCwgcHJpdi0+c2l6ZSAtIG9mZnNl
+dCk7CiAJCW1lbWNweV9mcm9taW8oYmlvcy0+ZGF0YSArIG9mZnNldCwgcHJpdi0+ZGF0YSArIG9m
+ZnNldCwgbGVuZ3RoKTsKIAkJcmV0dXJuIGxlbmd0aDsKIAl9CiAJcmV0dXJuIDA7CiB9CiAKK3N0
+YXRpYyB1MzIKK29mX3NpemUodm9pZCAqZGF0YSkKK3sKKwlzdHJ1Y3QgcHJpdiAqcHJpdiA9IGRh
+dGE7CisKKwlyZXR1cm4gcHJpdi0+c2l6ZTsKK30KKwogc3RhdGljIHZvaWQgKgogb2ZfaW5pdChz
+dHJ1Y3QgbnZrbV9iaW9zICpiaW9zLCBjb25zdCBjaGFyICpuYW1lKQogewotCXN0cnVjdCBwY2lf
+ZGV2ICpwZGV2ID0gYmlvcy0+c3ViZGV2LmRldmljZS0+cGRldjsKKwlzdHJ1Y3QgbnZrbV9kZXZp
+Y2UgKmRldmljZSA9IGJpb3MtPnN1YmRldi5kZXZpY2U7CisJc3RydWN0IHBjaV9kZXYgKnBkZXYg
+PSBkZXZpY2UtPmZ1bmMtPnBjaShkZXZpY2UpLT5wZGV2OwogCXN0cnVjdCBkZXZpY2Vfbm9kZSAq
+ZG47CiAJc3RydWN0IHByaXYgKnByaXY7CiAJaWYgKCEoZG4gPSBwY2lfZGV2aWNlX3RvX09GX25v
+ZGUocGRldikpKQpAQCAtNjIsNyArNzMsMTAgQEAgbnZiaW9zX29mID0gewogCS5pbml0ID0gb2Zf
+aW5pdCwKIAkuZmluaSA9ICh2b2lkKCopKHZvaWQgKikpa2ZyZWUsCiAJLnJlYWQgPSBvZl9yZWFk
+LAorCS5zaXplID0gb2Zfc2l6ZSwKIAkucncgPSBmYWxzZSwKKwkuaWdub3JlX2NoZWNrc3VtID0g
+dHJ1ZSwKKwkubm9fcGNpciA9IHRydWUsCiB9OwogI2Vsc2UKIGNvbnN0IHN0cnVjdCBudmJpb3Nf
+c291cmNlCi0tIAoyLjQuOQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
