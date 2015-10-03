@@ -1,16 +1,13 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Documentation request for MP warp error 0x10
-Date: Fri, 2 Oct 2015 15:14:56 -0700
-Message-ID: <20151002221456.GE9436@morell.nvidia.com>
-References: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
- <20151002214811.GD9436@morell.nvidia.com>
- <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91051] GT650M and Nouveau - NOUVEAU(0): [drm] failed
+ to set drm interface version.
+Date: Sat, 03 Oct 2015 07:34:57 +0000
+Message-ID: <bug-91051-8800-7tchCcWlhH@http.bugs.freedesktop.org/>
+References: <bug-91051-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0508294221=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-91051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,75 +17,112 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSWxpYSwKCk9uIEZyaSwgT2N0IDAyLCAyMDE1IGF0IDA2OjA1OjIxUE0gLTA0MDAsIElsaWEg
-TWlya2luIHdyb3RlOgo+IEhpIFJvYmVydCwKPiAKPiBUaGFua3MgZm9yIHRoZSBxdWljayByZXNw
-b25zZSEgVGhhdCBnb2VzIGluIGxpbmUgd2l0aCBteSBvYnNlcnZhdGlvbnMKPiB3aGljaCBpcyB0
-aGF0IHRoZXNlIHRoaW5ncyBoYXBwZW4gd2hlbiB1c2luZyBhbiBBVE9NL1JFRCBpbnN0cnVjdGlv
-bi4KPiBJJ3ZlIGNoZWNrZWQgYW5kIHJlY2hlY2tlZCB0aGF0IEknbSBnZW5lcmF0aW5nIG9wcyB3
-aXRoIGlkZW50aWNhbCBiaXRzCj4gYXMgd2hhdCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVyIGRvZXMs
-IGhvd2V2ZXIgKGFuZCBudmRpc2FzbSBwcmludHMKPiBpZGVudGljYWwgb3V0cHV0KS4gQ291bGQg
-eW91IGFkdmlzZSB3aGF0IHRoZSBwcm9wZXIgd2F5IG9mIGluZGljYXRpbmcKPiB0aGF0IHRoZSBt
-ZW1vcnkgaXMgImdsb2JhbCIgdG8gdGhlIG9wPyBJJ20gc3VyZSBJJ20ganVzdCBtaXNzaW5nCj4g
-c29tZXRoaW5nIHNpbXBsZS4gSWYgeW91IHNob3cgbWUgd2hhdCB0byBsb29rIGZvciBpbiBTTTM1
-IEkgY2FuCj4gcHJvYmFibHkgZmluZCBpdCBvbiBteSBvd24gZm9yIFNNMjAvU00zMC9TTTUwLgoK
-VW5mb3J0dW5hdGVseSB0aGlzIGlzbid0IHNvbWV0aGluZyBJIGtub3cgYSBsb3QgYWJvdXQsIHNv
-IEknbSBnb2luZyB0bwpoYXZlIGRvIHNvbWUgcmVzZWFyY2ggYW5kIGdldCBiYWNrIHRvIHlvdSwg
-aG9wZWZ1bGx5IHdpdGhpbiBhIGZldyBkYXlzLgoKPiBJbiBjYXNlIHlvdSdyZSBpbnRlcmVzdGVk
-IGluIGxvb2tpbmcgYXQgdGhlIG1lc2EgY29kZSwgSXQncyBhdmFpbGFibGUKPiBvbiBteSBhdG9t
-aWMyIGJyYW5jaCBhdDoKPiBodHRwczovL2dpdGh1Yi5jb20vaW1pcmtpbi9tZXNhL2NvbW1pdHMv
-YXRvbWljMiAuIEhvd2V2ZXIgSSBoYXJkbHkKPiBleHBlY3QgeW91IHRvIGRlYnVnIG15IGJ1Z2d5
-IGNvZGUgOikgVGhlIFNVUkVEUCBzdHVmZiBpcyBhYm91dCBzdXJmYWNlCj4gUkVEIG9wcywgdGhl
-IGV4aXN0aW5nIGNvZGUgdXNlcyBpdCBidXQgSSdtIGdvaW5nIHRvIGxlYXZlIGl0IGZvciBpbWFn
-ZQo+IHN1cHBvcnQgYW5kIGJyZWFrIGRpcmVjdCBidWZmZXIgYWNjZXNzZXMgZGlyZWN0bHkgaW50
-byBPUF9BVE9NIChhbmQgaW4KPiBOVklESUEgdGVybWlub2xvZ3kgUkVEIGlzIGp1c3QgQVRPTSB3
-aXRob3V0IGEgZGVzdGluYXRpb24pLgoKTmVhdC4gIEknbGwgdGFrZSBhIGxvb2sgYXQgaXQuCgpU
-aGFua3MsClJvYmVydAoKPiBUaGFua3MsCj4gCj4gICAtaWxpYQo+IAo+IE9uIEZyaSwgT2N0IDIs
-IDIwMTUgYXQgNTo0OCBQTSwgUm9iZXJ0IE1vcmVsbCA8cm1vcmVsbEBudmlkaWEuY29tPiB3cm90
-ZToKPiA+IEhpIElsaWEsCj4gPgo+ID4gRXJyb3IgMHgxMCBpcyBJTlZBTElEX0FERFJfU1BBQ0Uu
-IEl0IGlzIHRyaWdnZXJlZCB3aGVuIGFuIEFUT00gb3IgUkVEIFsxXQo+ID4gaW5zdHJ1Y3Rpb24g
-YWNjZXNzZXMgbG9jYWwgb3Igc2hhcmVkIG1lbW9yeS4gR2xvYmFsIG1lbW9yeSBhY2Nlc3NlcyBh
-cmUgdGhlCj4gPiBvbmx5IGFsbG93ZWQgYWNjZXNzZXMgZm9yIEFUT00gYW5kIFJFRCBpbnN0cnVj
-dGlvbnMuCj4gPgo+ID4KPiA+IE5vdGUgdGhhdCBTTTMwIGFsc28gaGFzIHRoaXMgcmVzdHJpY3Rp
-b24gdGhhdCBBVE9NIGFuZCBSRUQgc2hvdWxkIG9ubHkgYmUgdXNlZAo+ID4gb24gZ2xvYmFsIG1l
-bW9yeSwgYnV0IGl0IGlzIG5vdCBlcnJvci1jaGVja2VkIGluIGhhcmR3YXJlIHVudGlsIFNNMzUu
-Cj4gPgo+ID4KPiA+IFsxXSBXaGF0IGlzIGRvY3VtZW50ZWQgYXMgUkVEIGludGVybmFsbHkgYXBw
-ZWFycyB0byBiZSBjYWxsZWQgU1VSRURQIGluIE1lc2EuCj4gPgo+ID4KPiA+IC0gUm9iZXJ0Cj4g
-Pgo+ID4gT24gV2VkLCBTZXAgMzAsIDIwMTUgYXQgMDM6MTQ6NDdQTSAtMDQwMCwgSWxpYSBNaXJr
-aW4gd3JvdGU6Cj4gPj4gSGVsbG8sCj4gPj4KPiA+PiBJJ3ZlIHJlY2VudGx5IGNvbWUgYWNyb3Nz
-IGFuIGVycm9yIHJlcG9ydGVkIGJ5IHRoZSBHUFUgYW5kIHdvdWxkIGxpa2UKPiA+PiB0byBrbm93
-IHdoYXQgaXQgbWVhbnMgYW5kIGVzcGVjaWFsbHkgd2hhdCBjYXVzZXMgaXQgdG8gYmUgdHJpZ2dl
-cmVkLgo+ID4+IEFueSBpbmZvcm1hdGlvbiB3b3VsZCBiZSB2ZXJ5IHVzZWZ1bDoKPiA+Pgo+ID4+
-IEknbSBzZWVpbmcgTVAgd2FycCBlcnJvciAweDEwIChhcHBlYXJzIGluIE1QIHJlZ2lzdGVyIDB4
-NDgpLiBUaGlzIGlzCj4gPj4gd2hhdCB3ZSBjdXJyZW50bHkgaGF2ZSBpbiBub3V2ZWF1Ogo+ID4+
-Cj4gPj4gPHJlZzMyIG9mZnNldD0iMHgwNDgiIG5hbWU9IlRSQVBfV0FSUF9FUlJPUiI+IDwhLS0g
-Y3R4LXN3aXRjaGVkIC0tPgo+ID4+IDxiaXRmaWVsZCBoaWdoPSIxNSIgbG93PSIwIiBuYW1lPSJJ
-RCI+Cj4gPj4gPHZhbHVlIHZhbHVlPSIxIiBuYW1lPSJTVEFDS19NSVNNQVRDSCIvPgo+ID4+IDx2
-YWx1ZSB2YWx1ZT0iNSIgbmFtZT0iTUlTQUxJR05FRF9QQyIvPgo+ID4+IDx2YWx1ZSB2YWx1ZT0i
-OCIgbmFtZT0iTUlTQUxJR05FRF9HUFIiLz4KPiA+PiA8dmFsdWUgdmFsdWU9IjkiIG5hbWU9IklO
-VkFMSURfT1BDT0RFIi8+Cj4gPj4gPHZhbHVlIHZhbHVlPSIxMyIgbmFtZT0iR1BSX09VVF9PRl9C
-T1VORFMiLz4KPiA+PiA8dmFsdWUgdmFsdWU9IjE0IiBuYW1lPSJNRU1fT1VUX09GX0JPVU5EUyIv
-Pgo+ID4+IDx2YWx1ZSB2YWx1ZT0iMTciIG5hbWU9IklOVkFMSURfUEFSQU0iLz4KPiA+PiA8L2Jp
-dGZpZWxkPgo+ID4+IDwvcmVnMzI+Cj4gPj4KPiA+PiBbQWRkaXRpb25hbGx5IGl0IHNlZW1zIGxp
-a2UgMTUgPSBVTkFMSUdORURfTUVNX0FDQ0VTU10KPiA+Pgo+ID4+IEl0IHNlZW1zIHRvIGhhcHBl
-biB3aGVuZXZlciBJIHRyeSB0byBhY2Nlc3MgZ2xvYmFsIG1lbW9yeSBvbiBrZXBsZXIKPiA+PiAo
-cG90ZW50aWFsbHkgb25seSBhdG9taWNzLCBub3Qgc3VyZSBhdCB0aGlzIHBvaW50KS4gS25vd2lu
-ZyBwcmVjaXNlbHkKPiA+PiB3aGF0IGNhdXNlcyB0aGUgZXJyb3IgdG8gZ2V0IHRyaWdnZXJlZCAo
-YW5kIGVzcCB3aGF0IHdlIG5lZWQgdG8gZG8gaW4KPiA+PiBvcmRlciBub3QgdG8gdHJpZ2dlciBp
-dCkgd291bGQgYmUgbW9zdCB1c2VmdWwuCj4gPj4KPiA+PiBGb3IgcmVmZXJlbmNlLCBteSBzaGFk
-ZXIgbG9va3Mgc29tZXRoaW5nIGxpa2UgdGhpcyAoZm9yIFNNMzUpOgo+ID4+Cj4gPj4gICAgICAg
-ICAvKjAwMTgqLyAgICAgICAgICAgICAgICAgICBMREMuNjQgUjAsIGNbMHhmXVsweDFjMF07Cj4g
-Pj4gICAvKiAweDdjYTgwNzgwZTAxZmZjMDIgKi8KPiA+PiAgICAgICAgIC8qMDAyMCovICAgICAg
-ICAgICAgICAgICAgIEFUT00uRS5BREQgUjIsIFtSMF0sIFIyOwo+ID4+ICAgLyogMHg2ODA4MDAw
-MDAxMWMwMDBhICovCj4gPj4gICAgICAgICAvKjAwMjgqLyAgICAgICAgICAgICAgICAgICBMRC5F
-LkNHIFIwLCBbUjBdOwo+ID4+ICAgLyogMHhjYzgwMDAwMDAwMWMwMDAwICovCj4gPj4KPiA+PiBJ
-IGtub3cgdGhhdCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVycyBhcmUgYSBsb3QgbW9yZSBzb3BoaXN0
-aWNhdGVkIGFuZAo+ID4+IG9ubHkgZG8gdGhlIGF0b21pYyBhZGQgZnJvbSBhIHNpbmdsZSBsYW5l
-LCBidXQgSSB3YXMgYXNzdW1pbmcgdGhhdCB3YXMKPiA+PiBub3QgcmVxdWlyZWQuCj4gPj4KPiA+
-PiBUaGFua3MsCj4gPj4KPiA+PiAgIC1pbGlhCj4gPj4KPiAKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0508294221==
+Content-Type: multipart/alternative; boundary="1443857697.2e4FCCDF0.13076"; charset="UTF-8"
+
+
+--1443857697.2e4FCCDF0.13076
+Date: Sat, 3 Oct 2015 07:34:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91051
+
+--- Comment #15 from Stuart Axon <stu.axon-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Changing the intel driver to use SNA seems to have fixed the black window
+problem AND the glitchyness in glxdemo when using DRI_PRIME=1
+
+
+I followed advice here
+https://ask.fedoraproject.org/en/question/32960/black-windows-in-gnome-3-suddenly/
+
+and set /etc/X11/xorg.conf to this below.
+
+- anyone on optimnus having similar problems should probably try this.  - In
+the meantime this bug can be closed.
+
+
+
+
+Section "Device"
+    Identifier "Intel Graphics"
+    Driver "intel"
+    Option "AccelMethod" "sna"
+EndSection
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1443857697.2e4FCCDF0.13076
+Date: Sat, 3 Oct 2015 07:34:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051">bug 91051</a>
+              from <span class="vcard"><a class="email" href="mailto:stu.axon&#64;gmail.com" title="Stuart Axon &lt;stu.axon&#64;gmail.com&gt;"> <span class="fn">Stuart Axon</span></a>
+</span></b>
+        <pre>Changing the intel driver to use SNA seems to have fixed the black window
+problem AND the glitchyness in glxdemo when using DRI_PRIME=1
+
+
+I followed advice here
+<a href="https://ask.fedoraproject.org/en/question/32960/black-windows-in-gnome-3-suddenly/">https://ask.fedoraproject.org/en/question/32960/black-windows-in-gnome-3-suddenly/</a>
+
+and set /etc/X11/xorg.conf to this below.
+
+- anyone on optimnus having similar problems should probably try this.  - In
+the meantime this bug can be closed.
+
+
+
+
+Section &quot;Device&quot;
+    Identifier &quot;Intel Graphics&quot;
+    Driver &quot;intel&quot;
+    Option &quot;AccelMethod&quot; &quot;sna&quot;
+EndSection</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443857697.2e4FCCDF0.13076--
+
+--===============0508294221==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0508294221==--
