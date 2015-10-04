@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92274] nouveau black screen and errors with two
  monitors attached
-Date: Sun, 04 Oct 2015 13:30:35 +0000
-Message-ID: <bug-92274-8800-52HEhgmKj2@http.bugs.freedesktop.org/>
+Date: Sun, 04 Oct 2015 13:41:08 +0000
+Message-ID: <bug-92274-8800-PwRJgQqy84@http.bugs.freedesktop.org/>
 References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0735593751=="
+Content-Type: multipart/mixed; boundary="===============1178943559=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0735593751==
-Content-Type: multipart/alternative; boundary="1443965435.BbdEca1.11425"; charset="UTF-8"
+--===============1178943559==
+Content-Type: multipart/alternative; boundary="1443966068.dbd5E51.14152"; charset="UTF-8"
 
 
---1443965435.BbdEca1.11425
-Date: Sun, 4 Oct 2015 13:30:35 +0000
+--1443966068.dbd5E51.14152
+Date: Sun, 4 Oct 2015 13:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92274
 
---- Comment #1 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-Created attachment 118654
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118654&action=edit
-dmesg from /var/log/dmesg
+--- Comment #2 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
+Created attachment 118655
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118655&action=edit
+VBIOS
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1443965435.BbdEca1.11425
-Date: Sun, 4 Oct 2015 13:30:35 +0000
+--1443966068.dbd5E51.14152
+Date: Sun, 4 Oct 2015 13:41:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
               from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118654" name="attach_118654" title="dmesg from /var/log/dmesg">attachment 118654</a> <a href="attachment.cgi?id=118654&amp;action=edit" title="dmesg from /var/log/dmesg">[details]</a></span>
-dmesg from /var/log/dmesg</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118655" name="attach_118655" title="VBIOS">attachment 118655</a> <a href="attachment.cgi?id=118655&amp;action=edit" title="VBIOS">[details]</a></span>
+VBIOS</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ dmesg from /var/log/dmesg</pre>
     </body>
 </html>
 
---1443965435.BbdEca1.11425--
+--1443966068.dbd5E51.14152--
 
---===============0735593751==
+--===============1178943559==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0735593751==--
+--===============1178943559==--
