@@ -1,94 +1,67 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81072] [NVC1] GPU lockup after "read fault at
- 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0"
-Date: Mon, 05 Oct 2015 11:36:30 +0000
-Message-ID: <bug-81072-8800-ObMCwx1sIY@http.bugs.freedesktop.org/>
-References: <bug-81072-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: [PATCH v3 0/6] Enable gpu switching on the MacBook Pro
+Date: Sun, 4 Oct 2015 11:52:33 +0200
+Message-ID: <cover.1443952353.git.lukas@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1088132222=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <intel-gfx-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/intel-gfx>
+List-Post: <mailto:intel-gfx@lists.freedesktop.org>
+List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
+ <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: intel-gfx-bounces@lists.freedesktop.org
+Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: Pierre Moreau <pierre.morrow@free.fr>, William Brown <william@blackhats.net.au>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1088132222==
-Content-Type: multipart/alternative; boundary="1444044990.6382857a2.4664"; charset="UTF-8"
-
-
---1444044990.6382857a2.4664
-Date: Mon, 5 Oct 2015 11:36:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=81072
-
---- Comment #5 from Patryk Zawadzki <patrys-k0Z414SquRyhPH1hqNUYSQ@public.gmane.org> ---
-Just got some more:
-
-nouveau E[Xorg[2265]] failed to idle channel 0xcccc0000 [Xorg[2265]]
-nouveau E[Xorg[2265]] failed to idle channel 0xcccc0000 [Xorg[2265]]
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444044990.6382857a2.4664
-Date: Mon, 5 Oct 2015 11:36:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] GPU lockup after &quot;read fault at 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81072#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC1] GPU lockup after &quot;read fault at 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81072">bug 81072</a>
-              from <span class="vcard"><a class="email" href="mailto:patrys&#64;pld-linux.org" title="Patryk Zawadzki &lt;patrys&#64;pld-linux.org&gt;"> <span class="fn">Patryk Zawadzki</span></a>
-</span></b>
-        <pre>Just got some more:
-
-nouveau E[Xorg[2265]] failed to idle channel 0xcccc0000 [Xorg[2265]]
-nouveau E[Xorg[2265]] failed to idle channel 0xcccc0000 [Xorg[2265]]</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444044990.6382857a2.4664--
-
---===============1088132222==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1088132222==--
+VGhlIHByZS1yZXRpbmEgTWFjQm9vayBQcm8gdXNlcyBhbiBMVkRTIHBhbmVsIGFuZCBhIGdtdXgg
+Y29udHJvbGxlcgp0byBzd2l0Y2ggdGhlIHBhbmVsIGJldHdlZW4gaXRzIHR3byBHUFVzLiBUaGUg
+cGFuZWwgbW9kZSBpbiBWQklPUwppcyBub3RvcmlvdXNseSBib2d1cyBvbiB0aGVzZSBtYWNoaW5l
+cyBhbmQgc29tZSBtb2RlbHMgaGF2ZSBubwpWQklPUyBhdCBhbGwsIHNvIHRoZSBpbmFjdGl2ZSBH
+UFUgY2Fubm90IHNldCB1cCBpdHMgTFZEUyBvdXRwdXQuCgpFeHRlbmQgdmdhX3N3aXRjaGVyb28g
+dG8gc3VwcG9ydCBzd2l0Y2hpbmcgb25seSB0aGUgRERDIGxpbmVzLgpJbnRyb2R1Y2UgYSBkcm1f
+Z2V0X2VkaWRfc3dpdGNoZXJvbygpIGhlbHBlciB3aGljaCB1c2VzIHRoaXMgZmVhdHVyZS4KQW1l
+bmQgaTkxNSwgbm91dmVhdSBhbmQgcmFkZW9uIHRvIGNhbGwgaXQgZm9yIExWRFMgY29ubmVjdG9y
+cy4KClRoaXMgb25seSBlbmFibGVzIEVESUQgcHJvYmluZyBvbiB0aGUgcHJlLXJldGluYSBNQlAg
+KDIwMDggLSAyMDEzKSwKYW5kIG9ubHkgdW5kZXIgdGhlIGNvbmRpdGlvbiB0aGF0IGFwcGxlLWdt
+dXggbG9hZHMgYmVmb3JlIHRoZSBEUk0KZHJpdmVycy4gTGF0ZXIgcGF0Y2hlcyB3aWxsIGFkZHJl
+c3MgcmVwcm9iaW5nIG9mIHRoZSBEUk0gZHJpdmVycwppZiBhcHBsZS1nbXV4IGxvYWRzIGxhdGUu
+CgpUaGUgcmV0aW5hIE1CUCAoMjAxMiAtIHByZXNlbnQpIHVzZXMgZURQIGFuZCBpcyBhcHBhcmVu
+dGx5IG5vdApjYXBhYmxlIG9mIHN3aXRjaGluZyBBVVggc2VwYXJhdGVseSBmcm9tIHRoZSBtYWlu
+IGxpbmsuClRoaXMgd2lsbCBhbHNvIGJlIGFkZHJlc3NlZCBpbiBsYXRlciBwYXRjaGVzLgoKClBy
+ZXZpb3VzIGluc3RhbGxtZW50czoKdjE6IGh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvYXJj
+aGl2ZXMvZHJpLWRldmVsLzIwMTUtQXByaWwvMDgxNTE1Lmh0bWwKdjI6IGh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvYXJjaGl2ZXMvZHJpLWRldmVsLzIwMTUtQXVndXN0LzA4ODE1Ni5odG1s
+CgoKQ2hhbmdlcyBzaW5jZSB2MjoKICAqIFByZXZpb3VzbHkgdGhlIEREQyBsb2NraW5nIGhhcHBl
+bmVkIGluIGRybV9nZXRfZWRpZCgpIGFuZCB0aHVzCiAgICB3YXMgZG9uZSBmb3IgYWxsIERSTSBk
+cml2ZXJzLCByZWdhcmRsZXNzIGlmIHRoZXkgYXJlIGV2ZXIgdXNlZAogICAgb24gbXV4ZWQgbWFj
+aGluZXMuIE5vdyB0aGlzIGlzIG1vdmVkIHRvIGEgc2VwYXJhdGUgaGVscGVyIHdoaWNoCiAgICBp
+cyBvbmx5IGNhbGxlZCBieSByZWxldmFudCBkcml2ZXJzIGFuZCBvbmx5IGZvciBMVkRTIGNvbm5l
+Y3RvcnMuCiAgICAoU3VnZ2VzdGVkIGJ5IFRoaWVycnkgUmVkaW5nIGFuZCBzZWNvbmRlZCBieSBB
+bGV4IERldWNoZXIgYW5kCiAgICBEYW5pZWwgVmV0dGVyLikKICAqIFNxdWFzaGVkIGNvbW1pdHMs
+IG92ZXJoYXVsZWQgbG9ja2luZywgYWRkZWQga2VybmVsLWRvYyBmb3IgbmV3CiAgICBwdWJsaWMg
+ZnVuY3Rpb25zIGFuZCBsb2Nrcy4KICAgIChTdWdnZXN0ZWQgYnkgRGFuaWVsIFZldHRlci4pCgoK
+VGhhbmtzIGEgbG90IHRvIHRoZSByZXZpZXdlcnMgYW5kIHRlc3RlcnMgZm9yIHlvdXIgdmFsdWFi
+bGUgZmVlZGJhY2suCgoKTHVrYXMgV3VubmVyICg2KToKICB2Z2Ffc3dpdGNoZXJvbzogQWRkIHN1
+cHBvcnQgZm9yIHN3aXRjaGluZyBvbmx5IHRoZSBEREMKICBhcHBsZS1nbXV4OiBBZGQgc3dpdGNo
+X2RkYyBzdXBwb3J0CiAgZHJtL2VkaWQ6IFN3aXRjaCBEREMgd2hlbiByZWFkaW5nIHRoZSBFRElE
+CiAgZHJtL2k5MTU6IFN3aXRjaCBEREMgd2hlbiByZWFkaW5nIHRoZSBFRElECiAgZHJtL25vdXZl
+YXU6IFN3aXRjaCBEREMgd2hlbiByZWFkaW5nIHRoZSBFRElECiAgZHJtL3JhZGVvbjogU3dpdGNo
+IEREQyB3aGVuIHJlYWRpbmcgdGhlIEVESUQKCiBkcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYyAg
+ICAgICAgICAgICAgICAgIHwgMjYgKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X2x2ZHMuYyAgICAgICAgICAgfCAgMyArLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
+dV9jb25uZWN0b3IuYyB8IDEzICsrKy0KIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Nv
+bm5lY3RvcnMuYyAgfCAgNCArKwogZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9vLmMgICAg
+ICAgICAgICB8IDk4ICsrKysrKysrKysrKysrKysrKysrKysrKysrKystCiBkcml2ZXJzL3BsYXRm
+b3JtL3g4Ni9hcHBsZS1nbXV4LmMgICAgICAgICAgIHwgMjMgKysrKysrKwogaW5jbHVkZS9kcm0v
+ZHJtX2NydGMuaCAgICAgICAgICAgICAgICAgICAgICB8ICAyICsKIGluY2x1ZGUvbGludXgvdmdh
+X3N3aXRjaGVyb28uaCAgICAgICAgICAgICAgfCAgOSArKysKIDggZmlsZXMgY2hhbmdlZCwgMTcz
+IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCgotLSAKMS44LjUuMiAoQXBwbGUgR2l0LTQ4
+KQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
