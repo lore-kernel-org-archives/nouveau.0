@@ -1,13 +1,11 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: [PATCH v5] pci: Handle 5-bit and 8-bit tag field
-Date: Sat,  3 Oct 2015 21:35:16 +0200
-Message-ID: <1443900916-14631-1-git-send-email-pierre.morrow@free.fr>
-References: <1442435210-21276-1-git-send-email-pierre.morrow@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92274] New: nouveau black screen and errors with two
+ monitors attached
+Date: Sun, 04 Oct 2015 13:27:40 +0000
+Message-ID: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0786284393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1442435210-21276-1-git-send-email-pierre.morrow-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,91 +15,224 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau ML <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SWYgdGhlIGhhcmR3YXJlIHN1cHBvcnRzIGV4dGVuZGVkIHRhZyBmaWVsZCAoOC1iaXQgb25lcyks
-IHRoZW4gZW5hYmxlIGl0LiBUaGlzCmlzIHVzdWFsbHkgZG9uZSBieSB0aGUgVkJJT1MsIGJ1dCBu
-b3Qgb24gc29tZSBNQlBzIChzZWUgZmRvIzg2NTM3KS4KSW4gY2FzZSBleHRlbmRlZCB0YWcgZmll
-bGQgaXMgbm90IHN1cHBvcnRlZCwgNS1iaXQgdGFnIGZpZWxkIGlzIHVzZWQgd2hpY2gKbGltaXRz
-IHRoZSBwb3NzaWJsZSBudW1iZXIgb2YgcmVxdWVzdHMgdG8gMzIuIEFwcGFyZW50bHkgYml0cyA3
-OjAgb2YgMHgwODg0MWMKc3RvcmVzIHNvbWUgbnVtYmVyIG9mIG91dHN0YW5kaW5nIHJlcXVlc3Rz
-LCBzbyBjYXAgaXQgdG8gMzIgaWYgZXh0ZW5kZWQgdGFnIGlzCnVuc3VwcG9ydGVkLgoKRml4ZXM6
-IGZkbyM4NjUzNwoKdjI6IFJlc3RyaWN0IGNoYW5nZXMgdG8gY2hpcHNldHMgPj0gMHg4NAp2MzoK
-ICAqIEFkZCBudmttX3BjaV9tYXNrIHRvIHBjaS5oCiAgKiBNYXNrIGJpdCA4IGJlZm9yZSBzZXR0
-aW5nIGl0CnY0OgogICogUmVuYW1lIGBhZGRgIGFyZ3VtZW50IG9mIG52a21fcGNpX21hc2sgdG8g
-YHZhbHVlYAogICogTW92ZSBjb2RlIGZyb20gbnZrbV9wY2lfaW5pdCB0byBnODRfcGNpX2luaXQg
-YW5kIHJlbW92ZSBQQ0llIGFuZCBjaGlwc2V0CiAgICBjaGVja3MKdjU6CiAgKiBSZWJhc2UgY29k
-ZSBvbiBsYXRlc3QgUENJIHN0cnVjdHVyZQogICogUmVzdG9yZSBQQ0llIGNoZWNrCiAgKiBGaXgg
-bmFtaW5ncyBpbiBudmttX3BjaV9tYXNrCiAgKiBSZXBocmFzZSBwYXJ0IG9mIHRoZSBjb21taXQg
-bWVzc2FnZQoKU2lnbmVkLW9mZi1ieTogUGllcnJlIE1vcmVhdSA8cGllcnJlLm1vcnJvd0BmcmVl
-LmZyPgotLS0KIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmggfCAgMSArCiBk
-cm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvYmFzZS5jICAgIHwgIDggKysrKysrKysKIGRybS9u
-b3V2ZWF1L252a20vc3ViZGV2L3BjaS9nODQuYyAgICAgfCAyNCArKysrKysrKysrKysrKysrKysr
-KysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9nOTQuYyAgICAgfCAgMSArCiBkcm0v
-bm91dmVhdS9udmttL3N1YmRldi9wY2kvZ2YxMDAuYyAgIHwgIDEgKwogZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvcGNpL3ByaXYuaCAgICB8ICAyICsrCiA2IGZpbGVzIGNoYW5nZWQsIDM3IGluc2Vy
-dGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3Bj
-aS5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL3N1YmRldi9wY2kuaAppbmRleCAzOWNhODhm
-Li5mZWUwYTk3IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3Bj
-aS5oCisrKyBiL2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvcGNpLmgKQEAgLTI0LDYg
-KzI0LDcgQEAgc3RydWN0IG52a21fcGNpIHsKIHUzMiBudmttX3BjaV9yZDMyKHN0cnVjdCBudmtt
-X3BjaSAqLCB1MTYgYWRkcik7CiB2b2lkIG52a21fcGNpX3dyMDgoc3RydWN0IG52a21fcGNpICos
-IHUxNiBhZGRyLCB1OCBkYXRhKTsKIHZvaWQgbnZrbV9wY2lfd3IzMihzdHJ1Y3QgbnZrbV9wY2kg
-KiwgdTE2IGFkZHIsIHUzMiBkYXRhKTsKK3UzMiBudmttX3BjaV9tYXNrKHN0cnVjdCBudmttX3Bj
-aSAqLCB1MTYgYWRkciwgdTMyIG1hc2ssIHUzMiB2YWx1ZSk7CiB2b2lkIG52a21fcGNpX3JvbV9z
-aGFkb3coc3RydWN0IG52a21fcGNpICosIGJvb2wgc2hhZG93KTsKIAogaW50IG52MDRfcGNpX25l
-dyhzdHJ1Y3QgbnZrbV9kZXZpY2UgKiwgaW50LCBzdHJ1Y3QgbnZrbV9wY2kgKiopOwpkaWZmIC0t
-Z2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252
-a20vc3ViZGV2L3BjaS9iYXNlLmMKaW5kZXggMjExMDYyMi4uZDY3MWRjZiAxMDA2NDQKLS0tIGEv
-ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2Jhc2UuYworKysgYi9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9wY2kvYmFzZS5jCkBAIC00Niw2ICs0NiwxNCBAQCBudmttX3BjaV93cjMyKHN0cnVj
-dCBudmttX3BjaSAqcGNpLCB1MTYgYWRkciwgdTMyIGRhdGEpCiAJcGNpLT5mdW5jLT53cjMyKHBj
-aSwgYWRkciwgZGF0YSk7CiB9CiAKK3UzMgorbnZrbV9wY2lfbWFzayhzdHJ1Y3QgbnZrbV9wY2kg
-KnBjaSwgdTE2IGFkZHIsIHUzMiBtYXNrLCB1MzIgdmFsdWUpCit7CisJdTMyIGRhdGEgPSBwY2kt
-PmZ1bmMtPnJkMzIocGNpLCBhZGRyKTsKKwlwY2ktPmZ1bmMtPndyMzIocGNpLCBhZGRyLCAoZGF0
-YSAmIH5tYXNrKSB8IHZhbHVlKTsKKwlyZXR1cm4gZGF0YTsKK30KKwogdm9pZAogbnZrbV9wY2lf
-cm9tX3NoYWRvdyhzdHJ1Y3QgbnZrbV9wY2kgKnBjaSwgYm9vbCBzaGFkb3cpCiB7CmRpZmYgLS1n
-aXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvZzg0LmMgYi9kcm0vbm91dmVhdS9udmtt
-L3N1YmRldi9wY2kvZzg0LmMKaW5kZXggOGYzYjAwMS4uM2ZhYTZiZiAxMDA2NDQKLS0tIGEvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2c4NC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3Vi
-ZGV2L3BjaS9nODQuYwpAQCAtMjUsOCArMjUsMzIgQEAKIAogI2luY2x1ZGUgPGNvcmUvcGNpLmg+
-CiAKK3ZvaWQKK2c4NF9wY2lfaW5pdChzdHJ1Y3QgbnZrbV9wY2kgKnBjaSkKK3sKKwkvKiBUaGUg
-Zm9sbG93aW5nIG9ubHkgY29uY2VybnMgUENJZSBjYXJkcy4gKi8KKwlpZiAoIXBjaV9pc19wY2ll
-KHBjaS0+cGRldikpCisJCXJldHVybjsKKworCS8qIFRhZyBmaWVsZCBpcyA4LWJpdCBsb25nLCBy
-ZWdhcmRsZXNzIG9mIEVYVF9UQUcuCisJICogSG93ZXZlciwgaWYgRVhUX1RBRyBpcyBkaXNhYmxl
-ZCwgb25seSB0aGUgbG93ZXIgNSBiaXRzIG9mIHRoZSB0YWcKKwkgKiBmaWVsZCBzaG91bGQgYmUg
-dXNlZCwgbGltaXRpbmcgdGhlIG51bWJlciBvZiByZXF1ZXN0IHRvIDMyLgorCSAqCisJICogQXBw
-YXJlbnRseSwgMHgwNDFjIHN0b3JlcyBzb21lIGxpbWl0IG9uIHRoZSBudW1iZXIgb2YgcmVxdWVz
-dHMKKwkgKiBwb3NzaWJsZSwgc28gaWYgRVhUX1RBRyBpcyBkaXNhYmxlZCwgbGltaXQgdGhhdCBy
-ZXF1ZXN0cyBudW1iZXIgdG8KKwkgKiAzMgorCSAqCisJICogRml4ZXMgZmRvIzg2NTM3CisJICov
-CisJaWYgKG52a21fcGNpX3JkMzIocGNpLCAweDAwN2MpICYgMHgwMDAwMDAyMCkKKwkJbnZrbV9w
-Y2lfbWFzayhwY2ksIDB4MDA4MCwgMHgwMDAwMDEwMCwgMHgwMDAwMDEwMCk7CisJZWxzZQorCQlu
-dmttX3BjaV9tYXNrKHBjaSwgMHgwNDFjLCAweDAwMDAwMDYwLCAweDAwMDAwMDAwKTsKK30KKwog
-c3RhdGljIGNvbnN0IHN0cnVjdCBudmttX3BjaV9mdW5jCiBnODRfcGNpX2Z1bmMgPSB7CisJLmlu
-aXQgPSBnODRfcGNpX2luaXQsCiAJLnJkMzIgPSBudjQwX3BjaV9yZDMyLAogCS53cjA4ID0gbnY0
-MF9wY2lfd3IwOCwKIAkud3IzMiA9IG52NDBfcGNpX3dyMzIsCmRpZmYgLS1naXQgYS9kcm0vbm91
-dmVhdS9udmttL3N1YmRldi9wY2kvZzk0LmMgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kv
-Zzk0LmMKaW5kZXggMTcxNDQyMS4uY2QzMTFlZSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9zdWJkZXYvcGNpL2c5NC5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9nOTQu
-YwpAQCAtMjUsNiArMjUsNyBAQAogCiBzdGF0aWMgY29uc3Qgc3RydWN0IG52a21fcGNpX2Z1bmMK
-IGc5NF9wY2lfZnVuYyA9IHsKKwkuaW5pdCA9IGc4NF9wY2lfaW5pdCwKIAkucmQzMiA9IG52NDBf
-cGNpX3JkMzIsCiAJLndyMDggPSBudjQwX3BjaV93cjA4LAogCS53cjMyID0gbnY0MF9wY2lfd3Iz
-MiwKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9nZjEwMC5jIGIvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2dmMTAwLmMKaW5kZXggODZmODIyNi4uMjVlMWFlNyAx
-MDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2dmMTAwLmMKKysrIGIvZHJt
-L25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL2dmMTAwLmMKQEAgLTMxLDYgKzMxLDcgQEAgZ2YxMDBf
-cGNpX21zaV9yZWFybShzdHJ1Y3QgbnZrbV9wY2kgKnBjaSkKIAogc3RhdGljIGNvbnN0IHN0cnVj
-dCBudmttX3BjaV9mdW5jCiBnZjEwMF9wY2lfZnVuYyA9IHsKKwkuaW5pdCA9IGc4NF9wY2lfaW5p
-dCwKIAkucmQzMiA9IG52NDBfcGNpX3JkMzIsCiAJLndyMDggPSBudjQwX3BjaV93cjA4LAogCS53
-cjMyID0gbnY0MF9wY2lfd3IzMiwKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2
-L3BjaS9wcml2LmggYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wY2kvcHJpdi5oCmluZGV4IDFh
-Y2Q0YmMuLmNmNDZkMzggMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BjaS9w
-cml2LmgKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcGNpL3ByaXYuaApAQCAtMjAsNCAr
-MjAsNiBAQCB2b2lkIG52NDBfcGNpX3dyMzIoc3RydWN0IG52a21fcGNpICosIHUxNiwgdTMyKTsK
-IHZvaWQgbnY0MF9wY2lfbXNpX3JlYXJtKHN0cnVjdCBudmttX3BjaSAqKTsKIAogdm9pZCBudjQ2
-X3BjaV9tc2lfcmVhcm0oc3RydWN0IG52a21fcGNpICopOworCit2b2lkIGc4NF9wY2lfaW5pdChz
-dHJ1Y3QgbnZrbV9wY2kgKnBjaSk7CiAjZW5kaWYKLS0gCjIuNi4wCgpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2
-ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0786284393==
+Content-Type: multipart/alternative; boundary="1443965260.3EBeCC4D1.10836"; charset="UTF-8"
+
+
+--1443965260.3EBeCC4D1.10836
+Date: Sun, 4 Oct 2015 13:27:40 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92274
+
+            Bug ID: 92274
+           Summary: nouveau black screen and errors with two monitors
+                    attached
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: joseph-thommes-Mmb7MZpHnFY@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Hello,
+I switched from the proprietary nvidia-drivers to nouveau under Gentoo.
+I use a Dual-Monitor Setup: one is connected to the DVI-I and the other one to
+the HDMI output of my Nvidia GTX 770.
+Under my Manjaro installation I use the proprietary driver and everything
+works;
+under Gentoo everything was fine with the nvidia-drivers, too.
+Now I can boot without errors into Gentoo when only one of the monitors is
+connected, no matter which one.
+However, when both monitors are attached to the graphics card,
+I cannot access a tty or my graphical login manger:
+the screens turn off showing "no input signal".
+Me not being able to access my Gentoo installation by booting into it when the
+error happens,
+I chrooted into it and used cat /var/log/dmesg.
+I know that this is not what the nouveau reporting guide suggests for obtaining
+a kernel log,
+but if I run dmesg from my chrooted environment I obviously get the kernel log
+of my Manjaro boot.
+If there is another better way for obtaining the kernel log, please let me
+know.
+
+VBIOS is following in a few minutes.
+
+If there is anything else missing, let me know.
+
+lspci | grep VGA
+01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 770]
+(rev a1)
+
+kernel version: x86-64 4.0.5-linux-gentoo
+nouveau version: x11-drivers/xf86-video-nouveau-1.0.11
+libdrm version: x11-libs/libdrm-2.4.59
+mesa version: media-libs/mesa-10.3.7-r1
+X server: x11-base/xorg-server-1.16.4
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1443965260.3EBeCC4D1.10836
+Date: Sun, 4 Oct 2015 13:27:40 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">92274</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>nouveau black screen and errors with two monitors attached
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>joseph-thommes&#64;gmx.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Hello,
+I switched from the proprietary nvidia-drivers to nouveau under Gentoo.
+I use a Dual-Monitor Setup: one is connected to the DVI-I and the other one to
+the HDMI output of my Nvidia GTX 770.
+Under my Manjaro installation I use the proprietary driver and everything
+works;
+under Gentoo everything was fine with the nvidia-drivers, too.
+Now I can boot without errors into Gentoo when only one of the monitors is
+connected, no matter which one.
+However, when both monitors are attached to the graphics card,
+I cannot access a tty or my graphical login manger:
+the screens turn off showing &quot;no input signal&quot;.
+Me not being able to access my Gentoo installation by booting into it when the
+error happens,
+I chrooted into it and used cat /var/log/dmesg.
+I know that this is not what the nouveau reporting guide suggests for obtaining
+a kernel log,
+but if I run dmesg from my chrooted environment I obviously get the kernel log
+of my Manjaro boot.
+If there is another better way for obtaining the kernel log, please let me
+know.
+
+VBIOS is following in a few minutes.
+
+If there is anything else missing, let me know.
+
+lspci | grep VGA
+01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 770]
+(rev a1)
+
+kernel version: x86-64 4.0.5-linux-gentoo
+nouveau version: x11-drivers/xf86-video-nouveau-1.0.11
+libdrm version: x11-libs/libdrm-2.4.59
+mesa version: media-libs/mesa-10.3.7-r1
+X server: x11-base/xorg-server-1.16.4</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1443965260.3EBeCC4D1.10836--
+
+--===============0786284393==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0786284393==--
