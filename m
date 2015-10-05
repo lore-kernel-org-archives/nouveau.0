@@ -1,16 +1,13 @@
-From: Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH v3 0/6] Enable gpu switching on the MacBook Pro
-Date: Mon, 5 Oct 2015 11:23:21 -0400
-Message-ID: <CAM2RGhT8W7tVxAGALefniBot5KQeXvsguCGo+58qLwbpYQZgBg@mail.gmail.com>
-References: <cover.1443952353.git.lukas@wunner.de>
- <20151005132349.GA15130@wunner.de>
- <CAM2RGhT5x9GoNU4xPwzoEoiWKqVrC2pwp3ydFgaXFwtsYiBa7A@mail.gmail.com>
- <20151005151704.GA15177@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Mon, 05 Oct 2015 15:24:07 +0000
+Message-ID: <bug-92077-8800-MSzO3GurLS@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1317301792=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20151005151704.GA15177-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +17,80 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, intel-gfx-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, William Brown <william-n62phY/1UFdqFZ3NbRY2NA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBPY3QgNSwgMjAxNSBhdCAxMToxNyBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5u
-ZXIuZGU+IHdyb3RlOgo+IEhpIEV2YW4sCj4KPiBPbiBNb24sIE9jdCAwNSwgMjAxNSBhdCAxMDox
-NTo1M0FNIC0wNDAwLCBFdmFuIEZvc3Mgd3JvdGU6Cj4+IE9uIE1vbiwgT2N0IDUsIDIwMTUgYXQg
-OToyMyBBTSwgTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIuZGU+IHdyb3RlOgo+PiA+IEkndmUg
-YWxzbyBwdXNoZWQgdGhpcyBzZXJpZXMgdG8gR2l0SHViIG5vdyB0byBlYXNlIHJldmlld2luZzoK
-Pj4gPiBodHRwczovL2dpdGh1Yi5jb20vbDFrL2xpbnV4L2NvbW1pdHMvbWJwX3N3aXRjaGVyb29f
-djMKPj4KPj4gU28gdG8gdGVzdCB0aGlzIGFsbCBzb21lb25lIGhhcyB0byBkbyBpcyBwdWxsIHRo
-aXMgYW5kIHRyeSBpdD8gTm8KPj4gcGF0Y2hpbmcgcmVxdWlyZWQ/Cj4KPiBZZXMuIEJ1dCBpZiB5
-b3UgZG9uJ3QgYWxyZWFkeSBoYXZlIGEga2VybmVsIGdpdCByZXBvLCB0aGlzIHdpbGwgYmUKPiBh
-ID4gMSBHQnl0ZSBkb3dubG9hZC4KCjIwMTIKTWFjYm9vayBQcm8gOSwyCgokIGRtZXNnfGdyZXAg
-QXBwbGUKWyAgICAwLjAwMDAwMF0gZWZpOiBFRkkgdjEuMTAgYnkgQXBwbGUKWyAgICAwLjAwMDAw
-MF0gRE1JOiBBcHBsZSBJbmMuIE1hY0Jvb2tQcm85LDEvTWFjLQo0QjdBQzdFNDM5NDU1OTdFLApC
-SU9TIE1CUDkxLjg4Wi4wMEQzLkIwOC4xMjA4MDgxMTMyIDA4LzA4LzIwMTIKCj4gV2hpY2ggTWFj
-Qm9vayBQcm8gbW9kZWwgZG8geW91IHdhbnQgdG8gdGVzdCB0aGlzIG9uPyBBcyBub3RlZCBpbiB0
-aGUKPiBjb3ZlciBsZXR0ZXIsIHRoaXMgd2lsbCBvbmx5IHdvcmsgb24gcHJlLXJldGluYXMgYW5k
-IG9ubHkgaWYgdGhlCj4gYXBwbGUtZ211eCBtb2R1bGUgbG9hZHMgYmVmb3JlIHRoZSBEUk0gZHJp
-dmVycy4gWW91IGNhbiB0cnkgdG8gZW5zdXJlCj4gdGhlIGxhdHRlciBieSBlZGl0aW5nIG1vZHVs
-ZXMuZGVwLCBvciBncmFiIHRoaXMgdGFyYmFsbCB3aGljaCBjb250YWlucwo+IHJlcHJvYmluZyBw
-YXRjaGVzIG9uIHRvcDoKPiBodHRwOi8vd3VubmVyLmRlL21icF9zd2l0Y2hlcm9vX3YzX3JlcHJv
-YmVfNC4zLXJjNHByZS50YXIuZ3oKCk9rIHRoYW5rcwoKPiBCZXN0IHJlZ2FyZHMsCj4KPiBMdWth
-cwoKRXZhbgoKLS0gCkhvbWUKaHR0cDovL2V2YW5mb3NzLmdvb2dsZXBhZ2VzLmNvbS8KV29yawpo
-dHRwOi8vZm9yZ2UuYWJjZC5oYXJ2YXJkLmVkdS9nZi9wcm9qZWN0L2VwbF9lbmdpbmVlcmluZy93
-aWtpLwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1317301792==
+Content-Type: multipart/alternative; boundary="1444058647.cFfD0.28194"; charset="UTF-8"
+
+
+--1444058647.cFfD0.28194
+Date: Mon, 5 Oct 2015 15:24:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
+
+--- Comment #8 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
+Dear dmidge!  I think the error messages that you get (something about PGRAPH
+and textures) are quite different from mine (something about PFIFO and the PGR
+engine, whatever that may be...) - it probably makes more sense to file it as a
+different bug instead of putting it into the same thread. Thanks!
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1444058647.cFfD0.28194
+Date: Mon, 5 Oct 2015 15:24:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c8">Comment # 8</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
+              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
+</span></b>
+        <pre>Dear dmidge!  I think the error messages that you get (something about PGRAPH
+and textures) are quite different from mine (something about PFIFO and the PGR
+engine, whatever that may be...) - it probably makes more sense to file it as a
+different bug instead of putting it into the same thread. Thanks!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444058647.cFfD0.28194--
+
+--===============1317301792==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1317301792==--
