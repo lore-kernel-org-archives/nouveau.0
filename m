@@ -1,93 +1,44 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92287] Display errors in Qt applications after using
- Android Virtual Devices
-Date: Mon, 05 Oct 2015 14:31:31 +0000
-Message-ID: <bug-92287-8800-FOOwSfdX6Y@http.bugs.freedesktop.org/>
-References: <bug-92287-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [Nouveau] [PATCH v3 0/6] Enable gpu switching on the MacBook Pro
+Date: Mon, 5 Oct 2015 17:17:04 +0200
+Message-ID: <20151005151704.GA15177@wunner.de>
+References: <cover.1443952353.git.lukas@wunner.de>
+ <20151005132349.GA15130@wunner.de>
+ <CAM2RGhT5x9GoNU4xPwzoEoiWKqVrC2pwp3ydFgaXFwtsYiBa7A@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1138172102=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAM2RGhT5x9GoNU4xPwzoEoiWKqVrC2pwp3ydFgaXFwtsYiBa7A@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Evan Foss <evanfoss@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, William Brown <william@blackhats.net.au>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1138172102==
-Content-Type: multipart/alternative; boundary="1444055490.B14Ecb0.5771"; charset="UTF-8"
-
-
---1444055490.B14Ecb0.5771
-Date: Mon, 5 Oct 2015 14:31:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92287
-
---- Comment #2 from Guido Winkelmann <guido-WHizhSsHnEbSgI/GaPOurUTU+k/KrAxG@public.gmane.org> ---
-Created attachment 118672
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118672&action=edit
-Xorg logfile from when the problem occured
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1444055490.B14Ecb0.5771
-Date: Mon, 5 Oct 2015 14:31:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287">bug 92287</a>
-              from <span class="vcard"><a class="email" href="mailto:guido&#64;ambient-entertainment.de" title="Guido Winkelmann &lt;guido&#64;ambient-entertainment.de&gt;"> <span class="fn">Guido Winkelmann</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118672" name="attach_118672" title="Xorg logfile from when the problem occured">attachment 118672</a> <a href="attachment.cgi?id=118672&amp;action=edit" title="Xorg logfile from when the problem occured">[details]</a></span>
-Xorg logfile from when the problem occured</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444055490.B14Ecb0.5771--
-
---===============1138172102==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1138172102==--
+SGkgRXZhbiwKCk9uIE1vbiwgT2N0IDA1LCAyMDE1IGF0IDEwOjE1OjUzQU0gLTA0MDAsIEV2YW4g
+Rm9zcyB3cm90ZToKPiBPbiBNb24sIE9jdCA1LCAyMDE1IGF0IDk6MjMgQU0sIEx1a2FzIFd1bm5l
+ciA8bHVrYXNAd3VubmVyLmRlPiB3cm90ZToKPiA+IEkndmUgYWxzbyBwdXNoZWQgdGhpcyBzZXJp
+ZXMgdG8gR2l0SHViIG5vdyB0byBlYXNlIHJldmlld2luZzoKPiA+IGh0dHBzOi8vZ2l0aHViLmNv
+bS9sMWsvbGludXgvY29tbWl0cy9tYnBfc3dpdGNoZXJvb192Mwo+IAo+IFNvIHRvIHRlc3QgdGhp
+cyBhbGwgc29tZW9uZSBoYXMgdG8gZG8gaXMgcHVsbCB0aGlzIGFuZCB0cnkgaXQ/IE5vCj4gcGF0
+Y2hpbmcgcmVxdWlyZWQ/CgpZZXMuIEJ1dCBpZiB5b3UgZG9uJ3QgYWxyZWFkeSBoYXZlIGEga2Vy
+bmVsIGdpdCByZXBvLCB0aGlzIHdpbGwgYmUKYSA+IDEgR0J5dGUgZG93bmxvYWQuCgpXaGljaCBN
+YWNCb29rIFBybyBtb2RlbCBkbyB5b3Ugd2FudCB0byB0ZXN0IHRoaXMgb24/IEFzIG5vdGVkIGlu
+IHRoZQpjb3ZlciBsZXR0ZXIsIHRoaXMgd2lsbCBvbmx5IHdvcmsgb24gcHJlLXJldGluYXMgYW5k
+IG9ubHkgaWYgdGhlCmFwcGxlLWdtdXggbW9kdWxlIGxvYWRzIGJlZm9yZSB0aGUgRFJNIGRyaXZl
+cnMuIFlvdSBjYW4gdHJ5IHRvIGVuc3VyZQp0aGUgbGF0dGVyIGJ5IGVkaXRpbmcgbW9kdWxlcy5k
+ZXAsIG9yIGdyYWIgdGhpcyB0YXJiYWxsIHdoaWNoIGNvbnRhaW5zCnJlcHJvYmluZyBwYXRjaGVz
+IG9uIHRvcDoKaHR0cDovL3d1bm5lci5kZS9tYnBfc3dpdGNoZXJvb192M19yZXByb2JlXzQuMy1y
+YzRwcmUudGFyLmd6CgpCZXN0IHJlZ2FyZHMsCgpMdWthcwpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpkcmktZGV2ZWwgbWFpbGluZyBsaXN0CmRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2RyaS1kZXZlbAo=
