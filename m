@@ -1,96 +1,38 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
- 5; PGR engine fault
-Date: Mon, 05 Oct 2015 15:24:07 +0000
-Message-ID: <bug-92077-8800-MSzO3GurLS@http.bugs.freedesktop.org/>
-References: <bug-92077-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas@wunner.de>
+Subject: Re: [Nouveau] [PATCH v3 0/6] Enable gpu switching on the MacBook Pro
+Date: Mon, 5 Oct 2015 17:31:13 +0200
+Message-ID: <20151005153113.GA15215@wunner.de>
+References: <cover.1443952353.git.lukas@wunner.de>
+ <20151005132349.GA15130@wunner.de>
+ <CAM2RGhT5x9GoNU4xPwzoEoiWKqVrC2pwp3ydFgaXFwtsYiBa7A@mail.gmail.com>
+ <20151005151704.GA15177@wunner.de>
+ <CAM2RGhT8W7tVxAGALefniBot5KQeXvsguCGo+58qLwbpYQZgBg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1317301792=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+Content-Disposition: inline
+In-Reply-To: <CAM2RGhT8W7tVxAGALefniBot5KQeXvsguCGo+58qLwbpYQZgBg@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Evan Foss <evanfoss@gmail.com>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, William Brown <william@blackhats.net.au>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1317301792==
-Content-Type: multipart/alternative; boundary="1444058647.cFfD0.28194"; charset="UTF-8"
-
-
---1444058647.cFfD0.28194
-Date: Mon, 5 Oct 2015 15:24:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92077
-
---- Comment #8 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
-Dear dmidge!  I think the error messages that you get (something about PGRAPH
-and textures) are quite different from mine (something about PFIFO and the PGR
-engine, whatever that may be...) - it probably makes more sense to file it as a
-different bug instead of putting it into the same thread. Thanks!
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1444058647.cFfD0.28194
-Date: Mon, 5 Oct 2015 15:24:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
-              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
-</span></b>
-        <pre>Dear dmidge!  I think the error messages that you get (something about PGRAPH
-and textures) are quite different from mine (something about PFIFO and the PGR
-engine, whatever that may be...) - it probably makes more sense to file it as a
-different bug instead of putting it into the same thread. Thanks!</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444058647.cFfD0.28194--
-
---===============1317301792==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1317301792==--
+SGkgRXZhbiwKCk9uIE1vbiwgT2N0IDA1LCAyMDE1IGF0IDExOjIzOjIxQU0gLTA0MDAsIEV2YW4g
+Rm9zcyB3cm90ZToKPiAkIGRtZXNnfGdyZXAgQXBwbGUKPiBbICAgIDAuMDAwMDAwXSBlZmk6IEVG
+SSB2MS4xMCBieSBBcHBsZQo+IFsgICAgMC4wMDAwMDBdIERNSTogQXBwbGUgSW5jLiBNYWNCb29r
+UHJvOSwxL01hYy0KPiA0QjdBQzdFNDM5NDU1OTdFLAo+IEJJT1MgTUJQOTEuODhaLjAwRDMuQjA4
+LjEyMDgwODExMzIgMDgvMDgvMjAxMgoKVGhhdCB3YXMgdGhlIGxhc3Qgb2YgdGhlIHByZS1yZXRp
+bmFzLiBJIGhhdmUgZXhhY3RseSB0aGUgc2FtZSBtYWNoaW5lLApzbyB5ZXMsIGl0IHNob3VsZCB3
+b3JrIGp1c3QgZmluZSBvbiB0aGF0IG9uZS4KCkJlc3QgcmVnYXJkcywKCkx1a2FzCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5n
+IGxpc3QKZHJpLWRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vZHJpLWRldmVsCg==
