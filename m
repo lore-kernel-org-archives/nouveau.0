@@ -1,12 +1,13 @@
-From: Innocenti Maresin <innocenti.maresin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Struggle with GPU lockups and console deadlock using
-	kernel-space modifications
-Date: Mon, 5 Oct 2015 11:30:13 +0300
-Message-ID: <CANvdy76WjVQ5SApAJBoBr2T-10Db7d1Z=3Hgqcm6xLiqvtpgzQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 81072] [NVC1] GPU lockup after "read fault at
+ 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0"
+Date: Mon, 05 Oct 2015 11:28:31 +0000
+Message-ID: <bug-81072-8800-9BvjL3gQdd@http.bugs.freedesktop.org/>
+References: <bug-81072-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1400457348=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-81072-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,66 +20,89 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8uCgpJIGhhdmUgYSBwb29ybHkgZnVuY3Rpb25pbmcgR2VGb3JjZSA4NjAwIEdUUyAocmV2
-IGExKSB2aWRlbyBjYXJkLAp0aGF0IGNhdXNlcyBtYW55IHByb2JsZW1zIGZvciB0aGUgYm94IHdo
-ZXJlIGl04oCZcyBpbnN0YWxsZWQsCnByaW1hcmlseSBHUFUgbG9ja3VwcyAoc29tZXRpbWVzIHVu
-cHJvdm9rZWQpLApzZXZlcmFsIGluc3RhbmNlcyBpbiBhIGRheS4KV2l0aG91dCBpbnRlcnZlbnRp
-b24sIGEgR1BVIGxvY2t1cCBpcyBhIGNvbmRpdGlvbgp3aGVyZSB0aGUgc3lzdGVtIGNvbnNvbGUg
-aXMgbm8gbG9uZ2VyIHVzYWJsZQooZXZlbiB0aGUga2V5Ym9hcmQsIGJlY2F1c2UKc3dpdGNoaW5n
-IGZyb20gWG9yZyB0byBUVUkgYmVjb21lcyBvYnN0cnVjdGVkOyBzZWUgYmVsb3cpLgoKVXBncmFk
-aW5nIExpbnV4IGZyb20gMy4xNiB0b+KArzQuMyBhbmQgaW1wcm92ZWQgY29vbGluZwpyZWR1Y2Vk
-IHNvbWUgbWlub3IgcHJvYmxlbXMgKHN1Y2ggYXMgc25vdyksCmJ1dCBkaWRu4oCZdCBwcmV2ZW50
-IGxvY2t1cHMuClRoZXJlZm9yZSBJIHByZXNlbnQgc29tZSBleHBlcmllbmNlcyBhbmQgcmVmbGVj
-dGlvbnMKb24gYWJhdGluZyBHUFUgbG9ja3Vwcy4KCgpGaXJzdCwgSSBob3BlZCB0byB1c2UgdGhl
-IGJ1cyBoYXJkd2FyZSByZXNldCBjb250cm9sLCBmb3VuZCBhdAovc3lzL2RldmljZXMvcGNpMDAw
-MDowMC8wMDAwOjAwOjAxLjAvMDAwMDowMTowMC4wL3Jlc2V0CmluIG15IHN5c3RlbS4KVGhlICNu
-b3V2ZWF14oCvQOKAr2ZyZWVub2RlIGNoYW5uZWwgc3VnZ2VzdGVkIHNvbWUgaW5zaWdodHMgYWZ0
-ZXJ3YXJkcy4KQnV0IG1hbmV1dmVycyB3aXRoIHVubG9hZGluZy9sb2FkaW5nIHRoZSBub3V2ZWF1
-IG1vZHVsZQphZnRlciBhIGxvY2t1cCB3ZXJlIG5vdCBzdWNjZWVkIGZvciBzZXZlcmFsIHJlYXNv
-bnMuCkkgZW52aXNhZ2VkIHRoZSBmb2xsb3dpbmcgc2VxdWVuY2UgdGhhdCBjb3VsZCByZWNvdmVy
-IGEgY29tcHV0ZXIKZnJvbSBhIEdQVSBsb2NrdXAsIHdpdGggdGhlIHN5c3RlbSBjb25zb2xlIHVz
-YWJsZSBhZ2FpbgphbmQgYXBwbGljYXRpb25zIG5vdCBkaXN0dXJiZWQgdG9vIG11Y2guCgoxLiBT
-dXNwZW5kIGFsbCBhcHBsaWNhdGlvbnMgdXNpbmcgdGhlIHZpZGVvIGNhcmQuCjIuIElmIG5lY2Vz
-c2FyeSwgcGVyZm9ybSBoYXJkd2FyZSByZXNldCBvbiB0aGUgYnVzLgozLiBJZiBuZWNlc3Nhcnks
-IHJ1biBpbml0aWFsaXphdGlvbiBmdW5jdGlvbnMgZm9yIHRoZSB2aWRlbyBjYXJkLgo0LiBSZXN0
-b3JlIGEgdXNhYmxlIHZpZGVvIG1vZGUgKGNhbiBiZSBhY2hpZXZlZAogIGJ5IHN3aXRjaGluZyB2
-aXJ0dWFsIGNvbnNvbGVzIFhvcmcg4oeUIFRVSSwgZm9yIGV4YW1wbGUpLgo1LiBSZXN1bWUgdGhl
-IHdvcmsuCgpJbXBsZW1lbnRhdGlvbiBiZWNhbWUgYSBjaGFsbGVuZ2UuCkZpcnN0LCBsb2FkaW5n
-IG5vdXZlYXUgd2l0aCBjb25maWc9TnZGb3JjZVBvc3Q9MQpkb2VzbuKAmXQgcmVzdWx0IGluIGEg
-dXNhYmxlIGNvbnNvbGUsIGVpdGhlciBkdXJpbmcgTGludXggc3RhcnR1cCBvciBlbHNlLgpJdCBk
-b2VzbuKAmXQgcHJvZHVjZSBhIHNpZ25hbCBhdCBhbGwgd2l0aCBteSBoYXJkd2FyZS4KSSB0ZXN0
-ZWQgaXQgd2l0aCBhdCBsZWFzdCB0aHJlZSBkaWZmZXJlbnQgdmVyc2lvbnMgb2Ygbm91dmVhdQph
-dCBib3RoIExpbnV44oCvMy4xNiBhbmQgTGludXjigK80LjMuCgpUaGVyZSBhcmUgbWFqb3IgcHJv
-YmxlbXMgd2l0aCBtYWtpbmcgdGhlIHN0ZXDigK80IGZyb20gdGhlIGtlcm5lbCBtb2RlLgpMaW51
-eCBrZXJuZWwgaGFzIHRoZSDCq3NldF9jb25zb2xlKG5yKcK7IGZ1bmN0aW9uIChmcm9tIHZ0LmMp
-LApidXQgZG9lc27igJl0IGV4cG9ydCBpdC4KTW9yZW92ZXIsIGluIG1vZGVybiBrZXJuZWxzIChh
-cHBhcmVudGx5IHNpbmNlIExpbnV44oCvMykKZXZlbiB0aGlzIGludGVybmFsIGtlcm5lbCBmdW5j
-dGlvbiBwZXJmb3JtcyBjaGVja3MKZm9yIMKrdnRfZG9udF9zd2l0Y2jCuywgaGVuY2UgYSBkZWFk
-bG9jayBjYW4gZW5zdWUuCk5laXRoZXIgYXJlIGV4cG9ydGVkIG90aGVyIGZ1bmN0aW9ucywgZXZl
-biBzdWNoIGhpZ2gtbGV2ZWwgb25lcwphcyDCq3N1c3BlbmRfY29uc29sZSgpwrsgYW5kIMKrcmVz
-dW1lX2NvbnNvbGUoKcK7LgpJIGV2ZW4gd2FzIHVuYWJsZSB0byByZWNvbm5haXNzYW5jZSB0aGVp
-ciB0cnVlIGFkZHJlc3NlcwppbiB0aGUgbWVtb3J5IHVzaW5nIC9wcm9jL2thbGxzeW1zIOKAlCB0
-aGVyZSBhcmUgb25seSB6ZXJvcwoodGhhdCB3YXNu4oCZdCB0aGUgY2FzZSBmb3IgTGludXjigK8y
-LjYpLgoKClNvbWUgcGFydGlhbCBleHBlcmllbmNlcywgbWFkZSB1c2luZyByZW1vdGUgc2hlbGwg
-YWNjZXNzLAphcmUgZGVzY3JpYmVkIGJlbG93LgoKV2l0aCBhbnkgbW9kdWxlIGFuZCBubyBsb2Nr
-dXA6CnN0b3AgWG9yZzsKZWNobyAwID4vc3lzL2NsYXNzL3Z0Y29uc29sZS92dGNvbjEvYmluZDsK
-cm1tb2Qgbm91dmVhdTsKbW9kcHJvYmUgbm91dmVhdTsg4oCUIHN1Y2Nlc3MuCgpXaXRoIHN0YW5k
-YXJkIG5vdXZlYXUgbW9kdWxlIG9uIExpbnV44oCvNC4zOgog4oCiIHN0b3AgWG9yZzsgcmVzZXQg
-ZGV2aWNlOyBtb2Rwcm9iZSBub3V2ZWF1OyDigJQKICAgdGhlIG1vZHVsZSB3b27igJl0IGluaXRp
-YWxpemUuCiDigKIgc3RvcCBYb3JnOyByZXNldCBkZXZpY2U7IHJlbG9hZCBtb2R1bGUgKGFzIGFi
-b3ZlKSDigJQKICAgd29u4oCZdCB3b3JrLCBzeW1wdG9tcyBkaWZmZXIgZnJvbSBjYXNlIHRvIGNh
-c2UuCgpXaXRoIG1vZGlmaWVkIG5vdXZlYXUgbW9kdWxlcywgYWZ0ZXIgYSBsb2NrdXA6CiDigKIg
-wqtudmttX2RldmljZV9pbml0KOKnpik7wrsgKGF0IOKnpi0+ZGV2aW5pdC0+cG9zdCA9IGZhbHNl
-KSDigJQKICAgbm8gZWZmZWN0Lgog4oCiIHJlc2V0IGRldmljZSB3aGlsZSBYb3JnIHJ1bnMg4oCU
-CiAgIHN5c3RlbSBjcmFzaCBvciBkZWFkbG9jaywgbm90aGluZyBpbiBsb2dzLgog4oCiIMKr4qem
-LT5kZXZpbml0LT5wb3N0ID0gdHJ1ZTsgbnZrbV9kZXZpY2VfaW5pdCjip6YpO8K7IHdpdGhvdXQg
-cmVzZXQg4oCUCiAgIHRvIGJlIHRlc3RlZC4KKMKr4qemwrsgcG9pbnRzIHRvIHRoZSBjYXJk4oCZ
-cyDCq3N0cnVjdCBudmttX2RldmljZcK7IG9iamVjdC4pCgpNeSBtb2RpZmllZCBub3V2ZWF1IG1v
-ZHVsZSB3YXMgZGVyaXZlZApmcm9tIGdpdDovL3Blb3BsZS5mcmVlZGVza3RvcC5vcmcvfmRhcmt0
-YW1hL25vdXZlYXUKCgpQcm9wb3NhbHMgYW5kIHN1Z2dlc3Rpb25zPwpQbGVhc2UsIHRoaW5rIGdl
-bmVyYWxseSBhbmQgbm90IGZvY3VzIHRvbyBtdWNoIG9uIG15IHBhcnRpY3VsYXIgY2FzZS4KTXkg
-dmlkZW8gY2FyZCAoYW5kLCBwb3NzaWJseSwgc29tZSByZWxhdGVkIHN0dWZmIG9uIHRoZSBtb3Ro
-ZXJib2FyZCkKYWxtb3N0IGNlcnRhaW5seSBmdW5jdGlvbnMgaW1wcm9wZXJseS4KClJlZ2FyZHMs
-IEluY25pcyBNcnNpCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1400457348==
+Content-Type: multipart/alternative; boundary="1444044511.82D18202.1542"; charset="UTF-8"
+
+
+--1444044511.82D18202.1542
+Date: Mon, 5 Oct 2015 11:28:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=81072
+
+--- Comment #4 from Patryk Zawadzki <patrys-k0Z414SquRyhPH1hqNUYSQ@public.gmane.org> ---
+I am getting a slightly different error and am not sure whether it's the same
+issue:
+
+nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0011980000 [PAGE_NOT_PRESENT]
+from PGRAPH/GPC0/PROP on channel 0x00bf739000 [Xorg[2305]]
+nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel 10,
+recovering...
+
+After that the screen freezes and I need to do a hard reset. Applications
+continue running and I can SSH in but restarting Xorg and trying to soft reboot
+do not help.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444044511.82D18202.1542
+Date: Mon, 5 Oct 2015 11:28:31 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] GPU lockup after &quot;read fault at 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81072#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC1] GPU lockup after &quot;read fault at 0x0000039000 [PAGE_NOT_PRESENT] from PCOPY0&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81072">bug 81072</a>
+              from <span class="vcard"><a class="email" href="mailto:patrys&#64;pld-linux.org" title="Patryk Zawadzki &lt;patrys&#64;pld-linux.org&gt;"> <span class="fn">Patryk Zawadzki</span></a>
+</span></b>
+        <pre>I am getting a slightly different error and am not sure whether it's the same
+issue:
+
+nouveau E[   PFIFO][0000:01:00.0] read fault at 0x0011980000 [PAGE_NOT_PRESENT]
+from PGRAPH/GPC0/PROP on channel 0x00bf739000 [Xorg[2305]]
+nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on channel 10,
+recovering...
+
+After that the screen freezes and I need to do a hard reset. Applications
+continue running and I can SSH in but restarting Xorg and trying to soft reboot
+do not help.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444044511.82D18202.1542--
+
+--===============1400457348==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1400457348==--
