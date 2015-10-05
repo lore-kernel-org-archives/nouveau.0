@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Mon, 05 Oct 2015 19:18:55 +0000
-Message-ID: <bug-92274-8800-UuVCWfP8mQ@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] nouveau: make sure there's always room to emit a
+	fence
+Date: Mon,  5 Oct 2015 15:21:40 -0400
+Message-ID: <1444072900-10104-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0569605236=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,80 +16,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0569605236==
-Content-Type: multipart/alternative; boundary="1444072735.E8f3DD0e1.25978"; charset="UTF-8"
-
-
---1444072735.E8f3DD0e1.25978
-Date: Mon, 5 Oct 2015 19:18:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
-
---- Comment #9 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-Oh I misunderstood something about the kernel sources :D.
-Thougt this included more afford ;).
-I configured my current kernel by myself and it is bootable except for
-the multi-monitor problem.
-I'm going to try it now.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444072735.E8f3DD0e1.25978
-Date: Mon, 5 Oct 2015 19:18:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c9">Comment # 9</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
-</span></b>
-        <pre>Oh I misunderstood something about the kernel sources :D.
-Thougt this included more afford ;).
-I configured my current kernel by myself and it is bootable except for
-the multi-monitor problem.
-I'm going to try it now.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444072735.E8f3DD0e1.25978--
-
---===============0569605236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0569605236==--
+SSBzdGFydGVkIHNlZWluZyBhIGxvdCBvZiBzaXR1YXRpb25zIG9uIG52MzAgd2hlcmUgZmVuY2Ug
+ZW1pc3Npb24Kd291bGRuJ3QgZml0IGludG8gdGhlIHByZXZpb3VzIGJ1ZmZlciAoY2F1c2luZyBh
+c3NlcnRpb25zKS4gVGhpcyBlbnN1cmVzCnRoYXQgd2hlbmV2ZXIgY2hlY2tpbmcgZm9yIHNwYWNl
+LCB3ZSBhbHdheXMgbGVhdmUgYSBiaXQgb2YgZXh0cmEgcm9vbQpmb3IgdGhlIGZlbmNlIGVtaXNz
+aW9uIGNvbW1hbmRzLiBBZGp1c3RzIHRoZSBudjMwIGFuZCBudmMwIGZlbmNlCmVtaXNzaW9uIGxv
+Z2ljIHRvIGJ5cGFzcyB0aGUgc3BhY2UgY2hlY2tpbmcgYXMgd2VsbC4KClNpZ25lZC1vZmYtYnk6
+IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KQ2M6IG1lc2Etc3RhYmxlQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZwotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1
+X3dpbnN5cy5oICAgfCAyICsrCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMw
+X3NjcmVlbi5jIHwgNCArKystCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUw
+X3NjcmVlbi5jIHwgMSArCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Nj
+cmVlbi5jIHwgMyArKy0KIDQgZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAyIGRlbGV0
+aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1
+X3dpbnN5cy5oIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfd2luc3lzLmgK
+aW5kZXggMzg5YTIyOS4uYTQ0ZmQzZSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9u
+b3V2ZWF1L25vdXZlYXVfd2luc3lzLmgKKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
+L25vdXZlYXVfd2luc3lzLmgKQEAgLTI0LDYgKzI0LDggQEAgUFVTSF9BVkFJTChzdHJ1Y3Qgbm91
+dmVhdV9wdXNoYnVmICpwdXNoKQogc3RhdGljIGlubGluZSBib29sCiBQVVNIX1NQQUNFKHN0cnVj
+dCBub3V2ZWF1X3B1c2hidWYgKnB1c2gsIHVpbnQzMl90IHNpemUpCiB7CisgICAvKiBQcm92aWRl
+IGEgYnVmZmVyIHNvIHRoYXQgZmVuY2VzIGFsd2F5cyBoYXZlIHJvb20gdG8gYmUgZW1pdHRlZCAq
+LworICAgc2l6ZSArPSA4OwogICAgaWYgKFBVU0hfQVZBSUwocHVzaCkgPCBzaXplKQogICAgICAg
+cmV0dXJuIG5vdXZlYXVfcHVzaGJ1Zl9zcGFjZShwdXNoLCBzaXplLCAwLCAwKSA9PSAwOwogICAg
+cmV0dXJuIHRydWU7CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYz
+MC9udjMwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9z
+Y3JlZW4uYwppbmRleCAzOTI2N2IzLi4zMzVjMTYzIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9k
+cml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMKQEAgLTM0Nyw3ICszNDcsOSBAQCBudjMwX3Nj
+cmVlbl9mZW5jZV9lbWl0KHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgdWludDMyX3QgKnNl
+cXVlbmNlKQogCiAgICAqc2VxdWVuY2UgPSArK3NjcmVlbi0+YmFzZS5mZW5jZS5zZXF1ZW5jZTsK
+IAotICAgQkVHSU5fTlYwNChwdXNoLCBOVjMwXzNEKEZFTkNFX09GRlNFVCksIDIpOworICAgYXNz
+ZXJ0KFBVU0hfQVZBSUwocHVzaCkgPj0gMyk7CisgICBQVVNIX0RBVEEgKHB1c2gsIE5WMzBfM0Rf
+RkVOQ0VfT0ZGU0VUIHwKKyAgICAgICAgICAgICAgKDIgLyogc2l6ZSAqLyA8PCAxOCkgfCAoNyAv
+KiBzdWJjaGFuICovIDw8IDEzKSk7CiAgICBQVVNIX0RBVEEgKHB1c2gsIDApOwogICAgUFVTSF9E
+QVRBIChwdXNoLCAqc2VxdWVuY2UpOwogfQpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVy
+cy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
+dS9udjUwL252NTBfc2NyZWVuLmMKaW5kZXggNjAxMmZmNi4uODEyYjI0NiAxMDA2NDQKLS0tIGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYworKysgYi9zcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCkBAIC0zODgsNiArMzg4
+LDcgQEAgbnY1MF9zY3JlZW5fZmVuY2VfZW1pdChzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4s
+IHUzMiAqc2VxdWVuY2UpCiAgICAvKiB3ZSBuZWVkIHRvIGRvIGl0IGFmdGVyIHBvc3NpYmxlIGZs
+dXNoIGluIE1BUktfUklORyAqLwogICAgKnNlcXVlbmNlID0gKytzY3JlZW4tPmJhc2UuZmVuY2Uu
+c2VxdWVuY2U7CiAKKyAgIGFzc2VydChQVVNIX0FWQUlMKHB1c2gpID49IDUpOwogICAgUFVTSF9E
+QVRBIChwdXNoLCBOVjUwX0ZJRk9fUEtIRFIoTlY1MF8zRChRVUVSWV9BRERSRVNTX0hJR0gpLCA0
+KSk7CiAgICBQVVNIX0RBVEFoKHB1c2gsIHNjcmVlbi0+ZmVuY2UuYm8tPm9mZnNldCk7CiAgICBQ
+VVNIX0RBVEEgKHB1c2gsIHNjcmVlbi0+ZmVuY2UuYm8tPm9mZnNldCk7CmRpZmYgLS1naXQgYS9z
+cmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jIGIvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwppbmRleCAzMmRhNzZjLi5hZmQ5
+MWU2IDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Nj
+cmVlbi5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVu
+LmMKQEAgLTUzNyw3ICs1MzcsOCBAQCBudmMwX3NjcmVlbl9mZW5jZV9lbWl0KHN0cnVjdCBwaXBl
+X3NjcmVlbiAqcHNjcmVlbiwgdTMyICpzZXF1ZW5jZSkKICAgIC8qIHdlIG5lZWQgdG8gZG8gaXQg
+YWZ0ZXIgcG9zc2libGUgZmx1c2ggaW4gTUFSS19SSU5HICovCiAgICAqc2VxdWVuY2UgPSArK3Nj
+cmVlbi0+YmFzZS5mZW5jZS5zZXF1ZW5jZTsKIAotICAgQkVHSU5fTlZDMChwdXNoLCBOVkMwXzNE
+KFFVRVJZX0FERFJFU1NfSElHSCksIDQpOworICAgYXNzZXJ0KFBVU0hfQVZBSUwocHVzaCkgPj0g
+NSk7CisgICBQVVNIX0RBVEEgKHB1c2gsIE5WQzBfRklGT19QS0hEUl9TUShOVkMwXzNEKFFVRVJZ
+X0FERFJFU1NfSElHSCksIDQpKTsKICAgIFBVU0hfREFUQWgocHVzaCwgc2NyZWVuLT5mZW5jZS5i
+by0+b2Zmc2V0KTsKICAgIFBVU0hfREFUQSAocHVzaCwgc2NyZWVuLT5mZW5jZS5iby0+b2Zmc2V0
+KTsKICAgIFBVU0hfREFUQSAocHVzaCwgKnNlcXVlbmNlKTsKLS0gCjIuNC45CgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlz
+dApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
