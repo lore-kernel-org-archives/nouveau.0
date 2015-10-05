@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Mon, 05 Oct 2015 18:40:20 +0000
-Message-ID: <bug-92274-8800-W0BLuSfd48@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92287] Display errors in Qt applications after using
+ Android Virtual Devices
+Date: Mon, 05 Oct 2015 18:47:01 +0000
+Message-ID: <bug-92287-8800-CDczNd9Dea@http.bugs.freedesktop.org/>
+References: <bug-92287-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0527851948=="
+Content-Type: multipart/mixed; boundary="===============0013474842=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,47 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0527851948==
-Content-Type: multipart/alternative; boundary="1444070420.E3C201.10175"; charset="UTF-8"
+--===============0013474842==
+Content-Type: multipart/alternative; boundary="1444070820.3BED80.12824"; charset="UTF-8"
 
 
---1444070420.E3C201.10175
-Date: Mon, 5 Oct 2015 18:40:20 +0000
+--1444070820.3BED80.12824
+Date: Mon, 5 Oct 2015 18:47:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
+https://bugs.freedesktop.org/show_bug.cgi?id=92287
 
---- Comment #7 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-Oh these two video options were for testing and did not show any effect.
-I accidently took this kernel log, but the other ones without these options
-looked the same.
-I'm not that into compiling everything on my own (except for some of the easy
-or
-self written parts; or when gentoo does it for me ;)), but I'm willing to learn
-and been always looking for a good reason to get myself doing something like
-this
-and not thinking that others will do it or that it does not have enough
-advantages.
+--- Comment #5 from Guido Winkelmann <guido-WHizhSsHnEbSgI/GaPOurUTU+k/KrAxG@public.gmane.org> ---
+> You might try with mesa-git -- there are a handful of patches on there that deal with resource lifetime issues, but I doubt it will do anything to resolve your problem.
 
-So just that I got it right:
-I get the source code from the nouveau git repository,
-change the affected code parts, follow the instructions in the readme etc.
-and compile nouveau as a module to load it.
-
-Is it enough that I just download a snapshot and do a out-of-tree compilation?
-Is it compatible with my kernel?
-(because it says it contains the 3.x versions and my version is 4)
-Which settings do I need to enable in my kernel that are not trivial?
-
-Sorry for so many questions, but I'd really like to get this done.
+I've installed mesa git, and so far, it looks like that solves the reported
+problems, although sometimes they take a while to manifest. Will report back
+tomorrow.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1444070420.E3C201.10175
-Date: Mon, 5 Oct 2015 18:40:20 +0000
+--1444070820.3BED80.12824
+Date: Mon, 5 Oct 2015 18:47:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,50 +58,34 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c7">Comment # 7</a>
+   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
+   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287">bug 92287</a>
+              from <span class="vcard"><a class="email" href="mailto:guido&#64;ambient-entertainment.de" title="Guido Winkelmann &lt;guido&#64;ambient-entertainment.de&gt;"> <span class="fn">Guido Winkelmann</span></a>
 </span></b>
-        <pre>Oh these two video options were for testing and did not show any effect.
-I accidently took this kernel log, but the other ones without these options
-looked the same.
-I'm not that into compiling everything on my own (except for some of the easy
-or
-self written parts; or when gentoo does it for me ;)), but I'm willing to learn
-and been always looking for a good reason to get myself doing something like
-this
-and not thinking that others will do it or that it does not have enough
-advantages.
+        <pre><span class="quote">&gt; You might try with mesa-git -- there are a handful of patches on there that deal with resource lifetime issues, but I doubt it will do anything to resolve your problem.</span >
 
-So just that I got it right:
-I get the source code from the nouveau git repository,
-change the affected code parts, follow the instructions in the readme etc.
-and compile nouveau as a module to load it.
-
-Is it enough that I just download a snapshot and do a out-of-tree compilation?
-Is it compatible with my kernel?
-(because it says it contains the 3.x versions and my version is 4)
-Which settings do I need to enable in my kernel that are not trivial?
-
-Sorry for so many questions, but I'd really like to get this done.</pre>
+I've installed mesa git, and so far, it looks like that solves the reported
+problems, although sometimes they take a while to manifest. Will report back
+tomorrow.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1444070420.E3C201.10175--
+--1444070820.3BED80.12824--
 
---===============0527851948==
+--===============0013474842==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -127,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0527851948==--
+--===============0013474842==--
