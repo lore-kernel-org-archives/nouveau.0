@@ -1,14 +1,10 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] nouveau: make sure there's always room to
- emit a fence
-Date: Mon, 5 Oct 2015 21:51:50 +0200
-Message-ID: <5612D4D6.3080108@gmail.com>
-References: <1444072900-10104-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92297] New: dithering detected incorrectly
+Date: Mon, 05 Oct 2015 19:46:56 +0000
+Message-ID: <bug-92297-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1744973212=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1444072900-10104-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,75 +14,174 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UmV2aWV3ZWQtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4K
-Ck9uIDEwLzA1LzIwMTUgMDk6MjEgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+IEkgc3RhcnRlZCBz
-ZWVpbmcgYSBsb3Qgb2Ygc2l0dWF0aW9ucyBvbiBudjMwIHdoZXJlIGZlbmNlIGVtaXNzaW9uCj4g
-d291bGRuJ3QgZml0IGludG8gdGhlIHByZXZpb3VzIGJ1ZmZlciAoY2F1c2luZyBhc3NlcnRpb25z
-KS4gVGhpcyBlbnN1cmVzCj4gdGhhdCB3aGVuZXZlciBjaGVja2luZyBmb3Igc3BhY2UsIHdlIGFs
-d2F5cyBsZWF2ZSBhIGJpdCBvZiBleHRyYSByb29tCj4gZm9yIHRoZSBmZW5jZSBlbWlzc2lvbiBj
-b21tYW5kcy4gQWRqdXN0cyB0aGUgbnYzMCBhbmQgbnZjMCBmZW5jZQo+IGVtaXNzaW9uIGxvZ2lj
-IHRvIGJ5cGFzcyB0aGUgc3BhY2UgY2hlY2tpbmcgYXMgd2VsbC4KPgo+IFNpZ25lZC1vZmYtYnk6
-IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4KPiBDYzogbWVzYS1zdGFibGVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4gLS0tCj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUv
-bm91dmVhdV93aW5zeXMuaCAgIHwgMiArKwo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1
-L252MzAvbnYzMF9zY3JlZW4uYyB8IDQgKysrLQo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252NTAvbnY1MF9zY3JlZW4uYyB8IDEgKwo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
-ZWF1L252YzAvbnZjMF9zY3JlZW4uYyB8IDMgKystCj4gICA0IGZpbGVzIGNoYW5nZWQsIDggaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbm91dmVhdV93aW5zeXMuaCBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
-dmVhdS9ub3V2ZWF1X3dpbnN5cy5oCj4gaW5kZXggMzg5YTIyOS4uYTQ0ZmQzZSAxMDA2NDQKPiAt
-LS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV93aW5zeXMuaAo+ICsrKyBi
-L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X3dpbnN5cy5oCj4gQEAgLTI0LDYg
-KzI0LDggQEAgUFVTSF9BVkFJTChzdHJ1Y3Qgbm91dmVhdV9wdXNoYnVmICpwdXNoKQo+ICAgc3Rh
-dGljIGlubGluZSBib29sCj4gICBQVVNIX1NQQUNFKHN0cnVjdCBub3V2ZWF1X3B1c2hidWYgKnB1
-c2gsIHVpbnQzMl90IHNpemUpCj4gICB7Cj4gKyAgIC8qIFByb3ZpZGUgYSBidWZmZXIgc28gdGhh
-dCBmZW5jZXMgYWx3YXlzIGhhdmUgcm9vbSB0byBiZSBlbWl0dGVkICovCj4gKyAgIHNpemUgKz0g
-ODsKPiAgICAgIGlmIChQVVNIX0FWQUlMKHB1c2gpIDwgc2l6ZSkKPiAgICAgICAgIHJldHVybiBu
-b3V2ZWF1X3B1c2hidWZfc3BhY2UocHVzaCwgc2l6ZSwgMCwgMCkgPT0gMDsKPiAgICAgIHJldHVy
-biB0cnVlOwo+IGRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9u
-djMwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3Jl
-ZW4uYwo+IGluZGV4IDM5MjY3YjMuLjMzNWMxNjMgMTAwNjQ0Cj4gLS0tIGEvc3JjL2dhbGxpdW0v
-ZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYwo+ICsrKyBiL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udjMwL252MzBfc2NyZWVuLmMKPiBAQCAtMzQ3LDcgKzM0Nyw5IEBAIG52
-MzBfc2NyZWVuX2ZlbmNlX2VtaXQoc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLCB1aW50MzJf
-dCAqc2VxdWVuY2UpCj4gICAKPiAgICAgICpzZXF1ZW5jZSA9ICsrc2NyZWVuLT5iYXNlLmZlbmNl
-LnNlcXVlbmNlOwo+ICAgCj4gLSAgIEJFR0lOX05WMDQocHVzaCwgTlYzMF8zRChGRU5DRV9PRkZT
-RVQpLCAyKTsKPiArICAgYXNzZXJ0KFBVU0hfQVZBSUwocHVzaCkgPj0gMyk7Cj4gKyAgIFBVU0hf
-REFUQSAocHVzaCwgTlYzMF8zRF9GRU5DRV9PRkZTRVQgfAo+ICsgICAgICAgICAgICAgICgyIC8q
-IHNpemUgKi8gPDwgMTgpIHwgKDcgLyogc3ViY2hhbiAqLyA8PCAxMykpOwoKSXMgdGhlcmUgc29t
-ZSBvdGhlciBwbGFjZXMgd2hlcmUgd2UgZG8gc29tZXRoaW5nIGxpa2UgdGhpcz8KSWYgc28sIG1h
-eWJlIHdlIHNob3VsZCBpbnRyb2R1Y2UgTlYzMF9GSUZPX1BLSERSX1NRLgoKPiAgICAgIFBVU0hf
-REFUQSAocHVzaCwgMCk7Cj4gICAgICBQVVNIX0RBVEEgKHB1c2gsICpzZXF1ZW5jZSk7Cj4gICB9
-Cj4gZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2Ny
-ZWVuLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCj4g
-aW5kZXggNjAxMmZmNi4uODEyYjI0NiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnY1MC9udjUwX3NjcmVlbi5jCj4gKysrIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9u
-b3V2ZWF1L252NTAvbnY1MF9zY3JlZW4uYwo+IEBAIC0zODgsNiArMzg4LDcgQEAgbnY1MF9zY3Jl
-ZW5fZmVuY2VfZW1pdChzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4sIHUzMiAqc2VxdWVuY2Up
-Cj4gICAgICAvKiB3ZSBuZWVkIHRvIGRvIGl0IGFmdGVyIHBvc3NpYmxlIGZsdXNoIGluIE1BUktf
-UklORyAqLwo+ICAgICAgKnNlcXVlbmNlID0gKytzY3JlZW4tPmJhc2UuZmVuY2Uuc2VxdWVuY2U7
-Cj4gICAKPiArICAgYXNzZXJ0KFBVU0hfQVZBSUwocHVzaCkgPj0gNSk7Cj4gICAgICBQVVNIX0RB
-VEEgKHB1c2gsIE5WNTBfRklGT19QS0hEUihOVjUwXzNEKFFVRVJZX0FERFJFU1NfSElHSCksIDQp
-KTsKPiAgICAgIFBVU0hfREFUQWgocHVzaCwgc2NyZWVuLT5mZW5jZS5iby0+b2Zmc2V0KTsKPiAg
-ICAgIFBVU0hfREFUQSAocHVzaCwgc2NyZWVuLT5mZW5jZS5iby0+b2Zmc2V0KTsKPiBkaWZmIC0t
-Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYyBiL3Ny
-Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKPiBpbmRleCAzMmRh
-NzZjLi5hZmQ5MWU2IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9u
-dmMwL252YzBfc2NyZWVuLmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZj
-MC9udmMwX3NjcmVlbi5jCj4gQEAgLTUzNyw3ICs1MzcsOCBAQCBudmMwX3NjcmVlbl9mZW5jZV9l
-bWl0KHN0cnVjdCBwaXBlX3NjcmVlbiAqcHNjcmVlbiwgdTMyICpzZXF1ZW5jZSkKPiAgICAgIC8q
-IHdlIG5lZWQgdG8gZG8gaXQgYWZ0ZXIgcG9zc2libGUgZmx1c2ggaW4gTUFSS19SSU5HICovCj4g
-ICAgICAqc2VxdWVuY2UgPSArK3NjcmVlbi0+YmFzZS5mZW5jZS5zZXF1ZW5jZTsKPiAgIAo+IC0g
-ICBCRUdJTl9OVkMwKHB1c2gsIE5WQzBfM0QoUVVFUllfQUREUkVTU19ISUdIKSwgNCk7Cj4gKyAg
-IGFzc2VydChQVVNIX0FWQUlMKHB1c2gpID49IDUpOwo+ICsgICBQVVNIX0RBVEEgKHB1c2gsIE5W
-QzBfRklGT19QS0hEUl9TUShOVkMwXzNEKFFVRVJZX0FERFJFU1NfSElHSCksIDQpKTsKPiAgICAg
-IFBVU0hfREFUQWgocHVzaCwgc2NyZWVuLT5mZW5jZS5iby0+b2Zmc2V0KTsKPiAgICAgIFBVU0hf
-REFUQSAocHVzaCwgc2NyZWVuLT5mZW5jZS5iby0+b2Zmc2V0KTsKPiAgICAgIFBVU0hfREFUQSAo
-cHVzaCwgKnNlcXVlbmNlKTsKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
-Cg==
+
+--===============1744973212==
+Content-Type: multipart/alternative; boundary="1444074417.c8613DF1.4472"; charset="UTF-8"
+
+
+--1444074417.c8613DF1.4472
+Date: Mon, 5 Oct 2015 19:46:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92297
+
+            Bug ID: 92297
+           Summary: dithering detected incorrectly
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: avi.kivity-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 118681
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118681&action=edit
+vbios.rom
+
+4.1.8-200.fc22.x86_64
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108GLM [NVS 5200M] (rev
+a1)
+
+This is a laptop; the laptop screen displays some colors as flickering
+vertically striped patterns, which IRC/imirkin diagnosed as unneeded dithering.
+ Disabling dithering with xrandr fixes the issue.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444074417.c8613DF1.4472
+Date: Mon, 5 Oct 2015 19:46:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - dithering detected incorrectly"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92297">92297</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>dithering detected incorrectly
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>minor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>avi.kivity&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118681" name="attach_118681" title="vbios.rom">attachment 118681</a> <a href="attachment.cgi?id=118681&amp;action=edit" title="vbios.rom">[details]</a></span>
+vbios.rom
+
+4.1.8-200.fc22.x86_64
+01:00.0 VGA compatible controller: NVIDIA Corporation GF108GLM [NVS 5200M] (rev
+a1)
+
+This is a laptop; the laptop screen displays some colors as flickering
+vertically striped patterns, which IRC/imirkin diagnosed as unneeded dithering.
+ Disabling dithering with xrandr fixes the issue.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444074417.c8613DF1.4472--
+
+--===============1744973212==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1744973212==--
