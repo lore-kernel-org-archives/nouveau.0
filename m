@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92297] dithering detected incorrectly
-Date: Mon, 05 Oct 2015 20:15:49 +0000
-Message-ID: <bug-92297-8800-kjsMI8CrGw@http.bugs.freedesktop.org/>
-References: <bug-92297-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92274] nouveau black screen and errors with two
+ monitors attached
+Date: Mon, 05 Oct 2015 20:27:27 +0000
+Message-ID: <bug-92274-8800-qzT0mS8oCS@http.bugs.freedesktop.org/>
+References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1761576153=="
+Content-Type: multipart/mixed; boundary="===============0499545704=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92297-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1761576153==
-Content-Type: multipart/alternative; boundary="1444076149.f41F8Fa1.17374"; charset="UTF-8"
+--===============0499545704==
+Content-Type: multipart/alternative; boundary="1444076847.aCCBb23a1.22420"; charset="UTF-8"
 
 
---1444076149.f41F8Fa1.17374
-Date: Mon, 5 Oct 2015 20:15:49 +0000
+--1444076847.aCCBb23a1.22420
+Date: Mon, 5 Oct 2015 20:27:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92297
+https://bugs.freedesktop.org/show_bug.cgi?id=92274
 
---- Comment #2 from Avi Kivity <avi.kivity-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-00101000: 9f5cb098
+--- Comment #13 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
+Ok I changed the file, it compiled fine (with a little C90 standard warning).
+On bootup I still get the message at the HDMI Monitor: No input. The DVI
+Monitor just stays black, not sure if this is specific to this monitor, but I
+think it usually shows such a message, too. So the symtpoms are the same.
+In the last post I accidentally removed one line too much, which I did not in
+the source code I used to compile it.
+The kernel log has changed a bit.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444076149.f41F8Fa1.17374
-Date: Mon, 5 Oct 2015 20:15:49 +0000
+--1444076847.aCCBb23a1.22420
+Date: Mon, 5 Oct 2015 20:27:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +59,21 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - dithering detected incorrectly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92297#c2">Comment # 2</a>
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - dithering detected incorrectly"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92297">bug 92297</a>
-              from <span class="vcard"><a class="email" href="mailto:avi.kivity&#64;gmail.com" title="Avi Kivity &lt;avi.kivity&#64;gmail.com&gt;"> <span class="fn">Avi Kivity</span></a>
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
+              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
 </span></b>
-        <pre>00101000: 9f5cb098</pre>
+        <pre>Ok I changed the file, it compiled fine (with a little C90 standard warning).
+On bootup I still get the message at the HDMI Monitor: No input. The DVI
+Monitor just stays black, not sure if this is specific to this monitor, but I
+think it usually shows such a message, too. So the symtpoms are the same.
+In the last post I accidentally removed one line too much, which I did not in
+the source code I used to compile it.
+The kernel log has changed a bit.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444076149.f41F8Fa1.17374--
+--1444076847.aCCBb23a1.22420--
 
---===============1761576153==
+--===============0499545704==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1761576153==--
+--===============0499545704==--
