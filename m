@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92274] nouveau black screen and errors with two
  monitors attached
-Date: Mon, 05 Oct 2015 20:27:27 +0000
-Message-ID: <bug-92274-8800-qzT0mS8oCS@http.bugs.freedesktop.org/>
+Date: Mon, 05 Oct 2015 20:29:28 +0000
+Message-ID: <bug-92274-8800-yVJOE1z6k4@http.bugs.freedesktop.org/>
 References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0499545704=="
+Content-Type: multipart/mixed; boundary="===============0198156062=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0499545704==
-Content-Type: multipart/alternative; boundary="1444076847.aCCBb23a1.22420"; charset="UTF-8"
+--===============0198156062==
+Content-Type: multipart/alternative; boundary="1444076968.11abaaF1.23247"; charset="UTF-8"
 
 
---1444076847.aCCBb23a1.22420
-Date: Mon, 5 Oct 2015 20:27:27 +0000
+--1444076968.11abaaF1.23247
+Date: Mon, 5 Oct 2015 20:29:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92274
 
---- Comment #13 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-Ok I changed the file, it compiled fine (with a little C90 standard warning).
-On bootup I still get the message at the HDMI Monitor: No input. The DVI
-Monitor just stays black, not sure if this is specific to this monitor, but I
-think it usually shows such a message, too. So the symtpoms are the same.
-In the last post I accidentally removed one line too much, which I did not in
-the source code I used to compile it.
-The kernel log has changed a bit.
+--- Comment #14 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
+Created attachment 118683
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118683&action=edit
+/var/log/dmesg after changes in ./drm/.../hdmigk104.c
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444076847.aCCBb23a1.22420
-Date: Mon, 5 Oct 2015 20:27:27 +0000
+--1444076968.11abaaF1.23247
+Date: Mon, 5 Oct 2015 20:29:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c13">Comment # 13</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
               from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
 </span></b>
-        <pre>Ok I changed the file, it compiled fine (with a little C90 standard warning).
-On bootup I still get the message at the HDMI Monitor: No input. The DVI
-Monitor just stays black, not sure if this is specific to this monitor, but I
-think it usually shows such a message, too. So the symtpoms are the same.
-In the last post I accidentally removed one line too much, which I did not in
-the source code I used to compile it.
-The kernel log has changed a bit.</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118683" name="attach_118683" title="/var/log/dmesg after changes in ./drm/.../hdmigk104.c">attachment 118683</a> <a href="attachment.cgi?id=118683&amp;action=edit" title="/var/log/dmesg after changes in ./drm/.../hdmigk104.c">[details]</a></span>
+/var/log/dmesg after changes in ./drm/.../hdmigk104.c</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +76,9 @@ The kernel log has changed a bit.</pre>
     </body>
 </html>
 
---1444076847.aCCBb23a1.22420--
+--1444076968.11abaaF1.23247--
 
---===============0499545704==
+--===============0198156062==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0499545704==--
+--===============0198156062==--
