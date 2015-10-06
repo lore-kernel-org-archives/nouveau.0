@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92287] Display errors in Qt applications after using
- Android Virtual Devices
-Date: Tue, 06 Oct 2015 13:42:44 +0000
-Message-ID: <bug-92287-8800-bZjDDLAg51@http.bugs.freedesktop.org/>
-References: <bug-92287-8800@http.bugs.freedesktop.org/>
-Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1659976079=="
+From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Subject: Re: Chipset & Family
+Date: Tue, 6 Oct 2015 21:07:34 +0200
+Message-ID: <1CCCB9A7-2A82-4680-BDAB-11BA46A927B5@free.fr>
+References: <561313F1.9090304@gmail.com> <5613C62C.4060401@gmail.com>
+Mime-Version: 1.0 (1.0)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92287-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5613C62C.4060401-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +17,63 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1659976079==
-Content-Type: multipart/alternative; boundary="1444138963.82ECC0.28338"; charset="UTF-8"
-
-
---1444138963.82ECC0.28338
-Date: Tue, 6 Oct 2015 13:42:43 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92287
-
---- Comment #7 from Guido Winkelmann <guido-WHizhSsHnEbSgI/GaPOurUTU+k/KrAxG@public.gmane.org> ---
-One more addendum:
-
-Since upgrading to mesa-git yesterday, the problem seems to randomly solve
-itself every once in a while, whereas before, it could only be solved by
-rebooting...
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1444138963.82ECC0.28338
-Date: Tue, 6 Oct 2015 13:42:43 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Display errors in Qt applications after using Android Virtual Devices"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92287">bug 92287</a>
-              from <span class="vcard"><a class="email" href="mailto:guido&#64;ambient-entertainment.de" title="Guido Winkelmann &lt;guido&#64;ambient-entertainment.de&gt;"> <span class="fn">Guido Winkelmann</span></a>
-</span></b>
-        <pre>One more addendum:
-
-Since upgrading to mesa-git yesterday, the problem seems to randomly solve
-itself every once in a while, whereas before, it could only be solved by
-rebooting...</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444138963.82ECC0.28338--
-
---===============1659976079==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1659976079==--
+SGVsbG8gcG9tYSwKClRoZSBjaGlwc2V0IGRpZG4ndCBkaXNhcHBlYXIgYW5kIGlzIHN0aWxsIGRp
+c3BsYXllZDogaXQgaXMgdGhlIEc5OCB5b3UgZ2V0IG9uIHRoZSAiWyAgICAyLjQ4Mzg0M10gbm91
+dmVhdSAwMDAwOjAyOjAwLjA6IE5WSURJQSBHOTggKDA5ODIwMGEyKSIgbGluZS4gVGhlICJOVjk4
+IiB3YXMgdGhlICJOb3V2ZWF1IiBjaGlwc2V0LCBidXQgdGhlIHN3aXRjaCB3YXMgbWFkZSB0byB1
+c2UgdGhlIHNhbWUgbmFtaW5nIGFzIE5WSURJQS4gU28gcmF0aGVyIHRoYW4gZGlzcGxheWluZyBi
+b3RoIHRoZSBOb3V2ZWF1IHZlcnNpb24gb2YgdGhlIGNoaXBzZXQgYW5kIHRoZSBOVklESUEgb25l
+LCBpdCBtYWtlIHNlbnNlIHRvIG9ubHkgdXNlIG9uZSwgYW5kIHRvIHByZWZlciB0aGUgTlZJRElB
+IG5hbWluZy4gKEZZSSwgZmlsZXMgbmFtZSBoYXMgYmVlbiBtb2RpZmllZCB0byBmb2xsb3cgdGhl
+IE5WSURJQSBuYW1pbmcgYXMgd2VsbCwgYWxvbmcgd2l0aCBlbnZ5dG9vbHMuKQoKQXMgZm9yIHRo
+ZSBmYW1pbHksIGl0IGNhbiBiZSBlYXNpbHkgZGVkdWNlZCBmcm9tIHRoZSBjaGlwc2V0IGluIG1v
+c3QgY2FzZXM6IEdNeHh4IGFyZSBNYXh3ZWxsIGNhcmRzLCBHS3h4eCBhcmUgS2VwbGVyIGNhcmRz
+LCBHRnh4eCBhcmUgRmVybWkgY2FyZHMsIEdUeHh4IGFyZSBUZXNsYSBjYXJkcywgYW5kIG1vc3Qg
+cmVhc29uYWJseSwgR1B4eHggd2lsbCBiZSBQYXNjYWwgY2FyZHMuIE5WNTAsIEc4eCwgRzl4LCBN
+Q1B4eCBhcmUgYWxzbyBUZXNsYSBjYXJkcy4gVGhleSBkbyBub3QgZm9sbG93IHRoZSBzYW1lIHBh
+dHRlcm4gYXMgbmV3ZXIgY2FyZHMgYW5kIHNvIGl0IG1pZ2h0IG5vdCBiZSBhcyBlYXN5IHRvIGlk
+ZW50aWZ5IHRoZWlyIGZhbWlseS4gQnV0IHRoZXJlIGlzIHRoZSB3aWtpIHBhZ2UgdG8gaGVscCBm
+b3IgdGhhdC4gCgpSZWdhcmRzLApQaWVycmUKCj4gT24gMDYgT2N0IDIwMTUsIGF0IDE1OjAxLCBw
+b21hIDxwb21pZG9yYWJlbGlzaW1hQGdtYWlsLmNvbT4gd3JvdGU6Cj4gCj4+IE9uIDA2LjEwLjIw
+MTUgMDI6MjEsIHBvbWEgd3JvdGU6Cj4+IDQuMS44LTIwMC5mYzIyLng4Nl82NCBkbWVzZzoKPj4g
+WyAgIDExLjgwOTQ2N10gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAyOjAwLjBdIEJPT1QwICA6
+IDB4MDk4MjAwYTIKPj4gWyAgIDExLjgwOTQ5M10gbm91dmVhdSAgWyAgREVWSUNFXVswMDAwOjAy
+OjAwLjBdIENoaXBzZXQ6IEc5OCAoTlY5OCkKPj4gWyAgIDExLjgwOTUwOF0gbm91dmVhdSAgWyAg
+REVWSUNFXVswMDAwOjAyOjAwLjBdIEZhbWlseSA6IE5WNTAKPj4gCj4+IAo+PiA0LjMuMC0wLnJj
+NC5naXQwLjEuZmMyNC54ODZfNjQgZG1lc2c6Cj4+IFsgICAgMi40ODM4NDNdIG5vdXZlYXUgMDAw
+MDowMjowMC4wOiBOVklESUEgRzk4ICgwOTgyMDBhMikKPj4gCj4+IAo+PiBXaGVyZSB2YW5pc2hl
+ZCB0aGVzZSBDaGlwc2V0ICYgRmFtaWx5IHN1cGVyIGNvb2wgbGluZXM/Cj4gCj4gaHR0cDovL2Nn
+aXQuZnJlZWRlc2t0b3Aub3JnL35kYXJrdGFtYS9ub3V2ZWF1L2NvbW1pdC9kcm0vbm91dmVhdS9u
+dmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jP2lkPTZjYzllNDcKPiAKPiBjb21taXQgNmNjOWU0N2Y3
+ZjU3NGNiM2RmNmIxNGNhZWJmMTViMzU0MDhiMTA2ZAo+IEF1dGhvcjogQmVuIFNrZWdncyA8YnNr
+ZWdnc0ByZWRoYXQuY29tPgo+IERhdGU6ICAgVGh1IEF1ZyAyMCAxNDo1NDoxMyAyMDE1ICsxMDAw
+Cj4gCj4gICAgZGV2aWNlOiBzd2l0Y2ggdG8gZGV2X3ByaW50ayBtYWNyb3MKPiAKPiAgICBTaWdu
+ZWQtb2ZmLWJ5OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gCj4gZHJtL25vdXZl
+YXUvbnZrbS9lbmdpbmUvZGV2aWNlL2Jhc2UuYyAgfCAxMSArKystLS0tLS0tLQo+IC4uLgo+IAo+
+IAo+IC0gICAgICAgIG52X2luZm8oZGV2aWNlLCAiQk9PVDAgIDogMHglMDh4XG4iLCBib290MCk7
+Cj4gLSAgICAgICAgbnZfaW5mbyhkZXZpY2UsICJDaGlwc2V0OiAlcyAoTlYlMDJYKVxuIiwKPiAt
+ICAgICAgICAgICAgZGV2aWNlLT5jbmFtZSwgZGV2aWNlLT5jaGlwc2V0KTsKPiAtICAgICAgICBu
+dl9pbmZvKGRldmljZSwgIkZhbWlseSA6IE5WJTAyWFxuIiwgZGV2aWNlLT5jYXJkX3R5cGUpOwo+
+ICsgICAgICAgIG52ZGV2X2luZm8oZGV2aWNlLCAiTlZJRElBICVzICglMDh4KVxuIiwgZGV2aWNl
+LT5jbmFtZSwgYm9vdDApOwo+IAo+IAo+IAo+IFRoZXNlIGxpbmVzIHdlcmUgdXNlZnVsIGFzIGJh
+c2ljIGRldmljZSBpbmZvcm1hdGlvbiwKPiBhbmQgYXMgcmVmZXJlbmNlIHRvIHdpa2kgIkNvZGVO
+YW1lcyIKPiBodHRwOi8vbm91dmVhdS5mcmVlZGVza3RvcC5vcmcvd2lraS9Db2RlTmFtZXMKPiAK
+PiAiVGhpcyBwYWdlIGNvbnRhaW5zIGEgbGlzdCBvZiBzb21lIE5WSURJQSBjaGlwIGNvZGUgbmFt
+ZXMgYW5kIHRoZWlyIGNvcnJlc3BvbmRpbmcgb2ZmaWNpYWwgR2VGb3JjZSBudW1iZXIuIElmIHlv
+dSdyZSBydW5uaW5nIGEgcmVjZW50IHZlcnNpb24gbm91dmVhdSwgeW91IGNhbiBmaW5kIHlvdXIg
+Y2hpcHNldCBieSBkb2luZyBkbWVzZyB8IGdyZXAgLWkgY2hpcHNldC4gVGhpcyB3aWxsIGFsd2F5
+cyBiZSBjb3JyZWN0LCB3aGVyZWFzIHRoZSBsaXN0cyBiZWxvdyBhcmUgYXBwcm94aW1hdGUuIgo+
+IAo+IE5vdGljZSAiZG1lc2cgfCBncmVwIC1pIGNoaXBzZXQiCj4gCj4gQlRXICJOVklESUEiIGlz
+IGFscmVhZHkgdmlzaWJsZSB2aWEgJ2xzcGNpJyAtIGxzcGNpIHwgZ3JlcCBWR0EKPiAKPiBTbyBv
+bmx5IGdhaW4gaXMgdW5uZWNlc3NhcnkgaW5mb3JtYXRpb24gcmVkdWN0aW9uIGFuZCByZWR1bmRh
+bmN5Lgo+IAo+IFBsZWFzZSBicmluZyBDaGlwc2V0ICYgRmFtaWx5IGJhY2suCj4gCj4gCj4gX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1h
+aWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
