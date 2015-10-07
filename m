@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92327] Tearing and drm_wait_vblank kernel log spam
- with reverse PRIME (intel+nouveau)
-Date: Wed, 07 Oct 2015 08:26:56 +0000
-Message-ID: <bug-92327-8800-m1AoGuCn5R@http.bugs.freedesktop.org/>
-References: <bug-92327-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91319] Nouveau driver cannot extract FCODE ROM / DCB
+ Block from OpenFirmware Device tree
+Date: Wed, 07 Oct 2015 14:47:18 +0000
+Message-ID: <bug-91319-8800-Ut5vk8SI2m@http.bugs.freedesktop.org/>
+References: <bug-91319-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0089423440=="
+Content-Type: multipart/mixed; boundary="===============0313965336=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92327-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91319-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0089423440==
-Content-Type: multipart/alternative; boundary="1444206415.2Bb71.19277"; charset="UTF-8"
+--===============0313965336==
+Content-Type: multipart/alternative; boundary="1444229238.fF0dEC21.2365"; charset="UTF-8"
 
 
---1444206415.2Bb71.19277
-Date: Wed, 7 Oct 2015 08:26:55 +0000
+--1444229238.fF0dEC21.2365
+Date: Wed, 7 Oct 2015 14:47:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92327
+https://bugs.freedesktop.org/show_bug.cgi?id=91319
 
---- Comment #1 from Fredy Neeser <nfd-OA+xvbQnYDHMbYB6QlFGEg@public.gmane.org> ---
-Same issue here on Fedora 22 with intel (LVDS) + nouveau (ext. monitor):
+--- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Peter Saisanas from comment #13)
+> Do you require any more info?
 
-https://bugzilla.redhat.com/show_bug.cgi?id=1243432
-Bug 1243432 - KDE 5 dual monitor setup with intel+nouveau drivers causes
-journal to be flooded with errors "[drm:drm_wait_vblank [drm]] *ERROR*
-Unsupported type value ..."
+Nope. Will leave this open until the fix hits mainline.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444206415.2Bb71.19277
-Date: Wed, 7 Oct 2015 08:26:55 +0000
+--1444229238.fF0dEC21.2365
+Date: Wed, 7 Oct 2015 14:47:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Tearing and drm_wait_vblank kernel log spam with reverse PRIME (intel+nouveau)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92327#c1">Comment # 1</a>
+   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319#c14">Comment # 14</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Tearing and drm_wait_vblank kernel log spam with reverse PRIME (intel+nouveau)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92327">bug 92327</a>
-              from <span class="vcard"><a class="email" href="mailto:nfd&#64;zurich.ibm.com" title="Fredy Neeser &lt;nfd&#64;zurich.ibm.com&gt;"> <span class="fn">Fredy Neeser</span></a>
+   title="NEW - Nouveau driver cannot extract FCODE ROM / DCB Block from OpenFirmware Device tree"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91319">bug 91319</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Same issue here on Fedora 22 with intel (LVDS) + nouveau (ext. monitor):
+        <pre>(In reply to Peter Saisanas from <a href="show_bug.cgi?id=91319#c13">comment #13</a>)
+<span class="quote">&gt; Do you require any more info?</span >
 
-<a href="https://bugzilla.redhat.com/show_bug.cgi?id=1243432">https://bugzilla.redhat.com/show_bug.cgi?id=1243432</a>
-Bug 1243432 - KDE 5 dual monitor setup with intel+nouveau drivers causes
-journal to be flooded with errors &quot;[drm:drm_wait_vblank [drm]] *ERROR*
-Unsupported type value ...&quot;</pre>
+Nope. Will leave this open until the fix hits mainline.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +79,9 @@ Unsupported type value ...&quot;</pre>
     </body>
 </html>
 
---1444206415.2Bb71.19277--
+--1444229238.fF0dEC21.2365--
 
---===============0089423440==
+--===============0313965336==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0089423440==--
+--===============0313965336==--
