@@ -1,15 +1,14 @@
-From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: Chipset & Family
-Date: Wed, 7 Oct 2015 04:08:46 +0200
-Message-ID: <56147EAE.3060202@gmail.com>
-References: <561313F1.9090304@gmail.com> <5613C62C.4060401@gmail.com>
- <1CCCB9A7-2A82-4680-BDAB-11BA46A927B5@free.fr> <561478C0.20304@gmail.com>
- <56147A0D.3070901@gmail.com> <56147B7C.1010401@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92307] NV50: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Wed, 07 Oct 2015 02:15:15 +0000
+Message-ID: <bug-92307-8800-SmbrdBf1nH@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0102093471=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56147B7C.1010401-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,16 +18,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDcuMTAuMjAxNSAwMzo1NSwgQmVuIFNrZWdncyB3cm90ZToKCj4gTkFDSy4KPiAKPiBBbGwg
-dGhlIHJlbGV2YW50IGluZm9ybWF0aW9uIGlzIHNob3duLCAibm91dmVhdSIgKHZpZGVvIGRyaXZl
-cikKPiBkZXRlY3RlZCBhbiAiTlZJRElBIEc5OCIgKGNvbXBsZXRlIHdpdGggZnVsbCBjaGlwIGlk
-ZW50aWZpY2F0aW9uCj4gcmVnaXN0ZXIgdmFsdWUgZm9yIHNwZWNpZmljcykuICBJJ20gbm90IGJp
-a2VzaGVkZGluZyB0aGlzIHRvcGljIGFueQo+IGZ1cnRoZXIgdGhhbiB0aGF0Lgo+IAo+IFRoYW5r
-cywKPiBCZW4uCj4gCgpHYXVkZWFtdXMgaWdpdHVyLgoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============0102093471==
+Content-Type: multipart/alternative; boundary="1444184114.4FcEA3D1.29856"; charset="UTF-8"
+
+
+--1444184114.4FcEA3D1.29856
+Date: Wed, 7 Oct 2015 02:15:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
+
+--- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Tested with the latest
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=794a63c
+warnings are still occurring.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444184114.4FcEA3D1.29856
+Date: Wed, 7 Oct 2015 02:15:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV50: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c2">Comment # 2</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - NV50: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span></b>
+        <pre>Tested with the latest
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=794a63c">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=794a63c</a>
+warnings are still occurring.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444184114.4FcEA3D1.29856--
+
+--===============0102093471==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0102093471==--
