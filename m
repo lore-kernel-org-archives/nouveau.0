@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92271] Unusably slow OpenGL performance on nouveau
  (GeForce 9600 GT) with rotated output under DRI 3
-Date: Thu, 08 Oct 2015 02:58:01 +0000
-Message-ID: <bug-92271-8800-b9O6FCFUJH@http.bugs.freedesktop.org/>
+Date: Thu, 08 Oct 2015 02:58:09 +0000
+Message-ID: <bug-92271-8800-C8X8nS4SHV@http.bugs.freedesktop.org/>
 References: <bug-92271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0437900025=="
+Content-Type: multipart/mixed; boundary="===============1016111503=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0437900025==
-Content-Type: multipart/alternative; boundary="1444273081.3A5E413.11265"; charset="UTF-8"
+--===============1016111503==
+Content-Type: multipart/alternative; boundary="1444273089.60bCaaA7.11265"; charset="UTF-8"
 
 
---1444273081.3A5E413.11265
-Date: Thu, 8 Oct 2015 02:58:01 +0000
+--1444273089.60bCaaA7.11265
+Date: Thu, 8 Oct 2015 02:58:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,18 +36,14 @@ Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> change
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|Unusably slow OpenGL        |Unusably slow OpenGL
-                   |performance on nouveau      |performance on nouveau
-                   |(GeForce 9600 GT) with X    |(GeForce 9600 GT) with
-                   |server 1.18 with rotated    |rotated output under DRI 3
-                   |output                      |
+           Severity|blocker                     |normal
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444273081.3A5E413.11265
-Date: Thu, 8 Oct 2015 02:58:01 +0000
+--1444273089.60bCaaA7.11265
+Date: Thu, 8 Oct 2015 02:58:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,10 +66,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output
+           <td style="text-align:right;">Severity</td>
+           <td>blocker
            </td>
-           <td>Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with rotated output under DRI 3
+           <td>normal
            </td>
          </tr></table>
       <p>
@@ -87,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444273081.3A5E413.11265--
+--1444273089.60bCaaA7.11265--
 
---===============0437900025==
+--===============1016111503==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0437900025==--
+--===============1016111503==--
