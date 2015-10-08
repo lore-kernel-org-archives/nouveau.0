@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92271] Unusably slow OpenGL performance on nouveau
  (GeForce 9600 GT) with X server 1.18 with rotated output
-Date: Thu, 08 Oct 2015 01:51:00 +0000
-Message-ID: <bug-92271-8800-AnYsxgApqk@http.bugs.freedesktop.org/>
+Date: Thu, 08 Oct 2015 01:59:08 +0000
+Message-ID: <bug-92271-8800-Q1d1x0OKeH@http.bugs.freedesktop.org/>
 References: <bug-92271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507951500=="
+Content-Type: multipart/mixed; boundary="===============0873253275=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507951500==
-Content-Type: multipart/alternative; boundary="1444269060.E6dDA3.22037"; charset="UTF-8"
+--===============0873253275==
+Content-Type: multipart/alternative; boundary="1444269548.cB5c33.24367"; charset="UTF-8"
 
 
---1444269060.E6dDA3.22037
-Date: Thu, 8 Oct 2015 01:51:00 +0000
+--1444269548.cB5c33.24367
+Date: Thu, 8 Oct 2015 01:59:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92271
 
---- Comment #20 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd
-
-Only starting August. You said your snapshot was in July.
+--- Comment #21 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+ah, that could explain it. I'm currently running a build of git master, we'll
+see how that behaves, perhaps it'll work by default and show the bug if I force
+DRI3...
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444269060.E6dDA3.22037
-Date: Thu, 8 Oct 2015 01:51:00 +0000
+--1444269548.cB5c33.24367
+Date: Thu, 8 Oct 2015 01:59:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +56,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c20">Comment # 20</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92271">bug 92271</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre><a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd</a>
-
-Only starting August. You said your snapshot was in July.</pre>
+        <pre>ah, that could explain it. I'm currently running a build of git master, we'll
+see how that behaves, perhaps it'll work by default and show the bug if I force
+DRI3...</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +77,9 @@ Only starting August. You said your snapshot was in July.</pre>
     </body>
 </html>
 
---1444269060.E6dDA3.22037--
+--1444269548.cB5c33.24367--
 
---===============1507951500==
+--===============0873253275==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1507951500==--
+--===============0873253275==--
