@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92271] Unusably slow OpenGL performance on nouveau
  (GeForce 9600 GT) with X server 1.18 with rotated output
-Date: Thu, 08 Oct 2015 01:06:49 +0000
-Message-ID: <bug-92271-8800-dcwHZMGwQH@http.bugs.freedesktop.org/>
+Date: Thu, 08 Oct 2015 01:11:43 +0000
+Message-ID: <bug-92271-8800-sDlL2Lvsoj@http.bugs.freedesktop.org/>
 References: <bug-92271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1015814063=="
+Content-Type: multipart/mixed; boundary="===============0321557001=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1015814063==
-Content-Type: multipart/alternative; boundary="1444266409.640033.8048"; charset="UTF-8"
+--===============0321557001==
+Content-Type: multipart/alternative; boundary="1444266703.d07A83.9547"; charset="UTF-8"
 
 
---1444266409.640033.8048
-Date: Thu, 8 Oct 2015 01:06:49 +0000
+--1444266703.d07A83.9547
+Date: Thu, 8 Oct 2015 01:11:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92271
 
---- Comment #15 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-So I bisected it down and it looks like the cause is
-http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e7289f25a342a457952b9b0e539c2f0b81d99
-, "enable dri3 support without glamor".
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+You can force DRI (in a sufficiently new nouveau snapshot) by doing
+
+Option "DRI" "2"
+
+No idea what causes the slowdown tbh. All this DRI stuff is a little beyond me.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444266409.640033.8048
-Date: Thu, 8 Oct 2015 01:06:49 +0000
+--1444266703.d07A83.9547
+Date: Thu, 8 Oct 2015 01:11:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +58,18 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92271">bug 92271</a>
-              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>So I bisected it down and it looks like the cause is
-<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e7289f25a342a457952b9b0e539c2f0b81d99">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e7289f25a342a457952b9b0e539c2f0b81d99</a>
-, &quot;enable dri3 support without glamor&quot;.</pre>
+        <pre>You can force DRI (in a sufficiently new nouveau snapshot) by doing
+
+Option &quot;DRI&quot; &quot;2&quot;
+
+No idea what causes the slowdown tbh. All this DRI stuff is a little beyond me.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +81,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444266409.640033.8048--
+--1444266703.d07A83.9547--
 
---===============1015814063==
+--===============0321557001==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1015814063==--
+--===============0321557001==--
