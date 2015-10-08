@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92271] Unusably slow OpenGL performance on nouveau
- (GeForce 9600 GT) with rotated output under DRI 3
-Date: Thu, 08 Oct 2015 02:58:09 +0000
-Message-ID: <bug-92271-8800-C8X8nS4SHV@http.bugs.freedesktop.org/>
-References: <bug-92271-8800@http.bugs.freedesktop.org/>
+From: James Lehman <james-CMWDxV8drZhBDgjK7y7TUQ@public.gmane.org>
+Subject: 4K ~ 3840x2160 resolution and frame buffer support
+Date: Thu, 8 Oct 2015 16:21:41 -0400
+Message-ID: <5616D055.8050100@akrobiz.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1016111503=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,79 +18,21 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1016111503==
-Content-Type: multipart/alternative; boundary="1444273089.60bCaaA7.11265"; charset="UTF-8"
-
-
---1444273089.60bCaaA7.11265
-Date: Thu, 8 Oct 2015 02:58:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92271
-
-Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-           Severity|blocker                     |normal
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444273089.60bCaaA7.11265
-Date: Thu, 8 Oct 2015 02:58:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with rotated output under DRI 3"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271">bug 92271</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Severity</td>
-           <td>blocker
-           </td>
-           <td>normal
-           </td>
-         </tr></table>
-      <p>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444273089.60bCaaA7.11265--
-
---===============1016111503==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1016111503==--
+SGVsbG8uIEkgaG9wZSB0aGlzIGlzIGluIHRoZSByaWdodCBwbGFjZS4KCkkganVzdCBidWlsdCBh
+IG5ldyBtYWNoaW5lIGFuZCBpbnN0YWxsZWQgWHVidW50dSBhbmQgSSdtIHN0aWxsIGZpZ3VyaW5n
+IAp0aGluZ3Mgb3V0LgoKSSdtIGludGVyZXN0ZWQgaW4gd29ya2luZyB3aXRoIFRoZSBMaW51eCBG
+cmFtZSBCdWZmZXIuCgpNYW55IHllYXJzIGFnbywgSSBzdGFydGVkIGEgcHJvamVjdCBjYWxsZWQg
+ZXpmYiBhbmQgSSB3b3VsZCBsaWtlIHRvIApjb250aW51ZSBkZXZlbG9waW5nIGl0IG9uIGEgbWFj
+aGluZSBjYXBhYmxlIG9mIDRLLgoKSXMgaXQgcG9zc2libGUgdG8gaGF2ZSBhIGZyYW1lIGJ1ZmZl
+ciB0aGF0IGRvZXMgMzg0MHgyMTYwID8KCldpdGggbm91dmVhdSBpbnN0YWxsZWQgYXMgbXkgdmlk
+ZW8gZHJpdmVyLCBJIGNhbiBnZXQgdG8gYSBmcmFtZSBidWZmZXIgCmNvbnNvbGUgb2YgMTkyMHgx
+MDgwLCBidXQgSSBhbSBsaW1pdGVkIHRvIHRoYXQgcmVzb2x1dGlvbiBpbiBYZmNlIGFzIHdlbGwu
+CgpXaXRoIGEgcHJvcHJpZXRhcnkgblZpZGlhIGRyaXZlciBpbnN0YWxsZWQgSSBjYW4gZ2V0IHRv
+IDRLIGluIFhmY2UsIGJ1dCAKbXkgZnJhbWUgYnVmZmVyIGlzIDY0MHg0ODAsIDQgYml0IGNvbG9y
+LiBXaGVuIEkgdHJ5IGZic2V0IHRvIGNoYW5nZSAKYW55dGhpbmcsIGl0IGRvZXNuJ3Qgd29yay4K
+CkkgaGF2ZSBub3QgZXZlbiBib3RoZXJlZCB0byB0cnkgbXkgY29kZSBzbyBzZWUgb2YgYW55IG9m
+IGl0IGNhbiBhY3R1YWxseSAKd29yayBpbiB0aGUgZnJhbWUgYnVmZmVycyBJIGdldC4KClN0aWxs
+IHNjcmF0Y2hpbmcgbXkgaGVhZC4uLi4KClRoYW5rIHlvdSBmb3IgeW91ciB0aW1lLgoKSmFtZXMu
+CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVh
+dSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3Rz
+LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
