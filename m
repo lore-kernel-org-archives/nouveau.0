@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92271] Unusably slow OpenGL performance on nouveau
  (GeForce 9600 GT) with X server 1.18 with rotated output
-Date: Thu, 08 Oct 2015 02:23:04 +0000
-Message-ID: <bug-92271-8800-1IWDcvryoT@http.bugs.freedesktop.org/>
+Date: Thu, 08 Oct 2015 02:45:11 +0000
+Message-ID: <bug-92271-8800-5mA7NUESNL@http.bugs.freedesktop.org/>
 References: <bug-92271-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0668195120=="
+Content-Type: multipart/mixed; boundary="===============1911050563=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92271-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0668195120==
-Content-Type: multipart/alternative; boundary="1444270985.bEd4E43.32026"; charset="UTF-8"
+--===============1911050563==
+Content-Type: multipart/alternative; boundary="1444272311.14f7e5B3.7121"; charset="UTF-8"
 
 
---1444270985.bEd4E43.32026
-Date: Thu, 8 Oct 2015 02:23:05 +0000
+--1444272311.14f7e5B3.7121
+Date: Thu, 8 Oct 2015 02:45:11 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92271
 
---- Comment #24 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
-Damnit, sorry - bad test. Actually the current git build of nouveau is flat out
-failing to load at all; it's working when the config file isn't there because
-it's falling back to modesetting. I'll poke a bit more...
+--- Comment #25 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+OK, so I finally got a good test. I built a snapshot exactly at the DRI
+2-by-default commit -
+http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd
+- and that one loads OK. And indeed it behaves as we suspected: it works at
+full speed by default, if I force DRI 3, it loads but runs very slowly.
+
+So the slowness-when-rotated is a genuine bug that's specific to DRI 3 mode, I
+guess.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444270985.bEd4E43.32026
-Date: Thu, 8 Oct 2015 02:23:05 +0000
+--1444272311.14f7e5B3.7121
+Date: Thu, 8 Oct 2015 02:45:11 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92271#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Unusably slow OpenGL performance on nouveau (GeForce 9600 GT) with X server 1.18 with rotated output"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92271">bug 92271</a>
               from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre>Damnit, sorry - bad test. Actually the current git build of nouveau is flat out
-failing to load at all; it's working when the config file isn't there because
-it's falling back to modesetting. I'll poke a bit more...</pre>
+        <pre>OK, so I finally got a good test. I built a snapshot exactly at the DRI
+2-by-default commit -
+<a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=6296145654b78518f3299bb5887f224f0d3810fd</a>
+- and that one loads OK. And indeed it behaves as we suspected: it works at
+full speed by default, if I force DRI 3, it loads but runs very slowly.
+
+So the slowness-when-rotated is a genuine bug that's specific to DRI 3 mode, I
+guess.</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +87,9 @@ it's falling back to modesetting. I'll poke a bit more...</pre>
     </body>
 </html>
 
---1444270985.bEd4E43.32026--
+--1444272311.14f7e5B3.7121--
 
---===============0668195120==
+--===============1911050563==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0668195120==--
+--===============1911050563==--
