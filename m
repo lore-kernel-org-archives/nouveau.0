@@ -1,16 +1,13 @@
-From: James Lehman <james-CMWDxV8drZhBDgjK7y7TUQ@public.gmane.org>
-Subject: Re: 4K ~ 3840x2160 resolution and frame buffer support
-Date: Thu, 8 Oct 2015 21:58:14 -0400
-Message-ID: <56171F36.4020906@akrobiz.com>
-References: <5616D055.8050100@akrobiz.com>
- <CAKb7UvgMQKWSgjRcq1JXRNAOKpot3jERGqDZBbb4EX-4bQUBLw@mail.gmail.com>
- <5616DD90.3010900@akrobiz.com>
- <CAKb7UvhZ=nbwSBzVVTDmUd-zrS74GzsFnAJK+QVAjL2-Yc=Afw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Fri, 09 Oct 2015 17:50:25 +0000
+Message-ID: <bug-70354-8800-EB7P2YKjtK@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0955424974=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvhZ=nbwSBzVVTDmUd-zrS74GzsFnAJK+QVAjL2-Yc=Afw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,67 +17,142 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T2ghIEJ1bW1lci4KClRoYW5rIHlvdSBhZ2FpbiBmb3IgZ2V0dGluZyBiYWNrIHRvIG1lLgoKTXkg
-dmlkZW8gY2FyZCBvbmx5IGhhcyBvbmUgSERNSSwgb25lIGRpZ2l0YWwgdmlkZW8gYW5kIG9uZSBh
-bmFsb2cgVkdBIHBvcnQuCgpTbyBJIGd1ZXNzIEknbGwgaGF2ZSB0byB3YWl0IGZvciBmdXR1cmUg
-bm91dmVhdSBkZXZlbG9wbWVudHMuCgpJIGRvbid0IHJlYWxseSBuZWVkIGhpZ2ggc3BlZWQgZ3Jh
-cGhpY3MsIG9wZW5HTCBvciAzRC4KCkknbSBub3QgYSBnYW1lci4gSSBqdXN0IGxpa2UgdG8gd3Jp
-dGUgbXkgb3duIGNvZGUgdG8gcGxvdCBwaXhlbHMuCgpVaC4uLi4uIEkgaGF0ZSB0byBhc2sgdGhp
-cyBvZiB0aGUgbm91dmVhdSBkZXZlbG9wbWVudCB0ZWFtLCBidXQuLi4uLgoKSXMgdGhlcmUgYW55
-IHdheSB0byB1c2UgdGhlIG5WaWRpYSBwcm9wcmlldGFyeSBkcml2ZXIgdG8gZ2V0IGEgNEsgTGlu
-dXggCkZyYW1lIEJ1ZmZlcj8KClRoYW5rcyBhZ2Fpbi4KCkphbWVzLgoKCk9uIDEwLzA4LzIwMTUg
-MDU6MjIgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+IEhETUkgd2l0aCBub3V2ZWF1IGlzIGxpbWl0
-ZWQgdG8gMTY1bWh6IHVuZm9ydHVuYXRlbHkuIFRoaXMgaXMKPiBpbmNvcnJlY3QgKHRoZSBoYXJk
-d2FyZSBjYW4gZG8gbW9yZSksIGJ1dCBuZXZlcnRoZWxlc3MsIHRoYXQncyB0aGUKPiBwcmVzZW50
-IGxpbWl0LiBJZiB5b3UgY2FuIGNvbm5lY3QgdGhlIHNjcmVlbiBvdmVyIGR1YWwtbGluayBEVkkg
-b3IgRFAsCj4geW91IHNob3VsZCBiZSBhYmxlIHRvIGdldCB0aGUgZnVsbCByZXNvbHV0aW9uLgo+
-Cj4gT24gVGh1LCBPY3QgOCwgMjAxNSBhdCA1OjE4IFBNLCBKYW1lcyBMZWhtYW4gPGphbWVzQGFr
-cm9iaXouY29tPiB3cm90ZToKPj4gVGhhbmsgeW91IGZvciB5b3VyIHF1aWNrIHJlcGx5Lgo+Pgo+
-PiBJIGhhdmUgYSBHaWdhYnl0ZSBHVC03MzAgMkdCIGNhcmQgaG9va2VkIGRpcmVjdGx5IHZpYSBh
-IGhpZ2ggcXVhbGl0eSBIRE1JCj4+IGNhYmxlIHRvIGEgNjUgaW5jaCBTYW1zdW5nIGN1cnZlZCBz
-Y3JlZW4gTENEIDRLIG1vbml0b3IuCj4+Cj4+IEknbSBub3Qgc3VyZSB3aGF0IEkgYW0gbG9va2lu
-ZyBmb3IgaW4gZG1lc2cgYW5kIHhvcmcgbG9nLgo+Pgo+PiBQbGVhc2UgYWR2aXNlLgo+Pgo+PiBJ
-IGhhdmUgYnVpbHQgdGhlIDMuMTkuOCBrZXJuZWwgYW5kIGVuYWJsZWQgZnJhbWUgYnVmZmVyIHN1
-cHBvcnQuCj4+Cj4+IEkgY2FuIHNlZSA3IG91dCBvZiB0aGUgOCBwZW5ndWlucyB3aGVuIEkgYm9v
-dC4KPj4KPj4gTXkgdWx0aW1hdGUgZ29hbCBpcyB0byBiZSBhYmxlIHRvIGJvb3QgdG8gYSAzODQw
-eDIxNjAgMzIgYml0IChmcmFtZSBidWZmZXIpCj4+IGNvbnNvbGUuCj4+Cj4+IFRoZW4gZ28gaW50
-byBYZmNlLCBvciBub3QsIGFzIG5lZWRlZC4KPj4KPj4gSSBsaWtlIHRvIHdyaXRlIGZyYW1lIGJ1
-ZmZlciBhcHBzIHRoYXQgcnVuIGluIHRoZSBjb25zb2xlLgo+Pgo+PiBUaGFuayB5b3UuCj4+Cj4+
-Cj4+Cj4+IE9uIDEwLzA4LzIwMTUgMDQ6NDQgUE0sIElsaWEgTWlya2luIHdyb3RlOgo+Pj4gSWYg
-eW91IG9ubHkgZ2V0IDE5MjB4MTA4MCBpbiBYLCBjaGFuY2VzIGFyZSB0aGF0IG5vdXZlYXUgZG9l
-c24ndAo+Pj4gYmVsaWV2ZSBpdCBjYW4gZG8gMzg0MHgyMTYwIGZvciBvbmUgcmVhc29uIG9yIGFu
-b3RoZXIuIFRoZXJlIGFyZSBhCj4+PiBudW1iZXIgb2YgcmVhc29ucyB3aHkgdGhpcyBtaWdodCBi
-ZSB0aGUgY2FzZSwgcGxlYXNlIHByb3ZpZGUgZG1lc2csCj4+PiB4b3JnIGxvZywgYW5kIGluZm9y
-bWF0aW9uIG9uIGhvdyB0aGUgbW9uaXRvciBpcyBjb25uZWN0ZWQgKGluY2x1ZGluZwo+Pj4gYW55
-IEEtPkIgdHlwZSBhZGFwdGVycykuCj4+Pgo+Pj4gICAgIC1pbGlhCj4+Pgo+Pj4gT24gVGh1LCBP
-Y3QgOCwgMjAxNSBhdCA0OjIxIFBNLCBKYW1lcyBMZWhtYW4gPGphbWVzQGFrcm9iaXouY29tPiB3
-cm90ZToKPj4+PiBIZWxsby4gSSBob3BlIHRoaXMgaXMgaW4gdGhlIHJpZ2h0IHBsYWNlLgo+Pj4+
-Cj4+Pj4gSSBqdXN0IGJ1aWx0IGEgbmV3IG1hY2hpbmUgYW5kIGluc3RhbGxlZCBYdWJ1bnR1IGFu
-ZCBJJ20gc3RpbGwgZmlndXJpbmcKPj4+PiB0aGluZ3Mgb3V0Lgo+Pj4+Cj4+Pj4gSSdtIGludGVy
-ZXN0ZWQgaW4gd29ya2luZyB3aXRoIFRoZSBMaW51eCBGcmFtZSBCdWZmZXIuCj4+Pj4KPj4+PiBN
-YW55IHllYXJzIGFnbywgSSBzdGFydGVkIGEgcHJvamVjdCBjYWxsZWQgZXpmYiBhbmQgSSB3b3Vs
-ZCBsaWtlIHRvCj4+Pj4gY29udGludWUKPj4+PiBkZXZlbG9waW5nIGl0IG9uIGEgbWFjaGluZSBj
-YXBhYmxlIG9mIDRLLgo+Pj4+Cj4+Pj4gSXMgaXQgcG9zc2libGUgdG8gaGF2ZSBhIGZyYW1lIGJ1
-ZmZlciB0aGF0IGRvZXMgMzg0MHgyMTYwID8KPj4+Pgo+Pj4+IFdpdGggbm91dmVhdSBpbnN0YWxs
-ZWQgYXMgbXkgdmlkZW8gZHJpdmVyLCBJIGNhbiBnZXQgdG8gYSBmcmFtZSBidWZmZXIKPj4+PiBj
-b25zb2xlIG9mIDE5MjB4MTA4MCwgYnV0IEkgYW0gbGltaXRlZCB0byB0aGF0IHJlc29sdXRpb24g
-aW4gWGZjZSBhcwo+Pj4+IHdlbGwuCj4+Pj4KPj4+PiBXaXRoIGEgcHJvcHJpZXRhcnkgblZpZGlh
-IGRyaXZlciBpbnN0YWxsZWQgSSBjYW4gZ2V0IHRvIDRLIGluIFhmY2UsIGJ1dAo+Pj4+IG15Cj4+
-Pj4gZnJhbWUgYnVmZmVyIGlzIDY0MHg0ODAsIDQgYml0IGNvbG9yLiBXaGVuIEkgdHJ5IGZic2V0
-IHRvIGNoYW5nZQo+Pj4+IGFueXRoaW5nLAo+Pj4+IGl0IGRvZXNuJ3Qgd29yay4KPj4+Pgo+Pj4+
-IEkgaGF2ZSBub3QgZXZlbiBib3RoZXJlZCB0byB0cnkgbXkgY29kZSBzbyBzZWUgb2YgYW55IG9m
-IGl0IGNhbiBhY3R1YWxseQo+Pj4+IHdvcmsgaW4gdGhlIGZyYW1lIGJ1ZmZlcnMgSSBnZXQuCj4+
-Pj4KPj4+PiBTdGlsbCBzY3JhdGNoaW5nIG15IGhlYWQuLi4uCj4+Pj4KPj4+PiBUaGFuayB5b3Ug
-Zm9yIHlvdXIgdGltZS4KPj4+Pgo+Pj4+IEphbWVzLgo+Pj4+Cj4+Pj4KPj4+PiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+Pj4+IE5vdXZlYXUgbWFpbGlu
-ZyBsaXN0Cj4+Pj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4+PiBodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+Pgo+PiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiBOb3V2ZWF1IG1haWxp
-bmcgbGlzdAo+PiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBodHRwOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQoKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0955424974==
+Content-Type: multipart/alternative; boundary="1444413025.00A2F1.25042"; charset="UTF-8"
+
+
+--1444413025.00A2F1.25042
+Date: Fri, 9 Oct 2015 17:50:25 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
+
+--- Comment #65 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
+Sorry for delay.
+
+
+[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-4.3.0-rc4-amd64
+root=UUID=d059e904-eec5-49ea-9e05-d3370455329c ro nouveau.runpm=0 quiet splash
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-4.3.0-rc4-amd64
+root=UUID=d059e904-eec5-49ea-9e05-d3370455329c ro nouveau.runpm=0 quiet splash
+[   17.692733] nouveau 0000:01:00.0: enabling device (0006 -> 0007)
+[   17.692756] nouveau 0000:01:00.0: NVIDIA GK107 (0e70d0a2)
+[   17.705157] nouveau 0000:01:00.0: bios: version 80.07.a8.00.0f
+[   17.867615] nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
+[   17.867692] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[   17.938396] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[   17.938397] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   17.938399] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
+[   17.938417] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   17.938418] nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid
+[   18.168394] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   18.168400] [drm] Initialized nouveau 1.3.0 20120801 for 0000:01:00.0 on
+minor 1
+[   25.809299] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   27.810911] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   29.812527] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   31.814138] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   33.815894] nouveau 0000:01:00.0: timeout at
+/home/bozhan/nouveau/drm/nouveau/nvkm/engine/gr/ctxgf100.c:1365/gf100_grctx_generate()!
+[   33.815947] nouveau 0000:01:00.0: gr: failed to construct context
+[   33.815951] nouveau 0000:01:00.0: gr: init failed, -16
+
+
+This is with your tree.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444413025.00A2F1.25042
+Date: Fri, 9 Oct 2015 17:50:25 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c65">Comment # 65</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan Boyadzhiev</span></a>
+</span></b>
+        <pre>Sorry for delay.
+
+
+[    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-4.3.0-rc4-amd64
+root=UUID=d059e904-eec5-49ea-9e05-d3370455329c ro nouveau.runpm=0 quiet splash
+[    0.000000] Kernel command line: BOOT_IMAGE=/boot/vmlinuz-4.3.0-rc4-amd64
+root=UUID=d059e904-eec5-49ea-9e05-d3370455329c ro nouveau.runpm=0 quiet splash
+[   17.692733] nouveau 0000:01:00.0: enabling device (0006 -&gt; 0007)
+[   17.692756] nouveau 0000:01:00.0: NVIDIA GK107 (0e70d0a2)
+[   17.705157] nouveau 0000:01:00.0: bios: version 80.07.a8.00.0f
+[   17.867615] nouveau 0000:01:00.0: fb: 2048 MiB GDDR5
+[   17.867692] nouveau 0000:01:00.0: bus: MMIO write of 00000002 FAULT at
+4188ac [ IBUS ]
+[   17.938396] nouveau 0000:01:00.0: DRM: VRAM: 2048 MiB
+[   17.938397] nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+[   17.938399] nouveau 0000:01:00.0: DRM: Pointer to TMDS table invalid
+[   17.938417] nouveau 0000:01:00.0: DRM: DCB version 4.0
+[   17.938418] nouveau 0000:01:00.0: DRM: Pointer to flat panel table invalid
+[   18.168394] nouveau 0000:01:00.0: DRM: MM: using COPY for buffer copies
+[   18.168400] [drm] Initialized nouveau 1.3.0 20120801 for 0000:01:00.0 on
+minor 1
+[   25.809299] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   27.810911] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   29.812527] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   31.814138] nouveau 0000:01:00.0: gr: wait for idle timeout (en: 1, ctxsw:
+0, busy: 1)
+[   33.815894] nouveau 0000:01:00.0: timeout at
+/home/bozhan/nouveau/drm/nouveau/nvkm/engine/gr/ctxgf100.c:1365/gf100_grctx_generate()!
+[   33.815947] nouveau 0000:01:00.0: gr: failed to construct context
+[   33.815951] nouveau 0000:01:00.0: gr: init failed, -16
+
+
+This is with your tree.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444413025.00A2F1.25042--
+
+--===============0955424974==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0955424974==--
