@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90976] GM204 (NV124) black screen on modesetting
-Date: Sat, 10 Oct 2015 09:20:25 +0000
-Message-ID: <bug-90976-8800-0DnZ8nRw0u@http.bugs.freedesktop.org/>
-References: <bug-90976-8800@http.bugs.freedesktop.org/>
+From: Hauke Mehrtens <hauke-5/S+JYg5SzeELgA04lAiVw@public.gmane.org>
+Subject: [PATCH v2 1/2] drm/nouveau: activate dual link TMDS links
+	only when possible
+Date: Sat, 10 Oct 2015 16:10:00 +0200
+Message-ID: <1444486201-3337-2-git-send-email-hauke@hauke-m.de>
+References: <1444486201-3337-1-git-send-email-hauke@hauke-m.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1237822277=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1444486201-3337-1-git-send-email-hauke-5/S+JYg5SzeELgA04lAiVw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,106 +19,50 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Hauke Mehrtens <hauke-5/S+JYg5SzeELgA04lAiVw@public.gmane.org>, bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1237822277==
-Content-Type: multipart/alternative; boundary="1444468824.DcFe82.20326"; charset="UTF-8"
-
-
---1444468824.DcFe82.20326
-Date: Sat, 10 Oct 2015 09:20:24 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90976
-
-Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org
-
---- Comment #7 from Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> ---
-Hi,
-testing 4.3-rc4 i've seem some small improvement with HDMI (some 'wrong' pink
-line in output now gone and all ok)
-
-Maybe worth a try to re-test your issue again.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444468824.DcFe82.20326
-Date: Sat, 10 Oct 2015 09:20:24 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">bug 90976</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>stefan&#64;huehner.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976#c7">Comment # 7</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">bug 90976</a>
-              from <span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
-</span></b>
-        <pre>Hi,
-testing 4.3-rc4 i've seem some small improvement with HDMI (some 'wrong' pink
-line in output now gone and all ok)
-
-Maybe worth a try to re-test your issue again.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444468824.DcFe82.20326--
-
---===============1237822277==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1237822277==--
+V2l0aG91dCB0aGlzIHBhdGNoIGEgcGl4ZWwgY2xvY2sgcmF0ZSBhYm92ZSAxNjUgTUh6IG9uIGEg
+VE1EUyBsaW5rIGlzCmFzc3VtZWQgdG8gYmUgZHVhbCBsaW5rLiBUaGlzIGlzIHRydWUgZm9yIERW
+SSwgYnV0IG5vdCBmb3IgSERNSS4gSERNSQpzdXBwb3J0cyBubyBkdWFsIGxpbmssIGJ1dCBpdCBz
+dXBwb3J0cyBwaXhlbCBjbG9jayByYXRlcyBhYm92ZSAxNjUgTUh6LgpPbmx5IGFjdGl2YXRlIER1
+YWwgTGluayBtb2RlIHdoZW4gaXQgaXMgYWN0dWFsIHBvc3NpYmxlLgoKU2lnbmVkLW9mZi1ieTog
+SGF1a2UgTWVocnRlbnMgPGhhdWtlQGhhdWtlLW0uZGU+Ci0tLQogZHJpdmVycy9ncHUvZHJtL25v
+dXZlYXUvbnY1MF9kaXNwbGF5LmMgICAgICAgICAgIHwgOCArKysrLS0tLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9nZjExOS5jIHwgMiArLQogZHJpdmVycy9ncHUv
+ZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmMgIHwgMiArLQogMyBmaWxlcyBjaGFu
+Z2VkLCA2IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udjUwX2Rpc3BsYXkuYwppbmRleCA0YWU4N2FlLi4xMmRmMzU4IDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+bm91dmVhdS9udjUwX2Rpc3BsYXkuYwpAQCAtMTk2MiwxMCArMTk2MiwxMCBAQCBudjUwX3Nvcl9t
+b2RlX3NldChzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXIsIHN0cnVjdCBkcm1fZGlzcGxheV9t
+b2RlICp1bW9kZSwKIAlzd2l0Y2ggKG52X2VuY29kZXItPmRjYi0+dHlwZSkgewogCWNhc2UgRENC
+X09VVFBVVF9UTURTOgogCQlpZiAobnZfZW5jb2Rlci0+ZGNiLT5zb3Jjb25mLmxpbmsgJiAxKSB7
+Ci0JCQlpZiAobW9kZS0+Y2xvY2sgPCAxNjUwMDApCi0JCQkJcHJvdG8gPSAweDE7Ci0JCQllbHNl
+Ci0JCQkJcHJvdG8gPSAweDU7CisJCQlwcm90byA9IDB4MTsKKwkJCWlmIChtb2RlLT5jbG9jayA+
+PSAxNjUwMDAgJiYKKwkJCSAgICBudl9lbmNvZGVyLT5kY2ItPmR1YWxsaW5rX3Bvc3NpYmxlKQor
+CQkJCXByb3RvIHw9IDB4NDsKIAkJfSBlbHNlIHsKIAkJCXByb3RvID0gMHgyOwogCQl9CmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2dmMTE5LmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2dmMTE5LmMKaW5kZXgg
+MTg2ZmQzYS4uODY5MWI2OCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZr
+bS9lbmdpbmUvZGlzcC9nZjExOS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20v
+ZW5naW5lL2Rpc3AvZ2YxMTkuYwpAQCAtMTU4LDcgKzE1OCw3IEBAIGV4ZWNfY2xrY21wKHN0cnVj
+dCBudjUwX2Rpc3AgKmRpc3AsIGludCBoZWFkLCBpbnQgaWQsIHUzMiBwY2xrLCB1MzIgKmNvbmYp
+CiAJc3dpdGNoIChvdXRwLT5pbmZvLnR5cGUpIHsKIAljYXNlIERDQl9PVVRQVVRfVE1EUzoKIAkJ
+KmNvbmYgPSAoY3RybCAmIDB4MDAwMDBmMDApID4+IDg7Ci0JCWlmIChwY2xrID49IDE2NTAwMCkK
+KwkJaWYgKHBjbGsgPj0gMTY1MDAwICYmIG91dHAtPmluZm8uZHVhbGxpbmtfcG9zc2libGUpCiAJ
+CQkqY29uZiB8PSAweDAxMDA7CiAJCWJyZWFrOwogCWNhc2UgRENCX09VVFBVVF9MVkRTOgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL252NTAuYwppbmRleCAz
+MmU3M2E5Li5jZWVjZDBlIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmtt
+L2VuZ2luZS9kaXNwL252NTAuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kaXNwL252NTAuYwpAQCAtMzkxLDcgKzM5MSw3IEBAIGV4ZWNfY2xrY21wKHN0cnVjdCBu
+djUwX2Rpc3AgKmRpc3AsIGludCBoZWFkLCBpbnQgaWQsIHUzMiBwY2xrLCB1MzIgKmNvbmYpCiAJ
+CXN3aXRjaCAob3V0cC0+aW5mby50eXBlKSB7CiAJCWNhc2UgRENCX09VVFBVVF9UTURTOgogCQkJ
+KmNvbmYgPSAoY3RybCAmIDB4MDAwMDBmMDApID4+IDg7Ci0JCQlpZiAocGNsayA+PSAxNjUwMDAp
+CisJCQlpZiAocGNsayA+PSAxNjUwMDAgJiYgb3V0cC0+aW5mby5kdWFsbGlua19wb3NzaWJsZSkK
+IAkJCQkqY29uZiB8PSAweDAxMDA7CiAJCQlicmVhazsKIAkJY2FzZSBEQ0JfT1VUUFVUX0xWRFM6
+Ci0tIAoyLjEuNAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
+cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
