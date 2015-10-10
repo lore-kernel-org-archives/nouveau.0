@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92420] X crash when with 2nd display connected via
 	Display Port
-Date: Sat, 10 Oct 2015 22:47:49 +0000
-Message-ID: <bug-92420-8800-NLD8WJzZE3@http.bugs.freedesktop.org/>
+Date: Sat, 10 Oct 2015 22:53:29 +0000
+Message-ID: <bug-92420-8800-5rX8UvcHyq@http.bugs.freedesktop.org/>
 References: <bug-92420-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1718770384=="
+Content-Type: multipart/mixed; boundary="===============1843823085=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92420-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1718770384==
-Content-Type: multipart/alternative; boundary="1444517269.eCa73dbD1.26736"; charset="UTF-8"
+--===============1843823085==
+Content-Type: multipart/alternative; boundary="1444517609.6410B3062.28687"; charset="UTF-8"
 
 
---1444517269.eCa73dbD1.26736
-Date: Sat, 10 Oct 2015 22:47:49 +0000
+--1444517609.6410B3062.28687
+Date: Sat, 10 Oct 2015 22:53:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92420
 
---- Comment #1 from J <rhbugzilla-hzqV2YXAeqW1Z/+hSey0Gg@public.gmane.org> ---
-I should also add - I do not have this problem when running CentOS 7 - 3.10
+--- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please attach your VBIOS as well (you can retrieve it from
+/sys/kernel/debug/dri/0/vbios.rom )
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444517269.eCa73dbD1.26736
-Date: Sat, 10 Oct 2015 22:47:49 +0000
+--1444517609.6410B3062.28687
+Date: Sat, 10 Oct 2015 22:53:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X crash when with 2nd display connected via Display Port"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92420#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92420#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X crash when with 2nd display connected via Display Port"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92420">bug 92420</a>
-              from <span class="vcard"><a class="email" href="mailto:rhbugzilla&#64;vontersch.com" title="J &lt;rhbugzilla&#64;vontersch.com&gt;"> <span class="fn">J</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I should also add - I do not have this problem when running CentOS 7 - 3.10</pre>
+        <pre>Please attach your VBIOS as well (you can retrieve it from
+/sys/kernel/debug/dri/0/vbios.rom )</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444517269.eCa73dbD1.26736--
+--1444517609.6410B3062.28687--
 
---===============1718770384==
+--===============1843823085==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1718770384==--
+--===============1843823085==--
