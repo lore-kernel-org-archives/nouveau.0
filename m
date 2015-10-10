@@ -1,176 +1,64 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91232] Torchlight 1&2 (in Wine): glitchy models when
- hardware skinning enabled
-Date: Sat, 10 Oct 2015 05:58:55 +0000
-Message-ID: <bug-91232-8800-RpO5jtDeaq@http.bugs.freedesktop.org/>
-References: <bug-91232-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin@alum.mit.edu>
+Subject: [PATCH] nouveau: avoid emitting new fences unnecessarily
+Date: Sat, 10 Oct 2015 02:12:12 -0400
+Message-ID: <1444457532-30252-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1125148537=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91232-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: mesa-stable@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1125148537==
-Content-Type: multipart/alternative; boundary="1444456735.Ed0E551.1513"; charset="UTF-8"
-
-
---1444456735.Ed0E551.1513
-Date: Sat, 10 Oct 2015 05:58:55 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D91232
-
-B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |CLOSED
-                 CC|                            |gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-
---- Comment #12 from B=C3=A9la Gyebr=C3=B3szki <gyebro69-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Fixed in Wine git by the following series of commits:
-
-http://source.winehq.org/git/wine.git/commit/97ee9451edae82154b289cb57b46ef=
-13aedd58b8
-http://source.winehq.org/git/wine.git/commit/09eda02b6896f5fe4ca7db5e1c13cb=
-c67f8118e8
-http://source.winehq.org/git/wine.git/commit/08b21528ed51d7ece92ea67fe0afe1=
-d2a998c989
-http://source.winehq.org/git/wine.git/commit/f511787423f468a679837761ef4ea8=
-41ba7a3fda
-http://source.winehq.org/git/wine.git/commit/93db8e97da2690c62a5d4586d62146=
-32a98df344
-
-wine-1.7.52-190-gd548639
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NV92
-OpenGL core profile version string: 3.3 (Core Profile) Mesa 11.1.0-devel
-
---=20
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1444456735.Ed0E551.1513
-Date: Sat, 10 Oct 2015 05:58:55 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:gyebro69&=
-#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64;gmail.co=
-m&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_CLOSED  bz_closed"
-   title=3D"CLOSED NOTOURBUG - Torchlight 1&amp;2 (in Wine): glitchy models=
- when hardware skinning enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91232">bug 91232<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>CLOSED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>gyebro69&#64;gmail.com
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_CLOSED  bz_closed"
-   title=3D"CLOSED NOTOURBUG - Torchlight 1&amp;2 (in Wine): glitchy models=
- when hardware skinning enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91232#c12">Commen=
-t # 12</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_CLOSED  bz_closed"
-   title=3D"CLOSED NOTOURBUG - Torchlight 1&amp;2 (in Wine): glitchy models=
- when hardware skinning enabled"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D91232">bug 91232<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-gyebro69&#64;gmail.com" title=3D"B=C3=A9la Gyebr=C3=B3szki &lt;gyebro69&#64=
-;gmail.com&gt;"> <span class=3D"fn">B=C3=A9la Gyebr=C3=B3szki</span></a>
-</span></b>
-        <pre>Fixed in Wine git by the following series of commits:
-
-<a href=3D"http://source.winehq.org/git/wine.git/commit/97ee9451edae82154b2=
-89cb57b46ef13aedd58b8">http://source.winehq.org/git/wine.git/commit/97ee945=
-1edae82154b289cb57b46ef13aedd58b8</a>
-<a href=3D"http://source.winehq.org/git/wine.git/commit/09eda02b6896f5fe4ca=
-7db5e1c13cbc67f8118e8">http://source.winehq.org/git/wine.git/commit/09eda02=
-b6896f5fe4ca7db5e1c13cbc67f8118e8</a>
-<a href=3D"http://source.winehq.org/git/wine.git/commit/08b21528ed51d7ece92=
-ea67fe0afe1d2a998c989">http://source.winehq.org/git/wine.git/commit/08b2152=
-8ed51d7ece92ea67fe0afe1d2a998c989</a>
-<a href=3D"http://source.winehq.org/git/wine.git/commit/f511787423f468a6798=
-37761ef4ea841ba7a3fda">http://source.winehq.org/git/wine.git/commit/f511787=
-423f468a679837761ef4ea841ba7a3fda</a>
-<a href=3D"http://source.winehq.org/git/wine.git/commit/93db8e97da2690c62a5=
-d4586d6214632a98df344">http://source.winehq.org/git/wine.git/commit/93db8e9=
-7da2690c62a5d4586d6214632a98df344</a>
-
-wine-1.7.52-190-gd548639
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NV92
-OpenGL core profile version string: 3.3 (Core Profile) Mesa 11.1.0-devel</p=
-re>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444456735.Ed0E551.1513--
-
---===============1125148537==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1125148537==--
+UmlnaHQgbm93IHdlIGVtaXQgb24gZXZlcnkga2ljaywgYnV0IHRoaXMgaXMgb25seSBuZWNlc3Nh
+cnkgaWYgc29tZXRoaW5nCndpbGwgZXZlciBiZSBhYmxlIHRvIG9ic2VydmUgdGhhdCB0aGUgZmVu
+Y2UgY29tcGxldGVkLiBJZiB0aGVyZSBhcmUgbm8KcmVmcywgbGVhdmUgdGhlIGZlbmNlIGFsb25l
+IGFuZCBlbWl0IGl0IGFub3RoZXIgZGF5LgoKVGhpcyBhbHNvIGhhcHBlbnMgdG8gd29yayBhcm91
+bmQgYW4gaXNzdWUgZm9yIHRoZSBraWNrIGhhbmRsZXIgLS0gYSBraWNrCmNhbiBiZSBhIHJlc3Vs
+dCBvZiBlLmcuIG5vdXZlYXVfYm9fd2FpdCBvciBleHBsaWNpdCBraWNrLCBvciBpdCBjYW4gYmUK
+ZHVlIHRvIGxhY2sgb2Ygc3BhY2UgaW4gdGhlIHB1c2hidWYuIFdlIHdhbnQgdGhlIGVtaXQgdG8g
+aGFwcGVuIGluIHRoZQpjdXJyZW50IGJhdGNoLCBzbyB3ZSB3YW50IHRoZXJlIHRvIGFsd2F5cyBi
+ZSBlbm91Z2ggc3BhY2UuIEhvd2V2ZXIgYW4KZXhwbGljaXQga2ljayBjb3VsZCB0YWtlIHRoZSBy
+ZXNlcnZlZCBzcGFjZSBmb3IgdGhlIGltcGxpY2l0bHktdHJpZ2dlcmVkCmtpY2sncyBmZW5jZSBl
+bWlzc2lvbiBpZiBpdCBoYXBwZW5lZCByaWdodCBhZnRlci4gV2l0aCB0aGUgbmV3IG1lY2hhbmlz
+bSwKaG9wZWZ1bGx5IHRoZXJlJ3Mgbm8gd2F5IHRvIGNhdXNlIHR3byBmZW5jZXMgdG8gYmUgZW1p
+dHRlZCBpbnRvIHRoZSBzYW1lCnJlc2VydmVkIHNwYWNlLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBN
+aXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzogbWVzYS1zdGFibGVAbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnCkZpeGVzOiA0N2QxMTk5MGIgKG5vdXZlYXU6IG1ha2Ugc3VyZSB0aGVyZSdzIGFs
+d2F5cyByb29tIHRvIGVtaXQgYSBmZW5jZSkKLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvbm91dmVhdV9mZW5jZS5jIHwgMTIgKysrKysrKysrLS0tCiAxIGZpbGUgY2hhbmdlZCwgOSBp
+bnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2Ry
+aXZlcnMvbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZl
+YXUvbm91dmVhdV9mZW5jZS5jCmluZGV4IGVlNGUwOGQuLjE4YjE1OTIgMTAwNjQ0Ci0tLSBhL3Ny
+Yy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMKKysrIGIvc3JjL2dhbGxp
+dW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYwpAQCAtMTkwLDggKzE5MCwxMCBAQCBu
+b3V2ZWF1X2ZlbmNlX3dhaXQoc3RydWN0IG5vdXZlYXVfZmVuY2UgKmZlbmNlKQogICAgLyogd3Rm
+LCBzb21lb25lIGlzIHdhaXRpbmcgb24gYSBmZW5jZSBpbiBmbHVzaF9ub3RpZnkgaGFuZGxlcj8g
+Ki8KICAgIGFzc2VydChmZW5jZS0+c3RhdGUgIT0gTk9VVkVBVV9GRU5DRV9TVEFURV9FTUlUVElO
+Ryk7CiAKLSAgIGlmIChmZW5jZS0+c3RhdGUgPCBOT1VWRUFVX0ZFTkNFX1NUQVRFX0VNSVRURUQp
+CisgICBpZiAoZmVuY2UtPnN0YXRlIDwgTk9VVkVBVV9GRU5DRV9TVEFURV9FTUlUVEVEKSB7Cisg
+ICAgICBQVVNIX1NQQUNFKHNjcmVlbi0+cHVzaGJ1ZiwgOCk7CiAgICAgICBub3V2ZWF1X2ZlbmNl
+X2VtaXQoZmVuY2UpOworICAgfQogCiAgICBpZiAoZmVuY2UtPnN0YXRlIDwgTk9VVkVBVV9GRU5D
+RV9TVEFURV9GTFVTSEVEKQogICAgICAgaWYgKG5vdXZlYXVfcHVzaGJ1Zl9raWNrKHNjcmVlbi0+
+cHVzaGJ1Ziwgc2NyZWVuLT5wdXNoYnVmLT5jaGFubmVsKSkKQEAgLTIyNCw4ICsyMjYsMTIgQEAg
+bm91dmVhdV9mZW5jZV93YWl0KHN0cnVjdCBub3V2ZWF1X2ZlbmNlICpmZW5jZSkKIHZvaWQKIG5v
+dXZlYXVfZmVuY2VfbmV4dChzdHJ1Y3Qgbm91dmVhdV9zY3JlZW4gKnNjcmVlbikKIHsKLSAgIGlm
+IChzY3JlZW4tPmZlbmNlLmN1cnJlbnQtPnN0YXRlIDwgTk9VVkVBVV9GRU5DRV9TVEFURV9FTUlU
+VElORykKLSAgICAgIG5vdXZlYXVfZmVuY2VfZW1pdChzY3JlZW4tPmZlbmNlLmN1cnJlbnQpOwor
+ICAgaWYgKHNjcmVlbi0+ZmVuY2UuY3VycmVudC0+c3RhdGUgPCBOT1VWRUFVX0ZFTkNFX1NUQVRF
+X0VNSVRUSU5HKSB7CisgICAgICBpZiAoc2NyZWVuLT5mZW5jZS5jdXJyZW50LT5yZWYgPiAxKQor
+ICAgICAgICAgbm91dmVhdV9mZW5jZV9lbWl0KHNjcmVlbi0+ZmVuY2UuY3VycmVudCk7CisgICAg
+ICBlbHNlCisgICAgICAgICByZXR1cm47CisgICB9CiAKICAgIG5vdXZlYXVfZmVuY2VfcmVmKE5V
+TEwsICZzY3JlZW4tPmZlbmNlLmN1cnJlbnQpOwogCi0tIAoyLjQuOQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1l
+c2EtZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
