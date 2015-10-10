@@ -1,11 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92386] New: Integrated sensor on nv43 doesn't work
- (wrong vbios parsing?)
-Date: Sat, 10 Oct 2015 14:48:29 +0000
-Message-ID: <bug-92386-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92386] Integrated sensor on nv43 doesn't work (wrong
+ vbios parsing?)
+Date: Sat, 10 Oct 2015 14:49:28 +0000
+Message-ID: <bug-92386-8800-sKKJtnwpvo@http.bugs.freedesktop.org/>
+References: <bug-92386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1080995490=="
+Content-Type: multipart/mixed; boundary="===============1528596690=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,60 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1080995490==
-Content-Type: multipart/alternative; boundary="1444488510.ECD701.30906"; charset="UTF-8"
+--===============1528596690==
+Content-Type: multipart/alternative; boundary="1444488568.bC6ab1.31224"; charset="UTF-8"
 
 
---1444488510.ECD701.30906
-Date: Sat, 10 Oct 2015 14:48:29 +0000
+--1444488568.bC6ab1.31224
+Date: Sat, 10 Oct 2015 14:49:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92386
 
-            Bug ID: 92386
-           Summary: Integrated sensor on nv43 doesn't work (wrong vbios
-                    parsing?)
-           Product: xorg
-           Version: git
-          Hardware: x86 (IA32)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: randrik-JGs/UdohzUI@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-
-Created attachment 118799
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118799&action=edit
-hack for recognizing sensor on nv43
-
-Hello, this is me again with my useful nv43.
-
-As far as I can see nvidia binary driver can use integrated sensor on my card,
-while nouveau can't. After some digging I found problem - nouveau can't find
-some calibration coefficients in vbios. May be they missed completely, or bios
-slightly misparsed. I'll attach again my vbios, and patch I made after looking
-at nvclock sources [1]. Patch allow sensor to work, and reported temperature
-roughly correspond to what I saw with binary driver (looking at raw output I
-see nouveau still hotter than nvidia, but I can ignore this for now).
-
-Not sure if such hack (?) should go into nouveau, or I (someone) better to find
-if values really missed from vbios first.
-
-Command for getting raw sensor value:
-envytools/nva/nvapeek 0x15b4
-
-[1] - http://www.linuxhardware.org/nvclock/
+--- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
+Created attachment 118800
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118800&action=edit
+vbios
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444488510.ECD701.30906
-Date: Sat, 10 Oct 2015 14:48:30 +0000
+--1444488568.bC6ab1.31224
+Date: Sat, 10 Oct 2015 14:49:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -80,109 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386">92386</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>Integrated sensor on nv43 doesn't work (wrong vbios parsing?)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>git
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86 (IA32)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>randrik&#64;mail.ru
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+    <body>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118799" name="attach_118799" title="hack for recognizing sensor on nv43">attachment 118799</a> <a href="attachment.cgi?id=118799&amp;action=edit" title="hack for recognizing sensor on nv43">[details]</a></span>
-hack for recognizing sensor on nv43
-
-Hello, this is me again with my useful nv43.
-
-As far as I can see nvidia binary driver can use integrated sensor on my card,
-while nouveau can't. After some digging I found problem - nouveau can't find
-some calibration coefficients in vbios. May be they missed completely, or bios
-slightly misparsed. I'll attach again my vbios, and patch I made after looking
-at nvclock sources [1]. Patch allow sensor to work, and reported temperature
-roughly correspond to what I saw with binary driver (looking at raw output I
-see nouveau still hotter than nvidia, but I can ignore this for now).
-
-Not sure if such hack (?) should go into nouveau, or I (someone) better to find
-if values really missed from vbios first.
-
-Command for getting raw sensor value:
-envytools/nva/nvapeek 0x15b4
-
-[1] - <a href="http://www.linuxhardware.org/nvclock/">http://www.linuxhardware.org/nvclock/</a></pre>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386">bug 92386</a>
+              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118800" name="attach_118800" title="vbios">attachment 118800</a> <a href="attachment.cgi?id=118800&amp;action=edit" title="vbios">[details]</a></span>
+vbios</pre>
         </div>
       </p>
       <hr>
@@ -194,9 +76,9 @@ envytools/nva/nvapeek 0x15b4
     </body>
 </html>
 
---1444488510.ECD701.30906--
+--1444488568.bC6ab1.31224--
 
---===============1080995490==
+--===============1528596690==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -206,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1080995490==--
+--===============1528596690==--
