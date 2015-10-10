@@ -1,12 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] nv50,
-	nvc0: don't base decisions on available pushbuf space
-Date: Sat, 10 Oct 2015 05:09:47 -0400
-Message-ID: <1444468187-13868-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89272] GM206 does not recognize attached hdmi monitor
+Date: Sat, 10 Oct 2015 09:14:14 +0000
+Message-ID: <bug-89272-8800-nvjsfS4KI0@http.bugs.freedesktop.org/>
+References: <bug-89272-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0496127561=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-89272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,90 +16,107 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2Ugc3RpbGwgaGF2ZSB0byBwdXNoIGV2ZXJ5dGhpbmcgb3V0LCBtaWdodCBhcyB3ZWxsIGtpY2sg
-ZWFybGllciBhbmQKZmxpcCBwdXNoYnVmcyB3aGVuIHdlIGtub3cgd2UnbGwgbmVlZCBpdC4gVGhp
-cyByZXNvbHZlcyBzb21lIGlzc3VlcyB3aXRoCnRoZSBuZXcgcG9saWN5IG9mIG1ha2luZyBzdXJl
-IHRoYXQgd2UgYWx3YXlzIGxlYXZlIGEgYml0IG9mIHJvb20gYXQgdGhlCmVuZCBmb3IgZmVuY2Vz
-LgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgpDYzog
-bWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCi0tLQogc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252NTAvbnY1MF9zaGFkZXJfc3RhdGUuYyB8ICA5ICsrLS0tLS0tLQogc3JjL2dh
-bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF90cmFuc2Zlci5jICAgICB8IDE2ICsrKy0t
-LS0tLS0tLS0tLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfdHJhbnNm
-ZXIuYyAgICAgfCAyMCArKysrKy0tLS0tLS0tLS0tLS0tLQogMyBmaWxlcyBjaGFuZ2VkLCAxMCBp
-bnNlcnRpb25zKCspLCAzNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NoYWRlcl9zdGF0ZS5jIGIvc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252NTAvbnY1MF9zaGFkZXJfc3RhdGUuYwppbmRleCBmZGRlMTFmLi45NDE1
-NTVmIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3No
-YWRlcl9zdGF0ZS5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBf
-c2hhZGVyX3N0YXRlLmMKQEAgLTY1LDE0ICs2NSw5IEBAIG52NTBfY29uc3RidWZzX3ZhbGlkYXRl
-KHN0cnVjdCBudjUwX2NvbnRleHQgKm52NTApCiAgICAgICAgICAgICAgICBQVVNIX0RBVEEgKHB1
-c2gsIChiIDw8IDEyKSB8IChpIDw8IDgpIHwgcCB8IDEpOwogICAgICAgICAgICAgfQogICAgICAg
-ICAgICAgd2hpbGUgKHdvcmRzKSB7Ci0gICAgICAgICAgICAgICB1bnNpZ25lZCBucjsKLQotICAg
-ICAgICAgICAgICAgaWYgKCFQVVNIX1NQQUNFKHB1c2gsIDE2KSkKLSAgICAgICAgICAgICAgICAg
-IGJyZWFrOwotICAgICAgICAgICAgICAgbnIgPSBQVVNIX0FWQUlMKHB1c2gpOwotICAgICAgICAg
-ICAgICAgYXNzZXJ0KG5yID49IDE2KTsKLSAgICAgICAgICAgICAgIG5yID0gTUlOMihNSU4yKG5y
-IC0gMywgd29yZHMpLCBOVjA0X1BGSUZPX01BWF9QQUNLRVRfTEVOKTsKKyAgICAgICAgICAgICAg
-IHVuc2lnbmVkIG5yID0gTUlOMih3b3JkcywgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTik7CiAK
-KyAgICAgICAgICAgICAgIFBVU0hfU1BBQ0UocHVzaCwgbnIgKyAzKTsKICAgICAgICAgICAgICAg
-IEJFR0lOX05WMDQocHVzaCwgTlY1MF8zRChDQl9BRERSKSwgMSk7CiAgICAgICAgICAgICAgICBQ
-VVNIX0RBVEEgKHB1c2gsIChzdGFydCA8PCA4KSB8IGIpOwogICAgICAgICAgICAgICAgQkVHSU5f
-TkkwNChwdXNoLCBOVjUwXzNEKENCX0RBVEEoMCkpLCBucik7CmRpZmYgLS1naXQgYS9zcmMvZ2Fs
-bGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RyYW5zZmVyLmMgYi9zcmMvZ2FsbGl1bS9k
-cml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RyYW5zZmVyLmMKaW5kZXggYmU1MTQwNy4uOWEzZmQx
-ZSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF90cmFu
-c2Zlci5jCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfdHJhbnNm
-ZXIuYwpAQCAtMTg3LDE0ICsxODcsNyBAQCBudjUwX3NpZmNfbGluZWFyX3U4KHN0cnVjdCBub3V2
-ZWF1X2NvbnRleHQgKm52LAogICAgUFVTSF9EQVRBIChwdXNoLCAwKTsKIAogICAgd2hpbGUgKGNv
-dW50KSB7Ci0gICAgICB1bnNpZ25lZCBucjsKLQotICAgICAgaWYgKCFQVVNIX1NQQUNFKHB1c2gs
-IDE2KSkKLSAgICAgICAgIGJyZWFrOwotICAgICAgbnIgPSBQVVNIX0FWQUlMKHB1c2gpOwotICAg
-ICAgYXNzZXJ0KG5yID49IDE2KTsKLSAgICAgIG5yID0gTUlOMihjb3VudCwgbnIgLSAxKTsKLSAg
-ICAgIG5yID0gTUlOMihuciwgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTik7CisgICAgICB1bnNp
-Z25lZCBuciA9IE1JTjIoY291bnQsIE5WMDRfUEZJRk9fTUFYX1BBQ0tFVF9MRU4pOwogCiAgICAg
-ICBCRUdJTl9OSTA0KHB1c2gsIE5WNTBfMkQoU0lGQ19EQVRBKSwgbnIpOwogICAgICAgUFVTSF9E
-QVRBcChwdXNoLCBzcmMsIG5yKTsKQEAgLTM5NSwxMiArMzg4LDkgQEAgbnY1MF9jYl9wdXNoKHN0
-cnVjdCBub3V2ZWF1X2NvbnRleHQgKm52LAogICAgbm91dmVhdV9wdXNoYnVmX3ZhbGlkYXRlKHB1
-c2gpOwogCiAgICB3aGlsZSAod29yZHMpIHsKLSAgICAgIHVuc2lnbmVkIG5yOwotCi0gICAgICBu
-ciA9IFBVU0hfQVZBSUwocHVzaCk7Ci0gICAgICBuciA9IE1JTjIobnIgLSA3LCB3b3Jkcyk7Ci0g
-ICAgICBuciA9IE1JTjIobnIsIE5WMDRfUEZJRk9fTUFYX1BBQ0tFVF9MRU4gLSAxKTsKKyAgICAg
-IHVuc2lnbmVkIG5yID0gTUlOMih3b3JkcywgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTik7CiAK
-KyAgICAgIFBVU0hfU1BBQ0UocHVzaCwgbnIgKyA3KTsKICAgICAgIEJFR0lOX05WMDQocHVzaCwg
-TlY1MF8zRChDQl9ERUZfQUREUkVTU19ISUdIKSwgMyk7CiAgICAgICBQVVNIX0RBVEFoKHB1c2gs
-IGJvLT5vZmZzZXQgKyBiYXNlKTsKICAgICAgIFBVU0hfREFUQSAocHVzaCwgYm8tPm9mZnNldCAr
-IGJhc2UpOwpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZj
-MF90cmFuc2Zlci5jIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF90cmFu
-c2Zlci5jCmluZGV4IGFhZWM2MGEuLmQ0NTlkZDYgMTAwNjQ0Ci0tLSBhL3NyYy9nYWxsaXVtL2Ry
-aXZlcnMvbm91dmVhdS9udmMwL252YzBfdHJhbnNmZXIuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnZjMC9udmMwX3RyYW5zZmVyLmMKQEAgLTE4OCwxNCArMTg4LDEwIEBAIG52
-YzBfbTJtZl9wdXNoX2xpbmVhcihzdHJ1Y3Qgbm91dmVhdV9jb250ZXh0ICpudiwKICAgIG5vdXZl
-YXVfcHVzaGJ1Zl92YWxpZGF0ZShwdXNoKTsKIAogICAgd2hpbGUgKGNvdW50KSB7Ci0gICAgICB1
-bnNpZ25lZCBucjsKKyAgICAgIHVuc2lnbmVkIG5yID0gTUlOMihjb3VudCwgTlYwNF9QRklGT19N
-QVhfUEFDS0VUX0xFTik7CiAKLSAgICAgIGlmICghUFVTSF9TUEFDRShwdXNoLCAxNikpCisgICAg
-ICBpZiAoIVBVU0hfU1BBQ0UocHVzaCwgbnIgKyA5KSkKICAgICAgICAgIGJyZWFrOwotICAgICAg
-bnIgPSBQVVNIX0FWQUlMKHB1c2gpOwotICAgICAgYXNzZXJ0KG5yID49IDE2KTsKLSAgICAgIG5y
-ID0gTUlOMihjb3VudCwgbnIgLSA5KTsKLSAgICAgIG5yID0gTUlOMihuciwgTlYwNF9QRklGT19N
-QVhfUEFDS0VUX0xFTik7CiAKICAgICAgIEJFR0lOX05WQzAocHVzaCwgTlZDMF9NMk1GKE9GRlNF
-VF9PVVRfSElHSCksIDIpOwogICAgICAgUFVTSF9EQVRBaChwdXNoLCBkc3QtPm9mZnNldCArIG9m
-ZnNldCk7CkBAIC0yMzQsMTQgKzIzMCwxMCBAQCBudmU0X3AybWZfcHVzaF9saW5lYXIoc3RydWN0
-IG5vdXZlYXVfY29udGV4dCAqbnYsCiAgICBub3V2ZWF1X3B1c2hidWZfdmFsaWRhdGUocHVzaCk7
-CiAKICAgIHdoaWxlIChjb3VudCkgewotICAgICAgdW5zaWduZWQgbnI7CisgICAgICB1bnNpZ25l
-ZCBuciA9IE1JTjIoY291bnQsIChOVjA0X1BGSUZPX01BWF9QQUNLRVRfTEVOIC0gMSkpOwogCi0g
-ICAgICBpZiAoIVBVU0hfU1BBQ0UocHVzaCwgMTYpKQorICAgICAgaWYgKCFQVVNIX1NQQUNFKHB1
-c2gsIG5yICsgMTApKQogICAgICAgICAgYnJlYWs7Ci0gICAgICBuciA9IFBVU0hfQVZBSUwocHVz
-aCk7Ci0gICAgICBhc3NlcnQobnIgPj0gMTYpOwotICAgICAgbnIgPSBNSU4yKGNvdW50LCBuciAt
-IDgpOwotICAgICAgbnIgPSBNSU4yKG5yLCAoTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTiAtIDEp
-KTsKIAogICAgICAgQkVHSU5fTlZDMChwdXNoLCBOVkU0X1AyTUYoVVBMT0FEX0RTVF9BRERSRVNT
-X0hJR0gpLCAyKTsKICAgICAgIFBVU0hfREFUQWgocHVzaCwgZHN0LT5vZmZzZXQgKyBvZmZzZXQp
-OwpAQCAtNTcxLDkgKzU2Myw3IEBAIG52YzBfY2JfYm9fcHVzaChzdHJ1Y3Qgbm91dmVhdV9jb250
-ZXh0ICpudiwKICAgIFBVU0hfREFUQSAocHVzaCwgYm8tPm9mZnNldCArIGJhc2UpOwogCiAgICB3
-aGlsZSAod29yZHMpIHsKLSAgICAgIHVuc2lnbmVkIG5yID0gUFVTSF9BVkFJTChwdXNoKTsKLSAg
-ICAgIG5yID0gTUlOMihuciwgd29yZHMpOwotICAgICAgbnIgPSBNSU4yKG5yLCBOVjA0X1BGSUZP
-X01BWF9QQUNLRVRfTEVOIC0gMSk7CisgICAgICB1bnNpZ25lZCBuciA9IE1JTjIod29yZHMsIE5W
-MDRfUEZJRk9fTUFYX1BBQ0tFVF9MRU4gLSAxKTsKIAogICAgICAgUFVTSF9TUEFDRShwdXNoLCBu
-ciArIDIpOwogICAgICAgUFVTSF9SRUZOIChwdXNoLCBibywgTk9VVkVBVV9CT19XUiB8IGRvbWFp
-bik7Ci0tIAoyLjQuOQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0496127561==
+Content-Type: multipart/alternative; boundary="1444468454.4f2FF1CB1.18186"; charset="UTF-8"
+
+
+--1444468454.4f2FF1CB1.18186
+Date: Sat, 10 Oct 2015 09:14:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89272
+
+Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #5 from Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> ---
+That bug was fixed in 4.0
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444468454.4f2FF1CB1.18186
+Date: Sat, 10 Oct 2015 09:14:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">bug 89272</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">bug 89272</a>
+              from <span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
+</span></b>
+        <pre>That bug was fixed in 4.0</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444468454.4f2FF1CB1.18186--
+
+--===============0496127561==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0496127561==--
