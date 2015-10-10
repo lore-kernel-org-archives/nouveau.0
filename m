@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92420] X crash when with 2nd display connected via
 	Display Port
-Date: Sat, 10 Oct 2015 22:53:29 +0000
-Message-ID: <bug-92420-8800-5rX8UvcHyq@http.bugs.freedesktop.org/>
+Date: Sat, 10 Oct 2015 23:08:30 +0000
+Message-ID: <bug-92420-8800-bDKPawNGY4@http.bugs.freedesktop.org/>
 References: <bug-92420-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1843823085=="
+Content-Type: multipart/mixed; boundary="===============0682230647=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92420-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1843823085==
-Content-Type: multipart/alternative; boundary="1444517609.6410B3062.28687"; charset="UTF-8"
+--===============0682230647==
+Content-Type: multipart/alternative; boundary="1444518510.cAda1E1.1917"; charset="UTF-8"
 
 
---1444517609.6410B3062.28687
-Date: Sat, 10 Oct 2015 22:53:29 +0000
+--1444518510.cAda1E1.1917
+Date: Sat, 10 Oct 2015 23:08:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92420
 
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please attach your VBIOS as well (you can retrieve it from
-/sys/kernel/debug/dri/0/vbios.rom )
+--- Comment #3 from J <rhbugzilla-hzqV2YXAeqW1Z/+hSey0Gg@public.gmane.org> ---
+Created attachment 118808
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118808&action=edit
+vbios.rom
+
+vbios.rom as requested.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444517609.6410B3062.28687
-Date: Sat, 10 Oct 2015 22:53:29 +0000
+--1444518510.cAda1E1.1917
+Date: Sat, 10 Oct 2015 23:08:30 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +58,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X crash when with 2nd display connected via Display Port"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92420#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92420#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - X crash when with 2nd display connected via Display Port"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92420">bug 92420</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:rhbugzilla&#64;vontersch.com" title="J &lt;rhbugzilla&#64;vontersch.com&gt;"> <span class="fn">J</span></a>
 </span></b>
-        <pre>Please attach your VBIOS as well (you can retrieve it from
-/sys/kernel/debug/dri/0/vbios.rom )</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118808" name="attach_118808" title="vbios.rom">attachment 118808</a> <a href="attachment.cgi?id=118808&amp;action=edit" title="vbios.rom">[details]</a></span>
+vbios.rom
+
+vbios.rom as requested.</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +80,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444517609.6410B3062.28687--
+--1444518510.cAda1E1.1917--
 
---===============1843823085==
+--===============0682230647==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1843823085==--
+--===============0682230647==--
