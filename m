@@ -1,57 +1,160 @@
-From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
-Subject: Re: [Nouveau] [PATCH] nv50,
- nvc0: don't base decisions on available pushbuf space
-Date: Sat, 10 Oct 2015 22:29:56 +0200
-Message-ID: <56197544.2020207@gmail.com>
-References: <1444468187-13868-1-git-send-email-imirkin@alum.mit.edu>
- <561969F1.9080706@gmail.com>
- <CAKb7UvgWEKVA1TWqU-Bcu=VmunnXot_Sqp11F7XC_mOowVqTUw@mail.gmail.com>
- <56196D35.2040203@gmail.com>
- <CAKb7UvhaZn2tK9ejZ7ard79gHuxoWJRi+hLU=P6+psZSqT-sZA@mail.gmail.com>
- <56197346.4030606@gmail.com>
- <CAKb7Uvh0iBztSNw-vH1d5bamKX4YHR=rhkwX-9W5o-VedCNjYQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 85160] [NV94] INVALID_STATE error,
+ X fails to start on GeForce 9600 GT with dual monitors,
+ kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
+Date: Sat, 10 Oct 2015 22:28:37 +0000
+Message-ID: <bug-85160-8800-B1tkCrpU36@http.bugs.freedesktop.org/>
+References: <bug-85160-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvh0iBztSNw-vH1d5bamKX4YHR=rhkwX-9W5o-VedCNjYQ@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>, "10.0" <mesa-stable@lists.freedesktop.org>, "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1304099814=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMC8xMC8yMDE1IDEwOjE3IFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBPbiBTYXQsIE9j
-dCAxMCwgMjAxNSBhdCA0OjIxIFBNLCBTYW11ZWwgUGl0b2lzZXQKPiA8c2FtdWVsLnBpdG9pc2V0
-QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIDEwLzEwLzIwMTUgMDk6NTggUE0sIElsaWEgTWly
-a2luIHdyb3RlOgo+Pj4gT24gU2F0LCBPY3QgMTAsIDIwMTUgYXQgMzo1NSBQTSwgU2FtdWVsIFBp
-dG9pc2V0Cj4+PiA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4gd3JvdGU6Cj4+Pj4KPj4+PiBP
-biAxMC8xMC8yMDE1IDA5OjQyIFBNLCBJbGlhIE1pcmtpbiB3cm90ZToKPj4+Pj4gT24gU2F0LCBP
-Y3QgMTAsIDIwMTUgYXQgMzo0MSBQTSwgU2FtdWVsIFBpdG9pc2V0Cj4+Pj4+IDxzYW11ZWwucGl0
-b2lzZXRAZ21haWwuY29tPiB3cm90ZToKPj4+Pj4+IFRoaXMgcGF0Y2ggbG9va3MgZmluZSBleGNl
-cHQgdGhhdCBpdCBzaG91bGQgYmUgYSBiaXQgbW9yZSBub3JtYWxpemVkLiBJCj4+Pj4+PiBtZWFu
-LCBzb21ldGltZXMgeW91IGJyZWFrIHdoZW4gUFVTSF9TUEFDRSBmYWlscywgc29tZXRpbWVzIG5v
-dC4gU2FtZQo+Pj4+Pj4gZm9yCj4+Pj4+PiBQVVNIX1NQQUNFIGNhbGxzLCBzb21ldGltZXMgeW91
-IGFkZCBpdCBzb21ldGltZXMgbm90Lgo+Pj4+PiBNZWguIFdlIG5lZWQgdG8gZ2V0IG91ciBlcnJv
-ciBjaGVja2luZyBzaXR1YXRpb24gc3RyYWlnaHQsIGJ1dCB0aGlzCj4+Pj4+IGlzbid0IHRoZSBw
-YXRjaCB0byBkbyBpdCBpbi4KPj4+Pgo+Pj4+IFllYWgsIGJ1dCB0aGlzIG5lZWRzIHRvIGJlIGNs
-YXJpZmllZC4KPj4+IFdoYXQgZG9lcz8KPj4KPj4gSSBtZWFuLCB3ZSBzaG91bGQgZWl0aGVyIHVz
-ZSBQVVNIX1NQQUNFIGV2ZXJ5d2hlcmUgb3Igbm90IGF0IGFsbCwgYW5kIGFsd2F5cwo+PiBicmVh
-a3MgKG9yIG5vdCkgd2hlbiBQVVNIX1NQQUNFIGZhaWxzLgo+PiBUaGF0J3MgcmVhbGx5IGEgbWlu
-b3IgaXNzdWUuCj4gSXQncyBhY3R1YWxseSBhIG1ham9yIGlzc3VlLiBFcnJvci1oYW5kbGluZyBp
-cyBwcmFjdGljYWxseQo+IG5vbi1leGlzdGVudC4gVGhlcmUgYXJlIGEgY291cGxlIG9mIHNwb3Rz
-IGhlcmUgYW5kIHRoZXJlLCBidXQgaXQKPiBkb2Vzbid0IHJlYWxseSBzY2FsZSB1cC4gSSBndWVz
-cyBJIChzZW1pLSlhY2NpZGVudGFsbHkgcmVtb3ZlZCBhCj4gY291cGxlIG9mIHNwb3RzIHRoYXQg
-ZXJyb3IgY2hlY2tlZCwgYnV0LCBhZ2FpbiwgbWVoLiBEb2luZyB0aGlzIGZvcgo+IHJlYWwgd2ls
-bCByZXF1aXJlIHNvbWUgY2FyZWZ1bCB0aG91Z2h0LgoKWWVhaCwgb2theS4gU28gd2UgcmVhbGx5
-IG5lZWQgdG8gaW1wcm92ZSBlcnJvci1oYW5kbGluZy4gOikKCj4gICAgLWlsaWEKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCm1lc2EtZGV2IG1haWxpbmcg
-bGlzdAptZXNhLWRldkBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL21lc2EtZGV2Cg==
+
+--===============1304099814==
+Content-Type: multipart/alternative; boundary="1444516117.5ecF12.20153"; charset="UTF-8"
+
+
+--1444516117.5ecF12.20153
+Date: Sat, 10 Oct 2015 22:28:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=85160
+
+J <rhbugzilla-hzqV2YXAeqW1Z/+hSey0Gg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|FIXED                       |---
+
+--- Comment #28 from J <rhbugzilla-hzqV2YXAeqW1Z/+hSey0Gg@public.gmane.org> ---
+I have a similar problem, but with a different card.  I believe my errors start
+the same way as the original poster.
+
+modinfo nouveau -n
+/lib/modules/4.2.3-300.fc23.x86_64/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+
+lspci -v | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G92GLM [Quadro FX 2800M]
+(rev a2) (prog-if 00 [VGA controller])
+
+I'm using a laptop (dell m6500) and get a bunch of nouveau errors printed when
+I connect my 2nd display via the display port.  So long as I stay running in
+init 3, the primary laptop LCD continues to function, but once I go init 5, X
+appears to start, and then just hangs.
+
+I've attached dmesg output for when I connect the display port, and when I
+disconnect the display port.
+
+Please let me know if I've posted to the wrong bug or can help in any way.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+
+--1444516117.5ecF12.20153
+Date: Sat, 10 Oct 2015 22:28:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:rhbugzilla&#64;vontersch.com" title="J &lt;rhbugzilla&#64;vontersch.com&gt;"> <span class="fn">J</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>FIXED
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c28">Comment # 28</a>
+              on <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
+              from <span class="vcard"><a class="email" href="mailto:rhbugzilla&#64;vontersch.com" title="J &lt;rhbugzilla&#64;vontersch.com&gt;"> <span class="fn">J</span></a>
+</span></b>
+        <pre>I have a similar problem, but with a different card.  I believe my errors start
+the same way as the original poster.
+
+modinfo nouveau -n
+/lib/modules/4.2.3-300.fc23.x86_64/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+
+lspci -v | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G92GLM [Quadro FX 2800M]
+(rev a2) (prog-if 00 [VGA controller])
+
+I'm using a laptop (dell m6500) and get a bunch of nouveau errors printed when
+I connect my 2nd display via the display port.  So long as I stay running in
+init 3, the primary laptop LCD continues to function, but once I go init 5, X
+appears to start, and then just hangs.
+
+I've attached dmesg output for when I connect the display port, and when I
+disconnect the display port.
+
+Please let me know if I've posted to the wrong bug or can help in any way.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444516117.5ecF12.20153--
+
+--===============1304099814==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1304099814==--
