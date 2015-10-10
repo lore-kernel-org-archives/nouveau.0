@@ -1,11 +1,11 @@
-From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Fw: new message
-Date: Sat, 10 Oct 2015 07:04:08 -0700
-Message-ID: <00009ccb1c6b$619171ee$3f220bc0$@derocher.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92386] New: Integrated sensor on nv43 doesn't work
+ (wrong vbios parsing?)
+Date: Sat, 10 Oct 2015 14:48:29 +0000
+Message-ID: <bug-92386-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1352277911=="
+Content-Type: multipart/mixed; boundary="===============1080995490=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,96 +15,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Nicolas Gddel <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>Nouveau List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>"Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pali Rohr <public-pali.rohar-Re5JQEeQqe8AvxtiuMwx3w-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>, Patrick Baggett <baggett.patrick-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Paul Bolle <pebolle-IWqWACnzNjzz+pZb47iToQ@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
 
---===============1352277911==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_2D7C4B87.129B57A5"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_2D7C4B87.129B57A5
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello!
-
- 
-
-New message, please read <http://linking-people.org/gentle.php?l7s1>
-
- 
-
-Nouveau
+--===============1080995490==
+Content-Type: multipart/alternative; boundary="1444488510.ECD701.30906"; charset="UTF-8"
 
 
-------=_NextPart_000_0001_2D7C4B87.129B57A5
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--1444488510.ECD701.30906
+Date: Sat, 10 Oct 2015 14:48:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><b>New message, please read</b> <a href=3D"http://linkin=
-g-people.org/gentle.php?l7s1">http://linking-people.org/gentle.php</a>=
-<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nb=
-sp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:=
-p></o:p></span></p></div></body></html>
+https://bugs.freedesktop.org/show_bug.cgi?id=92386
 
-------=_NextPart_000_0001_2D7C4B87.129B57A5--
+            Bug ID: 92386
+           Summary: Integrated sensor on nv43 doesn't work (wrong vbios
+                    parsing?)
+           Product: xorg
+           Version: git
+          Hardware: x86 (IA32)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: randrik-JGs/UdohzUI@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
---===============1352277911==
+Created attachment 118799
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118799&action=edit
+hack for recognizing sensor on nv43
+
+Hello, this is me again with my useful nv43.
+
+As far as I can see nvidia binary driver can use integrated sensor on my card,
+while nouveau can't. After some digging I found problem - nouveau can't find
+some calibration coefficients in vbios. May be they missed completely, or bios
+slightly misparsed. I'll attach again my vbios, and patch I made after looking
+at nvclock sources [1]. Patch allow sensor to work, and reported temperature
+roughly correspond to what I saw with binary driver (looking at raw output I
+see nouveau still hotter than nvidia, but I can ignore this for now).
+
+Not sure if such hack (?) should go into nouveau, or I (someone) better to find
+if values really missed from vbios first.
+
+Command for getting raw sensor value:
+envytools/nva/nvapeek 0x15b4
+
+[1] - http://www.linuxhardware.org/nvclock/
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1444488510.ECD701.30906
+Date: Sat, 10 Oct 2015 14:48:30 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386">92386</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Integrated sensor on nv43 doesn't work (wrong vbios parsing?)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86 (IA32)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>randrik&#64;mail.ru
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118799" name="attach_118799" title="hack for recognizing sensor on nv43">attachment 118799</a> <a href="attachment.cgi?id=118799&amp;action=edit" title="hack for recognizing sensor on nv43">[details]</a></span>
+hack for recognizing sensor on nv43
+
+Hello, this is me again with my useful nv43.
+
+As far as I can see nvidia binary driver can use integrated sensor on my card,
+while nouveau can't. After some digging I found problem - nouveau can't find
+some calibration coefficients in vbios. May be they missed completely, or bios
+slightly misparsed. I'll attach again my vbios, and patch I made after looking
+at nvclock sources [1]. Patch allow sensor to work, and reported temperature
+roughly correspond to what I saw with binary driver (looking at raw output I
+see nouveau still hotter than nvidia, but I can ignore this for now).
+
+Not sure if such hack (?) should go into nouveau, or I (someone) better to find
+if values really missed from vbios first.
+
+Command for getting raw sensor value:
+envytools/nva/nvapeek 0x15b4
+
+[1] - <a href="http://www.linuxhardware.org/nvclock/">http://www.linuxhardware.org/nvclock/</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444488510.ECD701.30906--
+
+--===============1080995490==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +206,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1352277911==--
+--===============1080995490==--
