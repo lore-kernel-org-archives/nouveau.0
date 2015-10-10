@@ -1,14 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85160] [NV94] INVALID_STATE error,
- X fails to start on GeForce 9600 GT with dual monitors,
- kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards
-Date: Sat, 10 Oct 2015 22:32:18 +0000
-Message-ID: <bug-85160-8800-uYR6zRpIIi@http.bugs.freedesktop.org/>
-References: <bug-85160-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92420] New: X crash when with 2nd display connected
+ via Display Port
+Date: Sat, 10 Oct 2015 22:46:16 +0000
+Message-ID: <bug-92420-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0466882714=="
+Content-Type: multipart/mixed; boundary="===============0832704728=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85160-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,37 +19,67 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0466882714==
-Content-Type: multipart/alternative; boundary="1444516338.fC80d04E2.21572"; charset="UTF-8"
+--===============0832704728==
+Content-Type: multipart/alternative; boundary="1444517176.2efd1.26234"; charset="UTF-8"
 
 
---1444516338.fC80d04E2.21572
-Date: Sat, 10 Oct 2015 22:32:18 +0000
+--1444517176.2efd1.26234
+Date: Sat, 10 Oct 2015 22:46:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85160
+https://bugs.freedesktop.org/show_bug.cgi?id=92420
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 92420
+           Summary: X crash when with 2nd display connected via Display
+                    Port
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: critical
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: rhbugzilla-hzqV2YXAeqW1Z/+hSey0Gg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
+Created attachment 118807
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118807&action=edit
+dmesg.display_port_problem.4.2.3-300.fc23.x86_64
 
---- Comment #32 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to J from comment #28)
-> I have a similar problem, but with a different card.  I believe my errors
-> start the same way as the original poster.
+I get a flood of kernel events from nouveau when connecting and disconnecting
+my 2nd display via the display port cable.
 
-Similar problem = new bug.
+Events start with this:
+
+nouveau E[   PDISP][0000:01:00.0] INVALID_VALUE [UNK84] chid 0 mthd 0x0700 data
+0x00052002
+
+
+modinfo nouveau -n
+/lib/modules/4.2.3-300.fc23.x86_64/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+
+lspci -v | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G92GLM [Quadro FX 2800M]
+(rev a2) (prog-if 00 [VGA controller])
+
+Errors come and go with connection/disconnection of the Display Port cable.  So
+long as I stay running in init 3, the primary laptop LCD continues to function.
+ Once I go init 5, X appears to start, and then just hangs.
+
+I've attached dmesg output for boot-up, when I connect the display port, and
+when I disconnect the display port.
+
+Please let me know if I can help in any way.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
+You are the assignee for the bug.
 
---1444516338.fC80d04E2.21572
-Date: Sat, 10 Oct 2015 22:32:18 +0000
+--1444517176.2efd1.26234
+Date: Sat, 10 Oct 2015 22:46:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,66 +87,130 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - X crash when with 2nd display connected via Display Port"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92420">92420</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>X crash when with 2nd display connected via Display Port
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>critical
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>rhbugzilla&#64;vontersch.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV94] INVALID_STATE error, X fails to start on GeForce 9600 GT with dual monitors, kernels 3.18.0-0.rc0.git8.2.fc22.1 onwards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85160">bug 85160</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to J from <a href="show_bug.cgi?id=85160#c28">comment #28</a>)
-<span class="quote">&gt; I have a similar problem, but with a different card.  I believe my errors
-&gt; start the same way as the original poster.</span >
+        <pre>Created <span class=""><a href="attachment.cgi?id=118807" name="attach_118807" title="dmesg.display_port_problem.4.2.3-300.fc23.x86_64">attachment 118807</a> <a href="attachment.cgi?id=118807&amp;action=edit" title="dmesg.display_port_problem.4.2.3-300.fc23.x86_64">[details]</a></span>
+dmesg.display_port_problem.4.2.3-300.fc23.x86_64
 
-Similar problem = new bug.</pre>
+I get a flood of kernel events from nouveau when connecting and disconnecting
+my 2nd display via the display port cable.
+
+Events start with this:
+
+nouveau E[   PDISP][0000:01:00.0] INVALID_VALUE [UNK84] chid 0 mthd 0x0700 data
+0x00052002
+
+
+modinfo nouveau -n
+/lib/modules/4.2.3-300.fc23.x86_64/kernel/drivers/gpu/drm/nouveau/nouveau.ko.xz
+
+lspci -v | grep -i vga
+01:00.0 VGA compatible controller: NVIDIA Corporation G92GLM [Quadro FX 2800M]
+(rev a2) (prog-if 00 [VGA controller])
+
+Errors come and go with connection/disconnection of the Display Port cable.  So
+long as I stay running in init 3, the primary laptop LCD continues to function.
+ Once I go init 5, X appears to start, and then just hangs.
+
+I've attached dmesg output for boot-up, when I connect the display port, and
+when I disconnect the display port.
+
+Please let me know if I can help in any way.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1444516338.fC80d04E2.21572--
+--1444517176.2efd1.26234--
 
---===============0466882714==
+--===============0832704728==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -129,4 +220,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0466882714==--
+--===============0832704728==--
