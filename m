@@ -1,12 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89272] GM206 does not recognize attached hdmi monitor
-Date: Sat, 10 Oct 2015 09:14:14 +0000
-Message-ID: <bug-89272-8800-nvjsfS4KI0@http.bugs.freedesktop.org/>
-References: <bug-89272-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92307] NV50: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sat, 10 Oct 2015 09:17:24 +0000
+Message-ID: <bug-92307-8800-ZVRH9h2pGv@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0496127561=="
+Content-Type: multipart/mixed; boundary="===============1891183820=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89272-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +22,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0496127561==
-Content-Type: multipart/alternative; boundary="1444468454.4f2FF1CB1.18186"; charset="UTF-8"
+--===============1891183820==
+Content-Type: multipart/alternative; boundary="1444468644.aFcCD1.19117"; charset="UTF-8"
 
 
---1444468454.4f2FF1CB1.18186
-Date: Sat, 10 Oct 2015 09:14:14 +0000
+--1444468644.aFcCD1.19117
+Date: Sat, 10 Oct 2015 09:17:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89272
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
 
-Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #5 from Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> ---
-That bug was fixed in 4.0
+--- Comment #3 from Stefan Huehner <stefan-Xd65/bSt805AfugRpC6u6w@public.gmane.org> ---
+Seeing same here when 'switching off' and 'on' again hdmi display connected to
+a gm206
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444468454.4f2FF1CB1.18186
-Date: Sat, 10 Oct 2015 09:14:14 +0000
+--1444468644.aFcCD1.19117
+Date: Sat, 10 Oct 2015 09:17:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,48 +50,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">bug 89272</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272#c5">Comment # 5</a>
+          bz_status_NEW "
+   title="NEW - NV50: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GM206 does not recognize attached hdmi monitor"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89272">bug 89272</a>
+          bz_status_NEW "
+   title="NEW - NV50: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
               from <span class="vcard"><a class="email" href="mailto:stefan&#64;huehner.org" title="Stefan Huehner &lt;stefan&#64;huehner.org&gt;"> <span class="fn">Stefan Huehner</span></a>
 </span></b>
-        <pre>That bug was fixed in 4.0</pre>
+        <pre>Seeing same here when 'switching off' and 'on' again hdmi display connected to
+a gm206</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444468454.4f2FF1CB1.18186--
+--1444468644.aFcCD1.19117--
 
---===============0496127561==
+--===============1891183820==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0496127561==--
+--===============1891183820==--
