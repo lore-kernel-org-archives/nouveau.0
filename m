@@ -1,91 +1,72 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92386] Integrated sensor on nv43 doesn't work (wrong
- vbios parsing?)
-Date: Sat, 10 Oct 2015 14:49:28 +0000
-Message-ID: <bug-92386-8800-sKKJtnwpvo@http.bugs.freedesktop.org/>
-References: <bug-92386-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset@gmail.com>
+Subject: Re: [PATCH] nouveau: avoid emitting new fences
+ unnecessarily
+Date: Sat, 10 Oct 2015 21:41:19 +0200
+Message-ID: <561969DF.6020308@gmail.com>
+References: <1444457532-30252-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1528596690=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92386-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <1444457532-30252-1-git-send-email-imirkin@alum.mit.edu>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>, mesa-dev@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Cc: mesa-stable@lists.freedesktop.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1528596690==
-Content-Type: multipart/alternative; boundary="1444488568.bC6ab1.31224"; charset="UTF-8"
-
-
---1444488568.bC6ab1.31224
-Date: Sat, 10 Oct 2015 14:49:28 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92386
-
---- Comment #1 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-Created attachment 118800
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118800&action=edit
-vbios
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444488568.bC6ab1.31224
-Date: Sat, 10 Oct 2015 14:49:28 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Integrated sensor on nv43 doesn't work (wrong vbios parsing?)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92386">bug 92386</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118800" name="attach_118800" title="vbios">attachment 118800</a> <a href="attachment.cgi?id=118800&amp;action=edit" title="vbios">[details]</a></span>
-vbios</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444488568.bC6ab1.31224--
-
---===============1528596690==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1528596690==--
+RG9lcyB0aGlzIGZpeCB0aG9zZSB0ZXhlbEZldGNoIHBpZ2xpdCB0ZXN0cyA/IE9yIGlzIGl0IHRo
+ZSBzZWNvbmQgcGF0Y2ggPwoKQW55d2F5LCB0aGlzIHBhdGNoIGlzIDoKClJldmlld2VkLWJ5OiBT
+YW11ZWwgUGl0b2lzZXQgPHNhbXVlbC5waXRvaXNldEBnbWFpbC5jb20+CgpPbiAxMC8xMC8yMDE1
+IDA4OjEyIEFNLCBJbGlhIE1pcmtpbiB3cm90ZToKPiBSaWdodCBub3cgd2UgZW1pdCBvbiBldmVy
+eSBraWNrLCBidXQgdGhpcyBpcyBvbmx5IG5lY2Vzc2FyeSBpZiBzb21ldGhpbmcKPiB3aWxsIGV2
+ZXIgYmUgYWJsZSB0byBvYnNlcnZlIHRoYXQgdGhlIGZlbmNlIGNvbXBsZXRlZC4gSWYgdGhlcmUg
+YXJlIG5vCj4gcmVmcywgbGVhdmUgdGhlIGZlbmNlIGFsb25lIGFuZCBlbWl0IGl0IGFub3RoZXIg
+ZGF5Lgo+Cj4gVGhpcyBhbHNvIGhhcHBlbnMgdG8gd29yayBhcm91bmQgYW4gaXNzdWUgZm9yIHRo
+ZSBraWNrIGhhbmRsZXIgLS0gYSBraWNrCj4gY2FuIGJlIGEgcmVzdWx0IG9mIGUuZy4gbm91dmVh
+dV9ib193YWl0IG9yIGV4cGxpY2l0IGtpY2ssIG9yIGl0IGNhbiBiZQo+IGR1ZSB0byBsYWNrIG9m
+IHNwYWNlIGluIHRoZSBwdXNoYnVmLiBXZSB3YW50IHRoZSBlbWl0IHRvIGhhcHBlbiBpbiB0aGUK
+PiBjdXJyZW50IGJhdGNoLCBzbyB3ZSB3YW50IHRoZXJlIHRvIGFsd2F5cyBiZSBlbm91Z2ggc3Bh
+Y2UuIEhvd2V2ZXIgYW4KPiBleHBsaWNpdCBraWNrIGNvdWxkIHRha2UgdGhlIHJlc2VydmVkIHNw
+YWNlIGZvciB0aGUgaW1wbGljaXRseS10cmlnZ2VyZWQKPiBraWNrJ3MgZmVuY2UgZW1pc3Npb24g
+aWYgaXQgaGFwcGVuZWQgcmlnaHQgYWZ0ZXIuIFdpdGggdGhlIG5ldyBtZWNoYW5pc20sCj4gaG9w
+ZWZ1bGx5IHRoZXJlJ3Mgbm8gd2F5IHRvIGNhdXNlIHR3byBmZW5jZXMgdG8gYmUgZW1pdHRlZCBp
+bnRvIHRoZSBzYW1lCj4gcmVzZXJ2ZWQgc3BhY2UuCj4KPiBTaWduZWQtb2ZmLWJ5OiBJbGlhIE1p
+cmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4gQ2M6IG1lc2Etc3RhYmxlQGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwo+IEZpeGVzOiA0N2QxMTk5MGIgKG5vdXZlYXU6IG1ha2Ugc3VyZSB0aGVyZSdz
+IGFsd2F5cyByb29tIHRvIGVtaXQgYSBmZW5jZSkKPiAtLS0KPiAgIHNyYy9nYWxsaXVtL2RyaXZl
+cnMvbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMgfCAxMiArKysrKysrKystLS0KPiAgIDEgZmlsZSBj
+aGFuZ2VkLCA5IGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEv
+c3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L25vdXZlYXVfZmVuY2UuYyBiL3NyYy9nYWxsaXVt
+L2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2ZlbmNlLmMKPiBpbmRleCBlZTRlMDhkLi4xOGIxNTky
+IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9ub3V2ZWF1X2ZlbmNl
+LmMKPiArKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbm91dmVhdV9mZW5jZS5jCj4g
+QEAgLTE5MCw4ICsxOTAsMTAgQEAgbm91dmVhdV9mZW5jZV93YWl0KHN0cnVjdCBub3V2ZWF1X2Zl
+bmNlICpmZW5jZSkKPiAgICAgIC8qIHd0Ziwgc29tZW9uZSBpcyB3YWl0aW5nIG9uIGEgZmVuY2Ug
+aW4gZmx1c2hfbm90aWZ5IGhhbmRsZXI/ICovCj4gICAgICBhc3NlcnQoZmVuY2UtPnN0YXRlICE9
+IE5PVVZFQVVfRkVOQ0VfU1RBVEVfRU1JVFRJTkcpOwo+ICAgCj4gLSAgIGlmIChmZW5jZS0+c3Rh
+dGUgPCBOT1VWRUFVX0ZFTkNFX1NUQVRFX0VNSVRURUQpCj4gKyAgIGlmIChmZW5jZS0+c3RhdGUg
+PCBOT1VWRUFVX0ZFTkNFX1NUQVRFX0VNSVRURUQpIHsKPiArICAgICAgUFVTSF9TUEFDRShzY3Jl
+ZW4tPnB1c2hidWYsIDgpOwo+ICAgICAgICAgbm91dmVhdV9mZW5jZV9lbWl0KGZlbmNlKTsKPiAr
+ICAgfQo+ICAgCj4gICAgICBpZiAoZmVuY2UtPnN0YXRlIDwgTk9VVkVBVV9GRU5DRV9TVEFURV9G
+TFVTSEVEKQo+ICAgICAgICAgaWYgKG5vdXZlYXVfcHVzaGJ1Zl9raWNrKHNjcmVlbi0+cHVzaGJ1
+Ziwgc2NyZWVuLT5wdXNoYnVmLT5jaGFubmVsKSkKPiBAQCAtMjI0LDggKzIyNiwxMiBAQCBub3V2
+ZWF1X2ZlbmNlX3dhaXQoc3RydWN0IG5vdXZlYXVfZmVuY2UgKmZlbmNlKQo+ICAgdm9pZAo+ICAg
+bm91dmVhdV9mZW5jZV9uZXh0KHN0cnVjdCBub3V2ZWF1X3NjcmVlbiAqc2NyZWVuKQo+ICAgewo+
+IC0gICBpZiAoc2NyZWVuLT5mZW5jZS5jdXJyZW50LT5zdGF0ZSA8IE5PVVZFQVVfRkVOQ0VfU1RB
+VEVfRU1JVFRJTkcpCj4gLSAgICAgIG5vdXZlYXVfZmVuY2VfZW1pdChzY3JlZW4tPmZlbmNlLmN1
+cnJlbnQpOwo+ICsgICBpZiAoc2NyZWVuLT5mZW5jZS5jdXJyZW50LT5zdGF0ZSA8IE5PVVZFQVVf
+RkVOQ0VfU1RBVEVfRU1JVFRJTkcpIHsKPiArICAgICAgaWYgKHNjcmVlbi0+ZmVuY2UuY3VycmVu
+dC0+cmVmID4gMSkKPiArICAgICAgICAgbm91dmVhdV9mZW5jZV9lbWl0KHNjcmVlbi0+ZmVuY2Uu
+Y3VycmVudCk7Cj4gKyAgICAgIGVsc2UKPiArICAgICAgICAgcmV0dXJuOwo+ICsgICB9Cj4gICAK
+PiAgICAgIG5vdXZlYXVfZmVuY2VfcmVmKE5VTEwsICZzY3JlZW4tPmZlbmNlLmN1cnJlbnQpOwo+
+ICAgCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwptZXNh
+LWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9s
+aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRldgo=
