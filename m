@@ -1,12 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92306] GL Excess demo renders incorrectly on nv43
-Date: Sun, 11 Oct 2015 06:41:29 +0000
-Message-ID: <bug-92306-8800-bmJiFNO64M@http.bugs.freedesktop.org/>
-References: <bug-92306-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] nv50,
+ nvc0: don't base decisions on available pushbuf space
+Date: Sun, 11 Oct 2015 17:05:51 +0200
+Message-ID: <561A7ACF.8070603@gmail.com>
+References: <1444468187-13868-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1134939926=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92306-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1444468187-13868-1-git-send-email-imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,174 +18,100 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: mesa-stable-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1134939926==
-Content-Type: multipart/alternative; boundary="1444545689.e31180.27062"; charset="UTF-8"
-
-
---1444545689.e31180.27062
-Date: Sun, 11 Oct 2015 06:41:29 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92306
-
---- Comment #11 from Andrew Randrianasulu <randrik-JGs/UdohzUI@public.gmane.org> ---
-After recompiling mesa
-
-mesa git  commit 93161be9e7150ae5931000627833e714901cf195 -  "i965: Fix
-intel_miptree_is_fast_clear_capable()"
-
-with this command line 
- ./configure --prefix=/usr --disable-dri3 --with-gallium-drivers=nouveau
---enable-texture-float --enable-debug --with-dri-drivers=swrast
-
-I got in terminal
-----------
-bash-4.2$ wine GLExcess.exe 
-fixme:winediag:start_process Wine Staging 1.7.51 is a testing version
-containing experimental patches.
-fixme:winediag:start_process Please report bugs at http://bugs.wine-staging.com
-(instead of winehq.org).
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: Fontconfig
-warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading configurations from
-~/.fonts.conf is deprecated.
-reading configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-fixme:ole:RemUnknown_QueryInterface No interface for iid
-{00000019-0000-0000-c000-000000000046}
-fixme:ole:RemUnknown_QueryInterface No interface for iid
-{00000019-0000-0000-c000-000000000046}
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-bash-4.2$ Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14:
-reading configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Mismatched color and zeta formats, ignoring zeta.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: "/etc/fonts/conf.d/50-user.conf", line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-kbuildsycoca running...
---------
-
-important part seems to be:
-"Mismatched color and zeta formats, ignoring zeta."
-
-I also tried to disable PIPE_CAP_BUFFER_MAP_PERSISTENT_COHERENT , but this not
-fixed my bug.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1444545689.e31180.27062
-Date: Sun, 11 Oct 2015 06:41:29 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GL Excess demo renders incorrectly on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92306#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GL Excess demo renders incorrectly on nv43"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92306">bug 92306</a>
-              from <span class="vcard"><a class="email" href="mailto:randrik&#64;mail.ru" title="Andrew Randrianasulu &lt;randrik&#64;mail.ru&gt;"> <span class="fn">Andrew Randrianasulu</span></a>
-</span></b>
-        <pre>After recompiling mesa
-
-mesa git  commit 93161be9e7150ae5931000627833e714901cf195 -  &quot;i965: Fix
-intel_miptree_is_fast_clear_capable()&quot;
-
-with this command line 
- ./configure --prefix=/usr --disable-dri3 --with-gallium-drivers=nouveau
---enable-texture-float --enable-debug --with-dri-drivers=swrast
-
-I got in terminal
-----------
-bash-4.2$ wine GLExcess.exe 
-fixme:winediag:start_process Wine Staging 1.7.51 is a testing version
-containing experimental patches.
-fixme:winediag:start_process Please report bugs at <a href="http://bugs.wine-staging.com">http://bugs.wine-staging.com</a>
-(instead of winehq.org).
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: Fontconfig
-warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading configurations from
-~/.fonts.conf is deprecated.
-reading configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-fixme:ole:RemUnknown_QueryInterface No interface for iid
-{00000019-0000-0000-c000-000000000046}
-fixme:ole:RemUnknown_QueryInterface No interface for iid
-{00000019-0000-0000-c000-000000000046}
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-bash-4.2$ Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14:
-reading configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Mismatched color and zeta formats, ignoring zeta.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-Fontconfig warning: &quot;/etc/fonts/conf.d/50-user.conf&quot;, line 14: reading
-configurations from ~/.fonts.conf is deprecated.
-kbuildsycoca running...
---------
-
-important part seems to be:
-&quot;Mismatched color and zeta formats, ignoring zeta.&quot;
-
-I also tried to disable PIPE_CAP_BUFFER_MAP_PERSISTENT_COHERENT , but this not
-fixed my bug.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444545689.e31180.27062--
-
---===============1134939926==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1134939926==--
+SSBkaWQgYSBmdWxsIHBpZ2xpdCBydW4gb24gRmVybWkuIFRoZXJlIGFyZSBubyByZWdyZXNzaW9u
+cyBhbmQgeW91IGZpeGVkIAp0ZXhlbEZldGNoIHRlc3RzIGFuZCBvdGhlciBvbmVzIHdoaWNoIGZh
+aWxlZCB3aXRoIHRoYXQgYXNzZXJ0LgoKSSdtIGxhenkgdG8gZG8gaXQgb24gVGVzbGEsIHNvOgoK
+UmV2aWV3ZWQtYnk6IFNhbXVlbCBQaXRvaXNldCA8c2FtdWVsLnBpdG9pc2V0QGdtYWlsLmNvbT4K
+ClRoYW5rcyEKCk9uIDEwLzEwLzIwMTUgMTE6MDkgQU0sIElsaWEgTWlya2luIHdyb3RlOgo+IFdl
+IHN0aWxsIGhhdmUgdG8gcHVzaCBldmVyeXRoaW5nIG91dCwgbWlnaHQgYXMgd2VsbCBraWNrIGVh
+cmxpZXIgYW5kCj4gZmxpcCBwdXNoYnVmcyB3aGVuIHdlIGtub3cgd2UnbGwgbmVlZCBpdC4gVGhp
+cyByZXNvbHZlcyBzb21lIGlzc3VlcyB3aXRoCj4gdGhlIG5ldyBwb2xpY3kgb2YgbWFraW5nIHN1
+cmUgdGhhdCB3ZSBhbHdheXMgbGVhdmUgYSBiaXQgb2Ygcm9vbSBhdCB0aGUKPiBlbmQgZm9yIGZl
+bmNlcy4KPgo+IFNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVk
+dT4KPiBDYzogbWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gLS0tCj4gICBzcmMv
+Z2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NoYWRlcl9zdGF0ZS5jIHwgIDkgKyst
+LS0tLS0tCj4gICBzcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RyYW5zZmVy
+LmMgICAgIHwgMTYgKysrLS0tLS0tLS0tLS0tLQo+ICAgc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2
+ZWF1L252YzAvbnZjMF90cmFuc2Zlci5jICAgICB8IDIwICsrKysrLS0tLS0tLS0tLS0tLS0tCj4g
+ICAzIGZpbGVzIGNoYW5nZWQsIDEwIGluc2VydGlvbnMoKyksIDM1IGRlbGV0aW9ucygtKQo+Cj4g
+ZGlmZiAtLWdpdCBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udjUwL252NTBfc2hhZGVy
+X3N0YXRlLmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NoYWRlcl9z
+dGF0ZS5jCj4gaW5kZXggZmRkZTExZi4uOTQxNTU1ZiAxMDA2NDQKPiAtLS0gYS9zcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3NoYWRlcl9zdGF0ZS5jCj4gKysrIGIvc3JjL2dh
+bGxpdW0vZHJpdmVycy9ub3V2ZWF1L252NTAvbnY1MF9zaGFkZXJfc3RhdGUuYwo+IEBAIC02NSwx
+NCArNjUsOSBAQCBudjUwX2NvbnN0YnVmc192YWxpZGF0ZShzdHJ1Y3QgbnY1MF9jb250ZXh0ICpu
+djUwKQo+ICAgICAgICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAoYiA8PCAxMikgfCAoaSA8
+PCA4KSB8IHAgfCAxKTsKPiAgICAgICAgICAgICAgIH0KPiAgICAgICAgICAgICAgIHdoaWxlICh3
+b3Jkcykgewo+IC0gICAgICAgICAgICAgICB1bnNpZ25lZCBucjsKPiAtCj4gLSAgICAgICAgICAg
+ICAgIGlmICghUFVTSF9TUEFDRShwdXNoLCAxNikpCj4gLSAgICAgICAgICAgICAgICAgIGJyZWFr
+Owo+IC0gICAgICAgICAgICAgICBuciA9IFBVU0hfQVZBSUwocHVzaCk7Cj4gLSAgICAgICAgICAg
+ICAgIGFzc2VydChuciA+PSAxNik7Cj4gLSAgICAgICAgICAgICAgIG5yID0gTUlOMihNSU4yKG5y
+IC0gMywgd29yZHMpLCBOVjA0X1BGSUZPX01BWF9QQUNLRVRfTEVOKTsKPiArICAgICAgICAgICAg
+ICAgdW5zaWduZWQgbnIgPSBNSU4yKHdvcmRzLCBOVjA0X1BGSUZPX01BWF9QQUNLRVRfTEVOKTsK
+PiAgIAo+ICsgICAgICAgICAgICAgICBQVVNIX1NQQUNFKHB1c2gsIG5yICsgMyk7Cj4gICAgICAg
+ICAgICAgICAgICBCRUdJTl9OVjA0KHB1c2gsIE5WNTBfM0QoQ0JfQUREUiksIDEpOwo+ICAgICAg
+ICAgICAgICAgICAgUFVTSF9EQVRBIChwdXNoLCAoc3RhcnQgPDwgOCkgfCBiKTsKPiAgICAgICAg
+ICAgICAgICAgIEJFR0lOX05JMDQocHVzaCwgTlY1MF8zRChDQl9EQVRBKDApKSwgbnIpOwo+IGRp
+ZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RyYW5zZmVy
+LmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnY1MC9udjUwX3RyYW5zZmVyLmMKPiBp
+bmRleCBiZTUxNDA3Li45YTNmZDFlIDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udjUwL252NTBfdHJhbnNmZXIuYwo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMv
+bm91dmVhdS9udjUwL252NTBfdHJhbnNmZXIuYwo+IEBAIC0xODcsMTQgKzE4Nyw3IEBAIG52NTBf
+c2lmY19saW5lYXJfdTgoc3RydWN0IG5vdXZlYXVfY29udGV4dCAqbnYsCj4gICAgICBQVVNIX0RB
+VEEgKHB1c2gsIDApOwo+ICAgCj4gICAgICB3aGlsZSAoY291bnQpIHsKPiAtICAgICAgdW5zaWdu
+ZWQgbnI7Cj4gLQo+IC0gICAgICBpZiAoIVBVU0hfU1BBQ0UocHVzaCwgMTYpKQo+IC0gICAgICAg
+ICBicmVhazsKPiAtICAgICAgbnIgPSBQVVNIX0FWQUlMKHB1c2gpOwo+IC0gICAgICBhc3NlcnQo
+bnIgPj0gMTYpOwo+IC0gICAgICBuciA9IE1JTjIoY291bnQsIG5yIC0gMSk7Cj4gLSAgICAgIG5y
+ID0gTUlOMihuciwgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTik7Cj4gKyAgICAgIHVuc2lnbmVk
+IG5yID0gTUlOMihjb3VudCwgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTik7Cj4gICAKPiAgICAg
+ICAgIEJFR0lOX05JMDQocHVzaCwgTlY1MF8yRChTSUZDX0RBVEEpLCBucik7Cj4gICAgICAgICBQ
+VVNIX0RBVEFwKHB1c2gsIHNyYywgbnIpOwo+IEBAIC0zOTUsMTIgKzM4OCw5IEBAIG52NTBfY2Jf
+cHVzaChzdHJ1Y3Qgbm91dmVhdV9jb250ZXh0ICpudiwKPiAgICAgIG5vdXZlYXVfcHVzaGJ1Zl92
+YWxpZGF0ZShwdXNoKTsKPiAgIAo+ICAgICAgd2hpbGUgKHdvcmRzKSB7Cj4gLSAgICAgIHVuc2ln
+bmVkIG5yOwo+IC0KPiAtICAgICAgbnIgPSBQVVNIX0FWQUlMKHB1c2gpOwo+IC0gICAgICBuciA9
+IE1JTjIobnIgLSA3LCB3b3Jkcyk7Cj4gLSAgICAgIG5yID0gTUlOMihuciwgTlYwNF9QRklGT19N
+QVhfUEFDS0VUX0xFTiAtIDEpOwo+ICsgICAgICB1bnNpZ25lZCBuciA9IE1JTjIod29yZHMsIE5W
+MDRfUEZJRk9fTUFYX1BBQ0tFVF9MRU4pOwo+ICAgCj4gKyAgICAgIFBVU0hfU1BBQ0UocHVzaCwg
+bnIgKyA3KTsKPiAgICAgICAgIEJFR0lOX05WMDQocHVzaCwgTlY1MF8zRChDQl9ERUZfQUREUkVT
+U19ISUdIKSwgMyk7Cj4gICAgICAgICBQVVNIX0RBVEFoKHB1c2gsIGJvLT5vZmZzZXQgKyBiYXNl
+KTsKPiAgICAgICAgIFBVU0hfREFUQSAocHVzaCwgYm8tPm9mZnNldCArIGJhc2UpOwo+IGRpZmYg
+LS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3RyYW5zZmVyLmMg
+Yi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3RyYW5zZmVyLmMKPiBpbmRl
+eCBhYWVjNjBhLi5kNDU5ZGQ2IDEwMDY0NAo+IC0tLSBhL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9udmMwL252YzBfdHJhbnNmZXIuYwo+ICsrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91
+dmVhdS9udmMwL252YzBfdHJhbnNmZXIuYwo+IEBAIC0xODgsMTQgKzE4OCwxMCBAQCBudmMwX20y
+bWZfcHVzaF9saW5lYXIoc3RydWN0IG5vdXZlYXVfY29udGV4dCAqbnYsCj4gICAgICBub3V2ZWF1
+X3B1c2hidWZfdmFsaWRhdGUocHVzaCk7Cj4gICAKPiAgICAgIHdoaWxlIChjb3VudCkgewo+IC0g
+ICAgICB1bnNpZ25lZCBucjsKPiArICAgICAgdW5zaWduZWQgbnIgPSBNSU4yKGNvdW50LCBOVjA0
+X1BGSUZPX01BWF9QQUNLRVRfTEVOKTsKPiAgIAo+IC0gICAgICBpZiAoIVBVU0hfU1BBQ0UocHVz
+aCwgMTYpKQo+ICsgICAgICBpZiAoIVBVU0hfU1BBQ0UocHVzaCwgbnIgKyA5KSkKPiAgICAgICAg
+ICAgIGJyZWFrOwo+IC0gICAgICBuciA9IFBVU0hfQVZBSUwocHVzaCk7Cj4gLSAgICAgIGFzc2Vy
+dChuciA+PSAxNik7Cj4gLSAgICAgIG5yID0gTUlOMihjb3VudCwgbnIgLSA5KTsKPiAtICAgICAg
+bnIgPSBNSU4yKG5yLCBOVjA0X1BGSUZPX01BWF9QQUNLRVRfTEVOKTsKPiAgIAo+ICAgICAgICAg
+QkVHSU5fTlZDMChwdXNoLCBOVkMwX00yTUYoT0ZGU0VUX09VVF9ISUdIKSwgMik7Cj4gICAgICAg
+ICBQVVNIX0RBVEFoKHB1c2gsIGRzdC0+b2Zmc2V0ICsgb2Zmc2V0KTsKPiBAQCAtMjM0LDE0ICsy
+MzAsMTAgQEAgbnZlNF9wMm1mX3B1c2hfbGluZWFyKHN0cnVjdCBub3V2ZWF1X2NvbnRleHQgKm52
+LAo+ICAgICAgbm91dmVhdV9wdXNoYnVmX3ZhbGlkYXRlKHB1c2gpOwo+ICAgCj4gICAgICB3aGls
+ZSAoY291bnQpIHsKPiAtICAgICAgdW5zaWduZWQgbnI7Cj4gKyAgICAgIHVuc2lnbmVkIG5yID0g
+TUlOMihjb3VudCwgKE5WMDRfUEZJRk9fTUFYX1BBQ0tFVF9MRU4gLSAxKSk7Cj4gICAKPiAtICAg
+ICAgaWYgKCFQVVNIX1NQQUNFKHB1c2gsIDE2KSkKPiArICAgICAgaWYgKCFQVVNIX1NQQUNFKHB1
+c2gsIG5yICsgMTApKQo+ICAgICAgICAgICAgYnJlYWs7Cj4gLSAgICAgIG5yID0gUFVTSF9BVkFJ
+TChwdXNoKTsKPiAtICAgICAgYXNzZXJ0KG5yID49IDE2KTsKPiAtICAgICAgbnIgPSBNSU4yKGNv
+dW50LCBuciAtIDgpOwo+IC0gICAgICBuciA9IE1JTjIobnIsIChOVjA0X1BGSUZPX01BWF9QQUNL
+RVRfTEVOIC0gMSkpOwo+ICAgCj4gICAgICAgICBCRUdJTl9OVkMwKHB1c2gsIE5WRTRfUDJNRihV
+UExPQURfRFNUX0FERFJFU1NfSElHSCksIDIpOwo+ICAgICAgICAgUFVTSF9EQVRBaChwdXNoLCBk
+c3QtPm9mZnNldCArIG9mZnNldCk7Cj4gQEAgLTU3MSw5ICs1NjMsNyBAQCBudmMwX2NiX2JvX3B1
+c2goc3RydWN0IG5vdXZlYXVfY29udGV4dCAqbnYsCj4gICAgICBQVVNIX0RBVEEgKHB1c2gsIGJv
+LT5vZmZzZXQgKyBiYXNlKTsKPiAgIAo+ICAgICAgd2hpbGUgKHdvcmRzKSB7Cj4gLSAgICAgIHVu
+c2lnbmVkIG5yID0gUFVTSF9BVkFJTChwdXNoKTsKPiAtICAgICAgbnIgPSBNSU4yKG5yLCB3b3Jk
+cyk7Cj4gLSAgICAgIG5yID0gTUlOMihuciwgTlYwNF9QRklGT19NQVhfUEFDS0VUX0xFTiAtIDEp
+Owo+ICsgICAgICB1bnNpZ25lZCBuciA9IE1JTjIod29yZHMsIE5WMDRfUEZJRk9fTUFYX1BBQ0tF
+VF9MRU4gLSAxKTsKPiAgIAo+ICAgICAgICAgUFVTSF9TUEFDRShwdXNoLCBuciArIDIpOwo+ICAg
+ICAgICAgUFVTSF9SRUZOIChwdXNoLCBibywgTk9VVkVBVV9CT19XUiB8IGRvbWFpbik7CgpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxp
+bmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
