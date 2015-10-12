@@ -1,13 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH 2/2] bios/extdev: add INA3221 id
-Date: Mon, 12 Oct 2015 22:32:52 +0200
-Message-ID: <1444681972-6207-3-git-send-email-nouveau@karolherbst.de>
-References: <1444681972-6207-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92438] Segfault in pushbuf_kref when running the
+ android emulator (qemu) on nv50
+Date: Mon, 12 Oct 2015 20:41:21 +0000
+Message-ID: <bug-92438-8800-TLgqUNgnzk@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0687955909=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1444681972-6207-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,19 +20,73 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9leHRkZXYuaCB8IDEgKwogMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvaW5j
-bHVkZS9udmttL3N1YmRldi9iaW9zL2V4dGRldi5oIGIvZHJtL25vdXZlYXUvaW5jbHVkZS9udmtt
-L3N1YmRldi9iaW9zL2V4dGRldi5oCmluZGV4IDZkM2JlZGMuLjY5OTQwMzUgMTAwNjQ0Ci0tLSBh
-L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9zdWJkZXYvYmlvcy9leHRkZXYuaAorKysgYi9kcm0v
-bm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L2Jpb3MvZXh0ZGV2LmgKQEAgLTUsNiArNSw3IEBA
-IGVudW0gbnZiaW9zX2V4dGRldl90eXBlIHsKIAlOVkJJT1NfRVhUREVWX1ZUMTEwM00JCT0gMHg0
-MCwKIAlOVkJJT1NfRVhUREVWX1BYMzU0MAkJPSAweDQxLAogCU5WQklPU19FWFRERVZfVlQxMTA1
-TQkJPSAweDQyLCAvKiBvciBjbG9zZSBlbm91Z2guLi4gKi8KKwlOVkJJT1NfRVhUREVWX0lOQTMy
-MjEJCT0gMHg0ZSwKIAlOVkJJT1NfRVhUREVWX0FEVDc0NzMJCT0gMHg3MCwgLyogY2FuIGFsc28g
-YmUgYSBMTTY0ICovCiAJTlZCSU9TX0VYVERFVl9IRENQX0VFUFJPTQk9IDB4OTAsCiAJTlZCSU9T
-X0VYVERFVl9OT05FCQk9IDB4ZmYsCi0tIAoyLjYuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL25vdXZlYXUK
+
+--===============0687955909==
+Content-Type: multipart/alternative; boundary="1444682480.d2afd70.16539"; charset="UTF-8"
+
+
+--1444682480.d2afd70.16539
+Date: Mon, 12 Oct 2015 20:41:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92438
+
+--- Comment #3 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I can test it, which version of mesa and libdrm do you suggest? The portage
+tree seems to have all recent versions.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1444682480.d2afd70.16539
+Date: Mon, 12 Oct 2015 20:41:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
+              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
+</span></b>
+        <pre>I can test it, which version of mesa and libdrm do you suggest? The portage
+tree seems to have all recent versions.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444682480.d2afd70.16539--
+
+--===============0687955909==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0687955909==--
