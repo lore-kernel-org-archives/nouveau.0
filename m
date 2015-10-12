@@ -1,7 +1,7 @@
 From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 Subject: fixing GDDR5 reclocking on kepler cards
-Date: Mon, 12 Oct 2015 22:18:28 +0200
-Message-ID: <1444681109-380-1-git-send-email-nouveau@karolherbst.de>
+Date: Mon, 12 Oct 2015 22:12:53 +0200
+Message-ID: <1444680774-7935-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
