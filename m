@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86537] [NV96] Unable to handle page request from
- nv50_crtc_(prepare, disable) on dual Nvidia setup
-Date: Mon, 12 Oct 2015 18:14:39 +0000
-Message-ID: <bug-86537-8800-LF8xCaZB7C@http.bugs.freedesktop.org/>
-References: <bug-86537-8800@http.bugs.freedesktop.org/>
+From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
+Subject: [PATCH v4 0/6] Enable gpu switching on the MacBook Pro
+Date: Mon, 12 Oct 2015 19:14:30 +0200
+Message-ID: <cover.1444670070.git.lukas@wunner.de>
+References: <20151006182744.GA15532@wunner.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0240676200=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86537-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20151006182744.GA15532-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,109 +17,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Darren Hart <dvhart-wEGCiKHe2LqWVfeAwA7xHQ@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Alex Deucher <alexdeucher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0240676200==
-Content-Type: multipart/alternative; boundary="1444673679.4D4c2a2.1937"; charset="UTF-8"
-
-
---1444673679.4D4c2a2.1937
-Date: Mon, 12 Oct 2015 18:14:39 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=86537
-
-Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|REOPENED                    |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #11 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-Fix is now available at
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a978bf48487cbc9828de47b724ce682e0e073cbf.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1444673679.4D4c2a2.1937
-Date: Mon, 12 Oct 2015 18:14:39 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>REOPENED
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537#c11">Comment # 11</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV96] Unable to handle page request from nv50_crtc_(prepare,disable) on dual Nvidia setup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86537">bug 86537</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
-</span></b>
-        <pre>Fix is now available at
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a978bf48487cbc9828de47b724ce682e0e073cbf">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=a978bf48487cbc9828de47b724ce682e0e073cbf</a>.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1444673679.4D4c2a2.1937--
-
---===============0240676200==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0240676200==--
+Q2hhbmdlcyBzaW5jZSB2MzoKICAqIFByZXZpb3VzbHkgd2hlbiBzd2l0Y2hpbmcgdGhlIGRpc3Bs
+YXksIHRoZSBEREMgbGluZXMgd2VyZSBzd2l0Y2hlZAogICAgYXMgd2VsbC4gQnV0IGFjdHVhbGx5
+IHRoaXMgaXMgbm90IG5lY2Vzc2FyeTogSWYgYSBHUFUgcHJvYmVzIEVESUQsCiAgICBEREMgbXVz
+dCBiZSBzd2l0Y2hlZCBhbmQgbG9ja2VkIHRvIHRoZSBHUFUgYW55d2F5LCBzbyB3aHkgc3dpdGNo
+CiAgICBEREMgcHJlZW1wdGl2ZWx5PyBBbHNvLCBwcmV2aW91c2x5IHRoZSBEREMgbGluZXMgd2Vy
+ZSBzd2l0Y2hlZCBiYWNrCiAgICB0byB0aGUgcHJldmlvdXMgb3duZXIgb24gdW5sb2NrLiBUaGlz
+IGlzIHVubmVjZXNzYXJ5IGZvciB0aGUgc2FtZQogICAgcmVhc29uLiBTbyBJIGRpZCBhd2F5IHdp
+dGggYWxsIHRoYXQgYW5kIGl0IHNpbXBsaWZpZXMgdGhlIGNvZGUKICAgIGNvbnNpZGVyYWJseS4g
+VGhpcyB3b3JrcyBmaW5lIGFzIGxvbmcgYXMgYW55dGhpbmcgYWNjZXNzaW5nIEREQwogICAgY2Fs
+bHMgdmdhX3N3aXRjaGVyb29fbG9ja19kZGMoKSBmaXJzdC4gSWYgc29tZXRoaW5nIGluIHRoZSBr
+ZXJuZWwKICAgIG9yIGEgVk0gb3IgaW4gdXNlciBzcGFjZSBhY2Nlc3NlcyBEREMgYW5kIG9taXRz
+IGxvY2tpbmcgaXQgZmlyc3QsCiAgICB0aGluZ3MgbWF5IGdvIGF3cnkuIChIb3dldmVyLCBpZiBs
+b2NraW5nIGlzIG9taXR0ZWQsIHRoaW5ncyBjb3VsZAogICAgZ28gYXdyeSB3aXRoIHRoZSBwcmV2
+aW91cyBiZWhhdmlvdXIgYXMgd2VsbC4pIEknbSBjdXJpb3VzIGlmIHRoaXMKICAgIG5ldyBiZWhh
+dmlvdXIgcHJvdm9rZXMgb2JqZWN0aW9ucy4KICAqIEkgbm93IGhhdmUgY29uY2x1c2l2ZSBldmlk
+ZW5jZSB0aGF0IG9ubHkgdGhlIHByZS1yZXRpbmEgTWFjQm9vayBQcm8KICAgIGNhbiBzd2l0Y2gg
+RERDLiBUaGUgbXV4IGluIHRoZSByZXRpbmEgaXMgaW5jYXBhYmxlIG9mIHRoYXQuIFNvIHRoZQog
+ICAgLT5zd2l0Y2hfZGRjIGNhbGxiYWNrIGlzIG5vIGxvbmdlciBhZHZlcnRpc2VkIHRvIHZnYV9z
+d2l0Y2hlcm9vCiAgICBvbiByZXRpbmFzLgoKCkFsc28gYXZhaWxhYmxlIG9uIEdpdEh1YiBmb3Ig
+ZWFzaWVyIHJldmlld2luZzoKaHR0cHM6Ly9naXRodWIuY29tL2wxay9saW51eC9jb21taXRzL21i
+cF9zd2l0Y2hlcm9vX3Y0CgoKRm9yIHRob3NlIHdobyBoYXZlbid0IGJlZW4gZm9sbG93aW5nIHRo
+aXMgc2VyaWVzIHNvIGZhcjoKClRoZSBwcmUtcmV0aW5hIE1hY0Jvb2sgUHJvIHVzZXMgYW4gTFZE
+UyBwYW5lbCBhbmQgYSBnbXV4IGNvbnRyb2xsZXIKdG8gc3dpdGNoIHRoZSBwYW5lbCBiZXR3ZWVu
+IGl0cyB0d28gR1BVcy4gVGhlIHBhbmVsIG1vZGUgaW4gVkJJT1MKaXMgbm90b3Jpb3VzbHkgYm9n
+dXMgb24gdGhlc2UgbWFjaGluZXMgYW5kIHNvbWUgbW9kZWxzIGhhdmUgbm8KVkJJT1MgYXQgYWxs
+LCBzbyB0aGUgaW5hY3RpdmUgR1BVIGNhbm5vdCBzZXQgdXAgaXRzIExWRFMgb3V0cHV0LgoKRXh0
+ZW5kIHZnYV9zd2l0Y2hlcm9vIHRvIHN1cHBvcnQgc3dpdGNoaW5nIG9ubHkgdGhlIEREQyBsaW5l
+cy4KSW50cm9kdWNlIGEgZHJtX2dldF9lZGlkX3N3aXRjaGVyb28oKSBoZWxwZXIgd2hpY2ggdXNl
+cyB0aGlzIGZlYXR1cmUuCkFtZW5kIGk5MTUsIG5vdXZlYXUgYW5kIHJhZGVvbiB0byBjYWxsIGl0
+IGZvciBMVkRTIGNvbm5lY3RvcnMuCgpUaGlzIG9ubHkgZW5hYmxlcyBFRElEIHByb2Jpbmcgb24g
+dGhlIHByZS1yZXRpbmEgTUJQICgyMDA4IC0gMjAxMyksCmFuZCBvbmx5IHVuZGVyIHRoZSBjb25k
+aXRpb24gdGhhdCBhcHBsZS1nbXV4IGxvYWRzIGJlZm9yZSB0aGUgRFJNCmRyaXZlcnMuIExhdGVy
+IHBhdGNoZXMgd2lsbCBhZGRyZXNzIHJlcHJvYmluZyBvZiB0aGUgRFJNIGRyaXZlcnMKaWYgYXBw
+bGUtZ211eCBsb2FkcyBsYXRlLgoKVGhlIHJldGluYSBNQlAgKDIwMTIgLSBwcmVzZW50KSB1c2Vz
+IGVEUCBhbmQgaXMgYXBwYXJlbnRseSBub3QKY2FwYWJsZSBvZiBzd2l0Y2hpbmcgQVVYIHNlcGFy
+YXRlbHkgZnJvbSB0aGUgbWFpbiBsaW5rLgpUaGlzIHdpbGwgYWxzbyBiZSBhZGRyZXNzZWQgaW4g
+bGF0ZXIgcGF0Y2hlcy4KCgpQcmV2aW91cyBpbnN0YWxsbWVudHM6CnYxOiBodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE1LUFwcmlsLzA4MTUxNS5odG1s
+CnYyOiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL2FyY2hpdmVzL2RyaS1kZXZlbC8yMDE1
+LUF1Z3VzdC8wODgxNTYuaHRtbAp2MzogaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9hcmNo
+aXZlcy9kcmktZGV2ZWwvMjAxNS1PY3RvYmVyLzA5MTc0MS5odG1sCgoKTHVrYXMgV3VubmVyICg2
+KToKICB2Z2Ffc3dpdGNoZXJvbzogQWRkIHN1cHBvcnQgZm9yIHN3aXRjaGluZyBvbmx5IHRoZSBE
+REMKICBhcHBsZS1nbXV4OiBBZGQgc3dpdGNoX2RkYyBzdXBwb3J0CiAgZHJtL2VkaWQ6IFN3aXRj
+aCBEREMgd2hlbiByZWFkaW5nIHRoZSBFRElECiAgZHJtL2k5MTU6IFN3aXRjaCBEREMgd2hlbiBy
+ZWFkaW5nIHRoZSBFRElECiAgZHJtL25vdXZlYXU6IFN3aXRjaCBEREMgd2hlbiByZWFkaW5nIHRo
+ZSBFRElECiAgZHJtL3JhZGVvbjogU3dpdGNoIEREQyB3aGVuIHJlYWRpbmcgdGhlIEVESUQKCiBk
+cml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYyAgICAgICAgICAgICAgICAgIHwgMjYgKysrKysrKysr
+KysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9sdmRzLmMgICAgICAgICAgIHwgIDMgKy0K
+IGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfY29ubmVjdG9yLmMgfCAxMyArKysrKy0K
+IGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uX2Nvbm5lY3RvcnMuYyAgfCAgNCArKwogZHJp
+dmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9vLmMgICAgICAgICAgICB8IDY2ICsrKysrKysrKysr
+KysrKysrKysrKysrKysrKystCiBkcml2ZXJzL3BsYXRmb3JtL3g4Ni9hcHBsZS1nbXV4LmMgICAg
+ICAgICAgIHwgMjEgKysrKysrKystCiBpbmNsdWRlL2RybS9kcm1fY3J0Yy5oICAgICAgICAgICAg
+ICAgICAgICAgIHwgIDIgKwogaW5jbHVkZS9saW51eC92Z2Ffc3dpdGNoZXJvby5oICAgICAgICAg
+ICAgICB8IDE1ICsrKysrLS0KIDggZmlsZXMgY2hhbmdlZCwgMTQxIGluc2VydGlvbnMoKyksIDkg
+ZGVsZXRpb25zKC0pCgotLSAKMS44LjUuMiAoQXBwbGUgR2l0LTQ4KQoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
