@@ -1,14 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH 4/6] debugfs: add copy of sysfs pstate interface
-	ported to debugfs
-Date: Tue, 13 Oct 2015 13:39:09 +0200
-Message-ID: <1444736351-6744-5-git-send-email-nouveau@karolherbst.de>
-References: <1444736351-6744-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92438] Segfault in pushbuf_kref when running the
+ android emulator (qemu) on nv50
+Date: Tue, 13 Oct 2015 12:08:46 +0000
+Message-ID: <bug-92438-8800-wK92jKCvN1@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1942050152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1444736351-6744-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,78 +20,75 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPgotLS0K
-IGRybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdmcy5jIHwgMTQ0ICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrKysrLQogMSBmaWxlIGNoYW5nZWQsIDE0MiBpbnNlcnRpb25zKCsp
-LCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZGVidWdm
-cy5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKaW5kZXggNTNkMjIzMy4uZDAyNGZm
-YSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKKysrIGIvZHJtL25v
-dXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKQEAgLTQ1LDYgKzQ1LDE0NSBAQCBub3V2ZWF1X2RlYnVn
-ZnNfdmJpb3NfaW1hZ2Uoc3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQogCXJldHVybiAw
-OwogfQogCitzdGF0aWMgaW50Citub3V2ZWF1X2RlYnVnZnNfcHN0YXRlX2dldChzdHJ1Y3Qgc2Vx
-X2ZpbGUgKm0sIHZvaWQgKmRhdGEpCit7CisJc3RydWN0IG5vdXZlYXVfZGVidWdmcyAqZGVidWdm
-cyA9IG5vdXZlYXVfZGVidWdmcyhtLT5wcml2YXRlKTsKKwlzdHJ1Y3QgbnZpZl9vYmplY3QgKmN0
-cmw7CisJc3RydWN0IG52aWZfY29udHJvbF9wc3RhdGVfaW5mb192MCBpbmZvID0ge307CisJaW50
-IHJldCwgaTsKKworCWlmICghZGVidWdmcykKKwkJcmV0dXJuIC1FTk9ERVY7CisKKwljdHJsID0g
-JmRlYnVnZnMtPmN0cmw7CisKKwlyZXQgPSBudmlmX210aGQoY3RybCwgTlZJRl9DT05UUk9MX1BT
-VEFURV9JTkZPLAorCQkJJmluZm8sIHNpemVvZihpbmZvKSk7CisJaWYgKHJldCkKKwkJcmV0dXJu
-IHJldDsKKworCWZvciAoaSA9IDA7IGkgPCBpbmZvLmNvdW50ICsgMTsgaSsrKSB7CisJCWNvbnN0
-IHMzMiBzdGF0ZSA9IGkgPCBpbmZvLmNvdW50ID8gaSA6CisJCQlOVklGX0NPTlRST0xfUFNUQVRF
-X0FUVFJfVjBfU1RBVEVfQ1VSUkVOVDsKKwkJc3RydWN0IG52aWZfY29udHJvbF9wc3RhdGVfYXR0
-cl92MCBhdHRyID0geworCQkJLnN0YXRlID0gc3RhdGUsCisJCQkuaW5kZXggPSAwLAorCQl9Owor
-CisJCXJldCA9IG52aWZfbXRoZChjdHJsLCBOVklGX0NPTlRST0xfUFNUQVRFX0FUVFIsCisJCQkJ
-JmF0dHIsIHNpemVvZihhdHRyKSk7CisJCWlmIChyZXQpCisJCQlyZXR1cm4gcmV0OworCisJCWlm
-IChpIDwgaW5mby5jb3VudCkKKwkJCXNlcV9wcmludGYobSwgIiUwMng6IiwgYXR0ci5zdGF0ZSk7
-CisJCWVsc2UKKwkJCXNlcV9wcmludGYobSwgIiVzOiIsIGluZm8ucHdyc3JjID09IDAgPyAiREMi
-IDoKKwkJCQkJCSAgIGluZm8ucHdyc3JjID09IDEgPyAiQUMiIDoKKwkJCQkJCSAgICItLSIpOwor
-CisJCWF0dHIuaW5kZXggPSAwOworCQlkbyB7CisJCQlhdHRyLnN0YXRlID0gc3RhdGU7CisJCQly
-ZXQgPSBudmlmX210aGQoY3RybCwKKwkJCQkJTlZJRl9DT05UUk9MX1BTVEFURV9BVFRSLAorCQkJ
-CQkmYXR0ciwgc2l6ZW9mKGF0dHIpKTsKKwkJCWlmIChyZXQpCisJCQkJcmV0dXJuIHJldDsKKwor
-CQkJc2VxX3ByaW50ZihtLCAiICVzICVkIiwgYXR0ci5uYW1lLCBhdHRyLm1pbik7CisJCQlpZiAo
-YXR0ci5taW4gIT0gYXR0ci5tYXgpCisJCQkJc2VxX3ByaW50ZihtLCAiLSVkIiwgYXR0ci5tYXgp
-OworCQkJc2VxX3ByaW50ZihtLCAiICVzIiwgYXR0ci51bml0KTsKKwkJfSB3aGlsZSAoYXR0ci5p
-bmRleCk7CisKKwkJaWYgKHN0YXRlID49IDApIHsKKwkJCWlmIChpbmZvLnVzdGF0ZV9hYyA9PSBz
-dGF0ZSkKKwkJCQlzZXFfcHJpbnRmKG0sICIgQUMiKTsKKwkJCWlmIChpbmZvLnVzdGF0ZV9kYyA9
-PSBzdGF0ZSkKKwkJCQlzZXFfcHJpbnRmKG0sICIgREMiKTsKKwkJCWlmIChpbmZvLnBzdGF0ZSA9
-PSBzdGF0ZSkKKwkJCQlzZXFfcHJpbnRmKG0sICIgKiIpOworCQl9IGVsc2UgeworCQkJaWYgKGlu
-Zm8udXN0YXRlX2FjIDwgLTEpCisJCQkJc2VxX3ByaW50ZihtLCAiIEFDIik7CisJCQlpZiAoaW5m
-by51c3RhdGVfZGMgPCAtMSkKKwkJCQlzZXFfcHJpbnRmKG0sICIgREMiKTsKKwkJfQorCisJCXNl
-cV9wcmludGYobSwgIlxuIik7CisJfQorCisJcmV0dXJuIDA7Cit9CisKK3N0YXRpYyBzc2l6ZV90
-Citub3V2ZWF1X2RlYnVnZnNfcHN0YXRlX3NldChzdHJ1Y3QgZmlsZSAqZmlsZSwgY29uc3QgY2hh
-ciBfX3VzZXIgKnVidWYsIHNpemVfdCBsZW4sIGxvZmZfdCAqb2ZmcCkKK3sKKwlzdHJ1Y3Qgc2Vx
-X2ZpbGUgKm0gPSBmaWxlLT5wcml2YXRlX2RhdGE7CisJc3RydWN0IG5vdXZlYXVfZGVidWdmcyAq
-ZGVidWdmcyA9IG5vdXZlYXVfZGVidWdmcyhtLT5wcml2YXRlKTsKKwlzdHJ1Y3QgbnZpZl9vYmpl
-Y3QgKmN0cmw7CisJc3RydWN0IG52aWZfY29udHJvbF9wc3RhdGVfdXNlcl92MCBhcmdzID0geyAu
-cHdyc3JjID0gLUVJTlZBTCB9OworCWNoYXIgYnVmWzMyXSA9IHt9LCAqdG1wLCAqY3VyID0gYnVm
-OworCWxvbmcgdmFsdWUsIHJldDsKKworCWlmICghZGVidWdmcykKKwkJcmV0dXJuIC1FTk9ERVY7
-CisKKwljdHJsID0gJmRlYnVnZnMtPmN0cmw7CisKKwlpZiAobGVuID49IHNpemVvZihidWYpKQor
-CQlyZXR1cm4gLUVJTlZBTDsKKworCWlmIChjb3B5X2Zyb21fdXNlcihidWYsIHVidWYsIGxlbikp
-CisJCXJldHVybiAtRUZBVUxUOworCisJaWYgKCh0bXAgPSBzdHJjaHIoYnVmLCAnXG4nKSkpCisJ
-CSp0bXAgPSAnXDAnOworCisJaWYgKCFzdHJuY2FzZWNtcChjdXIsICJkYzoiLCAzKSkgeworCQlh
-cmdzLnB3cnNyYyA9IDA7CisJCWN1ciArPSAzOworCX0gZWxzZQorCWlmICghc3RybmNhc2VjbXAo
-Y3VyLCAiYWM6IiwgMykpIHsKKwkJYXJncy5wd3JzcmMgPSAxOworCQljdXIgKz0gMzsKKwl9CisK
-KwlpZiAoIXN0cmNhc2VjbXAoY3VyLCAibm9uZSIpKQorCQlhcmdzLnVzdGF0ZSA9IE5WSUZfQ09O
-VFJPTF9QU1RBVEVfVVNFUl9WMF9TVEFURV9VTktOT1dOOworCWVsc2UKKwlpZiAoIXN0cmNhc2Vj
-bXAoY3VyLCAiYXV0byIpKQorCQlhcmdzLnVzdGF0ZSA9IE5WSUZfQ09OVFJPTF9QU1RBVEVfVVNF
-Ul9WMF9TVEFURV9QRVJGTU9OOworCWVsc2UgeworCQlyZXQgPSBrc3RydG9sKGN1ciwgMTYsICZ2
-YWx1ZSk7CisJCWlmIChyZXQpCisJCQlyZXR1cm4gcmV0OworCQlhcmdzLnVzdGF0ZSA9IHZhbHVl
-OworCX0KKworCXJldCA9IG52aWZfbXRoZChjdHJsLCBOVklGX0NPTlRST0xfUFNUQVRFX1VTRVIs
-CisJCQkmYXJncywgc2l6ZW9mKGFyZ3MpKTsKKwlpZiAocmV0IDwgMCkKKwkJcmV0dXJuIHJldDsK
-KworCXJldHVybiBsZW47Cit9CisKK3N0YXRpYyBpbnQKK25vdXZlYXVfZGVidWdmc19wc3RhdGVf
-b3BlbihzdHJ1Y3QgaW5vZGUgKmlub2RlLCBzdHJ1Y3QgZmlsZSAqZmlsZSkKK3sKKwlyZXR1cm4g
-c2luZ2xlX29wZW4oZmlsZSwgbm91dmVhdV9kZWJ1Z2ZzX3BzdGF0ZV9nZXQsIGlub2RlLT5pX3By
-aXZhdGUpOworfQorCitzdGF0aWMgY29uc3Qgc3RydWN0IGZpbGVfb3BlcmF0aW9ucyBub3V2ZWF1
-X3BzdGF0ZV9mb3BzID0geworCS5vd25lciA9IFRISVNfTU9EVUxFLAorCS5vcGVuID0gbm91dmVh
-dV9kZWJ1Z2ZzX3BzdGF0ZV9vcGVuLAorCS5yZWFkID0gc2VxX3JlYWQsCisJLndyaXRlID0gbm91
-dmVhdV9kZWJ1Z2ZzX3BzdGF0ZV9zZXQsCit9OworCiBzdGF0aWMgc3RydWN0IGRybV9pbmZvX2xp
-c3Qgbm91dmVhdV9kZWJ1Z2ZzX2xpc3RbXSA9IHsKIAl7ICJ2Ymlvcy5yb20iLCBub3V2ZWF1X2Rl
-YnVnZnNfdmJpb3NfaW1hZ2UsIDAsIE5VTEwgfSwKIH07CkBAIC01Myw4ICsxOTIsOSBAQCBzdGF0
-aWMgc3RydWN0IGRybV9pbmZvX2xpc3Qgbm91dmVhdV9kZWJ1Z2ZzX2xpc3RbXSA9IHsKIHN0YXRp
-YyBjb25zdCBzdHJ1Y3Qgbm91dmVhdV9kZWJ1Z2ZzX2ZpbGVzIHsKIAljb25zdCBjaGFyICpuYW1l
-OwogCWNvbnN0IHN0cnVjdCBmaWxlX29wZXJhdGlvbnMgKmZvcHM7Ci19IG5vdXZlYXVfZGVidWdm
-c19maWxlc1tdID0ge307Ci0KK30gbm91dmVhdV9kZWJ1Z2ZzX2ZpbGVzW10gPSB7CisJeyJwc3Rh
-dGUiLCAmbm91dmVhdV9wc3RhdGVfZm9wc30sCit9OwogCiBzdGF0aWMgaW50CiBub3V2ZWF1X2Rl
-YnVnZnNfY3JlYXRlX2ZpbGUoc3RydWN0IGRybV9taW5vciAqbWlub3IsCi0tIAoyLjYuMQoKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWls
-aW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1942050152==
+Content-Type: multipart/alternative; boundary="1444738126.EDf2b680.16662"; charset="UTF-8"
+
+
+--1444738126.EDf2b680.16662
+Date: Tue, 13 Oct 2015 12:08:46 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92438
+
+--- Comment #7 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+After some fiddling with the various dependency I'm now testing on mesa 11.0.3.
+I haven't hit the bug just yet but I want to run the emulator for a while to be
+sure it's not just luck on my part.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1444738126.EDf2b680.16662
+Date: Tue, 13 Oct 2015 12:08:46 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
+              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
+</span></b>
+        <pre>After some fiddling with the various dependency I'm now testing on mesa 11.0.3.
+I haven't hit the bug just yet but I want to run the emulator for a while to be
+sure it's not just luck on my part.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1444738126.EDf2b680.16662--
+
+--===============1942050152==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1942050152==--
