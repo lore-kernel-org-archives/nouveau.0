@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Fri, 16 Oct 2015 19:20:57 +0000
-Message-ID: <bug-92504-8800-hkjBvodNd2@http.bugs.freedesktop.org/>
+Date: Fri, 16 Oct 2015 19:22:10 +0000
+Message-ID: <bug-92504-8800-y8S5XO8B4c@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0333450077=="
+Content-Type: multipart/mixed; boundary="===============0348999404=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0333450077==
-Content-Type: multipart/alternative; boundary="1445023257.FEE74A80.5875"; charset="UTF-8"
+--===============0348999404==
+Content-Type: multipart/alternative; boundary="1445023329.aA6D0.6361"; charset="UTF-8"
 
 
---1445023257.FEE74A80.5875
-Date: Fri, 16 Oct 2015 19:20:57 +0000
+--1445023329.aA6D0.6361
+Date: Fri, 16 Oct 2015 19:22:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #1 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
-Created attachment 118932
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118932&action=edit
-Log of plasmashell running (only last suspend before initial corruption)
+--- Comment #2 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
+A plasmashell apitrace is available on request (100MB)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445023257.FEE74A80.5875
-Date: Fri, 16 Oct 2015 19:20:57 +0000
+--1445023329.aA6D0.6361
+Date: Fri, 16 Oct 2015 19:22:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,15 +55,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
               from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118932" name="attach_118932" title="Log of plasmashell running (only last suspend before initial corruption)">attachment 118932</a> <a href="attachment.cgi?id=118932&amp;action=edit" title="Log of plasmashell running (only last suspend before initial corruption)">[details]</a></span>
-Log of plasmashell running (only last suspend before initial corruption)</pre>
+        <pre>A plasmashell apitrace is available on request (100MB)</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +75,9 @@ Log of plasmashell running (only last suspend before initial corruption)</pre>
     </body>
 </html>
 
---1445023257.FEE74A80.5875--
+--1445023329.aA6D0.6361--
 
---===============0333450077==
+--===============0348999404==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0333450077==--
+--===============0348999404==--
