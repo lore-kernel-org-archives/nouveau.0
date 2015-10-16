@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92307] G98/GM206: WARNING: ... at
  include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()/
-Date: Fri, 16 Oct 2015 07:48:26 +0000
-Message-ID: <bug-92307-8800-bO8gBuoUPn@http.bugs.freedesktop.org/>
+ [drm_kms_helper]()
+Date: Fri, 16 Oct 2015 07:48:55 +0000
+Message-ID: <bug-92307-8800-NkS8MPvIUV@http.bugs.freedesktop.org/>
 References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1412833809=="
+Content-Type: multipart/mixed; boundary="===============0453200166=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -22,12 +22,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1412833809==
-Content-Type: multipart/alternative; boundary="1444981705.7F315c011.25118"; charset="UTF-8"
+--===============0453200166==
+Content-Type: multipart/alternative; boundary="1444981735.E0DbE81A1.25255"; charset="UTF-8"
 
 
---1444981705.7F315c011.25118
-Date: Fri, 16 Oct 2015 07:48:25 +0000
+--1444981735.E0DbE81A1.25255
+Date: Fri, 16 Oct 2015 07:48:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -37,18 +37,18 @@ poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-            Summary|G98: WARNING: ... at        |G98/GM206: WARNING: ... at
+            Summary|G98/GM206: WARNING: ... at  |G98/GM206: WARNING: ... at
                    |include/drm/drm_crtc.h:1577 |include/drm/drm_crtc.h:1577
                    |drm_helper_choose_encoder_d |drm_helper_choose_encoder_d
                    |pms+0x8a/0x90               |pms+0x8a/0x90
-                   |[drm_kms_helper]()          |[drm_kms_helper]()/
+                   |[drm_kms_helper]()/         |[drm_kms_helper]()
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1444981705.7F315c011.25118
-Date: Fri, 16 Oct 2015 07:48:25 +0000
+--1444981735.E0DbE81A1.25255
+Date: Fri, 16 Oct 2015 07:48:55 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,7 +60,7 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/"
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -72,9 +72,9 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Summary</td>
-           <td>G98: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
-           </td>
            <td>G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()/
+           </td>
+           <td>G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()
            </td>
          </tr></table>
       <p>
@@ -88,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1444981705.7F315c011.25118--
+--1444981735.E0DbE81A1.25255--
 
---===============1412833809==
+--===============0453200166==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1412833809==--
+--===============0453200166==--
