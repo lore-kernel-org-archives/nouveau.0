@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Fri, 16 Oct 2015 19:24:30 +0000
-Message-ID: <bug-92504-8800-QvOmKdqxvu@http.bugs.freedesktop.org/>
+Date: Fri, 16 Oct 2015 19:27:01 +0000
+Message-ID: <bug-92504-8800-lzu8Wdcydt@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0181707573=="
+Content-Type: multipart/mixed; boundary="===============0299919229=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0181707573==
-Content-Type: multipart/alternative; boundary="1445023470.5b5c4BE1.7153"; charset="UTF-8"
+--===============0299919229==
+Content-Type: multipart/alternative; boundary="1445023620.2F5DfC80.8183"; charset="UTF-8"
 
 
---1445023470.5b5c4BE1.7153
-Date: Fri, 16 Oct 2015 19:24:30 +0000
+--1445023620.2F5DfC80.8183
+Date: Fri, 16 Oct 2015 19:27:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Which mesa git snapshot? A number of resource lifetime issues were addressed in
-11.0.3 which I was hoping might fix weirdo issues like this.
+--- Comment #4 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
+My current MESA snapshot is 93267887a06e760b4b20618523df5e8aa4e70307
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445023470.5b5c4BE1.7153
-Date: Fri, 16 Oct 2015 19:24:30 +0000
+--1445023620.2F5DfC80.8183
+Date: Fri, 16 Oct 2015 19:27:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +55,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
 </span></b>
-        <pre>Which mesa git snapshot? A number of resource lifetime issues were addressed in
-11.0.3 which I was hoping might fix weirdo issues like this.</pre>
+        <pre>My current MESA snapshot is 93267887a06e760b4b20618523df5e8aa4e70307</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445023470.5b5c4BE1.7153--
+--1445023620.2F5DfC80.8183--
 
---===============0181707573==
+--===============0299919229==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0181707573==--
+--===============0299919229==--
