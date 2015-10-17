@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Sat, 17 Oct 2015 14:04:25 +0000
-Message-ID: <bug-92504-8800-DguIskHmOA@http.bugs.freedesktop.org/>
+Date: Sat, 17 Oct 2015 14:05:37 +0000
+Message-ID: <bug-92504-8800-dMGZ5ackP2@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1223007846=="
+Content-Type: multipart/mixed; boundary="===============0841573972=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1223007846==
-Content-Type: multipart/alternative; boundary="1445090665.C3cD0c0.24515"; charset="UTF-8"
+--===============0841573972==
+Content-Type: multipart/alternative; boundary="1445090737.8D2E0.24798"; charset="UTF-8"
 
 
---1445090665.C3cD0c0.24515
-Date: Sat, 17 Oct 2015 14:04:25 +0000
+--1445090737.8D2E0.24798
+Date: Sat, 17 Oct 2015 14:05:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,16 +36,18 @@ Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> changed
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
- Attachment #118936|text/plain                  |application/x-xz
-          mime type|                            |
+ Attachment #118936|Kernel log when using the   |Kernel log when using the
+        description|debugging patch provided in |debugging patch provided in
+                   |the last message            |the last message (XZ
+                   |                            |compressed)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445090665.C3cD0c0.24515
-Date: Sat, 17 Oct 2015 14:04:25 +0000
+--1445090737.8D2E0.24798
+Date: Sat, 17 Oct 2015 14:05:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -68,10 +70,10 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Attachment #118936 mime type</td>
-           <td>text/plain
+           <td style="text-align:right;">Attachment #118936 description</td>
+           <td>Kernel log when using the debugging patch provided in the last message
            </td>
-           <td>application/x-xz
+           <td>Kernel log when using the debugging patch provided in the last message (XZ compressed)
            </td>
          </tr></table>
       <p>
@@ -86,9 +88,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445090665.C3cD0c0.24515--
+--1445090737.8D2E0.24798--
 
---===============1223007846==
+--===============0841573972==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1223007846==--
+--===============0841573972==--
