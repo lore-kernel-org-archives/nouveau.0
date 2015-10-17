@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Sat, 17 Oct 2015 14:03:09 +0000
-Message-ID: <bug-92504-8800-W19MfyIU9q@http.bugs.freedesktop.org/>
+Date: Sat, 17 Oct 2015 14:04:25 +0000
+Message-ID: <bug-92504-8800-DguIskHmOA@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0925060425=="
+Content-Type: multipart/mixed; boundary="===============1223007846=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0925060425==
-Content-Type: multipart/alternative; boundary="1445090589.4afdb80.24280"; charset="UTF-8"
+--===============1223007846==
+Content-Type: multipart/alternative; boundary="1445090665.C3cD0c0.24515"; charset="UTF-8"
 
 
---1445090589.4afdb80.24280
-Date: Sat, 17 Oct 2015 14:03:09 +0000
+--1445090665.C3cD0c0.24515
+Date: Sat, 17 Oct 2015 14:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #10 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
-Created attachment 118936
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118936&action=edit
-Kernel log when using the debugging patch provided in the last message
+Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #118936|text/plain                  |application/x-xz
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445090589.4afdb80.24280
-Date: Sat, 17 Oct 2015 14:03:09 +0000
+--1445090665.C3cD0c0.24515
+Date: Sat, 17 Oct 2015 14:04:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,22 +53,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118936" name="attach_118936" title="Kernel log when using the debugging patch provided in the last message">attachment 118936</a> <a href="attachment.cgi?id=118936&amp;action=edit" title="Kernel log when using the debugging patch provided in the last message">[details]</a></span>
-Kernel log when using the debugging patch provided in the last message</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #118936 mime type</td>
+           <td>text/plain
+           </td>
+           <td>application/x-xz
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -78,9 +86,9 @@ Kernel log when using the debugging patch provided in the last message</pre>
     </body>
 </html>
 
---1445090589.4afdb80.24280--
+--1445090665.C3cD0c0.24515--
 
---===============0925060425==
+--===============1223007846==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0925060425==--
+--===============1223007846==--
