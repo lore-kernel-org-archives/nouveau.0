@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92522] Desktop freezes resuming after suspension
-Date: Sun, 18 Oct 2015 14:09:33 +0000
-Message-ID: <bug-92522-8800-LvXbZdJKy4@http.bugs.freedesktop.org/>
+Date: Sun, 18 Oct 2015 14:22:19 +0000
+Message-ID: <bug-92522-8800-pre1lrqlh4@http.bugs.freedesktop.org/>
 References: <bug-92522-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0728675642=="
+Content-Type: multipart/mixed; boundary="===============0077528888=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92522-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0728675642==
-Content-Type: multipart/alternative; boundary="1445177373.aDeAA1.8563"; charset="UTF-8"
+--===============0077528888==
+Content-Type: multipart/alternative; boundary="1445178139.edbC2.12276"; charset="UTF-8"
 
 
---1445177373.aDeAA1.8563
-Date: Sun, 18 Oct 2015 14:09:33 +0000
+--1445178139.edbC2.12276
+Date: Sun, 18 Oct 2015 14:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92522
 
---- Comment #3 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I have     Ubuntu Wily Werewolf (development branch) 15.10 installed.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe this is the same issue as bug #92504. Good to know this doesn't only
+happen with plasmashell.
+
+*** This bug has been marked as a duplicate of bug 92504 ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445177373.aDeAA1.8563
-Date: Sun, 18 Oct 2015 14:09:33 +0000
+--1445178139.edbC2.12276
+Date: Sun, 18 Oct 2015 14:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,20 +57,57 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522">bug 92522</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Desktop freezes resuming after suspension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Desktop freezes resuming after suspension"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92522">bug 92522</a>
-              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I have     Ubuntu Wily Werewolf (development branch) 15.10 installed.</pre>
+        <pre>I believe this is the same issue as <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
+   href="show_bug.cgi?id=92504">bug #92504</a>. Good to know this doesn't only
+happen with plasmashell.
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
+   href="show_bug.cgi?id=92504">bug 92504</a> ***</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +119,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445177373.aDeAA1.8563--
+--1445178139.edbC2.12276--
 
---===============0728675642==
+--===============0077528888==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +131,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0728675642==--
+--===============0077528888==--
