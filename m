@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92522] Desktop freezes resuming after suspension
-Date: Sun, 18 Oct 2015 14:05:32 +0000
-Message-ID: <bug-92522-8800-ga2lbXlQhK@http.bugs.freedesktop.org/>
+Date: Sun, 18 Oct 2015 14:08:18 +0000
+Message-ID: <bug-92522-8800-hm8tKdvTx6@http.bugs.freedesktop.org/>
 References: <bug-92522-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1861527237=="
+Content-Type: multipart/mixed; boundary="===============1179125120=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92522-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1861527237==
-Content-Type: multipart/alternative; boundary="1445177132.AcfbC1.7090"; charset="UTF-8"
+--===============1179125120==
+Content-Type: multipart/alternative; boundary="1445177299.2Bc371.7679"; charset="UTF-8"
 
 
---1445177132.AcfbC1.7090
-Date: Sun, 18 Oct 2015 14:05:32 +0000
+--1445177299.2Bc371.7679
+Date: Sun, 18 Oct 2015 14:08:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92522
 
---- Comment #1 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 118960
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118960&action=edit
-Screenshot-1
+--- Comment #2 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 118961
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118961&action=edit
+Screenshot-2
 
-Screenshot of black screen after resume from suspension.
+Screenshot of terminal (CTRL+ALT+F1) after resume from suspension.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445177132.AcfbC1.7090
-Date: Sun, 18 Oct 2015 14:05:32 +0000
+--1445177299.2Bc371.7679
+Date: Sun, 18 Oct 2015 14:08:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,17 +57,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Desktop freezes resuming after suspension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Desktop freezes resuming after suspension"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92522">bug 92522</a>
               from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118960" name="attach_118960" title="Screenshot-1">attachment 118960</a> <a href="attachment.cgi?id=118960&amp;action=edit" title="Screenshot-1">[details]</a></span>
-Screenshot-1
+        <pre>Created <span class=""><a href="attachment.cgi?id=118961" name="attach_118961" title="Screenshot-2">attachment 118961</a> <a href="attachment.cgi?id=118961&amp;action=edit" title="Screenshot-2">[details]</a></span>
+Screenshot-2
 
-Screenshot of black screen after resume from suspension.</pre>
+Screenshot of terminal (CTRL+ALT+F1) after resume from suspension.</pre>
         </div>
       </p>
       <hr>
@@ -79,9 +79,9 @@ Screenshot of black screen after resume from suspension.</pre>
     </body>
 </html>
 
---1445177132.AcfbC1.7090--
+--1445177299.2Bc371.7679--
 
---===============1861527237==
+--===============1179125120==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1861527237==--
+--===============1179125120==--
