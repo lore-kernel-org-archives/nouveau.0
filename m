@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92522] Desktop freezes resuming after suspension
+Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
+ changing screen configuration
 Date: Sun, 18 Oct 2015 14:22:19 +0000
-Message-ID: <bug-92522-8800-pre1lrqlh4@http.bugs.freedesktop.org/>
-References: <bug-92522-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-92504-8800-0kJYpGq5IP@http.bugs.freedesktop.org/>
+References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0077528888=="
+Content-Type: multipart/mixed; boundary="===============0270147946=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92522-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0077528888==
-Content-Type: multipart/alternative; boundary="1445178139.edbC2.12276"; charset="UTF-8"
+--===============0270147946==
+Content-Type: multipart/alternative; boundary="1445178139.833B5.12276"; charset="UTF-8"
 
 
---1445178139.edbC2.12276
+--1445178139.833B5.12276
 Date: Sun, 18 Oct 2015 14:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92522
+https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
+                 CC|                            |carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I believe this is the same issue as bug #92504. Good to know this doesn't only
-happen with plasmashell.
-
-*** This bug has been marked as a duplicate of bug 92504 ***
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 92522 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445178139.edbC2.12276
+--1445178139.833B5.12276
 Date: Sun, 18 Oct 2015 14:22:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -60,9 +58,9 @@ Content-Type: text/html; charset="UTF-8"
     <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522">bug 92522</a>
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -72,56 +70,44 @@ Content-Type: text/html; charset="UTF-8"
           </tr>
 
          <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
+           <td>carla.sella&#64;gmail.com
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522#c4">Comment # 4</a>
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c15">Comment # 15</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92522">bug 92522</a>
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>I believe this is the same issue as <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="show_bug.cgi?id=92504">bug #92504</a>. Good to know this doesn't only
-happen with plasmashell.
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="show_bug.cgi?id=92504">bug 92504</a> ***</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
+   href="show_bug.cgi?id=92522">Bug 92522</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445178139.edbC2.12276--
+--1445178139.833B5.12276--
 
---===============0077528888==
+--===============0270147946==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -131,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0077528888==--
+--===============0270147946==--
