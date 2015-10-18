@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
- changing screen configuration
-Date: Sun, 18 Oct 2015 14:22:19 +0000
-Message-ID: <bug-92504-8800-0kJYpGq5IP@http.bugs.freedesktop.org/>
-References: <bug-92504-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92523] New: [Quadro FX 370] Compiz freezes entire
+	desktop.
+Date: Sun, 18 Oct 2015 14:27:27 +0000
+Message-ID: <bug-92523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0270147946=="
+Content-Type: multipart/mixed; boundary="===============1902409186=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +19,51 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0270147946==
-Content-Type: multipart/alternative; boundary="1445178139.833B5.12276"; charset="UTF-8"
+--===============1902409186==
+Content-Type: multipart/alternative; boundary="1445178447.f2EdDaF1.13962"; charset="UTF-8"
 
 
---1445178139.833B5.12276
-Date: Sun, 18 Oct 2015 14:22:19 +0000
+--1445178447.f2EdDaF1.13962
+Date: Sun, 18 Oct 2015 14:27:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92504
+https://bugs.freedesktop.org/show_bug.cgi?id=92523
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+            Bug ID: 92523
+           Summary: [Quadro FX 370] Compiz freezes entire desktop.
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: major
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-                 CC|                            |carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+Created attachment 118962
+  --> https://bugs.freedesktop.org/attachment.cgi?id=118962&action=edit
+Dmesg
 
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 92522 has been marked as a duplicate of this bug. ***
+I have already reported this issue on lauchpad:
+https://bugs.launchpad.net/ubuntu/+source/compiz/+bug/1487553.
+
+My Desktop freezes and Compiz process occupies 100% of CPU for a long while, if
+you wait 3-4 minutes  it will recover, but the issue is very annoying.
+
+
+This is my hardware: https://gist.github.com/anonymous/3203c7c5a43a509c0f22.
+I have Ubuntu Wily Werewolf (development branch) 15.10 installed.
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445178139.833B5.12276
-Date: Sun, 18 Oct 2015 14:22:19 +0000
+--1445178447.f2EdDaF1.13962
+Date: Sun, 18 Oct 2015 14:27:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,59 +71,115 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523">92523</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style="text-align:right;">CC</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>carla.sella&#64;gmail.com
-           </td>
-         </tr></table>
+        <tr>
+          <th>Summary</th>
+          <td>[Quadro FX 370] Compiz freezes entire desktop.
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>major
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>carla.sella&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>*** <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
-   href="show_bug.cgi?id=92522">Bug 92522</a> has been marked as a duplicate of this bug. ***</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=118962" name="attach_118962" title="Dmesg">attachment 118962</a> <a href="attachment.cgi?id=118962&amp;action=edit" title="Dmesg">[details]</a></span>
+Dmesg
+
+I have already reported this issue on lauchpad:
+<a href="https://bugs.launchpad.net/ubuntu/+source/compiz/+bug/1487553">https://bugs.launchpad.net/ubuntu/+source/compiz/+bug/1487553</a>.
+
+My Desktop freezes and Compiz process occupies 100% of CPU for a long while, if
+you wait 3-4 minutes  it will recover, but the issue is very annoying.
+
+
+This is my hardware: <a href="https://gist.github.com/anonymous/3203c7c5a43a509c0f22">https://gist.github.com/anonymous/3203c7c5a43a509c0f22</a>.
+I have Ubuntu Wily Werewolf (development branch) 15.10 installed.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445178139.833B5.12276--
+--1445178447.f2EdDaF1.13962--
 
---===============0270147946==
+--===============1902409186==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +189,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0270147946==--
+--===============1902409186==--
