@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Mon, 19 Oct 2015 17:42:52 +0000
-Message-ID: <bug-92504-8800-CxsdAJsmYv@http.bugs.freedesktop.org/>
+Date: Mon, 19 Oct 2015 17:47:44 +0000
+Message-ID: <bug-92504-8800-kbL0MfcU4y@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0325305724=="
+Content-Type: multipart/mixed; boundary="===============0519352882=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,38 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0325305724==
-Content-Type: multipart/alternative; boundary="1445276572.6bd3b0Ad1.20519"; charset="UTF-8"
+--===============0519352882==
+Content-Type: multipart/alternative; boundary="1445276864.E520D32.22119"; charset="UTF-8"
 
 
---1445276572.6bd3b0Ad1.20519
-Date: Mon, 19 Oct 2015 17:42:52 +0000
+--1445276864.E520D32.22119
+Date: Mon, 19 Oct 2015 17:47:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #21 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
-Whoa! I really didn't expect that to actually do anything. :-O 
-You're a genius!
-I've tried multiple suspend-resume cycles, with plugging out and in the
-external monitor several times, and no visible glitches and no suspicious
-kernel or application logs. Only kernel complaints were about the failing EDID
-requests to the external monitor (which tends to happen when you unplug it).
+--- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Alexander Schlarb from comment #21)
+> If I'm not mistaken this is just a workaround however, right? We still need
+> to find out why "nvbo->bo.mem.mem_type == TTM_PL_TT"?
 
-If I'm not mistaken this is just a workaround however, right? We still need to
-find out why "nvbo->bo.mem.mem_type == TTM_PL_TT"?
+Not sure... Ben and I will talk about it. I wonder if it's OK to return VRAM |
+GART here for the pre-nv30 cases.
 
-BTW: Thanks for your explanations about the nouveau buf offset! After reading
-it a few times I'm now pretty sure I understand roughly what you are doing. :-)
+> 
+> BTW: Thanks for your explanations about the nouveau buf offset! After
+> reading it a few times I'm now pretty sure I understand roughly what you are
+> doing. :-)
+
+No problem. Lots of tricky stuff going on. The GPU has a virtual memory space
+of its own which further complicates (but also simplifies) things.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445276572.6bd3b0Ad1.20519
-Date: Mon, 19 Oct 2015 17:42:52 +0000
+--1445276864.E520D32.22119
+Date: Mon, 19 Oct 2015 17:47:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,25 +68,27 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c21">Comment # 21</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Whoa! I really didn't expect that to actually do anything. :-O 
-You're a genius!
-I've tried multiple suspend-resume cycles, with plugging out and in the
-external monitor several times, and no visible glitches and no suspicious
-kernel or application logs. Only kernel complaints were about the failing EDID
-requests to the external monitor (which tends to happen when you unplug it).
+        <pre>(In reply to Alexander Schlarb from <a href="show_bug.cgi?id=92504#c21">comment #21</a>)
+<span class="quote">&gt; If I'm not mistaken this is just a workaround however, right? We still need
+&gt; to find out why &quot;nvbo-&gt;bo.mem.mem_type == TTM_PL_TT&quot;?</span >
 
-If I'm not mistaken this is just a workaround however, right? We still need to
-find out why &quot;nvbo-&gt;bo.mem.mem_type == TTM_PL_TT&quot;?
+Not sure... Ben and I will talk about it. I wonder if it's OK to return VRAM |
+GART here for the pre-nv30 cases.
 
-BTW: Thanks for your explanations about the nouveau buf offset! After reading
-it a few times I'm now pretty sure I understand roughly what you are doing. :-)</pre>
+<span class="quote">&gt; 
+&gt; BTW: Thanks for your explanations about the nouveau buf offset! After
+&gt; reading it a few times I'm now pretty sure I understand roughly what you are
+&gt; doing. :-)</span >
+
+No problem. Lots of tricky stuff going on. The GPU has a virtual memory space
+of its own which further complicates (but also simplifies) things.</pre>
         </div>
       </p>
       <hr>
@@ -97,9 +101,9 @@ it a few times I'm now pretty sure I understand roughly what you are doing. :-)<
     </body>
 </html>
 
---1445276572.6bd3b0Ad1.20519--
+--1445276864.E520D32.22119--
 
---===============0325305724==
+--===============0519352882==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -109,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0325305724==--
+--===============0519352882==--
