@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
- changing screen configuration
-Date: Mon, 19 Oct 2015 01:06:11 +0000
-Message-ID: <bug-92504-8800-UcnusoCRdj@http.bugs.freedesktop.org/>
-References: <bug-92504-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92515] Virtualbox with 3D acceleration and with
+ installed vbox-additions crashes
+Date: Mon, 19 Oct 2015 07:53:28 +0000
+Message-ID: <bug-92515-8800-UevnONLMqq@http.bugs.freedesktop.org/>
+References: <bug-92515-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2016837959=="
+Content-Type: multipart/mixed; boundary="===============1000805617=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92515-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,70 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2016837959==
-Content-Type: multipart/alternative; boundary="1445216771.e1aA6C52.31126"; charset="UTF-8"
+--===============1000805617==
+Content-Type: multipart/alternative; boundary="1445241208.7C6b0.14377"; charset="UTF-8"
 
 
---1445216771.e1aA6C52.31126
-Date: Mon, 19 Oct 2015 01:06:11 +0000
+--1445241208.7C6b0.14377
+Date: Mon, 19 Oct 2015 07:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92504
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92515
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Created attachment 118967
-  --> https://bugs.freedesktop.org/attachment.cgi?id=118967&action=edit
-patch to print bo info
+--- Comment #3 from Tomasz Pawe=C5=82 Gajc <tpgxyz-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #2)
+> Does vbox have multiple contexts concurrently active in multiple threads?
 
-OK, this patch should provide the bo va address. Can you provide the output of
-this along with a log that includes the pushbuf error to stderr from
-plasmashell?
+Ilia it is hard for me to give you and answer, because simply i do not
+understand what you are asking me for.
 
-I'm going to try to match up the bo's va to where it is in the pushbuf and
-hopefully identify which bo it's going wrong for.
+How can i check this ?
 
--- 
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445216771.e1aA6C52.31126
-Date: Mon, 19 Oct 2015 01:06:11 +0000
+--1445241208.7C6b0.14377
+Date: Mon, 19 Oct 2015 07:53:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c16">Comment # 16</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - Virtualbox with 3D acceleration and with installed vbox-a=
+dditions crashes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92515#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - Virtualbox with 3D acceleration and with installed vbox-a=
+dditions crashes"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92515">bug 92515<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+tpgxyz&#64;gmail.com" title=3D"Tomasz Pawe=C5=82 Gajc &lt;tpgxyz&#64;gmail.=
+com&gt;"> <span class=3D"fn">Tomasz Pawe=C5=82 Gajc</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=118967" name="attach_118967" title="patch to print bo info">attachment 118967</a> <a href="attachment.cgi?id=118967&amp;action=edit" title="patch to print bo info">[details]</a></span> <a href='page.cgi?id=splinter.html&amp;bug=92504&amp;attachment=118967'>[review]</a>
-patch to print bo info
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D925=
+15#c2">comment #2</a>)
+<span class=3D"quote">&gt; Does vbox have multiple contexts concurrently ac=
+tive in multiple threads?</span >
 
-OK, this patch should provide the bo va address. Can you provide the output of
-this along with a log that includes the pushbuf error to stderr from
-plasmashell?
+Ilia it is hard for me to give you and answer, because simply i do not
+understand what you are asking me for.
 
-I'm going to try to match up the bo's va to where it is in the pushbuf and
-hopefully identify which bo it's going wrong for.</pre>
+How can i check this ?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -92,9 +97,9 @@ hopefully identify which bo it's going wrong for.</pre>
     </body>
 </html>
 
---1445216771.e1aA6C52.31126--
+--1445241208.7C6b0.14377--
 
---===============2016837959==
+--===============1000805617==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +109,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2016837959==--
+--===============1000805617==--
