@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume after
  changing screen configuration
-Date: Tue, 20 Oct 2015 18:35:07 +0000
-Message-ID: <bug-92504-8800-KwXeSA5sBg@http.bugs.freedesktop.org/>
+Date: Tue, 20 Oct 2015 18:35:33 +0000
+Message-ID: <bug-92504-8800-xVZpoSGvCm@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0315344667=="
+Content-Type: multipart/mixed; boundary="===============0025455465=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0315344667==
-Content-Type: multipart/alternative; boundary="1445366107.6D4a4.15449"; charset="UTF-8"
+--===============0025455465==
+Content-Type: multipart/alternative; boundary="1445366133.D5205fEE6.15604"; charset="UTF-8"
 
 
---1445366107.6D4a4.15449
-Date: Tue, 20 Oct 2015 18:35:07 +0000
+--1445366133.D5205fEE6.15604
+Date: Tue, 20 Oct 2015 18:35:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
@@ -36,18 +36,18 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-                 CC|                            |serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+                 CC|                            |cordlandwehr-RoXCvvDuEio@public.gmane.org
 
---- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-*** Bug 92213 has been marked as a duplicate of this bug. ***
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 91598 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445366107.6D4a4.15449
-Date: Tue, 20 Oct 2015 18:35:07 +0000
+--1445366133.D5205fEE6.15604
+Date: Tue, 20 Oct 2015 18:35:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -74,7 +74,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>serafean&#64;gmail.com
+           <td>cordlandwehr&#64;kde.org
            </td>
          </tr></table>
       <p>
@@ -82,7 +82,7 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
@@ -91,8 +91,8 @@ Content-Type: text/html; charset="UTF-8"
 </span></b>
         <pre>*** <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - nouveau hangs after resume on kwin present windows"
-   href="show_bug.cgi?id=92213">Bug 92213</a> has been marked as a duplicate of this bug. ***</pre>
+   title="RESOLVED DUPLICATE - Broken Rendering of Plasma 5 Desktop"
+   href="show_bug.cgi?id=91598">Bug 91598</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +105,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445366107.6D4a4.15449--
+--1445366133.D5205fEE6.15604--
 
---===============0315344667==
+--===============0025455465==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0315344667==--
+--===============0025455465==--
