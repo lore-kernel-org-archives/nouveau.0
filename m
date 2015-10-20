@@ -1,12 +1,17 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Tue, 20 Oct 2015 17:36:05 +0000
-Message-ID: <bug-90871-8800-pl5hXooaXG@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+From: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Subject: Re: [PATCH 1/1] vga_switcheroo: Constify
+	vga_switcheroo_handler
+Date: Tue, 20 Oct 2015 20:19:53 +0200
+Message-ID: <20151020181953.GY13786@phenom.ffwll.local>
+References: <cover.1445335625.git.lukas@wunner.de>
+ <5c9eb6cb00a206a6a9024e47d585c3b666f1dcb5.1445335625.git.lukas@wunner.de>
+ <5626223C.1040605@vodafone.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0806975383=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Disposition: inline
+In-Reply-To: <5626223C.1040605-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,138 +21,128 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Christian =?iso-8859-1?Q?K=F6nig?= <deathsimple-ANTagKRnAhcb1SvskN2V4Q@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Darren Hart <dvhart-VuQAYsv1563Yd54FQh9/CA@public.gmane.org>, dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Alex Deucher <alexander.deucher-5C7GfCeVMHo@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0806975383==
-Content-Type: multipart/alternative; boundary="1445362565.A6baC2101.30153"; charset="UTF-8"
-
-
---1445362565.A6baC2101.30153
-Date: Tue, 20 Oct 2015 17:36:05 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
-
---- Comment #46 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Hans de Goede from comment #44)
-> Hi Ilia,
-> 
-> (In reply to Ilia Mirkin from comment #43)
-> > Created attachment 118995 [details]
-> > updated test program
-> > 
-> > With this I get the same results whether I set has_texture_rectangle = 1 or
-> > 0. Attached the full updated source file, or use the patch below.
-> 
-> Thanks for the updated test program, this seems to fix things on nv3x. There
-> still is an issue with then test program though (also reproduced on intel
-> gfx) the program is supposed to change the color of the "box" when you click
-> a mouse button (pressing a key exits the program), but currently when using
-> rectangle textures it draws a red box on startup and then on a mouse click
-> everything goes gray, where as the box should turn blue. As said this
-> happens on intel gfx too, so I think there still is an issue with the test
-> program when using rectangle textures.
-
-Just my incompetence -- glMatrixMode has to go *before* glPushMatrix, not
-after. Oops. Moving it up makes the program behave as expected, at least on
-intel/hsw.
-
-> 
-> As for epoxy not seeing the extension, I believe that that is an epoxy
-> issue, as said the extension is clearly listed in both glxinfo and glxgears
-> -info output.
-
-Pretty sure it's what I said -- the test program doesn't do a glXMakeCurrent
-before calling gl functions, which means their output is invalid. Not an epoxy
-issue. Rearranging the test program's code to fix this is annoying though.
-
-I wonder if this is a real issue in xfwm code as well.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1445362565.A6baC2101.30153
-Date: Tue, 20 Oct 2015 17:36:05 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c46">Comment # 46</a>
-              on <a class="bz_bug_link 
-          bz_status_ASSIGNED "
-   title="ASSIGNED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Hans de Goede from <a href="show_bug.cgi?id=90871#c44">comment #44</a>)
-<span class="quote">&gt; Hi Ilia,
-&gt; 
-&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90871#c43">comment #43</a>)
-&gt; &gt; Created <span class=""><a href="attachment.cgi?id=118995" name="attach_118995" title="updated test program">attachment 118995</a> <a href="attachment.cgi?id=118995&amp;action=edit" title="updated test program">[details]</a></span>
-&gt; &gt; updated test program
-&gt; &gt; 
-&gt; &gt; With this I get the same results whether I set has_texture_rectangle = 1 or
-&gt; &gt; 0. Attached the full updated source file, or use the patch below.
-&gt; 
-&gt; Thanks for the updated test program, this seems to fix things on nv3x. There
-&gt; still is an issue with then test program though (also reproduced on intel
-&gt; gfx) the program is supposed to change the color of the &quot;box&quot; when you click
-&gt; a mouse button (pressing a key exits the program), but currently when using
-&gt; rectangle textures it draws a red box on startup and then on a mouse click
-&gt; everything goes gray, where as the box should turn blue. As said this
-&gt; happens on intel gfx too, so I think there still is an issue with the test
-&gt; program when using rectangle textures.</span >
-
-Just my incompetence -- glMatrixMode has to go *before* glPushMatrix, not
-after. Oops. Moving it up makes the program behave as expected, at least on
-intel/hsw.
-
-<span class="quote">&gt; 
-&gt; As for epoxy not seeing the extension, I believe that that is an epoxy
-&gt; issue, as said the extension is clearly listed in both glxinfo and glxgears
-&gt; -info output.</span >
-
-Pretty sure it's what I said -- the test program doesn't do a glXMakeCurrent
-before calling gl functions, which means their output is invalid. Not an epoxy
-issue. Rearranging the test program's code to fix this is annoying though.
-
-I wonder if this is a real issue in xfwm code as well.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1445362565.A6baC2101.30153--
-
---===============0806975383==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0806975383==--
+T24gVHVlLCBPY3QgMjAsIDIwMTUgYXQgMDE6MTU6MDhQTSArMDIwMCwgQ2hyaXN0aWFuIEvDtm5p
+ZyB3cm90ZToKPiBPbiAxOC4xMC4yMDE1IDEzOjA1LCBMdWthcyBXdW5uZXIgd3JvdGU6Cj4gPnZn
+YV9zd2l0Y2hlcm9vX2NsaWVudF9vcHMgaGFzIGFsd2F5cyBiZWVuIGRlY2xhcmVkIGNvbnN0IHNp
+bmNlIGl0cwo+ID5pbnRyb2R1Y3Rpb24gd2l0aCAyNmVjNjg1ZmY5ZDkgKCJ2Z2Ffc3dpdGNoZXJv
+bzogSW50cm9kdWNlIHN0cnVjdAo+ID52Z2Ffc3dpdGNoZXJvb19jbGllbnRfb3BzIikuCj4gPgo+
+ID5EbyBzbyBmb3IgdmdhX3N3aXRjaGVyb29faGFuZGxlciBhcyB3ZWxsLgo+ID4KPiA+ICBkcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHUua286Cj4gPiAgICA2IC5yb2RhdGEgICAgICAg
+MDAwMDk4ODgKPiA+LSAxOSAuZGF0YSAgICAgICAgIDAwMDAxZjAwCj4gPisgMTkgLmRhdGEgICAg
+ICAgICAwMDAwMWVlMAo+ID4gIGRyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUua286Cj4g
+PiAgICA2IC5yb2RhdGEgICAgICAgMDAwNDYwYjgKPiA+ICAgMTcgLmRhdGEgICAgICAgICAwMDAx
+OGZlMAo+ID4gIGRyaXZlcnMvZ3B1L2RybS9yYWRlb24vcmFkZW9uLmtvOgo+ID4tICA3IC5yb2Rh
+dGEgICAgICAgMDAwMzA5NDQKPiA+KyAgNyAucm9kYXRhICAgICAgIDAwMDMwOTY0Cj4gPi0gMjEg
+LmRhdGEgICAgICAgICAwMDAwZDZhMAo+ID4rIDIxIC5kYXRhICAgICAgICAgMDAwMGQ2NzgKPiA+
+ICBkcml2ZXJzL3BsYXRmb3JtL3g4Ni9hcHBsZS1nbXV4LmtvOgo+ID4tICA3IC5yb2RhdGEgICAg
+ICAgMDAwMDAxNDAKPiA+KyAgNyAucm9kYXRhICAgICAgIDAwMDAwMTYwCj4gPi0gMTEgLmRhdGEg
+ICAgICAgICAwMDAwMDBlMAo+ID4rIDExIC5kYXRhICAgICAgICAgMDAwMDAwYjgKPiA+Cj4gPkNj
+OiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gPkNjOiBEYXJyZW4gSGFydCA8ZHZo
+YXJ0QGxpbnV4LmludGVsLmNvbT4KPiA+Q2M6IEFsZXggRGV1Y2hlciA8YWxleGFuZGVyLmRldWNo
+ZXJAYW1kLmNvbT4KPiA+U2lnbmVkLW9mZi1ieTogTHVrYXMgV3VubmVyIDxsdWthc0B3dW5uZXIu
+ZGU+Cj4gCj4gTG9va3MgbGlrZSBpdCBtYWtlcyBzZW5zZSBhbmQgYXQgbGVhc3QgSSBkb24ndCBu
+ZWVkIHRoaXMgc3BsaXQgdXAgYmV0d2Vlbgo+IGRyaXZlcnMuCj4gCj4gUGF0Y2ggaXMgUmV2aWV3
+ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4uCgpBcHBs
+aWVkIHRvIGRybS1taXNjLCB0aGFua3MuCi1EYW5pZWwKCj4gCj4gUmVnYXJkcywKPiBDaHJpc3Rp
+YW4uCj4gCj4gPi0tLQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hdHB4
+X2hhbmRsZXIuYyB8IDIgKy0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Fj
+cGkuYyAgICAgICAgICAgfCAyICstCj4gPiAgZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25f
+YXRweF9oYW5kbGVyLmMgICAgIHwgMiArLQo+ID4gIGRyaXZlcnMvZ3B1L3ZnYS92Z2Ffc3dpdGNo
+ZXJvby5jICAgICAgICAgICAgICAgICB8IDQgKystLQo+ID4gIGRyaXZlcnMvcGxhdGZvcm0veDg2
+L2FwcGxlLWdtdXguYyAgICAgICAgICAgICAgICB8IDIgKy0KPiA+ICBpbmNsdWRlL2xpbnV4L3Zn
+YV9zd2l0Y2hlcm9vLmggICAgICAgICAgICAgICAgICAgfCA0ICsrLS0KPiA+ICA2IGZpbGVzIGNo
+YW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkKPiA+Cj4gPmRpZmYgLS1naXQg
+YS9kcml2ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYXRweF9oYW5kbGVyLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfYXRweF9oYW5kbGVyLmMKPiA+aW5kZXggM2Y3
+YWFhNC4uZGM1NjVhNCAxMDA2NDQKPiA+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUv
+YW1kZ3B1X2F0cHhfaGFuZGxlci5jCj4gPisrKyBiL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1
+L2FtZGdwdV9hdHB4X2hhbmRsZXIuYwo+ID5AQCAtNTAxLDcgKzUwMSw3IEBAIHN0YXRpYyBpbnQg
+YW1kZ3B1X2F0cHhfZ2V0X2NsaWVudF9pZChzdHJ1Y3QgcGNpX2RldiAqcGRldikKPiA+ICAJCXJl
+dHVybiBWR0FfU1dJVENIRVJPT19ESVM7Cj4gPiAgfQo+ID4tc3RhdGljIHN0cnVjdCB2Z2Ffc3dp
+dGNoZXJvb19oYW5kbGVyIGFtZGdwdV9hdHB4X2hhbmRsZXIgPSB7Cj4gPitzdGF0aWMgY29uc3Qg
+c3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgYW1kZ3B1X2F0cHhfaGFuZGxlciA9IHsKPiA+
+ICAJLnN3aXRjaHRvID0gYW1kZ3B1X2F0cHhfc3dpdGNodG8sCj4gPiAgCS5wb3dlcl9zdGF0ZSA9
+IGFtZGdwdV9hdHB4X3Bvd2VyX3N0YXRlLAo+ID4gIAkuaW5pdCA9IGFtZGdwdV9hdHB4X2luaXQs
+Cj4gPmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4gPmluZGV4IGRmMmQ5ODEu
+LjhiODMzMmUgMTAwNjQ0Cj4gPi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVf
+YWNwaS5jCj4gPisrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXVfYWNwaS5jCj4g
+PkBAIC0yMDYsNyArMjA2LDcgQEAgc3RhdGljIGludCBub3V2ZWF1X2RzbV9nZXRfY2xpZW50X2lk
+KHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ID4gIAlyZXR1cm4gVkdBX1NXSVRDSEVST09fRElTOwo+
+ID4gIH0KPiA+LXN0YXRpYyBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciBub3V2ZWF1X2Rz
+bV9oYW5kbGVyID0gewo+ID4rc3RhdGljIGNvbnN0IHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5k
+bGVyIG5vdXZlYXVfZHNtX2hhbmRsZXIgPSB7Cj4gPiAgCS5zd2l0Y2h0byA9IG5vdXZlYXVfZHNt
+X3N3aXRjaHRvLAo+ID4gIAkucG93ZXJfc3RhdGUgPSBub3V2ZWF1X2RzbV9wb3dlcl9zdGF0ZSwK
+PiA+ICAJLmdldF9jbGllbnRfaWQgPSBub3V2ZWF1X2RzbV9nZXRfY2xpZW50X2lkLAo+ID5kaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXRweF9oYW5kbGVyLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hdHB4X2hhbmRsZXIuYwo+ID5pbmRleCA4YmM3
+ZDBiLi43MTQ1MDhhIDEwMDY0NAo+ID4tLS0gYS9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVv
+bl9hdHB4X2hhbmRsZXIuYwo+ID4rKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9h
+dHB4X2hhbmRsZXIuYwo+ID5AQCAtNDk5LDcgKzQ5OSw3IEBAIHN0YXRpYyBpbnQgcmFkZW9uX2F0
+cHhfZ2V0X2NsaWVudF9pZChzdHJ1Y3QgcGNpX2RldiAqcGRldikKPiA+ICAJCXJldHVybiBWR0Ff
+U1dJVENIRVJPT19ESVM7Cj4gPiAgfQo+ID4tc3RhdGljIHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19o
+YW5kbGVyIHJhZGVvbl9hdHB4X2hhbmRsZXIgPSB7Cj4gPitzdGF0aWMgY29uc3Qgc3RydWN0IHZn
+YV9zd2l0Y2hlcm9vX2hhbmRsZXIgcmFkZW9uX2F0cHhfaGFuZGxlciA9IHsKPiA+ICAJLnN3aXRj
+aHRvID0gcmFkZW9uX2F0cHhfc3dpdGNodG8sCj4gPiAgCS5wb3dlcl9zdGF0ZSA9IHJhZGVvbl9h
+dHB4X3Bvd2VyX3N0YXRlLAo+ID4gIAkuaW5pdCA9IHJhZGVvbl9hdHB4X2luaXQsCj4gPmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS92Z2EvdmdhX3N3aXRjaGVyb28uYyBiL2RyaXZlcnMvZ3B1L3Zn
+YS92Z2Ffc3dpdGNoZXJvby5jCj4gPmluZGV4IGFmMGQzNzIuLjU2YmJiZDYgMTAwNjQ0Cj4gPi0t
+LSBhL2RyaXZlcnMvZ3B1L3ZnYS92Z2Ffc3dpdGNoZXJvby5jCj4gPisrKyBiL2RyaXZlcnMvZ3B1
+L3ZnYS92Z2Ffc3dpdGNoZXJvby5jCj4gPkBAIC0xNDAsNyArMTQwLDcgQEAgc3RydWN0IHZnYXNy
+X3ByaXYgewo+ID4gIAlpbnQgcmVnaXN0ZXJlZF9jbGllbnRzOwo+ID4gIAlzdHJ1Y3QgbGlzdF9o
+ZWFkIGNsaWVudHM7Cj4gPi0Jc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhhbmRsZXI7
+Cj4gPisJY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhhbmRsZXI7Cj4gPiAg
+fTsKPiA+ICAjZGVmaW5lIElEX0JJVF9BVURJTwkJMHgxMDAKPiA+QEAgLTE5NSw3ICsxOTUsNyBA
+QCBzdGF0aWMgdm9pZCB2Z2Ffc3dpdGNoZXJvb19lbmFibGUodm9pZCkKPiA+ICAgKgo+ID4gICAq
+IFJldHVybjogMCBvbiBzdWNjZXNzLCAtRUlOVkFMIGlmIGEgaGFuZGxlciB3YXMgYWxyZWFkeSBy
+ZWdpc3RlcmVkLgo+ID4gICAqLwo+ID4taW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2hhbmRs
+ZXIoc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhhbmRsZXIpCj4gPitpbnQgdmdhX3N3
+aXRjaGVyb29fcmVnaXN0ZXJfaGFuZGxlcihjb25zdCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFu
+ZGxlciAqaGFuZGxlcikKPiA+ICB7Cj4gPiAgCW11dGV4X2xvY2soJnZnYXNyX211dGV4KTsKPiA+
+ICAJaWYgKHZnYXNyX3ByaXYuaGFuZGxlcikgewo+ID5kaWZmIC0tZ2l0IGEvZHJpdmVycy9wbGF0
+Zm9ybS94ODYvYXBwbGUtZ211eC5jIGIvZHJpdmVycy9wbGF0Zm9ybS94ODYvYXBwbGUtZ211eC5j
+Cj4gPmluZGV4IDBkZWMzZjUuLjk3NmVmZWIgMTAwNjQ0Cj4gPi0tLSBhL2RyaXZlcnMvcGxhdGZv
+cm0veDg2L2FwcGxlLWdtdXguYwo+ID4rKysgYi9kcml2ZXJzL3BsYXRmb3JtL3g4Ni9hcHBsZS1n
+bXV4LmMKPiA+QEAgLTM0Niw3ICszNDYsNyBAQCBnbXV4X2FjdGl2ZV9jbGllbnQoc3RydWN0IGFw
+cGxlX2dtdXhfZGF0YSAqZ211eF9kYXRhKQo+ID4gIAlyZXR1cm4gVkdBX1NXSVRDSEVST09fRElT
+Owo+ID4gIH0KPiA+LXN0YXRpYyBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciBnbXV4X2hh
+bmRsZXIgPSB7Cj4gPitzdGF0aWMgY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIg
+Z211eF9oYW5kbGVyID0gewo+ID4gIAkuc3dpdGNodG8gPSBnbXV4X3N3aXRjaHRvLAo+ID4gIAku
+cG93ZXJfc3RhdGUgPSBnbXV4X3NldF9wb3dlcl9zdGF0ZSwKPiA+ICAJLmdldF9jbGllbnRfaWQg
+PSBnbXV4X2dldF9jbGllbnRfaWQsCj4gPmRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L3ZnYV9z
+d2l0Y2hlcm9vLmggYi9pbmNsdWRlL2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmgKPiA+aW5kZXggYzU1
+NzUxMS4uNzg2YmM5MyAxMDA2NDQKPiA+LS0tIGEvaW5jbHVkZS9saW51eC92Z2Ffc3dpdGNoZXJv
+by5oCj4gPisrKyBiL2luY2x1ZGUvbGludXgvdmdhX3N3aXRjaGVyb28uaAo+ID5AQCAtMTM3LDcg
+KzEzNyw3IEBAIGludCB2Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9hdWRpb19jbGllbnQoc3RydWN0
+IHBjaV9kZXYgKnBkZXYsCj4gPiAgdm9pZCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfZmJfc2V0KHN0
+cnVjdCBwY2lfZGV2ICpkZXYsCj4gPiAgCQkJCSAgc3RydWN0IGZiX2luZm8gKmluZm8pOwo+ID4t
+aW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2hhbmRsZXIoc3RydWN0IHZnYV9zd2l0Y2hlcm9v
+X2hhbmRsZXIgKmhhbmRsZXIpOwo+ID4raW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2hhbmRs
+ZXIoY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhhbmRsZXIpOwo+ID4gIHZv
+aWQgdmdhX3N3aXRjaGVyb29fdW5yZWdpc3Rlcl9oYW5kbGVyKHZvaWQpOwo+ID4gIGludCB2Z2Ff
+c3dpdGNoZXJvb19wcm9jZXNzX2RlbGF5ZWRfc3dpdGNoKHZvaWQpOwo+ID5AQCAtMTU1LDcgKzE1
+NSw3IEBAIHN0YXRpYyBpbmxpbmUgdm9pZCB2Z2Ffc3dpdGNoZXJvb191bnJlZ2lzdGVyX2NsaWVu
+dChzdHJ1Y3QgcGNpX2RldiAqZGV2KSB7fQo+ID4gIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9zd2l0
+Y2hlcm9vX3JlZ2lzdGVyX2NsaWVudChzdHJ1Y3QgcGNpX2RldiAqZGV2LAo+ID4gIAkJY29uc3Qg
+c3RydWN0IHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9vcHMgKm9wcywgYm9vbCBkcml2ZXJfcG93ZXJf
+Y29udHJvbCkgeyByZXR1cm4gMDsgfQo+ID4gIHN0YXRpYyBpbmxpbmUgdm9pZCB2Z2Ffc3dpdGNo
+ZXJvb19jbGllbnRfZmJfc2V0KHN0cnVjdCBwY2lfZGV2ICpkZXYsIHN0cnVjdCBmYl9pbmZvICpp
+bmZvKSB7fQo+ID4tc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29fcmVnaXN0ZXJfaGFu
+ZGxlcihzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciAqaGFuZGxlcikgeyByZXR1cm4gMDsg
+fQo+ID4rc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29fcmVnaXN0ZXJfaGFuZGxlcihj
+b25zdCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciAqaGFuZGxlcikgeyByZXR1cm4gMDsg
+fQo+ID4gIHN0YXRpYyBpbmxpbmUgaW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2F1ZGlvX2Ns
+aWVudChzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiA+ICAJY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hl
+cm9vX2NsaWVudF9vcHMgKm9wcywKPiA+ICAJZW51bSB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfaWQg
+aWQpIHsgcmV0dXJuIDA7IH0KPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+IGRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKPiBkcmktZGV2ZWxAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
+c3RpbmZvL2RyaS1kZXZlbAoKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIElu
+dGVsIENvcnBvcmF0aW9uCmh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9ub3V2ZWF1Cg==
