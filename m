@@ -1,137 +1,244 @@
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <deathsimple@vodafone.de>
-Subject: Re: [PATCH 1/1] vga_switcheroo: Constify vga_switcheroo_handler
-Date: Tue, 20 Oct 2015 13:15:08 +0200
-Message-ID: <5626223C.1040605@vodafone.de>
-References: <cover.1445335625.git.lukas@wunner.de>
- <5c9eb6cb00a206a6a9024e47d585c3b666f1dcb5.1445335625.git.lukas@wunner.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92556] New: System hangs at visiting WebGL site
+Date: Tue, 20 Oct 2015 15:24:59 +0000
+Message-ID: <bug-92556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <5c9eb6cb00a206a6a9024e47d585c3b666f1dcb5.1445335625.git.lukas@wunner.de>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Lukas Wunner <lukas@wunner.de>, dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Cc: Alex Deucher <alexander.deucher@amd.com>, Darren Hart <dvhart@linux.intel.com>, Ben Skeggs <bskeggs@redhat.com>
+Content-Type: multipart/mixed; boundary="===============1767378630=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTguMTAuMjAxNSAxMzowNSwgTHVrYXMgV3VubmVyIHdyb3RlOgo+IHZnYV9zd2l0Y2hlcm9v
-X2NsaWVudF9vcHMgaGFzIGFsd2F5cyBiZWVuIGRlY2xhcmVkIGNvbnN0IHNpbmNlIGl0cwo+IGlu
-dHJvZHVjdGlvbiB3aXRoIDI2ZWM2ODVmZjlkOSAoInZnYV9zd2l0Y2hlcm9vOiBJbnRyb2R1Y2Ug
-c3RydWN0Cj4gdmdhX3N3aXRjaGVyb29fY2xpZW50X29wcyIpLgo+Cj4gRG8gc28gZm9yIHZnYV9z
-d2l0Y2hlcm9vX2hhbmRsZXIgYXMgd2VsbC4KPgo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1LmtvOgo+ICAgICA2IC5yb2RhdGEgICAgICAgMDAwMDk4ODgKPiAtIDE5IC5kYXRh
-ICAgICAgICAgMDAwMDFmMDAKPiArIDE5IC5kYXRhICAgICAgICAgMDAwMDFlZTAKPiAgIGRyaXZl
-cnMvZ3B1L2RybS9ub3V2ZWF1L25vdXZlYXUua286Cj4gICAgIDYgLnJvZGF0YSAgICAgICAwMDA0
-NjBiOAo+ICAgIDE3IC5kYXRhICAgICAgICAgMDAwMThmZTAKPiAgIGRyaXZlcnMvZ3B1L2RybS9y
-YWRlb24vcmFkZW9uLmtvOgo+IC0gIDcgLnJvZGF0YSAgICAgICAwMDAzMDk0NAo+ICsgIDcgLnJv
-ZGF0YSAgICAgICAwMDAzMDk2NAo+IC0gMjEgLmRhdGEgICAgICAgICAwMDAwZDZhMAo+ICsgMjEg
-LmRhdGEgICAgICAgICAwMDAwZDY3OAo+ICAgZHJpdmVycy9wbGF0Zm9ybS94ODYvYXBwbGUtZ211
-eC5rbzoKPiAtICA3IC5yb2RhdGEgICAgICAgMDAwMDAxNDAKPiArICA3IC5yb2RhdGEgICAgICAg
-MDAwMDAxNjAKPiAtIDExIC5kYXRhICAgICAgICAgMDAwMDAwZTAKPiArIDExIC5kYXRhICAgICAg
-ICAgMDAwMDAwYjgKPgo+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+Cj4gQ2M6
-IERhcnJlbiBIYXJ0IDxkdmhhcnRAbGludXguaW50ZWwuY29tPgo+IENjOiBBbGV4IERldWNoZXIg
-PGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogTHVrYXMgV3VubmVy
-IDxsdWthc0B3dW5uZXIuZGU+CgpMb29rcyBsaWtlIGl0IG1ha2VzIHNlbnNlIGFuZCBhdCBsZWFz
-dCBJIGRvbid0IG5lZWQgdGhpcyBzcGxpdCB1cCAKYmV0d2VlbiBkcml2ZXJzLgoKUGF0Y2ggaXMg
-UmV2aWV3ZWQtYnk6IENocmlzdGlhbiBLw7ZuaWcgPGNocmlzdGlhbi5rb2VuaWdAYW1kLmNvbT4u
-CgpSZWdhcmRzLApDaHJpc3RpYW4uCgo+IC0tLQo+ICAgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2F0cHhfaGFuZGxlci5jIHwgMiArLQo+ICAgZHJpdmVycy9ncHUvZHJtL25vdXZl
-YXUvbm91dmVhdV9hY3BpLmMgICAgICAgICAgIHwgMiArLQo+ICAgZHJpdmVycy9ncHUvZHJtL3Jh
-ZGVvbi9yYWRlb25fYXRweF9oYW5kbGVyLmMgICAgIHwgMiArLQo+ICAgZHJpdmVycy9ncHUvdmdh
-L3ZnYV9zd2l0Y2hlcm9vLmMgICAgICAgICAgICAgICAgIHwgNCArKy0tCj4gICBkcml2ZXJzL3Bs
-YXRmb3JtL3g4Ni9hcHBsZS1nbXV4LmMgICAgICAgICAgICAgICAgfCAyICstCj4gICBpbmNsdWRl
-L2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmggICAgICAgICAgICAgICAgICAgfCA0ICsrLS0KPiAgIDYg
-ZmlsZXMgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hdHB4X2hhbmRsZXIuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV9hdHB4X2hhbmRsZXIuYwo+IGluZGV4
-IDNmN2FhYTQuLmRjNTY1YTQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2F0cHhfaGFuZGxlci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRn
-cHUvYW1kZ3B1X2F0cHhfaGFuZGxlci5jCj4gQEAgLTUwMSw3ICs1MDEsNyBAQCBzdGF0aWMgaW50
-IGFtZGdwdV9hdHB4X2dldF9jbGllbnRfaWQoc3RydWN0IHBjaV9kZXYgKnBkZXYpCj4gICAJCXJl
-dHVybiBWR0FfU1dJVENIRVJPT19ESVM7Cj4gICB9Cj4gICAKPiAtc3RhdGljIHN0cnVjdCB2Z2Ff
-c3dpdGNoZXJvb19oYW5kbGVyIGFtZGdwdV9hdHB4X2hhbmRsZXIgPSB7Cj4gK3N0YXRpYyBjb25z
-dCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciBhbWRncHVfYXRweF9oYW5kbGVyID0gewo+
-ICAgCS5zd2l0Y2h0byA9IGFtZGdwdV9hdHB4X3N3aXRjaHRvLAo+ICAgCS5wb3dlcl9zdGF0ZSA9
-IGFtZGdwdV9hdHB4X3Bvd2VyX3N0YXRlLAo+ICAgCS5pbml0ID0gYW1kZ3B1X2F0cHhfaW5pdCwK
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3BpLmMgYi9k
-cml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwo+IGluZGV4IGRmMmQ5ODEuLjhi
-ODMzMmUgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVhdV9hY3Bp
-LmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2FjcGkuYwo+IEBAIC0y
-MDYsNyArMjA2LDcgQEAgc3RhdGljIGludCBub3V2ZWF1X2RzbV9nZXRfY2xpZW50X2lkKHN0cnVj
-dCBwY2lfZGV2ICpwZGV2KQo+ICAgCXJldHVybiBWR0FfU1dJVENIRVJPT19ESVM7Cj4gICB9Cj4g
-ICAKPiAtc3RhdGljIHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIG5vdXZlYXVfZHNtX2hh
-bmRsZXIgPSB7Cj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciBu
-b3V2ZWF1X2RzbV9oYW5kbGVyID0gewo+ICAgCS5zd2l0Y2h0byA9IG5vdXZlYXVfZHNtX3N3aXRj
-aHRvLAo+ICAgCS5wb3dlcl9zdGF0ZSA9IG5vdXZlYXVfZHNtX3Bvd2VyX3N0YXRlLAo+ICAgCS5n
-ZXRfY2xpZW50X2lkID0gbm91dmVhdV9kc21fZ2V0X2NsaWVudF9pZCwKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXRweF9oYW5kbGVyLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vcmFkZW9uL3JhZGVvbl9hdHB4X2hhbmRsZXIuYwo+IGluZGV4IDhiYzdkMGIuLjcxNDUw
-OGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3JhZGVvbi9yYWRlb25fYXRweF9oYW5k
-bGVyLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9hdHB4X2hhbmRsZXIu
-Ywo+IEBAIC00OTksNyArNDk5LDcgQEAgc3RhdGljIGludCByYWRlb25fYXRweF9nZXRfY2xpZW50
-X2lkKHN0cnVjdCBwY2lfZGV2ICpwZGV2KQo+ICAgCQlyZXR1cm4gVkdBX1NXSVRDSEVST09fRElT
-Owo+ICAgfQo+ICAgCj4gLXN0YXRpYyBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciByYWRl
-b25fYXRweF9oYW5kbGVyID0gewo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9v
-X2hhbmRsZXIgcmFkZW9uX2F0cHhfaGFuZGxlciA9IHsKPiAgIAkuc3dpdGNodG8gPSByYWRlb25f
-YXRweF9zd2l0Y2h0bywKPiAgIAkucG93ZXJfc3RhdGUgPSByYWRlb25fYXRweF9wb3dlcl9zdGF0
-ZSwKPiAgIAkuaW5pdCA9IHJhZGVvbl9hdHB4X2luaXQsCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L3ZnYS92Z2Ffc3dpdGNoZXJvby5jIGIvZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9v
-LmMKPiBpbmRleCBhZjBkMzcyLi41NmJiYmQ2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L3Zn
-YS92Z2Ffc3dpdGNoZXJvby5jCj4gKysrIGIvZHJpdmVycy9ncHUvdmdhL3ZnYV9zd2l0Y2hlcm9v
-LmMKPiBAQCAtMTQwLDcgKzE0MCw3IEBAIHN0cnVjdCB2Z2Fzcl9wcml2IHsKPiAgIAlpbnQgcmVn
-aXN0ZXJlZF9jbGllbnRzOwo+ICAgCXN0cnVjdCBsaXN0X2hlYWQgY2xpZW50czsKPiAgIAo+IC0J
-c3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhhbmRsZXI7Cj4gKwljb25zdCBzdHJ1Y3Qg
-dmdhX3N3aXRjaGVyb29faGFuZGxlciAqaGFuZGxlcjsKPiAgIH07Cj4gICAKPiAgICNkZWZpbmUg
-SURfQklUX0FVRElPCQkweDEwMAo+IEBAIC0xOTUsNyArMTk1LDcgQEAgc3RhdGljIHZvaWQgdmdh
-X3N3aXRjaGVyb29fZW5hYmxlKHZvaWQpCj4gICAgKgo+ICAgICogUmV0dXJuOiAwIG9uIHN1Y2Nl
-c3MsIC1FSU5WQUwgaWYgYSBoYW5kbGVyIHdhcyBhbHJlYWR5IHJlZ2lzdGVyZWQuCj4gICAgKi8K
-PiAtaW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVyX2hhbmRsZXIoc3RydWN0IHZnYV9zd2l0Y2hl
-cm9vX2hhbmRsZXIgKmhhbmRsZXIpCj4gK2ludCB2Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9oYW5k
-bGVyKGNvbnN0IHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyICpoYW5kbGVyKQo+ICAgewo+
-ICAgCW11dGV4X2xvY2soJnZnYXNyX211dGV4KTsKPiAgIAlpZiAodmdhc3JfcHJpdi5oYW5kbGVy
-KSB7Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGxhdGZvcm0veDg2L2FwcGxlLWdtdXguYyBiL2Ry
-aXZlcnMvcGxhdGZvcm0veDg2L2FwcGxlLWdtdXguYwo+IGluZGV4IDBkZWMzZjUuLjk3NmVmZWIg
-MTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9wbGF0Zm9ybS94ODYvYXBwbGUtZ211eC5jCj4gKysrIGIv
-ZHJpdmVycy9wbGF0Zm9ybS94ODYvYXBwbGUtZ211eC5jCj4gQEAgLTM0Niw3ICszNDYsNyBAQCBn
-bXV4X2FjdGl2ZV9jbGllbnQoc3RydWN0IGFwcGxlX2dtdXhfZGF0YSAqZ211eF9kYXRhKQo+ICAg
-CXJldHVybiBWR0FfU1dJVENIRVJPT19ESVM7Cj4gICB9Cj4gICAKPiAtc3RhdGljIHN0cnVjdCB2
-Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIGdtdXhfaGFuZGxlciA9IHsKPiArc3RhdGljIGNvbnN0IHN0
-cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyIGdtdXhfaGFuZGxlciA9IHsKPiAgIAkuc3dpdGNo
-dG8gPSBnbXV4X3N3aXRjaHRvLAo+ICAgCS5wb3dlcl9zdGF0ZSA9IGdtdXhfc2V0X3Bvd2VyX3N0
-YXRlLAo+ICAgCS5nZXRfY2xpZW50X2lkID0gZ211eF9nZXRfY2xpZW50X2lkLAo+IGRpZmYgLS1n
-aXQgYS9pbmNsdWRlL2xpbnV4L3ZnYV9zd2l0Y2hlcm9vLmggYi9pbmNsdWRlL2xpbnV4L3ZnYV9z
-d2l0Y2hlcm9vLmgKPiBpbmRleCBjNTU3NTExLi43ODZiYzkzIDEwMDY0NAo+IC0tLSBhL2luY2x1
-ZGUvbGludXgvdmdhX3N3aXRjaGVyb28uaAo+ICsrKyBiL2luY2x1ZGUvbGludXgvdmdhX3N3aXRj
-aGVyb28uaAo+IEBAIC0xMzcsNyArMTM3LDcgQEAgaW50IHZnYV9zd2l0Y2hlcm9vX3JlZ2lzdGVy
-X2F1ZGlvX2NsaWVudChzdHJ1Y3QgcGNpX2RldiAqcGRldiwKPiAgIHZvaWQgdmdhX3N3aXRjaGVy
-b29fY2xpZW50X2ZiX3NldChzdHJ1Y3QgcGNpX2RldiAqZGV2LAo+ICAgCQkJCSAgc3RydWN0IGZi
-X2luZm8gKmluZm8pOwo+ICAgCj4gLWludCB2Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9oYW5kbGVy
-KHN0cnVjdCB2Z2Ffc3dpdGNoZXJvb19oYW5kbGVyICpoYW5kbGVyKTsKPiAraW50IHZnYV9zd2l0
-Y2hlcm9vX3JlZ2lzdGVyX2hhbmRsZXIoY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRs
-ZXIgKmhhbmRsZXIpOwo+ICAgdm9pZCB2Z2Ffc3dpdGNoZXJvb191bnJlZ2lzdGVyX2hhbmRsZXIo
-dm9pZCk7Cj4gICAKPiAgIGludCB2Z2Ffc3dpdGNoZXJvb19wcm9jZXNzX2RlbGF5ZWRfc3dpdGNo
-KHZvaWQpOwo+IEBAIC0xNTUsNyArMTU1LDcgQEAgc3RhdGljIGlubGluZSB2b2lkIHZnYV9zd2l0
-Y2hlcm9vX3VucmVnaXN0ZXJfY2xpZW50KHN0cnVjdCBwY2lfZGV2ICpkZXYpIHt9Cj4gICBzdGF0
-aWMgaW5saW5lIGludCB2Z2Ffc3dpdGNoZXJvb19yZWdpc3Rlcl9jbGllbnQoc3RydWN0IHBjaV9k
-ZXYgKmRldiwKPiAgIAkJY29uc3Qgc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9vcHMgKm9w
-cywgYm9vbCBkcml2ZXJfcG93ZXJfY29udHJvbCkgeyByZXR1cm4gMDsgfQo+ICAgc3RhdGljIGlu
-bGluZSB2b2lkIHZnYV9zd2l0Y2hlcm9vX2NsaWVudF9mYl9zZXQoc3RydWN0IHBjaV9kZXYgKmRl
-diwgc3RydWN0IGZiX2luZm8gKmluZm8pIHt9Cj4gLXN0YXRpYyBpbmxpbmUgaW50IHZnYV9zd2l0
-Y2hlcm9vX3JlZ2lzdGVyX2hhbmRsZXIoc3RydWN0IHZnYV9zd2l0Y2hlcm9vX2hhbmRsZXIgKmhh
-bmRsZXIpIHsgcmV0dXJuIDA7IH0KPiArc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29f
-cmVnaXN0ZXJfaGFuZGxlcihjb25zdCBzdHJ1Y3QgdmdhX3N3aXRjaGVyb29faGFuZGxlciAqaGFu
-ZGxlcikgeyByZXR1cm4gMDsgfQo+ICAgc3RhdGljIGlubGluZSBpbnQgdmdhX3N3aXRjaGVyb29f
-cmVnaXN0ZXJfYXVkaW9fY2xpZW50KHN0cnVjdCBwY2lfZGV2ICpwZGV2LAo+ICAgCWNvbnN0IHN0
-cnVjdCB2Z2Ffc3dpdGNoZXJvb19jbGllbnRfb3BzICpvcHMsCj4gICAJZW51bSB2Z2Ffc3dpdGNo
-ZXJvb19jbGllbnRfaWQgaWQpIHsgcmV0dXJuIDA7IH0KCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVs
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vZHJpLWRldmVsCg==
+
+--===============1767378630==
+Content-Type: multipart/alternative; boundary="1445354699.0dD5aDC0.23569"; charset="UTF-8"
+
+
+--1445354699.0dD5aDC0.23569
+Date: Tue, 20 Oct 2015 15:24:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92556
+
+            Bug ID: 92556
+           Summary: System hangs at visiting WebGL site
+           Product: Mesa
+           Version: 11.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: mrs.sub-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+Created attachment 119007
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119007&action=edit
+Two files: 'kmsg' and 'Xorg.0.log.old'
+
+When I visit any WebGL site, after it's done loading everything on screen
+freezes except mouse cursor. Keyboard not responding too, so only hard reset
+helps :)
+
+Kernel messages and Xorg log are in attachment.
+
+I have already posted a topic at
+https://bbs.archlinux.org/viewtopic.php?id=203765 There are some other kernel
+messages.
+
+--
+
+$ pacman -Qi mesa libdrm xf86-video-nouveau xorg-server firefox | egrep
+"Name|Version" 
+
+    Name           : mesa
+    Version        : 11.0.3-1
+
+    Name           : libdrm
+    Version        : 2.4.65-1
+
+    Name           : xf86-video-nouveau
+    Version        : 1.0.11-3
+
+    Name           : xorg-server
+    Version        : 1.17.2-4
+
+    Name           : firefox
+    Version        : 41.0.2-1
+
+--
+
+Maybe it somewhat related to https://bugs.freedesktop.org/show_bug.cgi?id=89985
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1445354699.0dD5aDC0.23569
+Date: Tue, 20 Oct 2015 15:24:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - System hangs at visiting WebGL site"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92556">92556</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>System hangs at visiting WebGL site
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>mrs.sub&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119007" name="attach_119007" title="Two files: 'kmsg' and 'Xorg.0.log.old'">attachment 119007</a> <a href="attachment.cgi?id=119007&amp;action=edit" title="Two files: 'kmsg' and 'Xorg.0.log.old'">[details]</a></span>
+Two files: 'kmsg' and 'Xorg.0.log.old'
+
+When I visit any WebGL site, after it's done loading everything on screen
+freezes except mouse cursor. Keyboard not responding too, so only hard reset
+helps :)
+
+Kernel messages and Xorg log are in attachment.
+
+I have already posted a topic at
+<a href="https://bbs.archlinux.org/viewtopic.php?id=203765">https://bbs.archlinux.org/viewtopic.php?id=203765</a> There are some other kernel
+messages.
+
+--
+
+$ pacman -Qi mesa libdrm xf86-video-nouveau xorg-server firefox | egrep
+&quot;Name|Version&quot; 
+
+    Name           : mesa
+    Version        : 11.0.3-1
+
+    Name           : libdrm
+    Version        : 2.4.65-1
+
+    Name           : xf86-video-nouveau
+    Version        : 1.0.11-3
+
+    Name           : xorg-server
+    Version        : 1.17.2-4
+
+    Name           : firefox
+    Version        : 41.0.2-1
+
+--
+
+Maybe it somewhat related to <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - system video hangs on video switch to fullscreen"
+   href="show_bug.cgi?id=89985">https://bugs.freedesktop.org/show_bug.cgi?id=89985</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1445354699.0dD5aDC0.23569--
+
+--===============1767378630==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1767378630==--
