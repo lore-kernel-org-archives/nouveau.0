@@ -1,12 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91598] Broken Rendering of Plasma 5 Desktop
-Date: Mon, 19 Oct 2015 23:26:33 +0000
-Message-ID: <bug-91598-8800-wZuD2Iau9y@http.bugs.freedesktop.org/>
-References: <bug-91598-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] gem: return only valid domain when there's only
+	one
+Date: Tue, 20 Oct 2015 01:15:39 -0400
+Message-ID: <1445318139-4506-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0355521810=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91598-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,77 +16,44 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0355521810==
-Content-Type: multipart/alternative; boundary="1445297193.0d5a9.29109"; charset="UTF-8"
-
-
---1445297193.0d5a9.29109
-Date: Mon, 19 Oct 2015 23:26:33 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91598
-
---- Comment #14 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I may have made some headway on this issue in bug 92504 (comment 20). Please
-see if the patch in that comment helps.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1445297193.0d5a9.29109
-Date: Mon, 19 Oct 2015 23:26:33 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598#c14">Comment # 14</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Broken Rendering of Plasma 5 Desktop"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91598">bug 91598</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I may have made some headway on this issue in <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume after changing screen configuration"
-   href="show_bug.cgi?id=92504">bug 92504</a> (<a href="show_bug.cgi?id=91598#c20">comment 20</a>). Please
-see if the patch in that comment helps.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1445297193.0d5a9.29109--
-
---===============0355521810==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0355521810==--
+T24gbnY1MCssIHdlIHJlc3RyaWN0IHRoZSB2YWxpZCBkb21haW5zIHRvIGp1c3QgdGhlIG9uZSB3
+aGVyZSB0aGUgYnVmZmVyCndhcyBvcmlnaW5hbGx5IGNyZWF0ZWQuIEhvd2V2ZXIgYWZ0ZXIgdGhl
+IGJ1ZmZlciBpcyBldmljdGVkIHRvIHN5c3RlbQptZW1vcnksIHdlIG1pZ2h0IG1vdmUgaXQgYmFj
+ayB0byBhIGRpZmZlcmVudCBkb21haW4gdGhhdCB3YXMgbm90Cm9yaWdpbmFsbHkgdmFsaWQuIFdo
+ZW4gc2hhcmluZyB0aGUgYnVmZmVyIGFuZCByZXRyaWV2aW5nIGl0cyBHRU1fSU5GTwpkYXRhLCB3
+ZSBzdGlsbCB3YW50IHRoZSBkb21haW4gdGhhdCB3aWxsIGJlIHZhbGlkIGZvciB0aGlzIGJ1ZmZl
+ciBpbiBhCnB1c2hidWYsIG5vdCB0aGUgb25lIHdoZXJlIGl0IGN1cnJlbnRseSBoYXBwZW5zIHRv
+IGJlLgoKVGhpcyByZXNvbHZlcyBmZG8jOTI1MDQgYW5kIHNldmVyYWwgb3RoZXJzLiBUaGVzZSBh
+cmUgZHVlIHRvIHN1c3BlbmQKZXZpY3RpbmcgYWxsIGJ1ZmZlcnMsIG1ha2luZyBpdCBtb3JlIGxp
+a2VseSB0aGF0IHRoZXkgdGVtcG9yYXJpbHkgZW5kIHVwCmluIHRoZSB3cm9uZyBwbGFjZS4KCkNj
+OiBzdGFibGVAdmdlci5rZXJuZWwub3JnCkJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0
+b3Aub3JnL3Nob3dfYnVnLmNnaT9pZD05MjUwNApTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8
+aW1pcmtpbkBhbHVtLm1pdC5lZHU+Ci0tLQogZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYyB8IDUg
+KysrLS0KIGxpYi9pbmNsdWRlL252aWYvb3MuaCAgICAgfCA2ICsrKysrKwogMiBmaWxlcyBjaGFu
+Z2VkLCA5IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25v
+dXZlYXUvbm91dmVhdV9nZW0uYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZ2VtLmMKaW5kZXggY2U3
+NGFiMS4uYTEwOGNjMyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9nZW0uYworKysg
+Yi9kcm0vbm91dmVhdS9ub3V2ZWF1X2dlbS5jCkBAIC0yMjksMTEgKzIyOSwxMiBAQCBub3V2ZWF1
+X2dlbV9pbmZvKHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2LCBzdHJ1Y3QgZHJtX2dlbV9vYmpl
+Y3QgKmdlbSwKIAlzdHJ1Y3Qgbm91dmVhdV9ibyAqbnZibyA9IG5vdXZlYXVfZ2VtX29iamVjdChn
+ZW0pOwogCXN0cnVjdCBudmttX3ZtYSAqdm1hOwogCi0JaWYgKG52Ym8tPmJvLm1lbS5tZW1fdHlw
+ZSA9PSBUVE1fUExfVFQpCisJaWYgKGlzX3Bvd2VyX29mXzIobnZiby0+dmFsaWRfZG9tYWlucykp
+CisJCXJlcC0+ZG9tYWluID0gbnZiby0+dmFsaWRfZG9tYWluczsKKwllbHNlIGlmIChudmJvLT5i
+by5tZW0ubWVtX3R5cGUgPT0gVFRNX1BMX1RUKQogCQlyZXAtPmRvbWFpbiA9IE5PVVZFQVVfR0VN
+X0RPTUFJTl9HQVJUOwogCWVsc2UKIAkJcmVwLT5kb21haW4gPSBOT1VWRUFVX0dFTV9ET01BSU5f
+VlJBTTsKLQogCXJlcC0+b2Zmc2V0ID0gbnZiby0+Ym8ub2Zmc2V0OwogCWlmIChjbGktPnZtKSB7
+CiAJCXZtYSA9IG5vdXZlYXVfYm9fdm1hX2ZpbmQobnZibywgY2xpLT52bSk7CmRpZmYgLS1naXQg
+YS9saWIvaW5jbHVkZS9udmlmL29zLmggYi9saWIvaW5jbHVkZS9udmlmL29zLmgKaW5kZXggNTUy
+ZWNmNy4uMmRmMzA0OCAxMDA2NDQKLS0tIGEvbGliL2luY2x1ZGUvbnZpZi9vcy5oCisrKyBiL2xp
+Yi9pbmNsdWRlL252aWYvb3MuaApAQCAtMTM1LDYgKzEzNSwxMiBAQCB0eXBlZGVmIGRtYV9hZGRy
+X3QgcmVzb3VyY2Vfc2l6ZV90OwogCiAjZGVmaW5lIElTX0VOQUJMRUQoeCkgSVNfRU5BQkxFRF8j
+I3gKIAorc3RhdGljIGlubGluZSBib29sCitpc19wb3dlcl9vZl8yKHVuc2lnbmVkIGxvbmcgbikK
+K3sKKwlyZXR1cm4gKG4gIT0gMCAmJiAoKG4gJiAobiAtIDEpKSA9PSAwKSk7Cit9CisKIHN0YXRp
+YyBpbmxpbmUgaW50CiBvcmRlcl9iYXNlXzIodTY0IGJhc2UpCiB7Ci0tIAoyLjQuMTAKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGlu
+ZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
