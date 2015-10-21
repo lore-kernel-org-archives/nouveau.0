@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
  blob fw doesn't help
-Date: Wed, 21 Oct 2015 21:55:28 +0000
-Message-ID: <bug-70354-8800-4t8U3NDANx@http.bugs.freedesktop.org/>
+Date: Wed, 21 Oct 2015 22:03:29 +0000
+Message-ID: <bug-70354-8800-B4r6Ful0Oh@http.bugs.freedesktop.org/>
 References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0209277765=="
+Content-Type: multipart/mixed; boundary="===============0320034983=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0209277765==
-Content-Type: multipart/alternative; boundary="1445464528.A2AaCb1.17068"; charset="UTF-8"
+--===============0320034983==
+Content-Type: multipart/alternative; boundary="1445465009.F4AC1.19507"; charset="UTF-8"
 
 
---1445464528.A2AaCb1.17068
-Date: Wed, 21 Oct 2015 21:55:28 +0000
+--1445465009.F4AC1.19507
+Date: Wed, 21 Oct 2015 22:03:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=70354
 
---- Comment #73 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
-options nouveau War00C800_0=1
-in there. Is it correct way to do it ? Thx
+--- Comment #74 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Julien Isorce from comment #73)
+> Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
+> options nouveau War00C800_0=1
+> in there. Is it correct way to do it ? Thx
+
+Nope. you want:
+
+options nouveau config=War00C800_0=1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445464528.A2AaCb1.17068
-Date: Wed, 21 Oct 2015 21:55:28 +0000
+--1445465009.F4AC1.19507
+Date: Wed, 21 Oct 2015 22:03:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,16 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c73">Comment # 73</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c74">Comment # 74</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
-options nouveau War00C800_0=1
-in there. Is it correct way to do it ? Thx</pre>
+        <pre>(In reply to Julien Isorce from <a href="show_bug.cgi?id=70354#c73">comment #73</a>)
+<span class="quote">&gt; Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
+&gt; options nouveau War00C800_0=1
+&gt; in there. Is it correct way to do it ? Thx</span >
+
+Nope. you want:
+
+options nouveau config=War00C800_0=1</pre>
         </div>
       </p>
       <hr>
@@ -77,9 +87,9 @@ in there. Is it correct way to do it ? Thx</pre>
     </body>
 </html>
 
---1445464528.A2AaCb1.17068--
+--1445465009.F4AC1.19507--
 
---===============0209277765==
+--===============0320034983==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0209277765==--
+--===============0320034983==--
