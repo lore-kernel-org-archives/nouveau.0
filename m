@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Wed, 21 Oct 2015 22:03:29 +0000
-Message-ID: <bug-70354-8800-B4r6Ful0Oh@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92438] Segfault in pushbuf_kref when running the
+ android emulator (qemu) on nv50
+Date: Wed, 21 Oct 2015 22:58:35 +0000
+Message-ID: <bug-92438-8800-i0aGeRL5O9@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0320034983=="
+Content-Type: multipart/mixed; boundary="===============2081578095=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0320034983==
-Content-Type: multipart/alternative; boundary="1445465009.F4AC1.19507"; charset="UTF-8"
+--===============2081578095==
+Content-Type: multipart/alternative; boundary="1445468315.2bf623cd1.4254"; charset="UTF-8"
 
 
---1445465009.F4AC1.19507
-Date: Wed, 21 Oct 2015 22:03:29 +0000
+--1445468315.2bf623cd1.4254
+Date: Wed, 21 Oct 2015 22:58:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=92438
 
---- Comment #74 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Julien Isorce from comment #73)
-> Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
-> options nouveau War00C800_0=1
-> in there. Is it correct way to do it ? Thx
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+In your kernel log I see
 
-Nope. you want:
+[30903.432610] nouveau E[steam[21937]] fail set_domain
+[30903.432614] nouveau E[steam[21937]] validating bo list
+[30903.432618] nouveau E[steam[21937]] validate: -22
 
-options nouveau config=War00C800_0=1
+I believe that error should be fixed by the kernel patch at the end of bug
+#92504. However I don't think that's your main issue. Still, worth giving it a
+shot.
+
+Separately, some very subtle fence-related issues should be fixed in the
+soon-to-be-released Mesa 11.0.4 (or mesa's master branch). Again, don't think
+they're the root cause of your problems, but... wouldn't hurt to try.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445465009.F4AC1.19507
-Date: Wed, 21 Oct 2015 22:03:29 +0000
+--1445468315.2bf623cd1.4254
+Date: Wed, 21 Oct 2015 22:58:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,36 +66,45 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c74">Comment # 74</a>
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Julien Isorce from <a href="show_bug.cgi?id=70354#c73">comment #73</a>)
-<span class="quote">&gt; Hi, I created file: /etc/modprobe.d/nouveau-kms.conf and added line: 
-&gt; options nouveau War00C800_0=1
-&gt; in there. Is it correct way to do it ? Thx</span >
+        <pre>In your kernel log I see
 
-Nope. you want:
+[30903.432610] nouveau E[steam[21937]] fail set_domain
+[30903.432614] nouveau E[steam[21937]] validating bo list
+[30903.432618] nouveau E[steam[21937]] validate: -22
 
-options nouveau config=War00C800_0=1</pre>
+I believe that error should be fixed by the kernel patch at the end of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="show_bug.cgi?id=92504">bug
+#92504</a>. However I don't think that's your main issue. Still, worth giving it a
+shot.
+
+Separately, some very subtle fence-related issues should be fixed in the
+soon-to-be-released Mesa 11.0.4 (or mesa's master branch). Again, don't think
+they're the root cause of your problems, but... wouldn't hurt to try.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445465009.F4AC1.19507--
+--1445468315.2bf623cd1.4254--
 
---===============0320034983==
+--===============2081578095==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0320034983==--
+--===============2081578095==--
