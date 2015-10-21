@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 88893] [NV46] GPU lockup with Quadro NVS 110M
-Date: Wed, 21 Oct 2015 13:00:29 +0000
-Message-ID: <bug-88893-8800-YlliXaSgzG@http.bugs.freedesktop.org/>
+Date: Wed, 21 Oct 2015 13:12:37 +0000
+Message-ID: <bug-88893-8800-t2XQftdifn@http.bugs.freedesktop.org/>
 References: <bug-88893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0133238868=="
+Content-Type: multipart/mixed; boundary="===============0993560992=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-88893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,33 +20,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0133238868==
-Content-Type: multipart/alternative; boundary="1445432429.8EB1b2.6928"; charset="UTF-8"
+--===============0993560992==
+Content-Type: multipart/alternative; boundary="1445433157.87F72.10929"; charset="UTF-8"
 
 
---1445432429.8EB1b2.6928
-Date: Wed, 21 Oct 2015 13:00:29 +0000
+--1445433157.87F72.10929
+Date: Wed, 21 Oct 2015 13:12:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=88893
 
---- Comment #15 from russianneuromancer-k+OT61UuxXo@public.gmane.org ---
-Richard, try out Linux 4.3 (look into bug 89775 for more info) and KDE with
-OpenGL ES 2 rendering engine (after login hit Alt+Shift+F12 to disable OpenGL
-effects, get into System Settings > Display > Effects, switch to OpenGL ES 2
-here) or Gnome Shell Wayland session (works for me here on Ubuntu Gnome 15.10
-and GeForce 7300 Go).
-OpenGL usage for some reason give me issues on NV46 (desktop content doesn't
-get updated with enabled OpenGL desktop effects) but OpenGL ES 2 suddenly works
-fine (at least I doesn't notice issues with OpenGL ES 2 yet).
+--- Comment #16 from Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Thanks for the heads up. It looks like 4.3 has landed in Fedora Rawhide so I'll
+keep an eye on it. Currently running Fedora 21 but I'll probably upgrade when
+23 is out of beta. Hopefully 4.3 will make it in, otherwise I can just install
+the rawhide kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445432429.8EB1b2.6928
-Date: Wed, 21 Oct 2015 13:00:29 +0000
+--1445433157.87F72.10929
+Date: Wed, 21 Oct 2015 13:12:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,24 +56,17 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c15">Comment # 15</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c16">Comment # 16</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NV46] GPU lockup with Quadro NVS 110M"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
-              from <span class="vcard"><a class="email" href="mailto:russianneuromancer&#64;ya.ru" title="russianneuromancer&#64;ya.ru">russianneuromancer&#64;ya.ru</a>
+              from <span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
 </span></b>
-        <pre>Richard, try out Linux 4.3 (look into <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Grpahics card G72 [GeForce 7200 GS / 7300 SE] 3d does not work"
-   href="show_bug.cgi?id=89775">bug 89775</a> for more info) and KDE with
-OpenGL ES 2 rendering engine (after login hit Alt+Shift+F12 to disable OpenGL
-effects, get into System Settings &gt; Display &gt; Effects, switch to OpenGL ES 2
-here) or Gnome Shell Wayland session (works for me here on Ubuntu Gnome 15.10
-and GeForce 7300 Go).
-OpenGL usage for some reason give me issues on NV46 (desktop content doesn't
-get updated with enabled OpenGL desktop effects) but OpenGL ES 2 suddenly works
-fine (at least I doesn't notice issues with OpenGL ES 2 yet).</pre>
+        <pre>Thanks for the heads up. It looks like 4.3 has landed in Fedora Rawhide so I'll
+keep an eye on it. Currently running Fedora 21 but I'll probably upgrade when
+23 is out of beta. Hopefully 4.3 will make it in, otherwise I can just install
+the rawhide kernel.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +78,9 @@ fine (at least I doesn't notice issues with OpenGL ES 2 yet).</pre>
     </body>
 </html>
 
---1445432429.8EB1b2.6928--
+--1445433157.87F72.10929--
 
---===============0133238868==
+--===============0993560992==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0133238868==--
+--===============0993560992==--
