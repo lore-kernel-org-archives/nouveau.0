@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Wed, 21 Oct 2015 10:55:26 +0000
-Message-ID: <bug-90871-8800-2Eqs4V18K4@http.bugs.freedesktop.org/>
-References: <bug-90871-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92213] nouveau hangs after resume on kwin present
+	windows
+Date: Wed, 21 Oct 2015 12:16:33 +0000
+Message-ID: <bug-92213-8800-pM9KfKYqVd@http.bugs.freedesktop.org/>
+References: <bug-92213-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1138743132=="
+Content-Type: multipart/mixed; boundary="===============0828267732=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92213-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1138743132==
-Content-Type: multipart/alternative; boundary="1445424926.7d04f351.29250"; charset="UTF-8"
+--===============0828267732==
+Content-Type: multipart/alternative; boundary="1445429792.7A0e31eB0.23464"; charset="UTF-8"
 
 
---1445424926.7d04f351.29250
-Date: Wed, 21 Oct 2015 10:55:26 +0000
+--1445429792.7A0e31eB0.23464
+Date: Wed, 21 Oct 2015 12:16:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90871
+https://bugs.freedesktop.org/show_bug.cgi?id=92213
 
---- Comment #52 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Can it be tested before it is closed. What's the rush.
+--- Comment #2 from Martin Bednar <serafean-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Indeed, seems so be fixed! Thanks.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445424926.7d04f351.29250
-Date: Wed, 21 Oct 2015 10:55:26 +0000
+--1445429792.7A0e31eB0.23464
+Date: Wed, 21 Oct 2015 12:16:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,16 +53,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c52">Comment # 52</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau hangs after resume on kwin present windows"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92213#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - nouveau hangs after resume on kwin present windows"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92213">bug 92213</a>
+              from <span class="vcard"><a class="email" href="mailto:serafean&#64;gmail.com" title="Martin Bednar &lt;serafean&#64;gmail.com&gt;"> <span class="fn">Martin Bednar</span></a>
 </span></b>
-        <pre>Can it be tested before it is closed. What's the rush.</pre>
+        <pre>Indeed, seems so be fixed! Thanks.</pre>
         </div>
       </p>
       <hr>
@@ -74,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445424926.7d04f351.29250--
+--1445429792.7A0e31eB0.23464--
 
---===============1138743132==
+--===============0828267732==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1138743132==--
+--===============0828267732==--
