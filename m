@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Wed, 21 Oct 2015 08:45:30 +0000
-Message-ID: <bug-90871-8800-ZVxle5mTda@http.bugs.freedesktop.org/>
+Date: Wed, 21 Oct 2015 10:50:33 +0000
+Message-ID: <bug-90871-8800-1dGAiybdho@http.bugs.freedesktop.org/>
 References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1850457270=="
+Content-Type: multipart/mixed; boundary="===============0231184079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,49 +20,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1850457270==
-Content-Type: multipart/alternative; boundary="1445417130.CAa8a6aA1.18155"; charset="UTF-8"
+--===============0231184079==
+Content-Type: multipart/alternative; boundary="1445424633.E8Df7Cb1.27727"; charset="UTF-8"
 
 
---1445417130.CAa8a6aA1.18155
-Date: Wed, 21 Oct 2015 08:45:30 +0000
+--1445424633.E8Df7Cb1.27727
+Date: Wed, 21 Oct 2015 10:50:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
---- Comment #51 from Hans de Goede <jwrdegoede-rxtnV0ftBwyoClj4AeEUq9i2O/JbrIOy@public.gmane.org> ---
-Hi,
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-(In reply to Ilia Mirkin from comment #48)
-> or (b) make the assumption that rect support is an all-or-nothing thing -- either
-> no configs have it or they all do, so no need to check it when evaluating
-> fbconfig validity.
-
-To be clear what Ilia is suggesting here (I believe) is to drop the entire
-check for GL_ARB_texture_rectangle and instead only check the
-GLX_TEXTURE_RECTANGLE_BIT_EXT bit in the value returned for
-GLX_BIND_TO_TEXTURE_TARGETS_EXT, and if that is not set then check for
-GLX_TEXTURE_2D_BIT_EXT
-
-I agree with Ilia that this should work fine and should fix the detection
-problem. Actually I was discussing this bug with Ben Skeggs a couple of day ago
-and he suggested to do exactly this.
-
-I can also confirm that with the glPushMatrix call in the right place, and the
-rectangle support detection fixed things work fine on a nv34 card.
-
-Regards,
-
-Hans
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|RESOLVED                    |REOPENED
+         Resolution|NOTOURBUG                   |---
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445417130.CAa8a6aA1.18155
-Date: Wed, 21 Oct 2015 08:45:30 +0000
+--1445424633.E8Df7Cb1.27727
+Date: Wed, 21 Oct 2015 10:50:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -70,43 +52,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c51">Comment # 51</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_REOPENED "
+   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:jwrdegoede&#64;fedoraproject.org" title="Hans de Goede &lt;jwrdegoede&#64;fedoraproject.org&gt;"> <span class="fn">Hans de Goede</span></a>
-</span></b>
-        <pre>Hi,
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90871#c48">comment #48</a>)
-<span class="quote">&gt; or (b) make the assumption that rect support is an all-or-nothing thing -- either
-&gt; no configs have it or they all do, so no need to check it when evaluating
-&gt; fbconfig validity.</span >
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>RESOLVED
+           </td>
+           <td>REOPENED
+           </td>
+         </tr>
 
-To be clear what Ilia is suggesting here (I believe) is to drop the entire
-check for GL_ARB_texture_rectangle and instead only check the
-GLX_TEXTURE_RECTANGLE_BIT_EXT bit in the value returned for
-GLX_BIND_TO_TEXTURE_TARGETS_EXT, and if that is not set then check for
-GLX_TEXTURE_2D_BIT_EXT
-
-I agree with Ilia that this should work fine and should fix the detection
-problem. Actually I was discussing this bug with Ben Skeggs a couple of day ago
-and he suggested to do exactly this.
-
-I can also confirm that with the glPushMatrix call in the right place, and the
-rectangle support detection fixed things work fine on a nv34 card.
-
-Regards,
-
-Hans</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>NOTOURBUG
+           </td>
+           <td>---
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -118,9 +93,9 @@ Hans</pre>
     </body>
 </html>
 
---1445417130.CAa8a6aA1.18155--
+--1445424633.E8Df7Cb1.27727--
 
---===============1850457270==
+--===============0231184079==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -130,4 +105,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1850457270==--
+--===============0231184079==--
