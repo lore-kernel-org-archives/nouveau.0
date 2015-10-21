@@ -1,11 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92560] New: [GK208] iowrite goes out of bounds on
-	channel close
-Date: Tue, 20 Oct 2015 23:59:06 +0000
-Message-ID: <bug-92560-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
+Date: Wed, 21 Oct 2015 08:39:46 +0000
+Message-ID: <bug-90871-8800-xN3ClIcD2n@http.bugs.freedesktop.org/>
+References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0153025573=="
+Content-Type: multipart/mixed; boundary="===============0190102809=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,49 +20,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0153025573==
-Content-Type: multipart/alternative; boundary="1445385546.bbeccDc1.15136"; charset="UTF-8"
+--===============0190102809==
+Content-Type: multipart/alternative; boundary="1445416786.dDE5fa11.16185"; charset="UTF-8"
 
 
---1445385546.bbeccDc1.15136
-Date: Tue, 20 Oct 2015 23:59:06 +0000
+--1445416786.dDE5fa11.16185
+Date: Wed, 21 Oct 2015 08:39:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92560
+https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-            Bug ID: 92560
-           Summary: [GK208] iowrite goes out of bounds on channel close
-           Product: xorg
-           Version: unspecified
-          Hardware: Other
-                OS: All
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Driver/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org
-        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Created attachment 119019
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119019&action=edit
-kernel splat
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|ASSIGNED                    |RESOLVED
+         Resolution|---                         |NOTOURBUG
 
-Not sure if the intel warn plays into things, since it happened from an
-interrupt. But it was interrupting a different process. Looks like the buffer
-already got unmapped somehow, or we're writing too far into it.
+--- Comment #49 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Olivier Fourdan from comment #47)
+> Yes, most likely. This code is still early beta in xfwm4. I'll try to fix it
+> and Poma will be able to test I guess.
 
-This is with a 4.3-rcN-ish nouveau module (despite the main kernel being 4.0).
+Looking at http://git.xfce.org/xfce/xfwm4/tree/src/compositor.c, you have at
+least the following issues:
 
-Happened when running piglit in parallel (8 threads).
+    screen_info->has_texture_rectangle =
+        epoxy_has_glx_extension (myScreenGetXDisplay (screen_info),
+                                 screen_info->screen,
+                                 "GL_ARB_texture_rectangle");
+
+    screen_info->has_texture_non_power_of_two =
+        epoxy_has_glx_extension (myScreenGetXDisplay (screen_info),
+                                 screen_info->screen,
+                                 "GL_ARB_texture_non_power_of_two");
+
+These are not GLX exts, they are GL exts, so you have to use
+epoxy_has_gl_extension. However you have to make sure that a GL context is
+active (i.e. glXMakeCurrent) before trying to do epoxy_has_gl_extension.
+
+redraw_glx_texture -- this needs to add a width/height scale to the GL_TEXTURE
+matrix for rect textures, since they use non-normalized coordinates. This
+probably never came up before since the checks above didn't succeed.
+
+If you don't have has_texture_rectangle *and* you don't have
+has_texture_non_power_of_two that means that you can only use POT sized pixmaps
+with GL_TEXTURE_2D. Probably not worth supporting that. AFAIK ~every driver
+supports ARB_texture_rectangle... except seemingly nv04 (but nv10+ has it).
+
+Marking this as NOTOURBUG for now, if issues persist, feel free to open a new
+issue.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445385546.bbeccDc1.15136
-Date: Tue, 20 Oct 2015 23:59:06 +0000
+--1445416786.dDE5fa11.16185
+Date: Wed, 21 Oct 2015 08:39:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,113 +86,94 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [GK208] iowrite goes out of bounds on channel close"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92560">92560</a>
-          </td>
-        </tr>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-        <tr>
-          <th>Summary</th>
-          <td>[GK208] iowrite goes out of bounds on channel close
-          </td>
-        </tr>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>ASSIGNED
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
 
-        <tr>
-          <th>Product</th>
-          <td>xorg
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>Other
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>All
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Driver/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>imirkin&#64;alum.mit.edu
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>xorg-team&#64;lists.x.org
-          </td>
-        </tr></table>
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
+           </td>
+         </tr></table>
       <p>
         <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119019" name="attach_119019" title="kernel splat">attachment 119019</a> <a href="attachment.cgi?id=119019&amp;action=edit" title="kernel splat">[details]</a></span>
-kernel splat
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c49">Comment # 49</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>(In reply to Olivier Fourdan from <a href="show_bug.cgi?id=90871#c47">comment #47</a>)
+<span class="quote">&gt; Yes, most likely. This code is still early beta in xfwm4. I'll try to fix it
+&gt; and Poma will be able to test I guess.</span >
 
-Not sure if the intel warn plays into things, since it happened from an
-interrupt. But it was interrupting a different process. Looks like the buffer
-already got unmapped somehow, or we're writing too far into it.
+Looking at <a href="http://git.xfce.org/xfce/xfwm4/tree/src/compositor.c">http://git.xfce.org/xfce/xfwm4/tree/src/compositor.c</a>, you have at
+least the following issues:
 
-This is with a 4.3-rcN-ish nouveau module (despite the main kernel being 4.0).
+    screen_info-&gt;has_texture_rectangle =
+        epoxy_has_glx_extension (myScreenGetXDisplay (screen_info),
+                                 screen_info-&gt;screen,
+                                 &quot;GL_ARB_texture_rectangle&quot;);
 
-Happened when running piglit in parallel (8 threads).</pre>
+    screen_info-&gt;has_texture_non_power_of_two =
+        epoxy_has_glx_extension (myScreenGetXDisplay (screen_info),
+                                 screen_info-&gt;screen,
+                                 &quot;GL_ARB_texture_non_power_of_two&quot;);
+
+These are not GLX exts, they are GL exts, so you have to use
+epoxy_has_gl_extension. However you have to make sure that a GL context is
+active (i.e. glXMakeCurrent) before trying to do epoxy_has_gl_extension.
+
+redraw_glx_texture -- this needs to add a width/height scale to the GL_TEXTURE
+matrix for rect textures, since they use non-normalized coordinates. This
+probably never came up before since the checks above didn't succeed.
+
+If you don't have has_texture_rectangle *and* you don't have
+has_texture_non_power_of_two that means that you can only use POT sized pixmaps
+with GL_TEXTURE_2D. Probably not worth supporting that. AFAIK ~every driver
+supports ARB_texture_rectangle... except seemingly nv04 (but nv10+ has it).
+
+Marking this as NOTOURBUG for now, if issues persist, feel free to open a new
+issue.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445385546.bbeccDc1.15136--
+--1445416786.dDE5fa11.16185--
 
---===============0153025573==
+--===============0190102809==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -185,4 +183,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0153025573==--
+--===============0190102809==--
