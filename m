@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91051] GT650M and Nouveau - NOUVEAU(0): [drm] failed
- to set drm interface version.
-Date: Thu, 22 Oct 2015 02:57:37 +0000
-Message-ID: <bug-91051-8800-HSS2WLDNRZ@http.bugs.freedesktop.org/>
-References: <bug-91051-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
+	needed
+Date: Thu, 22 Oct 2015 02:59:47 +0000
+Message-ID: <bug-71357-8800-U287zMUEek@http.bugs.freedesktop.org/>
+References: <bug-71357-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0409827474=="
+Content-Type: multipart/mixed; boundary="===============1552774008=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91051-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,16 +21,16 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0409827474==
-Content-Type: multipart/alternative; boundary="1445482656.d2c31.5149"; charset="UTF-8"
+--===============1552774008==
+Content-Type: multipart/alternative; boundary="1445482788.4318a0.5717"; charset="UTF-8"
 
 
---1445482656.d2c31.5149
-Date: Thu, 22 Oct 2015 02:57:36 +0000
+--1445482788.4318a0.5717
+Date: Thu, 22 Oct 2015 02:59:48 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91051
+https://bugs.freedesktop.org/show_bug.cgi?id=71357
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
@@ -41,11 +41,10 @@ Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445482656.d2c31.5149
-Date: Thu, 22 Oct 2015 02:57:36 +0000
+--1445482788.4318a0.5717
+Date: Thu, 22 Oct 2015 02:59:48 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - GT650M and Nouveau - NOUVEAU(0): [drm] failed to set drm interface version."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91051">bug 91051</a>
+   title="RESOLVED FIXED - [NVC1] After S3 resume X is broken and reboot needed"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -88,15 +87,14 @@ Content-Type: text/html; charset="UTF-8"
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445482656.d2c31.5149--
+--1445482788.4318a0.5717--
 
---===============0409827474==
+--===============1552774008==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -106,4 +104,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0409827474==--
+--===============1552774008==--
