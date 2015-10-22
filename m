@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 81485] [NVE4] dmesg spam on startup
-Date: Thu, 22 Oct 2015 07:13:13 +0000
-Message-ID: <bug-81485-8800-PkqK1kwSmn@http.bugs.freedesktop.org/>
-References: <bug-81485-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 83443] [NVD7] division by 0 in
+	gf100_ltcg_init_tag_ram
+Date: Thu, 22 Oct 2015 07:15:14 +0000
+Message-ID: <bug-83443-8800-SACozfaVI9@http.bugs.freedesktop.org/>
+References: <bug-83443-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0614911869=="
+Content-Type: multipart/mixed; boundary="===============0835202577=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-83443-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0614911869==
-Content-Type: multipart/alternative; boundary="1445497992.8EC1e2.8069"; charset="UTF-8"
+--===============0835202577==
+Content-Type: multipart/alternative; boundary="1445498114.b2B413cD1.8690"; charset="UTF-8"
 
 
---1445497992.8EC1e2.8069
-Date: Thu, 22 Oct 2015 07:13:12 +0000
+--1445498114.b2B413cD1.8690
+Date: Thu, 22 Oct 2015 07:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=81485
+https://bugs.freedesktop.org/show_bug.cgi?id=83443
 
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Does this still happen with kernel 4.1 or later?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to retest request without bumblebee. Marking invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445497992.8EC1e2.8069
-Date: Thu, 22 Oct 2015 07:13:12 +0000
+--1445498114.b2B413cD1.8690
+Date: Thu, 22 Oct 2015 07:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,20 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVD7] division by 0 in gf100_ltcg_init_tag_ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443">bug 83443</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c21">Comment # 21</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVD7] division by 0 in gf100_ltcg_init_tag_ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] dmesg spam on startup"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVD7] division by 0 in gf100_ltcg_init_tag_ram"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=83443">bug 83443</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Does this still happen with kernel 4.1 or later?</pre>
+        <pre>No response to retest request without bumblebee. Marking invalid.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445497992.8EC1e2.8069--
+--1445498114.b2B413cD1.8690--
 
---===============0614911869==
+--===============0835202577==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0614911869==--
+--===============0835202577==--
