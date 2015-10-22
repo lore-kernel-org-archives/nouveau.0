@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Thu, 22 Oct 2015 16:11:21 +0000
-Message-ID: <bug-89664-8800-WT2XvjjMoR@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91233] The system hanged again
+Date: Thu, 22 Oct 2015 16:12:16 +0000
+Message-ID: <bug-91233-8800-EGA04cvgOF@http.bugs.freedesktop.org/>
+References: <bug-91233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0225808023=="
+Content-Type: multipart/mixed; boundary="===============1899483059=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0225808023==
-Content-Type: multipart/alternative; boundary="1445530281.F7d8fE1.14493"; charset="UTF-8"
+--===============1899483059==
+Content-Type: multipart/alternative; boundary="1445530336.2863b1.14852"; charset="UTF-8"
 
 
---1445530281.F7d8fE1.14493
-Date: Thu, 22 Oct 2015 16:11:21 +0000
+--1445530336.2863b1.14852
+Date: Thu, 22 Oct 2015 16:12:16 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89664
+https://bugs.freedesktop.org/show_bug.cgi?id=91233
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Omar from comment #5)
-> Will the official kernel release do or do you want me to compile the Nouveau
-> GIT kernel?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Any official kernel (4.1 or later) will do.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445530281.F7d8fE1.14493
-Date: Thu, 22 Oct 2015 16:11:21 +0000
+--1445530336.2863b1.14852
+Date: Thu, 22 Oct 2015 16:12:16 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,25 +51,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to Omar from <a href="show_bug.cgi?id=89664#c5">comment #5</a>)
-<span class="quote">&gt; Will the official kernel release do or do you want me to compile the Nouveau
-&gt; GIT kernel?</span >
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
 
-Any official kernel (4.1 or later) will do.</pre>
-        </div>
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEEDINFO
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -81,9 +91,9 @@ Any official kernel (4.1 or later) will do.</pre>
     </body>
 </html>
 
---1445530281.F7d8fE1.14493--
+--1445530336.2863b1.14852--
 
---===============0225808023==
+--===============1899483059==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -93,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0225808023==--
+--===============1899483059==--
