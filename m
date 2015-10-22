@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
-Date: Thu, 22 Oct 2015 18:25:49 +0000
-Message-ID: <bug-72717-8800-4d4e8fTSym@http.bugs.freedesktop.org/>
-References: <bug-72717-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70927] [NVE7] kernel panic in nv50_instobj_wr32
+ after switcheroo cycle
+Date: Thu, 22 Oct 2015 19:54:01 +0000
+Message-ID: <bug-70927-8800-lYdrPVBwfC@http.bugs.freedesktop.org/>
+References: <bug-70927-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0518913216=="
+Content-Type: multipart/mixed; boundary="===============0847828151=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70927-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0518913216==
-Content-Type: multipart/alternative; boundary="1445538349.78cf51.28867"; charset="UTF-8"
+--===============0847828151==
+Content-Type: multipart/alternative; boundary="1445543640.F4b3CF741.24219"; charset="UTF-8"
 
 
---1445538349.78cf51.28867
-Date: Thu, 22 Oct 2015 18:25:49 +0000
+--1445543640.F4b3CF741.24219
+Date: Thu, 22 Oct 2015 19:54:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72717
+https://bugs.freedesktop.org/show_bug.cgi?id=70927
 
---- Comment #8 from Matthias Nagel <matthias.h.nagel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks, it works on kernel 4.0.5-gentoo. :-D
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |INVALID
+
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No response to retest request over a year ago
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445538349.78cf51.28867
-Date: Thu, 22 Oct 2015 18:25:49 +0000
+--1445543640.F4b3CF741.24219
+Date: Thu, 22 Oct 2015 19:54:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,20 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED INVALID - [NVE7] kernel panic in nv50_instobj_wr32 after switcheroo cycle"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70927">bug 70927</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>INVALID
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c8">Comment # 8</a>
+   title="RESOLVED INVALID - [NVE7] kernel panic in nv50_instobj_wr32 after switcheroo cycle"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70927#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE6] No sound via display port (hdmi works)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
-              from <span class="vcard"><a class="email" href="mailto:matthias.h.nagel&#64;gmail.com" title="Matthias Nagel &lt;matthias.h.nagel&#64;gmail.com&gt;"> <span class="fn">Matthias Nagel</span></a>
+   title="RESOLVED INVALID - [NVE7] kernel panic in nv50_instobj_wr32 after switcheroo cycle"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70927">bug 70927</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks, it works on kernel 4.0.5-gentoo. :-D</pre>
+        <pre>No response to retest request over a year ago</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +108,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445538349.78cf51.28867--
+--1445543640.F4b3CF741.24219--
 
---===============0518913216==
+--===============0847828151==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0518913216==--
+--===============0847828151==--
