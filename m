@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91236] [NVC3] Passive DP to HDMI adapter cannot use
- pixel clocks greater than 165 MHz
-Date: Thu, 22 Oct 2015 04:15:36 +0000
-Message-ID: <bug-91236-8800-h1XbjHZSRt@http.bugs.freedesktop.org/>
-References: <bug-91236-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68348] [piglit] shaders/glsl-array-bounds-02 (+even
+ nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001
+Date: Thu, 22 Oct 2015 04:16:18 +0000
+Message-ID: <bug-68348-8800-Awg0NcGN67@http.bugs.freedesktop.org/>
+References: <bug-68348-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1725757583=="
+Content-Type: multipart/mixed; boundary="===============0619538056=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91236-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,32 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1725757583==
-Content-Type: multipart/alternative; boundary="1445487336.52fDfB1.24993"; charset="UTF-8"
+--===============0619538056==
+Content-Type: multipart/alternative; boundary="1445487378.BdE6Cf2.25192"; charset="UTF-8"
 
 
---1445487336.52fDfB1.24993
-Date: Thu, 22 Oct 2015 04:15:36 +0000
+--1445487378.BdE6Cf2.25192
+Date: Thu, 22 Oct 2015 04:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91236
+https://bugs.freedesktop.org/show_bug.cgi?id=68348
 
---- Comment #4 from Andrew Boettcher <a.boettcher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #3)
-> Blast! According to my theory you'd only have 225MHz on this card. You're
-> sure about 297MHz working?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-I have a passive HDMI connector and I can get a 297 mhz mode from the binary
-blob as well as in windows over that connector. So they are either doing
-something special behind the scenes or that table is not the whole truth.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEEDINFO                    |RESOLVED
+         Resolution|---                         |NOTABUG
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+We don't disable error reporting, so you'll see stuff like that in dmesg.
+Expected.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445487336.52fDfB1.24993
-Date: Thu, 22 Oct 2015 04:15:36 +0000
+--1445487378.BdE6Cf2.25192
+Date: Thu, 22 Oct 2015 04:16:18 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,26 +56,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">bug 68348</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEEDINFO
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTABUG
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348#c5">Comment # 5</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236">bug 91236</a>
-              from <span class="vcard"><a class="email" href="mailto:a.boettcher&#64;gmail.com" title="Andrew Boettcher &lt;a.boettcher&#64;gmail.com&gt;"> <span class="fn">Andrew Boettcher</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTABUG - [piglit] shaders/glsl-array-bounds-02 (+even nrs) produces TRAP , TRAP_MP - TP0: Unhandled ustatus 0x00000001"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68348">bug 68348</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=91236#c3">comment #3</a>)
-<span class="quote">&gt; Blast! According to my theory you'd only have 225MHz on this card. You're
-&gt; sure about 297MHz working?</span >
-
-I have a passive HDMI connector and I can get a 297 mhz mode from the binary
-blob as well as in windows over that connector. So they are either doing
-something special behind the scenes or that table is not the whole truth.</pre>
+        <pre>We don't disable error reporting, so you'll see stuff like that in dmesg.
+Expected.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +110,9 @@ something special behind the scenes or that table is not the whole truth.</pre>
     </body>
 </html>
 
---1445487336.52fDfB1.24993--
+--1445487378.BdE6Cf2.25192--
 
---===============1725757583==
+--===============0619538056==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +122,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1725757583==--
+--===============0619538056==--
