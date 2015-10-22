@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 82843] [NV96][Regression][Bisected] Failure to resume
-Date: Thu, 22 Oct 2015 07:50:55 +0000
-Message-ID: <bug-82843-8800-pmBN1kZS64@http.bugs.freedesktop.org/>
-References: <bug-82843-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72717] [NVE6] No sound via display port (hdmi works)
+Date: Thu, 22 Oct 2015 07:53:20 +0000
+Message-ID: <bug-72717-8800-MdgunGn4eB@http.bugs.freedesktop.org/>
+References: <bug-72717-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1331741965=="
+Content-Type: multipart/mixed; boundary="===============0834673226=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-82843-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72717-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1331741965==
-Content-Type: multipart/alternative; boundary="1445500255.aa35D25F2.19691"; charset="UTF-8"
+--===============0834673226==
+Content-Type: multipart/alternative; boundary="1445500400.cabDDCE2.20355"; charset="UTF-8"
 
 
---1445500255.aa35D25F2.19691
-Date: Thu, 22 Oct 2015 07:50:55 +0000
+--1445500400.cabDDCE2.20355
+Date: Thu, 22 Oct 2015 07:53:20 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=82843
+https://bugs.freedesktop.org/show_bug.cgi?id=72717
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still a problem with recent kernels?
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+DP audio should work starting with kernel 3.18. Feel free to reopen if it still
+doesn't.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445500255.aa35D25F2.19691
-Date: Thu, 22 Oct 2015 07:50:55 +0000
+--1445500400.cabDDCE2.20355
+Date: Thu, 22 Oct 2015 07:53:20 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,20 +55,49 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] No sound via display port (hdmi works)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96][Regression][Bisected] Failure to resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82843#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] No sound via display port (hdmi works)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV96][Regression][Bisected] Failure to resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=82843">bug 82843</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVE6] No sound via display port (hdmi works)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72717">bug 72717</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still a problem with recent kernels?</pre>
+        <pre>DP audio should work starting with kernel 3.18. Feel free to reopen if it still
+doesn't.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +109,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445500255.aa35D25F2.19691--
+--1445500400.cabDDCE2.20355--
 
---===============1331741965==
+--===============0834673226==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1331741965==--
+--===============0834673226==--
