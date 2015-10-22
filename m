@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91779] Pure EFI: MacBookPro3,
- 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
-Date: Thu, 22 Oct 2015 03:27:59 +0000
-Message-ID: <bug-91779-8800-t4uAxOnPgg@http.bugs.freedesktop.org/>
-References: <bug-91779-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90276] [NVE4] read fault error, bisected
+Date: Thu, 22 Oct 2015 03:31:01 +0000
+Message-ID: <bug-90276-8800-IxvLhCvBPJ@http.bugs.freedesktop.org/>
+References: <bug-90276-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1587046461=="
+Content-Type: multipart/mixed; boundary="===============1507139394=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1587046461==
-Content-Type: multipart/alternative; boundary="1445484479.ee42a2.12062"; charset="UTF-8"
+--===============1507139394==
+Content-Type: multipart/alternative; boundary="1445484661.AdFdba2.12598"; charset="UTF-8"
 
 
---1445484479.ee42a2.12062
-Date: Thu, 22 Oct 2015 03:27:59 +0000
+--1445484661.AdFdba2.12598
+Date: Thu, 22 Oct 2015 03:31:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91779
+https://bugs.freedesktop.org/show_bug.cgi?id=90276
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Jeremy Huddleston Sequoia from comment #11)
-> So now that *I'm* up and running, what can we do to help out Joe User here? 
-> I'll try out a newer kernel to see if NvForcePost=1 is still required, and
-> if not, maybe we'll need a quirk.  And what can we do to get the firmware
-> for Joe User?
+--- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Arthur Heymans from comment #21)
+> Well freezes also happen on versions before that particular patch. They are
+> less common and I have not found a way to make them reproducible (similar to
+> reverting that patch on recent kernel).
 
-Did you have a chance to do that? Not sure what can be done for Joe User here
--- we need the vbios. No vbios = no go. VBIOS has info about what connectors
-are on the board, how they're hooked up, any scripts that need to be run to
-init the card (necessary on resume), scripts to run when changing modes, etc.
-
-It's likely that the EFI bios brings the card up enough to fool nouveau into
-thinking that the card is initialized (which it is), but it sets *something* up
-differently and nouveau doesn't reset it properly. But the VBIOS init routines
-do. So I think Joe User will be stuck having to do the NvForcePost. [You can
-look at what all vbios init does with the help of nvbios in envytools.]
-
-Now in order to operate the screen, EFI needs the VBIOS as well. So it has it
-somewhere... the usual thing to do is to stick it at the top of PRAMIN for the
-OS to be able to read it down the line. Not sure if you have access to modify
-something like that.
+Can you see if you still have issues with mesa 11.0.3 and a regular (and
+recent) upstream kernel? Could you be you were just getting lucky/unlucky with
+the other kernel changes.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445484479.ee42a2.12062
-Date: Thu, 22 Oct 2015 03:27:59 +0000
+--1445484661.AdFdba2.12598
+Date: Thu, 22 Oct 2015 03:31:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,35 +59,22 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779#c12">Comment # 12</a>
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c22">Comment # 22</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+   title="NEW - [NVE4] read fault error, bisected"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Jeremy Huddleston Sequoia from <a href="show_bug.cgi?id=91779#c11">comment #11</a>)
-<span class="quote">&gt; So now that *I'm* up and running, what can we do to help out Joe User here? 
-&gt; I'll try out a newer kernel to see if NvForcePost=1 is still required, and
-&gt; if not, maybe we'll need a quirk.  And what can we do to get the firmware
-&gt; for Joe User?</span >
+        <pre>(In reply to Arthur Heymans from <a href="show_bug.cgi?id=90276#c21">comment #21</a>)
+<span class="quote">&gt; Well freezes also happen on versions before that particular patch. They are
+&gt; less common and I have not found a way to make them reproducible (similar to
+&gt; reverting that patch on recent kernel).</span >
 
-Did you have a chance to do that? Not sure what can be done for Joe User here
--- we need the vbios. No vbios = no go. VBIOS has info about what connectors
-are on the board, how they're hooked up, any scripts that need to be run to
-init the card (necessary on resume), scripts to run when changing modes, etc.
-
-It's likely that the EFI bios brings the card up enough to fool nouveau into
-thinking that the card is initialized (which it is), but it sets *something* up
-differently and nouveau doesn't reset it properly. But the VBIOS init routines
-do. So I think Joe User will be stuck having to do the NvForcePost. [You can
-look at what all vbios init does with the help of nvbios in envytools.]
-
-Now in order to operate the screen, EFI needs the VBIOS as well. So it has it
-somewhere... the usual thing to do is to stick it at the top of PRAMIN for the
-OS to be able to read it down the line. Not sure if you have access to modify
-something like that.</pre>
+Can you see if you still have issues with mesa 11.0.3 and a regular (and
+recent) upstream kernel? Could you be you were just getting lucky/unlucky with
+the other kernel changes.</pre>
         </div>
       </p>
       <hr>
@@ -113,9 +86,9 @@ something like that.</pre>
     </body>
 </html>
 
---1445484479.ee42a2.12062--
+--1445484661.AdFdba2.12598--
 
---===============1587046461==
+--===============1507139394==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1587046461==--
+--===============1507139394==--
