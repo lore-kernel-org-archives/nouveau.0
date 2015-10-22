@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
  set_domain failures
-Date: Thu, 22 Oct 2015 01:13:32 +0000
-Message-ID: <bug-92504-8800-x5ulYHHycj@http.bugs.freedesktop.org/>
+Date: Thu, 22 Oct 2015 02:45:15 +0000
+Message-ID: <bug-92504-8800-fDFsr9qZjx@http.bugs.freedesktop.org/>
 References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0933049662=="
+Content-Type: multipart/mixed; boundary="===============0865094664=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0933049662==
-Content-Type: multipart/alternative; boundary="1445476412.655dC3.10310"; charset="UTF-8"
+--===============0865094664==
+Content-Type: multipart/alternative; boundary="1445481915.3c6cb1df4.1337"; charset="UTF-8"
 
 
---1445476412.655dC3.10310
-Date: Thu, 22 Oct 2015 01:13:32 +0000
+--1445481915.3c6cb1df4.1337
+Date: Thu, 22 Oct 2015 02:45:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #27 from Marten van Kerkwijk <mhvk-ULZgDQ4/D0dSpjfjxSPG1fd9D2ou9A/h@public.gmane.org> ---
-Fantastic to see this resolved -- it has been very painful to have to reboot my
-office machine shortly after a suspend, or just after a long day's work. If it
-is clear which version this is going into, please alert here, so I can pick up
-the new package in debian experimental as soon as it lands there (or compile
-myself, but slightly hesitant to do that).
+--- Comment #28 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Marten van Kerkwijk from comment #27)
+> If it is clear which version this is going into, please alert here, so I can
+> pick up the new package in debian experimental as soon as it lands there (or
+> compile myself, but slightly hesitant to do that).
+
+It's already in Dave Airlie's drm-fixes branch, which means it should be on its
+way to Linus for 4.3-rc7 and then it should get picked into stable kernel
+trees.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445476412.655dC3.10310
-Date: Thu, 22 Oct 2015 01:13:32 +0000
+--1445481915.3c6cb1df4.1337
+Date: Thu, 22 Oct 2015 02:45:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,18 +62,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c27">Comment # 27</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c28">Comment # 28</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:mhvk&#64;astro.utoronto.ca" title="Marten van Kerkwijk &lt;mhvk&#64;astro.utoronto.ca&gt;"> <span class="fn">Marten van Kerkwijk</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Fantastic to see this resolved -- it has been very painful to have to reboot my
-office machine shortly after a suspend, or just after a long day's work. If it
-is clear which version this is going into, please alert here, so I can pick up
-the new package in debian experimental as soon as it lands there (or compile
-myself, but slightly hesitant to do that).</pre>
+        <pre>(In reply to Marten van Kerkwijk from <a href="show_bug.cgi?id=92504#c27">comment #27</a>)
+<span class="quote">&gt; If it is clear which version this is going into, please alert here, so I can
+&gt; pick up the new package in debian experimental as soon as it lands there (or
+&gt; compile myself, but slightly hesitant to do that).</span >
+
+It's already in Dave Airlie's drm-fixes branch, which means it should be on its
+way to Linus for 4.3-rc7 and then it should get picked into stable kernel
+trees.</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +89,9 @@ myself, but slightly hesitant to do that).</pre>
     </body>
 </html>
 
---1445476412.655dC3.10310--
+--1445481915.3c6cb1df4.1337--
 
---===============0933049662==
+--===============0865094664==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0933049662==--
+--===============0865094664==--
