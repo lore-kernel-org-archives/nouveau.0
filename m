@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Thu, 22 Oct 2015 03:24:48 +0000
-Message-ID: <bug-70354-8800-6vXzuMDafw@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91779] Pure EFI: MacBookPro3,
+ 1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents
+Date: Thu, 22 Oct 2015 03:27:59 +0000
+Message-ID: <bug-91779-8800-t4uAxOnPgg@http.bugs.freedesktop.org/>
+References: <bug-91779-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1021226913=="
+Content-Type: multipart/mixed; boundary="===============1587046461=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91779-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,54 +21,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1021226913==
-Content-Type: multipart/alternative; boundary="1445484288.8f7D51.11409"; charset="UTF-8"
+--===============1587046461==
+Content-Type: multipart/alternative; boundary="1445484479.ee42a2.12062"; charset="UTF-8"
 
 
---1445484288.8f7D51.11409
-Date: Thu, 22 Oct 2015 03:24:48 +0000
+--1445484479.ee42a2.12062
+Date: Thu, 22 Oct 2015 03:27:59 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=91779
 
---- Comment #75 from Bozhan Boyadzhiev <bozhan-uiMcrn6V0Vs@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #70)
-> (In reply to Bozhan Boyadzhiev from comment #69)
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Jeremy Huddleston Sequoia from comment #11)
+> So now that *I'm* up and running, what can we do to help out Joe User here? 
+> I'll try out a newer kernel to see if NvForcePost=1 is still required, and
+> if not, maybe we'll need a quirk.  And what can we do to get the firmware
+> for Joe User?
 
-> Please provide the output of 'lspci -nnv -d 10de::300' so that we can add it
-> to the workaround list by default.
+Did you have a chance to do that? Not sure what can be done for Joe User here
+-- we need the vbios. No vbios = no go. VBIOS has info about what connectors
+are on the board, how they're hooked up, any scripts that need to be run to
+init the card (necessary on resume), scripts to run when changing modes, etc.
 
+It's likely that the EFI bios brings the card up enough to fool nouveau into
+thinking that the card is initialized (which it is), but it sets *something* up
+differently and nouveau doesn't reset it properly. But the VBIOS init routines
+do. So I think Joe User will be stuck having to do the NvForcePost. [You can
+look at what all vbios init does with the help of nvbios in envytools.]
 
-
-bozhan@bozhan:~$ sudo lspci -nnv -d 10de::300
-[sudo] password for bozhan: 
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK107M [GeForce GT
-755M] [10de:0fcd] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device [17aa:3801]
-        Flags: bus master, fast devsel, latency 0, IRQ 33
-        Memory at c0000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at 90000000 (64-bit, prefetchable) [size=256M]
-        Memory at a0000000 (64-bit, prefetchable) [size=32M]
-        I/O ports at 4000 [size=128]
-        Expansion ROM at c1000000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [b4] Vendor Specific Information: Len=14 <?>
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting <?>
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-<?>
-        Capabilities: [900] #19
-        Kernel driver in use: nouveau
+Now in order to operate the screen, EFI needs the VBIOS as well. So it has it
+somewhere... the usual thing to do is to stick it at the top of PRAMIN for the
+OS to be able to read it down the line. Not sure if you have access to modify
+something like that.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445484288.8f7D51.11409
-Date: Thu, 22 Oct 2015 03:24:48 +0000
+--1445484479.ee42a2.12062
+Date: Thu, 22 Oct 2015 03:27:59 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -81,43 +73,35 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c75">Comment # 75</a>
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:bozhan&#64;abv.bg" title="Bozhan Boyadzhiev &lt;bozhan&#64;abv.bg&gt;"> <span class="fn">Bozhan Boyadzhiev</span></a>
+   title="NEW - Pure EFI: MacBookPro3,1 (NV84) fails to load nouveau on linux 4.1 -- Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91779">bug 91779</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=70354#c70">comment #70</a>)
-<span class="quote">&gt; (In reply to Bozhan Boyadzhiev from <a href="show_bug.cgi?id=70354#c69">comment #69</a>)</span >
+        <pre>(In reply to Jeremy Huddleston Sequoia from <a href="show_bug.cgi?id=91779#c11">comment #11</a>)
+<span class="quote">&gt; So now that *I'm* up and running, what can we do to help out Joe User here? 
+&gt; I'll try out a newer kernel to see if NvForcePost=1 is still required, and
+&gt; if not, maybe we'll need a quirk.  And what can we do to get the firmware
+&gt; for Joe User?</span >
 
-<span class="quote">&gt; Please provide the output of 'lspci -nnv -d 10de::300' so that we can add it
-&gt; to the workaround list by default.</span >
+Did you have a chance to do that? Not sure what can be done for Joe User here
+-- we need the vbios. No vbios = no go. VBIOS has info about what connectors
+are on the board, how they're hooked up, any scripts that need to be run to
+init the card (necessary on resume), scripts to run when changing modes, etc.
 
+It's likely that the EFI bios brings the card up enough to fool nouveau into
+thinking that the card is initialized (which it is), but it sets *something* up
+differently and nouveau doesn't reset it properly. But the VBIOS init routines
+do. So I think Joe User will be stuck having to do the NvForcePost. [You can
+look at what all vbios init does with the help of nvbios in envytools.]
 
-
-bozhan&#64;bozhan:~$ sudo lspci -nnv -d 10de::300
-[sudo] password for bozhan: 
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK107M [GeForce GT
-755M] [10de:0fcd] (rev a1) (prog-if 00 [VGA controller])
-        Subsystem: Lenovo Device [17aa:3801]
-        Flags: bus master, fast devsel, latency 0, IRQ 33
-        Memory at c0000000 (32-bit, non-prefetchable) [size=16M]
-        Memory at 90000000 (64-bit, prefetchable) [size=256M]
-        Memory at a0000000 (64-bit, prefetchable) [size=32M]
-        I/O ports at 4000 [size=128]
-        Expansion ROM at c1000000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting &lt;?&gt;
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-&lt;?&gt;
-        Capabilities: [900] #19
-        Kernel driver in use: nouveau</pre>
+Now in order to operate the screen, EFI needs the VBIOS as well. So it has it
+somewhere... the usual thing to do is to stick it at the top of PRAMIN for the
+OS to be able to read it down the line. Not sure if you have access to modify
+something like that.</pre>
         </div>
       </p>
       <hr>
@@ -129,9 +113,9 @@ bozhan&#64;bozhan:~$ sudo lspci -nnv -d 10de::300
     </body>
 </html>
 
---1445484288.8f7D51.11409--
+--1445484479.ee42a2.12062--
 
---===============1021226913==
+--===============1587046461==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -141,4 +125,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1021226913==--
+--===============1587046461==--
