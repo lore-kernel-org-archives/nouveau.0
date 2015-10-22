@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91233] The system hanged again
-Date: Thu, 22 Oct 2015 06:57:46 +0000
-Message-ID: <bug-91233-8800-MIiGc0Rz9f@http.bugs.freedesktop.org/>
-References: <bug-91233-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89893] Windows slow/stall/freeze when
+ minimizing/restoring/etc in Unity 7
+Date: Thu, 22 Oct 2015 07:03:09 +0000
+Message-ID: <bug-89893-8800-aWaWcyvhz9@http.bugs.freedesktop.org/>
+References: <bug-89893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1637039136=="
+Content-Type: multipart/mixed; boundary="===============0851569538=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,36 +21,36 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1637039136==
-Content-Type: multipart/alternative; boundary="1445497066.440ddc1.3914"; charset="UTF-8"
+--===============0851569538==
+Content-Type: multipart/alternative; boundary="1445497389.0C775E2.5261"; charset="UTF-8"
 
 
---1445497066.440ddc1.3914
-Date: Thu, 22 Oct 2015 06:57:46 +0000
+--1445497389.0C775E2.5261
+Date: Thu, 22 Oct 2015 07:03:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91233
+https://bugs.freedesktop.org/show_bug.cgi?id=89893
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |NOTOURBUG
 
 --- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Victor Porton from comment #2)
-> I've got a similar situation again.
-> 
-> The error was:
-> 
-> [171009.586992] nouveau E[     DRM] GPU lockup - switching to software fbcon
-> 
-> My hardware:
-> GeForce 8400 GS Rev. 3
-
-Did you use a fresh kernel? If so, which one?
+There is no mention of nouveau anywhere in here, indications of the other bug
+are that nouveau vs nvidia doesn't matter, and I see no indication of DRI_PRIME
+ever getting set. I believe this is miscategorized, it's unclear to me why this
+is in the fd.o bugtracker at all, sounds like some ubuntu thing.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445497066.440ddc1.3914
-Date: Thu, 22 Oct 2015 06:57:46 +0000
+--1445497389.0C775E2.5261
+Date: Thu, 22 Oct 2015 07:03:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,30 +58,51 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - Windows slow/stall/freeze when minimizing/restoring/etc in Unity 7"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89893">bug 89893</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>NOTOURBUG
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c3">Comment # 3</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - Windows slow/stall/freeze when minimizing/restoring/etc in Unity 7"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89893#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - Windows slow/stall/freeze when minimizing/restoring/etc in Unity 7"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89893">bug 89893</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Victor Porton from <a href="show_bug.cgi?id=91233#c2">comment #2</a>)
-<span class="quote">&gt; I've got a similar situation again.
-&gt; 
-&gt; The error was:
-&gt; 
-&gt; [171009.586992] nouveau E[     DRM] GPU lockup - switching to software fbcon
-&gt; 
-&gt; My hardware:
-&gt; GeForce 8400 GS Rev. 3</span >
-
-Did you use a fresh kernel? If so, which one?</pre>
+        <pre>There is no mention of nouveau anywhere in here, indications of the other bug
+are that nouveau vs nvidia doesn't matter, and I see no indication of DRI_PRIME
+ever getting set. I believe this is miscategorized, it's unclear to me why this
+is in the fd.o bugtracker at all, sounds like some ubuntu thing.</pre>
         </div>
       </p>
       <hr>
@@ -92,9 +114,9 @@ Did you use a fresh kernel? If so, which one?</pre>
     </body>
 </html>
 
---1445497066.440ddc1.3914--
+--1445497389.0C775E2.5261--
 
---===============1637039136==
+--===============0851569538==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1637039136==--
+--===============0851569538==--
