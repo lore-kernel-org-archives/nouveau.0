@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
  G1 Gaming GTX970
-Date: Thu, 22 Oct 2015 21:42:52 +0000
-Message-ID: <bug-89664-8800-hWM5GmsAKs@http.bugs.freedesktop.org/>
+Date: Thu, 22 Oct 2015 21:44:38 +0000
+Message-ID: <bug-89664-8800-GySU4SqOUI@http.bugs.freedesktop.org/>
 References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0808327576=="
+Content-Type: multipart/mixed; boundary="===============0074975041=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0808327576==
-Content-Type: multipart/alternative; boundary="1445550172.E6E0f65c1.21589"; charset="UTF-8"
+--===============0074975041==
+Content-Type: multipart/alternative; boundary="1445550278.B1b0F1d41.22068"; charset="UTF-8"
 
 
---1445550172.E6E0f65c1.21589
-Date: Thu, 22 Oct 2015 21:42:52 +0000
+--1445550278.B1b0F1d41.22068
+Date: Thu, 22 Oct 2015 21:44:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=89664
 
---- Comment #8 from Omar <Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 119115
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119115&action=edit
-Journal nouveau grep
+--- Comment #9 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Omar from comment #7)
+> I can safely drop nouveau.config=NvForcePost=1 and KMS works on atleast 1
+> out of 2 cards.
+> 
+> It still has issues with the second card though (which ironically is the
+> first card when speaking in terms of PCI slots; 01:00.0).
+
+Which kernel did you try this with? Does using nouveau.config=NvForcePost=1
+allow both GPUs to initialize properly?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445550172.E6E0f65c1.21589
-Date: Thu, 22 Oct 2015 21:42:52 +0000
+--1445550278.B1b0F1d41.22068
+Date: Thu, 22 Oct 2015 21:44:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +62,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c8">Comment # 8</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c9">Comment # 9</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
-              from <span class="vcard"><a class="email" href="mailto:Omar.networkhosting&#64;gmail.com" title="Omar &lt;Omar.networkhosting&#64;gmail.com&gt;"> <span class="fn">Omar</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119115" name="attach_119115" title="Journal nouveau grep">attachment 119115</a> <a href="attachment.cgi?id=119115&amp;action=edit" title="Journal nouveau grep">[details]</a></span>
-Journal nouveau grep</pre>
+        <pre>(In reply to Omar from <a href="show_bug.cgi?id=89664#c7">comment #7</a>)
+<span class="quote">&gt; I can safely drop nouveau.config=NvForcePost=1 and KMS works on atleast 1
+&gt; out of 2 cards.
+&gt; 
+&gt; It still has issues with the second card though (which ironically is the
+&gt; first card when speaking in terms of PCI slots; 01:00.0).</span >
+
+Which kernel did you try this with? Does using nouveau.config=NvForcePost=1
+allow both GPUs to initialize properly?</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +89,9 @@ Journal nouveau grep</pre>
     </body>
 </html>
 
---1445550172.E6E0f65c1.21589--
+--1445550278.B1b0F1d41.22068--
 
---===============0808327576==
+--===============0074975041==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +101,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0808327576==--
+--===============0074975041==--
