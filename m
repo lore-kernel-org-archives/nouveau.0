@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Thu, 22 Oct 2015 15:14:03 +0000
-Message-ID: <bug-90276-8800-IHrvOqJIpN@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Thu, 22 Oct 2015 16:11:21 +0000
+Message-ID: <bug-89664-8800-WT2XvjjMoR@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507124223=="
+Content-Type: multipart/mixed; boundary="===============0225808023=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507124223==
-Content-Type: multipart/alternative; boundary="1445526842.8eC1B61.27338"; charset="UTF-8"
+--===============0225808023==
+Content-Type: multipart/alternative; boundary="1445530281.F7d8fE1.14493"; charset="UTF-8"
 
 
---1445526842.8eC1B61.27338
-Date: Thu, 22 Oct 2015 15:14:02 +0000
+--1445530281.F7d8fE1.14493
+Date: Thu, 22 Oct 2015 16:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
+https://bugs.freedesktop.org/show_bug.cgi?id=89664
 
---- Comment #23 from Arthur Heymans <arthurphilippeheymans-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Using
-linux 4.2.3
-mesa 11.0.3
-I still get frequent things like
- nouveau E[   PFIFO][0000:03:00.0] read fault at 0x0011990000
-[UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f121000 [unknown]
-which freezes display.
-So I would say nothing really changed.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Omar from comment #5)
+> Will the official kernel release do or do you want me to compile the Nouveau
+> GIT kernel?
+
+Any official kernel (4.1 or later) will do.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445526842.8eC1B61.27338
-Date: Thu, 22 Oct 2015 15:14:02 +0000
+--1445530281.F7d8fE1.14493
+Date: Thu, 22 Oct 2015 16:11:21 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,22 +57,19 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c23">Comment # 23</a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
-              from <span class="vcard"><a class="email" href="mailto:arthurphilippeheymans&#64;gmail.com" title="Arthur Heymans &lt;arthurphilippeheymans&#64;gmail.com&gt;"> <span class="fn">Arthur Heymans</span></a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Using
-linux 4.2.3
-mesa 11.0.3
-I still get frequent things like
- nouveau E[   PFIFO][0000:03:00.0] read fault at 0x0011990000
-[UNSUPPORTED_KIND] from CE2/GR_CE on channel 0x007f121000 [unknown]
-which freezes display.
-So I would say nothing really changed.</pre>
+        <pre>(In reply to Omar from <a href="show_bug.cgi?id=89664#c5">comment #5</a>)
+<span class="quote">&gt; Will the official kernel release do or do you want me to compile the Nouveau
+&gt; GIT kernel?</span >
+
+Any official kernel (4.1 or later) will do.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +81,9 @@ So I would say nothing really changed.</pre>
     </body>
 </html>
 
---1445526842.8eC1B61.27338--
+--1445530281.F7d8fE1.14493--
 
---===============1507124223==
+--===============0225808023==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1507124223==--
+--===============0225808023==--
