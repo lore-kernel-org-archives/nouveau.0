@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71357] [NVC1] After S3 resume X is broken and reboot
-	needed
-Date: Thu, 22 Oct 2015 02:59:47 +0000
-Message-ID: <bug-71357-8800-U287zMUEek@http.bugs.freedesktop.org/>
-References: <bug-71357-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 49736] [NV43] piglit quick.driver tests kill X server
+Date: Thu, 22 Oct 2015 03:05:46 +0000
+Message-ID: <bug-49736-8800-lXmBYqpODV@http.bugs.freedesktop.org/>
+References: <bug-49736-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1552774008=="
+Content-Type: multipart/mixed; boundary="===============0212340463=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71357-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-49736-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,30 +20,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1552774008==
-Content-Type: multipart/alternative; boundary="1445482788.4318a0.5717"; charset="UTF-8"
+--===============0212340463==
+Content-Type: multipart/alternative; boundary="1445483146.5D10Bf0C1.7292"; charset="UTF-8"
 
 
---1445482788.4318a0.5717
-Date: Thu, 22 Oct 2015 02:59:48 +0000
+--1445483146.5D10Bf0C1.7292
+Date: Thu, 22 Oct 2015 03:05:46 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71357
+https://bugs.freedesktop.org/show_bug.cgi?id=49736
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |WONTFIX
+
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe that the nv4x piglit situation has improved considerably in the
+intervening years. If the GPU locks up, then an Xorg crash is expected (albeit
+unfortunate).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445482788.4318a0.5717
-Date: Thu, 22 Oct 2015 02:59:48 +0000
+--1445483146.5D10Bf0C1.7292
+Date: Thu, 22 Oct 2015 03:05:46 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,8 +60,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVC1] After S3 resume X is broken and reboot needed"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71357">bug 71357</a>
+   title="RESOLVED WONTFIX - [NV43] piglit quick.driver tests kill X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -68,7 +72,7 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>NEW
+           <td>REOPENED
            </td>
            <td>RESOLVED
            </td>
@@ -78,10 +82,25 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>WONTFIX
            </td>
          </tr></table>
       <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - [NV43] piglit quick.driver tests kill X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WONTFIX - [NV43] piglit quick.driver tests kill X server"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=49736">bug 49736</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I believe that the nv4x piglit situation has improved considerably in the
+intervening years. If the GPU locks up, then an Xorg crash is expected (albeit
+unfortunate).</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -92,9 +111,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445482788.4318a0.5717--
+--1445483146.5D10Bf0C1.7292--
 
---===============1552774008==
+--===============0212340463==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -104,4 +123,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1552774008==--
+--===============0212340463==--
