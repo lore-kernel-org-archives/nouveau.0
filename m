@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90276] [NVE4] read fault error, bisected
-Date: Thu, 22 Oct 2015 03:31:01 +0000
-Message-ID: <bug-90276-8800-IxvLhCvBPJ@http.bugs.freedesktop.org/>
-References: <bug-90276-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
+ set_domain failures
+Date: Thu, 22 Oct 2015 03:36:02 +0000
+Message-ID: <bug-92504-8800-u8zLteXb0j@http.bugs.freedesktop.org/>
+References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1507139394=="
+Content-Type: multipart/mixed; boundary="===============1562591980=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90276-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1507139394==
-Content-Type: multipart/alternative; boundary="1445484661.AdFdba2.12598"; charset="UTF-8"
+--===============1562591980==
+Content-Type: multipart/alternative; boundary="1445484962.a4A8CB4.13589"; charset="UTF-8"
 
 
---1445484661.AdFdba2.12598
-Date: Thu, 22 Oct 2015 03:31:01 +0000
+--1445484962.a4A8CB4.13589
+Date: Thu, 22 Oct 2015 03:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90276
+https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #22 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Arthur Heymans from comment #21)
-> Well freezes also happen on versions before that particular patch. They are
-> less common and I have not found a way to make them reproducible (similar to
-> reverting that patch on recent kernel).
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
-Can you see if you still have issues with mesa 11.0.3 and a regular (and
-recent) upstream kernel? Could you be you were just getting lucky/unlucky with
-the other kernel changes.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+                 CC|                            |mignov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+
+--- Comment #29 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 92010 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445484661.AdFdba2.12598
-Date: Thu, 22 Oct 2015 03:31:01 +0000
+--1445484962.a4A8CB4.13589
+Date: Thu, 22 Oct 2015 03:36:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,41 +55,59 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">CC</td>
+           <td>
+               &nbsp;
+           </td>
+           <td>mignov&#64;gmail.com
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276#c22">Comment # 22</a>
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c29">Comment # 29</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE4] read fault error, bisected"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90276">bug 90276</a>
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Arthur Heymans from <a href="show_bug.cgi?id=90276#c21">comment #21</a>)
-<span class="quote">&gt; Well freezes also happen on versions before that particular patch. They are
-&gt; less common and I have not found a way to make them reproducible (similar to
-&gt; reverting that patch on recent kernel).</span >
-
-Can you see if you still have issues with mesa 11.0.3 and a regular (and
-recent) upstream kernel? Could you be you were just getting lucky/unlucky with
-the other kernel changes.</pre>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Nvidia nouveau driver hangs system when using X-Window system"
+   href="show_bug.cgi?id=92010">Bug 92010</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445484661.AdFdba2.12598--
+--1445484962.a4A8CB4.13589--
 
---===============1507139394==
+--===============1562591980==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +117,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1507139394==--
+--===============1562591980==--
