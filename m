@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
-	driver/exa
-Date: Thu, 22 Oct 2015 10:49:01 +0000
-Message-ID: <bug-68488-8800-WdijLErC2W@http.bugs.freedesktop.org/>
-References: <bug-68488-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
+ G1 Gaming GTX970
+Date: Thu, 22 Oct 2015 11:24:54 +0000
+Message-ID: <bug-89664-8800-l2kP9po7Pf@http.bugs.freedesktop.org/>
+References: <bug-89664-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1602815524=="
+Content-Type: multipart/mixed; boundary="===============1779014088=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1602815524==
-Content-Type: multipart/alternative; boundary="1445510941.0c1155e4.7437"; charset="UTF-8"
+--===============1779014088==
+Content-Type: multipart/alternative; boundary="1445513094.3Fb7f1.17842"; charset="UTF-8"
 
 
---1445510941.0c1155e4.7437
-Date: Thu, 22 Oct 2015 10:49:01 +0000
+--1445513094.3Fb7f1.17842
+Date: Thu, 22 Oct 2015 11:24:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=68488
+https://bugs.freedesktop.org/show_bug.cgi?id=89664
 
---- Comment #10 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
-Yes. (Running Fedora 23 now.)
+--- Comment #5 from Omar <Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Will the official kernel release do or do you want me to compile the Nouveau
+GIT kernel?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445510941.0c1155e4.7437
-Date: Thu, 22 Oct 2015 10:49:01 +0000
+--1445513094.3Fb7f1.17842
+Date: Thu, 22 Oct 2015 11:24:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +54,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c10">Comment # 10</a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">bug 68488</a>
-              from <span class="vcard"><a class="email" href="mailto:a9016009&#64;gmx.de" title="Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span class="fn">Andre Klapper</span></a>
+   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
+              from <span class="vcard"><a class="email" href="mailto:Omar.networkhosting&#64;gmail.com" title="Omar &lt;Omar.networkhosting&#64;gmail.com&gt;"> <span class="fn">Omar</span></a>
 </span></b>
-        <pre>Yes. (Running Fedora 23 now.)</pre>
+        <pre>Will the official kernel release do or do you want me to compile the Nouveau
+GIT kernel?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445510941.0c1155e4.7437--
+--1445513094.3Fb7f1.17842--
 
---===============1602815524==
+--===============1779014088==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1602815524==--
+--===============1779014088==--
