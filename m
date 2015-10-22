@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92438] Segfault in pushbuf_kref when running the
- android emulator (qemu) on nv50
-Date: Wed, 21 Oct 2015 22:58:35 +0000
-Message-ID: <bug-92438-8800-i0aGeRL5O9@http.bugs.freedesktop.org/>
-References: <bug-92438-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Thu, 22 Oct 2015 00:46:41 +0000
+Message-ID: <bug-92077-8800-wdYEKFT7l3@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2081578095=="
+Content-Type: multipart/mixed; boundary="===============1316679015=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,39 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2081578095==
-Content-Type: multipart/alternative; boundary="1445468315.2bf623cd1.4254"; charset="UTF-8"
+--===============1316679015==
+Content-Type: multipart/alternative; boundary="1445474801.37EB3CbD0.3349"; charset="UTF-8"
 
 
---1445468315.2bf623cd1.4254
-Date: Wed, 21 Oct 2015 22:58:35 +0000
+--1445474801.37EB3CbD0.3349
+Date: Thu, 22 Oct 2015 00:46:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92438
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
 
---- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-In your kernel log I see
-
-[30903.432610] nouveau E[steam[21937]] fail set_domain
-[30903.432614] nouveau E[steam[21937]] validating bo list
-[30903.432618] nouveau E[steam[21937]] validate: -22
-
-I believe that error should be fixed by the kernel patch at the end of bug
-#92504. However I don't think that's your main issue. Still, worth giving it a
-shot.
-
-Separately, some very subtle fence-related issues should be fixed in the
-soon-to-be-released Mesa 11.0.4 (or mesa's master branch). Again, don't think
-they're the root cause of your problems, but... wouldn't hurt to try.
+--- Comment #11 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Also you can try the patch at
+http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-fixes&id=2a6c521bb41ce862e43db46f52e7681d33e8d771
+which helped a bunch of people running plasmashell.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445468315.2bf623cd1.4254
-Date: Wed, 21 Oct 2015 22:58:35 +0000
+--1445474801.37EB3CbD0.3349
+Date: Thu, 22 Oct 2015 00:46:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -66,30 +56,17 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c16">Comment # 16</a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c11">Comment # 11</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>In your kernel log I see
-
-[30903.432610] nouveau E[steam[21937]] fail set_domain
-[30903.432614] nouveau E[steam[21937]] validating bo list
-[30903.432618] nouveau E[steam[21937]] validate: -22
-
-I believe that error should be fixed by the kernel patch at the end of <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="show_bug.cgi?id=92504">bug
-#92504</a>. However I don't think that's your main issue. Still, worth giving it a
-shot.
-
-Separately, some very subtle fence-related issues should be fixed in the
-soon-to-be-released Mesa 11.0.4 (or mesa's master branch). Again, don't think
-they're the root cause of your problems, but... wouldn't hurt to try.</pre>
+        <pre>Also you can try the patch at
+<a href="http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-fixes&amp;id=2a6c521bb41ce862e43db46f52e7681d33e8d771">http://cgit.freedesktop.org/~airlied/linux/commit/?h=drm-fixes&amp;id=2a6c521bb41ce862e43db46f52e7681d33e8d771</a>
+which helped a bunch of people running plasmashell.</pre>
         </div>
       </p>
       <hr>
@@ -102,9 +79,9 @@ they're the root cause of your problems, but... wouldn't hurt to try.</pre>
     </body>
 </html>
 
---1445468315.2bf623cd1.4254--
+--1445474801.37EB3CbD0.3349--
 
---===============2081578095==
+--===============1316679015==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2081578095==--
+--===============1316679015==--
