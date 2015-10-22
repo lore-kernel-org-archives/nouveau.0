@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Thu, 22 Oct 2015 07:29:41 +0000
-Message-ID: <bug-90626-8800-VmtJwqFphB@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91402] linux-4.1 nv108 Invalid ROM contents
+Date: Thu, 22 Oct 2015 07:30:23 +0000
+Message-ID: <bug-91402-8800-oPka62bKhI@http.bugs.freedesktop.org/>
+References: <bug-91402-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1662438375=="
+Content-Type: multipart/mixed; boundary="===============1611357324=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,74 +20,103 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1662438375==
-Content-Type: multipart/alternative; boundary="1445498981.AD2aDC53.13013"; charset="UTF-8"
+--===============1611357324==
+Content-Type: multipart/alternative; boundary="1445499023.AF6Ebb23.13230"; charset="UTF-8"
 
 
---1445498981.AD2aDC53.13013
-Date: Thu, 22 Oct 2015 07:29:41 +0000
+--1445499023.AF6Ebb23.13230
+Date: Thu, 22 Oct 2015 07:30:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=91402
 
---- Comment #15 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Update: The nouveau driver still doesn't work on my ZBook 15 using kernel
-4.2.3.
-There has been a refactoring of the Nouveau source code in 4.3, but the
-relevant files seems to be left untouched.
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
---=20
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |DUPLICATE
+
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+
+
+*** This bug has been marked as a duplicate of bug 90626 ***
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445498981.AD2aDC53.13013
-Date: Thu, 22 Oct 2015 07:29:41 +0000
+--1445499023.AF6Ebb23.13230
+Date: Thu, 22 Oct 2015 07:30:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>DUPLICATE
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c15">Commen=
-t # 15</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
-&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Update: The nouveau driver still doesn't work on my ZBook 15 u=
-sing kernel
-4.2.3.
-There has been a refactoring of the Nouveau source code in 4.3, but the
-relevant files seems to be left untouched.</pre>
+        <pre>
+
+*** This bug has been marked as a duplicate of <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="show_bug.cgi?id=90626">bug 90626</a> ***</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445498981.AD2aDC53.13013--
+--1445499023.AF6Ebb23.13230--
 
---===============1662438375==
+--===============1611357324==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +126,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1662438375==--
+--===============1611357324==--
