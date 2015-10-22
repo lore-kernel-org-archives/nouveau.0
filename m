@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91233] The system hanged again
-Date: Thu, 22 Oct 2015 13:26:38 +0000
-Message-ID: <bug-91233-8800-yDmnlFg8NV@http.bugs.freedesktop.org/>
-References: <bug-91233-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 80506] Video failed on resume from suspend - G94 /
+ GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2
+Date: Thu, 22 Oct 2015 15:04:02 +0000
+Message-ID: <bug-80506-8800-Ur06GrIpwB@http.bugs.freedesktop.org/>
+References: <bug-80506-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0329647386=="
+Content-Type: multipart/mixed; boundary="===============1080550786=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-80506-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0329647386==
-Content-Type: multipart/alternative; boundary="1445520397.4d5cd1.25608"; charset="UTF-8"
+--===============1080550786==
+Content-Type: multipart/alternative; boundary="1445526242.CFdca1.24243"; charset="UTF-8"
 
 
---1445520397.4d5cd1.25608
-Date: Thu, 22 Oct 2015 13:26:37 +0000
+--1445526242.CFdca1.24243
+Date: Thu, 22 Oct 2015 15:04:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91233
+https://bugs.freedesktop.org/show_bug.cgi?id=80506
 
---- Comment #4 from Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> ---
-Apparently the bug was fixed and does not anymore appear for me.
+Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> changed:
 
-$ uname -a
-Linux victor.local 4.1.0-2-686-pae #1 SMP Debian 4.1.6-1 (2015-08-23) i686
-GNU/Linux
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
-libdrm-nouveau2 2.4.64-1
-xserver-xorg-video-nouveau 1:1.0.11-1+b1
+--- Comment #7 from Adam Williamson <adamw-cfjF3rc+CpsYNetmKr+vY16hYfS7NtTn@public.gmane.org> ---
+no, it's fine now.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445520397.4d5cd1.25608
-Date: Thu, 22 Oct 2015 13:26:37 +0000
+--1445526242.CFdca1.24243
+Date: Thu, 22 Oct 2015 15:04:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,27 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506">bug 80506</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c4">Comment # 4</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEEDINFO "
-   title="NEEDINFO - The system hanged again"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
-              from <span class="vcard"><a class="email" href="mailto:porton&#64;narod.ru" title="Victor Porton &lt;porton&#64;narod.ru&gt;"> <span class="fn">Victor Porton</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Video failed on resume from suspend - G94 / GeForce 9600 GT, 10de:0622 , kernel 3.16 rc2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=80506">bug 80506</a>
+              from <span class="vcard"><a class="email" href="mailto:adamw&#64;happyassassin.net" title="Adam Williamson &lt;adamw&#64;happyassassin.net&gt;"> <span class="fn">Adam Williamson</span></a>
 </span></b>
-        <pre>Apparently the bug was fixed and does not anymore appear for me.
-
-$ uname -a
-Linux victor.local 4.1.0-2-686-pae #1 SMP Debian 4.1.6-1 (2015-08-23) i686
-GNU/Linux
-
-libdrm-nouveau2 2.4.64-1
-xserver-xorg-video-nouveau 1:1.0.11-1+b1</pre>
+        <pre>no, it's fine now.</pre>
         </div>
       </p>
       <hr>
@@ -86,9 +108,9 @@ xserver-xorg-video-nouveau 1:1.0.11-1+b1</pre>
     </body>
 </html>
 
---1445520397.4d5cd1.25608--
+--1445526242.CFdca1.24243--
 
---===============0329647386==
+--===============1080550786==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0329647386==--
+--===============1080550786==--
