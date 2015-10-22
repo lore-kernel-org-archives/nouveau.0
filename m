@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 87179] [NVE7] Warning while reenabling Optimus
-	dedicated card
-Date: Thu, 22 Oct 2015 07:11:39 +0000
-Message-ID: <bug-87179-8800-RpfOI2hgd8@http.bugs.freedesktop.org/>
-References: <bug-87179-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 81485] [NVE4] dmesg spam on startup
+Date: Thu, 22 Oct 2015 07:13:13 +0000
+Message-ID: <bug-81485-8800-PkqK1kwSmn@http.bugs.freedesktop.org/>
+References: <bug-81485-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1444209098=="
+Content-Type: multipart/mixed; boundary="===============0614911869=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-87179-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-81485-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1444209098==
-Content-Type: multipart/alternative; boundary="1445497899.DB0e71.7515"; charset="UTF-8"
+--===============0614911869==
+Content-Type: multipart/alternative; boundary="1445497992.8EC1e2.8069"; charset="UTF-8"
 
 
---1445497899.DB0e71.7515
-Date: Thu, 22 Oct 2015 07:11:39 +0000
+--1445497992.8EC1e2.8069
+Date: Thu, 22 Oct 2015 07:13:12 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=87179
+https://bugs.freedesktop.org/show_bug.cgi?id=81485
 
---- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Tobias, does this still happen with recent kernels?
+--- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with kernel 4.1 or later?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445497899.DB0e71.7515
-Date: Thu, 22 Oct 2015 07:11:39 +0000
+--1445497992.8EC1e2.8069
+Date: Thu, 22 Oct 2015 07:13:12 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +52,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179#c4">Comment # 4</a>
+   title="NEW - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE7] Warning while reenabling Optimus dedicated card"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=87179">bug 87179</a>
+   title="NEW - [NVE4] dmesg spam on startup"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=81485">bug 81485</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Tobias, does this still happen with recent kernels?</pre>
+        <pre>Does this still happen with kernel 4.1 or later?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +72,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445497899.DB0e71.7515--
+--1445497992.8EC1e2.8069--
 
---===============1444209098==
+--===============0614911869==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1444209098==--
+--===============0614911869==--
