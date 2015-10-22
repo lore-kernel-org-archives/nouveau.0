@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 66255] Xinerama 2x2 monitor configuration display
-	issues
-Date: Thu, 22 Oct 2015 04:45:15 +0000
-Message-ID: <bug-66255-8800-DZdnnWFTDU@http.bugs.freedesktop.org/>
-References: <bug-66255-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71563] [nvc0] color garbage after resume
+Date: Thu, 22 Oct 2015 04:46:07 +0000
+Message-ID: <bug-71563-8800-dwlUpnDY6X@http.bugs.freedesktop.org/>
+References: <bug-71563-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0123682511=="
+Content-Type: multipart/mixed; boundary="===============2143050690=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-66255-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,35 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0123682511==
-Content-Type: multipart/alternative; boundary="1445489115.bF8F8FfF2.1970"; charset="UTF-8"
+--===============2143050690==
+Content-Type: multipart/alternative; boundary="1445489167.1BaF62.2312"; charset="UTF-8"
 
 
---1445489115.bF8F8FfF2.1970
-Date: Thu, 22 Oct 2015 04:45:15 +0000
+--1445489167.1BaF62.2312
+Date: Thu, 22 Oct 2015 04:46:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=66255
+https://bugs.freedesktop.org/show_bug.cgi?id=71563
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |INVALID
-
---- Comment #21 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-No retest in years. Given that people have gotten 20-screen walls working with
-nouveau, this is most likely an issue with the user's configuration. Marking as
-invalid.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this still happen with recent software (kernel/mesa)?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445489115.bF8F8FfF2.1970
-Date: Thu, 22 Oct 2015 04:45:15 +0000
+--1445489167.1BaF62.2312
+Date: Thu, 22 Oct 2015 04:46:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,50 +47,20 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>INVALID
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255#c21">Comment # 21</a>
+          bz_status_NEW "
+   title="NEW - [nvc0] color garbage after resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71563#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED INVALID - Xinerama 2x2 monitor configuration display issues"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=66255">bug 66255</a>
+          bz_status_NEW "
+   title="NEW - [nvc0] color garbage after resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71563">bug 71563</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>No retest in years. Given that people have gotten 20-screen walls working with
-nouveau, this is most likely an issue with the user's configuration. Marking as
-invalid.</pre>
+        <pre>Does this still happen with recent software (kernel/mesa)?</pre>
         </div>
       </p>
       <hr>
@@ -112,9 +72,9 @@ invalid.</pre>
     </body>
 </html>
 
---1445489115.bF8F8FfF2.1970--
+--1445489167.1BaF62.2312--
 
---===============0123682511==
+--===============2143050690==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -124,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0123682511==--
+--===============2143050690==--
