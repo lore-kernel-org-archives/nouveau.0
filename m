@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91236] [NVC3] Passive DP to HDMI adapter cannot use
- pixel clocks greater than 165 MHz
-Date: Thu, 22 Oct 2015 03:59:53 +0000
-Message-ID: <bug-91236-8800-hxY6lNgOFD@http.bugs.freedesktop.org/>
-References: <bug-91236-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 89620] Nouveau driver for Nvidia card GeForce GT
+	550M]
+Date: Thu, 22 Oct 2015 03:59:50 +0000
+Message-ID: <bug-89620-8800-1ZXL5IzdC4@http.bugs.freedesktop.org/>
+References: <bug-89620-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2014413373=="
+Content-Type: multipart/mixed; boundary="===============1056355215=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91236-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-89620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2014413373==
-Content-Type: multipart/alternative; boundary="1445486393.Cc1C871.20220"; charset="UTF-8"
+--===============1056355215==
+Content-Type: multipart/alternative; boundary="1445486390.1bC1B2.20176"; charset="UTF-8"
 
 
---1445486393.Cc1C871.20220
-Date: Thu, 22 Oct 2015 03:59:53 +0000
+--1445486390.1bC1B2.20176
+Date: Thu, 22 Oct 2015 03:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91236
+https://bugs.freedesktop.org/show_bug.cgi?id=89620
 
---- Comment #2 from Andrew Boettcher <a.boettcher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 119057
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119057&action=edit
-Video Bios
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OP says that the problem went away with a fresh kernel.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445486393.Cc1C871.20220
-Date: Thu, 22 Oct 2015 03:59:53 +0000
+--1445486390.1bC1B2.20176
+Date: Thu, 22 Oct 2015 03:59:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -50,21 +55,48 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236#c2">Comment # 2</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620#c7">Comment # 7</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236">bug 91236</a>
-              from <span class="vcard"><a class="email" href="mailto:a.boettcher&#64;gmail.com" title="Andrew Boettcher &lt;a.boettcher&#64;gmail.com&gt;"> <span class="fn">Andrew Boettcher</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119057" name="attach_119057" title="Video Bios">attachment 119057</a> <a href="attachment.cgi?id=119057&amp;action=edit" title="Video Bios">[details]</a></span>
-Video Bios</pre>
+        <pre>OP says that the problem went away with a fresh kernel.</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +108,9 @@ Video Bios</pre>
     </body>
 </html>
 
---1445486393.Cc1C871.20220--
+--1445486390.1bC1B2.20176--
 
---===============2014413373==
+--===============1056355215==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +120,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2014413373==--
+--===============1056355215==--
