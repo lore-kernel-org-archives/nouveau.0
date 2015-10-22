@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89664] Nouveau fails to enter KMS with the Gigabyte
- G1 Gaming GTX970
-Date: Thu, 22 Oct 2015 11:24:54 +0000
-Message-ID: <bug-89664-8800-l2kP9po7Pf@http.bugs.freedesktop.org/>
-References: <bug-89664-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91233] The system hanged again
+Date: Thu, 22 Oct 2015 13:26:38 +0000
+Message-ID: <bug-91233-8800-yDmnlFg8NV@http.bugs.freedesktop.org/>
+References: <bug-91233-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1779014088=="
+Content-Type: multipart/mixed; boundary="===============0329647386=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89664-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91233-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1779014088==
-Content-Type: multipart/alternative; boundary="1445513094.3Fb7f1.17842"; charset="UTF-8"
+--===============0329647386==
+Content-Type: multipart/alternative; boundary="1445520397.4d5cd1.25608"; charset="UTF-8"
 
 
---1445513094.3Fb7f1.17842
-Date: Thu, 22 Oct 2015 11:24:54 +0000
+--1445520397.4d5cd1.25608
+Date: Thu, 22 Oct 2015 13:26:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89664
+https://bugs.freedesktop.org/show_bug.cgi?id=91233
 
---- Comment #5 from Omar <Omar.networkhosting-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Will the official kernel release do or do you want me to compile the Nouveau
-GIT kernel?
+--- Comment #4 from Victor Porton <porton-Q+l+L2ir60w@public.gmane.org> ---
+Apparently the bug was fixed and does not anymore appear for me.
+
+$ uname -a
+Linux victor.local 4.1.0-2-686-pae #1 SMP Debian 4.1.6-1 (2015-08-23) i686
+GNU/Linux
+
+libdrm-nouveau2 2.4.64-1
+xserver-xorg-video-nouveau 1:1.0.11-1+b1
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445513094.3Fb7f1.17842
-Date: Thu, 22 Oct 2015 11:24:54 +0000
+--1445520397.4d5cd1.25608
+Date: Thu, 22 Oct 2015 13:26:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,17 +58,23 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664#c5">Comment # 5</a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233#c4">Comment # 4</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau fails to enter KMS with the Gigabyte G1 Gaming GTX970"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89664">bug 89664</a>
-              from <span class="vcard"><a class="email" href="mailto:Omar.networkhosting&#64;gmail.com" title="Omar &lt;Omar.networkhosting&#64;gmail.com&gt;"> <span class="fn">Omar</span></a>
+          bz_status_NEEDINFO "
+   title="NEEDINFO - The system hanged again"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91233">bug 91233</a>
+              from <span class="vcard"><a class="email" href="mailto:porton&#64;narod.ru" title="Victor Porton &lt;porton&#64;narod.ru&gt;"> <span class="fn">Victor Porton</span></a>
 </span></b>
-        <pre>Will the official kernel release do or do you want me to compile the Nouveau
-GIT kernel?</pre>
+        <pre>Apparently the bug was fixed and does not anymore appear for me.
+
+$ uname -a
+Linux victor.local 4.1.0-2-686-pae #1 SMP Debian 4.1.6-1 (2015-08-23) i686
+GNU/Linux
+
+libdrm-nouveau2 2.4.64-1
+xserver-xorg-video-nouveau 1:1.0.11-1+b1</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +86,9 @@ GIT kernel?</pre>
     </body>
 </html>
 
---1445513094.3Fb7f1.17842--
+--1445520397.4d5cd1.25608--
 
---===============1779014088==
+--===============0329647386==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1779014088==--
+--===============0329647386==--
