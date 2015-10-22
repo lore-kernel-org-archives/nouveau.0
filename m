@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90069] input lag
-Date: Thu, 22 Oct 2015 06:25:08 +0000
-Message-ID: <bug-90069-8800-AgBvHf0ASC@http.bugs.freedesktop.org/>
+Date: Thu, 22 Oct 2015 06:26:08 +0000
+Message-ID: <bug-90069-8800-JnTttH7Lly@http.bugs.freedesktop.org/>
 References: <bug-90069-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0768692419=="
+Content-Type: multipart/mixed; boundary="===============0455146218=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90069-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0768692419==
-Content-Type: multipart/alternative; boundary="1445495108.Df6Caf2.27517"; charset="UTF-8"
+--===============0455146218==
+Content-Type: multipart/alternative; boundary="1445495168.fCEdEF1.27761"; charset="UTF-8"
 
 
---1445495108.Df6Caf2.27517
-Date: Thu, 22 Oct 2015 06:25:08 +0000
+--1445495168.fCEdEF1.27761
+Date: Thu, 22 Oct 2015 06:26:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90069
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an actual problem? AFAIK you've gotten much further.
+--- Comment #2 from Marcus Moeller <marcus.moeller-OI3hZJvNYWs@public.gmane.org> ---
+This only happens on wayland
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445495108.Df6Caf2.27517
-Date: Thu, 22 Oct 2015 06:25:08 +0000
+--1445495168.fCEdEF1.27761
+Date: Thu, 22 Oct 2015 06:26:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,14 +53,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - input lag"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90069#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90069#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - input lag"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90069">bug 90069</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:marcus.moeller&#64;gmx.ch" title="Marcus Moeller &lt;marcus.moeller&#64;gmx.ch&gt;"> <span class="fn">Marcus Moeller</span></a>
 </span></b>
-        <pre>Is this still an actual problem? AFAIK you've gotten much further.</pre>
+        <pre>This only happens on wayland</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +72,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445495108.Df6Caf2.27517--
+--1445495168.fCEdEF1.27761--
 
---===============0768692419==
+--===============0455146218==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0768692419==--
+--===============0455146218==--
