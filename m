@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
- set_domain failures
-Date: Thu, 22 Oct 2015 02:45:15 +0000
-Message-ID: <bug-92504-8800-fDFsr9qZjx@http.bugs.freedesktop.org/>
-References: <bug-92504-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91171] Space Rangers 2 (in Wine) shows only black
+	screen
+Date: Thu, 22 Oct 2015 02:47:37 +0000
+Message-ID: <bug-91171-8800-CrsYFBhe5u@http.bugs.freedesktop.org/>
+References: <bug-91171-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0865094664=="
+Content-Type: multipart/mixed; boundary="===============0600659896=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91171-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0865094664==
-Content-Type: multipart/alternative; boundary="1445481915.3c6cb1df4.1337"; charset="UTF-8"
+--===============0600659896==
+Content-Type: multipart/alternative; boundary="1445482057.52F602.2204"; charset="UTF-8"
 
 
---1445481915.3c6cb1df4.1337
-Date: Thu, 22 Oct 2015 02:45:15 +0000
+--1445482057.52F602.2204
+Date: Thu, 22 Oct 2015 02:47:37 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92504
+https://bugs.freedesktop.org/show_bug.cgi?id=91171
 
---- Comment #28 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Marten van Kerkwijk from comment #27)
-> If it is clear which version this is going into, please alert here, so I can
-> pick up the new package in debian experimental as soon as it lands there (or
-> compile myself, but slightly hesitant to do that).
-
-It's already in Dave Airlie's drm-fixes branch, which means it should be on its
-way to Linus for 4.3-rc7 and then it should get picked into stable kernel
-trees.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Some frontbuffer-related fixes went into mesa 11.0.3. Can you check if the
+issue persists?
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445481915.3c6cb1df4.1337
-Date: Thu, 22 Oct 2015 02:45:15 +0000
+--1445482057.52F602.2204
+Date: Thu, 22 Oct 2015 02:47:37 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,22 +55,16 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c28">Comment # 28</a>
+   title="NEW - Space Rangers 2 (in Wine) shows only black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+   title="NEW - Space Rangers 2 (in Wine) shows only black screen"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91171">bug 91171</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Marten van Kerkwijk from <a href="show_bug.cgi?id=92504#c27">comment #27</a>)
-<span class="quote">&gt; If it is clear which version this is going into, please alert here, so I can
-&gt; pick up the new package in debian experimental as soon as it lands there (or
-&gt; compile myself, but slightly hesitant to do that).</span >
-
-It's already in Dave Airlie's drm-fixes branch, which means it should be on its
-way to Linus for 4.3-rc7 and then it should get picked into stable kernel
-trees.</pre>
+        <pre>Some frontbuffer-related fixes went into mesa 11.0.3. Can you check if the
+issue persists?</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +77,9 @@ trees.</pre>
     </body>
 </html>
 
---1445481915.3c6cb1df4.1337--
+--1445482057.52F602.2204--
 
---===============0865094664==
+--===============0600659896==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0865094664==--
+--===============0600659896==--
