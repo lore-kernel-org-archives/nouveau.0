@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 89620] Nouveau driver for Nvidia card GeForce GT
-	550M]
-Date: Thu, 22 Oct 2015 03:59:50 +0000
-Message-ID: <bug-89620-8800-1ZXL5IzdC4@http.bugs.freedesktop.org/>
-References: <bug-89620-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 65116] [NV86/NVD9] gnome background misrendered
+Date: Thu, 22 Oct 2015 04:01:29 +0000
+Message-ID: <bug-65116-8800-mmQ5ikhPdi@http.bugs.freedesktop.org/>
+References: <bug-65116-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1056355215=="
+Content-Type: multipart/mixed; boundary="===============1720360343=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-89620-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-65116-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +20,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1056355215==
-Content-Type: multipart/alternative; boundary="1445486390.1bC1B2.20176"; charset="UTF-8"
+--===============1720360343==
+Content-Type: multipart/alternative; boundary="1445486489.D6Bb81.20736"; charset="UTF-8"
 
 
---1445486390.1bC1B2.20176
-Date: Thu, 22 Oct 2015 03:59:50 +0000
+--1445486489.D6Bb81.20736
+Date: Thu, 22 Oct 2015 04:01:29 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=89620
+https://bugs.freedesktop.org/show_bug.cgi?id=65116
 
 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
              Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+         Resolution|---                         |INVALID
 
---- Comment #7 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-OP says that the problem went away with a fresh kernel.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+No retest done as requested over a year ago. Marking as invalid.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445486390.1bC1B2.20176
-Date: Thu, 22 Oct 2015 03:59:50 +0000
+--1445486489.D6Bb81.20736
+Date: Thu, 22 Oct 2015 04:01:29 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -59,8 +58,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
+   title="RESOLVED INVALID - [NV86/NVD9] gnome background misrendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">bug 65116</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -81,22 +80,22 @@ Content-Type: text/html; charset="UTF-8"
            <td style="text-align:right;">Resolution</td>
            <td>---
            </td>
-           <td>FIXED
+           <td>INVALID
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620#c7">Comment # 7</a>
+   title="RESOLVED INVALID - [NV86/NVD9] gnome background misrendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - Nouveau driver for Nvidia card GeForce GT 550M]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=89620">bug 89620</a>
+   title="RESOLVED INVALID - [NV86/NVD9] gnome background misrendered"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=65116">bug 65116</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>OP says that the problem went away with a fresh kernel.</pre>
+        <pre>No retest done as requested over a year ago. Marking as invalid.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +107,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445486390.1bC1B2.20176--
+--1445486489.D6Bb81.20736--
 
---===============1056355215==
+--===============1720360343==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +119,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1056355215==--
+--===============1720360343==--
