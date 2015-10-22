@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91402] linux-4.1 nv108 Invalid ROM contents
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
 Date: Thu, 22 Oct 2015 07:30:23 +0000
-Message-ID: <bug-91402-8800-oPka62bKhI@http.bugs.freedesktop.org/>
-References: <bug-91402-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-90626-8800-fCckKOIQEq@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1611357324=="
+Content-Type: multipart/mixed; boundary="===============0160059588=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91402-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,25 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1611357324==
-Content-Type: multipart/alternative; boundary="1445499023.AF6Ebb23.13230"; charset="UTF-8"
+--===============0160059588==
+Content-Type: multipart/alternative; boundary="1445499023.EA2D73388.13230"; charset="UTF-8"
 
 
---1445499023.AF6Ebb23.13230
+--1445499023.EA2D73388.13230
 Date: Thu, 22 Oct 2015 07:30:23 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91402
+https://bugs.freedesktop.org/show_bug.cgi?id=90626
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |DUPLICATE
-
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-
-
-*** This bug has been marked as a duplicate of bug 90626 ***
+--- Comment #16 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+*** Bug 91402 has been marked as a duplicate of this bug. ***
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445499023.AF6Ebb23.13230
+--1445499023.EA2D73388.13230
 Date: Thu, 22 Oct 2015 07:30:23 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -56,53 +48,23 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>DUPLICATE
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91402">bug 91402</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>
-
-*** This bug has been marked as a duplicate of <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="show_bug.cgi?id=90626">bug 90626</a> ***</pre>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>*** <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - linux-4.1 nv108 Invalid ROM contents"
+   href="show_bug.cgi?id=91402">Bug 91402</a> has been marked as a duplicate of this bug. ***</pre>
         </div>
       </p>
       <hr>
@@ -114,9 +76,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445499023.AF6Ebb23.13230--
+--1445499023.EA2D73388.13230--
 
---===============1611357324==
+--===============0160059588==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -126,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1611357324==--
+--===============0160059588==--
