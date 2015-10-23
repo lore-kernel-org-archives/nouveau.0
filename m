@@ -1,57 +1,106 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: [PATCH] nvc0: respect edgeflag attribute width
-Date: Fri, 23 Oct 2015 02:14:31 -0400
-Message-ID: <1445580871-12263-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 82843] [NV96][Regression][Bisected] Failure to resume
+Date: Fri, 23 Oct 2015 06:15:23 +0000
+Message-ID: <bug-82843-8800-07jtMKrTkz@http.bugs.freedesktop.org/>
+References: <bug-82843-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <mesa-dev-bounces@lists.freedesktop.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
-List-Post: <mailto:mesa-dev@lists.freedesktop.org>
-List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
- <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: mesa-dev-bounces@lists.freedesktop.org
-Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
-To: mesa-dev@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org, mesa-stable@lists.freedesktop.org
+Content-Type: multipart/mixed; boundary="===============1749241740=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-82843-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIGVkZ2VmbGFnIGNvbWVzIGluIGFzIHVieXRlIHdpdGggZ2xFZGdlRmxhZ1BvaW50ZXIgYnV0
-IGFzIGZsb2F0IHdpdGgKcGxhaW4gaW1tZWRpYXRlIGdsRWRnZUZsYWcuIEF2b2lkIHJlYWRpbmcg
-Ynl0ZXMgdGhhdCB3ZXJlbid0IG1lYW50IGZvcgp0aGUgZWRnZWZsYWcgaW4gdGhlIHBvaW50ZXIg
-Y2FzZS4KCkZpeGVzIGludGVybWl0dGVudCBmYWlsdXJlcyB3aXRoIGdsLTIuMC1lZGdlZmxhZyBw
-aWdsaXQgKGFuZCB2YWxncmluZApjb21wbGFpbnRzIGFib3V0IHJlYWRpbmcgdW5pbml0aWFsaXpl
-ZCBtZW1vcnkpLgoKU2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PgpDYzogbWVzYS1zdGFibGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCi0tLQogc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym9fdHJhbnNsYXRlLmMgfCA3ICsrKysrLS0K
-IDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF92Ym9fdHJhbnNsYXRl
-LmMgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Zib190cmFuc2xhdGUu
-YwppbmRleCA4YjIzYTQ4Li5lZmFkZWViIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJz
-L25vdXZlYXUvbnZjMC9udmMwX3Zib190cmFuc2xhdGUuYworKysgYi9zcmMvZ2FsbGl1bS9kcml2
-ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Zib190cmFuc2xhdGUuYwpAQCAtMjcsNiArMjcsNyBAQCBz
-dHJ1Y3QgcHVzaF9jb250ZXh0IHsKICAgIHN0cnVjdCB7CiAgICAgICBib29sIGVuYWJsZWQ7CiAg
-ICAgICBib29sIHZhbHVlOworICAgICAgdWludDhfdCB3aWR0aDsKICAgICAgIHVuc2lnbmVkIHN0
-cmlkZTsKICAgICAgIGNvbnN0IHVpbnQ4X3QgKmRhdGE7CiAgICB9IGVkZ2VmbGFnOwpAQCAtMTAw
-LDYgKzEwMSw3IEBAIG52YzBfcHVzaF9tYXBfZWRnZWZsYWcoc3RydWN0IHB1c2hfY29udGV4dCAq
-Y3R4LCBzdHJ1Y3QgbnZjMF9jb250ZXh0ICpudmMwLAogICAgc3RydWN0IG52MDRfcmVzb3VyY2Ug
-KmJ1ZiA9IG52MDRfcmVzb3VyY2UodmItPmJ1ZmZlcik7CiAKICAgIGN0eC0+ZWRnZWZsYWcuc3Ry
-aWRlID0gdmItPnN0cmlkZTsKKyAgIGN0eC0+ZWRnZWZsYWcud2lkdGggPSB1dGlsX2Zvcm1hdF9n
-ZXRfYmxvY2tzaXplKHZlLT5zcmNfZm9ybWF0KTsKICAgIGlmIChidWYpIHsKICAgICAgIHVuc2ln
-bmVkIG9mZnNldCA9IHZiLT5idWZmZXJfb2Zmc2V0ICsgdmUtPnNyY19vZmZzZXQ7CiAgICAgICBj
-dHgtPmVkZ2VmbGFnLmRhdGEgPSBub3V2ZWF1X3Jlc291cmNlX21hcF9vZmZzZXQoJm52YzAtPmJh
-c2UsCkBAIC0xMzksOCArMTQxLDkgQEAgcHJpbV9yZXN0YXJ0X3NlYXJjaF9pMzIoY29uc3QgdWlu
-dDMyX3QgKmVsdHMsIHVuc2lnbmVkIHB1c2gsIHVpbnQzMl90IGluZGV4KQogc3RhdGljIGlubGlu
-ZSBib29sCiBlZl92YWx1ZShjb25zdCBzdHJ1Y3QgcHVzaF9jb250ZXh0ICpjdHgsIHVpbnQzMl90
-IGluZGV4KQogewotICAgZmxvYXQgKnBmID0gKGZsb2F0ICopJmN0eC0+ZWRnZWZsYWcuZGF0YVtp
-bmRleCAqIGN0eC0+ZWRnZWZsYWcuc3RyaWRlXTsKLSAgIHJldHVybiAqcGYgPyB0cnVlIDogZmFs
-c2U7CisgICBzdGF0aWMgY29uc3QgdWludDY0X3QgemVybyA9IDA7CisgICB1aW50OF90ICpwZiA9
-ICh1aW50OF90ICopJmN0eC0+ZWRnZWZsYWcuZGF0YVtpbmRleCAqIGN0eC0+ZWRnZWZsYWcuc3Ry
-aWRlXTsKKyAgIHJldHVybiAhIW1lbWNtcChwZiwgJnplcm8sIGN0eC0+ZWRnZWZsYWcud2lkdGgp
-OwogfQogCiBzdGF0aWMgaW5saW5lIGJvb2wKLS0gCjIuNC4xMAoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KbWVzYS1kZXYgbWFpbGluZyBsaXN0Cm1lc2Et
-ZGV2QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
-aWxtYW4vbGlzdGluZm8vbWVzYS1kZXYK
+
+--===============1749241740==
+Content-Type: multipart/alternative; boundary="1445580922.27A1e3452.14263"; charset="UTF-8"
+
+
+--1445580922.27A1e3452.14263
+Date: Fri, 23 Oct 2015 06:15:22 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=82843
+
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1445580922.27A1e3452.14263
+Date: Fri, 23 Oct 2015 06:15:22 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NV96][Regression][Bisected] Failure to resume"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=82843">bug 82843</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1445580922.27A1e3452.14263--
+
+--===============1749241740==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1749241740==--
