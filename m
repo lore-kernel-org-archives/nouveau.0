@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 71563] [nvc0] color garbage after resume
-Date: Sat, 24 Oct 2015 07:12:30 +0000
-Message-ID: <bug-71563-8800-hXRIMQGPtK@http.bugs.freedesktop.org/>
+Date: Sat, 24 Oct 2015 07:12:51 +0000
+Message-ID: <bug-71563-8800-OzQXKhnG4W@http.bugs.freedesktop.org/>
 References: <bug-71563-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1786236522=="
+Content-Type: multipart/mixed; boundary="===============1301672597=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-71563-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,27 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1786236522==
-Content-Type: multipart/alternative; boundary="1445670749.ed6f7Db41.21422"; charset="UTF-8"
+--===============1301672597==
+Content-Type: multipart/alternative; boundary="1445670771.DC3DDF1.21491"; charset="UTF-8"
 
 
---1445670749.ed6f7Db41.21422
-Date: Sat, 24 Oct 2015 07:12:29 +0000
+--1445670771.DC3DDF1.21491
+Date: Sat, 24 Oct 2015 07:12:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=71563
 
---- Comment #4 from ulf.dambacher-S0/GAf8tV78@public.gmane.org ---
-Now that I'm on gnome 3.16 , kernel 4.1.10 mesa 11.0.3 it works - closing the
-bug
+ulf.dambacher-S0/GAf8tV78@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445670749.ed6f7Db41.21422
-Date: Sat, 24 Oct 2015 07:12:29 +0000
+--1445670771.DC3DDF1.21491
+Date: Sat, 24 Oct 2015 07:12:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -48,22 +51,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nvc0] color garbage after resume"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71563#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [nvc0] color garbage after resume"
+    <body><span class="vcard"><a class="email" href="mailto:ulf.dambacher&#64;web.de" title="ulf.dambacher&#64;web.de">ulf.dambacher&#64;web.de</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [nvc0] color garbage after resume"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=71563">bug 71563</a>
-              from <span class="vcard"><a class="email" href="mailto:ulf.dambacher&#64;web.de" title="ulf.dambacher&#64;web.de">ulf.dambacher&#64;web.de</a>
-</span></b>
-        <pre>Now that I'm on gnome 3.16 , kernel 4.1.10 mesa 11.0.3 it works - closing the
-bug</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -74,9 +91,9 @@ bug</pre>
     </body>
 </html>
 
---1445670749.ed6f7Db41.21422--
+--1445670771.DC3DDF1.21491--
 
---===============1786236522==
+--===============1301672597==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -86,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1786236522==--
+--===============1301672597==--
