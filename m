@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92523] [Quadro FX 370] Compiz freezes entire desktop.
-Date: Sat, 24 Oct 2015 14:44:33 +0000
-Message-ID: <bug-92523-8800-Ro0hIlqedD@http.bugs.freedesktop.org/>
-References: <bug-92523-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92299] PGRAPH error when using plasmashell (KDE v5)
+Date: Sat, 24 Oct 2015 21:47:33 +0000
+Message-ID: <bug-92299-8800-Q7p21oTvyA@http.bugs.freedesktop.org/>
+References: <bug-92299-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1933604879=="
+Content-Type: multipart/mixed; boundary="===============0236609894=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92299-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,52 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1933604879==
-Content-Type: multipart/alternative; boundary="1445697873.fd451.20048"; charset="UTF-8"
+--===============0236609894==
+Content-Type: multipart/alternative; boundary="1445723252.E52CE0.8309"; charset="UTF-8"
 
 
---1445697873.fd451.20048
-Date: Sat, 24 Oct 2015 14:44:33 +0000
+--1445723252.E52CE0.8309
+Date: Sat, 24 Oct 2015 21:47:32 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92523
+https://bugs.freedesktop.org/show_bug.cgi?id=92299
 
---- Comment #11 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Carla sella from comment #6)
-> (In reply to Ilia Mirkin from comment #5)
-> > Please give the patch at
-> > http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html a
-> > shot -- it will hopefully help with the suspend/resume issues, and who knows
-> > -- perhaps even fix these -- you only have 256MB of vram, so similar
-> > situations will occur as with suspend/resume, with buffers getting swapped
-> > out.
-> 
-> 
-> 
-> Ok I will give it a shot and let you know.
-> Meanwhile it has just happened again, I will attach two screenshots with top
-> command and one with dmesg, just for you info.
+--- Comment #2 from dmidge <quelque_ri1-Qt13gs6zZMY@public.gmane.org> ---
+Hi Ilia Mirkin,
 
+The symptoms seems to be the sames, but are you sure it is the same bug? I
+mean, it could happen when I resume my session, but I don't know if it does,
+and the problem I report there is not related to the problem of resume. It is
+just a plain raw crash when I use it, and it starts working again after few
+minutes.
 
+And I am sorry, but my knowledge in GPU is too small to understand the thread
+of the other bug.
 
-I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
-
-
-http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D
-
-so it will be easier for me to test your patch.
-
-I will let you know what happens.
-
-Thanks.
+Cheers
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445697873.fd451.20048
-Date: Sat, 24 Oct 2015 14:44:33 +0000
+--1445723252.E52CE0.8309
+Date: Sat, 24 Oct 2015 21:47:32 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -77,56 +63,42 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523#c11">Comment # 11</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - PGRAPH error when using plasmashell (KDE v5)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92299#c2">Comment # 2</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523">bug 92523</a>
-              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - PGRAPH error when using plasmashell (KDE v5)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92299">bug 92299</a>
+              from <span class="vcard"><a class="email" href="mailto:quelque_ri1&#64;yahoo.fr" title="dmidge &lt;quelque_ri1&#64;yahoo.fr&gt;"> <span class="fn">dmidge</span></a>
 </span></b>
-        <pre>(In reply to Carla sella from <a href="show_bug.cgi?id=92523#c6">comment #6</a>)
-<span class="quote">&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92523#c5">comment #5</a>)
-&gt; &gt; Please give the patch at
-&gt; &gt; <a href="http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html">http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html</a> a
-&gt; &gt; shot -- it will hopefully help with the suspend/resume issues, and who knows
-&gt; &gt; -- perhaps even fix these -- you only have 256MB of vram, so similar
-&gt; &gt; situations will occur as with suspend/resume, with buffers getting swapped
-&gt; &gt; out.
-&gt; 
-&gt; 
-&gt; 
-&gt; Ok I will give it a shot and let you know.
-&gt; Meanwhile it has just happened again, I will attach two screenshots with top
-&gt; command and one with dmesg, just for you info.</span >
+        <pre>Hi Ilia Mirkin,
 
+The symptoms seems to be the sames, but are you sure it is the same bug? I
+mean, it could happen when I resume my session, but I don't know if it does,
+and the problem I report there is not related to the problem of resume. It is
+just a plain raw crash when I use it, and it starts working again after few
+minutes.
 
+And I am sorry, but my knowledge in GPU is too small to understand the thread
+of the other bug.
 
-I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
-
-
-<a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D">http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D</a>
-
-so it will be easier for me to test your patch.
-
-I will let you know what happens.
-
-Thanks.</pre>
+Cheers</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445697873.fd451.20048--
+--1445723252.E52CE0.8309--
 
---===============1933604879==
+--===============0236609894==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1933604879==--
+--===============0236609894==--
