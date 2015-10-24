@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 88893] [NV46] GPU lockup with Quadro NVS 110M
-Date: Fri, 23 Oct 2015 13:13:31 +0000
-Message-ID: <bug-88893-8800-cQq36QDrcf@http.bugs.freedesktop.org/>
-References: <bug-88893-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 66642] [nva5] Wrong provoking vertex is selected for
+ flat attribute interpolation (clipping?)
+Date: Sat, 24 Oct 2015 02:12:59 +0000
+Message-ID: <bug-66642-8800-deMGgYXflw@http.bugs.freedesktop.org/>
+References: <bug-66642-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0736368749=="
+Content-Type: multipart/mixed; boundary="===============0131189370=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-88893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-66642-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,34 +21,64 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0736368749==
-Content-Type: multipart/alternative; boundary="1445606010.C12d2.31647"; charset="UTF-8"
+--===============0131189370==
+Content-Type: multipart/alternative; boundary="1445652778.151d2.11446"; charset="UTF-8"
 
 
---1445606010.C12d2.31647
-Date: Fri, 23 Oct 2015 13:13:30 +0000
+--1445652778.151d2.11446
+Date: Sat, 24 Oct 2015 02:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=88893
+https://bugs.freedesktop.org/show_bug.cgi?id=66642
 
-Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+OK, so... I spent some time thinking about all this with my newfound
+understanding of flatshading, and some of the nv50 family limitations around
+all this. There are a few separate issues:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+(a) shade model flat just totally didn't work, any tests that passed did so
+largely by happy coincidence
 
---- Comment #18 from Richard <hobbes1069-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Thanks Hans, that worked out well. I was able to switch back to gnome-shell
-without any issue.
+I have a patch that fixes this that will be going out shortly. I believe this
+should fix a lot of cases that are actually hit by real software. When
+flat-shading, we have to mark the varying as non-perspective-divided.
+
+(b) When forcing both primary and secondary color to smooth or flat, that
+causes totally wrong data to be generated
+
+This is easily fixable by moving the frontcolor varying to the non-interpolated
+section of the map. Needs some more analysis, but should be entirely doable.
+Probably need to be careful about not setting SHADE_MODEL = flat in this case.
+
+(c) nv50 family gpu's are not set up to have front and back colors with
+different interpolation parameters.
+
+The issue is that the first and second color need to be adjacent to one another
+in the result map in order for the back colors to replace the front colors.
+However the way it works is that the result map is split into 3 pieces:
+
+1. attributes invisible to frag shader (position, back color)
+2. interpolated varyings (with a special allowance for the color varyings to be
+flat-shaded when the shade model = flat)
+3. non-interpolated varyings
+
+So there are a few things we can do here. We can ignore the whole front/back
+color thing and just use regular varyings and then use the faceness to
+determine which face to use. If the first color is smooth and the second is
+flat, we can probably place it at the interp/non-interp boundary. However for
+the inverse, there is no clear way to handle this (i.e. first color is flat,
+secondary color is smooth/noperspective).
+
+The piglit test mentioned in this bug falls into category (b), which I plan on
+fixing. I believe I'm going to leave category (c) unfixed.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445606010.C12d2.31647
-Date: Fri, 23 Oct 2015 13:13:30 +0000
+--1445652778.151d2.11446
+Date: Sat, 24 Oct 2015 02:12:58 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,49 +86,58 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893#c18">Comment # 18</a>
+          bz_status_NEW "
+   title="NEW - [nva5] Wrong provoking vertex is selected for flat attribute interpolation (clipping?)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66642#c3">Comment # 3</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NV46] GPU lockup with Quadro NVS 110M"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=88893">bug 88893</a>
-              from <span class="vcard"><a class="email" href="mailto:hobbes1069&#64;gmail.com" title="Richard &lt;hobbes1069&#64;gmail.com&gt;"> <span class="fn">Richard</span></a>
+          bz_status_NEW "
+   title="NEW - [nva5] Wrong provoking vertex is selected for flat attribute interpolation (clipping?)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=66642">bug 66642</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Thanks Hans, that worked out well. I was able to switch back to gnome-shell
-without any issue.</pre>
+        <pre>OK, so... I spent some time thinking about all this with my newfound
+understanding of flatshading, and some of the nv50 family limitations around
+all this. There are a few separate issues:
+
+(a) shade model flat just totally didn't work, any tests that passed did so
+largely by happy coincidence
+
+I have a patch that fixes this that will be going out shortly. I believe this
+should fix a lot of cases that are actually hit by real software. When
+flat-shading, we have to mark the varying as non-perspective-divided.
+
+(b) When forcing both primary and secondary color to smooth or flat, that
+causes totally wrong data to be generated
+
+This is easily fixable by moving the frontcolor varying to the non-interpolated
+section of the map. Needs some more analysis, but should be entirely doable.
+Probably need to be careful about not setting SHADE_MODEL = flat in this case.
+
+(c) nv50 family gpu's are not set up to have front and back colors with
+different interpolation parameters.
+
+The issue is that the first and second color need to be adjacent to one another
+in the result map in order for the back colors to replace the front colors.
+However the way it works is that the result map is split into 3 pieces:
+
+1. attributes invisible to frag shader (position, back color)
+2. interpolated varyings (with a special allowance for the color varyings to be
+flat-shaded when the shade model = flat)
+3. non-interpolated varyings
+
+So there are a few things we can do here. We can ignore the whole front/back
+color thing and just use regular varyings and then use the faceness to
+determine which face to use. If the first color is smooth and the second is
+flat, we can probably place it at the interp/non-interp boundary. However for
+the inverse, there is no clear way to handle this (i.e. first color is flat,
+secondary color is smooth/noperspective).
+
+The piglit test mentioned in this bug falls into category (b), which I plan on
+fixing. I believe I'm going to leave category (c) unfixed.</pre>
         </div>
       </p>
       <hr>
@@ -109,9 +149,9 @@ without any issue.</pre>
     </body>
 </html>
 
---1445606010.C12d2.31647--
+--1445652778.151d2.11446--
 
---===============0736368749==
+--===============0131189370==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -121,4 +161,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0736368749==--
+--===============0131189370==--
