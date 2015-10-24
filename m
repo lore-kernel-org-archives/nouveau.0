@@ -1,12 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 85459] DPMS not working on Dell M4800 / QHD+
-Date: Sat, 24 Oct 2015 13:57:29 +0000
-Message-ID: <bug-85459-8800-rNoFHqn4y3@http.bugs.freedesktop.org/>
-References: <bug-85459-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92523] [Quadro FX 370] Compiz freezes entire desktop.
+Date: Sat, 24 Oct 2015 14:18:42 +0000
+Message-ID: <bug-92523-8800-rQDya4wKGf@http.bugs.freedesktop.org/>
+References: <bug-92523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0529076629=="
+Content-Type: multipart/mixed; boundary="===============1390169141=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-85459-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,26 +20,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0529076629==
-Content-Type: multipart/alternative; boundary="1445695049.Da7De41.9746"; charset="UTF-8"
+--===============1390169141==
+Content-Type: multipart/alternative; boundary="1445696322.B17e4F1.14945"; charset="UTF-8"
 
 
---1445695049.Da7De41.9746
-Date: Sat, 24 Oct 2015 13:57:29 +0000
+--1445696322.B17e4F1.14945
+Date: Sat, 24 Oct 2015 14:18:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=85459
+https://bugs.freedesktop.org/show_bug.cgi?id=92523
 
---- Comment #1 from Ed Santiago <freedesktop-aVMt7ygKTj2t/hvpvFFPbQ@public.gmane.org> ---
-Problem persists on kernel 4.0.5 xorg-server 1.16.4
+--- Comment #6 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #5)
+> Please give the patch at
+> http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html a
+> shot -- it will hopefully help with the suspend/resume issues, and who knows
+> -- perhaps even fix these -- you only have 256MB of vram, so similar
+> situations will occur as with suspend/resume, with buffers getting swapped
+> out.
+
+
+
+Ok I will give it a shot and let you know.
+Meanwhile it has just happened again, I will attach two screenshots with top
+command and one with dmesg, just for you info.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445695049.Da7De41.9746
-Date: Sat, 24 Oct 2015 13:57:29 +0000
+--1445696322.B17e4F1.14945
+Date: Sat, 24 Oct 2015 14:18:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -52,15 +64,27 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - DPMS not working on Dell M4800 / QHD+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85459#c1">Comment # 1</a>
+   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - DPMS not working on Dell M4800 / QHD+"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=85459">bug 85459</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;edsantiago.com" title="Ed Santiago &lt;freedesktop&#64;edsantiago.com&gt;"> <span class="fn">Ed Santiago</span></a>
+   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523">bug 92523</a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>Problem persists on kernel 4.0.5 xorg-server 1.16.4</pre>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92523#c5">comment #5</a>)
+<span class="quote">&gt; Please give the patch at
+&gt; <a href="http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html">http://lists.freedesktop.org/archives/nouveau/2015-October/022732.html</a> a
+&gt; shot -- it will hopefully help with the suspend/resume issues, and who knows
+&gt; -- perhaps even fix these -- you only have 256MB of vram, so similar
+&gt; situations will occur as with suspend/resume, with buffers getting swapped
+&gt; out.</span >
+
+
+
+Ok I will give it a shot and let you know.
+Meanwhile it has just happened again, I will attach two screenshots with top
+command and one with dmesg, just for you info.</pre>
         </div>
       </p>
       <hr>
@@ -72,9 +96,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445695049.Da7De41.9746--
+--1445696322.B17e4F1.14945--
 
---===============0529076629==
+--===============1390169141==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +108,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0529076629==--
+--===============1390169141==--
