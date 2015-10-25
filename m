@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91738] [NV117] NULL deref in
- nvkm_i2c_try_acquire_pad, kernel 4.1
-Date: Sun, 25 Oct 2015 17:43:26 +0000
-Message-ID: <bug-91738-8800-UpvtsG5gEU@http.bugs.freedesktop.org/>
-References: <bug-91738-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90976] GM204 (NV124) black screen on modesetting
+Date: Sun, 25 Oct 2015 18:08:05 +0000
+Message-ID: <bug-90976-8800-OcdzBc3z8a@http.bugs.freedesktop.org/>
+References: <bug-90976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1113954318=="
+Content-Type: multipart/mixed; boundary="===============1336196846=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +20,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1113954318==
-Content-Type: multipart/alternative; boundary="1445795006.74771.7384"; charset="UTF-8"
+--===============1336196846==
+Content-Type: multipart/alternative; boundary="1445796485.a675fd211.12420"; charset="UTF-8"
 
 
---1445795006.74771.7384
-Date: Sun, 25 Oct 2015 17:43:26 +0000
+--1445796485.a675fd211.12420
+Date: Sun, 25 Oct 2015 18:08:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=91738
+https://bugs.freedesktop.org/show_bug.cgi?id=90976
 
---- Comment #22 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
-Created attachment 119187
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119187&action=edit
-dmesg for linux 4.3-rc7
-
-I haven't had a freeze yet on Linux 4.3-rc7.
-
-Do you notice anything wonky in dmesg?
-
-http://sprunge.us/YEXF
+--- Comment #8 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+4.3-rc5 is fixed
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445795006.74771.7384
-Date: Sun, 25 Oct 2015 17:43:26 +0000
+--1445796485.a675fd211.12420
+Date: Sun, 25 Oct 2015 18:08:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,23 +51,16 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c22">Comment # 22</a>
+          bz_status_NEW "
+   title="NEW - GM204 (NV124) black screen on modesetting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_UNCONFIRMED "
-   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
-              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
+          bz_status_NEW "
+   title="NEW - GM204 (NV124) black screen on modesetting"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">bug 90976</a>
+              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119187" name="attach_119187" title="dmesg for linux 4.3-rc7">attachment 119187</a> <a href="attachment.cgi?id=119187&amp;action=edit" title="dmesg for linux 4.3-rc7">[details]</a></span>
-dmesg for linux 4.3-rc7
-
-I haven't had a freeze yet on Linux 4.3-rc7.
-
-Do you notice anything wonky in dmesg?
-
-<a href="http://sprunge.us/YEXF">http://sprunge.us/YEXF</a></pre>
+        <pre>4.3-rc5 is fixed</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +72,9 @@ Do you notice anything wonky in dmesg?
     </body>
 </html>
 
---1445795006.74771.7384--
+--1445796485.a675fd211.12420--
 
---===============1113954318==
+--===============1336196846==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +84,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1113954318==--
+--===============1336196846==--
