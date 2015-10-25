@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92299] PGRAPH error when using plasmashell (KDE v5)
-Date: Sat, 24 Oct 2015 21:53:29 +0000
-Message-ID: <bug-92299-8800-TSRyMJaoSH@http.bugs.freedesktop.org/>
-References: <bug-92299-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 91738] [NV117] NULL deref in
+ nvkm_i2c_try_acquire_pad, kernel 4.1
+Date: Sun, 25 Oct 2015 17:43:26 +0000
+Message-ID: <bug-91738-8800-UpvtsG5gEU@http.bugs.freedesktop.org/>
+References: <bug-91738-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0195442539=="
+Content-Type: multipart/mixed; boundary="===============1113954318=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92299-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-91738-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,33 +21,34 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0195442539==
-Content-Type: multipart/alternative; boundary="1445723608.73Bc110.9335"; charset="UTF-8"
+--===============1113954318==
+Content-Type: multipart/alternative; boundary="1445795006.74771.7384"; charset="UTF-8"
 
 
---1445723608.73Bc110.9335
-Date: Sat, 24 Oct 2015 21:53:28 +0000
+--1445795006.74771.7384
+Date: Sun, 25 Oct 2015 17:43:26 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92299
+https://bugs.freedesktop.org/show_bug.cgi?id=91738
 
---- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-[243764.087599] nouveau E[plasmashell[503]] fail set_domain
-[243764.087606] nouveau E[plasmashell[503]] validating bo list
-[243764.087611] nouveau E[plasmashell[503]] validate: -22
+--- Comment #22 from ryanpcmcquen <ryan.q-vYTEC60ixJUAvxtiuMwx3w@public.gmane.org> ---
+Created attachment 119187
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119187&action=edit
+dmesg for linux 4.3-rc7
 
-These errors should be fixed by the patch from the other bug (now in Linus's
-tree btw, should be part of 4.3-rc7). The rest is most likely fallout from
-those errors. If the issue persists with my patch, feel free to reopen.
+I haven't had a freeze yet on Linux 4.3-rc7.
+
+Do you notice anything wonky in dmesg?
+
+http://sprunge.us/YEXF
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445723608.73Bc110.9335
-Date: Sat, 24 Oct 2015 21:53:28 +0000
+--1445795006.74771.7384
+Date: Sun, 25 Oct 2015 17:43:26 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,37 +60,37 @@ Content-Type: text/html; charset="UTF-8"
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - PGRAPH error when using plasmashell (KDE v5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92299#c3">Comment # 3</a>
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738#c22">Comment # 22</a>
               on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - PGRAPH error when using plasmashell (KDE v5)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92299">bug 92299</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NV117] NULL deref in nvkm_i2c_try_acquire_pad, kernel 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91738">bug 91738</a>
+              from <span class="vcard"><a class="email" href="mailto:ryan.q&#64;linux.com" title="ryanpcmcquen &lt;ryan.q&#64;linux.com&gt;"> <span class="fn">ryanpcmcquen</span></a>
 </span></b>
-        <pre>[243764.087599] nouveau E[plasmashell[503]] fail set_domain
-[243764.087606] nouveau E[plasmashell[503]] validating bo list
-[243764.087611] nouveau E[plasmashell[503]] validate: -22
+        <pre>Created <span class=""><a href="attachment.cgi?id=119187" name="attach_119187" title="dmesg for linux 4.3-rc7">attachment 119187</a> <a href="attachment.cgi?id=119187&amp;action=edit" title="dmesg for linux 4.3-rc7">[details]</a></span>
+dmesg for linux 4.3-rc7
 
-These errors should be fixed by the patch from the other bug (now in Linus's
-tree btw, should be part of 4.3-rc7). The rest is most likely fallout from
-those errors. If the issue persists with my patch, feel free to reopen.</pre>
+I haven't had a freeze yet on Linux 4.3-rc7.
+
+Do you notice anything wonky in dmesg?
+
+<a href="http://sprunge.us/YEXF">http://sprunge.us/YEXF</a></pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445723608.73Bc110.9335--
+--1445795006.74771.7384--
 
---===============0195442539==
+--===============1113954318==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0195442539==--
+--===============1113954318==--
