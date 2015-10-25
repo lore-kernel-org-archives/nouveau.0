@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90976] GM204 (NV124) black screen on modesetting
-Date: Sun, 25 Oct 2015 18:08:05 +0000
-Message-ID: <bug-90976-8800-OcdzBc3z8a@http.bugs.freedesktop.org/>
+Date: Sun, 25 Oct 2015 18:08:27 +0000
+Message-ID: <bug-90976-8800-MJekNk7GLW@http.bugs.freedesktop.org/>
 References: <bug-90976-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1336196846=="
+Content-Type: multipart/mixed; boundary="===============1378795314=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90976-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,26 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1336196846==
-Content-Type: multipart/alternative; boundary="1445796485.a675fd211.12420"; charset="UTF-8"
+--===============1378795314==
+Content-Type: multipart/alternative; boundary="1445796507.4bB21.12496"; charset="UTF-8"
 
 
---1445796485.a675fd211.12420
-Date: Sun, 25 Oct 2015 18:08:05 +0000
+--1445796507.4bB21.12496
+Date: Sun, 25 Oct 2015 18:08:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90976
 
---- Comment #8 from roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-4.3-rc5 is fixed
+roucaries.bastien+bugs-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445796485.a675fd211.12420
-Date: Sun, 25 Oct 2015 18:08:05 +0000
+--1445796507.4bB21.12496
+Date: Sun, 25 Oct 2015 18:08:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -47,21 +51,36 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90976#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - GM204 (NV124) black screen on modesetting"
+    <body><span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - GM204 (NV124) black screen on modesetting"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90976">bug 90976</a>
-              from <span class="vcard"><a class="email" href="mailto:roucaries.bastien+bugs&#64;gmail.com" title="roucaries.bastien+bugs&#64;gmail.com">roucaries.bastien+bugs&#64;gmail.com</a>
-</span></b>
-        <pre>4.3-rc5 is fixed</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -72,9 +91,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445796485.a675fd211.12420--
+--1445796507.4bB21.12496--
 
---===============1336196846==
+--===============1378795314==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -84,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1336196846==--
+--===============1378795314==--
