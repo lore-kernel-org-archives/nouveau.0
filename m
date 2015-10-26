@@ -1,117 +1,64 @@
 From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH 2/3] gr: support for securely-booted FECS firmware
-Date: Mon, 26 Oct 2015 14:47:36 +0900
-Message-ID: <1445838457-26737-1-git-send-email-acourbot@nvidia.com>
+Subject: [PATCH] instmem/gk20a: exclusively acquire instobjs
+Date: Mon, 26 Oct 2015 14:54:55 +0900
+Message-ID: <1445838895-28342-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: text/plain
-Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
-Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Trigger the loading of FECS/GPCCS using secure boot if required, and
-start managed falcons using the CPUCTL_ALIAS register since CPUCTL is
-protected in that case.
-
-Signed-off-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
----
- drm/nouveau/nvkm/engine/gr/gf100.c | 56 +++++++++++++++++++++++++++++++-------
- 1 file changed, 46 insertions(+), 10 deletions(-)
-
-diff --git a/drm/nouveau/nvkm/engine/gr/gf100.c b/drm/nouveau/nvkm/engine/gr/gf100.c
-index dda7a7d224c9..67691941d7ba 100644
---- a/drm/nouveau/nvkm/engine/gr/gf100.c
-+++ b/drm/nouveau/nvkm/engine/gr/gf100.c
-@@ -27,6 +27,7 @@
- 
- #include <core/client.h>
- #include <core/option.h>
-+#include <core/secure_boot.h>
- #include <subdev/fb.h>
- #include <subdev/mc.h>
- #include <subdev/pmu.h>
-@@ -1342,16 +1343,40 @@ gf100_gr_init_ctxctl(struct gf100_gr *gr)
- 	if (gr->firmware) {
- 		/* load fuc microcode */
- 		nvkm_mc_unk260(device->mc, 0);
--		gf100_gr_init_fw(gr, 0x409000, &gr->fuc409c, &gr->fuc409d);
--		gf100_gr_init_fw(gr, 0x41a000, &gr->fuc41ac, &gr->fuc41ad);
-+
-+		if (nvkm_is_secure(device, LSF_FALCON_ID_FECS) ||
-+		    nvkm_is_secure(device, LSF_FALCON_ID_GPCCS)) {
-+			int err = nvkm_secure_boot(subdev->device);
-+
-+			if (err)
-+				return err;
-+		}
-+
-+		if (!nvkm_is_secure(device, LSF_FALCON_ID_FECS))
-+			gf100_gr_init_fw(gr, 0x409000, &gr->fuc409c,
-+					 &gr->fuc409d);
-+
-+		if (!nvkm_is_secure(device, LSF_FALCON_ID_GPCCS))
-+			gf100_gr_init_fw(gr, 0x41a000, &gr->fuc41ac,
-+					 &gr->fuc41ad);
-+
- 		nvkm_mc_unk260(device->mc, 1);
- 
- 		/* start both of them running */
- 		nvkm_wr32(device, 0x409840, 0xffffffff);
- 		nvkm_wr32(device, 0x41a10c, 0x00000000);
- 		nvkm_wr32(device, 0x40910c, 0x00000000);
--		nvkm_wr32(device, 0x41a100, 0x00000002);
--		nvkm_wr32(device, 0x409100, 0x00000002);
-+		/* Use FALCON_CPUCTL_ALIAS if falcon is in secure mode */
-+		if (nvkm_rd32(device, 0x41a100) & 0x40)
-+			nvkm_wr32(device, 0x41a130, 0x00000002);
-+		else
-+			nvkm_wr32(device, 0x41a100, 0x00000002);
-+
-+		/* Use FALCON_CPUCTL_ALIAS if falcon is in secure mode */
-+		if (nvkm_rd32(device, 0x409100) & 0x40)
-+			nvkm_wr32(device, 0x409130, 0x00000002);
-+		else
-+			nvkm_wr32(device, 0x409100, 0x00000002);
- 		if (nvkm_msec(device, 2000,
- 			if (nvkm_rd32(device, 0x409800) & 0x00000001)
- 				break;
-@@ -1659,6 +1684,7 @@ int
- gf100_gr_ctor(const struct gf100_gr_func *func, struct nvkm_device *device,
- 	      int index, struct gf100_gr *gr)
- {
-+	struct nvkm_subdev *subdev = &gr->base.engine.subdev;
- 	int ret;
- 
- 	gr->func = func;
-@@ -1672,12 +1698,22 @@ gf100_gr_ctor(const struct gf100_gr_func *func, struct nvkm_device *device,
- 		return ret;
- 
- 	if (gr->firmware) {
--		nvkm_info(&gr->base.engine.subdev, "using external firmware\n");
--		if (gf100_gr_ctor_fw(gr, "fecs_inst", &gr->fuc409c) ||
--		    gf100_gr_ctor_fw(gr, "fecs_data", &gr->fuc409d) ||
--		    gf100_gr_ctor_fw(gr, "gpccs_inst", &gr->fuc41ac) ||
--		    gf100_gr_ctor_fw(gr, "gpccs_data", &gr->fuc41ad))
--			return -ENODEV;
-+		nvkm_info(subdev, "using external firmware\n");
-+		if (!nvkm_is_secure(device, LSF_FALCON_ID_FECS)) {
-+			if (gf100_gr_ctor_fw(gr, "fecs_inst", &gr->fuc409c) ||
-+			    gf100_gr_ctor_fw(gr, "fecs_data", &gr->fuc409d))
-+				return -ENODEV;
-+		} else {
-+			nvkm_info(subdev, "FECS firmware securely managed\n");
-+		}
-+
-+		if (!nvkm_is_secure(device, LSF_FALCON_ID_GPCCS)) {
-+			if (gf100_gr_ctor_fw(gr, "gpccs_inst", &gr->fuc41ac) ||
-+			    gf100_gr_ctor_fw(gr, "gpccs_data", &gr->fuc41ad))
-+				return -ENODEV;
-+		} else {
-+			nvkm_info(subdev, "GPCCS firmware securely managed\n");
-+		}
- 	}
- 
- 	return 0;
--- 
-2.6.1
+QWx0aG91Z2ggSSB3b3VsZCBub3QgaGF2ZSBleHBlY3RlZCB0aGlzIHRvIGhhcHBlbiwgd2Ugc2Vl
+bSB0byBydW4gaW50bwpyYWNlIGNvbmRpdGlvbnMgaWYgaW5zdG9ianMgYXJlIGFjY2Vzc2VkIGNv
+bmN1cnJlbnRseS4gVXNlIGEgZ2xvYmFsIGxvY2sKZm9yIHNhZmV0eS4KClNpZ25lZC1vZmYtYnk6
+IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1
+L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYyB8IDE1ICsrKysrKy0tLS0tLS0tLQogMSBmaWxl
+IGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL2drMjBhLmMgYi9kcm0vbm91dmVhdS9udmtt
+L3N1YmRldi9pbnN0bWVtL2drMjBhLmMKaW5kZXggZmM0MTliYjhlYWI3Li5kMDE1NjMzYjhlZGQg
+MTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYworKysg
+Yi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9pbnN0bWVtL2drMjBhLmMKQEAgLTkyLDYgKzkyLDcg
+QEAgc3RydWN0IGdrMjBhX2luc3RtZW0gewogCiAJLyogcHJvdGVjdHMgdmFkZHJfKiBhbmQgZ2sy
+MGFfaW5zdG9iajo6dmFkZHIqICovCiAJc3BpbmxvY2tfdCBsb2NrOworCXVuc2lnbmVkIGxvbmcg
+ZmxhZ3M7CiAKIAkvKiBDUFUgbWFwcGluZ3MgTFJVICovCiAJdW5zaWduZWQgaW50IHZhZGRyX3Vz
+ZTsKQEAgLTE4OCwxMiArMTg5LDExIEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZShzdHJ1Y3QgbnZr
+bV9tZW1vcnkgKm1lbW9yeSkKIAlzdHJ1Y3QgZ2syMGFfaW5zdG9iaiAqbm9kZSA9IGdrMjBhX2lu
+c3RvYmoobWVtb3J5KTsKIAlzdHJ1Y3QgZ2syMGFfaW5zdG1lbSAqaW1lbSA9IG5vZGUtPmltZW07
+CiAJc3RydWN0IG52a21fbHRjICpsdGMgPSBpbWVtLT5iYXNlLnN1YmRldi5kZXZpY2UtPmx0YzsK
+LQljb25zdCB1NjQgc2l6ZSA9IG52a21fbWVtb3J5X3NpemUobWVtb3J5KTsKLQl1bnNpZ25lZCBs
+b25nIGZsYWdzOworCXU2NCBzaXplOwogCiAJbnZrbV9sdGNfZmx1c2gobHRjKTsKIAotCXNwaW5f
+bG9ja19pcnFzYXZlKCZpbWVtLT5sb2NrLCBmbGFncyk7CisJc3Bpbl9sb2NrX2lycXNhdmUoJmlt
+ZW0tPmxvY2ssIGltZW0tPmZsYWdzKTsKIAogCWlmIChub2RlLT52YWRkcikgewogCQkvKiByZW1v
+dmUgdXMgZnJvbSB0aGUgTFJVIGxpc3Qgc2luY2Ugd2UgY2Fubm90IGJlIHVubWFwcGVkICovCkBA
+IC0yMDIsNiArMjAyLDggQEAgZ2syMGFfaW5zdG9ial9hY3F1aXJlKHN0cnVjdCBudmttX21lbW9y
+eSAqbWVtb3J5KQogCQlnb3RvIG91dDsKIAl9CiAKKwlzaXplID0gbnZrbV9tZW1vcnlfc2l6ZSht
+ZW1vcnkpOworCiAJLyogdHJ5IHRvIGZyZWUgc29tZSBhZGRyZXNzIHNwYWNlIGlmIHdlIHJlYWNo
+ZWQgdGhlIGxpbWl0ICovCiAJZ2syMGFfaW5zdG1lbV92YWRkcl9nYyhpbWVtLCBzaXplKTsKIApA
+QCAtMjE4LDggKzIyMCw2IEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZShzdHJ1Y3QgbnZrbV9tZW1v
+cnkgKm1lbW9yeSkKIAkJICAgaW1lbS0+dmFkZHJfdXNlLCBpbWVtLT52YWRkcl9tYXgpOwogCiBv
+dXQ6Ci0Jc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwotCiAJcmV0
+dXJuIG5vZGUtPnZhZGRyOwogfQogCkBAIC0yMjksMTQgKzIyOSwxMSBAQCBnazIwYV9pbnN0b2Jq
+X3JlbGVhc2Uoc3RydWN0IG52a21fbWVtb3J5ICptZW1vcnkpCiAJc3RydWN0IGdrMjBhX2luc3Rv
+YmogKm5vZGUgPSBnazIwYV9pbnN0b2JqKG1lbW9yeSk7CiAJc3RydWN0IGdrMjBhX2luc3RtZW0g
+KmltZW0gPSBub2RlLT5pbWVtOwogCXN0cnVjdCBudmttX2x0YyAqbHRjID0gaW1lbS0+YmFzZS5z
+dWJkZXYuZGV2aWNlLT5sdGM7Ci0JdW5zaWduZWQgbG9uZyBmbGFnczsKLQotCXNwaW5fbG9ja19p
+cnFzYXZlKCZpbWVtLT5sb2NrLCBmbGFncyk7CiAKIAkvKiBhZGQgb3Vyc2VsdmVzIHRvIHRoZSBM
+UlUgbGlzdCBzbyBvdXIgQ1BVIG1hcHBpbmcgY2FuIGJlIGZyZWVkICovCiAJbGlzdF9hZGRfdGFp
+bCgmbm9kZS0+dmFkZHJfbm9kZSwgJmltZW0tPnZhZGRyX2xydSk7CiAKLQlzcGluX3VubG9ja19p
+cnFyZXN0b3JlKCZpbWVtLT5sb2NrLCBmbGFncyk7CisJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgm
+aW1lbS0+bG9jaywgaW1lbS0+ZmxhZ3MpOwogCiAJd21iKCk7CiAJbnZrbV9sdGNfaW52YWxpZGF0
+ZShsdGMpOwotLSAKMi42LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1
+Cg==
