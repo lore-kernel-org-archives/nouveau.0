@@ -1,11 +1,13 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] core: fix return in error path of device probe
-Date: Mon, 26 Oct 2015 14:55:37 +0900
-Message-ID: <1445838937-29048-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92274] nouveau black screen and errors with two
+ monitors attached
+Date: Mon, 26 Oct 2015 16:56:38 +0000
+Message-ID: <bug-92274-8800-G6xEGPIvn2@http.bugs.freedesktop.org/>
+References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0411059245=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,23 +17,81 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2Ugd2FudCB0byB1bmxvY2sgbnZfZGV2aWNlc19tdXRleCBpbiB0aGlzIGVycm9yIHBhdGggYXMg
-d2VsbC4KClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEu
-Y29tPgotLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgfCAzICsrLQog
-MSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
-dCBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMgYi9kcm0vbm91dmVhdS9u
-dmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCmluZGV4IGJiYzk4MjRhZjZlMC4uNzQ3NmFjMjcxNTcz
-IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvYmFzZS5jCisrKyBi
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9iYXNlLmMKQEAgLTI0OTQsNyArMjQ5NCw4
-IEBAIG52a21fZGV2aWNlX2N0b3IoY29uc3Qgc3RydWN0IG52a21fZGV2aWNlX2Z1bmMgKmZ1bmMs
-CiAJCWRldmljZS0+cHJpID0gaW9yZW1hcChtbWlvX2Jhc2UsIG1taW9fc2l6ZSk7CiAJCWlmICgh
-ZGV2aWNlLT5wcmkpIHsKIAkJCW52ZGV2X2Vycm9yKGRldmljZSwgInVuYWJsZSB0byBtYXAgUFJJ
-XG4iKTsKLQkJCXJldHVybiAtRU5PTUVNOworCQkJcmV0ID0gLUVOT01FTTsKKwkJCWdvdG8gZG9u
-ZTsKIAkJfQogCX0KIAotLSAKMi42LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9u
-b3V2ZWF1Cg==
+
+--===============0411059245==
+Content-Type: multipart/alternative; boundary="1445878598.ebD11.32089"; charset="UTF-8"
+
+
+--1445878598.ebD11.32089
+Date: Mon, 26 Oct 2015 16:56:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92274
+
+--- Comment #16 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
+Just saw this (https://bugs.freedesktop.org/show_bug.cgi?id=91705) thread which
+is about the same problem on another card so its not just this card. I don't
+know if this helps, but I hope so. (You probably know this already, but just in
+case.)
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1445878598.ebD11.32089
+Date: Mon, 26 Oct 2015 16:56:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c16">Comment # 16</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau black screen and errors with two monitors attached"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
+              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
+</span></b>
+        <pre>Just saw this (<a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE7] GPU crash (read fault) on boot w/ DMI+HDMI outputs"
+   href="show_bug.cgi?id=91705">https://bugs.freedesktop.org/show_bug.cgi?id=91705</a>) thread which
+is about the same problem on another card so its not just this card. I don't
+know if this helps, but I hope so. (You probably know this already, but just in
+case.)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1445878598.ebD11.32089--
+
+--===============0411059245==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0411059245==--
