@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92274] nouveau black screen and errors with two
  monitors attached
-Date: Mon, 26 Oct 2015 18:01:56 +0000
-Message-ID: <bug-92274-8800-0uVWVs2cHY@http.bugs.freedesktop.org/>
+Date: Mon, 26 Oct 2015 18:03:13 +0000
+Message-ID: <bug-92274-8800-cJ8WL1sUPT@http.bugs.freedesktop.org/>
 References: <bug-92274-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0440287720=="
+Content-Type: multipart/mixed; boundary="===============1301813946=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0440287720==
-Content-Type: multipart/alternative; boundary="1445882517.Cef71.12950"; charset="UTF-8"
+--===============1301813946==
+Content-Type: multipart/alternative; boundary="1445882593.6bEff5611.13136"; charset="UTF-8"
 
 
---1445882517.Cef71.12950
-Date: Mon, 26 Oct 2015 18:01:57 +0000
+--1445882593.6bEff5611.13136
+Date: Mon, 26 Oct 2015 18:03:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92274
 
---- Comment #17 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-Just compiled the new gentoo-4.0.9 sources and the problem persists.
+--- Comment #18 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
+When I changed it in Manjaro it was using 4.1.11 I think.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445882517.Cef71.12950
-Date: Mon, 26 Oct 2015 18:01:57 +0000
+--1445882593.6bEff5611.13136
+Date: Mon, 26 Oct 2015 18:03:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,14 +54,14 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - nouveau black screen and errors with two monitors attached"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
               from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
 </span></b>
-        <pre>Just compiled the new gentoo-4.0.9 sources and the problem persists.</pre>
+        <pre>When I changed it in Manjaro it was using 4.1.11 I think.</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1445882517.Cef71.12950--
+--1445882593.6bEff5611.13136--
 
---===============0440287720==
+--===============1301813946==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0440287720==--
+--===============1301813946==--
