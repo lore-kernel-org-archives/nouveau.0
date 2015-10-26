@@ -1,93 +1,64 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 86794] Several nouveau related errors with
- xf86-video-nouveau with NVIDIA G92 [GeForce 9800 GT] and GF108 [GeForce GT
- 620] (rev a1).
-Date: Mon, 26 Oct 2015 05:16:02 +0000
-Message-ID: <bug-86794-8800-XtiFK7T0fn@http.bugs.freedesktop.org/>
-References: <bug-86794-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: [PATCH 0/3] nouveau: core: gm20b: basic support for secure boot
+Date: Mon, 26 Oct 2015 14:43:19 +0900
+Message-ID: <1445838202-26270-1-git-send-email-acourbot@nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0138525830=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-86794-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org, Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+At long last, I wrapped my head around the yard thread that is our downstream
+secure boot code and here is a version that is hopefully easier to review.
 
---===============0138525830==
-Content-Type: multipart/alternative; boundary="1445836562.ae3573.9490"; charset="UTF-8"
+Patch 1 includes the core secure boot support, which is the ability to load
+NVIDIA-signed firmware into secure falcons. With this series, only FECS is
+handled but the framework is here to add support for other falcons. I am still
+struggling to try and release all firmwares in the same format so they can be
+loaded the same way, but am not sure yet whether this will be possible - in the
+worst case we will have different loading functions.
 
+Patch 2 adds the ability for GR to start secure boot in order to load the FECS
+falcon, and patch 3 turns the right flags in GM20B support to make it happen
+for that chip. This series is tested and confirmed to work on GM20B.
 
---1445836562.ae3573.9490
-Date: Mon, 26 Oct 2015 05:16:02 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Future work that will be based on this series:
+- dGPU support: processes for dGPU and Tegra are mostly identical, but with
+  a few differences (notably in the way the WPR region is managed). I will
+  finish dGPU support once we have solved the issue of reliably producing
+  publicly-releasable firmware files for dGPU Maxwell chips.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=86794
+- Support for other falcons: PMU in particular also needs to be securely booted,
+  so does GPCCS for dGPU. These are on hold for now because...
 
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-A number of fixes have gone into mesa, specifically a few in Mesa 11.0.3
-relating to proper resource use tracking. Please retest with Mesa 11.0.3 (or
-later).
+- ... secure boot is currently initiated by GR: secure boot loads all the
+  firmwares on all managed falcons, so the current process of having it started
+  by GR init will not scale as we manage more falcons. We are discussing this
+  issue internally but it would be nice to have thoughts from Nouveau as well.
+
+I hope this base is sane for merging - otherwise please let me know of issues
+so we can move this forward!
+
+Thanks,
+Alex.
+
+Alexandre Courbot (3):
+  core: add support for secure boot
+  gr: support for securely-booted FECS firmware
+  gm20b: secure-boot FECS falcon
+
+ drm/nouveau/include/nvkm/core/device.h      |   10 +
+ drm/nouveau/include/nvkm/core/secure_boot.h |   52 +
+ drm/nouveau/nvkm/core/Kbuild                |    1 +
+ drm/nouveau/nvkm/core/secure_boot.c         | 1737 +++++++++++++++++++++++++++
+ drm/nouveau/nvkm/engine/device/base.c       |   13 +
+ drm/nouveau/nvkm/engine/gr/gf100.c          |   56 +-
+ drm/nouveau/nvkm/engine/gr/gm20b.c          |    6 +-
+ 7 files changed, 1861 insertions(+), 14 deletions(-)
+ create mode 100644 drm/nouveau/include/nvkm/core/secure_boot.h
+ create mode 100644 drm/nouveau/nvkm/core/secure_boot.c
 
 -- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1445836562.ae3573.9490
-Date: Mon, 26 Oct 2015 05:16:02 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Several nouveau related errors with xf86-video-nouveau with NVIDIA G92 [GeForce 9800 GT] and GF108 [GeForce GT 620] (rev a1)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86794#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Several nouveau related errors with xf86-video-nouveau with NVIDIA G92 [GeForce 9800 GT] and GF108 [GeForce GT 620] (rev a1)."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=86794">bug 86794</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>A number of fixes have gone into mesa, specifically a few in Mesa 11.0.3
-relating to proper resource use tracking. Please retest with Mesa 11.0.3 (or
-later).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1445836562.ae3573.9490--
-
---===============0138525830==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0138525830==--
+2.6.1
