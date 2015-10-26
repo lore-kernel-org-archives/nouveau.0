@@ -1,18 +1,14 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Documentation request for MP warp error 0x10
-Date: Mon, 26 Oct 2015 13:02:56 -0700
-Message-ID: <20151026200256.GB7638@morell.nvidia.com>
-References: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
- <20151002214811.GD9436@morell.nvidia.com>
- <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q@mail.gmail.com>
- <20151002221456.GE9436@morell.nvidia.com>
- <CAKb7Uvjpmxn8kR3DhbXSh0SXmsGCQ-+dP1iQX7j30QiGFtbStg@mail.gmail.com>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: PWM-based voltage management input clock
+Date: Tue, 27 Oct 2015 01:47:08 +0200
+Message-ID: <562EBB7C.3010701@free.fr>
+References: <55FC7081.7050007@free.fr>
+ <20150918203051.GA23395@prokofiev.nvidia.com> <55FD8B70.6010704@free.fr>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7Uvjpmxn8kR3DhbXSh0SXmsGCQ-+dP1iQX7j30QiGFtbStg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <55FD8B70.6010704-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,33 +18,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBPY3QgMjYsIDIwMTUgYXQgMDM6Mjg6NTlQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
-dGU6Cj4gT24gRnJpLCBPY3QgMiwgMjAxNSBhdCA2OjE0IFBNLCBSb2JlcnQgTW9yZWxsIDxybW9y
-ZWxsQG52aWRpYS5jb20+IHdyb3RlOgo+ID4gSGkgSWxpYSwKPiA+Cj4gPiBPbiBGcmksIE9jdCAw
-MiwgMjAxNSBhdCAwNjowNToyMVBNIC0wNDAwLCBJbGlhIE1pcmtpbiB3cm90ZToKPiA+PiBIaSBS
-b2JlcnQsCj4gPj4KPiA+PiBUaGFua3MgZm9yIHRoZSBxdWljayByZXNwb25zZSEgVGhhdCBnb2Vz
-IGluIGxpbmUgd2l0aCBteSBvYnNlcnZhdGlvbnMKPiA+PiB3aGljaCBpcyB0aGF0IHRoZXNlIHRo
-aW5ncyBoYXBwZW4gd2hlbiB1c2luZyBhbiBBVE9NL1JFRCBpbnN0cnVjdGlvbi4KPiA+PiBJJ3Zl
-IGNoZWNrZWQgYW5kIHJlY2hlY2tlZCB0aGF0IEknbSBnZW5lcmF0aW5nIG9wcyB3aXRoIGlkZW50
-aWNhbCBiaXRzCj4gPj4gYXMgd2hhdCB0aGUgcHJvcHJpZXRhcnkgZHJpdmVyIGRvZXMsIGhvd2V2
-ZXIgKGFuZCBudmRpc2FzbSBwcmludHMKPiA+PiBpZGVudGljYWwgb3V0cHV0KS4gQ291bGQgeW91
-IGFkdmlzZSB3aGF0IHRoZSBwcm9wZXIgd2F5IG9mIGluZGljYXRpbmcKPiA+PiB0aGF0IHRoZSBt
-ZW1vcnkgaXMgImdsb2JhbCIgdG8gdGhlIG9wPyBJJ20gc3VyZSBJJ20ganVzdCBtaXNzaW5nCj4g
-Pj4gc29tZXRoaW5nIHNpbXBsZS4gSWYgeW91IHNob3cgbWUgd2hhdCB0byBsb29rIGZvciBpbiBT
-TTM1IEkgY2FuCj4gPj4gcHJvYmFibHkgZmluZCBpdCBvbiBteSBvd24gZm9yIFNNMjAvU00zMC9T
-TTUwLgo+ID4KPiA+IFVuZm9ydHVuYXRlbHkgdGhpcyBpc24ndCBzb21ldGhpbmcgSSBrbm93IGEg
-bG90IGFib3V0LCBzbyBJJ20gZ29pbmcgdG8KPiA+IGhhdmUgZG8gc29tZSByZXNlYXJjaCBhbmQg
-Z2V0IGJhY2sgdG8geW91LCBob3BlZnVsbHkgd2l0aGluIGEgZmV3IGRheXMuCj4gCj4gSGkgUm9i
-ZXJ0LAo+IAo+IFdlcmUgeW91IGFibGUgdG8gZmluZCBhbnkgZnVydGhlciBpbmZvcm1hdGlvbiBv
-dXQgYWJvdXQgdGhpcz8gSGFwcHkgdG8KPiBwcm92aWRlIHdpdGggYW55IHRyYWNlcyBvciBhZGRp
-dGlvbmFsIGRldGFpbHMgYXMgdG8gd2hhdCBJJ20gZG9pbmcKPiAoYW5kIHdoaWNoIGlzIGZhaWxp
-bmcpLgoKSSdtIHN0aWxsIHdhaXRpbmcgZm9yIGNsYXJpZmljYXRpb24gb24gc29tZSBzdHVmZiBJ
-J20gbm90IHN1cmUgYWJvdXQgLS0KSSdsbCB0cnkgcGluZ2luZyBhIGxpdHRsZSBoYXJkZXIuCgpT
-b3JyeSBmb3IgdGhlIGRlbGF5LgoKLSBSb2JlcnQKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+T24gMTkvMDkvMTUgMTk6MjEsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiBPbiAxOC8wOS8xNSAyMzoz
+MCwgQW5keSBSaXRnZXIgd3JvdGU6Cj4+IFRoYW5rcywgTWFydGluLiAgSSdsbCB0cnkgdG8gZm9s
+bG93IHVwIG9uIHRoaXMgbmV4dCB3ZWVrIGFuZCBnZXQgeW91IAo+PiBhbiBhbnN3ZXIuICBXaGF0
+IEdQVXMgaGF2ZSB5b3Ugb2JzZXJ2ZWQgdGhpcyBvbj8KPj4KPiBUaGFua3MgQW5keSwKPgo+IEFz
+IGZhciBhcyBJIGNhbiB0ZWxsLCBpdCBpcyB0aGUgY2FzZSBmb3IgYWxsIEdQVXMgdXNpbmcgdGhl
+IFBXTS1iYXNlZCAKPiB2b2x0YWdlIG1hbmFnZW1lbnQuIFRvIGJlIG1vcmUgc3BlY2lmaWMsIHdl
+IGhhdmUgc2VlbiB0aGlzIGJlaGF2aW91ciAKPiBvbiBhIEdLMTA2IChtb2JpbGUpLCBhIEdNMTE3
+IGFuZCBhIEdNMjA0LgoKSSBndWVzcyB0aGlzIGhhcyBmZWxsIGludG8gdGhlIGNyYWNrcyA6KSBB
+bnkgdXBkYXRlcyBvbiB0aGlzPwoKVGhhbmtzLApNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
+L2xpc3RpbmZvL25vdXZlYXUK
