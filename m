@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
- set_domain failures
-Date: Sun, 25 Oct 2015 18:13:00 +0000
-Message-ID: <bug-92504-8800-7kEa67p6Uc@http.bugs.freedesktop.org/>
-References: <bug-92504-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 90569] [NV67] GUI freezes after startup of Ubuntu
+ 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at
+ f84c8000]
+Date: Mon, 26 Oct 2015 04:59:05 +0000
+Message-ID: <bug-90569-8800-PVEt32eG8J@http.bugs.freedesktop.org/>
+References: <bug-90569-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1531731211=="
+Content-Type: multipart/mixed; boundary="===============1367461444=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-90569-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,28 +22,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1531731211==
-Content-Type: multipart/alternative; boundary="1445796782.Afdc12d32.13322"; charset="UTF-8"
+--===============1367461444==
+Content-Type: multipart/alternative; boundary="1445835545.C4F411.6797"; charset="UTF-8"
 
 
---1445796782.Afdc12d32.13322
-Date: Sun, 25 Oct 2015 18:13:02 +0000
+--1445835545.C4F411.6797
+Date: Mon, 26 Oct 2015 04:59:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92504
+https://bugs.freedesktop.org/show_bug.cgi?id=90569
 
---- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Linux 4.3-rc7 is out now and should contain my fix. Please try it out and
-confirm that it fixes the set_domain issues.
+--- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+The patch in question should be included in kernels 4.2+ and potentially some
+of the older stable trees. The upstream patch is:
+
+commit d108142c0840ce389cd9898aa76943b3fb430b83
+Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Date:   Mon Jun 29 04:07:20 2015 -0400
+
+    drm/nouveau/fbcon/nv11-: correctly account for ring space usage
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1445796782.Afdc12d32.13322
-Date: Sun, 25 Oct 2015 18:13:02 +0000
+--1445835545.C4F411.6797
+Date: Mon, 26 Oct 2015 04:59:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,31 +61,36 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c31">Comment # 31</a>
+   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+   title="NEW - [NV67] GUI freezes after startup of Ubuntu 15.04. on Aspire 7520p [BUG: unable to handle kernel paging request at f84c8000]"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90569">bug 90569</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Linux 4.3-rc7 is out now and should contain my fix. Please try it out and
-confirm that it fixes the set_domain issues.</pre>
+        <pre>The patch in question should be included in kernels 4.2+ and potentially some
+of the older stable trees. The upstream patch is:
+
+commit d108142c0840ce389cd9898aa76943b3fb430b83
+Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
+Date:   Mon Jun 29 04:07:20 2015 -0400
+
+    drm/nouveau/fbcon/nv11-: correctly account for ring space usage</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1445796782.Afdc12d32.13322--
+--1445835545.C4F411.6797--
 
---===============1531731211==
+--===============1367461444==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -89,4 +100,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1531731211==--
+--===============1367461444==--
