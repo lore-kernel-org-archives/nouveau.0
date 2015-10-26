@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92274] nouveau black screen and errors with two
- monitors attached
-Date: Mon, 26 Oct 2015 18:03:13 +0000
-Message-ID: <bug-92274-8800-cJ8WL1sUPT@http.bugs.freedesktop.org/>
-References: <bug-92274-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH 0/4] Add pdaemon load counters
+Date: Mon, 26 Oct 2015 19:13:05 +0100
+Message-ID: <1445883189-4407-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1301813946=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92274-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,69 +18,34 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1301813946==
-Content-Type: multipart/alternative; boundary="1445882593.6bEff5611.13136"; charset="UTF-8"
-
-
---1445882593.6bEff5611.13136
-Date: Mon, 26 Oct 2015 18:03:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92274
-
---- Comment #18 from joseph-thommes-Mmb7MZpHnFY@public.gmane.org ---
-When I changed it in Manjaro it was using 4.1.11 I think.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1445882593.6bEff5611.13136
-Date: Mon, 26 Oct 2015 18:03:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274#c18">Comment # 18</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - nouveau black screen and errors with two monitors attached"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92274">bug 92274</a>
-              from <span class="vcard"><a class="email" href="mailto:joseph-thommes&#64;gmx.de" title="joseph-thommes&#64;gmx.de">joseph-thommes&#64;gmx.de</a>
-</span></b>
-        <pre>When I changed it in Manjaro it was using 4.1.11 I think.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1445882593.6bEff5611.13136--
-
---===============1301813946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1301813946==--
+dGhpcyBzZXJpZXMgbWFrZXMgdXNlIG9mIHRoZSBsb2FkIGNvdW50ZXJzIHdlIGNhbiB1c2UgdG8g
+Z2V0IGluZm9ybWF0aW9uIGFib3V0CnRoZSBjdXJyZW50IGxvYWQgb2YgdGhlIGdwdS4KClRoaXMg
+c2VyaWVzIGluY2x1ZGVzIHRoZSBuZWVkZWQgcG11IGJpdHMgYW5kIGEgZGVidWdmcyBpbnRlcmZh
+Y2UgdG8gcmVhZCB0aGVtCm91dC4gQ3VycmVudGx5IHRoZSB2YWx1ZXMgYXJlIGJldHdlZW4gMCBh
+bmQgMjU1LCBiZWNhdXNlIGl0IGlzIG11Y2ggZWFzaWVyIHRvCmltcGxlbWVudCBpdCB0aGlzIHdh
+eSBvbiB0aGUgcG11LgoKS2Fyb2wgSGVyYnN0ICg0KToKICBzdWJkZXYvcG11L2Z1YzogYWRkIGdr
+MTA0CiAgcG11L2Z1YzogYWRkIG1hY3JvcyBmb3IgcGRhZW1vbiBwd3IgY291bnRlcnMKICBzdWJk
+ZXYvcG11L2Z1YzogaW1wbGVtZW50IHBlcmYKICBub3V2ZWF1L2RlYnVnZnM6IGFkZCBpbnRlcmZh
+Y2UgZm9yIGN1cnJlbnQgbG9hZAoKIGRybS9ub3V2ZWF1L2luY2x1ZGUvbnZpZi9kZXZpY2UuaCAg
+ICAgICAgICAgIHwgICAgMSArCiBkcm0vbm91dmVhdS9pbmNsdWRlL252a20vc3ViZGV2L3BtdS5o
+ICAgICAgICB8ICAgMTAgKwogZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMgICAgICAgICAg
+ICAgICAgfCAgIDIzICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9iYXNlLmMgICAgICAg
+ICAgIHwgICAxOCArCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL2dmMTAwLmZ1YzMu
+aCB8ICA3ODggKysrKysrLS0tLS0KIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvZ2Yx
+MTkuZnVjNC5oIHwgIDc0MCArKysrKy0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUv
+ZnVjL2drMTA0LmZ1YzQgICB8ICAgNzAgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1
+Yy9nazEwNC5mdWM0LmggfCAxODY5ICsrKysrKysrKysrKysrKysrKysrKysrKysrCiBkcm0vbm91
+dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL2drMjA4LmZ1YzUuaCB8ICA3MTAgKysrKysrLS0tLQog
+ZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1Yy9ndDIxNS5mdWMzLmggfCAgNzU1ICsrKysr
+Ky0tLS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL21hY3Jvcy5mdWMgICB8ICAg
+MjQgKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Z1Yy9vcy5oICAgICAgICAgfCAgICA0
+ICsKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9mdWMvcGVyZi5mdWMgICAgIHwgIDE0OCAr
+KwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2drMTA0LmMgICAgICAgICAgfCAgICA0ICst
+CiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZ2sxMTAuYyAgICAgICAgICB8ICAgIDYgKy0K
+IDE1IGZpbGVzIGNoYW5nZWQsIDM4NzkgaW5zZXJ0aW9ucygrKSwgMTI5MSBkZWxldGlvbnMoLSkK
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVjL2drMTA0
+LmZ1YzQKIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvZnVj
+L2drMTA0LmZ1YzQuaAoKLS0gCjIuNi4yCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
