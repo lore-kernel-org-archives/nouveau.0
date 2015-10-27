@@ -1,14 +1,13 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Subject: Re: PWM-based voltage management input clock
-Date: Tue, 27 Oct 2015 01:47:08 +0200
-Message-ID: <562EBB7C.3010701@free.fr>
-References: <55FC7081.7050007@free.fr>
- <20150918203051.GA23395@prokofiev.nvidia.com> <55FD8B70.6010704@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
+ set_domain failures
+Date: Tue, 27 Oct 2015 21:33:18 +0000
+Message-ID: <bug-92504-8800-dQrAJTYciT@http.bugs.freedesktop.org/>
+References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1937838103=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <55FD8B70.6010704-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,19 +17,85 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Andy Ritger <aritger-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMTkvMDkvMTUgMTk6MjEsIE1hcnRpbiBQZXJlcyB3cm90ZToKPiBPbiAxOC8wOS8xNSAyMzoz
-MCwgQW5keSBSaXRnZXIgd3JvdGU6Cj4+IFRoYW5rcywgTWFydGluLiAgSSdsbCB0cnkgdG8gZm9s
-bG93IHVwIG9uIHRoaXMgbmV4dCB3ZWVrIGFuZCBnZXQgeW91IAo+PiBhbiBhbnN3ZXIuICBXaGF0
-IEdQVXMgaGF2ZSB5b3Ugb2JzZXJ2ZWQgdGhpcyBvbj8KPj4KPiBUaGFua3MgQW5keSwKPgo+IEFz
-IGZhciBhcyBJIGNhbiB0ZWxsLCBpdCBpcyB0aGUgY2FzZSBmb3IgYWxsIEdQVXMgdXNpbmcgdGhl
-IFBXTS1iYXNlZCAKPiB2b2x0YWdlIG1hbmFnZW1lbnQuIFRvIGJlIG1vcmUgc3BlY2lmaWMsIHdl
-IGhhdmUgc2VlbiB0aGlzIGJlaGF2aW91ciAKPiBvbiBhIEdLMTA2IChtb2JpbGUpLCBhIEdNMTE3
-IGFuZCBhIEdNMjA0LgoKSSBndWVzcyB0aGlzIGhhcyBmZWxsIGludG8gdGhlIGNyYWNrcyA6KSBB
-bnkgdXBkYXRlcyBvbiB0aGlzPwoKVGhhbmtzLApNYXJ0aW4KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1937838103==
+Content-Type: multipart/alternative; boundary="1445981598.F3a13b2.4900"; charset="UTF-8"
+
+
+--1445981598.F3a13b2.4900
+Date: Tue, 27 Oct 2015 21:33:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92504
+
+--- Comment #32 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I installed Ubuntu Kernel  4.3.0-040300rc7-generic, suspended my PC for about 5
+minutes and when I resumed everything was ok, no issues.
+So definitely my problems are solved (I had reported bug
+https://bugs.freedesktop.org/show_bug.cgi?id=92522.
+Thanks a lot.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1445981598.F3a13b2.4900
+Date: Tue, 27 Oct 2015 21:33:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c32">Comment # 32</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
+</span></b>
+        <pre>I installed Ubuntu Kernel  4.3.0-040300rc7-generic, suspended my PC for about 5
+minutes and when I resumed everything was ok, no issues.
+So definitely my problems are solved (I had reported bug
+<a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
+   href="show_bug.cgi?id=92522">https://bugs.freedesktop.org/show_bug.cgi?id=92522</a>.
+Thanks a lot.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1445981598.F3a13b2.4900--
+
+--===============1937838103==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1937838103==--
