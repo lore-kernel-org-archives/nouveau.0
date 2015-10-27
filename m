@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
- set_domain failures
-Date: Tue, 27 Oct 2015 21:33:18 +0000
-Message-ID: <bug-92504-8800-dQrAJTYciT@http.bugs.freedesktop.org/>
-References: <bug-92504-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] pci: enable c800 magic for Lenovo Y510P
+Date: Tue, 27 Oct 2015 17:39:49 -0400
+Message-ID: <1445981989-27071-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1937838103=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,85 +15,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1937838103==
-Content-Type: multipart/alternative; boundary="1445981598.F3a13b2.4900"; charset="UTF-8"
-
-
---1445981598.F3a13b2.4900
-Date: Tue, 27 Oct 2015 21:33:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92504
-
---- Comment #32 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I installed Ubuntu Kernel  4.3.0-040300rc7-generic, suspended my PC for about 5
-minutes and when I resumed everything was ok, no issues.
-So definitely my problems are solved (I had reported bug
-https://bugs.freedesktop.org/show_bug.cgi?id=92522.
-Thanks a lot.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1445981598.F3a13b2.4900
-Date: Tue, 27 Oct 2015 21:33:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
-              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
-</span></b>
-        <pre>I installed Ubuntu Kernel  4.3.0-040300rc7-generic, suspended my PC for about 5
-minutes and when I resumed everything was ok, no issues.
-So definitely my problems are solved (I had reported bug
-<a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED DUPLICATE - Desktop freezes resuming after suspension"
-   href="show_bug.cgi?id=92522">https://bugs.freedesktop.org/show_bug.cgi?id=92522</a>.
-Thanks a lot.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1445981598.F3a13b2.4900--
-
---===============1937838103==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1937838103==--
+QnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVza3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTcw
+MzU0I2M3NQpTaWduZWQtb2ZmLWJ5OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
+Ci0tLQoKVW5jbGVhciBpZiB3ZSB3YW50IHRoaXMuIFNvbWVvbmUgd2l0aCB0aGUgc2FtZSB2ZW5k
+b3Ivc3VidmVuZG9yIHBjaQppZHMgZGlkbid0IGhhdmUgYW55IGlzc3VlcyB3aXRoIG5vdXZlYXUg
+YXQgYWxsOgoKaHR0cHM6Ly9idWdzLmxhdW5jaHBhZC5uZXQvdWJ1bnR1Lytzb3VyY2UvY29tcGl6
+LytidWcvMTMyNzYyNAoKW3RoZXkgaGFkIG90aGVyIGlzc3VlcyB0aG91Z2hdCgpOb3Qgc3VyZSBp
+ZiB0aGlzIHdpbGwgZG8gbW9yZSBoYXJtIHRoYW4gZ29vZC4KCiBkcm0vbm91dmVhdS9udmttL2Vu
+Z2luZS9kZXZpY2UvcGNpLmMgfCA4ICsrKysrKystCiAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRp
+b25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdp
+bmUvZGV2aWNlL3BjaS5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5jCmlu
+ZGV4IGU4ZWIxNGUuLmM1ZmM5MDkgMTAwNjQ0Ci0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5l
+L2RldmljZS9wY2kuYworKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMK
+QEAgLTI1OSw2ICsyNTksMTIgQEAgbnZrbV9kZXZpY2VfcGNpXzEwZGVfMGRmNFtdID0gewogfTsK
+IAogc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9wY2lfdmVuZG9yCitudmttX2Rldmlj
+ZV9wY2lfMTBkZV8wZmNkW10gPSB7CisJeyAweDE3YWEsIDB4MzgwMSwgTlVMTCwgeyAuV2FyMDBD
+ODAwXzAgPSB0cnVlIH0gfSwgLyogTGVub3ZvIFk1MTBQICovCisJe30KK307CisKK3N0YXRpYyBj
+b25zdCBzdHJ1Y3QgbnZrbV9kZXZpY2VfcGNpX3ZlbmRvcgogbnZrbV9kZXZpY2VfcGNpXzEwZGVf
+MGZkMltdID0gewogCXsgMHgxMDI4LCAweDA1OTUsICJHZUZvcmNlIEdUIDY0ME0gTEUiIH0sCiAJ
+eyAweDEwMjgsIDB4MDViMiwgIkdlRm9yY2UgR1QgNjQwTSBMRSIgfSwKQEAgLTEzNDksNyArMTM1
+NSw3IEBAIG52a21fZGV2aWNlX3BjaV8xMGRlW10gPSB7CiAJeyAweDBmYzYsICJHZUZvcmNlIEdU
+WCA2NTAiIH0sCiAJeyAweDBmYzgsICJHZUZvcmNlIEdUIDc0MCIgfSwKIAl7IDB4MGZjOSwgIkdl
+Rm9yY2UgR1QgNzMwIiB9LAotCXsgMHgwZmNkLCAiR2VGb3JjZSBHVCA3NTVNIiB9LAorCXsgMHgw
+ZmNkLCAiR2VGb3JjZSBHVCA3NTVNIiwgbnZrbV9kZXZpY2VfcGNpXzEwZGVfMGZjZCB9LAogCXsg
+MHgwZmNlLCAiR2VGb3JjZSBHVCA2NDBNIExFIiB9LAogCXsgMHgwZmQxLCAiR2VGb3JjZSBHVCA2
+NTBNIiB9LAogCXsgMHgwZmQyLCAiR2VGb3JjZSBHVCA2NDBNIiwgbnZrbV9kZXZpY2VfcGNpXzEw
+ZGVfMGZkMiB9LAotLSAKMi40LjEwCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
+dmVhdQo=
