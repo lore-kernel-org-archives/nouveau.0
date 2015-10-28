@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Tue, 27 Oct 2015 21:43:46 +0000
-Message-ID: <bug-70354-8800-WKgGjqJCic@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 71455] Thermal management in nouveau running hot
+	3.12.0+ kernel
+Date: Wed, 28 Oct 2015 00:38:03 +0000
+Message-ID: <bug-71455-8800-mTm2h0wS3e@http.bugs.freedesktop.org/>
+References: <bug-71455-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0915658307=="
+Content-Type: multipart/mixed; boundary="===============0930829563=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-71455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0915658307==
-Content-Type: multipart/alternative; boundary="1445982226.6beDC7c41.8640"; charset="UTF-8"
+--===============0930829563==
+Content-Type: multipart/alternative; boundary="1445992684.fcDA5c3.2470"; charset="UTF-8"
 
 
---1445982226.6beDC7c41.8640
-Date: Tue, 27 Oct 2015 21:43:46 +0000
+--1445992684.fcDA5c3.2470
+Date: Wed, 28 Oct 2015 00:38:04 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=71455
 
---- Comment #78 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Bozhan Boyadzhiev from comment #77)
-> What in that bug report in launchpad is related to this one?
+--- Comment #8 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Bob, please confirm that newer kernels resolve this issue.
 
- NVIDIA Corporation GK107M [GeForce GT 755M] [10de:0fcd] (rev a1) (prog-if 00
-[VGA controller])
-   Subsystem: Lenovo Device [17aa:3801]
-
-The guy's got the exact same GPU as you do, and nouveau appears to come just
-fine based on his dmesg. Probably OK to flip it on though... hopefully.
+Evan, your issue is wholly unrelated to the original one. And most likely also
+fixed in newer kernels (large page size mismatch).
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1445982226.6beDC7c41.8640
-Date: Tue, 27 Oct 2015 21:43:46 +0000
+--1445992684.fcDA5c3.2470
+Date: Wed, 28 Oct 2015 00:38:04 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +56,18 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c78">Comment # 78</a>
+   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Bozhan Boyadzhiev from <a href="show_bug.cgi?id=70354#c77">comment #77</a>)
-<span class="quote">&gt; What in that bug report in launchpad is related to this one?</span >
+        <pre>Bob, please confirm that newer kernels resolve this issue.
 
- NVIDIA Corporation GK107M [GeForce GT 755M] [10de:0fcd] (rev a1) (prog-if 00
-[VGA controller])
-   Subsystem: Lenovo Device [17aa:3801]
-
-The guy's got the exact same GPU as you do, and nouveau appears to come just
-fine based on his dmesg. Probably OK to flip it on though... hopefully.</pre>
+Evan, your issue is wholly unrelated to the original one. And most likely also
+fixed in newer kernels (large page size mismatch).</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +79,9 @@ fine based on his dmesg. Probably OK to flip it on though... hopefully.</pre>
     </body>
 </html>
 
---1445982226.6beDC7c41.8640--
+--1445992684.fcDA5c3.2470--
 
---===============0915658307==
+--===============0930829563==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0915658307==--
+--===============0930829563==--
