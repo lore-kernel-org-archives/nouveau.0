@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Thu, 29 Oct 2015 12:49:26 +0000
-Message-ID: <bug-70354-8800-HfQfYsBeWI@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92504] [NVA5] Corruption in Plasma 5 on resume --
+ set_domain failures
+Date: Thu, 29 Oct 2015 15:57:34 +0000
+Message-ID: <bug-92504-8800-7OPdHIdbAJ@http.bugs.freedesktop.org/>
+References: <bug-92504-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1593344532=="
+Content-Type: multipart/mixed; boundary="===============0540707955=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92504-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,76 +21,104 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1593344532==
-Content-Type: multipart/alternative; boundary="1446122966.BD6Fe1.1943"; charset="UTF-8"
+--===============0540707955==
+Content-Type: multipart/alternative; boundary="1446134255.F31F221.32720"; charset="UTF-8"
 
 
---1446122966.BD6Fe1.1943
-Date: Thu, 29 Oct 2015 12:49:26 +0000
+--1446134255.F31F221.32720
+Date: Thu, 29 Oct 2015 15:57:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D70354
+https://bugs.freedesktop.org/show_bug.cgi?id=92504
 
---- Comment #80 from bruno.pagani-vYW+cPY1g1pg9hUCZPvPmw@public.gmane.org ---
-Well initial report was for 3.11 here, so don=E2=80=99t think something has=
- changed.
+Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> changed:
 
-Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it?
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
 
---=20
+--- Comment #33 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
+I have used the latest (as of 4 days ago) linux-next kernel tree, without any
+patches applied, and can confirm that this issue is gone now!
+
+Thanks everybody (and especially Ilia Mirkin) for fixing this bug so quickly!!
+
+-- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1446122966.BD6Fe1.1943
-Date: Thu, 29 Oct 2015 12:49:26 +0000
+--1446134255.F31F221.32720
+Date: Thu, 29 Oct 2015 15:57:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
-'t help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354#c80">Commen=
-t # 80</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn=
-'t help"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D70354">bug 70354<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-bruno.pagani&#64;ens-lyon.org" title=3D"bruno.pagani&#64;ens-lyon.org">brun=
-o.pagani&#64;ens-lyon.org</a>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504#c33">Comment # 33</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92504">bug 92504</a>
+              from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
 </span></b>
-        <pre>Well initial report was for 3.11 here, so don=E2=80=99t think =
-something has changed.
+        <pre>I have used the latest (as of 4 days ago) linux-next kernel tree, without any
+patches applied, and can confirm that this issue is gone now!
 
-Also why do you set nouveau.runpm=3D0? Doesn=E2=80=99t work without it?</pr=
-e>
+Thanks everybody (and especially Ilia Mirkin) for fixing this bug so quickly!!</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446122966.BD6Fe1.1943--
+--1446134255.F31F221.32720--
 
---===============1593344532==
+--===============0540707955==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +128,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1593344532==--
+--===============0540707955==--
