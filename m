@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71455] Thermal management in nouveau running hot
-	3.12.0+ kernel
-Date: Thu, 29 Oct 2015 23:59:17 +0000
-Message-ID: <bug-71455-8800-cIMIGnNUB0@http.bugs.freedesktop.org/>
-References: <bug-71455-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92438] Segfault in pushbuf_kref when running the
+ android emulator (qemu) on nv50
+Date: Fri, 30 Oct 2015 13:04:31 +0000
+Message-ID: <bug-92438-8800-1Rs9yoGLND@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0650573181=="
+Content-Type: multipart/mixed; boundary="===============0287234629=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71455-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0650573181==
-Content-Type: multipart/alternative; boundary="1446163158.425F2fa2.16066"; charset="UTF-8"
+--===============0287234629==
+Content-Type: multipart/alternative; boundary="1446210271.55e3C55A0.11143"; charset="UTF-8"
 
 
---1446163158.425F2fa2.16066
-Date: Thu, 29 Oct 2015 23:59:18 +0000
+--1446210271.55e3C55A0.11143
+Date: Fri, 30 Oct 2015 13:04:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71455
+https://bugs.freedesktop.org/show_bug.cgi?id=92438
 
---- Comment #9 from Evan Foss <evanfoss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-On Wed, Oct 28, 2015 at 12:38 AM,  <bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org> wrote:
-> Comment # 8 on bug 71455 from Ilia Mirkin
->
-> Bob, please confirm that newer kernels resolve this issue.
->
-> Evan, your issue is wholly unrelated to the original one. And most likely
-> also
-> fixed in newer kernels (large page size mismatch).
-
-Yes and it was dealt with by other people. (my thanks again by the way)
-
-I think i attached it to this by accident before I put it with the right one.
-
-> ________________________________
-> You are receiving this mail because:
->
-> You are on the CC list for the bug.
+--- Comment #18 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Quick update, I'm on mesa 11.0.4 now and the issue is still present but it
+manifests itself differently: when I hit the issue I can still see the error
+messages being dumped into the kernel log but the application isn't
+seg-faulting anymore. I'm not sure if this is good or bad; it does help with my
+use-case as things keep running afterwards but it might make this bug harder to
+track.
 
 -- 
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1446163158.425F2fa2.16066
-Date: Thu, 29 Oct 2015 23:59:18 +0000
+--1446210271.55e3C55A0.11143
+Date: Fri, 30 Oct 2015 13:04:31 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,48 +59,35 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455#c9">Comment # 9</a>
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71455">bug 71455</a>
-              from <span class="vcard"><a class="email" href="mailto:evanfoss&#64;gmail.com" title="Evan Foss &lt;evanfoss&#64;gmail.com&gt;"> <span class="fn">Evan Foss</span></a>
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
+              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
 </span></b>
-        <pre>On Wed, Oct 28, 2015 at 12:38 AM,  &lt;<a href="mailto:bugzilla-daemon&#64;freedesktop.org">bugzilla-daemon&#64;freedesktop.org</a>&gt; wrote:
-<span class="quote">&gt; <a href="show_bug.cgi?id=71455#c8">Comment # 8</a> on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Thermal management in nouveau running hot 3.12.0+ kernel"
-   href="show_bug.cgi?id=71455">bug 71455</a> from Ilia Mirkin</span >
-&gt;
-<span class="quote">&gt; Bob, please confirm that newer kernels resolve this issue.</span >
-&gt;
-<span class="quote">&gt; Evan, your issue is wholly unrelated to the original one. And most likely
-&gt; also
-&gt; fixed in newer kernels (large page size mismatch).</span >
-
-Yes and it was dealt with by other people. (my thanks again by the way)
-
-I think i attached it to this by accident before I put it with the right one.
-
-<span class="quote">&gt; ________________________________
-&gt; You are receiving this mail because:</span >
-&gt;
-<span class="quote">&gt; You are on the CC list for the bug.</span ></pre>
+        <pre>Quick update, I'm on mesa 11.0.4 now and the issue is still present but it
+manifests itself differently: when I hit the issue I can still see the error
+messages being dumped into the kernel log but the application isn't
+seg-faulting anymore. I'm not sure if this is good or bad; it does help with my
+use-case as things keep running afterwards but it might make this bug harder to
+track.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446163158.425F2fa2.16066--
+--1446210271.55e3C55A0.11143--
 
---===============0650573181==
+--===============0287234629==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0650573181==--
+--===============0287234629==--
