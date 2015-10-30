@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92523] [Quadro FX 370] Compiz freezes entire desktop.
-Date: Fri, 30 Oct 2015 17:00:17 +0000
-Message-ID: <bug-92523-8800-i3UC8mJ0Mf@http.bugs.freedesktop.org/>
+Date: Fri, 30 Oct 2015 20:10:17 +0000
+Message-ID: <bug-92523-8800-t9KLJPpJXn@http.bugs.freedesktop.org/>
 References: <bug-92523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0760690130=="
+Content-Type: multipart/mixed; boundary="===============0900311150=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,40 +20,46 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0760690130==
-Content-Type: multipart/alternative; boundary="1446224417.33dBe2.17241"; charset="UTF-8"
+--===============0900311150==
+Content-Type: multipart/alternative; boundary="1446235817.DCCE1.4465"; charset="UTF-8"
 
 
---1446224417.33dBe2.17241
-Date: Fri, 30 Oct 2015 17:00:17 +0000
+--1446235817.DCCE1.4465
+Date: Fri, 30 Oct 2015 20:10:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92523
 
---- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Carla sella from comment #11)
+--- Comment #13 from Carla sella <carla.sella-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #12)
+> (In reply to Carla sella from comment #11)
+> > 
+> > I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
+> > 
+> > 
+> > http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D
+> > 
+> > so it will be easier for me to test your patch.
+> > 
+> > I will let you know what happens.
+> > 
+> > Thanks.
 > 
-> I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
-> 
-> 
-> http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D
-> 
-> so it will be easier for me to test your patch.
-> 
-> I will let you know what happens.
-> 
-> Thanks.
+> You reported in bug 92504 that the suspend/resume issue was gone... is this
+> one as well?
 
-You reported in bug 92504 that the suspend/resume issue was gone... is this one
-as well?
+
+I was waiting some time before answering to see if this issue occurred, but it
+hasn't occurred since I installed Ubuntu 4.3.0-040300rc7-generic kernel, so I
+can affirm that the issue is solved.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446224417.33dBe2.17241
-Date: Fri, 30 Oct 2015 17:00:17 +0000
+--1446235817.DCCE1.4465
+Date: Fri, 30 Oct 2015 20:10:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,31 +73,37 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523#c12">Comment # 12</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523#c13">Comment # 13</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92523">bug 92523</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:carla.sella&#64;gmail.com" title="Carla sella &lt;carla.sella&#64;gmail.com&gt;"> <span class="fn">Carla sella</span></a>
 </span></b>
-        <pre>(In reply to Carla sella from <a href="show_bug.cgi?id=92523#c11">comment #11</a>)
-<span class="quote">&gt; 
-&gt; I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92523#c12">comment #12</a>)
+<span class="quote">&gt; (In reply to Carla sella from <a href="show_bug.cgi?id=92523#c11">comment #11</a>)
+&gt; &gt; 
+&gt; &gt; I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt; <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D">http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D</a>
+&gt; &gt; 
+&gt; &gt; so it will be easier for me to test your patch.
+&gt; &gt; 
+&gt; &gt; I will let you know what happens.
+&gt; &gt; 
+&gt; &gt; Thanks.
 &gt; 
-&gt; 
-&gt; <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D">http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D</a>
-&gt; 
-&gt; so it will be easier for me to test your patch.
-&gt; 
-&gt; I will let you know what happens.
-&gt; 
-&gt; Thanks.</span >
-
-You reported in <a class="bz_bug_link 
+&gt; You reported in <a class="bz_bug_link 
           bz_status_RESOLVED  bz_closed"
    title="RESOLVED FIXED - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
-   href="show_bug.cgi?id=92504">bug 92504</a> that the suspend/resume issue was gone... is this one
-as well?</pre>
+   href="show_bug.cgi?id=92504">bug 92504</a> that the suspend/resume issue was gone... is this
+&gt; one as well?</span >
+
+
+I was waiting some time before answering to see if this issue occurred, but it
+hasn't occurred since I installed Ubuntu 4.3.0-040300rc7-generic kernel, so I
+can affirm that the issue is solved.</pre>
         </div>
       </p>
       <hr>
@@ -103,9 +115,9 @@ as well?</pre>
     </body>
 </html>
 
---1446224417.33dBe2.17241--
+--1446235817.DCCE1.4465--
 
---===============0760690130==
+--===============0900311150==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -115,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0760690130==--
+--===============0900311150==--
