@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92438] Segfault in pushbuf_kref when running the
- android emulator (qemu) on nv50
-Date: Fri, 30 Oct 2015 13:26:14 +0000
-Message-ID: <bug-92438-8800-ZByJCWylTk@http.bugs.freedesktop.org/>
-References: <bug-92438-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92523] [Quadro FX 370] Compiz freezes entire desktop.
+Date: Fri, 30 Oct 2015 17:00:17 +0000
+Message-ID: <bug-92523-8800-i3UC8mJ0Mf@http.bugs.freedesktop.org/>
+References: <bug-92523-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1745804042=="
+Content-Type: multipart/mixed; boundary="===============0760690130=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92523-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,27 +20,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1745804042==
-Content-Type: multipart/alternative; boundary="1446211574.06560.16560"; charset="UTF-8"
+--===============0760690130==
+Content-Type: multipart/alternative; boundary="1446224417.33dBe2.17241"; charset="UTF-8"
 
 
---1446211574.06560.16560
-Date: Fri, 30 Oct 2015 13:26:14 +0000
+--1446224417.33dBe2.17241
+Date: Fri, 30 Oct 2015 17:00:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92438
+https://bugs.freedesktop.org/show_bug.cgi?id=92523
 
---- Comment #19 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Disregards my previous comment, I've just hit another segfault.
+--- Comment #12 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to Carla sella from comment #11)
+> 
+> I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
+> 
+> 
+> http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D
+> 
+> so it will be easier for me to test your patch.
+> 
+> I will let you know what happens.
+> 
+> Thanks.
+
+You reported in bug 92504 that the suspend/resume issue was gone... is this one
+as well?
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1446211574.06560.16560
-Date: Fri, 30 Oct 2015 13:26:14 +0000
+--1446224417.33dBe2.17241
+Date: Fri, 30 Oct 2015 17:00:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -54,30 +66,46 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c19">Comment # 19</a>
+   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523#c12">Comment # 12</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
-              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
+   title="NEW - [Quadro FX 370] Compiz freezes entire desktop."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92523">bug 92523</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Disregards my previous comment, I've just hit another segfault.</pre>
+        <pre>(In reply to Carla sella from <a href="show_bug.cgi?id=92523#c11">comment #11</a>)
+<span class="quote">&gt; 
+&gt; I am waiting for Ubuntu to have the 4.3-rc7 kernel and install it:
+&gt; 
+&gt; 
+&gt; <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D">http://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D</a>
+&gt; 
+&gt; so it will be easier for me to test your patch.
+&gt; 
+&gt; I will let you know what happens.
+&gt; 
+&gt; Thanks.</span >
+
+You reported in <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - [NVA5] Corruption in Plasma 5 on resume -- set_domain failures"
+   href="show_bug.cgi?id=92504">bug 92504</a> that the suspend/resume issue was gone... is this one
+as well?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446211574.06560.16560--
+--1446224417.33dBe2.17241--
 
---===============1745804042==
+--===============0760690130==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +115,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1745804042==--
+--===============0760690130==--
