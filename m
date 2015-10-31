@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92438] Segfault in pushbuf_kref when running the
  android emulator (qemu) on nv50
-Date: Sat, 31 Oct 2015 22:22:12 +0000
-Message-ID: <bug-92438-8800-5gptIITAiu@http.bugs.freedesktop.org/>
+Date: Sat, 31 Oct 2015 23:11:44 +0000
+Message-ID: <bug-92438-8800-Z9YGNsNyrG@http.bugs.freedesktop.org/>
 References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1199013360=="
+Content-Type: multipart/mixed; boundary="===============1295511745=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,35 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1199013360==
-Content-Type: multipart/alternative; boundary="1446330132.Ec3Da1E1.979"; charset="UTF-8"
+--===============1295511745==
+Content-Type: multipart/alternative; boundary="1446333104.eB62E3C1.17615"; charset="UTF-8"
 
 
---1446330132.Ec3Da1E1.979
-Date: Sat, 31 Oct 2015 22:22:12 +0000
+--1446333104.eB62E3C1.17615
+Date: Sat, 31 Oct 2015 23:11:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92438
 
---- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Hmmm... looks like rust isn't quite ready for prime-time -- there is no 'cargo'
-gentoo ebuild. (Apparently cargo can't be built hermetically?) So I can't
-repro.
+--- Comment #25 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I believe this is now possible with ARB_direct_state_access. While I add
+support for this and add some asserts so that this doesn't happen in the
+future, would either of you mind retesting with
 
-I'm a little worried about how that buffer object came to be. It suggests we're
-missing some PIPE_BIND_* flags somewhere, or something is creating a buffer
-without any bind flags set. Can you look at the resource's "bind" property and
-see what it is?
+MESA_EXTENSION_OVERRIDE=-GL_ARB_direct_state_access
+
+which should prevent those endpoints from appearing? I somewhat doubt that this
+is the b2g issue though, that seems to be using GLES2 which doesn't have
+anything like this.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1446330132.Ec3Da1E1.979
-Date: Sat, 31 Oct 2015 22:22:12 +0000
+--1446333104.eB62E3C1.17615
+Date: Sat, 31 Oct 2015 23:11:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,21 +63,22 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c24">Comment # 24</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c25">Comment # 25</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Hmmm... looks like rust isn't quite ready for prime-time -- there is no 'cargo'
-gentoo ebuild. (Apparently cargo can't be built hermetically?) So I can't
-repro.
+        <pre>I believe this is now possible with ARB_direct_state_access. While I add
+support for this and add some asserts so that this doesn't happen in the
+future, would either of you mind retesting with
 
-I'm a little worried about how that buffer object came to be. It suggests we're
-missing some PIPE_BIND_* flags somewhere, or something is creating a buffer
-without any bind flags set. Can you look at the resource's &quot;bind&quot; property and
-see what it is?</pre>
+MESA_EXTENSION_OVERRIDE=-GL_ARB_direct_state_access
+
+which should prevent those endpoints from appearing? I somewhat doubt that this
+is the b2g issue though, that seems to be using GLES2 which doesn't have
+anything like this.</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +91,9 @@ see what it is?</pre>
     </body>
 </html>
 
---1446330132.Ec3Da1E1.979--
+--1446333104.eB62E3C1.17615--
 
---===============1199013360==
+--===============1295511745==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1199013360==--
+--===============1295511745==--
