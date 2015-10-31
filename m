@@ -1,11 +1,13 @@
-From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Subject: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Fri, 30 Oct 2015 22:55:40 +0100
-Message-ID: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92438] Segfault in pushbuf_kref when running the
+ android emulator (qemu) on nv50
+Date: Sat, 31 Oct 2015 14:15:59 +0000
+Message-ID: <bug-92438-8800-tUkFPw0aoT@http.bugs.freedesktop.org/>
+References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0762726053=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,126 +17,188 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-QXBwYXJlbnRseSBwcmUtbnY1MCBwYWdlZmxpcCBldmVudHMgaGFwcGVuIGJlZm9yZSB0aGUgYWN0
-dWFsIHZibGFuawpwZXJpb2QuIFRoZXJlZm9yZSB0aGF0IGZ1bmN0aW9uYWxpdHkgZ290IHNlbWkt
-ZGlzYWJsZWQgaW4KCmNvbW1pdCBhZjQ4NzBlNDA2MTI2YjdhYzBhZTdjN2NlNTc1MWYyNWViZTYw
-ZjI4CkF1dGhvcjogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+CkRh
-dGU6ICAgVHVlIE1heSAxMyAwMDo0MjowOCAyMDE0ICswMjAwCgogICAgZHJtL25vdXZlYXUva21z
-L252MDQtbnY0MDogZml4IHBhZ2VmbGlwIGV2ZW50cyB2aWEgc3BlY2lhbCBjYXNlLgoKVW5mb3J0
-dW5hdGVseSB0aGF0IGhhY2sgZ290IHVwcm9vdGVkIGluCgpjb21taXQgY2MxZWYxMThmYzA5OTI5
-NWFlNmFhYmJhY2M4YWY5NGQ4ZDg4ODVlYgpBdXRob3I6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5n
-QG52aWRpYS5jb20+CkRhdGU6ICAgV2VkIEF1ZyAxMiAxNzowMDozMSAyMDE1ICswMjAwCgogICAg
-ZHJtL2lycTogTWFrZSBwaXBlIHVuc2lnbmVkIGFuZCBuYW1lIGNvbnNpc3RlbnQKClRyaWdlcmlu
-ZyBhIHdhcm5pbmcgd2hlbiB0cnlpbmcgdG8gc2FtcGxlIHRoZSB2YmxhbmsgdGltZXN0YW1wIGZv
-ciBhCm5vbi1leGlzdGluZyBwaXBlLiBUaGVyZSdzIGEgZmV3IHdheXMgdG8gZml4IHRoaXM6Cgot
-IE9wZW4tY29kZSB0aGUgb2xkIGJlaGF2aW91ciwgd2hpY2gganVzdCBlbnNocmluZXMgdGhpcyBz
-bGlnaHQKICBicmVha2FnZSBvZiB0aGUgdXNlcnNwYWNlIEFCSS4KCi0gUmV2ZXJ0IE1hcmlvJ3Mg
-Y29tbWl0IGFuZCBhZ2FpbiBpbmZsaWN0IGJyb2tlbiB0aW1lc3RhbXBzLCBhZ2FpbiBub3QKICBw
-cmV0dHkuCgotIEZpeCB0aGlzIGZvciByZWFsIGJ5IGRlbGF5aW5nIHRoZSBwYWdlZmxpcCBUUyB1
-bnRpbCB0aGUgbmV4dCB2YmxhbmsKICBpbnRlcnJ1cHQsIHRoZXJlYnkgbWFraW5nIGl0IGFjY3Vy
-YXRlLgoKVGhpcyBwYXRjaCBpbXBsZW1lbnRzIHRoZSB0aGlyZCBvcHRpb24uIFNpbmNlIGhhdmlu
-ZyBhIHBhZ2UgZmxpcAppbnRlcnJ1cHQgdGhhdCBoYXBwZW5zIHdoZW4gdGhlIHBhZ2VmbGlwIGdl
-dHMgYXJtZWQgYW5kIG5vdCB3aGVuIGl0CmNvbXBsZXRlcyBpbiB0aGUgbmV4dCB2Ymxhbmsgc2Vl
-bXMgdG8gYmUgZmFpcmx5IGNvbW1vbiAob2xkZXIgaTkxNSBodwp3b3JrcyB2ZXJ5IHNpbWlsYXJs
-eSkgY3JlYXRlIGEgbmV3IGhlbHBlciB0byBhcm0gdmJsYW5rIGV2ZW50cyBmb3IKc3VjaCBkcml2
-ZXJzLgoKQnVnemlsbGE6IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/
-aWQ9MTA2NDMxCkNjOiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgpDYzogTWFy
-aW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+CkNjOiBCZW4gU2tlZ2dzIDxi
-c2tlZ2dzQHJlZGhhdC5jb20+CkNjOiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
-ClNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgot
-LS0KCk5vdGUgdGhhdCBkdWUgdG8gbGFjayBvZiBodyB0aGlzIGlzIGNvbXBsZXRlbHkgdW50ZXN0
-ZWQuIEJ1dCBJIHRoaW5rCml0J3MgdGhlIHJpZ2h0IHdheSB0byBmaXggdGhpcy4KLURhbmllbAot
-LS0KIGRyaXZlcnMvZ3B1L2RybS9kcm1faXJxLmMgICAgICAgICAgICAgICAgIHwgNTYgKysrKysr
-KysrKysrKysrKysrKysrKysrKysrKysrLQogZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9kaXNwbGF5LmMgfCAxNiArKysrLS0tLS0KIGluY2x1ZGUvZHJtL2RybVAuaCAgICAgICAgICAg
-ICAgICAgICAgICAgIHwgIDQgKysrCiAzIGZpbGVzIGNoYW5nZWQsIDY2IGluc2VydGlvbnMoKyks
-IDEwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9kcm1faXJxLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vZHJtX2lycS5jCmluZGV4IDQ2ZGJjMzRiODFiYS4uYjNlMWY1ODY2
-NmE2IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2lycS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9kcm1faXJxLmMKQEAgLTk3Miw3ICs5NzIsOCBAQCBzdGF0aWMgdm9pZCBzZW5kX3Zi
-bGFua19ldmVudChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlzdHJ1Y3QgZHJtX3BlbmRpbmdf
-dmJsYW5rX2V2ZW50ICplLAogCQl1bnNpZ25lZCBsb25nIHNlcSwgc3RydWN0IHRpbWV2YWwgKm5v
-dykKIHsKLQlXQVJOX09OX1NNUCghc3Bpbl9pc19sb2NrZWQoJmRldi0+ZXZlbnRfbG9jaykpOwor
-CWFzc2VydF9zcGluX2xvY2tlZCgmZGV2LT5ldmVudF9sb2NrKTsKKwogCWUtPmV2ZW50LnNlcXVl
-bmNlID0gc2VxOwogCWUtPmV2ZW50LnR2X3NlYyA9IG5vdy0+dHZfc2VjOwogCWUtPmV2ZW50LnR2
-X3VzZWMgPSBub3ctPnR2X3VzZWM7CkBAIC05ODUsNiArOTg2LDU5IEBAIHN0YXRpYyB2b2lkIHNl
-bmRfdmJsYW5rX2V2ZW50KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiB9CiAKIC8qKgorICogZHJt
-X2FybV92YmxhbmtfZXZlbnQgLSBhcm0gdmJsYW5rZSBldmVudCBhZnRlciBwYWdlZmxpcAorICog
-QGRldjogRFJNIGRldmljZQorICogQHBpcGU6IENSVEMgaW5kZXgKKyAqIEBlOiB0aGUgZXZlbnQg
-dG8gcHJlcGFyZSB0byBzZW5kCisgKgorICogQSBsb3Qgb2YgZHJpdmVycyBuZWVkIHRvIGdlbmVy
-YXRlIHZibGFuayBldmVudHMgZm9yIHRoZSB2ZXJ5IG5leHQgdmJsYW5rCisgKiBpbnRlcnJ1cHQu
-IEZvciBleGFtcGxlIHdoZW4gdGhlIHBhZ2UgZmxpcCBpbnRlcnJ1cHQgaGFwcGVucyB3aGVuIHRo
-ZSBwYWdlCisgKiBmbGlwIGdldHMgYXJtZWQsIGJ1dCBub3Qgd2hlbiBpdCBhY3R1YWxseSBleGVj
-dXRlcyB3aXRoaW4gdGhlIG5leHQgdmJsYW5rCisgKiBwZXJpb2QuIFRoaXMgaGVscGVyIGZ1bmN0
-aW9uIGltcGxlbWVudHMgZXhhY3RseSB0aGUgcmVxdWlyZWQgdmJsYW5rIGFybWluZworICogYmVo
-YXZpb3VyLgorICoKKyAqIENhbGxlciBtdXN0IGhvbGQgZXZlbnQgbG9jay4gQ2FsbGVyIG11c3Qg
-YWxzbyBob2xkIGEgdmJsYW5rIHJlZmVyZW5jZSBmb3IgdGhlCisgKiBldmVudCBAZSwgd2hpY2gg
-d2lsbCBiZSBkcm9wcGVkIHdoZW4gdGhlIG5leHQgdmJsYW5rIGFycml2ZXMuCisgKgorICogVGhp
-cyBpcyB0aGUgbGVnYWN5IHZlcnNpb24gb2YgZHJtX2NydGNfYXJtX3ZibGFua19ldmVudCgpLgor
-ICovCit2b2lkIGRybV9hcm1fdmJsYW5rX2V2ZW50KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVu
-c2lnbmVkIGludCBwaXBlLAorCQkJICBzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICpl
-KQoreworCXN0cnVjdCB0aW1ldmFsIG5vdzsKKwl1bnNpZ25lZCBpbnQgc2VxOworCisJYXNzZXJ0
-X3NwaW5fbG9ja2VkKCZkZXYtPmV2ZW50X2xvY2spOworCisJZS0+cGlwZSA9IHBpcGU7CisJbGlz
-dF9hZGRfdGFpbCgmZS0+YmFzZS5saW5rLCAmZGV2LT52YmxhbmtfZXZlbnRfbGlzdCk7Cit9CitF
-WFBPUlRfU1lNQk9MKGRybV9hcm1fdmJsYW5rX2V2ZW50KTsKKworLyoqCisgKiBkcm1fYXJtX3Zi
-bGFua19ldmVudCAtIGFybSB2YmxhbmtlIGV2ZW50IGFmdGVyIHBhZ2VmbGlwCisgKiBAY3J0Yzog
-dGhlIHNvdXJjZSBDUlRDIG9mIHRoZSB2YmxhbmsgZXZlbnQKKyAqIEBlOiB0aGUgZXZlbnQgdG8g
-c2VuZAorICoKKyAqIEEgbG90IG9mIGRyaXZlcnMgbmVlZCB0byBnZW5lcmF0ZSB2YmxhbmsgZXZl
-bnRzIGZvciB0aGUgdmVyeSBuZXh0IHZibGFuaworICogaW50ZXJydXB0LiBGb3IgZXhhbXBsZSB3
-aGVuIHRoZSBwYWdlIGZsaXAgaW50ZXJydXB0IGhhcHBlbnMgd2hlbiB0aGUgcGFnZQorICogZmxp
-cCBnZXRzIGFybWVkLCBidXQgbm90IHdoZW4gaXQgYWN0dWFsbHkgZXhlY3V0ZXMgd2l0aGluIHRo
-ZSBuZXh0IHZibGFuaworICogcGVyaW9kLiBUaGlzIGhlbHBlciBmdW5jdGlvbiBpbXBsZW1lbnRz
-IGV4YWN0bHkgdGhlIHJlcXVpcmVkIHZibGFuayBhcm1pbmcKKyAqIGJlaGF2aW91ci4KKyAqCisg
-KiBDYWxsZXIgbXVzdCBob2xkIGV2ZW50IGxvY2suIENhbGxlciBtdXN0IGFsc28gaG9sZCBhIHZi
-bGFuayByZWZlcmVuY2UgZm9yIHRoZQorICogZXZlbnQgQGUsIHdoaWNoIHdpbGwgYmUgZHJvcHBl
-ZCB3aGVuIHRoZSBuZXh0IHZibGFuayBhcnJpdmVzLgorICoKKyAqIFRoaXMgaXMgdGhlIG5hdGl2
-ZSBLTVMgdmVyc2lvbiBvZiBkcm1fc2VuZF92YmxhbmtfZXZlbnQoKS4KKyAqLwordm9pZCBkcm1f
-Y3J0Y19hcm1fdmJsYW5rX2V2ZW50KHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKKwkJCSAgICAgICBz
-dHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICplKQoreworCWRybV9hcm1fdmJsYW5rX2V2
-ZW50KGNydGMtPmRldiwgZHJtX2NydGNfaW5kZXgoY3J0YyksIGUpOworfQorRVhQT1JUX1NZTUJP
-TChkcm1fY3J0Y19hcm1fdmJsYW5rX2V2ZW50KTsKKworLyoqCiAgKiBkcm1fc2VuZF92Ymxhbmtf
-ZXZlbnQgLSBoZWxwZXIgdG8gc2VuZCB2YmxhbmsgZXZlbnQgYWZ0ZXIgcGFnZWZsaXAKICAqIEBk
-ZXY6IERSTSBkZXZpY2UKICAqIEBwaXBlOiBDUlRDIGluZGV4CmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2
-ZWF1L25vdXZlYXVfZGlzcGxheS5jCmluZGV4IDE4NDQ0NWQ0YWJiZi4uMDQxZTVmODQ1MzhjIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1X2Rpc3BsYXkuYwpAQCAtODI2LDcgKzgy
-Niw2IEBAIG5vdXZlYXVfZmluaXNoX3BhZ2VfZmxpcChzdHJ1Y3Qgbm91dmVhdV9jaGFubmVsICpj
-aGFuLAogCXN0cnVjdCBkcm1fZGV2aWNlICpkZXYgPSBkcm0tPmRldjsKIAlzdHJ1Y3Qgbm91dmVh
-dV9wYWdlX2ZsaXBfc3RhdGUgKnM7CiAJdW5zaWduZWQgbG9uZyBmbGFnczsKLQlpbnQgY3J0Y2lk
-ID0gLTE7CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmZGV2LT5ldmVudF9sb2NrLCBmbGFncyk7CiAK
-QEAgLTgzOCwxNiArODM3LDE1IEBAIG5vdXZlYXVfZmluaXNoX3BhZ2VfZmxpcChzdHJ1Y3Qgbm91
-dmVhdV9jaGFubmVsICpjaGFuLAogCiAJcyA9IGxpc3RfZmlyc3RfZW50cnkoJmZjdHgtPmZsaXAs
-IHN0cnVjdCBub3V2ZWF1X3BhZ2VfZmxpcF9zdGF0ZSwgaGVhZCk7CiAJaWYgKHMtPmV2ZW50KSB7
-Ci0JCS8qIFZibGFuayB0aW1lc3RhbXBzL2NvdW50cyBhcmUgb25seSBjb3JyZWN0IG9uID49IE5W
-LTUwICovCi0JCWlmIChkcm0tPmRldmljZS5pbmZvLmZhbWlseSA+PSBOVl9ERVZJQ0VfSU5GT19W
-MF9URVNMQSkKLQkJCWNydGNpZCA9IHMtPmNydGM7Ci0KLQkJZHJtX3NlbmRfdmJsYW5rX2V2ZW50
-KGRldiwgY3J0Y2lkLCBzLT5ldmVudCk7CisJCWlmIChkcm0tPmRldmljZS5pbmZvLmZhbWlseSA8
-IE5WX0RFVklDRV9JTkZPX1YwX1RFU0xBKSB7CisJCQlkcm1fYXJtX3ZibGFua19ldmVudChkZXYs
-IHMtPmNydGMsIHMtPmV2ZW50KTsKKwkJfSBlbHNlIHsKKwkJCWRybV9zZW5kX3ZibGFua19ldmVu
-dChkZXYsIHMtPmNydGMsIHMtPmV2ZW50KTsKKwkJCS8qIEdpdmUgdXAgb3duZXJzaGlwIG9mIHZi
-bGFuayBmb3IgcGFnZS1mbGlwcGVkIGNydGMgKi8KKwkJCWRybV92YmxhbmtfcHV0KGRldiwgcy0+
-Y3J0Yyk7CisJCX0KIAl9CiAKLQkvKiBHaXZlIHVwIG93bmVyc2hpcCBvZiB2YmxhbmsgZm9yIHBh
-Z2UtZmxpcHBlZCBjcnRjICovCi0JZHJtX3ZibGFua19wdXQoZGV2LCBzLT5jcnRjKTsKLQogCWxp
-c3RfZGVsKCZzLT5oZWFkKTsKIAlpZiAocHMpCiAJCSpwcyA9ICpzOwpkaWZmIC0tZ2l0IGEvaW5j
-bHVkZS9kcm0vZHJtUC5oIGIvaW5jbHVkZS9kcm0vZHJtUC5oCmluZGV4IGViNTEzMzQxYjZlZS4u
-NGM5MWFjNDE5ZDVkIDEwMDY0NAotLS0gYS9pbmNsdWRlL2RybS9kcm1QLmgKKysrIGIvaW5jbHVk
-ZS9kcm0vZHJtUC5oCkBAIC05NDgsNiArOTQ4LDEwIEBAIGV4dGVybiB2b2lkIGRybV9zZW5kX3Zi
-bGFua19ldmVudChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCB1bnNpZ25lZCBpbnQgcGlwZSwKIAkJ
-CQkgIHN0cnVjdCBkcm1fcGVuZGluZ192YmxhbmtfZXZlbnQgKmUpOwogZXh0ZXJuIHZvaWQgZHJt
-X2NydGNfc2VuZF92YmxhbmtfZXZlbnQoc3RydWN0IGRybV9jcnRjICpjcnRjLAogCQkJCSAgICAg
-ICBzdHJ1Y3QgZHJtX3BlbmRpbmdfdmJsYW5rX2V2ZW50ICplKTsKK3ZvaWQgZHJtX3NlbmRfdmJs
-YW5rX2V2ZW50KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCBwaXBlLAorCQkJ
-ICAgc3RydWN0IGRybV9wZW5kaW5nX3ZibGFua19ldmVudCAqZSk7Cit2b2lkIGRybV9jcnRjX3Nl
-bmRfdmJsYW5rX2V2ZW50KHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKKwkJCQlzdHJ1Y3QgZHJtX3Bl
-bmRpbmdfdmJsYW5rX2V2ZW50ICplKTsKIGV4dGVybiBib29sIGRybV9oYW5kbGVfdmJsYW5rKHN0
-cnVjdCBkcm1fZGV2aWNlICpkZXYsIHVuc2lnbmVkIGludCBwaXBlKTsKIGV4dGVybiBib29sIGRy
-bV9jcnRjX2hhbmRsZV92Ymxhbmsoc3RydWN0IGRybV9jcnRjICpjcnRjKTsKIGV4dGVybiBpbnQg
-ZHJtX3ZibGFua19nZXQoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHBpcGUp
-OwotLSAKMi41LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0762726053==
+Content-Type: multipart/alternative; boundary="1446300959.365021.30607"; charset="UTF-8"
+
+
+--1446300959.365021.30607
+Date: Sat, 31 Oct 2015 14:15:59 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92438
+
+--- Comment #20 from Jim Blandy <jimb-bqtBzms/kfRWk0Htik3J/w@public.gmane.org> ---
+I'm able to reproduce a crash with a very similar stack on Fedora 22, using the
+glium Rust OpenGL bindings: https://github.com/tomaka/glium
+
+Here's the stack trace I get:
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff02f66fc in pushbuf_kref () from /lib64/libdrm_nouveau.so.2
+Missing separate debuginfos, use: dnf debuginfo-install
+bzip2-libs-1.0.6-14.fc22.x86_64 elfutils-libelf-0.163-4.fc22.x86_64
+elfutils-libs-0.163-4.fc22.x86_64 expat-2.1.0-10.fc22.x86_64
+libattr-2.4.47-10.fc22.x86_64 libcap-2.24-7.fc22.x86_64
+libdrm-2.4.61-3.fc22.x86_64 libedit-3.1-12.20150325cvs.fc22.x86_64
+libffi-3.1-7.fc22.x86_64 libgcc-5.1.1-4.fc22.x86_64
+libpciaccess-0.13.3-0.3.fc22.x86_64 libselinux-2.3-10.fc22.x86_64
+libstdc++-5.1.1-4.fc22.x86_64 libwayland-client-1.7.0-1.fc22.x86_64
+libwayland-server-1.7.0-1.fc22.x86_64 libX11-1.6.3-1.fc22.x86_64
+libX11-devel-1.6.3-1.fc22.x86_64 libXau-1.0.8-4.fc22.x86_64
+libxcb-1.11-8.fc22.x86_64 libXcursor-devel-1.1.14-4.fc22.x86_64
+libXdamage-1.1.4-6.fc22.x86_64 libXext-1.3.3-2.fc22.x86_64
+libXfixes-5.0.1-4.fc22.x86_64 libXi-devel-1.7.4-2.fc22.x86_64
+libXrender-0.9.9-1.fc22.x86_64 libxshmfence-1.2-1.fc22.x86_64
+libXxf86vm-devel-1.1.4-1.fc22.x86_64 llvm-libs-3.5.0-9.fc22.x86_64
+mesa-dri-drivers-10.6.9-1.20151008.fc22.x86_64
+mesa-libEGL-10.6.9-1.20151008.fc22.x86_64
+mesa-libgbm-10.6.9-1.20151008.fc22.x86_64
+mesa-libGL-10.6.9-1.20151008.fc22.x86_64
+mesa-libglapi-10.6.9-1.20151008.fc22.x86_64
+ncurses-libs-5.9-18.20150214.fc22.x86_64 pcre-8.37-5.fc22.x86_64
+systemd-libs-219-25.fc22.x86_64 xz-libs-5.2.0-2.fc22.x86_64
+zlib-1.2.8-7.fc22.x86_64
+(gdb) where
+#0  0x00007ffff02f66fc in pushbuf_kref () from /lib64/libdrm_nouveau.so.2
+#1  0x00007ffff02f6db9 in pushbuf_validate () from /lib64/libdrm_nouveau.so.2
+#2  0x00007ffff0c28ecd in nvc0_state_validate () from
+/usr/lib64/dri/nouveau_dri.so
+#3  0x00007ffff0c33670 in nvc0_draw_vbo () from /usr/lib64/dri/nouveau_dri.so
+#4  0x00007ffff08ec867 in st_draw_vbo () from /usr/lib64/dri/nouveau_dri.so
+#5  0x00007ffff08be81c in vbo_draw_arrays () from /usr/lib64/dri/nouveau_dri.so
+#6  0x00005555555b21b7 in tutorial_02::gl::Gl::DrawArrays (self=0x7ffff6868010,
+mode=4, first=0, count=3) at
+target/debug/build/glium-e8f4c0a69cec8d2d/out/gl_bindings.rs:11032
+#7  0x00005555555acee9 in
+tutorial_02::ops::draw::draw<glium::uniforms::uniforms::EmptyUniforms,&glium::vertex::buffer::VertexBuffer<tutorial_02::main::Vertex>>
+(context=0x7ffff6868010, framebuffer=..., vertex_buffers=0x7fffffffd548,
+indices=..., program=0x7fffffffd038, uniforms=0x5555557fc297 <const16333>,
+draw_parameters=0x7fffffffccb0, dimensions=...) at src/ops/draw.rs:320
+#8  0x00005555555aa751 in
+tutorial_02::Frame.Surface::draw<&glium::vertex::buffer::VertexBuffer<tutorial_02::main::Vertex>,&glium::index::NoIndices,glium::uniforms::uniforms::EmptyUniforms>
+(self=0x7fffffffce48, vertex_buffer=0x7fffffffd548,
+index_buffer=0x7fffffffd210, program=0x7fffffffd038, uniforms=0x5555557fc297
+<const16333>, draw_parameters=0x7fffffffccb0) at src/lib.rs:1083
+#9  0x0000555555576f84 in tutorial_02::main () at examples/tutorial-02.rs:48
+#10 0x00005555557ccf85 in
+sys_common::unwind::try::try_fn::h13449604025847140769 ()
+#11 0x00005555557ca969 in __rust_try ()
+#12 0x00005555557ccc20 in rt::lang_start::h426b3aba4736785fsbx ()
+#13 0x00005555555b31da in main ()
+(gdb)
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1446300959.365021.30607
+Date: Sat, 31 Oct 2015 14:15:59 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c20">Comment # 20</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
+              from <span class="vcard"><a class="email" href="mailto:jimb&#64;red-bean.com" title="Jim Blandy &lt;jimb&#64;red-bean.com&gt;"> <span class="fn">Jim Blandy</span></a>
+</span></b>
+        <pre>I'm able to reproduce a crash with a very similar stack on Fedora 22, using the
+glium Rust OpenGL bindings: <a href="https://github.com/tomaka/glium">https://github.com/tomaka/glium</a>
+
+Here's the stack trace I get:
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff02f66fc in pushbuf_kref () from /lib64/libdrm_nouveau.so.2
+Missing separate debuginfos, use: dnf debuginfo-install
+bzip2-libs-1.0.6-14.fc22.x86_64 elfutils-libelf-0.163-4.fc22.x86_64
+elfutils-libs-0.163-4.fc22.x86_64 expat-2.1.0-10.fc22.x86_64
+libattr-2.4.47-10.fc22.x86_64 libcap-2.24-7.fc22.x86_64
+libdrm-2.4.61-3.fc22.x86_64 libedit-3.1-12.20150325cvs.fc22.x86_64
+libffi-3.1-7.fc22.x86_64 libgcc-5.1.1-4.fc22.x86_64
+libpciaccess-0.13.3-0.3.fc22.x86_64 libselinux-2.3-10.fc22.x86_64
+libstdc++-5.1.1-4.fc22.x86_64 libwayland-client-1.7.0-1.fc22.x86_64
+libwayland-server-1.7.0-1.fc22.x86_64 libX11-1.6.3-1.fc22.x86_64
+libX11-devel-1.6.3-1.fc22.x86_64 libXau-1.0.8-4.fc22.x86_64
+libxcb-1.11-8.fc22.x86_64 libXcursor-devel-1.1.14-4.fc22.x86_64
+libXdamage-1.1.4-6.fc22.x86_64 libXext-1.3.3-2.fc22.x86_64
+libXfixes-5.0.1-4.fc22.x86_64 libXi-devel-1.7.4-2.fc22.x86_64
+libXrender-0.9.9-1.fc22.x86_64 libxshmfence-1.2-1.fc22.x86_64
+libXxf86vm-devel-1.1.4-1.fc22.x86_64 llvm-libs-3.5.0-9.fc22.x86_64
+mesa-dri-drivers-10.6.9-1.20151008.fc22.x86_64
+mesa-libEGL-10.6.9-1.20151008.fc22.x86_64
+mesa-libgbm-10.6.9-1.20151008.fc22.x86_64
+mesa-libGL-10.6.9-1.20151008.fc22.x86_64
+mesa-libglapi-10.6.9-1.20151008.fc22.x86_64
+ncurses-libs-5.9-18.20150214.fc22.x86_64 pcre-8.37-5.fc22.x86_64
+systemd-libs-219-25.fc22.x86_64 xz-libs-5.2.0-2.fc22.x86_64
+zlib-1.2.8-7.fc22.x86_64
+(gdb) where
+#0  0x00007ffff02f66fc in pushbuf_kref () from /lib64/libdrm_nouveau.so.2
+#1  0x00007ffff02f6db9 in pushbuf_validate () from /lib64/libdrm_nouveau.so.2
+#2  0x00007ffff0c28ecd in nvc0_state_validate () from
+/usr/lib64/dri/nouveau_dri.so
+#3  0x00007ffff0c33670 in nvc0_draw_vbo () from /usr/lib64/dri/nouveau_dri.so
+#4  0x00007ffff08ec867 in st_draw_vbo () from /usr/lib64/dri/nouveau_dri.so
+#5  0x00007ffff08be81c in vbo_draw_arrays () from /usr/lib64/dri/nouveau_dri.so
+#6  0x00005555555b21b7 in tutorial_02::gl::Gl::DrawArrays (self=0x7ffff6868010,
+mode=4, first=0, count=3) at
+target/debug/build/glium-e8f4c0a69cec8d2d/out/gl_bindings.rs:11032
+#7  0x00005555555acee9 in
+tutorial_02::ops::draw::draw&lt;glium::uniforms::uniforms::EmptyUniforms,&amp;glium::vertex::buffer::VertexBuffer&lt;tutorial_02::main::Vertex&gt;&gt;
+(context=0x7ffff6868010, framebuffer=..., vertex_buffers=0x7fffffffd548,
+indices=..., program=0x7fffffffd038, uniforms=0x5555557fc297 &lt;const16333&gt;,
+draw_parameters=0x7fffffffccb0, dimensions=...) at src/ops/draw.rs:320
+#8  0x00005555555aa751 in
+tutorial_02::Frame.Surface::draw&lt;&amp;glium::vertex::buffer::VertexBuffer&lt;tutorial_02::main::Vertex&gt;,&amp;glium::index::NoIndices,glium::uniforms::uniforms::EmptyUniforms&gt;
+(self=0x7fffffffce48, vertex_buffer=0x7fffffffd548,
+index_buffer=0x7fffffffd210, program=0x7fffffffd038, uniforms=0x5555557fc297
+&lt;const16333&gt;, draw_parameters=0x7fffffffccb0) at src/lib.rs:1083
+#9  0x0000555555576f84 in tutorial_02::main () at examples/tutorial-02.rs:48
+#10 0x00005555557ccf85 in
+sys_common::unwind::try::try_fn::h13449604025847140769 ()
+#11 0x00005555557ca969 in __rust_try ()
+#12 0x00005555557ccc20 in rt::lang_start::h426b3aba4736785fsbx ()
+#13 0x00005555555b31da in main ()
+(gdb)</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446300959.365021.30607--
+
+--===============0762726053==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0762726053==--
