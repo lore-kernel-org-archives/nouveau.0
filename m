@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Mon, 02 Nov 2015 08:23:12 +0000
-Message-ID: <bug-90626-8800-kni1aCCUJQ@http.bugs.freedesktop.org/>
+Date: Mon, 02 Nov 2015 08:45:52 +0000
+Message-ID: <bug-90626-8800-x75adb5WZy@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1033712790=="
+Content-Type: multipart/mixed; boundary="===============1883770995=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,31 +21,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1033712790==
-Content-Type: multipart/alternative; boundary="1446452594.0Bb5fDF4.28535"; charset="UTF-8"
+--===============1883770995==
+Content-Type: multipart/alternative; boundary="1446453953.30783.1139"; charset="UTF-8"
 
 
---1446452594.0Bb5fDF4.28535
-Date: Mon, 2 Nov 2015 08:23:14 +0000
+--1446453953.30783.1139
+Date: Mon, 2 Nov 2015 08:45:53 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
 
---- Comment #22 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 119334
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D119334&action=3Dedit
-acpidump (HP ZBook 15, nVidia GK208GLM [Quadro K610M], BIOS v31/03/2015)
+Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> changed:
 
-Ok, here you are. There is already another acpidump.
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #119333|0                           |1
+        is obsolete|                            |
+
+--- Comment #23 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
+Created attachment 119336
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D119336&action=3Dedit
+acpidump (HP ZBook 15, nVidia GK106GLM [Quadro K2100M], BIOS v08/13/2014)
+
+OK, here hexdump version. Slightly different hardware than Ren=C3=A9's.
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446452594.0Bb5fDF4.28535
-Date: Mon, 2 Nov 2015 08:23:14 +0000
+--1446453953.30783.1139
+Date: Mon, 2 Nov 2015 08:45:53 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -54,31 +61,57 @@ Content-Transfer-Encoding: quoted-printable
     <head>
       <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:odi&#64;o=
+di.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span class=3D"f=
+n">Ortwin Gl=C3=BCck</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Attachment #119333 is obsolete</=
+td>
+           <td>
+               &nbsp;
+           </td>
+           <td>1
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c22">Commen=
-t # 22</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c23">Commen=
+t # 23</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
    href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
 /a>
               from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
-&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
+lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D119334=
-" name=3D"attach_119334" title=3D"acpidump (HP ZBook 15, nVidia GK208GLM [Q=
-uadro K610M], BIOS v31/03/2015)">attachment 119334</a> <a href=3D"attachmen=
-t.cgi?id=3D119334&amp;action=3Dedit" title=3D"acpidump (HP ZBook 15, nVidia=
- GK208GLM [Quadro K610M], BIOS v31/03/2015)">[details]</a></span>
-acpidump (HP ZBook 15, nVidia GK208GLM [Quadro K610M], BIOS v31/03/2015)
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D119336=
+" name=3D"attach_119336" title=3D"acpidump (HP ZBook 15, nVidia GK106GLM [Q=
+uadro K2100M], BIOS v08/13/2014)">attachment 119336</a> <a href=3D"attachme=
+nt.cgi?id=3D119336&amp;action=3Dedit" title=3D"acpidump (HP ZBook 15, nVidi=
+a GK106GLM [Quadro K2100M], BIOS v08/13/2014)">[details]</a></span>
+acpidump (HP ZBook 15, nVidia GK106GLM [Quadro K2100M], BIOS v08/13/2014)
 
-Ok, here you are. There is already another acpidump.</pre>
+OK, here hexdump version. Slightly different hardware than Ren=C3=A9's.</pr=
+e>
         </div>
       </p>
       <hr>
@@ -90,9 +123,9 @@ Ok, here you are. There is already another acpidump.</pre>
     </body>
 </html>
 
---1446452594.0Bb5fDF4.28535--
+--1446453953.30783.1139--
 
---===============1033712790==
+--===============1883770995==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1033712790==--
+--===============1883770995==--
