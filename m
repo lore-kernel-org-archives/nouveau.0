@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Mon, 02 Nov 2015 08:54:00 +0000
-Message-ID: <bug-90626-8800-yrO0TdWmZE@http.bugs.freedesktop.org/>
+Date: Mon, 02 Nov 2015 08:57:47 +0000
+Message-ID: <bug-90626-8800-CETNddbRUc@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1026849249=="
+Content-Type: multipart/mixed; boundary="===============0988059672=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,111 +21,87 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1026849249==
-Content-Type: multipart/alternative; boundary="1446454441.4bFDa74.2596"; charset="UTF-8"
+--===============0988059672==
+Content-Type: multipart/alternative; boundary="1446454667.c50178EB4.3338"; charset="UTF-8"
 
 
---1446454441.4bFDa74.2596
-Date: Mon, 2 Nov 2015 08:54:01 +0000
+--1446454667.c50178EB4.3338
+Date: Mon, 2 Nov 2015 08:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90626
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
 
---- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-FTR, the _ROM function from both dumps (same thing):
+--- Comment #27 from Ren=C3=A9 Krell <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #26)
+> FTR, the _ROM function from both dumps (same thing):
+> ...
+>                              0x00=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20
+> /* . */
+> ...
 
-            Method (_ROM, 2, NotSerialized)  // _ROM: Read-Only Memory
-            {
-                Local0 += Arg0 = (VRMB (0x04) + Local0)
-                Local1 = (VRMS () - 0x04)
-                If ((Arg0 < Local1))
-                {
-                    OperationRegion (OROM, SystemMemory, Local0, 0x1000)
-                    Field (OROM, AnyAcc, NoLock, Preserve)
-                    {
-                        R4KB,   32768
-                    }
+Shouldn't this be also reported to HP? What do you think?
 
-                    Return (R4KB) /* \_SB_.PCI0.PEGP.DGFX._ROM.R4KB */
-                }
-                Else
-                {
-                    Local0 = Buffer (0x01)
-                        {
-                             0x00                                            
-/* . */
-                        }
-                    Return (Local0)
-                }
-            }
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446454441.4bFDa74.2596
-Date: Mon, 2 Nov 2015 08:54:01 +0000
+--1446454667.c50178EB4.3338
+Date: Mon, 2 Nov 2015 08:57:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c26">Comment # 26</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c27">Commen=
+t # 27</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 Krell &lt;renda.krell&#64;gma=
+il.com&gt;"> <span class=3D"fn">Ren=C3=A9 Krell</span></a>
 </span></b>
-        <pre>FTR, the _ROM function from both dumps (same thing):
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D906=
+26#c26">comment #26</a>)
+<span class=3D"quote">&gt; FTR, the _ROM function from both dumps (same thi=
+ng):
+&gt; ...
+&gt;                              0x00=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20
+&gt; /* . */
+&gt; ...</span >
 
-            Method (_ROM, 2, NotSerialized)  // _ROM: Read-Only Memory
-            {
-                Local0 += Arg0 = (VRMB (0x04) + Local0)
-                Local1 = (VRMS () - 0x04)
-                If ((Arg0 &lt; Local1))
-                {
-                    OperationRegion (OROM, SystemMemory, Local0, 0x1000)
-                    Field (OROM, AnyAcc, NoLock, Preserve)
-                    {
-                        R4KB,   32768
-                    }
-
-                    Return (R4KB) /* \_SB_.PCI0.PEGP.DGFX._ROM.R4KB */
-                }
-                Else
-                {
-                    Local0 = Buffer (0x01)
-                        {
-                             0x00                                            
-/* . */
-                        }
-                    Return (Local0)
-                }
-            }</pre>
+Shouldn't this be also reported to HP? What do you think?</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446454441.4bFDa74.2596--
+--1446454667.c50178EB4.3338--
 
---===============1026849249==
+--===============0988059672==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1026849249==--
+--===============0988059672==--
