@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Mon, 02 Nov 2015 08:53:33 +0000
-Message-ID: <bug-90626-8800-xtQFkrASjX@http.bugs.freedesktop.org/>
+Date: Mon, 02 Nov 2015 08:54:00 +0000
+Message-ID: <bug-90626-8800-yrO0TdWmZE@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0226105020=="
+Content-Type: multipart/mixed; boundary="===============1026849249=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,73 +21,111 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0226105020==
-Content-Type: multipart/alternative; boundary="1446454413.E542D3.2535"; charset="UTF-8"
+--===============1026849249==
+Content-Type: multipart/alternative; boundary="1446454441.4bFDa74.2596"; charset="UTF-8"
 
 
---1446454413.E542D3.2535
-Date: Mon, 2 Nov 2015 08:53:33 +0000
+--1446454441.4bFDa74.2596
+Date: Mon, 2 Nov 2015 08:54:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=90626
 
---- Comment #25 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
-Yes that fixes it for me. Tested with 4.3.0-rc6.
-The slow version really is slower and causes a noticable delay during booti=
-ng,
-but I don't really mind: work laptop boots only once a day.
+--- Comment #26 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+FTR, the _ROM function from both dumps (same thing):
 
---=20
+            Method (_ROM, 2, NotSerialized)  // _ROM: Read-Only Memory
+            {
+                Local0 += Arg0 = (VRMB (0x04) + Local0)
+                Local1 = (VRMS () - 0x04)
+                If ((Arg0 < Local1))
+                {
+                    OperationRegion (OROM, SystemMemory, Local0, 0x1000)
+                    Field (OROM, AnyAcc, NoLock, Preserve)
+                    {
+                        R4KB,   32768
+                    }
+
+                    Return (R4KB) /* \_SB_.PCI0.PEGP.DGFX._ROM.R4KB */
+                }
+                Else
+                {
+                    Local0 = Buffer (0x01)
+                        {
+                             0x00                                            
+/* . */
+                        }
+                    Return (Local0)
+                }
+            }
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446454413.E542D3.2535
-Date: Mon, 2 Nov 2015 08:53:33 +0000
+--1446454441.4bFDa74.2596
+Date: Mon, 2 Nov 2015 08:54:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c25">Commen=
-t # 25</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c26">Comment # 26</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
-lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Yes that fixes it for me. Tested with 4.3.0-rc6.
-The slow version really is slower and causes a noticable delay during booti=
-ng,
-but I don't really mind: work laptop boots only once a day.</pre>
+        <pre>FTR, the _ROM function from both dumps (same thing):
+
+            Method (_ROM, 2, NotSerialized)  // _ROM: Read-Only Memory
+            {
+                Local0 += Arg0 = (VRMB (0x04) + Local0)
+                Local1 = (VRMS () - 0x04)
+                If ((Arg0 &lt; Local1))
+                {
+                    OperationRegion (OROM, SystemMemory, Local0, 0x1000)
+                    Field (OROM, AnyAcc, NoLock, Preserve)
+                    {
+                        R4KB,   32768
+                    }
+
+                    Return (R4KB) /* \_SB_.PCI0.PEGP.DGFX._ROM.R4KB */
+                }
+                Else
+                {
+                    Local0 = Buffer (0x01)
+                        {
+                             0x00                                            
+/* . */
+                        }
+                    Return (Local0)
+                }
+            }</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446454413.E542D3.2535--
+--1446454441.4bFDa74.2596--
 
---===============0226105020==
+--===============1026849249==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +135,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0226105020==--
+--===============1026849249==--
