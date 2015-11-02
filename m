@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
 	>= 4.1
-Date: Mon, 02 Nov 2015 08:45:52 +0000
-Message-ID: <bug-90626-8800-x75adb5WZy@http.bugs.freedesktop.org/>
+Date: Mon, 02 Nov 2015 08:46:47 +0000
+Message-ID: <bug-90626-8800-Y52kRHGgVD@http.bugs.freedesktop.org/>
 References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1883770995=="
+Content-Type: multipart/mixed; boundary="===============0727635940=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,111 +21,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1883770995==
-Content-Type: multipart/alternative; boundary="1446453953.30783.1139"; charset="UTF-8"
+--===============0727635940==
+Content-Type: multipart/alternative; boundary="1446454007.FBC84.1356"; charset="UTF-8"
 
 
---1446453953.30783.1139
-Date: Mon, 2 Nov 2015 08:45:53 +0000
+--1446454007.FBC84.1356
+Date: Mon, 2 Nov 2015 08:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=90626
 
-Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> changed:
+--- Comment #24 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Looks like this bios hard-codes a 4K return size for each bios chunk fetch.
+There is a "fast" and a "slow" method in nouveau... the fast one grabs it all
+in one go, while the "slow" one does it 4K at a time.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
- Attachment #119333|0                           |1
-        is obsolete|                            |
+In drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c, try commenting out the
+line
 
---- Comment #23 from Ortwin Gl=C3=BCck <odi-L693kI9kcNY@public.gmane.org> ---
-Created attachment 119336
-  --> https://bugs.freedesktop.org/attachment.cgi?id=3D119336&action=3Dedit
-acpidump (HP ZBook 15, nVidia GK106GLM [Quadro K2100M], BIOS v08/13/2014)
+                { 0, &nvbios_acpi_fast },
 
-OK, here hexdump version. Slightly different hardware than Ren=C3=A9's.
+For some reason we're not detecting that it's fetching a bad bios...
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446453953.30783.1139
-Date: Mon, 2 Nov 2015 08:45:53 +0000
+--1446454007.FBC84.1356
+Date: Mon, 2 Nov 2015 08:46:47 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:odi&#64;o=
-di.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span class=3D"f=
-n">Ortwin Gl=C3=BCck</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Attachment #119333 is obsolete</=
-td>
-           <td>
-               &nbsp;
-           </td>
-           <td>1
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c23">Commen=
-t # 23</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-odi&#64;odi.ch" title=3D"Ortwin Gl=C3=BCck &lt;odi&#64;odi.ch&gt;"> <span c=
-lass=3D"fn">Ortwin Gl=C3=BCck</span></a>
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D119336=
-" name=3D"attach_119336" title=3D"acpidump (HP ZBook 15, nVidia GK106GLM [Q=
-uadro K2100M], BIOS v08/13/2014)">attachment 119336</a> <a href=3D"attachme=
-nt.cgi?id=3D119336&amp;action=3Dedit" title=3D"acpidump (HP ZBook 15, nVidi=
-a GK106GLM [Quadro K2100M], BIOS v08/13/2014)">[details]</a></span>
-acpidump (HP ZBook 15, nVidia GK106GLM [Quadro K2100M], BIOS v08/13/2014)
+        <pre>Looks like this bios hard-codes a 4K return size for each bios chunk fetch.
+There is a &quot;fast&quot; and a &quot;slow&quot; method in nouveau... the fast one grabs it all
+in one go, while the &quot;slow&quot; one does it 4K at a time.
 
-OK, here hexdump version. Slightly different hardware than Ren=C3=A9's.</pr=
-e>
+In drivers/gpu/drm/nouveau/nvkm/subdev/bios/shadow.c, try commenting out the
+line
+
+                { 0, &amp;nvbios_acpi_fast },
+
+For some reason we're not detecting that it's fetching a bad bios...</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446453953.30783.1139--
+--1446454007.FBC84.1356--
 
---===============1883770995==
+--===============0727635940==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -135,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1883770995==--
+--===============0727635940==--
