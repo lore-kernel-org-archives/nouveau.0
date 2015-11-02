@@ -1,15 +1,15 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: help with push
-Date: Mon, 2 Nov 2015 13:42:07 -0500
-Message-ID: <CAKb7Uvj5bFy165NitrBYTm-h79WA4wspVLhJY5i7rR1r8j=PBQ@mail.gmail.com>
+Date: Mon, 2 Nov 2015 15:50:11 -0300
+Message-ID: <CANbfre7AzH_E2A3YNDZuuiU4dxWv2vLH_jMgUuE-q+RO+_JWOQ@mail.gmail.com>
 References: <CANbfre6ywp5quasRAsF-69DtYAj5XY3GwKXK4HtUk92G-Y22gw@mail.gmail.com>
  <CAKb7Uvg7zgFCuez+FVEUiac6G0SbL8ptu_i08qyP8GeQhZDBtQ@mail.gmail.com>
  <CANbfre6bnDw2PDRvtA3ByHKk5qT6XdqD6+0gg+G89d7hoYYVew@mail.gmail.com>
+ <CAKb7Uvj5bFy165NitrBYTm-h79WA4wspVLhJY5i7rR1r8j=PBQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0808484541=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CANbfre6bnDw2PDRvtA3ByHKk5qT6XdqD6+0gg+G89d7hoYYVew-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CAKb7Uvj5bFy165NitrBYTm-h79WA4wspVLhJY5i7rR1r8j=PBQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,53 +19,216 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
 Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RXJycnIuLi4uIGFyZSB5b3Ugc3VyZT8KCm52MzBfc2NyZWVuX2NyZWF0ZSBzdGFydHMgd2l0aCBh
-IGJ1bmNoIG9mIHN0dWZmIGluaXQnaW5nIG9iamVjdHMsIGFuZCB0aGVuIGRvZXM6CgogICBCRUdJ
-Tl9OVjA0KHB1c2gsIE5WMDFfU1VCQygzRCwgT0JKRUNUKSwgMSk7CiAgIFBVU0hfREFUQSAocHVz
-aCwgc2NyZWVuLT5lbmczZC0+aGFuZGxlKTsKCkFuZCBhcyB5b3UgY2FuIHNlZSBpbiBudjMwX3dp
-bnN5cy5oOgoKc3RhdGljIGlubGluZSB2b2lkCkJFR0lOX05WMDQoc3RydWN0IG5vdXZlYXVfcHVz
-aGJ1ZiAqcHVzaCwgaW50IHN1YmMsIGludCBtdGhkLCBpbnQgc2l6ZSkKewogICBQVVNIX1NQQUNF
-KHB1c2gsIHNpemUgKyAxKTsKICAgUFVTSF9EQVRBIChwdXNoLCAweDAwMDAwMDAwIHwgKHNpemUg
-PDwgMTgpIHwgKHN1YmMgPDwgMTMpIHwgbXRoZCk7Cn0KCmFuZCBQVVNIX1NQQUNFIGluIHR1cm4g
-Y2FsbHMgbm91dmVhdV9wdXNoYnVmX3NwYWNlLgoKICAtaWxpYQoKT24gTW9uLCBOb3YgMiwgMjAx
-NSBhdCAxOjM2IFBNLCBEYW5pZWwgTWVsbyBKb3JnZSBkYSBDdW5oYQo8ZG1qY3VuaGFAZ21haWwu
-Y29tPiB3cm90ZToKPiBCdXQgYXQgdGhlIHRpbWUgdGhlIG1lc2EzZCBmaWxlCj4gc3JjL2dhbGxp
-dW0vZHJpdmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYwo+IGlzIGNhbGxlZCBhbmQgd2hl
-biB0aGUgdmFyaW91cyBQVVNIX0RBVEEgYmVnaW4gdG8gYmUgY2FsbGVkIHRoZXJlIGlzIG5vdCB5
-ZXQKPiBhIGNhbGwgdG8gbm91dmVhdV9wdXNoYnVmX3NwYWNlLiBTbyBpdCB3b3VsZCBnZW5lcmF0
-ZSBhIHNlZyBmYXVsdCBpbgo+IHB1c2gtPmN1cnIuIEFnYWluLCBzb3JyeSBmb3IgdGhlIGNvbmZ1
-c2lvbiBhbmQgdGhhbmtzIGZvciB0aGUgcmVwbHkuCj4gQXdhaXRpbmcKPiBmb3IgYW4gYW5zd2Vy
-IGlmIHBvc3NpYmxlLiBUaGFua3MgaW4gYWR2YW5jZS4KPgo+IDIwMTUtMTEtMDIgMTQ6NDQgR01U
-LTAzOjAwIElsaWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT46Cj4+Cj4+IFNlZSBsaWJk
-cm0ncyBwdXNoYnVmLmMgLS0gaWlyYyBwdXNoLT5jdXIgcG9pbnRzIHRvIGEgR0FSVC1tYXBwZWQg
-Ym8uCj4+Cj4+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9tZXNhL2RybS90cmVlL25vdXZl
-YXUvcHVzaGJ1Zi5jI242ODIKPj4KPj4gbm91dmVhdV9wdXNoYnVmX2RhdGEocHVzaCwgTlVMTCwg
-MCwgMCk7Cj4+IG5vdXZlYXVfYm9fcmVmKGJvLCAmbnZwYi0+Ym8pOwo+PiBub3V2ZWF1X2JvX3Jl
-ZihOVUxMLCAmYm8pOwo+Pgo+PiBudnBiLT5iZ24gPSBudnBiLT5iby0+bWFwOwo+PiBudnBiLT5w
-dHIgPSBudnBiLT5iZ247Cj4+IHB1c2gtPmN1ciA9IG52cGItPmJnbjsKPj4gcHVzaC0+ZW5kID0g
-cHVzaC0+Y3VyICsgKG52cGItPmJvLT5zaXplIC8gNCk7Cj4+IHB1c2gtPmVuZCAtPSAyICsgcHVz
-aC0+cnN2ZF9raWNrOyAvKiBzcGFjZSBmb3Igc3VmZml4ICovCj4+Cj4+IE5vdCBzdXJlIHdoYXQg
-cHJvYmxlbSB5b3UncmUgdHJ5aW5nIHRvIHNvbHZlLgo+Pgo+PiAgIC1pbGlhCj4+Cj4+IE9uIE1v
-biwgTm92IDIsIDIwMTUgYXQgMTI6MzEgUE0sIERhbmllbCBNZWxvIEpvcmdlIGRhIEN1bmhhCj4+
-IDxkbWpjdW5oYUBnbWFpbC5jb20+IHdyb3RlOgo+PiA+IEhpLCBzb3JyeSBpZiBJIG1pc3VuZGVy
-c3Rvb2QgZXZlcnl0aGluZy4uLgo+PiA+Cj4+ID4gSW4gdGhlIGZpbGUgc3JjL2dhbGxpdW0vZHJp
-dmVycy9ub3V2ZWF1L252MzAvbnYzMF9zY3JlZW4uYyB0aGVyZSBpcwo+PiA+IGxvYW5zIG9mCj4+
-ID4gUFVTSF9EQVRBIHdoaWNoIGlzIGJhc2ljYWxseSAqcHVzaC0+Y3VyciA9IGRhdGE7Cj4+ID4K
-Pj4gPiBJJ20gdGhpbmtpbmcgdGhhdCBzb21laG93IHB1c2gtPmN1cnIgaXMgdGhlIGJvLT5tYXAg
-PSBkcm1fbW1hcCguLi4pCj4+ID4gdGhhdCBpcyBjYWxsZWQgaW4gbm91dmVhdV9ib19tYXAuIEJ1
-dCBJIGNhbm5vdCBzZWUgaG93IHRoZXkgYXJlCj4+ID4gbGlua2VkLi4uCj4+ID4gQmVjYXVzZSB3
-aGVuIG5vdXZlYXVfYm9fbWFwIGNhbGxzIG5vdXZlYXVfYm9fd2FpdAo+PiA+IHB1c2ggPSBjbGlf
-cHVzaF9nZXQoY2xpZW50LCBibykgcmV0dXJucyBOVUxMLi4uCj4+ID4KPj4gPiBJcyBwdXNoLT5j
-dXJyIHRoZSByZWdpb24gb2YgbWVtb3J5IHRoYXQgd2Ugc2VuZCBkYXRhIHRvIHRoZSBjYXJkPwo+
-PiA+IElmIHNvLCBob3cgaXMgaXQgbWFwcGVkPwo+PiA+IEhhcyBiby0+bWFwIHNvbWV0aGluZyB0
-byBkbyB3aXRoIGl0PyBJZiBzbywgaG93IGFyZSB0aGV5IGxpbmtlZD8KPj4gPgo+PiA+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4+ID4gTm91dmVhdSBt
-YWlsaW5nIGxpc3QKPj4gPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+IGh0dHA6
-Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cj4+ID4KPgo+
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
-bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+--===============0808484541==
+Content-Type: multipart/alternative; boundary=001a114a79123b01da0523933fe9
+
+--001a114a79123b01da0523933fe9
+Content-Type: text/plain; charset=UTF-8
+
+SORRY SORRY SORRY :)
+Thanks for the consideration.
+
+2015-11-02 15:42 GMT-03:00 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>:
+
+> Errrr.... are you sure?
+>
+> nv30_screen_create starts with a bunch of stuff init'ing objects, and then
+> does:
+>
+>    BEGIN_NV04(push, NV01_SUBC(3D, OBJECT), 1);
+>    PUSH_DATA (push, screen->eng3d->handle);
+>
+> And as you can see in nv30_winsys.h:
+>
+> static inline void
+> BEGIN_NV04(struct nouveau_pushbuf *push, int subc, int mthd, int size)
+> {
+>    PUSH_SPACE(push, size + 1);
+>    PUSH_DATA (push, 0x00000000 | (size << 18) | (subc << 13) | mthd);
+> }
+>
+> and PUSH_SPACE in turn calls nouveau_pushbuf_space.
+>
+>   -ilia
+>
+> On Mon, Nov 2, 2015 at 1:36 PM, Daniel Melo Jorge da Cunha
+> <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> > But at the time the mesa3d file
+> > src/gallium/drivers/nouveau/nv30/nv30_screen.c
+> > is called and when the various PUSH_DATA begin to be called there is not
+> yet
+> > a call to nouveau_pushbuf_space. So it would generate a seg fault in
+> > push->curr. Again, sorry for the confusion and thanks for the reply.
+> > Awaiting
+> > for an answer if possible. Thanks in advance.
+> >
+> > 2015-11-02 14:44 GMT-03:00 Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>:
+> >>
+> >> See libdrm's pushbuf.c -- iirc push->cur points to a GART-mapped bo.
+> >>
+> >> http://cgit.freedesktop.org/mesa/drm/tree/nouveau/pushbuf.c#n682
+> >>
+> >> nouveau_pushbuf_data(push, NULL, 0, 0);
+> >> nouveau_bo_ref(bo, &nvpb->bo);
+> >> nouveau_bo_ref(NULL, &bo);
+> >>
+> >> nvpb->bgn = nvpb->bo->map;
+> >> nvpb->ptr = nvpb->bgn;
+> >> push->cur = nvpb->bgn;
+> >> push->end = push->cur + (nvpb->bo->size / 4);
+> >> push->end -= 2 + push->rsvd_kick; /* space for suffix */
+> >>
+> >> Not sure what problem you're trying to solve.
+> >>
+> >>   -ilia
+> >>
+> >> On Mon, Nov 2, 2015 at 12:31 PM, Daniel Melo Jorge da Cunha
+> >> <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> >> > Hi, sorry if I misunderstood everything...
+> >> >
+> >> > In the file src/gallium/drivers/nouveau/nv30/nv30_screen.c there is
+> >> > loans of
+> >> > PUSH_DATA which is basically *push->curr = data;
+> >> >
+> >> > I'm thinking that somehow push->curr is the bo->map = drm_mmap(...)
+> >> > that is called in nouveau_bo_map. But I cannot see how they are
+> >> > linked...
+> >> > Because when nouveau_bo_map calls nouveau_bo_wait
+> >> > push = cli_push_get(client, bo) returns NULL...
+> >> >
+> >> > Is push->curr the region of memory that we send data to the card?
+> >> > If so, how is it mapped?
+> >> > Has bo->map something to do with it? If so, how are they linked?
+> >> >
+> >> > _______________________________________________
+> >> > Nouveau mailing list
+> >> > Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+> >> > http://lists.freedesktop.org/mailman/listinfo/nouveau
+> >> >
+> >
+> >
+>
+
+--001a114a79123b01da0523933fe9
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>SORRY SORRY SORRY :)<br></div>Thanks for the consider=
+ation.<br></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2=
+015-11-02 15:42 GMT-03:00 Ilia Mirkin <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org" target=3D"_blank">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt;</sp=
+an>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex">Errrr.... are you sure?<br>
+<br>
+nv30_screen_create starts with a bunch of stuff init&#39;ing objects, and t=
+hen does:<br>
+<br>
+=C2=A0 =C2=A0BEGIN_NV04(push, NV01_SUBC(3D, OBJECT), 1);<br>
+=C2=A0 =C2=A0PUSH_DATA (push, screen-&gt;eng3d-&gt;handle);<br>
+<br>
+And as you can see in nv30_winsys.h:<br>
+<br>
+static inline void<br>
+BEGIN_NV04(struct nouveau_pushbuf *push, int subc, int mthd, int size)<br>
+{<br>
+=C2=A0 =C2=A0PUSH_SPACE(push, size + 1);<br>
+=C2=A0 =C2=A0PUSH_DATA (push, 0x00000000 | (size &lt;&lt; 18) | (subc &lt;&=
+lt; 13) | mthd);<br>
+}<br>
+<br>
+and PUSH_SPACE in turn calls nouveau_pushbuf_space.<br>
+<br>
+=C2=A0 -ilia<br>
+<br>
+On Mon, Nov 2, 2015 at 1:36 PM, Daniel Melo Jorge da Cunha<br>
+<div class=3D"HOEnZb"><div class=3D"h5">&lt;<a href=3D"mailto:dmjcunha@gmai=
+l.com">dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&gt; wrote:<br>
+&gt; But at the time the mesa3d file<br>
+&gt; src/gallium/drivers/nouveau/nv30/nv30_screen.c<br>
+&gt; is called and when the various PUSH_DATA begin to be called there is n=
+ot yet<br>
+&gt; a call to nouveau_pushbuf_space. So it would generate a seg fault in<b=
+r>
+&gt; push-&gt;curr. Again, sorry for the confusion and thanks for the reply=
+.<br>
+&gt; Awaiting<br>
+&gt; for an answer if possible. Thanks in advance.<br>
+&gt;<br>
+&gt; 2015-11-02 14:44 GMT-03:00 Ilia Mirkin &lt;<a href=3D"mailto:imirkin@a=
+lum.mit.edu">imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org</a>&gt;:<br>
+&gt;&gt;<br>
+&gt;&gt; See libdrm&#39;s pushbuf.c -- iirc push-&gt;cur points to a GART-m=
+apped bo.<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://cgit.freedesktop.org/mesa/drm/tree/nouveau/pushb=
+uf.c#n682" rel=3D"noreferrer" target=3D"_blank">http://cgit.freedesktop.org=
+/mesa/drm/tree/nouveau/pushbuf.c#n682</a><br>
+&gt;&gt;<br>
+&gt;&gt; nouveau_pushbuf_data(push, NULL, 0, 0);<br>
+&gt;&gt; nouveau_bo_ref(bo, &amp;nvpb-&gt;bo);<br>
+&gt;&gt; nouveau_bo_ref(NULL, &amp;bo);<br>
+&gt;&gt;<br>
+&gt;&gt; nvpb-&gt;bgn =3D nvpb-&gt;bo-&gt;map;<br>
+&gt;&gt; nvpb-&gt;ptr =3D nvpb-&gt;bgn;<br>
+&gt;&gt; push-&gt;cur =3D nvpb-&gt;bgn;<br>
+&gt;&gt; push-&gt;end =3D push-&gt;cur + (nvpb-&gt;bo-&gt;size / 4);<br>
+&gt;&gt; push-&gt;end -=3D 2 + push-&gt;rsvd_kick; /* space for suffix */<b=
+r>
+&gt;&gt;<br>
+&gt;&gt; Not sure what problem you&#39;re trying to solve.<br>
+&gt;&gt;<br>
+&gt;&gt;=C2=A0 =C2=A0-ilia<br>
+&gt;&gt;<br>
+&gt;&gt; On Mon, Nov 2, 2015 at 12:31 PM, Daniel Melo Jorge da Cunha<br>
+&gt;&gt; &lt;<a href=3D"mailto:dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org">dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org</a>&g=
+t; wrote:<br>
+&gt;&gt; &gt; Hi, sorry if I misunderstood everything...<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; In the file src/gallium/drivers/nouveau/nv30/nv30_screen.c th=
+ere is<br>
+&gt;&gt; &gt; loans of<br>
+&gt;&gt; &gt; PUSH_DATA which is basically *push-&gt;curr =3D data;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; I&#39;m thinking that somehow push-&gt;curr is the bo-&gt;map=
+ =3D drm_mmap(...)<br>
+&gt;&gt; &gt; that is called in nouveau_bo_map. But I cannot see how they a=
+re<br>
+&gt;&gt; &gt; linked...<br>
+&gt;&gt; &gt; Because when nouveau_bo_map calls nouveau_bo_wait<br>
+&gt;&gt; &gt; push =3D cli_push_get(client, bo) returns NULL...<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Is push-&gt;curr the region of memory that we send data to th=
+e card?<br>
+&gt;&gt; &gt; If so, how is it mapped?<br>
+&gt;&gt; &gt; Has bo-&gt;map something to do with it? If so, how are they l=
+inked?<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; _______________________________________________<br>
+&gt;&gt; &gt; Nouveau mailing list<br>
+&gt;&gt; &gt; <a href=3D"mailto:Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org">Nouveau@list=
+s.freedesktop.org</a><br>
+&gt;&gt; &gt; <a href=3D"http://lists.freedesktop.org/mailman/listinfo/nouv=
+eau" rel=3D"noreferrer" target=3D"_blank">http://lists.freedesktop.org/mail=
+man/listinfo/nouveau</a><br>
+&gt;&gt; &gt;<br>
+&gt;<br>
+&gt;<br>
+</div></div></blockquote></div><br></div>
+
+--001a114a79123b01da0523933fe9--
+
+--===============0808484541==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0808484541==--
