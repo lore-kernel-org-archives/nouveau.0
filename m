@@ -1,62 +1,112 @@
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Mon, 2 Nov 2015 16:45:00 +0900
-Message-ID: <5637147C.6010802@daenzer.net>
-References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
+Date: Mon, 02 Nov 2015 08:11:13 +0000
+Message-ID: <bug-90626-8800-wSaycpNeDq@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Thierry Reding <treding@nvidia.com>, Ben Skeggs <bskeggs@redhat.com>, DRI Development <dri-devel@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: multipart/mixed; boundary="===============1435095341=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMzEuMTAuMjAxNSAwNjo1NSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiBBcHBhcmVudGx5IHBy
-ZS1udjUwIHBhZ2VmbGlwIGV2ZW50cyBoYXBwZW4gYmVmb3JlIHRoZSBhY3R1YWwgdmJsYW5rCj4g
-cGVyaW9kLiBUaGVyZWZvcmUgdGhhdCBmdW5jdGlvbmFsaXR5IGdvdCBzZW1pLWRpc2FibGVkIGlu
-Cj4gCj4gY29tbWl0IGFmNDg3MGU0MDYxMjZiN2FjMGFlN2M3Y2U1NzUxZjI1ZWJlNjBmMjgKPiBB
-dXRob3I6IE1hcmlvIEtsZWluZXIgPG1hcmlvLmtsZWluZXIuZGVAZ21haWwuY29tPgo+IERhdGU6
-ICAgVHVlIE1heSAxMyAwMDo0MjowOCAyMDE0ICswMjAwCj4gCj4gICAgIGRybS9ub3V2ZWF1L2tt
-cy9udjA0LW52NDA6IGZpeCBwYWdlZmxpcCBldmVudHMgdmlhIHNwZWNpYWwgY2FzZS4KPiAKPiBV
-bmZvcnR1bmF0ZWx5IHRoYXQgaGFjayBnb3QgdXByb290ZWQgaW4KPiAKPiBjb21taXQgY2MxZWYx
-MThmYzA5OTI5NWFlNmFhYmJhY2M4YWY5NGQ4ZDg4ODVlYgo+IEF1dGhvcjogVGhpZXJyeSBSZWRp
-bmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPiBEYXRlOiAgIFdlZCBBdWcgMTIgMTc6MDA6MzEgMjAx
-NSArMDIwMAo+IAo+ICAgICBkcm0vaXJxOiBNYWtlIHBpcGUgdW5zaWduZWQgYW5kIG5hbWUgY29u
-c2lzdGVudAo+IAo+IFRyaWdlcmluZyBhIHdhcm5pbmcgd2hlbiB0cnlpbmcgdG8gc2FtcGxlIHRo
-ZSB2YmxhbmsgdGltZXN0YW1wIGZvciBhCj4gbm9uLWV4aXN0aW5nIHBpcGUuIFRoZXJlJ3MgYSBm
-ZXcgd2F5cyB0byBmaXggdGhpczoKPiAKPiAtIE9wZW4tY29kZSB0aGUgb2xkIGJlaGF2aW91ciwg
-d2hpY2gganVzdCBlbnNocmluZXMgdGhpcyBzbGlnaHQKPiAgIGJyZWFrYWdlIG9mIHRoZSB1c2Vy
-c3BhY2UgQUJJLgo+IAo+IC0gUmV2ZXJ0IE1hcmlvJ3MgY29tbWl0IGFuZCBhZ2FpbiBpbmZsaWN0
-IGJyb2tlbiB0aW1lc3RhbXBzLCBhZ2FpbiBub3QKPiAgIHByZXR0eS4KPiAKPiAtIEZpeCB0aGlz
-IGZvciByZWFsIGJ5IGRlbGF5aW5nIHRoZSBwYWdlZmxpcCBUUyB1bnRpbCB0aGUgbmV4dCB2Ymxh
-bmsKPiAgIGludGVycnVwdCwgdGhlcmVieSBtYWtpbmcgaXQgYWNjdXJhdGUuCj4gCj4gVGhpcyBw
-YXRjaCBpbXBsZW1lbnRzIHRoZSB0aGlyZCBvcHRpb24uIFNpbmNlIGhhdmluZyBhIHBhZ2UgZmxp
-cAo+IGludGVycnVwdCB0aGF0IGhhcHBlbnMgd2hlbiB0aGUgcGFnZWZsaXAgZ2V0cyBhcm1lZCBh
-bmQgbm90IHdoZW4gaXQKPiBjb21wbGV0ZXMgaW4gdGhlIG5leHQgdmJsYW5rIHNlZW1zIHRvIGJl
-IGZhaXJseSBjb21tb24gKG9sZGVyIGk5MTUgaHcKPiB3b3JrcyB2ZXJ5IHNpbWlsYXJseSkgY3Jl
-YXRlIGEgbmV3IGhlbHBlciB0byBhcm0gdmJsYW5rIGV2ZW50cyBmb3IKPiBzdWNoIGRyaXZlcnMu
-CgpXaGF0IGhhcHBlbnMgd2hlbiB0aGUgcGFnZSBmbGlwIGludGVycnVwdCBhcnJpdmVzIGR1cmlu
-ZyBhIHZlcnRpY2FsCmJsYW5rIHBlcmlvZD8gIFByZXN1bWFibHkgdGhlIHVzZXJzcGFjZSBldmVu
-dCB3aWxsIGJlIGRlZmVycmVkIHVudGlsIHRoZQpuZXh0IHZlcnRpY2FsIGJsYW5rIHBlcmlvZCwg
-YnV0IHRoZSBmbGlwIG1pZ2h0IGFscmVhZHkgdGFrZSBlZmZlY3QgaW4KdGhlIGN1cnJlbnQgb25l
-LgoKCj4gKy8qKgo+ICsgKiBkcm1fYXJtX3ZibGFua19ldmVudCAtIGFybSB2YmxhbmtlIGV2ZW50
-IGFmdGVyIHBhZ2VmbGlwCj4gKyAqIEBjcnRjOiB0aGUgc291cmNlIENSVEMgb2YgdGhlIHZibGFu
-ayBldmVudAoKWWUgb2xkZSB2YmxhbmtlIGV2ZW50PyA7KSAodHlwbywgc2FtZSBpbiB0aGUgcHJl
-dmlvdXMgY29tbWVudCkKClRoZSBmdW5jdGlvbiBuYW1lIGluIHRoaXMgY29tbWVudCBkb2Vzbid0
-IG1hdGNoIHRoZSBuYW1lIG9mIHRoZSBmdW5jdGlvbgppdCBkZXNjcmliZXMuCgoKLS0gCkVhcnRo
-bGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwgICAgICAgICAgICAgICBodHRwOi8v
-d3d3LmFtZC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFzdCAgICAgICAgICAgICB8ICAgICAg
-ICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCmRyaS1kZXZlbCBtYWlsaW5nIGxpc3QKZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vZHJpLWRldmVsCg==
+
+--===============1435095341==
+Content-Type: multipart/alternative; boundary="1446451874.3fE173C4.26147"; charset="UTF-8"
+
+
+--1446451874.3fE173C4.26147
+Date: Mon, 2 Nov 2015 08:11:14 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+
+--- Comment #18 from Ren=C3=A9 <renda.krell-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #17)
+> Could one of you post an acpidump from the laptop? Specifically interested
+> in how the _ROM method is defined.
+
+I can do that. Just two questions:
+- Can I leave the native nvidia driver loaded (my workaround for the broken
+nouveau driver) when running acpidump or do I have to uninstall it an
+reactivate nouveau for this?
+- Some special command line options to acpidump?
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446451874.3fE173C4.26147
+Date: Mon, 2 Nov 2015 08:11:14 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c18">Commen=
+t # 18</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+renda.krell&#64;gmail.com" title=3D"Ren=C3=A9 &lt;renda.krell&#64;gmail.com=
+&gt;"> <span class=3D"fn">Ren=C3=A9</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D906=
+26#c17">comment #17</a>)
+<span class=3D"quote">&gt; Could one of you post an acpidump from the lapto=
+p? Specifically interested
+&gt; in how the _ROM method is defined.</span >
+
+I can do that. Just two questions:
+- Can I leave the native nvidia driver loaded (my workaround for the broken
+nouveau driver) when running acpidump or do I have to uninstall it an
+reactivate nouveau for this?
+- Some special command line options to acpidump?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446451874.3fE173C4.26147--
+
+--===============1435095341==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1435095341==--
