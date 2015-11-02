@@ -1,13 +1,12 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Mon, 02 Nov 2015 22:52:30 +0000
-Message-ID: <bug-90626-8800-wnZ0VD9oFC@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 72315] Fedora 19 64-bit X crash
+Date: Mon, 02 Nov 2015 23:24:22 +0000
+Message-ID: <bug-72315-8800-Sjd8JWGfPF@http.bugs.freedesktop.org/>
+References: <bug-72315-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0956366948=="
+Content-Type: multipart/mixed; boundary="===============0991006951=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-72315-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,84 +20,91 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0956366948==
-Content-Type: multipart/alternative; boundary="1446504752.b34D3a4.15465"; charset="UTF-8"
+--===============0991006951==
+Content-Type: multipart/alternative; boundary="1446506662.aeD8CFE2.26694"; charset="UTF-8"
 
 
---1446504752.b34D3a4.15465
-Date: Mon, 2 Nov 2015 22:52:32 +0000
+--1446506662.aeD8CFE2.26694
+Date: Mon, 2 Nov 2015 23:24:22 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D90626
+https://bugs.freedesktop.org/show_bug.cgi?id=72315
 
---- Comment #34 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Ortwin Gl=C3=BCck from comment #33)
-> (In reply to Ilia Mirkin from comment #32)
-> > nouveau.config=3DWar00C800_0=3D1
->=20
-> Doesn't help, but don't worry now - different issue.
+--- Comment #7 from hartbox-GANU6spQydw@public.gmane.org ---
+Hi,
 
-Hmmm... did you see a "hw bug workaround enabled" line? Are you using Linux
-4.3? [4.2 and older didn't have the workaround logic.]
+I have a same problem on a recent fedora 22 install.
+I can use it but I have many crash when I watch video:
+nov. 01 18:56:07 homepc kernel: nouveau E[   PFIFO][0000:03:00.0] PBDMA0: ch 5
+[systemd-logind[962]] subc 0 mthd 0x001c data 0x00001004
+nov. 01 18:56:07 homepc systemd-journal[692]: Missed 23 kernel messages
+nov. 01 18:56:07 homepc kernel: nouveau E[   PFIFO][0000:03:00.0] PBDMA0:
+ACQUIRE
 
---=20
+When machine frozen, keyboard or mouse aren't effect, I must shutdown hard the
+computer.
+
+Graphic Card:
+03:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 660]
+(rev a1)
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446504752.b34D3a4.15465
-Date: Mon, 2 Nov 2015 22:52:32 +0000
+--1446506662.aeD8CFE2.26694
+Date: Mon, 2 Nov 2015 23:24:22 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626#c34">Commen=
-t # 34</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315#c7">Comment # 7</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;=3D 4.1"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D90626">bug 90626<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-imirkin&#64;alum.mit.edu" title=3D"Ilia Mirkin &lt;imirkin&#64;alum.mit.edu=
-&gt;"> <span class=3D"fn">Ilia Mirkin</span></a>
+   title="NEW - Fedora 19 64-bit X crash"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72315">bug 72315</a>
+              from <span class="vcard"><a class="email" href="mailto:hartbox&#64;free.fr" title="hartbox&#64;free.fr">hartbox&#64;free.fr</a>
 </span></b>
-        <pre>(In reply to Ortwin Gl=C3=BCck from <a href=3D"show_bug.cgi?id=
-=3D90626#c33">comment #33</a>)
-<span class=3D"quote">&gt; (In reply to Ilia Mirkin from <a href=3D"show_bu=
-g.cgi?id=3D90626#c32">comment #32</a>)
-&gt; &gt; nouveau.config=3DWar00C800_0=3D1
-&gt;=20
-&gt; Doesn't help, but don't worry now - different issue.</span >
+        <pre>Hi,
 
-Hmmm... did you see a &quot;hw bug workaround enabled&quot; line? Are you u=
-sing Linux
-4.3? [4.2 and older didn't have the workaround logic.]</pre>
+I have a same problem on a recent fedora 22 install.
+I can use it but I have many crash when I watch video:
+nov. 01 18:56:07 homepc kernel: nouveau E[   PFIFO][0000:03:00.0] PBDMA0: ch 5
+[systemd-logind[962]] subc 0 mthd 0x001c data 0x00001004
+nov. 01 18:56:07 homepc systemd-journal[692]: Missed 23 kernel messages
+nov. 01 18:56:07 homepc kernel: nouveau E[   PFIFO][0000:03:00.0] PBDMA0:
+ACQUIRE
+
+When machine frozen, keyboard or mouse aren't effect, I must shutdown hard the
+computer.
+
+Graphic Card:
+03:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 660]
+(rev a1)</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446504752.b34D3a4.15465--
+--1446506662.aeD8CFE2.26694--
 
---===============0956366948==
+--===============0991006951==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0956366948==--
+--===============0991006951==--
