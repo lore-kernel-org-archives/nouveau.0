@@ -1,10 +1,13 @@
-From: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: help with push
-Date: Mon, 2 Nov 2015 14:31:26 -0300
-Message-ID: <CANbfre6ywp5quasRAsF-69DtYAj5XY3GwKXK4HtUk92G-Y22gw@mail.gmail.com>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: help with push
+Date: Mon, 2 Nov 2015 12:44:48 -0500
+Message-ID: <CAKb7Uvg7zgFCuez+FVEUiac6G0SbL8ptu_i08qyP8GeQhZDBtQ@mail.gmail.com>
+References: <CANbfre6ywp5quasRAsF-69DtYAj5XY3GwKXK4HtUk92G-Y22gw@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0244985297=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <CANbfre6ywp5quasRAsF-69DtYAj5XY3GwKXK4HtUk92G-Y22gw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -14,55 +17,33 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Daniel Melo Jorge da Cunha <dmjcunha-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
---===============0244985297==
-Content-Type: multipart/alternative; boundary=001a114a6b989fdf2405239225d0
-
---001a114a6b989fdf2405239225d0
-Content-Type: text/plain; charset=UTF-8
-
-Hi, sorry if I misunderstood everything...
-
-In the file src/gallium/drivers/nouveau/nv30/nv30_screen.c there is loans of
-PUSH_DATA which is basically *push->curr = data;
-
-I'm thinking that somehow push->curr is the bo->map = drm_mmap(...)
-that is called in nouveau_bo_map. But I cannot see how they are linked...
-Because when nouveau_bo_map calls nouveau_bo_wait
-push = cli_push_get(client, bo) returns NULL...
-
-Is push->curr the region of memory that we send data to the card?
-If so, how is it mapped?
-Has bo->map something to do with it? If so, how are they linked?
-
---001a114a6b989fdf2405239225d0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi, sorry if I misunder=
-stood everything...<br><br></div>In the file src/gallium/drivers/nouveau/nv=
-30/nv30_screen.c there is loans of<br></div>PUSH_DATA which is basically *p=
-ush-&gt;curr =3D data;<br><br></div>I&#39;m thinking that somehow push-&gt;=
-curr is the bo-&gt;map =3D drm_mmap(...)<br></div>that is called in nouveau=
-_bo_map. But I cannot see how they are linked...<br></div><div>Because when=
- nouveau_bo_map calls nouveau_bo_wait<br>push =3D <span class=3D"">cli_push=
-_get</span>(client, bo) returns NULL...<br></div><div><br></div>Is push-&gt=
-;curr the region of memory that we send data to the card?<br></div>If so, h=
-ow is it mapped?<br></div>Has bo-&gt;map something to do with it? If so, ho=
-w are they linked?<br></div>
-
---001a114a6b989fdf2405239225d0--
-
---===============0244985297==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0244985297==--
+U2VlIGxpYmRybSdzIHB1c2hidWYuYyAtLSBpaXJjIHB1c2gtPmN1ciBwb2ludHMgdG8gYSBHQVJU
+LW1hcHBlZCBiby4KCmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9tZXNhL2RybS90cmVlL25v
+dXZlYXUvcHVzaGJ1Zi5jI242ODIKCm5vdXZlYXVfcHVzaGJ1Zl9kYXRhKHB1c2gsIE5VTEwsIDAs
+IDApOwpub3V2ZWF1X2JvX3JlZihibywgJm52cGItPmJvKTsKbm91dmVhdV9ib19yZWYoTlVMTCwg
+JmJvKTsKCm52cGItPmJnbiA9IG52cGItPmJvLT5tYXA7Cm52cGItPnB0ciA9IG52cGItPmJnbjsK
+cHVzaC0+Y3VyID0gbnZwYi0+YmduOwpwdXNoLT5lbmQgPSBwdXNoLT5jdXIgKyAobnZwYi0+Ym8t
+PnNpemUgLyA0KTsKcHVzaC0+ZW5kIC09IDIgKyBwdXNoLT5yc3ZkX2tpY2s7IC8qIHNwYWNlIGZv
+ciBzdWZmaXggKi8KCk5vdCBzdXJlIHdoYXQgcHJvYmxlbSB5b3UncmUgdHJ5aW5nIHRvIHNvbHZl
+LgoKICAtaWxpYQoKT24gTW9uLCBOb3YgMiwgMjAxNSBhdCAxMjozMSBQTSwgRGFuaWVsIE1lbG8g
+Sm9yZ2UgZGEgQ3VuaGEKPGRtamN1bmhhQGdtYWlsLmNvbT4gd3JvdGU6Cj4gSGksIHNvcnJ5IGlm
+IEkgbWlzdW5kZXJzdG9vZCBldmVyeXRoaW5nLi4uCj4KPiBJbiB0aGUgZmlsZSBzcmMvZ2FsbGl1
+bS9kcml2ZXJzL25vdXZlYXUvbnYzMC9udjMwX3NjcmVlbi5jIHRoZXJlIGlzIGxvYW5zIG9mCj4g
+UFVTSF9EQVRBIHdoaWNoIGlzIGJhc2ljYWxseSAqcHVzaC0+Y3VyciA9IGRhdGE7Cj4KPiBJJ20g
+dGhpbmtpbmcgdGhhdCBzb21laG93IHB1c2gtPmN1cnIgaXMgdGhlIGJvLT5tYXAgPSBkcm1fbW1h
+cCguLi4pCj4gdGhhdCBpcyBjYWxsZWQgaW4gbm91dmVhdV9ib19tYXAuIEJ1dCBJIGNhbm5vdCBz
+ZWUgaG93IHRoZXkgYXJlIGxpbmtlZC4uLgo+IEJlY2F1c2Ugd2hlbiBub3V2ZWF1X2JvX21hcCBj
+YWxscyBub3V2ZWF1X2JvX3dhaXQKPiBwdXNoID0gY2xpX3B1c2hfZ2V0KGNsaWVudCwgYm8pIHJl
+dHVybnMgTlVMTC4uLgo+Cj4gSXMgcHVzaC0+Y3VyciB0aGUgcmVnaW9uIG9mIG1lbW9yeSB0aGF0
+IHdlIHNlbmQgZGF0YSB0byB0aGUgY2FyZD8KPiBJZiBzbywgaG93IGlzIGl0IG1hcHBlZD8KPiBI
+YXMgYm8tPm1hcCBzb21ldGhpbmcgdG8gZG8gd2l0aCBpdD8gSWYgc28sIGhvdyBhcmUgdGhleSBs
+aW5rZWQ/Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+PiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo+
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
