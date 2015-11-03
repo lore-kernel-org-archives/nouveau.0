@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Mon, 02 Nov 2015 23:34:11 +0000
-Message-ID: <bug-70354-8800-phw9AEvml0@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 73373] [NVE4] GPU lockup after opening many tabs in
+ Chromium web browser
+Date: Tue, 03 Nov 2015 16:07:27 +0000
+Message-ID: <bug-73373-8800-sOWDsw1gzz@http.bugs.freedesktop.org/>
+References: <bug-73373-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0354797220=="
+Content-Type: multipart/mixed; boundary="===============1117075688=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-73373-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,42 +21,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0354797220==
-Content-Type: multipart/alternative; boundary="1446507251.12Ed1.29430"; charset="UTF-8"
+--===============1117075688==
+Content-Type: multipart/alternative; boundary="1446566847.57AD00.12796"; charset="UTF-8"
 
 
---1446507251.12Ed1.29430
-Date: Mon, 2 Nov 2015 23:34:11 +0000
+--1446566847.57AD00.12796
+Date: Tue, 3 Nov 2015 16:07:27 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+https://bugs.freedesktop.org/show_bug.cgi?id=73373
 
---- Comment #83 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #82) 
-> You should see the following print:
+--- Comment #19 from Mario Barrera <mbarrera-KK0ffGbhmjU@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #18)
+> (In reply to Mario Barrera from comment #15)
+> > Maybe useful, opening about 10 tabs with embedded flash elements in Firefox
+> > seems to cause the running Chromium browser to trigger the GPU lockup.
 > 
-> nvkm_info(&pmu->subdev, "hw bug workaround enabled\n");
-> 
-> in your kernel log. You need to be running Linux 4.3-rcN for that code to
-> exist in the driver (or a driver built from Ben's repo).
+> Does this still happen with a recent kernel / mesa? Among other things, mesa
+> 11.0.3 fixes a number of annoying resource management issues.
 
-Thx for the info. I do not see this trace and actually it seems that the code
-around the workaround is not called. Is it possible that it fails before ?
-"timeout at
-drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1478/gf100_gr_init_ctxctl"
+I can still reproduce the issue by opening many HTML files with Firefox. It
+happens always.
 
-It timeouts from gf100.c and the trace you pointed is in gk104.c, if it helps.
-I added more traces in gk104_pmu_pgob and it does not print. 
-(I set: echo 9 | sudo tee /sys/module/drm/parameters/debug   and  added some
-nvkm_error,   nothing about "workaround" in /var/logs/kern.log")
+I have mesa 11.0.4 in Linux 4.2.5-1-ARCH.
+
+I'm attaching the logs.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446507251.12Ed1.29430
-Date: Mon, 2 Nov 2015 23:34:11 +0000
+--1446566847.57AD00.12796
+Date: Tue, 3 Nov 2015 16:07:27 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -69,31 +66,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c83">Comment # 83</a>
+   title="NEW - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373#c19">Comment # 19</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+   title="NEW - [NVE4] GPU lockup after opening many tabs in Chromium web browser"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=73373">bug 73373</a>
+              from <span class="vcard"><a class="email" href="mailto:mbarrera&#64;gmx.com" title="Mario Barrera &lt;mbarrera&#64;gmx.com&gt;"> <span class="fn">Mario Barrera</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=70354#c82">comment #82</a>) 
-<span class="quote">&gt; You should see the following print:
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=73373#c18">comment #18</a>)
+<span class="quote">&gt; (In reply to Mario Barrera from <a href="show_bug.cgi?id=73373#c15">comment #15</a>)
+&gt; &gt; Maybe useful, opening about 10 tabs with embedded flash elements in Firefox
+&gt; &gt; seems to cause the running Chromium browser to trigger the GPU lockup.
 &gt; 
-&gt; nvkm_info(&amp;pmu-&gt;subdev, &quot;hw bug workaround enabled\n&quot;);
-&gt; 
-&gt; in your kernel log. You need to be running Linux 4.3-rcN for that code to
-&gt; exist in the driver (or a driver built from Ben's repo).</span >
+&gt; Does this still happen with a recent kernel / mesa? Among other things, mesa
+&gt; 11.0.3 fixes a number of annoying resource management issues.</span >
 
-Thx for the info. I do not see this trace and actually it seems that the code
-around the workaround is not called. Is it possible that it fails before ?
-&quot;timeout at
-drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:1478/gf100_gr_init_ctxctl&quot;
+I can still reproduce the issue by opening many HTML files with Firefox. It
+happens always.
 
-It timeouts from gf100.c and the trace you pointed is in gk104.c, if it helps.
-I added more traces in gk104_pmu_pgob and it does not print. 
-(I set: echo 9 | sudo tee /sys/module/drm/parameters/debug   and  added some
-nvkm_error,   nothing about &quot;workaround&quot; in /var/logs/kern.log&quot;)</pre>
+I have mesa 11.0.4 in Linux 4.2.5-1-ARCH.
+
+I'm attaching the logs.</pre>
         </div>
       </p>
       <hr>
@@ -105,9 +99,9 @@ nvkm_error,   nothing about &quot;workaround&quot; in /var/logs/kern.log&quot;)<
     </body>
 </html>
 
---1446507251.12Ed1.29430--
+--1446566847.57AD00.12796--
 
---===============0354797220==
+--===============1117075688==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -117,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0354797220==--
+--===============1117075688==--
