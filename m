@@ -1,13 +1,15 @@
-From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+From: =?UTF-8?B?QyBCZXJnc3Ryw7Zt?= <cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 Subject: Re: Nouveau for FreeBSD
-Date: Wed, 4 Nov 2015 10:33:40 +0200
-Message-ID: <5639C2E4.7030104@free.fr>
+Date: Wed, 4 Nov 2015 15:38:03 +0700
+Message-ID: <CAOnawYrES9c8ZDSDbSrcvSbacn2ftCHUS0r4z9PXm6AL+mtZWQ@mail.gmail.com>
 References: <01e201d11694$9fb0a5a0$df11f0e0$@verizon.net>
  <20151104070855.5476436.86664.54094@pathscale.com>
+ <5639C2E4.7030104@free.fr>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0708847866=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20151104070855.5476436.86664.54094-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
+In-Reply-To: <5639C2E4.7030104-GANU6spQydw@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,75 +19,28 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org, Curtis Hamilton <hamiltcl-H+0wwilmMs3R7s880joybQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Cc: Curtis Hamilton <hamiltcl-H+0wwilmMs3R7s880joybQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multi-part message in MIME format.
---===============0708847866==
-Content-Type: multipart/alternative;
- boundary="------------030907020103010309030408"
-
-This is a multi-part message in MIME format.
---------------030907020103010309030408
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 04/11/15 09:08, cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org wrote:
-> Is anyone actually and or actively working on this? 
-> Github.com/pathscale/pscnv is totally bitrot but waaay more portable 
-> base. Nouveau made hard Linux assumptions that will be difficult to 
-> overcome afaik.
-
-As pointed out by Ilia, this is not true anymore. Nouveau can also 
-partially run in the userspace, the hard dependencies on Linux have been 
-abstracted.
-
-Also, pscnv does not support the newest GPUs and receives no further 
-development because everything it provided is now provided by Nouveau.
-
---------------030907020103010309030408
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    On 04/11/15 09:08, <a class="moz-txt-link-abbreviated" href="mailto:cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org">cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org</a> wrote:<br>
-    <blockquote
-      cite="mid:20151104070855.5476436.86664.54094-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org"
-      type="cite">
-      <div style="width: 100%; font-size: initial; font-family: Calibri,
-        'Slate Pro', sans-serif, sans-serif; color: rgb(31, 73, 125);
-        text-align: initial; background-color: rgb(255, 255, 255);">Is
-        anyone actually and or actively working on this?
-        Github.com/pathscale/pscnv is totally bitrot but waaay more
-        portable base. Nouveau made hard Linux assumptions that will be
-        difficult to overcome afaik.<br>
-      </div>
-    </blockquote>
-    <br>
-    As pointed out by Ilia, this is not true anymore. Nouveau can also
-    partially run in the userspace, the hard dependencies on Linux have
-    been abstracted.<br>
-    <br>
-    Also, pscnv does not support the newest GPUs and receives no further
-    development because everything it provided is now provided by
-    Nouveau.<br>
-  </body>
-</html>
-
---------------030907020103010309030408--
-
---===============0708847866==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0708847866==--
+T24gV2VkLCBOb3YgNCwgMjAxNSBhdCAzOjMzIFBNLCBNYXJ0aW4gUGVyZXMgPG1hcnRpbi5wZXJl
+c0BmcmVlLmZyPiB3cm90ZToKPiBPbiAwNC8xMS8xNSAwOTowOCwgY2JlcmdzdHJvbUBwYXRoc2Nh
+bGUuY29tIHdyb3RlOgo+Cj4gSXMgYW55b25lIGFjdHVhbGx5IGFuZCBvciBhY3RpdmVseSB3b3Jr
+aW5nIG9uIHRoaXM/Cj4gR2l0aHViLmNvbS9wYXRoc2NhbGUvcHNjbnYgaXMgdG90YWxseSBiaXRy
+b3QgYnV0IHdhYWF5IG1vcmUgcG9ydGFibGUgYmFzZS4KPiBOb3V2ZWF1IG1hZGUgaGFyZCBMaW51
+eCBhc3N1bXB0aW9ucyB0aGF0IHdpbGwgYmUgZGlmZmljdWx0IHRvIG92ZXJjb21lCj4gYWZhaWsu
+Cj4KPgo+IEFzIHBvaW50ZWQgb3V0IGJ5IElsaWEsIHRoaXMgaXMgbm90IHRydWUgYW55bW9yZS4g
+Tm91dmVhdSBjYW4gYWxzbyBwYXJ0aWFsbHkKPiBydW4gaW4gdGhlIHVzZXJzcGFjZSwgdGhlIGhh
+cmQgZGVwZW5kZW5jaWVzIG9uIExpbnV4IGhhdmUgYmVlbiBhYnN0cmFjdGVkLgo+Cj4gQWxzbywg
+cHNjbnYgZG9lcyBub3Qgc3VwcG9ydCB0aGUgbmV3ZXN0IEdQVXMgYW5kIHJlY2VpdmVzIG5vIGZ1
+cnRoZXIKPiBkZXZlbG9wbWVudCBiZWNhdXNlIGV2ZXJ5dGhpbmcgaXQgcHJvdmlkZWQgaXMgbm93
+IHByb3ZpZGVkIGJ5IE5vdXZlYXUuCgpJIGRpZCBtZW50aW9uIHBzY252IHdhcyBiaXRyb3QsIGJ1
+dCBJJ20gbm90IHlldCBjb252aW5jZWQgdGhhdCBzb21lIG9mCnRoZSBrZXkgdGhpbmdzIHdoaWNo
+IGFyZSBpbXBsZW1lbnRlZCBpbiBub3V2ZWF1IHdlcmUgZG9uZSB0byBhCmNvbXBhcmFibGUgbGV2
+ZWwgb2YgcXVhbGl0eSAod291bGQgbmVlZCB0byBldmFsdWF0ZSBhbmQgZG9uJ3QgaGF2ZQp0aW1l
+L2ludGVyZXN0KQotLS0tLS0tClRvIGJyaW5nIHRoaXMgY29udmVyc2F0aW9uIGJhY2sgb24gdHJh
+Y2sgLSB3aGVyZSB3b3VsZCBzb21lb25lIHN0YXJ0CipleGFjdGx5KiB0byBwb3J0IHRoaXMgdG8g
+YW5vdGhlciBPUz8gV2hhdCBrZXJuZWwgZGVwZW5kZW5jaWVzIGFyZQp0aGVyZT8KX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
+c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
