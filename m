@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH v3 1/2] disp: activate dual link TMDS links only
-	when possible
-Date: Tue,  3 Nov 2015 21:00:10 -0500
-Message-ID: <1446602411-13908-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91236] [NVC3] Passive DP to HDMI adapter cannot use
+ pixel clocks greater than 165 MHz
+Date: Wed, 04 Nov 2015 02:11:32 +0000
+Message-ID: <bug-91236-8800-6UBDNvIuTH@http.bugs.freedesktop.org/>
+References: <bug-91236-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1363499427=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91236-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,55 +17,86 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Hauke Mehrtens <hauke-5/S+JYg5SzeELgA04lAiVw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogSGF1a2UgTWVocnRlbnMgPGhhdWtlQGhhdWtlLW0uZGU+CgpXaXRob3V0IHRoaXMgcGF0
-Y2ggYSBwaXhlbCBjbG9jayByYXRlIGFib3ZlIDE2NSBNSHogb24gYSBUTURTIGxpbmsgaXMKYXNz
-dW1lZCB0byBiZSBkdWFsIGxpbmsuIFRoaXMgaXMgdHJ1ZSBmb3IgRFZJLCBidXQgbm90IGZvciBI
-RE1JLiBIRE1JCnN1cHBvcnRzIG5vIGR1YWwgbGluaywgYnV0IGl0IHN1cHBvcnRzIHBpeGVsIGNs
-b2NrIHJhdGVzIGFib3ZlIDE2NSBNSHouCk9ubHkgYWN0aXZhdGUgRHVhbCBMaW5rIG1vZGUgd2hl
-biBpdCBpcyBhY3R1YWxseSBwb3NzaWJsZSBhbmQgcmVxdWVzdGVkLgoKU2lnbmVkLW9mZi1ieTog
-SGF1a2UgTWVocnRlbnMgPGhhdWtlQGhhdWtlLW0uZGU+CltpbWlya2luOiBjaGVjayBmb3IgaGRt
-aSBtb25pdG9yIGZvciBjb21wdXRpbmcgcHJvdG8sIHVzZSBzb3IgY3RybCB0bwogZW5hYmxlIGV4
-dHJhIGNvbmZpZyBiaXRdClNpZ25lZC1vZmYtYnk6IElsaWEgTWlya2luIDxpbWlya2luQGFsdW0u
-bWl0LmVkdT4KLS0tCiBkcm0vbm91dmVhdS9udjUwX2Rpc3BsYXkuYyAgICAgICAgICAgfCAxNSAr
-KysrKysrKysrKy0tLS0KIGRybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZ2YxMTkuYyB8ICAy
-ICstCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL252NTAuYyAgfCAgMiArLQogMyBmaWxl
-cyBjaGFuZ2VkLCAxMyBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMK
-aW5kZXggYzA1M2M1MC4uYmRhYmE5MSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnY1MF9kaXNw
-bGF5LmMKKysrIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKQEAgLTE5NjEsMTAgKzE5NjEs
-MTcgQEAgbnY1MF9zb3JfbW9kZV9zZXQoc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVyLCBzdHJ1
-Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqdW1vZGUsCiAJc3dpdGNoIChudl9lbmNvZGVyLT5kY2ItPnR5
-cGUpIHsKIAljYXNlIERDQl9PVVRQVVRfVE1EUzoKIAkJaWYgKG52X2VuY29kZXItPmRjYi0+c29y
-Y29uZi5saW5rICYgMSkgewotCQkJaWYgKG1vZGUtPmNsb2NrIDwgMTY1MDAwKQotCQkJCXByb3Rv
-ID0gMHgxOwotCQkJZWxzZQotCQkJCXByb3RvID0gMHg1OworCQkJcHJvdG8gPSAweDE7CisJCQkv
-KiBPbmx5IGVuYWJsZSBkdWFsLWxpbmsgaWY6CisJCQkgKiAgLSBOZWVkIHRvIChpLmUuIHJhdGUg
-PiAxNjVNSHopCisJCQkgKiAgLSBEQ0Igc2F5cyB3ZSBjYW4KKwkJCSAqICAtIE5vdCBhbiBIRE1J
-IG1vbml0b3IsIHNpbmNlIHRoZXJlJ3Mgbm8gZHVhbC1saW5rCisJCQkgKiAgICBvbiBIRE1JLgor
-CQkJICovCisJCQlpZiAobW9kZS0+Y2xvY2sgPj0gMTY1MDAwICYmCisJCQkgICAgbnZfZW5jb2Rl
-ci0+ZGNiLT5kdWFsbGlua19wb3NzaWJsZSAmJgorCQkJICAgICFkcm1fZGV0ZWN0X2hkbWlfbW9u
-aXRvcihudl9jb25uZWN0b3ItPmVkaWQpKQorCQkJCXByb3RvIHw9IDB4NDsKIAkJfSBlbHNlIHsK
-IAkJCXByb3RvID0gMHgyOwogCQl9CmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
-ZS9kaXNwL2dmMTE5LmMgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2dmMTE5LmMKaW5k
-ZXggMTg2ZmQzYS4uZjAzMTQ2NiAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-ZGlzcC9nZjExOS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZ2YxMTkuYwpA
-QCAtMTU4LDcgKzE1OCw3IEBAIGV4ZWNfY2xrY21wKHN0cnVjdCBudjUwX2Rpc3AgKmRpc3AsIGlu
-dCBoZWFkLCBpbnQgaWQsIHUzMiBwY2xrLCB1MzIgKmNvbmYpCiAJc3dpdGNoIChvdXRwLT5pbmZv
-LnR5cGUpIHsKIAljYXNlIERDQl9PVVRQVVRfVE1EUzoKIAkJKmNvbmYgPSAoY3RybCAmIDB4MDAw
-MDBmMDApID4+IDg7Ci0JCWlmIChwY2xrID49IDE2NTAwMCkKKwkJaWYgKCpjb25mID09IDUpCiAJ
-CQkqY29uZiB8PSAweDAxMDA7CiAJCWJyZWFrOwogCWNhc2UgRENCX09VVFBVVF9MVkRTOgpkaWZm
-IC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9udjUwLmMgYi9kcm0vbm91dmVh
-dS9udmttL2VuZ2luZS9kaXNwL252NTAuYwppbmRleCAzMmU3M2E5Li40MjI2ZDIxIDEwMDY0NAot
-LS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL252NTAuYworKysgYi9kcm0vbm91dmVh
-dS9udmttL2VuZ2luZS9kaXNwL252NTAuYwpAQCAtMzkxLDcgKzM5MSw3IEBAIGV4ZWNfY2xrY21w
-KHN0cnVjdCBudjUwX2Rpc3AgKmRpc3AsIGludCBoZWFkLCBpbnQgaWQsIHUzMiBwY2xrLCB1MzIg
-KmNvbmYpCiAJCXN3aXRjaCAob3V0cC0+aW5mby50eXBlKSB7CiAJCWNhc2UgRENCX09VVFBVVF9U
-TURTOgogCQkJKmNvbmYgPSAoY3RybCAmIDB4MDAwMDBmMDApID4+IDg7Ci0JCQlpZiAocGNsayA+
-PSAxNjUwMDApCisJCQlpZiAoKmNvbmYgPT0gNSkKIAkJCQkqY29uZiB8PSAweDAxMDA7CiAJCQli
-cmVhazsKIAkJY2FzZSBEQ0JfT1VUUFVUX0xWRFM6Ci0tIAoyLjQuMTAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1363499427==
+Content-Type: multipart/alternative; boundary="1446603092.46AEe2.21759"; charset="UTF-8"
+
+
+--1446603092.46AEe2.21759
+Date: Wed, 4 Nov 2015 02:11:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91236
+
+--- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+With the below pair of patches, you should be able to set any max pixel clock
+you like.
+
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e
+http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3
+
+These should apply relatively easily onto a 4.3 or even older kernel. Boot with
+nouveau.hdmimhz=297.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446603092.46AEe2.21759
+Date: Wed, 4 Nov 2015 02:11:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236">bug 91236</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>With the below pair of patches, you should be able to set any max pixel clock
+you like.
+
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e</a>
+<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3</a>
+
+These should apply relatively easily onto a 4.3 or even older kernel. Boot with
+nouveau.hdmimhz=297.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446603092.46AEe2.21759--
+
+--===============1363499427==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1363499427==--
