@@ -1,15 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH 1/2] disp: activate dual link TMDS links only
- when possible
-Date: Tue, 3 Nov 2015 19:37:50 -0500
-Message-ID: <CAKb7Uvi1uJt29hW4-VbVCwaTD4cOT5VZ9AbFvUdUYg8NZ957hA@mail.gmail.com>
-References: <1446590484-8670-1-git-send-email-imirkin@alum.mit.edu>
- <56394B31.2050504@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
+ blob fw doesn't help
+Date: Wed, 04 Nov 2015 00:58:32 +0000
+Message-ID: <bug-70354-8800-EcAa4mogeV@http.bugs.freedesktop.org/>
+References: <bug-70354-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0394019669=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56394B31.2050504-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,73 +17,104 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Hauke Mehrtens <hauke-5/S+JYg5SzeELgA04lAiVw@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gVHVlLCBOb3YgMywgMjAxNSBhdCA3OjAyIFBNLCBCZW4gU2tlZ2dzIDxza2VnZ3NiQGdtYWls
-LmNvbT4gd3JvdGU6Cj4gT24gMTEvMDQvMjAxNSAwODo0MSBBTSwgSWxpYSBNaXJraW4gd3JvdGU6
-Cj4+IEZyb206IEhhdWtlIE1laHJ0ZW5zIDxoYXVrZUBoYXVrZS1tLmRlPgo+Pgo+PiBXaXRob3V0
-IHRoaXMgcGF0Y2ggYSBwaXhlbCBjbG9jayByYXRlIGFib3ZlIDE2NSBNSHogb24gYSBUTURTIGxp
-bmsgaXMKPj4gYXNzdW1lZCB0byBiZSBkdWFsIGxpbmsuIFRoaXMgaXMgdHJ1ZSBmb3IgRFZJLCBi
-dXQgbm90IGZvciBIRE1JLiBIRE1JCj4+IHN1cHBvcnRzIG5vIGR1YWwgbGluaywgYnV0IGl0IHN1
-cHBvcnRzIHBpeGVsIGNsb2NrIHJhdGVzIGFib3ZlIDE2NSBNSHouCj4+IE9ubHkgYWN0aXZhdGUg
-RHVhbCBMaW5rIG1vZGUgd2hlbiBpdCBpcyBhY3R1YWwgcG9zc2libGUuCj4+Cj4+IFNpZ25lZC1v
-ZmYtYnk6IEhhdWtlIE1laHJ0ZW5zIDxoYXVrZUBoYXVrZS1tLmRlPgo+PiBTaWduZWQtb2ZmLWJ5
-OiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+IC0tLQo+PiAgZHJtL25vdXZl
-YXUvbnY1MF9kaXNwbGF5LmMgICAgICAgICAgIHwgOCArKysrLS0tLQo+PiAgZHJtL25vdXZlYXUv
-bnZrbS9lbmdpbmUvZGlzcC9nZjExOS5jIHwgMiArLQo+PiAgZHJtL25vdXZlYXUvbnZrbS9lbmdp
-bmUvZGlzcC9udjUwLmMgIHwgMiArLQo+PiAgMyBmaWxlcyBjaGFuZ2VkLCA2IGluc2VydGlvbnMo
-KyksIDYgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udjUwX2Rp
-c3BsYXkuYyBiL2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4+IGluZGV4IGMwNTNjNTAuLjkz
-YmNmZGYgMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4+ICsrKyBi
-L2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jCj4+IEBAIC0xOTYxLDEwICsxOTYxLDEwIEBAIG52
-NTBfc29yX21vZGVfc2V0KHN0cnVjdCBkcm1fZW5jb2RlciAqZW5jb2Rlciwgc3RydWN0IGRybV9k
-aXNwbGF5X21vZGUgKnVtb2RlLAo+PiAgICAgICBzd2l0Y2ggKG52X2VuY29kZXItPmRjYi0+dHlw
-ZSkgewo+PiAgICAgICBjYXNlIERDQl9PVVRQVVRfVE1EUzoKPj4gICAgICAgICAgICAgICBpZiAo
-bnZfZW5jb2Rlci0+ZGNiLT5zb3Jjb25mLmxpbmsgJiAxKSB7Cj4+IC0gICAgICAgICAgICAgICAg
-ICAgICBpZiAobW9kZS0+Y2xvY2sgPCAxNjUwMDApCj4+IC0gICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHByb3RvID0gMHgxOwo+PiAtICAgICAgICAgICAgICAgICAgICAgZWxzZQo+PiAtICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBwcm90byA9IDB4NTsKPj4gKyAgICAgICAgICAgICAg
-ICAgICAgIHByb3RvID0gMHgxOwo+PiArICAgICAgICAgICAgICAgICAgICAgaWYgKG1vZGUtPmNs
-b2NrID49IDE2NTAwMCAmJgo+PiArICAgICAgICAgICAgICAgICAgICAgICAgIG52X2VuY29kZXIt
-PmRjYi0+ZHVhbGxpbmtfcG9zc2libGUpCj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-IHByb3RvIHw9IDB4NDsKPiBUaGlzIGlzIGEgc29tZXdoYXQgZmxha3kgY29uZGl0aW9uLCBnaXZl
-biB0aGF0IG9uZSBjb3VsZCBwbHVnIGEKPiBzaW5nbGUtbGluayBIRE1JIG1vbml0b3IgaW50byBh
-IGR1YWxsaW5rLWNhcGFibGUgVE1EUyBjb25uZWN0b3IuCj4KPiBTdGlsbCwgaXQncyBhbiBpbXBy
-b3ZlbWVudCA6KQoKWWVhaCwgRldJVyBJIHRob3VnaHQgb2YgdGhhdCAoZm9yIHRoZSBzZWNvbmQg
-cGF0Y2ggdG9vKS4gQWxsIHRoaXMKc3R1ZmYgaXMgcHJldHR5IGZyYWdpbGUuIEJ1dC4uLiB3aGF0
-IGFyZSB5b3UgZ29ubmEgZG8uIElzIHRoZXJlIHNvbWUKb3RoZXIgd2F5IG9mIHRlbGxpbmcgd2hl
-dGhlciB3ZSdyZSBvbiBIRE1JIG9yIERWST8KCj4KPj4gICAgICAgICAgICAgICB9IGVsc2Ugewo+
-PiAgICAgICAgICAgICAgICAgICAgICAgcHJvdG8gPSAweDI7Cj4+ICAgICAgICAgICAgICAgfQo+
-PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9nZjExOS5jIGIvZHJt
-L25vdXZlYXUvbnZrbS9lbmdpbmUvZGlzcC9nZjExOS5jCj4+IGluZGV4IDE4NmZkM2EuLjg2OTFi
-NjggMTAwNjQ0Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvZ2YxMTkuYwo+
-PiArKysgYi9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL2dmMTE5LmMKPj4gQEAgLTE1OCw3
-ICsxNTgsNyBAQCBleGVjX2Nsa2NtcChzdHJ1Y3QgbnY1MF9kaXNwICpkaXNwLCBpbnQgaGVhZCwg
-aW50IGlkLCB1MzIgcGNsaywgdTMyICpjb25mKQo+PiAgICAgICBzd2l0Y2ggKG91dHAtPmluZm8u
-dHlwZSkgewo+PiAgICAgICBjYXNlIERDQl9PVVRQVVRfVE1EUzoKPj4gICAgICAgICAgICAgICAq
-Y29uZiA9IChjdHJsICYgMHgwMDAwMGYwMCkgPj4gODsKPj4gLSAgICAgICAgICAgICBpZiAocGNs
-ayA+PSAxNjUwMDApCj4+ICsgICAgICAgICAgICAgaWYgKHBjbGsgPj0gMTY1MDAwICYmIG91dHAt
-PmluZm8uZHVhbGxpbmtfcG9zc2libGUpCj4+ICAgICAgICAgICAgICAgICAgICAgICAqY29uZiB8
-PSAweDAxMDA7Cj4gSSB0aGluayBpdCBtaWdodCBiZSBtb3JlIHJvYnVzdCB0byBrZXkgdGhpcyBv
-ZmYgdGhlIFNPUiBwcm90b2NvbCwgcmF0aGVyCj4gdGhhbiBkdXBsaWNhdGluZyB0aGUgY29uZGl0
-aW9uIGFib3ZlLgoKWW91IG1lYW4gZGlzcC0+c29yLmx2ZHNjb25mPyBXaGF0IGRvIEkgZG8gd2l0
-aCB0aGF0PyBPciBkaWQgeW91IGhhdmUKc29tZXRoaW5nIGVsc2UgaW4gbWluZD8KCj4KPj4gICAg
-ICAgICAgICAgICBicmVhazsKPj4gICAgICAgY2FzZSBEQ0JfT1VUUFVUX0xWRFM6Cj4+IGRpZmYg
-LS1naXQgYS9kcm0vbm91dmVhdS9udmttL2VuZ2luZS9kaXNwL252NTAuYyBiL2RybS9ub3V2ZWF1
-L252a20vZW5naW5lL2Rpc3AvbnY1MC5jCj4+IGluZGV4IDMyZTczYTkuLmNlZWNkMGUgMTAwNjQ0
-Cj4+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jCj4+ICsrKyBiL2Ry
-bS9ub3V2ZWF1L252a20vZW5naW5lL2Rpc3AvbnY1MC5jCj4+IEBAIC0zOTEsNyArMzkxLDcgQEAg
-ZXhlY19jbGtjbXAoc3RydWN0IG52NTBfZGlzcCAqZGlzcCwgaW50IGhlYWQsIGludCBpZCwgdTMy
-IHBjbGssIHUzMiAqY29uZikKPj4gICAgICAgICAgICAgICBzd2l0Y2ggKG91dHAtPmluZm8udHlw
-ZSkgewo+PiAgICAgICAgICAgICAgIGNhc2UgRENCX09VVFBVVF9UTURTOgo+PiAgICAgICAgICAg
-ICAgICAgICAgICAgKmNvbmYgPSAoY3RybCAmIDB4MDAwMDBmMDApID4+IDg7Cj4+IC0gICAgICAg
-ICAgICAgICAgICAgICBpZiAocGNsayA+PSAxNjUwMDApCj4+ICsgICAgICAgICAgICAgICAgICAg
-ICBpZiAocGNsayA+PSAxNjUwMDAgJiYgb3V0cC0+aW5mby5kdWFsbGlua19wb3NzaWJsZSkKPj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKmNvbmYgfD0gMHgwMTAwOwo+IFNhbWUgaGVy
-ZS4KPgo+PiAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7Cj4+ICAgICAgICAgICAgICAgY2Fz
-ZSBEQ0JfT1VUUFVUX0xWRFM6Cj4+Cj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25v
-dXZlYXUK
+
+--===============0394019669==
+Content-Type: multipart/alternative; boundary="1446598712.51C8741.1086"; charset="UTF-8"
+
+
+--1446598712.51C8741.1086
+Date: Wed, 4 Nov 2015 00:58:32 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70354
+
+--- Comment #86 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #85)
+> (In reply to Julien Isorce from comment #84)
+> > Any idea ? Thx
+> 
+> You have a GK107. It probably needs the PGOB fix as well as another user on
+> this bug needed it. See
+> http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4.
+> 4&id=3c9aca318150ba1152e957a37473ff67d8ebba30 -- should be on its way to
+> linux 4.4.
+
+Thx I can confirm it resolved my problem. I thought I was testing with darktama
+branch few weeks ago but maybe not. Anyway I applied the patch you pointed in
+the kernel tree directly (today git master). After a fresh build and install I
+can confirm it works. HW decoding too :)
+
+I only tested with patch+workaround, but maybe "patch" is enough. I can try to
+confirm tomorrow. Thx!
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446598712.51C8741.1086
+Date: Wed, 4 Nov 2015 00:58:32 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c86">Comment # 86</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
+              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=70354#c85">comment #85</a>)
+<span class="quote">&gt; (In reply to Julien Isorce from <a href="show_bug.cgi?id=70354#c84">comment #84</a>)
+&gt; &gt; Any idea ? Thx
+&gt; 
+&gt; You have a GK107. It probably needs the PGOB fix as well as another user on
+&gt; this bug needed it. See
+&gt; <a href="http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4">http://cgit.freedesktop.org/nouveau/linux-2.6/commit/?h=linux-4</a>.
+&gt; 4&amp;id=3c9aca318150ba1152e957a37473ff67d8ebba30 -- should be on its way to
+&gt; linux 4.4.</span >
+
+Thx I can confirm it resolved my problem. I thought I was testing with darktama
+branch few weeks ago but maybe not. Anyway I applied the patch you pointed in
+the kernel tree directly (today git master). After a fresh build and install I
+can confirm it works. HW decoding too :)
+
+I only tested with patch+workaround, but maybe &quot;patch&quot; is enough. I can try to
+confirm tomorrow. Thx!</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446598712.51C8741.1086--
+
+--===============0394019669==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0394019669==--
