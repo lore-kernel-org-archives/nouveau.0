@@ -1,12 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: [PATCH] kms: no need to check for empty edid before
-	drm_detect_hdmi_monitor
-Date: Tue,  3 Nov 2015 21:14:26 -0500
-Message-ID: <1446603266-14685-1-git-send-email-imirkin@alum.mit.edu>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 91236] [NVC3] Passive DP to HDMI adapter cannot use
+ pixel clocks greater than 165 MHz
+Date: Wed, 04 Nov 2015 03:45:56 +0000
+Message-ID: <bug-91236-8800-AvpXu7opnE@http.bugs.freedesktop.org/>
+References: <bug-91236-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0212053823=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-91236-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,22 +17,82 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRy
-bS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlv
-bigtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIGIvZHJtL25vdXZl
-YXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggYmRhYmE5MS4uZDljYmE4NyAxMDA2NDQKLS0tIGEvZHJt
-L25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKKysrIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMK
-QEAgLTc3Myw3ICs3NzMsNiBAQCBudjUwX2NydGNfc2V0X3NjYWxlKHN0cnVjdCBub3V2ZWF1X2Ny
-dGMgKm52X2NydGMsIGJvb2wgdXBkYXRlKQogCSAqLwogCWlmIChudl9jb25uZWN0b3IgJiYgKCBu
-dl9jb25uZWN0b3ItPnVuZGVyc2NhbiA9PSBVTkRFUlNDQU5fT04gfHwKIAkJCSAgICAgKG52X2Nv
-bm5lY3Rvci0+dW5kZXJzY2FuID09IFVOREVSU0NBTl9BVVRPICYmCi0JCQkgICAgICBudl9jb25u
-ZWN0b3ItPmVkaWQgJiYKIAkJCSAgICAgIGRybV9kZXRlY3RfaGRtaV9tb25pdG9yKG52X2Nvbm5l
-Y3Rvci0+ZWRpZCkpKSkgewogCQl1MzIgYlggPSBudl9jb25uZWN0b3ItPnVuZGVyc2Nhbl9oYm9y
-ZGVyOwogCQl1MzIgYlkgPSBudl9jb25uZWN0b3ItPnVuZGVyc2Nhbl92Ym9yZGVyOwotLSAKMi40
-LjEwCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============0212053823==
+Content-Type: multipart/alternative; boundary="1446608756.F4d5B471.16252"; charset="UTF-8"
+
+
+--1446608756.F4d5B471.16252
+Date: Wed, 4 Nov 2015 03:45:56 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=91236
+
+--- Comment #6 from Andrew Boettcher <a.boettcher-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I am reporting the patches worked great! Indeed I am now viewing this bug with
+a screen in 297 MHz over a passive DP to HDMI connector. Before we missed the
+second part where the dual link mode was activated.
+
+This is great, thanks! I guess the next step is to figure out how to detect the
+real limit, which I believe is 300 MHz on this chip.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446608756.F4d5B471.16252
+Date: Wed, 4 Nov 2015 03:45:56 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236#c6">Comment # 6</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236">bug 91236</a>
+              from <span class="vcard"><a class="email" href="mailto:a.boettcher&#64;gmail.com" title="Andrew Boettcher &lt;a.boettcher&#64;gmail.com&gt;"> <span class="fn">Andrew Boettcher</span></a>
+</span></b>
+        <pre>I am reporting the patches worked great! Indeed I am now viewing this bug with
+a screen in 297 MHz over a passive DP to HDMI connector. Before we missed the
+second part where the dual link mode was activated.
+
+This is great, thanks! I guess the next step is to figure out how to detect the
+real limit, which I believe is 300 MHz on this chip.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446608756.F4d5B471.16252--
+
+--===============0212053823==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0212053823==--
