@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 70354] [NVE6, NVE7] HUB_INIT timeout on graph init,
- blob fw doesn't help
-Date: Wed, 04 Nov 2015 08:09:17 +0000
-Message-ID: <bug-70354-8800-q9fvw6yu5D@http.bugs.freedesktop.org/>
-References: <bug-70354-8800@http.bugs.freedesktop.org/>
+From: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
+Subject: Re: Nouveau for FreeBSD
+Date: Wed, 4 Nov 2015 10:33:40 +0200
+Message-ID: <5639C2E4.7030104@free.fr>
+References: <01e201d11694$9fb0a5a0$df11f0e0$@verizon.net>
+ <20151104070855.5476436.86664.54094@pathscale.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1473967129=="
+Content-Type: multipart/mixed; boundary="===============0708847866=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-70354-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20151104070855.5476436.86664.54094-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,87 +17,68 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org, Curtis Hamilton <hamiltcl-H+0wwilmMs3R7s880joybQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+This is a multi-part message in MIME format.
+--===============0708847866==
+Content-Type: multipart/alternative;
+ boundary="------------030907020103010309030408"
 
---===============1473967129==
-Content-Type: multipart/alternative; boundary="1446624557.2DcEce3c1.30789"; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------030907020103010309030408
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 04/11/15 09:08, cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org wrote:
+> Is anyone actually and or actively working on this? 
+> Github.com/pathscale/pscnv is totally bitrot but waaay more portable 
+> base. Nouveau made hard Linux assumptions that will be difficult to 
+> overcome afaik.
 
---1446624557.2DcEce3c1.30789
-Date: Wed, 4 Nov 2015 08:09:17 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+As pointed out by Ilia, this is not true anymore. Nouveau can also 
+partially run in the userspace, the hard dependencies on Linux have been 
+abstracted.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=70354
+Also, pscnv does not support the newest GPUs and receives no further 
+development because everything it provided is now provided by Nouveau.
 
---- Comment #88 from Julien Isorce <julien.isorce-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #87)
-> (In reply to Julien Isorce from comment #86)
-> > I only tested with patch+workaround, but maybe "patch" is enough. I can try
-> > to confirm tomorrow. Thx!
-> 
-> Please do -- the workaround is necessary for a fraction of users. We're
-> unsure when it's safe to enable.
-
-I confirm the workaround "options nouveau config=War00C800_0=1" is required
-too.
-
-You can find the two lspci outputs in comment #75 and #81 (mine).
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1446624557.2DcEce3c1.30789
-Date: Wed, 4 Nov 2015 08:09:17 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--------------030907020103010309030408
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
 <html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354#c88">Comment # 88</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE6,NVE7] HUB_INIT timeout on graph init, blob fw doesn't help"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=70354">bug 70354</a>
-              from <span class="vcard"><a class="email" href="mailto:julien.isorce&#64;gmail.com" title="Julien Isorce &lt;julien.isorce&#64;gmail.com&gt;"> <span class="fn">Julien Isorce</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=70354#c87">comment #87</a>)
-<span class="quote">&gt; (In reply to Julien Isorce from <a href="show_bug.cgi?id=70354#c86">comment #86</a>)
-&gt; &gt; I only tested with patch+workaround, but maybe &quot;patch&quot; is enough. I can try
-&gt; &gt; to confirm tomorrow. Thx!
-&gt; 
-&gt; Please do -- the workaround is necessary for a fraction of users. We're
-&gt; unsure when it's safe to enable.</span >
-
-I confirm the workaround &quot;options nouveau config=War00C800_0=1&quot; is required
-too.
-
-You can find the two lspci outputs in <a href="show_bug.cgi?id=70354#c75">comment #75</a> and #81 (mine).</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    On 04/11/15 09:08, <a class="moz-txt-link-abbreviated" href="mailto:cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org">cbergstrom-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org</a> wrote:<br>
+    <blockquote
+      cite="mid:20151104070855.5476436.86664.54094-Hl0AACgZOF5l57MIdRCFDg@public.gmane.org"
+      type="cite">
+      <div style="width: 100%; font-size: initial; font-family: Calibri,
+        'Slate Pro', sans-serif, sans-serif; color: rgb(31, 73, 125);
+        text-align: initial; background-color: rgb(255, 255, 255);">Is
+        anyone actually and or actively working on this?
+        Github.com/pathscale/pscnv is totally bitrot but waaay more
+        portable base. Nouveau made hard Linux assumptions that will be
+        difficult to overcome afaik.<br>
+      </div>
+    </blockquote>
+    <br>
+    As pointed out by Ilia, this is not true anymore. Nouveau can also
+    partially run in the userspace, the hard dependencies on Linux have
+    been abstracted.<br>
+    <br>
+    Also, pscnv does not support the newest GPUs and receives no further
+    development because everything it provided is now provided by
+    Nouveau.<br>
+  </body>
 </html>
 
---1446624557.2DcEce3c1.30789--
+--------------030907020103010309030408--
 
---===============1473967129==
+--===============0708847866==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -107,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1473967129==--
+--===============0708847866==--
