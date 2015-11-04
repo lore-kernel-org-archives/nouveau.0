@@ -1,18 +1,14 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: Nouveau for FreeBSD
-Date: Wed, 4 Nov 2015 10:58:33 +0100
-Message-ID: <20151104095833.GA3908@Normandy>
-References: <01e201d11694$9fb0a5a0$df11f0e0$@verizon.net>
- <20151104070855.5476436.86664.54094@pathscale.com>
- <5639C2E4.7030104@free.fr>
- <CAOnawYrES9c8ZDSDbSrcvSbacn2ftCHUS0r4z9PXm6AL+mtZWQ@mail.gmail.com>
- <5639C587.2010904@free.fr>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Wed, 04 Nov 2015 10:10:00 +0000
+Message-ID: <bug-92307-8800-2rFd0kI3fv@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1380726079=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <5639C587.2010904-GANU6spQydw@public.gmane.org>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -22,43 +18,127 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Martin Peres <martin.peres-GANU6spQydw@public.gmane.org>
-Cc: Curtis Hamilton <hamiltcl-H+0wwilmMs3R7s880joybQ@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, =?utf-8?B?RnJhbsOnb2lz?= Tigeot <ftigeot-axE+tVEjw0xg9hUCZPvPmw@public.gmane.org>, =?utf-8?Q?Jean-S=C3=A9bastien_P=C3=A9dron?= <jean-sebastien.pedron-DvcofrTywwxWj0EZb7rXcA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2Fzbid0IHRoZXJlIHNvbWUgd29yayBiZWluZyBkb25lIGJ5IEZyYW7Dp29pcyBUaWdlb3Qgb3Ig
-SmVhbi1Tw6liYXN0aWVuIFDDqWRyb24KdG8gcG9ydCBOb3V2ZWF1IHRvIERyYWdvbkZseUJTRC9G
-cmVlQlNEPyBPciBhdCBsZWFzdCB0aGV5IHdlcmUgdGFsa2luZyBhYm91dCBwb3J0aW5nIGl0CmF0
-IFhEQyAyMDE0LCBubyBpZGVhIHdoYXQgdGhlIGN1cnJlbnQgc3RhdHVzIGlzLgoKUGllcnJlCgpQ
-UzogTG9va2luZyBhdCBGcmFuw6dvaXMnIHNsaWRlcyBmcm9tIHRoaXMgeWVhciBYREMsIGl0IHNl
-ZW1zIHRoZXJlIGlzbid0IG11Y2gKcHJvZ3Jlc3MgYWJvdXQgaXQuCgoKT24gMTA6NDQgQU0gLSBO
-b3YgMDQgMjAxNSwgTWFydGluIFBlcmVzIHdyb3RlOgo+IAo+IAo+IE9uIDA0LzExLzE1IDEwOjM4
-LCBDIEJlcmdzdHLDtm0gd3JvdGU6Cj4gPk9uIFdlZCwgTm92IDQsIDIwMTUgYXQgMzozMyBQTSwg
-TWFydGluIFBlcmVzIDxtYXJ0aW4ucGVyZXNAZnJlZS5mcj4gd3JvdGU6Cj4gPj5PbiAwNC8xMS8x
-NSAwOTowOCwgY2JlcmdzdHJvbUBwYXRoc2NhbGUuY29tIHdyb3RlOgo+ID4+Cj4gPj5JcyBhbnlv
-bmUgYWN0dWFsbHkgYW5kIG9yIGFjdGl2ZWx5IHdvcmtpbmcgb24gdGhpcz8KPiA+PkdpdGh1Yi5j
-b20vcGF0aHNjYWxlL3BzY252IGlzIHRvdGFsbHkgYml0cm90IGJ1dCB3YWFheSBtb3JlIHBvcnRh
-YmxlIGJhc2UuCj4gPj5Ob3V2ZWF1IG1hZGUgaGFyZCBMaW51eCBhc3N1bXB0aW9ucyB0aGF0IHdp
-bGwgYmUgZGlmZmljdWx0IHRvIG92ZXJjb21lCj4gPj5hZmFpay4KPiA+Pgo+ID4+Cj4gPj5BcyBw
-b2ludGVkIG91dCBieSBJbGlhLCB0aGlzIGlzIG5vdCB0cnVlIGFueW1vcmUuIE5vdXZlYXUgY2Fu
-IGFsc28gcGFydGlhbGx5Cj4gPj5ydW4gaW4gdGhlIHVzZXJzcGFjZSwgdGhlIGhhcmQgZGVwZW5k
-ZW5jaWVzIG9uIExpbnV4IGhhdmUgYmVlbiBhYnN0cmFjdGVkLgo+ID4+Cj4gPj5BbHNvLCBwc2Nu
-diBkb2VzIG5vdCBzdXBwb3J0IHRoZSBuZXdlc3QgR1BVcyBhbmQgcmVjZWl2ZXMgbm8gZnVydGhl
-cgo+ID4+ZGV2ZWxvcG1lbnQgYmVjYXVzZSBldmVyeXRoaW5nIGl0IHByb3ZpZGVkIGlzIG5vdyBw
-cm92aWRlZCBieSBOb3V2ZWF1Lgo+ID5JIGRpZCBtZW50aW9uIHBzY252IHdhcyBiaXRyb3QsIGJ1
-dCBJJ20gbm90IHlldCBjb252aW5jZWQgdGhhdCBzb21lIG9mCj4gPnRoZSBrZXkgdGhpbmdzIHdo
-aWNoIGFyZSBpbXBsZW1lbnRlZCBpbiBub3V2ZWF1IHdlcmUgZG9uZSB0byBhCj4gPmNvbXBhcmFi
-bGUgbGV2ZWwgb2YgcXVhbGl0eSAod291bGQgbmVlZCB0byBldmFsdWF0ZSBhbmQgZG9uJ3QgaGF2
-ZQo+ID50aW1lL2ludGVyZXN0KQo+ID4tLS0tLS0tCj4gPlRvIGJyaW5nIHRoaXMgY29udmVyc2F0
-aW9uIGJhY2sgb24gdHJhY2sgLSB3aGVyZSB3b3VsZCBzb21lb25lIHN0YXJ0Cj4gPipleGFjdGx5
-KiB0byBwb3J0IHRoaXMgdG8gYW5vdGhlciBPUz8gV2hhdCBrZXJuZWwgZGVwZW5kZW5jaWVzIGFy
-ZQo+ID50aGVyZT8KPiAKPiBUaGlzIG5lZWRzIHRvIGJlIHBvcnRlZCB0byB0aGUgb3RoZXIgT1Ms
-IGFsb25nIHdpdGggZHJtIGFuZCB0dG0gKHdoaWNoIEkKPiBiZWxpZXZlIGhhdmUgYWxyZWFkeSBi
-ZWVuIHBvcnRlZCB0byBhbGwgdGhlIEJTRHMpOgo+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9y
-Zy9+ZGFya3RhbWEvbm91dmVhdS90cmVlL2xpYi9pbmNsdWRlL252aWYvb3MuaAo+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gTm91dmVhdSBtYWlsaW5n
-IGxpc3QKPiBOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+IGh0dHA6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1380726079==
+Content-Type: multipart/alternative; boundary="1446631800.D25eA5FD1.4159"; charset="UTF-8"
+
+
+--1446631800.D25eA5FD1.4159
+Date: Wed, 4 Nov 2015 10:10:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92307
+
+--- Comment #8 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to poma from comment #7)
+> FTR procedure:
+>=20
+> $ uname -r
+> 4.3.0-0.rc6.git2.1.fc24.x86_64
+>=20
+> $ git clone git://people.freedesktop.org/~darktama/nouveau
+> $ cd nouveau/drm/
+> $ make
+> $ su
+>=20
+> # cp nouveau/nouveau.ko /usr/lib/modules/$(uname -r)/updates/
+> # depmod
+> # dracut --kver $(uname -r) -f
+> # systemctl reboot
+
+
+Update to commit f787ef9
+
+nouveau/drm/nouveau/nouveau_drm.c:935:24: error: =E2=80=98drm_vblank_no_hw_=
+counter=E2=80=99
+undeclared here (not in a function)
+  .get_vblank_counter =3D drm_vblank_no_hw_counter,
+                        ^
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446631800.D25eA5FD1.4159
+Date: Wed, 4 Nov 2015 10:10:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 dr=
+m_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92307#c8">Comment=
+ # 8</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 dr=
+m_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92307">bug 92307<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href=3D"show_bug.cgi?id=3D92307#c7">=
+comment #7</a>)
+<span class=3D"quote">&gt; FTR procedure:
+&gt;=20
+&gt; $ uname -r
+&gt; 4.3.0-0.rc6.git2.1.fc24.x86_64
+&gt;=20
+&gt; $ git clone git://people.freedesktop.org/~darktama/nouveau
+&gt; $ cd nouveau/drm/
+&gt; $ make
+&gt; $ su
+&gt;=20
+&gt; # cp nouveau/nouveau.ko /usr/lib/modules/$(uname -r)/updates/
+&gt; # depmod
+&gt; # dracut --kver $(uname -r) -f
+&gt; # systemctl reboot</span >
+
+
+Update to commit f787ef9
+
+nouveau/drm/nouveau/nouveau_drm.c:935:24: error: =E2=80=98drm_vblank_no_hw_=
+counter=E2=80=99
+undeclared here (not in a function)
+  .get_vblank_counter =3D drm_vblank_no_hw_counter,
+                        ^</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446631800.D25eA5FD1.4159--
+
+--===============1380726079==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1380726079==--
