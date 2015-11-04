@@ -1,13 +1,12 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 91236] [NVC3] Passive DP to HDMI adapter cannot use
- pixel clocks greater than 165 MHz
-Date: Wed, 04 Nov 2015 02:11:32 +0000
-Message-ID: <bug-91236-8800-6UBDNvIuTH@http.bugs.freedesktop.org/>
-References: <bug-91236-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: [PATCH] kms: no need to check for empty edid before
+	drm_detect_hdmi_monitor
+Date: Tue,  3 Nov 2015 21:14:26 -0500
+Message-ID: <1446603266-14685-1-git-send-email-imirkin@alum.mit.edu>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1363499427=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-91236-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,86 +16,22 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1363499427==
-Content-Type: multipart/alternative; boundary="1446603092.46AEe2.21759"; charset="UTF-8"
-
-
---1446603092.46AEe2.21759
-Date: Wed, 4 Nov 2015 02:11:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=91236
-
---- Comment #5 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-With the below pair of patches, you should be able to set any max pixel clock
-you like.
-
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3
-
-These should apply relatively easily onto a 4.3 or even older kernel. Boot with
-nouveau.hdmimhz=297.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1446603092.46AEe2.21759
-Date: Wed, 4 Nov 2015 02:11:32 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVC3] Passive DP to HDMI adapter cannot use pixel clocks greater than 165 MHz"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=91236">bug 91236</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>With the below pair of patches, you should be able to set any max pixel clock
-you like.
-
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=8d5fe3328855063bb41acb00b1049138acce8e2e</a>
-<a href="http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3">http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=f787ef9b44102ed01d4255a653d0261bb6365ba3</a>
-
-These should apply relatively easily onto a 4.3 or even older kernel. Boot with
-nouveau.hdmimhz=297.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1446603092.46AEe2.21759--
-
---===============1363499427==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1363499427==--
+U2lnbmVkLW9mZi1ieTogSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQuZWR1PgotLS0KIGRy
+bS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlv
+bigtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252NTBfZGlzcGxheS5jIGIvZHJtL25vdXZl
+YXUvbnY1MF9kaXNwbGF5LmMKaW5kZXggYmRhYmE5MS4uZDljYmE4NyAxMDA2NDQKLS0tIGEvZHJt
+L25vdXZlYXUvbnY1MF9kaXNwbGF5LmMKKysrIGIvZHJtL25vdXZlYXUvbnY1MF9kaXNwbGF5LmMK
+QEAgLTc3Myw3ICs3NzMsNiBAQCBudjUwX2NydGNfc2V0X3NjYWxlKHN0cnVjdCBub3V2ZWF1X2Ny
+dGMgKm52X2NydGMsIGJvb2wgdXBkYXRlKQogCSAqLwogCWlmIChudl9jb25uZWN0b3IgJiYgKCBu
+dl9jb25uZWN0b3ItPnVuZGVyc2NhbiA9PSBVTkRFUlNDQU5fT04gfHwKIAkJCSAgICAgKG52X2Nv
+bm5lY3Rvci0+dW5kZXJzY2FuID09IFVOREVSU0NBTl9BVVRPICYmCi0JCQkgICAgICBudl9jb25u
+ZWN0b3ItPmVkaWQgJiYKIAkJCSAgICAgIGRybV9kZXRlY3RfaGRtaV9tb25pdG9yKG52X2Nvbm5l
+Y3Rvci0+ZWRpZCkpKSkgewogCQl1MzIgYlggPSBudl9jb25uZWN0b3ItPnVuZGVyc2Nhbl9oYm9y
+ZGVyOwogCQl1MzIgYlkgPSBudl9jb25uZWN0b3ItPnVuZGVyc2Nhbl92Ym9yZGVyOwotLSAKMi40
+LjEwCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
+ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
