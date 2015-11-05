@@ -1,14 +1,13 @@
-From: =?UTF-8?Q?Marcin_Ko=c5=9bcielnicki?= <koriakin-mP9o5jsk0RY@public.gmane.org>
-Subject: Re: [PATCH envytools] envydis: gk110: Add support for
- dadd with an immediate src
-Date: Thu, 5 Nov 2015 14:51:30 +0100
-Message-ID: <563B5EE2.8080609@0x04.net>
-References: <1446730963-9919-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 89912] Sometimes Nouveau hangs kernel with PGRAPH
+	engine fault
+Date: Thu, 05 Nov 2015 14:48:34 +0000
+Message-ID: <bug-89912-8800-KNWOTH6jg8@http.bugs.freedesktop.org/>
+References: <bug-89912-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1262404125=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1446730963-9919-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-89912-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,50 +17,124 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gMDUvMTEvMTUgMTQ6NDIsIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4gVGhpcyBjb21taXQgYWRk
-cyBzdXBwb3J0IGZvciBkYWRkIHdpdGggYW4gaW1tZWRpYXRlIHNyYyBpbiBnazExMCBjb2RlLgo+
-IFRoZSBtYWNoaW5lLWNvZGUgaW4gcXVlc3Rpb24gaXMgZ2VuZXJhdGVkIGJ5IGUuZy4gbm91dmVh
-dV9jb21waWxlciB3aXRoCj4gdGhlIG5ldyAiTWFrZSB1c2Ugb2YgZG91YmxlIGltbWVkaWF0ZXMi
-IHBhdGNoIHNlcmllcyB3aGVuIGJ1aWxkaW5nIHRoZQo+IHBpZ2xpdCBnbHNsLWFsZ2VicmFpYy1k
-b3VibGUtYWRkLnNoYWRlcl90ZXN0Lgo+Cj4gVGhpcyBjb21taXQgY2hhbmdlcyB0aGUgb3V0cHV0
-IGZyb206Cj4KPiAwMDAwMDAxMDogMDAxYzAwMDEgYzM4MDAxZmYgICAgICRyMCAkcjAgJHIwICRy
-MCAweDNmZTAwIDB4M2ZlMDAKPiAgICAweDNmZTAwMDAwMDAwMDAwMDAgMHgzZmUwMDAwMCAweDAg
-MHgzID8/Pwo+ICAgIFt1bmtub3duOiAwMDAwMDAwMCBjMDgwMDAwMF0gW3Vua25vd24gaW5zdHJ1
-Y3Rpb25dCj4KPiBJbnRvOgo+Cj4gMDAwMDAwMTA6IDAwMWMwMDAxIGMzODAwMWZmICAgICBhZGQg
-cm4gZjY0ICRyMGQgJHIwZCAweDNmZTAwMDAwMDAwMDAwMDAKPgo+IFRoZSBtYWNoaW5lLWNvZGUg
-aW4gcXVlc3Rpb24gZGlzYXNzZW1ibGVzIHRvIHRoZSBzYW1lIHVzaW5nCj4gbnZkaXNhc20gYW5k
-IHdvcmtzIHByb3Blcmx5IG9uIGFuIGFjdHVhbCBncHUuCj4KPiBTaWduZWQtb2ZmLWJ5OiBIYW5z
-IGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+IC0tLQo+ICAgZW52eWRpcy9nazExMC5j
-IHwgMiArKwo+ICAgMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdp
-dCBhL2VudnlkaXMvZ2sxMTAuYyBiL2VudnlkaXMvZ2sxMTAuYwo+IGluZGV4IDlhZjE4ZTEuLjQ3
-OTA1MzMgMTAwNjQ0Cj4gLS0tIGEvZW52eWRpcy9nazExMC5jCj4gKysrIGIvZW52eWRpcy9nazEx
-MC5jCj4gQEAgLTEyNzQsNiArMTI3NCw3IEBAIHN0YXRpYyBzdHJ1Y3QgaW5zbiB0YWJjY3RsbW9k
-W10gPSB7Cj4gICAgKiAwMDAwMDAwMDdmODAwMDAwIDJuZCBzcmMKPiAgICAqIDAwMDAwMDNmZmY4
-MDAwMDAgMm5kIHNyYyAoaW1tZWRpYXRlKQo+ICAgICogMDAwMDAwN2ZmZjgwMDAwMCBhZGRyZXNz
-Cj4gKyAqIDAwMDAwM2ZmZmY4MDAwMDAgZmxvYXQvZG91YmxlIGltbWVkaWF0ZQo+ICAgICogMDA3
-ZmZmZmZmZjgwMDAwMCBsb25nIGltbWVkaWF0ZQo+ICAgICogMDAwM2ZjMDAwMDAwMDAwMCAzcmQg
-c3JjCj4gICAgKiAwMDdjMDAwMDAwMDAwMDAwIG1pc2MgZmxhZ3MKPiBAQCAtMTQxMCw2ICsxNDEx
-LDcgQEAgc3RhdGljIHN0cnVjdCBpbnNuIHRhYmlbXSA9IHsKPiAgIAl7IDB4MDJjMDAwMDAwMDAw
-MDAwMXVsbCwgMHgzN2MwMDAwMDAwMDAwMDAzdWxsLCBOKCJhZGQiKSwgVChmdHoyZiksIFQoc2F0
-MzUpLCBUKGZybTJhKSwgTigiZjMyIiksIERTVCwgVChuZWczMyksIFQoYWJzMzEpLCBTUkMxLCBU
-KG5lZzNiKSwgVChmaTIpIH0sCj4gICAJeyAweDAzMDAwMDAwMDAwMDAwMDF1bGwsIDB4MzdjMDAw
-MDAwMDAwMDAwM3VsbCwgVChtaW5tYXgpLCBUKGZ0ejJmKSwgTigiZjMyIiksIERTVCwgVChuZWcz
-MyksIFQoYWJzMzEpLCBTUkMxLCBUKG5lZzNiKSwgVChmaTIpIH0sCj4gICAJeyAweDAzNDAwMDAw
-MDAwMDAwMDF1bGwsIDB4MzdjMDAwMDAwMDAwMDAwM3VsbCwgTigibXVsIiksIFQoZnR6MmYpLCBU
-KHNhdDM1KSwgVChmcm0yYSksIFQobmVnM2IpLCBOKCJmMzIiKSwgRFNULCBTUkMxLCBUKGZpMikg
-fSwKPiArCXsgMHgwMzgwMDAwMDAwMDAwMDAxdWxsLCAweDM3YzAwMDAwMDAwMDAwMDN1bGwsIE4o
-ImFkZCIpLCBUKGZybTJhKSwgTigiZjY0IiksIERTVEQsIFQobmVnMzMpLCBUKGFiczMxKSwgU1JD
-MUQsIFQobmVnM2IpLCBUKGRpMikgfSwKPiAgIAl7IDB4MDQwMDAwMDAwMDAwMDAwMXVsbCwgMHgz
-N2MwMDAwMDAwMDAwMDAzdWxsLCBOKCJtdWwiKSwgVChmcm0yYSksIFQobmVnM2IpLCBOKCJmNjQi
-KSwgRFNURCwgU1JDMUQsIFQoZGkyKSB9LAo+ICAgCXsgMHgwNTAwMDAwMDAwMDAwMDAxdWxsLCAw
-eDM3YzAwMDAwMDAwMDAwMDN1bGwsIE4oInNlbHAiKSwgRFNULCBTUkMxLCBUKGkzYmkyKSwgVChw
-bm90MmQpLCBQU1JDMyB9LAo+ICAgCXsgMHgwN2MwMDAwMDAwMDAwMDAxdWxsLCAweDM3YzAwMDAw
-MDAwMDAwMDN1bGwsIE4oInJzaGYiKSwgTigiYjMyIiksIERTVCwgU0VTVEFSVCwgVCh1czY0XzI4
-KSwgU1JDMSwgU1JDMywgU0VFTkQsIFQoc2hmY2xhbXApLCBUKHN1aTJiKSB9LCAvLyBkID0gKHMx
-ID4+IHMyKSB8IChzMyA8PCAoMzIgLSBzMikpCj4KClRoYW5rcywgYXBwbGllZC4KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxp
-c3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1262404125==
+Content-Type: multipart/alternative; boundary="1446734914.FeBbab8D4.19818"; charset="UTF-8"
+
+
+--1446734914.FeBbab8D4.19818
+Date: Thu, 5 Nov 2015 14:48:34 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=89912
+
+--- Comment #4 from Thiago <thiago.igarashi-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Same problem here!!
+Im using kernel 4.0.2-1-amd64 on Debian 
+
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 650
+Ti] (rev a1)
+
+/var/log/syslog
+
+kernel: [47450.816837] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.816843] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.816846] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.817278] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.817281] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.817283] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.817389] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.817390] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.817393] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.818377] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.818380] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.818384] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.825570] nouveau E[   PFIFO][0000:01:00.0] read fault at
+0x000c580000 [PTE] from GR/GPC0/PROP_0 on channel 0x003f7cf000 [chromium[1738]]
+kernel: [47450.825576] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
+channel 6, recovering...
+
+system freezes but mouse still working and clementine still playing.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446734914.FeBbab8D4.19818
+Date: Thu, 5 Nov 2015 14:48:34 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89912#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Sometimes Nouveau hangs kernel with PGRAPH engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=89912">bug 89912</a>
+              from <span class="vcard"><a class="email" href="mailto:thiago.igarashi&#64;gmail.com" title="Thiago &lt;thiago.igarashi&#64;gmail.com&gt;"> <span class="fn">Thiago</span></a>
+</span></b>
+        <pre>Same problem here!!
+Im using kernel 4.0.2-1-amd64 on Debian 
+
+
+01:00.0 VGA compatible controller: NVIDIA Corporation GK106 [GeForce GTX 650
+Ti] (rev a1)
+
+/var/log/syslog
+
+kernel: [47450.816837] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.816843] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.816846] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.817278] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.817281] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.817283] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.817389] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.817390] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.817393] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.818377] nouveau E[chromium[1738]] fail set_domain
+kernel: [47450.818380] nouveau E[chromium[1738]] validating bo list
+kernel: [47450.818384] nouveau E[chromium[1738]] validate: -22
+kernel: [47450.825570] nouveau E[   PFIFO][0000:01:00.0] read fault at
+0x000c580000 [PTE] from GR/GPC0/PROP_0 on channel 0x003f7cf000 [chromium[1738]]
+kernel: [47450.825576] nouveau E[   PFIFO][0000:01:00.0] PGRAPH engine fault on
+channel 6, recovering...
+
+system freezes but mouse still working and clementine still playing.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446734914.FeBbab8D4.19818--
+
+--===============1262404125==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1262404125==--
