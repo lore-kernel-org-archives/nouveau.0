@@ -1,9 +1,9 @@
 From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 Subject: Fw: new message
-Date: Fri, 6 Nov 2015 02:21:19 -0800
-Message-ID: <0000ae310701$7c8fac5e$86a8a6db$@derocher.org>
+Date: Fri, 6 Nov 2015 02:21:21 -0800
+Message-ID: <0000813110c2$55d35e9c$77116384$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0860953230=="
+Content-Type: multipart/mixed; boundary="===============1832733566=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,19 +15,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Nouveau List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>"Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 This is a multipart message in MIME format.
 
---===============0860953230==
+--===============1832733566==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_6858FFF9.3D89E7E2"
+	boundary="----=_NextPart_000_0001_7738BF3A.6C926A29"
 Content-Language: en-us
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0001_6858FFF9.3D89E7E2
+------=_NextPart_000_0001_7738BF3A.6C926A29
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
@@ -35,14 +35,14 @@ Hello!
 
  
 
-New message, please read <http://tecmawatco.com.vn/own.php?jr>
+New message, please read <http://biuro-kubiak.pl/everybody.php?lo9>
 
  
 
 Nouveau
 
 
-------=_NextPart_000_0001_6858FFF9.3D89E7E2
+------=_NextPart_000_0001_7738BF3A.6C926A29
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,15 +96,15 @@ div.WordSection1
 C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
 span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
 an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><b>New message, please read</b> <a href=3D"http://tecmaw=
-atco.com.vn/own.php?jr">http://tecmawatco.com.vn/own.php</a><o:p></o:p=
-></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p><=
-/span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:p></=
-span></p></div></body></html>
+ lang=3DEN-US><b>New message, please read</b> <a href=3D"http://biuro-=
+kubiak.pl/everybody.php?lo9">http://biuro-kubiak.pl/everybody.php</a><=
+o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbs=
+p;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p=
+></o:p></span></p></div></body></html>
 
-------=_NextPart_000_0001_6858FFF9.3D89E7E2--
+------=_NextPart_000_0001_7738BF3A.6C926A29--
 
---===============0860953230==
+--===============1832733566==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0860953230==--
+--===============1832733566==--
