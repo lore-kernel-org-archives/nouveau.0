@@ -1,11 +1,13 @@
-From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Fw: new message
-Date: Fri, 6 Nov 2015 02:21:17 -0800
-Message-ID: <0000a6435493$1e38f3d2$75ed4380$@derocher.org>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92192] nouveau does not detect monitor native
+ resolution (Geforce GT240 / GT215)
+Date: Fri, 06 Nov 2015 11:01:09 +0000
+Message-ID: <bug-92192-8800-oNpBzx7Cvp@http.bugs.freedesktop.org/>
+References: <bug-92192-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0559679476=="
+Content-Type: multipart/mixed; boundary="===============1754038183=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
+In-Reply-To: <bug-92192-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -15,96 +17,73 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mike Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org>, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Nicolas Gddel <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
 
---===============0559679476==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_1B0444F0.6A299CB4"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_1B0444F0.6A299CB4
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello!
-
- 
-
-New message, please read <http://corymclark.com/waiting.php?b>
-
- 
-
-Nouveau
+--===============1754038183==
+Content-Type: multipart/alternative; boundary="1446807668.25042f781.27538"; charset="UTF-8"
 
 
-------=_NextPart_000_0001_1B0444F0.6A299CB4
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--1446807668.25042f781.27538
+Date: Fri, 6 Nov 2015 11:01:08 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><b>New message, please read</b> <a href=3D"http://corymc=
-lark.com/waiting.php?b">http://corymclark.com/waiting.php</a><o:p></o:=
-p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p>=
-</span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:p><=
-/span></p></div></body></html>
+https://bugs.freedesktop.org/show_bug.cgi?id=92192
 
-------=_NextPart_000_0001_1B0444F0.6A299CB4--
+--- Comment #5 from Germano Massullo <germano.massullo-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #4)
+> It appears all we get are those modelines from EDID. You can add your own
+> custom ones if you like.
 
---===============0559679476==
+Okay but it's an "hack around"
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446807668.25042f781.27538
+Date: Fri, 6 Nov 2015 11:01:08 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau does not detect monitor native resolution (Geforce GT240 / GT215)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92192#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau does not detect monitor native resolution (Geforce GT240 / GT215)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92192">bug 92192</a>
+              from <span class="vcard"><a class="email" href="mailto:germano.massullo&#64;gmail.com" title="Germano Massullo &lt;germano.massullo&#64;gmail.com&gt;"> <span class="fn">Germano Massullo</span></a>
+</span></b>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92192#c4">comment #4</a>)
+<span class="quote">&gt; It appears all we get are those modelines from EDID. You can add your own
+&gt; custom ones if you like.</span >
+
+Okay but it's an &quot;hack around&quot;</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446807668.25042f781.27538--
+
+--===============1754038183==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0559679476==--
+--===============1754038183==--
