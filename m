@@ -1,12 +1,19 @@
-From: Thierry Reding <thierry.reding-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Fri, 6 Nov 2015 18:19:30 +0100
-Message-ID: <20151106171930.GA24026@ulmo>
-References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
+From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Subject: Re: Documentation request for MP warp error 0x10
+Date: Fri, 6 Nov 2015 12:59:32 -0800
+Message-ID: <20151106205932.GA6669@morell.nvidia.com>
+References: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
+ <20151002214811.GD9436@morell.nvidia.com>
+ <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q@mail.gmail.com>
+ <20151002221456.GE9436@morell.nvidia.com>
+ <CAKb7Uvjpmxn8kR3DhbXSh0SXmsGCQ-+dP1iQX7j30QiGFtbStg@mail.gmail.com>
+ <20151026200256.GB7638@morell.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1150695236=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1446242140-6766-1-git-send-email-daniel.vetter-/w4YWyX8dFk@public.gmane.org>
+Content-Disposition: inline
+In-Reply-To: <20151026200256.GB7638-f3YH7lVHJt/FT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,280 +23,45 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
-Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1150695236==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Nq2Wo0NMKNjxTN9z"
-Content-Disposition: inline
-
-
---Nq2Wo0NMKNjxTN9z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Cc +=3D Mario Kleiner, Mario, can you take a look whether this proposed
-solution makes sense and fixes the issues you were seeing back when you
-posted the patch in commit:
-
-commit af4870e406126b7ac0ae7c7ce5751f25ebe60f28
-Author: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Date:   Tue May 13 00:42:08 2014 +0200
-
-    drm/nouveau/kms/nv04-nv40: fix pageflip events via special case.
-
-    Cards with nv04 display engine can't reliably use vblank
-    counts and timestamps computed via drm_handle_vblank(), as
-    the function gets invoked after sending the pageflip events.
-
-    Fix this by defaulting to the old crtcid =3D -1 fallback path
-    on <=3D NV-50 cards, and only using the precise path on NV-50
-    and later.
-
-    Signed-off-by: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-    Cc: <stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org> # 3.13+
-
-Do you happen to still have the setup around where you saw this?
-
-Thierry
-
-On Fri, Oct 30, 2015 at 10:55:40PM +0100, Daniel Vetter wrote:
-> Apparently pre-nv50 pageflip events happen before the actual vblank
-> period. Therefore that functionality got semi-disabled in
->=20
-> commit af4870e406126b7ac0ae7c7ce5751f25ebe60f28
-> Author: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Date:   Tue May 13 00:42:08 2014 +0200
->=20
->     drm/nouveau/kms/nv04-nv40: fix pageflip events via special case.
->=20
-> Unfortunately that hack got uprooted in
->=20
-> commit cc1ef118fc099295ae6aabbacc8af94d8d8885eb
-> Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> Date:   Wed Aug 12 17:00:31 2015 +0200
->=20
->     drm/irq: Make pipe unsigned and name consistent
->=20
-> Trigering a warning when trying to sample the vblank timestamp for a
-> non-existing pipe. There's a few ways to fix this:
->=20
-> - Open-code the old behaviour, which just enshrines this slight
->   breakage of the userspace ABI.
->=20
-> - Revert Mario's commit and again inflict broken timestamps, again not
->   pretty.
->=20
-> - Fix this for real by delaying the pageflip TS until the next vblank
->   interrupt, thereby making it accurate.
->=20
-> This patch implements the third option. Since having a page flip
-> interrupt that happens when the pageflip gets armed and not when it
-> completes in the next vblank seems to be fairly common (older i915 hw
-> works very similarly) create a new helper to arm vblank events for
-> such drivers.
->=20
-> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D106431
-> Cc: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> ---
->=20
-> Note that due to lack of hw this is completely untested. But I think
-> it's the right way to fix this.
-> -Daniel
-> ---
->  drivers/gpu/drm/drm_irq.c                 | 56 +++++++++++++++++++++++++=
-+++++-
->  drivers/gpu/drm/nouveau/nouveau_display.c | 16 ++++-----
->  include/drm/drmP.h                        |  4 +++
->  3 files changed, 66 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_irq.c b/drivers/gpu/drm/drm_irq.c
-> index 46dbc34b81ba..b3e1f58666a6 100644
-> --- a/drivers/gpu/drm/drm_irq.c
-> +++ b/drivers/gpu/drm/drm_irq.c
-> @@ -972,7 +972,8 @@ static void send_vblank_event(struct drm_device *dev,
->  		struct drm_pending_vblank_event *e,
->  		unsigned long seq, struct timeval *now)
->  {
-> -	WARN_ON_SMP(!spin_is_locked(&dev->event_lock));
-> +	assert_spin_locked(&dev->event_lock);
-> +
->  	e->event.sequence =3D seq;
->  	e->event.tv_sec =3D now->tv_sec;
->  	e->event.tv_usec =3D now->tv_usec;
-> @@ -985,6 +986,59 @@ static void send_vblank_event(struct drm_device *dev,
->  }
-> =20
->  /**
-> + * drm_arm_vblank_event - arm vblanke event after pageflip
-> + * @dev: DRM device
-> + * @pipe: CRTC index
-> + * @e: the event to prepare to send
-> + *
-> + * A lot of drivers need to generate vblank events for the very next vbl=
-ank
-> + * interrupt. For example when the page flip interrupt happens when the =
-page
-> + * flip gets armed, but not when it actually executes within the next vb=
-lank
-> + * period. This helper function implements exactly the required vblank a=
-rming
-> + * behaviour.
-> + *
-> + * Caller must hold event lock. Caller must also hold a vblank reference=
- for the
-> + * event @e, which will be dropped when the next vblank arrives.
-> + *
-> + * This is the legacy version of drm_crtc_arm_vblank_event().
-> + */
-> +void drm_arm_vblank_event(struct drm_device *dev, unsigned int pipe,
-> +			  struct drm_pending_vblank_event *e)
-> +{
-> +	struct timeval now;
-> +	unsigned int seq;
-> +
-> +	assert_spin_locked(&dev->event_lock);
-> +
-> +	e->pipe =3D pipe;
-> +	list_add_tail(&e->base.link, &dev->vblank_event_list);
-> +}
-> +EXPORT_SYMBOL(drm_arm_vblank_event);
-> +
-> +/**
-> + * drm_arm_vblank_event - arm vblanke event after pageflip
-> + * @crtc: the source CRTC of the vblank event
-> + * @e: the event to send
-> + *
-> + * A lot of drivers need to generate vblank events for the very next vbl=
-ank
-> + * interrupt. For example when the page flip interrupt happens when the =
-page
-> + * flip gets armed, but not when it actually executes within the next vb=
-lank
-> + * period. This helper function implements exactly the required vblank a=
-rming
-> + * behaviour.
-> + *
-> + * Caller must hold event lock. Caller must also hold a vblank reference=
- for the
-> + * event @e, which will be dropped when the next vblank arrives.
-> + *
-> + * This is the native KMS version of drm_send_vblank_event().
-> + */
-> +void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
-> +			       struct drm_pending_vblank_event *e)
-> +{
-> +	drm_arm_vblank_event(crtc->dev, drm_crtc_index(crtc), e);
-> +}
-> +EXPORT_SYMBOL(drm_crtc_arm_vblank_event);
-> +
-> +/**
->   * drm_send_vblank_event - helper to send vblank event after pageflip
->   * @dev: DRM device
->   * @pipe: CRTC index
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/=
-nouveau/nouveau_display.c
-> index 184445d4abbf..041e5f84538c 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-> @@ -826,7 +826,6 @@ nouveau_finish_page_flip(struct nouveau_channel *chan,
->  	struct drm_device *dev =3D drm->dev;
->  	struct nouveau_page_flip_state *s;
->  	unsigned long flags;
-> -	int crtcid =3D -1;
-> =20
->  	spin_lock_irqsave(&dev->event_lock, flags);
-> =20
-> @@ -838,16 +837,15 @@ nouveau_finish_page_flip(struct nouveau_channel *ch=
-an,
-> =20
->  	s =3D list_first_entry(&fctx->flip, struct nouveau_page_flip_state, hea=
-d);
->  	if (s->event) {
-> -		/* Vblank timestamps/counts are only correct on >=3D NV-50 */
-> -		if (drm->device.info.family >=3D NV_DEVICE_INFO_V0_TESLA)
-> -			crtcid =3D s->crtc;
-> -
-> -		drm_send_vblank_event(dev, crtcid, s->event);
-> +		if (drm->device.info.family < NV_DEVICE_INFO_V0_TESLA) {
-> +			drm_arm_vblank_event(dev, s->crtc, s->event);
-> +		} else {
-> +			drm_send_vblank_event(dev, s->crtc, s->event);
-> +			/* Give up ownership of vblank for page-flipped crtc */
-> +			drm_vblank_put(dev, s->crtc);
-> +		}
->  	}
-> =20
-> -	/* Give up ownership of vblank for page-flipped crtc */
-> -	drm_vblank_put(dev, s->crtc);
-> -
->  	list_del(&s->head);
->  	if (ps)
->  		*ps =3D *s;
-> diff --git a/include/drm/drmP.h b/include/drm/drmP.h
-> index eb513341b6ee..4c91ac419d5d 100644
-> --- a/include/drm/drmP.h
-> +++ b/include/drm/drmP.h
-> @@ -948,6 +948,10 @@ extern void drm_send_vblank_event(struct drm_device =
-*dev, unsigned int pipe,
->  				  struct drm_pending_vblank_event *e);
->  extern void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
->  				       struct drm_pending_vblank_event *e);
-> +void drm_send_vblank_event(struct drm_device *dev, unsigned int pipe,
-> +			   struct drm_pending_vblank_event *e);
-> +void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
-> +				struct drm_pending_vblank_event *e);
->  extern bool drm_handle_vblank(struct drm_device *dev, unsigned int pipe);
->  extern bool drm_crtc_handle_vblank(struct drm_crtc *crtc);
->  extern int drm_vblank_get(struct drm_device *dev, unsigned int pipe);
-> --=20
-> 2.5.1
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---Nq2Wo0NMKNjxTN9z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCAAGBQJWPOEeAAoJEN0jrNd/PrOh07YP/3Ktd3gIrWmwMwAbd3KKjiBT
-UzckwCgN0l/FnQjYJYsowCQ04AC+k5mwqd5APsFXFCtaj1UeHvc/3wCUFfMRGDhG
-fhM3oue3TWpNVQh8PxejV2MfORL4qik36YC/pyV6qRpa0USB0arQwZp3nGdK/2E5
-2zaJOQroVm47l1LB+cUBLoEDJ81gxbk5m+qp6XieE63+2LHpkYWPNEnE/y9X5M5I
-kohE6V9PDJajMLm4FPNXlOv3M3CXo94ryLwJAMhkcRooXGoqq/DRcX+u5HlG30v5
-gmw+gyAX41phPujat3WtLISMkAOSJa2s/RxS3OkF2aE5Wtyk49S7DaAr8B6n1SCr
-NEGO9rsSQEfRJHAzYlryMDiRNfWNgPfIWbtZ3FeuyI3qywF59QtnnIbWErlIRTXU
-7S9Ftp8QB4G+TyC65AqdtnHbaujiPnQVFfx5gN3lxM8BiE1fC1wcoqhxU8hATrzR
-7q4UjniZz9VahjAMIuo2tVHQQoZKime0f8PUwcRHWGoUPBCvFyD6B9gx5Y5nIKZ7
-CJEctJ/vio/Au1oIk3Prq8iZcrbJrt3bMSL11eM9bZIn45iWu6w3xSunO0cNEnD0
-Q9VeOHRIL0f6rArCOB3yvLQHznq5fYC0lcDBDLyNMlL7w5BgVI0BCC2cBhv1Wsa8
-JG4djOQ4CZ09/bbMxEpK
-=WTaW
------END PGP SIGNATURE-----
-
---Nq2Wo0NMKNjxTN9z--
-
---===============1150695236==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1150695236==--
+T24gRnJpLCBPY3QgMDIsIDIwMTUgYXQgMDY6MDU6MjFQTSAtMDQwMCwgSWxpYSBNaXJraW4gd3Jv
+dGU6Cj4gQ291bGQgeW91IGFkdmlzZSB3aGF0IHRoZSBwcm9wZXIgd2F5IG9mIGluZGljYXRpbmcK
+PiB0aGF0IHRoZSBtZW1vcnkgaXMgImdsb2JhbCIgdG8gdGhlIG9wPyBJJ20gc3VyZSBJJ20ganVz
+dCBtaXNzaW5nCj4gc29tZXRoaW5nIHNpbXBsZS4gSWYgeW91IHNob3cgbWUgd2hhdCB0byBsb29r
+IGZvciBpbiBTTTM1IEkgY2FuCj4gcHJvYmFibHkgZmluZCBpdCBvbiBteSBvd24gZm9yIFNNMjAv
+U00zMC9TTTUwLgoKU29ycnkgYWdhaW4gZm9yIHRoZSBkZWxheS4gIEhlcmUncyB3aGF0IEkndmUg
+YmVlbiBhYmxlIHRvIGZpbmQgb3V0IGFib3V0CnRoZSBnZW5lcmljIHRocmVhZCBhZGRyZXNzIHNw
+YWNlICh1c2VkIGJ5IHRoZSBTTXMpIGFuZCB3aGF0IHR5cGVzIG9mCm1lbW9yeSBpdCBjb250YWlu
+cy4gIEhvcGVmdWxseSB0aGlzIGNsZWFycyB0aGluZ3MgdXAuCgoKTG9jYWwgbWVtb3J5IGlzIGEg
+cGVyLXRocmVhZCBzcGFjZS4KU2hhcmVkIG1lbW9yeSBpcyBhIHBlci1DVEEgc3BhY2UgKGNvbXB1
+dGUgc2hhZGVycyBvbmx5KS4KCkxETCBhbmQgU1RMIGluc3RydWN0aW9ucyBhY2Nlc3MgbG9jYWwg
+bWVtb3J5IHdpdGggYSB6ZXJvIG9mZnNldC4KTERTLCBMU0RMSywgU1RTLCBhbmQgU1RTQ1VMIGlu
+c3RydWN0aW9ucyBhY2Nlc3Mgc2hhcmVkIG1lbW9yeSB3aXRoIGEgemVybwpvZmZzZXQuCgpMRCwg
+U1QsIFJFRCwgQVRPTSwgYW5kIENDVEwuRCBpbnN0cnVjdGlvbnMgYWNjZXNzIHRoZSBnZW5lcmlj
+IHRocmVhZCBhZGRyZXNzCnNwYWNlLCB3aGljaCBpcyBsYXllcmVkIG9uIHRvcCBvZiB0aGUgY2hh
+bm5lbCdzIHZpcnR1YWwgYWRkcmVzcyBzcGFjZS4KCkluIHRoZSBnZW5lcmljIHRocmVhZCBhZGRy
+ZXNzIHNwYWNlLCB0aGVyZSBhcmUgMTZNQiB3aW5kb3dzIGludG8gbG9jYWwgYW5kCnNoYXJlZCBt
+ZW1vcnk7IGV2ZXJ5dGhpbmcgbm90IGluIGEgTG9jYWwgb3IgU2hhcmVkIGFkZHJlc3Mgd2luZG93
+IGFjY2Vzc2VzCmdsb2JhbCB2aXJ0dWFsIG1lbW9yeS4KClRoZSBsb2NhbCB3aW5kb3cgb2Zmc2V0
+IHdpdGhpbiB0aGUgZ2VuZXJpYyB0aHJlYWQgYWRkcmVzcyBzcGFjZSBpcyBkZXRlcm1pbmVkCmJ5
+IHRoZSBTZXRTaGFkZXJMb2NhbE1lbW9yeVdpbmRvdyBjbGFzcyBtZXRob2QgKG9mZnNldCAweDc3
+YyBpbiBjbGFzc2VzICo5NyBhbmQKKmMwKS4KClRoZSBzaGFyZWQgd2luZG93IG9mZnNldCB3aXRo
+aW4gdGhlIGdlbmVyaWMgdGhyZWFkIGFkZHJlc3Mgc3BhY2UgaXMgZGV0ZXJtaW5lZApieSB0aGUg
+U2V0U2hhZGVyU2hhcmVkTWVtb3J5V2luZG93IGNsYXNzIG1ldGhvZCAob2Zmc2V0IDB4MjE0IGlu
+IGNsYXNzZXMgKmMwKS4KCkZvciBib3RoIG1ldGhvZHMsIHRoZSBvZmZzZXQgaXMgaW4gYnl0ZXMs
+IGJ1dCB0aGUgd2luZG93IG11c3QgYmUgYWxpZ25lZCB0byBhCjE2TUIgYm91bmRhcnkgKHNvIHRo
+ZSBsb3dlciAyNCBiaXRzIG9mIHRoZSBkYXRhIG11c3QgYmUgemVybykuIFRoZSB1cHBlciAzMgpi
+aXRzIG9mIHRoZSB3aW5kb3dzIGFyZSBoYXJkLWNvZGVkIHRvIDAgKHNvIHRoZXkgbXVzdCBiZSBw
+bGFjZWQgd2l0aGluIHRoZQpsb3dlciA0R0Igb2YgYWRkcmVzcyBzcGFjZSkuCgpHZW5lcmFsbHks
+IGl0IGlzIGV4cGVjdGVkIHRoYXQgc29mdHdhcmUgd2lsbCByZXNlcnZlIHJhbmdlcyBpbiB0aGUg
+Z2xvYmFsCnZpcnR1YWwgYWRkcmVzcyBzcGFjZSB3aGVyZSB0aGVzZSB3aW5kb3dzIHdpbGwgYmUg
+cGxhY2VkLiAoT3RoZXJ3aXNlIGFueXRoaW5nCm1hcHBlZCB0aGVyZSB3aWxsIGJlIGluYWNjZXNz
+aWJsZSB0byBzaGFkZXJzLikKCkZvciBncmFwaGljcyBzaGFkZXJzLCB0aGUgc2hhcmVkIGFkZHJl
+c3Mgc3BhY2UgbG9naWMgZG9lcyBub3QgZXhpc3QsIHNvIHRoZXJlCmlzIG5vIG5lZWQgdG8gcmVz
+ZXJ2ZSB2aXJ0dWFsIG1lbW9yeSBmb3IgaXQuCgoKLSBSb2JlcnQKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
+dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL25vdXZlYXUK
