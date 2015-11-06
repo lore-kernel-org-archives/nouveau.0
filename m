@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92833] [NV117] nouveau E[ PFIFO][0000:01:00.0] read
- fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel
- 0x007ed78000 [unknown]
-Date: Thu, 05 Nov 2015 23:21:07 +0000
-Message-ID: <bug-92833-8800-rYO4utVKtb@http.bugs.freedesktop.org/>
-References: <bug-92833-8800@http.bugs.freedesktop.org/>
+From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: Fw: new message
+Date: Fri, 6 Nov 2015 02:21:19 -0800
+Message-ID: <0000ae310701$7c8fac5e$86a8a6db$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1555824879=="
+Content-Type: multipart/mixed; boundary="===============0860953230=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92833-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,104 +15,96 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Nouveau List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>Nouveau Mailinglist <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
+This is a multipart message in MIME format.
 
---===============1555824879==
-Content-Type: multipart/alternative; boundary="1446765667.a1C3d85e2.28521"; charset="UTF-8"
+--===============0860953230==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_6858FFF9.3D89E7E2"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_6858FFF9.3D89E7E2
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello!
+
+ 
+
+New message, please read <http://tecmawatco.com.vn/own.php?jr>
+
+ 
+
+Nouveau
 
 
---1446765667.a1C3d85e2.28521
-Date: Thu, 5 Nov 2015 23:21:07 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0001_6858FFF9.3D89E7E2
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92833
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
+-microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
+ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
+ xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
+ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
+nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
+C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
+span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
+an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
+ lang=3DEN-US><b>New message, please read</b> <a href=3D"http://tecmaw=
+atco.com.vn/own.php?jr">http://tecmawatco.com.vn/own.php</a><o:p></o:p=
+></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p><=
+/span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:p></=
+span></p></div></body></html>
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+------=_NextPart_000_0001_6858FFF9.3D89E7E2--
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|nouveau E[                  |[NV117] nouveau E[
-                   |PFIFO][0000:01:00.0] read   |PFIFO][0000:01:00.0] read
-                   |fault at 0x0000011000       |fault at 0x0000011000
-                   |[UNSUPPORTED_KIND] from     |[UNSUPPORTED_KIND] from
-                   |PBDMA0/HOST on channel      |PBDMA0/HOST on channel
-                   |0x007ed78000 [unknown]      |0x007ed78000 [unknown]
-
---- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Are those the first messages? What kernel are you using? Or to rephrase, does
-this still happen with kernel 4.3.0?
-
-nv50cal_space *basically* means the GPU has hung -- it's when we run out of IB
-space for pushbuf submission.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1446765667.a1C3d85e2.28521
-Date: Thu, 5 Nov 2015 23:21:07 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833">bug 92833</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]
-           </td>
-           <td>[NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV117] nouveau E[ PFIFO][0000:01:00.0] read fault at 0x0000011000 [UNSUPPORTED_KIND] from PBDMA0/HOST on channel 0x007ed78000 [unknown]"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92833">bug 92833</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Are those the first messages? What kernel are you using? Or to rephrase, does
-this still happen with kernel 4.3.0?
-
-nv50cal_space *basically* means the GPU has hung -- it's when we run out of IB
-space for pushbuf submission.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1446765667.a1C3d85e2.28521--
-
---===============1555824879==
+--===============0860953230==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -125,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1555824879==--
+--===============0860953230==--
