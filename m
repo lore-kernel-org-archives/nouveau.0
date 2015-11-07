@@ -1,15 +1,13 @@
-From: Lukas Wunner <lukas-JFq808J9C/izQB+pC5nmwQ@public.gmane.org>
-Subject: Re: [PATCH] drm: fix issue by messing up runpm
- usage_counter
-Date: Sat, 7 Nov 2015 16:25:22 +0100
-Message-ID: <20151107152522.GA22458@wunner.de>
-References: <1446889328-2764-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 70566] [NVD9] hard lock-ups entire system at random
+	moments
+Date: Sat, 07 Nov 2015 16:29:07 +0000
+Message-ID: <bug-70566-8800-g5U9Xaet3B@http.bugs.freedesktop.org/>
+References: <bug-70566-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1238447923=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1446889328-2764-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-70566-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,43 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgS2Fyb2wsCgpPbiBTYXQsIE5vdiAwNywgMjAxNSBhdCAxMDo0MjowOEFNICswMTAwLCBLYXJv
-bCBIZXJic3Qgd3JvdGU6Cj4gSSBoYXZlIHRoZSBpc3N1ZSB3aGVuIGxvYWRpbmcgbm91dmVhdSB3
-aXRoIHJ1bnBtPTAgc2V0LCB0aGF0IGZ1cnRoZXIgbm91dmVhdQo+IGxvYWRzIHdpdGhvdXQgcnVu
-cG0gc2V0IG9yIHJ1bnBtPTEgZG9uJ3QgcHV0IHRoZSBjYXJkIGludG8gc2xlZXAgc3RhdGUuCj4g
-Cj4gVGhpcyBpcyBjYXVzZWQgYnkgY2FsbGluZyBwbV9ydW50aW1lX2dldF9zeW5jIGluIGRybV9k
-ZXZpY2UudW5sb2FkIHdoZW4gdGhlCj4gdXNhZ2VfY291bnRlciBpc24ndCAwLiBwbV9ydW50aW1l
-X2dldF9zeW5jIGFsd2F5cyBpbmNyZWFzZXMgdGhlIHN1YWdlX2NvdW50ZXIKPiBhbmQgc28gdGhl
-IHVzYWdlX2NvdW50ZXIgZ2V0cyBpbmNyZWFzZWQgYWxsdGhvdWdoIHJ1bnBtPTAgaXMgc2V0LCBt
-ZWFuaW5nCj4gbm91dmVhdSBsZWF2ZXMgdGhlIGRldmljZSB3aXRoIGEgKzEgdXNhZ2VfY291bnRl
-ciBhZnRlciB1bmxvYWQuCgpBcHBhcmVudGx5IHRoZSBjYXJkIG5lZWRzIHRvIGJlIHR1cm5lZCBv
-biBmb3Igc29tZSBvZiB0aGUgc3Vic2VxdWVudApmdW5jdGlvbnMgdG8gd29yaywgaGVuY2UgdGhl
-IHBtX3J1bnRpbWVfZ2V0X3N5bmMoKS4KClJhdGhlciB0aGFuIGNhbGxpbmcgcG1fcnVudGltZV9n
-ZXRfc3luYygpIGNvbmRpdGlvbmFsbHkgeW91IG5lZWQgdG8KYWRkCglwbV9ydW50aW1lX21hcmtf
-bGFzdF9idXN5KGRldi0+ZGV2KTsKCXBtX3J1bnRpbWVfcHV0X2F1dG9zdXNwZW5kKGRldi0+ZGV2
-KTsKZnVydGhlciBkb3duIGluIHRoZSBmdW5jdGlvbiAoYWZ0ZXIgd2hhdGV2ZXIgbmVlZHMgdGhl
-IGNhcmQgdG8gYmUKcG93ZXJlZCB1cCBoYXMgZmluaXNoZWQpIHRvIGF2b2lkIGxlYWtpbmcgdGhl
-IHJlZi4KCkJlc3QgcmVnYXJkcywKCkx1a2FzCgo+IAo+IFRoaXMgcGF0Y2ggZml4ZXMgdGhhdCBh
-bGxvd2luZyBtZSB0byBsb2FkIG5vdXZlYXUgbGF0ZXIgd2l0aCBydW5wbT0xIHNvLCB0aGF0Cj4g
-dGhlIGRldmljZSBpcyBwdXQgaW50byBzbGVlcCBzdGF0ZS4KPiAKPiAtLS0KPiAgZHJtL25vdXZl
-YXUvbm91dmVhdV9kcm0uYyB8IDMgKystCj4gIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbm91dmVhdV9k
-cm0uYyBiL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiBpbmRleCA1YjE3NDZiLi4yYWFmOWZl
-IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L25vdXZlYXVfZHJtLmMKPiArKysgYi9kcm0vbm91
-dmVhdS9ub3V2ZWF1X2RybS5jCj4gQEAgLTQ4MSw3ICs0ODEsOCBAQCBub3V2ZWF1X2RybV91bmxv
-YWQoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiAgewo+ICAJc3RydWN0IG5vdXZlYXVfZHJtICpk
-cm0gPSBub3V2ZWF1X2RybShkZXYpOwo+ICAKPiAtCXBtX3J1bnRpbWVfZ2V0X3N5bmMoZGV2LT5k
-ZXYpOwo+ICsJaWYgKGF0b21pY19yZWFkKCZkZXYtPmRldi0+cG93ZXIudXNhZ2VfY291bnQpID09
-IDApCj4gKwkJcG1fcnVudGltZV9nZXRfc3luYyhkZXYtPmRldik7Cj4gIAlub3V2ZWF1X2ZiY29u
-X2ZpbmkoZGV2KTsKPiAgCW5vdXZlYXVfYWNjZWxfZmluaShkcm0pOwo+ICAJbm91dmVhdV9od21v
-bl9maW5pKGRldik7Cj4gLS0gCj4gMi42LjMKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IE5vdXZlYXUgbWFpbGluZyBsaXN0Cj4gTm91dmVhdUBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVh
-dQo=
+
+--===============1238447923==
+Content-Type: multipart/alternative; boundary="1446913747.e8cE5a621.19668"; charset="UTF-8"
+
+
+--1446913747.e8cE5a621.19668
+Date: Sat, 7 Nov 2015 16:29:07 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=70566
+
+--- Comment #4 from Ronald <ronald645-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+The mobo died a while ago. So the problem is solved.
+
+Thank you for your effort.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446913747.e8cE5a621.19668
+Date: Sat, 7 Nov 2015 16:29:07 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] hard lock-ups entire system at random moments"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70566#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVD9] hard lock-ups entire system at random moments"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70566">bug 70566</a>
+              from <span class="vcard"><a class="email" href="mailto:ronald645&#64;gmail.com" title="Ronald &lt;ronald645&#64;gmail.com&gt;"> <span class="fn">Ronald</span></a>
+</span></b>
+        <pre>The mobo died a while ago. So the problem is solved.
+
+Thank you for your effort.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446913747.e8cE5a621.19668--
+
+--===============1238447923==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1238447923==--
