@@ -1,13 +1,21 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Sat, 07 Nov 2015 00:42:20 +0000
-Message-ID: <bug-90626-8800-ygQLaUYZTA@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: Documentation request for MP warp error 0x10
+Date: Fri, 6 Nov 2015 19:55:24 -0500
+Message-ID: <CAKb7UvjZNn1t=5VJwoA=wEQLeVjO8BQr5n3AWxLOj2Lqwwr0tA@mail.gmail.com>
+References: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
+ <20151002214811.GD9436@morell.nvidia.com>
+ <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q@mail.gmail.com>
+ <20151002221456.GE9436@morell.nvidia.com>
+ <CAKb7Uvjpmxn8kR3DhbXSh0SXmsGCQ-+dP1iQX7j30QiGFtbStg@mail.gmail.com>
+ <20151026200256.GB7638@morell.nvidia.com>
+ <20151106205932.GA6669@morell.nvidia.com>
+ <CAKb7UviaiH-twaJr9tngGvwkBn1W+PujppSES+GYRLxVr3nvvg@mail.gmail.com>
+ <20151106211951.GC6669@morell.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1651714097=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20151106211951.GC6669-f3YH7lVHJt/FT5IIyIEb6QC/G2K4zDHf@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,82 +25,26 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1651714097==
-Content-Type: multipart/alternative; boundary="1446856940.484Fa4.28380"; charset="UTF-8"
-
-
---1446856940.484Fa4.28380
-Date: Sat, 7 Nov 2015 00:42:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90626
-
---- Comment #40 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to vdanjean-GANU6spQydw@public.gmane.org from comment #39)
-> I was thinking that the "nouveau.config=War00C800_0=1" workaround was enough
-> with a plain 4.3 kernel.
-
-No, that will do nothing for you -- that's only for GK104/GK106/GK107 boards.
-Yours is a GK208.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1446856940.484Fa4.28380
-Date: Sat, 7 Nov 2015 00:42:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c40">Comment # 40</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>(In reply to <a href="mailto:vdanjean&#64;free.fr">vdanjean&#64;free.fr</a> from <a href="show_bug.cgi?id=90626#c39">comment #39</a>)
-<span class="quote">&gt; I was thinking that the &quot;nouveau.config=War00C800_0=1&quot; workaround was enough
-&gt; with a plain 4.3 kernel.</span >
-
-No, that will do nothing for you -- that's only for GK104/GK106/GK107 boards.
-Yours is a GK208.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1446856940.484Fa4.28380--
-
---===============1651714097==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1651714097==--
+T24gRnJpLCBOb3YgNiwgMjAxNSBhdCA0OjE5IFBNLCBSb2JlcnQgTW9yZWxsIDxybW9yZWxsQG52
+aWRpYS5jb20+IHdyb3RlOgo+IE9uIEZyaSwgTm92IDA2LCAyMDE1IGF0IDA0OjE1OjI5UE0gLTA1
+MDAsIElsaWEgTWlya2luIHdyb3RlOgo+PiBJbiBvcmRlciBmb3IgQVRPTS4qL1JFRC4qIHRvIHdv
+cmssIHRoZSBhZGRyZXNzZXMgaW4gcXVlc3Rpb24gbXVzdAo+PiAqTk9UKiBiZSBpbnNpZGUgb2Yg
+dGhlIDE2TUIgbG9jYWwvc2hhcmVkIHdpbmRvd3MuIFNvIGlmIEknbSBnZXR0aW5nCj4+IHRoYXQg
+ZXJyb3IsIHRoZSBhZGRyZXNzIG11c3QgYmUgaW5zaWRlLgo+Cj4gWWVzLCB0aGF0J3MgbXkgdW5k
+ZXJzdGFuZGluZy4KPgo+PiBJZiBzbywgdGhpcyBtYXkgYmUgYSByZWFzb25hYmxlIGV4cGxhbmF0
+aW9uIGZvciB3aGF0IEknbSBzZWVpbmcgLS0KPgo+IENvb2wsIEknbSBoYXBweSBpdCBoZWxwcy4K
+Ckxvb2tzIGxpa2Ugd2Ugd2VyZSBzZXR0aW5nIExPQ0FMX0JBU0UgKDB4MDc3YykgdG8gMCwgd2hp
+Y2ggd2FzCmVmZmVjdGl2ZWx5IHNoYWRvd2luZyB0aGUgbG93IDE2TSBvZiBnW10gc3BhY2UsIHdo
+aWNoIGlzIHdoZXJlIG91cgpidWZmZXJzIHdlcmUgZW5kaW5nIHVwIHRvby4gU2V0dGluZyBpdCB0
+byBzb21lIGhpZ2gtdXAgZmFyLW9mZiBsYW5kCm1ha2VzIGV2ZXJ5dGhpbmcgd29yayEKCk9idmlv
+dXNseSBJJ2xsIG5lZWQgc29tZSBjbGV2ZXJlciB3YXkgdG8gZGVhbCB3aXRoIHRoaXMsIGJ1dCBs
+b29rcwpsaWtlIGl0J3MgYWxsIGV4YWN0bHkgYXMgeW91IGRlc2NyaWJlZC4gRG9jdW1lbnRhdGlv
+biBkb2VzIHdvbmRlcnMgOikKTG9va3MgbGlrZSBJIHNob3VsZCBiZSBhYmxlIHRvIG1ha2UgcHJv
+Z3Jlc3Mgb24gbXkgYXRvbWljcy9zc2JvIHdvcmsKbm93LgoKVGhhbmtzIGFnYWluLAoKICAtaWxp
+YQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1
+IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
