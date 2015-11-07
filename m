@@ -1,11 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH] drm: fix issue by messing up runpm usage_counter
-Date: Sat,  7 Nov 2015 10:42:08 +0100
-Message-ID: <1446889328-2764-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69387] X hangs on resume/monitor blank with
+	nv50cal_space: -16
+Date: Sat, 07 Nov 2015 12:00:38 +0000
+Message-ID: <bug-69387-8800-cUHdXgN34I@http.bugs.freedesktop.org/>
+References: <bug-69387-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1426673261=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,26 +20,118 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SSBoYXZlIHRoZSBpc3N1ZSB3aGVuIGxvYWRpbmcgbm91dmVhdSB3aXRoIHJ1bnBtPTAgc2V0LCB0
-aGF0IGZ1cnRoZXIgbm91dmVhdQpsb2FkcyB3aXRob3V0IHJ1bnBtIHNldCBvciBydW5wbT0xIGRv
-bid0IHB1dCB0aGUgY2FyZCBpbnRvIHNsZWVwIHN0YXRlLgoKVGhpcyBpcyBjYXVzZWQgYnkgY2Fs
-bGluZyBwbV9ydW50aW1lX2dldF9zeW5jIGluIGRybV9kZXZpY2UudW5sb2FkIHdoZW4gdGhlCnVz
-YWdlX2NvdW50ZXIgaXNuJ3QgMC4gcG1fcnVudGltZV9nZXRfc3luYyBhbHdheXMgaW5jcmVhc2Vz
-IHRoZSBzdWFnZV9jb3VudGVyCmFuZCBzbyB0aGUgdXNhZ2VfY291bnRlciBnZXRzIGluY3JlYXNl
-ZCBhbGx0aG91Z2ggcnVucG09MCBpcyBzZXQsIG1lYW5pbmcKbm91dmVhdSBsZWF2ZXMgdGhlIGRl
-dmljZSB3aXRoIGEgKzEgdXNhZ2VfY291bnRlciBhZnRlciB1bmxvYWQuCgpUaGlzIHBhdGNoIGZp
-eGVzIHRoYXQgYWxsb3dpbmcgbWUgdG8gbG9hZCBub3V2ZWF1IGxhdGVyIHdpdGggcnVucG09MSBz
-bywgdGhhdAp0aGUgZGV2aWNlIGlzIHB1dCBpbnRvIHNsZWVwIHN0YXRlLgoKLS0tCiBkcm0vbm91
-dmVhdS9ub3V2ZWF1X2RybS5jIHwgMyArKy0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5j
-IGIvZHJtL25vdXZlYXUvbm91dmVhdV9kcm0uYwppbmRleCA1YjE3NDZiLi4yYWFmOWZlIDEwMDY0
-NAotLS0gYS9kcm0vbm91dmVhdS9ub3V2ZWF1X2RybS5jCisrKyBiL2RybS9ub3V2ZWF1L25vdXZl
-YXVfZHJtLmMKQEAgLTQ4MSw3ICs0ODEsOCBAQCBub3V2ZWF1X2RybV91bmxvYWQoc3RydWN0IGRy
-bV9kZXZpY2UgKmRldikKIHsKIAlzdHJ1Y3Qgbm91dmVhdV9kcm0gKmRybSA9IG5vdXZlYXVfZHJt
-KGRldik7CiAKLQlwbV9ydW50aW1lX2dldF9zeW5jKGRldi0+ZGV2KTsKKwlpZiAoYXRvbWljX3Jl
-YWQoJmRldi0+ZGV2LT5wb3dlci51c2FnZV9jb3VudCkgPT0gMCkKKwkJcG1fcnVudGltZV9nZXRf
-c3luYyhkZXYtPmRldik7CiAJbm91dmVhdV9mYmNvbl9maW5pKGRldik7CiAJbm91dmVhdV9hY2Nl
-bF9maW5pKGRybSk7CiAJbm91dmVhdV9od21vbl9maW5pKGRldik7Ci0tIAoyLjYuMwoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1426673261==
+Content-Type: multipart/alternative; boundary="1446897638.c774421.32517"; charset="UTF-8"
+
+
+--1446897638.c774421.32517
+Date: Sat, 7 Nov 2015 12:00:38 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69387
+
+Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #4 from Maris Nartiss <maris.nartiss-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I managed to suspend/resume without any problems with enabled acceleration for
+some 5 times. Yahoo! Issue seems to be solved. Finally I will get acceleration
+back (and thus upgrade to xf86-video-nouveau-1.0.11 #86164).
+
+Tested with:
+kernel: 4.2.4-gentoo
+xorg-server-1.17.4
+xf86-video-nouveau-1.0.10-r1
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446897638.c774421.32517
+Date: Sat, 7 Nov 2015 12:00:38 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:maris.nartiss&#64;gmail.com" title="Maris Nartiss &lt;maris.nartiss&#64;gmail.com&gt;"> <span class="fn">Maris Nartiss</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">bug 69387</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387#c4">Comment # 4</a>
+              on <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED FIXED - X hangs on resume/monitor blank with nv50cal_space: -16"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">bug 69387</a>
+              from <span class="vcard"><a class="email" href="mailto:maris.nartiss&#64;gmail.com" title="Maris Nartiss &lt;maris.nartiss&#64;gmail.com&gt;"> <span class="fn">Maris Nartiss</span></a>
+</span></b>
+        <pre>I managed to suspend/resume without any problems with enabled acceleration for
+some 5 times. Yahoo! Issue seems to be solved. Finally I will get acceleration
+back (and thus upgrade to xf86-video-nouveau-1.0.11 #86164).
+
+Tested with:
+kernel: 4.2.4-gentoo
+xorg-server-1.17.4
+xf86-video-nouveau-1.0.10-r1</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446897638.c774421.32517--
+
+--===============1426673261==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1426673261==--
