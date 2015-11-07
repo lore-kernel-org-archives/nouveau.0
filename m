@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 90871] NV30: Xfwm4 use_compositing - garbled display
-Date: Sat, 07 Nov 2015 02:53:44 +0000
-Message-ID: <bug-90871-8800-q4rxAQSLWl@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 03:01:15 +0000
+Message-ID: <bug-90871-8800-K88NesVsbK@http.bugs.freedesktop.org/>
 References: <bug-90871-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0940688344=="
+Content-Type: multipart/mixed; boundary="===============0330634716=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-90871-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0940688344==
-Content-Type: multipart/alternative; boundary="1446864823.AbaDC321.24305"; charset="UTF-8"
+--===============0330634716==
+Content-Type: multipart/alternative; boundary="1446865275.76Dfd301.25690"; charset="UTF-8"
 
 
---1446864823.AbaDC321.24305
-Date: Sat, 7 Nov 2015 02:53:43 +0000
+--1446865275.76Dfd301.25690
+Date: Sat, 7 Nov 2015 03:01:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=90871
 
-poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-         Resolution|NOTOURBUG                   |---
+             Status|REOPENED                    |RESOLVED
+         Resolution|---                         |NOTOURBUG
 
---- Comment #55 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+--- Comment #56 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to poma from comment #55)
+> https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27
 
-https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27
+Please open new bugs when you have new issues. This is an issue introduced in
+4.3. See https://bugzilla.kernel.org/show_bug.cgi?id=106431 for the discussion
+and patch links.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1446864823.AbaDC321.24305
-Date: Sat, 7 Nov 2015 02:53:43 +0000
+--1446865275.76Dfd301.25690
+Date: Sat, 7 Nov 2015 03:01:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,11 +60,11 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span> changed
               <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
@@ -72,33 +76,37 @@ Content-Type: text/html; charset="UTF-8"
 
          <tr>
            <td style="text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
            <td>REOPENED
+           </td>
+           <td>RESOLVED
            </td>
          </tr>
 
          <tr>
            <td style="text-align:right;">Resolution</td>
-           <td>NOTOURBUG
-           </td>
            <td>---
+           </td>
+           <td>NOTOURBUG
            </td>
          </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c55">Comment # 55</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90871#c56">Comment # 56</a>
               on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - NV30: Xfwm4 use_compositing - garbled display"
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED NOTOURBUG - NV30: Xfwm4 use_compositing - garbled display"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=90871">bug 90871</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>
-<a href="https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27">https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27</a></pre>
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=90871#c55">comment #55</a>)
+<span class="quote">&gt; <a href="https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27">https://bugzilla.xfce.org/show_bug.cgi?id=11962#c27</a></span >
+
+Please open new bugs when you have new issues. This is an issue introduced in
+4.3. See <a href="https://bugzilla.kernel.org/show_bug.cgi?id=106431">https://bugzilla.kernel.org/show_bug.cgi?id=106431</a> for the discussion
+and patch links.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +119,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1446864823.AbaDC321.24305--
+--1446865275.76Dfd301.25690--
 
---===============0940688344==
+--===============0330634716==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +131,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0940688344==--
+--===============0330634716==--
