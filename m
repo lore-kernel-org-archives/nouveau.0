@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Sat, 07 Nov 2015 22:02:08 +0000
-Message-ID: <bug-72180-8800-tIMFAKz2g0@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 22:02:35 +0000
+Message-ID: <bug-72180-8800-sXTBy6yPUd@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1945438334=="
+Content-Type: multipart/mixed; boundary="===============0669358061=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,67 +21,79 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1945438334==
-Content-Type: multipart/alternative; boundary="1446933728.eEfC3.28653"; charset="UTF-8"
+--===============0669358061==
+Content-Type: multipart/alternative; boundary="1446933755.EBC44.28790"; charset="UTF-8"
 
 
---1446933728.eEfC3.28653
-Date: Sat, 7 Nov 2015 22:02:08 +0000
+--1446933755.EBC44.28790
+Date: Sat, 7 Nov 2015 22:02:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #45 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Mine's Gainward and not OC.
+--- Comment #46 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to xenith from comment #43)
+> I am definitely having this same bug all the way up to kernel version 4.4
 
---=20
+If you're definitely having this same bug, that means that all your problems go
+away when using blob pgraph context switching firmware. Yes? [Totally unrelated
+to video decoding fw btw.]
+
+I'm inclined to believe that you've incorrectly understood this bug, and
+misdiagnosed a kodi + nouveau issue (which is well known to me... use mplayer,
+works great) as an obscure context switching bug that we fixed long ago.
+
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446933728.eEfC3.28653
-Date: Sat, 7 Nov 2015 22:02:08 +0000
+--1446933755.EBC44.28790
+Date: Sat, 7 Nov 2015 22:02:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c45">Commen=
-t # 45</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c46">Comment # 46</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180">bug 72180<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
-il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Mine's Gainward and not OC.</pre>
+        <pre>(In reply to xenith from <a href="show_bug.cgi?id=72180#c43">comment #43</a>)
+<span class="quote">&gt; I am definitely having this same bug all the way up to kernel version 4.4</span >
+
+If you're definitely having this same bug, that means that all your problems go
+away when using blob pgraph context switching firmware. Yes? [Totally unrelated
+to video decoding fw btw.]
+
+I'm inclined to believe that you've incorrectly understood this bug, and
+misdiagnosed a kodi + nouveau issue (which is well known to me... use mplayer,
+works great) as an obscure context switching bug that we fixed long ago.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446933728.eEfC3.28653--
+--1446933755.EBC44.28790--
 
---===============1945438334==
+--===============0669358061==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -91,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1945438334==--
+--===============0669358061==--
