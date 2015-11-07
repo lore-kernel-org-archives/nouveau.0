@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
-	>= 4.1
-Date: Sat, 07 Nov 2015 19:12:05 +0000
-Message-ID: <bug-90626-8800-G15RFKtCB4@http.bugs.freedesktop.org/>
-References: <bug-90626-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 69083] [NV84] specifying higher than EDID-preferred
+ 4:3 mode on DVI-I -> VGA adapter causes output to be compressed into small
+ fraction of CRT's top scan lines
+Date: Sat, 07 Nov 2015 20:53:44 +0000
+Message-ID: <bug-69083-8800-jhV674nHNo@http.bugs.freedesktop.org/>
+References: <bug-69083-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0568605778=="
+Content-Type: multipart/mixed; boundary="===============0083072320=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-69083-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,43 +22,38 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0568605778==
-Content-Type: multipart/alternative; boundary="1446923525.0AAdb2053.6509"; charset="UTF-8"
+--===============0083072320==
+Content-Type: multipart/alternative; boundary="1446929624.32eF1.7357"; charset="UTF-8"
 
 
---1446923525.0AAdb2053.6509
-Date: Sat, 7 Nov 2015 19:12:05 +0000
+--1446929624.32eF1.7357
+Date: Sat, 7 Nov 2015 20:53:44 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=90626
+https://bugs.freedesktop.org/show_bug.cgi?id=69083
 
---- Comment #41 from vdanjean-GANU6spQydw@public.gmane.org <vdanjean.ml-GANU6spQydw@public.gmane.org> ---
-I just want to report that the fix work also for me :
-$ xrandr --listproviders 
-Providers: number : 2
-Provider 0: id: 0x8d cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
-4 outputs: 3 associated providers: 0 name:Intel
-Provider 1: id: 0x66 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 4 outputs: 3 associated providers: 0 name:nouveau
+Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> changed:
 
-I still have ACPI warnings when enabling or disabling the NVidia card but it
-seems to work nevertheless:
-[23693.512790] ACPI Warning: \_SB_.PCI0.PEGP.DGFX._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
-[23693.513206] ACPI: \_SB_.PCI0.PEGP.DGFX: failed to evaluate _DSM
-[23693.513209] ACPI Warning: \_SB_.PCI0.PEGP.DGFX._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |WORKSFORME
 
-Thank you very much
-  Vincent
+--- Comment #8 from Felix Miata <mrmazda-ihVZJaRskl1bRRN4PJnoQQ@public.gmane.org> ---
+The NEC FE2111SB of comment 0 is no longer available. With a Sony Trinitron
+G520 this is not reproducible with any kernel/server/nouveau combination tried,
+including k3.7.10/s1.13.2/n1.0.6, k3.11.10/s1.14.3/n1.0.9,
+k3.16.7/s1.16.1/n1.0.11 and k4.2.3/s1.17.2/n1.0.11 among others, all using the
+same G84 and 32 bit Prescott host. So I'm of the opinion this was more likely a
+CRT quirk than a nouveau bug.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446923525.0AAdb2053.6509
-Date: Sat, 7 Nov 2015 19:12:05 +0000
+--1446929624.32eF1.7357
+Date: Sat, 7 Nov 2015 20:53:44 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -65,37 +61,53 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
+    <body><span class="vcard"><a class="email" href="mailto:mrmazda&#64;earthlink.net" title="Felix Miata &lt;mrmazda&#64;earthlink.net&gt;"> <span class="fn">Felix Miata</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV84] specifying higher than EDID-preferred 4:3 mode on DVI-I -&gt; VGA adapter causes output to be compressed into small fraction of CRT's top scan lines"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083">bug 69083</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>WORKSFORME
+           </td>
+         </tr></table>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c41">Comment # 41</a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV84] specifying higher than EDID-preferred 4:3 mode on DVI-I -&gt; VGA adapter causes output to be compressed into small fraction of CRT's top scan lines"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083#c8">Comment # 8</a>
               on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
-              from <span class="vcard"><a class="email" href="mailto:vdanjean.ml&#64;free.fr" title="vdanjean&#64;free.fr &lt;vdanjean.ml&#64;free.fr&gt;"> <span class="fn">vdanjean&#64;free.fr</span></a>
+          bz_status_RESOLVED  bz_closed"
+   title="RESOLVED WORKSFORME - [NV84] specifying higher than EDID-preferred 4:3 mode on DVI-I -&gt; VGA adapter causes output to be compressed into small fraction of CRT's top scan lines"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69083">bug 69083</a>
+              from <span class="vcard"><a class="email" href="mailto:mrmazda&#64;earthlink.net" title="Felix Miata &lt;mrmazda&#64;earthlink.net&gt;"> <span class="fn">Felix Miata</span></a>
 </span></b>
-        <pre>I just want to report that the fix work also for me :
-$ xrandr --listproviders 
-Providers: number : 2
-Provider 0: id: 0x8d cap: 0xb, Source Output, Sink Output, Sink Offload crtcs:
-4 outputs: 3 associated providers: 0 name:Intel
-Provider 1: id: 0x66 cap: 0x7, Source Output, Sink Output, Source Offload
-crtcs: 4 outputs: 3 associated providers: 0 name:nouveau
-
-I still have ACPI warnings when enabling or disabling the NVidia card but it
-seems to work nevertheless:
-[23693.512790] ACPI Warning: \_SB_.PCI0.PEGP.DGFX._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
-[23693.513206] ACPI: \_SB_.PCI0.PEGP.DGFX: failed to evaluate _DSM
-[23693.513209] ACPI Warning: \_SB_.PCI0.PEGP.DGFX._DSM: Argument #4 type
-mismatch - Found [Buffer], ACPI requires [Package] (20150818/nsarguments-95)
-
-Thank you very much
-  Vincent</pre>
+        <pre>The NEC FE2111SB of <a href="show_bug.cgi?id=69083#c0">comment 0</a> is no longer available. With a Sony Trinitron
+G520 this is not reproducible with any kernel/server/nouveau combination tried,
+including k3.7.10/s1.13.2/n1.0.6, k3.11.10/s1.14.3/n1.0.9,
+k3.16.7/s1.16.1/n1.0.11 and k4.2.3/s1.17.2/n1.0.11 among others, all using the
+same G84 and 32 bit Prescott host. So I'm of the opinion this was more likely a
+CRT quirk than a nouveau bug.</pre>
         </div>
       </p>
       <hr>
@@ -107,9 +119,9 @@ Thank you very much
     </body>
 </html>
 
---1446923525.0AAdb2053.6509--
+--1446929624.32eF1.7357--
 
---===============0568605778==
+--===============0083072320==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +131,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0568605778==--
+--===============0083072320==--
