@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Sat, 07 Nov 2015 22:06:00 +0000
-Message-ID: <bug-72180-8800-9X8xQIfVEH@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 22:10:24 +0000
+Message-ID: <bug-72180-8800-okjl0Jr2pQ@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0152134437=="
+Content-Type: multipart/mixed; boundary="===============1518017873=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,75 +21,103 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0152134437==
-Content-Type: multipart/alternative; boundary="1446933960.efA23.29612"; charset="UTF-8"
+--===============1518017873==
+Content-Type: multipart/alternative; boundary="1446934224.2bbE334.30893"; charset="UTF-8"
 
 
---1446933960.efA23.29612
-Date: Sat, 7 Nov 2015 22:06:00 +0000
+--1446934224.2bbE334.30893
+Date: Sat, 7 Nov 2015 22:10:24 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
+https://bugs.freedesktop.org/show_bug.cgi?id=72180
 
---- Comment #47 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-As per Comment 29, it's not always solved by using the blob firmware. And f=
-or
-me it always locks up, by just idling on the desktop or browsing the web, n=
-ot
-playing videos.
+--- Comment #48 from xenith-bjxz+0elTSj2eFz/2MeuCQ@public.gmane.org ---
+[  877.299847] kactivitymanage[2375]: segfault at 7fbe3fdcb7d0 ip
+00007fbe4c073731 sp 00007ffec63a7c48 error 4 in
+libQt5Sql.so.5.5.0[7fbe4c05f000+3f000]
+[ 1081.974756] kactivitymanage[4736]: segfault at 7f374fb897d0 ip
+00007f374fdd2731 sp 00007fff901deeb8 error 4 in
+libQt5Sql.so.5.5.0[7f374fdbe000+3f000]
+[ 1181.195139] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve6_fuc084 failed with error -2
+[ 1181.195196] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve6_fuc084d failed with error -2
+[ 1181.195200] nouveau 0000:01:00.0: msvld: unable to load firmware data
+[ 1181.195203] nouveau 0000:01:00.0: msvld: init failed, -19
+[ 1261.448630] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1261.448642] nouveau 0000:01:00.0: fifo: sw engine fault on channel 7,
+recovering...
+[ 1263.448760] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
+[ 1265.744229] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1270.039568] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1274.334908] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1278.630248] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1282.925589] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1287.220929] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
 
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446933960.efA23.29612
-Date: Sat, 7 Nov 2015 22:06:00 +0000
+--1446934224.2bbE334.30893
+Date: Sat, 7 Nov 2015 22:10:24 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c47">Commen=
-t # 47</a>
-              on <a class=3D"bz_bug_link=20
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c48">Comment # 48</a>
+              on <a class="bz_bug_link 
           bz_status_NEW "
-   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180">bug 72180<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
-il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
+   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
+              from <span class="vcard"><a class="email" href="mailto:xenith&#64;overtmind.com" title="xenith&#64;overtmind.com">xenith&#64;overtmind.com</a>
 </span></b>
-        <pre>As per <a href=3D"show_bug.cgi?id=3D72180#c29">Comment 29</a>,=
- it's not always solved by using the blob firmware. And for
-me it always locks up, by just idling on the desktop or browsing the web, n=
-ot
-playing videos.</pre>
+        <pre>[  877.299847] kactivitymanage[2375]: segfault at 7fbe3fdcb7d0 ip
+00007fbe4c073731 sp 00007ffec63a7c48 error 4 in
+libQt5Sql.so.5.5.0[7fbe4c05f000+3f000]
+[ 1081.974756] kactivitymanage[4736]: segfault at 7f374fb897d0 ip
+00007f374fdd2731 sp 00007fff901deeb8 error 4 in
+libQt5Sql.so.5.5.0[7f374fdbe000+3f000]
+[ 1181.195139] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve6_fuc084 failed with error -2
+[ 1181.195196] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve6_fuc084d failed with error -2
+[ 1181.195200] nouveau 0000:01:00.0: msvld: unable to load firmware data
+[ 1181.195203] nouveau 0000:01:00.0: msvld: init failed, -19
+[ 1261.448630] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1261.448642] nouveau 0000:01:00.0: fifo: sw engine fault on channel 7,
+recovering...
+[ 1263.448760] nouveau 0000:01:00.0: fifo: runlist 0 update timeout
+[ 1265.744229] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1270.039568] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1274.334908] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1278.630248] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1282.925589] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
+[ 1287.220929] nouveau 0000:01:00.0: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446933960.efA23.29612--
+--1446934224.2bbE334.30893--
 
---===============0152134437==
+--===============1518017873==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -99,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0152134437==--
+--===============1518017873==--
