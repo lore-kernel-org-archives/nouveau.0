@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69387] X hangs on resume/monitor blank with
-	nv50cal_space: -16
-Date: Sat, 07 Nov 2015 08:03:56 +0000
-Message-ID: <bug-69387-8800-DM47inbuGx@http.bugs.freedesktop.org/>
-References: <bug-69387-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 70566] [NVD9] hard lock-ups entire system at random
+	moments
+Date: Sat, 07 Nov 2015 08:04:42 +0000
+Message-ID: <bug-70566-8800-hheWb6QLhr@http.bugs.freedesktop.org/>
+References: <bug-70566-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1564137261=="
+Content-Type: multipart/mixed; boundary="===============0581225729=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69387-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-70566-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,26 +21,26 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1564137261==
-Content-Type: multipart/alternative; boundary="1446883436.74a1CEf2.1581"; charset="UTF-8"
+--===============0581225729==
+Content-Type: multipart/alternative; boundary="1446883482.8Fd6Da2.1748"; charset="UTF-8"
 
 
---1446883436.74a1CEf2.1581
-Date: Sat, 7 Nov 2015 08:03:56 +0000
+--1446883482.8Fd6Da2.1748
+Date: Sat, 7 Nov 2015 08:04:42 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=69387
+https://bugs.freedesktop.org/show_bug.cgi?id=70566
 
 --- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Is this still an issue with more recent kernels?
+Does this still happen with recent kernels?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446883436.74a1CEf2.1581
-Date: Sat, 7 Nov 2015 08:03:56 +0000
+--1446883482.8Fd6Da2.1748
+Date: Sat, 7 Nov 2015 08:04:42 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -53,15 +53,15 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X hangs on resume/monitor blank with nv50cal_space: -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387#c3">Comment # 3</a>
+   title="NEW - [NVD9] hard lock-ups entire system at random moments"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70566#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - X hangs on resume/monitor blank with nv50cal_space: -16"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69387">bug 69387</a>
+   title="NEW - [NVD9] hard lock-ups entire system at random moments"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=70566">bug 70566</a>
               from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Is this still an issue with more recent kernels?</pre>
+        <pre>Does this still happen with recent kernels?</pre>
         </div>
       </p>
       <hr>
@@ -73,9 +73,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1446883436.74a1CEf2.1581--
+--1446883482.8Fd6Da2.1748--
 
---===============1564137261==
+--===============0581225729==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -85,4 +85,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1564137261==--
+--===============0581225729==--
