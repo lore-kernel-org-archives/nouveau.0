@@ -1,21 +1,13 @@
-From: Robert Morell <rmorell-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: Documentation request for MP warp error 0x10
-Date: Fri, 6 Nov 2015 13:19:51 -0800
-Message-ID: <20151106211951.GC6669@morell.nvidia.com>
-References: <CAKb7Uvhwd8VSDya3EZ2o2VsvnBudTBTMWDbJvSE9mnBi7ybX3A@mail.gmail.com>
- <20151002214811.GD9436@morell.nvidia.com>
- <CAKb7Uvi6se5YExUuJ8SShfuQD9Gy2QQF1N31k_3Q11roMHa=4Q@mail.gmail.com>
- <20151002221456.GE9436@morell.nvidia.com>
- <CAKb7Uvjpmxn8kR3DhbXSh0SXmsGCQ-+dP1iQX7j30QiGFtbStg@mail.gmail.com>
- <20151026200256.GB7638@morell.nvidia.com>
- <20151106205932.GA6669@morell.nvidia.com>
- <CAKb7UviaiH-twaJr9tngGvwkBn1W+PujppSES+GYRLxVr3nvvg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90626] HP ZBook 15 nouveau driver hangup for kernel
+	>= 4.1
+Date: Sat, 07 Nov 2015 00:31:57 +0000
+Message-ID: <bug-90626-8800-pVHlenG4zt@http.bugs.freedesktop.org/>
+References: <bug-90626-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1053647851=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <CAKb7UviaiH-twaJr9tngGvwkBn1W+PujppSES+GYRLxVr3nvvg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90626-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -25,17 +17,120 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, gpu-public-documentation <gpu-public-documentation-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMDYsIDIwMTUgYXQgMDQ6MTU6MjlQTSAtMDUwMCwgSWxpYSBNaXJraW4gd3Jv
-dGU6Cj4gSW4gb3JkZXIgZm9yIEFUT00uKi9SRUQuKiB0byB3b3JrLCB0aGUgYWRkcmVzc2VzIGlu
-IHF1ZXN0aW9uIG11c3QKPiAqTk9UKiBiZSBpbnNpZGUgb2YgdGhlIDE2TUIgbG9jYWwvc2hhcmVk
-IHdpbmRvd3MuIFNvIGlmIEknbSBnZXR0aW5nCj4gdGhhdCBlcnJvciwgdGhlIGFkZHJlc3MgbXVz
-dCBiZSBpbnNpZGUuCgpZZXMsIHRoYXQncyBteSB1bmRlcnN0YW5kaW5nLgoKPiBJZiBzbywgdGhp
-cyBtYXkgYmUgYSByZWFzb25hYmxlIGV4cGxhbmF0aW9uIGZvciB3aGF0IEknbSBzZWVpbmcgLS0K
-CkNvb2wsIEknbSBoYXBweSBpdCBoZWxwcy4KCgpUaGFua3MsClJvYmVydApfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApO
-b3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+
+--===============1053647851==
+Content-Type: multipart/alternative; boundary="1446856317.B0afD3.25173"; charset="UTF-8"
+
+
+--1446856317.B0afD3.25173
+Date: Sat, 7 Nov 2015 00:31:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90626
+
+--- Comment #36 from vdanjean-GANU6spQydw@public.gmane.org <vdanjean.ml-GANU6spQydw@public.gmane.org> ---
+I suffer from the same bug on HP ZBook. However, with the last Debian kernel
+(ie plain 4.3), I still got an 'error -22' and no "pmu: hw bug workaround
+enabled" log:
+
+$ dmesg | grep nouveau
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-4.3.0-trunk-amd64
+root=/dev/mapper/eyak-root ro nouveau.config=War00C800_0=1 apparmor=1
+security=apparmor quiet
+[    0.000000] Kernel command line: BOOT_IMAGE=/vmlinuz-4.3.0-trunk-amd64
+root=/dev/mapper/eyak-root ro nouveau.config=War00C800_0=1 apparmor=1
+security=apparmor quiet
+[    4.459102] nouveau 0000:01:00.0: enabling device (0000 -> 0003)
+[    4.459126] nouveau 0000:01:00.0: NVIDIA GK208 (108390a1)
+[    4.462991] nouveau 0000:01:00.0: bios: version 80.28.52.00.09
+[    4.462994] nouveau 0000:01:00.0: mxm: BIOS version 3.0
+[    4.462995] nouveau 0000:01:00.0: bios: unknown ddc map v00
+[    4.463695] nouveau 0000:01:00.0: devinit: 0xce73[0]: unknown opcode 0x00
+[    4.463699] nouveau 0000:01:00.0: preinit failed with -22
+[    4.463718] nouveau: DRM:dddddddd:00000080: init failed with -22
+[    4.464046] nouveau: probe of 0000:01:00.0 failed with error -22
+
+I will put in attachment the result of acpidump on my machine.
+
+  Regards,
+    Vincent
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1446856317.B0afD3.25173
+Date: Sat, 7 Nov 2015 00:31:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626#c36">Comment # 36</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - HP ZBook 15 nouveau driver hangup for kernel &gt;= 4.1"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90626">bug 90626</a>
+              from <span class="vcard"><a class="email" href="mailto:vdanjean.ml&#64;free.fr" title="vdanjean&#64;free.fr &lt;vdanjean.ml&#64;free.fr&gt;"> <span class="fn">vdanjean&#64;free.fr</span></a>
+</span></b>
+        <pre>I suffer from the same bug on HP ZBook. However, with the last Debian kernel
+(ie plain 4.3), I still got an 'error -22' and no &quot;pmu: hw bug workaround
+enabled&quot; log:
+
+$ dmesg | grep nouveau
+[    0.000000] Command line: BOOT_IMAGE=/vmlinuz-4.3.0-trunk-amd64
+root=/dev/mapper/eyak-root ro nouveau.config=War00C800_0=1 apparmor=1
+security=apparmor quiet
+[    0.000000] Kernel command line: BOOT_IMAGE=/vmlinuz-4.3.0-trunk-amd64
+root=/dev/mapper/eyak-root ro nouveau.config=War00C800_0=1 apparmor=1
+security=apparmor quiet
+[    4.459102] nouveau 0000:01:00.0: enabling device (0000 -&gt; 0003)
+[    4.459126] nouveau 0000:01:00.0: NVIDIA GK208 (108390a1)
+[    4.462991] nouveau 0000:01:00.0: bios: version 80.28.52.00.09
+[    4.462994] nouveau 0000:01:00.0: mxm: BIOS version 3.0
+[    4.462995] nouveau 0000:01:00.0: bios: unknown ddc map v00
+[    4.463695] nouveau 0000:01:00.0: devinit: 0xce73[0]: unknown opcode 0x00
+[    4.463699] nouveau 0000:01:00.0: preinit failed with -22
+[    4.463718] nouveau: DRM:dddddddd:00000080: init failed with -22
+[    4.464046] nouveau: probe of 0000:01:00.0 failed with error -22
+
+I will put in attachment the result of acpidump on my machine.
+
+  Regards,
+    Vincent</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446856317.B0afD3.25173--
+
+--===============1053647851==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1053647851==--
