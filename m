@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Sat, 07 Nov 2015 22:14:58 +0000
-Message-ID: <bug-72180-8800-2b3mndB0YV@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 22:16:13 +0000
+Message-ID: <bug-72180-8800-Z6e9iYj9Oe@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1118123039=="
+Content-Type: multipart/mixed; boundary="===============0684141864=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,81 +21,87 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1118123039==
-Content-Type: multipart/alternative; boundary="1446934498.8e08C4.32142"; charset="UTF-8"
+--===============0684141864==
+Content-Type: multipart/alternative; boundary="1446934573.c8fFbA3.32560"; charset="UTF-8"
 
 
---1446934498.8e08C4.32142
-Date: Sat, 7 Nov 2015 22:14:58 +0000
+--1446934573.c8fFbA3.32560
+Date: Sat, 7 Nov 2015 22:16:13 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
 
---- Comment #51 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to xenith from comment #50)
-> >If you're definitely having this same bug, that means that all your problems go away when using blob pgraph context switching firmware. Yes? [Totally unrelated to video decoding fw btw
-> 
-> They used to, but not anymore. The bug has evolved.
+--- Comment #52 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #49)
+> So then you don't have this problem either. Look, there are like 1000000
+> things that can go wrong. This is one of them. If you have one of the oth=
+er
+> 999999, file a new bug.
 
-So then there's some kernel where it all worked fine for you with blob ctxsw
-firmware? Based on your paste, you don't even *have* the ctxsw firmware, so I'm
-a little doubtful.
+I did. You closed it as duplicate of this one. So feel free to reopen bug
+#69882 then.
 
-Read the subject of this bug -- does it apply to you? If so, stay here. If not,
-file a new bug.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446934498.8e08C4.32142
-Date: Sat, 7 Nov 2015 22:14:58 +0000
+--1446934573.c8fFbA3.32560
+Date: Sat, 7 Nov 2015 22:16:13 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c51">Comment # 51</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c52">Commen=
+t # 52</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180">bug 72180<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
+il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>(In reply to xenith from <a href="show_bug.cgi?id=72180#c50">comment #50</a>)
-<span class="quote">&gt; &gt;If you're definitely having this same bug, that means that all your problems go away when using blob pgraph context switching firmware. Yes? [Totally unrelated to video decoding fw btw
-&gt; 
-&gt; They used to, but not anymore. The bug has evolved.</span >
+        <pre>(In reply to Ilia Mirkin from <a href=3D"show_bug.cgi?id=3D721=
+80#c49">comment #49</a>)
+<span class=3D"quote">&gt; So then you don't have this problem either. Look=
+, there are like 1000000
+&gt; things that can go wrong. This is one of them. If you have one of the =
+other
+&gt; 999999, file a new bug.</span >
 
-So then there's some kernel where it all worked fine for you with blob ctxsw
-firmware? Based on your paste, you don't even *have* the ctxsw firmware, so I'm
-a little doubtful.
-
-Read the subject of this bug -- does it apply to you? If so, stay here. If not,
-file a new bug.</pre>
+I did. You closed it as duplicate of this one. So feel free to reopen <a cl=
+ass=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED DUPLICATE - [NVE6] GPU lockups"
+   href=3D"show_bug.cgi?id=3D69882">bug
+#69882</a> then.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446934498.8e08C4.32142--
+--1446934573.c8fFbA3.32560--
 
---===============1118123039==
+--===============0684141864==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -105,4 +111,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1118123039==--
+--===============0684141864==--
