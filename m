@@ -1,14 +1,13 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH mesa 0/5] nouveau: codegen: Make use of double
-	immediates
-Date: Fri, 6 Nov 2015 19:59:38 -0500
-Message-ID: <CAKb7UvjGAs+U7ocx4=se58tT9tUcnGtA_-HaDUWxgUpxJmcLKA@mail.gmail.com>
-References: <1446730358-8867-1-git-send-email-hdegoede@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90181] [NVF1] native cs:go crashes when its about to
+ load up a map.
+Date: Sat, 07 Nov 2015 02:15:39 +0000
+Message-ID: <bug-90181-8800-EE5Af0eceQ@http.bugs.freedesktop.org/>
+References: <bug-90181-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0434618917=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1446730358-8867-1-git-send-email-hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-90181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,32 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-SGkgSGFucywKCkFsbCBwdXNoZWQuIEkgbWFkZSBhIGZldyBhZGRpdGlvbmFsIGZpeGVzIGFuZCBp
-bXByb3ZlbWVudCB0byBmcDY0CmltbWVkaWF0ZSBoYW5kbGluZyBhbG9uZyB0aGUgd2F5LCBidXQg
-YWxsIHlvdXIgY29tbWl0cyB3ZXJlIGZpbmUKYXMtaXMuIChFeGNlcHQgdGhhdCB0aGV5IGVuYWJs
-ZWQgZnA2NCBpbW1lZGlhdGVzIG9uIG52NTAgaW1wbGljaXRseQp3aGljaCBpcyB3cm9uZyAtLSB0
-aGVyZSBhcmUgbm8gaW1tZWRpYXRlLXRha2luZyB2YXJpYW50cyBvbiBudjUwLCBzbyBJCmZpeGVk
-IHRoYXQgZ2xpdGNoLiBCdXQgb25seSB0aGUgRzIwMCBjYW4gZG8gZnA2NCBpbiB0aGUgZmlyc3Qg
-cGxhY2UsCmFuZCBub3V2ZWF1IGRvZXNuJ3QgYWN0dWFsbHkgZXhwb3NlIGl0LiBDb3JuZXIgY2Fz
-ZSBvZiBhIGNvcm5lciBjYXNlCjopICkKClRoYW5rcyBmb3IgdGFraW5nIGNhcmUgb2YgdGhpcy4u
-LiBpdCB3YXMgYSBzbWFsbCBiaXQgb2YgZnA2NCB3aGljaCBJCmFsd2F5cyBmZWx0IGJhZCBhYm91
-dCBub3QgaGF2aW5nIGZpbmlzaGVkIHVwLiAoQnV0IG5vdCBiYWQgZW5vdWdoIHRvCmFjdHVhbGx5
-IGZpbmlzaCBpdCBteXNlbGYuKQoKQ2hlZXJzLAoKICAtaWxpYQoKCk9uIFRodSwgTm92IDUsIDIw
-MTUgYXQgODozMiBBTSwgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT4gd3JvdGU6
-Cj4gSGkgQWxsLAo+Cj4gVGhpcyBzZXJpZXMgaW1wbGVtZW50cyB1c2luZyBkb3VibGUgaW1tZWRp
-YXRlcyBpbiB0aGUgbm91dmVhdSBjb2RlZ2VuIGNvZGUuCj4KPiBUaGlzIHR1cm5zIHRoZSBmb2xs
-b3dpbmcgKG52YzApIGNvZGU6Cj4gICAgICAgMTogbW92IHUzMiAkcjIgMHgwMDAwMDAwMCAoOCkK
-PiAgICAgICAyOiBtb3YgdTMyICRyMyAweDNmZTAwMDAwICg4KQo+ICAgICAgIDM6IGFkZCBmNjQg
-JHIwZCAkcjBkICRyMmQgKDgpCj4KPiBJbnRvOgo+ICAgICAgIDE6IGFkZCBmNjQgJHIwZCAkcjBk
-IDAuNTAwMDAwICg4KQo+Cj4gVGhpcyBoYXMgYmVlbiB0ZXN0ZWQgd2l0aCB0aGUgMiBkb3VibGUg
-c2hhZGVyIHRlc3RzIHdoaWNoIEkganVzdCBzZW5kIHRvCj4gdGhlIHBpZ2xldCBsaXN0LiBPbiBh
-IGdrMjA4IChnazExMCAvIFNNMzUpIGNhcmQsIGFuZCBieSBjaGVja2luZyB0aGUgb3V0cHV0Cj4g
-b2Ygbm91dmVhdV9jb21waWxlciB3aXRoIGJvdGggbnZkaXNhc20gYW5kIGVudnlkaXMgb24gZ2Yx
-MDAgLyBnazEwNCAvIGdtMTA3Lgo+Cj4gUmVnYXJkcywKPgo+IEhhbnMKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0434618917==
+Content-Type: multipart/alternative; boundary="1446862539.c4EC532a1.16748"; charset="UTF-8"
+
+
+--1446862539.c4EC532a1.16748
+Date: Sat, 7 Nov 2015 02:15:39 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90181
+
+--- Comment #1 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I've fixed a number of resource lifetime handling issues since you filed the
+bug. Please try the latest 11.0.x mesa and see if things improve (or git).
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1446862539.c4EC532a1.16748
+Date: Sat, 7 Nov 2015 02:15:39 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVF1] native cs:go crashes when its about to load up a map."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVF1] native cs:go crashes when its about to load up a map."
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181">bug 90181</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+</span></b>
+        <pre>I've fixed a number of resource lifetime handling issues since you filed the
+bug. Please try the latest 11.0.x mesa and see if things improve (or git).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1446862539.c4EC532a1.16748--
+
+--===============0434618917==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0434618917==--
