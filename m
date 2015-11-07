@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92851] NV34: err: MEM_FAULT
+Subject: [Bug 92852] NV34: WARNING: ... at
+ drivers/gpu/drm/drm_irq.c:924 drm_vblank_count_and_time+0x71/0x80 [drm]()
 Date: Sat, 07 Nov 2015 05:12:05 +0000
-Message-ID: <bug-92851-8800-DwTRsPAlGz@http.bugs.freedesktop.org/>
-References: <bug-92851-8800@http.bugs.freedesktop.org/>
+Message-ID: <bug-92852-8800-G65Mdov3x4@http.bugs.freedesktop.org/>
+References: <bug-92852-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0681983848=="
+Content-Type: multipart/mixed; boundary="===============0248045854=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92851-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92852-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0681983848==
-Content-Type: multipart/alternative; boundary="1446873125.Eb20f41.22694"; charset="UTF-8"
+--===============0248045854==
+Content-Type: multipart/alternative; boundary="1446873125.e8A073.22694"; charset="UTF-8"
 
 
---1446873125.Eb20f41.22694
+--1446873125.e8A073.22694
 Date: Sat, 7 Nov 2015 05:12:05 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92851
+https://bugs.freedesktop.org/show_bug.cgi?id=92852
 
 poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
            See Also|                            |https://bugs.freedesktop.or
-                   |                            |g/show_bug.cgi?id=92852
+                   |                            |g/show_bug.cgi?id=92851
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446873125.Eb20f41.22694
+--1446873125.e8A073.22694
 Date: Sat, 7 Nov 2015 05:12:05 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
@@ -55,8 +56,8 @@ Content-Type: text/html; charset="UTF-8"
 </span> changed
               <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - NV34: err: MEM_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92851">bug 92851</a>
+   title="NEW - NV34: WARNING: ... at drivers/gpu/drm/drm_irq.c:924 drm_vblank_count_and_time+0x71/0x80 [drm]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92852">bug 92852</a>
           <br>
              <table border="1" cellspacing="0" cellpadding="8">
           <tr>
@@ -70,7 +71,7 @@ Content-Type: text/html; charset="UTF-8"
            <td>
                &nbsp;
            </td>
-           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92852
+           <td>https://bugs.freedesktop.org/show_bug.cgi?id=92851
            </td>
          </tr></table>
       <p>
@@ -84,9 +85,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1446873125.Eb20f41.22694--
+--1446873125.e8A073.22694--
 
---===============0681983848==
+--===============0248045854==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0681983848==--
+--===============0248045854==--
