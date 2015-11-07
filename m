@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 72180] [NVE6] Random GPU Lockups,
 	works with blob PGRAPH fw
-Date: Sat, 07 Nov 2015 22:02:35 +0000
-Message-ID: <bug-72180-8800-sXTBy6yPUd@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 22:06:00 +0000
+Message-ID: <bug-72180-8800-9X8xQIfVEH@http.bugs.freedesktop.org/>
 References: <bug-72180-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0669358061=="
+Content-Type: multipart/mixed; boundary="===============0152134437=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-72180-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,79 +21,75 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0669358061==
-Content-Type: multipart/alternative; boundary="1446933755.EBC44.28790"; charset="UTF-8"
+--===============0152134437==
+Content-Type: multipart/alternative; boundary="1446933960.efA23.29612"; charset="UTF-8"
 
 
---1446933755.EBC44.28790
-Date: Sat, 7 Nov 2015 22:02:35 +0000
+--1446933960.efA23.29612
+Date: Sat, 7 Nov 2015 22:06:00 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=72180
+https://bugs.freedesktop.org/show_bug.cgi?id=3D72180
 
---- Comment #46 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to xenith from comment #43)
-> I am definitely having this same bug all the way up to kernel version 4.4
+--- Comment #47 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+As per Comment 29, it's not always solved by using the blob firmware. And f=
+or
+me it always locks up, by just idling on the desktop or browsing the web, n=
+ot
+playing videos.
 
-If you're definitely having this same bug, that means that all your problems go
-away when using blob pgraph context switching firmware. Yes? [Totally unrelated
-to video decoding fw btw.]
-
-I'm inclined to believe that you've incorrectly understood this bug, and
-misdiagnosed a kodi + nouveau issue (which is well known to me... use mplayer,
-works great) as an obscure context switching bug that we fixed long ago.
-
--- 
+--=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446933755.EBC44.28790
-Date: Sat, 7 Nov 2015 22:02:35 +0000
+--1446933960.efA23.29612
+Date: Sat, 7 Nov 2015 22:06:00 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
     <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180#c46">Comment # 46</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180#c47">Commen=
+t # 47</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=72180">bug 72180</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [NVE6] Random GPU Lockups, works with blob PGRAPH fw"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D72180">bug 72180<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
+il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>(In reply to xenith from <a href="show_bug.cgi?id=72180#c43">comment #43</a>)
-<span class="quote">&gt; I am definitely having this same bug all the way up to kernel version 4.4</span >
-
-If you're definitely having this same bug, that means that all your problems go
-away when using blob pgraph context switching firmware. Yes? [Totally unrelated
-to video decoding fw btw.]
-
-I'm inclined to believe that you've incorrectly understood this bug, and
-misdiagnosed a kodi + nouveau issue (which is well known to me... use mplayer,
-works great) as an obscure context switching bug that we fixed long ago.</pre>
+        <pre>As per <a href=3D"show_bug.cgi?id=3D72180#c29">Comment 29</a>,=
+ it's not always solved by using the blob firmware. And for
+me it always locks up, by just idling on the desktop or browsing the web, n=
+ot
+playing videos.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446933755.EBC44.28790--
+--1446933960.efA23.29612--
 
---===============0669358061==
+--===============0152134437==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0669358061==--
+--===============0152134437==--
