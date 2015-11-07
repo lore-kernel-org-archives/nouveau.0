@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92851] NV34: err: MEM_FAULT
-Date: Sat, 07 Nov 2015 04:13:12 +0000
-Message-ID: <bug-92851-8800-hJzhqY7XjZ@http.bugs.freedesktop.org/>
+Date: Sat, 07 Nov 2015 04:19:33 +0000
+Message-ID: <bug-92851-8800-Nwttdctt2c@http.bugs.freedesktop.org/>
 References: <bug-92851-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0716976930=="
+Content-Type: multipart/mixed; boundary="===============2059995625=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92851-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,66 +20,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0716976930==
-Content-Type: multipart/alternative; boundary="1446869591.Ad1eEa1.8317"; charset="UTF-8"
+--===============2059995625==
+Content-Type: multipart/alternative; boundary="1446869973.C340Cceb1.9663"; charset="UTF-8"
 
 
---1446869591.Ad1eEa1.8317
-Date: Sat, 7 Nov 2015 04:13:11 +0000
+--1446869973.C340Cceb1.9663
+Date: Sat, 7 Nov 2015 04:19:33 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92851
 
---- Comment #2 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-How to reproduce:
-
-Build, install and use Xfwm4 from git commit:
-"compositor: Fix GL without ARB_texture_rectangle"
-http://git.xfce.org/xfce/xfwm4/commit/?id=2cfac64
-
-The problem applies to both, DRI3/XPresent and GLX, use_compositing true,
-therefore build, install and use Xfwm4 configured:
-
-- DRI3/XPresent - configure --disable-epoxy --enable-xpresent
-   Build Configuration for xfwm4:
-     Xpresent support:             yes
-     Epoxy support:                no
-
-- GLX - configure --disable-xpresent --enable-epoxy
-   Build Configuration for xfwm4:
-     Xpresent support:             no
-     Epoxy support:                yes
-
-
-1. Log in to xfce4-session
-
-2. Make sure display compositing is enabled:
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing
-   true
-
-3. Suspend to disk:
-   $ systemctl hibernate
-   Of course, STD(S4) must be functional and correctly configured
-
-4. RESUME(thaw) from S4
-
-5. Disable display compositing:
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing --set
-false
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing
-   false
-
-After this machine need reboot, shuffling multi-user.target & graphical.target
-ain't helping.
+--- Comment #3 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Does this only happen with a suspend in between? Does it still happen if you
+stick to DRI2 instead of using DRI3?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446869591.Ad1eEa1.8317
-Date: Sat, 7 Nov 2015 04:13:11 +0000
+--1446869973.C340Cceb1.9663
+Date: Sat, 7 Nov 2015 04:19:33 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -93,54 +54,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV34: err: MEM_FAULT"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92851#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92851#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV34: err: MEM_FAULT"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92851">bug 92851</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>
-How to reproduce:
-
-Build, install and use Xfwm4 from git commit:
-&quot;compositor: Fix GL without ARB_texture_rectangle&quot;
-<a href="http://git.xfce.org/xfce/xfwm4/commit/?id=2cfac64">http://git.xfce.org/xfce/xfwm4/commit/?id=2cfac64</a>
-
-The problem applies to both, DRI3/XPresent and GLX, use_compositing true,
-therefore build, install and use Xfwm4 configured:
-
-- DRI3/XPresent - configure --disable-epoxy --enable-xpresent
-   Build Configuration for xfwm4:
-     Xpresent support:             yes
-     Epoxy support:                no
-
-- GLX - configure --disable-xpresent --enable-epoxy
-   Build Configuration for xfwm4:
-     Xpresent support:             no
-     Epoxy support:                yes
-
-
-1. Log in to xfce4-session
-
-2. Make sure display compositing is enabled:
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing
-   true
-
-3. Suspend to disk:
-   $ systemctl hibernate
-   Of course, STD(S4) must be functional and correctly configured
-
-4. RESUME(thaw) from S4
-
-5. Disable display compositing:
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing --set
-false
-   $ xfconf-query --channel xfwm4 --property /general/use_compositing
-   false
-
-After this machine need reboot, shuffling multi-user.target &amp; graphical.target
-ain't helping.</pre>
+        <pre>Does this only happen with a suspend in between? Does it still happen if you
+stick to DRI2 instead of using DRI3?</pre>
         </div>
       </p>
       <hr>
@@ -152,9 +74,9 @@ ain't helping.</pre>
     </body>
 </html>
 
---1446869591.Ad1eEa1.8317--
+--1446869973.C340Cceb1.9663--
 
---===============0716976930==
+--===============2059995625==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -164,4 +86,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0716976930==--
+--===============2059995625==--
