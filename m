@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Sun, 08 Nov 2015 11:33:12 +0000
-Message-ID: <bug-69882-8800-EhIUEuTtuI@http.bugs.freedesktop.org/>
+Date: Sun, 08 Nov 2015 11:36:09 +0000
+Message-ID: <bug-69882-8800-DIzzViWxyp@http.bugs.freedesktop.org/>
 References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0798720849=="
+Content-Type: multipart/mixed; boundary="===============1500910121=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,154 +20,65 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0798720849==
-Content-Type: multipart/alternative; boundary="1446982392.dA0ECB82.26465"; charset="UTF-8"
+--===============1500910121==
+Content-Type: multipart/alternative; boundary="1446982569.30Ff7Bde3.27260"; charset="UTF-8"
 
 
---1446982392.dA0ECB82.26465
-Date: Sun, 8 Nov 2015 11:33:12 +0000
+--1446982569.30Ff7Bde3.27260
+Date: Sun, 8 Nov 2015 11:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
+https://bugs.freedesktop.org/show_bug.cgi?id=69882
 
-Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+--- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+Please refresh this issue with new information. Make sure you're using at least
+kernel 4.3 and Mesa 11.0.4. Both have had important fixes which may affect your
+situation.
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|RESOLVED                    |REOPENED
-                URL|https://bugzilla.novell.com |
-                   |/show_bug.cgi?id=3D842838     |
-           See Also|                            |https://bugzilla.novell.com
-                   |                            |/show_bug.cgi?id=3D842838,
-                   |                            |https://bugzilla.redhat.com
-                   |                            |/show_bug.cgi?id=3D918732
-         Resolution|DUPLICATE                   |---
-
---- Comment #14 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Reopened as per bug #72180 suggestions.
-
-To make it clear, this is about random GPU lockups of GTX 660 (mine's
-Gainward), where using PGRAPH firmware from the blob does not fix the issue.
-
-Interestingly enough, looks like there is an equivalent (albeit also messy)=
- bug
-opened for Fedora (see See Also), and it appears to be a race condition. So
-trying the patch in that bug might be a good idea. Alternatively they sugge=
-st
-booting with nouveau.noaccel=3D1. I'll see if I can test this.
-
---=20
+-- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1446982392.dA0ECB82.26465
-Date: Sun, 8 Nov 2015 11:33:12 +0000
+--1446982569.30Ff7Bde3.27260
+Date: Sun, 8 Nov 2015 11:36:09 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:pastas4&#=
-64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gmail.com&gt=
-;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_REOPENED "
-   title=3D"REOPENED - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>RESOLVED
-           </td>
-           <td>REOPENED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">URL</td>
-           <td>https://bugzilla.novell.com/show_bug.cgi?id=3D842838
-           </td>
-           <td>
-               &nbsp;
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">See Also</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>https://bugzilla.novell.com/show_bug.cgi?id=3D842838, https:=
-//bugzilla.redhat.com/show_bug.cgi?id=3D918732
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>DUPLICATE
-           </td>
-           <td>---
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
+            <b><a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c14">Commen=
-t # 14</a>
-              on <a class=3D"bz_bug_link=20
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c15">Comment # 15</a>
+              on <a class="bz_bug_link 
           bz_status_REOPENED "
-   title=3D"REOPENED - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882">bug 69882<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
-il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
+   title="REOPENED - [NVE6] GPU lockups"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Reopened as per <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED INVALID - [NVE6] Random GPU Lockups, works with blob P=
-GRAPH fw"
-   href=3D"show_bug.cgi?id=3D72180">bug #72180</a> suggestions.
-
-To make it clear, this is about random GPU lockups of GTX 660 (mine's
-Gainward), where using PGRAPH firmware from the blob does not fix the issue.
-
-Interestingly enough, looks like there is an equivalent (albeit also messy)=
- bug
-opened for Fedora (see See Also), and it appears to be a race condition. So
-trying the patch in that bug might be a good idea. Alternatively they sugge=
-st
-booting with nouveau.noaccel=3D1. I'll see if I can test this.</pre>
+        <pre>Please refresh this issue with new information. Make sure you're using at least
+kernel 4.3 and Mesa 11.0.4. Both have had important fixes which may affect your
+situation.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1446982392.dA0ECB82.26465--
+--1446982569.30Ff7Bde3.27260--
 
---===============0798720849==
+--===============1500910121==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -177,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0798720849==--
+--===============1500910121==--
