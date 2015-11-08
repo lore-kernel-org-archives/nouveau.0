@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Sun, 08 Nov 2015 11:36:09 +0000
-Message-ID: <bug-69882-8800-DIzzViWxyp@http.bugs.freedesktop.org/>
-References: <bug-69882-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: [PATCH mesa 0/5] nouveau: codegen: Make use of double
+	immediates
+Date: Sun, 8 Nov 2015 12:58:45 +0100
+Message-ID: <563F38F5.6050008@redhat.com>
+References: <1446730358-8867-1-git-send-email-hdegoede@redhat.com>
+ <CAKb7UvjGAs+U7ocx4=se58tT9tUcnGtA_-HaDUWxgUpxJmcLKA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1500910121=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAKb7UvjGAs+U7ocx4=se58tT9tUcnGtA_-HaDUWxgUpxJmcLKA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,76 +19,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1500910121==
-Content-Type: multipart/alternative; boundary="1446982569.30Ff7Bde3.27260"; charset="UTF-8"
-
-
---1446982569.30Ff7Bde3.27260
-Date: Sun, 8 Nov 2015 11:36:09 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=69882
-
---- Comment #15 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-Please refresh this issue with new information. Make sure you're using at least
-kernel 4.3 and Mesa 11.0.4. Both have had important fixes which may affect your
-situation.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1446982569.30Ff7Bde3.27260
-Date: Sun, 8 Nov 2015 11:36:09 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_REOPENED "
-   title="REOPENED - [NVE6] GPU lockups"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69882">bug 69882</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>Please refresh this issue with new information. Make sure you're using at least
-kernel 4.3 and Mesa 11.0.4. Both have had important fixes which may affect your
-situation.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1446982569.30Ff7Bde3.27260--
-
---===============1500910121==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1500910121==--
+SGksCgpPbiAwNy0xMS0xNSAwMTo1OSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gSGkgSGFucywKPgo+
+IEFsbCBwdXNoZWQuIEkgbWFkZSBhIGZldyBhZGRpdGlvbmFsIGZpeGVzIGFuZCBpbXByb3ZlbWVu
+dCB0byBmcDY0Cj4gaW1tZWRpYXRlIGhhbmRsaW5nIGFsb25nIHRoZSB3YXksIGJ1dCBhbGwgeW91
+ciBjb21taXRzIHdlcmUgZmluZQo+IGFzLWlzLiAoRXhjZXB0IHRoYXQgdGhleSBlbmFibGVkIGZw
+NjQgaW1tZWRpYXRlcyBvbiBudjUwIGltcGxpY2l0bHkKPiB3aGljaCBpcyB3cm9uZyAtLSB0aGVy
+ZSBhcmUgbm8gaW1tZWRpYXRlLXRha2luZyB2YXJpYW50cyBvbiBudjUwLCBzbyBJCj4gZml4ZWQg
+dGhhdCBnbGl0Y2guIEJ1dCBvbmx5IHRoZSBHMjAwIGNhbiBkbyBmcDY0IGluIHRoZSBmaXJzdCBw
+bGFjZSwKPiBhbmQgbm91dmVhdSBkb2Vzbid0IGFjdHVhbGx5IGV4cG9zZSBpdC4gQ29ybmVyIGNh
+c2Ugb2YgYSBjb3JuZXIgY2FzZQo+IDopICkKClJpZ2h0LCBJIGRpZCBhY3R1YWxseSB0aGluayBh
+Ym91dCB0aGF0IG9uZSBhIGJpdCBzaW5jZSBDb21wdXRlIGNhcGFiaWxpdHkKMS4zIGRvZXMgaW5j
+bHVkZSBkb3VibGVzLCBidXQgSSBmaWd1cmVkIHRoYXQgc2luY2Ugd2UgZG8gbm90IHN1cHBvcnQg
+ZG91YmxlcwpvbiBudjUwIGF0IGFsbCB0aGF0IHRoYXQgd291bGQgbm90IGJlIGFuIGlzc3VlLCBn
+dWVzcyBJIHNob3VsZCBoYXZlCm1lbnRpb25lZCB0aGlzIGluIG9uZSBvZiB0aGUgY29tbWl0IG1l
+c3NhZ2VzLgoKPiBUaGFua3MgZm9yIHRha2luZyBjYXJlIG9mIHRoaXMuLi4gaXQgd2FzIGEgc21h
+bGwgYml0IG9mIGZwNjQgd2hpY2ggSQo+IGFsd2F5cyBmZWx0IGJhZCBhYm91dCBub3QgaGF2aW5n
+IGZpbmlzaGVkIHVwLiAoQnV0IG5vdCBiYWQgZW5vdWdoIHRvCj4gYWN0dWFsbHkgZmluaXNoIGl0
+IG15c2VsZi4pCgpZb3UncmUgd2VsY29tZSwgdGhpcyB3YXMgYSBmdW4gbGVhcm5pbmcgZXhwZXJp
+ZW5jZSBmb3IgbWUgYW5kIEkgbG9vawpmb3J3YXJkIHRvIGRvaW5nIG1vcmUgd29yayBvbiB0aGUg
+Y29kZWdlbiBiaXRzIGluIHRoZSBmdXR1cmUuIEJ1dCBmb3Igbm93Ckkgd2lsbCBiZSBzcGVuZGlu
+ZyBteSB0aW1lIG9uIGEgdGdzaSBiYWNrZW5kIGZvciBsbHZtLCBzbyBzb3JyeSBJIHdpbGwKbm90
+IGJlIGxvb2tpbmcgaW50bzoKCmh0dHBzOi8vdHJlbGxvLmNvbS9jL0RYMzU3bGxFLzcxLWZvbGQt
+aW1tZWRpYXRlcy1pbnRvLWNvbnN0LWxvYWQtb2Zmc2V0cwoKQW55dGltZSBzb29uLCBidXQgSSBk
+byBwbGFuIHRvIHdvcmsgbW9yZSBvbiB0aGUgY29kZWdlbiBjb2RlIGluIHRoZQpmdXR1cmUuIEkg
+d2lsbCBtYWtlIHN1cmUgdG8gY29vcmRpbmF0ZSB3aXRoIHlvdSB3aGVuIEkgaGF2ZSB0aW1lIHRv
+Cndvcmsgb24gY29kZWdlbiBhZ2FpbiB0byBhdm9pZCBkb2luZyBkb3VibGUgd29yay4KClJlZ2Fy
+ZHMsCgpIYW5zCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
