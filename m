@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69882] [NVE6] GPU lockups
-Date: Sun, 08 Nov 2015 17:35:21 +0000
-Message-ID: <bug-69882-8800-h8abPQvlWQ@http.bugs.freedesktop.org/>
+Date: Sun, 08 Nov 2015 17:54:54 +0000
+Message-ID: <bug-69882-8800-TQ7VbCtLke@http.bugs.freedesktop.org/>
 References: <bug-69882-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0792948302=="
+Content-Type: multipart/mixed; boundary="===============0141196162=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69882-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,35 +20,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0792948302==
-Content-Type: multipart/alternative; boundary="1447004121.48AC4c12.20047"; charset="UTF-8"
+--===============0141196162==
+Content-Type: multipart/alternative; boundary="1447005294.ACebeCd2.25646"; charset="UTF-8"
 
 
---1447004121.48AC4c12.20047
-Date: Sun, 8 Nov 2015 17:35:21 +0000
+--1447005294.ACebeCd2.25646
+Date: Sun, 8 Nov 2015 17:54:54 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D69882
 
---- Comment #16 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Right. I retested now with both kernel 4.3 and Mesa 11.0.4, and... well, it
-locks up, but with the kernel warning "../include/drm/drm_crtc.h:1577
-drm_helper_choose_encoder_dpms" which seems to point to
-http://lists.freedesktop.org/archives/dri-devel/2015-September/091091.html =
-and
-isn't actually a nouveau issue.
+--- Comment #17 from Dainius Masili=C5=ABnas <pastas4-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 119484
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D119484&action=3Dedit
+Journal (fifo read fault and drm_crtc.h)
 
-This prevents me from testing for the nouveau issue until the kernel gets
-fixed...
+Reading a bit more into the kernel log, I see that the drm_crtc.h warning m=
+ight
+have been triggered by nouveau after all, because above that I have:
+
+nouveau 0000:01:00.0: fifo: read fault at 6ff792f000 engine 07 [PBDMA0] cli=
+ent
+06 [HOST] reason 00 [PDE] on channel 31 [023e0c9000 xembedsniproxy[2833]]
+nouveau 0000:01:00.0: fifo: fifo engine fault on channel 31, recovering...
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 4 at
+../drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.h:73
+gk104_fifo_recover_work+0x22a/0x290 [nouveau]()
+
+Attached the systemd journal of this. The warning above is at line 1834. The
+Xorg.0.log file does not have any errors or warnings at all.
+
+I'm not sure if this should be a yet another bug report?
 
 --=20
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447004121.48AC4c12.20047
-Date: Sun, 8 Nov 2015 17:35:21 +0000
+--1447005294.ACebeCd2.25646
+Date: Sun, 8 Nov 2015 17:54:54 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -63,8 +75,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - [NVE6] GPU lockups"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c16">Commen=
-t # 16</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D69882#c17">Commen=
+t # 17</a>
               on <a class=3D"bz_bug_link=20
           bz_status_REOPENED "
    title=3D"REOPENED - [NVE6] GPU lockups"
@@ -74,17 +86,29 @@ t # 16</a>
 pastas4&#64;gmail.com" title=3D"Dainius Masili=C5=ABnas &lt;pastas4&#64;gma=
 il.com&gt;"> <span class=3D"fn">Dainius Masili=C5=ABnas</span></a>
 </span></b>
-        <pre>Right. I retested now with both kernel 4.3 and Mesa 11.0.4, an=
-d... well, it
-locks up, but with the kernel warning &quot;../include/drm/drm_crtc.h:1577
-drm_helper_choose_encoder_dpms&quot; which seems to point to
-<a href=3D"http://lists.freedesktop.org/archives/dri-devel/2015-September/0=
-91091.html">http://lists.freedesktop.org/archives/dri-devel/2015-September/=
-091091.html</a> and
-isn't actually a nouveau issue.
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D119484=
+" name=3D"attach_119484" title=3D"Journal (fifo read fault and drm_crtc.h)"=
+>attachment 119484</a> <a href=3D"attachment.cgi?id=3D119484&amp;action=3De=
+dit" title=3D"Journal (fifo read fault and drm_crtc.h)">[details]</a></span>
+Journal (fifo read fault and drm_crtc.h)
 
-This prevents me from testing for the nouveau issue until the kernel gets
-fixed...</pre>
+Reading a bit more into the kernel log, I see that the drm_crtc.h warning m=
+ight
+have been triggered by nouveau after all, because above that I have:
+
+nouveau 0000:01:00.0: fifo: read fault at 6ff792f000 engine 07 [PBDMA0] cli=
+ent
+06 [HOST] reason 00 [PDE] on channel 31 [023e0c9000 xembedsniproxy[2833]]
+nouveau 0000:01:00.0: fifo: fifo engine fault on channel 31, recovering...
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 4 at
+../drivers/gpu/drm/nouveau/nvkm/engine/fifo/gk104.h:73
+gk104_fifo_recover_work+0x22a/0x290 [nouveau]()
+
+Attached the systemd journal of this. The warning above is at line 1834. The
+Xorg.0.log file does not have any errors or warnings at all.
+
+I'm not sure if this should be a yet another bug report?</pre>
         </div>
       </p>
       <hr>
@@ -96,9 +120,9 @@ fixed...</pre>
     </body>
 </html>
 
---1447004121.48AC4c12.20047--
+--1447005294.ACebeCd2.25646--
 
---===============0792948302==
+--===============0141196162==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -108,4 +132,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0792948302==--
+--===============0141196162==--
