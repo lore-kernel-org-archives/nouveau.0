@@ -1,10 +1,9 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: [PATCH] instmem/gk20a: fix race conditions
-Date: Mon, 9 Nov 2015 16:37:53 +0900
-Message-ID: <1447054673-1500-1-git-send-email-acourbot@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92870] New: GF117M nvkm_pmu_pgob fault
+Date: Mon, 09 Nov 2015 09:56:48 +0000
+Message-ID: <bug-92870-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0818157915=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -15,87 +14,176 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-VGhlIExSVSBsaXN0IHVzZWQgZm9yIHJlY3ljbGluZyBDUFUgbWFwcGluZ3Mgd2FzIGhhbmRsaW5n
-IGNvbmN1cnJlbmN5CnZlcnkgcG9vcmx5LiBGb3IgaW5zdGFuY2UsIGlmIGFuIGluc3RvYmogd2Fz
-IGFjcXVpcmVkIHR3aWNlIGJlZm9yZSBiZWluZwpyZWxlYXNlZCBvbmNlLCBpdCB3b3VsZCBlbmQg
-dXAgaW50byB0aGUgTFJVIGxpc3QgZXZlbiB0aG91Z2ggdGhlcmUgaXMKc3RpbGwgYSBjbGllbnQg
-YWNjZXNzaW5nIGl0LgoKVGhpcyBwYXRjaCBmaXhlcyB0aGlzIGJ5IHByb3Blcmx5IGNvdW50aW5n
-IGhvdyBtYW55IGNsaWVudHMgYXJlCmN1cnJlbnRseSB1c2luZyBhIGdpdmVuIGluc3RvYmouCgpX
-aGlsZSBhdCBpdCwgd2UgYWxzbyByYWlzZSBlcnJvcnMgd2hlbiBpbmNvbnNpc3RlbmNpZXMgYXJl
-IGRldGVjdGVkLCBhbmQKZmFjdG9yaXplIHNvbWUgY29kZS4KClNpZ25lZC1vZmYtYnk6IEFsZXhh
-bmRyZSBDb3VyYm90IDxhY291cmJvdEBudmlkaWEuY29tPgotLS0KIGRybS9ub3V2ZWF1L252a20v
-c3ViZGV2L2luc3RtZW0vZ2syMGEuYyB8IDY2ICsrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0t
-LS0tLQogMSBmaWxlIGNoYW5nZWQsIDM3IGluc2VydGlvbnMoKyksIDI5IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYwppbmRleCBmYzQxOWJiOGVhYjcu
-LjY4MWIyNTQxMjI5YSAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvaW5zdG1l
-bS9nazIwYS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2luc3RtZW0vZ2syMGEuYwpA
-QCAtNTcsNiArNTcsOCBAQCBzdHJ1Y3QgZ2syMGFfaW5zdG9iaiB7CiAJLyogQ1BVIG1hcHBpbmcg
-Ki8KIAl1MzIgKnZhZGRyOwogCXN0cnVjdCBsaXN0X2hlYWQgdmFkZHJfbm9kZTsKKwkvKiBIb3cg
-bWFueSBjbGllbnRzIGFyZSB1c2luZyB2YWRkcj8gKi8KKwl1MzIgdXNlX2NwdDsKIH07CiAjZGVm
-aW5lIGdrMjBhX2luc3RvYmoocCkgY29udGFpbmVyX29mKChwKSwgc3RydWN0IGdrMjBhX2luc3Rv
-YmosIG1lbW9yeSkKIApAQCAtMTU4LDI3ICsxNjAsMzUgQEAgZ2syMGFfaW5zdG9ial9jcHVfbWFw
-X2lvbW11KHN0cnVjdCBudmttX21lbW9yeSAqbWVtb3J5KQogfQogCiAvKgotICogTXVzdCBiZSBj
-YWxsZWQgd2hpbGUgaG9sZGluZyBnazIwYV9pbnN0bWVtX2xvY2sKKyAqIFJlY3ljbGUgdGhlIHZh
-ZGRyIG9mIG9iai4gTXVzdCBiZSBjYWxsZWQgd2l0aCBnazIwYV9pbnN0bWVtOjpsb2NrIGhlbGQu
-CisgKi8KK3N0YXRpYyB2b2lkCitnazIwYV9pbnN0b2JqX3JlY3ljbGVfdmFkZHIoc3RydWN0IGdr
-MjBhX2luc3RvYmogKm9iaikKK3sKKwlzdHJ1Y3QgZ2syMGFfaW5zdG1lbSAqaW1lbSA9IG9iai0+
-aW1lbTsKKwkvKiB0aGVyZSBzaG91bGQgbm90IGJlIGFueSB1c2VyIGxlZnQuLi4gKi8KKwlXQVJO
-X09OKG9iai0+dXNlX2NwdCk7CisJbGlzdF9kZWwoJm9iai0+dmFkZHJfbm9kZSk7CisJdnVubWFw
-KG9iai0+dmFkZHIpOworCW9iai0+dmFkZHIgPSBOVUxMOworCWltZW0tPnZhZGRyX3VzZSAtPSBu
-dmttX21lbW9yeV9zaXplKCZvYmotPm1lbW9yeSk7CisJbnZrbV9kZWJ1ZygmaW1lbS0+YmFzZS5z
-dWJkZXYsICJ2YWRkciB1c2VkOiAleC8leFxuIiwgaW1lbS0+dmFkZHJfdXNlLAorCQkgICBpbWVt
-LT52YWRkcl9tYXgpOworfQorCisvKgorICogTXVzdCBiZSBjYWxsZWQgd2hpbGUgaG9sZGluZyBn
-azIwYV9pbnN0bWVtOjpsb2NrCiAgKi8KIHN0YXRpYyB2b2lkCiBnazIwYV9pbnN0bWVtX3ZhZGRy
-X2djKHN0cnVjdCBnazIwYV9pbnN0bWVtICppbWVtLCBjb25zdCB1NjQgc2l6ZSkKIHsKIAl3aGls
-ZSAoaW1lbS0+dmFkZHJfdXNlICsgc2l6ZSA+IGltZW0tPnZhZGRyX21heCkgewotCQlzdHJ1Y3Qg
-Z2syMGFfaW5zdG9iaiAqb2JqOwotCiAJCS8qIG5vIGNhbmRpZGF0ZSB0aGF0IGNhbiBiZSB1bm1h
-cHBlZCwgYWJvcnQuLi4gKi8KIAkJaWYgKGxpc3RfZW1wdHkoJmltZW0tPnZhZGRyX2xydSkpCiAJ
-CQlicmVhazsKIAotCQlvYmogPSBsaXN0X2ZpcnN0X2VudHJ5KCZpbWVtLT52YWRkcl9scnUsIHN0
-cnVjdCBnazIwYV9pbnN0b2JqLAotCQkJCSAgICAgICB2YWRkcl9ub2RlKTsKLQkJbGlzdF9kZWwo
-Jm9iai0+dmFkZHJfbm9kZSk7Ci0JCXZ1bm1hcChvYmotPnZhZGRyKTsKLQkJb2JqLT52YWRkciA9
-IE5VTEw7Ci0JCWltZW0tPnZhZGRyX3VzZSAtPSBudmttX21lbW9yeV9zaXplKCZvYmotPm1lbW9y
-eSk7Ci0JCW52a21fZGVidWcoJmltZW0tPmJhc2Uuc3ViZGV2LCAiKEdDKSB2YWRkciB1c2VkOiAl
-eC8leFxuIiwKLQkJCSAgIGltZW0tPnZhZGRyX3VzZSwgaW1lbS0+dmFkZHJfbWF4KTsKLQorCQln
-azIwYV9pbnN0b2JqX3JlY3ljbGVfdmFkZHIobGlzdF9maXJzdF9lbnRyeSgmaW1lbS0+dmFkZHJf
-bHJ1LAorCQkJCQkgICAgIHN0cnVjdCBnazIwYV9pbnN0b2JqLCB2YWRkcl9ub2RlKSk7CiAJfQog
-fQogCkBAIC0xOTYsOSArMjA2LDEwIEBAIGdrMjBhX2luc3RvYmpfYWNxdWlyZShzdHJ1Y3QgbnZr
-bV9tZW1vcnkgKm1lbW9yeSkKIAlzcGluX2xvY2tfaXJxc2F2ZSgmaW1lbS0+bG9jaywgZmxhZ3Mp
-OwogCiAJaWYgKG5vZGUtPnZhZGRyKSB7Ci0JCS8qIHJlbW92ZSB1cyBmcm9tIHRoZSBMUlUgbGlz
-dCBzaW5jZSB3ZSBjYW5ub3QgYmUgdW5tYXBwZWQgKi8KLQkJbGlzdF9kZWwoJm5vZGUtPnZhZGRy
-X25vZGUpOwotCisJCWlmICghbm9kZS0+dXNlX2NwdCkgeworCQkJLyogcmVtb3ZlIGZyb20gTFJV
-IGxpc3Qgc2luY2UgbWFwcGluZyBpbiB1c2UgYWdhaW4gKi8KKwkJCWxpc3RfZGVsKCZub2RlLT52
-YWRkcl9ub2RlKTsKKwkJfQogCQlnb3RvIG91dDsKIAl9CiAKQEAgLTIxOCw2ICsyMjksNyBAQCBn
-azIwYV9pbnN0b2JqX2FjcXVpcmUoc3RydWN0IG52a21fbWVtb3J5ICptZW1vcnkpCiAJCSAgIGlt
-ZW0tPnZhZGRyX3VzZSwgaW1lbS0+dmFkZHJfbWF4KTsKIAogb3V0OgorCW5vZGUtPnVzZV9jcHQr
-KzsKIAlzcGluX3VubG9ja19pcnFyZXN0b3JlKCZpbWVtLT5sb2NrLCBmbGFncyk7CiAKIAlyZXR1
-cm4gbm9kZS0+dmFkZHI7CkBAIC0yMzMsOSArMjQ1LDE1IEBAIGdrMjBhX2luc3RvYmpfcmVsZWFz
-ZShzdHJ1Y3QgbnZrbV9tZW1vcnkgKm1lbW9yeSkKIAogCXNwaW5fbG9ja19pcnFzYXZlKCZpbWVt
-LT5sb2NrLCBmbGFncyk7CiAKLQkvKiBhZGQgb3Vyc2VsdmVzIHRvIHRoZSBMUlUgbGlzdCBzbyBv
-dXIgQ1BVIG1hcHBpbmcgY2FuIGJlIGZyZWVkICovCi0JbGlzdF9hZGRfdGFpbCgmbm9kZS0+dmFk
-ZHJfbm9kZSwgJmltZW0tPnZhZGRyX2xydSk7CisJLyogd2Ugc2hvdWxkIGF0IGxlYXN0IGhhdmUg
-b25lIHVzZXIgdG8gcmVsZWFzZS4uLiAqLworCWlmIChXQVJOX09OKG5vZGUtPnVzZV9jcHQgPT0g
-MCkpCisJCWdvdG8gb3V0OworCisJLyogYWRkIHVudXNlZCBvYmpzIHRvIHRoZSBMUlUgbGlzdCB0
-byByZWN5Y2xlIHRoZWlyIG1hcHBpbmcgKi8KKwlpZiAoLS1ub2RlLT51c2VfY3B0ID09IDApCisJ
-CWxpc3RfYWRkX3RhaWwoJm5vZGUtPnZhZGRyX25vZGUsICZpbWVtLT52YWRkcl9scnUpOwogCitv
-dXQ6CiAJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwogCiAJd21i
-KCk7CkBAIC0yNzMsMjUgKzI5MSwxNSBAQCBzdGF0aWMgdm9pZAogZ2syMGFfaW5zdG9ial9kdG9y
-KHN0cnVjdCBnazIwYV9pbnN0b2JqICpub2RlKQogewogCXN0cnVjdCBnazIwYV9pbnN0bWVtICpp
-bWVtID0gbm9kZS0+aW1lbTsKLQlzdHJ1Y3QgZ2syMGFfaW5zdG9iaiAqb2JqOwogCXVuc2lnbmVk
-IGxvbmcgZmxhZ3M7CiAKIAlzcGluX2xvY2tfaXJxc2F2ZSgmaW1lbS0+bG9jaywgZmxhZ3MpOwog
-CisJLyogdmFkZHIgaGFzIGFscmVhZHkgYmVlbiByZWN5Y2xlZCAqLwogCWlmICghbm9kZS0+dmFk
-ZHIpCiAJCWdvdG8gb3V0OwogCi0JbGlzdF9mb3JfZWFjaF9lbnRyeShvYmosICZpbWVtLT52YWRk
-cl9scnUsIHZhZGRyX25vZGUpIHsKLQkJaWYgKG9iaiA9PSBub2RlKSB7Ci0JCQlsaXN0X2RlbCgm
-b2JqLT52YWRkcl9ub2RlKTsKLQkJCWJyZWFrOwotCQl9Ci0JfQotCXZ1bm1hcChub2RlLT52YWRk
-cik7Ci0Jbm9kZS0+dmFkZHIgPSBOVUxMOwotCWltZW0tPnZhZGRyX3VzZSAtPSBudmttX21lbW9y
-eV9zaXplKCZub2RlLT5tZW1vcnkpOwotCW52a21fZGVidWcoJmltZW0tPmJhc2Uuc3ViZGV2LCAi
-dmFkZHIgdXNlZDogJXgvJXhcbiIsCi0JCSAgIGltZW0tPnZhZGRyX3VzZSwgaW1lbS0+dmFkZHJf
-bWF4KTsKKwlnazIwYV9pbnN0b2JqX3JlY3ljbGVfdmFkZHIobm9kZSk7CiAKIG91dDoKIAlzcGlu
-X3VubG9ja19pcnFyZXN0b3JlKCZpbWVtLT5sb2NrLCBmbGFncyk7Ci0tIAoyLjYuMgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5n
-IGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNr
-dG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0818157915==
+Content-Type: multipart/alternative; boundary="1447063008.32fCB1.5250"; charset="UTF-8"
+
+
+--1447063008.32fCB1.5250
+Date: Mon, 9 Nov 2015 09:56:48 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92870
+
+            Bug ID: 92870
+           Summary: GF117M nvkm_pmu_pgob fault
+           Product: xorg
+           Version: unspecified
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: xiaotian.wu-QiJw7USCYMePt1CcHtbs0g@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+
+Created attachment 119500
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119500&action=edit
+error message.
+
+Dell notebook vostro 2421, lspci output:
+    Intel Corporation 3rd Gen Core processor Graphics Controller
+    NVIDIA Corporation GF117M [GeForce 610M/710M/810M/820M / GT
+620M/625M/630M/720M]
+
+When use kernel 4.2.x, all is ok.
+
+If use kernel 4.3.x, kernel panic. Please see attachment for more message.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447063008.32fCB1.5250
+Date: Mon, 9 Nov 2015 09:56:48 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - GF117M nvkm_pmu_pgob fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92870">92870</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>GF117M nvkm_pmu_pgob fault
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>unspecified
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>xiaotian.wu&#64;i-soft.com.cn
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119500" name="attach_119500" title="error message.">attachment 119500</a> <a href="attachment.cgi?id=119500&amp;action=edit" title="error message.">[details]</a></span>
+error message.
+
+Dell notebook vostro 2421, lspci output:
+    Intel Corporation 3rd Gen Core processor Graphics Controller
+    NVIDIA Corporation GF117M [GeForce 610M/710M/810M/820M / GT
+620M/625M/630M/720M]
+
+When use kernel 4.2.x, all is ok.
+
+If use kernel 4.3.x, kernel panic. Please see attachment for more message.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447063008.32fCB1.5250--
+
+--===============0818157915==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0818157915==--
