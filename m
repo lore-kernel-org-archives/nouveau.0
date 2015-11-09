@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92863] Complete freeze even with NvGrUseFW=1
-Date: Sun, 08 Nov 2015 23:16:15 +0000
-Message-ID: <bug-92863-8800-5DxKeJ1Dz8@http.bugs.freedesktop.org/>
-References: <bug-92863-8800@http.bugs.freedesktop.org/>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] instmem/gk20a: exclusively acquire instobjs
+Date: Mon, 9 Nov 2015 15:26:12 +0900
+Message-ID: <CAAVeFuLuRkk0QaEJbPsS_fqJrUy-X19hBdsHk51x9665XH+DnA@mail.gmail.com>
+References: <1445838895-28342-1-git-send-email-acourbot@nvidia.com>
+ <563A7644.80804@gmail.com>
+ <CAAVeFuJAvb9GDxr=WBcpfvkXbiiTbju=aU2kwzhUA-fXgMXXkQ@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2128369258=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92863-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAAVeFuJAvb9GDxr=WBcpfvkXbiiTbju=aU2kwzhUA-fXgMXXkQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,76 +19,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2128369258==
-Content-Type: multipart/alternative; boundary="1447024575.5dE31.9839"; charset="UTF-8"
-
-
---1447024575.5dE31.9839
-Date: Sun, 8 Nov 2015 23:16:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92863
-
---- Comment #5 from xenith-bjxz+0elTSj2eFz/2MeuCQ@public.gmane.org ---
-I suppose that I forgot to mention that this happens nearly instantaneously
-without PGRAPH firmware. We're talking about 30-seconds or so after loading up
-konsole and checking dmesg. Maybe related to kwin effects.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1447024575.5dE31.9839
-Date: Sun, 8 Nov 2015 23:16:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Complete freeze even with NvGrUseFW=1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92863#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Complete freeze even with NvGrUseFW=1"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92863">bug 92863</a>
-              from <span class="vcard"><a class="email" href="mailto:xenith&#64;overtmind.com" title="xenith&#64;overtmind.com">xenith&#64;overtmind.com</a>
-</span></b>
-        <pre>I suppose that I forgot to mention that this happens nearly instantaneously
-without PGRAPH firmware. We're talking about 30-seconds or so after loading up
-konsole and checking dmesg. Maybe related to kwin effects.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1447024575.5dE31.9839--
-
---===============2128369258==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2128369258==--
+T24gVGh1LCBOb3YgNSwgMjAxNSBhdCAzOjQ0IFBNLCBBbGV4YW5kcmUgQ291cmJvdCA8Z251cm91
+QGdtYWlsLmNvbT4gd3JvdGU6Cj4gT24gVGh1LCBOb3YgNSwgMjAxNSBhdCA2OjE5IEFNLCBCZW4g
+U2tlZ2dzIDxza2VnZ3NiQGdtYWlsLmNvbT4gd3JvdGU6Cj4+IE9uIDEwLzI2LzIwMTUgMDM6NTQg
+UE0sIEFsZXhhbmRyZSBDb3VyYm90IHdyb3RlOgo+Pj4gQWx0aG91Z2ggSSB3b3VsZCBub3QgaGF2
+ZSBleHBlY3RlZCB0aGlzIHRvIGhhcHBlbiwgd2Ugc2VlbSB0byBydW4gaW50bwo+Pj4gcmFjZSBj
+b25kaXRpb25zIGlmIGluc3RvYmpzIGFyZSBhY2Nlc3NlZCBjb25jdXJyZW50bHkuIFVzZSBhIGds
+b2JhbCBsb2NrCj4+PiBmb3Igc2FmZXR5Lgo+PiBJIHdvdWxkbid0IGV4cGVjdCB0aGlzIHRvIGJl
+IGFuIGlzc3VlIGVpdGhlci4KPj4KPj4gQmVmb3JlIG1lcmdpbmcgc3VjaCBhIGxhcmdlIGhhbW1l
+ciBvZiBhIGZpeCwgSSdkIHN0cm9uZ2x5IHByZWZlciB0byBzZWUKPj4gYXQgbGVhc3QgYSBiZXR0
+ZXIganVzdGlmaWNhdGlvbiBmb3Igd2h5IHRoaXMgaXMgaGFwcGVuaW5nIHJhdGhlciB0aGFuCj4+
+IHBvdGVudGlhbGx5IHBhcGVyaW5nIG92ZXIgYSBsYXJnZXIgaXNzdWUuCj4KPiBJIHdhcyBhZnJh
+aWQgeW91IHdvdWxkIHNheSB0aGF0LiA7KQo+Cj4gQnV0IHlvdSdyZSByaWdodC4gSSBhbSByZWFs
+bHkgYnVzeSB3aXRoIGxvdHMgb2Ygc3R1ZmYgYnV0IHdpbGwgdHJ5IHRvCj4gcm9vdGNhdXNlIHRo
+aXMgbW9yZSBwcmVjaXNlbHkuLi4KClR1cm5zIG91dCB0aGlzIHdhcyBqdXN0IG1lIG5vdCBrbm93
+aW5nIGhvdyB0byBoYW5kbGUgY29uY3VycmVuY3kgcHJvcGVybHkuID5fPAoKRm9ydHVuYXRlbHkg
+dGhpcyBtZWFucyB0aGF0IHRoZSBlcnJvciB3YXMganVzdCBjb25maW5lZCB0byB0aGUgZ2syMGEK
+aW1wbGVtZW50YXRpb24gYW5kIGlzIG5vdCBwYXJ0IG9mIHNvbWV0aGluZyBsYXJnZXIuIEkgd2ls
+bCBzZW5kIHRoZQpjb3JyZWN0IGZpeHVwIHBhdGNoIGxhdGVyIHRvZGF5LgoKVGhhbmtzIGZvciBy
+ZWZ1c2luZyBteSBsYXp5IGhhY2tzISA6KQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
+bm91dmVhdQo=
