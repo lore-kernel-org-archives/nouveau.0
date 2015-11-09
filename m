@@ -1,14 +1,12 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2 1/5] debugfs: add infrastructure to add files
-	with other fops than only read
-Date: Mon,  9 Nov 2015 16:11:24 +0100
-Message-ID: <1447081888-1438-2-git-send-email-nouveau@karolherbst.de>
-References: <1447081888-1438-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90632] [NVE6] grctx template channel unload timeout
+Date: Mon, 09 Nov 2015 18:33:57 +0000
+Message-ID: <bug-90632-8800-ZQflfmOjOc@http.bugs.freedesktop.org/>
+References: <bug-90632-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1631078694=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1447081888-1438-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-90632-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,46 +19,76 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djI6IHVzZSB0aGUgc2FtZSBvYmplY3QgZm9yIHByaXZhdGUgZGF0YSBhcyB3aXRoIHRoZSBkcm0g
-ZGVidWdmcyBmdW5jdGlvbnMKClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8bm91dmVhdUBr
-YXJvbGhlcmJzdC5kZT4KLS0tCiBkcm0vbm91dmVhdS9ub3V2ZWF1X2RlYnVnZnMuYyB8IDU0ICsr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrLS0KIDEgZmlsZSBjaGFuZ2Vk
-LCA1MiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2
-ZWF1L25vdXZlYXVfZGVidWdmcy5jIGIvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKaW5k
-ZXggNTM5MmUwNy4uZmU1Mzc0MyAxMDA2NDQKLS0tIGEvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1
-Z2ZzLmMKKysrIGIvZHJtL25vdXZlYXUvbm91dmVhdV9kZWJ1Z2ZzLmMKQEAgLTI4LDYgKzI4LDcg
-QEAKICAqICBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhhdC5jb20+CiAgKi8KIAorI2luY2x1ZGUg
-PGxpbnV4L2RlYnVnZnMuaD4KICNpbmNsdWRlICJub3V2ZWF1X2RlYnVnZnMuaCIKICNpbmNsdWRl
-ICJub3V2ZWF1X2RybS5oIgogCkBAIC00OCwxNyArNDksNjYgQEAgc3RhdGljIHN0cnVjdCBkcm1f
-aW5mb19saXN0IG5vdXZlYXVfZGVidWdmc19saXN0W10gPSB7CiB9OwogI2RlZmluZSBOT1VWRUFV
-X0RFQlVHRlNfRU5UUklFUyBBUlJBWV9TSVpFKG5vdXZlYXVfZGVidWdmc19saXN0KQogCitzdGF0
-aWMgY29uc3Qgc3RydWN0IG5vdXZlYXVfZGVidWdmc19maWxlcyB7CisJY29uc3QgY2hhciAqbmFt
-ZTsKKwljb25zdCBzdHJ1Y3QgZmlsZV9vcGVyYXRpb25zICpmb3BzOworfSBub3V2ZWF1X2RlYnVn
-ZnNfZmlsZXNbXSA9IHt9OworCisKK3N0YXRpYyBpbnQKK25vdXZlYXVfZGVidWdmc19jcmVhdGVf
-ZmlsZShzdHJ1Y3QgZHJtX21pbm9yICptaW5vciwKKwkJY29uc3Qgc3RydWN0IG5vdXZlYXVfZGVi
-dWdmc19maWxlcyAqbmRmKQoreworCXN0cnVjdCBkcm1faW5mb19ub2RlICpub2RlOworCisJbm9k
-ZSA9IGttYWxsb2Moc2l6ZW9mKCpub2RlKSwgR0ZQX0tFUk5FTCk7CisKKwlpZiAobm9kZSA9PSBO
-VUxMKQorCQlyZXR1cm4gLUVOT01FTTsKKworCW5vZGUtPm1pbm9yID0gbWlub3I7CisJbm9kZS0+
-aW5mb19lbnQgPSAoY29uc3Qgdm9pZCAqKW5kZi0+Zm9wczsKKwlub2RlLT5kZW50ID0gZGVidWdm
-c19jcmVhdGVfZmlsZShuZGYtPm5hbWUsIFNfSVJVR08gfCBTX0lXVVNSLCBtaW5vci0+ZGVidWdm
-c19yb290LAorCQkJbm9kZSwgbmRmLT5mb3BzKTsKKworCWlmICghbm9kZS0+ZGVudCkgeworCQlr
-ZnJlZShub2RlKTsKKwkJcmV0dXJuIC1FTk9NRU07CisJfQorCisJbXV0ZXhfbG9jaygmbWlub3It
-PmRlYnVnZnNfbG9jayk7CisJbGlzdF9hZGQoJm5vZGUtPmxpc3QsICZtaW5vci0+ZGVidWdmc19s
-aXN0KTsKKwltdXRleF91bmxvY2soJm1pbm9yLT5kZWJ1Z2ZzX2xvY2spOworCisJcmV0dXJuIDA7
-Cit9CisKIGludAogbm91dmVhdV9kZWJ1Z2ZzX2luaXQoc3RydWN0IGRybV9taW5vciAqbWlub3Ip
-CiB7Ci0JZHJtX2RlYnVnZnNfY3JlYXRlX2ZpbGVzKG5vdXZlYXVfZGVidWdmc19saXN0LCBOT1VW
-RUFVX0RFQlVHRlNfRU5UUklFUywKKwlpbnQgaSwgcmV0OworCisJZm9yIChpID0gMDsgaSA8IEFS
-UkFZX1NJWkUobm91dmVhdV9kZWJ1Z2ZzX2ZpbGVzKTsgaSsrKSB7CisJCXJldCA9IG5vdXZlYXVf
-ZGVidWdmc19jcmVhdGVfZmlsZShtaW5vciwgJm5vdXZlYXVfZGVidWdmc19maWxlc1tpXSk7CisK
-KwkJaWYgKHJldCkKKwkJCXJldHVybiByZXQ7CisJfQorCisJcmV0dXJuIGRybV9kZWJ1Z2ZzX2Ny
-ZWF0ZV9maWxlcyhub3V2ZWF1X2RlYnVnZnNfbGlzdCwgTk9VVkVBVV9ERUJVR0ZTX0VOVFJJRVMs
-CiAJCQkJIG1pbm9yLT5kZWJ1Z2ZzX3Jvb3QsIG1pbm9yKTsKLQlyZXR1cm4gMDsKIH0KIAogdm9p
-ZAogbm91dmVhdV9kZWJ1Z2ZzX3Rha2Vkb3duKHN0cnVjdCBkcm1fbWlub3IgKm1pbm9yKQogewor
-CWludCBpOworCiAJZHJtX2RlYnVnZnNfcmVtb3ZlX2ZpbGVzKG5vdXZlYXVfZGVidWdmc19saXN0
-LCBOT1VWRUFVX0RFQlVHRlNfRU5UUklFUywKIAkJCQkgbWlub3IpOworCisJZm9yIChpID0gMDsg
-aSA8IEFSUkFZX1NJWkUobm91dmVhdV9kZWJ1Z2ZzX2ZpbGVzKTsgaSsrKSB7CisJCWRybV9kZWJ1
-Z2ZzX3JlbW92ZV9maWxlcygoc3RydWN0IGRybV9pbmZvX2xpc3QgKilub3V2ZWF1X2RlYnVnZnNf
-ZmlsZXNbaV0uZm9wcywKKwkJCQkxLCBtaW5vcik7CisJfQogfQotLSAKMi42LjMKCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
-aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1631078694==
+Content-Type: multipart/alternative; boundary="1447094037.aDbc31.6070"; charset="UTF-8"
+
+
+--1447094037.aDbc31.6070
+Date: Mon, 9 Nov 2015 18:33:57 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90632
+
+--- Comment #5 from Willem Mulder <14mRh4X0r+fd.o-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Created attachment 119521
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119521&action=edit
+lspci output
+
+Option b) worked. Attached is the lspci output.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447094037.aDbc31.6070
+Date: Mon, 9 Nov 2015 18:33:57 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] grctx template channel unload timeout"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVE6] grctx template channel unload timeout"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90632">bug 90632</a>
+              from <span class="vcard"><a class="email" href="mailto:14mRh4X0r+fd.o&#64;gmail.com" title="Willem Mulder &lt;14mRh4X0r+fd.o&#64;gmail.com&gt;"> <span class="fn">Willem Mulder</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119521" name="attach_119521" title="lspci output">attachment 119521</a> <a href="attachment.cgi?id=119521&amp;action=edit" title="lspci output">[details]</a></span>
+lspci output
+
+Option b) worked. Attached is the lspci output.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447094037.aDbc31.6070--
+
+--===============1631078694==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1631078694==--
