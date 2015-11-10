@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92892] [NVA8] KDE Plasma locks up: Nouveau reports
  error "resource sanity check" "unable to handle kernel paging request"
-Date: Tue, 10 Nov 2015 19:14:22 +0000
-Message-ID: <bug-92892-8800-neoMY2u5vy@http.bugs.freedesktop.org/>
+Date: Tue, 10 Nov 2015 19:15:28 +0000
+Message-ID: <bug-92892-8800-VOUAAGjiVc@http.bugs.freedesktop.org/>
 References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0599505882=="
+Content-Type: multipart/mixed; boundary="===============0701133865=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0599505882==
-Content-Type: multipart/alternative; boundary="1447182862.10aC410.27869"; charset="UTF-8"
+--===============0701133865==
+Content-Type: multipart/alternative; boundary="1447182928.e5f3eB40.28258"; charset="UTF-8"
 
 
---1447182862.10aC410.27869
-Date: Tue, 10 Nov 2015 19:14:22 +0000
+--1447182928.e5f3eB40.28258
+Date: Tue, 10 Nov 2015 19:15:28 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92892
 
---- Comment #2 from Volker Lukas <vlukas-Mmb7MZpHnFY@public.gmane.org> ---
-Created attachment 119549
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119549&action=edit
-Version information of some relevant packages
+--- Comment #3 from Volker Lukas <vlukas-Mmb7MZpHnFY@public.gmane.org> ---
+Created attachment 119550
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119550&action=edit
+Recent weeks of package install history
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1447182862.10aC410.27869
-Date: Tue, 10 Nov 2015 19:14:22 +0000
+--1447182928.e5f3eB40.28258
+Date: Tue, 10 Nov 2015 19:15:28 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,15 +57,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
               from <span class="vcard"><a class="email" href="mailto:vlukas&#64;gmx.de" title="Volker Lukas &lt;vlukas&#64;gmx.de&gt;"> <span class="fn">Volker Lukas</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119549" name="attach_119549" title="Version information of some relevant packages">attachment 119549</a> <a href="attachment.cgi?id=119549&amp;action=edit" title="Version information of some relevant packages">[details]</a></span>
-Version information of some relevant packages</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119550" name="attach_119550" title="Recent weeks of package install history">attachment 119550</a> <a href="attachment.cgi?id=119550&amp;action=edit" title="Recent weeks of package install history">[details]</a></span>
+Recent weeks of package install history</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +78,9 @@ Version information of some relevant packages</pre>
     </body>
 </html>
 
---1447182862.10aC410.27869--
+--1447182928.e5f3eB40.28258--
 
---===============0599505882==
+--===============0701133865==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0599505882==--
+--===============0701133865==--
