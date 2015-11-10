@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92893] NV34: XPresent compositor scrambled
-Date: Tue, 10 Nov 2015 20:22:15 +0000
-Message-ID: <bug-92893-8800-cEwoyC5Afj@http.bugs.freedesktop.org/>
+Date: Tue, 10 Nov 2015 20:25:35 +0000
+Message-ID: <bug-92893-8800-vzlkvsiu2z@http.bugs.freedesktop.org/>
 References: <bug-92893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1859585727=="
+Content-Type: multipart/mixed; boundary="===============0805210109=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,44 +20,43 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1859585727==
-Content-Type: multipart/alternative; boundary="1447186935.Ee4E0ce1.14771"; charset="UTF-8"
+--===============0805210109==
+Content-Type: multipart/alternative; boundary="1447187135.Adc5c1.15854"; charset="UTF-8"
 
 
---1447186935.Ee4E0ce1.14771
-Date: Tue, 10 Nov 2015 20:22:15 +0000
+--1447187135.Adc5c1.15854
+Date: Tue, 10 Nov 2015 20:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92893
 
---- Comment #3 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #2)
-> (In reply to poma from comment #0)
-> > Created attachment 119551 [details]
-> > NV34 xf86-video-nouveau XPresent scramble
+--- Comment #4 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+(In reply to poma from comment #3)
+> (In reply to Ilia Mirkin from comment #2)
+> > (In reply to poma from comment #0)
+> > > Created attachment 119551 [details]
+> > > NV34 xf86-video-nouveau XPresent scramble
+> > > 
+> > > "enable dri3 support without glamor"
+> > > http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728
+> > > 
+> > > broke XPresent compositor on NV34.
 > > 
-> > "enable dri3 support without glamor"
-> > http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728
-> > 
-> > broke XPresent compositor on NV34.
+> > Yeah that commit had a bunch of problems, many of which were subsequently
+> > fixed. Do the issues still happen with git head? Or at least at commit
+> > 08ef36dc67 ?
 > 
-> Yeah that commit had a bunch of problems, many of which were subsequently
-> fixed. Do the issues still happen with git head? Or at least at commit
-> 08ef36dc67 ?
+> For NV34, tutto completo ist kaputt.
 
-
-For NV34, tutto completo ist kaputt.
-
-For all other GPUs tested - AMD, INTEL, NVIDIA - DRI3/XPresent compositor is
-actually recommended, it outperforms GLX compositor.
+Please answer my questions.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447186935.Ee4E0ce1.14771
-Date: Tue, 10 Nov 2015 20:22:15 +0000
+--1447187135.Adc5c1.15854
+Date: Tue, 10 Nov 2015 20:25:35 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -71,32 +70,31 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV34: XPresent compositor scrambled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92893#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92893#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV34: XPresent compositor scrambled"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92893">bug 92893</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92893#c2">comment #2</a>)
-<span class="quote">&gt; (In reply to poma from <a href="show_bug.cgi?id=92893#c0">comment #0</a>)
-&gt; &gt; Created <span class=""><a href="attachment.cgi?id=119551" name="attach_119551" title="NV34 xf86-video-nouveau XPresent scramble">attachment 119551</a> <a href="attachment.cgi?id=119551&amp;action=edit" title="NV34 xf86-video-nouveau XPresent scramble">[details]</a></span>
-&gt; &gt; NV34 xf86-video-nouveau XPresent scramble
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=92893#c3">comment #3</a>)
+<span class="quote">&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92893#c2">comment #2</a>)
+&gt; &gt; (In reply to poma from <a href="show_bug.cgi?id=92893#c0">comment #0</a>)
+&gt; &gt; &gt; Created <span class=""><a href="attachment.cgi?id=119551" name="attach_119551" title="NV34 xf86-video-nouveau XPresent scramble">attachment 119551</a> <a href="attachment.cgi?id=119551&amp;action=edit" title="NV34 xf86-video-nouveau XPresent scramble">[details]</a></span>
+&gt; &gt; &gt; NV34 xf86-video-nouveau XPresent scramble
+&gt; &gt; &gt; 
+&gt; &gt; &gt; &quot;enable dri3 support without glamor&quot;
+&gt; &gt; &gt; <a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728</a>
+&gt; &gt; &gt; 
+&gt; &gt; &gt; broke XPresent compositor on NV34.
 &gt; &gt; 
-&gt; &gt; &quot;enable dri3 support without glamor&quot;
-&gt; &gt; <a href="http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728">http://cgit.freedesktop.org/nouveau/xf86-video-nouveau/commit/?id=241e728</a>
-&gt; &gt; 
-&gt; &gt; broke XPresent compositor on NV34.
+&gt; &gt; Yeah that commit had a bunch of problems, many of which were subsequently
+&gt; &gt; fixed. Do the issues still happen with git head? Or at least at commit
+&gt; &gt; 08ef36dc67 ?
 &gt; 
-&gt; Yeah that commit had a bunch of problems, many of which were subsequently
-&gt; fixed. Do the issues still happen with git head? Or at least at commit
-&gt; 08ef36dc67 ?</span >
+&gt; For NV34, tutto completo ist kaputt.</span >
 
-
-For NV34, tutto completo ist kaputt.
-
-For all other GPUs tested - AMD, INTEL, NVIDIA - DRI3/XPresent compositor is
-actually recommended, it outperforms GLX compositor.</pre>
+Please answer my questions.</pre>
         </div>
       </p>
       <hr>
@@ -108,9 +106,9 @@ actually recommended, it outperforms GLX compositor.</pre>
     </body>
 </html>
 
---1447186935.Ee4E0ce1.14771--
+--1447187135.Adc5c1.15854--
 
---===============1859585727==
+--===============0805210109==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -120,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1859585727==--
+--===============0805210109==--
