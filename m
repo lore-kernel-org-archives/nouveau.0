@@ -1,10 +1,10 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92893] NV34: XPresent compositor scrambled
-Date: Tue, 10 Nov 2015 19:36:12 +0000
-Message-ID: <bug-92893-8800-dQYcRN4Fc8@http.bugs.freedesktop.org/>
+Date: Tue, 10 Nov 2015 19:39:51 +0000
+Message-ID: <bug-92893-8800-torS3aqEaP@http.bugs.freedesktop.org/>
 References: <bug-92893-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1430813650=="
+Content-Type: multipart/mixed; boundary="===============0418523867=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92893-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -20,30 +20,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1430813650==
-Content-Type: multipart/alternative; boundary="1447184172.afFa1.3416"; charset="UTF-8"
+--===============0418523867==
+Content-Type: multipart/alternative; boundary="1447184390.a6bDe61.4320"; charset="UTF-8"
 
 
---1447184172.afFa1.3416
-Date: Tue, 10 Nov 2015 19:36:12 +0000
+--1447184390.a6bDe61.4320
+Date: Tue, 10 Nov 2015 19:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92893
 
---- Comment #1 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
-- DRI2&3/XPresent - configure --disable-epoxy --enable-xpresent
-   Build Configuration for xfwm4:
-     Xpresent support:             yes
-     Epoxy support:                no
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+ Attachment #119551|text/plain                  |image/jpg
+          mime type|                            |
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447184172.afFa1.3416
-Date: Tue, 10 Nov 2015 19:36:12 +0000
+--1447184390.a6bDe61.4320
+Date: Tue, 10 Nov 2015 19:39:50 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -51,25 +51,28 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - NV34: XPresent compositor scrambled"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92893#c1">Comment # 1</a>
-              on <a class="bz_bug_link 
+    <body><span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
+</span> changed
+              <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - NV34: XPresent compositor scrambled"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92893">bug 92893</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-- DRI2&amp;3/XPresent - configure --disable-epoxy --enable-xpresent
-   Build Configuration for xfwm4:
-     Xpresent support:             yes
-     Epoxy support:                no</pre>
-        </div>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Attachment #119551 mime type</td>
+           <td>text/plain
+           </td>
+           <td>image/jpg
+           </td>
+         </tr></table>
+      <p>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -80,9 +83,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1447184172.afFa1.3416--
+--1447184390.a6bDe61.4320--
 
---===============1430813650==
+--===============0418523867==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -92,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1430813650==--
+--===============0418523867==--
