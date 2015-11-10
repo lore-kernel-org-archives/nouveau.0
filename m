@@ -1,12 +1,14 @@
-From: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events (v3)
-Date: Tue, 10 Nov 2015 17:00:35 +0100
-Message-ID: <20151110160033.GB25368@ulmo.nvidia.com>
+Date: Tue, 10 Nov 2015 17:25:32 +0100
+Message-ID: <56421A7C.2010201@gmail.com>
 References: <1447167452-998-1-git-send-email-mario.kleiner.de@gmail.com>
+ <20151110160033.GB25368@ulmo.nvidia.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0759987880=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1447167452-998-1-git-send-email-mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <20151110160033.GB25368-AwZRO8vwLAwmlAP/+Wk3EA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,122 +18,72 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+To: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 Cc: dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
---===============0759987880==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="A6N2fC+uXW/VQSAv"
-Content-Disposition: inline
-
---A6N2fC+uXW/VQSAv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 10, 2015 at 03:54:52PM +0100, Mario Kleiner wrote:
-> From: Daniel Vetter <daniel.vetter-/w4YWyX8dFk@public.gmane.org>
->=20
-> Apparently pre-nv50 pageflip events happen before the actual vblank
-> period. Therefore that functionality got semi-disabled in
->=20
-> commit af4870e406126b7ac0ae7c7ce5751f25ebe60f28
-> Author: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Date:   Tue May 13 00:42:08 2014 +0200
->=20
->     drm/nouveau/kms/nv04-nv40: fix pageflip events via special case.
->=20
-> Unfortunately that hack got uprooted in
->=20
-> commit cc1ef118fc099295ae6aabbacc8af94d8d8885eb
-> Author: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> Date:   Wed Aug 12 17:00:31 2015 +0200
->=20
->     drm/irq: Make pipe unsigned and name consistent
->=20
-> Trigering a warning when trying to sample the vblank timestamp for a
-> non-existing pipe. There's a few ways to fix this:
->=20
-> - Open-code the old behaviour, which just enshrines this slight
->   breakage of the userspace ABI.
->=20
-> - Revert Mario's commit and again inflict broken timestamps, again not
->   pretty.
->=20
-> - Fix this for real by delaying the pageflip TS until the next vblank
->   interrupt, thereby making it accurate.
->=20
-> This patch implements the third option. Since having a page flip
-> interrupt that happens when the pageflip gets armed and not when it
-> completes in the next vblank seems to be fairly common (older i915 hw
-> works very similarly) create a new helper to arm vblank events for
-> such drivers.
->=20
-> Bugzilla: https://bugzilla.kernel.org/show_bug.cgi?id=3D106431
-> Cc: Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-> Cc: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-> Cc: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
->=20
-> v2 (mario): Integrate my own review comments into Daniels patch.
->    - Fix function prototypes in drmP.h
->    - Add missing vblank_put() for pageflip completion without
->      pageflip event.
->    - Initialize sequence number for queued pageflip event to avoid
->      trouble in drm_handle_vblank_events().
->    - Remove dead code and spelling fix.
->=20
-> v3 (mario): Add a signed-off-by and cc stable tag per Ilja's advice.
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>
-> (v1) Reviewed-by: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-> (v2/v3) Signed-off-by: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
->=20
-> Cc: stable-u79uwXL29TY76Z2rM5mHXA@public.gmane.org # v4.3
-> ---
->  drivers/gpu/drm/drm_irq.c                 | 54 +++++++++++++++++++++++++=
-+++++-
->  drivers/gpu/drm/nouveau/nouveau_display.c | 19 ++++++-----
->  include/drm/drmP.h                        |  4 +++
->  3 files changed, 68 insertions(+), 9 deletions(-)
-
-This looks good to me. Let me clean this up a little and submit it to
-Dave.
-
-Thierry
-
---A6N2fC+uXW/VQSAv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iQIcBAABCAAGBQJWQhShAAoJEN0jrNd/PrOhO9cP/AxjQTg0NyXxYKCJwsT4nV/d
-/BtJWMhp5jUvbVNSLJ0MRBut8GuQUtP4dabE2O0monsxarAZ7G/ly3JdVf5vJdJL
-dFTaWPzwVjpfov5xncQVzKK8tuMfLT5PgUftBXDGMa+kfRp2n11GrWJWiTRUv1ed
-ruODW3HXOivNWlA/NvxxU2+GYzu3DALdAWpR13pGZoEyyqXdRQ9eXoa7ksDHVU77
-45O+XxqpuNouOL78AgL8zi2zuK7QyZAXdGonC9ROAONhEsx8PTfRlJTzuFTOr9vb
-MF9NcT+EYghKsD/XRfpjTMIi1eEqG+gkmH/SgKI4AWzWGETMe26/eBzOWS9//pPH
-97wVqyeeepgJQV0NzDL9pvkolCpnHMTHPwoe0on1R1RUA7vSvQhZqvLHwEFTh+Yg
-fN6j05x8qHMXEAeMcnehPcqKXUTEcXbG6dH29Vsy43PuJW8NSfhCAqEWNeY3saA8
-vNQr84wkzVgy440cdVQC4eOmdrs1pgrCFVYxGSHweNjScSKDaCHMw0FTXuLe7ngU
-2UW5OmicZTv45KZVmmhEBBj2q7Da/f8tO8Ej1J3P8K6NdzMvNROYopUpfK/zSpHG
-avcVnJpZ2NCsBpoVRE0Vm257adEwJqaCpAzG8mYa4yTqQJy6hxW2Iq/xERUk4lk7
-aStD8xmOm2+XOYSN1Ovx
-=FSt8
------END PGP SIGNATURE-----
-
---A6N2fC+uXW/VQSAv--
-
---===============0759987880==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0759987880==--
+T24gMTEvMTAvMjAxNSAwNTowMCBQTSwgVGhpZXJyeSBSZWRpbmcgd3JvdGU6Cj4gT24gVHVlLCBO
+b3YgMTAsIDIwMTUgYXQgMDM6NTQ6NTJQTSArMDEwMCwgTWFyaW8gS2xlaW5lciB3cm90ZToKPj4g
+RnJvbTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4KPj4KPj4gQXBwYXJl
+bnRseSBwcmUtbnY1MCBwYWdlZmxpcCBldmVudHMgaGFwcGVuIGJlZm9yZSB0aGUgYWN0dWFsIHZi
+bGFuawo+PiBwZXJpb2QuIFRoZXJlZm9yZSB0aGF0IGZ1bmN0aW9uYWxpdHkgZ290IHNlbWktZGlz
+YWJsZWQgaW4KPj4KPj4gY29tbWl0IGFmNDg3MGU0MDYxMjZiN2FjMGFlN2M3Y2U1NzUxZjI1ZWJl
+NjBmMjgKPj4gQXV0aG9yOiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNv
+bT4KPj4gRGF0ZTogICBUdWUgTWF5IDEzIDAwOjQyOjA4IDIwMTQgKzAyMDAKPj4KPj4gICAgICBk
+cm0vbm91dmVhdS9rbXMvbnYwNC1udjQwOiBmaXggcGFnZWZsaXAgZXZlbnRzIHZpYSBzcGVjaWFs
+IGNhc2UuCj4+Cj4+IFVuZm9ydHVuYXRlbHkgdGhhdCBoYWNrIGdvdCB1cHJvb3RlZCBpbgo+Pgo+
+PiBjb21taXQgY2MxZWYxMThmYzA5OTI5NWFlNmFhYmJhY2M4YWY5NGQ4ZDg4ODVlYgo+PiBBdXRo
+b3I6IFRoaWVycnkgUmVkaW5nIDx0cmVkaW5nQG52aWRpYS5jb20+Cj4+IERhdGU6ICAgV2VkIEF1
+ZyAxMiAxNzowMDozMSAyMDE1ICswMjAwCj4+Cj4+ICAgICAgZHJtL2lycTogTWFrZSBwaXBlIHVu
+c2lnbmVkIGFuZCBuYW1lIGNvbnNpc3RlbnQKPj4KPj4gVHJpZ2VyaW5nIGEgd2FybmluZyB3aGVu
+IHRyeWluZyB0byBzYW1wbGUgdGhlIHZibGFuayB0aW1lc3RhbXAgZm9yIGEKPj4gbm9uLWV4aXN0
+aW5nIHBpcGUuIFRoZXJlJ3MgYSBmZXcgd2F5cyB0byBmaXggdGhpczoKPj4KPj4gLSBPcGVuLWNv
+ZGUgdGhlIG9sZCBiZWhhdmlvdXIsIHdoaWNoIGp1c3QgZW5zaHJpbmVzIHRoaXMgc2xpZ2h0Cj4+
+ICAgIGJyZWFrYWdlIG9mIHRoZSB1c2Vyc3BhY2UgQUJJLgo+Pgo+PiAtIFJldmVydCBNYXJpbydz
+IGNvbW1pdCBhbmQgYWdhaW4gaW5mbGljdCBicm9rZW4gdGltZXN0YW1wcywgYWdhaW4gbm90Cj4+
+ICAgIHByZXR0eS4KPj4KPj4gLSBGaXggdGhpcyBmb3IgcmVhbCBieSBkZWxheWluZyB0aGUgcGFn
+ZWZsaXAgVFMgdW50aWwgdGhlIG5leHQgdmJsYW5rCj4+ICAgIGludGVycnVwdCwgdGhlcmVieSBt
+YWtpbmcgaXQgYWNjdXJhdGUuCj4+Cj4+IFRoaXMgcGF0Y2ggaW1wbGVtZW50cyB0aGUgdGhpcmQg
+b3B0aW9uLiBTaW5jZSBoYXZpbmcgYSBwYWdlIGZsaXAKPj4gaW50ZXJydXB0IHRoYXQgaGFwcGVu
+cyB3aGVuIHRoZSBwYWdlZmxpcCBnZXRzIGFybWVkIGFuZCBub3Qgd2hlbiBpdAo+PiBjb21wbGV0
+ZXMgaW4gdGhlIG5leHQgdmJsYW5rIHNlZW1zIHRvIGJlIGZhaXJseSBjb21tb24gKG9sZGVyIGk5
+MTUgaHcKPj4gd29ya3MgdmVyeSBzaW1pbGFybHkpIGNyZWF0ZSBhIG5ldyBoZWxwZXIgdG8gYXJt
+IHZibGFuayBldmVudHMgZm9yCj4+IHN1Y2ggZHJpdmVycy4KPj4KPj4gQnVnemlsbGE6IGh0dHBz
+Oi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTA2NDMxCj4+IENjOiBUaGll
+cnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgo+PiBDYzogTWFyaW8gS2xlaW5lciA8bWFy
+aW8ua2xlaW5lci5kZUBnbWFpbC5jb20+Cj4+IENjOiBCZW4gU2tlZ2dzIDxic2tlZ2dzQHJlZGhh
+dC5jb20+Cj4+IENjOiBJbGlhIE1pcmtpbiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+Cj4+Cj4+IHYy
+IChtYXJpbyk6IEludGVncmF0ZSBteSBvd24gcmV2aWV3IGNvbW1lbnRzIGludG8gRGFuaWVscyBw
+YXRjaC4KPj4gICAgIC0gRml4IGZ1bmN0aW9uIHByb3RvdHlwZXMgaW4gZHJtUC5oCj4+ICAgICAt
+IEFkZCBtaXNzaW5nIHZibGFua19wdXQoKSBmb3IgcGFnZWZsaXAgY29tcGxldGlvbiB3aXRob3V0
+Cj4+ICAgICAgIHBhZ2VmbGlwIGV2ZW50Lgo+PiAgICAgLSBJbml0aWFsaXplIHNlcXVlbmNlIG51
+bWJlciBmb3IgcXVldWVkIHBhZ2VmbGlwIGV2ZW50IHRvIGF2b2lkbmcKPj4gICAgICAgdHJvdWJs
+ZSBpbiBkcm1faGFuZGxlX3ZibGFua19ldmVudHMoKS4KPj4gICAgIC0gUmVtb3ZlIGRlYWQgY29k
+ZSBhbmQgc3BlbGxpbmcgZml4Lgo+Pgo+PiB2MyAobWFyaW8pOiBBZGQgYSBzaWduZWQtb2ZmLWJ5
+IGFuZCBjYyBzdGFibGUgdGFnIHBlciBJbGphJ3MgYWR2aWNlLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
+OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPj4gKHYxKSBSZXZpZXdl
+ZC1ieTogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+Cj4+ICh2Mi92
+MykgU2lnbmVkLW9mZi1ieTogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5j
+b20+Cj4+Cj4+IENjOiBzdGFibGVAdmdlci5rZXJuZWwub3JnICMgdjQuMwo+PiAtLS0KPj4gICBk
+cml2ZXJzL2dwdS9kcm0vZHJtX2lycS5jICAgICAgICAgICAgICAgICB8IDU0ICsrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKy0KPj4gICBkcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9ub3V2ZWF1
+X2Rpc3BsYXkuYyB8IDE5ICsrKysrKy0tLS0tCj4+ICAgaW5jbHVkZS9kcm0vZHJtUC5oICAgICAg
+ICAgICAgICAgICAgICAgICAgfCAgNCArKysKPj4gICAzIGZpbGVzIGNoYW5nZWQsIDY4IGluc2Vy
+dGlvbnMoKyksIDkgZGVsZXRpb25zKC0pCj4KPiBUaGlzIGxvb2tzIGdvb2QgdG8gbWUuIExldCBt
+ZSBjbGVhbiB0aGlzIHVwIGEgbGl0dGxlIGFuZCBzdWJtaXQgaXQgdG8KPiBEYXZlLgo+Cj4gVGhp
+ZXJyeQo+CgpCdHcuLCBpZiBzb21lYm9keSBoYXMgYSBmdW5jdGlvbmFsIG9sZCBjYXJkIGZvciB0
+ZXN0aW5nIHRoaXMsIGl0IHNob3VsZCAKYmUgZWFzeSB0byB2ZXJpZnkgaWYgaXQgd29ya3Mgb24g
+cHJlLW52NTAuIElmIGl0IHdvdWxkIG5vdCB3b3JrIGl0IHdvdWxkIApkZWxpdmVyIHRoZSBwYWdl
+ZmxpcCBldmVudCAxIGZyYW1lIGRlbGF5ZWQsIHNvIGF0IGxlYXN0IG9uIHN0YW5kYXJkIApub3V2
+ZWF1ICsgZGVmYXVsdCBEUkkyICsgZGVmYXVsdCBkb3VibGUtYnVmZmVyaW5nIHRoZSByYXRlIGZv
+ciBhIHRpZ2h0IApsb29wIG9mIHBhZ2UtZmxpcHBlZCBzd2FwcyBzaG91bGQgZ28gZG93biB0byAz
+MCBmcHMgb24gYSA2MCBIeiBkaXNwbGF5LCAKcXVpdGUgbm90aWNlYWJsZS4gQWZhaWsgd2UgYWxz
+byBoYXZlIFBpZ2xpdCB0ZXN0cyBmb3IgT01MX3N5bmNfY29udHJvbCAKd2hpY2ggd291bGQgbGlr
+ZWx5IGZhaWwgaWYgdGhpcyB3b3VsZCBiZSBicm9rZW4uCgpPaCBhbmQgaWYgc29tZW9uZSBoYXMg
+dGlwcyBvbiBob3cgdG8gcmVzdXJyZWN0IGFuIG9sZCBudi00MCBQQyAoYm9vdGVkIAp3aXRoIEJJ
+T1Mgb25seSkgZ3JhcGhpY3MgY2FyZCBpbiBhIE1hY1BybyAoRUZJIGJvb3QpLCBpIHdvdWxkbid0
+IG1pbmQgCmhlYXJpbmcgdGhlbS4gSXQgd291bGQgYmUgbmljZSB0byBzdGlsbCBiZSBhYmxlIHRv
+IHVzZSB0aGF0IGNhcmQgZm9yIAp0ZXN0aW5nLgoKdGhhbmtzLAotbWFyaW8KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
+Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
+Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
