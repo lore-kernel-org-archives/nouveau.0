@@ -1,57 +1,49 @@
-From: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Subject: Re: [PATCH] instmem/gk20a: use DMA API CPU mapping
-Date: Thu, 12 Nov 2015 11:07:23 +0900
-Message-ID: <5643F45B.5080402@nvidia.com>
-References: <1447229271-22901-1-git-send-email-acourbot@nvidia.com>
- <5643C607.60204@gmail.com>
+From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH v2] nouveau: arm: Add MODULE_FIRMWARE for gk20a
+Date: Thu, 12 Nov 2015 21:53:50 +0900
+Message-ID: <CAAVeFuLNadYawJB0zZHzMc3CA7GiukEox=FGH8wupXjyK576MQ@mail.gmail.com>
+References: <1443452893-18246-1-git-send-email-kwizart@gmail.com>
+ <CAAVeFuJLJO4LvLqq2w9gMe6V6L3VDi+Gz59GvwKF2v8OWTWgBQ@mail.gmail.com> <CABr+WTmG1p6-dGGpWJgGBAJydyWz=2aPj-e93X9metn8y8Qrcg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <5643C607.60204-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Dave
- Airlie <airlied-cv59FeDIM0c@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org, Andrew Morton <akpm-de/tnXTf+JLsfHDXvbKv3WD2FQJk+8+b@public.gmane.org>, linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org, Guenter Roeck <linux-0h96xk9xTtrk1uMJSBkQmQ@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>
+In-Reply-To: <CABr+WTmG1p6-dGGpWJgGBAJydyWz=2aPj-e93X9metn8y8Qrcg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+Sender: linux-tegra-owner-u79uwXL29TY76Z2rM5mHXA@public.gmane.org
+To: Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org" <linux-tegra-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, "linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org" <linux-arm-kernel-IAPFreCvJWM7uuMidbF8XUB+6BGkLq7r@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-T24gMTEvMTIvMjAxNSAwNzo0OSBBTSwgQmVuIFNrZWdncyB3cm90ZToKPiAqIFBHUCBTaWduZWQg
-YnkgYW4gdW5rbm93biBrZXkKPgo+IE9uIDExLzExLzIwMTUgMDY6MDcgUE0sIEFsZXhhbmRyZSBD
-b3VyYm90IHdyb3RlOgo+PiBDb21taXQgNjljNDkzODI0OWZiICgiZHJtL25vdXZlYXUvaW5zdG1l
-bS9nazIwYTogdXNlIGRpcmVjdCBDUFUgYWNjZXNzIikKPj4gdHJpZWQgdG8gYmUgc21hcnQgd2hp
-bGUgdXNpbmcgdGhlIERNQS1BUEkgYnkgbWFuYWdpbmcgdGhlIENQVSBtYXBwaW5ncyBvZgo+PiBi
-dWZmZXJzIGFsbG9jYXRlZCB3aXRoIHRoZSBETUEtQVBJIGJ5IGl0c2VsZi4gSW4gZG9pbmcgc28s
-IGl0IHJlbGllZAo+PiBvbiBkbWFfdG9fcGh5cygpIHdoaWNoIGlzIGFuIGFyY2hpdGVjdHVyZS1w
-cml2YXRlIGZ1bmN0aW9uIG5vdAo+PiBhdmFpbGFibGUgZXZlcnl3aGVyZS4gVGhpcyBicm9rZSB0
-aGUgYnVpbGQgb24gc2V2ZXJhbCBhcmNoaXRlY3R1cmVzLgo+Pgo+PiBTaW5jZSB0aGVyZSBpcyBu
-byByZWxpYWJsZSBhbmQgcG9ydGFibGUgd2F5IHRvIG9idGFpbiB0aGUgcGh5c2ljYWwKPj4gYWRk
-cmVzcyBvZiBhIERNQS1BUEkgYnVmZmVyLCBzdG9wIHRyeWluZyB0byBiZSBzbWFydCBhbmQganVz
-dCB1c2UgdGhlCj4+IENQVSBtYXBwaW5nIHRoYXQgdGhlIERNQS1BUEkgY2FuIHByb3ZpZGUuIFRo
-aXMgbWVhbnMgdGhhdCBidWZmZXJzIHdpbGwKPj4gYmUgQ1BVLW1hcHBlZCBmb3IgYWxsIHRoZWly
-IGxpZmUgYXMgb3Bwb3NlZCB0byB3aGVuIHdlIG5lZWQgdGhlbSwgYnV0Cj4+IGFueXdheSB1c2lu
-ZyB0aGUgRE1BLUFQSSBoZXJlIGlzIGEgZmFsbGJhY2sgZm9yIHdoZW4gbm8gSU9NTVUgaXMKPj4g
-YXZhaWxhYmxlIHNvIHdlIHNob3VsZCBub3QgZXhwZWN0IG9wdGltYWwgYmVoYXZpb3IuCj4+Cj4+
-IFRoaXMgbWFrZXMgdGhlIElPTU1VIGFuZCBETUEtQVBJIGltcGxlbWVudGF0aW9ucyBvZiBpbnN0
-bWVtIGRpdmVyZ2UKPj4gZW5vdWdoIHRoYXQgd2Ugc2hvdWxkIG1heWJlIHB1dCB0aGVtIGludG8g
-c2VwYXJhdGUgZmlsZXMuLi4KPj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGFuZHJlIENvdXJib3Qg
-PGFjb3VyYm90QG52aWRpYS5jb20+Cj4+IC0tLQo+PiBCZW4vRGF2ZSwgc2luY2UgRGF2ZSdzIGZp
-eCBoYXMgcmVhY2hlZCBtYWlubGluZSBhbmQgYnVpbGRzIGFyZSBub3QKPj4gYnJva2VuIGFueW1v
-cmUsIHdlIGNhbiBwcm9jZWVkIG9uZSBvZiB0d28gd2F5czoKPj4KPj4gMSkgQmVuIG1lcmdlcyB0
-aGlzIGZvciA0LjQgYW5kIGxldCBpdCBmbG93IGZvciAtcmMyCj4+IDIpIEkgc2VuZCBhbm90aGVy
-IGZpeCBhZ2FpbnN0IHRoZSBrZXJuZWwgdHJlZQo+IEkganVzdCBzcG9rZSB0byBEYXZlLCBhbmQg
-SSdsbCB0YWtlIHRoaXMgaW4gbXkgdHJlZSBmb3IgNC41IGlmCj4gZXZlcnl0aGluZyB3b3JrcyBm
-aW5lIHdpdGggdGhlIHRlbXBvcmFyeSBoYWNrIGZpeC4gIERvZXMgdGhhdCBzb3VuZCBPSwo+IHRv
-IHlvdT8KCkkgd291bGQgcmF0aGVyIGdldCByaWQgb2YgdGhpcyBpbGxpY2l0IGRtYV90b19waHlz
-KCkgcXVpY2tseSBzbyBvdGhlciAKcGVvcGxlIGRvbid0IHN0YXJ0IHRoaW5raW5nIGl0J3Mgb2sg
-dG8gdXNlIGluIGRyaXZlcnMvIChvciBzdGFydCAKdGhyb3dpbmcgc3RvbmVzIGF0IG1lKSwgYnV0
-IHlvdXIgY2FsbC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+On Wed, Nov 11, 2015 at 6:29 PM, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+> 2015-09-30 6:57 GMT+02:00 Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>:
+>>
+>> On Tue, Sep 29, 2015 at 12:08 AM, Nicolas Chauvet <kwizart-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+>> wrote:
+>> > This patch is needed by initramfs tools to detect
+>> > the required firmware files for the module.
+>> >
+>> > This patch tests for either TEGRA_124_SOC or TEGRA_132_SOC
+>> > for the firmwares related to the Tegra K1 generation.
+>> >
+>> > v2: move the MODULE_FIRMWARE to the nvidia_platform.c file.
+>> >  This will avoid to test for NOUVEAU_PLATFORM_DRIVER
+>>
+>> Nice, thanks for doing this change!
+>>
+>> Reviewed-by: Alexandre Courbot <acourbot-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+>
+>
+> Thx for the review.
+> FYI I've tested the patch on top of 4.3+ kernels, and the initramfs
+> generated with dracut works as expected.
+>
+> Is there any other concern with this patch ?
+>
+> It's certainly late for 4.4,I would expect it to hit kernel 4.3 at some
+> point, but I don't think everything is wired from userspace(Xorg/Wayland)
+> wrt dGPU support.
+> So It could also wait for 4.5.
+> What do you think ?
+
+I don't see a particular reason to hurry, however this patch has been
+sitting around for one month now - Ben, is there any particular reason
+for not merging it?
