@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90348] Spilling failure of b96 merged value
-Date: Sat, 14 Nov 2015 01:52:13 +0000
-Message-ID: <bug-90348-8800-Se5lf1xEA8@http.bugs.freedesktop.org/>
-References: <bug-90348-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH] pmu: fix queued messages while getting no IRQ
+Date: Sat, 14 Nov 2015 18:27:10 +0100
+Message-ID: <1447522030-5632-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1008839052=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,71 +18,53 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1008839052==
-Content-Type: multipart/alternative; boundary="1447465933.d07ba1.774"; charset="UTF-8"
-
-
---1447465933.d07ba1.774
-Date: Sat, 14 Nov 2015 01:52:13 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90348
-
---- Comment #3 from xpue <r9ku1q-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-https://github.com/iXit/Mesa-3D/issues/160
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1447465933.d07ba1.774
-Date: Sat, 14 Nov 2015 01:52:13 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Spilling failure of b96 merged value"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90348#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Spilling failure of b96 merged value"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90348">bug 90348</a>
-              from <span class="vcard"><a class="email" href="mailto:r9ku1q&#64;gmail.com" title="xpue &lt;r9ku1q&#64;gmail.com&gt;"> <span class="fn">xpue</span></a>
-</span></b>
-        <pre><a href="https://github.com/iXit/Mesa-3D/issues/160">https://github.com/iXit/Mesa-3D/issues/160</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1447465933.d07ba1.774--
-
---===============1008839052==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1008839052==--
+SSBlbmNvdW50ZXJlZCB3aGlsZSBzdHJlc3N0ZXN0aW5nIHRoZSByZWNsb2NraW5nIGNvZGUsIHRo
+YXQgcmFyZWx5ICgxIG91dCBvZgoyMC4wMDArIHJlcXVlc3RzKSB3ZSBkb24ndCBnZXQgYW55IElS
+USBpbiBudmttX3BtdV9pbnRyLgoKVGhpcyBtZWFucyB3ZSBoYXZlIGEgcXVldWVkIG1lc3NhZ2Ug
+b24gdGhlIHBtdSwgYnV0IG5vdXZlYXUgZG9lc24ndCByZWFkIGl0IGFuZAp3YWl0cyBpbmZpbml0
+ZWx5IGluIG52a21fcG11X3NlbmQ6CglpZiAocmVwbHkpIHsKCQl3YWl0X2V2ZW50KHBtdS0+cmVj
+di53YWl0LCAocG11LT5yZWN2LnByb2Nlc3MgPT0gMCkpOwoKdGhlcmVmb3JlIGxldCB1cyB1c2Ug
+d2FpdF9ldmVudF90aW1lb3V0IHdpdGggYSAxcyB0aW1lb3V0IGZyYW1lIGFuZCBqdXN0IGNoZWNr
+CndoZXRoZXIgdGhlcmUgaXMgYSBtZXNzYWdlIHF1ZXVlZCBhbmQgaGFuZGxlIGl0IGlmIHRoZXJl
+IGlzIG9uZS4KClJldHVybiAtRVRJTUVET1VUIHdoZW5ldmVyIHdlIHRpbWVkIG91dCBhbmQgdGhl
+cmUgaXMgbm8gbWVzc2FnZSBxdWV1ZWQgb3Igd2hlbgp3ZSBoaXQgYW5vdGhlciB0aW1lb3V0IHdo
+aWxlIHRyeWluZyB0byByZWFkIHRoZSBtZXNzYWdlIHdpdGhvdXQgZ2V0dGluZyBhbnkgSVJRCgpU
+aGUgYmVuZWZpdCBvZiBub3QgdXNpbmcgd2FpdF9ldmVudCBpcywgdGhhdCB3ZSBkb24ndCBoYXZl
+IGEga3dvcmtlciB3YWl0aW5nCm9uIGFuIGV2ZW50LCB3aGljaCBtYWtlcyBpdCBlYXNpZXIgdG8g
+cmVsb2FkIHRoZSBtb2R1bGUgYXQgcnVudGltZSwgd2hpY2ggaGVscHMKbWUgZGV2ZWxvcGluZyBv
+biBub3V2ZWF1IG9uIG15IGxhcHRvcCBhIGxvdCwgYmVjYXVzZSBJIGRvbid0IG5lZWQgdG8gcmVi
+b290CmFueW1vcmUKCk5ldGhlcnRoZWxlc3MsIHdlIHNob3VsZG4ndCB1c2Ugd2FpdF9ldmVudCBo
+ZXJlLCBiZWNhdXNlIHdlIGNhbid0IGd1YXJhbnRlZSBhbnkKYW5zd2VyZSBhdCBhbGwsIGNhbiB3
+ZT8KClNpZ25lZC1vZmYtYnk6IEthcm9sIEhlcmJzdCA8bm91dmVhdUBrYXJvbGhlcmJzdC5kZT4K
+LS0tCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvYmFzZS5jIHwgMzMgKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKystLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygrKSwg
+NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUv
+YmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Jhc2UuYwppbmRleCA2YjIwMDdm
+Li5mOTE3MjkzIDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvYmFzZS5j
+CisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9iYXNlLmMKQEAgLTg5LDEwICs4OSwz
+NSBAQCBudmttX3BtdV9zZW5kKHN0cnVjdCBudmttX3BtdSAqcG11LCB1MzIgcmVwbHlbMl0sCiAK
+IAkvKiB3YWl0IGZvciByZXBseSwgaWYgcmVxdWVzdGVkICovCiAJaWYgKHJlcGx5KSB7Ci0JCXdh
+aXRfZXZlbnQocG11LT5yZWN2LndhaXQsIChwbXUtPnJlY3YucHJvY2VzcyA9PSAwKSk7Ci0JCXJl
+cGx5WzBdID0gcG11LT5yZWN2LmRhdGFbMF07Ci0JCXJlcGx5WzFdID0gcG11LT5yZWN2LmRhdGFb
+MV07Ci0JCW11dGV4X3VubG9jaygmc3ViZGV2LT5tdXRleCk7CisJCWlmICh3YWl0X2V2ZW50X3Rp
+bWVvdXQocG11LT5yZWN2LndhaXQsIChwbXUtPnJlY3YucHJvY2VzcyA9PSAwKSwgbXNlY3NfdG9f
+amlmZmllcygxMDAwKSkgIT0gMCkgeworCQkJcmVwbHlbMF0gPSBwbXUtPnJlY3YuZGF0YVswXTsK
+KwkJCXJlcGx5WzFdID0gcG11LT5yZWN2LmRhdGFbMV07CisJCQltdXRleF91bmxvY2soJnN1YmRl
+di0+bXV0ZXgpOworCQkJcmV0dXJuIDA7CisJCX0gZWxzZSB7CisJCQl1MzIgYWRkciA9IG52a21f
+cmQzMihkZXZpY2UsIDB4MTBhNGNjKTsKKwkJCW52a21fZXJyb3Ioc3ViZGV2LCAid2FpdCBvbiBy
+ZXBseSB0aW1lZCBvdXRcbiIpOworCisJCQlpZiAoYWRkciAhPSBudmttX3JkMzIoZGV2aWNlLCAw
+eDEwYTRjOCkpIHsKKwkJCQludmttX2Vycm9yKHN1YmRldiwgImZvdW5kIHF1ZXVlZCBtZXNzYWdl
+IHdpdGhvdXQgZ2V0dGluZyBhbiBpbnRlcnJ1cHRcbiIpOworCQkJCXNjaGVkdWxlX3dvcmsoJnBt
+dS0+cmVjdi53b3JrKTsKKwkJCQlpZiAod2FpdF9ldmVudF90aW1lb3V0KHBtdS0+cmVjdi53YWl0
+LCAocG11LT5yZWN2LnByb2Nlc3MgPT0gMCksIG1zZWNzX3RvX2ppZmZpZXMoMTAwMCkpICE9IDAp
+IHsKKwkJCQkJcmVwbHlbMF0gPSBwbXUtPnJlY3YuZGF0YVswXTsKKwkJCQkJcmVwbHlbMV0gPSBw
+bXUtPnJlY3YuZGF0YVsxXTsKKwkJCQkJbXV0ZXhfdW5sb2NrKCZzdWJkZXYtPm11dGV4KTsKKwkJ
+CQkJcmV0dXJuIDA7CisJCQkJfSBlbHNlIHsKKwkJCQkJcmVwbHlbMF0gPSAwOworCQkJCQlyZXBs
+eVsxXSA9IDA7CisJCQkJCW52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIHJlcGFpciBQTVUg
+c3RhdGVcbiIpOworCQkJCX0KKwkJCX0KKworCQkJbXV0ZXhfdW5sb2NrKCZzdWJkZXYtPm11dGV4
+KTsKKwkJCS8qIHdlIHJldHVybiBhbiBlcnJvciBldmVuIGlmIHdlIHJlcGFpcmVkIHRoZSBzdGF0
+ZSwgYmVjYXVzZSB3ZQorCQkJICAgY2FuJ3QgYmUgc3VyZSB0aGUgZGF0YSBpcyB1c2VmdWxsICov
+CisJCQlyZXR1cm4gLUVUSU1FRE9VVDsKKwkJfQogCX0KIAogCXJldHVybiAwOwotLSAKMi42LjMK
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUg
+bWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
+cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
