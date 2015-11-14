@@ -1,14 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/GM206: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
-Date: Sat, 14 Nov 2015 19:21:26 +0000
-Message-ID: <bug-92307-8800-BapEzVG6oG@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH v3] pmu: fix queued messages while getting no IRQ
+Date: Sat, 14 Nov 2015 20:41:43 +0100
+Message-ID: <1447530103-1540-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1417213126=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,174 +18,63 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============1417213126==
-Content-Type: multipart/alternative; boundary="1447528886.8c6fdEf41.17942"; charset="UTF-8"
-
-
---1447528886.8c6fdEf41.17942
-Date: Sat, 14 Nov 2015 19:21:26 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
-
---- Comment #13 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-Created attachment 119664
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119664&action=edit
-dmesg 4.4.0-0.rc0.git9.1.fc24.x86_64 connector_hotplug nvif_notify
-
-
-- nouveau.ko built of:
-http://cgit.freedesktop.org/~darktama/nouveau
-git://people.freedesktop.org/~darktama/nouveau
-
-- ending with:
-$ git log -1
-commit ad38b5e72b3acb40b820954f04293a0161e33845
-Author: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Date:   Wed Nov 11 13:06:10 2015 +1000
-
-    WIPce/gk104: attempt at better handling of LAUNCHERR
-
-    Very rough, no idea how correct it is at this point, but it prevents
-    getteximage-depth from piglit from hanging the GPU.
-
-    Signed-off-by: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-
-- patched with:
-$ git diff
-diff --git a/drm/nouveau/nouveau_connector.c b/drm/nouveau/nouveau_connector.c
-index 36ec8f3..d6afbb0 100644
---- a/drm/nouveau/nouveau_connector.c
-+++ b/drm/nouveau/nouveau_connector.c
-@@ -1274,6 +1274,7 @@ nouveau_connector_create(struct drm_device *dev, int
-index)
-                break;
-        }
-
-+       drm_modeset_lock_all(dev);
-        ret = nvif_notify_init(&disp->disp, nouveau_connector_hotplug, true,
-                               NV04_DISP_NTFY_CONN,
-                               &(struct nvif_notify_conn_req_v0) {
-@@ -1283,6 +1284,7 @@ nouveau_connector_create(struct drm_device *dev, int
-index)
-                               sizeof(struct nvif_notify_conn_req_v0),
-                               sizeof(struct nvif_notify_conn_rep_v0),
-                               &nv_connector->hpd);
-+       drm_modeset_unlock_all(dev);
-        if (ret)
-                connector->polled = DRM_CONNECTOR_POLL_CONNECT;
-        else
-
-Ref.
-"drm/radeon: Sprinkle drm_modeset_lock_all to appease locking checks"
-https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/radeon/radeon_device.c?id=6adaed5
-
-Conclusion:
-In this regard, it does not change anything - with or without ~darktama/nouveau
-update, with or without patch.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1447528886.8c6fdEf41.17942
-Date: Sat, 14 Nov 2015 19:21:26 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119664" name="attach_119664" title="dmesg 4.4.0-0.rc0.git9.1.fc24.x86_64 connector_hotplug nvif_notify">attachment 119664</a> <a href="attachment.cgi?id=119664&amp;action=edit" title="dmesg 4.4.0-0.rc0.git9.1.fc24.x86_64 connector_hotplug nvif_notify">[details]</a></span>
-dmesg 4.4.0-0.rc0.git9.1.fc24.x86_64 connector_hotplug nvif_notify
-
-
-- nouveau.ko built of:
-<a href="http://cgit.freedesktop.org/~darktama/nouveau">http://cgit.freedesktop.org/~darktama/nouveau</a>
-git://people.freedesktop.org/~darktama/nouveau
-
-- ending with:
-$ git log -1
-commit ad38b5e72b3acb40b820954f04293a0161e33845
-Author: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-Date:   Wed Nov 11 13:06:10 2015 +1000
-
-    WIPce/gk104: attempt at better handling of LAUNCHERR
-
-    Very rough, no idea how correct it is at this point, but it prevents
-    getteximage-depth from piglit from hanging the GPU.
-
-    Signed-off-by: Ben Skeggs &lt;<a href="mailto:bskeggs&#64;redhat.com">bskeggs&#64;redhat.com</a>&gt;
-
-- patched with:
-$ git diff
-diff --git a/drm/nouveau/nouveau_connector.c b/drm/nouveau/nouveau_connector.c
-index 36ec8f3..d6afbb0 100644
---- a/drm/nouveau/nouveau_connector.c
-+++ b/drm/nouveau/nouveau_connector.c
-&#64;&#64; -1274,6 +1274,7 &#64;&#64; nouveau_connector_create(struct drm_device *dev, int
-index)
-                break;
-        }
-
-+       drm_modeset_lock_all(dev);
-        ret = nvif_notify_init(&amp;disp-&gt;disp, nouveau_connector_hotplug, true,
-                               NV04_DISP_NTFY_CONN,
-                               &amp;(struct nvif_notify_conn_req_v0) {
-&#64;&#64; -1283,6 +1284,7 &#64;&#64; nouveau_connector_create(struct drm_device *dev, int
-index)
-                               sizeof(struct nvif_notify_conn_req_v0),
-                               sizeof(struct nvif_notify_conn_rep_v0),
-                               &amp;nv_connector-&gt;hpd);
-+       drm_modeset_unlock_all(dev);
-        if (ret)
-                connector-&gt;polled = DRM_CONNECTOR_POLL_CONNECT;
-        else
-
-Ref.
-&quot;drm/radeon: Sprinkle drm_modeset_lock_all to appease locking checks&quot;
-<a href="https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/radeon/radeon_device.c?id=6adaed5">https://git.kernel.org/cgit/linux/kernel/git/next/linux-next.git/commit/drivers/gpu/drm/radeon/radeon_device.c?id=6adaed5</a>
-
-Conclusion:
-In this regard, it does not change anything - with or without ~darktama/nouveau
-update, with or without patch.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1447528886.8c6fdEf41.17942--
-
---===============1417213126==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1417213126==--
+SSBlbmNvdW50ZXJlZCB3aGlsZSBzdHJlc3N0ZXN0aW5nIHRoZSByZWNsb2NraW5nIGNvZGUsIHRo
+YXQgcmFyZWx5ICgxIG91dCBvZgoyMC4wMDArIHJlcXVlc3RzKSB3ZSBkb24ndCBnZXQgYW55IElS
+USBpbiBudmttX3BtdV9pbnRyLgoKVGhpcyBtZWFucyB3ZSBoYXZlIGEgcXVldWVkIG1lc3NhZ2Ug
+b24gdGhlIHBtdSwgYnV0IG5vdXZlYXUgZG9lc24ndCByZWFkIGl0IGFuZAp3YWl0cyBpbmZpbml0
+ZWx5IGluIG52a21fcG11X3NlbmQ6CglpZiAocmVwbHkpIHsKCQl3YWl0X2V2ZW50KHBtdS0+cmVj
+di53YWl0LCAocG11LT5yZWN2LnByb2Nlc3MgPT0gMCkpOwoKdGhlcmVmb3JlIGxldCB1cyB1c2Ug
+d2FpdF9ldmVudF90aW1lb3V0IHdpdGggYSAxcyB0aW1lb3V0IGZyYW1lIGFuZCBqdXN0IGNoZWNr
+CndoZXRoZXIgdGhlcmUgaXMgYSBtZXNzYWdlIHF1ZXVlZCBhbmQgaGFuZGxlIGl0IGlmIHRoZXJl
+IGlzIG9uZS4KClJldHVybiAtRVRJTUVET1VUIHdoZW5ldmVyIHdlIHRpbWVkIG91dCBhbmQgdGhl
+cmUgaXMgbm8gbWVzc2FnZSBxdWV1ZWQgb3Igd2hlbgp3ZSBoaXQgYW5vdGhlciB0aW1lb3V0IHdo
+aWxlIHRyeWluZyB0byByZWFkIHRoZSBtZXNzYWdlIHdpdGhvdXQgZ2V0dGluZyBhbnkgSVJRCgpU
+aGUgYmVuZWZpdCBvZiBub3QgdXNpbmcgd2FpdF9ldmVudCBpcywgdGhhdCB3ZSBkb24ndCBoYXZl
+IGEga3dvcmtlciB3YWl0aW5nCm9uIGFuIGV2ZW50LCB3aGljaCBtYWtlcyBpdCBlYXNpZXIgdG8g
+cmVsb2FkIHRoZSBtb2R1bGUgYXQgcnVudGltZSwgd2hpY2ggaGVscHMKbWUgZGV2ZWxvcGluZyBv
+biBub3V2ZWF1IG9uIG15IGxhcHRvcCBhIGxvdCwgYmVjYXVzZSBJIGRvbid0IG5lZWQgdG8gcmVi
+b290CmFueW1vcmUKCk5ldGhlcnRoZWxlc3MsIHdlIHNob3VsZG4ndCB1c2Ugd2FpdF9ldmVudCBo
+ZXJlLCBiZWNhdXNlIHdlIGNhbid0IGd1YXJhbnRlZSBhbnkKYW5zd2VyZSBhdCBhbGwsIGNhbiB3
+ZT8KCnYyOiBtb3ZlZCBpdCBpbnRvIGEgbmV3IGZ1bmN0aW9uCnYzOiBtb3ZlZCBtdXRleCB1bmxv
+Y2sgaW50byBudmttX3BtdV9zZW5kCgpTaWduZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPG5vdXZl
+YXVAa2Fyb2xoZXJic3QuZGU+Ci0tLQogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Jhc2Uu
+YyB8IDM5ICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tCiAxIGZpbGUgY2hh
+bmdlZCwgMzUgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcm0v
+bm91dmVhdS9udmttL3N1YmRldi9wbXUvYmFzZS5jIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYv
+cG11L2Jhc2UuYwppbmRleCA2YjIwMDdmLi44MWE1NTgzIDEwMDY0NAotLS0gYS9kcm0vbm91dmVh
+dS9udmttL3N1YmRldi9wbXUvYmFzZS5jCisrKyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3Bt
+dS9iYXNlLmMKQEAgLTQzLDYgKzQzLDM0IEBAIG52a21fcG11X2hhbmRsZV9yZWNsa19yZXF1ZXN0
+KHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKIAludmttX2Nsa19wbXVfcmVjbGtfcmVxdWVzdChj
+bGssIHBtdS0+aW50ci5kYXRhWzBdKTsKIH0KIAorc3RhdGljIGludAord2FpdF9mb3JfcG11X3Jl
+cGx5KHN0cnVjdCBudmttX3BtdSAqcG11LCB1MzIgcmVwbHlbMl0pCit7CisJc3RydWN0IG52a21f
+c3ViZGV2ICpzdWJkZXYgPSAmcG11LT5zdWJkZXY7CisJc3RydWN0IG52a21fZGV2aWNlICpkZXZp
+Y2UgPSBzdWJkZXYtPmRldmljZTsKKwl1bnNpZ25lZCBsb25nIGppZmZpZXMgPSBtc2Vjc190b19q
+aWZmaWVzKDEwMDApOworCisJaWYgKCF3YWl0X2V2ZW50X3RpbWVvdXQocG11LT5yZWN2LndhaXQs
+IChwbXUtPnJlY3YucHJvY2VzcyA9PSAwKSwgamlmZmllcykpIHsKKwkJdTMyIGFkZHIgPSBudmtt
+X3JkMzIoZGV2aWNlLCAweDEwYTRjYyk7CisJCW52a21fZXJyb3Ioc3ViZGV2LCAid2FpdCBvbiBy
+ZXBseSB0aW1lZCBvdXRcbiIpOworCisJCWlmIChhZGRyID09IG52a21fcmQzMihkZXZpY2UsIDB4
+MTBhNGM4KSkKKwkJCXJldHVybiAtRVRJTUVET1VUOworCisJCW52a21fZXJyb3Ioc3ViZGV2LCAi
+Zm91bmQgcXVldWVkIG1lc3NhZ2Ugd2l0aG91dCBnZXR0aW5nIGFuIGludGVycnVwdFxuIik7CisJ
+CXNjaGVkdWxlX3dvcmsoJnBtdS0+cmVjdi53b3JrKTsKKworCQlpZiAoIXdhaXRfZXZlbnRfdGlt
+ZW91dChwbXUtPnJlY3Yud2FpdCwgKHBtdS0+cmVjdi5wcm9jZXNzID09IDApLCBqaWZmaWVzKSkg
+eworCQkJbnZrbV9lcnJvcihzdWJkZXYsICJmYWlsZWQgdG8gcmVwYWlyIFBNVSBzdGF0ZVxuIik7
+CisJCQlyZXR1cm4gLUVUSU1FRE9VVDsKKwkJfQorCX0KKworCXJlcGx5WzBdID0gcG11LT5yZWN2
+LmRhdGFbMF07CisJcmVwbHlbMV0gPSBwbXUtPnJlY3YuZGF0YVsxXTsKKwlyZXR1cm4gMDsKK30K
+KwogaW50CiBudmttX3BtdV9zZW5kKHN0cnVjdCBudmttX3BtdSAqcG11LCB1MzIgcmVwbHlbMl0s
+CiAJICAgICAgdTMyIHByb2Nlc3MsIHUzMiBtZXNzYWdlLCB1MzIgZGF0YTAsIHUzMiBkYXRhMSkK
+QEAgLTUwLDYgKzc4LDcgQEAgbnZrbV9wbXVfc2VuZChzdHJ1Y3QgbnZrbV9wbXUgKnBtdSwgdTMy
+IHJlcGx5WzJdLAogCXN0cnVjdCBudmttX3N1YmRldiAqc3ViZGV2ID0gJnBtdS0+c3ViZGV2Owog
+CXN0cnVjdCBudmttX2RldmljZSAqZGV2aWNlID0gc3ViZGV2LT5kZXZpY2U7CiAJdTMyIGFkZHI7
+CisJaW50IHJldCA9IDA7CiAKIAkvKiB3YWl0IGZvciBhIGZyZWUgc2xvdCBpbiB0aGUgZmlmbyAq
+LwogCWFkZHIgID0gbnZrbV9yZDMyKGRldmljZSwgMHgxMGE0YTApOwpAQCAtODksMTMgKzExOCwx
+NSBAQCBudmttX3BtdV9zZW5kKHN0cnVjdCBudmttX3BtdSAqcG11LCB1MzIgcmVwbHlbMl0sCiAK
+IAkvKiB3YWl0IGZvciByZXBseSwgaWYgcmVxdWVzdGVkICovCiAJaWYgKHJlcGx5KSB7Ci0JCXdh
+aXRfZXZlbnQocG11LT5yZWN2LndhaXQsIChwbXUtPnJlY3YucHJvY2VzcyA9PSAwKSk7Ci0JCXJl
+cGx5WzBdID0gcG11LT5yZWN2LmRhdGFbMF07Ci0JCXJlcGx5WzFdID0gcG11LT5yZWN2LmRhdGFb
+MV07CisJCXJldCA9IHdhaXRfZm9yX3BtdV9yZXBseShwbXUsIHJlcGx5KTsKKwkJaWYgKHJldCA8
+IDApIHsKKwkJCXJlcGx5WzBdID0gMDsKKwkJCXJlcGx5WzFdID0gMDsKKwkJfQogCQltdXRleF91
+bmxvY2soJnN1YmRldi0+bXV0ZXgpOwogCX0KIAotCXJldHVybiAwOworCXJldHVybiByZXQ7CiB9
+CiAKIHN0YXRpYyB2b2lkCi0tIAoyLjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L25vdXZlYXUK
