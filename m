@@ -1,14 +1,14 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: [PATCH v2] pmu: fix queued messages while getting no
-	IRQ
-Date: Sat, 14 Nov 2015 13:50:19 -0500
-Message-ID: <CAKb7Uvhfqj7J1XOpYxJP04bu0TeMUR8Ye+OC6Vi1a+B7EoORwg@mail.gmail.com>
-References: <1447526646-1066-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sat, 14 Nov 2015 19:17:43 +0000
+Message-ID: <bug-92307-8800-pCNipfzTmg@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0688542652=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1447526646-1066-1-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,86 +18,138 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gU2F0LCBOb3YgMTQsIDIwMTUgYXQgMTo0NCBQTSwgS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGth
-cm9saGVyYnN0LmRlPiB3cm90ZToKPiBJIGVuY291bnRlcmVkIHdoaWxlIHN0cmVzc3Rlc3Rpbmcg
-dGhlIHJlY2xvY2tpbmcgY29kZSwgdGhhdCByYXJlbHkgKDEgb3V0IG9mCj4gMjAuMDAwKyByZXF1
-ZXN0cykgd2UgZG9uJ3QgZ2V0IGFueSBJUlEgaW4gbnZrbV9wbXVfaW50ci4KPgo+IFRoaXMgbWVh
-bnMgd2UgaGF2ZSBhIHF1ZXVlZCBtZXNzYWdlIG9uIHRoZSBwbXUsIGJ1dCBub3V2ZWF1IGRvZXNu
-J3QgcmVhZCBpdCBhbmQKPiB3YWl0cyBpbmZpbml0ZWx5IGluIG52a21fcG11X3NlbmQ6Cj4gICAg
-ICAgICBpZiAocmVwbHkpIHsKPiAgICAgICAgICAgICAgICAgd2FpdF9ldmVudChwbXUtPnJlY3Yu
-d2FpdCwgKHBtdS0+cmVjdi5wcm9jZXNzID09IDApKTsKPgo+IHRoZXJlZm9yZSBsZXQgdXMgdXNl
-IHdhaXRfZXZlbnRfdGltZW91dCB3aXRoIGEgMXMgdGltZW91dCBmcmFtZSBhbmQganVzdCBjaGVj
-awo+IHdoZXRoZXIgdGhlcmUgaXMgYSBtZXNzYWdlIHF1ZXVlZCBhbmQgaGFuZGxlIGl0IGlmIHRo
-ZXJlIGlzIG9uZS4KPgo+IFJldHVybiAtRVRJTUVET1VUIHdoZW5ldmVyIHdlIHRpbWVkIG91dCBh
-bmQgdGhlcmUgaXMgbm8gbWVzc2FnZSBxdWV1ZWQgb3Igd2hlbgo+IHdlIGhpdCBhbm90aGVyIHRp
-bWVvdXQgd2hpbGUgdHJ5aW5nIHRvIHJlYWQgdGhlIG1lc3NhZ2Ugd2l0aG91dCBnZXR0aW5nIGFu
-eSBJUlEKPgo+IFRoZSBiZW5lZml0IG9mIG5vdCB1c2luZyB3YWl0X2V2ZW50IGlzLCB0aGF0IHdl
-IGRvbid0IGhhdmUgYSBrd29ya2VyIHdhaXRpbmcKPiBvbiBhbiBldmVudCwgd2hpY2ggbWFrZXMg
-aXQgZWFzaWVyIHRvIHJlbG9hZCB0aGUgbW9kdWxlIGF0IHJ1bnRpbWUsIHdoaWNoIGhlbHBzCj4g
-bWUgZGV2ZWxvcGluZyBvbiBub3V2ZWF1IG9uIG15IGxhcHRvcCBhIGxvdCwgYmVjYXVzZSBJIGRv
-bid0IG5lZWQgdG8gcmVib290Cj4gYW55bW9yZQo+Cj4gTmV0aGVydGhlbGVzcywgd2Ugc2hvdWxk
-bid0IHVzZSB3YWl0X2V2ZW50IGhlcmUsIGJlY2F1c2Ugd2UgY2FuJ3QgZ3VhcmFudGVlIGFueQo+
-IGFuc3dlcmUgYXQgYWxsLCBjYW4gd2U/Cj4KPiB2MjogbW92ZWQgaXQgaW50byBhIG5ldyBmdW5j
-dGlvbgo+Cj4gU2lnbmVkLW9mZi1ieTogS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0
-LmRlPgo+IC0tLQo+ICBkcm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvYmFzZS5jIHwgNDMgKysr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0KPiAgMSBmaWxlIGNoYW5nZWQsIDM3
-IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZl
-YXUvbnZrbS9zdWJkZXYvcG11L2Jhc2UuYyBiL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9i
-YXNlLmMKPiBpbmRleCA2YjIwMDdmLi5mYWZiZTJhIDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1
-L252a20vc3ViZGV2L3BtdS9iYXNlLmMKPiArKysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9w
-bXUvYmFzZS5jCj4gQEAgLTQzLDYgKzQzLDQxIEBAIG52a21fcG11X2hhbmRsZV9yZWNsa19yZXF1
-ZXN0KHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgICAgICAgIG52a21fY2xrX3BtdV9yZWNs
-a19yZXF1ZXN0KGNsaywgcG11LT5pbnRyLmRhdGFbMF0pOwo+ICB9Cj4KPiArc3RhdGljIGludAo+
-ICt3YWl0X2Zvcl9wbXVfcmVwbHkoc3RydWN0IG52a21fcG11ICpwbXUsIHUzMiByZXBseVsyXSkK
-PiArewo+ICsgICAgICAgc3RydWN0IG52a21fc3ViZGV2ICpzdWJkZXYgPSAmcG11LT5zdWJkZXY7
-Cj4gKyAgICAgICBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSA9IHN1YmRldi0+ZGV2aWNlOwo+
-ICsgICAgICAgdW5zaWduZWQgbG9uZyBqaWZmaWVzID0gbXNlY3NfdG9famlmZmllcygxMDAwKTsK
-PiArCj4gKyAgICAgICBpZiAoIXdhaXRfZXZlbnRfdGltZW91dChwbXUtPnJlY3Yud2FpdCwgKHBt
-dS0+cmVjdi5wcm9jZXNzID09IDApLCBqaWZmaWVzKSkgewo+ICsgICAgICAgICAgICAgICB1MzIg
-YWRkciA9IG52a21fcmQzMihkZXZpY2UsIDB4MTBhNGNjKTsKPiArICAgICAgICAgICAgICAgbnZr
-bV9lcnJvcihzdWJkZXYsICJ3YWl0IG9uIHJlcGx5IHRpbWVkIG91dFxuIik7Cj4gKwo+ICsgICAg
-ICAgICAgICAgICBpZiAoYWRkciAhPSBudmttX3JkMzIoZGV2aWNlLCAweDEwYTRjOCkpIHsKPiAr
-ICAgICAgICAgICAgICAgICAgICAgICBudmttX2Vycm9yKHN1YmRldiwgImZvdW5kIHF1ZXVlZCBt
-ZXNzYWdlIHdpdGhvdXQgZ2V0dGluZyBhbiBpbnRlcnJ1cHRcbiIpOwo+ICsgICAgICAgICAgICAg
-ICAgICAgICAgIHNjaGVkdWxlX3dvcmsoJnBtdS0+cmVjdi53b3JrKTsKPiArCj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgaWYgKCF3YWl0X2V2ZW50X3RpbWVvdXQocG11LT5yZWN2LndhaXQsIChw
-bXUtPnJlY3YucHJvY2VzcyA9PSAwKSwgamlmZmllcykpIHsKPiArICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIG52a21fZXJyb3Ioc3ViZGV2LCAiZmFpbGVkIHRvIHJlcGFpciBQTVUgc3Rh
-dGVcbiIpOwo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZ290byByZXBseV9lcnJv
-cjsKPiArICAgICAgICAgICAgICAgICAgICAgICB9Cj4gKyAgICAgICAgICAgICAgIH0gZWxzZQoK
-Tm90IHN1cmUgd2hldGhlciBrZXJuZWwgc3R5bGUgZGljdGF0ZXMgdGhpcywgYnV0IEkgcmVhbGx5
-IGhhdGUgdGhlc2UKImhhbmdpbmciIGVsc2Uncy4uLiBib3RoIHNpZGVzIHNob3VsZCBoYXZlIGJy
-YWNrZXRzIGlmIGVpdGhlciBvbmUKZG9lcy4KCj4gKyAgICAgICAgICAgICAgICAgICAgICAgZ290
-byByZXBseV9lcnJvcjsKPiArICAgICAgIH0KPiArCj4gKyAgICAgICByZXBseVswXSA9IHBtdS0+
-cmVjdi5kYXRhWzBdOwo+ICsgICAgICAgcmVwbHlbMV0gPSBwbXUtPnJlY3YuZGF0YVsxXTsKPiAr
-ICAgICAgIG11dGV4X3VubG9jaygmc3ViZGV2LT5tdXRleCk7Cj4gKyAgICAgICByZXR1cm4gMDsK
-PiArCj4gK3JlcGx5X2Vycm9yOgo+ICsgICAgICAgcmVwbHlbMF0gPSAwOwo+ICsgICAgICAgcmVw
-bHlbMV0gPSAwOwo+ICsgICAgICAgbXV0ZXhfdW5sb2NrKCZzdWJkZXYtPm11dGV4KTsKPiArICAg
-ICAgIHJldHVybiAtRVRJTUVET1VUOwo+ICt9Cj4gKwo+ICBpbnQKPiAgbnZrbV9wbXVfc2VuZChz
-dHJ1Y3QgbnZrbV9wbXUgKnBtdSwgdTMyIHJlcGx5WzJdLAo+ICAgICAgICAgICAgICAgdTMyIHBy
-b2Nlc3MsIHUzMiBtZXNzYWdlLCB1MzIgZGF0YTAsIHUzMiBkYXRhMSkKPiBAQCAtODgsMTIgKzEy
-Myw4IEBAIG52a21fcG11X3NlbmQoc3RydWN0IG52a21fcG11ICpwbXUsIHUzMiByZXBseVsyXSwK
-PiAgICAgICAgIG52a21fd3IzMihkZXZpY2UsIDB4MTBhNTgwLCAweDAwMDAwMDAwKTsKPgo+ICAg
-ICAgICAgLyogd2FpdCBmb3IgcmVwbHksIGlmIHJlcXVlc3RlZCAqLwo+IC0gICAgICAgaWYgKHJl
-cGx5KSB7Cj4gLSAgICAgICAgICAgICAgIHdhaXRfZXZlbnQocG11LT5yZWN2LndhaXQsIChwbXUt
-PnJlY3YucHJvY2VzcyA9PSAwKSk7Cj4gLSAgICAgICAgICAgICAgIHJlcGx5WzBdID0gcG11LT5y
-ZWN2LmRhdGFbMF07Cj4gLSAgICAgICAgICAgICAgIHJlcGx5WzFdID0gcG11LT5yZWN2LmRhdGFb
-MV07Cj4gLSAgICAgICAgICAgICAgIG11dGV4X3VubG9jaygmc3ViZGV2LT5tdXRleCk7Cj4gLSAg
-ICAgICB9Cj4gKyAgICAgICBpZiAocmVwbHkpCj4gKyAgICAgICAgICAgICAgIHJldHVybiB3YWl0
-X2Zvcl9wbXVfcmVwbHkocG11LCByZXBseSk7CgpIYXZpbmcgb25lIGZ1bmN0aW9uIGxvY2sgYW5k
-IGFub3RoZXIgdW5sb2NrIGlzIGEgZGlzYXN0ZXIgd2FpdGluZyB0bwpoYXBwZW4uIFBlcmhhcHMg
-bWFrZSB3aWF0X2Zvcl9wbXVfcmVwbHkgbm90IGhhbmRsZSB0aGUgdW5sb2NrIGFuZAppbnN0ZWFk
-IGRvCgppbnQgcmV0ID0gMDsKaWYgKHJlcGx5KQogIHJldCA9IHdhaXRfZm9yX3BtdV9yZXBseSgp
-CgpyZXR1cm4gcmV0OwoKQWRkaXRpb25hbGx5IGxlYXZpbmcgdGhlIHJlcGx5W10gZmlsbGluZyBp
-biB0aGlzIGZ1bmN0aW9uIHdvdWxkIGFsbG93CnlvdSB0byBhdm9pZCBhbm5veWluZyBlcnJvciBo
-YW5kbGluZyBhbmQgZ290bydzIGluIHRoZSBvdGhlciBmdW5jdGlvbi4KCj4KPiAgICAgICAgIHJl
-dHVybiAwOwo+ICB9Cj4gLS0KPiAyLjYuMwo+Cj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+IE5vdXZlYXVAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFu
-L2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0688542652==
+Content-Type: multipart/alternative; boundary="1447528663.A47E1.16976"; charset="UTF-8"
+
+
+--1447528663.A47E1.16976
+Date: Sat, 14 Nov 2015 19:17:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92307
+
+--- Comment #12 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to poma from comment #8)
+> (In reply to poma from comment #7)
+> > FTR procedure:
+> >=20
+> > $ uname -r
+> > 4.3.0-0.rc6.git2.1.fc24.x86_64
+> >=20
+> > $ git clone git://people.freedesktop.org/~darktama/nouveau
+> > $ cd nouveau/drm/
+> > $ make
+> > $ su
+> >=20
+> > # cp nouveau/nouveau.ko /usr/lib/modules/$(uname -r)/updates/
+> > # depmod
+> > # dracut --kver $(uname -r) -f
+> > # systemctl reboot
+>=20
+>=20
+> Update to commit f787ef9
+>=20
+> nouveau/drm/nouveau/nouveau_drm.c:935:24: error: =E2=80=98drm_vblank_no_h=
+w_counter=E2=80=99
+> undeclared here (not in a function)
+>   .get_vblank_counter =3D drm_vblank_no_hw_counter,
+>                         ^
+
+It was the current compilation breakage within ~darktama/nouveau, not relat=
+ed
+to the actual bug.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447528663.A47E1.16976
+Date: Sat, 14 Nov 2015 19:17:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 dr=
+m_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92307#c12">Commen=
+t # 12</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 dr=
+m_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92307">bug 92307<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+pomidorabelisima&#64;gmail.com" title=3D"poma &lt;pomidorabelisima&#64;gmai=
+l.com&gt;"> <span class=3D"fn">poma</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href=3D"show_bug.cgi?id=3D92307#c8">=
+comment #8</a>)
+<span class=3D"quote">&gt; (In reply to poma from <a href=3D"show_bug.cgi?i=
+d=3D92307#c7">comment #7</a>)
+&gt; &gt; FTR procedure:
+&gt; &gt;=20
+&gt; &gt; $ uname -r
+&gt; &gt; 4.3.0-0.rc6.git2.1.fc24.x86_64
+&gt; &gt;=20
+&gt; &gt; $ git clone git://people.freedesktop.org/~darktama/nouveau
+&gt; &gt; $ cd nouveau/drm/
+&gt; &gt; $ make
+&gt; &gt; $ su
+&gt; &gt;=20
+&gt; &gt; # cp nouveau/nouveau.ko /usr/lib/modules/$(uname -r)/updates/
+&gt; &gt; # depmod
+&gt; &gt; # dracut --kver $(uname -r) -f
+&gt; &gt; # systemctl reboot
+&gt;=20
+&gt;=20
+&gt; Update to commit f787ef9
+&gt;=20
+&gt; nouveau/drm/nouveau/nouveau_drm.c:935:24: error: =E2=80=98drm_vblank_n=
+o_hw_counter=E2=80=99
+&gt; undeclared here (not in a function)
+&gt;   .get_vblank_counter =3D drm_vblank_no_hw_counter,
+&gt;                         ^</span >
+
+It was the current compilation breakage within ~darktama/nouveau, not relat=
+ed
+to the actual bug.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447528663.A47E1.16976--
+
+--===============0688542652==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0688542652==--
