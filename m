@@ -1,16 +1,12 @@
-From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Subject: Re: llvm TGSI backend (WIP) questions
-Date: Fri, 13 Nov 2015 15:46:51 -0500
-Message-ID: <CAKb7UviOLASRg+3Cv6ayA3Wc1x0o03p3DYTTstpS669HizdOZQ@mail.gmail.com>
-References: <5645E9CC.1040401@redhat.com>
- <CACvgo51PRgQ+=-_p-FWrqa55YmL1Qu8g92fWeWS4e16csaJ8Jg@mail.gmail.com>
- <CAKb7UvjDDcc0mjPDgbeY=gMTe4Rtb9MUpjM1WVz-uQmR-vfeCA@mail.gmail.com>
- <CACvgo52T-D5_TOsROzohrL-YioTCdzGW8zYCH287o3yqr+4tvw@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 90348] Spilling failure of b96 merged value
+Date: Sat, 14 Nov 2015 01:52:13 +0000
+Message-ID: <bug-90348-8800-Se5lf1xEA8@http.bugs.freedesktop.org/>
+References: <bug-90348-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1008839052=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo52T-D5_TOsROzohrL-YioTCdzGW8zYCH287o3yqr+4tvw-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-90348-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,27 +16,74 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gRnJpLCBOb3YgMTMsIDIwMTUgYXQgMzo0MiBQTSwgRW1pbCBWZWxpa292IDxlbWlsLmwudmVs
-aWtvdkBnbWFpbC5jb20+IHdyb3RlOgo+IE9uIDEzIE5vdmVtYmVyIDIwMTUgYXQgMTQ6MzgsIEls
-aWEgTWlya2luIDxpbWlya2luQGFsdW0ubWl0LmVkdT4gd3JvdGU6Cj4+IE9uIEZyaSwgTm92IDEz
-LCAyMDE1IGF0IDk6MjUgQU0sIEVtaWwgVmVsaWtvdiA8ZW1pbC5sLnZlbGlrb3ZAZ21haWwuY29t
-PiB3cm90ZToKPj4+IEhlbGxvIEhhbnMsCj4+Pgo+Pj4gTm90IHRvIG11ZGR5IHRoZSB3YXRlcnMg
-b3IgYW55dGhpbmcsIGhhdmUgeW91IHRob3VnaHQgYWJvdXQgdGhlIE5JUgo+Pj4gaW50ZWdyYXRp
-b24gdGhhdCBSb2Igd2FzIHRoaW5raW5nIGFib3V0ID8KPj4+IEknbSBwcmV0dHkgc3VyZSBoZSds
-bCBiZSBoYXBweSB0byBoYXZlIGV4dHJhIHBlb3BsZSBoZWxwaW5nIGhpbSBvdXQuCj4+Cj4+IEhv
-dyB3b3VsZCB0aGF0IGluIGFueSB3YXkgcGx1ZyBpbnRvIGxsdm0gb3Igbm91dmVhdT8gVGhlcmUn
-cyBubyBPcGVuQ0wKPj4gQyAtPiBOSVIsIGFuZCB0aGVyZSdzIG5vIE5JUiAtPiBudjUwIElSLi4u
-Cj4+Cj4gSSB0aG91Z2h0IHRoYXQgeW91J3ZlIGJlZW4gKHJlbW90ZWx5KSBleHBsb3JpbmcgdGhl
-IGxhdHRlcgo+IHBvc3NpYmlsaXR5LiBJc24ndCB0aGF0IHRoZSBjYXNlID8KCk5vdCB0byBteSBr
-bm93bGVkZ2UuIEkgZGlkIGxvb2sgYXQgZG9pbmcgU1BJUiAtPiBudjUwIGlyIChub3QgdG8gYmUK
-Y29uZnVzZWQgd2l0aCBTUElSLVYpLCBidXQgdGhhdCB3YXMgfjEuNXkgYWdvLiBJIGdvdCBzdHVj
-ayBpbiBjb250cm9sCmZsb3cgYW5kIGxsdm0gaXIgZnJ1c3RyYXRpb24uIFRoZSBmYWN0IHRoYXQg
-SSBoYWQgdG8gZ28gb3V0LW9mLXNzYQpkaWRuJ3QgaGVscC4gQXQgdGhpcyBwb2ludCBJIGRvbid0
-IHNlZSBhbnkgdXBzaWRlIHRvIHVzaW5nIE5JUi4KCiAgLWlsaWEKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVh
-dUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1008839052==
+Content-Type: multipart/alternative; boundary="1447465933.d07ba1.774"; charset="UTF-8"
+
+
+--1447465933.d07ba1.774
+Date: Sat, 14 Nov 2015 01:52:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=90348
+
+--- Comment #3 from xpue <r9ku1q-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+https://github.com/iXit/Mesa-3D/issues/160
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1447465933.d07ba1.774
+Date: Sat, 14 Nov 2015 01:52:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Spilling failure of b96 merged value"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90348#c3">Comment # 3</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Spilling failure of b96 merged value"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=90348">bug 90348</a>
+              from <span class="vcard"><a class="email" href="mailto:r9ku1q&#64;gmail.com" title="xpue &lt;r9ku1q&#64;gmail.com&gt;"> <span class="fn">xpue</span></a>
+</span></b>
+        <pre><a href="https://github.com/iXit/Mesa-3D/issues/160">https://github.com/iXit/Mesa-3D/issues/160</a></pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447465933.d07ba1.774--
+
+--===============1008839052==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1008839052==--
