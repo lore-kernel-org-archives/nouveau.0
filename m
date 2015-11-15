@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92962] KDE hangs and system freezes while journalctl
- lists complains of kernel (nouveau). Nvidia graphics
-Date: Sun, 15 Nov 2015 12:56:25 +0000
-Message-ID: <bug-92962-8800-1jJWJ0rY5N@http.bugs.freedesktop.org/>
-References: <bug-92962-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sun, 15 Nov 2015 15:33:41 +0000
+Message-ID: <bug-92307-8800-sQ9M8IEny7@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0814135166=="
+Content-Type: multipart/mixed; boundary="===============1690900906=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92962-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,56 +22,39 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0814135166==
-Content-Type: multipart/alternative; boundary="1447592185.D0FAcE2.11347"; charset="UTF-8"
+--===============1690900906==
+Content-Type: multipart/alternative; boundary="1447601621.037Ea1.1483"; charset="UTF-8"
 
 
---1447592185.D0FAcE2.11347
-Date: Sun, 15 Nov 2015 12:56:25 +0000
+--1447601621.037Ea1.1483
+Date: Sun, 15 Nov 2015 15:33:41 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92962
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
 
---- Comment #4 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(In reply to stakanov from comment #3)
-> A bit embarrassing but I do not really know what to ask there. 
-> 
-> I think I know how to blacklist nouveau:
-> 
-> # echo "blacklist nouveau" >> /etc/modprobe.d/50-blacklist.conf && mkinitrd
-> && reboot
+--- Comment #15 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-That should do it.
+$ grep -i nouveau /boot/config-4.4.0-0.rc0.git9.1.fc24.x86_64
+CONFIG_DRM_NOUVEAU=m
+CONFIG_NOUVEAU_DEBUG=5
+CONFIG_NOUVEAU_DEBUG_DEFAULT=3
+CONFIG_DRM_NOUVEAU_BACKLIGHT=y
 
-(In reply to stakanov from comment #3)
-> Then, if I do understand rightly: 
-> 
-> cat /dev/kmsg > kmsgresult.txt 
-> 
-> Then 
-> 
-> modprobe nouveau 
-> 
-> (from the  CLI) and then again?
-> 
-> cat /dev/kmsg > kmsgresult2.txt 
 
-    cat /dev/kmsg > kmsgresult.txt&
-    modprobe nouveau
-    startx
+Furthermore, this one is actually loaded:
 
-would be one way to go, as `cat` will continue its job until it get killed. And
-then when you reboot, you can access the file (which hopefully didn't end up
-corrupted). Maybe `journalctl -k -b -1` will contain all the information as
-well (given that the previous boot, was one that froze)?
+# lsinitrd --kver 4.4.0-0.rc0.git9.1.fc24.x86_64 | grep nouveau
+... usr/lib/modules/4.4.0-0.rc0.git9.1.fc24.x86_64/updates/nouveau.ko
+
+therefore "dracut --kver $(uname -r) -f" build&install step.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447592185.D0FAcE2.11347
-Date: Sun, 15 Nov 2015 12:56:25 +0000
+--1447601621.037Ea1.1483
+Date: Sun, 15 Nov 2015 15:33:41 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -83,45 +67,28 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962#c4">Comment # 4</a>
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962">bug 92962</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>(In reply to stakanov from <a href="show_bug.cgi?id=92962#c3">comment #3</a>)
-<span class="quote">&gt; A bit embarrassing but I do not really know what to ask there. 
-&gt; 
-&gt; I think I know how to blacklist nouveau:
-&gt; 
-&gt; # echo &quot;blacklist nouveau&quot; &gt;&gt; /etc/modprobe.d/50-blacklist.conf &amp;&amp; mkinitrd
-&gt; &amp;&amp; reboot</span >
+        <pre>
+$ grep -i nouveau /boot/config-4.4.0-0.rc0.git9.1.fc24.x86_64
+CONFIG_DRM_NOUVEAU=m
+CONFIG_NOUVEAU_DEBUG=5
+CONFIG_NOUVEAU_DEBUG_DEFAULT=3
+CONFIG_DRM_NOUVEAU_BACKLIGHT=y
 
-That should do it.
 
-(In reply to stakanov from <a href="show_bug.cgi?id=92962#c3">comment #3</a>)
-<span class="quote">&gt; Then, if I do understand rightly: 
-&gt; 
-&gt; cat /dev/kmsg &gt; kmsgresult.txt 
-&gt; 
-&gt; Then 
-&gt; 
-&gt; modprobe nouveau 
-&gt; 
-&gt; (from the  CLI) and then again?
-&gt; 
-&gt; cat /dev/kmsg &gt; kmsgresult2.txt </span >
+Furthermore, this one is actually loaded:
 
-    cat /dev/kmsg &gt; kmsgresult.txt&amp;
-    modprobe nouveau
-    startx
+# lsinitrd --kver 4.4.0-0.rc0.git9.1.fc24.x86_64 | grep nouveau
+... usr/lib/modules/4.4.0-0.rc0.git9.1.fc24.x86_64/updates/nouveau.ko
 
-would be one way to go, as `cat` will continue its job until it get killed. And
-then when you reboot, you can access the file (which hopefully didn't end up
-corrupted). Maybe `journalctl -k -b -1` will contain all the information as
-well (given that the previous boot, was one that froze)?</pre>
+therefore &quot;dracut --kver $(uname -r) -f&quot; build&amp;install step.</pre>
         </div>
       </p>
       <hr>
@@ -133,9 +100,9 @@ well (given that the previous boot, was one that froze)?</pre>
     </body>
 </html>
 
---1447592185.D0FAcE2.11347--
+--1447601621.037Ea1.1483--
 
---===============0814135166==
+--===============1690900906==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -145,4 +112,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0814135166==--
+--===============1690900906==--
