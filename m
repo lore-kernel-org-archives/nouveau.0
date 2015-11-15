@@ -1,15 +1,14 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] Take shift in crtc positions for ZaphodHeads
- configs into account.
-Date: Sun, 15 Nov 2015 08:41:58 +0100
-Message-ID: <56483746.5000106@gmail.com>
-References: <1435451629-17959-1-git-send-email-mario.kleiner.de@gmail.com>
- <CAKb7UvgWqo7HH+-fuO+FTSqrusotFcMoCG6Juc2J5ObM9QRpYQ@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Sun, 15 Nov 2015 10:07:21 +0000
+Message-ID: <bug-92307-8800-NqizHC1TiR@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1104712772=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CAKb7UvgWqo7HH+-fuO+FTSqrusotFcMoCG6Juc2J5ObM9QRpYQ-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,106 +18,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-UGluZz8gQ291bGQgd2UgbWVyZ2UgdGhpcyBwYXRjaD8gTm9ib2R5IHNlZW1zIHRvIGhhdmUgb2Jq
-ZWN0aW9ucywgaXQgCndvcmtzIHNpbmNlIG1vbnRocyBvbiBteSB0ZXN0IG1hY2hpbmVzIGFuZCBh
-biBpZGVudGljYWwgcGF0Y2ggZ290IApyZXZpZXdlZCBhbmQgbWVyZ2VkIGludG8geGY4Ni12aWRl
-by1tb2Rlc2V0dGluZywgd2hlcmUgaXQgd29ya3Mgd2l0aG91dCAKdHJvdWJsZSwgc28gaXQgc2hv
-dWxkIGJlIHNhZmUgdG8gYXBwbHkuCgp0aGFua3MsCi1tYXJpbwoKT24gMDgvMDYvMjAxNSAwNzoz
-NCBQTSwgSWxpYSBNaXJraW4gd3JvdGU6Cj4gSSBkb24ndCB1bmRlcnN0YW5kIHRoaXMgcGF0Y2gg
-KHdoYXQgYXJlIGFsbCB0aGVzZSBtYXNrcz8gaG93IGFyZSB0aGV5Cj4gdXNlZD8pLCBhbmQgZG9u
-J3Qgd2FudCB0byBpbnZlc3QgdGhlIHRpbWUgcmVxdWlyZWQgdG8gZG8gc28uCj4KPiBIb3dldmVy
-IE1hcmlvIGlzIHByb2JhYmx5IHRoZSBzb2xlIHNlcmlvdXMgdXNlciBvZiBaYXBob2RIZWFkcywg
-YW5kIGlmCj4gaXQgZml4ZXMgaXNzdWVzIGZvciBoaW0sIHByb2JhYmx5IGZpeGVzIGlzc3VlcyBm
-b3Igb3RoZXJzIHdobyB0cnkgYW5kCj4gZ2l2ZSB1cCB3aXRoIFphcGhvZEhlYWRzLiBBbnkgb2Jq
-ZWN0aW9ucyBpZiBJIGp1c3QgcHVzaCB0aGlzIG91dD8KPgo+IE9uIFNhdCwgSnVuIDI3LCAyMDE1
-IGF0IDg6MzMgUE0sIE1hcmlvIEtsZWluZXIKPiA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+
-IHdyb3RlOgo+PiBJbiBtdWx0aS14LXNjcmVlbiBaYXBob2RIZWFkcyBjb25maWd1cmF0aW9ucywg
-dGhlcmUgaXNuJ3QgYQo+PiBvbmUtdG8tb25lIG1hcHBpbmcgb2Yga2VybmVsIHByb3ZpZGVkIGRy
-bW1vZGUgY3J0YyBpbmRleAo+PiB0byB0aGUgaW5kZXggb2YgdGhlIGNvcnJlc3BvbmRpbmcgeGY4
-NkNydGMgaW5zaWRlIHRoZQo+PiB4Zjg2Q3J0Y0NvbmZpZyBjcnRjIGFycmF5IGFueW1vcmUsIGll
-LiBmb3Iga2VybmVsIHByb3ZpZGVkCj4+IGRybW1vZGUtPm1vZGVfcmVzLT5jcnRjc1tpXSwgdGhl
-IGkndGggY3J0YyB3b24ndCBjb3JyZXNwb25kCj4+IHRvIHRoZSB4Zjg2Q3J0YyBpbiB0aGUgaSd0
-aCBzbG90IG9mIHRoZSB4LXNjcmVlbnMgeGY4NkNydGNDb25maWcKPj4gYW55bW9yZSwgb25jZSBa
-YXBob2RIZWFkcyBoYXMgb25seSBzZWxlY3RlZCBhIHN1YnNldCBvZiBhbGwgY3J0Y3MKPj4gb2Yg
-YSBncmFwaGljcyBjYXJkIGZvciBhIGdpdmVuIHgtc2NyZWVuLCBpbnN0ZWFkIG9mIGFsbCBjcnRj
-cy4KPj4KPj4gVGhpcyBicmVha3MgdGhlIG1hcHBpbmcgb2YgYml0IHBvc2l0aW9ucyBpbiB0aGUg
-Yml0IG1hc2tzIHJldHVybmVkCj4+IGluIGtlbmNvZGVyLT5wb3NzaWJsZV9jcnRjcyBhbmQga2Vu
-Y29kZXItPnBvc3NpYmxlX2Nsb25lcy4gQSAxIGJpdAo+PiBpbiBwb3NpdGlvbiBpIG9mIHRob3Nl
-IG1hc2tzIGFsbG93cyB1c2Ugb2YgdGhlIGtlcm5lbHMgaSd0aCBjcnRjIGZvcgo+PiB0aGUgZ2l2
-ZW4ga2VuY29kZXIuIFRoZSBYLVNlcnZlcnMgZGl4IGNvZGUgY2hlY2tzIHRob3NlIGJpdCBtYXNr
-cwo+PiBmb3IgdmFsaWQgeGY4Nk91dHB1dCAtPiB4Zjg2Q3J0YyBhc3NpZ25tZW50cywgYXNzdW1p
-bmcgdGhhdCB0aGUgaSd0aAo+PiBzbG90IHhmODZDcnRjQ29uZmlnUHRyIGNvbmZpZy0+Y3J0Y1tp
-XSBjb3JyZXNwb25kcyB0byBiaXQgaSBpbiB0aGUKPj4geGY4Nk91dHB1dC0+cG9zc2liZV9jcnRj
-cyBiaXRtYXNrLCBhbmQgYmFpbHMgaWYgdGhlIGJpdG1hc2sgZG9lc24ndAo+PiBhbGxvdyB0aGUg
-c3BlY2lmaWVkIGFzc2lnbm1lbnQgb2YgY3J0YyB0byBvdXRwdXQuIElmIFphcGhvZEhlYWRzCj4+
-IGJyZWFrcyB0aGUgYXNzdW1wdGlvbiBvZiBiaXQgaSA8LT4gY3J0YyBzbG90IGkgdGhpcyBlbmRz
-IGluIGZhaWx1cmUuCj4+Cj4+IFRha2UgdGhpcyBzaGlmdCBvZiBjcnRjIGluZGV4IHBvc2l0aW9u
-cyB3cnQuIGVuY29kZXIgYml0bWFzayBiaXQKPj4gcG9zaXRpb25zIGludG8gYWNjb3VudCBieSBi
-aXQtc2hpZnRpbmcgcG9zaXRpb25zIGFjY29yZGluZ2x5IHdoZW4KPj4gYXNzaWduaW5nIGVuY29k
-ZXItPnBvc3NpYmxlX2NydGNzIHRvIG91dHB1dC0+cG9zc2libGVfY3J0Y3MsIHNvCj4+IHRoZSBw
-cm9wZXIgaW5kaWNlcyBtYXRjaCB1cCBhZ2FpbiBmb3IgdmFsaWRhdGlvbiBieSB0aGUgZGl4Lgo+
-Pgo+PiBUaGlzIHByb2JsZW0gd2Fzbid0IGFwcGFyZW50IGxhc3QgeWVhciB3aGVuIHRlc3Rpbmcg
-dGhlIFphcGhvZEhlYWRzCj4+IHN1cHBvcnQgb24gc29tZSBLZXBsZXIgY2FyZHMsIGFzIGFwcGFy
-ZW50bHkgdGhlIGVuY29kZXItPnBvc3NpYmxlX2NydGNzCj4+IGJpdG1hc2tzIHJldHVybmVkIGZv
-ciB0aG9zZSBjYXJkcyBieSB0aGUga2VybmVsIGp1c3QgaGFkIGFsbCA0Cj4+IGxzYiBiaXRzIHNl
-dCBmb3IgYWxsIHRlc3RlZCBlbmNvZGVycy9vdXRwdXQsIHNvIGVhY2ggb2YgdGhlIGNhcmRzIDQK
-Pj4gY3J0Y3MgY291bGQgZ28gd2l0aCBlYWNoIG91dHB1dCBhbmQgdGhpbmdzIHdvcmtlZCBieSBj
-aGFuY2UuCj4+Cj4+IFRoZSBjdXJyZW50IGNvZGUgYnJlYWtzLCBlLmcuLCBvbiAyMDEwIE1hY0Jv
-b2tQcm8gd2l0aCBudjUwLCB3aGVyZQo+PiBvbmUgY3J0YyBpcyBoYXJkd2lyZWQgdG8gdGhlIGlu
-dGVybmFsIGx2ZHMgcGFuZWwsIGFuZCBvbmUgY3J0Ywo+PiBpcyBoYXJkd2lyZWQgdG8gdGhlIGV4
-dGVybmFsIERQIGNvbm5lY3RvciwgcmVzdWx0aW5nIGluIGEgZmFpbHVyZQo+PiB3aGVyZSBkdWFs
-LWRpc3BsYXkgb24gc2luZ2xlLXgtc2NyZWVuIHdvcmtzIGZpbmUsIGJ1dCBhc3NpZ25pbmcKPj4g
-ZWFjaCBvdXRwdXQgdG8gYSBzZXBhcmF0ZSB4LXNjcmVlbiB2aWEgWmFwaG9kSGVhZHMgZmFpbHMg
-ZHVlIHRvCj4+IHRoZSBtaXNtYXRjaGVkIGVuY29kZXItPnBvc3NpYmxlX2NydGNzIGJpdG1hc2tz
-Lgo+Pgo+PiBUaGlzIHBhdGNoIGZpeGVzIHRoZSBwcm9ibGVtLgo+Pgo+PiBTaWduZWQtb2ZmLWJ5
-OiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRlQGdtYWlsLmNvbT4KPj4gLS0tCj4+ICAg
-c3JjL2RybW1vZGVfZGlzcGxheS5jIHwgMTAgKysrKysrLS0tLQo+PiAgIDEgZmlsZSBjaGFuZ2Vk
-LCA2IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9zcmMv
-ZHJtbW9kZV9kaXNwbGF5LmMgYi9zcmMvZHJtbW9kZV9kaXNwbGF5LmMKPj4gaW5kZXggYzMwY2Iz
-YS4uMzY3OTQ4MiAxMDA2NDQKPj4gLS0tIGEvc3JjL2RybW1vZGVfZGlzcGxheS5jCj4+ICsrKyBi
-L3NyYy9kcm1tb2RlX2Rpc3BsYXkuYwo+PiBAQCAtMTIxNCw3ICsxMjE0LDcgQEAgZHJtbW9kZV96
-YXBob2RfbWF0Y2goU2NybkluZm9QdHIgcFNjcm4sIGNvbnN0IGNoYXIgKnMsIGNoYXIgKm91dHB1
-dF9uYW1lKQo+PiAgIH0KPj4KPj4gICBzdGF0aWMgdW5zaWduZWQgaW50Cj4+IC1kcm1tb2RlX291
-dHB1dF9pbml0KFNjcm5JbmZvUHRyIHBTY3JuLCBkcm1tb2RlX3B0ciBkcm1tb2RlLCBpbnQgbnVt
-KQo+PiArZHJtbW9kZV9vdXRwdXRfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgZHJtbW9kZV9wdHIg
-ZHJtbW9kZSwgaW50IG51bSwgaW50IGNydGNzaGlmdCkKPj4gICB7Cj4+ICAgICAgICAgIE5WUHRy
-IHBOdiA9IE5WUFRSKHBTY3JuKTsKPj4gICAgICAgICAgeGY4Nk91dHB1dFB0ciBvdXRwdXQ7Cj4+
-IEBAIC0xMjk2LDggKzEyOTYsOCBAQCBkcm1tb2RlX291dHB1dF9pbml0KFNjcm5JbmZvUHRyIHBT
-Y3JuLCBkcm1tb2RlX3B0ciBkcm1tb2RlLCBpbnQgbnVtKQo+PiAgICAgICAgICBvdXRwdXQtPnN1
-YnBpeGVsX29yZGVyID0gc3VicGl4ZWxfY29udl90YWJsZVtrb3V0cHV0LT5zdWJwaXhlbF07Cj4+
-ICAgICAgICAgIG91dHB1dC0+ZHJpdmVyX3ByaXZhdGUgPSBkcm1tb2RlX291dHB1dDsKPj4KPj4g
-LSAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBvc3NpYmxlX2NydGNz
-Owo+PiAtICAgICAgIG91dHB1dC0+cG9zc2libGVfY2xvbmVzID0ga2VuY29kZXItPnBvc3NpYmxl
-X2Nsb25lczsKPj4gKyAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2NydGNzID0ga2VuY29kZXItPnBv
-c3NpYmxlX2NydGNzID4+IGNydGNzaGlmdDsKPj4gKyAgICAgICBvdXRwdXQtPnBvc3NpYmxlX2Ns
-b25lcyA9IGtlbmNvZGVyLT5wb3NzaWJsZV9jbG9uZXMgPj4gY3J0Y3NoaWZ0Owo+Pgo+PiAgICAg
-ICAgICBvdXRwdXQtPmludGVybGFjZUFsbG93ZWQgPSB0cnVlOwo+PiAgICAgICAgICBvdXRwdXQt
-PmRvdWJsZVNjYW5BbGxvd2VkID0gdHJ1ZTsKPj4gQEAgLTE0MjEsNiArMTQyMSw3IEBAIEJvb2wg
-ZHJtbW9kZV9wcmVfaW5pdChTY3JuSW5mb1B0ciBwU2NybiwgaW50IGZkLCBpbnQgY3BwKQo+PiAg
-ICAgICAgICBOVkVudFB0ciBwTlZFbnQgPSBOVkVudFByaXYocFNjcm4pOwo+PiAgICAgICAgICBp
-bnQgaTsKPj4gICAgICAgICAgdW5zaWduZWQgaW50IGNydGNzX25lZWRlZCA9IDA7Cj4+ICsgICAg
-ICAgaW50IGNydGNzaGlmdDsKPj4KPj4gICAgICAgICAgZHJtbW9kZSA9IHhuZmFsbG9jKHNpemVv
-ZiAqZHJtbW9kZSk7Cj4+ICAgICAgICAgIGRybW1vZGUtPmZkID0gZmQ7Cj4+IEBAIC0xNDQ0LDgg
-KzE0NDUsOSBAQCBCb29sIGRybW1vZGVfcHJlX2luaXQoU2NybkluZm9QdHIgcFNjcm4sIGludCBm
-ZCwgaW50IGNwcCkKPj4gICAgICAgICAgfQo+Pgo+PiAgICAgICAgICB4Zjg2RHJ2TXNnKHBTY3Ju
-LT5zY3JuSW5kZXgsIFhfSU5GTywgIkluaXRpYWxpemluZyBvdXRwdXRzIC4uLlxuIik7Cj4+ICsg
-ICAgICAgY3J0Y3NoaWZ0ID0gZmZzKHBOVkVudC0+YXNzaWduZWRfY3J0Y3MgXiAweGZmZmZmZmZm
-KSAtIDE7Cj4KPiBNYXJpbywgYW55IG9iamVjdGlvbnMgaWYgSSB0b3VjaCB0aGlzIHVwIGFzCj4K
-PiB+cE5WRW5jLT5hc3NpZ25lZF9jcnRjcz8gWE9SIHdpdGggfjAgaXMgbm90IGEgcGF0dGVybiBJ
-J3ZlIHNlZW4gYSBsb3QuCj4KPj4gICAgICAgICAgZm9yIChpID0gMDsgaSA8IGRybW1vZGUtPm1v
-ZGVfcmVzLT5jb3VudF9jb25uZWN0b3JzOyBpKyspCj4+IC0gICAgICAgICAgICAgICBjcnRjc19u
-ZWVkZWQgKz0gZHJtbW9kZV9vdXRwdXRfaW5pdChwU2NybiwgZHJtbW9kZSwgaSk7Cj4+ICsgICAg
-ICAgICAgICAgICBjcnRjc19uZWVkZWQgKz0gZHJtbW9kZV9vdXRwdXRfaW5pdChwU2NybiwgZHJt
-bW9kZSwgaSwgY3J0Y3NoaWZ0KTsKPj4KPj4gICAgICAgICAgeGY4NkRydk1zZyhwU2Nybi0+c2Ny
-bkluZGV4LCBYX0lORk8sCj4+ICAgICAgICAgICAgICAgICAgICAgIiVkIGNydGNzIG5lZWRlZCBm
-b3Igc2NyZWVuLlxuIiwgY3J0Y3NfbmVlZGVkKTsKPj4gLS0KPj4gMS45LjEKPj4KPj4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gTm91dmVhdSBtYWls
-aW5nIGxpc3QKPj4gTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPj4gaHR0cDovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
-dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1104712772==
+Content-Type: multipart/alternative; boundary="1447582041.abDAD1.19906"; charset="UTF-8"
+
+
+--1447582041.abDAD1.19906
+Date: Sun, 15 Nov 2015 10:07:21 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
+
+--- Comment #14 from Don O <japhack-/E1597aS9LQAvxtiuMwx3w@public.gmane.org> ---
+(In reply to poma from comment #13)
+>...
+> Conclusion:
+> In this regard, it does not change anything - with or without
+> ~darktama/nouveau update, with or without patch.
+
+Do you have nouveau set up as built-in or module?
+
+If you have it built-in then creating a module won't have any effect as the
+system will never use that.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447582041.abDAD1.19906
+Date: Sun, 15 Nov 2015 10:07:21 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c14">Comment # 14</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:japhack&#64;yahoo.com" title="Don O &lt;japhack&#64;yahoo.com&gt;"> <span class="fn">Don O</span></a>
+</span></b>
+        <pre>(In reply to poma from <a href="show_bug.cgi?id=92307#c13">comment #13</a>)
+<span class="quote">&gt;...
+&gt; Conclusion:
+&gt; In this regard, it does not change anything - with or without
+&gt; ~darktama/nouveau update, with or without patch.</span >
+
+Do you have nouveau set up as built-in or module?
+
+If you have it built-in then creating a module won't have any effect as the
+system will never use that.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447582041.abDAD1.19906--
+
+--===============1104712772==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1104712772==--
