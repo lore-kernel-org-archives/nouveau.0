@@ -1,14 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/GM206: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
-Date: Sun, 15 Nov 2015 15:33:41 +0000
-Message-ID: <bug-92307-8800-sQ9M8IEny7@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <karol-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: Re: [PATCH v2] pmu: use nvkm_msec instead of do while
+Date: Sun, 15 Nov 2015 13:07:06 +0100 (CET)
+Message-ID: <1910988394.135733.1447589226438.JavaMail.open-xchange@www.ud-mail.de>
+References: <1447530661-3200-1-git-send-email-nouveau@karolherbst.de>
+ <CACvgo50kF_y4=xfoBWbfEiT4w=U4pxnqsZfK2BE82TOU6U0HmQ@mail.gmail.com>
+ <781538666.135723.1447589083272.JavaMail.open-xchange@www.ud-mail.de>
+Reply-To: Karol Herbst <karol-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1690900906=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <781538666.135723.1447589083272.JavaMail.open-xchange-KNm3LHm9FEhKTQ5g00o1eQ@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,98 +20,35 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1690900906==
-Content-Type: multipart/alternative; boundary="1447601621.037Ea1.1483"; charset="UTF-8"
-
-
---1447601621.037Ea1.1483
-Date: Sun, 15 Nov 2015 15:33:41 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
-
---- Comment #15 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-$ grep -i nouveau /boot/config-4.4.0-0.rc0.git9.1.fc24.x86_64
-CONFIG_DRM_NOUVEAU=m
-CONFIG_NOUVEAU_DEBUG=5
-CONFIG_NOUVEAU_DEBUG_DEFAULT=3
-CONFIG_DRM_NOUVEAU_BACKLIGHT=y
-
-
-Furthermore, this one is actually loaded:
-
-# lsinitrd --kver 4.4.0-0.rc0.git9.1.fc24.x86_64 | grep nouveau
-... usr/lib/modules/4.4.0-0.rc0.git9.1.fc24.x86_64/updates/nouveau.ko
-
-therefore "dracut --kver $(uname -r) -f" build&install step.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1447601621.037Ea1.1483
-Date: Sun, 15 Nov 2015 15:33:41 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c15">Comment # 15</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-$ grep -i nouveau /boot/config-4.4.0-0.rc0.git9.1.fc24.x86_64
-CONFIG_DRM_NOUVEAU=m
-CONFIG_NOUVEAU_DEBUG=5
-CONFIG_NOUVEAU_DEBUG_DEFAULT=3
-CONFIG_DRM_NOUVEAU_BACKLIGHT=y
-
-
-Furthermore, this one is actually loaded:
-
-# lsinitrd --kver 4.4.0-0.rc0.git9.1.fc24.x86_64 | grep nouveau
-... usr/lib/modules/4.4.0-0.rc0.git9.1.fc24.x86_64/updates/nouveau.ko
-
-therefore &quot;dracut --kver $(uname -r) -f&quot; build&amp;install step.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1447601621.037Ea1.1483--
-
---===============1690900906==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1690900906==--
+PiBFbWlsIFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4gaGF0IGFtIDE0LiBOb3Zl
+bWJlciAyMDE1IHVtIDIzOjQ0Cj4gZ2VzY2hyaWViZW46Cj4gCj4gT24gMTQgTm92ZW1iZXIgMjAx
+NSBhdCAxOTo1MSwgS2Fyb2wgSGVyYnN0IDxub3V2ZWF1QGthcm9saGVyYnN0LmRlPiB3cm90ZToK
+PiA+IEkgaGl0IHRoaXMgd2hpbGUgbG9vcCBpbiBhbiBlcnJvciBzdGF0ZSBvZiB0aGUgZ3B1Cj4g
+Pgo+ID4gdjI6IHVubG9jayBtdXRleCBvbmx5IGlmIHJlcGx5ID09IHRydWUKPiA+Cj4gPiBTaWdu
+ZWQtb2ZmLWJ5OiBLYXJvbCBIZXJic3QgPG5vdXZlYXVAa2Fyb2xoZXJic3QuZGU+Cj4gPiAtLS0K
+PiA+IGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3BtdS9iYXNlLmMgfCAxMSArKysrKysrKystLQo+
+ID4gMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiA+Cj4g
+PiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Jhc2UuYwo+ID4gYi9k
+cm0vbm91dmVhdS9udmttL3N1YmRldi9wbXUvYmFzZS5jCj4gPiBpbmRleCA4MWE1NTgzLi5lYjI0
+OGZkIDEwMDY0NAo+ID4gLS0tIGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Jhc2UuYwo+
+ID4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvcG11L2Jhc2UuYwo+ID4gQEAgLTEwMCw5
+ICsxMDAsMTYgQEAgbnZrbV9wbXVfc2VuZChzdHJ1Y3QgbnZrbV9wbXUgKnBtdSwgdTMyIHJlcGx5
+WzJdLAo+ID4gfQo+ID4KPiA+IC8qIGFjcXVpcmUgZGF0YSBzZWdtZW50IGFjY2VzcyAqLwo+ID4g
+LSBkbyB7Cj4gPiArIG52a21fd3IzMihkZXZpY2UsIDB4MTBhNTgwLCAweDAwMDAwMDAxKTsKPiA+
+ICsgaWYgKG52a21fbXNlYyhkZXZpY2UsIDIwMDAsCj4gPiArIGlmIChudmttX3JkMzIoZGV2aWNl
+LCAweDEwYTU4MCkgPT0gMHgwMDAwMDAwMSkKPiA+ICsgYnJlYWs7Cj4gPiBudmttX3dyMzIoZGV2
+aWNlLCAweDEwYTU4MCwgMHgwMDAwMDAwMSk7Cj4gPiAtIH0gd2hpbGUgKG52a21fcmQzMihkZXZp
+Y2UsIDB4MTBhNTgwKSAhPSAweDAwMDAwMDAxKTsKPiA+ICsgKSA8IDApIHsKPiA+ICsgaWYgKHJl
+cGx5KQo+ID4gKyBtdXRleF91bmxvY2soJmFtcDtzdWJkZXYtPm11dGV4KTsKPiA+ICsgcmV0dXJu
+IC1FQlVTWTsKPiA+ICsgfQo+IEFzIHlvdSdyZSBoZXJlIG1pZ2h0IGFzIHdlbGwgdXNlIHRoZSBu
+ZXcgbnZrbV93YWl0X1hzZWMgbWFjcm9zID8KT24gYSBzZWNvbmQgdGhvdWdodCwgSSBkb24ndCB3
+YW50IHRvIHVzZSB0aG9zZSB0aW1lciBmdW5jdGlvbnMgYXQgYWxsLCBiZWNhdXNlCnRoZXkgc3Rp
+bGwgZGVwZW5kIG9uIHRoZSBncHUgYmVpbmcgaW4gYSBzYW5lIHN0YXRlIGFuZCBJIHdhbnQgdG8g
+YWJvcnQKd2hlbmV2ZXIgc29tZXRoaW5nIGZpc2h5IGlzIGdvaW5nIG9uLCB0b28uCkkganVzdCB3
+YW50IHRvIGxldCB0aGlzIHdoaWxlIGxvb3AgdGltZW91dCBhZnRlciBhIHNlY29uZCBvciBzby4K
+PiAKPiAtRW1pbAoKS2Fyb2wKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
