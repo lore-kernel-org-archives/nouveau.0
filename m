@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92962] KDE hangs and system freezes while journalctl
  lists complains of kernel (nouveau). Nvidia graphics
-Date: Sun, 15 Nov 2015 12:26:53 +0000
-Message-ID: <bug-92962-8800-6UW5ZbtFUw@http.bugs.freedesktop.org/>
+Date: Sun, 15 Nov 2015 12:41:40 +0000
+Message-ID: <bug-92962-8800-wh9lxVTXos@http.bugs.freedesktop.org/>
 References: <bug-92962-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0720012667=="
+Content-Type: multipart/mixed; boundary="===============1145103207=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92962-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,32 +21,47 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0720012667==
-Content-Type: multipart/alternative; boundary="1447590413.45232.620"; charset="UTF-8"
+--===============1145103207==
+Content-Type: multipart/alternative; boundary="1447591300.631Fa0A1.6490"; charset="UTF-8"
 
 
---1447590413.45232.620
-Date: Sun, 15 Nov 2015 12:26:53 +0000
+--1447591300.631Fa0A1.6490
+Date: Sun, 15 Nov 2015 12:41:40 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92962
 
---- Comment #2 from Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org> ---
-(Moved to the correct product and component)
+--- Comment #3 from stakanov-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org ---
+A bit embarrassing but I do not really know what to ask there. 
 
-Could you please get a full dmesg output (by using netconsole if you have a
-second computer, or by blacklisting Nouveau, cating dmesg or /dev/kmsg to a
-file and then loading Nouveau manually)? Maybe your attachments are enough for
-Ben to figure out what is going wrong, but some more information shouldn't
-hurt.
+I think I know how to blacklist nouveau:
+
+# echo "blacklist nouveau" >> /etc/modprobe.d/50-blacklist.conf && mkinitrd &&
+reboot
+
+Then, if I do understand rightly: 
+
+cat /dev/kmsg > kmsgresult.txt 
+
+Then 
+
+modprobe nouveau 
+
+(from the  CLI) and then again?
+
+cat /dev/kmsg > kmsgresult2.txt 
+
+
+Is this what you need? Unfortunately my skills are quite limited, so I prefer
+to ask.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447590413.45232.620
-Date: Sun, 15 Nov 2015 12:26:53 +0000
+--1447591300.631Fa0A1.6490
+Date: Sun, 15 Nov 2015 12:41:40 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -60,20 +75,35 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962#c2">Comment # 2</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962#c3">Comment # 3</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92962">bug 92962</a>
-              from <span class="vcard"><a class="email" href="mailto:pierre.morrow&#64;free.fr" title="Pierre Moreau &lt;pierre.morrow&#64;free.fr&gt;"> <span class="fn">Pierre Moreau</span></a>
+              from <span class="vcard"><a class="email" href="mailto:stakanov&#64;freenet.de" title="stakanov&#64;freenet.de">stakanov&#64;freenet.de</a>
 </span></b>
-        <pre>(Moved to the correct product and component)
+        <pre>A bit embarrassing but I do not really know what to ask there. 
 
-Could you please get a full dmesg output (by using netconsole if you have a
-second computer, or by blacklisting Nouveau, cating dmesg or /dev/kmsg to a
-file and then loading Nouveau manually)? Maybe your attachments are enough for
-Ben to figure out what is going wrong, but some more information shouldn't
-hurt.</pre>
+I think I know how to blacklist nouveau:
+
+# echo &quot;blacklist nouveau&quot; &gt;&gt; /etc/modprobe.d/50-blacklist.conf &amp;&amp; mkinitrd &amp;&amp;
+reboot
+
+Then, if I do understand rightly: 
+
+cat /dev/kmsg &gt; kmsgresult.txt 
+
+Then 
+
+modprobe nouveau 
+
+(from the  CLI) and then again?
+
+cat /dev/kmsg &gt; kmsgresult2.txt 
+
+
+Is this what you need? Unfortunately my skills are quite limited, so I prefer
+to ask.</pre>
         </div>
       </p>
       <hr>
@@ -85,9 +115,9 @@ hurt.</pre>
     </body>
 </html>
 
---1447590413.45232.620--
+--1447591300.631Fa0A1.6490--
 
---===============0720012667==
+--===============1145103207==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +127,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0720012667==--
+--===============1145103207==--
