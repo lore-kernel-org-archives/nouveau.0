@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92971] KDE plasma locks randomly due to crash of
 	nouveau driver
-Date: Mon, 16 Nov 2015 20:25:30 +0000
-Message-ID: <bug-92971-8800-IDVc8372ZU@http.bugs.freedesktop.org/>
+Date: Mon, 16 Nov 2015 21:14:16 +0000
+Message-ID: <bug-92971-8800-UUJMHdueLJ@http.bugs.freedesktop.org/>
 References: <bug-92971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1537983917=="
+Content-Type: multipart/mixed; boundary="===============1395168117=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,102 +21,105 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1537983917==
-Content-Type: multipart/alternative; boundary="1447705530.B7a515F2.27562"; charset="UTF-8"
+--===============1395168117==
+Content-Type: multipart/alternative; boundary="1447708455.4A358E0.12065"; charset="UTF-8"
 
 
---1447705530.B7a515F2.27562
-Date: Mon, 16 Nov 2015 20:25:30 +0000
+--1447708455.4A358E0.12065
+Date: Mon, 16 Nov 2015 21:14:15 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92971
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92971
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #2 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
+Hello here the output:
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|DRM/other                   |Drivers/DRI/nouveau
-            Version|XOrg git                    |unspecified
-           Assignee|dri-devel-PD4FTy7X32lNgt0PjOBp93gSJqDPrsil@public.gmane.org |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |.org                        |rg
-            Product|DRI                         |Mesa
-         QA Contact|                            |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
+Mesa version
+# rpm -aq Mesa*
+Mesa-libGLESv2-2-11.0.4-125.1.x86_64
+Mesa-libEGL1-11.0.4-125.1.x86_64
+Mesa-libglapi0-32bit-11.0.4-125.1.x86_64
+Mesa-32bit-11.0.4-125.1.x86_64
+Mesa-libGL1-11.0.4-125.1.x86_64
+Mesa-libGL-devel-11.0.4-125.1.x86_64
+Mesa-libglapi0-11.0.4-125.1.x86_64
+Mesa-libEGL-devel-11.0.4-125.1.x86_64
+Mesa-libEGL1-32bit-11.0.4-125.1.x86_64
+Mesa-11.0.4-125.1.x86_64
+Mesa-libGL1-32bit-11.0.4-125.1.x86_64
 
--- 
+VIDEO Card
+
+lspci -nn -d 10de::300=20
+0a:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF100GL [Quadro
+4000] [10de:06dd] (rev a1)
+
+Regards
+Philippe
+
+--=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1447705530.B7a515F2.27562
-Date: Mon, 16 Nov 2015 20:25:30 +0000
+--1447708455.4A358E0.12065
+Date: Mon, 16 Nov 2015 21:14:15 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - KDE plasma locks randomly due to crash of nouveau driver"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92971">bug 92971</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>DRM/other
-           </td>
-           <td>Drivers/DRI/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Version</td>
-           <td>XOrg git
-           </td>
-           <td>unspecified
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>dri-devel&#64;lists.freedesktop.org
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Product</td>
-           <td>DRI
-           </td>
-           <td>Mesa
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>
-               &nbsp;
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr></table>
+    <body>
       <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KDE plasma locks randomly due to crash of nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971#c2">Comment=
+ # 2</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - KDE plasma locks randomly due to crash of nouveau driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971">bug 92971<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
+pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
+</span></b>
+        <pre>Hello here the output:
+
+Mesa version
+# rpm -aq Mesa*
+Mesa-libGLESv2-2-11.0.4-125.1.x86_64
+Mesa-libEGL1-11.0.4-125.1.x86_64
+Mesa-libglapi0-32bit-11.0.4-125.1.x86_64
+Mesa-32bit-11.0.4-125.1.x86_64
+Mesa-libGL1-11.0.4-125.1.x86_64
+Mesa-libGL-devel-11.0.4-125.1.x86_64
+Mesa-libglapi0-11.0.4-125.1.x86_64
+Mesa-libEGL-devel-11.0.4-125.1.x86_64
+Mesa-libEGL1-32bit-11.0.4-125.1.x86_64
+Mesa-11.0.4-125.1.x86_64
+Mesa-libGL1-32bit-11.0.4-125.1.x86_64
+
+VIDEO Card
+
+lspci -nn -d 10de::300=20
+0a:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF100GL [Quadro
+4000] [10de:06dd] (rev a1)
+
+Regards
+Philippe</pre>
+        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
           <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
@@ -124,9 +127,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1447705530.B7a515F2.27562--
+--1447708455.4A358E0.12065--
 
---===============1537983917==
+--===============1395168117==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -136,4 +139,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1537983917==--
+--===============1395168117==--
