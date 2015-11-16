@@ -1,210 +1,62 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92968] New: OpenScad has lousy performance
-Date: Mon, 16 Nov 2015 10:59:49 +0000
-Message-ID: <bug-92968-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede@redhat.com>
+Subject: Re: llvm TGSI backend (WIP) questions
+Date: Mon, 16 Nov 2015 15:33:30 +0100
+Message-ID: <5649E93A.2000202@redhat.com>
+References: <5645E9CC.1040401@redhat.com> <20151113185111.GB29110@yyz>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1726110179=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
+Return-path: <mesa-dev-bounces@lists.freedesktop.org>
+In-Reply-To: <20151113185111.GB29110@yyz>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/mesa-dev>
+List-Post: <mailto:mesa-dev@lists.freedesktop.org>
+List-Help: <mailto:mesa-dev-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/mesa-dev>,
+ <mailto:mesa-dev-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: mesa-dev-bounces@lists.freedesktop.org
+Sender: "mesa-dev" <mesa-dev-bounces@lists.freedesktop.org>
+To: Tom Stellard <tom@stellard.net>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, "mesa-dev@lists.freedesktop.org" <mesa-dev@lists.freedesktop.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1726110179==
-Content-Type: multipart/alternative; boundary="1447671588.B0FA4c0.29656"; charset="UTF-8"
-
-
---1447671588.B0FA4c0.29656
-Date: Mon, 16 Nov 2015 10:59:48 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92968
-
-            Bug ID: 92968
-           Summary: OpenScad has lousy performance
-           Product: Mesa
-           Version: unspecified
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: r.e.wolff-bu/CaDbLbdHGjfRZg6uqBA@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-OpenScad performance is WAY less than what I'm used to. This is with new
-hardware and a more recent ubuntu version. 
-
-Suggestion on the mailing list: disable vblank syncing. I was unable to do
-this. The environment variable setting that works for glxgears does not
-influence the behaviour of openscad. I was unable to achieve disabling the
-option in the X server. 
-
-Suggestions on the IRC channel led me to try installing an older version. I
-created an chrooted ubuntu 14.04 environment. The openscad in there provides
-reasonable performance. 
-
-I then recompiled the current git version of openscad in the chrooted 14.04
-environment, and that too provides reasonable performance. 
-
-So: Without changing the X server (or its configuration) it is possible to
-achieve good performance. Also, the source of openscad is not the culprit, but
-the libraries linked to. 
-
-This does not mean that it is not an openscad bug: It could very well be that
-openscad requests a feature that was unimplemented on earlier libraries.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1447671588.B0FA4c0.29656
-Date: Mon, 16 Nov 2015 10:59:48 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - OpenScad has lousy performance"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92968">92968</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>OpenScad has lousy performance
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>unspecified
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>r.e.wolff&#64;bitwizard.nl
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>OpenScad performance is WAY less than what I'm used to. This is with new
-hardware and a more recent ubuntu version. 
-
-Suggestion on the mailing list: disable vblank syncing. I was unable to do
-this. The environment variable setting that works for glxgears does not
-influence the behaviour of openscad. I was unable to achieve disabling the
-option in the X server. 
-
-Suggestions on the IRC channel led me to try installing an older version. I
-created an chrooted ubuntu 14.04 environment. The openscad in there provides
-reasonable performance. 
-
-I then recompiled the current git version of openscad in the chrooted 14.04
-environment, and that too provides reasonable performance. 
-
-So: Without changing the X server (or its configuration) it is possible to
-achieve good performance. Also, the source of openscad is not the culprit, but
-the libraries linked to. 
-
-This does not mean that it is not an openscad bug: It could very well be that
-openscad requests a feature that was unimplemented on earlier libraries.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1447671588.B0FA4c0.29656--
-
---===============1726110179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1726110179==--
+SGksCgpPbiAxMy0xMS0xNSAxOTo1MSwgVG9tIFN0ZWxsYXJkIHdyb3RlOgo+IE9uIEZyaSwgTm92
+IDEzLCAyMDE1IGF0IDAyOjQ2OjUyUE0gKzAxMDAsIEhhbnMgZGUgR29lZGUgd3JvdGU6Cj4+IEhp
+IEFsbCwKPj4KPj4gU28gYXMgZGlzY3Vzc2VkIEkndmUgc3RhcnRlZCB3b3JraW5nIG9uIGEgVEdT
+SSBiYWNrZW5kIGZvcgo+PiBsbHZtIHRvIHVzZSBhcyBhIHdheSB0byBnZXQgY29tcHV0ZSBnb2lu
+ZyBvbiBub3V2ZWF1IChhbmQgb3RoZXIgZ3B1LXMpLgo+Pgo+PiBJJ20gc3RpbGwgbGVhcm5pbmcg
+YWxsIHRoZSBpbnMgYW5kIG91dHMgb2YgbGx2bSBzbyBJIGRvIG5vdCBoYXZlCj4+IG11Y2ggdG8g
+c2hvdyB5ZXQuCj4+Cj4+IEkndmUgcmViYXNlZCBGcmFuY2lzY28ncyAoY3Vycm8ncykgbGF0ZXN0
+IHZlcnNpb24gb24gdG9wIG9mIGxsdm0KPj4gdHJ1bmssIGFuZCBhZGRlZCBhIGNvbW1pdCBvbiB0
+b3AgdG8gYWN0dWFsIGdldCBpdCBidWlsZCB3aXRoIHRoZQo+PiBsYXRlc3QgdHJ1bmsuIFNvIGN1
+cnJlbnRseSBJJ20gYXQgdGhlIHBvaW50IHdoZXJlIEkndmUganVzdAo+PiB0YWtlbiBGcmFuY2lz
+Y28ncyBjb2RlLCBhbmQgbWFkZSBpdCBjb21waWxlLCBubyBtb3JlIGFuZCBubyBsZXNzLgo+Pgo+
+PiBJIGhhdmUgYSBnaXQgcmVwbyB3aXRoIHRoaXMgd29yayBhdmFpbGFibGUgaGVyZToKPj4KPj4g
+aHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL35qd3JkZWdvZWRlL2xsdm0vCj4+Cj4+IFNvIHRo
+ZSBuZXh0IHN0ZXAgd291bGQgYmUgdG8gdGVzdCB0aGlzIGFuZCBzZWUgaWYgaXQgYWN0dWFsbHkK
+Pj4gZG9lcyBhbnl0aGluZywgcXVlc3Rpb25zOgo+Pgo+PiAxKSBEb2VzIGFueW9uZSBoYXZlIGEg
+c2ltcGxlIHRlc3QgY2FzZSAvIGNvbW1hbmQgd2hlcmUgSSBjYW4KPj4gaW52b2tlIGp1c3QgbGx2
+bSBhbmQgZ2V0IFRHU0kgYXNtIG91dHB1dCB0byBjaGVjayA/Cj4+Cj4KPiBUaGUgZWFzaWVzdCB3
+YXkgdG8gZG8gdGhpcyBpcyB3aXRoIHRoZSBsbGMgdG9vbCB3aGljaCBzaGlwcyB3aXRoIGxsdm0u
+Cj4gSXQgY29tcGlsZXMgTExWTSBJUiB0byB0YXJnZXQgY29kZSwgd2hpY2ggaW4gdGhpcyBjYXNl
+IGlzIHRnc2kuCj4gSSB3b3VsZCByZWNvbW1lbmQgdGFraW5nIG9uZSBvZiB0aGUgc2ltcGxlIGV4
+YW1wbGVzIGZyb20KPiB0ZXN0L0NvZGVHZW4vQU1ER1BVICh5b3UgbWF5IG5lZWQgdG8gZ2V0IHRo
+ZXNlIGZyb20gbGx2bSB0cnVuaywgbm90IHN1cmUKPiB3aGF0IGxsdm0gdmVyc2lvbiB5b3UgYXJl
+IHVzaW5nKS4KPgo+IFRvIHVzZSBsbGM6Cj4KPiBsbGMgLW1hcmNoPXRnc2kgaW5wdXQubGwgLW8g
+LQo+Cj4KPiBUaGlzIHdpbGwgb3V0cHV0IFRHU0kuCj4KPgo+IElmIHlvdSB3YW50IHRvIHVzZSBj
+bGFuZyB0byBjb21waWxlIE9wZW5DTCBDIGtlcm5lbHMgdG8gY2xhbmcgeW91IHdpbGwKPiBuZWVk
+IHRvIHRlYWNoIGNsYW5nIGFib3V0IHRoZSBUR1NJIHRhcmdldCBieSBpbXBsZW1lbnRpbmcgdGhl
+IGEKPiBzdWItY2xhc3Mgb2YgVGFyZ2V0SW5mbyBpbiBsaWIvQmFzaWMvVGFyZ2V0cy5jcHAuICBM
+b29rIGF0IHRoZQo+IEFNREdQVSB0YXJnZXQgZm9yIGV4YW1wbGVzLCBidXQgSSByZWNvbW1lbmQg
+c3RhcnRpbmcgd2l0aCBsbGMuCj4KPj4gMikgQXNzdW1pbmcgSSBnZXQgdGhlIGFib3ZlIHRvIChz
+b21ld2hhdCkgd29yaywgaXMgdGhlcmUgYQo+PiB3YXkgdG8gbWFrZSBsbHZtIHNob3cgdGhlIG91
+dHB1dCBvZiB0aGUgdmFyaW91cyBpbnRlcm1lZGlhdGUKPj4gcGFzc2VzIGluIGEgaHVtYW4gcmVh
+ZGFibGUgZm9ybSA/Cj4+Cj4KPiBZb3UgY2FuIHBhc3MgLXByaW50LWJlZm9yZS1hbGwgb3IgLXBy
+aW50LWFmdGVyLWFsbCB0byBkdW1wIHRoZQo+IGludGVybWVkaWF0ZSBmb3Jtcy4KClRoYW5rcyB0
+aGlzIGlzIGV4YWN0bHkgd2hhdCBJIHdhcyBsb29raW5nIGZvci4gSSdsbCBzZW5kIGFub3RoZXIK
+c3RhdHVzIHVwZGF0ZSB3aGVuIEkndmUgc29tZXRoaW5nIHdvcnRod2hpbGUgdG8gcmVwb3J0IDop
+CgpSZWdhcmRzLAoKSGFucwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwptZXNhLWRldiBtYWlsaW5nIGxpc3QKbWVzYS1kZXZAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9tZXNhLWRl
+dgo=
