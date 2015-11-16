@@ -1,67 +1,112 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Mon, 16 Nov 2015 16:11:00 +0100
-Message-ID: <20151116151100.GU16848@phenom.ffwll.local>
-References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
- <5637147C.6010802@daenzer.net>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
+ increasing CPU usage
+Date: Mon, 16 Nov 2015 17:54:15 +0000
+Message-ID: <bug-69827-8800-Yq1AD0FTMx@http.bugs.freedesktop.org/>
+References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <5637147C.6010802@daenzer.net>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, DRI Development <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============1111247754=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBOb3YgMDIsIDIwMTUgYXQgMDQ6NDU6MDBQTSArMDkwMCwgTWljaGVsIETDpG56ZXIg
-d3JvdGU6Cj4gT24gMzEuMTAuMjAxNSAwNjo1NSwgRGFuaWVsIFZldHRlciB3cm90ZToKPiA+IEFw
-cGFyZW50bHkgcHJlLW52NTAgcGFnZWZsaXAgZXZlbnRzIGhhcHBlbiBiZWZvcmUgdGhlIGFjdHVh
-bCB2YmxhbmsKPiA+IHBlcmlvZC4gVGhlcmVmb3JlIHRoYXQgZnVuY3Rpb25hbGl0eSBnb3Qgc2Vt
-aS1kaXNhYmxlZCBpbgo+ID4gCj4gPiBjb21taXQgYWY0ODcwZTQwNjEyNmI3YWMwYWU3YzdjZTU3
-NTFmMjVlYmU2MGYyOAo+ID4gQXV0aG9yOiBNYXJpbyBLbGVpbmVyIDxtYXJpby5rbGVpbmVyLmRl
-QGdtYWlsLmNvbT4KPiA+IERhdGU6ICAgVHVlIE1heSAxMyAwMDo0MjowOCAyMDE0ICswMjAwCj4g
-PiAKPiA+ICAgICBkcm0vbm91dmVhdS9rbXMvbnYwNC1udjQwOiBmaXggcGFnZWZsaXAgZXZlbnRz
-IHZpYSBzcGVjaWFsIGNhc2UuCj4gPiAKPiA+IFVuZm9ydHVuYXRlbHkgdGhhdCBoYWNrIGdvdCB1
-cHJvb3RlZCBpbgo+ID4gCj4gPiBjb21taXQgY2MxZWYxMThmYzA5OTI5NWFlNmFhYmJhY2M4YWY5
-NGQ4ZDg4ODVlYgo+ID4gQXV0aG9yOiBUaGllcnJ5IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29t
-Pgo+ID4gRGF0ZTogICBXZWQgQXVnIDEyIDE3OjAwOjMxIDIwMTUgKzAyMDAKPiA+IAo+ID4gICAg
-IGRybS9pcnE6IE1ha2UgcGlwZSB1bnNpZ25lZCBhbmQgbmFtZSBjb25zaXN0ZW50Cj4gPiAKPiA+
-IFRyaWdlcmluZyBhIHdhcm5pbmcgd2hlbiB0cnlpbmcgdG8gc2FtcGxlIHRoZSB2YmxhbmsgdGlt
-ZXN0YW1wIGZvciBhCj4gPiBub24tZXhpc3RpbmcgcGlwZS4gVGhlcmUncyBhIGZldyB3YXlzIHRv
-IGZpeCB0aGlzOgo+ID4gCj4gPiAtIE9wZW4tY29kZSB0aGUgb2xkIGJlaGF2aW91ciwgd2hpY2gg
-anVzdCBlbnNocmluZXMgdGhpcyBzbGlnaHQKPiA+ICAgYnJlYWthZ2Ugb2YgdGhlIHVzZXJzcGFj
-ZSBBQkkuCj4gPiAKPiA+IC0gUmV2ZXJ0IE1hcmlvJ3MgY29tbWl0IGFuZCBhZ2FpbiBpbmZsaWN0
-IGJyb2tlbiB0aW1lc3RhbXBzLCBhZ2FpbiBub3QKPiA+ICAgcHJldHR5Lgo+ID4gCj4gPiAtIEZp
-eCB0aGlzIGZvciByZWFsIGJ5IGRlbGF5aW5nIHRoZSBwYWdlZmxpcCBUUyB1bnRpbCB0aGUgbmV4
-dCB2YmxhbmsKPiA+ICAgaW50ZXJydXB0LCB0aGVyZWJ5IG1ha2luZyBpdCBhY2N1cmF0ZS4KPiA+
-IAo+ID4gVGhpcyBwYXRjaCBpbXBsZW1lbnRzIHRoZSB0aGlyZCBvcHRpb24uIFNpbmNlIGhhdmlu
-ZyBhIHBhZ2UgZmxpcAo+ID4gaW50ZXJydXB0IHRoYXQgaGFwcGVucyB3aGVuIHRoZSBwYWdlZmxp
-cCBnZXRzIGFybWVkIGFuZCBub3Qgd2hlbiBpdAo+ID4gY29tcGxldGVzIGluIHRoZSBuZXh0IHZi
-bGFuayBzZWVtcyB0byBiZSBmYWlybHkgY29tbW9uIChvbGRlciBpOTE1IGh3Cj4gPiB3b3JrcyB2
-ZXJ5IHNpbWlsYXJseSkgY3JlYXRlIGEgbmV3IGhlbHBlciB0byBhcm0gdmJsYW5rIGV2ZW50cyBm
-b3IKPiA+IHN1Y2ggZHJpdmVycy4KPiAKPiBXaGF0IGhhcHBlbnMgd2hlbiB0aGUgcGFnZSBmbGlw
-IGludGVycnVwdCBhcnJpdmVzIGR1cmluZyBhIHZlcnRpY2FsCj4gYmxhbmsgcGVyaW9kPyAgUHJl
-c3VtYWJseSB0aGUgdXNlcnNwYWNlIGV2ZW50IHdpbGwgYmUgZGVmZXJyZWQgdW50aWwgdGhlCj4g
-bmV4dCB2ZXJ0aWNhbCBibGFuayBwZXJpb2QsIGJ1dCB0aGUgZmxpcCBtaWdodCBhbHJlYWR5IHRh
-a2UgZWZmZWN0IGluCj4gdGhlIGN1cnJlbnQgb25lLgoKSG0geWVhaCB0aGVyZSdzIGEgdGlueSBy
-YWNlIGlmIHlvdXIgdXBkYXRlIGhhbmRsZXIgZm9yIHRoZSBwYWdlZmxpcCBjYW4KcmFjZSB3aXRo
-IHlvdXIgdmJsYW5rIGhhbmRsZXIuIFRoYXQncyBpbXBvc3NpYmxlIGhlcmUgc2luY2UgaXQncyBh
-bGwgZG9uZQpmcm9tIHRoZSBzYW1lIGh3IGlycSBoYW5sZGVyLCBhbmQgc2luY2UgdGhhdCBpcyBz
-aW5nbGUtdGhyZWFkZWQgdGhlcmUKc2hvdWxkbid0IGJlIGEgcHJvYmxlbSwgYXMgbG9uZyBhcyB2
-YmxhbmsgaGFuZGxpbmcgYXJlIHBhZ2VmbGlwIGFyZQpvcmRlcmVkIGNvcnJlY3RseS4KCk1pZ2h0
-IGJlIHdvcnRoIGEgbm90ZSBpbiB0aGUga2VybmVsZG9jIHRob3VnaCB0aGF0IHRoaXMgZnVuY3Rp
-b24gaXNuJ3QKcGVyZmVjdGx5IGZvb2xwcm9vZi4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpT
-b2Z0d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVs
-IG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============1111247754==
+Content-Type: multipart/alternative; boundary="1447696455.06A8BF5e1.19225"; charset="UTF-8"
+
+
+--1447696455.06A8BF5e1.19225
+Date: Mon, 16 Nov 2015 17:54:15 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69827
+
+--- Comment #11 from James Moe <jimoe-zgPZrQL6nFyVmwMjj6irZQ@public.gmane.org> ---
+openSUSE Leap 42.1
+linux 4.1.12-1-default x86_64
+Gnome 3.16.2
+nouveau 2.4.65
+nvidia gt 730
+
+This issue has not been affected by any updates in the last two years. I just
+updated to updated openSUSE Leap 42.1 which has fairly recent versions of
+Gnome, etc.
+
+I am deeply disappointed that Gnome's CPU usage proceeded to climb from its
+initial usage of about 2% to 5% 12 hours later. It follows an identical pattern
+as originally reported.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447696455.06A8BF5e1.19225
+Date: Mon, 16 Nov 2015 17:54:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
+              from <span class="vcard"><a class="email" href="mailto:jimoe&#64;sohnen-moe.com" title="James Moe &lt;jimoe&#64;sohnen-moe.com&gt;"> <span class="fn">James Moe</span></a>
+</span></b>
+        <pre>openSUSE Leap 42.1
+linux 4.1.12-1-default x86_64
+Gnome 3.16.2
+nouveau 2.4.65
+nvidia gt 730
+
+This issue has not been affected by any updates in the last two years. I just
+updated to updated openSUSE Leap 42.1 which has fairly recent versions of
+Gnome, etc.
+
+I am deeply disappointed that Gnome's CPU usage proceeded to climb from its
+initial usage of about 2% to 5% 12 hours later. It follows an identical pattern
+as originally reported.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447696455.06A8BF5e1.19225--
+
+--===============1111247754==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1111247754==--
