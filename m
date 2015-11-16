@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
  increasing CPU usage
-Date: Mon, 16 Nov 2015 23:18:54 +0000
-Message-ID: <bug-69827-8800-Pn4QYo1ftE@http.bugs.freedesktop.org/>
+Date: Mon, 16 Nov 2015 23:19:25 +0000
+Message-ID: <bug-69827-8800-2up40a5ZOZ@http.bugs.freedesktop.org/>
 References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1865710730=="
+Content-Type: multipart/mixed; boundary="===============0794161669=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,27 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1865710730==
-Content-Type: multipart/alternative; boundary="1447715934.dF871.18869"; charset="UTF-8"
+--===============0794161669==
+Content-Type: multipart/alternative; boundary="1447715965.2DC232.19014"; charset="UTF-8"
 
 
---1447715934.dF871.18869
-Date: Mon, 16 Nov 2015 23:18:54 +0000
+--1447715965.2DC232.19014
+Date: Mon, 16 Nov 2015 23:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=69827
 
---- Comment #17 from James Moe <jimoe-zgPZrQL6nFyVmwMjj6irZQ@public.gmane.org> ---
-Using TOP the most likely suspect is "gnome-shell". How long should I collect
-data to get a good profile of its usage?
+--- Comment #18 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
+I dunno... a minute or two should be fine. I'm assuming that it's consistently
+using 5-10% cpu?
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447715934.dF871.18869
-Date: Mon, 16 Nov 2015 23:18:54 +0000
+--1447715965.2DC232.19014
+Date: Mon, 16 Nov 2015 23:19:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,15 +55,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_UNCONFIRMED "
    title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c17">Comment # 17</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c18">Comment # 18</a>
               on <a class="bz_bug_link 
           bz_status_UNCONFIRMED "
    title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
-              from <span class="vcard"><a class="email" href="mailto:jimoe&#64;sohnen-moe.com" title="James Moe &lt;jimoe&#64;sohnen-moe.com&gt;"> <span class="fn">James Moe</span></a>
+              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
 </span></b>
-        <pre>Using TOP the most likely suspect is &quot;gnome-shell&quot;. How long should I collect
-data to get a good profile of its usage?</pre>
+        <pre>I dunno... a minute or two should be fine. I'm assuming that it's consistently
+using 5-10% cpu?</pre>
         </div>
       </p>
       <hr>
@@ -75,9 +75,9 @@ data to get a good profile of its usage?</pre>
     </body>
 </html>
 
---1447715934.dF871.18869--
+--1447715965.2DC232.19014--
 
---===============1865710730==
+--===============0794161669==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -87,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1865710730==--
+--===============0794161669==--
