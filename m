@@ -1,13 +1,13 @@
-From: Alexandre Courbot <gnurou-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] fifo/gk104: fix engine status register offset
-Date: Mon, 16 Nov 2015 17:53:53 +0900
-Message-ID: <CAAVeFuKg7G3JiuLsdPvzUin=ZUdJo8yP8eC_ROZS40oybHtg3A@mail.gmail.com>
-References: <1447659510-24696-1-git-send-email-vinceh@nvidia.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92962] KDE hangs and system freezes while journalctl
+ lists complains of kernel (nouveau). Nvidia graphics
+Date: Mon, 16 Nov 2015 09:39:36 +0000
+Message-ID: <bug-92962-8800-WF3Pca8cBA@http.bugs.freedesktop.org/>
+References: <bug-92962-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1293334797=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1447659510-24696-1-git-send-email-vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-92962-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,30 +17,127 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Vince Hsu <vinceh-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gTW9uLCBOb3YgMTYsIDIwMTUgYXQgNDozOCBQTSwgVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlh
-LmNvbT4gd3JvdGU6Cj4gVGhlIG9mZnNldCBzaG91bGQgYmUgOCBvbiBLZXBsZXIgYW5kIGxhdGVy
-Lgo+Cj4gU2lnbmVkLW9mZi1ieTogVmluY2UgSHN1IDx2aW5jZWhAbnZpZGlhLmNvbT4KPiAtLS0K
-PiAgZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jIHwgMiArLQo+ICAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKPgo+IEhpLAo+Cj4gQWNjb3Jk
-aW5nIHRvIHRoZSBoZWFkZXJbMV0gdGhlIG9mZnNldCBmb3IgZW5naW5lIHN0YXR1cyByZWdpc3Rl
-ciBpcyA4Lgo+Cj4gWzFdIGh0dHBzOi8vZ2l0aHViLmNvbS9rZnJhY3RhbC9ub3V2ZWF1L2Jsb2Iv
-aHdyZWYvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2h3cmVmL2drMTA0L2ZpZm8uaAo+Cj4gVGhh
-bmtzLAo+IFZpbmNlCj4KPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlm
-by9nazEwNC5jIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9nazEwNC5jCj4gaW5kZXgg
-OGQ1ZGI2ZDVhNTU4Li40ZmNkMTQ3ZDQzYzggMTAwNjQ0Cj4gLS0tIGEvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZmlmby9nazEwNC5jCj4gKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlm
-by9nazEwNC5jCj4gQEAgLTE5Niw3ICsxOTYsNyBAQCBnazEwNF9maWZvX2ludHJfc2NoZWRfY3R4
-c3coc3RydWN0IGdrMTA0X2ZpZm8gKmZpZm8pCj4KPiAgICAgICAgIHNwaW5fbG9ja19pcnFzYXZl
-KCZmaWZvLT5iYXNlLmxvY2ssIGZsYWdzKTsKPiAgICAgICAgIGZvciAoZW5nbiA9IDA7IGVuZ24g
-PCBBUlJBWV9TSVpFKGZpZm8tPmVuZ2luZSk7IGVuZ24rKykgewo+IC0gICAgICAgICAgICAgICB1
-MzIgc3RhdCA9IG52a21fcmQzMihkZXZpY2UsIDB4MDAyNjQwICsgKGVuZ24gKiAweDA0KSk7Cj4g
-KyAgICAgICAgICAgICAgIHUzMiBzdGF0ID0gbnZrbV9yZDMyKGRldmljZSwgMHgwMDI2NDAgKyAo
-ZW5nbiAqIDB4MDgpKTsKCkNvbmZpcm1lZCBvbiBteSBzaWRlIGFzIHdlbGwuCgpSZXZpZXdlZC1i
-eTogQWxleGFuZHJlIENvdXJib3QgPGFjb3VyYm90QG52aWRpYS5jb20+Cl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5v
-dXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============1293334797==
+Content-Type: multipart/alternative; boundary="1447666776.d122E1.300"; charset="UTF-8"
+
+
+--1447666776.d122E1.300
+Date: Mon, 16 Nov 2015 09:39:36 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92962
+
+stakanov-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |NEEDINFO
+           Assignee|nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org |stakanov-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org
+                   |rg                          |
+
+--- Comment #5 from stakanov-KuiJ5kEpwI6ELgA04lAiVw@public.gmane.org ---
+Created attachment 119699
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119699&action=edit
+journalctl with -k-b-1
+
+Some more info. 
+For what is the output of cat:
+I do yet not understand when to blacklist nouveau.
+should I just blacklist it, then start it by hand with modprobe nouveau?
+Once the system freezed I cannot input anything anymore. 
+So I guess I have to blacklist before and start manually? Then provoke the
+freeze?
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447666776.d122E1.300
+Date: Mon, 16 Nov 2015 09:39:36 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:stakanov&#64;freenet.de" title="stakanov&#64;freenet.de">stakanov&#64;freenet.de</a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962">bug 92962</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>NEEDINFO
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+           <td>stakanov&#64;freenet.de
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEEDINFO "
+   title="NEEDINFO - KDE hangs and system freezes while journalctl lists complains of kernel (nouveau). Nvidia graphics"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92962">bug 92962</a>
+              from <span class="vcard"><a class="email" href="mailto:stakanov&#64;freenet.de" title="stakanov&#64;freenet.de">stakanov&#64;freenet.de</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119699" name="attach_119699" title="journalctl with -k-b-1">attachment 119699</a> <a href="attachment.cgi?id=119699&amp;action=edit" title="journalctl with -k-b-1">[details]</a></span>
+journalctl with -k-b-1
+
+Some more info. 
+For what is the output of cat:
+I do yet not understand when to blacklist nouveau.
+should I just blacklist it, then start it by hand with modprobe nouveau?
+Once the system freezed I cannot input anything anymore. 
+So I guess I have to blacklist before and start manually? Then provoke the
+freeze?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447666776.d122E1.300--
+
+--===============1293334797==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1293334797==--
