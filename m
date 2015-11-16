@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92971] KDE plasma locks randomly due to crash of
 	nouveau driver
-Date: Mon, 16 Nov 2015 21:14:16 +0000
-Message-ID: <bug-92971-8800-UUJMHdueLJ@http.bugs.freedesktop.org/>
+Date: Mon, 16 Nov 2015 21:15:14 +0000
+Message-ID: <bug-92971-8800-gsogKnFU3U@http.bugs.freedesktop.org/>
 References: <bug-92971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1395168117=="
+Content-Type: multipart/mixed; boundary="===============1490683005=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,51 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1395168117==
-Content-Type: multipart/alternative; boundary="1447708455.4A358E0.12065"; charset="UTF-8"
+--===============1490683005==
+Content-Type: multipart/alternative; boundary="1447708514.4AF167cb0.12391"; charset="UTF-8"
 
 
---1447708455.4A358E0.12065
-Date: Mon, 16 Nov 2015 21:14:15 +0000
+--1447708514.4AF167cb0.12391
+Date: Mon, 16 Nov 2015 21:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 https://bugs.freedesktop.org/show_bug.cgi?id=3D92971
 
---- Comment #2 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Hello here the output:
-
-Mesa version
-# rpm -aq Mesa*
-Mesa-libGLESv2-2-11.0.4-125.1.x86_64
-Mesa-libEGL1-11.0.4-125.1.x86_64
-Mesa-libglapi0-32bit-11.0.4-125.1.x86_64
-Mesa-32bit-11.0.4-125.1.x86_64
-Mesa-libGL1-11.0.4-125.1.x86_64
-Mesa-libGL-devel-11.0.4-125.1.x86_64
-Mesa-libglapi0-11.0.4-125.1.x86_64
-Mesa-libEGL-devel-11.0.4-125.1.x86_64
-Mesa-libEGL1-32bit-11.0.4-125.1.x86_64
-Mesa-11.0.4-125.1.x86_64
-Mesa-libGL1-32bit-11.0.4-125.1.x86_64
-
-VIDEO Card
-
-lspci -nn -d 10de::300=20
-0a:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF100GL [Quadro
-4000] [10de:06dd] (rev a1)
-
-Regards
-Philippe
+--- Comment #3 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
+Created attachment 119718
+  --> https://bugs.freedesktop.org/attachment.cgi?id=3D119718&action=3Dedit
+output of dmesg
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1447708455.4A358E0.12065
-Date: Mon, 16 Nov 2015 21:14:15 +0000
+--1447708514.4AF167cb0.12391
+Date: Mon, 16 Nov 2015 21:15:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -80,8 +59,8 @@ Content-Transfer-Encoding: quoted-printable
             <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - KDE plasma locks randomly due to crash of nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971#c2">Comment=
- # 2</a>
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971#c3">Comment=
+ # 3</a>
               on <a class=3D"bz_bug_link=20
           bz_status_NEW "
    title=3D"NEW - KDE plasma locks randomly due to crash of nouveau driver"
@@ -91,30 +70,11 @@ Content-Transfer-Encoding: quoted-printable
 conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
 pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
 </span></b>
-        <pre>Hello here the output:
-
-Mesa version
-# rpm -aq Mesa*
-Mesa-libGLESv2-2-11.0.4-125.1.x86_64
-Mesa-libEGL1-11.0.4-125.1.x86_64
-Mesa-libglapi0-32bit-11.0.4-125.1.x86_64
-Mesa-32bit-11.0.4-125.1.x86_64
-Mesa-libGL1-11.0.4-125.1.x86_64
-Mesa-libGL-devel-11.0.4-125.1.x86_64
-Mesa-libglapi0-11.0.4-125.1.x86_64
-Mesa-libEGL-devel-11.0.4-125.1.x86_64
-Mesa-libEGL1-32bit-11.0.4-125.1.x86_64
-Mesa-11.0.4-125.1.x86_64
-Mesa-libGL1-32bit-11.0.4-125.1.x86_64
-
-VIDEO Card
-
-lspci -nn -d 10de::300=20
-0a:00.0 VGA compatible controller [0300]: NVIDIA Corporation GF100GL [Quadro
-4000] [10de:06dd] (rev a1)
-
-Regards
-Philippe</pre>
+        <pre>Created <span class=3D""><a href=3D"attachment.cgi?id=3D119718=
+" name=3D"attach_119718" title=3D"output of dmesg">attachment 119718</a> <a=
+ href=3D"attachment.cgi?id=3D119718&amp;action=3Dedit" title=3D"output of d=
+mesg">[details]</a></span>
+output of dmesg</pre>
         </div>
       </p>
       <hr>
@@ -127,9 +87,9 @@ Philippe</pre>
     </body>
 </html>
 
---1447708455.4A358E0.12065--
+--1447708514.4AF167cb0.12391--
 
---===============1395168117==
+--===============1490683005==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -139,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1395168117==--
+--===============1490683005==--
