@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 54587] [NV1F] Flickering screen on Geforce 4
-Date: Tue, 17 Nov 2015 01:34:52 +0000
-Message-ID: <bug-54587-8800-DboQNTCwVg@http.bugs.freedesktop.org/>
-References: <bug-54587-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92971] [GF110] KDE plasma locks randomly due to
+ crash of nouveau driver
+Date: Tue, 17 Nov 2015 12:50:01 +0000
+Message-ID: <bug-92971-8800-iAPLHfXtCI@http.bugs.freedesktop.org/>
+References: <bug-92971-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0818881030=="
+Content-Type: multipart/mixed; boundary="===============0914090033=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-54587-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,96 +21,152 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0818881030==
-Content-Type: multipart/alternative; boundary="1447724092.c5C7E0083.20957"; charset="UTF-8"
+--===============0914090033==
+Content-Type: multipart/alternative; boundary="1447764601.c6Fa2181.6586"; charset="UTF-8"
 
 
---1447724092.c5C7E0083.20957
-Date: Tue, 17 Nov 2015 01:34:52 +0000
+--1447764601.c6Fa2181.6586
+Date: Tue, 17 Nov 2015 12:50:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=54587
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92971
 
-Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> changed:
+--- Comment #6 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
+Hello,
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-            Summary|[NV1F] Flickering screen on |[NV1F] Flickering screen on
-                   |Geforece 4                  |Geforce 4
+I tested with the non Xen kernel vmlinux-4.3.0-1-default.
+The crash exists also with this kernel
 
---- Comment #33 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-On the off chance that this hardware still lives, can you try the patch in
-https://bugs.freedesktop.org/attachment.cgi?id=119726
+here the journalctl output with a crash when loading a page in the browser:=
+ The
+screen was totally corrupted but I succeeded to go the the console CTRL Alt=
+ F1
+and could load top =3D=3D> plasmashell (PID 2358) was running with 100%.=20
 
-That should divide the clock on NV1F by 1000. There are other differences from
-xf86-video-nv in the arb calculation logic, but let's start small :)
+I tried to shutdown but the system locked (I did not see any shutdown messa=
+ges
+and did a hard reset)
 
--- 
+Nov 17 13:21:23 hpprol2 login[1943]: ROOT LOGIN ON tty1
+Nov 17 13:22:02 hpprol2 kernel: nouveau 0000:0a:00.0: plasmashell[2358]: fa=
+iled
+to idle channel 0xcccc0000 [plasmashell[2358]]
+Nov 17 13:22:15 hpprol2 systemd-logind[1141]: Power key pressed.
+Nov 17 13:22:17 hpprol2 kernel: nouveau 0000:0a:00.0: plasmashell[2358]: fa=
+iled
+to idle channel 0xcccc0000 [plasmashell[2358]]
+Nov 17 13:22:23 hpprol2 kernel: nouveau 0000:0a:00.0: Xorg[2019]:
+nv50cal_space: -16
+
+The last line was repeated many times=20
+thereafter are some lines related to the shutdown which end with
+Nov 17 13:22:56 hpprol2 display-manager[4671]: Shutting down service kdm..d=
+one
+Nov 17 13:23:06 hpprol2 kernel: nouveau 0000:0a:00.0: xembedsniproxy[2424]:
+failed to idle channel 0xcccc0000 [xembedsniproxy[2424]]
+Nov 17 13:23:21 hpprol2 kernel: nouveau 0000:0a:00.0: xembedsniproxy[2424]:
+failed to idle channel 0xcccc0000 [xembedsniproxy[2424]]
+Nov 17 13:23:30 hpprol2 systemd-logind[1141]: Power key pressed.
+
+
+can it be the plasmashell which start a crash in nouveau driver?
+
+Regards
+Philippe
+
+--=20
 You are receiving this mail because:
+You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1447724092.c5C7E0083.20957
-Date: Tue, 17 Nov 2015 01:34:52 +0000
+--1447764601.c6Fa2181.6586
+Date: Tue, 17 Nov 2015 12:50:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href="https://bugs.freedesktop.org/" />
+      <base href=3D"https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NV1F] Flickering screen on Geforce 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Summary</td>
-           <td>[NV1F] Flickering screen on Geforece 4
-           </td>
-           <td>[NV1F] Flickering screen on Geforce 4
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
-            <b><a class="bz_bug_link 
+            <b><a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV1F] Flickering screen on Geforce 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587#c33">Comment # 33</a>
-              on <a class="bz_bug_link 
+   title=3D"NEW - [GF110] KDE plasma locks randomly due to crash of nouveau=
+ driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971#c6">Comment=
+ # 6</a>
+              on <a class=3D"bz_bug_link=20
           bz_status_NEW "
-   title="NEW - [NV1F] Flickering screen on Geforce 4"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=54587">bug 54587</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title=3D"NEW - [GF110] KDE plasma locks randomly due to crash of nouveau=
+ driver"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971">bug 92971<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
+pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
 </span></b>
-        <pre>On the off chance that this hardware still lives, can you try the patch in
-<a href="https://bugs.freedesktop.org/attachment.cgi?id=119726">https://bugs.freedesktop.org/attachment.cgi?id=119726</a>
+        <pre>Hello,
 
-That should divide the clock on NV1F by 1000. There are other differences from
-xf86-video-nv in the arb calculation logic, but let's start small :)</pre>
+I tested with the non Xen kernel vmlinux-4.3.0-1-default.
+The crash exists also with this kernel
+
+here the journalctl output with a crash when loading a page in the browser:=
+ The
+screen was totally corrupted but I succeeded to go the the console CTRL Alt=
+ F1
+and could load top =3D=3D&gt; plasmashell (PID 2358) was running with 100%.=
+=20
+
+I tried to shutdown but the system locked (I did not see any shutdown messa=
+ges
+and did a hard reset)
+
+Nov 17 13:21:23 hpprol2 login[1943]: ROOT LOGIN ON tty1
+Nov 17 13:22:02 hpprol2 kernel: nouveau 0000:0a:00.0: plasmashell[2358]: fa=
+iled
+to idle channel 0xcccc0000 [plasmashell[2358]]
+Nov 17 13:22:15 hpprol2 systemd-logind[1141]: Power key pressed.
+Nov 17 13:22:17 hpprol2 kernel: nouveau 0000:0a:00.0: plasmashell[2358]: fa=
+iled
+to idle channel 0xcccc0000 [plasmashell[2358]]
+Nov 17 13:22:23 hpprol2 kernel: nouveau 0000:0a:00.0: Xorg[2019]:
+nv50cal_space: -16
+
+The last line was repeated many times=20
+thereafter are some lines related to the shutdown which end with
+Nov 17 13:22:56 hpprol2 display-manager[4671]: Shutting down service kdm..d=
+one
+Nov 17 13:23:06 hpprol2 kernel: nouveau 0000:0a:00.0: xembedsniproxy[2424]:
+failed to idle channel 0xcccc0000 [xembedsniproxy[2424]]
+Nov 17 13:23:21 hpprol2 kernel: nouveau 0000:0a:00.0: xembedsniproxy[2424]:
+failed to idle channel 0xcccc0000 [xembedsniproxy[2424]]
+Nov 17 13:23:30 hpprol2 systemd-logind[1141]: Power key pressed.
+
+
+can it be the plasmashell which start a crash in nouveau driver?
+
+Regards
+Philippe</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-      
+=20=20=20=20=20=20
       <ul>
+          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1447724092.c5C7E0083.20957--
+--1447764601.c6Fa2181.6586--
 
---===============0818881030==
+--===============0914090033==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -119,4 +176,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0818881030==--
+--===============0914090033==--
