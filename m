@@ -1,15 +1,13 @@
-From: Tom Stellard <tom-OLLgJhkKGBzk1uMJSBkQmQ@public.gmane.org>
-Subject: Re: [Mesa-dev] llvm TGSI backend (WIP) questions
-Date: Wed, 18 Nov 2015 10:11:56 -0500
-Message-ID: <20151118151154.GB8589@yyz>
-References: <5645E9CC.1040401@redhat.com> <20151113185111.GB29110@yyz>
- <564C90F1.5000700@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 69827] [NVC1] Uneven, jerky mouse movement,
+ increasing CPU usage
+Date: Wed, 18 Nov 2015 21:03:37 +0000
+Message-ID: <bug-69827-8800-LMnv59SUQ2@http.bugs.freedesktop.org/>
+References: <bug-69827-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0539869044=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <564C90F1.5000700-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-69827-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,85 +17,76 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, "mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <mesa-dev-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBOb3YgMTgsIDIwMTUgYXQgMDM6NTM6MzdQTSArMDEwMCwgSGFucyBkZSBHb2VkZSB3
-cm90ZToKPiBIaSwKPiAKPiBPbiAxMy0xMS0xNSAxOTo1MSwgVG9tIFN0ZWxsYXJkIHdyb3RlOgo+
-ID4gT24gRnJpLCBOb3YgMTMsIDIwMTUgYXQgMDI6NDY6NTJQTSArMDEwMCwgSGFucyBkZSBHb2Vk
-ZSB3cm90ZToKPiA+PiBIaSBBbGwsCj4gPj4KPiA+PiBTbyBhcyBkaXNjdXNzZWQgSSd2ZSBzdGFy
-dGVkIHdvcmtpbmcgb24gYSBUR1NJIGJhY2tlbmQgZm9yCj4gPj4gbGx2bSB0byB1c2UgYXMgYSB3
-YXkgdG8gZ2V0IGNvbXB1dGUgZ29pbmcgb24gbm91dmVhdSAoYW5kIG90aGVyIGdwdS1zKS4KPiA+
-Pgo+ID4+IEknbSBzdGlsbCBsZWFybmluZyBhbGwgdGhlIGlucyBhbmQgb3V0cyBvZiBsbHZtIHNv
-IEkgZG8gbm90IGhhdmUKPiA+PiBtdWNoIHRvIHNob3cgeWV0Lgo+ID4+Cj4gPj4gSSd2ZSByZWJh
-c2VkIEZyYW5jaXNjbydzIChjdXJybydzKSBsYXRlc3QgdmVyc2lvbiBvbiB0b3Agb2YgbGx2bQo+
-ID4+IHRydW5rLCBhbmQgYWRkZWQgYSBjb21taXQgb24gdG9wIHRvIGFjdHVhbCBnZXQgaXQgYnVp
-bGQgd2l0aCB0aGUKPiA+PiBsYXRlc3QgdHJ1bmsuIFNvIGN1cnJlbnRseSBJJ20gYXQgdGhlIHBv
-aW50IHdoZXJlIEkndmUganVzdAo+ID4+IHRha2VuIEZyYW5jaXNjbydzIGNvZGUsIGFuZCBtYWRl
-IGl0IGNvbXBpbGUsIG5vIG1vcmUgYW5kIG5vIGxlc3MuCj4gPj4KPiA+PiBJIGhhdmUgYSBnaXQg
-cmVwbyB3aXRoIHRoaXMgd29yayBhdmFpbGFibGUgaGVyZToKPiA+Pgo+ID4+IGh0dHA6Ly9jZ2l0
-LmZyZWVkZXNrdG9wLm9yZy9+andyZGVnb2VkZS9sbHZtLwo+ID4+Cj4gPj4gU28gdGhlIG5leHQg
-c3RlcCB3b3VsZCBiZSB0byB0ZXN0IHRoaXMgYW5kIHNlZSBpZiBpdCBhY3R1YWxseQo+ID4+IGRv
-ZXMgYW55dGhpbmcsIHF1ZXN0aW9uczoKPiA+Pgo+ID4+IDEpIERvZXMgYW55b25lIGhhdmUgYSBz
-aW1wbGUgdGVzdCBjYXNlIC8gY29tbWFuZCB3aGVyZSBJIGNhbgo+ID4+IGludm9rZSBqdXN0IGxs
-dm0gYW5kIGdldCBUR1NJIGFzbSBvdXRwdXQgdG8gY2hlY2sgPwo+ID4+Cj4gPgo+ID4gVGhlIGVh
-c2llc3Qgd2F5IHRvIGRvIHRoaXMgaXMgd2l0aCB0aGUgbGxjIHRvb2wgd2hpY2ggc2hpcHMgd2l0
-aCBsbHZtLgo+ID4gSXQgY29tcGlsZXMgTExWTSBJUiB0byB0YXJnZXQgY29kZSwgd2hpY2ggaW4g
-dGhpcyBjYXNlIGlzIHRnc2kuCj4gPiBJIHdvdWxkIHJlY29tbWVuZCB0YWtpbmcgb25lIG9mIHRo
-ZSBzaW1wbGUgZXhhbXBsZXMgZnJvbQo+ID4gdGVzdC9Db2RlR2VuL0FNREdQVSAoeW91IG1heSBu
-ZWVkIHRvIGdldCB0aGVzZSBmcm9tIGxsdm0gdHJ1bmssIG5vdCBzdXJlCj4gPiB3aGF0IGxsdm0g
-dmVyc2lvbiB5b3UgYXJlIHVzaW5nKS4KPiA+Cj4gPiBUbyB1c2UgbGxjOgo+ID4KPiA+IGxsYyAt
-bWFyY2g9dGdzaSBpbnB1dC5sbCAtbyAtCj4gPgo+ID4KPiA+IFRoaXMgd2lsbCBvdXRwdXQgVEdT
-SS4KPiAKPiBTbyBhZnRlciBzb21lIGJ1Z2ZpeGluZyB0byBmaXggYSBidW5jaCBvZiBzZWdmYXVs
-dHMgSSBnZXQ6Cj4gCj4gJCBiaW4vbGxjIC1tYXJjaD10Z3NpIC4uL3Rlc3QvQ29kZUdlbi9BTURH
-UFUvYWRkLmxsIC1vIC0KPiAKPiAjIEJCIzA6Cj4gICAgICAgICAgVUFERHMgVEVNUDB4LCBURU1Q
-MHgsIDAKPiAgICAgICAgICBMT0FEZ2lzIFRFTVAxeiwgW1RFTVAxeV0KPiAgICAgICAgICBVQURE
-cyBURU1QMXksIFRFTVAxeSwgNAo+ICAgICAgICAgIExPQURnaXMgVEVNUDF5LCBbVEVNUDF5XQo+
-ICAgICAgICAgIFVBRERzIFRFTVAxeSwgVEVNUDF6LCBURU1QMXkKPiAgICAgICAgICBTVE9SRWdp
-cyBbVEVNUDF4XSwgVEVNUDF5Cj4gICAgICAgICAgVUFERHMgVEVNUDB4LCBURU1QMHgsIDAKPiAg
-ICAgICAgICBSRVQKPiAgICAgICAgICBFTkRTVUIKPiAKPiBhbmQgYWRkLmxsIGhhczoKPiAKPiA7
-RlVOQy1MQUJFTDoge3tefX10ZXN0MToKPiA7RUc6IEFERF9JTlQge3tbKiBdKn19VHt7WzAtOV0r
-XC5bWFlaV10sIFRbMC05XStcLltYWVpXXSwgVFswLTldK1wuW1hZWlddfX0KPiAKPiA7U0k6IHZf
-YWRkX2kzMl9lMzIgW1tSRUc6dlswLTldK11dLCB2Y2MsIHt7dlswLTldKywgdlswLTldK319Cj4g
-O1NJLU5PVDogW1tSRUddXQo+IDtTSTogYnVmZmVyX3N0b3JlX2R3b3JkIFtbUkVHXV0sCj4gZGVm
-aW5lIHZvaWQgQHRlc3QxKGkzMiBhZGRyc3BhY2UoMSkqICVvdXQsIGkzMiBhZGRyc3BhY2UoMSkq
-ICVpbikgewo+ICAgICViX3B0ciA9IGdldGVsZW1lbnRwdHIgaTMyLCBpMzIgYWRkcnNwYWNlKDEp
-KiAlaW4sIGkzMiAxCj4gICAgJWEgPSBsb2FkIGkzMiwgaTMyIGFkZHJzcGFjZSgxKSogJWluCj4g
-ICAgJWIgPSBsb2FkIGkzMiwgaTMyIGFkZHJzcGFjZSgxKSogJWJfcHRyCj4gICAgJXJlc3VsdCA9
-IGFkZCBpMzIgJWEsICViCj4gICAgc3RvcmUgaTMyICVyZXN1bHQsIGkzMiBhZGRyc3BhY2UoMSkq
-ICVvdXQKPiAgICByZXQgdm9pZAo+IH0KPiAKPiBTbyB0aGUgZ2VuZXJhdGVkIGNvZGUgZm9yIHRl
-c3QxIHJlc21ibGVzIHRoZSBpbnB1dCBzb21ld2hhdCBidXQgaXMgaW4gbm8gd2F5IGNvcnJlY3Qs
-Cj4gZS5nLiBJIGRvIG5vdCB1bmRlcnN0YW5kIHdoeSBpdCBpcyBhc3N1bWluZyB0aGF0IGJvdGgg
-VEVNUDB4IGFuZCBURU1QMXogY29udGFpbiB0aGUKPiBhZGRyZXNzIG9mIHRoZSBhcnJheSB3aXRo
-IHRoZSAyIGlucHV0IGludGVnZXJzLiBOb3IgZG8gSSB1bmRlcnN0YW5kIHdoeSBpdCBpcyB1c2lu
-Zwo+IFRFTVAxeiBhbmQgVEVNUDF5IGFzIHNvdXJjZXMgZm9yIHRoZSBVQURELCB3aGVyZSBpdCBo
-YXMgYmVlbiBkb2luZyB0aGUgTE9BRC1zIHRvCj4gVEVNUDB4IGFuZCBhbmQgVEVNUDF5Cj4gCgpU
-aGUgcGxhY2VtZW50IG9mIGlucHV0cyBpbnRvIHJlZ2lzdGVycyBpcyBjb250cm9sbGVkIGJ5IHRo
-ZSBjYWxsaW5nCmNvbnZlbnRpb24sIHdoaWNoIGlzIGltcGxlbWVudGVkIGluIFRHU0lJU2VsTG93
-ZXJpbmcuY3BwIGFuZCBmaWxlCmNhbGxlZCBwcm9iYWJseSBjYWxsZWQgc29tZXRoaW5nIGxpa2Ug
-VEdTSUNhbGxpbmdDb252LnRkLgoKTWF5YmUgSSdtIHJlYWRpbmcgdGhlIGFzc2VtYmx5IHdyb25n
-LCBidXQgaXQgbG9va3MgbGlrZSB2YWx1ZXMgYXJlIGJlaW5nCmxvYWRlZCBpbnRvIFRFTVAxeiBh
-bmQgVEVNUDF5IG5vdCBURU1QMHggYW5kIFRFTVAxeS4KCi1Ub20KCj4gQW5kIHRoZW4gd2UndmUg
-ZnVuY3Rpb24gdGVzdDIgaW4gYWRkLmxsCj4gCj4gO0ZVTkMtTEFCRUw6IHt7Xn19dGVzdDI6Cj4g
-O0VHOiBBRERfSU5UIHt7WyogXSp9fVR7e1swLTldK1wuW1hZWlddLCBUWzAtOV0rXC5bWFlaV10s
-IFRbMC05XStcLltYWVpXXX19Cj4gO0VHOiBBRERfSU5UIHt7WyogXSp9fVR7e1swLTldK1wuW1hZ
-WlddLCBUWzAtOV0rXC5bWFlaV10sIFRbMC05XStcLltYWVpXXX19Cj4gCj4gO1NJOiB2X2FkZF9p
-MzJfZTMyIHZ7e1swLTldKywgdmNjLCB2WzAtOV0rLCB2WzAtOV0rfX0KPiA7U0k6IHZfYWRkX2kz
-Ml9lMzIgdnt7WzAtOV0rLCB2Y2MsIHZbMC05XSssIHZbMC05XSt9fQo+IAo+IGRlZmluZSB2b2lk
-IEB0ZXN0Mig8MiB4IGkzMj4gYWRkcnNwYWNlKDEpKiAlb3V0LCA8MiB4IGkzMj4gYWRkcnNwYWNl
-KDEpKiAlaW4pIHsKPiAgICAlYl9wdHIgPSBnZXRlbGVtZW50cHRyIDwyIHggaTMyPiwgPDIgeCBp
-MzI+IGFkZHJzcGFjZSgxKSogJWluLCBpMzIgMQo+ICAgICVhID0gbG9hZCA8MiB4IGkzMj4sIDwy
-IHggaTMyPiBhZGRyc3BhY2UoMSkqICVpbgo+ICAgICViID0gbG9hZCA8MiB4IGkzMj4sIDwyIHgg
-aTMyPiBhZGRyc3BhY2UoMSkqICViX3B0cgo+ICAgICVyZXN1bHQgPSBhZGQgPDIgeCBpMzI+ICVh
-LCAlYgo+ICAgIHN0b3JlIDwyIHggaTMyPiAlcmVzdWx0LCA8MiB4IGkzMj4gYWRkcnNwYWNlKDEp
-KiAlb3V0Cj4gICAgcmV0IHZvaWQKPiB9Cj4gCj4gV2hpY2ggY29tcGxldGVseSBtYWtlcyB0aGUg
-dGdzaSBiYWNrZW5kIHVuaGFwcHk6Cj4gCj4gTExWTSBFUlJPUjogQ2Fubm90IHNlbGVjdDogdDQz
-OiBpMzIsY2ggPSBsb2FkPExENFtGaXhlZFN0YWNrMF0oYWxpZ249MTYpPiB0NDU6MSwgRnJhbWVJ
-bmRleDppMzI8MD4sIHVuZGVmOmkzMgo+IHQ0MTogaTMyID0gRnJhbWVJbmRleDwwPgo+IHQ4OiBp
-MzIgPSB1bmRlZgo+IEluIGZ1bmN0aW9uOiB0ZXN0Mgo+IAo+IEFueSBoaW50cyBvbiB3aGVyZSB0
-byBzdGFydCBsb29raW5nIHdpdGggZml4aW5nIHRoZXNlIGlzc3VlcyB3b3VsZCBiZSBtdWNoCj4g
-YXBwcmVjaWF0ZWQuCj4gCj4gUmVnYXJkcywKPiAKPiBIYW5zCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0539869044==
+Content-Type: multipart/alternative; boundary="1447880617.eE71B45f1.11125"; charset="UTF-8"
+
+
+--1447880617.eE71B45f1.11125
+Date: Wed, 18 Nov 2015 21:03:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=69827
+
+--- Comment #24 from James Moe <jimoe-zgPZrQL6nFyVmwMjj6irZQ@public.gmane.org> ---
+> Please get debug symbols
+>
+Which symbol set(s)? I already have the kernel-syms.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1447880617.eE71B45f1.11125
+Date: Wed, 18 Nov 2015 21:03:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827#c24">Comment # 24</a>
+              on <a class="bz_bug_link 
+          bz_status_UNCONFIRMED "
+   title="UNCONFIRMED - [NVC1] Uneven, jerky mouse movement, increasing CPU usage"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=69827">bug 69827</a>
+              from <span class="vcard"><a class="email" href="mailto:jimoe&#64;sohnen-moe.com" title="James Moe &lt;jimoe&#64;sohnen-moe.com&gt;"> <span class="fn">James Moe</span></a>
+</span></b>
+        <pre><span class="quote">&gt; Please get debug symbols</span >
+&gt;
+Which symbol set(s)? I already have the kernel-syms.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1447880617.eE71B45f1.11125--
+
+--===============0539869044==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0539869044==--
