@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92991] Nouveau module loading regression in 4.4-rc1
  on optimus system
-Date: Wed, 18 Nov 2015 22:26:54 +0000
-Message-ID: <bug-92991-8800-i0XafMFAjN@http.bugs.freedesktop.org/>
+Date: Wed, 18 Nov 2015 22:28:02 +0000
+Message-ID: <bug-92991-8800-yuqDpQ1A71@http.bugs.freedesktop.org/>
 References: <bug-92991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1353818367=="
+Content-Type: multipart/mixed; boundary="===============0928061393=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,45 +21,31 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1353818367==
-Content-Type: multipart/alternative; boundary="1447885614.18b6F2a1.2298"; charset="UTF-8"
+--===============0928061393==
+Content-Type: multipart/alternative; boundary="1447885681.52CFb8d11.2603"; charset="UTF-8"
 
 
---1447885614.18b6F2a1.2298
-Date: Wed, 18 Nov 2015 22:26:54 +0000
+--1447885681.52CFb8d11.2603
+Date: Wed, 18 Nov 2015 22:28:01 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92991
 
---- Comment #4 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
-lspci -nnv -d 10de:11b6
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK104GLM [Quadro
-K3100M] [10de:11b6] (rev a1) (prog-if 00 [VGA controller])                      
-        Subsystem: Hewlett-Packard Company Device [103c:190a]                   
-        Flags: fast devsel, IRQ 10                                              
-        Memory at cb000000 (32-bit, non-prefetchable) [disabled] [size=16M]     
-        Memory at 50000000 (64-bit, prefetchable) [disabled] [size=256M]        
-        Memory at 60000000 (64-bit, prefetchable) [disabled] [size=32M]
-        I/O ports at 5000 [disabled] [size=128]
-        Expansion ROM at cc080000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [b4] Vendor Specific Information: Len=14 <?>
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting <?>
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-<?>
-        Capabilities: [900] #19
-        Kernel modules: nouveau
+--- Comment #5 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
+(In reply to Ilia Mirkin from comment #3)
+
+> That seems much happier.
+
+Unfortunately the result does not work. xrandr leads to an instant hard lockup
+with and without the additional parameter.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447885614.18b6F2a1.2298
-Date: Wed, 18 Nov 2015 22:26:54 +0000
+--1447885681.52CFb8d11.2603
+Date: Wed, 18 Nov 2015 22:28:01 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -73,33 +59,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c4">Comment # 4</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c5">Comment # 5</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92991">bug 92991</a>
               from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
 </span></b>
-        <pre>lspci -nnv -d 10de:11b6
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GK104GLM [Quadro
-K3100M] [10de:11b6] (rev a1) (prog-if 00 [VGA controller])                      
-        Subsystem: Hewlett-Packard Company Device [103c:190a]                   
-        Flags: fast devsel, IRQ 10                                              
-        Memory at cb000000 (32-bit, non-prefetchable) [disabled] [size=16M]     
-        Memory at 50000000 (64-bit, prefetchable) [disabled] [size=256M]        
-        Memory at 60000000 (64-bit, prefetchable) [disabled] [size=32M]
-        I/O ports at 5000 [disabled] [size=128]
-        Expansion ROM at cc080000 [disabled] [size=512K]
-        Capabilities: [60] Power Management version 3
-        Capabilities: [68] MSI: Enable- Count=1/1 Maskable- 64bit+
-        Capabilities: [78] Express Endpoint, MSI 00
-        Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
-        Capabilities: [100] Virtual Channel
-        Capabilities: [128] Power Budgeting &lt;?&gt;
-        Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024
-&lt;?&gt;
-        Capabilities: [900] #19
-        Kernel modules: nouveau</pre>
+        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92991#c3">comment #3</a>)
+
+<span class="quote">&gt; That seems much happier.</span >
+
+Unfortunately the result does not work. xrandr leads to an instant hard lockup
+with and without the additional parameter.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +83,9 @@ K3100M] [10de:11b6] (rev a1) (prog-if 00 [VGA controller])
     </body>
 </html>
 
---1447885614.18b6F2a1.2298--
+--1447885681.52CFb8d11.2603--
 
---===============1353818367==
+--===============0928061393==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +95,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1353818367==--
+--===============0928061393==--
