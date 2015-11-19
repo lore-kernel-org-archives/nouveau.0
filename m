@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92761] [NVF0] dmesg full of nouveau E[
  PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)
-Date: Thu, 19 Nov 2015 12:43:41 +0000
-Message-ID: <bug-92761-8800-z4oI9TDdsX@http.bugs.freedesktop.org/>
+Date: Thu, 19 Nov 2015 12:44:08 +0000
+Message-ID: <bug-92761-8800-8Dyz4ZS2Bs@http.bugs.freedesktop.org/>
 References: <bug-92761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1261115537=="
+Content-Type: multipart/mixed; boundary="===============0560133991=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,28 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1261115537==
-Content-Type: multipart/alternative; boundary="1447937021.AEcd3.12548"; charset="UTF-8"
+--===============0560133991==
+Content-Type: multipart/alternative; boundary="1447937048.A0c277C85.12548"; charset="UTF-8"
 
 
---1447937021.AEcd3.12548
-Date: Thu, 19 Nov 2015 12:43:41 +0000
+--1447937048.A0c277C85.12548
+Date: Thu, 19 Nov 2015 12:44:08 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92761
 
---- Comment #3 from ascanio.alba7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 119934
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119934&action=edit
-xrandr
+--- Comment #4 from ascanio.alba7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 119935
+  --> https://bugs.freedesktop.org/attachment.cgi?id=119935&action=edit
+Xorg.0.log
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447937021.AEcd3.12548
-Date: Thu, 19 Nov 2015 12:43:41 +0000
+--1447937048.A0c277C85.12548
+Date: Thu, 19 Nov 2015 12:44:08 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -56,15 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761#c3">Comment # 3</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761#c4">Comment # 4</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92761">bug 92761</a>
               from <span class="vcard"><a class="email" href="mailto:ascanio.alba7&#64;gmail.com" title="ascanio.alba7&#64;gmail.com">ascanio.alba7&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119934" name="attach_119934" title="xrandr">attachment 119934</a> <a href="attachment.cgi?id=119934&amp;action=edit" title="xrandr">[details]</a></span>
-xrandr</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=119935" name="attach_119935" title="Xorg.0.log">attachment 119935</a> <a href="attachment.cgi?id=119935&amp;action=edit" title="Xorg.0.log">[details]</a></span>
+Xorg.0.log</pre>
         </div>
       </p>
       <hr>
@@ -76,9 +76,9 @@ xrandr</pre>
     </body>
 </html>
 
---1447937021.AEcd3.12548--
+--1447937048.A0c277C85.12548--
 
---===============1261115537==
+--===============0560133991==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -88,4 +88,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1261115537==--
+--===============0560133991==--
