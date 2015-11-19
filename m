@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92761] [NVF0] dmesg full of nouveau E[
  PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)
-Date: Thu, 19 Nov 2015 12:54:42 +0000
-Message-ID: <bug-92761-8800-yuAJ51t9FD@http.bugs.freedesktop.org/>
+Date: Thu, 19 Nov 2015 12:56:38 +0000
+Message-ID: <bug-92761-8800-aT9e5sGSQY@http.bugs.freedesktop.org/>
 References: <bug-92761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2028227128=="
+Content-Type: multipart/mixed; boundary="===============0104843338=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,34 +21,33 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============2028227128==
-Content-Type: multipart/alternative; boundary="1447937684.33A8C7E51.16275"; charset="UTF-8"
+--===============0104843338==
+Content-Type: multipart/alternative; boundary="1447937798.Ce7a3e1.17180"; charset="UTF-8"
 
 
---1447937684.33A8C7E51.16275
-Date: Thu, 19 Nov 2015 12:54:44 +0000
+--1447937798.Ce7a3e1.17180
+Date: Thu, 19 Nov 2015 12:56:38 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92761
 
---- Comment #5 from ascanio.alba7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Created attachment 119937
-  --> https://bugs.freedesktop.org/attachment.cgi?id=119937&action=edit
-mmiotrace output
+--- Comment #6 from ascanio.alba7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+1. Using nvidia 352.63 to generate mmiotrace.
 
-mmiotrace output
+2. This card locks up with gdm -> desktop (wayland or X)
+a. gdm starts desktop and immediately returns to gdm
+b. 2nd attempt to start desktop usually results in a hard lockup - alt-sysrq
+works
 
-Thanks for your patience.
-
-Waited for nvidia Xorg 1.18 ABI 20 compatiblity
+3. lightdm -> X is ok
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1447937684.33A8C7E51.16275
-Date: Thu, 19 Nov 2015 12:54:44 +0000
+--1447937798.Ce7a3e1.17180
+Date: Thu, 19 Nov 2015 12:56:38 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -62,21 +61,21 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761#c5">Comment # 5</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761#c6">Comment # 6</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92761">bug 92761</a>
               from <span class="vcard"><a class="email" href="mailto:ascanio.alba7&#64;gmail.com" title="ascanio.alba7&#64;gmail.com">ascanio.alba7&#64;gmail.com</a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=119937" name="attach_119937" title="mmiotrace output">attachment 119937</a> <a href="attachment.cgi?id=119937&amp;action=edit" title="mmiotrace output">[details]</a></span>
-mmiotrace output
+        <pre>1. Using nvidia 352.63 to generate mmiotrace.
 
-mmiotrace output
+2. This card locks up with gdm -&gt; desktop (wayland or X)
+a. gdm starts desktop and immediately returns to gdm
+b. 2nd attempt to start desktop usually results in a hard lockup - alt-sysrq
+works
 
-Thanks for your patience.
-
-Waited for nvidia Xorg 1.18 ABI 20 compatiblity</pre>
+3. lightdm -&gt; X is ok</pre>
         </div>
       </p>
       <hr>
@@ -88,9 +87,9 @@ Waited for nvidia Xorg 1.18 ABI 20 compatiblity</pre>
     </body>
 </html>
 
---1447937684.33A8C7E51.16275--
+--1447937798.Ce7a3e1.17180--
 
---===============2028227128==
+--===============0104843338==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +99,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============2028227128==--
+--===============0104843338==--
