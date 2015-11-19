@@ -1,10 +1,10 @@
-From: Richard PALO <richard.palo-GANU6spQydw@public.gmane.org>
+From: Richard PALO <richard-S783fYmB3Ccdnm+yROfE0A@public.gmane.org>
 Subject: PATCH: Sense if git should be used (for tarball) and if
- typeof needs to be __typeof__
-Date: Thu, 19 Nov 2015 21:57:16 +0100
-Message-ID: <564E37AC.8080609@free.fr>
+ typeof needs, to be __typeof__
+Date: Thu, 19 Nov 2015 19:38:52 +0100
+Message-ID: <564E173C.1070105@netbsd.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="------------020602050000020906060903"
+Content-Type: multipart/mixed; boundary="------------040509030301090303080203"
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -19,7 +19,7 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 This is a multi-part message in MIME format.
---------------020602050000020906060903
+--------------040509030301090303080203
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
@@ -38,8 +38,7 @@ cheers
 Richard PALO
 
 
-
---------------020602050000020906060903
+--------------040509030301090303080203
 Content-Type: text/x-patch;
  name="0001-Sense-if-git-should-be-used-for-tarball-and-if-typeo.patch"
 Content-Transfer-Encoding: 7bit
@@ -89,8 +88,7 @@ index 9c77f94..71482ec 100644
 2.6.3
 
 
-
---------------020602050000020906060903
+--------------040509030301090303080203
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -100,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---------------020602050000020906060903--
+--------------040509030301090303080203--
