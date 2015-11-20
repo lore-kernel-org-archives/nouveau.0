@@ -1,12 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93004] Guild Wars 2 crash on nouveau DX11 cards
-Date: Fri, 20 Nov 2015 07:15:02 +0000
-Message-ID: <bug-93004-8800-Ws56Q2o6zu@http.bugs.freedesktop.org/>
-References: <bug-93004-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: NV50 compute support questions
+Date: Fri, 20 Nov 2015 11:36:58 +0100
+Message-ID: <564EF7CA.4090809@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1338932053=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93004-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,90 +15,29 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1338932053==
-Content-Type: multipart/alternative; boundary="1448003701.ADF651470.30030"; charset="UTF-8"
-
-
---1448003701.ADF651470.30030
-Date: Fri, 20 Nov 2015 07:15:01 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93004
-
---- Comment #3 from Patrick Rudolph <siro-afHDD34IFkZrovVCs/uTlw@public.gmane.org> ---
-For the crash that occurs in nvc0_clear() I found it is likely a use after
-free.
-It accesses a pipe_resource that has been destroyed, but is still bound.
-The correct behaviour of nine would be to call set_vertex_buffers(..., NULL)
-first and then destroy the resource.
-What does OpenGL on vertexbuffer destruction ?
-Question is why does it work on other drivers, like R600 ?
-
-For the second crash in nvc0_draw_vbo() I'm still investigating.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1448003701.ADF651470.30030
-Date: Fri, 20 Nov 2015 07:15:01 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004#c3">Comment # 3</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004">bug 93004</a>
-              from <span class="vcard"><a class="email" href="mailto:siro&#64;das-labor.org" title="Patrick Rudolph &lt;siro&#64;das-labor.org&gt;"> <span class="fn">Patrick Rudolph</span></a>
-</span></b>
-        <pre>For the crash that occurs in nvc0_clear() I found it is likely a use after
-free.
-It accesses a pipe_resource that has been destroyed, but is still bound.
-The correct behaviour of nine would be to call set_vertex_buffers(..., NULL)
-first and then destroy the resource.
-What does OpenGL on vertexbuffer destruction ?
-Question is why does it work on other drivers, like R600 ?
-
-For the second crash in nvc0_draw_vbo() I'm still investigating.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448003701.ADF651470.30030--
-
---===============1338932053==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1338932053==--
+SGkgU2FtdWFsLCBldCBhbCwKCkluIGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9tZXNhL21l
+c2EvY29tbWl0L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdT9pZD1mZjcyNDQwYjQwMjExMzI2
+ZWRhMTE4MjMyZmFiZDUzOTY1NDEwYWZkCnlvdSB3cml0ZTogIlRoaXMgY29tcHV0ZSBzdXBwb3J0
+IGhhcyBiZWVuIHRlc3RlZCBieQpQaWVycmUgTW9yZWF1IGFuZCBteXNlbGYgd2l0aCBzb21lIGNv
+bXB1dGUga2VybmVscy4iCgpDYW4geW91IHByb3ZpZGUgdGVzdGluZyBpbnN0cnVjdGlvbnMgKGFu
+ZCB0aGUKbmVjZXNzYXJ5IGZpbGVzKSBzbyB0aGF0IEkgY2FuIHRyeSB0byByZXByb2R1Y2UKeW91
+ciB0ZXN0cyA/CgpBbmQgb25jZSBJJ3ZlIHJlcHJvZHVjZWQgeW91ciB0ZXN0cywgdGhlIG5leHQK
+cXVlc3Rpb24gaXMgd2hlcmUgLyBob3cgZGlkIHlvdSBnZXQgdGhlIGNvbXB1dGUKa2VybmVscyBm
+b3IgdGVzdGluZy4gSSBndWVzcyB5b3UgbWFudWFsbHkgd3JvdGUgdGhlbSA/CgpBcyB5b3Uga25v
+dyBJJ20gd29ya2luZyBvbiBhIGxsdm0gdGdzaSBiYWNrZW5kLAppdCBhY3R1YWxseSBwcm9kdWNl
+cyBzb21lIG91dHB1dCBub3csIGlmIHlvdSB3YW50CnRvIHRha2UgYSBwZWVrIGl0IGxpdmVzIGhl
+cmU6Cmh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+andyZGVnb2VkZS9sbHZtCgpCZWZvcmUg
+d29ya2luZyBmdXJ0aGVyIG9uIHRoaXMgSSB3YW50IHRvIHRha2UKYSBib3R0b20gdXAgYXBwcm9h
+Y2gsIHNvIEkgd2FudCB0byBmaXJzdCBtYWtlCnN1cmUgd2UndmUgd29ya2luZyBUR1NJIC0+IGNv
+bXB1dGUta2VybmVsIGFuZApjb21wdXRlLWtlcm5lbCAtPiBoYXJkd2FyZSBzdGVwcy4gU28gdGhl
+IG5leHQKcXVlc3Rpb24gaXMsIGRvIHlvdSBrbm93IGlmIHdlIGNhbiBnbyBmcm9tCihtYW51YWxs
+eSB3cml0dGVuKSBUR1NJIHRvIGEgY29tcHV0ZS1rZXJuZWwKdXNpbmcgc2F5IG5vdXZlYXUtY29t
+cGlsZXIgPwoKQW5kIGlmIG5vdCwgZG8geW91IGtub3cgd2hhdCBpcyBtaXNzaW5nIHRvIGRvCnRo
+aXM/CgpUaGFua3MgJiBSZWdhcmRzLAoKSGFucwpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vbm91dmVhdQo=
