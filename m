@@ -1,201 +1,177 @@
-From: Ilia Mirkin <imirkin@alum.mit.edu>
-Subject: Re: nouveau: iowrite32 oops & warning at drivers/gpu/drm/nouveau/nouveau_fence.c:198
-Date: Sun, 22 Nov 2015 15:49:13 -0500
-Message-ID: <CAKb7Uvh+sGQJgEYb3SzVDH-YytX7WsU=EQnUEeZeWR-haHGdfA@mail.gmail.com>
-References: <CA+ydwtq3CT5iswJbWCBGN9_KqKANbaoeZdzvjm1fe9aiE=VQ-g@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
+	working)
+Date: Sun, 22 Nov 2015 23:26:43 +0000
+Message-ID: <bug-92961-8800-SjBPVWOW0s@http.bugs.freedesktop.org/>
+References: <bug-92961-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Return-path: <trinity-owner@vger.kernel.org>
-In-Reply-To: <CA+ydwtq3CT5iswJbWCBGN9_KqKANbaoeZdzvjm1fe9aiE=VQ-g@mail.gmail.com>
-Sender: trinity-owner@vger.kernel.org
-To: Tommi Rantala <tt.rantala@gmail.com>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, LKML <linux-kernel@vger.kernel.org>, DRI Development <dri-devel@lists.freedesktop.org>, trinity@vger.kernel.org
+Content-Type: multipart/mixed; boundary="===============0045241441=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-Hi Tommi,
 
-Not sure if these apply here but there are a couple of outstanding
-locking fixes available in
-http://cgit.freedesktop.org/~darktama/nouveau/ -- specifically these
-two:
-
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=2f3a56ad019e378a352e9cb7a559f478826f1a87
-http://cgit.freedesktop.org/~darktama/nouveau/commit/?id=4179b15c6e9fcfb253e811e5477debe46c84c395
-
-Not sure if they affect this particular issue, but thought I'd point
-it out. Are you fuzzing with multiple threads, or just one at a time?
-Do you have a branch somewhere public with the changes to add nouveau
-ioctl support to trinity?
-
-Cheers,
-
-  -ilia
+--===============0045241441==
+Content-Type: multipart/alternative; boundary="1448234803.45e84D41.23860"; charset="UTF-8"
 
 
-On Sun, Nov 22, 2015 at 3:30 PM, Tommi Rantala <tt.rantala@gmail.com> wrote:
-> Hello,
->
-> I'm seeing this warning and oops when trying to fuzz linus
-> v4.4-rc1-290-g3ad5d7e with trinity.
->
-> ------------[ cut here ]------------
-> WARNING: CPU: 1 PID: 4308 at
-> drivers/gpu/drm/nouveau/nouveau_fence.c:198
-> nouveau_fence_context_new+0x22e/0x270()
-> CPU: 1 PID: 4308 Comm: trinity-c19 Tainted: G    B           4.4.0-rc1+ #1
-> Hardware name: Dell Inc. OptiPlex 990/0D6H9T, BIOS A06 07/25/2011
-> 0000000000000009 ffff8800ac4bf8b0 ffffffff818a802e 0000000000000000
-> ffff8800ac4bf8f0 ffffffff8111bc75 ffffffff820170be ffff8800ac9c1050
-> ffff88015b0e8cc0 ffff8800ca703070 ffff88016f432130 ffff8800afb675f0
-> Call Trace:
-> [<ffffffff818a802e>] dump_stack+0x4b/0x6d
-> [<ffffffff8111bc75>] warn_slowpath_common+0x95/0xd0
-> [<ffffffff820170be>] ? nouveau_fence_context_new+0x22e/0x270
-> [<ffffffff8111be45>] warn_slowpath_null+0x15/0x20
-> [<ffffffff820170be>] nouveau_fence_context_new+0x22e/0x270
-> [<ffffffff82016e90>] ? nouveau_fence_context_free+0x20/0x20
-> [<ffffffff8130a06e>] ? kasan_kmalloc+0x5e/0x70
-> [<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
-> [<ffffffff8201a263>] ? nv84_fence_context_new+0x73/0x2d0
-> [<ffffffff8201a28d>] nv84_fence_context_new+0x9d/0x2d0
-> [<ffffffff8201b351>] nvc0_fence_context_new+0x11/0x70
-> [<ffffffff820155f1>] nouveau_channel_new+0x7e1/0xca0
-> [<ffffffff8130fc6c>] ? create_object+0x28c/0x4d0
-> [<ffffffff82014e10>] ? nouveau_channel_prep+0x4b0/0x4b0
-> [<ffffffff8130fde6>] ? create_object+0x406/0x4d0
-> [<ffffffff8130f9e0>] ? kmemleak_disable+0x70/0x70
-> [<ffffffff82012d57>] ? nouveau_abi16_get+0x37/0x80
-> [<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
-> [<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
-> [<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
-> [<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
-> [<ffffffff8201333c>] ? nouveau_abi16_ioctl_channel_alloc+0xec/0x4d0
-> [<ffffffff820133fe>] nouveau_abi16_ioctl_channel_alloc+0x1ae/0x4d0
-> [<ffffffff82013250>] ? nouveau_abi16_ioctl_setparam+0x10/0x10
-> [<ffffffff81a85ccb>] drm_ioctl+0x20b/0x6b0
-> [<ffffffff811bfc66>] ? debug_lockdep_rcu_enabled+0x26/0x40
-> [<ffffffff81a85ac0>] ? drm_ioctl_permit+0x120/0x120
-> [<ffffffff8118e23d>] ? trace_hardirqs_on+0xd/0x10
-> [<ffffffff81fe9f99>] nouveau_drm_ioctl+0x99/0x110
-> [<ffffffff813342be>] do_vfs_ioctl+0x4ae/0x800
-> [<ffffffff8180a3d9>] ? selinux_file_ioctl+0x1f9/0x2d0
-> [<ffffffff81333e10>] ? ioctl_preallocate+0x140/0x140
-> [<ffffffff8180a1e0>] ? selinux_parse_skb.constprop.42+0x7c0/0x7c0
-> [<ffffffff811dbdcb>] ? do_setitimer+0x28b/0x420
-> [<ffffffff811dbfe5>] ? alarm_setitimer+0x85/0xe0
-> [<ffffffff811dbf60>] ? do_setitimer+0x420/0x420
-> [<ffffffff81334684>] SyS_ioctl+0x74/0x80
-> [<ffffffff82f34ed7>] entry_SYSCALL_64_fastpath+0x12/0x6f
-> ---[ end trace 780046761495600a ]---
->
->
->
-> BUG: unable to handle kernel paging request at ffffc90001880000
-> IP: [<ffffffff818d20be>] iowrite32+0x2e/0x40
-> PGD 174f36067 PUD 174f37067 PMD 16a13b067 PTE 0
-> Oops: 0002 [#1] SMP KASAN
-> CPU: 3 PID: 4638 Comm: trinity-c19 Tainted: G    B   W       4.4.0-rc1+ #1
-> Hardware name: Dell Inc. OptiPlex 990/0D6H9T, BIOS A06 07/25/2011
-> task: ffff8800ab8e1a00 ti: ffff8800ab6c0000 task.ti: ffff8800ab6c0000
-> RIP: 0010:[<ffffffff818d20be>]  [<ffffffff818d20be>] iowrite32+0x2e/0x40
-> RSP: 0018:ffff8800ab6c75f8  EFLAGS: 00010292
-> RAX: ffffed001940c2b8 RBX: ffffc90001880000 RCX: ffff8800ca0615c7
-> RDX: 0000000000000000 RSI: ffffc90001880000 RDI: 0000000000000000
-> RBP: ffff8800ab6c7618 R08: 0000000000000000 R09: 0000000000000000
-> R10: 0000000000000000 R11: ffffed001443979e R12: ffff8800ca061590
-> R13: 0000000000000000 R14: ffff880152553390 R15: ffffffff833e0220
-> FS:  00007f48be30a700(0000) GS:ffff880175800000(0000) knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: ffffc90001880000 CR3: 00000000ab455000 CR4: 00000000000406e0
-> Stack:
-> ffffffff81f58f8b 0000000000080004 ffff8800ca061590 ffff880169d3a4c0
-> ffff8800ab6c76b8 ffffffff81fa3b68 0000000000000000 00000141c1800000
-> ffffffff00000001 ffff880000006000 ffffffff00001000 ffff8800ab6c7820
-> Call Trace:
-> [<ffffffff81f58f8b>] ? nvkm_instobj_wr32+0x2b/0x40
-> [<ffffffff81fa3b68>] gf100_fifo_gpfifo_new+0x528/0xa50
-> [<ffffffff81f94b58>] nvkm_fifo_class_new+0x58/0x70
-> [<ffffffff81f94b00>] ? nvkm_fifo_uevent_ctor+0x50/0x50
-> [<ffffffff81f7bdf3>] nvkm_udevice_child_new+0x63/0x80
-> [<ffffffff81ed1aea>] nvkm_ioctl_new+0x2aa/0x5e0
-> [<ffffffff8130fa6c>] ? create_object+0x8c/0x4d0
-> [<ffffffff810b584a>] ? save_stack_address+0x6a/0x70
-> [<ffffffff81ed1840>] ? nvkm_ioctl_del+0x110/0x110
-> [<ffffffff81f7bd90>] ? nvkm_udevice_map+0x90/0x90
-> [<ffffffff8130fde6>] ? create_object+0x406/0x4d0
-> [<ffffffff81ed282b>] nvkm_ioctl+0x1fb/0x510
-> [<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
-> [<ffffffff81fedce0>] ? nvkm_client_map+0x10/0x10
-> [<ffffffff81fedced>] nvkm_client_ioctl+0xd/0x10
-> [<ffffffff81eccf6d>] nvif_object_ioctl+0xad/0xe0
-> [<ffffffff81ecdb40>] nvif_object_init+0x160/0x1e0
-> [<ffffffff82014f9d>] nouveau_channel_new+0x18d/0xca0
-> [<ffffffff8130fc6c>] ? create_object+0x28c/0x4d0
-> [<ffffffff82014e10>] ? nouveau_channel_prep+0x4b0/0x4b0
-> [<ffffffff8130fde6>] ? create_object+0x406/0x4d0
-> [<ffffffff8130f9e0>] ? kmemleak_disable+0x70/0x70
-> [<ffffffff82012d57>] ? nouveau_abi16_get+0x37/0x80
-> [<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
-> [<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
-> [<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
-> [<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
-> [<ffffffff8201333c>] ? nouveau_abi16_ioctl_channel_alloc+0xec/0x4d0
-> [<ffffffff820133fe>] nouveau_abi16_ioctl_channel_alloc+0x1ae/0x4d0
-> [<ffffffff82013250>] ? nouveau_abi16_ioctl_setparam+0x10/0x10
-> [<ffffffff81a85ccb>] drm_ioctl+0x20b/0x6b0
-> [<ffffffff811bfc66>] ? debug_lockdep_rcu_enabled+0x26/0x40
-> [<ffffffff81a85ac0>] ? drm_ioctl_permit+0x120/0x120
-> [<ffffffff8118e23d>] ? trace_hardirqs_on+0xd/0x10
-> [<ffffffff81fe9f99>] nouveau_drm_ioctl+0x99/0x110
-> [<ffffffff813342be>] do_vfs_ioctl+0x4ae/0x800
-> [<ffffffff8180a3d9>] ? selinux_file_ioctl+0x1f9/0x2d0
->  [<ffffffff81333e10>] ? ioctl_preallocate+0x140/0x140
-> [<ffffffff8180a1e0>] ? selinux_parse_skb.constprop.42+0x7c0/0x7c0
-> [<ffffffff811dbdcb>] ? do_setitimer+0x28b/0x420
-> [<ffffffff811dbfe5>] ? alarm_setitimer+0x85/0xe0
-> [<ffffffff811dbf60>] ? do_setitimer+0x420/0x420
-> [<ffffffff81334684>] SyS_ioctl+0x74/0x80
-> [<ffffffff82f34ed7>] entry_SYSCALL_64_fastpath+0x12/0x6f
-> Code: ff ff 03 00 77 25 48 81 fe 00 00 01 00 76 07 0f b7 d6 89 f8 ef
-> c3 55 48 89 f7 48 c7 c6 e0 39 1e 83 48 89 e5 e8 84 fd ff ff 5d c3 <89>
-> 3e c3 66 66 66 66 66 66 2e 0f 1f 84 00 00 00 00 00 48 81 fe
-> RIP  [<ffffffff818d20be>] iowrite32+0x2e/0x40
-> RSP <ffff8800ab6c75f8>
-> CR2: ffffc90001880000
-> ---[ end trace 7800467614956062 ]---
->
->
-> Some nouveau messages from the boot, if this helps:
->
-> nouveau 0000:01:00.0: NVIDIA GF119 (0d90a0a1)
-> nouveau 0000:01:00.0: bios: version 75.19.55.00.02
-> nouveau 0000:01:00.0: fb: 1024 MiB DDR3
-> [TTM] Zone  kernel: Available graphics memory: 2590256 kiB
-> [TTM] Zone   dma32: Available graphics memory: 2097152 kiB
-> [TTM] Initializing pool allocator
-> [TTM] Initializing DMA pool allocator
-> nouveau 0000:01:00.0: DRM: VRAM: 1024 MiB
-> nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
-> nouveau 0000:01:00.0: DRM: TMDS table version 2.0
-> nouveau 0000:01:00.0: DRM: DCB version 4.0
-> nouveau 0000:01:00.0: DRM: DCB outp 00: 02000300 00000000
-> nouveau 0000:01:00.0: DRM: DCB outp 01: 01000302 00020030
-> nouveau 0000:01:00.0: DRM: DCB outp 02: 02011362 00020010
-> nouveau 0000:01:00.0: DRM: DCB outp 03: 04022310 00000000
-> nouveau 0000:01:00.0: DRM: DCB conn 00: 00001030
-> nouveau 0000:01:00.0: DRM: DCB conn 01: 00002161
-> nouveau 0000:01:00.0: DRM: DCB conn 02: 00000200
-> [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
-> [drm] Driver supports precise vblank timestamp query.
-> nouveau 0000:01:00.0: DRM: MM: using COPY0 for buffer copies
-> nouveau 0000:01:00.0: No connectors reported connected with modes
-> [drm] Cannot find any crtc or sizes - going 1024x768
-> nouveau 0000:01:00.0: DRM: allocated 1024x768 fb: 0x60000, bo ffff880169d36e40
-> fbcon: nouveaufb (fb0) is primary device
-> Console: switching to colour frame buffer device 128x48
-> nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
-> [drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/dri-devel
+--1448234803.45e84D41.23860
+Date: Sun, 22 Nov 2015 23:26:43 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
+
+--- Comment #3 from Viorel-C=C4=83t=C4=83lin R=C4=83pi=C8=9Beanu <rapiteanu=
+.catalin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+(In reply to ruben from comment #0)
+> Created attachment 119677 [details]
+> dmesg output from boot onwards
+>=20
+> The desktop freezes consistently after a few minutes using the nouveau
+> driver.
+>=20
+> Only the mouse can still be used. The system is still fully  operational =
+and
+> reachable via ssh.
+
+I have the same behaviour on a Latitude e6420 with NVIDIA Corporation GF119M
+[NVS 4200M] GPU.
+
+> Have you noticed anything that may cause the freeze, like starting a brow=
+ser,=20
+> running some OpenGL application, or even some fancy compositor animation?
+
+No. The crashes happen at random intervals. Most of the time there isn't any
+intensive application opened when it happens. Regarding the compositor, in =
+my
+case, the freeze happens even if there isn't any actively used.
+The software versions I'm using are:
+xf86-video-nouveau 1.0.11+31+g1ff13a9
+mesa 11.0.6
+xorg-server 1.18.0
+plasma-workspace 5.4.95 (happened with a stable version as well 5.4.3)
+
+If you connect via ssh, you can see on the dmesg can be seen the following
+error:
+> nouveau E[   PFIFO][0000:01:00.0] INTR 0x00800000
+most of the time preceaded by:
+> nouveau W[   PFIFO][0000:01:00.0] INTR 0x01000000: 0x00000005
+
+Also the full trace of this failure can be observed on the Xorg log.
+I've attached all logs on the raported 'Bug 71659'.
+
+--=20
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1448234803.45e84D41.23860
+Date: Sun, 22 Nov 2015 23:26:43 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c3">Comment=
+ # 3</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+rapiteanu.catalin&#64;gmail.com" title=3D"Viorel-C=C4=83t=C4=83lin R=C4=83p=
+i=C8=9Beanu &lt;rapiteanu.catalin&#64;gmail.com&gt;"> <span class=3D"fn">Vi=
+orel-C=C4=83t=C4=83lin R=C4=83pi=C8=9Beanu</span></a>
+</span></b>
+        <pre>(In reply to ruben from <a href=3D"show_bug.cgi?id=3D92961#c0"=
+>comment #0</a>)
+<span class=3D"quote">&gt; Created <span class=3D""><a href=3D"attachment.c=
+gi?id=3D119677" name=3D"attach_119677" title=3D"dmesg output from boot onwa=
+rds">attachment 119677</a> <a href=3D"attachment.cgi?id=3D119677&amp;action=
+=3Dedit" title=3D"dmesg output from boot onwards">[details]</a></span>
+&gt; dmesg output from boot onwards
+&gt;=20
+&gt; The desktop freezes consistently after a few minutes using the nouveau
+&gt; driver.
+&gt;=20
+&gt; Only the mouse can still be used. The system is still fully  operation=
+al and
+&gt; reachable via ssh.</span >
+
+I have the same behaviour on a Latitude e6420 with NVIDIA Corporation GF119M
+[NVS 4200M] GPU.
+
+<span class=3D"quote">&gt; Have you noticed anything that may cause the fre=
+eze, like starting a browser,=20
+&gt; running some OpenGL application, or even some fancy compositor animati=
+on?</span >
+
+No. The crashes happen at random intervals. Most of the time there isn't any
+intensive application opened when it happens. Regarding the compositor, in =
+my
+case, the freeze happens even if there isn't any actively used.
+The software versions I'm using are:
+xf86-video-nouveau 1.0.11+31+g1ff13a9
+mesa 11.0.6
+xorg-server 1.18.0
+plasma-workspace 5.4.95 (happened with a stable version as well 5.4.3)
+
+If you connect via ssh, you can see on the dmesg can be seen the following
+error:
+<span class=3D"quote">&gt; nouveau E[   PFIFO][0000:01:00.0] INTR 0x0080000=
+0</span >
+most of the time preceaded by:
+<span class=3D"quote">&gt; nouveau W[   PFIFO][0000:01:00.0] INTR 0x0100000=
+0: 0x00000005</span >
+
+Also the full trace of this failure can be observed on the Xorg log.
+I've attached all logs on the raported '<a class=3D"bz_bug_link=20
+          bz_status_NEW "
+   title=3D"NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unha=
+ndled status 0x00800000"
+   href=3D"show_bug.cgi?id=3D71659">Bug 71659</a>'.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448234803.45e84D41.23860--
+
+--===============0045241441==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0045241441==--
