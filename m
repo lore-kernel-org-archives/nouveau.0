@@ -1,9 +1,9 @@
 From: Nouveau <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
 Subject: Fw: new message
-Date: Sun, 22 Nov 2015 04:52:37 -0800
-Message-ID: <00001a3679ba$3ed72755$53a180f5$@derocher.org>
+Date: Sun, 22 Nov 2015 04:52:42 -0800
+Message-ID: <0000420484b2$bf0e76ed$5b6a6c81$@derocher.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1477696444=="
+Content-Type: multipart/mixed; boundary="===============0969527329=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -15,19 +15,19 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Michel Dnzer <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, Mike Lothian <mike-4+n8WJKc9ve9FHfhHBbuYA@public.gmane.org>, Mikko Perttunen <mperttunen-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Nicolas Gddel <mailinglists-WO/VGsxbqFypxiQzEpw4SQ@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: Nouveau <Nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>, open-gpu-doc <open-gpu-doc-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>, Ortwin Glck <odi-L693kI9kcNY@public.gmane.org>, Pali Rohr <pali.rohar-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>, Pali Rohr <public-pali.rohar-Re5JQEeQqe8AvxtiuMwx3w-wOFGN7rlS/M9smdsby/KFg@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
 This is a multipart message in MIME format.
 
---===============1477696444==
+--===============0969527329==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_2666D58E.6A97E7CA"
+	boundary="----=_NextPart_000_0001_6210BC3F.7168EF42"
 Content-Language: en-us
 
 This is a multipart message in MIME format.
 
-------=_NextPart_000_0001_2666D58E.6A97E7CA
+------=_NextPart_000_0001_6210BC3F.7168EF42
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
@@ -35,14 +35,14 @@ Hello!
 
  
 
-New message, please read <http://encierroexhibition.com/laughed.php?j>
+New message, please read <http://suppleshop.eu/business.php?0114>
 
  
 
 Nouveau
 
 
-------=_NextPart_000_0001_2666D58E.6A97E7CA
+------=_NextPart_000_0001_6210BC3F.7168EF42
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,15 +96,15 @@ div.WordSection1
 C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
 span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
 an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><b>New message, please read</b> <a href=3D"http://encier=
-roexhibition.com/laughed.php?j">http://encierroexhibition.com/laughed.=
-php</a><o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><=
-o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Nou=
-veau<o:p></o:p></span></p></div></body></html>
+ lang=3DEN-US><b>New message, please read</b> <a href=3D"http://supple=
+shop.eu/business.php?0114">http://suppleshop.eu/business.php</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o=
+:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Nouveau<o:p></o:=
+p></span></p></div></body></html>
 
-------=_NextPart_000_0001_2666D58E.6A97E7CA--
+------=_NextPart_000_0001_6210BC3F.7168EF42--
 
---===============1477696444==
+--===============0969527329==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -114,4 +114,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1477696444==--
+--===============0969527329==--
