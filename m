@@ -1,13 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92971] [GF110] KDE plasma locks randomly due to
- crash of nouveau driver
-Date: Sun, 22 Nov 2015 07:56:46 +0000
-Message-ID: <bug-92971-8800-Sj50BdKtg4@http.bugs.freedesktop.org/>
-References: <bug-92971-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 93065] New: nouveau kernel module needs to increase
+ runpm use counter more often
+Date: Sun, 22 Nov 2015 11:06:17 +0000
+Message-ID: <bug-93065-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1695749519=="
+Content-Type: multipart/mixed; boundary="===============1403835735=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92971-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,132 +19,163 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1695749519==
-Content-Type: multipart/alternative; boundary="1448179006.B5a57d01.2843"; charset="UTF-8"
+--===============1403835735==
+Content-Type: multipart/alternative; boundary="1448190377.eCCb3Bb41.31213"; charset="UTF-8"
 
 
---1448179006.B5a57d01.2843
-Date: Sun, 22 Nov 2015 07:56:46 +0000
+--1448190377.eCCb3Bb41.31213
+Date: Sun, 22 Nov 2015 11:06:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92971
+https://bugs.freedesktop.org/show_bug.cgi?id=93065
 
-Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> changed:
+            Bug ID: 93065
+           Summary: nouveau kernel module needs to increase runpm use
+                    counter more often
+           Product: xorg
+           Version: git
+          Hardware: Other
+                OS: All
+            Status: NEW
+          Severity: normal
+          Priority: medium
+         Component: Driver/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org
+        QA Contact: xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
 
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
+when the driver goes into an error state (waiting for fifo to unmess itself or
+other things), where the user just kills the hang process, nouveau decides to
+suspend the gpu allthough some kworker are inside some while loops and waiting
+for conditions to be true.
 
---- Comment #9 from Philippe Cond=C3=A9 <conde.philippe-AgBVmzD5pcezQB+pC5nmwQ@public.gmane.org> ---
-Hello,
+Because the card went offline reading stuff through mmio hangs and leaves the
+kernel in a really strange state, where usb/network/... can just go corrupt.
 
-I have reinstalled the full system with the last snapchot of Opensuse
-tumbleweed:
-20151118 "Linux hpprol2 4.3.0-2-xen #1 SMP Sat Nov 14 16:19:19 UTC 2015
-(734b32c) x86_64 x86_64 x86_64 GNU/Linux"=20
-and the problem seems to have been solved. No more problem with corrupted
-screen or locking.
+That's why the nouveau driver should add more points where the card is marked
+as in use, so that runpm won't suspend the card allthough it really should not.
 
-So this  bug can be closed
-Thanks for your help
-Philippe
-
---=20
+-- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1448179006.B5a57d01.2843
-Date: Sun, 22 Nov 2015 07:56:46 +0000
+--1448190377.eCCb3Bb41.31213
+Date: Sun, 22 Nov 2015 11:06:17 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
 <html>
     <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
+      <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:conde.phi=
-lippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philippe&#64;sk=
-ynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
-</span> changed
-              <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GF110] KDE plasma locks randomly due to crash=
- of nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971">bug 92971<=
-/a>
-          <br>
-             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau kernel module needs to increase runpm use counter more often"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93065">93065</a>
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
+        <tr>
+          <th>Summary</th>
+          <td>nouveau kernel module needs to increase runpm use counter more often
+          </td>
+        </tr>
 
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
+        <tr>
+          <th>Product</th>
+          <td>xorg
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>git
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>Other
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>All
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>normal
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Driver/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>freedesktop&#64;karolherbst.de
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>xorg-team&#64;lists.x.org
+          </td>
+        </tr></table>
       <p>
         <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GF110] KDE plasma locks randomly due to crash=
- of nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971#c9">Comment=
- # 9</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [GF110] KDE plasma locks randomly due to crash=
- of nouveau driver"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92971">bug 92971<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-conde.philippe&#64;skynet.be" title=3D"Philippe Cond=C3=A9 &lt;conde.philip=
-pe&#64;skynet.be&gt;"> <span class=3D"fn">Philippe Cond=C3=A9</span></a>
-</span></b>
-        <pre>Hello,
+        <pre>when the driver goes into an error state (waiting for fifo to unmess itself or
+other things), where the user just kills the hang process, nouveau decides to
+suspend the gpu allthough some kworker are inside some while loops and waiting
+for conditions to be true.
 
-I have reinstalled the full system with the last snapchot of Opensuse
-tumbleweed:
-20151118 &quot;Linux hpprol2 4.3.0-2-xen #1 SMP Sat Nov 14 16:19:19 UTC 2015
-(734b32c) x86_64 x86_64 x86_64 GNU/Linux&quot;=20
-and the problem seems to have been solved. No more problem with corrupted
-screen or locking.
+Because the card went offline reading stuff through mmio hangs and leaves the
+kernel in a really strange state, where usb/network/... can just go corrupt.
 
-So this  bug can be closed
-Thanks for your help
-Philippe</pre>
+That's why the nouveau driver should add more points where the card is marked
+as in use, so that runpm won't suspend the card allthough it really should not.</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
+      
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1448179006.B5a57d01.2843--
+--1448190377.eCCb3Bb41.31213--
 
---===============1695749519==
+--===============1403835735==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -156,4 +185,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1695749519==--
+--===============1403835735==--
