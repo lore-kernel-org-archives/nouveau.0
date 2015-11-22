@@ -1,128 +1,174 @@
-From: Tommi Rantala <tt.rantala-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: nouveau: BUG: KASAN: slab-out-of-bounds in
-	memcpy+0x1d/0x40
-Date: Sun, 22 Nov 2015 22:18:07 +0200
-Message-ID: <CA+ydwtqui4rDzjJkqwbhKT4XjDRKWBq9PeYBw2Tx1rgz_UL+Qw@mail.gmail.com>
+From: Tommi Rantala <tt.rantala@gmail.com>
+Subject: nouveau: iowrite32 oops & warning at drivers/gpu/drm/nouveau/nouveau_fence.c:198
+Date: Sun, 22 Nov 2015 22:30:34 +0200
+Message-ID: <CA+ydwtq3CT5iswJbWCBGN9_KqKANbaoeZdzvjm1fe9aiE=VQ-g@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: LKML <linux-kernel-u79uwXL29TY76Z2rM5mHXA@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+Content-Type: text/plain; charset=UTF-8
+Return-path: <trinity-owner@vger.kernel.org>
+Sender: trinity-owner@vger.kernel.org
+To: nouveau@lists.freedesktop.org, bskeggs@redhat.com
+Cc: DRI Development <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>, trinity@vger.kernel.org
 List-Id: nouveau.vger.kernel.org
 
-SGVsbG8sCgpJJ20gc2VlaW5nIHRoaXMga2FzYW4gcmVwb3J0IGFmdGVyIGJvb3Rpbmcgd2l0aCBs
-aW51cyB2NC40LXJjMS0yOTAtZzNhZDVkN2UuCgpCVUc6IEtBU0FOOiBzbGFiLW91dC1vZi1ib3Vu
-ZHMgaW4gbWVtY3B5KzB4MWQvMHg0MCBhdCBhZGRyIGZmZmY4ODAxNjllMjFmZDAKUmVhZCBvZiBz
-aXplIDY0IGJ5IHRhc2sga3dvcmtlci8xOjAvMTQKPT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KQlVHIGtt
-YWxsb2MtODE5MiAoTm90IHRhaW50ZWQpOiBrYXNhbjogYmFkIGFjY2VzcyBkZXRlY3RlZAotLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQpEaXNhYmxpbmcgbG9jayBkZWJ1Z2dpbmcgZHVlIHRvIGtlcm5lbCB0
-YWludApJTkZPOiBBbGxvY2F0ZWQgaW4gcmVnaXN0ZXJfZnJhbWVidWZmZXIrMHg0NjYvMHg1NTAg
-YWdlPTMwNzkyIGNwdT0xIHBpZD0xCiAgICAgICBfX19zbGFiX2FsbG9jKzB4NTNiLzB4NTYwCiAg
-ICAgICBfX3NsYWJfYWxsb2MrMHgzZS8weDcwCiAgICAgICBrbWVtX2NhY2hlX2FsbG9jX3RyYWNl
-KzB4MjBmLzB4MjkwCiAgICAgICByZWdpc3Rlcl9mcmFtZWJ1ZmZlcisweDQ2Ni8weDU1MAogICAg
-ICAgZHJtX2ZiX2hlbHBlcl9pbml0aWFsX2NvbmZpZysweDVhMS8weDgwMAogICAgICAgbm91dmVh
-dV9mYmNvbl9pbml0KzB4MTQ4LzB4MTgwCiAgICAgICBub3V2ZWF1X2RybV9sb2FkKzB4NTgzLzB4
-ZjMwCiAgICAgICBkcm1fZGV2X3JlZ2lzdGVyKzB4YjkvMHhkMAogICAgICAgZHJtX2dldF9wY2lf
-ZGV2KzB4MTc2LzB4MzcwCiAgICAgICBub3V2ZWF1X2RybV9wcm9iZSsweDJmMi8weDNjMAogICAg
-ICAgbG9jYWxfcGNpX3Byb2JlKzB4NzUvMHhkMAogICAgICAgcGNpX2RldmljZV9wcm9iZSsweDE5
-Zi8weDFmMAogICAgICAgZHJpdmVyX3Byb2JlX2RldmljZSsweDIwOC8weDZjMAogICAgICAgX19k
-cml2ZXJfYXR0YWNoKzB4YjgvMHhjMAogICAgICAgYnVzX2Zvcl9lYWNoX2RldisweGU2LzB4MTUw
-CiAgICAgICBkcml2ZXJfYXR0YWNoKzB4MjYvMHgzMApJTkZPOiBTbGFiIDB4ZmZmZmVhMDAwNWE3
-ODgwMCBvYmplY3RzPTMgdXNlZD0zIGZwPTB4ICAgICAgICAgIChudWxsKQpmbGFncz0weDIwMDAw
-MDAwMDAwNDA4MApJTkZPOiBPYmplY3QgMHhmZmZmODgwMTY5ZTIwMDAwIEBvZmZzZXQ9MCBmcD0w
-eCAgICAgICAgICAobnVsbCkKT2JqZWN0IGZmZmY4ODAxNjllMjAwMDA6IDAwIDAwIDAwIDAwIDAw
-IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwCjAwICAuLi4uLi4uLi4uLi4uLi4uCk9iamVj
-dCBmZmZmODgwMTY5ZTIwMDEwOiAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAwMCAw
-MCAwMCAwMAowMCAgLi4uLi4uLi4uLi4uLi4uLgouLi4KT2JqZWN0IGZmZmY4ODAxNjllMjBmYzA6
-IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIGZmCmZmICAuLi4uLi4u
-Li4uLi4uLi4uCk9iamVjdCBmZmZmODgwMTY5ZTIwZmQwOiAwMCAwMCAwMCAwMCAwMCAwMCAwMCAw
-MCAwMCAwMCAwMCAwMCAwMCAwMCAwMAowMCAgLi4uLi4uLi4uLi4uLi4uLgpPYmplY3QgZmZmZjg4
-MDE2OWUyMGZlMDogMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgZmYK
-ZmYgIC4uLi4uLi4uLi4uLi4uLi4KT2JqZWN0IGZmZmY4ODAxNjllMjBmZjA6IDAwIDAwIDAwIDAw
-IDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwIDAwCjAwICAuLi4uLi4uLi4uLi4uLi4uCkNQ
-VTogMSBQSUQ6IDE0IENvbW06IGt3b3JrZXIvMTowIFRhaW50ZWQ6IEcgICAgQiAgICAgICAgICAg
-NC40LjAtcmMxKyAjMQpIYXJkd2FyZSBuYW1lOiBEZWxsIEluYy4gT3B0aVBsZXggOTkwLzBENkg5
-VCwgQklPUyBBMDYgMDcvMjUvMjAxMQpXb3JrcXVldWU6IGV2ZW50c19wb3dlcl9lZmZpY2llbnQg
-ZmJfZmxhc2hjdXJzb3IKZmZmZmVhMDAwNWE3ODgwMCBmZmZmODgwMTc0MGVmN2YwIGZmZmZmZmZm
-ODE4YTgwMmUgZmZmZjg4MDE3NGMwNGUwMApmZmZmODgwMTc0MGVmODIwIGZmZmZmZmZmODEzMDMw
-ZTQgZmZmZjg4MDE3NGMwNGUwMCBmZmZmZWEwMDA1YTc4ODAwCmZmZmY4ODAxNjllMjAwMDAgZmZm
-Zjg4MDE2OWUyMWZkMCBmZmZmODgwMTc0MGVmODQ4IGZmZmZmZmZmODEzMDYzZWYKQ2FsbCBUcmFj
-ZToKWzxmZmZmZmZmZjgxOGE4MDJlPl0gZHVtcF9zdGFjaysweDRiLzB4NmQKWzxmZmZmZmZmZjgx
-MzAzMGU0Pl0gcHJpbnRfdHJhaWxlcisweGY0LzB4MTUwCls8ZmZmZmZmZmY4MTMwNjNlZj5dIG9i
-amVjdF9lcnIrMHgyZi8weDQwCls8ZmZmZmZmZmY4MTMwYWU3ZD5dIGthc2FuX3JlcG9ydF9lcnJv
-cisweDIwZC8weDUxMApbPGZmZmZmZmZmODEwYWNmZDc+XSA/IG5hdGl2ZV9zY2hlZF9jbG9jaysw
-eDY3LzB4MTQwCls8ZmZmZmZmZmY4MTMwYjFiND5dIGthc2FuX3JlcG9ydCsweDM0LzB4NDAKWzxm
-ZmZmZmZmZjgxMzBhYzNkPl0gPyBtZW1jcHkrMHgxZC8weDQwCls8ZmZmZmZmZmY4MTMwYTlkYT5d
-IF9fYXNhbl9sb2FkTisweDEyYS8weDE4MApbPGZmZmZmZmZmODEzMGFjM2Q+XSBtZW1jcHkrMHgx
-ZC8weDQwCls8ZmZmZmZmZmY4MjAxNWIyNT5dIE9VVF9SSU5HcCsweDc1LzB4OTAKWzxmZmZmZmZm
-ZjgyMDExNTcyPl0gbnZjMF9mYmNvbl9pbWFnZWJsaXQrMHg0NjIvMHg2YzAKWzxmZmZmZmZmZjgy
-MDBiZDJkPl0gbm91dmVhdV9mYmNvbl9pbWFnZWJsaXQrMHhmZC8weDExMApbPGZmZmZmZmZmODE5
-NTZhMTY+XSBzb2Z0X2N1cnNvcisweDJmNi8weDQwMApbPGZmZmZmZmZmODE5NTVlNjQ+XSBiaXRf
-Y3Vyc29yKzB4YjE0LzB4YjYwCls8ZmZmZmZmZmY4MTk1NTM1MD5dID8gdXBkYXRlX2F0dHIuaXNy
-YS4wKzB4YzAvMHhjMApbPGZmZmZmZmZmODE5NGIyMDM+XSA/IGZiX2ZsYXNoY3Vyc29yKzB4MzMv
-MHgxYjAKWzxmZmZmZmZmZjgxOTU5ODdmPl0gPyBmYl9nZXRfY29sb3JfZGVwdGgrMHg3Zi8weGIw
-Cls8ZmZmZmZmZmY4MTk0YjBkNj5dID8gZ2V0X2NvbG9yKzB4ZDYvMHgxZDAKWzxmZmZmZmZmZjgx
-OTU1MzUwPl0gPyB1cGRhdGVfYXR0ci5pc3JhLjArMHhjMC8weGMwCls8ZmZmZmZmZmY4MTk0YjM2
-Zj5dIGZiX2ZsYXNoY3Vyc29yKzB4MTlmLzB4MWIwCls8ZmZmZmZmZmY4MTE0MzI4ZT5dIHByb2Nl
-c3Nfb25lX3dvcmsrMHgzZmUvMHhhZTAKWzxmZmZmZmZmZjgxMTQzMWJlPl0gPyBwcm9jZXNzX29u
-ZV93b3JrKzB4MzJlLzB4YWUwCls8ZmZmZmZmZmY4MTE0MmU5MD5dID8gdHJ5X3RvX2dyYWJfcGVu
-ZGluZysweDIwMC8weDIwMApbPGZmZmZmZmZmODExYmZjNzU+XSA/IGRlYnVnX2xvY2tkZXBfcmN1
-X2VuYWJsZWQrMHgzNS8weDQwCls8ZmZmZmZmZmY4MTE0MzlmYT5dIHdvcmtlcl90aHJlYWQrMHg4
-YS8weDdmMApbPGZmZmZmZmZmODExNDM5NzA+XSA/IHByb2Nlc3Nfb25lX3dvcmsrMHhhZTAvMHhh
-ZTAKWzxmZmZmZmZmZjgxMTRlMDg1Pl0ga3RocmVhZCsweDE4NS8weDFiMApbPGZmZmZmZmZmODEx
-NGRmMDA+XSA/IF9fa3RocmVhZF9wYXJrbWUrMHhlMC8weGUwCls8ZmZmZmZmZmY4MTlhOTE2Zj5d
-ID8gYWNwaV9wc19wYXJzZV9sb29wKzB4NDFjLzB4YWI4Cls8ZmZmZmZmZmY4MTE4ZTEzNj5dID8g
-dHJhY2VfaGFyZGlycXNfb25fY2FsbGVyKzB4MTg2LzB4MjgwCls8ZmZmZmZmZmY4MTkwNWQ4OD5d
-ID8gZGRlYnVnX2FkZF9tb2R1bGUrMHgzOC8weDEzMApbPGZmZmZmZmZmODExNGRmMDA+XSA/IF9f
-a3RocmVhZF9wYXJrbWUrMHhlMC8weGUwCls8ZmZmZmZmZmY4MmYzNTIzZj5dIHJldF9mcm9tX2Zv
-cmsrMHgzZi8weDcwCls8ZmZmZmZmZmY4MTE0ZGYwMD5dID8gX19rdGhyZWFkX3BhcmttZSsweGUw
-LzB4ZTAKTWVtb3J5IHN0YXRlIGFyb3VuZCB0aGUgYnVnZ3kgYWRkcmVzczoKZmZmZjg4MDE2OWUy
-MWYwMDogMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAKZmZm
-Zjg4MDE2OWUyMWY4MDogMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAg
-MDAgMDAKPmZmZmY4ODAxNjllMjIwMDA6IGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZjIGZj
-IGZjIGZjIGZjIGZjIGZjCiAgICAgICAgICAgICAgICAgIF4KZmZmZjg4MDE2OWUyMjA4MDogZmMg
-ZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMgZmMKZmZmZjg4MDE2OWUy
-MjEwMDogZmMgZmMgZmMgZmMgZmMgZmMgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAgMDAKPT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09CgoKU29tZSBub3V2ZWF1IG1lc3NhZ2VzIGZyb20gdGhlIGJvb3QsIGlmIHRoaXMgaGVs
-cHM6Cgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogTlZJRElBIEdGMTE5ICgwZDkwYTBhMSkKbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IGJpb3M6IHZlcnNpb24gNzUuMTkuNTUuMDAuMDIKbm91dmVhdSAwMDAw
-OjAxOjAwLjA6IGZiOiAxMDI0IE1pQiBERFIzCltUVE1dIFpvbmUgIGtlcm5lbDogQXZhaWxhYmxl
-IGdyYXBoaWNzIG1lbW9yeTogMjU5MDI1NiBraUIKW1RUTV0gWm9uZSAgIGRtYTMyOiBBdmFpbGFi
-bGUgZ3JhcGhpY3MgbWVtb3J5OiAyMDk3MTUyIGtpQgpbVFRNXSBJbml0aWFsaXppbmcgcG9vbCBh
-bGxvY2F0b3IKW1RUTV0gSW5pdGlhbGl6aW5nIERNQSBwb29sIGFsbG9jYXRvcgpub3V2ZWF1IDAw
-MDA6MDE6MDAuMDogRFJNOiBWUkFNOiAxMDI0IE1pQgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
-OiBHQVJUOiAxMDQ4NTc2IE1pQgpub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBUTURTIHRhYmxl
-IHZlcnNpb24gMi4wCm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiB2ZXJzaW9uIDQuMApu
-b3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDIwMDAzMDAgMDAwMDAwMDAK
-bm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIG91dHAgMDE6IDAxMDAwMzAyIDAwMDIwMDMw
-Cm5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBvdXRwIDAyOiAwMjAxMTM2MiAwMDAyMDAx
-MApub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMzogMDQwMjIzMTAgMDAwMDAw
-MDAKbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogRENCIGNvbm4gMDA6IDAwMDAxMDMwCm5vdXZl
-YXUgMDAwMDowMTowMC4wOiBEUk06IERDQiBjb25uIDAxOiAwMDAwMjE2MQpub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMjogMDAwMDAyMDAKW2RybV0gU3VwcG9ydHMgdmJsYW5r
-IHRpbWVzdGFtcCBjYWNoaW5nIFJldiAyICgyMS4xMC4yMDEzKS4KW2RybV0gRHJpdmVyIHN1cHBv
-cnRzIHByZWNpc2UgdmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4Kbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IERSTTogTU06IHVzaW5nIENPUFkwIGZvciBidWZmZXIgY29waWVzCm5vdXZlYXUgMDAwMDowMTow
-MC4wOiBObyBjb25uZWN0b3JzIHJlcG9ydGVkIGNvbm5lY3RlZCB3aXRoIG1vZGVzCltkcm1dIENh
-bm5vdCBmaW5kIGFueSBjcnRjIG9yIHNpemVzIC0gZ29pbmcgMTAyNHg3NjgKbm91dmVhdSAwMDAw
-OjAxOjAwLjA6IERSTTogYWxsb2NhdGVkIDEwMjR4NzY4IGZiOiAweDYwMDAwLCBibyBmZmZmODgw
-MTY5ZDM2ZTQwCmZiY29uOiBub3V2ZWF1ZmIgKGZiMCkgaXMgcHJpbWFyeSBkZXZpY2UKQ29uc29s
-ZTogc3dpdGNoaW5nIHRvIGNvbG91ciBmcmFtZSBidWZmZXIgZGV2aWNlIDEyOHg0OApub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogZmIwOiBub3V2ZWF1ZmIgZnJhbWUgYnVmZmVyIGRldmljZQpbZHJtXSBJ
-bml0aWFsaXplZCBub3V2ZWF1IDEuMy4xIDIwMTIwODAxIGZvciAwMDAwOjAxOjAwLjAgb24gbWlu
-b3IgMApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2
-ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQo=
+Hello,
+
+I'm seeing this warning and oops when trying to fuzz linus
+v4.4-rc1-290-g3ad5d7e with trinity.
+
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 4308 at
+drivers/gpu/drm/nouveau/nouveau_fence.c:198
+nouveau_fence_context_new+0x22e/0x270()
+CPU: 1 PID: 4308 Comm: trinity-c19 Tainted: G    B           4.4.0-rc1+ #1
+Hardware name: Dell Inc. OptiPlex 990/0D6H9T, BIOS A06 07/25/2011
+0000000000000009 ffff8800ac4bf8b0 ffffffff818a802e 0000000000000000
+ffff8800ac4bf8f0 ffffffff8111bc75 ffffffff820170be ffff8800ac9c1050
+ffff88015b0e8cc0 ffff8800ca703070 ffff88016f432130 ffff8800afb675f0
+Call Trace:
+[<ffffffff818a802e>] dump_stack+0x4b/0x6d
+[<ffffffff8111bc75>] warn_slowpath_common+0x95/0xd0
+[<ffffffff820170be>] ? nouveau_fence_context_new+0x22e/0x270
+[<ffffffff8111be45>] warn_slowpath_null+0x15/0x20
+[<ffffffff820170be>] nouveau_fence_context_new+0x22e/0x270
+[<ffffffff82016e90>] ? nouveau_fence_context_free+0x20/0x20
+[<ffffffff8130a06e>] ? kasan_kmalloc+0x5e/0x70
+[<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
+[<ffffffff8201a263>] ? nv84_fence_context_new+0x73/0x2d0
+[<ffffffff8201a28d>] nv84_fence_context_new+0x9d/0x2d0
+[<ffffffff8201b351>] nvc0_fence_context_new+0x11/0x70
+[<ffffffff820155f1>] nouveau_channel_new+0x7e1/0xca0
+[<ffffffff8130fc6c>] ? create_object+0x28c/0x4d0
+[<ffffffff82014e10>] ? nouveau_channel_prep+0x4b0/0x4b0
+[<ffffffff8130fde6>] ? create_object+0x406/0x4d0
+[<ffffffff8130f9e0>] ? kmemleak_disable+0x70/0x70
+[<ffffffff82012d57>] ? nouveau_abi16_get+0x37/0x80
+[<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
+[<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
+[<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
+[<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
+[<ffffffff8201333c>] ? nouveau_abi16_ioctl_channel_alloc+0xec/0x4d0
+[<ffffffff820133fe>] nouveau_abi16_ioctl_channel_alloc+0x1ae/0x4d0
+[<ffffffff82013250>] ? nouveau_abi16_ioctl_setparam+0x10/0x10
+[<ffffffff81a85ccb>] drm_ioctl+0x20b/0x6b0
+[<ffffffff811bfc66>] ? debug_lockdep_rcu_enabled+0x26/0x40
+[<ffffffff81a85ac0>] ? drm_ioctl_permit+0x120/0x120
+[<ffffffff8118e23d>] ? trace_hardirqs_on+0xd/0x10
+[<ffffffff81fe9f99>] nouveau_drm_ioctl+0x99/0x110
+[<ffffffff813342be>] do_vfs_ioctl+0x4ae/0x800
+[<ffffffff8180a3d9>] ? selinux_file_ioctl+0x1f9/0x2d0
+[<ffffffff81333e10>] ? ioctl_preallocate+0x140/0x140
+[<ffffffff8180a1e0>] ? selinux_parse_skb.constprop.42+0x7c0/0x7c0
+[<ffffffff811dbdcb>] ? do_setitimer+0x28b/0x420
+[<ffffffff811dbfe5>] ? alarm_setitimer+0x85/0xe0
+[<ffffffff811dbf60>] ? do_setitimer+0x420/0x420
+[<ffffffff81334684>] SyS_ioctl+0x74/0x80
+[<ffffffff82f34ed7>] entry_SYSCALL_64_fastpath+0x12/0x6f
+---[ end trace 780046761495600a ]---
+
+
+
+BUG: unable to handle kernel paging request at ffffc90001880000
+IP: [<ffffffff818d20be>] iowrite32+0x2e/0x40
+PGD 174f36067 PUD 174f37067 PMD 16a13b067 PTE 0
+Oops: 0002 [#1] SMP KASAN
+CPU: 3 PID: 4638 Comm: trinity-c19 Tainted: G    B   W       4.4.0-rc1+ #1
+Hardware name: Dell Inc. OptiPlex 990/0D6H9T, BIOS A06 07/25/2011
+task: ffff8800ab8e1a00 ti: ffff8800ab6c0000 task.ti: ffff8800ab6c0000
+RIP: 0010:[<ffffffff818d20be>]  [<ffffffff818d20be>] iowrite32+0x2e/0x40
+RSP: 0018:ffff8800ab6c75f8  EFLAGS: 00010292
+RAX: ffffed001940c2b8 RBX: ffffc90001880000 RCX: ffff8800ca0615c7
+RDX: 0000000000000000 RSI: ffffc90001880000 RDI: 0000000000000000
+RBP: ffff8800ab6c7618 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffffed001443979e R12: ffff8800ca061590
+R13: 0000000000000000 R14: ffff880152553390 R15: ffffffff833e0220
+FS:  00007f48be30a700(0000) GS:ffff880175800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90001880000 CR3: 00000000ab455000 CR4: 00000000000406e0
+Stack:
+ffffffff81f58f8b 0000000000080004 ffff8800ca061590 ffff880169d3a4c0
+ffff8800ab6c76b8 ffffffff81fa3b68 0000000000000000 00000141c1800000
+ffffffff00000001 ffff880000006000 ffffffff00001000 ffff8800ab6c7820
+Call Trace:
+[<ffffffff81f58f8b>] ? nvkm_instobj_wr32+0x2b/0x40
+[<ffffffff81fa3b68>] gf100_fifo_gpfifo_new+0x528/0xa50
+[<ffffffff81f94b58>] nvkm_fifo_class_new+0x58/0x70
+[<ffffffff81f94b00>] ? nvkm_fifo_uevent_ctor+0x50/0x50
+[<ffffffff81f7bdf3>] nvkm_udevice_child_new+0x63/0x80
+[<ffffffff81ed1aea>] nvkm_ioctl_new+0x2aa/0x5e0
+[<ffffffff8130fa6c>] ? create_object+0x8c/0x4d0
+[<ffffffff810b584a>] ? save_stack_address+0x6a/0x70
+[<ffffffff81ed1840>] ? nvkm_ioctl_del+0x110/0x110
+[<ffffffff81f7bd90>] ? nvkm_udevice_map+0x90/0x90
+[<ffffffff8130fde6>] ? create_object+0x406/0x4d0
+[<ffffffff81ed282b>] nvkm_ioctl+0x1fb/0x510
+[<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
+[<ffffffff81fedce0>] ? nvkm_client_map+0x10/0x10
+[<ffffffff81fedced>] nvkm_client_ioctl+0xd/0x10
+[<ffffffff81eccf6d>] nvif_object_ioctl+0xad/0xe0
+[<ffffffff81ecdb40>] nvif_object_init+0x160/0x1e0
+[<ffffffff82014f9d>] nouveau_channel_new+0x18d/0xca0
+[<ffffffff8130fc6c>] ? create_object+0x28c/0x4d0
+[<ffffffff82014e10>] ? nouveau_channel_prep+0x4b0/0x4b0
+[<ffffffff8130fde6>] ? create_object+0x406/0x4d0
+[<ffffffff8130f9e0>] ? kmemleak_disable+0x70/0x70
+[<ffffffff82012d57>] ? nouveau_abi16_get+0x37/0x80
+[<ffffffff8118dfc6>] ? trace_hardirqs_on_caller+0x16/0x280
+[<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
+[<ffffffff81309e36>] ? kasan_unpoison_shadow+0x36/0x50
+[<ffffffff81306803>] ? kmem_cache_alloc_trace+0x123/0x290
+[<ffffffff8201333c>] ? nouveau_abi16_ioctl_channel_alloc+0xec/0x4d0
+[<ffffffff820133fe>] nouveau_abi16_ioctl_channel_alloc+0x1ae/0x4d0
+[<ffffffff82013250>] ? nouveau_abi16_ioctl_setparam+0x10/0x10
+[<ffffffff81a85ccb>] drm_ioctl+0x20b/0x6b0
+[<ffffffff811bfc66>] ? debug_lockdep_rcu_enabled+0x26/0x40
+[<ffffffff81a85ac0>] ? drm_ioctl_permit+0x120/0x120
+[<ffffffff8118e23d>] ? trace_hardirqs_on+0xd/0x10
+[<ffffffff81fe9f99>] nouveau_drm_ioctl+0x99/0x110
+[<ffffffff813342be>] do_vfs_ioctl+0x4ae/0x800
+[<ffffffff8180a3d9>] ? selinux_file_ioctl+0x1f9/0x2d0
+ [<ffffffff81333e10>] ? ioctl_preallocate+0x140/0x140
+[<ffffffff8180a1e0>] ? selinux_parse_skb.constprop.42+0x7c0/0x7c0
+[<ffffffff811dbdcb>] ? do_setitimer+0x28b/0x420
+[<ffffffff811dbfe5>] ? alarm_setitimer+0x85/0xe0
+[<ffffffff811dbf60>] ? do_setitimer+0x420/0x420
+[<ffffffff81334684>] SyS_ioctl+0x74/0x80
+[<ffffffff82f34ed7>] entry_SYSCALL_64_fastpath+0x12/0x6f
+Code: ff ff 03 00 77 25 48 81 fe 00 00 01 00 76 07 0f b7 d6 89 f8 ef
+c3 55 48 89 f7 48 c7 c6 e0 39 1e 83 48 89 e5 e8 84 fd ff ff 5d c3 <89>
+3e c3 66 66 66 66 66 66 2e 0f 1f 84 00 00 00 00 00 48 81 fe
+RIP  [<ffffffff818d20be>] iowrite32+0x2e/0x40
+RSP <ffff8800ab6c75f8>
+CR2: ffffc90001880000
+---[ end trace 7800467614956062 ]---
+
+
+Some nouveau messages from the boot, if this helps:
+
+nouveau 0000:01:00.0: NVIDIA GF119 (0d90a0a1)
+nouveau 0000:01:00.0: bios: version 75.19.55.00.02
+nouveau 0000:01:00.0: fb: 1024 MiB DDR3
+[TTM] Zone  kernel: Available graphics memory: 2590256 kiB
+[TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[TTM] Initializing pool allocator
+[TTM] Initializing DMA pool allocator
+nouveau 0000:01:00.0: DRM: VRAM: 1024 MiB
+nouveau 0000:01:00.0: DRM: GART: 1048576 MiB
+nouveau 0000:01:00.0: DRM: TMDS table version 2.0
+nouveau 0000:01:00.0: DRM: DCB version 4.0
+nouveau 0000:01:00.0: DRM: DCB outp 00: 02000300 00000000
+nouveau 0000:01:00.0: DRM: DCB outp 01: 01000302 00020030
+nouveau 0000:01:00.0: DRM: DCB outp 02: 02011362 00020010
+nouveau 0000:01:00.0: DRM: DCB outp 03: 04022310 00000000
+nouveau 0000:01:00.0: DRM: DCB conn 00: 00001030
+nouveau 0000:01:00.0: DRM: DCB conn 01: 00002161
+nouveau 0000:01:00.0: DRM: DCB conn 02: 00000200
+[drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[drm] Driver supports precise vblank timestamp query.
+nouveau 0000:01:00.0: DRM: MM: using COPY0 for buffer copies
+nouveau 0000:01:00.0: No connectors reported connected with modes
+[drm] Cannot find any crtc or sizes - going 1024x768
+nouveau 0000:01:00.0: DRM: allocated 1024x768 fb: 0x60000, bo ffff880169d36e40
+fbcon: nouveaufb (fb0) is primary device
+Console: switching to colour frame buffer device 128x48
+nouveau 0000:01:00.0: fb0: nouveaufb frame buffer device
+[drm] Initialized nouveau 1.3.1 20120801 for 0000:01:00.0 on minor 0
