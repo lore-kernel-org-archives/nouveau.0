@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92991] Nouveau module loading regression in 4.4-rc1
- on optimus system
-Date: Mon, 23 Nov 2015 14:19:23 +0000
-Message-ID: <bug-92991-8800-gmuYbWyEOg@http.bugs.freedesktop.org/>
-References: <bug-92991-8800@http.bugs.freedesktop.org/>
+From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: NV50 compute support questions
+Date: Mon, 23 Nov 2015 16:31:25 +0100
+Message-ID: <5653314D.7010905@gmail.com>
+References: <564EF7CA.4090809@redhat.com> <564F452A.1010206@gmail.com>
+ <564F4A54.7050704@redhat.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0809361930=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <564F4A54.7050704-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,166 +18,65 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0809361930==
-Content-Type: multipart/alternative; boundary="1448288363.ab5fd1.13137"; charset="UTF-8"
-
-
---1448288363.ab5fd1.13137
-Date: Mon, 23 Nov 2015 14:19:23 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92991
-
---- Comment #8 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
-With runpm=0 I get full output of xrandr. Without it, it is an instant crash:
-
-Screen 0: minimum 8 x 8, current 1600 x 900, maximum 32767 x 32767
-eDP1 connected primary 1600x900+0+0 (normal left inverted right x axis y axis)
-382mm x 215mm
-   1600x900      60.01*+  40.00  
-   1024x768      60.00  
-   800x600       60.32    56.25  
-   640x480       59.94  
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-0 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-1 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-2 connected (normal left inverted right x axis y axis)
-   1680x1050     59.88 +  59.95  
-   1400x1050     74.76    59.98  
-   1280x1024     75.02    60.02  
-   1440x900      74.98    59.90  
-   1280x960      60.00  
-   1152x864      75.00  
-   1024x768      60.04    75.08    75.03    70.07    60.00  
-   960x720       75.00    60.00  
-   928x696       75.00    60.05  
-   896x672       75.05    60.01  
-   832x624       74.55  
-   800x600       75.00    70.00    65.00    60.00    72.19    75.00    60.32   
-56.25  
-   700x525       74.76    59.98  
-   640x512       75.02    60.02  
-   640x480       60.00    75.00    72.81    75.00    60.00    59.94  
-   720x400       70.08  
-   576x432       75.00  
-   512x384       75.03    70.07    60.00  
-   416x312       74.66  
-   400x300       72.19    75.12    60.32    56.34  
-   320x240       72.81    75.00    60.05  
-  1024x768 (0xb1) 65.000MHz
-        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
-        v: height  768 start  771 end  777 total  806           clock  60.00Hz
-  800x600 (0xb2) 40.000MHz
-        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz 
-        v: height  600 start  601 end  605 total  628           clock  60.32Hz  
-  800x600 (0xb3) 36.000MHz                                                      
-        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz 
-        v: height  600 start  601 end  603 total  625           clock  56.25Hz  
-  640x480 (0xb4) 25.175MHz                                                      
-        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz 
-        v: height  480 start  490 end  492 total  525           clock  59.94Hz
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1448288363.ab5fd1.13137
-Date: Mon, 23 Nov 2015 14:19:23 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c8">Comment # 8</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991">bug 92991</a>
-              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
-</span></b>
-        <pre>With runpm=0 I get full output of xrandr. Without it, it is an instant crash:
-
-Screen 0: minimum 8 x 8, current 1600 x 900, maximum 32767 x 32767
-eDP1 connected primary 1600x900+0+0 (normal left inverted right x axis y axis)
-382mm x 215mm
-   1600x900      60.01*+  40.00  
-   1024x768      60.00  
-   800x600       60.32    56.25  
-   640x480       59.94  
-VGA1 disconnected (normal left inverted right x axis y axis)
-VIRTUAL1 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-0 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-1 disconnected (normal left inverted right x axis y axis)
-DisplayPort-1-2 connected (normal left inverted right x axis y axis)
-   1680x1050     59.88 +  59.95  
-   1400x1050     74.76    59.98  
-   1280x1024     75.02    60.02  
-   1440x900      74.98    59.90  
-   1280x960      60.00  
-   1152x864      75.00  
-   1024x768      60.04    75.08    75.03    70.07    60.00  
-   960x720       75.00    60.00  
-   928x696       75.00    60.05  
-   896x672       75.05    60.01  
-   832x624       74.55  
-   800x600       75.00    70.00    65.00    60.00    72.19    75.00    60.32   
-56.25  
-   700x525       74.76    59.98  
-   640x512       75.02    60.02  
-   640x480       60.00    75.00    72.81    75.00    60.00    59.94  
-   720x400       70.08  
-   576x432       75.00  
-   512x384       75.03    70.07    60.00  
-   416x312       74.66  
-   400x300       72.19    75.12    60.32    56.34  
-   320x240       72.81    75.00    60.05  
-  1024x768 (0xb1) 65.000MHz
-        h: width  1024 start 1048 end 1184 total 1344 skew    0 clock  48.36KHz
-        v: height  768 start  771 end  777 total  806           clock  60.00Hz
-  800x600 (0xb2) 40.000MHz
-        h: width   800 start  840 end  968 total 1056 skew    0 clock  37.88KHz 
-        v: height  600 start  601 end  605 total  628           clock  60.32Hz  
-  800x600 (0xb3) 36.000MHz                                                      
-        h: width   800 start  824 end  896 total 1024 skew    0 clock  35.16KHz 
-        v: height  600 start  601 end  603 total  625           clock  56.25Hz  
-  640x480 (0xb4) 25.175MHz                                                      
-        h: width   640 start  656 end  752 total  800 skew    0 clock  31.47KHz 
-        v: height  480 start  490 end  492 total  525           clock  59.94Hz</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448288363.ab5fd1.13137--
-
---===============0809361930==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0809361930==--
+CgpPbiAxMS8yMC8yMDE1IDA1OjI5IFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAo+Cj4g
+T24gMjAtMTEtMTUgMTc6MDcsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4KPj4KPj4gT24gMTEv
+MjAvMjAxNSAxMTozNiBBTSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPj4+IEhpIFNhbXVhbCwgZXQg
+YWwsCj4+Cj4+IEhpIEhhbnMsCj4+Cj4+Pgo+Pj4gSW4KPj4+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNr
+dG9wLm9yZy9tZXNhL21lc2EvY29tbWl0L3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdT9pZD1m
+ZjcyNDQwYjQwMjExMzI2ZWRhMTE4MjMyZmFiZDUzOTY1NDEwYWZkCj4+Pgo+Pj4KPj4+IHlvdSB3
+cml0ZTogIlRoaXMgY29tcHV0ZSBzdXBwb3J0IGhhcyBiZWVuIHRlc3RlZCBieQo+Pj4gUGllcnJl
+IE1vcmVhdSBhbmQgbXlzZWxmIHdpdGggc29tZSBjb21wdXRlIGtlcm5lbHMuIgo+Pj4KPj4+IENh
+biB5b3UgcHJvdmlkZSB0ZXN0aW5nIGluc3RydWN0aW9ucyAoYW5kIHRoZQo+Pj4gbmVjZXNzYXJ5
+IGZpbGVzKSBzbyB0aGF0IEkgY2FuIHRyeSB0byByZXByb2R1Y2UKPj4+IHlvdXIgdGVzdHMgPwo+
+Pj4KPj4+IEFuZCBvbmNlIEkndmUgcmVwcm9kdWNlZCB5b3VyIHRlc3RzLCB0aGUgbmV4dAo+Pj4g
+cXVlc3Rpb24gaXMgd2hlcmUgLyBob3cgZGlkIHlvdSBnZXQgdGhlIGNvbXB1dGUKPj4+IGtlcm5l
+bHMgZm9yIHRlc3RpbmcuIEkgZ3Vlc3MgeW91IG1hbnVhbGx5IHdyb3RlIHRoZW0gPwo+Pgo+PiBZ
+ZWFoLCBJIHdyb3RlIHRob3NlIGNvbXB1dGUga2VybmVscyBkaXJlY3RseSBpbiBhc3NlbWJseSBi
+eSBoYW5kLgo+Pgo+PiBJIGFscmVhZHkgc2FpZCBmZXcgZGF5cyBhZ28sIHlvdSBoYXZlIHNvbWUg
+ZXhhbXBsZXMgaW4KPj4gc3JjL2dhbGxpdW0vdGVzdHMvdHJpdmlhbC9jb21wdXRlLmMgd2hpY2gg
+c2hvdyBob3cgdG8gdXNlIHRoYXQgY29tcHV0ZQo+PiBzdXBwb3J0IHN0dWZmIHdpdGggVEdTSSBr
+ZXJuZWxzIGFuZCB3aXRob3V0IGNsb3Zlci4KPgo+IEFoLCByaWdodC4gT2sgSSdsbCB0YWtlIGEg
+bG9vayBhdCB0aG9zZS4KPgo+PiBCZWNhdXNlIGNsb3ZlciBpcyBub3QgY3VycmVudGx5IGFibGUg
+dG8gZG8gT3BlbkNMIC0+IFRHU0kgdXNpbmcKPj4gQ2xhbmcvTExWTSwgeW91IGNhbid0IHJlYWxs
+eSB1c2UgeW91ciBiYWNrZW5kIGRpcmVjdGx5Lgo+Cj4gSSBrbm93IEknbSBmaW5lIHdpdGggbWFu
+dWFsbHkgY29weWluZyBUR1NJIG91dHB1dCBieSBsbGMgZm9yIG15IGZpcnN0Cj4gdGVzdHMuIEkn
+dmUgdGhlIGZlZWxpbmcgSSBuZWVkIHRvIHVuZGVyc3RhbmQgaG93IGlucHV0cyB0byAvIG91dHB1
+dHMKPiBmcm9tIHRoZSBUR1NJIGNvZGUgYXJlIGhhbmRsZWQgYmV0dGVyIGJlZm9yZSBJIGNhbiBk
+byBmdXJ0aGVyIHdvcmsKPiBvbiB0aGUgbGx2bSBUR1NJIGJhY2tlbmQuCj4KPj4gQW4gb3RoZXIg
+d2F5IHRvIGFjaGlldmUgd2hhdCB5b3UgbmVlZCBpcyB0byBjb3B5L3Bhc3RlIHlvdXIgVEdTSQo+
+PiBrZXJuZWwgaW4gc3JjL2dhbGxpdW0vdGVzdHMvdHJpdmlhbC9jb21wdXRlLmMsIHNldCB1cCB0
+aGUgZ2xvYmFsCj4+IGJ1ZmZlcnMgYW5kIG90aGVyIHN0dWZmIChtYXliZSBzYW1wbGVycywgdGV4
+dHVyZXMgYW5kIHNvIG9uKSB5b3Vyc2VsZi4KPj4gVGhpcyBpcyBhIGJpdCBwYWluZnVsIGJ1dCBz
+aG91bGQgd29yayBhcyBleHBlY3RlZC4KPj4KPj4+Cj4+PiBBcyB5b3Uga25vdyBJJ20gd29ya2lu
+ZyBvbiBhIGxsdm0gdGdzaSBiYWNrZW5kLAo+Pj4gaXQgYWN0dWFsbHkgcHJvZHVjZXMgc29tZSBv
+dXRwdXQgbm93LCBpZiB5b3Ugd2FudAo+Pj4gdG8gdGFrZSBhIHBlZWsgaXQgbGl2ZXMgaGVyZToK
+Pj4+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+andyZGVnb2VkZS9sbHZtCj4+Cj4+IEkn
+bSBjdXJyZW50bHkgYnVpbGRpbmcgeW91ciBUR1NJIGJyYW5jaC4gOi0pCj4KPiBDb29sLCBub3Rl
+IHRoaXMgaXMgdmVyeSB2ZXJ5IHByZWxpbWluYXJ5LiBUaGlzIHJlYWxseQo+IGlzIGp1c3QgY3Vy
+cm8ncyB3b3JrIHBvcnRlZCB0byB0aGUgbGF0ZXN0IGxsdm0gdHJ1bmsKPiB3aXRob3V0IG1lIGhh
+dmluZyBhZGRlZCBhbnl0aGluZyAoeWV0KS4KPgo+Pj4gQmVmb3JlIHdvcmtpbmcgZnVydGhlciBv
+biB0aGlzIEkgd2FudCB0byB0YWtlCj4+PiBhIGJvdHRvbSB1cCBhcHByb2FjaCwgc28gSSB3YW50
+IHRvIGZpcnN0IG1ha2UKPj4+IHN1cmUgd2UndmUgd29ya2luZyBUR1NJIC0+IGNvbXB1dGUta2Vy
+bmVsIGFuZAo+Pj4gY29tcHV0ZS1rZXJuZWwgLT4gaGFyZHdhcmUgc3RlcHMuIFNvIHRoZSBuZXh0
+Cj4+PiBxdWVzdGlvbiBpcywgZG8geW91IGtub3cgaWYgd2UgY2FuIGdvIGZyb20KPj4+IChtYW51
+YWxseSB3cml0dGVuKSBUR1NJIHRvIGEgY29tcHV0ZS1rZXJuZWwKPj4+IHVzaW5nIHNheSBub3V2
+ZWF1LWNvbXBpbGVyID8KPj4KPj4gU3VyZSwgeW91IGNhbiB1c2Ugbm91dmVhdS1jb21waWxlciB0
+byBjb252ZXJ0IFRHU0kgdG8gTlY1MCBJUiwgYnV0IGFzCj4+IEkgc2FpZCwgeW91IGNhbid0IGRp
+cmVjdGx5IGV4ZWN1dGUgeW91ciBjb21wdXRlIGtlcm5lbCB3aXRob3V0IHNldHRpbmcKPj4gYSB0
+b24gb2Ygc3R1ZmYgYmVmb3JlLi4uIFRoYXQncyBhIGJ1bmNoIG9mIGZ1biEgOi0pCj4+Cj4+IEJ0
+dywgZG8geW91IHN0aWxsIG5lZWQgY29tcHV0ZSBzdXBwb3J0IG9uIHlvdXIgR0syMDg/IG9yIGRp
+ZCB5b3UgaGF2ZQo+PiBhbiBvdGhlciBjYXJkIGZvciB0ZXN0aW5nID8KPgo+IE5vIEkndmUgYSBH
+VCA2MTAgLyBHRjExOSBjYXJkIG5vdyAoc3RpbGwgbmVlZCB0byBwbHVnIGl0IGluKS4KCkNvb2ws
+IG5vdGUgdGhhdCBjb21wdXRlIHN1cHBvcnQgaXMgYXZhaWxhYmxlIG9uIHRlc2xhLCBmZXJtaSBh
+bmQga2VwbGVyIApzaW5jZSBJIG1lcmdlZCB0aGUgbnY1MCBjb21wdXRlIH5vbmUgd2VlayBhZ28u
+CgpTb21lIGJpdHMgYXJlIG1pc3NpbmcgZm9yIHRlc2xhIGFuZCBmZXJtaSwgYnV0IEkgY2FuIGhh
+dmUgbG9vayBpZiB5b3UgCm5lZWQgdGhlbS4gVGhvc2UgYml0cyBhcmUgbW9zdGx5IHJlbGF0ZWQg
+dG8gdGV4dHVyZXMsIHN1cmZhY2VzIGFuZCAKc2FtcGxlcnMsIGJ1dCB5b3UgY2FuIGFscmVhZHkg
+bGF1bmNoICJzaW1wbGUiIGtlcm5lbHMuCgo+Cj4gUmVnYXJkcywKPgo+IEhhbnMKCi0tIAotU2Ft
+dWVsCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZl
+YXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
