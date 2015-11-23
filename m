@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92438] Segfault in pushbuf_kref when running the
  android emulator (qemu) on nv50
-Date: Mon, 23 Nov 2015 05:30:18 +0000
-Message-ID: <bug-92438-8800-NHSfBFrK4g@http.bugs.freedesktop.org/>
+Date: Mon, 23 Nov 2015 09:41:25 +0000
+Message-ID: <bug-92438-8800-zLg6ddoKsz@http.bugs.freedesktop.org/>
 References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0202136358=="
+Content-Type: multipart/mixed; boundary="===============0965673285=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,28 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0202136358==
-Content-Type: multipart/alternative; boundary="1448256618.C0f21.5856"; charset="UTF-8"
+--===============0965673285==
+Content-Type: multipart/alternative; boundary="1448271685.3C5fbCf0.19678"; charset="UTF-8"
 
 
---1448256618.C0f21.5856
-Date: Mon, 23 Nov 2015 05:30:18 +0000
+--1448271685.3C5fbCf0.19678
+Date: Mon, 23 Nov 2015 09:41:25 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92438
 
---- Comment #31 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I've pushed out a couple of changes which might improve the situation. Please
-give your software a shot and see if it stops crashing. This should definitely
-resolve the glium issues... Gabriele, would ideally hear from you if they fix
-anything on your end.
-
-Specifically these two commits:
-
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=079f713754a9e5d7802b655d54320bd37f24fbfa
-http://cgit.freedesktop.org/mesa/mesa/commit/?id=ad5f6b03e793b9390e3b9f3eca68bd43f9d809eb
+--- Comment #32 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+I'll try rebuilding mesa using the mesa-9999 packages which should get me the
+current master and will report back ASAP.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1448256618.C0f21.5856
-Date: Mon, 23 Nov 2015 05:30:18 +0000
+--1448271685.3C5fbCf0.19678
+Date: Mon, 23 Nov 2015 09:41:25 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +56,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c31">Comment # 31</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c32">Comment # 32</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
 </span></b>
-        <pre>I've pushed out a couple of changes which might improve the situation. Please
-give your software a shot and see if it stops crashing. This should definitely
-resolve the glium issues... Gabriele, would ideally hear from you if they fix
-anything on your end.
-
-Specifically these two commits:
-
-<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=079f713754a9e5d7802b655d54320bd37f24fbfa">http://cgit.freedesktop.org/mesa/mesa/commit/?id=079f713754a9e5d7802b655d54320bd37f24fbfa</a>
-<a href="http://cgit.freedesktop.org/mesa/mesa/commit/?id=ad5f6b03e793b9390e3b9f3eca68bd43f9d809eb">http://cgit.freedesktop.org/mesa/mesa/commit/?id=ad5f6b03e793b9390e3b9f3eca68bd43f9d809eb</a></pre>
+        <pre>I'll try rebuilding mesa using the mesa-9999 packages which should get me the
+current master and will report back ASAP.</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +77,9 @@ Specifically these two commits:
     </body>
 </html>
 
---1448256618.C0f21.5856--
+--1448271685.3C5fbCf0.19678--
 
---===============0202136358==
+--===============0965673285==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +89,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0202136358==--
+--===============0965673285==--
