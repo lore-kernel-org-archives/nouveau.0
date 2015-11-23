@@ -1,121 +1,51 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
-	working)
-Date: Mon, 23 Nov 2015 18:17:54 +0000
-Message-ID: <bug-92961-8800-wUNwK6mavt@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Tommi Rantala <tt.rantala@gmail.com>
+Subject: Re: nouveau: iowrite32 oops & warning at
+ drivers/gpu/drm/nouveau/nouveau_fence.c:198
+Date: Mon, 23 Nov 2015 22:17:39 +0200
+Message-ID: <CA+ydwtr670rK5kAAFkJ=BEMXAMWLHwim3754rVvqZaCdhh+4-Q@mail.gmail.com>
+References: <CA+ydwtq3CT5iswJbWCBGN9_KqKANbaoeZdzvjm1fe9aiE=VQ-g@mail.gmail.com>
+ <CAKb7Uvh+sGQJgEYb3SzVDH-YytX7WsU=EQnUEeZeWR-haHGdfA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0060966392=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <CAKb7Uvh+sGQJgEYb3SzVDH-YytX7WsU=EQnUEeZeWR-haHGdfA@mail.gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, trinity@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, DRI Development <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0060966392==
-Content-Type: multipart/alternative; boundary="1448302673.3fea0b1.2267"; charset="UTF-8"
-
-
---1448302673.3fea0b1.2267
-Date: Mon, 23 Nov 2015 18:17:53 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-https://bugs.freedesktop.org/show_bug.cgi?id=3D92961
-
---- Comment #5 from Viorel-C=C4=83t=C4=83lin R=C4=83pi=C8=9Beanu <rapiteanu=
-.catalin-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Yoram from comment #4)
-> I experience the same issue.
-> I have noticed that it only occurs if plasma is built with gles2 support =
-(on
-> gentoo, requiring the while QT+KDE stack to be built with gles2).
->=20
-> A very similar freeze occurs with enlightenment/wayland, so I assume it's=
- a
-> bug in nouveau.
-
-Thanks for the info!
-To maintain my DE, for the time being, I've switched on KDE/Openbox. Things
-seem to work great for now.
-
---=20
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1448302673.3fea0b1.2267
-Date: Mon, 23 Nov 2015 18:17:53 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-    <head>
-      <base href=3D"https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961#c5">Comment=
- # 5</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_NEW "
-   title=3D"NEW - Xorg freezes (only mouse and ssh are still working)"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D92961">bug 92961<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-rapiteanu.catalin&#64;gmail.com" title=3D"Viorel-C=C4=83t=C4=83lin R=C4=83p=
-i=C8=9Beanu &lt;rapiteanu.catalin&#64;gmail.com&gt;"> <span class=3D"fn">Vi=
-orel-C=C4=83t=C4=83lin R=C4=83pi=C8=9Beanu</span></a>
-</span></b>
-        <pre>(In reply to Yoram from <a href=3D"show_bug.cgi?id=3D92961#c4"=
->comment #4</a>)
-<span class=3D"quote">&gt; I experience the same issue.
-&gt; I have noticed that it only occurs if plasma is built with gles2 suppo=
-rt (on
-&gt; gentoo, requiring the while QT+KDE stack to be built with gles2).
-&gt;=20
-&gt; A very similar freeze occurs with enlightenment/wayland, so I assume i=
-t's a
-&gt; bug in nouveau.</span >
-
-Thanks for the info!
-To maintain my DE, for the time being, I've switched on KDE/Openbox. Things
-seem to work great for now.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-=20=20=20=20=20=20
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448302673.3fea0b1.2267--
-
---===============0060966392==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0060966392==--
+MjAxNS0xMS0yMiAyMjo0OSBHTVQrMDI6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
+ZWR1PjoKPiBOb3Qgc3VyZSBpZiB0aGVzZSBhcHBseSBoZXJlIGJ1dCB0aGVyZSBhcmUgYSBjb3Vw
+bGUgb2Ygb3V0c3RhbmRpbmcKPiBsb2NraW5nIGZpeGVzIGF2YWlsYWJsZSBpbgo+IGh0dHA6Ly9j
+Z2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3RhbWEvbm91dmVhdS8gLS0gc3BlY2lmaWNhbGx5IHRo
+ZXNlCj4gdHdvOgo+Cj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL35kYXJrdGFtYS9ub3V2
+ZWF1L2NvbW1pdC8/aWQ9MmYzYTU2YWQwMTllMzc4YTM1MmU5Y2I3YTU1OWY0Nzg4MjZmMWE4Nwo+
+IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3RhbWEvbm91dmVhdS9jb21taXQvP2lk
+PTQxNzliMTVjNmU5ZmNmYjI1M2U4MTFlNTQ3N2RlYmU0NmM4NGMzOTUKPgo+IE5vdCBzdXJlIGlm
+IHRoZXkgYWZmZWN0IHRoaXMgcGFydGljdWxhciBpc3N1ZSwgYnV0IHRob3VnaHQgSSdkIHBvaW50
+Cj4gaXQgb3V0LiBBcmUgeW91IGZ1enppbmcgd2l0aCBtdWx0aXBsZSB0aHJlYWRzLCBvciBqdXN0
+IG9uZSBhdCBhIHRpbWU/Cj4gRG8geW91IGhhdmUgYSBicmFuY2ggc29tZXdoZXJlIHB1YmxpYyB3
+aXRoIHRoZSBjaGFuZ2VzIHRvIGFkZCBub3V2ZWF1Cj4gaW9jdGwgc3VwcG9ydCB0byB0cmluaXR5
+PwoKSGkhCgpJIGFwcGxpZWQgdGhvc2UgdHdvIG9uIHRvcCBvZiB2NC40LXJjMiwgYnV0IHRoZSBz
+YW1lIHdhcm5pbmcgYW5kIG9vcHMKYXJlIHN0aWxsIGVhc2lseSByZXByb2R1Y2libGUuIEkgY2Fu
+IHRlc3Qgd2l0aCBvbGRlciBrZXJuZWxzIGFuZC9vcgp0cnkgdG8gYmlzZWN0IHdoZW4gSSBoYXZl
+IG1vcmUgdGltZSwgdW5sZXNzIGFueW9uZSBoYXMgYmV0dGVyIGlkZWFzLgoKSSdtIGFjdHVhbGx5
+IHJ1bm5pbmcgdW5tb2RpZmllZCB0cmluaXR5LCBhbmQgZm9yIHRoaXMgcHVycG9zZSBvbmx5CmZ1
+enppbmcgdGhlIGlvY3RsKCkgc3lzY2FsbCBmcm9tIG11bHRpcGxlIHByb2Nlc3NlcywgYW5kIG9w
+ZW5pbmcgb25seQp0aGUgZmlsZXMgZnJvbSAvZGV2L2RyaS86CgokIC4vdHJpbml0eSAtcSAtbG9m
+ZiAtQzIwIC1jIGlvY3RsIC1WIC9kZXYvZHJpLwoKVHJpbml0eSBrbm93cyBhYm91dCBhIGJ1bmNo
+IG9mIERSTSBpb2N0bCBjb21tYW5kcywgYnV0IHRoZSByZXN0IG9mIHRoZQppb2N0bCBhcmd1bWVu
+dHMgd2lsbCBiZSBnYXJiYWdlOgpodHRwczovL2dpdGh1Yi5jb20va2VybmVsc2xhY2tlci90cmlu
+aXR5L2Jsb2IvbWFzdGVyL2lvY3Rscy9kcm0uYwoKVG9tbWkKX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
