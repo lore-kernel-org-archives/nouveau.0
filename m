@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92438] Segfault in pushbuf_kref when running the
- android emulator (qemu) on nv50
-Date: Mon, 23 Nov 2015 14:12:39 +0000
-Message-ID: <bug-92438-8800-nR3fDeWdlh@http.bugs.freedesktop.org/>
-References: <bug-92438-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92991] Nouveau module loading regression in 4.4-rc1
+ on optimus system
+Date: Mon, 23 Nov 2015 14:18:07 +0000
+Message-ID: <bug-92991-8800-CWr3eRfagT@http.bugs.freedesktop.org/>
+References: <bug-92991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1793186642=="
+Content-Type: multipart/mixed; boundary="===============1780932841=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,88 +21,30 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1793186642==
-Content-Type: multipart/alternative; boundary="1448287958.d0774FA0.10795"; charset="UTF-8"
+--===============1780932841==
+Content-Type: multipart/alternative; boundary="1448288287.EAa72Cf1.12661"; charset="UTF-8"
 
 
---1448287958.d0774FA0.10795
-Date: Mon, 23 Nov 2015 14:12:38 +0000
+--1448288287.EAa72Cf1.12661
+Date: Mon, 23 Nov 2015 14:18:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92438
+https://bugs.freedesktop.org/show_bug.cgi?id=92991
 
---- Comment #34 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I've been running the emulator for a while and it hasn't crashed yet but I've
-found yet more warning/error messages in my kernel log and they seem related to
-it:
+--- Comment #7 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 120048
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120048&action=edit
+dmesg of 4.4-rc2
 
-[ 3053.470749] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470769] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470789] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.470805] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470830] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470846] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470850] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x3f800000
-[ 3053.470903] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470920] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470942] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.470958] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470980] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471000] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471005] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x00000000
-[ 3053.471060] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471077] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471098] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.471115] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471136] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471153] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471158] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x00000000
-[ 3053.471213] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471231] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471252] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.471268] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471288] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471304] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471308] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x15e0 data 0x00000000
-
-I'm not sure if they're related to the issue at hand though.
+This is with config=War00C800_0=1 runpm=0
 
 -- 
 You are receiving this mail because:
-You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1448287958.d0774FA0.10795
-Date: Mon, 23 Nov 2015 14:12:38 +0000
+--1448288287.EAa72Cf1.12661
+Date: Mon, 23 Nov 2015 14:18:07 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -115,91 +57,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c34">Comment # 34</a>
+   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c7">Comment # 7</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
-              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
+   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991">bug 92991</a>
+              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
 </span></b>
-        <pre>I've been running the emulator for a while and it hasn't crashed yet but I've
-found yet more warning/error messages in my kernel log and they seem related to
-it:
+        <pre>Created <span class=""><a href="attachment.cgi?id=120048" name="attach_120048" title="dmesg of 4.4-rc2">attachment 120048</a> <a href="attachment.cgi?id=120048&amp;action=edit" title="dmesg of 4.4-rc2">[details]</a></span>
+dmesg of 4.4-rc2
 
-[ 3053.470749] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470769] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470789] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.470805] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470830] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470846] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470850] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x3f800000
-[ 3053.470903] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470920] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470942] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.470958] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.470980] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471000] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471005] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x00000000
-[ 3053.471060] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471077] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471098] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.471115] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471136] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471153] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471158] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x0f04 data 0x00000000
-[ 3053.471213] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471231] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 0 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471252] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 0:
-INVALID_OPCODE at 07fb80 warp 0, opcode 00000000 00000000
-[ 3053.471268] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 1 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471288] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 0:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471304] nouveau E[  PGRAPH][0000:01:00.0] TRAP_MP_EXEC - TP 2 MP 1:
-INVALID_OPCODE at 07ff00 warp 1, opcode 00000000 00000000
-[ 3053.471308] nouveau E[  PGRAPH][0000:01:00.0] ch 5 [0x001f768000
-emulator-x86[5663]] subc 3 class 0x8297 mthd 0x15e0 data 0x00000000
-
-I'm not sure if they're related to the issue at hand though.</pre>
+This is with config=War00C800_0=1 runpm=0</pre>
         </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
       
       <ul>
-          <li>You are the QA Contact for the bug.</li>
           <li>You are the assignee for the bug.</li>
       </ul>
     </body>
 </html>
 
---1448287958.d0774FA0.10795--
+--1448288287.EAa72Cf1.12661--
 
---===============1793186642==
+--===============1780932841==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -209,4 +92,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1793186642==--
+--===============1780932841==--
