@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92438] Segfault in pushbuf_kref when running the
- android emulator (qemu) on nv50
-Date: Mon, 23 Nov 2015 09:41:25 +0000
-Message-ID: <bug-92438-8800-zLg6ddoKsz@http.bugs.freedesktop.org/>
-References: <bug-92438-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH 0/2] Fix some voltage issues found on Kepler cards
+Date: Mon, 23 Nov 2015 11:00:36 +0100
+Message-ID: <1448272838-5845-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0965673285=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,73 +18,19 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0965673285==
-Content-Type: multipart/alternative; boundary="1448271685.3C5fbCf0.19678"; charset="UTF-8"
-
-
---1448271685.3C5fbCf0.19678
-Date: Mon, 23 Nov 2015 09:41:25 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92438
-
---- Comment #32 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I'll try rebuilding mesa using the mesa-9999 packages which should get me the
-current master and will report back ASAP.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1448271685.3C5fbCf0.19678
-Date: Mon, 23 Nov 2015 09:41:25 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c32">Comment # 32</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
-              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
-</span></b>
-        <pre>I'll try rebuilding mesa using the mesa-9999 packages which should get me the
-current master and will report back ASAP.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448271685.3C5fbCf0.19678--
-
---===============0965673285==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0965673285==--
+V2l0aCB0aGVzZSBib3RoIHBhdGNoZXMsIG1vc3Qgb2YgdGhlIGtlcGxlciBjYXJkcyBzaG91bGQg
+YmUgYWJsZSB0byByZWNsb2NrCnRoZWlyIGNvcmUgY2xvY2sgd2l0aG91dCBpc3N1ZXMuCgpUaGVz
+ZSBwYXRjaGVzIHNob3VsZCBiZSB0ZXN0ZWQgY2FyZWZ1bGx5IGFtb25nIG5vdXZlYXUgZGV2cywg
+c28gdGhhdCB0aGVzZQpkb24ndCBicmVhayByZWNsb2NraW5nIG9uIG90aGVyIGNhcmRzIChlc3Bl
+Y2lhbGx5IFRlc2xhcykuCgpQYXJ0aWN1bGFybHkgdGhlIHNlY29uZCBvbmUgbWlnaHQgYnJlYWsg
+cmVjbG9ja2luZyBoZXJlIGFuZCB0aGVyZS4KCkthcm9sIEhlcmJzdCAoMik6CiAgYmlvcy92b2x0
+OiBoYW5kbGUgdm9sdGFnZSB0YWJsZSB2ZXJzaW9uIDB4NTAgd2l0aCAwZWQgaGVhZGVyCiAgY2xr
+OiBkcm9wIGNzdGF0ZXMgd2l0aCB0b28gaGlnaCB2b2x0YWdlCgogZHJtL25vdXZlYXUvaW5jbHVk
+ZS9udmttL3N1YmRldi92b2x0LmggfCAgNCArKysrCiBkcm0vbm91dmVhdS9udmttL3N1YmRldi9i
+aW9zL3ZvbHQuYyAgICB8ICAzICsrKwogZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2Uu
+YyAgICAgfCAgNiArKysrKysKIGRybS9ub3V2ZWF1L252a20vc3ViZGV2L3ZvbHQvYmFzZS5jICAg
+IHwgMTcgKysrKysrKysrKysrKysrLS0KIDQgZmlsZXMgY2hhbmdlZCwgMjggaW5zZXJ0aW9ucygr
+KSwgMiBkZWxldGlvbnMoLSkKCi0tIAoyLjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
+cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL25vdXZlYXUK
