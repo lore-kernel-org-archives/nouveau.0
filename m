@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 71659] [NVD9] Hangs under load with ![
- PFIFO][0000:01:00.0] unhandled status 0x00800000
-Date: Mon, 23 Nov 2015 10:46:43 +0000
-Message-ID: <bug-71659-8800-Grbv1vCr6a@http.bugs.freedesktop.org/>
-References: <bug-71659-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92761] [NVF0] dmesg full of nouveau E[
+ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)
+Date: Mon, 23 Nov 2015 12:41:19 +0000
+Message-ID: <bug-92761-8800-AAv2HqxN0n@http.bugs.freedesktop.org/>
+References: <bug-92761-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1310484544=="
+Content-Type: multipart/mixed; boundary="===============0758338995=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-71659-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92761-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,31 +21,40 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1310484544==
-Content-Type: multipart/alternative; boundary="1448275603.5d010771.8831"; charset="UTF-8"
+--===============0758338995==
+Content-Type: multipart/alternative; boundary="1448282479.8EF11.13688"; charset="UTF-8"
 
 
---1448275603.5d010771.8831
-Date: Mon, 23 Nov 2015 10:46:43 +0000
+--1448282479.8EF11.13688
+Date: Mon, 23 Nov 2015 12:41:19 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=71659
+https://bugs.freedesktop.org/show_bug.cgi?id=92761
 
---- Comment #30 from Yoram <bhyoram-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-I experience the same issue.
-I have noticed that it only occurs if plasma is built with gles2 support (on
-gentoo, requiring the while QT+KDE stack to be built with gles2).
+--- Comment #15 from ascanio.alba7-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Two thumbs up for take 3 patch.
 
-A very similar freeze occurs with enlightenment/wayland, so I assume it's a bug
-in nouveau.
+1. No more log spamming with PIBUS
+2. lightdm to X desktop works
+3. gdm/X to X desktop works
+4. gdm/Wayland to X or Wayland desktop works.
+
+Gnome terminal has an extra white border(Wayland) but I think that is a
+separate problem.
+
+The first working nouveau on this card yet.
+
+Hope you can get this in for 4.4 so Fedora will pick it up.
+
+Thanks!
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1448275603.5d010771.8831
-Date: Mon, 23 Nov 2015 10:46:43 +0000
+--1448282479.8EF11.13688
+Date: Mon, 23 Nov 2015 12:41:19 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +67,29 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659#c30">Comment # 30</a>
+   title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761#c15">Comment # 15</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - [NVD9] Hangs under load with ![ PFIFO][0000:01:00.0] unhandled status 0x00800000"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=71659">bug 71659</a>
-              from <span class="vcard"><a class="email" href="mailto:bhyoram&#64;gmail.com" title="Yoram &lt;bhyoram&#64;gmail.com&gt;"> <span class="fn">Yoram</span></a>
+   title="NEW - [NVF0] dmesg full of nouveau E[ PIBUS][0000:01:00.0] GPC4: 0x5233e4 0xbadf1301 (0x01024215)"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92761">bug 92761</a>
+              from <span class="vcard"><a class="email" href="mailto:ascanio.alba7&#64;gmail.com" title="ascanio.alba7&#64;gmail.com">ascanio.alba7&#64;gmail.com</a>
 </span></b>
-        <pre>I experience the same issue.
-I have noticed that it only occurs if plasma is built with gles2 support (on
-gentoo, requiring the while QT+KDE stack to be built with gles2).
+        <pre>Two thumbs up for take 3 patch.
 
-A very similar freeze occurs with enlightenment/wayland, so I assume it's a bug
-in nouveau.</pre>
+1. No more log spamming with PIBUS
+2. lightdm to X desktop works
+3. gdm/X to X desktop works
+4. gdm/Wayland to X or Wayland desktop works.
+
+Gnome terminal has an extra white border(Wayland) but I think that is a
+separate problem.
+
+The first working nouveau on this card yet.
+
+Hope you can get this in for 4.4 so Fedora will pick it up.
+
+Thanks!</pre>
         </div>
       </p>
       <hr>
@@ -83,9 +101,9 @@ in nouveau.</pre>
     </body>
 </html>
 
---1448275603.5d010771.8831--
+--1448282479.8EF11.13688--
 
---===============1310484544==
+--===============0758338995==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -95,4 +113,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1310484544==--
+--===============0758338995==--
