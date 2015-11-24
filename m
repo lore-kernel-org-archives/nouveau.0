@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92961] Xorg freezes (only mouse and ssh are still
-	working)
-Date: Tue, 24 Nov 2015 20:45:51 +0000
-Message-ID: <bug-92961-8800-nXoFJT1DYu@http.bugs.freedesktop.org/>
-References: <bug-92961-8800@http.bugs.freedesktop.org/>
+From: Yvan Masson <yvan.masson-1Ww2luigxekRVMDPamJrIw@public.gmane.org>
+Subject: Hardware donation : GeForce 320M
+Date: Tue, 24 Nov 2015 22:34:45 +0100
+Message-ID: <1448400885.1518.25.camel@openmailbox.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1099049269=="
+Content-Type: multipart/mixed; boundary="===============0257114637=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92961-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,113 +18,72 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1099049269==
-Content-Type: multipart/alternative; boundary="1448397951.D18cD1.22102"; charset="UTF-8"
+--===============0257114637==
+Content-Type: multipart/signed; micalg="pgp-sha1"; protocol="application/pgp-signature";
+	boundary="=-SEtWo4tfQP/kG+qiZMem"
 
 
---1448397951.D18cD1.22102
-Date: Tue, 24 Nov 2015 20:45:51 +0000
-MIME-Version: 1.0
+--=-SEtWo4tfQP/kG+qiZMem
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92961
+Hi,
 
---- Comment #6 from ruben <nahoo82-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Pierre Moreau from comment #2)
-> I would start by blacklisting the NVIDIA driver, to prevent it from loading
-> while Nouveau is being used as it may results in conflicts. (Just write a
-> file named `whichever_name_you_want.conf` in `/etc/modprobe.d/`, and
-> containing `blacklist nvidia`.)
+I have an (recently) unused mid-2010 MacBook that I could give to
+anyone interested to play with : the included GeForce 320M (NVAF
+(MCP89)) seems to be rare (only on a few Apple hardware).
 
-The system was already like this, but it still crashes.
+I always wonder how you guys/women managed to make this weird GPU
+mostly working: many thanks for your work, you really deserve it !
 
-> Regarding the second attachment, could you rather please attach Xorg0.log as
-> found in `~/.local/share/xorg/`, or `~/.local/xorg/` or `/var/log/`? (From a
-> run that froze, and please attach the corresponding dmesg, so that both the
-> dmesg and the Xorg.log are from the same run.)
+Currently (last usage was with Ubuntu 15.10), the support with Nouveau
+can still be improved (but is already far better than with Xubuntu
+14.04):
+=C2=A0- many visual artefacts (always on splash screen, always on session
+opening
+=C2=A0- many strange (and I mean VERY strange) bugs that I could only link
+to the GPU
+=C2=A0- some video-projectors were not recognized (the GPU complains about
+available resolutions missing)
 
-I am seldom at this computer at the moment, but if it crashes again I will do
-that. Still the attachements before should provide the same information. Should
-they not?
+The proprietary driver I tested on 14.04 was absolutely non functional
+(black screen on boot).
 
-> (In reply to ruben from comment #0)
-> > The desktop freezes consistently after a few minutes using the nouveau
-> > driver.
-> 
-> Have you noticed anything that may cause the freeze, like starting a
-> browser, running some OpenGL application, or even some fancy compositor
-> animation?
+The laptop is currently located in Chamb=C3=A9ry, France. Two or three
+important keys do not work (I had to re-map the key), and it would be
+too expensive to fix it.
 
-No, nothing special. May even happend when I am practically leaving the
-computer untouched. In case it helps, I am using GNOME 3.
+Best regards,
+Yvan
 
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
 
---1448397951.D18cD1.22102
-Date: Tue, 24 Nov 2015 20:45:51 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+--=-SEtWo4tfQP/kG+qiZMem
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Xorg freezes (only mouse and ssh are still working)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92961#c6">Comment # 6</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Xorg freezes (only mouse and ssh are still working)"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92961">bug 92961</a>
-              from <span class="vcard"><a class="email" href="mailto:nahoo82&#64;gmail.com" title="ruben &lt;nahoo82&#64;gmail.com&gt;"> <span class="fn">ruben</span></a>
-</span></b>
-        <pre>(In reply to Pierre Moreau from <a href="show_bug.cgi?id=92961#c2">comment #2</a>)
-<span class="quote">&gt; I would start by blacklisting the NVIDIA driver, to prevent it from loading
-&gt; while Nouveau is being used as it may results in conflicts. (Just write a
-&gt; file named `whichever_name_you_want.conf` in `/etc/modprobe.d/`, and
-&gt; containing `blacklist nvidia`.)</span >
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-The system was already like this, but it still crashes.
+iQIcBAABAgAGBQJWVNf1AAoJEJT8nh+jvLr5u7kP/3gHKKs0SBPgS8R0kjcy0Cer
+5jhG6mGkmu9Ba5AcLiknWPCOkrhkcfOkUvu3VHHR/1IQ6VJviLSY3HffxrZpkmPw
+qJMgdczEfT3FXgH5VA9nBanc5GzzFVc6yFj54QPTmKA3L+EzQAyIwFvkv42RVHWH
+wRdZ1gG99TcODEGBI5kmzfIjxQAo1G0M5Ml8Z2KbqHbiXm93bPjfr/LKOj5aScX0
+TwRxx5PtSgp4+Wl2KxhmqqSN+xBHmFjsPwntj5QowqYUIwb7ISk6FfDW68UE0gh1
+TW8KzbCOJ6Lr6f9ME6dlQj39O7DykxUP3Q+gSm1nYpo0phq9Ld5JwwmJRC/+iXmu
+NHSJorrzLzqQ6ZzUYcfXW3PRnHfkP2zHvpQODUdtRysTi1QZWQEscT5pIilYyO3b
+QCqLI3QdexGhdJ8tFx9sgezwiXNzlPMHiDr3kkmBghIiFXQwoe+aQY4ayyNlPXVf
+fhHiNZcoEvY84sfVP7VCkm5X5LUFDMzUJTOs2QATE8iJAowJ8Aol89RHOECrIF2K
+wKSQ3tjNUl7eLoRXykB+LCPyfgFIKu5k3pxiczYkYTTGKcZD3BfycvGOt0GYu5Lx
+cHfr57hXc//gi3u61LDa6nNnoctNjoOJs/eOUQ9BiT9NCw/cgsY3Ufj/N7rJ7+0e
+qwHGQHOfM4TSAiFssx1l
+=zjHH
+-----END PGP SIGNATURE-----
 
-<span class="quote">&gt; Regarding the second attachment, could you rather please attach Xorg0.log as
-&gt; found in `~/.local/share/xorg/`, or `~/.local/xorg/` or `/var/log/`? (From a
-&gt; run that froze, and please attach the corresponding dmesg, so that both the
-&gt; dmesg and the Xorg.log are from the same run.)</span >
+--=-SEtWo4tfQP/kG+qiZMem--
 
-I am seldom at this computer at the moment, but if it crashes again I will do
-that. Still the attachements before should provide the same information. Should
-they not?
 
-<span class="quote">&gt; (In reply to ruben from <a href="show_bug.cgi?id=92961#c0">comment #0</a>)
-&gt; &gt; The desktop freezes consistently after a few minutes using the nouveau
-&gt; &gt; driver.
-&gt; 
-&gt; Have you noticed anything that may cause the freeze, like starting a
-&gt; browser, running some OpenGL application, or even some fancy compositor
-&gt; animation?</span >
-
-No, nothing special. May even happend when I am practically leaving the
-computer untouched. In case it helps, I am using GNOME 3.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448397951.D18cD1.22102--
-
---===============1099049269==
+--===============0257114637==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +93,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1099049269==--
+--===============0257114637==--
