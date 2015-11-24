@@ -1,51 +1,97 @@
-From: Tommi Rantala <tt.rantala@gmail.com>
-Subject: Re: nouveau: iowrite32 oops & warning at
- drivers/gpu/drm/nouveau/nouveau_fence.c:198
-Date: Mon, 23 Nov 2015 22:17:39 +0200
-Message-ID: <CA+ydwtr670rK5kAAFkJ=BEMXAMWLHwim3754rVvqZaCdhh+4-Q@mail.gmail.com>
-References: <CA+ydwtq3CT5iswJbWCBGN9_KqKANbaoeZdzvjm1fe9aiE=VQ-g@mail.gmail.com>
- <CAKb7Uvh+sGQJgEYb3SzVDH-YytX7WsU=EQnUEeZeWR-haHGdfA@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92991] Nouveau module loading regression in 4.4-rc1
+ on optimus system
+Date: Tue, 24 Nov 2015 10:10:29 +0000
+Message-ID: <bug-92991-8800-fbKFUfsSBw@http.bugs.freedesktop.org/>
+References: <bug-92991-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-In-Reply-To: <CAKb7Uvh+sGQJgEYb3SzVDH-YytX7WsU=EQnUEeZeWR-haHGdfA@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: Ilia Mirkin <imirkin@alum.mit.edu>
-Cc: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, trinity@vger.kernel.org, Ben Skeggs <bskeggs@redhat.com>, DRI Development <dri-devel@lists.freedesktop.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============0675707627=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-MjAxNS0xMS0yMiAyMjo0OSBHTVQrMDI6MDAgSWxpYSBNaXJraW4gPGltaXJraW5AYWx1bS5taXQu
-ZWR1PjoKPiBOb3Qgc3VyZSBpZiB0aGVzZSBhcHBseSBoZXJlIGJ1dCB0aGVyZSBhcmUgYSBjb3Vw
-bGUgb2Ygb3V0c3RhbmRpbmcKPiBsb2NraW5nIGZpeGVzIGF2YWlsYWJsZSBpbgo+IGh0dHA6Ly9j
-Z2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3RhbWEvbm91dmVhdS8gLS0gc3BlY2lmaWNhbGx5IHRo
-ZXNlCj4gdHdvOgo+Cj4gaHR0cDovL2NnaXQuZnJlZWRlc2t0b3Aub3JnL35kYXJrdGFtYS9ub3V2
-ZWF1L2NvbW1pdC8/aWQ9MmYzYTU2YWQwMTllMzc4YTM1MmU5Y2I3YTU1OWY0Nzg4MjZmMWE4Nwo+
-IGh0dHA6Ly9jZ2l0LmZyZWVkZXNrdG9wLm9yZy9+ZGFya3RhbWEvbm91dmVhdS9jb21taXQvP2lk
-PTQxNzliMTVjNmU5ZmNmYjI1M2U4MTFlNTQ3N2RlYmU0NmM4NGMzOTUKPgo+IE5vdCBzdXJlIGlm
-IHRoZXkgYWZmZWN0IHRoaXMgcGFydGljdWxhciBpc3N1ZSwgYnV0IHRob3VnaHQgSSdkIHBvaW50
-Cj4gaXQgb3V0LiBBcmUgeW91IGZ1enppbmcgd2l0aCBtdWx0aXBsZSB0aHJlYWRzLCBvciBqdXN0
-IG9uZSBhdCBhIHRpbWU/Cj4gRG8geW91IGhhdmUgYSBicmFuY2ggc29tZXdoZXJlIHB1YmxpYyB3
-aXRoIHRoZSBjaGFuZ2VzIHRvIGFkZCBub3V2ZWF1Cj4gaW9jdGwgc3VwcG9ydCB0byB0cmluaXR5
-PwoKSGkhCgpJIGFwcGxpZWQgdGhvc2UgdHdvIG9uIHRvcCBvZiB2NC40LXJjMiwgYnV0IHRoZSBz
-YW1lIHdhcm5pbmcgYW5kIG9vcHMKYXJlIHN0aWxsIGVhc2lseSByZXByb2R1Y2libGUuIEkgY2Fu
-IHRlc3Qgd2l0aCBvbGRlciBrZXJuZWxzIGFuZC9vcgp0cnkgdG8gYmlzZWN0IHdoZW4gSSBoYXZl
-IG1vcmUgdGltZSwgdW5sZXNzIGFueW9uZSBoYXMgYmV0dGVyIGlkZWFzLgoKSSdtIGFjdHVhbGx5
-IHJ1bm5pbmcgdW5tb2RpZmllZCB0cmluaXR5LCBhbmQgZm9yIHRoaXMgcHVycG9zZSBvbmx5CmZ1
-enppbmcgdGhlIGlvY3RsKCkgc3lzY2FsbCBmcm9tIG11bHRpcGxlIHByb2Nlc3NlcywgYW5kIG9w
-ZW5pbmcgb25seQp0aGUgZmlsZXMgZnJvbSAvZGV2L2RyaS86CgokIC4vdHJpbml0eSAtcSAtbG9m
-ZiAtQzIwIC1jIGlvY3RsIC1WIC9kZXYvZHJpLwoKVHJpbml0eSBrbm93cyBhYm91dCBhIGJ1bmNo
-IG9mIERSTSBpb2N0bCBjb21tYW5kcywgYnV0IHRoZSByZXN0IG9mIHRoZQppb2N0bCBhcmd1bWVu
-dHMgd2lsbCBiZSBnYXJiYWdlOgpodHRwczovL2dpdGh1Yi5jb20va2VybmVsc2xhY2tlci90cmlu
-aXR5L2Jsb2IvbWFzdGVyL2lvY3Rscy9kcm0uYwoKVG9tbWkKX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2
-ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0675707627==
+Content-Type: multipart/alternative; boundary="1448359829.e4CC2Eef1.6932"; charset="UTF-8"
+
+
+--1448359829.e4CC2Eef1.6932
+Date: Tue, 24 Nov 2015 10:10:29 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92991
+
+--- Comment #10 from Oliver Neukum <oliver-GvhC2dPhHPQdnm+yROfE0A@public.gmane.org> ---
+Created attachment 120079
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120079&action=edit
+X log
+
+booting (nouveau and i915 statically compiled) and connecting an external
+monitor
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1448359829.e4CC2Eef1.6932
+Date: Tue, 24 Nov 2015 10:10:29 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c10">Comment # 10</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991">bug 92991</a>
+              from <span class="vcard"><a class="email" href="mailto:oliver&#64;neukum.org" title="Oliver Neukum &lt;oliver&#64;neukum.org&gt;"> <span class="fn">Oliver Neukum</span></a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120079" name="attach_120079" title="X log">attachment 120079</a> <a href="attachment.cgi?id=120079&amp;action=edit" title="X log">[details]</a></span>
+X log
+
+booting (nouveau and i915 statically compiled) and connecting an external
+monitor</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448359829.e4CC2Eef1.6932--
+
+--===============0675707627==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0675707627==--
