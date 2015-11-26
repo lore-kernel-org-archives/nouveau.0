@@ -1,10 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93110] New: [NVE4] textureSize() and
- textureQueryLevels() uses a texture bound during the previous draw call
-Date: Thu, 26 Nov 2015 00:38:15 +0000
-Message-ID: <bug-93110-8800@http.bugs.freedesktop.org/>
+From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: [libdrm 01/13] nouveau: move more abi16-specific logic
+	into abi16.c
+Date: Thu, 26 Nov 2015 17:13:58 +1000
+Message-ID: <1448522050-4873-1-git-send-email-skeggsb@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============2054883628=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
@@ -16,196 +17,120 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============2054883628==
-Content-Type: multipart/alternative; boundary="1448498295.3BaD0b300.24951"; charset="UTF-8"
-
-
---1448498295.3BaD0b300.24951
-Date: Thu, 26 Nov 2015 00:38:15 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93110
-
-            Bug ID: 93110
-           Summary: [NVE4] textureSize() and textureQueryLevels() uses a
-                    texture bound during the previous draw call
-           Product: Mesa
-           Version: 10.5
-          Hardware: x86-64 (AMD64)
-                OS: Linux (All)
-            Status: NEW
-          Severity: normal
-          Priority: medium
-         Component: Drivers/DRI/nouveau
-          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-          Reporter: joseph.kucia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
-        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-
-Created attachment 120124
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120124&action=edit
-A small program to demonstrate the issue
-
-It seems that a texture bound in the previous draw call is used by
-textureSize() and textureQueryLevels() (instead of the currently bound
-texture).
-
-The attached program demonstrated the bug. When the program is built with
--DBROKEN, it incorrectly prints "width: 2.000000 height 2.000000 miplevels
-2.000000" while the current texture is 512x256 with 4 miplevels.
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVE4
-OpenGL core profile version string: 4.1 (Core Profile) Mesa 11.0.5
-OpenGL core profile shading language version string: 4.10
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 760]
-(rev a1) (prog-if 00 [VGA controller])
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1448498295.3BaD0b300.24951
-Date: Thu, 26 Nov 2015 00:38:15 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><table border="1" cellspacing="0" cellpadding="8">
-        <tr>
-          <th>Bug ID</th>
-          <td><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVE4] textureSize() and textureQueryLevels() uses a texture bound during the previous draw call"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93110">93110</a>
-          </td>
-        </tr>
-
-        <tr>
-          <th>Summary</th>
-          <td>[NVE4] textureSize() and textureQueryLevels() uses a texture bound during the previous draw call
-          </td>
-        </tr>
-
-        <tr>
-          <th>Product</th>
-          <td>Mesa
-          </td>
-        </tr>
-
-        <tr>
-          <th>Version</th>
-          <td>10.5
-          </td>
-        </tr>
-
-        <tr>
-          <th>Hardware</th>
-          <td>x86-64 (AMD64)
-          </td>
-        </tr>
-
-        <tr>
-          <th>OS</th>
-          <td>Linux (All)
-          </td>
-        </tr>
-
-        <tr>
-          <th>Status</th>
-          <td>NEW
-          </td>
-        </tr>
-
-        <tr>
-          <th>Severity</th>
-          <td>normal
-          </td>
-        </tr>
-
-        <tr>
-          <th>Priority</th>
-          <td>medium
-          </td>
-        </tr>
-
-        <tr>
-          <th>Component</th>
-          <td>Drivers/DRI/nouveau
-          </td>
-        </tr>
-
-        <tr>
-          <th>Assignee</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr>
-
-        <tr>
-          <th>Reporter</th>
-          <td>joseph.kucia&#64;gmail.com
-          </td>
-        </tr>
-
-        <tr>
-          <th>QA Contact</th>
-          <td>nouveau&#64;lists.freedesktop.org
-          </td>
-        </tr></table>
-      <p>
-        <div>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120124" name="attach_120124" title="A small program to demonstrate the issue">attachment 120124</a> <a href="attachment.cgi?id=120124&amp;action=edit" title="A small program to demonstrate the issue">[details]</a></span>
-A small program to demonstrate the issue
-
-It seems that a texture bound in the previous draw call is used by
-textureSize() and textureQueryLevels() (instead of the currently bound
-texture).
-
-The attached program demonstrated the bug. When the program is built with
--DBROKEN, it incorrectly prints &quot;width: 2.000000 height 2.000000 miplevels
-2.000000&quot; while the current texture is 512x256 with 4 miplevels.
-
-OpenGL vendor string: nouveau
-OpenGL renderer string: Gallium 0.4 on NVE4
-OpenGL core profile version string: 4.1 (Core Profile) Mesa 11.0.5
-OpenGL core profile shading language version string: 4.10
-OpenGL core profile context flags: (none)
-OpenGL core profile profile mask: core profile
-
-01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 760]
-(rev a1) (prog-if 00 [VGA controller])</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448498295.3BaD0b300.24951--
-
---===============2054883628==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============2054883628==--
+RnJvbTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgoKU2lnbmVkLW9mZi1ieTogQmVu
+IFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgotLS0KIG5vdXZlYXUvYWJpMTYuYyAgIHwgNjIg
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0tLQog
+bm91dmVhdS9ub3V2ZWF1LmMgfCA1NiArKysrKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tCiBub3V2ZWF1L3ByaXZhdGUuaCB8ICA3ICsrLS0tLS0KIDMgZmlsZXMg
+Y2hhbmdlZCwgNjcgaW5zZXJ0aW9ucygrKSwgNTggZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEv
+bm91dmVhdS9hYmkxNi5jIGIvbm91dmVhdS9hYmkxNi5jCmluZGV4IDU5YmM0MzYuLjhmMjRiYTIg
+MTAwNjQ0Ci0tLSBhL25vdXZlYXUvYWJpMTYuYworKysgYi9ub3V2ZWF1L2FiaTE2LmMKQEAgLTMz
+LDcgKzMzLDcgQEAKICNpbmNsdWRlICJwcml2YXRlLmgiCiAKIAotZHJtX3ByaXZhdGUgaW50Citz
+dGF0aWMgaW50CiBhYmkxNl9jaGFuX252MDQoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmopCiB7
+CiAJc3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYgPSAoc3RydWN0IG5vdXZlYXVfZGV2aWNlICop
+b2JqLT5wYXJlbnQ7CkBAIC01Nyw3ICs1Nyw3IEBAIGFiaTE2X2NoYW5fbnYwNChzdHJ1Y3Qgbm91
+dmVhdV9vYmplY3QgKm9iaikKIAlyZXR1cm4gMDsKIH0KIAotZHJtX3ByaXZhdGUgaW50CitzdGF0
+aWMgaW50CiBhYmkxNl9jaGFuX252YzAoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmopCiB7CiAJ
+c3RydWN0IG5vdXZlYXVfZGV2aWNlICpkZXYgPSAoc3RydWN0IG5vdXZlYXVfZGV2aWNlICopb2Jq
+LT5wYXJlbnQ7CkBAIC03OCw3ICs3OCw3IEBAIGFiaTE2X2NoYW5fbnZjMChzdHJ1Y3Qgbm91dmVh
+dV9vYmplY3QgKm9iaikKIAlyZXR1cm4gMDsKIH0KIAotZHJtX3ByaXZhdGUgaW50CitzdGF0aWMg
+aW50CiBhYmkxNl9jaGFuX252ZTAoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmopCiB7CiAJc3Ry
+dWN0IG5vdXZlYXVfZGV2aWNlICpkZXYgPSAoc3RydWN0IG5vdXZlYXVfZGV2aWNlICopb2JqLT5w
+YXJlbnQ7CkBAIC0xMDQsNyArMTA0LDcgQEAgYWJpMTZfY2hhbl9udmUwKHN0cnVjdCBub3V2ZWF1
+X29iamVjdCAqb2JqKQogCXJldHVybiAwOwogfQogCi1kcm1fcHJpdmF0ZSBpbnQKK3N0YXRpYyBp
+bnQKIGFiaTE2X2VuZ29iaihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iaikKIHsKIAlzdHJ1Y3Qg
+ZHJtX25vdXZlYXVfZ3JvYmpfYWxsb2MgcmVxID0gewpAQCAtMTI1LDcgKzEyNSw3IEBAIGFiaTE2
+X2VuZ29iaihzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iaikKIAlyZXR1cm4gMDsKIH0KIAotZHJt
+X3ByaXZhdGUgaW50CitzdGF0aWMgaW50CiBhYmkxNl9udGZ5KHN0cnVjdCBub3V2ZWF1X29iamVj
+dCAqb2JqKQogewogCXN0cnVjdCBudjA0X25vdGlmeSAqbnRmeSA9IG9iai0+ZGF0YTsKQEAgLTE0
+OSw2ICsxNDksNTggQEAgYWJpMTZfbnRmeShzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iaikKIH0K
+IAogZHJtX3ByaXZhdGUgdm9pZAorYWJpMTZfZGVsZXRlKHN0cnVjdCBub3V2ZWF1X29iamVjdCAq
+b2JqKQoreworCXN0cnVjdCBub3V2ZWF1X2RldmljZSAqZGV2ID0KKwkJbm91dmVhdV9vYmplY3Rf
+ZmluZChvYmosIE5PVVZFQVVfREVWSUNFX0NMQVNTKTsKKwlpZiAob2JqLT5vY2xhc3MgPT0gTk9V
+VkVBVV9GSUZPX0NIQU5ORUxfQ0xBU1MpIHsKKwkJc3RydWN0IGRybV9ub3V2ZWF1X2NoYW5uZWxf
+ZnJlZSByZXE7CisJCXJlcS5jaGFubmVsID0gb2JqLT5oYW5kbGU7CisJCWRybUNvbW1hbmRXcml0
+ZShkZXYtPmZkLCBEUk1fTk9VVkVBVV9DSEFOTkVMX0ZSRUUsCisJCQkJJnJlcSwgc2l6ZW9mKHJl
+cSkpOworCX0gZWxzZSB7CisJCXN0cnVjdCBkcm1fbm91dmVhdV9ncHVvYmpfZnJlZSByZXE7CisJ
+CXJlcS5jaGFubmVsID0gb2JqLT5wYXJlbnQtPmhhbmRsZTsKKwkJcmVxLmhhbmRsZSAgPSBvYmot
+PmhhbmRsZTsKKwkJZHJtQ29tbWFuZFdyaXRlKGRldi0+ZmQsIERSTV9OT1VWRUFVX0dQVU9CSl9G
+UkVFLAorCQkJCSZyZXEsIHNpemVvZihyZXEpKTsKKwl9Cit9CisKK2RybV9wcml2YXRlIGJvb2wK
+K2FiaTE2X29iamVjdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iaiwgaW50ICgqKmZ1bmMpKHN0
+cnVjdCBub3V2ZWF1X29iamVjdCAqKSkKK3sKKwlzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVu
+dCA9IG9iai0+cGFyZW50OworCisJaWYgKChwYXJlbnQtPmxlbmd0aCAhPSAwICYmIHBhcmVudC0+
+b2NsYXNzID09IE5PVVZFQVVfREVWSUNFX0NMQVNTKSkgeworCQlpZiAob2JqLT5vY2xhc3MgPT0g
+Tk9VVkVBVV9GSUZPX0NIQU5ORUxfQ0xBU1MpIHsKKwkJCXN0cnVjdCBub3V2ZWF1X2RldmljZSAq
+ZGV2ID0gKHZvaWQgKilwYXJlbnQ7CisJCQlpZiAoZGV2LT5jaGlwc2V0IDwgMHhjMCkKKwkJCQkq
+ZnVuYyA9IGFiaTE2X2NoYW5fbnYwNDsKKwkJCWVsc2UKKwkJCWlmIChkZXYtPmNoaXBzZXQgPCAw
+eGUwKQorCQkJCSpmdW5jID0gYWJpMTZfY2hhbl9udmMwOworCQkJZWxzZQorCQkJCSpmdW5jID0g
+YWJpMTZfY2hhbl9udmUwOworCQkJcmV0dXJuIHRydWU7CisJCX0KKwl9IGVsc2UKKwlpZiAoKHBh
+cmVudC0+bGVuZ3RoICE9IDAgJiYKKwkgICAgIHBhcmVudC0+b2NsYXNzID09IE5PVVZFQVVfRklG
+T19DSEFOTkVMX0NMQVNTKSkgeworCQlpZiAob2JqLT5vY2xhc3MgPT0gTk9VVkVBVV9OT1RJRklF
+Ul9DTEFTUykgeworCQkJKmZ1bmMgPSBhYmkxNl9udGZ5OworCQkJcmV0dXJuIHRydWU7CisJCX0K
+KworCQkqZnVuYyA9IGFiaTE2X2VuZ29iajsKKwkJcmV0dXJuIGZhbHNlOworCX0KKworCSpmdW5j
+ID0gTlVMTDsKKwlyZXR1cm4gZmFsc2U7Cit9CisKK2RybV9wcml2YXRlIHZvaWQKIGFiaTE2X2Jv
+X2luZm8oc3RydWN0IG5vdXZlYXVfYm8gKmJvLCBzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX2luZm8g
+KmluZm8pCiB7CiAJc3RydWN0IG5vdXZlYXVfYm9fcHJpdiAqbnZibyA9IG5vdXZlYXVfYm8oYm8p
+OwpkaWZmIC0tZ2l0IGEvbm91dmVhdS9ub3V2ZWF1LmMgYi9ub3V2ZWF1L25vdXZlYXUuYwppbmRl
+eCA5N2ZkNzdiLi44YTBiZTJmIDEwMDY0NAotLS0gYS9ub3V2ZWF1L25vdXZlYXUuYworKysgYi9u
+b3V2ZWF1L25vdXZlYXUuYwpAQCAtMTM1LDYgKzEzNSw3IEBAIG5vdXZlYXVfZGV2aWNlX3dyYXAo
+aW50IGZkLCBpbnQgY2xvc2UsIHN0cnVjdCBub3V2ZWF1X2RldmljZSAqKnBkZXYpCiAJCW52ZGV2
+LT5nYXJ0X2xpbWl0X3BlcmNlbnQgPSA4MDsKIAlEUk1JTklUTElTVEhFQUQoJm52ZGV2LT5ib19s
+aXN0KTsKIAludmRldi0+YmFzZS5vYmplY3Qub2NsYXNzID0gTk9VVkVBVV9ERVZJQ0VfQ0xBU1M7
+CisJbnZkZXYtPmJhc2Uub2JqZWN0Lmxlbmd0aCA9IH4wOwogCW52ZGV2LT5iYXNlLmxpYl92ZXJz
+aW9uID0gMHgwMTAwMDAwMDsKIAludmRldi0+YmFzZS5jaGlwc2V0ID0gY2hpcHNldDsKIAludmRl
+di0+YmFzZS52cmFtX3NpemUgPSB2cmFtOwpAQCAtMjUxLDggKzI1Miw4IEBAIG5vdXZlYXVfb2Jq
+ZWN0X25ldyhzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKnBhcmVudCwgdWludDY0X3QgaGFuZGxlLAog
+CQkgICB1aW50MzJfdCBvY2xhc3MsIHZvaWQgKmRhdGEsIHVpbnQzMl90IGxlbmd0aCwKIAkJICAg
+c3RydWN0IG5vdXZlYXVfb2JqZWN0ICoqcG9iaikKIHsKLQlzdHJ1Y3Qgbm91dmVhdV9kZXZpY2Ug
+KmRldjsKIAlzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKm9iajsKKwlpbnQgKCpmdW5jKShzdHJ1Y3Qg
+bm91dmVhdV9vYmplY3QgKik7CiAJaW50IHJldCA9IC1FSU5WQUw7CiAKIAlpZiAobGVuZ3RoID09
+IDApCkBAIC0yNjcsMzcgKzI2OCw5IEBAIG5vdXZlYXVfb2JqZWN0X25ldyhzdHJ1Y3Qgbm91dmVh
+dV9vYmplY3QgKnBhcmVudCwgdWludDY0X3QgaGFuZGxlLAogCQltZW1jcHkob2JqLT5kYXRhLCBk
+YXRhLCBsZW5ndGgpOwogCSooc3RydWN0IG5vdXZlYXVfb2JqZWN0ICoqKW9iai0+ZGF0YSA9IG9i
+ajsKIAotCWRldiA9IG5vdXZlYXVfb2JqZWN0X2ZpbmQob2JqLCBOT1VWRUFVX0RFVklDRV9DTEFT
+Uyk7Ci0Jc3dpdGNoIChwYXJlbnQtPm9jbGFzcykgewotCWNhc2UgTk9VVkVBVV9ERVZJQ0VfQ0xB
+U1M6Ci0JCXN3aXRjaCAob2JqLT5vY2xhc3MpIHsKLQkJY2FzZSBOT1VWRUFVX0ZJRk9fQ0hBTk5F
+TF9DTEFTUzoKLQkJewotCQkJaWYgKGRldi0+Y2hpcHNldCA8IDB4YzApCi0JCQkJcmV0ID0gYWJp
+MTZfY2hhbl9udjA0KG9iaik7Ci0JCQllbHNlCi0JCQlpZiAoZGV2LT5jaGlwc2V0IDwgMHhlMCkK
+LQkJCQlyZXQgPSBhYmkxNl9jaGFuX252YzAob2JqKTsKLQkJCWVsc2UKLQkJCQlyZXQgPSBhYmkx
+Nl9jaGFuX252ZTAob2JqKTsKLQkJfQotCQkJYnJlYWs7Ci0JCWRlZmF1bHQ6Ci0JCQlicmVhazsK
+LQkJfQotCQlicmVhazsKLQljYXNlIE5PVVZFQVVfRklGT19DSEFOTkVMX0NMQVNTOgotCQlzd2l0
+Y2ggKG9iai0+b2NsYXNzKSB7Ci0JCWNhc2UgTk9VVkVBVV9OT1RJRklFUl9DTEFTUzoKLQkJCXJl
+dCA9IGFiaTE2X250Znkob2JqKTsKLQkJCWJyZWFrOwotCQlkZWZhdWx0OgotCQkJcmV0ID0gYWJp
+MTZfZW5nb2JqKG9iaik7Ci0JCQlicmVhazsKLQkJfQotCWRlZmF1bHQ6Ci0JCWJyZWFrOwotCX0K
+KwlhYmkxNl9vYmplY3Qob2JqLCAmZnVuYyk7CisJaWYgKGZ1bmMpCisJCXJldCA9IGZ1bmMob2Jq
+KTsKIAogCWlmIChyZXQpIHsKIAkJZnJlZShvYmopOwpAQCAtMzEyLDI0ICsyODUsMTEgQEAgdm9p
+ZAogbm91dmVhdV9vYmplY3RfZGVsKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKnBvYmopCiB7CiAJ
+c3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmogPSAqcG9iajsKLQlzdHJ1Y3Qgbm91dmVhdV9kZXZp
+Y2UgKmRldjsKIAlpZiAob2JqKSB7Ci0JCWRldiA9IG5vdXZlYXVfb2JqZWN0X2ZpbmQob2JqLCBO
+T1VWRUFVX0RFVklDRV9DTEFTUyk7Ci0JCWlmIChvYmotPm9jbGFzcyA9PSBOT1VWRUFVX0ZJRk9f
+Q0hBTk5FTF9DTEFTUykgewotCQkJc3RydWN0IGRybV9ub3V2ZWF1X2NoYW5uZWxfZnJlZSByZXE7
+Ci0JCQlyZXEuY2hhbm5lbCA9IG9iai0+aGFuZGxlOwotCQkJZHJtQ29tbWFuZFdyaXRlKGRldi0+
+ZmQsIERSTV9OT1VWRUFVX0NIQU5ORUxfRlJFRSwKLQkJCQkJJnJlcSwgc2l6ZW9mKHJlcSkpOwot
+CQl9IGVsc2UgewotCQkJc3RydWN0IGRybV9ub3V2ZWF1X2dwdW9ial9mcmVlIHJlcTsKLQkJCXJl
+cS5jaGFubmVsID0gb2JqLT5wYXJlbnQtPmhhbmRsZTsKLQkJCXJlcS5oYW5kbGUgID0gb2JqLT5o
+YW5kbGU7Ci0JCQlkcm1Db21tYW5kV3JpdGUoZGV2LT5mZCwgRFJNX05PVVZFQVVfR1BVT0JKX0ZS
+RUUsCi0JCQkJCSZyZXEsIHNpemVvZihyZXEpKTsKLQkJfQorCQlhYmkxNl9kZWxldGUob2JqKTsK
+KwkJZnJlZShvYmopOworCQkqcG9iaiA9IE5VTEw7CiAJfQotCWZyZWUob2JqKTsKLQkqcG9iaiA9
+IE5VTEw7CiB9CiAKIHZvaWQgKgpkaWZmIC0tZ2l0IGEvbm91dmVhdS9wcml2YXRlLmggYi9ub3V2
+ZWF1L3ByaXZhdGUuaAppbmRleCBlOTQzOWYzLi41ZjM1MmE0IDEwMDY0NAotLS0gYS9ub3V2ZWF1
+L3ByaXZhdGUuaAorKysgYi9ub3V2ZWF1L3ByaXZhdGUuaApAQCAtMTE0LDExICsxMTQsOCBAQCBp
+bnQKIG5vdXZlYXVfZGV2aWNlX29wZW5fZXhpc3Rpbmcoc3RydWN0IG5vdXZlYXVfZGV2aWNlICoq
+LCBpbnQsIGludCwgZHJtX2NvbnRleHRfdCk7CiAKIC8qIGFiaTE2LmMgKi8KLWRybV9wcml2YXRl
+IGludCAgYWJpMTZfY2hhbl9udjA0KHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKTsKLWRybV9wcml2
+YXRlIGludCAgYWJpMTZfY2hhbl9udmMwKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKTsKLWRybV9w
+cml2YXRlIGludCAgYWJpMTZfY2hhbl9udmUwKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKTsKLWRy
+bV9wcml2YXRlIGludCAgYWJpMTZfZW5nb2JqKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKTsKLWRy
+bV9wcml2YXRlIGludCAgYWJpMTZfbnRmeShzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKik7Citkcm1f
+cHJpdmF0ZSBib29sIGFiaTE2X29iamVjdChzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKiwgaW50ICgq
+Kikoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICopKTsKK2RybV9wcml2YXRlIHZvaWQgYWJpMTZfZGVs
+ZXRlKHN0cnVjdCBub3V2ZWF1X29iamVjdCAqKTsKIGRybV9wcml2YXRlIHZvaWQgYWJpMTZfYm9f
+aW5mbyhzdHJ1Y3Qgbm91dmVhdV9ibyAqLCBzdHJ1Y3QgZHJtX25vdXZlYXVfZ2VtX2luZm8gKik7
+CiBkcm1fcHJpdmF0ZSBpbnQgIGFiaTE2X2JvX2luaXQoc3RydWN0IG5vdXZlYXVfYm8gKiwgdWlu
+dDMyX3QgYWxpZ25tZW50LAogCQkJICAgICAgIHVuaW9uIG5vdXZlYXVfYm9fY29uZmlnICopOwot
+LSAKMi42LjMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Ck5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
