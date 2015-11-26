@@ -1,13 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92991] Nouveau module loading regression in 4.4-rc1
- on optimus system
-Date: Thu, 26 Nov 2015 17:06:31 +0000
-Message-ID: <bug-92991-8800-BOVR2GWyu6@http.bugs.freedesktop.org/>
-References: <bug-92991-8800@http.bugs.freedesktop.org/>
+From: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [libdrm 01/13] nouveau: move more abi16-specific
+ logic into abi16.c
+Date: Thu, 26 Nov 2015 20:21:40 +0000
+Message-ID: <CACvgo52nvNmZ_WgnuHDZgUGzNd9aZGq3YeG57NUYxKjEe2zthw@mail.gmail.com>
+References: <1448522050-4873-1-git-send-email-skeggsb@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1934837644=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92991-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <1448522050-4873-1-git-send-email-skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,92 +18,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============1934837644==
-Content-Type: multipart/alternative; boundary="1448557590.Bbec1.25797"; charset="UTF-8"
-
-
---1448557590.Bbec1.25797
-Date: Thu, 26 Nov 2015 17:06:30 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92991
-
---- Comment #13 from Karol Herbst <freedesktop-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org> ---
-(In reply to Oliver Neukum from comment #12)
-> (In reply to Ilia Mirkin from comment #9)
-> 
-> > Those connector names look like they're from xf86-video-modesetting, not
-> > xf86-video-nouveau. Could you try with xf86-video-nouveau installed? What
-> > version of xf86-video-intel are you using? SNA or UXA?
-> 
-> xf86-video-modesetting is definitely not used. I've deinstalled it and
-> rebooted. The result is the same.
-
-It is part of the Xserver now, so you can't just deinstall it ;)
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1448557590.Bbec1.25797
-Date: Thu, 26 Nov 2015 17:06:30 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991#c13">Comment # 13</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Nouveau module loading regression in 4.4-rc1 on optimus system"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92991">bug 92991</a>
-              from <span class="vcard"><a class="email" href="mailto:freedesktop&#64;karolherbst.de" title="Karol Herbst &lt;freedesktop&#64;karolherbst.de&gt;"> <span class="fn">Karol Herbst</span></a>
-</span></b>
-        <pre>(In reply to Oliver Neukum from <a href="show_bug.cgi?id=92991#c12">comment #12</a>)
-<span class="quote">&gt; (In reply to Ilia Mirkin from <a href="show_bug.cgi?id=92991#c9">comment #9</a>)
-&gt; 
-&gt; &gt; Those connector names look like they're from xf86-video-modesetting, not
-&gt; &gt; xf86-video-nouveau. Could you try with xf86-video-nouveau installed? What
-&gt; &gt; version of xf86-video-intel are you using? SNA or UXA?
-&gt; 
-&gt; xf86-video-modesetting is definitely not used. I've deinstalled it and
-&gt; rebooted. The result is the same.</span >
-
-It is part of the Xserver now, so you can't just deinstall it ;)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448557590.Bbec1.25797--
-
---===============1934837644==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1934837644==--
+SGkgQmVuLAoKT24gMjYgTm92ZW1iZXIgMjAxNSBhdCAwNzoxMywgQmVuIFNrZWdncyA8c2tlZ2dz
+YkBnbWFpbC5jb20+IHdyb3RlOgo+IEZyb206IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNv
+bT4KPgo+IFNpZ25lZC1vZmYtYnk6IEJlbiBTa2VnZ3MgPGJza2VnZ3NAcmVkaGF0LmNvbT4KPiAt
+LS0KPiAgbm91dmVhdS9hYmkxNi5jICAgfCA2MiArKysrKysrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKy0tLS0tCj4gIG5vdXZlYXUvbm91dmVhdS5jIHwgNTYgKysr
+KysrKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo+ICBub3V2ZWF1
+L3ByaXZhdGUuaCB8ICA3ICsrLS0tLS0KPiAgMyBmaWxlcyBjaGFuZ2VkLCA2NyBpbnNlcnRpb25z
+KCspLCA1OCBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9ub3V2ZWF1L2FiaTE2LmMgYi9u
+b3V2ZWF1L2FiaTE2LmMKPiBpbmRleCA1OWJjNDM2Li44ZjI0YmEyIDEwMDY0NAo+IC0tLSBhL25v
+dXZlYXUvYWJpMTYuYwo+ICsrKyBiL25vdXZlYXUvYWJpMTYuYwoKPiArZHJtX3ByaXZhdGUgYm9v
+bAo+ICthYmkxNl9vYmplY3Qoc3RydWN0IG5vdXZlYXVfb2JqZWN0ICpvYmosIGludCAoKipmdW5j
+KShzdHJ1Y3Qgbm91dmVhdV9vYmplY3QgKikpCj4gK3sKPiArICAgICAgIHN0cnVjdCBub3V2ZWF1
+X29iamVjdCAqcGFyZW50ID0gb2JqLT5wYXJlbnQ7Cj4gKwo+ICsgICAgICAgaWYgKChwYXJlbnQt
+Pmxlbmd0aCAhPSAwICYmIHBhcmVudC0+b2NsYXNzID09IE5PVVZFQVVfREVWSUNFX0NMQVNTKSkg
+ewo+ICsgICAgICAgICAgICAgICBpZiAob2JqLT5vY2xhc3MgPT0gTk9VVkVBVV9GSUZPX0NIQU5O
+RUxfQ0xBU1MpIHsKPiArICAgICAgICAgICAgICAgICAgICAgICBzdHJ1Y3Qgbm91dmVhdV9kZXZp
+Y2UgKmRldiA9ICh2b2lkICopcGFyZW50Owo+ICsgICAgICAgICAgICAgICAgICAgICAgIGlmIChk
+ZXYtPmNoaXBzZXQgPCAweGMwKQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKmZ1
+bmMgPSBhYmkxNl9jaGFuX252MDQ7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgZWxzZQo+ICsg
+ICAgICAgICAgICAgICAgICAgICAgIGlmIChkZXYtPmNoaXBzZXQgPCAweGUwKQo+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgKmZ1bmMgPSBhYmkxNl9jaGFuX252YzA7Cj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgZWxzZQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+KmZ1bmMgPSBhYmkxNl9jaGFuX252ZTA7Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJu
+IHRydWU7Cj4gKyAgICAgICAgICAgICAgIH0KPiArICAgICAgIH0gZWxzZQo+ICsgICAgICAgaWYg
+KChwYXJlbnQtPmxlbmd0aCAhPSAwICYmCj4gKyAgICAgICAgICAgIHBhcmVudC0+b2NsYXNzID09
+IE5PVVZFQVVfRklGT19DSEFOTkVMX0NMQVNTKSkgewo+ICsgICAgICAgICAgICAgICBpZiAob2Jq
+LT5vY2xhc3MgPT0gTk9VVkVBVV9OT1RJRklFUl9DTEFTUykgewo+ICsgICAgICAgICAgICAgICAg
+ICAgICAgICpmdW5jID0gYWJpMTZfbnRmeTsKPiArICAgICAgICAgICAgICAgICAgICAgICByZXR1
+cm4gdHJ1ZTsKPiArICAgICAgICAgICAgICAgfQo+ICsKPiArICAgICAgICAgICAgICAgKmZ1bmMg
+PSBhYmkxNl9lbmdvYmo7Cj4gKyAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKU3VyZWx5IHRo
+aXMgaXMgbWVhbnQgdG8gYmUgdHJ1ZSwgcmlnaHQgPwoKPiArICAgICAgIH0KPiArCj4gKyAgICAg
+ICAqZnVuYyA9IE5VTEw7Cj4gKyAgICAgICByZXR1cm4gZmFsc2U7Cj4gK30KPiArCj4gK2RybV9w
+cml2YXRlIHZvaWQKPiAgYWJpMTZfYm9faW5mbyhzdHJ1Y3Qgbm91dmVhdV9ibyAqYm8sIHN0cnVj
+dCBkcm1fbm91dmVhdV9nZW1faW5mbyAqaW5mbykKPiAgewo+ICAgICAgICAgc3RydWN0IG5vdXZl
+YXVfYm9fcHJpdiAqbnZibyA9IG5vdXZlYXVfYm8oYm8pOwo+IGRpZmYgLS1naXQgYS9ub3V2ZWF1
+L25vdXZlYXUuYyBiL25vdXZlYXUvbm91dmVhdS5jCj4gaW5kZXggOTdmZDc3Yi4uOGEwYmUyZiAx
+MDA2NDQKPiAtLS0gYS9ub3V2ZWF1L25vdXZlYXUuYwo+ICsrKyBiL25vdXZlYXUvbm91dmVhdS5j
+Cj4gQEAgLTEzNSw2ICsxMzUsNyBAQCBub3V2ZWF1X2RldmljZV93cmFwKGludCBmZCwgaW50IGNs
+b3NlLCBzdHJ1Y3Qgbm91dmVhdV9kZXZpY2UgKipwZGV2KQo+ICAgICAgICAgICAgICAgICBudmRl
+di0+Z2FydF9saW1pdF9wZXJjZW50ID0gODA7Cj4gICAgICAgICBEUk1JTklUTElTVEhFQUQoJm52
+ZGV2LT5ib19saXN0KTsKPiAgICAgICAgIG52ZGV2LT5iYXNlLm9iamVjdC5vY2xhc3MgPSBOT1VW
+RUFVX0RFVklDRV9DTEFTUzsKPiArICAgICAgIG52ZGV2LT5iYXNlLm9iamVjdC5sZW5ndGggPSB+
+MDsKVGhlcmUgYXJlIG5vIGhpbnRzIGFib3V0IHRoaXMgYW5kIGl0J3MgdXNlIGluIGFiaTE2X29i
+amVjdCAtIHdvcnRoCnNwbGl0dGluZyBvdXQgb3IgbWVudGlvbmluZyBpdCBpbiB0aGUgY29tbWl0
+IG1lc3NhZ2UgPwoKLUVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
