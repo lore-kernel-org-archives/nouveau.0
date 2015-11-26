@@ -1,13 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa 8/9] nvc0: remove allocation of unused sw class
-Date: Thu, 26 Nov 2015 17:15:02 +1000
-Message-ID: <1448522103-4925-8-git-send-email-skeggsb@gmail.com>
-References: <1448522103-4925-1-git-send-email-skeggsb@gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93110] [NVE4] textureSize() and textureQueryLevels()
+ uses a texture bound during the previous draw call
+Date: Thu, 26 Nov 2015 08:09:21 +0000
+Message-ID: <bug-93110-8800-AKyWUA3wBZ@http.bugs.freedesktop.org/>
+References: <bug-93110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1374659979=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1448522103-4925-1-git-send-email-skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <bug-93110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,41 +18,123 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgoKVGhpcyB3b3VsZCBuZWVkIHRv
-IGJlIGZpeGVkIGJlZm9yZSBOVklGIGNhbiBiZSBzd2l0Y2hlZCBvbiwgYnV0IHNpbmNlIHdlCmRv
-bid0IHVzZSBpdCBhbnl3YXksIGp1c3QgcmVtb3ZlIGl0LgoKU2lnbmVkLW9mZi1ieTogQmVuIFNr
-ZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfc2NyZWVuLmMgfCA4IC0tLS0tLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oIHwgMSAtCiAyIGZpbGVzIGNoYW5nZWQsIDkgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZj
-MF9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVu
-LmMKaW5kZXggZTVjMjZkYy4uNDAyNTA0MSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCkBAIC00NDcsNyArNDQ3LDYgQEAgbnZjMF9zY3JlZW5f
-ZGVzdHJveShzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4pCiAgICBub3V2ZWF1X29iamVjdF9k
-ZWwoJnNjcmVlbi0+ZW5nMmQpOwogICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPm0ybWYp
-OwogICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPmNvbXB1dGUpOwotICAgbm91dmVhdV9v
-YmplY3RfZGVsKCZzY3JlZW4tPm52c3cpOwogCiAgICBub3V2ZWF1X3NjcmVlbl9maW5pKCZzY3Jl
-ZW4tPmJhc2UpOwogCkBAIC02OTgsMTMgKzY5Nyw2IEBAIG52YzBfc2NyZWVuX2NyZWF0ZShzdHJ1
-Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKICAgIHNjcmVlbi0+YmFzZS5mZW5jZS51cGRhdGUgPSBu
-dmMwX3NjcmVlbl9mZW5jZV91cGRhdGU7CiAKIAotICAgcmV0ID0gbm91dmVhdV9vYmplY3RfbmV3
-KGNoYW4sCi0gICAgICAgICAgICAgICAgICAgICAgICAgICAgKGRldi0+Y2hpcHNldCA8IDB4ZTAp
-ID8gMHgxZjkwNmUgOiAweDkwNmUsIDB4OTA2ZSwKLSAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBOVUxMLCAwLCAmc2NyZWVuLT5udnN3KTsKLSAgIGlmIChyZXQpCi0gICAgICBGQUlMX1NDUkVF
-Tl9JTklUKCJFcnJvciBjcmVhdGluZyBTVyBvYmplY3Q6ICVkXG4iLCByZXQpOwotCi0KICAgIHN3
-aXRjaCAoZGV2LT5jaGlwc2V0ICYgfjB4ZikgewogICAgY2FzZSAweDExMDoKICAgIGNhc2UgMHgx
-MDA6CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Nj
-cmVlbi5oIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uaApp
-bmRleCA4YjczMTAyLi5jYWYzNGFhIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfc2NyZWVuLmgKQEAgLTEwNSw3ICsxMDUsNiBAQCBzdHJ1Y3QgbnZjMF9zY3Jl
-ZW4gewogICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmcyZDsKICAgIHN0cnVjdCBub3V2ZWF1
-X29iamVjdCAqbTJtZjsKICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqY29tcHV0ZTsKLSAgIHN0
-cnVjdCBub3V2ZWF1X29iamVjdCAqbnZzdzsKIH07CiAKIHN0YXRpYyBpbmxpbmUgc3RydWN0IG52
-YzBfc2NyZWVuICoKLS0gCjIuNi4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+
+--===============1374659979==
+Content-Type: multipart/alternative; boundary="1448525360.ACa4E00.16201"; charset="UTF-8"
+
+
+--1448525360.ACa4E00.16201
+Date: Thu, 26 Nov 2015 08:09:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+https://bugs.freedesktop.org/show_bug.cgi?id=3D93110
+
+J=C3=B3zef Kucia <joseph.kucia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+             Status|NEW                         |RESOLVED
+         Resolution|---                         |FIXED
+
+--- Comment #1 from J=C3=B3zef Kucia <joseph.kucia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+It works correctly in 11.2.0-devel (git-63b49e1). I guess it was fixed
+meanwhile.
+
+--=20
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1448525360.ACa4E00.16201
+Date: Thu, 26 Nov 2015 08:09:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+    <head>
+      <base href=3D"https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class=3D"vcard"><a class=3D"email" href=3D"mailto:joseph.ku=
+cia&#64;gmail.com" title=3D"J=C3=B3zef Kucia &lt;joseph.kucia&#64;gmail.com=
+&gt;"> <span class=3D"fn">J=C3=B3zef Kucia</span></a>
+</span> changed
+              <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() =
+uses a texture bound during the previous draw call"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93110">bug 93110<=
+/a>
+          <br>
+             <table border=3D"1" cellspacing=3D"0" cellpadding=3D"8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Status</td>
+           <td>NEW
+           </td>
+           <td>RESOLVED
+           </td>
+         </tr>
+
+         <tr>
+           <td style=3D"text-align:right;">Resolution</td>
+           <td>---
+           </td>
+           <td>FIXED
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() =
+uses a texture bound during the previous draw call"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93110#c1">Comment=
+ # 1</a>
+              on <a class=3D"bz_bug_link=20
+          bz_status_RESOLVED  bz_closed"
+   title=3D"RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() =
+uses a texture bound during the previous draw call"
+   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93110">bug 93110<=
+/a>
+              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
+joseph.kucia&#64;gmail.com" title=3D"J=C3=B3zef Kucia &lt;joseph.kucia&#64;=
+gmail.com&gt;"> <span class=3D"fn">J=C3=B3zef Kucia</span></a>
+</span></b>
+        <pre>It works correctly in 11.2.0-devel (git-63b49e1). I guess it w=
+as fixed
+meanwhile.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+=20=20=20=20=20=20
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448525360.ACa4E00.16201--
+
+--===============1374659979==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1374659979==--
