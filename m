@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93110] [NVE4] textureSize() and textureQueryLevels()
  uses a texture bound during the previous draw call
-Date: Thu, 26 Nov 2015 08:09:21 +0000
-Message-ID: <bug-93110-8800-AKyWUA3wBZ@http.bugs.freedesktop.org/>
+Date: Thu, 26 Nov 2015 08:22:43 +0000
+Message-ID: <bug-93110-8800-GNiw2s4VZg@http.bugs.freedesktop.org/>
 References: <bug-93110-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1374659979=="
+Content-Type: multipart/mixed; boundary="===============0598328463=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,12 +21,12 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1374659979==
-Content-Type: multipart/alternative; boundary="1448525360.ACa4E00.16201"; charset="UTF-8"
+--===============0598328463==
+Content-Type: multipart/alternative; boundary="1448526163.EB1740.18210"; charset="UTF-8"
 
 
---1448525360.ACa4E00.16201
-Date: Thu, 26 Nov 2015 08:09:20 +0000
+--1448526163.EB1740.18210
+Date: Thu, 26 Nov 2015 08:22:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -37,20 +37,15 @@ J=C3=B3zef Kucia <joseph.kucia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
 
            What    |Removed                     |Added
 ----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #1 from J=C3=B3zef Kucia <joseph.kucia-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-It works correctly in 11.2.0-devel (git-63b49e1). I guess it was fixed
-meanwhile.
+            Version|10.5                        |11.0
 
 --=20
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1448525360.ACa4E00.16201
-Date: Thu, 26 Nov 2015 08:09:20 +0000
+--1448526163.EB1740.18210
+Date: Thu, 26 Nov 2015 08:22:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -78,42 +73,13 @@ uses a texture bound during the previous draw call"
           </tr>
 
          <tr>
-           <td style=3D"text-align:right;">Status</td>
-           <td>NEW
+           <td style=3D"text-align:right;">Version</td>
+           <td>10.5
            </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style=3D"text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
+           <td>11.0
            </td>
          </tr></table>
       <p>
-        <div>
-            <b><a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() =
-uses a texture bound during the previous draw call"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93110#c1">Comment=
- # 1</a>
-              on <a class=3D"bz_bug_link=20
-          bz_status_RESOLVED  bz_closed"
-   title=3D"RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() =
-uses a texture bound during the previous draw call"
-   href=3D"https://bugs.freedesktop.org/show_bug.cgi?id=3D93110">bug 93110<=
-/a>
-              from <span class=3D"vcard"><a class=3D"email" href=3D"mailto:=
-joseph.kucia&#64;gmail.com" title=3D"J=C3=B3zef Kucia &lt;joseph.kucia&#64;=
-gmail.com&gt;"> <span class=3D"fn">J=C3=B3zef Kucia</span></a>
-</span></b>
-        <pre>It works correctly in 11.2.0-devel (git-63b49e1). I guess it w=
-as fixed
-meanwhile.</pre>
-        </div>
       </p>
       <hr>
       <span>You are receiving this mail because:</span>
@@ -125,9 +91,9 @@ meanwhile.</pre>
     </body>
 </html>
 
---1448525360.ACa4E00.16201--
+--1448526163.EB1740.18210--
 
---===============1374659979==
+--===============0598328463==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -137,4 +103,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1374659979==--
+--===============0598328463==--
