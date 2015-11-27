@@ -1,15 +1,13 @@
-From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [libdrm 09/13] nouveau: import and install a
- selection of nvif headers from the kernel
-Date: Fri, 27 Nov 2015 11:07:51 +1000
-Message-ID: <5657ACE7.1030801@gmail.com>
-References: <1448522050-4873-1-git-send-email-skeggsb@gmail.com>
- <1448522050-4873-9-git-send-email-skeggsb@gmail.com>
- <CACvgo53xNBm-HHMX2GvWh3EVr7v5SEzbJnGsQkEk2khEf1SYOg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 47556] [NV17] nouveau fails to handle/set
+ resolutions over certain size, nouveau_bo_new() -ENOMEM
+Date: Fri, 27 Nov 2015 11:15:38 +0000
+Message-ID: <bug-47556-8800-ds7pZtJn84@http.bugs.freedesktop.org/>
+References: <bug-47556-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1011461402=="
+Content-Type: multipart/mixed; boundary="===============1878180330=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo53xNBm-HHMX2GvWh3EVr7v5SEzbJnGsQkEk2khEf1SYOg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,76 +17,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1011461402==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA"
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-On 11/27/2015 07:14 AM, Emil Velikov wrote:
-> On 26 November 2015 at 07:14, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
->> From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
->=20
->> --- a/nouveau/Makefile.am
->> +++ b/nouveau/Makefile.am
->> @@ -14,9 +14,18 @@ libdrm_nouveau_la_LIBADD =3D ../libdrm.la @PTHREADS=
-TUBS_LIBS@
->>
->>  libdrm_nouveau_la_SOURCES =3D $(LIBDRM_NOUVEAU_FILES)
->>
->> -libdrm_nouveauincludedir =3D ${includedir}/libdrm
->> +libdrm_nouveauincludedir =3D ${includedir}/libdrm/nouveau
-> Can we mention the change in the commit message, please ?
->=20
-> This will be a nice test for places missing LIBDRM_NOUVEAU_CFLAGS :-)
-> I take it that neither mesa nor ddx explode with this change ?
-Nope, they take it just fine.  I tested all sorts of combinations of
-kernel (supports nvif vs not), libdrm (patched/unpatched), ddx (making
-sure it builds), and mesa (patched/unpatched) to make sure that nothing
-regressed.
-
-Ben.
-
->=20
-> -Emil
->=20
+--===============1878180330==
+Content-Type: multipart/alternative; boundary="1448622937.AB22f1.18434"; charset="UTF-8"
 
 
---GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+--1448622937.AB22f1.18434
+Date: Fri, 27 Nov 2015 11:15:37 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+https://bugs.freedesktop.org/show_bug.cgi?id=47556
 
-iQIcBAEBCAAGBQJWV6znAAoJEHYLnGJQkpH7iiYP/36pXiRNWTihGskMieXD4IFJ
-ZKeXTiyjNS++XCJaU6xCUxVLBED6rIT6neZEpZCarYRDOs09jiwYcnETcr8EXoOe
-hlJ7eGx4e+sVhlsDonJg/Cj8zykIt6VZMlMcaxFhgm4LtR0BySE2JmTFx5SPfHRv
-T8i3A058hyiyxstopTH77RvXVnzAV7ybDo3HlHMYEEPMsHEgYujIucLGCK3Wd52p
-PBUydODuGTTPLtHDAjiC9a35sljCot/30YeRySP5N8DacF1MePvlyVD70nKVzqL1
-LyMpoB66PJyV7IO5pvg8HJchU0SyAr0xaykoDlfGilZD11jtFBsXOWk05Mt1DayF
-zkikW2EsFZJvXzXmn9rwgI8YegKNwEe+9Aa4s5xxNHbJxtDjSsIIt/Z6bPNIcCkO
-lXnASBjKxdX2iVzZRJfx5eVmNH7WyVKFYlw4FSaAfNSXCWuH5IAchAj09wHY9KjZ
-NLCFjvwJJXKukeegc4e/l0M4uE7GBHzIxCE3gRW3B7EFOY6ZbHsBMXL57Kzsvy5s
-YSWAMxxh+fZs/HE2fw7vupbUxrl7/TrqvC1moMEHcwvkDXA3rM58+mCcFvW7SYZ2
-IB1NA9two1Ek2cLco6+AMRBLCzWoyvQpR5TCJSj7MZ8LXtHH7b52lkS8Y2PdTIHj
-s5sqMe+/RAJ8xj1UYNDM
-=KVeY
------END PGP SIGNATURE-----
+--- Comment #22 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
+This is likely still an issue with some older machines though testing it got
+stuck because of a kernel s2ram bug:
+http://mirror1.htu.tugraz.at/archlinux/iso/2015.11.01/archlinux-2015.11.01-dual.iso.
+The notebook used to test this is still alive.
 
---GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA--
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
 
---===============1011461402==
+--1448622937.AB22f1.18434
+Date: Fri, 27 Nov 2015 11:15:37 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556#c22">Comment # 22</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
+              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
+</span></b>
+        <pre>This is likely still an issue with some older machines though testing it got
+stuck because of a kernel s2ram bug:
+<a href="http://mirror1.htu.tugraz.at/archlinux/iso/2015.11.01/archlinux-2015.11.01-dual.iso">http://mirror1.htu.tugraz.at/archlinux/iso/2015.11.01/archlinux-2015.11.01-dual.iso</a>.
+The notebook used to test this is still alive.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448622937.AB22f1.18434--
+
+--===============1878180330==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -98,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1011461402==--
+--===============1878180330==--
