@@ -1,13 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 47556] [NV17] nouveau fails to handle/set
- resolutions over certain size, nouveau_bo_new() -ENOMEM
-Date: Fri, 27 Nov 2015 12:28:05 +0000
-Message-ID: <bug-47556-8800-1pb1ovg9pl@http.bugs.freedesktop.org/>
-References: <bug-47556-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 68488] [NV86] Lockup and reboot on T61 with nouveau
+	driver/exa
+Date: Fri, 27 Nov 2015 12:58:10 +0000
+Message-ID: <bug-68488-8800-KAdw4vH7iz@http.bugs.freedesktop.org/>
+References: <bug-68488-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1747662832=="
+Content-Type: multipart/mixed; boundary="===============1584281143=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-47556-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-68488-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,33 +21,27 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1747662832==
-Content-Type: multipart/alternative; boundary="1448627284.FFEE51.29909"; charset="UTF-8"
+--===============1584281143==
+Content-Type: multipart/alternative; boundary="1448629090.3eb5bA4.1088"; charset="UTF-8"
 
 
---1448627284.FFEE51.29909
-Date: Fri, 27 Nov 2015 12:28:04 +0000
+--1448629090.3eb5bA4.1088
+Date: Fri, 27 Nov 2015 12:58:10 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=47556
+https://bugs.freedesktop.org/show_bug.cgi?id=68488
 
-Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |WORKSFORME
-
---- Comment #23 from Elmar Stellnberger <estellnb-7Km2I/eHSAQdnm+yROfE0A@public.gmane.org> ---
-Bug 70510 seems to be the newer candidate (pls. correct if I missed sth.).
+--- Comment #11 from Andre Klapper <a9016009-Mmb7MZpHnFY@public.gmane.org> ---
+Wondering how related is https://bugzilla.redhat.com/show_bug.cgi?id=924385
+which I also still face in Fedora 23.
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1448627284.FFEE51.29909
-Date: Fri, 27 Nov 2015 12:28:04 +0000
+--1448629090.3eb5bA4.1088
+Date: Fri, 27 Nov 2015 12:58:10 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -55,51 +49,21 @@ Content-Type: text/html; charset="UTF-8"
     <head>
       <base href="https://bugs.freedesktop.org/" />
     </head>
-    <body><span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>WORKSFORME
-           </td>
-         </tr></table>
+    <body>
       <p>
         <div>
             <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556#c23">Comment # 23</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED WORKSFORME - [NV17] nouveau fails to handle/set resolutions over certain size, nouveau_bo_new() -ENOMEM"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=47556">bug 47556</a>
-              from <span class="vcard"><a class="email" href="mailto:estellnb&#64;elstel.org" title="Elmar Stellnberger &lt;estellnb&#64;elstel.org&gt;"> <span class="fn">Elmar Stellnberger</span></a>
-</span></b>
-        <pre><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - nouveau fails to handle/set resolutions over certain size: Xorg crash on KDE init"
-   href="show_bug.cgi?id=70510">Bug 70510</a> seems to be the newer candidate (pls. correct if I missed sth.).</pre>
+   title="NEW - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488#c11">Comment # 11</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV86] Lockup and reboot on T61 with nouveau driver/exa"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=68488">bug 68488</a>
+              from <span class="vcard"><a class="email" href="mailto:a9016009&#64;gmx.de" title="Andre Klapper &lt;a9016009&#64;gmx.de&gt;"> <span class="fn">Andre Klapper</span></a>
+</span></b>
+        <pre>Wondering how related is <a href="https://bugzilla.redhat.com/show_bug.cgi?id=924385">https://bugzilla.redhat.com/show_bug.cgi?id=924385</a>
+which I also still face in Fedora 23.</pre>
         </div>
       </p>
       <hr>
@@ -111,9 +75,9 @@ Content-Type: text/html; charset="UTF-8"
     </body>
 </html>
 
---1448627284.FFEE51.29909--
+--1448629090.3eb5bA4.1088--
 
---===============1747662832==
+--===============1584281143==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -123,4 +87,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1747662832==--
+--===============1584281143==--
