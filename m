@@ -1,13 +1,14 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: [mesa v2 8/9] nvc0: remove allocation of unused sw class
-Date: Fri, 27 Nov 2015 11:05:00 +1000
-Message-ID: <1448586301-8351-8-git-send-email-skeggsb@gmail.com>
-References: <1448586301-8351-1-git-send-email-skeggsb@gmail.com>
+Subject: Re: [mesa 7/9] nv50: fix g98+ vdec class allocation
+Date: Fri, 27 Nov 2015 11:05:59 +1000
+Message-ID: <5657AC77.2050009@gmail.com>
+References: <1448522103-4925-1-git-send-email-skeggsb@gmail.com>
+ <1448522103-4925-7-git-send-email-skeggsb@gmail.com>
+ <CACvgo53x74cJHXXJ6kZMAdFC2QU3QKeTg=9mRL9VDKq6MvnDMg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0844478530=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <1448586301-8351-1-git-send-email-skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+In-Reply-To: <CACvgo53x74cJHXXJ6kZMAdFC2QU3QKeTg=9mRL9VDKq6MvnDMg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,42 +18,88 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Cc: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+To: Emil Velikov <emil.l.velikov-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-RnJvbTogQmVuIFNrZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgoKVGhpcyB3b3VsZCBuZWVkIHRv
-IGJlIGZpeGVkIGJlZm9yZSBOVklGIGNhbiBiZSBzd2l0Y2hlZCBvbiwgYnV0IHNpbmNlIHdlCmRv
-bid0IHVzZSBpdCBhbnl3YXksIGp1c3QgcmVtb3ZlIGl0LgoKU2lnbmVkLW9mZi1ieTogQmVuIFNr
-ZWdncyA8YnNrZWdnc0ByZWRoYXQuY29tPgotLS0KIHNyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfc2NyZWVuLmMgfCA4IC0tLS0tLS0tCiBzcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oIHwgMSAtCiAyIGZpbGVzIGNoYW5nZWQsIDkgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZj
-MF9zY3JlZW4uYyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVu
-LmMKaW5kZXggNDg5N2ViZS4uMTFjYjc0YSAxMDA2NDQKLS0tIGEvc3JjL2dhbGxpdW0vZHJpdmVy
-cy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYworKysgYi9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jCkBAIC00NDcsNyArNDQ3LDYgQEAgbnZjMF9zY3JlZW5f
-ZGVzdHJveShzdHJ1Y3QgcGlwZV9zY3JlZW4gKnBzY3JlZW4pCiAgICBub3V2ZWF1X29iamVjdF9k
-ZWwoJnNjcmVlbi0+ZW5nMmQpOwogICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPm0ybWYp
-OwogICAgbm91dmVhdV9vYmplY3RfZGVsKCZzY3JlZW4tPmNvbXB1dGUpOwotICAgbm91dmVhdV9v
-YmplY3RfZGVsKCZzY3JlZW4tPm52c3cpOwogCiAgICBub3V2ZWF1X3NjcmVlbl9maW5pKCZzY3Jl
-ZW4tPmJhc2UpOwogCkBAIC02OTgsMTMgKzY5Nyw2IEBAIG52YzBfc2NyZWVuX2NyZWF0ZShzdHJ1
-Y3Qgbm91dmVhdV9kZXZpY2UgKmRldikKICAgIHNjcmVlbi0+YmFzZS5mZW5jZS51cGRhdGUgPSBu
-dmMwX3NjcmVlbl9mZW5jZV91cGRhdGU7CiAKIAotICAgcmV0ID0gbm91dmVhdV9vYmplY3RfbmV3
-KGNoYW4sCi0gICAgICAgICAgICAgICAgICAgICAgICAgICAgKGRldi0+Y2hpcHNldCA8IDB4ZTAp
-ID8gMHgxZjkwNmUgOiAweDkwNmUsIDB4OTA2ZSwKLSAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBOVUxMLCAwLCAmc2NyZWVuLT5udnN3KTsKLSAgIGlmIChyZXQpCi0gICAgICBGQUlMX1NDUkVF
-Tl9JTklUKCJFcnJvciBjcmVhdGluZyBTVyBvYmplY3Q6ICVkXG4iLCByZXQpOwotCi0KICAgIHN3
-aXRjaCAoZGV2LT5jaGlwc2V0ICYgfjB4ZikgewogICAgY2FzZSAweDExMDoKICAgIGNhc2UgMHgx
-MDA6CmRpZmYgLS1naXQgYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3Nj
-cmVlbi5oIGIvc3JjL2dhbGxpdW0vZHJpdmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uaApp
-bmRleCA4YjczMTAyLi5jYWYzNGFhIDEwMDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25v
-dXZlYXUvbnZjMC9udmMwX3NjcmVlbi5oCisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVh
-dS9udmMwL252YzBfc2NyZWVuLmgKQEAgLTEwNSw3ICsxMDUsNiBAQCBzdHJ1Y3QgbnZjMF9zY3Jl
-ZW4gewogICAgc3RydWN0IG5vdXZlYXVfb2JqZWN0ICplbmcyZDsKICAgIHN0cnVjdCBub3V2ZWF1
-X29iamVjdCAqbTJtZjsKICAgIHN0cnVjdCBub3V2ZWF1X29iamVjdCAqY29tcHV0ZTsKLSAgIHN0
-cnVjdCBub3V2ZWF1X29iamVjdCAqbnZzdzsKIH07CiAKIHN0YXRpYyBpbmxpbmUgc3RydWN0IG52
-YzBfc2NyZWVuICoKLS0gCjIuNi4zCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91
-dmVhdQo=
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0844478530==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI"
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+On 11/27/2015 07:50 AM, Emil Velikov wrote:
+> On 26 November 2015 at 07:15, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>=20
+>> +static const struct nouveau_mclass
+>> +nv98_decoder_msvld[] =3D {
+>> +   { 0x88b1, -1 },
+>> +   { 0x86b1, -1 },
+>> +   { 0x85b1, -1 },
+>> +   {}
+>> +};
+>> +
+>> +static const struct nouveau_mclass
+>> +nv98_decoder_mspdec[] =3D {
+>> +   { 0x88b2, -1 },
+>> +   { 0x85b2, -1 },
+>> +   {}
+>> +};
+>> +
+>> +static const struct nouveau_mclass
+>> +nv98_decoder_msppp[] =3D {
+>> +   { 0x88b3, -1 },
+>> +   { 0x85b3, -1 },
+>> +   {}
+>> +};
+>> +
+> Was going to suggest using the new headers, only to realise that there
+> are no for video decoding. Is that intentional ?
+There is, I was just being lazy.  Fixed in the next series :)
+
+>=20
+> -Emil
+>=20
+
+
+--jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJWV6x3AAoJEHYLnGJQkpH716cQAKuyZtkmT8QYr87dn+N/dRUl
+56CHebnBhHGI+dC/kbXGnLhYX78HVvCFRUczKld1BgkqiFKvm7q8itg4sw4nt0dQ
+trJIkP+BcBNMzSNTDTwdPthdYZCiB+7i9jYCNC19orjs0A8syGCBwGnt9UqVfb2C
+HSUlvZtlqXxIqndnHcEHgDyjBL5293JzckWQdD18BPHLIAem6i70MdWeDyfM4GuF
+9UNG8L8V+x5YNPmA2pfOpvDDxjhoc4GR6V+FxZxJfBk9bBhuqgwYKJcmcyzvLeog
+DlY9uneeN5WHkIz+eRufIMXQmHvozctFEabJN9Sn/nK6887kAUZEqcTIEhtr+Zcw
+StZTAr2IYJiwwpofYqsZdj9GhR4TENC3GkOrhjMrq5Kd9HCO3ptMPJGuPTRX/FTJ
+XdinR1fDbFtNrzwiRHWd4OvlwiB+ullg/BN0PmTyO5otSQXN31e+hWR5ca16/WhQ
+2GQJSL7FoKdXKKURoGJJU0qVg+QLJ0QkxxVyD/ERFqxZZu5E2or32OzhZw8vYc72
+6ruI9ILqbkHWG6+SFChoMGpIE0wEOSxl5nBObxYYYSjYP1xA3x/CWFPHSyO9i5X8
+Rn2hw/2aM0+eBp3iQvjOpl+r5lNjHWRHb9AvRbLA8M5onPWFlaCadec3YcWKkkkf
+W+rckSc2jZG3eNv+KDsv
+=tgMX
+-----END PGP SIGNATURE-----
+
+--jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI--
+
+--===============0844478530==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0844478530==--
