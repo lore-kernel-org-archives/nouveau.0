@@ -1,14 +1,15 @@
 From: Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [mesa 7/9] nv50: fix g98+ vdec class allocation
-Date: Fri, 27 Nov 2015 11:05:59 +1000
-Message-ID: <5657AC77.2050009@gmail.com>
-References: <1448522103-4925-1-git-send-email-skeggsb@gmail.com>
- <1448522103-4925-7-git-send-email-skeggsb@gmail.com>
- <CACvgo53x74cJHXXJ6kZMAdFC2QU3QKeTg=9mRL9VDKq6MvnDMg@mail.gmail.com>
+Subject: Re: [libdrm 09/13] nouveau: import and install a
+ selection of nvif headers from the kernel
+Date: Fri, 27 Nov 2015 11:07:51 +1000
+Message-ID: <5657ACE7.1030801@gmail.com>
+References: <1448522050-4873-1-git-send-email-skeggsb@gmail.com>
+ <1448522050-4873-9-git-send-email-skeggsb@gmail.com>
+ <CACvgo53xNBm-HHMX2GvWh3EVr7v5SEzbJnGsQkEk2khEf1SYOg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0844478530=="
+Content-Type: multipart/mixed; boundary="===============1011461402=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <CACvgo53x74cJHXXJ6kZMAdFC2QU3QKeTg=9mRL9VDKq6MvnDMg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
+In-Reply-To: <CACvgo53xNBm-HHMX2GvWh3EVr7v5SEzbJnGsQkEk2khEf1SYOg-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -23,51 +24,46 @@ Cc: ML nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben 
 List-Id: nouveau.vger.kernel.org
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0844478530==
+--===============1011461402==
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI"
+ boundary="GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA"
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI
+--GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On 11/27/2015 07:50 AM, Emil Velikov wrote:
-> On 26 November 2015 at 07:15, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+On 11/27/2015 07:14 AM, Emil Velikov wrote:
+> On 26 November 2015 at 07:14, Ben Skeggs <skeggsb-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> wrote:
+>> From: Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
 >=20
->> +static const struct nouveau_mclass
->> +nv98_decoder_msvld[] =3D {
->> +   { 0x88b1, -1 },
->> +   { 0x86b1, -1 },
->> +   { 0x85b1, -1 },
->> +   {}
->> +};
->> +
->> +static const struct nouveau_mclass
->> +nv98_decoder_mspdec[] =3D {
->> +   { 0x88b2, -1 },
->> +   { 0x85b2, -1 },
->> +   {}
->> +};
->> +
->> +static const struct nouveau_mclass
->> +nv98_decoder_msppp[] =3D {
->> +   { 0x88b3, -1 },
->> +   { 0x85b3, -1 },
->> +   {}
->> +};
->> +
-> Was going to suggest using the new headers, only to realise that there
-> are no for video decoding. Is that intentional ?
-There is, I was just being lazy.  Fixed in the next series :)
+>> --- a/nouveau/Makefile.am
+>> +++ b/nouveau/Makefile.am
+>> @@ -14,9 +14,18 @@ libdrm_nouveau_la_LIBADD =3D ../libdrm.la @PTHREADS=
+TUBS_LIBS@
+>>
+>>  libdrm_nouveau_la_SOURCES =3D $(LIBDRM_NOUVEAU_FILES)
+>>
+>> -libdrm_nouveauincludedir =3D ${includedir}/libdrm
+>> +libdrm_nouveauincludedir =3D ${includedir}/libdrm/nouveau
+> Can we mention the change in the commit message, please ?
+>=20
+> This will be a nice test for places missing LIBDRM_NOUVEAU_CFLAGS :-)
+> I take it that neither mesa nor ddx explode with this change ?
+Nope, they take it just fine.  I tested all sorts of combinations of
+kernel (supports nvif vs not), libdrm (patched/unpatched), ddx (making
+sure it builds), and mesa (patched/unpatched) to make sure that nothing
+regressed.
+
+Ben.
 
 >=20
 > -Emil
 >=20
 
 
---jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI
+--GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
@@ -75,24 +71,24 @@ Content-Disposition: attachment; filename="signature.asc"
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2
 
-iQIcBAEBCAAGBQJWV6x3AAoJEHYLnGJQkpH716cQAKuyZtkmT8QYr87dn+N/dRUl
-56CHebnBhHGI+dC/kbXGnLhYX78HVvCFRUczKld1BgkqiFKvm7q8itg4sw4nt0dQ
-trJIkP+BcBNMzSNTDTwdPthdYZCiB+7i9jYCNC19orjs0A8syGCBwGnt9UqVfb2C
-HSUlvZtlqXxIqndnHcEHgDyjBL5293JzckWQdD18BPHLIAem6i70MdWeDyfM4GuF
-9UNG8L8V+x5YNPmA2pfOpvDDxjhoc4GR6V+FxZxJfBk9bBhuqgwYKJcmcyzvLeog
-DlY9uneeN5WHkIz+eRufIMXQmHvozctFEabJN9Sn/nK6887kAUZEqcTIEhtr+Zcw
-StZTAr2IYJiwwpofYqsZdj9GhR4TENC3GkOrhjMrq5Kd9HCO3ptMPJGuPTRX/FTJ
-XdinR1fDbFtNrzwiRHWd4OvlwiB+ullg/BN0PmTyO5otSQXN31e+hWR5ca16/WhQ
-2GQJSL7FoKdXKKURoGJJU0qVg+QLJ0QkxxVyD/ERFqxZZu5E2or32OzhZw8vYc72
-6ruI9ILqbkHWG6+SFChoMGpIE0wEOSxl5nBObxYYYSjYP1xA3x/CWFPHSyO9i5X8
-Rn2hw/2aM0+eBp3iQvjOpl+r5lNjHWRHb9AvRbLA8M5onPWFlaCadec3YcWKkkkf
-W+rckSc2jZG3eNv+KDsv
-=tgMX
+iQIcBAEBCAAGBQJWV6znAAoJEHYLnGJQkpH7iiYP/36pXiRNWTihGskMieXD4IFJ
+ZKeXTiyjNS++XCJaU6xCUxVLBED6rIT6neZEpZCarYRDOs09jiwYcnETcr8EXoOe
+hlJ7eGx4e+sVhlsDonJg/Cj8zykIt6VZMlMcaxFhgm4LtR0BySE2JmTFx5SPfHRv
+T8i3A058hyiyxstopTH77RvXVnzAV7ybDo3HlHMYEEPMsHEgYujIucLGCK3Wd52p
+PBUydODuGTTPLtHDAjiC9a35sljCot/30YeRySP5N8DacF1MePvlyVD70nKVzqL1
+LyMpoB66PJyV7IO5pvg8HJchU0SyAr0xaykoDlfGilZD11jtFBsXOWk05Mt1DayF
+zkikW2EsFZJvXzXmn9rwgI8YegKNwEe+9Aa4s5xxNHbJxtDjSsIIt/Z6bPNIcCkO
+lXnASBjKxdX2iVzZRJfx5eVmNH7WyVKFYlw4FSaAfNSXCWuH5IAchAj09wHY9KjZ
+NLCFjvwJJXKukeegc4e/l0M4uE7GBHzIxCE3gRW3B7EFOY6ZbHsBMXL57Kzsvy5s
+YSWAMxxh+fZs/HE2fw7vupbUxrl7/TrqvC1moMEHcwvkDXA3rM58+mCcFvW7SYZ2
+IB1NA9two1Ek2cLco6+AMRBLCzWoyvQpR5TCJSj7MZ8LXtHH7b52lkS8Y2PdTIHj
+s5sqMe+/RAJ8xj1UYNDM
+=KVeY
 -----END PGP SIGNATURE-----
 
---jbVDVtF44Mq3dOr99dINLcDmCoS95nfCI--
+--GcEtfmKpKMQqh3CsoRHJRlDgTD9GHctlA--
 
---===============0844478530==
+--===============1011461402==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -102,4 +98,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0844478530==--
+--===============1011461402==--
