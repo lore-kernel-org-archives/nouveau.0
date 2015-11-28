@@ -1,13 +1,11 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93110] [NVE4] textureSize() and textureQueryLevels()
- uses a texture bound during the previous draw call
-Date: Fri, 27 Nov 2015 22:03:20 +0000
-Message-ID: <bug-93110-8800-qGbMgxkcou@http.bugs.freedesktop.org/>
-References: <bug-93110-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: [PATCH] pci: enable c800 magic for Clevo P150SM-A GTX 870M
+Date: Sat, 28 Nov 2015 14:52:11 +0100
+Message-ID: <1448718731-3256-1-git-send-email-nouveau@karolherbst.de>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0597212460=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93110-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,105 +18,17 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-
---===============0597212460==
-Content-Type: multipart/alternative; boundary="1448661800.cFd8A1.19217"; charset="UTF-8"
-
-
---1448661800.cFd8A1.19217
-Date: Fri, 27 Nov 2015 22:03:20 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93110
-
---- Comment #2 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-I did a reverse-bisect, and found this is what fixed it:
-
-commit 5877a594d54fdd2b3aa329f4d35b3491a7ee8a33
-Author: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-Date:   Thu Sep 10 23:58:17 2015 -0400
-
-    nvc0/ir: start offset at texBindBase for txq, like regular texturing
-
-    Curiously this has no actual effect. I think it's because the first 8
-    textures are bound in multiple slots for some reason. However seems
-    prudent to use these the same way as regular texturing, esp in the case
-    where there are more than 8 textures bound.
-
-    Signed-off-by: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
-
-I really couldn't find an effect that it practically had at the time. I could
-spend time thinking about what the difference is, but... I'm insufficiently
-interested. I'll ask for a cherry-pick to the 11.0 branch.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1448661800.cFd8A1.19217
-Date: Fri, 27 Nov 2015 22:03:20 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() uses a texture bound during the previous draw call"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93110#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVE4] textureSize() and textureQueryLevels() uses a texture bound during the previous draw call"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93110">bug 93110</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
-</span></b>
-        <pre>I did a reverse-bisect, and found this is what fixed it:
-
-commit 5877a594d54fdd2b3aa329f4d35b3491a7ee8a33
-Author: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-Date:   Thu Sep 10 23:58:17 2015 -0400
-
-    nvc0/ir: start offset at texBindBase for txq, like regular texturing
-
-    Curiously this has no actual effect. I think it's because the first 8
-    textures are bound in multiple slots for some reason. However seems
-    prudent to use these the same way as regular texturing, esp in the case
-    where there are more than 8 textures bound.
-
-    Signed-off-by: Ilia Mirkin &lt;<a href="mailto:imirkin&#64;alum.mit.edu">imirkin&#64;alum.mit.edu</a>&gt;
-
-I really couldn't find an effect that it practically had at the time. I could
-spend time thinking about what the difference is, but... I'm insufficiently
-interested. I'll ask for a cherry-pick to the 11.0 branch.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448661800.cFd8A1.19217--
-
---===============0597212460==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0597212460==--
+LS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMgfCAxICsKIDEgZmlsZSBj
+aGFuZ2VkLCAxIGluc2VydGlvbigrKQoKZGlmZiAtLWdpdCBhL2RybS9ub3V2ZWF1L252a20vZW5n
+aW5lL2RldmljZS9wY2kuYyBiL2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYwpp
+bmRleCBjYWYyMmI1Li5iZjU4MmY4IDEwMDY0NAotLS0gYS9kcm0vbm91dmVhdS9udmttL2VuZ2lu
+ZS9kZXZpY2UvcGNpLmMKKysrIGIvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZGV2aWNlL3BjaS5j
+CkBAIC02OTEsNiArNjkxLDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBudmttX2RldmljZV9wY2lf
+dmVuZG9yCiBudmttX2RldmljZV9wY2lfMTBkZV8xMTk5W10gPSB7CiAJeyAweDE0NTgsIDB4ZDAw
+MSwgIkdlRm9yY2UgR1RYIDc2MCIgfSwKIAl7IDB4MTQ2MiwgMHgxMTA2LCAiR2VGb3JjZSBHVFgg
+NzgwTSIsIHsgLldhcjAwQzgwMF8wID0gdHJ1ZSB9IH0sIC8qIE1lZGlvbiBFcmF6ZXIgWDc4Mjcg
+Ki8KKwl7IDB4MTU1OCwgMHg1MTA2LCBOVUxMLCB7IC5XYXIwMEM4MDBfMCA9IHRydWUgfSB9LCAv
+KiBDbGV2byBQMTUwU00tQSAqLwogCXt9CiB9OwogCi0tIAoyLjYuMwoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91
+dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
