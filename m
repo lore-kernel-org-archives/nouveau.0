@@ -1,12 +1,13 @@
-From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Subject: [PATCH v2] pci: enable c800 magic for Clevo P150SM-A GTX
-	870M
-Date: Sat, 28 Nov 2015 14:53:53 +0100
-Message-ID: <1448718833-3520-1-git-send-email-nouveau@karolherbst.de>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92077] nouveau graphics freeze when using KDE Plasma
+ 5; PGR engine fault
+Date: Sun, 29 Nov 2015 05:45:55 +0000
+Message-ID: <bug-92077-8800-2fUK1PPYRQ@http.bugs.freedesktop.org/>
+References: <bug-92077-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1811525892=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-92077-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,17 +20,85 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-djI6IHVzZWQgd3Jvbmcgc3ViaWQKLS0tCiBkcm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2Uv
-cGNpLmMgfCAxICsKIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQoKZGlmZiAtLWdpdCBh
-L2RybS9ub3V2ZWF1L252a20vZW5naW5lL2RldmljZS9wY2kuYyBiL2RybS9ub3V2ZWF1L252a20v
-ZW5naW5lL2RldmljZS9wY2kuYwppbmRleCBjYWYyMmI1Li40OGQ0ODhlIDEwMDY0NAotLS0gYS9k
-cm0vbm91dmVhdS9udmttL2VuZ2luZS9kZXZpY2UvcGNpLmMKKysrIGIvZHJtL25vdXZlYXUvbnZr
-bS9lbmdpbmUvZGV2aWNlL3BjaS5jCkBAIC02OTEsNiArNjkxLDcgQEAgc3RhdGljIGNvbnN0IHN0
-cnVjdCBudmttX2RldmljZV9wY2lfdmVuZG9yCiBudmttX2RldmljZV9wY2lfMTBkZV8xMTk5W10g
-PSB7CiAJeyAweDE0NTgsIDB4ZDAwMSwgIkdlRm9yY2UgR1RYIDc2MCIgfSwKIAl7IDB4MTQ2Miwg
-MHgxMTA2LCAiR2VGb3JjZSBHVFggNzgwTSIsIHsgLldhcjAwQzgwMF8wID0gdHJ1ZSB9IH0sIC8q
-IE1lZGlvbiBFcmF6ZXIgWDc4MjcgKi8KKwl7IDB4MTU1OCwgMHg1MjgxLCBOVUxMLCB7IC5XYXIw
-MEM4MDBfMCA9IHRydWUgfSB9LCAvKiBDbGV2byBQMTUwU00tQSAqLwogCXt9CiB9OwogCi0tIAoy
-LjYuMwoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91
-dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1811525892==
+Content-Type: multipart/alternative; boundary="1448775955.2720A0.25229"; charset="UTF-8"
+
+
+--1448775955.2720A0.25229
+Date: Sun, 29 Nov 2015 05:45:55 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92077
+
+--- Comment #12 from zoominee <gentoo-5cK0ikVjkE4@public.gmane.org> ---
+Sorry for the delay, I was offline.
+
+I've updated mesa to version 11.0.6 and xorg-server to 1.17.4. I've also
+updated the linux kernel to 4.1.12.
+
+When I replay the previous apitrace, it still freezes the graphics.  The mouse
+pointer continues to work now (i.e., something has been changed), but nothing
+else is updated, and I cannot switch from X to console either.
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1448775955.2720A0.25229
+Date: Sun, 29 Nov 2015 05:45:55 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077#c12">Comment # 12</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - nouveau graphics freeze when using KDE Plasma 5; PGR engine fault"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92077">bug 92077</a>
+              from <span class="vcard"><a class="email" href="mailto:gentoo&#64;moin.fi" title="zoominee &lt;gentoo&#64;moin.fi&gt;"> <span class="fn">zoominee</span></a>
+</span></b>
+        <pre>Sorry for the delay, I was offline.
+
+I've updated mesa to version 11.0.6 and xorg-server to 1.17.4. I've also
+updated the linux kernel to 4.1.12.
+
+When I replay the previous apitrace, it still freezes the graphics.  The mouse
+pointer continues to work now (i.e., something has been changed), but nothing
+else is updated, and I cannot switch from X to console either.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448775955.2720A0.25229--
+
+--===============1811525892==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1811525892==--
