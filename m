@@ -1,16 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NV50 compute support questions
-Date: Mon, 30 Nov 2015 16:13:39 +0100
-Message-ID: <565C67A3.2090609@gmail.com>
-References: <564EF7CA.4090809@redhat.com> <564F452A.1010206@gmail.com>
- <5655C92E.5010605@redhat.com> <5656C5F1.2000406@gmail.com>
- <5656F958.1030201@redhat.com> <56570087.80800@gmail.com>
- <565C4EAD.8030508@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93177] [NV96] Xorg hangs (rarely),
+ seems related to flash player use
+Date: Mon, 30 Nov 2015 18:19:13 +0000
+Message-ID: <bug-93177-8800-YjKCVrpM8L@http.bugs.freedesktop.org/>
+References: <bug-93177-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0483778173=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <565C4EAD.8030508-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-93177-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,20 +17,75 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMS8zMC8yMDE1IDAyOjI3IFBNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAo+Cj4g
-T24gMjYtMTEtMTUgMTM6NTIsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPgo+IDxzbmlwPgo+Cj4+
-PiBJIGRvIG5vdCBoYXZlIGEgR0sxMDYsIEkndmUgYSBHSzIwOCwgYW5kIElJUkMgdGhhdCBvbmUg
-aXMga25vd24gdG8gbm90Cj4+PiB3b3JrLAo+Pj4gSSBndWVzcyBJIGNhbiBnaXZlIGl0IGEgdHJ5
-Lgo+Pgo+PiBDb21wdXRlIHN1cHBvcnQgaXMgbm90IHN1cHBvcnRlZCBvbiBHSzExMCssIHllYWgu
-Li4KPj4KPj4gSWYgeW91IHByb3ZpZGUgbWUgYSBNTVQgdHJhY2Ugb2YsIGZvciBleGFtcGxlLCB2
-ZWN0b3JBZGQgZnJvbSB0aGUgQ1VEQQo+PiBzYW1wbGVzIEkgY291bGQgaGF2ZSBhIGxvb2suCj4K
-PiBPaywgaGVyZSBpcyBhIE1NVCB0cmFjZSBvZiB2ZWN0b3JBZGQ6Cj4KPiBodHRwczovL2ZlZG9y
-YXBlb3BsZS5vcmcvfmp3cmRlZ29lZGUvdmVjdG9yQWRkLmxvZy5negoKSGkgSGFucywKClRoYW5r
-cyBhIGxvdC4KCj4KPiBSZWdhcmRzLAo+Cj4gSGFucwoKLS0gCi1TYW11ZWwKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QK
-Tm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9y
-Zy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0483778173==
+Content-Type: multipart/alternative; boundary="1448907553.00DdfCF1.9735"; charset="UTF-8"
+
+
+--1448907553.00DdfCF1.9735
+Date: Mon, 30 Nov 2015 18:19:13 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93177
+
+--- Comment #1 from urjaman-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Created attachment 120215
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120215&action=edit
+xorg log for the 3rd crash
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1448907553.00DdfCF1.9735
+Date: Mon, 30 Nov 2015 18:19:13 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Xorg hangs (rarely), seems related to flash player use"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93177#c1">Comment # 1</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NV96] Xorg hangs (rarely), seems related to flash player use"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93177">bug 93177</a>
+              from <span class="vcard"><a class="email" href="mailto:urjaman&#64;gmail.com" title="urjaman&#64;gmail.com">urjaman&#64;gmail.com</a>
+</span></b>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120215" name="attach_120215" title="xorg log for the 3rd crash">attachment 120215</a> <a href="attachment.cgi?id=120215&amp;action=edit" title="xorg log for the 3rd crash">[details]</a></span>
+xorg log for the 3rd crash</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448907553.00DdfCF1.9735--
+
+--===============0483778173==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0483778173==--
