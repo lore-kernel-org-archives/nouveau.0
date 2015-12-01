@@ -1,16 +1,11 @@
-From: Mario Kleiner <mario.kleiner.de-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Tue, 1 Dec 2015 18:30:27 +0100
-Message-ID: <565DD933.4010004@gmail.com>
-References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
- <5637147C.6010802@daenzer.net> <20151116151100.GU16848@phenom.ffwll.local>
- <CAF+9+UOe=vj0PGJZ21orH4BAkSYJO294qrJY_2vWTJvqQbi9ZQ@mail.gmail.com>
- <20151201155519.GW17050@phenom.ffwll.local>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93195] New: Direct firmware load for
+ nouveau/nve4_fuc084 failed with error -2
+Date: Tue, 01 Dec 2015 18:24:49 +0000
+Message-ID: <bug-93195-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1937334152=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <20151201155519.GW17050-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,62 +15,260 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>, poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Cc: Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-V2hlbiB3ZSBhcmUgYXQgaXQsIHRoZSBvbmUgd2l0aCB0aGUgdGl0bGUgIltQQVRDSF0gZHJtL25v
-dXZlYXU6IFVzZSAKZHJtX3ZibGFua19vbi9vZmYgY29uc2lzdGVudGx5IiBmcm9tIERhbmllbCwg
-d2hpY2ggaGFzIGEgcmV2aWV3ZWQgYW5kIAp0ZXN0ZWQgYnkgbWUgYWxzbyBuZXZlciBtYWRlIGl0
-IGludG8gbm91dmVhdS4KCk1heWJlIHBpY2sgdGhhdCB1cCBhcyB3ZWxsPwoKLW1hcmlvCgpPbiAx
-Mi8wMS8yMDE1IDA0OjU1IFBNLCBEYW5pZWwgVmV0dGVyIHdyb3RlOgo+IE9uIFR1ZSwgRGVjIDAx
-LCAyMDE1IGF0IDA0OjA4OjE2UE0gKzAxMDAsIHBvbWEgd3JvdGU6Cj4+IE9uIE1vbiwgTm92IDE2
-LCAyMDE1IGF0IDQ6MTEgUE0sIERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4gd3JvdGU6
-Cj4+PiBPbiBNb24sIE5vdiAwMiwgMjAxNSBhdCAwNDo0NTowMFBNICswOTAwLCBNaWNoZWwgRMOk
-bnplciB3cm90ZToKPj4+PiBPbiAzMS4xMC4yMDE1IDA2OjU1LCBEYW5pZWwgVmV0dGVyIHdyb3Rl
-Ogo+Pj4+PiBBcHBhcmVudGx5IHByZS1udjUwIHBhZ2VmbGlwIGV2ZW50cyBoYXBwZW4gYmVmb3Jl
-IHRoZSBhY3R1YWwgdmJsYW5rCj4+Pj4+IHBlcmlvZC4gVGhlcmVmb3JlIHRoYXQgZnVuY3Rpb25h
-bGl0eSBnb3Qgc2VtaS1kaXNhYmxlZCBpbgo+Pj4+Pgo+Pj4+PiBjb21taXQgYWY0ODcwZTQwNjEy
-NmI3YWMwYWU3YzdjZTU3NTFmMjVlYmU2MGYyOAo+Pj4+PiBBdXRob3I6IE1hcmlvIEtsZWluZXIg
-PG1hcmlvLmtsZWluZXIuZGVAZ21haWwuY29tPgo+Pj4+PiBEYXRlOiAgIFR1ZSBNYXkgMTMgMDA6
-NDI6MDggMjAxNCArMDIwMAo+Pj4+Pgo+Pj4+PiAgICAgIGRybS9ub3V2ZWF1L2ttcy9udjA0LW52
-NDA6IGZpeCBwYWdlZmxpcCBldmVudHMgdmlhIHNwZWNpYWwgY2FzZS4KPj4+Pj4KPj4+Pj4gVW5m
-b3J0dW5hdGVseSB0aGF0IGhhY2sgZ290IHVwcm9vdGVkIGluCj4+Pj4+Cj4+Pj4+IGNvbW1pdCBj
-YzFlZjExOGZjMDk5Mjk1YWU2YWFiYmFjYzhhZjk0ZDhkODg4NWViCj4+Pj4+IEF1dGhvcjogVGhp
-ZXJyeSBSZWRpbmcgPHRyZWRpbmdAbnZpZGlhLmNvbT4KPj4+Pj4gRGF0ZTogICBXZWQgQXVnIDEy
-IDE3OjAwOjMxIDIwMTUgKzAyMDAKPj4+Pj4KPj4+Pj4gICAgICBkcm0vaXJxOiBNYWtlIHBpcGUg
-dW5zaWduZWQgYW5kIG5hbWUgY29uc2lzdGVudAo+Pj4+Pgo+Pj4+PiBUcmlnZXJpbmcgYSB3YXJu
-aW5nIHdoZW4gdHJ5aW5nIHRvIHNhbXBsZSB0aGUgdmJsYW5rIHRpbWVzdGFtcCBmb3IgYQo+Pj4+
-PiBub24tZXhpc3RpbmcgcGlwZS4gVGhlcmUncyBhIGZldyB3YXlzIHRvIGZpeCB0aGlzOgo+Pj4+
-Pgo+Pj4+PiAtIE9wZW4tY29kZSB0aGUgb2xkIGJlaGF2aW91ciwgd2hpY2gganVzdCBlbnNocmlu
-ZXMgdGhpcyBzbGlnaHQKPj4+Pj4gICAgYnJlYWthZ2Ugb2YgdGhlIHVzZXJzcGFjZSBBQkkuCj4+
-Pj4+Cj4+Pj4+IC0gUmV2ZXJ0IE1hcmlvJ3MgY29tbWl0IGFuZCBhZ2FpbiBpbmZsaWN0IGJyb2tl
-biB0aW1lc3RhbXBzLCBhZ2FpbiBub3QKPj4+Pj4gICAgcHJldHR5Lgo+Pj4+Pgo+Pj4+PiAtIEZp
-eCB0aGlzIGZvciByZWFsIGJ5IGRlbGF5aW5nIHRoZSBwYWdlZmxpcCBUUyB1bnRpbCB0aGUgbmV4
-dCB2YmxhbmsKPj4+Pj4gICAgaW50ZXJydXB0LCB0aGVyZWJ5IG1ha2luZyBpdCBhY2N1cmF0ZS4K
-Pj4+Pj4KPj4+Pj4gVGhpcyBwYXRjaCBpbXBsZW1lbnRzIHRoZSB0aGlyZCBvcHRpb24uIFNpbmNl
-IGhhdmluZyBhIHBhZ2UgZmxpcAo+Pj4+PiBpbnRlcnJ1cHQgdGhhdCBoYXBwZW5zIHdoZW4gdGhl
-IHBhZ2VmbGlwIGdldHMgYXJtZWQgYW5kIG5vdCB3aGVuIGl0Cj4+Pj4+IGNvbXBsZXRlcyBpbiB0
-aGUgbmV4dCB2Ymxhbmsgc2VlbXMgdG8gYmUgZmFpcmx5IGNvbW1vbiAob2xkZXIgaTkxNSBodwo+
-Pj4+PiB3b3JrcyB2ZXJ5IHNpbWlsYXJseSkgY3JlYXRlIGEgbmV3IGhlbHBlciB0byBhcm0gdmJs
-YW5rIGV2ZW50cyBmb3IKPj4+Pj4gc3VjaCBkcml2ZXJzLgo+Pj4+Cj4+Pj4gV2hhdCBoYXBwZW5z
-IHdoZW4gdGhlIHBhZ2UgZmxpcCBpbnRlcnJ1cHQgYXJyaXZlcyBkdXJpbmcgYSB2ZXJ0aWNhbAo+
-Pj4+IGJsYW5rIHBlcmlvZD8gIFByZXN1bWFibHkgdGhlIHVzZXJzcGFjZSBldmVudCB3aWxsIGJl
-IGRlZmVycmVkIHVudGlsIHRoZQo+Pj4+IG5leHQgdmVydGljYWwgYmxhbmsgcGVyaW9kLCBidXQg
-dGhlIGZsaXAgbWlnaHQgYWxyZWFkeSB0YWtlIGVmZmVjdCBpbgo+Pj4+IHRoZSBjdXJyZW50IG9u
-ZS4KPj4+Cj4+PiBIbSB5ZWFoIHRoZXJlJ3MgYSB0aW55IHJhY2UgaWYgeW91ciB1cGRhdGUgaGFu
-ZGxlciBmb3IgdGhlIHBhZ2VmbGlwIGNhbgo+Pj4gcmFjZSB3aXRoIHlvdXIgdmJsYW5rIGhhbmRs
-ZXIuIFRoYXQncyBpbXBvc3NpYmxlIGhlcmUgc2luY2UgaXQncyBhbGwgZG9uZQo+Pj4gZnJvbSB0
-aGUgc2FtZSBodyBpcnEgaGFubGRlciwgYW5kIHNpbmNlIHRoYXQgaXMgc2luZ2xlLXRocmVhZGVk
-IHRoZXJlCj4+PiBzaG91bGRuJ3QgYmUgYSBwcm9ibGVtLCBhcyBsb25nIGFzIHZibGFuayBoYW5k
-bGluZyBhcmUgcGFnZWZsaXAgYXJlCj4+PiBvcmRlcmVkIGNvcnJlY3RseS4KPj4+Cj4+PiBNaWdo
-dCBiZSB3b3J0aCBhIG5vdGUgaW4gdGhlIGtlcm5lbGRvYyB0aG91Z2ggdGhhdCB0aGlzIGZ1bmN0
-aW9uIGlzbid0Cj4+PiBwZXJmZWN0bHkgZm9vbHByb29mLgo+Pj4gLURhbmllbAo+Pgo+Pgo+PiBJ
-cyB0aGVyZSBhbnkgdXBkYXRlcyBpbiB0aGlzIHJlc3BlY3Q/Cj4+Cj4+IGRybS1ub3V2ZWF1LUZp
-eC1wcmUtbnY1MC1wYWdlZmxpcC1ldmVudHMtdjQucGF0Y2gKPj4gaHR0cHM6Ly9wYXRjaHdvcmsu
-a2VybmVsLm9yZy9wYXRjaC83NTkxNTMxCj4+Cj4+IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9y
-Zy9zaG93X2J1Zy5jZ2k/aWQ9MTA2NDMxCj4+IFJlcG9ydGVkOiAgICAgMjAxNS0xMC0yMQo+Cj4g
-QmVuIFNrZWdncyBhc2xlZXAgcHJvYmFibHkuIERhdmUsIGNhbiB5b3UgcGxzIHBpY2sgdGhpcyB1
-cD8KPiAtRGFuaWVsCj4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1937334152==
+Content-Type: multipart/alternative; boundary="1448994289.Bafb680.27338"; charset="UTF-8"
+
+
+--1448994289.Bafb680.27338
+Date: Tue, 1 Dec 2015 18:24:49 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93195
+
+            Bug ID: 93195
+           Summary: Direct firmware load for nouveau/nve4_fuc084 failed
+                    with error -2
+           Product: Mesa
+           Version: 11.0
+          Hardware: x86-64 (AMD64)
+                OS: Linux (All)
+            Status: NEW
+          Severity: minor
+          Priority: medium
+         Component: Drivers/DRI/nouveau
+          Assignee: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+          Reporter: askondro-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org
+        QA Contact: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+
+When opening VLC in xfce and playing a video I get this message with dmesg:
+
+[ 3814.759551] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve4_fuc084 failed with error -2
+[ 3814.759562] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve4_fuc084d failed with error -2
+[ 3814.759564] nouveau 0000:01:00.0: msvld: unable to load firmware data
+[ 3814.759566] nouveau 0000:01:00.0: msvld: init failed, -19
+
+otherwise, the video plays ok (disregarding tearing).
+
+
+I'm using Arch Linux
+- Linux 4.4.0-rc3-ARCH-00005-g2255702 #10 SMP PREEMPT Tue Dec 1 17:59:34 CET
+2015 x86_64 GNU/Linux
+- 01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 770]
+(rev a1)
+
+hwinfo:
+
+21: PCI 100.0: 0300 VGA compatible controller (VGA)
+  [Created at pci.328]
+  Unique ID: VCu0.m9CZZByo01D
+  Parent ID: vSkL.L3QNiGMcNjA
+  SysFS ID: /devices/pci0000:00/0000:00:01.0/0000:01:00.0
+  SysFS BusID: 0000:01:00.0
+  Hardware Class: graphics card
+  Model: "nVidia VGA compatible controller"
+  Vendor: pci 0x10de "nVidia Corporation"
+  Device: pci 0x1184 
+  SubVendor: pci 0x10b0 "CardExpert Technology"
+  SubDevice: pci 0x1184 
+  Revision: 0xa1
+  Driver: "nouveau"
+  Driver Modules: "drm"
+  Memory Range: 0xea000000-0xeaffffff (rw,non-prefetchable)
+  Memory Range: 0xe0000000-0xe7ffffff (ro,non-prefetchable)
+  Memory Range: 0xe8000000-0xe9ffffff (ro,non-prefetchable)
+  I/O Ports: 0xe000-0xefff (rw)
+  Memory Range: 0xeb000000-0xeb07ffff (ro,non-prefetchable,disabled)
+  IRQ: 27 (858918 events)
+  Module Alias: "pci:v000010DEd00001184sv000010B0sd00001184bc03sc00i00"
+  Driver Info #0:
+    Driver Status: nouveau is active
+    Driver Activation Cmd: "modprobe nouveau"
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+  Attached to: #7 (PCI bridge)
+
+Primary display adapter: #21
+
+
+Do you need some other logs?
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1448994289.Bafb680.27338
+Date: Tue, 1 Dec 2015 18:24:49 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><table border="1" cellspacing="0" cellpadding="8">
+        <tr>
+          <th>Bug ID</th>
+          <td><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - Direct firmware load for nouveau/nve4_fuc084 failed with error -2"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93195">93195</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Summary</th>
+          <td>Direct firmware load for nouveau/nve4_fuc084 failed with error -2
+          </td>
+        </tr>
+
+        <tr>
+          <th>Product</th>
+          <td>Mesa
+          </td>
+        </tr>
+
+        <tr>
+          <th>Version</th>
+          <td>11.0
+          </td>
+        </tr>
+
+        <tr>
+          <th>Hardware</th>
+          <td>x86-64 (AMD64)
+          </td>
+        </tr>
+
+        <tr>
+          <th>OS</th>
+          <td>Linux (All)
+          </td>
+        </tr>
+
+        <tr>
+          <th>Status</th>
+          <td>NEW
+          </td>
+        </tr>
+
+        <tr>
+          <th>Severity</th>
+          <td>minor
+          </td>
+        </tr>
+
+        <tr>
+          <th>Priority</th>
+          <td>medium
+          </td>
+        </tr>
+
+        <tr>
+          <th>Component</th>
+          <td>Drivers/DRI/nouveau
+          </td>
+        </tr>
+
+        <tr>
+          <th>Assignee</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr>
+
+        <tr>
+          <th>Reporter</th>
+          <td>askondro&#64;gmail.com
+          </td>
+        </tr>
+
+        <tr>
+          <th>QA Contact</th>
+          <td>nouveau&#64;lists.freedesktop.org
+          </td>
+        </tr></table>
+      <p>
+        <div>
+        <pre>When opening VLC in xfce and playing a video I get this message with dmesg:
+
+[ 3814.759551] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve4_fuc084 failed with error -2
+[ 3814.759562] nouveau 0000:01:00.0: Direct firmware load for
+nouveau/nve4_fuc084d failed with error -2
+[ 3814.759564] nouveau 0000:01:00.0: msvld: unable to load firmware data
+[ 3814.759566] nouveau 0000:01:00.0: msvld: init failed, -19
+
+otherwise, the video plays ok (disregarding tearing).
+
+
+I'm using Arch Linux
+- Linux 4.4.0-rc3-ARCH-00005-g2255702 #10 SMP PREEMPT Tue Dec 1 17:59:34 CET
+2015 x86_64 GNU/Linux
+- 01:00.0 VGA compatible controller: NVIDIA Corporation GK104 [GeForce GTX 770]
+(rev a1)
+
+hwinfo:
+
+21: PCI 100.0: 0300 VGA compatible controller (VGA)
+  [Created at pci.328]
+  Unique ID: VCu0.m9CZZByo01D
+  Parent ID: vSkL.L3QNiGMcNjA
+  SysFS ID: /devices/pci0000:00/0000:00:01.0/0000:01:00.0
+  SysFS BusID: 0000:01:00.0
+  Hardware Class: graphics card
+  Model: &quot;nVidia VGA compatible controller&quot;
+  Vendor: pci 0x10de &quot;nVidia Corporation&quot;
+  Device: pci 0x1184 
+  SubVendor: pci 0x10b0 &quot;CardExpert Technology&quot;
+  SubDevice: pci 0x1184 
+  Revision: 0xa1
+  Driver: &quot;nouveau&quot;
+  Driver Modules: &quot;drm&quot;
+  Memory Range: 0xea000000-0xeaffffff (rw,non-prefetchable)
+  Memory Range: 0xe0000000-0xe7ffffff (ro,non-prefetchable)
+  Memory Range: 0xe8000000-0xe9ffffff (ro,non-prefetchable)
+  I/O Ports: 0xe000-0xefff (rw)
+  Memory Range: 0xeb000000-0xeb07ffff (ro,non-prefetchable,disabled)
+  IRQ: 27 (858918 events)
+  Module Alias: &quot;pci:v000010DEd00001184sv000010B0sd00001184bc03sc00i00&quot;
+  Driver Info #0:
+    Driver Status: nouveau is active
+    Driver Activation Cmd: &quot;modprobe nouveau&quot;
+  Config Status: cfg=new, avail=yes, need=no, active=unknown
+  Attached to: #7 (PCI bridge)
+
+Primary display adapter: #21
+
+
+Do you need some other logs?</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1448994289.Bafb680.27338--
+
+--===============1937334152==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1937334152==--
