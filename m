@@ -1,12 +1,15 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93004] Guild Wars 2 crash on nouveau DX11 cards
-Date: Tue, 01 Dec 2015 08:23:04 +0000
-Message-ID: <bug-93004-8800-eLb5HLnTKO@http.bugs.freedesktop.org/>
-References: <bug-93004-8800@http.bugs.freedesktop.org/>
+From: poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
+Date: Tue, 1 Dec 2015 16:08:16 +0100
+Message-ID: <CAF+9+UOe=vj0PGJZ21orH4BAkSYJO294qrJY_2vWTJvqQbi9ZQ@mail.gmail.com>
+References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
+ <5637147C.6010802@daenzer.net>
+ <20151116151100.GU16848@phenom.ffwll.local>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0313751723=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93004-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20151116151100.GU16848-dv86pmgwkMBes7Z6vYuT8azUEOm+Xw19@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -16,114 +19,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Daniel Vetter <daniel-/w4YWyX8dFk@public.gmane.org>
+Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel-otUistvHUpPR7s880joybQ@public.gmane.org>, DRI Development <dri-devel-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Ben Skeggs <bskeggs-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>, Nouveau Dev <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, Daniel Vetter <daniel.vetter-ral2JQCrhuEAvxtiuMwx3w@public.gmane.org>, Thierry Reding <treding-DDmLM1+adcrQT0dZR+AlfA@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0313751723==
-Content-Type: multipart/alternative; boundary="1448958184.82bE0.23630"; charset="UTF-8"
-
-
---1448958184.82bE0.23630
-Date: Tue, 1 Dec 2015 08:23:04 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93004
-
---- Comment #4 from Patrick Rudolph <siro-afHDD34IFkZrovVCs/uTlw@public.gmane.org> ---
-For the second crash I found I simple solution:
-It crashes in nvc0_vbo.c:static void nvc0_validate_vertex_buffers_shared(struct
-nvc0_context *nvc0), as buf is NULL:
-
-396:    buf = nv04_resource(vb->buffer);
-397:    offset = vb->buffer_offset;
-398:    limit = buf->base.width0 - 1;
-
-I'm not sure why it is possible to get to this point with a NULL vertex buffer
-and a NULL user_buffer. Nine seems to take care and only sets non NULL buffers.
-For some reason nvc0->num_vtxbufs always includes an additional NULL vb...
-
-I fixed this problem by adding:
-
-396:    buf = nv04_resource(vb->buffer);
-        if (!buf) continue;
-397:    offset = vb->buffer_offset;
-398:    limit = buf->base.width0 - 1;
-
-With this fixed Guild Wars 2 doesn't crash in every pipe->draw_vbo.
-I was able to play the game for a few minutes.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1448958184.82bE0.23630
-Date: Tue, 1 Dec 2015 08:23:04 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004#c4">Comment # 4</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004">bug 93004</a>
-              from <span class="vcard"><a class="email" href="mailto:siro&#64;das-labor.org" title="Patrick Rudolph &lt;siro&#64;das-labor.org&gt;"> <span class="fn">Patrick Rudolph</span></a>
-</span></b>
-        <pre>For the second crash I found I simple solution:
-It crashes in nvc0_vbo.c:static void nvc0_validate_vertex_buffers_shared(struct
-nvc0_context *nvc0), as buf is NULL:
-
-396:    buf = nv04_resource(vb-&gt;buffer);
-397:    offset = vb-&gt;buffer_offset;
-398:    limit = buf-&gt;base.width0 - 1;
-
-I'm not sure why it is possible to get to this point with a NULL vertex buffer
-and a NULL user_buffer. Nine seems to take care and only sets non NULL buffers.
-For some reason nvc0-&gt;num_vtxbufs always includes an additional NULL vb...
-
-I fixed this problem by adding:
-
-396:    buf = nv04_resource(vb-&gt;buffer);
-        if (!buf) continue;
-397:    offset = vb-&gt;buffer_offset;
-398:    limit = buf-&gt;base.width0 - 1;
-
-With this fixed Guild Wars 2 doesn't crash in every pipe-&gt;draw_vbo.
-I was able to play the game for a few minutes.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1448958184.82bE0.23630--
-
---===============0313751723==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0313751723==--
+T24gTW9uLCBOb3YgMTYsIDIwMTUgYXQgNDoxMSBQTSwgRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZm
+d2xsLmNoPiB3cm90ZToKPiBPbiBNb24sIE5vdiAwMiwgMjAxNSBhdCAwNDo0NTowMFBNICswOTAw
+LCBNaWNoZWwgRMOkbnplciB3cm90ZToKPj4gT24gMzEuMTAuMjAxNSAwNjo1NSwgRGFuaWVsIFZl
+dHRlciB3cm90ZToKPj4gPiBBcHBhcmVudGx5IHByZS1udjUwIHBhZ2VmbGlwIGV2ZW50cyBoYXBw
+ZW4gYmVmb3JlIHRoZSBhY3R1YWwgdmJsYW5rCj4+ID4gcGVyaW9kLiBUaGVyZWZvcmUgdGhhdCBm
+dW5jdGlvbmFsaXR5IGdvdCBzZW1pLWRpc2FibGVkIGluCj4+ID4KPj4gPiBjb21taXQgYWY0ODcw
+ZTQwNjEyNmI3YWMwYWU3YzdjZTU3NTFmMjVlYmU2MGYyOAo+PiA+IEF1dGhvcjogTWFyaW8gS2xl
+aW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5jb20+Cj4+ID4gRGF0ZTogICBUdWUgTWF5IDEz
+IDAwOjQyOjA4IDIwMTQgKzAyMDAKPj4gPgo+PiA+ICAgICBkcm0vbm91dmVhdS9rbXMvbnYwNC1u
+djQwOiBmaXggcGFnZWZsaXAgZXZlbnRzIHZpYSBzcGVjaWFsIGNhc2UuCj4+ID4KPj4gPiBVbmZv
+cnR1bmF0ZWx5IHRoYXQgaGFjayBnb3QgdXByb290ZWQgaW4KPj4gPgo+PiA+IGNvbW1pdCBjYzFl
+ZjExOGZjMDk5Mjk1YWU2YWFiYmFjYzhhZjk0ZDhkODg4NWViCj4+ID4gQXV0aG9yOiBUaGllcnJ5
+IFJlZGluZyA8dHJlZGluZ0BudmlkaWEuY29tPgo+PiA+IERhdGU6ICAgV2VkIEF1ZyAxMiAxNzow
+MDozMSAyMDE1ICswMjAwCj4+ID4KPj4gPiAgICAgZHJtL2lycTogTWFrZSBwaXBlIHVuc2lnbmVk
+IGFuZCBuYW1lIGNvbnNpc3RlbnQKPj4gPgo+PiA+IFRyaWdlcmluZyBhIHdhcm5pbmcgd2hlbiB0
+cnlpbmcgdG8gc2FtcGxlIHRoZSB2YmxhbmsgdGltZXN0YW1wIGZvciBhCj4+ID4gbm9uLWV4aXN0
+aW5nIHBpcGUuIFRoZXJlJ3MgYSBmZXcgd2F5cyB0byBmaXggdGhpczoKPj4gPgo+PiA+IC0gT3Bl
+bi1jb2RlIHRoZSBvbGQgYmVoYXZpb3VyLCB3aGljaCBqdXN0IGVuc2hyaW5lcyB0aGlzIHNsaWdo
+dAo+PiA+ICAgYnJlYWthZ2Ugb2YgdGhlIHVzZXJzcGFjZSBBQkkuCj4+ID4KPj4gPiAtIFJldmVy
+dCBNYXJpbydzIGNvbW1pdCBhbmQgYWdhaW4gaW5mbGljdCBicm9rZW4gdGltZXN0YW1wcywgYWdh
+aW4gbm90Cj4+ID4gICBwcmV0dHkuCj4+ID4KPj4gPiAtIEZpeCB0aGlzIGZvciByZWFsIGJ5IGRl
+bGF5aW5nIHRoZSBwYWdlZmxpcCBUUyB1bnRpbCB0aGUgbmV4dCB2YmxhbmsKPj4gPiAgIGludGVy
+cnVwdCwgdGhlcmVieSBtYWtpbmcgaXQgYWNjdXJhdGUuCj4+ID4KPj4gPiBUaGlzIHBhdGNoIGlt
+cGxlbWVudHMgdGhlIHRoaXJkIG9wdGlvbi4gU2luY2UgaGF2aW5nIGEgcGFnZSBmbGlwCj4+ID4g
+aW50ZXJydXB0IHRoYXQgaGFwcGVucyB3aGVuIHRoZSBwYWdlZmxpcCBnZXRzIGFybWVkIGFuZCBu
+b3Qgd2hlbiBpdAo+PiA+IGNvbXBsZXRlcyBpbiB0aGUgbmV4dCB2Ymxhbmsgc2VlbXMgdG8gYmUg
+ZmFpcmx5IGNvbW1vbiAob2xkZXIgaTkxNSBodwo+PiA+IHdvcmtzIHZlcnkgc2ltaWxhcmx5KSBj
+cmVhdGUgYSBuZXcgaGVscGVyIHRvIGFybSB2YmxhbmsgZXZlbnRzIGZvcgo+PiA+IHN1Y2ggZHJp
+dmVycy4KPj4KPj4gV2hhdCBoYXBwZW5zIHdoZW4gdGhlIHBhZ2UgZmxpcCBpbnRlcnJ1cHQgYXJy
+aXZlcyBkdXJpbmcgYSB2ZXJ0aWNhbAo+PiBibGFuayBwZXJpb2Q/ICBQcmVzdW1hYmx5IHRoZSB1
+c2Vyc3BhY2UgZXZlbnQgd2lsbCBiZSBkZWZlcnJlZCB1bnRpbCB0aGUKPj4gbmV4dCB2ZXJ0aWNh
+bCBibGFuayBwZXJpb2QsIGJ1dCB0aGUgZmxpcCBtaWdodCBhbHJlYWR5IHRha2UgZWZmZWN0IGlu
+Cj4+IHRoZSBjdXJyZW50IG9uZS4KPgo+IEhtIHllYWggdGhlcmUncyBhIHRpbnkgcmFjZSBpZiB5
+b3VyIHVwZGF0ZSBoYW5kbGVyIGZvciB0aGUgcGFnZWZsaXAgY2FuCj4gcmFjZSB3aXRoIHlvdXIg
+dmJsYW5rIGhhbmRsZXIuIFRoYXQncyBpbXBvc3NpYmxlIGhlcmUgc2luY2UgaXQncyBhbGwgZG9u
+ZQo+IGZyb20gdGhlIHNhbWUgaHcgaXJxIGhhbmxkZXIsIGFuZCBzaW5jZSB0aGF0IGlzIHNpbmds
+ZS10aHJlYWRlZCB0aGVyZQo+IHNob3VsZG4ndCBiZSBhIHByb2JsZW0sIGFzIGxvbmcgYXMgdmJs
+YW5rIGhhbmRsaW5nIGFyZSBwYWdlZmxpcCBhcmUKPiBvcmRlcmVkIGNvcnJlY3RseS4KPgo+IE1p
+Z2h0IGJlIHdvcnRoIGEgbm90ZSBpbiB0aGUga2VybmVsZG9jIHRob3VnaCB0aGF0IHRoaXMgZnVu
+Y3Rpb24gaXNuJ3QKPiBwZXJmZWN0bHkgZm9vbHByb29mLgo+IC1EYW5pZWwKCgpJcyB0aGVyZSBh
+bnkgdXBkYXRlcyBpbiB0aGlzIHJlc3BlY3Q/Cgpkcm0tbm91dmVhdS1GaXgtcHJlLW52NTAtcGFn
+ZWZsaXAtZXZlbnRzLXY0LnBhdGNoCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gv
+NzU5MTUzMQoKaHR0cHM6Ly9idWd6aWxsYS5rZXJuZWwub3JnL3Nob3dfYnVnLmNnaT9pZD0xMDY0
+MzEKUmVwb3J0ZWQ6ICAgICAyMDE1LTEwLTIxCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZlYXVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9ub3V2ZWF1Cg==
