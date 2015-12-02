@@ -1,15 +1,11 @@
-From: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
-Subject: Re: [RFC PATCH 4/5] subdev/clk: print the base clocks
-Date: Wed, 2 Dec 2015 02:34:37 +0100
-Message-ID: <20151202013437.GB5851@pmoreau.org>
-References: <1448988140-3812-1-git-send-email-nouveau@karolherbst.de>
- <1448988140-3812-5-git-send-email-nouveau@karolherbst.de>
+From: <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
+Subject: Fw: new message
+Date: Wed, 2 Dec 2015 11:24:57 -0800
+Message-ID: <00000ea8bced$eb510f0f$a4ce6792$@derocher.org>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1956903269=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Disposition: inline
-In-Reply-To: <1448988140-3812-5-git-send-email-nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Content-Language: en-us
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -19,46 +15,103 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
-Cc: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: notinnj <notinnj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, nottooshabbyconsignments <nottooshabbyconsignments-H+0wwilmMs3R7s880joybQ@public.gmane.org>, noturaverage30 <noturaverage30-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-SGksCgpPbiAwNTo0MiBQTSAtIERlYyAwMSAyMDE1LCBLYXJvbCBIZXJic3Qgd3JvdGU6Cj4gdGhp
-cyBpcyBqdXN0IGEgbmljZSB0aGluZyB0byBrbm93IGFuZCB0aGVyZSBpcyBubyBoYXJtIGluIHBy
-aW50aW5nIHRoZW0KPiAtLS0KPiAgZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyB8
-IDE2ICsrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykK
-PiAKPiBkaWZmIC0tZ2l0IGEvZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyBiL2Ry
-bS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiBpbmRleCBkNzMxYmMzLi5kZjkxNzNl
-IDEwMDY0NAo+IC0tLSBhL2RybS9ub3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiArKysg
-Yi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gQEAgLTI0LDYgKzI0LDcgQEAK
-PiAgI2luY2x1ZGUgInByaXYuaCIKPiAgCj4gICNpbmNsdWRlIDxzdWJkZXYvYmlvcy5oPgo+ICsj
-aW5jbHVkZSA8c3ViZGV2L2Jpb3MvYmFzZWNsb2NrLmg+Cj4gICNpbmNsdWRlIDxzdWJkZXYvYmlv
-cy9ib29zdC5oPgo+ICAjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvY3N0ZXAuaD4KPiAgI2luY2x1ZGUg
-PHN1YmRldi9iaW9zL3BlcmYuaD4KPiBAQCAtNTYyLDEwICs1NjMsMjUgQEAgaW50Cj4gIG52a21f
-Y2xrX2N0b3IoY29uc3Qgc3RydWN0IG52a21fY2xrX2Z1bmMgKmZ1bmMsIHN0cnVjdCBudmttX2Rl
-dmljZSAqZGV2aWNlLAo+ICAJICAgICAgaW50IGluZGV4LCBib29sIGFsbG93X3JlY2xvY2ssIHN0
-cnVjdCBudmttX2NsayAqY2xrKQo+ICB7Cj4gKwlzdHJ1Y3QgbnZrbV9iaW9zICpiaW9zOwo+ICAJ
-aW50IHJldCwgaWR4LCBhcmdsZW47Cj4gIAljb25zdCBjaGFyICptb2RlOwo+ICsJc3RydWN0IG52
-Ymlvc19iYXNlY2xvY2tfaGVhZGVyIGhlYWRlcjsKPiAgCj4gIAludmttX3N1YmRldl9jdG9yKCZu
-dmttX2NsaywgZGV2aWNlLCBpbmRleCwgMCwgJmNsay0+c3ViZGV2KTsKPiArCWJpb3MgPSBkZXZp
-Y2UtPmJpb3M7Cj4gKwo+ICsJaWYgKGJpb3MgJiYgIW52Ymlvc19iYXNlY2xvY2tfcGFyc2UoYmlv
-cywgJmhlYWRlcikpIHsKPiArCQlzdHJ1Y3QgbnZiaW9zX2Jhc2VjbG9ja19lbnRyeSBiYXNlX2Vu
-dHJ5LCBib29zdF9lbnRyeTsKPiArCQlpZiAobnZiaW9zX2Jhc2VjbG9ja19nZXRfZW50cnkoYmlv
-cywgJmhlYWRlciwgaGVhZGVyLmJhc2VfZW50cnksICZiYXNlX2VudHJ5KSkKPiArCQkJbnZrbV9l
-cnJvcigmY2xrLT5zdWJkZXYsICJjb3VsZG4ndCBwYXJzZSBiYXNlIGNsb2NrXG4iKTsKPiArCQll
-bHNlIGlmIChudmJpb3NfYmFzZWNsb2NrX2dldF9lbnRyeShiaW9zLCAmaGVhZGVyLCBoZWFkZXIu
-Ym9vc3RfZW50cnksICZib29zdF9lbnRyeSkpCj4gKwkJCW52a21fZXJyb3IoJmNsay0+c3ViZGV2
-LCAiY291bGRuJ3QgcGFyc2UgYm9vc3QgY2xvY2tcbiIpOwo+ICsJCWVsc2UKPiArCQkJbnZrbV9p
-bmZvKCZjbGstPnN1YmRldiwgImJhc2U6ICVpIE1IeiwgYm9vc3Q6ICVpIE1IelxuIiwKPiArCQkJ
-CWJhc2VfZW50cnkuY2xvY2tfbWh6IC8gMiwgYm9vc3RfZW50cnkuY2xvY2tfbWh6IC8gMik7CgpU
-aGlzIGlzIHByb2JhYmx5IGp1c3QgbWUgbWlzc2luZyBzb21lIGVsZW1lbnRhcnkgZWxlY3Ryb25p
-YyBrbm93bGVkZ2UgYWJvdXQKY2xvY2tzLCBidXQgd2h5IGRvIHlvdSBkaXZpZGUgdGhlIGNsb2Nr
-IGZyZXF1ZW5jeSBieSB0d28/CgpSZWdhcmRzLApQaWVycmUKCj4gKwl9Cj4gKwo+ICAJY2xrLT5m
-dW5jID0gZnVuYzsKPiAgCUlOSVRfTElTVF9IRUFEKCZjbGstPnN0YXRlcyk7Cj4gIAljbGstPmRv
-bWFpbnMgPSBmdW5jLT5kb21haW5zOwo+IC0tIAo+IDIuNi4zCj4gCj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPiBOb3V2ZWF1IG1haWxpbmcgbGlzdAo+
-IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBtYWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL25vdXZlYXUK
+This is a multipart message in MIME format.
+
+--===============1956903269==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_21A79481.44E8EE89"
+Content-Language: en-us
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_21A79481.44E8EE89
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello!
+
+ 
+
+New message, please read <http://olympicbible.org/makes.php?6kt>
+
+ 
+
+brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org
+
+
+------=_NextPart_000_0001_21A79481.44E8EE89
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
+-microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
+ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
+ xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
+ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
+nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
+C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
+span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
+an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
+ lang=3DEN-US><b>New message, please read</b> <a href=3D"http://olympi=
+cbible.org/makes.php?6kt">http://olympicbible.org/makes.php</a><o:p></=
+o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:=
+p></span></p><p class=3DMsoNormal><span lang=3DEN-US>brian-TeWftVRA/bwpug/h7KTFAQ@public.gmane.org=
+g<o:p></o:p></span></p></div></body></html>
+
+------=_NextPart_000_0001_21A79481.44E8EE89--
+
+--===============1956903269==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============1956903269==--
