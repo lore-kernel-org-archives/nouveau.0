@@ -1,117 +1,46 @@
-From: <brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org>
-Subject: Fw: new message
-Date: Wed, 2 Dec 2015 11:24:57 -0800
-Message-ID: <00000ea8bced$eb510f0f$a4ce6792$@derocher.org>
+From: poma <pomidorabelisima@gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
+Date: Wed, 2 Dec 2015 06:40:32 +0100
+Message-ID: <CAF+9+UPxVnRU_RJLTpr6qVFZU8A3oz9pzMF_yStjk5gBpharkg@mail.gmail.com>
+References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
+ <5637147C.6010802@daenzer.net>
+ <20151116151100.GU16848@phenom.ffwll.local>
+ <CAF+9+UOe=vj0PGJZ21orH4BAkSYJO294qrJY_2vWTJvqQbi9ZQ@mail.gmail.com>
+ <20151201155519.GW17050@phenom.ffwll.local>
+ <565DD933.4010004@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1956903269=="
-Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-Content-Language: en-us
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
-Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
-Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: notinnj <notinnj-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, nottooshabbyconsignments <nottooshabbyconsignments-H+0wwilmMs3R7s880joybQ@public.gmane.org>, noturaverage30 <noturaverage30-/E1597aS9LQAvxtiuMwx3w@public.gmane.org>, Nouveau Dev List <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>, nouveau <nouveau-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+Return-path: <dri-devel-bounces@lists.freedesktop.org>
+In-Reply-To: <565DD933.4010004@gmail.com>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
+List-Post: <mailto:dri-devel@lists.freedesktop.org>
+List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
+ <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
+Errors-To: dri-devel-bounces@lists.freedesktop.org
+Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+To: Mario Kleiner <mario.kleiner.de@gmail.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>, DRI Development <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Nouveau Dev <nouveau@lists.freedesktop.org>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>
 List-Id: nouveau.vger.kernel.org
 
-This is a multipart message in MIME format.
-
---===============1956903269==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0001_21A79481.44E8EE89"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0001_21A79481.44E8EE89
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hello!
-
- 
-
-New message, please read <http://olympicbible.org/makes.php?6kt>
-
- 
-
-brian-TeWftVRA/bxg9hUCZPvPmw@public.gmane.org
-
-
-------=_NextPart_000_0001_21A79481.44E8EE89
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas=
--microsoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:off=
-ice:word" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
- xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"C=
-ontent-Type" CONTENT=3D"text/html; charset=3Dus-ascii"><meta name=3DGe=
-nerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-=2EMsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN link=3D"#0563=
-C1" vlink=3D"#954F72"><div class=3DWordSection1><p class=3DMsoNormal><=
-span lang=3DEN-US>Hello!<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US><b>New message, please read</b> <a href=3D"http://olympi=
-cbible.org/makes.php?6kt">http://olympicbible.org/makes.php</a><o:p></=
-o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:=
-p></span></p><p class=3DMsoNormal><span lang=3DEN-US>brian-TeWftVRA/bwpug/h7KTFAQ@public.gmane.org=
-g<o:p></o:p></span></p></div></body></html>
-
-------=_NextPart_000_0001_21A79481.44E8EE89--
-
---===============1956903269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============1956903269==--
+T24gVHVlLCBEZWMgMSwgMjAxNSBhdCA2OjMwIFBNLCBNYXJpbyBLbGVpbmVyCjxtYXJpby5rbGVp
+bmVyLmRlQGdtYWlsLmNvbT4gd3JvdGU6Cj4gV2hlbiB3ZSBhcmUgYXQgaXQsIHRoZSBvbmUgd2l0
+aCB0aGUgdGl0bGUgIltQQVRDSF0gZHJtL25vdXZlYXU6IFVzZQo+IGRybV92Ymxhbmtfb24vb2Zm
+IGNvbnNpc3RlbnRseSIgZnJvbSBEYW5pZWwsIHdoaWNoIGhhcyBhIHJldmlld2VkIGFuZCB0ZXN0
+ZWQKPiBieSBtZSBhbHNvIG5ldmVyIG1hZGUgaXQgaW50byBub3V2ZWF1Lgo+Cj4gTWF5YmUgcGlj
+ayB0aGF0IHVwIGFzIHdlbGw/Cj4KPiAtbWFyaW8KPgoKSWYgeW91IHJlZmVyIHRvCiJbMS8zXSBk
+cm0vbm91dmVhdTogVXNlIGRybV92Ymxhbmtfb24vb2ZmIGNvbnNpc3RlbnRseSIKaHR0cHM6Ly9w
+YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzUwNzcxCgp0aGlzIGlzIHRoZSByZXN1bHQ6
+CnBhdGNoZWQgNC40LjAtMC5yYzMuZ2l0MC4xLmZjMjQueDg2XzY0IHdpdGggaXQsCmkuZS4gMS0z
+LWRybS1ub3V2ZWF1LVVzZS1kcm1fdmJsYW5rX29uLW9mZi1jb25zaXN0ZW50bHkucGF0Y2gKCiMg
+Y2F0IC92YXIvbG9nL1hvcmcuMC5sb2cKWyAgIDEyNi4zNjBdClguT3JnIFggU2VydmVyIDEuMTgu
+MAouLi4KWyAgIDEyNi45MDldIChFRSkgW2RybV0gRmFpbGVkIHRvIG9wZW4gRFJNIGRldmljZSBm
+b3IgcGNpOjAwMDA6MDI6MDAuMDogLTE5ClsgICAxMjYuOTA5XSAoRUUpIE5vIGRldmljZXMgZGV0
+ZWN0ZWQuClsgICAxMjYuOTA5XSAoRUUpCkZhdGFsIHNlcnZlciBlcnJvcjoKWyAgIDEyNi45MDld
+IChFRSkgbm8gc2NyZWVucyBmb3VuZChFRSkKWyAgIDEyNi45MDldIChFRSkKUGxlYXNlIGNvbnN1
+bHQgLi4uLgouLi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KZHJpLWRldmVsIG1haWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
