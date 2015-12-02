@@ -1,54 +1,138 @@
-From: Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] drm/nouveau: Fix pre-nv50 pageflip events
-Date: Wed, 2 Dec 2015 09:55:26 +0100
-Message-ID: <20151202085526.GA17050@phenom.ffwll.local>
-References: <1446242140-6766-1-git-send-email-daniel.vetter@ffwll.ch>
- <5637147C.6010802@daenzer.net>
- <20151116151100.GU16848@phenom.ffwll.local>
- <CAF+9+UOe=vj0PGJZ21orH4BAkSYJO294qrJY_2vWTJvqQbi9ZQ@mail.gmail.com>
- <20151201155519.GW17050@phenom.ffwll.local>
- <565DD933.4010004@gmail.com>
- <CAF+9+UPxVnRU_RJLTpr6qVFZU8A3oz9pzMF_yStjk5gBpharkg@mail.gmail.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 93201] When running a basic OpenGL program with
+ DRI_PRIME=1, Xorg crashes
+Date: Wed, 02 Dec 2015 12:14:17 +0000
+Message-ID: <bug-93201-8800-fEh2vjQ9Q8@http.bugs.freedesktop.org/>
+References: <bug-93201-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-Return-path: <dri-devel-bounces@lists.freedesktop.org>
-Content-Disposition: inline
-In-Reply-To: <CAF+9+UPxVnRU_RJLTpr6qVFZU8A3oz9pzMF_yStjk5gBpharkg@mail.gmail.com>
-List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <http://lists.freedesktop.org/archives/dri-devel>
-List-Post: <mailto:dri-devel@lists.freedesktop.org>
-List-Help: <mailto:dri-devel-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/dri-devel>,
- <mailto:dri-devel-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: dri-devel-bounces@lists.freedesktop.org
-Sender: "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-To: poma <pomidorabelisima@gmail.com>
-Cc: Nouveau Dev <nouveau@lists.freedesktop.org>, Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>, DRI Development <dri-devel@lists.freedesktop.org>, Ben Skeggs <bskeggs@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, Daniel Vetter <daniel.vetter@intel.com>, Thierry Reding <treding@nvidia.com>
+Content-Type: multipart/mixed; boundary="===============0987773941=="
+Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+In-Reply-To: <bug-93201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
+List-Archive: <http://lists.freedesktop.org/archives/nouveau>
+List-Post: <mailto:nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+List-Help: <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=help>
+List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
+ <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
+Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-T24gV2VkLCBEZWMgMDIsIDIwMTUgYXQgMDY6NDA6MzJBTSArMDEwMCwgcG9tYSB3cm90ZToKPiBP
-biBUdWUsIERlYyAxLCAyMDE1IGF0IDY6MzAgUE0sIE1hcmlvIEtsZWluZXIKPiA8bWFyaW8ua2xl
-aW5lci5kZUBnbWFpbC5jb20+IHdyb3RlOgo+ID4gV2hlbiB3ZSBhcmUgYXQgaXQsIHRoZSBvbmUg
-d2l0aCB0aGUgdGl0bGUgIltQQVRDSF0gZHJtL25vdXZlYXU6IFVzZQo+ID4gZHJtX3ZibGFua19v
-bi9vZmYgY29uc2lzdGVudGx5IiBmcm9tIERhbmllbCwgd2hpY2ggaGFzIGEgcmV2aWV3ZWQgYW5k
-IHRlc3RlZAo+ID4gYnkgbWUgYWxzbyBuZXZlciBtYWRlIGl0IGludG8gbm91dmVhdS4KPiA+Cj4g
-PiBNYXliZSBwaWNrIHRoYXQgdXAgYXMgd2VsbD8KPiA+Cj4gPiAtbWFyaW8KPiA+Cj4gCj4gSWYg
-eW91IHJlZmVyIHRvCj4gIlsxLzNdIGRybS9ub3V2ZWF1OiBVc2UgZHJtX3ZibGFua19vbi9vZmYg
-Y29uc2lzdGVudGx5Igo+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC81
-MDc3MQo+IAo+IHRoaXMgaXMgdGhlIHJlc3VsdDoKPiBwYXRjaGVkIDQuNC4wLTAucmMzLmdpdDAu
-MS5mYzI0Lng4Nl82NCB3aXRoIGl0LAo+IGkuZS4gMS0zLWRybS1ub3V2ZWF1LVVzZS1kcm1fdmJs
-YW5rX29uLW9mZi1jb25zaXN0ZW50bHkucGF0Y2gKPiAKPiAjIGNhdCAvdmFyL2xvZy9Yb3JnLjAu
-bG9nCj4gWyAgIDEyNi4zNjBdCj4gWC5PcmcgWCBTZXJ2ZXIgMS4xOC4wCj4gLi4uCj4gWyAgIDEy
-Ni45MDldIChFRSkgW2RybV0gRmFpbGVkIHRvIG9wZW4gRFJNIGRldmljZSBmb3IgcGNpOjAwMDA6
-MDI6MDAuMDogLTE5Cj4gWyAgIDEyNi45MDldIChFRSkgTm8gZGV2aWNlcyBkZXRlY3RlZC4KPiBb
-ICAgMTI2LjkwOV0gKEVFKQo+IEZhdGFsIHNlcnZlciBlcnJvcjoKPiBbICAgMTI2LjkwOV0gKEVF
-KSBubyBzY3JlZW5zIGZvdW5kKEVFKQo+IFsgICAxMjYuOTA5XSAoRUUpCj4gUGxlYXNlIGNvbnN1
-bHQgLi4uLgoKS2VybmVsIGxvZyBuZWVkZWQgaWYgdGhlIGRybSBkZXZpY2UgaXNuJ3QgdGhlcmUu
-IEFuZCB0aGlzIGlzIHByZXR0eSBtdWNoCmltcG9zc2libGUsIHdvcnN0IGNhc2UgbW9kZXNldHRp
-bmcgaXMgZnVuY3Rpb25hbGx5IGJ1c3RlZC4KLURhbmllbAotLSAKRGFuaWVsIFZldHRlcgpTb2Z0
-d2FyZSBFbmdpbmVlciwgSW50ZWwgQ29ycG9yYXRpb24KaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KZHJpLWRldmVsIG1h
-aWxpbmcgbGlzdApkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9kcmktZGV2ZWwK
+
+--===============0987773941==
+Content-Type: multipart/alternative; boundary="1449058458.82E5eC425.3066"; charset="UTF-8"
+
+
+--1449058458.82E5eC425.3066
+Date: Wed, 2 Dec 2015 12:14:18 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=93201
+
+Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> changed:
+
+           What    |Removed                     |Added
+----------------------------------------------------------------------------
+          Component|Driver/intel                |Driver/nouveau
+           Assignee|chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org    |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
+                   |                            |rg
+         QA Contact|intel-gfx-bugs-PD4FTy7X32lMiVNPc3mojA@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
+                   |sktop.org                   |
+
+--- Comment #5 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
+I'm going to assume the DRICloseScreen in the middle of the stack is just the
+unwinder getting confused and so this looks like a nouveau bug and not a core
+DRI2 bug.
+
+-- 
+You are receiving this mail because:
+You are the assignee for the bug.
+
+--1449058458.82E5eC425.3066
+Date: Wed, 2 Dec 2015 12:14:18 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body><span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
+</span> changed
+              <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201">bug 93201</a>
+          <br>
+             <table border="1" cellspacing="0" cellpadding="8">
+          <tr>
+            <th>What</th>
+            <th>Removed</th>
+            <th>Added</th>
+          </tr>
+
+         <tr>
+           <td style="text-align:right;">Component</td>
+           <td>Driver/intel
+           </td>
+           <td>Driver/nouveau
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">Assignee</td>
+           <td>chris&#64;chris-wilson.co.uk
+           </td>
+           <td>nouveau&#64;lists.freedesktop.org
+           </td>
+         </tr>
+
+         <tr>
+           <td style="text-align:right;">QA Contact</td>
+           <td>intel-gfx-bugs&#64;lists.freedesktop.org
+           </td>
+           <td>xorg-team&#64;lists.x.org
+           </td>
+         </tr></table>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201#c5">Comment # 5</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201">bug 93201</a>
+              from <span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
+</span></b>
+        <pre>I'm going to assume the DRICloseScreen in the middle of the stack is just the
+unwinder getting confused and so this looks like a nouveau bug and not a core
+DRI2 bug.</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1449058458.82E5eC425.3066--
+
+--===============0987773941==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0987773941==--
