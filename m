@@ -1,14 +1,14 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92307] G98/GM206: WARNING: ... at
- include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
- [drm_kms_helper]()
-Date: Wed, 02 Dec 2015 13:12:03 +0000
-Message-ID: <bug-92307-8800-WWXCDtSPx4@http.bugs.freedesktop.org/>
-References: <bug-92307-8800@http.bugs.freedesktop.org/>
+From: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+Subject: Re: NV50 compute support questions
+Date: Wed, 2 Dec 2015 16:34:26 +0100
+Message-ID: <565F0F82.9040300@redhat.com>
+References: <564EF7CA.4090809@redhat.com> <564F452A.1010206@gmail.com>
+ <564F4A54.7050704@redhat.com> <5653314D.7010905@gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0919771240=="
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <5653314D.7010905-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -18,116 +18,52 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0919771240==
-Content-Type: multipart/alternative; boundary="1449061923.a7D1D2.25908"; charset="UTF-8"
-
-
---1449061923.a7D1D2.25908
-Date: Wed, 2 Dec 2015 13:12:03 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=92307
-
---- Comment #17 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-
-However with the xrandr routine:
-xrandr --output DVI-I-1 --off ; xrandr --auto
-
-is still problematic,
-the mouse cursor is visible and motile, but the rest of the screen is as
-blanked.
-
-Moreover, through the further testing I found a component that is causing the
-problem.
-Is it the only variable in equation, dunno.
-
-Therefore,
-Xfwm4 XPresent compositor -and- GLX compositor -are problematic-
-in xrandr routine - of course when they are used.
-
-What -is NOT- problematic:
-- Xfwm4 XRender compositor
-- DRI 3
-
-
-Related to this problem, and not only
-https://bugzilla.xfce.org/show_bug.cgi?id=12339
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1449061923.a7D1D2.25908
-Date: Wed, 2 Dec 2015 13:12:03 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c17">Comment # 17</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
-              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
-</span></b>
-        <pre>
-However with the xrandr routine:
-xrandr --output DVI-I-1 --off ; xrandr --auto
-
-is still problematic,
-the mouse cursor is visible and motile, but the rest of the screen is as
-blanked.
-
-Moreover, through the further testing I found a component that is causing the
-problem.
-Is it the only variable in equation, dunno.
-
-Therefore,
-Xfwm4 XPresent compositor -and- GLX compositor -are problematic-
-in xrandr routine - of course when they are used.
-
-What -is NOT- problematic:
-- Xfwm4 XRender compositor
-- DRI 3
-
-
-Related to this problem, and not only
-<a href="https://bugzilla.xfce.org/show_bug.cgi?id=12339">https://bugzilla.xfce.org/show_bug.cgi?id=12339</a></pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1449061923.a7D1D2.25908--
-
---===============0919771240==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
+T24gMDEtMTItMTUsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKCiA+Pj4gT2ssIGhlcmUgaXMgYSBN
+TVQgdHJhY2Ugb2YgdmVjdG9yQWRkOgogPj4+CiA+Pj4gaHR0cHM6Ly9mZWRvcmFwZW9wbGUub3Jn
+L35qd3JkZWdvZWRlL3ZlY3RvckFkZC5sb2cuZ3oKID4+CiA+PiBIaSBIYW5zLAogPj4KID4+IFRo
+YW5rcyBhIGxvdC4KID4KID4gV2VsbCwgSSBkaWRuJ3Qga25vdyBidXQgTWFydGluIGhhcyBhIEdL
+MjA4Li4uCiA+IEkganVzdCB0ZXN0ZWQgdGhlIGNvbXB1dGUgc3VwcG9ydCBvbiBoaXMgY2FyZCBh
+bmQgLi4uIGl0IHdvcmtzIHdpdGhvdXQKID4gYW55IGNoYW5nZXMuIDotKQogPgogPiBJJ20gc29y
+cnksIEkgd2FzIHN1cmUgdGhlIGNvbXB1dGUgc3VwcG9ydCBkaWRuJ3Qgd29yayBvbiB0aGlzIGNo
+aXBzZXQuCgpObyBuZWVkIHRvIGJlIHNvcnJ5IGJlY2F1c2UsIC4uLgoKID4gRmVlbCBmcmVlIHRv
+IHRlc3Qgb24geW91ciBHSzIwOCBhbmQgcmVwb3J0IGJhY2sgaWYgeW91IGhhdmUgcHJvYmxlbXMu
+CgpJJ3ZlIGRvbmUgdGhhdCwgYW5kIGZvciBtZSBpdCBkb2VzIG5vdCB3b3JrLCBpZiBJIHRyeSB0
+byBlbmFibGUgY29tcHV0ZQpzdXBwb3J0IGxpa2UgdGhpczoKCmRpZmYgLS1naXQgYS9zcmMvZ2Fs
+bGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5jIGIvc3JjL2dhbGxpdW0vZHJp
+dmVycy9ub3V2ZWF1L252YzAvbnZjMF9zY3JlZW4uYwppbmRleCA0NjFmY2FhLi5hYjRlYTg1IDEw
+MDY0NAotLS0gYS9zcmMvZ2FsbGl1bS9kcml2ZXJzL25vdXZlYXUvbnZjMC9udmMwX3NjcmVlbi5j
+CisrKyBiL3NyYy9nYWxsaXVtL2RyaXZlcnMvbm91dmVhdS9udmMwL252YzBfc2NyZWVuLmMKQEAg
+LTE4Nyw3ICsxODcsNyBAQCBudmMwX3NjcmVlbl9nZXRfcGFyYW0oc3RydWN0IHBpcGVfc2NyZWVu
+ICpwc2NyZWVuLCBlbnVtIHBpcGVfY2FwIHBhcmFtKQogICAgIGNhc2UgUElQRV9DQVBfU0VBTUxF
+U1NfQ1VCRV9NQVBfUEVSX1RFWFRVUkU6CiAgICAgICAgcmV0dXJuIChjbGFzc18zZCA+PSBOVkU0
+XzNEX0NMQVNTKSA/IDEgOiAwOwogICAgIGNhc2UgUElQRV9DQVBfQ09NUFVURToKLSAgICAgIHJl
+dHVybiAoY2xhc3NfM2QgPD0gTlZFNF8zRF9DTEFTUykgPyAxIDogMDsKKyAgICAgIHJldHVybiAx
+OwogICAgIGNhc2UgUElQRV9DQVBfUFJFRkVSX0JMSVRfQkFTRURfVEVYVFVSRV9UUkFOU0ZFUjoK
+ICAgICAgICByZXR1cm4gbm91dmVhdV9zY3JlZW4ocHNjcmVlbiktPnZyYW1fZG9tYWluICYgTk9V
+VkVBVV9CT19WUkFNID8gMSA6IDA7CgpAQCAtMjQ2LDggKzI0Niw2IEBAIG52YzBfc2NyZWVuX2dl
+dF9zaGFkZXJfcGFyYW0oc3RydWN0IHBpcGVfc2NyZWVuICpwc2NyZWVuLCB1bnNpZ25lZCBzaGFk
+ZXIsCiAgICAgICAgICAgcmV0dXJuIDA7CiAgICAgICAgYnJlYWs7CiAgICAgY2FzZSBQSVBFX1NI
+QURFUl9DT01QVVRFOgotICAgICAgaWYgKGNsYXNzXzNkID4gTlZFNF8zRF9DTEFTUykKLSAgICAg
+ICAgIHJldHVybiAwOwogICAgICAgIGJyZWFrOwogICAgIGRlZmF1bHQ6CiAgICAgICAgcmV0dXJu
+IDA7CkBAIC01NzQsMTEgKzU3MiwxMCBAQCBudmMwX3NjcmVlbl9pbml0X2NvbXB1dGUoc3RydWN0
+IG52YzBfc2NyZWVuICpzY3JlZW4pCiAgICAgY2FzZSAweGQwOgogICAgICAgIHJldHVybiBudmMw
+X3NjcmVlbl9jb21wdXRlX3NldHVwKHNjcmVlbiwgc2NyZWVuLT5iYXNlLnB1c2hidWYpOwogICAg
+IGNhc2UgMHhlMDoKLSAgICAgIHJldHVybiBudmU0X3NjcmVlbl9jb21wdXRlX3NldHVwKHNjcmVl
+biwgc2NyZWVuLT5iYXNlLnB1c2hidWYpOwogICAgIGNhc2UgMHhmMDoKICAgICBjYXNlIDB4MTAw
+OgogICAgIGNhc2UgMHgxMTA6Ci0gICAgICByZXR1cm4gMDsKKyAgICAgIHJldHVybiBudmU0X3Nj
+cmVlbl9jb21wdXRlX3NldHVwKHNjcmVlbiwgc2NyZWVuLT5iYXNlLnB1c2hidWYpOwogICAgIGRl
+ZmF1bHQ6CiAgICAgICAgcmV0dXJuIC0xOwogICAgIH0KClRoZW4gYXMgc29vbiBhcyBJIGRvIHN0
+YXJ0eCAod2hpY2ggc3RhcnRzIGdub21lLXNoZWxsKSB0aGUgbWFjaGluZQpmcmVlemVzLiBUaGlz
+IGlzIHdpdGggbWVzYS1tYXN0ZXIgd2l0aCB0aGUgYWJvdmUgY2hhbmdlcyBvbiB0b3AuCgpYIC8g
+Z25vbWUtc2hlbGwgd2lsbCBoYXBwaWx5IHdvcmsgb2YgSSBkbyBub3QgY2FsbCBudmU0X3NjcmVl
+bl9jb21wdXRlX3NldHVwKCkKYnV0IHRoZW4gdGVzdC90cml2aWFsL2NvbXB1dGUgZmFpbHMgd2l0
+aCBhIG51bGwtcHRyIGV4Y2VwdGlvbi4KCkRvIHlvdSBwZXJoYXBzIGhhdmUgc29tZSBleHRyYSBw
+YXRjaGVzIGluIHlvdXIgdHJlZSwgb3IgYW0gSSBqdXN0IHVubHVja3kgPwoKSSd2ZSB0ZXN0ZWQg
+dGhpcyBvbiBib3RoIGEgNC4yIGFuZCBhIDQuNC1yYzMga2VybmVsLgoKUmVnYXJkcywKCkhhbnMK
 X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0919771240==--
