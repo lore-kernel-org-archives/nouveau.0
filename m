@@ -1,13 +1,16 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93201] When running a basic OpenGL program with
- DRI_PRIME=1, Xorg crashes
-Date: Wed, 02 Dec 2015 12:14:17 +0000
-Message-ID: <bug-93201-8800-fEh2vjQ9Q8@http.bugs.freedesktop.org/>
-References: <bug-93201-8800@http.bugs.freedesktop.org/>
+From: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
+Subject: Re: [RFC PATCH 4/5] subdev/clk: print the base clocks
+Date: Wed, 2 Dec 2015 13:21:13 +0100 (CET)
+Message-ID: <2030662566.45433.1449058874015.JavaMail.open-xchange@www.ud-mail.de>
+References: <1448988140-3812-1-git-send-email-nouveau@karolherbst.de>
+ <1448988140-3812-5-git-send-email-nouveau@karolherbst.de>
+ <20151202013437.GB5851@pmoreau.org>
+Reply-To: Karol Herbst <nouveau-lIBOoy2+GI7scQ4cX5LuPg@public.gmane.org>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0987773941=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <20151202013437.GB5851-WLoDKDh+7sdAfugRpC6u6w@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,122 +20,54 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Pierre Moreau <pierre.morrow-GANU6spQydw@public.gmane.org>
+Cc: nouveau <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0987773941==
-Content-Type: multipart/alternative; boundary="1449058458.82E5eC425.3066"; charset="UTF-8"
-
-
---1449058458.82E5eC425.3066
-Date: Wed, 2 Dec 2015 12:14:18 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=93201
-
-Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-          Component|Driver/intel                |Driver/nouveau
-           Assignee|chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org    |nouveau-PD4FTy7X32lNgt0PjOBp93rCq3LdnpKM@public.gmane.org
-                   |                            |rg
-         QA Contact|intel-gfx-bugs-PD4FTy7X32lMiVNPc3mojA@public.gmane.org |xorg-team-go0+a7rfsptAfugRpC6u6w@public.gmane.org
-                   |sktop.org                   |
-
---- Comment #5 from Chris Wilson <chris-Y6uKTt2uX1cEflXRtASbqLVCufUGDwFn@public.gmane.org> ---
-I'm going to assume the DRICloseScreen in the middle of the stack is just the
-unwinder getting confused and so this looks like a nouveau bug and not a core
-DRI2 bug.
-
--- 
-You are receiving this mail because:
-You are the assignee for the bug.
-
---1449058458.82E5eC425.3066
-Date: Wed, 2 Dec 2015 12:14:18 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201">bug 93201</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Component</td>
-           <td>Driver/intel
-           </td>
-           <td>Driver/nouveau
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Assignee</td>
-           <td>chris&#64;chris-wilson.co.uk
-           </td>
-           <td>nouveau&#64;lists.freedesktop.org
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">QA Contact</td>
-           <td>intel-gfx-bugs&#64;lists.freedesktop.org
-           </td>
-           <td>xorg-team&#64;lists.x.org
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201#c5">Comment # 5</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201">bug 93201</a>
-              from <span class="vcard"><a class="email" href="mailto:chris&#64;chris-wilson.co.uk" title="Chris Wilson &lt;chris&#64;chris-wilson.co.uk&gt;"> <span class="fn">Chris Wilson</span></a>
-</span></b>
-        <pre>I'm going to assume the DRICloseScreen in the middle of the stack is just the
-unwinder getting confused and so this looks like a nouveau bug and not a core
-DRI2 bug.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1449058458.82E5eC425.3066--
-
---===============0987773941==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0987773941==--
+PiBQaWVycmUgTW9yZWF1IDxwaWVycmUubW9ycm93QGZyZWUuZnI+IGhhdCBhbSAyLiBEZXplbWJl
+ciAyMDE1IHVtIDAyOjM0Cj4gZ2VzY2hyaWViZW46Cj4gCj4gSGksCj4gCj4gT24gMDU6NDIgUE0g
+LSBEZWMgMDEgMjAxNSwgS2Fyb2wgSGVyYnN0IHdyb3RlOgo+ID4gdGhpcyBpcyBqdXN0IGEgbmlj
+ZSB0aGluZyB0byBrbm93IGFuZCB0aGVyZSBpcyBubyBoYXJtIGluIHByaW50aW5nIHRoZW0KPiA+
+IC0tLQo+ID4gZHJtL25vdXZlYXUvbnZrbS9zdWJkZXYvY2xrL2Jhc2UuYyB8IDE2ICsrKysrKysr
+KysrKysrKysKPiA+IDEgZmlsZSBjaGFuZ2VkLCAxNiBpbnNlcnRpb25zKCspCj4gPiAKPiA+IGRp
+ZmYgLS1naXQgYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gPiBiL2RybS9u
+b3V2ZWF1L252a20vc3ViZGV2L2Nsay9iYXNlLmMKPiA+IGluZGV4IGQ3MzFiYzMuLmRmOTE3M2Ug
+MTAwNjQ0Cj4gPiAtLS0gYS9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gPiAr
+KysgYi9kcm0vbm91dmVhdS9udmttL3N1YmRldi9jbGsvYmFzZS5jCj4gPiBAQCAtMjQsNiArMjQs
+NyBAQAo+ID4gI2luY2x1ZGUgInByaXYuaCIKPiA+IAo+ID4gI2luY2x1ZGUgPHN1YmRldi9iaW9z
+Lmg+Cj4gPiArI2luY2x1ZGUgPHN1YmRldi9iaW9zL2Jhc2VjbG9jay5oPgo+ID4gI2luY2x1ZGUg
+PHN1YmRldi9iaW9zL2Jvb3N0Lmg+Cj4gPiAjaW5jbHVkZSA8c3ViZGV2L2Jpb3MvY3N0ZXAuaD4K
+PiA+ICNpbmNsdWRlIDxzdWJkZXYvYmlvcy9wZXJmLmg+Cj4gPiBAQCAtNTYyLDEwICs1NjMsMjUg
+QEAgaW50Cj4gPiBudmttX2Nsa19jdG9yKGNvbnN0IHN0cnVjdCBudmttX2Nsa19mdW5jICpmdW5j
+LCBzdHJ1Y3QgbnZrbV9kZXZpY2UgKmRldmljZSwKPiA+IGludCBpbmRleCwgYm9vbCBhbGxvd19y
+ZWNsb2NrLCBzdHJ1Y3QgbnZrbV9jbGsgKmNsaykKPiA+IHsKPiA+ICsgc3RydWN0IG52a21fYmlv
+cyAqYmlvczsKPiA+IGludCByZXQsIGlkeCwgYXJnbGVuOwo+ID4gY29uc3QgY2hhciAqbW9kZTsK
+PiA+ICsgc3RydWN0IG52Ymlvc19iYXNlY2xvY2tfaGVhZGVyIGhlYWRlcjsKPiA+IAo+ID4gbnZr
+bV9zdWJkZXZfY3RvcigmYW1wO252a21fY2xrLCBkZXZpY2UsIGluZGV4LCAwLCAmYW1wO2Nsay0+
+c3ViZGV2KTsKPiA+ICsgYmlvcyA9IGRldmljZS0+YmlvczsKPiA+ICsKPiA+ICsgaWYgKGJpb3Mg
+JmFtcDsmYW1wOyAhbnZiaW9zX2Jhc2VjbG9ja19wYXJzZShiaW9zLCAmYW1wO2hlYWRlcikpIHsK
+PiA+ICsgc3RydWN0IG52Ymlvc19iYXNlY2xvY2tfZW50cnkgYmFzZV9lbnRyeSwgYm9vc3RfZW50
+cnk7Cj4gPiArIGlmIChudmJpb3NfYmFzZWNsb2NrX2dldF9lbnRyeShiaW9zLCAmYW1wO2hlYWRl
+ciwgaGVhZGVyLmJhc2VfZW50cnksCj4gPiAmYW1wO2Jhc2VfZW50cnkpKQo+ID4gKyBudmttX2Vy
+cm9yKCZhbXA7Y2xrLT5zdWJkZXYsICJjb3VsZG4ndCBwYXJzZSBiYXNlIGNsb2NrXG4iKTsKPiA+
+ICsgZWxzZSBpZiAobnZiaW9zX2Jhc2VjbG9ja19nZXRfZW50cnkoYmlvcywgJmFtcDtoZWFkZXIs
+IGhlYWRlci5ib29zdF9lbnRyeSwKPiA+ICZhbXA7Ym9vc3RfZW50cnkpKQo+ID4gKyBudmttX2Vy
+cm9yKCZhbXA7Y2xrLT5zdWJkZXYsICJjb3VsZG4ndCBwYXJzZSBib29zdCBjbG9ja1xuIik7Cj4g
+PiArIGVsc2UKPiA+ICsgbnZrbV9pbmZvKCZhbXA7Y2xrLT5zdWJkZXYsICJiYXNlOiAlaSBNSHos
+IGJvb3N0OiAlaSBNSHpcbiIsCj4gPiArIGJhc2VfZW50cnkuY2xvY2tfbWh6IC8gMiwgYm9vc3Rf
+ZW50cnkuY2xvY2tfbWh6IC8gMik7Cj4gCj4gVGhpcyBpcyBwcm9iYWJseSBqdXN0IG1lIG1pc3Np
+bmcgc29tZSBlbGVtZW50YXJ5IGVsZWN0cm9uaWMga25vd2xlZGdlIGFib3V0Cj4gY2xvY2tzLCBi
+dXQgd2h5IGRvIHlvdSBkaXZpZGUgdGhlIGNsb2NrIGZyZXF1ZW5jeSBieSB0d28/Cj4gClRoaXMg
+aXMgYmVjYXVzZSBpZiB0aGUgY2FyZCB3YXMgc29sZCB3aXRoIDgwMC84NTAgTUh6IHRoZSB0YWJs
+ZSBjb250YWlucwoxNjAwLzE3MDAuIEFuZCBiZWNhdXNlIEkgZG9uJ3Qgd2FudCB0aGF0IGNvbmZ1
+c2lvbiBJIHN0aWNrIHdpdGggdGhlICJoYWxmZWQiCmNsb2Nrcy4KSSBkb24ndCBrbm93IHdoeSB0
+aGV5IGFyZSBkb3VibGVkIHRob3VnaCBvciB0aGUgbWFya2V0aW5nIG9uZXMgaGFsZmVkLgoKPiBS
+ZWdhcmRzLAo+IFBpZXJyZQo+IAo+ID4gKyB9Cj4gPiArCj4gPiBjbGstPmZ1bmMgPSBmdW5jOwo+
+ID4gSU5JVF9MSVNUX0hFQUQoJmFtcDtjbGstPnN0YXRlcyk7Cj4gPiBjbGstPmRvbWFpbnMgPSBm
+dW5jLT5kb21haW5zOwo+ID4gLS0gCj4gPiAyLjYuMwo+ID4gCj4gPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+ID4gTm91dmVhdSBtYWlsaW5nIGxpc3QK
+PiA+IE5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gPiBodHRwOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vbm91dmVhdQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpOb3V2ZWF1IG1haWxpbmcgbGlzdApOb3V2ZWF1QGxp
+c3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
+bGlzdGluZm8vbm91dmVhdQo=
