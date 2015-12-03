@@ -1,13 +1,14 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93201] When running a basic OpenGL program with
- DRI_PRIME=1, Xorg crashes
-Date: Thu, 03 Dec 2015 00:40:29 +0000
-Message-ID: <bug-93201-8800-e4BOK6tFud@http.bugs.freedesktop.org/>
-References: <bug-93201-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92307] G98/GM206: WARNING: ... at
+ include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90
+ [drm_kms_helper]()
+Date: Thu, 03 Dec 2015 08:19:51 +0000
+Message-ID: <bug-92307-8800-RixGU7m1ez@http.bugs.freedesktop.org/>
+References: <bug-92307-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0227655755=="
+Content-Type: multipart/mixed; boundary="===============1836790064=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93201-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92307-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,34 +22,42 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0227655755==
-Content-Type: multipart/alternative; boundary="1449103229.fdE7b1.23866"; charset="UTF-8"
+--===============1836790064==
+Content-Type: multipart/alternative; boundary="1449130791.BD3DAd2.6943"; charset="UTF-8"
 
 
---1449103229.fdE7b1.23866
-Date: Thu, 3 Dec 2015 00:40:29 +0000
+--1449130791.BD3DAd2.6943
+Date: Thu, 3 Dec 2015 08:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93201
+https://bugs.freedesktop.org/show_bug.cgi?id=92307
 
---- Comment #6 from Marcos Souza <marcos.souza.org-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Chris Wilson from comment #5)
-> I'm going to assume the DRICloseScreen in the middle of the stack is just
-> the unwinder getting confused and so this looks like a nouveau bug and not a
-> core DRI2 bug.
+--- Comment #21 from poma <pomidorabelisima-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
 
-So, in this case, there is a start point to look at to solve this problem? I
-would like ot help fixing this issue...
+Valid for all three Xfwm4 compositors:
 
-Thanks,
+w/
+Driver "nouveau"
+
+Option "AccelMethod" "none"
+and/or
+Option "NoAccel" "off"
+
+"... xrandr --auto" zaps Xserver
+
+
+w/
+Driver "modesetting"
+
+"... xrandr --auto" works OK
 
 -- 
 You are receiving this mail because:
 You are the assignee for the bug.
 
---1449103229.fdE7b1.23866
-Date: Thu, 3 Dec 2015 00:40:29 +0000
+--1449130791.BD3DAd2.6943
+Date: Thu, 3 Dec 2015 08:19:51 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -61,23 +70,31 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201#c6">Comment # 6</a>
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307#c21">Comment # 21</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - When running a basic OpenGL program with DRI_PRIME=1, Xorg crashes"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93201">bug 93201</a>
-              from <span class="vcard"><a class="email" href="mailto:marcos.souza.org&#64;gmail.com" title="Marcos Souza &lt;marcos.souza.org&#64;gmail.com&gt;"> <span class="fn">Marcos Souza</span></a>
+   title="NEW - G98/GM206: WARNING: ... at include/drm/drm_crtc.h:1577 drm_helper_choose_encoder_dpms+0x8a/0x90 [drm_kms_helper]()"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92307">bug 92307</a>
+              from <span class="vcard"><a class="email" href="mailto:pomidorabelisima&#64;gmail.com" title="poma &lt;pomidorabelisima&#64;gmail.com&gt;"> <span class="fn">poma</span></a>
 </span></b>
-        <pre>(In reply to Chris Wilson from <a href="show_bug.cgi?id=93201#c5">comment #5</a>)
-<span class="quote">&gt; I'm going to assume the DRICloseScreen in the middle of the stack is just
-&gt; the unwinder getting confused and so this looks like a nouveau bug and not a
-&gt; core DRI2 bug.</span >
+        <pre>
+Valid for all three Xfwm4 compositors:
 
-So, in this case, there is a start point to look at to solve this problem? I
-would like ot help fixing this issue...
+w/
+Driver &quot;nouveau&quot;
 
-Thanks,</pre>
+Option &quot;AccelMethod&quot; &quot;none&quot;
+and/or
+Option &quot;NoAccel&quot; &quot;off&quot;
+
+&quot;... xrandr --auto&quot; zaps Xserver
+
+
+w/
+Driver &quot;modesetting&quot;
+
+&quot;... xrandr --auto&quot; works OK</pre>
         </div>
       </p>
       <hr>
@@ -89,9 +106,9 @@ Thanks,</pre>
     </body>
 </html>
 
---1449103229.fdE7b1.23866--
+--1449130791.BD3DAd2.6943--
 
---===============0227655755==
+--===============1836790064==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -101,4 +118,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0227655755==--
+--===============1836790064==--
