@@ -1,12 +1,13 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 93004] Guild Wars 2 crash on nouveau DX11 cards
-Date: Thu, 03 Dec 2015 18:28:22 +0000
-Message-ID: <bug-93004-8800-qK3Hy7xDaw@http.bugs.freedesktop.org/>
-References: <bug-93004-8800@http.bugs.freedesktop.org/>
+Subject: [Bug 92892] [NVA8] KDE Plasma locks up: Nouveau reports
+ error "resource sanity check" "unable to handle kernel paging request"
+Date: Thu, 03 Dec 2015 20:52:43 +0000
+Message-ID: <bug-92892-8800-ylGFNgQ2ez@http.bugs.freedesktop.org/>
+References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0852421947=="
+Content-Type: multipart/mixed; boundary="===============0865884249=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-93004-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,32 +21,44 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0852421947==
-Content-Type: multipart/alternative; boundary="1449167301.fFaCC1.19956"; charset="UTF-8"
+--===============0865884249==
+Content-Type: multipart/alternative; boundary="1449175963.ee4DA141.764"; charset="UTF-8"
 
 
---1449167301.fFaCC1.19956
-Date: Thu, 3 Dec 2015 18:28:21 +0000
+--1449175963.ee4DA141.764
+Date: Thu, 3 Dec 2015 20:52:43 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
-https://bugs.freedesktop.org/show_bug.cgi?id=93004
+https://bugs.freedesktop.org/show_bug.cgi?id=92892
 
---- Comment #6 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-    nvc0->dirty |= NVC0_NEW_ARRAYS;
-    nouveau_bufctx_reset(nvc0->bufctx_3d, NVC0_BIND_VTX);
+--- Comment #8 from doktor.yak-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+I have a very similar setup.
+- OpenSUSE Tumbleweed
+- Dell Laptop (E6510)
+- NVIDIA Corporation GT218M [NVS 3100M]
+- upgraded kernel to 4.3.0
 
-can you stick these 2 lines in under the if (!vb) section of
-nvc0_set_vertex_buffers and see if that improves things? I need to think about
-why those aren't already there... perhaps there's a reason. Doubtful though.
+
+And exactly the same symptoms
+(down to the same call backtrace).
+
+
+Thus, I can help testing driver fixes if needed.
+
+Also @Volker Lukas:
+- Where did you get the older still functioning copy (4.2.4 ?)
+I would like download and have until the 4.3.0 kernel gets fixed, but all the
+tumbleweed mirror seem to have deleted the older kernel RPMs and only have the
+latest one.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449167301.fFaCC1.19956
-Date: Thu, 3 Dec 2015 18:28:21 +0000
+--1449175963.ee4DA141.764
+Date: Thu, 3 Dec 2015 20:52:43 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -58,20 +71,32 @@ Content-Type: text/html; charset="UTF-8"
         <div>
             <b><a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004#c6">Comment # 6</a>
+   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c8">Comment # 8</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
-   title="NEW - Guild Wars 2 crash on nouveau DX11 cards"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93004">bug 93004</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
+              from <span class="vcard"><a class="email" href="mailto:doktor.yak&#64;gmail.com" title="doktor.yak&#64;gmail.com">doktor.yak&#64;gmail.com</a>
 </span></b>
-        <pre>    nvc0-&gt;dirty |= NVC0_NEW_ARRAYS;
-    nouveau_bufctx_reset(nvc0-&gt;bufctx_3d, NVC0_BIND_VTX);
+        <pre>I have a very similar setup.
+- OpenSUSE Tumbleweed
+- Dell Laptop (E6510)
+- NVIDIA Corporation GT218M [NVS 3100M]
+- upgraded kernel to 4.3.0
 
-can you stick these 2 lines in under the if (!vb) section of
-nvc0_set_vertex_buffers and see if that improves things? I need to think about
-why those aren't already there... perhaps there's a reason. Doubtful though.</pre>
+
+And exactly the same symptoms
+(down to the same call backtrace).
+
+
+Thus, I can help testing driver fixes if needed.
+
+Also &#64;Volker Lukas:
+- Where did you get the older still functioning copy (4.2.4 ?)
+I would like download and have until the 4.3.0 kernel gets fixed, but all the
+tumbleweed mirror seem to have deleted the older kernel RPMs and only have the
+latest one.</pre>
         </div>
       </p>
       <hr>
@@ -84,9 +109,9 @@ why those aren't already there... perhaps there's a reason. Doubtful though.</pr
     </body>
 </html>
 
---1449167301.fFaCC1.19956--
+--1449175963.ee4DA141.764--
 
---===============0852421947==
+--===============0865884249==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -96,4 +121,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0852421947==--
+--===============0865884249==--
