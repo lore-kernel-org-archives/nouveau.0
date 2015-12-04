@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92438] Segfault in pushbuf_kref when running the
  android emulator (qemu) on nv50
-Date: Fri, 04 Dec 2015 14:45:20 +0000
-Message-ID: <bug-92438-8800-PUN3KpsTBM@http.bugs.freedesktop.org/>
+Date: Fri, 04 Dec 2015 15:24:02 +0000
+Message-ID: <bug-92438-8800-YiY1t13FsK@http.bugs.freedesktop.org/>
 References: <bug-92438-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============1333737527=="
+Content-Type: multipart/mixed; boundary="===============0510842432=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92438-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,39 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============1333737527==
-Content-Type: multipart/alternative; boundary="1449240320.ed8fd81.7009"; charset="UTF-8"
+--===============0510842432==
+Content-Type: multipart/alternative; boundary="1449242642.FEdB00020.15787"; charset="UTF-8"
 
 
---1449240320.ed8fd81.7009
-Date: Fri, 4 Dec 2015 14:45:20 +0000
+--1449242642.FEdB00020.15787
+Date: Fri, 4 Dec 2015 15:24:02 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92438
 
---- Comment #37 from Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org> ---
-(In reply to Gabriele Svelto from comment #35)
-> I've updated mesa again and running from the current master I encounter the
-> segfault again. This time though this is the only message that pops up in
-> the kernel log:
-> 
-> [ 4684.326211] emulator-x86[19034]: segfault at 4 ip 00000000f5f49403 sp
-> 00000000ac6fc660 error 4 in libdrm_nouveau.so.2.0.0[f5f46000+7000]
-> 
-> I'm wondering if running a master mesa with a non-master libdrm is supported
-> at all.
-
-Most likely the emulator is doing GL stuff from different threads, which
-doesn't work with nouveau. Sorry :(
+--- Comment #38 from Gabriele Svelto <gabriele.svelto-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
+Yes, the emulator seems to be calling GL commands from multiple threads, or at
+least the traces I got seemed to have different thread identifiers for
+different commands.
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449240320.ed8fd81.7009
-Date: Fri, 4 Dec 2015 14:45:20 +0000
+--1449242642.FEdB00020.15787
+Date: Fri, 4 Dec 2015 15:24:02 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -67,26 +57,16 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c37">Comment # 37</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92438#c38">Comment # 38</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - Segfault in pushbuf_kref when running the android emulator (qemu) on nv50"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92438">bug 92438</a>
-              from <span class="vcard"><a class="email" href="mailto:imirkin&#64;alum.mit.edu" title="Ilia Mirkin &lt;imirkin&#64;alum.mit.edu&gt;"> <span class="fn">Ilia Mirkin</span></a>
+              from <span class="vcard"><a class="email" href="mailto:gabriele.svelto&#64;gmail.com" title="Gabriele Svelto &lt;gabriele.svelto&#64;gmail.com&gt;"> <span class="fn">Gabriele Svelto</span></a>
 </span></b>
-        <pre>(In reply to Gabriele Svelto from <a href="show_bug.cgi?id=92438#c35">comment #35</a>)
-<span class="quote">&gt; I've updated mesa again and running from the current master I encounter the
-&gt; segfault again. This time though this is the only message that pops up in
-&gt; the kernel log:
-&gt; 
-&gt; [ 4684.326211] emulator-x86[19034]: segfault at 4 ip 00000000f5f49403 sp
-&gt; 00000000ac6fc660 error 4 in libdrm_nouveau.so.2.0.0[f5f46000+7000]
-&gt; 
-&gt; I'm wondering if running a master mesa with a non-master libdrm is supported
-&gt; at all.</span >
-
-Most likely the emulator is doing GL stuff from different threads, which
-doesn't work with nouveau. Sorry :(</pre>
+        <pre>Yes, the emulator seems to be calling GL commands from multiple threads, or at
+least the traces I got seemed to have different thread identifiers for
+different commands.</pre>
         </div>
       </p>
       <hr>
@@ -99,9 +79,9 @@ doesn't work with nouveau. Sorry :(</pre>
     </body>
 </html>
 
---1449240320.ed8fd81.7009--
+--1449242642.FEdB00020.15787--
 
---===============1333737527==
+--===============0510842432==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -111,4 +91,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============1333737527==--
+--===============0510842432==--
