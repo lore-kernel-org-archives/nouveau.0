@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 93254] [NVA5] The Long Dark (game) is very slow
  because of "kernel rejected pushbuf" messages in log files
-Date: Fri, 04 Dec 2015 21:50:39 +0000
-Message-ID: <bug-93254-8800-L6z6J5uHW5@http.bugs.freedesktop.org/>
+Date: Fri, 04 Dec 2015 22:01:15 +0000
+Message-ID: <bug-93254-8800-S7FIb5y7Vc@http.bugs.freedesktop.org/>
 References: <bug-93254-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0788233545=="
+Content-Type: multipart/mixed; boundary="===============1078056374=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-93254-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,29 +21,29 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0788233545==
-Content-Type: multipart/alternative; boundary="1449265839.8d0C00.23631"; charset="UTF-8"
+--===============1078056374==
+Content-Type: multipart/alternative; boundary="1449266474.Af1BD10.27851"; charset="UTF-8"
 
 
---1449265839.8d0C00.23631
-Date: Fri, 4 Dec 2015 21:50:39 +0000
+--1449266474.Af1BD10.27851
+Date: Fri, 4 Dec 2015 22:01:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=93254
 
---- Comment #1 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
-Created attachment 120359
-  --> https://bugs.freedesktop.org/attachment.cgi?id=120359&action=edit
-Complete log file (compressed)
+--- Comment #2 from Alexander Schlarb <alexander-fd-Bd8g6ntRJIRxuZdfhUSrJg@public.gmane.org> ---
+Created attachment 120360
+  --> https://bugs.freedesktop.org/attachment.cgi?id=120360&action=edit
+Kernel log
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449265839.8d0C00.23631
-Date: Fri, 4 Dec 2015 21:50:39 +0000
+--1449266474.Af1BD10.27851
+Date: Fri, 4 Dec 2015 22:01:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -57,15 +57,15 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] The Long Dark (game) is very slow because of &quot;kernel rejected pushbuf&quot; messages in log files"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=93254#c1">Comment # 1</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=93254#c2">Comment # 2</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA5] The Long Dark (game) is very slow because of &quot;kernel rejected pushbuf&quot; messages in log files"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=93254">bug 93254</a>
               from <span class="vcard"><a class="email" href="mailto:alexander-fd&#64;xmine128.tk" title="Alexander Schlarb &lt;alexander-fd&#64;xmine128.tk&gt;"> <span class="fn">Alexander Schlarb</span></a>
 </span></b>
-        <pre>Created <span class=""><a href="attachment.cgi?id=120359" name="attach_120359" title="Complete log file (compressed)">attachment 120359</a> <a href="attachment.cgi?id=120359&amp;action=edit" title="Complete log file (compressed)">[details]</a></span>
-Complete log file (compressed)</pre>
+        <pre>Created <span class=""><a href="attachment.cgi?id=120360" name="attach_120360" title="Kernel log">attachment 120360</a> <a href="attachment.cgi?id=120360&amp;action=edit" title="Kernel log">[details]</a></span>
+Kernel log</pre>
         </div>
       </p>
       <hr>
@@ -78,9 +78,9 @@ Complete log file (compressed)</pre>
     </body>
 </html>
 
---1449265839.8d0C00.23631--
+--1449266474.Af1BD10.27851--
 
---===============0788233545==
+--===============1078056374==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -90,4 +90,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0788233545==--
+--===============1078056374==--
