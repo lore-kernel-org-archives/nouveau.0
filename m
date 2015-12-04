@@ -1,13 +1,10 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 92892] [NVA8] KDE Plasma locks up: Nouveau reports
- error "resource sanity check" "unable to handle kernel paging request"
-Date: Fri, 04 Dec 2015 11:05:14 +0000
-Message-ID: <bug-92892-8800-X8JaFaFECq@http.bugs.freedesktop.org/>
-References: <bug-92892-8800@http.bugs.freedesktop.org/>
+From: Craig Garner <craigcgarner-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Subject: FC22 verus FC23
+Date: Fri, 4 Dec 2015 06:07:01 -0500
+Message-ID: <CAGfK2pdFz2RtvOSqKdki9FyFQ6EEO4B2MEPo0tm=zUw76Je3tg@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0326426516=="
+Content-Type: multipart/mixed; boundary="===============0140990205=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -20,74 +17,48 @@ Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane
 To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
+--===============0140990205==
+Content-Type: multipart/alternative; boundary=001a1141bc5cc0bcba05261081ff
 
---===============0326426516==
-Content-Type: multipart/alternative; boundary="1449227114.A851A7bd1.24465"; charset="UTF-8"
+--001a1141bc5cc0bcba05261081ff
+Content-Type: text/plain; charset=UTF-8
 
+I have a quad display set up.  It is working perfectly under FC22, but
+bombs on FC23.  I wish I had more information for you, but I had to get
+this machine back up and running.
 
---1449227114.A851A7bd1.24465
-Date: Fri, 4 Dec 2015 11:05:14 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+Not only does the quad head not work, the one working head was operating at
+1280x1024 versus 1920x1080.
 
-https://bugs.freedesktop.org/show_bug.cgi?id=92892
+I tried doing a fresh install of FC23 and an upgrade from FC22 to FC23.  It
+did not work in either situation.  So, I am back to FC22 until it really
+sounds like it will work at some point in time and I can do an upgrade or
+fresh install.
 
---- Comment #10 from doktor.yak-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
-Thanks for your answer.
+It has a G520 and a G730 running in it.
 
-Do you know if Suse did apply any patch on their version of the 4.2.4 kernel ?
+Thank you,
 
-Otherwise I'll follow your recommendation and compile a vanilla kernel. (with
-"make oldconfig"-ing /proc/config.gz)
+Craig
 
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
+--001a1141bc5cc0bcba05261081ff
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---1449227114.A851A7bd1.24465
-Date: Fri, 4 Dec 2015 11:05:14 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
+<div dir=3D"ltr"><div><div><div><div><div>I have a quad display set up.=C2=
+=A0 It is working perfectly under FC22, but bombs on FC23.=C2=A0 I wish I h=
+ad more information for you, but I had to get this machine back up and runn=
+ing.<br><br></div>Not only does the quad head not work, the one working hea=
+d was operating at 1280x1024 versus 1920x1080.<br><br></div>I tried doing a=
+ fresh install of FC23 and an upgrade from FC22 to FC23.=C2=A0 It did not w=
+ork in either situation.=C2=A0 So, I am back to FC22 until it really sounds=
+ like it will work at some point in time and I can do an upgrade or fresh i=
+nstall.<br><br></div>It has a G520 and a G730 running in it.<br><br></div>T=
+hank you,<br><br></div>Craig<br><br></div>
 
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c10">Comment # 10</a>
-              on <a class="bz_bug_link 
-          bz_status_NEW "
-   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
-              from <span class="vcard"><a class="email" href="mailto:doktor.yak&#64;gmail.com" title="doktor.yak&#64;gmail.com">doktor.yak&#64;gmail.com</a>
-</span></b>
-        <pre>Thanks for your answer.
+--001a1141bc5cc0bcba05261081ff--
 
-Do you know if Suse did apply any patch on their version of the 4.2.4 kernel ?
-
-Otherwise I'll follow your recommendation and compile a vanilla kernel. (with
-&quot;make oldconfig&quot;-ing /proc/config.gz)</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1449227114.A851A7bd1.24465--
-
---===============0326426516==
+--===============0140990205==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -97,4 +68,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0326426516==--
+--===============0140990205==--
