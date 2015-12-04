@@ -1,11 +1,11 @@
 From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
 Subject: [Bug 92892] [NVA8] KDE Plasma locks up: Nouveau reports
  error "resource sanity check" "unable to handle kernel paging request"
-Date: Fri, 04 Dec 2015 10:47:20 +0000
-Message-ID: <bug-92892-8800-PPoccIYOFK@http.bugs.freedesktop.org/>
+Date: Fri, 04 Dec 2015 11:05:14 +0000
+Message-ID: <bug-92892-8800-X8JaFaFECq@http.bugs.freedesktop.org/>
 References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0811519628=="
+Content-Type: multipart/mixed; boundary="===============0326426516=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
@@ -21,35 +21,32 @@ To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
 
---===============0811519628==
-Content-Type: multipart/alternative; boundary="1449226040.ABeC5D1.18321"; charset="UTF-8"
+--===============0326426516==
+Content-Type: multipart/alternative; boundary="1449227114.A851A7bd1.24465"; charset="UTF-8"
 
 
---1449226040.ABeC5D1.18321
-Date: Fri, 4 Dec 2015 10:47:20 +0000
+--1449227114.A851A7bd1.24465
+Date: Fri, 4 Dec 2015 11:05:14 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 
 https://bugs.freedesktop.org/show_bug.cgi?id=92892
 
---- Comment #9 from Volker Lukas <vlukas-Mmb7MZpHnFY@public.gmane.org> ---
-Hi doktor.yak,
+--- Comment #10 from doktor.yak-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org ---
+Thanks for your answer.
 
-at the time I encountered this bug, the Opensuse Linux 4.2.4 RPM was still
-downloadable.
+Do you know if Suse did apply any patch on their version of the 4.2.4 kernel ?
 
-If you build linux-4.2.6.tar.xz from kernel.org via "make rpm" you should be
-able to get a working kernel package. You can copy the
-/boot/config-4.x-something to the kernel source directory to copy the build
-configuration (rename it to ".config").
+Otherwise I'll follow your recommendation and compile a vanilla kernel. (with
+"make oldconfig"-ing /proc/config.gz)
 
 -- 
 You are receiving this mail because:
 You are the QA Contact for the bug.
 You are the assignee for the bug.
 
---1449226040.ABeC5D1.18321
-Date: Fri, 4 Dec 2015 10:47:20 +0000
+--1449227114.A851A7bd1.24465
+Date: Fri, 4 Dec 2015 11:05:14 +0000
 MIME-Version: 1.0
 Content-Type: text/html; charset="UTF-8"
 
@@ -63,22 +60,19 @@ Content-Type: text/html; charset="UTF-8"
             <b><a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c9">Comment # 9</a>
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c10">Comment # 10</a>
               on <a class="bz_bug_link 
           bz_status_NEW "
    title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
    href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
-              from <span class="vcard"><a class="email" href="mailto:vlukas&#64;gmx.de" title="Volker Lukas &lt;vlukas&#64;gmx.de&gt;"> <span class="fn">Volker Lukas</span></a>
+              from <span class="vcard"><a class="email" href="mailto:doktor.yak&#64;gmail.com" title="doktor.yak&#64;gmail.com">doktor.yak&#64;gmail.com</a>
 </span></b>
-        <pre>Hi doktor.yak,
+        <pre>Thanks for your answer.
 
-at the time I encountered this bug, the Opensuse Linux 4.2.4 RPM was still
-downloadable.
+Do you know if Suse did apply any patch on their version of the 4.2.4 kernel ?
 
-If you build linux-4.2.6.tar.xz from kernel.org via &quot;make rpm&quot; you should be
-able to get a working kernel package. You can copy the
-/boot/config-4.x-something to the kernel source directory to copy the build
-configuration (rename it to &quot;.config&quot;).</pre>
+Otherwise I'll follow your recommendation and compile a vanilla kernel. (with
+&quot;make oldconfig&quot;-ing /proc/config.gz)</pre>
         </div>
       </p>
       <hr>
@@ -91,9 +85,9 @@ configuration (rename it to &quot;.config&quot;).</pre>
     </body>
 </html>
 
---1449226040.ABeC5D1.18321--
+--1449227114.A851A7bd1.24465--
 
---===============0811519628==
+--===============0326426516==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: base64
@@ -103,4 +97,4 @@ X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
 YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
 ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
 
---===============0811519628==--
+--===============0326426516==--
