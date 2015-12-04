@@ -1,17 +1,13 @@
-From: Samuel Pitoiset <samuel.pitoiset-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
-Subject: Re: NV50 compute support questions
-Date: Fri, 4 Dec 2015 10:21:54 +0100
-Message-ID: <56615B32.8080906@gmail.com>
-References: <564EF7CA.4090809@redhat.com> <564F452A.1010206@gmail.com>
- <564F4A54.7050704@redhat.com> <5653314D.7010905@gmail.com>
- <565F0F82.9040300@redhat.com> <565F3988.10500@gmail.com>
- <566152BE.1080107@redhat.com> <566154C2.4090509@gmail.com>
- <56615907.5070909@redhat.com>
+From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
+Subject: [Bug 92892] [NVA8] KDE Plasma locks up: Nouveau reports
+ error "resource sanity check" "unable to handle kernel paging request"
+Date: Fri, 04 Dec 2015 10:47:20 +0000
+Message-ID: <bug-92892-8800-PPoccIYOFK@http.bugs.freedesktop.org/>
+References: <bug-92892-8800@http.bugs.freedesktop.org/>
 Mime-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0811519628=="
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <56615907.5070909-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
+In-Reply-To: <bug-92892-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -21,133 +17,90 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: Hans de Goede <hdegoede-H+wXaHxf7aLQT0dZR+AlfA@public.gmane.org>
-Cc: "nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org" <nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
+To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 List-Id: nouveau.vger.kernel.org
 
-CgpPbiAxMi8wNC8yMDE1IDEwOjEyIEFNLCBIYW5zIGRlIEdvZWRlIHdyb3RlOgo+IEhpLAo+Cj4g
-T24gMDQtMTItMTUgMDk6NTQsIFNhbXVlbCBQaXRvaXNldCB3cm90ZToKPj4KPj4KPj4gT24gMTIv
-MDQvMjAxNSAwOTo0NSBBTSwgSGFucyBkZSBHb2VkZSB3cm90ZToKPgo+IDxzbmlwPgo+Cj4+Pj4g
-UGxlYXNlIGdpdmUgYSBzaG90IGF0IHRoaXMgYnJhbmNoIDoKPj4+PiBodHRwOi8vY2dpdC5mcmVl
-ZGVza3RvcC5vcmcvfmhha3pzYW0vbWVzYS9sb2cvP2g9bnZmMF9jb21wdXRlCj4+Pj4KPj4+PiBJ
-dCBmaXhlcyB0aGUgaW5pdGlhbGl6YXRpb24gb2YgdGhlIGNvbXB1dGUgc3RhdGUgYW5kIGFsbG93
-cyBtZSB0bwo+Pj4+IGxhdW5jaCAndGVzdF9pbnB1dF9nbG9iYWwnIChpZS4gLi9jb21wdXRlIDgp
-IG9uIG15IEdLMjA4IHdpdGhvdXQKPj4+PiBhbnkgZG1lc2cgZmFpbHMuIFRoYXQncyBhIGdvb2Qg
-c3RhcnQgYnV0IG1vcmUgcGF0Y2hlcyBhcmUgY29taW5nLiA6LSkKPj4+Cj4+PiBUaGlzIGJyYW5j
-aCBpbmRlZWQgd29ya3Mgc29tZXdoYXQgYmV0dGVyLCBidXQgdGhpbmdzIHN0aWxsIGhhbmcgb24g
-dGhlCj4+Pgo+Pj4gdGVzdF9zeXN0ZW1fdmFsdWVzIGNvbXB1dGUgdGVzdCBmb3IgbWUgKHRoaXMg
-aXMgdGhlIGZpcnN0IHRlc3QgZXhlY3V0ZWQKPj4+IEkgZGlkIG5vdCB0cnkgdGhlIG90aGVycyku
-IFNvIHRoaXMgc2VlbXMgdG8gbmVlZCBtb3JlIHdvcmsuCj4+Cj4+IFdoYXQgYWJvdXQgdGVzdF9p
-bnB1dF9nbG9iYWw/IHRlc3Rfc3lzdGVtX3ZhbHVlcyBkb2Vzbid0IHdvcmsgb24gbXkKPj4gc2lk
-ZSBidXQgaXQgZG9lc24ndCBoYW5nIHRoZSBHUFUuCj4KPiBZZXMgdGhhdCBvbmUgd29ya3MuCj4K
-Pj4gQ291bGQgeW91IHBsZWFzZSBwcm92aWRlIGRtZXNnIGxvZz8KPgo+IFsgICAgMi43ODY2MzFd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBOVklESUEgR0syMDhCIChiMDYwNzBiMSkKPiBbICAgIDIu
-OTE0MjkxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogYmlvczogdmVyc2lvbiA4MC4yOC43OS4wMC4w
-Ygo+IFsgICAgMi45Mzc5MDldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBwcml2OiBIVUIwOiAwODYw
-MTQgZmZmZmZmZmYgKDFmNzA4MjBjKQo+IFsgICAgMi45Mzc5NTNdIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBmYjogMTAyNCBNaUIgRERSMwo+IFsgICAgMy42MjMyMDJdIFtUVE1dIFpvbmUgIGtlcm5l
-bDogQXZhaWxhYmxlIGdyYXBoaWNzIG1lbW9yeTogMjAxMDU1NiBraUIKPiBbICAgIDMuNjIzMjA1
-XSBbVFRNXSBJbml0aWFsaXppbmcgcG9vbCBhbGxvY2F0b3IKPiBbICAgIDMuNjIzMjQxXSBbVFRN
-XSBJbml0aWFsaXppbmcgRE1BIHBvb2wgYWxsb2NhdG9yCj4gWyAgICAzLjYyMzQ0MF0gbm91dmVh
-dSAwMDAwOjAxOjAwLjA6IERSTTogVlJBTTogMTAyNCBNaUIKPiBbICAgIDMuNjIzNDQyXSBub3V2
-ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBHQVJUOiAxMDQ4NTc2IE1pQgo+IFsgICAgMy42MjM0NDdd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBEUk06IFRNRFMgdGFibGUgdmVyc2lvbiAyLjAKPiBbICAg
-IDMuNjIzNDQ5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgdmVyc2lvbiA0LjAKPiBb
-ICAgIDMuNjIzNDUxXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMDogMDEw
-MDBmMDIgMDAwMjAwMzAKPiBbICAgIDMuNjIzNDU0XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJN
-OiBEQ0Igb3V0cCAwMTogMDIwMTFmNjIgMDAwMjAwMTAKPiBbICAgIDMuNjIzNDU2XSBub3V2ZWF1
-IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0Igb3V0cCAwMjogMDIwMjJmMTAgMDAwMDAwMDAKPiBbICAg
-IDMuNjIzNDU4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAwMDogMDAwMDEw
-MzEKPiBbICAgIDMuNjIzNDYwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBEQ0IgY29ubiAw
-MTogMDAwMDIxNjEKPiBbICAgIDMuNjIzNDYyXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogRFJNOiBE
-Q0IgY29ubiAwMjogMDAwMDAyMDAKPiBbICAgIDMuNjI3MjgzXSBbZHJtXSBTdXBwb3J0cyB2Ymxh
-bmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLgo+IFsgICAgMy42MjcyODVd
-IFtkcm1dIERyaXZlciBzdXBwb3J0cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAgcXVlcnkuCj4g
-WyAgICAzLjY3MTg3MV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IERSTTogTU06IHVzaW5nIENPUFkg
-Zm9yIGJ1ZmZlciBjb3BpZXMKPiBbICAgIDMuODg5OTQwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDog
-RFJNOiBhbGxvY2F0ZWQgMTkyMHgxMDgwIGZiOgo+IDB4NjAwMDAsIGJvIGZmZmY4ODAxMTkwNTAw
-MDAKPiBbICAgIDMuODkwOTUyXSBmYmNvbjogbm91dmVhdWZiIChmYjApIGlzIHByaW1hcnkgZGV2
-aWNlCj4gWyAgICA0LjEzMjM0M10gQ29uc29sZTogc3dpdGNoaW5nIHRvIGNvbG91ciBmcmFtZSBi
-dWZmZXIgZGV2aWNlIDI0MHg2Nwo+IFsgICAgNC4xMzQ5MzBdIG5vdXZlYXUgMDAwMDowMTowMC4w
-OiBmYjA6IG5vdXZlYXVmYiBmcmFtZSBidWZmZXIgZGV2aWNlCj4gWyAgICA0LjE0MTA5NF0gW2Ry
-bV0gSW5pdGlhbGl6ZWQgbm91dmVhdSAxLjMuMSAyMDEyMDgwMSBmb3IgMDAwMDowMTowMC4wCj4g
-b24gbWlub3IgMAo+Cj4gPHNuaXA+Cj4KPiBbIDE3MTMuNDIxNDYwXSBub3V2ZWF1IDAwMDA6MDE6
-MDAuMDogZ3I6IFRSQVAgY2ggNiBbMDAzZmEzMjAwMAo+IGNvbXB1dGVbMjExMTddXQo+IFsgMTcx
-My40MjE0NzFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogR1BDMC9UUEMxL01QIHRyYXA6IGds
-b2JhbAo+IDAwMDAwMDAwIFtdIHdhcnAgMzAwMGUgW01FTV9PVVRfT0ZfQk9VTkRTXQo+IFsgMTcx
-My40NDEyNDhdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBncjogVFJBUCBjaCA2IFswMDNmYTMyMDAw
-Cj4gY29tcHV0ZVsyMTExN11dCj4gWyAxNzEzLjQ0MTI2MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6
-IGdyOiBHUEMwL1RQQzAvTVAgdHJhcDogZ2xvYmFsCj4gMDAwMDAwMDQgW01VTFRJUExFX1dBUlBf
-RVJST1JTXSB3YXJwIDIwMDA1IFtNSVNBTElHTkVEX1BDXQo+IFsgMTcxMy40NDEyNjVdIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBncjogR1BDMC9UUEMxL01QIHRyYXA6IGdsb2JhbAo+IDAwMDAwMDA0
-IFtNVUxUSVBMRV9XQVJQX0VSUk9SU10gd2FycCAyMDAwNSBbTUlTQUxJR05FRF9QQ10KPiBbIDE3
-MTcuNzczODM5XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMGEgW0NU
-WFNXX1RJTUVPVVRdCj4gWyAxNzE3Ljc3Mzg0OF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86
-IHN3IGVuZ2luZSBmYXVsdCBvbiBjaGFubmVsIDIsCj4gcmVjb3ZlcmluZy4uLgo+IFsgMTcxOS43
-NzY1MjldIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBydW5saXN0IDAgdXBkYXRlIHRpbWVv
-dXQKPiBbIDE3MjIuMDY4OTIzXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzI2LjM2MzY2MF0gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTczMC42NTgzOTVd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9V
-VF0KPiBbIDE3MzQuOTUxNzIwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzM5LjI0MTg2MV0gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTc0My41MzIwMDVd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9V
-VF0KPiBbIDE3NDcuODI2NzI4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzUyLjEyMTQ2Ml0gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTc1Ni40MTYyMDBd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9V
-VF0KPiBbIDE3NjAuNzEwOTMwXSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzY1LjAwNTY2M10gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTc2OS4zMDAzOTZd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9V
-VF0KPiBbIDE3NzMuNTk1MTM1XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzc3Ljg4OTg2M10gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGZpZm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTc4Mi4xODQ1OThd
-IG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9V
-VF0KPiBbIDE3ODYuNDc5MzI4XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJS
-T1IgMGEgW0NUWFNXX1RJTUVPVVRdCj4gWyAxNzg5LjczMDAyMF0gbm91dmVhdSAwMDAwOjAxOjAw
-LjA6IGNvbXB1dGVbMjExMTddOiBmYWlsZWQgdG8gaWRsZQo+IGNoYW5uZWwgNiBbY29tcHV0ZVsy
-MTExN11dCj4gWyAxNzkwLjc3NDA2MF0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IFNDSEVE
-X0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTc5MS43Mjk5NjNdIG5vdXZlYXUgMDAwMDow
-MTowMC4wOiB0aW1lb3V0IGF0Cj4gZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUv
-Zmlmby9ncGZpZm9nazEwNC5jOjQ3L2drMTA0X2ZpZm9fZ3BmaWZvX2tpY2soKSEKPgo+IFsgMTc5
-MS43Mjk5NjZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBjaGFubmVsIDYgW2NvbXB1dGVb
-MjExMTddXQo+IGtpY2sgdGltZW91dAo+IFsgMTc5MS43Mjk5NzNdIG5vdXZlYXU6IGNvbXB1dGVb
-MjExMTddOjAwMDAwMDAwOjAwMDBhMDZmOiBkZXRhY2ggZ3IKPiBmYWlsZWQsIC0xNgo+IFsgMTc5
-MS43MzE0MDFdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwZCBbXQo+
-IFsgMTc5My43MzEyNzVdIG5vdXZlYXUgMDAwMDowMTowMC4wOiB0aW1lb3V0IGF0Cj4gZHJpdmVy
-cy9ncHUvZHJtL25vdXZlYXUvbnZrbS9lbmdpbmUvZmlmby9ncGZpZm9nazEwNC5jOjQ3L2drMTA0
-X2ZpZm9fZ3BmaWZvX2tpY2soKSEKPgo+IFsgMTc5My43MzEyNzldIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBmaWZvOiBjaGFubmVsIDYgW2NvbXB1dGVbMjExMTddXQo+IGtpY2sgdGltZW91dAo+IFsg
-MTc5My43MzEyODFdIG5vdXZlYXU6IGNvbXB1dGVbMjExMTddOjAwMDAwMDAwOjAwMDBhMDZmOiBk
-ZXRhY2ggc3cKPiBmYWlsZWQsIC0xNgo+IFsgMTc5Ni4wMjYxMThdIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9VVF0KPiBbIDE4MDAuMzIwODA5
-XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMGEgW0NUWFNXX1RJTUVP
-VVRdCj4gWyAxODA0LjYxNTQ0Nl0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZpZm86IFNDSEVEX0VS
-Uk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTgwOC43MzEwMTZdIG5vdXZlYXUgMDAwMDowMTow
-MC4wOiBjb21wdXRlWzIxMTE3XTogZmFpbGVkIHRvIGlkbGUKPiBjaGFubmVsIDYgW2NvbXB1dGVb
-MjExMTddXQo+IFsgMTgwOC43Mzg3MTZdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hF
-RF9FUlJPUiAwZCBbXQo+IFsgMTgxMC43MzgwOTNdIG5vdXZlYXUgMDAwMDowMTowMC4wOiBmaWZv
-OiBydW5saXN0IDAgdXBkYXRlIHRpbWVvdXQKPiBbIDE4MTAuNzM4MTA2XSBub3V2ZWF1IDAwMDA6
-MDE6MDAuMDogZmlmbzogQklORF9FUlJPUiAwMwo+IFtVTkJJTkRfV0hJTEVfUlVOTklOR10KPiBb
-IDE4MTUuMDMyNzQ3XSBub3V2ZWF1IDAwMDA6MDE6MDAuMDogZmlmbzogU0NIRURfRVJST1IgMGEg
-W0NUWFNXX1RJTUVPVVRdCj4gWyAxODE5LjMyNzM5NV0gbm91dmVhdSAwMDAwOjAxOjAwLjA6IGZp
-Zm86IFNDSEVEX0VSUk9SIDBhIFtDVFhTV19USU1FT1VUXQo+IFsgMTgyMy42MjIwMzZdIG5vdXZl
-YXUgMDAwMDowMTowMC4wOiBmaWZvOiBTQ0hFRF9FUlJPUiAwYSBbQ1RYU1dfVElNRU9VVF0KPgo+
-IDxsYXN0IGxpbmUga2VlcHMgcmVwZWF0aW5nIGF0IGFwcm94IDQgc2VjIGludGVydmFsPgoKVGhh
-bmtzLCBJJ2xsIGhhdmUgYSBsb29rIGFuZCB0cnkgdG8gcHJvdmlkZSBhIGZpeCBmb3IgeW91ciBH
-SzIwOGIuCgo+Cj4+PiBJJ3ZlIG9yZGVyZWQgYSBHVFg3NDAgKEdLMTA3KSBjYXJkLCB3aGljaCBz
-aG91bGQgYXJyaXZlIHNvb24sIGFuZAo+Pj4gSSdsbCBiZSB1c2luZyB0aGF0IHNvIEkgY2FuICho
-b3BlZnVsbHkpIGZvY3VzIG9uIHRoZSBsbHZtIHRnc2kgYml0cwo+Pj4gYWdhaW4uCj4+Cj4+IFll
-YWgsIEdLMTA3IHdpbGwgZG8gdGhlIGpvYi4gOi0pCj4KPiBHb29kIGEgc2FpZCBpdCBzaG91bGQg
-YXJyaXZlIHNvb24uCj4KPj4+PiBCdHcsIGFjY29yZGluZyB0byB0aGUgdHJhY2UgeW91IHNlbnQg
-bWUsIHlvdSBoYXZlIGEgR0syMDhiIChOVjEwNikuCj4+Pgo+Pj4gUmlnaHQsIHNvcnJ5IEkgdGhv
-dWdodCB0aGUgZGlmZmVyZW5jZXMgYmV0d2VlbiBHSzIwOCBhbmQgR0syMDhiIHdvdWxkCj4+PiBu
-b3QgbWF0dGVyLgo+Pgo+PiBJIGRvbid0IGtub3cgZXhhY3RseSB0aGUgZGlmZmVyZW5jZXMgYmV0
-d2VlbiB0aGVzZSB0d28gY2hpcHNldHMgYnV0Cj4+IHNpbmNlIHRlc3Rfc3lzdGVtX3ZhbHVlcyBo
-YW5ncyB5b3VyIEdQVSBhbmQgbm90IG1pbmUsIEkgdGhpbmsgdGhleSBhcmUKPj4gc29tZS4KPgo+
-IE9rLgo+Cj4gUmVnYXJkcywKPgo+IEhhbnMKCi0tIAotU2FtdWVsCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBsaXN0Ck5vdXZl
-YXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
+
+--===============0811519628==
+Content-Type: multipart/alternative; boundary="1449226040.ABeC5D1.18321"; charset="UTF-8"
+
+
+--1449226040.ABeC5D1.18321
+Date: Fri, 4 Dec 2015 10:47:20 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+
+https://bugs.freedesktop.org/show_bug.cgi?id=92892
+
+--- Comment #9 from Volker Lukas <vlukas-Mmb7MZpHnFY@public.gmane.org> ---
+Hi doktor.yak,
+
+at the time I encountered this bug, the Opensuse Linux 4.2.4 RPM was still
+downloadable.
+
+If you build linux-4.2.6.tar.xz from kernel.org via "make rpm" you should be
+able to get a working kernel package. You can copy the
+/boot/config-4.x-something to the kernel source directory to copy the build
+configuration (rename it to ".config").
+
+-- 
+You are receiving this mail because:
+You are the QA Contact for the bug.
+You are the assignee for the bug.
+
+--1449226040.ABeC5D1.18321
+Date: Fri, 4 Dec 2015 10:47:20 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="UTF-8"
+
+<html>
+    <head>
+      <base href="https://bugs.freedesktop.org/" />
+    </head>
+    <body>
+      <p>
+        <div>
+            <b><a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892#c9">Comment # 9</a>
+              on <a class="bz_bug_link 
+          bz_status_NEW "
+   title="NEW - [NVA8] KDE Plasma locks up: Nouveau reports error &quot;resource sanity check&quot; &quot;unable to handle kernel paging request&quot;"
+   href="https://bugs.freedesktop.org/show_bug.cgi?id=92892">bug 92892</a>
+              from <span class="vcard"><a class="email" href="mailto:vlukas&#64;gmx.de" title="Volker Lukas &lt;vlukas&#64;gmx.de&gt;"> <span class="fn">Volker Lukas</span></a>
+</span></b>
+        <pre>Hi doktor.yak,
+
+at the time I encountered this bug, the Opensuse Linux 4.2.4 RPM was still
+downloadable.
+
+If you build linux-4.2.6.tar.xz from kernel.org via &quot;make rpm&quot; you should be
+able to get a working kernel package. You can copy the
+/boot/config-4.x-something to the kernel source directory to copy the build
+configuration (rename it to &quot;.config&quot;).</pre>
+        </div>
+      </p>
+      <hr>
+      <span>You are receiving this mail because:</span>
+      
+      <ul>
+          <li>You are the QA Contact for the bug.</li>
+          <li>You are the assignee for the bug.</li>
+      </ul>
+    </body>
+</html>
+
+--1449226040.ABeC5D1.18321--
+
+--===============0811519628==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+Content-Disposition: inline
+
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
+YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
+
+--===============0811519628==--
