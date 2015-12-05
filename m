@@ -1,13 +1,13 @@
-From: bugzilla-daemon-CC+yJ3UmIYqDUpFQwHEjaQ@public.gmane.org
-Subject: [Bug 90181] [NVF1] native cs:go crashes when its about to
- load up a map.
-Date: Sat, 05 Dec 2015 14:38:06 +0000
-Message-ID: <bug-90181-8800-t2q5pUikBr@http.bugs.freedesktop.org/>
-References: <bug-90181-8800@http.bugs.freedesktop.org/>
+From: Ilia Mirkin <imirkin-FrUbXkNCsVf2fBVCVOL8/A@public.gmane.org>
+Subject: Re: bad things happened, 4.4-rc3, nve7, virgl test server
+Date: Sat, 5 Dec 2015 10:46:55 -0500
+Message-ID: <CAKb7UvgbFJ8DLb2ztPKRWme-aX5Ui0018WisHDoUA4d6ugva0Q@mail.gmail.com>
+References: <CAPM=9tyP5f5yH+6ROOaGGkjGcGMLM-eV5gfRQCEgqeeBhgZ4dA@mail.gmail.com>
 Mime-Version: 1.0
-Content-Type: multipart/mixed; boundary="===============0318949557=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Return-path: <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-In-Reply-To: <bug-90181-8800-V0hAGp6uBxMKqLRl/0Ahz6D7qz1kEfGD2LY78lusg7I@public.gmane.org/>
+In-Reply-To: <CAPM=9tyP5f5yH+6ROOaGGkjGcGMLM-eV5gfRQCEgqeeBhgZ4dA-JsoAwUIsXosN+BqQ9rBEUg@public.gmane.org>
 List-Unsubscribe: <http://lists.freedesktop.org/mailman/options/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=unsubscribe>
 List-Archive: <http://lists.freedesktop.org/archives/nouveau>
@@ -17,119 +17,71 @@ List-Subscribe: <http://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org?subject=subscribe>
 Errors-To: nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
 Sender: "Nouveau" <nouveau-bounces-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
-To: nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org
+To: Dave Airlie <airlied-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+Cc: nouveau <Nouveau-PD4FTy7X32lNgt0PjOBp9y5qC8QIuHrW@public.gmane.org>
 List-Id: nouveau.vger.kernel.org
 
-
---===============0318949557==
-Content-Type: multipart/alternative; boundary="1449326286.ED11A50.26546"; charset="UTF-8"
-
-
---1449326286.ED11A50.26546
-Date: Sat, 5 Dec 2015 14:38:06 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-
-https://bugs.freedesktop.org/show_bug.cgi?id=90181
-
-Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> changed:
-
-           What    |Removed                     |Added
-----------------------------------------------------------------------------
-             Status|NEW                         |RESOLVED
-         Resolution|---                         |FIXED
-
---- Comment #2 from Tom Englund <tomenglund26-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org> ---
-(In reply to Ilia Mirkin from comment #1)
-> I've fixed a number of resource lifetime handling issues since you filed the
-> bug. Please try the latest 11.0.x mesa and see if things improve (or git).
-
-yep, im running with 11.2.0_devel.74740.ea3f394 and everything is working.
-this can be closed.
-
--- 
-You are receiving this mail because:
-You are the QA Contact for the bug.
-You are the assignee for the bug.
-
---1449326286.ED11A50.26546
-Date: Sat, 5 Dec 2015 14:38:06 +0000
-MIME-Version: 1.0
-Content-Type: text/html; charset="UTF-8"
-
-<html>
-    <head>
-      <base href="https://bugs.freedesktop.org/" />
-    </head>
-    <body><span class="vcard"><a class="email" href="mailto:tomenglund26&#64;gmail.com" title="Tom Englund &lt;tomenglund26&#64;gmail.com&gt;"> <span class="fn">Tom Englund</span></a>
-</span> changed
-              <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVF1] native cs:go crashes when its about to load up a map."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181">bug 90181</a>
-          <br>
-             <table border="1" cellspacing="0" cellpadding="8">
-          <tr>
-            <th>What</th>
-            <th>Removed</th>
-            <th>Added</th>
-          </tr>
-
-         <tr>
-           <td style="text-align:right;">Status</td>
-           <td>NEW
-           </td>
-           <td>RESOLVED
-           </td>
-         </tr>
-
-         <tr>
-           <td style="text-align:right;">Resolution</td>
-           <td>---
-           </td>
-           <td>FIXED
-           </td>
-         </tr></table>
-      <p>
-        <div>
-            <b><a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVF1] native cs:go crashes when its about to load up a map."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181#c2">Comment # 2</a>
-              on <a class="bz_bug_link 
-          bz_status_RESOLVED  bz_closed"
-   title="RESOLVED FIXED - [NVF1] native cs:go crashes when its about to load up a map."
-   href="https://bugs.freedesktop.org/show_bug.cgi?id=90181">bug 90181</a>
-              from <span class="vcard"><a class="email" href="mailto:tomenglund26&#64;gmail.com" title="Tom Englund &lt;tomenglund26&#64;gmail.com&gt;"> <span class="fn">Tom Englund</span></a>
-</span></b>
-        <pre>(In reply to Ilia Mirkin from <a href="show_bug.cgi?id=90181#c1">comment #1</a>)
-<span class="quote">&gt; I've fixed a number of resource lifetime handling issues since you filed the
-&gt; bug. Please try the latest 11.0.x mesa and see if things improve (or git).</span >
-
-yep, im running with 11.2.0_devel.74740.ea3f394 and everything is working.
-this can be closed.</pre>
-        </div>
-      </p>
-      <hr>
-      <span>You are receiving this mail because:</span>
-      
-      <ul>
-          <li>You are the QA Contact for the bug.</li>
-          <li>You are the assignee for the bug.</li>
-      </ul>
-    </body>
-</html>
-
---1449326286.ED11A50.26546--
-
---===============0318949557==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
-Content-Disposition: inline
-
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KTm91dmVhdSBt
-YWlsaW5nIGxpc3QKTm91dmVhdUBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cDovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL25vdXZlYXUK
-
---===============0318949557==--
+T24gU2F0LCBEZWMgNSwgMjAxNSBhdCAzOjEyIEFNLCBEYXZlIEFpcmxpZSA8YWlybGllZEBnbWFp
+bC5jb20+IHdyb3RlOgo+IFsgNjA0Ny43MzQ4NTBdIGx0LXZpcmdsX3Rlc3Rfc1syMTM5NV06IHNl
+Z2ZhdWx0IGF0IDI0OTg3MmZmOCBpcAo+IDAwMDAwMDMxZWQ2ODM3OGQgc3AgMDAwMDdmZmUyY2Rl
+OWEzMCBlcnJvciA0IGluCj4gbGliYy0yLjIxLnNvWzMxZWQ2MDAwMDArMWI3MDAwXQo+IFsgNjA0
+OC44MDA2NTRdIGx0LXZpcmdsX3Rlc3Rfc1syMTQxNV06IHNlZ2ZhdWx0IGF0IDI0Yjg4NzcwOCBp
+cAo+IDAwMDA3ZjcxMWU3MDM4YTcgc3AgMDAwMDdmZmUyY2RlOWE4MCBlcnJvciA2IGluCj4gbm91
+dmVhdV9kcmkuc29bN2Y3MTFlNGI5MDAwKzg0NzAwMF0KCkknZCBkZWZpbml0ZWx5IGJlIGEgYXQg
+bGVhc3QgYSBsaXR0bGUgaW50ZXJlc3RlZCBpZiB5b3UgY291bGQgcHJvdmlkZQptZSB3aXRoIGEg
+YmFja3RyYWNlIGZvciB0aGlzIG9uZS4KCj4gWyA2MDUwLjc4MjMwOV0gQlVHOiB1bmFibGUgdG8g
+aGFuZGxlIGtlcm5lbCBwYWdpbmcgcmVxdWVzdCBhdCBmZmZmYzkwMDAyMzc4MDAwCj4gWyA2MDUw
+Ljc4MjMzMF0gSVA6IFs8ZmZmZmZmZmY4MTNkN2RjZT5dIGlvd3JpdGUzMisweDJlLzB4NDAKPiBb
+IDYwNTAuNzgyMzQxXSBQR0QgNDVlODk5MDY3IFBVRCA0NWU4OWEwNjcgUE1EIDQ1NzA4YzA2NyBQ
+VEUgMAo+IFsgNjA1MC43ODIzNTJdIE9vcHM6IDAwMDIgWyMxXSBTTVAKPiBbIDYwNTAuNzgyMzYw
+XSBNb2R1bGVzIGxpbmtlZCBpbjogZnVzZSB4dF9DSEVDS1NVTSBpcHRfTUFTUVVFUkFERQo+IG5m
+X25hdF9tYXNxdWVyYWRlX2lwdjQgdHVuIGNjbSBpcDZ0X1JFSkVDVCBuZl9yZWplY3RfaXB2NiB4
+dF9jb25udHJhY2sKPiBlYnRhYmxlX25hdCBlYnRhYmxlX2Jyb3V0ZSBicmlkZ2Ugc3RwIGxsYyBl
+YnRhYmxlX2ZpbHRlciBlYnRhYmxlcwo+IGlwNnRhYmxlX25hdCBuZl9jb25udHJhY2tfaXB2NiBu
+Zl9kZWZyYWdfaXB2NiBuZl9uYXRfaXB2Ngo+IGlwNnRhYmxlX21hbmdsZSBpcDZ0YWJsZV9zZWN1
+cml0eSBpcDZ0YWJsZV9yYXcgaXA2dGFibGVfZmlsdGVyCj4gaXA2X3RhYmxlcyBpcHRhYmxlX25h
+dCBuZl9jb25udHJhY2tfaXB2NCBuZl9kZWZyYWdfaXB2NCBuZl9uYXRfaXB2NAo+IG5mX25hdCBu
+Zl9jb25udHJhY2sgaXB0YWJsZV9tYW5nbGUgaXB0YWJsZV9zZWN1cml0eSBpcHRhYmxlX3JhdyBq
+b3lkZXYKPiBiY201OTc0IG5sc191dGY4IGhmc3BsdXMgYXJjNCBiNDMgc3NiIG1hYzgwMjExIGNm
+ZzgwMjExIHJma2lsbAo+IHNuZF9oZGFfY29kZWNfaGRtaSBhcHBsZXNtYyBzbmRfaGRhX2NvZGVj
+X2NpcnJ1cyBzbmRfaGRhX2NvZGVjX2dlbmVyaWMKPiBpbnB1dF9wb2xsZGV2IHNuZF9oZGFfaW50
+ZWwgc25kX2hkYV9jb2RlYyBzbmRfaHdkZXAgc25kX2hkYV9jb3JlIGJjbWEKPiB4ODZfcGtnX3Rl
+bXBfdGhlcm1hbCB0aHVuZGVyYm9sdCBjb3JldGVtcCBrdm1faW50ZWwgc2JzIGt2bSBpcnFieXBh
+c3MKPiBzYnNoYyBjcmMzMmNfaW50ZWwgc25kX3BjbSBzbmRfdGltZXIgYXBwbGVfZ211eCBscGNf
+aWNoIHNuZCBtZmRfY29yZQo+IHNvdW5kY29yZQo+IFsgNjA1MC43ODI1MjNdICBpMmNfaTgwMSBh
+cHBsZV9ibCBwY3Nwa3Igc2RoY2lfcGNpIG5vdXZlYXUgc2RoY2kKPiBteG1fd21pIG1tY19jb3Jl
+IHdtaSBpOTE1IHR0bSBpMmNfYWxnb19iaXQgZHJtX2ttc19oZWxwZXIgZHJtIGkyY19jb3JlCj4g
+dmlkZW8KPiBbIDYwNTAuNzgyNTU3XSBDUFU6IDQgUElEOiAyMTQ3OSBDb21tOiBsdC12aXJnbF90
+ZXN0X3MgTm90IHRhaW50ZWQKPiA0LjQuMC1yYzMrICM0NAo+IFsgNjA1MC43ODI1NjZdIEhhcmR3
+YXJlIG5hbWU6IEFwcGxlIEluYy4KPiBNYWNCb29rUHJvMTAsMS9NYWMtQzNFQzdDRDIyMjkyOTgx
+RiwgQklPUwo+IE1CUDEwMS44OFouMDBFRS5CMDIuMTIwODA4MTEzMiAwOC8wOC8yMDEyCj4gWyA2
+MDUwLjc4MjU3NV0gdGFzazogZmZmZjg4MDNiMDIxMjU0MCB0aTogZmZmZjg4MDA3YzNjYzAwMCB0
+YXNrLnRpOgo+IGZmZmY4ODAwN2MzY2MwMDAKPiBbIDYwNTAuNzgyNTgzXSBSSVA6IDAwMTA6Wzxm
+ZmZmZmZmZjgxM2Q3ZGNlPl0gIFs8ZmZmZmZmZmY4MTNkN2RjZT5dCj4gaW93cml0ZTMyKzB4MmUv
+MHg0MAo+IFsgNjA1MC43ODI1OTNdIFJTUDogMDAxODpmZmZmODgwMDdjM2NmYWYwICBFRkxBR1M6
+IDAwMDEwMjkyCj4gWyA2MDUwLjc4MjU5OF0gUkFYOiBmZmZmODgwNDU3ZDdmMzcwIFJCWDogMDAw
+MDAwMDAwMDAwODAwNCBSQ1g6IGZmZmY4ODA0NTczMjI1MTgKPiBbIDYwNTAuNzgyNjA2XSBSRFg6
+IDAwMDAwMDAwMDAwMDAwMTAgUlNJOiBmZmZmYzkwMDAyMzc4MDAwIFJESTogMDAwMDAwMDAwMDAw
+MDAxMAo+IFsgNjA1MC43ODI2MTNdIFJCUDogZmZmZjg4MDA3YzNjZmFmOCBSMDg6IGZmZmY4ODAw
+N2MzY2ZhYjAgUjA5OiBmZmZmZmZmZmEwMzM3MDgwCj4gWyA2MDUwLjc4MjYxOV0gUjEwOiAwMDAw
+MDAwMDAwMDAwMDAwIFIxMTogMDAwMDAwMDAwMDAwMDAwMCBSMTI6IGZmZmY4ODA0NDNjMjIwMDAK
+PiBbIDYwNTAuNzgyNjI3XSBSMTM6IGZmZmY4ODAwODlkMDY0MDAgUjE0OiAwMDAwMDAwMDAwMDAx
+MDAxIFIxNTogZmZmZjg4MDQ1NmUyOGM0MAo+IFsgNjA1MC43ODI2MzRdIEZTOiAgMDAwMDdmNzEx
+ZjNjNzcwMCgwMDAwKSBHUzpmZmZmODgwNDZmMzAwMDAwKDAwMDApCj4ga25sR1M6MDAwMDAwMDAw
+MDAwMDAwMAo+IFsgNjA1MC43ODI2NDJdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6
+IDAwMDAwMDAwODAwNTAwMzMKPiBbIDYwNTAuNzgyNjQ4XSBDUjI6IGZmZmZjOTAwMDIzNzgwMDAg
+Q1IzOiAwMDAwMDAwMDY3ZmQyMDAwIENSNDogMDAwMDAwMDAwMDE0MDZlMAo+IFsgNjA1MC43ODI2
+NTVdIFN0YWNrOgo+IFsgNjA1MC43ODI2NThdICBmZmZmZmZmZmEwMmE4NjM0IGZmZmY4ODAwN2Mz
+Y2ZiODAgZmZmZmZmZmZhMDJjZmUyOAo+IDAwMDAwMDAwMDAwMDAwMDAKPiBbIDYwNTAuNzgyNjcw
+XSAgZmZmZjg4MDQ1NzMyMjAyOCAwMDAwMDAwMDAwMDAwMDA3IGZmZmY4ODA0NTczMjIwMDAKPiBm
+ZmZmODgwNDU3MzIyNTE4Cj4gWyA2MDUwLjc4MjY4Ml0gIGZmZmY4ODAzYjAyMTJkMTAgZmZmZjg4
+MDA3YzNjZmI3MCBmZmZmZmZmZjgxMGY0ZmVmCj4gZmZmZjg4MDNiMDIxMjU0MAo+IFsgNjA1MC43
+ODI2OTVdIENhbGwgVHJhY2U6Cj4gWyA2MDUwLjc4MjczMF0gIFs8ZmZmZmZmZmZhMDJhODYzND5d
+ID8gbnZrbV9pbnN0b2JqX3dyMzIrMHgxNC8weDIwIFtub3V2ZWF1XQo+IFsgNjA1MC43ODc0Nzld
+ICBbPGZmZmZmZmZmYTAyY2ZlMjg+XQo+IGdrMTA0X2ZpZm9fcnVubGlzdF91cGRhdGUrMHhkOC8w
+eDJiMCBbbm91dmVhdV0KClRoaXMgaXMgbW9zdCBsaWtlbHkgaGVscGVkIGJ5CgpodHRwOi8vY2dp
+dC5mcmVlZGVza3RvcC5vcmcvfmRhcmt0YW1hL25vdXZlYXUvY29tbWl0Lz9pZD1lOTQ4NjcxNzNl
+MWNhMjU0YzMwYjEyZjk4NTlmMDBjOTkwMjY4YWJiCgpDaGVlcnMsCgogIC1pbGlhCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCk5vdXZlYXUgbWFpbGluZyBs
+aXN0Ck5vdXZlYXVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHA6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9ub3V2ZWF1Cg==
